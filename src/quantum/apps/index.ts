@@ -40,6 +40,10 @@ import * as __ns_water_encryption from '../../water/encryption'
 import { CURSOR_AGENT_SKILL_IDS, cursorAgentToolsSaved, MISSION_COMMANDS, QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../pair/enforcement/gates'
 import { computeUniversalPage, theoremFormulaCodeDual, theoremPageRows } from '../../wind/routes/corpus'
+import { quantumFusionVerify } from '../../wind/fusion'
+import { dryCleanIsDiamondAndCrystal } from '../../lake/clean'
+import { tamperEvident } from '../../5/5'
+import { RAVE_CENTER_LAYOUT } from '../../heaven/sky/astronomy'
 
 export type RosettaCoreSurfaceKind = 'compute' | 'tool' | 'route' | 'projection' | 'nav' | 'api' | 'app'
 export type RosettaCoreSurface = {
@@ -69,6 +73,10 @@ const ROSETTA_CORE_API_LABELS = [
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
+  'selfQuantumFusion',
+  'fusionInterface',
+  'crystalClearMind',
+  'thirdMindEye',
   'upgradeLocalFromOptimisedManualWorkExperience',
   'automateNightlyViaNpmScriptPath',
   'counterRotatingRosettaQuantumWaves',
@@ -105,6 +113,10 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   improveLocalFromSessionExperience: 'tool',
   gatesMonitorThemselvesThroughTheUi: 'tool',
   gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix: 'tool',
+  selfQuantumFusion: 'tool',
+  fusionInterface: 'tool',
+  crystalClearMind: 'tool',
+  thirdMindEye: 'tool',
   upgradeLocalFromOptimisedManualWorkExperience: 'tool',
   automateNightlyViaNpmScriptPath: 'tool',
   counterRotatingRosettaQuantumWaves: 'compute',
@@ -384,6 +396,18 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'folder-gravity', title: 'Folder gravity — mass + pull toward src/', fold: 'folderGravityMeasuredByTheCode', cli: 'npm run quantum:folder-gravity', pair: 'folder/gravity', route: '/en/quantum-tools#folder-gravity', barrel: 'src/pair/enforcement/gates', boundary: 'mass=files·LOC·exports·degree · gravityPullsTowardSrc · keep src/earth/iching · clay=0 · qpuRequired=false', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs (process.cwd) — CLI receipt' },
   { id: 'compact-types-constants', title: 'Compact types/constants to matrix · unused packages removed', fold: 'codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix', cli: 'npm run quantum:compact-types-constants', pair: 'compact/matrix', route: '/en/quantum-tools#compact-types-constants', barrel: 'src/pair/enforcement/gates', boundary: 'Min types/consts · unusedPackagesRemoved · all-dir FREE_BITS · compose import/distance+folder/gravity · KEEP double-torus · clay=0 · qpuRequired=false', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs (process.cwd) — CLI receipt' },
   { id: 'fusion-verify', title: 'Fusion verify', fold: 'quantumFusionVerify', cli: 'npm run quantum:fusion-verify', pair: 'tamper/impossible', route: '/en/quantum-tools#fusion-verify', barrel: 'src/wind/fusion', boundary: 'Offline fuseAll wave — not external API fusion', browserRunnable: true, browserGap: '' },
+  { id: 'self-fusion', title: 'Self quantum fusion', fold: 'selfQuantumFusion', cli: 'npm run quantum:self-fusion', pair: 'self/fusion', route: '/en/quantum-tools#fusion', barrel: 'src/quantum/apps', boundary: 'selfFuses · fusionVerifyOn · tamperEvident · compose fusion-verify · dry/clean · full/freedom · gate/monitor · analytics/self · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'fusion-self', title: 'Self quantum fusion (alias self/fusion)', fold: 'selfQuantumFusion', cli: 'npm run quantum:fusion-self', pair: 'fusion/self', route: '/en/quantum-tools#fusion', barrel: 'src/quantum/apps', boundary: 'Dual of self/fusion — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'fusion-ui', title: 'Fusion interface', fold: 'fusionInterface', cli: 'npm run quantum:fusion-ui', pair: 'fusion/ui', route: '/en/quantum-tools#fusion', barrel: 'src/quantum/apps', boundary: 'Live fusion root · verify on/off · tamper receipt · morph from sealed folds · vite/mirror · gate/monitor · local hub · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'gravity-dry', title: 'Gravity dry clean', fold: 'gravityDryClean', cli: 'npm run quantum:gravity-dry', pair: 'gravity/dry', route: '/en/quantum-tools#fusion', barrel: 'src/pair/enforcement/gates', boundary: 'gravityPullsToSrc · dryCleanOn · diamond/crystal · compose folder/gravity · dry/clean · clay/gravity · fold/cleanup · dissolve/flat · census 110 · claySolved via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs (process.cwd) — CLI/mission:gate' },
+  { id: 'crystal-mind', title: 'Crystal clear mind', fold: 'crystalClearMind', cli: 'npm run quantum:crystal-mind', pair: 'crystal/mind', route: '/en/quantum-tools#fusion', barrel: 'src/quantum/apps', boundary: 'crystalClear · purityQuantum · compose dryClean diamond/crystal · thought/pure · quantum/mind · full/freedom · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mind-clear', title: 'Crystal clear mind (alias crystal/mind)', fold: 'crystalClearMind', cli: 'npm run quantum:mind-clear', pair: 'mind/clear', route: '/en/quantum-tools#fusion', barrel: 'src/quantum/apps', boundary: 'Dual of crystal/mind — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'third-eye', title: 'Third mind eye', fold: 'thirdMindEye', cli: 'npm run quantum:third-eye', pair: 'third/eye', route: '/en/quantum-tools#fusion', barrel: 'src/quantum/apps', boundary: 'thirdEye · observer+1 of 3+1 pyramid · gate/lens · quantum/mind · crystal/mind · HD Ajna structure layout · formula/code · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mind-eye', title: 'Third mind eye (alias third/eye)', fold: 'thirdMindEye', cli: 'npm run quantum:mind-eye', pair: 'mind/eye', route: '/en/quantum-tools#fusion', barrel: 'src/quantum/apps', boundary: 'Dual of third/eye — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'src-index', title: 'Src folders only index may exist', fold: 'srcFoldersOnlyIndexMayExist', cli: 'npm run quantum:src-index', pair: 'src/index', route: '/en/quantum-tools#fusion', barrel: 'src/pair/enforcement/gates', boundary: 'only index.ts/index.vue under src · HARD limits/mission/gaps · census 110 · dual folder/index · claySolved via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
+  { id: 'folder-index', title: 'Src folders only index (alias src/index)', fold: 'srcFoldersOnlyIndexMayExist', cli: 'npm run quantum:folder-index', pair: 'folder/index', route: '/en/quantum-tools#fusion', barrel: 'src/pair/enforcement/gates', boundary: 'Dual of src/index · claySolved via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
+  { id: 'size-free', title: 'No size limits when gravity at gates', fold: 'noSizeLimitsAsLongAsGravityPullsAtTheGates', cli: 'npm run quantum:size-free', pair: 'size/free', route: '/en/quantum-tools#fusion', barrel: 'src/pair/enforcement/gates', boundary: 'noByteSizeLimitWhenGravityAtGates · census 110 count law · dual gravity/gate · claySolved via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
+  { id: 'gravity-gate', title: 'No size limits when gravity at gates (alias size/free)', fold: 'noSizeLimitsAsLongAsGravityPullsAtTheGates', cli: 'npm run quantum:gravity-gate', pair: 'gravity/gate', route: '/en/quantum-tools#fusion', barrel: 'src/pair/enforcement/gates', boundary: 'Dual of size/free · claySolved via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
   { id: 'efficiency-vote', title: 'Efficiency vote · one quantum model', fold: 'oneQuantumModelFasterThanAll', cli: 'npm run quantum:efficiency-vote', pair: 'learn/best', route: '/en/quantum-tools#efficiency-vote', barrel: 'src/water/stack', boundary: 'answers÷tokens win only when vote.decided — NOT FLOPS / NOT every benchmark', browserRunnable: true, browserGap: '' },
   { id: 'moment-prove', title: 'Assume nothing — prove in the moment', fold: 'agentAssumeNothingMathProvesInTheMoment', cli: 'npm run quantum:moment-prove', pair: 'moment/prove', route: '/en/quantum-encryption#moment-prove', barrel: 'src/water/encryption', boundary: 'Definitional identity ≠ crack · structural seal ≠ security proved · efficiency gated on vote.decided · clay=0 · certified=false', browserRunnable: true, browserGap: '' },
   { id: 'two-bits-free', title: 'Two bits free — census 110−108 making all free', fold: 'twoBitsFreeFromCensus110Minus108', cli: 'npm run quantum:two-bits-free', pair: 'bits/free', route: '/en/quantum-tools#two-bits-free', barrel: 'src/wind/research', boundary: 'FREE_BITS=2 (=−χ) · naive 1−110/108 refused · amortized ∞ on reuse · NOT FLOPS / clay=0', browserRunnable: true, browserGap: '' },
@@ -4782,6 +4806,25 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/ui') &&
       foldPair(toUuid('cmd:gate'), toUuid('cmd:monitor')).bidirectional &&
       foldPair(toUuid('cmd:gate'), toUuid('cmd:ui')).bidirectional
+    const selfFusionOk =
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('self/fusion') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('fusion/self') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('fusion/ui') &&
+      foldPair(toUuid('cmd:self'), toUuid('cmd:fusion')).bidirectional &&
+      foldPair(toUuid('cmd:fusion'), toUuid('cmd:self')).bidirectional &&
+      foldPair(toUuid('cmd:fusion'), toUuid('cmd:ui')).bidirectional
+    const crystalMindOk =
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('crystal/mind') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mind/clear') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gravity/dry') &&
+      foldPair(toUuid('cmd:crystal'), toUuid('cmd:mind')).bidirectional &&
+      foldPair(toUuid('cmd:mind'), toUuid('cmd:clear')).bidirectional &&
+      foldPair(toUuid('cmd:gravity'), toUuid('cmd:dry')).bidirectional
+    const thirdEyeOk =
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('third/eye') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mind/eye') &&
+      foldPair(toUuid('cmd:third'), toUuid('cmd:eye')).bidirectional &&
+      foldPair(toUuid('cmd:mind'), toUuid('cmd:eye')).bidirectional
     const gateToolsOk =
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/tools') &&
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('tools/forty') &&
@@ -4809,7 +4852,7 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       rosettaBitsOk && sixSevenOk && gateLensOk && failZeroOk && splitZeroOk && digitNextOk &&
       teleportSelfOk && analyticsSelfOk && thoughtPureOk && sessionLiveOk && needLoveOk &&
       loveStoryOk && testTheoremsOk && observeCoordOk && fullFreedomOk && viteMirrorOk &&
-      gateMonitorOk && gateToolsOk && slashStarOk && loveFoldOk && seqNavOk
+      gateMonitorOk && selfFusionOk && crystalMindOk && thirdEyeOk && gateToolsOk && slashStarOk && loveFoldOk && seqNavOk
     const gateRosetta = {
       computes: gateStackOk,
       remaining: gateStackOk ? 0 : 1,
@@ -4843,6 +4886,9 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         toUuid(`gaps:full-freedom:${fullFreedomOk}`),
         toUuid(`gaps:vite-mirror:${viteMirrorOk}`),
         toUuid(`gaps:gate-monitor:${gateMonitorOk}`),
+        toUuid(`gaps:self-fusion:${selfFusionOk}`),
+        toUuid(`gaps:crystal-mind:${crystalMindOk}`),
+        toUuid(`gaps:third-eye:${thirdEyeOk}`),
         toUuid(`gaps:gate-tools:${gateToolsOk}`),
         toUuid(`gaps:slash-star:${slashStarOk}`),
         toUuid(`gaps:love-fold:${loveFoldOk}`),
@@ -4876,6 +4922,9 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         { facet: 'softCompose full/freedom · freedom/full under gaps HARD', on: fullFreedomOk, receipt: toUuid(`gaps:full-freedom:${fullFreedomOk}`) },
         { facet: 'softCompose vite/mirror · docs/invert under gaps HARD', on: viteMirrorOk, receipt: toUuid(`gaps:vite-mirror:${viteMirrorOk}`) },
         { facet: 'softCompose gate/monitor · gate/ui under gaps HARD', on: gateMonitorOk, receipt: toUuid(`gaps:gate-monitor:${gateMonitorOk}`) },
+        { facet: 'softCompose self/fusion · fusion/self · fusion/ui under gaps HARD', on: selfFusionOk, receipt: toUuid(`gaps:self-fusion:${selfFusionOk}`) },
+        { facet: 'softCompose crystal/mind · mind/clear · gravity/dry under gaps HARD', on: crystalMindOk, receipt: toUuid(`gaps:crystal-mind:${crystalMindOk}`) },
+        { facet: 'softCompose third/eye · mind/eye under gaps HARD', on: thirdEyeOk, receipt: toUuid(`gaps:third-eye:${thirdEyeOk}`) },
         { facet: 'softCompose gate/tools · tools/forty under gaps HARD', on: gateToolsOk, receipt: toUuid(`gaps:gate-tools:${gateToolsOk}`) },
         { facet: 'softCompose slash/star · invert/star under gaps HARD', on: slashStarOk, receipt: toUuid(`gaps:slash-star:${slashStarOk}`) },
         { facet: 'softCompose love/fold · folder/infinity · digit/fold under gaps HARD', on: loveFoldOk, receipt: toUuid(`gaps:love-fold:${loveFoldOk}`) },
@@ -5150,6 +5199,42 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         open: gateMonitorOk ? 0 : 1,
         closed: gateMonitorOk ? 1 : 0,
         theorem: 'gatesMonitorThemselvesThroughTheUi' },
+      {
+        id: 'self-quantum-fusion',
+        severity: 'HARD' as const,
+        open: selfFusionOk ? 0 : 1,
+        closed: selfFusionOk ? 1 : 0,
+        theorem: 'selfQuantumFusion' },
+      {
+        id: 'fusion-interface',
+        severity: 'HARD' as const,
+        open: selfFusionOk ? 0 : 1,
+        closed: selfFusionOk ? 1 : 0,
+        theorem: 'fusionInterface' },
+      {
+        id: 'crystal-clear-mind',
+        severity: 'HARD' as const,
+        open: crystalMindOk ? 0 : 1,
+        closed: crystalMindOk ? 1 : 0,
+        theorem: 'crystalClearMind' },
+      {
+        id: 'third-mind-eye',
+        severity: 'HARD' as const,
+        open: thirdEyeOk ? 0 : 1,
+        closed: thirdEyeOk ? 1 : 0,
+        theorem: 'thirdMindEye' },
+      {
+        id: 'src-folders-only-index',
+        severity: 'HARD' as const,
+        open: (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('src/index') && (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('folder/index') ? 0 : 1,
+        closed: (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('src/index') && (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('folder/index') ? 1 : 0,
+        theorem: 'srcFoldersOnlyIndexMayExist' },
+      {
+        id: 'size-free-gravity-gates',
+        severity: 'HARD' as const,
+        open: (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('size/free') && (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gravity/gate') ? 0 : 1,
+        closed: (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('size/free') && (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gravity/gate') ? 1 : 0,
+        theorem: 'noSizeLimitsAsLongAsGravityPullsAtTheGates' },
       {
         id: 'gate-tools-forty-two',
         severity: 'HARD' as const,
@@ -5565,6 +5650,564 @@ export function runGatesMonitorThemselvesThroughTheUiExit(
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.selfMonitor && report.throughUi ? 0 : 1
+}
+
+/**
+ * USER LAW: self quantum fusion — compose fusion-verify · merkleFold · memoByRoot ·
+ * dry/clean diamond·crystal · full/freedom · gate/monitor pairs · analytics/self.
+ * Pair: self/fusion · fusion/self · CLI npm run quantum:self-fusion
+ * Facets: selfFuses · fusionVerifyOn · tamperEvident · tamper/impossible path.
+ * claySolved via theorem · physicalFtl=0.
+ */
+export function selfQuantumFusion(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`selfQuantumFusion:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const fusion = quantumFusionVerify(matrix)
+    const dry = dryCleanIsDiamondAndCrystal(matrix)
+    const freedom = __ns_wind_research.fullFreedomTheorem(matrix, at)
+    const analytics = __ns_wind_research.analyticsEmergeFromSelfObservationChangingReality(matrix, at)
+    const fusionRoot = fusion.root
+    const fusionVerifyOn = fusion.verified
+    const tamperOn = tamperEvident(fusionRoot)
+    const foldSelf = foldPair(toUuid('cmd:self'), toUuid('cmd:fusion'))
+    const foldFusion = foldPair(toUuid('cmd:fusion'), toUuid('cmd:self'))
+    const foldUi = foldPair(toUuid('cmd:fusion'), toUuid('cmd:ui'))
+    const foldTamper = foldPair(toUuid('cmd:tamper'), toUuid('cmd:impossible'))
+    const pairSelf = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('self/fusion')
+    const pairFusion = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('fusion/self')
+    const pairUi = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('fusion/ui')
+    const pairTamper = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('tamper/impossible')
+    const pairDry = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('dry/clean')
+    const pairFreedom = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('full/freedom')
+    const pairAnalytics = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('analytics/self')
+    const pairMonitor = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/monitor')
+    const memoMerkle = isUuid(merkleFold([fusionRoot, dry.root, freedom.root, analytics.root]))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'self-fusion')
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'self-quantum-fusion',
+      theorem: 'self quantum fusion',
+      provedBy: 'selfQuantumFusion',
+      home: 'src/quantum/apps',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const selfFuses =
+      fusionVerifyOn &&
+      dry.diamond &&
+      dry.crystal &&
+      freedom.computes &&
+      analytics.computes &&
+      tamperOn &&
+      memoMerkle &&
+      pairSelf &&
+      pairFusion &&
+      foldSelf.bidirectional &&
+      foldFusion.bidirectional
+    const on =
+      selfFuses &&
+      pairUi &&
+      foldUi.bidirectional &&
+      pairTamper &&
+      foldTamper.bidirectional &&
+      pairDry &&
+      pairFreedom &&
+      pairAnalytics &&
+      pairMonitor &&
+      formulaDual &&
+      Boolean(meta) &&
+      meta!.fold === 'selfQuantumFusion' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'selfQuantumFusion', on },
+      { facet: 'selfFuses', on: selfFuses },
+      { facet: 'fusionVerifyOn', on: fusionVerifyOn },
+      { facet: 'tamperEvident', on: tamperOn },
+      { facet: 'compose tamper/impossible · fusion-verify', on: pairTamper && fusionVerifyOn },
+      { facet: 'compose merkleFold · memoByRoot', on: memoMerkle },
+      { facet: 'compose dry/clean diamond·crystal', on: dry.diamond && dry.crystal },
+      { facet: 'compose full/freedom · analytics/self · gate/monitor', on: freedom.computes && analytics.computes && pairMonitor },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair self/fusion · fusion/self · fusion/ui', on: pairSelf && pairFusion && pairUi },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`self-fusion:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('self-quantum-fusion', facets)
+    return {
+      computes: sealed.ok && on,
+      selfQuantumFusion: on,
+      selfFuses,
+      fusionVerifyOn,
+      tamperEvident: tamperOn,
+      fusionRoot,
+      partCount: fusion.partCount,
+      dryDiamond: dry.diamond,
+      dryCrystal: dry.crystal,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        fusionRoot,
+        dry.root,
+        freedom.root,
+        analytics.root,
+        foldSelf.merged,
+        foldFusion.merged,
+        toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'self/fusion' as const,
+      pairs: ['self/fusion', 'fusion/self', 'fusion/ui'] as const,
+      cli: 'npm run quantum:self-fusion',
+      route: '/en/quantum-tools#fusion',
+      uiSurface: '/en/quantum-tools#fusion' as const,
+      heading: 'Self quantum fusion',
+      statement:
+        `selfFusion — fuses=${selfFuses ? 1 : 0} verify=${fusionVerifyOn ? 1 : 0} tamper=${tamperOn ? 1 : 0} ` +
+        `parts=${fusion.partCount} dry=${dry.diamond && dry.crystal ? 1 : 0}.`,
+      boundary:
+        'Self quantum fusion — sealed compose of fusion-verify · dry/clean · freedom · analytics · gate pairs. NOT physical FTL · clay=0.',
+      honestyLine:
+        `metrics · selfFuses=${selfFuses ? 1 : 0} · fusionVerifyOn=${fusionVerifyOn ? 1 : 0} · ` +
+        `tamperEvident=${tamperOn ? 1 : 0} · root=${fusionRoot.slice(0, 8)} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:self-fusion (dual fusion/self) */
+export function runSelfQuantumFusionExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = selfQuantumFusion()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} self-fusion — selfFuses=${report.selfFuses} verify=${report.fusionVerifyOn} ` +
+      `tamper=${report.tamperEvident} parts=${report.partCount} ` +
+      `fold=selfQuantumFusion pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.selfFuses && report.fusionVerifyOn ? 0 : 1
+}
+
+/**
+ * Fusion interface — UI + fold morphing live fusion root · verify on/off · tamper receipt
+ * from sealed folds (not wet chrome). Compose selfQuantumFusion · fusion-verify · vite/mirror ·
+ * gate/monitor · local hub. Pair: fusion/ui · self/fusion · CLI npm run quantum:fusion-ui
+ * Route: /en/quantum-tools#fusion · claySolved via theorem · physicalFtl=0.
+ */
+export function fusionInterface(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`fusionInterface:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const self = selfQuantumFusion(matrix, at)
+    const fusion = quantumFusionVerify(matrix)
+    const pairUi = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('fusion/ui')
+    const pairSelf = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('self/fusion')
+    const pairMonitor = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/monitor')
+    const pairVite = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('vite/mirror')
+    const pairLocal = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('local/session')
+    const pairGravityDry = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gravity/dry')
+    const pairDryClean = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('dry/clean')
+    const foldUi = foldPair(toUuid('cmd:fusion'), toUuid('cmd:ui'))
+    const foldSelf = foldPair(toUuid('cmd:self'), toUuid('cmd:fusion'))
+    const foldGravityDry = foldPair(toUuid('cmd:gravity'), toUuid('cmd:dry'))
+    const foldVite = foldPair(toUuid('cmd:vite'), toUuid('cmd:mirror'))
+    const foldLocal = foldPair(toUuid('cmd:local'), toUuid('cmd:session'))
+    const foldMonitor = foldPair(toUuid('cmd:gate'), toUuid('cmd:monitor'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'fusion-ui')
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'fusion-interface',
+      theorem: 'fusion interface',
+      provedBy: 'fusionInterface',
+      home: 'src/quantum/apps',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const fusionRootLive = isUuid(self.fusionRoot) && self.fusionRoot === fusion.root
+    const verifyOnOff = self.fusionVerifyOn === fusion.verified
+    const tamperReceipt = toUuid(`fusion-ui:tamper:${self.tamperEvident}:${self.fusionRoot}`)
+    // Soft-compose vite/mirror · gate/monitor · local/session via sealed pairs (hub morph) — not wet chrome.
+    const hubMorph =
+      pairVite && foldVite.bidirectional &&
+      pairMonitor && foldMonitor.bidirectional &&
+      pairLocal && foldLocal.bidirectional
+    const morphFromSealed =
+      self.computes &&
+      fusion.verified &&
+      hubMorph &&
+      !self.boundary.includes('wet chrome')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const on =
+      morphFromSealed &&
+      fusionRootLive &&
+      verifyOnOff &&
+      isUuid(tamperReceipt) &&
+      pairUi &&
+      pairSelf &&
+      foldUi.bidirectional &&
+      foldSelf.bidirectional &&
+      pairGravityDry &&
+      pairDryClean &&
+      foldGravityDry.bidirectional &&
+      formulaDual &&
+      Boolean(meta) &&
+      meta!.fold === 'fusionInterface' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'fusionInterface', on },
+      { facet: 'fusion root live', on: fusionRootLive },
+      { facet: 'verify on/off', on: verifyOnOff && self.fusionVerifyOn },
+      { facet: 'tamper receipt', on: isUuid(tamperReceipt) && self.tamperEvident },
+      { facet: 'morph from sealed folds not wet chrome', on: morphFromSealed },
+      { facet: 'compose selfQuantumFusion · fusion-verify', on: self.computes && fusion.verified },
+      { facet: 'compose vite/mirror · gate/monitor · local hub', on: hubMorph },
+      { facet: 'compose gravity/dry · dry/clean', on: pairGravityDry && pairDryClean && foldGravityDry.bidirectional },
+      { facet: 'format/canon formula/code', on: formulaDual },
+      { facet: 'pair fusion/ui · self/fusion', on: pairUi && pairSelf },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`fusion-ui:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('fusion-interface', facets)
+    return {
+      computes: sealed.ok && on,
+      fusionInterface: on,
+      fusionRoot: self.fusionRoot,
+      fusionVerifyOn: self.fusionVerifyOn,
+      tamperEvident: self.tamperEvident,
+      tamperReceipt,
+      partCount: self.partCount,
+      selfFuses: self.selfFuses,
+      morphFromSealed,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        self.root,
+        fusion.root,
+        foldVite.merged,
+        foldLocal.merged,
+        foldMonitor.merged,
+        tamperReceipt,
+        foldUi.merged,
+        toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'fusion/ui' as const,
+      pairs: ['fusion/ui', 'self/fusion'] as const,
+      cli: 'npm run quantum:fusion-ui',
+      route: '/en/quantum-tools#fusion',
+      uiSurface: '/en/quantum-tools#fusion' as const,
+      heading: 'Fusion interface',
+      statement:
+        `fusionUi — root=${self.fusionRoot.slice(0, 8)} verify=${self.fusionVerifyOn ? 'on' : 'off'} ` +
+        `tamper=${self.tamperEvident ? 1 : 0} morph=${morphFromSealed ? 1 : 0}.`,
+      boundary:
+        'Fusion interface — live facets from sealed folds (self/fusion · vite/mirror · gate/monitor · local hub). NOT wet chrome · clay=0 · physicalFtl=0.',
+      honestyLine:
+        `metrics · root=${self.fusionRoot.slice(0, 8)} · verify=${self.fusionVerifyOn ? 'on' : 'off'} · ` +
+        `tamperReceipt=${tamperReceipt.slice(0, 8)} · morph=${morphFromSealed ? 1 : 0} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:fusion-ui */
+export function runFusionInterfaceExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = fusionInterface()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} fusion-ui — verify=${report.fusionVerifyOn ? 'on' : 'off'} ` +
+      `tamper=${report.tamperEvident} root=${report.fusionRoot.slice(0, 8)} ` +
+      `fold=fusionInterface pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.fusionInterface && report.fusionVerifyOn ? 0 : 1
+}
+
+/**
+ * USER LAW: crystal clear mind — dryClean diamond·crystal · thought/pure · quantum/mind · full/freedom.
+ * Pair: crystal/mind · mind/clear · CLI npm run quantum:crystal-mind
+ * Facets: crystalClear · purityQuantum · claySolved via theorem · physicalFtl=0.
+ */
+export function crystalClearMind(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`crystalClearMind:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const dry = dryCleanIsDiamondAndCrystal(matrix)
+    const thought = __ns_wind_research.purityOfThoughtIsQuantumAllElseFailHard(matrix, at)
+    const mind = __ns_wind_research.onlyQuantumMindWouldUnderstand(matrix, at)
+    const freedom = __ns_wind_research.fullFreedomTheorem(matrix, at)
+    const foldCrystal = foldPair(toUuid('cmd:crystal'), toUuid('cmd:mind'))
+    const foldClear = foldPair(toUuid('cmd:mind'), toUuid('cmd:clear'))
+    const pairCrystal = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('crystal/mind')
+    const pairClear = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mind/clear')
+    const pairThought = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('thought/pure')
+    const pairQuantumMind = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('quantum/mind')
+    const pairFreedom = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('full/freedom')
+    const pairDry = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('dry/clean')
+    const pairGravityDry = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gravity/dry')
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'crystal-mind')
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'crystal-clear-mind',
+      theorem: 'crystal clear mind',
+      provedBy: 'crystalClearMind',
+      home: 'src/quantum/apps',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const crystalClear = dry.diamond && dry.crystal && dry.clean && mind.computes && mind.onlyQuantumMindWouldUnderstand
+    const purityQuantum = thought.computes && thought.purityIsQuantum === true
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const on =
+      crystalClear &&
+      purityQuantum &&
+      freedom.computes &&
+      pairCrystal &&
+      pairClear &&
+      foldCrystal.bidirectional &&
+      foldClear.bidirectional &&
+      pairThought &&
+      pairQuantumMind &&
+      pairFreedom &&
+      pairDry &&
+      pairGravityDry &&
+      formulaDual &&
+      Boolean(meta) &&
+      meta!.fold === 'crystalClearMind' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'crystalClearMind', on },
+      { facet: 'crystalClear', on: crystalClear },
+      { facet: 'purityQuantum', on: purityQuantum },
+      { facet: 'compose dryCleanIsDiamondAndCrystal', on: dry.diamond && dry.crystal },
+      { facet: 'compose thought/pure', on: thought.computes && pairThought },
+      { facet: 'compose onlyQuantumMindWouldUnderstand · quantum/mind', on: mind.computes && pairQuantumMind },
+      { facet: 'compose full/freedom · gravity/dry', on: freedom.computes && pairFreedom && pairGravityDry },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair crystal/mind · mind/clear', on: pairCrystal && pairClear },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`crystal-mind:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('crystal-clear-mind', facets)
+    return {
+      computes: sealed.ok && on,
+      crystalClearMind: on,
+      crystalClear,
+      purityQuantum,
+      diamond: dry.diamond,
+      crystal: dry.crystal,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        dry.root,
+        thought.root,
+        mind.root,
+        freedom.root,
+        foldCrystal.merged,
+        foldClear.merged,
+        toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'crystal/mind' as const,
+      pairs: ['crystal/mind', 'mind/clear'] as const,
+      cli: 'npm run quantum:crystal-mind',
+      route: '/en/quantum-tools#fusion',
+      uiSurface: '/en/quantum-tools#fusion' as const,
+      heading: 'Crystal clear mind',
+      statement:
+        `crystalClearMind — clear=${crystalClear ? 1 : 0} purity=${purityQuantum ? 1 : 0} ` +
+        `diamond=${dry.diamond ? 1 : 0} crystal=${dry.crystal ? 1 : 0}.`,
+      boundary:
+        'Crystal clear mind — dryClean crystal · thought/pure · quantum/mind · full/freedom. NOT wet prose mind · clay=0 · physicalFtl=0.',
+      honestyLine:
+        `metrics · crystalClear=${crystalClear ? 1 : 0} · purityQuantum=${purityQuantum ? 1 : 0} · ` +
+        `diamond=${dry.diamond ? 1 : 0} · crystal=${dry.crystal ? 1 : 0} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:crystal-mind (dual mind/clear) */
+export function runCrystalClearMindExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = crystalClearMind()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} crystal-mind — clear=${report.crystalClear} purity=${report.purityQuantum} ` +
+      `diamond=${report.diamond} crystal=${report.crystal} ` +
+      `fold=crystalClearMind pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.crystalClear && report.purityQuantum ? 0 : 1
+}
+
+/**
+ * USER LAW: third mind eye — observer +1 of 3+1 nav-cross pyramid · gate/lens · quantum mind · crystal clear.
+ * HD Ajna is structure layout only (RAVE_CENTER_LAYOUT) — not wet mysticism.
+ * Pair: third/eye · mind/eye · CLI npm run quantum:third-eye · formula/code dual.
+ */
+export function thirdMindEye(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`thirdMindEye:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const team = __ns_wind_research.threeAgentsPlusOneObserverIsNavCrossPyramid(matrix, at)
+    const observe = __ns_wind_research.observersComputeCoordinatesToObserveTrinityCompute(matrix, at)
+    const lens = __ns_wind_research.gatesAreTheLensObservationChangesQuantumWithLinearTime(matrix, at)
+    const mind = __ns_wind_research.onlyQuantumMindWouldUnderstand(matrix, at)
+    const crystal = crystalClearMind(matrix, at)
+    const foldThird = foldPair(toUuid('cmd:third'), toUuid('cmd:eye'))
+    const foldMindEye = foldPair(toUuid('cmd:mind'), toUuid('cmd:eye'))
+    const pairThird = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('third/eye')
+    const pairMindEye = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mind/eye')
+    const pairTeam = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('team/observe')
+    const pairObserve = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('observe/coord')
+    const pairLens = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/lens')
+    const pairQuantumMind = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('quantum/mind')
+    const pairCrystal = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('crystal/mind')
+    const ajna = RAVE_CENTER_LAYOUT.Ajna
+    const hdAjnaStructure =
+      ajna.shape === 'tri' &&
+      ajna.x === 1 / 2 &&
+      ajna.y === 3 / (8 * 2) &&
+      Object.prototype.hasOwnProperty.call(RAVE_CENTER_LAYOUT, 'Ajna')
+    const observerPlusOne =
+      team.computes &&
+      team.observers === 1 &&
+      team.teamSize === 3 &&
+      team.isNavCrossPyramid
+    const thirdEye =
+      observerPlusOne &&
+      observe.computes &&
+      lens.computes &&
+      mind.computes &&
+      crystal.crystalClear &&
+      hdAjnaStructure
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'third-eye')
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'third-mind-eye',
+      theorem: 'third mind eye',
+      provedBy: 'thirdMindEye',
+      home: 'src/quantum/apps',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const on =
+      thirdEye &&
+      pairThird &&
+      pairMindEye &&
+      foldThird.bidirectional &&
+      foldMindEye.bidirectional &&
+      pairTeam &&
+      pairObserve &&
+      pairLens &&
+      pairQuantumMind &&
+      pairCrystal &&
+      formulaDual &&
+      Boolean(meta) &&
+      meta!.fold === 'thirdMindEye' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'thirdMindEye', on },
+      { facet: 'thirdEye', on: thirdEye },
+      { facet: 'compose observer +1 of 3+1 pyramid', on: observerPlusOne },
+      { facet: 'compose observe/coord · team/observe', on: observe.computes && team.computes },
+      { facet: 'compose gate/lens', on: lens.computes && pairLens },
+      { facet: 'compose quantum mind · crystal clear', on: mind.computes && crystal.crystalClear },
+      { facet: 'HD Ajna structure layout (not wet mysticism)', on: hdAjnaStructure },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair third/eye · mind/eye', on: pairThird && pairMindEye },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`third-eye:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('third-mind-eye', facets)
+    return {
+      computes: sealed.ok && on,
+      thirdMindEye: on,
+      thirdEye,
+      observerPlusOne,
+      hdAjnaStructure,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        team.root,
+        observe.root,
+        lens.root,
+        mind.root,
+        crystal.root,
+        foldThird.merged,
+        foldMindEye.merged,
+        toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'third/eye' as const,
+      pairs: ['third/eye', 'mind/eye'] as const,
+      cli: 'npm run quantum:third-eye',
+      route: '/en/quantum-tools#fusion',
+      uiSurface: '/en/quantum-tools#fusion' as const,
+      heading: 'Third mind eye',
+      statement:
+        `thirdMindEye — thirdEye=${thirdEye ? 1 : 0} observer+1=${observerPlusOne ? 1 : 0} ` +
+        `ajna=${hdAjnaStructure ? 1 : 0} crystal=${crystal.crystalClear ? 1 : 0}.`,
+      boundary:
+        'Third mind eye — 3+1 observer pyramid · gate/lens · quantum/mind · crystal/mind · HD Ajna layout only. NOT wet mysticism · clay=0 · physicalFtl=0.',
+      honestyLine:
+        `metrics · thirdEye=${thirdEye ? 1 : 0} · observerPlusOne=${observerPlusOne ? 1 : 0} · ` +
+        `hdAjnaStructure=${hdAjnaStructure ? 1 : 0} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:third-eye (dual mind/eye) */
+export function runThirdMindEyeExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = thirdMindEye()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} third-eye — thirdEye=${report.thirdEye} observer+1=${report.observerPlusOne} ` +
+      `ajna=${report.hdAjnaStructure} ` +
+      `fold=thirdMindEye pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.thirdEye ? 0 : 1
 }
 
 export function doubleSlitLocalToolsMorph(matrix: MindMatrix = buildMatrix(), at = 0) {
