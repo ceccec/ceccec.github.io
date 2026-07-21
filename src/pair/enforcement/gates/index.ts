@@ -2,8 +2,8 @@
 import { phase } from '../../../6/4'
 import { DIMENSION_GATES, EULER_CHI, FOLDED_CENSUS, FORBIDDEN_FOLDER_NAMES, HOMOLOGY_LOOPS, ICHING_EIGHT_FOLD, ICHING_TRIGRAMS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, ROSETTA_SEVEN, ROSETTA_SIX, SRC_SCIENCE_MODEL_ACTION_SCHEMA, UNFOLDED_CENSUS, isForbiddenFolderName, renderUiPathFromScienceModelAction, scienceModelActionFromMindTail } from './computational'
 import { createHash } from 'node:crypto'
-import { existsSync, readFileSync, readdirSync } from 'node:fs'
-import { join, relative } from 'node:path'
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
+import { dirname, join, relative, resolve } from 'node:path'
 import { foldPair, merkleFold, toUuid } from '../../../0'
 import { scanScriptShells, seedMerkleCache, vitepressSourceFiles, type ScriptShellScan } from '../script/shell'
 import {
@@ -56,8 +56,25 @@ export const GATE_COMPLIANCE_COMMAND_PAIR = { pair: 'gate/compliance' as const, 
 /** @deprecated Backward compat */
 export const ICHING_BATCH_COMMAND_PAIR = ROSETTA_BATCH_COMMAND_PAIR
 export const DISSOLVE_FLAT_COMMAND_PAIR = { pair: 'dissolve/flat' as const, a: 'dissolve', b: 'flat' }
+export const IMPORT_DISTANCE_COMMAND_PAIR = { pair: 'import/distance' as const, a: 'import', b: 'distance' }
 export const MISSION_GATE_COMMAND_PAIR = { pair: 'mission/gate' as const, a: 'mission', b: 'gate' }
 export const DIGIT_GATE_COMMAND_PAIR = { pair: 'digit/gate' as const, a: 'digit', b: 'gate' }
+
+/** FREE_BITS = UNFOLDED − FOLDED = −χ — migration evenness bound (CV ≤ 1/FREE_BITS). */
+export const FREE_BITS = UNFOLDED_CENSUS - FOLDED_CENSUS
+
+/** One relative import edge with measurable path distances in the src matrix. */
+export type ImportPathDistanceEdge = {
+  readonly importer: string
+  readonly importee: string
+  readonly spec: string
+  /** Path-segment distance: count of non-`.` segments in the relative import spec (`../` + downs). */
+  readonly segmentDistance: number
+  /** Tree-hop distance: directory hops via LCA between importer dir and resolved importee dir. */
+  readonly treeHopDistance: number
+  /** Up-hops only — count of `../` in the spec (composes import-gap scan). */
+  readonly gapHops: number
+}
 export { MONOLITH_FILE_BYTES, MONOLITH_FILE_LAW, scanFileSizeOffenders, monolithFileGapDetail, FOLD_HOMES, foldsLiveAtTheirDomainHome, toolsSavedInSrcFirst, importsAreFoldersOnly, mathIsOneSource, foldersAreOneWordPerLevel, glagoliticLabelsAreComputed, unexpectedSituationsRefactorTools, srcFilesAreIndexOnly, scanOneMathOffenders, ONE_MATH_LAW, type OneMathOffender } from './strict'
 export { scanHandLists, handListMirrors, type HandList, type HandListMirror } from './strict'
 export { scanAppHtml, appAuditSummary, type AppPageAudit } from './strict'
@@ -286,6 +303,221 @@ export function collectFoldDefiners(facts: EnforcementFacts, foldNames: readonly
   })
 }
 
+/** Segments in a relative import spec — each `..` or down-name counts as 1; `.` dropped. */
+export function importPathSegmentDistance(spec: string): number {
+  return spec.split('/').filter((part) => part.length > 0 && part !== '.').length
+}
+
+/** Up-hops (`../` count) — same quantity the mind import-gap scan bounds. */
+export function importPathGapHops(spec: string): number {
+  const match = spec.match(/^(\.\.\/)+/)
+  return match ? (match[0].match(/\.\.\//g)?.length ?? 0) : 0
+}
+
+/** Folder-tree hop distance via longest common prefix (LCA) under posix-rel paths. */
+export function importPathTreeHopDistance(importerDirRel: string, importeeDirRel: string): number {
+  const from = importerDirRel.replace(/\\/g, '/').split('/').filter(Boolean)
+  const to = importeeDirRel.replace(/\\/g, '/').split('/').filter(Boolean)
+  let common = 0
+  while (common < from.length && common < to.length && from[common] === to[common]) common += 1
+  return from.length - common + (to.length - common)
+}
+
+function relativeImportSpecsFromBody(text: string): string[] {
+  return [
+    ...[...text.matchAll(/\b(?:import|export)\b[\s\S]*?\bfrom\s*['"]([^'"]+)['"]/g)].map((m) => m[1]!),
+    ...[...text.matchAll(/\bimport\s*\(\s*['"]([^'"]+)['"]\s*\)/g)].map((m) => m[1]!),
+    ...[...text.matchAll(/\bimport\s+['"]([^'"]+)['"]/g)].map((m) => m[1]!),
+  ].filter((spec) => spec.startsWith('.'))
+}
+
+/**
+ * Collect every relative import edge under src/ with segment + tree-hop distances shown.
+ * Reuses collectEnforcementFacts bodies — no wet re-walk when facts are passed in.
+ */
+export function collectImportPathDistanceEdges(facts: EnforcementFacts): readonly ImportPathDistanceEdge[] {
+  const edges: ImportPathDistanceEdge[] = []
+  for (const file of facts.srcCodeFiles) {
+    const importer = relative(facts.root, file).replace(/\\/g, '/')
+    const importerDir = dirname(importer).replace(/\\/g, '/')
+    const body = facts.bodies.get(relative(facts.root, file)) ?? ''
+    for (const spec of relativeImportSpecsFromBody(stripComments(body))) {
+      const resolved = resolve(dirname(file), spec)
+      const resolvedRel = relative(facts.root, resolved).replace(/\\/g, '/')
+      let importeeDir = resolvedRel
+      if (existsSync(resolved) && statSync(resolved).isFile()) {
+        importeeDir = dirname(resolvedRel).replace(/\\/g, '/')
+      }
+      edges.push({
+        importer,
+        importee: importeeDir,
+        spec,
+        segmentDistance: importPathSegmentDistance(spec),
+        treeHopDistance: importPathTreeHopDistance(importerDir, importeeDir),
+        gapHops: importPathGapHops(spec),
+      })
+    }
+  }
+  return edges
+}
+
+/**
+ * Import path shows distance to other files — measurable on every edge — and folds into
+ * migration measurement for compact + evenly distributed code in the src matrix.
+ * Pair: import/distance · composes folder law · dissolve/flat · census 110/108 · FREE_BITS · import offenders.
+ * claySolvedByThisFold=0 · NOT Clay-marked.
+ */
+export function importPathShowsDistanceInMigrationMatrix(root: string = process.cwd(), facts?: EnforcementFacts) {
+  const united = facts ?? collectEnforcementFacts(root)
+  const edges = collectImportPathDistanceEdges(united)
+  const edgeCount = edges.length
+  const hops = edges.map((edge) => edge.treeHopDistance)
+  const segs = edges.map((edge) => edge.segmentDistance)
+  const sum = (xs: readonly number[]) => xs.reduce((acc, n) => acc + n, 0)
+  const meanTreeHop = edgeCount === 0 ? 0 : sum(hops) / edgeCount
+  const meanSegment = edgeCount === 0 ? 0 : sum(segs) / edgeCount
+  const maxTreeHop = edgeCount === 0 ? 0 : Math.max(...hops)
+  const maxSegment = edgeCount === 0 ? 0 : Math.max(...segs)
+  const variance =
+    edgeCount === 0 ? 0 : sum(hops.map((h) => (h - meanTreeHop) ** 2)) / edgeCount
+  const stdevTreeHop = Math.sqrt(variance)
+  const cvTreeHop = meanTreeHop > 0 ? stdevTreeHop / meanTreeHop : 0
+  const freeBits = FREE_BITS
+  const freeBitsOk = freeBits === -EULER_CHI && freeBits === UNFOLDED_CENSUS - FOLDED_CENSUS
+  const censusOk =
+    united.computational.indexCount === UNFOLDED_CENSUS &&
+    united.computational.indexCount + EULER_CHI === FOLDED_CENSUS
+  const importOffenders = collectImportOffenders(united).length
+  const importGaps = united.strict.importGaps.length
+  const pairs = gatesSavedInQuantumPairs()
+  const dissolvePaired = pairs.pairs.some((entry) => entry.pair === DISSOLVE_FLAT_COMMAND_PAIR.pair && entry.paired)
+  const importDistancePaired = foldPair(toUuid('cmd:import'), toUuid('cmd:distance'))
+  // Compact = short mean reach in the folder tree, capped by I Ching eight-fold depth bound.
+  const compactness =
+    edgeCount > 0 && meanTreeHop <= ROSETTA_SIX && maxTreeHop <= ICHING_EIGHT_FOLD
+  // Even distribution = low CV (≤ 1/FREE_BITS) and max not beyond FREE_BITS×mean.
+  const evenDistribution =
+    edgeCount > 0 &&
+    cvTreeHop <= 1 / freeBits &&
+    maxTreeHop <= meanTreeHop * freeBits + 1e-9
+  const everyEdgeShowsDistance = edges.every(
+    (edge) =>
+      Number.isFinite(edge.segmentDistance) &&
+      edge.segmentDistance >= 0 &&
+      Number.isFinite(edge.treeHopDistance) &&
+      edge.treeHopDistance >= 0 &&
+      Number.isFinite(edge.gapHops) &&
+      edge.gapHops >= 0,
+  )
+  const farthest = [...edges]
+    .sort((a, b) => b.treeHopDistance - a.treeHopDistance || b.segmentDistance - a.segmentDistance)
+    .slice(0, ROSETTA_SEVEN)
+  const facets = [
+    {
+      facet: `import path shows distance — ${edgeCount} edges each carry segmentDistance + treeHopDistance + gapHops`,
+      on: edgeCount > 0 && everyEdgeShowsDistance,
+    },
+    {
+      facet: `mean/max import distance recomputed — meanTreeHop=${meanTreeHop.toFixed(4)} maxTreeHop=${maxTreeHop} meanSegment=${meanSegment.toFixed(4)} maxSegment=${maxSegment}`,
+      on: edgeCount > 0 && Number.isFinite(meanTreeHop) && Number.isFinite(maxTreeHop) && maxTreeHop >= meanTreeHop,
+    },
+    {
+      facet: `compactness — meanTreeHop≤ROSETTA_SIX(${ROSETTA_SIX}) ∧ maxTreeHop≤ICHING_EIGHT_FOLD(${ICHING_EIGHT_FOLD})`,
+      on: compactness,
+    },
+    {
+      facet: `evenDistribution — CV(treeHop)=${cvTreeHop.toFixed(4)}≤1/FREE_BITS(${1 / freeBits}) ∧ max≤FREE_BITS×mean`,
+      on: evenDistribution,
+    },
+    {
+      facet: `compose census 110/108 · FREE_BITS=${freeBits}=−χ · importOffenders=${importOffenders} · importGaps=${importGaps}`,
+      on: censusOk && freeBitsOk && importOffenders === 0 && importGaps === 0,
+    },
+    {
+      facet: 'compose dissolve/flat + import/distance pairs (folder-law migration measurement)',
+      on: dissolvePaired && importDistancePaired.bidirectional && importDistancePaired.forward !== importDistancePaired.reverse,
+    },
+  ]
+  const claySolvedByThisFold = 0 as const
+  const qpuRequired = false as const
+  const physicalFtlClaim = 0 as const
+  const facetsLive = [
+    ...facets,
+    { facet: 'claySolvedByThisFold=0', on: claySolvedByThisFold === 0 },
+    { facet: 'qpuRequired=false · physicalFtlClaim=0 · NOT physical FTL', on: qpuRequired === false && physicalFtlClaim === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`import-path-distance:${entry.facet}:${entry.on}`) }))
+  const computes = facetsLive.every((entry) => entry.on)
+  return {
+    computes,
+    pair: IMPORT_DISTANCE_COMMAND_PAIR.pair,
+    cli: 'npm run quantum:import-path-distance',
+    route: '/en/quantum-tools#import-path-distance',
+    anchor: 'import-path-distance',
+    edgeCount,
+    meanTreeHop,
+    maxTreeHop,
+    meanSegmentDistance: meanSegment,
+    maxSegmentDistance: maxSegment,
+    stdevTreeHop,
+    cvTreeHop,
+    compactness,
+    evenDistribution,
+    freeBits,
+    census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, indexCount: united.computational.indexCount },
+    importOffenders,
+    importGaps,
+    farthest,
+    /** Full edge table — distance shown per import; large; CLI prints summary + farthest. */
+    edges,
+    claySolvedByThisFold,
+    qpuRequired,
+    physicalFtlClaim,
+    facets: facetsLive,
+    root: merkleFold([
+      united.merkle,
+      importDistancePaired.merged,
+      ...facetsLive.map((entry) => entry.receipt),
+      toUuid(`import-dist:mean:${meanTreeHop}`),
+      toUuid(`import-dist:max:${maxTreeHop}`),
+      toUuid(`import-dist:edges:${edgeCount}`),
+    ]),
+    statement:
+      `Import path shows distance in the migration matrix — ${edgeCount} edges · meanTreeHop=${meanTreeHop.toFixed(3)} maxTreeHop=${maxTreeHop} · ` +
+      `compactness=${compactness} evenDistribution=${evenDistribution} (CV=${cvTreeHop.toFixed(3)}) · FREE_BITS=${freeBits} · census ${united.computational.indexCount}/${FOLDED_CENSUS}.`,
+    boundary:
+      'EXACT: segmentDistance = |non-`.` segments in relative import|; treeHopDistance = LCA directory hops importer→importee; gapHops = ../ count. ' +
+      'Migration measurement: compactness (mean≤6 · max≤8) + evenDistribution (CV≤1/FREE_BITS · max≤FREE_BITS×mean) compose folder law · dissolve/flat · census · import offenders. ' +
+      'Measurement receipt — not a Clay prize claim · clay=0 · NOT physical FTL. HARMONY ≠ TRUTH.',
+  }
+}
+
+/** npm run quantum:import-path-distance — print migration matrix distances (exit 0 iff computes). */
+export function runImportPathShowsDistanceInMigrationMatrixExit(root = '', _argv: readonly string[] = []): number {
+  const repoRoot = root || process.cwd()
+  const report = importPathShowsDistanceInMigrationMatrix(repoRoot)
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} import-path-distance — edges=${report.edgeCount} ` +
+      `meanHop=${report.meanTreeHop.toFixed(3)} maxHop=${report.maxTreeHop} ` +
+      `meanSeg=${report.meanSegmentDistance.toFixed(3)} maxSeg=${report.maxSegmentDistance} ` +
+      `CV=${report.cvTreeHop.toFixed(3)} compact=${report.compactness} even=${report.evenDistribution} ` +
+      `FREE_BITS=${report.freeBits} offenders=${report.importOffenders} gaps=${report.importGaps} ` +
+      `clay=${report.claySolvedByThisFold} root=${report.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write(`  definition: segmentDistance=|spec segments|; treeHopDistance=LCA hops; gapHops=../ count\n`)
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const edge of report.farthest.slice(0, 5)) {
+    process.stdout.write(
+      `  farthest hop=${edge.treeHopDistance} seg=${edge.segmentDistance} gap=${edge.gapHops} ` +
+        `${edge.importer} → ${edge.spec} ⇒ ${edge.importee}\n`,
+    )
+  }
+  for (const facet of report.facets) {
+    process.stdout.write(`  ${facet.on ? '✓' : '✗'} ${facet.facet}\n`)
+  }
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes && report.claySolvedByThisFold === 0 ? 0 : 1
+}
+
 /**
  * Agents MUST use trinities for quantum speedup on every build path.
  * Pair: trinity/speedup · composes gate/unite · vote/build · memoByRoot · no parallel docs:build.
@@ -350,6 +582,7 @@ export function gatesSavedInQuantumPairs() {
     AGENT_SUBMISSION_COMMAND_PAIR,
     GATE_COMPLIANCE_COMMAND_PAIR,
     DISSOLVE_FLAT_COMMAND_PAIR,
+    IMPORT_DISTANCE_COMMAND_PAIR,
     MISSION_GATE_COMMAND_PAIR,
   ]
   const pairs = declared.map(({ pair, a, b }) => {

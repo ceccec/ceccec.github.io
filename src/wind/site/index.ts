@@ -351,6 +351,7 @@ export function folderMigrationDedupWaves(matrix: MindMatrix = buildMatrix()) {
       'composed-after #68 uiProseDuplicationRemoved — residual Clay Statement=title catalog pattern in staticPages descriptions',
       'composed-after #70 mcp-commands-scripts-gaps-audit (MCP/script synonym census landed; residual conceptTools + trading:* outside PRIMARY)',
       'thin-mount alias leaves still served (efficiency-vote… · learn-developer) — intentional census fold',
+      'compose import/distance — importPathShowsDistanceInMigrationMatrix measures compact+even code in the src matrix (npm run quantum:import-path-distance)',
     ] as const
 
     const facets = [
