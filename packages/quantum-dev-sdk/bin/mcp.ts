@@ -1,23 +1,25 @@
 #!/usr/bin/env node
 /**
- * Hand-rolled MCP stdio JSON-RPC server — zero external MCP SDK.
- * Pair: mcp/browser-parity · compose sealed src via quantum-dev-sdk wrappers.
- * Registration: .cursor/mcp.json → quantum-dev (IDE agent only; not Automation dashboard).
+ * Hand-rolled MCP stdio JSON-RPC server — zero external MCP SDK (design 0ccd9991 Option B).
+ * Imports bootstrap + pure only — never loads quantum/apps (Node ESM directory-import).
+ * Seven tools; docs:build / wave rebuild require QUANTUM_DEV_ALLOW_DOCS_BUILD=1.
  */
-import { spawn } from 'node:child_process'
-import { createInterface } from 'node:readline'
-import { fileURLToPath } from 'node:url'
-import { dirname, join } from 'node:path'
 import {
-  mcpBrowserParity,
-  mcpToolboxToolsList,
-  runStdioMcpCapabilityInBrowser,
-  listCapabilities,
+  runGate,
+  runWave,
+  runExport,
+  foldReport,
+  runBootstrapCli,
+  DOCS_BUILD_ALLOW_ENV,
+  type GateName,
+  type WaveKind,
+} from '../src/bootstrap.ts'
+import {
+  QUANTUM_DEV_STDIO_TOOL_IDS,
   censusStatus,
-  computeFromSource,
-} from '../src/index.ts'
-
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), '../../..')
+  computeFromSourceLocal,
+  listStdioCapabilities,
+} from '../src/pure.ts'
 
 type JsonRpc = {
   jsonrpc?: string
@@ -40,30 +42,15 @@ function respondError(id: string | number | null | undefined, message: string) {
   process.stdout.write(`Content-Length: ${Buffer.byteLength(payload, 'utf8')}\r\n\r\n${payload}`)
 }
 
-function npmRun(script: string, args: string[] = []): Promise<{ exitCode: number; stdout: string; stderr: string }> {
-  return new Promise((resolve) => {
-    const child = spawn('npm', ['run', script, '--', ...args], {
-      cwd: ROOT,
-      env: process.env,
-      shell: false,
-    })
-    let stdout = ''
-    let stderr = ''
-    child.stdout?.on('data', (chunk: Buffer) => { stdout += chunk.toString() })
-    child.stderr?.on('data', (chunk: Buffer) => { stderr += chunk.toString() })
-    child.on('close', (code) => resolve({ exitCode: code ?? 1, stdout, stderr }))
-  })
-}
-
 const TOOL_DEFS = [
   {
     name: 'list-capabilities',
-    description: 'List stdio MCP + toolbox capabilities (browser-achievable flags)',
+    description: 'List 7 stdio MCP tools (design 0ccd9991)',
     inputSchema: { type: 'object', properties: {}, additionalProperties: false },
   },
   {
     name: 'census-status',
-    description: 'Sealed census constants 110/108/432',
+    description: 'Sealed census constants 110/108/432 (not a live limits:verify audit)',
     inputSchema: { type: 'object', properties: {}, additionalProperties: false },
   },
   {
@@ -80,24 +67,23 @@ const TOOL_DEFS = [
     },
   },
   {
-    name: 'mcp-browser-parity',
-    description: 'MCP↔browser parity matrix — /mcp.json tools ≡ toolbox',
-    inputSchema: { type: 'object', properties: {}, additionalProperties: false },
-  },
-  {
-    name: 'toolbox-tools-list',
-    description: 'PRIMARY tools/list ids (same as /mcp.json result.tools)',
-    inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+    name: 'fold-report',
+    description: 'Bootstrap fold <name> — sealed export report via CLI',
+    inputSchema: {
+      type: 'object',
+      properties: { fold: { type: 'string' }, name: { type: 'string' } },
+      additionalProperties: false,
+    },
   },
   {
     name: 'run-gate',
-    description: 'Run npm mission/gate script (Node-only)',
+    description: `Run bootstrap gate. docs-build requires ${DOCS_BUILD_ALLOW_ENV}=1`,
     inputSchema: {
       type: 'object',
       properties: {
         name: {
           type: 'string',
-          description: 'check-types | limits-verify | mission-gate | verify-structure | docs-build',
+          description: 'check-types | limits-verify | mission-gate | verify-structure | docs-build | enforcement-trinity',
         },
       },
       required: ['name'],
@@ -105,47 +91,73 @@ const TOOL_DEFS = [
     },
   },
   {
-    name: 'fold-report',
-    description: 'Catalog fold report (browser when catalogued)',
+    name: 'run-wave',
+    description: `ceccec-build-waves kind via bootstrap (rebuild→docs:build needs ${DOCS_BUILD_ALLOW_ENV}=1)`,
     inputSchema: {
       type: 'object',
-      properties: { fold: { type: 'string' }, name: { type: 'string' } },
+      properties: {
+        kind: {
+          type: 'string',
+          description: 'origin | decode | design | learn | tune | edit | rebuild | verify',
+        },
+      },
+      required: ['kind'],
+      additionalProperties: false,
+    },
+  },
+  {
+    name: 'run-export',
+    description: 'Bootstrap run <entryRel> <exportName> [argv…]',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        entryRel: { type: 'string' },
+        exportName: { type: 'string' },
+        argv: { type: 'array', items: { type: 'string' } },
+      },
+      required: ['entryRel', 'exportName'],
       additionalProperties: false,
     },
   },
 ] as const
 
-const GATE_SCRIPTS: Record<string, string> = {
-  'check-types': 'check:types',
-  'limits-verify': 'limits:verify',
-  'mission-gate': 'mission:gate',
-  'verify-structure': 'verify:structure',
-  'docs-build': 'docs:build',
-}
-
 async function callTool(name: string, args: Record<string, unknown>) {
-  if (name === 'list-capabilities') return listCapabilities()
+  if (name === 'list-capabilities') return listStdioCapabilities()
   if (name === 'census-status') return censusStatus()
   if (name === 'compute-from-source') {
-    return computeFromSource({
-      op: String(args.op ?? 'a432-hue'),
-      seed: args.seed != null ? String(args.seed) : undefined,
-      name: args.name != null ? String(args.name) : undefined,
-    })
+    const op = String(args.op ?? 'a432-hue')
+    const seed = args.seed != null ? String(args.seed) : 'ceccec'
+    const label = args.name != null ? String(args.name) : 'rosettaCoreApi'
+    const local = computeFromSourceLocal({ op, seed, name: label })
+    if (!('deferred' in local) || !local.deferred) return local
+    const result = await runBootstrapCli([
+      'run',
+      'packages/quantum-dev-sdk/src/compute-exit.ts',
+      'runComputeFromSourceExit',
+      op,
+      seed,
+      label,
+    ])
+    try {
+      const line = result.stdout.trim().split('\n').filter(Boolean).at(-1) ?? '{}'
+      return { ...JSON.parse(line), ok: result.ok, exitCode: result.exitCode }
+    } catch {
+      return { ok: result.ok, exitCode: result.exitCode, stdout: result.stdout, stderr: result.stderr }
+    }
   }
-  if (name === 'mcp-browser-parity') return mcpBrowserParity()
-  if (name === 'toolbox-tools-list') return mcpToolboxToolsList()
   if (name === 'fold-report') {
-    return runStdioMcpCapabilityInBrowser('fold-report', {
-      fold: args.fold != null ? String(args.fold) : undefined,
-      name: args.name != null ? String(args.name) : undefined,
-    })
+    const fold = String(args.fold ?? args.name ?? '')
+    if (!fold) return { ok: false, error: 'fold required' }
+    return foldReport(fold)
   }
-  if (name === 'run-gate') {
-    const script = GATE_SCRIPTS[String(args.name ?? '')]
-    if (!script) return { ok: false, error: `unknown gate ${String(args.name)}` }
-    const result = await npmRun(script)
-    return { ok: result.exitCode === 0, ...result, browserGap: 'Node-only gate spawn' }
+  if (name === 'run-gate') return runGate(String(args.name ?? '') as GateName)
+  if (name === 'run-wave') return runWave(String(args.kind ?? '') as WaveKind)
+  if (name === 'run-export') {
+    const entryRel = String(args.entryRel ?? '')
+    const exportName = String(args.exportName ?? '')
+    const argv = Array.isArray(args.argv) ? args.argv.map(String) : []
+    if (!entryRel || !exportName) return { ok: false, error: 'entryRel and exportName required' }
+    return runExport(entryRel, exportName, argv)
   }
   return { ok: false, error: `unknown tool ${name}` }
 }
@@ -156,7 +168,11 @@ async function handle(msg: JsonRpc) {
     respond(msg.id, {
       protocolVersion: '2024-11-05',
       capabilities: { tools: {} },
-      serverInfo: { name: 'quantum-dev', version: '0.1.0' },
+      serverInfo: {
+        name: 'quantum-dev',
+        version: '0.1.0',
+        description: `7 tools · ${QUANTUM_DEV_STDIO_TOOL_IDS.join(', ')} · ${DOCS_BUILD_ALLOW_ENV}=1 for docs-build`,
+      },
     })
     return
   }
@@ -183,33 +199,40 @@ async function handle(msg: JsonRpc) {
   respondError(msg.id, `unsupported method ${method}`)
 }
 
-/** Content-Length framed or newline-delimited JSON-RPC on stdin. */
-let buffer = ''
-const rl = createInterface({ input: process.stdin, crlfDelay: Infinity })
-rl.on('line', (line) => {
-  if (line.startsWith('Content-Length:')) return
-  if (line.trim() === '') return
-  buffer += line
-  try {
-    const msg = JSON.parse(buffer) as JsonRpc
-    buffer = ''
-    void handle(msg)
-  } catch {
-    // wait for more
-  }
-})
-
+let buf = Buffer.alloc(0)
 process.stdin.on('data', (chunk: Buffer) => {
-  const text = chunk.toString('utf8')
-  if (!text.includes('Content-Length:')) return
-  const match = text.match(/Content-Length:\s*(\d+)\r?\n\r?\n([\s\S]*)/)
-  if (!match) return
-  const len = Number(match[1])
-  const body = match[2] ?? ''
-  if (Buffer.byteLength(body, 'utf8') < len) return
-  try {
-    void handle(JSON.parse(body.slice(0, len)) as JsonRpc)
-  } catch {
-    /* ignore partial */
+  buf = Buffer.concat([buf, chunk])
+  for (;;) {
+    const asText = buf.toString('utf8')
+    const headerEnd = asText.indexOf('\r\n\r\n')
+    if (headerEnd >= 0) {
+      const header = asText.slice(0, headerEnd)
+      const match = header.match(/Content-Length:\s*(\d+)/i)
+      if (!match) {
+        buf = buf.subarray(Buffer.byteLength(asText.slice(0, headerEnd + 4), 'utf8'))
+        continue
+      }
+      const len = Number(match[1])
+      const bodyOffset = Buffer.byteLength(asText.slice(0, headerEnd + 4), 'utf8')
+      if (buf.length < bodyOffset + len) return
+      const body = buf.subarray(bodyOffset, bodyOffset + len).toString('utf8')
+      buf = buf.subarray(bodyOffset + len)
+      try {
+        void handle(JSON.parse(body) as JsonRpc)
+      } catch {
+        /* ignore */
+      }
+      continue
+    }
+    const nl = asText.indexOf('\n')
+    if (nl < 0) return
+    const line = asText.slice(0, nl).trim()
+    buf = buf.subarray(Buffer.byteLength(asText.slice(0, nl + 1), 'utf8'))
+    if (!line || line.startsWith('Content-Length:')) continue
+    try {
+      void handle(JSON.parse(line) as JsonRpc)
+    } catch {
+      /* wait */
+    }
   }
 })

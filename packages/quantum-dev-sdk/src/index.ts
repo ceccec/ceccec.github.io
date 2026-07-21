@@ -1,8 +1,38 @@
 /**
  * @ceccec/quantum-dev-sdk — thin MCP-ready wrappers over sealed quantum tools.
  * Census-safe: lives under packages/ (does not add src/ index.ts).
- * Pair: session/tools · tool/envelope · compose session + standardToolboxIoCatalog + rosettaCoreApi.
+ * Pair: sdk/wire · session/tools · tool/envelope · mcp/browser-parity · upgrade/local
+ * Channel 1: child-process → bootstrap CLI (src/bootstrap.ts). Channel 2: sealed ESM re-exports.
  */
+export {
+  REPO_ROOT,
+  BOOTSTRAP_REL,
+  DOCS_BUILD_ALLOW_ENV,
+  runBootstrapCli,
+  runGate,
+  runCheckTypes,
+  runLimitsVerify,
+  runMissionGate,
+  runVerifyStructure,
+  runDocsBuild,
+  runEnforcementTrinity,
+  runExport,
+  runWave,
+  foldReport,
+  type GateResult,
+  type GateName,
+  type WaveKind,
+  type RepoOpts,
+} from './bootstrap.ts'
+
+export {
+  QUANTUM_DEV_STDIO_TOOL_IDS,
+  censusStatus,
+  computeFromSource,
+  computeFromSourceLocal,
+  listStdioCapabilities,
+} from './pure.ts'
+
 import {
   sessionManualWorkAsQuantumTools,
   quantumCliToolsCatalog,
@@ -32,6 +62,12 @@ import {
   runMcpBrowserParityExit,
   improveLocalFromSessionExperience,
   runImproveLocalFromSessionExperienceExit,
+  upgradeLocalFromOptimisedManualWorkExperience,
+  runUpgradeLocalFromOptimisedManualWorkExperienceExit,
+  OPTIMISED_LOCAL_SKILL_COMMAND_TOOL_MAP,
+  OPTIMISED_LOCAL_BROWSER_TOOL_IDS,
+  OPTIMISED_LOCAL_PACKAGE_SURFACE,
+  OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS,
   LOCAL_SESSION_EXPERIMENT_STORAGE_KEY,
   LOCAL_SESSION_HUB_STEPS,
   AUTO_WIRE_PASTE_LINK_ONE_LINER,
@@ -48,10 +84,8 @@ import {
   type PasteBootstrapPayload,
   type CeccecWireTarget,
   type McpBrowserParityRow,
+  type OptimisedLocalSkillCommandToolRow,
 } from '../../../src/quantum/apps/index.ts'
-import { A432_HUE, DIMENSION_GATES, FOLDED_CENSUS, UNFOLDED_CENSUS } from '../../../src/3/7/index.ts'
-import { toUuid } from '../../../src/0/index.ts'
-import { rosettaRayOf } from '../../../src/water/digit/index.ts'
 
 export {
   sessionManualWorkAsQuantumTools,
@@ -82,6 +116,12 @@ export {
   runMcpBrowserParityExit,
   improveLocalFromSessionExperience,
   runImproveLocalFromSessionExperienceExit,
+  upgradeLocalFromOptimisedManualWorkExperience,
+  runUpgradeLocalFromOptimisedManualWorkExperienceExit,
+  OPTIMISED_LOCAL_SKILL_COMMAND_TOOL_MAP,
+  OPTIMISED_LOCAL_BROWSER_TOOL_IDS,
+  OPTIMISED_LOCAL_PACKAGE_SURFACE,
+  OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS,
   LOCAL_SESSION_EXPERIMENT_STORAGE_KEY,
   LOCAL_SESSION_HUB_STEPS,
   AUTO_WIRE_PASTE_LINK_ONE_LINER,
@@ -89,6 +129,7 @@ export {
   CECCEC_GITHUB_REPO,
   STANDARD_TOOL_ENVELOPE_KIND,
   STANDARD_TOOL_ENVELOPE_VERSION,
+  type OptimisedLocalSkillCommandToolRow,
   type SessionManualToolRow,
   type QuantumCliToolRow,
   type RosettaCoreSurface,
@@ -100,47 +141,73 @@ export {
   type McpBrowserParityRow,
 }
 
-/** Sealed census constants — mirrors stdio MCP census-status (browser-safe). */
-export function censusStatus() {
-  return {
-    unfolded: UNFOLDED_CENSUS,
-    folded: FOLDED_CENSUS,
-    gates: DIMENSION_GATES,
-    ok: UNFOLDED_CENSUS === 110 && FOLDED_CENSUS === 108 && DIMENSION_GATES === 432,
+import { QUANTUM_DEV_STDIO_TOOL_IDS as STDIO_IDS, listStdioCapabilities } from './pure.ts'
+
+/** Self-describing capability list for stdio MCP tools/list (+ toolbox parity when apps barrel loads). */
+export function listCapabilities() {
+  const stdioBase = listStdioCapabilities()
+  try {
+    const parity = mcpBrowserParity()
+    const toolbox = listStandardToolboxTools()
+    const stdioSeven = parity.stdioCapabilities
+      .filter((cap) => (STDIO_IDS as readonly string[]).includes(cap.id))
+      .map((cap) => ({
+        name: cap.id,
+        kind: 'stdio-mcp' as const,
+        browserAchievable: cap.browserAchievable,
+        description: cap.description,
+        browserGap: cap.browserGap,
+      }))
+    return {
+      ...stdioBase,
+      stdio: stdioSeven.length === STDIO_IDS.length ? stdioSeven : stdioBase.stdio,
+      toolbox: toolbox.tools.map((tool) => ({
+        name: tool.name,
+        kind: 'toolbox-mcp' as const,
+        browserAchievable: Boolean(tool.annotations.browserRunnable),
+        description: tool.description,
+        browserGap: String(tool.annotations.browserGap ?? ''),
+      })),
+      mcpMatchesToolbox: parity.mcpMatchesToolbox,
+      allAchievableInBrowser: parity.allAchievableInBrowser,
+      residualCount: parity.residualCount,
+      root: parity.root,
+    }
+  } catch {
+    return stdioBase
   }
 }
 
-/** Pure compute-from-source — mirrors stdio MCP tool. */
-export function computeFromSource(args: { op?: string; seed?: string; name?: string } = {}) {
-  const op = args.op ?? 'a432-hue'
-  if (op === 'to-uuid') return { op, value: toUuid(args.seed ?? 'ceccec') }
-  if (op === 'rosetta-ray') return { op, value: rosettaRayOf(args.name ?? 'rosettaCoreApi') }
-  return { op: 'a432-hue', value: A432_HUE }
-}
-
-/** Self-describing capability list for stdio MCP tools/list. */
-export function listCapabilities() {
-  const parity = mcpBrowserParity()
-  const toolbox = listStandardToolboxTools()
+/** Package discovery for agents — same zero-token path as quantum pairs /skills. */
+export function listLocalPackages() {
   return {
-    stdio: parity.stdioCapabilities.map((cap) => ({
-      name: cap.id,
-      kind: 'stdio-mcp' as const,
-      browserAchievable: cap.browserAchievable,
-      description: cap.description,
-      browserGap: cap.browserGap,
-    })),
-    toolbox: toolbox.tools.map((tool) => ({
-      name: tool.name,
-      kind: 'toolbox-mcp' as const,
-      browserAchievable: Boolean(tool.annotations.browserRunnable),
-      description: tool.description,
-      browserGap: String(tool.annotations.browserGap ?? ''),
-    })),
-    mcpMatchesToolbox: parity.mcpMatchesToolbox,
-    allAchievableInBrowser: parity.allAchievableInBrowser,
-    residualCount: parity.residualCount,
-    root: parity.root,
+    packages: [
+      {
+        id: '@ceccec/quantum-dev-sdk',
+        path: 'packages/quantum-dev-sdk',
+        pair: 'sdk/wire',
+        mcp: '.cursor/mcp.json → quantum-dev',
+        cli: 'node --experimental-strip-types packages/quantum-dev-sdk/bin/mcp.ts',
+        npm: 'npm run quantum:dev-mcp',
+        tools: QUANTUM_DEV_STDIO_TOOL_IDS.length,
+        automation: 'npm-script path — not Cursor Automations MCP dashboard',
+        honesty: 'NOT Cursor zero-token LLM endpoint · census 110 untouched (packages/ outside src/)',
+      },
+      {
+        id: '@ceccec/double-torus',
+        path: 'packages/double-torus',
+        pair: 'build/seal',
+        mcp: '',
+        cli: 'see packages/double-torus/README.md',
+        npm: '',
+        tools: 0,
+        automation: 'published math/anim core — not the gate SDK',
+        honesty: 'zero-dep consumer bundle — do not co-locate gate spawns here',
+      },
+    ],
+    stdioTools: QUANTUM_DEV_STDIO_TOOL_IDS,
+    upgradeCli: 'npm run quantum:upgrade-local',
+    upgradeRoute: '/en/quantum-tools#upgrade-local-skills',
   }
 }
 

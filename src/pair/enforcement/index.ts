@@ -93,6 +93,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'session/tools',
   'session/quantum-bits',
   'local/session',
+  'upgrade/local',
+  'sdk/wire',
   'wire/paste-link',
   'mcp/browser-parity',
   'tool/envelope',

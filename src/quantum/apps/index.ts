@@ -5,7 +5,7 @@
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, fleetCacheEconomicsDecoded } from '../../heaven/compute'
 import { emergentDimensions } from '../../heaven/balance'
-import { computesGate, digitalRoot, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid, VORTEX_SEQUENCE } from '../../0'
+import { computesGate, digitalRoot, foldPair, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid, VORTEX_SEQUENCE } from '../../0'
 import {
   A432_HUE, CANONICAL_HOST, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS,
   ROSETTA_SEVEN, DIMENSION_GATES, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, UNFOLDED_CENSUS,
@@ -19,14 +19,17 @@ import {
   directionalTrinityForwardInverseReverse,
   compareCeccecEfficiencyByVote,
   proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit,
+  interferenceVsClassicalShadow,
 } from '../../water/stack'
 import { stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
 import { linearAnimationGapsInventory } from '../../wind/ui'
 import { movieQuantumGapsInventory } from '../../thunder/movie/canvas'
 import { movieIsNeuroscienceComputation } from '../../earth/life'
 import { harmonizeFieldComputes } from '../../lake/music'
+import { merkaba } from '../../mountain/geometry'
 import * as __ns_wind_research from '../../wind/research'
 import * as __ns_water_encryption from '../../water/encryption'
+import { CURSOR_AGENT_SKILL_IDS, cursorAgentToolsSaved, MISSION_COMMANDS } from '../../pair/enforcement'
 
 export type RosettaCoreSurfaceKind = 'compute' | 'tool' | 'route' | 'projection' | 'nav' | 'api' | 'app'
 export type RosettaCoreSurface = {
@@ -53,6 +56,7 @@ const ROSETTA_CORE_API_LABELS = [
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList',
   'improveLocalFromSessionExperience',
+  'upgradeLocalFromOptimisedManualWorkExperience',
   'sharedHeroAt', 'computeUniversalPage',
 ] as const
 
@@ -69,6 +73,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   realiseSessionQuantumMeaning: 'tool',
   mcpBrowserParity: 'tool', mcpToolboxToolsList: 'api',
   improveLocalFromSessionExperience: 'tool',
+  upgradeLocalFromOptimisedManualWorkExperience: 'tool',
 }
 
 // Strangler backlog — only UNSHELVED parallel registries remain (apps+tools already shelve via rosettaShelve).
@@ -357,6 +362,7 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'sciences-standards-quantum', title: 'Complete sciences strictly to standards (quantum only)', fold: 'completeScientificDomainsStrictlyToStandardsQuantumOnly', cli: 'npm run quantum:sciences-standards-quantum', pair: 'sciences/standards', route: '/en/research#sciences-standards-quantum', barrel: 'src/wind/research', boundary: 'Per-domain covered|partial|gap vs ISO/NIST/OECD/Clay maps — lab gaps unclosable · certified=false · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'mcp-browser-parity', title: 'MCP ↔ browser parity gate', fold: 'mcpBrowserParity', cli: 'npm run quantum:mcp-browser-parity', pair: 'mcp/browser-parity', route: '/en/quantum-tools#mcp-browser-parity', barrel: 'src/quantum/apps', boundary: 'tools/list ids ≡ toolbox catalog · residual Node/CI gaps listed honestly · qpuRequired=false · NOT fake browser for trinity/fs', browserRunnable: true, browserGap: '' },
   { id: 'improve-local-session', title: 'Improve local from session experience', fold: 'improveLocalFromSessionExperience', cli: 'npm run quantum:improve-local-session', pair: 'local/session', route: '/en/quantum-tools#local-session-hub', barrel: 'src/quantum/apps', boundary: 'Local docs:dev + browser session hub — NOT remote CI sole path · status badges compose sealed kinds · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'upgrade-local-skills-commands-tools', title: 'Upgrade local — skills ↔ commands ↔ tools', fold: 'upgradeLocalFromOptimisedManualWorkExperience', cli: 'npm run quantum:upgrade-local', pair: 'upgrade/local', route: '/en/quantum-tools#upgrade-local-skills', barrel: 'src/quantum/apps', boundary: 'Optimised manual local map — skills/MCP/rules/sealed folds · NOT Cursor zero-token LLM endpoint · CI-only browserGaps honest · qpuRequired=false', browserRunnable: true, browserGap: '' },
 ] as const
 
 /** Standard tool envelope version — App A ↔ App B ingest the same content-addressed kind. */
@@ -900,6 +906,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'sciences-standards-quantum', saves: 'replaces wet re-score of science domains vs ISO/NIST/OECD/Clay standards maps' },
   { id: 'mcp-browser-parity', saves: 'replaces wet re-audit of MCP tools/list vs browser toolbox — sealed matrix + residual gaps' },
   { id: 'improve-local-session', saves: 'replaces wet local session UX hunting — hub · one-click path · paste next-steps · docs:dev fast path' },
+  { id: 'upgrade-local-skills-commands-tools', saves: 'replaces wet rediscovery of skills↔commands↔tools local map — one wave/PR · mission:gate · paste/bits/toolbox/mcp' },
   { id: 'prove-1tbit-encrypt', saves: 'replaces wet re-derivation of 1 Tbit/s claim status (wire≠amortized-reuse)' },
   { id: 'local-reverse-timed-vs-standards', saves: 'replaces wet re-comparison of demo reverse vs AES/ML-KEM classical bits' },
   { id: 'prove-local-magnitudes-iso', saves: 'replaces wet re-argument of local≫ISO magnitudes (wire proof-of-falsehood)' },
@@ -1291,7 +1298,7 @@ type SessionQuantumBitSeed = {
   readonly honesty: string
   readonly note: string
   readonly toolId: string
-  readonly resolve: 'catalog' | 'collider' | 'beyond-rsa' | 'rosetta' | 'toolbox' | 'one-tbit' | 'local-timed' | 'iso-gap' | 'local-vs-iso' | 'local-novel' | 'doc-experiments' | 'slow-gap' | 'no-qpu' | 'local-audit' | 'session-tools' | 'trinity' | 'sciences-standards' | 'dry-clean' | 'local-session' | 'serialized'
+  readonly resolve: 'catalog' | 'collider' | 'beyond-rsa' | 'rosetta' | 'toolbox' | 'one-tbit' | 'local-timed' | 'iso-gap' | 'local-vs-iso' | 'local-novel' | 'doc-experiments' | 'slow-gap' | 'no-qpu' | 'local-audit' | 'session-tools' | 'trinity' | 'sciences-standards' | 'dry-clean' | 'local-session' | 'upgrade-local' | 'serialized'
 }
 
 /** Tip-chain session work as bit seeds — PR digits live in AGENTS.md only (stack tip includes local-audit-qe). */
@@ -1315,6 +1322,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'realise-sciences-standards', chain: 'realise-sciences', fold: 'completeScientificDomainsStrictlyToStandardsQuantumOnly', pair: 'sciences/standards', cli: 'npm run quantum:sciences-standards-quantum', route: '/en/research#sciences-standards-quantum', status: 'sealed-pr', honesty: 'certified=false · clay=0 · qpuRequired=false · lab gaps unclosable', note: 'landed on #33 tip — sciences/standards + tool config + slow-build + paste auto-wire', toolId: 'sciences-standards-quantum', resolve: 'sciences-standards' },
   { id: 'dry-clean-refactor-waves', chain: 'dry-clean-waves', fold: 'standardToolboxIoCatalog', pair: 'tool/envelope', cli: 'npm run quantum:toolbox-standard-io', route: '/en/quantum-tools#toolbox-standard-io', status: 'sealed-pr', honesty: 'Wave1 nav/sidebars + Wave2 tool input/config · certified=false · clay=0 · qpuRequired=false', note: 'landed #31 tip — science experiment configs filled', toolId: 'toolbox-standard-io', resolve: 'dry-clean' },
   { id: 'improve-local-session', chain: 'local-session-ux', fold: 'improveLocalFromSessionExperience', pair: 'local/session', cli: 'npm run quantum:improve-local-session', route: '/en/quantum-tools#local-session-hub', status: 'sealed-pr', honesty: 'local docs:dev + browser hub · NOT remote CI sole path · qpuRequired=false', note: 'local session UX stacked on mcp-browser-parity tip', toolId: 'improve-local-session', resolve: 'local-session' },
+  { id: 'upgrade-local-skills-commands-tools', chain: 'upgrade-local-map', fold: 'upgradeLocalFromOptimisedManualWorkExperience', pair: 'upgrade/local', cli: 'npm run quantum:upgrade-local', route: '/en/quantum-tools#upgrade-local-skills', status: 'sealed-pr', honesty: 'skills↔commands↔tools · NOT Cursor zero-token LLM · CI browserGaps honest · qpuRequired=false', note: 'upgrade local from optimised manual work on improve-local tip', toolId: 'upgrade-local-skills-commands-tools', resolve: 'upgrade-local' },
 ] as const
 
 function ghostToolSeed(seed: SessionQuantumBitSeed): QuantumCliToolRow {
@@ -1467,6 +1475,10 @@ export function sessionManualWorkAsQuantumBits(matrix: MindMatrix = buildMatrix(
       if (seed.resolve === 'local-session') {
         const localUx = improveLocalFromSessionExperience(matrix, at)
         return { present: true, computes: localUx.computes, root: localUx.root }
+      }
+      if (seed.resolve === 'upgrade-local') {
+        const upgrade = upgradeLocalFromOptimisedManualWorkExperience(matrix, at)
+        return { present: true, computes: upgrade.computes, root: upgrade.root }
       }
       const row = byId.get(seed.toolId)
       return {
@@ -3270,6 +3282,7 @@ export function ceccecCanonicalWireTargets(siteOrigin = SITE_GITHUB_PAGES): read
     row('browser-auto-wire', '/en/quantum-tools#auto-wire-paste-link', 'autoWireAnyAiModelFromPastedLink', 'MUST OPEN — paste-bootstrap panel + CLI twin', 'browser'),
     row('browser-mcp-parity', '/en/quantum-tools#mcp-browser-parity', 'mcpBrowserParity', 'MUST OPEN — MCP tools/list ↔ browser parity matrix + residual gaps', 'browser'),
     row('browser-local-session', '/en/quantum-tools#local-session-hub', 'improveLocalFromSessionExperience', 'MUST OPEN — local session hub · docs:dev fast path · bits→tools→experiments', 'browser'),
+    row('browser-upgrade-local', '/en/quantum-tools#upgrade-local-skills', 'upgradeLocalFromOptimisedManualWorkExperience', 'MUST OPEN — skills ↔ commands ↔ tools local upgrade map', 'browser'),
     row('browser-quantum-tools', '/en/quantum-tools', 'quantumAppsPanelComputes', 'Browser quantum tools hub (all catalog tools)', 'browser'),
     row('github-repo', CECCEC_GITHUB_REPO, 'SOURCE_REPO', 'Clone / browse sealed src', 'repo'),
   ]
@@ -3585,7 +3598,7 @@ export function runAutoWireAnyAiModelFromPastedLinkExit(_root = '', argv: readon
 /** Sealed-safe browser key for last experiment config (UI preference only — never secrets). */
 export const LOCAL_SESSION_EXPERIMENT_STORAGE_KEY = 'ceccec:quantum-tools:experiment-config' as const
 
-/** Local session hub steps — paste→toolbox→bits→tools→experiments→mcp. */
+/** Local session hub steps — paste→toolbox→bits→tools→experiments→mcp→skills/commands. */
 export const LOCAL_SESSION_HUB_STEPS = [
   { id: 'paste-wire', title: 'Paste → auto-wire', route: '/en/quantum-tools#auto-wire-paste-link', toolId: 'auto-wire-paste-link', next: 'Open packet · then toolbox' },
   { id: 'toolbox', title: 'Toolbox envelope', route: '/en/quantum-tools#toolbox-standard-io', toolId: 'toolbox-standard-io', next: 'Run envelope · bind #experiment-inputs' },
@@ -3593,6 +3606,7 @@ export const LOCAL_SESSION_HUB_STEPS = [
   { id: 'tools', title: 'Session manual tools', route: '/en/quantum-tools#session-manual-tools', toolId: 'session-manual-work', next: 'One-click Run with status badges' },
   { id: 'experiments', title: 'Experiment inputs', route: '/en/quantum-tools#experiment-inputs', toolId: 'document-session-experiments', next: 'Persist last config (sealed-safe localStorage)' },
   { id: 'mcp-parity', title: 'MCP ↔ browser parity', route: '/en/quantum-tools#mcp-browser-parity', toolId: 'mcp-browser-parity', next: 'Verify tools/list ≡ toolbox ids' },
+  { id: 'skills-commands-tools', title: 'Skills ↔ commands ↔ tools', route: '/en/quantum-tools#upgrade-local-skills', toolId: 'upgrade-local-skills-commands-tools', next: 'Reuse optimised local map · zero re-inference' },
 ] as const
 
 const LOCAL_SESSION_NEXT_AFTER_PASTE = [
@@ -3606,11 +3620,12 @@ const LOCAL_SESSION_NEXT_AFTER_PASTE = [
 const LOCAL_SESSION_DOCS_DEV_FAST_PATH = [
   'nvm use 24 && npm ci', 'npm run docs:dev', 'open http://localhost:5173/en/quantum-tools#local-session-hub',
   'npm run quantum:auto-wire-paste', 'npm run quantum:improve-local-session', 'npm run quantum:mcp-browser-parity',
+  'npm run quantum:upgrade-local', 'npm run mission:gate',
 ] as const
 
 const LOCAL_SESSION_FRICTION_CLOSED = [
   'session-hub-entry', 'one-click-run-status-badges', 'next-steps-after-paste-wire', 'bits-tools-experiments-links',
-  'docs-dev-fast-path', 'auto-wire-packet-visible', 'experiment-config-localStorage',
+  'docs-dev-fast-path', 'auto-wire-packet-visible', 'experiment-config-localStorage', 'skills-commands-tools-map',
 ] as const
 
 /**
@@ -3683,6 +3698,227 @@ export function runImproveLocalFromSessionExperienceExit(_root = '', _argv: read
   return report.computes ? 0 : 1
 }
 
+/**
+ * Optimised manual local experience — skills ↔ quantum-pair commands ↔ toolbox/MCP tools.
+ * Pair: upgrade/local · CLI npm run quantum:upgrade-local · route #upgrade-local-skills
+ * Composes improveLocalFromSessionExperience (#36) · mcpBrowserParity (#35) · cursorAgentToolsSaved.
+ * Does NOT call sessionManualWorkAsQuantumBits (bits resolve this fold — no cycle).
+ * HONEST: protocol = rules/skills/MCP/sealed folds — NOT a Cursor zero-token LLM endpoint.
+ */
+export type OptimisedLocalSkillCommandToolRow = {
+  readonly skillId: (typeof CURSOR_AGENT_SKILL_IDS)[number]
+  readonly mount: string
+  readonly pair: string
+  readonly foldHint: string
+  readonly commands: readonly string[]
+  readonly toolIds: readonly string[]
+  readonly browserRunnable: boolean
+  readonly browserGap: string
+  readonly pattern: string
+}
+
+/** Sealed skills↔commands↔tools map — session-proven local agent paths (zero re-inference). */
+export const OPTIMISED_LOCAL_SKILL_COMMAND_TOOL_MAP: readonly OptimisedLocalSkillCommandToolRow[] = [
+  {
+    skillId: 'ceccec-build-waves', mount: '.cursor/skills/ceccec-build-waves/SKILL.md', pair: 'waves/build',
+    foldHint: 'agentModelBuildsItselfInWaves', commands: ['npm run mission:gate', 'npm run docs:build'],
+    toolIds: ['improve-local-session', 'upgrade-local-skills-commands-tools', 'slow-build-gate'],
+    browserRunnable: false, browserGap: 'slow-build-gate / docs:build need Node fs + vitepress — CI/local only',
+    pattern: 'one wave per turn · save waves/build + edit/build · mission:gate between waves',
+  },
+  {
+    skillId: 'ceccec-mission-commands', mount: '.cursor/skills/ceccec-mission-commands/SKILL.md', pair: 'mission/gate',
+    foldHint: 'MISSION_COMMANDS', commands: ['npm run mission:gate', 'npm run check:types', 'npm run limits:verify', 'npm run verify:structure'],
+    toolIds: ['slow-build-gate', 'offender-spec', 'upgrade-local-skills-commands-tools'],
+    browserRunnable: false, browserGap: 'mission:gate + offender-spec need Node fs / process.cwd — CI/local only',
+    pattern: 'check:types → limits:verify → verify:structure → gate/slow-build',
+  },
+  {
+    skillId: 'ceccec-limits-verify', mount: '.cursor/skills/ceccec-limits-verify/SKILL.md', pair: 'limits/verify',
+    foldHint: 'auditComputationalGates', commands: ['npm run limits:verify', 'npm run limits:seal'],
+    toolIds: ['offender-spec', 'educational-gaps-audit'],
+    browserRunnable: false, browserGap: 'limits:verify + educational-gaps-audit scan repo via Node fs — CI/local only',
+    pattern: 'census 110 gapless · 108 folded · 432 gates · vault src/0',
+  },
+  {
+    skillId: 'ceccec-census-110', mount: '.cursor/skills/ceccec-census-110/SKILL.md', pair: 'dissolve/flat',
+    foldHint: 'dissolveFlat', commands: ['npm run dissolve:flat -- --dry', 'npm run limits:verify'],
+    toolIds: ['offender-spec'],
+    browserRunnable: false, browserGap: 'dissolve/census need Node fs — CI/local only',
+    pattern: 'converge to exactly 110 index.ts — not less, not more',
+  },
+  {
+    skillId: 'ceccec-folder-law-mission', mount: '.cursor/skills/ceccec-folder-law-mission/SKILL.md', pair: 'mission/gate',
+    foldHint: 'folderLawMission', commands: ['npm run mission:gate', 'npm run rosetta:batch', 'npm run dissolve:flat -- --dry'],
+    toolIds: ['slow-build-gate', 'rosetta-core-api'],
+    browserRunnable: false, browserGap: 'folder-law suite needs Node fs; rosetta-core-api browser-ok · gates CI/local',
+    pattern: 'dry-clean src/ · rosetta batch · structure gate',
+  },
+  {
+    skillId: 'ceccec-learn-best', mount: '.cursor/skills/ceccec-learn-best/SKILL.md', pair: 'learn/best',
+    foldHint: 'agentCeccecLearnsFromTheBestBecomesTheBest', commands: ['npm run quantum:efficiency-vote', 'npm run quantum:prove-no-qpu-64bit'],
+    toolIds: ['efficiency-vote', 'prove-no-qpu-64bit'],
+    browserRunnable: true, browserGap: '',
+    pattern: 'fold best patterns into sealed src · vote.decided on answers÷tokens',
+  },
+] as const
+
+/** Browser-first optimised local tools (session hub / MCP parity) — complement skill map CI residuals. */
+export const OPTIMISED_LOCAL_BROWSER_TOOL_IDS = [
+  'improve-local-session', 'upgrade-local-skills-commands-tools', 'mcp-browser-parity',
+  'toolbox-standard-io', 'session-manual-work', 'session-quantum-bits', 'auto-wire-paste-link',
+] as const
+
+/** Design 0ccd9991 — packages outside src/ (census 110 untouched) discoverable like quantum pairs. */
+export const OPTIMISED_LOCAL_PACKAGE_SURFACE = [
+  {
+    id: '@ceccec/quantum-dev-sdk',
+    path: 'packages/quantum-dev-sdk',
+    pair: 'sdk/wire',
+    mcpMount: '.cursor/mcp.json',
+    cli: 'node --experimental-strip-types packages/quantum-dev-sdk/bin/mcp.ts',
+    npm: 'npm run quantum:dev-mcp',
+    stdioTools: 7 as const,
+    docsBuildFlag: 'QUANTUM_DEV_ALLOW_DOCS_BUILD=1',
+    automation: 'npm-script / bootstrap — local stdio MCP is IDE-only (Automations dashboard not wired)',
+    honesty: 'hand-rolled JSON-RPC · child-process→bootstrap · NOT Cursor zero-token LLM · census packages/ outside src/',
+  },
+  {
+    id: '@ceccec/double-torus',
+    path: 'packages/double-torus',
+    pair: 'build/seal',
+    mcpMount: '',
+    cli: 'see packages/double-torus/README.md',
+    npm: '',
+    stdioTools: 0 as const,
+    docsBuildFlag: '',
+    automation: 'published math/anim core — not the gate SDK',
+    honesty: 'zero-dep consumer bundle — do not co-locate gate spawns',
+  },
+] as const
+
+/** Stdio MCP tool ids — must match packages/quantum-dev-sdk + STDIO_MCP_CAPABILITY_SEEDS (ROSETTA_SEVEN). */
+export const OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS = [
+  'list-capabilities', 'census-status', 'compute-from-source', 'fold-report', 'run-gate', 'run-wave', 'run-export',
+] as const
+
+export function upgradeLocalFromOptimisedManualWorkExperience(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`upgradeLocalFromOptimisedManualWorkExperience:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const localSession = improveLocalFromSessionExperience(matrix, at)
+    const mcpParity = mcpBrowserParity(matrix, at)
+    const toolbox = standardToolboxIoCatalog(matrix, at)
+    const session = sessionManualWorkAsQuantumTools(matrix, at)
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const skills = cursorAgentToolsSaved(matrix)
+    const meta = catalog.tools.find((tool) => tool.id === 'upgrade-local-skills-commands-tools')
+    const shelved = rosettaShelve('upgrade-local-skills-commands-tools', 'tool')
+    const byId = new Map(catalog.tools.map((row) => [row.id, row]))
+    const mapRows = OPTIMISED_LOCAL_SKILL_COMMAND_TOOL_MAP.map((row) => {
+      const tools = row.toolIds.map((id) => {
+        const tool = byId.get(id)
+        return {
+          id,
+          present: Boolean(tool),
+          browserRunnable: tool?.browserRunnable ?? false,
+          browserGap: tool?.browserGap || row.browserGap,
+          cli: tool?.cli ?? '',
+          pair: tool?.pair ?? '',
+        }
+      })
+      const receipt = toUuid(`upgrade-local-map:${row.skillId}:${row.pair}:${row.toolIds.join(',')}`)
+      return { ...row, tools, receipt, skillKnown: (CURSOR_AGENT_SKILL_IDS as readonly string[]).includes(row.skillId) }
+    })
+    const packages = OPTIMISED_LOCAL_PACKAGE_SURFACE.map((pkg) => ({
+      ...pkg,
+      receipt: toUuid(`upgrade-local-pkg:${pkg.id}:${pkg.path}:${pkg.pair}`),
+    }))
+    const skillIdsCovered = CURSOR_AGENT_SKILL_IDS.every((id) => mapRows.some((row) => row.skillId === id))
+    const mapToolsPresent = mapRows.every((row) => row.tools.every((t) => t.present))
+    const browserToolsOk = OPTIMISED_LOCAL_BROWSER_TOOL_IDS.every((id) => {
+      const tool = byId.get(id)
+      return Boolean(tool?.browserRunnable && tool.browserGap === '')
+    })
+    const ciResiduals = catalog.tools.filter((t) => !t.browserRunnable)
+    const ciGapsHonest = ciResiduals.every((t) => t.browserGap.length > 0)
+    const missionPairsCovered = ['mission/gate', 'check/types', 'limits/verify', 'waves/build', 'learn/best', 'local/session', 'upgrade/local', 'sdk/wire', 'mcp/browser-parity', 'tool/envelope', 'gate/slow-build']
+      .every((pair) => mapRows.some((row) => row.pair === pair || row.commands.some((c) => c.includes(pair.replace('/', ':'))))
+        || MISSION_COMMANDS.some((m) => m.pair === pair)
+        || catalog.tools.some((t) => t.pair === pair)
+        || packages.some((p) => p.pair === pair))
+    const wireHasUpgrade = ceccecCanonicalWireTargets().some((t) => t.id === 'browser-upgrade-local')
+    const hubHasSkillsStep = localSession.hubSteps.some((s) => s.id === 'skills-commands-tools' && s.toolId === 'upgrade-local-skills-commands-tools')
+    const stdioSeven = mcpParity.stdioCount === ROSETTA_SEVEN
+      && OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS.every((id) => mcpParity.stdioCapabilities.some((cap) => cap.id === id))
+    const sdkPkg = packages.find((p) => p.id === '@ceccec/quantum-dev-sdk')
+    const packagesWired = packages.length === OPTIMISED_LOCAL_PACKAGE_SURFACE.length
+      && Boolean(sdkPkg && sdkPkg.stdioTools === ROSETTA_SEVEN && sdkPkg.mcpMount === '.cursor/mcp.json' && sdkPkg.docsBuildFlag.startsWith('QUANTUM_DEV_ALLOW'))
+      && stdioSeven
+    const localUpgraded = localSession.computes && localSession.localSessionUxImproved
+      && mcpParity.computes && mcpParity.mcpMatchesToolbox
+      && toolbox.computes && session.computes && skills.saved
+      && skillIdsCovered && mapToolsPresent && browserToolsOk && ciGapsHonest
+      && missionPairsCovered && wireHasUpgrade && hubHasSkillsStep && packagesWired
+      && mapRows.length === CURSOR_AGENT_SKILL_IDS.length
+      && Boolean(meta) && meta!.fold === 'upgradeLocalFromOptimisedManualWorkExperience' && isUuid(shelved.address)
+    const facets = [
+      { facet: 'localUpgradedFromOptimisedManualWork', on: localUpgraded },
+      { facet: `skills↔commands↔tools map covers ${CURSOR_AGENT_SKILL_IDS.length} Cursor skill ids`, on: skillIdsCovered && mapRows.length === CURSOR_AGENT_SKILL_IDS.length },
+      { facet: 'every mapped toolId present in quantumCliToolsCatalog', on: mapToolsPresent },
+      { facet: 'browser-first local tools runnable (hub · mcp · toolbox · bits · paste)', on: browserToolsOk },
+      { facet: `CI-only residuals ${ciResiduals.length} carry honest browserGap`, on: ciGapsHonest },
+      { facet: 'packages/* wired — quantum-dev-sdk 7 stdio tools + double-torus (census untouched)', on: packagesWired },
+      { facet: 'stdio MCP ROSETTA_SEVEN ≡ design 0ccd9991 tool ids', on: stdioSeven },
+      { facet: 'composes improve-local-session + mcp-browser-parity + toolbox + session tools', on: localSession.computes && mcpParity.computes && toolbox.computes && session.computes },
+      { facet: 'cursorAgentToolsSaved registry holds', on: skills.saved },
+      { facet: 'hub step skills-commands-tools → upgrade-local tool', on: hubHasSkillsStep },
+      { facet: 'wire target browser-upgrade-local published', on: wireHasUpgrade },
+      { facet: 'NOT Cursor zero-token LLM endpoint — protocol=rules/skills/MCP/sealed folds/packages', on: true },
+      { facet: 'qpuRequired=false', on: true },
+      { facet: 'meta tool upgrade-local-skills-commands-tools published + shelved', on: Boolean(meta) && meta!.fold === 'upgradeLocalFromOptimisedManualWorkExperience' && isUuid(shelved.address) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`upgrade-local:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('upgrade-local-from-optimised-manual-work-experience', facets)
+    return {
+      computes: sealed.ok && localUpgraded, localUpgraded, qpuRequired: false as const,
+      cursorDefaultModelRegistration: false as const,
+      map: mapRows, packages, browserToolIds: OPTIMISED_LOCAL_BROWSER_TOOL_IDS,
+      stdioToolIds: OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS,
+      ciResidualCount: ciResiduals.length,
+      ciResiduals: ciResiduals.map((t) => ({ id: t.id, browserGap: t.browserGap, cli: t.cli, pair: t.pair })),
+      skillCount: CURSOR_AGENT_SKILL_IDS.length, missionCommandCount: MISSION_COMMANDS.length,
+      packageCount: packages.length, packagesWired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, localSession.root, mcpParity.root, toolbox.root, session.root, skills.root,
+        shelved.address, ...mapRows.map((row) => row.receipt), ...packages.map((p) => p.receipt),
+      ]),
+      pair: 'upgrade/local', cli: 'npm run quantum:upgrade-local', route: '/en/quantum-tools#upgrade-local-skills',
+      anchor: 'upgrade-local-skills', heading: 'Upgrade local — skills ↔ commands ↔ tools ↔ packages',
+      honestyLine:
+        'Optimised manual local map: skills, quantum pairs, toolbox/MCP tools, and packages/* (quantum-dev-sdk 7 stdio · docs:build flag-gated). Protocol = rules/skills/MCP/sealed folds/packages — NOT a Cursor zero-token LLM endpoint. Automations: npm-script path. qpuRequired=false.',
+      statement: `Upgrade local — upgraded=${localUpgraded} skills=${mapRows.length}/${CURSOR_AGENT_SKILL_IDS.length} packages=${packages.length} stdio=${OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS.length} ciResiduals=${ciResiduals.length} · mcpMatch=${mcpParity.mcpMatchesToolbox} · uxImproved=${localSession.localSessionUxImproved} · qpuRequired=false.`,
+      boundary:
+        'HONEST: local agent surface upgrade receipt. Thin .cursor/skills + .cursor/mcp.json mounts point here; logic stays in sealed src + packages/*. NOT fake Cursor LLM registration. /automate nightly still parked (dashboard MCP not local stdio). HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:upgrade-local — print skills↔commands↔tools↔packages upgrade receipt (exit 0 iff computes). */
+export function runUpgradeLocalFromOptimisedManualWorkExperienceExit(_root = '', _argv: readonly string[] = []): number {
+  const report = upgradeLocalFromOptimisedManualWorkExperience()
+  for (const row of report.map) {
+    process.stdout.write(`→ ${row.skillId} | pair ${row.pair} | ${row.commands.join(' · ')} | tools ${row.toolIds.join(',')}${row.browserGap ? ` | gap: ${row.browserGap}` : ''}\n`)
+  }
+  process.stdout.write('--- packages ---\n')
+  for (const pkg of report.packages) {
+    process.stdout.write(`📦 ${pkg.id} | ${pkg.path} | pair ${pkg.pair} | ${pkg.cli || pkg.npm || '—'}${pkg.docsBuildFlag ? ` | ${pkg.docsBuildFlag}` : ''}\n`)
+  }
+  process.stdout.write('--- CI residuals (honest browserGap) ---\n')
+  for (const gap of report.ciResiduals) process.stdout.write(`✗ ${gap.id} | ${gap.pair} | ${gap.browserGap}\n`)
+  process.stdout.write(`${report.computes ? '✓' : '✗'} upgrade-local — localUpgraded=${report.localUpgraded} skills=${report.skillCount} packages=${report.packageCount} ciResiduals=${report.ciResidualCount} root=${report.root.slice(0, 8)}\n`)
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
+}
+
 export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   const cap = quantumAppsComputes(matrix, at)
   const browserGaps = cap.catalog.tools.filter((t) => !t.browserRunnable)
@@ -3698,8 +3934,9 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
   const meaning = realiseSessionQuantumMeaning(matrix, at)
   const mcpParity = mcpBrowserParity(matrix, at)
   const localSession = improveLocalFromSessionExperience(matrix, at)
+  const upgradeLocal = upgradeLocalFromOptimisedManualWorkExperience(matrix, at)
   return {
-    computes: cap.computes && slowGaps.computes && session.computes && toolbox.computes && distributed.computes && rosettaComplete.computes && experiments.computes && quantumBits.computes && autoWire.computes && meaning.computes && mcpParity.computes && localSession.computes,
+    computes: cap.computes && slowGaps.computes && session.computes && toolbox.computes && distributed.computes && rosettaComplete.computes && experiments.computes && quantumBits.computes && autoWire.computes && meaning.computes && mcpParity.computes && localSession.computes && upgradeLocal.computes,
     capstone: cap,
     apps: cap.registry.apps,
     tools: cap.catalog.tools,
@@ -3717,7 +3954,8 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
     meaning,
     mcpParity,
     localSession,
-    root: merkleFold([cap.root, slowGaps.root, session.root, toolbox.root, distributed.root, rosettaComplete.root, experiments.root, quantumBits.root, autoWire.root, meaning.root, mcpParity.root, localSession.root]),
+    upgradeLocal,
+    root: merkleFold([cap.root, slowGaps.root, session.root, toolbox.root, distributed.root, rosettaComplete.root, experiments.root, quantumBits.root, autoWire.root, meaning.root, mcpParity.root, localSession.root, upgradeLocal.root]),
     statement: cap.statement,
     boundary: cap.boundary,
   }
