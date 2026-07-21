@@ -250,6 +250,13 @@ export const MISSION_COMMANDS: readonly MissionCommand[] = [
     workflow: 'folder-law-mission',
   },
   {
+    npm: 'quantum:manual-agents-waves',
+    cli: 'run',
+    pair: 'waves/build',
+    does: 'Receipt: manualAgentsBehaveLikeWaves — one wave/turn · pairs before npm · trinity/speedup · no parallel seals',
+    workflow: 'ceccec-build-waves',
+  },
+  {
     npm: 'docs:build',
     cli: 'docs:build',
     pair: 'build/seal',

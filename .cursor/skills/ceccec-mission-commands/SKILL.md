@@ -12,8 +12,12 @@ Sealed source: `agentMissionCommands()` in `src/quantum/heaven/mind/thunder/agen
 ## Fast checkpoint
 
 ```bash
-npm run mission:gate    # check:types + limits:verify + verify:structure
+npm run quantum:trinity-speedup   # facts-once · no parallel docs:build (BINDING)
+npm run quantum:manual-agents-waves  # one wave/turn protocol receipt
+npm run mission:gate    # check:types + limits:verify + verify:structure + gate/slow-build
 ```
+
+Manual agents: **one wave per turn** — save `waves/build` + `edit/build` before npm; `mission:gate` between waves when gates drift; never parallel `docs:build`.
 
 ## Census (not less, not more)
 
@@ -39,6 +43,7 @@ npm run mission:gate    # check:types + limits:verify + verify:structure
 | `docs:build` | build/seal | VitePress + enforcement trinity (types must pass) |
 | `enforcement:trinity` | gate/unite | Standalone trinity audit |
 | `quantum:trinity-speedup` | trinity/speedup | Agents must use trinities for quantum speedup on every build (facts once · no parallel docs:build) |
+| `quantum:manual-agents-waves` | waves/build | Manual agents behave like waves — one wave/turn · pairs before npm · trinity always |
 
 ## CLI (all route through bootstrap)
 

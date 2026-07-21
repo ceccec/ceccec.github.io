@@ -349,6 +349,7 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'local-math-computes', title: 'Local math computes', fold: 'localMathComputes', cli: 'npm run quantum:local-math-computes', pair: 'fold/verify', route: '/en/quantum-tools', barrel: 'src/water/stack', boundary: 'Sealed local math gate', browserRunnable: true, browserGap: '' },
   { id: 'offender-spec', title: 'Offender automation spec', fold: 'offenderAutomationSpec', cli: 'npm run quantum:offender-spec', pair: 'offender/spec', route: '/en/quantum-tools#offender-spec', barrel: 'src/pair/enforcement/ops', boundary: 'Machine-readable CI pipeline spec', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs (process.cwd) — CI-only' },
   { id: 'trinity-speedup', title: 'Trinity quantum speedup on every build', fold: 'agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath', cli: 'npm run quantum:trinity-speedup', pair: 'trinity/speedup', route: '/en/quantum-tools', barrel: 'src/pair/enforcement/gates', boundary: 'Facts once → cross·fold·weave · memo/merkle respawn · no parallel docs:build · NOT physical FTL', browserRunnable: false, browserGap: 'collectEnforcementFacts / runEnforcementTrinity need Node fs — CI/local CLI' },
+  { id: 'manual-agents-waves', title: 'Manual agents behave like waves', fold: 'manualAgentsBehaveLikeWaves', cli: 'npm run quantum:manual-agents-waves', pair: 'waves/build', route: '/en/quantum-tools#manual-agents-waves', barrel: 'src/thunder/waves', boundary: 'One wave/turn · pairs before npm · trinity/speedup · mission:gate between waves · no parallel seals · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'team-cooperate', title: 'Team cooperate verify', fold: 'teamCooperationScenarios', cli: 'npm run quantum:team-cooperate', pair: 'team/cooperate-verify', route: '/en/quantum-tools', barrel: 'src/pair/enforcement/ops', boundary: 'Solo vs team ack/relay/handoff', browserRunnable: true, browserGap: '' },
   { id: 'hero-spawn-verify', title: 'Hero spawn verify', fold: 'shouldSpawnSubagent', cli: 'npm run quantum:hero-spawn-verify', pair: 'hero/spawn-verify', route: '/en/quantum-tools#hero-spawn-verify', barrel: 'src/water/stack', boundary: 'Few heroes > mass ignorance', browserRunnable: true, browserGap: '' },
   { id: 'name-entropy-verify', title: 'Name entropy verify', fold: 'namingEntropy', cli: 'npm run quantum:name-entropy-verify', pair: 'name/entropy-verify', route: '/en/quantum-tools#name-entropy-verify', barrel: 'src/water/stack', boundary: 'Words compile from sealed src', browserRunnable: true, browserGap: '' },
@@ -933,6 +934,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'prove-local-magnitudes-iso', saves: 'replaces wet re-argument of local≫ISO magnitudes (wire proof-of-falsehood)' },
   { id: 'vitepress-quantumize', saves: 'replaces wet re-tuning of VitePress warm/respawn quantumize techniques' },
   { id: 'slow-build-gate', saves: 'replaces wet re-diagnosis of slow docs:build — lattice phase gates + srcMerkle respawn HARD' },
+  { id: 'manual-agents-waves', saves: 'replaces wet-linear agent grind — one wave/turn · waves/build+edit/build · trinity/speedup · mission:gate' },
 ] as const
 
 export function sessionManualWorkAsQuantumTools(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -3753,17 +3755,17 @@ export type OptimisedLocalSkillCommandToolRow = {
 export const OPTIMISED_LOCAL_SKILL_COMMAND_TOOL_MAP: readonly OptimisedLocalSkillCommandToolRow[] = [
   {
     skillId: 'ceccec-build-waves', mount: '.cursor/skills/ceccec-build-waves/SKILL.md', pair: 'waves/build',
-    foldHint: 'agentModelBuildsItselfInWaves', commands: ['npm run mission:gate', 'npm run docs:build'],
-    toolIds: ['improve-local-session', 'upgrade-local-skills-commands-tools', 'slow-build-gate'],
+    foldHint: 'manualAgentsBehaveLikeWaves', commands: ['npm run quantum:manual-agents-waves', 'npm run quantum:trinity-speedup', 'npm run mission:gate', 'npm run docs:build'],
+    toolIds: ['manual-agents-waves', 'trinity-speedup', 'improve-local-session', 'upgrade-local-skills-commands-tools', 'slow-build-gate'],
     browserRunnable: false, browserGap: 'slow-build-gate / docs:build need Node fs + vitepress — CI/local only',
-    pattern: 'one wave per turn · save waves/build + edit/build · mission:gate between waves',
+    pattern: 'one wave per turn · save waves/build + edit/build · trinity/speedup · mission:gate between waves · no parallel seals',
   },
   {
     skillId: 'ceccec-mission-commands', mount: '.cursor/skills/ceccec-mission-commands/SKILL.md', pair: 'mission/gate',
-    foldHint: 'MISSION_COMMANDS', commands: ['npm run mission:gate', 'npm run check:types', 'npm run limits:verify', 'npm run verify:structure'],
-    toolIds: ['slow-build-gate', 'offender-spec', 'upgrade-local-skills-commands-tools'],
+    foldHint: 'MISSION_COMMANDS', commands: ['npm run quantum:trinity-speedup', 'npm run mission:gate', 'npm run check:types', 'npm run limits:verify', 'npm run verify:structure'],
+    toolIds: ['trinity-speedup', 'manual-agents-waves', 'slow-build-gate', 'offender-spec', 'upgrade-local-skills-commands-tools'],
     browserRunnable: false, browserGap: 'mission:gate + offender-spec need Node fs / process.cwd — CI/local only',
-    pattern: 'check:types → limits:verify → verify:structure → gate/slow-build',
+    pattern: 'trinity/speedup → check:types → limits:verify → verify:structure → gate/slow-build · one sequential docs:build',
   },
   {
     skillId: 'ceccec-limits-verify', mount: '.cursor/skills/ceccec-limits-verify/SKILL.md', pair: 'limits/verify',

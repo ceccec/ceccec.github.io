@@ -17,14 +17,14 @@ Model id: **`ceccec`** · pair: **`cursor/ceccec`** · efficiency: answers ÷ to
 
 ## Build itself in waves
 
-Let the model build itself in waves — do not re-infer the loop:
+**BINDING:** manual agents behave like waves — `manualAgentsBehaveLikeWaves()` · `npm run quantum:manual-agents-waves` · pair **`waves/build`**. Do not wet-linear grind.
 
 1. **Origin** → `src/0/README.md`
 2. **Decode** → `decode-wave`
 3. **Design** → `design-wave`
 4. **Learn → Tune → Edit → Rebuild → Verify** → `ceccec-build-waves` / `agentModelBuildsItselfInWaves()`
 
-One wave per turn · save **`waves/build`** and **`edit/build`** pairs before npm · `npm run mission:gate` between waves when gates drift.
+One wave per turn · save **`waves/build`** and **`edit/build`** pairs before npm · **`trinity/speedup`** always · `npm run mission:gate` between waves when gates drift · **no parallel `docs:build`**.
 
 ## Learn from the best, become the best
 

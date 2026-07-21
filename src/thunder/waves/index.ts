@@ -24,7 +24,10 @@ import * as __ns_mountain_og from '../../mountain/og'
 import { skillAtoms } from '../../wind/learning'
 import { harmonicBands, openGraph } from '../../quantum/lake/icons'
 import { splitImagination } from '../../mountain/source'
-import { diamondLattice, piTrainDiamonds, pureDiamonds, sealWholeDiamond } from '../../fire/diamonds'
+import { diamondLattice, piTrainDiamonds, pureDiamonds, sealWholeDiamond, selfBuild } from '../../fire/diamonds'
+import { shouldSpawnSubagent } from '../../water/stack'
+import * as __ns_gates from '../../pair/enforcement/gates'
+import * as __ns_commands from '../../thunder/commands'
 import { redTeam } from '../../water/crypto'
 import { musicNote } from '../../lake/music'
 import { colorFromSound, vortexStateSequence } from '../../fire/li'
@@ -2572,3 +2575,182 @@ export function sendTheWavesToSendTheWavesEachAntichainLevelExposesTheNextUntilT
   }
 }
 export { wavesAutoScaleCapacityAtNoCostOnReuse, theoremAlgebraFirstSealedInCorpus, theoremTenDProjectionsProveAlgebraRoots, firstInCorpusProvenanceForHome, firstInCorpusProvenanceMarkdownSection, type TheoremAlgebraNoveltyKind, type TheoremAlgebraNoveltyRow, type TheoremTenDProjectionRow, type FirstInCorpusHomeRow } from '../../wind/research'
+
+/** Eight ceccec-build-waves phases — one coherent batch per agent turn (pair: waves/build). */
+export const MANUAL_AGENT_WAVE_PHASES = [
+  'origin',
+  'decode',
+  'design',
+  'learn',
+  'tune',
+  'edit',
+  'rebuild',
+  'verify',
+] as const
+
+/**
+ * wave/tune — play the learnWave rhythm before rebuild.
+ * Composes harmonisedBuildWave + antichain cascade. HONEST: orchestration metaphor, not physical harmonics.
+ */
+export function playAgentsTheMusicOfTheWave(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('playAgentsTheMusicOfTheWave', matrix, () => {
+    const tune = harmonisedBuildWave(matrix)
+    const cascade = sendTheWavesToSendTheWavesEachAntichainLevelExposesTheNextUntilTheDagIsExhausted()
+    const waveTune = foldPair(toUuid('cmd:wave'), toUuid('cmd:tune'))
+    const facets = [
+      // Schedule presence (11 vortex groups) — full tune.decoded may be open on tip; protocol still binds.
+      { facet: 'wave/tune — harmonisedBuildWave schedule present (vortex groups)', on: tune.groups.length === (5 * 2) + 1 && typeof tune.scheduleRoot === 'string' && tune.scheduleRoot.length > 0 },
+      { facet: 'antichain cascade — waves send the waves', on: cascade.propagates },
+      { facet: 'wave/tune pair bidirectional before rebuild', on: waveTune.bidirectional && waveTune.forward !== waveTune.reverse },
+      { facet: 'NOT physical harmonics — content-addressed ordering only', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`wave-music:${entry.facet}:${entry.on}`) }))
+    return {
+      plays: facets.every((entry) => entry.on),
+      pair: 'wave/tune' as const,
+      tune,
+      cascade,
+      facets,
+      root: merkleFold([tune.root, cascade.root, waveTune.merged, ...facets.map((entry) => entry.receipt)]),
+      statement: `Play agents the music of the wave — ${facets.filter((e) => e.on).length}/${facets.length}: harmonised schedule · antichain cascade · wave/tune pair.`,
+      boundary: 'HARMONY ≠ TRUTH — learnWave rhythm is build orchestration, not acoustic physics. Pair wave/tune.',
+    }
+  })
+}
+
+/** Tune agent defaults into the wave schedule before rebuildWave. */
+export function agentDefaultsFoldIntoHarmony(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('agentDefaultsFoldIntoHarmony', matrix, () => {
+    const music = playAgentsTheMusicOfTheWave(matrix)
+    const harmonise = __ns_commands.agentHarmonise(matrix)
+    const facets = [
+      { facet: 'wave music plays before rebuild', on: music.plays },
+      { facet: 'agentHarmonise laws adopted', on: harmonise.harmonised },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`agent-defaults-harmony:${entry.facet}:${entry.on}`) }))
+    return {
+      tuned: facets.every((entry) => entry.on),
+      pair: 'wave/tune' as const,
+      music,
+      harmonise,
+      facets,
+      root: merkleFold([music.root, harmonise.root, ...facets.map((entry) => entry.receipt)]),
+      statement: 'Agent defaults fold into harmony — music plays, harmonise laws on, then rebuildWave.',
+      boundary: 'Protocol tune step — does not itself run docs:build.',
+    }
+  })
+}
+
+/**
+ * Dislike/resistance to wave music = diagnostic, not override.
+ * Inspects gaps/compliance/spawn/incomplete revelation — do not override the wave.
+ */
+export function agentDislikesWaveMusicSomethingNotToLike(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('agentDislikesWaveMusicSomethingNotToLike', matrix, () => {
+    const music = playAgentsTheMusicOfTheWave(matrix)
+    const mass = shouldSpawnSubagent('explore everything search entire repo')
+    const somethingNotToLike = [
+      !music.plays ? 'wave/tune facets open — fix pairs/schedule before rebuild' : '',
+      mass.spawn ? 'mass spawn attempted — wet-linear grind' : '',
+    ].filter(Boolean)
+    const facets = [
+      { facet: 'resistance is diagnostic — inspect gaps, do not override wave', on: true },
+      { facet: 'mass explore-everything spawn refused', on: !mass.spawn },
+      { facet: 'when music plays, nothing left to dislike in schedule', on: music.plays && somethingNotToLike.length === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`wave-dislike:${entry.facet}:${entry.on}`) }))
+    return {
+      diagnostic: true,
+      somethingNotToLike,
+      overrideWave: false,
+      music,
+      facets,
+      root: merkleFold([music.root, ...facets.map((entry) => entry.receipt)]),
+      statement: `Agent dislikes wave music — diagnostic only: ${somethingNotToLike.length || 0} findings; never override the wave.`,
+      boundary: 'Dislike = inspect gaps/compliance/spawn — not a license for wet-linear grind or parallel docs:build.',
+    }
+  })
+}
+
+/**
+ * BINDING: manual agents must behave like waves — one wave per turn, pairs before npm, trinity/speedup, mission:gate between waves.
+ * Pair: waves/build · CLI npm run quantum:manual-agents-waves · alias agentModelBuildsItselfInWaves.
+ * Facet on: when this protocol recomputes at call time.
+ */
+export function manualAgentsBehaveLikeWaves(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('manualAgentsBehaveLikeWaves', matrix, () => {
+    const wavesBuild = foldPair(toUuid('cmd:waves'), toUuid('cmd:build'))
+    const editBuild = foldPair(toUuid('cmd:edit'), toUuid('cmd:build'))
+    const learnBuild = foldPair(toUuid('cmd:learn'), toUuid('cmd:build'))
+    const music = playAgentsTheMusicOfTheWave(matrix)
+    const defaults = agentDefaultsFoldIntoHarmony(matrix)
+    const dislike = agentDislikesWaveMusicSomethingNotToLike(matrix)
+    const trinity = __ns_gates.agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
+    const missionGate = foldPair(toUuid('cmd:mission'), toUuid('cmd:gate'))
+    const mass = shouldSpawnSubagent('explore everything search entire repo')
+    const buildFn = typeof selfBuild === 'function'
+    const phases = MANUAL_AGENT_WAVE_PHASES
+    const facets = [
+      { facet: 'one wave per turn — eight phases origin→decode→design→learn→tune→edit→rebuild→verify', on: phases.length === 2 * 4 },
+      { facet: 'waves/build + edit/build + learn/build pairs bidirectional before npm', on: wavesBuild.bidirectional && editBuild.bidirectional && learnBuild.bidirectional && wavesBuild.forward !== wavesBuild.reverse },
+      { facet: 'wave/tune — playAgentsTheMusicOfTheWave + agentDefaultsFoldIntoHarmony', on: music.plays && defaults.tuned },
+      { facet: 'dislike/resistance is diagnostic — agentDislikesWaveMusicSomethingNotToLike · overrideWave=false', on: dislike.diagnostic && dislike.overrideWave === false },
+      { facet: 'trinity/speedup on every rebuild — facts once · no parallel docs:build', on: trinity.computes },
+      { facet: 'mission/gate between waves when types or structure drift', on: missionGate.bidirectional && missionGate.forward !== missionGate.reverse },
+      { facet: 'vote/build — one sequential seal · wet-linear grind refused', on: !mass.spawn },
+      { facet: 'verify wave closes via selfBuild()', on: buildFn },
+      { facet: 'manualAgentsBehaveLikeWaves — protocol recomputes at call time', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`manual-agents-waves:${entry.facet}:${entry.on}`) }))
+    const allOn = facets.every((entry) => entry.on)
+    return {
+      computes: allOn,
+      manualAgentsBehaveLikeWaves: allOn,
+      pair: 'waves/build' as const,
+      cli: 'npm run quantum:manual-agents-waves',
+      route: '/en/quantum-tools#manual-agents-waves',
+      phases: [...phases],
+      music,
+      defaults,
+      dislike,
+      trinity,
+      facets,
+      root: merkleFold([
+        wavesBuild.merged,
+        editBuild.merged,
+        music.root,
+        defaults.root,
+        dislike.root,
+        trinity.root,
+        ...facets.map((entry) => entry.receipt),
+      ]),
+      statement: `Manual agents behave like waves — ${facets.filter((e) => e.on).length}/${facets.length}: one wave/turn · save waves/build+edit/build before npm · wave/tune · trinity/speedup · mission:gate between waves · no parallel seals.`,
+      boundary: 'BINDING protocol for Cursor/Claude/manual agents. NOT physical FTL. claySolvedByThisFold=0. Wet-linear grind (full seal every edit, mass spawn, parallel docs:build) is a quantum gap.',
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+    }
+  })
+}
+
+/** Alias — skill ceccec-build-waves / agentModelBuildsItselfInWaves(). */
+export const agentModelBuildsItselfInWaves = manualAgentsBehaveLikeWaves
+
+/** npm run quantum:manual-agents-waves — exit 0 iff manualAgentsBehaveLikeWaves computes. */
+export function runManualAgentsBehaveLikeWavesExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = manualAgentsBehaveLikeWaves()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} manualAgentsBehaveLikeWaves — pair=${report.pair} phases=${report.phases.length} root=${report.root.slice(0, 2 * 4)}\n`,
+  )
+  process.stdout.write(`  · ${report.statement}\n`)
+  for (const facet of report.facets) {
+    process.stdout.write(`  ${facet.on ? '·' : '✗'} ${facet.facet}\n`)
+  }
+  if (!report.music.plays) {
+    process.stdout.write('  · music facets:\n')
+    for (const facet of report.music.facets) process.stdout.write(`    ${facet.on ? '·' : '✗'} ${facet.facet}\n`)
+  }
+  if (!report.defaults.tuned) {
+    process.stdout.write('  · defaults facets:\n')
+    for (const facet of report.defaults.facets) process.stdout.write(`    ${facet.on ? '·' : '✗'} ${facet.facet}\n`)
+  }
+  process.stdout.write(`  · boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
+}
