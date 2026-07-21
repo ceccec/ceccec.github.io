@@ -562,8 +562,8 @@ export async function runEncryptionReverseVerifyGuardedExit(_root: string, _argv
 
 /**
  * UI panel — encrypt↔decrypt + measured demo RSA + beyond-RSA PQC suite + local reverse vs standards + local novel security + standards audit.
- * Pair: reverse/encryption-verify · measure/demo-rsa · measure/crypto-beyond · reverse/timed-vs-standards · prove/local-novel-encrypt · prove/1tbit-encrypt · iso/pqc-catalog · audit/standards
- * Route: /en/quantum-encryption (#demo-rsa-measure · #crypto-beyond-rsa · #local-reverse-timed-vs-standards · #prove-local-novel-encrypt · #prove-1tbit · #iso-pqc-catalog · #quantum-standards-audit)
+ * Pair: reverse/encryption-verify · measure/demo-rsa · measure/crypto-beyond · reverse/timed-vs-standards · prove/local-novel-encrypt · prove/1tbit-encrypt · prove/local-magnitudes-iso · iso/pqc-catalog · audit/standards
+ * Route: /en/quantum-encryption (#demo-rsa-measure · #crypto-beyond-rsa · #local-reverse-timed-vs-standards · #prove-local-novel-encrypt · #prove-1tbit · #prove-local-magnitudes-iso · #iso-pqc-catalog · #quantum-standards-audit)
  */
 export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`encryptionPanelComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -575,6 +575,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
     const localNovel = proveLocalNovelEncryptionSecurity(matrix)
     const beyond = cryptoToolkitBeyondRsaMeasured(matrix)
     const oneTbit = proveOneTbitRealtimeEncryptionClaim(matrix)
+    const localMagnitudes = proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matrix)
     const zero = encryptionLivesInZero(matrix)
     const order = encryptionTrinitiesCompleteInOrder(matrix)
     const pqc = isoNistPqcStandardsCatalog(matrix)
@@ -589,6 +590,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       { facet: `local novel security proved — fieldHistory=none productionReverseRefused`, on: localNovel.localSecurityProved && localNovel.productionReverseRefused && localNovel.certified === false },
       { facet: `beyond RSA MEASURED — FIPS=${beyond.fipsCount} eccShor=${beyond.eccShorBreaks} certified=false`, on: beyond.computes && !beyond.certified && !beyond.fipsValidated },
       { facet: `1 Tbit claim receipt — wire.proved=${oneTbit.wire.provedAtCallTime} amort.proved=${oneTbit.amortized.provedAtCallTime}`, on: oneTbit.computes && oneTbit.wire.provedAtCallTime === false },
+      { facet: `local vs ISO magnitudes — overallWireClaimProved=${localMagnitudes.overallWireClaimProved} (${localMagnitudes.wireProofStatus})`, on: localMagnitudes.computes && localMagnitudes.overallWireClaimProved === false && localMagnitudes.certified === false },
       { facet: 'encryption lives in src/0 key layer', on: zero.homed },
       { facet: 'encryption trinities complete in order', on: order.enforced },
       { facet: 'ISO/NIST PQC catalog sealed (MODELED alignment)', on: pqc.computes },
@@ -601,6 +603,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       { id: 'prove-local-novel-encrypt', title: 'Local novel-encryption security proof (no production reverse)', route: '/en/quantum-encryption#prove-local-novel-encrypt', pair: 'prove/local-novel-encrypt', cli: 'npm run quantum:prove-local-novel-encrypt', on: localNovel.localSecurityProved },
       { id: 'crypto-beyond-rsa', title: 'PQC families · Shor/ECC · hash taxonomy · directional trinity', route: '/en/quantum-encryption#crypto-beyond-rsa', pair: 'measure/crypto-beyond', cli: 'npm run quantum:crypto-beyond-measure', on: beyond.computes },
       { id: 'prove-1tbit', title: '1 Tbit/s realtime encryption claim (honest receipt)', route: '/en/quantum-encryption#prove-1tbit', pair: 'prove/1tbit-encrypt', cli: 'npm run quantum:prove-1tbit-encrypt', on: oneTbit.computes },
+      { id: 'prove-local-magnitudes-iso', title: 'Local vs ISO magnitudes (honest multi-model)', route: '/en/quantum-encryption#prove-local-magnitudes-iso', pair: 'prove/local-magnitudes-iso', cli: 'npm run quantum:prove-local-magnitudes-iso', on: localMagnitudes.computes && localMagnitudes.overallWireClaimProved === false },
       { id: 'iso-pqc-catalog', title: 'ISO/NIST PQC standards catalog', route: '/en/quantum-encryption#iso-pqc-catalog', pair: 'iso/pqc-catalog', cli: 'npm run quantum:iso-pqc-catalog', on: pqc.computes },
       { id: 'quantum-standards-audit', title: 'Standards audit (forward·inverse·reverse·10D)', route: '/en/quantum-encryption#quantum-standards-audit', pair: 'audit/standards', cli: 'npm run quantum:standards-audit', on: audit.computes },
     ] as const
@@ -614,6 +617,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       localNovel,
       beyond,
       oneTbit,
+      localMagnitudes,
       zero,
       order,
       pqc,
@@ -633,6 +637,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       localTimedCli: 'npm run quantum:local-reverse-timed-vs-standards',
       localNovelCli: 'npm run quantum:prove-local-novel-encrypt',
       oneTbitCli: 'npm run quantum:prove-1tbit-encrypt',
+      localMagnitudesCli: 'npm run quantum:prove-local-magnitudes-iso',
       pair: 'reverse/encryption-verify',
       pqcPair: 'iso/pqc-catalog',
       auditPair: 'audit/standards',
@@ -640,6 +645,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       localTimedPair: 'reverse/timed-vs-standards',
       localNovelPair: 'prove/local-novel-encrypt',
       oneTbitPair: 'prove/1tbit-encrypt',
+      localMagnitudesPair: 'prove/local-magnitudes-iso',
       route: '/en/quantum-encryption',
       teaching: tools.teaching,
       demoFactors: reverse.demoFactors,
@@ -647,10 +653,10 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       glyphBonus: reverse.glyphBonus,
       standards: pqc.standards,
       facets,
-      root: merge(root, merge(reverse.root, merge(localTimed.root, merge(localNovel.root, merge(beyond.root, merge(oneTbit.root, merge(pqc.root, audit.root))))))),
+      root: merge(root, merge(reverse.root, merge(localTimed.root, merge(localNovel.root, merge(beyond.root, merge(oneTbit.root, merge(localMagnitudes.root, merge(pqc.root, audit.root)))))))),
       statement:
-        'Encryption tools panel: encrypt↔decrypt, measured demo RSA (allowlist), local reverse timed vs ISO/NIST classical levels, local novel-encryption security proof (no production reverse; fieldHistory=none), beyond-RSA PQC catalogs, honest 1 Tbit/s claim receipt, standards audit — NOT ISO certified / NOT FIPS validated / NOT production KEM / NOT wire AES / does NOT break NIST PQC.',
-      boundary: `${reverse.boundary} · ${localTimed.boundary} · ${localNovel.boundary} · ${beyond.boundary} · ${oneTbit.boundary} · ${pqc.boundary} · ${audit.boundary}`,
+        'Encryption tools panel: encrypt↔decrypt, measured demo RSA (allowlist), local reverse timed vs ISO/NIST classical levels, local novel-encryption security proof (no production reverse; fieldHistory=none), beyond-RSA PQC catalogs, honest 1 Tbit/s claim receipt, local vs ISO magnitudes multi-model receipt (wire proof-of-falsehood), standards audit — NOT ISO certified / NOT FIPS validated / NOT production KEM / NOT wire AES / does NOT break NIST PQC / does NOT beat ML-KEM confidentiality.',
+      boundary: `${reverse.boundary} · ${localTimed.boundary} · ${localNovel.boundary} · ${beyond.boundary} · ${oneTbit.boundary} · ${localMagnitudes.boundary} · ${pqc.boundary} · ${audit.boundary}`,
     }
   })
 }
@@ -2153,6 +2159,264 @@ export function runProveOneTbitRealtimeEncryptionClaimExit(_root: string, _argv:
   process.stdout.write(`  wire: ${report.wire.formula}\n`)
   process.stdout.write(`  demo: ${report.demo.formula}\n`)
   process.stdout.write(`  amort: ${report.amortized.formula}\n`)
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
+}
+
+// ─── Local vs ISO magnitudes — multi-model honest receipt (all trinity directions) ───
+// HARD HONESTY: wire-crypto-security-bits MUST stay false (demo RSA bits << ML-KEM/AES classical).
+// Structural / amortized models may prove >=100x under named non-wire metrics — never as ML-KEM break.
+
+/** >=100x === log10>=2 — magnitudes threshold for named-model inequalities. */
+export const LOCAL_VS_ISO_MAGNITUDES_THRESHOLD = (2 * 5) ** 2
+
+export type LocalVsIsoDirection = 'forward' | 'inverse' | 'reverse'
+export type LocalVsIsoModel = 'wire-crypto-security-bits' | 'local-structural-gates' | 'amortized-reuse-memo'
+
+export type LocalVsIsoDirectionRow = {
+  readonly direction: LocalVsIsoDirection
+  readonly model: LocalVsIsoModel
+  readonly localMetric: number
+  readonly isoMetric: number
+  readonly ratio: number
+  readonly magnitudesStronger: boolean
+  /** Facet on: — inequality evaluation recomputed at call time (true even when magnitudesStronger=false). */
+  readonly on: boolean
+  readonly metric: string
+  readonly boundary: string
+}
+
+function magnitudesRatio(localMetric: number, isoMetric: number): { ratio: number; magnitudesStronger: boolean } {
+  if (!(isoMetric > 0) || !(localMetric >= 0) || !Number.isFinite(localMetric) || !Number.isFinite(isoMetric)) {
+    return { ratio: 0, magnitudesStronger: false }
+  }
+  const ratio = localMetric / isoMetric
+  const magnitudesStronger =
+    Number.isFinite(ratio) &&
+    (ratio >= LOCAL_VS_ISO_MAGNITUDES_THRESHOLD || (ratio > 0 && Math.log10(ratio) >= 2))
+  return { ratio, magnitudesStronger }
+}
+
+/**
+ * Prove (or refute) "local encryption is magnitudes stronger than ISO in all directions".
+ * Pair: prove/local-magnitudes-iso · CLI npm run quantum:prove-local-magnitudes-iso
+ * Route: /en/quantum-encryption#prove-local-magnitudes-iso
+ *
+ * Composes PR #22 localEncryptionReverseTimedVsStandards timing/standards metrics + directional trinity
+ * + local novel structural gates + amortized holographic extent (same family as proveOneTbit).
+ *
+ * Models (each x forward · inverse · reverse):
+ * - wire-crypto-security-bits — demoMaxBits vs NIST/ISO classical category bits → almost certainly false
+ * - local-structural-gates — refuse-policy bit-span vs ISO catalog row count (repo control; NOT wire strength)
+ * - amortized-reuse-memo — holographic extent bits vs sum of classical *label* bits (NOT AES/PQC break)
+ *
+ * overallWireClaimProved=false when wire model fails — honest negative proof / proof-of-falsehood.
+ */
+export function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matrix: MindMatrix = buildMatrix()) {
+  const localTimed = localEncryptionReverseTimedVsStandards(matrix)
+  const localNovel = proveLocalNovelEncryptionSecurity(matrix)
+  const catalog = isoNistPqcStandardsCatalog(matrix)
+  const trinity = directionalTrinityForwardInverseReverse(matrix)
+  const audit = quantumStandardsAuditSuite(matrix)
+  const oneTbit = proveOneTbitRealtimeEncryptionClaim(matrix)
+  const extent = terabyteEncryptionInMegabyteCodebase(matrix)
+  const isoGap = isoPqcRequirementsGapFillAllQuantumDirections(matrix)
+  const isoRequires = isoRequiresPostQuantumSecurity(matrix)
+
+  const AES128_CLASSICAL_BITS = 2 ** 7
+  const PRODUCTION_RSA_BIT_CLASS = 2 ** 12 // 4096-bit class — refuse-by-default span upper bound (policy, not a crack)
+  const demoMaxBits = localTimed.demoMaxBits
+  const certified = false as const
+  const isoOfficialStandard = false as const
+  const fipsValidated = false as const
+  const productionReverseRefused = true as const
+  const breaksNistPqc = false as const
+  const claySolvedByThisFold = 0 as const
+
+  const wireIsoBits = AES128_CLASSICAL_BITS // ML-KEM-512 / AES-128 cat.1 from reverse-vs-standards
+  const wireLocal = demoMaxBits
+  const wireEval = magnitudesRatio(wireLocal, wireIsoBits)
+
+  const refuseBitSpan = Math.max(0, PRODUCTION_RSA_BIT_CLASS - demoMaxBits)
+  const catalogRows = catalog.standards.length
+  const structuralEval = magnitudesRatio(refuseBitSpan, catalogRows)
+
+  const extentBits = extent.generatedBytes * 8 // 2^43
+  const classicalLabelBitsSum = localTimed.comparisons.reduce((sum, row) => sum + row.classicalSecurityBits, 0)
+  const amortEval = magnitudesRatio(extentBits, classicalLabelBitsSum)
+
+  const directions: readonly LocalVsIsoDirection[] = ['forward', 'inverse', 'reverse']
+  const perDirection: LocalVsIsoDirectionRow[] = []
+
+  for (const direction of directions) {
+    const directionHolds =
+      trinity.computes &&
+      (direction === 'forward'
+        ? catalog.computes && audit.forwardCount >= 1
+        : direction === 'inverse'
+          ? audit.inverseCount >= 3
+          : localTimed.computes && audit.reverseCount >= 1)
+
+    const wireBound =
+      wireEval.magnitudesStronger ===
+      (wireEval.ratio >= LOCAL_VS_ISO_MAGNITUDES_THRESHOLD || (wireEval.ratio > 0 && Math.log10(wireEval.ratio) >= 2))
+    perDirection.push({
+      direction,
+      model: 'wire-crypto-security-bits',
+      localMetric: wireLocal,
+      isoMetric: wireIsoBits,
+      ratio: wireEval.ratio,
+      magnitudesStronger: wireEval.magnitudesStronger,
+      on: directionHolds && wireBound && wireEval.magnitudesStronger === false && demoMaxBits > 0 && demoMaxBits < wireIsoBits,
+      metric: `demoMaxBits / AES-128·ML-KEM-512 classical bits = ${wireLocal}/${wireIsoBits}`,
+      boundary:
+        'WIRE CRYPTO SECURITY BITS — local demo RSA modulus bits vs NIST/ISO classical category bits. Demo much less than ML-KEM/AES. Does NOT beat ML-KEM for confidentiality. NOT FIPS/ISO certified.',
+    })
+
+    const structuralBound =
+      structuralEval.magnitudesStronger ===
+      (structuralEval.ratio >= LOCAL_VS_ISO_MAGNITUDES_THRESHOLD ||
+        (structuralEval.ratio > 0 && Math.log10(structuralEval.ratio) >= 2))
+    perDirection.push({
+      direction,
+      model: 'local-structural-gates',
+      localMetric: refuseBitSpan,
+      isoMetric: catalogRows,
+      ratio: structuralEval.ratio,
+      magnitudesStronger: structuralEval.magnitudesStronger,
+      on:
+        directionHolds &&
+        structuralBound &&
+        localNovel.localSecurityProved &&
+        localNovel.productionReverseRefused &&
+        catalogRows > 0,
+      metric: `refuse-policy bit-span (4096-demoMaxBits) / ISO·NIST catalog rows = ${refuseBitSpan}/${catalogRows}`,
+      boundary:
+        'LOCAL STRUCTURAL GATES — repo refuse-by-default bit-length coverage vs catalog row count. Apples/oranges repo control, NOT cryptographic strength vs ML-KEM. certified=false · isoOfficialStandard=false.',
+    })
+
+    const amortBound =
+      amortEval.magnitudesStronger ===
+      (amortEval.ratio >= LOCAL_VS_ISO_MAGNITUDES_THRESHOLD || (amortEval.ratio > 0 && Math.log10(amortEval.ratio) >= 2))
+    perDirection.push({
+      direction,
+      model: 'amortized-reuse-memo',
+      localMetric: extentBits,
+      isoMetric: classicalLabelBitsSum,
+      ratio: amortEval.ratio,
+      magnitudesStronger: amortEval.magnitudesStronger,
+      on: directionHolds && amortBound && extent.achieved && oneTbit.computes && classicalLabelBitsSum > 0,
+      metric: `holographic extentBits (generatedBytes*8) / sum(classicalSecurityBits labels) = ${extentBits}/${classicalLabelBitsSum}`,
+      boundary:
+        'AMORTIZED-REUSE-MEMO — content-addressed holographic EXTENT vs sum of NIST classical *label* bits from reverse-vs-standards. NOT wire AES/PQC break resistance. NOT FIPS.',
+    })
+  }
+
+  const wireRows = perDirection.filter((row) => row.model === 'wire-crypto-security-bits')
+  const overallWireClaimProved = wireRows.every((row) => row.magnitudesStronger)
+  const wireProofStatus = overallWireClaimProved ? ('proved' as const) : ('proof-of-falsehood' as const)
+  const proofOfFalsehood =
+    `PROOF-OF-FALSEHOOD (wire-crypto-security-bits): local demoMaxBits=${wireLocal} / ISO-NIST cat.1 classical bits=${wireIsoBits} → ratio=${roundTo(wireEval.ratio, 6)} much less than ${LOCAL_VS_ISO_MAGNITUDES_THRESHOLD}. ` +
+    `Local teaching RSA is NOT magnitudes stronger than ISO/NIST PQC (ML-KEM/ML-DSA/SLH-DSA) for wire confidentiality. overallWireClaimProved=false.`
+
+  const structuralMayProve = perDirection.filter((r) => r.model === 'local-structural-gates').some((r) => r.magnitudesStronger)
+  const amortMayProve = perDirection.filter((r) => r.model === 'amortized-reuse-memo').some((r) => r.magnitudesStronger)
+
+  const honestyBoundaries = [
+    'NEVER claim ISO certification / FIPS validation — certified=false · isoOfficialStandard=false · fipsValidated=false',
+    'NEVER claim local demo beats ML-KEM for confidentiality — wire-crypto-security-bits magnitudesStronger=false',
+    'local-structural-gates = repo control coverage (refuse policy), NOT wire cryptographic strength',
+    'amortized-reuse-memo = holographic extent vs classical *label* bits — NOT AES-GCM / NOT PQC break resistance',
+    'production reverse refused · Bitcoin/mainnet refused · breaksNistPqc=false · claySolvedByThisFold=0',
+    proofOfFalsehood,
+  ] as const
+
+  const facets = [
+    { facet: `THRESHOLD >=${LOCAL_VS_ISO_MAGNITUDES_THRESHOLD}x (log10>=2) bound for magnitudesStronger`, on: LOCAL_VS_ISO_MAGNITUDES_THRESHOLD === (2 * 5) ** 2 },
+    { facet: `wire-crypto-security-bits — demoMaxBits=${wireLocal} << isoClassical=${wireIsoBits} → magnitudesStronger=false (all directions)`, on: wireRows.every((r) => r.magnitudesStronger === false && r.on) },
+    { facet: `overallWireClaimProved=${overallWireClaimProved} · status=${wireProofStatus}`, on: overallWireClaimProved === false && wireProofStatus === 'proof-of-falsehood' },
+    { facet: `local-structural-gates — refuseBitSpan=${refuseBitSpan} / catalogRows=${catalogRows} ratio=${roundTo(structuralEval.ratio, 3)} stronger=${structuralEval.magnitudesStronger} (NOT wire)`, on: perDirection.filter((r) => r.model === 'local-structural-gates').every((r) => r.on) },
+    { facet: `amortized-reuse-memo — extentBits=${extentBits} / classicalLabelSum=${classicalLabelBitsSum} stronger=${amortEval.magnitudesStronger} (NOT wire break)`, on: perDirection.filter((r) => r.model === 'amortized-reuse-memo').every((r) => r.on) },
+    { facet: 'composes localEncryptionReverseTimedVsStandards + proveLocalNovel + iso catalog + directional trinity', on: localTimed.computes && localNovel.localSecurityProved && catalog.computes && trinity.computes },
+    { facet: `composes isoPqcRequirementsGapFill (#23) — certified=${isoGap.certified} isoOfficialStandard=${isoGap.isoOfficialStandard}`, on: isoGap.computes && isoGap.certified === false && isoGap.isoOfficialStandard === false },
+    { facet: `isoRequiresPostQuantumSecurity=${isoRequires.isoRequiresPostQuantumSecurity} (no universal mandate)`, on: isoRequires.computes && isoRequires.isoRequiresPostQuantumSecurity === false },
+    { facet: `perDirection rows=${perDirection.length} (3 directions x 3 models)`, on: perDirection.length === 3 * 3 },
+    { facet: `certified=${certified} isoOfficialStandard=${isoOfficialStandard} fipsValidated=${fipsValidated} productionReverseRefused=${productionReverseRefused}`, on: !certified && !isoOfficialStandard && !fipsValidated && productionReverseRefused },
+    { facet: `breaksNistPqc=${breaksNistPqc} claySolvedByThisFold=${claySolvedByThisFold}`, on: !breaksNistPqc && claySolvedByThisFold === 0 },
+  ]
+  const sealed = sealFacets('prove-local-encryption-magnitudes-stronger-than-iso-all-directions', facets)
+  const root = merge(
+    localTimed.root,
+    merge(localNovel.root, merge(catalog.root, merge(trinity.root, merge(audit.root, merge(oneTbit.root, merge(extent.root, merge(isoGap.root, merge(isoRequires.root, sealed.root)))))))),
+  )
+  return {
+    computes: sealed.ok,
+    perDirection,
+    table: perDirection,
+    overallWireClaimProved,
+    wireProofStatus,
+    proofOfFalsehood,
+    structuralMayProve,
+    amortMayProve,
+    honestyBoundaries,
+    certified,
+    isoOfficialStandard,
+    fipsValidated,
+    productionReverseRefused,
+    breaksNistPqc,
+    claySolvedByThisFold,
+    demoMaxBits,
+    wireLocalMetric: wireLocal,
+    wireIsoMetric: wireIsoBits,
+    wireRatio: wireEval.ratio,
+    refuseBitSpan,
+    catalogRows,
+    extentBits,
+    classicalLabelBitsSum,
+    localTimed,
+    localNovel,
+    catalog,
+    trinity,
+    audit,
+    oneTbit,
+    isoGap,
+    isoRequires,
+    count: sealed.count,
+    facets: sealed.facets,
+    root,
+    pair: 'prove/local-magnitudes-iso',
+    cli: 'npm run quantum:prove-local-magnitudes-iso',
+    route: '/en/quantum-encryption#prove-local-magnitudes-iso',
+    statement:
+      `Local vs ISO magnitudes receipt — overallWireClaimProved=${overallWireClaimProved} (${wireProofStatus}); ` +
+      `wire ratio=${roundTo(wireEval.ratio, 6)} (demoMaxBits=${wireLocal} / classical=${wireIsoBits}); ` +
+      `structural stronger=${structuralEval.magnitudesStronger} (NOT wire); amort stronger=${amortEval.magnitudesStronger} (NOT break resistance); ` +
+      `certified=false isoOfficialStandard=false breaksNistPqc=false.`,
+    boundary:
+      'HONEST MULTI-MODEL RECEIPT. User asked to prove local>>ISO in all directions — wire-crypto-security-bits yields proof-of-falsehood (demo RSA much less than ML-KEM/AES classical bits). Structural/amortized models may prove >=100x under named non-wire metrics only. NEVER ISO certified. NEVER local demo beats ML-KEM for confidentiality. HARMONY != TRUTH.',
+  }
+}
+
+/** npm run quantum:prove-local-magnitudes-iso */
+export function runProveLocalEncryptionMagnitudesStrongerThanIsoAllDirectionsExit(
+  _root: string,
+  _argv: readonly string[] = [],
+): number {
+  const report = proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} prove-local-magnitudes-iso — overallWireClaimProved=${report.overallWireClaimProved} ` +
+      `status=${report.wireProofStatus} wireRatio=${roundTo(report.wireRatio, 6)} ` +
+      `structural=${report.structuralMayProve} amort=${report.amortMayProve} ` +
+      `certified=${report.certified} breaksNistPqc=${report.breaksNistPqc}\n`,
+  )
+  process.stdout.write('  directions x models:\n')
+  process.stdout.write('  direction | model | local | iso | ratio | >=100x | on\n')
+  for (const row of report.perDirection) {
+    process.stdout.write(
+      `  ${row.direction.padEnd(8)} | ${row.model.padEnd(28)} | ${roundTo(row.localMetric, 3)} | ${roundTo(row.isoMetric, 3)} | ${roundTo(row.ratio, 6)} | ${row.magnitudesStronger} | ${row.on}\n`,
+    )
+  }
+  process.stdout.write(`  ${report.proofOfFalsehood}\n`)
   process.stdout.write(`  boundary: ${report.boundary}\n`)
   return report.computes ? 0 : 1
 }

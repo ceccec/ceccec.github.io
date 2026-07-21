@@ -69,6 +69,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'reverse/timed-vs-standards',
   'prove/local-novel-encrypt',
   'prove/1tbit-encrypt',
+  'prove/local-magnitudes-iso',
   'iso/pqc-catalog',
   'iso/requires-pqc',
   'iso/pqc-gap-fill',

@@ -70,6 +70,7 @@ import {
   localEncryptionReverseTimedVsStandards,
   proveLocalNovelEncryptionSecurity,
   proveOneTbitRealtimeEncryptionClaim,
+  proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections,
   isoRequiresPostQuantumSecurity,
   isoPqcRequirementsGapFillAllQuantumDirections,
 } from '../../water/encryption'
@@ -678,6 +679,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'prove-local-novel-encrypt', title: 'Local novel-encryption security — structural+adversarial+measured-local · no production reverse', proof: proveLocalNovelEncryptionSecurity(matrix) },
     { slug: 'crypto-beyond-rsa', title: 'Crypto toolkit beyond RSA measured (PQC·Shor/ECC·trinity)', proof: cryptoToolkitBeyondRsaMeasured(matrix) },
     { slug: 'prove-1tbit', title: '1 Tbit/s realtime encryption claim — honest status receipt', proof: proveOneTbitRealtimeEncryptionClaim(matrix) },
+    { slug: 'prove-local-magnitudes-iso', title: 'Local vs ISO magnitudes — wire proof-of-falsehood · structural/amort may prove non-wire', proof: proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matrix) },
     { slug: 'og-limits-measured', title: 'Platform OG limits measured + honesty-in-prose challenged', proof: { ...honestyInProseChallenged(matrix), limitsRoot: platformOgLimitsMeasured(matrix).root } },
     { slug: 'iso-pqc-catalog', title: 'ISO/NIST PQC standards catalog — MODELED alignment · NOT certified', proof: isoNistPqcStandardsCatalog(matrix) },
     { slug: 'iso-requires-pqc', title: 'Does ISO require PQC? — no universal mandate · migration guidance', proof: isoRequiresPostQuantumSecurity(matrix) },
