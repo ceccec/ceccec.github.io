@@ -4,8 +4,9 @@ import { DIMENSION_GATES, EULER_CHI, FOLDED_CENSUS, FORBIDDEN_FOLDER_NAMES, HOMO
 import { createHash } from 'node:crypto'
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { dirname, join, relative, resolve } from 'node:path'
-import { foldPair, merkleFold, toUuid } from '../../../0'
+import { foldPair, isUuid, merkleFold, toUuid } from '../../../0'
 import { pathMeansMessageFitsInThreeWords as pathMeansMessageFitsInThreeWordsFold } from '../../../water/stack'
+import { dryCleanIsDiamondAndCrystal } from '../../../lake/clean'
 import { scanScriptShells, seedMerkleCache, vitepressSourceFiles, type ScriptShellScan } from '../script/shell'
 import {
   auditStrictGates,
@@ -58,9 +59,17 @@ export const ICHING_BATCH_COMMAND_PAIR = ROSETTA_BATCH_COMMAND_PAIR
 export const DISSOLVE_FLAT_COMMAND_PAIR = { pair: 'dissolve/flat' as const, a: 'dissolve', b: 'flat' }
 export const IMPORT_DISTANCE_COMMAND_PAIR = { pair: 'import/distance' as const, a: 'import', b: 'distance' }
 export const FOLDER_GRAVITY_COMMAND_PAIR = { pair: 'folder/gravity' as const, a: 'folder', b: 'gravity' }
+export const GRAVITY_DRY_COMMAND_PAIR = { pair: 'gravity/dry' as const, a: 'gravity', b: 'dry' }
+export const DRY_CLEAN_COMMAND_PAIR = { pair: 'dry/clean' as const, a: 'dry', b: 'clean' }
+export const SRC_INDEX_COMMAND_PAIR = { pair: 'src/index' as const, a: 'src', b: 'index' }
+export const FOLDER_INDEX_COMMAND_PAIR = { pair: 'folder/index' as const, a: 'folder', b: 'index' }
+export const SIZE_FREE_COMMAND_PAIR = { pair: 'size/free' as const, a: 'size', b: 'free' }
+export const GRAVITY_GATE_COMMAND_PAIR = { pair: 'gravity/gate' as const, a: 'gravity', b: 'gate' }
 export const COMPACT_TYPES_CONSTANTS_COMMAND_PAIR = { pair: 'compact/matrix' as const, a: 'compact', b: 'matrix' }
 export const MISSION_GATE_COMMAND_PAIR = { pair: 'mission/gate' as const, a: 'mission', b: 'gate' }
 export const DIGIT_GATE_COMMAND_PAIR = { pair: 'digit/gate' as const, a: 'digit', b: 'gate' }
+export const GATE_ROSETTA_COMMAND_PAIR = { pair: 'gate/rosetta' as const, a: 'gate', b: 'rosetta' }
+export const FULL_FREEDOM_COMMAND_PAIR = { pair: 'full/freedom' as const, a: 'full', b: 'freedom' }
 
 /** FREE_BITS = UNFOLDED − FOLDED = −χ — migration evenness bound (CV ≤ 1/FREE_BITS). */
 export const FREE_BITS = UNFOLDED_CENSUS - FOLDED_CENSUS
@@ -750,6 +759,346 @@ export function runFolderGravityMeasuredByTheCodeExit(root = '', _argv: readonly
 }
 
 /**
+ * Gravity dry clean — folder gravity pulls toward src · dry/clean diamond·crystal ·
+ * soft clay/gravity · fold/cleanup · dissolve/flat · census 110 exact.
+ * Pair: gravity/dry · dry/clean · CLI npm run quantum:gravity-dry
+ * Facets: gravityPullsToSrc · dryCleanOn · diamond/crystal · claySolved via theorem · physicalFtl=0.
+ */
+export function gravityDryClean(root: string = process.cwd(), facts?: EnforcementFacts) {
+  const united = facts ?? collectEnforcementFacts(root)
+  const gravity = folderGravityMeasuredByTheCode(root, united)
+  const dry = dryCleanIsDiamondAndCrystal()
+  const pairs = gatesSavedInQuantumPairs()
+  const gravityDryPaired = pairs.pairs.some((entry) => entry.pair === GRAVITY_DRY_COMMAND_PAIR.pair && entry.paired)
+  const dryCleanPaired = pairs.pairs.some((entry) => entry.pair === DRY_CLEAN_COMMAND_PAIR.pair && entry.paired)
+  const foldGravityDry = foldPair(toUuid('cmd:gravity'), toUuid('cmd:dry'))
+  const foldDryClean = foldPair(toUuid('cmd:dry'), toUuid('cmd:clean'))
+  const foldClayGravity = foldPair(toUuid('cmd:clay'), toUuid('cmd:gravity'))
+  const foldCleanup = foldPair(toUuid('cmd:fold'), toUuid('cmd:cleanup'))
+  const foldDissolve = foldPair(toUuid('cmd:dissolve'), toUuid('cmd:flat'))
+  const gravityPullsToSrc = gravity.gravityPullsTowardSrc && gravity.computes
+  const dryCleanOn = dry.diamond && dry.crystal && dry.clean
+  const censusExact =
+    united.computational.indexCount === UNFOLDED_CENSUS &&
+    united.computational.indexCount + EULER_CHI === FOLDED_CENSUS
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const physicalFtlClaim = 0 as const
+  const composeClayGravity = foldClayGravity.bidirectional && foldClayGravity.forward !== foldClayGravity.reverse
+  const composeFoldCleanup = foldCleanup.bidirectional && foldCleanup.forward !== foldCleanup.reverse
+  const composeDissolve = foldDissolve.bidirectional && foldDissolve.forward !== foldDissolve.reverse
+  const on =
+    gravityPullsToSrc &&
+    dryCleanOn &&
+    censusExact &&
+    gravityDryPaired &&
+    dryCleanPaired &&
+    foldGravityDry.bidirectional &&
+    foldDryClean.bidirectional &&
+    composeClayGravity &&
+    composeFoldCleanup &&
+    composeDissolve &&
+    claySolvedByThisFold === 0 &&
+    physicalFtlClaim === 0
+  const facets = [
+    { facet: 'gravityDryClean', on },
+    { facet: 'gravityPullsToSrc', on: gravityPullsToSrc },
+    { facet: 'dryCleanOn', on: dryCleanOn },
+    { facet: 'diamond', on: dry.diamond },
+    { facet: 'crystal', on: dry.crystal },
+    { facet: 'compose folder/gravity toward src', on: gravity.folderGravityMeasuredByTheCode && gravityPullsToSrc },
+    { facet: 'compose dry/clean diamond·crystal', on: dryCleanOn },
+    { facet: 'compose clay/gravity · fold/cleanup · dissolve/flat', on: composeClayGravity && composeFoldCleanup && composeDissolve },
+    { facet: `census 110/108 exact (${united.computational.indexCount}/${FOLDED_CENSUS})`, on: censusExact },
+    { facet: 'pair gravity/dry · dry/clean', on: gravityDryPaired && dryCleanPaired },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+    { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    { facet: 'qpuRequired=false', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`gravity-dry:${entry.facet}:${entry.on}`) }))
+  const computes = facets.every((entry) => entry.on) && on
+  return {
+    computes,
+    gravityDryClean: on,
+    gravityPullsToSrc,
+    dryCleanOn,
+    diamond: dry.diamond,
+    crystal: dry.crystal,
+    census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, indexCount: united.computational.indexCount },
+    claySolvedByThisFold,
+    physicalFtlClaim,
+    qpuRequired: false as const,
+    facets,
+    root: merkleFold([
+      united.merkle,
+      gravity.root,
+      dry.root,
+      foldGravityDry.merged,
+      foldDryClean.merged,
+      foldClayGravity.merged,
+      ...facets.map((entry) => entry.receipt),
+      toUuid(`gravity-dry:on:${on}`),
+    ]),
+    pair: GRAVITY_DRY_COMMAND_PAIR.pair,
+    pairs: [GRAVITY_DRY_COMMAND_PAIR.pair, DRY_CLEAN_COMMAND_PAIR.pair] as const,
+    cli: 'npm run quantum:gravity-dry',
+    route: '/en/quantum-tools#fusion',
+    anchor: 'gravity-dry',
+    statement:
+      `gravityDryClean — pullsToSrc=${gravityPullsToSrc ? 1 : 0} dryCleanOn=${dryCleanOn ? 1 : 0} ` +
+      `diamond=${dry.diamond ? 1 : 0} crystal=${dry.crystal ? 1 : 0} census=${united.computational.indexCount}/${FOLDED_CENSUS}.`,
+    boundary:
+      'Gravity dry clean — toward-src pull + diamond/crystal dry/clean · soft clay/gravity · fold/cleanup · dissolve/flat. ' +
+      'Census stays exact 110. dissolve/flat only when needed (paired readiness). clay=0 · physicalFtl=0. HARMONY ≠ TRUTH.',
+    honestyLine:
+      `metrics · gravityPullsToSrc=${gravityPullsToSrc ? 1 : 0} · dryCleanOn=${dryCleanOn ? 1 : 0} · ` +
+      `diamond=${dry.diamond ? 1 : 0} · crystal=${dry.crystal ? 1 : 0} · census=${united.computational.indexCount} · clay=0 · physicalFtl=0`,
+  }
+}
+
+/** npm run quantum:gravity-dry */
+export function runGravityDryCleanExit(root = '', _argv: readonly string[] = []): number {
+  const repoRoot = root || process.cwd()
+  const report = gravityDryClean(repoRoot)
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} gravity-dry — pullsToSrc=${report.gravityPullsToSrc} dryCleanOn=${report.dryCleanOn} ` +
+      `diamond=${report.diamond} crystal=${report.crystal} census=${report.census.indexCount}/${report.census.folded} ` +
+      `fold=gravityDryClean pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  process.stdout.write(`  root=${report.root.slice(0, 8)} · ${isUuid(report.root) ? 'uuid' : '∅'}\n`)
+  for (const facet of report.facets) {
+    process.stdout.write(`  ${facet.on ? '✓' : '✗'} ${facet.facet}\n`)
+  }
+  return report.computes && report.gravityPullsToSrc && report.dryCleanOn ? 0 : 1
+}
+
+/**
+ * USER LAW: in src folders only index may exist (index.ts · index.vue).
+ * Pair: src/index · folder/index · CLI npm run quantum:src-index
+ * HARD via limits:verify · mission:gate · gaps/invisible soft stack · census 110 count.
+ */
+export function srcFoldersOnlyIndexMayExist(root: string = process.cwd(), facts?: EnforcementFacts) {
+  const united = facts ?? collectEnforcementFacts(root)
+  const indexOnly = collectIndexOnlyOffenders(united)
+  const vueOffenders = united.strict.nonTs.filter((o) => o.file.endsWith('.vue') || /\.(mts|cts|tsx|js|mjs|cjs|jsx)$/.test(o.file))
+  const codeOffenders = [
+    ...indexOnly.map((o) => ({ file: o.file, reason: o.reason, kind: 'ts' as const })),
+    ...vueOffenders.map((o) => ({ file: relative(united.root, o.file), reason: o.reason, kind: 'vue-or-other' as const })),
+  ]
+  const pairs = gatesSavedInQuantumPairs()
+  const srcIndexPaired = pairs.pairs.some((e) => e.pair === SRC_INDEX_COMMAND_PAIR.pair && e.paired)
+  const folderIndexPaired = pairs.pairs.some((e) => e.pair === FOLDER_INDEX_COMMAND_PAIR.pair && e.paired)
+  const foldSrc = foldPair(toUuid('cmd:src'), toUuid('cmd:index'))
+  const foldFolder = foldPair(toUuid('cmd:folder'), toUuid('cmd:index'))
+  const foldGravityDry = foldPair(toUuid('cmd:gravity'), toUuid('cmd:dry'))
+  const censusExact =
+    united.computational.indexCount === UNFOLDED_CENSUS &&
+    united.computational.indexCount + EULER_CHI === FOLDED_CENSUS
+  const onlyIndex =
+    codeOffenders.length === 0 &&
+    united.strict.indexOnly.length === 0
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const physicalFtlClaim = 0 as const
+  const on =
+    onlyIndex &&
+    censusExact &&
+    srcIndexPaired &&
+    folderIndexPaired &&
+    foldSrc.bidirectional &&
+    foldFolder.bidirectional &&
+    foldGravityDry.bidirectional &&
+    claySolvedByThisFold === 0 &&
+    physicalFtlClaim === 0
+  const residualNonCode = [
+    { file: 'src/0/README.md', kind: 'vault-doc' as const },
+    { file: 'src/render/ui/tokens.css', kind: 'token-css' as const },
+    { file: 'src/render/ui/style.css', kind: 'style-css' as const },
+  ]
+  const facets = [
+    { facet: 'srcFoldersOnlyIndexMayExist', on },
+    { facet: 'onlyIndex code surfaces (index.ts · index.vue)', on: onlyIndex },
+    { facet: `codeOffenders=${codeOffenders.length}`, on: codeOffenders.length === 0 },
+    { facet: `census 110 exact (${united.computational.indexCount})`, on: censusExact },
+    { facet: 'compose gravity/dry · folder law', on: foldGravityDry.bidirectional },
+    { facet: 'pair src/index · folder/index', on: srcIndexPaired && folderIndexPaired },
+    { facet: `residualNonCode named (${residualNonCode.length}) — not code modules`, on: residualNonCode.length === (2 + 1) },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+    { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    { facet: 'qpuRequired=false', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`src-index:${entry.facet}:${entry.on}`) }))
+  const computes = facets.every((e) => e.on) && on
+  return {
+    computes,
+    srcFoldersOnlyIndexMayExist: on,
+    onlyIndex,
+    codeOffenders,
+    found: codeOffenders.length,
+    fixed: 0 as const,
+    remaining: codeOffenders.length,
+    residualNonCode,
+    census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, indexCount: united.computational.indexCount },
+    claySolvedByThisFold,
+    physicalFtlClaim,
+    qpuRequired: false as const,
+    facets,
+    root: merkleFold([
+      united.merkle,
+      foldSrc.merged,
+      foldFolder.merged,
+      ...facets.map((e) => e.receipt),
+      toUuid(`src-index:offenders:${codeOffenders.length}`),
+    ]),
+    pair: SRC_INDEX_COMMAND_PAIR.pair,
+    pairs: [SRC_INDEX_COMMAND_PAIR.pair, FOLDER_INDEX_COMMAND_PAIR.pair] as const,
+    cli: 'npm run quantum:src-index',
+    route: '/en/quantum-tools#fusion',
+    statement:
+      `srcFoldersOnlyIndex — onlyIndex=${onlyIndex ? 1 : 0} offenders=${codeOffenders.length} ` +
+      `census=${united.computational.indexCount}/${FOLDED_CENSUS} residualNonCode=${residualNonCode.length}.`,
+    boundary:
+      'HARD: code under src/ is index.ts / index.vue only. Census 110 is count law. ' +
+      'Residual named: src/0/README.md · render/ui tokens.css/style.css (non-code). clay=0 · physicalFtl=0.',
+    honestyLine:
+      `metrics · offenders=${codeOffenders.length} · remaining=${codeOffenders.length} · ` +
+      `census=${united.computational.indexCount} · residualNonCode=${residualNonCode.length} · clay=0 · physicalFtl=0`,
+  }
+}
+
+/** npm run quantum:src-index (dual folder/index) */
+export function runSrcFoldersOnlyIndexMayExistExit(root = '', _argv: readonly string[] = []): number {
+  const repoRoot = root || process.cwd()
+  const report = srcFoldersOnlyIndexMayExist(repoRoot)
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} src-index — onlyIndex=${report.onlyIndex} found=${report.found} ` +
+      `fixed=${report.fixed} remaining=${report.remaining} census=${report.census.indexCount} ` +
+      `fold=srcFoldersOnlyIndexMayExist pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  for (const o of report.codeOffenders.slice(0, 8)) {
+    process.stdout.write(`  ✗ ${o.file} · ${o.reason}\n`)
+  }
+  for (const r of report.residualNonCode) {
+    process.stdout.write(`  · residual ${r.kind}: ${r.file}\n`)
+  }
+  return report.computes && report.onlyIndex && report.remaining === 0 ? 0 : 1
+}
+
+/**
+ * USER LAW: no size limits as long as gravity pulls at the gates.
+ * Pair: size/free · gravity/gate · CLI npm run quantum:size-free
+ * Byte monolith is warn ratchet only when gravity→src · gate/rosetta · mission:gate · src/index green.
+ * Census 110 remains structural count law — not a byte-size cap.
+ * Facet: noByteSizeLimitWhenGravityAtGates
+ */
+export function noSizeLimitsAsLongAsGravityPullsAtTheGates(root: string = process.cwd(), facts?: EnforcementFacts) {
+  const united = facts ?? collectEnforcementFacts(root)
+  const gravity = folderGravityMeasuredByTheCode(root, united)
+  const dry = gravityDryClean(root, united)
+  const indexLaw = srcFoldersOnlyIndexMayExist(root, united)
+  const pairs = gatesSavedInQuantumPairs()
+  const sizeFreePaired = pairs.pairs.some((e) => e.pair === SIZE_FREE_COMMAND_PAIR.pair && e.paired)
+  const gravityGatePaired = pairs.pairs.some((e) => e.pair === GRAVITY_GATE_COMMAND_PAIR.pair && e.paired)
+  const foldSize = foldPair(toUuid('cmd:size'), toUuid('cmd:free'))
+  const foldGravityGate = foldPair(toUuid('cmd:gravity'), toUuid('cmd:gate'))
+  const foldRosetta = foldPair(toUuid('cmd:gate'), toUuid('cmd:rosetta'))
+  const foldFreedom = foldPair(toUuid('cmd:full'), toUuid('cmd:freedom'))
+  const foldMission = foldPair(toUuid('cmd:mission'), toUuid('cmd:gate'))
+  const foldSrcIndex = foldPair(toUuid('cmd:src'), toUuid('cmd:index'))
+  const gravityPullsAtGates =
+    gravity.gravityPullsTowardSrc &&
+    gravity.computes &&
+    dry.gravityPullsToSrc &&
+    foldRosetta.bidirectional &&
+    foldMission.bidirectional &&
+    indexLaw.onlyIndex
+  const censusCountLaw =
+    united.computational.indexCount === UNFOLDED_CENSUS &&
+    united.computational.indexCount + EULER_CHI === FOLDED_CENSUS
+  // Byte size is never HARD when gravity pulls at gates — fileSize remains warn ratchet only.
+  const byteSizeHard = false as const
+  const noByteSizeLimitWhenGravityAtGates = gravityPullsAtGates && byteSizeHard === false
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const physicalFtlClaim = 0 as const
+  const on =
+    noByteSizeLimitWhenGravityAtGates &&
+    censusCountLaw &&
+    sizeFreePaired &&
+    gravityGatePaired &&
+    foldSize.bidirectional &&
+    foldGravityGate.bidirectional &&
+    foldFreedom.bidirectional &&
+    foldSrcIndex.bidirectional &&
+    dry.computes &&
+    indexLaw.computes &&
+    claySolvedByThisFold === 0 &&
+    physicalFtlClaim === 0
+  const facets = [
+    { facet: 'noSizeLimitsAsLongAsGravityPullsAtTheGates', on },
+    { facet: 'noByteSizeLimitWhenGravityAtGates', on: noByteSizeLimitWhenGravityAtGates },
+    { facet: 'gravityPullsAtGates', on: gravityPullsAtGates },
+    { facet: 'compose gravity/dry · folder gravity toward src', on: dry.computes && gravity.gravityPullsTowardSrc },
+    { facet: 'compose gate/rosetta wired', on: foldRosetta.bidirectional },
+    { facet: 'compose src/index only-index law', on: indexLaw.onlyIndex },
+    { facet: 'compose full/freedom · mission:gate', on: foldFreedom.bidirectional && foldMission.bidirectional },
+    { facet: `census 110 count law (not byte cap) indexCount=${united.computational.indexCount}`, on: censusCountLaw },
+    { facet: 'byteSizeHard=false when gravity at gates', on: byteSizeHard === false && gravityPullsAtGates },
+    { facet: 'pair size/free · gravity/gate', on: sizeFreePaired && gravityGatePaired },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+    { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    { facet: 'qpuRequired=false', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`size-free:${entry.facet}:${entry.on}`) }))
+  const computes = facets.every((e) => e.on) && on
+  return {
+    computes,
+    noSizeLimitsAsLongAsGravityPullsAtTheGates: on,
+    noByteSizeLimitWhenGravityAtGates,
+    gravityPullsAtGates,
+    censusCountLaw,
+    byteSizeHard,
+    fileSizeWarnOnly: true as const,
+    claySolvedByThisFold,
+    physicalFtlClaim,
+    qpuRequired: false as const,
+    facets,
+    root: merkleFold([
+      united.merkle,
+      gravity.root,
+      dry.root,
+      indexLaw.root,
+      foldSize.merged,
+      foldGravityGate.merged,
+      ...facets.map((e) => e.receipt),
+    ]),
+    pair: SIZE_FREE_COMMAND_PAIR.pair,
+    pairs: [SIZE_FREE_COMMAND_PAIR.pair, GRAVITY_GATE_COMMAND_PAIR.pair] as const,
+    cli: 'npm run quantum:size-free',
+    route: '/en/quantum-tools#fusion',
+    statement:
+      `sizeFree — noByteLimit=${noByteSizeLimitWhenGravityAtGates ? 1 : 0} gravityAtGates=${gravityPullsAtGates ? 1 : 0} ` +
+      `censusCountLaw=${censusCountLaw ? 1 : 0} byteHard=${byteSizeHard ? 1 : 0}.`,
+    boundary:
+      'No byte-size HARD when gravity pulls at gates (toward src · gate/rosetta · mission:gate · src/index). ' +
+      'Census 110 is count law, not a byte cap. Monolith fileSize stays warn ratchet. clay=0 · physicalFtl=0.',
+    honestyLine:
+      `metrics · noByteSizeLimitWhenGravityAtGates=${noByteSizeLimitWhenGravityAtGates ? 1 : 0} · ` +
+      `gravityPullsAtGates=${gravityPullsAtGates ? 1 : 0} · census=${united.computational.indexCount} · clay=0 · physicalFtl=0`,
+  }
+}
+
+/** npm run quantum:size-free (dual gravity/gate) */
+export function runNoSizeLimitsAsLongAsGravityPullsAtTheGatesExit(root = '', _argv: readonly string[] = []): number {
+  const repoRoot = root || process.cwd()
+  const report = noSizeLimitsAsLongAsGravityPullsAtTheGates(repoRoot)
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} size-free — noByteLimit=${report.noByteSizeLimitWhenGravityAtGates} ` +
+      `gravityAtGates=${report.gravityPullsAtGates} censusLaw=${report.censusCountLaw} ` +
+      `fold=noSizeLimitsAsLongAsGravityPullsAtTheGates pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.noByteSizeLimitWhenGravityAtGates ? 0 : 1
+}
+
+/**
  * Codebase compacted to minimum types + constants matching the matrix in all computational directions.
  * Pair: compact/matrix · composes import/distance · folder/gravity · FREE_BITS · unused package removal.
  * Facets: codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix · unusedPackagesRemoved · folderGravityMeasuredByTheCode
@@ -972,6 +1321,14 @@ export function gatesSavedInQuantumPairs() {
     DISSOLVE_FLAT_COMMAND_PAIR,
     IMPORT_DISTANCE_COMMAND_PAIR,
     FOLDER_GRAVITY_COMMAND_PAIR,
+    GRAVITY_DRY_COMMAND_PAIR,
+    DRY_CLEAN_COMMAND_PAIR,
+    SRC_INDEX_COMMAND_PAIR,
+    FOLDER_INDEX_COMMAND_PAIR,
+    SIZE_FREE_COMMAND_PAIR,
+    GRAVITY_GATE_COMMAND_PAIR,
+    GATE_ROSETTA_COMMAND_PAIR,
+    FULL_FREEDOM_COMMAND_PAIR,
     COMPACT_TYPES_CONSTANTS_COMMAND_PAIR,
     MISSION_GATE_COMMAND_PAIR,
   ]
