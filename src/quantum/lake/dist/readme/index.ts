@@ -90,7 +90,7 @@ type RayPaper = TheoremCore['rays'][number]['papers'][number]
  *  per-paper trailing link (README → `[source](github permalink)`, home → `[page](/slug)`) and the sitemap
  *  link base (README → absolute canonical URLs for GitHub/crawlers, home → site-internal paths). */
 function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => string, linkBase = ''): string[] {
-  const { lens, census, paperList, math, efficiency, qc, sitemap, mono, template } = core
+  const { lens, census, paperList, math, efficiency, sitemap, mono, template } = core
   const { labels } = math
   return [
     '## 1. Introduction',
@@ -112,7 +112,9 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     '- One source, no mirroring: the locales (Glagolitic `/`, Latin `/en/`, Cyrillic `/bg/`) are computed by math, not copied; visitors are routed to their language, default English.',
     '- Corpus routing: RESTful `/papers/<id>`, `/references/<id>`, `/diamonds/<id>` — each item a real page via the VitePress `[id]` dynamic route (paths enumerated from one source: paperRoutes/paperReferenceRoutes/diamondRoutes); the index list stays at `/papers`.',
     '- The agnostic core is published as the npm package `@ceccec/double-torus` — the same `src/`, bundled, depends on nothing, runs in any browser or Node.',
-    `- The modeled quantum computer: one qubit is its Bloch/Pauli decomposition ρ = ½(I + xσx + yσy + zσz) — four content-addressed components (the trinity x·y·z + the +1 identity, \`blochQubit\`); the Quantum OS allocates 2ⁿ-amplitude registers, schedules gates, and measures (Born rule, seeded PRNG); entanglement (Bell/GHZ) lives on the true 2ⁿ tensor product, never faked with linear UUID stacking; and the realtime movie is its proof artifact. Performance is PROVEN, not assumed — \`quantumAdvantageBenchmark\` (random-circuit sampling) and \`quantumDimensionCost\` (4n vs 2ⁿ) compute the verdict **${qc.verdict}**: it is ${qc.claim}`,
+    // HONEST (#51): keep qpuRequired=false · clay=0 · physicalFtl=0; do not paste tracks-classical-no-speedup into README prose
+    // (benchmark verdict remains sealed in quantumComputerHonestClaim for gates — not a README disclaimer).
+    `- The modeled quantum computer: one qubit is its Bloch/Pauli decomposition ρ = ½(I + xσx + yσy + zσz) — four content-addressed components (the trinity x·y·z + the +1 identity, \`blochQubit\`); the Quantum OS allocates 2ⁿ-amplitude registers, schedules gates, and measures (Born rule, seeded PRNG); entanglement (Bell/GHZ) lives on the true 2ⁿ tensor product, never faked with linear UUID stacking; and the realtime movie is its proof artifact. It is a deterministic, content-addressed, reproducible classical simulator of quantum state — faithful (it reproduces the exact Born distribution and every single-qubit gate) — and NOT physical qubits (\`qpuRequired=false\` · clay=0 · physicalFtl=0).`,
     '',
     '## 3. Results',
     '',
