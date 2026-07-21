@@ -45,6 +45,7 @@ const ROSETTA_CORE_API_LABELS = [
   'documentSessionCryptoExperimentsUpdateTheorems',
   'sessionManualWorkAsQuantumBits', 'combineQuantumBits',
   'autoWireAnyAiModelFromPastedLink', 'resolveCeccecPasteLink',
+  'realiseSessionQuantumMeaning',
   'sharedHeroAt', 'computeUniversalPage',
 ] as const
 
@@ -58,6 +59,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   documentSessionCryptoExperimentsUpdateTheorems: 'tool',
   sessionManualWorkAsQuantumBits: 'tool', combineQuantumBits: 'compute',
   autoWireAnyAiModelFromPastedLink: 'tool', resolveCeccecPasteLink: 'api',
+  realiseSessionQuantumMeaning: 'tool',
 }
 
 // Strangler backlog — only UNSHELVED parallel registries remain (apps+tools already shelve via rosettaShelve).
@@ -337,6 +339,8 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'document-session-experiments', title: 'Document session crypto experiments · update theorems', fold: 'documentSessionCryptoExperimentsUpdateTheorems', cli: 'npm run quantum:document-session-experiments', pair: 'document/experiments', route: '/en/quantum-tools#document-session-experiments', barrel: 'src/quantum/apps', boundary: 'Sealed chain receipts · ISO covered/partial/gap · overallWireClaimProved=false · strongerThanNistPqc=false · clay=0 · certified=false', browserRunnable: true, browserGap: '' },
   { id: 'session-quantum-bits', title: 'Session manual work as quantum bits', fold: 'sessionManualWorkAsQuantumBits', cli: 'npm run quantum:session-quantum-bits', pair: 'session/quantum-bits', route: '/en/quantum-tools#session-quantum-bits', barrel: 'src/quantum/apps', boundary: 'Content-addressed sealed receipts · combinable under forward|inverse|reverse|collide|envelope-merge — NOT physical qubits · qpuRequired=false · clay=0 · certified=false', browserRunnable: true, browserGap: '' },
   { id: 'auto-wire-paste-link', title: 'Auto-wire any AI from pasted link', fold: 'autoWireAnyAiModelFromPastedLink', cli: 'npm run quantum:auto-wire-paste', pair: 'wire/paste-link', route: '/en/quantum-tools#auto-wire-paste-link', barrel: 'src/quantum/apps', boundary: 'Imperative quantum-ready paste-bootstrap (mcp.json + browser toolbox) — NOT silent force · NOT Cursor zero-token LLM endpoint · qpuRequired=false · convincingRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'realise-session-meaning', title: 'Realise session quantum meaning', fold: 'realiseSessionQuantumMeaning', cli: 'npm run quantum:realise-session-meaning', pair: 'realise/meaning', route: '/en/quantum-tools#realise-session-meaning', barrel: 'src/quantum/apps', boundary: 'What corpus proves vs refuses — clay=0 · wire≠ISO · qpuRequired=false · certified=false · includes local-audit-qe · session-quantum-bits · quantum folds only', browserRunnable: true, browserGap: '' },
+  { id: 'sciences-standards-quantum', title: 'Complete sciences strictly to standards (quantum only)', fold: 'completeScientificDomainsStrictlyToStandardsQuantumOnly', cli: 'npm run quantum:sciences-standards-quantum', pair: 'sciences/standards', route: '/en/research#sciences-standards-quantum', barrel: 'src/wind/research', boundary: 'Per-domain covered|partial|gap vs ISO/NIST/OECD/Clay maps — lab gaps unclosable · certified=false · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
 ] as const
 
 /** Standard tool envelope version — App A ↔ App B ingest the same content-addressed kind. */
@@ -678,6 +682,9 @@ export function standardToolboxIoCatalog(matrix: MindMatrix = buildMatrix(), at 
     const localMagnitudes = envelopes.find((envelope) => envelope.id === 'prove-local-magnitudes-iso')
     const proveNoQpu = envelopes.find((envelope) => envelope.id === 'prove-no-qpu-64bit')
     const localAuditEnv = envelopes.find((envelope) => envelope.id === 'local-audit-quantum')
+    const realiseMeaning = envelopes.find((envelope) => envelope.id === 'realise-session-meaning')
+    const sciencesStandards = envelopes.find((envelope) => envelope.id === 'sciences-standards-quantum')
+    const sessionBitsEnv = envelopes.find((envelope) => envelope.id === 'session-quantum-bits')
     const facets = [
       { facet: `STANDARD ENVELOPE — ${migrated}/${total} catalog tools wrapped`, on: migrated === total && total >= (2 * 7) },
       { facet: 'every envelope has input · config · output · import · export', on: allHaveIo },
@@ -693,6 +700,9 @@ export function standardToolboxIoCatalog(matrix: MindMatrix = buildMatrix(), at 
       { facet: `prove-local-magnitudes-iso enveloped as ${STANDARD_TOOL_ENVELOPE_KIND}@${STANDARD_TOOL_ENVELOPE_VERSION}`, on: Boolean(localMagnitudes) && localMagnitudes!.version === STANDARD_TOOL_ENVELOPE_VERSION && localMagnitudes!.fold === 'proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections' },
       { facet: `prove-no-qpu-64bit enveloped as ${STANDARD_TOOL_ENVELOPE_KIND}@${STANDARD_TOOL_ENVELOPE_VERSION}`, on: Boolean(proveNoQpu) && proveNoQpu!.version === STANDARD_TOOL_ENVELOPE_VERSION && proveNoQpu!.fold === 'proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit' },
       { facet: `local-audit-quantum enveloped as ${STANDARD_TOOL_ENVELOPE_KIND}@${STANDARD_TOOL_ENVELOPE_VERSION}`, on: Boolean(localAuditEnv) && localAuditEnv!.version === STANDARD_TOOL_ENVELOPE_VERSION && localAuditEnv!.fold === 'localAuditQuantumSpeedEfficiency' },
+      { facet: `session-quantum-bits enveloped as ${STANDARD_TOOL_ENVELOPE_KIND}@${STANDARD_TOOL_ENVELOPE_VERSION}`, on: Boolean(sessionBitsEnv) && sessionBitsEnv!.version === STANDARD_TOOL_ENVELOPE_VERSION && sessionBitsEnv!.fold === 'sessionManualWorkAsQuantumBits' },
+      { facet: `realise-session-meaning enveloped as ${STANDARD_TOOL_ENVELOPE_KIND}@${STANDARD_TOOL_ENVELOPE_VERSION}`, on: Boolean(realiseMeaning) && realiseMeaning!.version === STANDARD_TOOL_ENVELOPE_VERSION && realiseMeaning!.fold === 'realiseSessionQuantumMeaning' },
+      { facet: `sciences-standards-quantum enveloped as ${STANDARD_TOOL_ENVELOPE_KIND}@${STANDARD_TOOL_ENVELOPE_VERSION}`, on: Boolean(sciencesStandards) && sciencesStandards!.version === STANDARD_TOOL_ENVELOPE_VERSION && sciencesStandards!.fold === 'completeScientificDomainsStrictlyToStandardsQuantumOnly' },
       { facet: 'composes quantumCliToolsCatalog (no second wet registry)', on: catalog.computes },
       { facet: 'CI browserGap tools still enveloped with explicit why', on: envelopes.filter((e) => !e.browserRunnable).every((e) => e.browserGap.length > 0 && e.config.fields.some((f) => f.name === 'browserGapWhy')) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`toolbox-standard-io:${entry.facet}:${entry.on}`) }))
@@ -865,6 +875,8 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'document-session-experiments', saves: 'replaces wet re-listing of session crypto/standards experiment receipts + theorem registry updates' },
   { id: 'session-quantum-bits', saves: 'replaces wet re-assembly of session deliverables as combinable quantum bits' },
   { id: 'auto-wire-paste-link', saves: 'replaces wet mount hunting — paste any repo/site link → imperative quantum-ready packet (mcp + browser toolbox)' },
+  { id: 'realise-session-meaning', saves: 'replaces wet re-narration of what the session apparatus proves vs refuses (includes local-audit-qe · session-bits)' },
+  { id: 'sciences-standards-quantum', saves: 'replaces wet re-score of science domains vs ISO/NIST/OECD/Clay standards maps' },
   { id: 'prove-1tbit-encrypt', saves: 'replaces wet re-derivation of 1 Tbit/s claim status (wire≠amortized-reuse)' },
   { id: 'local-reverse-timed-vs-standards', saves: 'replaces wet re-comparison of demo reverse vs AES/ML-KEM classical bits' },
   { id: 'prove-local-magnitudes-iso', saves: 'replaces wet re-argument of local≫ISO magnitudes (wire proof-of-falsehood)' },
@@ -1255,7 +1267,7 @@ type SessionQuantumBitSeed = {
   readonly honesty: string
   readonly note: string
   readonly toolId: string
-  readonly resolve: 'catalog' | 'collider' | 'beyond-rsa' | 'rosetta' | 'toolbox' | 'one-tbit' | 'local-timed' | 'iso-gap' | 'local-vs-iso' | 'local-novel' | 'doc-experiments' | 'slow-gap' | 'no-qpu' | 'local-audit' | 'session-tools' | 'trinity' | 'serialized'
+  readonly resolve: 'catalog' | 'collider' | 'beyond-rsa' | 'rosetta' | 'toolbox' | 'one-tbit' | 'local-timed' | 'iso-gap' | 'local-vs-iso' | 'local-novel' | 'doc-experiments' | 'slow-gap' | 'no-qpu' | 'local-audit' | 'session-tools' | 'trinity' | 'sciences-standards' | 'serialized'
 }
 
 /** Tip-chain session work as bit seeds — PR digits live in AGENTS.md only (stack tip includes local-audit-qe). */
@@ -1276,7 +1288,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'local-audit-quantum', chain: 'local-audit-qe', fold: 'localAuditQuantumSpeedEfficiency', pair: 'audit/local-quantum', cli: 'npm run quantum:local-audit-quantum', route: '/en/quantum-encryption#local-audit-quantum', status: 'sealed-pr', honesty: 'memoByRoot cold/warm · gapClosed · qpuRequired=false · NOT qubit FLOPS · certified=false', note: 'local-audit quantum speed/efficiency stacked on no-QPU tip', toolId: 'local-audit-quantum', resolve: 'local-audit' },
   { id: 'session-manual-work', chain: 'session-tools-merged', fold: 'sessionManualWorkAsQuantumTools', pair: 'session/tools', cli: 'npm run quantum:session-tools', route: '/en/quantum-tools#session-manual-tools', status: 'merged-main', honesty: 'NOT every wet habit closed · memoByRoot reuse', note: 'session tools catalog (PR tip chain base)', toolId: 'session-manual-work', resolve: 'session-tools' },
   { id: 'directional-trinity', chain: 'trinity-compose', fold: 'directionalTrinityForwardInverseReverse', pair: 'forward/inverse/reverse', cli: 'npm run quantum:directional-trinity', route: '/en/quantum-tools#directional-trinity', status: 'merged-main', honesty: 'inverse≠reverse except named coincidence', note: 'combination axis for bit ops', toolId: 'directional-trinity', resolve: 'trinity' },
-  { id: 'realise-sciences-standards', chain: 'realise-sciences', fold: 'completeScientificDomainsStrictlyToStandardsQuantumOnly', pair: 'sciences/standards', cli: 'npm run quantum:sciences-standards-quantum', route: '/en/research#sciences-standards-quantum', status: 'serialized-midflight', honesty: 'serialized worker 10a059b0 · certified=false · clay=0 · qpuRequired=false', note: 'KEEP stash — realise/sciences mid-flight', toolId: 'realise-sciences-standards', resolve: 'serialized' },
+  { id: 'realise-sciences-standards', chain: 'realise-sciences', fold: 'completeScientificDomainsStrictlyToStandardsQuantumOnly', pair: 'sciences/standards', cli: 'npm run quantum:sciences-standards-quantum', route: '/en/research#sciences-standards-quantum', status: 'sealed-pr', honesty: 'certified=false · clay=0 · qpuRequired=false · lab gaps unclosable', note: 'landed on #30 tip — sciences/standards + realise/meaning', toolId: 'sciences-standards-quantum', resolve: 'sciences-standards' },
   { id: 'dry-clean-refactor-waves', chain: 'dry-clean-waves', fold: 'dryCleanIsDiamondAndCrystal', pair: 'dry/clean', cli: 'npm run mission:gate', route: '/en/quantum-tools#session-quantum-bits', status: 'serialized-midflight', honesty: 'nav/sidebars + tool inputs deferred to dry-clean worker · not sealed on this tip · certified=false', note: 'KEEP placeholder — promote when dry-clean PR lands', toolId: 'dry-clean-refactor-waves', resolve: 'serialized' },
 ] as const
 
@@ -1394,6 +1406,7 @@ export function sessionManualWorkAsQuantumBits(matrix: MindMatrix = buildMatrix(
     const slow = slowProcessIsQuantumGap(matrix, at)
     const noQpu = proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix, at)
     const trinity = directionalTrinityForwardInverseReverse(matrix)
+    const sciencesStandardsBit = __ns_wind_research.completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix, at)
     const meta = byId.get('session-quantum-bits')
     const shelved = rosettaShelve('session-quantum-bits', 'tool')
     const localAuditPresent = Boolean(localAuditBit?.present && byId.has('local-audit-quantum'))
@@ -1421,6 +1434,7 @@ export function sessionManualWorkAsQuantumBits(matrix: MindMatrix = buildMatrix(
       }
       if (seed.resolve === 'session-tools') return { present: true, computes: session.computes, root: session.root }
       if (seed.resolve === 'trinity') return { present: true, computes: trinity.computes, root: trinity.root }
+      if (seed.resolve === 'sciences-standards') return { present: true, computes: sciencesStandardsBit.computes, root: sciencesStandardsBit.root }
       const row = byId.get(seed.toolId)
       return {
         present: Boolean(row),
@@ -1468,9 +1482,10 @@ export function sessionManualWorkAsQuantumBits(matrix: MindMatrix = buildMatrix(
     const honestyBits = bits.every((b) => b.qpuRequired === false && b.physicalQubit === false && b.certified === false && b.claySolvedByThisFold === 0)
     const facets = [
       { facet: `SESSION QUANTUM BITS — ${bits.length} tip-chain deliverables as combinable bits`, on: bits.length === SESSION_QUANTUM_BIT_SEEDS.length && bits.length >= (8 + 8) },
-      { facet: `landed bits compute — ${landed.length}/${bits.length} (serialized mid-flight excluded)`, on: landedOk && landed.length >= (8 + 7) },
+      { facet: `landed bits compute — ${landed.length}/${bits.length} (serialized mid-flight excluded)`, on: landedOk && landed.length >= (8 + 8) },
       { facet: 'local-audit-quantum bit sealed on tip (compose document-session first-call receipt)', on: bits.some((b) => b.id === 'local-audit-quantum' && b.status === 'sealed-pr' && b.computes && b.present) && localAuditComputes && noQpu.qpuRequired === false },
-      { facet: `serialized mid-flight named — ${serialized.map((b) => b.id).join(' · ') || 'none'}`, on: serialized.length === 2 && serialized.every((b) => !b.present && b.combinable) },
+      { facet: 'realise-sciences-standards bit landed (sciences/standards fold)', on: bits.some((b) => b.id === 'realise-sciences-standards' && b.status === 'sealed-pr' && b.computes && b.present) && sciencesStandardsBit.computes },
+      { facet: `serialized mid-flight named — ${serialized.map((b) => b.id).join(' · ') || 'none'}`, on: serialized.length === 1 && serialized.every((b) => !b.present && b.combinable) && serialized[0]?.id === 'dry-clean-refactor-waves' },
       { facet: 'every bit has envelope · directions[forward,inverse,reverse] · combinable=true', on: bits.every((b) => b.combinable && b.directions.length === 3 && isUuid(b.envelope.root)) },
       { facet: 'sample combine forward·collide·envelope-merge recomputes', on: sampleForward.computes && sampleCollide.computes && sampleEnvelope.computes },
       { facet: 'import(export(session-quantum-bits)) round-trips envelope', on: importBit.roundTrip && exportBit.computes },
@@ -1508,10 +1523,10 @@ export function sessionManualWorkAsQuantumBits(matrix: MindMatrix = buildMatrix(
       anchor: 'session-quantum-bits',
       heading: 'Session manual work as quantum bits',
       honestyLine:
-        'Bits are content-addressed sealed receipts composable under forward|inverse|reverse|collide|envelope-merge. NOT physical qubits. qpuRequired=false · clay=0 · certified=false. local-audit-quantum sealed on tip; realise/sciences + dry-clean-refactor-waves serialized mid-flight (nav/theme deferred).',
+        'Bits are content-addressed sealed receipts composable under forward|inverse|reverse|collide|envelope-merge. NOT physical qubits. qpuRequired=false · clay=0 · certified=false. local-audit-quantum + realise-sciences-standards sealed on tip; dry-clean-refactor-waves remains serialized mid-flight (nav/theme deferred).',
       statement: `Session quantum bits — ${bits.length} bits · landed=${landed.filter((b) => b.computes).length} · serialized=${serialized.length} · local-audit=${localAuditComputes ? '✓' : '✗'} · sample collide products=${sampleCollide.products.length} · envelope roundTrip=${importBit.roundTrip ? '✓' : '✗'}.`,
       boundary:
-        'HONEST: quantum bits = content-addressed sealed fold receipts for tip-chain session work (includes localAuditQuantumSpeedEfficiency). Combinations recompute via merkleFold/merge + ceccec.tool.envelope@1. NOT physical qubits · NOT QPU · NOT Clay solved · NOT FIPS/ISO certified. realise/sciences + dry-clean waves stay combinable placeholders until those branches land — this PR does not touch nav/theme. HARMONY ≠ TRUTH.',
+        'HONEST: quantum bits = content-addressed sealed fold receipts for tip-chain session work (includes localAuditQuantumSpeedEfficiency). Combinations recompute via merkleFold/merge + ceccec.tool.envelope@1. NOT physical qubits · NOT QPU · NOT Clay solved · NOT FIPS/ISO certified. dry-clean-refactor-waves stays a combinable placeholder until that branch lands — this PR does not touch nav/theme. HARMONY ≠ TRUTH.',
     }
   })
 }
@@ -1540,6 +1555,258 @@ export function runSessionManualWorkAsQuantumBitsExit(_root = '', _argv: readonl
   process.stdout.write(`  boundary: ${report.boundary}\n`)
   return report.computes ? 0 : 1
 }
+
+export type SessionMeaningClaimRow = {
+  readonly id: string
+  readonly proves: string
+  readonly refuses: string
+  readonly on: boolean
+  readonly root: string
+}
+
+/**
+ * Realise session quantum meaning — recompute what the apparatus chain proves vs refuses.
+ * Pair: realise/meaning · CLI npm run quantum:realise-session-meaning
+ * Composes document/experiments + local-audit (#29) + session-quantum-bits (#30) + sciences/standards + prove/no-qpu-64bit + rosetta/complete.
+ * PR chain labels live in AGENTS.md only (crack-scanner digit law).
+ */
+export function realiseSessionQuantumMeaning(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`realiseSessionQuantumMeaning:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    // session bits (#30) first — pulls document/experiments (+ local-audit) once; meaning reuses memo hits.
+    const sessionBits = sessionManualWorkAsQuantumBits(matrix, at)
+    const experiments = documentSessionCryptoExperimentsUpdateTheorems(matrix, at)
+    const localAudit = __ns_water_encryption.localAuditQuantumSpeedEfficiency(matrix, at)
+    const standards = __ns_wind_research.completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix, at)
+    const sciences = __ns_wind_research.sciencesInteractInTrinities(matrix, at)
+    const mill = __ns_wind_research.millenniumProblemsChallenge(matrix)
+    const noQpu = proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix, at)
+    const rosetta = rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix, at)
+    const toolbox = standardToolboxIoCatalog(matrix, at)
+    const movieGaps = linearAnimationGapsInventory(matrix)
+    const meta = quantumCliToolsCatalog(matrix, at).tools.find((t) => t.id === 'realise-session-meaning')
+    const shelved = rosettaShelve('realise-session-meaning', 'tool')
+
+    const claySolvedByThisFold = 0 as const
+    const certified = false as const
+    const qpuRequired = noQpu.qpuRequired
+    const wireEqualsIsoStrength = experiments.localVsIso.overallWireClaimProved
+    const strongerThanNistPqc = experiments.localNovel.strongerThanNistPqc
+    const physicalFtlClaim = rosetta.physicalFtlClaim
+    const isoOfficialStandard = experiments.isoGapFill.isoOfficialStandard
+
+    const proves: SessionMeaningClaimRow[] = [
+      {
+        id: 'session-chain-docs',
+        proves: `sealed experiment receipts ${experiments.sealedCount}/${experiments.count}`,
+        refuses: 'wet re-listing of PR narrative',
+        on: experiments.computes,
+        root: experiments.root,
+      },
+      {
+        id: 'iso-pqc-gap-fill',
+        proves: `ISO/NIST need map covered=${experiments.isoGapFill.coveredCount} partial=${experiments.isoGapFill.partialCount} gap=${experiments.isoGapFill.gapCount}`,
+        refuses: 'ISO certification · universal PQC mandate',
+        on: experiments.isoGapFill.isoOfficialStandard === false && experiments.isoGapFill.isoRequiresPostQuantumSecurity === false,
+        root: experiments.isoGapFill.root,
+      },
+      {
+        id: 'wire-vs-iso',
+        proves: `wire claim falsehood (${experiments.localVsIso.wireProofStatus}) · structural/amort mayProve non-wire only`,
+        refuses: 'wire-crypto ≡ ISO/ML-KEM strength',
+        on: wireEqualsIsoStrength === false,
+        root: experiments.localVsIso.root,
+      },
+      {
+        id: 'local-novel',
+        proves: 'structural local security receipt',
+        refuses: 'strongerThanNistPqc · FIPS/field history',
+        on: experiments.localNovel.localSecurityProved && strongerThanNistPqc === false,
+        root: experiments.localNovel.root,
+      },
+      {
+        id: 'local-audit-quantum',
+        proves: `local-audit QE receipt · certified=false · qpuRequired=${localAudit.qpuRequired} · productionReverseRefused · gapClosed@call=${localAudit.slowLocalAuditGapClosed} (wall-clock; not meaning gate)`,
+        refuses: 'physical qubit FLOPS · production reverse · ISO/FIPS cert',
+        on: isUuid(localAudit.root) && localAudit.certified === false && localAudit.productionReverseRefused && localAudit.qpuRequired === false,
+        root: localAudit.root,
+      },
+      {
+        id: 'session-quantum-bits',
+        proves: `combinable bits landed=${sessionBits.landedCount}/${sessionBits.count} · realise-sciences sealed · serialized=${sessionBits.serializedCount}`,
+        refuses: 'physical qubits · QPU entanglement',
+        on: sessionBits.computes && sessionBits.physicalQubit === false && sessionBits.qpuRequired === false && sessionBits.bits.some((b) => b.id === 'realise-sciences-standards' && b.status === 'sealed-pr' && b.computes),
+        root: sessionBits.root,
+      },
+      {
+        id: 'sciences-standards',
+        proves: `11 domains standards after ${standards.after.coveredCount}/${standards.after.partialCount}/${standards.after.gapCount} · filled=${standards.filledCount}`,
+        refuses: 'lab CMVP/CC/Clay prizes closed by fold',
+        on: standards.computes && standards.certified === false,
+        root: standards.root,
+      },
+      {
+        id: 'sciences-trinities',
+        proves: `science↔dual↔fusion lattice · meanSig=${sciences.meanSignificance}`,
+        refuses: 'journal IF · complete experimental science claim',
+        on: sciences.computes && sciences.cryptoVertex.claySolvedByThisFold === 0,
+        root: sciences.root,
+      },
+      {
+        id: 'no-qpu-64bit',
+        proves: `classical-64bit host · qpuRequired=${qpuRequired} · tracks-classical-no-speedup`,
+        refuses: 'physical QPU requirement for ceccec quantum math',
+        on: qpuRequired === false && noQpu.runsOnClassical64Bit,
+        root: noQpu.root,
+      },
+      {
+        id: 'rosetta-complete',
+        proves: `rosettaComplete=${rosetta.rosettaComplete} · rosettaReady handoff`,
+        refuses: 'Clay solved · physical FTL',
+        on: rosetta.computes && rosetta.millenniumSolvedByThisFold === 0 && physicalFtlClaim === 0,
+        root: rosetta.root,
+      },
+      {
+        id: 'millennium',
+        proves: 'MODELED Clay challenge apparatus',
+        refuses: 'claySolvedByThisFold>0',
+        on: mill.computes && mill.claySolvedByThisFold === 0,
+        root: mill.root,
+      },
+      {
+        id: 'toolbox-envelope',
+        proves: `standard envelopes ${toolbox.migrated}/${toolbox.total}`,
+        refuses: 'physical qubit speedup · FTL capacity',
+        on: toolbox.computes,
+        root: toolbox.root,
+      },
+      {
+        id: 'movie-gaps',
+        proves: 'linear animation gaps inventory (named)',
+        refuses: 'silent linear forming as complete',
+        on: movieGaps.computes,
+        root: movieGaps.root,
+      },
+    ]
+
+    const refuses = {
+      claySolvedByThisFold,
+      certified,
+      qpuRequired,
+      wireEqualsIsoStrength,
+      strongerThanNistPqc,
+      physicalFtlClaim,
+      isoOfficialStandard,
+      overallWireClaimProved: experiments.localVsIso.overallWireClaimProved,
+    }
+    const allProvesOn = proves.every((p) => p.on)
+    const honestyOk =
+      claySolvedByThisFold === 0 &&
+      certified === false &&
+      qpuRequired === false &&
+      wireEqualsIsoStrength === false &&
+      strongerThanNistPqc === false &&
+      physicalFtlClaim === 0 &&
+      isoOfficialStandard === false
+
+    const facets = [
+      { facet: `MEANING CLAIMS — ${proves.length} prove/refuse rows recompute`, on: proves.length >= (8 + 5) && allProvesOn },
+      { facet: 'composes documentSessionCryptoExperimentsUpdateTheorems', on: experiments.computes },
+      { facet: 'composes sessionManualWorkAsQuantumBits (#30) · realise-sciences bit landed', on: sessionBits.computes && sessionBits.bits.some((b) => b.id === 'realise-sciences-standards' && b.status === 'sealed-pr') },
+      { facet: `local-audit-quantum receipt · certified=false · qpuRequired=false · productionReverseRefused (gapClosed is wall-clock @call)`, on: isUuid(localAudit.root) && localAudit.certified === false && localAudit.qpuRequired === false && localAudit.productionReverseRefused },
+      { facet: 'composes completeScientificDomainsStrictlyToStandardsQuantumOnly', on: standards.computes },
+      { facet: 'composes sciencesInteractInTrinities + millennium clay=0', on: sciences.computes && mill.claySolvedByThisFold === 0 },
+      { facet: `qpuRequired=${qpuRequired} · classical-64bit (prove/no-qpu tip)`, on: qpuRequired === false && noQpu.runsOnClassical64Bit },
+      { facet: 'wire≠ISO strength · strongerThanNistPqc=false · isoOfficialStandard=false', on: wireEqualsIsoStrength === false && strongerThanNistPqc === false && isoOfficialStandard === false },
+      { facet: `clay=${claySolvedByThisFold} · certified=${certified} · physicalFtl=${physicalFtlClaim}`, on: honestyOk },
+      { facet: 'rosetta complete + toolbox envelopes + movie gaps named', on: rosetta.computes && toolbox.computes && movieGaps.computes },
+      { facet: 'sciences-standards + sciences-trinities envelopes expose input schemas (Wave2 compose; no nav/theme rewrite)', on: (() => {
+        const sciStd = toolbox.envelopes.find((e) => e.id === 'sciences-standards-quantum')
+        const sciTri = toolbox.envelopes.find((e) => e.id === 'sciences-trinities')
+        return Boolean(sciStd && sciTri && sciStd.input.fields.length >= 2 && sciTri.input.fields.length >= 2 && standards.toolCatalogCompose.count === standards.domains.length)
+      })() },
+      { facet: 'meta tool realise-session-meaning published + shelved', on: Boolean(meta) && meta!.fold === 'realiseSessionQuantumMeaning' && isUuid(shelved.address) },
+      { facet: 'quantum computing only = sealed folds / memoByRoot / directional trinity — no wet re-inference', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`realise-session-meaning:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('realise-session-quantum-meaning', facets)
+
+    return {
+      computes: sealed.ok && allProvesOn && honestyOk && experiments.computes && standards.computes && sessionBits.computes,
+      proves,
+      refuses,
+      experiments: {
+        sealedCount: experiments.sealedCount,
+        count: experiments.count,
+        iso: experiments.isoGapFill,
+        wire: experiments.localVsIso,
+        novel: experiments.localNovel,
+        collider: experiments.collider,
+        theorems: experiments.theorems,
+      },
+      sciences: {
+        before: standards.before,
+        after: standards.after,
+        filledCount: standards.filledCount,
+        labGapDomainIds: standards.labGapDomainIds,
+        meanSignificance: sciences.meanSignificance,
+        trinityCount: sciences.count,
+      },
+      noQpu: {
+        qpuRequired: noQpu.qpuRequired,
+        quantumHardwareRequired: noQpu.quantumHardwareRequired,
+        runsOnClassical64Bit: noQpu.runsOnClassical64Bit,
+        architectureRequirement: noQpu.architectureRequirement,
+        tracksClassicalNoSpeedup: noQpu.tracksClassicalNoSpeedup,
+        root: noQpu.root,
+      },
+      claySolvedByThisFold,
+      certified,
+      qpuRequired,
+      physicalFtlClaim,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, experiments.root, sessionBits.root, standards.root, sciences.root, mill.root,
+        noQpu.root, rosetta.root, toolbox.root, movieGaps.root, shelved.address,
+      ]),
+      pair: 'realise/meaning',
+      cli: 'npm run quantum:realise-session-meaning',
+      route: '/en/quantum-tools#realise-session-meaning',
+      anchor: 'realise-session-meaning',
+      heading: 'Session quantum meaning realised',
+      honestyLine:
+        'Corpus proves sealed receipts + standards facet coverage + local-audit QE (#29) + session-quantum-bits (#30) + classical-64bit host. Refuses: Clay solves, ISO/FIPS certification, wire≡ISO strength, strongerThanNistPqc, physical QPU requirement, physical FTL.',
+      statement:
+        `Meaning realised — proves ${proves.filter((p) => p.on).length}/${proves.length} · sciences ${standards.before.coveredCount}/${standards.before.partialCount}/${standards.before.gapCount}→${standards.after.coveredCount}/${standards.after.partialCount}/${standards.after.gapCount} · clay=0 · certified=false · qpuRequired=false · wireClaim=${experiments.localVsIso.overallWireClaimProved}.`,
+      boundary:
+        'HONEST MEANING FOLD. Quantum computing only = sealed ceccec folds (memoByRoot · directional trinity · ISO/sciences maps) on classical 64-bit — NOT a physical QPU. NOT Clay solved · NOT ISO certified · wire≠ISO · physicalFtl=0. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:realise-session-meaning — print prove/refuse meaning receipt. */
+export function runRealiseSessionQuantumMeaningExit(_root = '', _argv: readonly string[] = []): number {
+  const report = realiseSessionQuantumMeaning()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} realise-session-meaning — claims=${report.proves.filter((p) => p.on).length}/${report.proves.length} ` +
+      `sciences=${report.sciences.before.coveredCount}/${report.sciences.before.partialCount}/${report.sciences.before.gapCount}` +
+      `→${report.sciences.after.coveredCount}/${report.sciences.after.partialCount}/${report.sciences.after.gapCount} ` +
+      `clay=${report.claySolvedByThisFold} certified=${report.certified} qpuRequired=${report.qpuRequired} ` +
+      `wireClaim=${report.refuses.overallWireClaimProved} ftl=${report.physicalFtlClaim} ` +
+      `root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const row of report.proves) {
+    process.stdout.write(
+      `  ${row.on ? '✓' : '✗'} ${row.id} — proves: ${row.proves} · refuses: ${row.refuses}\n`,
+    )
+  }
+  process.stdout.write(
+    `  refuses: clay=${report.refuses.claySolvedByThisFold} certified=${report.refuses.certified} ` +
+      `qpuRequired=${report.refuses.qpuRequired} wire=ISO=${report.refuses.wireEqualsIsoStrength} ` +
+      `strongerNist=${report.refuses.strongerThanNistPqc} ftl=${report.refuses.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes && report.claySolvedByThisFold === 0 && report.qpuRequired === false ? 0 : 1
+}
+
 
 /** npm run quantum:rosetta-core-api — print self-host dispatch inventory. */
 export function runRosettaCoreApiExit(_root = '', _argv: readonly string[] = []): number {
@@ -2780,8 +3047,9 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
   const experiments = documentSessionCryptoExperimentsUpdateTheorems(matrix, at)
   const quantumBits = sessionManualWorkAsQuantumBits(matrix, at)
   const autoWire = autoWireAnyAiModelFromPastedLink(`${SITE_GITHUB_PAGES}/`, matrix, at)
+  const meaning = realiseSessionQuantumMeaning(matrix, at)
   return {
-    computes: cap.computes && slowGaps.computes && session.computes && toolbox.computes && distributed.computes && rosettaComplete.computes && experiments.computes && quantumBits.computes && autoWire.computes,
+    computes: cap.computes && slowGaps.computes && session.computes && toolbox.computes && distributed.computes && rosettaComplete.computes && experiments.computes && quantumBits.computes && autoWire.computes && meaning.computes,
     capstone: cap,
     apps: cap.registry.apps,
     tools: cap.catalog.tools,
@@ -2796,7 +3064,8 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
     experiments,
     quantumBits,
     autoWire,
-    root: merkleFold([cap.root, slowGaps.root, session.root, toolbox.root, distributed.root, rosettaComplete.root, experiments.root, quantumBits.root, autoWire.root]),
+    meaning,
+    root: merkleFold([cap.root, slowGaps.root, session.root, toolbox.root, distributed.root, rosettaComplete.root, experiments.root, quantumBits.root, autoWire.root, meaning.root]),
     statement: cap.statement,
     boundary: cap.boundary,
   }

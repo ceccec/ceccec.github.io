@@ -10,7 +10,11 @@ import {
   documentSessionCryptoExperimentsUpdateTheorems,
   sessionManualWorkAsQuantumBits, combineQuantumBits,
   autoWireAnyAiModelFromPastedLink, CECCEC_SITE_ORIGIN,
+  realiseSessionQuantumMeaning,
 } from './index.ts'
+import {
+  completeScientificDomainsStrictlyToStandardsQuantumOnly,
+} from '../../wind/research/index.ts'
 import {
   runEncryptionToolInBrowser,
   runPqcStandardsToolInBrowser,
@@ -471,6 +475,20 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'realise-session-meaning') {
+      const r = realiseSessionQuantumMeaning()
+      ok = r.computes
+      summary = `claims=${r.proves.filter((p) => p.on).length}/${r.proves.length} · sciences ${r.sciences.before.coveredCount}/${r.sciences.before.partialCount}/${r.sciences.before.gapCount}→${r.sciences.after.coveredCount}/${r.sciences.after.partialCount}/${r.sciences.after.gapCount} · qpuRequired=${r.qpuRequired}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'sciences-standards-quantum') {
+      const r = completeScientificDomainsStrictlyToStandardsQuantumOnly()
+      ok = r.computes
+      summary = `before=${r.before.coveredCount}/${r.before.partialCount}/${r.before.gapCount} → after=${r.after.coveredCount}/${r.after.partialCount}/${r.after.gapCount} · filled=${r.filledCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'rosetta-core-api') {
       const r = rosettaCoreApi()
       ok = r.computes
@@ -855,6 +873,30 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'auto-wire-paste-link'" @click="runTool('auto-wire-paste-link')">
           {{ runningId === 'auto-wire-paste-link' ? '…' : 'Run quantum-ready paste-bootstrap' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="realise-session-meaning" aria-label="Realise session quantum meaning">
+        <h3>{{ panel.meaning.heading }}</h3>
+        <p class="quantum-apps__meta">{{ panel.meaning.honestyLine }}</p>
+        <UiBadge :variant="panel.meaning.computes && panel.meaning.qpuRequired === false ? 'default' : 'outline'">
+          claims {{ panel.meaning.proves.filter((p) => p.on).length }}/{{ panel.meaning.proves.length }}
+          · clay={{ panel.meaning.claySolvedByThisFold }}
+          · certified={{ panel.meaning.certified }}
+          · qpuRequired={{ panel.meaning.qpuRequired }}
+        </UiBadge>
+        <table class="quantum-apps__table">
+          <thead><tr><th>Claim</th><th>Proves</th><th>Refuses</th></tr></thead>
+          <tbody>
+            <tr v-for="row in panel.meaning.proves" :key="row.id">
+              <td><UiBadge :variant="row.on ? 'default' : 'outline'">{{ row.id }}</UiBadge></td>
+              <td class="quantum-apps__meta">{{ row.proves }}</td>
+              <td class="quantum-apps__meta">{{ row.refuses }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <UiButton size="sm" :disabled="runningId === 'realise-session-meaning'" @click="runTool('realise-session-meaning')">
+          {{ runningId === 'realise-session-meaning' ? '…' : 'Run realise-session-meaning' }}
         </UiButton>
       </section>
       <UiSeparator />

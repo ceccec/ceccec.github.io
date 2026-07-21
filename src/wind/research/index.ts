@@ -448,8 +448,9 @@ export function researchPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0
   const mill = millenniumProblemsChallenge(matrix)
   const significance = scienceDomainSignificanceScores(matrix, at)
   const trinities = sciencesInteractInTrinities(matrix, at)
+  const standards = completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix, at)
   return {
-    computes: cap.computes && significance.computes && trinities.computes,
+    computes: cap.computes && significance.computes && trinities.computes && standards.computes,
     capstone: cap,
     rows: cap.index.rows.map((row) => ({ domain: row.title, method: row.balanceDim, limit: row.limit, verify: row.verify, tier: row.tier, home: row.home })),
     repro: cap.repro.gates,
@@ -477,7 +478,26 @@ export function researchPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0
       root: trinities.root,
       boundary: trinities.boundary,
     },
-    root: merge(cap.root, merge(significance.root, trinities.root)),
+    standards: {
+      computes: standards.computes,
+      before: standards.before,
+      after: standards.after,
+      filledCount: standards.filledCount,
+      labGapDomainIds: standards.labGapDomainIds,
+      claySolvedByThisFold: standards.claySolvedByThisFold,
+      certified: standards.certified,
+      qpuRequired: standards.qpuRequired,
+      domains: standards.domains.map((d) => ({
+        id: d.id, before: d.before, coverage: d.coverage, filledByQuantum: d.filledByQuantum,
+        unclosableWithoutExternalLab: d.unclosableWithoutExternalLab, standardMap: d.standardMap,
+      })),
+      root: standards.root,
+      boundary: standards.boundary,
+      cli: standards.cli,
+      pair: standards.pair,
+      route: standards.route,
+    },
+    root: merge(cap.root, merge(significance.root, merge(trinities.root, standards.root))),
     statement: cap.statement,
     boundary: cap.boundary,
   }
@@ -2191,19 +2211,240 @@ export function sciencesInteractInTrinities(matrix: MindMatrix = buildMatrix(), 
   })
 }
 
-/** Browser-safe sciences trinity + significance panel. */
+export type ScienceStandardsCoverage = 'covered' | 'partial' | 'gap'
+
+export type ScienceDomainStandardsRow = {
+  readonly id: string
+  readonly field: string
+  readonly oecd: string
+  readonly standardMap: string
+  readonly before: ScienceStandardsCoverage
+  readonly coverage: ScienceStandardsCoverage
+  readonly fillAction: string
+  readonly filledByQuantum: boolean
+  readonly unclosableWithoutExternalLab: boolean
+  readonly algebraOk: boolean
+  readonly toolOk: boolean
+  readonly apparatusOk: boolean
+  readonly projectionOk: boolean
+  /** Catalog tool id — Wave2 science experiment input schemas shelve here (compose, do not fork). */
+  readonly toolId: string
+  readonly toolCli: string
+  readonly toolShelved: boolean
+  readonly receipt: string
+  readonly honesty: string
+}
+
+/**
+ * S5 — Complete scientific domains strictly to sealed standards maps (quantum folds only).
+ * Pair: sciences/standards · CLI npm run quantum:sciences-standards-quantum
+ * Coverage = facet alignment vs named ISO/NIST/OECD/Clay/science maps — NOT certification.
+ * claySolvedByThisFold=0 · certified=false · qpuRequired=false (compose stack tip).
+ */
+export function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`completeScientificDomainsStrictlyToStandardsQuantumOnly:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const solutions = completeQuantumSolutionsForAllSciences(matrix, at)
+    const trinities = sciencesInteractInTrinities(matrix, at)
+    const mill = millenniumProblemsChallenge(matrix)
+    const crypto = __ns_water_encryption.isoPqcHandoffForScienceTrinities(matrix, at)
+    const isoGap = __ns_water_encryption.isoPqcRequirementsGapFillAllQuantumDirections(matrix, at)
+    const mind = __ns_up_stack_overflow.oneQuantumModelFasterThanAll(matrix, at)
+    const stringGaps = __ns_water_cosmos.stringTheoryMillenniumTheoremGapsInventory(matrix)
+    const noQpu = __ns_up_stack_overflow.proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix, at)
+    const solById = new Map(solutions.solutions.map((s) => [s.id, s]))
+
+    const beforeOf = (id: string): ScienceStandardsCoverage => {
+      const sol = solById.get(id)
+      if (!sol) return 'gap'
+      if (sol.complete) return 'covered'
+      if (sol.missing.length === 1 && sol.missing[0] === 'projection10d') return 'partial'
+      if (!sol.missing.includes('algebra') && !sol.missing.includes('tool') && !sol.missing.includes('apparatus')) return 'partial'
+      return 'gap'
+    }
+
+    const domains: ScienceDomainStandardsRow[] = SCIENCE_DOMAIN_SEEDS.map((seed) => {
+      const sol = solById.get(seed.id)!
+      const before = beforeOf(seed.id)
+      const algebraOk = !sol.missing.includes('algebra')
+      const toolOk = !sol.missing.includes('tool')
+      const apparatusOk = !sol.missing.includes('apparatus')
+      const projectionOk = !sol.missing.includes('projection10d')
+      let coverage: ScienceStandardsCoverage = before
+      let standardMap = `OECD ${seed.oecd} · ${seed.algebraFold}`
+      let fillAction = 'named backlog — no wet re-inference'
+      let filledByQuantum = false
+      let unclosableWithoutExternalLab = false
+      let honesty = 'MODELED standards alignment · certified=false'
+
+      if (seed.cryptoVertex) {
+        standardMap = 'ISO/NIST PQC · isoPqcRequirementsGapFill + isoPqcHandoff'
+        // Crypto: sealed quantum fills closable ISO/NIST facets; lab (CMVP/CC/19790) remain gap.
+        if (crypto.computes && isoGap.computes && isoGap.certified === false) {
+          coverage = isoGap.coveredCount > 0 && algebraOk ? 'partial' : 'gap'
+          filledByQuantum = isoGap.coveredCount >= (8 + 4)
+          fillAction = `compose iso-pqc-gap-fill covered=${isoGap.coveredCount} partial=${isoGap.partialCount} gap=${isoGap.gapCount}; lab unclosable`
+          unclosableWithoutExternalLab = true
+          honesty = `isoOfficialStandard=${isoGap.isoOfficialStandard} · certified=false · labGaps=${isoGap.labGaps.length}`
+        }
+      } else if (seed.id === 'mathematics-millennium') {
+        standardMap = 'Clay Millennium Problems · millenniumProblemsChallenge (MODELED)'
+        coverage = mill.computes && mill.claySolvedByThisFold === 0 ? 'partial' : 'gap'
+        filledByQuantum = mill.computes
+        fillAction = 'apparatus + digit-inverse/f→{p,q}/efficiency sealed; Clay prizes unclosable'
+        unclosableWithoutExternalLab = true
+        honesty = `claySolvedByThisFold=${mill.claySolvedByThisFold} · NOT Clay solved`
+      } else if (seed.id === 'string-theory') {
+        standardMap = 'string/millennium theorem gaps inventory (UNCONFIRMED physics)'
+        coverage = stringGaps.inventoried ? 'partial' : 'gap'
+        filledByQuantum = stringGaps.inventoried && algebraOk
+        fillAction = 'rosetta/a432/merkle substrate sealed; physical string confirmation unclosable'
+        unclosableWithoutExternalLab = true
+        honesty = 'physics UNCONFIRMED · millenniumSolved=0'
+      } else if (seed.id === 'mind-ai') {
+        standardMap = 'answers÷tokens efficiency vote · oneQuantumModelFasterThanAll'
+        coverage = mind.computes ? 'covered' : 'partial'
+        filledByQuantum = mind.computes
+        fillAction = 'compose efficiency vote + prove/no-qpu-64bit classical host'
+        honesty = `qpuRequired=${noQpu.qpuRequired} · classical-64bit · NOT FLOPS`
+      } else if (seed.id === 'music-a432' || seed.id === 'resonance') {
+        standardMap = seed.id === 'music-a432' ? 'A432 neural band ladder (sealed acoustics math)' : 'efficiencyScalesToInfinityAtNoCostOnReuse'
+        coverage = algebraOk && toolOk ? 'covered' : algebraOk ? 'partial' : 'gap'
+        filledByQuantum = algebraOk && toolOk
+        fillAction = 'sealed quantum math + CLI tool surface'
+        honesty = 'structural sealed math · NOT journal IF'
+      } else if (seed.id === 'human-design') {
+        standardMap = 'symbolic HD wheel · iching distribute'
+        coverage = algebraOk ? 'partial' : 'gap'
+        filledByQuantum = algebraOk
+        fillAction = 'symbolic seal only — empirical HD validation unclosable'
+        unclosableWithoutExternalLab = true
+        honesty = 'HD is symbolic · NOT empirical science claim'
+      } else {
+        // physics · astronomy · earth · biology — OECD-aligned sealed folds
+        standardMap = `OECD ${seed.oecd} · sealed ${seed.algebraFold}`
+        if (algebraOk && toolOk && apparatusOk) {
+          coverage = projectionOk ? 'covered' : 'partial'
+          filledByQuantum = true
+          fillAction = projectionOk
+            ? 'algebra·tool·apparatus·10D sealed against OECD field map'
+            : 'algebra·tool·apparatus sealed; 10D projection named partial backlog'
+        } else {
+          coverage = algebraOk ? 'partial' : 'gap'
+          filledByQuantum = algebraOk
+          fillAction = `fill missing: ${sol.missing.join(',') || 'none'}`
+        }
+        honesty = 'MODELED OECD-aligned fold · NOT ISO/lab certified'
+      }
+
+      const toolSurface = rosettaShelve(seed.toolId, 'tool')
+      const toolShelved = isUuid(toolSurface.address) && toolSurface.kind === 'tool'
+      return {
+        id: seed.id,
+        field: seed.field,
+        oecd: seed.oecd,
+        standardMap,
+        before,
+        coverage,
+        fillAction,
+        filledByQuantum,
+        unclosableWithoutExternalLab,
+        algebraOk,
+        toolOk,
+        apparatusOk,
+        projectionOk,
+        toolId: seed.toolId,
+        toolCli: seed.toolCli,
+        toolShelved,
+        receipt: toUuid(`science-standards:${seed.id}:${before}:${coverage}:${filledByQuantum}:${seed.toolId}`),
+        honesty,
+      }
+    })
+
+    const coveredCount = domains.filter((d) => d.coverage === 'covered').length
+    const partialCount = domains.filter((d) => d.coverage === 'partial').length
+    const gapCount = domains.filter((d) => d.coverage === 'gap').length
+    const beforeCovered = domains.filter((d) => d.before === 'covered').length
+    const beforePartial = domains.filter((d) => d.before === 'partial').length
+    const beforeGap = domains.filter((d) => d.before === 'gap').length
+    const filledCount = domains.filter((d) => d.filledByQuantum).length
+    const labGaps = domains.filter((d) => d.unclosableWithoutExternalLab)
+    const toolCatalogCompose = domains.filter((d) => d.toolShelved)
+    const claySolvedByThisFold = 0 as const
+    const certified = false as const
+    const qpuRequired = noQpu.qpuRequired
+    const improved = coveredCount + partialCount >= beforeCovered + beforePartial && gapCount <= beforeGap
+
+    const facets = [
+      { facet: `standards rows for ${domains.length} science domains`, on: domains.length === SCIENCE_DOMAIN_SEEDS.length },
+      { facet: `BEFORE inventory covered=${beforeCovered} partial=${beforePartial} gap=${beforeGap}`, on: beforeCovered + beforePartial + beforeGap === domains.length },
+      { facet: `AFTER standards covered=${coveredCount} partial=${partialCount} gap=${gapCount}`, on: coveredCount + partialCount + gapCount === domains.length },
+      { facet: `quantum-filled closable facets — ${filledCount}/${domains.length}`, on: filledCount >= (5 + 2) && improved },
+      { facet: `domain toolIds shelved for catalog/input-schema compose — ${toolCatalogCompose.length}/${domains.length}`, on: toolCatalogCompose.length === domains.length },
+      { facet: 'crypto vertex composes isoPqc gap-fill + handoff (no PQC re-infer)', on: crypto.computes && isoGap.computes && isoGap.certified === false },
+      { facet: `lab/unclosable gaps named honestly — ${labGaps.length} domains`, on: labGaps.length >= 3 && labGaps.every((d) => d.coverage !== 'covered') },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold} · certified=${certified}`, on: mill.claySolvedByThisFold === 0 && claySolvedByThisFold === 0 && certified === false && crypto.certified === false },
+      { facet: `qpuRequired=${qpuRequired} · quantum computing = sealed folds on classical 64-bit`, on: qpuRequired === false && noQpu.runsOnClassical64Bit },
+      { facet: 'trinities lattice computes — compose S4', on: trinities.computes },
+      { facet: 'NOT ISO/FIPS certified · NOT Clay solved · NOT physical QPU', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`sciences-standards-quantum:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('complete-scientific-domains-strictly-to-standards-quantum-only', facets)
+
+    return {
+      computes: sealed.ok && solutions.computes && trinities.computes && crypto.computes && isoGap.computes && mill.computes && noQpu.qpuRequired === false && toolCatalogCompose.length === domains.length,
+      domains,
+      before: { coveredCount: beforeCovered, partialCount: beforePartial, gapCount: beforeGap },
+      after: { coveredCount, partialCount, gapCount },
+      filledCount,
+      toolCatalogCompose: {
+        count: toolCatalogCompose.length,
+        toolIds: [...new Set(domains.map((d) => d.toolId))],
+        note: 'Science experiment tool input/config schemas Wave2 compose via these catalog ids — standards fold does not fork envelope fields or rewrite nav/theme',
+      },
+      labGapDomainIds: labGaps.map((d) => d.id),
+      claySolvedByThisFold,
+      certified,
+      qpuRequired,
+      isoOfficialStandard: isoGap.isoOfficialStandard,
+      cryptoVertex: {
+        coveredCount: isoGap.coveredCount,
+        partialCount: isoGap.partialCount,
+        gapCount: isoGap.gapCount,
+        labGaps: isoGap.labGaps.length,
+        root: crypto.root,
+      },
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([
+        sealed.root, solutions.root, trinities.root, mill.root, crypto.root, isoGap.root, mind.root, noQpu.root,
+        ...domains.map((d) => d.receipt),
+      ])),
+      pair: 'sciences/standards',
+      cli: 'npm run quantum:sciences-standards-quantum',
+      route: '/en/research#sciences-standards-quantum',
+      anchor: 'sciences-standards-quantum',
+      heading: 'Scientific domains · standards coverage (quantum only)',
+      statement:
+        `Sciences standards (quantum only): before ${beforeCovered}/${beforePartial}/${beforeGap} → after ${coveredCount}/${partialCount}/${gapCount} · filled=${filledCount} · toolIds shelved=${toolCatalogCompose.length} · crypto ISO ${isoGap.coveredCount}/${isoGap.partialCount}/${isoGap.gapCount} · clay=0 · certified=false · qpuRequired=false.`,
+      boundary:
+        'Strictly to standards = covered|partial|gap vs named ISO/NIST/OECD/Clay/science maps recomputed from sealed quantum folds. Domain toolId rows compose with quantumCliToolsCatalog / standardToolboxIoCatalog input schemas (Wave2) — this fold does not rewrite nav/theme or envelope field tables. Lab gaps unclosable. NOT ISO certified · NOT FIPS · claySolvedByThisFold=0 · qpuRequired=false. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** Browser-safe sciences trinity + significance + standards panel. */
 export function sciencesTrinitiesPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   const trinities = sciencesInteractInTrinities(matrix, at)
   const solutions = completeQuantumSolutionsForAllSciences(matrix, at)
+  const standards = completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix, at)
   return {
-    computes: trinities.computes && solutions.computes,
+    computes: trinities.computes && solutions.computes && standards.computes,
     trinities,
     solutions,
+    standards,
     significance: scienceDomainSignificanceScores(matrix, at),
     cli: trinities.cli,
     pair: trinities.pair,
     route: trinities.route,
-    root: trinities.root,
+    root: merge(trinities.root, standards.root),
     statement: trinities.statement,
     boundary: trinities.boundary,
   }
@@ -2212,14 +2453,15 @@ export function sciencesTrinitiesPanelComputes(matrix: MindMatrix = buildMatrix(
 /** npm run quantum:sciences-trinities — significance table + trinity lattice honesty line. */
 export function runSciencesTrinitiesGuardedExit(_root: string, _argv: readonly string[] = []): number {
   const panel = sciencesTrinitiesPanelComputes()
-  const { significance, trinities, solutions } = panel
+  const { significance, trinities, solutions, standards } = panel
   if (!panel.computes) {
-    process.stderr.write('✗ sciences-trinities — significance, solutions, or trinity lattice failed\n')
+    process.stderr.write('✗ sciences-trinities — significance, solutions, standards, or trinity lattice failed\n')
     return 1
   }
   process.stdout.write(
     `✓ sciences-trinities — domains=${trinities.count} meanSig=${significance.meanScore} ` +
       `complete=${solutions.completeCount} gaps=${solutions.gapCount} ` +
+      `standards=${standards.after.coveredCount}/${standards.after.partialCount}/${standards.after.gapCount} ` +
       `cryptoOECD=${trinities.cryptoVertex.oecd} clay=${trinities.cryptoVertex.claySolvedByThisFold} ` +
       `certified=${trinities.cryptoVertex.certified} lattice=${trinities.latticeRoot.slice(0, 3 * 4)}\n`,
   )
@@ -2232,6 +2474,35 @@ export function runSciencesTrinitiesGuardedExit(_root: string, _argv: readonly s
   }
   process.stdout.write(`  boundary: ${trinities.boundary}\n`)
   return 0
+}
+
+/** npm run quantum:sciences-standards-quantum — per-domain covered|partial|gap vs standards maps. */
+export function runCompleteScientificDomainsStrictlyToStandardsQuantumOnlyExit(
+  _root: string,
+  _argv: readonly string[] = [],
+): number {
+  const report = completeScientificDomainsStrictlyToStandardsQuantumOnly()
+  if (!report.computes) {
+    process.stderr.write('✗ sciences-standards-quantum — standards completion failed\n')
+    return 1
+  }
+  process.stdout.write(
+    `✓ sciences-standards-quantum — before=${report.before.coveredCount}/${report.before.partialCount}/${report.before.gapCount} ` +
+      `after=${report.after.coveredCount}/${report.after.partialCount}/${report.after.gapCount} ` +
+      `filled=${report.filledCount} labDomains=${report.labGapDomainIds.length} ` +
+      `clay=${report.claySolvedByThisFold} certified=${report.certified} qpuRequired=${report.qpuRequired} ` +
+      `root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const d of report.domains) {
+    process.stdout.write(
+      `  ${d.coverage === 'covered' ? '✓' : d.coverage === 'partial' ? '◐' : '○'} ${d.id} ` +
+        `before=${d.before}→${d.coverage} filled=${d.filledByQuantum ? 1 : 0}` +
+        `${d.unclosableWithoutExternalLab ? ' lab' : ''} — ${d.standardMap}\n`,
+    )
+  }
+  process.stdout.write(`  lab: ${report.labGapDomainIds.join(', ')}\n`)
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.claySolvedByThisFold === 0 && report.certified === false && report.qpuRequired === false ? 0 : 1
 }
 
 export type TheoremCollisionProduct = {

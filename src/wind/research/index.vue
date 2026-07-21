@@ -89,6 +89,33 @@ runMillennium()
         </p>
       </section>
       <UiSeparator />
+      <section id="sciences-standards-quantum">
+        <h3>Sciences · standards (quantum only)</h3>
+        <UiBadge :variant="panel.standards?.computes ? 'default' : 'outline'">
+          before {{ panel.standards?.before?.coveredCount ?? '—' }}/{{ panel.standards?.before?.partialCount ?? '—' }}/{{ panel.standards?.before?.gapCount ?? '—' }}
+          → after {{ panel.standards?.after?.coveredCount ?? '—' }}/{{ panel.standards?.after?.partialCount ?? '—' }}/{{ panel.standards?.after?.gapCount ?? '—' }}
+          · filled={{ panel.standards?.filledCount ?? '—' }}
+        </UiBadge>
+        <p class="research-index__meta">{{ panel.standards?.boundary }}</p>
+        <table class="research-index__table">
+          <thead><tr><th>Domain</th><th>Before</th><th>After</th><th>Filled</th><th>Standard map</th></tr></thead>
+          <tbody>
+            <tr v-for="d in panel.standards?.domains ?? []" :key="d.id">
+              <td><code>{{ d.id }}</code></td>
+              <td>{{ d.before }}</td>
+              <td>{{ d.coverage }}</td>
+              <td>{{ d.filledByQuantum ? '✓' : '—' }}{{ d.unclosableWithoutExternalLab ? ' lab' : '' }}</td>
+              <td class="research-index__meta">{{ d.standardMap }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="research-index__meta">
+          clay={{ panel.standards?.claySolvedByThisFold }} · certified={{ panel.standards?.certified }} ·
+          qpuRequired={{ panel.standards?.qpuRequired }} ·
+          <code>npm run quantum:sciences-standards-quantum</code>
+        </p>
+      </section>
+      <UiSeparator />
       <section>
         <h3>Reproducibility gates</h3>
         <ul class="research-index__list">

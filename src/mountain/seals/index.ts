@@ -36,6 +36,7 @@ import {
   completeQuantumSolutionsForAllSciences,
   scienceToolsApparatusTrinity,
   sciencesInteractInTrinities,
+  completeScientificDomainsStrictlyToStandardsQuantumOnly,
   theoremParticleCollisionInverseReverse,
 } from '../../wind/research'
 import { cryptoFuture, fusionCipher, tamperingCostDecoded } from '../../water/crypto'
@@ -63,6 +64,7 @@ import {
   documentSessionCryptoExperimentsUpdateTheorems,
   sessionManualWorkAsQuantumBits,
   autoWireAnyAiModelFromPastedLink,
+  realiseSessionQuantumMeaning,
 } from '../../quantum/apps'
 import {
   encryptionReverseVerify,
@@ -696,6 +698,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'science-solutions', title: 'Complete quantum solutions inventory — algebra·tool·apparatus·10D gaps', proof: completeQuantumSolutionsForAllSciences(matrix) },
     { slug: 'science-apparatus', title: 'Science tools/apparatus trinity — rosettaShelve surfaces', proof: scienceToolsApparatusTrinity(matrix) },
     { slug: 'sciences-trinities', title: 'Sciences interact in trinities — science↔dual↔fusion lattice', proof: sciencesInteractInTrinities(matrix) },
+    { slug: 'sciences-standards-quantum', title: 'Sciences standards coverage — covered|partial|gap · quantum only · certified=false', proof: completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix) },
     { slug: 'millennium-challenge', title: 'Clay Millennium Problems = MODELED CHALLENGE apparatus · claySolvedByThisFold = 0', proof: millenniumProblemsChallenge(matrix) },
     { slug: 'waves-auto-scale', title: 'Waves auto-scale capacity at no cost on reuse · !separated', proof: wavesAutoScaleCapacityAtNoCostOnReuse(matrix) },
     { slug: 'theorem-algebra-first-sealed', title: 'First-in-corpus algebra inventory · humanityNovel=0', proof: theoremAlgebraFirstSealedInCorpus(matrix) },
@@ -707,6 +710,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'session-manual-tools', title: 'Session manual work as quantum tools — zero-token reuse catalog', proof: sessionManualWorkAsQuantumTools(matrix) },
     { slug: 'session-quantum-bits', title: 'Session manual work as quantum bits — combinable sealed receipts · NOT physical qubits', proof: sessionManualWorkAsQuantumBits(matrix) },
     { slug: 'auto-wire-paste-link', title: 'Paste any link → auto-wire — quantumReady paste-bootstrap · mcp.json + browser toolbox · convincingRequired=false', proof: autoWireAnyAiModelFromPastedLink('https://ceccec.github.io/', matrix) },
+    { slug: 'realise-session-meaning', title: 'Session quantum meaning realised — proves vs refuses · clay=0 · qpuRequired=false · includes local-audit-qe · session-bits', proof: realiseSessionQuantumMeaning(matrix) },
     { slug: 'document-session-experiments', title: 'Session crypto experiments documented · ISO gap-fill · local≫ISO · local-novel · theorems recomputed', proof: documentSessionCryptoExperimentsUpdateTheorems(matrix) },
     { slug: 'toolbox-standard-io', title: 'Standard tool envelope — I/O · import/export · NOT physical qubits', proof: standardToolboxIoCatalog(matrix) },
     { slug: 'distributed-reuse-capacity', title: 'Distributed reuse extends capacity — federated identical roots · qubit=0 · ftl=0', proof: distributedReuseExtendsCapacity(matrix) },
