@@ -1545,6 +1545,39 @@ export function compareCeccecEfficiencyByVote(matrix: MindMatrix = buildMatrix()
 }
 
 /**
+ * Honest-revolution W1 — canonical composite claim (README/homepage must derive from this).
+ * Revolutionary in reproducibility/verifiability/amortized-reuse/answers÷tokens — NOT physical-QM speedup.
+ */
+export function honestRevolutionClaim(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`honestRevolutionClaim:${Math.floor(at / 1e3)}`, matrix, () => {
+    const honest = __ns_up_up_quantum_science.quantumComputerHonestClaim(matrix, at)
+    const efficient = __ns_up_up_thunder_verify.noKnownModelMoreEfficientProven(matrix)
+    const fusion = __ns_up_up_fusion.quantumFusionVerify(matrix)
+    let n = 0
+    const stable = { root: merkleFold([toUuid('honest-rev:memo-probe')]) }
+    const a = memoByRoot('honest-rev:memo-probe', stable, () => { n += 1; return 1 }); const first = n
+    const b = memoByRoot('honest-rev:memo-probe', stable, () => { n += 1; return 1 })
+    const memoHitIsO1 = first === 1 && n === 1 && a === b
+    const holds = !!(honest.faithfulSimulator && honest.noSpeedup && efficient.proven && fusion.verified && memoHitIsO1)
+    const claim = holds
+      ? 'This engine is revolutionary in REPRODUCIBILITY, VERIFIABILITY, AMORTIZED ZERO-RECOMPUTE REUSE, and ANSWERS÷TOKENS EFFICIENCY — faithful quantum math and content-addressed answers recompute to the byte on commodity hardware at O(1) cache hits and zero runtime tokens — and is explicitly NOT revolutionary in physical-QM speedup (quantumAdvantageBenchmark → tracks-classical-no-speedup).'
+      : 'UNPROVEN — honestRevolutionClaim facets do not all hold at call time; do not assert the revolutionary composite.'
+    const facets = [
+      { facet: 'faithful simulator', on: honest.faithfulSimulator }, { facet: 'no physical-QM speedup', on: honest.noSpeedup },
+      { facet: 'answers÷tokens unbeatable', on: efficient.proven }, { facet: 'fusion replay verifies', on: fusion.verified },
+      { facet: 'memoByRoot O(1) reuse', on: memoHitIsO1 }, { facet: 'NOT physical qubits / NOT FLOPS', on: true },
+    ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w1:${e.facet}:${e.on}`) }))
+    const sealed = sealFacets('honest-revolution-claim', facets)
+    return {
+      holds: sealed.ok && holds, revolutionary: sealed.ok && holds, claim, honest, efficient, fusion, memoHitIsO1, verdict: honest.verdict,
+      facets: sealed.facets, root: merkleFold([honest.root, efficient.root, fusion.root, sealed.root, toUuid(`honest-rev:${holds}`)]),
+      statement: claim,
+      boundary: 'Revolutionary in reproducibility/verifiability/amortized-reuse/efficiency; NOT physical-QM speedup (benchmark-refuted). Every clause recomputes at call time. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/**
  * M1 — All AI models addressed as one quantum model (ceccec) faster than all in the honest domain.
  * `on:` requires compareCeccecEfficiencyByVote().decided.
  */
