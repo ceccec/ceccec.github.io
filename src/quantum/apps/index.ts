@@ -2934,6 +2934,11 @@ const HONEST_CI_BROWSER_GAP_IDS = [
   'import-path-distance',
   'folder-gravity',
   'compact-types-constants',
+  'gravity-dry',
+  'src-index',
+  'folder-index',
+  'size-free',
+  'gravity-gate',
   'offender-spec',
   'trinity-speedup',
   'educational-gaps-audit',
@@ -3405,6 +3410,27 @@ const MCP_COMMANDS_SCRIPTS_AUDIT_SEEDS = [
     detail: 'Catalog CI-only automate-nightly omitted from honest residual set → mcpBrowserParity residualOnlyHonestCi false',
     status: 'closed' as const,
     fix: 'HONEST_CI_BROWSER_GAP_IDS includes automate-nightly' },
+  {
+    id: 'gravity-dry-honest-ci-gap',
+    kind: 'gap' as const,
+    names: ['gravity-dry', 'HONEST_CI_BROWSER_GAP_IDS'],
+    detail: 'Catalog CI-only gravity-dry (#107) omitted from honest residual set → mcpBrowserParity residualOnlyHonestCi false',
+    status: 'closed' as const,
+    fix: 'HONEST_CI_BROWSER_GAP_IDS includes gravity-dry' },
+  {
+    id: 'src-index-honest-ci-gap',
+    kind: 'gap' as const,
+    names: ['src-index', 'folder-index', 'HONEST_CI_BROWSER_GAP_IDS'],
+    detail: 'Catalog CI-only src-index/folder-index (#107) omitted from honest residual set → mcpBrowserParity residualOnlyHonestCi false',
+    status: 'closed' as const,
+    fix: 'HONEST_CI_BROWSER_GAP_IDS includes src-index · folder-index' },
+  {
+    id: 'size-free-honest-ci-gap',
+    kind: 'gap' as const,
+    names: ['size-free', 'gravity-gate', 'HONEST_CI_BROWSER_GAP_IDS'],
+    detail: 'Catalog CI-only size-free/gravity-gate (#107) omitted from honest residual set → mcpBrowserParity residualOnlyHonestCi false',
+    status: 'closed' as const,
+    fix: 'HONEST_CI_BROWSER_GAP_IDS includes size-free · gravity-gate' },
 ] as const
 
 export function mcpCommandsScriptsGapsAudit(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -3442,7 +3468,7 @@ export function mcpCommandsScriptsGapsAudit(matrix: MindMatrix = buildMatrix(), 
       { facet: 'mcp-commands-scripts-gaps-audit catalogued', on: auditInCatalog },
       { facet: 'f-inverse-pair CLI named (not local-math synonym)', on: fInverseNamed },
       { facet: 'PRIMARY mcp tools/list ≡ toolbox (compose mcpBrowserParity)', on: parity.mcpMatchesToolbox && mcpList.computes },
-      { facet: 'mcpBrowserParity residualOnlyHonestCi (plasma+trinity named)', on: parity.residualOnlyHonestCi && parity.computes },
+      { facet: 'mcpBrowserParity residualOnlyHonestCi (plasma+trinity+fusion-fs named)', on: parity.residualOnlyHonestCi && parity.computes },
       { facet: 'conceptTools+trading:* REFUSE PRIMARY — kept-intentional honest residual', on: conceptToolsKept && tradingKept && residualCount === 0 },
       { facet: 'qpuRequired=false · clay=0', on: qpuRequired === false },
       { facet: `no open residual rows · kept-intentional=${keptCount}`, on: residualCount === 0 && keptCount >= (2 * 2) },
@@ -3476,7 +3502,7 @@ export function mcpCommandsScriptsGapsAudit(matrix: MindMatrix = buildMatrix(), 
       statement:
         `MCP/scripts audit — overlap=${overlapCount} useless=${uselessCount} gap=${gapCount} closedOn=${closedOn} closed=${closedCount} residual=${residualCount} kept=${keptCount} · qpuRequired=false · clay=0.`,
       boundary:
-        'HONEST: collapses synonym npm exits and stdio wave stubs; REFUSE PRIMARY inflate for conceptTools+trading:* (kept-intentional); plasma+trinity in HONEST_CI. NOT physical QPU. HARMONY ≠ TRUTH.' }
+        'HONEST: collapses synonym npm exits and stdio wave stubs; REFUSE PRIMARY inflate for conceptTools+trading:* (kept-intentional); plasma+trinity+fusion-fs in HONEST_CI. NOT physical QPU. HARMONY ≠ TRUTH.' }
   })
 }
 
