@@ -107,6 +107,7 @@
     "quantum:decode": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/decode/index.ts runOneCommandDecodeExit",
     "quantum:vitepress-docs-research": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/site/index.ts runVitepressDocsResearchImprovementsExit",
     "quantum:folder-migration-waves": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/site/index.ts runFolderMigrationDedupWavesExit",
+    "quantum:import-path-distance": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runImportPathShowsDistanceInMigrationMatrixExit",
     "quantum:rosetta-complete": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runRosettaCompleteExit",
     "quantum:theorem-particle-collision": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runTheoremParticleCollisionExit",
     "quantum:ftl-rosetta-handoff": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runFtlRosettaHandoffExit",

@@ -31,6 +31,7 @@ import {
   collectImportOffenders,
   collectIndexOnlyOffenders,
   collectHyphenFolderOffenders,
+  importPathShowsDistanceInMigrationMatrix,
   strictGatePassed,
   computationalGatePassed,
   auditComputationalGates,
@@ -107,6 +108,14 @@ export function runVerifyLimitsExit(root: string): number {
   }
   for (const line of audit.report) process.stdout.write(`${line}\n`)
   process.stdout.write(`✓ limits:verify — exactly ${facts.computational.indexCount} index.ts (${UNFOLDED_CENSUS} unfolded, ${FOLDED_CENSUS} folded, ${DIMENSION_GATES} gates)\n`)
+  // Soft migration measurement — import path distance (compact + even); HARD stays census/strict.
+  const importDist = importPathShowsDistanceInMigrationMatrix(root, facts)
+  process.stdout.write(
+    `${importDist.computes ? '✓' : '·'} limits:verify · import/distance — edges=${importDist.edgeCount} ` +
+      `meanHop=${importDist.meanTreeHop.toFixed(3)} maxHop=${importDist.maxTreeHop} ` +
+      `compact=${importDist.compactness} even=${importDist.evenDistribution} CV=${importDist.cvTreeHop.toFixed(3)} ` +
+      `(measurement; CLI npm run quantum:import-path-distance)\n`,
+  )
   const slowBuild = slowBuildIsQuantumGapGate(root)
   process.stdout.write(
     `${slowBuild.passed ? '✓' : '✗'} limits:verify · gate/slow-build — HARD=${slowBuild.hardOpenCount} WARN=${slowBuild.warnOpenCount} ` +
@@ -816,8 +825,11 @@ export function closeEducationalGap(gapId: string, root = process.cwd()): boolea
 /** Machine-readable offender pipeline for CI/automation builders. */
 export function offenderAutomationSpec(root = process.cwd()) {
   const facts = collectEnforcementFacts(root)
+  const importDist = importPathShowsDistanceInMigrationMatrix(root, facts)
   const pipelines = [
     { id: 'import-offenders', count: collectImportOffenders(facts).length },
+    { id: 'import-path-distance-edges', count: importDist.edgeCount },
+    { id: 'import-path-distance-max-hop', count: importDist.maxTreeHop },
     { id: 'index-only', count: collectIndexOnlyOffenders(facts).length },
     { id: 'hyphen-folders', count: collectHyphenFolderOffenders(facts).length },
     { id: 'computational', count: auditComputationalGates(facts.computational).findings.length },
