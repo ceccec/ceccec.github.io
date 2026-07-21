@@ -88,6 +88,7 @@
     "quantum:name-entropy-verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/stack/index.ts runNameEntropyVerifyGuardedExit",
     "quantum:simplicity-measure-verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/stack/index.ts runSimplicityMeasureVerifyGuardedExit",
     "quantum:efficiency-vote": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/stack/index.ts runEfficiencyVoteExit",
+    "quantum:prove-no-qpu-64bit": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/stack/index.ts runProveCeccecSpeedVsRestNoQuantumHardwareAny64BitExit",
     "quantum:educational-gaps-audit": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/ops/index.ts runEducationalGapsAuditExit",
     "quantum:slow-gap": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runSlowProcessIsQuantumGapExit",
     "quantum:document-session-experiments": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runDocumentSessionCryptoExperimentsExit",

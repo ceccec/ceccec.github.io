@@ -79,6 +79,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'sciences/trinities',
   'forward/inverse/reverse',
   'learn/best',
+  'prove/no-qpu-64bit',
   'animations/rosetta',
   'train/rosetta',
   'challenge/millennium',
