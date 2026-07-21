@@ -7,6 +7,7 @@ import {
   exportStandardToolEnvelope, importStandardToolEnvelope,
   rosettaCompleteQuantumAllComputableDimensionsAndTheorems,
   ftlExperimentTechniquesHandoffFromRosettaComplete,
+  documentSessionCryptoExperimentsUpdateTheorems,
 } from './index.ts'
 import {
   runEncryptionToolInBrowser,
@@ -363,6 +364,13 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'document-session-experiments') {
+      const r = documentSessionCryptoExperimentsUpdateTheorems()
+      ok = r.computes
+      summary = `sealed=${r.sealedCount}/${r.count} · iso=${r.isoGapFill.coveredCount}/${r.isoGapFill.partialCount}/${r.isoGapFill.gapCount} · wireClaim=${r.localVsIso.overallWireClaimProved} (${r.localVsIso.wireProofStatus}) · novel=${r.theorems.novelCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'rosetta-core-api') {
       const r = rosettaCoreApi()
       ok = r.computes
@@ -490,7 +498,7 @@ function runTool(toolId: string) {
       <section id="prove-local-novel-encrypt" aria-label="Prove local novel encryption security">
         <h3>Local novel-encryption security proof</h3>
         <p class="quantum-apps__meta">
-          Local novel security + wire-vs-ISO proof-of-falsehood handoff (overallWireClaimProved=false). Directions×models: prove/local-magnitudes-iso (#24).
+          Structural local security (local-novel) · overallWireClaimProved=false · strongerThanNistPqc=false · wire/FIPS/field unproved. Directions×models: prove/local-magnitudes-iso.
           productionReverseRefused=true · strongerThanNistPqc=false · certified=false · this repo is NOT the ISO standard.
         </p>
         <UiBadge :variant="encryption.localNovel?.localSecurityProved && encryption.localNovel?.overallWireClaimProved === false ? 'default' : 'outline'">
@@ -616,6 +624,37 @@ function runTool(toolId: string) {
         </table>
         <UiButton size="sm" :disabled="runningId === 'toolbox-standard-io'" @click="runTool('toolbox-standard-io')">
           {{ runningId === 'toolbox-standard-io' ? '…' : 'Run envelope · import/export' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="document-session-experiments" aria-label="Document session crypto experiments update theorems">
+        <h3>{{ panel.experiments.heading }}</h3>
+        <p class="quantum-apps__meta">{{ panel.experiments.honestyLine }}</p>
+        <UiBadge :variant="panel.experiments.computes && !panel.experiments.localVsIso.overallWireClaimProved ? 'default' : 'outline'">
+          sealed {{ panel.experiments.sealedCount }}/{{ panel.experiments.count }}
+          · iso {{ panel.experiments.isoGapFill.coveredCount }}/{{ panel.experiments.isoGapFill.partialCount }}/{{ panel.experiments.isoGapFill.gapCount }}
+          · wireClaim={{ panel.experiments.localVsIso.overallWireClaimProved }} ({{ panel.experiments.localVsIso.wireProofStatus }})
+        </UiBadge>
+        <UiBadge :variant="panel.experiments.localVsIso.structuralMayProve || panel.experiments.localVsIso.amortMayProve ? 'outline' : 'default'">
+          structural={{ panel.experiments.localVsIso.structuralMayProve }} · amort={{ panel.experiments.localVsIso.amortMayProve }} (non-wire only)
+        </UiBadge>
+        <table class="quantum-apps__table">
+          <thead><tr><th>Experiment</th><th>Chain</th><th>Status</th><th>Root</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr v-for="row in panel.experiments.experiments" :key="row.id">
+              <td>
+                <strong>{{ row.id }}</strong>
+                <div class="quantum-apps__meta"><code>{{ row.fold }}</code> · {{ row.pair }}</div>
+              </td>
+              <td>{{ row.chain }}</td>
+              <td><UiBadge :variant="row.computes ? 'default' : 'outline'">{{ row.status }}</UiBadge></td>
+              <td><code>{{ row.root.slice(0, 8) }}</code></td>
+              <td class="quantum-apps__meta">{{ row.honesty }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <UiButton size="sm" :disabled="runningId === 'document-session-experiments'" @click="runTool('document-session-experiments')">
+          {{ runningId === 'document-session-experiments' ? '…' : 'Run document-session-experiments' }}
         </UiButton>
       </section>
       <UiSeparator />

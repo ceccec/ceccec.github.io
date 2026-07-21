@@ -1415,6 +1415,41 @@ export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatr
         kind: 'classical-restatement',
         boundary: 'Classical Shor→PQC engineering consensus recomputed as sealed facets — NOT corpus-novel algebra; NOT ISO/FIPS certification.',
       },
+      {
+        theorem: 'local reverse timed vs NIST/ISO is toy measurement (certified=false)',
+        algebraFold: 'localEncryptionReverseTimedVsStandards',
+        home: 'src/water/encryption',
+        kind: 'classical-restatement',
+        boundary: 'Demo reverse wall-clock vs AES-128/256 · ML-KEM classical bits — recomputed receipt; NOT PQC break; certified=false; production reverse refused.',
+      },
+      {
+        theorem: '1 Tbit/s claim is honest status receipt (wire≠amortized-reuse)',
+        algebraFold: 'proveOneTbitRealtimeEncryptionClaim',
+        home: 'src/water/encryption',
+        kind: 'classical-restatement',
+        boundary: 'wire-crypto NOT proved (no AES bench); amortized-reuse-memo ≠ wire AES-GCM; NOT FIPS/ISO certified — status receipt only.',
+      },
+      {
+        theorem: 'local novel-encryption security is structural+adversarial+measured-local',
+        algebraFold: 'proveLocalNovelEncryptionSecurity',
+        home: 'src/water/encryption',
+        kind: 'classical-restatement',
+        boundary: 'Local property proofs + refuse gates + timed allowlist reverse + ISO/NIST map as reference — productionReverseRefused=true; certified=false; NOT corpus-novel algebra claim.',
+      },
+      {
+        theorem: 'ISO does not universally require PQC (gap-fill covered/partial/gap)',
+        algebraFold: 'isoPqcRequirementsGapFillAllQuantumDirections',
+        home: 'src/water/encryption',
+        kind: 'classical-restatement',
+        boundary: 'MODELED gap-fill toward ISO/NIST PQC guidance — covered|partial|gap; universalMandate=false; isoOfficialStandard=false; certified=false; lab gaps unclosable.',
+      },
+      {
+        theorem: 'local≫ISO wire claim is proof-of-falsehood (overallWireClaimProved=false)',
+        algebraFold: 'proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections',
+        home: 'src/water/encryption',
+        kind: 'classical-restatement',
+        boundary: 'Wire-crypto-security-bits: demo≪ML-KEM → overallWireClaimProved=false. Structural/amort may prove ≥100× under named non-wire metrics only. NOT ISO certified; does NOT beat ML-KEM confidentiality.',
+      },
     ]
 
     const algebraRootOf = (fold: string): string => {
@@ -1432,6 +1467,11 @@ export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatr
         case 'quantumAdvantageBenchmark': return toUuid(`classical:qm-sim:${fold}`)
         case 'pauliAlgebraCloses': return toUuid(`classical:pauli:${fold}`)
         case 'pqcNecessityFromShorCompose': return toUuid(`classical:pqc-necessity:${fold}`)
+        case 'localEncryptionReverseTimedVsStandards': return __ns_water_encryption.localEncryptionReverseTimedVsStandards(matrix).root
+        case 'proveOneTbitRealtimeEncryptionClaim': return __ns_water_encryption.proveOneTbitRealtimeEncryptionClaim(matrix).root
+        case 'proveLocalNovelEncryptionSecurity': return __ns_water_encryption.proveLocalNovelEncryptionSecurity(matrix).root
+        case 'isoPqcRequirementsGapFillAllQuantumDirections': return __ns_water_encryption.isoPqcRequirementsGapFillAllQuantumDirections(matrix).root
+        case 'proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections': return __ns_water_encryption.proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matrix).root
         default: return toUuid(`algebra-fold:${fold}`)
       }
     }
@@ -1457,8 +1497,8 @@ export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatr
         on: novel.length >= 5 && novelHold && novel.every((r) => isUuid(r.algebraRoot) && r.ray >= 0),
       },
       {
-        facet: `CLASSICAL RESTATEMENTS MARKED — ${classical.length} rows (Basel · Poincaré-external · QM-sim · string-algebra lit · Pauli) tagged classical-restatement`,
-        on: classical.length >= 4 && classical.every((r) => r.kind === 'classical-restatement' && !r.novelty),
+        facet: `CLASSICAL RESTATEMENTS MARKED — ${classical.length} rows (Basel · Poincaré-external · QM-sim · string-algebra lit · Pauli · PQC · local-reverse/1tbit/local-novel · ISO gap-fill · local≫ISO wire-falsehood) tagged classical-restatement`,
+        on: classical.length >= (2 * 5) && classical.every((r) => r.kind === 'classical-restatement' && !r.novelty),
       },
       {
         facet: `ROSETTA-ADDRESSED — every row.ray === rosettaRayOf(algebraFold) (${rows.every((r) => r.ray === rayOf(r.algebraFold))}); rosettaCoreApi sibling not required`,
@@ -1521,6 +1561,13 @@ export function theoremTenDProjectionsProveAlgebraRoots(matrix: MindMatrix = bui
       if (fold === 'theSevenMillenniumProblemsDefinedFormallyUnclaimed') return 'living-torus'
       if (fold === 'quantumAdvantageBenchmark') return 'unit-distance'
       if (fold === 'pqcNecessityFromShorCompose') return 'labyrinth'
+      if (
+        fold === 'localEncryptionReverseTimedVsStandards'
+        || fold === 'proveOneTbitRealtimeEncryptionClaim'
+        || fold === 'proveLocalNovelEncryptionSecurity'
+        || fold === 'isoPqcRequirementsGapFillAllQuantumDirections'
+        || fold === 'proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections'
+      ) return 'labyrinth'
       return novel ? 'movie-10d' : 'hologram'
     }
 

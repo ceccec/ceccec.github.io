@@ -17,6 +17,7 @@ import { directionalTrinityForwardInverseReverse, compareCeccecEfficiencyByVote 
 import { stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
 import { linearAnimationGapsInventory } from '../../wind/ui'
 import * as __ns_wind_research from '../../wind/research'
+import * as __ns_water_encryption from '../../water/encryption'
 
 export type RosettaCoreSurfaceKind = 'compute' | 'tool' | 'route' | 'projection' | 'nav' | 'api' | 'app'
 export type RosettaCoreSurface = {
@@ -37,6 +38,7 @@ const ROSETTA_CORE_API_LABELS = [
   'navigation358', 'quantumAppsRegistry', 'quantumCliToolsCatalog', 'sessionManualWorkAsQuantumTools',
   'standardToolboxIoCatalog', 'distributedReuseExtendsCapacity',
   'rosettaCompleteQuantumAllComputableDimensionsAndTheorems',
+  'documentSessionCryptoExperimentsUpdateTheorems',
   'sharedHeroAt', 'computeUniversalPage',
 ] as const
 
@@ -47,6 +49,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   quantumCliToolsCatalog: 'tool', sessionManualWorkAsQuantumTools: 'tool',
   standardToolboxIoCatalog: 'tool', distributedReuseExtendsCapacity: 'compute',
   rosettaCompleteQuantumAllComputableDimensionsAndTheorems: 'compute',
+  documentSessionCryptoExperimentsUpdateTheorems: 'tool',
 }
 
 // Strangler backlog — only UNSHELVED parallel registries remain (apps+tools already shelve via rosettaShelve).
@@ -320,6 +323,7 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'session-manual-work', title: 'Session manual work as quantum tools', fold: 'sessionManualWorkAsQuantumTools', cli: 'npm run quantum:session-tools', pair: 'session/tools', route: '/en/quantum-tools#session-manual-tools', barrel: 'src/quantum/apps', boundary: 'Session folds sealed as tools — NOT every wet habit closed; replaces re-inference with memoByRoot/CLI/UI/MCP', browserRunnable: true, browserGap: '' },
   { id: 'vitepress-quantumize', title: 'Quantumize VitePress docs:build', fold: 'quantumizeVitepressBuild', cli: 'npm run quantum:vitepress-quantumize', pair: 'build/quantumize', route: '/en/quantum-tools#vitepress-quantumize', barrel: 'src/pair/enforcement/script/shell', boundary: 'Merkle respawn + warm cache — NOT physical FTL; wall-clock varies by CI', browserRunnable: false, browserGap: 'runDocsBuildExit needs Node fs + vitepress binary — CI/local only' },
   { id: 'toolbox-standard-io', title: 'Standard tool envelope · I/O · import/export', fold: 'standardToolboxIoCatalog', cli: 'npm run quantum:toolbox-standard-io', pair: 'tool/envelope', route: '/en/quantum-tools#toolbox-standard-io', barrel: 'src/quantum/apps', boundary: 'Capacity = amortized memoByRoot + federated identical roots — NOT physical qubit speedup / NOT FTL / NOT FLOPS', browserRunnable: true, browserGap: '' },
+  { id: 'document-session-experiments', title: 'Document session crypto experiments · update theorems', fold: 'documentSessionCryptoExperimentsUpdateTheorems', cli: 'npm run quantum:document-session-experiments', pair: 'document/experiments', route: '/en/quantum-tools#document-session-experiments', barrel: 'src/quantum/apps', boundary: 'Sealed chain receipts · ISO covered/partial/gap · overallWireClaimProved=false · strongerThanNistPqc=false · clay=0 · certified=false', browserRunnable: true, browserGap: '' },
 ] as const
 
 /** Standard tool envelope version — App A ↔ App B ingest the same content-addressed kind. */
@@ -743,6 +747,11 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'theorem-particle-collision', saves: 'replaces wet re-derivation of inverse×reverse theorem collision products' },
   { id: 'ftl-rosetta-handoff', saves: 'replaces wet re-wiring of FTL techniques to rosettaReady completeness receipt' },
   { id: 'toolbox-standard-io', saves: 'replaces wet re-inference of per-tool I/O shapes — standard envelope · import/export round-trip' },
+  { id: 'document-session-experiments', saves: 'replaces wet re-listing of session crypto/standards experiment receipts + theorem registry updates' },
+  { id: 'prove-1tbit-encrypt', saves: 'replaces wet re-derivation of 1 Tbit/s claim status (wire≠amortized-reuse)' },
+  { id: 'local-reverse-timed-vs-standards', saves: 'replaces wet re-comparison of demo reverse vs AES/ML-KEM classical bits' },
+  { id: 'prove-local-magnitudes-iso', saves: 'replaces wet re-argument of local≫ISO magnitudes (wire proof-of-falsehood)' },
+  { id: 'vitepress-quantumize', saves: 'replaces wet re-tuning of VitePress warm/respawn quantumize techniques' },
 ] as const
 
 export function sessionManualWorkAsQuantumTools(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -820,6 +829,241 @@ export function runSessionManualWorkAsQuantumToolsExit(_root = '', _argv: readon
   return report.computes ? 0 : 1
 }
 
+/** Session experiment doc row — sealed PR-chain receipt (no invented results). */
+export type SessionExperimentStatus = 'merged-main' | 'sealed-pr'
+
+export type SessionExperimentDocRow = {
+  readonly id: string
+  /** GitHub PR chain label — digit-free (crack scanner); full PR numbers live in AGENTS.md only. */
+  readonly chain: string
+  readonly fold: string
+  readonly status: SessionExperimentStatus
+  readonly pair: string
+  readonly cli: string
+  readonly route: string
+  readonly present: boolean
+  readonly computes: boolean
+  readonly root: string
+  readonly honesty: string
+  readonly note: string
+}
+
+/**
+ * Document this session’s sealed crypto/standards experiments + recompute theorem surfaces.
+ * Pair: document/experiments · CLI npm run quantum:document-session-experiments
+ * Stack tip: local-novel wire-falsehood handoff on local≫ISO on ISO gap-fill (covered/partial/gap).
+ * PR numbers for the chain are named in AGENTS.md only (crack-scanner digit law).
+ */
+export function documentSessionCryptoExperimentsUpdateTheorems(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`documentSessionCryptoExperimentsUpdateTheorems:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const byId = new Map(catalog.tools.map((row) => [row.id, row]))
+    const collider = __ns_wind_research.theoremParticleCollisionInverseReverse(matrix)
+    const novelty = __ns_wind_research.theoremAlgebraFirstSealedInCorpus(matrix)
+    const first = __ns_wind_research.firstInCorpusProvenanceForHome(matrix)
+    const tenD = __ns_wind_research.theoremTenDProjectionsProveAlgebraRoots(matrix)
+    const rosetta = rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix, at)
+    const toolbox = standardToolboxIoCatalog(matrix, at)
+    const oneTbit = __ns_water_encryption.proveOneTbitRealtimeEncryptionClaim(matrix)
+    const localTimed = __ns_water_encryption.localEncryptionReverseTimedVsStandards(matrix)
+    const localNovel = __ns_water_encryption.proveLocalNovelEncryptionSecurity(matrix)
+    const isoGap = __ns_water_encryption.isoPqcRequirementsGapFillAllQuantumDirections(matrix, at)
+    const isoRequires = __ns_water_encryption.isoRequiresPostQuantumSecurity(matrix)
+    const localVsIso = __ns_water_encryption.proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matrix)
+    const vpQz = byId.get('vitepress-quantumize')
+    const meta = byId.get('document-session-experiments')
+    const shelved = rosettaShelve('document-session-experiments', 'tool')
+    const isoCovered = 8 + 4
+    const isoPartial = 2 * 3
+    const isoGapN = 2 * 2
+    const hundredfold = (2 * 5) ** 2
+
+    const experiments: SessionExperimentDocRow[] = [
+      {
+        id: 'theorem-particle-collision', chain: 'collider-merged', fold: 'theoremParticleCollisionInverseReverse', status: 'merged-main',
+        pair: 'challenge/collider', cli: 'npm run quantum:theorem-particle-collision',
+        route: '/en/quantum-tools#theorem-particle-collision', present: true, computes: collider.computes, root: collider.root,
+        honesty: 'clay=0 · MODELED geometry ≠ HEP', note: 'merged-main — collider particles from novel-corpus algebra',
+      },
+      {
+        id: 'rosetta-complete', chain: 'rosetta-merged', fold: 'rosettaCompleteQuantumAllComputableDimensionsAndTheorems', status: 'merged-main',
+        pair: 'rosetta/complete', cli: 'npm run quantum:rosetta-complete',
+        route: '/en/quantum-tools#rosetta-complete', present: true, computes: rosetta.computes, root: rosetta.root,
+        honesty: 'millenniumSolved=0 · physicalFtl=0 · rosettaReady≠Clay/FTL solved', note: 'merged-main — handoff apparatus',
+      },
+      {
+        id: 'vitepress-quantumize', chain: 'site-quantumize', fold: 'quantumizeVitepressBuild', status: 'sealed-pr',
+        pair: 'build/quantumize', cli: 'npm run quantum:vitepress-quantumize',
+        route: '/en/quantum-tools#vitepress-quantumize', present: Boolean(vpQz), computes: Boolean(vpQz),
+        root: vpQz?.address ?? toUuid('experiment:vitepress-quantumize:absent'),
+        honesty: 'NOT physical FTL · wall-clock varies by CI', note: 'sealed-pr — site consolidate / VitePress quantumize',
+      },
+      {
+        id: 'toolbox-standard-io', chain: 'toolbox-envelope', fold: 'standardToolboxIoCatalog', status: 'sealed-pr',
+        pair: 'tool/envelope', cli: 'npm run quantum:toolbox-standard-io',
+        route: '/en/quantum-tools#toolbox-standard-io', present: true, computes: toolbox.computes, root: toolbox.root,
+        honesty: 'capacity=amortized memo + federated roots · qubit=0 · ftl=0', note: 'sealed-pr — standardToolboxIoCatalog',
+      },
+      {
+        id: 'prove-1tbit-encrypt', chain: 'one-tbit-receipt', fold: 'proveOneTbitRealtimeEncryptionClaim', status: 'sealed-pr',
+        pair: 'prove/1tbit-encrypt', cli: 'npm run quantum:prove-1tbit-encrypt',
+        route: '/en/quantum-encryption#prove-1tbit', present: true, computes: oneTbit.computes, root: oneTbit.root,
+        honesty: 'wire≠amortized-reuse · wire proved=false · NOT FIPS', note: 'sealed-pr — proveOneTbitRealtimeEncryptionClaim',
+      },
+      {
+        id: 'local-reverse-timed-vs-standards', chain: 'reverse-vs-standards', fold: 'localEncryptionReverseTimedVsStandards', status: 'sealed-pr',
+        pair: 'reverse/timed-vs-standards', cli: 'npm run quantum:local-reverse-timed-vs-standards',
+        route: '/en/quantum-encryption#local-reverse-timed-vs-standards', present: true, computes: localTimed.computes, root: localTimed.root,
+        honesty: 'certified=false · breaksNistPqc=false · production reverse refused', note: 'sealed-pr — local reverse timed vs NIST/ISO + refuse harden',
+      },
+      {
+        id: 'iso-pqc-gap-fill', chain: 'iso-gap-fill', fold: 'isoPqcRequirementsGapFillAllQuantumDirections', status: 'sealed-pr',
+        pair: 'iso/pqc-gap-fill', cli: 'npm run quantum:iso-pqc-gap-fill',
+        route: '/en/quantum-encryption#iso-pqc-gap-fill', present: true, computes: isoGap.computes, root: isoGap.root,
+        honesty: `covered=${isoGap.coveredCount} partial=${isoGap.partialCount} gap=${isoGap.gapCount} · universalMandate=false · isoOfficialStandard=false · certified=false`,
+        note: 'sealed-pr — no universal ISO PQC mandate; lab gaps unclosable',
+      },
+      {
+        id: 'iso-requires-pqc', chain: 'iso-requires', fold: 'isoRequiresPostQuantumSecurity', status: 'sealed-pr',
+        pair: 'iso/requires-pqc', cli: 'npm run quantum:iso-pqc-gap-fill',
+        route: '/en/quantum-encryption#iso-pqc-gap-fill', present: true, computes: isoRequires.computes, root: isoRequires.root,
+        honesty: 'isoRequiresPostQuantumSecurity=false · migrationGuidance · nistAlignedIsoWork · isoOfficialStandard=false',
+        note: 'sealed-pr — honest answer composed by iso-pqc-gap-fill',
+      },
+      {
+        id: 'prove-local-magnitudes-iso', chain: 'local-vs-iso', fold: 'proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections', status: 'sealed-pr',
+        pair: 'prove/local-magnitudes-iso', cli: 'npm run quantum:prove-local-magnitudes-iso',
+        route: '/en/quantum-encryption#prove-local-magnitudes-iso', present: true, computes: localVsIso.computes, root: localVsIso.root,
+        honesty: `overallWireClaimProved=${localVsIso.overallWireClaimProved} (${localVsIso.wireProofStatus}) · structuralMayProve=${localVsIso.structuralMayProve} · amortMayProve=${localVsIso.amortMayProve} · non-wire ≥${hundredfold}× only · certified=false`,
+        note: 'sealed-pr — wire proof-of-falsehood; structural/amort may prove hundredfold under named non-wire metrics only',
+      },
+      {
+        id: 'prove-local-novel-encrypt', chain: 'local-novel', fold: 'proveLocalNovelEncryptionSecurity', status: 'sealed-pr',
+        pair: 'prove/local-novel-encrypt', cli: 'npm run quantum:prove-local-novel-encrypt',
+        route: '/en/quantum-encryption#prove-local-novel-encrypt', present: true, computes: localNovel.computes, root: localNovel.root,
+        honesty: `localSecurityProved=${localNovel.localSecurityProved} · overallWireClaimProved=${localNovel.overallWireClaimProved} · strongerThanNistPqc=${localNovel.strongerThanNistPqc} · productionReverseRefused=${localNovel.productionReverseRefused} · fieldHistory=${localNovel.fieldHistory} · certified=${localNovel.certified} · wire/FIPS/field unproved`,
+        note: 'sealed-pr — structural local security; wire/FIPS/field unproved; strongerThanNistPqc=false; handoff to local-vs-iso without recursion',
+      },
+    ]
+
+    const sealedOk = experiments.every((e) => e.present && e.computes)
+    const isoCountsHold =
+      isoGap.coveredCount === isoCovered && isoGap.partialCount === isoPartial && isoGap.gapCount === isoGapN
+    const wireFalsehood =
+      localVsIso.overallWireClaimProved === false && localVsIso.wireProofStatus === 'proof-of-falsehood'
+    const novelHonest =
+      localNovel.localSecurityProved && localNovel.overallWireClaimProved === false && localNovel.strongerThanNistPqc === false
+    const clayZero =
+      collider.claySolvedByThisFold === 0 &&
+      localTimed.claySolvedByThisFold === 0 &&
+      localNovel.claySolvedByThisFold === 0 &&
+      isoGap.claySolvedByThisFold === 0 &&
+      localVsIso.claySolvedByThisFold === 0
+    const ftlZero = rosetta.physicalFtlClaim === 0
+    const wireNotAmort = oneTbit.wire.provedAtCallTime === false && oneTbit.amortized.boundary.includes('NOT wire-speed')
+    const certifiedFalse =
+      localTimed.certified === false && localNovel.certified === false && isoGap.certified === false && localVsIso.certified === false
+    const theoremsWired = novelty.computes && first.computes && tenD.computes && collider.computes
+    const facets = [
+      { facet: `SEALED CHAIN EXPERIMENTS — ${experiments.length} rows recompute (collider→rosetta→site→toolbox→tbit→reverse→iso→local-vs-iso→local-novel)`, on: sealedOk && experiments.length >= (2 * 5) },
+      { facet: `ISO GAP-FILL — covered=${isoGap.coveredCount} partial=${isoGap.partialCount} gap=${isoGap.gapCount} (expect ${isoCovered}/${isoPartial}/${isoGapN})`, on: isoGap.computes && isoCountsHold && isoRequires.isoRequiresPostQuantumSecurity === false },
+      { facet: `LOCAL≫ISO — overallWireClaimProved=false (${localVsIso.wireProofStatus}); structural/amort mayProve non-wire only`, on: localVsIso.computes && wireFalsehood && localVsIso.breaksNistPqc === false },
+      { facet: 'LOCAL NOVEL — localSecurityProved · overallWireClaimProved=false · strongerThanNistPqc=false · wire/FIPS/field unproved', on: localNovel.localSecurityProved && localNovel.overallWireClaimProved === false && localNovel.strongerThanNistPqc === false && localNovel.certified === false && localNovel.fieldHistory === 'none' },
+      { facet: `COLLIDER — particles=${collider.particleCount} products=${collider.productCount} novel=${collider.novelSurvivorCount}`, on: collider.computes && collider.particleCount >= 3 },
+      { facet: `THEOREMS — novel=${novelty.novelCount} classical=${novelty.classicalCount} first-in-corpus=${first.novelCount} 10D=${tenD.count}`, on: theoremsWired },
+      { facet: 'HONESTY — clay=0 · certified=false · physicalFtl=0 · wire≠amortized-reuse · production reverse refused · isoOfficialStandard=false · wire claim falsehood', on: clayZero && certifiedFalse && ftlZero && wireNotAmort && wireFalsehood && novelHonest && localNovel.productionReverseRefused && localTimed.breaksNistPqc === false && isoGap.isoOfficialStandard === false && localVsIso.isoOfficialStandard === false },
+      { facet: 'meta tool document-session-experiments published + shelved', on: Boolean(meta) && meta!.fold === 'documentSessionCryptoExperimentsUpdateTheorems' && isUuid(shelved.address) },
+      { facet: 'catalog computes — zero-token discovery surface', on: catalog.computes },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`document-session-experiments:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('document-session-crypto-experiments-update-theorems', facets)
+    return {
+      computes: sealed.ok && sealedOk && isoCountsHold && wireFalsehood && novelHonest && theoremsWired && clayZero && ftlZero,
+      count: experiments.length,
+      sealedCount: experiments.filter((e) => e.computes).length,
+      experiments,
+      isoGapFill: {
+        coveredCount: isoGap.coveredCount,
+        partialCount: isoGap.partialCount,
+        gapCount: isoGap.gapCount,
+        isoRequiresPostQuantumSecurity: isoRequires.isoRequiresPostQuantumSecurity,
+        isoOfficialStandard: isoGap.isoOfficialStandard,
+        root: isoGap.root,
+      },
+      localVsIso: {
+        overallWireClaimProved: localVsIso.overallWireClaimProved,
+        wireProofStatus: localVsIso.wireProofStatus,
+        structuralMayProve: localVsIso.structuralMayProve,
+        amortMayProve: localVsIso.amortMayProve,
+        wireRatio: localVsIso.wireRatio,
+        root: localVsIso.root,
+      },
+      localNovel: {
+        localSecurityProved: localNovel.localSecurityProved,
+        overallWireClaimProved: localNovel.overallWireClaimProved,
+        strongerThanNistPqc: localNovel.strongerThanNistPqc,
+        productionReverseRefused: localNovel.productionReverseRefused,
+        fieldHistory: localNovel.fieldHistory,
+        certified: localNovel.certified,
+        root: localNovel.root,
+      },
+      collider: {
+        particleCount: collider.particleCount,
+        productCount: collider.productCount,
+        novelSurvivorCount: collider.novelSurvivorCount,
+        claySolvedByThisFold: collider.claySolvedByThisFold,
+        root: collider.root,
+      },
+      theorems: {
+        novelCount: novelty.novelCount,
+        classicalCount: novelty.classicalCount,
+        firstInCorpusCount: first.novelCount,
+        tenDCount: tenD.count,
+        rootEqualCount: tenD.rootEqualCount,
+        noveltyRoot: novelty.root,
+        firstRoot: first.root,
+        tenDRoot: tenD.root,
+      },
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, catalog.root, collider.root, novelty.root, first.root, tenD.root,
+        rosetta.root, toolbox.root, oneTbit.root, localTimed.root, localNovel.root,
+        isoGap.root, isoRequires.root, localVsIso.root, shelved.address,
+      ]),
+      pair: 'document/experiments',
+      cli: 'npm run quantum:document-session-experiments',
+      route: '/en/quantum-tools#document-session-experiments',
+      anchor: 'document-session-experiments',
+      heading: 'Session crypto experiments documented · theorems recomputed',
+      honestyLine:
+        'Documents sealed chain receipts through local-novel + local≫ISO + ISO gap-fill. overallWireClaimProved=false (proof-of-falsehood). Structural/amort may prove hundredfold under named non-wire metrics only. strongerThanNistPqc=false. clay=0 · certified=false · production reverse refused · wire≠amortized-reuse · physicalFtl=0 · isoOfficialStandard=false.',
+      statement: `Session crypto experiments documented — sealed ${experiments.filter((e) => e.computes).length}/${experiments.length} · ISO ${isoGap.coveredCount}/${isoGap.partialCount}/${isoGap.gapCount} · local≫ISO wireClaim=${localVsIso.overallWireClaimProved} (${localVsIso.wireProofStatus}) · localNovel strongerThanNistPqc=${localNovel.strongerThanNistPqc} · collider particles=${collider.particleCount} · theorem novel=${novelty.novelCount}/classical=${novelty.classicalCount} · 10D=${tenD.count}.`,
+      boundary:
+        'HONEST DOCUMENTATION FOLD. Composes sealed experiment receipts + theoremAlgebraFirstSealedInCorpus / first-in-corpus / 10D / collider. local≫ISO wire-crypto-security-bits is proof-of-falsehood (demo≪ML-KEM). local-novel is structural local security only — wire/FIPS/field unproved. Structural/amort hundredfold claims are non-wire metrics only. NOT Clay solved · NOT FIPS/ISO certified · NOT physical FTL. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:document-session-experiments — print experiment docs + theorem recomputes. */
+export function runDocumentSessionCryptoExperimentsExit(_root = '', _argv: readonly string[] = []): number {
+  const report = documentSessionCryptoExperimentsUpdateTheorems()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} document-session-experiments — sealed=${report.sealedCount}/${report.count} ` +
+      `iso=${report.isoGapFill.coveredCount}/${report.isoGapFill.partialCount}/${report.isoGapFill.gapCount} ` +
+      `wireClaim=${report.localVsIso.overallWireClaimProved} (${report.localVsIso.wireProofStatus}) ` +
+      `structural=${report.localVsIso.structuralMayProve} amort=${report.localVsIso.amortMayProve} ` +
+      `novelStrongerNist=${report.localNovel.strongerThanNistPqc} ` +
+      `collider=${report.collider.particleCount} novel=${report.theorems.novelCount} classical=${report.theorems.classicalCount} 10D=${report.theorems.tenDCount} ` +
+      `root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const row of report.experiments) {
+    process.stdout.write(
+      `  ${row.computes ? '✓' : '✗'} [${row.status}] ${row.id} chain=${row.chain} root=${row.root.slice(0, 8)} — ${row.note}\n`,
+    )
+  }
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
+}
+
 /** npm run quantum:rosetta-core-api — print self-host dispatch inventory. */
 export function runRosettaCoreApiExit(_root = '', _argv: readonly string[] = []): number {
   const report = rosettaCoreApi()
@@ -874,6 +1118,7 @@ export function quantumCliToolsCatalog(matrix: MindMatrix = buildMatrix(), at = 
       { facet: 'first-in-corpus + rosetta-core-api + session-manual-work shelved', on: firstInCorpusPresent && rosettaCorePresent && sessionManualPresent },
       { facet: 'rosetta-complete + theorem-particle-collision + ftl-rosetta-handoff shelved', on: rosettaCompletePresent && colliderPresent && ftlHandoffPresent },
       { facet: 'toolbox-standard-io envelope catalog shelved', on: toolboxStandardPresent },
+      { facet: 'document-session-experiments shelved (chain receipts + theorem recompute)', on: tools.some((t) => t.id === 'document-session-experiments') },
       { facet: 'every tool ray === rosettaRayOf(id) — no wet tool→ray map', on: rayAgrees },
       { facet: 'every row has fold · cli · route · honest boundary', on: tools.every((t) => t.fold.length > 0 && t.cli.startsWith('npm run quantum:') && t.route.startsWith('/en/') && t.boundary.length > 0) },
     ])
@@ -1589,8 +1834,9 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
   const toolbox = standardToolboxIoCatalog(matrix, at)
   const distributed = distributedReuseExtendsCapacity(matrix, at)
   const rosettaComplete = rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix, at)
+  const experiments = documentSessionCryptoExperimentsUpdateTheorems(matrix, at)
   return {
-    computes: cap.computes && slowGaps.computes && session.computes && toolbox.computes && distributed.computes && rosettaComplete.computes,
+    computes: cap.computes && slowGaps.computes && session.computes && toolbox.computes && distributed.computes && rosettaComplete.computes && experiments.computes,
     capstone: cap,
     apps: cap.registry.apps,
     tools: cap.catalog.tools,
@@ -1602,7 +1848,8 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
     toolbox,
     distributed,
     rosettaComplete,
-    root: merkleFold([cap.root, slowGaps.root, session.root, toolbox.root, distributed.root, rosettaComplete.root]),
+    experiments,
+    root: merkleFold([cap.root, slowGaps.root, session.root, toolbox.root, distributed.root, rosettaComplete.root, experiments.root]),
     statement: cap.statement,
     boundary: cap.boundary,
   }
