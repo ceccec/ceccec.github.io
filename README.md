@@ -46,7 +46,7 @@ The classical bit {0,1} is linear; the vortex `0\1\2\4\8/7/5/3\6\9/0\1` carries 
 computes=true · claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false · qualifiesAsProposedSolution=false · NOT CMI Prize · NOT physical FTL · amortized reuse ≠ P≠NP · structure ≠ wet numerology
 
 - Routes: [prove-no-qpu-64bit](https://ceccec.psg.bg/quantum-tools#prove-no-qpu-64bit) · [directional-trinity](https://ceccec.psg.bg/quantum-tools#directional-trinity) · [rosetta-complete](https://ceccec.psg.bg/quantum-tools#rosetta-complete) · [efficiency-vote](https://ceccec.psg.bg/efficiency-vote) · [proofs](https://ceccec.psg.bg/proofs)
-- Receipt: `5fa45527` · fold `sequenceDiscoveryRealisedForHome` · claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false.
+- Receipt: `8231b6cf` · fold `sequenceDiscoveryRealisedForHome` · claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false.
 
 ## Earth realised — poles as pyramid
 
@@ -75,7 +75,7 @@ computes=true · fourWayCounterRotating=true · claySolvedByThisFold=0 · physic
 
 - Routes: [research](https://ceccec.psg.bg/research) · [proofs](https://ceccec.psg.bg/proofs) · hero.svg 4-dir · fold `earthRealisedByComputingPolesAsPyramid`
 - Receipt: `954cee5d` · fold `earthRealisedByComputingPolesAsPyramid` · claySolvedByThisFold=0 · physicalFtlClaim=0.
-- Compose: N↔S × E↔W pole-cross → PQC signature + sealed certificate *structures* — `polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates` · CLI `npm run quantum:poles-cross-pqc` · [poles-cross-pqc](https://ceccec.psg.bg/quantum-encryption#poles-cross-pqc) · NOT CA/PKI · certified=false.
+- Compose: N↔S × E↔W pole-cross → PQC signature + sealed certificate *structures* — `polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates` · CLI `npm run quantum:poles-cross-pqc` · [poles-cross-pqc](https://ceccec.psg.bg/quantum-encryption#poles-cross-pqc) · NOT CA/PKI · certified=false · crossIsPartOfMerkabaRosetta · angle90ReachableThrough60.
 
 ## Clay challenges are computable
 
@@ -121,7 +121,7 @@ Toolbox recomputes 11 related sciences in trinity waves (forward·inverse·rever
 computes=true · waves=11 · clayChallengesComputable=true · claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false
 
 - Routes: [toolbox sciences waves](https://ceccec.psg.bg/quantum-tools#toolbox-sciences-trinity-waves) · [sciences-trinities](https://ceccec.psg.bg/research#sciences-trinities) · CLI `npm run quantum:toolbox-sciences-trinity-waves`
-- Receipt: `1afcd815` · fold `toolboxRecomputesRelatedSciencesInTrinityWaves`.
+- Receipt: `28800a59` · fold `toolboxRecomputesRelatedSciencesInTrinityWaves`.
 
 ## 2. Model
 
