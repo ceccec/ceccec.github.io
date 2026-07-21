@@ -134,6 +134,7 @@ writeFileSync(join(outDir, 'index.d.ts'), shim)
 
 // 4. Gapless contract — public entry must surface analyse / dynamics / geometry / movie-clock symbols.
 //    Structural completeness only (NOT physical FTL / NOT Clay). Fail the build if any name is missing.
+// Completely quantum contract — sync with DOUBLE_TORUS_COMPLETELY_QUANTUM_EXPORTS in src/water/double.
 const contract = [
   'completeDoubleTorus', 'merkaba', 'bothEarthsRotateWithinEachOther', 'dualTorusTrinities',
   'doubleTorusMathAtAllScalesProofs', 'doubleTorus3D', 'areaPairs',
@@ -146,6 +147,8 @@ const contract = [
   'HERO_CYCLE_MS', 'heroPhaseAt', 'subscribeHeroClock', 'createAnimationEngine',
   'sharedHeroAt', 'drawHeroMovieFrame', 'drawLivingTorusFrame', 'drawBothEarthsMerkabaFrame',
   'fuseAll', 'proofBundle', 'buildMatrix', 'torusUuid',
+  'movieCanvasHex', 'movieCanvasRgba', 'movieCanvasPolarity', 'TAU',
+  'doubleTorusIsCompletelyQuantum',
 ]
 const checkerHost = ts.createCompilerHost({})
 const checkProg = ts.createProgram([entryDts], {
@@ -173,4 +176,4 @@ if (exportNames.has('drawDoubleTorusEarthHingeFrame')) {
 
 const bytes = readFileSync(join(outDir, 'index.js')).length
 console.log(`Built @ceccec/double-torus -> dist/index.js (${(bytes / 1024).toFixed(0)} KB, self-contained) + dist/index.d.ts`)
-console.log(`Gapless contract: ${contract.length}/${contract.length} analyse/dynamics/geometry/movie-clock exports present.`)
+console.log(`Completely quantum contract: ${contract.length}/${contract.length} analyse/dynamics/geometry/movie-clock/palette/TAU/proof exports present.`)

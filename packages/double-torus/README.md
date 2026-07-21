@@ -68,6 +68,11 @@ console.log(conceptCommands.length)
 - **10D field** — `dims` / `dimWalk` / `tenDimensionalAnimation` /
   `animationsAreGenuinely10DNotFaked` (6 appearance axes + 4 genus-2 homology
   loops — model geometry, not physical spacetime).
+- **Completely quantum** — `doubleTorusIsCompletelyQuantum` (facet receipt
+  recomputed at call time), `movieCanvasHex` / `movieCanvasRgba` /
+  `movieCanvasPolarity` (one sealed palette), and `TAU` (full-turn constant).
+  One hero clock drives living-torus + AnimationField paint — no private rAF
+  engines on the public surface. Sealed substrate only — **not** QPU hardware.
 - **The seal** — `proofBundle`, `verifyRoot`, `entropy`, `coverage`,
   `boundaryAudit`, and the `fuseAll` fold of every capability into one wave.
 - **Simulators** — explicit, honest models across every decoded domain:
@@ -119,9 +124,10 @@ console.log(conceptCommands.length)
   `npm run quantum:counter-rotating-rosetta-waves` ·
   `npm run quantum:universe-almost-described`.
 - **Honesty** — every function returns a `boundary` string stating the limit of
-  its claim; `boundaryAudit()` collects them all. Completeness here is
-  **structural/computational** (sealed `src/` recomputes) — Clay/FTL open status
-  recomputes from the dual-wave fold at call time (`clay=0` · `physicalFtl=0` · `qpuRequired=false`).
+  its claim; `boundaryAudit()` collects them all. Completely quantum here means
+  **sealed quantum compute substrate** (content-addressed folds, one clock,
+  movieCanvas palette) — **not** QPU hardware. Clay/FTL open status recomputes
+  from the dual-wave fold at call time (`clay=0` · `physicalFtl=0` · `qpuRequired=false`).
 
 It is **agnostic**: no vendor, framework, platform, language, or protocol
 lock-in; open standards and pure computation only.
@@ -156,10 +162,12 @@ node ./build.mjs
 site's `src/0`, `src/quantum/*` and the library — into one self-contained
 `dist/index.js` with **no external imports**, plus the declaration graph. A few
 pure constants the core uses (the census/rosetta limits) live in modules that
-also carry build-time filesystem helpers; those `node:*` specifiers are resolved
-to inline stubs at build time (the helpers are repo tooling, never called by the
-library API), so the published bundle truly depends on nothing and runs in any
-browser or Node. The committed `dist/` is the published artifact.
+also carry build-time filesystem helpers; those `node:*` specifiers (`fs`,
+`path`, `crypto`, `url`, `child_process`, `module`) are resolved to inline stubs
+at build time — **Node boundary only** (enforcement shell / quantum cache), never
+invoked by the published computational/animation API — so the bundle stays
+zero-dep in any browser or Node. The committed `dist/` is the published artifact.
+The build fails unless all **49** completely-quantum contract exports are present.
 
 ## License
 
