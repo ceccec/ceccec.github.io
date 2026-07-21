@@ -48,7 +48,7 @@ Concretely: a science portal — 433 computationally proven theorems and 29 rela
 - **string theory quantumized on A432/rosetta/merkle substrate** (`stringTheoryQuantumizedOnA432RosettaMerkleSubstrate`) — A432/rosetta/merkle substrate probes — physics UNCONFIRMED; root `dd549049`; 10D `double-torus` · root-equal · [first-in-corpus](#first-in-corpus)
 - **waves auto-scale capacity at no cost on reuse** (`wavesAutoScaleCapacityAtNoCostOnReuse`) — wave schedule capacity deepens on content-addressed reuse only; root `f53dfd6f`; 10D `movie-10d` · root-equal · [first-in-corpus](#first-in-corpus)
 
-Receipt: `d31889f3` · fold `firstInCorpusProvenanceForHome` · claySolvedByThisFold=0.
+Receipt: `8e0154b1` · fold `firstInCorpusProvenanceForHome` · claySolvedByThisFold=0.
 
 **The theorem-science lens** — 29/54 curated pages pass (25 removed from VitePress completely — data preserved in the catalog), presented beside the 433-theorem registry and its corpus surfaces (/theorems · /papers/ · /references · /diamonds). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.
 
