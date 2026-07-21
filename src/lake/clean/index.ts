@@ -356,6 +356,13 @@ export function auditLocales(matrix: MindMatrix = buildMatrix()) {
     { facet: 'coverage parity — monographPaths returns the same page count for all 3 locales', on: gla.length === en.length && en.length === bg.length && gla.length > 0 },
     { facet: 'slug parity — every page slug is identical across all 3 locales (same order)', on: gla.every((p, i) => p.params.page === en[i]?.params.page && p.params.page === bg[i]?.params.page) },
     { facet: 'content completeness — all staticPages have non-empty en + bg title and description', on: incomplete.length === 0 },
+    { facet: 'title accuracy — no stub and no untranslated en≡bg titles (en-parity)', on: pages.every((p) => {
+      const te = p.title.en, tb = p.title.bg
+      if (!te || !tb) return false
+      if (/^(TODO|FIXME|TBD|xxx|\.\.\.|…)$/i.test(te) || /^(TODO|FIXME|TBD|xxx|\.\.\.|…)$/i.test(tb)) return false
+      if (te === tb && /[A-Za-z]{4,}/.test(te) && !['MCP', 'UTF', 'Schema.org', 'UI'].includes(te)) return false
+      return true
+    }) },
     { facet: 'math transliteration live — Glagolitic titles differ from English and contain Glagolitic glyphs', on: gla.length > 0 && gla[0].params.title !== en[0]?.params.title && /[Ⰰ-ⱟ]/.test(gla[0].params.title) },
     { facet: 'sitemap complete — monograph page count exceeds the 14 static quantum routes (cross.ts covers the rest)', on: en.length > (7 * 2) },
     { facet: 'navigation computed for both non-root locales — no hardcoded nav', on: nav.en.nav.length > 0 && nav.bg.nav.length > 0 },
@@ -370,8 +377,8 @@ export function auditLocales(matrix: MindMatrix = buildMatrix()) {
     locales: locales.map((l) => ({ code: l.code, lang: l.lang, path: l.path, type: l.type })),
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement: 'Locale audit — a living census of the tri-locale system (English at the canonical root /, Bulgarian at /bg/, Glagolitic/cu at /gla/): SITE_LOCALES integrity, coverage parity, content completeness, hreflang coverage and computed navigation. All facts derived from the existing locale primitives; any gap opens this dimension.',
-    boundary: 'A composition of SITE_LOCALES, monographPaths (all 3 locales), staticPages, siteNavigation and noMirroringOneSourceAndMath. "cu omitted from hreflang by design" is HONEST — cu (Church Slavonic) is a valid BCP-47 tag but not in Google Search Console\'s supported hreflang language codes, so the sitemap legitimately omits it; the Glagolitic edition is served at /gla/. English holds the canonical bare URLs (no useless prefixes).',
+    statement: 'Locale audit — a living census of the tri-locale system (English at the canonical root /, Bulgarian at /bg/, Glagolitic/cu at /gla/): SITE_LOCALES integrity, coverage parity, content completeness, title accuracy (no stub / en≡bg drift), hreflang coverage and computed navigation. Composes with translationGapsGate for HARD discover-then-fail on missing en-parity surfaces.',
+    boundary: 'A composition of SITE_LOCALES, monographPaths (all 3 locales), staticPages, siteNavigation and noMirroringOneSourceAndMath. Title accuracy is structural (stub/en≡bg), not literary QA. "cu omitted from hreflang by design" is HONEST — cu (Church Slavonic) is a valid BCP-47 tag but not in Google Search Console\'s supported hreflang language codes, so the sitemap legitimately omits it; the Glagolitic edition is served at /gla/. English holds the canonical bare URLs (no useless prefixes).',
   }
 }
 

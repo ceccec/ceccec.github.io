@@ -193,15 +193,133 @@ export function localeFromRoute(path: string): LocaleName {
 
 const CYRILLIC_RX = /[Ѐ-ӿ]/
 
-/** English → Bulgarian when locale is bg and text has no Cyrillic yet (longest keys first). */
-export function bulgarianFromEnglish(text: string): string {
-  if (!text || CYRILLIC_RX.test(text)) return text
-  let out = text.replace(/\/en\//g, '/bg/').replace(/\]\(\/(?!bg\/|gla\/|http)/g, '](/bg/')
-  const sorted = [...BULGARIAN_PHRASES].sort((a, b) => b[0].length - a[0].length)
-  for (const [en, bg] of sorted) {
-    if (out.includes(en)) out = out.split(en).join(bg)
+/** Exact slots ({n}, %s, code, HTML) — must match en↔bg. Md-link *labels* may translate. */
+const TRANSLATION_SLOT_RX = /\{[^}]+\}|%\d*\$?[sd]|`[^`]+`|<[^>]+>/g
+/** Markdown links — compare hrefs after locale strip (labels may differ). */
+const TRANSLATION_LINK_RX = /\[[^\]]*\]\(([^)]+)\)/g
+
+/** Extract exact slot tokens (no md-link labels) for drift checks. */
+export function translationParityTokens(text: string): readonly string[] {
+  return text.match(TRANSLATION_SLOT_RX) ?? []
+}
+
+/**
+ * Structural en↔bg parity: same slot tokens + same link *targets* after locale strip.
+ * Link *labels* may differ (honest translation); href paths must stay en-parity.
+ */
+export function translationPlaceholderParity(en: string, bg: string): boolean {
+  const enSlots = [...translationParityTokens(en)].sort()
+  const bgSlots = [...translationParityTokens(bg)].sort()
+  if (enSlots.length !== bgSlots.length || enSlots.some((tok, i) => tok !== bgSlots[i])) return false
+  const enHrefs = [...en.matchAll(TRANSLATION_LINK_RX)].map((m) => stripLocalePrefix(m[1] ?? '/'))
+  const bgHrefs = [...bg.matchAll(TRANSLATION_LINK_RX)].map((m) => stripLocalePrefix(m[1] ?? '/'))
+  if (enHrefs.length !== bgHrefs.length) return false
+  return enHrefs.every((href, i) => href === bgHrefs[i])
+}
+
+/** Phrase-table integrity — empty/stub pairs, structural parity, en≡bg stubs, offline round-trip. */
+export function offlineBulgarianPhraseTableAudit(): {
+  readonly ok: boolean
+  readonly phraseCount: number
+  readonly emptyOrStub: number
+  readonly placeholderMismatch: number
+  readonly enEqualsBg: number
+  readonly roundTripMiss: number
+  readonly root: string
+} {
+  const stubRx = /^(TODO|FIXME|TBD|xxx|\.\.\.|…)$/i
+  let emptyOrStub = 0
+  let placeholderMismatch = 0
+  let enEqualsBg = 0
+  let roundTripMiss = 0
+  for (const [en, bg] of BULGARIAN_PHRASES) {
+    if (!en.trim() || !bg.trim() || stubRx.test(en) || stubRx.test(bg)) emptyOrStub++
+    if (!translationPlaceholderParity(en, bg)) placeholderMismatch++
+    if (en === bg && /[A-Za-z]{4,}/.test(en)) enEqualsBg++
+    const applied = offlineTranslateEnToBg(en).text
+    if (applied !== bg) roundTripMiss++
   }
-  return out
+  const receipt = toUuid(
+    `bg-phrase-audit:${BULGARIAN_PHRASES.length}:${emptyOrStub}:${placeholderMismatch}:${enEqualsBg}:${roundTripMiss}`,
+  )
+  return {
+    ok: emptyOrStub === 0 && placeholderMismatch === 0 && enEqualsBg === 0 && roundTripMiss === 0,
+    phraseCount: BULGARIAN_PHRASES.length,
+    emptyOrStub,
+    placeholderMismatch,
+    enEqualsBg,
+    roundTripMiss,
+    root: receipt,
+  }
+}
+
+/**
+ * Offline en→bg translating service — sealed phrase table, zero network.
+ * Protects exact slots ({n}/%s/code/HTML) before longest-key substitution; md links ride inside phrases.
+ * HONEST: lexical phrase-table coverage, not semantic MT.
+ */
+export function offlineTranslateEnToBg(
+  text: string,
+  extraPhrases: readonly (readonly [string, string])[] = [],
+): {
+  readonly text: string
+  readonly mapped: number
+  readonly total: number
+  readonly method: 'identity' | 'passthrough-cyrillic' | 'phrase-table' | 'locale-links-only'
+  readonly placeholderParity: boolean
+  readonly root: string
+} {
+  if (!text) {
+    return { text, mapped: 0, total: 0, method: 'identity', placeholderParity: true, root: toUuid('offline-bg:empty') }
+  }
+  if (CYRILLIC_RX.test(text)) {
+    return {
+      text,
+      mapped: 0,
+      total: 1,
+      method: 'passthrough-cyrillic',
+      placeholderParity: true,
+      root: toUuid(`offline-bg:cyr:${toUuid(text)}`),
+    }
+  }
+  const slots: string[] = []
+  // Protect only exact slots — not md links (phrases contain translated link labels)
+  const protectedText = text.replace(TRANSLATION_SLOT_RX, (m) => {
+    const i = slots.length
+    slots.push(m)
+    return `\uE000${i}\uE001`
+  })
+  let out = protectedText
+  let mapped = 0
+  const table = extraPhrases.length > 0 ? [...BULGARIAN_PHRASES, ...extraPhrases] : BULGARIAN_PHRASES
+  const sorted = [...table].sort((a, b) => b[0].length - a[0].length)
+  for (const [en, bg] of sorted) {
+    if (!out.includes(en)) continue
+    const parts = out.split(en)
+    mapped += parts.length - 1
+    out = parts.join(bg)
+  }
+  out = out.replace(/\/en\//g, '/bg/').replace(/\]\(\/(?!bg\/|gla\/|http)/g, '](/bg/')
+  out = out.replace(/\uE000(\d+)\uE001/g, (_m, n) => slots[Number(n)] ?? '')
+  const method =
+    mapped > 0 ? 'phrase-table' : out !== text ? 'locale-links-only' : 'identity'
+  const placeholderParity = translationPlaceholderParity(text, out)
+  return {
+    text: out,
+    mapped,
+    total: Math.max(1, mapped),
+    method,
+    placeholderParity,
+    root: toUuid(`offline-bg:${method}:${mapped}:${toUuid(out)}`),
+  }
+}
+
+/** English → Bulgarian when locale is bg and text has no Cyrillic yet (longest keys first). */
+export function bulgarianFromEnglish(
+  text: string,
+  extraPhrases: readonly (readonly [string, string])[] = [],
+): string {
+  return offlineTranslateEnToBg(text, extraPhrases).text
 }
 
 /** Seed station: Waite's tarot deck decoded from the 1911 Pictorial Key epub (public domain) —
