@@ -1488,11 +1488,12 @@ export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatr
         case 'quantumAdvantageBenchmark': return toUuid(`classical:qm-sim:${fold}`)
         case 'pauliAlgebraCloses': return toUuid(`classical:pauli:${fold}`)
         case 'pqcNecessityFromShorCompose': return toUuid(`classical:pqc-necessity:${fold}`)
-        case 'localEncryptionReverseTimedVsStandards': return __ns_water_encryption.localEncryptionReverseTimedVsStandards(matrix).root
-        case 'proveOneTbitRealtimeEncryptionClaim': return __ns_water_encryption.proveOneTbitRealtimeEncryptionClaim(matrix).root
-        case 'proveLocalNovelEncryptionSecurity': return __ns_water_encryption.proveLocalNovelEncryptionSecurity(matrix).root
-        case 'isoPqcRequirementsGapFillAllQuantumDirections': return __ns_water_encryption.isoPqcRequirementsGapFillAllQuantumDirections(matrix).root
-        case 'proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections': return __ns_water_encryption.proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matrix).root
+        // Classical restatement census ids — NOT live fold roots (timed/crypto receipts drift wall-clock).
+        case 'localEncryptionReverseTimedVsStandards': return toUuid(`classical:local-reverse-timed:${fold}`)
+        case 'proveOneTbitRealtimeEncryptionClaim': return toUuid(`classical:1tbit-status:${fold}`)
+        case 'proveLocalNovelEncryptionSecurity': return toUuid(`classical:local-novel-encrypt:${fold}`)
+        case 'isoPqcRequirementsGapFillAllQuantumDirections': return toUuid(`classical:iso-pqc-gap-fill:${fold}`)
+        case 'proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections': return toUuid(`classical:local-magnitudes-iso:${fold}`)
         default: return toUuid(`algebra-fold:${fold}`)
       }
     }
