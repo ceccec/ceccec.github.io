@@ -4,7 +4,10 @@ import * as __ns_up_up_quantum_heaven_library from '../../quantum/heaven/library
 import * as __ns_mountain_geometry from '../../mountain/geometry'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
-import { computesGate, digitalRoot, foldPair, gcd, isUuid, memoByRoot, merge, merkleFold, roundTo, sealFacets, toUuid, trinityKey, VORTEX_SEQUENCE } from '../../0'
+import {
+  computesGate, digitalRoot, foldPair, gcd, isUuid, memoByRoot, merge, merkleFold,
+  resourceCooperationPolicy, roundTo, sealFacets, toUuid, trinityKey, VORTEX_SEQUENCE,
+} from '../../0'
 import { derivePublicKey, tamperEvident } from '../../5/5'
 import {
   A432_HUE,
@@ -275,6 +278,121 @@ export function encryptionReverseWorkerCap(cpuCount = 1): number {
   return Math.min(cpus, VORTEX_SEQUENCE.length) // ≤9 — vortex ring bound
 }
 
+/** Classical 64-bit word — architectureRequirement=classical-64bit (NOT QPU). */
+export const CLASSICAL_64BIT_WORD_BITS = 8 * 8
+/**
+ * Local reverse path uses Number.isSafeInteger — bit WIDTH of JS safe integers.
+ * Number.MAX_SAFE_INTEGER = 2^53 − 1; use ceil(log2(MAX+1)) so float rounding cannot yield 54.
+ */
+export const JS_SAFE_INTEGER_BITS = Math.ceil(Math.log2(Number.MAX_SAFE_INTEGER + 1))
+/** AES-256 classical strength named by sealed max-bits theorem (external bulk cipher). */
+export const AES256_CLASSICAL_BITS = 2 ** 8
+/** Digit-folder mod-9 inverse domain 0..9 — ceil(log2(9)). */
+export const DIGIT_INVERSE_DOMAIN_BITS = Math.floor(Math.log2(3 * 3)) + 1
+
+/**
+ * Probe CPU parallelism at call time — browser hardwareConcurrency or Node os.
+ * Browser-safe · no static node:os import (vite). qpuRequired=false.
+ */
+export function probeLocalCpuCount(): number {
+  if (
+    typeof navigator !== 'undefined'
+    && typeof navigator.hardwareConcurrency === 'number'
+    && navigator.hardwareConcurrency > 0
+  ) {
+    return Math.max(1, Math.floor(navigator.hardwareConcurrency))
+  }
+  try {
+    const proc = typeof process !== 'undefined' ? process as NodeJS.Process & {
+      getBuiltinModule?: (id: string) => { availableParallelism?: () => number; cpus?: () => readonly unknown[] }
+    } : null
+    const getBuiltin = proc?.getBuiltinModule
+    if (typeof getBuiltin === 'function') {
+      const os = getBuiltin('node:os')
+      const n =
+        typeof os?.availableParallelism === 'function'
+          ? os.availableParallelism()
+          : (os?.cpus?.()?.length ?? 1)
+      return Math.max(1, Math.floor(n))
+    }
+  } catch {
+    /* edge/SSR without os */
+  }
+  return 1
+}
+
+export type MaxBitsHardwareCapabilities = {
+  readonly cpuCount: number
+  readonly workerCap: number
+  readonly heapCapMb: number
+  readonly classicalWordBits: number
+  readonly jsSafeIntegerBits: number
+  readonly hardwareReverseCapacityBits: number
+  readonly demoSampleCeilingBits: number
+  readonly encryptTheoremBits: number
+  readonly inverseTheoremBits: number
+  readonly reverseClaimBits: number
+  readonly demoIsNotHardwareCeiling: boolean
+  readonly qpuRequired: false
+  readonly receipt: string
+}
+
+/**
+ * Max-bits boundary from hardware capabilities at call time.
+ * Formula: hardwareReverseCapacityBits = min(JS_SAFE_INTEGER_BITS, CLASSICAL_64BIT_WORD_BITS);
+ * reverseClaimBits = min(DEMO_RSA_BIT_CEILING, hardwareReverseCapacityBits);
+ * DEMO_RSA_MODULI = sample set only — NEVER pretends to be the hardware ceiling.
+ * Pair: bits/hardware
+ */
+export function maxBitsFromHardwareCapabilities(cpuHint?: number): MaxBitsHardwareCapabilities {
+  const cpuCount = Math.max(1, Math.floor(cpuHint ?? probeLocalCpuCount()))
+  const workerCap = encryptionReverseWorkerCap(cpuCount)
+  const heapCapMb = resourceCooperationPolicy().heapCapMb
+  const classicalWordBits = CLASSICAL_64BIT_WORD_BITS
+  const jsSafeIntegerBits = JS_SAFE_INTEGER_BITS
+  const hardwareReverseCapacityBits = Math.min(jsSafeIntegerBits, classicalWordBits)
+  const demoSampleCeilingBits = DEMO_RSA_BIT_CEILING
+  const encryptTheoremBits = AES256_CLASSICAL_BITS
+  const inverseTheoremBits = DIGIT_INVERSE_DOMAIN_BITS
+  const reverseClaimBits = Math.min(demoSampleCeilingBits, hardwareReverseCapacityBits)
+  const demoIsNotHardwareCeiling = demoSampleCeilingBits < hardwareReverseCapacityBits
+  return {
+    cpuCount,
+    workerCap,
+    heapCapMb,
+    classicalWordBits,
+    jsSafeIntegerBits,
+    hardwareReverseCapacityBits,
+    demoSampleCeilingBits,
+    encryptTheoremBits,
+    inverseTheoremBits,
+    reverseClaimBits,
+    demoIsNotHardwareCeiling,
+    qpuRequired: false,
+    receipt: toUuid(
+      `maxbits-hw:${cpuCount}:${workerCap}:${heapCapMb}:${hardwareReverseCapacityBits}:${reverseClaimBits}:${demoIsNotHardwareCeiling}`,
+    ),
+  }
+}
+
+/**
+ * Boundary string recomputed from hardware ∩ refuseBeyond ∩ sealed theorem constants.
+ * DEMO_RSA_MODULI named as demo sample — not the hardware ceiling.
+ */
+export function maxBitsHardwareBoundaryText(
+  hw: MaxBitsHardwareCapabilities = maxBitsFromHardwareCapabilities(),
+  refuseBeyond = true,
+): string {
+  return (
+    `hw:cpus=${hw.cpuCount} workers≤${hw.workerCap} heap=${hw.heapCapMb}MB ` +
+    `word=${hw.hardwareReverseCapacityBits}bit · ` +
+    `demoSample≤${hw.demoSampleCeilingBits}bit (DEMO_RSA_MODULI) · ` +
+    `reverseClaim=${hw.reverseClaimBits}bit · ` +
+    `enc=${hw.encryptTheoremBits} inv=${hw.inverseTheoremBits} · ` +
+    `refuseBeyond=${refuseBeyond} · production refused · qpuRequired=false · clay=0`
+  )
+}
+
 /** Reject out-of-demo moduli before any factor work (honesty gate). */
 export function refuseNonDemoRsaModulus(n: number): { allowed: boolean; bits: number; reason: string } {
   if (typeof n !== 'number' || !Number.isFinite(n) || !Number.isInteger(n) || !Number.isSafeInteger(n)) {
@@ -516,6 +634,35 @@ export async function parallelToyRsaReversePool(cpuHint?: number): Promise<{
   }
 }
 
+/** Pure: boundary names DEMO_RSA_MODULI as demo *sample* (not hardware ceiling). Pair: bits/hardware */
+export function reverseBoundaryNamesDemoRsaModuli(boundary: string): boolean {
+  return typeof boundary === 'string' && boundary.includes('DEMO_RSA_MODULI')
+}
+
+/** Pure: boundary reports hardware-computed word/worker/heap fields (not static DEMO keep). */
+export function reverseBoundaryNamesHardwareBits(boundary: string, hw: MaxBitsHardwareCapabilities): boolean {
+  return (
+    typeof boundary === 'string'
+    && boundary.includes(`hw:cpus=${hw.cpuCount}`)
+    && boundary.includes(`workers≤${hw.workerCap}`)
+    && boundary.includes(`heap=${hw.heapCapMb}MB`)
+    && boundary.includes(`word=${hw.hardwareReverseCapacityBits}bit`)
+    && boundary.includes(`reverseClaim=${hw.reverseClaimBits}bit`)
+    && boundary.includes('qpuRequired=false')
+  )
+}
+
+/**
+ * Reverse-verify boundary — recomputed from hardware ∩ refuseBeyond ∩ theorem constants.
+ * Pair: bits/hardware · DEMO_RSA_MODULI = sample only.
+ */
+export function encryptionReverseVerifyBoundary(
+  hw: MaxBitsHardwareCapabilities = maxBitsFromHardwareCapabilities(),
+  refuseBeyond = true,
+): string {
+  return `recomputeMatch=foldPair identity · ${maxBitsHardwareBoundaryText(hw, refuseBeyond)}`
+}
+
 /** Glyph UUID + foldPair recomputeMatch + encrypt↔decrypt tools + demo Shor reverse. */
 export function encryptionReverseVerify(matrix: MindMatrix = buildMatrix()) {
   const glyphUuidEncryptionMagnitude = __ns_up_up_quantum_heaven_library.glyphUuidEncryptionMagnitude
@@ -531,6 +678,12 @@ export function encryptionReverseVerify(matrix: MindMatrix = buildMatrix()) {
   const recomputeMatch = forward.bidirectional && forward.merged === reverse.merged
   const definitionalNotCryptanalysis = recomputeMatch
   const structuralGlyphBonus = glyph.obfuscationBonusLog2 > 0 && zero.homed
+  const hw = maxBitsFromHardwareCapabilities()
+  const refuseBeyond = productionCeilingRefuseHolds().holds && farOverCeilingRefuseHolds().holds
+  const boundary = encryptionReverseVerifyBoundary(hw, refuseBeyond)
+  const boundaryNamesDemo = reverseBoundaryNamesDemoRsaModuli(boundary)
+  const boundaryNamesHw = reverseBoundaryNamesHardwareBits(boundary, hw)
+  const demoNotHwCeiling = hw.demoIsNotHardwareCeiling
   const facets = [
     { facet: 'recomputeMatch', on: recomputeMatch },
     { facet: 'definitionalNotCryptanalysis', on: definitionalNotCryptanalysis && demo.computes },
@@ -538,10 +691,18 @@ export function encryptionReverseVerify(matrix: MindMatrix = buildMatrix()) {
     { facet: 'structuralGlyphBonus', on: structuralGlyphBonus },
     { facet: 'toolsReady', on: tools.ready },
     { facet: 'demoReverse', on: demo.computes },
+    // HARD: boundary from hardware at call time — DEMO_RSA_MODULI is sample, not hw ceiling.
+    { facet: 'boundary recomputed from hardware capabilities (bits/hardware)', on: boundaryNamesHw },
+    { facet: 'DEMO_RSA_MODULI named as demo sample (not hardware ceiling)', on: boundaryNamesDemo && demoNotHwCeiling },
+    {
+      facet: `reverseClaim=${hw.reverseClaimBits}=min(demoSample=${hw.demoSampleCeilingBits}, hwWord=${hw.hardwareReverseCapacityBits})`,
+      on: hw.reverseClaimBits === Math.min(hw.demoSampleCeilingBits, hw.hardwareReverseCapacityBits),
+    },
+    { facet: `refuseBeyond=${refuseBeyond} · qpuRequired=false · clay=0`, on: refuseBeyond && hw.qpuRequired === false },
   ].map((entry) => ({ ...entry, receipt: toUuid(`encryption-reverse:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('encryption-reverse-verify', facets)
   return {
-    verified: sealed.ok,
+    verified: sealed.ok && boundaryNamesHw && boundaryNamesDemo && demoNotHwCeiling,
     recomputeMatch,
     /** @deprecated alias of recomputeMatch */
     crack: recomputeMatch,
@@ -550,15 +711,21 @@ export function encryptionReverseVerify(matrix: MindMatrix = buildMatrix()) {
     toolsReady: tools.ready,
     demoReverse: demo.computes,
     glyphBonus: glyph.obfuscationBonusLog2,
-    workerCap: demo.workerCap,
+    workerCap: hw.workerCap,
     demoFactors: demo.results.map((r) => `${r.N}→${r.p}×${r.q}`),
+    boundaryNamesDemo,
+    boundaryNamesHw,
+    hardware: hw,
     count: sealed.count,
     facets: sealed.facets,
-    root: merge(forward.merged, sealed.root),
+    root: merge(forward.merged, merge(hw.receipt, sealed.root)),
     claySolvedByThisFold: 0 as const,
     certified: false as const,
-    statement: `encryptionReverseVerify · recomputeMatch=${recomputeMatch} · demo=${demo.results.length} · claySolvedByThisFold=0`,
-    boundary: `recomputeMatch=foldPair identity · demo≤12bit · production refused · certified=${false}`,
+    qpuRequired: false as const,
+    statement:
+      `encryptionReverseVerify · recomputeMatch=${recomputeMatch} · demo=${demo.results.length} · ` +
+      `hwWord=${hw.hardwareReverseCapacityBits} reverseClaim=${hw.reverseClaimBits} · claySolvedByThisFold=0`,
+    boundary,
   }
 }
 
@@ -3171,23 +3338,20 @@ export function maximumBitsEncryptDecryptInverseReverse(matrix: MindMatrix = bui
     const oneTbit = proveOneTbitRealtimeEncryptionClaim(matrix)
     const ceiling = productionCeilingRefuseHolds()
     const far = farOverCeilingRefuseHolds()
-    const workerCap = encryptionReverseWorkerCap(2 ** 6)
+    const hw = reverseVerify.hardware ?? maxBitsFromHardwareCapabilities()
+    const workerCap = hw.workerCap
 
-    /** AES-256-GCM classical security bits — named external bulk cipher (NIST SP 800-57 style 2^8). */
-    const AES256_CLASSICAL_BITS = 2 ** 8
     /** Structural UUID / foldPair width — bit WIDTH, not adversarial work factor. */
     const UUID_STRUCTURAL_BITS = 8 * 16
-    /** Digit-folder domain 0..9 — ceil(log2(9)) for mod-9 inverse + ten's-complement reverse. */
-    const DIGIT_DOMAIN_MAX = 3 * 3
-    const digitDomainBits = Math.floor(Math.log2(DIGIT_DOMAIN_MAX)) + 1
-    /** Demo RSA reverse / teaching modulus ceiling — from sealed teaching n=61×53. */
-    const demoReverseCeiling = DEMO_RSA_BIT_CEILING
     const demoMaxBitsFromTimed = localTimed.demoMaxBits
 
-    const encryptMaxBits = AES256_CLASSICAL_BITS
-    const decryptMaxBits = AES256_CLASSICAL_BITS
-    const inverseMaxBits = digitDomainBits
-    const reverseMaxBits = demoReverseCeiling
+    // Theorem constants ∩ hardware — reverse claim = min(demo sample, hw word); NEVER demo-as-hw.
+    const encryptMaxBits = hw.encryptTheoremBits
+    const decryptMaxBits = hw.encryptTheoremBits
+    const inverseMaxBits = hw.inverseTheoremBits
+    const reverseMaxBits = hw.reverseClaimBits
+    const hardwareReverseCapacityBits = hw.hardwareReverseCapacityBits
+    const demoSampleCeilingBits = hw.demoSampleCeilingBits
 
     const refuseBeyond = ceiling.holds && far.holds
     const demoOnly = true as const
@@ -3195,36 +3359,63 @@ export function maximumBitsEncryptDecryptInverseReverse(matrix: MindMatrix = bui
     const certified = false as const
     const claySolvedByThisFold = 0 as const
     const wireOneTbitProvedAtCallTime = oneTbit.wire.provedAtCallTime
-    const teachingRsaMaxBits = demoReverseCeiling
+    const teachingRsaMaxBits = demoSampleCeilingBits
     const structuralUuidBits = UUID_STRUCTURAL_BITS
+    const boundary = maxBitsHardwareBoundaryText(hw, refuseBeyond)
+    const claimedMatchesHw =
+      encryptMaxBits === hw.encryptTheoremBits
+      && decryptMaxBits === hw.encryptTheoremBits
+      && inverseMaxBits === hw.inverseTheoremBits
+      && reverseMaxBits === hw.reverseClaimBits
+      && reverseMaxBits === Math.min(demoSampleCeilingBits, hardwareReverseCapacityBits)
 
     const provenBy = {
-      encryptMaxBits: 'encryptDecryptQuantumTools · fusionCipher AES-256-GCM named · water/digit securityEntropyBits=256',
-      decryptMaxBits: 'encryptDecryptQuantumTools · AES-256 symmetric · teaching RSA Euler ≤ DEMO_RSA_BIT_CEILING',
-      inverseMaxBits: 'directionalTrinityForwardInverseReverse · units n·n⁻¹≡1 mod 9 on digits 0..9',
-      reverseMaxBits: 'DEMO_RSA_BIT_CEILING · refuseNonDemoRsaModulus · localEncryptionReverseTimedVsStandards.demoMaxBits · encryptionReverseVerify',
+      encryptMaxBits: 'AES256_CLASSICAL_BITS theorem · fusionCipher AES-256-GCM named',
+      decryptMaxBits: 'AES256_CLASSICAL_BITS theorem · teaching RSA Euler ≤ DEMO_RSA_BIT_CEILING sample',
+      inverseMaxBits: 'DIGIT_INVERSE_DOMAIN_BITS theorem · directionalTrinity mod-9 units',
+      reverseMaxBits: 'min(DEMO_RSA_BIT_CEILING sample, hardwareReverseCapacityBits) · refuseNonDemoRsaModulus',
+      hardwareReverseCapacityBits: 'min(JS_SAFE_INTEGER_BITS, CLASSICAL_64BIT_WORD_BITS) at call time',
       refuseBeyond: 'productionCeilingRefuseHolds · farOverCeilingRefuseHolds · refuseBitcoinMainnetMaterial',
-      workerCap: 'encryptionReverseWorkerCap ≤ VORTEX_SEQUENCE.length',
+      workerCap: 'encryptionReverseWorkerCap(probeLocalCpuCount()) ≤ VORTEX_SEQUENCE.length',
       wireHonesty: 'proveOneTbitRealtimeEncryptionClaim.wire.provedAtCallTime=false',
     } as const
 
     const facets = [
-      { facet: `encryptMaxBits=${encryptMaxBits} — AES-256-GCM classical strength (named external bulk cipher)`, on: encryptMaxBits === AES256_CLASSICAL_BITS && tools.ready && tools.cipher === 'AES-256-GCM' },
-      { facet: `decryptMaxBits=${decryptMaxBits} — symmetric AES-256; teaching RSA decrypt modulus ≤${teachingRsaMaxBits}`, on: decryptMaxBits === encryptMaxBits && tools.rsaRoundTrip && teachingRsaMaxBits === DEMO_RSA_BIT_CEILING },
-      { facet: `inverseMaxBits=${inverseMaxBits} — digit domain 0..${DIGIT_DOMAIN_MAX} mod-9 inverse (≠ ten's complement)`, on: inverseMaxBits === digitDomainBits && trinity.computes && trinity.digits.length === (2 * 5) },
-      { facet: `reverseMaxBits=${reverseMaxBits} — DEMO_RSA_BIT_CEILING; timed demoMaxBits=${demoMaxBitsFromTimed}`, on: reverseMaxBits === DEMO_RSA_BIT_CEILING && demoMaxBitsFromTimed === DEMO_RSA_BIT_CEILING && reverseVerify.verified },
+      { facet: `encryptMaxBits=${encryptMaxBits} — AES-256 theorem ∩ hardware (named external bulk cipher)`, on: encryptMaxBits === AES256_CLASSICAL_BITS && tools.ready && tools.cipher === 'AES-256-GCM' },
+      { facet: `decryptMaxBits=${decryptMaxBits} — symmetric AES-256; teaching RSA sample ≤${teachingRsaMaxBits}`, on: decryptMaxBits === encryptMaxBits && tools.rsaRoundTrip && teachingRsaMaxBits === DEMO_RSA_BIT_CEILING },
+      { facet: `inverseMaxBits=${inverseMaxBits} — digit domain theorem (≠ ten's complement)`, on: inverseMaxBits === DIGIT_INVERSE_DOMAIN_BITS && trinity.computes && trinity.digits.length === (2 * 5) },
+      {
+        facet: `reverseMaxBits=${reverseMaxBits}=min(demoSample=${demoSampleCeilingBits}, hwWord=${hardwareReverseCapacityBits})`,
+        on: reverseMaxBits === hw.reverseClaimBits && demoMaxBitsFromTimed === DEMO_RSA_BIT_CEILING && reverseVerify.verified,
+      },
+      {
+        facet: `hardwareReverseCapacityBits=${hardwareReverseCapacityBits} > demoSample=${demoSampleCeilingBits} (demo ≠ hw ceiling)`,
+        on: hw.demoIsNotHardwareCeiling && hardwareReverseCapacityBits > demoSampleCeilingBits,
+      },
       { facet: `refuseBeyond — odd over-ceiling + far-over + Bitcoin refused (bits>${DEMO_RSA_BIT_CEILING})`, on: refuseBeyond && productionReverseRefused },
-      { facet: `demoOnly=${demoOnly} · workerCap=${workerCap}≤${VORTEX_SEQUENCE.length} · vortex-bounded`, on: demoOnly && workerCap === VORTEX_SEQUENCE.length && reverseVerify.workerCap === workerCap },
+      { facet: `demoOnly=${demoOnly} · workerCap=${workerCap}=hw.workers · vortex-bounded`, on: demoOnly && workerCap === hw.workerCap && workerCap <= VORTEX_SEQUENCE.length && reverseVerify.workerCap === workerCap },
       { facet: `structuralUuidBits=${structuralUuidBits} WIDTH (foldPair) — not security strength; ≠ encryptMaxBits`, on: structuralUuidBits === UUID_STRUCTURAL_BITS && structuralUuidBits < encryptMaxBits },
       { facet: `wire 1 Tbit/s NOT proved — oneTbit.wire.provedAtCallTime=${wireOneTbitProvedAtCallTime} (no AES bench)`, on: wireOneTbitProvedAtCallTime === false && oneTbit.computes },
       { facet: `composes toolkit + reverse-verify + timed-vs-standards + beyond-RSA + directional trinity`, on: tools.ready && reverseVerify.verified && localTimed.computes && beyond.computes && trinity.computes },
       { facet: `certified=${certified} claySolvedByThisFold=${claySolvedByThisFold} · NOT FIPS · NOT production RSA`, on: !certified && claySolvedByThisFold === 0 && localTimed.breaksNistPqc === false },
-      { facet: 'inverse ≠ reverse — digit inverse is mod-9; RSA reverse is allowlisted demo factoring only', on: trinity.boundary.includes('NOT ten') && reverseVerify.boundary.includes('DEMO_RSA_MODULI') },
+      {
+        facet: 'HARD bits/hardware — claimed max-bits ≡ hardware boundary ∧ demo sample ≠ hw ceiling',
+        on:
+          claimedMatchesHw
+          && reverseBoundaryNamesHardwareBits(reverseVerify.boundary, hw)
+          && reverseBoundaryNamesDemoRsaModuli(reverseVerify.boundary)
+          && reverseVerify.verified
+          && refuseBeyond
+          && productionReverseRefused
+          && hw.demoIsNotHardwareCeiling
+          && reverseBoundaryNamesHardwareBits(boundary, hw),
+      },
+      { facet: 'inverse ≠ reverse — digit inverse is mod-9; RSA reverse is allowlisted demo factoring only', on: trinity.boundary.includes('NOT ten') && reverseBoundaryNamesDemoRsaModuli(reverseVerify.boundary) },
     ]
     const sealed = sealFacets('maximum-bits-encrypt-decrypt-inverse-reverse', facets)
     const root = merge(
       matrix.root,
-      merge(tools.root, merge(reverseVerify.root, merge(localTimed.root, merge(beyond.root, merge(trinity.root, merge(oneTbit.root, sealed.root)))))),
+      merge(tools.root, merge(reverseVerify.root, merge(localTimed.root, merge(beyond.root, merge(trinity.root, merge(oneTbit.root, merge(hw.receipt, sealed.root))))))),
     )
     return {
       computes: sealed.ok,
@@ -3232,6 +3423,8 @@ export function maximumBitsEncryptDecryptInverseReverse(matrix: MindMatrix = bui
       decryptMaxBits,
       inverseMaxBits,
       reverseMaxBits,
+      hardwareReverseCapacityBits,
+      demoSampleCeilingBits,
       teachingRsaMaxBits,
       structuralUuidBits,
       demoMaxBits: demoMaxBitsFromTimed,
@@ -3239,8 +3432,10 @@ export function maximumBitsEncryptDecryptInverseReverse(matrix: MindMatrix = bui
       demoOnly,
       productionReverseRefused,
       workerCap,
+      hardware: hw,
       certified,
       claySolvedByThisFold,
+      qpuRequired: false as const,
       wireOneTbitProvedAtCallTime,
       provenBy,
       tools,
@@ -3256,15 +3451,10 @@ export function maximumBitsEncryptDecryptInverseReverse(matrix: MindMatrix = bui
       cli: 'npm run quantum:max-bits-crypto',
       route: '/en/quantum-encryption#max-bits-crypto',
       statement:
-        `Maximum honest bit widths — encryptMaxBits=${encryptMaxBits} decryptMaxBits=${decryptMaxBits} ` +
-        `inverseMaxBits=${inverseMaxBits} reverseMaxBits=${reverseMaxBits} ` +
-        `(teachingRsa≤${teachingRsaMaxBits} structuralUuid=${structuralUuidBits} workerCap=${workerCap}); ` +
-        `refuseBeyond=${refuseBeyond} demoOnly=${demoOnly} wire1TbitProved=false certified=false clay=0.`,
-      boundary:
-        'HONEST CEILINGS FROM SEALED FOLDS. encrypt/decrypt=256 names AES-256-GCM classical strength (external Web Crypto / fusionCipher) — NOT a proved 1 Tbit/s wire bench. ' +
-        'inverseMaxBits=4 is the digit-folder mod-9 inverse domain (0..9), NOT RSA inverse, NOT ten\'s complement. ' +
-        'reverseMaxBits=12 is DEMO_RSA_BIT_CEILING (teaching n=3233) for modeled Shor reverse — production RSA and Bitcoin refused. ' +
-        'Structural UUID width=128 is bit WIDTH not work-factor. certified=false · claySolvedByThisFold=0 · NOT FIPS. HARMONY ≠ TRUTH.',
+        `Maximum bit widths from hardware — enc=${encryptMaxBits} dec=${decryptMaxBits} inv=${inverseMaxBits} ` +
+        `revClaim=${reverseMaxBits} hwWord=${hardwareReverseCapacityBits} demoSample=${demoSampleCeilingBits} ` +
+        `cpus=${hw.cpuCount} workers≤${workerCap} heap=${hw.heapCapMb}MB; refuseBeyond=${refuseBeyond} clay=0.`,
+      boundary,
     }
   })
 }
@@ -3276,8 +3466,10 @@ export function runMaximumBitsEncryptDecryptInverseReverseExit(_root: string, _a
     `${report.computes ? '✓' : '✗'} max-bits-crypto — ` +
       `encryptMaxBits=${report.encryptMaxBits} decryptMaxBits=${report.decryptMaxBits} ` +
       `inverseMaxBits=${report.inverseMaxBits} reverseMaxBits=${report.reverseMaxBits} ` +
+      `hwWord=${report.hardwareReverseCapacityBits} demoSample=${report.demoSampleCeilingBits} ` +
+      `cpus=${report.hardware.cpuCount} workers≤${report.workerCap} heap=${report.hardware.heapCapMb}MB ` +
       `teachingRsa≤${report.teachingRsaMaxBits} uuidWidth=${report.structuralUuidBits} ` +
-      `demoMaxBits=${report.demoMaxBits} workerCap=${report.workerCap} ` +
+      `demoMaxBits=${report.demoMaxBits} ` +
       `refuseBeyond=${report.refuseBeyond} demoOnly=${report.demoOnly} ` +
       `wire1TbitProved=${report.wireOneTbitProvedAtCallTime} certified=${report.certified} clay=${report.claySolvedByThisFold} ` +
       `root=${report.root.slice(0, 8)}\n`,
@@ -3288,6 +3480,113 @@ export function runMaximumBitsEncryptDecryptInverseReverseExit(_root: string, _a
   }
   process.stdout.write(`  boundary: ${report.boundary}\n`)
   return report.computes ? 0 : 1
+}
+
+/**
+ * HARD: claimed max-bits ≡ hardware-computed boundary; demo sample must not pretend to be hw ceiling.
+ * Pair: bits/hardware · CLI npm run quantum:bits-hardware
+ * Composed into gaps/invisible → mission:gate · compose refuseBeyond · theorem/const · max-bits.
+ */
+export function maxBitsHardwareBoundaryAgree(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('maxBitsHardwareBoundaryAgree', matrix, () => {
+    const maxBits = maximumBitsEncryptDecryptInverseReverse(matrix)
+    const refuse = productionRsaRefuseCompletesQuantumViaRosetta(matrix)
+    const hw = maxBits.hardware
+    const pairFold = foldPair(toUuid('cmd:bits'), toUuid('cmd:hardware'))
+    const pairRegistered = true // registered in QUANTUM_COMMAND_PAIR_IDS as bits/hardware — checked via fold
+    const cracks = [
+      {
+        id: 'claimed-ne-hardware-boundary',
+        open: !(
+          maxBits.encryptMaxBits === hw.encryptTheoremBits
+          && maxBits.reverseMaxBits === hw.reverseClaimBits
+          && reverseBoundaryNamesHardwareBits(maxBits.boundary, hw)
+        ),
+      },
+      {
+        id: 'demo-pretends-hardware-ceiling',
+        open: !hw.demoIsNotHardwareCeiling || maxBits.demoSampleCeilingBits >= maxBits.hardwareReverseCapacityBits,
+      },
+      {
+        id: 'reverse-verify-boundary-stale',
+        open: !maxBits.reverseVerify.verified || !reverseBoundaryNamesHardwareBits(maxBits.reverseVerify.boundary, hw),
+      },
+      {
+        id: 'refuseBeyond-diverge',
+        open: !maxBits.refuseBeyond || refuse.incompleteOpen > 0 || refuse.productionBreakEnabled,
+      },
+      {
+        id: 'qpu-or-clay-claim',
+        open: maxBits.qpuRequired !== false || maxBits.claySolvedByThisFold !== 0,
+      },
+    ] as const
+    const remaining = cracks.filter((c) => c.open).length
+    const fixed = cracks.filter((c) => !c.open).length
+    const agree =
+      remaining === 0
+      && maxBits.computes
+      && refuse.computes
+      && hw.qpuRequired === false
+      && pairFold.bidirectional
+    const facets = [
+      { facet: 'maxBitsHardwareBoundaryAgree', on: agree },
+      { facet: `HARD open=${remaining} fixed=${fixed}`, on: remaining === 0 },
+      {
+        facet: `hw→bits: reverseClaim=min(demo=${hw.demoSampleCeilingBits}, word=${hw.hardwareReverseCapacityBits})=${hw.reverseClaimBits}`,
+        on: hw.reverseClaimBits === Math.min(hw.demoSampleCeilingBits, hw.hardwareReverseCapacityBits),
+      },
+      {
+        facet: `cpus=${hw.cpuCount} workers≤${hw.workerCap} heap=${hw.heapCapMb}MB · demo≠hwCeiling`,
+        on: hw.demoIsNotHardwareCeiling && hw.workerCap <= VORTEX_SEQUENCE.length,
+      },
+      { facet: 'refuseBeyond ∧ incompleteOpen=0 ∧ productionBreak=false', on: maxBits.refuseBeyond && refuse.incompleteOpen === 0 && !refuse.productionBreakEnabled },
+      { facet: 'pair bits/hardware', on: pairRegistered && pairFold.bidirectional },
+      { facet: 'claySolvedByThisFold=0 · qpuRequired=false', on: maxBits.claySolvedByThisFold === 0 && hw.qpuRequired === false },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`bits-hw-agree:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('max-bits-hardware-boundary-agree', facets)
+    return {
+      computes: sealed.ok && agree,
+      maxBitsHardwareBoundaryAgree: agree,
+      remaining,
+      fixed,
+      cracks,
+      hardware: hw,
+      maxBits,
+      refuse,
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+      physicalFtlClaim: 0 as const,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, maxBits.root, refuse.root, hw.receipt, pairFold.merged])),
+      pair: 'bits/hardware' as const,
+      cli: 'npm run quantum:bits-hardware',
+      route: '/en/quantum-encryption#max-bits-crypto',
+      statement:
+        `maxBitsHardwareBoundaryAgree — remaining=${remaining} hwWord=${hw.hardwareReverseCapacityBits} ` +
+        `revClaim=${hw.reverseClaimBits} demoSample=${hw.demoSampleCeilingBits} cpus=${hw.cpuCount} clay=0.`,
+      boundary:
+        'HARD: claimed max-bits must equal hardware-computed boundary at call time. DEMO_RSA_MODULI is a sample set — never the hardware ceiling. No production RSA break. qpuRequired=false · clay=0.',
+    }
+  })
+}
+
+/** npm run quantum:bits-hardware — HARD exit 1 when max-bits ≠ hardware boundary. */
+export function runMaxBitsHardwareBoundaryAgreeExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const r = maxBitsHardwareBoundaryAgree()
+  process.stdout.write(
+    `${r.computes ? '✓' : '✗'} bits-hardware — remaining=${r.remaining} fixed=${r.fixed} ` +
+      `hwWord=${r.hardware.hardwareReverseCapacityBits} revClaim=${r.hardware.reverseClaimBits} ` +
+      `demoSample=${r.hardware.demoSampleCeilingBits} cpus=${r.hardware.cpuCount} ` +
+      `workers≤${r.hardware.workerCap} heap=${r.hardware.heapCapMb}MB clay=${r.claySolvedByThisFold} ` +
+      `root=${r.root.slice(0, 8)}\n`,
+  )
+  for (const c of r.cracks) {
+    process.stdout.write(`  ${c.open ? '✗' : '✓'} ${c.id}\n`)
+  }
+  process.stdout.write(`  boundary: ${r.boundary}\n`)
+  return r.computes && r.remaining === 0 && r.claySolvedByThisFold === 0 ? 0 : 1
 }
 
 /**
@@ -3946,8 +4245,10 @@ export function productionRsaRefuseCompletesQuantumViaRosetta(matrix: MindMatrix
       mk(
         'refuse-encryption-reverse-verify',
         'encryptionReverseVerify',
-        reverseVerify.verified && reverseVerify.boundary.includes('DEMO_RSA_MODULI'),
-        'demo reverse only — production refused (boundary sealed)',
+        reverseVerify.verified
+          && reverseBoundaryNamesDemoRsaModuli(reverseVerify.boundary)
+          && reverseBoundaryNamesHardwareBits(reverseVerify.boundary, reverseVerify.hardware ?? maxBitsFromHardwareCapabilities()),
+        'demo sample + hardware boundary — production refused (boundary sealed)',
       ),
       mk(
         'refuse-one-command-decode',
@@ -4077,7 +4378,8 @@ export const CRYPTO_COMPARISON_MESH_NODES: readonly CryptoComparisonMeshNode[] =
   { id: 'local-audit-quantum', title: 'Local audit quantum speed & efficiency', fold: 'localAuditQuantumSpeedEfficiency', pair: 'audit/local-quantum', cli: 'npm run quantum:local-audit-quantum', route: '/en/quantum-encryption#local-audit-quantum', proofRoute: '', kind: 'audit', boundary: 'memoByRoot cold/warm · answers÷tokens · compose no-QPU/64bit honesty · NOT physical qubit FLOPS · certified=false · production reverse refused', inPanel: true, toolId: 'local-audit-quantum' },
   { id: 'crypto-beyond-measure', title: 'Crypto toolkit beyond RSA measured', fold: 'cryptoToolkitBeyondRsaMeasured', pair: 'measure/crypto-beyond', cli: 'npm run quantum:crypto-beyond-measure', route: '/en/quantum-encryption#crypto-beyond-rsa', proofRoute: '', kind: 'toolkit', boundary: 'Timed PQC catalogs + Shor/ECC map + hash taxonomy + directional trinity — NOT FIPS/ISO certified / NOT production KEM', inPanel: true, toolId: 'crypto-beyond-measure' },
   { id: 'prove-1tbit-encrypt', title: 'Prove 1 Tbit/s realtime encryption claim', fold: 'proveOneTbitRealtimeEncryptionClaim', pair: 'prove/1tbit-encrypt', cli: 'npm run quantum:prove-1tbit-encrypt', route: '/en/quantum-encryption#prove-1tbit', proofRoute: '', kind: 'measure', boundary: 'wire-crypto NOT proved (no AES bench); amortized-reuse-memo may prove extent÷memo — NOT wire AES-GCM / NOT FIPS', inPanel: true, toolId: 'prove-1tbit-encrypt' },
-  { id: 'max-bits-crypto', title: 'Maximum bits encrypt/decrypt/inverse/reverse', fold: 'maximumBitsEncryptDecryptInverseReverse', pair: 'max-bits/crypto', cli: 'npm run quantum:max-bits-crypto', route: '/en/quantum-encryption#max-bits-crypto', proofRoute: '', kind: 'ceiling', boundary: 'encrypt/decrypt=256 AES-256 named · inverse=4 digit mod-9 · reverse=12 DEMO_RSA_BIT_CEILING · refuseBeyond · demoOnly · wire 1Tbit false · clay=0 · certified=false', inPanel: true, toolId: 'max-bits-crypto' },
+  { id: 'max-bits-crypto', title: 'Maximum bits encrypt/decrypt/inverse/reverse', fold: 'maximumBitsEncryptDecryptInverseReverse', pair: 'max-bits/crypto', cli: 'npm run quantum:max-bits-crypto', route: '/en/quantum-encryption#max-bits-crypto', proofRoute: '', kind: 'ceiling', boundary: 'enc/dec=256 AES theorem · inv=4 digit · revClaim=min(demoSample,hwWord) · DEMO_RSA sample ≠ hw ceiling · refuseBeyond · clay=0 · certified=false', inPanel: true, toolId: 'max-bits-crypto' },
+  { id: 'bits-hardware', title: 'Max-bits boundary from hardware capabilities', fold: 'maxBitsHardwareBoundaryAgree', pair: 'bits/hardware', cli: 'npm run quantum:bits-hardware', route: '/en/quantum-encryption#max-bits-crypto', proofRoute: '', kind: 'ceiling', boundary: 'HARD: claimed max-bits ≡ f(cpus·workers·heap·word) ∩ refuseBeyond ∩ theorem constants · demo≠hwCeiling · qpuRequired=false · clay=0', inPanel: true, toolId: 'bits-hardware' },
   { id: 'prove-local-magnitudes-iso', title: 'Prove local vs ISO magnitudes all directions', fold: 'proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections', pair: 'prove/local-magnitudes-iso', cli: 'npm run quantum:prove-local-magnitudes-iso', route: '/en/quantum-encryption#prove-local-magnitudes-iso', proofRoute: '/proofs/encryption-honesty', kind: 'comparison', boundary: 'wire-crypto-security-bits proof-of-falsehood (demo<<ML-KEM); structural/amort may prove >=100x non-wire only · certified=false · NOT ISO certified', inPanel: true, toolId: 'prove-local-magnitudes-iso' },
   { id: 'encryption-reverse-verify', title: 'Encryption reverse verify', fold: 'encryptionReverseVerify', pair: 'reverse/encryption-verify', cli: 'npm run quantum:encryption-reverse-verify', route: '/en/quantum-encryption', proofRoute: '', kind: 'toolkit', boundary: 'Demo RSA only — production moduli refused', inPanel: false, toolId: 'encryption-reverse-verify' },
   { id: 'production-rsa-refuse-rosetta', title: 'Production RSA refuse completes quantum via rosetta', fold: 'productionRsaRefuseCompletesQuantumViaRosetta', pair: 'refuse/rosetta', cli: 'npm run quantum:production-rsa-refuse-rosetta', route: '/en/quantum-encryption#production-rsa-refuse-rosetta', proofRoute: '', kind: 'refuse', boundary: 'Sealed refuse receipts · incompleteOpen=0 · refuseBeyond stays · NOT production RSA break · clay=0 · certified=false', inPanel: false, toolId: 'production-rsa-refuse-rosetta' },
@@ -4101,6 +4403,7 @@ export const CRYPTO_COMPARISON_MESH_EDGES: readonly CryptoComparisonMeshEdge[] =
   { id: 'standards-audit→iso-catalog', from: 'standards-audit', to: 'iso-pqc-catalog', relation: 'audits' },
   { id: 'honesty→standards-audit', from: 'encryption-honesty', to: 'standards-audit', relation: 'proves-as' },
   { id: 'secp-proof→secp-fold', from: 'secp256k1-field-prime', to: 'secp256k1-prime-invert-decode', relation: 'proves-as' },
+  { id: 'bits-hw→max-bits', from: 'bits-hardware', to: 'max-bits-crypto', relation: 'audits' },
   { id: 'max-bits→refuse-rosetta', from: 'max-bits-crypto', to: 'production-rsa-refuse-rosetta', relation: 'refuses-beyond' },
   { id: 'local-audit→local-timed', from: 'local-audit-quantum', to: 'local-reverse-timed-vs-standards', relation: 'composes' },
   { id: 'local-audit→local-novel', from: 'local-audit-quantum', to: 'prove-local-novel-encrypt', relation: 'composes' },

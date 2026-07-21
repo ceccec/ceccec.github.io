@@ -72,6 +72,7 @@
     "quantum:crypto-beyond-measure": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runCryptoToolkitBeyondRsaMeasuredExit",
     "quantum:prove-1tbit-encrypt": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runProveOneTbitRealtimeEncryptionClaimExit",
     "quantum:max-bits-crypto": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runMaximumBitsEncryptDecryptInverseReverseExit",
+    "quantum:bits-hardware": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runMaxBitsHardwareBoundaryAgreeExit",
     "quantum:prove-local-magnitudes-iso": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runProveLocalEncryptionMagnitudesStrongerThanIsoAllDirectionsExit",
     "quantum:crypto-comparison-mesh-dry": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runCryptoRelatedSurfacesAreDryExit",
     "quantum:og-limits-measure": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/mountain/og/index.ts runPlatformOgLimitsMeasuredExit",

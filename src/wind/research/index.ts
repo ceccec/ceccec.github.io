@@ -5053,6 +5053,11 @@ export function autodiscoverWhatIsToBeComputedOrDecoded(matrix: MindMatrix = bui
     const oneDecode = __ns_thunder_decode.oneCommandDecodeComputable(matrix, at)
     const oneDecodeComputable = oneDecode.computes && oneDecode.oneCommandDecodeComputable
     const oneDecodeRoot = oneDecode.root
+    // Compose clay/gravity · merkaba · decode · team/collide · gate/miss (no thunder/waves import — cycle).
+    const clayGravity = clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix, at)
+    const gateMiss = __ns_quantum_apps.cracksPassedGatesBecause(matrix, at)
+    const teamCollidePair = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('team/collide')
+    const teamCollideFold = foldPair(toUuid('cmd:team'), toUuid('cmd:collide'))
 
     const items: AutodiscoverItem[] = []
     const push = (row: Omit<AutodiscoverItem, 'receipt'>) => {
@@ -5269,6 +5274,18 @@ export function autodiscoverWhatIsToBeComputedOrDecoded(matrix: MindMatrix = bui
       { facet: 'universe Clay/FTL/DE440/earth classified honest-open (not drainable)', on: items.filter((i) => i.family === 'universe-honest-open').every((i) => i.status === 'honest-open') },
       { facet: 'reverse-collide Millennium capability listed', on: items.some((i) => i.id === 'tool-reverse-collide-discover-millennium') },
       { facet: 'production-RSA refuse security wire listed', on: items.some((i) => i.id === 'security-production-rsa-refuse-rosetta') },
+      {
+        facet: 'compose clay/gravity · merkaba · decode · team/collide · gate/miss',
+        on:
+          clayGravity.computes
+          && clayGravity.merkabaStarted
+          && clayGravity.physicalFtlClaim === 0
+          && oneDecodeComputable
+          && teamCollidePair
+          && teamCollideFold.bidirectional
+          && gateMiss.computes
+          && gateMiss.claySolvedByThisFold === 0,
+      },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`autodiscover-cd:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('autodiscover-what-is-to-be-computed-or-decoded', facets)
@@ -5286,7 +5303,11 @@ export function autodiscoverWhatIsToBeComputedOrDecoded(matrix: MindMatrix = bui
       coveredCount: items.filter((i) => i.status === 'covered').length,
       oneCommandDecodeComputable: oneDecodeComputable,
       facets: sealed.facets,
-      root: merge(matrix.root, merkleFold([sealed.root, papersFill.root, catalog.root, limits.root, oneDecodeRoot, ...items.map((i) => i.receipt)])),
+      root: merge(matrix.root, merkleFold([
+        sealed.root, papersFill.root, catalog.root, limits.root, oneDecodeRoot,
+        clayGravity.root, gateMiss.root, teamCollideFold.merged,
+        ...items.map((i) => i.receipt),
+      ])),
       cli: 'npm run quantum:autodiscover-compute-decode',
       pair: 'discover/compute-decode' as const,
       route: '/en/quantum-tools#autodiscover-compute-decode',
