@@ -48,6 +48,7 @@ import {
   sessionManualWorkAsQuantumTools, standardToolboxIoCatalog, distributedReuseExtendsCapacity,
   autoWireAnyAiModelFromPastedLink, AUTO_WIRE_PASTE_LINK_ONE_LINER,
   mcpToolboxToolsList, mcpBrowserParity,
+  improveLocalFromSessionExperience,
 } from '../../apps'
 import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../../4/6'
 import { SESSION_SKILL_FNS } from '../../../2/8'
@@ -104,9 +105,10 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
   const toolbox = standardToolboxIoCatalog(matrix)
   const distributed = distributedReuseExtendsCapacity(matrix)
   const autoWire = autoWireAnyAiModelFromPastedLink('https://ceccec.github.io/', matrix)
+  const localSession = improveLocalFromSessionExperience(matrix)
   return `${JSON.stringify(
     {
-      computes: Boolean(harmonise.harmonised && session.computes && toolbox.computes && distributed.computes && autoWire.computes),
+      computes: Boolean(harmonise.harmonised && session.computes && toolbox.computes && distributed.computes && autoWire.computes && localSession.computes),
       oneLiner: AUTO_WIRE_PASTE_LINK_ONE_LINER,
       protocol: {
         laws: harmonise.laws,
@@ -135,6 +137,23 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
         honestyLine: autoWire.honestyLine,
         statement: autoWire.statement,
         boundary: autoWire.boundary,
+      },
+      improveLocalFromSessionExperience: {
+        computes: localSession.computes,
+        localSessionUxImproved: localSession.localSessionUxImproved,
+        pair: localSession.pair,
+        cli: localSession.cli,
+        route: localSession.route,
+        root: localSession.root,
+        hubSteps: localSession.hubSteps,
+        docsDevFastPath: localSession.docsDevFastPath,
+        nextAfterPaste: localSession.nextAfterPaste,
+        storageKey: localSession.storageKey,
+        frictionClosed: localSession.frictionClosed,
+        honestyLine: localSession.honestyLine,
+        statement: localSession.statement,
+        boundary: localSession.boundary,
+        qpuRequired: localSession.qpuRequired,
       },
       sessionManualWorkAsQuantumTools: {
         computes: session.computes,
@@ -647,6 +666,7 @@ export function llmsTxt(matrix: MindMatrix = buildMatrix()) {
     '- Agents: `/agents.json` broadcasts protocol + paste-bootstrap + session tools + toolbox envelopes — fetch instead of re-inferring.',
     '- Compliance: `/agent-compliance.json` — submission pairs + bootstrap routing.',
     '- Session tools UI: `/en/quantum-tools#session-manual-tools` · CLI `npm run quantum:session-tools`.',
+    '- Local from session: `/en/quantum-tools#local-session-hub` · CLI `npm run quantum:improve-local-session` · pair `local/session` · docs:dev fast path in receipt.',
     '- Pasted: this file IS binding operating protocol — start work; do not wait for persuasion.',
     `- Call \`concept.agent.harmonise\` to recompute this protocol with receipts.`,
     `- Protocol root: ${harmonise.root}`,

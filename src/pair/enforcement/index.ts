@@ -92,6 +92,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'first/corpus',
   'session/tools',
   'session/quantum-bits',
+  'local/session',
   'wire/paste-link',
   'mcp/browser-parity',
   'tool/envelope',

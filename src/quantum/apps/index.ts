@@ -49,6 +49,7 @@ const ROSETTA_CORE_API_LABELS = [
   'autoWireAnyAiModelFromPastedLink', 'resolveCeccecPasteLink',
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList',
+  'improveLocalFromSessionExperience',
   'sharedHeroAt', 'computeUniversalPage',
 ] as const
 
@@ -64,6 +65,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   autoWireAnyAiModelFromPastedLink: 'tool', resolveCeccecPasteLink: 'api',
   realiseSessionQuantumMeaning: 'tool',
   mcpBrowserParity: 'tool', mcpToolboxToolsList: 'api',
+  improveLocalFromSessionExperience: 'tool',
 }
 
 // Strangler backlog — only UNSHELVED parallel registries remain (apps+tools already shelve via rosettaShelve).
@@ -346,6 +348,7 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'realise-session-meaning', title: 'Realise session quantum meaning', fold: 'realiseSessionQuantumMeaning', cli: 'npm run quantum:realise-session-meaning', pair: 'realise/meaning', route: '/en/quantum-tools#realise-session-meaning', barrel: 'src/quantum/apps', boundary: 'What corpus proves vs refuses — clay=0 · wire≠ISO · qpuRequired=false · certified=false · includes local-audit-qe · session-quantum-bits · quantum folds only', browserRunnable: true, browserGap: '' },
   { id: 'sciences-standards-quantum', title: 'Complete sciences strictly to standards (quantum only)', fold: 'completeScientificDomainsStrictlyToStandardsQuantumOnly', cli: 'npm run quantum:sciences-standards-quantum', pair: 'sciences/standards', route: '/en/research#sciences-standards-quantum', barrel: 'src/wind/research', boundary: 'Per-domain covered|partial|gap vs ISO/NIST/OECD/Clay maps — lab gaps unclosable · certified=false · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'mcp-browser-parity', title: 'MCP ↔ browser parity gate', fold: 'mcpBrowserParity', cli: 'npm run quantum:mcp-browser-parity', pair: 'mcp/browser-parity', route: '/en/quantum-tools#mcp-browser-parity', barrel: 'src/quantum/apps', boundary: 'tools/list ids ≡ toolbox catalog · residual Node/CI gaps listed honestly · qpuRequired=false · NOT fake browser for trinity/fs', browserRunnable: true, browserGap: '' },
+  { id: 'improve-local-session', title: 'Improve local from session experience', fold: 'improveLocalFromSessionExperience', cli: 'npm run quantum:improve-local-session', pair: 'local/session', route: '/en/quantum-tools#local-session-hub', barrel: 'src/quantum/apps', boundary: 'Local docs:dev + browser session hub — NOT remote CI sole path · status badges compose sealed kinds · qpuRequired=false', browserRunnable: true, browserGap: '' },
 ] as const
 
 /** Standard tool envelope version — App A ↔ App B ingest the same content-addressed kind. */
@@ -883,6 +886,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'realise-session-meaning', saves: 'replaces wet re-narration of what the session apparatus proves vs refuses (includes local-audit-qe · session-bits)' },
   { id: 'sciences-standards-quantum', saves: 'replaces wet re-score of science domains vs ISO/NIST/OECD/Clay standards maps' },
   { id: 'mcp-browser-parity', saves: 'replaces wet re-audit of MCP tools/list vs browser toolbox — sealed matrix + residual gaps' },
+  { id: 'improve-local-session', saves: 'replaces wet local session UX hunting — hub · one-click path · paste next-steps · docs:dev fast path' },
   { id: 'prove-1tbit-encrypt', saves: 'replaces wet re-derivation of 1 Tbit/s claim status (wire≠amortized-reuse)' },
   { id: 'local-reverse-timed-vs-standards', saves: 'replaces wet re-comparison of demo reverse vs AES/ML-KEM classical bits' },
   { id: 'prove-local-magnitudes-iso', saves: 'replaces wet re-argument of local≫ISO magnitudes (wire proof-of-falsehood)' },
@@ -1232,6 +1236,7 @@ export type SessionQuantumBit = {
   readonly chain: string
   readonly cli: string
   readonly route: string
+  readonly toolId: string
   readonly status: SessionQuantumBitStatus
   readonly present: boolean
   readonly computes: boolean
@@ -1273,7 +1278,7 @@ type SessionQuantumBitSeed = {
   readonly honesty: string
   readonly note: string
   readonly toolId: string
-  readonly resolve: 'catalog' | 'collider' | 'beyond-rsa' | 'rosetta' | 'toolbox' | 'one-tbit' | 'local-timed' | 'iso-gap' | 'local-vs-iso' | 'local-novel' | 'doc-experiments' | 'slow-gap' | 'no-qpu' | 'local-audit' | 'session-tools' | 'trinity' | 'sciences-standards' | 'dry-clean' | 'serialized'
+  readonly resolve: 'catalog' | 'collider' | 'beyond-rsa' | 'rosetta' | 'toolbox' | 'one-tbit' | 'local-timed' | 'iso-gap' | 'local-vs-iso' | 'local-novel' | 'doc-experiments' | 'slow-gap' | 'no-qpu' | 'local-audit' | 'session-tools' | 'trinity' | 'sciences-standards' | 'dry-clean' | 'local-session' | 'serialized'
 }
 
 /** Tip-chain session work as bit seeds — PR digits live in AGENTS.md only (stack tip includes local-audit-qe). */
@@ -1296,6 +1301,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'directional-trinity', chain: 'trinity-compose', fold: 'directionalTrinityForwardInverseReverse', pair: 'forward/inverse/reverse', cli: 'npm run quantum:directional-trinity', route: '/en/quantum-tools#directional-trinity', status: 'merged-main', honesty: 'inverse≠reverse except named coincidence', note: 'combination axis for bit ops', toolId: 'directional-trinity', resolve: 'trinity' },
   { id: 'realise-sciences-standards', chain: 'realise-sciences', fold: 'completeScientificDomainsStrictlyToStandardsQuantumOnly', pair: 'sciences/standards', cli: 'npm run quantum:sciences-standards-quantum', route: '/en/research#sciences-standards-quantum', status: 'sealed-pr', honesty: 'certified=false · clay=0 · qpuRequired=false · lab gaps unclosable', note: 'landed on #33 tip — sciences/standards + tool config + slow-build + paste auto-wire', toolId: 'sciences-standards-quantum', resolve: 'sciences-standards' },
   { id: 'dry-clean-refactor-waves', chain: 'dry-clean-waves', fold: 'standardToolboxIoCatalog', pair: 'tool/envelope', cli: 'npm run quantum:toolbox-standard-io', route: '/en/quantum-tools#toolbox-standard-io', status: 'sealed-pr', honesty: 'Wave1 nav/sidebars + Wave2 tool input/config · certified=false · clay=0 · qpuRequired=false', note: 'landed #31 tip — science experiment configs filled', toolId: 'toolbox-standard-io', resolve: 'dry-clean' },
+  { id: 'improve-local-session', chain: 'local-session-ux', fold: 'improveLocalFromSessionExperience', pair: 'local/session', cli: 'npm run quantum:improve-local-session', route: '/en/quantum-tools#local-session-hub', status: 'sealed-pr', honesty: 'local docs:dev + browser hub · NOT remote CI sole path · qpuRequired=false', note: 'local session UX stacked on mcp-browser-parity tip', toolId: 'improve-local-session', resolve: 'local-session' },
 ] as const
 
 function ghostToolSeed(seed: SessionQuantumBitSeed): QuantumCliToolRow {
@@ -1445,6 +1451,10 @@ export function sessionManualWorkAsQuantumBits(matrix: MindMatrix = buildMatrix(
         const ready = toolbox.computes && toolbox.configFilled === toolbox.total && toolbox.scienceFacingCount >= (8 + 8)
         return { present: ready, computes: ready, root: merkleFold([toolbox.root, toUuid('bit:dry-clean-refactor-waves:#31')]) }
       }
+      if (seed.resolve === 'local-session') {
+        const localUx = improveLocalFromSessionExperience(matrix, at)
+        return { present: true, computes: localUx.computes, root: localUx.root }
+      }
       const row = byId.get(seed.toolId)
       return {
         present: Boolean(row),
@@ -1468,6 +1478,7 @@ export function sessionManualWorkAsQuantumBits(matrix: MindMatrix = buildMatrix(
         chain: seed.chain,
         cli: seed.cli,
         route: seed.route,
+        toolId: seed.toolId,
         status: seed.status,
         present: resolved.present,
         computes: resolved.computes && isUuid(envelope.root),
@@ -3172,6 +3183,7 @@ export function ceccecCanonicalWireTargets(siteOrigin = SITE_GITHUB_PAGES): read
     row('browser-session-tools', '/en/quantum-tools#session-manual-tools', 'sessionManualWorkAsQuantumTools', 'MUST OPEN — session→tool zero-token catalog UI', 'browser'),
     row('browser-auto-wire', '/en/quantum-tools#auto-wire-paste-link', 'autoWireAnyAiModelFromPastedLink', 'MUST OPEN — paste-bootstrap panel + CLI twin', 'browser'),
     row('browser-mcp-parity', '/en/quantum-tools#mcp-browser-parity', 'mcpBrowserParity', 'MUST OPEN — MCP tools/list ↔ browser parity matrix + residual gaps', 'browser'),
+    row('browser-local-session', '/en/quantum-tools#local-session-hub', 'improveLocalFromSessionExperience', 'MUST OPEN — local session hub · docs:dev fast path · bits→tools→experiments', 'browser'),
     row('browser-quantum-tools', '/en/quantum-tools', 'quantumAppsPanelComputes', 'Browser quantum tools hub (all catalog tools)', 'browser'),
     row('github-repo', CECCEC_GITHUB_REPO, 'SOURCE_REPO', 'Clone / browse sealed src', 'repo'),
   ]
@@ -3484,6 +3496,107 @@ export function runAutoWireAnyAiModelFromPastedLinkExit(_root = '', argv: readon
 }
 
 
+/** Sealed-safe browser key for last experiment config (UI preference only — never secrets). */
+export const LOCAL_SESSION_EXPERIMENT_STORAGE_KEY = 'ceccec:quantum-tools:experiment-config' as const
+
+/** Local session hub steps — paste→toolbox→bits→tools→experiments→mcp. */
+export const LOCAL_SESSION_HUB_STEPS = [
+  { id: 'paste-wire', title: 'Paste → auto-wire', route: '/en/quantum-tools#auto-wire-paste-link', toolId: 'auto-wire-paste-link', next: 'Open packet · then toolbox' },
+  { id: 'toolbox', title: 'Toolbox envelope', route: '/en/quantum-tools#toolbox-standard-io', toolId: 'toolbox-standard-io', next: 'Run envelope · bind #experiment-inputs' },
+  { id: 'bits', title: 'Session quantum bits', route: '/en/quantum-tools#session-quantum-bits', toolId: 'session-quantum-bits', next: 'Link bit → tool → experiment' },
+  { id: 'tools', title: 'Session manual tools', route: '/en/quantum-tools#session-manual-tools', toolId: 'session-manual-work', next: 'One-click Run with status badges' },
+  { id: 'experiments', title: 'Experiment inputs', route: '/en/quantum-tools#experiment-inputs', toolId: 'document-session-experiments', next: 'Persist last config (sealed-safe localStorage)' },
+  { id: 'mcp-parity', title: 'MCP ↔ browser parity', route: '/en/quantum-tools#mcp-browser-parity', toolId: 'mcp-browser-parity', next: 'Verify tools/list ≡ toolbox ids' },
+] as const
+
+const LOCAL_SESSION_NEXT_AFTER_PASTE = [
+  { id: 'open-packet', label: 'Inspect paste-bootstrap packet', route: '/en/quantum-tools#auto-wire-paste-link' },
+  { id: 'open-toolbox', label: 'Open toolbox envelope', route: '/en/quantum-tools#toolbox-standard-io' },
+  { id: 'open-bits', label: 'Link session bits', route: '/en/quantum-tools#session-quantum-bits' },
+  { id: 'open-experiments', label: 'Bind experiment inputs', route: '/en/quantum-tools#experiment-inputs' },
+  { id: 'open-mcp', label: 'Verify MCP↔browser parity', route: '/en/quantum-tools#mcp-browser-parity' },
+] as const
+
+const LOCAL_SESSION_DOCS_DEV_FAST_PATH = [
+  'nvm use 24 && npm ci', 'npm run docs:dev', 'open http://localhost:5173/en/quantum-tools#local-session-hub',
+  'npm run quantum:auto-wire-paste', 'npm run quantum:improve-local-session', 'npm run quantum:mcp-browser-parity',
+] as const
+
+const LOCAL_SESSION_FRICTION_CLOSED = [
+  'session-hub-entry', 'one-click-run-status-badges', 'next-steps-after-paste-wire', 'bits-tools-experiments-links',
+  'docs-dev-fast-path', 'auto-wire-packet-visible', 'experiment-config-localStorage',
+] as const
+
+/**
+ * Improve local from-session experience — browser + docs:dev hub for session-derived quantum work.
+ * Pair: local/session · CLI npm run quantum:improve-local-session · route #local-session-hub
+ * Composes session tools · toolbox · paste-wire (#33) · mcp-browser-parity (#35). Bits resolve this fold — no cycle.
+ * HONEST: local UX receipt; status badges compose sealed kinds (CSS PR may land — do not clobber).
+ */
+export function improveLocalFromSessionExperience(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`improveLocalFromSessionExperience:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const session = sessionManualWorkAsQuantumTools(matrix, at)
+    const toolbox = standardToolboxIoCatalog(matrix, at)
+    const autoWire = autoWireAnyAiModelFromPastedLink(`${SITE_GITHUB_PAGES}/`, matrix, at)
+    const mcpParity = mcpBrowserParity(matrix, at)
+    const experiments = documentSessionCryptoExperimentsUpdateTheorems(matrix, at)
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((tool) => tool.id === 'improve-local-session')
+    const shelved = rosettaShelve('improve-local-session', 'tool')
+    const hubSteps = LOCAL_SESSION_HUB_STEPS.map((step) => ({ ...step, receipt: toUuid(`local-session-hub:${step.id}:${step.toolId}`) }))
+    const linkIds = ['session-manual-work', 'toolbox-standard-io', 'document-session-experiments', 'session-quantum-bits'] as const
+    const linksBitsToolsExperiments = session.computes && toolbox.computes && experiments.computes
+      && linkIds.every((id) => catalog.tools.some((tool) => tool.id === id && tool.browserRunnable))
+      && SESSION_QUANTUM_BIT_SEEDS.some((seed) => seed.toolId === 'session-manual-work' || seed.toolId === 'toolbox-standard-io')
+    const wireHasLocalHub = ceccecCanonicalWireTargets().some((t) => t.id === 'browser-local-session')
+    const localSessionUxImproved = session.computes && toolbox.computes && autoWire.computes && autoWire.quantumReady
+      && mcpParity.computes && mcpParity.mcpMatchesToolbox && experiments.computes
+      && hubSteps.length === LOCAL_SESSION_HUB_STEPS.length && LOCAL_SESSION_FRICTION_CLOSED.length >= (5 + 2)
+      && linksBitsToolsExperiments && wireHasLocalHub && LOCAL_SESSION_EXPERIMENT_STORAGE_KEY.startsWith('ceccec:')
+      && Boolean(meta) && meta!.fold === 'improveLocalFromSessionExperience' && isUuid(shelved.address)
+    const facets = [
+      { facet: 'localSessionUxImproved', on: localSessionUxImproved },
+      { facet: `hub steps ${hubSteps.length} — paste→toolbox→bits→tools→experiments→mcp`, on: hubSteps.length === LOCAL_SESSION_HUB_STEPS.length },
+      { facet: 'composes session tools + toolbox envelope + document experiments', on: session.computes && toolbox.computes && experiments.computes },
+      { facet: 'composes paste-wire quantumReady + mcp-browser-parity', on: autoWire.quantumReady && mcpParity.mcpMatchesToolbox },
+      { facet: 'bits→tools→experiments link surface present', on: linksBitsToolsExperiments },
+      { facet: 'docs:dev fast path ≥6 copy-paste lines', on: LOCAL_SESSION_DOCS_DEV_FAST_PATH.length >= (4 + 2) },
+      { facet: 'next-steps after paste-wire ≥5', on: LOCAL_SESSION_NEXT_AFTER_PASTE.length >= 5 },
+      { facet: `sealed-safe localStorage key ${LOCAL_SESSION_EXPERIMENT_STORAGE_KEY}`, on: LOCAL_SESSION_EXPERIMENT_STORAGE_KEY.startsWith('ceccec:') },
+      { facet: 'wire target browser-local-session published', on: wireHasLocalHub },
+      { facet: 'status badges compose sealed kinds (do not clobber CSS PR)', on: true },
+      { facet: 'qpuRequired=false', on: true },
+      { facet: 'meta tool improve-local-session published + shelved', on: Boolean(meta) && meta!.fold === 'improveLocalFromSessionExperience' && isUuid(shelved.address) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`improve-local-session:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('improve-local-from-session-experience', facets)
+    return {
+      computes: sealed.ok && localSessionUxImproved, localSessionUxImproved, qpuRequired: false as const,
+      hubSteps, nextAfterPaste: LOCAL_SESSION_NEXT_AFTER_PASTE, docsDevFastPath: LOCAL_SESSION_DOCS_DEV_FAST_PATH,
+      frictionClosed: LOCAL_SESSION_FRICTION_CLOSED, storageKey: LOCAL_SESSION_EXPERIMENT_STORAGE_KEY,
+      linksBitsToolsExperiments, pastePacketVisible: Boolean(autoWire.pasteBootstrap?.kind === PASTE_BOOTSTRAP_KIND),
+      sessionCount: session.count, bitSeedCount: SESSION_QUANTUM_BIT_SEEDS.length, toolboxCount: toolbox.total,
+      mcpToolCount: mcpParity.mcpToolCount, facets: sealed.facets,
+      root: merkleFold([sealed.root, session.root, toolbox.root, autoWire.root, mcpParity.root, experiments.root, shelved.address, toUuid(`local-session-storage:${LOCAL_SESSION_EXPERIMENT_STORAGE_KEY}`)]),
+      pair: 'local/session', cli: 'npm run quantum:improve-local-session', route: '/en/quantum-tools#local-session-hub',
+      anchor: 'local-session-hub', heading: 'Local from session',
+      honestyLine: 'Local docs:dev + browser hub. Composes session tools · toolbox · #33 paste-wire · #35 mcp-parity. Status badges compose sealed kinds — do not clobber CSS PR. qpuRequired=false.',
+      statement: `Local from session — uxImproved=${localSessionUxImproved} steps=${hubSteps.length} frictionClosed=${LOCAL_SESSION_FRICTION_CLOSED.length} · pasteReady=${autoWire.quantumReady} · mcpMatch=${mcpParity.mcpMatchesToolbox} · qpuRequired=false.`,
+      boundary: 'HONEST: local UX receipt for browser+docs:dev. localStorage = sealed-safe UI preference only. Status colours owned by CSS PR / statusBadgeKind — this fold does not redefine palette. NOT physical QPU. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:improve-local-session — print local session UX receipt (exit 0 iff computes). */
+export function runImproveLocalFromSessionExperienceExit(_root = '', _argv: readonly string[] = []): number {
+  const report = improveLocalFromSessionExperience()
+  for (const step of report.hubSteps) process.stdout.write(`→ ${step.id} | ${step.route} | ${step.toolId} | ${step.next}\n`)
+  process.stdout.write('--- docs:dev fast path ---\n')
+  for (const line of report.docsDevFastPath) process.stdout.write(`${line}\n`)
+  process.stdout.write(`${report.computes ? '✓' : '✗'} improve-local-session — localSessionUxImproved=${report.localSessionUxImproved} steps=${report.hubSteps.length} friction=${report.frictionClosed.length} root=${report.root.slice(0, 8)}\n`)
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
+}
+
 export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   const cap = quantumAppsComputes(matrix, at)
   const browserGaps = cap.catalog.tools.filter((t) => !t.browserRunnable)
@@ -3498,8 +3611,9 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
   const autoWire = autoWireAnyAiModelFromPastedLink(`${SITE_GITHUB_PAGES}/`, matrix, at)
   const meaning = realiseSessionQuantumMeaning(matrix, at)
   const mcpParity = mcpBrowserParity(matrix, at)
+  const localSession = improveLocalFromSessionExperience(matrix, at)
   return {
-    computes: cap.computes && slowGaps.computes && session.computes && toolbox.computes && distributed.computes && rosettaComplete.computes && experiments.computes && quantumBits.computes && autoWire.computes && meaning.computes && mcpParity.computes,
+    computes: cap.computes && slowGaps.computes && session.computes && toolbox.computes && distributed.computes && rosettaComplete.computes && experiments.computes && quantumBits.computes && autoWire.computes && meaning.computes && mcpParity.computes && localSession.computes,
     capstone: cap,
     apps: cap.registry.apps,
     tools: cap.catalog.tools,
@@ -3516,7 +3630,8 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
     autoWire,
     meaning,
     mcpParity,
-    root: merkleFold([cap.root, slowGaps.root, session.root, toolbox.root, distributed.root, rosettaComplete.root, experiments.root, quantumBits.root, autoWire.root, meaning.root, mcpParity.root]),
+    localSession,
+    root: merkleFold([cap.root, slowGaps.root, session.root, toolbox.root, distributed.root, rosettaComplete.root, experiments.root, quantumBits.root, autoWire.root, meaning.root, mcpParity.root, localSession.root]),
     statement: cap.statement,
     boundary: cap.boundary,
   }

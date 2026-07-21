@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, shallowRef } from 'vue'
+import { computed, onMounted, ref, shallowRef, watch } from 'vue'
 import {
   quantumAppsPanelComputes, quantumAppLaunch, slowProcessIsQuantumGap,
   sessionManualWorkAsQuantumTools, rosettaCoreApi,
@@ -12,6 +12,7 @@ import {
   autoWireAnyAiModelFromPastedLink, CECCEC_SITE_ORIGIN,
   realiseSessionQuantumMeaning,
   mcpBrowserParity, runStdioMcpCapabilityInBrowser,
+  improveLocalFromSessionExperience, LOCAL_SESSION_EXPERIMENT_STORAGE_KEY,
 } from './index.ts'
 import {
   completeScientificDomainsStrictlyToStandardsQuantumOnly,
@@ -56,6 +57,35 @@ import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.v
 import UiBadge from '../../../.vitepress/theme/components/ui/Badge.vue'
 import UiButton from '../../../.vitepress/theme/components/ui/Button.vue'
 import UiSeparator from '../../../.vitepress/theme/components/ui/Separator.vue'
+/** Compose with CSS PR statusBadgeKind when landed — local map until then (do not clobber Badge.vue). */
+type StatusBadgeKind = 'ready' | 'ok' | 'gap' | 'warn' | 'partial' | 'error' | 'refused' | 'ci'
+function statusBadgeKind(input: boolean | StatusBadgeKind | string): StatusBadgeKind {
+  if (input === true || input === 'ready' || input === 'covered' || input === 'closed') return 'ready'
+  if (input === 'ok') return 'ok'
+  if (input === 'partial') return 'partial'
+  if (input === 'warn' || input === 'open') return 'warn'
+  if (input === 'error') return 'error'
+  if (input === 'refused') return 'refused'
+  if (input === 'ci') return 'ci'
+  if (input === false || input === 'gap') return 'gap'
+  const lower = String(input).toLowerCase()
+  if (/refus|reject|fail|denied/.test(lower)) return 'refused'
+  if (/error|broken|hard/.test(lower)) return 'error'
+  if (/warn|open/.test(lower)) return 'warn'
+  if (/partial/.test(lower)) return 'partial'
+  if (/ci.?only|node|stdio/.test(lower)) return 'ci'
+  if (/ready|ok|closed|pass|covered|✓/.test(lower)) return 'ready'
+  return 'gap'
+}
+
+function badgeProps(input: boolean | StatusBadgeKind | string) {
+  const status = statusBadgeKind(input)
+  const okish = status === 'ready' || status === 'ok'
+  return {
+    variant: (okish ? 'default' : 'outline') as 'default' | 'outline',
+    class: `ui-badge--status-${status}`,
+  }
+}
 
 type RunReceipt = {
   toolId: string
@@ -78,9 +108,47 @@ const experimentAt = ref(0)
 const experimentSeed = ref('')
 const experimentConfigJson = ref('{"certified":false,"claySolved":0,"qpuRequired":false,"productionReverse":false,"experiment":true,"refuseWireClaim":true}')
 const pasteLinkUrl = ref(`${CECCEC_SITE_ORIGIN}/`)
+const pastePacketJson = ref('')
+const docsDevCopied = ref(false)
 
 const experimentEnvelope = computed(() => panel.value.toolbox.envelopes.find((e) => e.id === experimentToolId.value) ?? panel.value.toolbox.envelopes[0]!)
 const experimentDefaults = computed(() => defaultToolExperimentValues(experimentEnvelope.value))
+const localSession = computed(() => panel.value.localSession)
+
+type PersistedExperimentConfig = {
+  toolId: string
+  at: number
+  seed: string
+  spawnTask: string
+  configJson: string
+  pasteLinkUrl: string
+}
+
+function readPersistedExperimentConfig(): PersistedExperimentConfig | null {
+  if (typeof localStorage === 'undefined') return null
+  try {
+    const raw = localStorage.getItem(LOCAL_SESSION_EXPERIMENT_STORAGE_KEY)
+    if (!raw) return null
+    const parsed = JSON.parse(raw) as PersistedExperimentConfig
+    if (!parsed || typeof parsed.toolId !== 'string') return null
+    return parsed
+  } catch {
+    return null
+  }
+}
+
+function persistExperimentConfig() {
+  if (typeof localStorage === 'undefined') return
+  const payload: PersistedExperimentConfig = {
+    toolId: experimentToolId.value,
+    at: experimentAt.value,
+    seed: experimentSeed.value,
+    spawnTask: spawnTask.value,
+    configJson: experimentConfigJson.value,
+    pasteLinkUrl: pasteLinkUrl.value,
+  }
+  localStorage.setItem(LOCAL_SESSION_EXPERIMENT_STORAGE_KEY, JSON.stringify(payload))
+}
 
 function syncExperimentDefaults(toolId: string) {
   experimentToolId.value = toolId
@@ -91,7 +159,44 @@ function syncExperimentDefaults(toolId: string) {
   experimentSeed.value = String(defaults.input.seed ?? '')
   if (typeof defaults.input.task === 'string') spawnTask.value = defaults.input.task
   experimentConfigJson.value = JSON.stringify(defaults.config)
+  persistExperimentConfig()
 }
+
+function linkBitToTool(bit: { id: string; toolId?: string; route: string; envelope?: { id: string } }) {
+  const toolId = bit.toolId || bit.envelope?.id || bit.id
+  syncExperimentDefaults(toolId)
+  if (typeof document !== 'undefined') {
+    const el = document.getElementById('experiment-inputs')
+    el?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+}
+
+async function copyDocsDevFastPath() {
+  const text = localSession.value.docsDevFastPath.join('\n')
+  try {
+    await navigator.clipboard.writeText(text)
+    docsDevCopied.value = true
+  } catch {
+    docsDevCopied.value = false
+  }
+}
+
+onMounted(() => {
+  const saved = readPersistedExperimentConfig()
+  if (!saved) return
+  if (panel.value.toolbox.envelopes.some((e) => e.id === saved.toolId)) {
+    experimentToolId.value = saved.toolId
+    experimentAt.value = Number(saved.at) || 0
+    experimentSeed.value = saved.seed ?? ''
+    spawnTask.value = saved.spawnTask || spawnTask.value
+    experimentConfigJson.value = saved.configJson || experimentConfigJson.value
+  }
+  if (saved.pasteLinkUrl) pasteLinkUrl.value = saved.pasteLinkUrl
+})
+
+watch([experimentToolId, experimentAt, experimentSeed, spawnTask, experimentConfigJson, pasteLinkUrl], () => {
+  persistExperimentConfig()
+})
 
 function experimentInputPayload(): Record<string, string | number | boolean> {
   const payload: Record<string, string | number | boolean> = {
@@ -458,6 +563,15 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+      pastePacketJson.value = JSON.stringify(r.pasteBootstrap, null, 2)
+      persistExperimentConfig()
+    } else if (toolId === 'improve-local-session') {
+      const r = improveLocalFromSessionExperience()
+      ok = r.computes && r.localSessionUxImproved
+      summary = `uxImproved=${r.localSessionUxImproved} · steps=${r.hubSteps.length} · friction=${r.frictionClosed.length} · pasteReady=${panel.value.autoWire.quantumReady}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'mcp-browser-parity') {
       const r = mcpBrowserParity()
       const census = runStdioMcpCapabilityInBrowser('census-status')
@@ -548,10 +662,44 @@ function runTool(toolId: string) {
         <p class="quantum-apps__lede">
           Run sealed folds in the browser — {{ panel.browserReady }} browser-ready · {{ panel.browserGaps.length }} Node/CI gaps · {{ panel.slowGaps.openCount }} slow=gap open.
         </p>
-        <UiBadge :variant="panel.computes ? 'default' : 'outline'">
+        <UiBadge v-bind="badgeProps(statusBadgeKind(panel.computes))">
           quantum.apps · {{ panel.computes ? '✓' : '—' }} · {{ panel.toolCount }} tools
         </UiBadge>
       </header>
+      <UiSeparator />
+      <section id="local-session-hub" aria-label="Local from session experience">
+        <h3>{{ localSession.heading }}</h3>
+        <p class="quantum-apps__meta">{{ localSession.honestyLine }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(localSession.localSessionUxImproved))">
+          localSessionUxImproved={{ localSession.localSessionUxImproved }} · steps {{ localSession.hubSteps.length }} · friction {{ localSession.frictionClosed.length }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(panel.autoWire.quantumReady))">paste quantumReady={{ panel.autoWire.quantumReady }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(panel.mcpParity.mcpMatchesToolbox))">mcp≡toolbox={{ panel.mcpParity.mcpMatchesToolbox }}</UiBadge>
+        <ol class="quantum-apps__hub-steps">
+          <li v-for="step in localSession.hubSteps" :key="step.id">
+            <a :href="step.route"><strong>{{ step.title }}</strong></a>
+            <span class="quantum-apps__meta">{{ step.next }}</span>
+            <UiButton size="sm" :disabled="runningId === step.toolId" @click="syncExperimentDefaults(step.toolId); runTool(step.toolId)">
+              {{ runningId === step.toolId ? '…' : 'Run' }}
+            </UiButton>
+          </li>
+        </ol>
+        <div class="quantum-apps__docs-dev">
+          <h4>docs:dev fast path (local agents)</h4>
+          <pre class="quantum-apps__code">{{ localSession.docsDevFastPath.join('\n') }}</pre>
+          <UiButton size="sm" variant="outline" @click="copyDocsDevFastPath">
+            {{ docsDevCopied ? 'Copied' : 'Copy fast path' }}
+          </UiButton>
+        </div>
+        <p v-if="lastRun" class="quantum-apps__result" aria-live="polite">
+          <UiBadge v-bind="badgeProps(statusBadgeKind(lastRun.ok))">Last run · {{ lastRun.toolId }} · {{ lastRun.ok ? 'ok' : 'gap' }}</UiBadge>
+          <span class="quantum-apps__meta">{{ lastRun.summary }}</span>
+        </p>
+        <p v-if="error" class="quantum-apps__error" role="alert">{{ error }}</p>
+        <UiButton size="sm" :disabled="runningId === 'improve-local-session'" @click="runTool('improve-local-session')">
+          {{ runningId === 'improve-local-session' ? '…' : 'Run improve-local-session receipt' }}
+        </UiButton>
+      </section>
       <UiSeparator />
       <section id="slow-quantum-gaps" aria-label="Slow processes as quantum gaps">
         <h3>{{ panel.slowGaps.heading }}</h3>
@@ -842,14 +990,18 @@ function runTool(toolId: string) {
       <section id="session-quantum-bits" aria-label="Session manual work as quantum bits">
         <h3>{{ panel.quantumBits.heading }}</h3>
         <p class="quantum-apps__meta">{{ panel.quantumBits.honestyLine }}</p>
-        <UiBadge :variant="panel.quantumBits.computes && !panel.quantumBits.physicalQubit ? 'default' : 'outline'">
+        <p class="quantum-apps__meta">
+          Link path: <a href="#session-quantum-bits">bits</a> → <a href="#session-manual-tools">tools</a> → <a href="#experiment-inputs">experiments</a>
+          · hub <a href="#local-session-hub">#local-session-hub</a>
+        </p>
+        <UiBadge v-bind="badgeProps(panel.quantumBits.computes && !panel.quantumBits.physicalQubit ? 'ready' : 'warn')">
           bits {{ panel.quantumBits.landedCount }}/{{ panel.quantumBits.count }}
           · serialized {{ panel.quantumBits.serializedCount }}
           · qpuRequired={{ panel.quantumBits.qpuRequired }}
           · clay={{ panel.quantumBits.claySolvedByThisFold }}
         </UiBadge>
         <table class="quantum-apps__table">
-          <thead><tr><th>Bit</th><th>Chain</th><th>Status</th><th>Root</th><th>Directions</th></tr></thead>
+          <thead><tr><th>Bit</th><th>Chain</th><th>Status</th><th>Root</th><th>Link → tool / experiment</th></tr></thead>
           <tbody>
             <tr v-for="bit in panel.quantumBits.bits" :key="bit.id">
               <td>
@@ -857,12 +1009,19 @@ function runTool(toolId: string) {
                 <div class="quantum-apps__meta"><code>{{ bit.fold }}</code> · {{ bit.pair }}</div>
               </td>
               <td>{{ bit.chain }}</td>
-              <td><UiBadge :variant="bit.computes ? 'default' : 'outline'">{{ bit.status }}</UiBadge></td>
+              <td><UiBadge v-bind="badgeProps(statusBadgeKind(bit.computes))">{{ bit.status }}</UiBadge></td>
               <td><code>{{ bit.root.slice(0, 8) }}</code></td>
-              <td class="quantum-apps__meta">{{ bit.directions.join(' · ') }} · combinable={{ bit.combinable }}</td>
+              <td>
+                <a :href="bit.route">{{ bit.toolId }}</a>
+                <UiButton size="sm" variant="outline" @click="linkBitToTool(bit)">Bind inputs</UiButton>
+                <div class="quantum-apps__meta">{{ bit.directions.join(' · ') }} · combinable={{ bit.combinable }}</div>
+              </td>
             </tr>
           </tbody>
         </table>
+        <p v-if="panel.quantumBits.bits.length === 0" class="quantum-apps__meta" role="status">
+          Empty bits — run <code>npm run quantum:session-quantum-bits</code> or open sealed tip chain.
+        </p>
         <p class="quantum-apps__meta">
           sample collide {{ panel.quantumBits.sampleCombination.collide.bitIds.join(' × ') }}
           → {{ panel.quantumBits.sampleCombination.collide.productRoot.slice(0, 8) }}
@@ -876,7 +1035,7 @@ function runTool(toolId: string) {
       <section id="auto-wire-paste-link" aria-label="Paste any link auto-wire">
         <h3>{{ panel.autoWire.heading }}</h3>
         <p class="quantum-apps__meta">{{ panel.autoWire.honestyLine }}</p>
-        <UiBadge :variant="panel.autoWire.quantumReady ? 'default' : 'outline'">
+        <UiBadge v-bind="badgeProps(statusBadgeKind(panel.autoWire.quantumReady))">
           {{ panel.autoWire.oneLiner }} · quantumReady={{ panel.autoWire.quantumReady }} · convincingRequired={{ panel.autoWire.convincingRequired }} · qpu={{ panel.autoWire.qpuRequired }}
         </UiBadge>
         <label class="quantum-apps__meta" for="paste-link-url">Pasted URL</label>
@@ -888,6 +1047,20 @@ function runTool(toolId: string) {
         <UiButton size="sm" :disabled="runningId === 'auto-wire-paste-link'" @click="runTool('auto-wire-paste-link')">
           {{ runningId === 'auto-wire-paste-link' ? '…' : 'Run quantum-ready paste-bootstrap' }}
         </UiButton>
+        <div v-if="pastePacketJson" class="quantum-apps__packet" aria-live="polite">
+          <h4>Auto-wire packet (visible)</h4>
+          <pre class="quantum-apps__code">{{ pastePacketJson }}</pre>
+          <h4>Next after paste-wire</h4>
+          <ul class="quantum-apps__facets">
+            <li v-for="step in localSession.nextAfterPaste" :key="step.id">
+              <UiBadge v-bind="badgeProps('ready')">next</UiBadge>
+              <a :href="step.route">{{ step.label }}</a>
+            </li>
+          </ul>
+        </div>
+        <p v-else class="quantum-apps__meta" role="status">
+          Empty packet — run paste-bootstrap to reveal the quantum-ready JSON, then follow next steps.
+        </p>
       </section>
       <UiSeparator />
       <section id="realise-session-meaning" aria-label="Realise session quantum meaning">
@@ -917,8 +1090,11 @@ function runTool(toolId: string) {
       <section id="mcp-browser-parity" aria-label="MCP browser parity">
         <h3>{{ panel.mcpParity.heading }}</h3>
         <p class="quantum-apps__meta">{{ panel.mcpParity.honestyLine }}</p>
-        <UiBadge :variant="panel.mcpParity.computes ? 'default' : 'outline'">
+        <UiBadge v-bind="badgeProps(panel.mcpParity.computes && panel.mcpParity.mcpMatchesToolbox ? 'ready' : 'gap')">
           mcp={{ panel.mcpParity.mcpToolCount }} · matchToolbox={{ panel.mcpParity.mcpMatchesToolbox }} · residual={{ panel.mcpParity.residualCount }} · allInBrowser={{ panel.mcpParity.allAchievableInBrowser }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(panel.mcpParity.residualCount === 0 ? 'ok' : 'partial')">
+          residual {{ panel.mcpParity.residualCount }} · allInBrowser={{ panel.mcpParity.allAchievableInBrowser }}
         </UiBadge>
         <p class="quantum-apps__meta">
           PRIMARY /mcp.json tools/list ≡ #toolbox-standard-io · stdio MCP {{ panel.mcpParity.stdioCount }} caps ·
@@ -926,7 +1102,7 @@ function runTool(toolId: string) {
         </p>
         <ul class="quantum-apps__facets">
           <li v-for="gap in panel.mcpParity.residualGaps.slice(0, 12)" :key="gap.id">
-            <UiBadge variant="outline">{{ gap.layer }}</UiBadge>
+            <UiBadge v-bind="badgeProps(gap.layer === 'stdio' || gap.layer === 'node' || gap.layer === 'ci' ? 'ci' : 'gap')">{{ gap.layer }}</UiBadge>
             <strong>{{ gap.id }}</strong> — {{ gap.browserGap || gap.stranglerPlan }}
           </li>
         </ul>
@@ -938,11 +1114,14 @@ function runTool(toolId: string) {
       <section id="session-manual-tools" aria-label="Session manual work as quantum tools">
         <h3>{{ panel.session.heading }}</h3>
         <p class="quantum-apps__meta">{{ panel.session.honestyLine }}</p>
-        <UiBadge :variant="panel.session.computes ? 'default' : 'outline'">
+        <UiBadge v-bind="badgeProps(statusBadgeKind(panel.session.computes))">
           session {{ panel.session.shelvedCount }}/{{ panel.session.count }} shelved
         </UiBadge>
+        <UiButton size="sm" :disabled="runningId === 'session-manual-work'" @click="runTool('session-manual-work')">
+          {{ runningId === 'session-manual-work' ? '…' : 'Run session-manual-work' }}
+        </UiButton>
         <table class="quantum-apps__table">
-          <thead><tr><th>Tool</th><th>CLI</th><th>Route</th><th>Shelved</th><th>Saves</th></tr></thead>
+          <thead><tr><th>Tool</th><th>CLI</th><th>Route</th><th>Shelved</th><th>Run</th></tr></thead>
           <tbody>
             <tr
               v-for="tool in panel.session.tools"
@@ -952,11 +1131,22 @@ function runTool(toolId: string) {
               <td>
                 <strong>{{ tool.id }}</strong>
                 <div class="quantum-apps__meta"><code>{{ tool.fold }}</code> · {{ tool.pair }}</div>
+                <div class="quantum-apps__meta">{{ tool.saves }}</div>
               </td>
               <td><code>{{ tool.cli }}</code></td>
               <td><a :href="tool.route">{{ tool.route }}</a></td>
-              <td><UiBadge :variant="tool.shelved ? 'default' : 'outline'">{{ tool.shelved ? '✓' : '—' }}</UiBadge></td>
-              <td class="quantum-apps__meta">{{ tool.saves }}</td>
+              <td><UiBadge v-bind="badgeProps(statusBadgeKind(tool.shelved))">{{ tool.shelved ? '✓' : '—' }}</UiBadge></td>
+              <td>
+                <UiButton
+                  v-if="tool.browserRunnable"
+                  size="sm"
+                  :disabled="runningId === tool.id"
+                  @click="syncExperimentDefaults(tool.id); runTool(tool.id)"
+                >
+                  {{ runningId === tool.id ? '…' : 'Run' }}
+                </UiButton>
+                <UiBadge v-else v-bind="badgeProps('ci')">CI</UiBadge>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -967,6 +1157,7 @@ function runTool(toolId: string) {
         <p class="quantum-apps__meta">
           Not button-only voids — set <code>at</code> · <code>seed</code> · config JSON before Run.
           Science tools require certified=false · claySolved=0 · qpuRequired=false. CI-only tools keep explicit browserGap why.
+          Last config persists in sealed-safe <code>{{ localSession.storageKey }}</code> (UI preference only).
         </p>
         <label class="quantum-apps__meta" for="experiment-tool">Tool</label>
         <select id="experiment-tool" class="quantum-apps__input" :value="experimentToolId" @change="syncExperimentDefaults(($event.target as HTMLSelectElement).value)">
@@ -986,6 +1177,9 @@ function runTool(toolId: string) {
           selected {{ experimentEnvelope.id }} · science={{ experimentEnvelope.scienceFacing }}
           · input {{ experimentEnvelope.input.fields.map((f) => f.name).join(', ') }}
           · config {{ experimentEnvelope.config.fields.map((f) => f.name).join(', ') }}
+        </p>
+        <p v-if="!experimentEnvelope.id" class="quantum-apps__meta" role="status">
+          Empty toolbox — open <a href="#toolbox-standard-io">#toolbox-standard-io</a> or run envelope catalog.
         </p>
         <UiButton size="sm" :disabled="runningId === experimentToolId" @click="runTool(experimentToolId)">
           {{ runningId === experimentToolId ? '…' : `Run ${experimentToolId} with inputs/config` }}
@@ -1021,16 +1215,19 @@ function runTool(toolId: string) {
         <p v-if="error" class="quantum-apps__error" role="alert">{{ error }}</p>
         <div v-if="lastRun" class="quantum-apps__result" aria-live="polite">
           <h4>Last run · {{ lastRun.toolId }}</h4>
-          <UiBadge :variant="lastRun.ok ? 'default' : 'outline'">{{ lastRun.ok ? 'ok' : 'gap' }}</UiBadge>
+          <UiBadge v-bind="badgeProps(statusBadgeKind(lastRun.ok))">{{ lastRun.ok ? 'ok' : 'gap' }}</UiBadge>
           <p class="quantum-apps__meta">{{ lastRun.summary }}</p>
           <p class="quantum-apps__meta">root <code>{{ lastRun.root.slice(0, 16) }}…</code></p>
           <ul class="quantum-apps__facets">
             <li v-for="f in lastRun.facets.slice(0, 8)" :key="f.facet">
-              <UiBadge :variant="f.on ? 'default' : 'outline'">{{ f.on ? '✓' : '—' }}</UiBadge> {{ f.facet }}
+              <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? '✓' : '—' }}</UiBadge> {{ f.facet }}
             </li>
           </ul>
           <p class="quantum-apps__meta">{{ lastRun.boundary }}</p>
         </div>
+        <p v-else class="quantum-apps__meta" role="status">
+          No run yet — start at <a href="#local-session-hub">#local-session-hub</a> or pick a tool below.
+        </p>
       </section>
       <UiSeparator />
       <section>
@@ -1082,4 +1279,19 @@ function runTool(toolId: string) {
   color: inherit;
   font: inherit;
 }
+.quantum-apps__hub-steps { list-style: decimal; padding-left: calc(1rem * (3 / 2)); margin: var(--ich-sp4) 0; }
+.quantum-apps__hub-steps li { margin-bottom: var(--ich-sp4); display: flex; flex-wrap: wrap; gap: var(--ich-sp3); align-items: baseline; }
+.quantum-apps__docs-dev { margin-top: var(--ich-sp5); }
+.quantum-apps__code {
+  display: block;
+  overflow: auto;
+  max-height: calc(1rem * (8 + 5));
+  padding: var(--ich-sp4);
+  margin: var(--ich-sp3) 0;
+  font-family: var(--vp-font-family-mono, ui-monospace, monospace);
+  font-size: var(--ich-text-xs);
+  border: 1px solid color-mix(in srgb, currentColor calc(9% + 6%), transparent);
+  white-space: pre-wrap;
+}
+.quantum-apps__packet { margin-top: var(--ich-sp5); }
 </style>

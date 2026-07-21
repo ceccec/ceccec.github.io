@@ -12,8 +12,10 @@ Thin, census-safe wrappers over sealed `src/` quantum tools. Improves token usag
 | `/en/quantum-tools#mcp-browser-parity` | MCP↔browser parity matrix + residual gaps |
 | `/en/quantum-tools#session-manual-tools` | Session tools table |
 | `/en/quantum-tools#auto-wire-paste-link` | Paste any link → auto-wire |
+| `/en/quantum-tools#local-session-hub` | Local from-session hub · docs:dev fast path |
 | `npm run quantum:mcp-browser-parity` | Parity gate receipt |
 | `npm run quantum:auto-wire-paste` | paste-bootstrap JSON from any ceccec URL |
+| `npm run quantum:improve-local-session` | Local session UX receipt (`localSessionUxImproved`) |
 | `npm run quantum:toolbox-standard-io` | Envelope census + round-trip |
 | `.cursor/mcp.json` | Local stdio MCP (`quantum-dev`) — IDE agent only |
 | `rosettaShelve(id, 'tool')` | Content-addressed tool ray |
