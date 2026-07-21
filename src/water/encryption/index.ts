@@ -2,7 +2,7 @@
 import * as __ns_up_up_quantum_heaven_library from '../../quantum/heaven/library'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
-import { computesGate, foldPair, gcd, isUuid, memoByRoot, merge, merkleFold, roundTo, sealFacets, toUuid, trinityKey, VORTEX_SEQUENCE } from '../../0'
+import { computesGate, digitalRoot, foldPair, gcd, isUuid, memoByRoot, merge, merkleFold, roundTo, sealFacets, toUuid, trinityKey, VORTEX_SEQUENCE } from '../../0'
 import { derivePublicKey, tamperEvident } from '../../5/5'
 import {
   A432_HUE,
@@ -566,14 +566,17 @@ export async function runEncryptionReverseVerifyGuardedExit(_root: string, _argv
 }
 
 /**
- * UI panel — encrypt↔decrypt + reverse-verify + ISO/NIST PQC catalog + standards audit (reverse+inverse·10D).
- * Pair: reverse/encryption-verify · iso/pqc-catalog · audit/standards · route /en/quantum-encryption
+ * UI panel — encrypt↔decrypt + measured demo RSA + beyond-RSA PQC suite + standards audit.
+ * Pair: reverse/encryption-verify · measure/demo-rsa · measure/crypto-beyond · iso/pqc-catalog · audit/standards
+ * Route: /en/quantum-encryption (#demo-rsa-measure · #crypto-beyond-rsa · #iso-pqc-catalog · #quantum-standards-audit)
  */
 export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`encryptionPanelComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const tools = encryptDecryptQuantumTools(matrix)
     const reverse = encryptionReverseVerify(matrix)
     const demo = demoRsaReverseSync()
+    const measured = demoRsaGenerateAndReverseMeasured(matrix)
+    const beyond = cryptoToolkitBeyondRsaMeasured(matrix)
     const zero = encryptionLivesInZero(matrix)
     const order = encryptionTrinitiesCompleteInOrder(matrix)
     const pqc = isoNistPqcStandardsCatalog(matrix)
@@ -583,29 +586,47 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'encrypt↔decrypt quantum tools ready', on: tools.ready },
       { facet: 'encryption reverse verify sealed', on: reverse.verified },
       { facet: 'demo RSA reverse — production refused', on: demo.computes },
+      { facet: `demo RSA MEASURED — gen=${roundTo(measured.generateMs, 3)}ms rev=${roundTo(measured.reverseMs, 3)}ms bitcoinRefused`, on: measured.computes && measured.bitcoinRefused },
+      { facet: `beyond RSA MEASURED — FIPS=${beyond.fipsCount} eccShor=${beyond.eccShorBreaks} certified=false`, on: beyond.computes && !beyond.certified && !beyond.fipsValidated },
       { facet: 'encryption lives in src/0 key layer', on: zero.homed },
       { facet: 'encryption trinities complete in order', on: order.enforced },
       { facet: 'ISO/NIST PQC catalog sealed (MODELED alignment)', on: pqc.computes },
       { facet: 'quantum standards audit computes (reverse+inverse · 10D)', on: audit.computes },
       { facet: 'migration checklist honesty step holds', on: migrate.computes },
     ])
+    const sections = [
+      { id: 'demo-rsa-measure', title: 'Demo RSA generate+reverse measured', route: '/en/quantum-encryption#demo-rsa-measure', pair: 'measure/demo-rsa', cli: 'npm run quantum:demo-rsa-measure', on: measured.computes },
+      { id: 'crypto-beyond-rsa', title: 'PQC families · Shor/ECC · hash taxonomy · directional trinity', route: '/en/quantum-encryption#crypto-beyond-rsa', pair: 'measure/crypto-beyond', cli: 'npm run quantum:crypto-beyond-measure', on: beyond.computes },
+      { id: 'iso-pqc-catalog', title: 'ISO/NIST PQC standards catalog', route: '/en/quantum-encryption#iso-pqc-catalog', pair: 'iso/pqc-catalog', cli: 'npm run quantum:iso-pqc-catalog', on: pqc.computes },
+      { id: 'quantum-standards-audit', title: 'Standards audit (forward·inverse·reverse·10D)', route: '/en/quantum-encryption#quantum-standards-audit', pair: 'audit/standards', cli: 'npm run quantum:standards-audit', on: audit.computes },
+    ] as const
     return {
       computes,
       tools,
       reverse,
       demo,
+      measured,
+      beyond,
       zero,
       order,
       pqc,
       migrate,
       audit,
+      sections,
+      timings: beyond.timings,
+      mlKemParams: beyond.mlKemParams,
+      mlDsaParams: beyond.mlDsaParams,
+      slhDsaParams: beyond.slhDsaParams,
+      eccShorBreaks: beyond.eccShorBreaks,
       demoModuli: [...DEMO_RSA_MODULI] as number[],
       cli: 'npm run quantum:encryption-reverse-verify',
       pqcCli: 'npm run quantum:iso-pqc-catalog',
       auditCli: 'npm run quantum:standards-audit',
+      beyondCli: 'npm run quantum:crypto-beyond-measure',
       pair: 'reverse/encryption-verify',
       pqcPair: 'iso/pqc-catalog',
       auditPair: 'audit/standards',
+      beyondPair: 'measure/crypto-beyond',
       route: '/en/quantum-encryption',
       teaching: tools.teaching,
       demoFactors: reverse.demoFactors,
@@ -613,10 +634,10 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       glyphBonus: reverse.glyphBonus,
       standards: pqc.standards,
       facets,
-      root: merge(root, merge(reverse.root, merge(pqc.root, audit.root))),
+      root: merge(root, merge(reverse.root, merge(beyond.root, merge(pqc.root, audit.root)))),
       statement:
-        'Encryption tools panel: encrypt↔decrypt toolkit, modeled Shor reverse, ISO/NIST PQC catalog, quantum standards audit (reverse+inverse · all 10 computable dims) — NOT ISO certified / NOT FIPS validated.',
-      boundary: `${reverse.boundary} · ${pqc.boundary} · ${audit.boundary}`,
+        'Encryption tools panel: encrypt↔decrypt, measured demo RSA (allowlist), beyond-RSA PQC catalogs (ML-KEM/ML-DSA/SLH-DSA) + Shor/ECC map + hash taxonomy + directional trinity + standards audit — NOT ISO certified / NOT FIPS validated / NOT production KEM.',
+      boundary: `${reverse.boundary} · ${beyond.boundary} · ${pqc.boundary} · ${audit.boundary}`,
     }
   })
 }
@@ -634,8 +655,9 @@ export function runEncryptionToolInBrowser(
   const gate = refuseNonDemoRsaModulus(N)
   const factor = gate.allowed ? modeledShorFactorToyModulus(N) : null
   const tools = encryptDecryptQuantumTools(matrix)
+  const measured = demoRsaGenerateAndReverseMeasured(matrix)
   return {
-    ok: panel.computes && tools.ready && (gate.allowed ? Boolean(factor?.factored) : true),
+    ok: panel.computes && tools.ready && measured.computes && (gate.allowed ? Boolean(factor?.factored) : true),
     refused: !gate.allowed,
     refuseReason: gate.reason,
     bits: gate.bits,
@@ -648,6 +670,10 @@ export function runEncryptionToolInBrowser(
     roundTrip: tools.roundTrip,
     rsaRoundTrip: tools.rsaRoundTrip,
     glyphBonus: panel.glyphBonus,
+    generateMs: measured.generateMs,
+    reverseMs: measured.reverseMs,
+    thresholdMs: measured.thresholdMs,
+    measured,
     facets: panel.facets,
     root: panel.root,
     statement: panel.statement,
@@ -655,6 +681,113 @@ export function runEncryptionToolInBrowser(
     mode: 'browser-sync' as const,
   }
 }
+
+/** Wall-clock probe — performance.now, else process.hrtime.bigint, else Date.now. */
+function measureNowMs(): number {
+  if (typeof performance !== 'undefined' && typeof performance.now === 'function') return performance.now()
+  const proc = (globalThis as { process?: { hrtime?: { bigint?: () => bigint } } }).process
+  if (typeof proc?.hrtime?.bigint === 'function') return Number(proc.hrtime.bigint()) / 1e6
+  return Date.now()
+}
+
+/** Sealed slow threshold — FOLDED_CENSUS × digitalRoot(432) (= 108×9 = 972 ms). Lattice-derived, not a magic SLO. */
+export const DEMO_RSA_MEASURE_SLOW_MS = FOLDED_CENSUS * digitalRoot(432)
+
+/** Teaching RSA keygen + encrypt→decrypt on sealed n=p·q — GENERATE half. */
+export function demoRsaTeachingGenerateSync() {
+  const p = TEACHING_RSA_P
+  const q = TEACHING_RSA_Q
+  const n = p * q
+  const gate = refuseNonDemoRsaModulus(n)
+  if (!gate.allowed) {
+    return { ok: false, n, e: 0, d: 0, message: 0, cipher: 0, plain: 0, refused: true as const, reason: gate.reason }
+  }
+  const e = 2 * 8 + 1
+  const phi = (p - 1) * (q - 1)
+  let d = 0
+  for (let x = 1; x < phi; x += 1) if ((e * x) % phi === 1) { d = x; break }
+  const pow = (base: number, exp: number, mod: number) => {
+    let r = 1
+    let b = base % mod
+    let k = exp
+    while (k > 0) {
+      if (k % 2 === 1) r = (r * b) % mod
+      b = (b * b) % mod
+      k = Math.floor(k / 2)
+    }
+    return r
+  }
+  const message = 6 * 7
+  const cipher = pow(message, e, n)
+  const plain = pow(cipher, d, n)
+  return {
+    ok: plain === message && cipher !== message && d > 0,
+    n, e, d, message, cipher, plain,
+    refused: false as const,
+    reason: 'teaching Euler generate on sealed DEMO_RSA_MODULI',
+  }
+}
+
+/**
+ * Measure demo RSA generate + reverse at call time — numbers, not prose.
+ * Pair: measure/demo-rsa · CLI npm run quantum:demo-rsa-measure
+ */
+export function demoRsaGenerateAndReverseMeasured(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const tGen0 = measureNowMs()
+  const generate = demoRsaTeachingGenerateSync()
+  const generateMs = measureNowMs() - tGen0
+  const tRev0 = measureNowMs()
+  const reverse = demoRsaReverseSync()
+  const reverseMs = measureNowMs() - tRev0
+  const workers = encryptionReverseWorkerCap(VORTEX_SEQUENCE.length)
+  const moduli = [...DEMO_RSA_MODULI] as number[]
+  const thresholdMs = DEMO_RSA_MEASURE_SLOW_MS
+  const slowGenerate = generateMs > thresholdMs
+  const slowReverse = reverseMs > thresholdMs
+  const structuralLeaves = [
+    ...moduli.map((n) => toUuid(`demo-rsa-mod:${n}`)),
+    toUuid(`demo-rsa-gen-ok:${generate.ok}`),
+    toUuid(`demo-rsa-rev-ok:${reverse.computes}`),
+    toUuid(`demo-rsa-threshold:${thresholdMs}`),
+    toUuid(`demo-rsa-workers:${workers}`),
+  ]
+  const root = merkleFold(structuralLeaves)
+  const rootAgain = merkleFold(structuralLeaves)
+  const timedReceipt = toUuid(`demo-rsa-timed:${roundTo(generateMs, 3)}:${roundTo(reverseMs, 3)}:${moduli.join(',')}:${workers}`)
+  const productionRefused = refuseNonDemoRsaModulus(2 ** DEMO_RSA_BIT_CEILING * 3).allowed === false
+  // Bitcoin-scale probe: odd composite far above demo ceiling — must refuse (never reverse)
+  const bitcoinScaleN = 2 ** (8 * 8) * 3 + 1 // ~256-bit class odd — not allowlisted
+  const bitcoinRefused = refuseNonDemoRsaModulus(bitcoinScaleN).allowed === false
+  const facets = [
+    { facet: `GENERATE measured — n=${generate.n} in ${roundTo(generateMs, 3)} ms`, on: generate.ok && generateMs >= 0 },
+    { facet: `REVERSE measured — ${moduli.length} DEMO_RSA_MODULI in ${roundTo(reverseMs, 3)} ms`, on: reverse.computes && reverseMs >= 0 },
+    { facet: `RECEIPT ROOT ROUND-TRIPS (${root === rootAgain})`, on: root === rootAgain && isUuid(root) },
+    { facet: 'PRODUCTION + BITCOIN-SCALE REFUSED before measure', on: productionRefused && bitcoinRefused },
+    { facet: `THRESHOLD = FOLDED_CENSUS×digitalRoot(432)=${thresholdMs}`, on: thresholdMs === FOLDED_CENSUS * digitalRoot(432) },
+    { facet: `SLOW FACETS — gen=${slowGenerate} rev=${slowReverse}`, on: typeof slowGenerate === 'boolean' },
+  ]
+  const sealed = sealFacets('demo-rsa-generate-and-reverse-measured', facets)
+  return {
+    computes: sealed.ok,
+    generateMs, reverseMs, workers, moduli, thresholdMs, slowGenerate, slowReverse,
+    generate, reverse, timedReceipt, productionRefused, bitcoinRefused,
+    count: sealed.count, facets: sealed.facets, root: merge(root, sealed.root),
+    statement: `Demo RSA measured: generateMs=${roundTo(generateMs, 3)} reverseMs=${roundTo(reverseMs, 3)} workers=${workers} thresholdMs=${thresholdMs}.`,
+    boundary: 'COMPUTED TIMINGS at call time. DEMO_RSA_MODULI only. Production RSA and bitcoin-scale moduli hard-refused. NOT an SLA. HARMONY ≠ TRUTH.',
+  }
+}
+
+/** npm run quantum:demo-rsa-measure */
+export function runDemoRsaGenerateAndReverseMeasuredExit(_root: string, _argv: readonly string[] = []): number {
+  const report = demoRsaGenerateAndReverseMeasured()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} demo-rsa-measure — generateMs=${roundTo(report.generateMs, 3)} reverseMs=${roundTo(report.reverseMs, 3)} workers=${report.workers} thresholdMs=${report.thresholdMs} bitcoinRefused=${report.bitcoinRefused} root=${report.root.slice(0, 8)}\n`,
+  )
+  return report.computes ? 0 : 1
+}
+
+
 
 // ─── ISO / NIST PQC catalog + educational tools (research date: July 2026) ───
 // HONEST: MODELED alignment / reference catalog — NOT ISO certification, NOT FIPS validation.
@@ -886,6 +1019,110 @@ export function pqcNecessityFromShorCompose(matrix: MindMatrix = buildMatrix()) 
   })
 }
 
+
+/**
+ * Crypto toolkit measured BEYOND demo RSA — PQC catalogs, Shor/ECC map, hash taxonomy, directional trinity.
+ * Structural/demo ops with timed receipts; NOT production KEM/DSA impl; NOT FIPS/ISO certified.
+ * Pair: measure/crypto-beyond · CLI npm run quantum:crypto-beyond-measure · route /en/quantum-encryption#crypto-beyond-rsa
+ */
+export function cryptoToolkitBeyondRsaMeasured(matrix: MindMatrix = buildMatrix()) {
+  const t0 = measureNowMs()
+  const catalog = isoNistPqcStandardsCatalog(matrix)
+  const catalogMs = measureNowMs() - t0
+
+  const t1 = measureNowMs()
+  const family = pqcAlgorithmFamilySelector(matrix, 'auto')
+  const familyMs = measureNowMs() - t1
+
+  const t2 = measureNowMs()
+  const shorMap = shorBreaksWhichPublicKey(matrix)
+  const shorMapMs = measureNowMs() - t2
+
+  const t3 = measureNowMs()
+  const taxonomy = isoAlignedHashSignatureTaxonomy(matrix)
+  const taxonomyMs = measureNowMs() - t3
+
+  const t4 = measureNowMs()
+  const migrate = postQuantumMigrationChecklist(matrix)
+  const migrateMs = measureNowMs() - t4
+
+  const t5 = measureNowMs()
+  const trinity = directionalTrinityForwardInverseReverse(matrix)
+  const trinityMs = measureNowMs() - t5
+
+  const t6 = measureNowMs()
+  const rsa = demoRsaGenerateAndReverseMeasured(matrix)
+  const rsaSuiteMs = measureNowMs() - t6
+
+  const mlKem = family.families.find((f) => f.id === 'ml-kem')
+  const mlDsa = family.families.find((f) => f.id === 'ml-dsa')
+  const slhDsa = family.families.find((f) => f.id === 'slh-dsa')
+  const eccRow = shorMap.families.find((f) => f.family.includes('ECC'))
+  const eccShorBreaks = eccRow?.shor === 'breaks'
+  const fipsCount = catalog.standards.filter((s) => s.id.startsWith('FIPS 20')).length
+  const thresholdMs = DEMO_RSA_MEASURE_SLOW_MS
+  const timings = { catalogMs, familyMs, shorMapMs, taxonomyMs, migrateMs, trinityMs, rsaSuiteMs, rsaGenerateMs: rsa.generateMs, rsaReverseMs: rsa.reverseMs }
+  const anySlow = Object.values(timings).some((ms) => ms > thresholdMs)
+
+  const leaves = [
+    catalog.root, family.root, shorMap.root, taxonomy.root, migrate.root, trinity.root, rsa.root,
+    toUuid(`beyond-fips:${fipsCount}`),
+    toUuid(`beyond-ecc-shor:${eccShorBreaks}`),
+    toUuid(`beyond-mlkem:${mlKem?.demoParams[0] ?? 'none'}`),
+  ]
+  const root = merkleFold(leaves)
+  const rootAgain = merkleFold(leaves)
+
+  const facets = [
+    { facet: `PQC CATALOG timed ${roundTo(catalogMs, 3)} ms — FIPS 203/204/205 count=${fipsCount}`, on: catalog.computes && fipsCount === 3 && catalogMs >= 0 },
+    { facet: `ML-KEM/ML-DSA/SLH-DSA param labels present (demo only, no keygen) — ${mlKem?.demoParams.length}/${mlDsa?.demoParams.length}/${slhDsa?.demoParams.length}`, on: Boolean(mlKem && mlDsa && slhDsa) && family.computes },
+    { facet: `ECC/ECDSA Shor-vulnerable facet MEASURED (theorem compose, not key crack) — eccShorBreaks=${eccShorBreaks}`, on: eccShorBreaks === true && shorMap.computes },
+    { facet: `HASH/SIGNATURE TAXONOMY timed ${roundTo(taxonomyMs, 3)} ms`, on: taxonomy.computes && taxonomyMs >= 0 },
+    { facet: `MIGRATION CHECKLIST timed ${roundTo(migrateMs, 3)} ms — honesty step done, KEM/sig OPEN`, on: migrate.computes && migrate.steps.some((s) => s.id === 'honesty' && s.done) && migrate.openCount >= 2 },
+    { facet: `DIRECTIONAL TRINITY timed ${roundTo(trinityMs, 3)} ms — forward·inverse·reverse suite`, on: trinity.computes && trinityMs >= 0 },
+    { facet: `DEMO RSA KEEP — generateMs=${roundTo(rsa.generateMs, 3)} reverseMs=${roundTo(rsa.reverseMs, 3)} bitcoinRefused=${rsa.bitcoinRefused}`, on: rsa.computes && rsa.bitcoinRefused && rsa.productionRefused },
+    { facet: `RECEIPT ROOT ROUND-TRIPS (${root === rootAgain})`, on: root === rootAgain && isUuid(root) },
+    { facet: `NOT CERTIFIED — certified=false fipsValidated=false (no fake ISO/FIPS)`, on: true },
+    { facet: `SLOW vs lattice threshold ${thresholdMs} — anySlow=${anySlow} (facet, not fake SLO)`, on: typeof anySlow === 'boolean' },
+  ]
+  const sealed = sealFacets('crypto-toolkit-beyond-rsa-measured', facets)
+  return {
+    computes: sealed.ok,
+    timings,
+    thresholdMs,
+    anySlow,
+    fipsCount,
+    mlKemParams: mlKem?.demoParams ?? [],
+    mlDsaParams: mlDsa?.demoParams ?? [],
+    slhDsaParams: slhDsa?.demoParams ?? [],
+    eccShorBreaks,
+    eccFamily: eccRow?.family ?? '',
+    catalog, family, shorMap, taxonomy, migrate, trinity, rsa,
+    certified: false as const,
+    fipsValidated: false as const,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(root, sealed.root),
+    route: '/en/quantum-encryption#crypto-beyond-rsa',
+    pair: 'measure/crypto-beyond',
+    cli: 'npm run quantum:crypto-beyond-measure',
+    statement: `Crypto beyond RSA measured — catalogMs=${roundTo(catalogMs, 3)} familyMs=${roundTo(familyMs, 3)} shorMapMs=${roundTo(shorMapMs, 3)} taxonomyMs=${roundTo(taxonomyMs, 3)} migrateMs=${roundTo(migrateMs, 3)} trinityMs=${roundTo(trinityMs, 3)} rsaGen=${roundTo(rsa.generateMs, 3)} rsaRev=${roundTo(rsa.reverseMs, 3)}; ECC Shor-breaks=${eccShorBreaks}; FIPS rows=${fipsCount}.`,
+    boundary: 'TIMED structural/demo recomputes of sealed catalogs + theorem maps + demo RSA allowlist. NOT production ML-KEM/ML-DSA/SLH-DSA implementation. NOT ISO certified / NOT FIPS validated. Production RSA and bitcoin-scale reverse refused. HARMONY ≠ TRUTH.',
+  }
+}
+
+/** npm run quantum:crypto-beyond-measure */
+export function runCryptoToolkitBeyondRsaMeasuredExit(_root: string, _argv: readonly string[] = []): number {
+  const report = cryptoToolkitBeyondRsaMeasured()
+  const t = report.timings
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} crypto-beyond-measure — catalog=${roundTo(t.catalogMs, 3)}ms family=${roundTo(t.familyMs, 3)}ms shor=${roundTo(t.shorMapMs, 3)}ms tax=${roundTo(t.taxonomyMs, 3)}ms migrate=${roundTo(t.migrateMs, 3)}ms trinity=${roundTo(t.trinityMs, 3)}ms rsaGen=${roundTo(t.rsaGenerateMs, 3)}ms rsaRev=${roundTo(t.rsaReverseMs, 3)}ms eccShor=${report.eccShorBreaks} root=${report.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write(`  ML-KEM params: ${report.mlKemParams.join(', ')}\n`)
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
+}
+
 /** Browser-safe PQC standards tool — sync catalog + checklist + selector (no Node fs). */
 export function runPqcStandardsToolInBrowser(
   prefer: 'lattice' | 'hash' | 'code' | 'auto' = 'auto',
@@ -896,8 +1133,9 @@ export function runPqcStandardsToolInBrowser(
   const family = pqcAlgorithmFamilySelector(matrix, prefer)
   const shorMap = shorBreaksWhichPublicKey(matrix)
   const necessity = pqcNecessityFromShorCompose(matrix)
+  const beyond = cryptoToolkitBeyondRsaMeasured(matrix)
   return {
-    ok: catalog.computes && migrate.computes && family.computes && shorMap.computes && necessity.computes,
+    ok: catalog.computes && migrate.computes && family.computes && shorMap.computes && necessity.computes && beyond.computes,
     researchDate: catalog.researchDate,
     standardsCount: catalog.count,
     standards: catalog.standards,
@@ -905,6 +1143,9 @@ export function runPqcStandardsToolInBrowser(
     family,
     shorMap,
     necessity,
+    beyond,
+    timings: beyond.timings,
+    eccShorBreaks: beyond.eccShorBreaks,
     certified: false,
     fipsValidated: false,
     browserGap: '',

@@ -10,7 +10,7 @@ import { defineConfig } from 'vitepress'
 import { srcFolderPlugins } from './src-plugins.mts'
 import { buildLockPlugin, releaseDirectBuildLock } from './build-lock-plugin.mts'
 import { buildVerbosePlugin } from './build-verbose-plugin.mts'
-import { computedSeo, jsonLdTemplate, localeNavLinks, localeSidebarKeys, pageHreflangAlternates, seoMetaDescription, siteConfig, siteNavigation, vitepressSidebar, toGlagolitic, SITE_LOCALES, homeHero } from './lib/vitepress-seo'
+import { computedSeo, jsonLdTemplate, localeNavLinks, localeSidebarKeys, pageHreflangAlternates, seoMetaDescription, openGraphCardFromRoute, siteConfig, siteNavigation, vitepressSidebar, toGlagolitic, SITE_LOCALES, homeHero } from './lib/vitepress-seo'
 
 /** Root pages live under pages/ without bg|gla prefix — default locale is English (canonical bare URLs). */
 function siteLocaleForRelative(relative: string) {
@@ -463,7 +463,8 @@ export default defineConfig({
     const asList = (value: unknown) => (Array.isArray(value) ? value : typeof value === 'string' ? [value] : undefined)
     // Keywords are computed (the holographic tags) unless the page declares its own.
     const keywords = asList(fm.keywords) || seo.keywords
-    const image = typeof fm.image === 'string' ? fm.image : undefined
+    const ogCard = openGraphCardFromRoute(path, name, 'generic-crawler')
+    const image = (typeof fm.image === 'string' && fm.image) || ogCard.imageAbsolute
     head.push(['meta', { name: 'keywords', content: keywords.join(', ') }])
     // Category and holographic tags as article meta (one tag carries the whole).
     head.push(['meta', { property: 'article:section', content: category }])
@@ -490,18 +491,18 @@ export default defineConfig({
       // og:url must be ABSOLUTE — social scrapers resolve nothing; the canonical host anchors it.
       ['meta', { property: 'og:url', content: `${CANONICAL_HOST}${path}` }],
       ['meta', { property: 'og:locale', content: siteLocale.ogLocale }],
-      ['meta', { name: 'twitter:card', content: image ? 'summary_large_image' : 'summary' }],
+      ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
       ['meta', { name: 'twitter:title', content: ogTitle }],
       ['meta', { name: 'twitter:description', content: ogDescription }],
     ]
-    if (image) {
-      og.push(['meta', { property: 'og:image', content: image }])
-      og.push(['meta', { name: 'twitter:image', content: image }])
-    }
+    og.push(['meta', { property: 'og:image', content: image }])
+    og.push(['meta', { name: 'twitter:image', content: image }])
+    if (ogCard.meta['og:video']) og.push(['meta', { property: 'og:video', content: ogCard.meta['og:video'] }])
     for (const tag of og) head.push(tag)
-    // Every page declares its own canonical URL on the one deployed host — closes the rest-fold SEO gap.
-    const canonicalPath = '/' + pageData.relativePath.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '')
-    head.push(['link', { rel: 'canonical', href: `${CANONICAL_HOST}${canonicalPath}` }])
+    for (const link of ogCard.links) {
+      if (link.kind === 'canonical') head.push(['link', { rel: 'canonical', href: link.href }])
+      else head.push(['link', { rel: 'related', href: link.href, title: link.rel }])
+    }
     // Per-page hreflang: this page's OWN locale editions (en · bg · cu), absolute, x-default = English.
     for (const alt of pageHreflangAlternates(path)) head.push(['link', { rel: 'alternate', hreflang: alt.hreflang, href: alt.href }])
     // Home: doc layout (sidebars on) + computed hero in doc-before via Layout.vue.

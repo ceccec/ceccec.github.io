@@ -8,11 +8,16 @@ import {
   runEncryptionToolInBrowser,
   runPqcStandardsToolInBrowser,
   runQuantumStandardsAuditInBrowser,
+  cryptoToolkitBeyondRsaMeasured,
+  demoRsaGenerateAndReverseMeasured,
+  encryptionPanelComputes,
 } from '../../water/encryption/index.ts'
-import { millenniumPanelComputes, unitDistanceResearch, firstInCorpusProvenanceForHome } from '../../wind/research/index.ts'
+import { platformOgLimitsMeasured, honestyInProseChallenged } from '../../mountain/og/index.ts'
+import {
+  millenniumPanelComputes, unitDistanceResearch, firstInCorpusProvenanceForHome, sciencesTrinitiesPanelComputes,
+} from '../../wind/research/index.ts'
 import { fusionVerifyPanelComputes } from '../../wind/fusion/index.ts'
 import { oneQuantumModelFasterThanAll, compareCeccecEfficiencyByVote, directionalTrinityForwardInverseReverse } from '../../water/stack/index.ts'
-import { sciencesTrinitiesPanelComputes } from '../../wind/research/index.ts'
 import { animationsDrivenByRosetta } from '../../wind/ui/index.ts'
 import { tradingRosettaTrainPanelComputes } from '../../thunder/trading/index.ts'
 import { fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vortex/index.ts'
@@ -37,6 +42,7 @@ type RunReceipt = {
 }
 
 const panel = shallowRef(quantumAppsPanelComputes())
+const encryption = shallowRef(encryptionPanelComputes())
 const activeId = ref<string | null>(null)
 const runningId = ref<string | null>(null)
 const error = ref('')
@@ -44,6 +50,10 @@ const lastRun = shallowRef<RunReceipt | null>(null)
 const spawnTask = ref('qualified bounded task with sealed fold target')
 
 const launchPreview = computed(() => (activeId.value ? quantumAppLaunch(activeId.value) : null))
+const encryptionTimedLine = computed(() => {
+  const t = encryption.value.timings
+  return `catalog ${t.catalogMs.toFixed(3)}ms · family ${t.familyMs.toFixed(3)}ms · shor ${t.shorMapMs.toFixed(3)}ms · tax ${t.taxonomyMs.toFixed(3)}ms · trinity ${t.trinityMs.toFixed(3)}ms · rsa ${t.rsaGenerateMs.toFixed(3)}/${t.rsaReverseMs.toFixed(3)}ms`
+})
 
 function openApp(appId: string) {
   activeId.value = appId
@@ -70,14 +80,38 @@ function runTool(toolId: string) {
     } else if (toolId === 'encryption-reverse-verify') {
       const r = runEncryptionToolInBrowser(null)
       ok = r.ok
-      summary = r.refused ? r.refuseReason : `n=${r.modulus} → ${r.factor?.p ?? '—'}×${r.factor?.q ?? '—'} · ${r.mode}`
+      summary = r.refused
+        ? r.refuseReason
+        : `n=${r.modulus} → ${r.factor?.p ?? '—'}×${r.factor?.q ?? '—'} · gen=${r.generateMs?.toFixed?.(3) ?? '—'}ms rev=${r.reverseMs?.toFixed?.(3) ?? '—'}ms`
       root = r.root
       boundary = r.boundary
       facets = r.facets
+    } else if (toolId === 'demo-rsa-measure') {
+      const r = demoRsaGenerateAndReverseMeasured()
+      ok = r.computes
+      summary = `generateMs=${r.generateMs.toFixed(3)} reverseMs=${r.reverseMs.toFixed(3)} threshold=${r.thresholdMs} bitcoinRefused=${r.bitcoinRefused}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'crypto-beyond-measure') {
+      const r = cryptoToolkitBeyondRsaMeasured()
+      ok = r.computes
+      summary = `catalog=${r.timings.catalogMs.toFixed(3)}ms shor=${r.timings.shorMapMs.toFixed(3)}ms trinity=${r.timings.trinityMs.toFixed(3)}ms eccShor=${r.eccShorBreaks} FIPS=${r.fipsCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'og-limits-measure') {
+      const limits = platformOgLimitsMeasured()
+      const honesty = honestyInProseChallenged()
+      ok = limits.computes && honesty.computes
+      summary = `platforms=${limits.count} animating=${limits.animatingIds.length} honesty=${honesty.challenged}`
+      root = honesty.root
+      boundary = honesty.boundary
+      facets = [...limits.facets, ...honesty.facets].map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'iso-pqc-catalog') {
       const r = runPqcStandardsToolInBrowser('auto')
       ok = r.ok
-      summary = `${r.standardsCount} standards · selected=${r.family.selected.name} · certified=${r.certified}`
+      summary = `${r.standardsCount} standards · selected=${r.family.selected.name} · catalogMs=${r.timings?.catalogMs?.toFixed?.(3) ?? '—'} · eccShor=${r.eccShorBreaks} · certified=${r.certified}`
       root = r.root
       boundary = r.boundary
       facets = r.necessity.facets?.map((f) => ({ facet: f.facet, on: f.on })) ?? [{ facet: 'catalog', on: r.ok }]
@@ -222,29 +256,9 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (toolId === 'rosetta-core-api') {
-      const r = rosettaCoreApi()
-      ok = r.computes
-      summary = `surfaces=${r.surfaces.length} · rays=${r.raysUsed} · parallel=${r.inventory.parallel.length}`
-      root = r.root
-      boundary = r.boundary
-      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (toolId === 'session-manual-work') {
-      const r = sessionManualWorkAsQuantumTools()
-      ok = r.computes
-      summary = `session=${r.count} · shelved=${r.shelvedCount}`
-      root = r.root
-      boundary = r.boundary
-      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else {
-      ok = false
-      summary = `unknown tool ${toolId}`
-      root = ''
-      boundary = ''
-      facets = [{ facet: 'unknown tool id', on: false }]
-    }
     lastRun.value = { toolId, ok, summary, root, boundary, facets }
     panel.value = quantumAppsPanelComputes()
+    encryption.value = encryptionPanelComputes()
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'run failed'
     lastRun.value = null
@@ -281,6 +295,34 @@ function runTool(toolId: string) {
             <a class="quantum-apps__meta" :href="gap.route">{{ gap.route }}</a>
           </li>
         </ul>
+      </section>
+      <UiSeparator />
+      <section id="crypto-beyond-rsa" aria-label="Crypto toolkit beyond RSA">
+        <h3>Beyond RSA — PQC · Shor/ECC · trinity</h3>
+        <p class="quantum-apps__meta">
+          Timed structural/demo suite — NOT FIPS/ISO certified · NOT production KEM · demo RSA allowlist only.
+        </p>
+        <UiBadge :variant="encryption.computes ? 'default' : 'outline'">
+          encryption.panel · {{ encryption.computes ? '✓' : '—' }} · eccShor={{ encryption.eccShorBreaks }}
+        </UiBadge>
+        <p class="quantum-apps__meta">{{ encryptionTimedLine }}</p>
+        <p class="quantum-apps__meta">
+          ML-KEM {{ encryption.mlKemParams.join(' · ') }} · ML-DSA {{ encryption.mlDsaParams.join(' · ') }} · SLH-DSA {{ encryption.slhDsaParams.join(' · ') }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="section in encryption.sections" :key="section.id" :id="section.id">
+            <UiBadge :variant="section.on ? 'default' : 'outline'">{{ section.on ? '✓' : '—' }}</UiBadge>
+            <strong>{{ section.title }}</strong>
+            — <code>{{ section.cli }}</code>
+            <a class="quantum-apps__meta" :href="section.route">{{ section.route }}</a>
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'crypto-beyond-measure'" @click="runTool('crypto-beyond-measure')">
+          {{ runningId === 'crypto-beyond-measure' ? '…' : 'Run beyond-RSA measure' }}
+        </UiButton>
+        <UiButton size="sm" :disabled="runningId === 'demo-rsa-measure'" @click="runTool('demo-rsa-measure')">
+          {{ runningId === 'demo-rsa-measure' ? '…' : 'Run demo-RSA measure' }}
+        </UiButton>
       </section>
       <UiSeparator />
       <section id="session-manual-tools" aria-label="Session manual work as quantum tools">
