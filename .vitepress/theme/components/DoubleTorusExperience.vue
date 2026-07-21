@@ -6,6 +6,7 @@ import { doubleTorusEarthHingeComputesAll, doubleTorusEarthExchangeComputes, fia
 import { goldFusionComputes } from '../../../src/wind/fusion/gold/index.ts'
 import { quantumGlobeAt } from '../../../src/water/double/earth/index.ts'
 import { prefersReducedMotion, useVisibleMovieCanvas } from '../../lib/movie-canvas'
+import { harmonizeField, type ObserverContext } from '../../../src/lake/music/index.ts'
 import { useSiteLocale } from '../../lib/mounts'
 import UiCardShell from './UiCardShell.vue'
 import { UiBadge, UiTabs, UiTabsContent, UiTabsList, UiTabsTrigger } from '../../lib/shadcn-ui.ts'
@@ -68,7 +69,19 @@ const { at, repaint } = useVisibleMovieCanvas({
     return { w, h: Math.min(Math.round(w * MOVIE_ASPECT), Math.round(vh * MOVIE_VIEWPORT_CAP)) }
   },
   paint: (ctx, w, h, time) => {
-    drawHeroMovieFrame(ctx, w, h, sharedHeroAt(route.path, heroCopy.value, time, w, reduce, isDark.value))
+    const shared = sharedHeroAt(route.path, heroCopy.value, time, w, reduce, isDark.value)
+    const observer: ObserverContext = {
+      route: route.path,
+      at: time,
+      p: shared.p,
+      reduce,
+      cssWidth: w,
+      dark: isDark.value,
+      idle: false,
+      visible: true,
+      watchMs: 0,
+    }
+    drawHeroMovieFrame(ctx, w, h, harmonizeField(observer, shared))
   },
 })
 

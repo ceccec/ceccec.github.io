@@ -12,6 +12,7 @@ import {
   type QuantumProjection,
 } from '@vp-lib/hero-movie'
 import { prefersReducedMotion, useVisibleMovieCanvas } from '@vp-lib/movie-canvas'
+import { harmonizeField, type ObserverContext } from '../../../src/lake/music/index.ts'
 import { useData, useRoute } from 'vitepress'
 
 const props = withDefaults(
@@ -76,19 +77,32 @@ const { repaint } = useVisibleMovieCanvas({
       isDark.value,
       cardFieldScroll(rectTop, h, winH),
     )
-    syncCardInk(shared.hue)
+    // Same always-on harmonize as BackgroundMovie — modeled neuroscience field; not brain measurement.
+    const observer: ObserverContext = {
+      route: moviePath.value,
+      at,
+      p: shared.p,
+      reduce,
+      cssWidth: w,
+      dark: isDark.value,
+      idle: false,
+      visible: true,
+      watchMs: 0,
+    }
+    const field = harmonizeField(observer, shared)
+    syncCardInk(field.hue)
     if (props.app) {
       drawQuantumAppFrame(ctx, w, h, props.app, {
-        hue: shared.hue,
-        p: shared.p,
-        t: shared.t,
-        reduce: shared.reduce,
-        cssWidth: shared.cssWidth,
-        palette: shared.palette,
+        hue: field.hue,
+        p: field.p,
+        t: field.t,
+        reduce: field.reduce,
+        cssWidth: field.cssWidth,
+        palette: field.palette,
       })
       return
     }
-    drawBackgroundMovie(ctx, w, h, backgroundSceneFromShared(shared))
+    drawBackgroundMovie(ctx, w, h, backgroundSceneFromShared(field))
   },
 })
 
