@@ -57,13 +57,13 @@ runTool()
   >
     <UiCardContent class="vp-doc encryption-tools__content">
       <header class="encryption-tools__header">
-        <h2>Quantum encryption tools</h2>
+        <!-- page H1 owns the encryption title — no synonym h2 (uiProseDuplicationRemoved) -->
         <p class="encryption-tools__lede">
           Browser-sync encrypt ↔ decrypt + modeled Shor on sealed demo RSA + ISO/NIST PQC catalog + standards audit (reverse + inverse · 10D).
           Alignment only — not ISO certified, not FIPS validated.
         </p>
         <UiBadge :variant="panel.computes ? 'default' : 'outline'">
-          encryption.panel · {{ panel.computes ? '✓' : '—' }}
+          {{ panel.computes ? '✓' : '—' }}
         </UiBadge>
         <UiBadge variant="outline">mode browser-sync</UiBadge>
         <UiBadge v-if="auditResult" :variant="auditResult.gapCount === 0 ? 'default' : 'outline'">

@@ -111,6 +111,7 @@
     "quantum:translations-verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/mountain/source/index.ts runTranslationsVerifyExit",
     "quantum:slow-gap": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runSlowProcessIsQuantumGapExit",
     "quantum:mcp-browser-parity": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpBrowserParityExit",
+    "quantum:ui-prose-duplication": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runUiProseDuplicationRemovedExit",
     "quantum:improve-local-session": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runImproveLocalFromSessionExperienceExit",
     "quantum:upgrade-local": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runUpgradeLocalFromOptimisedManualWorkExperienceExit",
     "quantum:dev-mcp": "node --experimental-strip-types packages/quantum-dev-sdk/bin/mcp.ts",

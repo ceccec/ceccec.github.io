@@ -6,4 +6,6 @@ sidebar: true
 aside: false
 ---
 
+# Domain proofs
+
 <DomainProofPages />

@@ -3,6 +3,7 @@
 // publication/refereeing norms · Clay hub + Prize Rules PDF provenance.
 // All fields from domainProofCatalog / clayMillenniumPrizeRulesMapping (sealed src).
 // Internal nav: VitePress API only (useRoute · withBase) — standing rule linksUseOnlyVitePressApi.
+// UI↔prose: one statement owns meaning — H1 = title; PaperFrame owns abstract; no section-1 title echo.
 import { computed } from 'vue'
 import { useRoute, withBase } from 'vitepress'
 import {
@@ -31,13 +32,12 @@ const vpHref = (path: string) => withBase(path.startsWith('/') ? path : `/${path
 <template>
   <div class="proofs" data-logic="src/wind/research/index.ts#domainProofCatalog">
     <header v-if="isHub" class="proofs__hub">
-      <p class="proofs__mast">ceccec · one catalog · Clay presentation · computable · open for prize · claySolvedByThisFold=0</p>
-      <h1>Domain proofs</h1>
+      <p class="proofs__mast">ceccec · catalog</p>
+      <!-- page H1 from frontmatter title owns "Domain proofs" (uiProseDuplicationRemoved) -->
       <p class="proofs__lede">
-        The single Clay-standard catalog (title · statement · explanation · formulas · status · Prize Rules honesty).
         Clay challenges are <strong>computable</strong> from the sequence/trinity stack (sealed paths recompute) —
-        that is not CMI Prize solved. Status triad: computable / open for prize / claySolvedByThisFold=0.
-        Not a second theorem hub — the registry is <a :href="vpHref('/frontiers')">/frontiers</a>.
+        that is not CMI Prize solved. Not a second theorem hub — the registry is
+        <a :href="vpHref('/frontiers')">/frontiers</a>.
         MODELED CHALLENGE apparatus only; not CMI Prize acceptance.
       </p>
       <p class="proofs__provenance">
@@ -64,7 +64,7 @@ const vpHref = (path: string) => withBase(path.startsWith('/') ? path : `/${path
       class="domain-proof"
     >
       <header class="domain-proof__masthead">
-        <span>ceccec domain proof · Clay-standard sections · clay=0</span>
+        <span>ceccec</span>
         <span class="domain-proof__id">proofs/{{ row.slug }}</span>
       </header>
 
@@ -74,28 +74,23 @@ const vpHref = (path: string) => withBase(path.startsWith('/') ? path : `/${path
       </p>
 
       <section>
-        <h2>1 · Problem / theorem title</h2>
-        <p>{{ row.title }}</p>
-      </section>
-
-      <section>
-        <h2>2 · Precise statement</h2>
+        <h2>1 · Precise statement</h2>
         <p>{{ row.officialStatement }}</p>
       </section>
 
       <section>
-        <h2>3 · Detailed explanation</h2>
+        <h2>2 · Detailed explanation</h2>
         <p>{{ row.detailedExplanation }}</p>
       </section>
 
       <section>
-        <h2>4 · Formulas</h2>
+        <h2>3 · Formulas</h2>
         <pre class="domain-proof__formula"><code>{{ row.formula }}</code></pre>
         <p class="domain-proof__meta">Source fold: <code>{{ row.formulaSource }}</code> — sealed expressions only; not invented for UI.</p>
       </section>
 
       <section>
-        <h2>5 · Status / what is proved at call time</h2>
+        <h2>4 · Status / what is proved at call time</h2>
         <p><strong>{{ row.status }}</strong> — {{ row.statusDetail }}</p>
         <p v-if="row.gap">Gap: {{ row.gap }}</p>
         <dl class="domain-proof__locks">
@@ -107,7 +102,7 @@ const vpHref = (path: string) => withBase(path.startsWith('/') ? path : `/${path
       </section>
 
       <section>
-        <h2>6 · Publication &amp; refereeing norms (Clay Prize Rules)</h2>
+        <h2>5 · Publication &amp; refereeing norms (Clay Prize Rules)</h2>
         <p>
           Under the
           <a :href="rules.rulesPdfUrl" rel="noopener noreferrer" target="_blank">CMI Millennium Prize Rules</a>
@@ -125,7 +120,7 @@ const vpHref = (path: string) => withBase(path.startsWith('/') ? path : `/${path
       </section>
 
       <section>
-        <h2>7 · Trinity wiring</h2>
+        <h2>6 · Trinity wiring</h2>
         <dl class="domain-proof__locks">
           <dt>forward</dt><dd><code>{{ row.trinity.forward }}</code></dd>
           <dt>inverse</dt><dd><code>{{ row.trinity.inverse }}</code></dd>
@@ -134,7 +129,7 @@ const vpHref = (path: string) => withBase(path.startsWith('/') ? path : `/${path
       </section>
 
       <section>
-        <h2>8 · CLI / agents.json</h2>
+        <h2>7 · CLI / agents.json</h2>
         <p><code>{{ row.cli }}</code> · pair <code>{{ row.pair }}</code></p>
         <p class="domain-proof__meta">Receipt <code>{{ row.receipt }}</code></p>
         <p>

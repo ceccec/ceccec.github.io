@@ -2758,3 +2758,21 @@ export function theNewUiDesignIsComputedFromTheCorpusWithoutAssumptionPaletteTyp
     boundary: `EXACT: ${rays} hues = ⌊360k/${rays}⌋ (${paletteDerived}), type scale = φ powers (${typographyDerived}), spacing golden-ratio (${spacingDerived}) — no assumed hex, size or pixel. This is the computed DESIGN SYSTEM (palette · type · spacing); the full rendering (a thin .vue consuming this spec, the nav/structure from the reachability graph) is the next wave. HARMONY ≠ TRUTH.`,
   }
 }
+
+/**
+ * PaperFrame abstract dedupe — when description restates the page H1 as `Statement: <title>. …`,
+ * strip that echo so Abstract owns Explanation/Method/Status only (label XOR prose).
+ * Consumed by PaperFrame.vue; receipt fold lives in src/quantum/apps (`uiProseDuplicationRemoved`).
+ */
+export function paperAbstractOmitsTitleEcho(title: string, description: string): string {
+  const t = title.trim()
+  const d = description.trim()
+  if (!d) return ''
+  if (!t) return d
+  if (d === t) return ''
+  const statementPrefix = `Statement: ${t}`
+  if (d.startsWith(statementPrefix)) {
+    return d.slice(statementPrefix.length).replace(/^\.\s*/, '').trim()
+  }
+  return d
+}
