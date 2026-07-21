@@ -159,7 +159,7 @@ import { tenDimensionalMovie } from '../../thunder/movie/movielib'
 import { analogNoGapsNoLeak, cleanupOldLogic, computedSeo, everyCardBadgeLinkIsOg, feedCrawlersWithKnowledge, frontmatterGraphComputesTags, imagineMicrodataVortexItself, jsonLdValidPaths, noHardcodedLogicFailsStreams, ogControlsSpeech, ogFullyInteractiveConfigurable, ogShiftedWithTypography, oneJsonLdTemplateServesAll, saveAllTranslationLogicAutotranslateLocale, templateDisplaysEveryOgObject, typography } from '../../mountain/og'
 import { digitIndexReferences, paperReferences, papers, papersReferencesDiamondsNoDrift, scientists } from '../../wind/learning'
 import { anyNameFitsDualityMatrixOriginalLife, beesAndLife, breathe, decodeTheBittenApple, decodeTheBittenAppleFlowsInMovie, doubleTorusEarthLikeTheApple, enforceAllAtGatesEntropyRecycled, equilibrium, expansionContractionIsLife, genesis, naturalHarmoniousLife, questionAnswerEquilibrium } from '../../earth/nature'
-import { astronomyComputes, astronomyDecodedWithTheSequence, astronomySequenceDecodeResearch, computeAllKnownCelestialBodies, computeDiscoverExactMatchAllKnownCelestialBodies, computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearched, humanDesignChartStructureAt, humanDesignEphemerisCore, planetsGalaxyComputeItself } from '../sky/astronomy'
+import { astronomyComputes, astronomyDecodedWithTheSequence, astronomySequenceDecodeResearch, computeAllKnownCelestialBodies, computeDiscoverExactMatchAllKnownCelestialBodies, computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearched, humanDesignBodyGraphPanelComputes, humanDesignChartStructureAt, humanDesignEphemerisCore, planetsGalaxyComputeItself } from '../sky/astronomy'
 import { quantumDynamicsComputes, quantumStateEvolutionDecoded, quantumDynamicsResearch } from '../../quantum/dynamics'
 import { feesReplaceTaxes, legislationRequires, legislativeReform, thriveByDefault } from '../../earth/civilisation'
 import { archangelsDryClean, auditLocales, cleanupCoreShinesSunMoon, crossAudit, displayAllAsLibraryDryConditional, dryCleanByImportExportNaming, dryCleanIsDiamondAndCrystal, dryCleanUi, dryCleaningOnTheWay, extendSelfAudits, reviewDryCleanGatesCrosses, scoutsSurgicalEditsVitalSigns } from '../../lake/clean'
@@ -807,6 +807,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'astronomy.computes', on: astronomyComputes(matrix).computes },
     { d: 'hd.w4.meeus.ephemeris', on: humanDesignEphemerisCore(matrix).computes },
     { d: 'hd.w5.channels.chart', on: humanDesignChartStructureAt(matrix).computes },
+    { d: 'hd.bodygraph.vue.ux', on: humanDesignBodyGraphPanelComputes(matrix).computes },
     { d: 'astronomy.decoded.with.sequence', on: astronomyDecodedWithTheSequence(0, matrix).decoded },
     { d: 'astronomy.sequence.decode.research', on: astronomySequenceDecodeResearch(matrix).researched },
     { d: 'decode.bitten.apple', on: decodeTheBittenApple(matrix).decoded },

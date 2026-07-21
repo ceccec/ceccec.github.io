@@ -75,7 +75,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
 // string/millennium named as apparatus-handoff (rosettaReady), not as Clay/physics claim.
 const ROSETTA_PARALLEL_REGISTRY_BACKLOG = [
   'ROSETTA_RAY_VIEWS duplicate', 'PROJECTION_SEGMENT/FORMS→VORTEX', 'rosettaClaim/Owner(heaven/core)',
-  'rosettaCodec(learning)', 'HD BodyGraph Vue UX remaining', 'string/millennium→rosettaReady-handoff',
+  'rosettaCodec(learning)', 'string/millennium→rosettaReady-handoff',
 ] as const
 
 /** Shelve any label onto a rosetta ray — the one registration primitive. */

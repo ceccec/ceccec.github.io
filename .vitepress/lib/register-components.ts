@@ -77,6 +77,7 @@ const OVERRIDES: Record<string, () => Promise<{ default: Component }>> = {
   RayHub: () => import('../theme/components/RayHub.vue'),
   Monograph: () => import('../theme/components/MonographFold.vue'),
   LivingTorus: () => import('../theme/components/LivingTorus.vue'),
+  HumanDesignBodyGraph: () => import('../theme/components/HumanDesignBodyGraph.vue'),
   Merkaba: () => import('../../src/render/merkaba/index.vue'),
   DoubleTorusExperience: () => import('../theme/components/DoubleTorusExperience.vue'),
   EncryptionTools: () => import('../../src/water/encryption/index.vue'),
@@ -105,7 +106,7 @@ function browserComponentNames(): readonly string[] {
   // Formerly the home list — the home is now the computed componentless theorem monograph; these
   // names are page-placed (STATIC_PAGE_SEED) or composed, and stay registered for those mounts.
   const pagePlaced = [
-    'SiteOverview', 'QuantumLens', 'Compass', 'LivingTorus', 'Merkaba', 'DoubleTorusExperience', 'Live', 'DeterminismProofs', 'CryptoCompare',
+    'SiteOverview', 'QuantumLens', 'Compass', 'LivingTorus', 'HumanDesignBodyGraph', 'Merkaba', 'DoubleTorusExperience', 'Live', 'DeterminismProofs', 'CryptoCompare',
     'Hologram', 'Equilibrium', 'QuantumRadar', 'DeviceDashboard', 'BlockchainCompare', 'GlyphLabyrinth',
     'GlagoliticOcr', 'Monograph', 'HumanLens', 'PathGuide', 'QuantumClock', 'Nav358', 'ProofRenderer',
     'HologramMovie', 'KnowledgeAtlas', 'ElectromagneticRadiation', 'RealtimeTests', 'MatrixCube',
@@ -115,7 +116,7 @@ function browserComponentNames(): readonly string[] {
     'PaperIndex', 'ReferenceDetail', 'ReferenceIndex', 'UniversalPageTemplate', 'PowerLanding', 'StartHere',
     'AnalogField', 'ProbSim', 'DynSim', 'NetSim', 'HubCardGrid', 'TagBrowser', 'BulgarianHeritage',
     'BulgarianHistory', 'BulgarianEthnogenesis', 'SacredGeometry', 'Society', 'PlayLearn', 'Multidimensional',
-    'QuantumConsole', 'McpTools', 'YinYang', 'ChakrasAura', 'TaxonomyIcons', 'HarmonicMap', 'TamperingCost',
+    'QuantumConsole', 'McpTools', 'YinYang', 'ChakrasAura', 'HumanDesignBodyGraph', 'TaxonomyIcons', 'HarmonicMap', 'TamperingCost',
     'BoundaryAudit', 'A432', 'QuantumCircuit', 'CryptoChallenges', 'BlockchainCompare', 'ElectromagneticRadiation',
     'EncryptionTools', 'MillenniumChallenge', 'ResearchIndex', 'QuantumTools', 'FusionVerify',
   ] as const

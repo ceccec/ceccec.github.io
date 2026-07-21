@@ -22,11 +22,11 @@ import { allComputedNoFiles } from '../../../wind/fusion'
 import { animatedHeroes, freeAnimations } from '../../../wind/ui'
 import { atoms } from '../../atoms'
 import { atomInclusionProof } from '../../../lake/ledger'
-import { A432_HUE, TAU } from '../../../3/7'
+import { A432_HUE, GOLDEN_ANGLE, TAU } from '../../../3/7'
 import { movieCanvasPolarity } from '../../../quantum/science'
 import { heroPhaseAt } from '../../../fire/plasma/ball'
 import {
-  RAVE_BODIES_13, RAVE_DESIGN_SUN_ARC_DEG, RAVE_GATE_ARC_DEG, RAVE_LINE_ARC_DEG,
+  RAVE_BODIES_13, RAVE_CENTER_GATES, RAVE_CENTERS_9, RAVE_DESIGN_SUN_ARC_DEG, RAVE_GATE_ARC_DEG, RAVE_LINE_ARC_DEG,
   humanDesignChannelsAndCenters, humanDesignVerifiedWheel,
   raveDefinedChannels, raveMandalaGateLineAt,
 } from '../../../quantum/lake/spirit'
@@ -1003,6 +1003,153 @@ export function humanDesignChartStructureAt(matrix: MindMatrix = buildMatrix(), 
   })
 }
 
+/** Normalized BodyGraph center anchors — lattice fractions only (structure layout, not aura geometry). */
+export const RAVE_CENTER_LAYOUT = {
+  Head: { x: 1 / 2, y: 1 / (8 * 2), shape: 'tri' as const },
+  Ajna: { x: 1 / 2, y: 3 / (8 * 2), shape: 'tri' as const },
+  Throat: { x: 1 / 2, y: 5 / (8 * 2), shape: 'sq' as const },
+  G: { x: 1 / 2, y: 1 / 2, shape: 'dia' as const },
+  Heart: { x: 1 / 2 + 1 / (2 * 4), y: 1 / 2, shape: 'tri' as const },
+  Sacral: { x: 1 / 2, y: 5 / 8, shape: 'sq' as const },
+  SolarPlexus: { x: 1 / 2 + 1 / (2 * 4), y: 5 / 8, shape: 'tri' as const },
+  Spleen: { x: 1 / 2 - 1 / (2 * 4), y: 5 / 8, shape: 'tri' as const },
+  Root: { x: 1 / 2, y: 7 / 8, shape: 'sq' as const },
+} as const satisfies Record<(typeof RAVE_CENTERS_9)[number], { x: number; y: number; shape: 'tri' | 'sq' | 'dia' }>
+
+/** HD BodyGraph Vue panel — sealed chart structure → browser paint receipt (structure-only demo at J2000). */
+export function humanDesignBodyGraphPanelComputes(matrix: MindMatrix = buildMatrix(), birthJd = MEEUS_J2000_JD) {
+  return memoByRoot(`humanDesignBodyGraphPanelComputes:${roundTo(birthJd, 6)}`, matrix, () => {
+    const chart = humanDesignChartStructureAt(matrix, birthJd)
+    const lattice = humanDesignChannelsAndCenters()
+    const layoutKeys = Object.keys(RAVE_CENTER_LAYOUT)
+    const definedKeys = new Set(chart.definedChannels.map((c) => c.key))
+    const activated = new Set(chart.activatedGates)
+    const definedCenters = new Set(chart.definedChannels.flatMap((c) => [c.from, c.to]))
+    const facets = [
+      { facet: 'chart structure W5 computes', on: chart.computes },
+      { facet: 'channels/centers lattice verifies', on: lattice.verified },
+      { facet: 'layout anchors 9 centers (lattice fractions)', on: layoutKeys.length === 9 && layoutKeys.every((k) => lattice.centers.includes(k as (typeof lattice.centers)[number])) },
+      { facet: 'defined channels ⊆ sealed 36', on: [...definedKeys].every((k) => lattice.channels.some((row) => row.key === k)) },
+      { facet: 'demo JD is symbolic (J2000 default) — NOT a person profile', on: birthJd === MEEUS_J2000_JD || Number.isFinite(birthJd) },
+      { facet: 'profiling signal still refuted (structure UX only)', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`hd-bodygraph-ux:${entry.facet}:${entry.on}`) }))
+    const computes = facets.every((f) => f.on)
+    return {
+      computes,
+      verified: computes,
+      birthJd,
+      chart,
+      lattice,
+      layout: RAVE_CENTER_LAYOUT,
+      definedKeys: [...definedKeys],
+      activatedGates: [...activated],
+      definedCenters: [...definedCenters],
+      cuspCount: chart.cuspWarnings.length,
+      definedChannelCount: chart.definedChannels.length,
+      count: facets.length,
+      facets,
+      root: merkleFold([chart.root, lattice.root, ...facets.map((f) => f.receipt)]),
+      route: '/en/spirit#human-design-bodygraph',
+      pair: 'immersive/hero',
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+      statement:
+        'HD BodyGraph Vue UX: sealed W5 chart structure paints 9 centers + 36 channel wires; defined channels/centers highlight from Meeus×wheel activations — structure computer for /en/spirit, not a personality engine.',
+      boundary:
+        'STRUCTURE-ONLY browser surface. Default sample = J2000 symbolic ephemeris (NOT anyone\'s natal chart). Profiling/aura/type/authority claims remain refuted (humanDesignProfilingCarriesNoSignal). claySolved=0 · qpuRequired=false. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+function paintCenterShape(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  r: number,
+  shape: 'tri' | 'sq' | 'dia',
+): void {
+  ctx.beginPath()
+  if (shape === 'sq') {
+    ctx.rect(x - r, y - r, r * 2, r * 2)
+  } else if (shape === 'dia') {
+    ctx.moveTo(x, y - r)
+    ctx.lineTo(x + r, y)
+    ctx.lineTo(x, y + r)
+    ctx.lineTo(x - r, y)
+    ctx.closePath()
+  } else {
+    ctx.moveTo(x, y - r)
+    ctx.lineTo(x + r * (3 / 4), y + r * (3 / 5))
+    ctx.lineTo(x - r * (3 / 4), y + r * (3 / 5))
+    ctx.closePath()
+  }
+}
+
+/**
+ * BodyGraph canvas paint — Vue mounts only call this (no inline chart math).
+ * HONEST: schematic center/channel layout + sealed activation highlight; not a commercial BodyGraph product.
+ */
+export function drawHumanDesignBodyGraph(
+  ctx: CanvasRenderingContext2D,
+  w: number,
+  h: number,
+  panel: ReturnType<typeof humanDesignBodyGraphPanelComputes>,
+  opts: { dark?: boolean; reduce?: boolean; at?: number } = {},
+): void {
+  const dark = opts.dark !== false
+  const reduce = opts.reduce === true
+  const paint = movieCanvasPolarity(dark)
+  const ink = (alpha: number) => paint(A432_HUE, alpha, { L: (5 * 3) / 16, C: 1 / 64 })
+  const accent = (alpha: number) => paint(A432_HUE + GOLDEN_ANGLE / (2 * 2), alpha, { L: (5 * 3) / 16, C: 1 / 32 })
+  ctx.clearRect(0, 0, w, h)
+  const pad = Math.min(w, h) / (8 * 2)
+  const bw = w - pad * 2
+  const bh = h - pad * 2
+  const definedCh = new Set(panel.definedKeys)
+  const definedCtr = new Set(panel.definedCenters)
+  const activated = new Set(panel.activatedGates)
+  const xy = (center: keyof typeof RAVE_CENTER_LAYOUT) => {
+    const loc = RAVE_CENTER_LAYOUT[center]
+    return { x: pad + loc.x * bw, y: pad + loc.y * bh, shape: loc.shape }
+  }
+  // Channels under centers
+  for (const ch of panel.lattice.channels) {
+    const a = xy(ch.from as keyof typeof RAVE_CENTER_LAYOUT)
+    const b = xy(ch.to as keyof typeof RAVE_CENTER_LAYOUT)
+    const on = definedCh.has(ch.key)
+    ctx.strokeStyle = on ? accent(7 / (5 * 2)) : ink(2 / (5 * 5))
+    ctx.lineWidth = on ? 2 : 1
+    ctx.beginPath()
+    ctx.moveTo(a.x, a.y)
+    ctx.lineTo(b.x, b.y)
+    ctx.stroke()
+  }
+  const r = Math.min(w, h) / (8 * 3)
+  const labelPx = Math.max(9, Math.round(h / (8 * 4)))
+  for (const center of panel.lattice.centers) {
+    const key = center as keyof typeof RAVE_CENTER_LAYOUT
+    const p = xy(key)
+    const on = definedCtr.has(center)
+    ctx.fillStyle = on ? accent(1 / 2) : ink(1 / (5 * 2))
+    ctx.strokeStyle = on ? accent(1) : ink(3 / 5)
+    ctx.lineWidth = on ? 2 : 1
+    paintCenterShape(ctx, p.x, p.y, r, p.shape)
+    ctx.fill()
+    ctx.stroke()
+    if (!reduce) {
+      ctx.fillStyle = ink(7 / (5 * 2))
+      ctx.font = `${labelPx}px sans-serif`
+      ctx.textAlign = 'center'
+      ctx.fillText(center, p.x, p.y - r - 2)
+      const lit = (RAVE_CENTER_GATES[center as keyof typeof RAVE_CENTER_GATES] as readonly number[])
+        .filter((g) => activated.has(g))
+        .slice(0, 4)
+      if (lit.length) ctx.fillText(lit.join('·'), p.x, p.y + r + labelPx)
+    }
+  }
+  void opts.at
+}
+
 export function astronomyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`astronomyComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const celestial = computeAllKnownCelestialBodies(matrix)
@@ -1014,6 +1161,7 @@ export function astronomyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
     const simulation = astronomySimulationAt(at, matrix)
     const hdEph = humanDesignEphemerisCore(matrix, MEEUS_J2000_JD)
     const hdChart = humanDesignChartStructureAt(matrix, MEEUS_J2000_JD)
+    const hdBody = humanDesignBodyGraphPanelComputes(matrix, MEEUS_J2000_JD)
     const { computes, facets } = computesGate('astronomy-computes', [
       { facet: 'sixteen-body celestial catalog — computeAllKnownCelestialBodies', on: celestial.computed && celestial.count === 16 },
       { facet: 'exact match on encoded fields — discover wave', on: match.exactMatch },
@@ -1025,6 +1173,7 @@ export function astronomyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'per-planet paint facets — batches 1-3 cover Mercury-Neptune', on: [1, 2, 3].every((b) => planetBatchFacetsComputes(b, matrix, at).computes) },
       { facet: 'HD W4 sealed Meeus ephemeris + Design Sun−88° solver', on: hdEph.computes },
       { facet: 'HD W5 chart structure — wheel + channels + cusp band', on: hdChart.computes },
+      { facet: 'HD BodyGraph Vue panel — layout + chart compose', on: hdBody.computes },
     ])
     return {
       computes,
@@ -1037,12 +1186,13 @@ export function astronomyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       simulation,
       hdEph,
       hdChart,
+      hdBody,
       facets,
-      root: merge(sequence.root, merkleFold([celestial.root, galaxy.root, hdEph.root, hdChart.root, toUuid(`astronomy-computes:${computes}`)])),
+      root: merge(sequence.root, merkleFold([celestial.root, galaxy.root, hdEph.root, hdChart.root, hdBody.root, toUuid(`astronomy-computes:${computes}`)])),
       statement:
-        'Astronomy computes: canonical celestial home — sixteen-body catalog, exact-match discover wave, deep-research tiers, galaxy Keplerian compute, VORTEX_SEQUENCE decode, research exposition, HD W4 sealed Meeus ephemeris (Design Sun−88°), and HD W5 chart structure (channels + cusp band) — composed at call time from sun/moon/earth/nature lobes and decode/rosetta receipts.',
+        'Astronomy computes: canonical celestial home — sixteen-body catalog, exact-match discover wave, deep-research tiers, galaxy Keplerian compute, VORTEX_SEQUENCE decode, research exposition, HD W4 sealed Meeus ephemeris (Design Sun−88°), HD W5 chart structure, and HD BodyGraph Vue panel — composed at call time from sun/moon/earth/nature lobes and decode/rosetta receipts.',
       boundary:
-        'HONEST — circular Keplerian catalog PLUS sealed Meeus reduced-precision longitudes for HD (NOT live JPL DE440); VORTEX_SEQUENCE addresses bodies deterministically, NOT orbit control; cusp warnings compose in humanDesignChartStructureAt (W5); pyramid/gateway display lives in double/torus/earth — astronomy does not duplicate portal nav/GPS folds.',
+        'HONEST — circular Keplerian catalog PLUS sealed Meeus reduced-precision longitudes for HD (NOT live JPL DE440); VORTEX_SEQUENCE addresses bodies deterministically, NOT orbit control; BodyGraph UX is structure-only (not aura/type); pyramid/gateway display lives in double/torus/earth — astronomy does not duplicate portal nav/GPS folds.',
     }
   })
 }
