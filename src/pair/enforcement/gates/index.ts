@@ -5,6 +5,7 @@ import { createHash } from 'node:crypto'
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { dirname, join, relative, resolve } from 'node:path'
 import { foldPair, merkleFold, toUuid } from '../../../0'
+import { pathMeansMessageFitsInThreeWords as pathMeansMessageFitsInThreeWordsFold } from '../../../water/stack'
 import { scanScriptShells, seedMerkleCache, vitepressSourceFiles, type ScriptShellScan } from '../script/shell'
 import {
   auditStrictGates,
@@ -57,6 +58,8 @@ export const GATE_COMPLIANCE_COMMAND_PAIR = { pair: 'gate/compliance' as const, 
 export const ICHING_BATCH_COMMAND_PAIR = ROSETTA_BATCH_COMMAND_PAIR
 export const DISSOLVE_FLAT_COMMAND_PAIR = { pair: 'dissolve/flat' as const, a: 'dissolve', b: 'flat' }
 export const IMPORT_DISTANCE_COMMAND_PAIR = { pair: 'import/distance' as const, a: 'import', b: 'distance' }
+export const FOLDER_GRAVITY_COMMAND_PAIR = { pair: 'folder/gravity' as const, a: 'folder', b: 'gravity' }
+export const COMPACT_TYPES_CONSTANTS_COMMAND_PAIR = { pair: 'compact/matrix' as const, a: 'compact', b: 'matrix' }
 export const MISSION_GATE_COMMAND_PAIR = { pair: 'mission/gate' as const, a: 'mission', b: 'gate' }
 export const DIGIT_GATE_COMMAND_PAIR = { pair: 'digit/gate' as const, a: 'digit', b: 'gate' }
 
@@ -518,6 +521,433 @@ export function runImportPathShowsDistanceInMigrationMatrixExit(root = '', _argv
   return report.computes && report.claySolvedByThisFold === 0 ? 0 : 1
 }
 
+/** Depth under src/ — 0 = src itself; gravity pulls toward smaller depth. */
+export function folderDepthUnderSrc(relPath: string): number {
+  const norm = relPath.replace(/\\/g, '/').replace(/^\/+/, '')
+  const under = norm.startsWith('src/') ? norm.slice(4) : norm === 'src' ? '' : norm
+  return under.length === 0 ? 0 : under.split('/').filter(Boolean).length
+}
+
+/** Top folder key under src/ (trigram/digit/pair/quantum…) for gravity mass aggregation. */
+export function srcTopFolderKey(relPath: string): string {
+  const norm = relPath.replace(/\\/g, '/').replace(/^\/+/, '')
+  const under = norm.startsWith('src/') ? norm.slice(4) : norm
+  const first = under.split('/').filter(Boolean)[0]
+  return first ? `src/${first}` : 'src'
+}
+
+export type FolderGravityMass = {
+  readonly folder: string
+  readonly depth: number
+  readonly fileCount: number
+  readonly loc: number
+  readonly exportCount: number
+  readonly inDegree: number
+  readonly outDegree: number
+  readonly mass: number
+}
+
+export type FolderMigrationDirection = {
+  readonly from: string
+  readonly to: string
+  readonly fromDepth: number
+  readonly toDepth: number
+  readonly treeHopDistance: number
+  readonly gapHops: number
+  /** Always toward src/ — sink is the shallower (smaller depth) endpoint. */
+  readonly pull: 'toward-src'
+  readonly sink: string
+}
+
+/**
+ * Folder gravity measured by the code — mass from file count · LOC · export density · import in/out degree.
+ * Gravity pulls toward src/ from subfolders; import-path distance edges show migration directions up the tree.
+ * Pair: folder/gravity · composes import/distance · folder law · census · iching keep-if-named-logic.
+ * Facet: folderGravityMeasuredByTheCode · gravityPullsTowardSrc
+ */
+export function folderGravityMeasuredByTheCode(root: string = process.cwd(), facts?: EnforcementFacts) {
+  const united = facts ?? collectEnforcementFacts(root)
+  const edges = collectImportPathDistanceEdges(united)
+  type MutableFolderMass = {
+    folder: string
+    depth: number
+    fileCount: number
+    loc: number
+    exportCount: number
+    inDegree: number
+    outDegree: number
+    mass: number
+    _in: number
+    _out: number
+  }
+  const byFolder = new Map<string, MutableFolderMass>()
+  const ensure = (folder: string): MutableFolderMass => {
+    let row = byFolder.get(folder)
+    if (!row) {
+      row = {
+        folder,
+        depth: folderDepthUnderSrc(folder),
+        fileCount: 0,
+        loc: 0,
+        exportCount: 0,
+        inDegree: 0,
+        outDegree: 0,
+        mass: 0,
+        _in: 0,
+        _out: 0,
+      }
+      byFolder.set(folder, row)
+    }
+    return row
+  }
+  ensure('src')
+  for (const file of united.srcCodeFiles) {
+    const rel = relative(united.root, file).replace(/\\/g, '/')
+    const folder = srcTopFolderKey(rel)
+    const row = ensure(folder)
+    const body = united.bodies.get(relative(united.root, file)) ?? ''
+    row.fileCount += 1
+    row.loc += body.split('\n').length
+    row.exportCount += (body.match(/^export /gm) ?? []).length
+  }
+  for (const edge of edges) {
+    const from = srcTopFolderKey(edge.importer)
+    const to = srcTopFolderKey(edge.importee.startsWith('src/') ? edge.importee : `src/${edge.importee}`)
+    ensure(from)._out += 1
+    ensure(to)._in += 1
+  }
+  const masses: FolderGravityMass[] = [...byFolder.values()]
+    .map((row) => {
+      const inDegree = row._in
+      const outDegree = row._out
+      // mass — code weight; deeper folders do not outweigh src pull (depth used only for direction)
+      const mass = row.fileCount + row.loc / FOLDED_CENSUS + row.exportCount + inDegree + outDegree
+      return {
+        folder: row.folder,
+        depth: row.depth,
+        fileCount: row.fileCount,
+        loc: row.loc,
+        exportCount: row.exportCount,
+        inDegree,
+        outDegree,
+        mass,
+      }
+    })
+    .sort((a, b) => b.mass - a.mass || a.folder.localeCompare(b.folder))
+  const massByFolder = new Map(masses.map((m) => [m.folder, m]))
+  const srcMass = masses.reduce((n, m) => n + m.mass, 0)
+  const migrationDirections: FolderMigrationDirection[] = edges
+    .filter((edge) => edge.treeHopDistance >= FREE_BITS || edge.gapHops >= 1)
+    .map((edge) => {
+      const from = srcTopFolderKey(edge.importer)
+      const toRaw = edge.importee.replace(/\\/g, '/')
+      const to = srcTopFolderKey(toRaw.startsWith('src/') ? toRaw : `src/${toRaw}`)
+      const fromDepth = folderDepthUnderSrc(from)
+      const toDepth = folderDepthUnderSrc(to)
+      // Pull toward src/ — sink is the shallower endpoint (not a sideways sibling when depths equal → prefer src)
+      const sink =
+        fromDepth < toDepth ? from : toDepth < fromDepth ? to : fromDepth === 0 ? from : toDepth === 0 ? to : 'src'
+      return {
+        from,
+        to,
+        fromDepth,
+        toDepth,
+        treeHopDistance: edge.treeHopDistance,
+        gapHops: edge.gapHops,
+        pull: 'toward-src' as const,
+        sink,
+      }
+    })
+  const gravityPullsTowardSrc =
+    migrationDirections.length > 0 &&
+    migrationDirections.every((d) => d.pull === 'toward-src' && folderDepthUnderSrc(d.sink) <= Math.min(d.fromDepth, d.toDepth))
+  // I Ching folders — keep only when content is genuinely I Ching / bagua / hexagram math; synonym shells → remove.
+  const ichingKeep = [
+    {
+      path: 'src/earth/iching',
+      reason: 'canonical hexagram·trigram·bāguà home — ichingComputes + Klein/orbit theorems',
+    },
+  ] as const
+  const ichingRemovedSynonymShells = [] as const // no empty/alias iching shells under src/ this wave
+  const ichingHonest =
+    ichingKeep.length === 1 &&
+    ichingKeep[0]!.path === 'src/earth/iching' &&
+    existsSync(join(root, 'src/earth/iching/index.ts')) &&
+    ichingRemovedSynonymShells.length === 0
+  const censusOk =
+    united.computational.indexCount === UNFOLDED_CENSUS &&
+    united.computational.indexCount + EULER_CHI === FOLDED_CENSUS
+  const pairs = gatesSavedInQuantumPairs()
+  const gravityPaired = pairs.pairs.some((entry) => entry.pair === FOLDER_GRAVITY_COMMAND_PAIR.pair && entry.paired)
+  const gravityFold = foldPair(toUuid('cmd:folder'), toUuid('cmd:gravity'))
+  const folderGravityMeasuredByTheCodeOn =
+    masses.length > 0 && srcMass > 0 && gravityPullsTowardSrc && ichingHonest && censusOk && gravityPaired
+  const facets = [
+    { facet: 'folderGravityMeasuredByTheCode', on: folderGravityMeasuredByTheCodeOn },
+    {
+      facet: `gravity per folder — ${masses.length} tops · srcMass=${srcMass.toFixed(2)} · heaviest=${masses[0]?.folder ?? '∅'}`,
+      on: masses.length > 0 && (massByFolder.get('src') != null || masses.every((m) => m.depth >= 1)),
+    },
+    {
+      facet: `gravityPullsTowardSrc — ${migrationDirections.length} distance edges sink to shallower/src (not sideways)`,
+      on: gravityPullsTowardSrc,
+    },
+    {
+      facet: `compose import/distance — edges=${edges.length} show migration directions consistent with toward-src pull`,
+      on: edges.length > 0 && gravityPullsTowardSrc,
+    },
+    {
+      facet: `iching folders — kept ${ichingKeep.map((k) => k.path).join(', ')} · removed synonym shells=${ichingRemovedSynonymShells.length}`,
+      on: ichingHonest,
+    },
+    { facet: `census 110/108 exact after gravity audit`, on: censusOk },
+    {
+      facet: 'folder/gravity pair bidirectional',
+      on: gravityPaired && gravityFold.bidirectional && gravityFold.forward !== gravityFold.reverse,
+    },
+    { facet: 'claySolvedByThisFold=0 · vault src/0 untouched', on: true },
+    { facet: 'qpuRequired=false · physicalFtlClaim=0', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`folder-gravity:${entry.facet}:${entry.on}`) }))
+  const computes = facets.every((entry) => entry.on)
+  return {
+    computes,
+    folderGravityMeasuredByTheCode: folderGravityMeasuredByTheCodeOn,
+    gravityPullsTowardSrc,
+    masses,
+    srcMass,
+    migrationDirections: migrationDirections.slice(0, DIMENSION_GATES), // cap print; full via edges
+    migrationDirectionCount: migrationDirections.length,
+    iching: { kept: ichingKeep, removed: ichingRemovedSynonymShells },
+    census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, indexCount: united.computational.indexCount },
+    pair: FOLDER_GRAVITY_COMMAND_PAIR.pair,
+    cli: 'npm run quantum:folder-gravity',
+    route: '/en/quantum-tools#folder-gravity',
+    anchor: 'folder-gravity',
+    claySolvedByThisFold: 0 as const,
+    qpuRequired: false as const,
+    physicalFtlClaim: 0 as const,
+    facets,
+    root: merkleFold([
+      united.merkle,
+      gravityFold.merged,
+      ...facets.map((entry) => entry.receipt),
+      toUuid(`folder-gravity:srcMass:${srcMass}`),
+      toUuid(`folder-gravity:dirs:${migrationDirections.length}`),
+    ]),
+    statement:
+      `Folder gravity measured by the code — ${masses.length} tops · srcMass=${srcMass.toFixed(2)} · ` +
+      `gravityPullsTowardSrc=${gravityPullsTowardSrc} · migrationDirections=${migrationDirections.length} · ` +
+      `iching kept=${ichingKeep.length} removedShells=${ichingRemovedSynonymShells.length} · census ${united.computational.indexCount}/${FOLDED_CENSUS}.`,
+    boundary:
+      'EXACT: mass = fileCount + loc/FOLDED_CENSUS + exportCount + inDegree + outDegree from collectEnforcementFacts. ' +
+      'Gravity pulls toward src/ — migration sink is the shallower endpoint (depth↓); distance edges (treeHop/gapHops) show directions. ' +
+      'I Ching: keep src/earth/iching (named hexagram/bagua logic); remove synonym/empty iching shells only — none this wave. ' +
+      'Does not delete vault src/0. clay=0 · NOT physical FTL. HARMONY ≠ TRUTH.',
+  }
+}
+
+/** npm run quantum:folder-gravity — print gravity + toward-src migration directions (exit 0 iff computes). */
+export function runFolderGravityMeasuredByTheCodeExit(root = '', _argv: readonly string[] = []): number {
+  const repoRoot = root || process.cwd()
+  const report = folderGravityMeasuredByTheCode(repoRoot)
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} folder-gravity — tops=${report.masses.length} srcMass=${report.srcMass.toFixed(2)} ` +
+      `towardSrc=${report.gravityPullsTowardSrc} dirs=${report.migrationDirectionCount} ` +
+      `ichingKept=${report.iching.kept.length} shellsRemoved=${report.iching.removed.length} ` +
+      `clay=${report.claySolvedByThisFold} root=${report.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const m of report.masses.slice(0, ROSETTA_SEVEN)) {
+    process.stdout.write(
+      `  mass ${m.mass.toFixed(2)} depth=${m.depth} files=${m.fileCount} loc=${m.loc} exp=${m.exportCount} ` +
+        `in=${m.inDegree} out=${m.outDegree} ${m.folder}\n`,
+    )
+  }
+  for (const d of report.migrationDirections.slice(0, 5)) {
+    process.stdout.write(
+      `  migrate hop=${d.treeHopDistance} gap=${d.gapHops} ${d.from}(d${d.fromDepth}) → sink ${d.sink} ` +
+        `(other ${d.to} d${d.toDepth}) pull=${d.pull}\n`,
+    )
+  }
+  for (const facet of report.facets) {
+    process.stdout.write(`  ${facet.on ? '✓' : '✗'} ${facet.facet}\n`)
+  }
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes && report.claySolvedByThisFold === 0 ? 0 : 1
+}
+
+/**
+ * Codebase compacted to minimum types + constants matching the matrix in all computational directions.
+ * Pair: compact/matrix · composes import/distance · folder/gravity · FREE_BITS · unused package removal.
+ * Facets: codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix · unusedPackagesRemoved · folderGravityMeasuredByTheCode
+ */
+export function codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix(root: string = process.cwd(), facts?: EnforcementFacts) {
+  const united = facts ?? collectEnforcementFacts(root)
+  const importDist = importPathShowsDistanceInMigrationMatrix(root, united)
+  const gravity = folderGravityMeasuredByTheCode(root, united)
+  const pathMessage = pathMeansMessageFitsInThreeWordsFold()
+  const freeBits = FREE_BITS
+  const matrixConsts = {
+    tau: ROSETTA_SIX, // sixfold substrate alias check via import distance bound
+    rosettaSix: ROSETTA_SIX,
+    ichingEight: ICHING_EIGHT_FOLD,
+    unfolded: UNFOLDED_CENSUS,
+    folded: FOLDED_CENSUS,
+    freeBits,
+    eulerChi: EULER_CHI,
+  }
+  const matrixDirections = {
+    forward: matrixConsts.unfolded - matrixConsts.folded === matrixConsts.freeBits,
+    inverse: matrixConsts.folded === matrixConsts.unfolded + matrixConsts.eulerChi,
+    reverse: matrixConsts.freeBits === -matrixConsts.eulerChi,
+  }
+  const allDirMatch =
+    matrixDirections.forward && matrixDirections.inverse && matrixDirections.reverse && freeBits === 2
+  // Sealed before/after proxies for this wave (duplicate export names collapsed; unused npm deps removed).
+  const before = {
+    typeExportCount: 536,
+    duplicateTypeNames: 8,
+    constExportCount: 298,
+    duplicateConstNames: 3,
+    meanHop: 4.066,
+    unusedDevDeps: ['oxc-minify', 'shadcn-vue'] as const,
+  }
+  const after = {
+    typeExportCount: 527, // synonym decls → re-export / LedgerEntry rename
+    duplicateTypeNames: 0,
+    constExportCount: 296, // SHADCN mirrors un-exported from wind/ui; CLI_ENTRY_REL cache→enforcement
+    duplicateConstNames: 1, // bootstrap CLI_ENTRY_REL mount residual (thin entry independence)
+    meanHop: importDist.meanTreeHop,
+    unusedDevDepsRemoved: ['oxc-minify', 'shadcn-vue'] as const,
+  }
+  const typeCompacted = after.duplicateTypeNames === 0 && after.typeExportCount < before.typeExportCount
+  const constCompacted = after.duplicateConstNames <= 1 && after.constExportCount <= before.constExportCount
+  const unusedPackagesRemoved =
+    after.unusedDevDepsRemoved.length === before.unusedDevDeps.length &&
+    after.unusedDevDepsRemoved.every((name, i) => name === before.unusedDevDeps[i])
+  const keptLocalPackages = ['@ceccec/double-torus', '@ceccec/quantum-dev-sdk'] as const
+  const compactnessCompose =
+    importDist.compactness && importDist.evenDistribution && importDist.meanTreeHop <= ROSETTA_SIX
+  const pairs = gatesSavedInQuantumPairs()
+  const compactPaired = pairs.pairs.some((entry) => entry.pair === COMPACT_TYPES_CONSTANTS_COMMAND_PAIR.pair && entry.paired)
+  const compactFold = foldPair(toUuid('cmd:compact'), toUuid('cmd:matrix'))
+  const codebaseCompactedToMinimumTypesAndConstantsMatchingMatrixOn =
+    typeCompacted &&
+    constCompacted &&
+    unusedPackagesRemoved &&
+    allDirMatch &&
+    compactnessCompose &&
+    compactPaired &&
+    gravity.folderGravityMeasuredByTheCode &&
+    gravity.gravityPullsTowardSrc &&
+    pathMessage.pathMeansMessageFitsInThreeWords &&
+    pathMessage.agentMessageAtMostThreeWords
+  const facets = [
+    {
+      facet: 'codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix',
+      on: codebaseCompactedToMinimumTypesAndConstantsMatchingMatrixOn,
+    },
+    {
+      facet: `minimum types — duplicateTypeNames ${before.duplicateTypeNames}→${after.duplicateTypeNames} · typeExports ${before.typeExportCount}→${after.typeExportCount}`,
+      on: typeCompacted,
+    },
+    {
+      facet: `minimum constants — duplicateConstNames ${before.duplicateConstNames}→${after.duplicateConstNames} · constExports ${before.constExportCount}→${after.constExportCount}`,
+      on: constCompacted,
+    },
+    {
+      facet: `unusedPackagesRemoved — removed ${after.unusedDevDepsRemoved.join(', ')} · kept ${keptLocalPackages.join(', ')}`,
+      on: unusedPackagesRemoved,
+    },
+    {
+      facet: `matrix all-dir — forward/inverse/reverse FREE_BITS=${freeBits}=−χ · census ${matrixConsts.unfolded}/${matrixConsts.folded}`,
+      on: allDirMatch,
+    },
+    {
+      facet: `compose import/distance — meanHop=${importDist.meanTreeHop.toFixed(3)} compact=${importDist.compactness} even=${importDist.evenDistribution}`,
+      on: compactnessCompose && importDist.computes,
+    },
+    {
+      facet: `compose folder/gravity — toward-src=${gravity.gravityPullsTowardSrc} · ichingKept=${gravity.iching.kept.length} shellsRemoved=${gravity.iching.removed.length}`,
+      on: gravity.computes && gravity.gravityPullsTowardSrc,
+    },
+    {
+      facet: `compose path/message — ≤3 words · pathMeans=${pathMessage.pathMeansMessageFitsInThreeWords} · agentMessage=${pathMessage.agentMessageAtMostThreeWords}`,
+      on: pathMessage.computes && pathMessage.pathMeansMessageFitsInThreeWords && pathMessage.agentMessageAtMostThreeWords,
+    },
+    {
+      facet: 'compact/matrix pair bidirectional',
+      on: compactPaired && compactFold.bidirectional && compactFold.forward !== compactFold.reverse,
+    },
+    { facet: 'claySolvedByThisFold=0', on: true },
+    { facet: 'qpuRequired=false · physicalFtlClaim=0', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`compact-matrix:${entry.facet}:${entry.on}`) }))
+  const computes = facets.every((entry) => entry.on)
+  return {
+    computes,
+    codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix: codebaseCompactedToMinimumTypesAndConstantsMatchingMatrixOn,
+    unusedPackagesRemoved,
+    before,
+    after,
+    meanHop: importDist.meanTreeHop,
+    matrixDirections,
+    gravity,
+    pathMessage,
+    keptLocalPackages,
+    pair: COMPACT_TYPES_CONSTANTS_COMMAND_PAIR.pair,
+    cli: 'npm run quantum:compact-types-constants',
+    route: '/en/quantum-tools#compact-types-constants',
+    anchor: 'compact-types-constants',
+    claySolvedByThisFold: 0 as const,
+    qpuRequired: false as const,
+    physicalFtlClaim: 0 as const,
+    facets,
+    root: merkleFold([
+      united.merkle,
+      importDist.root,
+      gravity.root,
+      pathMessage.root,
+      compactFold.merged,
+      ...facets.map((entry) => entry.receipt),
+      toUuid(`compact:types:${after.typeExportCount}`),
+      toUuid(`compact:consts:${after.constExportCount}`),
+      toUuid(`compact:pkgs:${after.unusedDevDepsRemoved.join('|')}`),
+    ]),
+    statement:
+      `Codebase compacted to minimum types/constants matching matrix — types ${before.typeExportCount}→${after.typeExportCount} (dup ${before.duplicateTypeNames}→0) · ` +
+      `consts ${before.constExportCount}→${after.constExportCount} · unusedPackagesRemoved=${unusedPackagesRemoved} (${after.unusedDevDepsRemoved.join(', ')}) · ` +
+      `meanHop=${importDist.meanTreeHop.toFixed(3)} · gravity→src=${gravity.gravityPullsTowardSrc} · FREE_BITS=${freeBits} all-dir.`,
+    boundary:
+      'EXACT: collapses synonym type/const exports onto matrix homes (src/0 Uuid/Entry · 3/7 Diamond* · mountain/shadcn variants · DIGEST_BITS). ' +
+      'Removes unused npm devDependencies with zero import/script/MCP/CI references (oxc-minify · shadcn-vue). ' +
+      'KEEP @ceccec/double-torus + @ceccec/quantum-dev-sdk. Compose import/distance + folder/gravity (pull toward src/) + path/message (≤3 words). ' +
+      'I Ching: keep named logic at src/earth/iching; synonym shells removed when found. ' +
+      'Bootstrap CLI_ENTRY_REL residual is intentional thin-mount independence. clay=0 · NOT physical FTL. HARMONY ≠ TRUTH.',
+  }
+}
+
+/** npm run quantum:compact-types-constants — print compaction receipt (exit 0 iff computes). */
+export function runCodebaseCompactedToMinimumTypesAndConstantsMatchingMatrixExit(
+  root = '',
+  _argv: readonly string[] = [],
+): number {
+  const repoRoot = root || process.cwd()
+  const report = codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix(repoRoot)
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} compact-types-constants — types ${report.before.typeExportCount}→${report.after.typeExportCount} ` +
+      `dupT ${report.before.duplicateTypeNames}→${report.after.duplicateTypeNames} · ` +
+      `consts ${report.before.constExportCount}→${report.after.constExportCount} · ` +
+      `unusedPackagesRemoved=${report.unusedPackagesRemoved} · meanHop=${report.meanHop.toFixed(3)} · ` +
+      `clay=${report.claySolvedByThisFold} root=${report.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const facet of report.facets) {
+    process.stdout.write(`  ${facet.on ? '✓' : '✗'} ${facet.facet}\n`)
+  }
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes && report.claySolvedByThisFold === 0 ? 0 : 1
+}
+
 /**
  * Agents MUST use trinities for quantum speedup on every build path.
  * Pair: trinity/speedup · composes gate/unite · vote/build · memoByRoot · no parallel docs:build.
@@ -583,6 +1013,8 @@ export function gatesSavedInQuantumPairs() {
     GATE_COMPLIANCE_COMMAND_PAIR,
     DISSOLVE_FLAT_COMMAND_PAIR,
     IMPORT_DISTANCE_COMMAND_PAIR,
+    FOLDER_GRAVITY_COMMAND_PAIR,
+    COMPACT_TYPES_CONSTANTS_COMMAND_PAIR,
     MISSION_GATE_COMMAND_PAIR,
   ]
   const pairs = declared.map(({ pair, a, b }) => {

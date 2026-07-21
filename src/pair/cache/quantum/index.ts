@@ -8,12 +8,15 @@ import { spawnSync } from 'node:child_process'
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { join, relative } from 'node:path'
 import { pathToFileURL } from 'node:url'
-import { toUuid, merkleFold, foldPair } from '../../../0'
+import { toUuid, merkleFold, foldPair, type Uuid } from '../../../0'
 import { computedDistRoute } from '../../../quantum/lake/dist'
+import { CLI_ENTRY_REL } from '../../enforcement'
 // call-time namespace edge (cycle-safe): the skill registry reads back at call time
 import * as __ns_cache_learning from '../../../wind/learning'
 
 export { computedDistFiles, computedDistRoute, type DistFile } from '../../../quantum/lake/dist'
+export type { Uuid }
+export { CLI_ENTRY_REL }
 
 /** Find a dist artifact by pathname (leading slash optional). */
 export function artifactForPath(pathname: string, siteUrl: string) {
@@ -112,10 +115,8 @@ const nodeModuleBuiltin = () => {
 let lazyRequire: NodeRequireLike | null = null
 const nodeRequire = (): NodeRequireLike => (lazyRequire ??= nodeModuleBuiltin().createRequire(import.meta.url))
 
-export type Uuid = string
 const memory = new Map<string, Record<string, unknown>>()
 
-export const CLI_ENTRY_REL = 'src/pair/enforcement/script/cli/bootstrap/index.ts'
 export const SCRIPT_SHELL_LINE_BUDGET = (8 * 3)
 export const SCRIPT_SHELL_ALLOWLIST: Readonly<Record<string, number>> = { [CLI_ENTRY_REL]: (9 * 8) }
 

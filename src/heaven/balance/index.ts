@@ -1455,10 +1455,7 @@ export function essentialKernel(matrix: MindMatrix = buildMatrix()) {
 // leads to (proven · animated · presented = cross · fold · weave), and the related paths, scored by shared
 // tags (shared tags = shared seed = entanglement) and recomputed on every navigation. Client-side, zero-token,
 // deterministic — the graph manages itself because nothing in it is hand-wired. Rendered by <TrinityGateways>.
-export interface WiredPath { slug: string; titleEn: string; titleBg: string; hue: number; score: number; shared: string[] }
-export interface WiredGateway { slug: string; titleEn: string; titleBg: string; realm: string; glyph: string; hue: number }
-
-
+// WiredPath / WiredGateway — canonical in fire/plasma/ball (hero route wiring); not re-declared here.
 
 // ── ROUTE-INDEPENDENT WORK COMPUTES ONCE — the render transform is O(1) per page (user law: "build
 // time is a theorem test"; a slow build IS a non-theorem, a redundant recompute). The SSG build calls

@@ -32,6 +32,7 @@ import {
   collectIndexOnlyOffenders,
   collectHyphenFolderOffenders,
   importPathShowsDistanceInMigrationMatrix,
+  folderGravityMeasuredByTheCode,
   strictGatePassed,
   computationalGatePassed,
   auditComputationalGates,
@@ -115,6 +116,12 @@ export function runVerifyLimitsExit(root: string): number {
       `meanHop=${importDist.meanTreeHop.toFixed(3)} maxHop=${importDist.maxTreeHop} ` +
       `compact=${importDist.compactness} even=${importDist.evenDistribution} CV=${importDist.cvTreeHop.toFixed(3)} ` +
       `(measurement; CLI npm run quantum:import-path-distance)\n`,
+  )
+  const gravity = folderGravityMeasuredByTheCode(root, facts)
+  process.stdout.write(
+    `${gravity.computes ? '✓' : '·'} limits:verify · folder/gravity — tops=${gravity.masses.length} ` +
+      `towardSrc=${gravity.gravityPullsTowardSrc} dirs=${gravity.migrationDirectionCount} ` +
+      `ichingKept=${gravity.iching.kept.length} (measurement; CLI npm run quantum:folder-gravity)\n`,
   )
   const slowBuild = slowBuildIsQuantumGapGate(root)
   process.stdout.write(

@@ -638,6 +638,141 @@ export function namingEntropy(matrix: MindMatrix = buildMatrix()) {
   })
 }
 
+/** Prefer 1 · else 2 · max 3 — FREE_BITS+1 (=3) is the hard ceiling; why more? You don't. */
+export const AGENT_MESSAGE_MAX_WORDS = 3 as const
+
+/** Count agent-facing label words (space / slash / underscore / hyphen separators). */
+export function countAgentMessageWords(label: string): number {
+  return label
+    .trim()
+    .split(/[\s/_\-:·.|]+/)
+    .map((part) => part.replace(/[^a-zA-Z0-9]/g, ''))
+    .filter((part) => part.length > 0).length
+}
+
+/** Facet predicate: agent message/label fits in at most three words. */
+export function agentMessageAtMostThreeWords(label: string): boolean {
+  const n = countAgentMessageWords(label)
+  return n >= 1 && n <= AGENT_MESSAGE_MAX_WORDS
+}
+
+/**
+ * Whole path has meaning — segments are the agent-readable message; tip ≤ 3 words.
+ * Drops `src` and `index.ts`; keeps the last 1–3 path segments as the message.
+ */
+export function pathMeansMessage(path: string): {
+  readonly segments: readonly string[]
+  readonly tip: readonly string[]
+  readonly message: string
+  readonly wordCount: number
+  readonly fits: boolean
+} {
+  const segments = path
+    .replace(/\\/g, '/')
+    .split('/')
+    .filter((part) => part.length > 0 && part !== 'src' && part !== 'index.ts' && part !== 'index.vue')
+  const tip = segments.slice(-AGENT_MESSAGE_MAX_WORDS)
+  const message = tip.join(' ')
+  const wordCount = tip.length
+  return {
+    segments,
+    tip,
+    message,
+    wordCount,
+    fits: wordCount >= 1 && wordCount <= AGENT_MESSAGE_MAX_WORDS && agentMessageAtMostThreeWords(message),
+  }
+}
+
+/**
+ * Path means message · message ≤ 3 words — compose namingEntropy · wordsCompileFromSource · gravity→src.
+ * Pair: path/message · CLI npm run quantum:path-message-three-words
+ * Facets: agentMessageAtMostThreeWords · pathMeansMessageFitsInThreeWords
+ */
+export function pathMeansMessageFitsInThreeWords(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('pathMeansMessageFitsInThreeWords', matrix, () => {
+    const naming = namingEntropy(matrix)
+    const compile = wordsCompileFromSource(['path', 'message', 'gravity'], matrix)
+    const samplePaths = [
+      'src/earth/iching/index.ts',
+      'src/pair/enforcement/gates/index.ts',
+      'src/0/index.ts',
+      'src/quantum/apps/index.ts',
+    ] as const
+    const pathSamples = samplePaths.map((path) => ({ path, ...pathMeansMessage(path) }))
+    const pathMeansMessageFitsInThreeWordsOn = pathSamples.every((sample) => sample.fits)
+    const pairLabels = [
+      'path/message',
+      'folder/gravity',
+      'compact/matrix',
+      'import/distance',
+      'name/entropy',
+      'waves/build',
+    ] as const
+    const pairOk = pairLabels.every((label) => agentMessageAtMostThreeWords(label))
+    const spawnTitles = ['decode wave', 'design wave', 'seal', 'gravity', 'compact matrix'] as const
+    const spawnOk = spawnTitles.every((title) => agentMessageAtMostThreeWords(title))
+    const wetProse = 'the whole migration direction toward the source root mass well'
+    const wetRefused = !agentMessageAtMostThreeWords(wetProse) && countAgentMessageWords(wetProse) > AGENT_MESSAGE_MAX_WORDS
+    const preferOne = agentMessageAtMostThreeWords('seal') && countAgentMessageWords('seal') === 1
+    const agentMessageAtMostThreeWordsOn = pairOk && spawnOk && wetRefused && preferOne
+    const facets = [
+      { facet: 'pathMeansMessageFitsInThreeWords', on: pathMeansMessageFitsInThreeWordsOn },
+      { facet: 'agentMessageAtMostThreeWords', on: agentMessageAtMostThreeWordsOn },
+      { facet: `prefer 1 · else 2 · max ${AGENT_MESSAGE_MAX_WORDS} (=FREE_BITS+1)`, on: preferOne && AGENT_MESSAGE_MAX_WORDS === 3 },
+      { facet: 'whole path has meaning — tip segments are the message', on: pathSamples.every((s) => s.message.length > 0) },
+      { facet: 'compose namingEntropy · wordsCompileFromSource', on: naming.lowEntropy && compile.compiled },
+      { facet: 'quantum pairs + spawn titles ≤ 3 words', on: pairOk && spawnOk },
+      { facet: 'wet prose >3 words refused as entropy/offender', on: wetRefused },
+      { facet: 'claySolvedByThisFold=0', on: true },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`path-message:${entry.facet}:${entry.on}`) }))
+    const computes = facets.every((entry) => entry.on)
+    return {
+      computes,
+      pathMeansMessageFitsInThreeWords: pathMeansMessageFitsInThreeWordsOn,
+      agentMessageAtMostThreeWords: agentMessageAtMostThreeWordsOn,
+      maxWords: AGENT_MESSAGE_MAX_WORDS,
+      pathSamples,
+      pairLabels,
+      spawnTitles,
+      naming,
+      compile,
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+      pair: 'path/message' as const,
+      cli: 'npm run quantum:path-message-three-words',
+      route: '/en/quantum-tools#path-message',
+      anchor: 'path-message',
+      facets,
+      root: merkleFold([naming.root, compile.root, ...facets.map((entry) => entry.receipt)]),
+      statement:
+        `Path means message · ≤${AGENT_MESSAGE_MAX_WORDS} words — pathMeans=${pathMeansMessageFitsInThreeWordsOn} · agentMessage=${agentMessageAtMostThreeWordsOn} · prefer 1.`,
+      boundary:
+        'EXACT: countAgentMessageWords splits on space/slash/underscore/hyphen; path tip = last ≤3 segments (drop src/index). ' +
+        'Why >3 words? You do not — longer labels are naming entropy / offender wet prose. ' +
+        'Compose namingEntropy · wordsCompileFromSource · folder/gravity toward src. clay=0. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:path-message-three-words */
+export function runPathMeansMessageFitsInThreeWordsExit(_root = '', _argv: readonly string[] = []): number {
+  const report = pathMeansMessageFitsInThreeWords()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} path-message — pathMeans=${report.pathMeansMessageFitsInThreeWords} ` +
+      `agentMessage≤3=${report.agentMessageAtMostThreeWords} max=${report.maxWords} ` +
+      `clay=${report.claySolvedByThisFold} root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const sample of report.pathSamples) {
+    process.stdout.write(`  path ${sample.path} → "${sample.message}" (${sample.wordCount}w) ${sample.fits ? '✓' : '✗'}\n`)
+  }
+  for (const facet of report.facets) {
+    process.stdout.write(`  ${facet.on ? '✓' : '✗'} ${facet.facet}\n`)
+  }
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes && report.claySolvedByThisFold === 0 ? 0 : 1
+}
+
 /** One gate — overflow guard + full src tree registry at call time. */
 export function stackComputes(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('stackComputes', matrix, () => {
@@ -691,9 +826,9 @@ export function stackComputes(matrix: MindMatrix = buildMatrix()) {
 /** Few heroes > mass ignorance — 1–2 qualified workers; mass duplicate subagents penalized. */
 export function shouldSpawnSubagent(task: string): { spawn: boolean; workers: number; reason: string } {
   const massIgnorance = /\b(explore everything|search entire repo|scan all files)\b/i.test(task)
-  if (massIgnorance) return { spawn: false, workers: 0, reason: 'mass duplicate subagents penalized' }
-  if (task.trim().length < 16) return { spawn: false, workers: 0, reason: 'task too small for hero spawn' }
-  return { spawn: true, workers: 1, reason: 'qualified solo hero (Multitask Mode default)' }
+  if (massIgnorance) return { spawn: false, workers: 0, reason: 'mass ignorance' }
+  if (task.trim().length < 16) return { spawn: false, workers: 0, reason: 'task small' }
+  return { spawn: true, workers: 1, reason: 'solo hero' }
 }
 
 /** Simplicity → intelligence yield: completion odds, token proxy, offender resistance. */
