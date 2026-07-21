@@ -11,11 +11,12 @@ import {
   sessionManualWorkAsQuantumBits, combineQuantumBits,
   autoWireAnyAiModelFromPastedLink, CECCEC_SITE_ORIGIN,
   realiseSessionQuantumMeaning,
-  mcpBrowserParity, runStdioMcpCapabilityInBrowser,
+  mcpBrowserParity, mcpCommandsScriptsGapsAudit, runStdioMcpCapabilityInBrowser,
   improveLocalFromSessionExperience, LOCAL_SESSION_EXPERIMENT_STORAGE_KEY,
   upgradeLocalFromOptimisedManualWorkExperience,
   uiProseDuplicationRemoved,
 } from './index.ts'
+import { translationGapsGate } from '../../mountain/source/index.ts'
 import {
   completeScientificDomainsStrictlyToStandardsQuantumOnly,
 } from '../../wind/research/index.ts'
@@ -618,6 +619,20 @@ function runTool(toolId: string) {
         { facet: 'stdio census-status browser', on: census.ok },
         { facet: 'stdio list-capabilities browser', on: list.ok },
       ]
+    } else if (toolId === 'mcp-commands-scripts-gaps-audit') {
+      const r = mcpCommandsScriptsGapsAudit()
+      ok = r.computes && r.closedOn
+      summary = `overlap=${r.overlapCount} useless=${r.uselessCount} gap=${r.gapCount} closedOn=${r.closedOn} residual=${r.residualCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'translations-verify') {
+      const r = translationGapsGate()
+      ok = r.passed
+      summary = `hard=${r.hardCount} warn=${r.warnCount} pages=${r.pageCount} phrases=${r.offline.phraseCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'document-session-experiments') {
       const r = documentSessionCryptoExperimentsUpdateTheorems()
       ok = r.computes
@@ -772,6 +787,7 @@ function runTool(toolId: string) {
         </table>
         <p class="quantum-apps__meta">
           Hub: <a href="#local-session-hub">#local-session-hub</a> · MCP: <a href="#mcp-browser-parity">#mcp-browser-parity</a> ·
+          <a href="#mcp-commands-scripts-gaps-audit">#mcp-commands-scripts-gaps-audit</a> ·
           Thin mounts under <code>.cursor/skills/</code> + <code>.cursor/mcp.json</code> point at this sealed map.
         </p>
         <h4>packages/* (census outside src/)</h4>
@@ -1201,7 +1217,27 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
-      <section id="session-manual-tools">
+      <section id="mcp-commands-scripts-gaps-audit" aria-label="MCP commands scripts gaps audit">
+        <h3>{{ panel.mcpScriptsAudit.heading }}</h3>
+        <p class="quantum-apps__meta">{{ panel.mcpScriptsAudit.honestyLine }}</p>
+        <UiBadge v-bind="badgeProps(panel.mcpScriptsAudit.closedOn ? 'ready' : 'gap')">
+          overlap={{ panel.mcpScriptsAudit.overlapCount }} · useless={{ panel.mcpScriptsAudit.uselessCount }} · gap={{ panel.mcpScriptsAudit.gapCount }} · closedOn={{ panel.mcpScriptsAudit.closedOn }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(panel.mcpScriptsAudit.residualCount === 0 ? 'ok' : 'partial')">
+          residual {{ panel.mcpScriptsAudit.residualCount }} · kept {{ panel.mcpScriptsAudit.keptCount }}
+        </UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="row in panel.mcpScriptsAudit.rows" :key="row.id">
+            <UiBadge v-bind="badgeProps(row.status === 'closed' ? 'ok' : row.status === 'open' ? 'gap' : 'partial')">{{ row.status }}</UiBadge>
+            <strong>{{ row.id }}</strong> [{{ row.kind }}] — {{ row.fix }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'mcp-commands-scripts-gaps-audit'" @click="runTool('mcp-commands-scripts-gaps-audit')">
+          {{ runningId === 'mcp-commands-scripts-gaps-audit' ? '…' : 'Run mcp-commands-scripts-gaps-audit' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="session-manual-tools" aria-label="Session manual work as quantum tools">
         <h3>{{ panel.session.heading }}</h3>
         <p class="quantum-apps__meta">{{ panel.session.honestyLine }}</p>
         <UiBadge v-bind="badgeProps(statusBadgeKind(panel.session.computes))">

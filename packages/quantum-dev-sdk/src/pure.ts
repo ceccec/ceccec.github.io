@@ -49,7 +49,10 @@ export function listStdioCapabilities() {
       kind: 'stdio-mcp' as const,
       browserAchievable:
         name === 'list-capabilities' || name === 'census-status' || name === 'compute-from-source' || name === 'fold-report',
-      description: name,
+      description:
+        name === 'list-capabilities'
+          ? 'Meta browserAchievable matrix (complements tools/list)'
+          : name,
       browserGap:
         name === 'run-gate' || name === 'run-wave' || name === 'run-export'
           ? 'Node bootstrap spawn — CI/local only'

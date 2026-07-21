@@ -32,8 +32,12 @@ await runGate('docs-build', [], { env: { [DOCS_BUILD_ALLOW_ENV]: '1' } })
 
 `list-capabilities` · `census-status` · `compute-from-source` · `fold-report` · `run-gate` · `run-wave` · `run-export`
 
+- `list-capabilities` = browserAchievable meta matrix (complements `tools/list`, not a synonym dump)
+- `run-gate` names: check-types · limits-verify · mission-gate · verify-structure · docs-build · enforcement-trinity · limits-seal · rosetta-batch
+- Protocol `run-wave` kinds → `runManualAgentsBehaveLikeWavesExit` (not four× `mission:gate`)
 - `docs-build` / wave `rebuild` require `QUANTUM_DEV_ALLOW_DOCS_BUILD=1`
 - Automations: call `npm run mission:gate` etc. — local stdio is IDE-only
+- Entropy receipt: `npm run quantum:mcp-commands-scripts-gaps-audit` · pair `mcp/scripts-audit`
 - Residual: `/automate` nightly still parked (no dashboard MCP registration)
 
 ## Honesty

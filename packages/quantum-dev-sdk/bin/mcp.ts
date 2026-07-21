@@ -45,7 +45,8 @@ function respondError(id: string | number | null | undefined, message: string) {
 const TOOL_DEFS = [
   {
     name: 'list-capabilities',
-    description: 'List 7 stdio MCP tools (design 0ccd9991)',
+    description:
+      'Meta: browserAchievable matrix for the 7 stdio tools (complements tools/list — not a synonym of tools/list names)',
     inputSchema: { type: 'object', properties: {}, additionalProperties: false },
   },
   {
@@ -83,7 +84,8 @@ const TOOL_DEFS = [
       properties: {
         name: {
           type: 'string',
-          description: 'check-types | limits-verify | mission-gate | verify-structure | docs-build | enforcement-trinity',
+          description:
+            'check-types | limits-verify | mission-gate | verify-structure | docs-build | enforcement-trinity | limits-seal | rosetta-batch',
         },
       },
       required: ['name'],

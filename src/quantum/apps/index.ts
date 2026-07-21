@@ -55,7 +55,7 @@ const ROSETTA_CORE_API_LABELS = [
   'sessionManualWorkAsQuantumBits', 'combineQuantumBits',
   'autoWireAnyAiModelFromPastedLink', 'resolveCeccecPasteLink',
   'realiseSessionQuantumMeaning',
-  'mcpBrowserParity', 'mcpToolboxToolsList',
+  'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'improveLocalFromSessionExperience',
   'upgradeLocalFromOptimisedManualWorkExperience',
   'counterRotatingRosettaQuantumWaves',
@@ -77,7 +77,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   sessionManualWorkAsQuantumBits: 'tool', combineQuantumBits: 'compute',
   autoWireAnyAiModelFromPastedLink: 'tool', resolveCeccecPasteLink: 'api',
   realiseSessionQuantumMeaning: 'tool',
-  mcpBrowserParity: 'tool', mcpToolboxToolsList: 'api',
+  mcpBrowserParity: 'tool', mcpToolboxToolsList: 'api', mcpCommandsScriptsGapsAudit: 'tool',
   improveLocalFromSessionExperience: 'tool',
   upgradeLocalFromOptimisedManualWorkExperience: 'tool',
   counterRotatingRosettaQuantumWaves: 'compute',
@@ -363,7 +363,9 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'unit-distance-verify', title: 'Unit-distance research verify', fold: 'unitDistanceResearch', cli: 'npm run quantum:unit-distance-verify', pair: 'research/society', route: '/en/research', barrel: 'src/wind/research', boundary: 'Numeric companion — MODEL_FIT', browserRunnable: true, browserGap: '' },
   { id: 'iching-distribute-verify', title: 'I Ching / rosetta distribute', fold: 'ichingDistributeVerify', cli: 'npm run quantum:iching-distribute-verify', pair: 'rosetta/batch', route: '/en/quantum-tools', barrel: 'src/earth/iching', boundary: 'Rosetta 7-ray vs I Ching 8-fold', browserRunnable: true, browserGap: '' },
   { id: 'predict-skill-gate-verify', title: 'Predict skill gate verify', fold: 'skilledEnoughFromPredictions', cli: 'npm run quantum:predict-skill-gate-verify', pair: 'predict/skill-gate-verify', route: '/en/quantum-tools', barrel: 'src/lake/music', boundary: 'Measurable event prediction skill', browserRunnable: true, browserGap: '' },
-  { id: 'f-inverse-pair', title: 'f→{p,q} inverse fold', fold: 'fThetaPhiXyzDigitNIsTheInversePair', cli: 'npm run quantum:local-math-computes', pair: 'inverse/pair', route: '/en/quantum-tools', barrel: 'src/mountain/vortex', boundary: 'Inverse fold within itself — not RSA crack', browserRunnable: true, browserGap: '' },
+  { id: 'f-inverse-pair', title: 'f→{p,q} inverse fold', fold: 'fThetaPhiXyzDigitNIsTheInversePair', cli: 'npm run quantum:f-inverse-pair', pair: 'inverse/pair', route: '/en/quantum-tools', barrel: 'src/mountain/vortex', boundary: 'Inverse fold within itself — not RSA crack', browserRunnable: true, browserGap: '' },
+  { id: 'translations-verify', title: 'Translation gaps gate (en/bg/gla parity)', fold: 'translationGapsGate', cli: 'npm run quantum:translations-verify', pair: 'translations/verify', route: '/en/quantum-tools#translations-verify', barrel: 'src/mountain/source', boundary: 'HARD discover-then-fail on missing/inaccurate en-parity · WARN offline phrase residual · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-commands-scripts-gaps-audit', title: 'MCP commands ↔ scripts gaps audit', fold: 'mcpCommandsScriptsGapsAudit', cli: 'npm run quantum:mcp-commands-scripts-gaps-audit', pair: 'mcp/scripts-audit', route: '/en/quantum-tools#mcp-commands-scripts-gaps-audit', barrel: 'src/quantum/apps', boundary: 'Overlap · useless · gap census for stdio MCP + package.json + toolbox — residual trading:* / conceptTools named honestly · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'slow-gap', title: 'Slow process = quantum gap', fold: 'slowProcessIsQuantumGap', cli: 'npm run quantum:slow-gap', pair: 'slow/gap', route: '/en/quantum-tools#slow-quantum-gaps', barrel: 'src/quantum/apps', boundary: 'Architectural slow≠telemetry — browserGap · missing 10D · parallel registry · memo-miss model', browserRunnable: true, browserGap: '' },
   { id: 'sciences-trinities', title: 'Sciences interact in trinities + significance', fold: 'sciencesInteractInTrinities', cli: 'npm run quantum:sciences-trinities', pair: 'sciences/trinities', route: '/en/research#sciences-trinities', barrel: 'src/wind/research', boundary: 'Structural significance ≠ journal IF; crypto vertex from isoPqcHandoff; claySolved=0', browserRunnable: true, browserGap: '' },
   { id: 'animations-rosetta', title: 'Animations driven by rosetta (yin-yang first)', fold: 'animationsDrivenByRosetta', cli: 'npm run quantum:animations-rosetta', pair: 'animations/rosetta', route: '/en/#yinyang', barrel: 'src/wind/ui', boundary: 'Linear forming = quantum gap; taiji uses non-linear exchange + rosettaShelve', browserRunnable: true, browserGap: '' },
@@ -933,6 +935,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'realise-session-meaning', saves: 'replaces wet re-narration of what the session apparatus proves vs refuses (includes local-audit-qe · session-bits)' },
   { id: 'sciences-standards-quantum', saves: 'replaces wet re-score of science domains vs ISO/NIST/OECD/Clay standards maps' },
   { id: 'mcp-browser-parity', saves: 'replaces wet re-audit of MCP tools/list vs browser toolbox — sealed matrix + residual gaps' },
+  { id: 'mcp-commands-scripts-gaps-audit', saves: 'replaces wet rediscovery of MCP/script synonym exits · orphan scripts · stdio schema gaps' },
   { id: 'improve-local-session', saves: 'replaces wet local session UX hunting — hub · one-click path · paste next-steps · docs:dev fast path' },
   { id: 'upgrade-local-skills-commands-tools', saves: 'replaces wet rediscovery of skills↔commands↔tools local map — one wave/PR · mission:gate · paste/bits/toolbox/mcp' },
   { id: 'prove-1tbit-encrypt', saves: 'replaces wet re-derivation of 1 Tbit/s claim status (wire≠amortized-reuse)' },
@@ -2831,6 +2834,7 @@ export function runFtlRosettaHandoffExit(_root = '', _argv: readonly string[] = 
 /** Honest Node/CI-only catalog tools — residual browserGaps (no fake browser for fs/trinity). */
 const HONEST_CI_BROWSER_GAP_IDS = [
   'offender-spec',
+  'trinity-speedup',
   'educational-gaps-audit',
   'vitepress-quantumize',
   'slow-build-gate',
@@ -2863,7 +2867,7 @@ const STDIO_MCP_CAPABILITY_SEEDS = [
     browserGap: '',
     stranglerPlan: 'sealed — listCapabilities() mirrors stdio tools/list in browser panel',
     fold: 'listCapabilities',
-    description: 'List stdio MCP + toolbox capabilities',
+    description: 'Meta: browserAchievable matrix for 7 stdio tools (complements tools/list)',
   },
   {
     id: 'fold-report',
@@ -3202,6 +3206,215 @@ export function runMcpBrowserParityExit(_root = '', _argv: readonly string[] = [
   )
   process.stdout.write(`  boundary: ${report.boundary}\n`)
   return report.computes ? 0 : 1
+}
+
+/**
+ * Sealed inventory of MCP ↔ npm-script ↔ bootstrap overlaps / useless stubs / gaps.
+ * Pair: mcp/scripts-audit · CLI npm run quantum:mcp-commands-scripts-gaps-audit · #mcp-commands-scripts-gaps-audit
+ * HONEST: trading:* + conceptTools remain residual (not every script is a PRIMARY toolbox tool).
+ */
+export type McpScriptAuditStatus = 'closed' | 'kept-intentional' | 'residual' | 'open'
+
+export type McpScriptAuditRow = {
+  readonly id: string
+  readonly kind: 'overlap' | 'useless' | 'gap'
+  readonly names: readonly string[]
+  readonly detail: string
+  readonly status: McpScriptAuditStatus
+  readonly fix: string
+  readonly receipt: string
+}
+
+/** Discovered at fold time — status reflects strangler after this wave. */
+const MCP_COMMANDS_SCRIPTS_AUDIT_SEEDS = [
+  {
+    id: 'prose-triple-same-exit',
+    kind: 'overlap' as const,
+    names: ['quantum:domain-proof-catalog', 'quantum:prose-gaps-audit', 'quantum:prose-clay-standard'],
+    detail: 'Three npm scripts shared runDomainProofCatalogExit',
+    status: 'closed' as const,
+    fix: 'dedicated runProseGapsAuditExit · runProseClayStandardExit; domain-proof keeps composite',
+  },
+  {
+    id: 'iching-rosetta-distribute-synonym',
+    kind: 'overlap' as const,
+    names: ['quantum:rosetta-distribute-verify', 'quantum:iching-distribute-verify'],
+    detail: 'Identical bootstrap exit — catalog id is iching-distribute-verify',
+    status: 'closed' as const,
+    fix: 'removed quantum:rosetta-distribute-verify synonym',
+  },
+  {
+    id: 'iching-rosetta-batch-alias',
+    kind: 'overlap' as const,
+    names: ['rosetta:batch', 'iching:batch', 'rosetta:diagnose', 'iching:diagnose'],
+    detail: 'Historical iching:* aliases of rosetta:* bootstrap commands',
+    status: 'kept-intentional' as const,
+    fix: 'keep thin aliases for muscle memory; logic is one bootstrap route',
+  },
+  {
+    id: 'f-inverse-cli-wrong-exit',
+    kind: 'overlap' as const,
+    names: ['f-inverse-pair', 'quantum:local-math-computes'],
+    detail: 'Catalog fold fThetaPhiXyzDigitNIsTheInversePair ran local-math-computes CLI',
+    status: 'closed' as const,
+    fix: 'quantum:f-inverse-pair → runFThetaPhiXyzDigitNIsTheInversePairExit',
+  },
+  {
+    id: 'stdio-wave-mission-gate-synonyms',
+    kind: 'useless' as const,
+    names: ['run-wave:decode', 'run-wave:design', 'run-wave:tune', 'run-wave:verify'],
+    detail: 'Stdio run-wave protocol kinds all spawned mission:gate (no distinct receipt)',
+    status: 'closed' as const,
+    fix: 'WAVE_TO_BOOTSTRAP → runManualAgentsBehaveLikeWavesExit for protocol waves',
+  },
+  {
+    id: 'list-capabilities-vs-tools-list',
+    kind: 'useless' as const,
+    names: ['list-capabilities', 'tools/list'],
+    detail: 'Meta tool looked like a tools/list synonym',
+    status: 'kept-intentional' as const,
+    fix: 'description = browserAchievable matrix (complements tools/list; not name dump)',
+  },
+  {
+    id: 'translations-verify-orphan-catalog',
+    kind: 'gap' as const,
+    names: ['quantum:translations-verify'],
+    detail: 'npm script existed with no quantumCliToolsCatalog / toolbox MCP row',
+    status: 'closed' as const,
+    fix: 'catalog + toolbox row translations-verify · pair translations/verify',
+  },
+  {
+    id: 'stdio-run-gate-schema-incomplete',
+    kind: 'gap' as const,
+    names: ['run-gate', 'limits-seal', 'rosetta-batch'],
+    detail: 'GateName included limits-seal|rosetta-batch but tools/list schema omitted them',
+    status: 'closed' as const,
+    fix: 'TOOL_DEFS run-gate description lists all GateName values',
+  },
+  {
+    id: 'mcp-commands-scripts-audit-missing',
+    kind: 'gap' as const,
+    names: ['mcpCommandsScriptsGapsAudit'],
+    detail: 'No sealed receipt for MCP/script entropy census',
+    status: 'closed' as const,
+    fix: 'this fold + npm run quantum:mcp-commands-scripts-gaps-audit',
+  },
+  {
+    id: 'concept-tools-legacy-dual',
+    kind: 'gap' as const,
+    names: ['/mcp.json#conceptTools', 'executeConceptCommand'],
+    detail: 'Legacy concept commands under result.conceptTools alongside PRIMARY toolbox tools',
+    status: 'residual' as const,
+    fix: 'strangler: PRIMARY tools/list = toolbox ids; conceptTools stay legacy until callers migrate',
+  },
+  {
+    id: 'trading-scripts-outside-primary-mcp',
+    kind: 'gap' as const,
+    names: ['trading:offline', 'trading:live', 'trading:train'],
+    detail: 'trading:* npm scripts are bootstrap exits but not PRIMARY /mcp.json toolbox tools',
+    status: 'residual' as const,
+    fix: 'invoke via stdio run-export / npm; not every script is a toolbox envelope',
+  },
+  {
+    id: 'trinity-speedup-honest-ci-gap',
+    kind: 'gap' as const,
+    names: ['trinity-speedup', 'HONEST_CI_BROWSER_GAP_IDS'],
+    detail: 'Catalog CI-only trinity-speedup omitted from honest residual set → mcpBrowserParity residualOnlyHonestCi false',
+    status: 'closed' as const,
+    fix: 'HONEST_CI_BROWSER_GAP_IDS includes trinity-speedup',
+  },
+] as const
+
+export function mcpCommandsScriptsGapsAudit(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpCommandsScriptsGapsAudit:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const toolbox = standardToolboxIoCatalog(matrix, at)
+    const mcpList = mcpToolboxToolsList(matrix, at)
+    const parity = mcpBrowserParity(matrix, at)
+    const rows: McpScriptAuditRow[] = MCP_COMMANDS_SCRIPTS_AUDIT_SEEDS.map((seed) => ({
+      ...seed,
+      receipt: toUuid(`mcp-scripts-audit:${seed.id}:${seed.status}`),
+    }))
+    const overlaps = rows.filter((r) => r.kind === 'overlap')
+    const useless = rows.filter((r) => r.kind === 'useless')
+    const gaps = rows.filter((r) => r.kind === 'gap')
+    const overlapCount = overlaps.length
+    const uselessCount = useless.length
+    const gapCount = gaps.length
+    const openCount = rows.filter((r) => r.status === 'open').length
+    const closedCount = rows.filter((r) => r.status === 'closed').length
+    const residualCount = rows.filter((r) => r.status === 'residual').length
+    const keptCount = rows.filter((r) => r.status === 'kept-intentional').length
+    const closedOn = openCount === 0 && closedCount >= (2 * 3) && residualCount >= 2
+    const translationsInCatalog = catalog.tools.some((t) => t.id === 'translations-verify' && t.cli.includes('translations-verify'))
+    const auditInCatalog = catalog.tools.some((t) => t.id === 'mcp-commands-scripts-gaps-audit')
+    const fInverseNamed = catalog.tools.some((t) => t.id === 'f-inverse-pair' && t.cli.includes('f-inverse-pair'))
+    const qpuRequired = false as const
+    const facets = [
+      { facet: `overlapCount=${overlapCount}`, on: overlapCount === overlaps.length && overlapCount >= 3 },
+      { facet: `uselessCount=${uselessCount}`, on: uselessCount === useless.length && uselessCount >= 2 },
+      { facet: `gapCount=${gapCount}`, on: gapCount === gaps.length && gapCount >= 4 },
+      { facet: `closedOn=${closedOn}`, on: closedOn },
+      { facet: 'translations-verify catalogued (orphan closed)', on: translationsInCatalog },
+      { facet: 'mcp-commands-scripts-gaps-audit catalogued', on: auditInCatalog },
+      { facet: 'f-inverse-pair CLI named (not local-math synonym)', on: fInverseNamed },
+      { facet: 'PRIMARY mcp tools/list ≡ toolbox (compose mcpBrowserParity)', on: parity.mcpMatchesToolbox && mcpList.computes },
+      { facet: 'mcpBrowserParity residualOnlyHonestCi (trinity-speedup named)', on: parity.residualOnlyHonestCi && parity.computes },
+      { facet: 'qpuRequired=false · clay=0', on: qpuRequired === false },
+      { facet: `residuals named (${residualCount}) · kept aliases (${keptCount})`, on: residualCount >= 2 && keptCount >= 1 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-scripts-audit-facet:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-commands-scripts-gaps-audit', facets)
+    return {
+      computes: sealed.ok && closedOn && translationsInCatalog && auditInCatalog && fInverseNamed && parity.computes && parity.residualOnlyHonestCi,
+      overlapCount,
+      uselessCount,
+      gapCount,
+      closedOn,
+      closedCount,
+      residualCount,
+      keptCount,
+      openCount,
+      qpuRequired,
+      claySolvedByThisFold: 0 as const,
+      rows,
+      overlaps,
+      useless,
+      gaps,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, catalog.root, toolbox.root, mcpList.root, parity.root, ...rows.map((r) => r.receipt)]),
+      pair: 'mcp/scripts-audit',
+      cli: 'npm run quantum:mcp-commands-scripts-gaps-audit',
+      route: '/en/quantum-tools#mcp-commands-scripts-gaps-audit',
+      anchor: 'mcp-commands-scripts-gaps-audit',
+      heading: 'MCP commands ↔ scripts gaps audit',
+      honestyLine:
+        'Overlap · useless · gap census for stdio MCP + package.json + toolbox. Residuals: conceptTools legacy + trading:* outside PRIMARY tools/list. qpuRequired=false · clay=0.',
+      statement:
+        `MCP/scripts audit — overlap=${overlapCount} useless=${uselessCount} gap=${gapCount} closedOn=${closedOn} closed=${closedCount} residual=${residualCount} kept=${keptCount} · qpuRequired=false · clay=0.`,
+      boundary:
+        'HONEST: collapses synonym npm exits and stdio wave stubs; does not delete intentional iching:* aliases or force every trading script into PRIMARY /mcp.json. NOT physical QPU. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:mcp-commands-scripts-gaps-audit */
+export function runMcpCommandsScriptsGapsAuditExit(_root = '', _argv: readonly string[] = []): number {
+  const report = mcpCommandsScriptsGapsAudit()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-commands-scripts-gaps-audit — ` +
+      `overlap=${report.overlapCount} useless=${report.uselessCount} gap=${report.gapCount} ` +
+      `closedOn=${report.closedOn} residual=${report.residualCount} root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const row of report.rows) {
+    process.stdout.write(
+      `  ${row.status === 'closed' ? '✓' : row.status === 'open' ? '✗' : '·'} [${row.kind}] ${row.id} — ${row.status} · ${row.fix}\n`,
+    )
+  }
+  for (const facet of report.facets.filter((f) => !f.on)) {
+    process.stdout.write(`  ✗ facet ${facet.facet}\n`)
+  }
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes && report.closedOn ? 0 : 1
 }
 
 /** Homepage / tools / README / footer one-liner — paste any ceccec link → quantum-ready. */
@@ -3975,13 +4188,14 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
   const autoWire = autoWireAnyAiModelFromPastedLink(`${SITE_GITHUB_PAGES}/`, matrix, at)
   const meaning = realiseSessionQuantumMeaning(matrix, at)
   const mcpParity = mcpBrowserParity(matrix, at)
+  const mcpScriptsAudit = mcpCommandsScriptsGapsAudit(matrix, at)
   const localSession = improveLocalFromSessionExperience(matrix, at)
   const upgradeLocal = upgradeLocalFromOptimisedManualWorkExperience(matrix, at)
   const counterWaves = counterRotatingRosettaQuantumWaves(matrix, at)
   const discoverRest = universeAlmostDescribedInTheoremsDiscoverRest(matrix, at)
   const uiProse = uiProseDuplicationRemoved(matrix, at)
   return {
-    computes: cap.computes && slowGaps.computes && session.computes && toolbox.computes && distributed.computes && rosettaComplete.computes && experiments.computes && quantumBits.computes && autoWire.computes && meaning.computes && mcpParity.computes && localSession.computes && upgradeLocal.computes && counterWaves.computes && discoverRest.computes && uiProse.computes,
+    computes: cap.computes && slowGaps.computes && session.computes && toolbox.computes && distributed.computes && rosettaComplete.computes && experiments.computes && quantumBits.computes && autoWire.computes && meaning.computes && mcpParity.computes && mcpScriptsAudit.computes && localSession.computes && upgradeLocal.computes && counterWaves.computes && discoverRest.computes && uiProse.computes,
     capstone: cap,
     apps: cap.registry.apps,
     tools: cap.catalog.tools,
@@ -3998,12 +4212,13 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
     autoWire,
     meaning,
     mcpParity,
+    mcpScriptsAudit,
     localSession,
     upgradeLocal,
     counterWaves,
     discoverRest,
     uiProse,
-    root: merkleFold([cap.root, slowGaps.root, session.root, toolbox.root, distributed.root, rosettaComplete.root, experiments.root, quantumBits.root, autoWire.root, meaning.root, mcpParity.root, localSession.root, upgradeLocal.root, counterWaves.root, discoverRest.root, uiProse.root]),
+    root: merkleFold([cap.root, slowGaps.root, session.root, toolbox.root, distributed.root, rosettaComplete.root, experiments.root, quantumBits.root, autoWire.root, meaning.root, mcpParity.root, mcpScriptsAudit.root, localSession.root, upgradeLocal.root, counterWaves.root, discoverRest.root, uiProse.root]),
     statement: cap.statement,
     boundary: cap.boundary,
   }
