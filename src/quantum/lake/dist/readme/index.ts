@@ -34,6 +34,7 @@ import {
   harmonicCountsProvenByMath,
   everyBitMostEfficientAlgorithmProvenByMath,
   firstInCorpusProvenanceMarkdownSection,
+  foldNameReceipt,
   monographAsScientificPaper,
   monographTemplate,
   monographs,
@@ -254,7 +255,7 @@ export function sequenceDiscoveryMarkdownSection(
     ...(linkBase
       ? [`- Routes: [prove-no-qpu-64bit](${href('/quantum-tools#prove-no-qpu-64bit')}) · [directional-trinity](${href('/quantum-tools#directional-trinity')}) · [rosetta-complete](${href('/quantum-tools#rosetta-complete')}) · [efficiency-vote](${href('/efficiency-vote')}) · [proofs](${href('/proofs')})`]
       : [`- Routes (VitePress markdown): [prove-no-qpu-64bit](/quantum-tools#prove-no-qpu-64bit) · [directional-trinity](/quantum-tools#directional-trinity) · [rosetta-complete](/quantum-tools#rosetta-complete) · [efficiency-vote](/efficiency-vote) · proofs hub \`/proofs\` (root SSG · domain/proof)`]),
-    `- Receipt: \`${d.root.slice(0, 8)}\` · fold \`sequenceDiscoveryRealisedForHome\` · claySolvedByThisFold=${d.claySolvedByThisFold} · physicalFtlClaim=${d.physicalFtlClaim} · qpuRequired=${d.qpuRequired}.`,
+    `- ${foldNameReceipt('sequenceDiscoveryRealisedForHome', `claySolvedByThisFold=${d.claySolvedByThisFold} · physicalFtlClaim=${d.physicalFtlClaim} · qpuRequired=${d.qpuRequired}.`)}`,
     '',
   ]
 }
@@ -316,7 +317,7 @@ export function twoBitsFreeSocietySupportMarkdownSection(
           '- Routes (VitePress): `/proofs/two-bits-free` · `/proofs/society-two-bits-support` · `/society-merkaba#two-bits-free` · `/efficiency-vote`',
           `- Support CTA (voluntary): \`${support.patronage.url}\``,
         ]),
-    `- Receipts: \`${bits.root.slice(0, 8)}\` · \`${support.root.slice(0, 8)}\` · CLI \`npm run quantum:two-bits-free\` · \`npm run quantum:society-two-bits-support\`.`,
+    `- ${foldNameReceipt('twoBitsFreeFromCensus110Minus108')} · ${foldNameReceipt('societySupportsProjectViaTwoBitsFreeKnowledge')} · CLI \`npm run quantum:two-bits-free\` · \`npm run quantum:society-two-bits-support\`.`,
     '',
   ]
 }
@@ -361,7 +362,7 @@ export function earthPolesPyramidMarkdownSection(
     ...(linkBase
       ? [`- Routes: [research](${href('/research')}) · [proofs](${href('/proofs')}) · hero.svg 4-dir · fold \`earthRealisedByComputingPolesAsPyramid\``]
       : [`- Routes (VitePress markdown): [research](/research) · proofs hub \`/proofs\` · hero.svg 4-dir · fold \`earthRealisedByComputingPolesAsPyramid\``]),
-    `- Receipt: \`${e.root.slice(0, 8)}\` · fold \`earthRealisedByComputingPolesAsPyramid\` · claySolvedByThisFold=${e.claySolvedByThisFold} · physicalFtlClaim=${e.physicalFtlClaim}.`,
+    `- ${foldNameReceipt('earthRealisedByComputingPolesAsPyramid', `claySolvedByThisFold=${e.claySolvedByThisFold} · physicalFtlClaim=${e.physicalFtlClaim}.`)}`,
     '',
   ]
 }
@@ -409,7 +410,7 @@ export function clayChallengesComputableMarkdownSection(
     ...(linkBase
       ? [`- Routes: [proofs](${href('/proofs')}) · [clay-challenges-computable](${href('/proofs/clay-challenges-computable')}) · CLI \`npm run quantum:clay-challenges-computable\``]
       : [`- Routes (VitePress): proofs hub \`/proofs\` · slug \`/proofs/clay-challenges-computable\` · CLI \`npm run quantum:clay-challenges-computable\` (DomainProofPages · withBase)`]),
-    `- Receipt: \`${c.root.slice(0, 8)}\` · fold \`clayChallengesComputableFromSequence\` · claySolvedByThisFold=${c.claySolvedByThisFold}.`,
+    `- ${foldNameReceipt('clayChallengesComputableFromSequence', `claySolvedByThisFold=${c.claySolvedByThisFold}.`)}`,
     '',
   ]
 }
@@ -438,7 +439,7 @@ export function toolboxSciencesTrinityWavesMarkdownSection(
     ...(linkBase
       ? [`- Routes: [toolbox sciences waves](${href('/quantum-tools#toolbox-sciences-trinity-waves')}) · [sciences-trinities](${href('/research#sciences-trinities')}) · CLI \`npm run quantum:toolbox-sciences-trinity-waves\``]
       : [`- Routes (VitePress markdown): [toolbox sciences waves](/quantum-tools#toolbox-sciences-trinity-waves) · [sciences-trinities](/research#sciences-trinities) · CLI \`npm run quantum:toolbox-sciences-trinity-waves\``]),
-    `- Receipt: \`${t.root.slice(0, 8)}\` · fold \`toolboxRecomputesRelatedSciencesInTrinityWaves\`.`,
+    `- ${foldNameReceipt('toolboxRecomputesRelatedSciencesInTrinityWaves')}.`,
     '',
   ]
 }
@@ -577,7 +578,7 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     '',
     'The root monograph is itself content-addressed: the section schema, the corpus roots and every reported count fold to one receipt that reproduces from `src` and changes if any reported value does — the address is the proof, not a signature over prose.',
     '',
-    `- Receipt: \`${core.receipt}\``,
+    `- ${foldNameReceipt('readmeMarkdown')}`,
   ]
 }
 

@@ -27,6 +27,7 @@ import { splitImagination } from '../../mountain/source'
 import { diamondLattice, piTrainDiamonds, pureDiamonds, sealWholeDiamond, selfBuild } from '../../fire/diamonds'
 import { shouldSpawnSubagent } from '../../water/stack'
 import * as __ns_gates from '../../pair/enforcement/gates'
+import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 import * as __ns_commands from '../../thunder/commands'
 import { redTeam } from '../../water/crypto'
 import { musicNote } from '../../lake/music'
@@ -2580,7 +2581,7 @@ export function sendTheWavesToSendTheWavesEachAntichainLevelExposesTheNextUntilT
     boundary: `EXACT and computed live by Kahn's algorithm on a ${n}-node layered DAG: the nodes partition into ${waves.length} antichain LEVELS with no edge inside a level (${eachWaveIsAntichain}) — each a wave of mutually-independent work runnable in parallel; processing a wave decrements its successors' in-degrees and every wave but the last thereby EXPOSES the next (${regenerations} regenerations, ${eachWaveExposesTheNext}); and starting from the in-degree-0 sources the cascade processes all ${n} nodes exactly once in level order (${wavesSendTheWaves}). THE SELF-REFERENCE: the loop's output (the next frontier) is its own next input, so "send the waves" recurses until the frontier is empty — the waves send the waves. THE HONEST BOUND: this is a finite ACYCLIC dispatch — a cycle would leave nodes unprocessed (Kahn detects it: processed < n), so the self-propagation terminates and requires a DAG; "the waves send the waves" is the topological-level cascade, a real scheduling structure (the antichain is the parallel unit), not an infinite or self-creating process — the DAG is given, the waves traverse it. HARMONY ≠ TRUTH: "send the waves to send the waves" is the harmony; the truth is Kahn's level decomposition — antichain waves, each exposing the next, covering the DAG once — computed and refutable.`,
   }
 }
-export { wavesAutoScaleCapacityAtNoCostOnReuse, theoremAlgebraFirstSealedInCorpus, theoremTenDProjectionsProveAlgebraRoots, firstInCorpusProvenanceForHome, firstInCorpusProvenanceMarkdownSection, type TheoremAlgebraNoveltyKind, type TheoremAlgebraNoveltyRow, type TheoremTenDProjectionRow, type FirstInCorpusHomeRow } from '../../wind/research'
+export { wavesAutoScaleCapacityAtNoCostOnReuse, theoremAlgebraFirstSealedInCorpus, theoremTenDProjectionsProveAlgebraRoots, firstInCorpusProvenanceForHome, firstInCorpusProvenanceMarkdownSection, foldNameReceipt, theoremFacingCliLabel, isHexCrumbIdentity, type TheoremAlgebraNoveltyKind, type TheoremAlgebraNoveltyRow, type TheoremTenDProjectionRow, type FirstInCorpusHomeRow } from '../../wind/research'
 
 /** Eight ceccec-build-waves phases — one coherent batch per agent turn (pair: waves/build). */
 export const MANUAL_AGENT_WAVE_PHASES = [
@@ -2744,6 +2745,131 @@ export function manualAgentsBehaveLikeWaves(matrix: MindMatrix = buildMatrix()) 
 export const agentModelBuildsItselfInWaves = manualAgentsBehaveLikeWaves
 
 /**
+ * USER LAW: train quantum teams of agents to collide to become waves and observe to manifest.
+ * Immediate teleportation in another form = content-addressed recompute / sealed discovery — NOT physical FTL.
+ * Pairs: team/collide · wave/manifest · teleport/form · CLI npm run quantum:team-collide
+ * Compose team protocol · theoremParticleCollision · manualAgentsBehaveLikeWaves · wave/tune · discoverFromSealedFold · few-hero spawn · vote/build.
+ */
+export function trainQuantumTeamsCollideBecomeWavesObserveManifest(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(
+    `trainQuantumTeamsCollideBecomeWavesObserveManifest:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const waves = manualAgentsBehaveLikeWaves(matrix)
+      const music = playAgentsTheMusicOfTheWave(matrix)
+      const collider = __ns_waves_research.theoremParticleCollisionInverseReverse(matrix)
+      const discovery = discoverFromSealedFold('manualAgentsBehaveLikeWaves', at, matrix)
+      const hero = shouldSpawnSubagent('qualified bounded collide task with sealed fold')
+      const mass = shouldSpawnSubagent('explore everything search entire repo spawn all')
+      const teamPair = foldPair(toUuid('cmd:team'), toUuid('cmd:collide'))
+      const wavePair = foldPair(toUuid('cmd:wave'), toUuid('cmd:manifest'))
+      const teleportPair = foldPair(toUuid('cmd:teleport'), toUuid('cmd:form'))
+      const voteBuild = foldPair(toUuid('cmd:vote'), toUuid('cmd:build'))
+      const trainSend = foldPair(toUuid('cmd:train'), toUuid('cmd:send'))
+      // Observation collapses morph path — measure = sealed fold invoke (double-slit metaphor).
+      const proseSlit = toUuid('observe:prose')
+      const codeSlit = toUuid('observe:code')
+      const measure = foldPair(proseSlit, codeSlit)
+      const observeManifests = measure.forward !== measure.reverse && isUuid(measure.merged) && discovery.discovers
+      const collideBecomeWaves =
+        collider.computes &&
+        collider.claySolvedByThisFold === 0 &&
+        waves.computes &&
+        music.plays
+      const trainQuantumTeams =
+        teamPair.bidirectional &&
+        voteBuild.bidirectional &&
+        trainSend.bidirectional &&
+        hero.spawn &&
+        hero.workers >= 1 &&
+        hero.workers <= 2 &&
+        !mass.spawn
+      // Teleportation-as-wave-manifest: immediate appearance elsewhere via sealed recompute — physicalFtl=0.
+      const teleportationAsWaveManifest =
+        discovery.discovers &&
+        discovery.wetMotion === false &&
+        isUuid(discovery.root) &&
+        teleportPair.bidirectional
+      const physicalFtlClaim = 0 as const
+      const claySolvedByThisFold = 0 as const
+      const pairRegistered = (['team/collide', 'wave/manifest', 'teleport/form'] as const).every((p) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(p),
+      )
+      const trainOn =
+        trainQuantumTeams &&
+        collideBecomeWaves &&
+        observeManifests &&
+        teleportationAsWaveManifest &&
+        physicalFtlClaim === 0 &&
+        claySolvedByThisFold === 0 &&
+        wavePair.bidirectional &&
+        pairRegistered
+      const facets = [
+        { facet: 'trainQuantumTeams', on: trainQuantumTeams },
+        { facet: 'collideBecomeWaves', on: collideBecomeWaves },
+        { facet: 'observeManifest', on: observeManifests },
+        { facet: 'teleportationAsWaveManifest', on: teleportationAsWaveManifest },
+        { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: 'few heroes · vote/build · train/send', on: hero.workers <= 2 && !mass.spawn && voteBuild.bidirectional },
+        { facet: 'composes theoremParticleCollision · manualAgentsBehaveLikeWaves · wave/tune', on: collider.computes && waves.computes && music.plays },
+        { facet: 'pairs team/collide · wave/manifest · teleport/form', on: pairRegistered && teamPair.bidirectional && wavePair.bidirectional && teleportPair.bidirectional },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`team-collide:${entry.facet}:${entry.on}`) }))
+      const sealed = sealFacets('train-quantum-teams-collide-become-waves-observe-manifest', facets)
+      return {
+        computes: sealed.ok && trainOn,
+        trainQuantumTeamsCollideBecomeWavesObserveManifest: trainOn,
+        trainQuantumTeams,
+        collideBecomeWaves,
+        observeManifests,
+        teleportationAsWaveManifest,
+        physicalFtlClaim,
+        claySolvedByThisFold,
+        qpuRequired: false as const,
+        waves,
+        music,
+        collider,
+        discovery,
+        hero,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root, waves.root, music.root, collider.root, discovery.root,
+          teamPair.merged, wavePair.merged, teleportPair.merged, voteBuild.merged, trainSend.merged, measure.merged,
+        ]),
+        pair: 'team/collide' as const,
+        pairs: ['team/collide', 'wave/manifest', 'teleport/form'] as const,
+        cli: 'npm run quantum:team-collide',
+        route: '/en/quantum-tools#team-collide',
+        statement:
+          `trainQuantumTeamsCollideBecomeWavesObserveManifest · train=${trainQuantumTeams} collide→waves=${collideBecomeWaves} ` +
+          `observe→manifest=${observeManifests} teleport/form=${teleportationAsWaveManifest} ftl=${physicalFtlClaim}`,
+        boundary:
+          'Teams collide (trinity) → become waves; observe collapses morph to manifest. Teleportation = sealed recompute elsewhere — NOT physical FTL. clay=0.',
+        honestyLine:
+          `metrics · train=${trainQuantumTeams} · collide=${collideBecomeWaves} · observe=${observeManifests} · teleport=${teleportationAsWaveManifest}`,
+      }
+    },
+  )
+}
+
+/** npm run quantum:team-collide · quantum:wave-manifest · quantum:teleport-form */
+export function runTrainQuantumTeamsCollideBecomeWavesObserveManifestExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = trainQuantumTeamsCollideBecomeWavesObserveManifest()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} team-collide — train=${report.trainQuantumTeams} collide=${report.collideBecomeWaves} ` +
+      `observe=${report.observeManifests} teleport=${report.teleportationAsWaveManifest} ` +
+      `ftl=${report.physicalFtlClaim} fold=trainQuantumTeamsCollideBecomeWavesObserveManifest pair=${report.pair}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.physicalFtlClaim === 0 && report.claySolvedByThisFold === 0 ? 0 : 1
+}
+
+/**
  * Sealed fold ids agents may discover offline — content-addressed catalog, no wet motion.
  * Pair: nothing/moves · AGENTS.md discoverFromSealedFold.
  */
@@ -2764,6 +2890,16 @@ export const SEALED_DISCOVER_FOLD_IDS = [
   'driftInvertedIsTrinityGateway',
   'hexInsteadOfTheoremIsCrack',
   'computationsUseOnlyQuantumTheoremsAsConstants',
+  'clayIsGravityRosettaOneRayThisDimensionRestBeyond',
+  'animationsReviewColorsForPolarityGaps',
+  'linearWithoutRosettaFoldIsGap',
+  'invisibleGapsCaughtByGates',
+  'meaningIsQuantumComputable',
+  'scientificPageFormatCanonised',
+  'scientificTerminologyIsQuantumComputableMeasurableComparable',
+  'movieUnbalancedAroundCenterIsCrack',
+  'cracksPassedGatesBecause',
+  'trainQuantumTeamsCollideBecomeWavesObserveManifest',
 ] as const
 
 /**

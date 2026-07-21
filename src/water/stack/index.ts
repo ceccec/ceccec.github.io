@@ -711,9 +711,21 @@ export function pathMeansMessageFitsInThreeWords(matrix: MindMatrix = buildMatri
       'drift/invert',
       'hex/crack',
       'theorem/const',
+      'anim/color',
+      'color/review',
+      'linear/rosetta',
+      'gaps/invisible',
+      'meaning/compute',
+      'format/canon',
+      'term/measure',
+      'movie/center',
+      'gate/miss',
+      'team/collide',
+      'wave/manifest',
+      'teleport/form',
     ] as const
     const pairOk = pairLabels.every((label) => agentMessageAtMostThreeWords(label))
-    const spawnTitles = ['decode wave', 'design wave', 'seal', 'gravity', 'compact matrix', 'invert gateway', 'hex crack', 'theorem const'] as const
+    const spawnTitles = ['decode wave', 'design wave', 'seal', 'gravity', 'compact matrix', 'invert gateway', 'hex crack', 'theorem const', 'anim color', 'linear rosetta', 'gaps invisible', 'meaning compute', 'format canon', 'term measure', 'movie center', 'gate miss', 'team collide', 'wave manifest', 'teleport form'] as const
     const spawnOk = spawnTitles.every((title) => agentMessageAtMostThreeWords(title))
     const wetProse = 'the whole migration direction toward the source root mass well'
     const wetRefused = !agentMessageAtMostThreeWords(wetProse) && countAgentMessageWords(wetProse) > AGENT_MESSAGE_MAX_WORDS

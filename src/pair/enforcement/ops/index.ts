@@ -77,6 +77,7 @@ import {
   type MissionCommand,
 } from '..'
 import { runSurgicalExit } from '../../cache/quantum'
+import { invisibleGapsCaughtByGates } from '../../../quantum/apps'
 
 export {
   agentSubmissionProtocol,
@@ -95,6 +96,17 @@ export async function runMissionGateExit(root: string): Promise<number> {
   if (limits !== 0) return limits
   const structure = await runVerifyStructureExit(root)
   if (structure !== 0) return structure
+  // HARD invisible classes (also in limits:verify) — recompute at mission:gate call time
+  const invisible = invisibleGapsCaughtByGates()
+  process.stdout.write(
+    `${invisible.passed ? '✓' : '✗'} mission:gate · gaps/invisible — HARD=${invisible.hardOpenCount} ` +
+      `afterOpen=${invisible.afterOpen} afterClosed=${invisible.afterClosed} ` +
+      `(linear/rosetta · polarity · hex · theorem-const · anim)\n`,
+  )
+  for (const row of invisible.hardOpen) {
+    process.stderr.write(`  ✗ HARD ${row.id} — open=${row.open} · ${row.theorem}\n`)
+  }
+  if (!invisible.passed) return 1
   // HARD srcMerkle/quantumize regression; WARN phase timings — pair gate/slow-build
   return runSlowBuildIsQuantumGapGateExit(root)
 }
@@ -129,6 +141,16 @@ export function runVerifyLimitsExit(root: string): number {
       `(srcMerkle quantumize · phase timings WARN-only)\n`,
   )
   if (!slowBuild.passed) return 1
+  // HARD — invisible polarity/hex/theorem/anim gaps (call-time recompute)
+  const invisible = invisibleGapsCaughtByGates()
+  process.stdout.write(
+    `${invisible.passed ? '✓' : '✗'} limits:verify · gaps/invisible — HARD=${invisible.hardOpenCount} ` +
+      `afterOpen=${invisible.afterOpen} afterClosed=${invisible.afterClosed}\n`,
+  )
+  for (const row of invisible.hardOpen) {
+    process.stderr.write(`  ✗ HARD ${row.id} — open=${row.open} · ${row.theorem}\n`)
+  }
+  if (!invisible.passed) return 1
   return 0
 }
 

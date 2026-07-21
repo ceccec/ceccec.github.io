@@ -1121,6 +1121,8 @@ export function yinYangDimensionsSvg(opts: { frames?: number; scale?: number; an
   const rayHue = (ROSETTA_RAYS[ray]!.hue)
   const yang = (d: Dims) => scaleColor(scale, { seedHue: n((d.hueShift + rayHue) % 360), L: 1 - 3 / 16, C: 9 / 64 })
   const yin = (d: Dims) => scaleColor(scale, { seedHue: n((d.hueShift + rayHue + (9 * 5 * 4)) % 360), L: 5 / 16, C: 9 / 64 })
+  /** Stroke rides yang polarity (not default A432 flat) — invisible gap closed under color/review. */
+  const yangStroke = (d: Dims) => scaleColor(scale, { seedHue: n((d.hueShift + rayHue) % 360), L: 7 / 8, C: 9 / 64 })
   const dur = `dur="${fractalClockDur(6)}" repeatCount="indefinite"`
   const A = (attr: string, vals: string) => (animate ? `<animate attributeName="${attr}" values="${vals}" ${dur}/>` : '')
   const AT = (type: string, vals: string) => (animate ? `<animateTransform attributeName="transform" type="${type}" values="${vals}" ${dur} additive="sum"/>` : '')
@@ -1134,7 +1136,7 @@ export function yinYangDimensionsSvg(opts: { frames?: number; scale?: number; an
     AT('rotate', list((d) => n((d.twist - (9 / (5 * 4))) * (8 * 5)))),
     AT('scale', list((d) => n(d.breath))),
     AT('skewX', list((d) => n((d.spread - (1 / 2)) * 26))),
-    `<circle r="${R}" fill="${yang(d0)}" stroke="${scaleColor(scale, { L: 7 / 8, C: 9 / 64 })}" stroke-width="1.5">${A('fill', list(yang))}</circle>`,
+    `<circle r="${R}" fill="${yang(d0)}" stroke="${yangStroke(d0)}" stroke-width="1.5">${A('fill', list(yang))}${A('stroke', list(yangStroke))}</circle>`,
     `<path d="${dark}" fill="${yin(d0)}">${A('fill', list(yin))}</path>`,
     `<circle cx="0" cy="${-n(R / 2)}" r="${n(e)}" fill="${yin(d0)}">${A('r', list((d) => n(e * (d.shrink / (16 / (5 * 5))))))}${A('fill', list(yin))}</circle>`,
     `<circle cx="0" cy="${n(R / 2)}" r="${n(e)}" fill="${yang(d0)}">${A('r', list((d) => n(e * (d.shrink / (16 / (5 * 5))))))}${A('fill', list(yang))}</circle>`,
@@ -1214,7 +1216,7 @@ export function animationsDrivenByRosetta(matrix: MindMatrix = buildMatrix(), at
   })
 }
 
-/** A1 — linear animation gaps (yin-yang first); closed when exchange ≠ linear midpoint. */
+/** A1 — linear animation gaps (yin-yang first); closed when exchange ≠ linear midpoint + rosetta fold. */
 export function linearAnimationGapsInventory(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`linearAnimationGapsInventory:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const frames = 6 * 5
@@ -1225,6 +1227,12 @@ export function linearAnimationGapsInventory(matrix: MindMatrix = buildMatrix(),
     const yinYangLinear = Math.abs(exchangeMid - linearMid) <= 1
     const svg = yinYangDimensionsSvg({ frames, animate: true })
     const stamped = /data-drive="rosetta-vortex-exchange"/.test(svg)
+    const living = livingIChingSvg([1, 0, 1, 0, 1, 0], { animate: true, scale: 0 })
+    const livingOnFractalClock = living.includes('@keyframes') && living.includes('animation:')
+    const livingPolar = living.includes('oklch(')
+    const taijiAddress = toUuid(`rosetta-core:projection:taiji:${ray}:${ROSETTA_RAYS[ray]!.domain}`)
+    const animToolRay = rosettaRayOf('animations-rosetta')
+    const animToolAddress = toUuid(`rosetta-core:tool:animations-rosetta:${animToolRay}`)
     const rows = [
       {
         id: 'yin-yang-taiji-rotate',
@@ -1236,24 +1244,56 @@ export function linearAnimationGapsInventory(matrix: MindMatrix = buildMatrix(),
         route: '/en/#yinyang',
         receipt: toUuid(`linear-gap:taiji:${yinYangLinear}:${stamped}`),
       },
+      {
+        id: 'living-iching-fractal-clock',
+        process: 'livingIChingSvg',
+        kind: 'linear-forming' as const,
+        criterion: 'living I Ching motion must fold via fractalClockDur (one quantum clock), not bare linear CSS seconds',
+        slow: !livingOnFractalClock,
+        closed: livingOnFractalClock && livingPolar,
+        route: '/en/#yinyang',
+        receipt: toUuid(`linear-gap:living-iching:${livingOnFractalClock}:${livingPolar}`),
+      },
+      {
+        id: 'taiji-rosetta-address',
+        process: 'rosettaRayOf(taiji)',
+        kind: 'linear-forming' as const,
+        criterion: 'taiji projection must content-address via rosettaRayOf — no parallel wet ray map',
+        slow: !isUuid(taijiAddress) || ray !== rosettaRayOf('taiji'),
+        closed: isUuid(taijiAddress) && ray === rosettaRayOf('taiji'),
+        route: '/en/#yinyang',
+        receipt: toUuid(`linear-gap:taiji-address:${ray}`),
+      },
+      {
+        id: 'animations-rosetta-tool-address',
+        process: 'rosettaRayOf(animations-rosetta)',
+        kind: 'linear-forming' as const,
+        criterion: 'animations-rosetta tool must fold through rosetta ray address, not a linear side registry',
+        slow: !isUuid(animToolAddress) || animToolRay < 0,
+        closed: isUuid(animToolAddress) && animToolRay >= 0,
+        route: '/en/quantum-tools#anim-audit',
+        receipt: toUuid(`linear-gap:anim-tool-address:${animToolRay}`),
+      },
     ]
     const open = rows.filter((r) => r.slow && !r.closed)
     const facets = [
-      { facet: `inventory ${rows.length} linear-forming candidates (yin-yang first)`, on: rows.length >= 1 },
+      { facet: `inventory ${rows.length} linear-forming candidates (yin-yang + living + rosetta address)`, on: rows.length >= (2 + 2) },
       { facet: 'yin-yang linear rotate CLOSED (exchange ≠ 180° midpoint + data-drive stamp)', on: rows[0]!.closed },
+      { facet: 'living I Ching on fractal clock + polarity colors', on: rows[1]!.closed },
+      { facet: 'taiji + animations-rosetta addressed via rosettaRayOf', on: rows[2]!.closed && rows[3]!.closed },
       { facet: `open linear gaps = ${open.length}`, on: open.every((r) => r.criterion.length > 0) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`linear-anim-gaps:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('linear-animation-gaps-inventory', facets)
     return {
-      computes: sealed.ok,
+      computes: sealed.ok && open.length === 0,
       rows,
       open,
       openCount: open.length,
       closedCount: rows.length - open.length,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, ...rows.map((r) => r.receipt)])),
-      statement: `Linear animation gaps: open=${open.length} · yin-yang ${rows[0]!.closed ? 'CLOSED' : 'OPEN'}.`,
-      boundary: 'Architectural linear-forming gaps — not wall-clock FPS. HARMONY ≠ TRUTH.',
+      statement: `Linear animation gaps: open=${open.length} closed=${rows.length - open.length} · yin-yang ${rows[0]!.closed ? 'CLOSED' : 'OPEN'}.`,
+      boundary: 'Architectural linear-forming gaps without rosetta fold — not wall-clock FPS. HARMONY ≠ TRUTH.',
     }
   })
 }
@@ -1281,7 +1321,12 @@ export function livingIChingSvg(bits: number[], opts: { scale?: number; animate?
       const bitIndex = N - 1 - i // draw top→bottom; the bottom row (i=N−1) is line 1 = bit 0 (I Ching order)
       const bit = bits[bitIndex]
       const y = gap + i * (lh + gap)
-      const fill = scaleColor(scale * N + bitIndex, { css: true }) // the colour computed at this scale, per line
+      // Yang/yin polarity: complement hue + L band — not same-seed golden-angle only (color/review).
+      const fill = scaleColor(scale * N + bitIndex, {
+        css: true,
+        seedHue: bit ? A432_HUE : (A432_HUE + (9 * 5 * 4)) % 360,
+        L: bit ? 1 - 3 / 16 : 5 / 16,
+      })
       const role = N === 6 ? (i < 3 ? ' up' : ' lo') : '' // upper / lower trigram → opposite fold axis
       const cls = bit ? 'yang' : 'yin'
       const rects = bit

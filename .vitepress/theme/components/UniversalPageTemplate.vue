@@ -5,6 +5,8 @@ import { CORPUS_GRID_PAGE_SIZE, type UniversalPage } from '../../../src/wind/rou
 import { useCardMovie, useSiteLocale } from '../../lib/mounts'
 import DecodedCard from './DecodedCard.vue'
 import LinkedHeroCard from './LinkedHeroCard.vue'
+import ScientificPaperBody from './ScientificPaperBody.vue'
+import { sciencePaperBodyFromCorpusSections } from '../../../src/quantum/apps/index.ts'
 import { UiButton } from '../../lib/shadcn-ui.ts'
 
 function headingId(text: string, suffix: string): string {
@@ -65,6 +67,11 @@ const corpusProgressLabel = computed(() => {
   const total = page.value?.corpusItems.length ?? 0
   return pick(`Showing ${shown} of ${total}`, `Показани ${shown} от ${total}`)
 })
+
+const canonPaper = computed(() => {
+  const sp = page.value?.standardPaper
+  return sp ? sciencePaperBodyFromCorpusSections(sp) : null
+})
 </script>
 
 <template>
@@ -75,30 +82,11 @@ const corpusProgressLabel = computed(() => {
       <p v-if="page.description && !page.standardPaper" class="universal-page__desc">{{ page.description }}</p>
     </header>
 
-    <div v-if="page.standardPaper" class="standard-paper" data-logic="src/wind/learning/index.ts#paperParamsById">
-      <section>
-        <h2 :id="headingId('Precise statement', 'std-1')">1 · Precise statement</h2>
-        <p>{{ page.standardPaper.officialStatement }}</p>
-      </section>
-      <section>
-        <h2 :id="headingId('Detailed explanation', 'std-2')">2 · Detailed explanation</h2>
-        <p>{{ page.standardPaper.detailedExplanation }}</p>
-      </section>
-      <section>
-        <h2 :id="headingId('Formulas', 'std-3')">3 · Formulas</h2>
-        <pre class="standard-paper__formula"><code>{{ page.standardPaper.formula }}</code></pre>
-        <p class="standard-paper__meta">Source fold: <code>{{ page.standardPaper.formulaSource }}</code></p>
-      </section>
-      <section>
-        <h2 :id="headingId('Status', 'std-4')">4 · Status / what is proved at call time</h2>
-        <p><strong>{{ page.standardPaper.status }}</strong> — {{ page.standardPaper.statusDetail }}</p>
-        <p v-if="page.standardPaper.gap">Gap: {{ page.standardPaper.gap }}</p>
-        <dl class="standard-paper__locks">
-          <dt>physicalFtlClaim</dt><dd>{{ page.standardPaper.physicalFtlClaim }}</dd>
-          <dt>millenniumChallenge</dt><dd>false</dd>
-        </dl>
-      </section>
-    </div>
+    <ScientificPaperBody
+      v-if="canonPaper"
+      :paper="canonPaper"
+      logic="src/wind/learning/index.ts#paperParamsById"
+    />
 
     <h2
       v-if="page.kind === 'catch-all' && page.rosettaRay"
