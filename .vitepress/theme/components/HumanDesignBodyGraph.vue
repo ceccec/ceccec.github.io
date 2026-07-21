@@ -4,6 +4,8 @@ import { useData, useRoute } from 'vitepress'
 import {
   drawHumanDesignBodyGraph,
   humanDesignBodyGraphPanelComputes,
+  julianDayFromCivil,
+  MEEUS_J2000_CIVIL,
   MEEUS_J2000_JD,
 } from '../../../src/heaven/sky/astronomy/index'
 import { prefersReducedMotion, useVisibleMovieCanvas } from '@vp-lib/movie-canvas'
@@ -15,9 +17,14 @@ const route = useRoute()
 const { t } = useSiteLocale()
 const canvasHost = ref<HTMLElement | null>(null)
 const canvas = ref<HTMLCanvasElement | null>(null)
-const panel = humanDesignBodyGraphPanelComputes()
+const year = ref(MEEUS_J2000_CIVIL.year)
+const month = ref(MEEUS_J2000_CIVIL.month)
+const day = ref(MEEUS_J2000_CIVIL.day)
+const hourUt = ref(MEEUS_J2000_CIVIL.hourUt)
+const birthJd = computed(() => julianDayFromCivil(year.value, month.value, day.value, hourUt.value))
+const panel = computed(() => humanDesignBodyGraphPanelComputes(undefined, birthJd.value))
 const displayTitle = computed(() => t('Human Design BodyGraph'))
-const seedParts = computed(() => ['HumanDesignBodyGraph', panel.root, route.path] as const)
+const seedParts = computed(() => ['HumanDesignBodyGraph', panel.value.root, String(birthJd.value), route.path] as const)
 const reduce = prefersReducedMotion()
 const { isDark } = useData()
 
@@ -30,11 +37,18 @@ const { repaint } = useVisibleMovieCanvas({
     h: canvasHost.value?.clientHeight ?? 0,
   }),
   paint: (ctx, w, h, at) => {
-    drawHumanDesignBodyGraph(ctx, w, h, panel, { dark: isDark.value, reduce, at })
+    drawHumanDesignBodyGraph(ctx, w, h, panel.value, { dark: isDark.value, reduce, at })
   },
 })
 
-watch(isDark, () => repaint())
+watch([isDark, birthJd], () => repaint())
+
+function resetJ2000() {
+  year.value = MEEUS_J2000_CIVIL.year
+  month.value = MEEUS_J2000_CIVIL.month
+  day.value = MEEUS_J2000_CIVIL.day
+  hourUt.value = MEEUS_J2000_CIVIL.hourUt
+}
 </script>
 
 <template>
@@ -46,16 +60,40 @@ watch(isDark, () => repaint())
     :title="displayTitle"
   >
     <p class="hd-bodygraph__honesty">
-      Structure-only schematic from sealed W5 chart folds (wheel · channels · Meeus). Sample JD
-      {{ MEEUS_J2000_JD }} (J2000) — not a person. Profiling/aura claims remain refuted.
+      Structure-only (W3–W6). Symbolic JD sample — not a person. Profiling/aura refuted.
     </p>
+    <div class="hd-bodygraph__jd" role="group" :aria-label="t('Birth JD (symbolic)')">
+      <label>
+        <span>Y</span>
+        <input v-model.number="year" type="number" step="1" />
+      </label>
+      <label>
+        <span>M</span>
+        <input v-model.number="month" type="number" min="1" max="12" step="1" />
+      </label>
+      <label>
+        <span>D</span>
+        <input v-model.number="day" type="number" min="1" max="31" step="1" />
+      </label>
+      <label>
+        <span>UT</span>
+        <input v-model.number="hourUt" type="number" min="0" max="23.999" step="0.1" />
+      </label>
+      <UiBadge variant="outline">JD {{ birthJd }}</UiBadge>
+      <button type="button" class="hd-bodygraph__reset" @click="resetJ2000">
+        J2000
+      </button>
+    </div>
     <div class="hd-bodygraph__meta" role="status">
-      <UiBadge variant="outline">{{ panel.definedChannelCount }} defined channels</UiBadge>
-      <UiBadge variant="outline">{{ panel.activatedGates.length }} gates lit</UiBadge>
-      <UiBadge variant="outline">{{ panel.cuspCount }} cusp warnings</UiBadge>
+      <UiBadge variant="outline">{{ panel.definitionKind }}</UiBadge>
+      <UiBadge variant="outline">{{ panel.definedCenters.length }} defined · {{ panel.openCenters.length }} open</UiBadge>
+      <UiBadge variant="outline">{{ panel.definedChannelCount }} channels</UiBadge>
+      <UiBadge variant="outline">{{ panel.hangingGates.length }} hanging</UiBadge>
+      <UiBadge variant="outline">{{ panel.cuspCount }} cusps</UiBadge>
       <UiBadge :variant="panel.computes ? 'default' : 'outline'">
         {{ panel.computes ? 'computes' : 'open' }}
       </UiBadge>
+      <UiBadge v-if="birthJd === MEEUS_J2000_JD" variant="outline">J2000</UiBadge>
     </div>
     <div ref="canvasHost" class="hd-bodygraph__canvas-host">
       <canvas
@@ -79,6 +117,43 @@ watch(isDark, () => repaint())
   font-size: var(--ich-fs-sm, 0.875rem);
   line-height: calc(3 / 2);
   color: var(--vp-c-text-2);
+}
+
+.hd-bodygraph__jd {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ich-sp2);
+  margin-bottom: var(--ich-sp3);
+}
+
+.hd-bodygraph__jd label {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--ich-sp1, 0.25rem));
+  font-size: var(--ich-fs-sm, 0.875rem);
+  color: var(--vp-c-text-2);
+}
+
+.hd-bodygraph__jd input {
+  width: 4.5rem;
+  padding: 0.2rem 0.35rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: calc(var(--vp-movie-radius, 0.5rem) * calc(1 / 2));
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  font: inherit;
+}
+
+.hd-bodygraph__reset {
+  padding: 0.25rem 0.55rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: calc(var(--vp-movie-radius, 0.5rem) * calc(1 / 2));
+  background: transparent;
+  color: var(--vp-c-text-1);
+  font: inherit;
+  font-size: var(--ich-fs-sm, 0.875rem);
+  cursor: pointer;
 }
 
 .hd-bodygraph__meta {
