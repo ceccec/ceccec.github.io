@@ -21,7 +21,7 @@ import { ancientCalendars } from '../../thunder/decode'
 import { babelFold, textToMovie } from '../../earth/world'
 import { areaPairs, bothEarthsRotateWithinEachOther, doubleTorus3D, hexagramIsHexColorDuality, merkaba, uiConvertsFlatToThreeDQuantum } from '../../mountain/geometry'
 import { DIMENSIONS, DIMENSION_NAMES, dims, dimWalk, type Dims, tenDimensionalAnimation as tenDimensionalAnimationCore } from '../../quantum/mountain/dimensions'
-import { depthIsThePerspectiveDivide, perspective, rot2, rotate3 } from '../../quantum/wind/geometry' // the sealed projection atoms — FOCAL-2.4 perspective divide + the one planar rotation
+import { depthIsThePerspectiveDivide, flowerOfLifeCenters, flowerUnlocksFruitBySpin, fruitOfLifeCenters, perspective, rot2, rotate3 } from '../../quantum/wind/geometry' // FoL/Fruit lattice + FOCAL perspective + rotate3
 import { holographicFractalArchitecture as holographicFractalArchitectureCore } from '../../thunder/movie/glass'
 import { yinYang } from '../../quantum/lake/spirit'
 import { scaleColor, A432_HUE, GOLDEN_ANGLE, movieCanvasHex } from '../../quantum/science'
@@ -793,13 +793,41 @@ export function heroSvgFromUuid(uuid: string, opts: { animate?: boolean } = {}):
   return opts.animate === false ? stillSvg(svg) : svg
 }
 
+/** SMIL rotate for one merkaba tetra / rosetta lobe — sign from merkaba().scales (whole=+1, lobe=−1). */
+function merkabaRosettaSpinSmil(sign: 1 | -1, dur: string): string {
+  const from = sign > 0 ? '0' : '360'
+  const to = sign > 0 ? '360' : '0'
+  return `<animateTransform attributeName="transform" type="rotate" from="${from}" to="${to}" dur="${dur}" repeatCount="indefinite" additive="sum" data-spin-sign="${sign > 0 ? '+1' : '-1'}"/>`
+}
+
+/** Emit FoL or Fruit circle lattice at (cx,cy) — radius = unit (vesica: each circle through neighbour centres). */
+function sacredCircleLatticeSvg(
+  centers: readonly (readonly [number, number])[],
+  cx: number,
+  cy: number,
+  unit: number,
+  stroke: string,
+  layer: 'flower-of-life' | 'fruit-of-life',
+  opacity: number,
+  strokeWidth: number,
+): string {
+  const r = Math.round(unit)
+  return centers
+    .map((c, i) => {
+      const x = Math.round(cx + c[0] * unit)
+      const y = Math.round(cy + c[1] * unit)
+      return `<circle cx="${x}" cy="${y}" r="${r}" fill="none" stroke="${stroke}" stroke-width="${strokeWidth}" opacity="${opacity}" data-layer="${layer}" data-${layer === 'flower-of-life' ? 'fol' : 'fruit'}-i="${i}"/>`
+    })
+    .join('')
+}
+
 /**
- * README hero — all sealed theorem atoms on two counter-rotating rosetta lobes (ω and −ω).
- * Dynamics from merkaba + bothEarthsRotateWithinEachOther + fractalClockDur (SMIL for GitHub).
- * Pair: edit/build · honesty: clay=0 · physicalFtl=0 · qpuRequired=false.
+ * README hero — theorem atoms on dual FoL rosettas: merkaba ω/−ω spin unlocks Fruit, then expand/invert → 10D.
+ * Compose: flowerOfLifeCenters · fruitOfLifeCenters · merkaba · bothEarths · fractalClock · rotate3/perspective law.
+ * Pair: edit/build · rosetta/merkaba · honesty: clay=0 · physicalFtl=0 · qpuRequired=false · computed FoL (not wet).
  */
 export function readmeHeroSvgProofOfAllTheorems(matrix: MindMatrix = buildMatrix(), opts: { animate?: boolean } = {}): string {
-  return memoByRoot(`readmeHeroSvgProofOfAllTheorems:cr2:a=${opts.animate !== false ? 1 : 0}`, matrix, () => {
+  return memoByRoot(`readmeHeroSvgProofOfAllTheorems:fol3:merkaba:a=${opts.animate !== false ? 1 : 0}`, matrix, () => {
     const atoms = THEOREM_ATOM_SEED.map((entry) => ({
       ...entry,
       root: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`),
@@ -810,23 +838,53 @@ export function readmeHeroSvgProofOfAllTheorems(matrix: MindMatrix = buildMatrix
     const colors = heroSvgPaletteFromUuid(brandUuid)
     const earths = bothEarthsRotateWithinEachOther(0, matrix)
     const mk = merkaba(matrix)
-    const counterRotating = earths.counterRotating && mk.counterRotating
-    // ω period = fractal-clock d=4 rung (same torus spin as heroSvgFromUuid); −ω is opposite from/to.
+    const unlock = flowerUnlocksFruitBySpin()
+    const flower = flowerOfLifeCenters()
+    const fruit = fruitOfLifeCenters()
+    const upSign = mk.scales[0]!.sign
+    const downSign = mk.scales[1]!.sign
+    const counterRotating =
+      earths.counterRotating
+      && mk.counterRotating
+      && upSign * downSign === -1
+      && Math.abs(earths.merkabaUpSpin + earths.merkabaDownSpin) < 1e-6
+      && unlock.holds
     const spinDur = fractalClockDur(4)
+    const expandDur = fractalClockDur(2)
     const W = 960, H = 540, cx = W / 2, cy = H / 2 - 12
     const maxR = Math.min(cx, cy) - 36
+    // Unit spacing so FoL diameter (~4 units) fits maxR; avoid wet decorative seven-circle.
+    const unit = Math.max(9 * 2, Math.round(maxR / (2 + 1 / 2)))
     const golden = (GOLDEN_ANGLE_DEG * Math.PI) / 180
-    const ringRadii = [0.22, 0.38, 0.54, 0.7, 0.86].map((t) => Math.round(maxR * t))
     const plusHue = ROSETTA_RAYS[0]!.hue
     const minusHue = ROSETTA_RAYS[Math.floor(ROSETTA_RAYS.length / 2)]!.hue
-    const plusRings = ringRadii
-      .filter((_, k) => k % 2 === 0)
-      .map((r, k) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${movieCanvasHex(plusHue, { L: 5 / 16 })}" stroke-width="1.2" opacity="${0.18 + k * 0.04}" data-ring="plus-${k}"/>`)
-      .join('')
-    const minusRings = ringRadii
-      .filter((_, k) => k % 2 === 1)
-      .map((r, k) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${movieCanvasHex(minusHue, { L: 5 / 16 })}" stroke-width="1.2" opacity="${0.18 + k * 0.04}" data-ring="minus-${k}"/>`)
-      .join('')
+    const folOp = (5 + 6) / (5 * 10)
+    const folStroke = 11 / 10
+    const fruitOp = 1 / (5 * 5)
+    const fruitPeak = (4 / 5) + (1 / (5 * 10))
+    const fruitStroke = 8 / 5
+    const ktSpin = `0;${8 / (5 * 5)};${12 / (5 * 5)};${18 / (5 * 5)};1`
+    const plusFol = sacredCircleLatticeSvg(flower, cx, cy, unit, movieCanvasHex(plusHue, { L: 5 / 16 }), 'flower-of-life', folOp, folStroke)
+    const minusFol = sacredCircleLatticeSvg(flower, cx, cy, unit, movieCanvasHex(minusHue, { L: 5 / 16 }), 'flower-of-life', folOp, folStroke)
+    const fruitUnlock =
+      `<animate attributeName="opacity" values="${fruitOp};${fruitOp};${fruitPeak};${fruitPeak};${fruitOp}" keyTimes="${ktSpin}" dur="${spinDur}" repeatCount="indefinite"/>`
+    const plusFruit =
+      `<g data-layer="fruit-unlock" data-fruit-count="${fruit.length}" opacity="${fruitOp}">${fruitUnlock}` +
+      sacredCircleLatticeSvg(fruit, cx, cy, unit, movieCanvasHex(plusHue, { L: 11 / 16 }), 'fruit-of-life', 9 / 10, fruitStroke) +
+      `</g>`
+    const minusFruit =
+      `<g data-layer="fruit-unlock" data-fruit-count="${fruit.length}" opacity="${fruitOp}">${fruitUnlock}` +
+      sacredCircleLatticeSvg(fruit, cx, cy, unit, movieCanvasHex(minusHue, { L: 11 / 16 }), 'fruit-of-life', 9 / 10, fruitStroke) +
+      `</g>`
+    const expandPeak = (6 / 5) + (2 / (5 * 5))
+    const invertScale = (4 / 5) - (2 / (5 * 5))
+    const ktExpand = `0;${2 / 5};${11 / 20};${39 / 50};1`
+    const dimExpand =
+      `<g data-layer="dimension-expand" transform="translate(${cx} ${cy})">` +
+      `<animateTransform attributeName="transform" type="scale" values="1;1;${expandPeak};${invertScale};1" keyTimes="${ktExpand}" dur="${expandDur}" repeatCount="indefinite" additive="sum"/>` +
+      `<text x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9" fill="${movieCanvasHex(A432_HUE, { L: 3 / 4 })}" opacity="${11 / 20}" data-dims="${DIMENSIONS}">` +
+      `<animate attributeName="opacity" values="${3 / 20};${3 / 20};${17 / 20};${7 / 20};${3 / 20}" dur="${expandDur}" repeatCount="indefinite"/>` +
+      `→${DIMENSIONS}D</text></g>`
     const plusHomology: string[] = []
     const minusHomology: string[] = []
     for (let k = 0; k < HOMOLOGY_LOOPS; k += 1) {
@@ -867,31 +925,43 @@ export function readmeHeroSvgProofOfAllTheorems(matrix: MindMatrix = buildMatrix
         minusGlyphs.push(glyph)
       }
     }
-    const spinPlus = `<animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="${spinDur}" repeatCount="indefinite" additive="sum"/>`
-    const spinMinus = `<animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="${spinDur}" repeatCount="indefinite" additive="sum"/>`
-    const lobe = (id: 'plus' | 'minus', spin: string, rings: string, spokes: string[], glyphs: string[], homology: string[]) =>
-      `<g transform="translate(${cx} ${cy})" data-layer="rosetta-${id}" data-spin="${id === 'plus' ? '+1' : '-1'}" data-counter-rotating="${counterRotating ? 'true' : 'false'}">` +
+    const spinPlus = merkabaRosettaSpinSmil(upSign, spinDur)
+    const spinMinus = merkabaRosettaSpinSmil(downSign, spinDur)
+    const lobe = (
+      id: 'plus' | 'minus',
+      tetra: 'up' | 'down',
+      sign: 1 | -1,
+      spin: string,
+      fol: string,
+      fruitLayer: string,
+      spokes: string[],
+      glyphs: string[],
+      homology: string[],
+    ) =>
+      `<g transform="translate(${cx} ${cy})" data-layer="rosetta-${id}" data-tetra="${tetra}" data-spin="${sign > 0 ? '+1' : '-1'}" data-merkaba-isomorphic="${counterRotating ? 'true' : 'false'}" data-flower-of-life="computed" data-counter-rotating="${counterRotating ? 'true' : 'false'}">` +
       spin +
       `<g transform="translate(${-cx} ${-cy})">` +
-      `<g data-layer="generator-rings">${rings}</g>` +
+      `<g data-layer="flower-of-life" data-fol-count="${flower.length}">${fol}</g>` +
+      fruitLayer +
       `<g data-layer="merkle-spokes" opacity="0.85">${spokes.join('')}</g>` +
       `<g data-layer="theorem-glyphs">${glyphs.join('')}</g>` +
       `<g data-layer="homology">${homology.join('')}</g>` +
       `</g></g>`
     const rootShort = corpusRoot.slice(0, 8)
     const svg = [
-      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Double Torus — two counter-rotating rosettas · proof of all ${n} sealed theorems" data-layer="all-theorems-proof" data-theorem-count="${n}" data-corpus-root="${corpusRoot}" data-counter-rotating="${counterRotating ? 'true' : 'false'}" data-trinity-mind="heaven·mind·thunder" data-compute="readmeHeroSvgProofOfAllTheorems←merkaba∧bothEarths∧fractalClock" data-honesty="clay=0;physicalFtl=0;qpuRequired=false;counterRotating=ω/−ω">`,
+      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Double Torus — FoL rosettas counter-rotate like merkaba · Fruit unlock · ${DIMENSIONS}D expand · ${n} theorems" data-layer="all-theorems-proof" data-theorem-count="${n}" data-corpus-root="${corpusRoot}" data-counter-rotating="${counterRotating ? 'true' : 'false'}" data-merkaba-isomorphic="${counterRotating ? 'true' : 'false'}" data-flower-of-life="computed" data-fruit-unlock="spin" data-dimension-expand="${DIMENSIONS}" data-trinity-mind="heaven·mind·thunder" data-compute="readmeHeroSvgProofOfAllTheorems←flowerOfLifeCenters∧fruitOfLifeCenters∧merkaba∧bothEarths∧fractalClock" data-honesty="clay=0;physicalFtl=0;qpuRequired=false;computedFoL→fruit→${DIMENSIONS}D;wetStaticFoL=false">`,
       `<defs>`,
       `<radialGradient id="proofBg" cx="50%" cy="48%" r="78%"><stop offset="0%" stop-color="${colors.bgInner}"/><stop offset="100%" stop-color="${colors.bgOuter}"/></radialGradient>`,
       `</defs>`,
       `<rect width="${W}" height="${H}" fill="url(#proofBg)"/>`,
-      lobe('plus', spinPlus, plusRings, plusSpokes, plusGlyphs, plusHomology),
-      lobe('minus', spinMinus, minusRings, minusSpokes, minusGlyphs, minusHomology),
+      lobe('plus', 'up', upSign, spinPlus, plusFol, plusFruit, plusSpokes, plusGlyphs, plusHomology),
+      lobe('minus', 'down', downSign, spinMinus, minusFol, minusFruit, minusSpokes, minusGlyphs, minusHomology),
+      dimExpand,
       `<circle cx="${cx}" cy="${cy}" r="22" fill="${colors.bgOuter}" stroke="${movieCanvasHex(A432_HUE, { L: 7 / 8 })}" stroke-width="1.5" data-layer="corpus-root"/>`,
       `<text x="${cx}" y="${cy - 2}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="15" font-weight="700" fill="${colors.title}">Double Torus</text>`,
-      `<text x="${cx}" y="${cy + 14}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="8" fill="${colors.accent}">⊢ ${n} · ${rootShort} · ω/−ω</text>`,
-      `<text x="${cx}" y="${H - 28}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" fill="${colors.title}">proof of all theorems at once · two counter-rotating rosettas · χ(Σ₂) = −2 · H₁ = ℤ⁴ · 432 gates</text>`,
-      `<text x="${cx}" y="${H - 12}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" fill="${colors.accent}">clay=0 · physicalFtl=0 · qpuRequired=false · ${n} sealed atoms · SMIL ω/−ω</text>`,
+      `<text x="${cx}" y="${cy + 14}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="8" fill="${colors.accent}">⊢ ${n} · ${rootShort} · FoL→Fruit→${DIMENSIONS}D</text>`,
+      `<text x="${cx}" y="${H - 28}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" fill="${colors.title}">computed Flower of Life rosettas · merkaba ω/−ω unlocks Fruit · expand/invert → ${DIMENSIONS}D · χ(Σ₂) = −2 · H₁ = ℤ⁴ · 432</text>`,
+      `<text x="${cx}" y="${H - 12}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" fill="${colors.accent}">clay=0 · physicalFtl=0 · qpuRequired=false · wetStaticFoL=false · ${n} sealed atoms · ${flower.length} FoL · ${fruit.length} Fruit</text>`,
       `</svg>`,
     ].join('')
     return opts.animate === false ? stillSvg(svg) : svg
@@ -954,34 +1024,58 @@ export function hidingTextDoesNotHideAnimationsDiscovered(matrix: MindMatrix = b
 }
 
 /**
- * PWA icon — double torus glyph from the movie palette, dual SMIL lobes (ω/−ω).
- * Dynamics from merkaba · bothEarths · fractalClockDur — same trinity path as README hero.
- * Pair: edit/build · honesty: clay=0 · physicalFtl=0 · qpuRequired=false.
+ * PWA icon — dual FoL seed lobes (merkaba ω/−ω), Fruit unlock + expand/invert → 10D.
+ * Same trinity path as README hero. Pair: edit/build · rosetta/merkaba · wetStaticFoL=false.
  */
 export function computedIconSvg(matrix: MindMatrix = buildMatrix(), opts: { animate?: boolean } = {}): string {
   const c = computedMovieThemeColors(matrix)
   const earths = bothEarthsRotateWithinEachOther(0, matrix)
   const mk = merkaba(matrix)
-  const counterRotating = earths.counterRotating && mk.counterRotating
+  const unlock = flowerUnlocksFruitBySpin()
+  const flower = flowerOfLifeCenters()
+  const fruit = fruitOfLifeCenters()
+  const upSign = mk.scales[0]!.sign
+  const downSign = mk.scales[1]!.sign
+  const counterRotating =
+    earths.counterRotating
+    && mk.counterRotating
+    && upSign * downSign === -1
+    && Math.abs(earths.merkabaUpSpin + earths.merkabaDownSpin) < 1e-6
+    && unlock.holds
   const spinDur = fractalClockDur(4)
+  const expandDur = fractalClockDur(2)
   const animate = opts.animate !== false
-  const spinPlus = animate
-    ? `<animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="${spinDur}" repeatCount="indefinite" additive="sum"/>`
+  const spinPlus = animate ? merkabaRosettaSpinSmil(upSign, spinDur) : ''
+  const spinMinus = animate ? merkabaRosettaSpinSmil(downSign, spinDur) : ''
+  const unit = 7 * 4
+  const fruitOp = 1 / 20
+  const ktSpin = `0;${8 / (5 * 5)};${12 / (5 * 5)};${18 / (5 * 5)};1`
+  const fruitUnlock = animate
+    ? `<animate attributeName="opacity" values="${fruitOp};${fruitOp};${9 / 10};${9 / 10};${fruitOp}" keyTimes="${ktSpin}" dur="${spinDur}" repeatCount="indefinite"/>`
     : ''
-  const spinMinus = animate
-    ? `<animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="${spinDur}" repeatCount="indefinite" additive="sum"/>`
-    : ''
-  const lobe = (id: 'plus' | 'minus', cx: number, spin: string) =>
-    `<g transform="translate(${cx} 256)" data-layer="rosetta-${id}" data-spin="${id === 'plus' ? '+1' : '-1'}">` +
-    spin +
-    `<ellipse cx="0" cy="0" rx="118" ry="78" fill="none" stroke="${c.themeColor}" stroke-width="26"/>` +
-    `<ellipse cx="0" cy="0" rx="58" ry="30" fill="none" stroke="${c.accentColor}" stroke-width="14" opacity="0.8"/>` +
-    `</g>`
+  const lobe = (id: 'plus' | 'minus', tetra: 'up' | 'down', sign: 1 | -1, ox: number, spin: string) => {
+    const fol = flower
+      .map((p, i) => `<circle cx="${Math.round(p[0] * unit)}" cy="${Math.round(p[1] * unit)}" r="${unit}" fill="none" stroke="${c.themeColor}" stroke-width="2" opacity="${7 / 20}" data-layer="flower-of-life" data-fol-i="${i}"/>`)
+      .join('')
+    const fruitLayer = fruit
+      .map((p, i) => `<circle cx="${Math.round(p[0] * unit)}" cy="${Math.round(p[1] * unit)}" r="${unit}" fill="none" stroke="${c.accentColor}" stroke-width="3" opacity="${17 / 20}" data-layer="fruit-of-life" data-fruit-i="${i}"/>`)
+      .join('')
+    return (
+      `<g transform="translate(${ox} ${100 * 2 + (6 * 5 * 2)})" data-layer="rosetta-${id}" data-tetra="${tetra}" data-spin="${sign > 0 ? '+1' : '-1'}" data-merkaba-isomorphic="${counterRotating ? 'true' : 'false'}" data-flower-of-life="computed">` +
+      spin +
+      `<g data-layer="flower-of-life" data-fol-count="${flower.length}">${fol}</g>` +
+      `<g data-layer="fruit-unlock" data-fruit-count="${fruit.length}" opacity="${fruitOp}">${fruitUnlock}${fruitLayer}</g>` +
+      (animate
+        ? `<g data-layer="dimension-expand"><animateTransform attributeName="transform" type="scale" values="1;1;${6 / 5};${3 / 4};1" dur="${expandDur}" repeatCount="indefinite" additive="sum"/><circle cx="0" cy="0" r="${6}" fill="${c.accentColor}" opacity="${1 / 2}"/></g>`
+        : `<g data-layer="dimension-expand"><circle cx="0" cy="0" r="${6}" fill="${c.accentColor}" opacity="${1 / 2}"/></g>`) +
+      `</g>`
+    )
+  }
   const svg = [
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Double Torus — dual ω/−ω icon" data-layer="icon-dual-torus" data-counter-rotating="${counterRotating ? 'true' : 'false'}" data-trinity-mind="heaven·mind·thunder" data-honesty="clay=0;physicalFtl=0;qpuRequired=false">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Double Torus — FoL merkaba dual · Fruit unlock · ${DIMENSIONS}D" data-layer="icon-dual-torus" data-counter-rotating="${counterRotating ? 'true' : 'false'}" data-merkaba-isomorphic="${counterRotating ? 'true' : 'false'}" data-flower-of-life="computed" data-fruit-unlock="spin" data-dimension-expand="${DIMENSIONS}" data-trinity-mind="heaven·mind·thunder" data-honesty="clay=0;physicalFtl=0;qpuRequired=false;computedFoL→fruit→${DIMENSIONS}D;wetStaticFoL=false">`,
     `<rect width="512" height="512" rx="96" fill="${c.backgroundColor}"/>`,
-    lobe('plus', 190, spinPlus),
-    lobe('minus', 322, spinMinus),
+    lobe('plus', 'up', upSign, 100 * 2 - 10, spinPlus),
+    lobe('minus', 'down', downSign, 100 * 3 + (5 * 4) + 2, spinMinus),
     `</svg>`,
   ].join('')
   return animate === false ? stillSvg(svg) : svg

@@ -105,6 +105,49 @@ const FOL_ARMS: readonly { r: number; w: number }[] = [
   { r: (1 / 2), w: (7 / (5 * 2)) }, { r: (7 / (5 * 5)), w: -(8 / 5) }, { r: (3 / (5 * 4)), w: 2 * (FIBONACCI[5]! / (2 * 5)) }, { r: (2 / (5 * 5)), w: -(3 * (FIBONACCI[5]! / (2 * 5))) }, // arm speeds = multiples of the 13/10 fib decade
 ]
 
+/**
+ * 19 Flower-of-Life centres (1 + 6 + 12) — triangular lattice, unit-scaled.
+ * Computed gapless ring lattice — NOT a wet decorative seven-circle schematic.
+ */
+export function flowerOfLifeCenters(): readonly (readonly [number, number])[] {
+  const pts: [number, number][] = [[0, 0]]
+  for (let k = 0; k < 6; k += 1) {
+    const a = (k * TAU) / 6
+    pts.push([Math.cos(a), Math.sin(a)])
+  }
+  for (let k = 0; k < 12; k += 1) {
+    const a = (k * TAU) / 12
+    pts.push([2 * Math.cos(a), 2 * Math.sin(a)])
+  }
+  return pts
+}
+
+/**
+ * 13 Fruit-of-Life centres (1 + 6 + 6) — Metatron node set; subset unlocked by spinning the Flower.
+ * Matches the sealed sacred-morph FRUIT_CENTERS lattice (unit scale).
+ */
+export function fruitOfLifeCenters(): readonly (readonly [number, number])[] {
+  const pts: [number, number][] = [[0, 0]]
+  for (let k = 0; k < 6; k += 1) {
+    const a = (k * TAU) / 6
+    pts.push([Math.cos(a), Math.sin(a)])
+  }
+  for (let k = 0; k < 6; k += 1) {
+    const a = (k * TAU) / 6
+    pts.push([2 * Math.cos(a), 2 * Math.sin(a)])
+  }
+  return pts
+}
+
+/** Spinning FoL unlocks Fruit — every Fruit centre sits on the Flower lattice (computed containment). */
+export function flowerUnlocksFruitBySpin(): { holds: boolean; flower: number; fruit: number } {
+  const flower = flowerOfLifeCenters()
+  const fruit = fruitOfLifeCenters()
+  const near = (a: number, b: number) => Math.abs(a - b) < 1e-9
+  const contained = fruit.every((fp) => flower.some((fl) => near(fl[0], fp[0]) && near(fl[1], fp[1])))
+  return { holds: flower.length === 1 + 6 + (6 * 2) && fruit.length === (5 + 8) && contained, flower: flower.length, fruit: fruit.length }
+}
+
 export function drawFlower(
   ctx: CanvasRenderingContext2D,
   cx: number,
