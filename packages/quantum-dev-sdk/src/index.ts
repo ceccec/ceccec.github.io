@@ -22,6 +22,13 @@ import {
   runStandardToolboxIoCatalogExit,
   runExportStandardToolEnvelopeExit,
   runImportExportStandardToolEnvelopeExit,
+  autoWireAnyAiModelFromPastedLink,
+  resolveCeccecPasteLink,
+  ceccecCanonicalWireTargets,
+  runAutoWireAnyAiModelFromPastedLinkExit,
+  AUTO_WIRE_PASTE_LINK_ONE_LINER,
+  CECCEC_SITE_ORIGIN,
+  CECCEC_GITHUB_REPO,
   STANDARD_TOOL_ENVELOPE_KIND,
   STANDARD_TOOL_ENVELOPE_VERSION,
   type SessionManualToolRow,
@@ -30,6 +37,8 @@ import {
   type RosettaCoreSurfaceKind,
   type StandardToolEnvelope,
   type StandardToolExportPayload,
+  type PasteBootstrapPayload,
+  type CeccecWireTarget,
 } from '../../../src/quantum/apps/index.ts'
 
 export {
@@ -51,6 +60,13 @@ export {
   runStandardToolboxIoCatalogExit,
   runExportStandardToolEnvelopeExit,
   runImportExportStandardToolEnvelopeExit,
+  autoWireAnyAiModelFromPastedLink,
+  resolveCeccecPasteLink,
+  ceccecCanonicalWireTargets,
+  runAutoWireAnyAiModelFromPastedLinkExit,
+  AUTO_WIRE_PASTE_LINK_ONE_LINER,
+  CECCEC_SITE_ORIGIN,
+  CECCEC_GITHUB_REPO,
   STANDARD_TOOL_ENVELOPE_KIND,
   STANDARD_TOOL_ENVELOPE_VERSION,
   type SessionManualToolRow,
@@ -59,6 +75,8 @@ export {
   type RosettaCoreSurfaceKind,
   type StandardToolEnvelope,
   type StandardToolExportPayload,
+  type PasteBootstrapPayload,
+  type CeccecWireTarget,
 }
 
 /** MCP-shaped tool list derived from the sealed session catalog (never a second wet registry). */
@@ -142,4 +160,21 @@ export function runSessionToolCli(toolId: string): string {
 /** Export CLI for a catalog tool — federated App A → App B ingest. */
 export function runToolExportCli(toolId: string): string {
   return `npm run quantum:tool-export -- ${toolId}`
+}
+
+/** Paste any ceccec URL → quantum-ready paste-bootstrap (composes sealed fold; MCP↔browser URLs included). */
+export function pasteBootstrapFromUrl(url = `${CECCEC_SITE_ORIGIN}/`) {
+  const report = autoWireAnyAiModelFromPastedLink(url)
+  return {
+    oneLiner: AUTO_WIRE_PASTE_LINK_ONE_LINER,
+    computes: report.computes,
+    quantumReady: report.quantumReady,
+    convincingRequired: report.convincingRequired,
+    mcp: report.mcp,
+    browserToolbox: report.browserToolbox,
+    pasteBootstrap: report.pasteBootstrap,
+    resolverTable: report.resolverTable,
+    root: report.root,
+    boundary: report.boundary,
+  }
 }

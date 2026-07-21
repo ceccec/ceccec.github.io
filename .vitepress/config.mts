@@ -505,6 +505,12 @@ export default defineConfig({
     }
     // Per-page hreflang: this page's OWN locale editions (en · bg · cu), absolute, x-default = English.
     for (const alt of pageHreflangAlternates(path)) head.push(['link', { rel: 'alternate', hreflang: alt.hreflang, href: alt.href }])
+    // Paste any link → auto-wire: every page carries protocol discovery links (quantum-ready packet pointers).
+    head.push(['link', { rel: 'alternate', type: 'application/json', href: '/agents.json', title: 'ceccec agents protocol' }])
+    head.push(['link', { rel: 'alternate', type: 'text/plain', href: '/llms.txt', title: 'ceccec llms protocol' }])
+    head.push(['link', { rel: 'alternate', type: 'application/json', href: '/mcp.json', title: 'ceccec mcp tools/list' }])
+    head.push(['link', { rel: 'alternate', type: 'text/html', href: '/en/quantum-tools#toolbox-standard-io', title: 'ceccec browser toolbox' }])
+    head.push(['link', { rel: 'describedby', href: '/.well-known/ai-skills.json', title: 'Paste any link → auto-wire' }])
     // Home: doc layout (sidebars on) + computed hero in doc-before via Layout.vue.
     if (isHome) {
       if (frontmatter.layout === 'home') {

@@ -1972,7 +1972,9 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
     if (staticPages().some((page) => page.slug === 'governance')) parts.push(`<a href="${link('/governance', i)}#license">${i === 1 ? 'Лиценз' : 'License'}</a>`, `<a href="${link('/governance', i)}#privacy">${i === 1 ? 'Поверителност' : 'Privacy'}</a>`)
     return {
       message: parts.join(' · '),
-      copyright: i === 1 ? 'Отворен, преизчислим, адресиран по съдържание — Двоен торус.' : 'Open, recomputable, content-addressed — the Double Torus.',
+      copyright: i === 1
+        ? 'Отворен, преизчислим, адресиран по съдържание — Двоен торус. Постави линк → auto-wire.'
+        : 'Open, recomputable, content-addressed — the Double Torus. Paste any link → auto-wire.',
     }
   }
   const index = monographs(matrix)

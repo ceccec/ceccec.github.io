@@ -6,9 +6,11 @@ Thin, census-safe wrappers over sealed `src/` quantum tools. Improves token usag
 
 | Surface | What |
 |---|---|
-| `/agents.json` | session catalog + `standardToolboxIoCatalog` envelopes |
+| `/agents.json` | session catalog + `standardToolboxIoCatalog` envelopes + paste-bootstrap |
 | `/en/quantum-tools#toolbox-standard-io` | Standard I/O · import/export table |
 | `/en/quantum-tools#session-manual-tools` | Session tools table |
+| `/en/quantum-tools#auto-wire-paste-link` | Paste any link → auto-wire |
+| `npm run quantum:auto-wire-paste` | paste-bootstrap JSON from any ceccec URL |
 | `npm run quantum:toolbox-standard-io` | Envelope census + round-trip |
 | `npm run quantum:tool-import-export` | App A↔B import/export verify |
 | `rosettaShelve(id, 'tool')` | Content-addressed tool ray |

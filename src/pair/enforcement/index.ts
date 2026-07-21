@@ -90,6 +90,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'first/corpus',
   'session/tools',
   'session/quantum-bits',
+  'wire/paste-link',
   'tool/envelope',
   'import/export',
   'string/quantumize',
