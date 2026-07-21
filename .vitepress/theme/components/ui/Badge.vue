@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { cva } from 'class-variance-authority'
 import { cn } from '../../../lib/cn.ts'
-import { STATUS_BADGE_KINDS, type StatusBadgeKind } from '../../../../src/earth/architecture/index.ts'
+import { STATUS_BADGE_KINDS, type StatusBadgeKind } from '../../../lib/status-badge'
 
 const badgeVariants = cva('ui-badge', {
   variants: {

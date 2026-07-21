@@ -44,7 +44,18 @@ import { atoms, conceptCommands, computePiDigits, PI_TRAIN_DIGITS, REQUIRED_DIAM
 import { cssIsIChingComputed } from '../../earth/architecture'
 import { ICHING_NUMBERS } from '../../earth/architecture'
 export { ICHING_NUMBERS } from '../../earth/architecture'
-export { cssIsIChingComputed, ichingTokens, ichingTokensCss, scanCssForHardcoded, cssMathProvenByMath } from '../../earth/architecture'
+export {
+  cssIsIChingComputed,
+  ichingTokens,
+  ichingTokensCss,
+  scanCssForHardcoded,
+  cssMathProvenByMath,
+  STATUS_BADGE_KINDS,
+  statusBadgeKind,
+  statusBadgeTokens,
+  statusBadgePalette,
+} from '../../earth/architecture'
+export type { StatusBadgeKind } from '../../earth/architecture'
 
 // ☱ Duì · Lake · joyous · lower·yin · spread — Merkle proof utilities + quantum network verification
 import { merkleProof, verifyMerkleProof, quantumNetworkHashing, atomInclusionProof } from '../../lake/ledger'

@@ -2270,6 +2270,24 @@ export function statusBadgeKind(
   return 'gap'
 }
 
+/** Reusable status→CSS-var surface for panels/UX (sibling-safe): fill · fg · soft + BEM class. */
+export function statusBadgeTokens(kind: StatusBadgeKind = 'ready') {
+  const k = (STATUS_BADGE_KINDS as readonly string[]).includes(kind) ? kind : 'gap'
+  return {
+    kind: k as StatusBadgeKind,
+    fill: `var(--status-${k})`,
+    fg: `var(--status-${k}-fg)`,
+    soft: `var(--status-${k}-soft)`,
+    className: `ui-badge--status-${k}`,
+    kinds: STATUS_BADGE_KINDS,
+  }
+}
+
+/** Full palette table — every kind’s CSS vars (light/dark resolved by theme tokens.css). */
+export function statusBadgePalette() {
+  return STATUS_BADGE_KINDS.map((kind) => statusBadgeTokens(kind))
+}
+
 /** @rosetta ✦₀ · Heaven · creative */
 export function cssIsIChingComputed(matrix: { root: string } = { root: toUuid('iching-css') }) {
   const { light, aliases, dark } = ichingTokens()

@@ -224,6 +224,7 @@ export function collectEnforcementFacts(root: string): EnforcementFacts {
       '.vitepress/lib/earth-hinge.ts',
       '.vitepress/lib/shadcn-ui.ts',
       '.vitepress/lib/cn.ts',
+      '.vitepress/lib/status-badge.ts',
       '.vitepress/lib/dev-memory-budget.mts',
       '.vitepress/lib/dev-server-bind.mts',
     ]),

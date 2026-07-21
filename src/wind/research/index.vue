@@ -6,7 +6,7 @@ import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.v
 import UiBadge from '../../../.vitepress/theme/components/ui/Badge.vue'
 import UiButton from '../../../.vitepress/theme/components/ui/Button.vue'
 import UiSeparator from '../../../.vitepress/theme/components/ui/Separator.vue'
-import { statusBadgeKind } from '../../earth/architecture/index.ts'
+import { statusBadgeKind } from '../../../.vitepress/lib/status-badge'
 
 const panel = shallowRef(researchPanelComputes())
 const millennium = shallowRef(millenniumPanelComputes())

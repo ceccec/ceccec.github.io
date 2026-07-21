@@ -57,33 +57,17 @@ import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.v
 import UiBadge from '../../../.vitepress/theme/components/ui/Badge.vue'
 import UiButton from '../../../.vitepress/theme/components/ui/Button.vue'
 import UiSeparator from '../../../.vitepress/theme/components/ui/Separator.vue'
-/** Compose with CSS PR statusBadgeKind when landed — local map until then (do not clobber Badge.vue). */
-type StatusBadgeKind = 'ready' | 'ok' | 'gap' | 'warn' | 'partial' | 'error' | 'refused' | 'ci'
-function statusBadgeKind(input: boolean | StatusBadgeKind | string): StatusBadgeKind {
-  if (input === true || input === 'ready' || input === 'covered' || input === 'closed') return 'ready'
-  if (input === 'ok') return 'ok'
-  if (input === 'partial') return 'partial'
-  if (input === 'warn' || input === 'open') return 'warn'
-  if (input === 'error') return 'error'
-  if (input === 'refused') return 'refused'
-  if (input === 'ci') return 'ci'
-  if (input === false || input === 'gap') return 'gap'
-  const lower = String(input).toLowerCase()
-  if (/refus|reject|fail|denied/.test(lower)) return 'refused'
-  if (/error|broken|hard/.test(lower)) return 'error'
-  if (/warn|open/.test(lower)) return 'warn'
-  if (/partial/.test(lower)) return 'partial'
-  if (/ci.?only|node|stdio/.test(lower)) return 'ci'
-  if (/ready|ok|closed|pass|covered|✓/.test(lower)) return 'ready'
-  return 'gap'
-}
+import { statusBadgeKind, statusBadgeTokens, type StatusBadgeKind } from '../../../.vitepress/lib/status-badge'
 
+/** Session hub badge props — class uses sealed ui-badge--status-* → --status-* tokens. */
 function badgeProps(input: boolean | StatusBadgeKind | string) {
   const status = statusBadgeKind(input)
+  const tokens = statusBadgeTokens(status)
   const okish = status === 'ready' || status === 'ok'
   return {
     variant: (okish ? 'default' : 'outline') as 'default' | 'outline',
-    class: `ui-badge--status-${status}`,
+    status,
+    class: tokens.className,
   }
 }
 

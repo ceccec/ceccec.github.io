@@ -56,7 +56,19 @@ import { atoms, conceptCommands, computePiDigits, PI_TRAIN_DIGITS, REQUIRED_DIAM
 // The I Ching computed CSS — the theme's design system derived from canonical I Ching numbers (no hardcoded
 // values). Imported here so the census proves it; re-exported so the dist generator can emit tokens.css.
 import { cssIsIChingComputed, cssMathProvenByMath, ICHING_NUMBERS } from '../../earth/architecture'
-export { cssIsIChingComputed, ichingTokens, ichingTokensCss, scanCssForHardcoded, cssMathProvenByMath, ICHING_NUMBERS } from '../../earth/architecture'
+export {
+  cssIsIChingComputed,
+  ichingTokens,
+  ichingTokensCss,
+  scanCssForHardcoded,
+  cssMathProvenByMath,
+  ICHING_NUMBERS,
+  STATUS_BADGE_KINDS,
+  statusBadgeKind,
+  statusBadgeTokens,
+  statusBadgePalette,
+} from '../../earth/architecture'
+export type { StatusBadgeKind } from '../../earth/architecture'
 
 
 
