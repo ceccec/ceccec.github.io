@@ -121,6 +121,63 @@ runTool()
         <p class="encryption-tools__boundary">{{ result.boundary }}</p>
       </section>
       <UiSeparator />
+      <section id="local-reverse-timed-vs-standards" aria-label="Local reverse timed versus standards">
+        <h3>Local reverse timed vs ISO/NIST standards</h3>
+        <p class="encryption-tools__lede">
+          Toy DEMO_RSA_MODULI wall-clock vs estimated classical security work. demo ≠ AES wire · certified=false · does NOT break NIST PQC · reference bounds only (this repo is not the ISO standard).
+        </p>
+        <UiBadge :variant="result?.localTimed?.computes ? 'default' : 'outline'">
+          rev={{ result?.localTimed?.reverseMs?.toFixed?.(3) ?? panel.localTimed?.reverseMs?.toFixed?.(3) ?? '—' }}ms
+          · ops/s={{ result?.localTimed?.aggregateOpsPerSec?.toFixed?.(3) ?? panel.localTimed?.aggregateOpsPerSec?.toFixed?.(3) ?? '—' }}
+          · breaksNistPqc={{ result?.localTimed?.breaksNistPqc ?? panel.localTimed?.breaksNistPqc ?? false }}
+        </UiBadge>
+        <table class="encryption-tools__table">
+          <thead>
+            <tr><th>N</th><th>Bits</th><th>reverseMs</th><th>ops/s</th></tr>
+          </thead>
+          <tbody>
+            <tr v-for="row in (result?.localTimed?.timed?.rows ?? panel.localTimed?.timed?.rows ?? [])" :key="row.N">
+              <td><code>{{ row.N }}</code></td>
+              <td>{{ row.bits }}</td>
+              <td>{{ row.reverseMs.toFixed(3) }}</td>
+              <td>{{ row.opsPerSec.toFixed(3) }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="encryption-tools__table">
+          <thead>
+            <tr><th>Standard</th><th>Classical bits</th><th>log₂(est sec)</th><th>Breaks?</th></tr>
+          </thead>
+          <tbody>
+            <tr v-for="c in (result?.comparisons ?? panel.localTimed?.comparisons ?? [])" :key="c.id">
+              <td><code>{{ c.id }}</code></td>
+              <td>{{ c.classicalSecurityBits }}</td>
+              <td>{{ c.estimatedClassicalLog2Sec.toFixed(1) }}</td>
+              <td>{{ c.breaksStandard }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="encryption-tools__boundary">{{ result?.localTimed?.boundary ?? panel.localTimed?.boundary }}</p>
+      </section>
+      <UiSeparator />
+      <section id="prove-local-novel-encrypt" aria-label="Prove local novel encryption security">
+        <h3>Local novel-encryption security proof</h3>
+        <p class="encryption-tools__lede">
+          Structural + adversarial + measured-local. Composes ISO/NIST standards map as reference bounds only — this repo is NOT the ISO standard. productionReverseRefused · fieldHistory=none · certified=false.
+        </p>
+        <UiBadge :variant="(result?.localNovel?.localSecurityProved ?? panel.localNovel?.localSecurityProved) ? 'default' : 'outline'">
+          localSecurityProved={{ result?.localNovel?.localSecurityProved ?? panel.localNovel?.localSecurityProved ?? '—' }}
+          · thisRepoIsNotTheIsoStandard={{ result?.localNovel?.thisRepoIsNotTheIsoStandard ?? panel.localNovel?.thisRepoIsNotTheIsoStandard ?? true }}
+        </UiBadge>
+        <ul class="encryption-tools__list">
+          <li v-for="c in (result?.localNovel?.inventory?.components ?? panel.localNovel?.inventory?.components ?? [])" :key="c.id">
+            <UiBadge variant="outline">{{ c.kind }}</UiBadge>
+            {{ c.id }} — {{ c.fold }}
+          </li>
+        </ul>
+        <p class="encryption-tools__boundary">{{ result?.localNovel?.boundary ?? panel.localNovel?.boundary }}</p>
+      </section>
+      <UiSeparator />
       <section id="iso-pqc-catalog" aria-label="ISO NIST PQC catalog">
         <h3>ISO / NIST PQC catalog</h3>
         <p class="encryption-tools__meta">
