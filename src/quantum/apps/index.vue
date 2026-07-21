@@ -904,7 +904,7 @@ function runTool(toolId: string) {
         <p class="quantum-apps__meta">
           Stdio: <code>{{ upgradeLocal.stdioToolIds?.join(' · ') }}</code> ·
           docs:build flag <code>QUANTUM_DEV_ALLOW_DOCS_BUILD=1</code> ·
-          Automations: npm-script path (/automate nightly parked).
+          Automations: npm-script path (/automate nightly shipped · <code>npm run quantum:automate-nightly</code>).
         </p>
         <UiButton size="sm" :disabled="runningId === 'upgrade-local-skills-commands-tools'" @click="runTool('upgrade-local-skills-commands-tools')">
           {{ runningId === 'upgrade-local-skills-commands-tools' ? '…' : 'Run upgrade-local receipt' }}

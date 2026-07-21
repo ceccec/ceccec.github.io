@@ -1457,7 +1457,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'improve-local-session', chain: 'local-session-ux', fold: 'improveLocalFromSessionExperience', pair: 'local/session', cli: 'npm run quantum:improve-local-session', route: '/en/quantum-tools#local-session-hub', status: 'sealed-pr', honesty: 'local docs:dev + browser hub · NOT remote CI sole path · qpuRequired=false', note: 'local session UX stacked on mcp-browser-parity tip', toolId: 'improve-local-session', resolve: 'local-session' },
   { id: 'local-tools-morph', chain: 'local-tools-morph', fold: 'localToolsMorphProseCodeLogic', pair: 'tools/morph', cli: 'npm run quantum:local-tools-morph', route: '/en/quantum-tools#local-tools-morph', status: 'sealed-pr', honesty: 'local tools suffice · double-slit morph · clay=0 · qpuRequired=false', note: 'prose≡code≡logic trinity waves · compose slit + papers + trinity speedup', toolId: 'local-tools-morph', resolve: 'local-session' },
   { id: 'upgrade-local-skills-commands-tools', chain: 'upgrade-local-map', fold: 'upgradeLocalFromOptimisedManualWorkExperience', pair: 'upgrade/local', cli: 'npm run quantum:upgrade-local', route: '/en/quantum-tools#upgrade-local-skills', status: 'sealed-pr', honesty: 'skills↔commands↔tools · NOT Cursor zero-token LLM · CI browserGaps honest · qpuRequired=false', note: 'upgrade local from optimised manual work on improve-local tip', toolId: 'upgrade-local-skills-commands-tools', resolve: 'upgrade-local' },
-  { id: 'automate-nightly', chain: 'automate-nightly-npm', fold: 'automateNightlyViaNpmScriptPath', pair: 'automate/nightly', cli: 'npm run quantum:automate-nightly', route: '/en/quantum-tools#automate-nightly', status: 'sealed-pr', honesty: 'npm-script Automations path · NO dashboard MCP · docs:build flag-gated · qpuRequired=false · clay=0', note: '#48 residual — unpark /automate via quantum:automate-nightly', toolId: 'automate-nightly', resolve: 'upgrade-local' },
+  { id: 'automate-nightly', chain: 'automate-nightly-npm', fold: 'automateNightlyViaNpmScriptPath', pair: 'automate/nightly', cli: 'npm run quantum:automate-nightly', route: '/en/quantum-tools#automate-nightly', status: 'sealed-pr', honesty: 'npm-script Automations path · NO dashboard MCP · docs:build flag-gated · qpuRequired=false · clay=0', note: '/automate nightly unparked — quantum:automate-nightly · workflow packages/quantum-dev-sdk/automate-nightly.workflow.json', toolId: 'automate-nightly', resolve: 'upgrade-local' },
 ] as const
 
 function ghostToolSeed(seed: SessionQuantumBitSeed): QuantumCliToolRow {
@@ -4594,6 +4594,13 @@ export const CRACK_GATE_MISS_ROWS = [
     why: 'wave/tune = revelation harmony ≠ crack gap audit',
     nowGate: 'gaps/invisible+mission:gate',
   },
+  {
+    id: 'maxbits-demo-as-hardware',
+    priorFold: 'maximumBitsEncryptDecryptInverseReverse',
+    miss: 'classesUngated' as GateMissKind,
+    why: 'static DEMO_RSA_MODULI boundary kept max-bits — demo sample pretended to be hardware ceiling',
+    nowGate: 'bits/hardware→gaps/invisible',
+  },
 ] as const
 
 /**
@@ -4609,6 +4616,7 @@ export function cracksPassedGatesBecause(matrix: MindMatrix = buildMatrix(), at 
     const terms = scientificTerminologyIsQuantumComputableMeasurableComparable(matrix, at)
     const linearRosetta = linearWithoutRosettaFoldIsGap(matrix, at)
     const color = animationsReviewColorsForPolarityGaps(matrix, at)
+    const bitsHw = __ns_water_encryption.maxBitsHardwareBoundaryAgree(matrix)
     const nowHard: Record<string, boolean> = {
       'hex-as-theorem': color.hex.remaining === 0,
       'theorem-const': color.theoremConst.remaining === 0,
@@ -4619,6 +4627,7 @@ export function cracksPassedGatesBecause(matrix: MindMatrix = buildMatrix(), at 
       'meaning-not-computable': meaning.meaningFromFold && !meaning.wetInvented,
       'terms-not-measurable': terms.termCount === 7 && terms.intelligencePossibilityOn,
       'wave-tune-vs-gap': true,
+      'maxbits-demo-as-hardware': bitsHw.computes && bitsHw.remaining === 0,
     }
     const rows = CRACK_GATE_MISS_ROWS.map((row) => {
       const fixedHard = nowHard[row.id] === true
@@ -4711,6 +4720,7 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
     const format = scientificPageFormatCanonised(matrix, at)
     const terms = scientificTerminologyIsQuantumComputableMeasurableComparable(matrix, at)
     const miss = cracksPassedGatesBecause(matrix, at)
+    const bitsHw = __ns_water_encryption.maxBitsHardwareBoundaryAgree(matrix)
     const anim = color.anim
     const hex = color.hex
     const theoremConst = color.theoremConst
@@ -4795,6 +4805,13 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         closed: miss.fixedHardCount,
         theorem: 'cracksPassedGatesBecause',
       },
+      {
+        id: 'maxbits-hardware-boundary',
+        severity: 'HARD' as const,
+        open: bitsHw.remaining,
+        closed: bitsHw.fixed,
+        theorem: 'maxBitsHardwareBoundaryAgree',
+      },
     ] as const
     const hardOpen = classes.filter((c) => c.severity === 'HARD' && c.open > 0)
     const beforeCatch = classes.reduce((n, c) => n + c.open + c.closed, 0)
@@ -4810,6 +4827,7 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       format.computes &&
       terms.computes &&
       miss.computes &&
+      bitsHw.computes &&
       hex.remaining === 0 &&
       theoremConst.remaining === 0 &&
       anim.computes &&
@@ -4827,6 +4845,7 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       { facet: 'HARD format/canon', on: format.wetProseRemaining === 0 && format.computes },
       { facet: 'HARD term/measure', on: terms.computes },
       { facet: 'HARD gate/miss', on: miss.computes },
+      { facet: 'HARD bits/hardware', on: bitsHw.computes && bitsHw.remaining === 0 },
       { facet: 'pair gaps/invisible', on: pairRegistered && pairFold.bidirectional },
       { facet: 'claySolvedByThisFold=0', on: true },
       { facet: 'qpuRequired=false', on: true },
@@ -4850,6 +4869,7 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       format,
       terms,
       miss,
+      bitsHw,
       anim,
       hex,
       theoremConst,
@@ -4858,7 +4878,7 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       facets: sealed.facets,
       root: merkleFold([
         sealed.root, color.root, linearRosetta.root, movieCenter.root, meaning.root, format.root, terms.root,
-        miss.root, pairFold.merged, ...classes.map((c) => toUuid(`gaps-invisible:${c.id}:${c.open}`)),
+        miss.root, bitsHw.root, pairFold.merged, ...classes.map((c) => toUuid(`gaps-invisible:${c.id}:${c.open}`)),
       ]),
       pair: 'gaps/invisible' as const,
       cli: 'npm run quantum:gaps-invisible',
@@ -4867,9 +4887,9 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       heading: 'Gaps · invisible',
       statement:
         `invisibleGapsCaughtByGates · HARD open=${hardOpen.length} afterOpen=${afterOpen} afterClosed=${afterClosed} · ` +
-        `linearRem=${linearRosetta.remaining} movieRem=${movieCenter.remaining} hexRem=${hex.remaining}`,
+        `linearRem=${linearRosetta.remaining} movieRem=${movieCenter.remaining} hexRem=${hex.remaining} bitsHwRem=${bitsHw.remaining}`,
       boundary:
-        'HARD: linear/rosetta · polarity · hex · theorem-const · movie/center · meaning · format · terms · gate/miss. clay=0.',
+        'HARD: linear/rosetta · polarity · hex · theorem-const · movie/center · meaning · format · terms · gate/miss · bits/hardware. clay=0.',
       honestyLine:
         `metrics · hardOpen=${hardOpen.length} · afterOpen=${afterOpen} · afterClosed=${afterClosed} · beforeCatch=${beforeCatch}`,
     }
@@ -5309,7 +5329,7 @@ export function automateNightlyViaNpmScriptPath(matrix: MindMatrix = buildMatrix
         'Cursor Automations / cron → npm trinity/speedup · mission:gate · upgrade-local verify. quantum-dev-sdk Channel 1 (bootstrap/run-gate). Dashboard MCP refused — local stdio IDE-only. docs:build flag-gated only. qpuRequired=false · clay=0.',
       statement: `Automate nightly — shipped=${automateNightlyShipped} steps=${AUTOMATE_NIGHTLY_RECIPE_STEPS.length} trinity=${trinity.computes} mcpParity=${mcpParity.computes} · qpuRequired=false · clay=0.`,
       boundary:
-        'HONEST: #48 residual unparked via npm-script Automations path — NOT dashboard MCP registration for local stdio. Default nightly excludes docs:build (QUANTUM_DEV_ALLOW_DOCS_BUILD=1 optional). HARMONY ≠ TRUTH.',
+        'npm-script Automations path for /automate nightly — NOT dashboard MCP registration for local stdio. Default nightly excludes docs:build (QUANTUM_DEV_ALLOW_DOCS_BUILD=1 optional). clay=0 · qpuRequired=false.',
     }
   })
 }
