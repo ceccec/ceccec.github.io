@@ -957,8 +957,93 @@ export function alchemySigilsSvg(opts: { size?: number; animate?: boolean; scale
 }
 
 /**
+ * Living Glagolitic SMIL layer — sealed GLAGOLITIC_LETTERS on TAU ring + value ticks.
+ * Glyphs from library table (computed); SMIL spin/pulse — not wet static labels · clay=0.
+ */
+export function glagoliticLivingSmilSvg(opts: { size?: number; animate?: boolean; scale?: number } = {}): string {
+  const { size = FIBONACCI[2 * 5]!, animate = true, scale = 0 } = opts
+  const cx = size / 2
+  const cy = size / 2
+  const R = size / (2 + 1 / PHI)
+  const n = GLAGOLITIC_LETTERS.length
+  const sample = glagoliticGlyph('symbols-quantumise-living-smil')
+  const cells = GLAGOLITIC_LETTERS.map((letter, i) => {
+    const a = (i / n) * TAU - Math.PI / 2
+    const x = cx + Math.cos(a) * R
+    const y = cy + Math.sin(a) * R
+    const val = glagoliticValue(i + 1)
+    const fill = scaleColor(scale + i, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })
+    const tickR = R * (1 + 1 / (8 * PHI))
+    const tx = cx + Math.cos(a) * tickR
+    const ty = cy + Math.sin(a) * tickR
+    return [
+      `<g data-glagolitic-name="${letter.name}" data-glagolitic-value="${val}" data-sound="${letter.sound}">`,
+      `<line x1="${x}" y1="${y}" x2="${tx}" y2="${ty}" stroke="${fill}" stroke-width="${3 / 5}" opacity="${1 / 2}"/>`,
+      `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" font-size="${size / (8 + 5)}" fill="${fill}">${letter.glyph}</text>`,
+      `</g>`,
+    ].join('')
+  }).join('')
+  const dur = fractalClockDur(8)
+  const spin = animate
+    ? `<animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="360 ${cx} ${cy}" dur="${dur}" repeatCount="indefinite"/>`
+    : ''
+  const pulse = animate
+    ? `<animate attributeName="opacity" values="${3 / 5};1;${3 / 5}" dur="${fractalClockDur(5)}" repeatCount="indefinite"/>`
+    : ''
+  return [
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Living Glagolitic — sealed letters on TAU SMIL ring" data-symbol="glagolitic-glyphs" data-letters="${n}" data-sample-glyph="${sample}" data-compute="GLAGOLITIC_LETTERS∧glagoliticValue∧glagoliticGlyph∧TAU" data-honesty="clay=0;livingSmil=true;wetStatic=false;labelLiteral=false">`,
+    `<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${scaleColor(scale, { seedHue: A432_HUE + GOLDEN_ANGLE_DEG, dark: true, L: 1 / 2, C: SVG_CHROMA / 2 })}" stroke-width="0.8" opacity="${2 / 5}"/>`,
+    `<g opacity="${1 - 1 / (5 * 4)}">${pulse}<g>${spin}${cells}</g></g></svg>`,
+  ].join('')
+}
+
+/**
+ * Torus-knot SVG — Fibonacci (p,q) coprime pairs projected + counter-rotating SMIL (±ω).
+ * Composes livingTorus / merkaba geometry; 2D schematic — NOT physical FTL · clay=0.
+ */
+export function torusKnotsSvg(opts: { size?: number; animate?: boolean; scale?: number } = {}): string {
+  const { size = FIBONACCI[2 * 5]!, animate = true, scale = 0 } = opts
+  const cx = size / 2
+  const cy = size / 2
+  const R = size / (2 + 1 / PHI)
+  const r = R / PHI
+  const pairs: readonly { p: number; q: number }[] = [
+    { p: FIBONACCI[1]!, q: FIBONACCI[2]! }, // (2,3)
+    { p: FIBONACCI[2]!, q: FIBONACCI[3]! }, // (3,5)
+    { p: FIBONACCI[3]!, q: FIBONACCI[4]! }, // (5,8)
+  ]
+  const steps = 8 * 8
+  const pathFor = (p: number, q: number) => {
+    const pts: string[] = []
+    for (let i = 0; i <= steps; i++) {
+      const t = (i / steps) * TAU
+      const tube = R * (3 / 5) + r * Math.cos(q * t)
+      const x = cx + tube * Math.cos(p * t)
+      const y = cy + tube * Math.sin(p * t)
+      pts.push(`${x},${y}`)
+    }
+    return pts.join(' ')
+  }
+  const knots = pairs.map((pair, i) => {
+    const stroke = scaleColor(scale + i, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })
+    const sign = i % 2 === 0 ? 1 : -1
+    const dur = fractalClockDur(6 + i)
+    const spin = animate
+      ? `<animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="${sign * 360} ${cx} ${cy}" dur="${dur}" repeatCount="indefinite" additive="sum" data-spin-sign="${sign > 0 ? '+1' : '-1'}"/>`
+      : ''
+    const coprime = gcd(pair.p, pair.q) === 1
+    return `<g data-torus-knot="T(${pair.p},${pair.q})" data-p="${pair.p}" data-q="${pair.q}" data-coprime="${coprime}">${spin}<polyline points="${pathFor(pair.p, pair.q)}" fill="none" stroke="${stroke}" stroke-width="${1 + 1 / PHI}" stroke-linecap="round" opacity="${3 / 5 + i / (8 * 2)}"/></g>`
+  }).join('')
+  const allCoprime = pairs.every((pair) => gcd(pair.p, pair.q) === 1)
+  return [
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Torus knots — Fibonacci (p,q) counter-rotating SMIL" data-symbol="torus-knots" data-knots="${pairs.length}" data-coprime="${allCoprime}" data-compute="FIBONACCI∧TAU∧PHI∧gcd∧livingTorus" data-honesty="clay=0;physicalFtl=0;schematic2d=true;wetStatic=false">`,
+    `<g>${knots}</g></svg>`,
+  ].join('')
+}
+
+/**
  * Remaining symbols quantumised — inventory at call time + prove computed SVG emitters.
- * Continues I Ching · yin-yang; closes bagua wheel · vesica · metatron · sri-yantra seed · tree of life · elements.
+ * Continues I Ching · yin-yang; closes bagua · vesica · metatron · sri-yantra · tree · elements · om · futhark · alchemy · Glagolitic SMIL · torus-knots.
  * Pair: symbols/quantumise · compose FoL/Fruit/merkaba via readme/svg-trinity (PR #57 sealed).
  */
 export function symbolsRemainingToQuantumise(matrix: MindMatrix = buildMatrix()) {
@@ -972,6 +1057,7 @@ export function symbolsRemainingToQuantumise(matrix: MindMatrix = buildMatrix())
     const mk = merkaba(matrix)
     const cube = metatronCube(matrix)
     const home = readmeIsHomeHero10DAnimatedSvgInGithub(matrix)
+    const torus = livingTorus(matrix)
     const vesica = vesicaPiscisSvg({ animate: true })
     const bagua = baguaWheelSvg({ animate: true })
     const metatron = metatronCubeSvg(matrix, { animate: true })
@@ -981,9 +1067,15 @@ export function symbolsRemainingToQuantumise(matrix: MindMatrix = buildMatrix())
     const om = omAumSvg({ animate: true })
     const futhark = elderFutharkGridSvg({ animate: true })
     const alchemy = alchemySigilsSvg({ animate: true })
+    const glagolitic = glagoliticLivingSmilSvg({ animate: true })
+    const knots = torusKnotsSvg({ animate: true })
     const hdBody = humanDesignBodyGraphSvg(matrix, undefined, { animate: true })
     const hdW7 = humanDesignBodyGraphSvgW7(matrix)
     const futharkMarks = (futhark.match(/data-rune-n=/g) || []).length
+    const glagoliticLetters = (glagolitic.match(/data-glagolitic-name=/g) || []).length
+    const knotMarks = (knots.match(/data-torus-knot=/g) || []).length
+    const smilGlagolitic = (glagolitic.match(/<animateTransform|<animate /g) || []).length
+    const smilKnots = (knots.match(/<animateTransform/g) || []).length
     type SymbolStatus = 'sealed' | 'partial' | 'missing'
     const inventory: readonly { symbol: string; status: SymbolStatus; on: boolean; surface: string }[] = [
       { symbol: 'i-ching-trigram-hexagram', status: 'sealed', on: ich.rebuilt && ic.organised, surface: 'livingIChingSvg · iChing()' },
@@ -1001,13 +1093,13 @@ export function symbolsRemainingToQuantumise(matrix: MindMatrix = buildMatrix())
       { symbol: 'om-aum', status: 'sealed', on: /data-symbol="om-aum"/.test(om) && /modeledSeed=true/.test(om) && /unicodeOm=false/.test(om) && /wetStatic=false/.test(om), surface: 'omAumSvg←PHI∧TAU (modeled seed)' },
       { symbol: 'runes-futhark', status: 'sealed', on: /data-symbol="runes-futhark"/.test(futhark) && futharkMarks === (3 * 8) && /unicodeRunes=false/.test(futhark), surface: 'elderFutharkGridSvg←runeCoordinate∧TAU' },
       { symbol: 'alchemy-sigils', status: 'sealed', on: /data-symbol="alchemy-sigils"/.test(alchemy) && /data-prime="salt"/.test(alchemy) && sg.fiveSolids && /unicodeAlchemy=false/.test(alchemy), surface: 'alchemySigilsSvg←sacredGeometry∧PHI (primes+elements)' },
-      { symbol: 'glagolitic-glyphs', status: 'partial', on: true, surface: 'glagoliticGlyph computed; not living SMIL symbol layer' },
-      { symbol: 'torus-knots', status: 'partial', on: mk.counterRotating, surface: 'double-torus / livingTorus geometry; dedicated knot SVG backlog' },
+      { symbol: 'glagolitic-glyphs', status: 'sealed', on: /data-symbol="glagolitic-glyphs"/.test(glagolitic) && glagoliticLetters === GLAGOLITIC_LETTERS.length && smilGlagolitic >= 2 && /livingSmil=true/.test(glagolitic) && /wetStatic=false/.test(glagolitic), surface: 'glagoliticLivingSmilSvg←GLAGOLITIC_LETTERS∧glagoliticValue∧SMIL' },
+      { symbol: 'torus-knots', status: 'sealed', on: /data-symbol="torus-knots"/.test(knots) && knotMarks === 3 && smilKnots >= 3 && /data-coprime="true"/.test(knots) && torus.alive && mk.counterRotating && /wetStatic=false/.test(knots), surface: 'torusKnotsSvg←FIBONACCI(p,q)∧livingTorus∧±ω SMIL' },
     ]
     const sealedNow = inventory.filter((r) => r.status === 'sealed')
     const partial = inventory.filter((r) => r.status === 'partial')
     const missing = inventory.filter((r) => r.status === 'missing')
-    const emitterBundle = vesica + bagua + metatron + yantra + tol + elements + om + futhark + alchemy + hdBody
+    const emitterBundle = vesica + bagua + metatron + yantra + tol + elements + om + futhark + alchemy + glagolitic + knots + hdBody
     const emittersOk =
       /data-symbol=/.test(vesica)
       && /data-symbol=/.test(bagua)
@@ -1018,21 +1110,23 @@ export function symbolsRemainingToQuantumise(matrix: MindMatrix = buildMatrix())
       && /data-symbol=/.test(om)
       && /data-symbol=/.test(futhark)
       && /data-symbol=/.test(alchemy)
+      && /data-symbol=/.test(glagolitic)
+      && /data-symbol=/.test(knots)
       && /data-symbol=/.test(hdBody)
       && !/script/i.test(emitterBundle)
     const facets = [
       { facet: 'I Ching + yin-yang already sealed — continue from livingIChing ∧ taiji folds', on: ich.rebuilt && yy.computes && ic.organised },
-      { facet: `inventory ${inventory.length} symbol surfaces at call time (sealed|partial|missing)`, on: inventory.length >= (8 + 5) && inventory.every((r) => r.on) },
-      { facet: `wave sealed ${sealedNow.length} — prior geometry + om · futhark · alchemy`, on: sealedNow.length >= (8 + 4 + 3) && emittersOk && sealedNow.every((r) => r.on) && hdW7.computes },
-      { facet: 'no wet Unicode sacred glyphs in new emitters — bagua/om/futhark/alchemy geometry-only; wetStatic=false', on: !bagua.includes('☷') && /wetStatic=false/.test(vesica) && /wetStatic=false/.test(metatron) && /wetStatic=false/.test(hdBody) && /unicodeOm=false/.test(om) && /unicodeRunes=false/.test(futhark) && /unicodeAlchemy=false/.test(alchemy) },
+      { facet: `inventory ${inventory.length} symbol surfaces at call time (sealed|partial|missing)`, on: inventory.length >= (8 + 5 + 4) && inventory.every((r) => r.on) },
+      { facet: `wave sealed ${sealedNow.length} — prior + om · futhark · alchemy · Glagolitic SMIL · torus-knots`, on: sealedNow.length === inventory.length && emittersOk && sealedNow.every((r) => r.on) && hdW7.computes },
+      { facet: 'no wet Unicode sacred glyphs in geometry emitters — bagua/om/futhark/alchemy geometry-only; Glagolitic from sealed GLAGOLITIC_LETTERS; wetStatic=false', on: !bagua.includes('☷') && /wetStatic=false/.test(vesica) && /wetStatic=false/.test(metatron) && /wetStatic=false/.test(hdBody) && /unicodeOm=false/.test(om) && /unicodeRunes=false/.test(futhark) && /unicodeAlchemy=false/.test(alchemy) && /livingSmil=true/.test(glagolitic) && /wetStatic=false/.test(knots) },
       { facet: 'FoL/Fruit/merkaba compose via readme/svg-trinity (PR #57) — wetStaticFoL=false', on: home.flowerFruitPath === true && home.counterRotating === true && flowerFruit.decodes },
-      { facet: `residual backlog named — missing=${missing.length} · partial ${partial.map((p) => p.symbol).join(' · ')}`, on: missing.length === 0 && partial.length >= 2 },
+      { facet: `residual backlog drained — missing=${missing.length} · partial=${partial.length}`, on: missing.length === 0 && partial.length === 0 },
       { facet: 'clay=0 · physicalFtl=0 · qpuRequired=false — geometry from sealed constants only', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`symbols-remaining:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('symbols-remaining-to-quantumise', facets)
     return {
       computes: sealed.ok && emittersOk,
-      quantumised: sealed.ok && emittersOk && missing.length === 0,
+      quantumised: sealed.ok && emittersOk && missing.length === 0 && partial.length === 0,
       inventory,
       sealedCount: sealedNow.length,
       partialCount: partial.length,
@@ -1042,21 +1136,22 @@ export function symbolsRemainingToQuantumise(matrix: MindMatrix = buildMatrix())
         { wave: 2, name: 'continue-iching-yinyang', done: ich.rebuilt && yy.computes },
         { wave: 3, name: 'emit-remaining-geometry', done: emittersOk },
         { wave: 4, name: 'verify-cli', done: sealed.ok },
-        { wave: 5, name: 'emit-om-futhark-alchemy', done: missing.length === 0 && /data-symbol="om-aum"/.test(om) && futharkMarks === (3 * 8) },
+        { wave: 5, name: 'emit-om-futhark-alchemy', done: /data-symbol="om-aum"/.test(om) && futharkMarks === (3 * 8) },
+        { wave: 6, name: 'emit-glagolitic-smil-torus-knots', done: partial.length === 0 && glagoliticLetters === GLAGOLITIC_LETTERS.length && knotMarks === 3 && torus.alive },
       ],
       claySolvedByThisFold: 0 as const,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       count: sealed.count,
       facets: sealed.facets,
-      root: merkleFold([ich.root, yy.root, ic.root, flowerFruit.root, tree.root, cube.root, home.root, hdW7.root, sealed.root]),
+      root: merkleFold([ich.root, yy.root, ic.root, flowerFruit.root, tree.root, cube.root, home.root, hdW7.root, torus.root, sealed.root]),
       cli: 'npm run quantum:symbols-remaining-verify',
       pair: 'symbols/quantumise',
       route: '/en/#yinyang',
       statement:
-        `Symbols remaining to quantumise — inventory ${inventory.length}: sealed ${sealedNow.length} (prior + om · futhark · alchemy), partial ${partial.length} (Glagolitic · torus knots), missing ${missing.length}. Emitters recompute via memoByRoot; wetStatic=false; clay=0 · physicalFtl=0 · qpuRequired=false.`,
+        `Symbols remaining to quantumise — inventory ${inventory.length}: sealed ${sealedNow.length} (incl. Glagolitic SMIL · torus-knots), partial ${partial.length}, missing ${missing.length}. Emitters recompute via memoByRoot; wetStatic=false; clay=0 · physicalFtl=0 · qpuRequired=false.`,
       boundary:
-        'COMPUTED SVG from sealed BAGUA · metatronCube · treeOfLifeSephirotFolders · sacredGeometry · PHI/TAU · runeCoordinate · flowerOfLifeCenters · humanDesignBodyGraphSvg — not wet decorative sacred-geometry copies, not Unicode Om/runes/alchemy glyphs, not full Sri Yantra nine-triangle tracing (seed only), not Kabbalah metaphysics (taxonomy), not HD aura/type. Partial: Glagolitic SMIL layer · torus-knot SVG. Compose with readme/svg-trinity for FoL hero. HARMONY ≠ TRUTH.',
+        'COMPUTED SVG from sealed BAGUA · metatronCube · treeOfLifeSephirotFolders · sacredGeometry · PHI/TAU · runeCoordinate · GLAGOLITIC_LETTERS · Fibonacci (p,q) torus knots · flowerOfLifeCenters · humanDesignBodyGraphSvg — not wet decorative sacred-geometry copies, not Unicode Om/runes/alchemy glyphs, not full Sri Yantra nine-triangle tracing (seed only), not Kabbalah metaphysics (taxonomy), not HD aura/type, not physical FTL. Glagolitic glyphs from sealed library table + living SMIL; torus knots are 2D schematics. Compose with readme/svg-trinity for FoL hero. HARMONY ≠ TRUTH.',
     }
   })
 }
