@@ -158,7 +158,7 @@ export function drawHero(
   const minDim = Math.min(w, h)
   const coreR = voidR ?? minDim * (7 / 100)
   const plasmaCore = voidR !== undefined
-  // The fruit of life dances behind everything; then the ancient calendars' coupled-cycle rings.
+  // The fruit of life dances behind everything; then calendar phases as vortex-digit markers (no ring frames).
   drawFlower(ctx, cx, cy, w, h, scene.t, scene.hue, scene.reduce, scene.palette.dark)
   drawCalendars(ctx, cx, cy, w, h, scene.t, scene.hue, scene.reduce, scene.palette.dark)
   // Walk from 0d to infinity and back: collapse toward a point at the ends, open fully at the middle.
@@ -429,17 +429,16 @@ function drawPlasmaBall(
   streams: readonly PlasmaWiredStream[],
   palette: PlasmaMoviePalette,
 ): void {
-  const voidGlow = ctx.createRadialGradient(cx, cy, 0, cx, cy, voidR * (7 * 2 / 5))
+  // Soft throat confluence via fillRect — no arc path (a circular path was a wet boundary disk).
+  // The vortex is the rays + UUID streams; the centre is transparent confluence, not a frame circle.
+  const voidExtent = voidR * (7 * 2 / 5)
+  const voidGlow = ctx.createRadialGradient(cx, cy, 0, cx, cy, voidExtent)
   voidGlow.addColorStop(0, palette.canvas.voidCore(hueShift))
   voidGlow.addColorStop((2 / 5), palette.canvas.voidMid(hueShift))
   voidGlow.addColorStop((3 / 4), palette.canvas.voidOuter(hueShift))
   voidGlow.addColorStop(1, 'transparent')
   ctx.fillStyle = voidGlow
-  ctx.beginPath()
-  ctx.arc(cx, cy, voidR * (7 * 2 / 5), 0, TAU)
-  ctx.fill()
-  // No drawn ring/border: the void core is a computed radial confluence that fades to transparent,
-  // not a hardcoded circle frame. Its edge is where the field math reaches zero.
+  ctx.fillRect(cx - voidExtent, cy - voidExtent, voidExtent * 2, voidExtent * 2)
   drawPlasmaRays(ctx, cx, cy, voidR, hueShift, p, t, streams, palette)
   if (!streams.length) return
   ctx.textAlign = 'center'
@@ -1078,7 +1077,7 @@ function drawTetrahedronEdges(
   }
 }
 
-/** Dual-Earth merkaba — inner device shell + outer inverted shell counter-rotate with star tetrahedra. */
+/** Dual-Earth merkaba — star tetrahedra only (bothEarthsRotateWithinEachOther); no shell ring frames. */
 export function drawBothEarthsMerkabaFrame(
   ctx: CanvasRenderingContext2D,
   w: number,
@@ -1096,7 +1095,6 @@ export function drawBothEarthsMerkabaFrame(
   // Breath on the one hero clock — not a private atMs divisor / 1.15 rate.
   const p = reduce ? 0 : heroPhaseAt(at)
   const innerR = (9 * 8) * scale
-  const outerR = 108 * scale
   const breath = 1 + Math.sin(p * TAU) * (1 / (5 * 5))
 
   const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(w, h) * (1 - 9 / (5 * 4)))
@@ -1105,40 +1103,12 @@ export function drawBothEarthsMerkabaFrame(
   ctx.fillStyle = bg
   ctx.fillRect(0, 0, w, h)
 
-  const innerSpin = reduce ? 0 : rotation.innerPhase * (9 / (5 * 5 * 2))
-  const outerSpin = reduce ? 0 : rotation.outerPhase * (9 / (5 * 5 * 2))
+  // Shell phases lift the tetras — no dashed outer/inner circumference or orphan centre disk.
+  const shellLift = reduce ? 0 : (rotation.innerPhase - rotation.outerPhase) * (1 / (5 * 5)) * innerR * breath
   const upSpin = reduce ? 0 : rotation.merkabaUpSpin * PHI ** -3
   const downSpin = reduce ? 0 : rotation.merkabaDownSpin * PHI ** -3
-
-  ctx.save()
-  ctx.translate(cx, cy)
-  ctx.rotate(outerSpin)
-  ctx.strokeStyle = paint((8 * 7 * 5), (7 / (5 * 5)) * breath, { L: 7 / 8 })
-  ctx.lineWidth = (3 / 2) * scale
-  ctx.setLineDash([5 * scale, 7 * scale])
-  ctx.beginPath()
-  ctx.arc(0, 0, outerR * breath, 0, TAU)
-  ctx.stroke()
-  ctx.restore()
-
-  ctx.save()
-  ctx.translate(cx, cy)
-  ctx.rotate(innerSpin)
-  ctx.strokeStyle = paint((8 * 5 * 3), (2 - PHI) * breath, { L: 7 / 8 }) // 1 − φ⁻¹ (was rounded 0.38)
-  ctx.lineWidth = 2 * scale
-  ctx.setLineDash([])
-  ctx.beginPath()
-  ctx.arc(0, 0, innerR * breath, 0, TAU)
-  ctx.stroke()
-  ctx.restore()
-
-  drawTetrahedronEdges(ctx, rotation.tetraUp, upSpin, cx, cy - innerR * (3 / (5 * 4)), scale * (7 * 4), (8 * 5 * 3), (1 - 7 / (5 * 4)), dark)
-  drawTetrahedronEdges(ctx, rotation.tetraDown, downSpin, cx, cy + innerR * (3 / (5 * 4)), scale * (7 * 4), (8 * 7 * 5), (1 - 9 / (5 * 4)), dark)
-
-  ctx.fillStyle = paint((100 * 2), (3 / 4), { L: 5 / 6 })
-  ctx.beginPath()
-  ctx.arc(cx, cy, 4 * scale, 0, TAU)
-  ctx.fill()
+  drawTetrahedronEdges(ctx, rotation.tetraUp, upSpin, cx, cy - innerR * (3 / (5 * 4)) - shellLift, scale * (7 * 4), (8 * 5 * 3), (1 - 7 / (5 * 4)), dark)
+  drawTetrahedronEdges(ctx, rotation.tetraDown, downSpin, cx, cy + innerR * (3 / (5 * 4)) + shellLift, scale * (7 * 4), (8 * 7 * 5), (1 - 9 / (5 * 4)), dark)
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1804,6 +1774,7 @@ function drawDoubleTorusProjection(ctx: CanvasRenderingContext2D, w: number, h: 
   }
 
   // The figure-eight train: the lemniscate through both handles, crossing at the one throat.
+  // Throat = crossing itself — no orphan stroked center circle (wet boundary, not genus-2 geometry).
   const eight = (u: number): readonly [number, number] => {
     const a = u * TAU
     return [cx + Math.sin(a) * sep * 1.55, cy + Math.sin(a * 2) * r * squash * (1 - 2 / (5 * 5))] as const
@@ -1817,11 +1788,6 @@ function drawDoubleTorusProjection(ctx: CanvasRenderingContext2D, w: number, h: 
     ctx.fillStyle = paint((frame.hue + (9 * 5 * 2)) % 360, (1 / 4) + (3 / 5) * fade, { L: 13 / 16 })
     ctx.beginPath(); ctx.arc(x, y, Math.max(1, r * (1 / (5 * 4))) * ((3 / 5) + (2 / 5) * fade), 0, TAU); ctx.fill()
   }
-
-  // The one throat both flows share — genus 2, breathing with the phase.
-  ctx.strokeStyle = paint(frame.hue, (1 / 2) + (3 / (5 * 2)) * pulse, { L: 3 / 4 })
-  ctx.lineWidth = (7 / 5)
-  ctx.beginPath(); ctx.arc(cx, cy, r * (4 / (5 * 5)) * ((4 / 5) + (1 / 2) * pulse), 0, TAU); ctx.stroke()
 }
 
 /** Torus field — fallback projection: a quasiperiodic genus-2 point field, the shared default view. */

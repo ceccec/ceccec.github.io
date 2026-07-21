@@ -23,7 +23,7 @@ import {
 } from '../../water/stack'
 import { stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
 import { linearAnimationGapsInventory } from '../../wind/ui'
-import { movieQuantumGapsInventory } from '../../thunder/movie/canvas'
+import { movieAllElementsAreTheorems, movieQuantumGapsInventory } from '../../thunder/movie/canvas'
 import { movieIsNeuroscienceComputation } from '../../earth/life'
 import { harmonizeFieldComputes } from '../../lake/music'
 import { doubleTorusDynamicsGeometryAlignsWithUniverse } from '../../water/double'
@@ -2409,6 +2409,17 @@ export function slowProcessIsQuantumGap(matrix: MindMatrix = buildMatrix(), at =
       closed: movieGaps.staticFusion.fused,
       route: '/en/',
       receipt: toUuid(`slow-gap:movie-static:${movieGaps.staticFusion.fused}`),
+    })
+    const movieTheorems = movieAllElementsAreTheorems(matrix, at)
+    rows.push({
+      gapId: 'slow:movie:all-elements-theorems',
+      kind: 'movie-static-fusion',
+      process: 'movieAllElementsAreTheorems',
+      criterion: 'every movie paint element binds a sealed theorem; centre is vortex throat not wet boundary circle',
+      slow: !movieTheorems.allElementsAreTheorems || !movieTheorems.centerIsVortexNotBoundary,
+      closed: movieTheorems.allElementsAreTheorems && movieTheorems.centerIsVortexNotBoundary,
+      route: '/en/',
+      receipt: toUuid(`slow-gap:movie-all-theorems:${movieTheorems.allElementsAreTheorems}`),
     })
     for (const surface of movieGaps.open) {
       rows.push({
