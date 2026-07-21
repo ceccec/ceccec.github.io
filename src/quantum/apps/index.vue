@@ -13,6 +13,7 @@ import {
   realiseSessionQuantumMeaning,
   mcpBrowserParity, runStdioMcpCapabilityInBrowser,
   improveLocalFromSessionExperience, LOCAL_SESSION_EXPERIMENT_STORAGE_KEY,
+  upgradeLocalFromOptimisedManualWorkExperience,
 } from './index.ts'
 import {
   completeScientificDomainsStrictlyToStandardsQuantumOnly,
@@ -98,6 +99,7 @@ const docsDevCopied = ref(false)
 const experimentEnvelope = computed(() => panel.value.toolbox.envelopes.find((e) => e.id === experimentToolId.value) ?? panel.value.toolbox.envelopes[0]!)
 const experimentDefaults = computed(() => defaultToolExperimentValues(experimentEnvelope.value))
 const localSession = computed(() => panel.value.localSession)
+const upgradeLocal = computed(() => panel.value.upgradeLocal)
 
 type PersistedExperimentConfig = {
   toolId: string
@@ -556,6 +558,13 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'upgrade-local-skills-commands-tools') {
+      const r = upgradeLocalFromOptimisedManualWorkExperience()
+      ok = r.computes && r.localUpgraded
+      summary = `upgraded=${r.localUpgraded} · skills=${r.skillCount} · browserTools=${r.browserToolIds.length} · ciResiduals=${r.ciResidualCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'mcp-browser-parity') {
       const r = mcpBrowserParity()
       const census = runStdioMcpCapabilityInBrowser('census-status')
@@ -682,6 +691,51 @@ function runTool(toolId: string) {
         <p v-if="error" class="quantum-apps__error" role="alert">{{ error }}</p>
         <UiButton size="sm" :disabled="runningId === 'improve-local-session'" @click="runTool('improve-local-session')">
           {{ runningId === 'improve-local-session' ? '…' : 'Run improve-local-session receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="upgrade-local-skills" aria-label="Upgrade local skills commands tools">
+        <h3>{{ upgradeLocal.heading }}</h3>
+        <p class="quantum-apps__meta">{{ upgradeLocal.honestyLine }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(upgradeLocal.localUpgraded))">
+          localUpgraded={{ upgradeLocal.localUpgraded }} · skills {{ upgradeLocal.skillCount }} · ciResiduals {{ upgradeLocal.ciResidualCount }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(!upgradeLocal.cursorDefaultModelRegistration))">
+          NOT Cursor LLM endpoint
+        </UiBadge>
+        <table class="quantum-apps__table">
+          <thead>
+            <tr><th>Skill</th><th>Pair</th><th>Commands</th><th>Tools</th><th>Gap</th></tr>
+          </thead>
+          <tbody>
+            <tr v-for="row in upgradeLocal.map" :key="row.skillId">
+              <td><code>{{ row.skillId }}</code></td>
+              <td><code>{{ row.pair }}</code></td>
+              <td class="quantum-apps__meta">{{ row.commands.join(' · ') }}</td>
+              <td><code>{{ row.toolIds.join(', ') }}</code></td>
+              <td class="quantum-apps__meta">{{ row.browserGap || '—' }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="quantum-apps__meta">
+          Hub: <a href="#local-session-hub">#local-session-hub</a> · MCP: <a href="#mcp-browser-parity">#mcp-browser-parity</a> ·
+          Thin mounts under <code>.cursor/skills/</code> + <code>.cursor/mcp.json</code> point at this sealed map.
+        </p>
+        <h4>packages/* (census outside src/)</h4>
+        <ul class="quantum-apps__facets">
+          <li v-for="pkg in upgradeLocal.packages" :key="pkg.id">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(pkg.stdioTools > 0 || pkg.path.includes('double-torus')))">{{ pkg.id }}</UiBadge>
+            <code>{{ pkg.path }}</code> · pair <code>{{ pkg.pair }}</code>
+            <span class="quantum-apps__meta">{{ pkg.cli || pkg.npm || pkg.automation }}</span>
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          Stdio: <code>{{ upgradeLocal.stdioToolIds?.join(' · ') }}</code> ·
+          docs:build flag <code>QUANTUM_DEV_ALLOW_DOCS_BUILD=1</code> ·
+          Automations: npm-script path (/automate nightly parked).
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'upgrade-local-skills-commands-tools'" @click="runTool('upgrade-local-skills-commands-tools')">
+          {{ runningId === 'upgrade-local-skills-commands-tools' ? '…' : 'Run upgrade-local receipt' }}
         </UiButton>
       </section>
       <UiSeparator />

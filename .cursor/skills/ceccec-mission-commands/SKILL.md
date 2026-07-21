@@ -48,3 +48,16 @@ node src/pair/enforcement/script/cli/bootstrap/index.ts <subcommand>
 Subcommands: `check:types`, `limits:verify`, `limits:seal`, `mission:gate`, `verify:structure`, `rosetta:batch`, `rosetta:diagnose`, `verify`, `dissolve-flat`, `enforcement-trinity`, `docs:build`
 
 After `docs:build`: fetch `/workflows.json` and `/skills.json`.
+
+## Local upgrade + packages
+
+Sealed map: `upgradeLocalFromOptimisedManualWorkExperience()` · pair **`upgrade/local`** · CLI `npm run quantum:upgrade-local` · UI `/en/quantum-tools#upgrade-local-skills`.
+
+| Surface | Path |
+|---|---|
+| Skills ↔ commands ↔ tools | sealed fold above |
+| `@ceccec/quantum-dev-sdk` | `packages/quantum-dev-sdk` · pair **`sdk/wire`** · `npm run quantum:dev-mcp` |
+| Stdio MCP (7 tools) | `.cursor/mcp.json` → `quantum-dev` · docs:build needs `QUANTUM_DEV_ALLOW_DOCS_BUILD=1` |
+| Automations | npm-script / bootstrap — **not** Cursor Automations dashboard MCP |
+
+Protocol = rules/skills/MCP/sealed folds/packages — **not** a Cursor zero-token LLM endpoint.

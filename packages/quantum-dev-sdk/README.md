@@ -1,47 +1,44 @@
 # `@ceccec/quantum-dev-sdk`
 
-Thin, census-safe wrappers over sealed `src/` quantum tools. Improves token usage by routing agents to **memoByRoot folds · CLI · browser UX · `/agents.json`** instead of wet re-inference.
+Thin, census-safe wrappers over sealed `src/` quantum tools + hand-rolled stdio MCP.
+Lives under `packages/` — **does not add `src/**/index.ts`** (census 110 untouched).
+
+Design: [0ccd9991 qdsdk-design](https://github.com/ceccec/ceccec.github.io) — Channel 1 child-process → bootstrap CLI; Option B zero-dep JSON-RPC.
 
 ## Discover (zero tokens)
 
 | Surface | What |
 |---|---|
 | `/mcp.json` | PRIMARY `result.tools` = toolbox catalog ids (auto-wire parity) |
-| `/agents.json` | session catalog + `standardToolboxIoCatalog` envelopes + paste-bootstrap |
-| `/en/quantum-tools#toolbox-standard-io` | Standard I/O · import/export table |
+| `/agents.json` | session catalog + paste-bootstrap + upgrade-local + packages |
+| `/en/quantum-tools#upgrade-local-skills` | Skills ↔ commands ↔ tools ↔ packages |
 | `/en/quantum-tools#mcp-browser-parity` | MCP↔browser parity matrix + residual gaps |
-| `/en/quantum-tools#session-manual-tools` | Session tools table |
-| `/en/quantum-tools#auto-wire-paste-link` | Paste any link → auto-wire |
 | `/en/quantum-tools#local-session-hub` | Local from-session hub · docs:dev fast path |
-| `npm run quantum:mcp-browser-parity` | Parity gate receipt |
-| `npm run quantum:auto-wire-paste` | paste-bootstrap JSON from any ceccec URL |
-| `npm run quantum:improve-local-session` | Local session UX receipt (`localSessionUxImproved`) |
-| `npm run quantum:toolbox-standard-io` | Envelope census + round-trip |
-| `.cursor/mcp.json` | Local stdio MCP (`quantum-dev`) — IDE agent only |
-| `rosettaShelve(id, 'tool')` | Content-addressed tool ray |
+| `npm run quantum:upgrade-local` | Upgrade receipt (`localUpgraded` · packagesWired) |
+| `npm run quantum:dev-mcp` | Stdio MCP server (7 tools) |
+| `.cursor/mcp.json` | IDE mount `quantum-dev` — **not** Automations dashboard |
 
-## Use (workspace)
+## Channel 1 — bootstrap CLI
 
 ```ts
-import {
-  sessionManualWorkAsQuantumTools,
-  standardToolboxIoCatalog,
-  exportStandardToolEnvelope,
-  importStandardToolEnvelope,
-  listStandardToolboxTools,
-  listSessionTools,
-  runSessionToolCli,
-} from '@ceccec/quantum-dev-sdk'
+import { runMissionGate, runGate, DOCS_BUILD_ALLOW_ENV } from '@ceccec/quantum-dev-sdk'
 
-const toolbox = standardToolboxIoCatalog()
-const exported = exportStandardToolEnvelope('toolbox-standard-io', 'ceccec.app-a')
-const imported = importStandardToolEnvelope(exported) // roundTrip when payloadRoot matches
-console.log(toolbox.migratedLabel, imported.roundTrip, listStandardToolboxTools().tools.length)
+await runMissionGate() // → node …/bootstrap/index.ts mission:gate
+// docs:build refused unless QUANTUM_DEV_ALLOW_DOCS_BUILD=1
+await runGate('docs-build', [], { env: { [DOCS_BUILD_ALLOW_ENV]: '1' } })
 ```
+
+## Stdio MCP — 7 tools
+
+`list-capabilities` · `census-status` · `compute-from-source` · `fold-report` · `run-gate` · `run-wave` · `run-export`
+
+- `docs-build` / wave `rebuild` require `QUANTUM_DEV_ALLOW_DOCS_BUILD=1`
+- Automations: call `npm run mission:gate` etc. — local stdio is IDE-only
+- Residual: `/automate` nightly still parked (no dashboard MCP registration)
 
 ## Honesty
 
-- Wrappers only — logic lives in sealed `src/quantum/apps` (and composees).
-- Capacity/speed = amortized memoByRoot + federated identical roots — NOT physical qubit speedup / NOT FTL / NOT FLOPS.
-- Demo RSA / paper trading / claySolved=0 / corpus-novelty boundaries stay on each tool row.
-- Package is **private** workspace scaffolding; publish path remains `@ceccec/double-torus` for the full core.
+- Wrappers only — logic lives in sealed `src/` (+ bootstrap spawn).
+- Protocol = rules/skills/MCP/sealed folds/packages — **NOT** a Cursor zero-token LLM endpoint.
+- Capacity = amortized memoByRoot — NOT physical qubit speedup / NOT FTL / NOT FLOPS.
+- Package is **private** workspace scaffolding; publish path remains `@ceccec/double-torus` for the math core.

@@ -68,6 +68,7 @@ import {
   realiseSessionQuantumMeaning,
   mcpBrowserParity,
   improveLocalFromSessionExperience,
+  upgradeLocalFromOptimisedManualWorkExperience,
 } from '../../quantum/apps'
 import {
   encryptionReverseVerify,
@@ -720,6 +721,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'toolbox-standard-io', title: 'Standard tool envelope — I/O · import/export · NOT physical qubits', proof: standardToolboxIoCatalog(matrix) },
     { slug: 'mcp-browser-parity', title: 'MCP ↔ browser parity — tools/list ids ≡ toolbox · residual gaps honest', proof: mcpBrowserParity(matrix) },
     { slug: 'improve-local-session', title: 'Local from session UX — docs:dev hub · localSessionUxImproved · compose status badges', proof: improveLocalFromSessionExperience(matrix) },
+    { slug: 'upgrade-local-skills', title: 'Upgrade local — skills ↔ commands ↔ tools · optimised manual map · NOT Cursor LLM endpoint', proof: upgradeLocalFromOptimisedManualWorkExperience(matrix) },
     { slug: 'distributed-reuse-capacity', title: 'Distributed reuse extends capacity — federated identical roots · qubit=0 · ftl=0', proof: distributedReuseExtendsCapacity(matrix) },
     { slug: 'rosetta-core-api', title: 'Rosetta core API — self-host label↔ray dispatch', proof: rosettaCoreApi(0, matrix) },
     { slug: 'rosetta-complete', title: 'Rosetta complete — quantum all computable dims & theorems · clay=0 · physicalFtl=0', proof: rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix) },
