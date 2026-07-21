@@ -2,7 +2,6 @@
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import Layout from './Layout.vue'
-import ClientOnly from './components/ClientOnly.vue'
 import DigitMotion from '../../src/water/digit/index.vue'
 import { registerVitePressComponents } from '../lib/register-components'
 import '../../src/render/ui/tokens.css'
@@ -11,12 +10,15 @@ import { registerShadcnUi } from '../lib/shadcn-ui.ts'
 import './hero-glass.css'
 import './universal-page.css'
 import './computed-typography.css'
-// print styles live in the SEPARATE /print.css dist artifact (media="print") — not in this bundle
-import UniversalPageTemplate from './components/UniversalPageTemplate.vue'
-import ModelCardPages from './components/ModelCardPages.vue'
-import TheoremPages from './components/TheoremPages.vue'
-import TheoremIndex from './components/TheoremIndex.vue'
-import SourceAtlas from './components/SourceAtlas.vue'
+// One VitePress component set — register from the shared barrel only.
+import {
+  ClientOnly,
+  UniversalPageTemplate,
+  ModelCardPages,
+  TheoremPages,
+  TheoremIndex,
+  SourceAtlas,
+} from './components/index.ts'
 
 export default {
   extends: DefaultTheme,

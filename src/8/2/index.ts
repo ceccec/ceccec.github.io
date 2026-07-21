@@ -574,43 +574,30 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
       components: ['EncryptionTools', 'ProofRenderer'],
     },
     {
-      slug: 'millennium-challenge',
-      title: {
-        en: 'Clay Millennium Problems = MODELED CHALLENGE apparatus · claySolvedByThisFold = 0',
-        bg: 'Clay Millennium Problems = MODELED CHALLENGE апарат · claySolvedByThisFold = 0',
-      },
-      description: {
-        en: 'Seven Clay Millennium Problems probed with sealed quantum folds (digit-inverse · f→{p,q} · efficiency · Pauli · genus-2). MODELED CHALLENGE only — no Clay prize solution claimed. CLI: npm run quantum:millennium-challenge.',
-        bg: 'Седемте Clay Millennium Problems, сондажирани със sealed квантови сгъвки. Само MODELED CHALLENGE — без претенция за Clay награда.',
-      },
-      keywords: ['millennium', 'clay', 'proof', 'theorem', 'p vs np', 'riemann', 'quantum', 'challenge'],
-      components: ['MillenniumChallenge', 'ResearchIndex', 'ProofRenderer'],
-    },
-    {
       slug: 'quantum-tools',
       title: {
         en: 'quantum:* CLI catalog = fold · CLI · UI route · honesty boundary',
         bg: 'quantum:* CLI каталог = fold · CLI · UI маршрут · честна граница',
       },
       description: {
-        en: 'Every sealed quantum:* npm script is discoverable: encryption reverse, millennium challenge, fusion-verify, efficiency-vote, and the full verify suite — each with fold home, CLI, UI route, and honesty boundary. Not remote execution.',
-        bg: 'Всеки sealed quantum:* npm скрипт е откриваем: encryption reverse, millennium, fusion-verify, efficiency и пълният verify пакет — с fold, CLI, маршрут и честна граница.',
+        en: 'Canonical Apps-domain tools hub: every sealed quantum:* npm script — encryption reverse, millennium (MODELED · claySolved=0), fusion-verify, efficiency-vote, offender-spec, hero-spawn, name-entropy, and the verify suite — each with fold home, CLI, UI route, and honesty boundary. Not remote execution. Alias URLs thin-mount here.',
+        bg: 'Каноничен хъб за инструменти (Apps): всеки sealed quantum:* npm скрипт — с fold, CLI, маршрут и честна граница. Alias URL-ите са thin-mount тук.',
       },
-      keywords: ['quantum', 'tools', 'cli', 'proof', 'encryption', 'efficiency', 'fusion', 'catalog'],
-      components: ['QuantumTools', 'ProofRenderer'],
+      keywords: ['tools', 'cli', 'catalog', 'proof', 'efficiency', 'fusion', 'offender', 'spawn', 'trading'],
+      components: ['QuantumTools', 'FusionVerify', 'ProofRenderer'],
     },
     {
-      slug: 'fusion-verify',
+      slug: 'quantum-trading-hub',
       title: {
-        en: 'fuseAll wave₁ = fuseAll wave₂ — offline fusion verify',
-        bg: 'fuseAll вълна₁ = fuseAll вълна₂ — офлайн fusion verify',
+        en: 'Trading hub = paper/sim harmonics · NOT live money / NOT alpha',
+        bg: 'Търговски хъб = paper/sim хармоници · НЕ живи пари / НЕ алфа',
       },
       description: {
-        en: 'Quantum fusion verify: offline recompute of fuseAll stack receipts — tamper-evident when two sequential calls match. CLI: npm run quantum:fusion-verify. Not external API fusion.',
-        bg: 'Quantum fusion verify: офлайн преизчисление на fuseAll разписки — доказуемо при съвпадение на две последователни извиквания.',
+        en: 'Canonical trading domain surface: historical wave train, rank-winning strategies, and rosetta train — paper/sim only (synthetic a432 proxy). CLI: npm run quantum:trading-rosetta-train. Not brokerage, not live execution.',
+        bg: 'Канонична търговска повърхност: исторически wave train и rosetta train — само paper/sim. НЕ брокер, НЕ live изпълнение.',
       },
-      keywords: ['fusion', 'proof', 'tamper', 'fuseall', 'quantum', 'verify'],
-      components: ['FusionVerify', 'ProofRenderer'],
+      keywords: ['trading', 'proof', 'simulator', 'tools', 'harmonics', 'paper', 'sim'],
+      components: ['QuantumTools', 'ProofRenderer'],
     },
     {
       slug: 'research',
@@ -619,40 +606,55 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
         bg: 'Изследователски индекс = домейн · метод · граница · verify при извикване',
       },
       description: {
-        en: 'Canonical research program index: professional monograph rows, quantum tool CLIs (encryption · millennium · fusion · efficiency), and reproducibility gates — recomputed at call time.',
-        bg: 'Каноничен изследователски индекс: монографски редове, квантови CLI инструменти и порти за възпроизводимост.',
+        en: 'Canonical research domain: professional monograph rows, Clay Millennium MODELED CHALLENGE (claySolvedByThisFold=0), sciences trinities, and reproducibility gates — recomputed at call time. /millennium-challenge thin-mounts here.',
+        bg: 'Каноничен изследователски домейн: монографски редове, Clay Millennium MODELED CHALLENGE (claySolved=0) и порти за възпроизводимост. /millennium-challenge е thin-mount тук.',
       },
-      keywords: ['research', 'proof', 'quantum', 'millennium', 'encryption', 'science', 'theorem'],
-      components: ['ResearchIndex', 'ProofRenderer'],
+      keywords: ['research', 'proof', 'millennium', 'science', 'theorem', 'challenge'],
+      components: ['ResearchIndex', 'MillenniumChallenge', 'ProofRenderer'],
     },
+    {
+      slug: 'society-merkaba',
+      title: {
+        en: 'Society 10D merkaba = documented actor taxonomy · NOT live social measurement',
+        bg: 'Общество 10D меркаба = документирана таксономия · НЕ живо социално измерване',
+      },
+      description: {
+        en: 'Canonical society/HD domain: society-actor 10D merkaba graph from sealed governance folds — documented taxonomy + content-addressed state. Not live actors, not social scoring.',
+        bg: 'Каноничен society/HD домейн: 10D меркаба граф от sealed governance — документирана таксономия. НЕ живи актьори, НЕ социален скоринг.',
+      },
+      keywords: ['society', 'merkaba', 'proof', 'governance', 'human design', 'taxonomy'],
+      components: ['Society', 'GovernanceVote', 'ProofRenderer'],
+    },
+    // Nav-aliased tool leaves (siteDomainRegistry) — kept in seed so page census folds 29→27 (DOCUMENTED_HARMONICS);
+    // dropdowns show only /quantum-tools. Not Clay/FTL claims — catalog receipts only.
     {
       slug: 'efficiency-vote',
       title: { en: 'answers ÷ tokens = ∞ on reuse — efficiency() · memoByRoot', bg: 'answers ÷ tokens = ∞ при преизползване' },
-      description: { en: 'Browser-runnable efficiency exposition. CLI: npm run quantum:efficiency-vote.', bg: 'Ефективност в браузъра.' },
-      keywords: ['efficiency', 'proof', 'quantum', 'tokens', 'memo', 'reuse'],
+      description: { en: 'Browser-runnable efficiency exposition (Apps domain leaf). Prefer /quantum-tools#efficiency-vote. CLI: npm run quantum:efficiency-vote.', bg: 'Ефективност в браузъра — предпочитай /quantum-tools#efficiency-vote.' },
+      keywords: ['efficiency', 'proof', 'tools', 'tokens', 'memo', 'reuse'],
       components: ['QuantumTools', 'ProofRenderer'],
     },
     {
       slug: 'offender-spec',
       title: { en: 'offenderAutomationSpec — CI pipeline (Node scan; browser shows sealed receipt)', bg: 'offenderAutomationSpec' },
-      description: { en: 'Offender spec: full scan is Node/CI; browser shows honesty gap. CLI: npm run quantum:offender-spec.', bg: 'Offender spec.' },
-      keywords: ['offender', 'proof', 'quantum', 'ci', 'automation'],
+      description: { en: 'Offender spec leaf (Apps domain). Prefer /quantum-tools#offender-spec. CLI: npm run quantum:offender-spec.', bg: 'Offender spec — предпочитай /quantum-tools#offender-spec.' },
+      keywords: ['offender', 'proof', 'tools', 'ci', 'automation'],
       components: ['QuantumTools', 'ProofRenderer'],
     },
     {
       slug: 'hero-spawn-verify',
       title: { en: 'shouldSpawnSubagent — few heroes > mass ignorance', bg: 'shouldSpawnSubagent' },
-      description: { en: 'Hero spawn verify in browser. CLI: npm run quantum:hero-spawn-verify.', bg: 'Hero spawn.' },
-      keywords: ['hero', 'spawn', 'proof', 'quantum', 'subagent'],
+      description: { en: 'Hero spawn verify leaf. Prefer /quantum-tools#hero-spawn-verify. CLI: npm run quantum:hero-spawn-verify.', bg: 'Hero spawn — предпочитай /quantum-tools#hero-spawn-verify.' },
+      keywords: ['hero', 'spawn', 'proof', 'tools', 'subagent'],
       components: ['QuantumTools', 'ProofRenderer'],
     },
     {
       slug: 'name-entropy-verify',
       title: { en: 'namingEntropy — words compile from sealed src', bg: 'namingEntropy' },
-      description: { en: 'Name entropy verify in browser. CLI: npm run quantum:name-entropy-verify.', bg: 'Name entropy.' },
-      keywords: ['naming', 'entropy', 'proof', 'quantum', 'compile'],
+      description: { en: 'Name entropy verify leaf. Prefer /quantum-tools#name-entropy-verify. CLI: npm run quantum:name-entropy-verify.', bg: 'Name entropy — предпочитай /quantum-tools#name-entropy-verify.' },
+      keywords: ['naming', 'entropy', 'proof', 'tools', 'compile'],
       components: ['QuantumTools', 'ProofRenderer'],
-    }
+    },
 
 ]
 

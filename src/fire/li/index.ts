@@ -2258,7 +2258,7 @@ export function buildEnforcementPipeline() {
     trinity: trinity.waves,
     why: {
       drift:
-        'the model declares its enforcement surface so it can describe itself honestly; the cross·fold·weave trinity is the bootstrap CLI subcommand enforcement-trinity (a thin mount over src/pair/enforcement), so docs:build must invoke the bootstrap entry with that subcommand — and a declaration that drifts from the real runner fails the build',
+        'the model declares its enforcement surface so it can describe itself honestly; the cross·fold·weave trinity is the bootstrap CLI subcommand enforcement-trinity (a thin mount over src/pair/enforcement), so docs:build must invoke the bootstrap entry with that subcommand or the docs:build-seal chain that runs it — and a declaration that drifts from the real runner fails the build',
     },
     statement: trinity.statement,
     boundary:

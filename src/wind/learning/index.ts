@@ -21,7 +21,7 @@ import { inverseShiftConsciousness, quantumSimulation, taxonomyIcons, universalL
 import { rhythm } from '../../lake/music'
 import { heartProtonAtomDecoded } from '../../mountain/geometry'
 import { monographSliceFromRoute, ROUTE_ALIASES } from '../routes/automount'
-import { homeHero, isServedRoute, localePath, pickLocale, displayText, quantumSitemap, staticPages, theoremScienceLens, theoremScienceVisible, type LocaleName } from '../site'
+import { homeHero, isServedRoute, localePath, pickLocale, displayText, quantumSitemap, staticPages, theoremScienceLens, theoremScienceVisible, siteDomainRegistry, type LocaleName } from '../site'
 import { componentGraph } from '../../heaven/core'
 import { realtimeWiring } from '../../fire/plasma/ball'
 import { toGlagolitic } from '../../quantum/heaven/library'
@@ -1850,15 +1850,31 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   // Labels are functional words (nameEn = the hub slug — label = URL), never glyph-prefixed prose:
   // a visitor scans "Proof · Learn · Apps · Reference" and knows where to click. Science, not ideology.
   const portal = sciencePortalParts(matrix)
+  const domains = siteDomainRegistry(matrix)
   const contentRayOf = (slug: string) => { const page = byRoute.get(routeOf(slug)); return rosettaRayOfContent(slug, page?.keywords ?? []) }
+  // Domain registry: alias slugs thin-mount and do not compete in dropdowns (one canonical per concern).
+  const navEligible = (route: string) => {
+    const slug = route.replace(/^\//, '')
+    return !domains.isNavAlias(slug) && byRoute.has(route)
+  }
   // Eight-fold law in every dropdown: a part with more than 8 pages shows its hub link ("All … — N")
   // plus the first 7; the hub landing lists the whole part. Only lens survivors (byRoute) appear.
   const rosettaFold = (i: 0 | 1) =>
     portal.parts.map((part) => {
-      const routes = dedupe(part.pages.map((page) => routeOf(page.slug)).filter((route) => byRoute.has(route)))
-      const items = routes.length > 8
-        ? [{ text: i === 1 ? `Всички — ${routes.length}` : `All — ${routes.length}`, link: link(part.route, i) }, ...routes.slice(0, 7).map((route) => item(route, i))]
-        : routes.map((route) => item(route, i))
+      const routes = dedupe(part.pages.map((page) => routeOf(page.slug)).filter(navEligible))
+      const domainCanonicals = new Set(
+        domains.domains.filter((domain) => domain.ray === part.ray).map((domain) => routeOf(domain.canonical)),
+      )
+      const domainLead = domains.domains
+        .filter((domain) => domain.ray === part.ray && byRoute.has(routeOf(domain.canonical)))
+        .map((domain) => ({ text: i === 1 ? domain.labelBg : domain.labelEn, link: link(routeOf(domain.canonical), i) }))
+      const pageItems = routes
+        .filter((route) => !domainCanonicals.has(route))
+        .map((route) => item(route, i))
+      const merged = [...domainLead, ...pageItems]
+      const items = merged.length > 8
+        ? [{ text: i === 1 ? `Всички — ${merged.length}` : `All — ${merged.length}`, link: link(part.route, i) }, ...merged.slice(0, 7)]
+        : merged
       return { text: i === 1 ? part.labelBg : part.labelEn, items }
     }).filter((section) => section.items.length > 0)
   // theorems belong in the navigation — the frontiers route carries the registry, the corpus surfaces ride

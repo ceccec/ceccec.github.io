@@ -6,8 +6,9 @@ import {  isUuid, merge, merkleFold, toUuid } from '../../../0'
 import { discoverSrcIndexes, vitepressAutomountPaths } from '../../../pair/enforcement/gates/computational'
 import { toGlagolitic } from '../../../quantum/heaven/library'
 import { rosettaDecodesUrlPath, ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaRayHub, rosettaRayOf, rosettaRayOfContent } from '../../../water/digit'
-import { staticPages } from '../../site'
+import { staticPages, ROUTE_ALIASES } from '../../site'
 import { componentPages } from '../../../quantum/heaven/mind'
+export { ROUTE_ALIASES } from '../../site'
 
 export { vitepressAutomountPaths } from '../../../pair/enforcement/gates/computational'
 /** @deprecated — rosetta corpus walk replaces automount enumeration */
@@ -445,8 +446,6 @@ export function indexOfIndexes(projectRoot = process.cwd()) {
 /** Declared route aliases — old/duplicate slugs that render a canonical page's content. The learning portal
  * unified the School age-ladder and the Academy tracks into one /learn surface, so /academy and /school are
  * kept as aliases (old URLs still resolve, canonical points at /learn) rather than separate pages. */
-export const ROUTE_ALIASES: Record<string, string> = { academy: 'learn', school: 'learn' }
-
 export function catchAllRoutePaths(_locale: 'gla' | 'en' | 'bg') {
   void _locale
   const automountSlugs = new Set(vitepressAutomountPaths().map((e) => e.params.page))
