@@ -4055,7 +4055,7 @@ export function incompletePapersGapsFill(matrix: MindMatrix = buildMatrix(), at 
       root: merge(matrix.root, merkleFold([sealed.root, corpus.root, ...rows.map((r) => r.receipt)])),
       cli: 'npm run quantum:incomplete-papers-fill',
       pair: 'papers/fill',
-      route: '/papers/p001',
+      route: '/en/papers/p001',
       statement:
         `Incomplete papers gaps fill — before=${incompleteBefore} after-residuals=${residualStatic} filled=${filledCount} (corpus ${corpusFilled} + quantum-mind); canonical sections only — not Clay-marked; claySolvedByThisFold=0.`,
       boundary:
