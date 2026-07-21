@@ -124,3 +124,18 @@ export {
   PESNOPOIKA, PESNOPOIKA_SOURCE, DIALECT_GLOSSARY, PROVENANCE, GENRES, AKSAK,
 } from '../../../src/quantum/heaven/library/index.ts'
 export type { Song, Provenance, Genre } from '../../../src/quantum/heaven/library/index.ts'
+
+// Universe alignment — dynamics (flow · spin · linking) + geometry (radii · H₁ · projection) audited
+// against sealed cosmology/geometry constants (TAU · A432 · c · J2000 · HERO_CYCLE_MS · 10D).
+// Also arrives via `export * from mind` → mountain/geometry + water/double; surfaced here for the
+// publishable API contract of @ceccec/double-torus@1.3.0.
+export {
+  doubleTorusDynamicsGeometryAlignsWithUniverse,
+  doubleTorusUniversePhaseAt,
+} from '../../../src/water/double/index.ts'
+
+// Counter-rotating discovery substrate (Clay/FTL open status computed, not prose):
+export {
+  counterRotatingRosettaQuantumWaves,
+  universeAlmostDescribedInTheoremsDiscoverRest,
+} from '../../../src/quantum/apps/index.ts'

@@ -31,7 +31,7 @@ export declare function humanDesign(): {
         designSunArcDeg: number;
         bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
         bodyCount: 13;
-        gates: (9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
+        gates: (9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
         starts: number[];
         sample: {
             gate: number;
@@ -55,7 +55,7 @@ export declare function humanDesign(): {
         centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
         centerCount: 9;
         channels: {
-            a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+            a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
             b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
             key: string;
             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -112,7 +112,7 @@ export declare const RAVE_CHANNELS_36: readonly [readonly [1, 8], readonly [2, 1
 export declare function raveCenterOfGate(gate: number): (typeof RAVE_CENTERS_9)[number] | undefined;
 /** Channels whose both gates are in the activated set (structure definition, not personality claim). */
 export declare function raveDefinedChannels(activated: ReadonlySet<number> | readonly number[]): {
-    a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+    a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
     b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
     key: string;
     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -128,7 +128,7 @@ export declare function humanDesignChannelsAndCenters(matrixRoot?: string): {
     centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
     centerCount: 9;
     channels: {
-        a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+        a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
         b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
         key: string;
         from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -167,7 +167,7 @@ export declare function humanDesignVerifiedWheel(matrixRoot?: string): {
     designSunArcDeg: number;
     bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
     bodyCount: 13;
-    gates: (9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
+    gates: (9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
     starts: number[];
     sample: {
         gate: number;

@@ -1,5 +1,6 @@
 import type { MindMatrix } from '../../wind/types';
 import { type RosettaComputationType } from '../../3/7';
+import { CURSOR_AGENT_SKILL_IDS } from '../../pair/enforcement';
 export type RosettaCoreSurfaceKind = 'compute' | 'tool' | 'route' | 'projection' | 'nav' | 'api' | 'app';
 export type RosettaCoreSurface = {
     readonly label: string;
@@ -408,7 +409,7 @@ export declare function rosettaCoreApiSelfWires(at?: number, matrix?: MindMatrix
         ray: number;
         kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
         pageKind: RosettaComputationType;
-        vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+        vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
         receipt: string;
     }[];
     count: number;
@@ -2514,7 +2515,7 @@ export declare function autoWireAnyAiModelFromPastedLink(url?: string, matrix?: 
 export declare function runAutoWireAnyAiModelFromPastedLinkExit(_root?: string, argv?: readonly string[]): number;
 /** Sealed-safe browser key for last experiment config (UI preference only — never secrets). */
 export declare const LOCAL_SESSION_EXPERIMENT_STORAGE_KEY: "ceccec:quantum-tools:experiment-config";
-/** Local session hub steps — paste→toolbox→bits→tools→experiments→mcp. */
+/** Local session hub steps — paste→toolbox→bits→tools→experiments→mcp→skills/commands. */
 export declare const LOCAL_SESSION_HUB_STEPS: readonly [{
     readonly id: "paste-wire";
     readonly title: "Paste → auto-wire";
@@ -2551,6 +2552,12 @@ export declare const LOCAL_SESSION_HUB_STEPS: readonly [{
     readonly route: "/en/quantum-tools#mcp-browser-parity";
     readonly toolId: "mcp-browser-parity";
     readonly next: "Verify tools/list ≡ toolbox ids";
+}, {
+    readonly id: "skills-commands-tools";
+    readonly title: "Skills ↔ commands ↔ tools";
+    readonly route: "/en/quantum-tools#upgrade-local-skills";
+    readonly toolId: "upgrade-local-skills-commands-tools";
+    readonly next: "Reuse optimised local map · zero re-inference";
 }];
 /**
  * Improve local from-session experience — browser + docs:dev hub for session-derived quantum work.
@@ -2604,6 +2611,13 @@ export declare function improveLocalFromSessionExperience(matrix?: MindMatrix, a
         route: "/en/quantum-tools#mcp-browser-parity";
         toolId: "mcp-browser-parity";
         next: "Verify tools/list ≡ toolbox ids";
+    } | {
+        receipt: string;
+        id: "skills-commands-tools";
+        title: "Skills ↔ commands ↔ tools";
+        route: "/en/quantum-tools#upgrade-local-skills";
+        toolId: "upgrade-local-skills-commands-tools";
+        next: "Reuse optimised local map · zero re-inference";
     })[];
     nextAfterPaste: readonly [{
         readonly id: "open-packet";
@@ -2626,8 +2640,8 @@ export declare function improveLocalFromSessionExperience(matrix?: MindMatrix, a
         readonly label: "Verify MCP↔browser parity";
         readonly route: "/en/quantum-tools#mcp-browser-parity";
     }];
-    docsDevFastPath: readonly ["nvm use 24 && npm ci", "npm run docs:dev", "open http://localhost:5173/en/quantum-tools#local-session-hub", "npm run quantum:auto-wire-paste", "npm run quantum:improve-local-session", "npm run quantum:mcp-browser-parity"];
-    frictionClosed: readonly ["session-hub-entry", "one-click-run-status-badges", "next-steps-after-paste-wire", "bits-tools-experiments-links", "docs-dev-fast-path", "auto-wire-packet-visible", "experiment-config-localStorage"];
+    docsDevFastPath: readonly ["nvm use 24 && npm ci", "npm run docs:dev", "open http://localhost:5173/en/quantum-tools#local-session-hub", "npm run quantum:auto-wire-paste", "npm run quantum:improve-local-session", "npm run quantum:mcp-browser-parity", "npm run quantum:upgrade-local", "npm run mission:gate"];
+    frictionClosed: readonly ["session-hub-entry", "one-click-run-status-badges", "next-steps-after-paste-wire", "bits-tools-experiments-links", "docs-dev-fast-path", "auto-wire-packet-visible", "experiment-config-localStorage", "skills-commands-tools-map"];
     storageKey: "ceccec:quantum-tools:experiment-config";
     linksBitsToolsExperiments: boolean;
     pastePacketVisible: boolean;
@@ -2654,6 +2668,137 @@ export declare function improveLocalFromSessionExperience(matrix?: MindMatrix, a
 };
 /** npm run quantum:improve-local-session — print local session UX receipt (exit 0 iff computes). */
 export declare function runImproveLocalFromSessionExperienceExit(_root?: string, _argv?: readonly string[]): number;
+/**
+ * Optimised manual local experience — skills ↔ quantum-pair commands ↔ toolbox/MCP tools.
+ * Pair: upgrade/local · CLI npm run quantum:upgrade-local · route #upgrade-local-skills
+ * Composes improveLocalFromSessionExperience (#36) · mcpBrowserParity (#35) · cursorAgentToolsSaved.
+ * Does NOT call sessionManualWorkAsQuantumBits (bits resolve this fold — no cycle).
+ * HONEST: protocol = rules/skills/MCP/sealed folds — NOT a Cursor zero-token LLM endpoint.
+ */
+export type OptimisedLocalSkillCommandToolRow = {
+    readonly skillId: (typeof CURSOR_AGENT_SKILL_IDS)[number];
+    readonly mount: string;
+    readonly pair: string;
+    readonly foldHint: string;
+    readonly commands: readonly string[];
+    readonly toolIds: readonly string[];
+    readonly browserRunnable: boolean;
+    readonly browserGap: string;
+    readonly pattern: string;
+};
+/** Sealed skills↔commands↔tools map — session-proven local agent paths (zero re-inference). */
+export declare const OPTIMISED_LOCAL_SKILL_COMMAND_TOOL_MAP: readonly OptimisedLocalSkillCommandToolRow[];
+/** Browser-first optimised local tools (session hub / MCP parity) — complement skill map CI residuals. */
+export declare const OPTIMISED_LOCAL_BROWSER_TOOL_IDS: readonly ["improve-local-session", "upgrade-local-skills-commands-tools", "mcp-browser-parity", "toolbox-standard-io", "session-manual-work", "session-quantum-bits", "auto-wire-paste-link"];
+/** Design 0ccd9991 — packages outside src/ (census 110 untouched) discoverable like quantum pairs. */
+export declare const OPTIMISED_LOCAL_PACKAGE_SURFACE: readonly [{
+    readonly id: "@ceccec/quantum-dev-sdk";
+    readonly path: "packages/quantum-dev-sdk";
+    readonly pair: "sdk/wire";
+    readonly mcpMount: ".cursor/mcp.json";
+    readonly cli: "node --experimental-strip-types packages/quantum-dev-sdk/bin/mcp.ts";
+    readonly npm: "npm run quantum:dev-mcp";
+    readonly stdioTools: 7;
+    readonly docsBuildFlag: "QUANTUM_DEV_ALLOW_DOCS_BUILD=1";
+    readonly automation: "npm-script / bootstrap — local stdio MCP is IDE-only (Automations dashboard not wired)";
+    readonly honesty: "hand-rolled JSON-RPC · child-process→bootstrap · NOT Cursor zero-token LLM · census packages/ outside src/";
+}, {
+    readonly id: "@ceccec/double-torus";
+    readonly path: "packages/double-torus";
+    readonly pair: "build/seal";
+    readonly mcpMount: "";
+    readonly cli: "node packages/double-torus/build.mjs";
+    readonly npm: "node packages/double-torus/build.mjs";
+    readonly stdioTools: 0;
+    readonly docsBuildFlag: "";
+    readonly automation: "published math/anim/dynamics/geometry core — not the gate SDK";
+    readonly honesty: "zero-dep consumer bundle v1.3+ — gapless analyse/dynamics/geometry/movie-clock surface; structural completeness only (NOT FTL / NOT Clay); do not co-locate gate spawns";
+}];
+/** Stdio MCP tool ids — must match packages/quantum-dev-sdk + STDIO_MCP_CAPABILITY_SEEDS (ROSETTA_SEVEN). */
+export declare const OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS: readonly ["list-capabilities", "census-status", "compute-from-source", "fold-report", "run-gate", "run-wave", "run-export"];
+export declare function upgradeLocalFromOptimisedManualWorkExperience(matrix?: MindMatrix, at?: number): {
+    computes: boolean;
+    localUpgraded: boolean;
+    qpuRequired: false;
+    cursorDefaultModelRegistration: false;
+    map: {
+        tools: {
+            id: string;
+            present: boolean;
+            browserRunnable: boolean;
+            browserGap: string;
+            cli: string;
+            pair: string;
+        }[];
+        receipt: string;
+        skillKnown: boolean;
+        skillId: (typeof CURSOR_AGENT_SKILL_IDS)[number];
+        mount: string;
+        pair: string;
+        foldHint: string;
+        commands: readonly string[];
+        toolIds: readonly string[];
+        browserRunnable: boolean;
+        browserGap: string;
+        pattern: string;
+    }[];
+    packages: ({
+        receipt: string;
+        id: "@ceccec/quantum-dev-sdk";
+        path: "packages/quantum-dev-sdk";
+        pair: "sdk/wire";
+        mcpMount: ".cursor/mcp.json";
+        cli: "node --experimental-strip-types packages/quantum-dev-sdk/bin/mcp.ts";
+        npm: "npm run quantum:dev-mcp";
+        stdioTools: 7;
+        docsBuildFlag: "QUANTUM_DEV_ALLOW_DOCS_BUILD=1";
+        automation: "npm-script / bootstrap — local stdio MCP is IDE-only (Automations dashboard not wired)";
+        honesty: "hand-rolled JSON-RPC · child-process→bootstrap · NOT Cursor zero-token LLM · census packages/ outside src/";
+    } | {
+        receipt: string;
+        id: "@ceccec/double-torus";
+        path: "packages/double-torus";
+        pair: "build/seal";
+        mcpMount: "";
+        cli: "node packages/double-torus/build.mjs";
+        npm: "node packages/double-torus/build.mjs";
+        stdioTools: 0;
+        docsBuildFlag: "";
+        automation: "published math/anim/dynamics/geometry core — not the gate SDK";
+        honesty: "zero-dep consumer bundle v1.3+ — gapless analyse/dynamics/geometry/movie-clock surface; structural completeness only (NOT FTL / NOT Clay); do not co-locate gate spawns";
+    })[];
+    browserToolIds: readonly ["improve-local-session", "upgrade-local-skills-commands-tools", "mcp-browser-parity", "toolbox-standard-io", "session-manual-work", "session-quantum-bits", "auto-wire-paste-link"];
+    stdioToolIds: readonly ["list-capabilities", "census-status", "compute-from-source", "fold-report", "run-gate", "run-wave", "run-export"];
+    ciResidualCount: number;
+    ciResiduals: {
+        id: string;
+        browserGap: string;
+        cli: string;
+        pair: string;
+    }[];
+    skillCount: 6;
+    missionCommandCount: number;
+    packageCount: number;
+    packagesWired: boolean;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    pair: string;
+    cli: string;
+    route: string;
+    anchor: string;
+    heading: string;
+    honestyLine: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:upgrade-local — print skills↔commands↔tools↔packages upgrade receipt (exit 0 iff computes). */
+export declare function runUpgradeLocalFromOptimisedManualWorkExperienceExit(_root?: string, _argv?: readonly string[]): number;
 export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: number): {
     computes: boolean;
     capstone: {
@@ -3728,6 +3873,13 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
             route: "/en/quantum-tools#mcp-browser-parity";
             toolId: "mcp-browser-parity";
             next: "Verify tools/list ≡ toolbox ids";
+        } | {
+            receipt: string;
+            id: "skills-commands-tools";
+            title: "Skills ↔ commands ↔ tools";
+            route: "/en/quantum-tools#upgrade-local-skills";
+            toolId: "upgrade-local-skills-commands-tools";
+            next: "Reuse optimised local map · zero re-inference";
         })[];
         nextAfterPaste: readonly [{
             readonly id: "open-packet";
@@ -3750,8 +3902,8 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
             readonly label: "Verify MCP↔browser parity";
             readonly route: "/en/quantum-tools#mcp-browser-parity";
         }];
-        docsDevFastPath: readonly ["nvm use 24 && npm ci", "npm run docs:dev", "open http://localhost:5173/en/quantum-tools#local-session-hub", "npm run quantum:auto-wire-paste", "npm run quantum:improve-local-session", "npm run quantum:mcp-browser-parity"];
-        frictionClosed: readonly ["session-hub-entry", "one-click-run-status-badges", "next-steps-after-paste-wire", "bits-tools-experiments-links", "docs-dev-fast-path", "auto-wire-packet-visible", "experiment-config-localStorage"];
+        docsDevFastPath: readonly ["nvm use 24 && npm ci", "npm run docs:dev", "open http://localhost:5173/en/quantum-tools#local-session-hub", "npm run quantum:auto-wire-paste", "npm run quantum:improve-local-session", "npm run quantum:mcp-browser-parity", "npm run quantum:upgrade-local", "npm run mission:gate"];
+        frictionClosed: readonly ["session-hub-entry", "one-click-run-status-badges", "next-steps-after-paste-wire", "bits-tools-experiments-links", "docs-dev-fast-path", "auto-wire-packet-visible", "experiment-config-localStorage", "skills-commands-tools-map"];
         storageKey: "ceccec:quantum-tools:experiment-config";
         linksBitsToolsExperiments: boolean;
         pastePacketVisible: boolean;
@@ -3776,7 +3928,310 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
         statement: string;
         boundary: string;
     };
+    upgradeLocal: {
+        computes: boolean;
+        localUpgraded: boolean;
+        qpuRequired: false;
+        cursorDefaultModelRegistration: false;
+        map: {
+            tools: {
+                id: string;
+                present: boolean;
+                browserRunnable: boolean;
+                browserGap: string;
+                cli: string;
+                pair: string;
+            }[];
+            receipt: string;
+            skillKnown: boolean;
+            skillId: (typeof CURSOR_AGENT_SKILL_IDS)[number];
+            mount: string;
+            pair: string;
+            foldHint: string;
+            commands: readonly string[];
+            toolIds: readonly string[];
+            browserRunnable: boolean;
+            browserGap: string;
+            pattern: string;
+        }[];
+        packages: ({
+            receipt: string;
+            id: "@ceccec/quantum-dev-sdk";
+            path: "packages/quantum-dev-sdk";
+            pair: "sdk/wire";
+            mcpMount: ".cursor/mcp.json";
+            cli: "node --experimental-strip-types packages/quantum-dev-sdk/bin/mcp.ts";
+            npm: "npm run quantum:dev-mcp";
+            stdioTools: 7;
+            docsBuildFlag: "QUANTUM_DEV_ALLOW_DOCS_BUILD=1";
+            automation: "npm-script / bootstrap — local stdio MCP is IDE-only (Automations dashboard not wired)";
+            honesty: "hand-rolled JSON-RPC · child-process→bootstrap · NOT Cursor zero-token LLM · census packages/ outside src/";
+        } | {
+            receipt: string;
+            id: "@ceccec/double-torus";
+            path: "packages/double-torus";
+            pair: "build/seal";
+            mcpMount: "";
+            cli: "node packages/double-torus/build.mjs";
+            npm: "node packages/double-torus/build.mjs";
+            stdioTools: 0;
+            docsBuildFlag: "";
+            automation: "published math/anim/dynamics/geometry core — not the gate SDK";
+            honesty: "zero-dep consumer bundle v1.3+ — gapless analyse/dynamics/geometry/movie-clock surface; structural completeness only (NOT FTL / NOT Clay); do not co-locate gate spawns";
+        })[];
+        browserToolIds: readonly ["improve-local-session", "upgrade-local-skills-commands-tools", "mcp-browser-parity", "toolbox-standard-io", "session-manual-work", "session-quantum-bits", "auto-wire-paste-link"];
+        stdioToolIds: readonly ["list-capabilities", "census-status", "compute-from-source", "fold-report", "run-gate", "run-wave", "run-export"];
+        ciResidualCount: number;
+        ciResiduals: {
+            id: string;
+            browserGap: string;
+            cli: string;
+            pair: string;
+        }[];
+        skillCount: 6;
+        missionCommandCount: number;
+        packageCount: number;
+        packagesWired: boolean;
+        facets: ({
+            receipt: string;
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        pair: string;
+        cli: string;
+        route: string;
+        anchor: string;
+        heading: string;
+        honestyLine: string;
+        statement: string;
+        boundary: string;
+    };
+    counterWaves: {
+        computes: boolean;
+        counterRotating: boolean;
+        dualSpin: {
+            forward: string;
+            reverse: string;
+            merged: string;
+            bidirectional: boolean;
+        };
+        standingWave: string;
+        claySolvedByThisFold: 0;
+        physicalFtlClaim: 0;
+        qpuRequired: false;
+        tracksClassicalNoSpeedup: boolean;
+        torusAligns: boolean;
+        rosettaReady: boolean;
+        count: number;
+        facets: ({
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    discoverRest: {
+        computes: boolean;
+        almostDescribed: boolean;
+        coveredCount: number;
+        partialCount: number;
+        openCount: number;
+        directions: {
+            forward: {
+                covered: number;
+                partial: number;
+                open: number;
+            };
+            inverse: {
+                covered: number;
+                partial: number;
+                open: number;
+            };
+            reverse: {
+                covered: number;
+                partial: number;
+                open: number;
+            };
+            superposition: {
+                covered: number;
+                partial: number;
+                open: number;
+            };
+        };
+        gaps: UniverseDiscoveryGapRow[];
+        openSet: string[];
+        waves: {
+            computes: boolean;
+            counterRotating: boolean;
+            dualSpin: {
+                forward: string;
+                reverse: string;
+                merged: string;
+                bidirectional: boolean;
+            };
+            standingWave: string;
+            claySolvedByThisFold: 0;
+            physicalFtlClaim: 0;
+            qpuRequired: false;
+            tracksClassicalNoSpeedup: boolean;
+            torusAligns: boolean;
+            rosettaReady: boolean;
+            count: number;
+            facets: ({
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        claySolvedByThisFold: 0;
+        physicalFtlClaim: 0;
+        qpuRequired: false;
+        count: number;
+        facets: ({
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
     root: string;
     statement: string;
     boundary: string;
 };
+export type UniverseDiscoveryDirection = 'forward' | 'inverse' | 'reverse' | 'superposition';
+export type UniverseDiscoveryGapRow = {
+    readonly id: string;
+    readonly direction: UniverseDiscoveryDirection;
+    readonly status: 'covered' | 'partial' | 'open';
+    readonly fold: string;
+    readonly note: string;
+    readonly on: boolean;
+    readonly receipt: string;
+};
+/**
+ * Counter-rotating rosetta quantum waves — dual +/− spin lobes via foldPair.
+ * claySolvedByThisFold / physicalFtlClaim / qpuRequired recomputed from:
+ *   · genus-2 order-sensitive fold (forward≠reverse → Clay prize cannot collapse)
+ *   · dual-lobe classical track (tracks-classical-no-speedup → FTL=0, qpuRequired=false)
+ *   · merkaba counter-rotation + double-torus spin + directional trinity
+ */
+export declare function counterRotatingRosettaQuantumWaves(matrix?: MindMatrix, at?: number): {
+    computes: boolean;
+    counterRotating: boolean;
+    dualSpin: {
+        forward: string;
+        reverse: string;
+        merged: string;
+        bidirectional: boolean;
+    };
+    standingWave: string;
+    claySolvedByThisFold: 0;
+    physicalFtlClaim: 0;
+    qpuRequired: false;
+    tracksClassicalNoSpeedup: boolean;
+    torusAligns: boolean;
+    rosettaReady: boolean;
+    count: number;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:counter-rotating-rosetta-waves */
+export declare function runCounterRotatingRosettaQuantumWavesExit(_root?: string, _argv?: readonly string[]): number;
+/**
+ * Universe is almost described in sealed theorems — discover the rest via counter-rotating waves.
+ * Pair: discover/rest · covered/partial/open rows in forward·inverse·reverse·superposition.
+ * Clay/FTL open rows are receipts from counterRotatingRosettaQuantumWaves — not hardcoded prose.
+ */
+export declare function universeAlmostDescribedInTheoremsDiscoverRest(matrix?: MindMatrix, at?: number): {
+    computes: boolean;
+    almostDescribed: boolean;
+    coveredCount: number;
+    partialCount: number;
+    openCount: number;
+    directions: {
+        forward: {
+            covered: number;
+            partial: number;
+            open: number;
+        };
+        inverse: {
+            covered: number;
+            partial: number;
+            open: number;
+        };
+        reverse: {
+            covered: number;
+            partial: number;
+            open: number;
+        };
+        superposition: {
+            covered: number;
+            partial: number;
+            open: number;
+        };
+    };
+    gaps: UniverseDiscoveryGapRow[];
+    openSet: string[];
+    waves: {
+        computes: boolean;
+        counterRotating: boolean;
+        dualSpin: {
+            forward: string;
+            reverse: string;
+            merged: string;
+            bidirectional: boolean;
+        };
+        standingWave: string;
+        claySolvedByThisFold: 0;
+        physicalFtlClaim: 0;
+        qpuRequired: false;
+        tracksClassicalNoSpeedup: boolean;
+        torusAligns: boolean;
+        rosettaReady: boolean;
+        count: number;
+        facets: ({
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    claySolvedByThisFold: 0;
+    physicalFtlClaim: 0;
+    qpuRequired: false;
+    count: number;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:universe-almost-described */
+export declare function runUniverseAlmostDescribedInTheoremsDiscoverRestExit(_root?: string, _argv?: readonly string[]): number;

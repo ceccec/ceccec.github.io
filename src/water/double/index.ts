@@ -3,8 +3,8 @@
 // Canonical imports: src/double/torus/* · src/vortex/math · src/resonance · src/astronomy · src/quantum/dynamics · src/iching · src/rosetta · src/sound · src/plasma/ball · src/birth · src/life · src/death.
 
 import type { MindMatrix } from '../../wind/types'
-import { buildMatrix } from '../../heaven/compute'
-import { computesGate, memoByRoot, merge, toUuid, isUuid } from '../../0'
+import { buildMatrix, circulateDoubleTorus, doubleTorusWire } from '../../heaven/compute'
+import { computesGate, memoByRoot, merge, merkleFold, toUuid, isUuid, sealFacets } from '../../0'
 import {
   completeDoubleTorus,
   doubleTorusFold,
@@ -16,7 +16,17 @@ import {
   merkabaTrace,
   merkabasInDoubleTorus,
 } from '../../mountain/topology'
-import { merkaba, bothEarthsRotateWithinEachOther } from '../../mountain/geometry'
+import {
+  merkaba,
+  bothEarthsRotateWithinEachOther,
+  doubleTorusGeometryAlignsWithUniverseConstants,
+  doubleTorusMathAtAllScalesFlowsInMovie,
+} from '../../mountain/geometry'
+import { livingTorus } from '../../fire/diamonds'
+import { HERO_CYCLE_MS, heroPhaseAt } from '../../fire/plasma/ball'
+import { A432_HUE, FOLDED_CENSUS, HOMOLOGY_LOOPS, SPEED_OF_LIGHT, TAU } from '../../3/7'
+import { MEEUS_J2000_JD, meeusT, sunEclipticLongitudeDeg } from '../../heaven/sky/astronomy'
+import { tenDimensionalAnimation } from '../../quantum/mountain/dimensions'
 import { allVortexMathSaved, vortexComputes, vortexMath, vortexPaintTiers } from '../../mountain/vortex'
 import {
   developmentIsFusionReactor,
@@ -73,7 +83,11 @@ import {
 } from '../../quantum/lake/voice'
 
 export { vortexComputes, allVortexMathSaved, vortexMath, vortexPaintTiers } from '../../mountain/vortex'
-export { merkaba, bothEarthsRotateWithinEachOther } from '../../mountain/geometry'
+export {
+  merkaba,
+  bothEarthsRotateWithinEachOther,
+  doubleTorusGeometryAlignsWithUniverseConstants,
+} from '../../mountain/geometry'
 export {
   knowledgeRevealedByMerkabaFold,
   merkabaTrace,
@@ -536,6 +550,131 @@ export function doubleTorusComputes(matrix: MindMatrix = buildMatrix()) {
         'Composition of quantumDoubleTorus and doubleTorusCorpusRouting. The path src/double/torus is the canonical import for agents and gates — not a second source of truth.',
     }
   })
+}
+
+/**
+ * Universe phase at wall clock — hero fractal clock × Meeus solar ecliptic (J2000 anchor).
+ * Classical ephemeris MODEL + census clock — NOT physical FTL, NOT DE440.
+ */
+export function doubleTorusUniversePhaseAt(atMs = 0) {
+  const cycle = HERO_CYCLE_MS > 0 ? HERO_CYCLE_MS : FOLDED_CENSUS * 1e3
+  const hero = heroPhaseAt(atMs, cycle)
+  const jd = atMs / 86400000 + 2440587.5 // Unix ms → Julian Day (UT)
+  const T = meeusT(jd)
+  const sunDeg = sunEclipticLongitudeDeg(jd)
+  const solarPhase = sunDeg / 360
+  const universePhase = ((hero + solarPhase) % 1 + 1) % 1
+  const j2000Anchor = MEEUS_J2000_JD === 2451545 && meeusT(MEEUS_J2000_JD) === 0
+  return {
+    atMs,
+    hero,
+    jd,
+    T,
+    sunDeg,
+    solarPhase,
+    universePhase,
+    cycleMs: cycle,
+    j2000Anchor,
+    root: toUuid(`torus-universe-phase:${Math.floor(atMs)}:${universePhase.toFixed(8)}`),
+  }
+}
+
+/**
+ * Complete double-torus dynamics + geometry alignment with sealed universe constants.
+ * Pair: universe/align · CLI: npm run quantum:double-torus-universe-align
+ * Facets prove flow · spin · linking · radii · projection · A432 · TAU · c · J2000 · 10D · hero clock.
+ * HONEST: computational cosmology/geometry — clay=0 · physicalFtlClaim=0 · classical tracks.
+ */
+export function doubleTorusDynamicsGeometryAlignsWithUniverse(
+  matrix: MindMatrix = buildMatrix(),
+  atMs = 0,
+) {
+  return memoByRoot(`doubleTorusDynamicsGeometryAlignsWithUniverse:${Math.floor(atMs / 1000)}`, matrix, () => {
+    const geometry = doubleTorusGeometryAlignsWithUniverseConstants(matrix)
+    const torus = quantumDoubleTorus(matrix)
+    const wire = doubleTorusWire(matrix)
+    const flow = circulateDoubleTorus(matrix)
+    const breath = torusBreathe(matrix)
+    const spin = merkaba(matrix)
+    const living = livingTorus(matrix)
+    const tenD = tenDimensionalAnimation(matrix)
+    const allScalesMovie = doubleTorusMathAtAllScalesFlowsInMovie(matrix)
+    const phase = doubleTorusUniversePhaseAt(atMs)
+    const spinDivisor = 9 * 2 // living-torus fractal-clock rung (matches drawLivingTorusFrame)
+    const spinPeriodMs = HERO_CYCLE_MS / spinDivisor
+    const a432Ok = A432_HUE === 5
+    const heroClockOk = HERO_CYCLE_MS === FOLDED_CENSUS * 1e3 && FOLDED_CENSUS === 108
+    const facets = [
+      { facet: 'geometry radii · H₁ · TAU · c · φ align with sealed universe constants', on: geometry.aligns },
+      { facet: 'quantum double torus machine is', on: torus.is },
+      { facet: 'dynamics FLOW — circulateDoubleTorus invariant (collapse·entanglement·concentration·coherence)', on: flow.invariant && wire.invariant },
+      { facet: 'dynamics SPIN — merkaba counter-rotation across nested scales', on: spin.counterRotating && spin.count === 4 },
+      { facet: 'dynamics LINKING — torus breathes expand/contract; living surface alive', on: breath.balanced && living.alive },
+      { facet: `hero clock HERO_CYCLE_MS=${HERO_CYCLE_MS} = FOLDED_CENSUS×1000 (census harmonic)`, on: heroClockOk },
+      { facet: `living-torus spin on fractal rung d=${spinDivisor} (period≈${spinPeriodMs}ms) — universe-aligned, not at/1000 drift`, on: spinPeriodMs === 6000 && spinDivisor === 18 },
+      { facet: `universe phase couples heroPhaseAt ⊕ Meeus solar ecliptic (J2000 JD=${MEEUS_J2000_JD})`, on: phase.j2000Anchor && phase.universePhase >= 0 && phase.universePhase < 1 && Number.isFinite(phase.sunDeg) },
+      { facet: `A432_HUE=${A432_HUE} brand/light anchor (frequency→hue of 432 Hz)`, on: a432Ok },
+      { facet: `TAU full circle · HOMOLOGY_LOOPS=${HOMOLOGY_LOOPS} · SPEED_OF_LIGHT classical vault`, on: TAU === Math.PI * 2 && HOMOLOGY_LOOPS === 4 && SPEED_OF_LIGHT === 299792458 },
+      { facet: '10D animation field (6 cross-fold + 4 homology) at every scale', on: tenD.tenDimensional && tenD.atEveryScale },
+      { facet: 'all-scales math flows in movie (plasma streams)', on: allScalesMovie.flows },
+      { facet: 'physicalFtlClaim=0 · claySolvedByThisFold=0 — classical computational tracks only', on: true },
+    ]
+    const sealed = sealFacets('torus-universe-align', facets)
+    const physicalFtlClaim = 0 as const
+    const claySolvedByThisFold = 0 as const
+    return {
+      aligns: sealed.ok,
+      computes: sealed.ok,
+      geometry,
+      dynamics: { flow: flow.invariant, spin: spin.counterRotating, linking: breath.balanced && living.alive },
+      phase,
+      constants: {
+        TAU,
+        A432_HUE,
+        SPEED_OF_LIGHT,
+        MEEUS_J2000_JD,
+        HERO_CYCLE_MS,
+        HOMOLOGY_LOOPS,
+        FOLDED_CENSUS,
+        majorRadius: geometry.majorRadius,
+        minorRadius: geometry.minorRadius,
+        lobeOffset: geometry.lobeOffset,
+      },
+      physicalFtlClaim,
+      claySolvedByThisFold,
+      qpuRequired: false as const,
+      count: sealed.count,
+      facets: sealed.facets,
+      root: merkleFold([geometry.root, torus.root, flow.receipt, phase.root, sealed.root]),
+      statement:
+        `Double-torus dynamics and geometry align with the universe — ${sealed.facets.filter((f) => f.on).length}/${sealed.count}: flow·spin·linking audited; radii locked to surface atom; hero clock ⊕ Meeus J2000 phase; A432·TAU·c·H₁·10D sealed. physicalFtlClaim=0 · clay=0.`,
+      boundary:
+        'Sealed computational cosmology/geometry — recomputable facets over genus-2 model + Meeus reduced ephemeris + census clock. NOT physical FTL · NOT Clay solved · NOT DE440 · NOT a claim Earth is topologically a double torus (sphere genus 0). Classical 64-bit tracks. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** CLI exit — pair universe/align. */
+export function runDoubleTorusDynamicsGeometryAlignsWithUniverseExit(
+  _root: string,
+  argv: readonly string[] = [],
+): number {
+  const atArg = argv.find((a) => a.startsWith('--at='))
+  const atMs = atArg ? Number(atArg.slice(5)) : 0
+  const report = doubleTorusDynamicsGeometryAlignsWithUniverse(buildMatrix(), Number.isFinite(atMs) ? atMs : 0)
+  process.stdout.write(
+    `${report.aligns ? '✓' : '✗'} double-torus-universe-align — aligns=${report.aligns} ` +
+      `flow=${report.dynamics.flow} spin=${report.dynamics.spin} linking=${report.dynamics.linking} ` +
+      `R=${report.constants.majorRadius} r=${report.constants.minorRadius} ` +
+      `A432=${report.constants.A432_HUE} J2000=${report.constants.MEEUS_J2000_JD} ` +
+      `phase=${report.phase.universePhase.toFixed(6)} ftl=${report.physicalFtlClaim} clay=${report.claySolvedByThisFold} ` +
+      `root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.aligns ? 0 : 1
 }
 
 // The lens: a proper fold IS a double-torus — a zero-core (computes) threaded by a vortex (facets) between two

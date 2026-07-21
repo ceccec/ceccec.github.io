@@ -264,7 +264,7 @@ export declare function matrixRgbDecodeFlowsInMovie(matrix?: MindMatrix, path?: 
 export declare function sendWavesToDecodeWithRosettaAndFoldInTheMovie(matrix?: MindMatrix, path?: string): {
     folded: boolean;
     rays: {
-        ray: 0 | 5 | 2 | 1 | 4 | 3 | 6;
+        ray: 0 | 5 | 2 | 4 | 1 | 3 | 6;
         glyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
         domain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
         hue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
@@ -333,7 +333,7 @@ export declare function sevenSeedMovieIsRosettaDecodingSunMoonSymbols(matrix?: M
     rayCount: 7;
     pairings: {
         seed: "unity" | "device-paint" | "device-polarity" | "device-matrix-rgb" | "code-harmonic" | "code-efficiency" | "code-rosetta";
-        ray: 0 | 5 | 2 | 1 | 4 | 3 | 6;
+        ray: 0 | 5 | 2 | 4 | 1 | 3 | 6;
         rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
         rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
         luminary: "sun" | "moon" | "both";

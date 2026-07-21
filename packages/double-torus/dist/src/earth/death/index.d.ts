@@ -220,6 +220,7 @@ export declare function deathBittenAppleOpening(matrix?: MindMatrix, path?: stri
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -728,6 +729,7 @@ export declare function lifeDeathPairComputes(matrix?: MindMatrix): {
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -1172,6 +1174,7 @@ export declare function deathComputes(matrix?: MindMatrix): {
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;

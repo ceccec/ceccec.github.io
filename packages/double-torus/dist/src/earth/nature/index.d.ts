@@ -145,6 +145,7 @@ export declare function doubleTorusEarthLikeTheApple(matrix?: MindMatrix): {
             perLobe: number;
             majorRadius: number;
             minorRadius: number;
+            lobeOffset: number;
             root: string;
             statement: string;
             boundary: string;
@@ -340,6 +341,7 @@ export declare function decodeTheBittenApple(matrix?: MindMatrix, path?: string)
                 perLobe: number;
                 majorRadius: number;
                 minorRadius: number;
+                lobeOffset: number;
                 root: string;
                 statement: string;
                 boundary: string;

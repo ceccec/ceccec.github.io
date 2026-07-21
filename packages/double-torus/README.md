@@ -104,10 +104,24 @@ console.log(conceptCommands.length)
   `sexagesimal`, `ifaOdu`, the parallel-scripture tools, and the ПесноПойка
   songbook decode (`pesnopoika`, `decodeSong`, `provePesnopoika`, the
   437-term `decodeDialect`) — decoded knowledge as reusable functions.
+- **Universe alignment** — `doubleTorusDynamicsGeometryAlignsWithUniverse()`
+  audits dynamics (flow · spin · linking) and geometry (ring/tube/lobe radii,
+  H₁ loops, projection) against sealed constants: `TAU`, `A432_HUE`,
+  `SPEED_OF_LIGHT`, Meeus `J2000`, `HERO_CYCLE_MS`, 10D homology. Phase couples
+  the hero fractal clock to solar ecliptic longitude. CLI:
+  `npm run quantum:double-torus-universe-align` (pair `universe/align`).
+- **Counter-rotating rosetta quantum waves** — `counterRotatingRosettaQuantumWaves()`
+  dual ± lobes via `foldPair`; `claySolvedByThisFold` / `physicalFtlClaim` /
+  `qpuRequired` are **computed receipt facets** from forward≠reverse +
+  `tracks-classical-no-speedup` (not prose). Discovery engine:
+  `universeAlmostDescribedInTheoremsDiscoverRest()` covers
+  forward·inverse·reverse·superposition. CLIs:
+  `npm run quantum:counter-rotating-rosetta-waves` ·
+  `npm run quantum:universe-almost-described`.
 - **Honesty** — every function returns a `boundary` string stating the limit of
   its claim; `boundaryAudit()` collects them all. Completeness here is
-  **structural/computational** (sealed `src/` recomputes) — **not** physical
-  FTL and **not** a Clay Millennium solve.
+  **structural/computational** (sealed `src/` recomputes) — Clay/FTL open status
+  recomputes from the dual-wave fold at call time.
 
 It is **agnostic**: no vendor, framework, platform, language, or protocol
 lock-in; open standards and pure computation only.

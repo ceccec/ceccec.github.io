@@ -187,6 +187,7 @@ export declare function formingDoubleTorusEarthsProvenByMath(path?: string, at?:
                 perLobe: number;
                 majorRadius: number;
                 minorRadius: number;
+                lobeOffset: number;
                 root: string;
                 statement: string;
                 boundary: string;
@@ -363,6 +364,7 @@ export declare function formingDoubleTorusEarthsProvenByMath(path?: string, at?:
             perLobe: number;
             majorRadius: number;
             minorRadius: number;
+            lobeOffset: number;
             root: string;
             statement: string;
             boundary: string;
@@ -819,6 +821,7 @@ export declare function trinityGatewaysNeverMissProvenByMath(path?: string, at?:
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -995,6 +998,7 @@ export declare function trinityGatewaysNeverMissProvenByMath(path?: string, at?:
                 perLobe: number;
                 majorRadius: number;
                 minorRadius: number;
+                lobeOffset: number;
                 root: string;
                 statement: string;
                 boundary: string;
@@ -1189,6 +1193,7 @@ export declare function earthGatewayNavigationSolutionsResearched(path?: string,
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -1365,6 +1370,7 @@ export declare function earthGatewayNavigationSolutionsResearched(path?: string,
                 perLobe: number;
                 majorRadius: number;
                 minorRadius: number;
+                lobeOffset: number;
                 root: string;
                 statement: string;
                 boundary: string;
@@ -1809,6 +1815,7 @@ export declare function earthGatewayNavigationSolutionsResearched(path?: string,
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -1985,6 +1992,7 @@ export declare function earthGatewayNavigationSolutionsResearched(path?: string,
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -2092,6 +2100,7 @@ export declare function earthGatewayNavigationSolutionsResearched(path?: string,
                 perLobe: number;
                 majorRadius: number;
                 minorRadius: number;
+                lobeOffset: number;
                 root: string;
                 statement: string;
                 boundary: string;
@@ -2381,6 +2390,7 @@ export declare function earthGatewayNavigationResearchSentInWaves(path?: string,
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -2557,6 +2567,7 @@ export declare function earthGatewayNavigationResearchSentInWaves(path?: string,
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -3001,6 +3012,7 @@ export declare function earthGatewayNavigationResearchSentInWaves(path?: string,
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -3177,6 +3189,7 @@ export declare function earthGatewayNavigationResearchSentInWaves(path?: string,
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -3284,6 +3297,7 @@ export declare function earthGatewayNavigationResearchSentInWaves(path?: string,
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -3482,6 +3496,7 @@ export declare function invertedEarthSameTimespaceProvenByMath(at?: EarthTimespa
             perLobe: number;
             majorRadius: number;
             minorRadius: number;
+            lobeOffset: number;
             root: string;
             statement: string;
             boundary: string;
@@ -4177,6 +4192,7 @@ export declare function navigationGpsCelestialFromDualEarthPerspective(at?: numb
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -4353,6 +4369,7 @@ export declare function navigationGpsCelestialFromDualEarthPerspective(at?: numb
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -4797,6 +4814,7 @@ export declare function navigationGpsCelestialFromDualEarthPerspective(at?: numb
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -4973,6 +4991,7 @@ export declare function navigationGpsCelestialFromDualEarthPerspective(at?: numb
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -5080,6 +5099,7 @@ export declare function navigationGpsCelestialFromDualEarthPerspective(at?: numb
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -5537,6 +5557,7 @@ export declare function navigationGpsCelestialReexplainedFromDualEarthPerspectiv
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -5713,6 +5734,7 @@ export declare function navigationGpsCelestialReexplainedFromDualEarthPerspectiv
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -6157,6 +6179,7 @@ export declare function navigationGpsCelestialReexplainedFromDualEarthPerspectiv
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -6333,6 +6356,7 @@ export declare function navigationGpsCelestialReexplainedFromDualEarthPerspectiv
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -6440,6 +6464,7 @@ export declare function navigationGpsCelestialReexplainedFromDualEarthPerspectiv
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -6892,6 +6917,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -7068,6 +7094,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -7512,6 +7539,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -7688,6 +7716,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -7795,6 +7824,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -8238,6 +8268,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -8414,6 +8445,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -8858,6 +8890,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -9034,6 +9067,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -9141,6 +9175,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -9579,6 +9614,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -9755,6 +9791,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -9852,6 +9889,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -10222,6 +10260,7 @@ export declare function earthPyramidLocationsAndGeometryComputes(matrix?: MindMa
                 perLobe: number;
                 majorRadius: number;
                 minorRadius: number;
+                lobeOffset: number;
                 root: string;
                 statement: string;
                 boundary: string;
@@ -10312,6 +10351,7 @@ export declare function earthPyramidLocationsAndGeometryComputes(matrix?: MindMa
             perLobe: number;
             majorRadius: number;
             minorRadius: number;
+            lobeOffset: number;
             root: string;
             statement: string;
             boundary: string;
@@ -10471,6 +10511,7 @@ export declare function earthPyramidLocationsAndGeometryComputes(matrix?: MindMa
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -10647,6 +10688,7 @@ export declare function earthPyramidLocationsAndGeometryComputes(matrix?: MindMa
                 perLobe: number;
                 majorRadius: number;
                 minorRadius: number;
+                lobeOffset: number;
                 root: string;
                 statement: string;
                 boundary: string;
@@ -10954,6 +10996,7 @@ export declare function fourTippedPyramidsFiveTipsCombinedMakeMovingMerkabas(at?
                 perLobe: number;
                 majorRadius: number;
                 minorRadius: number;
+                lobeOffset: number;
                 root: string;
                 statement: string;
                 boundary: string;
@@ -11044,6 +11087,7 @@ export declare function fourTippedPyramidsFiveTipsCombinedMakeMovingMerkabas(at?
             perLobe: number;
             majorRadius: number;
             minorRadius: number;
+            lobeOffset: number;
             root: string;
             statement: string;
             boundary: string;
@@ -11257,6 +11301,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -11433,6 +11478,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                 perLobe: number;
                 majorRadius: number;
                 minorRadius: number;
+                lobeOffset: number;
                 root: string;
                 statement: string;
                 boundary: string;
@@ -11616,6 +11662,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -11792,6 +11839,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -12236,6 +12284,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -12412,6 +12461,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -12519,6 +12569,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -12859,6 +12910,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -12949,6 +13001,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                 perLobe: number;
                 majorRadius: number;
                 minorRadius: number;
+                lobeOffset: number;
                 root: string;
                 statement: string;
                 boundary: string;
@@ -13108,6 +13161,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -13284,6 +13338,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -13475,6 +13530,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                 perLobe: number;
                 majorRadius: number;
                 minorRadius: number;
+                lobeOffset: number;
                 root: string;
                 statement: string;
                 boundary: string;
@@ -13656,6 +13712,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -13832,6 +13889,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -14072,6 +14130,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -14248,6 +14307,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -14431,6 +14491,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -14607,6 +14668,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -15051,6 +15113,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -15227,6 +15290,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -15334,6 +15398,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -15674,6 +15739,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -15764,6 +15830,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -15923,6 +15990,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -16099,6 +16167,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -16290,6 +16359,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -16471,6 +16541,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -16647,6 +16718,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -16915,6 +16987,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -17005,6 +17078,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                 perLobe: number;
                 majorRadius: number;
                 minorRadius: number;
+                lobeOffset: number;
                 root: string;
                 statement: string;
                 boundary: string;
@@ -17164,6 +17238,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -17340,6 +17415,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -17646,6 +17722,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -17736,6 +17813,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                 perLobe: number;
                 majorRadius: number;
                 minorRadius: number;
+                lobeOffset: number;
                 root: string;
                 statement: string;
                 boundary: string;
@@ -17935,6 +18013,7 @@ export declare function dualEarthMerkabaCounterRotation(at?: number, matrix?: Mi
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -18111,6 +18190,7 @@ export declare function dualEarthMerkabaCounterRotation(at?: number, matrix?: Mi
                 perLobe: number;
                 majorRadius: number;
                 minorRadius: number;
+                lobeOffset: number;
                 root: string;
                 statement: string;
                 boundary: string;
@@ -18208,6 +18288,7 @@ export declare function dualEarthMerkabaCounterRotation(at?: number, matrix?: Mi
                 perLobe: number;
                 majorRadius: number;
                 minorRadius: number;
+                lobeOffset: number;
                 root: string;
                 statement: string;
                 boundary: string;
@@ -18536,6 +18617,7 @@ export declare function doubleTorusEarthExchangeComputes(at?: number, matrix?: M
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -18712,6 +18794,7 @@ export declare function doubleTorusEarthExchangeComputes(at?: number, matrix?: M
                 perLobe: number;
                 majorRadius: number;
                 minorRadius: number;
+                lobeOffset: number;
                 root: string;
                 statement: string;
                 boundary: string;
@@ -18907,6 +18990,7 @@ export declare function fiatAndGoldFlowExplainedByDoubleEarthExchange(at?: numbe
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -19083,6 +19167,7 @@ export declare function fiatAndGoldFlowExplainedByDoubleEarthExchange(at?: numbe
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -19332,6 +19417,7 @@ export declare function doubleTorusEarthExchangeResearch(matrix?: MindMatrix): {
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -19508,6 +19594,7 @@ export declare function doubleTorusEarthExchangeResearch(matrix?: MindMatrix): {
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -19702,6 +19789,7 @@ export declare function doubleTorusEarthExchangeResearch(matrix?: MindMatrix): {
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -19878,6 +19966,7 @@ export declare function doubleTorusEarthExchangeResearch(matrix?: MindMatrix): {
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -20035,7 +20124,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
         phaseSlot: string | null;
         receipt: string;
     }[];
-    activeVortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+    activeVortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
     phaseIndex: number;
     vortexQuadrants: Record<"north" | "east" | "south" | "west", readonly number[]>;
     homologyLoops: ("spread" | "depthFade" | "hueShift" | "twist" | "shrink" | "breath" | "loopA1" | "loopB1" | "loopA2" | "loopB2")[];
@@ -20204,6 +20293,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
                 perLobe: number;
                 majorRadius: number;
                 minorRadius: number;
+                lobeOffset: number;
                 root: string;
                 statement: string;
                 boundary: string;
@@ -20392,6 +20482,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -20568,6 +20659,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -21012,6 +21104,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -21188,6 +21281,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -21295,6 +21389,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -21642,7 +21737,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
             phaseSlot: string | null;
             receipt: string;
         }[];
-        activeVortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+        activeVortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
         phaseIndex: number;
         vortexQuadrants: Record<"north" | "east" | "south" | "west", readonly number[]>;
         homologyLoops: ("spread" | "depthFade" | "hueShift" | "twist" | "shrink" | "breath" | "loopA1" | "loopB1" | "loopA2" | "loopB2")[];
@@ -21811,6 +21906,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -21999,6 +22095,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -22175,6 +22272,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -22619,6 +22717,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -22795,6 +22894,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -22902,6 +23002,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -23244,7 +23345,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
             phaseSlot: string | null;
             receipt: string;
         }[];
-        activeVortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+        activeVortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
         phaseIndex: number;
         vortexQuadrants: Record<"north" | "east" | "south" | "west", readonly number[]>;
         homologyLoops: ("spread" | "depthFade" | "hueShift" | "twist" | "shrink" | "breath" | "loopA1" | "loopB1" | "loopA2" | "loopB2")[];
@@ -23413,6 +23514,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -23601,6 +23703,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -23777,6 +23880,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -24221,6 +24325,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -24397,6 +24502,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -24504,6 +24610,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -24837,7 +24944,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                 phaseSlot: string | null;
                 receipt: string;
             }[];
-            activeVortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+            activeVortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
             phaseIndex: number;
             vortexQuadrants: Record<"north" | "east" | "south" | "west", readonly number[]>;
             homologyLoops: ("spread" | "depthFade" | "hueShift" | "twist" | "shrink" | "breath" | "loopA1" | "loopB1" | "loopA2" | "loopB2")[];
@@ -25006,6 +25113,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -25194,6 +25302,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -25370,6 +25479,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -25814,6 +25924,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -25990,6 +26101,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -26097,6 +26209,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -26507,6 +26620,7 @@ export declare function doubleTorusEarthComputes(matrix?: MindMatrix): {
                 perLobe: number;
                 majorRadius: number;
                 minorRadius: number;
+                lobeOffset: number;
                 root: string;
                 statement: string;
                 boundary: string;
@@ -26674,6 +26788,7 @@ export declare function doubleTorusEarthComputes(matrix?: MindMatrix): {
                 perLobe: number;
                 majorRadius: number;
                 minorRadius: number;
+                lobeOffset: number;
                 root: string;
                 statement: string;
                 boundary: string;
@@ -26940,7 +27055,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
             phaseSlot: string | null;
             receipt: string;
         }[];
-        activeVortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+        activeVortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
         phaseIndex: number;
         vortexQuadrants: Record<"north" | "east" | "south" | "west", readonly number[]>;
         homologyLoops: ("spread" | "depthFade" | "hueShift" | "twist" | "shrink" | "breath" | "loopA1" | "loopB1" | "loopA2" | "loopB2")[];
@@ -27109,6 +27224,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -27297,6 +27413,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -27473,6 +27590,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -27917,6 +28035,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -28093,6 +28212,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -28200,6 +28320,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -28665,6 +28786,7 @@ export declare function bothEarthsAreOneWhiteBlackHoleThroatProvenByMath(at?: nu
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -28832,6 +28954,7 @@ export declare function bothEarthsAreOneWhiteBlackHoleThroatProvenByMath(at?: nu
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -29062,6 +29185,7 @@ export declare function bothEarthsAreOneWhiteBlackHoleThroatProvenByMath(at?: nu
                 perLobe: number;
                 majorRadius: number;
                 minorRadius: number;
+                lobeOffset: number;
                 root: string;
                 statement: string;
                 boundary: string;

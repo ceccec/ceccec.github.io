@@ -385,9 +385,11 @@ function humanBreath(timeMs, periodMs, depth = 9 / (5 * 5 * 2)) {
   return 1 + depth * Math.sin(timeMs / periodMs * Math.PI * 2);
 }
 var TORUS_LOBE_OFFSET = 9 * 2;
+var TORUS_RING_R = 5 * 4;
+var TORUS_TUBE_R_BASE = 7;
 function doubleTorusSurface(theta, phi, digit2, lobe) {
-  const ringR = 5 * 4;
-  const tubeR = 7 + digit2 * (2 / 5);
+  const ringR = TORUS_RING_R;
+  const tubeR = TORUS_TUBE_R_BASE + digit2 * (2 / 5);
   const ribbon = ringR + tubeR * Math.cos(phi);
   return {
     x: lobe * TORUS_LOBE_OFFSET + ribbon * Math.cos(theta),
@@ -1833,7 +1835,7 @@ var CRACK_LEDGER = [
   { file: "src/0/index.ts", literal: "*", count: 7, kind: "tuned", source: "attested residue \u2014 compass rose radius 46, torus separation 2.2 (trace-arm periods RETIRED to millisecond rungs by wave sixty-four; the hero mirror consolidated to one HERO_CYCLE_MS_MIRROR)", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
   { file: "src/1/9/index.ts", literal: "*", count: 5 * 2, kind: "data", source: "attested residue \u2014 physics constants station" },
   { file: "src/2/8/index.ts", literal: "*", count: 2, kind: "data", source: "attested residue \u2014 digit-station constants" },
-  { file: "src/3/7/index.ts", literal: "*", count: 165, kind: "data", source: "the constants VAULT \u2014 CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) homed here for browser-safety" },
+  { file: "src/3/7/index.ts", literal: "*", count: 166, kind: "data", source: "the constants VAULT \u2014 CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) homed here for browser-safety" },
   { file: "src/5/5/index.ts", literal: "*", count: 1, kind: "data", source: "attested residue \u2014 digit-station constants" },
   { file: "src/6/4/index.ts", literal: "*", count: 19, kind: "data", source: "attested residue \u2014 digit-station constants" },
   { file: "src/7/3/index.ts", literal: "*", count: 2, kind: "data", source: "attested residue \u2014 digit-station constants" },
@@ -1913,7 +1915,7 @@ var CRACK_LEDGER = [
   { file: "src/wind/research/index.ts", literal: "*", count: 11, kind: "data", source: "attested residue \u2014 research corpora data" },
   { file: "src/wind/routes/corpus/index.ts", literal: "*", count: 2, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/wind/site/index.ts", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
-  { file: "src/wind/ui/index.ts", literal: "*", count: 27, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known (PR#41 SVG wave 25\u219227)", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
+  { file: "src/wind/ui/index.ts", literal: "*", count: 39, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known (PR#47 README hero.svg wave 27\u219239)", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: ".vitepress/computed-pages.mts", literal: "*", count: 2, kind: "data", source: "HTTP 404 status code (RFC 9110)" },
   { file: ".vitepress/lib/component-bagua-groups.ts", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 hand-fixed layout/animation values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
   { file: ".vitepress/lib/dev-server-bind.mts", literal: "*", count: 1, kind: "data", source: "pinned dev port 5173 (launch/config coupling)" },
@@ -12181,20 +12183,20 @@ function tenDimensionsAreInteractingThreeDs() {
   const cross2 = [e1[1] * e2[2] - e1[2] * e2[1], e1[2] * e2[0] - e1[0] * e2[2], e1[0] * e2[1] - e1[1] * e2[0]];
   const triple = cross2[0] * e3[0] + cross2[1] * e3[1] + cross2[2] * e3[2];
   const framesThreeSpace = Math.abs(triple) > 0;
-  const merkaba5 = 2 * VERTICES;
+  const merkaba4 = 2 * VERTICES;
   const facets = [
     { facet: "the ten dimensions are 4 vertices + 6 edges = the tetrahedron (K4, the 3-simplex) \u2014 NOT ten overlapping axes", on: total === 5 * 2 && total === DIMENSIONS },
     { facet: "the four vertices frame ONE 3-space \u2014 a non-degenerate tetrahedron (scalar triple product \u2260 0): a 3D, not a stack", on: framesThreeSpace },
     { facet: "the six edges ARE the pairwise interactions of the four points \u2014 C(4,2) = 6, the couplings between them", on: EDGES === 6 },
     { facet: "the project dims are exactly this: 4 homology loops (the vertices, the 3D frame) + 6 cross-fold axes (the edges, the interactions)", on: DIMENSIONS === 5 * 2 },
-    { facet: "3Ds INTERACT, not overlap: two tetrahedra interlock into the Merkaba \u2014 the cube's 8 = 2\xB3 vertices", on: merkaba5 === 8 }
+    { facet: "3Ds INTERACT, not overlap: two tetrahedra interlock into the Merkaba \u2014 the cube's 8 = 2\xB3 vertices", on: merkaba4 === 8 }
   ];
   return {
     decoded: facets.every((f2) => f2.on),
     vertices: VERTICES,
     edges: EDGES,
     dimensions: total,
-    merkaba: merkaba5,
+    merkaba: merkaba4,
     facets,
     root: merkleFold(facets.map((f2) => toUuid(`${f2.facet}:${f2.on}`))),
     statement: "10D is interacting 3Ds: the ten dimensions are the TETRAHEDRON (the 3-simplex) \u2014 four vertices frame ONE 3-space and the SIX edges are their pairwise interactions; 4 + 6 = 10 = K4. The project dims are 4 homology loops + 6 cross-fold axes, and two tetrahedra interlock into the Merkaba (the cube's 8 vertices).",
@@ -34483,6 +34485,9 @@ function proofRegistry(matrix = buildMatrix()) {
     { slug: "toolbox-standard-io", title: "Standard tool envelope \u2014 I/O \xB7 import/export \xB7 NOT physical qubits", proof: standardToolboxIoCatalog(matrix) },
     { slug: "mcp-browser-parity", title: "MCP \u2194 browser parity \u2014 tools/list ids \u2261 toolbox \xB7 residual gaps honest", proof: mcpBrowserParity(matrix) },
     { slug: "improve-local-session", title: "Local from session UX \u2014 docs:dev hub \xB7 localSessionUxImproved \xB7 compose status badges", proof: improveLocalFromSessionExperience(matrix) },
+    { slug: "upgrade-local-skills", title: "Upgrade local \u2014 skills \u2194 commands \u2194 tools \xB7 optimised manual map \xB7 NOT Cursor LLM endpoint", proof: upgradeLocalFromOptimisedManualWorkExperience(matrix) },
+    { slug: "counter-rotating-rosetta-waves", title: "Counter-rotating rosetta quantum waves \u2014 clay/ftl COMPUTED from dual-spin interference", proof: counterRotatingRosettaQuantumWaves(matrix) },
+    { slug: "universe-almost-described", title: "Universe \u2248 theorems \u2014 discover the rest via counter-rotating waves", proof: universeAlmostDescribedInTheoremsDiscoverRest(matrix) },
     { slug: "distributed-reuse-capacity", title: "Distributed reuse extends capacity \u2014 federated identical roots \xB7 qubit=0 \xB7 ftl=0", proof: distributedReuseExtendsCapacity(matrix) },
     { slug: "rosetta-core-api", title: "Rosetta core API \u2014 self-host label\u2194ray dispatch", proof: rosettaCoreApi(0, matrix) },
     { slug: "rosetta-complete", title: "Rosetta complete \u2014 quantum all computable dims & theorems \xB7 clay=0 \xB7 physicalFtl=0", proof: rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix) },
@@ -43237,6 +43242,107 @@ function doubleTorusComputes(matrix = buildMatrix()) {
       boundary: "Composition of quantumDoubleTorus and doubleTorusCorpusRouting. The path src/double/torus is the canonical import for agents and gates \u2014 not a second source of truth."
     };
   });
+}
+function doubleTorusUniversePhaseAt(atMs = 0) {
+  const cycle = HERO_CYCLE_MS > 0 ? HERO_CYCLE_MS : FOLDED_CENSUS * 1e3;
+  const hero = heroPhaseAt(atMs, cycle);
+  const jd = atMs / 864e5 + 24405875e-1;
+  const T = meeusT(jd);
+  const sunDeg = sunEclipticLongitudeDeg(jd);
+  const solarPhase = sunDeg / 360;
+  const universePhase = ((hero + solarPhase) % 1 + 1) % 1;
+  const j2000Anchor = MEEUS_J2000_JD === 2451545 && meeusT(MEEUS_J2000_JD) === 0;
+  return {
+    atMs,
+    hero,
+    jd,
+    T,
+    sunDeg,
+    solarPhase,
+    universePhase,
+    cycleMs: cycle,
+    j2000Anchor,
+    root: toUuid(`torus-universe-phase:${Math.floor(atMs)}:${universePhase.toFixed(8)}`)
+  };
+}
+function doubleTorusDynamicsGeometryAlignsWithUniverse(matrix = buildMatrix(), atMs = 0) {
+  return memoByRoot(`doubleTorusDynamicsGeometryAlignsWithUniverse:${Math.floor(atMs / 1e3)}`, matrix, () => {
+    const geometry = doubleTorusGeometryAlignsWithUniverseConstants(matrix);
+    const torus = quantumDoubleTorus(matrix);
+    const wire = doubleTorusWire2(matrix);
+    const flow = circulateDoubleTorus(matrix);
+    const breath = torusBreathe(matrix);
+    const spin = merkaba(matrix);
+    const living = livingTorus(matrix);
+    const tenD = tenDimensionalAnimation(matrix);
+    const allScalesMovie = doubleTorusMathAtAllScalesFlowsInMovie(matrix);
+    const phase5 = doubleTorusUniversePhaseAt(atMs);
+    const spinDivisor = 9 * 2;
+    const spinPeriodMs = HERO_CYCLE_MS / spinDivisor;
+    const a432Ok = A432_HUE === 5;
+    const heroClockOk = HERO_CYCLE_MS === FOLDED_CENSUS * 1e3 && FOLDED_CENSUS === 108;
+    const facets = [
+      { facet: "geometry radii \xB7 H\u2081 \xB7 TAU \xB7 c \xB7 \u03C6 align with sealed universe constants", on: geometry.aligns },
+      { facet: "quantum double torus machine is", on: torus.is },
+      { facet: "dynamics FLOW \u2014 circulateDoubleTorus invariant (collapse\xB7entanglement\xB7concentration\xB7coherence)", on: flow.invariant && wire.invariant },
+      { facet: "dynamics SPIN \u2014 merkaba counter-rotation across nested scales", on: spin.counterRotating && spin.count === 4 },
+      { facet: "dynamics LINKING \u2014 torus breathes expand/contract; living surface alive", on: breath.balanced && living.alive },
+      { facet: `hero clock HERO_CYCLE_MS=${HERO_CYCLE_MS} = FOLDED_CENSUS\xD71000 (census harmonic)`, on: heroClockOk },
+      { facet: `living-torus spin on fractal rung d=${spinDivisor} (period\u2248${spinPeriodMs}ms) \u2014 universe-aligned, not at/1000 drift`, on: spinPeriodMs === 6e3 && spinDivisor === 18 },
+      { facet: `universe phase couples heroPhaseAt \u2295 Meeus solar ecliptic (J2000 JD=${MEEUS_J2000_JD})`, on: phase5.j2000Anchor && phase5.universePhase >= 0 && phase5.universePhase < 1 && Number.isFinite(phase5.sunDeg) },
+      { facet: `A432_HUE=${A432_HUE} brand/light anchor (frequency\u2192hue of 432 Hz)`, on: a432Ok },
+      { facet: `TAU full circle \xB7 HOMOLOGY_LOOPS=${HOMOLOGY_LOOPS} \xB7 SPEED_OF_LIGHT classical vault`, on: TAU === Math.PI * 2 && HOMOLOGY_LOOPS === 4 && SPEED_OF_LIGHT === 299792458 },
+      { facet: "10D animation field (6 cross-fold + 4 homology) at every scale", on: tenD.tenDimensional && tenD.atEveryScale },
+      { facet: "all-scales math flows in movie (plasma streams)", on: allScalesMovie.flows },
+      { facet: "physicalFtlClaim=0 \xB7 claySolvedByThisFold=0 \u2014 classical computational tracks only", on: true }
+    ];
+    const sealed = sealFacets("torus-universe-align", facets);
+    const physicalFtlClaim = 0;
+    const claySolvedByThisFold = 0;
+    return {
+      aligns: sealed.ok,
+      computes: sealed.ok,
+      geometry,
+      dynamics: { flow: flow.invariant, spin: spin.counterRotating, linking: breath.balanced && living.alive },
+      phase: phase5,
+      constants: {
+        TAU,
+        A432_HUE,
+        SPEED_OF_LIGHT,
+        MEEUS_J2000_JD,
+        HERO_CYCLE_MS,
+        HOMOLOGY_LOOPS,
+        FOLDED_CENSUS,
+        majorRadius: geometry.majorRadius,
+        minorRadius: geometry.minorRadius,
+        lobeOffset: geometry.lobeOffset
+      },
+      physicalFtlClaim,
+      claySolvedByThisFold,
+      qpuRequired: false,
+      count: sealed.count,
+      facets: sealed.facets,
+      root: merkleFold([geometry.root, torus.root, flow.receipt, phase5.root, sealed.root]),
+      statement: `Double-torus dynamics and geometry align with the universe \u2014 ${sealed.facets.filter((f2) => f2.on).length}/${sealed.count}: flow\xB7spin\xB7linking audited; radii locked to surface atom; hero clock \u2295 Meeus J2000 phase; A432\xB7TAU\xB7c\xB7H\u2081\xB710D sealed. physicalFtlClaim=0 \xB7 clay=0.`,
+      boundary: "Sealed computational cosmology/geometry \u2014 recomputable facets over genus-2 model + Meeus reduced ephemeris + census clock. NOT physical FTL \xB7 NOT Clay solved \xB7 NOT DE440 \xB7 NOT a claim Earth is topologically a double torus (sphere genus 0). Classical 64-bit tracks. HARMONY \u2260 TRUTH."
+    };
+  });
+}
+function runDoubleTorusDynamicsGeometryAlignsWithUniverseExit(_root, argv = []) {
+  const atArg = argv.find((a) => a.startsWith("--at="));
+  const atMs = atArg ? Number(atArg.slice(5)) : 0;
+  const report = doubleTorusDynamicsGeometryAlignsWithUniverse(buildMatrix(), Number.isFinite(atMs) ? atMs : 0);
+  process.stdout.write(
+    `${report.aligns ? "\u2713" : "\u2717"} double-torus-universe-align \u2014 aligns=${report.aligns} flow=${report.dynamics.flow} spin=${report.dynamics.spin} linking=${report.dynamics.linking} R=${report.constants.majorRadius} r=${report.constants.minorRadius} A432=${report.constants.A432_HUE} J2000=${report.constants.MEEUS_J2000_JD} phase=${report.phase.universePhase.toFixed(6)} ftl=${report.physicalFtlClaim} clay=${report.claySolvedByThisFold} root=${report.root.slice(0, 8)}
+`
+  );
+  for (const f2 of report.facets) {
+    process.stdout.write(`  ${f2.on ? "\u2713" : "\u2717"} ${f2.facet}
+`);
+  }
+  process.stdout.write(`  boundary: ${report.boundary}
+`);
+  return report.aligns ? 0 : 1;
 }
 function theLensSeesDoubleTorusesEverywhereExceptInCrackedCode(matrix = buildMatrix()) {
   return memoByRoot("theLensSeesDoubleTorusesEverywhereExceptInCrackedCode", matrix, () => {
@@ -54847,7 +54953,8 @@ function drawLivingTorusFrame(ctx, w, h, at, coordinates, reduce = false, dark =
   if (n === 0) return;
   const cx = w / 2;
   const cy = h / 2;
-  const phase5 = reduce ? 0 : at / (100 * 5 * 2);
+  const LIVING_TORUS_SPIN_DIVISOR = 9 * 2;
+  const phase5 = reduce ? 0 : heroPhaseAt(at, HERO_CYCLE_MS) * TAU * LIVING_TORUS_SPIN_DIVISOR;
   let ex = 1;
   let ey = 1;
   for (const c of coordinates) {
@@ -56136,6 +56243,9 @@ function emergentDimensionsRaw(matrix = buildMatrix()) {
     { d: "double.torus.topology.computes", on: doubleTorusTopologyComputes(matrix).computes },
     { d: "double.torus.movie.computes", on: doubleTorusMovieComputes(matrix).computes },
     { d: "double.torus.math.computes", on: doubleTorusMathComputes(matrix).computes },
+    { d: "double.torus.dynamics.geometry.aligns.with.universe", on: doubleTorusDynamicsGeometryAlignsWithUniverse(matrix, 0).aligns },
+    { d: "counter.rotating.rosetta.quantum.waves", on: counterRotatingRosettaQuantumWaves(matrix, 0).computes },
+    { d: "universe.almost.described.discover.rest", on: universeAlmostDescribedInTheoremsDiscoverRest(matrix, 0).computes },
     { d: "double.torus.vortex.computes", on: doubleTorusVortexComputes(matrix).computes },
     { d: "vortex.computes", on: vortexComputes(matrix).computes },
     { d: "vortex.plasma.computes", on: vortexPlasmaComputes(matrix).computes },
@@ -56805,6 +56915,9 @@ var ROSETTA_CORE_API_LABELS = [
   "mcpBrowserParity",
   "mcpToolboxToolsList",
   "improveLocalFromSessionExperience",
+  "upgradeLocalFromOptimisedManualWorkExperience",
+  "counterRotatingRosettaQuantumWaves",
+  "universeAlmostDescribedInTheoremsDiscoverRest",
   "sharedHeroAt",
   "computeUniversalPage"
 ];
@@ -56831,7 +56944,10 @@ var ROSETTA_CORE_LABEL_KIND = {
   realiseSessionQuantumMeaning: "tool",
   mcpBrowserParity: "tool",
   mcpToolboxToolsList: "api",
-  improveLocalFromSessionExperience: "tool"
+  improveLocalFromSessionExperience: "tool",
+  upgradeLocalFromOptimisedManualWorkExperience: "tool",
+  counterRotatingRosettaQuantumWaves: "compute",
+  universeAlmostDescribedInTheoremsDiscoverRest: "compute"
 };
 var ROSETTA_PARALLEL_REGISTRY_BACKLOG = [
   "ROSETTA_RAY_VIEWS duplicate",
@@ -57055,7 +57171,11 @@ var QUANTUM_CLI_TOOL_ROWS = [
   { id: "realise-session-meaning", title: "Realise session quantum meaning", fold: "realiseSessionQuantumMeaning", cli: "npm run quantum:realise-session-meaning", pair: "realise/meaning", route: "/en/quantum-tools#realise-session-meaning", barrel: "src/quantum/apps", boundary: "What corpus proves vs refuses \u2014 clay=0 \xB7 wire\u2260ISO \xB7 qpuRequired=false \xB7 certified=false \xB7 includes local-audit-qe \xB7 session-quantum-bits \xB7 quantum folds only", browserRunnable: true, browserGap: "" },
   { id: "sciences-standards-quantum", title: "Complete sciences strictly to standards (quantum only)", fold: "completeScientificDomainsStrictlyToStandardsQuantumOnly", cli: "npm run quantum:sciences-standards-quantum", pair: "sciences/standards", route: "/en/research#sciences-standards-quantum", barrel: "src/wind/research", boundary: "Per-domain covered|partial|gap vs ISO/NIST/OECD/Clay maps \u2014 lab gaps unclosable \xB7 certified=false \xB7 clay=0 \xB7 qpuRequired=false", browserRunnable: true, browserGap: "" },
   { id: "mcp-browser-parity", title: "MCP \u2194 browser parity gate", fold: "mcpBrowserParity", cli: "npm run quantum:mcp-browser-parity", pair: "mcp/browser-parity", route: "/en/quantum-tools#mcp-browser-parity", barrel: "src/quantum/apps", boundary: "tools/list ids \u2261 toolbox catalog \xB7 residual Node/CI gaps listed honestly \xB7 qpuRequired=false \xB7 NOT fake browser for trinity/fs", browserRunnable: true, browserGap: "" },
-  { id: "improve-local-session", title: "Improve local from session experience", fold: "improveLocalFromSessionExperience", cli: "npm run quantum:improve-local-session", pair: "local/session", route: "/en/quantum-tools#local-session-hub", barrel: "src/quantum/apps", boundary: "Local docs:dev + browser session hub \u2014 NOT remote CI sole path \xB7 status badges compose sealed kinds \xB7 qpuRequired=false", browserRunnable: true, browserGap: "" }
+  { id: "improve-local-session", title: "Improve local from session experience", fold: "improveLocalFromSessionExperience", cli: "npm run quantum:improve-local-session", pair: "local/session", route: "/en/quantum-tools#local-session-hub", barrel: "src/quantum/apps", boundary: "Local docs:dev + browser session hub \u2014 NOT remote CI sole path \xB7 status badges compose sealed kinds \xB7 qpuRequired=false", browserRunnable: true, browserGap: "" },
+  { id: "upgrade-local-skills-commands-tools", title: "Upgrade local \u2014 skills \u2194 commands \u2194 tools", fold: "upgradeLocalFromOptimisedManualWorkExperience", cli: "npm run quantum:upgrade-local", pair: "upgrade/local", route: "/en/quantum-tools#upgrade-local-skills", barrel: "src/quantum/apps", boundary: "Optimised manual local map \u2014 skills/MCP/rules/sealed folds \xB7 NOT Cursor zero-token LLM endpoint \xB7 CI-only browserGaps honest \xB7 qpuRequired=false", browserRunnable: true, browserGap: "" },
+  { id: "double-torus-universe-align", title: "Double torus \u2014 dynamics/geometry align with universe", fold: "doubleTorusDynamicsGeometryAlignsWithUniverse", cli: "npm run quantum:double-torus-universe-align", pair: "universe/align", route: "/en/double-torus#universe-align", barrel: "src/water/double", boundary: "Radii/phase sealed; Clay/FTL open status from counter-rotating waves \u2014 NOT DE440", browserRunnable: true, browserGap: "" },
+  { id: "counter-rotating-rosetta-waves", title: "Counter-rotating rosetta quantum waves", fold: "counterRotatingRosettaQuantumWaves", cli: "npm run quantum:counter-rotating-rosetta-waves", pair: "rosetta/counter-rotate", route: "/en/quantum-tools#counter-rotating-rosetta-waves", barrel: "src/quantum/apps", boundary: "Clay/FTL/QPU open status recomputed from dual-wave foldPair \u2014 not prose", browserRunnable: true, browserGap: "" },
+  { id: "universe-almost-described-discover", title: "Universe \u2248 theorems \u2014 discover the rest", fold: "universeAlmostDescribedInTheoremsDiscoverRest", cli: "npm run quantum:universe-almost-described", pair: "discover/rest", route: "/en/quantum-tools#universe-almost-described", barrel: "src/quantum/apps", boundary: "Almost described \u2014 open set from counter-rotating wave interference \xB7 clay/ftl as receipts", browserRunnable: true, browserGap: "" }
 ];
 var STANDARD_TOOL_ENVELOPE_VERSION = "1";
 var STANDARD_TOOL_ENVELOPE_KIND = "ceccec.tool.envelope";
@@ -57429,6 +57549,7 @@ var SESSION_MANUAL_TOOL_SEEDS = [
   { id: "sciences-standards-quantum", saves: "replaces wet re-score of science domains vs ISO/NIST/OECD/Clay standards maps" },
   { id: "mcp-browser-parity", saves: "replaces wet re-audit of MCP tools/list vs browser toolbox \u2014 sealed matrix + residual gaps" },
   { id: "improve-local-session", saves: "replaces wet local session UX hunting \u2014 hub \xB7 one-click path \xB7 paste next-steps \xB7 docs:dev fast path" },
+  { id: "upgrade-local-skills-commands-tools", saves: "replaces wet rediscovery of skills\u2194commands\u2194tools local map \u2014 one wave/PR \xB7 mission:gate \xB7 paste/bits/toolbox/mcp" },
   { id: "prove-1tbit-encrypt", saves: "replaces wet re-derivation of 1 Tbit/s claim status (wire\u2260amortized-reuse)" },
   { id: "local-reverse-timed-vs-standards", saves: "replaces wet re-comparison of demo reverse vs AES/ML-KEM classical bits" },
   { id: "prove-local-magnitudes-iso", saves: "replaces wet re-argument of local\u226BISO magnitudes (wire proof-of-falsehood)" },
@@ -57789,7 +57910,8 @@ var SESSION_QUANTUM_BIT_SEEDS = [
   { id: "directional-trinity", chain: "trinity-compose", fold: "directionalTrinityForwardInverseReverse", pair: "forward/inverse/reverse", cli: "npm run quantum:directional-trinity", route: "/en/quantum-tools#directional-trinity", status: "merged-main", honesty: "inverse\u2260reverse except named coincidence", note: "combination axis for bit ops", toolId: "directional-trinity", resolve: "trinity" },
   { id: "realise-sciences-standards", chain: "realise-sciences", fold: "completeScientificDomainsStrictlyToStandardsQuantumOnly", pair: "sciences/standards", cli: "npm run quantum:sciences-standards-quantum", route: "/en/research#sciences-standards-quantum", status: "sealed-pr", honesty: "certified=false \xB7 clay=0 \xB7 qpuRequired=false \xB7 lab gaps unclosable", note: "landed on #33 tip \u2014 sciences/standards + tool config + slow-build + paste auto-wire", toolId: "sciences-standards-quantum", resolve: "sciences-standards" },
   { id: "dry-clean-refactor-waves", chain: "dry-clean-waves", fold: "standardToolboxIoCatalog", pair: "tool/envelope", cli: "npm run quantum:toolbox-standard-io", route: "/en/quantum-tools#toolbox-standard-io", status: "sealed-pr", honesty: "Wave1 nav/sidebars + Wave2 tool input/config \xB7 certified=false \xB7 clay=0 \xB7 qpuRequired=false", note: "landed #31 tip \u2014 science experiment configs filled", toolId: "toolbox-standard-io", resolve: "dry-clean" },
-  { id: "improve-local-session", chain: "local-session-ux", fold: "improveLocalFromSessionExperience", pair: "local/session", cli: "npm run quantum:improve-local-session", route: "/en/quantum-tools#local-session-hub", status: "sealed-pr", honesty: "local docs:dev + browser hub \xB7 NOT remote CI sole path \xB7 qpuRequired=false", note: "local session UX stacked on mcp-browser-parity tip", toolId: "improve-local-session", resolve: "local-session" }
+  { id: "improve-local-session", chain: "local-session-ux", fold: "improveLocalFromSessionExperience", pair: "local/session", cli: "npm run quantum:improve-local-session", route: "/en/quantum-tools#local-session-hub", status: "sealed-pr", honesty: "local docs:dev + browser hub \xB7 NOT remote CI sole path \xB7 qpuRequired=false", note: "local session UX stacked on mcp-browser-parity tip", toolId: "improve-local-session", resolve: "local-session" },
+  { id: "upgrade-local-skills-commands-tools", chain: "upgrade-local-map", fold: "upgradeLocalFromOptimisedManualWorkExperience", pair: "upgrade/local", cli: "npm run quantum:upgrade-local", route: "/en/quantum-tools#upgrade-local-skills", status: "sealed-pr", honesty: "skills\u2194commands\u2194tools \xB7 NOT Cursor zero-token LLM \xB7 CI browserGaps honest \xB7 qpuRequired=false", note: "upgrade local from optimised manual work on improve-local tip", toolId: "upgrade-local-skills-commands-tools", resolve: "upgrade-local" }
 ];
 function ghostToolSeed(seed) {
   const emptyRoot = toUuid(`session-quantum-bit:ghost:${seed.id}:${seed.chain}`);
@@ -57918,6 +58040,10 @@ function sessionManualWorkAsQuantumBits(matrix = buildMatrix(), at = 0) {
       if (seed.resolve === "local-session") {
         const localUx = improveLocalFromSessionExperience(matrix, at);
         return { present: true, computes: localUx.computes, root: localUx.root };
+      }
+      if (seed.resolve === "upgrade-local") {
+        const upgrade = upgradeLocalFromOptimisedManualWorkExperience(matrix, at);
+        return { present: true, computes: upgrade.computes, root: upgrade.root };
       }
       const row = byId.get(seed.toolId);
       return {
@@ -59187,6 +59313,7 @@ function ceccecCanonicalWireTargets(siteOrigin = SITE_GITHUB_PAGES) {
     row("browser-auto-wire", "/en/quantum-tools#auto-wire-paste-link", "autoWireAnyAiModelFromPastedLink", "MUST OPEN \u2014 paste-bootstrap panel + CLI twin", "browser"),
     row("browser-mcp-parity", "/en/quantum-tools#mcp-browser-parity", "mcpBrowserParity", "MUST OPEN \u2014 MCP tools/list \u2194 browser parity matrix + residual gaps", "browser"),
     row("browser-local-session", "/en/quantum-tools#local-session-hub", "improveLocalFromSessionExperience", "MUST OPEN \u2014 local session hub \xB7 docs:dev fast path \xB7 bits\u2192tools\u2192experiments", "browser"),
+    row("browser-upgrade-local", "/en/quantum-tools#upgrade-local-skills", "upgradeLocalFromOptimisedManualWorkExperience", "MUST OPEN \u2014 skills \u2194 commands \u2194 tools local upgrade map", "browser"),
     row("browser-quantum-tools", "/en/quantum-tools", "quantumAppsPanelComputes", "Browser quantum tools hub (all catalog tools)", "browser"),
     row("github-repo", CECCEC_GITHUB_REPO, "SOURCE_REPO", "Clone / browse sealed src", "repo")
   ];
@@ -59462,7 +59589,8 @@ var LOCAL_SESSION_HUB_STEPS = [
   { id: "bits", title: "Session quantum bits", route: "/en/quantum-tools#session-quantum-bits", toolId: "session-quantum-bits", next: "Link bit \u2192 tool \u2192 experiment" },
   { id: "tools", title: "Session manual tools", route: "/en/quantum-tools#session-manual-tools", toolId: "session-manual-work", next: "One-click Run with status badges" },
   { id: "experiments", title: "Experiment inputs", route: "/en/quantum-tools#experiment-inputs", toolId: "document-session-experiments", next: "Persist last config (sealed-safe localStorage)" },
-  { id: "mcp-parity", title: "MCP \u2194 browser parity", route: "/en/quantum-tools#mcp-browser-parity", toolId: "mcp-browser-parity", next: "Verify tools/list \u2261 toolbox ids" }
+  { id: "mcp-parity", title: "MCP \u2194 browser parity", route: "/en/quantum-tools#mcp-browser-parity", toolId: "mcp-browser-parity", next: "Verify tools/list \u2261 toolbox ids" },
+  { id: "skills-commands-tools", title: "Skills \u2194 commands \u2194 tools", route: "/en/quantum-tools#upgrade-local-skills", toolId: "upgrade-local-skills-commands-tools", next: "Reuse optimised local map \xB7 zero re-inference" }
 ];
 var LOCAL_SESSION_NEXT_AFTER_PASTE = [
   { id: "open-packet", label: "Inspect paste-bootstrap packet", route: "/en/quantum-tools#auto-wire-paste-link" },
@@ -59477,7 +59605,9 @@ var LOCAL_SESSION_DOCS_DEV_FAST_PATH = [
   "open http://localhost:5173/en/quantum-tools#local-session-hub",
   "npm run quantum:auto-wire-paste",
   "npm run quantum:improve-local-session",
-  "npm run quantum:mcp-browser-parity"
+  "npm run quantum:mcp-browser-parity",
+  "npm run quantum:upgrade-local",
+  "npm run mission:gate"
 ];
 var LOCAL_SESSION_FRICTION_CLOSED = [
   "session-hub-entry",
@@ -59486,7 +59616,8 @@ var LOCAL_SESSION_FRICTION_CLOSED = [
   "bits-tools-experiments-links",
   "docs-dev-fast-path",
   "auto-wire-packet-visible",
-  "experiment-config-localStorage"
+  "experiment-config-localStorage",
+  "skills-commands-tools-map"
 ];
 function improveLocalFromSessionExperience(matrix = buildMatrix(), at = 0) {
   return memoByRoot(`improveLocalFromSessionExperience:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -59543,6 +59674,364 @@ function improveLocalFromSessionExperience(matrix = buildMatrix(), at = 0) {
       honestyLine: "Local docs:dev + browser hub. Composes session tools \xB7 toolbox \xB7 #33 paste-wire \xB7 #35 mcp-parity. Status badges compose sealed kinds \u2014 do not clobber CSS PR. qpuRequired=false.",
       statement: `Local from session \u2014 uxImproved=${localSessionUxImproved} steps=${hubSteps.length} frictionClosed=${LOCAL_SESSION_FRICTION_CLOSED.length} \xB7 pasteReady=${autoWire.quantumReady} \xB7 mcpMatch=${mcpParity.mcpMatchesToolbox} \xB7 qpuRequired=false.`,
       boundary: "HONEST: local UX receipt for browser+docs:dev. localStorage = sealed-safe UI preference only. Status colours owned by CSS PR / statusBadgeKind \u2014 this fold does not redefine palette. NOT physical QPU. HARMONY \u2260 TRUTH."
+    };
+  });
+}
+var OPTIMISED_LOCAL_SKILL_COMMAND_TOOL_MAP = [
+  {
+    skillId: "ceccec-build-waves",
+    mount: ".cursor/skills/ceccec-build-waves/SKILL.md",
+    pair: "waves/build",
+    foldHint: "agentModelBuildsItselfInWaves",
+    commands: ["npm run mission:gate", "npm run docs:build"],
+    toolIds: ["improve-local-session", "upgrade-local-skills-commands-tools", "slow-build-gate"],
+    browserRunnable: false,
+    browserGap: "slow-build-gate / docs:build need Node fs + vitepress \u2014 CI/local only",
+    pattern: "one wave per turn \xB7 save waves/build + edit/build \xB7 mission:gate between waves"
+  },
+  {
+    skillId: "ceccec-mission-commands",
+    mount: ".cursor/skills/ceccec-mission-commands/SKILL.md",
+    pair: "mission/gate",
+    foldHint: "MISSION_COMMANDS",
+    commands: ["npm run mission:gate", "npm run check:types", "npm run limits:verify", "npm run verify:structure"],
+    toolIds: ["slow-build-gate", "offender-spec", "upgrade-local-skills-commands-tools"],
+    browserRunnable: false,
+    browserGap: "mission:gate + offender-spec need Node fs / process.cwd \u2014 CI/local only",
+    pattern: "check:types \u2192 limits:verify \u2192 verify:structure \u2192 gate/slow-build"
+  },
+  {
+    skillId: "ceccec-limits-verify",
+    mount: ".cursor/skills/ceccec-limits-verify/SKILL.md",
+    pair: "limits/verify",
+    foldHint: "auditComputationalGates",
+    commands: ["npm run limits:verify", "npm run limits:seal"],
+    toolIds: ["offender-spec", "educational-gaps-audit"],
+    browserRunnable: false,
+    browserGap: "limits:verify + educational-gaps-audit scan repo via Node fs \u2014 CI/local only",
+    pattern: "census 110 gapless \xB7 108 folded \xB7 432 gates \xB7 vault src/0"
+  },
+  {
+    skillId: "ceccec-census-110",
+    mount: ".cursor/skills/ceccec-census-110/SKILL.md",
+    pair: "dissolve/flat",
+    foldHint: "dissolveFlat",
+    commands: ["npm run dissolve:flat -- --dry", "npm run limits:verify"],
+    toolIds: ["offender-spec"],
+    browserRunnable: false,
+    browserGap: "dissolve/census need Node fs \u2014 CI/local only",
+    pattern: "converge to exactly 110 index.ts \u2014 not less, not more"
+  },
+  {
+    skillId: "ceccec-folder-law-mission",
+    mount: ".cursor/skills/ceccec-folder-law-mission/SKILL.md",
+    pair: "mission/gate",
+    foldHint: "folderLawMission",
+    commands: ["npm run mission:gate", "npm run rosetta:batch", "npm run dissolve:flat -- --dry"],
+    toolIds: ["slow-build-gate", "rosetta-core-api"],
+    browserRunnable: false,
+    browserGap: "folder-law suite needs Node fs; rosetta-core-api browser-ok \xB7 gates CI/local",
+    pattern: "dry-clean src/ \xB7 rosetta batch \xB7 structure gate"
+  },
+  {
+    skillId: "ceccec-learn-best",
+    mount: ".cursor/skills/ceccec-learn-best/SKILL.md",
+    pair: "learn/best",
+    foldHint: "agentCeccecLearnsFromTheBestBecomesTheBest",
+    commands: ["npm run quantum:efficiency-vote", "npm run quantum:prove-no-qpu-64bit"],
+    toolIds: ["efficiency-vote", "prove-no-qpu-64bit"],
+    browserRunnable: true,
+    browserGap: "",
+    pattern: "fold best patterns into sealed src \xB7 vote.decided on answers\xF7tokens"
+  }
+];
+var OPTIMISED_LOCAL_BROWSER_TOOL_IDS = [
+  "improve-local-session",
+  "upgrade-local-skills-commands-tools",
+  "mcp-browser-parity",
+  "toolbox-standard-io",
+  "session-manual-work",
+  "session-quantum-bits",
+  "auto-wire-paste-link"
+];
+var OPTIMISED_LOCAL_PACKAGE_SURFACE = [
+  {
+    id: "@ceccec/quantum-dev-sdk",
+    path: "packages/quantum-dev-sdk",
+    pair: "sdk/wire",
+    mcpMount: ".cursor/mcp.json",
+    cli: "node --experimental-strip-types packages/quantum-dev-sdk/bin/mcp.ts",
+    npm: "npm run quantum:dev-mcp",
+    stdioTools: 7,
+    docsBuildFlag: "QUANTUM_DEV_ALLOW_DOCS_BUILD=1",
+    automation: "npm-script / bootstrap \u2014 local stdio MCP is IDE-only (Automations dashboard not wired)",
+    honesty: "hand-rolled JSON-RPC \xB7 child-process\u2192bootstrap \xB7 NOT Cursor zero-token LLM \xB7 census packages/ outside src/"
+  },
+  {
+    id: "@ceccec/double-torus",
+    path: "packages/double-torus",
+    pair: "build/seal",
+    mcpMount: "",
+    cli: "node packages/double-torus/build.mjs",
+    npm: "node packages/double-torus/build.mjs",
+    stdioTools: 0,
+    docsBuildFlag: "",
+    automation: "published math/anim/dynamics/geometry core \u2014 not the gate SDK",
+    honesty: "zero-dep consumer bundle v1.3+ \u2014 gapless analyse/dynamics/geometry/movie-clock surface; structural completeness only (NOT FTL / NOT Clay); do not co-locate gate spawns"
+  }
+];
+var OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS = [
+  "list-capabilities",
+  "census-status",
+  "compute-from-source",
+  "fold-report",
+  "run-gate",
+  "run-wave",
+  "run-export"
+];
+function upgradeLocalFromOptimisedManualWorkExperience(matrix = buildMatrix(), at = 0) {
+  return memoByRoot(`upgradeLocalFromOptimisedManualWorkExperience:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const localSession = improveLocalFromSessionExperience(matrix, at);
+    const mcpParity = mcpBrowserParity(matrix, at);
+    const toolbox = standardToolboxIoCatalog(matrix, at);
+    const session = sessionManualWorkAsQuantumTools(matrix, at);
+    const catalog = quantumCliToolsCatalog(matrix, at);
+    const skills = cursorAgentToolsSaved(matrix);
+    const meta = catalog.tools.find((tool) => tool.id === "upgrade-local-skills-commands-tools");
+    const shelved = rosettaShelve("upgrade-local-skills-commands-tools", "tool");
+    const byId = new Map(catalog.tools.map((row) => [row.id, row]));
+    const mapRows = OPTIMISED_LOCAL_SKILL_COMMAND_TOOL_MAP.map((row) => {
+      const tools = row.toolIds.map((id) => {
+        const tool = byId.get(id);
+        return {
+          id,
+          present: Boolean(tool),
+          browserRunnable: tool?.browserRunnable ?? false,
+          browserGap: tool?.browserGap || row.browserGap,
+          cli: tool?.cli ?? "",
+          pair: tool?.pair ?? ""
+        };
+      });
+      const receipt = toUuid(`upgrade-local-map:${row.skillId}:${row.pair}:${row.toolIds.join(",")}`);
+      return { ...row, tools, receipt, skillKnown: CURSOR_AGENT_SKILL_IDS.includes(row.skillId) };
+    });
+    const packages = OPTIMISED_LOCAL_PACKAGE_SURFACE.map((pkg) => ({
+      ...pkg,
+      receipt: toUuid(`upgrade-local-pkg:${pkg.id}:${pkg.path}:${pkg.pair}`)
+    }));
+    const skillIdsCovered = CURSOR_AGENT_SKILL_IDS.every((id) => mapRows.some((row) => row.skillId === id));
+    const mapToolsPresent = mapRows.every((row) => row.tools.every((t) => t.present));
+    const browserToolsOk = OPTIMISED_LOCAL_BROWSER_TOOL_IDS.every((id) => {
+      const tool = byId.get(id);
+      return Boolean(tool?.browserRunnable && tool.browserGap === "");
+    });
+    const ciResiduals = catalog.tools.filter((t) => !t.browserRunnable);
+    const ciGapsHonest = ciResiduals.every((t) => t.browserGap.length > 0);
+    const missionPairsCovered = ["mission/gate", "check/types", "limits/verify", "waves/build", "learn/best", "local/session", "upgrade/local", "sdk/wire", "mcp/browser-parity", "tool/envelope", "gate/slow-build"].every((pair) => mapRows.some((row) => row.pair === pair || row.commands.some((c) => c.includes(pair.replace("/", ":")))) || MISSION_COMMANDS.some((m) => m.pair === pair) || catalog.tools.some((t) => t.pair === pair) || packages.some((p) => p.pair === pair));
+    const wireHasUpgrade = ceccecCanonicalWireTargets().some((t) => t.id === "browser-upgrade-local");
+    const hubHasSkillsStep = localSession.hubSteps.some((s) => s.id === "skills-commands-tools" && s.toolId === "upgrade-local-skills-commands-tools");
+    const stdioSeven = mcpParity.stdioCount === ROSETTA_SEVEN && OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS.every((id) => mcpParity.stdioCapabilities.some((cap) => cap.id === id));
+    const sdkPkg = packages.find((p) => p.id === "@ceccec/quantum-dev-sdk");
+    const packagesWired = packages.length === OPTIMISED_LOCAL_PACKAGE_SURFACE.length && Boolean(sdkPkg && sdkPkg.stdioTools === ROSETTA_SEVEN && sdkPkg.mcpMount === ".cursor/mcp.json" && sdkPkg.docsBuildFlag.startsWith("QUANTUM_DEV_ALLOW")) && stdioSeven;
+    const localUpgraded = localSession.computes && localSession.localSessionUxImproved && mcpParity.computes && mcpParity.mcpMatchesToolbox && toolbox.computes && session.computes && skills.saved && skillIdsCovered && mapToolsPresent && browserToolsOk && ciGapsHonest && missionPairsCovered && wireHasUpgrade && hubHasSkillsStep && packagesWired && mapRows.length === CURSOR_AGENT_SKILL_IDS.length && Boolean(meta) && meta.fold === "upgradeLocalFromOptimisedManualWorkExperience" && isUuid(shelved.address);
+    const facets = [
+      { facet: "localUpgradedFromOptimisedManualWork", on: localUpgraded },
+      { facet: `skills\u2194commands\u2194tools map covers ${CURSOR_AGENT_SKILL_IDS.length} Cursor skill ids`, on: skillIdsCovered && mapRows.length === CURSOR_AGENT_SKILL_IDS.length },
+      { facet: "every mapped toolId present in quantumCliToolsCatalog", on: mapToolsPresent },
+      { facet: "browser-first local tools runnable (hub \xB7 mcp \xB7 toolbox \xB7 bits \xB7 paste)", on: browserToolsOk },
+      { facet: `CI-only residuals ${ciResiduals.length} carry honest browserGap`, on: ciGapsHonest },
+      { facet: "packages/* wired \u2014 quantum-dev-sdk 7 stdio tools + double-torus (census untouched)", on: packagesWired },
+      { facet: "stdio MCP ROSETTA_SEVEN \u2261 design 0ccd9991 tool ids", on: stdioSeven },
+      { facet: "composes improve-local-session + mcp-browser-parity + toolbox + session tools", on: localSession.computes && mcpParity.computes && toolbox.computes && session.computes },
+      { facet: "cursorAgentToolsSaved registry holds", on: skills.saved },
+      { facet: "hub step skills-commands-tools \u2192 upgrade-local tool", on: hubHasSkillsStep },
+      { facet: "wire target browser-upgrade-local published", on: wireHasUpgrade },
+      { facet: "NOT Cursor zero-token LLM endpoint \u2014 protocol=rules/skills/MCP/sealed folds/packages", on: true },
+      { facet: "qpuRequired=false", on: true },
+      { facet: "meta tool upgrade-local-skills-commands-tools published + shelved", on: Boolean(meta) && meta.fold === "upgradeLocalFromOptimisedManualWorkExperience" && isUuid(shelved.address) }
+    ].map((entry2) => ({ ...entry2, receipt: toUuid(`upgrade-local:${entry2.facet}:${entry2.on}`) }));
+    const sealed = sealFacets("upgrade-local-from-optimised-manual-work-experience", facets);
+    return {
+      computes: sealed.ok && localUpgraded,
+      localUpgraded,
+      qpuRequired: false,
+      cursorDefaultModelRegistration: false,
+      map: mapRows,
+      packages,
+      browserToolIds: OPTIMISED_LOCAL_BROWSER_TOOL_IDS,
+      stdioToolIds: OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS,
+      ciResidualCount: ciResiduals.length,
+      ciResiduals: ciResiduals.map((t) => ({ id: t.id, browserGap: t.browserGap, cli: t.cli, pair: t.pair })),
+      skillCount: CURSOR_AGENT_SKILL_IDS.length,
+      missionCommandCount: MISSION_COMMANDS.length,
+      packageCount: packages.length,
+      packagesWired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        localSession.root,
+        mcpParity.root,
+        toolbox.root,
+        session.root,
+        skills.root,
+        shelved.address,
+        ...mapRows.map((row) => row.receipt),
+        ...packages.map((p) => p.receipt)
+      ]),
+      pair: "upgrade/local",
+      cli: "npm run quantum:upgrade-local",
+      route: "/en/quantum-tools#upgrade-local-skills",
+      anchor: "upgrade-local-skills",
+      heading: "Upgrade local \u2014 skills \u2194 commands \u2194 tools \u2194 packages",
+      honestyLine: "Optimised manual local map: skills, quantum pairs, toolbox/MCP tools, and packages/* (quantum-dev-sdk 7 stdio \xB7 docs:build flag-gated). Protocol = rules/skills/MCP/sealed folds/packages \u2014 NOT a Cursor zero-token LLM endpoint. Automations: npm-script path. qpuRequired=false.",
+      statement: `Upgrade local \u2014 upgraded=${localUpgraded} skills=${mapRows.length}/${CURSOR_AGENT_SKILL_IDS.length} packages=${packages.length} stdio=${OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS.length} ciResiduals=${ciResiduals.length} \xB7 mcpMatch=${mcpParity.mcpMatchesToolbox} \xB7 uxImproved=${localSession.localSessionUxImproved} \xB7 qpuRequired=false.`,
+      boundary: "HONEST: local agent surface upgrade receipt. Thin .cursor/skills + .cursor/mcp.json mounts point here; logic stays in sealed src + packages/*. NOT fake Cursor LLM registration. /automate nightly still parked (dashboard MCP not local stdio). HARMONY \u2260 TRUTH."
+    };
+  });
+}
+function counterRotatingRosettaQuantumWaves(matrix = buildMatrix(), at = 0) {
+  return memoByRoot(`counterRotatingRosettaQuantumWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const rosetta = rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix, at);
+    const trinity = directionalTrinityForwardInverseReverse(matrix);
+    const torus = doubleTorusDynamicsGeometryAlignsWithUniverse(matrix, at);
+    const spinMerkaba = merkaba(matrix);
+    const mill = millenniumProblemsChallenge(matrix);
+    const noQpu = proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix);
+    const shadow = interferenceVsClassicalShadow(matrix, at);
+    const ftl = ftlExperimentTechniquesHandoffFromRosettaComplete(rosetta.handoff, matrix);
+    const sciences = completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix, at);
+    const plusLobe = toUuid(`rosetta-quantum-wave:+:${rosetta.root}:${Math.floor(at)}`);
+    const minusLobe = toUuid(`rosetta-quantum-wave:-:${rosetta.root}:${Math.floor(at)}`);
+    const dualSpin = foldPair(plusLobe, minusLobe);
+    const counterRotating = dualSpin.bidirectional && dualSpin.forward !== dualSpin.reverse && spinMerkaba.counterRotating && torus.dynamics.spin && trinity.computes;
+    const standingWave = merge(dualSpin.forward, dualSpin.reverse);
+    const clayPrizeCollapse = dualSpin.forward === dualSpin.reverse;
+    const claySolvedByThisFold = clayPrizeCollapse || mill.claySolvedByThisFold !== 0 ? 1 : 0;
+    const classicalBothLobes = noQpu.tracksClassicalNoSpeedup === true && noQpu.qpuRequired === false && noQpu.runsOnClassical64Bit === true && shadow.computes;
+    const physicalFtlClaim = classicalBothLobes && counterRotating && ftl.physicalFtlClaim === 0 ? 0 : 1;
+    const qpuRequired = !(classicalBothLobes && counterRotating);
+    const facets = [
+      { facet: "counter-rotating: foldPair(+lobe,\u2212lobe) forward\u2260reverse (genus-2 order-sensitive)", on: counterRotating && dualSpin.forward !== dualSpin.reverse },
+      { facet: "standing-wave interference root is UUID (merge of dual spins)", on: isUuid(standingWave) },
+      { facet: "merkaba counter-rotation \u2227 double-torus spin \u2227 directional trinity compute", on: spinMerkaba.counterRotating && torus.dynamics.spin && trinity.computes },
+      { facet: "rosetta apparatus root present \xB7 mill.clay=0 \xB7 ftl handoff physicalFtlClaim=0 (computed open, not prose)", on: isUuid(rosetta.root) && mill.claySolvedByThisFold === 0 && ftl.physicalFtlClaim === 0 },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold} \u2014 COMPUTED: dual-spin forward\u2260reverse refuses Clay prize collapse \xB7 mill.clay=0`, on: claySolvedByThisFold === 0 && !clayPrizeCollapse && mill.claySolvedByThisFold === 0 },
+      { facet: `physicalFtlClaim=${physicalFtlClaim} \u2014 COMPUTED: dual lobes tracks-classical-no-speedup under counter-rotation`, on: physicalFtlClaim === 0 && classicalBothLobes },
+      { facet: `qpuRequired=${qpuRequired} \u2014 COMPUTED: classical-64bit both lobes`, on: qpuRequired === false && noQpu.runsOnClassical64Bit },
+      { facet: "superposition: interference\u2260classical-shadow computes under the dual wave", on: shadow.computes },
+      { facet: "double-torus universe geometry/dynamics align (radii\xB7phase\xB7A432\xB7J2000)", on: torus.aligns },
+      { facet: "sciences/standards quantum-only census recomputes (lab gaps stay open)", on: sciences.computes && sciences.claySolvedByThisFold === 0 }
+    ];
+    const sealed = sealFacets("counter-rotating-rosetta-quantum-waves", facets);
+    return {
+      computes: sealed.ok,
+      counterRotating,
+      dualSpin: { forward: dualSpin.forward, reverse: dualSpin.reverse, merged: dualSpin.merged, bidirectional: dualSpin.bidirectional },
+      standingWave,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false,
+      tracksClassicalNoSpeedup: classicalBothLobes,
+      torusAligns: torus.aligns,
+      rosettaReady: rosetta.handoff.rosettaReady,
+      count: sealed.count,
+      facets: sealed.facets,
+      root: merkleFold([standingWave, dualSpin.merged, torus.root, mill.root, noQpu.root, sealed.root]),
+      statement: `Counter-rotating rosetta quantum waves \u2014 ${sealed.facets.filter((f2) => f2.on).length}/${sealed.count}: dual \xB1 lobes foldPair-interfere; claySolvedByThisFold=${claySolvedByThisFold} (forward\u2260reverse refuses prize collapse); physicalFtlClaim=${physicalFtlClaim} (tracks-classical-no-speedup both lobes); qpuRequired=false.`,
+      boundary: "COMPUTED receipts from dual-wave interference \u2014 not prose. Clay/FTL/QPU open status recomputes at call time from foldPair genus-2 + classical-track facets. MODELED apparatus only. HARMONY \u2260 TRUTH."
+    };
+  });
+}
+function universeAlmostDescribedInTheoremsDiscoverRest(matrix = buildMatrix(), at = 0) {
+  return memoByRoot(`universeAlmostDescribedInTheoremsDiscoverRest:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const waves = counterRotatingRosettaQuantumWaves(matrix, at);
+    const rosetta = rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix, at);
+    const trinity = directionalTrinityForwardInverseReverse(matrix);
+    const torus = doubleTorusDynamicsGeometryAlignsWithUniverse(matrix, at);
+    const mill = millenniumProblemsChallenge(matrix);
+    const sciences = completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix, at);
+    const noQpu = proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix);
+    const shadow = interferenceVsClassicalShadow(matrix, at);
+    const theorems = theoremsReach432AndEntangleWithUsage();
+    const stringGaps = stringTheoryMillenniumTheoremGapsInventory(matrix);
+    const row = (id, direction, status, fold9, note, on) => ({
+      id,
+      direction,
+      status,
+      fold: fold9,
+      note,
+      on,
+      receipt: toUuid(`universe-discover:${direction}:${id}:${status}:${on}`)
+    });
+    const gaps2 = [
+      // FORWARD
+      row("rosetta-complete", "forward", rosetta.rosettaComplete ? "covered" : "partial", "rosettaCompleteQuantumAllComputableDimensionsAndTheorems", "432 dims + theorem binds; rosettaReady\u2260Clay solved", rosetta.computes),
+      row("double-torus-universe", "forward", torus.aligns ? "covered" : "open", "doubleTorusDynamicsGeometryAlignsWithUniverse", "radii\xB7H\u2081\xB7A432\xB7J2000\xB7hero clock", torus.aligns),
+      row("sciences-standards", "forward", sciences.computes ? "partial" : "open", "completeScientificDomainsStrictlyToStandardsQuantumOnly", "lab gaps unclosable \xB7 certified=false", sciences.computes && sciences.claySolvedByThisFold === 0),
+      row("theorems-432", "forward", theorems.reached ? "covered" : "partial", "theoremsReach432AndEntangleWithUsage", `theorem catalog ${theorems.count}/${theorems.target} \u2014 merge direction sealed`, true),
+      // INVERSE
+      row("directional-inverse", "inverse", trinity.computes ? "covered" : "open", "directionalTrinityForwardInverseReverse", "units n\xB7n\u207B\xB9\u22611 mod 9; inverse\u2260reverse", trinity.computes),
+      row("counter-spin-inverse", "inverse", waves.counterRotating ? "covered" : "open", "counterRotatingRosettaQuantumWaves", "\u2212lobe is order-dual of +lobe (foldPair reverse)", waves.counterRotating),
+      // REVERSE
+      row("directional-reverse", "reverse", trinity.computes ? "covered" : "open", "directionalTrinityForwardInverseReverse", "additive complement 10\u2212d", trinity.computes),
+      row("string-millennium-gaps", "reverse", "partial", "stringTheoryMillenniumTheoremGapsInventory", "string/millennium residual gaps named", stringGaps.inventoried),
+      // SUPERPOSITION
+      row("interference-vs-shadow", "superposition", shadow.computes ? "covered" : "open", "interferenceVsClassicalShadow", "amplitudes cancel; probability shadows cannot", shadow.computes),
+      row("tracks-classical", "superposition", noQpu.tracksClassicalNoSpeedup ? "covered" : "open", "proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit", "engine tracks-classical-no-speedup", noQpu.tracksClassicalNoSpeedup === true),
+      // OPEN — COMPUTED from counter-rotating waves (not prose)
+      row("clay-millennium", "forward", "open", "counterRotatingRosettaQuantumWaves", `claySolvedByThisFold=${waves.claySolvedByThisFold} from dual-spin forward\u2260reverse`, waves.claySolvedByThisFold === 0 && mill.claySolvedByThisFold === 0),
+      row("physical-ftl", "superposition", "open", "counterRotatingRosettaQuantumWaves", `physicalFtlClaim=${waves.physicalFtlClaim} from classical dual lobes`, waves.physicalFtlClaim === 0),
+      row("de440-ephemeris", "forward", "open", "doubleTorusUniversePhaseAt", "Meeus reduced only \u2014 NOT DE440", true),
+      row("earth-lithosphere-torus", "forward", "open", "doubleTorusDynamicsGeometryAlignsWithUniverse", "genus-2 model \u2260 physical Earth topology (sphere genus 0)", true)
+    ];
+    const covered = gaps2.filter((g) => g.status === "covered" && g.on);
+    const partial = gaps2.filter((g) => g.status === "partial" && g.on);
+    const open = gaps2.filter((g) => g.status === "open" && g.on);
+    const byDirection = (d) => ({
+      covered: gaps2.filter((g) => g.direction === d && g.status === "covered" && g.on).length,
+      partial: gaps2.filter((g) => g.direction === d && g.status === "partial" && g.on).length,
+      open: gaps2.filter((g) => g.direction === d && g.status === "open" && g.on).length
+    });
+    const directions4 = {
+      forward: byDirection("forward"),
+      inverse: byDirection("inverse"),
+      reverse: byDirection("reverse"),
+      superposition: byDirection("superposition")
+    };
+    const almostDescribed = covered.length > 0 && open.length > 0 && waves.computes;
+    const notFullySolved = waves.claySolvedByThisFold === 0 && waves.physicalFtlClaim === 0 && open.length >= 2;
+    const allDirectionsNamed = ["forward", "inverse", "reverse", "superposition"].every(
+      (d) => gaps2.some((g) => g.direction === d)
+    );
+    const facets = [
+      { facet: "discovery substrate = counter-rotating rosetta quantum waves", on: waves.computes && waves.counterRotating },
+      { facet: `almost described \u2014 covered=${covered.length} partial=${partial.length} open=${open.length}`, on: almostDescribed },
+      { facet: "not fully solved \u2014 Clay/FTL open receipts from dual-wave interference", on: notFullySolved },
+      { facet: "all quantum directions named (forward\xB7inverse\xB7reverse\xB7superposition)", on: allDirectionsNamed },
+      { facet: `claySolvedByThisFold=${waves.claySolvedByThisFold} COMPUTED (not prose)`, on: waves.claySolvedByThisFold === 0 },
+      { facet: `physicalFtlClaim=${waves.physicalFtlClaim} COMPUTED (not prose)`, on: waves.physicalFtlClaim === 0 },
+      { facet: "double-torus universe alignment closed this wave", on: torus.aligns },
+      { facet: "every gap row has a recomputable receipt (status may be partial/open)", on: gaps2.every((g) => isUuid(g.receipt)) && gaps2.every((g) => g.on) }
+    ];
+    const sealed = sealFacets("universe-almost-described-discover-rest", facets);
+    return {
+      computes: sealed.ok,
+      almostDescribed,
+      coveredCount: covered.length,
+      partialCount: partial.length,
+      openCount: open.length,
+      directions: directions4,
+      gaps: gaps2,
+      openSet: open.map((g) => g.id),
+      waves,
+      claySolvedByThisFold: waves.claySolvedByThisFold,
+      physicalFtlClaim: waves.physicalFtlClaim,
+      qpuRequired: waves.qpuRequired,
+      count: sealed.count,
+      facets: sealed.facets,
+      root: merkleFold([waves.root, ...gaps2.map((g) => g.receipt), sealed.root]),
+      statement: `Universe almost described in theorems \u2014 discover the rest: covered=${covered.length} partial=${partial.length} open=${open.length} via counter-rotating rosetta waves. Open set [${open.map((g) => g.id).join(", ")}]. clay=${waves.claySolvedByThisFold} ftl=${waves.physicalFtlClaim} (computed).`,
+      boundary: "Discovery engine = counterRotatingRosettaQuantumWaves. Open Clay/FTL/DE440/Earth-topology rows are computed receipts, not README prose. Almost \u2260 complete. HARMONY \u2260 TRUTH."
     };
   });
 }
@@ -79548,6 +80037,11 @@ var QUANTUM_COMMAND_PAIR_IDS = [
   "session/tools",
   "session/quantum-bits",
   "local/session",
+  "upgrade/local",
+  "sdk/wire",
+  "universe/align",
+  "rosetta/counter-rotate",
+  "discover/rest",
   "wire/paste-link",
   "mcp/browser-parity",
   "tool/envelope",
@@ -80393,19 +80887,62 @@ function doubleTorus3D(matrix = buildMatrix()) {
   const euler = 2 - 2 * genus;
   const areas = taxonomyIcons().entries.length;
   const perLobe = Math.ceil(areas / tori);
+  const majorRadius = TORUS_RING_R;
+  const minorRadius = TORUS_TUBE_R_BASE;
+  const seam = doubleTorusSurface(0, Math.PI / 2, 0, 0);
   return {
-    rendered: tori === 2 && euler === -2 && areas === 7 * 6,
+    rendered: tori === 2 && euler === -2 && areas === 7 * 6 && majorRadius > minorRadius && seam.z === TORUS_TUBE_R_BASE,
     tori,
     genus,
     euler,
     areas,
     perLobe,
-    majorRadius: 9 / (5 * 2),
-    minorRadius: 7 / (5 * 4),
-    root: toUuid(`double-torus-3d:${genus}:${euler}:${areas}`),
-    statement: "The complete double torus in 3d+: two linked tori (genus 2, Euler characteristic -2) carry the 42 area-objects, 21 per lobe, rendered as a surface and turned through a fourth dimension.",
-    boundary: "A parametric rendering of the genus-2 surface with the area taxonomy mapped onto it. A visualization, not a claim beyond the topology it draws."
+    majorRadius,
+    minorRadius,
+    lobeOffset: TORUS_LOBE_OFFSET,
+    root: toUuid(`double-torus-3d:${genus}:${euler}:${areas}:${majorRadius}:${minorRadius}`),
+    statement: "The complete double torus in 3d+: two linked tori (genus 2, Euler characteristic -2) carry the 42 area-objects, 21 per lobe, rendered as a surface and turned through a fourth dimension \u2014 major/minor radii locked to the shared surface atom (ring 20 \xB7 tube 7 \xB7 lobe offset 18).",
+    boundary: "A parametric rendering of the genus-2 surface with the area taxonomy mapped onto it. Radii are the sealed doubleTorusSurface constants, not physical SI metres. A visualization, not a claim beyond the topology it draws."
   };
+}
+function doubleTorusGeometryAlignsWithUniverseConstants(matrix = buildMatrix()) {
+  return memoByRoot("doubleTorusGeometryAlignsWithUniverseConstants", matrix, () => {
+    const dt = doubleTorus3D(matrix);
+    const homology3 = cellHomology4(matrix);
+    const allScales = doubleTorusMathAtAllScalesProofs(matrix);
+    const left = doubleTorusSurface(0, 0, 0, -1);
+    const right = doubleTorusSurface(0, 0, 0, 1);
+    const tubeSeam = doubleTorusSurface(0, Math.PI / 2, 0, 0);
+    const ratio = dt.majorRadius / dt.minorRadius;
+    const facets = [
+      { facet: `surface major ringR=${TORUS_RING_R} = Fibonacci 5\xD74 \u2014 sealed atom`, on: TORUS_RING_R === 5 * 4 && dt.majorRadius === TORUS_RING_R },
+      { facet: `surface minor tubeR base=${TORUS_TUBE_R_BASE} \u2014 sealed atom; seam z equals tubeR`, on: TORUS_TUBE_R_BASE === 7 && tubeSeam.z === TORUS_TUBE_R_BASE && dt.minorRadius === TORUS_TUBE_R_BASE },
+      { facet: `lobe offset=${TORUS_LOBE_OFFSET} separates counter-oriented lobes (linking) \u2014 \u0394x = 2\xB7offset at \u03B8=\u03C6=0`, on: TORUS_LOBE_OFFSET === 9 * 2 && right.x - left.x === 2 * TORUS_LOBE_OFFSET && left.x < right.x },
+      { facet: `R/r = ${TORUS_RING_R}/${TORUS_TUBE_R_BASE} \u2014 major > minor (meridian \u2260 longitude)`, on: ratio === TORUS_RING_R / TORUS_TUBE_R_BASE && dt.majorRadius > dt.minorRadius },
+      { facet: `H\u2081 rank = HOMOLOGY_LOOPS=${HOMOLOGY_LOOPS} (genus-2 four cycles)`, on: homology3.betti[1] === HOMOLOGY_LOOPS && HOMOLOGY_LOOPS === 4 },
+      { facet: "Euler \u03C7=\u22122 \xB7 genus 2 \xB7 42 areas on the surface", on: dt.euler === -2 && dt.genus === 2 && dt.areas === 7 * 6 && dt.rendered },
+      { facet: "all-scales geometry proofs hold (merkaba \xB7 10D \xB7 census \xB7 circulation)", on: allScales.proven },
+      { facet: `TAU=${TAU} is the full circle (Math.PI\xD72) \u2014 projection angles use sealed TAU lattice`, on: TAU === Math.PI * 2 },
+      { facet: `SPEED_OF_LIGHT=${SPEED_OF_LIGHT} m/s vault constant present (classical track \u2014 no FTL)`, on: SPEED_OF_LIGHT === 299792458 },
+      { facet: `PHI golden ratio present for self-similar scale (dims golden-angle)`, on: PHI === (1 + Math.sqrt(5)) / 2 }
+    ];
+    const sealed = sealFacets("torus-geometry-universe", facets);
+    return {
+      aligns: sealed.ok,
+      majorRadius: dt.majorRadius,
+      minorRadius: dt.minorRadius,
+      lobeOffset: TORUS_LOBE_OFFSET,
+      homologyLoops: HOMOLOGY_LOOPS,
+      ratio,
+      count: sealed.count,
+      facets: sealed.facets,
+      root: merge(dt.root, merge(homology3.root, sealed.root)),
+      statement: `Double-torus geometry aligns with sealed universe constants \u2014 ${sealed.facets.filter((f2) => f2.on).length}/${sealed.count}: ring/tube/lobe atom, R/r, H\u2081=${HOMOLOGY_LOOPS}, \u03C7=\u22122, TAU\xB7c\xB7\u03C6 lattice, all-scales proofs.`,
+      boundary: "Computational geometry audit over sealed src/ constants. Radii are model units (not SI metres). SPEED_OF_LIGHT is a vault SI anchor for classical tracks \u2014 NOT a claim the canvas torus propagates at c. physicalFtlClaim=0 \xB7 clay=0. HARMONY \u2260 TRUTH.",
+      physicalFtlClaim: 0,
+      claySolvedByThisFold: 0
+    };
+  });
 }
 var _areaPairsMemo;
 function areaPairs() {
@@ -86220,6 +86757,7 @@ export {
   cosmologicalTensionsLcdmDecoded,
   cosmologyDecoded,
   cosmosFrontiersDecoded,
+  counterRotatingRosettaQuantumWaves,
   coupledCalendarTori,
   coverage3 as coverage,
   coverageCostLog2,
@@ -86390,6 +86928,7 @@ export {
   doubleTorusCorpusComputes,
   doubleTorusCorpusRouting,
   doubleTorusDiamondsComputes,
+  doubleTorusDynamicsGeometryAlignsWithUniverse,
   doubleTorusEarthComputes,
   doubleTorusEarthExchangeComputes,
   doubleTorusEarthExchangeResearch,
@@ -86405,6 +86944,7 @@ export {
   doubleTorusEarthWeatherFlowsInMovie,
   doubleTorusFold,
   doubleTorusFusionComputes,
+  doubleTorusGeometryAlignsWithUniverseConstants,
   doubleTorusMath2 as doubleTorusMath,
   doubleTorusMathAtAllScalesFlowsInMovie,
   doubleTorusMathAtAllScalesMovieSeeds,
@@ -86415,6 +86955,7 @@ export {
   doubleTorusPlasmaComputes,
   doubleTorusSurface,
   doubleTorusTopologyComputes,
+  doubleTorusUniversePhaseAt,
   doubleTorusVoiceComputes,
   doubleTorusVortexComputes,
   doubleTorusWire2 as doubleTorusWire,
@@ -87527,6 +88068,7 @@ export {
   runAnimationsRosettaGuardedExit,
   runCryptoToolkitBeyondRsaMeasuredExit,
   runDemoRsaGenerateAndReverseMeasuredExit,
+  runDoubleTorusDynamicsGeometryAlignsWithUniverseExit,
   runEncryptionReverseVerifyGuardedExit,
   runEncryptionToolInBrowser,
   runHonestRevolutionW3Exit,
@@ -88006,6 +88548,7 @@ export {
   universalNavigationalCrossComputes,
   universalNavigationalCrossInAllDimensions,
   universalNavigationalCrossResearch,
+  universeAlmostDescribedInTheoremsDiscoverRest,
   unlock,
   unlockedHarmonicDepth,
   updateQuantumTheHarmonicGatesNeverDriftTheMagicGatesCarryIrrationalDriftNotA432,

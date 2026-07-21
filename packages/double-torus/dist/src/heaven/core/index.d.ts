@@ -263,7 +263,7 @@ export declare function componentBaguaGroups(names?: readonly string[]): {
 export declare function componentRosettaGroups(names?: readonly string[]): {
     groups: {
         grouped: boolean;
-        ray: 0 | 5 | 2 | 1 | 4 | 3 | 6;
+        ray: 0 | 5 | 2 | 4 | 1 | 3 | 6;
         glyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
         name: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
         nameBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";

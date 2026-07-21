@@ -1271,7 +1271,7 @@ export declare function astronomySequenceDecodeResearch(matrix?: MindMatrix): {
             unfolded: number;
             euler: -2;
             genus: number;
-            betti: (1 | 4)[];
+            betti: (4 | 1)[];
             folded: number;
             delta: -2;
             fold: boolean;
@@ -1313,13 +1313,13 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
     decoded: boolean;
     at: number;
     phaseIndex: number;
-    phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+    phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
     digitFolderDigit: number;
     mappings: {
         name: string;
         kind: "planet" | "star" | "satellite" | "major-moon";
         vortexSlot: number;
-        vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+        vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
         hexagram: number;
         rosettaRay: number;
         rosettaGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
@@ -1926,7 +1926,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
             unfolded: number;
             euler: -2;
             genus: number;
-            betti: (1 | 4)[];
+            betti: (4 | 1)[];
             folded: number;
             delta: -2;
             fold: boolean;
@@ -2182,6 +2182,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -2358,6 +2359,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -2802,6 +2804,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -2978,6 +2981,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -3085,6 +3089,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -3717,6 +3722,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -3893,6 +3899,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -4337,6 +4344,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -4513,6 +4521,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -4620,6 +4629,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -5456,7 +5466,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                 ray: number;
                 kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
                 pageKind: import("../../../3/7").RosettaComputationType;
-                vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                 receipt: string;
             }[];
             count: number;
@@ -5798,7 +5808,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                 unfolded: number;
                 euler: -2;
                 genus: number;
-                betti: (1 | 4)[];
+                betti: (4 | 1)[];
                 folded: number;
                 delta: -2;
                 fold: boolean;
@@ -6493,13 +6503,13 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
             decoded: boolean;
             at: number;
             phaseIndex: number;
-            phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+            phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
             digitFolderDigit: number;
             mappings: {
                 name: string;
                 kind: "planet" | "star" | "satellite" | "major-moon";
                 vortexSlot: number;
-                vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                 hexagram: number;
                 rosettaRay: number;
                 rosettaGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
@@ -7106,7 +7116,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     unfolded: number;
                     euler: -2;
                     genus: number;
-                    betti: (1 | 4)[];
+                    betti: (4 | 1)[];
                     folded: number;
                     delta: -2;
                     fold: boolean;
@@ -7362,6 +7372,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -7538,6 +7549,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -7982,6 +7994,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                             perLobe: number;
                                             majorRadius: number;
                                             minorRadius: number;
+                                            lobeOffset: number;
                                             root: string;
                                             statement: string;
                                             boundary: string;
@@ -8158,6 +8171,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -8265,6 +8279,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -8897,6 +8912,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -9073,6 +9089,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -9517,6 +9534,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                             perLobe: number;
                                             majorRadius: number;
                                             minorRadius: number;
+                                            lobeOffset: number;
                                             root: string;
                                             statement: string;
                                             boundary: string;
@@ -9693,6 +9711,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -9800,6 +9819,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -10636,7 +10656,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         ray: number;
                         kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
                         pageKind: import("../../../3/7").RosettaComputationType;
-                        vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                        vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                         receipt: string;
                     }[];
                     count: number;
@@ -10978,7 +10998,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         unfolded: number;
                         euler: -2;
                         genus: number;
-                        betti: (1 | 4)[];
+                        betti: (4 | 1)[];
                         folded: number;
                         delta: -2;
                         fold: boolean;
@@ -11638,7 +11658,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     unfolded: number;
                     euler: -2;
                     genus: number;
-                    betti: (1 | 4)[];
+                    betti: (4 | 1)[];
                     folded: number;
                     delta: -2;
                     fold: boolean;
@@ -11733,7 +11753,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
             }[];
             activatedGates: number[];
             definedChannels: {
-                a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+                a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
                 b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
                 key: string;
                 from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -11759,7 +11779,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                 designSunArcDeg: number;
                 bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                 bodyCount: 13;
-                gates: (9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
+                gates: (9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
                 starts: number[];
                 sample: {
                     gate: number;
@@ -11783,7 +11803,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                 centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                 centerCount: 9;
                 channels: {
-                    a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+                    a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
                     b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
                     key: string;
                     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -11873,7 +11893,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                 }[];
                 activatedGates: number[];
                 definedChannels: {
-                    a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+                    a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
                     b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
                     key: string;
                     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -11899,7 +11919,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     designSunArcDeg: number;
                     bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                     bodyCount: 13;
-                    gates: (9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
+                    gates: (9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
                     starts: number[];
                     sample: {
                         gate: number;
@@ -11923,7 +11943,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                     centerCount: 9;
                     channels: {
-                        a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+                        a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
                         b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
                         key: string;
                         from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -11988,7 +12008,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                 centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                 centerCount: 9;
                 channels: {
-                    a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+                    a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
                     b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
                     key: string;
                     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12237,7 +12257,7 @@ export declare function humanDesignChartStructureAt(matrix?: MindMatrix, birthJd
     }[];
     activatedGates: number[];
     definedChannels: {
-        a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+        a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
         b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
         key: string;
         from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12263,7 +12283,7 @@ export declare function humanDesignChartStructureAt(matrix?: MindMatrix, birthJd
         designSunArcDeg: number;
         bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
         bodyCount: 13;
-        gates: (9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
+        gates: (9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
         starts: number[];
         sample: {
             gate: number;
@@ -12287,7 +12307,7 @@ export declare function humanDesignChartStructureAt(matrix?: MindMatrix, birthJd
         centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
         centerCount: 9;
         channels: {
-            a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+            a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
             b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
             key: string;
             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12426,7 +12446,7 @@ export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, b
         }[];
         activatedGates: number[];
         definedChannels: {
-            a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+            a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
             b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
             key: string;
             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12452,7 +12472,7 @@ export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, b
             designSunArcDeg: number;
             bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
             bodyCount: 13;
-            gates: (9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
+            gates: (9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
             starts: number[];
             sample: {
                 gate: number;
@@ -12476,7 +12496,7 @@ export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, b
             centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
             centerCount: 9;
             channels: {
-                a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+                a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
                 b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
                 key: string;
                 from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12541,7 +12561,7 @@ export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, b
         centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
         centerCount: 9;
         channels: {
-            a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+            a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
             b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
             key: string;
             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -13271,13 +13291,13 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
         decoded: boolean;
         at: number;
         phaseIndex: number;
-        phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+        phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
         digitFolderDigit: number;
         mappings: {
             name: string;
             kind: "planet" | "star" | "satellite" | "major-moon";
             vortexSlot: number;
-            vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+            vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
             hexagram: number;
             rosettaRay: number;
             rosettaGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
@@ -13884,7 +13904,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 unfolded: number;
                 euler: -2;
                 genus: number;
-                betti: (1 | 4)[];
+                betti: (4 | 1)[];
                 folded: number;
                 delta: -2;
                 fold: boolean;
@@ -14140,6 +14160,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -14316,6 +14337,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -14760,6 +14782,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -14936,6 +14959,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -15043,6 +15067,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -15675,6 +15700,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -15851,6 +15877,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -16295,6 +16322,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -16471,6 +16499,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -16578,6 +16607,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -17414,7 +17444,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     ray: number;
                     kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
                     pageKind: import("../../../3/7").RosettaComputationType;
-                    vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                    vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                     receipt: string;
                 }[];
                 count: number;
@@ -17756,7 +17786,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     unfolded: number;
                     euler: -2;
                     genus: number;
-                    betti: (1 | 4)[];
+                    betti: (4 | 1)[];
                     folded: number;
                     delta: -2;
                     fold: boolean;
@@ -18416,7 +18446,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 unfolded: number;
                 euler: -2;
                 genus: number;
-                betti: (1 | 4)[];
+                betti: (4 | 1)[];
                 folded: number;
                 delta: -2;
                 fold: boolean;
@@ -18511,7 +18541,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
         }[];
         activatedGates: number[];
         definedChannels: {
-            a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+            a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
             b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
             key: string;
             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -18537,7 +18567,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
             designSunArcDeg: number;
             bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
             bodyCount: 13;
-            gates: (9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
+            gates: (9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
             starts: number[];
             sample: {
                 gate: number;
@@ -18561,7 +18591,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
             centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
             centerCount: 9;
             channels: {
-                a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+                a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
                 b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
                 key: string;
                 from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -18651,7 +18681,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
             }[];
             activatedGates: number[];
             definedChannels: {
-                a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+                a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
                 b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
                 key: string;
                 from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -18677,7 +18707,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 designSunArcDeg: number;
                 bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                 bodyCount: 13;
-                gates: (9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
+                gates: (9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
                 starts: number[];
                 sample: {
                     gate: number;
@@ -18701,7 +18731,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                 centerCount: 9;
                 channels: {
-                    a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+                    a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
                     b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
                     key: string;
                     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -18766,7 +18796,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
             centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
             centerCount: 9;
             channels: {
-                a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+                a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
                 b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
                 key: string;
                 from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";

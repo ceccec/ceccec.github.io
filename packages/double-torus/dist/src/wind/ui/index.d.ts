@@ -841,7 +841,7 @@ export declare function clownLiftState(phase: number, matrix?: MindMatrix, atSte
     step: number;
     name: string;
     area: string;
-    vortex: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+    vortex: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
     channels: readonly string[];
     dims: number;
     shadow: {
@@ -871,7 +871,7 @@ export declare function clownActTimeline(frames?: number, matrix?: MindMatrix): 
         step: number;
         name: string;
         area: string;
-        vortex: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+        vortex: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
         channels: readonly string[];
         dims: number;
         shadow: {
@@ -928,7 +928,7 @@ export declare function clownUiDesignedByRosettaIChing(matrix?: MindMatrix): {
     steps: {
         step: string;
         area: string;
-        vortex: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+        vortex: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
         dims: number;
         svgBytes: number;
     }[];

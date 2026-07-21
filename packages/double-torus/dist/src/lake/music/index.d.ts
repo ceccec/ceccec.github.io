@@ -1059,7 +1059,7 @@ export declare function clownQubitDecoded(matrix?: MindMatrix): {
 export declare function clownActQuantumSteps(matrix?: MindMatrix): {
     decoded: boolean;
     steps: {
-        vortex: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+        vortex: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
         receipt: string;
         step: string;
         act: string;

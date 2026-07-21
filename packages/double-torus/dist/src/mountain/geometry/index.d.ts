@@ -140,9 +140,34 @@ export declare function doubleTorus3D(matrix?: MindMatrix): {
     perLobe: number;
     majorRadius: number;
     minorRadius: number;
+    lobeOffset: number;
     root: string;
     statement: string;
     boundary: string;
+};
+/**
+ * Geometry audit — surface atom radii, projection extents, H₁ loops vs sealed lattice.
+ * Pair half of universe/align (dynamics+phase live in water/double).
+ */
+export declare function doubleTorusGeometryAlignsWithUniverseConstants(matrix?: MindMatrix): {
+    aligns: boolean;
+    majorRadius: number;
+    minorRadius: number;
+    lobeOffset: number;
+    homologyLoops: 4;
+    ratio: number;
+    count: number;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+    physicalFtlClaim: 0;
+    claySolvedByThisFold: 0;
 };
 export declare function areaPairs(): {
     count: number;
@@ -816,6 +841,7 @@ export declare function twoTrinitiesCardinalPyramidPolesProvenByMath(matrix?: Mi
             perLobe: number;
             majorRadius: number;
             minorRadius: number;
+            lobeOffset: number;
             root: string;
             statement: string;
             boundary: string;
@@ -906,6 +932,7 @@ export declare function doubleTorusEarthPyramidTipsProvenByMath(matrix?: MindMat
         perLobe: number;
         majorRadius: number;
         minorRadius: number;
+        lobeOffset: number;
         root: string;
         statement: string;
         boundary: string;
@@ -1005,6 +1032,7 @@ export declare function doubleTorusEarthPyramidTipsDeepResearched(matrix?: MindM
             perLobe: number;
             majorRadius: number;
             minorRadius: number;
+            lobeOffset: number;
             root: string;
             statement: string;
             boundary: string;

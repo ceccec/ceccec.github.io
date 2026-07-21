@@ -968,6 +968,7 @@ export declare function humanResonancePanelComputes(matrix?: MindMatrix): {
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -1369,7 +1370,7 @@ export declare function humanResonancePanelComputes(matrix?: MindMatrix): {
                 unfolded: number;
                 euler: -2;
                 genus: number;
-                betti: (1 | 4)[];
+                betti: (4 | 1)[];
                 folded: number;
                 delta: -2;
                 fold: boolean;

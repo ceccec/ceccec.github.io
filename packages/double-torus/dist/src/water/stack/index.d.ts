@@ -1021,6 +1021,7 @@ export declare function humanAsQuantumComputerAndFusionReactorComputes(matrix?: 
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -1422,7 +1423,7 @@ export declare function humanAsQuantumComputerAndFusionReactorComputes(matrix?: 
             unfolded: number;
             euler: -2;
             genus: number;
-            betti: (1 | 4)[];
+            betti: (4 | 1)[];
             folded: number;
             delta: -2;
             fold: boolean;
@@ -1975,13 +1976,13 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
         decoded: boolean;
         at: number;
         phaseIndex: number;
-        phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+        phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
         digitFolderDigit: number;
         mappings: {
             name: string;
             kind: "planet" | "star" | "satellite" | "major-moon";
             vortexSlot: number;
-            vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+            vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
             hexagram: number;
             rosettaRay: number;
             rosettaGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
@@ -2588,7 +2589,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                 unfolded: number;
                 euler: -2;
                 genus: number;
-                betti: (1 | 4)[];
+                betti: (4 | 1)[];
                 folded: number;
                 delta: -2;
                 fold: boolean;
@@ -2844,6 +2845,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -3020,6 +3022,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -3464,6 +3467,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -3640,6 +3644,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -3747,6 +3752,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -4379,6 +4385,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -4555,6 +4562,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -4999,6 +5007,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -5175,6 +5184,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -5282,6 +5292,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -6118,7 +6129,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                     ray: number;
                     kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
                     pageKind: import("../digit").RosettaComputationType;
-                    vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                    vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                     receipt: string;
                 }[];
                 count: number;
@@ -6460,7 +6471,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                     unfolded: number;
                     euler: -2;
                     genus: number;
-                    betti: (1 | 4)[];
+                    betti: (4 | 1)[];
                     folded: number;
                     delta: -2;
                     fold: boolean;
@@ -6518,14 +6529,14 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
         decoded: boolean;
         at: number;
         phaseIndex: number;
-        phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+        phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
         mappings: {
             mode: number;
             hz: number;
             phase: number;
             hue: number;
             vortexSlot: number;
-            vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+            vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
             phaseAligned: boolean;
             receipt: string;
         }[];
@@ -6622,12 +6633,12 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
         decoded: boolean;
         at: number;
         phaseIndex: number;
-        phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+        phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
         mappings: ({
             primitive: string;
             measured: string;
             entangled: boolean;
-            vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+            vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
             receipt: string;
             steps?: undefined;
             stationary?: undefined;
@@ -6665,7 +6676,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
         } | {
             primitive: string;
             frames: number;
-            phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+            phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
             receipt: string;
             measured?: undefined;
             entangled?: undefined;
@@ -6898,6 +6909,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -7065,6 +7077,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -7380,6 +7393,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -7556,6 +7570,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -7640,7 +7655,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                 phaseSlot: string | null;
                 receipt: string;
             }[];
-            activeVortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+            activeVortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
             phaseIndex: number;
             vortexQuadrants: Record<"north" | "east" | "south" | "west", readonly number[]>;
             homologyLoops: ("spread" | "depthFade" | "hueShift" | "twist" | "shrink" | "breath" | "loopA1" | "loopB1" | "loopA2" | "loopB2")[];
@@ -7809,6 +7824,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -7997,6 +8013,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -8173,6 +8190,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -8617,6 +8635,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -8793,6 +8812,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -8900,6 +8920,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -9233,7 +9254,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                     phaseSlot: string | null;
                     receipt: string;
                 }[];
-                activeVortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                activeVortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                 phaseIndex: number;
                 vortexQuadrants: Record<"north" | "east" | "south" | "west", readonly number[]>;
                 homologyLoops: ("spread" | "depthFade" | "hueShift" | "twist" | "shrink" | "breath" | "loopA1" | "loopB1" | "loopA2" | "loopB2")[];
@@ -9402,6 +9423,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -9590,6 +9612,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -9766,6 +9789,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -10210,6 +10234,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                             perLobe: number;
                                             majorRadius: number;
                                             minorRadius: number;
+                                            lobeOffset: number;
                                             root: string;
                                             statement: string;
                                             boundary: string;
@@ -10386,6 +10411,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -10493,6 +10519,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -11440,6 +11467,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -11607,6 +11635,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -11903,6 +11932,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -12070,6 +12100,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -12396,6 +12427,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -12572,6 +12604,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -13016,6 +13049,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -13192,6 +13226,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -13299,6 +13334,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -13742,6 +13778,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -13918,6 +13955,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -14362,6 +14400,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                             perLobe: number;
                                             majorRadius: number;
                                             minorRadius: number;
+                                            lobeOffset: number;
                                             root: string;
                                             statement: string;
                                             boundary: string;
@@ -14538,6 +14577,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -14645,6 +14685,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -15083,6 +15124,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -15259,6 +15301,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -15356,6 +15399,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -15873,6 +15917,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -16049,6 +16094,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -16493,6 +16539,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -16669,6 +16716,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -16776,6 +16824,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -17408,6 +17457,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -17584,6 +17634,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -18028,6 +18079,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -18204,6 +18256,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -18311,6 +18364,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -18910,7 +18964,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                 unfolded: number;
                 euler: -2;
                 genus: number;
-                betti: (1 | 4)[];
+                betti: (4 | 1)[];
                 folded: number;
                 delta: -2;
                 fold: boolean;
@@ -18946,13 +19000,13 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
             decoded: boolean;
             at: number;
             phaseIndex: number;
-            phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+            phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
             digitFolderDigit: number;
             mappings: {
                 name: string;
                 kind: "planet" | "star" | "satellite" | "major-moon";
                 vortexSlot: number;
-                vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                 hexagram: number;
                 rosettaRay: number;
                 rosettaGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
@@ -19559,7 +19613,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                     unfolded: number;
                     euler: -2;
                     genus: number;
-                    betti: (1 | 4)[];
+                    betti: (4 | 1)[];
                     folded: number;
                     delta: -2;
                     fold: boolean;
@@ -19815,6 +19869,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -19991,6 +20046,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -20435,6 +20491,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                             perLobe: number;
                                             majorRadius: number;
                                             minorRadius: number;
+                                            lobeOffset: number;
                                             root: string;
                                             statement: string;
                                             boundary: string;
@@ -20611,6 +20668,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -20718,6 +20776,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -21350,6 +21409,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -21526,6 +21586,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -21970,6 +22031,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                             perLobe: number;
                                             majorRadius: number;
                                             minorRadius: number;
+                                            lobeOffset: number;
                                             root: string;
                                             statement: string;
                                             boundary: string;
@@ -22146,6 +22208,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -22253,6 +22316,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -23089,7 +23153,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                         ray: number;
                         kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
                         pageKind: import("../digit").RosettaComputationType;
-                        vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                        vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                         receipt: string;
                     }[];
                     count: number;
@@ -23431,7 +23495,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                         unfolded: number;
                         euler: -2;
                         genus: number;
-                        betti: (1 | 4)[];
+                        betti: (4 | 1)[];
                         folded: number;
                         delta: -2;
                         fold: boolean;
@@ -23818,6 +23882,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -23994,6 +24059,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -24183,6 +24249,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -24359,6 +24426,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -24706,13 +24774,13 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
             decoded: boolean;
             at: number;
             phaseIndex: number;
-            phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+            phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
             digitFolderDigit: number;
             mappings: {
                 name: string;
                 kind: "planet" | "star" | "satellite" | "major-moon";
                 vortexSlot: number;
-                vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                 hexagram: number;
                 rosettaRay: number;
                 rosettaGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
@@ -25319,7 +25387,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                     unfolded: number;
                     euler: -2;
                     genus: number;
-                    betti: (1 | 4)[];
+                    betti: (4 | 1)[];
                     folded: number;
                     delta: -2;
                     fold: boolean;
@@ -25575,6 +25643,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -25751,6 +25820,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -26195,6 +26265,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             perLobe: number;
                                             majorRadius: number;
                                             minorRadius: number;
+                                            lobeOffset: number;
                                             root: string;
                                             statement: string;
                                             boundary: string;
@@ -26371,6 +26442,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -26478,6 +26550,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -27110,6 +27183,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -27286,6 +27360,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -27730,6 +27805,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             perLobe: number;
                                             majorRadius: number;
                                             minorRadius: number;
+                                            lobeOffset: number;
                                             root: string;
                                             statement: string;
                                             boundary: string;
@@ -27906,6 +27982,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -28013,6 +28090,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -28849,7 +28927,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                         ray: number;
                         kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
                         pageKind: import("../digit").RosettaComputationType;
-                        vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                        vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                         receipt: string;
                     }[];
                     count: number;
@@ -29191,7 +29269,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                         unfolded: number;
                         euler: -2;
                         genus: number;
-                        betti: (1 | 4)[];
+                        betti: (4 | 1)[];
                         folded: number;
                         delta: -2;
                         fold: boolean;
@@ -29249,14 +29327,14 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
             decoded: boolean;
             at: number;
             phaseIndex: number;
-            phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+            phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
             mappings: {
                 mode: number;
                 hz: number;
                 phase: number;
                 hue: number;
                 vortexSlot: number;
-                vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                 phaseAligned: boolean;
                 receipt: string;
             }[];
@@ -29353,12 +29431,12 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
             decoded: boolean;
             at: number;
             phaseIndex: number;
-            phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+            phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
             mappings: ({
                 primitive: string;
                 measured: string;
                 entangled: boolean;
-                vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                 receipt: string;
                 steps?: undefined;
                 stationary?: undefined;
@@ -29396,7 +29474,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
             } | {
                 primitive: string;
                 frames: number;
-                phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                 receipt: string;
                 measured?: undefined;
                 entangled?: undefined;
@@ -29629,6 +29707,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -29796,6 +29875,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -30111,6 +30191,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -30287,6 +30368,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -30371,7 +30453,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                     phaseSlot: string | null;
                     receipt: string;
                 }[];
-                activeVortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                activeVortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                 phaseIndex: number;
                 vortexQuadrants: Record<"north" | "east" | "south" | "west", readonly number[]>;
                 homologyLoops: ("spread" | "depthFade" | "hueShift" | "twist" | "shrink" | "breath" | "loopA1" | "loopB1" | "loopA2" | "loopB2")[];
@@ -30540,6 +30622,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -30728,6 +30811,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -30904,6 +30988,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -31348,6 +31433,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             perLobe: number;
                                             majorRadius: number;
                                             minorRadius: number;
+                                            lobeOffset: number;
                                             root: string;
                                             statement: string;
                                             boundary: string;
@@ -31524,6 +31610,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -31631,6 +31718,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -31964,7 +32052,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                         phaseSlot: string | null;
                         receipt: string;
                     }[];
-                    activeVortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                    activeVortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                     phaseIndex: number;
                     vortexQuadrants: Record<"north" | "east" | "south" | "west", readonly number[]>;
                     homologyLoops: ("spread" | "depthFade" | "hueShift" | "twist" | "shrink" | "breath" | "loopA1" | "loopB1" | "loopA2" | "loopB2")[];
@@ -32133,6 +32221,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -32321,6 +32410,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             perLobe: number;
                                             majorRadius: number;
                                             minorRadius: number;
+                                            lobeOffset: number;
                                             root: string;
                                             statement: string;
                                             boundary: string;
@@ -32497,6 +32587,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -32941,6 +33032,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                                 perLobe: number;
                                                 majorRadius: number;
                                                 minorRadius: number;
+                                                lobeOffset: number;
                                                 root: string;
                                                 statement: string;
                                                 boundary: string;
@@ -33117,6 +33209,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             perLobe: number;
                                             majorRadius: number;
                                             minorRadius: number;
+                                            lobeOffset: number;
                                             root: string;
                                             statement: string;
                                             boundary: string;
@@ -33224,6 +33317,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -34171,6 +34265,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -34338,6 +34433,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -34634,6 +34730,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -34801,6 +34898,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -35127,6 +35225,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -35303,6 +35402,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -35747,6 +35847,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             perLobe: number;
                                             majorRadius: number;
                                             minorRadius: number;
+                                            lobeOffset: number;
                                             root: string;
                                             statement: string;
                                             boundary: string;
@@ -35923,6 +36024,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -36030,6 +36132,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -36473,6 +36576,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             perLobe: number;
                                             majorRadius: number;
                                             minorRadius: number;
+                                            lobeOffset: number;
                                             root: string;
                                             statement: string;
                                             boundary: string;
@@ -36649,6 +36753,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -37093,6 +37198,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                                 perLobe: number;
                                                 majorRadius: number;
                                                 minorRadius: number;
+                                                lobeOffset: number;
                                                 root: string;
                                                 statement: string;
                                                 boundary: string;
@@ -37269,6 +37375,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             perLobe: number;
                                             majorRadius: number;
                                             minorRadius: number;
+                                            lobeOffset: number;
                                             root: string;
                                             statement: string;
                                             boundary: string;
@@ -37376,6 +37483,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -37814,6 +37922,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -37990,6 +38099,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -38087,6 +38197,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -38604,6 +38715,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -38780,6 +38892,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -39224,6 +39337,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             perLobe: number;
                                             majorRadius: number;
                                             minorRadius: number;
+                                            lobeOffset: number;
                                             root: string;
                                             statement: string;
                                             boundary: string;
@@ -39400,6 +39514,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -39507,6 +39622,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -40139,6 +40255,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -40315,6 +40432,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -40759,6 +40877,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             perLobe: number;
                                             majorRadius: number;
                                             minorRadius: number;
+                                            lobeOffset: number;
                                             root: string;
                                             statement: string;
                                             boundary: string;
@@ -40935,6 +41054,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -41042,6 +41162,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -41641,7 +41762,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                     unfolded: number;
                     euler: -2;
                     genus: number;
-                    betti: (1 | 4)[];
+                    betti: (4 | 1)[];
                     folded: number;
                     delta: -2;
                     fold: boolean;
@@ -41677,13 +41798,13 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                 decoded: boolean;
                 at: number;
                 phaseIndex: number;
-                phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                 digitFolderDigit: number;
                 mappings: {
                     name: string;
                     kind: "planet" | "star" | "satellite" | "major-moon";
                     vortexSlot: number;
-                    vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                    vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                     hexagram: number;
                     rosettaRay: number;
                     rosettaGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
@@ -42290,7 +42411,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                         unfolded: number;
                         euler: -2;
                         genus: number;
-                        betti: (1 | 4)[];
+                        betti: (4 | 1)[];
                         folded: number;
                         delta: -2;
                         fold: boolean;
@@ -42546,6 +42667,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             perLobe: number;
                                             majorRadius: number;
                                             minorRadius: number;
+                                            lobeOffset: number;
                                             root: string;
                                             statement: string;
                                             boundary: string;
@@ -42722,6 +42844,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -43166,6 +43289,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                                 perLobe: number;
                                                 majorRadius: number;
                                                 minorRadius: number;
+                                                lobeOffset: number;
                                                 root: string;
                                                 statement: string;
                                                 boundary: string;
@@ -43342,6 +43466,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             perLobe: number;
                                             majorRadius: number;
                                             minorRadius: number;
+                                            lobeOffset: number;
                                             root: string;
                                             statement: string;
                                             boundary: string;
@@ -43449,6 +43574,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -44081,6 +44207,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             perLobe: number;
                                             majorRadius: number;
                                             minorRadius: number;
+                                            lobeOffset: number;
                                             root: string;
                                             statement: string;
                                             boundary: string;
@@ -44257,6 +44384,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -44701,6 +44829,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                                 perLobe: number;
                                                 majorRadius: number;
                                                 minorRadius: number;
+                                                lobeOffset: number;
                                                 root: string;
                                                 statement: string;
                                                 boundary: string;
@@ -44877,6 +45006,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             perLobe: number;
                                             majorRadius: number;
                                             minorRadius: number;
+                                            lobeOffset: number;
                                             root: string;
                                             statement: string;
                                             boundary: string;
@@ -44984,6 +45114,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         perLobe: number;
                                         majorRadius: number;
                                         minorRadius: number;
+                                        lobeOffset: number;
                                         root: string;
                                         statement: string;
                                         boundary: string;
@@ -45820,7 +45951,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                             ray: number;
                             kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
                             pageKind: import("../digit").RosettaComputationType;
-                            vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                            vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                             receipt: string;
                         }[];
                         count: number;
@@ -46162,7 +46293,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                             unfolded: number;
                             euler: -2;
                             genus: number;
-                            betti: (1 | 4)[];
+                            betti: (4 | 1)[];
                             folded: number;
                             delta: -2;
                             fold: boolean;
@@ -46549,6 +46680,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -46725,6 +46857,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -46914,6 +47047,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     perLobe: number;
                                     majorRadius: number;
                                     minorRadius: number;
+                                    lobeOffset: number;
                                     root: string;
                                     statement: string;
                                     boundary: string;
@@ -47090,6 +47224,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;

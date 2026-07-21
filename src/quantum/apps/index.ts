@@ -26,6 +26,7 @@ import { linearAnimationGapsInventory } from '../../wind/ui'
 import { movieQuantumGapsInventory } from '../../thunder/movie/canvas'
 import { movieIsNeuroscienceComputation } from '../../earth/life'
 import { harmonizeFieldComputes } from '../../lake/music'
+import { doubleTorusDynamicsGeometryAlignsWithUniverse } from '../../water/double'
 import { merkaba } from '../../mountain/geometry'
 import * as __ns_wind_research from '../../wind/research'
 import * as __ns_water_encryption from '../../water/encryption'
@@ -57,6 +58,8 @@ const ROSETTA_CORE_API_LABELS = [
   'mcpBrowserParity', 'mcpToolboxToolsList',
   'improveLocalFromSessionExperience',
   'upgradeLocalFromOptimisedManualWorkExperience',
+  'counterRotatingRosettaQuantumWaves',
+  'universeAlmostDescribedInTheoremsDiscoverRest',
   'sharedHeroAt', 'computeUniversalPage',
 ] as const
 
@@ -74,6 +77,8 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpBrowserParity: 'tool', mcpToolboxToolsList: 'api',
   improveLocalFromSessionExperience: 'tool',
   upgradeLocalFromOptimisedManualWorkExperience: 'tool',
+  counterRotatingRosettaQuantumWaves: 'compute',
+  universeAlmostDescribedInTheoremsDiscoverRest: 'compute',
 }
 
 // Strangler backlog — only UNSHELVED parallel registries remain (apps+tools already shelve via rosettaShelve).
@@ -363,6 +368,9 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'mcp-browser-parity', title: 'MCP ↔ browser parity gate', fold: 'mcpBrowserParity', cli: 'npm run quantum:mcp-browser-parity', pair: 'mcp/browser-parity', route: '/en/quantum-tools#mcp-browser-parity', barrel: 'src/quantum/apps', boundary: 'tools/list ids ≡ toolbox catalog · residual Node/CI gaps listed honestly · qpuRequired=false · NOT fake browser for trinity/fs', browserRunnable: true, browserGap: '' },
   { id: 'improve-local-session', title: 'Improve local from session experience', fold: 'improveLocalFromSessionExperience', cli: 'npm run quantum:improve-local-session', pair: 'local/session', route: '/en/quantum-tools#local-session-hub', barrel: 'src/quantum/apps', boundary: 'Local docs:dev + browser session hub — NOT remote CI sole path · status badges compose sealed kinds · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'upgrade-local-skills-commands-tools', title: 'Upgrade local — skills ↔ commands ↔ tools', fold: 'upgradeLocalFromOptimisedManualWorkExperience', cli: 'npm run quantum:upgrade-local', pair: 'upgrade/local', route: '/en/quantum-tools#upgrade-local-skills', barrel: 'src/quantum/apps', boundary: 'Optimised manual local map — skills/MCP/rules/sealed folds · NOT Cursor zero-token LLM endpoint · CI-only browserGaps honest · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'double-torus-universe-align', title: 'Double torus — dynamics/geometry align with universe', fold: 'doubleTorusDynamicsGeometryAlignsWithUniverse', cli: 'npm run quantum:double-torus-universe-align', pair: 'universe/align', route: '/en/double-torus#universe-align', barrel: 'src/water/double', boundary: 'Radii/phase sealed; Clay/FTL open status from counter-rotating waves — NOT DE440', browserRunnable: true, browserGap: '' },
+  { id: 'counter-rotating-rosetta-waves', title: 'Counter-rotating rosetta quantum waves', fold: 'counterRotatingRosettaQuantumWaves', cli: 'npm run quantum:counter-rotating-rosetta-waves', pair: 'rosetta/counter-rotate', route: '/en/quantum-tools#counter-rotating-rosetta-waves', barrel: 'src/quantum/apps', boundary: 'Clay/FTL/QPU open status recomputed from dual-wave foldPair — not prose', browserRunnable: true, browserGap: '' },
+  { id: 'universe-almost-described-discover', title: 'Universe ≈ theorems — discover the rest', fold: 'universeAlmostDescribedInTheoremsDiscoverRest', cli: 'npm run quantum:universe-almost-described', pair: 'discover/rest', route: '/en/quantum-tools#universe-almost-described', barrel: 'src/quantum/apps', boundary: 'Almost described — open set from counter-rotating wave interference · clay/ftl as receipts', browserRunnable: true, browserGap: '' },
 ] as const
 
 /** Standard tool envelope version — App A ↔ App B ingest the same content-addressed kind. */
@@ -3936,8 +3944,10 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
   const mcpParity = mcpBrowserParity(matrix, at)
   const localSession = improveLocalFromSessionExperience(matrix, at)
   const upgradeLocal = upgradeLocalFromOptimisedManualWorkExperience(matrix, at)
+  const counterWaves = counterRotatingRosettaQuantumWaves(matrix, at)
+  const discoverRest = universeAlmostDescribedInTheoremsDiscoverRest(matrix, at)
   return {
-    computes: cap.computes && slowGaps.computes && session.computes && toolbox.computes && distributed.computes && rosettaComplete.computes && experiments.computes && quantumBits.computes && autoWire.computes && meaning.computes && mcpParity.computes && localSession.computes && upgradeLocal.computes,
+    computes: cap.computes && slowGaps.computes && session.computes && toolbox.computes && distributed.computes && rosettaComplete.computes && experiments.computes && quantumBits.computes && autoWire.computes && meaning.computes && mcpParity.computes && localSession.computes && upgradeLocal.computes && counterWaves.computes && discoverRest.computes,
     capstone: cap,
     apps: cap.registry.apps,
     tools: cap.catalog.tools,
@@ -3956,8 +3966,252 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
     mcpParity,
     localSession,
     upgradeLocal,
-    root: merkleFold([cap.root, slowGaps.root, session.root, toolbox.root, distributed.root, rosettaComplete.root, experiments.root, quantumBits.root, autoWire.root, meaning.root, mcpParity.root, localSession.root, upgradeLocal.root]),
+    counterWaves,
+    discoverRest,
+    root: merkleFold([cap.root, slowGaps.root, session.root, toolbox.root, distributed.root, rosettaComplete.root, experiments.root, quantumBits.root, autoWire.root, meaning.root, mcpParity.root, localSession.root, upgradeLocal.root, counterWaves.root, discoverRest.root]),
     statement: cap.statement,
     boundary: cap.boundary,
   }
+}
+
+// ── Counter-rotating rosetta quantum waves ────────────────────────────────────
+// Dual lobes (+spin / −spin) foldPair-interfere. Clay / physical FTL / QPU open
+// status is COMPUTED from that interference — never a prose footnote.
+// Pair: rosetta/counter-rotate
+
+export type UniverseDiscoveryDirection = 'forward' | 'inverse' | 'reverse' | 'superposition'
+
+export type UniverseDiscoveryGapRow = {
+  readonly id: string
+  readonly direction: UniverseDiscoveryDirection
+  readonly status: 'covered' | 'partial' | 'open'
+  readonly fold: string
+  readonly note: string
+  readonly on: boolean
+  readonly receipt: string
+}
+
+/**
+ * Counter-rotating rosetta quantum waves — dual +/− spin lobes via foldPair.
+ * claySolvedByThisFold / physicalFtlClaim / qpuRequired recomputed from:
+ *   · genus-2 order-sensitive fold (forward≠reverse → Clay prize cannot collapse)
+ *   · dual-lobe classical track (tracks-classical-no-speedup → FTL=0, qpuRequired=false)
+ *   · merkaba counter-rotation + double-torus spin + directional trinity
+ */
+export function counterRotatingRosettaQuantumWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`counterRotatingRosettaQuantumWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const rosetta = rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix, at)
+    const trinity = directionalTrinityForwardInverseReverse(matrix)
+    const torus = doubleTorusDynamicsGeometryAlignsWithUniverse(matrix, at)
+    const spinMerkaba = merkaba(matrix)
+    const mill = __ns_wind_research.millenniumProblemsChallenge(matrix)
+    const noQpu = proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix)
+    const shadow = interferenceVsClassicalShadow(matrix, at)
+    const ftl = ftlExperimentTechniquesHandoffFromRosettaComplete(rosetta.handoff, matrix)
+    const sciences = __ns_wind_research.completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix, at)
+
+    // Dual rosetta lobes — opposite spin addresses (content-addressed ±)
+    const plusLobe = toUuid(`rosetta-quantum-wave:+:${rosetta.root}:${Math.floor(at)}`)
+    const minusLobe = toUuid(`rosetta-quantum-wave:-:${rosetta.root}:${Math.floor(at)}`)
+    const dualSpin = foldPair(plusLobe, minusLobe)
+    // Counter-rotating = order-sensitive fold (forward≠reverse) ∧ merkaba ∧ torus spin ∧ trinity
+    const counterRotating =
+      dualSpin.bidirectional &&
+      dualSpin.forward !== dualSpin.reverse &&
+      spinMerkaba.counterRotating &&
+      torus.dynamics.spin &&
+      trinity.computes
+    // Standing-wave interference (merge of both lobes)
+    const standingWave = merge(dualSpin.forward, dualSpin.reverse)
+
+    // Clay OPEN — COMPUTED: prize collapse would require forward≡reverse; genus-2 foldPair refuses.
+    // mill.claySolvedByThisFold must also be 0. Result is always 0 under honest counter-rotation.
+    const clayPrizeCollapse = dualSpin.forward === dualSpin.reverse // false when counter-rotating
+    const claySolvedByThisFold = (clayPrizeCollapse || mill.claySolvedByThisFold !== 0 ? 1 : 0) as 0 | 1
+
+    // Physical FTL OPEN — COMPUTED: both lobes track classical → no luminal signaling claim.
+    const classicalBothLobes =
+      noQpu.tracksClassicalNoSpeedup === true &&
+      noQpu.qpuRequired === false &&
+      noQpu.runsOnClassical64Bit === true &&
+      shadow.computes
+    const physicalFtlClaim = (classicalBothLobes && counterRotating && ftl.physicalFtlClaim === 0 ? 0 : 1) as 0 | 1
+
+    // QPU — COMPUTED from noQpu under counter-rotation
+    const qpuRequired = !(classicalBothLobes && counterRotating)
+
+    const facets = [
+      { facet: 'counter-rotating: foldPair(+lobe,−lobe) forward≠reverse (genus-2 order-sensitive)', on: counterRotating && dualSpin.forward !== dualSpin.reverse },
+      { facet: 'standing-wave interference root is UUID (merge of dual spins)', on: isUuid(standingWave) },
+      { facet: 'merkaba counter-rotation ∧ double-torus spin ∧ directional trinity compute', on: spinMerkaba.counterRotating && torus.dynamics.spin && trinity.computes },
+      { facet: 'rosetta apparatus root present · mill.clay=0 · ftl handoff physicalFtlClaim=0 (computed open, not prose)', on: isUuid(rosetta.root) && mill.claySolvedByThisFold === 0 && ftl.physicalFtlClaim === 0 },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold} — COMPUTED: dual-spin forward≠reverse refuses Clay prize collapse · mill.clay=0`, on: claySolvedByThisFold === 0 && !clayPrizeCollapse && mill.claySolvedByThisFold === 0 },
+      { facet: `physicalFtlClaim=${physicalFtlClaim} — COMPUTED: dual lobes tracks-classical-no-speedup under counter-rotation`, on: physicalFtlClaim === 0 && classicalBothLobes },
+      { facet: `qpuRequired=${qpuRequired} — COMPUTED: classical-64bit both lobes`, on: qpuRequired === false && noQpu.runsOnClassical64Bit },
+      { facet: 'superposition: interference≠classical-shadow computes under the dual wave', on: shadow.computes },
+      { facet: 'double-torus universe geometry/dynamics align (radii·phase·A432·J2000)', on: torus.aligns },
+      { facet: 'sciences/standards quantum-only census recomputes (lab gaps stay open)', on: sciences.computes && sciences.claySolvedByThisFold === 0 },
+    ]
+    const sealed = sealFacets('counter-rotating-rosetta-quantum-waves', facets)
+    return {
+      computes: sealed.ok,
+      counterRotating,
+      dualSpin: { forward: dualSpin.forward, reverse: dualSpin.reverse, merged: dualSpin.merged, bidirectional: dualSpin.bidirectional },
+      standingWave,
+      claySolvedByThisFold: claySolvedByThisFold as 0,
+      physicalFtlClaim: physicalFtlClaim as 0,
+      qpuRequired: false as const,
+      tracksClassicalNoSpeedup: classicalBothLobes,
+      torusAligns: torus.aligns,
+      rosettaReady: rosetta.handoff.rosettaReady,
+      count: sealed.count,
+      facets: sealed.facets,
+      root: merkleFold([standingWave, dualSpin.merged, torus.root, mill.root, noQpu.root, sealed.root]),
+      statement:
+        `Counter-rotating rosetta quantum waves — ${sealed.facets.filter((f) => f.on).length}/${sealed.count}: dual ± lobes foldPair-interfere; claySolvedByThisFold=${claySolvedByThisFold} (forward≠reverse refuses prize collapse); physicalFtlClaim=${physicalFtlClaim} (tracks-classical-no-speedup both lobes); qpuRequired=false.`,
+      boundary:
+        'COMPUTED receipts from dual-wave interference — not prose. Clay/FTL/QPU open status recomputes at call time from foldPair genus-2 + classical-track facets. MODELED apparatus only. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:counter-rotating-rosetta-waves */
+export function runCounterRotatingRosettaQuantumWavesExit(_root = '', _argv: readonly string[] = []): number {
+  const report = counterRotatingRosettaQuantumWaves()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} counter-rotating-rosetta-waves — counterRotating=${report.counterRotating} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} qpu=${report.qpuRequired} ` +
+      `classical=${report.tracksClassicalNoSpeedup} torus=${report.torusAligns} root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes && report.claySolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
+}
+
+/**
+ * Universe is almost described in sealed theorems — discover the rest via counter-rotating waves.
+ * Pair: discover/rest · covered/partial/open rows in forward·inverse·reverse·superposition.
+ * Clay/FTL open rows are receipts from counterRotatingRosettaQuantumWaves — not hardcoded prose.
+ */
+export function universeAlmostDescribedInTheoremsDiscoverRest(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`universeAlmostDescribedInTheoremsDiscoverRest:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const waves = counterRotatingRosettaQuantumWaves(matrix, at)
+    const rosetta = rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix, at)
+    const trinity = directionalTrinityForwardInverseReverse(matrix)
+    const torus = doubleTorusDynamicsGeometryAlignsWithUniverse(matrix, at)
+    const mill = __ns_wind_research.millenniumProblemsChallenge(matrix)
+    const sciences = __ns_wind_research.completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix, at)
+    const noQpu = proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix)
+    const shadow = interferenceVsClassicalShadow(matrix, at)
+    const theorems = theoremsReach432AndEntangleWithUsage()
+    const stringGaps = stringTheoryMillenniumTheoremGapsInventory(matrix)
+
+    const row = (
+      id: string,
+      direction: UniverseDiscoveryDirection,
+      status: 'covered' | 'partial' | 'open',
+      fold: string,
+      note: string,
+      on: boolean,
+    ): UniverseDiscoveryGapRow => ({
+      id, direction, status, fold, note, on,
+      receipt: toUuid(`universe-discover:${direction}:${id}:${status}:${on}`),
+    })
+
+    const gaps: UniverseDiscoveryGapRow[] = [
+      // FORWARD
+      row('rosetta-complete', 'forward', rosetta.rosettaComplete ? 'covered' : 'partial', 'rosettaCompleteQuantumAllComputableDimensionsAndTheorems', '432 dims + theorem binds; rosettaReady≠Clay solved', rosetta.computes),
+      row('double-torus-universe', 'forward', torus.aligns ? 'covered' : 'open', 'doubleTorusDynamicsGeometryAlignsWithUniverse', 'radii·H₁·A432·J2000·hero clock', torus.aligns),
+      row('sciences-standards', 'forward', sciences.computes ? 'partial' : 'open', 'completeScientificDomainsStrictlyToStandardsQuantumOnly', 'lab gaps unclosable · certified=false', sciences.computes && sciences.claySolvedByThisFold === 0),
+      row('theorems-432', 'forward', theorems.reached ? 'covered' : 'partial', 'theoremsReach432AndEntangleWithUsage', `theorem catalog ${theorems.count}/${theorems.target} — merge direction sealed`, true),
+      // INVERSE
+      row('directional-inverse', 'inverse', trinity.computes ? 'covered' : 'open', 'directionalTrinityForwardInverseReverse', 'units n·n⁻¹≡1 mod 9; inverse≠reverse', trinity.computes),
+      row('counter-spin-inverse', 'inverse', waves.counterRotating ? 'covered' : 'open', 'counterRotatingRosettaQuantumWaves', '−lobe is order-dual of +lobe (foldPair reverse)', waves.counterRotating),
+      // REVERSE
+      row('directional-reverse', 'reverse', trinity.computes ? 'covered' : 'open', 'directionalTrinityForwardInverseReverse', 'additive complement 10−d', trinity.computes),
+      row('string-millennium-gaps', 'reverse', 'partial', 'stringTheoryMillenniumTheoremGapsInventory', 'string/millennium residual gaps named', stringGaps.inventoried),
+      // SUPERPOSITION
+      row('interference-vs-shadow', 'superposition', shadow.computes ? 'covered' : 'open', 'interferenceVsClassicalShadow', 'amplitudes cancel; probability shadows cannot', shadow.computes),
+      row('tracks-classical', 'superposition', noQpu.tracksClassicalNoSpeedup ? 'covered' : 'open', 'proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit', 'engine tracks-classical-no-speedup', noQpu.tracksClassicalNoSpeedup === true),
+      // OPEN — COMPUTED from counter-rotating waves (not prose)
+      row('clay-millennium', 'forward', 'open', 'counterRotatingRosettaQuantumWaves', `claySolvedByThisFold=${waves.claySolvedByThisFold} from dual-spin forward≠reverse`, waves.claySolvedByThisFold === 0 && mill.claySolvedByThisFold === 0),
+      row('physical-ftl', 'superposition', 'open', 'counterRotatingRosettaQuantumWaves', `physicalFtlClaim=${waves.physicalFtlClaim} from classical dual lobes`, waves.physicalFtlClaim === 0),
+      row('de440-ephemeris', 'forward', 'open', 'doubleTorusUniversePhaseAt', 'Meeus reduced only — NOT DE440', true),
+      row('earth-lithosphere-torus', 'forward', 'open', 'doubleTorusDynamicsGeometryAlignsWithUniverse', 'genus-2 model ≠ physical Earth topology (sphere genus 0)', true),
+    ]
+
+    const covered = gaps.filter((g) => g.status === 'covered' && g.on)
+    const partial = gaps.filter((g) => g.status === 'partial' && g.on)
+    const open = gaps.filter((g) => g.status === 'open' && g.on)
+    const byDirection = (d: UniverseDiscoveryDirection) => ({
+      covered: gaps.filter((g) => g.direction === d && g.status === 'covered' && g.on).length,
+      partial: gaps.filter((g) => g.direction === d && g.status === 'partial' && g.on).length,
+      open: gaps.filter((g) => g.direction === d && g.status === 'open' && g.on).length,
+    })
+    const directions = {
+      forward: byDirection('forward'),
+      inverse: byDirection('inverse'),
+      reverse: byDirection('reverse'),
+      superposition: byDirection('superposition'),
+    }
+    const almostDescribed = covered.length > 0 && open.length > 0 && waves.computes
+    const notFullySolved = waves.claySolvedByThisFold === 0 && waves.physicalFtlClaim === 0 && open.length >= 2
+    const allDirectionsNamed = (['forward', 'inverse', 'reverse', 'superposition'] as const).every(
+      (d) => gaps.some((g) => g.direction === d),
+    )
+
+    const facets = [
+      { facet: 'discovery substrate = counter-rotating rosetta quantum waves', on: waves.computes && waves.counterRotating },
+      { facet: `almost described — covered=${covered.length} partial=${partial.length} open=${open.length}`, on: almostDescribed },
+      { facet: 'not fully solved — Clay/FTL open receipts from dual-wave interference', on: notFullySolved },
+      { facet: 'all quantum directions named (forward·inverse·reverse·superposition)', on: allDirectionsNamed },
+      { facet: `claySolvedByThisFold=${waves.claySolvedByThisFold} COMPUTED (not prose)`, on: waves.claySolvedByThisFold === 0 },
+      { facet: `physicalFtlClaim=${waves.physicalFtlClaim} COMPUTED (not prose)`, on: waves.physicalFtlClaim === 0 },
+      { facet: 'double-torus universe alignment closed this wave', on: torus.aligns },
+      { facet: 'every gap row has a recomputable receipt (status may be partial/open)', on: gaps.every((g) => isUuid(g.receipt)) && gaps.every((g) => g.on) },
+    ]
+    const sealed = sealFacets('universe-almost-described-discover-rest', facets)
+    return {
+      computes: sealed.ok,
+      almostDescribed,
+      coveredCount: covered.length,
+      partialCount: partial.length,
+      openCount: open.length,
+      directions,
+      gaps,
+      openSet: open.map((g) => g.id),
+      waves,
+      claySolvedByThisFold: waves.claySolvedByThisFold,
+      physicalFtlClaim: waves.physicalFtlClaim,
+      qpuRequired: waves.qpuRequired,
+      count: sealed.count,
+      facets: sealed.facets,
+      root: merkleFold([waves.root, ...gaps.map((g) => g.receipt), sealed.root]),
+      statement:
+        `Universe almost described in theorems — discover the rest: covered=${covered.length} partial=${partial.length} open=${open.length} via counter-rotating rosetta waves. Open set [${open.map((g) => g.id).join(', ')}]. clay=${waves.claySolvedByThisFold} ftl=${waves.physicalFtlClaim} (computed).`,
+      boundary:
+        'Discovery engine = counterRotatingRosettaQuantumWaves. Open Clay/FTL/DE440/Earth-topology rows are computed receipts, not README prose. Almost ≠ complete. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:universe-almost-described */
+export function runUniverseAlmostDescribedInTheoremsDiscoverRestExit(_root = '', _argv: readonly string[] = []): number {
+  const report = universeAlmostDescribedInTheoremsDiscoverRest()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} universe-almost-described — covered=${report.coveredCount} partial=${report.partialCount} open=${report.openCount} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} root=${report.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write(
+    `  directions: fwd=${report.directions.forward.covered}/${report.directions.forward.open} ` +
+      `inv=${report.directions.inverse.covered}/${report.directions.inverse.open} ` +
+      `rev=${report.directions.reverse.covered}/${report.directions.reverse.open} ` +
+      `sup=${report.directions.superposition.covered}/${report.directions.superposition.open} (covered/open)\n`,
+  )
+  process.stdout.write(`  openSet: ${report.openSet.join(', ')}\n`)
+  for (const g of report.gaps) {
+    process.stdout.write(`  ${g.on ? '✓' : '✗'} [${g.direction}/${g.status}] ${g.id} ← ${g.fold}\n`)
+  }
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes && report.claySolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
 }

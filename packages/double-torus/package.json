@@ -1,7 +1,7 @@
 {
   "name": "@ceccec/double-torus",
-  "version": "1.3.0",
-  "description": "The agnostic, zero-dependency computational core of the Double Torus — all the math AND all the animations, plus the full analyse/dynamics/geometry surface (vortex gates, f→{p,q}, quantumDynamicsComputes, 10D honesty, movie clock). Pure TypeScript: content-addressed UUID folds, concept commands, the 128-bit double-torus word, a recomputable seal, simulators across every decoded domain (quantum state-vector, probabilistic, reversible, cellular-automaton, dynamical, network), vetted crypto (SHA-256, Ed25519, transparency log), the decoded library, and two animation systems — the hero canvas scene (fractal + 3D geometry) and the shared AnimationField movie (sharedHeroAt + drawHeroMovieFrame: the fused life/death double-torus through one genus-2 throat, field layers, rosetta perspectives, and the drawQuantumAppFrame projection kernel). Runs in any browser or Node, depends on nothing. Structural/computational completeness only — NOT physical FTL, NOT Clay.",
+  "version": "1.3.1",
+  "description": "The agnostic, zero-dependency computational core of the Double Torus — all the math AND all the animations, plus the full analyse/dynamics/geometry surface (vortex gates, f→{p,q}, quantumDynamicsComputes, 10D honesty, movie clock) and counter-rotating rosetta quantum wave discovery (claySolvedByThisFold / physicalFtlClaim COMPUTED from dual-spin foldPair interference — not prose). Pure TypeScript. Runs in any browser or Node, depends on nothing. Structural/computational completeness only — NOT physical FTL, NOT Clay.",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

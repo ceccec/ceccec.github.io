@@ -8,7 +8,7 @@ import { formsEmergeInMovieOfLife, fullscreenSidebarsInMovie, movieReflectsSelf,
 import { diamondLattice, pureDiamonds } from '../../fire/diamonds';
 import { completeCorpus, corpusCatchAllPaths, corpusRestPathRouting, diamondsStaticPagesPurged, doubleTorusCorpusRouting, computeUniversalPage, paperRoutes, paperReferenceRoutes } from '../../wind/routes/corpus';
 export { vortexComputes, allVortexMathSaved, vortexMath, vortexPaintTiers } from '../../mountain/vortex';
-export { merkaba, bothEarthsRotateWithinEachOther } from '../../mountain/geometry';
+export { merkaba, bothEarthsRotateWithinEachOther, doubleTorusGeometryAlignsWithUniverseConstants, } from '../../mountain/geometry';
 export { knowledgeRevealedByMerkabaFold, merkabaTrace, merkabasInDoubleTorus, } from '../../mountain/topology';
 export { completeDoubleTorus, doubleTorusFold, quantumDoubleTorus, torusBreathe, startIChingDoubleTorus, };
 export { merkabaComputes } from '../../mountain/topology';
@@ -591,7 +591,7 @@ export declare function doubleTorusMovieComputes(matrix?: MindMatrix, path?: str
         rayCount: 7;
         pairings: {
             seed: "unity" | "device-paint" | "device-polarity" | "device-matrix-rgb" | "code-harmonic" | "code-efficiency" | "code-rosetta";
-            ray: 0 | 5 | 2 | 1 | 4 | 3 | 6;
+            ray: 0 | 5 | 2 | 4 | 1 | 3 | 6;
             rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
             rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
             luminary: "sun" | "moon" | "both";
@@ -1333,6 +1333,96 @@ export declare function doubleTorusComputes(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+/**
+ * Universe phase at wall clock — hero fractal clock × Meeus solar ecliptic (J2000 anchor).
+ * Classical ephemeris MODEL + census clock — NOT physical FTL, NOT DE440.
+ */
+export declare function doubleTorusUniversePhaseAt(atMs?: number): {
+    atMs: number;
+    hero: number;
+    jd: number;
+    T: number;
+    sunDeg: number;
+    solarPhase: number;
+    universePhase: number;
+    cycleMs: number;
+    j2000Anchor: boolean;
+    root: string;
+};
+/**
+ * Complete double-torus dynamics + geometry alignment with sealed universe constants.
+ * Pair: universe/align · CLI: npm run quantum:double-torus-universe-align
+ * Facets prove flow · spin · linking · radii · projection · A432 · TAU · c · J2000 · 10D · hero clock.
+ * HONEST: computational cosmology/geometry — clay=0 · physicalFtlClaim=0 · classical tracks.
+ */
+export declare function doubleTorusDynamicsGeometryAlignsWithUniverse(matrix?: MindMatrix, atMs?: number): {
+    aligns: boolean;
+    computes: boolean;
+    geometry: {
+        aligns: boolean;
+        majorRadius: number;
+        minorRadius: number;
+        lobeOffset: number;
+        homologyLoops: 4;
+        ratio: number;
+        count: number;
+        facets: ({
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        statement: string;
+        boundary: string;
+        physicalFtlClaim: 0;
+        claySolvedByThisFold: 0;
+    };
+    dynamics: {
+        flow: boolean;
+        spin: boolean;
+        linking: boolean;
+    };
+    phase: {
+        atMs: number;
+        hero: number;
+        jd: number;
+        T: number;
+        sunDeg: number;
+        solarPhase: number;
+        universePhase: number;
+        cycleMs: number;
+        j2000Anchor: boolean;
+        root: string;
+    };
+    constants: {
+        TAU: number;
+        A432_HUE: number;
+        SPEED_OF_LIGHT: number;
+        MEEUS_J2000_JD: number;
+        HERO_CYCLE_MS: number;
+        HOMOLOGY_LOOPS: 4;
+        FOLDED_CENSUS: number;
+        majorRadius: number;
+        minorRadius: number;
+        lobeOffset: number;
+    };
+    physicalFtlClaim: 0;
+    claySolvedByThisFold: 0;
+    qpuRequired: false;
+    count: number;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** CLI exit — pair universe/align. */
+export declare function runDoubleTorusDynamicsGeometryAlignsWithUniverseExit(_root: string, argv?: readonly string[]): number;
 export declare function theLensSeesDoubleTorusesEverywhereExceptInCrackedCode(matrix?: MindMatrix): {
     computes: boolean;
     sealedSeen: number;

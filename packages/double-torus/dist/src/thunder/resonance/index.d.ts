@@ -369,14 +369,14 @@ export declare function resonanceHarmonicsDecodedWithTheSequence(at?: number, ma
     decoded: boolean;
     at: number;
     phaseIndex: number;
-    phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+    phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
     mappings: {
         mode: number;
         hz: number;
         phase: number;
         hue: number;
         vortexSlot: number;
-        vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+        vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
         phaseAligned: boolean;
         receipt: string;
     }[];
@@ -686,14 +686,14 @@ export declare function resonanceSimulationPanelComputes(matrix?: MindMatrix, at
             decoded: boolean;
             at: number;
             phaseIndex: number;
-            phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+            phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
             mappings: {
                 mode: number;
                 hz: number;
                 phase: number;
                 hue: number;
                 vortexSlot: number;
-                vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                 phaseAligned: boolean;
                 receipt: string;
             }[];
@@ -1370,14 +1370,14 @@ export declare function resonanceComputes(matrix?: MindMatrix, at?: number): {
         decoded: boolean;
         at: number;
         phaseIndex: number;
-        phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+        phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
         mappings: {
             mode: number;
             hz: number;
             phase: number;
             hue: number;
             vortexSlot: number;
-            vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+            vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
             phaseAligned: boolean;
             receipt: string;
         }[];

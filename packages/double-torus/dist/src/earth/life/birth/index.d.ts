@@ -543,6 +543,7 @@ export declare function birthLifeDeathTriadComputes(matrix?: MindMatrix): {
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
