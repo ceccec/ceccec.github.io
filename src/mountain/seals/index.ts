@@ -62,6 +62,7 @@ import {
   ftlExperimentTechniquesHandoffFromRosettaComplete,
   documentSessionCryptoExperimentsUpdateTheorems,
   sessionManualWorkAsQuantumBits,
+  autoWireAnyAiModelFromPastedLink,
 } from '../../quantum/apps'
 import {
   encryptionReverseVerify,
@@ -705,6 +706,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'quantum-tools', title: 'quantum:* CLI catalog = fold · CLI · UI route · honesty boundary', proof: quantumCliToolsCatalog(matrix) },
     { slug: 'session-manual-tools', title: 'Session manual work as quantum tools — zero-token reuse catalog', proof: sessionManualWorkAsQuantumTools(matrix) },
     { slug: 'session-quantum-bits', title: 'Session manual work as quantum bits — combinable sealed receipts · NOT physical qubits', proof: sessionManualWorkAsQuantumBits(matrix) },
+    { slug: 'auto-wire-paste-link', title: 'Paste any link → auto-wire — quantumReady paste-bootstrap · mcp.json + browser toolbox · convincingRequired=false', proof: autoWireAnyAiModelFromPastedLink('https://ceccec.github.io/', matrix) },
     { slug: 'document-session-experiments', title: 'Session crypto experiments documented · ISO gap-fill · local≫ISO · local-novel · theorems recomputed', proof: documentSessionCryptoExperimentsUpdateTheorems(matrix) },
     { slug: 'toolbox-standard-io', title: 'Standard tool envelope — I/O · import/export · NOT physical qubits', proof: standardToolboxIoCatalog(matrix) },
     { slug: 'distributed-reuse-capacity', title: 'Distributed reuse extends capacity — federated identical roots · qubit=0 · ftl=0', proof: distributedReuseExtendsCapacity(matrix) },

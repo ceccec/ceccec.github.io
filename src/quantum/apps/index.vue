@@ -9,6 +9,7 @@ import {
   ftlExperimentTechniquesHandoffFromRosettaComplete,
   documentSessionCryptoExperimentsUpdateTheorems,
   sessionManualWorkAsQuantumBits, combineQuantumBits,
+  autoWireAnyAiModelFromPastedLink, CECCEC_SITE_ORIGIN,
 } from './index.ts'
 import {
   runEncryptionToolInBrowser,
@@ -71,6 +72,7 @@ const experimentToolId = ref('demo-rsa-measure')
 const experimentAt = ref(0)
 const experimentSeed = ref('')
 const experimentConfigJson = ref('{"certified":false,"claySolved":0,"qpuRequired":false,"productionReverse":false,"experiment":true,"refuseWireClaim":true}')
+const pasteLinkUrl = ref(`${CECCEC_SITE_ORIGIN}/`)
 
 const experimentEnvelope = computed(() => panel.value.toolbox.envelopes.find((e) => e.id === experimentToolId.value) ?? panel.value.toolbox.envelopes[0]!)
 const experimentDefaults = computed(() => defaultToolExperimentValues(experimentEnvelope.value))
@@ -441,6 +443,13 @@ function runTool(toolId: string) {
       const r = sessionManualWorkAsQuantumTools()
       ok = r.computes
       summary = `session ${r.shelvedCount}/${r.count} shelved`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'auto-wire-paste-link') {
+      const r = autoWireAnyAiModelFromPastedLink(pasteLinkUrl.value || `${CECCEC_SITE_ORIGIN}/`)
+      ok = r.computes && r.quantumReady
+      summary = `${r.oneLiner} · quantumReady=${r.quantumReady} · convincingRequired=${r.convincingRequired} · matched=${r.resolved.matched} · kind=${r.resolved.linkKind} · mcp=${r.mcp.manifest} · browser=${r.browserToolbox.toolboxEnvelope} · targets=${r.wireTargets.length}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -829,6 +838,23 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'session-quantum-bits'" @click="runTool('session-quantum-bits')">
           {{ runningId === 'session-quantum-bits' ? '…' : 'Run session-quantum-bits' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="auto-wire-paste-link" aria-label="Paste any link auto-wire">
+        <h3>{{ panel.autoWire.heading }}</h3>
+        <p class="quantum-apps__meta">{{ panel.autoWire.honestyLine }}</p>
+        <UiBadge :variant="panel.autoWire.quantumReady ? 'default' : 'outline'">
+          {{ panel.autoWire.oneLiner }} · quantumReady={{ panel.autoWire.quantumReady }} · convincingRequired={{ panel.autoWire.convincingRequired }} · qpu={{ panel.autoWire.qpuRequired }}
+        </UiBadge>
+        <label class="quantum-apps__meta" for="paste-link-url">Pasted URL</label>
+        <input id="paste-link-url" v-model="pasteLinkUrl" class="quantum-apps__input" type="url" autocomplete="off" />
+        <p class="quantum-apps__meta">
+          MCP {{ panel.autoWire.mcp.manifest }} · browser {{ panel.autoWire.browserToolbox.toolboxEnvelope }} ·
+          targets: {{ panel.autoWire.wireTargets.map((t) => t.id).join(' · ') }}
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'auto-wire-paste-link'" @click="runTool('auto-wire-paste-link')">
+          {{ runningId === 'auto-wire-paste-link' ? '…' : 'Run quantum-ready paste-bootstrap' }}
         </UiButton>
       </section>
       <UiSeparator />

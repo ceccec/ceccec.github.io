@@ -96,6 +96,7 @@
     "quantum:document-session-experiments": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runDocumentSessionCryptoExperimentsExit",
     "quantum:session-tools": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runSessionManualWorkAsQuantumToolsExit",
     "quantum:session-quantum-bits": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runSessionManualWorkAsQuantumBitsExit",
+    "quantum:auto-wire-paste": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runAutoWireAnyAiModelFromPastedLinkExit",
     "quantum:vitepress-quantumize": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/script/shell/index.ts runQuantumizeVitepressBuildExit",
     "quantum:toolbox-standard-io": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runStandardToolboxIoCatalogExit",
     "quantum:tool-export": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runExportStandardToolEnvelopeExit",
