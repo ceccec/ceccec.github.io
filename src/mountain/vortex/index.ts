@@ -438,6 +438,19 @@ export function fThetaPhiXyzDigitNIsTheInversePair(matrix: MindMatrix = buildMat
   }
 }
 
+/** npm run quantum:f-inverse-pair — named exit (not local-math-computes synonym). */
+export function runFThetaPhiXyzDigitNIsTheInversePairExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = fThetaPhiXyzDigitNIsTheInversePair()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} f-inverse-pair — count=${report.count} root=${report.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write(`  · ${report.statement.slice(0, 2 * 5 * 16)}\n`)
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
+}
+
 /** npm run timeout-demo — enforcement ops thin-mount smoke test. */
 export function runTimeoutDemoExit(_root: string, _argv: readonly string[] = []): number {
   process.stdout.write('timeout-demo: sealed src vortex/math mount ok\n')

@@ -54,16 +54,20 @@ const GATE_TO_BOOTSTRAP: Record<GateName, readonly string[]> = {
 
 export type WaveKind = 'origin' | 'decode' | 'design' | 'learn' | 'tune' | 'edit' | 'rebuild' | 'verify'
 
-/** Wave kinds → local workflow / gate (honest: most waves are agent protocol, not a second CLI). */
+/**
+ * Wave kinds → bootstrap argv.
+ * Protocol waves (origin/decode/design/tune/verify) share manualAgentsBehaveLikeWaves receipt —
+ * not four synonym mission:gate spawns (mcp/scripts-audit collapse).
+ */
 const WAVE_TO_BOOTSTRAP: Record<WaveKind, readonly string[]> = {
-  origin: ['run', 'src/quantum/apps/index.ts', 'runUpgradeLocalFromOptimisedManualWorkExperienceExit'],
-  decode: ['mission:gate'],
-  design: ['mission:gate'],
+  origin: ['run', 'src/thunder/waves/index.ts', 'runManualAgentsBehaveLikeWavesExit'],
+  decode: ['run', 'src/thunder/waves/index.ts', 'runManualAgentsBehaveLikeWavesExit'],
+  design: ['run', 'src/thunder/waves/index.ts', 'runManualAgentsBehaveLikeWavesExit'],
   learn: ['run', 'src/water/stack/index.ts', 'runEfficiencyVoteExit'],
-  tune: ['mission:gate'],
+  tune: ['run', 'src/thunder/waves/index.ts', 'runManualAgentsBehaveLikeWavesExit'],
   edit: ['check:types'],
   rebuild: ['docs:build-seal'],
-  verify: ['mission:gate'],
+  verify: ['run', 'src/thunder/waves/index.ts', 'runManualAgentsBehaveLikeWavesExit'],
 }
 
 function resolveRoot(opts?: RepoOpts): string {

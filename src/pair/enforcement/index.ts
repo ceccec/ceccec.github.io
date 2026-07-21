@@ -106,6 +106,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'wire/paste-link',
   'mcp/browser-parity',
   'ui/prose',
+  'mcp/scripts-audit',
   'tool/envelope',
   'import/export',
   'string/quantumize',

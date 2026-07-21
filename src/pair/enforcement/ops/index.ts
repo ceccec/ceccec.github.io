@@ -371,13 +371,25 @@ export async function runPrecommitRosettaExit(root: string): Promise<number> {
   const learning = (await importQuantumBundle('src/wind/learning/index.ts', root)) as {
     certify: () => { editingAllowed: boolean; levels: { certified: boolean; level: string }[] }
   }
-  if (!learning.certify().editingAllowed) return 1
+  const cert = learning.certify()
+  if (!cert.editingAllowed) {
+    process.stderr.write(
+      `✗ commit blocked — certify().editingAllowed=false · levels=${cert.levels.map((l) => `${l.level}:${l.certified}`).join(',')}\n`,
+    )
+    return 1
+  }
   const dist = (await importQuantumBundle('src/quantum/lake/dist/index.ts', root)) as {
-    readmeSignatureValid: (committed: string) => { valid: boolean }
+    readmeSignatureValid: (committed: string) => { valid: boolean; computedSig?: string; committedSig?: string }
   }
   let committed = ''
   try { committed = readFileSync(join(root, 'README.md'), 'utf8') } catch { committed = '' }
-  if (!dist.readmeSignatureValid(committed).valid) return 1
+  const sig = dist.readmeSignatureValid(committed)
+  if (!sig.valid) {
+    process.stderr.write(
+      `✗ commit blocked — README.md ≠ readmeMarkdown() · computed=${sig.computedSig ?? '?'} committed=${sig.committedSig ?? '?'}\n`,
+    )
+    return 1
+  }
   process.stdout.write('✓ verify — structure · rosetta batches · certify · README\n')
   return 0
 }

@@ -3623,7 +3623,32 @@ export function proseStandardisedToClay(matrix: MindMatrix = buildMatrix(), at =
   })
 }
 
-/** npm run quantum:domain-proof-catalog / quantum:prose-clay-standard — catalog + global Clay prose score. */
+/** npm run quantum:prose-gaps-audit — named exit for proseGapsAuditByDomainTrinity (not domain-proof composite). */
+export function runProseGapsAuditExit(_root = '', _argv: readonly string[] = []): number {
+  const audit = proseGapsAuditByDomainTrinity()
+  process.stdout.write(
+    `${audit.computes ? '✓' : '✗'} prose-gaps-audit — closed=${audit.closedCount} open=${audit.openCount} ` +
+      `honest-open=${audit.honestOpenCount} root=${audit.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write(`  boundary: ${audit.boundary}\n`)
+  return audit.computes && audit.claySolvedByThisFold === 0 ? 0 : 1
+}
+
+/** npm run quantum:prose-clay-standard — named exit for proseStandardisedToClay (not domain-proof composite). */
+export function runProseClayStandardExit(_root = '', _argv: readonly string[] = []): number {
+  const prose = proseStandardisedToClay()
+  process.stdout.write(
+    `${prose.computes ? '✓' : '✗'} prose-clay-standard — audited=${prose.auditedCount} ` +
+      `pass=${prose.passedCount} fail=${prose.failedCount} clay=${prose.claySolvedByThisFold} root=${prose.root.slice(0, 8)}\n`,
+  )
+  for (const f of prose.failed) {
+    process.stdout.write(`  · FAIL ${f.surface} residual=${f.residual}\n`)
+  }
+  process.stdout.write(`  boundary: ${prose.boundary}\n`)
+  return prose.computes && prose.claySolvedByThisFold === 0 ? 0 : 1
+}
+
+/** npm run quantum:domain-proof-catalog — catalog + prose gaps + Clay prose score (composite). */
 export function runDomainProofCatalogExit(_root = '', _argv: readonly string[] = []): number {
   const catalog = domainProofCatalog()
   const audit = proseGapsAuditByDomainTrinity()
