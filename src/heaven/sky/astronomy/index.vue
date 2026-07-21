@@ -109,7 +109,7 @@ watch(at, (time) => {
 }
 
 .astronomy-simulation-panel__movie-host {
-  min-height: calc(4px * 64 + 4px);
+  min-height: calc(var(--ich-unit) * 64 + var(--ich-unit));
   border-radius: calc(1rem * 3 / 4);
   overflow: hidden;
   background: var(--ich-scrim);
@@ -118,7 +118,7 @@ watch(at, (time) => {
 .astronomy-simulation-panel__movie {
   display: block;
   width: 100%;
-  height: calc(4px * 64 + 4px);
+  height: calc(var(--ich-unit) * 64 + var(--ich-unit));
 }
 
 .astronomy-simulation-panel__count {

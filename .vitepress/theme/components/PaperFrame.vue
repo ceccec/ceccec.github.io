@@ -35,27 +35,27 @@ const show = computed(() => abstract.value.length > 0)
 
 <style scoped>
 .paper-frame {
-  margin: 0 0 1.5rem;
-  padding: 0.75rem 1rem;
-  border-left: 3px solid var(--vp-c-brand-1, currentColor);
+  margin: 0 0 var(--ich-sp6);
+  padding: var(--ich-sp3) var(--ich-sp4);
+  border-left: var(--ich-border-3) solid var(--vp-c-brand-1, currentColor);
   background: var(--vp-c-bg-soft, transparent);
-  border-radius: 0 8px 8px 0;
+  border-radius: 0 var(--ich-sp4) var(--ich-sp4) 0;
 }
 .paper-frame__eyebrow {
-  margin: 0 0 0.4rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
+  margin: 0 0 var(--ich-sp1);
+  font-size: var(--ich-text-2xs);
+  letter-spacing: var(--ich-track-wide);
   text-transform: uppercase;
   opacity: calc(3 / 4);
 }
 .paper-frame__abstract {
   margin: 0;
-  font-size: 0.92rem;
-  line-height: calc(3 / 2);
+  font-size: var(--ich-text-ms);
+  line-height: var(--ich-lh-normal);
 }
 .paper-frame__keywords {
-  margin: 0.4rem 0 0;
-  font-size: 0.8rem;
+  margin: var(--ich-sp1) 0 0;
+  font-size: var(--ich-text-xs);
   opacity: calc(4 / 5);
 }
 </style>

@@ -108,6 +108,48 @@
   color: inherit;
 }
 
+/* Status badges — colours from sealed --status-* (light/dark recomputed in tokens.css). */
+.ui-badge--status-ready {
+  background: var(--status-ready);
+  color: var(--status-ready-fg);
+  border: var(--ich-line) solid var(--status-ready);
+}
+.ui-badge--status-ok {
+  background: var(--status-ok);
+  color: var(--status-ok-fg);
+  border: var(--ich-line) solid var(--status-ok);
+}
+.ui-badge--status-gap {
+  background: var(--status-gap);
+  color: var(--status-gap-fg);
+  border: var(--ich-line) solid var(--status-gap);
+}
+.ui-badge--status-warn {
+  background: var(--status-warn);
+  color: var(--status-warn-fg);
+  border: var(--ich-line) solid var(--status-warn);
+}
+.ui-badge--status-partial {
+  background: var(--status-partial);
+  color: var(--status-partial-fg);
+  border: var(--ich-line) solid var(--status-partial);
+}
+.ui-badge--status-error {
+  background: var(--status-error);
+  color: var(--status-error-fg);
+  border: var(--ich-line) solid var(--status-error);
+}
+.ui-badge--status-refused {
+  background: var(--status-refused);
+  color: var(--status-refused-fg);
+  border: var(--ich-line) solid var(--status-refused);
+}
+.ui-badge--status-ci {
+  background: var(--status-ci);
+  color: var(--status-ci-fg);
+  border: var(--ich-line) solid var(--status-ci);
+}
+
 .ui-badge--on {
   border-color: oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-gateway) calc(360deg * 7 / 18) / var(--ich-oklch-a-gateway));
   opacity: 1;

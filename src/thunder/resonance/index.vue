@@ -113,7 +113,7 @@ watch(at, (time) => {
 }
 
 .resonance-simulation-panel__movie-host {
-  min-height: calc(216px + 4px);
+  min-height: calc(var(--ich-fig) + var(--ich-unit));
   border-radius: calc(1rem * 3 / 4);
   overflow: hidden;
   background: var(--ich-scrim);
@@ -122,7 +122,7 @@ watch(at, (time) => {
 .resonance-simulation-panel__movie {
   display: block;
   width: 100%;
-  height: calc(216px + 4px);
+  height: calc(var(--ich-fig) + var(--ich-unit));
 }
 
 .resonance-simulation-panel__modes {

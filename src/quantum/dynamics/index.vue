@@ -114,7 +114,7 @@ watch(at, (time) => {
 }
 
 .quantum-dynamics-simulation-panel__movie-host {
-  min-height: calc(216px - 16px);
+  min-height: calc(var(--ich-fig) - var(--ich-sp8));
   border-radius: calc(1rem * 3 / 4);
   overflow: hidden;
   background: var(--ich-scrim);
@@ -123,7 +123,7 @@ watch(at, (time) => {
 .quantum-dynamics-simulation-panel__movie {
   display: block;
   width: 100%;
-  height: calc(216px - 16px);
+  height: calc(var(--ich-fig) - var(--ich-sp8));
 }
 
 .quantum-dynamics-simulation-panel__amps {

@@ -6,6 +6,7 @@ import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.v
 import UiBadge from '../../../.vitepress/theme/components/ui/Badge.vue'
 import UiButton from '../../../.vitepress/theme/components/ui/Button.vue'
 import UiSeparator from '../../../.vitepress/theme/components/ui/Separator.vue'
+import { statusBadgeKind } from '../../earth/architecture/index.ts'
 
 const panel = shallowRef(researchPanelComputes())
 const millennium = shallowRef(millenniumPanelComputes())
@@ -34,14 +35,14 @@ runMillennium()
       <header class="research-index__header">
         <h2>Research · millennium challenge</h2>
         <p class="research-index__lede">Browser-runnable MODELED CHALLENGE apparatus — claySolvedByThisFold must stay 0.</p>
-        <UiBadge :variant="panel.computes ? 'default' : 'outline'">research.computes · {{ panel.computes ? '✓' : '—' }}</UiBadge>
+        <UiBadge :status="statusBadgeKind(panel.computes)">research.computes · {{ panel.computes ? '✓' : '—' }}</UiBadge>
         <UiButton size="sm" :disabled="running" @click="runMillennium">{{ running ? 'Running…' : 'Recompute challenge' }}</UiButton>
       </header>
       <UiSeparator />
       <p v-if="error" class="research-index__error" role="alert">{{ error }}</p>
       <section>
         <h3>Millennium challenge</h3>
-        <UiBadge :variant="millennium.computes ? 'default' : 'outline'">
+        <UiBadge :status="millennium.claySolvedByThisFold === 0 && millennium.computes ? 'ready' : 'warn'">
           claySolvedByThisFold={{ millennium.claySolvedByThisFold }} · {{ millennium.computes ? '✓' : '—' }}
         </UiBadge>
         <p class="research-index__meta">
@@ -67,7 +68,7 @@ runMillennium()
       <UiSeparator />
       <section id="sciences-trinities">
         <h3>Sciences · significance · trinities</h3>
-        <UiBadge :variant="panel.significance?.computes ? 'default' : 'outline'">
+        <UiBadge :status="statusBadgeKind(Boolean(panel.significance?.computes))">
           meanSig={{ panel.significance?.meanScore ?? '—' }}/100 · trinities={{ panel.trinities?.count ?? '—' }}
         </UiBadge>
         <p class="research-index__meta">{{ panel.trinities?.boundary }}</p>
@@ -91,7 +92,7 @@ runMillennium()
       <UiSeparator />
       <section id="sciences-standards-quantum">
         <h3>Sciences · standards (quantum only)</h3>
-        <UiBadge :variant="panel.standards?.computes ? 'default' : 'outline'">
+        <UiBadge :status="(panel.standards?.after?.gapCount ?? 1) === 0 ? 'ready' : (panel.standards?.after?.partialCount ?? 0) > 0 ? 'partial' : 'gap'">
           before {{ panel.standards?.before?.coveredCount ?? '—' }}/{{ panel.standards?.before?.partialCount ?? '—' }}/{{ panel.standards?.before?.gapCount ?? '—' }}
           → after {{ panel.standards?.after?.coveredCount ?? '—' }}/{{ panel.standards?.after?.partialCount ?? '—' }}/{{ panel.standards?.after?.gapCount ?? '—' }}
           · filled={{ panel.standards?.filledCount ?? '—' }}
@@ -102,8 +103,8 @@ runMillennium()
           <tbody>
             <tr v-for="d in panel.standards?.domains ?? []" :key="d.id">
               <td><code>{{ d.id }}</code></td>
-              <td>{{ d.before }}</td>
-              <td>{{ d.coverage }}</td>
+              <td><UiBadge :status="statusBadgeKind(d.before)">{{ d.before }}</UiBadge></td>
+              <td><UiBadge :status="statusBadgeKind(d.coverage)">{{ d.coverage }}</UiBadge></td>
               <td>{{ d.filledByQuantum ? '✓' : '—' }}{{ d.unclosableWithoutExternalLab ? ' lab' : '' }}</td>
               <td class="research-index__meta">{{ d.standardMap }}</td>
             </tr>
@@ -151,5 +152,5 @@ runMillennium()
 .research-index__list { list-style: none; padding: 0; margin: 0; }
 .research-index__list li { margin-bottom: var(--ich-sp3); }
 .research-index__pair { opacity: var(--ich-op-soft); margin-left: var(--ich-sp3); }
-.research-index__error { color: var(--vp-c-danger-1, crimson); font-size: var(--ich-text-sm); }
+.research-index__error { color: var(--status-error); font-size: var(--ich-text-sm); }
 </style>

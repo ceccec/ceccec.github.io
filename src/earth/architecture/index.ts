@@ -1929,14 +1929,48 @@ export function ichingTokens() {
     ['--dt-a432-fifth-hue', 'calc(360 * 2 * 5 * 5 / 64)'], // hexagram 50 → 281°, the perfect-fifth violet (≈285° wheel-locked)
     ['--ich-hue-success', hue('27')], //                152° — hexagram 27 (green, a432 octave)
     ['--ich-hue-cyan', hue('5 * 7')], //                197° — hexagram 35 (the cyan wash)
+    ['--ich-hue-warn', hue('8')], //                    45° — hexagram 8 (amber-gold warn; not purple)
+    ['--ich-hue-error', hue('4')], //                   22.5° — hexagram 4 (deep alert near brand)
+    ['--ich-hue-ci', hue('2')], //                      11.25° — hexagram 2 (muted CI-only)
   ]
   const HB = 'var(--dt-a432-hue)' // the brand red
   const HV = 'var(--dt-a432-fifth-hue)' // the perfect-fifth violet
   const HS = 'var(--ich-hue-success)'
   const HC = 'var(--ich-hue-cyan)'
+  const HW = 'var(--ich-hue-warn)'
+  const HE = 'var(--ich-hue-error)'
+  const HCI = 'var(--ich-hue-ci)'
   const roles: Array<[string, string]> = [
     ['--ich-success-1', hsl(HS, [7, 8], [5, 16])], //          ≈ #059669, the deep holds-green
     ['--ich-success-soft', hslA(HS, [7, 8], [1, 2], [1, 7])], // the emerald wash (~.14)
+  ]
+  // STATUS BADGE PALETTE — sealed status→colour from the hexagram wheel + a432 (no ad-hoc hex).
+  // Light: deeper fills for contrast on near-white movie chrome. Soft wash = fill at low alpha.
+  const statusLight: Array<[string, string]> = [
+    ['--status-ready', hsl(HS, [7, 8], [5, 16])],
+    ['--status-ready-fg', 'oklch(1 0 0)'],
+    ['--status-ready-soft', hslA(HS, [7, 8], [5, 16], [1, 6])],
+    ['--status-ok', hsl(HS, [6, 8], [3, 8])],
+    ['--status-ok-fg', 'oklch(1 0 0)'],
+    ['--status-ok-soft', hslA(HS, [6, 8], [3, 8], [1, 6])],
+    ['--status-gap', hsl(HB, [5, 6], [3, 8])],
+    ['--status-gap-fg', 'oklch(1 0 0)'],
+    ['--status-gap-soft', hslA(HB, [5, 6], [3, 8], [1, 6])],
+    ['--status-warn', hsl(HW, [7, 8], [3, 8])],
+    ['--status-warn-fg', 'oklch(0 0 0 / calc(7 / 8))'],
+    ['--status-warn-soft', hslA(HW, [7, 8], [3, 8], [1, 5])],
+    ['--status-partial', hsl(HC, [6, 8], [3, 8])],
+    ['--status-partial-fg', 'oklch(1 0 0)'],
+    ['--status-partial-soft', hslA(HC, [6, 8], [3, 8], [1, 6])],
+    ['--status-error', hsl(HE, [7, 8], [5, 16])],
+    ['--status-error-fg', 'oklch(1 0 0)'],
+    ['--status-error-soft', hslA(HE, [7, 8], [5, 16], [1, 5])],
+    ['--status-refused', hsl(HE, [6, 8], [2, 7])],
+    ['--status-refused-fg', 'oklch(1 0 0)'],
+    ['--status-refused-soft', hslA(HE, [6, 8], [2, 7], [1, 5])],
+    ['--status-ci', hsl(HCI, [2, 5], [3, 8])],
+    ['--status-ci-fg', 'oklch(1 0 0)'],
+    ['--status-ci-soft', hslA(HCI, [2, 5], [3, 8], [1, 5])],
   ]
   const accents: Array<[string, string]> = [
     ['--ich-glow', hslA(HB, [6, 8], [1, 2], [1, 5])], //          ~.2  — the brand glow
@@ -1998,7 +2032,7 @@ export function ichingTokens() {
     ['--ich-weight-bold', 'calc(7 * 100)'],
   ]
 
-  const light: Array<[string, string]> = [...base, ...space, ...arch, ...type, ...motion, ...lineage, ...roles, ...accents, ...surfaces]
+  const light: Array<[string, string]> = [...base, ...space, ...arch, ...type, ...motion, ...lineage, ...roles, ...statusLight, ...accents, ...surfaces]
 
   // The VitePress aliases — the framework's brand∕tip∕warning∕danger variables now point at the computed ramp,
   // so links, buttons and custom blocks re-theme from the I Ching. The neutral default∕gray stays the
@@ -2048,7 +2082,7 @@ export function ichingTokens() {
   // DARK MODE LIFTS THE LINE — VitePress flips the neutral field to dark; the brand lifts to stay legible on it,
   // the yang rising (higher lightness) on the same a432 hue, the way hexagramIsHexColorDuality's complement turns
   // every yin line to yang. Same hue and near-same saturation, only the lightness rises — the sealed dark ramp,
-  // canonicalised. Success likewise lifts for its dark-mode tints.
+  // canonicalised. Success likewise lifts for its dark-mode tints. Status badges lift with the field.
   const dark: Array<[string, string]> = [
     ['--vp-c-brand-1', hsl(HB, [9, (5 * 2)], [5, 7])], //  ≈ 90% 71% (was 90% 72%)
     ['--vp-c-brand-2', hsl(HB, [6, 7], [5, 8])], //   ≈ 86% 62% (was 85% 62%)
@@ -2063,7 +2097,31 @@ export function ichingTokens() {
     ['--ich-tint-cyan', hslA(HC, [6, 8], [3, 5], [1, 8])],
     ['--ich-oklch-l-glyph', 'calc(7 / 8)'],
     ['--ich-oklch-c-glyph', 'calc(9 / 64 * 7 / 6)'],
-    ['--ich-scrim', 'oklch(0 0 0 / calc(1 / 4))'], // the black wash under the sealed dark positive
+    ['--ich-scrim', 'oklch(0 0 0 / calc(2 / 5))'], // stronger wash under movie canvases on the void
+    ['--status-ready', hsl(HS, [7, 8], [4, 9])],
+    ['--status-ready-fg', 'oklch(0 0 0 / calc(7 / 8))'],
+    ['--status-ready-soft', hslA(HS, [7, 8], [4, 9], [1, 5])],
+    ['--status-ok', hsl(HS, [6, 8], [5, 9])],
+    ['--status-ok-fg', 'oklch(0 0 0 / calc(7 / 8))'],
+    ['--status-ok-soft', hslA(HS, [6, 8], [5, 9], [1, 5])],
+    ['--status-gap', hsl(HB, [9, (5 * 2)], [5, 7])],
+    ['--status-gap-fg', 'oklch(0 0 0 / calc(7 / 8))'],
+    ['--status-gap-soft', hslA(HB, [9, (5 * 2)], [5, 7], [1, 5])],
+    ['--status-warn', hsl(HW, [7, 8], [5, 8])],
+    ['--status-warn-fg', 'oklch(0 0 0 / calc(7 / 8))'],
+    ['--status-warn-soft', hslA(HW, [7, 8], [5, 8], [1, 4])],
+    ['--status-partial', hsl(HC, [6, 8], [5, 8])],
+    ['--status-partial-fg', 'oklch(0 0 0 / calc(7 / 8))'],
+    ['--status-partial-soft', hslA(HC, [6, 8], [5, 8], [1, 5])],
+    ['--status-error', hsl(HE, [7, 8], [4, 7])],
+    ['--status-error-fg', 'oklch(1 0 0)'],
+    ['--status-error-soft', hslA(HE, [7, 8], [4, 7], [1, 4])],
+    ['--status-refused', hsl(HE, [6, 8], [3, 7])],
+    ['--status-refused-fg', 'oklch(1 0 0)'],
+    ['--status-refused-soft', hslA(HE, [6, 8], [3, 7], [1, 4])],
+    ['--status-ci', hsl(HCI, [2, 5], [5, 8])],
+    ['--status-ci-fg', 'oklch(0 0 0 / calc(7 / 8))'],
+    ['--status-ci-soft', hslA(HCI, [2, 5], [5, 8], [1, 4])],
   ]
 
   return { light, aliases, dark }
@@ -2185,6 +2243,33 @@ export function scanVueForHardcoded(vue: string): string[] {
 // the major-third type, and the colour built from the hexagram wheel (brand = 101010, the alternation; dark =
 // the line-complement). The seal is the Merkle fold of every (token → value) pair, so any drift in any value
 // changes the root. Joins hexagramIsHexColorDuality (the wheel this colour rides) in the census.
+/** Status badge kinds — sealed status→colour mapping (A432 / hexagram wheel). Badges use --status-* only. */
+export const STATUS_BADGE_KINDS = ['ready', 'ok', 'gap', 'warn', 'partial', 'error', 'refused', 'ci'] as const
+export type StatusBadgeKind = (typeof STATUS_BADGE_KINDS)[number]
+
+/** Map coverage / boolean / keyword → status kind for UiBadge. */
+export function statusBadgeKind(
+  input: boolean | 'covered' | 'partial' | 'gap' | 'ready' | 'ok' | 'warn' | 'error' | 'refused' | 'ci' | 'open' | 'closed' | string,
+): StatusBadgeKind {
+  if (input === true || input === 'ready' || input === 'covered' || input === 'closed') return 'ready'
+  if (input === 'ok') return 'ok'
+  if (input === 'partial') return 'partial'
+  if (input === 'warn' || input === 'open') return 'warn'
+  if (input === 'error') return 'error'
+  if (input === 'refused') return 'refused'
+  if (input === 'ci') return 'ci'
+  if (input === false || input === 'gap') return 'gap'
+  const lower = String(input).toLowerCase()
+  if ((STATUS_BADGE_KINDS as readonly string[]).includes(lower)) return lower as StatusBadgeKind
+  if (/refus|reject|fail|denied/.test(lower)) return 'refused'
+  if (/error|broken|hard/.test(lower)) return 'error'
+  if (/warn|open/.test(lower)) return 'warn'
+  if (/partial/.test(lower)) return 'partial'
+  if (/ci.?only|node|stdio/.test(lower)) return 'ci'
+  if (/ready|ok|closed|pass|covered|✓/.test(lower)) return 'ready'
+  return 'gap'
+}
+
 /** @rosetta ✦₀ · Heaven · creative */
 export function cssIsIChingComputed(matrix: { root: string } = { root: toUuid('iching-css') }) {
   const { light, aliases, dark } = ichingTokens()
@@ -2199,12 +2284,18 @@ export function cssIsIChingComputed(matrix: { root: string } = { root: toUuid('i
   // the hexagram-50 violet, and the success∕cyan washes ride the hexagram wheel (hue = n × 360°/64).
   const brandFromA432 = light.some(([k, v]) => k === '--dt-a432-hue' && v === '5') && light.some(([k]) => k === '--dt-a432-fifth-hue')
   const wheelHues = light.filter(([k]) => k.startsWith('--ich-hue-')).every(([, v]) => /360deg \* /.test(v))
-  // Completeness — the system covers the token families (bases · space · arch · type · motion · lineage · role · accent).
-  const families = ['--ich-unit', '--ich-sp8', '--ich-stage-h', '--ich-text-md', '--ich-dur', '--dt-a432-hue', '--ich-success-1', '--ich-glow', '--ich-oklch-l-glyph', '--ich-rosetta-measure']
+  // Completeness — token families + status palette + body line-height (--ich-lh-body).
+  const families = ['--ich-unit', '--ich-sp8', '--ich-stage-h', '--ich-text-md', '--ich-dur', '--dt-a432-hue', '--ich-success-1', '--ich-glow', '--ich-oklch-l-glyph', '--ich-rosetta-measure', '--status-ready', '--ich-lh-body']
   const complete = families.every((f) => light.some(([k]) => k === f))
   // Dark mode lifts the brand on the dark field (yang rising) — the line-complement of the light ramp.
   const darkLifts = dark.some(([k]) => k === '--vp-c-brand-1')
-  const holds = noHardcoded && vortexOnGrid && brandFromA432 && wheelHues && complete && darkLifts && TRIGRAM_BITS.length === 8
+  const statusKinds = STATUS_BADGE_KINDS.every((k) => light.some(([name]) => name === `--status-${k}`) && dark.some(([name]) => name === `--status-${k}`))
+  const statusModeFlip = STATUS_BADGE_KINDS.every((k) => {
+    const L = light.find(([name]) => name === `--status-${k}`)?.[1]
+    const D = dark.find(([name]) => name === `--status-${k}`)?.[1]
+    return Boolean(L && D && L !== D)
+  })
+  const holds = noHardcoded && vortexOnGrid && brandFromA432 && wheelHues && complete && darkLifts && statusKinds && statusModeFlip && TRIGRAM_BITS.length === 8
   return {
     holds,
     noHardcoded,
@@ -2215,6 +2306,8 @@ export function cssIsIChingComputed(matrix: { root: string } = { root: toUuid('i
     wheelHues,
     complete,
     darkLifts,
+    statusKinds,
+    statusModeFlip,
     canonical: [...ICHING_NUMBERS],
     root: merge(matrix.root, merkleFold(all.map(([k, v]) => toUuid(`ich-css:${k}:${v}`)))),
     statement:
