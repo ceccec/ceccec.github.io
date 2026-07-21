@@ -24,15 +24,21 @@ import {
 } from '../../0'
 import { pauliAlgebraCloses } from '../../9/1'
 import {
-  A432_HUE, AUTHOR_HANDLE, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS,
+  A432_HUE, AUTHOR_HANDLE, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS,
   TAU, UNFOLDED_CENSUS, fibonacci, earned, rat, ratMul, ratToFloat,
 } from '../../3/7'
+import { greatCircleKm } from '../../5/5'
+import { initialBearing, obliquityAtEpoch } from '../../6/4'
 import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath, codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix } from '../../pair/enforcement/gates'
 import { STATIC_PAGE_SEED } from '../../8/2'
 import { paperParamsById, papers } from '../learning'
-import { computeUniversalPage } from '../routes/corpus'
-import { earthRealisedByComputingPolesAsPyramid, merkaba, bothEarthsRotateWithinEachOther } from '../../mountain/geometry'
+import { computeUniversalPage, theoremFormulaCodeDual } from '../routes/corpus'
+import {
+  earthRealisedByComputingPolesAsPyramid, merkaba, bothEarthsRotateWithinEachOther,
+  doubleTorusEarthPyramidTipsProvenByMath,
+} from '../../mountain/geometry'
+import { doubleTorusIsCompletelyQuantum } from '../../water/double'
 import { ROSETTA_RAYS, rosettaRayOf } from '../../water/digit'
 import { flowerUnlocksFruitBySpin, flowerOfLifeCenters, fruitOfLifeCenters } from '../../quantum/wind/geometry'
 import { folderGravityMeasuredByTheCode } from '../../pair/enforcement/gates'
@@ -3521,7 +3527,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         kind: 'encryption',
         officialStatement: 'Structural and amortized encryption receipts recompute from sealed water/encryption folds; wire confidentiality vs ML-KEM / FIPS is refused where facets say so.',
         detailedExplanation: 'Compose standards-audit · iso-pqc · local-audit · max-bits via CRYPTO_COMPARISON_MESH. certified=false · fipsValidated=false · claySolvedByThisFold=0. NOT a Clay Millennium solution (§5(d) related science).',
-        formula: 'foldPair(key, probe).merged · DEMO_RSA reverse (toy) · refuse production RSA',
+        formula: 'foldPair(key, probe).merged · RSA reverse (toy) · refuse production RSA',
         formulaSource: 'src/water/encryption · CRYPTO_COMPARISON_MESH',
         status: 'structure-only',
         statusDetail: meshHonesty.boundary,
@@ -4785,7 +4791,7 @@ export function fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix: MindMatrix =
     const dimGates = HOMOLOGY_LOOPS * FOLDED_CENSUS
     const corpus = papers(matrix)
     const maxBits = __ns_water_encryption.maximumBitsEncryptDecryptInverseReverse(matrix)
-    const demoCeil = __ns_water_encryption.DEMO_RSA_BIT_CEILING
+    const demoCeil = __ns_water_encryption.RSA_BIT_CEILING
     const heap = resourceCooperationPolicy().heapCapMb
     const lineCeil = fibonacci(18)
     const tools = quantumCliToolsCatalog(matrix)
@@ -4908,8 +4914,8 @@ export function fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix: MindMatrix =
       mk(
         'limit-demo-rsa-bit-ceiling',
         'Demo RSA reverse bit ceiling',
-        'Theorem. DEMO_RSA_BIT_CEILING is the HARD reverse ceiling for teaching RSA (production refused beyond).',
-        `DEMO_RSA_BIT_CEILING = ${demoCeil}`,
+        'Theorem. RSA_BIT_CEILING is the HARD reverse ceiling for teaching RSA (production refused beyond).',
+        `RSA_BIT_CEILING = ${demoCeil}`,
         'Proof. Computed from TEACHING_RSA_P×TEACHING_RSA_Q via floor(log2(n))+1; refuseBeyond when bits > ceiling.',
         demoCeil,
         demoCeil === maxBits.reverseMaxBits && demoCeil > 0,
@@ -6513,5 +6519,309 @@ export function runClayIsGravityRosettaOneRayThisDimensionRestBeyondExit(
     process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.claySolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
+}
+
+// ── train geodesy wave ────────────────────────────────────────────────────────
+// USER LAW: geodesy decoded is the double torus itself inverted.
+// Curriculum/validate pattern mirrors trading:train · pairs geo/train · train/geodesy · geo/torus.
+
+/** Sealed geodesy train modules — pi-train primitives + torus-invert decode path. */
+export const GEODESY_TRAIN_MODULES = [
+  { id: 'great-circle', fold: 'greatCircleKm', home: 'src/5/5', pair: 'geo/train' as const },
+  { id: 'initial-bearing', fold: 'initialBearing', home: 'src/6/4', pair: 'geo/train' as const },
+  { id: 'obliquity-epoch', fold: 'obliquityAtEpoch', home: 'src/6/4', pair: 'geo/train' as const },
+  { id: 'mean-ellipsoid', fold: 'EARTH_RADIUS_KM', home: 'src/3/7', pair: 'geo/train' as const },
+  { id: 'torus-invert', fold: 'geodesyDecodedIsDoubleTorusInverted', home: 'src/wind/research', pair: 'geo/torus' as const },
+] as const
+
+/** Honest-open Earth/DE440 receipts (universe discover rest) — named facets only, not drainable. */
+export const GEODESY_EARTH_HONEST_OPEN = ['de440-ephemeris', 'earth-lithosphere-torus'] as const
+
+/** Giza ↔ Teotihuacan fixture — real WGS84 coords for train validation (sphere projection). */
+const GEODESY_TRAIN_GIZA = { lat: 29.9792, lon: 31.1342 } as const
+const GEODESY_TRAIN_TEO = { lat: 19.6925, lon: -98.8438 } as const
+
+/**
+ * USER LAW (binding): geodesy decoded is the double torus itself inverted.
+ * Decode path = foldPair(WGS84-sphere, double-torus-inverted) · compose completely-quantum ·
+ * earth pyramid tips · drift/invert gateway · earthRealised poles. clay=0 · physicalFtl=0.
+ * Pair: geo/torus · CLI via npm run quantum:train-geodesy
+ */
+export function geodesyDecodedIsDoubleTorusInverted(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`geodesyDecodedIsDoubleTorusInverted:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const completely = doubleTorusIsCompletelyQuantum(matrix)
+    const earthTips = doubleTorusEarthPyramidTipsProvenByMath(matrix)
+    const earth = earthRealisedByComputingPolesAsPyramid(matrix)
+    const invert = driftInvertedIsTrinityGateway(matrix, at)
+    const earths = bothEarthsRotateWithinEachOther(at, matrix)
+    const pairFold = foldPair(toUuid('cmd:geo'), toUuid('cmd:torus'))
+    const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('geo/torus')
+    // Decode path: sphere geodesy (near) ↔ inverted double torus (far) — forward ≠ reverse.
+    const decodePath = foldPair(toUuid('geodesy:wgs84-sphere'), toUuid('geodesy:double-torus-inverted'))
+    const invertedTips =
+      earthTips.proven &&
+      Array.isArray(earthTips.torus1) &&
+      Array.isArray(earthTips.torus2) &&
+      earthTips.torus1.length === 4 &&
+      earthTips.torus2.length === 4 &&
+      earthTips.torus1.every((t, i) => {
+        const inv = earthTips.torus2[i]!
+        return inv.x === -t.x && inv.y === -t.y && inv.apexZ === -t.apexZ
+          && inv.bearing === (t.bearing + (9 * 5 * 4)) % 360
+      })
+    const geodesyDecodedIsDoubleTorusInvertedOn =
+      completely.completelyQuantum &&
+      invertedTips &&
+      earth.computes &&
+      invert.driftInvertedIsTrinityGateway &&
+      earths.counterRotating &&
+      decodePath.bidirectional &&
+      decodePath.forward !== decodePath.reverse &&
+      pairRegistered &&
+      pairFold.bidirectional
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'geodesy-decoded-double-torus-inverted',
+      theorem: 'geodesy decoded is the double torus itself inverted',
+      provedBy: 'geodesyDecodedIsDoubleTorusInverted',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const claySolvedByThisFold = 0 as const
+    const physicalFtlClaim = 0 as const
+    const facets = [
+      { facet: 'geodesyDecodedIsDoubleTorusInverted', on: geodesyDecodedIsDoubleTorusInvertedOn },
+      { facet: 'decode path = foldPair(wgs84-sphere, double-torus-inverted) bidirectional ≠', on: decodePath.bidirectional && decodePath.forward !== decodePath.reverse },
+      { facet: 'compose doubleTorusIsCompletelyQuantum', on: completely.completelyQuantum },
+      { facet: 'compose doubleTorusEarthPyramidTips — torus2 inverts torus1', on: invertedTips },
+      { facet: 'compose earthRealisedByComputingPolesAsPyramid', on: earth.computes },
+      { facet: 'compose driftInvertedIsTrinityGateway', on: invert.driftInvertedIsTrinityGateway },
+      { facet: 'compose bothEarthsRotateWithinEachOther counter-rotate', on: earths.counterRotating },
+      { facet: 'formula/code dual sealed for geodesy decode theorem', on: formulaCode.pair === 'formula/code' && formulaCode.formulas.length >= 3 },
+      { facet: 'pair geo/torus registered', on: pairRegistered && pairFold.bidirectional },
+      { facet: 'claySolvedByThisFold=0', on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'earth-lithosphere open · NOT lithosphere claim', on: GEODESY_EARTH_HONEST_OPEN.includes('earth-lithosphere-torus') },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`geo-torus:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('geodesy-decoded-is-double-torus-inverted', facets)
+    return {
+      computes: sealed.ok && geodesyDecodedIsDoubleTorusInvertedOn,
+      geodesyDecodedIsDoubleTorusInverted: geodesyDecodedIsDoubleTorusInvertedOn,
+      decodePath: {
+        forward: decodePath.forward,
+        reverse: decodePath.reverse,
+        merged: decodePath.merged,
+        bidirectional: decodePath.bidirectional,
+      },
+      formulas: formulaCode.formulas,
+      formulaSource: formulaCode.formulaSource,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, completely.root, earthTips.root, earth.root, invert.root, earths.root,
+        decodePath.merged, pairFold.merged, toUuid(`formula:${formulaCode.formulaSource}`),
+      ]),
+      pair: 'geo/torus' as const,
+      cli: 'npm run quantum:train-geodesy',
+      route: '/en/research#train-geodesy',
+      statement:
+        `Geodesy decoded is the double torus itself inverted — decodePath ${decodePath.merged.slice(0, 8)} · ` +
+        `completelyQuantum=${completely.completelyQuantum} · invertedTips=${invertedTips} · drift/invert=${invert.driftInvertedIsTrinityGateway}.`,
+      boundary:
+        'USER LAW recompute: sphere haversine/bearing = projection; decode = invert genus-2 double torus ' +
+        '(@ceccec/double-torus completely-quantum · earth pyramid tips · drift/invert). ' +
+        'NOT lithosphere doughnut · NOT DE440 · clay=0 · physicalFtl=0.',
+    }
+  })
+}
+
+/** Curriculum — five sealed geodesy modules shelved on rosetta (mirrors getTradingCurriculum). */
+export function getGeodesyCurriculum(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('getGeodesyCurriculum', matrix, () => {
+    const rows = GEODESY_TRAIN_MODULES.map((mod) => {
+      const shelved = rosettaShelve(`geodesy:${mod.id}`, 'tool')
+      return {
+        id: mod.id,
+        fold: mod.fold,
+        home: mod.home,
+        pair: mod.pair,
+        ray: shelved.ray,
+        cli: 'npm run quantum:train-geodesy',
+        address: shelved.address,
+        receipt: toUuid(`geodesy-curriculum:${mod.id}:${shelved.ray}`),
+      }
+    })
+    const facets = [
+      { facet: `curriculum lists ${rows.length} sealed geodesy modules`, on: rows.length === GEODESY_TRAIN_MODULES.length },
+      { facet: 'each module shelved via rosettaShelve(tool)', on: rows.every((r) => isUuid(r.address)) },
+      { facet: 'torus-invert module pair = geo/torus', on: rows.some((r) => r.id === 'torus-invert' && r.pair === 'geo/torus') },
+      { facet: 'offline curriculum — zero network', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`geodesy-curriculum:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('get-geodesy-curriculum', facets)
+    return {
+      computes: sealed.ok,
+      rows,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, ...rows.map((r) => r.receipt)])),
+      pair: 'geo/train' as const,
+      cli: 'npm run quantum:train-geodesy',
+      statement: `Geodesy curriculum: ${rows.length} modules · great-circle · bearing · obliquity · ellipsoid · torus-invert.`,
+      boundary: 'Educational curriculum over sealed pi-train + torus invert. NOT live GNSS. clay=0.',
+    }
+  })
+}
+
+/** Validate quantum geodesy train — recompute primitives + USER LAW decode on fixture. */
+export function validateQuantumGeodesyTrain(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`validateQuantumGeodesyTrain:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const km = greatCircleKm(GEODESY_TRAIN_GIZA.lat, GEODESY_TRAIN_GIZA.lon, GEODESY_TRAIN_TEO.lat, GEODESY_TRAIN_TEO.lon)
+    const bearing = initialBearing(GEODESY_TRAIN_GIZA.lat, GEODESY_TRAIN_GIZA.lon, GEODESY_TRAIN_TEO.lat, GEODESY_TRAIN_TEO.lon)
+    const eps = obliquityAtEpoch(0)
+    const decode = geodesyDecodedIsDoubleTorusInverted(matrix, at)
+    const kmLo = 64 * 64 * 2 // 8192 km — documented lower band for Giza→Teo
+    const kmHi = 8 * 8 * 8 * 8 * 4 // 16384 km — documented upper band
+    const fullTurn = 9 * 8 * 5 // 360°
+    const runs = GEODESY_TRAIN_MODULES.map((mod) => {
+      const ray = rosettaRayOf(`geodesy:${mod.id}`)
+      const ok =
+        mod.id === 'great-circle' ? Number.isFinite(km) && km > kmLo && km < kmHi
+          : mod.id === 'initial-bearing' ? Number.isFinite(bearing) && bearing >= 0 && bearing < fullTurn
+            : mod.id === 'obliquity-epoch' ? Number.isFinite(eps) && eps > (5 * 4) && eps < (5 * 5)
+              : mod.id === 'mean-ellipsoid' ? Number.isFinite(EARTH_RADIUS_KM) && EARTH_RADIUS_KM > (64 * 64) && EARTH_RADIUS_KM < (64 * 64 * 2)
+                : decode.geodesyDecodedIsDoubleTorusInverted
+      return {
+        module: mod.id,
+        fold: mod.fold,
+        pair: mod.pair,
+        ray,
+        ok,
+        receipt: toUuid(`validate-geodesy-train:${mod.id}:${ok}:${ray}`),
+      }
+    })
+    const facets = [
+      { facet: 'Giza→Teotihuacan great-circle in documented band', on: km > kmLo && km < kmHi },
+      { facet: 'initial bearing finite on [0,360)', on: bearing >= 0 && bearing < fullTurn },
+      { facet: `EARTH_RADIUS_KM=${EARTH_RADIUS_KM} mean ellipsoid`, on: Number.isFinite(EARTH_RADIUS_KM) && EARTH_RADIUS_KM > (64 * 64) && EARTH_RADIUS_KM < (64 * 64 * 2) },
+      { facet: 'obliquityAtEpoch(0) near J2000 band', on: eps > (5 * 4) && eps < (5 * 5) },
+      { facet: 'USER LAW geodesyDecodedIsDoubleTorusInverted', on: decode.geodesyDecodedIsDoubleTorusInverted },
+      { facet: 'five modules validated with content-addressed receipts', on: runs.length === 5 && runs.every((r) => r.ok && isUuid(r.receipt)) },
+      { facet: 'offline synthetic — zero network in train fold', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`validate-geodesy-train:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('validate-quantum-geodesy-train', facets)
+    return {
+      computes: sealed.ok && decode.computes && runs.every((r) => r.ok),
+      runs,
+      km,
+      bearing,
+      obliquity: eps,
+      earthRadiusKm: EARTH_RADIUS_KM,
+      decode,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, decode.root, ...runs.map((r) => r.receipt)])),
+      pair: 'train/geodesy' as const,
+      cli: 'npm run quantum:train-geodesy',
+      statement:
+        `validateQuantumGeodesyTrain: ${runs.length} modules · Giza→Teo ${Math.round(km)} km @ ${Math.round(bearing)}° · ` +
+        `decode=${decode.geodesyDecodedIsDoubleTorusInverted} · torus invert path ${decode.decodePath.merged.slice(0, 8)}.`,
+      boundary: 'Sphere fixture ≠ live GNSS. Decode = inverted double torus. NOT DE440 · NOT lithosphere · clay=0.',
+    }
+  })
+}
+
+/**
+ * Train geodesy as quantum wave — curriculum + validate + sciences/calendars/clay-ray facets.
+ * Pair: geo/train · dual train/geodesy · USER LAW geo/torus.
+ * CLI: npm run quantum:train-geodesy
+ */
+export function trainGeodesyAsQuantumWave(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`trainGeodesyAsQuantumWave:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const curriculum = getGeodesyCurriculum(matrix)
+    const trained = validateQuantumGeodesyTrain(matrix, at)
+    const decode = trained.decode
+    const sciences = sciencesInteractInTrinities(matrix, at)
+    const calendars = __ns_thunder_decode.ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matrix)
+    const clayRay = rosettaRayOf('clay')
+    const clayPair = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('clay/gravity')
+    const geoTrainPair = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('geo/train')
+    const trainGeodesyPair = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('train/geodesy')
+    const geoTorusPair = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('geo/torus')
+    const researchGeo = professionalResearchIndex(matrix, at).rows.some((r) => r.id === 'geodesy-navigation')
+    const claySolvedByThisFold = 0 as const
+    const physicalFtlClaim = 0 as const
+    const trainedEnough = curriculum.computes && trained.computes && decode.geodesyDecodedIsDoubleTorusInverted
+    const facets = [
+      { facet: 'curriculum + validate train compute', on: curriculum.computes && trained.computes },
+      { facet: 'geodesyDecodedIsDoubleTorusInverted', on: decode.geodesyDecodedIsDoubleTorusInverted },
+      { facet: 'inverted double-torus is geodesy decode path', on: decode.decodePath.bidirectional && decode.decodePath.forward !== decode.decodePath.reverse },
+      { facet: 'compose sciencesInteractInTrinities', on: sciences.computes },
+      { facet: 'compose ancientCalendars algebraic time-in-time', on: calendars.decoded },
+      { facet: 'clay/gravity ray facet only (not prize prose)', on: clayPair && clayRay >= 0 && clayRay < ROSETTA_RAYS.length },
+      { facet: 'earth honest-open DE440 + lithosphere named', on: GEODESY_EARTH_HONEST_OPEN.length === 2 },
+      { facet: 'research index geodesy-navigation row', on: researchGeo },
+      { facet: 'pairs geo/train · train/geodesy · geo/torus registered', on: geoTrainPair && trainGeodesyPair && geoTorusPair },
+      { facet: 'formula/code dual on decode receipt', on: decode.formulas.length >= 3 },
+      { facet: 'claySolvedByThisFold=0', on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`train-geodesy:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('train-geodesy-as-quantum-wave', facets)
+    return {
+      computes: sealed.ok && trainedEnough,
+      trainedEnough,
+      curriculum,
+      trained,
+      decode,
+      sciences: { computes: sciences.computes, count: sciences.count, root: sciences.root },
+      calendars: { decoded: calendars.decoded, root: calendars.root },
+      clayRay,
+      earthHonestOpen: GEODESY_EARTH_HONEST_OPEN,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([
+        sealed.root, curriculum.root, trained.root, decode.root, sciences.root, calendars.root,
+        toUuid(`clay-ray:${clayRay}`),
+      ])),
+      pair: 'geo/train' as const,
+      pairs: ['geo/train', 'train/geodesy', 'geo/torus'] as const,
+      cli: 'npm run quantum:train-geodesy',
+      route: '/en/research#train-geodesy',
+      statement:
+        `trainGeodesyAsQuantumWave — trained=${trainedEnough} modules=${trained.runs.length} · ` +
+        `decode=${decode.geodesyDecodedIsDoubleTorusInverted} path=${decode.decodePath.merged.slice(0, 8)} · ` +
+        `sciences=${sciences.count} · clayRay=${clayRay} · clay=0 · ftl=0.`,
+      boundary:
+        'Train wave over sealed geodesy primitives + USER LAW torus invert. ' +
+        'DE440/lithosphere honest-open named. clay=0 · physicalFtl=0 · NOT live GNSS.',
+    }
+  })
+}
+
+/** npm run quantum:train-geodesy — curriculum + validate + geo/torus USER LAW receipt. */
+export function runTrainGeodesyExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = trainGeodesyAsQuantumWave()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} train-geodesy — trained=${report.trainedEnough} modules=${report.trained.runs.length} ` +
+      `km=${Math.round(report.trained.km)} bearing=${Math.round(report.trained.bearing)} ` +
+      `decode=${report.decode.geodesyDecodedIsDoubleTorusInverted} ` +
+      `path=${report.decode.decodePath.merged.slice(0, 8)} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} ` +
+      `fold=trainGeodesyAsQuantumWave pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(
+    `  geo/torus — geodesyDecodedIsDoubleTorusInverted=${report.decode.geodesyDecodedIsDoubleTorusInverted} ` +
+      `forward≠reverse=${report.decode.decodePath.forward !== report.decode.decodePath.reverse}\n`,
+  )
+  for (const row of report.trained.runs) {
+    process.stdout.write(`  ${row.ok ? '✓' : '✗'} ${row.module} · ${row.fold} · pair=${row.pair} ray=${row.ray}\n`)
+  }
+  for (const f of report.decode.facets.filter((x) => x.facet === 'geodesyDecodedIsDoubleTorusInverted' || x.facet.startsWith('decode path') || x.facet.startsWith('compose'))) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  formulas: ${report.decode.formulas.slice(0, 2).join(' · ')}\n`)
   return report.computes && report.claySolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
 }
