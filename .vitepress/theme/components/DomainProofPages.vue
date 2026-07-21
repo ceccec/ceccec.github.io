@@ -1,6 +1,6 @@
 <script setup lang="ts">
-// Clay-standard domain-proof papers — title · statement · explanation · formulas · status ·
-// publication/refereeing norms · Clay hub + Prize Rules PDF provenance.
+// Domain-proof papers — canonical sections (statement · explanation · formulas · status).
+// Clay Prize Rules / Clay hub provenance only when isClayChallenge (millennium + clay-challenges-computable).
 // All fields from domainProofCatalog / clayMillenniumPrizeRulesMapping (sealed src).
 // Internal nav: VitePress API only (useRoute · withBase) — standing rule linksUseOnlyVitePressApi.
 // UI↔prose: one statement owns meaning — H1 = title; PaperFrame owns abstract; no section-1 title echo.
@@ -24,6 +24,9 @@ const rows = computed<DomainProofCatalogRow[]>(() => {
 })
 const rules = computed(() => clayMillenniumPrizeRulesMapping())
 const isHub = computed(() => !slugFromRoute.value)
+/** Clay Prize Rules / Clay hub links — only for Millennium challenge rows (not science/honesty apparatus). */
+const isClayChallenge = (row: DomainProofCatalogRow) =>
+  row.kind === 'millennium' || row.id === 'clay-challenges-computable'
 
 /** VitePress withBase — sole internal href emitter on this surface. */
 const vpHref = (path: string) => withBase(path.startsWith('/') ? path : `/${path}`)
@@ -35,13 +38,13 @@ const vpHref = (path: string) => withBase(path.startsWith('/') ? path : `/${path
       <p class="proofs__mast">ceccec · catalog</p>
       <!-- page H1 from frontmatter title owns "Domain proofs" (uiProseDuplicationRemoved) -->
       <p class="proofs__lede">
-        Clay challenges are <strong>computable</strong> from the sequence/trinity stack (sealed paths recompute) —
-        that is not CMI Prize solved. Not a second theorem hub — the registry is
+        Canonical sections (statement · explanation · formulas · status) for sealed domains.
+        <strong>Clay</strong> marks only the seven Millennium Prize challenges (computable paths ≠ CMI Prize solved).
+        Not a second theorem hub — the registry is
         <a :href="vpHref('/frontiers')">/frontiers</a>.
-        MODELED CHALLENGE apparatus only; not CMI Prize acceptance.
       </p>
       <p class="proofs__provenance">
-        Canonical:
+        Clay Millennium (challenges only):
         <a :href="rules.problemsUrl" rel="noopener noreferrer" target="_blank">Millennium Problems</a>
         ·
         <a :href="rules.rulesPdfUrl" rel="noopener noreferrer" target="_blank">Prize Rules PDF</a>
@@ -52,6 +55,7 @@ const vpHref = (path: string) => withBase(path.startsWith('/') ? path : `/${path
           <a :href="vpHref(row.route)">{{ row.title }}</a>
           <code>{{ row.status }}</code>
           <span>{{ row.kind }}</span>
+          <code v-if="isClayChallenge(row)">Clay challenge</code>
         </li>
       </ul>
     </header>
@@ -96,12 +100,17 @@ const vpHref = (path: string) => withBase(path.startsWith('/') ? path : `/${path
         <dl class="domain-proof__locks">
           <dt>claySolvedByThisFold</dt><dd>{{ row.claySolvedByThisFold }}</dd>
           <dt>physicalFtlClaim</dt><dd>{{ row.physicalFtlClaim }}</dd>
-          <dt>qualifiesAsProposedSolutionUnderClayRules (§5)</dt><dd>{{ row.qualifiesAsProposedSolutionUnderClayRules }}</dd>
-          <dt>publishedInQualifyingOutlet (§6)</dt><dd>{{ row.publishedInQualifyingOutlet }}</dd>
+          <template v-if="isClayChallenge(row)">
+            <dt>qualifiesAsProposedSolutionUnderClayRules (§5)</dt><dd>{{ row.qualifiesAsProposedSolutionUnderClayRules }}</dd>
+            <dt>publishedInQualifyingOutlet (§6)</dt><dd>{{ row.publishedInQualifyingOutlet }}</dd>
+          </template>
+          <template v-else>
+            <dt>millenniumChallenge</dt><dd>false</dd>
+          </template>
         </dl>
       </section>
 
-      <section>
+      <section v-if="isClayChallenge(row)">
         <h2>5 · Publication &amp; refereeing norms (Clay Prize Rules)</h2>
         <p>
           Under the
@@ -109,6 +118,7 @@ const vpHref = (path: string) => withBase(path.startsWith('/') ? path : `/${path
           ({{ rules.rulesApproved }}), a Prize requires publication in a Qualifying Outlet, ≥2 years of community
           examination, general acceptance, and CMI determination that the official Problem description is answered
           (§4–§7). This page’s sealed receipts are local recompute — not a Qualifying Outlet and not a Proposed Solution.
+          claySolvedByThisFold={{ row.claySolvedByThisFold }}.
         </p>
         <ul class="domain-proof__rules">
           <li v-for="c in rules.clauses.filter((x) => row.ruleClauses.includes(x.facet))" :key="c.facet">
@@ -117,6 +127,13 @@ const vpHref = (path: string) => withBase(path.startsWith('/') ? path : `/${path
             <span class="domain-proof__meta">{{ c.ceccecHonesty }}</span>
           </li>
         </ul>
+      </section>
+      <section v-else>
+        <h2>5 · Honesty / publication status</h2>
+        <p>
+          Canonical sealed apparatus — related science or structural honesty, not a Clay Millennium challenge.
+          Local recompute only; claySolvedByThisFold={{ row.claySolvedByThisFold }}.
+        </p>
       </section>
 
       <section>
@@ -132,7 +149,7 @@ const vpHref = (path: string) => withBase(path.startsWith('/') ? path : `/${path
         <h2>7 · CLI / agents.json</h2>
         <p><code>{{ row.cli }}</code> · pair <code>{{ row.pair }}</code></p>
         <p class="domain-proof__meta">Receipt <code>{{ row.receipt }}</code></p>
-        <p>
+        <p v-if="isClayChallenge(row)">
           Official Clay hub:
           <a :href="rules.problemsUrl" rel="noopener noreferrer" target="_blank">{{ rules.problemsUrl }}</a>
         </p>

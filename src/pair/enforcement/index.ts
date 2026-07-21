@@ -93,6 +93,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'train/rosetta',
   'challenge/millennium',
   'domain/proof',
+  'papers/fill',
   'rosetta/complete',
   'challenge/collider',
   'challenge/ftl',

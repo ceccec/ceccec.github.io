@@ -71,8 +71,34 @@ const corpusProgressLabel = computed(() => {
   <article v-if="page" class="universal-page vp-doc" :style="cardStyle" data-shadcn="card">
     <header v-if="page.title" class="universal-page__hero">
       <h1 :id="headingId(page.title, 'title')">{{ page.title }}</h1>
-      <p v-if="page.description" class="universal-page__desc">{{ page.description }}</p>
+      <!-- #68 — PaperFrame owns abstract; when standardPaper is present do not echo description under H1 -->
+      <p v-if="page.description && !page.standardPaper" class="universal-page__desc">{{ page.description }}</p>
     </header>
+
+    <div v-if="page.standardPaper" class="standard-paper" data-logic="src/wind/learning/index.ts#paperParamsById">
+      <section>
+        <h2 :id="headingId('Precise statement', 'std-1')">1 · Precise statement</h2>
+        <p>{{ page.standardPaper.officialStatement }}</p>
+      </section>
+      <section>
+        <h2 :id="headingId('Detailed explanation', 'std-2')">2 · Detailed explanation</h2>
+        <p>{{ page.standardPaper.detailedExplanation }}</p>
+      </section>
+      <section>
+        <h2 :id="headingId('Formulas', 'std-3')">3 · Formulas</h2>
+        <pre class="standard-paper__formula"><code>{{ page.standardPaper.formula }}</code></pre>
+        <p class="standard-paper__meta">Source fold: <code>{{ page.standardPaper.formulaSource }}</code></p>
+      </section>
+      <section>
+        <h2 :id="headingId('Status', 'std-4')">4 · Status / what is proved at call time</h2>
+        <p><strong>{{ page.standardPaper.status }}</strong> — {{ page.standardPaper.statusDetail }}</p>
+        <p v-if="page.standardPaper.gap">Gap: {{ page.standardPaper.gap }}</p>
+        <dl class="standard-paper__locks">
+          <dt>physicalFtlClaim</dt><dd>{{ page.standardPaper.physicalFtlClaim }}</dd>
+          <dt>millenniumChallenge</dt><dd>false</dd>
+        </dl>
+      </section>
+    </div>
 
     <h2
       v-if="page.kind === 'catch-all' && page.rosettaRay"
@@ -276,4 +302,36 @@ export default { name: 'UniversalPageTemplate' }
   margin: calc(var(--vp-movie-gap, var(--ich-sp6)) * calc(3 / 2)) 0 0;
   text-shadow: var(--vp-hero-text-shadow);
 }
+
+.standard-paper {
+  display: grid;
+  gap: var(--ich-sp5, 1.25rem);
+  margin: 0 0 calc(var(--vp-movie-gap, var(--ich-sp6)) * calc(3 / 4));
+  max-width: calc(1px * 2 * 360);
+  font-family: Georgia, 'Times New Roman', serif;
+  line-height: calc(8 / 5);
+}
+.standard-paper h2 {
+  font-size: calc(1em * 6 / 5);
+  margin: 0 0 var(--ich-sp2, 0.5rem);
+}
+.standard-paper__formula {
+  white-space: pre-wrap;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: calc(1em * 9 / (2 * 5));
+  padding: var(--ich-sp4, 1rem);
+  border-left: calc(1px * 3) solid currentColor;
+  overflow-x: auto;
+}
+.standard-paper__meta {
+  font-size: calc(1em * 4 / 5);
+  opacity: calc(3 / 5);
+}
+.standard-paper__locks {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: calc(1px * 2) var(--ich-sp3, 0.75rem);
+}
+.standard-paper__locks dt { font-weight: calc(6 * 100); opacity: calc(3 / 5); }
+.standard-paper__locks dd { margin: 0; }
 </style>

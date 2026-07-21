@@ -1,6 +1,6 @@
 ---
 title: Domain proofs
-description: Clay-standard domain proof catalog — one canonical collection · claySolvedByThisFold=0
+description: Canonical domain proof catalog — Clay marks Millennium challenges only · claySolvedByThisFold=0
 layout: doc
 sidebar: true
 aside: false

@@ -21,6 +21,8 @@ import {
   earned, rat, ratMul, ratToFloat,
 } from '../../3/7'
 import { STATIC_PAGE_SEED } from '../../8/2'
+import { paperParamsById, papers } from '../learning'
+import { computeUniversalPage } from '../routes/corpus'
 import { earthRealisedByComputingPolesAsPyramid } from '../../mountain/geometry'
 import * as __ns_earth_governance from '../../earth/governance'
 import { ratStr } from '../../9/1'
@@ -3920,6 +3922,168 @@ export function proseStandardisedToClay(matrix: MindMatrix = buildMatrix(), at =
         'Clay template = precise statement · explanation · sealed formula/method · honest status/refereeing norms. Failures are named residuals (thin page blurbs), not Clay solutions. NOT Qualifying Outlet · NOT Proposed Solution (§5–§6). HARMONY ≠ TRUTH.',
     }
   })
+}
+
+
+export type IncompletePaperGapRow = {
+  readonly id: string
+  readonly surface: string
+  readonly kind: 'corpus-paper' | 'static-page' | 'reference' | 'proof-page'
+  readonly before: 'thin-generator' | 'stub-abstract' | 'missing-canonical-sections' | 'pointer-only'
+  readonly after: 'filled' | 'residual' | 'honest-open'
+  readonly fill: string
+  readonly receipt: string
+}
+
+/** Canonical section markers — NOT a Clay Millennium mark. */
+const STANDARD_SECTIONS_RE = /Statement\s*:|Explanation\s*:|Method\s*:|Status\s*:/i
+
+function staticPageSectionsIncomplete(description: string): boolean {
+  const body = description.trim()
+  if (body.length < (2 * 5 * 8)) return true
+  if (body.length < (2 * 5 * 16) && !STANDARD_SECTIONS_RE.test(body)) return true
+  return false
+}
+
+/**
+ * Incomplete papers → canonical sections fill receipt.
+ * Wave-1: corpus /papers/* generator stubs + quantum-mind stub abstract → full standard sections.
+ * Clay branding is NOT applied here — Clay marks stay on millennium challenges only.
+ * Pair: papers/fill · claySolvedByThisFold ≡ 0 (honesty lock, not a Clay label on these papers).
+ */
+export function incompletePapersGapsFill(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`incompletePapersGapsFill:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const corpus = papers(matrix)
+    const sample = paperParamsById('p001', matrix)
+    const samplePage = computeUniversalPage('/papers/p001', { id: 'p001' }, matrix)
+    const rows: IncompletePaperGapRow[] = []
+    const push = (row: Omit<IncompletePaperGapRow, 'receipt'>) => {
+      rows.push({ ...row, receipt: toUuid(`incomplete-paper:${row.id}:${row.after}`) })
+    }
+
+    const corpusIncompleteBefore = corpus.count
+    let corpusFilled = 0
+    for (const paper of corpus.papers) {
+      const params = paperParamsById(paper.id, matrix)
+      const sectionsOk =
+        Boolean(params?.sections) &&
+        (params!.sections.officialStatement.length >= (2 * 5 * 8)) &&
+        params!.sections.formula.length >= (2 * 5 * 2) &&
+        params!.sections.physicalFtlClaim === 0
+      if (sectionsOk) corpusFilled += 1
+      if (paper.number === 1 || paper.number === corpus.count || !sectionsOk) {
+        push({
+          id: `corpus-${paper.id}`,
+          surface: `/papers/${paper.id}`,
+          kind: 'corpus-paper',
+          before: 'thin-generator',
+          after: sectionsOk ? 'filled' : 'residual',
+          fill: sectionsOk ? 'paperParamsById.sections → UniversalPage.standardPaper' : 'missing canonical sections',
+        })
+      }
+    }
+
+    const thinStatic = STATIC_PAGE_SEED.filter((page) => staticPageSectionsIncomplete(page.description.en))
+    const quantumMind = STATIC_PAGE_SEED.find((page) => page.slug === 'quantum-mind')
+    const quantumMindFilled = Boolean(
+      quantumMind &&
+        !staticPageSectionsIncomplete(quantumMind.description.en) &&
+        STANDARD_SECTIONS_RE.test(quantumMind.description.en),
+    )
+    push({
+      id: 'static-quantum-mind',
+      surface: '/en/quantum-mind',
+      kind: 'static-page',
+      before: 'stub-abstract',
+      after: quantumMindFilled ? 'filled' : 'residual',
+      fill: quantumMindFilled
+        ? 'STATIC_PAGE_SEED canonical sections abstract (template — not a Clay challenge)'
+        : 'quantum-mind still stub',
+    })
+    for (const page of thinStatic.filter((p) => p.slug !== 'quantum-mind').slice(0, 2 * 8)) {
+      push({
+        id: `static-${page.slug}`,
+        surface: `/en/${page.slug}`,
+        kind: 'static-page',
+        before: page.description.en.length < (2 * 5 * 8) ? 'stub-abstract' : 'missing-canonical-sections',
+        after: 'residual',
+        fill: 'later wave — canonical sections from sealed fold/components (not Clay-marked)',
+      })
+    }
+    push({
+      id: 'references-pointer-honest',
+      surface: '/references/*',
+      kind: 'reference',
+      before: 'pointer-only',
+      after: 'honest-open',
+      fill: 'reverse-fold pointers carry no new computation — keep thin by design',
+    })
+
+    const incompleteBefore = corpusIncompleteBefore + 1
+    const filledCount = corpusFilled + (quantumMindFilled ? 1 : 0)
+    const residualStatic = thinStatic.filter((p) => p.slug !== 'quantum-mind').length
+    const claySolvedByThisFold = 0 as const
+    const sampleWired =
+      samplePage.kind === 'corpus-detail' &&
+      samplePage.standardPaper != null &&
+      samplePage.standardPaper.officialStatement.length >= (2 * 5 * 8) &&
+      samplePage.description.length >= (2 * 5 * 8) &&
+      Boolean(sample?.sections)
+    const facets = [
+      { facet: `corpus papers filled with canonical sections (${corpusFilled}/${corpus.count})`, on: corpusFilled === corpus.count },
+      { facet: 'sample /papers/p001 UniversalPage.standardPaper wired', on: sampleWired },
+      { facet: `quantum-mind stub → canonical sections template (${quantumMindFilled})`, on: quantumMindFilled },
+      { facet: `incomplete before=${incompleteBefore} · filled=${filledCount}`, on: incompleteBefore === corpus.count + 1 && filledCount === corpus.count + 1 },
+      { facet: `static residuals named for later waves (${residualStatic})`, on: residualStatic >= 0 },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold} honesty lock · corpus papers not Clay-marked`, on: claySolvedByThisFold === 0 && samplePage.standardPaper != null },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`incomplete-papers-gaps-fill:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('incomplete-papers-gaps-fill', facets)
+    return {
+      computes: sealed.ok && corpusFilled === corpus.count && quantumMindFilled && sampleWired,
+      claySolvedByThisFold,
+      incompleteBefore,
+      incompleteAfter: residualStatic,
+      filledCount,
+      corpusFilled,
+      residualStatic,
+      quantumMindFilled,
+      rows,
+      filled: rows.filter((r) => r.after === 'filled'),
+      residuals: rows.filter((r) => r.after === 'residual'),
+      honestOpen: rows.filter((r) => r.after === 'honest-open'),
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, corpus.root, ...rows.map((r) => r.receipt)])),
+      cli: 'npm run quantum:incomplete-papers-fill',
+      pair: 'papers/fill',
+      route: '/papers/p001',
+      statement:
+        `Incomplete papers gaps fill — before=${incompleteBefore} after-residuals=${residualStatic} filled=${filledCount} (corpus ${corpusFilled} + quantum-mind); canonical sections only — not Clay-marked; claySolvedByThisFold=0.`,
+      boundary:
+        'Wave-1 fills thin corpus papers (generator-id-only prose) via sealed paperParamsById.sections → UniversalPage.standardPaper, and the quantum-mind stub as the static canonical-sections template. Clay branding is reserved for Millennium challenges (/proofs/millennium-*). Remaining thin staticPages are named residuals. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:incomplete-papers-fill — incompletePapersGapsFill exit. */
+export function runIncompletePapersGapsFillExit(_root = '', _argv: readonly string[] = []): number {
+  const report = incompletePapersGapsFill()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} incomplete-papers-fill — before=${report.incompleteBefore} ` +
+      `filled=${report.filledCount} residual-static=${report.incompleteAfter} ` +
+      `corpus=${report.corpusFilled} quantum-mind=${report.quantumMindFilled} ` +
+      `clay=${report.claySolvedByThisFold} root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const r of report.filled.slice(0, 4)) {
+    process.stdout.write(`  · FILLED ${r.surface} ← ${r.fill}\n`)
+  }
+  for (const r of report.residuals.slice(0, 8)) {
+    process.stdout.write(`  · RESIDUAL ${r.surface} (${r.before})\n`)
+  }
+  for (const r of report.honestOpen) {
+    process.stdout.write(`  · HONEST-OPEN ${r.surface} — ${r.fill}\n`)
+  }
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes && report.claySolvedByThisFold === 0 ? 0 : 1
 }
 
 /** npm run quantum:prose-gaps-audit — named exit for proseGapsAuditByDomainTrinity (not domain-proof composite). */
