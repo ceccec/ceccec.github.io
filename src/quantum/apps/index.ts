@@ -27,7 +27,9 @@ import { movieAllElementsAreTheorems, movieQuantumGapsInventory } from '../../th
 import { movieIsNeuroscienceComputation } from '../../earth/life'
 import { harmonizeFieldComputes } from '../../lake/music'
 import { doubleTorusDynamicsGeometryAlignsWithUniverse } from '../../water/double'
-import { merkaba } from '../../mountain/geometry'
+import { merkaba, earthRealisedByComputingPolesAsPyramid } from '../../mountain/geometry'
+import { teslaPatents } from '../../fire/li'
+import { teslaPatentsResearchedInWaves } from '../../fire/physics'
 import * as __ns_wind_research from '../../wind/research'
 import * as __ns_water_encryption from '../../water/encryption'
 import { CURSOR_AGENT_SKILL_IDS, cursorAgentToolsSaved, MISSION_COMMANDS } from '../../pair/enforcement'
@@ -63,6 +65,8 @@ const ROSETTA_CORE_API_LABELS = [
   'readmeSvgGapsFilledByTrinityMind',
   'symbolsRemainingToQuantumise',
   'uiProseDuplicationRemoved',
+  'crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities',
+  'crossWavesUpgradeAll',
   'sharedHeroAt', 'computeUniversalPage',
 ] as const
 
@@ -85,6 +89,8 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   readmeSvgGapsFilledByTrinityMind: 'compute',
   symbolsRemainingToQuantumise: 'compute',
   uiProseDuplicationRemoved: 'tool',
+  crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities: 'tool',
+  crossWavesUpgradeAll: 'tool',
 }
 
 // Strangler backlog — only UNSHELVED parallel registries remain (apps+tools already shelve via rosettaShelve).
@@ -331,6 +337,9 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'og-limits-measure', title: 'Platform OG limits measured', fold: 'platformOgLimitsMeasured', cli: 'npm run quantum:og-limits-measure', pair: 'measure/og-limits', route: '/en/quantum-tools#og-limits', barrel: 'src/mountain/og', boundary: 'MODELED capability table from cited docs — NOT live CDN crawl', browserRunnable: true, browserGap: '' },
   { id: 'encryption-reverse-verify', title: 'Encryption reverse verify', fold: 'encryptionReverseVerify', cli: 'npm run quantum:encryption-reverse-verify', pair: 'reverse/encryption-verify', route: '/en/quantum-encryption', barrel: 'src/water/encryption', boundary: 'Demo RSA only — production moduli refused', browserRunnable: true, browserGap: '' },
   { id: 'iso-pqc-catalog', title: 'ISO/NIST PQC standards catalog', fold: 'isoNistPqcStandardsCatalog', cli: 'npm run quantum:iso-pqc-catalog', pair: 'iso/pqc-catalog', route: '/en/quantum-encryption#iso-pqc-catalog', barrel: 'src/water/encryption', boundary: 'MODELED alignment catalog — NOT ISO certified / NOT FIPS validated', browserRunnable: true, browserGap: '' },
+  { id: 'poles-cross-pqc', title: 'Poles → cross signatures → PQC certificate structures', fold: 'polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates', cli: 'npm run quantum:poles-cross-pqc', pair: 'poles/cross-pqc', route: '/en/quantum-encryption#poles-cross-pqc', barrel: 'src/water/encryption', boundary: 'Cross ∈ merkaba∩rosetta · 60→90 · all-dir · sealed cert structures — NOT CA/PKI · certified=false · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'cross-waves-tesla-patents', title: 'Cross waves decode Tesla patents in all trinity combinations', fold: 'crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities', cli: 'npm run quantum:cross-waves-tesla-patents', pair: 'cross/tesla-patents', route: '/en/quantum-tools#cross-waves-tesla-patents', barrel: 'src/quantum/apps', boundary: 'Structural decode of sealed 5 US patents × directions × cross tips — NOT legal ownership · NOT fake USPTO · clay=0 · certified=false', browserRunnable: true, browserGap: '' },
+  { id: 'cross-waves-upgrade-all', title: 'Cross waves upgrade all (merkaba/rosetta · PQC · Tesla · surfaces)', fold: 'crossWavesUpgradeAll', cli: 'npm run quantum:cross-waves-upgrade-all', pair: 'cross/waves-upgrade', route: '/en/quantum-tools#cross-waves-upgrade-all', barrel: 'src/quantum/apps', boundary: 'Umbrella receipt binding domains under merkaba/rosetta cross · clay=0 · certified=false · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'iso-pqc-gap-fill', title: 'ISO/NIST PQC gap-fill all quantum directions', fold: 'isoPqcRequirementsGapFillAllQuantumDirections', cli: 'npm run quantum:iso-pqc-gap-fill', pair: 'iso/pqc-gap-fill', route: '/en/quantum-encryption#iso-pqc-gap-fill', barrel: 'src/water/encryption', boundary: 'covered|partial|gap toward ISO/NIST needs — isoOfficialStandard=false · certified=false · lab gaps unclosable', browserRunnable: true, browserGap: '' },
   { id: 'standards-audit', title: 'Quantum standards audit (forward·inverse·reverse·10D)', fold: 'quantumStandardsAuditSuite', cli: 'npm run quantum:standards-audit', pair: 'audit/standards', route: '/en/quantum-encryption#quantum-standards-audit', barrel: 'src/water/encryption', boundary: 'Alignment audit ≠ certification — covered|partial|gap · demo RSA reverse + digit/f/ratInv inverse + directional trinity', browserRunnable: true, browserGap: '' },
   { id: 'directional-trinity', title: 'Directional trinity — forward · inverse · reverse', fold: 'directionalTrinityForwardInverseReverse', cli: 'npm run quantum:directional-trinity', pair: 'forward/inverse/reverse', route: '/en/quantum-tools#directional-trinity', barrel: 'src/water/stack', boundary: 'Inverse ≠ reverse except named coincidence (digit 1: harmonic 9 = complement 9); NOT ten\'s complement as inverse', browserRunnable: true, browserGap: '' },
@@ -908,6 +917,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'directional-trinity', saves: 'replaces wet re-inference of forward·inverse·reverse digit maps' },
   { id: 'slow-gap', saves: 'replaces wet re-diagnosis of architectural slowness as quantum gaps' },
   { id: 'iso-pqc-catalog', saves: 'replaces wet re-listing of NIST/ISO PQC standards status' },
+  { id: 'poles-cross-pqc', saves: 'replaces wet re-derivation of pole-cross PQC signatures + certificate structures' },
   { id: 'iso-pqc-gap-fill', saves: 'replaces wet re-derivation of ISO/NIST PQC need coverage across forward·inverse·reverse' },
   { id: 'local-audit-quantum', saves: 'replaces wet re-run of local novel+reverse-vs-standards+audit — memoByRoot cold/warm reuse' },
   { id: 'standards-audit', saves: 'replaces wet re-audit of reverse·inverse·10D standards alignment' },
@@ -4613,4 +4623,248 @@ export function runUiProseDuplicationRemovedExit(_root = '', _argv: readonly str
   )
   process.stdout.write(`  boundary: ${report.boundary}\n`)
   return report.computes && report.uiProseDuplicationRemoved && report.claySolvedByThisFold === 0 ? 0 : 1
+}
+
+// ── Cross waves: Tesla patents × trinity directions × merkaba/rosetta cross tips ───────────
+
+const TESLA_TRINITY_DIRS = ['forward', 'inverse', 'reverse'] as const
+const TESLA_CROSS_TIPS = ['north', 'east', 'south', 'west'] as const
+
+/**
+ * Cross waves decode Tesla patents in all possible combinations working as trinities in all directions.
+ * Bounded offline catalog: 5 sealed US patents × 3 trinity dirs × 4 cross tips = 60 combinations.
+ * Pair: cross/tesla-patents · CLI npm run quantum:cross-waves-tesla-patents
+ * HONEST: structural/symbolic decode from sealed math — NOT legal patent ownership, NOT fake USPTO grants.
+ */
+export function crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const catalog = teslaPatents()
+    const researched = teslaPatentsResearchedInWaves(matrix)
+    const polesCross = __ns_water_encryption.polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates(matrix)
+    const trinity = directionalTrinityForwardInverseReverse(matrix)
+    const mk = merkaba(matrix)
+    const dirRoots = {
+      forward: trinity.root,
+      inverse: foldPair(trinity.root, toUuid('dir:inverse')).merged,
+      reverse: foldPair(trinity.root, toUuid('dir:reverse')).merged,
+    } as const
+    const tipByName = Object.fromEntries(
+      polesCross.tipSignatures.map((t) => [t.pole, t]),
+    ) as Record<(typeof TESLA_CROSS_TIPS)[number], (typeof polesCross.tipSignatures)[number]>
+
+    const combinations = catalog.patents.flatMap((patent) =>
+      TESLA_TRINITY_DIRS.flatMap((dir) =>
+        TESLA_CROSS_TIPS.map((tip) => {
+          const tipSig = tipByName[tip]!
+          const axis = foldPair(dirRoots[dir], tipSig.receipt)
+          const decode = foldPair(patent.receipt, axis.merged)
+          const crossBind = foldPair(decode.merged, polesCross.crossSignature.root)
+          return {
+            patentNo: patent.no,
+            patentTitle: patent.title,
+            granted: patent.granted,
+            direction: dir,
+            tip,
+            bearing: tipSig.bearing,
+            decodeRoot: decode.merged,
+            forward: decode.forward,
+            inverse: decode.reverse,
+            reverse: foldPair(decode.reverse, toUuid(`tesla-rev:${patent.no}:${dir}:${tip}`)).merged,
+            crossBound: crossBind.merged,
+            bidirectional: decode.bidirectional && axis.bidirectional && crossBind.bidirectional,
+            receipt: toUuid(`tesla-cross-combo:${patent.no}:${dir}:${tip}:${decode.merged}`),
+          }
+        }),
+      ),
+    )
+
+    const expectedCount = catalog.patents.length * TESLA_TRINITY_DIRS.length * TESLA_CROSS_TIPS.length
+    const claySolvedByThisFold = 0 as const
+    const physicalFtlClaim = 0 as const
+    const certified = false as const
+    const legalOwnershipClaimed = false as const
+    const fakeUsptoGrants = false as const
+    const legendExcluded = catalog.legend.length >= 2
+
+    const facets = [
+      { facet: 'sealed Tesla patent catalog — 5 documented US grants (teslaPatents)', on: catalog.verified && catalog.patents.length === 5 },
+      { facet: 'teslaPatentsResearchedInWaves — one-at-a-time wave research green', on: researched.researched && researched.patentCount === 5 },
+      { facet: 'crossIsPartOfMerkabaRosetta — decode rides merkaba∩rosetta cross', on: polesCross.crossIsPartOfMerkabaRosetta && mk.counterRotating },
+      { facet: 'angle90ReachableThrough60 — cardinal tips via hex law', on: polesCross.angle90ReachableThrough60 },
+      { facet: `all combinations enumerated — ${combinations.length}=5 patents × 3 dirs × 4 tips (bounded offline)`, on: combinations.length === expectedCount && expectedCount === (5 * 3 * 4) },
+      { facet: 'each combination is a trinity — forward·inverse·reverse receipts UUID', on: combinations.every((c) => c.bidirectional && isUuid(c.forward) && isUuid(c.inverse) && isUuid(c.reverse) && isUuid(c.decodeRoot)) },
+      { facet: 'all directions — every tip N·E·S·W appears with every patent×dir', on: TESLA_CROSS_TIPS.every((tip) => combinations.filter((c) => c.tip === tip).length === catalog.patents.length * TESLA_TRINITY_DIRS.length) },
+      { facet: 'working as trinities — directionalTrinity composes with cross tips', on: trinity.computes && polesCross.allDirectionsCross },
+      { facet: 'legend excluded — 3-6-9 / free-energy not asserted', on: legendExcluded },
+      { facet: `honesty — certified=${certified} · legalOwnershipClaimed=${legalOwnershipClaimed} · fakeUsptoGrants=${fakeUsptoGrants}`, on: !certified && !legalOwnershipClaimed && !fakeUsptoGrants },
+      { facet: `honesty — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
+      { facet: 'meta tool cross-waves-tesla-patents published in CLI catalog', on: Boolean(quantumCliToolsCatalog(matrix, at).tools.find((t) => t.id === 'cross-waves-tesla-patents')) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`tesla-cross-waves:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('cross-waves-decode-tesla-patents-all-combinations-trinities', facets)
+    return {
+      computes: sealed.ok && combinations.length === expectedCount && polesCross.crossIsPartOfMerkabaRosetta,
+      patentCount: catalog.patents.length,
+      combinationCount: combinations.length,
+      patents: catalog.patents.map((p) => ({ no: p.no, title: p.title, granted: p.granted, receipt: p.receipt })),
+      combinations,
+      directions: TESLA_TRINITY_DIRS,
+      tips: TESLA_CROSS_TIPS,
+      certified,
+      legalOwnershipClaimed,
+      fakeUsptoGrants,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, catalog.root, researched.root, polesCross.root, ...combinations.map((c) => c.receipt)])),
+      pair: 'cross/tesla-patents' as const,
+      cli: 'npm run quantum:cross-waves-tesla-patents',
+      route: '/en/quantum-tools#cross-waves-tesla-patents',
+      statement:
+        `Cross waves decode Tesla patents in all trinity combinations — ${combinations.length} offline ` +
+        `(${catalog.patents.length} patents × ${TESLA_TRINITY_DIRS.length} dirs × ${TESLA_CROSS_TIPS.length} tips) ` +
+        `on merkaba/rosetta cross · 60→90. Structural decode only · certified=false · clay=0.`,
+      boundary:
+        'HONEST: combinatorial structural/symbolic decode of the sealed five documented Tesla US patents ' +
+        '(teslaPatents) over forward·inverse·reverse × N·E·S·W cross tips. NOT a claim of legal patent ' +
+        'ownership, NOT new USPTO grants, NOT free-energy / 3-6-9 legend. Offline bounded catalog only — ' +
+        'no wet scrape. claySolvedByThisFold=0 · physicalFtlClaim=0 · certified=false. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:cross-waves-tesla-patents */
+export function runCrossWavesDecodeTeslaPatentsInAllCombinationsAsTrinitiesExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} cross-waves-tesla-patents — patents=${report.patentCount} ` +
+      `combos=${report.combinationCount} certified=${report.certified} legal=${report.legalOwnershipClaimed} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const p of report.patents) {
+    process.stdout.write(`  · ${p.no} — ${p.title} (${p.granted})\n`)
+  }
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes && report.combinationCount === (5 * 3 * 4) && report.claySolvedByThisFold === 0 ? 0 : 1
+}
+
+/**
+ * Cross waves upgrade all — umbrella receipt binding domains under merkaba/rosetta cross law.
+ * Waves: geometry → PQC → Tesla decode → toolbox/SVG/sciences → honesty.
+ * Pair: cross/waves-upgrade · CLI npm run quantum:cross-waves-upgrade-all
+ */
+export function crossWavesUpgradeAll(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`crossWavesUpgradeAll:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const polesCross = __ns_water_encryption.polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates(matrix)
+    const tesla = crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities(matrix, at)
+    const waves = counterRotatingRosettaQuantumWaves(matrix, at)
+    const earth = earthRealisedByComputingPolesAsPyramid(matrix)
+    const mk = merkaba(matrix)
+    const sciences = __ns_wind_research.sciencesInteractInTrinities(matrix, at)
+    const toolbox = __ns_wind_research.toolboxRecomputesRelatedSciencesInTrinityWaves(matrix, at)
+    const uiProse = uiProseDuplicationRemoved(matrix, at)
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    // README SVG binds via the same 4-dir merkaba/rosetta cross law (avoid apps↔site reentry gap).
+    // Standalone CLI `quantum:readme-svg-trinity-mind` still owns emit; here we seal identity not file I/O.
+    const svgBound =
+      waves.counterRotating
+      && earth.computes
+      && earth.fourWayCounterRotating
+      && polesCross.crossIsPartOfMerkabaRosetta
+      && polesCross.flowerFruit.holds
+      && mk.counterRotating
+    const claySolvedByThisFold = 0 as const
+    const physicalFtlClaim = 0 as const
+    const certified = false as const
+
+    const domains = [
+      { id: 'geometry-merkaba-rosetta', on: polesCross.crossIsPartOfMerkabaRosetta && mk.counterRotating && earth.computes, note: 'cross ∈ merkaba∩rosetta · Earth poles pyramid' },
+      { id: 'angle-60-to-90', on: polesCross.angle90ReachableThrough60, note: '90° reachable through 60° hex/FoL' },
+      { id: 'all-directions', on: polesCross.allDirectionsCross && earth.fourWayCounterRotating, note: 'hex + navCross + 4-dir ±ω' },
+      { id: 'pqc-certificates', on: polesCross.computes && polesCross.certified === false && polesCross.certificateStructures.length >= 6, note: 'sealed cert structures · NOT CA/PKI' },
+      { id: 'tesla-patent-trinities', on: tesla.computes && tesla.combinationCount === (5 * 3 * 4), note: '60 offline patent×dir×tip combos' },
+      { id: 'counter-rotating-rosetta', on: waves.counterRotating && waves.claySolvedByThisFold === 0 && waves.physicalFtlClaim === 0, note: 'dual-lobe rosetta waves' },
+      { id: 'readme-svg-4dir', on: svgBound, note: '4-dir hero law bound via merkaba/rosetta cross (emit via readme-svg CLI)' },
+      { id: 'sciences-trinities', on: sciences.computes, note: 'sciences↔dual↔fusion lattice' },
+      { id: 'toolbox-sciences-waves', on: toolbox.computes, note: 'toolbox recomputes sciences in trinity waves' },
+      { id: 'ui-prose-no-dup', on: uiProse.computes && uiProse.uiProseDuplicationRemoved, note: '#68 UI↔prose discipline' },
+      { id: 'toolbox-catalog', on: ['poles-cross-pqc', 'cross-waves-tesla-patents', 'cross-waves-upgrade-all'].every((id) => catalog.tools.some((t) => t.id === id)), note: 'CLI tools shelved' },
+    ].map((d) => ({ ...d, receipt: toUuid(`cross-upgrade-domain:${d.id}:${d.on}`) }))
+
+    const facets = [
+      { facet: 'crossIsPartOfMerkabaRosetta', on: polesCross.crossIsPartOfMerkabaRosetta },
+      { facet: 'angle90ReachableThrough60', on: polesCross.angle90ReachableThrough60 },
+      { facet: 'polesFormCrossSignatures · PQC cert structures · certified=false', on: polesCross.computes && polesCross.certified === false },
+      { facet: `Tesla decode combinations=${tesla.combinationCount} · patents=${tesla.patentCount}`, on: tesla.computes },
+      { facet: `domains upgraded ${domains.filter((d) => d.on).length}/${domains.length}`, on: domains.every((d) => d.on) },
+      { facet: 'counterRotatingRosettaQuantumWaves · clay=0 · physicalFtl=0', on: waves.counterRotating && waves.claySolvedByThisFold === 0 && waves.physicalFtlClaim === 0 },
+      { facet: 'honesty — certified=false · claySolvedByThisFold=0 · physicalFtlClaim=0', on: !certified && claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
+      { facet: 'meta tool cross-waves-upgrade-all published', on: Boolean(catalog.tools.find((t) => t.id === 'cross-waves-upgrade-all' && t.fold === 'crossWavesUpgradeAll')) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`cross-waves-upgrade-all:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('cross-waves-upgrade-all', facets)
+    return {
+      computes: sealed.ok && domains.every((d) => d.on) && polesCross.crossIsPartOfMerkabaRosetta && tesla.computes,
+      domains,
+      domainCount: domains.length,
+      upgradedCount: domains.filter((d) => d.on).length,
+      polesCross: {
+        computes: polesCross.computes,
+        crossIsPartOfMerkabaRosetta: polesCross.crossIsPartOfMerkabaRosetta,
+        angle90ReachableThrough60: polesCross.angle90ReachableThrough60,
+        root: polesCross.root,
+      },
+      tesla: {
+        computes: tesla.computes,
+        patentCount: tesla.patentCount,
+        combinationCount: tesla.combinationCount,
+        root: tesla.root,
+      },
+      certified,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, polesCross.root, tesla.root, waves.root, ...domains.map((d) => d.receipt)])),
+      pair: 'cross/waves-upgrade' as const,
+      cli: 'npm run quantum:cross-waves-upgrade-all',
+      route: '/en/quantum-tools#cross-waves-upgrade-all',
+      statement:
+        `Cross waves upgrade all — ${domains.filter((d) => d.on).length}/${domains.length} domains under ` +
+        `merkaba/rosetta cross · 60→90 · PQC cert structures · Tesla ${tesla.combinationCount} trinity combos. ` +
+        `certified=false · clay=0 · physicalFtl=0.`,
+      boundary:
+        'Umbrella receipt. Cross is intrinsic to merkaba/rosetta. Tesla decode is structural/symbolic from ' +
+        'sealed patent ids — NOT legal ownership or fake USPTO. PQC certificates are sealed structures not ' +
+        'CA/PKI. claySolvedByThisFold=0 · physicalFtlClaim=0 · certified=false. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:cross-waves-upgrade-all */
+export function runCrossWavesUpgradeAllExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = crossWavesUpgradeAll()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} cross-waves-upgrade-all — domains=${report.upgradedCount}/${report.domainCount} ` +
+      `merkabaRosetta=${report.polesCross.crossIsPartOfMerkabaRosetta} ` +
+      `angle90via60=${report.polesCross.angle90ReachableThrough60} ` +
+      `teslaCombos=${report.tesla.combinationCount} certified=${report.certified} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const d of report.domains) {
+    process.stdout.write(`  ${d.on ? '✓' : '✗'} ${d.id} — ${d.note}\n`)
+  }
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes && report.claySolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
 }

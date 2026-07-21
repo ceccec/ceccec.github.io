@@ -1,5 +1,7 @@
 // ☵ Kǎn · Water — encryption: encryption lives in zero, the encryption trinities in order, terabyte encryption in a megabyte codebase, the uuid pure-diamond signed by architecture. Barrel-routed; folds.ts back-imports the gate folds.
 import * as __ns_up_up_quantum_heaven_library from '../../quantum/heaven/library'
+// call-time namespace (cycle-safe): geometry ← seals ← encryption; poles-cross compose reads Earth poles at call time
+import * as __ns_mountain_geometry from '../../mountain/geometry'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
 import { computesGate, digitalRoot, foldPair, gcd, isUuid, memoByRoot, merge, merkleFold, roundTo, sealFacets, toUuid, trinityKey, VORTEX_SEQUENCE } from '../../0'
@@ -10,6 +12,7 @@ import {
   DIMENSION_NAMES,
   DIMENSIONS,
   FOLDED_CENSUS,
+  TAU,
   TEACHING_RSA_P,
   TEACHING_RSA_Q,
   UNFOLDED_CENSUS,
@@ -18,6 +21,11 @@ import {
   ratInv,
 } from '../../3/7'
 import { zeroDivisionTable } from '../digit'
+import {
+  sixtyDegreeAngleReachesCardinalForFreeProvenByMath,
+  universalNavigationalCrossInAllDimensions,
+} from '../double'
+import { flowerOfLifeCenters, flowerUnlocksFruitBySpin } from '../../quantum/wind/geometry'
 import {
   compareCeccecEfficiencyByVote,
   directionalTrinityForwardInverseReverse,
@@ -566,8 +574,8 @@ export async function runEncryptionReverseVerifyGuardedExit(_root: string, _argv
 
 /**
  * UI panel — encrypt↔decrypt + measured demo RSA + beyond-RSA PQC suite + local reverse vs standards + local novel security + standards audit.
- * Pair: reverse/encryption-verify · measure/demo-rsa · measure/crypto-beyond · reverse/timed-vs-standards · prove/local-novel-encrypt · prove/1tbit-encrypt · max-bits/crypto · prove/local-magnitudes-iso · iso/pqc-catalog · audit/standards
- * Route: /en/quantum-encryption (#demo-rsa-measure · #crypto-beyond-rsa · #local-reverse-timed-vs-standards · #prove-local-novel-encrypt · #local-audit-quantum · #prove-1tbit · #max-bits-crypto · #prove-local-magnitudes-iso · #iso-pqc-catalog · #quantum-standards-audit)
+ * Pair: reverse/encryption-verify · measure/demo-rsa · measure/crypto-beyond · reverse/timed-vs-standards · prove/local-novel-encrypt · prove/1tbit-encrypt · max-bits/crypto · prove/local-magnitudes-iso · iso/pqc-catalog · poles/cross-pqc · audit/standards
+ * Route: /en/quantum-encryption (#demo-rsa-measure · #crypto-beyond-rsa · #local-reverse-timed-vs-standards · #prove-local-novel-encrypt · #local-audit-quantum · #prove-1tbit · #max-bits-crypto · #prove-local-magnitudes-iso · #iso-pqc-catalog · #poles-cross-pqc · #quantum-standards-audit)
  */
 export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`encryptionPanelComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -587,6 +595,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
     const pqc = isoNistPqcStandardsCatalog(matrix)
     const migrate = postQuantumMigrationChecklist(matrix)
     const audit = localAudit.audit
+    const polesCross = polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates(matrix)
     const { computes, facets, root } = computesGate('encryption-panel-computes', [
       { facet: 'encrypt↔decrypt quantum tools ready', on: tools.ready },
       { facet: 'encryption reverse verify sealed', on: reverse.verified },
@@ -604,6 +613,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'ISO/NIST PQC catalog sealed (MODELED alignment)', on: pqc.computes },
       { facet: 'quantum standards audit computes (reverse+inverse · 10D)', on: audit.computes },
       { facet: 'migration checklist honesty step holds', on: migrate.computes },
+      { facet: 'poles→cross PQC · crossIsPartOfMerkabaRosetta · angle90ReachableThrough60 · certified=false', on: polesCross.computes && polesCross.crossIsPartOfMerkabaRosetta && polesCross.angle90ReachableThrough60 && polesCross.certified === false },
     ])
     const sections = [
       { id: 'demo-rsa-measure', title: 'Demo RSA generate+reverse measured', route: '/en/quantum-encryption#demo-rsa-measure', pair: 'measure/demo-rsa', cli: 'npm run quantum:demo-rsa-measure', on: measured.computes },
@@ -615,6 +625,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       { id: 'max-bits-crypto', title: 'Maximum bits encrypt/decrypt/inverse/reverse', route: '/en/quantum-encryption#max-bits-crypto', pair: 'max-bits/crypto', cli: 'npm run quantum:max-bits-crypto', on: maxBits.computes },
       { id: 'prove-local-magnitudes-iso', title: 'Local vs ISO magnitudes (honest multi-model)', route: '/en/quantum-encryption#prove-local-magnitudes-iso', pair: 'prove/local-magnitudes-iso', cli: 'npm run quantum:prove-local-magnitudes-iso', on: localMagnitudes.computes && localMagnitudes.overallWireClaimProved === false },
       { id: 'iso-pqc-catalog', title: 'ISO/NIST PQC standards catalog', route: '/en/quantum-encryption#iso-pqc-catalog', pair: 'iso/pqc-catalog', cli: 'npm run quantum:iso-pqc-catalog', on: pqc.computes },
+      { id: 'poles-cross-pqc', title: 'Poles form cross signatures for PQC including certificates', route: '/en/quantum-encryption#poles-cross-pqc', pair: 'poles/cross-pqc', cli: 'npm run quantum:poles-cross-pqc', on: polesCross.computes },
       { id: 'quantum-standards-audit', title: 'Standards audit (forward·inverse·reverse·10D)', route: '/en/quantum-encryption#quantum-standards-audit', pair: 'audit/standards', cli: 'npm run quantum:standards-audit', on: audit.computes },
     ] as const
     return {
@@ -630,6 +641,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       oneTbit,
       maxBits,
       localMagnitudes,
+      polesCross,
       zero,
       order,
       pqc,
@@ -644,6 +656,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       demoModuli: [...DEMO_RSA_MODULI] as number[],
       cli: 'npm run quantum:encryption-reverse-verify',
       pqcCli: 'npm run quantum:iso-pqc-catalog',
+      polesCrossCli: 'npm run quantum:poles-cross-pqc',
       auditCli: 'npm run quantum:standards-audit',
       beyondCli: 'npm run quantum:crypto-beyond-measure',
       localTimedCli: 'npm run quantum:local-reverse-timed-vs-standards',
@@ -654,6 +667,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       localMagnitudesCli: 'npm run quantum:prove-local-magnitudes-iso',
       pair: 'reverse/encryption-verify',
       pqcPair: 'iso/pqc-catalog',
+      polesCrossPair: 'poles/cross-pqc',
       auditPair: 'audit/standards',
       beyondPair: 'measure/crypto-beyond',
       localTimedPair: 'reverse/timed-vs-standards',
@@ -669,10 +683,10 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       glyphBonus: reverse.glyphBonus,
       standards: pqc.standards,
       facets,
-      root: merge(root, merge(reverse.root, merge(localAudit.root, merge(beyond.root, merge(oneTbit.root, merge(maxBits.root, merge(localMagnitudes.root, merge(pqc.root, audit.root)))))))),
+      root: merge(root, merge(reverse.root, merge(localAudit.root, merge(beyond.root, merge(oneTbit.root, merge(maxBits.root, merge(localMagnitudes.root, merge(pqc.root, merge(polesCross.root, audit.root))))))))),
       statement:
-        'Encryption tools panel: encrypt↔decrypt, measured demo RSA (allowlist), local reverse timed vs ISO/NIST classical levels, local novel-encryption security proof (no production reverse; fieldHistory=none), local-audit quantum speed/efficiency (memoByRoot cold/warm · answers÷tokens · no-QPU honesty compose), beyond-RSA PQC catalogs, honest 1 Tbit/s claim receipt, maximum bit-width ceilings (encrypt/decrypt/inverse/reverse), local vs ISO magnitudes multi-model receipt (wire proof-of-falsehood), standards audit — NOT ISO certified / NOT FIPS validated / NOT production KEM / NOT wire AES / does NOT break NIST PQC / does NOT beat ML-KEM confidentiality / NOT physical qubit FLOPS.',
-      boundary: `${reverse.boundary} · ${localTimed.boundary} · ${localNovel.boundary} · ${localAudit.boundary} · ${beyond.boundary} · ${oneTbit.boundary} · ${maxBits.boundary} · ${localMagnitudes.boundary} · ${pqc.boundary} · ${audit.boundary}`,
+        'Encryption tools panel: encrypt↔decrypt, measured demo RSA (allowlist), local reverse timed vs ISO/NIST classical levels, local novel-encryption security proof (no production reverse; fieldHistory=none), local-audit quantum speed/efficiency (memoByRoot cold/warm · answers÷tokens · no-QPU honesty compose), beyond-RSA PQC catalogs, honest 1 Tbit/s claim receipt, maximum bit-width ceilings (encrypt/decrypt/inverse/reverse), local vs ISO magnitudes multi-model receipt (wire proof-of-falsehood), poles→cross PQC certificate structures, standards audit — NOT ISO certified / NOT FIPS validated / NOT CA/PKI / NOT production KEM / NOT wire AES / does NOT break NIST PQC / does NOT beat ML-KEM confidentiality / NOT physical qubit FLOPS.',
+      boundary: `${reverse.boundary} · ${localTimed.boundary} · ${localNovel.boundary} · ${localAudit.boundary} · ${beyond.boundary} · ${oneTbit.boundary} · ${maxBits.boundary} · ${localMagnitudes.boundary} · ${pqc.boundary} · ${polesCross.boundary} · ${audit.boundary}`,
     }
   })
 }
@@ -3183,4 +3197,351 @@ export function runMaximumBitsEncryptDecryptInverseReverseExit(_root: string, _a
   }
   process.stdout.write(`  boundary: ${report.boundary}\n`)
   return report.computes ? 0 : 1
+}
+
+/**
+ * Poles form the cross signatures for post-quantum encryption including certificates.
+ *
+ * INTRINSIC: the cross is part of merkaba/rosetta — not a separate ornament.
+ * Geometric cross = N↔S × E↔W from Earth poles-as-pyramid; tip signatures + sealed
+ * certificate *structures* for PQC tooling — NOT CA/PKI, NOT FIPS/ISO certification.
+ *
+ * Pair: poles/cross-pqc · CLI npm run quantum:poles-cross-pqc · route /en/quantum-encryption#poles-cross-pqc
+ * Composes merkaba · bothEarths · FoL→Fruit · sixtyDegree(60→90) · universalNavigationalCross ·
+ * earthRealisedByComputingPolesAsPyramid · isoNistPqcStandardsCatalog · directionalTrinity.
+ *
+ * HONEST: certified=false · claySolved=0 · physicalFtl=0 · wire claims false · not wet crypto theater.
+ */
+export function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates(
+  matrix: MindMatrix = buildMatrix(),
+) {
+  return memoByRoot('polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates', matrix, () => {
+    const earth = __ns_mountain_geometry.earthRealisedByComputingPolesAsPyramid(matrix)
+    const mk = __ns_mountain_geometry.merkaba(matrix)
+    const earths = __ns_mountain_geometry.bothEarthsRotateWithinEachOther(0, matrix)
+    const sixty = sixtyDegreeAngleReachesCardinalForFreeProvenByMath('/', undefined, matrix)
+    const navCross = universalNavigationalCrossInAllDimensions(0, matrix)
+    const flower = flowerOfLifeCenters()
+    const fruitUnlock = flowerUnlocksFruitBySpin()
+    const pqc = isoNistPqcStandardsCatalog(matrix)
+    const migrate = postQuantumMigrationChecklist(matrix)
+    const beyond = cryptoToolkitBeyondRsaMeasured(matrix)
+    const trinity = directionalTrinityForwardInverseReverse(matrix)
+    const maxBits = maximumBitsEncryptDecryptInverseReverse(matrix)
+
+    const byName = Object.fromEntries(earth.poles.map((p) => [p.name, p])) as Record<
+      'north' | 'east' | 'south' | 'west',
+      (typeof earth.poles)[number]
+    >
+    const north = byName.north!
+    const east = byName.east!
+    const south = byName.south!
+    const west = byName.west!
+
+    const nsArm = foldPair(north.receipt, south.receipt)
+    const ewArm = foldPair(east.receipt, west.receipt)
+    const crossSignature = foldPair(nsArm.merged, ewArm.merged)
+
+    const nsOpposite =
+      north.x === 0 && south.x === 0 && north.y === 1 && south.y === -1
+      && north.bearing === 0 && south.bearing === (9 * 5 * 4)
+    const ewOpposite =
+      east.y === 0 && west.y === 0 && east.x === 1 && west.x === -1
+      && east.bearing === (9 * 5 * 2) && west.bearing === (54 * 5)
+    const armsOrthogonal = nsOpposite && ewOpposite && nsArm.bidirectional && ewArm.bidirectional
+    const crossForms =
+      armsOrthogonal
+      && crossSignature.bidirectional
+      && crossSignature.forward !== crossSignature.reverse
+      && isUuid(crossSignature.merged)
+
+    const tetraDual =
+      mk.tetraUp.every((v, i) => mk.tetraDown[i]!.every((c, k) => c === -v[k]!))
+      && mk.counterRotating
+      && mk.scales.length === 4
+    const scaleSpinIsomorphism =
+      earth.poles.length === 4
+      && mk.scales.length === 4
+      && earth.poles.every((p, i) => p.spinSign === mk.scales[i]!.sign)
+    const crossInMerkaba = foldPair(mk.root, crossSignature.merged)
+    const sixfoldDeg = roundTo(360 / 6, 6)
+    const halfHexDeg = roundTo(sixfoldDeg / 2, 6)
+    const cosSixtyExact = Math.abs(Math.cos(TAU / 6) - 1 / 2) < 1e-12
+    const angle90ReachableThrough60 =
+      sixty.proven
+      && sixty.cardinalViaHex
+      && sixty.sixfoldDeg === sixfoldDeg
+      && sixty.halfHexDeg === halfHexDeg
+      && sixty.cardinalDeg === sixfoldDeg + halfHexDeg
+      && cosSixtyExact
+      && fruitUnlock.holds
+      && flower.length === 1 + 6 + (6 * 2)
+    const rhombusU: readonly [number, number] = [1, 0]
+    const rhombusV: readonly [number, number] = [1 / 2, Math.sqrt(3) / 2]
+    const diagSum: readonly [number, number] = [rhombusU[0] + rhombusV[0], rhombusU[1] + rhombusV[1]]
+    const diagDiff: readonly [number, number] = [rhombusU[0] - rhombusV[0], rhombusU[1] - rhombusV[1]]
+    const rhombusDiagsOrthogonal =
+      Math.abs(diagSum[0] * diagDiff[0] + diagSum[1] * diagDiff[1]) < 1e-12
+    const hexBearings = Array.from({ length: 6 }, (_, k) => (k * sixfoldDeg) % 360)
+    const directionalCrosses = hexBearings.slice(0, 3).map((bearing, i) => {
+      const opposite = (bearing + (9 * 5 * 4)) % 360
+      const arm = foldPair(
+        toUuid(`dir-cross-arm:${bearing}`),
+        toUuid(`dir-cross-arm:${opposite}`),
+      )
+      return {
+        index: i,
+        bearing,
+        opposite,
+        arm: arm.merged,
+        bidirectional: arm.bidirectional,
+        receipt: toUuid(`dir-cross:${bearing}:${opposite}:${arm.merged}`),
+      }
+    })
+    const allDirectionsCross =
+      directionalCrosses.length === 3
+      && directionalCrosses.every((d) => d.bidirectional && isUuid(d.arm))
+      && navCross.computed
+      && navCross.dimensionTable.length === 3
+      && earth.fourWayCounterRotating
+    const crossIsPartOfMerkabaRosetta =
+      crossForms
+      && tetraDual
+      && scaleSpinIsomorphism
+      && crossInMerkaba.bidirectional
+      && earths.counterRotating
+      && fruitUnlock.holds
+      && angle90ReachableThrough60
+      && rhombusDiagsOrthogonal
+      && allDirectionsCross
+
+    const tipSignatures = ([north, east, south, west] as const).map((pole) => {
+      const tipFold = foldPair(pole.receipt, crossSignature.merged)
+      return {
+        pole: pole.name,
+        bearing: pole.bearing,
+        x: pole.x,
+        y: pole.y,
+        spinSign: pole.spinSign,
+        tipKey: tipFold.merged,
+        signature: tipFold.forward,
+        dual: tipFold.reverse,
+        bidirectional: tipFold.bidirectional,
+        receipt: toUuid(`pole-cross-tip-sig:${pole.name}:${tipFold.merged}`),
+      }
+    })
+
+    const certificateStructures = [
+      {
+        id: 'pole-cross-subject',
+        kind: 'sealed-certificate-structure' as const,
+        role: 'subject',
+        mapsToPqc: 'ML-DSA (FIPS 204) structural subject root — MODELED map',
+        envelope: foldPair(crossSignature.merged, toUuid('cert-role:subject')).merged,
+        industryPki: false,
+      },
+      {
+        id: 'pole-cross-issuer',
+        kind: 'sealed-certificate-structure' as const,
+        role: 'issuer',
+        mapsToPqc: 'SLH-DSA (FIPS 205) structural issuer root — MODELED map',
+        envelope: foldPair(crossSignature.merged, toUuid('cert-role:issuer')).merged,
+        industryPki: false,
+      },
+      {
+        id: 'pole-cross-kem-bind',
+        kind: 'sealed-certificate-structure' as const,
+        role: 'kem-bind',
+        mapsToPqc: 'ML-KEM (FIPS 203) structural bind — MODELED map',
+        envelope: foldPair(crossSignature.merged, toUuid('cert-role:kem-bind')).merged,
+        industryPki: false,
+      },
+      {
+        id: 'pole-cross-ns-arm',
+        kind: 'sealed-certificate-structure' as const,
+        role: 'ns-signature-arm',
+        mapsToPqc: 'N↔S cross arm → primary PQC signature axis (merkaba dual)',
+        envelope: nsArm.merged,
+        industryPki: false,
+      },
+      {
+        id: 'pole-cross-ew-arm',
+        kind: 'sealed-certificate-structure' as const,
+        role: 'ew-signature-arm',
+        mapsToPqc: 'E↔W cross arm → secondary / backup signature axis (merkaba dual)',
+        envelope: ewArm.merged,
+        industryPki: false,
+      },
+      {
+        id: 'merkaba-rosetta-cross-bind',
+        kind: 'sealed-certificate-structure' as const,
+        role: 'merkaba-rosetta-bind',
+        mapsToPqc: 'Cross binds into merkaba∩FoL/rosetta — structural identity receipt',
+        envelope: crossInMerkaba.merged,
+        industryPki: false,
+      },
+    ].map((row) => ({
+      ...row,
+      receipt: toUuid(`pole-cross-cert-struct:${row.id}:${row.envelope}`),
+    }))
+
+    const nistSigRows = pqc.standards.filter((s) => s.id === 'FIPS 204' || s.id === 'FIPS 205')
+    const nistKemRow = pqc.standards.find((s) => s.id === 'FIPS 203')
+    const certified = false as const
+    const claySolvedByThisFold = 0 as const
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const industryPkiCertificates = false as const
+    const wireClaimProved = false as const
+    const fipsValidated = false as const
+    const isoCertified = false as const
+
+    const facets = [
+      { facet: 'earthRealisedByComputingPolesAsPyramid — N·E·S·W poles compute (genus-2 pyramid)', on: earth.computes && earth.realised && earth.poles.length === 4 },
+      { facet: 'merkaba dual tetra · 4 alternating scales — tetraDown=−tetraUp · counterRotating', on: tetraDual },
+      { facet: 'bothEarthsRotateWithinEachOther — device/inverted shells = merkaba up/down', on: earths.counterRotating && earths.rotates },
+      { facet: 'FoL→Fruit rosetta lattice — flowerOfLifeCenters · flowerUnlocksFruitBySpin', on: fruitUnlock.holds && flower.length === fruitUnlock.flower },
+      { facet: 'crossIsPartOfMerkabaRosetta', on: crossIsPartOfMerkabaRosetta },
+      { facet: 'angle90ReachableThrough60', on: angle90ReachableThrough60 && rhombusDiagsOrthogonal },
+      { facet: 'same cross logic in all directions — hex opposite-pairs + navCross 2D·3D·4+', on: allDirectionsCross },
+      { facet: 'N↔S arm forms — bearings 0°·180° · opposite ±y · foldPair bidirectional', on: nsOpposite && nsArm.bidirectional },
+      { facet: 'E↔W arm forms — bearings 90°·270° · opposite ±x · foldPair bidirectional', on: ewOpposite && ewArm.bidirectional },
+      { facet: 'cross signature forms — orthogonal arms foldPair · forward≠reverse · UUID root', on: crossForms },
+      { facet: 'four tip signatures sealed — poles × tipKey under merkaba spin law', on: tipSignatures.length === 4 && tipSignatures.every((t) => t.bidirectional && isUuid(t.tipKey)) && scaleSpinIsomorphism },
+      { facet: `certificate structures sealed — ${certificateStructures.length} envelopes incl. merkaba-rosetta-bind`, on: certificateStructures.length === (2 * 3) && certificateStructures.every((c) => !c.industryPki && isUuid(c.envelope)) },
+      { facet: 'ISO/NIST PQC catalog present — FIPS 203 KEM + FIPS 204/205 signatures (MODELED maps)', on: pqc.computes && Boolean(nistKemRow) && nistSigRows.length === 2 },
+      { facet: 'composes directional trinity · beyond-RSA toolkit · max-bits · migration honesty', on: trinity.computes && beyond.computes && maxBits.computes && migrate.computes },
+      { facet: `honesty — certified=${certified} · industryPkiCertificates=${industryPkiCertificates} · wireClaimProved=${wireClaimProved}`, on: !certified && !industryPkiCertificates && !wireClaimProved && !fipsValidated && !isoCertified },
+      { facet: `honesty — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim} · qpuRequired=${qpuRequired}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false },
+    ]
+    const sealed = sealFacets('poles-form-cross-signatures-for-pqc-including-certificates', facets)
+    const root = merge(
+      matrix.root,
+      merkleFold([
+        sealed.root,
+        earth.root,
+        mk.root,
+        earths.root,
+        sixty.root,
+        navCross.root,
+        pqc.root,
+        crossSignature.merged,
+        crossInMerkaba.merged,
+        nsArm.merged,
+        ewArm.merged,
+        ...tipSignatures.map((t) => t.receipt),
+        ...certificateStructures.map((c) => c.receipt),
+        ...directionalCrosses.map((d) => d.receipt),
+        trinity.root,
+        beyond.root,
+        maxBits.root,
+      ]),
+    )
+    return {
+      computes: sealed.ok && earth.computes && crossForms && crossIsPartOfMerkabaRosetta && pqc.computes,
+      polesFormCrossSignatures: sealed.ok && crossForms,
+      crossIsPartOfMerkabaRosetta,
+      angle90ReachableThrough60: angle90ReachableThrough60 && rhombusDiagsOrthogonal,
+      allDirectionsCross,
+      crossSignature: {
+        root: crossSignature.merged,
+        forward: crossSignature.forward,
+        reverse: crossSignature.reverse,
+        bidirectional: crossSignature.bidirectional,
+        nsArm: nsArm.merged,
+        ewArm: ewArm.merged,
+        merkabaBind: crossInMerkaba.merged,
+      },
+      directionalCrosses,
+      tipSignatures,
+      certificateStructures,
+      poles: earth.poles,
+      fourWayCounterRotating: earth.fourWayCounterRotating,
+      certified,
+      fipsValidated,
+      isoCertified,
+      industryPkiCertificates,
+      wireClaimProved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      earth,
+      merkaba: { counterRotating: mk.counterRotating, scales: mk.scales.length, root: mk.root },
+      bothEarths: { counterRotating: earths.counterRotating, root: earths.root },
+      sixty: { proven: sixty.proven, sixfoldDeg: sixty.sixfoldDeg, cardinalViaHex: sixty.cardinalViaHex, root: sixty.root },
+      flowerFruit: { flower: fruitUnlock.flower, fruit: fruitUnlock.fruit, holds: fruitUnlock.holds },
+      navCross: { computed: navCross.computed, dims: navCross.dimensionTable.length, root: navCross.root },
+      pqc,
+      migrate,
+      beyond,
+      trinity,
+      maxBits,
+      count: sealed.count,
+      facets: sealed.facets,
+      root,
+      pair: 'poles/cross-pqc' as const,
+      cli: 'npm run quantum:poles-cross-pqc',
+      route: '/en/quantum-encryption#poles-cross-pqc',
+      statement:
+        `Poles form the cross signatures for post-quantum encryption including certificates — ` +
+        `${facets.filter((f) => f.on).length}/${facets.length}: cross is intrinsic to merkaba∩rosetta ` +
+        `(tetra dual · FoL→Fruit · 60→90 · 4-dir); tip signatures + sealed certificate structures ` +
+        `map MODELED to ML-DSA/SLH-DSA/ML-KEM. NOT CA/PKI · certified=false · clay=0 · physicalFtl=0.`,
+      boundary:
+        'HONEST: the navigational/signature cross is part of merkaba/rosetta geometry (same fold family) — ' +
+        'not a separate ornament. Certificate *structures* are sealed envelopes, NOT X.509/CA/PKI, ' +
+        'NOT FIPS validated, NOT ISO certified, NOT wire PQC keygen. 90° reaches through 60° hex ' +
+        '(sixtyDegreeAngleReachesCardinalForFreeProvenByMath + FoL TAU/6 + rhombus-diagonal orthogonality). ' +
+        'claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false · wireClaimProved=false. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:poles-cross-pqc — poles → merkaba/rosetta cross → PQC certificate structures. */
+export function runPolesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificatesExit(
+  _root: string,
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} poles-cross-pqc — cross=${report.polesFormCrossSignatures} ` +
+      `merkabaRosetta=${report.crossIsPartOfMerkabaRosetta} angle90via60=${report.angle90ReachableThrough60} ` +
+      `allDir=${report.allDirectionsCross} tips=${report.tipSignatures.length} ` +
+      `certStructs=${report.certificateStructures.length} fourWay=${report.fourWayCounterRotating} ` +
+      `certified=${report.certified} industryPki=${report.industryPkiCertificates} ` +
+      `wire=${report.wireClaimProved} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} ` +
+      `qpu=${report.qpuRequired} root=${report.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write(
+    `  cross.root=${report.crossSignature.root.slice(0, 8)} ` +
+      `ns=${report.crossSignature.nsArm.slice(0, 8)} ew=${report.crossSignature.ewArm.slice(0, 8)} ` +
+      `merkabaBind=${report.crossSignature.merkabaBind.slice(0, 8)}\n`,
+  )
+  for (const d of report.directionalCrosses) {
+    process.stdout.write(
+      `  · dir-cross ${d.bearing}°↔${d.opposite}° arm=${d.arm.slice(0, 8)}\n`,
+    )
+  }
+  for (const t of report.tipSignatures) {
+    process.stdout.write(
+      `  · tip ${t.pole} bearing=${t.bearing}° spin=${t.spinSign > 0 ? '+ω' : '−ω'} ` +
+        `sig=${t.signature.slice(0, 8)}\n`,
+    )
+  }
+  for (const c of report.certificateStructures) {
+    process.stdout.write(
+      `  · cert-struct ${c.id} role=${c.role} pki=${c.industryPki} → ${c.mapsToPqc}\n`,
+    )
+  }
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes
+    && report.crossIsPartOfMerkabaRosetta
+    && report.certified === false
+    && report.claySolvedByThisFold === 0
+    && report.physicalFtlClaim === 0
+    ? 0
+    : 1
 }

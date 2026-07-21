@@ -76,10 +76,13 @@ import {
   upgradeLocalFromOptimisedManualWorkExperience,
   counterRotatingRosettaQuantumWaves,
   universeAlmostDescribedInTheoremsDiscoverRest,
+  crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities,
+  crossWavesUpgradeAll,
 } from '../../quantum/apps'
 import {
   encryptionReverseVerify,
   isoNistPqcStandardsCatalog,
+  polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates,
   quantumStandardsAuditSuite,
   isoPqcHandoffForScienceTrinities,
   cryptoToolkitBeyondRsaMeasured,
@@ -705,6 +708,9 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'prove-local-magnitudes-iso', title: 'Local vs ISO magnitudes — wire proof-of-falsehood · structural/amort may prove non-wire', proof: proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matrix) },
     { slug: 'og-limits-measured', title: 'Platform OG limits measured + honesty-in-prose challenged', proof: { ...honestyInProseChallenged(matrix), limitsRoot: platformOgLimitsMeasured(matrix).root } },
     { slug: 'iso-pqc-catalog', title: 'ISO/NIST PQC standards catalog — MODELED alignment · NOT certified', proof: isoNistPqcStandardsCatalog(matrix) },
+    { slug: 'poles-cross-pqc', title: 'Poles → cross ∈ merkaba/rosetta → PQC certificate structures — NOT CA/PKI · certified=false', proof: polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates(matrix) },
+    { slug: 'cross-waves-tesla-patents', title: 'Cross waves decode Tesla patents × trinity dirs × tips — 60 combos · NOT legal ownership', proof: crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities(matrix) },
+    { slug: 'cross-waves-upgrade-all', title: 'Cross waves upgrade all — merkaba/rosetta · PQC · Tesla · surfaces · clay=0', proof: crossWavesUpgradeAll(matrix) },
     { slug: 'iso-requires-pqc', title: 'Does ISO require PQC? — no universal mandate · migration guidance', proof: isoRequiresPostQuantumSecurity(matrix) },
     { slug: 'iso-pqc-gap-fill', title: 'ISO/NIST PQC gap-fill all quantum directions — covered|partial|gap · certified=false', proof: isoPqcRequirementsGapFillAllQuantumDirections(matrix) },
     { slug: 'quantum-standards-audit', title: 'Quantum standards audit — covered|partial|gap · forward·inverse·reverse · 10D', proof: quantumStandardsAuditSuite(matrix) },
