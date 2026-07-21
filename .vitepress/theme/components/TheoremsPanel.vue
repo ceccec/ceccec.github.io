@@ -111,6 +111,16 @@ const waveLabel = (provedBy: string) =>
     </div>
 
     <header class="theorems-panel__head">
+      <h2 id="proofs">Domain proofs — Clay-standard pages</h2>
+      <p class="theorems-panel__provenance">
+        Dedicated per-domain pages (statement · explanation · formulas · status · Prize Rules honesty).
+        <a href="/en/proofs">/en/proofs</a>
+        · claySolvedByThisFold=0 · not Proposed Solutions under
+        <a href="https://www.claymath.org/wp-content/uploads/2022/03/millennium_prize_rules_0.pdf" rel="noopener noreferrer" target="_blank">CMI Prize Rules</a>.
+      </p>
+    </header>
+
+    <header class="theorems-panel__head">
       <h2 id="open-frontiers">Open frontiers — held OPEN, never claimed</h2>
     </header>
     <ul class="theorems-panel__frontiers">

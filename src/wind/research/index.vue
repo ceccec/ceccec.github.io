@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, shallowRef } from 'vue'
-import { researchPanelComputes, millenniumPanelComputes } from './index.ts'
+import { researchPanelComputes, millenniumPanelComputes, domainProofPanelComputes, proseStandardisedToClay } from './index.ts'
 import UiCard from '../../../.vitepress/theme/components/ui/Card.vue'
 import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.vue'
 import UiBadge from '../../../.vitepress/theme/components/ui/Badge.vue'
@@ -10,6 +10,8 @@ import { statusBadgeKind } from '../../../.vitepress/lib/status-badge'
 
 const panel = shallowRef(researchPanelComputes())
 const millennium = shallowRef(millenniumPanelComputes())
+const domainProofs = shallowRef(domainProofPanelComputes())
+const clayProse = shallowRef(proseStandardisedToClay())
 const running = ref(false)
 const error = ref('')
 
@@ -19,6 +21,8 @@ function runMillennium() {
   try {
     millennium.value = millenniumPanelComputes()
     panel.value = researchPanelComputes()
+    domainProofs.value = domainProofPanelComputes()
+    clayProse.value = proseStandardisedToClay()
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'run failed'
   } finally {
@@ -34,13 +38,56 @@ runMillennium()
     <UiCardContent class="vp-doc research-index__content">
       <header class="research-index__header">
         <h2>Research · millennium challenge</h2>
-        <p class="research-index__lede">Browser-runnable MODELED CHALLENGE apparatus — claySolvedByThisFold must stay 0.</p>
+        <p class="research-index__lede">
+          Browser-runnable MODELED CHALLENGE apparatus — claySolvedByThisFold must stay 0.
+          Dedicated Clay-standard pages:
+          <a href="/en/proofs">/en/proofs</a>.
+        </p>
         <UiBadge :status="statusBadgeKind(panel.computes)">research.computes · {{ panel.computes ? '✓' : '—' }}</UiBadge>
         <UiButton size="sm" :disabled="running" @click="runMillennium">{{ running ? 'Running…' : 'Recompute challenge' }}</UiButton>
       </header>
       <UiSeparator />
       <p v-if="error" class="research-index__error" role="alert">{{ error }}</p>
-      <section>
+      <section id="proofs">
+        <h3>Domain proofs · Clay presentation + Prize Rules</h3>
+        <UiBadge :status="domainProofs.computes && domainProofs.claySolvedByThisFold === 0 ? 'ready' : 'warn'">
+          rows={{ domainProofs.rows.length }} · clay={{ domainProofs.claySolvedByThisFold }} ·
+          gaps closed={{ domainProofs.closedGaps }} / open={{ domainProofs.openGaps }} / honest-open={{ domainProofs.honestOpenGaps }}
+        </UiBadge>
+        <p class="research-index__meta">
+          Canonical:
+          <a :href="domainProofs.problemsUrl" rel="noopener noreferrer" target="_blank">Millennium Problems</a>
+          ·
+          <a :href="domainProofs.rulesPdfUrl" rel="noopener noreferrer" target="_blank">Prize Rules PDF</a>
+        </p>
+        <table class="research-index__table">
+          <thead><tr><th>Domain</th><th>Status</th><th>§5 Proposed?</th><th>Page</th></tr></thead>
+          <tbody>
+            <tr v-for="r in domainProofs.rows" :key="r.id">
+              <td><strong>{{ r.title }}</strong><div class="research-index__meta">{{ r.kind }}</div></td>
+              <td>{{ r.status }}</td>
+              <td>{{ r.qualifiesAsProposedSolutionUnderClayRules }}</td>
+              <td><a :href="r.route"><code>{{ r.slug }}</code></a></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="research-index__meta">{{ domainProofs.boundary }}</p>
+        <p class="research-index__meta"><code>{{ domainProofs.cli }}</code> · <code>npm run quantum:prose-gaps-audit</code></p>
+        <p class="research-index__meta">
+          Prose→Clay global:
+          audited={{ clayProse.auditedCount }} · pass={{ clayProse.passedCount }} · fail={{ clayProse.failedCount }} ·
+          clay={{ clayProse.claySolvedByThisFold }}
+          <code>npm run quantum:prose-clay-standard</code>
+        </p>
+        <ul v-if="clayProse.failedCount > 0" class="research-index__list">
+          <li v-for="f in clayProse.failed" :key="f.id">
+            <code>{{ f.surface }}</code>
+            <span class="research-index__pair">residual={{ f.residual }}</span>
+          </li>
+        </ul>
+      </section>
+      <UiSeparator />
+      <section id="millennium-challenge">
         <h3>Millennium challenge</h3>
         <UiBadge :status="millennium.claySolvedByThisFold === 0 && millennium.computes ? 'ready' : 'warn'">
           claySolvedByThisFold={{ millennium.claySolvedByThisFold }} · {{ millennium.computes ? '✓' : '—' }}
@@ -51,7 +98,7 @@ runMillennium()
           tokens={{ millennium.infinityReuse.runtimeTokens }}
         </p>
         <table class="research-index__table">
-          <thead><tr><th>Problem</th><th>Status</th><th>On</th><th>Methods</th><th>Gap</th></tr></thead>
+          <thead><tr><th>Problem</th><th>Status</th><th>On</th><th>Methods</th><th>Gap</th><th>Page</th></tr></thead>
           <tbody>
             <tr v-for="p in millennium.problems" :key="p.id">
               <td><code>{{ p.id }}</code></td>
@@ -59,6 +106,7 @@ runMillennium()
               <td>{{ p.on ? '✓' : '—' }}</td>
               <td>{{ p.methods }}</td>
               <td>{{ p.gap || '—' }}</td>
+              <td><a :href="`/en/proofs/millennium-${p.id}`">open</a></td>
             </tr>
           </tbody>
         </table>

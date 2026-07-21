@@ -16,6 +16,7 @@ export { default as PaperFrame } from './PaperFrame.vue'
 export { default as TheoremSupport } from './TheoremSupport.vue'
 export { default as ModelCardPages } from './ModelCardPages.vue'
 export { default as TheoremPages } from './TheoremPages.vue'
+export { default as DomainProofPages } from './DomainProofPages.vue'
 export { default as TheoremIndex } from './TheoremIndex.vue'
 export { default as SourceAtlas } from './SourceAtlas.vue'
 export { default as TrinityGateways } from './TrinityGateways.vue'
@@ -39,6 +40,7 @@ export const VITEPRESS_COMPONENT_SET = [
   'TheoremSupport',
   'ModelCardPages',
   'TheoremPages',
+  'DomainProofPages',
   'TheoremIndex',
   'SourceAtlas',
   'TrinityGateways',

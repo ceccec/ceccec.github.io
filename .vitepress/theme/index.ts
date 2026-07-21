@@ -16,6 +16,7 @@ import {
   UniversalPageTemplate,
   ModelCardPages,
   TheoremPages,
+  DomainProofPages,
   TheoremIndex,
   SourceAtlas,
 } from './components/index.ts'
@@ -34,6 +35,7 @@ export default {
     }
     if (!ctx.app.component('ModelCardPages')) ctx.app.component('ModelCardPages', ModelCardPages)
     if (!ctx.app.component('TheoremPages')) ctx.app.component('TheoremPages', TheoremPages)
+    if (!ctx.app.component('DomainProofPages')) ctx.app.component('DomainProofPages', DomainProofPages)
     if (!ctx.app.component('TheoremIndex')) ctx.app.component('TheoremIndex', TheoremIndex)
     if (!ctx.app.component('SourceAtlas')) ctx.app.component('SourceAtlas', SourceAtlas)
     if (!ctx.app.component('DigitMotion')) ctx.app.component('DigitMotion', DigitMotion)
