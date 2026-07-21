@@ -38,7 +38,9 @@ import { platformOgLimitsMeasured, honestyInProseChallenged } from '../../mounta
 import {
   millenniumPanelComputes, unitDistanceResearch, firstInCorpusProvenanceForHome, sciencesTrinitiesPanelComputes,
   theoremParticleCollisionPanelComputes,
+  clayChallengesComputableFromSequence, toolboxRecomputesRelatedSciencesInTrinityWaves,
 } from '../../wind/research/index.ts'
+import { earthRealisedByComputingPolesAsPyramid } from '../../mountain/geometry/index.ts'
 import { fusionVerifyPanelComputes } from '../../wind/fusion/index.ts'
 import {
   oneQuantumModelFasterThanAll,
@@ -371,6 +373,27 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets
+    } else if (toolId === 'clay-challenges-computable') {
+      const r = clayChallengesComputableFromSequence()
+      ok = r.computes && r.clayChallengesComputable && r.claySolvedByThisFold === 0
+      summary = `computable=${r.clayChallengesComputable} paths=${r.computableCount}/${r.pathCount} openForPrize=${r.openForPrizeCount} claySolved=${r.claySolvedByThisFold}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'toolbox-sciences-trinity-waves') {
+      const r = toolboxRecomputesRelatedSciencesInTrinityWaves()
+      ok = r.computes && r.claySolvedByThisFold === 0
+      summary = `waves=${r.waveCount} clayComputable=${r.clayChallengesComputable} claySolved=${r.claySolvedByThisFold}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'earth-poles-pyramid') {
+      const r = earthRealisedByComputingPolesAsPyramid()
+      ok = r.computes && r.claySolvedByThisFold === 0
+      summary = `fourWay=${r.fourWayCounterRotating} claySolved=${r.claySolvedByThisFold} ftl=${r.physicalFtlClaim}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'rosetta-complete') {
       const r = rosettaCompleteQuantumAllComputableDimensionsAndTheorems()
       ok = r.computes

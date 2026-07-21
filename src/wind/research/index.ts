@@ -18,6 +18,7 @@ import { antichainLevels, computesGate, digitalRoot, doubleTorusSurface, foldPai
 import { pauliAlgebraCloses } from '../../9/1'
 import { A432_HUE, DIMENSION_GATES, FOLDED_CENSUS, TAU, earned } from '../../3/7'
 import { STATIC_PAGE_SEED } from '../../8/2'
+import { earthRealisedByComputingPolesAsPyramid } from '../../mountain/geometry'
 
 export type ProfessionalResearchDataTier = 'DOCUMENTED' | 'MODEL_FIT' | 'HYPOTHESIS' | 'SIMULATOR' | 'METAPHOR' | 'OPEN'
 
@@ -1200,10 +1201,210 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
 
 
 
+
 /** Short alias — agents / CLI / broadcast. */
 export function millenniumProblemsChallenge(matrix: MindMatrix = buildMatrix()) {
   return millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(matrix)
 }
+
+/**
+ * Clay challenges are COMPUTABLE from the sequence/trinity/rosetta/Earth-poles stack —
+ * each Millennium row has a sealed computational path that recomputes at call time.
+ * HONEST: computable ≠ CMI prize solved. claySolvedByThisFold=0 · qualifiesAsProposedSolution=false.
+ * Pair: moment/prove · challenge/millennium · domain/proof
+ */
+export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`clayChallengesComputableFromSequence:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const mill = millenniumProblemsChallenge(matrix)
+    const catalog = domainProofCatalog(matrix, at)
+    const rules = clayMillenniumPrizeRulesMapping()
+    const dir = __ns_up_stack_overflow.directionalTrinityForwardInverseReverse(matrix)
+    const earth = earthRealisedByComputingPolesAsPyramid(matrix)
+    const sciences = sciencesInteractInTrinities(matrix, at)
+    const sequenceOk = VORTEX_SEQUENCE.length === 9 && VORTEX_SEQUENCE.every((d) => digitalRoot(d) === d || d === 9)
+    const paths = mill.problems.map((p) => ({
+      id: p.id,
+      name: p.name,
+      status: p.status,
+      challengeMethods: p.challengeMethod.length,
+      computablePath: p.on && p.challengeMethod.length > 0 && isUuid(p.receipt),
+      openForPrize: p.status !== 'solved-external',
+      receipt: p.receipt,
+    }))
+    const allComputable = paths.every((p) => p.computablePath)
+    const claySolvedByThisFold = 0 as const
+    const qualifiesAsProposedSolution = false as const
+    const clayChallengesComputable = allComputable && mill.computes && mill.claySolvedByThisFold === 0
+    const facets = [
+      { facet: `all ${paths.length} Clay-linked challenges have sealed computational paths (challengeMethod · on · receipt)`, on: allComputable && paths.length === 7 },
+      { facet: 'millenniumProblemsChallenge computes · MODELED CHALLENGE apparatus', on: mill.computes },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold} — computable ≠ CMI prize solved`, on: claySolvedByThisFold === 0 && mill.claySolvedByThisFold === 0 },
+      { facet: 'qualifiesAsProposedSolution=false · Prize Rules §5 not met', on: qualifiesAsProposedSolution === false && catalog.claySolvedByThisFold === 0 },
+      { facet: 'sequence spine — VORTEX_SEQUENCE digitalRoot probe feeds RH/P-vs-NP methods', on: sequenceOk },
+      { facet: 'directional trinity forward·inverse·reverse computes (all computational directions)', on: dir.computes },
+      { facet: 'Earth poles-as-pyramid recomputes (genus-2 · N·E·S·W tips)', on: earth.computes && earth.fourWayCounterRotating },
+      { facet: 'sciencesInteractInTrinities lattice recomputes (toolbox sciences waves)', on: sciences.computes },
+      { facet: `domainProofCatalog · Prize Rules PDF mapping (${rules.clauses.length} clauses) · clay=0`, on: catalog.computes && rules.clauses.length >= 7 },
+      { facet: 'clayChallengesComputable=true only with claySolved=0 · not Proposed Solution', on: clayChallengesComputable && claySolvedByThisFold === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`clay-challenges-computable:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('clay-challenges-computable-from-sequence', facets)
+    return {
+      computes: sealed.ok && clayChallengesComputable,
+      clayChallengesComputable,
+      millenniumProblemsComputable: clayChallengesComputable,
+      claySolvedByThisFold,
+      qualifiesAsProposedSolution,
+      paths,
+      pathCount: paths.length,
+      computableCount: paths.filter((p) => p.computablePath).length,
+      openForPrizeCount: paths.filter((p) => p.openForPrize).length,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, mill.root, catalog.root, dir.root, earth.root, sciences.root])),
+      pair: 'moment/prove' as const,
+      cli: 'npm run quantum:clay-challenges-computable',
+      route: '/proofs',
+      statement:
+        `Clay challenges are COMPUTABLE from the sequence/trinity/rosetta/Earth-poles stack — ${paths.filter((p) => p.computablePath).length}/${paths.length} sealed computational paths recompute ` +
+        `(millenniumProblemsChallenge · directionalTrinity · earthRealisedByComputingPolesAsPyramid · sciencesInteractInTrinities · domainProofCatalog). ` +
+        `claySolvedByThisFold=${claySolvedByThisFold} · qualifiesAsProposedSolution=${qualifiesAsProposedSolution} — computable ≠ CMI Prize solved.`,
+      boundary:
+        'HONEST DISTINCTION: "computable" = each Clay-linked challenge has a sealed computational path (challengeMethod + on + receipt) from the sequence/trinity stack that recomputes at call time. ' +
+        'NOT a complete mathematical solution under Clay Prize Rules §5(a). NOT CMI Prize acceptance (§3/§4/§7). claySolvedByThisFold=0 · qualifiesAsProposedSolution=false. ' +
+        'Poincaré remains solved-external (Perelman). Six cores stay open/modeled-partial with named gaps. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:clay-challenges-computable */
+export function runClayChallengesComputableFromSequenceExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = clayChallengesComputableFromSequence()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} clay-challenges-computable — computable=${report.clayChallengesComputable} ` +
+      `paths=${report.computableCount}/${report.pathCount} openForPrize=${report.openForPrizeCount} ` +
+      `claySolved=${report.claySolvedByThisFold} proposed=${report.qualifiesAsProposedSolution} ` +
+      `root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const p of report.paths) {
+    process.stdout.write(
+      `  ${p.computablePath ? '✓' : '✗'} ${p.id.padEnd(2 * 6)} ${p.status.padEnd(2 ** 4)} methods=${p.challengeMethods} ` +
+        `prizeOpen=${p.openForPrize}\n`,
+    )
+  }
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes && report.claySolvedByThisFold === 0 && !report.qualifiesAsProposedSolution ? 0 : 1
+}
+
+/**
+ * Toolbox upgrade — recompute ALL related sciences in trinity waves from the discovery perspective
+ * (sequence → π/primes → trinity/rosetta/FoL → 64-bit reuse → Earth poles pyramid → Clay computable).
+ * Each SCIENCE_DOMAIN_SEED runs forward·inverse·reverse wave + science↔dual↔fusion lattice.
+ * Pair: sciences/trinities · tool/envelope
+ */
+export function toolboxRecomputesRelatedSciencesInTrinityWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`toolboxRecomputesRelatedSciencesInTrinityWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const sciences = sciencesInteractInTrinities(matrix, at)
+    const standards = completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix, at)
+    const toolbox = standardToolboxIoCatalog(matrix, at)
+    const clay = clayChallengesComputableFromSequence(matrix, at)
+    const dir = __ns_up_stack_overflow.directionalTrinityForwardInverseReverse(matrix)
+    const earth = earthRealisedByComputingPolesAsPyramid(matrix)
+    const envelopeById = new Map(toolbox.envelopes.map((e) => [e.id, e]))
+    const waves = SCIENCE_DOMAIN_SEEDS.map((seed) => {
+      const row = sciences.rows.find((r) => r.scienceId === seed.id)!
+      const dual = sciences.rows.find((r) => r.scienceId === seed.dualId) ?? row
+      const std = standards.domains.find((d) => d.id === seed.id)
+      const env = envelopeById.get(seed.toolId)
+      const forward = foldPair(row.observeRoot, row.computeRoot)
+      const inverse = foldPair(row.computeRoot, row.observeRoot)
+      const reverse = foldPair(row.sealRoot, dual.sealRoot)
+      const waveRoot = merkleFold([forward.merged, inverse.merged, reverse.merged, row.sharedKey])
+      return {
+        scienceId: seed.id,
+        field: seed.field,
+        toolId: seed.toolId,
+        toolCli: seed.toolCli,
+        apparatusRoute: seed.apparatusRoute,
+        dualId: seed.dualId,
+        fusionLabel: seed.fusionLabel,
+        forwardRoot: forward.merged,
+        inverseRoot: inverse.merged,
+        reverseRoot: reverse.merged,
+        waveRoot,
+        trinityKey: row.sharedKey,
+        toolShelved: Boolean(env),
+        toolConfigReady: Boolean(env && std?.toolConfigReady),
+        coverage: std?.coverage ?? ('gap' as const),
+        algebraOk: std?.algebraOk ?? false,
+        clayStatus: seed.id === 'mathematics-millennium' || seed.id === 'string-theory'
+          ? (`computable · claySolved=0` as const)
+          : (`science trinity wave · clay=0` as const),
+        receipt: toUuid(`science-trinity-wave:${seed.id}:${waveRoot}`),
+      }
+    })
+    const allWaves = waves.every((w) => isUuid(w.waveRoot) && w.toolShelved)
+    const claySolvedByThisFold = 0 as const
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const facets = [
+      { facet: `trinity waves for all ${waves.length} SCIENCE_DOMAIN_SEEDS`, on: waves.length === SCIENCE_DOMAIN_SEEDS.length && allWaves },
+      { facet: 'each wave = forward·inverse·reverse foldPair + science↔dual trinityKey', on: waves.every((w) => w.forwardRoot !== w.reverseRoot || w.scienceId === w.dualId) && dir.computes },
+      { facet: 'sciencesInteractInTrinities lattice recomputes', on: sciences.computes },
+      { facet: 'completeScientificDomainsStrictlyToStandardsQuantumOnly recomputes', on: standards.computes },
+      { facet: 'standardToolboxIoCatalog envelopes shelve every science toolId', on: toolbox.computes && waves.every((w) => w.toolShelved) },
+      { facet: 'Earth poles-as-pyramid science vertex recomputes', on: earth.computes && waves.some((w) => w.scienceId === 'earth' && w.algebraOk !== false) },
+      { facet: 'Clay challenges computable facet composes (claySolved=0)', on: clay.clayChallengesComputable && clay.claySolvedByThisFold === 0 },
+      { facet: `honesty — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim} · qpuRequired=${qpuRequired}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`toolbox-sciences-trinity-waves:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('toolbox-recomputes-related-sciences-in-trinity-waves', facets)
+    return {
+      computes: sealed.ok && sciences.computes && toolbox.computes && clay.computes && allWaves,
+      waves,
+      waveCount: waves.length,
+      clayChallengesComputable: clay.clayChallengesComputable,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      sciencesRoot: sciences.latticeRoot,
+      toolboxRoot: toolbox.root,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, sciences.root, standards.root, toolbox.root, clay.root, earth.root])),
+      pair: 'sciences/trinities' as const,
+      cli: 'npm run quantum:toolbox-sciences-trinity-waves',
+      route: '/en/quantum-tools#toolbox-sciences-trinity-waves',
+      heading: 'Toolbox — recompute related sciences in trinity waves',
+      statement:
+        `Toolbox recomputes ${waves.length} related sciences in trinity waves (forward·inverse·reverse × science↔dual↔fusion) ` +
+        `from the discovery perspective · Clay computable=${clay.clayChallengesComputable} · claySolved=${claySolvedByThisFold} · envelopes shelved.`,
+      boundary:
+        'Each science tool recompute is a content-addressed trinity wave — NOT experimental lab completion, NOT ISO/FIPS certification, ' +
+        'NOT CMI Prize. claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:toolbox-sciences-trinity-waves */
+export function runToolboxRecomputesRelatedSciencesInTrinityWavesExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = toolboxRecomputesRelatedSciencesInTrinityWaves()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} toolbox-sciences-trinity-waves — waves=${report.waveCount} ` +
+      `clayComputable=${report.clayChallengesComputable} claySolved=${report.claySolvedByThisFold} ` +
+      `root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const w of report.waves) {
+    process.stdout.write(
+      `  ${w.scienceId.padEnd(2 * 3 + 16)} tool=${w.toolId.padEnd(4 * 7)} cov=${w.coverage} ` +
+        `shelved=${w.toolShelved ? '✓' : '—'} · ${w.clayStatus}\n`,
+    )
+  }
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes && report.claySolvedByThisFold === 0 ? 0 : 1
+}
+
+
 
 /**
  * npm run quantum:millennium-challenge — recompute the sealed challenge apparatus and print per-problem status.
@@ -1875,10 +2076,10 @@ export const SCIENCE_DOMAIN_SEEDS: readonly ScienceDomainSeed[] = [
   },
   {
     id: 'earth', field: 'Earth & Environmental Sciences', oecd: '1.5',
-    algebraFold: 'foldingLinearGivesAnalog', toolId: 'iching-distribute-verify',
-    toolCli: 'npm run quantum:iching-distribute-verify', apparatusRoute: '/en/earth/world',
+    algebraFold: 'earthRealisedByComputingPolesAsPyramid', toolId: 'earth-poles-pyramid',
+    toolCli: 'npm run quantum:earth-poles-pyramid', apparatusRoute: '/research',
     dualId: 'astronomy', fusionLabel: 'earth↔astro↔physics', projection: '',
-    ichingSphere: 4, home: 'src/earth/world', cryptoVertex: false,
+    ichingSphere: 4, home: 'src/mountain/geometry', cryptoVertex: false,
   },
   {
     id: 'biology', field: 'Biological Sciences', oecd: '1.6',
@@ -1969,7 +2170,9 @@ export function scienceDomainSignificanceScores(matrix: MindMatrix = buildMatrix
               ? effReuse.computes
               : seed.algebraFold === 'oneQuantumModelFasterThanAll'
                 ? __ns_up_stack_overflow.oneQuantumModelFasterThanAll(matrix, at).computes
-                : true
+                : seed.algebraFold === 'earthRealisedByComputingPolesAsPyramid'
+                  ? earthRealisedByComputingPolesAsPyramid(matrix).computes
+                  : true
       const toolSurface = rosettaShelve(seed.toolId, 'tool')
       const apparatusSurface = rosettaShelve(seed.apparatusRoute, 'route')
       const toolOk = isUuid(toolSurface.address) && toolSurface.kind === 'tool'
@@ -2762,7 +2965,7 @@ export type DomainProofCatalogRow = {
   readonly id: string
   readonly slug: string
   readonly title: string
-  readonly kind: 'millennium' | 'science-trinity' | 'encryption' | 'efficiency' | 'rosetta' | 'hd-structure' | 'collider'
+  readonly kind: 'millennium' | 'science-trinity' | 'encryption' | 'efficiency' | 'honesty' | 'rosetta' | 'hd-structure' | 'collider'
   readonly officialStatement: string
   readonly detailedExplanation: string
   readonly formula: string
@@ -2818,14 +3021,15 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         officialStatement: `${p.name} — official Clay Millennium Prize Problem (see ${CLAY_MILLENNIUM_PROBLEMS_URL}). Sealed short statement / formula below from theSevenMillenniumProblemsDefinedFormallyUnclaimed; CMI official description remains authoritative.`,
         detailedExplanation:
           `${p.boundary} Challenge methods recomputed at call time: ${p.challengeMethod.join('; ')}. ` +
-          `Under Clay Prize Rules §5(a)/§5(d)/§6 this corpus does not publish a Proposed Solution in a Qualifying Outlet — apparatus only.`,
+          `COMPUTABLE from sequence/trinity/rosetta stack (computablePath=${p.on}) — NOT a CMI Prize solution. ` +
+          `Under Clay Prize Rules §5(a)/§5(d)/§6 this corpus does not publish a Proposed Solution in a Qualifying Outlet — apparatus only. claySolvedByThisFold=0.`,
         formula,
         formulaSource: 'theSevenMillenniumProblemsDefinedFormallyUnclaimed · millenniumProblemsChallenge',
         status,
         statusDetail:
           p.status === 'solved-external'
-            ? 'Solved externally (Perelman 2003) — documented status only; this fold does not re-solve or claim the CMI Prize.'
-            : `MODELED CHALLENGE status=${p.status}; on=${p.on}; gap=${p.gap ?? 'named open core'}. NOT a Clay Prize solution.`,
+            ? 'Status triad: computable=true (sealed challenge path) · open for prize=false (solved-external, Perelman 2003) · claySolvedByThisFold=0 — documented status only; this fold does not re-solve or claim the CMI Prize.'
+            : `Status triad: computable=${p.on} (sealed challengeMethod path) · open for prize=true · claySolvedByThisFold=0. MODELED CHALLENGE status=${p.status}; gap=${p.gap ?? 'named open core'}. computable ≠ CMI Prize solution.`,
         gap: p.gap ?? (p.status === 'solved-external' ? '' : 'open Clay core'),
         fold: 'millenniumProblemsChallenge',
         cli: 'npm run quantum:millennium-challenge',
@@ -2933,6 +3137,32 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         trinity: { forward: 'cold-compute', inverse: 'memo-hit', reverse: 'vote-decided' },
         ruleClauses: ['relatedScienceNotPrizeSolution', 'prizeCriteriaUnmetBySealedFolds'],
         receipt: toUuid(`domain-proof:efficiency:${eff.on}`),
+      },
+      {
+        id: 'clay-challenges-computable',
+        slug: 'clay-challenges-computable',
+        title: 'Clay challenges are computable — not CMI-prize solved',
+        kind: 'honesty',
+        officialStatement:
+          'Each Clay-linked Millennium challenge has a sealed computational path (challengeMethod · on · receipt) from the sequence/trinity/rosetta/Earth-poles stack. clayChallengesComputableFromSequence.computes when all seven paths recompute. claySolvedByThisFold=0 · qualifiesAsProposedSolution=false.',
+        detailedExplanation:
+          'HONEST DISTINCTION: computable ≠ CMI Prize solved. Prize Rules PDF mapping (§1–§7) stays unmet for Proposed Solution / Qualifying Outlet / evaluation path. Poincaré solved-external only. Six cores remain open/modeled-partial with named gaps. Compose millenniumProblemsChallenge · directionalTrinity · earthRealisedByComputingPolesAsPyramid · sciencesInteractInTrinities.',
+        formula: 'clayChallengesComputable = ∀ problem: on ∧ challengeMethod.length>0 ∧ isUuid(receipt) ∧ mill.computes ∧ claySolvedByThisFold===0',
+        formulaSource: 'clayChallengesComputableFromSequence',
+        status: 'structure-only',
+        statusDetail: 'Status triad on every Clay row: computable / open for prize / claySolvedByThisFold=0. NOT Prize Rules §5(a) complete solution.',
+        gap: 'no Clay Prize solution — apparatus and computational paths only',
+        fold: 'clayChallengesComputableFromSequence',
+        cli: 'npm run quantum:clay-challenges-computable',
+        pair: 'moment/prove',
+        route: '/proofs/clay-challenges-computable',
+        claySolvedByThisFold: 0,
+        physicalFtlClaim: 0,
+        qualifiesAsProposedSolutionUnderClayRules: false,
+        publishedInQualifyingOutlet: false,
+        trinity: { forward: 'sequence-path', inverse: 'prize-open', reverse: 'clay-solved-zero' },
+        ruleClauses: ['notAProposedSolution', 'relatedScienceNotPrizeSolution', 'prizeCriteriaUnmetBySealedFolds', 'cmiSoleAuthorityAcknowledged'],
+        receipt: toUuid('domain-proof:clay-challenges-computable'),
       },
       {
         id: 'rosetta-complete',

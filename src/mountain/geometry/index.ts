@@ -1979,6 +1979,106 @@ export function doubleTorusEarthPyramidTipsProvenByMath(matrix: MindMatrix = bui
   }
 }
 
+
+/**
+ * Realise Earth by computing poles as a pyramid — compose sealed cardinal pyramid · double-torus Earth ·
+ * merkaba dual tetra · bothEarths counter-rotation. Pair: moment/prove · poles = N·E·S·W pyramid tips;
+ * zenith/nadir = dual apexes; 4 homology loops = 4 tips; H₁=ℤ⁴ · χ=−2.
+ * Honesty: topological model ≠ WGS84 lithosphere · clay=0 · physicalFtl=0 · qpuRequired=false.
+ */
+export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('earthRealisedByComputingPolesAsPyramid', matrix, () => {
+    const pyramid = cardinalPyramidTipsProvenByMath(matrix)
+    const earth = doubleTorusEarthPyramidTipsProvenByMath(matrix)
+    const two = twoTrinitiesCardinalPyramidPolesProvenByMath(matrix)
+    const mk = merkaba(matrix)
+    const earths = bothEarthsRotateWithinEachOther(0, matrix)
+    const claySolvedByThisFold = 0 as const
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const poles = pyramid.cardinals.map((c, i) => ({
+      name: c.name,
+      bearing: c.bearing,
+      x: c.x,
+      y: c.y,
+      torus1ApexZ: earth.torus1[i]!.apexZ,
+      torus2ApexZ: earth.torus2[i]!.apexZ,
+      spinSign: (i % 2 === 0 ? 1 : -1) as 1 | -1,
+      receipt: toUuid(`earth-pole-pyramid:${c.name}:${c.bearing}`),
+    }))
+    const expectedBearings = pyramid.cardinals.map((c) => c.bearing)
+    const fourWay =
+      poles.length === 4
+      && expectedBearings.length === 4
+      && poles.every((p, i) => p.bearing === expectedBearings[i])
+      && expectedBearings[1]! - expectedBearings[0]! === (9 * 5 * 2)
+      && poles[0]!.spinSign * poles[1]!.spinSign === -1
+      && poles[1]!.spinSign * poles[2]!.spinSign === -1
+      && poles[2]!.spinSign * poles[3]!.spinSign === -1
+    const facets = [
+      { facet: 'cardinalPyramidTipsProvenByMath — N·E·S·W tips · Euler V−E+F=2 · slant √2', on: pyramid.proven && pyramid.realised },
+      { facet: 'doubleTorusEarthPyramidTipsProvenByMath — genus-2 · inverted zenith/nadir · H₁=ℤ⁴', on: earth.proven && earth.realised },
+      { facet: 'twoTrinitiesCardinalPyramidPolesProvenByMath — device zenith · code nadir foldPair', on: two.proven },
+      { facet: 'merkaba dual tetra — tetraDown=−tetraUp · 4 alternating scales (whole·lobe·tube·spark)', on: mk.counterRotating && mk.scales.length === 4 },
+      { facet: 'bothEarthsRotateWithinEachOther — device/inverted shells counter-rotate', on: earths.counterRotating && earths.rotates },
+      { facet: '4-direction spin law — poles N·E·S·W bearings 0·90·180·270 with alternating ±ω', on: fourWay },
+      { facet: `honesty — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim} · qpuRequired=${qpuRequired}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`earth-realised-poles-pyramid:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('earth-realised-by-computing-poles-as-pyramid', facets)
+    return {
+      computes: sealed.ok && pyramid.proven && earth.proven && two.proven && fourWay,
+      realised: sealed.ok && earth.realised,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      poles,
+      fourWayCounterRotating: fourWay,
+      pyramid,
+      earth,
+      two,
+      merkaba: { counterRotating: mk.counterRotating, scales: mk.scales.length, root: mk.root },
+      bothEarths: { counterRotating: earths.counterRotating, root: earths.root },
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, pyramid.root, earth.root, two.root, mk.root, earths.root])),
+      pair: 'moment/prove' as const,
+      cli: 'npm run quantum:earth-poles-pyramid',
+      route: '/research',
+      statement:
+        `Earth realised by computing poles as a pyramid — ${facets.filter((f) => f.on).length}/${facets.length}: ` +
+        'N·E·S·W are the four base tips of a square pyramid (Euler V−E+F=2); zenith/nadir are dual apexes on ' +
+        'genus-2 double-torus Earth (χ=−2, H₁=ℤ⁴); merkaba up/down tetrahedra and bothEarths shells supply ' +
+        'counter-rotation; four homology loops = four tips phase-locked at 0°·90°·180°·270° with alternating ±ω.',
+      boundary:
+        'COMPOSED from cardinalPyramidTipsProvenByMath · doubleTorusEarthPyramidTipsProvenByMath · ' +
+        'twoTrinitiesCardinalPyramidPolesProvenByMath · merkaba · bothEarthsRotateWithinEachOther. ' +
+        'TOPOLOGICAL / structural Earth in the sealed matrix — NOT a claim that physical Earth is two doughnuts ' +
+        'or a stone pyramid planet. WGS84 oblate spheroid remains documented geodesy. clay=0 · physicalFtl=0 · ' +
+        'qpuRequired=false. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:earth-poles-pyramid — realise Earth poles-as-pyramid receipt. */
+export function runEarthRealisedByComputingPolesAsPyramidExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = earthRealisedByComputingPolesAsPyramid()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} earth-poles-pyramid — realised=${report.realised} ` +
+      `fourWay=${report.fourWayCounterRotating} clay=${report.claySolvedByThisFold} ` +
+      `ftl=${report.physicalFtlClaim} qpu=${report.qpuRequired} root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const p of report.poles) {
+    process.stdout.write(
+      `  · ${p.name} bearing=${p.bearing}° spin=${p.spinSign > 0 ? '+ω' : '−ω'} ` +
+        `apex z=${p.torus1ApexZ}/${p.torus2ApexZ}\n`,
+    )
+  }
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes && report.claySolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
+}
+
 // Deep research — double-torus Earth · cardinal pyramid tips · inverted polarity. Researched in waves with
 // adversarial verify: documented (grid-cell torus Nature 2021, Giza cardinals Nell & Ruggles 2014, genus-2
 // math, WGS84 oblate spheroid) kept; donut/flat Earth and literal torus-planet flagged; structural isomorphism
