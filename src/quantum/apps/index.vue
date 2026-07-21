@@ -14,6 +14,7 @@ import {
   runQuantumStandardsAuditInBrowser,
   cryptoToolkitBeyondRsaMeasured,
   demoRsaGenerateAndReverseMeasured,
+  proveOneTbitRealtimeEncryptionClaim,
   encryptionPanelComputes,
 } from '../../water/encryption/index.ts'
 import { platformOgLimitsMeasured, honestyInProseChallenged } from '../../mountain/og/index.ts'
@@ -105,6 +106,18 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'prove-1tbit-encrypt') {
+      const r = proveOneTbitRealtimeEncryptionClaim()
+      const exported = exportStandardToolEnvelope('prove-1tbit-encrypt', 'ceccec.local')
+      const imported = importStandardToolEnvelope(exported)
+      ok = r.computes && exported.computes && imported.roundTrip
+      summary = `wire.proved=${r.wire.provedAtCallTime} demo=${r.demo.measuredBitsPerSec.toExponential(3)} amort=${r.amortized.measuredBitsPerSec.toExponential(3)} amort.proved=${r.amortized.provedAtCallTime} · envelope=${exported.kind}@${exported.version} roundTrip=${imported.roundTrip}`
+      root = r.root
+      boundary = r.boundary
+      facets = [
+        ...r.facets.map((f) => ({ facet: f.facet, on: f.on })),
+        { facet: `standard envelope ${exported.kind}@${exported.version} import/export round-trip`, on: imported.roundTrip },
+      ]
     } else if (toolId === 'og-limits-measure') {
       const limits = platformOgLimitsMeasured()
       const honesty = honestyInProseChallenged()
@@ -378,6 +391,21 @@ function runTool(toolId: string) {
         </UiButton>
         <UiButton size="sm" :disabled="runningId === 'demo-rsa-measure'" @click="runTool('demo-rsa-measure')">
           {{ runningId === 'demo-rsa-measure' ? '…' : 'Run demo-RSA measure' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="prove-1tbit" aria-label="Prove 1 Tbit per second realtime encryption claim">
+        <h3>1 Tbit/s realtime encryption — honest claim receipt</h3>
+        <p class="quantum-apps__meta">
+          SI target 1e12 bits/s. wire-crypto is NOT proved (no AES bench). amortized-reuse-memo may prove holographic extent÷memoByRoot — NOT wire AES-GCM · NOT FIPS.
+        </p>
+        <UiBadge :variant="encryption.oneTbit?.computes && !encryption.oneTbit?.wire?.provedAtCallTime ? 'default' : 'outline'">
+          wire.proved={{ encryption.oneTbit?.wire?.provedAtCallTime ?? '—' }}
+          · amort.proved={{ encryption.oneTbit?.amortized?.provedAtCallTime ?? '—' }}
+          · amort={{ encryption.oneTbit?.amortized?.measuredBitsPerSec?.toExponential?.(3) ?? '—' }}
+        </UiBadge>
+        <UiButton size="sm" :disabled="runningId === 'prove-1tbit-encrypt'" @click="runTool('prove-1tbit-encrypt')">
+          {{ runningId === 'prove-1tbit-encrypt' ? '…' : 'Run prove-1tbit-encrypt' }}
         </UiButton>
       </section>
       <UiSeparator />

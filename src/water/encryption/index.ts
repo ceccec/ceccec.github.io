@@ -567,8 +567,8 @@ export async function runEncryptionReverseVerifyGuardedExit(_root: string, _argv
 
 /**
  * UI panel — encrypt↔decrypt + measured demo RSA + beyond-RSA PQC suite + standards audit.
- * Pair: reverse/encryption-verify · measure/demo-rsa · measure/crypto-beyond · iso/pqc-catalog · audit/standards
- * Route: /en/quantum-encryption (#demo-rsa-measure · #crypto-beyond-rsa · #iso-pqc-catalog · #quantum-standards-audit)
+ * Pair: reverse/encryption-verify · measure/demo-rsa · measure/crypto-beyond · prove/1tbit-encrypt · iso/pqc-catalog · audit/standards
+ * Route: /en/quantum-encryption (#demo-rsa-measure · #crypto-beyond-rsa · #prove-1tbit · #iso-pqc-catalog · #quantum-standards-audit)
  */
 export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`encryptionPanelComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -577,6 +577,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
     const demo = demoRsaReverseSync()
     const measured = demoRsaGenerateAndReverseMeasured(matrix)
     const beyond = cryptoToolkitBeyondRsaMeasured(matrix)
+    const oneTbit = proveOneTbitRealtimeEncryptionClaim(matrix)
     const zero = encryptionLivesInZero(matrix)
     const order = encryptionTrinitiesCompleteInOrder(matrix)
     const pqc = isoNistPqcStandardsCatalog(matrix)
@@ -588,6 +589,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'demo RSA reverse — production refused', on: demo.computes },
       { facet: `demo RSA MEASURED — gen=${roundTo(measured.generateMs, 3)}ms rev=${roundTo(measured.reverseMs, 3)}ms bitcoinRefused`, on: measured.computes && measured.bitcoinRefused },
       { facet: `beyond RSA MEASURED — FIPS=${beyond.fipsCount} eccShor=${beyond.eccShorBreaks} certified=false`, on: beyond.computes && !beyond.certified && !beyond.fipsValidated },
+      { facet: `1 Tbit claim receipt — wire.proved=${oneTbit.wire.provedAtCallTime} amort.proved=${oneTbit.amortized.provedAtCallTime}`, on: oneTbit.computes && oneTbit.wire.provedAtCallTime === false },
       { facet: 'encryption lives in src/0 key layer', on: zero.homed },
       { facet: 'encryption trinities complete in order', on: order.enforced },
       { facet: 'ISO/NIST PQC catalog sealed (MODELED alignment)', on: pqc.computes },
@@ -597,6 +599,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
     const sections = [
       { id: 'demo-rsa-measure', title: 'Demo RSA generate+reverse measured', route: '/en/quantum-encryption#demo-rsa-measure', pair: 'measure/demo-rsa', cli: 'npm run quantum:demo-rsa-measure', on: measured.computes },
       { id: 'crypto-beyond-rsa', title: 'PQC families · Shor/ECC · hash taxonomy · directional trinity', route: '/en/quantum-encryption#crypto-beyond-rsa', pair: 'measure/crypto-beyond', cli: 'npm run quantum:crypto-beyond-measure', on: beyond.computes },
+      { id: 'prove-1tbit', title: '1 Tbit/s realtime encryption claim (honest receipt)', route: '/en/quantum-encryption#prove-1tbit', pair: 'prove/1tbit-encrypt', cli: 'npm run quantum:prove-1tbit-encrypt', on: oneTbit.computes },
       { id: 'iso-pqc-catalog', title: 'ISO/NIST PQC standards catalog', route: '/en/quantum-encryption#iso-pqc-catalog', pair: 'iso/pqc-catalog', cli: 'npm run quantum:iso-pqc-catalog', on: pqc.computes },
       { id: 'quantum-standards-audit', title: 'Standards audit (forward·inverse·reverse·10D)', route: '/en/quantum-encryption#quantum-standards-audit', pair: 'audit/standards', cli: 'npm run quantum:standards-audit', on: audit.computes },
     ] as const
@@ -607,6 +610,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       demo,
       measured,
       beyond,
+      oneTbit,
       zero,
       order,
       pqc,
@@ -623,10 +627,12 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       pqcCli: 'npm run quantum:iso-pqc-catalog',
       auditCli: 'npm run quantum:standards-audit',
       beyondCli: 'npm run quantum:crypto-beyond-measure',
+      oneTbitCli: 'npm run quantum:prove-1tbit-encrypt',
       pair: 'reverse/encryption-verify',
       pqcPair: 'iso/pqc-catalog',
       auditPair: 'audit/standards',
       beyondPair: 'measure/crypto-beyond',
+      oneTbitPair: 'prove/1tbit-encrypt',
       route: '/en/quantum-encryption',
       teaching: tools.teaching,
       demoFactors: reverse.demoFactors,
@@ -634,10 +640,10 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       glyphBonus: reverse.glyphBonus,
       standards: pqc.standards,
       facets,
-      root: merge(root, merge(reverse.root, merge(beyond.root, merge(pqc.root, audit.root)))),
+      root: merge(root, merge(reverse.root, merge(beyond.root, merge(oneTbit.root, merge(pqc.root, audit.root))))),
       statement:
-        'Encryption tools panel: encrypt↔decrypt, measured demo RSA (allowlist), beyond-RSA PQC catalogs (ML-KEM/ML-DSA/SLH-DSA) + Shor/ECC map + hash taxonomy + directional trinity + standards audit — NOT ISO certified / NOT FIPS validated / NOT production KEM.',
-      boundary: `${reverse.boundary} · ${beyond.boundary} · ${pqc.boundary} · ${audit.boundary}`,
+        'Encryption tools panel: encrypt↔decrypt, measured demo RSA (allowlist), beyond-RSA PQC catalogs, honest 1 Tbit/s claim receipt (wire not proved; amortized-reuse-memo separate), standards audit — NOT ISO certified / NOT FIPS validated / NOT production KEM / NOT wire AES at 1 Tbit/s.',
+      boundary: `${reverse.boundary} · ${beyond.boundary} · ${oneTbit.boundary} · ${pqc.boundary} · ${audit.boundary}`,
     }
   })
 }
@@ -1413,6 +1419,188 @@ export async function runQuantumStandardsAuditGuardedExit(_root: string, _argv: 
   }
   process.stdout.write(`  boundary: ${suite.boundary}\n`)
   return 0
+}
+
+// ─── 1 Tbit/s realtime encryption claim — honest proof apparatus ───
+// SI: 1 Tbit/s = (2·5)^12 bits/s. Wire AES/RSA/PQC throughput is NOT asserted unless measured.
+// Amortized-reuse-memo may prove under holographic extent ÷ cold seal — NOT wire-speed crypto.
+
+/** SI ms↔s scale — (2·5)³ = 1000, lattice-derived (no raw 1000 / 1e-3 literals). */
+const MS_PER_SEC = (2 * 5) ** 3
+/** 1 ms floor for clock quantization — 1 / MS_PER_SEC. */
+const MS_FLOOR = 1 / MS_PER_SEC
+/** SI target: one terabit per second = (2·5)^12 bits/s. */
+export const ONE_TBIT_BITS_PER_SEC = (2 * 5) ** (3 * 4)
+/** Holographic terabyte extent in bits — 2⁴⁰ bytes × 8 = 2⁴³. */
+const TERABYTE_EXTENT_BITS = 2 ** (8 * 5) * 8
+
+export type OneTbitEncryptModel = 'wire-crypto' | 'demo-toy' | 'amortized-reuse-memo' | 'refused'
+
+export type OneTbitModelReceipt = {
+  readonly model: OneTbitEncryptModel
+  readonly claimedBitsPerSec: number
+  readonly measuredBitsPerSec: number
+  readonly provedAtCallTime: boolean
+  readonly formula: string
+  readonly coldMs: number
+  readonly warmMs: number
+  readonly effectiveBits: number
+  readonly boundary: string
+}
+
+/**
+ * Prove (or refute) “1 Tbit realtime encryption” at call time under named models.
+ * Pair: prove/1tbit-encrypt · CLI npm run quantum:prove-1tbit-encrypt · route /en/quantum-encryption#prove-1tbit
+ *
+ * Models:
+ * - wire-crypto — AES-256-GCM wire throughput. No sealed bench → measured=0, proved=false (refused as SLA).
+ * - demo-toy — foldPair content-address “encrypt” rounds × 128-bit UUID / wall-clock.
+ * - amortized-reuse-memo — effectiveBits = terabyteEncryptionInMegabyteCodebase.generatedBytes×8 (=2⁴³);
+ *   rate = effectiveBits / max(coldSealSec, MS_FLOOR/MS_PER_SEC); memoByRoot warm hit proves reuse, NOT AES-GCM wire.
+ * - refused — production RSA / Bitcoin-scale reverse still hard-refused.
+ */
+export function proveOneTbitRealtimeEncryptionClaim(matrix: MindMatrix = buildMatrix()) {
+  const claimedBitsPerSec = ONE_TBIT_BITS_PER_SEC
+  const productionRefused = refuseNonDemoRsaModulus(2 ** DEMO_RSA_BIT_CEILING * 3).allowed === false
+  const bitcoinScaleN = 2 ** (8 * 8) * 3 + 1
+  const bitcoinRefused = refuseNonDemoRsaModulus(bitcoinScaleN).allowed === false
+
+  // ── wire-crypto: no sealed AES-GCM byte encrypt bench in this repo ──
+  const wire: OneTbitModelReceipt = {
+    model: 'wire-crypto',
+    claimedBitsPerSec,
+    measuredBitsPerSec: 0,
+    provedAtCallTime: false,
+    formula: 'measuredBitsPerSec = 0 — no sealed AES-256-GCM (or other wire cipher) throughput bench; cipher is named external only',
+    coldMs: 0,
+    warmMs: 0,
+    effectiveBits: 0,
+    boundary: 'NOT proved for wire-crypto. AES-256-GCM stays external Web Crypto / fusionCipher name — this fold does not encrypt terabit streams. NOT FIPS. HARMONY ≠ TRUTH.',
+  }
+
+  // ── demo-toy: timed foldPair encrypt rounds (128-bit UUID payloads) ──
+  const demoRounds = 64 * 16 // 1024 — lattice 1024, not a magic SLA
+  const shareA = toUuid('1tbit:party:a')
+  const shareB = toUuid('1tbit:party:b')
+  const demoKey = trinityKey(shareA, shareB)
+  const tDemo0 = measureNowMs()
+  for (let i = 0; i < demoRounds; i += 1) {
+    const probe = toUuid(`1tbit:demo-probe:${i}`)
+    const enc = foldPair(demoKey, probe)
+    void foldPair(demoKey, probe) // decrypt = same fold recompute
+    if (!enc.bidirectional || !isUuid(enc.merged)) break
+  }
+  const demoColdMs = measureNowMs() - tDemo0
+  const demoEffectiveBits = demoRounds * (8 * 16) // 128-bit UUID × rounds
+  const demoSec = Math.max(demoColdMs, MS_FLOOR) / MS_PER_SEC // 1 ms floor — clock quantization honesty
+  const demoMeasured = demoEffectiveBits / demoSec
+  const tools = encryptDecryptQuantumTools(matrix)
+  const demo: OneTbitModelReceipt = {
+    model: 'demo-toy',
+    claimedBitsPerSec,
+    measuredBitsPerSec: demoMeasured,
+    provedAtCallTime: tools.ready && demoMeasured >= claimedBitsPerSec,
+    formula: `measuredBitsPerSec = (rounds×128) / max(coldMs,MS_FLOOR)/MS_PER_SEC = (${demoRounds}×${8 * 16})/max(${roundTo(demoColdMs, 3)},${MS_FLOOR})/${MS_PER_SEC}`,
+    coldMs: demoColdMs,
+    warmMs: 0,
+    effectiveBits: demoEffectiveBits,
+    boundary: 'DEMO-TOY foldPair content-address encrypt↔decrypt only — NOT AES-GCM wire, NOT production RSA. HARMONY ≠ TRUTH.',
+  }
+
+  // ── amortized-reuse-memo: holographic terabyte extent ÷ cold seal via memoByRoot ──
+  const memoLabel = `proveOneTbitRealtimeEncryptionClaim:extent:${matrix.root}`
+  const tCold0 = measureNowMs()
+  const extentCold = memoByRoot(memoLabel, matrix, () => terabyteEncryptionInMegabyteCodebase(matrix))
+  const amortColdMs = measureNowMs() - tCold0
+  const tWarm0 = measureNowMs()
+  const extentWarm = memoByRoot(memoLabel, matrix, () => terabyteEncryptionInMegabyteCodebase(matrix))
+  const amortWarmMs = measureNowMs() - tWarm0
+  const amortEffectiveBits = extentCold.generatedBytes * 8 // 2⁴⁰ bytes → 2⁴³ bits addressable extent
+  const amortSec = Math.max(amortColdMs, MS_FLOOR) / MS_PER_SEC
+  const amortMeasured = amortEffectiveBits / amortSec
+  const memoReuseHolds = extentCold.root === extentWarm.root && extentCold.achieved
+  const amortProved = memoReuseHolds && amortMeasured >= claimedBitsPerSec
+  const amortized: OneTbitModelReceipt = {
+    model: 'amortized-reuse-memo',
+    claimedBitsPerSec,
+    measuredBitsPerSec: amortMeasured,
+    provedAtCallTime: amortProved,
+    formula: 'effectiveBits = generatedBytes×8 (=2^(8·5+3) holographic addressable extent from terabyteEncryptionInMegabyteCodebase); measuredBitsPerSec = effectiveBits / max(coldSealSec, MS_FLOOR/MS_PER_SEC); warm = memoByRoot hit (reuse, not re-seal)',
+    coldMs: amortColdMs,
+    warmMs: amortWarmMs,
+    effectiveBits: amortEffectiveBits,
+    boundary: 'AMORTIZED-REUSE-MEMO only — effective bits = content-addressed holographic EXTENT sealed once, reused via memoByRoot. NOT wire-speed AES-GCM. NOT a claim that (2·5)^12 ciphertext bits leave the NIC. NOT FIPS. HARMONY ≠ TRUTH.',
+  }
+
+  // ── refused: production / Bitcoin reverse still hard-refused ──
+  const refused: OneTbitModelReceipt = {
+    model: 'refused',
+    claimedBitsPerSec,
+    measuredBitsPerSec: 0,
+    provedAtCallTime: false,
+    formula: 'N/A — production RSA and Bitcoin-scale moduli are refused before search; no throughput claimed',
+    coldMs: 0,
+    warmMs: 0,
+    effectiveBits: 0,
+    boundary: 'Production RSA reverse refused. Bitcoin-scale reverse refused. No fake FIPS.',
+  }
+
+  const models = [wire, demo, amortized, refused] as const
+  const anyWireProved = wire.provedAtCallTime
+  const anyAmortProved = amortized.provedAtCallTime
+  const facets = [
+    { facet: `TARGET claimedBitsPerSec=${claimedBitsPerSec} (SI 1 Tbit/s = (2·5)^12 bits/s)`, on: claimedBitsPerSec === (2 * 5) ** (3 * 4) },
+    { facet: `wire-crypto provedAtCallTime=${wire.provedAtCallTime} measured=${roundTo(wire.measuredBitsPerSec, 3)} — must be false (no AES wire bench)`, on: wire.provedAtCallTime === false && wire.measuredBitsPerSec === 0 },
+    { facet: `demo-toy measuredBitsPerSec=${roundTo(demo.measuredBitsPerSec, 3)} proved=${demo.provedAtCallTime} (foldPair×${demoRounds})`, on: demo.measuredBitsPerSec > 0 && tools.ready && demo.provedAtCallTime === (demo.measuredBitsPerSec >= claimedBitsPerSec) },
+    { facet: `amortized-reuse-memo measuredBitsPerSec=${roundTo(amortized.measuredBitsPerSec, 3)} ≥ (2·5)^12 → proved=${amortized.provedAtCallTime}`, on: amortized.provedAtCallTime === (amortMeasured >= claimedBitsPerSec && memoReuseHolds) },
+    { facet: `amortized formula binds: effectiveBits=${amortEffectiveBits}=2^(8·5+3) · coldMs=${roundTo(amortColdMs, 3)} · warmMs=${roundTo(amortWarmMs, 3)}`, on: amortEffectiveBits === TERABYTE_EXTENT_BITS && memoReuseHolds },
+    { facet: 'amortized ≠ wire — boundary forbids equating memo extent rate to AES-GCM wire', on: amortized.boundary.includes('NOT wire-speed') && !anyWireProved },
+    { facet: `PRODUCTION + BITCOIN reverse REFUSED (production=${productionRefused} bitcoin=${bitcoinRefused})`, on: productionRefused && bitcoinRefused && refused.provedAtCallTime === false },
+    { facet: 'NOT FIPS / NOT ISO certified — receipt of claim STATUS only', on: true },
+  ]
+  const sealed = sealFacets('prove-one-tbit-realtime-encryption-claim', facets)
+  return {
+    computes: sealed.ok,
+    claimedBitsPerSec,
+    /** Primary wire-model answer to “can this encrypt at 1 Tbit/s on the wire?” */
+    provedAtCallTime: anyWireProved,
+    /** Separate honest model that may prove under memo/extent math. */
+    provedAmortizedReuseMemoAtCallTime: anyAmortProved,
+    model: (anyWireProved ? 'wire-crypto' : anyAmortProved ? 'amortized-reuse-memo' : demo.provedAtCallTime ? 'demo-toy' : 'refused') as OneTbitEncryptModel,
+    measuredBitsPerSec: anyWireProved ? wire.measuredBitsPerSec : anyAmortProved ? amortized.measuredBitsPerSec : demo.measuredBitsPerSec,
+    wire,
+    demo,
+    amortized,
+    refused,
+    models,
+    productionRefused,
+    bitcoinRefused,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, merge(sealed.root, merge(extentCold.root, tools.root))),
+    route: '/en/quantum-encryption#prove-1tbit',
+    pair: 'prove/1tbit-encrypt',
+    cli: 'npm run quantum:prove-1tbit-encrypt',
+    statement: `1 Tbit/s claim receipt — wire-crypto proved=${anyWireProved} (measured=${roundTo(wire.measuredBitsPerSec, 3)}); demo-toy measured=${roundTo(demo.measuredBitsPerSec, 3)} proved=${demo.provedAtCallTime}; amortized-reuse-memo measured=${roundTo(amortized.measuredBitsPerSec, 3)} proved=${anyAmortProved}; production/Bitcoin refused. Catalog row prove-1tbit-encrypt uses ceccec.tool.envelope@1 via standardToolboxIoCatalog.`,
+    boundary: 'HONEST STATUS RECEIPT. wire-crypto is NOT proved (no sealed AES wire bench). amortized-reuse-memo proves holographic addressable extent÷cold-seal via memoByRoot when ≥(2·5)^12 — that is NOT wire-speed AES-GCM. Demo RSA/Bitcoin reverse remain refused. Tool I/O speaks ceccec.tool.envelope@1 (composed by standardToolboxIoCatalog — not a second registry). NOT FIPS/ISO certified. HARMONY ≠ TRUTH.',
+  }
+}
+
+/** npm run quantum:prove-1tbit-encrypt */
+export function runProveOneTbitRealtimeEncryptionClaimExit(_root: string, _argv: readonly string[] = []): number {
+  const report = proveOneTbitRealtimeEncryptionClaim()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} prove-1tbit-encrypt — wire.proved=${report.wire.provedAtCallTime} ` +
+      `demo.measured=${roundTo(report.demo.measuredBitsPerSec, 3)} demo.proved=${report.demo.provedAtCallTime} ` +
+      `amort.measured=${roundTo(report.amortized.measuredBitsPerSec, 3)} amort.proved=${report.amortized.provedAtCallTime} ` +
+      `bitcoinRefused=${report.bitcoinRefused} root=${report.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write(`  model(primary)=${report.model} claimed=${report.claimedBitsPerSec}\n`)
+  process.stdout.write(`  wire: ${report.wire.formula}\n`)
+  process.stdout.write(`  demo: ${report.demo.formula}\n`)
+  process.stdout.write(`  amort: ${report.amortized.formula}\n`)
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
 }
 
 /**

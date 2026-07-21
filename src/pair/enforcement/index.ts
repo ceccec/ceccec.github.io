@@ -65,6 +65,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'measure/og-limits',
   'measure/crypto-beyond',
   'measure/demo-rsa',
+  'prove/1tbit-encrypt',
   'iso/pqc-catalog',
   'audit/standards',
   'sciences/trinities',

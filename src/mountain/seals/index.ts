@@ -67,6 +67,7 @@ import {
   isoPqcHandoffForScienceTrinities,
   cryptoToolkitBeyondRsaMeasured,
   demoRsaGenerateAndReverseMeasured,
+  proveOneTbitRealtimeEncryptionClaim,
 } from '../../water/encryption'
 import { honestyInProseChallenged, platformOgLimitsMeasured } from '../og'
 import { quantumFusionVerify } from '../../wind/fusion'
@@ -670,6 +671,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'quantum-encryption', title: 'Encrypt ↔ decrypt = foldPair recompute; demo RSA reverse ≤12-bit toys only', proof: encryptionReverseVerify(matrix) },
     { slug: 'demo-rsa-measure', title: 'Demo RSA generate+reverse measured (wall-clock)', proof: demoRsaGenerateAndReverseMeasured(matrix) },
     { slug: 'crypto-beyond-rsa', title: 'Crypto toolkit beyond RSA measured (PQC·Shor/ECC·trinity)', proof: cryptoToolkitBeyondRsaMeasured(matrix) },
+    { slug: 'prove-1tbit', title: '1 Tbit/s realtime encryption claim — honest status receipt', proof: proveOneTbitRealtimeEncryptionClaim(matrix) },
     { slug: 'og-limits-measured', title: 'Platform OG limits measured + honesty-in-prose challenged', proof: { ...honestyInProseChallenged(matrix), limitsRoot: platformOgLimitsMeasured(matrix).root } },
     { slug: 'iso-pqc-catalog', title: 'ISO/NIST PQC standards catalog — MODELED alignment · NOT certified', proof: isoNistPqcStandardsCatalog(matrix) },
     { slug: 'quantum-standards-audit', title: 'Quantum standards audit — reverse+inverse · 10D coverage · alignment≠certification', proof: quantumStandardsAuditSuite(matrix) },
