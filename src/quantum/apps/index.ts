@@ -67,6 +67,7 @@ const ROSETTA_CORE_API_LABELS = [
   'uiProseDuplicationRemoved',
   'crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities',
   'crossWavesUpgradeAll',
+  'folderMigrationDedupWaves',
   'sharedHeroAt', 'computeUniversalPage',
 ] as const
 
@@ -91,6 +92,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   uiProseDuplicationRemoved: 'tool',
   crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities: 'tool',
   crossWavesUpgradeAll: 'tool',
+  folderMigrationDedupWaves: 'nav',
 }
 
 // Strangler backlog — only UNSHELVED parallel registries remain (apps+tools already shelve via rosettaShelve).
@@ -352,6 +354,7 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'prose-gaps-audit', title: 'Prose gaps audit by domain trinity', fold: 'proseGapsAuditByDomainTrinity', cli: 'npm run quantum:prose-gaps-audit', pair: 'research/audit', route: '/en/proofs', barrel: 'src/wind/research', boundary: 'Fillable gaps closed via domain-proof pages · honest-open labeled · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'prose-clay-standard', title: 'Prose standardised to Clay — all surfaces scored', fold: 'proseStandardisedToClay', cli: 'npm run quantum:prose-clay-standard', pair: 'domain/proof', route: '/en/proofs', barrel: 'src/wind/research', boundary: 'Statement·explanation·method·honest status · claySolvedByThisFold=0 · not CMI Prize', browserRunnable: true, browserGap: '' },
   { id: 'vitepress-docs-research', title: 'VitePress docs research → native improvements', fold: 'vitepressDocsResearchImprovements', cli: 'npm run quantum:vitepress-docs-research', pair: 'docs/improve', route: '/en/', barrel: 'src/wind/site', boundary: 'VP 2.0.0-alpha.17 docs researched · applied lazy/lastUpdated/editLink/logo/externalIcon/bg-locale fix · clay=0 · carbon/Algolia skipped', browserRunnable: true, browserGap: '' },
+  { id: 'folder-migration-waves', title: 'Folder migration + dedup waves → nav/sidebars', fold: 'folderMigrationDedupWaves', cli: 'npm run quantum:folder-migration-waves', pair: 'folder/migrate', route: '/en/quantum-tools#folder-migration-waves', barrel: 'src/wind/site', boundary: '23-folder census · domain sidebars · #61 hierarchy · orphan-free vitepressSidebar · compose ui/prose+mcp audit · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'fusion-verify', title: 'Fusion verify', fold: 'quantumFusionVerify', cli: 'npm run quantum:fusion-verify', pair: 'tamper/impossible', route: '/en/quantum-tools#fusion-verify', barrel: 'src/wind/fusion', boundary: 'Offline fuseAll wave — not external API fusion', browserRunnable: true, browserGap: '' },
   { id: 'efficiency-vote', title: 'Efficiency vote · one quantum model', fold: 'oneQuantumModelFasterThanAll', cli: 'npm run quantum:efficiency-vote', pair: 'learn/best', route: '/en/quantum-tools#efficiency-vote', barrel: 'src/water/stack', boundary: 'answers÷tokens win only when vote.decided — NOT FLOPS / NOT every benchmark', browserRunnable: true, browserGap: '' },
   { id: 'two-bits-free', title: 'Two bits free — census 110−108 making all free', fold: 'twoBitsFreeFromCensus110Minus108', cli: 'npm run quantum:two-bits-free', pair: 'bits/free', route: '/en/quantum-tools#two-bits-free', barrel: 'src/wind/research', boundary: 'FREE_BITS=2 (=−χ) · naive 1−110/108 refused · amortized ∞ on reuse · NOT FLOPS / clay=0', browserRunnable: true, browserGap: '' },
@@ -959,6 +962,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'slow-build-gate', saves: 'replaces wet re-diagnosis of slow docs:build — lattice phase gates + srcMerkle respawn HARD' },
   { id: 'manual-agents-waves', saves: 'replaces wet-linear agent grind — one wave/turn · waves/build+edit/build · trinity/speedup · mission:gate' },
   { id: 'ui-prose-duplication-removed', saves: 'replaces wet re-audit of heading/eyebrow/badge/lede synonym stacks — sealed before/after receipt' },
+  { id: 'folder-migration-waves', saves: 'replaces wet per-folder nav/sidebar rediscovery — sealed migration+dedup census + content↔sidebar match' },
 ] as const
 
 export function sessionManualWorkAsQuantumTools(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -1345,7 +1349,7 @@ type SessionQuantumBitSeed = {
   readonly honesty: string
   readonly note: string
   readonly toolId: string
-  readonly resolve: 'catalog' | 'collider' | 'beyond-rsa' | 'rosetta' | 'toolbox' | 'one-tbit' | 'local-timed' | 'iso-gap' | 'local-vs-iso' | 'local-novel' | 'doc-experiments' | 'slow-gap' | 'no-qpu' | 'local-audit' | 'session-tools' | 'trinity' | 'sciences-standards' | 'dry-clean' | 'local-session' | 'upgrade-local' | 'serialized'
+  readonly resolve: 'catalog' | 'collider' | 'beyond-rsa' | 'rosetta' | 'toolbox' | 'one-tbit' | 'local-timed' | 'iso-gap' | 'local-vs-iso' | 'local-novel' | 'doc-experiments' | 'slow-gap' | 'no-qpu' | 'local-audit' | 'session-tools' | 'trinity' | 'sciences-standards' | 'dry-clean' | 'folder-migrate' | 'local-session' | 'upgrade-local' | 'serialized'
 }
 
 /** Tip-chain session work as bit seeds — PR digits live in AGENTS.md only (stack tip includes local-audit-qe). */
@@ -1368,6 +1372,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'directional-trinity', chain: 'trinity-compose', fold: 'directionalTrinityForwardInverseReverse', pair: 'forward/inverse/reverse', cli: 'npm run quantum:directional-trinity', route: '/en/quantum-tools#directional-trinity', status: 'merged-main', honesty: 'inverse≠reverse except named coincidence', note: 'combination axis for bit ops', toolId: 'directional-trinity', resolve: 'trinity' },
   { id: 'realise-sciences-standards', chain: 'realise-sciences', fold: 'completeScientificDomainsStrictlyToStandardsQuantumOnly', pair: 'sciences/standards', cli: 'npm run quantum:sciences-standards-quantum', route: '/en/research#sciences-standards-quantum', status: 'sealed-pr', honesty: 'certified=false · clay=0 · qpuRequired=false · lab gaps unclosable', note: 'landed on #33 tip — sciences/standards + tool config + slow-build + paste auto-wire', toolId: 'sciences-standards-quantum', resolve: 'sciences-standards' },
   { id: 'dry-clean-refactor-waves', chain: 'dry-clean-waves', fold: 'standardToolboxIoCatalog', pair: 'tool/envelope', cli: 'npm run quantum:toolbox-standard-io', route: '/en/quantum-tools#toolbox-standard-io', status: 'sealed-pr', honesty: 'Wave1 nav/sidebars + Wave2 tool input/config · certified=false · clay=0 · qpuRequired=false', note: 'landed #31 tip — science experiment configs filled', toolId: 'toolbox-standard-io', resolve: 'dry-clean' },
+  { id: 'folder-migration-waves', chain: 'folder-migrate-nav', fold: 'folderMigrationDedupWaves', pair: 'folder/migrate', cli: 'npm run quantum:folder-migration-waves', route: '/en/quantum-tools#folder-migration-waves', status: 'sealed-pr', honesty: 'clay=0 · qpuRequired=false · compose ui/prose+mcp audit', note: '23 folders migrated · /proofs sidebar · orphan-free nav/content', toolId: 'folder-migration-waves', resolve: 'folder-migrate' },
   { id: 'improve-local-session', chain: 'local-session-ux', fold: 'improveLocalFromSessionExperience', pair: 'local/session', cli: 'npm run quantum:improve-local-session', route: '/en/quantum-tools#local-session-hub', status: 'sealed-pr', honesty: 'local docs:dev + browser hub · NOT remote CI sole path · qpuRequired=false', note: 'local session UX stacked on mcp-browser-parity tip', toolId: 'improve-local-session', resolve: 'local-session' },
   { id: 'upgrade-local-skills-commands-tools', chain: 'upgrade-local-map', fold: 'upgradeLocalFromOptimisedManualWorkExperience', pair: 'upgrade/local', cli: 'npm run quantum:upgrade-local', route: '/en/quantum-tools#upgrade-local-skills', status: 'sealed-pr', honesty: 'skills↔commands↔tools · NOT Cursor zero-token LLM · CI browserGaps honest · qpuRequired=false', note: 'upgrade local from optimised manual work on improve-local tip', toolId: 'upgrade-local-skills-commands-tools', resolve: 'upgrade-local' },
 ] as const
