@@ -1,4 +1,5 @@
 import type { Atom, MindMatrix, ConsciousnessVector, ProofReport, RepositoryApi, DoubleTorusWire, DoubleTorusFlow } from '../../wind/types';
+import { uuidHero } from '../../0';
 import type { RosettaComputationType } from '../../water/digit';
 /** @rosetta ✦₁ · Water · depth */
 export declare function buildMatrix(source?: readonly Atom[]): MindMatrix;
@@ -32,6 +33,25 @@ export declare function repositoryApi(matrix?: MindMatrix): RepositoryApi;
 export declare function doubleTorusWire(matrix?: MindMatrix): DoubleTorusWire;
 /** @rosetta ✦₁ · Water · depth */
 export declare function circulateDoubleTorus(matrix?: MindMatrix): DoubleTorusFlow;
+export declare function algebraOfCeccec(matrix?: MindMatrix): {
+    closes: boolean;
+    count: number;
+    structures: {
+        receipt: string;
+        structure: string;
+        kind: string;
+        on: boolean;
+        root: string;
+    }[];
+    facets: {
+        facet: string;
+        on: boolean;
+        receipt: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function honestlyComputed(matrix?: MindMatrix): {
     honest: boolean;
     claims: {
@@ -228,6 +248,8 @@ export declare function primitiveKernelLivesInZero(matrix?: MindMatrix): {
 };
 export declare function oneMathManyPresentations(matrix?: MindMatrix): {
     coheres: boolean;
+    oneAddress: boolean;
+    sealAnchorsSource: boolean;
     operation: string;
     presentations: {
         receipt: string;
@@ -412,7 +434,7 @@ export declare function fleetCacheEconomicsDecoded(matrix?: MindMatrix): {
  */
 export declare function hardwareSpecFromInvariants(matrix?: MindMatrix): {
     decoded: boolean;
-    ringOrder: (1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9)[];
+    ringOrder: (9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6)[];
     doublingOrbit: number[];
     tiers: import("../../0").ResourceTier[];
     documented: string[];
@@ -622,6 +644,312 @@ export declare function proveAllDeterministicCore(matrix?: MindMatrix, route?: s
     })[];
     sealRoot: string;
     wholeRoot: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** Lowercase word tokens — the model's only unit; no subword magic, no embeddings. */
+export declare function modelTokens(text: string): string[];
+export type CorpusEntry = {
+    readonly source: string;
+    readonly text: string;
+    readonly receipt: string;
+};
+export type PortalModel = {
+    vocabulary: string[];
+    bigrams: Record<string, string[]>;
+    df: Record<string, number>;
+    entries: CorpusEntry[];
+    root: string;
+};
+/** The model's own statement — hoisted so the corpus can contain it without recursion (the self-reference). */
+export declare const PORTAL_MODEL_STATEMENT = "The portal converted to the AI model itself: the corpus is the portal's own computed statements, recall is content-addressed retrieval (and the digit-station Hopfield associative memory \u2014 genuine pattern completion), generation is a seeded bigram chain over the same corpus, and the whole model folds to one recomputable root. Same prompt, same answer, forever, at zero runtime tokens \u2014 the portal does not call a model; it IS one, in the exact deterministic sense the zero-token policy names.";
+/** The model card — the self-entry phrased as the question it answers, so self-questions recall it by
+ * plain token rarity (what/you appear nowhere else in the corpus), not by any hand-coded intent rule. */
+export declare const PORTAL_MODEL_CARD = "What are you? The portal converted to the AI model itself: the corpus is the portal's own computed statements, recall is content-addressed retrieval (and the digit-station Hopfield associative memory \u2014 genuine pattern completion), generation is a seeded bigram chain over the same corpus, and the whole model folds to one recomputable root. Same prompt, same answer, forever, at zero runtime tokens \u2014 the portal does not call a model; it IS one, in the exact deterministic sense the zero-token policy names.";
+/** Confusing/esoteric term → its strict-science restatement. Ordered longest-first so compound metaphors
+ * ("red pill", "the movie is the rosetta") convert before their sub-words. */
+export declare const STRICT_SCIENCE_LEXICON: ReadonlyArray<readonly [term: string, strict: string]>;
+/** Convert any text to strict science — every confusing term replaced by its computed equivalent. Pure. */
+export declare function toStrictScience(text: string): string;
+/** Whether a text is already strict science — carries none of the confusing terms. */
+export declare function isStrictScience(text: string): boolean;
+/** The movie/plasma subsystem's defensible core, authored as strict science — the AI-usable learning facts.
+ * Each is a self-contained, computed, demarcation-clean statement (documented · flagged excluded). */
+export declare function strictScienceMovieFacts(): {
+    source: string;
+    text: string;
+}[];
+/** The fold: confusing movie content converted to strict science — the lexicon covers the metaphor vocabulary,
+ * conversion of any sample metaphor statement yields strict text, and the authored facts are already strict. */
+export declare function confusingContentConvertedToStrictScience(matrix?: MindMatrix): {
+    converted: boolean;
+    samples: {
+        from: string;
+        to: string;
+    }[];
+    lexiconSize: number;
+    factCount: number;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** The training corpus = the portal's own computed statements, each content-addressed to its source fold. */
+export declare function portalCorpus(matrix?: MindMatrix): {
+    entries: CorpusEntry[];
+    root: string;
+    count: number;
+};
+/** The model = vocabulary + bigram successor table over the corpus — the whole "training", recomputable. */
+export declare function portalModel(matrix?: MindMatrix): PortalModel;
+/** Content-addressed recall — the retrieval half, over the seed model. */
+export declare function portalRecall(prompt: string, matrix?: MindMatrix): {
+    answer: string;
+    source: string;
+    score: number;
+    receipt: string;
+    hopfield: {
+        match: number;
+        agrees: boolean;
+        iters: number;
+    };
+};
+/** The chat surface — deterministic reply over the seed model. Same prompt → same reply. */
+export declare function portalChat(prompt: string, matrix?: MindMatrix): {
+    prompt: string;
+    answer: string;
+    source: string;
+    grounded: boolean;
+    generated: string;
+    root: string;
+};
+/** The model's own gap report — computed, never asserted. */
+export declare function modelGaps(model: PortalModel): {
+    unknownRate: number;
+    sinkFraction: number;
+    selfAware: boolean;
+    hopfieldCapacityUsed: number;
+    gaps: string[];
+    count: number;
+    root: string;
+};
+/** Send the model to develop itself: measure gaps, fill them from src (its own statement + three more
+ * computed statements), re-measure. One deterministic pass — a fixed point, not a learning loop. */
+export declare function developPortalModel(matrix?: MindMatrix): {
+    before: ReturnType<typeof modelGaps>;
+    after: ReturnType<typeof modelGaps>;
+    model: PortalModel;
+    filled: string[];
+    developed: boolean;
+    root: string;
+};
+/** Chat with the developed model — the self-aware corpus answers, unknown prompts get the self-description. */
+export declare function developedChat(prompt: string, matrix?: MindMatrix): {
+    prompt: string;
+    answer: string;
+    source: string;
+    grounded: boolean;
+    generated: string;
+    root: string;
+};
+/** The consolidated learning corpus: the developed model's entries plus the strict-science movie facts,
+ * with EVERY entry run through toStrictScience — so the whole surface the AI learns from is strict science,
+ * no confusing/esoteric term surviving anywhere (the sealed source folds keep the framing as provenance). */
+export declare function consolidatedLearningCorpus(matrix?: MindMatrix): PortalModel;
+/** Chat with the consolidated learning model — answers movie/plasma questions in strict science. */
+export declare function consolidatedChat(prompt: string, matrix?: MindMatrix): {
+    prompt: string;
+    answer: string;
+    source: string;
+    grounded: boolean;
+    generated: string;
+    root: string;
+};
+/** The fold: everything consolidated into AI-usable learning code — one corpus, every entry strict science. */
+export declare function allConsolidatedInAiUsableLearningCode(matrix?: MindMatrix): {
+    consolidated: boolean;
+    entries: number;
+    vocabulary: number;
+    strictFacts: number;
+    demo: {
+        prompt: string;
+        answer: string;
+        source: string;
+    };
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export type CardWave = {
+    readonly source: string;
+    readonly topic: string;
+    readonly question: string;
+    readonly card: string;
+    readonly verified: boolean;
+    readonly receipt: string;
+};
+/** Send the self R&D waves: research each entry (compute its topic and question), develop its card
+ * (the question answered by the statement, verbatim), verify by asking the question back. The waved
+ * model's corpus = every entry + every card — each statement now recallable by its natural question. */
+export declare function cardWaves(matrix?: MindMatrix): {
+    waves: CardWave[];
+    model: PortalModel;
+    coverage: number;
+    entropy: number;
+    sealed: boolean;
+    root: string;
+};
+/** Chat with the fully-waved model — every statement reachable by its own question. */
+export declare function wavesChat(prompt: string, matrix?: MindMatrix): {
+    prompt: string;
+    answer: string;
+    source: string;
+    grounded: boolean;
+    generated: string;
+    root: string;
+};
+export type CardPage = {
+    readonly slug: string;
+    readonly source: string;
+    readonly topic: string;
+    readonly title: string;
+    readonly question: string;
+    readonly research: string;
+    readonly boundary: string;
+    readonly facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    readonly speech: string;
+    readonly hero: ReturnType<typeof uuidHero>;
+    readonly proofRoot: string;
+    readonly verified: boolean;
+    readonly receipt: string;
+};
+/** Every card as a fully computed page — research prose, honest boundary, per-page animated-proof params
+ * (the card receipt's uuidHero: hue, rotations, spin, tone, tips) and the exact text-to-speech string.
+ * Nothing hand-written: research = the source fold's statement, boundary = the model's boundary, the
+ * animation is the card's own content-address rendered, the speech is the research read aloud. */
+export declare function cardPages(matrix?: MindMatrix): {
+    pages: CardPage[];
+    root: string;
+    count: number;
+};
+/** One card page by slug — the render target for /model/<slug>. */
+export declare function cardPage(slug: string, matrix?: MindMatrix): CardPage | null;
+/** Every discovery as a dedicated animated-proof page — the same CardPage shape the renderer already paints. */
+export declare function discoveryPages(matrix?: MindMatrix): {
+    pages: CardPage[];
+    root: string;
+    count: number;
+};
+/** One discovery page by slug — the render target beside cardPage. */
+export declare function discoveryPage(slug: string, matrix?: MindMatrix): CardPage | null;
+/** The computed route list — one dedicated page per card AND per discovery, dynamic-route params shape. */
+export declare function cardPagePaths(matrix?: MindMatrix): {
+    params: {
+        card: string;
+        title: string;
+    };
+}[];
+/** The fold: every scientific discovery is encoded in the appropriate form with an animated proof. */
+export declare function everyDiscoveryEncodedWithAnimatedProof(matrix?: MindMatrix): {
+    encoded: boolean;
+    discoveries: number;
+    slugs: string[];
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** The fold: every card has a dedicated, fully computed page — research, animated proof, text-to-speech. */
+export declare function everyCardHasAComputedPage(matrix?: MindMatrix): {
+    computed: boolean;
+    pages: number;
+    slugs: string[];
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** The fold: the portal converted to the AI model itself — corpus, recall, generation, all computed. */
+export declare function portalIsTheAiModel(matrix?: MindMatrix): {
+    converted: boolean;
+    corpus: number;
+    vocabulary: number;
+    demo: {
+        prompt: string;
+        answer: string;
+        source: string;
+        generated: string;
+    };
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** The fold: the model sent to develop itself — gaps computed, filled from src, re-measured, sealed. */
+export declare function portalModelDevelopsItself(matrix?: MindMatrix): {
+    developed: boolean;
+    before: string[];
+    after: string[];
+    filled: string[];
+    corpus: number;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** The fold: the self R&D waves cover every card — researched, developed, verified, sealed at coverage 1. */
+export declare function selfWavesCoverEveryCard(matrix?: MindMatrix): {
+    covered: boolean;
+    waves: number;
+    verified: number;
+    coverage: number;
+    entropy: number;
+    corpus: number;
+    demo: {
+        question: string;
+        verified: boolean;
+    }[];
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
     root: string;
     statement: string;
     boundary: string;

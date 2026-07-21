@@ -1,4 +1,5 @@
 import { merkabaFoldUrl, entry, type Uuid, type Entry } from '../../../0';
+import { type LocaleName } from '../../../1/9';
 export { merkabaFoldUrl, entry, type Uuid, type Entry };
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export declare const GLAGOLITIC_MAP: Record<string, string>;
@@ -60,6 +61,11 @@ export declare const GLAGOLITIC_LETTERS: readonly {
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export declare function glagoliticValue(position: number): number;
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
+/** Bilingual pick — en passes through; bg picks Cyrillic; gla transliterates Latin. Lives beside
+ * toGlagolitic, its only dependency: the ONE copy (wind/site and the client twin re-export it). */
+export declare function pickLocale<T>(locale: LocaleName, en: T, bg: T): T;
+/** Locale display copy — gla transliterates; bg maps sealed phrases; en passes through. */
+export declare function localizeMonolingual(locale: LocaleName, text: string): string;
 export declare function toGlagoliticNumber(text: string): number;
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export declare function glagoliticAcrostic(): {

@@ -176,3 +176,28 @@ export declare function zeroTokenLawForAgentsAndForever(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function mcpExposesOnlyServedSurfaces(matrix?: MindMatrix): {
+    computes: boolean;
+    resourceCount: number;
+    servedCount: number;
+    unserved: string[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function mcpUsesVitepressSearch(matrix?: MindMatrix): {
+    computes: boolean;
+    searchLines: number;
+    servedSearchable: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};

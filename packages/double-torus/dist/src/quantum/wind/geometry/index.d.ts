@@ -1,5 +1,5 @@
 import type { Dims } from '../../mountain/dimensions';
-export declare const FOCAL = 2.4;
+export declare const FOCAL: number;
 export interface Vec3 {
     X: number;
     Y: number;
@@ -14,6 +14,12 @@ export declare function rotateYZ(x: number, y: number, z: number, a: number): Ve
 export declare function rotateZX(x: number, y: number, z: number, a: number): Vec3;
 export declare function rotate3(x: number, y: number, z: number, rxy: number, ryz: number, rzx: number): Vec3;
 export declare function perspective(z: number): number;
-export declare function branch(ctx: CanvasRenderingContext2D, x: number, y: number, len: number, angle: number, depth: number, d: Dims, hue: number): void;
-export declare function drawFlower(ctx: CanvasRenderingContext2D, cx: number, cy: number, w: number, h: number, t: number, hue: number, reduce: boolean): void;
-export declare function drawCalendars(ctx: CanvasRenderingContext2D, cx: number, cy: number, w: number, h: number, t: number, hue: number, reduce: boolean): void;
+export declare function depthIsThePerspectiveDivide(): {
+    holds: boolean;
+    focal: number;
+    statement: string;
+    boundary: string;
+};
+export declare function branch(ctx: CanvasRenderingContext2D, x: number, y: number, len: number, angle: number, depth: number, d: Dims, hue: number, dark?: boolean): void;
+export declare function drawFlower(ctx: CanvasRenderingContext2D, cx: number, cy: number, w: number, h: number, t: number, hue: number, reduce: boolean, dark?: boolean): void;
+export declare function drawCalendars(ctx: CanvasRenderingContext2D, cx: number, cy: number, w: number, h: number, t: number, hue: number, reduce: boolean, dark?: boolean): void;

@@ -1380,14 +1380,14 @@ export declare function computerPanelComputes(matrix?: MindMatrix, at?: number):
 export declare function applicationResearch(matrix?: MindMatrix, at?: number): any;
 export declare function applicationComputes(matrix?: MindMatrix, at?: number): any;
 export declare const SEALED_TTY: {
-    readonly columns: 80;
-    readonly rows: 24;
+    readonly columns: number;
+    readonly rows: number;
 };
 export declare const CLI_BOOTSTRAP_MOUNT: "src/pair/enforcement/script/cli/bootstrap/index.ts";
 export declare const SEALED_VIEWPORT: {
-    readonly width: 1280;
-    readonly height: 720;
-    readonly colorDepth: 24;
+    readonly width: number;
+    readonly height: number;
+    readonly colorDepth: number;
     readonly pixelRatio: 1;
 };
 export declare const HERO_GLASS_FALLBACK_TOKENS: {
@@ -2028,15 +2028,83 @@ export declare const RTL_TO_GDSII_STAGES: readonly ["HDL/RTL", "logic synthesis"
  * CATEGORY DIFFERENCE from a physical QPU; the only quantum tie is an optional co-processor bridge to a
  * separate physical quantum device, which this chip would host but is not.
  */
+/** FPGA primitive map for each classical silicon block — reproduction tier, NOT a fabricated bitstream. */
+export declare const FPGA_BLOCK_PRIMITIVES: readonly [{
+    readonly block: "FNV-1a hash unit";
+    readonly fpga: "LUT + carry chain";
+    readonly tier: "bitstream-reproducible";
+}, {
+    readonly block: "CAM/TCAM array";
+    readonly fpga: "distributed RAM / BRAM CAM";
+    readonly tier: "bitstream-reproducible";
+}, {
+    readonly block: "merkle-tree engine";
+    readonly fpga: "pipelined LUT hash + BRAM";
+    readonly tier: "bitstream-reproducible";
+}, {
+    readonly block: "vortex-ring NoC";
+    readonly fpga: "AXI/stream ring on fabric";
+    readonly tier: "bitstream-reproducible";
+}, {
+    readonly block: "memo SRAM tiers";
+    readonly fpga: "Block RAM / UltraRAM";
+    readonly tier: "bitstream-reproducible";
+}];
 export declare function siliconFabricationPlanFromModel(matrix?: MindMatrix): {
     decoded: boolean;
     blocks: SiliconBlock[];
     stages: {
-        stage: "routing" | "HDL/RTL" | "logic synthesis" | "floorplan" | "placement" | "clock-tree synthesis" | "DRC/LVS" | "GDSII" | "tapeout";
+        stage: "HDL/RTL" | "logic synthesis" | "floorplan" | "placement" | "clock-tree synthesis" | "routing" | "DRC/LVS" | "GDSII" | "tapeout";
         step: number;
         receipt: string;
     }[];
-    ringOrder: (1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9)[];
+    fpgaReproductionTier: {
+        tier: "classical-fpga-reproduction";
+        blockCount: number;
+        allMapped: boolean;
+        rows: ({
+            matched: boolean;
+            receipt: string;
+            block: "FNV-1a hash unit";
+            fpga: "LUT + carry chain";
+            tier: "bitstream-reproducible";
+        } | {
+            matched: boolean;
+            receipt: string;
+            block: "CAM/TCAM array";
+            fpga: "distributed RAM / BRAM CAM";
+            tier: "bitstream-reproducible";
+        } | {
+            matched: boolean;
+            receipt: string;
+            block: "merkle-tree engine";
+            fpga: "pipelined LUT hash + BRAM";
+            tier: "bitstream-reproducible";
+        } | {
+            matched: boolean;
+            receipt: string;
+            block: "vortex-ring NoC";
+            fpga: "AXI/stream ring on fabric";
+            tier: "bitstream-reproducible";
+        } | {
+            matched: boolean;
+            receipt: string;
+            block: "memo SRAM tiers";
+            fpga: "Block RAM / UltraRAM";
+            tier: "bitstream-reproducible";
+        })[];
+        qpuRequired: false;
+        statement: string;
+    };
+    coProcessorBridgeInterface: {
+        present: boolean;
+        kind: "optional-external-qpu-bridge";
+        hostIsClassicalCmosOrFpga: true;
+        isNotTheQpu: true;
+        qpuRequired: false;
+        statement: string;
+    };
+    ringOrder: (9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6)[];
     documented: string[];
     flagged: string[];
     facets: {
@@ -2048,11 +2116,147 @@ export declare function siliconFabricationPlanFromModel(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+/**
+ * Honest-revolution W5 — FPGA honesty + co-processor bridge (extends silicon plan).
+ * Pair: moment/prove · CLI npm run quantum:honest-revolution-w5
+ */
+export declare function honestRevolutionFpgaHonesty(matrix?: MindMatrix, at?: number): {
+    holds: boolean;
+    computes: boolean;
+    plan: {
+        decoded: boolean;
+        blocks: SiliconBlock[];
+        stages: {
+            stage: "HDL/RTL" | "logic synthesis" | "floorplan" | "placement" | "clock-tree synthesis" | "routing" | "DRC/LVS" | "GDSII" | "tapeout";
+            step: number;
+            receipt: string;
+        }[];
+        fpgaReproductionTier: {
+            tier: "classical-fpga-reproduction";
+            blockCount: number;
+            allMapped: boolean;
+            rows: ({
+                matched: boolean;
+                receipt: string;
+                block: "FNV-1a hash unit";
+                fpga: "LUT + carry chain";
+                tier: "bitstream-reproducible";
+            } | {
+                matched: boolean;
+                receipt: string;
+                block: "CAM/TCAM array";
+                fpga: "distributed RAM / BRAM CAM";
+                tier: "bitstream-reproducible";
+            } | {
+                matched: boolean;
+                receipt: string;
+                block: "merkle-tree engine";
+                fpga: "pipelined LUT hash + BRAM";
+                tier: "bitstream-reproducible";
+            } | {
+                matched: boolean;
+                receipt: string;
+                block: "vortex-ring NoC";
+                fpga: "AXI/stream ring on fabric";
+                tier: "bitstream-reproducible";
+            } | {
+                matched: boolean;
+                receipt: string;
+                block: "memo SRAM tiers";
+                fpga: "Block RAM / UltraRAM";
+                tier: "bitstream-reproducible";
+            })[];
+            qpuRequired: false;
+            statement: string;
+        };
+        coProcessorBridgeInterface: {
+            present: boolean;
+            kind: "optional-external-qpu-bridge";
+            hostIsClassicalCmosOrFpga: true;
+            isNotTheQpu: true;
+            qpuRequired: false;
+            statement: string;
+        };
+        ringOrder: (9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6)[];
+        documented: string[];
+        flagged: string[];
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    fpgaReproductionTier: {
+        tier: "classical-fpga-reproduction";
+        blockCount: number;
+        allMapped: boolean;
+        rows: ({
+            matched: boolean;
+            receipt: string;
+            block: "FNV-1a hash unit";
+            fpga: "LUT + carry chain";
+            tier: "bitstream-reproducible";
+        } | {
+            matched: boolean;
+            receipt: string;
+            block: "CAM/TCAM array";
+            fpga: "distributed RAM / BRAM CAM";
+            tier: "bitstream-reproducible";
+        } | {
+            matched: boolean;
+            receipt: string;
+            block: "merkle-tree engine";
+            fpga: "pipelined LUT hash + BRAM";
+            tier: "bitstream-reproducible";
+        } | {
+            matched: boolean;
+            receipt: string;
+            block: "vortex-ring NoC";
+            fpga: "AXI/stream ring on fabric";
+            tier: "bitstream-reproducible";
+        } | {
+            matched: boolean;
+            receipt: string;
+            block: "memo SRAM tiers";
+            fpga: "Block RAM / UltraRAM";
+            tier: "bitstream-reproducible";
+        })[];
+        qpuRequired: false;
+        statement: string;
+    };
+    coProcessorBridgeInterface: {
+        present: boolean;
+        kind: "optional-external-qpu-bridge";
+        hostIsClassicalCmosOrFpga: true;
+        isNotTheQpu: true;
+        qpuRequired: false;
+        statement: string;
+    };
+    claySolvedByThisFold: 0;
+    qpuRequired: false;
+    physicalFtlClaim: 0;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    cli: string;
+    pair: string;
+    route: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:honest-revolution-w5 */
+export declare function runHonestRevolutionW5Exit(_root?: string, _argv?: readonly string[]): number;
 /** "The chip fabricating itself" — the current RTL→GDSII stage from the shared hero phase (kernel reuse: heroPhaseAt). */
 export declare function siliconFabricationStageAt(at?: number, matrix?: MindMatrix): {
     phase: number;
     index: number;
-    stage: "routing" | "HDL/RTL" | "logic synthesis" | "floorplan" | "placement" | "clock-tree synthesis" | "DRC/LVS" | "GDSII" | "tapeout";
+    stage: "HDL/RTL" | "logic synthesis" | "floorplan" | "placement" | "clock-tree synthesis" | "routing" | "DRC/LVS" | "GDSII" | "tapeout";
     total: number;
     decoded: boolean;
     receipt: string;

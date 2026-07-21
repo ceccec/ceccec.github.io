@@ -3788,14 +3788,15 @@ export const OPTIMISED_LOCAL_PACKAGE_SURFACE = [
     path: 'packages/double-torus',
     pair: 'build/seal',
     mcpMount: '',
-    cli: 'see packages/double-torus/README.md',
-    npm: '',
+    cli: 'node packages/double-torus/build.mjs',
+    npm: 'node packages/double-torus/build.mjs',
     stdioTools: 0 as const,
     docsBuildFlag: '',
-    automation: 'published math/anim core — not the gate SDK',
-    honesty: 'zero-dep consumer bundle — do not co-locate gate spawns',
+    automation: 'published math/anim/dynamics/geometry core — not the gate SDK',
+    honesty: 'zero-dep consumer bundle v1.3+ — gapless analyse/dynamics/geometry/movie-clock surface; structural completeness only (NOT FTL / NOT Clay); do not co-locate gate spawns',
   },
 ] as const
+
 
 /** Stdio MCP tool ids — must match packages/quantum-dev-sdk + STDIO_MCP_CAPABILITY_SEEDS (ROSETTA_SEVEN). */
 export const OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS = [

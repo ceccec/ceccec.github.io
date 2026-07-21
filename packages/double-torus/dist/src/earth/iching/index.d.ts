@@ -278,5 +278,84 @@ export declare function ichingComputes(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+/** Browser-safe I Ching / rosetta distribute verify — pure fold, no process I/O. */
+export declare function ichingDistributeVerify(): {
+    computes: boolean;
+    rosettaCross: number;
+    ichingCross: number;
+    root: string;
+    statement: string;
+    boundary: string;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+};
 /** npm run quantum:iching-distribute-verify — rosetta 7-ray coprimality vs I Ching 8-fold aliasing. */
 export declare function runIchingDistributeVerifyGuardedExit(_root: string, _argv?: readonly string[]): number;
+export declare function decodingIChingAddsTheorems(): {
+    decoded: boolean;
+    palindromes: number[];
+    reversalPairs: number;
+    complementPairs: number;
+    orbits: number;
+    burnside: number;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function hexagramOrbitCensusTwelveFoursEightTwos(): {
+    census: boolean;
+    fours: number;
+    twos: number;
+    ones: number;
+    orbits: number;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function sevenRayRosettaIsTheSufficientArchitecture(matrix?: MindMatrix): {
+    sufficient: boolean;
+    rays: number;
+    categories: number;
+    raysUsed: number;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause(matrix?: MindMatrix): {
+    computes: boolean;
+    twenty: number;
+    divisors: number[];
+    exponents: number[];
+    orbits: number;
+    ladder: number;
+    structuralTwenties: number;
+    contingentTwenties: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};

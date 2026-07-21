@@ -72,7 +72,7 @@ export declare function fillAllGapsCleanHardcodedLinear(matrix?: MindMatrix): {
     boundary: string;
 };
 /** 18 canonical shadcn primitives ported in repo idiom (radix + cva + ui-* CSS) — fused on VitePress enhanceApp. */
-export declare const SHADCN_PRIMITIVE_NAMES: readonly ["Button", "Badge", "Card", "Input", "Label", "Textarea", "Checkbox", "Switch", "Separator", "Avatar", "Alert", "Progress", "Skeleton", "AspectRatio", "Tabs", "Accordion", "Tooltip", "Collapsible"];
+export { SHADCN_PRIMITIVE_NAMES } from '../../mountain/shadcn';
 export declare function shadcnIsTheGraph(matrix?: MindMatrix): {
     graphed: boolean;
     components: {

@@ -161,12 +161,12 @@ export declare function quantumStateEvolutionDecoded(at?: number, matrix?: MindM
     decoded: boolean;
     at: number;
     phaseIndex: number;
-    phaseDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+    phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
     mappings: ({
         primitive: string;
         measured: string;
         entangled: boolean;
-        vortexDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+        vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
         receipt: string;
         steps?: undefined;
         stationary?: undefined;
@@ -204,7 +204,7 @@ export declare function quantumStateEvolutionDecoded(at?: number, matrix?: MindM
     } | {
         primitive: string;
         frames: number;
-        phaseDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+        phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
         receipt: string;
         measured?: undefined;
         entangled?: undefined;
@@ -327,6 +327,8 @@ export declare function quantumStateEvolutionDecoded(at?: number, matrix?: MindM
         };
         presentations: {
             coheres: boolean;
+            oneAddress: boolean;
+            sealAnchorsSource: boolean;
             operation: string;
             presentations: {
                 receipt: string;
@@ -454,12 +456,12 @@ export declare function quantumDynamicsSimulationPanelComputes(matrix?: MindMatr
             decoded: boolean;
             at: number;
             phaseIndex: number;
-            phaseDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+            phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
             mappings: ({
                 primitive: string;
                 measured: string;
                 entangled: boolean;
-                vortexDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+                vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
                 receipt: string;
                 steps?: undefined;
                 stationary?: undefined;
@@ -497,7 +499,7 @@ export declare function quantumDynamicsSimulationPanelComputes(matrix?: MindMatr
             } | {
                 primitive: string;
                 frames: number;
-                phaseDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+                phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
                 receipt: string;
                 measured?: undefined;
                 entangled?: undefined;
@@ -620,6 +622,8 @@ export declare function quantumDynamicsSimulationPanelComputes(matrix?: MindMatr
                 };
                 presentations: {
                     coheres: boolean;
+                    oneAddress: boolean;
+                    sealAnchorsSource: boolean;
                     operation: string;
                     presentations: {
                         receipt: string;
@@ -834,6 +838,19 @@ export declare function quantumDynamicsSimulationPanelComputes(matrix?: MindMatr
     boundary: string;
 };
 /** One gate — simulators, state evolution decode, research exposition, plasma vortex channel at call time. */
+export declare function quantumChemistryToyComputes(matrix?: MindMatrix): {
+    computes: boolean;
+    equilibriumA0: number;
+    bindingEv: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumDynamicsComputes(matrix?: MindMatrix, at?: number): {
     computes: boolean;
     solutions: {
@@ -916,12 +933,12 @@ export declare function quantumDynamicsComputes(matrix?: MindMatrix, at?: number
         decoded: boolean;
         at: number;
         phaseIndex: number;
-        phaseDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+        phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
         mappings: ({
             primitive: string;
             measured: string;
             entangled: boolean;
-            vortexDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+            vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
             receipt: string;
             steps?: undefined;
             stationary?: undefined;
@@ -959,7 +976,7 @@ export declare function quantumDynamicsComputes(matrix?: MindMatrix, at?: number
         } | {
             primitive: string;
             frames: number;
-            phaseDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+            phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
             receipt: string;
             measured?: undefined;
             entangled?: undefined;
@@ -1082,6 +1099,8 @@ export declare function quantumDynamicsComputes(matrix?: MindMatrix, at?: number
             };
             presentations: {
                 coheres: boolean;
+                oneAddress: boolean;
+                sealAnchorsSource: boolean;
                 operation: string;
                 presentations: {
                     receipt: string;
@@ -1276,3 +1295,77 @@ export declare function quantumDynamicsComputes(matrix?: MindMatrix, at?: number
     statement: string;
     boundary: string;
 };
+export declare function updateQuantumTheHarmonicGatesNeverDriftTheMagicGatesCarryIrrationalDriftNotA432(matrix?: MindMatrix): {
+    computes: boolean;
+    bellAmplitudes: number[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function invertQuantumComputationsTheDaggerPairUncomputesExactlyAndIsTheBackwardPass(matrix?: MindMatrix): {
+    computes: boolean;
+    returnsExactly: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function irrationalProvesRationalMeasurementInvertsSuperpositionAndPellIsExact(matrix?: MindMatrix): {
+    computes: boolean;
+    pell: string[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function quantizeContentAddressPreimageSearchGroverIsRootNQueriesQuadraticQueryAdvantageOnly(matrix?: MindMatrix): {
+    computes: boolean;
+    classicalQueries: number;
+    quantumQueries: number;
+    queryAdvantage: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function whichCorpusComputationsQuantizeMeasuredBySearchShortCircuit(matrix?: MindMatrix): {
+    computes: boolean;
+    quantizable: string[];
+    classicalCount: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function quantizeCountingHowManyAddressesMatchQuantumCountingIsRootNQueriesQuadraticQueryAdvantageOnly(matrix?: MindMatrix): {
+    computes: boolean;
+    classicalQueries: number;
+    quantumQueries: number;
+    matches: number;
+    queryAdvantage: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+/**
+ * Field projection — Bell-pair amplitude bars. Scale/breath from heroPhaseAt; hues from sim.
+ * Vue mounts only call this — no inline canvas math. HONEST: classical state-vector paint, not hardware.
+ */
+export declare function drawDynamicsProjection(ctx: CanvasRenderingContext2D, w: number, h: number, sim: QuantumDynamicsSimulationPaint, opts?: {
+    dark?: boolean;
+    reduce?: boolean;
+}): void;

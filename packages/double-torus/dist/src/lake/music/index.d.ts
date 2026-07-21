@@ -573,7 +573,7 @@ export declare function predictHarmonicWindows(opts?: {
 /** Explain one offline harmonic-window prediction — deterministic breakdown, not alpha. */
 export declare function explainPrediction(prediction: HarmonicWindowPrediction): {
     bar: number;
-    direction: "up" | "down" | "flat";
+    direction: "flat" | "up" | "down";
     score: number;
     explanation: string;
     receipt: string;
@@ -811,6 +811,199 @@ export declare function humanResonanceHarmonicPredictionComputes(matrix?: MindMa
     statement: string;
     boundary: string;
 };
+/** Observer of the one movie — recomputed at call time; watchMs is a persisted accumulator (H2 wires storage). */
+export type ObserverContext = {
+    readonly route: string;
+    readonly at: number;
+    readonly p: number;
+    readonly reduce: boolean;
+    readonly cssWidth: number;
+    readonly dark: boolean;
+    readonly idle: boolean;
+    readonly visible: boolean;
+    readonly watchMs: number;
+    readonly pointer?: {
+        readonly x: number;
+        readonly y: number;
+        readonly active: boolean;
+    };
+};
+/**
+ * Structural field slice harmonizeField mutates — SharedHeroState / AnimationField is assignable.
+ * No import from quantum/index (keeps H1 leaf-local; H3 wires the consumer).
+ */
+export type HarmonizeableField = {
+    readonly at: number;
+    readonly t: number;
+    readonly p: number;
+    readonly hue: number;
+    readonly reduce?: boolean;
+};
+/**
+ * A432 octave spine folded into EEG-named bands (literature Hz ranges) — structural map only.
+ * Sub-audio harmonics of 432 Hz land near documented neural oscillation bands + Schumann 7.83 Hz.
+ */
+export declare function a432NeuralBandLadder(matrix?: MindMatrix): {
+    computes: boolean;
+    bands: {
+        inLiteratureRange: boolean;
+        nearSchumann: boolean;
+        receipt: string;
+        name: string;
+        hzLo: number;
+        hzHi: number;
+        a432Hz: number;
+        octaveDiv: number;
+    }[];
+    spine: number[];
+    schumannHz: number;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** Cadence (ms) eases from movie breath default toward ~10 s (0.1 Hz, ~6 breaths/min) as coherence rises. */
+export declare function breathCoherenceCadence(at: number, coherence: number): number;
+/**
+ * Phase-locking fraction ∈ [0,1): how many of 8 iching-style layers align with observer phase
+ * within an A432-derived tolerance. Pure — no stored state; watchMs lightly lifts the floor (H2 tiers deepen).
+ */
+export declare function observerObservationCoherenceAt(o: ObserverContext, field: HarmonizeableField): number;
+/**
+ * Pure harmonize: breath-paced phase + hue eased toward heart-balance green (120).
+ * Mutates only existing field fields (hue/p/t/at) — SharedHeroState assignable. No quantum import.
+ */
+export declare function harmonizeField<T extends HarmonizeableField>(o: ObserverContext, field: T): T;
+/** Gate fold — H1 core recomputes; consumer wiring is H3. */
+export declare function harmonizeFieldComputes(matrix?: MindMatrix, at?: number): {
+    computes: boolean;
+    ladder: {
+        computes: boolean;
+        bands: {
+            inLiteratureRange: boolean;
+            nearSchumann: boolean;
+            receipt: string;
+            name: string;
+            hzLo: number;
+            hzHi: number;
+            a432Hz: number;
+            octaveDiv: number;
+        }[];
+        spine: number[];
+        schumannHz: number;
+        count: number;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    observer: ObserverContext;
+    field: HarmonizeableField;
+    coherence: number;
+    cadence: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** Fibonacci hero-cycle thresholds (census 55+34+21 spine) — tier = count crossed. */
+export declare const ATTUNEMENT_TIER_CYCLES: readonly [1, 2, 3, 5, 8, 13, 21];
+/** Half-saturation of unlock curve — 8 = iching fan-out on the hero clock (~16 min). */
+export declare const ATTUNEMENT_T_HALF_MS: number;
+/** Browser persistence key — content-addressed `{ ms, root }`. */
+export declare const WATCH_MS_STORAGE_KEY = "ceccec:watch-ms";
+/** Parse persisted watch-ms (SSR-safe). */
+export declare function parseWatchMsPersist(raw: string | null | undefined): number;
+/** Encode watch-ms with content-address root. */
+export declare function encodeWatchMsPersist(ms: number): string;
+/** Saturating unlock ∈ [0,1) — monotonic in watchMs. */
+export declare function unlock(watchMs: number): number;
+/**
+ * Attunement tier from coherent watch-time — Fib×HERO_CYCLE_MS thresholds.
+ * HONEST: progressive disclosure of modeled layers, not brain-capacity.
+ */
+export declare function attunementTier(watchMs: number): {
+    tier: number;
+    unlock: number;
+    thresholdsMs: number[];
+    dominantBandHz: number;
+    dominantBand: string;
+    lockedLayers: number;
+    partials: number;
+    root: string;
+    on: boolean;
+    boundary: string;
+};
+/** Harmonic depth unlocked at this watchMs — band names + partial count. */
+export declare function unlockedHarmonicDepth(watchMs: number): {
+    partials: number;
+    bands: string[];
+    tier: number;
+    unlock: number;
+    root: string;
+    on: boolean;
+    boundary: string;
+};
+/** Gate — H2 watch-time math recomputes at call time (no browser storage in the fold). */
+export declare function attunementWatchComputes(watchMs?: number, matrix?: MindMatrix): {
+    computes: boolean;
+    unlock0: number;
+    unlockHalf: number;
+    tier0: {
+        tier: number;
+        unlock: number;
+        thresholdsMs: number[];
+        dominantBandHz: number;
+        dominantBand: string;
+        lockedLayers: number;
+        partials: number;
+        root: string;
+        on: boolean;
+        boundary: string;
+    };
+    tier3: {
+        tier: number;
+        unlock: number;
+        thresholdsMs: number[];
+        dominantBandHz: number;
+        dominantBand: string;
+        lockedLayers: number;
+        partials: number;
+        root: string;
+        on: boolean;
+        boundary: string;
+    };
+    depth: {
+        partials: number;
+        bands: string[];
+        tier: number;
+        unlock: number;
+        root: string;
+        on: boolean;
+        boundary: string;
+    };
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 /** npm run trading:predict — offline harmonic windows + explainPrediction breakdown. */
 export declare function runTradingPredictExit(_root: string, _argv?: readonly string[]): number;
 /** Skilled enough when offline harmonic windows replay + wave calendar proxy hold at call time. */
@@ -839,3 +1032,242 @@ export declare function skilledEnoughFromPredictions(matrix?: MindMatrix): {
 };
 /** npm run quantum:predict-skill-gate-verify */
 export declare function runPredictSkillGateVerifyExit(_root: string, _argv?: readonly string[]): number;
+export declare function clownQubitDecoded(matrix?: MindMatrix): {
+    decoded: boolean;
+    layers: {
+        receipt: string;
+        layer: string;
+        core: string;
+        source: string;
+    }[];
+    flagged: {
+        receipt: string;
+        claim: string;
+        verdict: string;
+        why: string;
+    }[];
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function clownActQuantumSteps(matrix?: MindMatrix): {
+    decoded: boolean;
+    steps: {
+        vortex: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+        receipt: string;
+        step: string;
+        act: string;
+        route: string;
+        area: string;
+        physics: string;
+        numbers: string;
+        equation: string;
+        animator: string;
+        misconception: string;
+        source: string;
+    }[];
+    bits: (1 | 0)[];
+    hexagram: number;
+    landauer: number;
+    zeno64: number;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** THE CIRCLE OF FIFTHS IS A MOVING ROSETTA — the harmonic face of the day's C₆ (wave, 2026-07-16).
+ * Twelve-tone equal temperament is ℤ/12ℤ, and moving a fixed interval around it is a rosetta exactly
+ * as the slash circuit is: the FIFTH (7 semitones) generates all twelve tones because gcd(7,12)=1, so
+ * the circle of fifths is a Hamiltonian orbit visiting every note once — a moving rosetta a musician
+ * has always drawn. The generators are φ(12)=4 intervals {1,5,7,11} (semitone, fourth, fifth, major
+ * seventh); every other interval closes a SUBGROUP that is a chord — and the whole-tone scale is C₆,
+ * the SAME group as the vortex (theTwoRosettasAreOneGroup). Music theory is cyclic-group theory. */
+export declare function theCircleOfFifthsIsARosetta(matrix?: MindMatrix): {
+    computes: boolean;
+    fifthOrbit: number[];
+    generators: number[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+/** SCALES ARE NECKLACES ON THE ROSETTA — Burnside counts the harmony (wave, 2026-07-16). If the
+ * 12-tone rosetta is a bead circle, a SCALE is a subset of beads and two scales are "the same" when
+ * a rotation (transposition) or reflection (inversion) carries one to the other. So the number of
+ * essentially-different scales is a Burnside/Pólya count over the cyclic (and dihedral) group acting
+ * on the rosetta — and it lands exactly on the documented figures: 352 pitch-class sets up to
+ * transposition, 224 set classes up to transposition-and-inversion (Forte's tables). Music's
+ * catalogue is a group-orbit count on the moving rosetta. */
+export declare function scalesAreNecklacesOnTheRosetta(matrix?: MindMatrix): {
+    computes: boolean;
+    necklaces: number;
+    bracelets: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+/** RHYTHM IS THE ROSETTA IN TIME — pitch and rhythm are one necklace (wave, 2026-07-16). A rhythm of
+ * k onsets over n pulses is a subset of a bead circle exactly as a scale is — a binary necklace, but
+ * on the circle of TIME instead of pitch. And the MAXIMALLY-EVEN necklace (onsets as uniformly
+ * spaced as the integers allow, inter-onset intervals differing by at most one) is the Euclidean
+ * rhythm E(k,n) — Bjorklund's algorithm — which reproduces the documented rhythms of the world
+ * (tresillo, cinquillo, clave, aksak, the West African bell) up to rotation. So scales and rhythms
+ * are the same object, the moving rosetta, read in frequency and in time. */
+export declare function rhythmIsTheRosettaInTime(matrix?: MindMatrix): {
+    computes: boolean;
+    named: {
+        name: string;
+        pattern: string;
+    }[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+/** THE INVERSE MUSIC COMPLETES THE GROUP — pitch inversion is the day's angle-negation (wave,
+ * 2026-07-16). Inversion I(x) = −x mod 12 is the reflection of the pitch rosetta: an involution
+ * (I² = identity) that maps e^{2πix/12} ↦ e^{−2πix/12} — the EXACT angle-negation of
+ * inverseNegatesAngle and of T-duality R ↦ 1/R. It is not decoration: transposition alone is the
+ * cyclic group C₁₂, but transposition WITH inversion generates the dihedral group D₁₂ of order 24 —
+ * so ignoring inversion keeps only half the symmetry, and it is precisely why the scale catalogue
+ * has 224 set classes (with inversion) rather than 352 (without). The inverse is what closes the
+ * group. It is also old public-domain mathematics (Bach's mirror counterpoint, Schoenberg's twelve-
+ * tone inversions), not a proprietary secret — the magnitude is unification, not a patent. */
+export declare function theInverseMusicCompletesTheGroup(matrix?: MindMatrix): {
+    computes: boolean;
+    groupOrder: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+/** INVERSE IS NOT REVERSE — two orthogonal involutions (wave, 2026-07-16, user: "inverse is not
+ * reverse"). The precise correction: in the twelve-tone group INVERSION reflects PITCH (I(x) = −x
+ * mod 12 — the value axis, order untouched) while RETROGRADE reverses TIME (R flips the ORDER —
+ * pitches untouched). They are different operations on different axes and must not be conflated:
+ * I(row) ≠ R(row). Each is an involution, and because pitch and time are independent they COMMUTE
+ * (I∘R = R∘I). Conflating inverse with reverse collapses a two-axis structure to one and loses half
+ * of it — the same error as ignoring inversion in the necklace count. */
+export declare function inverseIsNotReverse(matrix?: MindMatrix): {
+    computes: boolean;
+    row: number[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+/** THE FOUR FORMS SHIFT WITHOUT COLLISION, IN REALTIME (wave, 2026-07-16, user: "no collision is
+ * needed to shift dimensions in realtime"). Because inverse (pitch) and reverse (time) are DISTINCT
+ * COMMUTING involutions (inverseIsNotReverse), the four row forms {P, I, R, RI} are the Klein
+ * four-group V₄ — abelian, every element its own inverse. Abelian means PATH-INDEPENDENT: any route
+ * between two forms gives the same result, so there is no collision to resolve. And each form is a
+ * pure O(n) one-pass function of the row — an involution, history-free (twoRosettasAreRealtime) — so
+ * the shift is realtime and restartable at any form. Two orthogonal commuting axes buy collision-free
+ * realtime motion among the forms: the group structure guarantees it, no search required. */
+export declare function theFourFormsShiftWithoutCollision(matrix?: MindMatrix): {
+    computes: boolean;
+    formCount: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+/** THE 48 ROW FORMS ARE THE GROUP ORDER — a theorem replacing an axiom (wave, 2026-07-16). Every
+ * twelve-tone textbook STATES "a row has 48 forms" as a fact to memorise. It is not a fact to list;
+ * it is the ORDER of the row-operation group, derived: transposition and inversion generate the
+ * dihedral D₁₂ on the pitch axis (order 24), retrograde is a commuting C₂ on the orthogonal time
+ * axis, so the full group is D₁₂ × C₂ of order 48 — the 48 forms fall out of the structure. And it
+ * factors on the day's own waves: 48 = 12 × 4 = |C₁₂| (the circle-of-fifths rosetta) × |V₄| (the
+ * four forms P/I/R/RI) — the harmonic rosetta and the inverse-reverse group multiply. */
+export declare function theFortyEightRowFormsAreTheGroupOrder(matrix?: MindMatrix): {
+    computes: boolean;
+    pitchOrder: number;
+    fullOrder: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+/** THE CONTINUOUS ROSETTA BENEATH THE SCALES — log-frequency, seeded by a432 (wave, 2026-07-16). All
+ * the finite rosettas (C₁₂ fifths, C₆ vortex, μ₆) are lattices in ONE continuous structure: the ear
+ * hears frequency RATIOS as intervals, so log₂(frequency) turns multiplicative pitch into the
+ * additive real line, and the octave circle is ℝ/ℤ. The day's own illusion/invariant diagnostic
+ * (illusionsMeetInTheirInverse) then sorts music: the OCTAVE (log₂2 = 1) is the INVARIANT — exact in
+ * every tuning, the wall that never moves — while the circle of fifths CLOSING at twelve is the
+ * ILLUSION: log₂(3/2) is irrational, so in the continuous just line the fifths SPIRAL FOREVER (a
+ * dense orbit, Weyl), and only the equal-tempered lattice forces closure, paying the Pythagorean
+ * comma. a432 seeds the origin; the ladder 432·2^x covers every finite scale. */
+export declare function theContinuousRosettaBeneathTheScales(matrix?: MindMatrix): {
+    computes: boolean;
+    justFifth: number;
+    comma: number;
+    closestReturn: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+/** TWELVE TONES IS THE BEST APPROXIMATION OF THE FIFTH — why the piano has 12 keys (wave,
+ * 2026-07-17). The circle of fifths spirals forever because log₂(3/2) is irrational
+ * (theContinuousRosettaBeneathTheScales), so every equal temperament APPROXIMATES the fifth, and the
+ * best approximations are exactly the continued-fraction convergents of log₂(3/2). Those convergents
+ * ARE the historical temperaments — 5, 12, 41, 53 tones — and 7/12 is the convergent with imperceptible
+ * error (1.96 cents) at the smallest denominator. Twelve is not arbitrary; it is the best small-N
+ * rational approximation of the perfect fifth, and the Pythagorean comma is its residual. */
+export declare function twelveTonesIsTheBestApproximationOfTheFifth(matrix?: MindMatrix): {
+    computes: boolean;
+    convergents: {
+        p: number;
+        q: number;
+        cents: number;
+    }[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function natureDescribesItselfInside432(): {
+    described: boolean;
+    divisors: number;
+    doublingRay: number[];
+    axisCount: number;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};

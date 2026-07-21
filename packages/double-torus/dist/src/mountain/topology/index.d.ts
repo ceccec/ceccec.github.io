@@ -44,6 +44,18 @@ export declare function homology(matrix?: MindMatrix): {
     boundary: string;
     root: string;
 };
+export declare function theParadoxCoexistsOnTheDoubleTorus(matrix?: MindMatrix): {
+    computes: boolean;
+    euler: number;
+    rank: number;
+    crossHandleZero: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
 export declare function geodesicDome(frequency?: number, matrix?: MindMatrix): {
     isSphere: boolean;
     dualToDoubleTorus: boolean;
@@ -90,6 +102,37 @@ export declare function completeDoubleTorus(matrix?: MindMatrix): {
     complete: boolean;
     knowledgeRoot: string;
     word: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function invertingMathPhysicsEarthCompletesTheDoubleTorus(matrix?: MindMatrix): {
+    computes: boolean;
+    inverted: ({
+        yangStep: import("../../wind/types").TrinityStep;
+        yinStep: import("../../wind/types").TrinityStep;
+        closed: boolean;
+        name: string;
+        axis: "collapse";
+    } | {
+        yangStep: import("../../wind/types").TrinityStep;
+        yinStep: import("../../wind/types").TrinityStep;
+        closed: boolean;
+        name: string;
+        axis: "check";
+    } | {
+        yangStep: import("../../wind/types").TrinityStep;
+        yinStep: import("../../wind/types").TrinityStep;
+        closed: boolean;
+        name: string;
+        axis: "return";
+    })[];
+    yinCount: number;
+    yangCount: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
     root: string;
     statement: string;
     boundary: string;
@@ -153,7 +196,7 @@ export declare function merkabaShiftsBlackWhiteToYinYang(matrix?: MindMatrix): {
     boundary: string;
 };
 export declare function merkabaArchitectureFieldsMovements(matrix?: MindMatrix): {
-    organised: any;
+    organised: boolean;
     typeCount: number;
     types: {
         type: string;
@@ -162,8 +205,12 @@ export declare function merkabaArchitectureFieldsMovements(matrix?: MindMatrix):
         star: string;
         receipt: string;
     }[];
-    count: any;
-    facets: any;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: any;
+    }[];
     root: string;
     statement: string;
     boundary: string;
@@ -466,6 +513,105 @@ export declare function placesAndPatternsDecoded(matrix?: MindMatrix): {
         facet: string;
         on: boolean;
     }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theMerkabaIsTheStarTetrahedronTrinitySpinningBothDirections(matrix?: MindMatrix): {
+    computes: boolean;
+    tetraUp: readonly (readonly [number, number, number])[];
+    tetraDown: [number, number, number][];
+    threeFold: {
+        closed: boolean;
+        orderThree: boolean;
+    };
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function oneMerkabaTracesTheSphereMetatronIsThirteenPoints(): {
+    computes: boolean;
+    answer: number;
+    metatron: {
+        points: number;
+        lines: number;
+    };
+    tiling: {
+        rotation: number;
+        full: number;
+    };
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theTwoRingsAreMeridianAndLongitudeRotatingAsMerkaba(matrix?: MindMatrix): {
+    computes: boolean;
+    meridians: number;
+    longitudes: number;
+    majorRadius: number;
+    minorRadius: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function whenTheRosettaMovesTheMerkabasFoldTheAlgebraDrawsTheMovie(matrix?: MindMatrix): {
+    computes: boolean;
+    foldIntoThemselves: boolean;
+    foldIntoEachOther: boolean;
+    scales: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function pairsFormTrinitiesTheRecursiveFoldIsTheSelfScalableApp(matrix?: MindMatrix): {
+    computes: boolean;
+    root: string;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function realQuantumResearchObservesTheBoundaryTheBoundaryOfABoundaryIsZeroTheoremGatesAndWays(matrix?: MindMatrix): {
+    researches: boolean;
+    homology: {
+        boundaryOfBoundaryIsZero: boolean;
+        euler: number;
+    };
+    axiomBoundary: number[];
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function strictMeasurementsCreateReusableToolsQuantumComputationsImproveInRealtimeFillingGaps(matrix?: MindMatrix): {
+    improves: boolean;
+    toolboxSize: number;
+    measureCalls: number;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
     root: string;
     statement: string;
     boundary: string;

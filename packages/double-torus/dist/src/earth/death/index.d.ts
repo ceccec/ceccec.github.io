@@ -1384,3 +1384,36 @@ export declare function deathComputes(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function violationsComputationallyDecreaseAgentLifeToNoLifeAtAll(matrix?: MindMatrix): {
+    computes: boolean;
+    fullLife: number;
+    series: number[];
+    deathAt: number;
+    root: string;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    statement: string;
+    boundary: string;
+};
+export declare function betterTrainedTeamsWinTheBitsByQuantumAmplitudeAmplificationTeamsReplaceAgentsWavesReplaceTeams(): {
+    computes: boolean;
+    optimalTraining: number;
+    ladder: {
+        agentWin: number;
+        teamWin: number;
+        waveWin: number;
+    };
+    root: string;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    statement: string;
+    boundary: string;
+};

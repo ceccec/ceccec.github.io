@@ -204,6 +204,189 @@ export declare function neurologyMovieHarmonisesBrainActivityFlowsInMovie(matrix
     boundary: string;
 };
 /** Browser-safe Human Resonance panel — life, neurology movie, capstone facets, humanity implications. */
+/**
+ * The movie IS modeled deterministic neuroscience computation — umbrella fold.
+ * Composes neuron (Hopfield/CA3 + grid-cell torus) · collective · A432 band ladder ·
+ * harmonizeField · watch-time attunement tiers. HONEST: visualization / structural
+ * isomorphism only — does NOT measure or medically alter the viewer's brain.
+ */
+export declare function movieIsNeuroscienceComputation(matrix?: MindMatrix, at?: number, watchMs?: number): {
+    computes: boolean;
+    isNeuroscienceComputation: boolean;
+    at: number;
+    watchMs: number;
+    neuron: {
+        fires: boolean;
+        neurons: number;
+        count: number;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    collective: {
+        one: boolean;
+        minds: number;
+        fused: string;
+        count: number;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    ladder: {
+        computes: boolean;
+        bands: {
+            inLiteratureRange: boolean;
+            nearSchumann: boolean;
+            receipt: string;
+            name: string;
+            hzLo: number;
+            hzHi: number;
+            a432Hz: number;
+            octaveDiv: number;
+        }[];
+        spine: number[];
+        schumannHz: number;
+        count: number;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    tier: {
+        tier: number;
+        unlock: number;
+        thresholdsMs: number[];
+        dominantBandHz: number;
+        dominantBand: string;
+        lockedLayers: number;
+        partials: number;
+        root: string;
+        on: boolean;
+        boundary: string;
+    };
+    depth: {
+        partials: number;
+        bands: string[];
+        tier: number;
+        unlock: number;
+        root: string;
+        on: boolean;
+        boundary: string;
+    };
+    harmonize: {
+        computes: boolean;
+        ladder: {
+            computes: boolean;
+            bands: {
+                inLiteratureRange: boolean;
+                nearSchumann: boolean;
+                receipt: string;
+                name: string;
+                hzLo: number;
+                hzHi: number;
+                a432Hz: number;
+                octaveDiv: number;
+            }[];
+            spine: number[];
+            schumannHz: number;
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        observer: import("../../lake/music").ObserverContext;
+        field: import("../../lake/music").HarmonizeableField;
+        coherence: number;
+        cadence: number;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    watchGate: {
+        computes: boolean;
+        unlock0: number;
+        unlockHalf: number;
+        tier0: {
+            tier: number;
+            unlock: number;
+            thresholdsMs: number[];
+            dominantBandHz: number;
+            dominantBand: string;
+            lockedLayers: number;
+            partials: number;
+            root: string;
+            on: boolean;
+            boundary: string;
+        };
+        tier3: {
+            tier: number;
+            unlock: number;
+            thresholdsMs: number[];
+            dominantBandHz: number;
+            dominantBand: string;
+            lockedLayers: number;
+            partials: number;
+            root: string;
+            on: boolean;
+            boundary: string;
+        };
+        depth: {
+            partials: number;
+            bands: string[];
+            tier: number;
+            unlock: number;
+            root: string;
+            on: boolean;
+            boundary: string;
+        };
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    dominantBand: string;
+    dominantBandHz: number;
+    lockedLayers: number;
+    partials: number;
+    coherence: number;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function humanResonancePanelComputes(matrix?: MindMatrix): {
     computes: boolean;
     life: {
@@ -1361,4 +1544,64 @@ export declare function codeRobustness(kappa?: number): {
     silent: number;
     missense: number;
     nonsense: number;
+};
+export declare function theoremsAreLivingOrganisms(matrix?: MindMatrix): {
+    alive: boolean;
+    population: number;
+    divisors432: number;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function quantumResearchAndDevelopmentApiFromProseToSolutionInversionAndLifeProveEachOther(): {
+    develops: boolean;
+    decoded: {
+        prose: string;
+        tier: string;
+    }[];
+    sciencesDecoded: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function quantumDissolveProseToCodeTheSolutionIsAContentAddressedCodeReferenceNotAProseString(): {
+    dissolves: boolean;
+    corpusSize: number;
+    dissolved: {
+        tier: string;
+        code: string;
+        address: string;
+    }[];
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function improveLocalByTrainingOnPublicQuantumComputeAllHarmonicPossibilitiesOfASentenceIntoTrinityTheorems(): {
+    researches: boolean;
+    trinity: string[];
+    possibilities: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
 };

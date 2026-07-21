@@ -120,12 +120,12 @@ export declare function quantumApplicationComputes(matrix?: MindMatrix, at?: num
             decoded: boolean;
             at: number;
             phaseIndex: number;
-            phaseDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+            phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
             mappings: ({
                 primitive: string;
                 measured: string;
                 entangled: boolean;
-                vortexDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+                vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
                 receipt: string;
                 steps?: undefined;
                 stationary?: undefined;
@@ -163,7 +163,7 @@ export declare function quantumApplicationComputes(matrix?: MindMatrix, at?: num
             } | {
                 primitive: string;
                 frames: number;
-                phaseDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+                phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
                 receipt: string;
                 measured?: undefined;
                 entangled?: undefined;
@@ -286,6 +286,8 @@ export declare function quantumApplicationComputes(matrix?: MindMatrix, at?: num
                 };
                 presentations: {
                     coheres: boolean;
+                    oneAddress: boolean;
+                    sealAnchorsSource: boolean;
                     operation: string;
                     presentations: {
                         receipt: string;
@@ -615,12 +617,12 @@ export declare function quantumApplicationPanelComputes(matrix?: MindMatrix, at?
                 decoded: boolean;
                 at: number;
                 phaseIndex: number;
-                phaseDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+                phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
                 mappings: ({
                     primitive: string;
                     measured: string;
                     entangled: boolean;
-                    vortexDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+                    vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
                     receipt: string;
                     steps?: undefined;
                     stationary?: undefined;
@@ -658,7 +660,7 @@ export declare function quantumApplicationPanelComputes(matrix?: MindMatrix, at?
                 } | {
                     primitive: string;
                     frames: number;
-                    phaseDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+                    phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
                     receipt: string;
                     measured?: undefined;
                     entangled?: undefined;
@@ -781,6 +783,8 @@ export declare function quantumApplicationPanelComputes(matrix?: MindMatrix, at?
                     };
                     presentations: {
                         coheres: boolean;
+                        oneAddress: boolean;
+                        sealAnchorsSource: boolean;
                         operation: string;
                         presentations: {
                             receipt: string;

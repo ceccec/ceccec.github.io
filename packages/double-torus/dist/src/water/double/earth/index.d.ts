@@ -698,12 +698,12 @@ export declare function trinityGatewaysNeverMissProvenByMath(path?: string, at?:
         step: number;
         bearing: number;
         slug: string;
-        realm: "animated" | "proven" | "presented";
-        trinityLeg: "cross" | "fold" | "weave";
+        realm: "proven" | "animated" | "presented";
+        trinityLeg: "fold" | "cross" | "weave";
         glyph: string;
     }[];
     hexEvenSteps: number[];
-    wiringSlugs: ("architecture" | "quantum-mind" | "show")[];
+    wiringSlugs: string[];
     formed: {
         formed: boolean;
         path: string;
@@ -1688,12 +1688,12 @@ export declare function earthGatewayNavigationSolutionsResearched(path?: string,
             step: number;
             bearing: number;
             slug: string;
-            realm: "animated" | "proven" | "presented";
-            trinityLeg: "cross" | "fold" | "weave";
+            realm: "proven" | "animated" | "presented";
+            trinityLeg: "fold" | "cross" | "weave";
             glyph: string;
         }[];
         hexEvenSteps: number[];
-        wiringSlugs: ("architecture" | "quantum-mind" | "show")[];
+        wiringSlugs: string[];
         formed: {
             formed: boolean;
             path: string;
@@ -2880,12 +2880,12 @@ export declare function earthGatewayNavigationResearchSentInWaves(path?: string,
                 step: number;
                 bearing: number;
                 slug: string;
-                realm: "animated" | "proven" | "presented";
-                trinityLeg: "cross" | "fold" | "weave";
+                realm: "proven" | "animated" | "presented";
+                trinityLeg: "fold" | "cross" | "weave";
                 glyph: string;
             }[];
             hexEvenSteps: number[];
-            wiringSlugs: ("architecture" | "quantum-mind" | "show")[];
+            wiringSlugs: string[];
             formed: {
                 formed: boolean;
                 path: string;
@@ -3759,7 +3759,7 @@ export declare function doubleTorusEarthHingeComputesAll(path?: string, at?: Ear
         earth: EarthSheet;
         angleDeg: number;
         hue: number;
-        ring: 1 | 2;
+        ring: 2 | 1;
     }[];
     paintSteps: EarthHingeVortexStepView[];
     paintLayers: EarthHingePaintLayer[];
@@ -3991,7 +3991,7 @@ export declare function doubleTorusEarthHingeMovieFlowsInMovie(path?: string, ma
         earth: EarthSheet;
         angleDeg: number;
         hue: number;
-        ring: 1 | 2;
+        ring: 2 | 1;
     }[];
     paintSteps: EarthHingeVortexStepView[];
     paintLayers: EarthHingePaintLayer[];
@@ -4676,12 +4676,12 @@ export declare function navigationGpsCelestialFromDualEarthPerspective(at?: numb
                 step: number;
                 bearing: number;
                 slug: string;
-                realm: "animated" | "proven" | "presented";
-                trinityLeg: "cross" | "fold" | "weave";
+                realm: "proven" | "animated" | "presented";
+                trinityLeg: "fold" | "cross" | "weave";
                 glyph: string;
             }[];
             hexEvenSteps: number[];
-            wiringSlugs: ("architecture" | "quantum-mind" | "show")[];
+            wiringSlugs: string[];
             formed: {
                 formed: boolean;
                 path: string;
@@ -6036,12 +6036,12 @@ export declare function navigationGpsCelestialReexplainedFromDualEarthPerspectiv
                     step: number;
                     bearing: number;
                     slug: string;
-                    realm: "animated" | "proven" | "presented";
-                    trinityLeg: "cross" | "fold" | "weave";
+                    realm: "proven" | "animated" | "presented";
+                    trinityLeg: "fold" | "cross" | "weave";
                     glyph: string;
                 }[];
                 hexEvenSteps: number[];
-                wiringSlugs: ("architecture" | "quantum-mind" | "show")[];
+                wiringSlugs: string[];
                 formed: {
                     formed: boolean;
                     path: string;
@@ -7391,12 +7391,12 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                     step: number;
                     bearing: number;
                     slug: string;
-                    realm: "animated" | "proven" | "presented";
-                    trinityLeg: "cross" | "fold" | "weave";
+                    realm: "proven" | "animated" | "presented";
+                    trinityLeg: "fold" | "cross" | "weave";
                     glyph: string;
                 }[];
                 hexEvenSteps: number[];
-                wiringSlugs: ("architecture" | "quantum-mind" | "show")[];
+                wiringSlugs: string[];
                 formed: {
                     formed: boolean;
                     path: string;
@@ -8737,12 +8737,12 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                         step: number;
                         bearing: number;
                         slug: string;
-                        realm: "animated" | "proven" | "presented";
-                        trinityLeg: "cross" | "fold" | "weave";
+                        realm: "proven" | "animated" | "presented";
+                        trinityLeg: "fold" | "cross" | "weave";
                         glyph: string;
                     }[];
                     hexEvenSteps: number[];
-                    wiringSlugs: ("architecture" | "quantum-mind" | "show")[];
+                    wiringSlugs: string[];
                     formed: {
                         formed: boolean;
                         path: string;
@@ -12115,12 +12115,12 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                 step: number;
                 bearing: number;
                 slug: string;
-                realm: "animated" | "proven" | "presented";
-                trinityLeg: "cross" | "fold" | "weave";
+                realm: "proven" | "animated" | "presented";
+                trinityLeg: "fold" | "cross" | "weave";
                 glyph: string;
             }[];
             hexEvenSteps: number[];
-            wiringSlugs: ("architecture" | "quantum-mind" | "show")[];
+            wiringSlugs: string[];
             formed: {
                 formed: boolean;
                 path: string;
@@ -13535,12 +13535,12 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
             step: number;
             bearing: number;
             slug: string;
-            realm: "animated" | "proven" | "presented";
-            trinityLeg: "cross" | "fold" | "weave";
+            realm: "proven" | "animated" | "presented";
+            trinityLeg: "fold" | "cross" | "weave";
             glyph: string;
         }[];
         hexEvenSteps: number[];
-        wiringSlugs: ("architecture" | "quantum-mind" | "show")[];
+        wiringSlugs: string[];
         formed: {
             formed: boolean;
             path: string;
@@ -14930,12 +14930,12 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                     step: number;
                     bearing: number;
                     slug: string;
-                    realm: "animated" | "proven" | "presented";
-                    trinityLeg: "cross" | "fold" | "weave";
+                    realm: "proven" | "animated" | "presented";
+                    trinityLeg: "fold" | "cross" | "weave";
                     glyph: string;
                 }[];
                 hexEvenSteps: number[];
-                wiringSlugs: ("architecture" | "quantum-mind" | "show")[];
+                wiringSlugs: string[];
                 formed: {
                     formed: boolean;
                     path: string;
@@ -16350,12 +16350,12 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                 step: number;
                 bearing: number;
                 slug: string;
-                realm: "animated" | "proven" | "presented";
-                trinityLeg: "cross" | "fold" | "weave";
+                realm: "proven" | "animated" | "presented";
+                trinityLeg: "fold" | "cross" | "weave";
                 glyph: string;
             }[];
             hexEvenSteps: number[];
-            wiringSlugs: ("architecture" | "quantum-mind" | "show")[];
+            wiringSlugs: string[];
             formed: {
                 formed: boolean;
                 path: string;
@@ -20035,7 +20035,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
         phaseSlot: string | null;
         receipt: string;
     }[];
-    activeVortexDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+    activeVortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
     phaseIndex: number;
     vortexQuadrants: Record<"north" | "east" | "south" | "west", readonly number[]>;
     homologyLoops: ("spread" | "depthFade" | "hueShift" | "twist" | "shrink" | "breath" | "loopA1" | "loopB1" | "loopA2" | "loopB2")[];
@@ -20891,12 +20891,12 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
                     step: number;
                     bearing: number;
                     slug: string;
-                    realm: "animated" | "proven" | "presented";
-                    trinityLeg: "cross" | "fold" | "weave";
+                    realm: "proven" | "animated" | "presented";
+                    trinityLeg: "fold" | "cross" | "weave";
                     glyph: string;
                 }[];
                 hexEvenSteps: number[];
-                wiringSlugs: ("architecture" | "quantum-mind" | "show")[];
+                wiringSlugs: string[];
                 formed: {
                     formed: boolean;
                     path: string;
@@ -21642,7 +21642,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
             phaseSlot: string | null;
             receipt: string;
         }[];
-        activeVortexDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+        activeVortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
         phaseIndex: number;
         vortexQuadrants: Record<"north" | "east" | "south" | "west", readonly number[]>;
         homologyLoops: ("spread" | "depthFade" | "hueShift" | "twist" | "shrink" | "breath" | "loopA1" | "loopB1" | "loopA2" | "loopB2")[];
@@ -22498,12 +22498,12 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
                         step: number;
                         bearing: number;
                         slug: string;
-                        realm: "animated" | "proven" | "presented";
-                        trinityLeg: "cross" | "fold" | "weave";
+                        realm: "proven" | "animated" | "presented";
+                        trinityLeg: "fold" | "cross" | "weave";
                         glyph: string;
                     }[];
                     hexEvenSteps: number[];
-                    wiringSlugs: ("architecture" | "quantum-mind" | "show")[];
+                    wiringSlugs: string[];
                     formed: {
                         formed: boolean;
                         path: string;
@@ -23244,7 +23244,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
             phaseSlot: string | null;
             receipt: string;
         }[];
-        activeVortexDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+        activeVortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
         phaseIndex: number;
         vortexQuadrants: Record<"north" | "east" | "south" | "west", readonly number[]>;
         homologyLoops: ("spread" | "depthFade" | "hueShift" | "twist" | "shrink" | "breath" | "loopA1" | "loopB1" | "loopA2" | "loopB2")[];
@@ -24100,12 +24100,12 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                         step: number;
                         bearing: number;
                         slug: string;
-                        realm: "animated" | "proven" | "presented";
-                        trinityLeg: "cross" | "fold" | "weave";
+                        realm: "proven" | "animated" | "presented";
+                        trinityLeg: "fold" | "cross" | "weave";
                         glyph: string;
                     }[];
                     hexEvenSteps: number[];
-                    wiringSlugs: ("architecture" | "quantum-mind" | "show")[];
+                    wiringSlugs: string[];
                     formed: {
                         formed: boolean;
                         path: string;
@@ -24837,7 +24837,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                 phaseSlot: string | null;
                 receipt: string;
             }[];
-            activeVortexDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+            activeVortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
             phaseIndex: number;
             vortexQuadrants: Record<"north" | "east" | "south" | "west", readonly number[]>;
             homologyLoops: ("spread" | "depthFade" | "hueShift" | "twist" | "shrink" | "breath" | "loopA1" | "loopB1" | "loopA2" | "loopB2")[];
@@ -25693,12 +25693,12 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                             step: number;
                             bearing: number;
                             slug: string;
-                            realm: "animated" | "proven" | "presented";
-                            trinityLeg: "cross" | "fold" | "weave";
+                            realm: "proven" | "animated" | "presented";
+                            trinityLeg: "fold" | "cross" | "weave";
                             glyph: string;
                         }[];
                         hexEvenSteps: number[];
-                        wiringSlugs: ("architecture" | "quantum-mind" | "show")[];
+                        wiringSlugs: string[];
                         formed: {
                             formed: boolean;
                             path: string;
@@ -26622,7 +26622,7 @@ export declare function doubleTorusEarthComputes(matrix?: MindMatrix): {
             bearing: number;
         };
         torus: {
-            index: 1 | 2;
+            index: 2 | 1;
             lobe: number;
             theta: number;
             phi: number;
@@ -26847,7 +26847,7 @@ export declare function doubleTorusEarthComputes(matrix?: MindMatrix): {
             earth: EarthSheet;
             angleDeg: number;
             hue: number;
-            ring: 1 | 2;
+            ring: 2 | 1;
         }[];
         paintSteps: EarthHingeVortexStepView[];
         paintLayers: EarthHingePaintLayer[];
@@ -26940,7 +26940,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
             phaseSlot: string | null;
             receipt: string;
         }[];
-        activeVortexDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+        activeVortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
         phaseIndex: number;
         vortexQuadrants: Record<"north" | "east" | "south" | "west", readonly number[]>;
         homologyLoops: ("spread" | "depthFade" | "hueShift" | "twist" | "shrink" | "breath" | "loopA1" | "loopB1" | "loopA2" | "loopB2")[];
@@ -27796,12 +27796,12 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
                         step: number;
                         bearing: number;
                         slug: string;
-                        realm: "animated" | "proven" | "presented";
-                        trinityLeg: "cross" | "fold" | "weave";
+                        realm: "proven" | "animated" | "presented";
+                        trinityLeg: "fold" | "cross" | "weave";
                         glyph: string;
                     }[];
                     hexEvenSteps: number[];
-                    wiringSlugs: ("architecture" | "quantum-mind" | "show")[];
+                    wiringSlugs: string[];
                     formed: {
                         formed: boolean;
                         path: string;
@@ -28780,7 +28780,7 @@ export declare function bothEarthsAreOneWhiteBlackHoleThroatProvenByMath(at?: nu
                 bearing: number;
             };
             torus: {
-                index: 1 | 2;
+                index: 2 | 1;
                 lobe: number;
                 theta: number;
                 phi: number;
@@ -29005,7 +29005,7 @@ export declare function bothEarthsAreOneWhiteBlackHoleThroatProvenByMath(at?: nu
                 earth: EarthSheet;
                 angleDeg: number;
                 hue: number;
-                ring: 1 | 2;
+                ring: 2 | 1;
             }[];
             paintSteps: EarthHingeVortexStepView[];
             paintLayers: EarthHingePaintLayer[];

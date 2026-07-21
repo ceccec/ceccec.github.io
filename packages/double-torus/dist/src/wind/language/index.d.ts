@@ -335,3 +335,70 @@ export declare function dryCleanObsoleteTools(): {
     statement: string;
     boundary: string;
 };
+export declare function glagoliticBindsSoundDigitCodeNotPrimesOrPi(matrix?: MindMatrix): {
+    computes: boolean;
+    ladder: number[];
+    primes: number[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theSimplicityDrivesTheQuantumComplexityDecodedFromProse(root?: string, matrix?: MindMatrix): {
+    computes: boolean;
+    N: number;
+    distinctClasses: number;
+    meanClassSize: number;
+    channels: number;
+    executable: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function rosettaIsTheUuidQuantumMapsTheoremsByA432(matrix?: MindMatrix): {
+    computes: boolean;
+    N: number;
+    portals: number;
+    sigClasses: number;
+    base: 0 | 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6 | 360 | 16 | 27 | 54 | 64 | 100 | 108 | 216 | 432 | 864;
+    axiomsClose: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theEncodingDecodingTrinityIsA432DecodingPiAndPrimeByTheSequence(matrix?: MindMatrix): {
+    computes: boolean;
+    positions: 20;
+    primes: number[];
+    piDigits: number[];
+    trinity: string[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function portAnyCodeInAnyLanguageAtOnceThroughTheRosettaPivotOfNAdaptersNotNSquared(): {
+    ports: boolean;
+    languages: number;
+    adapters: number;
+    directedPairs: number;
+    speedup: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};

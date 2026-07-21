@@ -1,5 +1,7 @@
 import * as __ns_up_vortex_math from '../../../mountain/vortex';
+import * as __ns_up_learning from '../../../wind/learning';
 import type { MindMatrix } from '../../../wind/types';
+import { RAVE_BODIES_13, RAVE_CENTERS_9 } from '../../../quantum/lake/spirit';
 /** One celestial body paint sample at instant `at`. */
 export type AstronomySimulationBody = {
     name: string;
@@ -1176,6 +1178,8 @@ export declare function astronomySequenceDecodeResearch(matrix?: MindMatrix): {
         };
         presentations: {
             coheres: boolean;
+            oneAddress: boolean;
+            sealAnchorsSource: boolean;
             operation: string;
             presentations: {
                 receipt: string;
@@ -1309,13 +1313,13 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
     decoded: boolean;
     at: number;
     phaseIndex: number;
-    phaseDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+    phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
     digitFolderDigit: number;
     mappings: {
         name: string;
         kind: "planet" | "star" | "satellite" | "major-moon";
         vortexSlot: number;
-        vortexDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+        vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
         hexagram: number;
         rosettaRay: number;
         rosettaGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
@@ -1829,6 +1833,8 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
         };
         presentations: {
             coheres: boolean;
+            oneAddress: boolean;
+            sealAnchorsSource: boolean;
             operation: string;
             presentations: {
                 receipt: string;
@@ -2675,12 +2681,12 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                         step: number;
                         bearing: number;
                         slug: string;
-                        realm: "animated" | "proven" | "presented";
-                        trinityLeg: "cross" | "fold" | "weave";
+                        realm: "proven" | "animated" | "presented";
+                        trinityLeg: "fold" | "cross" | "weave";
                         glyph: string;
                     }[];
                     hexEvenSteps: number[];
-                    wiringSlugs: ("architecture" | "quantum-mind" | "show")[];
+                    wiringSlugs: string[];
                     formed: {
                         formed: boolean;
                         path: string;
@@ -4210,12 +4216,12 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                         step: number;
                         bearing: number;
                         slug: string;
-                        realm: "animated" | "proven" | "presented";
-                        trinityLeg: "cross" | "fold" | "weave";
+                        realm: "proven" | "animated" | "presented";
+                        trinityLeg: "fold" | "cross" | "weave";
                         glyph: string;
                     }[];
                     hexEvenSteps: number[];
-                    wiringSlugs: ("architecture" | "quantum-mind" | "show")[];
+                    wiringSlugs: string[];
                     formed: {
                         formed: boolean;
                         path: string;
@@ -5167,56 +5173,56 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                 root: string;
             };
             rows: {
-                tail: "language" | "ui" | "routes" | "rosetta" | "fusion" | "learning" | "site" | "types" | "iching";
-                action: "language" | "ui" | "routes" | "rosetta" | "fusion" | "learning" | "site" | "types" | "iching";
+                tail: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                action: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
                 ray: number;
                 rayMeta: {
                     readonly ray: 0;
                     readonly glyph: "Ⰰ";
-                    readonly nameEn: "Alpha";
-                    readonly nameBg: "Алфа";
+                    readonly nameEn: "Origin";
+                    readonly nameBg: "Произход";
                     readonly domain: "origin";
                     readonly hue: 0;
                 } | {
                     readonly ray: 1;
                     readonly glyph: "Ⰲ";
-                    readonly nameEn: "Voice";
-                    readonly nameBg: "Глас";
+                    readonly nameEn: "Proof";
+                    readonly nameBg: "Доказателства";
                     readonly domain: "expression";
                     readonly hue: 51;
                 } | {
                     readonly ray: 2;
                     readonly glyph: "Ⰴ";
-                    readonly nameEn: "Spirit";
-                    readonly nameBg: "Дух";
+                    readonly nameEn: "Explore";
+                    readonly nameBg: "Изследване";
                     readonly domain: "knowledge";
                     readonly hue: 102;
                 } | {
                     readonly ray: 3;
                     readonly glyph: "Ⰶ";
-                    readonly nameEn: "Life";
-                    readonly nameBg: "Живот";
+                    readonly nameEn: "Learn";
+                    readonly nameBg: "Обучение";
                     readonly domain: "nature";
                     readonly hue: 154;
                 } | {
                     readonly ray: 4;
                     readonly glyph: "Ⰹ";
-                    readonly nameEn: "Thought";
-                    readonly nameBg: "Мисъл";
+                    readonly nameEn: "Apps";
+                    readonly nameBg: "Приложения";
                     readonly domain: "computation";
                     readonly hue: 205;
                 } | {
                     readonly ray: 5;
                     readonly glyph: "Ⰿ";
-                    readonly nameEn: "Form";
-                    readonly nameBg: "Форма";
+                    readonly nameEn: "Frontier";
+                    readonly nameBg: "Граници";
                     readonly domain: "geometry";
                     readonly hue: 257;
                 } | {
                     readonly ray: 6;
                     readonly glyph: "Ⱄ";
-                    readonly nameEn: "Word";
-                    readonly nameBg: "Слово";
+                    readonly nameEn: "Reference";
+                    readonly nameBg: "Справочник";
                     readonly domain: "language";
                     readonly hue: 308;
                 };
@@ -5225,15 +5231,15 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                 legacyBare: string;
                 schemaTarget: string;
                 canonical: string;
-                importBarrel: "language" | "ui" | "routes" | "rosetta" | "fusion" | "learning" | "site" | "types" | "iching";
-                wave: 1 | 2;
+                importBarrel: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                wave: 2 | 1;
                 applied: boolean;
                 receipt: string;
             }[];
             moveTable: {
                 from: string;
                 to: string;
-                wave: 1 | 2;
+                wave: 2 | 1;
                 applied: boolean;
                 ray: number;
             }[];
@@ -5241,6 +5247,219 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                 target: number;
                 pendingDissolve: string[];
             };
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        core: {
+            computes: boolean;
+            at: number;
+            core: {
+                computes: boolean;
+                at: number;
+                surfaces: import("../../../quantum/apps").RosettaCoreSurface[];
+                inventory: {
+                    core: {
+                        label: string;
+                        kind: import("../../../quantum/apps").RosettaCoreSurfaceKind;
+                        ray: number;
+                        address: string;
+                    }[];
+                    parallel: readonly ["ROSETTA_RAY_VIEWS duplicate", "PROJECTION_SEGMENT/FORMS→VORTEX", "rosettaClaim/Owner(heaven/core)", "rosettaCodec(learning)", "string/millennium→rosettaReady-handoff"];
+                    hubs: {
+                        slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
+                        ray: number;
+                        route: string;
+                        hue: number;
+                    }[];
+                };
+                hubs: readonly import("../../../3/7").RosettaRayHub[];
+                raysUsed: number;
+                kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
+                resolve: (label: string, kind?: import("../../../quantum/apps").RosettaCoreSurfaceKind) => import("../../../quantum/apps").RosettaCoreSurface;
+                shelve: typeof __ns_up_learning.rosettaShelve;
+                byRay: (ray: number) => import("../../../quantum/apps").RosettaCoreSurface[];
+                resolveRoute: (route: string) => {
+                    surface: import("../../../quantum/apps").RosettaCoreSurface;
+                    address: string;
+                    computed: boolean;
+                    route: string;
+                    slug: string;
+                    ray: number;
+                    rayMeta: {
+                        readonly ray: 0;
+                        readonly glyph: "Ⰰ";
+                        readonly nameEn: "Origin";
+                        readonly nameBg: "Произход";
+                        readonly domain: "origin";
+                        readonly hue: 0;
+                    } | {
+                        readonly ray: 1;
+                        readonly glyph: "Ⰲ";
+                        readonly nameEn: "Proof";
+                        readonly nameBg: "Доказателства";
+                        readonly domain: "expression";
+                        readonly hue: 51;
+                    } | {
+                        readonly ray: 2;
+                        readonly glyph: "Ⰴ";
+                        readonly nameEn: "Explore";
+                        readonly nameBg: "Изследване";
+                        readonly domain: "knowledge";
+                        readonly hue: 102;
+                    } | {
+                        readonly ray: 3;
+                        readonly glyph: "Ⰶ";
+                        readonly nameEn: "Learn";
+                        readonly nameBg: "Обучение";
+                        readonly domain: "nature";
+                        readonly hue: 154;
+                    } | {
+                        readonly ray: 4;
+                        readonly glyph: "Ⰹ";
+                        readonly nameEn: "Apps";
+                        readonly nameBg: "Приложения";
+                        readonly domain: "computation";
+                        readonly hue: 205;
+                    } | {
+                        readonly ray: 5;
+                        readonly glyph: "Ⰿ";
+                        readonly nameEn: "Frontier";
+                        readonly nameBg: "Граници";
+                        readonly domain: "geometry";
+                        readonly hue: 257;
+                    } | {
+                        readonly ray: 6;
+                        readonly glyph: "Ⱄ";
+                        readonly nameEn: "Reference";
+                        readonly nameBg: "Справочник";
+                        readonly domain: "language";
+                        readonly hue: 308;
+                    };
+                    station: number;
+                    crossPair: string;
+                    glaAddress: string;
+                    navigation: {
+                        rayLabel: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
+                        rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
+                        rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
+                        rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
+                        siblings: import("../../../wind/types").ConceptCommandName[];
+                        siblingCount: number;
+                    };
+                    content: {
+                        pageKind: import("../../../3/7").RosettaComputationType;
+                        heroPhase: number;
+                        bodySeed: string;
+                        heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                    };
+                    motion: {
+                        at: number;
+                        rays: {
+                            ray: number;
+                            baseAngle: number;
+                            currentAngle: number;
+                            angularVelocity: number;
+                            vortexRate: number;
+                            radius: number;
+                            letters: {
+                                letterIndex: number;
+                                letterAngle: number;
+                                letterRadius: number;
+                                digitalRootPosition: number;
+                            }[];
+                        }[];
+                        breathRadius: number;
+                        breathPulse: number;
+                        proof: {
+                            coprime7_6: boolean;
+                            coprime7_9: boolean;
+                            coprime7_10: boolean;
+                            holds: boolean;
+                        };
+                        constants: {
+                            RAYS: number;
+                            LETTERS_PER_RAY: number;
+                            PHI: number;
+                            GOLDEN_ANGLE: number;
+                            DOUBLING_PERIOD: number;
+                            DR_MODULUS: number;
+                            STATION_COUNT: number;
+                        };
+                        root: string;
+                    };
+                    stationDetail: {
+                        digit: number;
+                        folder: string;
+                        path: string;
+                    };
+                    sharedRoot: string;
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                resolveProjection: (label: string) => {
+                    surface: import("../../../quantum/apps").RosettaCoreSurface;
+                    phase: number;
+                    hue: number;
+                    motion: {
+                        at: number;
+                        rays: {
+                            ray: number;
+                            baseAngle: number;
+                            currentAngle: number;
+                            angularVelocity: number;
+                            vortexRate: number;
+                            radius: number;
+                            letters: {
+                                letterIndex: number;
+                                letterAngle: number;
+                                letterRadius: number;
+                                digitalRootPosition: number;
+                            }[];
+                        }[];
+                        breathRadius: number;
+                        breathPulse: number;
+                        proof: {
+                            coprime7_6: boolean;
+                            coprime7_9: boolean;
+                            coprime7_10: boolean;
+                            holds: boolean;
+                        };
+                        constants: {
+                            RAYS: number;
+                            LETTERS_PER_RAY: number;
+                            PHI: number;
+                            GOLDEN_ANGLE: number;
+                            DOUBLING_PERIOD: number;
+                            DR_MODULUS: number;
+                            STATION_COUNT: number;
+                        };
+                        root: string;
+                    };
+                };
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            slots: {
+                ray: number;
+                kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
+                pageKind: import("../../../3/7").RosettaComputationType;
+                vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                receipt: string;
+            }[];
+            count: number;
             facets: {
                 receipt: string;
                 facet: string;
@@ -5300,9 +5519,9 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
         nav: {
             computes: boolean;
             navigation: {
-                tag: "origin" | "expression" | "knowledge" | "nature" | "computation" | "geometry" | "language";
+                tag: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
                 ray: number;
-                name: "Alpha" | "Voice" | "Spirit" | "Life" | "Thought" | "Form" | "Word";
+                name: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
             };
             rosetta: {
                 decoded: boolean;
@@ -5317,50 +5536,50 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                 rayMeta: {
                     readonly ray: 0;
                     readonly glyph: "Ⰰ";
-                    readonly nameEn: "Alpha";
-                    readonly nameBg: "Алфа";
+                    readonly nameEn: "Origin";
+                    readonly nameBg: "Произход";
                     readonly domain: "origin";
                     readonly hue: 0;
                 } | {
                     readonly ray: 1;
                     readonly glyph: "Ⰲ";
-                    readonly nameEn: "Voice";
-                    readonly nameBg: "Глас";
+                    readonly nameEn: "Proof";
+                    readonly nameBg: "Доказателства";
                     readonly domain: "expression";
                     readonly hue: 51;
                 } | {
                     readonly ray: 2;
                     readonly glyph: "Ⰴ";
-                    readonly nameEn: "Spirit";
-                    readonly nameBg: "Дух";
+                    readonly nameEn: "Explore";
+                    readonly nameBg: "Изследване";
                     readonly domain: "knowledge";
                     readonly hue: 102;
                 } | {
                     readonly ray: 3;
                     readonly glyph: "Ⰶ";
-                    readonly nameEn: "Life";
-                    readonly nameBg: "Живот";
+                    readonly nameEn: "Learn";
+                    readonly nameBg: "Обучение";
                     readonly domain: "nature";
                     readonly hue: 154;
                 } | {
                     readonly ray: 4;
                     readonly glyph: "Ⰹ";
-                    readonly nameEn: "Thought";
-                    readonly nameBg: "Мисъл";
+                    readonly nameEn: "Apps";
+                    readonly nameBg: "Приложения";
                     readonly domain: "computation";
                     readonly hue: 205;
                 } | {
                     readonly ray: 5;
                     readonly glyph: "Ⰿ";
-                    readonly nameEn: "Form";
-                    readonly nameBg: "Форма";
+                    readonly nameEn: "Frontier";
+                    readonly nameBg: "Граници";
                     readonly domain: "geometry";
                     readonly hue: 257;
                 } | {
                     readonly ray: 6;
                     readonly glyph: "Ⱄ";
-                    readonly nameEn: "Word";
-                    readonly nameBg: "Слово";
+                    readonly nameEn: "Reference";
+                    readonly nameBg: "Справочник";
                     readonly domain: "language";
                     readonly hue: 308;
                 };
@@ -5390,50 +5609,50 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
             rayMeta: {
                 readonly ray: 0;
                 readonly glyph: "Ⰰ";
-                readonly nameEn: "Alpha";
-                readonly nameBg: "Алфа";
+                readonly nameEn: "Origin";
+                readonly nameBg: "Произход";
                 readonly domain: "origin";
                 readonly hue: 0;
             } | {
                 readonly ray: 1;
                 readonly glyph: "Ⰲ";
-                readonly nameEn: "Voice";
-                readonly nameBg: "Глас";
+                readonly nameEn: "Proof";
+                readonly nameBg: "Доказателства";
                 readonly domain: "expression";
                 readonly hue: 51;
             } | {
                 readonly ray: 2;
                 readonly glyph: "Ⰴ";
-                readonly nameEn: "Spirit";
-                readonly nameBg: "Дух";
+                readonly nameEn: "Explore";
+                readonly nameBg: "Изследване";
                 readonly domain: "knowledge";
                 readonly hue: 102;
             } | {
                 readonly ray: 3;
                 readonly glyph: "Ⰶ";
-                readonly nameEn: "Life";
-                readonly nameBg: "Живот";
+                readonly nameEn: "Learn";
+                readonly nameBg: "Обучение";
                 readonly domain: "nature";
                 readonly hue: 154;
             } | {
                 readonly ray: 4;
                 readonly glyph: "Ⰹ";
-                readonly nameEn: "Thought";
-                readonly nameBg: "Мисъл";
+                readonly nameEn: "Apps";
+                readonly nameBg: "Приложения";
                 readonly domain: "computation";
                 readonly hue: 205;
             } | {
                 readonly ray: 5;
                 readonly glyph: "Ⰿ";
-                readonly nameEn: "Form";
-                readonly nameBg: "Форма";
+                readonly nameEn: "Frontier";
+                readonly nameBg: "Граници";
                 readonly domain: "geometry";
                 readonly hue: 257;
             } | {
                 readonly ray: 6;
                 readonly glyph: "Ⱄ";
-                readonly nameEn: "Word";
-                readonly nameBg: "Слово";
+                readonly nameEn: "Reference";
+                readonly nameBg: "Справочник";
                 readonly domain: "language";
                 readonly hue: 308;
             };
@@ -5441,10 +5660,10 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
             crossPair: string;
             glaAddress: string;
             navigation: {
-                rayLabel: "Alpha" | "Voice" | "Spirit" | "Life" | "Thought" | "Form" | "Word";
-                rayLabelBg: "Алфа" | "Глас" | "Дух" | "Живот" | "Мисъл" | "Форма" | "Слово";
+                rayLabel: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
+                rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                 rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
-                rayDomain: "origin" | "expression" | "knowledge" | "nature" | "computation" | "geometry" | "language";
+                rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
                 siblings: import("../../../wind/types").ConceptCommandName[];
                 siblingCount: number;
             };
@@ -6274,13 +6493,13 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
             decoded: boolean;
             at: number;
             phaseIndex: number;
-            phaseDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+            phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
             digitFolderDigit: number;
             mappings: {
                 name: string;
                 kind: "planet" | "star" | "satellite" | "major-moon";
                 vortexSlot: number;
-                vortexDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+                vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
                 hexagram: number;
                 rosettaRay: number;
                 rosettaGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
@@ -6794,6 +7013,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                 };
                 presentations: {
                     coheres: boolean;
+                    oneAddress: boolean;
+                    sealAnchorsSource: boolean;
                     operation: string;
                     presentations: {
                         receipt: string;
@@ -7640,12 +7861,12 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                 step: number;
                                 bearing: number;
                                 slug: string;
-                                realm: "animated" | "proven" | "presented";
-                                trinityLeg: "cross" | "fold" | "weave";
+                                realm: "proven" | "animated" | "presented";
+                                trinityLeg: "fold" | "cross" | "weave";
                                 glyph: string;
                             }[];
                             hexEvenSteps: number[];
-                            wiringSlugs: ("architecture" | "quantum-mind" | "show")[];
+                            wiringSlugs: string[];
                             formed: {
                                 formed: boolean;
                                 path: string;
@@ -9175,12 +9396,12 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                 step: number;
                                 bearing: number;
                                 slug: string;
-                                realm: "animated" | "proven" | "presented";
-                                trinityLeg: "cross" | "fold" | "weave";
+                                realm: "proven" | "animated" | "presented";
+                                trinityLeg: "fold" | "cross" | "weave";
                                 glyph: string;
                             }[];
                             hexEvenSteps: number[];
-                            wiringSlugs: ("architecture" | "quantum-mind" | "show")[];
+                            wiringSlugs: string[];
                             formed: {
                                 formed: boolean;
                                 path: string;
@@ -10132,56 +10353,56 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         root: string;
                     };
                     rows: {
-                        tail: "language" | "ui" | "routes" | "rosetta" | "fusion" | "learning" | "site" | "types" | "iching";
-                        action: "language" | "ui" | "routes" | "rosetta" | "fusion" | "learning" | "site" | "types" | "iching";
+                        tail: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                        action: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
                         ray: number;
                         rayMeta: {
                             readonly ray: 0;
                             readonly glyph: "Ⰰ";
-                            readonly nameEn: "Alpha";
-                            readonly nameBg: "Алфа";
+                            readonly nameEn: "Origin";
+                            readonly nameBg: "Произход";
                             readonly domain: "origin";
                             readonly hue: 0;
                         } | {
                             readonly ray: 1;
                             readonly glyph: "Ⰲ";
-                            readonly nameEn: "Voice";
-                            readonly nameBg: "Глас";
+                            readonly nameEn: "Proof";
+                            readonly nameBg: "Доказателства";
                             readonly domain: "expression";
                             readonly hue: 51;
                         } | {
                             readonly ray: 2;
                             readonly glyph: "Ⰴ";
-                            readonly nameEn: "Spirit";
-                            readonly nameBg: "Дух";
+                            readonly nameEn: "Explore";
+                            readonly nameBg: "Изследване";
                             readonly domain: "knowledge";
                             readonly hue: 102;
                         } | {
                             readonly ray: 3;
                             readonly glyph: "Ⰶ";
-                            readonly nameEn: "Life";
-                            readonly nameBg: "Живот";
+                            readonly nameEn: "Learn";
+                            readonly nameBg: "Обучение";
                             readonly domain: "nature";
                             readonly hue: 154;
                         } | {
                             readonly ray: 4;
                             readonly glyph: "Ⰹ";
-                            readonly nameEn: "Thought";
-                            readonly nameBg: "Мисъл";
+                            readonly nameEn: "Apps";
+                            readonly nameBg: "Приложения";
                             readonly domain: "computation";
                             readonly hue: 205;
                         } | {
                             readonly ray: 5;
                             readonly glyph: "Ⰿ";
-                            readonly nameEn: "Form";
-                            readonly nameBg: "Форма";
+                            readonly nameEn: "Frontier";
+                            readonly nameBg: "Граници";
                             readonly domain: "geometry";
                             readonly hue: 257;
                         } | {
                             readonly ray: 6;
                             readonly glyph: "Ⱄ";
-                            readonly nameEn: "Word";
-                            readonly nameBg: "Слово";
+                            readonly nameEn: "Reference";
+                            readonly nameBg: "Справочник";
                             readonly domain: "language";
                             readonly hue: 308;
                         };
@@ -10190,15 +10411,15 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         legacyBare: string;
                         schemaTarget: string;
                         canonical: string;
-                        importBarrel: "language" | "ui" | "routes" | "rosetta" | "fusion" | "learning" | "site" | "types" | "iching";
-                        wave: 1 | 2;
+                        importBarrel: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                        wave: 2 | 1;
                         applied: boolean;
                         receipt: string;
                     }[];
                     moveTable: {
                         from: string;
                         to: string;
-                        wave: 1 | 2;
+                        wave: 2 | 1;
                         applied: boolean;
                         ray: number;
                     }[];
@@ -10206,6 +10427,219 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         target: number;
                         pendingDissolve: string[];
                     };
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                core: {
+                    computes: boolean;
+                    at: number;
+                    core: {
+                        computes: boolean;
+                        at: number;
+                        surfaces: import("../../../quantum/apps").RosettaCoreSurface[];
+                        inventory: {
+                            core: {
+                                label: string;
+                                kind: import("../../../quantum/apps").RosettaCoreSurfaceKind;
+                                ray: number;
+                                address: string;
+                            }[];
+                            parallel: readonly ["ROSETTA_RAY_VIEWS duplicate", "PROJECTION_SEGMENT/FORMS→VORTEX", "rosettaClaim/Owner(heaven/core)", "rosettaCodec(learning)", "string/millennium→rosettaReady-handoff"];
+                            hubs: {
+                                slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
+                                ray: number;
+                                route: string;
+                                hue: number;
+                            }[];
+                        };
+                        hubs: readonly import("../../../3/7").RosettaRayHub[];
+                        raysUsed: number;
+                        kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
+                        resolve: (label: string, kind?: import("../../../quantum/apps").RosettaCoreSurfaceKind) => import("../../../quantum/apps").RosettaCoreSurface;
+                        shelve: typeof __ns_up_learning.rosettaShelve;
+                        byRay: (ray: number) => import("../../../quantum/apps").RosettaCoreSurface[];
+                        resolveRoute: (route: string) => {
+                            surface: import("../../../quantum/apps").RosettaCoreSurface;
+                            address: string;
+                            computed: boolean;
+                            route: string;
+                            slug: string;
+                            ray: number;
+                            rayMeta: {
+                                readonly ray: 0;
+                                readonly glyph: "Ⰰ";
+                                readonly nameEn: "Origin";
+                                readonly nameBg: "Произход";
+                                readonly domain: "origin";
+                                readonly hue: 0;
+                            } | {
+                                readonly ray: 1;
+                                readonly glyph: "Ⰲ";
+                                readonly nameEn: "Proof";
+                                readonly nameBg: "Доказателства";
+                                readonly domain: "expression";
+                                readonly hue: 51;
+                            } | {
+                                readonly ray: 2;
+                                readonly glyph: "Ⰴ";
+                                readonly nameEn: "Explore";
+                                readonly nameBg: "Изследване";
+                                readonly domain: "knowledge";
+                                readonly hue: 102;
+                            } | {
+                                readonly ray: 3;
+                                readonly glyph: "Ⰶ";
+                                readonly nameEn: "Learn";
+                                readonly nameBg: "Обучение";
+                                readonly domain: "nature";
+                                readonly hue: 154;
+                            } | {
+                                readonly ray: 4;
+                                readonly glyph: "Ⰹ";
+                                readonly nameEn: "Apps";
+                                readonly nameBg: "Приложения";
+                                readonly domain: "computation";
+                                readonly hue: 205;
+                            } | {
+                                readonly ray: 5;
+                                readonly glyph: "Ⰿ";
+                                readonly nameEn: "Frontier";
+                                readonly nameBg: "Граници";
+                                readonly domain: "geometry";
+                                readonly hue: 257;
+                            } | {
+                                readonly ray: 6;
+                                readonly glyph: "Ⱄ";
+                                readonly nameEn: "Reference";
+                                readonly nameBg: "Справочник";
+                                readonly domain: "language";
+                                readonly hue: 308;
+                            };
+                            station: number;
+                            crossPair: string;
+                            glaAddress: string;
+                            navigation: {
+                                rayLabel: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
+                                rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
+                                rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
+                                rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
+                                siblings: import("../../../wind/types").ConceptCommandName[];
+                                siblingCount: number;
+                            };
+                            content: {
+                                pageKind: import("../../../3/7").RosettaComputationType;
+                                heroPhase: number;
+                                bodySeed: string;
+                                heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                            };
+                            motion: {
+                                at: number;
+                                rays: {
+                                    ray: number;
+                                    baseAngle: number;
+                                    currentAngle: number;
+                                    angularVelocity: number;
+                                    vortexRate: number;
+                                    radius: number;
+                                    letters: {
+                                        letterIndex: number;
+                                        letterAngle: number;
+                                        letterRadius: number;
+                                        digitalRootPosition: number;
+                                    }[];
+                                }[];
+                                breathRadius: number;
+                                breathPulse: number;
+                                proof: {
+                                    coprime7_6: boolean;
+                                    coprime7_9: boolean;
+                                    coprime7_10: boolean;
+                                    holds: boolean;
+                                };
+                                constants: {
+                                    RAYS: number;
+                                    LETTERS_PER_RAY: number;
+                                    PHI: number;
+                                    GOLDEN_ANGLE: number;
+                                    DOUBLING_PERIOD: number;
+                                    DR_MODULUS: number;
+                                    STATION_COUNT: number;
+                                };
+                                root: string;
+                            };
+                            stationDetail: {
+                                digit: number;
+                                folder: string;
+                                path: string;
+                            };
+                            sharedRoot: string;
+                            root: string;
+                            statement: string;
+                            boundary: string;
+                        };
+                        resolveProjection: (label: string) => {
+                            surface: import("../../../quantum/apps").RosettaCoreSurface;
+                            phase: number;
+                            hue: number;
+                            motion: {
+                                at: number;
+                                rays: {
+                                    ray: number;
+                                    baseAngle: number;
+                                    currentAngle: number;
+                                    angularVelocity: number;
+                                    vortexRate: number;
+                                    radius: number;
+                                    letters: {
+                                        letterIndex: number;
+                                        letterAngle: number;
+                                        letterRadius: number;
+                                        digitalRootPosition: number;
+                                    }[];
+                                }[];
+                                breathRadius: number;
+                                breathPulse: number;
+                                proof: {
+                                    coprime7_6: boolean;
+                                    coprime7_9: boolean;
+                                    coprime7_10: boolean;
+                                    holds: boolean;
+                                };
+                                constants: {
+                                    RAYS: number;
+                                    LETTERS_PER_RAY: number;
+                                    PHI: number;
+                                    GOLDEN_ANGLE: number;
+                                    DOUBLING_PERIOD: number;
+                                    DR_MODULUS: number;
+                                    STATION_COUNT: number;
+                                };
+                                root: string;
+                            };
+                        };
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    slots: {
+                        ray: number;
+                        kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
+                        pageKind: import("../../../3/7").RosettaComputationType;
+                        vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                        receipt: string;
+                    }[];
+                    count: number;
                     facets: {
                         receipt: string;
                         facet: string;
@@ -10265,9 +10699,9 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                 nav: {
                     computes: boolean;
                     navigation: {
-                        tag: "origin" | "expression" | "knowledge" | "nature" | "computation" | "geometry" | "language";
+                        tag: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
                         ray: number;
-                        name: "Alpha" | "Voice" | "Spirit" | "Life" | "Thought" | "Form" | "Word";
+                        name: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
                     };
                     rosetta: {
                         decoded: boolean;
@@ -10282,50 +10716,50 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         rayMeta: {
                             readonly ray: 0;
                             readonly glyph: "Ⰰ";
-                            readonly nameEn: "Alpha";
-                            readonly nameBg: "Алфа";
+                            readonly nameEn: "Origin";
+                            readonly nameBg: "Произход";
                             readonly domain: "origin";
                             readonly hue: 0;
                         } | {
                             readonly ray: 1;
                             readonly glyph: "Ⰲ";
-                            readonly nameEn: "Voice";
-                            readonly nameBg: "Глас";
+                            readonly nameEn: "Proof";
+                            readonly nameBg: "Доказателства";
                             readonly domain: "expression";
                             readonly hue: 51;
                         } | {
                             readonly ray: 2;
                             readonly glyph: "Ⰴ";
-                            readonly nameEn: "Spirit";
-                            readonly nameBg: "Дух";
+                            readonly nameEn: "Explore";
+                            readonly nameBg: "Изследване";
                             readonly domain: "knowledge";
                             readonly hue: 102;
                         } | {
                             readonly ray: 3;
                             readonly glyph: "Ⰶ";
-                            readonly nameEn: "Life";
-                            readonly nameBg: "Живот";
+                            readonly nameEn: "Learn";
+                            readonly nameBg: "Обучение";
                             readonly domain: "nature";
                             readonly hue: 154;
                         } | {
                             readonly ray: 4;
                             readonly glyph: "Ⰹ";
-                            readonly nameEn: "Thought";
-                            readonly nameBg: "Мисъл";
+                            readonly nameEn: "Apps";
+                            readonly nameBg: "Приложения";
                             readonly domain: "computation";
                             readonly hue: 205;
                         } | {
                             readonly ray: 5;
                             readonly glyph: "Ⰿ";
-                            readonly nameEn: "Form";
-                            readonly nameBg: "Форма";
+                            readonly nameEn: "Frontier";
+                            readonly nameBg: "Граници";
                             readonly domain: "geometry";
                             readonly hue: 257;
                         } | {
                             readonly ray: 6;
                             readonly glyph: "Ⱄ";
-                            readonly nameEn: "Word";
-                            readonly nameBg: "Слово";
+                            readonly nameEn: "Reference";
+                            readonly nameBg: "Справочник";
                             readonly domain: "language";
                             readonly hue: 308;
                         };
@@ -10355,50 +10789,50 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     rayMeta: {
                         readonly ray: 0;
                         readonly glyph: "Ⰰ";
-                        readonly nameEn: "Alpha";
-                        readonly nameBg: "Алфа";
+                        readonly nameEn: "Origin";
+                        readonly nameBg: "Произход";
                         readonly domain: "origin";
                         readonly hue: 0;
                     } | {
                         readonly ray: 1;
                         readonly glyph: "Ⰲ";
-                        readonly nameEn: "Voice";
-                        readonly nameBg: "Глас";
+                        readonly nameEn: "Proof";
+                        readonly nameBg: "Доказателства";
                         readonly domain: "expression";
                         readonly hue: 51;
                     } | {
                         readonly ray: 2;
                         readonly glyph: "Ⰴ";
-                        readonly nameEn: "Spirit";
-                        readonly nameBg: "Дух";
+                        readonly nameEn: "Explore";
+                        readonly nameBg: "Изследване";
                         readonly domain: "knowledge";
                         readonly hue: 102;
                     } | {
                         readonly ray: 3;
                         readonly glyph: "Ⰶ";
-                        readonly nameEn: "Life";
-                        readonly nameBg: "Живот";
+                        readonly nameEn: "Learn";
+                        readonly nameBg: "Обучение";
                         readonly domain: "nature";
                         readonly hue: 154;
                     } | {
                         readonly ray: 4;
                         readonly glyph: "Ⰹ";
-                        readonly nameEn: "Thought";
-                        readonly nameBg: "Мисъл";
+                        readonly nameEn: "Apps";
+                        readonly nameBg: "Приложения";
                         readonly domain: "computation";
                         readonly hue: 205;
                     } | {
                         readonly ray: 5;
                         readonly glyph: "Ⰿ";
-                        readonly nameEn: "Form";
-                        readonly nameBg: "Форма";
+                        readonly nameEn: "Frontier";
+                        readonly nameBg: "Граници";
                         readonly domain: "geometry";
                         readonly hue: 257;
                     } | {
                         readonly ray: 6;
                         readonly glyph: "Ⱄ";
-                        readonly nameEn: "Word";
-                        readonly nameBg: "Слово";
+                        readonly nameEn: "Reference";
+                        readonly nameBg: "Справочник";
                         readonly domain: "language";
                         readonly hue: 308;
                     };
@@ -10406,10 +10840,10 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     crossPair: string;
                     glaAddress: string;
                     navigation: {
-                        rayLabel: "Alpha" | "Voice" | "Spirit" | "Life" | "Thought" | "Form" | "Word";
-                        rayLabelBg: "Алфа" | "Глас" | "Дух" | "Живот" | "Мисъл" | "Форма" | "Слово";
+                        rayLabel: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
+                        rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                         rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
-                        rayDomain: "origin" | "expression" | "knowledge" | "nature" | "computation" | "geometry" | "language";
+                        rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
                         siblings: import("../../../wind/types").ConceptCommandName[];
                         siblingCount: number;
                     };
@@ -11111,6 +11545,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                 };
                 presentations: {
                     coheres: boolean;
+                    oneAddress: boolean;
+                    sealAnchorsSource: boolean;
                     operation: string;
                     presentations: {
                         receipt: string;
@@ -11239,6 +11675,403 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
             boundary: string;
         };
         simulation: AstronomySimulationPaint;
+        hdEph: {
+            computes: boolean;
+            verified: boolean;
+            birthJd: number;
+            ephemeris: {
+                readonly jd: number;
+                readonly bodies: readonly SealedMeeusBodyLongitude[];
+                readonly sun: number;
+                readonly moon: number;
+                readonly root: string;
+            };
+            design: {
+                readonly birthJd: number;
+                readonly designJd: number;
+                readonly birthSunDeg: number;
+                readonly designSunDeg: number;
+                readonly targetDeg: number;
+                readonly arcErrDeg: number;
+                readonly daysBeforeBirth: number;
+            };
+            sunJ2000: number;
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        hdChart: {
+            computes: boolean;
+            verified: boolean;
+            birthJd: number;
+            designJd: number;
+            personality: {
+                layer: "design" | "personality";
+                body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                longitudeDeg: number;
+                gate: number;
+                line: number;
+                cusp: boolean;
+                fastMoverCusp: boolean;
+                receipt: string;
+            }[];
+            design: {
+                layer: "design" | "personality";
+                body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                longitudeDeg: number;
+                gate: number;
+                line: number;
+                cusp: boolean;
+                fastMoverCusp: boolean;
+                receipt: string;
+            }[];
+            activatedGates: number[];
+            definedChannels: {
+                a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+                key: string;
+                from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+            }[];
+            cuspWarnings: {
+                layer: "design" | "personality";
+                body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                longitudeDeg: number;
+                gate: number;
+                line: number;
+                cusp: boolean;
+                fastMoverCusp: boolean;
+                receipt: string;
+            }[];
+            cuspBandDeg: number;
+            wheel: {
+                verified: boolean;
+                computes: boolean;
+                gateArcDeg: number;
+                lineArcDeg: number;
+                gate41StartDeg: number;
+                designSunArcDeg: number;
+                bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+                bodyCount: 13;
+                gates: (9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
+                starts: number[];
+                sample: {
+                    gate: number;
+                    line: number;
+                    index: number;
+                    startDeg: number;
+                };
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            lattice: {
+                verified: boolean;
+                computes: boolean;
+                centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                centerCount: 9;
+                channels: {
+                    a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+                    key: string;
+                    from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                }[];
+                channelCount: 36;
+                gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            ephCore: {
+                computes: boolean;
+                verified: boolean;
+                birthJd: number;
+                ephemeris: {
+                    readonly jd: number;
+                    readonly bodies: readonly SealedMeeusBodyLongitude[];
+                    readonly sun: number;
+                    readonly moon: number;
+                    readonly root: string;
+                };
+                design: {
+                    readonly birthJd: number;
+                    readonly designJd: number;
+                    readonly birthSunDeg: number;
+                    readonly designSunDeg: number;
+                    readonly targetDeg: number;
+                    readonly arcErrDeg: number;
+                    readonly daysBeforeBirth: number;
+                };
+                sunJ2000: number;
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        hdBody: {
+            computes: boolean;
+            verified: boolean;
+            birthJd: number;
+            chart: {
+                computes: boolean;
+                verified: boolean;
+                birthJd: number;
+                designJd: number;
+                personality: {
+                    layer: "design" | "personality";
+                    body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                    longitudeDeg: number;
+                    gate: number;
+                    line: number;
+                    cusp: boolean;
+                    fastMoverCusp: boolean;
+                    receipt: string;
+                }[];
+                design: {
+                    layer: "design" | "personality";
+                    body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                    longitudeDeg: number;
+                    gate: number;
+                    line: number;
+                    cusp: boolean;
+                    fastMoverCusp: boolean;
+                    receipt: string;
+                }[];
+                activatedGates: number[];
+                definedChannels: {
+                    a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+                    key: string;
+                    from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                }[];
+                cuspWarnings: {
+                    layer: "design" | "personality";
+                    body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                    longitudeDeg: number;
+                    gate: number;
+                    line: number;
+                    cusp: boolean;
+                    fastMoverCusp: boolean;
+                    receipt: string;
+                }[];
+                cuspBandDeg: number;
+                wheel: {
+                    verified: boolean;
+                    computes: boolean;
+                    gateArcDeg: number;
+                    lineArcDeg: number;
+                    gate41StartDeg: number;
+                    designSunArcDeg: number;
+                    bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+                    bodyCount: 13;
+                    gates: (9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
+                    starts: number[];
+                    sample: {
+                        gate: number;
+                        line: number;
+                        index: number;
+                        startDeg: number;
+                    };
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                lattice: {
+                    verified: boolean;
+                    computes: boolean;
+                    centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                    centerCount: 9;
+                    channels: {
+                        a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+                        key: string;
+                        from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                        to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    }[];
+                    channelCount: 36;
+                    gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                ephCore: {
+                    computes: boolean;
+                    verified: boolean;
+                    birthJd: number;
+                    ephemeris: {
+                        readonly jd: number;
+                        readonly bodies: readonly SealedMeeusBodyLongitude[];
+                        readonly sun: number;
+                        readonly moon: number;
+                        readonly root: string;
+                    };
+                    design: {
+                        readonly birthJd: number;
+                        readonly designJd: number;
+                        readonly birthSunDeg: number;
+                        readonly designSunDeg: number;
+                        readonly targetDeg: number;
+                        readonly arcErrDeg: number;
+                        readonly daysBeforeBirth: number;
+                    };
+                    sunJ2000: number;
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            lattice: {
+                verified: boolean;
+                computes: boolean;
+                centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                centerCount: 9;
+                channels: {
+                    a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+                    key: string;
+                    from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                }[];
+                channelCount: 36;
+                gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            layout: {
+                readonly Head: {
+                    readonly x: number;
+                    readonly y: number;
+                    readonly shape: "tri";
+                };
+                readonly Ajna: {
+                    readonly x: number;
+                    readonly y: number;
+                    readonly shape: "tri";
+                };
+                readonly Throat: {
+                    readonly x: number;
+                    readonly y: number;
+                    readonly shape: "sq";
+                };
+                readonly G: {
+                    readonly x: number;
+                    readonly y: number;
+                    readonly shape: "dia";
+                };
+                readonly Heart: {
+                    readonly x: number;
+                    readonly y: number;
+                    readonly shape: "tri";
+                };
+                readonly Sacral: {
+                    readonly x: number;
+                    readonly y: number;
+                    readonly shape: "sq";
+                };
+                readonly SolarPlexus: {
+                    readonly x: number;
+                    readonly y: number;
+                    readonly shape: "tri";
+                };
+                readonly Spleen: {
+                    readonly x: number;
+                    readonly y: number;
+                    readonly shape: "tri";
+                };
+                readonly Root: {
+                    readonly x: number;
+                    readonly y: number;
+                    readonly shape: "sq";
+                };
+            };
+            definedKeys: string[];
+            activatedGates: number[];
+            definedCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+            cuspCount: number;
+            definedChannelCount: number;
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            route: string;
+            pair: string;
+            claySolvedByThisFold: 0;
+            qpuRequired: false;
+            statement: string;
+            boundary: string;
+        };
         facets: ({
             facet: string;
             on: boolean;
@@ -11271,6 +12104,536 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
 /** Alias — decode astronomy through VORTEX_SEQUENCE at call time. */
 export declare const decodeAstronomyThroughVortexSequence: typeof astronomyDecodedWithTheSequence;
 /** One gate — celestial catalog, sequence decode, galaxy compute at call time. */
+export declare function planetBatchFacetsComputes(batch: number, matrix?: MindMatrix, at?: number): {
+    computes: boolean;
+    batch: number;
+    planets: string[];
+    facets: {
+        facet: string;
+        on: boolean;
+        receipt: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** J2000.0 TT epoch as Julian Day (Meeus). */
+export declare const MEEUS_J2000_JD = 2451545;
+/** Normalize ecliptic longitude into [0, 360). */
+export declare function normalizeEclipticDeg(deg: number): number;
+/** Shortest signed degree delta a→b on the circle (−180, 180]. */
+export declare function signedAngleDeg(fromDeg: number, toDeg: number): number;
+/** Civil UT date → Julian Day (Meeus ch.7). Hour defaults to noon UT. */
+export declare function julianDayFromCivil(year: number, month: number, day: number, hourUt?: number): number;
+/** Julian centuries from J2000.0 (Meeus T). */
+export declare function meeusT(jd: number): number;
+/**
+ * Apparent geocentric ecliptic longitude of the Sun — Meeus ch.25 reduced (equation of center + aberration/nutation sketch).
+ * HONEST tolerance band for facets: ~0.01° near J2000; NOT DE440.
+ */
+export declare function sunEclipticLongitudeDeg(jd: number): number;
+/**
+ * Geocentric ecliptic longitude of the Moon — Meeus ch.47 truncated (principal terms only).
+ * HONEST: reduced series; facet tolerance ~1° vs full ELP/DE440 — symbolic HD computer grade.
+ */
+export declare function moonEclipticLongitudeDeg(jd: number): number;
+/** Mean lunar ascending node Ω (Meeus) — North Node longitude; South = +180°. */
+export declare function lunarNorthNodeLongitudeDeg(jd: number): number;
+/** Pluto ecliptic longitude — Meeus polynomial (reduced; dwarf-planet grade). */
+export declare function plutoEclipticLongitudeDeg(jd: number): number;
+export type SealedMeeusBodyLongitude = {
+    readonly name: (typeof RAVE_BODIES_13)[number];
+    readonly longitudeDeg: number;
+    readonly receipt: string;
+};
+/**
+ * Sealed Meeus reduced-precision geocentric ecliptic longitudes for the 13 HD activation bodies.
+ * Design layer is a separate solver (`designLayerFromNatalSun`).
+ */
+export declare function sealedMeeusEphemerisAt(jd: number): {
+    readonly jd: number;
+    readonly bodies: readonly SealedMeeusBodyLongitude[];
+    readonly sun: number;
+    readonly moon: number;
+    readonly root: string;
+};
+/**
+ * Design-layer Julian Day: solve Sun(design) = Sun(birth) − 88° of solar arc (not calendar days).
+ * Binary search on signed angle residual; ~88 days bracket (Sun ≈ 1°/day).
+ */
+export declare function designLayerFromNatalSun(birthJd: number): {
+    readonly birthJd: number;
+    readonly designJd: number;
+    readonly birthSunDeg: number;
+    readonly designSunDeg: number;
+    readonly targetDeg: number;
+    readonly arcErrDeg: number;
+    readonly daysBeforeBirth: number;
+};
+/**
+ * HD W4 fold — sealed Meeus ephemeris + Design Sun−88° solver with adversarial reference-tolerance facets.
+ * HONEST symbolic-system computer grade; cusp/fast-mover warnings live in W5 `humanDesignChartStructureAt`.
+ */
+export declare function humanDesignEphemerisCore(matrix?: MindMatrix, birthJd?: number): {
+    computes: boolean;
+    verified: boolean;
+    birthJd: number;
+    ephemeris: {
+        readonly jd: number;
+        readonly bodies: readonly SealedMeeusBodyLongitude[];
+        readonly sun: number;
+        readonly moon: number;
+        readonly root: string;
+    };
+    design: {
+        readonly birthJd: number;
+        readonly designJd: number;
+        readonly birthSunDeg: number;
+        readonly designSunDeg: number;
+        readonly targetDeg: number;
+        readonly arcErrDeg: number;
+        readonly daysBeforeBirth: number;
+    };
+    sunJ2000: number;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * HD W5 chart structure — compose wheel W3 + channels/centers tables + Meeus W4 activations.
+ * Cusp warning when a body sits within one line-arc of a gate boundary (fast movers flagged).
+ * STRUCTURE ONLY — not a personality / aura / type engine.
+ */
+export declare function humanDesignChartStructureAt(matrix?: MindMatrix, birthJd?: number): {
+    computes: boolean;
+    verified: boolean;
+    birthJd: number;
+    designJd: number;
+    personality: {
+        layer: "design" | "personality";
+        body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+        longitudeDeg: number;
+        gate: number;
+        line: number;
+        cusp: boolean;
+        fastMoverCusp: boolean;
+        receipt: string;
+    }[];
+    design: {
+        layer: "design" | "personality";
+        body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+        longitudeDeg: number;
+        gate: number;
+        line: number;
+        cusp: boolean;
+        fastMoverCusp: boolean;
+        receipt: string;
+    }[];
+    activatedGates: number[];
+    definedChannels: {
+        a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+        key: string;
+        from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+        to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+    }[];
+    cuspWarnings: {
+        layer: "design" | "personality";
+        body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+        longitudeDeg: number;
+        gate: number;
+        line: number;
+        cusp: boolean;
+        fastMoverCusp: boolean;
+        receipt: string;
+    }[];
+    cuspBandDeg: number;
+    wheel: {
+        verified: boolean;
+        computes: boolean;
+        gateArcDeg: number;
+        lineArcDeg: number;
+        gate41StartDeg: number;
+        designSunArcDeg: number;
+        bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+        bodyCount: 13;
+        gates: (9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
+        starts: number[];
+        sample: {
+            gate: number;
+            line: number;
+            index: number;
+            startDeg: number;
+        };
+        count: number;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    lattice: {
+        verified: boolean;
+        computes: boolean;
+        centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+        centerCount: 9;
+        channels: {
+            a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+            key: string;
+            from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+            to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+        }[];
+        channelCount: 36;
+        gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+        count: number;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    ephCore: {
+        computes: boolean;
+        verified: boolean;
+        birthJd: number;
+        ephemeris: {
+            readonly jd: number;
+            readonly bodies: readonly SealedMeeusBodyLongitude[];
+            readonly sun: number;
+            readonly moon: number;
+            readonly root: string;
+        };
+        design: {
+            readonly birthJd: number;
+            readonly designJd: number;
+            readonly birthSunDeg: number;
+            readonly designSunDeg: number;
+            readonly targetDeg: number;
+            readonly arcErrDeg: number;
+            readonly daysBeforeBirth: number;
+        };
+        sunJ2000: number;
+        count: number;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** Normalized BodyGraph center anchors — lattice fractions only (structure layout, not aura geometry). */
+export declare const RAVE_CENTER_LAYOUT: {
+    readonly Head: {
+        readonly x: number;
+        readonly y: number;
+        readonly shape: "tri";
+    };
+    readonly Ajna: {
+        readonly x: number;
+        readonly y: number;
+        readonly shape: "tri";
+    };
+    readonly Throat: {
+        readonly x: number;
+        readonly y: number;
+        readonly shape: "sq";
+    };
+    readonly G: {
+        readonly x: number;
+        readonly y: number;
+        readonly shape: "dia";
+    };
+    readonly Heart: {
+        readonly x: number;
+        readonly y: number;
+        readonly shape: "tri";
+    };
+    readonly Sacral: {
+        readonly x: number;
+        readonly y: number;
+        readonly shape: "sq";
+    };
+    readonly SolarPlexus: {
+        readonly x: number;
+        readonly y: number;
+        readonly shape: "tri";
+    };
+    readonly Spleen: {
+        readonly x: number;
+        readonly y: number;
+        readonly shape: "tri";
+    };
+    readonly Root: {
+        readonly x: number;
+        readonly y: number;
+        readonly shape: "sq";
+    };
+};
+/** HD BodyGraph Vue panel — sealed chart structure → browser paint receipt (structure-only demo at J2000). */
+export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, birthJd?: number): {
+    computes: boolean;
+    verified: boolean;
+    birthJd: number;
+    chart: {
+        computes: boolean;
+        verified: boolean;
+        birthJd: number;
+        designJd: number;
+        personality: {
+            layer: "design" | "personality";
+            body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+            longitudeDeg: number;
+            gate: number;
+            line: number;
+            cusp: boolean;
+            fastMoverCusp: boolean;
+            receipt: string;
+        }[];
+        design: {
+            layer: "design" | "personality";
+            body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+            longitudeDeg: number;
+            gate: number;
+            line: number;
+            cusp: boolean;
+            fastMoverCusp: boolean;
+            receipt: string;
+        }[];
+        activatedGates: number[];
+        definedChannels: {
+            a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+            key: string;
+            from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+            to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+        }[];
+        cuspWarnings: {
+            layer: "design" | "personality";
+            body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+            longitudeDeg: number;
+            gate: number;
+            line: number;
+            cusp: boolean;
+            fastMoverCusp: boolean;
+            receipt: string;
+        }[];
+        cuspBandDeg: number;
+        wheel: {
+            verified: boolean;
+            computes: boolean;
+            gateArcDeg: number;
+            lineArcDeg: number;
+            gate41StartDeg: number;
+            designSunArcDeg: number;
+            bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+            bodyCount: 13;
+            gates: (9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
+            starts: number[];
+            sample: {
+                gate: number;
+                line: number;
+                index: number;
+                startDeg: number;
+            };
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        lattice: {
+            verified: boolean;
+            computes: boolean;
+            centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+            centerCount: 9;
+            channels: {
+                a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+                key: string;
+                from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+            }[];
+            channelCount: 36;
+            gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        ephCore: {
+            computes: boolean;
+            verified: boolean;
+            birthJd: number;
+            ephemeris: {
+                readonly jd: number;
+                readonly bodies: readonly SealedMeeusBodyLongitude[];
+                readonly sun: number;
+                readonly moon: number;
+                readonly root: string;
+            };
+            design: {
+                readonly birthJd: number;
+                readonly designJd: number;
+                readonly birthSunDeg: number;
+                readonly designSunDeg: number;
+                readonly targetDeg: number;
+                readonly arcErrDeg: number;
+                readonly daysBeforeBirth: number;
+            };
+            sunJ2000: number;
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        count: number;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    lattice: {
+        verified: boolean;
+        computes: boolean;
+        centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+        centerCount: 9;
+        channels: {
+            a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+            key: string;
+            from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+            to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+        }[];
+        channelCount: 36;
+        gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+        count: number;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    layout: {
+        readonly Head: {
+            readonly x: number;
+            readonly y: number;
+            readonly shape: "tri";
+        };
+        readonly Ajna: {
+            readonly x: number;
+            readonly y: number;
+            readonly shape: "tri";
+        };
+        readonly Throat: {
+            readonly x: number;
+            readonly y: number;
+            readonly shape: "sq";
+        };
+        readonly G: {
+            readonly x: number;
+            readonly y: number;
+            readonly shape: "dia";
+        };
+        readonly Heart: {
+            readonly x: number;
+            readonly y: number;
+            readonly shape: "tri";
+        };
+        readonly Sacral: {
+            readonly x: number;
+            readonly y: number;
+            readonly shape: "sq";
+        };
+        readonly SolarPlexus: {
+            readonly x: number;
+            readonly y: number;
+            readonly shape: "tri";
+        };
+        readonly Spleen: {
+            readonly x: number;
+            readonly y: number;
+            readonly shape: "tri";
+        };
+        readonly Root: {
+            readonly x: number;
+            readonly y: number;
+            readonly shape: "sq";
+        };
+    };
+    definedKeys: string[];
+    activatedGates: number[];
+    definedCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+    cuspCount: number;
+    definedChannelCount: number;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    route: string;
+    pair: string;
+    claySolvedByThisFold: 0;
+    qpuRequired: false;
+    statement: string;
+    boundary: string;
+};
+/**
+ * BodyGraph canvas paint — Vue mounts only call this (no inline chart math).
+ * HONEST: schematic center/channel layout + sealed activation highlight; not a commercial BodyGraph product.
+ */
+export declare function drawHumanDesignBodyGraph(ctx: CanvasRenderingContext2D, w: number, h: number, panel: ReturnType<typeof humanDesignBodyGraphPanelComputes>, opts?: {
+    dark?: boolean;
+    reduce?: boolean;
+    at?: number;
+}): void;
 export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
     computes: boolean;
     celestial: {
@@ -11908,13 +13271,13 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
         decoded: boolean;
         at: number;
         phaseIndex: number;
-        phaseDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+        phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
         digitFolderDigit: number;
         mappings: {
             name: string;
             kind: "planet" | "star" | "satellite" | "major-moon";
             vortexSlot: number;
-            vortexDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+            vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
             hexagram: number;
             rosettaRay: number;
             rosettaGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
@@ -12428,6 +13791,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
             };
             presentations: {
                 coheres: boolean;
+                oneAddress: boolean;
+                sealAnchorsSource: boolean;
                 operation: string;
                 presentations: {
                     receipt: string;
@@ -13274,12 +14639,12 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                             step: number;
                             bearing: number;
                             slug: string;
-                            realm: "animated" | "proven" | "presented";
-                            trinityLeg: "cross" | "fold" | "weave";
+                            realm: "proven" | "animated" | "presented";
+                            trinityLeg: "fold" | "cross" | "weave";
                             glyph: string;
                         }[];
                         hexEvenSteps: number[];
-                        wiringSlugs: ("architecture" | "quantum-mind" | "show")[];
+                        wiringSlugs: string[];
                         formed: {
                             formed: boolean;
                             path: string;
@@ -14809,12 +16174,12 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                             step: number;
                             bearing: number;
                             slug: string;
-                            realm: "animated" | "proven" | "presented";
-                            trinityLeg: "cross" | "fold" | "weave";
+                            realm: "proven" | "animated" | "presented";
+                            trinityLeg: "fold" | "cross" | "weave";
                             glyph: string;
                         }[];
                         hexEvenSteps: number[];
-                        wiringSlugs: ("architecture" | "quantum-mind" | "show")[];
+                        wiringSlugs: string[];
                         formed: {
                             formed: boolean;
                             path: string;
@@ -15766,56 +17131,56 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     root: string;
                 };
                 rows: {
-                    tail: "language" | "ui" | "routes" | "rosetta" | "fusion" | "learning" | "site" | "types" | "iching";
-                    action: "language" | "ui" | "routes" | "rosetta" | "fusion" | "learning" | "site" | "types" | "iching";
+                    tail: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                    action: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
                     ray: number;
                     rayMeta: {
                         readonly ray: 0;
                         readonly glyph: "Ⰰ";
-                        readonly nameEn: "Alpha";
-                        readonly nameBg: "Алфа";
+                        readonly nameEn: "Origin";
+                        readonly nameBg: "Произход";
                         readonly domain: "origin";
                         readonly hue: 0;
                     } | {
                         readonly ray: 1;
                         readonly glyph: "Ⰲ";
-                        readonly nameEn: "Voice";
-                        readonly nameBg: "Глас";
+                        readonly nameEn: "Proof";
+                        readonly nameBg: "Доказателства";
                         readonly domain: "expression";
                         readonly hue: 51;
                     } | {
                         readonly ray: 2;
                         readonly glyph: "Ⰴ";
-                        readonly nameEn: "Spirit";
-                        readonly nameBg: "Дух";
+                        readonly nameEn: "Explore";
+                        readonly nameBg: "Изследване";
                         readonly domain: "knowledge";
                         readonly hue: 102;
                     } | {
                         readonly ray: 3;
                         readonly glyph: "Ⰶ";
-                        readonly nameEn: "Life";
-                        readonly nameBg: "Живот";
+                        readonly nameEn: "Learn";
+                        readonly nameBg: "Обучение";
                         readonly domain: "nature";
                         readonly hue: 154;
                     } | {
                         readonly ray: 4;
                         readonly glyph: "Ⰹ";
-                        readonly nameEn: "Thought";
-                        readonly nameBg: "Мисъл";
+                        readonly nameEn: "Apps";
+                        readonly nameBg: "Приложения";
                         readonly domain: "computation";
                         readonly hue: 205;
                     } | {
                         readonly ray: 5;
                         readonly glyph: "Ⰿ";
-                        readonly nameEn: "Form";
-                        readonly nameBg: "Форма";
+                        readonly nameEn: "Frontier";
+                        readonly nameBg: "Граници";
                         readonly domain: "geometry";
                         readonly hue: 257;
                     } | {
                         readonly ray: 6;
                         readonly glyph: "Ⱄ";
-                        readonly nameEn: "Word";
-                        readonly nameBg: "Слово";
+                        readonly nameEn: "Reference";
+                        readonly nameBg: "Справочник";
                         readonly domain: "language";
                         readonly hue: 308;
                     };
@@ -15824,15 +17189,15 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     legacyBare: string;
                     schemaTarget: string;
                     canonical: string;
-                    importBarrel: "language" | "ui" | "routes" | "rosetta" | "fusion" | "learning" | "site" | "types" | "iching";
-                    wave: 1 | 2;
+                    importBarrel: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                    wave: 2 | 1;
                     applied: boolean;
                     receipt: string;
                 }[];
                 moveTable: {
                     from: string;
                     to: string;
-                    wave: 1 | 2;
+                    wave: 2 | 1;
                     applied: boolean;
                     ray: number;
                 }[];
@@ -15840,6 +17205,219 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     target: number;
                     pendingDissolve: string[];
                 };
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            core: {
+                computes: boolean;
+                at: number;
+                core: {
+                    computes: boolean;
+                    at: number;
+                    surfaces: import("../../../quantum/apps").RosettaCoreSurface[];
+                    inventory: {
+                        core: {
+                            label: string;
+                            kind: import("../../../quantum/apps").RosettaCoreSurfaceKind;
+                            ray: number;
+                            address: string;
+                        }[];
+                        parallel: readonly ["ROSETTA_RAY_VIEWS duplicate", "PROJECTION_SEGMENT/FORMS→VORTEX", "rosettaClaim/Owner(heaven/core)", "rosettaCodec(learning)", "string/millennium→rosettaReady-handoff"];
+                        hubs: {
+                            slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
+                            ray: number;
+                            route: string;
+                            hue: number;
+                        }[];
+                    };
+                    hubs: readonly import("../../../3/7").RosettaRayHub[];
+                    raysUsed: number;
+                    kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
+                    resolve: (label: string, kind?: import("../../../quantum/apps").RosettaCoreSurfaceKind) => import("../../../quantum/apps").RosettaCoreSurface;
+                    shelve: typeof __ns_up_learning.rosettaShelve;
+                    byRay: (ray: number) => import("../../../quantum/apps").RosettaCoreSurface[];
+                    resolveRoute: (route: string) => {
+                        surface: import("../../../quantum/apps").RosettaCoreSurface;
+                        address: string;
+                        computed: boolean;
+                        route: string;
+                        slug: string;
+                        ray: number;
+                        rayMeta: {
+                            readonly ray: 0;
+                            readonly glyph: "Ⰰ";
+                            readonly nameEn: "Origin";
+                            readonly nameBg: "Произход";
+                            readonly domain: "origin";
+                            readonly hue: 0;
+                        } | {
+                            readonly ray: 1;
+                            readonly glyph: "Ⰲ";
+                            readonly nameEn: "Proof";
+                            readonly nameBg: "Доказателства";
+                            readonly domain: "expression";
+                            readonly hue: 51;
+                        } | {
+                            readonly ray: 2;
+                            readonly glyph: "Ⰴ";
+                            readonly nameEn: "Explore";
+                            readonly nameBg: "Изследване";
+                            readonly domain: "knowledge";
+                            readonly hue: 102;
+                        } | {
+                            readonly ray: 3;
+                            readonly glyph: "Ⰶ";
+                            readonly nameEn: "Learn";
+                            readonly nameBg: "Обучение";
+                            readonly domain: "nature";
+                            readonly hue: 154;
+                        } | {
+                            readonly ray: 4;
+                            readonly glyph: "Ⰹ";
+                            readonly nameEn: "Apps";
+                            readonly nameBg: "Приложения";
+                            readonly domain: "computation";
+                            readonly hue: 205;
+                        } | {
+                            readonly ray: 5;
+                            readonly glyph: "Ⰿ";
+                            readonly nameEn: "Frontier";
+                            readonly nameBg: "Граници";
+                            readonly domain: "geometry";
+                            readonly hue: 257;
+                        } | {
+                            readonly ray: 6;
+                            readonly glyph: "Ⱄ";
+                            readonly nameEn: "Reference";
+                            readonly nameBg: "Справочник";
+                            readonly domain: "language";
+                            readonly hue: 308;
+                        };
+                        station: number;
+                        crossPair: string;
+                        glaAddress: string;
+                        navigation: {
+                            rayLabel: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
+                            rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
+                            rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
+                            rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
+                            siblings: import("../../../wind/types").ConceptCommandName[];
+                            siblingCount: number;
+                        };
+                        content: {
+                            pageKind: import("../../../3/7").RosettaComputationType;
+                            heroPhase: number;
+                            bodySeed: string;
+                            heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                        };
+                        motion: {
+                            at: number;
+                            rays: {
+                                ray: number;
+                                baseAngle: number;
+                                currentAngle: number;
+                                angularVelocity: number;
+                                vortexRate: number;
+                                radius: number;
+                                letters: {
+                                    letterIndex: number;
+                                    letterAngle: number;
+                                    letterRadius: number;
+                                    digitalRootPosition: number;
+                                }[];
+                            }[];
+                            breathRadius: number;
+                            breathPulse: number;
+                            proof: {
+                                coprime7_6: boolean;
+                                coprime7_9: boolean;
+                                coprime7_10: boolean;
+                                holds: boolean;
+                            };
+                            constants: {
+                                RAYS: number;
+                                LETTERS_PER_RAY: number;
+                                PHI: number;
+                                GOLDEN_ANGLE: number;
+                                DOUBLING_PERIOD: number;
+                                DR_MODULUS: number;
+                                STATION_COUNT: number;
+                            };
+                            root: string;
+                        };
+                        stationDetail: {
+                            digit: number;
+                            folder: string;
+                            path: string;
+                        };
+                        sharedRoot: string;
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    resolveProjection: (label: string) => {
+                        surface: import("../../../quantum/apps").RosettaCoreSurface;
+                        phase: number;
+                        hue: number;
+                        motion: {
+                            at: number;
+                            rays: {
+                                ray: number;
+                                baseAngle: number;
+                                currentAngle: number;
+                                angularVelocity: number;
+                                vortexRate: number;
+                                radius: number;
+                                letters: {
+                                    letterIndex: number;
+                                    letterAngle: number;
+                                    letterRadius: number;
+                                    digitalRootPosition: number;
+                                }[];
+                            }[];
+                            breathRadius: number;
+                            breathPulse: number;
+                            proof: {
+                                coprime7_6: boolean;
+                                coprime7_9: boolean;
+                                coprime7_10: boolean;
+                                holds: boolean;
+                            };
+                            constants: {
+                                RAYS: number;
+                                LETTERS_PER_RAY: number;
+                                PHI: number;
+                                GOLDEN_ANGLE: number;
+                                DOUBLING_PERIOD: number;
+                                DR_MODULUS: number;
+                                STATION_COUNT: number;
+                            };
+                            root: string;
+                        };
+                    };
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                slots: {
+                    ray: number;
+                    kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
+                    pageKind: import("../../../3/7").RosettaComputationType;
+                    vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                    receipt: string;
+                }[];
+                count: number;
                 facets: {
                     receipt: string;
                     facet: string;
@@ -15899,9 +17477,9 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
             nav: {
                 computes: boolean;
                 navigation: {
-                    tag: "origin" | "expression" | "knowledge" | "nature" | "computation" | "geometry" | "language";
+                    tag: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
                     ray: number;
-                    name: "Alpha" | "Voice" | "Spirit" | "Life" | "Thought" | "Form" | "Word";
+                    name: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
                 };
                 rosetta: {
                     decoded: boolean;
@@ -15916,50 +17494,50 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     rayMeta: {
                         readonly ray: 0;
                         readonly glyph: "Ⰰ";
-                        readonly nameEn: "Alpha";
-                        readonly nameBg: "Алфа";
+                        readonly nameEn: "Origin";
+                        readonly nameBg: "Произход";
                         readonly domain: "origin";
                         readonly hue: 0;
                     } | {
                         readonly ray: 1;
                         readonly glyph: "Ⰲ";
-                        readonly nameEn: "Voice";
-                        readonly nameBg: "Глас";
+                        readonly nameEn: "Proof";
+                        readonly nameBg: "Доказателства";
                         readonly domain: "expression";
                         readonly hue: 51;
                     } | {
                         readonly ray: 2;
                         readonly glyph: "Ⰴ";
-                        readonly nameEn: "Spirit";
-                        readonly nameBg: "Дух";
+                        readonly nameEn: "Explore";
+                        readonly nameBg: "Изследване";
                         readonly domain: "knowledge";
                         readonly hue: 102;
                     } | {
                         readonly ray: 3;
                         readonly glyph: "Ⰶ";
-                        readonly nameEn: "Life";
-                        readonly nameBg: "Живот";
+                        readonly nameEn: "Learn";
+                        readonly nameBg: "Обучение";
                         readonly domain: "nature";
                         readonly hue: 154;
                     } | {
                         readonly ray: 4;
                         readonly glyph: "Ⰹ";
-                        readonly nameEn: "Thought";
-                        readonly nameBg: "Мисъл";
+                        readonly nameEn: "Apps";
+                        readonly nameBg: "Приложения";
                         readonly domain: "computation";
                         readonly hue: 205;
                     } | {
                         readonly ray: 5;
                         readonly glyph: "Ⰿ";
-                        readonly nameEn: "Form";
-                        readonly nameBg: "Форма";
+                        readonly nameEn: "Frontier";
+                        readonly nameBg: "Граници";
                         readonly domain: "geometry";
                         readonly hue: 257;
                     } | {
                         readonly ray: 6;
                         readonly glyph: "Ⱄ";
-                        readonly nameEn: "Word";
-                        readonly nameBg: "Слово";
+                        readonly nameEn: "Reference";
+                        readonly nameBg: "Справочник";
                         readonly domain: "language";
                         readonly hue: 308;
                     };
@@ -15989,50 +17567,50 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 rayMeta: {
                     readonly ray: 0;
                     readonly glyph: "Ⰰ";
-                    readonly nameEn: "Alpha";
-                    readonly nameBg: "Алфа";
+                    readonly nameEn: "Origin";
+                    readonly nameBg: "Произход";
                     readonly domain: "origin";
                     readonly hue: 0;
                 } | {
                     readonly ray: 1;
                     readonly glyph: "Ⰲ";
-                    readonly nameEn: "Voice";
-                    readonly nameBg: "Глас";
+                    readonly nameEn: "Proof";
+                    readonly nameBg: "Доказателства";
                     readonly domain: "expression";
                     readonly hue: 51;
                 } | {
                     readonly ray: 2;
                     readonly glyph: "Ⰴ";
-                    readonly nameEn: "Spirit";
-                    readonly nameBg: "Дух";
+                    readonly nameEn: "Explore";
+                    readonly nameBg: "Изследване";
                     readonly domain: "knowledge";
                     readonly hue: 102;
                 } | {
                     readonly ray: 3;
                     readonly glyph: "Ⰶ";
-                    readonly nameEn: "Life";
-                    readonly nameBg: "Живот";
+                    readonly nameEn: "Learn";
+                    readonly nameBg: "Обучение";
                     readonly domain: "nature";
                     readonly hue: 154;
                 } | {
                     readonly ray: 4;
                     readonly glyph: "Ⰹ";
-                    readonly nameEn: "Thought";
-                    readonly nameBg: "Мисъл";
+                    readonly nameEn: "Apps";
+                    readonly nameBg: "Приложения";
                     readonly domain: "computation";
                     readonly hue: 205;
                 } | {
                     readonly ray: 5;
                     readonly glyph: "Ⰿ";
-                    readonly nameEn: "Form";
-                    readonly nameBg: "Форма";
+                    readonly nameEn: "Frontier";
+                    readonly nameBg: "Граници";
                     readonly domain: "geometry";
                     readonly hue: 257;
                 } | {
                     readonly ray: 6;
                     readonly glyph: "Ⱄ";
-                    readonly nameEn: "Word";
-                    readonly nameBg: "Слово";
+                    readonly nameEn: "Reference";
+                    readonly nameBg: "Справочник";
                     readonly domain: "language";
                     readonly hue: 308;
                 };
@@ -16040,10 +17618,10 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 crossPair: string;
                 glaAddress: string;
                 navigation: {
-                    rayLabel: "Alpha" | "Voice" | "Spirit" | "Life" | "Thought" | "Form" | "Word";
-                    rayLabelBg: "Алфа" | "Глас" | "Дух" | "Живот" | "Мисъл" | "Форма" | "Слово";
+                    rayLabel: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
+                    rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                     rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
-                    rayDomain: "origin" | "expression" | "knowledge" | "nature" | "computation" | "geometry" | "language";
+                    rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
                     siblings: import("../../../wind/types").ConceptCommandName[];
                     siblingCount: number;
                 };
@@ -16745,6 +18323,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
             };
             presentations: {
                 coheres: boolean;
+                oneAddress: boolean;
+                sealAnchorsSource: boolean;
                 operation: string;
                 presentations: {
                     receipt: string;
@@ -16873,6 +18453,403 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
         boundary: string;
     };
     simulation: AstronomySimulationPaint;
+    hdEph: {
+        computes: boolean;
+        verified: boolean;
+        birthJd: number;
+        ephemeris: {
+            readonly jd: number;
+            readonly bodies: readonly SealedMeeusBodyLongitude[];
+            readonly sun: number;
+            readonly moon: number;
+            readonly root: string;
+        };
+        design: {
+            readonly birthJd: number;
+            readonly designJd: number;
+            readonly birthSunDeg: number;
+            readonly designSunDeg: number;
+            readonly targetDeg: number;
+            readonly arcErrDeg: number;
+            readonly daysBeforeBirth: number;
+        };
+        sunJ2000: number;
+        count: number;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    hdChart: {
+        computes: boolean;
+        verified: boolean;
+        birthJd: number;
+        designJd: number;
+        personality: {
+            layer: "design" | "personality";
+            body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+            longitudeDeg: number;
+            gate: number;
+            line: number;
+            cusp: boolean;
+            fastMoverCusp: boolean;
+            receipt: string;
+        }[];
+        design: {
+            layer: "design" | "personality";
+            body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+            longitudeDeg: number;
+            gate: number;
+            line: number;
+            cusp: boolean;
+            fastMoverCusp: boolean;
+            receipt: string;
+        }[];
+        activatedGates: number[];
+        definedChannels: {
+            a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+            key: string;
+            from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+            to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+        }[];
+        cuspWarnings: {
+            layer: "design" | "personality";
+            body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+            longitudeDeg: number;
+            gate: number;
+            line: number;
+            cusp: boolean;
+            fastMoverCusp: boolean;
+            receipt: string;
+        }[];
+        cuspBandDeg: number;
+        wheel: {
+            verified: boolean;
+            computes: boolean;
+            gateArcDeg: number;
+            lineArcDeg: number;
+            gate41StartDeg: number;
+            designSunArcDeg: number;
+            bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+            bodyCount: 13;
+            gates: (9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
+            starts: number[];
+            sample: {
+                gate: number;
+                line: number;
+                index: number;
+                startDeg: number;
+            };
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        lattice: {
+            verified: boolean;
+            computes: boolean;
+            centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+            centerCount: 9;
+            channels: {
+                a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+                key: string;
+                from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+            }[];
+            channelCount: 36;
+            gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        ephCore: {
+            computes: boolean;
+            verified: boolean;
+            birthJd: number;
+            ephemeris: {
+                readonly jd: number;
+                readonly bodies: readonly SealedMeeusBodyLongitude[];
+                readonly sun: number;
+                readonly moon: number;
+                readonly root: string;
+            };
+            design: {
+                readonly birthJd: number;
+                readonly designJd: number;
+                readonly birthSunDeg: number;
+                readonly designSunDeg: number;
+                readonly targetDeg: number;
+                readonly arcErrDeg: number;
+                readonly daysBeforeBirth: number;
+            };
+            sunJ2000: number;
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        count: number;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    hdBody: {
+        computes: boolean;
+        verified: boolean;
+        birthJd: number;
+        chart: {
+            computes: boolean;
+            verified: boolean;
+            birthJd: number;
+            designJd: number;
+            personality: {
+                layer: "design" | "personality";
+                body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                longitudeDeg: number;
+                gate: number;
+                line: number;
+                cusp: boolean;
+                fastMoverCusp: boolean;
+                receipt: string;
+            }[];
+            design: {
+                layer: "design" | "personality";
+                body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                longitudeDeg: number;
+                gate: number;
+                line: number;
+                cusp: boolean;
+                fastMoverCusp: boolean;
+                receipt: string;
+            }[];
+            activatedGates: number[];
+            definedChannels: {
+                a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+                key: string;
+                from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+            }[];
+            cuspWarnings: {
+                layer: "design" | "personality";
+                body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                longitudeDeg: number;
+                gate: number;
+                line: number;
+                cusp: boolean;
+                fastMoverCusp: boolean;
+                receipt: string;
+            }[];
+            cuspBandDeg: number;
+            wheel: {
+                verified: boolean;
+                computes: boolean;
+                gateArcDeg: number;
+                lineArcDeg: number;
+                gate41StartDeg: number;
+                designSunArcDeg: number;
+                bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+                bodyCount: 13;
+                gates: (9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
+                starts: number[];
+                sample: {
+                    gate: number;
+                    line: number;
+                    index: number;
+                    startDeg: number;
+                };
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            lattice: {
+                verified: boolean;
+                computes: boolean;
+                centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                centerCount: 9;
+                channels: {
+                    a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+                    key: string;
+                    from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                }[];
+                channelCount: 36;
+                gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            ephCore: {
+                computes: boolean;
+                verified: boolean;
+                birthJd: number;
+                ephemeris: {
+                    readonly jd: number;
+                    readonly bodies: readonly SealedMeeusBodyLongitude[];
+                    readonly sun: number;
+                    readonly moon: number;
+                    readonly root: string;
+                };
+                design: {
+                    readonly birthJd: number;
+                    readonly designJd: number;
+                    readonly birthSunDeg: number;
+                    readonly designSunDeg: number;
+                    readonly targetDeg: number;
+                    readonly arcErrDeg: number;
+                    readonly daysBeforeBirth: number;
+                };
+                sunJ2000: number;
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        lattice: {
+            verified: boolean;
+            computes: boolean;
+            centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+            centerCount: 9;
+            channels: {
+                a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+                key: string;
+                from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+            }[];
+            channelCount: 36;
+            gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        layout: {
+            readonly Head: {
+                readonly x: number;
+                readonly y: number;
+                readonly shape: "tri";
+            };
+            readonly Ajna: {
+                readonly x: number;
+                readonly y: number;
+                readonly shape: "tri";
+            };
+            readonly Throat: {
+                readonly x: number;
+                readonly y: number;
+                readonly shape: "sq";
+            };
+            readonly G: {
+                readonly x: number;
+                readonly y: number;
+                readonly shape: "dia";
+            };
+            readonly Heart: {
+                readonly x: number;
+                readonly y: number;
+                readonly shape: "tri";
+            };
+            readonly Sacral: {
+                readonly x: number;
+                readonly y: number;
+                readonly shape: "sq";
+            };
+            readonly SolarPlexus: {
+                readonly x: number;
+                readonly y: number;
+                readonly shape: "tri";
+            };
+            readonly Spleen: {
+                readonly x: number;
+                readonly y: number;
+                readonly shape: "tri";
+            };
+            readonly Root: {
+                readonly x: number;
+                readonly y: number;
+                readonly shape: "sq";
+            };
+        };
+        definedKeys: string[];
+        activatedGates: number[];
+        definedCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+        cuspCount: number;
+        definedChannelCount: number;
+        count: number;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        route: string;
+        pair: string;
+        claySolvedByThisFold: 0;
+        qpuRequired: false;
+        statement: string;
+        boundary: string;
+    };
     facets: ({
         facet: string;
         on: boolean;
@@ -16883,3 +18860,11 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
     statement: string;
     boundary: string;
 };
+/**
+ * Field projection — Keplerian orbit rings + bodies. Scale/breath from heroPhaseAt; hues from sim.
+ * Vue mounts only call this — no inline canvas math. HONEST: circular Keplerian paint, not JPL ephemeris.
+ */
+export declare function drawAstronomyProjection(ctx: CanvasRenderingContext2D, w: number, h: number, sim: AstronomySimulationPaint, opts?: {
+    dark?: boolean;
+    reduce?: boolean;
+}): void;

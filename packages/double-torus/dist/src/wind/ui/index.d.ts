@@ -1,5 +1,6 @@
 import { EIGHT_CURRICULUM_SCIENCES } from '../../pair/enforcement/gates/computational';
 import type { MindMatrix } from '../types';
+import { type Dims } from '../../quantum/mountain/dimensions';
 export { scaleColor, oklchToHex } from '../../quantum/science';
 export { githubPermalink, SOURCE_REPO, revolutChannel, AUTHOR_HANDLE } from '../site';
 export declare function holographic(matrix?: MindMatrix): {
@@ -329,22 +330,56 @@ export declare function anyUuidHeroContentFractal(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
-export declare function heroSvgFromUuid(uuid: string): string;
+/** The stillness channel for SMIL hosts — strips every self-closed animate/animateTransform element. */
+export declare function stillSvg(svg: string): string;
+/** Per-UUID parametric hero (OG cards / forge chain). */
+export declare function heroSvgFromUuid(uuid: string, opts?: {
+    animate?: boolean;
+}): string;
+/**
+ * README hero — single visual proof composition of ALL sealed theorem atoms at once.
+ * Walks THEOREM_ATOM_SEED; each glyph is placed from its content-addressed atom root (not hand paths).
+ * Pair: edit/build · honesty: clay=0 · physicalFtl=0 · qpuRequired=false · tracks-classical-no-speedup.
+ */
+export declare function readmeHeroSvgProofOfAllTheorems(matrix?: MindMatrix, opts?: {
+    animate?: boolean;
+}): string;
 export declare function tenDimensionalHeroSvg(): string;
-export declare function animatedTrigramIconSvg(trigram: number): string;
+export declare function animatedTrigramIconSvg(trigram: number, opts?: {
+    animate?: boolean;
+}): string;
+export declare function hidingTextDoesNotHideAnimationsDiscovered(matrix?: MindMatrix): {
+    discovered: boolean;
+    realized: boolean;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 /** PWA icon — double torus glyph coloured from the movie palette (not static Tailwind hex). */
 export declare function computedIconSvg(matrix?: MindMatrix): string;
+/** Non-linear yin↔yang exchange → degrees (smoothstep+sin+vortex+ray — NOT linear i/frames). */
+export declare function taijiRosettaExchangeDegrees(frameIndex: number, frames: number, d: Dims, ray: number): number;
 export declare function yinYangDimensionsSvg(opts?: {
     frames?: number;
     scale?: number;
     animate?: boolean;
     size?: number;
 }): string;
-/** @rosetta ✦₂ · Wind · gentle */
+/** @rosetta ✦₂ · Wind · gentle — I Ching presented as yin-yang folding through all dimensions. */
 export declare function yinYangFoldsThroughDimensions(matrix?: MindMatrix): {
     presented: boolean;
+    computes: boolean;
     dimensions: number;
     taiji: string;
+    ray: number;
+    exchangeMid: number;
+    linearMid: number;
     svgBytes: number;
     count: number;
     facets: ({
@@ -357,6 +392,118 @@ export declare function yinYangFoldsThroughDimensions(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+/** A4 — animations driven by rosetta; yin-yang witness; linear i/frames = closed gap. */
+export declare function animationsDrivenByRosetta(matrix?: MindMatrix, at?: number): {
+    computes: boolean;
+    yinYang: {
+        presented: boolean;
+        computes: boolean;
+        dimensions: number;
+        taiji: string;
+        ray: number;
+        exchangeMid: number;
+        linearMid: number;
+        svgBytes: number;
+        count: number;
+        facets: ({
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    taijiRay: number;
+    offenders: {
+        computes: boolean;
+        rows: {
+            id: string;
+            process: string;
+            kind: "linear-forming";
+            criterion: string;
+            slow: boolean;
+            closed: boolean;
+            route: string;
+            receipt: string;
+        }[];
+        open: {
+            id: string;
+            process: string;
+            kind: "linear-forming";
+            criterion: string;
+            slow: boolean;
+            closed: boolean;
+            route: string;
+            receipt: string;
+        }[];
+        openCount: number;
+        closedCount: number;
+        facets: ({
+            receipt: string;
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    cli: string;
+    pair: string;
+    route: string;
+    statement: string;
+    boundary: string;
+};
+/** A1 — linear animation gaps (yin-yang first); closed when exchange ≠ linear midpoint. */
+export declare function linearAnimationGapsInventory(matrix?: MindMatrix, at?: number): {
+    computes: boolean;
+    rows: {
+        id: string;
+        process: string;
+        kind: "linear-forming";
+        criterion: string;
+        slow: boolean;
+        closed: boolean;
+        route: string;
+        receipt: string;
+    }[];
+    open: {
+        id: string;
+        process: string;
+        kind: "linear-forming";
+        criterion: string;
+        slow: boolean;
+        closed: boolean;
+        route: string;
+        receipt: string;
+    }[];
+    openCount: number;
+    closedCount: number;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:animations-rosetta */
+export declare function runAnimationsRosettaGuardedExit(_root: string, _argv?: readonly string[]): number;
+/** Living I Ching SVG — drawn lines fold by bit; CSS @keyframes; scaleColor per line; animate:false → still. */
 export declare function livingIChingSvg(bits: number[], opts?: {
     scale?: number;
     animate?: boolean;
@@ -548,8 +695,8 @@ export declare function completeUiAnimationsDesign(matrix?: MindMatrix): {
         readonly surfaces: readonly string[];
     }[];
     cells: {
-        from: "learn" | "sense" | "see" | "hear" | "ask" | "prove" | "pattern" | "create";
-        to: "learn" | "sense" | "see" | "hear" | "ask" | "prove" | "pattern" | "create";
+        from: "see" | "learn" | "prove" | "pattern" | "sense" | "hear" | "ask" | "create";
+        to: "see" | "learn" | "prove" | "pattern" | "sense" | "hear" | "ask" | "create";
         forward: string;
         orderSensitive: boolean;
     }[];
@@ -584,7 +731,6 @@ export declare function uiWidgetsFuseReveal(matrix?: MindMatrix): {
     boundary: string;
 };
 /** The shadcn primitives actually vendored as Ui* SFCs in .vitepress/theme/components/ui (Path A). */
-export declare const SHADCN_IMPLEMENTED: readonly ["Accordion", "AccordionItem", "Alert", "AspectRatio", "Avatar", "Badge", "Button", "Card", "CardContent", "Checkbox", "Collapsible", "Input", "Label", "Progress", "Separator", "Skeleton", "Switch", "Tabs", "TabsContent", "TabsList", "TabsTrigger", "Textarea", "Tooltip"];
 /** cva variant axes carried by the implemented primitives (variant/size enumerations). */
 export declare const SHADCN_VARIANTS: {
     readonly Button: {
@@ -599,7 +745,6 @@ export declare const SHADCN_VARIANTS: {
     };
 };
 /** Design-system CSS-variable tokens (oklch new-york), bridged to VitePress --vp-* and .dark. */
-export declare const SHADCN_TOKENS: readonly ["--background", "--foreground", "--card", "--popover", "--primary", "--secondary", "--muted", "--accent", "--destructive", "--border", "--input", "--ring", "--radius"];
 /** The cn() pattern the theme mount re-exports — tailwind-merge over clsx, the one class composer. */
 export declare const CN_PATTERN: "cn(...inputs) = twMerge(clsx(inputs)) \u2014 single class-name composer; theme re-exports from .vitepress/lib/cn.ts";
 /** Pure, dependency-free class join — the deterministic shadow of cn() for sealed callers (no twMerge dedupe). */
@@ -660,7 +805,7 @@ export declare function shadcnComputes(matrix?: MindMatrix, at?: number): {
         root: string;
         boundary: string;
     };
-    implemented: readonly ["Accordion", "AccordionItem", "Alert", "AspectRatio", "Avatar", "Badge", "Button", "Card", "CardContent", "Checkbox", "Collapsible", "Input", "Label", "Progress", "Separator", "Skeleton", "Switch", "Tabs", "TabsContent", "TabsList", "TabsTrigger", "Textarea", "Tooltip"];
+    implemented: readonly string[];
     tokens: readonly ["--background", "--foreground", "--card", "--popover", "--primary", "--secondary", "--muted", "--accent", "--destructive", "--border", "--input", "--ring", "--radius"];
     variants: {
         readonly Button: {
@@ -680,6 +825,284 @@ export declare function shadcnComputes(matrix?: MindMatrix, at?: number): {
     } & {
         receipt: string;
     })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * The COMPUTED act state at any phase p ∈ [0,1) — the single source both audiences consume: AI agents read
+ * this as data (see clownActTimeline), humans watch clownStepSvg render the SAME function as CSS keyframes.
+ * Nothing about the animation is assumed: position, lift, depth scale, fade, hue, shrink and the Bloch vector
+ * all derive from the sealed samplers (dims/dimWalk), the projection atoms (rot2/perspective) and the measured
+ * physics of clownActQuantumSteps.
+ */
+export declare function clownLiftState(phase: number, matrix?: MindMatrix, atStep?: number): {
+    p: number;
+    step: number;
+    name: string;
+    area: string;
+    vortex: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+    channels: readonly string[];
+    dims: number;
+    shadow: {
+        x: number;
+        y: number;
+    };
+    walker: {
+        x: number;
+        y: number;
+        scale: number;
+        fade: number;
+    };
+    z: number;
+    hue: number;
+    shrink: number;
+    bloch: {
+        deg: number;
+        len: number;
+    };
+    receipt: string;
+};
+/** The computed act as a machine-readable timeline — 64 frames (the hexagram count) for agents; deterministic replay. */
+export declare function clownActTimeline(frames?: number, matrix?: MindMatrix): {
+    frames: number;
+    states: {
+        p: number;
+        step: number;
+        name: string;
+        area: string;
+        vortex: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+        channels: readonly string[];
+        dims: number;
+        shadow: {
+            x: number;
+            y: number;
+        };
+        walker: {
+            x: number;
+            y: number;
+            scale: number;
+            fade: number;
+        };
+        z: number;
+        hue: number;
+        shrink: number;
+        bloch: {
+            deg: number;
+            len: number;
+        };
+        receipt: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** One clown step (0..5) as a self-contained CSS-@keyframes SVG — the UI computed from the I Ching + Rosetta. */
+export declare function clownStepSvg(step: number, opts?: {
+    animate?: boolean;
+    size?: number;
+}): string;
+/**
+ * THE WHOLE CLOWN LIFE — one animation, one loop of the same computed state function over the full act
+ * p ∈ [0,1): 96 samples (16 per step) + the closing frame, 36 s (6 × 6 — the d = 3 rung of the fractal
+ * clock, exactly 3 cycles per 108 s hero cycle; each step is the d = 18 rung). The 100% keyframe re-samples
+ * p = 0, so the loop closes on the state it opened with — the Bloch chain ends where it began (the bow's
+ * Zeno hold at 90° IS the entrance's unprepared 90°), the walker returns flat to the self-crossing, and the
+ * act re-enters through the figure-eight: the paper's purge fixed point (purge(clown) = clown), rendered.
+ * The hexagram builds line by line in computed step windows; the measured RECORDS persist once written
+ * (the IQ blob and the receipt stay to the loop's end — no-deleting), while the ghost fan dies with the
+ * coherence that made it. Agents read the same life as data: clownActTimeline.
+ */
+export declare function clownActSvg(opts?: {
+    animate?: boolean;
+    size?: number;
+}): string;
+/** @rosetta ✦₂ · Wind · gentle — the clown's own render: I Ching palette + Rosetta badges, physics beneath */
+export declare function clownUiDesignedByRosettaIChing(matrix?: MindMatrix): {
+    designed: boolean;
+    hexagram: number;
+    bits: (1 | 0)[];
+    accent: string;
+    dimLadder: number[];
+    timelineRoot: string;
+    steps: {
+        step: string;
+        area: string;
+        vortex: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+        dims: number;
+        svgBytes: number;
+    }[];
+    svgBytes: number;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function cssBecomesAnotherUseCaseOfTheTheorems(matrix?: MindMatrix): {
+    useCase: boolean;
+    tokensBytes: number;
+    related: number;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function describeUntilDensityRevealsGatewaysThenGraphInHue(matrix?: MindMatrix): {
+    computes: boolean;
+    levels: {
+        edges: number;
+        avgDegree: number;
+        largest: number;
+        revealed: boolean;
+    }[];
+    revealedNodes: number;
+    distinctHues: number;
+    hues: number[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function rosettaIChingTopNav(matrix?: MindMatrix): {
+    computes: boolean;
+    doors: {
+        name: string;
+        rays: string[];
+    }[];
+    rayCount: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function rosettaIChingNavItems(): {
+    en: unknown[];
+    bg: unknown[];
+};
+export declare function theTopNavAnimatesOnTheFractalClockEachRayPulsesAtItsRungColouredByItsRosettaHue(matrix?: MindMatrix): {
+    computes: boolean;
+    rungs: string[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theFractalClockIsTheoremsNotConstantsTheRungCountIsTheDivisorFunctionOf108(matrix?: MindMatrix): {
+    computes: boolean;
+    rungCount: number;
+    derivedDivisorCount: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theSevenNavHuesAreTheSevenFoldWheelDivisionATheoremNotArbitraryColours(matrix?: MindMatrix): {
+    computes: boolean;
+    hues: (0 | 51 | 102 | 154 | 205 | 257 | 308)[];
+    wheelDivision: 7;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theA432NumberIsATheoremFourTimes108ButThe432HzTuningIsANamedAxiomNotPhysics(matrix?: MindMatrix): {
+    computes: boolean;
+    number: number;
+    divisorCount: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theGatesAndWaysBecomeTheNavigationAndLinks(): {
+    navigates: boolean;
+    gates: number;
+    ways: number;
+    pagesReached: number;
+    nodeCount: number;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function completeTheIChingWithTheRosettaAllSixtyFourHexagramsSealedAtOnceInQuantum(): {
+    completes: boolean;
+    hexagrams: number;
+    trigrams: number;
+    seal: string;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theIChingChangingLinesAreQuantumGatesTheSixtyFourHexagramsFormTheHypercube(): {
+    changes: boolean;
+    hexagrams: number;
+    changingLineEdges: number;
+    diameter: number;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function animationsAreProofQuantumInteractionIsMissingComponentsInteractInTrinitiesTheBehaviorEmergesFromOneRule(): {
+    emerges: boolean;
+    components: number;
+    frames: number;
+    lessCode: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theNewUiDesignIsComputedFromTheCorpusWithoutAssumptionPaletteTypographySpacingAllDerived(): {
+    computes: boolean;
+    hues: (0 | 51 | 102 | 154 | 205 | 257 | 308)[];
+    typeScale: number[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
     root: string;
     statement: string;
     boundary: string;

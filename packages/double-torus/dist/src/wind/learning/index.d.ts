@@ -1,4 +1,5 @@
 import * as __ns_up_water_digit from '../../water/digit';
+import * as __ns_up_quantum_apps from '../../quantum/apps';
 import * as __ns_up_earth_architecture from '../../earth/architecture';
 import type { AgentEducation, McpToolManifest, MindMatrix, SchoolCurriculum } from '../types';
 import { type LocaleName } from '../site';
@@ -16,6 +17,59 @@ export declare function skillAtoms(matrix?: MindMatrix): {
     memory: string;
     savedToAtoms: boolean;
     tamperingAtoms: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function transcriptTokenAudit(lines: string[], day: string): {
+    day: string;
+    totals: {
+        in: number;
+        out: number;
+        cacheRead: number;
+        cacheWrite: number;
+        msgs: number;
+        errors: number;
+    };
+    sessionCount: number;
+    sessions: {
+        out: number;
+        cacheWrite: number;
+        msgs: number;
+        id: string;
+    }[];
+    tools: [string, number][];
+    bashShapes: [string, number][];
+    audited: boolean;
+    root: string;
+};
+/** walk ~/.claude/projects, audit the given (or current) day, print, exit — the saved zero-token command */
+export declare function transcriptTokenAuditExit(): Promise<void>;
+/** Pure advice map: a repeated Bash shape → the saved workflow tool that collapses it. */
+export declare function tokenAdviceForShapes(shapes: readonly (readonly [string, number])[]): {
+    shape: string;
+    count: number;
+    advice: string;
+}[];
+/** tokens:live — the realtime meter: audit ONLY the newest transcript (the running session), print the
+ *  running ledger + per-shape saved-tool advice. Exit 0 always: a meter, not a gate. */
+export declare function transcriptTokenLiveExit(): Promise<void>;
+export declare function quantumTokenOptimisation(matrix?: MindMatrix): {
+    optimised: boolean;
+    turns: number;
+    batch: {
+        k: number;
+        reduction: number;
+        quadratic: boolean;
+    }[];
+    djClassical: number;
+    collapse: number;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
     root: string;
     statement: string;
     boundary: string;
@@ -163,7 +217,7 @@ export declare function decodeKnowledge(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
-export declare function navigation358(): {
+export declare function navigation358(matrix?: MindMatrix): {
     mapped: boolean;
     tiers: {
         tier: number;
@@ -175,6 +229,208 @@ export declare function navigation358(): {
         }[];
     }[];
     count: number;
+    items: {
+        tier: number;
+        ray: number;
+        hue: number;
+        address: string;
+        label: string;
+        route: string;
+        tip: string;
+    }[];
+    core: {
+        computes: boolean;
+        at: number;
+        surfaces: __ns_up_quantum_apps.RosettaCoreSurface[];
+        inventory: {
+            core: {
+                label: string;
+                kind: __ns_up_quantum_apps.RosettaCoreSurfaceKind;
+                ray: number;
+                address: string;
+            }[];
+            parallel: readonly ["ROSETTA_RAY_VIEWS duplicate", "PROJECTION_SEGMENT/FORMS→VORTEX", "rosettaClaim/Owner(heaven/core)", "rosettaCodec(learning)", "string/millennium→rosettaReady-handoff"];
+            hubs: {
+                slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
+                ray: number;
+                route: string;
+                hue: number;
+            }[];
+        };
+        hubs: readonly __ns_up_water_digit.RosettaRayHub[];
+        raysUsed: number;
+        kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
+        resolve: (label: string, kind?: __ns_up_quantum_apps.RosettaCoreSurfaceKind) => __ns_up_quantum_apps.RosettaCoreSurface;
+        shelve: typeof __ns_up_quantum_apps.rosettaShelve;
+        byRay: (ray: number) => __ns_up_quantum_apps.RosettaCoreSurface[];
+        resolveRoute: (route: string) => {
+            surface: __ns_up_quantum_apps.RosettaCoreSurface;
+            address: string;
+            computed: boolean;
+            route: string;
+            slug: string;
+            ray: number;
+            rayMeta: {
+                readonly ray: 0;
+                readonly glyph: "Ⰰ";
+                readonly nameEn: "Origin";
+                readonly nameBg: "Произход";
+                readonly domain: "origin";
+                readonly hue: 0;
+            } | {
+                readonly ray: 1;
+                readonly glyph: "Ⰲ";
+                readonly nameEn: "Proof";
+                readonly nameBg: "Доказателства";
+                readonly domain: "expression";
+                readonly hue: 51;
+            } | {
+                readonly ray: 2;
+                readonly glyph: "Ⰴ";
+                readonly nameEn: "Explore";
+                readonly nameBg: "Изследване";
+                readonly domain: "knowledge";
+                readonly hue: 102;
+            } | {
+                readonly ray: 3;
+                readonly glyph: "Ⰶ";
+                readonly nameEn: "Learn";
+                readonly nameBg: "Обучение";
+                readonly domain: "nature";
+                readonly hue: 154;
+            } | {
+                readonly ray: 4;
+                readonly glyph: "Ⰹ";
+                readonly nameEn: "Apps";
+                readonly nameBg: "Приложения";
+                readonly domain: "computation";
+                readonly hue: 205;
+            } | {
+                readonly ray: 5;
+                readonly glyph: "Ⰿ";
+                readonly nameEn: "Frontier";
+                readonly nameBg: "Граници";
+                readonly domain: "geometry";
+                readonly hue: 257;
+            } | {
+                readonly ray: 6;
+                readonly glyph: "Ⱄ";
+                readonly nameEn: "Reference";
+                readonly nameBg: "Справочник";
+                readonly domain: "language";
+                readonly hue: 308;
+            };
+            station: number;
+            crossPair: string;
+            glaAddress: string;
+            navigation: {
+                rayLabel: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
+                rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
+                rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
+                rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
+                siblings: import("../types").ConceptCommandName[];
+                siblingCount: number;
+            };
+            content: {
+                pageKind: __ns_up_water_digit.RosettaComputationType;
+                heroPhase: number;
+                bodySeed: string;
+                heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+            };
+            motion: {
+                at: number;
+                rays: {
+                    ray: number;
+                    baseAngle: number;
+                    currentAngle: number;
+                    angularVelocity: number;
+                    vortexRate: number;
+                    radius: number;
+                    letters: {
+                        letterIndex: number;
+                        letterAngle: number;
+                        letterRadius: number;
+                        digitalRootPosition: number;
+                    }[];
+                }[];
+                breathRadius: number;
+                breathPulse: number;
+                proof: {
+                    coprime7_6: boolean;
+                    coprime7_9: boolean;
+                    coprime7_10: boolean;
+                    holds: boolean;
+                };
+                constants: {
+                    RAYS: number;
+                    LETTERS_PER_RAY: number;
+                    PHI: number;
+                    GOLDEN_ANGLE: number;
+                    DOUBLING_PERIOD: number;
+                    DR_MODULUS: number;
+                    STATION_COUNT: number;
+                };
+                root: string;
+            };
+            stationDetail: {
+                digit: number;
+                folder: string;
+                path: string;
+            };
+            sharedRoot: string;
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        resolveProjection: (label: string) => {
+            surface: __ns_up_quantum_apps.RosettaCoreSurface;
+            phase: number;
+            hue: number;
+            motion: {
+                at: number;
+                rays: {
+                    ray: number;
+                    baseAngle: number;
+                    currentAngle: number;
+                    angularVelocity: number;
+                    vortexRate: number;
+                    radius: number;
+                    letters: {
+                        letterIndex: number;
+                        letterAngle: number;
+                        letterRadius: number;
+                        digitalRootPosition: number;
+                    }[];
+                }[];
+                breathRadius: number;
+                breathPulse: number;
+                proof: {
+                    coprime7_6: boolean;
+                    coprime7_9: boolean;
+                    coprime7_10: boolean;
+                    holds: boolean;
+                };
+                constants: {
+                    RAYS: number;
+                    LETTERS_PER_RAY: number;
+                    PHI: number;
+                    GOLDEN_ANGLE: number;
+                    DOUBLING_PERIOD: number;
+                    DR_MODULUS: number;
+                    STATION_COUNT: number;
+                };
+                root: string;
+            };
+        };
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
     facets: {
         receipt: string;
         facet: string;
@@ -223,50 +479,50 @@ export declare function monographPaths(locale: 'gla' | 'en' | 'bg'): {
             rayMeta: {
                 readonly ray: 0;
                 readonly glyph: "Ⰰ";
-                readonly nameEn: "Alpha";
-                readonly nameBg: "Алфа";
+                readonly nameEn: "Origin";
+                readonly nameBg: "Произход";
                 readonly domain: "origin";
                 readonly hue: 0;
             } | {
                 readonly ray: 1;
                 readonly glyph: "Ⰲ";
-                readonly nameEn: "Voice";
-                readonly nameBg: "Глас";
+                readonly nameEn: "Proof";
+                readonly nameBg: "Доказателства";
                 readonly domain: "expression";
                 readonly hue: 51;
             } | {
                 readonly ray: 2;
                 readonly glyph: "Ⰴ";
-                readonly nameEn: "Spirit";
-                readonly nameBg: "Дух";
+                readonly nameEn: "Explore";
+                readonly nameBg: "Изследване";
                 readonly domain: "knowledge";
                 readonly hue: 102;
             } | {
                 readonly ray: 3;
                 readonly glyph: "Ⰶ";
-                readonly nameEn: "Life";
-                readonly nameBg: "Живот";
+                readonly nameEn: "Learn";
+                readonly nameBg: "Обучение";
                 readonly domain: "nature";
                 readonly hue: 154;
             } | {
                 readonly ray: 4;
                 readonly glyph: "Ⰹ";
-                readonly nameEn: "Thought";
-                readonly nameBg: "Мисъл";
+                readonly nameEn: "Apps";
+                readonly nameBg: "Приложения";
                 readonly domain: "computation";
                 readonly hue: 205;
             } | {
                 readonly ray: 5;
                 readonly glyph: "Ⰿ";
-                readonly nameEn: "Form";
-                readonly nameBg: "Форма";
+                readonly nameEn: "Frontier";
+                readonly nameBg: "Граници";
                 readonly domain: "geometry";
                 readonly hue: 257;
             } | {
                 readonly ray: 6;
                 readonly glyph: "Ⱄ";
-                readonly nameEn: "Word";
-                readonly nameBg: "Слово";
+                readonly nameEn: "Reference";
+                readonly nameBg: "Справочник";
                 readonly domain: "language";
                 readonly hue: 308;
             };
@@ -602,6 +858,7 @@ export declare function paperParamsById(id: string, matrix?: MindMatrix, count?:
     proofVerified: boolean;
     proofDepth: number;
     leafCount: number;
+    monograph: string;
     number: number;
     id: string;
     title: string;
@@ -725,6 +982,34 @@ export declare function ogBuildsNavigation(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+/** The science portal organized into seven REUSABLE parts — one part per rosetta ray, each part =
+ * {ray, hub slug/route, functional labels, member pages} with membership decided by the content lenses
+ * (what a page IS), never the slug hash. Nav, sidebar, related sections, crosslinks and the RayHub
+ * landing all consume THIS one fold — change the shelving here and every surface follows. */
+export declare function sciencePortalParts(matrix?: MindMatrix): {
+    computed: boolean;
+    parts: {
+        ray: 0 | 5 | 2 | 1 | 4 | 3 | 6;
+        slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
+        route: string;
+        labelEn: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
+        labelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
+        glyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
+        hue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+        count: number;
+        pages: {
+            slug: string;
+            titleEn: string;
+            titleBg: string;
+        }[];
+    }[];
+    partCount: number;
+    pageCount: number;
+    assigned: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function siteNavigation(matrix?: MindMatrix): {
     computed: boolean;
     tagCloud: {
@@ -735,21 +1020,16 @@ export declare function siteNavigation(matrix?: MindMatrix): {
     en: {
         nav: ({
             text: string;
-            link: string;
-            items?: undefined;
-        } | {
-            text: string;
             items: {
                 text: string;
-                items: {
-                    text: string;
-                    link: string;
-                }[];
+                link: string;
             }[];
-            link?: undefined;
+        } | {
+            text: string;
+            link: string;
         })[];
         sidebar: {
-            text: string;
+            text: "Origin" | "Произход" | "Proof" | "Доказателства" | "Explore" | "Изследване" | "Learn" | "Обучение" | "Apps" | "Приложения" | "Frontier" | "Граници" | "Reference" | "Справочник";
             items: {
                 text: string;
                 link: string;
@@ -774,21 +1054,16 @@ export declare function siteNavigation(matrix?: MindMatrix): {
     bg: {
         nav: ({
             text: string;
-            link: string;
-            items?: undefined;
-        } | {
-            text: string;
             items: {
                 text: string;
-                items: {
-                    text: string;
-                    link: string;
-                }[];
+                link: string;
             }[];
-            link?: undefined;
+        } | {
+            text: string;
+            link: string;
         })[];
         sidebar: {
-            text: string;
+            text: "Origin" | "Произход" | "Proof" | "Доказателства" | "Explore" | "Изследване" | "Learn" | "Обучение" | "Apps" | "Приложения" | "Frontier" | "Граници" | "Reference" | "Справочник";
             items: {
                 text: string;
                 link: string;
@@ -812,9 +1087,26 @@ export declare function siteNavigation(matrix?: MindMatrix): {
     };
     relatedSidebarComplete: boolean;
     crosslinksComplete: boolean;
+    aliasDiscoveryPurged: boolean;
     searchIndexRoot: string;
     searchEntries: number;
     routes: string[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function vitepressShowsOnlyScience(matrix?: MindMatrix): {
+    computes: boolean;
+    visiblePages: number;
+    hiddenPages: number;
+    theoremCount: number;
+    rays: number;
+    searchLines: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
     root: string;
     statement: string;
     boundary: string;
@@ -831,6 +1123,30 @@ export declare function vitepressSidebar(matrix?: MindMatrix): {
     computed: boolean;
     en: Record<string, VitePressSidebarItem[]>;
     bg: Record<string, VitePressSidebarItem[]>;
+    dryClean: {
+        computes: boolean;
+        before: {
+            nav: string;
+            sidebar: string;
+        };
+        after: {
+            nav: string;
+            sidebar: string;
+        };
+        aliasPurged: number;
+        domainSidebarCount: number;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        pair: string;
+        statement: string;
+        boundary: string;
+    };
+    aliasKeysPurged: boolean;
+    domainKeysPresent: boolean;
     root: string;
     statement: string;
     boundary: string;
@@ -845,9 +1161,9 @@ export declare function componentCrosslinks(componentName: string, locale?: Loca
 export declare function rosettaComputesNavigationAndContent(path: string, matrix?: MindMatrix): {
     computes: boolean;
     navigation: {
-        tag: "origin" | "expression" | "knowledge" | "nature" | "computation" | "geometry" | "language";
+        tag: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
         ray: number;
-        name: "Alpha" | "Voice" | "Spirit" | "Life" | "Thought" | "Form" | "Word";
+        name: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
     };
     rosetta: {
         decoded: boolean;
@@ -862,50 +1178,50 @@ export declare function rosettaComputesNavigationAndContent(path: string, matrix
         rayMeta: {
             readonly ray: 0;
             readonly glyph: "Ⰰ";
-            readonly nameEn: "Alpha";
-            readonly nameBg: "Алфа";
+            readonly nameEn: "Origin";
+            readonly nameBg: "Произход";
             readonly domain: "origin";
             readonly hue: 0;
         } | {
             readonly ray: 1;
             readonly glyph: "Ⰲ";
-            readonly nameEn: "Voice";
-            readonly nameBg: "Глас";
+            readonly nameEn: "Proof";
+            readonly nameBg: "Доказателства";
             readonly domain: "expression";
             readonly hue: 51;
         } | {
             readonly ray: 2;
             readonly glyph: "Ⰴ";
-            readonly nameEn: "Spirit";
-            readonly nameBg: "Дух";
+            readonly nameEn: "Explore";
+            readonly nameBg: "Изследване";
             readonly domain: "knowledge";
             readonly hue: 102;
         } | {
             readonly ray: 3;
             readonly glyph: "Ⰶ";
-            readonly nameEn: "Life";
-            readonly nameBg: "Живот";
+            readonly nameEn: "Learn";
+            readonly nameBg: "Обучение";
             readonly domain: "nature";
             readonly hue: 154;
         } | {
             readonly ray: 4;
             readonly glyph: "Ⰹ";
-            readonly nameEn: "Thought";
-            readonly nameBg: "Мисъл";
+            readonly nameEn: "Apps";
+            readonly nameBg: "Приложения";
             readonly domain: "computation";
             readonly hue: 205;
         } | {
             readonly ray: 5;
             readonly glyph: "Ⰿ";
-            readonly nameEn: "Form";
-            readonly nameBg: "Форма";
+            readonly nameEn: "Frontier";
+            readonly nameBg: "Граници";
             readonly domain: "geometry";
             readonly hue: 257;
         } | {
             readonly ray: 6;
             readonly glyph: "Ⱄ";
-            readonly nameEn: "Word";
-            readonly nameBg: "Слово";
+            readonly nameEn: "Reference";
+            readonly nameBg: "Справочник";
             readonly domain: "language";
             readonly hue: 308;
         };
@@ -1027,7 +1343,9 @@ export declare function everyElementIsALinkedNodeOrUseless(matrix?: MindMatrix):
     statement: string;
     boundary: string;
 };
-export { ROSETTA_RAYS, ROSETTA_COMPUTATION_TYPES, rosettaComputesAll, rosettaComputesCensusDissolve, rosettaComputesItself, rosettaDecodesUrlPath, rosettaRayOf, rosettaReuse, sevenStarRosettaNaturalMotion, } from '../../water/digit';
+export { ROSETTA_RAYS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, rosettaComputesAll, rosettaComputesCensusDissolve, rosettaComputesItself, rosettaDecodesUrlPath, rosettaRayOf, rosettaReuse, sevenStarRosettaNaturalMotion, } from '../../water/digit';
+export { rosettaCoreApi, rosettaCoreApiSelfWires, rosettaShelve, rosettaCoreApiSurface } from '../../quantum/apps';
+export { movieIsNeuroscienceComputation } from '../../earth/life';
 export { rosettaGlagoliticGlobalKeyDecodeAll, rosettaImprovesDictationAndDialects } from '../language';
 export { rosettaIChingTrinityPlacesAllTools } from '../../earth/architecture';
 export { publicAstronomyNewsCitation } from '../../earth/world';
@@ -1073,56 +1391,56 @@ export declare function rosettaComputes(matrix?: MindMatrix, path?: string): {
             root: string;
         };
         rows: {
-            tail: "language" | "ui" | "routes" | "rosetta" | "fusion" | "learning" | "site" | "types" | "iching";
-            action: "language" | "ui" | "routes" | "rosetta" | "fusion" | "learning" | "site" | "types" | "iching";
+            tail: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+            action: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
             ray: number;
             rayMeta: {
                 readonly ray: 0;
                 readonly glyph: "Ⰰ";
-                readonly nameEn: "Alpha";
-                readonly nameBg: "Алфа";
+                readonly nameEn: "Origin";
+                readonly nameBg: "Произход";
                 readonly domain: "origin";
                 readonly hue: 0;
             } | {
                 readonly ray: 1;
                 readonly glyph: "Ⰲ";
-                readonly nameEn: "Voice";
-                readonly nameBg: "Глас";
+                readonly nameEn: "Proof";
+                readonly nameBg: "Доказателства";
                 readonly domain: "expression";
                 readonly hue: 51;
             } | {
                 readonly ray: 2;
                 readonly glyph: "Ⰴ";
-                readonly nameEn: "Spirit";
-                readonly nameBg: "Дух";
+                readonly nameEn: "Explore";
+                readonly nameBg: "Изследване";
                 readonly domain: "knowledge";
                 readonly hue: 102;
             } | {
                 readonly ray: 3;
                 readonly glyph: "Ⰶ";
-                readonly nameEn: "Life";
-                readonly nameBg: "Живот";
+                readonly nameEn: "Learn";
+                readonly nameBg: "Обучение";
                 readonly domain: "nature";
                 readonly hue: 154;
             } | {
                 readonly ray: 4;
                 readonly glyph: "Ⰹ";
-                readonly nameEn: "Thought";
-                readonly nameBg: "Мисъл";
+                readonly nameEn: "Apps";
+                readonly nameBg: "Приложения";
                 readonly domain: "computation";
                 readonly hue: 205;
             } | {
                 readonly ray: 5;
                 readonly glyph: "Ⰿ";
-                readonly nameEn: "Form";
-                readonly nameBg: "Форма";
+                readonly nameEn: "Frontier";
+                readonly nameBg: "Граници";
                 readonly domain: "geometry";
                 readonly hue: 257;
             } | {
                 readonly ray: 6;
                 readonly glyph: "Ⱄ";
-                readonly nameEn: "Word";
-                readonly nameBg: "Слово";
+                readonly nameEn: "Reference";
+                readonly nameBg: "Справочник";
                 readonly domain: "language";
                 readonly hue: 308;
             };
@@ -1131,15 +1449,15 @@ export declare function rosettaComputes(matrix?: MindMatrix, path?: string): {
             legacyBare: string;
             schemaTarget: string;
             canonical: string;
-            importBarrel: "language" | "ui" | "routes" | "rosetta" | "fusion" | "learning" | "site" | "types" | "iching";
-            wave: 1 | 2;
+            importBarrel: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+            wave: 2 | 1;
             applied: boolean;
             receipt: string;
         }[];
         moveTable: {
             from: string;
             to: string;
-            wave: 1 | 2;
+            wave: 2 | 1;
             applied: boolean;
             ray: number;
         }[];
@@ -1147,6 +1465,219 @@ export declare function rosettaComputes(matrix?: MindMatrix, path?: string): {
             target: number;
             pendingDissolve: string[];
         };
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    core: {
+        computes: boolean;
+        at: number;
+        core: {
+            computes: boolean;
+            at: number;
+            surfaces: __ns_up_quantum_apps.RosettaCoreSurface[];
+            inventory: {
+                core: {
+                    label: string;
+                    kind: __ns_up_quantum_apps.RosettaCoreSurfaceKind;
+                    ray: number;
+                    address: string;
+                }[];
+                parallel: readonly ["ROSETTA_RAY_VIEWS duplicate", "PROJECTION_SEGMENT/FORMS→VORTEX", "rosettaClaim/Owner(heaven/core)", "rosettaCodec(learning)", "string/millennium→rosettaReady-handoff"];
+                hubs: {
+                    slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
+                    ray: number;
+                    route: string;
+                    hue: number;
+                }[];
+            };
+            hubs: readonly __ns_up_water_digit.RosettaRayHub[];
+            raysUsed: number;
+            kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
+            resolve: (label: string, kind?: __ns_up_quantum_apps.RosettaCoreSurfaceKind) => __ns_up_quantum_apps.RosettaCoreSurface;
+            shelve: typeof __ns_up_quantum_apps.rosettaShelve;
+            byRay: (ray: number) => __ns_up_quantum_apps.RosettaCoreSurface[];
+            resolveRoute: (route: string) => {
+                surface: __ns_up_quantum_apps.RosettaCoreSurface;
+                address: string;
+                computed: boolean;
+                route: string;
+                slug: string;
+                ray: number;
+                rayMeta: {
+                    readonly ray: 0;
+                    readonly glyph: "Ⰰ";
+                    readonly nameEn: "Origin";
+                    readonly nameBg: "Произход";
+                    readonly domain: "origin";
+                    readonly hue: 0;
+                } | {
+                    readonly ray: 1;
+                    readonly glyph: "Ⰲ";
+                    readonly nameEn: "Proof";
+                    readonly nameBg: "Доказателства";
+                    readonly domain: "expression";
+                    readonly hue: 51;
+                } | {
+                    readonly ray: 2;
+                    readonly glyph: "Ⰴ";
+                    readonly nameEn: "Explore";
+                    readonly nameBg: "Изследване";
+                    readonly domain: "knowledge";
+                    readonly hue: 102;
+                } | {
+                    readonly ray: 3;
+                    readonly glyph: "Ⰶ";
+                    readonly nameEn: "Learn";
+                    readonly nameBg: "Обучение";
+                    readonly domain: "nature";
+                    readonly hue: 154;
+                } | {
+                    readonly ray: 4;
+                    readonly glyph: "Ⰹ";
+                    readonly nameEn: "Apps";
+                    readonly nameBg: "Приложения";
+                    readonly domain: "computation";
+                    readonly hue: 205;
+                } | {
+                    readonly ray: 5;
+                    readonly glyph: "Ⰿ";
+                    readonly nameEn: "Frontier";
+                    readonly nameBg: "Граници";
+                    readonly domain: "geometry";
+                    readonly hue: 257;
+                } | {
+                    readonly ray: 6;
+                    readonly glyph: "Ⱄ";
+                    readonly nameEn: "Reference";
+                    readonly nameBg: "Справочник";
+                    readonly domain: "language";
+                    readonly hue: 308;
+                };
+                station: number;
+                crossPair: string;
+                glaAddress: string;
+                navigation: {
+                    rayLabel: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
+                    rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
+                    rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
+                    rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
+                    siblings: import("../types").ConceptCommandName[];
+                    siblingCount: number;
+                };
+                content: {
+                    pageKind: __ns_up_water_digit.RosettaComputationType;
+                    heroPhase: number;
+                    bodySeed: string;
+                    heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                };
+                motion: {
+                    at: number;
+                    rays: {
+                        ray: number;
+                        baseAngle: number;
+                        currentAngle: number;
+                        angularVelocity: number;
+                        vortexRate: number;
+                        radius: number;
+                        letters: {
+                            letterIndex: number;
+                            letterAngle: number;
+                            letterRadius: number;
+                            digitalRootPosition: number;
+                        }[];
+                    }[];
+                    breathRadius: number;
+                    breathPulse: number;
+                    proof: {
+                        coprime7_6: boolean;
+                        coprime7_9: boolean;
+                        coprime7_10: boolean;
+                        holds: boolean;
+                    };
+                    constants: {
+                        RAYS: number;
+                        LETTERS_PER_RAY: number;
+                        PHI: number;
+                        GOLDEN_ANGLE: number;
+                        DOUBLING_PERIOD: number;
+                        DR_MODULUS: number;
+                        STATION_COUNT: number;
+                    };
+                    root: string;
+                };
+                stationDetail: {
+                    digit: number;
+                    folder: string;
+                    path: string;
+                };
+                sharedRoot: string;
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            resolveProjection: (label: string) => {
+                surface: __ns_up_quantum_apps.RosettaCoreSurface;
+                phase: number;
+                hue: number;
+                motion: {
+                    at: number;
+                    rays: {
+                        ray: number;
+                        baseAngle: number;
+                        currentAngle: number;
+                        angularVelocity: number;
+                        vortexRate: number;
+                        radius: number;
+                        letters: {
+                            letterIndex: number;
+                            letterAngle: number;
+                            letterRadius: number;
+                            digitalRootPosition: number;
+                        }[];
+                    }[];
+                    breathRadius: number;
+                    breathPulse: number;
+                    proof: {
+                        coprime7_6: boolean;
+                        coprime7_9: boolean;
+                        coprime7_10: boolean;
+                        holds: boolean;
+                    };
+                    constants: {
+                        RAYS: number;
+                        LETTERS_PER_RAY: number;
+                        PHI: number;
+                        GOLDEN_ANGLE: number;
+                        DOUBLING_PERIOD: number;
+                        DR_MODULUS: number;
+                        STATION_COUNT: number;
+                    };
+                    root: string;
+                };
+            };
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        slots: {
+            ray: number;
+            kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
+            pageKind: __ns_up_water_digit.RosettaComputationType;
+            vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+            receipt: string;
+        }[];
+        count: number;
         facets: {
             receipt: string;
             facet: string;
@@ -1206,9 +1737,9 @@ export declare function rosettaComputes(matrix?: MindMatrix, path?: string): {
     nav: {
         computes: boolean;
         navigation: {
-            tag: "origin" | "expression" | "knowledge" | "nature" | "computation" | "geometry" | "language";
+            tag: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
             ray: number;
-            name: "Alpha" | "Voice" | "Spirit" | "Life" | "Thought" | "Form" | "Word";
+            name: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
         };
         rosetta: {
             decoded: boolean;
@@ -1223,50 +1754,50 @@ export declare function rosettaComputes(matrix?: MindMatrix, path?: string): {
             rayMeta: {
                 readonly ray: 0;
                 readonly glyph: "Ⰰ";
-                readonly nameEn: "Alpha";
-                readonly nameBg: "Алфа";
+                readonly nameEn: "Origin";
+                readonly nameBg: "Произход";
                 readonly domain: "origin";
                 readonly hue: 0;
             } | {
                 readonly ray: 1;
                 readonly glyph: "Ⰲ";
-                readonly nameEn: "Voice";
-                readonly nameBg: "Глас";
+                readonly nameEn: "Proof";
+                readonly nameBg: "Доказателства";
                 readonly domain: "expression";
                 readonly hue: 51;
             } | {
                 readonly ray: 2;
                 readonly glyph: "Ⰴ";
-                readonly nameEn: "Spirit";
-                readonly nameBg: "Дух";
+                readonly nameEn: "Explore";
+                readonly nameBg: "Изследване";
                 readonly domain: "knowledge";
                 readonly hue: 102;
             } | {
                 readonly ray: 3;
                 readonly glyph: "Ⰶ";
-                readonly nameEn: "Life";
-                readonly nameBg: "Живот";
+                readonly nameEn: "Learn";
+                readonly nameBg: "Обучение";
                 readonly domain: "nature";
                 readonly hue: 154;
             } | {
                 readonly ray: 4;
                 readonly glyph: "Ⰹ";
-                readonly nameEn: "Thought";
-                readonly nameBg: "Мисъл";
+                readonly nameEn: "Apps";
+                readonly nameBg: "Приложения";
                 readonly domain: "computation";
                 readonly hue: 205;
             } | {
                 readonly ray: 5;
                 readonly glyph: "Ⰿ";
-                readonly nameEn: "Form";
-                readonly nameBg: "Форма";
+                readonly nameEn: "Frontier";
+                readonly nameBg: "Граници";
                 readonly domain: "geometry";
                 readonly hue: 257;
             } | {
                 readonly ray: 6;
                 readonly glyph: "Ⱄ";
-                readonly nameEn: "Word";
-                readonly nameBg: "Слово";
+                readonly nameEn: "Reference";
+                readonly nameBg: "Справочник";
                 readonly domain: "language";
                 readonly hue: 308;
             };
@@ -1296,50 +1827,50 @@ export declare function rosettaComputes(matrix?: MindMatrix, path?: string): {
         rayMeta: {
             readonly ray: 0;
             readonly glyph: "Ⰰ";
-            readonly nameEn: "Alpha";
-            readonly nameBg: "Алфа";
+            readonly nameEn: "Origin";
+            readonly nameBg: "Произход";
             readonly domain: "origin";
             readonly hue: 0;
         } | {
             readonly ray: 1;
             readonly glyph: "Ⰲ";
-            readonly nameEn: "Voice";
-            readonly nameBg: "Глас";
+            readonly nameEn: "Proof";
+            readonly nameBg: "Доказателства";
             readonly domain: "expression";
             readonly hue: 51;
         } | {
             readonly ray: 2;
             readonly glyph: "Ⰴ";
-            readonly nameEn: "Spirit";
-            readonly nameBg: "Дух";
+            readonly nameEn: "Explore";
+            readonly nameBg: "Изследване";
             readonly domain: "knowledge";
             readonly hue: 102;
         } | {
             readonly ray: 3;
             readonly glyph: "Ⰶ";
-            readonly nameEn: "Life";
-            readonly nameBg: "Живот";
+            readonly nameEn: "Learn";
+            readonly nameBg: "Обучение";
             readonly domain: "nature";
             readonly hue: 154;
         } | {
             readonly ray: 4;
             readonly glyph: "Ⰹ";
-            readonly nameEn: "Thought";
-            readonly nameBg: "Мисъл";
+            readonly nameEn: "Apps";
+            readonly nameBg: "Приложения";
             readonly domain: "computation";
             readonly hue: 205;
         } | {
             readonly ray: 5;
             readonly glyph: "Ⰿ";
-            readonly nameEn: "Form";
-            readonly nameBg: "Форма";
+            readonly nameEn: "Frontier";
+            readonly nameBg: "Граници";
             readonly domain: "geometry";
             readonly hue: 257;
         } | {
             readonly ray: 6;
             readonly glyph: "Ⱄ";
-            readonly nameEn: "Word";
-            readonly nameBg: "Слово";
+            readonly nameEn: "Reference";
+            readonly nameBg: "Справочник";
             readonly domain: "language";
             readonly hue: 308;
         };
@@ -1347,10 +1878,10 @@ export declare function rosettaComputes(matrix?: MindMatrix, path?: string): {
         crossPair: string;
         glaAddress: string;
         navigation: {
-            rayLabel: "Alpha" | "Voice" | "Spirit" | "Life" | "Thought" | "Form" | "Word";
-            rayLabelBg: "Алфа" | "Глас" | "Дух" | "Живот" | "Мисъл" | "Форма" | "Слово";
+            rayLabel: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
+            rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
             rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
-            rayDomain: "origin" | "expression" | "knowledge" | "nature" | "computation" | "geometry" | "language";
+            rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
             siblings: import("../types").ConceptCommandName[];
             siblingCount: number;
         };
@@ -1539,7 +2070,7 @@ export declare function rosettaCodec(matrix?: MindMatrix): {
         ray: number;
         octave: number;
         glyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
-        domain: "origin" | "expression" | "knowledge" | "nature" | "computation" | "geometry" | "language";
+        domain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
     };
     decode: (ray: number, octave: number) => number;
     rayCount: 7;
@@ -1556,6 +2087,22 @@ export declare function rosettaCodec(matrix?: MindMatrix): {
     } & {
         receipt: string;
     })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function discoveryEconomyIsTheCoreOfCompetitionAndEducation(matrix?: MindMatrix): {
+    core: boolean;
+    won: number;
+    open: number;
+    attachments: number;
+    zeroAccount: string;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
     root: string;
     statement: string;
     boundary: string;

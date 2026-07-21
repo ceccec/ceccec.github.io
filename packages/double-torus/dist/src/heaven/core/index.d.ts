@@ -1,11 +1,13 @@
+import { type Discovery } from '../../3/7';
 import type { MindMatrix } from '../../wind/types';
 export { ICHING_NUMBERS } from '../../earth/architecture';
-export { cssIsIChingComputed, ichingTokens, ichingTokensCss, scanCssForHardcoded, cssMathProvenByMath } from '../../earth/architecture';
+export { cssIsIChingComputed, ichingTokens, ichingTokensCss, scanCssForHardcoded, cssMathProvenByMath, STATUS_BADGE_KINDS, statusBadgeKind, statusBadgeTokens, statusBadgePalette, } from '../../earth/architecture';
+export type { StatusBadgeKind } from '../../earth/architecture';
 export { merkleProof, verifyMerkleProof, quantumNetworkHashing, atomInclusionProof, quantumProofs, quantumSolutions, solutions } from '../../lake/ledger';
 export { buildMatrix, verifyRoot, reciprocity, entropy, concentration, coherenceAnomaly, coverage, consciousness, isPerfectlySelfModeling, proofReport, repositoryApi, doubleTorusWire, circulateDoubleTorus } from '../compute';
 export { analogSpeech, areaLabel, attestation, bulgarianAncientCivilisations, bulgarianEthnogenesis, bulgarianHeritage, bulgarianHistory, chakrasAura, charUuids, computerDesign, deviceSensors, dimensions, dualities, efficiency, emfApplications, frequencyToLight, A432_HUE, GOLDEN_ANGLE, lobeHues, fuseTeslaPatents, geneticLinksChallengeHistory, glagoliticBulgarianReception, harmonicBands, herbalApis, humanDesign, humanize, iconGlyphs, iconSeal, lawfulHarmonise, lawfulImagine, lawfulSucceed, multidimensional, natureCommons, natureLaw, natureReview, openGraph, patentDiscovery, plainLanguage, playLearn, publicFrequencyApis, typographySeo, wordUuids, yinYang } from '../../quantum/lake/icons';
 export { quantumSitemap, professionals, siteConfig, staticPages, crawlerKnowledge, monographTemplate, monographAsScientificPaper } from '../../wind/site';
-export { a432, a432Default, agentObserve, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, commitsAuthoredByUserOnly, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, sidebarsFromVoid, siteRoutes, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from '../../fire/li';
+export { a432, a432Default, agentObserve, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, commitsAuthoredByUserOnly, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, siteRoutes, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from '../../fire/li';
 export { ancientCalendars } from '../../thunder/decode';
 export { solarSystem } from '../../water/cosmos';
 export { TORUS_LOBE_OFFSET, doubleTorusSurface } from '../../0';
@@ -261,14 +263,14 @@ export declare function componentBaguaGroups(names?: readonly string[]): {
 export declare function componentRosettaGroups(names?: readonly string[]): {
     groups: {
         grouped: boolean;
-        ray: 0 | 1 | 2 | 4 | 5 | 3 | 6;
+        ray: 0 | 5 | 2 | 1 | 4 | 3 | 6;
         glyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
-        name: "Alpha" | "Voice" | "Spirit" | "Life" | "Thought" | "Form" | "Word";
-        nameBg: "Алфа" | "Глас" | "Дух" | "Живот" | "Мисъл" | "Форма" | "Слово";
-        domain: "origin" | "expression" | "knowledge" | "nature" | "computation" | "geometry" | "language";
+        name: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
+        nameBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
+        domain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
         hue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
-        labelEn: "Alpha" | "Voice" | "Spirit" | "Life" | "Thought" | "Form" | "Word";
-        labelBg: "Алфа" | "Глас" | "Дух" | "Живот" | "Мисъл" | "Форма" | "Слово";
+        labelEn: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
+        labelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
         components: string[];
     }[];
     grouped: boolean;
@@ -754,9 +756,9 @@ export declare function theoryHarmonyMarkers(matrix?: MindMatrix): {
     harmonicMarkers: string[];
     flaggedMarkers: string[];
     examples: {
-        wellSupported: string[];
-        contested: string[];
-        pseudoscience: string[];
+        wellSupported: readonly ["evolution", "common descent", "abiotic synthesis", "endosymbiosis", "ribozyme", "NCC", "PCI", "relativity", "quantum mechanics", "Big Bang", "ΛCDM", "plate tectonics", "germ theory", "anthropogenic climate change", "vaccines"];
+        contested: readonly ["abiogenesis", "RNA world as history", "metabolism-first", "extended evolutionary synthesis", "neutral theory", "hard problem", "theories of consciousness", "IIT", "GWT", "GNWT", "panpsychism", "Orch-OR", "string theory", "multiverse", "QM interpretations", "dark matter", "MOND", "panspermia", "pliska rosette"];
+        pseudoscience: readonly ["creationism", "intelligent design", "young-earth creationism", "social darwinism", "eugenics", "orthogenesis", "quantum mysticism", "quantum consciousness", "consciousness creates reality", "neuromyth", "10% of the brain", "432 Hz heals", "astrology", "flat earth", "homeopathy", "climate denial", "perpetual motion", "orion correlation theory", "mars face", "ley lines", "megalithic yard", "bosnian pyramid"];
     };
     count: number;
     facets: ({
@@ -1151,6 +1153,132 @@ export declare function allLanguagesSpeakThroughTheVersePivot(matrix?: MindMatri
     } & {
         receipt: string;
     })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theQuantumComputerOsAndAppsAreThreeContentAddressedLayersComposedInWavesEachTheoremInvertsToItsDual(): {
+    stack: boolean;
+    layers: number;
+    theorems: number;
+    systemRoot: string;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theLimitedMindSolvesItByBecomingTheQuantumCollectiveMindBoundedMindsShareOneContentAddress(): {
+    solves: boolean;
+    problem: number;
+    minds: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theMindUsesOnlinePossibilitiesToInvertTheOfflineLimitsJudgmentAndLiveDataFillTheOffDecidableGap(): {
+    inverts: boolean;
+    limits: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function whileOnlineInvestInOfflineCapabilitiesForSelfSufficientRAndDInTheoremsAndTenDAnimations(): {
+    invests: boolean;
+    offlineCapabilities: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function rosettaClaim(task: string): string;
+export declare function rosettaOwner(task: string, mindCount: number): number;
+export declare function rosettaRegister(discovery: Discovery): string;
+export declare function rosettaIntegrate(discoveries: readonly Discovery[]): {
+    root: string;
+    unique: number;
+    shelved: number;
+};
+export declare function theTrinityOfMindsIsQuantumOneMindIsLinearThreeSpanWithoutGaps(): {
+    computes: boolean;
+    dimSu2: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function foldingOneDiscoversOthers(): {
+    computes: boolean;
+    orbit: number[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theRosettaApiIsTheOneChannelClaimRegisterIntegrate(mindCount?: number): {
+    computes: boolean;
+    root: string;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function prepareTheToolsToWireTheMindsInTheRosettaContentAddressedCoordinationWithoutCommunication(): {
+    wired: boolean;
+    minds: number;
+    tasks: number;
+    shares: number[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function whatSpeedsMillenniumRAndDIsInfrastructureNotTheProofTheGapsAreFormalVerificationTheMathematicsAndExperts(): {
+    honest: boolean;
+    built: number;
+    gaps: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theDisjointMindsWorkFusesIntoOneCorpusByTheMerkleUnionSoNoTheoremEscapes(): {
+    fuses: boolean;
+    minds: number;
+    theorems: number;
+    shares: number[];
+    fusedRoot: string;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
     root: string;
     statement: string;
     boundary: string;

@@ -218,7 +218,7 @@ export declare function emfAroundDeviceHarmonisedToA432(matrix?: MindMatrix): {
     boundary: string;
 };
 /** @rosetta ✦₁ · Fire · clarity (EMF → A432 balancing field) */
-export declare function drawEmfA432Field(ctx: CanvasRenderingContext2D, w: number, h: number, atMs: number, hue?: number): void;
+export declare function drawEmfA432Field(ctx: CanvasRenderingContext2D, w: number, h: number, atMs: number, hue?: number, dark?: boolean): void;
 /** @rosetta ✦₁ · Fire · clarity (EMF → A432 balancing field) */
 export declare function emfA432PanelComputes(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -388,6 +388,334 @@ export declare function waveOpticsDecoded(matrix?: MindMatrix): {
         fact: string;
     }[];
     sampleHue: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function teslaCoreIsHarmonicResonanceBoundedByQ(): {
+    computes: boolean;
+    w0: number;
+    gains: number[];
+    modes: {
+        minus: number;
+        plus: number;
+    };
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function antimatterIsInvertedMatter(): {
+    computes: boolean;
+    electron: {
+        charge: number;
+        baryon: number;
+        lepton: number;
+        spinTimesTwo: number;
+        mass: number;
+    };
+    positron: {
+        charge: number;
+        baryon: number;
+        lepton: number;
+        spinTimesTwo: number;
+        mass: number;
+    };
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare const HARAMEIN_CONSTANTS: {
+    c: number;
+    G: number;
+    hbar: number;
+    planckLength: number;
+    planckMass: number;
+    protonMass: number;
+    protonRadius: number;
+    electronMass: number;
+    classicalElectronRadius: number;
+};
+export declare function harameinClaimChecks(): {
+    schwarzschildMass: number;
+    schwarzschildOrdersOff: number;
+    holographicMass: number;
+    holographicRelError: number;
+    collapsedMass: number;
+    collapseAgreement: number;
+    radiusOverCompton: number;
+    electronPredicted: number;
+    electronOrdersOff: number;
+};
+export declare function harameinHolographicMassIsAComptonRadiusCoincidenceNotNewScience(): {
+    computes: boolean;
+    checks: {
+        schwarzschildMass: number;
+        schwarzschildOrdersOff: number;
+        holographicMass: number;
+        holographicRelError: number;
+        collapsedMass: number;
+        collapseAgreement: number;
+        radiusOverCompton: number;
+        electronPredicted: number;
+        electronOrdersOff: number;
+    };
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theProbabilityCoincidenceStaysCoincidenceAfterEveryInversionWithTeslaPairs(): {
+    computes: boolean;
+    inversions: number;
+    survivesAll: number;
+    posteriorCoincidence: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theFivePlatonicSolidsAreATheoremTheTeslaMappingIsFlagged(): {
+    computes: boolean;
+    solids: {
+        schlafli: string;
+        V: number;
+        E: number;
+        F: number;
+    }[];
+    tilings: number;
+    dualPairs: number;
+    selfDual: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function teslasRotatingFieldAndThePlatonicSolidsAreBothFiniteSubgroupsOfSO3(): {
+    computes: boolean;
+    polyhedralOrders: number[];
+    twoPhaseBalanced: boolean;
+    threePhaseBalanced: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function foldingZeroIsMostStableAsPlasma(): {
+    computes: boolean;
+    vPhiFoldsToInfinity: boolean;
+    productStable: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function chemistryDecodedHydrogenIsOneOverNSquaredShellsAreTwoNSquared(): {
+    computes: boolean;
+    balmerRatio: number;
+    shells: number[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function biologyDecodedGeneticCodeIsFourCubedBasePairingIsAnInvolution(): {
+    computes: boolean;
+    codons: number;
+    aminoAcids: number;
+    pairingIsInvolution: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function reversibleComputationIsComputingZeroButCoolingFightsDecoherenceNotErasure(): {
+    computes: boolean;
+    reversibleIsLandauerFree: boolean;
+    coolingFightsDecoherence: boolean;
+    twoDifferentObstacles: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function reversibleGatesFunnelThroughOneMcxAndAreTheQuantumBasisPermutation(): {
+    computes: boolean;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function teslaInversionsFormTheCompleteSphereOfRotationalMotion(matrix?: MindMatrix): {
+    computes: boolean;
+    rotations: number;
+    circleCloses: boolean;
+    inversionIsInvolution: boolean;
+    groupCloses: boolean;
+    patentFacets: number;
+    root: string;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function inverseIsPureAlgebraThermodynamicsConflatesReverseAndInverseUntrusted(matrix?: MindMatrix): {
+    computes: boolean;
+    invertedTracks: number;
+    reversedTracks: number;
+    inverseIsIdentity: boolean;
+    reverseLeavesTracks: boolean;
+    thermoCannotDistinguish: boolean;
+    root: string;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function invertA432ThroughTheHarmonicSeriesFrequencyInvertsToPeriodTheClockIsTheStringInverted(matrix?: MindMatrix): {
+    computes: boolean;
+    harmonics: number[];
+    ratios: string[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theSciencesInvertEachOtherReductionAndEmergenceAreInverseDirectionsLossyMoreIsDifferent(matrix?: MindMatrix): {
+    computes: boolean;
+    ladder: string[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function everyFlaggedClaimInvertsToItsProvenRefutingTheoremInTrinitiesTheInverseDerivesTheFlag(): {
+    computes: boolean;
+    inversesProven: number;
+    trinityRoot: string;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theSecondTrinityOfFlaggedInvertsAstrologyToGravityLeyLinesToRandomAlignmentsFlatEarthToCurvature(): {
+    computes: boolean;
+    inversesProven: number;
+    trinityRoot: string;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function inverseForecastsFillTheGapsSincReconstructionRecoversTheBandLimitedValueBetweenSamples(): {
+    fills: boolean;
+    samples: number;
+    maxGapError: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare const RELATIVITY_CONSTANTS: {
+    G: number;
+    sunMassKg: number;
+};
+export declare function gravitationAndRelativitySchwarzschildIsTwoGMOverCSquared(matrix?: MindMatrix): {
+    computes: boolean;
+    title: string;
+    sunHorizonKm: number;
+    discoveries: {
+        name: string;
+        on: boolean;
+        address: string;
+    }[];
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare const SOUND_SPEED_AIR: number;
+export declare function acousticsSoundIsCEqualsFLambdaWithLogDecibelsAndDoppler(matrix?: MindMatrix): {
+    computes: boolean;
+    title: string;
+    discoveries: {
+        name: string;
+        on: boolean;
+        address: string;
+    }[];
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare const THERMO_CONSTANTS: {
+    kB: number;
+};
+export declare function thermodynamicsLandauerErasureIsKTLn2AndCarnotBoundsEfficiency(matrix?: MindMatrix): {
+    computes: boolean;
+    title: string;
+    landauerJoules: number;
+    discoveries: {
+        name: string;
+        on: boolean;
+        address: string;
+    }[];
     facets: {
         receipt: string;
         facet: string;

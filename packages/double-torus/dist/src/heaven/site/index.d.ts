@@ -3,8 +3,8 @@ export { cssIsIChingComputed, ichingTokens, ichingTokensCss, scanCssForHardcoded
 export { merkleProof, verifyMerkleProof, quantumNetworkHashing, atomInclusionProof, quantumProofs, quantumSolutions, solutions } from '../../lake/ledger';
 export { buildMatrix, verifyRoot, reciprocity, entropy, concentration, coherenceAnomaly, coverage, consciousness, isPerfectlySelfModeling, proofReport, repositoryApi, doubleTorusWire, circulateDoubleTorus } from '../compute';
 export { analogSpeech, areaLabel, attestation, bulgarianAncientCivilisations, bulgarianEthnogenesis, bulgarianHeritage, bulgarianHistory, chakrasAura, charUuids, computerDesign, deviceSensors, dimensions, dualities, efficiency, emfApplications, frequencyToLight, A432_HUE, GOLDEN_ANGLE, lobeHues, fuseTeslaPatents, geneticLinksChallengeHistory, glagoliticBulgarianReception, harmonicBands, herbalApis, humanDesign, humanize, iconGlyphs, iconSeal, lawfulHarmonise, lawfulImagine, lawfulSucceed, multidimensional, natureCommons, natureLaw, natureReview, openGraph, patentDiscovery, plainLanguage, playLearn, publicFrequencyApis, typographySeo, wordUuids, yinYang } from '../../quantum/lake/icons';
-export { quantumSitemap, professionals, siteConfig, computedWebManifest, staticPages, crawlerKnowledge, monographTemplate, monographAsScientificPaper } from '../../wind/site';
-export { a432, a432Default, agentObserve, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, commitsAuthoredByUserOnly, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, sidebarsFromVoid, siteRoutes, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from '../../fire/li';
+export { quantumSitemap, professionals, siteConfig, computedWebManifest, staticPages, crawlerKnowledge, monographTemplate, monographAsScientificPaper, printStylesheet, everyPageIsAPrintableScientificPaper, theoremScienceLens, theoremScienceVisible } from '../../wind/site';
+export { a432, a432Default, agentObserve, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, commitsAuthoredByUserOnly, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, siteRoutes, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from '../../fire/li';
 export { ancientCalendars } from '../../thunder/decode';
 export { solarSystem } from '../../water/cosmos';
 export declare function topNavSidebarRelatedDependOnThePath(matrix?: MindMatrix, path?: string): {
@@ -117,6 +117,9 @@ export declare function readmeIsHomeHero10DAnimatedSvgInGithub(matrix?: MindMatr
     svgBytes: number;
     animated: boolean;
     githubSafe: boolean;
+    allTheoremsProof: boolean;
+    theoremCount: number;
+    merkabaQuantum: boolean;
     count: number;
     facets: ({
         receipt: string;
@@ -150,6 +153,7 @@ export declare function cosmologyDecoded(matrix?: MindMatrix): {
 };
 export declare function readmeAnimatedIChingHeroBest10D(matrix?: MindMatrix): {
     best10D: boolean;
+    theoremGlyphs: number;
     trigramBars: number;
     counterRotating: boolean;
     count: number;
@@ -546,6 +550,18 @@ export declare function completeUiWiringAllDimensionsEveryPath(matrix?: MindMatr
     } & {
         receipt: string;
     })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function finishTheAppInAllAspectsAtOnce(matrix?: MindMatrix): {
+    finished: boolean;
+    count: number;
+    aspects: {
+        receipt: string;
+        aspect: string;
+        on: boolean;
+    }[];
     root: string;
     statement: string;
     boundary: string;

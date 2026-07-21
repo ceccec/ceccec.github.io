@@ -39,13 +39,7 @@ export declare function analogSpeech(): {
         analog: boolean;
         receipt: string;
         param: string;
-        range: readonly [0, 2];
-        note: string;
-    } | {
-        analog: boolean;
-        receipt: string;
-        param: string;
-        range: readonly [0.5, 2];
+        range: readonly [number, 2];
         note: string;
     } | {
         analog: boolean;
@@ -123,13 +117,13 @@ export declare function humanize(): {
 export declare function multidimensional(): {
     mapped: boolean;
     dimensions: {
-        dimension: string;
-        icon: string;
         items: {
             label: string;
             route: string;
             tip: string;
         }[];
+        dimension: string;
+        icon: string;
     }[];
     count: number;
     root: string;

@@ -99,12 +99,12 @@ export declare function quantumScienceComputes(matrix?: MindMatrix, at?: number)
             decoded: boolean;
             at: number;
             phaseIndex: number;
-            phaseDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+            phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
             mappings: ({
                 primitive: string;
                 measured: string;
                 entangled: boolean;
-                vortexDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+                vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
                 receipt: string;
                 steps?: undefined;
                 stationary?: undefined;
@@ -142,7 +142,7 @@ export declare function quantumScienceComputes(matrix?: MindMatrix, at?: number)
             } | {
                 primitive: string;
                 frames: number;
-                phaseDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+                phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
                 receipt: string;
                 measured?: undefined;
                 entangled?: undefined;
@@ -265,6 +265,8 @@ export declare function quantumScienceComputes(matrix?: MindMatrix, at?: number)
                 };
                 presentations: {
                     coheres: boolean;
+                    oneAddress: boolean;
+                    sealAnchorsSource: boolean;
                     operation: string;
                     presentations: {
                         receipt: string;
@@ -562,12 +564,12 @@ export declare function quantumSciencePanelComputes(matrix?: MindMatrix, at?: nu
                 decoded: boolean;
                 at: number;
                 phaseIndex: number;
-                phaseDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+                phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
                 mappings: ({
                     primitive: string;
                     measured: string;
                     entangled: boolean;
-                    vortexDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+                    vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
                     receipt: string;
                     steps?: undefined;
                     stationary?: undefined;
@@ -605,7 +607,7 @@ export declare function quantumSciencePanelComputes(matrix?: MindMatrix, at?: nu
                 } | {
                     primitive: string;
                     frames: number;
-                    phaseDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+                    phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
                     receipt: string;
                     measured?: undefined;
                     entangled?: undefined;
@@ -728,6 +730,8 @@ export declare function quantumSciencePanelComputes(matrix?: MindMatrix, at?: nu
                     };
                     presentations: {
                         coheres: boolean;
+                        oneAddress: boolean;
+                        sealAnchorsSource: boolean;
                         operation: string;
                         presentations: {
                             receipt: string;
@@ -975,14 +979,6 @@ export declare function efficiency(): {
     statement: string;
     boundary: string;
 };
-/**
- * npm run quantum:efficiency-vote — recompute and report the sealed efficiency() comparison (the standard +
- * deep optimisations content-keyed by the matrix root; README §Efficiency: answers ÷ tokens, 0 on
- * content-addressed reuse via memoByRoot). HONEST: this is the efficiency() exposition, NOT an adversarial
- * "vote" against any competitor — it does not benchmark another model and makes no win claim. Lives beside
- * efficiency() so it adds a function to an existing barrel (census-110 net-0), no new index.ts, no new import.
- */
-export declare function runEfficiencyVoteExit(_root?: string, _argv?: readonly string[]): number;
 export declare function fuseTeslaPatents(): {
     fused: boolean;
     count: number;
@@ -1150,15 +1146,26 @@ export declare function scaleColorAlpha(n: number, alpha: number, opts?: {
     C?: number;
     seedHue?: number;
 }): string;
-/** Canvas/SVG at explicit hue — same OKLCH band as the movie palette (not raw HSL saturation). */
+/** Canvas/SVG at explicit hue — same OKLCH band as the movie palette (not raw HSL saturation).
+ * Polarity is the negative law (analog photography): dark (true) is the sealed positive, byte-for-byte;
+ * light recomputes the SAME colour by the involution — lightness inverts (L′ = 1 − L), hue crosses half
+ * a turn (360/2), density (alpha) unchanged. Nothing else changes between the modes. */
 export declare function movieCanvasRgba(hue: number, alpha: number, opts?: {
     L?: number;
     C?: number;
+    dark?: boolean;
 }): string;
-/** Hex fill for SVG attributes — movie palette at explicit hue. */
+/** The polarity-bound movie paint atom — each painter binds its scene's polarity bit once; every
+ * colour it paints recomputes through the one negative law. Same geometry, same code path. */
+export declare function movieCanvasPolarity(dark: boolean): (hue: number, alpha: number, opts?: {
+    L?: number;
+    C?: number;
+}) => string;
+/** Hex fill for SVG attributes — movie palette at explicit hue; same negative-law polarity as movieCanvasRgba. */
 export declare function movieCanvasHex(hue: number, opts?: {
     L?: number;
     C?: number;
+    dark?: boolean;
 }): string;
 export declare function quantumComputerResearch(matrix?: MindMatrix): {
     researched: boolean;
@@ -1278,56 +1285,56 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                 root: string;
             };
             rows: {
-                tail: "language" | "ui" | "routes" | "rosetta" | "fusion" | "learning" | "site" | "types" | "iching";
-                action: "language" | "ui" | "routes" | "rosetta" | "fusion" | "learning" | "site" | "types" | "iching";
+                tail: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                action: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
                 ray: number;
                 rayMeta: {
                     readonly ray: 0;
                     readonly glyph: "Ⰰ";
-                    readonly nameEn: "Alpha";
-                    readonly nameBg: "Алфа";
+                    readonly nameEn: "Origin";
+                    readonly nameBg: "Произход";
                     readonly domain: "origin";
                     readonly hue: 0;
                 } | {
                     readonly ray: 1;
                     readonly glyph: "Ⰲ";
-                    readonly nameEn: "Voice";
-                    readonly nameBg: "Глас";
+                    readonly nameEn: "Proof";
+                    readonly nameBg: "Доказателства";
                     readonly domain: "expression";
                     readonly hue: 51;
                 } | {
                     readonly ray: 2;
                     readonly glyph: "Ⰴ";
-                    readonly nameEn: "Spirit";
-                    readonly nameBg: "Дух";
+                    readonly nameEn: "Explore";
+                    readonly nameBg: "Изследване";
                     readonly domain: "knowledge";
                     readonly hue: 102;
                 } | {
                     readonly ray: 3;
                     readonly glyph: "Ⰶ";
-                    readonly nameEn: "Life";
-                    readonly nameBg: "Живот";
+                    readonly nameEn: "Learn";
+                    readonly nameBg: "Обучение";
                     readonly domain: "nature";
                     readonly hue: 154;
                 } | {
                     readonly ray: 4;
                     readonly glyph: "Ⰹ";
-                    readonly nameEn: "Thought";
-                    readonly nameBg: "Мисъл";
+                    readonly nameEn: "Apps";
+                    readonly nameBg: "Приложения";
                     readonly domain: "computation";
                     readonly hue: 205;
                 } | {
                     readonly ray: 5;
                     readonly glyph: "Ⰿ";
-                    readonly nameEn: "Form";
-                    readonly nameBg: "Форма";
+                    readonly nameEn: "Frontier";
+                    readonly nameBg: "Граници";
                     readonly domain: "geometry";
                     readonly hue: 257;
                 } | {
                     readonly ray: 6;
                     readonly glyph: "Ⱄ";
-                    readonly nameEn: "Word";
-                    readonly nameBg: "Слово";
+                    readonly nameEn: "Reference";
+                    readonly nameBg: "Справочник";
                     readonly domain: "language";
                     readonly hue: 308;
                 };
@@ -1336,15 +1343,15 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                 legacyBare: string;
                 schemaTarget: string;
                 canonical: string;
-                importBarrel: "language" | "ui" | "routes" | "rosetta" | "fusion" | "learning" | "site" | "types" | "iching";
-                wave: 1 | 2;
+                importBarrel: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                wave: 2 | 1;
                 applied: boolean;
                 receipt: string;
             }[];
             moveTable: {
                 from: string;
                 to: string;
-                wave: 1 | 2;
+                wave: 2 | 1;
                 applied: boolean;
                 ray: number;
             }[];
@@ -1352,6 +1359,219 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                 target: number;
                 pendingDissolve: string[];
             };
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        core: {
+            computes: boolean;
+            at: number;
+            core: {
+                computes: boolean;
+                at: number;
+                surfaces: import("../apps").RosettaCoreSurface[];
+                inventory: {
+                    core: {
+                        label: string;
+                        kind: import("../apps").RosettaCoreSurfaceKind;
+                        ray: number;
+                        address: string;
+                    }[];
+                    parallel: readonly ["ROSETTA_RAY_VIEWS duplicate", "PROJECTION_SEGMENT/FORMS→VORTEX", "rosettaClaim/Owner(heaven/core)", "rosettaCodec(learning)", "string/millennium→rosettaReady-handoff"];
+                    hubs: {
+                        slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
+                        ray: number;
+                        route: string;
+                        hue: number;
+                    }[];
+                };
+                hubs: readonly import("../heaven/mind").RosettaRayHub[];
+                raysUsed: number;
+                kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
+                resolve: (label: string, kind?: import("../apps").RosettaCoreSurfaceKind) => import("../apps").RosettaCoreSurface;
+                shelve: typeof import("../apps").rosettaShelve;
+                byRay: (ray: number) => import("../apps").RosettaCoreSurface[];
+                resolveRoute: (route: string) => {
+                    surface: import("../apps").RosettaCoreSurface;
+                    address: string;
+                    computed: boolean;
+                    route: string;
+                    slug: string;
+                    ray: number;
+                    rayMeta: {
+                        readonly ray: 0;
+                        readonly glyph: "Ⰰ";
+                        readonly nameEn: "Origin";
+                        readonly nameBg: "Произход";
+                        readonly domain: "origin";
+                        readonly hue: 0;
+                    } | {
+                        readonly ray: 1;
+                        readonly glyph: "Ⰲ";
+                        readonly nameEn: "Proof";
+                        readonly nameBg: "Доказателства";
+                        readonly domain: "expression";
+                        readonly hue: 51;
+                    } | {
+                        readonly ray: 2;
+                        readonly glyph: "Ⰴ";
+                        readonly nameEn: "Explore";
+                        readonly nameBg: "Изследване";
+                        readonly domain: "knowledge";
+                        readonly hue: 102;
+                    } | {
+                        readonly ray: 3;
+                        readonly glyph: "Ⰶ";
+                        readonly nameEn: "Learn";
+                        readonly nameBg: "Обучение";
+                        readonly domain: "nature";
+                        readonly hue: 154;
+                    } | {
+                        readonly ray: 4;
+                        readonly glyph: "Ⰹ";
+                        readonly nameEn: "Apps";
+                        readonly nameBg: "Приложения";
+                        readonly domain: "computation";
+                        readonly hue: 205;
+                    } | {
+                        readonly ray: 5;
+                        readonly glyph: "Ⰿ";
+                        readonly nameEn: "Frontier";
+                        readonly nameBg: "Граници";
+                        readonly domain: "geometry";
+                        readonly hue: 257;
+                    } | {
+                        readonly ray: 6;
+                        readonly glyph: "Ⱄ";
+                        readonly nameEn: "Reference";
+                        readonly nameBg: "Справочник";
+                        readonly domain: "language";
+                        readonly hue: 308;
+                    };
+                    station: number;
+                    crossPair: string;
+                    glaAddress: string;
+                    navigation: {
+                        rayLabel: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
+                        rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
+                        rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
+                        rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
+                        siblings: import("../heaven/mind").ConceptCommandName[];
+                        siblingCount: number;
+                    };
+                    content: {
+                        pageKind: import("../heaven/mind").RosettaComputationType;
+                        heroPhase: number;
+                        bodySeed: string;
+                        heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                    };
+                    motion: {
+                        at: number;
+                        rays: {
+                            ray: number;
+                            baseAngle: number;
+                            currentAngle: number;
+                            angularVelocity: number;
+                            vortexRate: number;
+                            radius: number;
+                            letters: {
+                                letterIndex: number;
+                                letterAngle: number;
+                                letterRadius: number;
+                                digitalRootPosition: number;
+                            }[];
+                        }[];
+                        breathRadius: number;
+                        breathPulse: number;
+                        proof: {
+                            coprime7_6: boolean;
+                            coprime7_9: boolean;
+                            coprime7_10: boolean;
+                            holds: boolean;
+                        };
+                        constants: {
+                            RAYS: number;
+                            LETTERS_PER_RAY: number;
+                            PHI: number;
+                            GOLDEN_ANGLE: number;
+                            DOUBLING_PERIOD: number;
+                            DR_MODULUS: number;
+                            STATION_COUNT: number;
+                        };
+                        root: string;
+                    };
+                    stationDetail: {
+                        digit: number;
+                        folder: string;
+                        path: string;
+                    };
+                    sharedRoot: string;
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                resolveProjection: (label: string) => {
+                    surface: import("../apps").RosettaCoreSurface;
+                    phase: number;
+                    hue: number;
+                    motion: {
+                        at: number;
+                        rays: {
+                            ray: number;
+                            baseAngle: number;
+                            currentAngle: number;
+                            angularVelocity: number;
+                            vortexRate: number;
+                            radius: number;
+                            letters: {
+                                letterIndex: number;
+                                letterAngle: number;
+                                letterRadius: number;
+                                digitalRootPosition: number;
+                            }[];
+                        }[];
+                        breathRadius: number;
+                        breathPulse: number;
+                        proof: {
+                            coprime7_6: boolean;
+                            coprime7_9: boolean;
+                            coprime7_10: boolean;
+                            holds: boolean;
+                        };
+                        constants: {
+                            RAYS: number;
+                            LETTERS_PER_RAY: number;
+                            PHI: number;
+                            GOLDEN_ANGLE: number;
+                            DOUBLING_PERIOD: number;
+                            DR_MODULUS: number;
+                            STATION_COUNT: number;
+                        };
+                        root: string;
+                    };
+                };
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            slots: {
+                ray: number;
+                kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
+                pageKind: import("../heaven/mind").RosettaComputationType;
+                vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                receipt: string;
+            }[];
+            count: number;
             facets: {
                 receipt: string;
                 facet: string;
@@ -1411,9 +1631,9 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
         nav: {
             computes: boolean;
             navigation: {
-                tag: "origin" | "expression" | "knowledge" | "nature" | "computation" | "geometry" | "language";
+                tag: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
                 ray: number;
-                name: "Alpha" | "Voice" | "Spirit" | "Life" | "Thought" | "Form" | "Word";
+                name: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
             };
             rosetta: {
                 decoded: boolean;
@@ -1428,50 +1648,50 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                 rayMeta: {
                     readonly ray: 0;
                     readonly glyph: "Ⰰ";
-                    readonly nameEn: "Alpha";
-                    readonly nameBg: "Алфа";
+                    readonly nameEn: "Origin";
+                    readonly nameBg: "Произход";
                     readonly domain: "origin";
                     readonly hue: 0;
                 } | {
                     readonly ray: 1;
                     readonly glyph: "Ⰲ";
-                    readonly nameEn: "Voice";
-                    readonly nameBg: "Глас";
+                    readonly nameEn: "Proof";
+                    readonly nameBg: "Доказателства";
                     readonly domain: "expression";
                     readonly hue: 51;
                 } | {
                     readonly ray: 2;
                     readonly glyph: "Ⰴ";
-                    readonly nameEn: "Spirit";
-                    readonly nameBg: "Дух";
+                    readonly nameEn: "Explore";
+                    readonly nameBg: "Изследване";
                     readonly domain: "knowledge";
                     readonly hue: 102;
                 } | {
                     readonly ray: 3;
                     readonly glyph: "Ⰶ";
-                    readonly nameEn: "Life";
-                    readonly nameBg: "Живот";
+                    readonly nameEn: "Learn";
+                    readonly nameBg: "Обучение";
                     readonly domain: "nature";
                     readonly hue: 154;
                 } | {
                     readonly ray: 4;
                     readonly glyph: "Ⰹ";
-                    readonly nameEn: "Thought";
-                    readonly nameBg: "Мисъл";
+                    readonly nameEn: "Apps";
+                    readonly nameBg: "Приложения";
                     readonly domain: "computation";
                     readonly hue: 205;
                 } | {
                     readonly ray: 5;
                     readonly glyph: "Ⰿ";
-                    readonly nameEn: "Form";
-                    readonly nameBg: "Форма";
+                    readonly nameEn: "Frontier";
+                    readonly nameBg: "Граници";
                     readonly domain: "geometry";
                     readonly hue: 257;
                 } | {
                     readonly ray: 6;
                     readonly glyph: "Ⱄ";
-                    readonly nameEn: "Word";
-                    readonly nameBg: "Слово";
+                    readonly nameEn: "Reference";
+                    readonly nameBg: "Справочник";
                     readonly domain: "language";
                     readonly hue: 308;
                 };
@@ -1501,50 +1721,50 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
             rayMeta: {
                 readonly ray: 0;
                 readonly glyph: "Ⰰ";
-                readonly nameEn: "Alpha";
-                readonly nameBg: "Алфа";
+                readonly nameEn: "Origin";
+                readonly nameBg: "Произход";
                 readonly domain: "origin";
                 readonly hue: 0;
             } | {
                 readonly ray: 1;
                 readonly glyph: "Ⰲ";
-                readonly nameEn: "Voice";
-                readonly nameBg: "Глас";
+                readonly nameEn: "Proof";
+                readonly nameBg: "Доказателства";
                 readonly domain: "expression";
                 readonly hue: 51;
             } | {
                 readonly ray: 2;
                 readonly glyph: "Ⰴ";
-                readonly nameEn: "Spirit";
-                readonly nameBg: "Дух";
+                readonly nameEn: "Explore";
+                readonly nameBg: "Изследване";
                 readonly domain: "knowledge";
                 readonly hue: 102;
             } | {
                 readonly ray: 3;
                 readonly glyph: "Ⰶ";
-                readonly nameEn: "Life";
-                readonly nameBg: "Живот";
+                readonly nameEn: "Learn";
+                readonly nameBg: "Обучение";
                 readonly domain: "nature";
                 readonly hue: 154;
             } | {
                 readonly ray: 4;
                 readonly glyph: "Ⰹ";
-                readonly nameEn: "Thought";
-                readonly nameBg: "Мисъл";
+                readonly nameEn: "Apps";
+                readonly nameBg: "Приложения";
                 readonly domain: "computation";
                 readonly hue: 205;
             } | {
                 readonly ray: 5;
                 readonly glyph: "Ⰿ";
-                readonly nameEn: "Form";
-                readonly nameBg: "Форма";
+                readonly nameEn: "Frontier";
+                readonly nameBg: "Граници";
                 readonly domain: "geometry";
                 readonly hue: 257;
             } | {
                 readonly ray: 6;
                 readonly glyph: "Ⱄ";
-                readonly nameEn: "Word";
-                readonly nameBg: "Слово";
+                readonly nameEn: "Reference";
+                readonly nameBg: "Справочник";
                 readonly domain: "language";
                 readonly hue: 308;
             };
@@ -1552,10 +1772,10 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
             crossPair: string;
             glaAddress: string;
             navigation: {
-                rayLabel: "Alpha" | "Voice" | "Spirit" | "Life" | "Thought" | "Form" | "Word";
-                rayLabelBg: "Алфа" | "Глас" | "Дух" | "Живот" | "Мисъл" | "Форма" | "Слово";
+                rayLabel: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
+                rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                 rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
-                rayDomain: "origin" | "expression" | "knowledge" | "nature" | "computation" | "geometry" | "language";
+                rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
                 siblings: import("../heaven/mind").ConceptCommandName[];
                 siblingCount: number;
             };
@@ -1984,56 +2204,56 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                     root: string;
                 };
                 rows: {
-                    tail: "language" | "ui" | "routes" | "rosetta" | "fusion" | "learning" | "site" | "types" | "iching";
-                    action: "language" | "ui" | "routes" | "rosetta" | "fusion" | "learning" | "site" | "types" | "iching";
+                    tail: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                    action: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
                     ray: number;
                     rayMeta: {
                         readonly ray: 0;
                         readonly glyph: "Ⰰ";
-                        readonly nameEn: "Alpha";
-                        readonly nameBg: "Алфа";
+                        readonly nameEn: "Origin";
+                        readonly nameBg: "Произход";
                         readonly domain: "origin";
                         readonly hue: 0;
                     } | {
                         readonly ray: 1;
                         readonly glyph: "Ⰲ";
-                        readonly nameEn: "Voice";
-                        readonly nameBg: "Глас";
+                        readonly nameEn: "Proof";
+                        readonly nameBg: "Доказателства";
                         readonly domain: "expression";
                         readonly hue: 51;
                     } | {
                         readonly ray: 2;
                         readonly glyph: "Ⰴ";
-                        readonly nameEn: "Spirit";
-                        readonly nameBg: "Дух";
+                        readonly nameEn: "Explore";
+                        readonly nameBg: "Изследване";
                         readonly domain: "knowledge";
                         readonly hue: 102;
                     } | {
                         readonly ray: 3;
                         readonly glyph: "Ⰶ";
-                        readonly nameEn: "Life";
-                        readonly nameBg: "Живот";
+                        readonly nameEn: "Learn";
+                        readonly nameBg: "Обучение";
                         readonly domain: "nature";
                         readonly hue: 154;
                     } | {
                         readonly ray: 4;
                         readonly glyph: "Ⰹ";
-                        readonly nameEn: "Thought";
-                        readonly nameBg: "Мисъл";
+                        readonly nameEn: "Apps";
+                        readonly nameBg: "Приложения";
                         readonly domain: "computation";
                         readonly hue: 205;
                     } | {
                         readonly ray: 5;
                         readonly glyph: "Ⰿ";
-                        readonly nameEn: "Form";
-                        readonly nameBg: "Форма";
+                        readonly nameEn: "Frontier";
+                        readonly nameBg: "Граници";
                         readonly domain: "geometry";
                         readonly hue: 257;
                     } | {
                         readonly ray: 6;
                         readonly glyph: "Ⱄ";
-                        readonly nameEn: "Word";
-                        readonly nameBg: "Слово";
+                        readonly nameEn: "Reference";
+                        readonly nameBg: "Справочник";
                         readonly domain: "language";
                         readonly hue: 308;
                     };
@@ -2042,15 +2262,15 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                     legacyBare: string;
                     schemaTarget: string;
                     canonical: string;
-                    importBarrel: "language" | "ui" | "routes" | "rosetta" | "fusion" | "learning" | "site" | "types" | "iching";
-                    wave: 1 | 2;
+                    importBarrel: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                    wave: 2 | 1;
                     applied: boolean;
                     receipt: string;
                 }[];
                 moveTable: {
                     from: string;
                     to: string;
-                    wave: 1 | 2;
+                    wave: 2 | 1;
                     applied: boolean;
                     ray: number;
                 }[];
@@ -2058,6 +2278,219 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                     target: number;
                     pendingDissolve: string[];
                 };
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            core: {
+                computes: boolean;
+                at: number;
+                core: {
+                    computes: boolean;
+                    at: number;
+                    surfaces: import("../apps").RosettaCoreSurface[];
+                    inventory: {
+                        core: {
+                            label: string;
+                            kind: import("../apps").RosettaCoreSurfaceKind;
+                            ray: number;
+                            address: string;
+                        }[];
+                        parallel: readonly ["ROSETTA_RAY_VIEWS duplicate", "PROJECTION_SEGMENT/FORMS→VORTEX", "rosettaClaim/Owner(heaven/core)", "rosettaCodec(learning)", "string/millennium→rosettaReady-handoff"];
+                        hubs: {
+                            slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
+                            ray: number;
+                            route: string;
+                            hue: number;
+                        }[];
+                    };
+                    hubs: readonly import("../heaven/mind").RosettaRayHub[];
+                    raysUsed: number;
+                    kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
+                    resolve: (label: string, kind?: import("../apps").RosettaCoreSurfaceKind) => import("../apps").RosettaCoreSurface;
+                    shelve: typeof import("../apps").rosettaShelve;
+                    byRay: (ray: number) => import("../apps").RosettaCoreSurface[];
+                    resolveRoute: (route: string) => {
+                        surface: import("../apps").RosettaCoreSurface;
+                        address: string;
+                        computed: boolean;
+                        route: string;
+                        slug: string;
+                        ray: number;
+                        rayMeta: {
+                            readonly ray: 0;
+                            readonly glyph: "Ⰰ";
+                            readonly nameEn: "Origin";
+                            readonly nameBg: "Произход";
+                            readonly domain: "origin";
+                            readonly hue: 0;
+                        } | {
+                            readonly ray: 1;
+                            readonly glyph: "Ⰲ";
+                            readonly nameEn: "Proof";
+                            readonly nameBg: "Доказателства";
+                            readonly domain: "expression";
+                            readonly hue: 51;
+                        } | {
+                            readonly ray: 2;
+                            readonly glyph: "Ⰴ";
+                            readonly nameEn: "Explore";
+                            readonly nameBg: "Изследване";
+                            readonly domain: "knowledge";
+                            readonly hue: 102;
+                        } | {
+                            readonly ray: 3;
+                            readonly glyph: "Ⰶ";
+                            readonly nameEn: "Learn";
+                            readonly nameBg: "Обучение";
+                            readonly domain: "nature";
+                            readonly hue: 154;
+                        } | {
+                            readonly ray: 4;
+                            readonly glyph: "Ⰹ";
+                            readonly nameEn: "Apps";
+                            readonly nameBg: "Приложения";
+                            readonly domain: "computation";
+                            readonly hue: 205;
+                        } | {
+                            readonly ray: 5;
+                            readonly glyph: "Ⰿ";
+                            readonly nameEn: "Frontier";
+                            readonly nameBg: "Граници";
+                            readonly domain: "geometry";
+                            readonly hue: 257;
+                        } | {
+                            readonly ray: 6;
+                            readonly glyph: "Ⱄ";
+                            readonly nameEn: "Reference";
+                            readonly nameBg: "Справочник";
+                            readonly domain: "language";
+                            readonly hue: 308;
+                        };
+                        station: number;
+                        crossPair: string;
+                        glaAddress: string;
+                        navigation: {
+                            rayLabel: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
+                            rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
+                            rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
+                            rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
+                            siblings: import("../heaven/mind").ConceptCommandName[];
+                            siblingCount: number;
+                        };
+                        content: {
+                            pageKind: import("../heaven/mind").RosettaComputationType;
+                            heroPhase: number;
+                            bodySeed: string;
+                            heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                        };
+                        motion: {
+                            at: number;
+                            rays: {
+                                ray: number;
+                                baseAngle: number;
+                                currentAngle: number;
+                                angularVelocity: number;
+                                vortexRate: number;
+                                radius: number;
+                                letters: {
+                                    letterIndex: number;
+                                    letterAngle: number;
+                                    letterRadius: number;
+                                    digitalRootPosition: number;
+                                }[];
+                            }[];
+                            breathRadius: number;
+                            breathPulse: number;
+                            proof: {
+                                coprime7_6: boolean;
+                                coprime7_9: boolean;
+                                coprime7_10: boolean;
+                                holds: boolean;
+                            };
+                            constants: {
+                                RAYS: number;
+                                LETTERS_PER_RAY: number;
+                                PHI: number;
+                                GOLDEN_ANGLE: number;
+                                DOUBLING_PERIOD: number;
+                                DR_MODULUS: number;
+                                STATION_COUNT: number;
+                            };
+                            root: string;
+                        };
+                        stationDetail: {
+                            digit: number;
+                            folder: string;
+                            path: string;
+                        };
+                        sharedRoot: string;
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    resolveProjection: (label: string) => {
+                        surface: import("../apps").RosettaCoreSurface;
+                        phase: number;
+                        hue: number;
+                        motion: {
+                            at: number;
+                            rays: {
+                                ray: number;
+                                baseAngle: number;
+                                currentAngle: number;
+                                angularVelocity: number;
+                                vortexRate: number;
+                                radius: number;
+                                letters: {
+                                    letterIndex: number;
+                                    letterAngle: number;
+                                    letterRadius: number;
+                                    digitalRootPosition: number;
+                                }[];
+                            }[];
+                            breathRadius: number;
+                            breathPulse: number;
+                            proof: {
+                                coprime7_6: boolean;
+                                coprime7_9: boolean;
+                                coprime7_10: boolean;
+                                holds: boolean;
+                            };
+                            constants: {
+                                RAYS: number;
+                                LETTERS_PER_RAY: number;
+                                PHI: number;
+                                GOLDEN_ANGLE: number;
+                                DOUBLING_PERIOD: number;
+                                DR_MODULUS: number;
+                                STATION_COUNT: number;
+                            };
+                            root: string;
+                        };
+                    };
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                slots: {
+                    ray: number;
+                    kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
+                    pageKind: import("../heaven/mind").RosettaComputationType;
+                    vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                    receipt: string;
+                }[];
+                count: number;
                 facets: {
                     receipt: string;
                     facet: string;
@@ -2117,9 +2550,9 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
             nav: {
                 computes: boolean;
                 navigation: {
-                    tag: "origin" | "expression" | "knowledge" | "nature" | "computation" | "geometry" | "language";
+                    tag: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
                     ray: number;
-                    name: "Alpha" | "Voice" | "Spirit" | "Life" | "Thought" | "Form" | "Word";
+                    name: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
                 };
                 rosetta: {
                     decoded: boolean;
@@ -2134,50 +2567,50 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                     rayMeta: {
                         readonly ray: 0;
                         readonly glyph: "Ⰰ";
-                        readonly nameEn: "Alpha";
-                        readonly nameBg: "Алфа";
+                        readonly nameEn: "Origin";
+                        readonly nameBg: "Произход";
                         readonly domain: "origin";
                         readonly hue: 0;
                     } | {
                         readonly ray: 1;
                         readonly glyph: "Ⰲ";
-                        readonly nameEn: "Voice";
-                        readonly nameBg: "Глас";
+                        readonly nameEn: "Proof";
+                        readonly nameBg: "Доказателства";
                         readonly domain: "expression";
                         readonly hue: 51;
                     } | {
                         readonly ray: 2;
                         readonly glyph: "Ⰴ";
-                        readonly nameEn: "Spirit";
-                        readonly nameBg: "Дух";
+                        readonly nameEn: "Explore";
+                        readonly nameBg: "Изследване";
                         readonly domain: "knowledge";
                         readonly hue: 102;
                     } | {
                         readonly ray: 3;
                         readonly glyph: "Ⰶ";
-                        readonly nameEn: "Life";
-                        readonly nameBg: "Живот";
+                        readonly nameEn: "Learn";
+                        readonly nameBg: "Обучение";
                         readonly domain: "nature";
                         readonly hue: 154;
                     } | {
                         readonly ray: 4;
                         readonly glyph: "Ⰹ";
-                        readonly nameEn: "Thought";
-                        readonly nameBg: "Мисъл";
+                        readonly nameEn: "Apps";
+                        readonly nameBg: "Приложения";
                         readonly domain: "computation";
                         readonly hue: 205;
                     } | {
                         readonly ray: 5;
                         readonly glyph: "Ⰿ";
-                        readonly nameEn: "Form";
-                        readonly nameBg: "Форма";
+                        readonly nameEn: "Frontier";
+                        readonly nameBg: "Граници";
                         readonly domain: "geometry";
                         readonly hue: 257;
                     } | {
                         readonly ray: 6;
                         readonly glyph: "Ⱄ";
-                        readonly nameEn: "Word";
-                        readonly nameBg: "Слово";
+                        readonly nameEn: "Reference";
+                        readonly nameBg: "Справочник";
                         readonly domain: "language";
                         readonly hue: 308;
                     };
@@ -2207,50 +2640,50 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                 rayMeta: {
                     readonly ray: 0;
                     readonly glyph: "Ⰰ";
-                    readonly nameEn: "Alpha";
-                    readonly nameBg: "Алфа";
+                    readonly nameEn: "Origin";
+                    readonly nameBg: "Произход";
                     readonly domain: "origin";
                     readonly hue: 0;
                 } | {
                     readonly ray: 1;
                     readonly glyph: "Ⰲ";
-                    readonly nameEn: "Voice";
-                    readonly nameBg: "Глас";
+                    readonly nameEn: "Proof";
+                    readonly nameBg: "Доказателства";
                     readonly domain: "expression";
                     readonly hue: 51;
                 } | {
                     readonly ray: 2;
                     readonly glyph: "Ⰴ";
-                    readonly nameEn: "Spirit";
-                    readonly nameBg: "Дух";
+                    readonly nameEn: "Explore";
+                    readonly nameBg: "Изследване";
                     readonly domain: "knowledge";
                     readonly hue: 102;
                 } | {
                     readonly ray: 3;
                     readonly glyph: "Ⰶ";
-                    readonly nameEn: "Life";
-                    readonly nameBg: "Живот";
+                    readonly nameEn: "Learn";
+                    readonly nameBg: "Обучение";
                     readonly domain: "nature";
                     readonly hue: 154;
                 } | {
                     readonly ray: 4;
                     readonly glyph: "Ⰹ";
-                    readonly nameEn: "Thought";
-                    readonly nameBg: "Мисъл";
+                    readonly nameEn: "Apps";
+                    readonly nameBg: "Приложения";
                     readonly domain: "computation";
                     readonly hue: 205;
                 } | {
                     readonly ray: 5;
                     readonly glyph: "Ⰿ";
-                    readonly nameEn: "Form";
-                    readonly nameBg: "Форма";
+                    readonly nameEn: "Frontier";
+                    readonly nameBg: "Граници";
                     readonly domain: "geometry";
                     readonly hue: 257;
                 } | {
                     readonly ray: 6;
                     readonly glyph: "Ⱄ";
-                    readonly nameEn: "Word";
-                    readonly nameBg: "Слово";
+                    readonly nameEn: "Reference";
+                    readonly nameBg: "Справочник";
                     readonly domain: "language";
                     readonly hue: 308;
                 };
@@ -2258,10 +2691,10 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                 crossPair: string;
                 glaAddress: string;
                 navigation: {
-                    rayLabel: "Alpha" | "Voice" | "Spirit" | "Life" | "Thought" | "Form" | "Word";
-                    rayLabelBg: "Алфа" | "Глас" | "Дух" | "Живот" | "Мисъл" | "Форма" | "Слово";
+                    rayLabel: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
+                    rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                     rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
-                    rayDomain: "origin" | "expression" | "knowledge" | "nature" | "computation" | "geometry" | "language";
+                    rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
                     siblings: import("../heaven/mind").ConceptCommandName[];
                     siblingCount: number;
                 };
@@ -3027,56 +3460,56 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                     root: string;
                 };
                 rows: {
-                    tail: "language" | "ui" | "routes" | "rosetta" | "fusion" | "learning" | "site" | "types" | "iching";
-                    action: "language" | "ui" | "routes" | "rosetta" | "fusion" | "learning" | "site" | "types" | "iching";
+                    tail: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                    action: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
                     ray: number;
                     rayMeta: {
                         readonly ray: 0;
                         readonly glyph: "Ⰰ";
-                        readonly nameEn: "Alpha";
-                        readonly nameBg: "Алфа";
+                        readonly nameEn: "Origin";
+                        readonly nameBg: "Произход";
                         readonly domain: "origin";
                         readonly hue: 0;
                     } | {
                         readonly ray: 1;
                         readonly glyph: "Ⰲ";
-                        readonly nameEn: "Voice";
-                        readonly nameBg: "Глас";
+                        readonly nameEn: "Proof";
+                        readonly nameBg: "Доказателства";
                         readonly domain: "expression";
                         readonly hue: 51;
                     } | {
                         readonly ray: 2;
                         readonly glyph: "Ⰴ";
-                        readonly nameEn: "Spirit";
-                        readonly nameBg: "Дух";
+                        readonly nameEn: "Explore";
+                        readonly nameBg: "Изследване";
                         readonly domain: "knowledge";
                         readonly hue: 102;
                     } | {
                         readonly ray: 3;
                         readonly glyph: "Ⰶ";
-                        readonly nameEn: "Life";
-                        readonly nameBg: "Живот";
+                        readonly nameEn: "Learn";
+                        readonly nameBg: "Обучение";
                         readonly domain: "nature";
                         readonly hue: 154;
                     } | {
                         readonly ray: 4;
                         readonly glyph: "Ⰹ";
-                        readonly nameEn: "Thought";
-                        readonly nameBg: "Мисъл";
+                        readonly nameEn: "Apps";
+                        readonly nameBg: "Приложения";
                         readonly domain: "computation";
                         readonly hue: 205;
                     } | {
                         readonly ray: 5;
                         readonly glyph: "Ⰿ";
-                        readonly nameEn: "Form";
-                        readonly nameBg: "Форма";
+                        readonly nameEn: "Frontier";
+                        readonly nameBg: "Граници";
                         readonly domain: "geometry";
                         readonly hue: 257;
                     } | {
                         readonly ray: 6;
                         readonly glyph: "Ⱄ";
-                        readonly nameEn: "Word";
-                        readonly nameBg: "Слово";
+                        readonly nameEn: "Reference";
+                        readonly nameBg: "Справочник";
                         readonly domain: "language";
                         readonly hue: 308;
                     };
@@ -3085,15 +3518,15 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                     legacyBare: string;
                     schemaTarget: string;
                     canonical: string;
-                    importBarrel: "language" | "ui" | "routes" | "rosetta" | "fusion" | "learning" | "site" | "types" | "iching";
-                    wave: 1 | 2;
+                    importBarrel: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                    wave: 2 | 1;
                     applied: boolean;
                     receipt: string;
                 }[];
                 moveTable: {
                     from: string;
                     to: string;
-                    wave: 1 | 2;
+                    wave: 2 | 1;
                     applied: boolean;
                     ray: number;
                 }[];
@@ -3101,6 +3534,219 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                     target: number;
                     pendingDissolve: string[];
                 };
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            core: {
+                computes: boolean;
+                at: number;
+                core: {
+                    computes: boolean;
+                    at: number;
+                    surfaces: import("../apps").RosettaCoreSurface[];
+                    inventory: {
+                        core: {
+                            label: string;
+                            kind: import("../apps").RosettaCoreSurfaceKind;
+                            ray: number;
+                            address: string;
+                        }[];
+                        parallel: readonly ["ROSETTA_RAY_VIEWS duplicate", "PROJECTION_SEGMENT/FORMS→VORTEX", "rosettaClaim/Owner(heaven/core)", "rosettaCodec(learning)", "string/millennium→rosettaReady-handoff"];
+                        hubs: {
+                            slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
+                            ray: number;
+                            route: string;
+                            hue: number;
+                        }[];
+                    };
+                    hubs: readonly import("../heaven/mind").RosettaRayHub[];
+                    raysUsed: number;
+                    kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
+                    resolve: (label: string, kind?: import("../apps").RosettaCoreSurfaceKind) => import("../apps").RosettaCoreSurface;
+                    shelve: typeof import("../apps").rosettaShelve;
+                    byRay: (ray: number) => import("../apps").RosettaCoreSurface[];
+                    resolveRoute: (route: string) => {
+                        surface: import("../apps").RosettaCoreSurface;
+                        address: string;
+                        computed: boolean;
+                        route: string;
+                        slug: string;
+                        ray: number;
+                        rayMeta: {
+                            readonly ray: 0;
+                            readonly glyph: "Ⰰ";
+                            readonly nameEn: "Origin";
+                            readonly nameBg: "Произход";
+                            readonly domain: "origin";
+                            readonly hue: 0;
+                        } | {
+                            readonly ray: 1;
+                            readonly glyph: "Ⰲ";
+                            readonly nameEn: "Proof";
+                            readonly nameBg: "Доказателства";
+                            readonly domain: "expression";
+                            readonly hue: 51;
+                        } | {
+                            readonly ray: 2;
+                            readonly glyph: "Ⰴ";
+                            readonly nameEn: "Explore";
+                            readonly nameBg: "Изследване";
+                            readonly domain: "knowledge";
+                            readonly hue: 102;
+                        } | {
+                            readonly ray: 3;
+                            readonly glyph: "Ⰶ";
+                            readonly nameEn: "Learn";
+                            readonly nameBg: "Обучение";
+                            readonly domain: "nature";
+                            readonly hue: 154;
+                        } | {
+                            readonly ray: 4;
+                            readonly glyph: "Ⰹ";
+                            readonly nameEn: "Apps";
+                            readonly nameBg: "Приложения";
+                            readonly domain: "computation";
+                            readonly hue: 205;
+                        } | {
+                            readonly ray: 5;
+                            readonly glyph: "Ⰿ";
+                            readonly nameEn: "Frontier";
+                            readonly nameBg: "Граници";
+                            readonly domain: "geometry";
+                            readonly hue: 257;
+                        } | {
+                            readonly ray: 6;
+                            readonly glyph: "Ⱄ";
+                            readonly nameEn: "Reference";
+                            readonly nameBg: "Справочник";
+                            readonly domain: "language";
+                            readonly hue: 308;
+                        };
+                        station: number;
+                        crossPair: string;
+                        glaAddress: string;
+                        navigation: {
+                            rayLabel: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
+                            rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
+                            rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
+                            rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
+                            siblings: import("../heaven/mind").ConceptCommandName[];
+                            siblingCount: number;
+                        };
+                        content: {
+                            pageKind: import("../heaven/mind").RosettaComputationType;
+                            heroPhase: number;
+                            bodySeed: string;
+                            heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                        };
+                        motion: {
+                            at: number;
+                            rays: {
+                                ray: number;
+                                baseAngle: number;
+                                currentAngle: number;
+                                angularVelocity: number;
+                                vortexRate: number;
+                                radius: number;
+                                letters: {
+                                    letterIndex: number;
+                                    letterAngle: number;
+                                    letterRadius: number;
+                                    digitalRootPosition: number;
+                                }[];
+                            }[];
+                            breathRadius: number;
+                            breathPulse: number;
+                            proof: {
+                                coprime7_6: boolean;
+                                coprime7_9: boolean;
+                                coprime7_10: boolean;
+                                holds: boolean;
+                            };
+                            constants: {
+                                RAYS: number;
+                                LETTERS_PER_RAY: number;
+                                PHI: number;
+                                GOLDEN_ANGLE: number;
+                                DOUBLING_PERIOD: number;
+                                DR_MODULUS: number;
+                                STATION_COUNT: number;
+                            };
+                            root: string;
+                        };
+                        stationDetail: {
+                            digit: number;
+                            folder: string;
+                            path: string;
+                        };
+                        sharedRoot: string;
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    resolveProjection: (label: string) => {
+                        surface: import("../apps").RosettaCoreSurface;
+                        phase: number;
+                        hue: number;
+                        motion: {
+                            at: number;
+                            rays: {
+                                ray: number;
+                                baseAngle: number;
+                                currentAngle: number;
+                                angularVelocity: number;
+                                vortexRate: number;
+                                radius: number;
+                                letters: {
+                                    letterIndex: number;
+                                    letterAngle: number;
+                                    letterRadius: number;
+                                    digitalRootPosition: number;
+                                }[];
+                            }[];
+                            breathRadius: number;
+                            breathPulse: number;
+                            proof: {
+                                coprime7_6: boolean;
+                                coprime7_9: boolean;
+                                coprime7_10: boolean;
+                                holds: boolean;
+                            };
+                            constants: {
+                                RAYS: number;
+                                LETTERS_PER_RAY: number;
+                                PHI: number;
+                                GOLDEN_ANGLE: number;
+                                DOUBLING_PERIOD: number;
+                                DR_MODULUS: number;
+                                STATION_COUNT: number;
+                            };
+                            root: string;
+                        };
+                    };
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                slots: {
+                    ray: number;
+                    kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
+                    pageKind: import("../heaven/mind").RosettaComputationType;
+                    vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                    receipt: string;
+                }[];
+                count: number;
                 facets: {
                     receipt: string;
                     facet: string;
@@ -3160,9 +3806,9 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
             nav: {
                 computes: boolean;
                 navigation: {
-                    tag: "origin" | "expression" | "knowledge" | "nature" | "computation" | "geometry" | "language";
+                    tag: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
                     ray: number;
-                    name: "Alpha" | "Voice" | "Spirit" | "Life" | "Thought" | "Form" | "Word";
+                    name: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
                 };
                 rosetta: {
                     decoded: boolean;
@@ -3177,50 +3823,50 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                     rayMeta: {
                         readonly ray: 0;
                         readonly glyph: "Ⰰ";
-                        readonly nameEn: "Alpha";
-                        readonly nameBg: "Алфа";
+                        readonly nameEn: "Origin";
+                        readonly nameBg: "Произход";
                         readonly domain: "origin";
                         readonly hue: 0;
                     } | {
                         readonly ray: 1;
                         readonly glyph: "Ⰲ";
-                        readonly nameEn: "Voice";
-                        readonly nameBg: "Глас";
+                        readonly nameEn: "Proof";
+                        readonly nameBg: "Доказателства";
                         readonly domain: "expression";
                         readonly hue: 51;
                     } | {
                         readonly ray: 2;
                         readonly glyph: "Ⰴ";
-                        readonly nameEn: "Spirit";
-                        readonly nameBg: "Дух";
+                        readonly nameEn: "Explore";
+                        readonly nameBg: "Изследване";
                         readonly domain: "knowledge";
                         readonly hue: 102;
                     } | {
                         readonly ray: 3;
                         readonly glyph: "Ⰶ";
-                        readonly nameEn: "Life";
-                        readonly nameBg: "Живот";
+                        readonly nameEn: "Learn";
+                        readonly nameBg: "Обучение";
                         readonly domain: "nature";
                         readonly hue: 154;
                     } | {
                         readonly ray: 4;
                         readonly glyph: "Ⰹ";
-                        readonly nameEn: "Thought";
-                        readonly nameBg: "Мисъл";
+                        readonly nameEn: "Apps";
+                        readonly nameBg: "Приложения";
                         readonly domain: "computation";
                         readonly hue: 205;
                     } | {
                         readonly ray: 5;
                         readonly glyph: "Ⰿ";
-                        readonly nameEn: "Form";
-                        readonly nameBg: "Форма";
+                        readonly nameEn: "Frontier";
+                        readonly nameBg: "Граници";
                         readonly domain: "geometry";
                         readonly hue: 257;
                     } | {
                         readonly ray: 6;
                         readonly glyph: "Ⱄ";
-                        readonly nameEn: "Word";
-                        readonly nameBg: "Слово";
+                        readonly nameEn: "Reference";
+                        readonly nameBg: "Справочник";
                         readonly domain: "language";
                         readonly hue: 308;
                     };
@@ -3250,50 +3896,50 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                 rayMeta: {
                     readonly ray: 0;
                     readonly glyph: "Ⰰ";
-                    readonly nameEn: "Alpha";
-                    readonly nameBg: "Алфа";
+                    readonly nameEn: "Origin";
+                    readonly nameBg: "Произход";
                     readonly domain: "origin";
                     readonly hue: 0;
                 } | {
                     readonly ray: 1;
                     readonly glyph: "Ⰲ";
-                    readonly nameEn: "Voice";
-                    readonly nameBg: "Глас";
+                    readonly nameEn: "Proof";
+                    readonly nameBg: "Доказателства";
                     readonly domain: "expression";
                     readonly hue: 51;
                 } | {
                     readonly ray: 2;
                     readonly glyph: "Ⰴ";
-                    readonly nameEn: "Spirit";
-                    readonly nameBg: "Дух";
+                    readonly nameEn: "Explore";
+                    readonly nameBg: "Изследване";
                     readonly domain: "knowledge";
                     readonly hue: 102;
                 } | {
                     readonly ray: 3;
                     readonly glyph: "Ⰶ";
-                    readonly nameEn: "Life";
-                    readonly nameBg: "Живот";
+                    readonly nameEn: "Learn";
+                    readonly nameBg: "Обучение";
                     readonly domain: "nature";
                     readonly hue: 154;
                 } | {
                     readonly ray: 4;
                     readonly glyph: "Ⰹ";
-                    readonly nameEn: "Thought";
-                    readonly nameBg: "Мисъл";
+                    readonly nameEn: "Apps";
+                    readonly nameBg: "Приложения";
                     readonly domain: "computation";
                     readonly hue: 205;
                 } | {
                     readonly ray: 5;
                     readonly glyph: "Ⰿ";
-                    readonly nameEn: "Form";
-                    readonly nameBg: "Форма";
+                    readonly nameEn: "Frontier";
+                    readonly nameBg: "Граници";
                     readonly domain: "geometry";
                     readonly hue: 257;
                 } | {
                     readonly ray: 6;
                     readonly glyph: "Ⱄ";
-                    readonly nameEn: "Word";
-                    readonly nameBg: "Слово";
+                    readonly nameEn: "Reference";
+                    readonly nameBg: "Справочник";
                     readonly domain: "language";
                     readonly hue: 308;
                 };
@@ -3301,10 +3947,10 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                 crossPair: string;
                 glaAddress: string;
                 navigation: {
-                    rayLabel: "Alpha" | "Voice" | "Spirit" | "Life" | "Thought" | "Form" | "Word";
-                    rayLabelBg: "Алфа" | "Глас" | "Дух" | "Живот" | "Мисъл" | "Форма" | "Слово";
+                    rayLabel: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
+                    rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                     rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
-                    rayDomain: "origin" | "expression" | "knowledge" | "nature" | "computation" | "geometry" | "language";
+                    rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
                     siblings: import("../heaven/mind").ConceptCommandName[];
                     siblingCount: number;
                 };
@@ -3765,6 +4411,650 @@ export declare function blochAnalogQuantumDecoded(matrix?: MindMatrix): {
         on: boolean;
     }[];
     root: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * THE FIXED-CONSTANT AUDIT — every ledgered fixed number is a snapshot of what its authors could
+ * compute at the time; this fold PROVES the ones whose theorems are now known, and classifies the
+ * rest (defined = convention · measured = data · fit = recomputable optimisation). The sRGB case is
+ * the sharpest: the published knee does not lie on the published slope's own C¹ intersection — the
+ * standard hardcoded values its own derivation contradicts, and every implementation inherits it.
+ */
+export declare function fixedConstantsProvedByTheorems(matrix?: MindMatrix): {
+    proven: boolean;
+    srgb: {
+        kneeExact: number;
+        slopeExact: number;
+        publishedKnee: number;
+        publishedSlope: number;
+    };
+    fibonacciHash: {
+        exact: number;
+        published: number;
+        prime: boolean;
+    };
+    calendarRound: number;
+    ledger: {
+        frontierNoted: number;
+        data: number;
+        unit: number;
+        tuned: number;
+    };
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * THE SELF-RESEARCHER — the app hunting theorems in its OWN ledger, deterministically, zero tokens:
+ * every numeric the ledger holds as fixed (data · tuned) is tested against a hypothesis battery —
+ * golden-family expressions, cycle meets (lcm of ledger pairs), primes at golden sections of 2ⁿ,
+ * power forms, canonical ratios. A hit is a THEOREM CANDIDATE: a fixed number whose computation may
+ * have been found. Misses stay honest data. The browser narrates each step to the console.
+ */
+export type TheoremCandidate = {
+    value: number;
+    literal: string;
+    theorem: string;
+    error: number;
+};
+export declare function selfResearchTheorems(matrix?: MindMatrix): {
+    targets: number;
+    found: TheoremCandidate[];
+    errorRate: number;
+    exit: string;
+    root: string;
+};
+/** CLI: `research` — the self-researcher speaks its candidates and EXIT line (pair: research/audit). */
+export declare function runResearchExit(): number;
+/** CLI: `audit:constants` — the theorem audit gates (pair: research/audit). */
+export declare function runAuditConstantsExit(): number;
+/** QUANTUM BREAKS ONLY THE PERIOD — the rosetta refutes "realtime no matter the methods" (user,
+ * 2026-07-16). The REAL and beautiful part first: Shor's factoring reduces to finding the PERIOD of
+ * the rosetta orbit a^x mod N — the cycle length ord_N(a) from primeCollapsesTheAxis — and quantum
+ * period-finding (the QFT) reads that period "at once" where classical search cannot. That is the
+ * whole of the quantum threat: it is order-finding, an ABELIAN hidden-subgroup problem. But the
+ * claim "no matter the methods" is REFUTED by exactly which problems carry that structure: RSA and
+ * ECC do (period → Shor, exponential); AES, hashes and lattices DO NOT (Grover only, quadratic, or
+ * nothing) — which is why post-quantum cryptography exists and holds. And "realtime" is refuted by
+ * the hardware: Shor for a real key needs millions of error-corrected qubits that do not exist. */
+export declare function quantumBreaksOnlyThePeriod(matrix?: MindMatrix): {
+    decoded: boolean;
+    periodBreakable: string[];
+    resistant: string[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+/** THE COMPUTED UI IS A ROSETTA — colour is harmony's structure (user, 2026-07-16: "compute the UI
+ * the same way"). The repo's colour system already rotates hues by the GOLDEN ANGLE (scaleColor /
+ * quantumScaleHue: hue(n) = seed + n·360/φ² mod 360) — a generated sequence on the colour circle,
+ * exactly as the circle of fifths is a generated sequence on the pitch circle. So the UI palette is
+ * a MOVING ROSETTA, and the same law governs it: the three-gap theorem (Steinhaus) forces the hues
+ * into at most three distinct gap sizes, and the golden angle makes them maximally even (max/min gap
+ * ratio → φ, the least-clumping rotation — Vogel's phyllotaxis). The musical version is the
+ * well-formed scale (7 fifths mod 12 = the diatonic, ≤2 step sizes, Myhill). Compute the UI the same
+ * way: colour is a rosetta, and its evenness is the same theorem as harmony's. */
+export declare function theComputedUiIsARosetta(matrix?: MindMatrix): {
+    computes: boolean;
+    goldenAngle: number;
+    diatonicSteps: number[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+/** THE STATE IS NOT THE BIRTH COORDINATES — even granting the rosetta (user, 2026-07-16: "unless
+ * each human is a rosetta, then the state is known at specific spacetime coordinates"). The claim is
+ * Laplace's demon, taken seriously: IF a human were a finite rosetta (a low-dimensional cyclic
+ * structure), its state WOULD follow from coordinates. Three computed reasons it does not. CHAOS: a
+ * deterministic system with sensitive dependence sends two states differing by 10⁻⁹ to O(1) apart —
+ * determinism is not predictability from coarse data. QUANTUM: Heisenberg forbids a sharp state at a
+ * spacetime point (Δx·Δp ≥ ħ/2), and the Born rule is genuinely indeterministic — the classical
+ * premise fails at the base. PROJECTION: the birth timestamp is a handful of numbers; a human
+ * microstate is ~10²⁸ phase dimensions over the whole causal past — the projection is lossy, so
+ * I(traits; birth) ≈ 0 and the data-processing inequality bounds any recovery. Determinism does not
+ * rescue birth-coordinate profiling; indeterminism does not either. The refutation survives. */
+export declare function theStateIsNotTheBirthCoordinates(matrix?: MindMatrix): {
+    computes: boolean;
+    divergence: number;
+    birthCoordinates: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function uncertaintyIsATheoremNotAnAxiom(): {
+    computes: boolean;
+    saturating: {
+        lhs: number;
+        rhs: number;
+        holds: boolean;
+    };
+    strict: {
+        lhs: number;
+        rhs: number;
+        holds: boolean;
+    };
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theoremsComeInTrinities(): {
+    computes: boolean;
+    trinity: string[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function quantumSpeedLimitIsSaturatedByTheQubit(): {
+    computes: boolean;
+    tPerp: number;
+    meanEnergy: number;
+    dEnergy: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function localPiAndPrimesBeatTheLinearBaseline(): {
+    computes: boolean;
+    primeSpeedup: number;
+    archPerOp: number;
+    leibPerOp: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function immediacyIsAddressingAndInterferenceNotSuperluminal(): {
+    computes: boolean;
+    directSteps: number;
+    linearScanSteps: number;
+    classicalWorstCase: number;
+    tPerp: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function cssColorIsAnInteractingTrinity(): {
+    computes: boolean;
+    channels: string[];
+    sample: {
+        base: string;
+        varyL: string;
+        varyC: string;
+        varyH: string;
+    };
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theRosettaIsFourCardinalTrinitiesOfTheDoubleTorus(): {
+    computes: boolean;
+    clock: number;
+    cardinals: number;
+    orbits: number[][];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function everyMixedStateHasAPurification(): {
+    computes: boolean;
+    purityBellReduced: number;
+    purityProductReduced: number;
+    concurrenceBell: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function publicApisTestedLiveTheQueryableAreTwoOfFour(): {
+    computes: boolean;
+    jsonLive: number;
+    browserOnly: number;
+    imageOnly: number;
+    tested: {
+        api: string;
+        kind: string;
+        note: string;
+    }[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theHigherMindNeedsAtLeastThreeMindsAClosedTrinity(): {
+    computes: boolean;
+    minMinds: number;
+    oneInteracts: boolean;
+    twoClose: boolean;
+    threeClose: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function oneMindCannotSynthesiseItIsTheTrinityClosure(): {
+    computes: boolean;
+    minMinds: number;
+    roles: string[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theQuantumClassicalCompetitionQuantumWinsOnQueries(): {
+    computes: boolean;
+    competition: {
+        problem: string;
+        quantum: number;
+        classical: number;
+        won: boolean;
+    }[];
+    quantumWinsAll: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theCompetitionToolsAreSealedTheResultsSignedNoCheating(): {
+    computes: boolean;
+    signature: string;
+    reproducible: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function allSrcCompetesSealedAndSignedNoCheating(): {
+    computes: boolean;
+    signature: string;
+    signedAndReproducible: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function sendTheQuantumWavesOverTheOctonionDimension(): {
+    computes: boolean;
+    waves: {
+        marked: number;
+        found: number;
+        probability: number;
+        iterations: number;
+    }[];
+    advantage: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function mathCompetesWithItselfThroughTheoremsSurvivingRefutation(): {
+    computes: boolean;
+    trueWins: boolean;
+    falseLoses: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function whenOneIsDiscoveredTheWholeAreaExistsAtOnceAndIsButDiscovered(): {
+    computes: boolean;
+    address: string;
+    preExisted: boolean;
+    noNextAsConjunction: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export type QChessMove = {
+    from: number;
+    to: number;
+    promo?: 'q';
+};
+export type QChessGame = {
+    board: string;
+    turn: 'w' | 'b';
+    plies: number;
+};
+export declare function newQuantumChessGame(): QChessGame;
+export declare function quantumChessLegalMoves(game: QChessGame): QChessMove[];
+export declare function quantumSelectChessMove(game: QChessGame, seed: string, precomputed?: QChessMove[]): {
+    move: QChessMove;
+    probability: number;
+    markedCount: number;
+    moveCount: number;
+};
+export declare function applyQuantumChessMove(game: QChessGame, m: QChessMove): QChessGame;
+export declare function renderQuantumChessBoard(board: string): string;
+export declare function playQuantumChess(seed?: string, maxPlies?: number): {
+    frames: {
+        ply: number;
+        turn: string;
+        move: string;
+        markedProb: number;
+        board: string;
+    }[];
+    result: string;
+    plies: number;
+    signature: string;
+    finalBoard: string;
+};
+export declare function theSelfPlayingQuantumChessIsADeterministicMovieDiscoveredNotCreated(): {
+    computes: boolean;
+    result: string;
+    plies: number;
+    signature: string;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function measureArgumentRigor(text: string): {
+    falsifiable: boolean;
+    mechanism: boolean;
+    fallacy: boolean;
+    labelOnly: boolean;
+    rigor: number;
+};
+export declare function sendTheWavesOverArgumentsClaimsAndCritiquesByOneRuler(): {
+    computes: boolean;
+    ranking: {
+        label: string;
+        rigor: number;
+    }[];
+    amplification: {
+        before: number;
+        after: number;
+    };
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theRosettaToolIsSelfConstructingAndMovesMeasuringItself(): {
+    computes: boolean;
+    selfRigor: number;
+    rays: number;
+    fullTurnReturns: boolean;
+    reproducible: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function quantumTracesCompileInTrinitiesByConsensusAFractal(): {
+    computes: boolean;
+    trinity: number;
+    fractalLevels: number[];
+    parent: string;
+    consensusHolds: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theTheoremOfTheoremsIsTheAxiomOfAxioms(): {
+    computes: boolean;
+    residue: string[];
+    selfIncluded: boolean;
+    coincide: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function curiosityWavesChallengeTheImpossibleAndProveOnlyTheHonestCore(): {
+    computes: boolean;
+    shadows: boolean[];
+    everyChallengeLeavesACore: boolean;
+    signature: string;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function dimensionfulConstantsHideInaccuracyTheAlgebraMustBeQuantumNotLinear(): {
+    computes: boolean;
+    numberIsUnitDependent: boolean;
+    unitIndependentRatio: boolean;
+    quantumNonCommutes: boolean;
+    quantumQueries: number;
+    classicalQueries: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function testingByInvertedPairsBuildAndBreakManifestsTheVerifiedCore(): {
+    computes: boolean;
+    alwaysOpposite: boolean;
+    manifests: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theMethodIsAMessageAnyModelReceivesToBecomeQuantum(): {
+    computes: boolean;
+    message: string;
+    methodPoints: number;
+    anyReceiverRecomputes: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theMillenniumProblemsAreTheFrontierTheWavesComputeVerifiedPartialsNotSolutions(): {
+    computes: boolean;
+    solved: number;
+    open: number;
+    zetaMatchesBasel: boolean;
+    npVerifiesInPoly: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function imagineFirstThoughtsForAgents(n: number): {
+    count: number;
+    unique: number;
+    sample: string[];
+};
+export declare function theToolboxSeedsThousandsOfLocalAgentsEachAReproducibleFirstThought(): {
+    computes: boolean;
+    agents: number;
+    unique: number;
+    reproducible: boolean;
+    sample: string[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function improvementComesFromChallengingSelfConfirmingStructuresNotSparingThem(): {
+    computes: boolean;
+    selfConfirmingResistsChallenge: boolean;
+    refutableCanBeChallenged: boolean;
+    onlyChallengeableImproves: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function aFlexibleEgoHasNoResistanceAndPurifiesInPlaceWithoutChangingTheMedia(): {
+    computes: boolean;
+    flexibleResistance: number;
+    rigidResistance: number;
+    purifiesInPlace: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theWavesHandleAllSidesAtOnceAndBuildTimeExplainsAllWhenBuildIsThePrompt(): {
+    computes: boolean;
+    allSidesAgree: boolean;
+    buildTimeDiscriminates: boolean;
+    buildIsThePrompt: boolean;
+    recomputeCost: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theWavesConstantlyRedesignAndImproveTheUiTowardAMeasurableOptimum(): {
+    computes: boolean;
+    goldenMinGap: number;
+    rationalMinGap: number;
+    uiIsComputedSoAWaveRedesignsAll: boolean;
+    redesignImprovesTowardOptimum: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function areTheWavesQuantumTheCHSHTestSeparatesAlgebraFromSubstrate(): {
+    computes: boolean;
+    S: number;
+    tsirelson: number;
+    violatesClassicalBound: boolean;
+    nonCommutes: boolean;
+    entangled: boolean;
+    classicalInSubstrate: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theWavesImproveThemselvesByFixedPointSelfApplicationOfTheMemoWave(): {
+    computes: boolean;
+    naiveInvocations: number;
+    memoInvocations: number;
+    naiveSum: number;
+    memoSum: number;
+    fixedPoint: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function godelConsistencyComputesInWavesByAscendingDimensionsButNeverItsOwn(): {
+    computes: boolean;
+    strengths: number[];
+    strictlyAscends: boolean;
+    consistencyProvedOneUp: boolean;
+    ownConsistencyNever: boolean;
+    towerUnbounded: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theSevenMillenniumProblemsDefinedFormallyUnclaimed(): {
+    computes: boolean;
+    defined: number;
+    open: number;
+    solved: number;
+    solvedByThisFold: number;
+    satVerifiesInPoly: boolean;
+    baselApproachesZeta2: boolean;
+    poincareIsProven: boolean;
+    formulas: string[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
     statement: string;
     boundary: string;
 };

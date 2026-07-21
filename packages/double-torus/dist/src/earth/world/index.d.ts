@@ -751,3 +751,148 @@ export declare function bulgarianHeritageEightfold(matrix?: MindMatrix): {
     boundary: string;
 };
 export { GOLD_MINE_MAP_HINGE, goldMineMapCatalog, goldMineMapFitsPerfectlyInModel, undiscoveredGoldConcentrationCandidatesFromMap, goldMineMapComputes, thunderGoldGraphFromPreciseGpsCoordinates, thunderGoldGraphPaintSamples, thunderGoldGraphComputes, schumannGoldSiteCouplingAt, schumannGoldSiteCouplingComputes, } from '../../wind/fusion/gold';
+export declare function magneticDeclinationAtSite(latDeg: number, lonDeg: number): {
+    declinationDeg: number;
+    poleLatDeg: number;
+    poleLonDeg: number;
+    boundary: string;
+};
+export declare function preciousMetalsThunderGraphFromGps(at?: number, matrix?: {
+    root: string;
+}): {
+    graphed: boolean;
+    nodes: ({
+        declinationDeg: number;
+        receipt: string;
+        id: "potosi";
+        metal: "Ag";
+        lat: -19.6;
+        lon: -65.8;
+    } | {
+        declinationDeg: number;
+        receipt: string;
+        id: "fresnillo";
+        metal: "Ag";
+        lat: 23.2;
+        lon: -102.9;
+    } | {
+        declinationDeg: number;
+        receipt: string;
+        id: "coeur-dalene";
+        metal: "Ag";
+        lat: 47.5;
+        lon: -116.1;
+    } | {
+        declinationDeg: number;
+        receipt: string;
+        id: "bushveld";
+        metal: "Pt";
+        lat: -25;
+        lon: 29.5;
+    } | {
+        declinationDeg: number;
+        receipt: string;
+        id: "norilsk";
+        metal: "Pt";
+        lat: 69.4;
+        lon: 88.2;
+    } | {
+        declinationDeg: number;
+        receipt: string;
+        id: "stillwater";
+        metal: "Pt";
+        lat: 45.4;
+        lon: -109.9;
+    } | {
+        declinationDeg: number;
+        receipt: string;
+        id: "escondida";
+        metal: "Cu";
+        lat: -24.3;
+        lon: -69.1;
+    } | {
+        declinationDeg: number;
+        receipt: string;
+        id: "chuquicamata";
+        metal: "Cu";
+        lat: -22.3;
+        lon: -68.9;
+    } | {
+        declinationDeg: number;
+        receipt: string;
+        id: "bingham";
+        metal: "Cu";
+        lat: 40.5;
+        lon: -112.2;
+    })[];
+    edges: {
+        from: "potosi" | "fresnillo" | "coeur-dalene" | "bushveld" | "norilsk" | "stillwater" | "escondida" | "chuquicamata" | "bingham";
+        to: "potosi" | "fresnillo" | "coeur-dalene" | "bushveld" | "norilsk" | "stillwater" | "escondida" | "chuquicamata" | "bingham";
+        km: number;
+        weight: number;
+        receipt: string;
+    }[];
+    metals: ("Ag" | "Pt" | "Cu")[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function energyFlowThunderGraphFromGps(at?: number, matrix?: {
+    root: string;
+}): {
+    graphed: boolean;
+    nodes: ({
+        declinationDeg: number;
+        receipt: string;
+        id: "three-gorges";
+        kind: "water";
+        lat: 30.8;
+        lon: 111;
+    } | {
+        declinationDeg: number;
+        receipt: string;
+        id: "itaipu";
+        kind: "water";
+        lat: -25.4;
+        lon: -54.6;
+    } | {
+        declinationDeg: number;
+        receipt: string;
+        id: "grand-coulee";
+        kind: "water";
+        lat: 48;
+        lon: -119;
+    } | {
+        declinationDeg: number;
+        receipt: string;
+        id: "ghawar";
+        kind: "oil";
+        lat: 25.4;
+        lon: 49.6;
+    } | {
+        declinationDeg: number;
+        receipt: string;
+        id: "permian";
+        kind: "oil";
+        lat: 31.8;
+        lon: -102.4;
+    } | {
+        declinationDeg: number;
+        receipt: string;
+        id: "samotlor";
+        kind: "oil";
+        lat: 61.1;
+        lon: 76.7;
+    })[];
+    edges: {
+        from: "three-gorges" | "itaipu" | "grand-coulee" | "ghawar" | "permian" | "samotlor";
+        to: "three-gorges" | "itaipu" | "grand-coulee" | "ghawar" | "permian" | "samotlor";
+        km: number;
+        flow: number;
+        receipt: string;
+    }[];
+    kinds: ("water" | "oil")[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
