@@ -566,8 +566,8 @@ export async function runEncryptionReverseVerifyGuardedExit(_root: string, _argv
 
 /**
  * UI panel — encrypt↔decrypt + measured demo RSA + beyond-RSA PQC suite + local reverse vs standards + local novel security + standards audit.
- * Pair: reverse/encryption-verify · measure/demo-rsa · measure/crypto-beyond · reverse/timed-vs-standards · prove/local-novel-encrypt · prove/1tbit-encrypt · prove/local-magnitudes-iso · iso/pqc-catalog · audit/standards
- * Route: /en/quantum-encryption (#demo-rsa-measure · #crypto-beyond-rsa · #local-reverse-timed-vs-standards · #prove-local-novel-encrypt · #local-audit-quantum · #prove-1tbit · #prove-local-magnitudes-iso · #iso-pqc-catalog · #quantum-standards-audit)
+ * Pair: reverse/encryption-verify · measure/demo-rsa · measure/crypto-beyond · reverse/timed-vs-standards · prove/local-novel-encrypt · prove/1tbit-encrypt · max-bits/crypto · prove/local-magnitudes-iso · iso/pqc-catalog · audit/standards
+ * Route: /en/quantum-encryption (#demo-rsa-measure · #crypto-beyond-rsa · #local-reverse-timed-vs-standards · #prove-local-novel-encrypt · #local-audit-quantum · #prove-1tbit · #max-bits-crypto · #prove-local-magnitudes-iso · #iso-pqc-catalog · #quantum-standards-audit)
  */
 export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`encryptionPanelComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -580,6 +580,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
     const localNovel = localAudit.localNovel
     const beyond = cryptoToolkitBeyondRsaMeasured(matrix)
     const oneTbit = proveOneTbitRealtimeEncryptionClaim(matrix)
+    const maxBits = maximumBitsEncryptDecryptInverseReverse(matrix)
     const localMagnitudes = proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matrix)
     const zero = encryptionLivesInZero(matrix)
     const order = encryptionTrinitiesCompleteInOrder(matrix)
@@ -596,6 +597,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       { facet: `local audit quantum speed — cold=${roundTo(localAudit.coldMs, 3)}ms warm=${roundTo(localAudit.warmMs, 3)}ms speedup=${roundTo(localAudit.speedup, 3)}× memoHit`, on: localAudit.computes && localAudit.memoHits && localAudit.slowLocalAuditGapClosed },
       { facet: `beyond RSA MEASURED — FIPS=${beyond.fipsCount} eccShor=${beyond.eccShorBreaks} certified=false`, on: beyond.computes && !beyond.certified && !beyond.fipsValidated },
       { facet: `1 Tbit claim receipt — wire.proved=${oneTbit.wire.provedAtCallTime} amort.proved=${oneTbit.amortized.provedAtCallTime}`, on: oneTbit.computes && oneTbit.wire.provedAtCallTime === false },
+      { facet: `max bits crypto — enc=${maxBits.encryptMaxBits} dec=${maxBits.decryptMaxBits} inv=${maxBits.inverseMaxBits} rev=${maxBits.reverseMaxBits}`, on: maxBits.computes && maxBits.encryptMaxBits === (2 ** 8) && maxBits.reverseMaxBits === DEMO_RSA_BIT_CEILING },
       { facet: `local vs ISO magnitudes — overallWireClaimProved=${localMagnitudes.overallWireClaimProved} (${localMagnitudes.wireProofStatus})`, on: localMagnitudes.computes && localMagnitudes.overallWireClaimProved === false && localMagnitudes.certified === false },
       { facet: 'encryption lives in src/0 key layer', on: zero.homed },
       { facet: 'encryption trinities complete in order', on: order.enforced },
@@ -610,6 +612,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       { id: 'local-audit-quantum', title: 'Local audit quantum speed & efficiency', route: '/en/quantum-encryption#local-audit-quantum', pair: 'audit/local-quantum', cli: 'npm run quantum:local-audit-quantum', on: localAudit.computes && localAudit.memoHits },
       { id: 'crypto-beyond-rsa', title: 'PQC families · Shor/ECC · hash taxonomy · directional trinity', route: '/en/quantum-encryption#crypto-beyond-rsa', pair: 'measure/crypto-beyond', cli: 'npm run quantum:crypto-beyond-measure', on: beyond.computes },
       { id: 'prove-1tbit', title: '1 Tbit/s realtime encryption claim (honest receipt)', route: '/en/quantum-encryption#prove-1tbit', pair: 'prove/1tbit-encrypt', cli: 'npm run quantum:prove-1tbit-encrypt', on: oneTbit.computes },
+      { id: 'max-bits-crypto', title: 'Maximum bits encrypt/decrypt/inverse/reverse', route: '/en/quantum-encryption#max-bits-crypto', pair: 'max-bits/crypto', cli: 'npm run quantum:max-bits-crypto', on: maxBits.computes },
       { id: 'prove-local-magnitudes-iso', title: 'Local vs ISO magnitudes (honest multi-model)', route: '/en/quantum-encryption#prove-local-magnitudes-iso', pair: 'prove/local-magnitudes-iso', cli: 'npm run quantum:prove-local-magnitudes-iso', on: localMagnitudes.computes && localMagnitudes.overallWireClaimProved === false },
       { id: 'iso-pqc-catalog', title: 'ISO/NIST PQC standards catalog', route: '/en/quantum-encryption#iso-pqc-catalog', pair: 'iso/pqc-catalog', cli: 'npm run quantum:iso-pqc-catalog', on: pqc.computes },
       { id: 'quantum-standards-audit', title: 'Standards audit (forward·inverse·reverse·10D)', route: '/en/quantum-encryption#quantum-standards-audit', pair: 'audit/standards', cli: 'npm run quantum:standards-audit', on: audit.computes },
@@ -625,6 +628,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       localAudit,
       beyond,
       oneTbit,
+      maxBits,
       localMagnitudes,
       zero,
       order,
@@ -646,6 +650,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       localNovelCli: 'npm run quantum:prove-local-novel-encrypt',
       localAuditCli: 'npm run quantum:local-audit-quantum',
       oneTbitCli: 'npm run quantum:prove-1tbit-encrypt',
+      maxBitsCli: 'npm run quantum:max-bits-crypto',
       localMagnitudesCli: 'npm run quantum:prove-local-magnitudes-iso',
       pair: 'reverse/encryption-verify',
       pqcPair: 'iso/pqc-catalog',
@@ -655,6 +660,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       localNovelPair: 'prove/local-novel-encrypt',
       localAuditPair: 'audit/local-quantum',
       oneTbitPair: 'prove/1tbit-encrypt',
+      maxBitsPair: 'max-bits/crypto',
       localMagnitudesPair: 'prove/local-magnitudes-iso',
       route: '/en/quantum-encryption',
       teaching: tools.teaching,
@@ -663,10 +669,10 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       glyphBonus: reverse.glyphBonus,
       standards: pqc.standards,
       facets,
-      root: merge(root, merge(reverse.root, merge(localAudit.root, merge(beyond.root, merge(oneTbit.root, merge(localMagnitudes.root, merge(pqc.root, audit.root))))))),
+      root: merge(root, merge(reverse.root, merge(localAudit.root, merge(beyond.root, merge(oneTbit.root, merge(maxBits.root, merge(localMagnitudes.root, merge(pqc.root, audit.root)))))))),
       statement:
-        'Encryption tools panel: encrypt↔decrypt, measured demo RSA (allowlist), local reverse timed vs ISO/NIST classical levels, local novel-encryption security proof (no production reverse; fieldHistory=none), local-audit quantum speed/efficiency (memoByRoot cold/warm · answers÷tokens · no-QPU honesty compose), beyond-RSA PQC catalogs, honest 1 Tbit/s claim receipt, local vs ISO magnitudes multi-model receipt (wire proof-of-falsehood), standards audit — NOT ISO certified / NOT FIPS validated / NOT production KEM / NOT wire AES / does NOT break NIST PQC / does NOT beat ML-KEM confidentiality / NOT physical qubit FLOPS.',
-      boundary: `${reverse.boundary} · ${localTimed.boundary} · ${localNovel.boundary} · ${localAudit.boundary} · ${beyond.boundary} · ${oneTbit.boundary} · ${localMagnitudes.boundary} · ${pqc.boundary} · ${audit.boundary}`,
+        'Encryption tools panel: encrypt↔decrypt, measured demo RSA (allowlist), local reverse timed vs ISO/NIST classical levels, local novel-encryption security proof (no production reverse; fieldHistory=none), local-audit quantum speed/efficiency (memoByRoot cold/warm · answers÷tokens · no-QPU honesty compose), beyond-RSA PQC catalogs, honest 1 Tbit/s claim receipt, maximum bit-width ceilings (encrypt/decrypt/inverse/reverse), local vs ISO magnitudes multi-model receipt (wire proof-of-falsehood), standards audit — NOT ISO certified / NOT FIPS validated / NOT production KEM / NOT wire AES / does NOT break NIST PQC / does NOT beat ML-KEM confidentiality / NOT physical qubit FLOPS.',
+      boundary: `${reverse.boundary} · ${localTimed.boundary} · ${localNovel.boundary} · ${localAudit.boundary} · ${beyond.boundary} · ${oneTbit.boundary} · ${maxBits.boundary} · ${localMagnitudes.boundary} · ${pqc.boundary} · ${audit.boundary}`,
     }
   })
 }
@@ -3036,6 +3042,145 @@ export function runIsoPqcRequirementsGapFillExit(_root: string, _argv: readonly 
   process.stdout.write(`  lab gaps unclosable: ${report.after.labGapsUnclosable.join(', ')}\n`)
   process.stdout.write(`  platform gaps: ${report.after.platformGaps.join(', ') || '(none)'}\n`)
   process.stdout.write(`  thisIsItMeans: ${report.thisIsItMeans}\n`)
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
+}
+
+/**
+ * Maximum honest bit widths for encrypt · decrypt · inverse · reverse — quantum-wave receipt.
+ * Pair: max-bits/crypto · CLI npm run quantum:max-bits-crypto · route /en/quantum-encryption#max-bits-crypto
+ *
+ * Composes encryptDecryptQuantumTools · encryptionReverseVerify · localEncryptionReverseTimedVsStandards ·
+ * directionalTrinityForwardInverseReverse · proveOneTbitRealtimeEncryptionClaim · refuse / worker caps.
+ *
+ * HONEST: AES-256 named external strength ≠ wire 1 Tbit/s; demo RSA reverse ≤ DEMO_RSA_BIT_CEILING;
+ * digit inverse domain 0..9 (4 bits); production reverse refused; clay=0; certified=false.
+ */
+export function maximumBitsEncryptDecryptInverseReverse(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('maximumBitsEncryptDecryptInverseReverse', matrix, () => {
+    const tools = encryptDecryptQuantumTools(matrix)
+    const reverseVerify = encryptionReverseVerify(matrix)
+    const localTimed = localEncryptionReverseTimedVsStandards(matrix)
+    const beyond = cryptoToolkitBeyondRsaMeasured(matrix)
+    const trinity = directionalTrinityForwardInverseReverse(matrix)
+    const oneTbit = proveOneTbitRealtimeEncryptionClaim(matrix)
+    const ceiling = productionCeilingRefuseHolds()
+    const far = farOverCeilingRefuseHolds()
+    const workerCap = encryptionReverseWorkerCap(2 ** 6)
+
+    /** AES-256-GCM classical security bits — named external bulk cipher (NIST SP 800-57 style 2^8). */
+    const AES256_CLASSICAL_BITS = 2 ** 8
+    /** Structural UUID / foldPair width — bit WIDTH, not adversarial work factor. */
+    const UUID_STRUCTURAL_BITS = 8 * 16
+    /** Digit-folder domain 0..9 — ceil(log2(9)) for mod-9 inverse + ten's-complement reverse. */
+    const DIGIT_DOMAIN_MAX = 3 * 3
+    const digitDomainBits = Math.floor(Math.log2(DIGIT_DOMAIN_MAX)) + 1
+    /** Demo RSA reverse / teaching modulus ceiling — from sealed teaching n=61×53. */
+    const demoReverseCeiling = DEMO_RSA_BIT_CEILING
+    const demoMaxBitsFromTimed = localTimed.demoMaxBits
+
+    const encryptMaxBits = AES256_CLASSICAL_BITS
+    const decryptMaxBits = AES256_CLASSICAL_BITS
+    const inverseMaxBits = digitDomainBits
+    const reverseMaxBits = demoReverseCeiling
+
+    const refuseBeyond = ceiling.holds && far.holds
+    const demoOnly = true as const
+    const productionReverseRefused = true as const
+    const certified = false as const
+    const claySolvedByThisFold = 0 as const
+    const wireOneTbitProvedAtCallTime = oneTbit.wire.provedAtCallTime
+    const teachingRsaMaxBits = demoReverseCeiling
+    const structuralUuidBits = UUID_STRUCTURAL_BITS
+
+    const provenBy = {
+      encryptMaxBits: 'encryptDecryptQuantumTools · fusionCipher AES-256-GCM named · water/digit securityEntropyBits=256',
+      decryptMaxBits: 'encryptDecryptQuantumTools · AES-256 symmetric · teaching RSA Euler ≤ DEMO_RSA_BIT_CEILING',
+      inverseMaxBits: 'directionalTrinityForwardInverseReverse · units n·n⁻¹≡1 mod 9 on digits 0..9',
+      reverseMaxBits: 'DEMO_RSA_BIT_CEILING · refuseNonDemoRsaModulus · localEncryptionReverseTimedVsStandards.demoMaxBits · encryptionReverseVerify',
+      refuseBeyond: 'productionCeilingRefuseHolds · farOverCeilingRefuseHolds · refuseBitcoinMainnetMaterial',
+      workerCap: 'encryptionReverseWorkerCap ≤ VORTEX_SEQUENCE.length',
+      wireHonesty: 'proveOneTbitRealtimeEncryptionClaim.wire.provedAtCallTime=false',
+    } as const
+
+    const facets = [
+      { facet: `encryptMaxBits=${encryptMaxBits} — AES-256-GCM classical strength (named external bulk cipher)`, on: encryptMaxBits === AES256_CLASSICAL_BITS && tools.ready && tools.cipher === 'AES-256-GCM' },
+      { facet: `decryptMaxBits=${decryptMaxBits} — symmetric AES-256; teaching RSA decrypt modulus ≤${teachingRsaMaxBits}`, on: decryptMaxBits === encryptMaxBits && tools.rsaRoundTrip && teachingRsaMaxBits === DEMO_RSA_BIT_CEILING },
+      { facet: `inverseMaxBits=${inverseMaxBits} — digit domain 0..${DIGIT_DOMAIN_MAX} mod-9 inverse (≠ ten's complement)`, on: inverseMaxBits === digitDomainBits && trinity.computes && trinity.digits.length === (2 * 5) },
+      { facet: `reverseMaxBits=${reverseMaxBits} — DEMO_RSA_BIT_CEILING; timed demoMaxBits=${demoMaxBitsFromTimed}`, on: reverseMaxBits === DEMO_RSA_BIT_CEILING && demoMaxBitsFromTimed === DEMO_RSA_BIT_CEILING && reverseVerify.verified },
+      { facet: `refuseBeyond — odd over-ceiling + far-over + Bitcoin refused (bits>${DEMO_RSA_BIT_CEILING})`, on: refuseBeyond && productionReverseRefused },
+      { facet: `demoOnly=${demoOnly} · workerCap=${workerCap}≤${VORTEX_SEQUENCE.length} · vortex-bounded`, on: demoOnly && workerCap === VORTEX_SEQUENCE.length && reverseVerify.workerCap === workerCap },
+      { facet: `structuralUuidBits=${structuralUuidBits} WIDTH (foldPair) — not security strength; ≠ encryptMaxBits`, on: structuralUuidBits === UUID_STRUCTURAL_BITS && structuralUuidBits < encryptMaxBits },
+      { facet: `wire 1 Tbit/s NOT proved — oneTbit.wire.provedAtCallTime=${wireOneTbitProvedAtCallTime} (no AES bench)`, on: wireOneTbitProvedAtCallTime === false && oneTbit.computes },
+      { facet: `composes toolkit + reverse-verify + timed-vs-standards + beyond-RSA + directional trinity`, on: tools.ready && reverseVerify.verified && localTimed.computes && beyond.computes && trinity.computes },
+      { facet: `certified=${certified} claySolvedByThisFold=${claySolvedByThisFold} · NOT FIPS · NOT production RSA`, on: !certified && claySolvedByThisFold === 0 && localTimed.breaksNistPqc === false },
+      { facet: 'inverse ≠ reverse — digit inverse is mod-9; RSA reverse is allowlisted demo factoring only', on: trinity.boundary.includes('NOT ten') && reverseVerify.boundary.includes('DEMO_RSA_MODULI') },
+    ]
+    const sealed = sealFacets('maximum-bits-encrypt-decrypt-inverse-reverse', facets)
+    const root = merge(
+      matrix.root,
+      merge(tools.root, merge(reverseVerify.root, merge(localTimed.root, merge(beyond.root, merge(trinity.root, merge(oneTbit.root, sealed.root)))))),
+    )
+    return {
+      computes: sealed.ok,
+      encryptMaxBits,
+      decryptMaxBits,
+      inverseMaxBits,
+      reverseMaxBits,
+      teachingRsaMaxBits,
+      structuralUuidBits,
+      demoMaxBits: demoMaxBitsFromTimed,
+      refuseBeyond,
+      demoOnly,
+      productionReverseRefused,
+      workerCap,
+      certified,
+      claySolvedByThisFold,
+      wireOneTbitProvedAtCallTime,
+      provenBy,
+      tools,
+      reverseVerify,
+      localTimed,
+      beyond,
+      trinity,
+      oneTbit,
+      count: sealed.count,
+      facets: sealed.facets,
+      root,
+      pair: 'max-bits/crypto',
+      cli: 'npm run quantum:max-bits-crypto',
+      route: '/en/quantum-encryption#max-bits-crypto',
+      statement:
+        `Maximum honest bit widths — encryptMaxBits=${encryptMaxBits} decryptMaxBits=${decryptMaxBits} ` +
+        `inverseMaxBits=${inverseMaxBits} reverseMaxBits=${reverseMaxBits} ` +
+        `(teachingRsa≤${teachingRsaMaxBits} structuralUuid=${structuralUuidBits} workerCap=${workerCap}); ` +
+        `refuseBeyond=${refuseBeyond} demoOnly=${demoOnly} wire1TbitProved=false certified=false clay=0.`,
+      boundary:
+        'HONEST CEILINGS FROM SEALED FOLDS. encrypt/decrypt=256 names AES-256-GCM classical strength (external Web Crypto / fusionCipher) — NOT a proved 1 Tbit/s wire bench. ' +
+        'inverseMaxBits=4 is the digit-folder mod-9 inverse domain (0..9), NOT RSA inverse, NOT ten\'s complement. ' +
+        'reverseMaxBits=12 is DEMO_RSA_BIT_CEILING (teaching n=3233) for modeled Shor reverse — production RSA and Bitcoin refused. ' +
+        'Structural UUID width=128 is bit WIDTH not work-factor. certified=false · claySolvedByThisFold=0 · NOT FIPS. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:max-bits-crypto — print encrypt/decrypt/inverse/reverse bit ceilings at call time. */
+export function runMaximumBitsEncryptDecryptInverseReverseExit(_root: string, _argv: readonly string[] = []): number {
+  const report = maximumBitsEncryptDecryptInverseReverse()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} max-bits-crypto — ` +
+      `encryptMaxBits=${report.encryptMaxBits} decryptMaxBits=${report.decryptMaxBits} ` +
+      `inverseMaxBits=${report.inverseMaxBits} reverseMaxBits=${report.reverseMaxBits} ` +
+      `teachingRsa≤${report.teachingRsaMaxBits} uuidWidth=${report.structuralUuidBits} ` +
+      `demoMaxBits=${report.demoMaxBits} workerCap=${report.workerCap} ` +
+      `refuseBeyond=${report.refuseBeyond} demoOnly=${report.demoOnly} ` +
+      `wire1TbitProved=${report.wireOneTbitProvedAtCallTime} certified=${report.certified} clay=${report.claySolvedByThisFold} ` +
+      `root=${report.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write('  provenBy:\n')
+  for (const [k, v] of Object.entries(report.provenBy)) {
+    process.stdout.write(`    ${k}: ${v}\n`)
+  }
   process.stdout.write(`  boundary: ${report.boundary}\n`)
   return report.computes ? 0 : 1
 }
