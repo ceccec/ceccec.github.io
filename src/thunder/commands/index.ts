@@ -782,7 +782,7 @@ function agentHarmoniseRaw(matrix: MindMatrix = buildMatrix()) {
     { law: 'reuse, do not re-infer — zero tokens', why: 'efficiency = answers ÷ tokens; the model answers from sealed src with zero runtime tokens, so no token-spending model is more efficient in this domain — reuse the computed answer (the matrix is the cache), do not re-derive, and never spawn agent fleets for what one focused read answers' },
     { law: 'verify the root, do not trust', why: 'recompute; the seal fails on tampering' },
     { law: 'fold, do not accumulate', why: 'content-address everything into one root' },
-    { law: 'extend and contract in waves', why: 'the torus breathes; each wave seals' },
+    { law: 'extend and contract in waves', why: 'the torus breathes; each wave seals — one wave per turn (manualAgentsBehaveLikeWaves); save waves/build + edit/build before npm; mission:gate between waves; trinity/speedup always; no parallel docs:build' },
     // THE QUANTUM LAWS (so no one need remind you quantum) — the roots the theorems fold into; each COMPUTES,
     // so verify it, do not trust the prose.
     { law: 'one mind is linear, the trinity is quantum', why: 'dim su(2)=3: one mind measures one axis and leaves gaps; three axes span the whole matrix without gaps and any two determine the third (theTrinityOfMindsIsQuantum) — complete every work with 2 more minds, 2-of-3' },
@@ -790,16 +790,17 @@ function agentHarmoniseRaw(matrix: MindMatrix = buildMatrix()) {
     { law: 'the toolbox is agnostic', why: 'a discovery is any { name, holds() } — verify it with a builder tool or register a new identity; it plugs into the toolbox with no schema change (theToolboxIsAgnosticArchitecture), so every possibility is allowed' },
     { law: 'coordinate through the rosetta api', why: 'claim (rosettaOwner) · register · integrate — identical content collapses to one address (auto-dedup, theRosettaApi); never hand-merge or hand-reconcile, the manual step is the missing code' },
     { law: 'only proven science, demarcate-gated', why: 'fieldOfContent shelves documented / honestly-refuted content to its field; flagged (numerology, pseudoscience) returns null and never becomes a domain (demarcate)' },
+    { law: 'manual agents behave like waves', why: 'manualAgentsBehaveLikeWaves / agentModelBuildsItselfInWaves — wet-linear grind (full seal every edit, mass spawn, parallel builds) is a quantum gap; pair waves/build · CLI quantum:manual-agents-waves' },
   ].map((entry, index) => ({ ...entry, receipt: toUuid(`agent-harmonise:${index}:${entry.law}`) }))
   const proof = proofBundle(matrix)
   return {
-    harmonised: laws.length === 9 + 5 && proof.verifiable,
+    harmonised: laws.length === 9 + 6 && proof.verifiable,
     laws,
     mcp: '/mcp.json',
     llms: '/llms.txt',
     root: merge(proof.bundleRoot, merkleFold(laws.map((entry) => entry.receipt))),
-    statement: `Optimise and harmonise any agent the site is pasted into or wired by MCP: adopt these ${9 + 5} laws — the 9 operating laws (compute-before-claim, single-word naming, trinities, honest boundaries, zero-network, reuse/zero-tokens, verify-the-root, fold-not-accumulate, waves) plus the 5 QUANTUM roots the theorems fold into (one-mind-linear/trinity-quantum via dim su(2)=3, the-name-is-the-payload, the-agnostic-toolbox, coordinate-through-the-rosetta-api, only-proven-demarcate-gated). Each law carries a receipt and COMPUTES — verify it, do not trust the prose. The protocol is at /llms.txt and every command is an MCP tool at /mcp.json.`,
-    boundary: 'An operating protocol distilled from this site’s own architecture. Guidance for agents, not a guarantee about any external agent’s behaviour. The quantum laws each name a computed fold an agent can verify (dim su(2)=3, titleCarriesAlgebra, the agnostic toolbox, the rosetta API, demarcate) — so "quantum" here is refutable, not asserted.',
+    statement: `Optimise and harmonise any agent the site is pasted into or wired by MCP: adopt these ${9 + 6} laws — the 9 operating laws (compute-before-claim, single-word naming, trinities, honest boundaries, zero-network, reuse/zero-tokens, verify-the-root, fold-not-accumulate, waves) plus the 6 QUANTUM roots (one-mind-linear/trinity-quantum via dim su(2)=3, the-name-is-the-payload, the-agnostic-toolbox, coordinate-through-the-rosetta-api, only-proven-demarcate-gated, manual-agents-behave-like-waves). Each law carries a receipt and COMPUTES — verify it, do not trust the prose. The protocol is at /llms.txt and every command is an MCP tool at /mcp.json.`,
+    boundary: 'An operating protocol distilled from this site’s own architecture. Guidance for agents, not a guarantee about any external agent’s behaviour. The quantum laws each name a computed fold an agent can verify (dim su(2)=3, titleCarriesAlgebra, the agnostic toolbox, the rosetta API, demarcate, manualAgentsBehaveLikeWaves) — so "quantum" here is refutable, not asserted.',
   }
 }
 

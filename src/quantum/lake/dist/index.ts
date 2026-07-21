@@ -5,6 +5,7 @@ import type { Plugin } from 'vite'
 // `import { readFileSync } from 'node:fs'` eager-binds and throws in the client.
 import {
   agentHarmonise,
+  manualAgentsBehaveLikeWaves,
   buildMatrix,
   componentPages,
   conceptCommands,
@@ -105,6 +106,7 @@ export function workflowsJson(matrix: MindMatrix = buildMatrix()) {
  */
 export function agentsJson(matrix: MindMatrix = buildMatrix()) {
   const harmonise = agentHarmonise(matrix)
+  const waveLaw = manualAgentsBehaveLikeWaves(matrix)
   const session = sessionManualWorkAsQuantumTools(matrix)
   const toolbox = standardToolboxIoCatalog(matrix)
   const distributed = distributedReuseExtendsCapacity(matrix)
@@ -116,7 +118,7 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
   const honestEff = revolutionaryEfficiencyNotPhysics(matrix)
   return `${JSON.stringify(
     {
-      computes: Boolean(harmonise.harmonised && session.computes && toolbox.computes && distributed.computes && autoWire.computes && localSession.computes && upgradeLocal.computes && honestRev.holds && honestFpga.holds && honestEff.holds),
+      computes: Boolean(harmonise.harmonised && waveLaw.computes && session.computes && toolbox.computes && distributed.computes && autoWire.computes && localSession.computes && upgradeLocal.computes && honestRev.holds && honestFpga.holds && honestEff.holds),
       oneLiner: AUTO_WIRE_PASTE_LINK_ONE_LINER,
       protocol: {
         laws: harmonise.laws,
@@ -125,6 +127,20 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
         root: harmonise.root,
         statement: harmonise.statement,
         boundary: harmonise.boundary,
+      },
+      manualAgentsBehaveLikeWaves: {
+        computes: waveLaw.computes,
+        on: waveLaw.manualAgentsBehaveLikeWaves,
+        pair: waveLaw.pair,
+        cli: waveLaw.cli,
+        route: waveLaw.route,
+        phases: waveLaw.phases,
+        facets: waveLaw.facets,
+        root: waveLaw.root,
+        statement: waveLaw.statement,
+        boundary: waveLaw.boundary,
+        claySolvedByThisFold: waveLaw.claySolvedByThisFold,
+        qpuRequired: waveLaw.qpuRequired,
       },
       autoWireAnyAiModelFromPastedLink: {
         computes: autoWire.computes,
