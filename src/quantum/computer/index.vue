@@ -3,6 +3,7 @@ import { computed, onBeforeUnmount, onMounted, ref, shallowRef } from 'vue'
 import { quantumComputerLabComputes, QC_GATE_PALETTE } from '../science/index.ts'
 import { runQuantumCircuit, type CircuitOp } from '../../0/index.ts'
 import { siliconFabricationPlanFromModel, siliconFabricationStageAt } from '../../heaven/compute/computer/index.ts'
+import { honestRevolutionComputerPanelComputes } from '../../wind/fusion/index.ts'
 import { subscribeHeroClock } from '../../../.vitepress/lib/hero-movie-paint'
 import UiCard from '../../../.vitepress/theme/components/ui/Card.vue'
 import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.vue'
@@ -80,6 +81,9 @@ onMounted(() => {
   fabOff = subscribeHeroClock((time) => { fabAt.value = time })
 })
 onBeforeUnmount(() => { fabOff?.(); fabOff = null })
+
+/** Honest-revolution W4 — Vue reads sealed panel only (no fold logic here). */
+const honestRev = shallowRef(honestRevolutionComputerPanelComputes())
 </script>
 
 <template>
@@ -90,7 +94,48 @@ onBeforeUnmount(() => { fabOff?.(); fabOff = null })
         <p class="qc-lab__lede">{{ panel.copy.lede.en }}</p>
         <UiBadge :variant="panel.computes ? 'default' : 'outline'">quantum.computer.computes · {{ panel.computes ? '✓' : '—' }}</UiBadge>
         <UiBadge :variant="result.amplitudes.length ? 'default' : 'outline'">{{ result.n }} qubits · 2^{{ result.n }} = {{ result.amplitudes.length }} amplitudes</UiBadge>
+        <UiBadge :variant="honestRev.holds ? 'default' : 'outline'">honest-revolution-w4 · {{ honestRev.holds ? '✓' : '—' }}</UiBadge>
       </header>
+
+      <section id="honest-revolution-w4" class="qc-lab__honest" data-logic="src/wind/fusion/index.ts" data-topic="honest-revolution-w4">
+        <h3>Honest revolution · proof receipt (W3 → Vue)</h3>
+        <p class="qc-lab__claim">{{ honestRev.w1.claim }}</p>
+        <ul class="qc-lab__facets">
+          <li v-for="f in honestRev.receipt.facets" :key="f.facet">
+            <UiBadge :variant="f.on ? 'default' : 'outline'">{{ f.on ? '✓' : '✗' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <p class="qc-lab__contrast">
+          Interference vs classical shadow —
+          amplitudes cancel: <strong>{{ honestRev.w2.visibilityContrast.amplitudesCancel }}</strong> ·
+          probabilities cannot: <strong>{{ honestRev.w2.visibilityContrast.probabilitiesCannot }}</strong>
+        </p>
+        <h4>Advantage benchmark · {{ honestRev.bench.verdict }}</h4>
+        <table class="qc-lab__table">
+          <thead><tr><th>n</th><th>engineOps</th><th>classicalOps</th><th>fidelity</th></tr></thead>
+          <tbody>
+            <tr v-for="row in honestRev.bench.rows" :key="row.n">
+              <td>{{ row.n }}</td>
+              <td>{{ row.engineOps }}</td>
+              <td>{{ row.classicalOps }}</td>
+              <td>{{ row.fidelity }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <h4>Fleet cache economics (hit ratio → expected J)</h4>
+        <ul class="qc-lab__hist">
+          <li v-for="r in honestRev.fleet.hitRatios" :key="r.receipt">
+            <code>hit {{ r.hit }}</code>
+            <span class="qc-lab__bar" :style="{ width: Math.round(r.hit * 100) + '%' }"></span>
+            <span class="qc-lab__count">{{ r.expectedJoules }}</span>
+          </li>
+        </ul>
+        <UiAlert title="W3 receipt boundary"><p>{{ honestRev.receipt.boundary }}</p></UiAlert>
+        <UiAlert title="Benchmark boundary"><p>{{ honestRev.bench.boundary }}</p></UiAlert>
+        <UiAlert title="Fleet economics boundary"><p>{{ honestRev.fleet.boundary }}</p></UiAlert>
+        <UiAlert title="W4 panel boundary"><p>{{ honestRev.boundary }}</p></UiAlert>
+      </section>
 
       <section class="qc-lab__controls">
         <label class="qc-lab__field">Qubits
@@ -197,6 +242,11 @@ onBeforeUnmount(() => { fabOff?.(); fabOff = null })
 .qc-lab__hist li { display: grid; grid-template-columns: 4rem 1fr auto; align-items: center; gap: var(--ich-sp4); }
 .qc-lab__bar { height: var(--ich-sp6); border-radius: 4px; background: var(--q-primary, var(--vp-c-brand-1)); min-width: 2px; }
 .qc-lab__count { font-variant-numeric: tabular-nums; opacity: var(--ich-op-card-faint); }
+.qc-lab__honest { display: grid; gap: var(--ich-sp4); padding: var(--ich-sp5); border-radius: var(--q-radius, 8px); background: color-mix(in srgb, var(--q-primary, var(--vp-c-brand-1)) 5%, transparent); }
+.qc-lab__claim { margin: 0; font-size: var(--ich-text-sm); line-height: var(--ich-lh-tight); }
+.qc-lab__facets { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--ich-sp2); font-size: var(--ich-text-sm); }
+.qc-lab__facets li { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ich-sp3); }
+.qc-lab__contrast { margin: 0; font-size: var(--ich-text-sm); opacity: var(--ich-op-card-soft); }
 .qc-lab__fab { display: grid; gap: var(--ich-sp4); padding: var(--ich-sp5); border-radius: var(--q-radius, 8px); background: color-mix(in srgb, var(--q-primary, var(--vp-c-brand-1)) 6%, transparent); }
 .qc-lab__fab-stages { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: var(--ich-sp3); font-size: var(--ich-text-xs); font-family: var(--vp-font-family-mono); }
 .qc-lab__fab-stages li { padding: var(--ich-sp1) var(--ich-sp4); border-radius: 5px; border: 1px solid var(--vp-c-divider); opacity: var(--ich-op-half); transition: opacity var(--ich-dur), background var(--ich-dur); }
