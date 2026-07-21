@@ -76,6 +76,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'iso/requires-pqc',
   'iso/pqc-gap-fill',
   'audit/standards',
+  'audit/local-quantum',
   'sciences/trinities',
   'forward/inverse/reverse',
   'learn/best',

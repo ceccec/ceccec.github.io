@@ -66,6 +66,7 @@
     "quantum:local-reverse-timed": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runLocalEncryptionReverseTimedExit",
     "quantum:local-reverse-timed-vs-standards": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runLocalEncryptionReverseTimedVsStandardsExit",
     "quantum:prove-local-novel-encrypt": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runProveLocalNovelEncryptionSecurityExit",
+    "quantum:local-audit-quantum": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runLocalAuditQuantumSpeedEfficiencyExit",
     "quantum:crypto-beyond-measure": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runCryptoToolkitBeyondRsaMeasuredExit",
     "quantum:prove-1tbit-encrypt": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runProveOneTbitRealtimeEncryptionClaimExit",
     "quantum:prove-local-magnitudes-iso": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runProveLocalEncryptionMagnitudesStrongerThanIsoAllDirectionsExit",

@@ -288,6 +288,7 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'local-reverse-timed', title: 'Local encryption reverse timed', fold: 'localEncryptionReverseTimed', cli: 'npm run quantum:local-reverse-timed', pair: 'reverse/local-timed', route: '/en/quantum-encryption#local-reverse-timed', barrel: 'src/water/encryption', boundary: 'Per-modulus generateMs/reverseMs/bits/ops/s — DEMO_RSA_MODULI toy wall-clock only', browserRunnable: true, browserGap: '' },
   { id: 'local-reverse-timed-vs-standards', title: 'Local reverse timed vs ISO/NIST standards', fold: 'localEncryptionReverseTimedVsStandards', cli: 'npm run quantum:local-reverse-timed-vs-standards', pair: 'reverse/timed-vs-standards', route: '/en/quantum-encryption#local-reverse-timed-vs-standards', barrel: 'src/water/encryption', boundary: 'Demo reverse vs AES-128/256 · ML-KEM classical bits — certified=false; does NOT break NIST PQC', browserRunnable: true, browserGap: '' },
   { id: 'prove-local-novel-encrypt', title: 'Prove local novel-encryption security', fold: 'proveLocalNovelEncryptionSecurity', cli: 'npm run quantum:prove-local-novel-encrypt', pair: 'prove/local-novel-encrypt', route: '/en/quantum-encryption#prove-local-novel-encrypt', barrel: 'src/water/encryption', boundary: 'overallWireClaimProved=false proof-of-falsehood · strongerThanNistPqc=false · handoff to prove/local-magnitudes-iso · certified=false', browserRunnable: true, browserGap: '' },
+  { id: 'local-audit-quantum', title: 'Local audit quantum speed & efficiency', fold: 'localAuditQuantumSpeedEfficiency', cli: 'npm run quantum:local-audit-quantum', pair: 'audit/local-quantum', route: '/en/quantum-encryption#local-audit-quantum', barrel: 'src/water/encryption', boundary: 'memoByRoot cold/warm · answers÷tokens · compose no-QPU/64bit honesty · slow local-audit gap closed — NOT physical qubit FLOPS · certified=false · production reverse refused', browserRunnable: true, browserGap: '' },
   { id: 'crypto-beyond-measure', title: 'Crypto toolkit beyond RSA measured', fold: 'cryptoToolkitBeyondRsaMeasured', cli: 'npm run quantum:crypto-beyond-measure', pair: 'measure/crypto-beyond', route: '/en/quantum-encryption#crypto-beyond-rsa', barrel: 'src/water/encryption', boundary: 'Timed PQC catalogs + Shor/ECC map + hash taxonomy + directional trinity — NOT FIPS/ISO certified / NOT production KEM', browserRunnable: true, browserGap: '' },
   { id: 'prove-1tbit-encrypt', title: 'Prove 1 Tbit/s realtime encryption claim', fold: 'proveOneTbitRealtimeEncryptionClaim', cli: 'npm run quantum:prove-1tbit-encrypt', pair: 'prove/1tbit-encrypt', route: '/en/quantum-encryption#prove-1tbit', barrel: 'src/water/encryption', boundary: 'wire-crypto NOT proved (no AES bench); amortized-reuse-memo may prove extent÷memo — NOT wire AES-GCM / NOT FIPS', browserRunnable: true, browserGap: '' },
   { id: 'prove-local-magnitudes-iso', title: 'Prove local vs ISO magnitudes all directions', fold: 'proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections', cli: 'npm run quantum:prove-local-magnitudes-iso', pair: 'prove/local-magnitudes-iso', route: '/en/quantum-encryption#prove-local-magnitudes-iso', barrel: 'src/water/encryption', boundary: 'wire-crypto-security-bits proof-of-falsehood (demo<<ML-KEM); structural/amort may prove >=100x non-wire only · certified=false · NOT ISO certified', browserRunnable: true, browserGap: '' },
@@ -299,7 +300,7 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'directional-trinity', title: 'Directional trinity — forward · inverse · reverse', fold: 'directionalTrinityForwardInverseReverse', cli: 'npm run quantum:directional-trinity', pair: 'forward/inverse/reverse', route: '/en/quantum-tools#directional-trinity', barrel: 'src/water/stack', boundary: 'Inverse ≠ reverse except named coincidence (digit 1: harmonic 9 = complement 9); NOT ten\'s complement as inverse', browserRunnable: true, browserGap: '' },
   { id: 'millennium-challenge', title: 'Millennium problems challenge', fold: 'millenniumProblemsChallenge', cli: 'npm run quantum:millennium-challenge', pair: 'challenge/millennium', route: '/en/research#millennium-challenge', barrel: 'src/wind/research', boundary: 'MODELED CHALLENGE — claySolvedByThisFold=0', browserRunnable: true, browserGap: '' },
   { id: 'fusion-verify', title: 'Fusion verify', fold: 'quantumFusionVerify', cli: 'npm run quantum:fusion-verify', pair: 'tamper/impossible', route: '/en/quantum-tools#fusion-verify', barrel: 'src/wind/fusion', boundary: 'Offline fuseAll wave — not external API fusion', browserRunnable: true, browserGap: '' },
-    { id: 'efficiency-vote', title: 'Efficiency vote · one quantum model', fold: 'oneQuantumModelFasterThanAll', cli: 'npm run quantum:efficiency-vote', pair: 'learn/best', route: '/en/quantum-tools#efficiency-vote', barrel: 'src/water/stack', boundary: 'answers÷tokens win only when vote.decided — NOT FLOPS / NOT every benchmark', browserRunnable: true, browserGap: '' },
+  { id: 'efficiency-vote', title: 'Efficiency vote · one quantum model', fold: 'oneQuantumModelFasterThanAll', cli: 'npm run quantum:efficiency-vote', pair: 'learn/best', route: '/en/quantum-tools#efficiency-vote', barrel: 'src/water/stack', boundary: 'answers÷tokens win only when vote.decided — NOT FLOPS / NOT every benchmark', browserRunnable: true, browserGap: '' },
   { id: 'prove-no-qpu-64bit', title: 'Speed vs rest · no QPU · any classical 64-bit', fold: 'proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit', cli: 'npm run quantum:prove-no-qpu-64bit', pair: 'prove/no-qpu-64bit', route: '/en/quantum-tools#prove-no-qpu-64bit', barrel: 'src/water/stack', boundary: 'answers÷tokens/reuse when decided; quantumHardwareRequired=false · cites tracks-classical-no-speedup — NOT FLOPS / NOT ISO / clay=0', browserRunnable: true, browserGap: '' },
   { id: 'local-math-computes', title: 'Local math computes', fold: 'localMathComputes', cli: 'npm run quantum:local-math-computes', pair: 'fold/verify', route: '/en/quantum-tools', barrel: 'src/water/stack', boundary: 'Sealed local math gate', browserRunnable: true, browserGap: '' },
   { id: 'offender-spec', title: 'Offender automation spec', fold: 'offenderAutomationSpec', cli: 'npm run quantum:offender-spec', pair: 'offender/spec', route: '/en/quantum-tools#offender-spec', barrel: 'src/pair/enforcement/ops', boundary: 'Machine-readable CI pipeline spec', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs (process.cwd) — CI-only' },
@@ -574,6 +575,7 @@ export function standardToolboxIoCatalog(matrix: MindMatrix = buildMatrix(), at 
     const isoGapFill = envelopes.find((envelope) => envelope.id === 'iso-pqc-gap-fill')
     const localMagnitudes = envelopes.find((envelope) => envelope.id === 'prove-local-magnitudes-iso')
     const proveNoQpu = envelopes.find((envelope) => envelope.id === 'prove-no-qpu-64bit')
+    const localAuditEnv = envelopes.find((envelope) => envelope.id === 'local-audit-quantum')
     const facets = [
       { facet: `STANDARD ENVELOPE — ${migrated}/${total} catalog tools wrapped`, on: migrated === total && total >= (2 * 7) },
       { facet: 'every envelope has input · output · import · export', on: allHaveIo },
@@ -586,6 +588,7 @@ export function standardToolboxIoCatalog(matrix: MindMatrix = buildMatrix(), at 
       { facet: `iso-pqc-gap-fill enveloped as ${STANDARD_TOOL_ENVELOPE_KIND}@${STANDARD_TOOL_ENVELOPE_VERSION}`, on: Boolean(isoGapFill) && isoGapFill!.version === STANDARD_TOOL_ENVELOPE_VERSION && isoGapFill!.fold === 'isoPqcRequirementsGapFillAllQuantumDirections' },
       { facet: `prove-local-magnitudes-iso enveloped as ${STANDARD_TOOL_ENVELOPE_KIND}@${STANDARD_TOOL_ENVELOPE_VERSION}`, on: Boolean(localMagnitudes) && localMagnitudes!.version === STANDARD_TOOL_ENVELOPE_VERSION && localMagnitudes!.fold === 'proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections' },
       { facet: `prove-no-qpu-64bit enveloped as ${STANDARD_TOOL_ENVELOPE_KIND}@${STANDARD_TOOL_ENVELOPE_VERSION}`, on: Boolean(proveNoQpu) && proveNoQpu!.version === STANDARD_TOOL_ENVELOPE_VERSION && proveNoQpu!.fold === 'proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit' },
+      { facet: `local-audit-quantum enveloped as ${STANDARD_TOOL_ENVELOPE_KIND}@${STANDARD_TOOL_ENVELOPE_VERSION}`, on: Boolean(localAuditEnv) && localAuditEnv!.version === STANDARD_TOOL_ENVELOPE_VERSION && localAuditEnv!.fold === 'localAuditQuantumSpeedEfficiency' },
       { facet: 'composes quantumCliToolsCatalog (no second wet registry)', on: catalog.computes },
       { facet: 'CI browserGap tools still enveloped (adapters OK)', on: envelopes.filter((e) => !e.browserRunnable).every((e) => e.browserGap.length > 0) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`toolbox-standard-io:${entry.facet}:${entry.on}`) }))
@@ -737,6 +740,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'slow-gap', saves: 'replaces wet re-diagnosis of architectural slowness as quantum gaps' },
   { id: 'iso-pqc-catalog', saves: 'replaces wet re-listing of NIST/ISO PQC standards status' },
   { id: 'iso-pqc-gap-fill', saves: 'replaces wet re-derivation of ISO/NIST PQC need coverage across forward·inverse·reverse' },
+  { id: 'local-audit-quantum', saves: 'replaces wet re-run of local novel+reverse-vs-standards+audit — memoByRoot cold/warm reuse' },
   { id: 'standards-audit', saves: 'replaces wet re-audit of reverse·inverse·10D standards alignment' },
   { id: 'first-in-corpus', saves: 'replaces wet re-census of first-in-corpus algebra + 10D projection registry' },
   { id: 'sciences-trinities', saves: 'replaces wet re-derivation of science↔dual↔fusion + significance (isoPqcHandoff)' },
@@ -871,6 +875,7 @@ export function documentSessionCryptoExperimentsUpdateTheorems(matrix: MindMatri
     const oneTbit = __ns_water_encryption.proveOneTbitRealtimeEncryptionClaim(matrix)
     const localTimed = __ns_water_encryption.localEncryptionReverseTimedVsStandards(matrix)
     const localNovel = __ns_water_encryption.proveLocalNovelEncryptionSecurity(matrix)
+    const localAuditQe = __ns_water_encryption.localAuditQuantumSpeedEfficiency(matrix, at)
     const isoGap = __ns_water_encryption.isoPqcRequirementsGapFillAllQuantumDirections(matrix, at)
     const isoRequires = __ns_water_encryption.isoRequiresPostQuantumSecurity(matrix)
     const localVsIso = __ns_water_encryption.proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matrix)
@@ -942,6 +947,13 @@ export function documentSessionCryptoExperimentsUpdateTheorems(matrix: MindMatri
         note: 'sealed-pr — wire proof-of-falsehood; structural/amort may prove hundredfold under named non-wire metrics only',
       },
       {
+        id: 'local-audit-quantum', chain: 'local-audit-qe', fold: 'localAuditQuantumSpeedEfficiency', status: 'sealed-pr',
+        pair: 'audit/local-quantum', cli: 'npm run quantum:local-audit-quantum',
+        route: '/en/quantum-encryption#local-audit-quantum', present: true, computes: localAuditQe.computes, root: localAuditQe.root,
+        honesty: `cold/warm memo · gapClosed=${localAuditQe.slowLocalAuditGapClosed} · qpuRequired=${localAuditQe.qpuRequired} · certified=false · NOT qubit FLOPS`,
+        note: 'sealed-pr — localAuditQuantumSpeedEfficiency composed with prove-no-qpu-64bit honesty',
+      },
+      {
         id: 'prove-local-novel-encrypt', chain: 'local-novel', fold: 'proveLocalNovelEncryptionSecurity', status: 'sealed-pr',
         pair: 'prove/local-novel-encrypt', cli: 'npm run quantum:prove-local-novel-encrypt',
         route: '/en/quantum-encryption#prove-local-novel-encrypt', present: true, computes: localNovel.computes, root: localNovel.root,
@@ -961,12 +973,13 @@ export function documentSessionCryptoExperimentsUpdateTheorems(matrix: MindMatri
       collider.claySolvedByThisFold === 0 &&
       localTimed.claySolvedByThisFold === 0 &&
       localNovel.claySolvedByThisFold === 0 &&
+      localAuditQe.claySolvedByThisFold === 0 &&
       isoGap.claySolvedByThisFold === 0 &&
       localVsIso.claySolvedByThisFold === 0
     const ftlZero = rosetta.physicalFtlClaim === 0
     const wireNotAmort = oneTbit.wire.provedAtCallTime === false && oneTbit.amortized.boundary.includes('NOT wire-speed')
     const certifiedFalse =
-      localTimed.certified === false && localNovel.certified === false && isoGap.certified === false && localVsIso.certified === false
+      localTimed.certified === false && localNovel.certified === false && localAuditQe.certified === false && isoGap.certified === false && localVsIso.certified === false
     const theoremsWired = novelty.computes && first.computes && tenD.computes && collider.computes
     const facets = [
       { facet: `SEALED CHAIN EXPERIMENTS — ${experiments.length} rows recompute (collider→rosetta→site→toolbox→tbit→reverse→iso→local-vs-iso→local-novel)`, on: sealedOk && experiments.length >= (2 * 5) },
@@ -1409,7 +1422,7 @@ export function slowProcessIsQuantumGap(matrix: MindMatrix = buildMatrix(), at =
 
 
     // Standards audit + ISO/PQC catalog must be shelved browser-runnable — missing = immediate quantum gap.
-    for (const id of ['iso-pqc-catalog', 'standards-audit'] as const) {
+    for (const id of ['iso-pqc-catalog', 'standards-audit', 'local-audit-quantum'] as const) {
       const tool = catalog.tools.find((entry) => entry.id === id)
       const present = Boolean(tool?.browserRunnable && tool.route.includes('quantum-encryption'))
       rows.push({

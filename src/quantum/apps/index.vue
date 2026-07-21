@@ -18,6 +18,7 @@ import {
   localEncryptionReverseTimed,
   localEncryptionReverseTimedVsStandards,
   proveLocalNovelEncryptionSecurity,
+  localAuditQuantumSpeedEfficiency,
   proveOneTbitRealtimeEncryptionClaim,
   isoPqcRequirementsGapFillAllQuantumDirections,
   proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections,
@@ -257,6 +258,21 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = vote.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'local-audit-quantum') {
+      const r = localAuditQuantumSpeedEfficiency()
+      const exported = exportStandardToolEnvelope('local-audit-quantum', 'ceccec.local')
+      const imported = importStandardToolEnvelope(exported)
+      ok = r.computes && exported.computes && imported.roundTrip
+      summary =
+        `cold=${r.coldMs.toFixed(3)}ms warm=${r.warmMs.toFixed(3)}ms speedup=${r.speedup.toFixed(3)}× ` +
+        `memoHit=${r.memoHits} gapClosed=${r.slowLocalAuditGapClosed} vote.decided=${r.vote.decided} ` +
+        `qpuRequired=${r.qpuRequired} classical64=${r.runsOnClassical64Bit} · envelope roundTrip=${imported.roundTrip}`
+      root = r.root
+      boundary = r.boundary
+      facets = [
+        ...r.facets.map((f) => ({ facet: f.facet, on: f.on })),
+        { facet: `standard envelope ${exported.kind}@${exported.version} import/export round-trip`, on: imported.roundTrip },
+      ]
     } else if (toolId === 'prove-no-qpu-64bit') {
       const r = proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit()
       const exported = exportStandardToolEnvelope('prove-no-qpu-64bit', 'ceccec.local')
@@ -607,6 +623,18 @@ function runTool(toolId: string) {
         </UiButton>
         <UiButton size="sm" :disabled="runningId === 'ftl-rosetta-handoff'" @click="runTool('ftl-rosetta-handoff')">
           {{ runningId === 'ftl-rosetta-handoff' ? '…' : 'Run FTL handoff' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="local-audit-quantum" aria-label="Local audit quantum speed and efficiency">
+        <h3>Local audit quantum speed &amp; efficiency</h3>
+        <p class="quantum-apps__meta">
+          memoByRoot cold/warm for local novel + reverse-vs-standards + standards audit.
+          Composes prove-no-qpu-64bit honesty (qpuRequired=false · classical-64bit).
+          NOT physical qubit FLOPS · certified=false · production reverse refused.
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'local-audit-quantum'" @click="runTool('local-audit-quantum')">
+          {{ runningId === 'local-audit-quantum' ? '…' : 'Run local-audit-quantum' }}
         </UiButton>
       </section>
       <UiSeparator />
