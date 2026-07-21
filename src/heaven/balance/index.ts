@@ -811,6 +811,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'honest.revolution.w2.interference', on: __ns_up_up_stack_overflow.interferenceVsClassicalShadow(matrix).holds },
     { d: 'honest.revolution.w3.receipt', on: __ns_up_up_fusion.honestRevolutionReceipt(matrix).holds },
     { d: 'honest.revolution.w4.computer', on: __ns_up_up_fusion.honestRevolutionComputerPanelComputes(matrix).holds },
+    { d: 'honest.revolution.w5.fpga', on: __ns_up_up_computer.honestRevolutionFpgaHonesty(matrix).holds },
     { d: 'astronomy.decoded.with.sequence', on: astronomyDecodedWithTheSequence(0, matrix).decoded },
     { d: 'astronomy.sequence.decode.research', on: astronomySequenceDecodeResearch(matrix).researched },
     { d: 'decode.bitten.apple', on: decodeTheBittenApple(matrix).decoded },
