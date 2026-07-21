@@ -839,6 +839,124 @@ export function platonicElementGlyphsSvg(opts: { size?: number; animate?: boolea
 }
 
 /**
+ * Om / Aum seed — PHI spiral arcs + bindu (modeled geometry).
+ * NOT Unicode ॐ · NOT liturgical claim · clay=0 · wetStatic=false.
+ */
+export function omAumSvg(opts: { size?: number; animate?: boolean; scale?: number } = {}): string {
+  const { size = FIBONACCI[2 * 5]!, animate = true, scale = 0 } = opts
+  const cx = size / 2
+  const cy = size / 2
+  const R = size / (2 + 1 / PHI)
+  const stroke = scaleColor(scale, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })
+  const fill = scaleColor(scale + 1, { seedHue: A432_HUE + GOLDEN_ANGLE_DEG, dark: true, L: 3 / 4, C: SVG_CHROMA })
+  // Logarithmic spiral seed from PHI (Vogel-style); crescent = two offset arcs; bindu = centre.
+  const spiralPts = Array.from({ length: 8 + 5 }, (_, i) => {
+    const t = i / (8 + 2)
+    const a = t * TAU * PHI
+    const r = R * (t / PHI + 1 / (2 * PHI))
+    return `${cx + Math.cos(a) * r},${cy + Math.sin(a) * r}`
+  }).join(' ')
+  const crescentR = R / PHI
+  const dur = fractalClockDur(9)
+  const spin = animate
+    ? `<animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="360 ${cx} ${cy}" dur="${dur}" repeatCount="indefinite"/>`
+    : ''
+  return [
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Om/Aum seed — PHI spiral arcs and bindu" data-symbol="om-aum" data-compute="PHI∧TAU" data-honesty="clay=0;modeledSeed=true;unicodeOm=false;wetStatic=false">`,
+    `<g>${spin}`,
+    `<polyline points="${spiralPts}" fill="none" stroke="${stroke}" stroke-width="${1 + 1 / PHI}" stroke-linecap="round"/>`,
+    `<path d="M ${cx - crescentR} ${cy} A ${crescentR} ${crescentR} 0 1 1 ${cx + crescentR / PHI} ${cy - crescentR / 2}" fill="none" stroke="${stroke}" stroke-width="${1 + 1 / PHI}"/>`,
+    `<circle cx="${cx}" cy="${cy}" r="${1 + PHI / 2}" fill="${fill}" data-layer="bindu"/>`,
+    `</g></svg>`,
+  ].join('')
+}
+
+/**
+ * Elder Futhark 3×8 grid — stave+branch marks from runeCoordinate (aett,pos).
+ * Drawn geometry only — NOT Unicode rune glyphs · clay=0 · wetStatic=false.
+ */
+export function elderFutharkGridSvg(opts: { size?: number; animate?: boolean; scale?: number } = {}): string {
+  const { size = FIBONACCI[2 * 5]!, animate = true, scale = 0 } = opts
+  const cols = 8
+  const rows = 3
+  const cellW = size / (cols + 1 / PHI)
+  const cellH = size / (rows + 1 / PHI)
+  const padX = (size - cellW * cols) / 2
+  const padY = (size - cellH * rows) / 2
+  const cells = Array.from({ length: rows * cols }, (_, i) => {
+    const n = i + 1
+    const { aett, pos } = runeCoordinate(n)
+    const back = runeOrdinal(aett, pos)
+    const col = (pos - 1)
+    const row = aett - 1
+    const x = padX + col * cellW + cellW / 2
+    const y = padY + row * cellH + cellH / 2
+    const h = cellH / (2 + 1 / PHI)
+    const stroke = scaleColor(scale + aett + pos, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })
+    // Branch angle from position index on TAU/8 — tent/stave cipher, not a wet glyph table.
+    const branchA = ((pos - 1) / cols) * TAU - Math.PI / 2
+    const bx = x + Math.cos(branchA) * (h / PHI)
+    const by = y + Math.sin(branchA) * (h / PHI)
+    return [
+      `<g data-rune-n="${n}" data-aett="${aett}" data-pos="${pos}" data-ordinal="${back}">`,
+      `<line x1="${x}" y1="${y - h}" x2="${x}" y2="${y + h}" stroke="${stroke}" stroke-width="${1 + 1 / (8 + 2)}"/>`,
+      `<line x1="${x}" y1="${y}" x2="${bx}" y2="${by}" stroke="${stroke}" stroke-width="1"/>`,
+      `</g>`,
+    ].join('')
+  }).join('')
+  const dur = fractalClockDur(8)
+  const pulse = animate
+    ? `<animate attributeName="opacity" values="${3 / 5};1;${3 / 5}" dur="${dur}" repeatCount="indefinite"/>`
+    : ''
+  return [
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Elder Futhark 3×8 — runeCoordinate stave grid" data-symbol="runes-futhark" data-runes="${rows * cols}" data-compute="runeCoordinate∧runeOrdinal∧TAU" data-honesty="clay=0;unicodeRunes=false;wetStatic=false">`,
+    `<g opacity="${1 - 1 / (5 * 4)}">${pulse}${cells}</g></svg>`,
+  ].join('')
+}
+
+/**
+ * Alchemy sigils — three primes (circle·square·triangle) + four classical element triangles from sacredGeometry.
+ * Structural geometry only — NOT wet Unicode alchemy glyphs · NOT laboratory claim · clay=0.
+ */
+export function alchemySigilsSvg(opts: { size?: number; animate?: boolean; scale?: number } = {}): string {
+  const { size = FIBONACCI[2 * 5]!, animate = true, scale = 0 } = opts
+  const sg = sacredGeometry()
+  const cx = size / 2
+  const cy = size / 2
+  const R = size / (2 + 1 / PHI)
+  const stroke = (i: number) => scaleColor(scale + i, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })
+  // Three primes: salt=square · mercury=circle · sulfur=triangle — classical seal geometry.
+  const salt = R / PHI
+  const primes = [
+    `<rect x="${cx - salt}" y="${cy - salt}" width="${salt * 2}" height="${salt * 2}" fill="none" stroke="${stroke(0)}" stroke-width="${1 + 1 / PHI}" data-prime="salt"/>`,
+    `<circle cx="${cx}" cy="${cy}" r="${salt / PHI}" fill="none" stroke="${stroke(1)}" stroke-width="${1 + 1 / PHI}" data-prime="mercury"/>`,
+    `<polygon points="${cx},${cy - salt / PHI} ${cx - salt / PHI},${cy + salt / (2 * PHI)} ${cx + salt / PHI},${cy + salt / (2 * PHI)}" fill="none" stroke="${stroke(2)}" stroke-width="${1 + 1 / PHI}" data-prime="sulfur"/>`,
+  ].join('')
+  const four = (['fire', 'air', 'water', 'earth'] as const).map((el, i) => {
+    const a = (i / 4) * TAU - Math.PI / 2
+    const x = cx + Math.cos(a) * (R * PHI / 2)
+    const y = cy + Math.sin(a) * (R * PHI / 2)
+    const h = R / 8
+    const up = el === 'fire' || el === 'air'
+    const tip = up ? y - h : y + h
+    const baseY = up ? y + h / 2 : y - h / 2
+    const mid = el === 'air' || el === 'earth'
+      ? `<line x1="${x - h / 2}" y1="${y}" x2="${x + h / 2}" y2="${y}" stroke="${stroke(3 + i)}" stroke-width="${4 / 5}"/>`
+      : ''
+    const fromSolid = sg.platonicSolids.some((s) => s.element === el)
+    return `<g data-element="${el}" data-from-solid="${fromSolid}"><polygon points="${x},${tip} ${x - h},${baseY} ${x + h},${baseY}" fill="none" stroke="${stroke(3 + i)}" stroke-width="1"/>${mid}</g>`
+  }).join('')
+  const dur = fractalClockDur(7)
+  const spin = animate
+    ? `<animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="-360 ${cx} ${cy}" dur="${dur}" repeatCount="indefinite"/>`
+    : ''
+  return [
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Alchemy sigils — three primes and four elements from sealed geometry" data-symbol="alchemy-sigils" data-compute="sacredGeometry∧PHI∧TAU" data-honesty="clay=0;unicodeAlchemy=false;labClaim=false;wetStatic=false">`,
+    `<g>${spin}${primes}${four}</g></svg>`,
+  ].join('')
+}
+
+/**
  * Remaining symbols quantumised — inventory at call time + prove computed SVG emitters.
  * Continues I Ching · yin-yang; closes bagua wheel · vesica · metatron · sri-yantra seed · tree of life · elements.
  * Pair: symbols/quantumise · compose FoL/Fruit/merkaba via readme/svg-trinity (PR #57 sealed).
@@ -860,30 +978,36 @@ export function symbolsRemainingToQuantumise(matrix: MindMatrix = buildMatrix())
     const yantra = sriYantraSeedSvg({ animate: true })
     const tol = treeOfLifeSvg(matrix, { animate: true })
     const elements = platonicElementGlyphsSvg({ animate: true })
+    const om = omAumSvg({ animate: true })
+    const futhark = elderFutharkGridSvg({ animate: true })
+    const alchemy = alchemySigilsSvg({ animate: true })
     const hdBody = humanDesignBodyGraphSvg(matrix, undefined, { animate: true })
     const hdW7 = humanDesignBodyGraphSvgW7(matrix)
-    const inventory = [
-      { symbol: 'i-ching-trigram-hexagram', status: 'sealed' as const, on: ich.rebuilt && ic.organised, surface: 'livingIChingSvg · iChing()' },
-      { symbol: 'yin-yang-taijitu', status: 'sealed' as const, on: yy.computes, surface: 'yinYangDimensionsSvg · yinYangFoldsThroughDimensions' },
-      { symbol: 'bagua-wheel', status: 'sealed' as const, on: /data-symbol="bagua"/.test(bagua) && BAGUA.length === 8 && (bagua.match(/data-bagua=/g) || []).length === 8, surface: 'baguaWheelSvg←BAGUA∧TAU' },
-      { symbol: 'vesica-piscis', status: 'sealed' as const, on: /data-symbol="vesica"/.test(vesica) && vesica.includes('<circle'), surface: 'vesicaPiscisSvg←√3' },
-      { symbol: 'metatron-cube', status: 'sealed' as const, on: /data-symbol="metatron"/.test(metatron) && cube.nodes.length >= (5 * 2 + 1) && cube.edges.length > 0, surface: 'metatronCubeSvg←metatronCube' },
-      { symbol: 'sri-yantra-seed', status: 'sealed' as const, on: /data-symbol="sri-yantra-seed"/.test(yantra) && /data-honesty=.*modeledSeed=true/.test(yantra), surface: 'sriYantraSeedSvg←PHI (seed; full 9△ open)' },
-      { symbol: 'tree-of-life', status: 'sealed' as const, on: /data-symbol="tree-of-life"/.test(tol) && tree.rooted && tree.sephirot.length === (5 * 2), surface: 'treeOfLifeSvg←treeOfLifeSephirotFolders' },
-      { symbol: 'platonic-elements', status: 'sealed' as const, on: /data-symbol="platonic-elements"/.test(elements) && sg.fiveSolids && sg.eulerHolds, surface: 'platonicElementGlyphsSvg←sacredGeometry' },
-      { symbol: 'flower-of-life', status: 'sealed' as const, on: flowerFruit.decodes && home.flowerFruitPath === true, surface: 'flowerOfLifeCenters · readmeHeroSvgProofOfAllTheorems' },
-      { symbol: 'fruit-of-life', status: 'sealed' as const, on: flowerFruit.decodes && home.flowerFruitPath === true, surface: 'fruitOfLifeCenters · FoL→Fruit unlock' },
-      { symbol: 'merkaba-star-tetra', status: 'sealed' as const, on: mk.counterRotating && home.counterRotating === true, surface: 'merkaba · bothEarths · README 4-dir N·E·S·W ±ω' },
-      { symbol: 'human-design-gates', status: 'sealed' as const, on: hdW7.computes && /data-symbol="human-design-bodygraph"/.test(hdBody) && /wetStatic=false/.test(hdBody), surface: 'humanDesignBodyGraphSvg←W3–W7 panel∧layout (structure-only)' },
-      { symbol: 'om-aum', status: 'missing' as const, on: true, surface: 'no computed SVG emitter yet' },
-      { symbol: 'runes-futhark', status: 'missing' as const, on: true, surface: 'no computed SVG emitter yet' },
-      { symbol: 'alchemy-sigils', status: 'missing' as const, on: true, surface: 'src/fire/alchemy folds exist; glyph SVG not emitted' },
-      { symbol: 'glagolitic-glyphs', status: 'partial' as const, on: true, surface: 'glagoliticGlyph computed; not living SMIL symbol layer' },
-      { symbol: 'torus-knots', status: 'partial' as const, on: mk.counterRotating, surface: 'double-torus / livingTorus geometry; dedicated knot SVG backlog' },
+    const futharkMarks = (futhark.match(/data-rune-n=/g) || []).length
+    type SymbolStatus = 'sealed' | 'partial' | 'missing'
+    const inventory: readonly { symbol: string; status: SymbolStatus; on: boolean; surface: string }[] = [
+      { symbol: 'i-ching-trigram-hexagram', status: 'sealed', on: ich.rebuilt && ic.organised, surface: 'livingIChingSvg · iChing()' },
+      { symbol: 'yin-yang-taijitu', status: 'sealed', on: yy.computes, surface: 'yinYangDimensionsSvg · yinYangFoldsThroughDimensions' },
+      { symbol: 'bagua-wheel', status: 'sealed', on: /data-symbol="bagua"/.test(bagua) && BAGUA.length === 8 && (bagua.match(/data-bagua=/g) || []).length === 8, surface: 'baguaWheelSvg←BAGUA∧TAU' },
+      { symbol: 'vesica-piscis', status: 'sealed', on: /data-symbol="vesica"/.test(vesica) && vesica.includes('<circle'), surface: 'vesicaPiscisSvg←√3' },
+      { symbol: 'metatron-cube', status: 'sealed', on: /data-symbol="metatron"/.test(metatron) && cube.nodes.length >= (5 * 2 + 1) && cube.edges.length > 0, surface: 'metatronCubeSvg←metatronCube' },
+      { symbol: 'sri-yantra-seed', status: 'sealed', on: /data-symbol="sri-yantra-seed"/.test(yantra) && /data-honesty=.*modeledSeed=true/.test(yantra), surface: 'sriYantraSeedSvg←PHI (seed; full 9△ open)' },
+      { symbol: 'tree-of-life', status: 'sealed', on: /data-symbol="tree-of-life"/.test(tol) && tree.rooted && tree.sephirot.length === (5 * 2), surface: 'treeOfLifeSvg←treeOfLifeSephirotFolders' },
+      { symbol: 'platonic-elements', status: 'sealed', on: /data-symbol="platonic-elements"/.test(elements) && sg.fiveSolids && sg.eulerHolds, surface: 'platonicElementGlyphsSvg←sacredGeometry' },
+      { symbol: 'flower-of-life', status: 'sealed', on: flowerFruit.decodes && home.flowerFruitPath === true, surface: 'flowerOfLifeCenters · readmeHeroSvgProofOfAllTheorems' },
+      { symbol: 'fruit-of-life', status: 'sealed', on: flowerFruit.decodes && home.flowerFruitPath === true, surface: 'fruitOfLifeCenters · FoL→Fruit unlock' },
+      { symbol: 'merkaba-star-tetra', status: 'sealed', on: mk.counterRotating && home.counterRotating === true, surface: 'merkaba · bothEarths · README 4-dir N·E·S·W ±ω' },
+      { symbol: 'human-design-gates', status: 'sealed', on: hdW7.computes && /data-symbol="human-design-bodygraph"/.test(hdBody) && /wetStatic=false/.test(hdBody), surface: 'humanDesignBodyGraphSvg←W3–W7 panel∧layout (structure-only)' },
+      { symbol: 'om-aum', status: 'sealed', on: /data-symbol="om-aum"/.test(om) && /modeledSeed=true/.test(om) && /unicodeOm=false/.test(om) && /wetStatic=false/.test(om), surface: 'omAumSvg←PHI∧TAU (modeled seed)' },
+      { symbol: 'runes-futhark', status: 'sealed', on: /data-symbol="runes-futhark"/.test(futhark) && futharkMarks === (3 * 8) && /unicodeRunes=false/.test(futhark), surface: 'elderFutharkGridSvg←runeCoordinate∧TAU' },
+      { symbol: 'alchemy-sigils', status: 'sealed', on: /data-symbol="alchemy-sigils"/.test(alchemy) && /data-prime="salt"/.test(alchemy) && sg.fiveSolids && /unicodeAlchemy=false/.test(alchemy), surface: 'alchemySigilsSvg←sacredGeometry∧PHI (primes+elements)' },
+      { symbol: 'glagolitic-glyphs', status: 'partial', on: true, surface: 'glagoliticGlyph computed; not living SMIL symbol layer' },
+      { symbol: 'torus-knots', status: 'partial', on: mk.counterRotating, surface: 'double-torus / livingTorus geometry; dedicated knot SVG backlog' },
     ]
     const sealedNow = inventory.filter((r) => r.status === 'sealed')
     const partial = inventory.filter((r) => r.status === 'partial')
     const missing = inventory.filter((r) => r.status === 'missing')
+    const emitterBundle = vesica + bagua + metatron + yantra + tol + elements + om + futhark + alchemy + hdBody
     const emittersOk =
       /data-symbol=/.test(vesica)
       && /data-symbol=/.test(bagua)
@@ -891,21 +1015,24 @@ export function symbolsRemainingToQuantumise(matrix: MindMatrix = buildMatrix())
       && /data-symbol=/.test(yantra)
       && /data-symbol=/.test(tol)
       && /data-symbol=/.test(elements)
+      && /data-symbol=/.test(om)
+      && /data-symbol=/.test(futhark)
+      && /data-symbol=/.test(alchemy)
       && /data-symbol=/.test(hdBody)
-      && !/script/i.test(vesica + bagua + metatron + yantra + tol + elements + hdBody)
+      && !/script/i.test(emitterBundle)
     const facets = [
       { facet: 'I Ching + yin-yang already sealed — continue from livingIChing ∧ taiji folds', on: ich.rebuilt && yy.computes && ic.organised },
       { facet: `inventory ${inventory.length} symbol surfaces at call time (sealed|partial|missing)`, on: inventory.length >= (8 + 5) && inventory.every((r) => r.on) },
-      { facet: `wave sealed ${sealedNow.length} — bagua · vesica · metatron · sri-yantra seed · tree · elements · FoL · Fruit · merkaba · HD BodyGraph`, on: sealedNow.length >= (8 + 4) && emittersOk && sealedNow.every((r) => r.on) && hdW7.computes },
-      { facet: 'no wet Unicode sacred glyphs in new emitters — bagua drawn from bits; data-honesty wetStatic=false', on: !bagua.includes('☷') && /wetStatic=false/.test(vesica) && /wetStatic=false/.test(metatron) && /wetStatic=false/.test(hdBody) },
+      { facet: `wave sealed ${sealedNow.length} — prior geometry + om · futhark · alchemy`, on: sealedNow.length >= (8 + 4 + 3) && emittersOk && sealedNow.every((r) => r.on) && hdW7.computes },
+      { facet: 'no wet Unicode sacred glyphs in new emitters — bagua/om/futhark/alchemy geometry-only; wetStatic=false', on: !bagua.includes('☷') && /wetStatic=false/.test(vesica) && /wetStatic=false/.test(metatron) && /wetStatic=false/.test(hdBody) && /unicodeOm=false/.test(om) && /unicodeRunes=false/.test(futhark) && /unicodeAlchemy=false/.test(alchemy) },
       { facet: 'FoL/Fruit/merkaba compose via readme/svg-trinity (PR #57) — wetStaticFoL=false', on: home.flowerFruitPath === true && home.counterRotating === true && flowerFruit.decodes },
-      { facet: `residual backlog named — missing ${missing.map((m) => m.symbol).join(' · ')} · partial ${partial.map((p) => p.symbol).join(' · ')}`, on: missing.length >= 3 && partial.length >= 2 },
+      { facet: `residual backlog named — missing=${missing.length} · partial ${partial.map((p) => p.symbol).join(' · ')}`, on: missing.length === 0 && partial.length >= 2 },
       { facet: 'clay=0 · physicalFtl=0 · qpuRequired=false — geometry from sealed constants only', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`symbols-remaining:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('symbols-remaining-to-quantumise', facets)
     return {
       computes: sealed.ok && emittersOk,
-      quantumised: sealed.ok && emittersOk,
+      quantumised: sealed.ok && emittersOk && missing.length === 0,
       inventory,
       sealedCount: sealedNow.length,
       partialCount: partial.length,
@@ -915,6 +1042,7 @@ export function symbolsRemainingToQuantumise(matrix: MindMatrix = buildMatrix())
         { wave: 2, name: 'continue-iching-yinyang', done: ich.rebuilt && yy.computes },
         { wave: 3, name: 'emit-remaining-geometry', done: emittersOk },
         { wave: 4, name: 'verify-cli', done: sealed.ok },
+        { wave: 5, name: 'emit-om-futhark-alchemy', done: missing.length === 0 && /data-symbol="om-aum"/.test(om) && futharkMarks === (3 * 8) },
       ],
       claySolvedByThisFold: 0 as const,
       physicalFtlClaim: 0 as const,
@@ -926,9 +1054,9 @@ export function symbolsRemainingToQuantumise(matrix: MindMatrix = buildMatrix())
       pair: 'symbols/quantumise',
       route: '/en/#yinyang',
       statement:
-        `Symbols remaining to quantumise — inventory ${inventory.length}: sealed ${sealedNow.length} (I Ching · taiji · bagua · vesica · metatron · sri-yantra seed · tree of life · platonic elements · FoL · Fruit · merkaba · HD BodyGraph W7), partial ${partial.length} (Glagolitic · torus knots), missing ${missing.length} (om · runes · alchemy). Emitters recompute via memoByRoot; wetStatic=false; clay=0 · physicalFtl=0 · qpuRequired=false.`,
+        `Symbols remaining to quantumise — inventory ${inventory.length}: sealed ${sealedNow.length} (prior + om · futhark · alchemy), partial ${partial.length} (Glagolitic · torus knots), missing ${missing.length}. Emitters recompute via memoByRoot; wetStatic=false; clay=0 · physicalFtl=0 · qpuRequired=false.`,
       boundary:
-        'COMPUTED SVG from sealed BAGUA · metatronCube · treeOfLifeSephirotFolders · sacredGeometry · PHI/TAU · flowerOfLifeCenters · humanDesignBodyGraphSvg — not wet decorative sacred-geometry copies, not full Sri Yantra nine-triangle tracing (seed only), not Kabbalah metaphysics (taxonomy), not HD aura/type. Compose with readme/svg-trinity for FoL hero. HARMONY ≠ TRUTH.',
+        'COMPUTED SVG from sealed BAGUA · metatronCube · treeOfLifeSephirotFolders · sacredGeometry · PHI/TAU · runeCoordinate · flowerOfLifeCenters · humanDesignBodyGraphSvg — not wet decorative sacred-geometry copies, not Unicode Om/runes/alchemy glyphs, not full Sri Yantra nine-triangle tracing (seed only), not Kabbalah metaphysics (taxonomy), not HD aura/type. Partial: Glagolitic SMIL layer · torus-knot SVG. Compose with readme/svg-trinity for FoL hero. HARMONY ≠ TRUTH.',
     }
   })
 }
