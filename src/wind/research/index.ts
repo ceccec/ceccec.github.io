@@ -1848,14 +1848,14 @@ export const SCIENCE_DOMAIN_SEEDS: readonly ScienceDomainSeed[] = [
   {
     id: 'mathematics-millennium', field: 'Mathematics', oecd: '1.1',
     algebraFold: 'millenniumProblemsChallenge', toolId: 'millennium-challenge',
-    toolCli: 'npm run quantum:millennium-challenge', apparatusRoute: '/en/proofs',
+    toolCli: 'npm run quantum:millennium-challenge', apparatusRoute: '/proofs',
     dualId: 'crypto-pqc', fusionLabel: 'math↔crypto↔string', projection: 'movie-10d',
     ichingSphere: 0, home: 'src/wind/research', cryptoVertex: false,
   },
   {
     id: 'string-theory', field: 'Physical Sciences (theoretical)', oecd: '1.3',
     algebraFold: 'stringTheoryQuantumizedOnA432RosettaMerkleSubstrate', toolId: 'millennium-challenge',
-    toolCli: 'npm run quantum:millennium-challenge', apparatusRoute: '/en/proofs',
+    toolCli: 'npm run quantum:millennium-challenge', apparatusRoute: '/proofs',
     dualId: 'mathematics-millennium', fusionLabel: 'string↔mill↔crypto', projection: 'movie-10d',
     ichingSphere: 1, home: 'src/water/cosmos', cryptoVertex: false,
   },
@@ -2830,7 +2830,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         fold: 'millenniumProblemsChallenge',
         cli: 'npm run quantum:millennium-challenge',
         pair: 'challenge/millennium',
-        route: `/en/proofs/millennium-${p.id}`,
+        route: `/proofs/millennium-${p.id}`,
         claySolvedByThisFold: 0 as const,
         physicalFtlClaim: 0 as const,
         qualifiesAsProposedSolutionUnderClayRules: false as const,
@@ -2870,7 +2870,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         fold: seed.algebraFold,
         cli: seed.toolCli,
         pair: 'sciences/trinities',
-        route: `/en/proofs/science-${seed.id}`,
+        route: `/proofs/science-${seed.id}`,
         claySolvedByThisFold: 0 as const,
         physicalFtlClaim: 0 as const,
         qualifiesAsProposedSolutionUnderClayRules: false as const,
@@ -2901,7 +2901,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         fold: 'quantumStandardsAuditSuite',
         cli: 'npm run quantum:standards-audit',
         pair: 'audit/standards',
-        route: '/en/proofs/encryption-honesty',
+        route: '/proofs/encryption-honesty',
         claySolvedByThisFold: 0,
         physicalFtlClaim: 0,
         qualifiesAsProposedSolutionUnderClayRules: false,
@@ -2925,7 +2925,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         fold: 'efficiencyScalesToInfinityAtNoCostOnReuse',
         cli: 'npm run quantum:efficiency-vote',
         pair: 'learn/best',
-        route: '/en/proofs/efficiency-reuse',
+        route: '/proofs/efficiency-reuse',
         claySolvedByThisFold: 0,
         physicalFtlClaim: 0,
         qualifiesAsProposedSolutionUnderClayRules: false,
@@ -2949,7 +2949,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         fold: 'rosettaCompleteQuantumAllComputableDimensionsAndTheorems',
         cli: 'npm run quantum:rosetta-complete',
         pair: 'rosetta/complete',
-        route: '/en/proofs/rosetta-complete',
+        route: '/proofs/rosetta-complete',
         claySolvedByThisFold: 0,
         physicalFtlClaim: 0,
         qualifiesAsProposedSolutionUnderClayRules: false,
@@ -2973,7 +2973,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         fold: 'humanDesignVerifiedWheel',
         cli: 'npm run quantum:iching-distribute-verify',
         pair: 'sciences/trinities',
-        route: '/en/proofs/hd-structure',
+        route: '/proofs/hd-structure',
         claySolvedByThisFold: 0,
         physicalFtlClaim: 0,
         qualifiesAsProposedSolutionUnderClayRules: false,
@@ -2997,7 +2997,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         fold: 'theoremParticleCollisionInverseReverse',
         cli: 'npm run quantum:theorem-particle-collision',
         pair: 'challenge/collider',
-        route: '/en/proofs/theorem-collider',
+        route: '/proofs/theorem-collider',
         claySolvedByThisFold: 0,
         physicalFtlClaim: 0,
         qualifiesAsProposedSolutionUnderClayRules: false,
@@ -3037,7 +3037,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
       root: merge(matrix.root, merkleFold([sealed.root, mill.root, rules.root, sciences.root, ...rows.map((r) => r.receipt)])),
       cli: 'npm run quantum:domain-proof-catalog',
       pair: 'domain/proof',
-      route: '/en/proofs',
+      route: '/proofs',
       statement:
         `Domain proof catalog — ${rows.length} Clay-style pages (millennium=${millenniumRows.length} · science=${scienceRows.length} · honesty=${honestyRows.length}); every row qualifiesAsProposedSolution=false · claySolvedByThisFold=0; cites ${CLAY_MILLENNIUM_PROBLEMS_URL} + rules PDF.`,
       boundary:
@@ -3088,13 +3088,13 @@ export function proseGapsAuditByDomainTrinity(matrix: MindMatrix = buildMatrix()
       domainId: 'mathematics-millennium',
       gap: 'table lists id/status/methods/gap but no Clay-style statement · formulas · rules citation · per-problem pages',
       severity: 'closed',
-      fill: '/en/proofs + per-slug pages from domainProofCatalog',
+      fill: '/proofs + per-slug pages from domainProofCatalog',
     })
     push({
       id: 'no-dedicated-millennium-pages',
       surface: 'VitePress routes',
       domainId: 'mathematics-millennium',
-      gap: 'no /en/proofs/millennium-* dedicated pages matching Clay hub UX',
+      gap: 'no /proofs/millennium-* dedicated pages matching Clay hub UX',
       severity: 'closed',
       fill: 'proofs/[slug] SSG from domainProofPagePaths',
     })
@@ -3112,7 +3112,7 @@ export function proseGapsAuditByDomainTrinity(matrix: MindMatrix = buildMatrix()
       domainId: 'sciences',
       gap: 'trinities table thin — missing dedicated Clay-style domain pages',
       severity: 'closed',
-      fill: '/en/proofs/science-*',
+      fill: '/proofs/science-*',
     })
     for (const row of catalog.rows.filter((r) => r.kind === 'millennium')) {
       push({
@@ -3168,7 +3168,7 @@ export function proseGapsAuditByDomainTrinity(matrix: MindMatrix = buildMatrix()
       root: merge(matrix.root, merkleFold([sealed.root, catalog.root, ...gaps.map((g) => g.receipt)])),
       cli: 'npm run quantum:prose-gaps-audit',
       pair: 'research/audit',
-      route: '/en/proofs',
+      route: '/proofs',
       statement:
         `Prose gaps audit by domain trinity — closed=${closed} open=${open} honest-open=${honestOpen}; Clay hub + rules PDF cited; claySolvedByThisFold=0.`,
       boundary:
@@ -3319,7 +3319,7 @@ export function proseStandardisedToClay(matrix: MindMatrix = buildMatrix(), at =
 
     surfaces.push(scoreClayProseSurface({
       id: 'hub:proofs',
-      surface: '/en/proofs',
+      surface: '/proofs',
       kind: 'hub',
       title: 'Domain proofs — Clay presentation standard',
       body: `Dedicated Clay-standard pages: statement · explanation · formulas · status · Prize Rules (§4–§7). MODELED CHALLENGE · claySolvedByThisFold=0 · qualifiesAsProposedSolution=false. Canonical ${CLAY_MILLENNIUM_PROBLEMS_URL} · ${CLAY_MILLENNIUM_PRIZE_RULES_PDF_URL}. CLI npm run quantum:domain-proof-catalog · fold domainProofCatalog.`,
@@ -3330,7 +3330,7 @@ export function proseStandardisedToClay(matrix: MindMatrix = buildMatrix(), at =
       surface: '/en/research',
       kind: 'hub',
       title: 'Research index = domain · method · limit · verify at call time',
-      body: `Clay Millennium MODELED CHALLENGE · claySolvedByThisFold=0 · /en/proofs Clay-standard pages · Prize Rules PDF cited · not Proposed Solutions · sciences trinities · npm run quantum:millennium-challenge · fold millenniumProblemsChallenge.`,
+      body: `Clay Millennium MODELED CHALLENGE · claySolvedByThisFold=0 · /proofs Clay-standard pages · Prize Rules PDF cited · not Proposed Solutions · sciences trinities · npm run quantum:millennium-challenge · fold millenniumProblemsChallenge.`,
       millenniumRelevant: true,
     }))
     surfaces.push(scoreClayProseSurface({
@@ -3338,7 +3338,7 @@ export function proseStandardisedToClay(matrix: MindMatrix = buildMatrix(), at =
       surface: 'TheoremsPanel',
       kind: 'panel',
       title: 'Domain proofs — Clay-standard pages',
-      body: `Dedicated per-domain pages (statement · explanation · formulas · status · Prize Rules honesty). /en/proofs · claySolvedByThisFold=0 · not Proposed Solutions under CMI Prize Rules. npm run quantum:domain-proof-catalog.`,
+      body: `Dedicated per-domain pages (statement · explanation · formulas · status · Prize Rules honesty). /proofs · claySolvedByThisFold=0 · not Proposed Solutions under CMI Prize Rules. npm run quantum:domain-proof-catalog.`,
       millenniumRelevant: true,
     }))
     surfaces.push(scoreClayProseSurface({
@@ -3346,7 +3346,7 @@ export function proseStandardisedToClay(matrix: MindMatrix = buildMatrix(), at =
       surface: 'README.md#Explore',
       kind: 'readme',
       title: 'Research index = domain · method · limit · verify at call time',
-      body: `Clay Millennium MODELED CHALLENGE (claySolvedByThisFold=0), Clay-standard domain-proof pages (/en/proofs — Prize Rules PDF cited · not Proposed Solutions), sciences trinities, reproducibility gates. npm run quantum:domain-proof-catalog.`,
+      body: `Clay Millennium MODELED CHALLENGE (claySolvedByThisFold=0), Clay-standard domain-proof pages (/proofs — Prize Rules PDF cited · not Proposed Solutions), sciences trinities, reproducibility gates. npm run quantum:domain-proof-catalog.`,
       millenniumRelevant: true,
     }))
     surfaces.push(scoreClayProseSurface({
@@ -3354,7 +3354,7 @@ export function proseStandardisedToClay(matrix: MindMatrix = buildMatrix(), at =
       surface: 'AGENTS.md#domain/proof',
       kind: 'agents',
       title: 'domain/proof',
-      body: `npm run quantum:domain-proof-catalog — domainProofCatalog + clayMillenniumPrizeRulesMapping — Clay-standard dedicated pages under /en/proofs/*; cites problems hub + Prize Rules PDF; qualifiesAsProposedSolution=false · claySolvedByThisFold=0.`,
+      body: `npm run quantum:domain-proof-catalog — domainProofCatalog + clayMillenniumPrizeRulesMapping — Clay-standard dedicated pages under /proofs/*; cites problems hub + Prize Rules PDF; qualifiesAsProposedSolution=false · claySolvedByThisFold=0.`,
       millenniumRelevant: true,
     }))
 
@@ -3384,7 +3384,7 @@ export function proseStandardisedToClay(matrix: MindMatrix = buildMatrix(), at =
       root: merge(matrix.root, merkleFold([sealed.root, catalog.root, audit.root, ...surfaces.map((s) => s.receipt)])),
       cli: 'npm run quantum:prose-clay-standard',
       pair: 'domain/proof',
-      route: '/en/proofs',
+      route: '/proofs',
       statement:
         `Prose standardised to Clay — audited=${surfaces.length} pass=${passed.length} fail=${failed.length}; cites problems hub + Prize Rules PDF; claySolvedByThisFold=0.`,
       boundary:

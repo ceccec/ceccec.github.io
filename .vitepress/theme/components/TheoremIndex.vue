@@ -26,10 +26,12 @@ const paperHref = (row: TheoremPageRow) => withBase(`/theorems/${row.slug}`)
 <template>
   <div class="thm-index" data-logic="src/wind/routes/corpus/index.ts">
     <header class="thm-index__head">
-      <h1>Theorem papers</h1>
+      <p class="thm-index__mast">Tag index · view of the theorem registry</p>
+      <h1>Tag index</h1>
       <p class="thm-index__lede">
-        {{ total }} proven theorems, each published as a scientific article — newest first, organised by tag.
-        Every field is computed from the sealed registry and re-derives on every build at zero tokens.
+        {{ total }} proven theorems by tag — newest first. Not a second hub:
+        the registry lives at <a href="/frontiers">/frontiers</a>;
+        Clay domain proofs at <a href="/proofs">/proofs</a>.
       </p>
     </header>
 
@@ -72,6 +74,13 @@ const paperHref = (row: TheoremPageRow) => withBase(`/theorems/${row.slug}`)
 
 <style scoped>
 .thm-index { max-width: calc(1px * 2 * 432); margin: 0 auto; }
+.thm-index__mast {
+  margin: 0 0 var(--ich-sp2);
+  font-size: calc(1em * 4 / 5);
+  letter-spacing: calc(1em / 100);
+  text-transform: uppercase;
+  opacity: calc(7 / (2 * 5));
+}
 .thm-index__head h1 { margin: 0 0 var(--ich-sp2); }
 .thm-index__lede { opacity: calc(4 / 5); max-width: calc(1px * 5 * 108); }
 

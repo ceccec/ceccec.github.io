@@ -646,11 +646,10 @@ export function jsonLdTemplate(page: JsonLdPageIdentity, matrix: MindMatrix = bu
   const teaches = asList(fm.teaches)
   const command = typeof fm.command === 'string' ? fm.command : undefined
   const image = typeof fm.image === 'string' ? fm.image : undefined
-  // The site graph follows the theorem-science lens: the actions a crawler is invited to take land on
-  // the registry and its corpus surfaces (lens-visible by construction), never on removed pages; every
-  // URL is absolute on the canonical host.
+  // The site graph follows the theorem-science lens: crawler actions land on the ONE discovery hierarchy
+  // (registry · domain proofs), never on removed pages or synonym machine corpora; every URL absolute.
   const lens = theoremScienceLens(matrix)
-  const actionRoutes = ['/frontiers', ...lens.corpusRoutes]
+  const actionRoutes = [...lens.discoveryRoutes]
   const siteGraph: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -778,7 +777,7 @@ export function seoOptimised(matrix: MindMatrix = buildMatrix()) {
   const graph = (blocks[0] as { '@graph': Record<string, unknown>[] })['@graph']
   const website = graph[0] as { potentialAction?: { target?: string[] } }
   const targets = website.potentialAction?.target ?? []
-  const lensSurfaces = new Set(['/frontiers', ...lens.corpusRoutes].flatMap((route) => [localePath(route, 'en'), localePath(route, 'bg')]).map((path) => canonicalUrl(path)))
+  const lensSurfaces = new Set([...lens.discoveryRoutes, ...lens.machineRoutes].flatMap((route) => [localePath(route, 'en'), localePath(route, 'bg')]).map((path) => canonicalUrl(path)))
   const jsonLdAbsolute =
     String(pageBlock.url).startsWith(CANONICAL_HOST) &&
     (pageBlock.breadcrumb?.itemListElement ?? []).every((entry) => String(entry.item).startsWith(CANONICAL_HOST)) &&
@@ -1178,12 +1177,8 @@ export function openGraphCardFromRoute(
       { rel: 'canonical', href: canonicalUrl(route.startsWith('/') ? route : `/${route}`), kind: 'canonical' },
       { rel: 'ray-hub', href: canonicalUrl(hub.route), kind: 'ray-hub' },
       { rel: 'tools', href: canonicalUrl('/quantum-tools'), kind: 'tool' },
-      { rel: 'theorems', href: canonicalUrl('/theorems'), kind: 'theorem' },
-      ...lens.corpusRoutes.slice(0, 3).map((r) => ({
-        rel: 'related',
-        href: canonicalUrl(r.startsWith('/') ? r : `/${r}`),
-        kind: 'related' as const,
-      })),
+      { rel: 'registry', href: canonicalUrl('/frontiers'), kind: 'theorem' },
+      { rel: 'proofs', href: canonicalUrl('/proofs'), kind: 'theorem' },
     ]
     const absoluteLinks = links.every((l) => l.href.startsWith(CANONICAL_HOST))
     const jsonLdRelated = {

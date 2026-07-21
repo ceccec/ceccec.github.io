@@ -268,9 +268,9 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
     },
     {
       slug: 'frontiers',
-      title: { en: 'Frontiers', bg: 'Граници' },
+      title: { en: 'Theorem registry', bg: 'Теоремен регистър' },
       description: {
-        en: 'Statement: frontiers = recent decodes + theorem-wave engine. Explanation: diving/water/space; quantum vacuum; cosmic inventory; physics of information; clown qubit on genus-2. Method: theorems:gaps · theorems:verify · npm run quantum:domain-proof-catalog · /en/proofs. Status: each atom has statement · computed checks · honest boundary; open problems held OPEN; claySolvedByThisFold=0 · not CMI Prize / not Proposed Solution. Every result a client-side computation from the src/0 primitives.',
+        en: 'Statement: theorem registry = recent decodes + theorem-wave engine. Explanation: diving/water/space; quantum vacuum; cosmic inventory; physics of information; clown qubit on genus-2. Method: theorems:gaps · theorems:verify · npm run quantum:domain-proof-catalog · /proofs. Status: each atom has statement · computed checks · honest boundary; open problems held OPEN; claySolvedByThisFold=0 · not CMI Prize / not Proposed Solution. Every result a client-side computation from the src/0 primitives.',
         bg: 'Скорошните декодирания, представени в пълнота: гмуркане, вода и космос; квантовият вакуум; космическият инвентар; физиката на информацията; и клоунският кюбит. До тях върви ДВИГАТЕЛЯТ НА ТЕОРЕМНИТЕ ВЪЛНИ: регистър на теореми, които кодът доказва изчислително (от Виразоро до Рамзей и A₅), растящ на вълни, в които всяко ново доказателство консумира предишни доказани атоми; търсенето на следващата недоказана теорема е една детерминистична команда. Всяко с твърдение, изчислени проверки и честна граница; истински отворените въпроси остават ОТВОРЕНИ. Всеки резултат е клиентско изчисление от примитивите src/0.',
       },
       keywords: ['frontiers', 'physics', 'cosmology', 'quantum', 'vacuum', 'dark matter', 'dark energy', 'neutrino', 'information', 'computation', 'diving', 'clown', 'decoded', 'theorems', 'proofs', 'waves', 'ramsey', 'virasoro', 'fano'],
@@ -580,8 +580,8 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
         bg: 'quantum:* CLI каталог = fold · CLI · UI маршрут · честна граница',
       },
       description: {
-        en: 'Statement: quantum:* CLI catalog = fold · CLI · UI route · honesty boundary. Explanation: every sealed script (encryption reverse, millennium MODELED, fusion-verify, efficiency-vote, offender-spec, hero-spawn, name-entropy, verify suite) recomputes from src. Method: npm run quantum:domain-proof-catalog · open /en/proofs · /en/quantum-tools. Status: claySolved=0 · not remote execution · not CMI Prize acceptance · Alias URLs thin-mount here.',
-        bg: 'Изявление: quantum:* каталог = fold · CLI · маршрут · честна граница. Метод: npm run quantum:domain-proof-catalog · /en/proofs. Статус: claySolved=0 · не CMI Prize. Alias URL-ите са thin-mount тук.',
+        en: 'Statement: quantum:* CLI catalog = fold · CLI · UI route · honesty boundary. Explanation: every sealed script (encryption reverse, millennium MODELED, fusion-verify, efficiency-vote, offender-spec, hero-spawn, name-entropy, verify suite) recomputes from src. Method: npm run quantum:domain-proof-catalog · open /proofs · /en/quantum-tools. Status: claySolved=0 · not remote execution · not CMI Prize acceptance · Alias URLs thin-mount here.',
+        bg: 'Изявление: quantum:* каталог = fold · CLI · маршрут · честна граница. Метод: npm run quantum:domain-proof-catalog · /proofs. Статус: claySolved=0 · не CMI Prize. Alias URL-ите са thin-mount тук.',
       },
       keywords: ['tools', 'cli', 'catalog', 'proof', 'efficiency', 'fusion', 'offender', 'spawn', 'trading'],
       components: ['QuantumTools', 'FusionVerify', 'ProofRenderer'],
@@ -606,8 +606,8 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
         bg: 'Изследователски индекс = домейн · метод · граница · verify при извикване',
       },
       description: {
-        en: 'Statement: research domain index (domain · method · limit · verify). Explanation: professional monograph rows, Clay Millennium MODELED CHALLENGE, sciences trinities, reproducibility gates. Method: npm run quantum:millennium-challenge · npm run quantum:domain-proof-catalog · fold millenniumProblemsChallenge. Status: claySolvedByThisFold=0 · not Proposed Solutions (CMI Prize Rules) · Clay-standard pages at /en/proofs cite claymath.org/millennium-problems + Prize Rules PDF. /millennium-challenge thin-mounts here.',
-        bg: 'Изявление: изследователски индекс. Обяснение: монографски редове, Clay Millennium MODELED CHALLENGE, sciences trinities. Метод: npm run quantum:millennium-challenge · /en/proofs. Статус: claySolvedByThisFold=0 · не Proposed Solution. /millennium-challenge е thin-mount тук.',
+        en: 'Statement: research domain index (domain · method · limit · verify). Explanation: professional monograph rows, Clay Millennium MODELED CHALLENGE, sciences trinities, reproducibility gates. Method: npm run quantum:millennium-challenge · npm run quantum:domain-proof-catalog · fold millenniumProblemsChallenge. Status: claySolvedByThisFold=0 · not Proposed Solutions (CMI Prize Rules) · Clay-standard pages at /proofs cite claymath.org/millennium-problems + Prize Rules PDF. /millennium-challenge thin-mounts here.',
+        bg: 'Изявление: изследователски индекс. Обяснение: монографски редове, Clay Millennium MODELED CHALLENGE, sciences trinities. Метод: npm run quantum:millennium-challenge · /proofs. Статус: claySolvedByThisFold=0 · не Proposed Solution. /millennium-challenge е thin-mount тук.',
       },
       keywords: ['research', 'proof', 'millennium', 'science', 'theorem', 'challenge', 'proofs', 'clay'],
       components: ['ResearchIndex', 'MillenniumChallenge', 'ProofRenderer'],
