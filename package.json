@@ -64,6 +64,7 @@
     "quantum:local-math-computes": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/stack/index.ts runLocalMathComputesGuardedExit",
     "quantum:demo-rsa-measure": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runDemoRsaGenerateAndReverseMeasuredExit",
     "quantum:crypto-beyond-measure": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runCryptoToolkitBeyondRsaMeasuredExit",
+    "quantum:prove-1tbit-encrypt": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runProveOneTbitRealtimeEncryptionClaimExit",
     "quantum:og-limits-measure": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/mountain/og/index.ts runPlatformOgLimitsMeasuredExit",
     "quantum:encryption-reverse-verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runEncryptionReverseVerifyGuardedExit",
     "quantum:iso-pqc-catalog": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runIsoNistPqcCatalogGuardedExit",

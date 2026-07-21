@@ -283,6 +283,7 @@ type QuantumCliToolSeed = Omit<QuantumCliToolRow, 'receipt' | 'ray' | 'hue' | 'a
 const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
     { id: 'demo-rsa-measure', title: 'Demo RSA generate+reverse measured', fold: 'demoRsaGenerateAndReverseMeasured', cli: 'npm run quantum:demo-rsa-measure', pair: 'measure/demo-rsa', route: '/en/quantum-encryption#demo-rsa-measure', barrel: 'src/water/encryption', boundary: 'Wall-clock ms on DEMO_RSA_MODULI only — NOT production RSA / NOT Bitcoin / NOT an SLA', browserRunnable: true, browserGap: '' },
   { id: 'crypto-beyond-measure', title: 'Crypto toolkit beyond RSA measured', fold: 'cryptoToolkitBeyondRsaMeasured', cli: 'npm run quantum:crypto-beyond-measure', pair: 'measure/crypto-beyond', route: '/en/quantum-encryption#crypto-beyond-rsa', barrel: 'src/water/encryption', boundary: 'Timed PQC catalogs + Shor/ECC map + hash taxonomy + directional trinity — NOT FIPS/ISO certified / NOT production KEM', browserRunnable: true, browserGap: '' },
+  { id: 'prove-1tbit-encrypt', title: 'Prove 1 Tbit/s realtime encryption claim', fold: 'proveOneTbitRealtimeEncryptionClaim', cli: 'npm run quantum:prove-1tbit-encrypt', pair: 'prove/1tbit-encrypt', route: '/en/quantum-encryption#prove-1tbit', barrel: 'src/water/encryption', boundary: 'wire-crypto NOT proved (no AES bench); amortized-reuse-memo may prove extent÷memo — NOT wire AES-GCM / NOT FIPS', browserRunnable: true, browserGap: '' },
   { id: 'og-limits-measure', title: 'Platform OG limits measured', fold: 'platformOgLimitsMeasured', cli: 'npm run quantum:og-limits-measure', pair: 'measure/og-limits', route: '/en/quantum-tools#og-limits', barrel: 'src/mountain/og', boundary: 'MODELED capability table from cited docs — NOT live CDN crawl', browserRunnable: true, browserGap: '' },
   { id: 'encryption-reverse-verify', title: 'Encryption reverse verify', fold: 'encryptionReverseVerify', cli: 'npm run quantum:encryption-reverse-verify', pair: 'reverse/encryption-verify', route: '/en/quantum-encryption', barrel: 'src/water/encryption', boundary: 'Demo RSA only — production moduli refused', browserRunnable: true, browserGap: '' },
   { id: 'iso-pqc-catalog', title: 'ISO/NIST PQC standards catalog', fold: 'isoNistPqcStandardsCatalog', cli: 'npm run quantum:iso-pqc-catalog', pair: 'iso/pqc-catalog', route: '/en/quantum-encryption#iso-pqc-catalog', barrel: 'src/water/encryption', boundary: 'MODELED alignment catalog — NOT ISO certified / NOT FIPS validated', browserRunnable: true, browserGap: '' },
@@ -557,12 +558,14 @@ export function standardToolboxIoCatalog(matrix: MindMatrix = buildMatrix(), at 
         isUuid(envelope.root),
     )
     const meta = envelopes.find((envelope) => envelope.id === 'toolbox-standard-io')
+    const prove1tbit = envelopes.find((envelope) => envelope.id === 'prove-1tbit-encrypt')
     const facets = [
       { facet: `STANDARD ENVELOPE — ${migrated}/${total} catalog tools wrapped`, on: migrated === total && total >= (2 * 7) },
       { facet: 'every envelope has input · output · import · export', on: allHaveIo },
       { facet: 'import(export(tool)) round-trips payloadRoot for every tool', on: allRoundTrip },
       { facet: 'honesty: physicalQubitSpeedup=0 · physicalFtlClaim=0 · notFlops', on: envelopes.every((e) => e.honesty.physicalQubitSpeedup === 0 && e.honesty.physicalFtlClaim === 0 && e.honesty.notFlops) },
       { facet: 'meta tool toolbox-standard-io published', on: Boolean(meta) && meta!.fold === 'standardToolboxIoCatalog' },
+      { facet: `prove-1tbit-encrypt enveloped as ${STANDARD_TOOL_ENVELOPE_KIND}@${STANDARD_TOOL_ENVELOPE_VERSION}`, on: Boolean(prove1tbit) && prove1tbit!.version === STANDARD_TOOL_ENVELOPE_VERSION && prove1tbit!.import.kind === STANDARD_TOOL_ENVELOPE_KIND && prove1tbit!.fold === 'proveOneTbitRealtimeEncryptionClaim' },
       { facet: 'composes quantumCliToolsCatalog (no second wet registry)', on: catalog.computes },
       { facet: 'CI browserGap tools still enveloped (adapters OK)', on: envelopes.filter((e) => !e.browserRunnable).every((e) => e.browserGap.length > 0) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`toolbox-standard-io:${entry.facet}:${entry.on}`) }))
