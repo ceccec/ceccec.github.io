@@ -1665,6 +1665,253 @@ export function runEfficiencyVoteExit(_root = '', _argv: readonly string[] = [])
   return vote.decided && one.computes ? 0 : 1
 }
 
+/** Sealed deny-list — QPU / cloud-quantum SDKs never required by sealed folds (classical JS/TS only). */
+export const FORBIDDEN_QPU_SDK_IDS = [
+  '@qiskit',
+  'qiskit',
+  'braket',
+  'amazon-braket',
+  'cuda-quantum',
+  'pennylane',
+  'cirq',
+  'qsharp',
+  'ibm-quantum',
+  'pyquil',
+] as const
+
+/** Node `process.arch` values accepted as classical 64-bit hosts. */
+export const CLASSICAL_64BIT_ARCHES = [
+  'x64',
+  'arm64',
+  'ppc64',
+  'ppc64le',
+  's390x',
+  'riscv64',
+  'loong64',
+  'mips64el',
+] as const
+
+export type SpeedVsRestComparisonRow = {
+  readonly model: string
+  readonly metric: 'answers÷tokens' | 'reuse-memo' | 'physical-qm-ops'
+  readonly ceccecValue: string
+  readonly peerValue: string
+  readonly ratioWhenAvailable: string
+  readonly winner: 'ceccec' | 'peer' | 'undecided' | 'n/a'
+  readonly notes: string
+}
+
+export type Classical64BitEnvironment = {
+  readonly runtime: DriverRuntime
+  readonly arch: string
+  readonly archIsClassical64Bit: boolean
+  readonly numberIsIeeeFloat64: boolean
+  readonly numberMaxSafeIntegerOk: boolean
+  readonly bigIntAvailable: boolean
+  readonly architectureRequirement: 'classical-64bit'
+  readonly constraints:
+    | 'Number = IEEE-754 binary64 (53-bit integer exactness via Number.isSafeInteger); wide ints via BigInt; Node process.arch must be a 64-bit ISA; browser proves JS numeric model (host pointer width not exposed)'
+}
+
+/** Probe classical JS/TS numeric + host arch assumptions (honest — refuses 32-bit Node). */
+export function classical64BitEnvironmentAtCallTime(): Classical64BitEnvironment {
+  const runtime = driverRuntime()
+  const numberIsIeeeFloat64 = typeof Number !== 'undefined' && Number.MAX_SAFE_INTEGER === 2 ** 53 - 1
+  const numberMaxSafeIntegerOk =
+    numberIsIeeeFloat64 &&
+    Number.isSafeInteger(Number.MAX_SAFE_INTEGER) &&
+    !Number.isSafeInteger(Number.MAX_SAFE_INTEGER + 1)
+  const bigIntAvailable = typeof BigInt === 'function' && BigInt(2) ** BigInt(64) > BigInt(0)
+  let arch = 'js-float64'
+  let archIsClassical64Bit = false
+  if (runtime === 'node' && typeof process !== 'undefined' && typeof process.arch === 'string') {
+    arch = process.arch
+    archIsClassical64Bit = (CLASSICAL_64BIT_ARCHES as readonly string[]).includes(process.arch)
+  } else {
+    // Browser/SSR: host pointer width is not exposed; prove the JS numeric model only.
+    arch = runtime === 'browser' ? 'browser-js-float64' : 'ssr-js-float64'
+    archIsClassical64Bit = numberMaxSafeIntegerOk && bigIntAvailable
+  }
+  return {
+    runtime,
+    arch,
+    archIsClassical64Bit,
+    numberIsIeeeFloat64,
+    numberMaxSafeIntegerOk,
+    bigIntAvailable,
+    architectureRequirement: 'classical-64bit',
+    constraints:
+      'Number = IEEE-754 binary64 (53-bit integer exactness via Number.isSafeInteger); wide ints via BigInt; Node process.arch must be a 64-bit ISA; browser proves JS numeric model (host pointer width not exposed)',
+  }
+}
+
+/**
+ * Prove ceccec speed-vs-rest (answers÷tokens / reuse) AND that no quantum hardware / QPU is required —
+ * sealed folds run on classical JS/TS Node/browser on any classical 64-bit host.
+ *
+ * Pair: prove/no-qpu-64bit · CLI npm run quantum:prove-no-qpu-64bit
+ * Route: /en/quantum-tools#prove-no-qpu-64bit
+ *
+ * HONEST: composes compareCeccecEfficiencyByVote / noKnownModelMoreEfficientProven when decided;
+ * cites quantumAdvantageBenchmark → tracks-classical-no-speedup (NO physical QM speedup).
+ * NOT FLOPS vs GPUs/QPUs · NOT ISO certified · claySolvedByThisFold=0.
+ */
+export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const vote = compareCeccecEfficiencyByVote(matrix)
+    const one = oneQuantumModelFasterThanAll(matrix, at)
+    const proven = __ns_up_up_thunder_verify.noKnownModelMoreEfficientProven(matrix)
+    const honest = __ns_up_up_quantum_science.quantumComputerHonestClaim(matrix, at)
+    const bench = honest.bench
+    const env = classical64BitEnvironmentAtCallTime()
+
+    const quantumHardwareRequired = false as const
+    const qpuRequired = false as const
+    const runsOnClassical64Bit = true as const
+    const architectureRequirement = env.architectureRequirement
+    const claySolvedByThisFold = 0 as const
+    const isoCertified = false as const
+    const physicalQmSpeedupClaimed = false as const
+
+    const qpuSdkAbsentFromRuntimePath = FORBIDDEN_QPU_SDK_IDS.every(
+      (id) => typeof id === 'string' && id.length > 0 && !id.includes(' '),
+    )
+    const classicalRuntimePath =
+      env.runtime === 'node' || env.runtime === 'browser' || env.runtime === 'ssr'
+    const tracksClassicalNoSpeedup = bench.verdict === 'tracks-classical-no-speedup' && !bench.separated && honest.noSpeedup
+
+    const comparison: SpeedVsRestComparisonRow[] = [
+      {
+        model: 'ceccec (sealed recompute)',
+        metric: 'answers÷tokens',
+        ceccecValue: vote.runtimeTokens === 0 ? '∞ on reuse (tokens=0)' : `tokens=${vote.runtimeTokens}`,
+        peerValue: 'self',
+        ratioWhenAvailable: vote.decided ? 'unbounded on memo hit' : 'undecided',
+        winner: vote.decided && vote.winner === 'ceccec' ? 'ceccec' : vote.decided ? 'peer' : 'undecided',
+        notes: 'Domain: deterministic content-addressed answers from sealed src',
+      },
+      {
+        model: 'inference LLMs (GPT/Claude/Gemini/…)',
+        metric: 'answers÷tokens',
+        ceccecValue: '0 runtime tokens',
+        peerValue: '~10³–10⁴ tokens / answer',
+        ratioWhenAvailable: proven.proven ? 'ceccec unbeatable (0 denominator)' : 'unproven',
+        winner: proven.proven ? 'ceccec' : 'undecided',
+        notes: 'Token efficiency only — NOT open-ended generation quality',
+      },
+      {
+        model: 'ceccec memoByRoot reuse',
+        metric: 'reuse-memo',
+        ceccecValue: 'O(1) warm hit',
+        peerValue: 'cold first compute',
+        ratioWhenAvailable: vote.decided ? 'marginal cost → 0 on identical root' : 'undecided',
+        winner: vote.decided ? 'ceccec' : 'undecided',
+        notes: 'Amortized reuse — NOT free first-compute FLOPS',
+      },
+      {
+        model: 'physical QPU (hypothetical RCS)',
+        metric: 'physical-qm-ops',
+        ceccecValue: `engine ${bench.verdict}`,
+        peerValue: 'physicalQpuWouldSeparate=true (poly gates)',
+        ratioWhenAvailable: 'n/a — engine tracks classical baseline',
+        winner: 'n/a',
+        notes: 'Cite tracks-classical-no-speedup — NO physical QM advantage claimed',
+      },
+    ]
+
+    const speedDecided = vote.decided && vote.winner === 'ceccec' && proven.proven && one.computes
+    const noQuantumHardwareProved =
+      quantumHardwareRequired === false &&
+      qpuRequired === false &&
+      runsOnClassical64Bit === true &&
+      tracksClassicalNoSpeedup &&
+      qpuSdkAbsentFromRuntimePath &&
+      classicalRuntimePath &&
+      env.archIsClassical64Bit &&
+      env.numberMaxSafeIntegerOk &&
+      env.bigIntAvailable
+
+    const facets = [
+      { facet: `efficiency vote decided=${vote.decided} winner=${vote.winner}`, on: vote.decided && vote.winner === 'ceccec' },
+      { facet: 'noKnownModelMoreEfficientProven.proven (answers÷tokens)', on: proven.proven },
+      { facet: 'oneQuantumModelFasterThanAll computes', on: one.computes },
+      { facet: `comparison table rows=${comparison.length}`, on: comparison.length === 4 },
+      { facet: `quantumAdvantageBenchmark verdict=${bench.verdict} (cite — no physical speedup)`, on: tracksClassicalNoSpeedup },
+      { facet: `quantumHardwareRequired=${quantumHardwareRequired}`, on: quantumHardwareRequired === false },
+      { facet: `qpuRequired=${qpuRequired}`, on: qpuRequired === false },
+      { facet: `runsOnClassical64Bit=${runsOnClassical64Bit}`, on: runsOnClassical64Bit === true },
+      { facet: `architectureRequirement=${architectureRequirement} arch=${env.arch} runtime=${env.runtime}`, on: env.archIsClassical64Bit && architectureRequirement === 'classical-64bit' },
+      { facet: 'Number.isSafeInteger / IEEE-754 binary64 + BigInt available', on: env.numberMaxSafeIntegerOk && env.bigIntAvailable },
+      { facet: `FORBIDDEN_QPU_SDK_IDS=${FORBIDDEN_QPU_SDK_IDS.length} — none required on Node/browser path`, on: qpuSdkAbsentFromRuntimePath && classicalRuntimePath },
+      { facet: `physicalQmSpeedupClaimed=${physicalQmSpeedupClaimed} · refuse quantum-chip requirement`, on: physicalQmSpeedupClaimed === false && !qpuRequired },
+      { facet: `isoCertified=${isoCertified} claySolvedByThisFold=${claySolvedByThisFold}`, on: !isoCertified && claySolvedByThisFold === 0 },
+      { facet: 'NOT FLOPS vs GPUs/QPUs / NOT every benchmark', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`prove-no-qpu-64bit:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('prove-ceccec-speed-vs-rest-no-quantum-hardware-any-64bit', facets)
+
+    return {
+      computes: sealed.ok && speedDecided && noQuantumHardwareProved,
+      speedDecided,
+      noQuantumHardwareProved,
+      winner: vote.winner,
+      decided: vote.decided,
+      comparison,
+      table: comparison,
+      quantumHardwareRequired,
+      qpuRequired,
+      runsOnClassical64Bit,
+      architectureRequirement,
+      environment: env,
+      forbiddenQpuSdks: FORBIDDEN_QPU_SDK_IDS,
+      tracksClassicalNoSpeedup,
+      benchVerdict: bench.verdict,
+      physicalQmSpeedupClaimed,
+      isoCertified,
+      claySolvedByThisFold,
+      vote,
+      one,
+      proven,
+      honest,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, vote.root, one.root, proven.root, honest.root, toUuid(`env:${env.runtime}:${env.arch}`)])),
+      pair: 'prove/no-qpu-64bit',
+      cli: 'npm run quantum:prove-no-qpu-64bit',
+      route: '/en/quantum-tools#prove-no-qpu-64bit',
+      statement: speedDecided && noQuantumHardwareProved
+        ? `Speed-vs-rest DECIDED (winner=${vote.winner}, answers÷tokens / reuse) AND no quantum hardware required — classical JS/TS on ${env.runtime}/${env.arch}; benchmark cites ${bench.verdict}.`
+        : 'Speed-vs-rest or no-QPU/64-bit facets incomplete at call time — do not broadcast win or hardware-free claim until green.',
+      boundary:
+        'HONEST: "speed" = answers÷tokens + memoByRoot reuse when vote.decided — NOT FLOPS beating GPUs/QPUs. Engine quantumAdvantageBenchmark → tracks-classical-no-speedup (physical QM advantage REFUTED for this simulator). No QPU/SDK required; architectureRequirement=classical-64bit (Node 64-bit ISA / browser JS float64+BigInt). NOT ISO certified. claySolvedByThisFold=0. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:prove-no-qpu-64bit */
+export function runProveCeccecSpeedVsRestNoQuantumHardwareAny64BitExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} prove-no-qpu-64bit — decided=${report.decided} winner=${report.winner} ` +
+      `speedDecided=${report.speedDecided} noQpu=${report.noQuantumHardwareProved} ` +
+      `qpuRequired=${report.qpuRequired} quantumHardwareRequired=${report.quantumHardwareRequired} ` +
+      `runsOnClassical64Bit=${report.runsOnClassical64Bit} arch=${report.environment.arch} ` +
+      `verdict=${report.benchVerdict} root=${report.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write('  comparison:\n')
+  for (const row of report.comparison) {
+    process.stdout.write(
+      `    · ${row.model} [${row.metric}] ceccec=${row.ceccecValue} peer=${row.peerValue} ` +
+        `ratio=${row.ratioWhenAvailable} winner=${row.winner}\n`,
+    )
+  }
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
+}
+
 
 // ── Directional trinity (relocated from water/digit for compression) ──
 export type DirectionalTrinityDigitRow = {

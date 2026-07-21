@@ -29,7 +29,12 @@ import {
   theoremParticleCollisionPanelComputes,
 } from '../../wind/research/index.ts'
 import { fusionVerifyPanelComputes } from '../../wind/fusion/index.ts'
-import { oneQuantumModelFasterThanAll, compareCeccecEfficiencyByVote, directionalTrinityForwardInverseReverse } from '../../water/stack/index.ts'
+import {
+  oneQuantumModelFasterThanAll,
+  compareCeccecEfficiencyByVote,
+  directionalTrinityForwardInverseReverse,
+  proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit,
+} from '../../water/stack/index.ts'
 import { animationsDrivenByRosetta } from '../../wind/ui/index.ts'
 import { tradingRosettaTrainPanelComputes } from '../../thunder/trading/index.ts'
 import { fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vortex/index.ts'
@@ -252,6 +257,21 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = vote.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'prove-no-qpu-64bit') {
+      const r = proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit()
+      const exported = exportStandardToolEnvelope('prove-no-qpu-64bit', 'ceccec.local')
+      const imported = importStandardToolEnvelope(exported)
+      ok = r.computes && exported.computes && imported.roundTrip
+      summary =
+        `decided=${r.decided} winner=${r.winner} speedDecided=${r.speedDecided} noQpu=${r.noQuantumHardwareProved} ` +
+        `qpuRequired=${r.qpuRequired} quantumHardwareRequired=${r.quantumHardwareRequired} ` +
+        `arch=${r.environment.arch} verdict=${r.benchVerdict} · envelope roundTrip=${imported.roundTrip}`
+      root = r.root
+      boundary = r.boundary
+      facets = [
+        ...r.facets.map((f) => ({ facet: f.facet, on: f.on })),
+        { facet: `standard envelope ${exported.kind}@${exported.version} import/export round-trip`, on: imported.roundTrip },
+      ]
     } else if (toolId === 'sciences-trinities') {
       const r = sciencesTrinitiesPanelComputes()
       ok = r.computes
@@ -587,6 +607,18 @@ function runTool(toolId: string) {
         </UiButton>
         <UiButton size="sm" :disabled="runningId === 'ftl-rosetta-handoff'" @click="runTool('ftl-rosetta-handoff')">
           {{ runningId === 'ftl-rosetta-handoff' ? '…' : 'Run FTL handoff' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="prove-no-qpu-64bit" aria-label="Speed versus rest no QPU classical 64-bit">
+        <h3>Speed vs rest · no QPU · classical 64-bit</h3>
+        <p class="quantum-apps__meta">
+          answers÷tokens / memo reuse when vote.decided — NOT FLOPS vs GPUs/QPUs.
+          Cites quantumAdvantageBenchmark → tracks-classical-no-speedup.
+          quantumHardwareRequired=false · qpuRequired=false · architectureRequirement=classical-64bit · clay=0 · NOT ISO.
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'prove-no-qpu-64bit'" @click="runTool('prove-no-qpu-64bit')">
+          {{ runningId === 'prove-no-qpu-64bit' ? '…' : 'Run prove-no-qpu-64bit' }}
         </UiButton>
       </section>
       <UiSeparator />
