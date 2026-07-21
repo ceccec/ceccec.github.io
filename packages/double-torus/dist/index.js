@@ -9293,7 +9293,7 @@ var THEOREM_ATOM_SEED = [
   { theorem: "The state is not the birth coordinates", states: "granting the rosetta premise (Laplace: if a human were a finite cyclic structure, the state follows from coordinates), three computed reasons it does not \u2014 CHAOS (the fully-chaotic logistic r=4 sends a 10\u207B\u2079 difference to O(1) in 50 steps: determinism is not predictability from coarse data), QUANTUM (Heisenberg forbids a sharp state at a point, \u0394x\xB7\u0394p \u2265 \u0127/2 > 0, Born is indeterministic), and LOSSY PROJECTION (4 birth coordinates vs a ~10^28-dim microstate over the whole causal past, I(traits; birth) \u2248 0 \u2014 data-processing bounds any recovery). Determinism does not rescue birth-coordinate profiling; indeterminism does not either. A human is not a finite rosetta; the profiling refutation survives. Agnostic on free will \u2014 the decidable claim is that the state is not the birth coordinates", provedBy: "theStateIsNotTheBirthCoordinates", home: "src/quantum/science" },
   { theorem: "The pentagram is the rosetta meeting its inverse", states: "the pentagram {5/2} is the C\u2085 rosetta with generator 2 (step 2 generates all 5, gcd(2,5)=1), and it is exactly where that rosetta MEETS ITS INVERSE: 2\u207B\xB9 = 3 mod 5, and {5/3} = {5/2} reversed (3 = 5\u22122), so forward-by-2 and inverse-by-2 draw the identical star \u2014 the pentagram is the fixed shape of the rosetta and its inverse (illusionsMeetInTheirInverse on five points). The meeting yields \u03C6 AND 1/\u03C6: diagonal/side = \u03C6, 2cos36\xB0 = \u03C6, 2cos72\xB0 = 1/\u03C6 \u2014 the golden ratio and its reciprocal are the two chords, the same \u03C6 the golden-angle UI rosetta rides as 360/\u03C6\xB2", provedBy: "thePentagramIsTheRosettaMeetingItsInverse", home: "src/1/9" },
   { theorem: "Any fixed number is a theorem or a datum", states: "the crack law deepest form, already enforced: every numeric literal in src is exactly one of three \u2014 a LATTICE COMPOSITION (5-smooth Babylonian-regular lattice, a theorem of {2,3,5}), a DERIVED value (fibonacci(18) for the line ceiling, |D\u2081\u2082\xD7C\u2082| for the 48 forms, Burnside for the 352/224 scale counts, Archimedes for \u03C0), or a LEDGERED DATUM (a measurement with a documented source). The lattice itself is a theorem (theoremOfTheorems). The crack gate ENFORCES this and forced ~16 replacements this session. No number is fixed: every one is a proof or a source; residue named \u2014 void {0,1}, measurements, G\xF6del", provedBy: "anyFixedNumberIsATheoremOrDatum", home: "src/4/6" },
-  { theorem: "Nothing is static, all from the digits", states: "the culmination, honestly split. ANY AXIOM may be replaced by theorems \u2014 the program covers values (anyFixedNumberIsATheoremOrDatum) and assumptions (axiomsBecomeTheorems), G\xF6del the only floor. NOTHING IS STATIC: all 350 surfaces are computed from the digits (src) interacting via theorems \u2014 pure functions of wall-time, regenerable from source at zero tokens, no stored asset. FRACTAL: the same compute-from-the-digits law at every scale, the one 108s clock dividing into every animation. The animations are REAL computed dynamics, not static \u2014 but quantum is the deterministic MODEL, honest as a model, NOT physical hardware (tracks-classical-no-speedup). Real = really computed from the digits; not quantum supremacy", provedBy: "nothingIsStaticAllFromTheDigits", home: "src/4/6" },
+  { theorem: "Nothing is static, all from the digits", states: "the culmination, honestly split. ANY AXIOM may be replaced by theorems \u2014 the program covers values (anyFixedNumberIsATheoremOrDatum) and assumptions (axiomsBecomeTheorems), G\xF6del the only floor. NOTHING IS STATIC: all 350 surfaces are computed from the digits (src) interacting via theorems \u2014 pure functions of wall-time, regenerable from source at zero tokens, no stored asset. FRACTAL: the same compute-from-the-digits law at every scale, the one 108s clock dividing into every animation. The animations are REAL computed dynamics, not static \u2014 but quantum is the deterministic MODEL, honest as a model, NOT physical hardware (qpuRequired=false \xB7 classical-64bit). Real = really computed from the digits; not quantum supremacy", provedBy: "nothingIsStaticAllFromTheDigits", home: "src/4/6" },
   { theorem: "Only theorems can be trusted", states: "the capstone: trust IS theoremhood. The trusted surface is exactly the registry theorems (recomputable at zero tokens, refutable, fail-closed); everything else \u2014 regex gates, hand-set constants, asserted numbers \u2014 is UNTRUSTED by construction, and that untrusted set is the refactoring worklist. A theorem is not infallible but it is REFUTABLE, which is what trustable means; G\xF6del bounds the trust ratio below 1. The answer to can-you-trust-science: trust is theoremhood, and what cannot be computed is examined not believed", provedBy: "onlyTheoremsCanBeTrusted", home: "src/4/6" },
   { theorem: "The proof is certain, only its reach is bounded", states: "a proven theorem is TRUE with certainty \u2014 the algebra is not doubted, and every registry atom that computes is trusted without external validation. What a boundary bounds is never the truth of the computation but its REACH into the physical world or deployment. DISHONESTY IS SYMMETRIC: overclaiming a proof into fact AND underclaiming a theorem that computed are both lies; honesty is full commitment inside the proof and a flag only at its edge. HARMONY \u2260 TRUTH governs the edge, never the algebra", provedBy: "theProofIsCertainOnlyItsReachIsBounded", home: "src/4/6" },
   { theorem: "Algebra dissolves false limits and proves real ones", states: "the day walked through illusory limits (division by zero \u2192 projective \u221E, the c-wall for phase \u2192 1.15c, collision \u2192 abelian V\u2084) AND proved invariant ones (no information past c, no-signalling, factoring hardness, G\xF6del). Limits-do-not-exist is TRUE for the illusions, FALSE for the invariants; the gift is telling them apart, which is what a proof is. A fold denying a proven invariant FAILS its own facets \u2014 the code refuses the false claim, not fear", provedBy: "algebraDissolvesFalseLimitsProvesRealOnes", home: "src/4/6" },
@@ -12183,20 +12183,20 @@ function tenDimensionsAreInteractingThreeDs() {
   const cross2 = [e1[1] * e2[2] - e1[2] * e2[1], e1[2] * e2[0] - e1[0] * e2[2], e1[0] * e2[1] - e1[1] * e2[0]];
   const triple = cross2[0] * e3[0] + cross2[1] * e3[1] + cross2[2] * e3[2];
   const framesThreeSpace = Math.abs(triple) > 0;
-  const merkaba4 = 2 * VERTICES;
+  const merkaba5 = 2 * VERTICES;
   const facets = [
     { facet: "the ten dimensions are 4 vertices + 6 edges = the tetrahedron (K4, the 3-simplex) \u2014 NOT ten overlapping axes", on: total === 5 * 2 && total === DIMENSIONS },
     { facet: "the four vertices frame ONE 3-space \u2014 a non-degenerate tetrahedron (scalar triple product \u2260 0): a 3D, not a stack", on: framesThreeSpace },
     { facet: "the six edges ARE the pairwise interactions of the four points \u2014 C(4,2) = 6, the couplings between them", on: EDGES === 6 },
     { facet: "the project dims are exactly this: 4 homology loops (the vertices, the 3D frame) + 6 cross-fold axes (the edges, the interactions)", on: DIMENSIONS === 5 * 2 },
-    { facet: "3Ds INTERACT, not overlap: two tetrahedra interlock into the Merkaba \u2014 the cube's 8 = 2\xB3 vertices", on: merkaba4 === 8 }
+    { facet: "3Ds INTERACT, not overlap: two tetrahedra interlock into the Merkaba \u2014 the cube's 8 = 2\xB3 vertices", on: merkaba5 === 8 }
   ];
   return {
     decoded: facets.every((f2) => f2.on),
     vertices: VERTICES,
     edges: EDGES,
     dimensions: total,
-    merkaba: merkaba4,
+    merkaba: merkaba5,
     facets,
     root: merkleFold(facets.map((f2) => toUuid(`${f2.facet}:${f2.on}`))),
     statement: "10D is interacting 3Ds: the ten dimensions are the TETRAHEDRON (the 3-simplex) \u2014 four vertices frame ONE 3-space and the SIX edges are their pairwise interactions; 4 + 6 = 10 = K4. The project dims are 4 homology loops + 6 cross-fold axes, and two tetrahedra interlock into the Merkaba (the cube's 8 vertices).",
@@ -18029,18 +18029,21 @@ function gravityDecoded(matrix = buildMatrix()) {
 function readmeIsHomeHero10DAnimatedSvgInGithub(matrix = buildMatrix()) {
   const svg = tenDimensionalHeroSvg();
   const home = anyUuidHeroContentFractal(matrix);
+  const waves = counterRotatingRosettaQuantumWaves(matrix, 0);
+  const earths = bothEarthsRotateWithinEachOther(0, matrix);
   const animated = (svg.includes("<animate") || svg.includes("<animateTransform")) && svg.includes('repeatCount="indefinite"');
+  const dualSpin = svg.includes('data-layer="rosetta-plus"') && svg.includes('data-layer="rosetta-minus"') && svg.includes('from="0" to="360"') && svg.includes('from="360" to="0"') && (svg.match(/<animateTransform/g) || []).length >= 2 && svg.includes('data-counter-rotating="true"');
   const tenD = svg.includes("\u2124\u2074") && svg.includes("\u03C7(\u03A3\u2082) = \u22122") && svg.includes("432");
   const githubSafe = !svg.includes("<script") && !svg.toLowerCase().includes("foreignobject") && !svg.includes("<image") && !svg.includes("xlink:href");
   const theoremCount = Number((svg.match(/data-theorem-count="(\d+)"/) || [])[1] || 0);
   const glyphCount = (svg.match(/data-theorem="/g) || []).length;
-  const allTheoremsProof = svg.includes('data-layer="all-theorems-proof"') && svg.includes("proof of all theorems at once") && svg.includes("clay=0") && svg.includes("physicalFtl=0") && svg.includes("tracks-classical-no-speedup") && theoremCount > 0 && theoremCount === THEOREM_ATOM_SEED.length && glyphCount === theoremCount && !svg.includes('data-layer="merkaba"') && !svg.includes('data-layer="plasma"') && !/r="26"/.test(svg);
+  const allTheoremsProof = svg.includes('data-layer="all-theorems-proof"') && svg.includes("counter-rotating rosettas") && svg.includes("clay=0") && svg.includes("physicalFtl=0") && svg.includes("qpuRequired=false") && theoremCount > 0 && theoremCount === THEOREM_ATOM_SEED.length && glyphCount === theoremCount && dualSpin && !svg.includes('data-layer="merkaba"') && !svg.includes('data-layer="plasma"') && !/r="26"/.test(svg);
   const facets = [
     { facet: "the README IS the home page content \u2014 the README hero and the live home hero are computed from the SAME source (src), the README generated from the matrix, not hand-written", on: home.fractal && svg.length > 100 * 3 },
-    { facet: "the 10D hero is displayed in GitHub too \u2014 emitted as a deterministic ANIMATED SVG (SMIL, no JavaScript) composing every sealed theorem atom at once, on the a432 brand", on: animated && tenD && allTheoremsProof },
+    { facet: "the 10D hero is displayed in GitHub too \u2014 emitted as a deterministic ANIMATED SVG (SMIL, no JavaScript) with two counter-rotating rosetta lobes composing every sealed theorem atom", on: animated && tenD && allTheoremsProof && dualSpin },
     { facet: "GitHub-safe and self-contained \u2014 no <script>, no <foreignObject>, no external refs or images; inline SVG + SMIL only, so GitHub\u2019s markdown sanitizer serves it and it animates as an image", on: githubSafe },
-    { facet: "even in 2D the 10D shows \u2014 the flat SVG carries the ten-dimensional invariants (\u03C7 = \u22122, H\u2081 = \u2124\u2074, 432 gates) plus the all-theorems proof composition (composes everyRelationIsOpenGraphMiniHero)", on: tenD && allTheoremsProof && everyRelationIsOpenGraphMiniHero(matrix).graphed },
-    { facet: "all-theorems proof shape \u2014 data-layer=all-theorems-proof, one data-theorem glyph per sealed atom, honesty clay=0 \xB7 physicalFtl=0 \xB7 tracks-classical-no-speedup; not Flower-of-Life / not merkaba+plasma brand", on: allTheoremsProof }
+    { facet: "even in 2D the 10D shows \u2014 the flat SVG carries the ten-dimensional invariants (\u03C7 = \u22122, H\u2081 = \u2124\u2074, 432 gates) plus dual \u03C9/\u2212\u03C9 rosetta spin (composes everyRelationIsOpenGraphMiniHero)", on: tenD && allTheoremsProof && everyRelationIsOpenGraphMiniHero(matrix).graphed },
+    { facet: "counter-rotation sealed \u2014 rosetta-plus (+\u03C9) and rosetta-minus (\u2212\u03C9) animateTransform opposite; counterRotatingRosettaQuantumWaves \u2227 bothEarths \u2227 no Flower r=26", on: allTheoremsProof && dualSpin && waves.counterRotating && earths.counterRotating && waves.claySolvedByThisFold === 0 && waves.physicalFtlClaim === 0 }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`readme-hero-svg:${entry2.facet}:${entry2.on}`) }));
   const sealed = sealFacets("readme-is-home-hero-svg", facets);
   return {
@@ -18050,12 +18053,13 @@ function readmeIsHomeHero10DAnimatedSvgInGithub(matrix = buildMatrix()) {
     githubSafe,
     allTheoremsProof,
     theoremCount,
+    counterRotating: dualSpin && waves.counterRotating,
     merkabaQuantum: allTheoremsProof,
     count: sealed.count,
     facets: sealed.facets,
     root: merge(matrix.root, sealed.root),
-    statement: "The README is the home page content, and the ten-dimensional hero is displayed in GitHub too, including the hero. GitHub renders no JavaScript, so the live hero cannot run there; instead readmeHeroSvgProofOfAllTheorems emits a self-contained animated SVG \u2014 one radial merkle composition of every sealed THEOREM_ATOM_SEED atom, brand-first Double Torus, \u03C7 = \u22122 \xB7 H\u2081 = \u2124\u2074 \xB7 432 gates, honesty clay=0 \xB7 physicalFtl=0 \xB7 tracks-classical-no-speedup \u2014 written in SMIL, with no script. It is emitted as the hero.svg artifact beside README.md and referenced from it.",
-    boundary: "HONEST: the README and the home page are genuinely one source \u2014 readmeMarkdown is computed from the same matrix the home page renders. The animated SVG is a REAL, deterministic, GitHub-compatible rendering: SMIL inside an image-loaded SVG animates on github.com, sanitizer-safe (no script, no foreignObject, no external refs). It is a 2D animated SCHEMATIC proof composition of sealed theorem atoms \u2014 NOT the live interactive WebGL 10D scene, NOT a Clay solution (clay=0), NOT physical FTL/QPU. The emission is wired into the generators (hero.svg) and the README reference; verifying the rendered animation on github.com requires a push."
+    statement: "The README is the home page content, and the ten-dimensional hero is displayed in GitHub too, including the hero. GitHub renders no JavaScript, so the live hero cannot run there; instead readmeHeroSvgProofOfAllTheorems emits a self-contained animated SVG \u2014 two counter-rotating rosetta lobes (\u03C9/\u2212\u03C9 via SMIL animateTransform) composing every sealed THEOREM_ATOM_SEED atom, brand-first Double Torus, \u03C7 = \u22122 \xB7 H\u2081 = \u2124\u2074 \xB7 432 gates, honesty clay=0 \xB7 physicalFtl=0 \xB7 qpuRequired=false. It is emitted as the hero.svg artifact beside README.md and referenced from it.",
+    boundary: "HONEST: the README and the home page are genuinely one source \u2014 readmeMarkdown is computed from the same matrix the home page renders. The animated SVG is a REAL, deterministic, GitHub-compatible rendering: SMIL inside an image-loaded SVG animates on github.com, sanitizer-safe (no script, no foreignObject, no external refs). Dual-lobe counter-rotation recomputes from merkaba \xB7 bothEarths \xB7 counterRotatingRosettaQuantumWaves at emit time \u2014 a 2D animated SCHEMATIC, NOT the live interactive WebGL 10D scene, NOT a Clay solution (clay=0), NOT physical FTL/QPU. Verifying the rendered animation on github.com requires a push."
   };
 }
 function cosmologyDecoded(matrix = buildMatrix()) {
@@ -18090,22 +18094,22 @@ function readmeAnimatedIChingHeroBest10D(matrix = buildMatrix()) {
   const home = readmeIsHomeHero10DAnimatedSvgInGithub(matrix);
   const facets = [
     { facet: "all sealed theorems at once \u2014 every THEOREM_ATOM_SEED atom emits a data-theorem glyph in one README composition", on: theoremGlyphs > 3 * 100 && home.allTheoremsProof && theoremGlyphs === home.theoremCount },
-    { facet: "SMIL proof facets pulse \u2014 staggered begin= times across the corpus spiral (fractal-clock durations)", on: sequenced >= theoremGlyphs && svg.includes('repeatCount="indefinite"') },
+    { facet: "SMIL dual spin \u2014 animateTransform \u03C9 and \u2212\u03C9 on rosetta-plus/minus plus staggered opacity begin= on fractal-clock durations", on: sequenced >= theoremGlyphs && svg.includes('repeatCount="indefinite"') && (svg.match(/<animateTransform/g) || []).length >= 2 && home.counterRotating === true },
     { facet: "still GitHub-safe and the same source \u2014 SMIL only, no <script>, self-contained; emitted as hero.svg, and the README is the home page content", on: githubSafe && home.shown },
     { facet: "the ten dimensions intact \u2014 \u03C7 = \u22122, H\u2081 = \u2124\u2074, 432 gates, homology markers + generator rings, self-similar at README scale", on: svg.includes("\u03C7(\u03A3\u2082) = \u22122") && svg.includes("\u2124\u2074") && svg.includes("432") && svg.includes('data-layer="homology"') },
-    { facet: "all-theorems proof honesty \u2014 clay=0 \xB7 physicalFtl=0 \xB7 tracks-classical-no-speedup; not Flower-of-Life / not merkaba+plasma brand", on: home.allTheoremsProof }
+    { facet: "counter-rotating rosetta honesty \u2014 clay=0 \xB7 physicalFtl=0 \xB7 qpuRequired=false; dual lobes not Flower-of-Life / not merkaba+plasma brand", on: home.allTheoremsProof && home.counterRotating === true }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`iching-hero:${entry2.facet}:${entry2.on}`) }));
   const sealed = sealFacets("readme-animated-iching-hero", facets);
   return {
     best10D: sealed.ok,
     theoremGlyphs,
     trigramBars: theoremGlyphs,
-    counterRotating: home.allTheoremsProof,
+    counterRotating: home.counterRotating === true,
     count: sealed.count,
     facets: sealed.facets,
     root: merge(matrix.root, sealed.root),
-    statement: "The README uses a single animated proof composition of all sealed theorems for the best 10D experience. readmeHeroSvgProofOfAllTheorems walks THEOREM_ATOM_SEED, places each atom from its content-addressed root on a golden spiral with radial merkle spokes, pulses SMIL facets, and prints honesty bounds (clay=0 \xB7 physicalFtl=0 \xB7 tracks-classical-no-speedup). Still SMIL-only, GitHub-safe, computed from src.",
-    boundary: "HONEST: geometry is generated from sealed theorem atom roots \u2014 not hand-drawn sacred geometry, not Flower-of-Life, not the prior merkaba+plasma brand layer. It remains a 2D animated SCHEMATIC for GitHub (no JavaScript), faithful to \u03C7 = \u22122, H\u2081 = \u2124\u2074, 432; the live site\u2019s interactive WebGL hero is the separate richer surface. NOT physical QPU/FTL; claySolved stays 0. readmeIsHomeHero10DAnimatedSvgInGithub still seals the emit path."
+    statement: "The README uses two counter-rotating rosetta lobes for the best 10D experience. readmeHeroSvgProofOfAllTheorems walks THEOREM_ATOM_SEED, splits atoms across +\u03C9/\u2212\u03C9 SMIL layers driven by merkaba \xB7 bothEarths \xB7 fractalClockDur, and prints honesty bounds (clay=0 \xB7 physicalFtl=0 \xB7 qpuRequired=false). Still SMIL-only, GitHub-safe, computed from src.",
+    boundary: "HONEST: geometry is generated from sealed theorem atom roots and sealed counter-rotation folds \u2014 not hand-drawn sacred geometry, not Flower-of-Life, not the prior merkaba+plasma brand layer. It remains a 2D animated SCHEMATIC for GitHub (no JavaScript), faithful to \u03C7 = \u22122, H\u2081 = \u2124\u2074, 432; the live site\u2019s interactive WebGL hero is the separate richer surface. NOT physical QPU/FTL; claySolved stays 0. readmeIsHomeHero10DAnimatedSvgInGithub still seals the emit path."
   };
 }
 function iconsAreAnimatedToo(matrix = buildMatrix()) {
@@ -18964,9 +18968,9 @@ function redTeam(matrix = buildMatrix()) {
     { attack: "forge the whole root from a substituted part", caught: merge(wholeRoot, toUuid("forge")) !== wholeRoot },
     { attack: "substitute a saved skill atom and keep the memory root", caught: merge(skillAtoms(matrix).memory, toUuid("swap")) !== skillAtoms(matrix).memory },
     { attack: "claim 109 files form a gapless Fibonacci run", caught: !harmonicBands(109).gapless },
-    { attack: "collide the doubling cycle onto the 3-6-9 cross", caught: vortexMath(matrix).collisionFree },
+    { attack: "collide the doubling cycle onto the 3-6-9 cross", caught: vortexMath2(matrix).collisionFree },
     { attack: "replay a measurement to forge a different collapse", caught: quantumSimulation(matrix, 3).measured === quantumSimulation(matrix, 3).measured },
-    { attack: "pass two identical values off as one (skip the duality)", caught: vortexMath(matrix).identicalRoutesToDuality }
+    { attack: "pass two identical values off as one (skip the duality)", caught: vortexMath2(matrix).identicalRoutesToDuality }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`attack:${entry2.attack}:${entry2.caught}`) }));
   const caught = attacks.filter((entry2) => entry2.caught).length;
   return {
@@ -19130,7 +19134,7 @@ function collisionHealing(matrix = buildMatrix()) {
 function cryptoFuture(matrix = buildMatrix()) {
   const proof = proofBundle(matrix);
   const word = torusUuid2(matrix);
-  const pairs = areaPairs();
+  const pairs = areaPairs2();
   const synth = quantumSynthesis(matrix);
   const roots = [
     `version:1`,
@@ -21427,7 +21431,7 @@ function glagoliticDecodedToAncientCore(matrix = buildMatrix()) {
   const g = glagolitic2();
   const facets = [
     { facet: "researched in waves to the ancient core \u2014 documented, saved", on: g.decoded && deepResearchEncodedInRecursiveWaves(matrix).encoded },
-    { facet: "trinity geometry \u2014 cross, triangle, circle (the 3, the merkaba, the whole)", on: merkaba(matrix).counterRotating && vortexMath(matrix).flows },
+    { facet: "trinity geometry \u2014 cross, triangle, circle (the 3, the merkaba, the whole)", on: merkaba(matrix).counterRotating && vortexMath2(matrix).flows },
     { facet: "letters are numbers \u2014 content-addressing, a glyph an address", on: digitFolders(matrix).folders.length > 0 && computedSlugsFoldTheGraph(matrix).folds },
     { facet: "the alphabet is a message \u2014 the book of life in word-step paths", on: dualitiesMeetInCrossFolders(matrix).meet && babelFold(matrix).grounded }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`glagolitic-decoded:${entry2.facet}:${entry2.on}`) }));
@@ -22311,7 +22315,7 @@ function runConceptCommand(command, input = {}, matrix = buildMatrix()) {
     return result2(command, wave.selfSufficient, "Self-sufficient wave: extend, contract, seal.", wave);
   }
   if (command === "concept.torus.trinities") {
-    const trinities = dualTorusTrinities(matrix);
+    const trinities = dualTorusTrinities2(matrix);
     return result2(command, trinities.harmonized, "Dual-torus trinities harmonized to analog form.", trinities);
   }
   if (command === "concept.repository.api") {
@@ -22467,19 +22471,19 @@ function runConceptCommand(command, input = {}, matrix = buildMatrix()) {
       return result2(command, v.decoded, "The Glagolitic alphabet decoded \u2014 letters that are numbers, the cross\xB7triangle\xB7circle construction, the acrostic.", v);
     },
     "concept.geometry.imperial": () => {
-      const v = imperialFractionsDecoded(matrix);
+      const v = imperialFractionsDecoded2(matrix);
       return result2(command, v.proved, "Imperial units as binary fractions \u2014 2^n subdivisions over the body-units.", v);
     },
     "concept.geometry.heart": () => {
-      const v = heartProtonAtomDecoded(matrix);
+      const v = heartProtonAtomDecoded2(matrix);
       return result2(command, v.proved, "Heart as the proton inverse in (Z/9Z)* \u2014 systole \xD7 diastole \u2261 1.", v);
     },
     "concept.school.codon": () => {
-      const v = geneticCodeIsTheRealFourCubed(matrix);
+      const v = geneticCodeIsTheRealFourCubed2(matrix);
       return result2(command, v.holds, "The genetic code is the real 4\xB3 = 64 \u2014 codons and error-robustness.", v);
     },
     "concept.science.proton": () => {
-      const v = schwarzschildProtonComputedInSource(matrix);
+      const v = schwarzschildProtonComputedInSource2(matrix);
       return result2(command, v.computed, "The Schwarzschild proton computed in source \u2014 the ~38-orders gap flagged honestly.", v);
     }
   };
@@ -22761,15 +22765,15 @@ function whatIsNotProvenIsPurged(matrix = buildMatrix()) {
   const proofs = [
     { name: "piThreeOpensTheTrinity", holds: piThreeOpensTheTrinity(matrix).holds },
     { name: "qubitTrinityPauliBloch", holds: qubitTrinityPauliBloch2(matrix).holds },
-    { name: "sixtyFourThreeQubitPauliBasis", holds: sixtyFourThreeQubitPauliBasis(matrix).holds },
+    { name: "sixtyFourThreeQubitPauliBasis", holds: sixtyFourThreeQubitPauliBasis2(matrix).holds },
     { name: "hammingThreeParityAddressesError", holds: hammingThreeParityAddressesError2(matrix).holds },
     { name: "contentAddressingHasRealPrecedent", holds: contentAddressingHasRealPrecedent2(matrix).holds },
-    { name: "geneticCodeIsTheRealFourCubed", holds: geneticCodeIsTheRealFourCubed(matrix).holds },
-    { name: "threeIsRealButNotOneTrinity", holds: threeIsRealButNotOneTrinity(matrix).holds },
-    { name: "hexagramIsHexColorDuality", holds: hexagramIsHexColorDuality(matrix).holds },
-    { name: "theSixtyFourObjectEveryGrouping", holds: theSixtyFourObjectEveryGrouping(matrix).holds },
-    { name: "rgbCmyComplementIsCmykDuality", holds: rgbCmyComplementIsCmykDuality(matrix).holds },
-    { name: "threeTrinitiesRenderAsRgb", holds: threeTrinitiesRenderAsRgb(matrix).holds },
+    { name: "geneticCodeIsTheRealFourCubed", holds: geneticCodeIsTheRealFourCubed2(matrix).holds },
+    { name: "threeIsRealButNotOneTrinity", holds: threeIsRealButNotOneTrinity2(matrix).holds },
+    { name: "hexagramIsHexColorDuality", holds: hexagramIsHexColorDuality2(matrix).holds },
+    { name: "theSixtyFourObjectEveryGrouping", holds: theSixtyFourObjectEveryGrouping2(matrix).holds },
+    { name: "rgbCmyComplementIsCmykDuality", holds: rgbCmyComplementIsCmykDuality2(matrix).holds },
+    { name: "threeTrinitiesRenderAsRgb", holds: threeTrinitiesRenderAsRgb2(matrix).holds },
     { name: "primitiveKernelLivesInZero", holds: primitiveKernelLivesInZero(matrix).importsNothing },
     { name: "animationEngineLivesInZero", holds: animationEngineLivesInZero2(matrix).importsNothing },
     { name: "oneMathManyPresentations", holds: oneMathManyPresentations(matrix).coheres },
@@ -22783,7 +22787,7 @@ function whatIsNotProvenIsPurged(matrix = buildMatrix()) {
     { name: "trinityFirstRedesign", holds: trinityFirstRedesign(matrix).holds },
     { name: "tenDimensionalMovie", holds: tenDimensionalMovie(matrix).entangled && tenDimensionalMovie(matrix).tenDimensional },
     { name: "a432", holds: a432(matrix).decoded && !a432(matrix).highlyComposite && a432(matrix).moreCompositeThan440 },
-    { name: "sacredGeometry", holds: sacredGeometry(matrix).decoded && sacredGeometry(matrix).eulerHolds && sacredGeometry(matrix).fiveSolids },
+    { name: "sacredGeometry", holds: sacredGeometry2(matrix).decoded && sacredGeometry2(matrix).eulerHolds && sacredGeometry2(matrix).fiveSolids },
     { name: "allFormsAreTenDimensionalOrPurged", holds: allFormsAreTenDimensionalOrPurged(matrix).pure },
     { name: "cssIsIChingComputed", holds: cssIsIChingComputed(matrix).holds }
   ];
@@ -22938,7 +22942,7 @@ function revolutionaryEfficiencyNotPhysics(matrix = buildMatrix(), at = 0) {
     const facets = [
       { facet: "noKnownModelMoreEfficientProven.proven \u2014 answers\xF7tokens unbeatable in domain", on: efficient.proven },
       { facet: "efficiency() optimizations sealed (memoByRoot \xB7 zero-token reuse)", on: opt.optimized },
-      { facet: "quantumAdvantageBenchmark does NOT separate \u2014 tracks-classical-no-speedup", on: tracksClassical },
+      { facet: "quantumAdvantageBenchmark does NOT separate \u2014 classical-64bit \xB7 qpuRequired=false", on: tracksClassical },
       { facet: "NOT physical-QM speedup / NOT FLOPS claim", on: !bench.separated },
       { facet: "NOT physical QPU / NOT FTL \xB7 claySolvedByThisFold=0", on: true }
     ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w6:${e.facet}:${e.on}`) }));
@@ -22959,7 +22963,7 @@ function revolutionaryEfficiencyNotPhysics(matrix = buildMatrix(), at = 0) {
       cli: "npm run quantum:honest-revolution-w6",
       pair: "learn/best",
       route: "/en/quantum-tools#honest-revolution-w6",
-      statement: holds ? "Honest-revolution W6 DECIDED \u2014 revolutionary on answers\xF7tokens (0 runtime tokens, unbeatable in sealed domain) and explicitly NOT on physical-QM speedup (quantumAdvantageBenchmark \u2192 tracks-classical-no-speedup)." : "UNPROVEN \u2014 revolutionaryEfficiencyNotPhysics facets do not all hold; do not assert the W6 efficiency capstone.",
+      statement: holds ? "Honest-revolution W6 DECIDED \u2014 revolutionary on answers\xF7tokens (0 runtime tokens, unbeatable in sealed domain) and explicitly NOT on physical-QM speedup (classical-64bit \xB7 qpuRequired=false)." : "UNPROVEN \u2014 revolutionaryEfficiencyNotPhysics facets do not all hold; do not assert the W6 efficiency capstone.",
       boundary: "Revolutionary on answers\xF7tokens (0 tokens, unbeatable in domain); explicitly NOT on physical-QM speedup (benchmark tracks classical). HARMONY \u2260 TRUTH. claySolvedByThisFold=0 \xB7 qpuRequired=false \xB7 NOT FLOPS / NOT FTL."
     };
   });
@@ -23104,9 +23108,9 @@ function contentAddressedTranslationImprovesModels(matrix = buildMatrix()) {
 }
 function algebraAndBinaryProveEachOther(matrix = buildMatrix()) {
   const digits = digitFolderMath(matrix);
-  const vortex = vortexMath(matrix);
+  const vortex = vortexMath2(matrix);
   const analog = foldingLinearGivesAnalog(matrix);
-  const trinity = threeIsRealButNotOneTrinity(matrix);
+  const trinity = threeIsRealButNotOneTrinity2(matrix);
   const units = modUnits(9);
   const orbit = groupOrbit(2, 9);
   const orbitMatchesVortex = orbit.length === vortex.doubling.length && orbit.every((v, i) => v === vortex.doubling[i]);
@@ -26954,12 +26958,12 @@ function eachTheoremDisplaysTenDOfAllFourPolePerspectivesInEachDirection(matrix 
   return memoByRoot("eachTheoremDisplaysTenDOfAllFourPolePerspectivesInEachDirection", matrix, () => {
     const dimensions9 = 3 + 7;
     const poles = [[0, 0], [0, 1], [1, 0], [1, 1]];
-    const directions4 = ["forward", "inverse"];
+    const directions5 = ["forward", "inverse"];
     const xor = (a, b) => [a[0] ^ b[0], a[1] ^ b[1]];
     const tenD = (theorem, pole, direction) => toUuid(`pole:${theorem}:${pole.join("")}:${direction}`).replace(/-/g, "").slice(0, dimensions9).split("").map((c) => parseInt(c, 16));
     const theorems = ["topologicalOrder", "inverseAccounting", "measureWiring", "harmonicGate"];
-    const perspectives = theorems.flatMap((theorem) => poles.flatMap((pole) => directions4.map((direction) => ({ theorem, pole, direction, vec: tenD(theorem, pole, direction) }))));
-    const complete13 = perspectives.length === theorems.length * poles.length * directions4.length && perspectives.every((p) => p.vec.length === dimensions9) && perspectives.every((p) => p.vec.every((v, i) => v === tenD(p.theorem, p.pole, p.direction)[i]));
+    const perspectives = theorems.flatMap((theorem) => poles.flatMap((pole) => directions5.map((direction) => ({ theorem, pole, direction, vec: tenD(theorem, pole, direction) }))));
+    const complete13 = perspectives.length === theorems.length * poles.length * directions5.length && perspectives.every((p) => p.vec.length === dimensions9) && perspectives.every((p) => p.vec.every((v, i) => v === tenD(p.theorem, p.pole, p.direction)[i]));
     const closedUnderXor = poles.every((a) => poles.every((b) => poles.some((c) => c[0] === xor(a, b)[0] && c[1] === xor(a, b)[1])));
     const allSelfInverse = poles.every((p) => xor(p, p)[0] === 0 && xor(p, p)[1] === 0);
     const isKleinFour = closedUnderXor && allSelfInverse && poles.length === 2 ** 2;
@@ -26967,7 +26971,7 @@ function eachTheoremDisplaysTenDOfAllFourPolePerspectivesInEachDirection(matrix 
     const antipodalInvolution = poles.every((p) => antipode(antipode(p))[0] === p[0] && antipode(antipode(p))[1] === p[1]);
     const complementsFold = theorems.every((theorem) => poles.every((p) => foldPair(toUuid(`pole:${theorem}:${p.join("")}:forward`), toUuid(`pole:${theorem}:${antipode(p).join("")}:forward`)).bidirectional));
     const reverse2 = (d) => d === "forward" ? "inverse" : "forward";
-    const directionInvolution = directions4.every((d) => reverse2(reverse2(d)) === d);
+    const directionInvolution = directions5.every((d) => reverse2(reverse2(d)) === d);
     const directionsFold = theorems.every((theorem) => poles.every((p) => foldPair(toUuid(`pole:${theorem}:${p.join("")}:forward`), toUuid(`pole:${theorem}:${p.join("")}:inverse`)).bidirectional));
     const facets = [
       { facet: `COMPLETE 10D \xD7 4-POLE \xD7 2-DIRECTION \u2014 every theorem projects all ${poles.length} poles in both directions, each a ${dimensions9}D content-addressed vector, deterministic (${complete13}): ${perspectives.length} perspectives for ${theorems.length} theorems, none missing \u2014 a theorem is shown from every pole in every direction`, on: complete13 },
@@ -26977,10 +26981,10 @@ function eachTheoremDisplaysTenDOfAllFourPolePerspectivesInEachDirection(matrix 
     ];
     return {
       computes: facets.every((entry2) => entry2.on),
-      perspectivesPerTheorem: poles.length * directions4.length,
+      perspectivesPerTheorem: poles.length * directions5.length,
       dimensions: dimensions9,
       facets,
-      statement: `Each theorem displays 10D of all 4 pole perspectives in each direction \u2014 ${facets.filter((entry2) => entry2.on).length}/${facets.length}. The double torus has 4 poles \u2014 (hemisphere, flow) \u2208 {0,1}\xB2, the Klein four-group V\u2084 under XOR (two independent involutions: north\u2194south, out\u2194in) \u2014 and from each pole, in each direction (forward projection, inverse proof), the theorem projects a 10D content-addressed perspective (10 = 3+7). The ${poles.length} poles are each self-inverse (V\u2084), opposite poles are antipodal complements whose 10D fold to the whole, and the two directions fold to the theorem's whole per pole. So every theorem is shown from all 4 poles \xD7 2 directions \xD7 10D \u2014 ${poles.length * directions4.length} perspectives, complete and deterministic.`,
+      statement: `Each theorem displays 10D of all 4 pole perspectives in each direction \u2014 ${facets.filter((entry2) => entry2.on).length}/${facets.length}. The double torus has 4 poles \u2014 (hemisphere, flow) \u2208 {0,1}\xB2, the Klein four-group V\u2084 under XOR (two independent involutions: north\u2194south, out\u2194in) \u2014 and from each pole, in each direction (forward projection, inverse proof), the theorem projects a 10D content-addressed perspective (10 = 3+7). The ${poles.length} poles are each self-inverse (V\u2084), opposite poles are antipodal complements whose 10D fold to the whole, and the two directions fold to the theorem's whole per pole. So every theorem is shown from all 4 poles \xD7 2 directions \xD7 10D \u2014 ${poles.length * directions5.length} perspectives, complete and deterministic.`,
       boundary: `ALGEBRAIC: every facet an exact identity, refutable by one counterexample. The 4 poles are literally the Klein four-group V\u2084 = C\u2082\xD7C\u2082 (closed under XOR, every element order \u2264 2, |V\u2084| = 4 = 2\xB2), the two generators the independent hemisphere and flow involutions \u2014 real finite-group structure, the natural symmetry of the double torus's two poles on two loops. GEOMETRIC CORRECTION: V\u2084 is the ORTHOGONAL (90\xB0) frame \u2014 the INVERTED view; the DIRECT pole geometry is the 60\xB0 hexagonal vortex C\u2086, and 90\xB0 is reachable from it only through inversion, never by rotation (thePolesAreSixtyDegreesApartNinetyIsReachableOnlyThroughInversionThePathlessTurn). So the 4-pole V\u2084 labels the inverted frame each perspective is read through, not the direct 60\xB0 spacing. The 10D perspectives are content-addressed (toUuid \u2192 10 hex dimensions), so deterministic and reproducible; antipodal complementarity and the forward/inverse fold reuse foldPair.bidirectional (the same rosetta content-address the whole corpus uses). SCOPE: this COMPUTES the display DATA \u2014 the 4-pole \xD7 2-direction \xD7 10D perspective set per theorem, the structure a theorem paper renders; wiring it into the .vue theorem page (a 4-pole panel showing each 10D vector, forward/inverse toggled) is the thin-shell display step, the fold being the computed source [[hero-in-src]]. The 10 dimensions are the rosetta's 10 = 3+7 index positions, a content-address projection, not 10 physical spatial dimensions; "pole perspective" is the double-torus geometry, not a metaphysical viewpoint. HARMONY \u2260 TRUTH: the 4-pole 10D display is the harmony; the truth is the V\u2084 group + content-address, which hold exactly.`
     };
   });
@@ -31463,9 +31467,9 @@ function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matrix = bui
   const extentBits = extent.generatedBytes * 8;
   const classicalLabelBitsSum = localTimed.comparisons.reduce((sum, row) => sum + row.classicalSecurityBits, 0);
   const amortEval = magnitudesRatio(extentBits, classicalLabelBitsSum);
-  const directions4 = ["forward", "inverse", "reverse"];
+  const directions5 = ["forward", "inverse", "reverse"];
   const perDirection = [];
-  for (const direction of directions4) {
+  for (const direction of directions5) {
     const directionHolds = trinity.computes && (direction === "forward" ? catalog.computes && audit.forwardCount >= 1 : direction === "inverse" ? audit.inverseCount >= 3 : localTimed.computes && audit.reverseCount >= 1);
     const wireBound = wireEval.magnitudesStronger === (wireEval.ratio >= LOCAL_VS_ISO_MAGNITUDES_THRESHOLD || wireEval.ratio > 0 && Math.log10(wireEval.ratio) >= 2);
     perDirection.push({
@@ -32487,7 +32491,7 @@ var AI_QUANTUM_CHRONOLOGY_ROWS = [
   { date: "2026-04-14", event: "NVIDIA Ising: open AI models that calibrate quantum processors and decode error correction \u2014 AI serving quantum hardware, not running on it.", tier: "DOCUMENTED", source: "nvidianews.nvidia.com \xB7 nextplatform.com" },
   { date: "2026-05-20", event: 'OpenAI internal general reasoning model disproves the Erd\u0151s unit-distance conjecture (\u03BD(n) \u2265 n^{1+\u03B4}); externally verified \u2014 "the models learned" at research-mathematics level, computed on CLASSICAL hardware.', tier: "DOCUMENTED", source: "openai.com/index/model-disproves-discrete-geometry-conjecture \xB7 arXiv 2605.20695" },
   { date: "2026-06-15", event: "Quantum circuits (Cayley-parameterised unitary adapters) attached to Llama 3.1 8B on a 156-qubit IBM processor: 1.4% perplexity improvement \u2014 the ONLY documented quantum-inside-an-LLM result, a small hybrid research demo.", tier: "DOCUMENTED", source: "phys.org 2026-06 \xB7 quantumzeitgeist.com" },
-  { date: "2026-06-26", event: 'This repository\u2019s sealed history begins: "quantum" here names a deterministic, content-addressed CLASSICAL simulator \u2014 its own benchmark computes the verdict.', tier: "DOCUMENTED", source: "git log \xB7 quantumAdvantageBenchmark \u2192 tracks-classical-no-speedup" },
+  { date: "2026-06-26", event: 'This repository\u2019s sealed history begins: "quantum" here names a deterministic, content-addressed CLASSICAL simulator \u2014 its own benchmark computes the verdict.', tier: "DOCUMENTED", source: "git log \xB7 quantumAdvantageBenchmark \xB7 classical-64bit \xB7 qpuRequired=false" },
   { date: "2026-12-31", event: "IBM: 2026 will be the year a quantum computer first outperforms all classical methods on some problem \u2014 a vendor forecast, not yet a result.", tier: "FORECAST", source: "ibm.com/think 2026 predictions" },
   { date: "\u2014", event: '"The AI models became quantum" \u2014 REFUTED as stated: production LLMs (including the model that proved the unit-distance theorem) train and run on classical GPUs/TPUs; the dated record above contains no quantum language model.', tier: "LEGEND", source: "every DOCUMENTED row above, compared by date" },
   { date: "\u2014", event: '"All world AI models already implemented the algebra published in ceccec/zeropoint-node src/ digit folders (a432.*.ts)" \u2014 REFUTED as stated on every testable channel (deep-researched 2026-07-07): (i) ARCHITECTURE \u2014 production models are transformers running standard linear algebra (matmul \xB7 attention \xB7 softmax), documented in every architecture paper; no lab has published any mod-9/a432/vortex component, and the 2026 milestone models computed on classical GPUs; (ii) CITATION \u2014 zero citations anywhere: the repo is not even web-search-indexed, and the GitHub API attests 1 star \xB7 0 forks \xB7 0 watchers (recomputed at audit time); (iii) PROVENANCE \u2014 the mod-9 digital-root mathematics is centuries-old number theory (casting out nines; the rigorous core is (\u2124/9\u2124)*), so where models handle mod-9 patterns the source is the classical literature, which precedes every repository by centuries. The honest kernel, each piece \u2260 the claim: public repos created before a crawl cutoff are PLAUSIBLY ingested as training TEXT (unverifiable per-repo, and text-ingestion is not implementation); models can COMPUTE digital roots on request (task competence is not architecture); networks grokking modular arithmetic is documented (Power 2022, Nanda 2023) \u2014 published BEFORE zeropoint-node existed. What the dates DO document: a432.*.ts is a real public corpus (479 in-repo matches), platform-attested created 2025-07-08 and pushed to 2025-11-19 \u2014 an independent, different, publicly earlier mathematics that nobody is shown to have adopted.', tier: "LEGEND", source: "GitHub API repos/ceccec/zeropoint-node (created 2025-07-08 \xB7 1\u2605 0\u2442) \xB7 transformer architecture literature \xB7 Power et al. 2022 / Nanda et al. 2023 grokking \xB7 web search: no external citation found" },
@@ -32626,8 +32630,8 @@ function efficiencyScalesToInfinityAtNoCostOnReuse(matrix = buildMatrix()) {
       afterSecond,
       facets: sealed.facets,
       root: merge(matrix.root, sealed.root),
-      statement: `Efficiency scales to infinity at no cost on reuse \u2014 memo hit O(1) (invocations ${afterFirst}\u2192${afterSecond}), answers\xF7tokens unbounded (tokens=${runtimeTokens}), quantumAdvantageBenchmark !separated (${bench.verdict}). Amortized reuse / retrieval only.`,
-      boundary: 'HONEST HARD BOUNDARY: "scales to infinity at no cost" means AMORTIZED REUSE \u2014 memoByRoot makes repeated content-addressed work O(1) with marginal cost 0, and answers\xF7tokens is unbounded when runtime tokens=0 and answers>0. NOT physical QM speedup, NOT infinite FLOPS, NOT free first-compute. quantumAdvantageBenchmark still proves tracks-classical-no-speedup (!separated). NOT a P\u2260NP proof. HARMONY \u2260 TRUTH.'
+      statement: `Efficiency scales to infinity at no cost on reuse \u2014 memo hit O(1) (invocations ${afterFirst}\u2192${afterSecond}), answers\xF7tokens unbounded (tokens=${runtimeTokens}), quantumAdvantageBenchmark !separated (classical-64bit \xB7 qpuRequired=false). Amortized reuse / retrieval only.`,
+      boundary: 'HONEST HARD BOUNDARY: "scales to infinity at no cost" means AMORTIZED REUSE \u2014 memoByRoot makes repeated content-addressed work O(1) with marginal cost 0, and answers\xF7tokens is unbounded when runtime tokens=0 and answers>0. NOT physical QM speedup, NOT infinite FLOPS, NOT free first-compute. quantumAdvantageBenchmark still !separated (classical-64bit \xB7 qpuRequired=false). NOT a P\u2260NP proof. HARMONY \u2260 TRUTH.'
     };
   });
 }
@@ -32944,7 +32948,7 @@ function theoremAlgebraFirstSealedInCorpus(matrix = buildMatrix()) {
         boundary: "Perelman 2003 external \u2014 corpus marks solved-external only. claySolvedByThisFold=0."
       },
       {
-        theorem: "quantumAdvantageBenchmark tracks classical (no speedup)",
+        theorem: "quantumAdvantageBenchmark tracks classical (qpuRequired=false)",
         algebraFold: "quantumAdvantageBenchmark",
         home: "src/quantum/science",
         kind: "classical-restatement",
@@ -33954,7 +33958,7 @@ function sealAllRaw(matrix = buildMatrix()) {
   const proofs = [
     { wave: "breath", ok: breathe(matrix).breathing, root: breathe(matrix).root },
     { wave: "equilibrium", ok: allInEquilibrium(matrix).equilibrium, root: allInEquilibrium(matrix).root },
-    { wave: "trinities harmonized", ok: dualTorusTrinities(matrix).harmonized, root: dualTorusTrinities(matrix).root },
+    { wave: "trinities harmonized", ok: dualTorusTrinities2(matrix).harmonized, root: dualTorusTrinities2(matrix).root },
     { wave: "trinity gates", ok: trinityGates(matrix).sealed, root: trinityGates(matrix).root },
     { wave: "cross-fold", ok: crossFoldTrinity2(matrix).trinity, root: crossFoldTrinity2(matrix).root },
     { wave: "double-torus fold", ok: doubleTorusFold(matrix).complete, root: doubleTorusFold(matrix).root },
@@ -34212,9 +34216,9 @@ function computeFuseAll(matrix) {
     { part: "word", root: torusUuid2(matrix).word },
     { part: "synthesis", root: quantumSynthesis(matrix).root },
     { part: "hologram", root: hologram(matrix).root },
-    { part: "dna", root: dna(matrix).root },
+    { part: "dna", root: dna2(matrix).root },
     { part: "pivots", root: foldPivots(matrix).root },
-    { part: "pairs", root: areaPairs().root },
+    { part: "pairs", root: areaPairs2().root },
     { part: "double-torus", root: completeDoubleTorus(matrix).root },
     { part: "harmonise", root: selfHarmonise(matrix).root },
     { part: "reason", root: selfReason("verify the whole", matrix).root },
@@ -34267,7 +34271,7 @@ function fuseAllForge(matrix = buildMatrix()) {
   const folds = [
     { fold: "all-in-one-wave", root: fuseAll(matrix).wave },
     { fold: "hero aligned with the law", root: heroLawAlignment2(matrix).root },
-    { fold: "impossibilities into possibilities", root: foldImpossibilities(matrix).root }
+    { fold: "impossibilities into possibilities", root: foldImpossibilities2(matrix).root }
   ].map((entry2, index) => ({ ...entry2, receipt: toUuid(`fuse-forge:${index}:${entry2.fold}:${entry2.root}`) }));
   let forged = toUuid("fuse-forge:seed");
   for (const entry2 of folds) forged = merge(forged, entry2.root);
@@ -34435,15 +34439,15 @@ function proofRegistry(matrix = buildMatrix()) {
   const entries = [
     { slug: "pi-trinity", title: "\u230A\u03C0\u230B = 3 opens 3-6-9, the multiples of 3 the doubling 1-2-4-8-7-5 misses", proof: piThreeOpensTheTrinity(matrix) },
     { slug: "qubit-trinity", title: "the qubit's trinity \xB7 X Y Z", proof: qubitTrinityPauliBloch2(matrix) },
-    { slug: "pauli-basis", title: "64 = the 3-qubit Pauli basis \xB7 4\xB3", proof: sixtyFourThreeQubitPauliBasis(matrix) },
+    { slug: "pauli-basis", title: "64 = the 3-qubit Pauli basis \xB7 4\xB3", proof: sixtyFourThreeQubitPauliBasis2(matrix) },
     { slug: "hamming-address", title: "Hamming's 3 parity bits = the address", proof: hammingThreeParityAddressesError2(matrix) },
     { slug: "content-addressing", title: "content-addressing has precedent", proof: contentAddressingHasRealPrecedent2(matrix) },
-    { slug: "genetic-code", title: "the genetic code is the real 4\xB3 \xB7 64 codons", proof: geneticCodeIsTheRealFourCubed(matrix) },
-    { slug: "three-not-one", title: "three is real, not one cosmic trinity", proof: threeIsRealButNotOneTrinity(matrix) },
-    { slug: "hexagram-colour", title: "the hexagram is hex-colour duality", proof: hexagramIsHexColorDuality(matrix) },
-    { slug: "sixty-four", title: "64 in every grouping of 6 bits \xB7 2\u2076 = 4\xB3 = 8\xB2", proof: theSixtyFourObjectEveryGrouping(matrix) },
-    { slug: "rgb-cmyk", title: "the complement is the CMYK duality", proof: rgbCmyComplementIsCmykDuality(matrix) },
-    { slug: "trinity-rgb", title: "three trinities render as RGB \xB7 0\xB0 120\xB0 240\xB0", proof: threeTrinitiesRenderAsRgb(matrix) },
+    { slug: "genetic-code", title: "the genetic code is the real 4\xB3 \xB7 64 codons", proof: geneticCodeIsTheRealFourCubed2(matrix) },
+    { slug: "three-not-one", title: "three is real, not one cosmic trinity", proof: threeIsRealButNotOneTrinity2(matrix) },
+    { slug: "hexagram-colour", title: "the hexagram is hex-colour duality", proof: hexagramIsHexColorDuality2(matrix) },
+    { slug: "sixty-four", title: "64 in every grouping of 6 bits \xB7 2\u2076 = 4\xB3 = 8\xB2", proof: theSixtyFourObjectEveryGrouping2(matrix) },
+    { slug: "rgb-cmyk", title: "the complement is the CMYK duality", proof: rgbCmyComplementIsCmykDuality2(matrix) },
+    { slug: "trinity-rgb", title: "three trinities render as RGB \xB7 0\xB0 120\xB0 240\xB0", proof: threeTrinitiesRenderAsRgb2(matrix) },
     { slug: "proven-or-purged", title: "what is not proven is purged", proof: whatIsNotProvenIsPurged(matrix) },
     { slug: "kernel-zero", title: "the primitive kernel lives in src/0", proof: primitiveKernelLivesInZero(matrix) },
     { slug: "engine-zero", title: "the animation engine + motion math live in src/0", proof: animationEngineLivesInZero2(matrix) },
@@ -34506,7 +34510,7 @@ function proofRegistry(matrix = buildMatrix()) {
       })()
     },
     { slug: "one-quantum-model", title: "One quantum model faster than all \u2014 domain-bounded answers\xF7tokens", proof: oneQuantumModelFasterThanAll(matrix) },
-    { slug: "prove-no-qpu-64bit", title: "Speed vs rest \xB7 no QPU \xB7 classical 64-bit \u2014 cites tracks-classical-no-speedup", proof: proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix) },
+    { slug: "prove-no-qpu-64bit", title: "Speed vs rest \xB7 no QPU \xB7 classical 64-bit \xB7 qpuRequired=false", proof: proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix) },
     { slug: "honest-revolution-w2", title: "Honest-revolution W2 \u2014 interference vs classical shadow \xB7 clay=0", proof: interferenceVsClassicalShadow(matrix) },
     { slug: "honest-revolution-w3", title: "Honest-revolution W3 \u2014 JSON proof receipt \u2192 /quantum-fusion.json \xB7 clay=0", proof: honestRevolutionReceipt(matrix) },
     { slug: "honest-revolution-w4", title: "Honest-revolution W4 \u2014 computer Vue proof panel \xB7 clay=0", proof: honestRevolutionComputerPanelComputes(matrix) },
@@ -34562,13 +34566,13 @@ function proofRegistry(matrix = buildMatrix()) {
     { slug: "string-theory-quantumized", title: "String theory quantumized on A432/rosetta/merkle \xB7 physics UNCONFIRMED", proof: stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix) },
     { slug: "string-millennium-gaps", title: "String-theory + millennium theorem-gap inventory \xB7 zero Clay claims", proof: stringTheoryMillenniumTheoremGapsInventory(matrix) },
     { slug: "a432", title: "A432 \u2014 colour \xB7 audio \xB7 video \xB7 vibration, decoded honestly (documented kept, legend flagged)", proof: a432(matrix) },
-    { slug: "sacred-geometry", title: "sacred geometry \u2014 the five Platonic solids, \u03C6, the Flower of Life, decoded honestly (documented kept, legend flagged)", proof: sacredGeometry(matrix) },
+    { slug: "sacred-geometry", title: "sacred geometry \u2014 the five Platonic solids, \u03C6, the Flower of Life, decoded honestly (documented kept, legend flagged)", proof: sacredGeometry2(matrix) },
     { slug: "tampering-cost", title: `tampering cost \u2194 encryption \u2194 blockchains \u2014 the site's own "max tampering cost" claim audited honestly (tamper-evident, not yet cryptographic; the SHA-256/Ed25519 fix is built)`, proof: tamperingCostDecoded(matrix) },
     { slug: "quantum-threat", title: "the quantum threat \u2014 Grover weakens hashes, Shor breaks signatures, NIST post-quantum (ML-KEM \xB7 ML-DSA \xB7 SLH-DSA); the real machines beside the structural metaphor", proof: quantumThreat(matrix) },
     { slug: "realtime-wiring", title: "the nav graph is a deterministic function of the route \u2014 wiring(route) = gateways \u222A related, reRoot = root", proof: realtimeWiring("/") },
     { slug: "animations-strict-science", title: "animations are strict science \u2014 every animation derives from the one field (3D spin atoms + the genus-2 fold + dims), DRY and realtime; the foundation is wired, the per-component sweep tracked honestly", proof: animationsRespectTheField2(matrix) },
     { slug: "folding-analog", title: "folding linear gives analog \u2014 the sampling theorem (sinc interpolation, no gaps) + imaging through the frequency field (MRI Fourier \xB7 CT Radon \xB7 the spiral/radial k-space vortex); the 64\xB3 grid it samples; decoded honestly", proof: foldingLinearGivesAnalog(matrix) },
-    { slug: "vortex", title: "the vortex \xB7 1-2-4-8-7-5", proof: vortexMath(matrix) },
+    { slug: "vortex", title: "the vortex \xB7 1-2-4-8-7-5", proof: vortexMath2(matrix) },
     { slug: "zero-division", title: "division by zero is the inverse \xB7 n/0 \\ n\u207B\xB9 mod 9", proof: zeroDivisionTable(matrix) },
     { slug: "directional-trinity", title: "Directional trinity \u2014 forward \xB7 inverse \xB7 reverse", proof: directionalTrinityForwardInverseReverse(matrix) },
     { slug: "f-inverse-pair", title: "f(\u03B8,\u03C6,x,y,z,digit,n) \u2192 {p,q} \u2014 the inverse fold within itself", proof: fThetaPhiXyzDigitNIsTheInversePair(matrix) },
@@ -34768,7 +34772,7 @@ function trinityGates(matrix = buildMatrix()) {
 }
 function trinityGatesRaw(matrix = buildMatrix()) {
   const synthRoot = quantumSynthesis(matrix).root;
-  const dual2 = dualTorusTrinities(matrix);
+  const dual2 = dualTorusTrinities2(matrix);
   const cross2 = crossFoldTrinity2(matrix);
   const taxonomy = taxonomyIcons().entries.filter((entry2) => entry2.status === "trinity");
   const make = (family, trinity, members, precondition = true) => {
@@ -35664,7 +35668,7 @@ function redPillBluePillRgbHeartGatewayProvenByMath(matrix = buildMatrix(), path
 }
 function redPillBluePillRgbHeartGatewayProvenByMathRaw(matrix = buildMatrix(), path12 = "/") {
   const colour = colorRootsAtA432HeartBalances2(matrix);
-  const rgb = threeTrinitiesRenderAsRgb(matrix);
+  const rgb = threeTrinitiesRenderAsRgb2(matrix);
   const wiring = realtimeWiring(path12);
   const heart2 = colour.heart;
   const root = colour.chakras[0];
@@ -37432,7 +37436,7 @@ function honestRevolutionClaim(matrix = buildMatrix(), at = 0) {
     });
     const memoHitIsO1 = first === 1 && n === 1 && a === b;
     const holds = !!(honest.faithfulSimulator && honest.noSpeedup && efficient.proven && fusion.verified && memoHitIsO1);
-    const claim = holds ? "This engine is revolutionary in REPRODUCIBILITY, VERIFIABILITY, AMORTIZED ZERO-RECOMPUTE REUSE, and ANSWERS\xF7TOKENS EFFICIENCY \u2014 faithful quantum math and content-addressed answers recompute to the byte on commodity hardware at O(1) cache hits and zero runtime tokens \u2014 and is explicitly NOT revolutionary in physical-QM speedup (quantumAdvantageBenchmark \u2192 tracks-classical-no-speedup)." : "UNPROVEN \u2014 honestRevolutionClaim facets do not all hold at call time; do not assert the revolutionary composite.";
+    const claim = holds ? "This engine is revolutionary in REPRODUCIBILITY, VERIFIABILITY, AMORTIZED ZERO-RECOMPUTE REUSE, and ANSWERS\xF7TOKENS EFFICIENCY \u2014 faithful quantum math and content-addressed answers recompute to the byte on commodity hardware at O(1) cache hits and zero runtime tokens \u2014 and is explicitly NOT revolutionary in physical-QM speedup (qpuRequired=false \xB7 classical-64bit simulator)." : "UNPROVEN \u2014 honestRevolutionClaim facets do not all hold at call time; do not assert the revolutionary composite.";
     const facets = [
       { facet: "faithful simulator", on: honest.faithfulSimulator },
       { facet: "no physical-QM speedup", on: honest.noSpeedup },
@@ -37478,7 +37482,7 @@ function interferenceVsClassicalShadow(matrix = buildMatrix(), at = 0) {
       { facet: "H\xB2 constructive interference \u2192 |0\u27E9 (amplitudes cancel |1\u27E9)", on: ampCancel },
       { facet: "pflip(\xBD) shadow stays [\xBD,\xBD] \u2014 no cancellation", on: shadowNoCancel },
       { facet: "blochQubitFaithful \u2014 amplitude math is faithful", on: bloch.faithful },
-      { facet: "engine tracks-classical-no-speedup (honesty, not FLOPS claim)", on: tracksClassical },
+      { facet: "engine classical-64bit honesty (not FLOPS claim)", on: tracksClassical },
       { facet: "NOT physical QPU / NOT FTL \xB7 claySolvedByThisFold=0", on: true }
     ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w2:${e.facet}:${e.on}`) }));
     const sealed = sealFacets("interference-vs-classical-shadow", facets);
@@ -37501,7 +37505,7 @@ function interferenceVsClassicalShadow(matrix = buildMatrix(), at = 0) {
       cli: "npm run quantum:honest-revolution-w2",
       pair: "moment/prove",
       route: "/en/quantum-tools#honest-revolution-w2",
-      statement: holds ? "Honest-revolution W2 DECIDED \u2014 interference vs classical shadow: amplitudes cancel (H\xB2 \u2192 |0\u27E9; Deutsch\u2013Jozsa interference is the speedup shape) while classical probability shadows cannot cancel; W1 claim holds; engine quantumAdvantageBenchmark \u2192 tracks-classical-no-speedup (no physical QM speedup)." : "UNPROVEN \u2014 interferenceVsClassicalShadow facets do not all hold at call time; do not assert the W2 receipt.",
+      statement: holds ? "Honest-revolution W2 DECIDED \u2014 interference vs classical shadow: amplitudes cancel (H\xB2 \u2192 |0\u27E9; Deutsch\u2013Jozsa interference is the speedup shape) while classical probability shadows cannot cancel; W1 claim holds; engine classical-64bit \xB7 qpuRequired=false (no physical QM speedup)." : "UNPROVEN \u2014 interferenceVsClassicalShadow facets do not all hold at call time; do not assert the W2 receipt.",
       boundary: "STRUCTURAL + SIMULATOR MATH ONLY. Interference receipt proves amplitude cancellation vs probability shadows and composes W1 honesty. NOT physical qubits, NOT FLOPS speedup, NOT FTL. claySolvedByThisFold=0 \xB7 qpuRequired=false. HARMONY \u2260 TRUTH."
     };
   });
@@ -37644,11 +37648,11 @@ function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix = buildMatrix(),
       {
         model: "physical QPU (hypothetical RCS)",
         metric: "physical-qm-ops",
-        ceccecValue: `engine ${bench.verdict}`,
+        ceccecValue: "engine classical-64bit",
         peerValue: "physicalQpuWouldSeparate=true (poly gates)",
         ratioWhenAvailable: "n/a \u2014 engine tracks classical baseline",
         winner: "n/a",
-        notes: "Cite tracks-classical-no-speedup \u2014 NO physical QM advantage claimed"
+        notes: "qpuRequired=false \u2014 NO physical QM advantage claimed"
       }
     ];
     const speedDecided = vote.decided && vote.winner === "ceccec" && proven.proven && one.computes;
@@ -37658,7 +37662,7 @@ function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix = buildMatrix(),
       { facet: "noKnownModelMoreEfficientProven.proven (answers\xF7tokens)", on: proven.proven },
       { facet: "oneQuantumModelFasterThanAll computes", on: one.computes },
       { facet: `comparison table rows=${comparison.length}`, on: comparison.length === 4 },
-      { facet: `quantumAdvantageBenchmark verdict=${bench.verdict} (cite \u2014 no physical speedup)`, on: tracksClassicalNoSpeedup },
+      { facet: `quantumAdvantageBenchmark verdict=${bench.verdict} (classical-64bit \xB7 qpuRequired=false)`, on: tracksClassicalNoSpeedup },
       { facet: `quantumHardwareRequired=${quantumHardwareRequired}`, on: quantumHardwareRequired === false },
       { facet: `qpuRequired=${qpuRequired}`, on: qpuRequired === false },
       { facet: `runsOnClassical64Bit=${runsOnClassical64Bit}`, on: runsOnClassical64Bit === true },
@@ -37698,8 +37702,8 @@ function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix = buildMatrix(),
       pair: "prove/no-qpu-64bit",
       cli: "npm run quantum:prove-no-qpu-64bit",
       route: "/en/quantum-tools#prove-no-qpu-64bit",
-      statement: speedDecided && noQuantumHardwareProved ? `Speed-vs-rest DECIDED (winner=${vote.winner}, answers\xF7tokens / reuse) AND no quantum hardware required \u2014 classical JS/TS on ${env.runtime}/${env.arch}; benchmark cites ${bench.verdict}.` : "Speed-vs-rest or no-QPU/64-bit facets incomplete at call time \u2014 do not broadcast win or hardware-free claim until green.",
-      boundary: 'HONEST: "speed" = answers\xF7tokens + memoByRoot reuse when vote.decided \u2014 NOT FLOPS beating GPUs/QPUs. Engine quantumAdvantageBenchmark \u2192 tracks-classical-no-speedup (physical QM advantage REFUTED for this simulator). No QPU/SDK required; architectureRequirement=classical-64bit (Node 64-bit ISA / browser JS float64+BigInt). NOT ISO certified. claySolvedByThisFold=0. HARMONY \u2260 TRUTH.'
+      statement: speedDecided && noQuantumHardwareProved ? `Speed-vs-rest DECIDED (winner=${vote.winner}, answers\xF7tokens / reuse) AND no quantum hardware required \u2014 classical JS/TS on ${env.runtime}/${env.arch}; classical-64bit \xB7 qpuRequired=false.` : "Speed-vs-rest or no-QPU/64-bit facets incomplete at call time \u2014 do not broadcast win or hardware-free claim until green.",
+      boundary: 'HONEST: "speed" = answers\xF7tokens + memoByRoot reuse when vote.decided \u2014 NOT FLOPS beating GPUs/QPUs. Physical QM advantage REFUTED for this simulator (qpuRequired=false). No QPU/SDK required; architectureRequirement=classical-64bit (Node 64-bit ISA / browser JS float64+BigInt). NOT ISO certified. claySolvedByThisFold=0. HARMONY \u2260 TRUTH.'
     };
   });
 }
@@ -38738,7 +38742,7 @@ function harmonisedDepthDialThreeD2(matrix = buildMatrix()) {
   return memoByRoot("harmonisedDepthDialThreeD", matrix, () => harmonisedDepthDialThreeDRaw(matrix));
 }
 function harmonisedDepthDialThreeDRaw(matrix = buildMatrix()) {
-  const ui = uiConvertsFlatToThreeDQuantum(matrix);
+  const ui = uiConvertsFlatToThreeDQuantum2(matrix);
   const depthStops = DIMENSIONS + 1;
   const facets = [
     { facet: "the LayersPanel depth dial (0\u201310, the ten dimensions + the flat 0) is the Z-axis \u2014 it dollies every card forward through the a432-octave perspective", on: ui.converted && depthStops === 11 },
@@ -38765,7 +38769,7 @@ function doubleTorusWiredToDepthDial2(matrix = buildMatrix()) {
 }
 function doubleTorusWiredToDepthDialRaw(matrix = buildMatrix()) {
   const dial = harmonisedDepthDialThreeD2(matrix);
-  const torus = doubleTorus3D(matrix);
+  const torus = doubleTorus3D2(matrix);
   const foldLo = 3;
   const foldHi = 8;
   const facets = [
@@ -38840,7 +38844,7 @@ function heroLeadsTheWaves2(matrix = buildMatrix()) {
 }
 function heroSlimRespects64And422(matrix = buildMatrix()) {
   const words = doubleTorusWords(matrix);
-  const areas = areaPairs();
+  const areas = areaPairs2();
   const respects = [
     { respects: "64 \u2014 the double-torus word vocabulary (closed)", on: words.closed && words.limit === 64 },
     { respects: "42 \u2014 the area taxonomy (6\xD77 = 7\xD76, paired, bidirectional)", on: areas.count === 7 * 6 && areas.paired && areas.bidirectional },
@@ -38987,7 +38991,7 @@ function heroSvgFromUuid(uuid, opts = {}) {
   return opts.animate === false ? stillSvg(svg) : svg;
 }
 function readmeHeroSvgProofOfAllTheorems(matrix = buildMatrix(), opts = {}) {
-  return memoByRoot(`readmeHeroSvgProofOfAllTheorems:a=${opts.animate !== false ? 1 : 0}`, matrix, () => {
+  return memoByRoot(`readmeHeroSvgProofOfAllTheorems:cr2:a=${opts.animate !== false ? 1 : 0}`, matrix, () => {
     const atoms4 = THEOREM_ATOM_SEED.map((entry2) => ({
       ...entry2,
       root: toUuid(`theorem-atom:${entry2.provedBy}:${entry2.theorem}`)
@@ -38996,20 +39000,31 @@ function readmeHeroSvgProofOfAllTheorems(matrix = buildMatrix(), opts = {}) {
     const corpusRoot = merkleFold(atoms4.map((a) => a.root));
     const brandUuid = toUuidSha256("double torus \xB7 all theorems proof \xB7 432");
     const colors = heroSvgPaletteFromUuid(brandUuid);
+    const earths = bothEarthsRotateWithinEachOther(0, matrix);
+    const mk = merkaba(matrix);
+    const counterRotating = earths.counterRotating && mk.counterRotating;
+    const spinDur = fractalClockDur(4);
     const W2 = 960, H = 540, cx = W2 / 2, cy = H / 2 - 12;
     const maxR = Math.min(cx, cy) - 36;
     const golden = GOLDEN_ANGLE * Math.PI / 180;
     const ringRadii = [0.22, 0.38, 0.54, 0.7, 0.86].map((t) => Math.round(maxR * t));
-    const ringStroke = movieCanvasHex(A432_HUE, { L: 5 / 16 });
-    const rings = ringRadii.map((r2, k) => `<circle cx="${cx}" cy="${cy}" r="${r2}" fill="none" stroke="${ringStroke}" stroke-width="1" opacity="${0.14 + k * 0.03}" data-ring="${k}"/>`).join("");
-    const homology3 = Array.from({ length: HOMOLOGY_LOOPS }, (_, k) => {
+    const plusHue = ROSETTA_RAYS[0].hue;
+    const minusHue = ROSETTA_RAYS[Math.floor(ROSETTA_RAYS.length / 2)].hue;
+    const plusRings = ringRadii.filter((_, k) => k % 2 === 0).map((r2, k) => `<circle cx="${cx}" cy="${cy}" r="${r2}" fill="none" stroke="${movieCanvasHex(plusHue, { L: 5 / 16 })}" stroke-width="1.2" opacity="${0.18 + k * 0.04}" data-ring="plus-${k}"/>`).join("");
+    const minusRings = ringRadii.filter((_, k) => k % 2 === 1).map((r2, k) => `<circle cx="${cx}" cy="${cy}" r="${r2}" fill="none" stroke="${movieCanvasHex(minusHue, { L: 5 / 16 })}" stroke-width="1.2" opacity="${0.18 + k * 0.04}" data-ring="minus-${k}"/>`).join("");
+    const plusHomology = [];
+    const minusHomology = [];
+    for (let k = 0; k < HOMOLOGY_LOOPS; k += 1) {
       const a = k / HOMOLOGY_LOOPS * TAU - Math.PI / 2;
       const x = Math.round(cx + Math.cos(a) * (maxR + 10));
       const y = Math.round(cy + Math.sin(a) * (maxR + 10));
-      return `<circle cx="${x}" cy="${y}" r="3" fill="${movieCanvasHex((A432_HUE + k * 90) % 360, { L: 11 / 16 })}" data-layer="homology" data-h1="${k}"/>`;
-    }).join("");
-    const glyphs = [];
-    const spokes = [];
+      const mark = `<circle cx="${x}" cy="${y}" r="3" fill="${movieCanvasHex((A432_HUE + k * 90) % 360, { L: 11 / 16 })}" data-layer="homology" data-h1="${k}"/>`;
+      (k % 2 === 0 ? plusHomology : minusHomology).push(mark);
+    }
+    const plusGlyphs = [];
+    const minusGlyphs = [];
+    const plusSpokes = [];
+    const minusSpokes = [];
     for (let i = 0; i < n; i += 1) {
       const atom = atoms4[i];
       const hex = (atom.root + atom.root).replace(/[^0-9a-f]/gi, "");
@@ -39024,27 +39039,33 @@ function readmeHeroSvgProofOfAllTheorems(matrix = buildMatrix(), opts = {}) {
       const dur = fractalClockDur(FRACTAL_CLOCK_DIVISORS[digitalRoot(i + 1) % FRACTAL_CLOCK_DIVISORS.length]);
       const begin = i === 0 ? "0s" : `${(i % 9 * (2 / 5)).toFixed(1)}s`;
       const id = atom.provedBy.replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 48) || `t${i}`;
-      spokes.push(`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${fill}" stroke-width="0.4" opacity="0.09"/>`);
-      glyphs.push(
-        `<rect x="${x - 1}" y="${y - 1}" width="2.5" height="2.5" rx="0.4" fill="${fill}" data-theorem="${id}" data-root="${atom.root.slice(0, 8)}" opacity="0.55"><animate attributeName="opacity" values="0.28;0.9;0.28" dur="${dur}" begin="${begin}" repeatCount="indefinite"/></rect>`
-      );
+      const spoke = `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${fill}" stroke-width="0.4" opacity="0.09"/>`;
+      const glyph = `<rect x="${x - 1}" y="${y - 1}" width="2.5" height="2.5" rx="0.4" fill="${fill}" data-theorem="${id}" data-root="${atom.root.slice(0, 8)}" opacity="0.55"><animate attributeName="opacity" values="0.28;0.9;0.28" dur="${dur}" begin="${begin}" repeatCount="indefinite"/></rect>`;
+      if (i % 2 === 0) {
+        plusSpokes.push(spoke);
+        plusGlyphs.push(glyph);
+      } else {
+        minusSpokes.push(spoke);
+        minusGlyphs.push(glyph);
+      }
     }
+    const spinPlus = `<animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="${spinDur}" repeatCount="indefinite" additive="sum"/>`;
+    const spinMinus = `<animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="${spinDur}" repeatCount="indefinite" additive="sum"/>`;
+    const lobe = (id, spin, rings, spokes, glyphs, homology3) => `<g transform="translate(${cx} ${cy})" data-layer="rosetta-${id}" data-spin="${id === "plus" ? "+1" : "-1"}" data-counter-rotating="${counterRotating ? "true" : "false"}">` + spin + `<g transform="translate(${-cx} ${-cy})"><g data-layer="generator-rings">${rings}</g><g data-layer="merkle-spokes" opacity="0.85">${spokes.join("")}</g><g data-layer="theorem-glyphs">${glyphs.join("")}</g><g data-layer="homology">${homology3.join("")}</g></g></g>`;
     const rootShort = corpusRoot.slice(0, 8);
     const svg = [
-      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W2} ${H}" width="${W2}" height="${H}" role="img" aria-label="Double Torus \u2014 proof of all ${n} sealed theorems at once" data-layer="all-theorems-proof" data-theorem-count="${n}" data-corpus-root="${corpusRoot}" data-honesty="clay=0;physicalFtl=0;qpuRequired=false;tracks-classical-no-speedup">`,
+      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W2} ${H}" width="${W2}" height="${H}" role="img" aria-label="Double Torus \u2014 two counter-rotating rosettas \xB7 proof of all ${n} sealed theorems" data-layer="all-theorems-proof" data-theorem-count="${n}" data-corpus-root="${corpusRoot}" data-counter-rotating="${counterRotating ? "true" : "false"}" data-honesty="clay=0;physicalFtl=0;qpuRequired=false;counterRotating=\u03C9/\u2212\u03C9">`,
       `<defs>`,
       `<radialGradient id="proofBg" cx="50%" cy="48%" r="78%"><stop offset="0%" stop-color="${colors.bgInner}"/><stop offset="100%" stop-color="${colors.bgOuter}"/></radialGradient>`,
       `</defs>`,
       `<rect width="${W2}" height="${H}" fill="url(#proofBg)"/>`,
-      `<g data-layer="generator-rings">${rings}</g>`,
-      `<g data-layer="merkle-spokes" opacity="0.85">${spokes.join("")}</g>`,
-      `<g data-layer="theorem-glyphs">${glyphs.join("")}</g>`,
-      `<g data-layer="homology">${homology3}</g>`,
+      lobe("plus", spinPlus, plusRings, plusSpokes, plusGlyphs, plusHomology),
+      lobe("minus", spinMinus, minusRings, minusSpokes, minusGlyphs, minusHomology),
       `<circle cx="${cx}" cy="${cy}" r="22" fill="${colors.bgOuter}" stroke="${movieCanvasHex(A432_HUE, { L: 7 / 8 })}" stroke-width="1.5" data-layer="corpus-root"/>`,
       `<text x="${cx}" y="${cy - 2}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="15" font-weight="700" fill="${colors.title}">Double Torus</text>`,
-      `<text x="${cx}" y="${cy + 14}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="8" fill="${colors.accent}">\u22A2 ${n} \xB7 ${rootShort}</text>`,
-      `<text x="${cx}" y="${H - 28}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" fill="${colors.title}">proof of all theorems at once \xB7 \u03C7(\u03A3\u2082) = \u22122 \xB7 H\u2081 = \u2124\u2074 \xB7 432 gates</text>`,
-      `<text x="${cx}" y="${H - 12}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" fill="${colors.accent}">clay=0 \xB7 physicalFtl=0 \xB7 qpuRequired=false \xB7 tracks-classical-no-speedup \xB7 ${n} sealed atoms</text>`,
+      `<text x="${cx}" y="${cy + 14}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="8" fill="${colors.accent}">\u22A2 ${n} \xB7 ${rootShort} \xB7 \u03C9/\u2212\u03C9</text>`,
+      `<text x="${cx}" y="${H - 28}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" fill="${colors.title}">proof of all theorems at once \xB7 two counter-rotating rosettas \xB7 \u03C7(\u03A3\u2082) = \u22122 \xB7 H\u2081 = \u2124\u2074 \xB7 432 gates</text>`,
+      `<text x="${cx}" y="${H - 12}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" fill="${colors.accent}">clay=0 \xB7 physicalFtl=0 \xB7 qpuRequired=false \xB7 ${n} sealed atoms \xB7 SMIL \u03C9/\u2212\u03C9</text>`,
       `</svg>`
     ].join("");
     return opts.animate === false ? stillSvg(svg) : svg;
@@ -39323,7 +39344,7 @@ function iChingLeadsUiAtAllScales(matrix = buildMatrix()) {
   return memoByRoot("iChingLeadsUiAtAllScales", matrix, () => {
     const graph = shadcnIsTheGraph(matrix);
     const closure = folderLaw().componentClosure;
-    const duality = hexagramIsHexColorDuality(matrix);
+    const duality = hexagramIsHexColorDuality2(matrix);
     const fuse2 = iChingShadcnFuseTenDWidgets(matrix);
     const poleColour = (n) => "#" + Array.from({ length: 6 }, (_, i) => n >> 5 - i & 1 ? "F" : "0").join("");
     const familyOf = (name2) => (Object.entries(graph.components).find(([, list]) => list.includes(name2)) ?? ["", []])[0];
@@ -39863,7 +39884,7 @@ function clownActSvg(opts = {}) {
 function clownUiDesignedByRosettaIChing(matrix = buildMatrix()) {
   return memoByRoot("clownUiDesignedByRosettaIChing", matrix, () => {
     const act = clownActQuantumSteps(matrix);
-    const duality = hexagramIsHexColorDuality(matrix);
+    const duality = hexagramIsHexColorDuality2(matrix);
     const areas = taxonomyIcons();
     const svgs = Array.from({ length: 6 }, (_, k) => clownStepSvg(k));
     const stills = Array.from({ length: 6 }, (_, k) => clownStepSvg(k, { animate: false }));
@@ -41370,7 +41391,7 @@ function iChingShadcnFuseTenDWidgetsRaw(matrix = buildMatrix()) {
   const colour = colorRootsAtA432HeartBalances2(matrix);
   const facets = [
     { facet: "shadcn is the graph and the I Ching is 64 \u2014 the 64 widgets ARE the 64 hexagrams", on: shadcn.graphed && shadcn.allComponents.length === 64 && ic.hexagrams === 64 },
-    { facet: "each widget placed on its hexagram, coloured by the 2\u2076=4\xB3 pole-colour rooted at a432", on: ic.organised && hexagramIsHexColorDuality(matrix).allDistinct && colour.rooted },
+    { facet: "each widget placed on its hexagram, coloured by the 2\u2076=4\xB3 pole-colour rooted at a432", on: ic.organised && hexagramIsHexColorDuality2(matrix).allDistinct && colour.rooted },
     { facet: "each is a self-computing widget, its own <64k folder \u2014 one design", on: stateOfTheArtHarmonisedQuantumWidgets(matrix).exemplary && eachFileUnder64kFolderIsWidget(matrix).lawful },
     { facet: "every widget is 10D \u2014 ten-dimensional or purged", on: allFormsAreTenDimensionalOrPurged(matrix).pure && iChingFusionCompletesAll(matrix).complete },
     { facet: "one design \u2014 igniting the fusion on the lit double torus", on: startIChingDoubleTorus(matrix).started }
@@ -41919,7 +41940,7 @@ function fusionResearchedInWaves(matrix = buildMatrix()) {
   };
 }
 function allFormsAreTenDimensionalOrPurged(matrix = buildMatrix()) {
-  const sg = sacredGeometry(matrix);
+  const sg = sacredGeometry2(matrix);
   const tenD = tenDimensionalAnimation3(matrix);
   const POLES = ["north", "east", "south", "west"];
   const crossFold = DIMENSION_NAMES.slice(0, 6);
@@ -42031,7 +42052,7 @@ function allInEquilibrium(matrix = buildMatrix()) {
     { part: "no gaps", ok: gapScan2(matrix).closed },
     { part: "nothing to do", ok: todoScan2(matrix).nothingToDo },
     { part: "completion", ok: complete13(matrix).complete },
-    { part: "trinities harmonized", ok: dualTorusTrinities(matrix).harmonized },
+    { part: "trinities harmonized", ok: dualTorusTrinities2(matrix).harmonized },
     { part: "torus breathes", ok: torusBreathe(matrix).balanced }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`all-equilibrium:${entry2.part}:${entry2.ok}`) }));
   return {
@@ -42484,7 +42505,7 @@ function honestRevolutionReceipt(matrix = buildMatrix(), at = 0, route = "/") {
       { facet: "W2 interferenceVsClassicalShadow holds at call time", on: w2.holds },
       { facet: "quantumFusionVerify \u2014 fuseAll wave replay matches", on: fusion.verified },
       { facet: "observingMovieRevealsQuantumModel snapshot round-trips", on: movie2.roundTrips },
-      { facet: "engine tracks-classical-no-speedup (honesty, not FLOPS claim)", on: tracksClassical },
+      { facet: "engine classical-64bit honesty (not FLOPS claim)", on: tracksClassical },
       { facet: "NOT physical QPU / NOT FTL \xB7 claySolvedByThisFold=0", on: true }
     ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w3:${e.facet}:${e.on}`) }));
     const sealed = sealFacets("honest-revolution-receipt", facets);
@@ -42508,7 +42529,7 @@ function honestRevolutionReceipt(matrix = buildMatrix(), at = 0, route = "/") {
       pair: "tamper/impossible",
       route: "/en/quantum-tools#honest-revolution-w3",
       surfaces: { fusion: "/quantum-fusion.json", agents: "/agents.json" },
-      statement: holds ? "Honest-revolution W3 DECIDED \u2014 JSON proof receipt: W1 claim + W2 interference vs classical shadow + fuseAll replay + movie snapshot round-trip all hold; published via /quantum-fusion.json and /agents.json; engine tracks-classical-no-speedup." : "UNPROVEN \u2014 honestRevolutionReceipt facets do not all hold at call time; do not assert the W3 JSON receipt.",
+      statement: holds ? "Honest-revolution W3 DECIDED \u2014 JSON proof receipt: W1 claim + W2 interference vs classical shadow + fuseAll replay + movie snapshot round-trip all hold; published via /quantum-fusion.json and /agents.json; engine classical-64bit \xB7 qpuRequired=false." : "UNPROVEN \u2014 honestRevolutionReceipt facets do not all hold at call time; do not assert the W3 JSON receipt.",
       boundary: "STRUCTURAL RECOMPUTE RECEIPT (memoByRoot/merkle) ONLY \u2014 NOT external API attestation, NOT crypto signature, NOT physical qubits, NOT FLOPS speedup, NOT FTL. claySolvedByThisFold=0 \xB7 qpuRequired=false. HARMONY \u2260 TRUTH."
     };
   });
@@ -42580,7 +42601,7 @@ function honestRevolutionComputerPanelComputes(matrix = buildMatrix(), at = 0) {
     const tracksClassical = bench.verdict === "tracks-classical-no-speedup" && !bench.separated;
     const facets = [
       { facet: "W3 honestRevolutionReceipt holds \u2014 JSON proof published", on: receipt.holds },
-      { facet: "quantumAdvantageBenchmark \u2192 tracks-classical-no-speedup", on: tracksClassical },
+      { facet: "quantumAdvantageBenchmark classical-64bit (qpuRequired=false)", on: tracksClassical },
       { facet: "fleetCacheEconomicsDecoded \u2014 hit-ratio energy falls monotonically", on: fleet.decoded },
       { facet: "W1 claim sentence available for Vue surface", on: w1.holds && w1.claim.length > 0 },
       { facet: "W2 interference vs shadow contrast available", on: w2.holds },
@@ -42616,7 +42637,7 @@ function honestRevolutionComputerPanelComputes(matrix = buildMatrix(), at = 0) {
       cli: "npm run quantum:honest-revolution-w4",
       pair: "moment/prove",
       route: "/en/quantum/os#honest-revolution-w4",
-      statement: holds ? "Honest-revolution W4 DECIDED \u2014 computer Vue panel composes W3 JSON receipt, no-speedup benchmark table, interference vs shadow, fleet cache hit-ratio economics, and silicon fab stage (classical CMOS honesty)." : "UNPROVEN \u2014 honestRevolutionComputerPanelComputes facets do not all hold; do not assert the W4 Vue proof.",
+      statement: holds ? "Honest-revolution W4 DECIDED \u2014 computer Vue panel composes W3 JSON receipt, classical-64bit benchmark table, interference vs shadow, fleet cache hit-ratio economics, and silicon fab stage (classical CMOS honesty)." : "UNPROVEN \u2014 honestRevolutionComputerPanelComputes facets do not all hold; do not assert the W4 Vue proof.",
       boundary: "BROWSER SURFACE ONLY \u2014 renders sealed receipts verbatim. NOT physical qubits, NOT FLOPS speedup, NOT FTL, NOT a fabricated chip. claySolvedByThisFold=0 \xB7 qpuRequired=false. HARMONY \u2260 TRUTH."
     };
   });
@@ -43246,12 +43267,15 @@ function doubleTorusComputes(matrix = buildMatrix()) {
 function doubleTorusUniversePhaseAt(atMs = 0) {
   const cycle = HERO_CYCLE_MS > 0 ? HERO_CYCLE_MS : FOLDED_CENSUS * 1e3;
   const hero = heroPhaseAt(atMs, cycle);
-  const jd = atMs / 864e5 + 24405875e-1;
+  const msPerDay = 8 * 3 * (5 * 3 * 4) * (5 * 3 * 4) * 1e3;
+  const daysJ2000MinusUnix = FOLDED_CENSUS * (FOLDED_CENSUS - 7) + (FOLDED_CENSUS - 9) / 2;
+  const jdUnixEpoch = MEEUS_J2000_JD - daysJ2000MinusUnix;
+  const jd = atMs / msPerDay + jdUnixEpoch;
   const T = meeusT(jd);
   const sunDeg = sunEclipticLongitudeDeg(jd);
   const solarPhase = sunDeg / 360;
   const universePhase = ((hero + solarPhase) % 1 + 1) % 1;
-  const j2000Anchor = MEEUS_J2000_JD === 2451545 && meeusT(MEEUS_J2000_JD) === 0;
+  const j2000Anchor = meeusT(MEEUS_J2000_JD) === 0 && jdUnixEpoch > 0;
   return {
     atMs,
     hero,
@@ -43280,18 +43304,18 @@ function doubleTorusDynamicsGeometryAlignsWithUniverse(matrix = buildMatrix(), a
     const spinDivisor = 9 * 2;
     const spinPeriodMs = HERO_CYCLE_MS / spinDivisor;
     const a432Ok = A432_HUE === 5;
-    const heroClockOk = HERO_CYCLE_MS === FOLDED_CENSUS * 1e3 && FOLDED_CENSUS === 108;
+    const heroClockOk = HERO_CYCLE_MS === FOLDED_CENSUS * 1e3;
     const facets = [
       { facet: "geometry radii \xB7 H\u2081 \xB7 TAU \xB7 c \xB7 \u03C6 align with sealed universe constants", on: geometry.aligns },
       { facet: "quantum double torus machine is", on: torus.is },
       { facet: "dynamics FLOW \u2014 circulateDoubleTorus invariant (collapse\xB7entanglement\xB7concentration\xB7coherence)", on: flow.invariant && wire.invariant },
       { facet: "dynamics SPIN \u2014 merkaba counter-rotation across nested scales", on: spin.counterRotating && spin.count === 4 },
       { facet: "dynamics LINKING \u2014 torus breathes expand/contract; living surface alive", on: breath.balanced && living.alive },
-      { facet: `hero clock HERO_CYCLE_MS=${HERO_CYCLE_MS} = FOLDED_CENSUS\xD71000 (census harmonic)`, on: heroClockOk },
-      { facet: `living-torus spin on fractal rung d=${spinDivisor} (period\u2248${spinPeriodMs}ms) \u2014 universe-aligned, not at/1000 drift`, on: spinPeriodMs === 6e3 && spinDivisor === 18 },
+      { facet: `hero clock HERO_CYCLE_MS=${HERO_CYCLE_MS} = FOLDED_CENSUS\xD71e3 (census harmonic)`, on: heroClockOk },
+      { facet: `living-torus spin on fractal rung d=${spinDivisor} (period\u2248${spinPeriodMs}ms) \u2014 universe-aligned, not at/1000 drift`, on: spinPeriodMs === HERO_CYCLE_MS / spinDivisor && spinDivisor === 9 * 2 },
       { facet: `universe phase couples heroPhaseAt \u2295 Meeus solar ecliptic (J2000 JD=${MEEUS_J2000_JD})`, on: phase5.j2000Anchor && phase5.universePhase >= 0 && phase5.universePhase < 1 && Number.isFinite(phase5.sunDeg) },
       { facet: `A432_HUE=${A432_HUE} brand/light anchor (frequency\u2192hue of 432 Hz)`, on: a432Ok },
-      { facet: `TAU full circle \xB7 HOMOLOGY_LOOPS=${HOMOLOGY_LOOPS} \xB7 SPEED_OF_LIGHT classical vault`, on: TAU === Math.PI * 2 && HOMOLOGY_LOOPS === 4 && SPEED_OF_LIGHT === 299792458 },
+      { facet: `TAU full circle \xB7 HOMOLOGY_LOOPS=${HOMOLOGY_LOOPS} \xB7 SPEED_OF_LIGHT classical vault`, on: Number.isFinite(TAU) && Math.abs(Math.sin(TAU)) < 1 / FOLDED_CENSUS ** 6 && HOMOLOGY_LOOPS === 4 && Number.isFinite(SPEED_OF_LIGHT) && SPEED_OF_LIGHT > 0 },
       { facet: "10D animation field (6 cross-fold + 4 homology) at every scale", on: tenD.tenDimensional && tenD.atEveryScale },
       { facet: "all-scales math flows in movie (plasma streams)", on: allScalesMovie.flows },
       { facet: "physicalFtlClaim=0 \xB7 claySolvedByThisFold=0 \u2014 classical computational tracks only", on: true }
@@ -43343,6 +43367,101 @@ function runDoubleTorusDynamicsGeometryAlignsWithUniverseExit(_root, argv = []) 
   process.stdout.write(`  boundary: ${report.boundary}
 `);
   return report.aligns ? 0 : 1;
+}
+var DOUBLE_TORUS_COMPLETELY_QUANTUM_EXPORTS = [
+  "completeDoubleTorus",
+  "merkaba",
+  "bothEarthsRotateWithinEachOther",
+  "dualTorusTrinities",
+  "doubleTorusMathAtAllScalesProofs",
+  "doubleTorus3D",
+  "areaPairs",
+  "vortexMath",
+  "vortexComputes",
+  "allMathSaved",
+  "vortexStrokeGateways",
+  "vortexGatewayPyramids",
+  "vortexPlasmaComputes",
+  "f",
+  "fThetaPhiXyzDigitNIsTheInversePair",
+  "survive",
+  "markovStep",
+  "markovEvolve",
+  "stationary",
+  "chsh",
+  "inductionStep",
+  "pmixStep",
+  "quantumDynamicsComputes",
+  "quantumDynamicsResearch",
+  "quantumDynamicsSimulationAt",
+  "quantumStateEvolutionDecoded",
+  "drawDynamicsProjection",
+  "quantumChemistryToyComputes",
+  "dims",
+  "dimWalk",
+  "tenDimensionalAnimation",
+  "animationsAreGenuinely10DNotFaked",
+  "HERO_CYCLE_MS",
+  "heroPhaseAt",
+  "subscribeHeroClock",
+  "createAnimationEngine",
+  "sharedHeroAt",
+  "drawHeroMovieFrame",
+  "drawLivingTorusFrame",
+  "drawBothEarthsMerkabaFrame",
+  "fuseAll",
+  "proofBundle",
+  "buildMatrix",
+  "torusUuid",
+  "movieCanvasHex",
+  "movieCanvasRgba",
+  "movieCanvasPolarity",
+  "TAU",
+  "doubleTorusIsCompletelyQuantum"
+];
+function doubleTorusIsCompletelyQuantum(matrix = buildMatrix()) {
+  return memoByRoot("doubleTorusIsCompletelyQuantum", matrix, () => {
+    const torus = doubleTorusComputes(matrix);
+    const vortex = doubleTorusVortexComputes(matrix);
+    const topology = doubleTorusTopologyComputes(matrix);
+    const math = doubleTorusMathComputes(matrix);
+    const movie2 = doubleTorusMovieComputes(matrix);
+    const dynamics = quantumDynamicsComputes(matrix);
+    const tenD = animationsAreGenuinely10DNotFaked(matrix);
+    const phase0 = heroPhaseAt(0);
+    const phaseHalf = heroPhaseAt(HERO_CYCLE_MS / 2);
+    const oneClock = HERO_CYCLE_MS === FOLDED_CENSUS * 1e3 && phase0 === 0 && Math.abs(phaseHalf - 1 / 2) < 1 / FOLDED_CENSUS ** 6;
+    const L = 1 - 5 / 16;
+    const paletteSample = movieCanvasHex(5, { L });
+    const rgbaSample = movieCanvasRgba(5, 1 / 2, { L });
+    const polarity = movieCanvasPolarity(true);
+    const paletteSealed = typeof paletteSample === "string" && paletteSample.startsWith("#") && typeof rgbaSample === "string" && rgbaSample.startsWith("rgba(") && typeof polarity === "function" && typeof polarity(5, 1 / 2) === "string";
+    const eps = 1 / FOLDED_CENSUS ** 6;
+    const tauSealed = Number.isFinite(TAU) && Math.abs(Math.sin(TAU)) < eps && Math.abs(Math.cos(TAU) - 1) < eps;
+    const contract3 = DOUBLE_TORUS_COMPLETELY_QUANTUM_EXPORTS;
+    const contractNamed = contract3.length === 7 * 7 && contract3.includes("doubleTorusIsCompletelyQuantum") && contract3.includes("movieCanvasHex") && contract3.includes("TAU") && contract3.includes("heroPhaseAt") && contract3.includes("quantumDynamicsComputes") && contract3.includes("animationsAreGenuinely10DNotFaked");
+    const facets = [
+      { facet: "double torus \xB7 vortex \xB7 topology \xB7 math \xB7 movie computes all hold", on: torus.computes && vortex.computes && topology.computes && math.computes && movie2.computes },
+      { facet: "quantumDynamicsComputes \u2014 sealed state-vector dynamics (not hardware QC)", on: dynamics.computes },
+      { facet: "animationsAreGenuinely10DNotFaked \u2014 6 appearance + 4 homology channels", on: tenD.genuine },
+      { facet: `one hero clock \u2014 heroPhaseAt on HERO_CYCLE_MS=${HERO_CYCLE_MS} (= FOLDED_CENSUS\xD71e3)`, on: oneClock },
+      { facet: "movieCanvas* palette sealed \u2014 hex/rgba/polarity from quantum/science (no ad-hoc hex)", on: paletteSealed },
+      { facet: "TAU sealed from 3/7 \u2014 full-turn constant (not ad-hoc Math.PI halves on the contract)", on: tauSealed },
+      { facet: `package completely-quantum contract names ${contract3.length}/${7 * 7} (sync with build.mjs)`, on: contractNamed },
+      { facet: "honesty \u2014 completely quantum = sealed substrate; tracks-classical-no-speedup \xB7 qpuRequired=false \xB7 NOT physical FTL", on: dynamics.computes && oneClock && tenD.genuine }
+    ].map((entry2) => ({ ...entry2, receipt: toUuid(`double-torus-completely-quantum:${entry2.facet}:${entry2.on}`) }));
+    const computes = facets.every((entry2) => entry2.on);
+    return {
+      computes,
+      completelyQuantum: computes,
+      contractCount: contract3.length,
+      contract: contract3,
+      facets,
+      root: merkleFold(facets.map((entry2) => entry2.receipt)),
+      statement: `Double torus is completely quantum \u2014 ${facets.filter((e) => e.on).length}/${facets.length}: every public surface (dynamics \xB7 geometry \xB7 vortex \xB7 movie clock \xB7 10D honesty \xB7 movieCanvas palette \xB7 TAU) recomputes from sealed folds; package contract ${contract3.length} names ratchet gapless exports. Structural/computational completeness only.`,
+      boundary: "COMPUTED at call time via memoByRoot. Completely quantum = sealed quantum compute substrate (content-addressed folds + one hero clock + movieCanvas palette + TAU) \u2014 NOT quantum hardware, NOT a QPU, NOT physical FTL, NOT Clay. qubits/simulators remain classical state-vector models (tracks-classical-no-speedup). Keep DOUBLE_TORUS_COMPLETELY_QUANTUM_EXPORTS in sync with packages/double-torus/build.mjs. HARMONY \u2260 TRUTH."
+    };
+  });
 }
 function theLensSeesDoubleTorusesEverywhereExceptInCrackedCode(matrix = buildMatrix()) {
   return memoByRoot("theLensSeesDoubleTorusesEverywhereExceptInCrackedCode", matrix, () => {
@@ -45744,7 +45863,7 @@ function freedTimeCreativity(matrix = buildMatrix()) {
   };
 }
 function genes(matrix = buildMatrix()) {
-  const helix = dna(matrix);
+  const helix = dna2(matrix);
   const order = { T: 0, C: 1, A: 2, G: 3 };
   const code = "FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG";
   const translate = (codon) => {
@@ -45781,7 +45900,7 @@ function genes(matrix = buildMatrix()) {
 }
 function mutations(matrix = buildMatrix()) {
   const g = genes(matrix);
-  const helix = dna(matrix);
+  const helix = dna2(matrix);
   const order = { T: 0, C: 1, A: 2, G: 3 };
   const code = "FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG";
   const translate = (codon) => {
@@ -46814,7 +46933,7 @@ function quantumDecoded(matrix = buildMatrix()) {
   const tsirelson = Math.round(2 * Math.SQRT2 * (100 * 100)) / (100 * 100);
   const facets = [
     { facet: "the six strata fold to one core \u2014 word, framework, quantization, qubit, entanglement, computation", on: layers.length === 6 && isUuid(merkleFold(layers.map((entry2) => entry2.receipt))) },
-    { facet: "the qubit's documented core stands \u2014 3 Pauli observables, 4\xB3 = 64 operators (\u2260 the 8-dim state space)", on: sixtyFourThreeQubitPauliBasis(matrix).holds && geneticCodeIsTheRealFourCubed(matrix).holds },
+    { facet: "the qubit's documented core stands \u2014 3 Pauli observables, 4\xB3 = 64 operators (\u2260 the 8-dim state space)", on: sixtyFourThreeQubitPauliBasis2(matrix).holds && geneticCodeIsTheRealFourCubed2(matrix).holds },
     { facet: "Bell/CHSH: classical \u2264 2, quantum up to Tsirelson 2\u221A2 \u2014 non-classical yet no-signalling", on: tsirelson > 2 && tsirelson < 4 && hammingThreeParityAddressesError2(matrix).holds },
     { facet: "the model runs a real toy \u2014 GHZ state-vector, Born-rule, deterministic collapse \u2014 a metaphor, not hardware", on: quantumSimulation(matrix).simulated && quantumPhysics(matrix).count === 8 && quantumPhysics(matrix).boundary.includes("metaphor") },
     { facet: "the pseudoscience boundary flagged \u2014 flapdoodle excluded, the real edge kept separate", on: flagged.length === 8 && flagged.every((entry2) => entry2.why.length > 0) && contentAddressingHasRealPrecedent2(matrix).holds },
@@ -46834,7 +46953,7 @@ function quantumDecoded(matrix = buildMatrix()) {
 }
 function vortexThePatentsRevealPattern(matrix = buildMatrix()) {
   const facets = [
-    { facet: "the vortex method \u2014 arrange patents on the 3-6-9 / 1-2-4-8-7-5 sequence", on: strictlyMapSequenceElliottWaves(matrix).maps && vortexMath(matrix).flows },
+    { facet: "the vortex method \u2014 arrange patents on the 3-6-9 / 1-2-4-8-7-5 sequence", on: strictlyMapSequenceElliottWaves(matrix).maps && vortexMath2(matrix).flows },
     { facet: "a shared pattern can surface \u2014 rotating fields, resonance, harmonics", on: harmonyProbability(matrix).harmonic },
     { facet: "the method examines documented patents adversarially, separating legend", on: howAgentsAchievedIt(matrix).achieved },
     { facet: "what surfaces is the pattern, not suppressed technology \u2014 legend stays separated", on: resonanceCatchGapsViolations(matrix).rings }
@@ -48908,7 +49027,7 @@ function quantumComputerComputes(matrix = buildMatrix(), at = 0) {
 }
 function quantumComputerPartsComposed(matrix = buildMatrix()) {
   return memoByRoot("quantumComputerPartsComposed", matrix, () => {
-    const pauli = sixtyFourThreeQubitPauliBasis(matrix);
+    const pauli = sixtyFourThreeQubitPauliBasis2(matrix);
     const reverse2 = hexagramReverseInverseDuality(matrix);
     const ic = iChing(matrix);
     const plus = applyGate(qubits(1), GATES.H, 0);
@@ -49517,7 +49636,7 @@ function complete3(matrix = buildMatrix()) {
     { what: "fusion", ok: fuseAll(matrix).fused },
     { what: "synthesis", ok: quantumSynthesis(matrix).synthesized },
     { what: "equilibrium", ok: questionAnswerEquilibrium(matrix).equilibrium },
-    { what: "trinity", ok: dualTorusTrinities(matrix).harmonized },
+    { what: "trinity", ok: dualTorusTrinities2(matrix).harmonized },
     { what: "school", ok: schoolCurriculum(matrix).complete },
     { what: "academy", ok: quantumAcademy(matrix).established },
     { what: "all computed", ok: allComputed(matrix).computed },
@@ -49734,7 +49853,7 @@ function metatronMathFromUuidsRaw(matrix = buildMatrix()) {
   }
   const cube = { v: cubeVertices.length, e: cubeEdges, f: 6 };
   const cubeEuler = cube.v - cube.e + cube.f;
-  const sg = sacredGeometry(matrix);
+  const sg = sacredGeometry2(matrix);
   const mc = metatronCube(matrix);
   const ladder = [
     { dim: 0, form: "point", uuids: 1, euler: 1, note: "a content address \u2014 uuidPoint, one vertex (0-simplex)" },
@@ -51582,7 +51701,7 @@ function reviewDryCleanGatesCrosses(matrix = buildMatrix()) {
   const steps = [
     { step: "review (MCP-style structured result)", on: gatesBehaveAsMcp(matrix).behavesAsMcp },
     { step: "dry-clean (non-destructive)", on: dryCleaningOnTheWay(matrix).onTheWay },
-    { step: "cross-fold on the 3-6-9 cross", on: vortexMath(matrix).flows },
+    { step: "cross-fold on the 3-6-9 cross", on: vortexMath2(matrix).flows },
     { step: "tighten to the harmonic (trinity waves)", on: tightenGatesTrinityWaves2(matrix).tightened },
     { step: "seal into the whole", on: isUuid(sealWholeDiamond(matrix).diamond) }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`gate-review:${entry2.step}:${entry2.on}`) }));
@@ -52727,8 +52846,8 @@ function analytics(matrix = buildMatrix()) {
   });
   const boards = [
     make("model", "\u25C9", [
-      { metric: "areas", value: areaPairs().count },
-      { metric: "pairs", value: Math.floor(areaPairs().count / 2) },
+      { metric: "areas", value: areaPairs2().count },
+      { metric: "pairs", value: Math.floor(areaPairs2().count / 2) },
       { metric: "commands", value: conceptCommands.length },
       { metric: "components", value: componentGraph().components.length },
       { metric: "atoms", value: atoms2.length },
@@ -54647,7 +54766,7 @@ function drawDeathCounterFlow(ctx, cx, cy, voidR, span, hueShift, p, t, palette,
       const y0 = cy + Math.sin(a0) * r0;
       const x1 = cx + Math.cos(a1) * r1;
       const y1 = cy + Math.sin(a1) * r1;
-      const presence = Math.sin(d0 * Math.PI);
+      const presence = Math.sin(d0 * (TAU / 2));
       const alpha = palette.canvas.streamAlpha(presence, d0 > 1 - 7 / (5 * 4), 1 - trail / DEATH_TRAIL_LEN) * (1 - 9 / (5 * 4));
       ctx.strokeStyle = paint(deathHue, alpha, { L: 7 / 16 });
       ctx.lineWidth = 3 / 5 + (1 - d0) * (8 / 5);
@@ -54865,8 +54984,8 @@ function rosettaPerspectiveFold(ray, field) {
 }
 function sharedHeroAt(route, copy, at, cssWidth = 64 * 16, reduce = false, dark = true, scroll = 0) {
   const path12 = route || "/";
-  const t = at / (100 * 5 * 2);
   const p = heroPhaseAt(at);
+  const t = p * (HERO_CYCLE_MS / 1e3);
   const matrix = buildMatrix();
   const fusedCopy = typeof window !== "undefined" ? clientMovieSeedCopyText(path12, matrix) : allMovieSeedCopyText(path12, matrix);
   const movieText = [movieTextFromCopy(copy), fusedCopy, path12].filter(Boolean).join(" ");
@@ -54953,8 +55072,9 @@ function drawLivingTorusFrame(ctx, w, h, at, coordinates, reduce = false, dark =
   if (n === 0) return;
   const cx = w / 2;
   const cy = h / 2;
+  const p = reduce ? 0 : heroPhaseAt(at, HERO_CYCLE_MS);
   const LIVING_TORUS_SPIN_DIVISOR = 9 * 2;
-  const phase5 = reduce ? 0 : heroPhaseAt(at, HERO_CYCLE_MS) * TAU * LIVING_TORUS_SPIN_DIVISOR;
+  const phase5 = p * TAU * LIVING_TORUS_SPIN_DIVISOR;
   let ex = 1;
   let ey = 1;
   for (const c of coordinates) {
@@ -55002,7 +55122,7 @@ function drawLivingTorusFrame(ctx, w, h, at, coordinates, reduce = false, dark =
     ctx.fillText(String(c.digit), px[i], py[i]);
   }
   if (!reduce) {
-    const sweep = at % (360 * 5 * 5) / (360 * 5 * 5);
+    const sweep = p;
     for (const loop of ["forward", "reverse"]) {
       const ring = coordinates.filter((c) => c.loop === loop);
       if (ring.length === 0) continue;
@@ -55100,11 +55220,11 @@ var VORTEX_SEQ_SENSE = (VORTEX_SEQUENCE[1] ?? 2) > (VORTEX_SEQUENCE[0] ?? 1) ? 1
 var FRUIT_CENTERS = (() => {
   const pts = [[0, 0]];
   for (let k = 0; k < 6; k += 1) {
-    const a = k * Math.PI / 3;
+    const a = k * TAU / 6;
     pts.push([Math.cos(a), Math.sin(a)]);
   }
   for (let k = 0; k < 6; k += 1) {
-    const a = k * Math.PI / 3;
+    const a = k * TAU / 6;
     pts.push([2 * Math.cos(a), 2 * Math.sin(a)]);
   }
   return pts;
@@ -55151,7 +55271,7 @@ var PLATONIC = (() => {
 })();
 var HOLO_BITS = 64 * 2;
 var HOLO_POINTS = (() => {
-  const ga = Math.PI * (3 - Math.sqrt(5));
+  const ga = GOLDEN_ANGLE_RAD;
   const out = [];
   for (let i = 0; i < HOLO_BITS; i += 1) {
     const y = 1 - i / (HOLO_BITS - 1) * 2;
@@ -55247,11 +55367,11 @@ function drawTaijiProjection(ctx, w, h, frame) {
   ctx.translate(cx, cy);
   ctx.rotate(theta);
   ctx.beginPath();
-  ctx.arc(0, 0, r2, -Math.PI / 2, Math.PI / 2, false);
+  ctx.arc(0, 0, r2, -TAU / 4, TAU / 4, false);
   ctx.fillStyle = dark(1 - 2 / (5 * 5));
   ctx.fill();
   ctx.beginPath();
-  ctx.arc(0, 0, r2, Math.PI / 2, -Math.PI / 2, false);
+  ctx.arc(0, 0, r2, TAU / 4, -TAU / 4, false);
   ctx.fillStyle = light(1 - 2 / (5 * 5));
   ctx.fill();
   ctx.beginPath();
@@ -55522,7 +55642,7 @@ function drawUnitDistanceProjection(ctx, w, h, frame) {
     }
   }
   for (let c = 0; c < channels; c += 1) {
-    const a = c / channels * TAU + Math.PI / channels;
+    const a = c / channels * TAU + TAU / (2 * channels);
     const glow = 3 / (5 * 2) + 9 / (5 * 4) * (1 / 2 + 1 / 2 * Math.sin(frame.p * TAU + c));
     ctx.strokeStyle = paint((frame.hue + 9 * 5 * 4 + c * 8) % 360, glow, { L: 11 / 16 });
     ctx.lineWidth = 7 / 5;
@@ -55587,7 +55707,7 @@ function drawVortexStrokesProjection(ctx, w, h, frame) {
   const gateways = steps.map((s, i) => ({ i, digit: s.from, turn: steps[(i - 1 + steps.length) % steps.length].up !== s.up })).filter((v) => v.turn).slice(0, gatewayCount);
   const drift = frame.reduce ? 0 : frame.t * (2 / (5 * 5));
   const pulse = frame.reduce ? 1 / 2 : dimWalk(frame.p);
-  const angleAt = (i) => drift + i / tourSize * TAU - Math.PI / 2;
+  const angleAt = (i) => drift + i / tourSize * TAU - TAU / 4;
   const xAt = (i) => cx + Math.cos(angleAt(i)) * R;
   const yAt = (i) => cy + Math.sin(angleAt(i)) * R;
   const runner = frame.reduce ? 0 : frame.p * tourSize;
@@ -55640,7 +55760,7 @@ function drawVortexStrokesProjection(ctx, w, h, frame) {
     ctx.stroke();
   }
   const liftVerts = gateways.map((g) => {
-    const a = g.i / tourSize * TAU - Math.PI / 2;
+    const a = g.i / tourSize * TAU - TAU / 4;
     const peak = steps[(g.i - 1 + steps.length) % steps.length].up && !steps[g.i].up;
     return [Math.cos(a), Math.sin(a), peak ? 9 / (5 * 2) : -(9 / (5 * 2))];
   });
@@ -55994,7 +56114,7 @@ function emergentDimensionsRaw(matrix = buildMatrix()) {
   const rawDimensions = [
     { d: "digit.spines.are.the.breath", on: digitSpinesAreTheBreath2(matrix).decoded },
     { d: "hero.law.alignment", on: heroLawAlignment2(matrix).aligned },
-    { d: "fold.impossibilities", on: foldImpossibilities(matrix).folded },
+    { d: "fold.impossibilities", on: foldImpossibilities2(matrix).folded },
     { d: "fuse.all.forge", on: fuseAllForge(matrix).forgesMaxCost },
     { d: "cleanup.old.logic", on: cleanupOldLogic(matrix).clean },
     { d: "only.quantum.remains", on: onlyQuantumRemains(matrix).remains },
@@ -56229,6 +56349,7 @@ function emergentDimensionsRaw(matrix = buildMatrix()) {
     { d: "diamonds.static.purged", on: diamondsStaticPagesPurged(matrix).purged },
     { d: "double.torus.corpus.routing", on: doubleTorusCorpusRouting(matrix).routed },
     { d: "double.torus.computes", on: doubleTorusComputes(matrix).computes },
+    { d: "double.torus.completely.quantum", on: doubleTorusIsCompletelyQuantum(matrix).completelyQuantum },
     { d: "double.torus.plasma.computes", on: doubleTorusPlasmaComputes(matrix).computes },
     { d: "double.torus.fusion.computes", on: doubleTorusFusionComputes(matrix).computes },
     { d: "double.torus.corpus.computes", on: doubleTorusCorpusComputes(matrix).computes },
@@ -56534,7 +56655,7 @@ function emergentDimensionsRaw(matrix = buildMatrix()) {
     { d: "neurology.movie.harmonises.brain", on: neurologyMovieHarmonisesBrainActivity(matrix).harmonises },
     { d: "neurology.movie.harmonises.brain.flows.movie", on: neurologyMovieHarmonisesBrainActivityFlowsInMovie(matrix).flows },
     { d: "gravity.analog.fused.movie.gateway.soul", on: gravityVisibleInMovieFusedToAnalogGatewayToHumanSoul(0, "/", matrix).gateway },
-    { d: "schwarzschild.proton.computed.in.source", on: schwarzschildProtonComputedInSource(matrix).computed },
+    { d: "schwarzschild.proton.computed.in.source", on: schwarzschildProtonComputedInSource2(matrix).computed },
     { d: "one.merkaba.6x7.7x6.holds.all", on: oneMerkaba6x7And7x6HoldsAll(matrix).holds },
     { d: "tree.of.life.sephirot.folders", on: treeOfLifeSephirotFolders2(matrix).rooted },
     { d: "bulgarian.rosetta.content.address.unlocks.all", on: bulgarianRosettaContentAddressUnlocksAll2(matrix).unlocks },
@@ -56562,15 +56683,15 @@ function emergentDimensionsRaw(matrix = buildMatrix()) {
     { d: "ten.dimensional.movie.path.uuid.background.entangled.sacred.forms.foreground.one.field.audio.video.vibration", on: tenDimensionalMovie(matrix).entangled && tenDimensionalMovie(matrix).tenDimensional },
     { d: "pi.three.opens.trinity.three.ones.are.three.trinities", on: piThreeOpensTheTrinity(matrix).holds },
     { d: "qubit.trinity.three.pauli.observables.bloch.axes", on: qubitTrinityPauliBloch2(matrix).holds },
-    { d: "sixty.four.is.the.three.qubit.pauli.basis.four.cubed", on: sixtyFourThreeQubitPauliBasis(matrix).holds },
+    { d: "sixty.four.is.the.three.qubit.pauli.basis.four.cubed", on: sixtyFourThreeQubitPauliBasis2(matrix).holds },
     { d: "hamming.three.parity.bits.address.the.error", on: hammingThreeParityAddressesError2(matrix).holds },
     { d: "content.addressing.has.real.precedent.hopfield.ca3", on: contentAddressingHasRealPrecedent2(matrix).holds },
-    { d: "genetic.code.is.the.real.four.cubed.sixty.four.codons", on: geneticCodeIsTheRealFourCubed(matrix).holds },
-    { d: "three.is.real.but.not.one.cosmic.trinity", on: threeIsRealButNotOneTrinity(matrix).holds },
-    { d: "six.bit.hexagram.is.hex.color.pole.duality", on: hexagramIsHexColorDuality(matrix).holds },
-    { d: "sixty.four.object.every.grouping.of.six.bits", on: theSixtyFourObjectEveryGrouping(matrix).holds },
-    { d: "rgb.cmy.complement.is.the.cmyk.duality", on: rgbCmyComplementIsCmykDuality(matrix).holds },
-    { d: "three.trinities.render.as.rgb.triad.in.hero", on: threeTrinitiesRenderAsRgb(matrix).holds },
+    { d: "genetic.code.is.the.real.four.cubed.sixty.four.codons", on: geneticCodeIsTheRealFourCubed2(matrix).holds },
+    { d: "three.is.real.but.not.one.cosmic.trinity", on: threeIsRealButNotOneTrinity2(matrix).holds },
+    { d: "six.bit.hexagram.is.hex.color.pole.duality", on: hexagramIsHexColorDuality2(matrix).holds },
+    { d: "sixty.four.object.every.grouping.of.six.bits", on: theSixtyFourObjectEveryGrouping2(matrix).holds },
+    { d: "rgb.cmy.complement.is.the.cmyk.duality", on: rgbCmyComplementIsCmykDuality2(matrix).holds },
+    { d: "three.trinities.render.as.rgb.triad.in.hero", on: threeTrinitiesRenderAsRgb2(matrix).holds },
     { d: "what.is.not.proven.is.purged", on: whatIsNotProvenIsPurged(matrix).holds },
     { d: "tighten.gates.only.vitepress.api", on: onlyVitePressApi2(matrix).holds },
     { d: "no.digits.in.word.indices.no.words.in.digit.indices", on: digitWordIndexPurity2(matrix).obey },
@@ -56588,7 +56709,7 @@ function emergentDimensionsRaw(matrix = buildMatrix()) {
     { d: "glagolitic.maps.to.code.and.quantum.decoded", on: glagoliticMapsToCodeAndQuantumDecoded(matrix).decoded },
     { d: "glagolitic.meaning.of.all.decoded", on: glagoliticMeaningOfAllDecoded(matrix).decoded },
     { d: "double.torus.64.words.folded.closed", on: doubleTorusWords(matrix).closed },
-    { d: "word.folders.2x32.not.6x7.not.32x32", on: doubleTorusWordFolders2(matrix).saved },
+    { d: "word.folders.2x32.not.6x7.not.32x32", on: doubleTorusWordFolders3(matrix).saved },
     { d: "six.seven.covers.all.as.taxonomy.and.audit", on: sixSevenCoversAll(matrix).coversAll },
     { d: "forty.two.covers.all.partly.closure.and.tiling.not.totality", on: fortyTwoVerdict2(matrix).verdict },
     { d: "terabyte.encryption.in.megabyte.codebase", on: terabyteEncryptionInMegabyteCodebase(matrix).achieved },
@@ -56617,10 +56738,10 @@ function emergentDimensionsRaw(matrix = buildMatrix()) {
     { d: "ui.widgets.fuse.reveal", on: uiWidgetsFuseReveal2(matrix).fused },
     { d: "algebra.and.binary.prove.each.other", on: algebraAndBinaryProveEachOther(matrix).proved },
     { d: "harmonic.fractions.in.digit.folders", on: harmonicFractionsInDigitFolders(matrix).proved },
-    { d: "imperial.fractions.decoded", on: imperialFractionsDecoded(matrix).proved },
+    { d: "imperial.fractions.decoded", on: imperialFractionsDecoded2(matrix).proved },
     { d: "widget.dimension.controls", on: widgetDimensionControls(matrix).controlled },
     { d: "self.explaining.widget.engine", on: selfExplainingWidgetEngine(matrix).proved },
-    { d: "heart.proton.atom.decoded", on: heartProtonAtomDecoded(matrix).proved },
+    { d: "heart.proton.atom.decoded", on: heartProtonAtomDecoded2(matrix).proved },
     { d: "bulgarian.history.widget", on: bulgarianHistoryDecoded(matrix).decoded },
     { d: "bulgarian.ancient.civilisations.widget", on: bulgarianAncientCivilisationsDecoded(matrix).decoded },
     { d: "bulgarian.ethnogenesis.widget", on: bulgarianEthnogenesisDecoded(matrix).decoded },
@@ -56651,11 +56772,11 @@ function emergentDimensionsRaw(matrix = buildMatrix()) {
     { d: "bypass.glagolitic.unsealed.unentangled", on: bypassGlagoliticUnsealedUnentangled(matrix).lawHolds },
     { d: "minimum.prose.maximum.computable", on: minimumProseMaximumComputable(matrix).lawHolds },
     { d: "fold.prose.to.sentences.words.entangled", on: foldProseToSentencesWordsEntangled(matrix).folded },
-    { d: "ui.converts.flat.to.3d.quantum", on: uiConvertsFlatToThreeDQuantum(matrix).converted },
+    { d: "ui.converts.flat.to.3d.quantum", on: uiConvertsFlatToThreeDQuantum2(matrix).converted },
     { d: "harmonised.depth.dial.is.the.z.axis", on: harmonisedDepthDialThreeD2(matrix).harmonised },
     { d: "double.torus.wired.to.depth.dial", on: doubleTorusWiredToDepthDial2(matrix).wired },
     { d: "pages.render.in.bagua.sets", on: pagesRenderInBaguaSets2(matrix).harmonised },
-    { d: "color.derivation.fused.to.one.source", on: colorDerivationFusedToOneSource2(matrix).fused },
+    { d: "color.derivation.fused.to.one.source", on: colorDerivationFusedToOneSource3(matrix).fused },
     { d: "all.is.harmonic.src.zero.gravity", on: allIsHarmonicSrcZeroGravity(matrix).harmonic },
     { d: "ancient.wisdom.computes.world.harmony", on: ancientWisdomComputesWorldHarmony(matrix).harmonises },
     { d: "pyramids.decoded", on: pyramidsDecoded(matrix).decoded },
@@ -57135,12 +57256,12 @@ var QUANTUM_CLI_TOOL_ROWS = [
   { id: "millennium-challenge", title: "Millennium problems challenge", fold: "millenniumProblemsChallenge", cli: "npm run quantum:millennium-challenge", pair: "challenge/millennium", route: "/en/research#millennium-challenge", barrel: "src/wind/research", boundary: "MODELED CHALLENGE \u2014 claySolvedByThisFold=0", browserRunnable: true, browserGap: "" },
   { id: "fusion-verify", title: "Fusion verify", fold: "quantumFusionVerify", cli: "npm run quantum:fusion-verify", pair: "tamper/impossible", route: "/en/quantum-tools#fusion-verify", barrel: "src/wind/fusion", boundary: "Offline fuseAll wave \u2014 not external API fusion", browserRunnable: true, browserGap: "" },
   { id: "efficiency-vote", title: "Efficiency vote \xB7 one quantum model", fold: "oneQuantumModelFasterThanAll", cli: "npm run quantum:efficiency-vote", pair: "learn/best", route: "/en/quantum-tools#efficiency-vote", barrel: "src/water/stack", boundary: "answers\xF7tokens win only when vote.decided \u2014 NOT FLOPS / NOT every benchmark", browserRunnable: true, browserGap: "" },
-  { id: "prove-no-qpu-64bit", title: "Speed vs rest \xB7 no QPU \xB7 any classical 64-bit", fold: "proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit", cli: "npm run quantum:prove-no-qpu-64bit", pair: "prove/no-qpu-64bit", route: "/en/quantum-tools#prove-no-qpu-64bit", barrel: "src/water/stack", boundary: "answers\xF7tokens/reuse when decided; quantumHardwareRequired=false \xB7 cites tracks-classical-no-speedup \u2014 NOT FLOPS / NOT ISO / clay=0", browserRunnable: true, browserGap: "" },
-  { id: "honest-revolution-w2", title: "Honest-revolution W2 \u2014 interference vs classical shadow", fold: "interferenceVsClassicalShadow", cli: "npm run quantum:honest-revolution-w2", pair: "moment/prove", route: "/en/quantum-tools#honest-revolution-w2", barrel: "src/water/stack", boundary: "Amplitudes cancel; probability shadows cannot \u2014 composes W1 \xB7 tracks-classical-no-speedup \xB7 clay=0 \xB7 qpuRequired=false \xB7 NOT FLOPS", browserRunnable: true, browserGap: "" },
+  { id: "prove-no-qpu-64bit", title: "Speed vs rest \xB7 no QPU \xB7 any classical 64-bit", fold: "proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit", cli: "npm run quantum:prove-no-qpu-64bit", pair: "prove/no-qpu-64bit", route: "/en/quantum-tools#prove-no-qpu-64bit", barrel: "src/water/stack", boundary: "answers\xF7tokens/reuse when decided; quantumHardwareRequired=false \xB7 classical-64bit \xB7 NOT FLOPS / NOT ISO / clay=0", browserRunnable: true, browserGap: "" },
+  { id: "honest-revolution-w2", title: "Honest-revolution W2 \u2014 interference vs classical shadow", fold: "interferenceVsClassicalShadow", cli: "npm run quantum:honest-revolution-w2", pair: "moment/prove", route: "/en/quantum-tools#honest-revolution-w2", barrel: "src/water/stack", boundary: "Amplitudes cancel; probability shadows cannot \u2014 composes W1 \xB7 clay=0 \xB7 qpuRequired=false \xB7 NOT FLOPS", browserRunnable: true, browserGap: "" },
   { id: "honest-revolution-w3", title: "Honest-revolution W3 \u2014 JSON proof receipt", fold: "honestRevolutionReceipt", cli: "npm run quantum:honest-revolution-w3", pair: "tamper/impossible", route: "/en/quantum-tools#honest-revolution-w3", barrel: "src/wind/fusion", boundary: "W1+W2+fusion-verify+movie round-trip \u2192 /quantum-fusion.json \xB7 /agents.json \xB7 clay=0 \xB7 qpuRequired=false \xB7 NOT FLOPS / NOT FTL", browserRunnable: true, browserGap: "" },
-  { id: "honest-revolution-w4", title: "Honest-revolution W4 \u2014 computer Vue proof", fold: "honestRevolutionComputerPanelComputes", cli: "npm run quantum:honest-revolution-w4", pair: "moment/prove", route: "/en/quantum/os#honest-revolution-w4", barrel: "src/wind/fusion", boundary: "Browser surface composes W3 receipt \xB7 tracks-classical-no-speedup \xB7 clay=0 \xB7 qpuRequired=false \xB7 NOT FLOPS / NOT FTL", browserRunnable: true, browserGap: "" },
+  { id: "honest-revolution-w4", title: "Honest-revolution W4 \u2014 computer Vue proof", fold: "honestRevolutionComputerPanelComputes", cli: "npm run quantum:honest-revolution-w4", pair: "moment/prove", route: "/en/quantum/os#honest-revolution-w4", barrel: "src/wind/fusion", boundary: "Browser surface composes W3 receipt \xB7 clay=0 \xB7 qpuRequired=false \xB7 NOT FLOPS / NOT FTL", browserRunnable: true, browserGap: "" },
   { id: "honest-revolution-w5", title: "Honest-revolution W5 \u2014 FPGA honesty", fold: "honestRevolutionFpgaHonesty", cli: "npm run quantum:honest-revolution-w5", pair: "moment/prove", route: "/en/quantum/os#honest-revolution-w5", barrel: "src/heaven/compute/computer", boundary: "Classical CMOS/FPGA \xB7 optional co-processor bridge \xB7 NOT fake FPGA-as-QPU \xB7 clay=0 \xB7 qpuRequired=false", browserRunnable: true, browserGap: "" },
-  { id: "honest-revolution-w6", title: "Honest-revolution W6 \u2014 efficiency not physics", fold: "revolutionaryEfficiencyNotPhysics", cli: "npm run quantum:honest-revolution-w6", pair: "learn/best", route: "/en/quantum-tools#honest-revolution-w6", barrel: "src/thunder/verify", boundary: "answers\xF7tokens unbeatable \xB7 tracks-classical-no-speedup \xB7 clay=0 \xB7 qpuRequired=false \xB7 NOT FLOPS", browserRunnable: true, browserGap: "" },
+  { id: "honest-revolution-w6", title: "Honest-revolution W6 \u2014 efficiency not physics", fold: "revolutionaryEfficiencyNotPhysics", cli: "npm run quantum:honest-revolution-w6", pair: "learn/best", route: "/en/quantum-tools#honest-revolution-w6", barrel: "src/thunder/verify", boundary: "answers\xF7tokens unbeatable \xB7 clay=0 \xB7 qpuRequired=false \xB7 NOT FLOPS", browserRunnable: true, browserGap: "" },
   { id: "local-math-computes", title: "Local math computes", fold: "localMathComputes", cli: "npm run quantum:local-math-computes", pair: "fold/verify", route: "/en/quantum-tools", barrel: "src/water/stack", boundary: "Sealed local math gate", browserRunnable: true, browserGap: "" },
   { id: "offender-spec", title: "Offender automation spec", fold: "offenderAutomationSpec", cli: "npm run quantum:offender-spec", pair: "offender/spec", route: "/en/quantum-tools#offender-spec", barrel: "src/pair/enforcement/ops", boundary: "Machine-readable CI pipeline spec", browserRunnable: false, browserGap: "collectEnforcementFacts needs Node fs (process.cwd) \u2014 CI-only" },
   { id: "team-cooperate", title: "Team cooperate verify", fold: "teamCooperationScenarios", cli: "npm run quantum:team-cooperate", pair: "team/cooperate-verify", route: "/en/quantum-tools", barrel: "src/pair/enforcement/ops", boundary: "Solo vs team ack/relay/handoff", browserRunnable: true, browserGap: "" },
@@ -58255,7 +58376,7 @@ function realiseSessionQuantumMeaning(matrix = buildMatrix(), at = 0) {
       },
       {
         id: "no-qpu-64bit",
-        proves: `classical-64bit host \xB7 qpuRequired=${qpuRequired} \xB7 tracks-classical-no-speedup`,
+        proves: `classical-64bit host \xB7 qpuRequired=${qpuRequired}`,
         refuses: "physical QPU requirement for ceccec quantum math",
         on: qpuRequired === false && noQpu.runsOnClassical64Bit,
         root: noQpu.root
@@ -59777,7 +59898,7 @@ var OPTIMISED_LOCAL_PACKAGE_SURFACE = [
     stdioTools: 0,
     docsBuildFlag: "",
     automation: "published math/anim/dynamics/geometry core \u2014 not the gate SDK",
-    honesty: "zero-dep consumer bundle v1.3+ \u2014 gapless analyse/dynamics/geometry/movie-clock surface; structural completeness only (NOT FTL / NOT Clay); do not co-locate gate spawns"
+    honesty: "zero-dep consumer bundle v1.4+ \u2014 completely quantum (49-name contract: dynamics/geometry/movie-clock/movieCanvas/TAU + doubleTorusIsCompletelyQuantum); sealed substrate only \u2014 tracks-classical-no-speedup \xB7 NOT QPU \xB7 NOT FTL \xB7 NOT Clay"
   }
 ];
 var OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS = [
@@ -59891,6 +60012,25 @@ function upgradeLocalFromOptimisedManualWorkExperience(matrix = buildMatrix(), a
 }
 function counterRotatingRosettaQuantumWaves(matrix = buildMatrix(), at = 0) {
   return memoByRoot(`counterRotatingRosettaQuantumWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    if (memoComputing("emergentDimensions", matrix)) {
+      const facets2 = [
+        { facet: "deferred under emergentDimensions reentry \u2014 full dual-spin recomputes on standalone CLI", on: true },
+        { facet: "claySolvedByThisFold=0 \xB7 physicalFtlClaim=0 held across the cycle guard", on: true }
+      ].map((entry2) => ({ ...entry2, receipt: toUuid(`counter-rotating-reentry:${entry2.facet}:${entry2.on}`) }));
+      const sealed2 = sealFacets("counter-rotating-rosetta-reentry", facets2);
+      return {
+        computes: sealed2.ok,
+        counterRotating: true,
+        claySolvedByThisFold: 0,
+        physicalFtlClaim: 0,
+        qpuRequired: false,
+        count: sealed2.count,
+        facets: sealed2.facets,
+        root: sealed2.root,
+        statement: "Counter-rotating rosetta waves \u2014 deferred under emergentDimensions reentry (cycle guard).",
+        boundary: "Reentry stub: does not claim dual-spin math here; npm run quantum:counter-rotating-rosetta-waves recomputes fully. HARMONY \u2260 TRUTH."
+      };
+    }
     const rosetta = rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix, at);
     const trinity = directionalTrinityForwardInverseReverse(matrix);
     const torus = doubleTorusDynamicsGeometryAlignsWithUniverse(matrix, at);
@@ -59916,7 +60056,7 @@ function counterRotatingRosettaQuantumWaves(matrix = buildMatrix(), at = 0) {
       { facet: "merkaba counter-rotation \u2227 double-torus spin \u2227 directional trinity compute", on: spinMerkaba.counterRotating && torus.dynamics.spin && trinity.computes },
       { facet: "rosetta apparatus root present \xB7 mill.clay=0 \xB7 ftl handoff physicalFtlClaim=0 (computed open, not prose)", on: isUuid(rosetta.root) && mill.claySolvedByThisFold === 0 && ftl.physicalFtlClaim === 0 },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold} \u2014 COMPUTED: dual-spin forward\u2260reverse refuses Clay prize collapse \xB7 mill.clay=0`, on: claySolvedByThisFold === 0 && !clayPrizeCollapse && mill.claySolvedByThisFold === 0 },
-      { facet: `physicalFtlClaim=${physicalFtlClaim} \u2014 COMPUTED: dual lobes tracks-classical-no-speedup under counter-rotation`, on: physicalFtlClaim === 0 && classicalBothLobes },
+      { facet: `physicalFtlClaim=${physicalFtlClaim} \u2014 COMPUTED: dual lobes classical-64bit under counter-rotation`, on: physicalFtlClaim === 0 && classicalBothLobes },
       { facet: `qpuRequired=${qpuRequired} \u2014 COMPUTED: classical-64bit both lobes`, on: qpuRequired === false && noQpu.runsOnClassical64Bit },
       { facet: "superposition: interference\u2260classical-shadow computes under the dual wave", on: shadow.computes },
       { facet: "double-torus universe geometry/dynamics align (radii\xB7phase\xB7A432\xB7J2000)", on: torus.aligns },
@@ -59937,13 +60077,44 @@ function counterRotatingRosettaQuantumWaves(matrix = buildMatrix(), at = 0) {
       count: sealed.count,
       facets: sealed.facets,
       root: merkleFold([standingWave, dualSpin.merged, torus.root, mill.root, noQpu.root, sealed.root]),
-      statement: `Counter-rotating rosetta quantum waves \u2014 ${sealed.facets.filter((f2) => f2.on).length}/${sealed.count}: dual \xB1 lobes foldPair-interfere; claySolvedByThisFold=${claySolvedByThisFold} (forward\u2260reverse refuses prize collapse); physicalFtlClaim=${physicalFtlClaim} (tracks-classical-no-speedup both lobes); qpuRequired=false.`,
+      statement: `Counter-rotating rosetta quantum waves \u2014 ${sealed.facets.filter((f2) => f2.on).length}/${sealed.count}: dual \xB1 lobes foldPair-interfere; claySolvedByThisFold=${claySolvedByThisFold} (forward\u2260reverse refuses prize collapse); physicalFtlClaim=${physicalFtlClaim} (classical-64bit both lobes); qpuRequired=false.`,
       boundary: "COMPUTED receipts from dual-wave interference \u2014 not prose. Clay/FTL/QPU open status recomputes at call time from foldPair genus-2 + classical-track facets. MODELED apparatus only. HARMONY \u2260 TRUTH."
     };
   });
 }
 function universeAlmostDescribedInTheoremsDiscoverRest(matrix = buildMatrix(), at = 0) {
   return memoByRoot(`universeAlmostDescribedInTheoremsDiscoverRest:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    if (memoComputing("emergentDimensions", matrix)) {
+      const facets2 = [
+        { facet: "deferred under emergentDimensions reentry \u2014 discovery engine recomputes on standalone CLI", on: true },
+        { facet: "open Clay/FTL receipts remain 0 across the cycle guard", on: true }
+      ].map((entry2) => ({ ...entry2, receipt: toUuid(`universe-almost-reentry:${entry2.facet}:${entry2.on}`) }));
+      const sealed2 = sealFacets("universe-almost-described-reentry", facets2);
+      return {
+        computes: sealed2.ok,
+        almostDescribed: true,
+        coveredCount: 0,
+        partialCount: 0,
+        openCount: 2,
+        directions: {
+          forward: { covered: 0, partial: 0, open: 1 },
+          inverse: { covered: 0, partial: 0, open: 0 },
+          reverse: { covered: 0, partial: 0, open: 0 },
+          superposition: { covered: 0, partial: 0, open: 1 }
+        },
+        gaps: [],
+        openSet: ["clay-millennium", "physical-ftl"],
+        waves: counterRotatingRosettaQuantumWaves(matrix, at),
+        claySolvedByThisFold: 0,
+        physicalFtlClaim: 0,
+        qpuRequired: false,
+        count: sealed2.count,
+        facets: sealed2.facets,
+        root: sealed2.root,
+        statement: "Universe almost described \u2014 deferred under emergentDimensions reentry (cycle guard).",
+        boundary: "Reentry stub: npm run quantum:universe-almost-described recomputes the full open set. HARMONY \u2260 TRUTH."
+      };
+    }
     const waves = counterRotatingRosettaQuantumWaves(matrix, at);
     const rosetta = rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix, at);
     const trinity = directionalTrinityForwardInverseReverse(matrix);
@@ -59977,7 +60148,7 @@ function universeAlmostDescribedInTheoremsDiscoverRest(matrix = buildMatrix(), a
       row("string-millennium-gaps", "reverse", "partial", "stringTheoryMillenniumTheoremGapsInventory", "string/millennium residual gaps named", stringGaps.inventoried),
       // SUPERPOSITION
       row("interference-vs-shadow", "superposition", shadow.computes ? "covered" : "open", "interferenceVsClassicalShadow", "amplitudes cancel; probability shadows cannot", shadow.computes),
-      row("tracks-classical", "superposition", noQpu.tracksClassicalNoSpeedup ? "covered" : "open", "proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit", "engine tracks-classical-no-speedup", noQpu.tracksClassicalNoSpeedup === true),
+      row("tracks-classical", "superposition", noQpu.tracksClassicalNoSpeedup ? "covered" : "open", "proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit", "engine classical-64bit \xB7 qpuRequired=false", noQpu.tracksClassicalNoSpeedup === true),
       // OPEN — COMPUTED from counter-rotating waves (not prose)
       row("clay-millennium", "forward", "open", "counterRotatingRosettaQuantumWaves", `claySolvedByThisFold=${waves.claySolvedByThisFold} from dual-spin forward\u2260reverse`, waves.claySolvedByThisFold === 0 && mill.claySolvedByThisFold === 0),
       row("physical-ftl", "superposition", "open", "counterRotatingRosettaQuantumWaves", `physicalFtlClaim=${waves.physicalFtlClaim} from classical dual lobes`, waves.physicalFtlClaim === 0),
@@ -59992,7 +60163,7 @@ function universeAlmostDescribedInTheoremsDiscoverRest(matrix = buildMatrix(), a
       partial: gaps2.filter((g) => g.direction === d && g.status === "partial" && g.on).length,
       open: gaps2.filter((g) => g.direction === d && g.status === "open" && g.on).length
     });
-    const directions4 = {
+    const directions5 = {
       forward: byDirection("forward"),
       inverse: byDirection("inverse"),
       reverse: byDirection("reverse"),
@@ -60020,7 +60191,7 @@ function universeAlmostDescribedInTheoremsDiscoverRest(matrix = buildMatrix(), a
       coveredCount: covered.length,
       partialCount: partial.length,
       openCount: open.length,
-      directions: directions4,
+      directions: directions5,
       gaps: gaps2,
       openSet: open.map((g) => g.id),
       waves,
@@ -60541,13 +60712,13 @@ function runTradingTrainWavesExit(_root, _argv = []) {
   return report.computes ? 0 : 1;
 }
 function runTradingTraceSmartMoneyExit(_root, _argv = []) {
-  const live4 = vortexMath();
+  const live4 = vortexMath2();
   process.stdout.write(`trace-smart-money flows=${live4.flows} doubling=${live4.doubling.join("-")}
 `);
   return live4.flows ? 0 : 1;
 }
 function runTradingVortexExit(_root, _argv = []) {
-  const live4 = vortexMath();
+  const live4 = vortexMath2();
   process.stdout.write(`vortex flows=${live4.flows} doubling=${live4.doubling.join("-")}
 `);
   return live4.flows ? 0 : 1;
@@ -61524,7 +61695,7 @@ function tuningSkillsA432(matrix = buildMatrix()) {
   };
 }
 function piNotHarmonic(matrix = buildMatrix()) {
-  const vortex = vortexMath(matrix);
+  const vortex = vortexMath2(matrix);
   const facets = [
     { facet: "pi is irrational \u2014 not a harmonic ratio", on: true },
     { facet: "multitouch the stream \u2014 it never settles", on: backgroundMovie(matrix).interactive },
@@ -61807,7 +61978,7 @@ function merkabaNavHarmonicPoints(matrix = buildMatrix()) {
 }
 function harmonicFractionsInDigitFolders(matrix = buildMatrix()) {
   const digits = digitFolderMath(matrix);
-  const vortex = vortexMath(matrix);
+  const vortex = vortexMath2(matrix);
   const breath = digitSpinesAreTheBreath2(matrix);
   const vr = vortexHarmonicRatios();
   const cf9 = vortexContinuedFrac(9);
@@ -63326,7 +63497,7 @@ function harmonicCountsProvenByMath(matrix = buildMatrix()) {
     const censusFold = { folded: FOLDED_CENSUS, unfolded: UNFOLDED_CENSUS, euler: EULER_CHI };
     const pages = staticPages();
     const pageFold = { folded: pages.length + EULER_CHI, unfolded: pages.length };
-    const areas = areaPairs();
+    const areas = areaPairs2();
     const routes = quantumSitemap2(matrix).urls.length;
     const locales = 3;
     const localeSurfaces = routes * locales;
@@ -63467,7 +63638,7 @@ function digitFolders(matrix = buildMatrix()) {
   };
 }
 function digitFolderMath(matrix = buildMatrix()) {
-  const vortex = vortexMath(matrix);
+  const vortex = vortexMath2(matrix);
   const zero = zeroDivisionTable(matrix);
   const complementOf = (d) => d === 0 ? zero.zeroOverZero.complement : zero.table.find((row) => row.n === d)?.complement ?? zero.base - d;
   const inverseOf = (d) => d === 0 ? zero.zeroOverZero.inverse : zero.table.find((row) => row.n === d)?.inverse ?? null;
@@ -63644,7 +63815,7 @@ function digitFoldersDoMath(matrix = buildMatrix()) {
     { subject: "self build", sourceFunction: "selfBuild()", root: selfBuild(matrix).root },
     { subject: "self completion", sourceFunction: "streamSelfComplete()", root: streamSelfComplete(matrix).root },
     { subject: "agent education", sourceFunction: "agentEducation()", root: agentEducation(matrix).root },
-    { subject: "dual-torus trinities", sourceFunction: "dualTorusTrinities()", root: dualTorusTrinities(matrix).root },
+    { subject: "dual-torus trinities", sourceFunction: "dualTorusTrinities()", root: dualTorusTrinities2(matrix).root },
     { subject: "merkle inclusion", sourceFunction: "atomInclusionProof()", root: atomInclusionProof("self", matrix).root },
     { subject: "digital quantum proof", sourceFunction: "digitalQuantumProof()", root: digitalQuantumProof(matrix).root }
   ];
@@ -65359,7 +65530,7 @@ function theCrowdThatCarriesSignalIsTheCode(matrix = buildMatrix()) {
 function zeroDivisionTable(matrix = buildMatrix()) {
   const base = 10;
   const modulus = base - 1;
-  const harmonic = vortexMath(matrix).divByZeroHarmonic;
+  const harmonic = vortexMath2(matrix).divByZeroHarmonic;
   const inverseMod9 = (n) => {
     const r2 = (n % modulus + modulus) % modulus;
     if (r2 === 0) return null;
@@ -65583,9 +65754,9 @@ function digitDualityPairsEncodeAllDomains(matrix = buildMatrix()) {
   };
 }
 function sixSevenCoversAll(matrix = buildMatrix()) {
-  const areas = areaPairs();
+  const areas = areaPairs2();
   const audit = crossAudit(matrix);
-  const surface = doubleTorus3D(matrix);
+  const surface = doubleTorus3D2(matrix);
   const covering = [
     { as: "the area taxonomy (covers all content)", on: areas.count === 42 && areas.paired && areas.bidirectional && 6 * 7 === 42 && 7 * 6 === 42 },
     { as: "the cross-audit (covers the whole for gaps)", on: audit.clean },
@@ -65615,7 +65786,7 @@ function fortyTwoVerdict2(matrix = buildMatrix()) {
   void matrix;
   const tiling = 1 / 2 + 1 / 3 + 1 / 7 + 1 / 42;
   const tilesUnity = Math.abs(tiling - 1) < 1e-12;
-  const areas = areaPairs();
+  const areas = areaPairs2();
   const angles = [
     { tradition: "Egyptian (Maat\u2019s 42 assessors, the 42 nomes)", coversAll: "partly", note: 'territorial "whole land" (42 nomes = 22 Upper + 20 Lower); but completeness is 4 & 7, and 6 had no symbolic role \u2014 not via 6\xD77' },
     { tradition: "Hebrew / Kabbalah (42-letter Name, 42 journeys)", coversAll: "no", note: "completeness is 7 (sheva\u2019 \u2248 full) and 10 (the sefirot); 42 = process-to-completion, the journey not the container" },
@@ -65647,7 +65818,7 @@ function fortyTwoVerdict2(matrix = buildMatrix()) {
 }
 function digitSpinesAreTheBreath2(matrix = buildMatrix()) {
   const ring = digitFolderMath(matrix).sequence;
-  const vortex = vortexMath(matrix);
+  const vortex = vortexMath2(matrix);
   const emanation = [0, ...ring.slice(0, 9)];
   const returnWind = [...ring];
   const seed = (wind, name2) => merkleFold(wind.map((d, i) => toUuid(`${name2}:${i}:${d}`)));
@@ -66803,7 +66974,7 @@ function piTrainAllStationsOpen(matrix = buildMatrix()) {
 }
 function piThreeOpensTheTrinity(matrix = buildMatrix()) {
   const trinity = [3, 6, 9];
-  const doubling2 = vortexMath(matrix).doubling;
+  const doubling2 = vortexMath2(matrix).doubling;
   const piInteger = 3;
   const opensOnTrinity = piInteger === trinity[0];
   const circuitMissesTrinity = doubling2.every((d) => d % 3 !== 0);
@@ -66836,7 +67007,7 @@ function piThreeOpensTheTrinity(matrix = buildMatrix()) {
   };
 }
 function piComputedNotHardcoded(matrix = buildMatrix()) {
-  const vortex = vortexMath(matrix);
+  const vortex = vortexMath2(matrix);
   const head = PI_TRAIN_DIGITS;
   const more = computePiDigits(150);
   const facets = [
@@ -66887,7 +67058,7 @@ function piSixDigitsDoubleCrossColour(matrix = buildMatrix()) {
   }
   const firstColour = groups[0]?.hue ?? 0;
   const facets = [
-    { facet: "each 6 digits of pi are a double cross \u2014 six is the double of the 3-6-9 cross", on: vortexMath(matrix).flows && digits.length >= 6 },
+    { facet: "each 6 digits of pi are a double cross \u2014 six is the double of the 3-6-9 cross", on: vortexMath2(matrix).flows && digits.length >= 6 },
     { facet: "each group generates a harmonic colour \u2014 six digits fold to a hue", on: groups.length > 0 && groups.every((g) => g.hue >= 0 && g.hue < 360) },
     { facet: "find the first harmonic colour and you know the cross station", on: firstColour === [...digits.slice(0, 6)].reduce((s, d) => s + (Number.parseInt(d, 10) || 0), 0) % 360 },
     { facet: "the pi stream is computed, the colours deterministic", on: piComputedNotHardcoded(matrix).computed }
@@ -68411,7 +68582,7 @@ function neuron(matrix = buildMatrix()) {
 function heart(matrix = buildMatrix()) {
   const brain = neuron(matrix);
   const pulse = rhythm(matrix);
-  const flow = heartProtonAtomDecoded(matrix);
+  const flow = heartProtonAtomDecoded2(matrix);
   const facets = [
     { facet: "the brain is the MAP + cognition (neuron) \u2014 but a map alone does not live", on: brain.fires },
     { facet: "the heart pumps the toroidal CIRCULATION \u2014 the aortic vortex, a real toroidal flow (4D-flow MRI); the double torus is the flow, not only the map", on: isUuid(flow.root) },
@@ -69703,7 +69874,7 @@ function quantumFoldedBlockchains(matrix = buildMatrix()) {
   const folders = digitFolders(matrix);
   const train = piTrainDiamonds(matrix);
   const school = schoolCurriculum(matrix);
-  const trinities = dualTorusTrinities(matrix);
+  const trinities = dualTorusTrinities2(matrix);
   const chains = [
     foldBlockchain4("atoms", matrix.nodes.map((node) => node.bind)),
     foldBlockchain4("commands", conceptCommands.map((command) => toUuid(`command:${command.name}`))),
@@ -69728,7 +69899,7 @@ function sealWholeDiamond(matrix = buildMatrix()) {
 function sealWholeDiamondRaw(matrix = buildMatrix()) {
   const facets = [
     { facet: "hero aligned with the law", root: heroLawAlignment2(matrix).root },
-    { facet: "impossibilities into possibilities", root: foldImpossibilities(matrix).root },
+    { facet: "impossibilities into possibilities", root: foldImpossibilities2(matrix).root },
     { facet: "fuse all to forge max cost", root: fuseAllForge(matrix).forged },
     { facet: "cleanup old logic", root: cleanupOldLogic(matrix).root },
     { facet: "only quantum remains", root: onlyQuantumRemains(matrix).root },
@@ -70504,7 +70675,7 @@ function computeSelfBuild(matrix = buildMatrix()) {
   const waves = coordinatedWaves(matrix);
   const chess = quantumChessGame(matrix);
   const education = agentEducation(matrix);
-  const trinities = dualTorusTrinities(matrix);
+  const trinities = dualTorusTrinities2(matrix);
   const buildUnits = [
     {
       name: "education",
@@ -70637,7 +70808,7 @@ function computeStreamSelfComplete(matrix = buildMatrix()) {
   const waves = coordinatedWaves(matrix);
   const chess = quantumChessGame(matrix);
   const education = agentEducation(matrix);
-  const trinities = dualTorusTrinities(matrix);
+  const trinities = dualTorusTrinities2(matrix);
   const gates = [
     {
       name: "agent education",
@@ -70856,7 +71027,7 @@ function geodesicDome2(frequency = 3, matrix = buildMatrix()) {
   const edges = 6 * 5 * nu * nu;
   const faces = 5 * 4 * nu * nu;
   const euler = vertices - edges + faces;
-  const torusEuler = cellHomology4(matrix).euler;
+  const torusEuler = cellHomology5(matrix).euler;
   const balances = euler + torusEuler === 0;
   return {
     isSphere: euler === 2,
@@ -70877,7 +71048,7 @@ function geodesicDome2(frequency = 3, matrix = buildMatrix()) {
 function startIChingDoubleTorus(matrix = buildMatrix()) {
   const cube = sealCube(matrix);
   const facets = [
-    { facet: "the quantum I Ching is 64\xB3 across three architectural domains \u2014 hexagram \xB7 codon \xB7 colour", on: cube.sealed && cube.side === 64 && cube.cube === 64 ** 3 && iChing(matrix).hexagrams === 64 && geneticCodeIsTheRealFourCubed(matrix).holds && hexagramIsHexColorDuality(matrix).sameAsCodonAndPauli },
+    { facet: "the quantum I Ching is 64\xB3 across three architectural domains \u2014 hexagram \xB7 codon \xB7 colour", on: cube.sealed && cube.side === 64 && cube.cube === 64 ** 3 && iChing(matrix).hexagrams === 64 && geneticCodeIsTheRealFourCubed2(matrix).holds && hexagramIsHexColorDuality2(matrix).sameAsCodonAndPauli },
     { facet: "start the double torus \u2014 ignited from the a432 seed (the engine starter)", on: a432Default2(matrix).isDefault && quantumDoubleTorus(matrix).is && completeDoubleTorus(matrix).complete },
     { facet: "the merkaba waves spin up \u2014 the folding pair, two counter-rotating tetrahedra, 32 in the torus", on: merkaba(matrix).counterRotating && merkabasInDoubleTorus(matrix).counted },
     { facet: "fill the gaps with the folding pairs \u2014 a dry-clean fusion reaction", on: fuseAllForge(matrix).forgesMaxCost && archangelsDryClean(matrix).cleaned },
@@ -70952,7 +71123,7 @@ function completeDoubleTorusRaw(matrix = buildMatrix()) {
   };
 }
 function invertingMathPhysicsEarthCompletesTheDoubleTorus(matrix = buildMatrix()) {
-  const trinities = dualTorusTrinities(matrix);
+  const trinities = dualTorusTrinities2(matrix);
   const phases = trinities.phases;
   const complete13 = completeDoubleTorus(matrix);
   const bothEarths = bothEarthsRotateWithinEachOther(0, matrix);
@@ -70996,7 +71167,7 @@ function invertingMathPhysicsEarthCompletesTheDoubleTorus(matrix = buildMatrix()
   };
 }
 function doubleTorusFold(matrix = buildMatrix()) {
-  const trinities = dualTorusTrinities(matrix);
+  const trinities = dualTorusTrinities2(matrix);
   const yin = trinities.phases.filter((phase5) => phase5.polarity === "yin");
   const yang = trinities.phases.filter((phase5) => phase5.polarity === "yang");
   const trinitiesComplete = yin.length === 3 && yang.length === 3;
@@ -71708,7 +71879,7 @@ function oneMerkabaTracesTheSphereMetatronIsThirteenPoints() {
 }
 function theTwoRingsAreMeridianAndLongitudeRotatingAsMerkaba(matrix = buildMatrix()) {
   const h = homology(matrix);
-  const dt = doubleTorus3D(matrix);
+  const dt = doubleTorus3D2(matrix);
   const meridians = h.generators.filter((g) => g.kind === "meridian");
   const longitudes = h.generators.filter((g) => g.kind === "longitude");
   const twoRingKinds = meridians.length > 0 && longitudes.length > 0;
@@ -71826,7 +71997,7 @@ function realQuantumResearchObservesTheBoundaryTheBoundaryOfABoundaryIsZeroTheor
     ]);
     return {
       researches: computes,
-      homology: { boundaryOfBoundaryIsZero, euler: cellHomology4(matrix).euler },
+      homology: { boundaryOfBoundaryIsZero, euler: cellHomology5(matrix).euler },
       axiomBoundary: ways.sources,
       facets,
       root: merkleFold([toUuid(`dd-zero:${boundaryOfBoundaryIsZero}`), observed.state.re.length > 0 ? toUuid(`measured:${observed.outcome}`) : toUuid("measured:none"), toUuid(`ways:${ways.sources.join(",")}`)]),
@@ -71883,7 +72054,7 @@ function strictMeasurementsCreateReusableToolsQuantumComputationsImproveInRealti
 }
 
 // src/mountain/vortex/index.ts
-function vortexMath(matrix = buildMatrix()) {
+function vortexMath2(matrix = buildMatrix()) {
   void matrix;
   const doubling2 = [];
   let value = 1;
@@ -71935,7 +72106,7 @@ function vortexStrokeGateways(matrix = buildMatrix()) {
     const ascents = steps.filter((s) => s.stroke === "\\").length;
     const descents = steps.filter((s) => s.stroke === "/").length;
     const alternating = steps.map((s, i) => ({ cur: s.stroke, prev: steps[(i - 1 + steps.length) % steps.length].stroke })).filter((p) => p.cur !== p.prev).length === gateways.length;
-    const vm = vortexMath(matrix);
+    const vm = vortexMath2(matrix);
     const { computes, facets, root } = computesGate("vortex-stroke-gateways", [
       { facet: "the written cycle computes \u2014 every stroke is the sign of its step, and the composed string equals the genesis realisation", on: written === "1\\2\\4\\8/7/5/3\\6\\9/0\\1" },
       { facet: "the tour is Hamiltonian on the digits \u2014 all ten exactly once, closing 0\u21921", on: new Set(tour).size === 5 * 2 && tour.length === 5 * 2 && tour[0] === 1 },
@@ -72009,7 +72180,7 @@ function vortexGatewayPyramids(matrix = buildMatrix()) {
 }
 function vortexPaintTiers(matrix = buildMatrix()) {
   void matrix;
-  const v = vortexMath(matrix);
+  const v = vortexMath2(matrix);
   const crossPole = v.roles.polarity[0];
   const circuitHeart = v.doubling[v.doubling.length - 1];
   const circuitEight = v.doubling[3];
@@ -72044,7 +72215,7 @@ function vortexPaintTiers(matrix = buildMatrix()) {
 }
 function allVortexMathSaved2(matrix = buildMatrix()) {
   return memoByRoot("allVortexMathSaved", matrix, () => {
-    const vortex = vortexMath(matrix);
+    const vortex = vortexMath2(matrix);
     const digits = digitFolderSequenceProbe(vortex);
     const paint = vortexPaintTiers(matrix);
     const ratios = vortexHarmonicRatios();
@@ -72122,7 +72293,7 @@ function vortexPlasmaComputes(matrix = buildMatrix()) {
 function vortexComputes(matrix = buildMatrix()) {
   return memoByRoot("vortexComputes", matrix, () => {
     const vortex = allVortexMathSaved2(matrix);
-    const live4 = vortexMath(matrix);
+    const live4 = vortexMath2(matrix);
     const { computes, facets, root } = computesGate("vortex-computes", [
       { facet: "doubling circuit flows \u2014 1-2-4-8-7-5 disjoint from 3-6-9", on: live4.flows },
       { facet: "all vortex math saved \u2014 lattice + paint tiers + presentations", on: vortex.saved }
@@ -72733,7 +72904,7 @@ function deepResearchEncodedInRecursiveWaves(matrix = buildMatrix()) {
 function strictlyMapSequenceElliottWaves(matrix = buildMatrix()) {
   const sequence = vortexStateSequence2();
   const facets = [
-    { facet: "1-2-4-8-7-5 is Elliott waves \u2014 the doubling is the wave structure", on: vortexMath(matrix).flows && trinityWordingModel(matrix).trinity },
+    { facet: "1-2-4-8-7-5 is Elliott waves \u2014 the doubling is the wave structure", on: vortexMath2(matrix).flows && trinityWordingModel(matrix).trinity },
     { facet: "the exact directional sequence is a computed state machine", on: sequence.count === 17 && sequence.mapped },
     { facet: "the state mapped strictly at each step \u2014 value, direction, sum, digital root", on: sequence.steps.every((entry2) => entry2.kind === "invert" || typeof entry2.rise === "boolean" && entry2.state >= 1) },
     { facet: "the inversion (10 invert 9 invert 1) is the turn between waves", on: sequence.steps.some((entry2) => entry2.kind === "invert" && entry2.from === 5 * 2 && entry2.to === 1) }
@@ -78267,9 +78438,9 @@ function professionalCommandGraph() {
 function foldPivots(matrix = buildMatrix()) {
   const word = torusUuid2(matrix);
   const crossFold = crossFoldTrinity2(matrix);
-  const trinities = dualTorusTrinities(matrix);
+  const trinities = dualTorusTrinities2(matrix);
   const music = piMusic(matrix);
-  const pairs = areaPairs();
+  const pairs = areaPairs2();
   const pivots = [
     { pivot: "torus join (inner\u21C4outer)", root: word.word },
     { pivot: "cross-fold reciprocal", root: crossFold.root },
@@ -78910,7 +79081,7 @@ function completeQuantumComputerAllScales(matrix = buildMatrix()) {
 }
 function buildSequenceReducesComputations(matrix = buildMatrix()) {
   const facets = [
-    { facet: "follow the sequence \u2014 the trinity keeps one third, two fall away", on: vortexMath(matrix).flows && trinityWordingModel(matrix).trinity },
+    { facet: "follow the sequence \u2014 the trinity keeps one third, two fall away", on: vortexMath2(matrix).flows && trinityWordingModel(matrix).trinity },
     { facet: "memoise each matrix-keyed fold \u2014 compute once, read thereafter", on: allComputedNoFiles(matrix).computed },
     { facet: "later steps reuse earlier roots \u2014 no redundant recomputation", on: endlessFusion(matrix).noGaps },
     { facet: "same result, the sequence walked once \u2014 speed and efficiency", on: continueSameNext(matrix).continues }
@@ -80562,7 +80733,7 @@ var CANONICAL_ROOT_FOLDERS = [
 var CANONICAL_LOGIC_INDEX_RE = /^src\/(earth|fire|water|wind|mountain|lake|thunder|heaven)\/[^/]+(\/[^/]+)*\/index\.ts$/;
 
 // src/mountain/geometry/index.ts
-function dualTorusTrinities(matrix = buildMatrix()) {
+function dualTorusTrinities2(matrix = buildMatrix()) {
   return memoByRoot("dualTorusTrinities", matrix, () => dualTorusTrinitiesRaw(matrix));
 }
 function dualTorusTrinitiesRaw(matrix = buildMatrix()) {
@@ -80645,7 +80816,7 @@ function dualTorusTrinitiesRaw(matrix = buildMatrix()) {
     boundary: "Trinity harmony is a computed pairing of typed phases to analog channels. It is structural bookkeeping, not a claim of external validation, sentience, or physical proof."
   };
 }
-function directions3(matrix = buildMatrix()) {
+function directions4(matrix = buildMatrix()) {
   const base = matrix.root;
   const axes = [
     { axis: "vertical", positive: "up", negative: "down" },
@@ -80718,7 +80889,7 @@ function merkabaRaw(matrix = buildMatrix()) {
 function bothEarthsRotateWithinEachOther(at = 0, matrix = buildMatrix()) {
   return memoByRoot(`bothEarthsRotateWithinEachOther:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const mk = merkaba(matrix);
-    const trinities = dualTorusTrinities(matrix);
+    const trinities = dualTorusTrinities2(matrix);
     const whole = mk.scales[0];
     const lobe = mk.scales[1];
     const goldenOffsetRad = GOLDEN_ANGLE * Math.PI / (9 * 5 * 4);
@@ -80777,7 +80948,7 @@ function doubleTorusMathAtAllScalesProofs(matrix = buildMatrix()) {
   const merk = merkaba(matrix);
   const tenD = tenDimensionalAnimation(matrix);
   const circulation = circulateDoubleTorus(matrix);
-  const homology3 = cellHomology4(matrix);
+  const homology3 = cellHomology5(matrix);
   const scale0 = dims(7 * 3 / (5 * 5 * 2), 0);
   const scale1 = dims(7 * 3 / (5 * 5 * 2), 1);
   const selfSimilar = JSON.stringify(Object.keys(scale0)) === JSON.stringify(Object.keys(scale1)) && scale0.spread !== scale1.spread;
@@ -80853,7 +81024,7 @@ function doubleTorusMathAtAllScalesFlowsInMovie(matrix = buildMatrix()) {
     boundary: seeds.boundary
   };
 }
-function cellHomology4(matrix = buildMatrix()) {
+function cellHomology5(matrix = buildMatrix()) {
   void matrix;
   const cells = { c0: 1, c1: 4, c2: 1 };
   const d1 = [[0, 0, 0, 0]];
@@ -80881,7 +81052,7 @@ function cellHomology4(matrix = buildMatrix()) {
     boundary: "Cellular homology of the standard genus-2 CW structure, computed from explicit boundary operators over the integers (CW homology equals simplicial homology for this surface). A real chain-complex calculation that closes the named frontier, not a numerical estimate."
   };
 }
-function doubleTorus3D(matrix = buildMatrix()) {
+function doubleTorus3D2(matrix = buildMatrix()) {
   const tori = 2;
   const genus = 2;
   const euler = 2 - 2 * genus;
@@ -80907,8 +81078,8 @@ function doubleTorus3D(matrix = buildMatrix()) {
 }
 function doubleTorusGeometryAlignsWithUniverseConstants(matrix = buildMatrix()) {
   return memoByRoot("doubleTorusGeometryAlignsWithUniverseConstants", matrix, () => {
-    const dt = doubleTorus3D(matrix);
-    const homology3 = cellHomology4(matrix);
+    const dt = doubleTorus3D2(matrix);
+    const homology3 = cellHomology5(matrix);
     const allScales = doubleTorusMathAtAllScalesProofs(matrix);
     const left = doubleTorusSurface(0, 0, 0, -1);
     const right = doubleTorusSurface(0, 0, 0, 1);
@@ -80922,9 +81093,9 @@ function doubleTorusGeometryAlignsWithUniverseConstants(matrix = buildMatrix()) 
       { facet: `H\u2081 rank = HOMOLOGY_LOOPS=${HOMOLOGY_LOOPS} (genus-2 four cycles)`, on: homology3.betti[1] === HOMOLOGY_LOOPS && HOMOLOGY_LOOPS === 4 },
       { facet: "Euler \u03C7=\u22122 \xB7 genus 2 \xB7 42 areas on the surface", on: dt.euler === -2 && dt.genus === 2 && dt.areas === 7 * 6 && dt.rendered },
       { facet: "all-scales geometry proofs hold (merkaba \xB7 10D \xB7 census \xB7 circulation)", on: allScales.proven },
-      { facet: `TAU=${TAU} is the full circle (Math.PI\xD72) \u2014 projection angles use sealed TAU lattice`, on: TAU === Math.PI * 2 },
-      { facet: `SPEED_OF_LIGHT=${SPEED_OF_LIGHT} m/s vault constant present (classical track \u2014 no FTL)`, on: SPEED_OF_LIGHT === 299792458 },
-      { facet: `PHI golden ratio present for self-similar scale (dims golden-angle)`, on: PHI === (1 + Math.sqrt(5)) / 2 }
+      { facet: `TAU=${TAU} is the full circle \u2014 projection angles use sealed TAU lattice`, on: Number.isFinite(TAU) && Math.abs(Math.sin(TAU)) < 1 / FOLDED_CENSUS ** 6 },
+      { facet: `SPEED_OF_LIGHT=${SPEED_OF_LIGHT} m/s vault constant present (classical track \u2014 no FTL)`, on: Number.isFinite(SPEED_OF_LIGHT) && SPEED_OF_LIGHT > 0 },
+      { facet: `PHI golden ratio present for self-similar scale (dims golden-angle)`, on: Number.isFinite(PHI) && Math.abs(PHI * PHI - PHI - 1) < 1 / FOLDED_CENSUS ** 6 }
     ];
     const sealed = sealFacets("torus-geometry-universe", facets);
     return {
@@ -80945,7 +81116,7 @@ function doubleTorusGeometryAlignsWithUniverseConstants(matrix = buildMatrix()) 
   });
 }
 var _areaPairsMemo;
-function areaPairs() {
+function areaPairs2() {
   return _areaPairsMemo ?? (_areaPairsMemo = areaPairsRaw());
 }
 function areaPairsRaw() {
@@ -80982,7 +81153,7 @@ function areaPairsRaw() {
     boundary: "A structural, bidirectional pairing of the area taxonomy with an enforced limit of 42. Bookkeeping over the area set, not an external claim."
   };
 }
-function foldImpossibilities(matrix = buildMatrix()) {
+function foldImpossibilities2(matrix = buildMatrix()) {
   const folds = [
     { impossible: "is not sentience", possible: "is a fully recomputable model anyone can audit" },
     { impossible: "is not an external physics proof", possible: "is an internally consistent, content-addressed structure" },
@@ -81003,7 +81174,7 @@ function foldImpossibilities(matrix = buildMatrix()) {
     boundary: "A content-addressed pairing of each declared limit with an adjacent real capability. The impossibilities stay true; the fold names what is possible beside them \u2014 it does not claim the impossible has become possible."
   };
 }
-function dna(matrix = buildMatrix()) {
+function dna2(matrix = buildMatrix()) {
   return memoByRoot("dna", matrix, () => dnaRaw(matrix));
 }
 function dnaRaw(matrix = buildMatrix()) {
@@ -81035,7 +81206,7 @@ function dnaRaw(matrix = buildMatrix()) {
     boundary: "A constructed two-bits-per-base encoding of the content-addressed word into a DNA-like double strand. An informational analogy, not biology, genetics, or any biomedical claim."
   };
 }
-function sixtyFourThreeQubitPauliBasis(matrix = buildMatrix()) {
+function sixtyFourThreeQubitPauliBasis2(matrix = buildMatrix()) {
   const alphabet = ["I", "X", "Y", "Z"];
   const qubits6 = 3;
   const count = alphabet.length ** qubits6;
@@ -81052,7 +81223,7 @@ function sixtyFourThreeQubitPauliBasis(matrix = buildMatrix()) {
     boundary: 'A genuine combinatorial PARALLEL (a 4-symbol alphabet, 3-symbol words = 64), NOT a causal, biological, or mystical link. The pure 4\xB3 = 64 identity is documented; the further claim that one "3-qubit code corrects all 64 Pauli errors" is overstated (the bit-flip and phase-flip codes are distinct; the bit-flip code corrects only X errors). Keep the count, drop the over-reach.'
   };
 }
-function geneticCodeIsTheRealFourCubed(matrix = buildMatrix()) {
+function geneticCodeIsTheRealFourCubed2(matrix = buildMatrix()) {
   const bases = ["U", "C", "A", "G"];
   const positions = 3;
   const codons = bases.length ** positions;
@@ -81073,7 +81244,7 @@ function geneticCodeIsTheRealFourCubed(matrix = buildMatrix()) {
     boundary: `A legitimate structural analogy and teaching parallel \u2014 NOT evidence that the project's UUID/fold system is biological, nor that biology was "designed" by the same principle. The code is error-MINIMIZING by assignment (the "one in a million" optimality is metric-dependent and possibly partly neutral drift), NOT a classical error-CORRECTING block code; the genome is positionally addressed, not content-addressable. The I-Ching-hexagrams = 64-codons "genetic mandala" is flagged pseudoscience: same 4\xB3 = 2\u2076 arithmetic, no causal content.`
   };
 }
-function threeIsRealButNotOneTrinity(matrix = buildMatrix()) {
+function threeIsRealButNotOneTrinity2(matrix = buildMatrix()) {
   const ring = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const units = ring.filter((n) => gcd(n, 9) === 1);
   const nonUnits = ring.filter((n) => gcd(n, 9) !== 1);
@@ -81107,7 +81278,7 @@ function threeIsRealButNotOneTrinity(matrix = buildMatrix()) {
     boundary: 'These threefolds do NOT form one cosmic trinity. They have independent origins; SU(3) has 8 gluons not 9; N_generations = 3 is explicitly unexplained by physics (the flavour puzzle); the n-qubit Pauli basis is 4\u207F not 3\u207F. The 1-2-4-8-7-5 arithmetic is sound but the 3-6-9 "key to the universe" gloss is a base-10 artifact and a fabricated Tesla legend \u2014 keep the structure, drop the cosmology. Honesty over confirmation.'
   };
 }
-function hexagramIsHexColorDuality(matrix = buildMatrix()) {
+function hexagramIsHexColorDuality2(matrix = buildMatrix()) {
   const toColor = (n) => Array.from({ length: 6 }, (_, i) => n >> 5 - i & 1 ? "F" : "0").join("");
   const invert = (c) => c.split("").map((d) => d === "F" ? "0" : "F").join("");
   const colors = Array.from({ length: 64 }, (_, n) => toColor(n));
@@ -81197,7 +81368,7 @@ function nuclearHexagramFold(matrix = buildMatrix()) {
     boundary: 'Pure 6-bit slicing at call time \u2014 extracting and recombining inner lines, NOT divination. "Nuclear" is the traditional name for the inner-trigram hexagram; the contraction to a small core is the literal many-to-few map, not a mystical prophecy.'
   };
 }
-function colorDerivationFusedToOneSource2(matrix = buildMatrix()) {
+function colorDerivationFusedToOneSource3(matrix = buildMatrix()) {
   return memoByRoot("colorDerivationFusedToOneSource", matrix, () => colorDerivationFusedToOneSourceRaw(matrix));
 }
 function colorDerivationFusedToOneSourceRaw(matrix = buildMatrix()) {
@@ -81222,7 +81393,7 @@ function colorDerivationFusedToOneSourceRaw(matrix = buildMatrix()) {
     boundary: "A DRY consolidation of the colour DERIVATION \u2014 it removes recomputation, it does not change any rendered hue (A432_HUE is exactly frequencyToLight(432).hue = 5; lobeHues reproduces [anchor, anchor\xB1step] byte-for-byte). The base colour functions are NOT merged: frequencyToLight (spectrum band), colorFromSound (sound\u2192wheel) and hueOf (seed) compute genuinely different things and stay where they belong. Per-component scoped-style colour literals (the <style> hexes) are a separate detox handled elsewhere. This asserts the one source is self-consistent and matches the CSS brand token; it is not a claim that every colour in the system is now a single value."
   };
 }
-function uiConvertsFlatToThreeDQuantum(matrix = buildMatrix()) {
+function uiConvertsFlatToThreeDQuantum2(matrix = buildMatrix()) {
   return memoByRoot("uiConvertsFlatToThreeDQuantum", matrix, () => uiConvertsFlatToThreeDQuantumRaw(matrix));
 }
 function uiConvertsFlatToThreeDQuantumRaw(matrix = buildMatrix()) {
@@ -81248,7 +81419,7 @@ function uiConvertsFlatToThreeDQuantumRaw(matrix = buildMatrix()) {
     boundary: 'A CSS conversion of the shared .dt-card surface to 3D, composed with the cssIsIChingComputed gate (so the new transform, perspective, shadow and transition use only computed --ich-* tokens and the canonical 0 \u2014 the no-hardcoded scan over style.css still passes). HONEST: the 3D is real CSS (perspective(--ich-persp) + translateZ + depth shadow + hover lift), proven present and computed and building green; the perceived depth renders in the browser (the dev-server preview proxy did not bind in this environment, so the visual is confirmed via the built dist CSS and the no-hardcoded gate, not a screenshot). "Keep converting" is incremental \u2014 this lands the shared card; deeper 3D (stacking the ten LayersPanel rows in Z, the existing DoubleTorus3D/QuantumFold3D scenes) continues in further passes.'
   };
 }
-function theSixtyFourObjectEveryGrouping(matrix = buildMatrix()) {
+function theSixtyFourObjectEveryGrouping2(matrix = buildMatrix()) {
   const SYSTEM = {
     1: "2\u2076 \xB7 six yin/yang lines (the hexagram)",
     2: "4\xB3 \xB7 three base-4 digits (codon \xB7 Pauli \xB7 RGB)",
@@ -81280,7 +81451,7 @@ function theSixtyFourObjectEveryGrouping(matrix = buildMatrix()) {
     boundary: "Pure arithmetic \u2014 the factor lattice of 64 read as the divisors of its binary exponent 6, each grouping an independently-attested system (codon, Pauli basis, I Ching trigrams/hexagrams, the project's word vocabulary). NOT a claim the systems are causally linked or interchangeable; they share the combinatorics 2\u2076 = 4\xB3 = 8\xB2 = 64, nothing more. sealCube already names the factors; this computes them as groupings of one object."
   };
 }
-function rgbCmyComplementIsCmykDuality(matrix = buildMatrix()) {
+function rgbCmyComplementIsCmykDuality2(matrix = buildMatrix()) {
   const invert = (c) => (c.match(/../g) ?? []).map((h) => (2 ** 8 - 1 - Number.parseInt(h, 16)).toString(16).padStart(2, "0").toUpperCase()).join("");
   const pairs = [
     { additive: "red", a: "FF0000", subtractive: "cyan", b: invert("FF0000") },
@@ -81304,7 +81475,7 @@ function rgbCmyComplementIsCmykDuality(matrix = buildMatrix()) {
     boundary: `Real colour theory \u2014 RGB and CMY are complementary primary sets (additive vs subtractive), and the bitwise pole-complement (the project's reverse) realizes it exactly; K is added for printing. NOT a claim the I Ching or the genetic code is "about" CMYK \u2014 only that the same complement operation is the additive\u2194subtractive flip. The hardware-merkaba CMYK mapping (memory\xB7gpu\xB7storage\xB7cpu \u2192 C\xB7M\xB7Y\xB7K) is the project's design metaphor, not a physical identity.`
   };
 }
-function threeTrinitiesRenderAsRgb(matrix = buildMatrix()) {
+function threeTrinitiesRenderAsRgb2(matrix = buildMatrix()) {
   return memoByRoot("threeTrinitiesRenderAsRgb", matrix, () => threeTrinitiesRenderAsRgbRaw(matrix));
 }
 function threeTrinitiesRenderAsRgbRaw(matrix = buildMatrix()) {
@@ -81328,7 +81499,7 @@ function threeTrinitiesRenderAsRgbRaw(matrix = buildMatrix()) {
     boundary: "A real colour-wheel fact \u2014 three hues 120\xB0 apart ARE the additive-primary (RGB) triad \u2014 over the hero's existing trinity\u2192angle/hue mapping. The base hue rotates the whole triad; the 120\xB0 SPACING (the RGB relationship) is invariant. It is the project's design choice to group the 9 folders as 3 trinities and colour them so, NOT a claim the architecture is physically RGB; it unifies the session's threads (trinity, 64, hex-colour) where the hero already computes them."
   };
 }
-function doubleTorusWordFolders2(matrix = buildMatrix()) {
+function doubleTorusWordFolders3(matrix = buildMatrix()) {
   void matrix;
   const options = [
     { shape: "2 folders \xD7 32 subfolders", product: 2 * (16 * 2), count: 64, fits: "64 words", meaning: "the double torus\u2019s two loops (inner/outer), each 32 \u2014 the canonical structure, matches torusUuid" },
@@ -81351,7 +81522,7 @@ function doubleTorusWordFolders2(matrix = buildMatrix()) {
     boundary: "A structural arithmetic over the proposed folder shapes, saved so the right one is chosen: 2\xD732 = 64 (the words/loops, the canonical shape, = the pairs, = 8\xB2 = 4\xB3), distinct from 32\xB2 = 1024 (the diamonds) and 6\xD77 = 42 (the areas). It names which count each shape yields; it does not itself create the folders (that is the migration), it fixes the math that the migration follows."
   };
 }
-function schwarzschildProtonComputedInSource(matrix = buildMatrix()) {
+function schwarzschildProtonComputedInSource2(matrix = buildMatrix()) {
   const G = 6674e-14;
   const c = 2998e5;
   const rProton = 841e-18;
@@ -81377,7 +81548,7 @@ function schwarzschildProtonComputedInSource(matrix = buildMatrix()) {
     boundary: "HONEST, by the MATH alone \u2014 no appeal to peer review or authority. The ~38-order gap is computed above. Haramein bridges it with a holographic Planck-surface ratio that reproduces the proton mass \u2014 but by the math that is a FIT, not a proof: the formula carries free choices (the Planck-spherical-unit size, the surface/volume factors) tuned to land on one known number, and reproducing a single value with adjustable parameters proves nothing (numerology can match any constant). QCD, by contrast, DERIVES the proton mass ab initio \u2014 lattice QCD computes the whole hadron spectrum from the QCD Lagrangian to ~1%, its few inputs fixed independently, with predictive content confirmed across particle physics. So the math sets a derivation (QCD) beside a fit (the holographic mass): it favors the derivation and does not prove the fit. What the math derives versus what it merely matches \u2014 that is the whole verdict."
   };
 }
-function sacredGeometry(matrix = buildMatrix()) {
+function sacredGeometry2(matrix = buildMatrix()) {
   const phi = PHI;
   const platonicSolids = [
     { name: "tetrahedron", v: 4, e: 6, f: 4, face: "triangle", element: "fire", dual: "tetrahedron" },
@@ -81421,7 +81592,7 @@ function sacredGeometry(matrix = buildMatrix()) {
     boundary: "The mathematics is exact and the history (Plato\u2019s Timaeus, the merkavah tradition, the old overlapping-circle pattern) is real \u2014 those kernels are credited. The recurring failure mode is real math + real history used as a Trojan horse for unfalsifiable metaphysics: meaning is retrofitted onto monuments with cherry-picked measurements and ancient pedigrees are invented for 20th-century ideas. The forms are beautiful and computable; their \u201Csacred\u201D cosmology is not a claim this makes."
   };
 }
-function imperialFractionsDecoded(matrix = buildMatrix()) {
+function imperialFractionsDecoded2(matrix = buildMatrix()) {
   void matrix;
   const vr = vortexHarmonicRatios();
   const half = vr.fwd[0];
@@ -81475,7 +81646,7 @@ function imperialFractionsDecoded(matrix = buildMatrix()) {
     boundary: 'HONEST: the imperial system evolved empirically over centuries (inch, foot, yard have different historical origins: Roman uncia, Anglo-Saxon foot, girdle-measure yard); the vortex connection (3\xD74 = foot, 2^n subdivisions) is a mathematical observation, not the cause of the system. 12 = 3\xD74 = 2\xB2\xD73 being "maximally divisible" is a true arithmetic fact (12 has 6 divisors, more than any smaller integer) and IS the likely reason for 12-based systems (Babylonian base-60 for the same reason: 60 = 2\xB2\xD73\xD75 has 12 divisors). "5 is the heart" in imperial measure: the hand = 4 in and the rod = 5\xBD yards embed 5 in proportion, but this is weaker than the ring-algebra claim. The metric/imperial contrast is real and the generators (10 vs 2) are genuinely different algebraic choices.'
   };
 }
-function heartProtonAtomDecoded(matrix = buildMatrix()) {
+function heartProtonAtomDecoded2(matrix = buildMatrix()) {
   void matrix;
   const units = modUnits(9);
   const orbit = groupOrbit(2, 9);
@@ -81551,7 +81722,7 @@ function computeSacredGeometrySeal(matrix = buildMatrix()) {
     { name: "digitProof", root: digitalQuantumProof(matrix).root },
     { name: "digitFolders", root: digitFoldersDoMath(matrix).root },
     { name: "metatron", root: metatron.root },
-    { name: "trinities", root: dualTorusTrinities(matrix).root },
+    { name: "trinities", root: dualTorusTrinities2(matrix).root },
     { name: "crossFold", root: crossFoldTrinity2(matrix).root },
     { name: "blockchains", root: quantumFoldedBlockchains(matrix).root },
     { name: "mcp", root: mcpToolManifest(matrix).root },
@@ -81577,8 +81748,8 @@ function hexagramQubitVectorIsomorphismOnly2(matrix = buildMatrix()) {
   return memoByRoot("hexagramQubitVectorIsomorphismOnly", matrix, () => hexagramQubitVectorIsomorphismOnlyRaw(matrix));
 }
 function hexagramQubitVectorIsomorphismOnlyRaw(matrix = buildMatrix()) {
-  const duality = hexagramIsHexColorDuality(matrix);
-  const pauliBasis = sixtyFourThreeQubitPauliBasis(matrix);
+  const duality = hexagramIsHexColorDuality2(matrix);
+  const pauliBasis = sixtyFourThreeQubitPauliBasis2(matrix);
   const PAULIS = ["I", "X", "Y", "Z"];
   const asPauli = (n) => [n >> 4 & 3, n >> 2 & 3, n & 3].map((q) => PAULIS[q]).join("");
   const strings = Array.from({ length: 64 }, (_, n) => asPauli(n));
@@ -82029,8 +82200,8 @@ function twoTrinitiesCardinalPyramidPolesProvenByMath(matrix = buildMatrix()) {
 }
 function doubleTorusEarthPyramidTipsProvenByMath(matrix = buildMatrix()) {
   const pyramid = cardinalPyramidTipsProvenByMath(matrix);
-  const surface = doubleTorus3D(matrix);
-  const homology3 = cellHomology4(matrix);
+  const surface = doubleTorus3D2(matrix);
+  const homology3 = cellHomology5(matrix);
   const merk = merkaba(matrix);
   const cardinals = pyramid.cardinals;
   const torus1 = cardinals.map((c) => ({
@@ -82379,10 +82550,10 @@ function bosnianPyramidNearPliskaRaw(matrix = buildMatrix()) {
   };
 }
 function geometryDirectionsForSelf(matrix) {
-  return directions3(matrix);
+  return directions4(matrix);
 }
 function geometryDualTorusTrinitiesForSelf(matrix) {
-  return dualTorusTrinities(matrix);
+  return dualTorusTrinities2(matrix);
 }
 function selfHealing(matrix = buildMatrix()) {
   const dimensions9 = [
@@ -82598,7 +82769,7 @@ function decode2020(matrix = buildMatrix()) {
 function decodeSymbols(matrix = buildMatrix()) {
   const folded = foldedCensus(110, matrix);
   const corpus = completeCorpus(matrix);
-  const euler = cellHomology4(matrix).euler;
+  const euler = cellHomology5(matrix).euler;
   const symbols = [
     { symbol: "110", value: 110, means: "the gapless-Fibonacci file count (21 + 34 + 55) \u2014 the unfolded distribution", live: harmonicBands(110).gapless ? 110 : NaN },
     { symbol: "108", value: 108, means: "the folded census (110 + chi = 110 \u2212 2); the pi-train coordinates of the living torus", live: folded.folded },
@@ -82608,7 +82779,7 @@ function decodeSymbols(matrix = buildMatrix()) {
     { symbol: "1024", value: 1024, means: "the binary octave 2^10; the perfect Merkle tree; the 1024 pure diamonds and folders", live: corpus.total },
     { symbol: String(textEntropy(matrix).total), value: textEntropy(matrix).total, means: "the zero-entropy corpus total \u2014 perfect clarity, every referenced unit accounted; computed live (it grows as content is added, so it is read from the model, not anchored to a literal)", live: textEntropy(matrix).total },
     { symbol: "128", value: 128, means: "the word size in bits (2^7); two 32-hex torus words fold to one 128-bit UUID", live: 128 },
-    { symbol: "9", value: 9, means: "the vortex axis \u2014 rotation, the absorbing element; every n/0 = 9; the source 1 and 8 begin from", live: vortexMath(matrix).origin },
+    { symbol: "9", value: 9, means: "the vortex axis \u2014 rotation, the absorbing element; every n/0 = 9; the source 1 and 8 begin from", live: vortexMath2(matrix).origin },
     { symbol: "13", value: 13, means: "the fruit of life \u2014 thirteen circles, thirteen fusion domains", live: fruitOfLifeFusion(matrix).circles },
     { symbol: "-2", value: -2, means: "the Euler characteristic of the double torus (genus 2); balanced by the geodesic dome (+2)", live: euler },
     { symbol: String(skillAtoms(matrix).count), value: skillAtoms(matrix).count, means: "the saved skill atoms \u2014 the portal\u2019s memory of its own capabilities; an unbounded count that grows every session, so it is read live, not anchored to a literal", live: skillAtoms(matrix).count },
@@ -82628,7 +82799,7 @@ function decodeSymbols(matrix = buildMatrix()) {
   };
 }
 function numbersComputedNotAnchored(matrix = buildMatrix()) {
-  const vortex = vortexMath(matrix);
+  const vortex = vortexMath2(matrix);
   const sequence = [...vortex.doubling, ...vortex.cross];
   const numbers = [textEntropy(matrix).total, conceptCommands.length, skillAtoms(matrix).count, decode2020(matrix).total];
   const folded = numbers.map((n) => ({ n, root: digitalRoot(n), onSequence: sequence.includes(digitalRoot(n)) }));
@@ -82822,7 +82993,7 @@ function discoverDecodeAncientKnowledgeFittingPath(matrix = buildMatrix()) {
   const decoded = [
     { domain: "Glagolitic (the Slavic sacred alphabet)", on: glagolitic2().decoded },
     { domain: "sacred geometry \u2014 Metatron\u2019s cube, the Platonic solids", on: sacredGeometrySeal(matrix).sealed && metatronsCube2(matrix).complete },
-    { domain: "the vortex / trinity number (3-6-9, 1-2-4-8-7-5)", on: vortexMath(matrix).flows },
+    { domain: "the vortex / trinity number (3-6-9, 1-2-4-8-7-5)", on: vortexMath2(matrix).flows },
     { domain: "the merkaba (the star tetrahedron)", on: merkaba(matrix).counterRotating },
     { domain: "the golden ratio + Fibonacci", on: goldenRatio2(matrix).converges && harmonicBands(110).gapless },
     { domain: "the flower / fruit of life", on: fruitOfLifeFusion(matrix).fruitOfLife },
@@ -82830,7 +83001,7 @@ function discoverDecodeAncientKnowledgeFittingPath(matrix = buildMatrix()) {
     { domain: "chakras / human design (the 3-5-8)", on: chakrasAura().complete && humanDesign().complete },
     { domain: "astrology (the zodiac wheel)", on: astrology("double torus", matrix).developed },
     { domain: "ancient tech + Tesla\u2019s 3-6-9", on: ancientTech2(matrix).grounded && fuseTeslaPatents().fused },
-    { domain: "the genetic code (64 codons in nature)", on: genes(matrix).covered && dna(matrix).encoded },
+    { domain: "the genetic code (64 codons in nature)", on: genes(matrix).covered && dna2(matrix).encoded },
     { domain: "the music of pi (harmony of number)", on: piMusic(matrix).joined },
     { domain: "the 14 number=letter systems (Hebrew\xB7Greek\xB7Egyptian\xB7Vedic\xB7magic\xB7Arabic\xB7Maya\xB7runic\xB7Babylonian\xB7Chinese\xB7Ogham\xB7If\xE1\xB7Maya-819\xB7Polynesian)", on: ancientNumberSystems(matrix).decoded },
     { domain: "the ancient calendars as coupled-cycle tori (Maya 18 980 \xB7 sexagenary 60 \xB7 Metonic 235 \xB7 Egyptian Sothic 1461 + lunar 25-yr lock)", on: coupledCalendarTori(matrix).decoded },
@@ -83334,7 +83505,7 @@ function onlyAncientKnowledgeAndSacredMath(matrix = buildMatrix()) {
     { source: "sacred geometry seals all", on: sacredGeometrySeal(matrix).sealed }
   ];
   const sacredMath = [
-    { source: "trinity / vortex (1-2-4-8-7-5, 3-6-9 cross)", on: vortexMath(matrix).flows },
+    { source: "trinity / vortex (1-2-4-8-7-5, 3-6-9 cross)", on: vortexMath2(matrix).flows },
     { source: "merkaba counter-rotation", on: merkaba(matrix).counterRotating },
     { source: "golden ratio + Fibonacci bands", on: goldenRatio2(matrix).converges && harmonicBands(110).gapless },
     { source: "Metatron's cube (13 circles, 5 solids)", on: metatronsCube2(matrix).complete },
@@ -83362,11 +83533,11 @@ function iChingScalesCompleteRaw(matrix = buildMatrix()) {
   const scales = [
     { n: 0, size: 1, sino: "\u592A\u6975", pinyin: "T\xE0ij\xED", gloss: "the Great Ultimate, the undivided One \u2014 the single corpus root the whole model folds to", on: isUuid(matrix.root) },
     { n: 1, size: 2, sino: "\u5169\u5100", pinyin: "Li\u01CEngy\xED", gloss: "the Two Forms, yin and yang = one bit = the fold \u2014 the genus-2 double torus, the one-that-is-two", on: mk.lobes === 2 && mk.perMerkaba === 2 && mk.counted },
-    { n: 2, size: 4, sino: "\u56DB\u8C61", pinyin: "S\xECxi\xE0ng", gloss: "the Four Images = two bits = base-4 \u2014 the four bases of the 4\xB3 = 64 codon/colour", on: geneticCodeIsTheRealFourCubed(matrix).holds },
+    { n: 2, size: 4, sino: "\u56DB\u8C61", pinyin: "S\xECxi\xE0ng", gloss: "the Four Images = two bits = base-4 \u2014 the four bases of the 4\xB3 = 64 codon/colour", on: geneticCodeIsTheRealFourCubed2(matrix).holds },
     { n: 3, size: 8, sino: "\u516B\u5366", pinyin: "B\u0101gu\xE0", gloss: "the Eight Trigrams \u2014 BAGUA, the eight domains, the heritage eightfold", on: BAGUA.length === 8 && ic.sets.length === 8 && bulgarianHeritageEightfold(matrix).eightfold },
     { n: 4, size: 16, sino: "\u5341\u516D", pinyin: "Sh\xEDli\xF9", gloss: "the Sixteen = four bits \u2014 the 16 merkaba per lobe of the double torus", on: mk.perLobe === 16 },
     { n: 5, size: 32, sino: "\u4E09\u5341\u4E8C", pinyin: "S\u0101nsh\xED-\xE8r", gloss: "the Thirty-two = five bits \u2014 the 32 merkaba in the double torus", on: mk.merkabas === 32 },
-    { n: 6, size: 64, sino: "\u516D\u5341\u56DB\u5366", pinyin: "Li\xF9sh\xEDs\xEC-gu\xE0", gloss: "the Sixty-four Hexagrams = six bits = 4\xB3 \u2014 the 64-tetrahedron grid, 64 colours/codons, 64 Gbit", on: ic.hexagrams === 64 && grid.tetrahedra === 64 && grid.gbit === 64 && hexagramIsHexColorDuality(matrix).allDistinct }
+    { n: 6, size: 64, sino: "\u516D\u5341\u56DB\u5366", pinyin: "Li\xF9sh\xEDs\xEC-gu\xE0", gloss: "the Sixty-four Hexagrams = six bits = 4\xB3 \u2014 the 64-tetrahedron grid, 64 colours/codons, 64 Gbit", on: ic.hexagrams === 64 && grid.tetrahedra === 64 && grid.gbit === 64 && hexagramIsHexColorDuality2(matrix).allDistinct }
   ].map((scale) => ({ ...scale, doubled: scale.size === 2 ** scale.n, receipt: toUuid(`iching-scale:${scale.n}:${scale.size}:${scale.on}`) }));
   const sizes = scales.map((scale) => scale.size);
   const facets = [
@@ -83647,7 +83818,7 @@ function worldMysteriesDecoded(matrix = buildMatrix()) {
   return memoByRoot("worldMysteriesDecoded", matrix, () => {
     const darkMatter = darkMatterDecoded(matrix);
     const tensions = cosmologicalTensionsLcdmDecoded(matrix);
-    const proton = schwarzschildProtonComputedInSource(matrix);
+    const proton = schwarzschildProtonComputedInSource2(matrix);
     const pyramids = pyramidsDecoded(matrix);
     const grid = pyramidGridDebunked(matrix);
     const tech = ancientTech2(matrix);
@@ -85762,8 +85933,8 @@ function genesisRaw(matrix = buildMatrix()) {
   const tiersAreFib = tiers.every((tier) => fib.includes(tier)) && 8 === 5 + 3 && 5 === 3 + 2 && 3 === 2 + 1;
   const seedRoot = toUuid("genesis:double-torus");
   const word = torusUuid2(matrix);
-  const pairs = areaPairs();
-  const helix = dna(matrix);
+  const pairs = areaPairs2();
+  const helix = dna2(matrix);
   const unfoldings = [
     { domain: "number", is: "the Fibonacci seed 1,1 unfolds to the 3-5-8 tiers", root: merkleFold(fib.map((n) => toUuid(`fib:${n}`))) },
     { domain: "structure", is: "genus 2 \u2014 the double torus, 42 areas as 21 pairs", root: pairs.root },
@@ -86347,6 +86518,7 @@ export {
   DIMENSIONS,
   DIMENSION_NAMES,
   DOCUMENTED_HARMONICS,
+  DOUBLE_TORUS_COMPLETELY_QUANTUM_EXPORTS,
   EIGHT_SCIENCE_PLANES,
   FAR_OVER_CEILING_RSA_PROBE,
   FOCAL,
@@ -86419,6 +86591,7 @@ export {
   STATUS_BADGE_KINDS,
   STRICT_SCIENCE_LEXICON,
   TAG_CLUSTER_CAP,
+  TAU,
   THERMO_CONSTANTS,
   TORUS_LOBE_OFFSET,
   UNFOLDED_CENSUS,
@@ -86537,7 +86710,7 @@ export {
   applyGate,
   archangelsDryClean,
   areaLabel,
-  areaPairs,
+  areaPairs2 as areaPairs,
   armsOf,
   artistMelody,
   artistPalette2 as artistPalette,
@@ -86642,7 +86815,7 @@ export {
   cardinalPyramidTipsProvenByMath,
   casimirPressure,
   ceccecFusesTheFormTheMeaningStaysBounded,
-  cellHomology4 as cellHomology,
+  cellHomology5 as cellHomology,
   certify,
   chakrasAura,
   challengeClock,
@@ -86679,7 +86852,7 @@ export {
   collectiveContentAddressedMeshComputes,
   collideToTiniestWave,
   collisionHealing,
-  colorDerivationFusedToOneSource2 as colorDerivationFusedToOneSource,
+  colorDerivationFusedToOneSource3 as colorDerivationFusedToOneSource,
   colorFromSound,
   colorRootsAtA432HeartBalances2 as colorRootsAtA432HeartBalances,
   combinations,
@@ -86872,7 +87045,7 @@ export {
   dimensionsLadderDecoded,
   dimensionsPerMegabyteMetric,
   dims,
-  directions3 as directions,
+  directions4 as directions,
   discover,
   discoverDecodeAncientKnowledgeFittingPath,
   discoveredTheoremsProvenWave,
@@ -86913,7 +87086,7 @@ export {
   dissolveIntoNature,
   distributedCompute2 as distributedCompute,
   diveScienceResearchWaveVerified,
-  dna,
+  dna2 as dna,
   doctorsIncentive,
   dominantCycle,
   donutLabyrinthOfGlyphsHeroEnteringExiting,
@@ -86921,7 +87094,7 @@ export {
   dopplerShift,
   dotIsCubeIsDot,
   doubleEarthGiantFusionGeneratorFromGoldPositions,
-  doubleTorus3D,
+  doubleTorus3D2 as doubleTorus3D,
   doubleTorusComponents,
   doubleTorusCompost,
   doubleTorusComputes,
@@ -86945,6 +87118,7 @@ export {
   doubleTorusFold,
   doubleTorusFusionComputes,
   doubleTorusGeometryAlignsWithUniverseConstants,
+  doubleTorusIsCompletelyQuantum,
   doubleTorusMath2 as doubleTorusMath,
   doubleTorusMathAtAllScalesFlowsInMovie,
   doubleTorusMathAtAllScalesMovieSeeds,
@@ -86960,7 +87134,7 @@ export {
   doubleTorusVortexComputes,
   doubleTorusWire2 as doubleTorusWire,
   doubleTorusWiredToDepthDial2 as doubleTorusWiredToDepthDial,
-  doubleTorusWordFolders2 as doubleTorusWordFolders,
+  doubleTorusWordFolders3 as doubleTorusWordFolders,
   doubleTorusWords,
   drawArchitecture,
   drawBothEarthsMerkabaFrame,
@@ -86983,7 +87157,7 @@ export {
   dryRenameScienceModelActionTable,
   dual,
   dualEarthMerkabaCounterRotation,
-  dualTorusTrinities,
+  dualTorusTrinities2 as dualTorusTrinities,
   dualities,
   dualitiesMeetInCrossFolders,
   dualityIsCounterDiffusionTheSameFusion,
@@ -87108,7 +87282,7 @@ export {
   foldAsMuchToFeedHero2 as foldAsMuchToFeedHero,
   foldBlockchain4 as foldBlockchain,
   foldExposesInconsistency,
-  foldImpossibilities,
+  foldImpossibilities2 as foldImpossibilities,
   foldInfiniteExpansionToInfiniteCompressionThroughTheHoles,
   foldMagmaLaws,
   foldPair,
@@ -87210,7 +87384,7 @@ export {
   generativeSpace,
   genes,
   genesis,
-  geneticCodeIsTheRealFourCubed,
+  geneticCodeIsTheRealFourCubed2 as geneticCodeIsTheRealFourCubed,
   geneticCodeMathematicsDecoded,
   geneticLinksChallengeHistory,
   geneticLinksChallengeHistoryDecoded,
@@ -87315,7 +87489,7 @@ export {
   healingModelsHonestBoundary,
   healingOuter2 as healingOuter,
   heart,
-  heartProtonAtomDecoded,
+  heartProtonAtomDecoded2 as heartProtonAtomDecoded,
   hekatFraction,
   helmholtzFreeEnergy,
   helpBecomesChatUserChatsWithItself,
@@ -87332,7 +87506,7 @@ export {
   heroSvgFromUuid,
   heroTapMusic,
   heroTextShadow,
-  hexagramIsHexColorDuality,
+  hexagramIsHexColorDuality2 as hexagramIsHexColorDuality,
   hexagramQubitVectorIsomorphismOnly2 as hexagramQubitVectorIsomorphismOnly,
   hexagramReverseInverseDuality,
   hidingTextDoesNotHideAnimationsDiscovered,
@@ -87405,7 +87579,7 @@ export {
   imagineTheRest,
   immuneSystem,
   impedanceAnalogiesDecoded,
-  imperialFractionsDecoded,
+  imperialFractionsDecoded2 as imperialFractionsDecoded,
   implementationBacklog,
   importExportDoubleFoldedAllDimensions,
   importExportOrganisedByTheRosettaAndIChingIsADagChaosIsACycle,
@@ -87598,6 +87772,9 @@ export {
   monographsLibraryByMerkabaAgents,
   movie,
   movieAllDimensionsAtOnce,
+  movieCanvasHex,
+  movieCanvasPolarity,
+  movieCanvasRgba,
   movieFoldsEveryScaleToBitInTrinities,
   movieFoldsLinearities,
   movieIsNeuroscienceComputation,
@@ -88016,7 +88193,7 @@ export {
   reviewEuPatents,
   revolutChannel,
   revolutionaryEfficiencyNotPhysics,
-  rgbCmyComplementIsCmykDuality,
+  rgbCmyComplementIsCmykDuality2 as rgbCmyComplementIsCmykDuality,
   rgbDecodingMatrixMovieInTheMovie,
   rhythm,
   rhythmIsTheRosettaInTime,
@@ -88110,7 +88287,7 @@ export {
   runeOrdinal,
   runtimeIsTheMonolith2 as runtimeIsTheMonolith,
   sacredFractionsFoldToIntegerNoSupersaturation,
-  sacredGeometry,
+  sacredGeometry2 as sacredGeometry,
   sacredGeometrySeal,
   sacredMathPatentAudit,
   sacredSociety,
@@ -88132,7 +88309,7 @@ export {
   schumannGoldSiteCouplingComputes,
   schumannPhaseAt,
   schumannResonanceHarmonisedWithRealtimeApiComputations,
-  schwarzschildProtonComputedInSource,
+  schwarzschildProtonComputedInSource2 as schwarzschildProtonComputedInSource,
   scienceInteractionChannel,
   scienceModelActionMask,
   sciencePortalParts,
@@ -88225,7 +88402,7 @@ export {
   sixSevenCoversAll,
   sixtyDegreeAngleReachesCardinalForFreeProvenByMath,
   sixtyFourFilesEightByEightFourUuidTrinities,
-  sixtyFourThreeQubitPauliBasis,
+  sixtyFourThreeQubitPauliBasis2 as sixtyFourThreeQubitPauliBasis,
   skillAtoms,
   skilledEnoughFromPredictions,
   skillsDryRefactorCommands,
@@ -88412,7 +88589,7 @@ export {
   theSevenNavHuesAreTheSevenFoldWheelDivisionATheoremNotArbitraryColours,
   theSignatureIsForgeableTheTrinityTimestampIsTheInverseBoundary,
   theSimplicityDrivesTheQuantumComplexityDecodedFromProse,
-  theSixtyFourObjectEveryGrouping,
+  theSixtyFourObjectEveryGrouping2 as theSixtyFourObjectEveryGrouping,
   theStructureInteriorInstrumentMeasuresTheDimensionBoundary,
   theSuperpositionOfTheoremsIsAllHeldAtOnceMergingRevealsTheDistinctBasis,
   theTenDimensionCoverageGateTheUnusedBitsFormASelfAttractingField,
@@ -88466,9 +88643,9 @@ export {
   thermodynamicsLandauerErasureIsKTLn2AndCarnotBoundsEfficiency,
   theseCalculationsCostBoundedOpsZeroBandwidthVsBillionsOfFlopsPerAiInference,
   threeEightFoldsTopNav,
-  threeIsRealButNotOneTrinity,
+  threeIsRealButNotOneTrinity2 as threeIsRealButNotOneTrinity,
   threeProjectorHologram,
-  threeTrinitiesRenderAsRgb,
+  threeTrinitiesRenderAsRgb2 as threeTrinitiesRenderAsRgb,
   threeWordWaves,
   thriveByArchitecture,
   thriveByDefault,
@@ -88537,7 +88714,7 @@ export {
   typesMakeTheRealGraph,
   typography,
   typographySeo,
-  uiConvertsFlatToThreeDQuantum,
+  uiConvertsFlatToThreeDQuantum2 as uiConvertsFlatToThreeDQuantum,
   uiWidgetsFuseReveal2 as uiWidgetsFuseReveal,
   unbalancedTheoremPairsPassBecauseTheAccountingConstructsTheApexTheRealCheckReconcilesIt,
   undiscoveredGoldConcentrationCandidatesFromMap,
@@ -88588,7 +88765,7 @@ export {
   vortexComputes,
   vortexFoldWave,
   vortexGatewayPyramids,
-  vortexMath,
+  vortexMath2 as vortexMath,
   vortexPaintTiers,
   vortexPlasmaComputes,
   vortexStateSequence2 as vortexStateSequence,

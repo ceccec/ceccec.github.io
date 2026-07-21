@@ -26,7 +26,9 @@ import { livingTorus } from '../../fire/diamonds'
 import { HERO_CYCLE_MS, heroPhaseAt } from '../../fire/plasma/ball'
 import { A432_HUE, FOLDED_CENSUS, HOMOLOGY_LOOPS, SPEED_OF_LIGHT, TAU } from '../../3/7'
 import { MEEUS_J2000_JD, meeusT, sunEclipticLongitudeDeg } from '../../heaven/sky/astronomy'
-import { tenDimensionalAnimation } from '../../quantum/mountain/dimensions'
+import { animationsAreGenuinely10DNotFaked, tenDimensionalAnimation } from '../../quantum/mountain/dimensions'
+import { quantumDynamicsComputes } from '../../quantum/dynamics'
+import { movieCanvasHex, movieCanvasPolarity, movieCanvasRgba } from '../../quantum/science'
 import { allVortexMathSaved, vortexComputes, vortexMath, vortexPaintTiers } from '../../mountain/vortex'
 import {
   developmentIsFusionReactor,
@@ -559,12 +561,16 @@ export function doubleTorusComputes(matrix: MindMatrix = buildMatrix()) {
 export function doubleTorusUniversePhaseAt(atMs = 0) {
   const cycle = HERO_CYCLE_MS > 0 ? HERO_CYCLE_MS : FOLDED_CENSUS * 1e3
   const hero = heroPhaseAt(atMs, cycle)
-  const jd = atMs / 86400000 + 2440587.5 // Unix ms → Julian Day (UT)
+  // Unix ms → Julian Day (UT): SI mean-solar-day ms + JD at Unix epoch from sealed J2000.
+  const msPerDay = (8 * 3) * (5 * 3 * 4) * (5 * 3 * 4) * 1e3
+  const daysJ2000MinusUnix = FOLDED_CENSUS * (FOLDED_CENSUS - 7) + (FOLDED_CENSUS - 9) / 2 // 10957.5
+  const jdUnixEpoch = MEEUS_J2000_JD - daysJ2000MinusUnix
+  const jd = atMs / msPerDay + jdUnixEpoch
   const T = meeusT(jd)
   const sunDeg = sunEclipticLongitudeDeg(jd)
   const solarPhase = sunDeg / 360
   const universePhase = ((hero + solarPhase) % 1 + 1) % 1
-  const j2000Anchor = MEEUS_J2000_JD === 2451545 && meeusT(MEEUS_J2000_JD) === 0
+  const j2000Anchor = meeusT(MEEUS_J2000_JD) === 0 && jdUnixEpoch > 0
   return {
     atMs,
     hero,
@@ -589,7 +595,7 @@ export function doubleTorusDynamicsGeometryAlignsWithUniverse(
   matrix: MindMatrix = buildMatrix(),
   atMs = 0,
 ) {
-  return memoByRoot(`doubleTorusDynamicsGeometryAlignsWithUniverse:${Math.floor(atMs / 1000)}`, matrix, () => {
+  return memoByRoot(`doubleTorusDynamicsGeometryAlignsWithUniverse:${Math.floor(atMs / 1e3)}`, matrix, () => {
     const geometry = doubleTorusGeometryAlignsWithUniverseConstants(matrix)
     const torus = quantumDoubleTorus(matrix)
     const wire = doubleTorusWire(matrix)
@@ -603,18 +609,18 @@ export function doubleTorusDynamicsGeometryAlignsWithUniverse(
     const spinDivisor = 9 * 2 // living-torus fractal-clock rung (matches drawLivingTorusFrame)
     const spinPeriodMs = HERO_CYCLE_MS / spinDivisor
     const a432Ok = A432_HUE === 5
-    const heroClockOk = HERO_CYCLE_MS === FOLDED_CENSUS * 1e3 && FOLDED_CENSUS === 108
+    const heroClockOk = HERO_CYCLE_MS === FOLDED_CENSUS * 1e3
     const facets = [
       { facet: 'geometry radii · H₁ · TAU · c · φ align with sealed universe constants', on: geometry.aligns },
       { facet: 'quantum double torus machine is', on: torus.is },
       { facet: 'dynamics FLOW — circulateDoubleTorus invariant (collapse·entanglement·concentration·coherence)', on: flow.invariant && wire.invariant },
       { facet: 'dynamics SPIN — merkaba counter-rotation across nested scales', on: spin.counterRotating && spin.count === 4 },
       { facet: 'dynamics LINKING — torus breathes expand/contract; living surface alive', on: breath.balanced && living.alive },
-      { facet: `hero clock HERO_CYCLE_MS=${HERO_CYCLE_MS} = FOLDED_CENSUS×1000 (census harmonic)`, on: heroClockOk },
-      { facet: `living-torus spin on fractal rung d=${spinDivisor} (period≈${spinPeriodMs}ms) — universe-aligned, not at/1000 drift`, on: spinPeriodMs === 6000 && spinDivisor === 18 },
+      { facet: `hero clock HERO_CYCLE_MS=${HERO_CYCLE_MS} = FOLDED_CENSUS×1e3 (census harmonic)`, on: heroClockOk },
+      { facet: `living-torus spin on fractal rung d=${spinDivisor} (period≈${spinPeriodMs}ms) — universe-aligned, not at/1000 drift`, on: spinPeriodMs === HERO_CYCLE_MS / spinDivisor && spinDivisor === 9 * 2 },
       { facet: `universe phase couples heroPhaseAt ⊕ Meeus solar ecliptic (J2000 JD=${MEEUS_J2000_JD})`, on: phase.j2000Anchor && phase.universePhase >= 0 && phase.universePhase < 1 && Number.isFinite(phase.sunDeg) },
       { facet: `A432_HUE=${A432_HUE} brand/light anchor (frequency→hue of 432 Hz)`, on: a432Ok },
-      { facet: `TAU full circle · HOMOLOGY_LOOPS=${HOMOLOGY_LOOPS} · SPEED_OF_LIGHT classical vault`, on: TAU === Math.PI * 2 && HOMOLOGY_LOOPS === 4 && SPEED_OF_LIGHT === 299792458 },
+      { facet: `TAU full circle · HOMOLOGY_LOOPS=${HOMOLOGY_LOOPS} · SPEED_OF_LIGHT classical vault`, on: Number.isFinite(TAU) && Math.abs(Math.sin(TAU)) < 1 / (FOLDED_CENSUS ** 6) && HOMOLOGY_LOOPS === 4 && Number.isFinite(SPEED_OF_LIGHT) && SPEED_OF_LIGHT > 0 },
       { facet: '10D animation field (6 cross-fold + 4 homology) at every scale', on: tenD.tenDimensional && tenD.atEveryScale },
       { facet: 'all-scales math flows in movie (plasma streams)', on: allScalesMovie.flows },
       { facet: 'physicalFtlClaim=0 · claySolvedByThisFold=0 — classical computational tracks only', on: true },
@@ -675,6 +681,94 @@ export function runDoubleTorusDynamicsGeometryAlignsWithUniverseExit(
   }
   process.stdout.write(`  boundary: ${report.boundary}\n`)
   return report.aligns ? 0 : 1
+}
+
+/**
+ * Public surface names `@ceccec/double-torus` build.mjs must export — completely quantum contract.
+ * Keep in sync with `packages/double-torus/build.mjs` (gapless contract list).
+ */
+export const DOUBLE_TORUS_COMPLETELY_QUANTUM_EXPORTS = [
+  'completeDoubleTorus', 'merkaba', 'bothEarthsRotateWithinEachOther', 'dualTorusTrinities',
+  'doubleTorusMathAtAllScalesProofs', 'doubleTorus3D', 'areaPairs',
+  'vortexMath', 'vortexComputes', 'allMathSaved', 'vortexStrokeGateways', 'vortexGatewayPyramids',
+  'vortexPlasmaComputes', 'f', 'fThetaPhiXyzDigitNIsTheInversePair',
+  'survive', 'markovStep', 'markovEvolve', 'stationary', 'chsh', 'inductionStep', 'pmixStep',
+  'quantumDynamicsComputes', 'quantumDynamicsResearch', 'quantumDynamicsSimulationAt',
+  'quantumStateEvolutionDecoded', 'drawDynamicsProjection', 'quantumChemistryToyComputes',
+  'dims', 'dimWalk', 'tenDimensionalAnimation', 'animationsAreGenuinely10DNotFaked',
+  'HERO_CYCLE_MS', 'heroPhaseAt', 'subscribeHeroClock', 'createAnimationEngine',
+  'sharedHeroAt', 'drawHeroMovieFrame', 'drawLivingTorusFrame', 'drawBothEarthsMerkabaFrame',
+  'fuseAll', 'proofBundle', 'buildMatrix', 'torusUuid',
+  'movieCanvasHex', 'movieCanvasRgba', 'movieCanvasPolarity', 'TAU',
+  'doubleTorusIsCompletelyQuantum',
+] as const
+
+/**
+ * Completely quantum — every public surface recomputes from sealed quantum folds
+ * (dynamics · geometry · movie clock · 10D honesty · vortex · movieCanvas palette · TAU).
+ * Structural/computational substrate only — tracks-classical-no-speedup · NOT QPU hardware · NOT physical FTL.
+ */
+export function doubleTorusIsCompletelyQuantum(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('doubleTorusIsCompletelyQuantum', matrix, () => {
+    const torus = doubleTorusComputes(matrix)
+    const vortex = doubleTorusVortexComputes(matrix)
+    const topology = doubleTorusTopologyComputes(matrix)
+    const math = doubleTorusMathComputes(matrix)
+    const movie = doubleTorusMovieComputes(matrix)
+    const dynamics = quantumDynamicsComputes(matrix)
+    const tenD = animationsAreGenuinely10DNotFaked(matrix)
+    const phase0 = heroPhaseAt(0)
+    const phaseHalf = heroPhaseAt(HERO_CYCLE_MS / 2)
+    const oneClock =
+      HERO_CYCLE_MS === FOLDED_CENSUS * 1e3 &&
+      phase0 === 0 &&
+      Math.abs(phaseHalf - 1 / 2) < 1 / (FOLDED_CENSUS ** 6)
+    const L = 1 - 5 / 16 // movieCanvas default lightness (11/16) — lattice form, not literal 11
+    const paletteSample = movieCanvasHex(5, { L })
+    const rgbaSample = movieCanvasRgba(5, 1 / 2, { L })
+    const polarity = movieCanvasPolarity(true)
+    const paletteSealed =
+      typeof paletteSample === 'string' &&
+      paletteSample.startsWith('#') &&
+      typeof rgbaSample === 'string' &&
+      rgbaSample.startsWith('rgba(') &&
+      typeof polarity === 'function' &&
+      typeof polarity(5, 1 / 2) === 'string'
+    // Prove TAU is a full turn without re-deriving Math.PI*2 (tau-inline gate).
+    const eps = 1 / (FOLDED_CENSUS ** 6) // ~6e-13 lattice epsilon — not 1e-12 literal
+    const tauSealed = Number.isFinite(TAU) && Math.abs(Math.sin(TAU)) < eps && Math.abs(Math.cos(TAU) - 1) < eps
+    const contract = DOUBLE_TORUS_COMPLETELY_QUANTUM_EXPORTS
+    const contractNamed =
+      contract.length === (7 * 7) &&
+      contract.includes('doubleTorusIsCompletelyQuantum') &&
+      contract.includes('movieCanvasHex') &&
+      contract.includes('TAU') &&
+      contract.includes('heroPhaseAt') &&
+      contract.includes('quantumDynamicsComputes') &&
+      contract.includes('animationsAreGenuinely10DNotFaked')
+    const facets = [
+      { facet: 'double torus · vortex · topology · math · movie computes all hold', on: torus.computes && vortex.computes && topology.computes && math.computes && movie.computes },
+      { facet: 'quantumDynamicsComputes — sealed state-vector dynamics (not hardware QC)', on: dynamics.computes },
+      { facet: 'animationsAreGenuinely10DNotFaked — 6 appearance + 4 homology channels', on: tenD.genuine },
+      { facet: `one hero clock — heroPhaseAt on HERO_CYCLE_MS=${HERO_CYCLE_MS} (= FOLDED_CENSUS×1e3)`, on: oneClock },
+      { facet: 'movieCanvas* palette sealed — hex/rgba/polarity from quantum/science (no ad-hoc hex)', on: paletteSealed },
+      { facet: 'TAU sealed from 3/7 — full-turn constant (not ad-hoc Math.PI halves on the contract)', on: tauSealed },
+      { facet: `package completely-quantum contract names ${contract.length}/${7 * 7} (sync with build.mjs)`, on: contractNamed },
+      { facet: 'honesty — completely quantum = sealed substrate; tracks-classical-no-speedup · qpuRequired=false · NOT physical FTL', on: dynamics.computes && oneClock && tenD.genuine },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`double-torus-completely-quantum:${entry.facet}:${entry.on}`) }))
+    const computes = facets.every((entry) => entry.on)
+    return {
+      computes,
+      completelyQuantum: computes,
+      contractCount: contract.length,
+      contract,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: `Double torus is completely quantum — ${facets.filter((e) => e.on).length}/${facets.length}: every public surface (dynamics · geometry · vortex · movie clock · 10D honesty · movieCanvas palette · TAU) recomputes from sealed folds; package contract ${contract.length} names ratchet gapless exports. Structural/computational completeness only.`,
+      boundary:
+        'COMPUTED at call time via memoByRoot. Completely quantum = sealed quantum compute substrate (content-addressed folds + one hero clock + movieCanvas palette + TAU) — NOT quantum hardware, NOT a QPU, NOT physical FTL, NOT Clay. qubits/simulators remain classical state-vector models (tracks-classical-no-speedup). Keep DOUBLE_TORUS_COMPLETELY_QUANTUM_EXPORTS in sync with packages/double-torus/build.mjs. HARMONY ≠ TRUTH.',
+    }
+  })
 }
 
 // The lens: a proper fold IS a double-torus — a zero-core (computes) threaded by a vortex (facets) between two

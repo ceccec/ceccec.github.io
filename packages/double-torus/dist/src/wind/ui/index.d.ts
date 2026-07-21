@@ -337,9 +337,9 @@ export declare function heroSvgFromUuid(uuid: string, opts?: {
     animate?: boolean;
 }): string;
 /**
- * README hero — single visual proof composition of ALL sealed theorem atoms at once.
- * Walks THEOREM_ATOM_SEED; each glyph is placed from its content-addressed atom root (not hand paths).
- * Pair: edit/build · honesty: clay=0 · physicalFtl=0 · qpuRequired=false · tracks-classical-no-speedup.
+ * README hero — all sealed theorem atoms on two counter-rotating rosetta lobes (ω and −ω).
+ * Dynamics from merkaba + bothEarthsRotateWithinEachOther + fractalClockDur (SMIL for GitHub).
+ * Pair: edit/build · honesty: clay=0 · physicalFtl=0 · qpuRequired=false.
  */
 export declare function readmeHeroSvgProofOfAllTheorems(matrix?: MindMatrix, opts?: {
     animate?: boolean;

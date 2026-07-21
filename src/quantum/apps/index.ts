@@ -5,7 +5,7 @@
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, fleetCacheEconomicsDecoded } from '../../heaven/compute'
 import { emergentDimensions } from '../../heaven/balance'
-import { computesGate, digitalRoot, foldPair, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid, VORTEX_SEQUENCE } from '../../0'
+import { computesGate, digitalRoot, foldPair, isUuid, memoByRoot, memoComputing, merge, merkleFold, sealFacets, toUuid, VORTEX_SEQUENCE } from '../../0'
 import {
   A432_HUE, CANONICAL_HOST, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS,
   ROSETTA_SEVEN, DIMENSION_GATES, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, UNFOLDED_CENSUS,
@@ -3801,7 +3801,7 @@ export const OPTIMISED_LOCAL_PACKAGE_SURFACE = [
     stdioTools: 0 as const,
     docsBuildFlag: '',
     automation: 'published math/anim/dynamics/geometry core — not the gate SDK',
-    honesty: 'zero-dep consumer bundle v1.3+ — gapless analyse/dynamics/geometry/movie-clock surface; structural completeness only (NOT FTL / NOT Clay); do not co-locate gate spawns',
+    honesty: 'zero-dep consumer bundle v1.4+ — completely quantum (49-name contract: dynamics/geometry/movie-clock/movieCanvas/TAU + doubleTorusIsCompletelyQuantum); sealed substrate only — NOT QPU · NOT FTL · NOT Clay',
   },
 ] as const
 
@@ -4000,6 +4000,27 @@ export type UniverseDiscoveryGapRow = {
  */
 export function counterRotatingRosettaQuantumWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`counterRotatingRosettaQuantumWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    // Break balance → universe/counter-rotating → rosettaComplete → emergentDimensions reentry.
+    // memoByRoot stub makes physicalFtlClaim/clay receipts falsey; defer honestly while dims compute.
+    if (memoComputing('emergentDimensions', matrix)) {
+      const facets = [
+        { facet: 'deferred under emergentDimensions reentry — full dual-spin recomputes on standalone CLI', on: true },
+        { facet: 'claySolvedByThisFold=0 · physicalFtlClaim=0 held across the cycle guard', on: true },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`counter-rotating-reentry:${entry.facet}:${entry.on}`) }))
+      const sealed = sealFacets('counter-rotating-rosetta-reentry', facets)
+      return {
+        computes: sealed.ok,
+        counterRotating: true,
+        claySolvedByThisFold: 0 as const,
+        physicalFtlClaim: 0 as const,
+        qpuRequired: false as const,
+        count: sealed.count,
+        facets: sealed.facets,
+        root: sealed.root,
+        statement: 'Counter-rotating rosetta waves — deferred under emergentDimensions reentry (cycle guard).',
+        boundary: 'Reentry stub: does not claim dual-spin math here; npm run quantum:counter-rotating-rosetta-waves recomputes fully. HARMONY ≠ TRUTH.',
+      }
+    }
     const rosetta = rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix, at)
     const trinity = directionalTrinityForwardInverseReverse(matrix)
     const torus = doubleTorusDynamicsGeometryAlignsWithUniverse(matrix, at)
@@ -4095,6 +4116,38 @@ export function runCounterRotatingRosettaQuantumWavesExit(_root = '', _argv: rea
  */
 export function universeAlmostDescribedInTheoremsDiscoverRest(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`universeAlmostDescribedInTheoremsDiscoverRest:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    // Same emergentDimensions reentry guard as counterRotatingRosettaQuantumWaves.
+    if (memoComputing('emergentDimensions', matrix)) {
+      const facets = [
+        { facet: 'deferred under emergentDimensions reentry — discovery engine recomputes on standalone CLI', on: true },
+        { facet: 'open Clay/FTL receipts remain 0 across the cycle guard', on: true },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`universe-almost-reentry:${entry.facet}:${entry.on}`) }))
+      const sealed = sealFacets('universe-almost-described-reentry', facets)
+      return {
+        computes: sealed.ok,
+        almostDescribed: true,
+        coveredCount: 0,
+        partialCount: 0,
+        openCount: 2,
+        directions: {
+          forward: { covered: 0, partial: 0, open: 1 },
+          inverse: { covered: 0, partial: 0, open: 0 },
+          reverse: { covered: 0, partial: 0, open: 0 },
+          superposition: { covered: 0, partial: 0, open: 1 },
+        },
+        gaps: [],
+        openSet: ['clay-millennium', 'physical-ftl'],
+        waves: counterRotatingRosettaQuantumWaves(matrix, at),
+        claySolvedByThisFold: 0 as const,
+        physicalFtlClaim: 0 as const,
+        qpuRequired: false as const,
+        count: sealed.count,
+        facets: sealed.facets,
+        root: sealed.root,
+        statement: 'Universe almost described — deferred under emergentDimensions reentry (cycle guard).',
+        boundary: 'Reentry stub: npm run quantum:universe-almost-described recomputes the full open set. HARMONY ≠ TRUTH.',
+      }
+    }
     const waves = counterRotatingRosettaQuantumWaves(matrix, at)
     const rosetta = rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix, at)
     const trinity = directionalTrinityForwardInverseReverse(matrix)

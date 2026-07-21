@@ -394,7 +394,7 @@ function drawDeathCounterFlow(
       const x1 = cx + Math.cos(a1) * r1
       const y1 = cy + Math.sin(a1) * r1
       // bell-shaped presence: emerges at the edge, brightest mid-flight, dissolved AT the throat
-      const presence = Math.sin(d0 * Math.PI)
+      const presence = Math.sin(d0 * (TAU / 2))
       const alpha = palette.canvas.streamAlpha(presence, d0 > (1 - 7 / (5 * 4)), 1 - trail / DEATH_TRAIL_LEN) * (1 - 9 / (5 * 4))
       ctx.strokeStyle = paint(deathHue, alpha, { L: 7 / 16 })
       ctx.lineWidth = (3 / 5) + (1 - d0) * (8 / 5)
@@ -803,8 +803,9 @@ export function sharedHeroAt(
   scroll = 0,
 ): SharedHeroState {
   const path = route || '/'
-  const t = at / (100 * 5 * 2)
   const p = heroPhaseAt(at)
+  // Seconds into the one hero cycle — derived from heroPhaseAt (not a private wall-clock divisor).
+  const t = p * (HERO_CYCLE_MS / 1e3)
   const matrix = buildMatrix()
   const fusedCopy = typeof window !== 'undefined'
     ? clientMovieSeedCopyText(path, matrix)
@@ -940,8 +941,9 @@ export function drawLivingTorusFrame(
   const cx = w / 2
   const cy = h / 2
   // Universe-aligned spin: fractal-clock rung d=18 on the 108 s hero cycle (≈6 s/rev) — was at/1000 drift.
+  const p = reduce ? 0 : heroPhaseAt(at, HERO_CYCLE_MS)
   const LIVING_TORUS_SPIN_DIVISOR = (9 * 2) // 18 — HERO_CYCLE_MS / 18 ≈ 6000 ms
-  const phase = reduce ? 0 : heroPhaseAt(at, HERO_CYCLE_MS) * TAU * LIVING_TORUS_SPIN_DIVISOR
+  const phase = p * TAU * LIVING_TORUS_SPIN_DIVISOR
 
   // Project every coordinate onto the genus-2 surface through the sealed atoms (rotate3 +
   // perspective) — no z→y offset. Each lobe spins RIGIDLY about its own hole axis (an XY-plane
@@ -1007,7 +1009,7 @@ export function drawLivingTorusFrame(
   // Layer 3 — two heads sweep both loops: one rides the forward loop, one the reverse,
   // tracing the two cycles of the genus-2 train at the hero clock.
   if (!reduce) {
-    const sweep = (at % (360 * 5 * 5)) / (360 * 5 * 5)
+    const sweep = p
     for (const loop of ['forward', 'reverse'] as const) {
       const ring = coordinates.filter((c) => c.loop === loop)
       if (ring.length === 0) continue
@@ -1152,8 +1154,8 @@ const VORTEX_SEQ_SENSE: 1 | -1 = (VORTEX_SEQUENCE[1] ?? 2) > (VORTEX_SEQUENCE[0]
 /** 13 Fruit-of-Life centres (1 + 6 + 6) — the Metatron's-cube node set, unit-scaled. */
 const FRUIT_CENTERS: readonly (readonly [number, number])[] = (() => {
   const pts: [number, number][] = [[0, 0]]
-  for (let k = 0; k < 6; k += 1) { const a = (k * Math.PI) / 3; pts.push([Math.cos(a), Math.sin(a)]) }
-  for (let k = 0; k < 6; k += 1) { const a = (k * Math.PI) / 3; pts.push([2 * Math.cos(a), 2 * Math.sin(a)]) }
+  for (let k = 0; k < 6; k += 1) { const a = (k * TAU) / 6; pts.push([Math.cos(a), Math.sin(a)]) }
+  for (let k = 0; k < 6; k += 1) { const a = (k * TAU) / 6; pts.push([2 * Math.cos(a), 2 * Math.sin(a)]) }
   return pts
 })()
 
@@ -1203,7 +1205,7 @@ const PLATONIC: readonly QSolid[] = (() => {
 const HOLO_BITS = (64 * 2)
 /** 128 points on a Fibonacci sphere — the holographic word; ~70 deterministically lit (content-addressed by index). */
 const HOLO_POINTS: readonly { readonly x: number; readonly y: number; readonly z: number; readonly lit: boolean }[] = (() => {
-  const ga = Math.PI * (3 - Math.sqrt(5))
+  const ga = GOLDEN_ANGLE_RAD
   const out: { x: number; y: number; z: number; lit: boolean }[] = []
   for (let i = 0; i < HOLO_BITS; i += 1) {
     const y = 1 - (i / (HOLO_BITS - 1)) * 2
@@ -1318,8 +1320,8 @@ function drawTaijiProjection(ctx: CanvasRenderingContext2D, w: number, h: number
   ctx.translate(cx, cy)
   ctx.rotate(theta)
   // Rigid taiji at the origin — drawn once, rotated as one exchanging body.
-  ctx.beginPath(); ctx.arc(0, 0, r, -Math.PI / 2, Math.PI / 2, false); ctx.fillStyle = dark((1 - 2 / (5 * 5))); ctx.fill()
-  ctx.beginPath(); ctx.arc(0, 0, r, Math.PI / 2, -Math.PI / 2, false); ctx.fillStyle = light((1 - 2 / (5 * 5))); ctx.fill()
+  ctx.beginPath(); ctx.arc(0, 0, r, -TAU / 4, TAU / 4, false); ctx.fillStyle = dark((1 - 2 / (5 * 5))); ctx.fill()
+  ctx.beginPath(); ctx.arc(0, 0, r, TAU / 4, -TAU / 4, false); ctx.fillStyle = light((1 - 2 / (5 * 5))); ctx.fill()
   ctx.beginPath(); ctx.arc(0, -r / 2, r / 2, 0, TAU); ctx.fillStyle = dark((1 - 2 / (5 * 5))); ctx.fill()
   ctx.beginPath(); ctx.arc(0, r / 2, r / 2, 0, TAU); ctx.fillStyle = light((1 - 2 / (5 * 5))); ctx.fill()
   ctx.beginPath(); ctx.arc(0, -r / 2, r / 6, 0, TAU); ctx.fillStyle = light((1 - 1 / (5 * 4))); ctx.fill()
@@ -1618,7 +1620,7 @@ function drawUnitDistanceProjection(ctx: CanvasRenderingContext2D, w: number, h:
 
   // Split-prime channels: straight rays crossing every layer — Frobenius killed, the alignment never breaks.
   for (let c = 0; c < channels; c += 1) {
-    const a = (c / channels) * TAU + Math.PI / channels
+    const a = (c / channels) * TAU + TAU / (2 * channels)
     const glow = (3 / (5 * 2)) + (9 / (5 * 4)) * ((1 / 2) + (1 / 2) * Math.sin(frame.p * TAU + c))
     ctx.strokeStyle = paint((frame.hue + (9 * 5 * 4) + c * 8) % 360, glow, { L: 11 / 16 })
     ctx.lineWidth = (7 / 5)
@@ -1694,7 +1696,7 @@ function drawVortexStrokesProjection(ctx: CanvasRenderingContext2D, w: number, h
     .slice(0, gatewayCount)
   const drift = frame.reduce ? 0 : frame.t * (2 / (5 * 5))
   const pulse = frame.reduce ? (1 / 2) : dimWalk(frame.p)
-  const angleAt = (i: number) => drift + (i / tourSize) * TAU - Math.PI / 2
+  const angleAt = (i: number) => drift + (i / tourSize) * TAU - TAU / 4
   const xAt = (i: number) => cx + Math.cos(angleAt(i)) * R
   const yAt = (i: number) => cy + Math.sin(angleAt(i)) * R
   const runner = frame.reduce ? 0 : frame.p * tourSize
@@ -1750,7 +1752,7 @@ function drawVortexStrokesProjection(ctx: CanvasRenderingContext2D, w: number, h
   // the inverted pyramid; the two counter-rotate through the shared 3D primitive — the merkaba
   // interaction of the realisation (computed in vortexGatewayPyramids, src/mountain/vortex).
   const liftVerts = gateways.map((g) => {
-    const a = (g.i / tourSize) * TAU - Math.PI / 2
+    const a = (g.i / tourSize) * TAU - TAU / 4
     const peak = steps[(g.i - 1 + steps.length) % steps.length]!.up && !steps[g.i]!.up
     return [Math.cos(a), Math.sin(a), peak ? (9 / (5 * 2)) : -(9 / (5 * 2))] as const
   })

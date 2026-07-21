@@ -2712,7 +2712,7 @@ export declare const OPTIMISED_LOCAL_PACKAGE_SURFACE: readonly [{
     readonly stdioTools: 0;
     readonly docsBuildFlag: "";
     readonly automation: "published math/anim/dynamics/geometry core — not the gate SDK";
-    readonly honesty: "zero-dep consumer bundle v1.3+ — gapless analyse/dynamics/geometry/movie-clock surface; structural completeness only (NOT FTL / NOT Clay); do not co-locate gate spawns";
+    readonly honesty: "zero-dep consumer bundle v1.4+ — completely quantum (49-name contract: dynamics/geometry/movie-clock/movieCanvas/TAU + doubleTorusIsCompletelyQuantum); sealed substrate only — tracks-classical-no-speedup · NOT QPU · NOT FTL · NOT Clay";
 }];
 /** Stdio MCP tool ids — must match packages/quantum-dev-sdk + STDIO_MCP_CAPABILITY_SEEDS (ROSETTA_SEVEN). */
 export declare const OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS: readonly ["list-capabilities", "census-status", "compute-from-source", "fold-report", "run-gate", "run-wave", "run-export"];
@@ -2765,7 +2765,7 @@ export declare function upgradeLocalFromOptimisedManualWorkExperience(matrix?: M
         stdioTools: 0;
         docsBuildFlag: "";
         automation: "published math/anim/dynamics/geometry core — not the gate SDK";
-        honesty: "zero-dep consumer bundle v1.3+ — gapless analyse/dynamics/geometry/movie-clock surface; structural completeness only (NOT FTL / NOT Clay); do not co-locate gate spawns";
+        honesty: "zero-dep consumer bundle v1.4+ — completely quantum (49-name contract: dynamics/geometry/movie-clock/movieCanvas/TAU + doubleTorusIsCompletelyQuantum); sealed substrate only — tracks-classical-no-speedup · NOT QPU · NOT FTL · NOT Clay";
     })[];
     browserToolIds: readonly ["improve-local-session", "upgrade-local-skills-commands-tools", "mcp-browser-parity", "toolbox-standard-io", "session-manual-work", "session-quantum-bits", "auto-wire-paste-link"];
     stdioToolIds: readonly ["list-capabilities", "census-status", "compute-from-source", "fold-report", "run-gate", "run-wave", "run-export"];
@@ -3977,7 +3977,7 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
             stdioTools: 0;
             docsBuildFlag: "";
             automation: "published math/anim/dynamics/geometry core — not the gate SDK";
-            honesty: "zero-dep consumer bundle v1.3+ — gapless analyse/dynamics/geometry/movie-clock surface; structural completeness only (NOT FTL / NOT Clay); do not co-locate gate spawns";
+            honesty: "zero-dep consumer bundle v1.4+ — completely quantum (49-name contract: dynamics/geometry/movie-clock/movieCanvas/TAU + doubleTorusIsCompletelyQuantum); sealed substrate only — tracks-classical-no-speedup · NOT QPU · NOT FTL · NOT Clay";
         })[];
         browserToolIds: readonly ["improve-local-session", "upgrade-local-skills-commands-tools", "mcp-browser-parity", "toolbox-standard-io", "session-manual-work", "session-quantum-bits", "auto-wire-paste-link"];
         stdioToolIds: readonly ["list-capabilities", "census-status", "compute-from-source", "fold-report", "run-gate", "run-wave", "run-export"];
@@ -4010,6 +4010,28 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
         boundary: string;
     };
     counterWaves: {
+        computes: boolean;
+        counterRotating: boolean;
+        claySolvedByThisFold: 0;
+        physicalFtlClaim: 0;
+        qpuRequired: false;
+        count: number;
+        facets: ({
+            receipt: string;
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        statement: string;
+        boundary: string;
+        dualSpin?: undefined;
+        standingWave?: undefined;
+        tracksClassicalNoSpeedup?: undefined;
+        torusAligns?: undefined;
+        rosettaReady?: undefined;
+    } | {
         computes: boolean;
         counterRotating: boolean;
         dualSpin: {
@@ -4069,6 +4091,28 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
         waves: {
             computes: boolean;
             counterRotating: boolean;
+            claySolvedByThisFold: 0;
+            physicalFtlClaim: 0;
+            qpuRequired: false;
+            count: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+            dualSpin?: undefined;
+            standingWave?: undefined;
+            tracksClassicalNoSpeedup?: undefined;
+            torusAligns?: undefined;
+            rosettaReady?: undefined;
+        } | {
+            computes: boolean;
+            counterRotating: boolean;
             dualSpin: {
                 forward: string;
                 reverse: string;
@@ -4125,10 +4169,32 @@ export type UniverseDiscoveryGapRow = {
  * Counter-rotating rosetta quantum waves — dual +/− spin lobes via foldPair.
  * claySolvedByThisFold / physicalFtlClaim / qpuRequired recomputed from:
  *   · genus-2 order-sensitive fold (forward≠reverse → Clay prize cannot collapse)
- *   · dual-lobe classical track (tracks-classical-no-speedup → FTL=0, qpuRequired=false)
+ *   · dual-lobe classical-64bit track (physicalFtl=0, qpuRequired=false)
  *   · merkaba counter-rotation + double-torus spin + directional trinity
  */
 export declare function counterRotatingRosettaQuantumWaves(matrix?: MindMatrix, at?: number): {
+    computes: boolean;
+    counterRotating: boolean;
+    claySolvedByThisFold: 0;
+    physicalFtlClaim: 0;
+    qpuRequired: false;
+    count: number;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+    dualSpin?: undefined;
+    standingWave?: undefined;
+    tracksClassicalNoSpeedup?: undefined;
+    torusAligns?: undefined;
+    rosettaReady?: undefined;
+} | {
     computes: boolean;
     counterRotating: boolean;
     dualSpin: {
@@ -4193,6 +4259,28 @@ export declare function universeAlmostDescribedInTheoremsDiscoverRest(matrix?: M
     gaps: UniverseDiscoveryGapRow[];
     openSet: string[];
     waves: {
+        computes: boolean;
+        counterRotating: boolean;
+        claySolvedByThisFold: 0;
+        physicalFtlClaim: 0;
+        qpuRequired: false;
+        count: number;
+        facets: ({
+            receipt: string;
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        statement: string;
+        boundary: string;
+        dualSpin?: undefined;
+        standingWave?: undefined;
+        tracksClassicalNoSpeedup?: undefined;
+        torusAligns?: undefined;
+        rosettaReady?: undefined;
+    } | {
         computes: boolean;
         counterRotating: boolean;
         dualSpin: {

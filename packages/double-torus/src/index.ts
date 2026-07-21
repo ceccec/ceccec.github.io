@@ -34,7 +34,8 @@
 // they are not re-exported here because the source does not export them; they ship fused INSIDE the
 // exported drawHeroMovieFrame, which is the public entry to the fused life/death double-torus movie.
 // The orphan drawDoubleTorusEarthHingeFrame renderer is RETIRED — live paint is sharedHeroAt +
-// drawHeroMovieFrame only (structural completeness, not physical FTL / not Clay).
+// drawHeroMovieFrame only. Completely quantum = sealed substrate (doubleTorusIsCompletelyQuantum) —
+// tracks-classical-no-speedup · not QPU · not physical FTL · not Clay.
 
 // All the math — and, through src/0, the animation engine (createAnimationEngine, type AnimationEngine),
 // the fold (fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace) and its presentations, plus the ten
@@ -92,6 +93,11 @@ export type { Dims } from '../../../src/quantum/mountain/dimensions/index.ts'
 // Movie clock — one phase for hero + AnimationField (HERO_CYCLE_MS already exported below):
 export { heroPhaseAt } from '../../../src/fire/plasma/ball/index.ts'
 export { subscribeHeroClock } from '../../../src/quantum/index.ts'
+
+// Completely quantum surface — sealed palette + TAU + proof receipt (structural substrate, not QPU):
+export { movieCanvasHex, movieCanvasRgba, movieCanvasPolarity } from '../../../src/quantum/science/index.ts'
+export { TAU } from '../../../src/3/7/index.ts'
+// doubleTorusIsCompletelyQuantum arrives via mind → water/double export *
 
 // All the animations — both systems, from the hero barrel. The shared animation engine, fold, presentations
 // and the dims/DIMENSIONS names already arrive through the math above, so here we re-export only the names

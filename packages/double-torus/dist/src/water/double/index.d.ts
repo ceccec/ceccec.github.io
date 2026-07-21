@@ -1423,6 +1423,30 @@ export declare function doubleTorusDynamicsGeometryAlignsWithUniverse(matrix?: M
 };
 /** CLI exit — pair universe/align. */
 export declare function runDoubleTorusDynamicsGeometryAlignsWithUniverseExit(_root: string, argv?: readonly string[]): number;
+/**
+ * Public surface names `@ceccec/double-torus` build.mjs must export — completely quantum contract.
+ * Keep in sync with `packages/double-torus/build.mjs` (gapless contract list).
+ */
+export declare const DOUBLE_TORUS_COMPLETELY_QUANTUM_EXPORTS: readonly ["completeDoubleTorus", "merkaba", "bothEarthsRotateWithinEachOther", "dualTorusTrinities", "doubleTorusMathAtAllScalesProofs", "doubleTorus3D", "areaPairs", "vortexMath", "vortexComputes", "allMathSaved", "vortexStrokeGateways", "vortexGatewayPyramids", "vortexPlasmaComputes", "f", "fThetaPhiXyzDigitNIsTheInversePair", "survive", "markovStep", "markovEvolve", "stationary", "chsh", "inductionStep", "pmixStep", "quantumDynamicsComputes", "quantumDynamicsResearch", "quantumDynamicsSimulationAt", "quantumStateEvolutionDecoded", "drawDynamicsProjection", "quantumChemistryToyComputes", "dims", "dimWalk", "tenDimensionalAnimation", "animationsAreGenuinely10DNotFaked", "HERO_CYCLE_MS", "heroPhaseAt", "subscribeHeroClock", "createAnimationEngine", "sharedHeroAt", "drawHeroMovieFrame", "drawLivingTorusFrame", "drawBothEarthsMerkabaFrame", "fuseAll", "proofBundle", "buildMatrix", "torusUuid", "movieCanvasHex", "movieCanvasRgba", "movieCanvasPolarity", "TAU", "doubleTorusIsCompletelyQuantum"];
+/**
+ * Completely quantum — every public surface recomputes from sealed quantum folds
+ * (dynamics · geometry · movie clock · 10D honesty · vortex · movieCanvas palette · TAU).
+ * Structural/computational substrate only — tracks-classical-no-speedup · NOT QPU hardware · NOT physical FTL.
+ */
+export declare function doubleTorusIsCompletelyQuantum(matrix?: MindMatrix): {
+    computes: boolean;
+    completelyQuantum: boolean;
+    contractCount: 49;
+    contract: readonly ["completeDoubleTorus", "merkaba", "bothEarthsRotateWithinEachOther", "dualTorusTrinities", "doubleTorusMathAtAllScalesProofs", "doubleTorus3D", "areaPairs", "vortexMath", "vortexComputes", "allMathSaved", "vortexStrokeGateways", "vortexGatewayPyramids", "vortexPlasmaComputes", "f", "fThetaPhiXyzDigitNIsTheInversePair", "survive", "markovStep", "markovEvolve", "stationary", "chsh", "inductionStep", "pmixStep", "quantumDynamicsComputes", "quantumDynamicsResearch", "quantumDynamicsSimulationAt", "quantumStateEvolutionDecoded", "drawDynamicsProjection", "quantumChemistryToyComputes", "dims", "dimWalk", "tenDimensionalAnimation", "animationsAreGenuinely10DNotFaked", "HERO_CYCLE_MS", "heroPhaseAt", "subscribeHeroClock", "createAnimationEngine", "sharedHeroAt", "drawHeroMovieFrame", "drawLivingTorusFrame", "drawBothEarthsMerkabaFrame", "fuseAll", "proofBundle", "buildMatrix", "torusUuid", "movieCanvasHex", "movieCanvasRgba", "movieCanvasPolarity", "TAU", "doubleTorusIsCompletelyQuantum"];
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function theLensSeesDoubleTorusesEverywhereExceptInCrackedCode(matrix?: MindMatrix): {
     computes: boolean;
     sealedSeen: number;

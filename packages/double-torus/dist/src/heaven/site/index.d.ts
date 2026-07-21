@@ -119,6 +119,7 @@ export declare function readmeIsHomeHero10DAnimatedSvgInGithub(matrix?: MindMatr
     githubSafe: boolean;
     allTheoremsProof: boolean;
     theoremCount: number;
+    counterRotating: boolean;
     merkabaQuantum: boolean;
     count: number;
     facets: ({

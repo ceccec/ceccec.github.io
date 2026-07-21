@@ -49461,7 +49461,7 @@ export declare function honestRevolutionClaim(matrix?: MindMatrix, at?: number):
 /**
  * Honest-revolution W2 — interference vs classical-shadow receipt.
  * Amplitudes cancel (interference); classical probability shadows cannot.
- * Composes W1 `honestRevolutionClaim` + parallelism≠speedup + simulatorsLiveInZero + tracks-classical-no-speedup.
+ * Composes W1 `honestRevolutionClaim` + parallelism≠speedup + simulatorsLiveInZero + classical-64bit honesty.
  * Pair: moment/prove · CLI npm run quantum:honest-revolution-w2 · route /en/quantum-tools#honest-revolution-w2
  */
 export declare function interferenceVsClassicalShadow(matrix?: MindMatrix, at?: number): {
@@ -50483,7 +50483,7 @@ export declare function classical64BitEnvironmentAtCallTime(): Classical64BitEnv
  * Route: /en/quantum-tools#prove-no-qpu-64bit
  *
  * HONEST: composes compareCeccecEfficiencyByVote / noKnownModelMoreEfficientProven when decided;
- * cites quantumAdvantageBenchmark → tracks-classical-no-speedup (NO physical QM speedup).
+ * classical-64bit · qpuRequired=false (NO physical QM speedup).
  * NOT FLOPS vs GPUs/QPUs · NOT ISO certified · claySolvedByThisFold=0.
  */
 export declare function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix?: MindMatrix, at?: number): {

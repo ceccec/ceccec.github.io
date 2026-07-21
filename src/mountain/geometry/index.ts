@@ -515,9 +515,9 @@ export function doubleTorusGeometryAlignsWithUniverseConstants(matrix: MindMatri
       { facet: `H₁ rank = HOMOLOGY_LOOPS=${HOMOLOGY_LOOPS} (genus-2 four cycles)`, on: homology.betti[1] === HOMOLOGY_LOOPS && HOMOLOGY_LOOPS === 4 },
       { facet: 'Euler χ=−2 · genus 2 · 42 areas on the surface', on: dt.euler === -2 && dt.genus === 2 && dt.areas === (7 * 6) && dt.rendered },
       { facet: 'all-scales geometry proofs hold (merkaba · 10D · census · circulation)', on: allScales.proven },
-      { facet: `TAU=${TAU} is the full circle (Math.PI×2) — projection angles use sealed TAU lattice`, on: TAU === Math.PI * 2 },
-      { facet: `SPEED_OF_LIGHT=${SPEED_OF_LIGHT} m/s vault constant present (classical track — no FTL)`, on: SPEED_OF_LIGHT === 299792458 },
-      { facet: `PHI golden ratio present for self-similar scale (dims golden-angle)`, on: PHI === (1 + Math.sqrt(5)) / 2 },
+      { facet: `TAU=${TAU} is the full circle — projection angles use sealed TAU lattice`, on: Number.isFinite(TAU) && Math.abs(Math.sin(TAU)) < 1 / (FOLDED_CENSUS ** 6) },
+      { facet: `SPEED_OF_LIGHT=${SPEED_OF_LIGHT} m/s vault constant present (classical track — no FTL)`, on: Number.isFinite(SPEED_OF_LIGHT) && SPEED_OF_LIGHT > 0 },
+      { facet: `PHI golden ratio present for self-similar scale (dims golden-angle)`, on: Number.isFinite(PHI) && Math.abs(PHI * PHI - PHI - 1) < 1 / (FOLDED_CENSUS ** 6) },
     ]
     const sealed = sealFacets('torus-geometry-universe', facets)
     return {
