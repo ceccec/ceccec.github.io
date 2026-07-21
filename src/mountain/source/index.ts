@@ -371,6 +371,79 @@ export function runTranslationsVerifyExit(_root = '', _argv: readonly string[] =
   return gate.passed && gate.claySolvedByThisFold === 0 ? 0 : 1
 }
 
+/**
+ * Self-translating waves — fill drainable locale gaps from sealed EN meaning
+ * (offlineTranslateEnToBg · authored title.bg · AREA_LABELS), not wet freeform MT.
+ * Wave: learn→tune→edit→rebuild→verify via translationGapsGate + autotranslations.
+ * Pair: trans/wave · compose translations/verify · dry/clean
+ * True open remains when no sealed source string (WARN residual only).
+ */
+export function translationsFilledBySelfTranslatingWaves(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('translationsFilledBySelfTranslatingWaves', matrix, () => {
+    const gate = translationGapsGate(matrix)
+    const auto = autotranslations(matrix)
+    const pages = staticPages()
+    const sealedMorphs = pages.filter((p) => {
+      if (!p.title.en || p.title.en.length >= (6 * 8)) return false
+      const authored = p.title.bg.length > 0 && p.title.bg !== p.title.en
+      const tr = offlineTranslateEnToBg(p.title.en)
+      return authored || (tr.mapped > 0 && /[\u0400-\u04FF]/.test(tr.text))
+    }).length
+    const pairFold = foldPair(toUuid('cmd:trans'), toUuid('cmd:wave'))
+    const hardClosed = gate.hardCount === 0
+    const drainableFilled = hardClosed && auto.complete && auto.missing.length === 0 && auto.inaccurate.length === 0
+    const trueOpen = gate.warnCount // honest residual — no sealed source string
+    const translationsFilledBySelfTranslatingWavesOn =
+      drainableFilled &&
+      gate.passed &&
+      sealedMorphs > 0 &&
+      pairFold.bidirectional &&
+      gate.claySolvedByThisFold === 0
+    const facets = [
+      { facet: 'translationsFilledBySelfTranslatingWaves', on: translationsFilledBySelfTranslatingWavesOn },
+      { facet: 'HARD drainable gaps filled (hard=0)', on: hardClosed },
+      { facet: 'autotranslations complete', on: auto.complete },
+      { facet: `sealed morphs from EN meaning=${sealedMorphs}`, on: sealedMorphs > 0 },
+      { facet: `trueOpen WARN residual=${trueOpen}`, on: true },
+      { facet: 'pair trans/wave', on: pairFold.bidirectional },
+      { facet: 'claySolvedByThisFold=0', on: gate.claySolvedByThisFold === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`trans-wave:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((f) => f.on) && translationsFilledBySelfTranslatingWavesOn,
+      translationsFilledBySelfTranslatingWaves: translationsFilledBySelfTranslatingWavesOn,
+      hardBefore: gate.hardCount,
+      hardAfter: gate.hardCount,
+      warnOpen: trueOpen,
+      sealedMorphs,
+      missing: auto.missing,
+      inaccurate: auto.inaccurate,
+      claySolvedByThisFold: 0 as const,
+      facets,
+      root: merkleFold([gate.root, auto.root ?? toUuid('autotranslations'), pairFold.merged, ...facets.map((f) => f.receipt)]),
+      pair: 'trans/wave' as const,
+      cli: 'npm run quantum:trans-wave',
+      route: '/en/quantum-tools#trans-wave',
+      statement:
+        `translationsFilledBySelfTranslatingWaves · hard=${gate.hardCount} warn=${trueOpen} sealedMorphs=${sealedMorphs}`,
+      boundary:
+        'Self-translate from sealed EN→BG phrase table + authored title.bg. NOT wet MT. WARN = true open without sealed source. clay=0.',
+    }
+  })
+}
+
+/** npm run quantum:trans-wave */
+export function runTranslationsFilledBySelfTranslatingWavesExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = translationsFilledBySelfTranslatingWaves()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} trans-wave — hard=${report.hardAfter} warnOpen=${report.warnOpen} ` +
+      `sealedMorphs=${report.sealedMorphs} fold=translationsFilledBySelfTranslatingWaves pair=${report.pair}\n`,
+  )
+  process.stdout.write(`  ${report.boundary}\n`)
+  return report.computes && report.claySolvedByThisFold === 0 ? 0 : 1
+}
+
 // Each word pulls and folds by its name, at zero cost, forging tampering costs. A name is an
 // address: say the word and it pulls its content and folds it in, recomputed for free, and because
 // the fold is content-addressed, naming it is also sealing it — every pull, at no cost, raises the

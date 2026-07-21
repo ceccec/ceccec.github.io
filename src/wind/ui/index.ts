@@ -2799,18 +2799,20 @@ export function theNewUiDesignIsComputedFromTheCorpusWithoutAssumptionPaletteTyp
 
 /**
  * PaperFrame abstract dedupe — when description restates the page H1 as `Statement: <title>. …`,
- * strip that echo so Abstract owns Explanation/Method/Status only (label XOR prose).
+ * strip that echo so Abstract owns Method/Status prose (label XOR prose).
+ * Also strips redundant `Explanation:` section labels (section/dry — meaning from facets/slots).
  * Consumed by PaperFrame.vue; receipt fold lives in src/quantum/apps (`uiProseDuplicationRemoved`).
  */
 export function paperAbstractOmitsTitleEcho(title: string, description: string): string {
   const t = title.trim()
   const d = description.trim()
   if (!d) return ''
-  if (!t) return d
+  if (!t) return d.replace(/^Explanation:\s*/i, '').trim()
   if (d === t) return ''
   const statementPrefix = `Statement: ${t}`
+  let out = d
   if (d.startsWith(statementPrefix)) {
-    return d.slice(statementPrefix.length).replace(/^\.\s*/, '').trim()
+    out = d.slice(statementPrefix.length).replace(/^\.\s*/, '').trim()
   }
-  return d
+  return out.replace(/^Explanation:\s*/i, '').trim()
 }

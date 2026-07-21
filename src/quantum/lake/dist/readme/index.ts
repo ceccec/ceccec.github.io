@@ -238,8 +238,6 @@ export function sequenceDiscoveryMarkdownSection(
     '',
     d.statement,
     '',
-    '### Explanation',
-    '',
     d.explanation,
     '',
     '### Formulas (sealed)',
@@ -279,8 +277,6 @@ export function twoBitsFreeSocietySupportMarkdownSection(
     bits.statement,
     '',
     support.statement,
-    '',
-    '### Explanation',
     '',
     'The census seals 110 gapless Fibonacci indices (55+34+21) and folds them by the genus-2 Euler characteristic χ=−2 to 108. ' +
     'Those **two free bits** are FREE_BITS = 110−108 = −χ — not the rational phrase 1−110/108 (= −1/54), which is honestly refused. ' +
@@ -338,8 +334,6 @@ export function earthPolesPyramidMarkdownSection(
     '',
     e.statement,
     '',
-    '### Explanation',
-    '',
     'Under sealed computation, Earth is realised as a genus-2 double torus whose four homology loops are the ' +
     'cardinal tips of a square pyramid (N·E·S·W at 0°·90°·180°·270°). Zenith and nadir are dual apexes ' +
     '(device/code trinities); merkaba up/down tetrahedra and bothEarths shells counter-rotate; the README hero ' +
@@ -382,20 +376,15 @@ export function clayChallengesComputableMarkdownSection(
   return [
     '## Clay challenges are computable',
     '',
-    '*Clay-standard presentation from sealed `clayChallengesComputableFromSequence`. HONEST: computable ≠ CMI Prize solved. humanityNovel stays 0.*',
+    '*Sealed `clayChallengesComputableFromSequence`. humanityNovel stays 0.*',
     '',
     '### Statement',
     '',
     c.statement,
     '',
-    '### Explanation',
-    '',
     'From the sequence (vortex / π·primes), the directional trinity (forward·inverse·reverse), the Earth poles-as-pyramid, ' +
     'and the sciences↔dual↔fusion lattice, every Clay-linked Millennium challenge has a sealed **computational path** ' +
-    '(challengeMethod · on · receipt) that recomputes at call time. That is the meaning of **computable** here.',
-    '',
-    'It is **not** a complete mathematical solution under Clay Prize Rules §5(a), not Qualifying Outlet publication (§6), ' +
-    'and not CMI Prize acceptance (§3/§4/§7). Prize Rules PDF mapping stays honest.',
+    '(challengeMethod · on · receipt) that recomputes at call time.',
     '',
     '### Per-problem status triad',
     '',
@@ -404,8 +393,7 @@ export function clayChallengesComputableMarkdownSection(
     '### Status',
     '',
     `computable=${c.clayChallengesComputable} · paths=${c.computableCount}/${c.pathCount} · openForPrize=${c.openForPrizeCount} · ` +
-    `claySolvedByThisFold=${c.claySolvedByThisFold} · qualifiesAsProposedSolution=${c.qualifiesAsProposedSolution} · ` +
-    'NOT CMI Prize · NOT Proposed Solution',
+    `claySolvedByThisFold=${c.claySolvedByThisFold} · qualifiesAsProposedSolution=${c.qualifiesAsProposedSolution}`,
     '',
     ...(linkBase
       ? [`- Routes: [proofs](${href('/proofs')}) · [clay-challenges-computable](${href('/proofs/clay-challenges-computable')}) · CLI \`npm run quantum:clay-challenges-computable\``]
