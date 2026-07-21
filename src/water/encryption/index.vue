@@ -181,6 +181,37 @@ runTool()
         <p class="encryption-tools__boundary">{{ result?.localNovel?.boundary ?? panel.localNovel?.boundary }}</p>
       </section>
       <UiSeparator />
+      <section id="prove-local-magnitudes-iso" aria-label="Prove local versus ISO magnitudes all directions">
+        <h3>Local vs ISO magnitudes — multi-model receipt</h3>
+        <p class="encryption-tools__lede">
+          Forward · inverse · reverse × wire-crypto-security-bits · local-structural-gates · amortized-reuse-memo.
+          Wire claim is proof-of-falsehood (demo bits much less than ML-KEM/AES). Structural/amort may prove &ge;100× under named non-wire metrics only.
+          certified=false · NOT ISO certified · does NOT beat ML-KEM for confidentiality.
+        </p>
+        <UiBadge :variant="(panel.localMagnitudes?.overallWireClaimProved === false) ? 'default' : 'outline'">
+          overallWireClaimProved={{ panel.localMagnitudes?.overallWireClaimProved ?? '—' }}
+          · {{ panel.localMagnitudes?.wireProofStatus ?? '—' }}
+          · wireRatio={{ panel.localMagnitudes?.wireRatio?.toFixed?.(6) ?? '—' }}
+        </UiBadge>
+        <table class="encryption-tools__table">
+          <thead>
+            <tr><th>Direction</th><th>Model</th><th>Local</th><th>ISO</th><th>Ratio</th><th>&ge;100×</th><th>on</th></tr>
+          </thead>
+          <tbody>
+            <tr v-for="(row, i) in (panel.localMagnitudes?.perDirection ?? [])" :key="i">
+              <td>{{ row.direction }}</td>
+              <td><code>{{ row.model }}</code></td>
+              <td>{{ Number(row.localMetric).toExponential(3) }}</td>
+              <td>{{ Number(row.isoMetric).toExponential(3) }}</td>
+              <td>{{ Number(row.ratio).toExponential(3) }}</td>
+              <td>{{ row.magnitudesStronger }}</td>
+              <td>{{ row.on }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="encryption-tools__boundary">{{ panel.localMagnitudes?.boundary }}</p>
+      </section>
+      <UiSeparator />
       <section id="iso-pqc-catalog" aria-label="ISO NIST PQC catalog">
         <h3>ISO / NIST PQC catalog</h3>
         <p class="encryption-tools__meta">

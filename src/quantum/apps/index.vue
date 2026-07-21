@@ -19,6 +19,7 @@ import {
   proveLocalNovelEncryptionSecurity,
   proveOneTbitRealtimeEncryptionClaim,
   isoPqcRequirementsGapFillAllQuantumDirections,
+  proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections,
   encryptionPanelComputes,
 } from '../../water/encryption/index.ts'
 import { platformOgLimitsMeasured, honestyInProseChallenged } from '../../mountain/og/index.ts'
@@ -159,6 +160,18 @@ function runTool(toolId: string) {
       const imported = importStandardToolEnvelope(exported)
       ok = r.computes && exported.computes && imported.roundTrip
       summary = `wire.proved=${r.wire.provedAtCallTime} demo=${r.demo.measuredBitsPerSec.toExponential(3)} amort=${r.amortized.measuredBitsPerSec.toExponential(3)} amort.proved=${r.amortized.provedAtCallTime} · envelope=${exported.kind}@${exported.version} roundTrip=${imported.roundTrip}`
+      root = r.root
+      boundary = r.boundary
+      facets = [
+        ...r.facets.map((f) => ({ facet: f.facet, on: f.on })),
+        { facet: `standard envelope ${exported.kind}@${exported.version} import/export round-trip`, on: imported.roundTrip },
+      ]
+    } else if (toolId === 'prove-local-magnitudes-iso') {
+      const r = proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections()
+      const exported = exportStandardToolEnvelope('prove-local-magnitudes-iso', 'ceccec.local')
+      const imported = importStandardToolEnvelope(exported)
+      ok = r.computes && exported.computes && imported.roundTrip && r.overallWireClaimProved === false
+      summary = `overallWireClaimProved=${r.overallWireClaimProved} status=${r.wireProofStatus} wireRatio=${r.wireRatio.toExponential(3)} structural=${r.structuralMayProve} amort=${r.amortMayProve} · envelope roundTrip=${imported.roundTrip}`
       root = r.root
       boundary = r.boundary
       facets = [
@@ -510,7 +523,37 @@ function runTool(toolId: string) {
           {{ runningId === 'prove-1tbit-encrypt' ? '…' : 'Run prove-1tbit-encrypt' }}
         </UiButton>
       </section>
+            <section id="prove-local-magnitudes-iso" aria-label="Prove local versus ISO magnitudes">
+        <h3>Local vs ISO magnitudes — honest multi-model receipt</h3>
+        <p class="quantum-apps__meta">
+          Wire-crypto-security-bits is proof-of-falsehood (demo ≪ ML-KEM). Structural/amortized may prove ≥100× under named non-wire metrics only. certified=false · NOT ISO certified.
+        </p>
+        <UiBadge :variant="encryption.localMagnitudes?.overallWireClaimProved === false ? 'default' : 'outline'">
+          overallWireClaimProved={{ encryption.localMagnitudes?.overallWireClaimProved ?? '—' }}
+          · {{ encryption.localMagnitudes?.wireProofStatus ?? '—' }}
+          · structural={{ encryption.localMagnitudes?.structuralMayProve ?? '—' }}
+          · amort={{ encryption.localMagnitudes?.amortMayProve ?? '—' }}
+        </UiBadge>
+        <table v-if="encryption.localMagnitudes?.perDirection?.length" class="quantum-apps__table">
+          <thead>
+            <tr><th>Direction</th><th>Model</th><th>Ratio</th><th>≥100×</th><th>on</th></tr>
+          </thead>
+          <tbody>
+            <tr v-for="(row, i) in encryption.localMagnitudes.perDirection" :key="i">
+              <td>{{ row.direction }}</td>
+              <td><code>{{ row.model }}</code></td>
+              <td>{{ Number(row.ratio).toExponential(3) }}</td>
+              <td>{{ row.magnitudesStronger }}</td>
+              <td>{{ row.on }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <UiButton size="sm" :disabled="runningId === 'prove-local-magnitudes-iso'" @click="runTool('prove-local-magnitudes-iso')">
+          {{ runningId === 'prove-local-magnitudes-iso' ? '…' : 'Run prove-local-magnitudes-iso' }}
+        </UiButton>
+      </section>
       <UiSeparator />
+<UiSeparator />
       <section id="rosetta-complete" aria-label="Rosetta complete quantum dimensions and theorems">
         <h3>Rosetta complete — computable dims &amp; theorems</h3>
         <p class="quantum-apps__meta">{{ panel.rosettaComplete.boundary }}</p>
