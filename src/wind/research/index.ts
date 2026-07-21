@@ -1732,6 +1732,21 @@ export function firstInCorpusProvenanceMarkdownSection(matrix: MindMatrix = buil
   ]
 }
 
+/** npm run quantum:first-in-corpus — print first-in-corpus provenance + 10D registry. */
+export function runFirstInCorpusProvenanceExit(_root = '', _argv: readonly string[] = []): number {
+  const home = firstInCorpusProvenanceForHome()
+  process.stdout.write(
+    `${home.computes ? '✓' : '✗'} first-in-corpus — novel=${home.novelCount} root=${home.root.slice(0, 8)}\n`,
+  )
+  for (const row of home.rows) {
+    process.stdout.write(
+      `  · ${row.algebraFold} · ${row.rootShort} · 10D ${row.projection}${row.rootEqual ? ' · root-equal' : ''} · ${row.route}\n`,
+    )
+  }
+  process.stdout.write(`  boundary: ${home.boundary}\n`)
+  return home.computes ? 0 : 1
+}
+
 // ─── S1–S4: science significance + complete solutions + apparatus + interacting trinities ───
 // Crypto vertex composes isoPqcHandoffForScienceTrinities — do not re-infer PQC here.
 

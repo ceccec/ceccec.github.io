@@ -53,7 +53,7 @@ import { realtimeWiring } from '../../fire/plasma/ball'
 import { foldingLinearGivesAnalog } from '../../earth/world'
 import { agentHarmonise, allComputed, allInEquilibrium, boundaryAudit, breathe, complete, completeCorpus, compression, constitution, dotIsCubeIsDot, encryptionLivesInZero, essentialKernel, foldPivots, graduation, hologram, honestlyComputed, metatronCube, monographs, originConsolidated, path, proportionalNotHardcoded, provenScientifically, realIntelligence, result, sacredGeometrySeal, sharedBookOfCivilisations, tenDimensionalMovie, theWhole, whatIsNotProvenIsPurged, zeroDivisionTable, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
 import { millenniumProblemsChallenge } from '../../wind/research'
-import { quantumCliToolsCatalog, slowProcessIsQuantumGap } from '../../quantum/apps'
+import { quantumCliToolsCatalog, slowProcessIsQuantumGap, sessionManualWorkAsQuantumTools, rosettaCoreApi } from '../../quantum/apps'
 import {
   encryptionReverseVerify, isoNistPqcStandardsCatalog, quantumStandardsAuditSuite,
   isoPqcHandoffForScienceTrinities,
@@ -672,6 +672,8 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'string-theory-quantumized', title: 'String theory quantumized on A432/rosetta/merkle · physics UNCONFIRMED', proof: stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix) },
     { slug: 'string-millennium-gaps', title: 'String-theory + millennium theorem-gap inventory · zero Clay claims', proof: stringTheoryMillenniumTheoremGapsInventory(matrix) },
     { slug: 'quantum-tools', title: 'quantum:* CLI catalog = fold · CLI · UI route · honesty boundary', proof: quantumCliToolsCatalog(matrix) },
+    { slug: 'session-manual-tools', title: 'Session manual work as quantum tools — zero-token reuse catalog', proof: sessionManualWorkAsQuantumTools(matrix) },
+    { slug: 'rosetta-core-api', title: 'Rosetta core API — self-host label↔ray dispatch', proof: rosettaCoreApi(0, matrix) },
     { slug: 'slow-quantum-gap', title: 'Slow processes are immediately visible as quantum gaps', proof: slowProcessIsQuantumGap(matrix) },
     { slug: 'fusion-verify', title: 'fuseAll wave₁ = fuseAll wave₂ — offline fusion verify', proof: quantumFusionVerify(matrix) },
     { slug: 'research', title: 'Research index = domain · method · limit · verify at call time', proof: millenniumProblemsChallenge(matrix) },

@@ -66,6 +66,8 @@ export function mcpCodebase(matrix: MindMatrix = buildMatrix()) {
     { uri: '/llms.txt', purpose: 'The laws and every command, in plain text for LLMs.' },
     { uri: '/skills.json', purpose: 'The skills manifest — every capability as a content-addressed atom.' },
     { uri: '/workflows.json', purpose: 'The saved operational workflows — probe, verify, regenerate, concurrency-safe commit, the token-audit improvement loop — computed from the enforcement fold.' },
+    { uri: '/agents.json', purpose: 'Agent protocol + sessionManualWorkAsQuantumTools catalog — zero-token discovery of sealed session tools (CLI · route · rosettaShelve · saves).' },
+    { uri: '/agent-compliance.json', purpose: 'Agent submission/compliance broadcast (pairs · mission · bootstrap routing).' },
     { uri: '/digit-index.json', purpose: 'The pi-digit coordinate index (the double-torus stream).' },
     { uri: '/sitemap.xml', purpose: 'Every served route, the crawl surface.' },
     { uri: '/api/index.json', purpose: 'The computed API index of recomputable resources.' },
@@ -920,7 +922,7 @@ export function zeroTokenLawForAgentsAndForever(matrix: MindMatrix = buildMatrix
 // real served surface: a dist-generated computed artifact (src/quantum/lake/dist emits these) or a served
 // page route (staticPages + the corpus indexes). Refutable: add an unserved URI to the resources and this
 // fails; /harmonic.json (a weave side-file, not a dist artifact) is verified ABSENT from the served set.
-const MCP_DIST_ARTIFACTS: readonly string[] = ['/mcp.json', '/llms.txt', '/skills.json', '/workflows.json', '/digit-index.json', '/sitemap.xml', '/sitemap.json', '/robots.txt', '/payload-collections.json', '/api/index.json']
+const MCP_DIST_ARTIFACTS: readonly string[] = ['/mcp.json', '/llms.txt', '/skills.json', '/workflows.json', '/agents.json', '/agent-compliance.json', '/digit-index.json', '/sitemap.xml', '/sitemap.json', '/robots.txt', '/payload-collections.json', '/api/index.json']
 const MCP_CORPUS_INDEXES: readonly string[] = ['/theorems', '/papers', '/diamonds', '/references']
 export function mcpExposesOnlyServedSurfaces(matrix: MindMatrix = buildMatrix()) {
   const served = new Set<string>([...MCP_DIST_ARTIFACTS, ...MCP_CORPUS_INDEXES, ...staticPages().map((page) => (page.slug ? `/${page.slug}` : '/'))])

@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { computed, ref, shallowRef } from 'vue'
-import { quantumAppsPanelComputes, quantumAppLaunch, slowProcessIsQuantumGap } from './index.ts'
+import {
+  quantumAppsPanelComputes, quantumAppLaunch, slowProcessIsQuantumGap,
+  sessionManualWorkAsQuantumTools, rosettaCoreApi,
+} from './index.ts'
 import {
   runEncryptionToolInBrowser,
   runPqcStandardsToolInBrowser,
   runQuantumStandardsAuditInBrowser,
 } from '../../water/encryption/index.ts'
-import { millenniumPanelComputes, unitDistanceResearch } from '../../wind/research/index.ts'
+import { millenniumPanelComputes, unitDistanceResearch, firstInCorpusProvenanceForHome } from '../../wind/research/index.ts'
 import { fusionVerifyPanelComputes } from '../../wind/fusion/index.ts'
 import { oneQuantumModelFasterThanAll, compareCeccecEfficiencyByVote, directionalTrinityForwardInverseReverse } from '../../water/stack/index.ts'
 import { sciencesTrinitiesPanelComputes } from '../../wind/research/index.ts'
@@ -212,6 +215,27 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'first-in-corpus') {
+      const r = firstInCorpusProvenanceForHome()
+      ok = r.computes
+      summary = `novel=${r.novelCount} · root-equal=${r.rows.filter((row) => row.rootEqual).length}/${r.rows.length}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'rosetta-core-api') {
+      const r = rosettaCoreApi()
+      ok = r.computes
+      summary = `surfaces=${r.surfaces.length} · rays=${r.raysUsed} · parallel=${r.inventory.parallel.length}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'session-manual-work') {
+      const r = sessionManualWorkAsQuantumTools()
+      ok = r.computes
+      summary = `session=${r.count} · shelved=${r.shelvedCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else {
       ok = false
       summary = `unknown tool ${toolId}`
@@ -257,6 +281,29 @@ function runTool(toolId: string) {
             <a class="quantum-apps__meta" :href="gap.route">{{ gap.route }}</a>
           </li>
         </ul>
+      </section>
+      <UiSeparator />
+      <section id="session-manual-tools" aria-label="Session manual work as quantum tools">
+        <h3>{{ panel.session.heading }}</h3>
+        <p class="quantum-apps__meta">{{ panel.session.honestyLine }}</p>
+        <UiBadge :variant="panel.session.computes ? 'default' : 'outline'">
+          session {{ panel.session.shelvedCount }}/{{ panel.session.count }} shelved
+        </UiBadge>
+        <table class="quantum-apps__table">
+          <thead><tr><th>Tool</th><th>CLI</th><th>Route</th><th>Shelved</th><th>Saves</th></tr></thead>
+          <tbody>
+            <tr v-for="tool in panel.session.tools" :key="tool.id" :id="tool.id === 'rosetta-core-api' ? 'rosetta-core-api' : undefined">
+              <td>
+                <strong>{{ tool.id }}</strong>
+                <div class="quantum-apps__meta"><code>{{ tool.fold }}</code> · {{ tool.pair }}</div>
+              </td>
+              <td><code>{{ tool.cli }}</code></td>
+              <td><a :href="tool.route">{{ tool.route }}</a></td>
+              <td><UiBadge :variant="tool.shelved ? 'default' : 'outline'">{{ tool.shelved ? '✓' : '—' }}</UiBadge></td>
+              <td class="quantum-apps__meta">{{ tool.saves }}</td>
+            </tr>
+          </tbody>
+        </table>
       </section>
       <UiSeparator />
       <section>

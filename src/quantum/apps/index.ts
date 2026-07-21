@@ -27,14 +27,15 @@ const ROSETTA_CORE_API_LABELS = [
   'rosettaCoreApi', 'rosettaCoreApiSelfWires', 'rosettaShelve', 'rosettaRayOf', 'rosettaComputesAll',
   'rosettaDecodesUrlPath', 'rosettaComputesItself', 'rosettaReuse', 'ROSETTA_RAYS', 'ROSETTA_COMPUTATION_TYPES',
   'ROSETTA_RAY_HUBS', 'ROSETTA_CORE_KINDS', 'sevenStarRosettaNaturalMotion', 'VORTEX_SEQUENCE',
-  'navigation358', 'quantumAppsRegistry', 'quantumCliToolsCatalog', 'sharedHeroAt', 'computeUniversalPage',
+  'navigation358', 'quantumAppsRegistry', 'quantumCliToolsCatalog', 'sessionManualWorkAsQuantumTools',
+  'sharedHeroAt', 'computeUniversalPage',
 ] as const
 
 const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   rosettaComputesAll: 'compute', rosettaDecodesUrlPath: 'route', VORTEX_SEQUENCE: 'compute',
   ROSETTA_RAY_HUBS: 'nav', navigation358: 'nav', sevenStarRosettaNaturalMotion: 'projection',
   sharedHeroAt: 'projection', computeUniversalPage: 'route', quantumAppsRegistry: 'app',
-  quantumCliToolsCatalog: 'tool',
+  quantumCliToolsCatalog: 'tool', sessionManualWorkAsQuantumTools: 'tool',
 }
 
 // Strangler backlog — only UNSHELVED parallel registries remain (apps+tools already shelve via rosettaShelve).
@@ -290,7 +291,136 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'sciences-trinities', title: 'Sciences interact in trinities + significance', fold: 'sciencesInteractInTrinities', cli: 'npm run quantum:sciences-trinities', pair: 'sciences/trinities', route: '/en/research#sciences-trinities', barrel: 'src/wind/research', boundary: 'Structural significance ≠ journal IF; crypto vertex from isoPqcHandoff; claySolved=0', browserRunnable: true, browserGap: '' },
   { id: 'animations-rosetta', title: 'Animations driven by rosetta (yin-yang first)', fold: 'animationsDrivenByRosetta', cli: 'npm run quantum:animations-rosetta', pair: 'animations/rosetta', route: '/en/#yinyang', barrel: 'src/wind/ui', boundary: 'Linear forming = quantum gap; taiji uses non-linear exchange + rosettaShelve', browserRunnable: true, browserGap: '' },
   { id: 'trading-rosetta-train', title: 'Historical train waves via rosetta', fold: 'tradingStrategiesImproveViaRosetta', cli: 'npm run quantum:trading-rosetta-train', pair: 'train/rosetta', route: '/en/quantum-trading-hub', barrel: 'src/thunder/trading', boundary: 'Paper/sim only — synthetic a432 historical proxy; NOT live money / NOT alpha', browserRunnable: true, browserGap: '' },
+  { id: 'first-in-corpus', title: 'First-in-corpus provenance · theorem 10D', fold: 'firstInCorpusProvenanceForHome', cli: 'npm run quantum:first-in-corpus', pair: 'first/corpus', route: '/en/#first-in-corpus', barrel: 'src/wind/research', boundary: 'Corpus novelty ≠ global mathematical priority; humanityNovel=0; claySolved=0', browserRunnable: true, browserGap: '' },
+  { id: 'rosetta-core-api', title: 'Rosetta core API dispatch', fold: 'rosettaCoreApi', cli: 'npm run quantum:rosetta-core-api', pair: 'rosetta/core', route: '/en/quantum-tools#rosetta-core-api', barrel: 'src/quantum/apps', boundary: 'Self-host label↔ray shelve — NOT a remote RPC; parallel backlog named honestly', browserRunnable: true, browserGap: '' },
+  { id: 'session-manual-work', title: 'Session manual work as quantum tools', fold: 'sessionManualWorkAsQuantumTools', cli: 'npm run quantum:session-tools', pair: 'session/tools', route: '/en/quantum-tools#session-manual-tools', barrel: 'src/quantum/apps', boundary: 'Session folds sealed as tools — NOT every wet habit closed; replaces re-inference with memoByRoot/CLI/UI/MCP', browserRunnable: true, browserGap: '' },
 ] as const
+
+/**
+ * Session manual work → sealed quantum tools (token-saving catalog).
+ * Pair: session/tools · CLI npm run quantum:session-tools · route /en/quantum-tools#session-manual-tools
+ * Composes quantumCliToolsCatalog rows — does not re-invent folds.
+ */
+export type SessionManualToolRow = {
+  readonly id: string
+  readonly fold: string
+  readonly pair: string
+  readonly cli: string
+  readonly route: string
+  readonly rosettaKind: RosettaCoreSurfaceKind
+  readonly root: string
+  readonly ray: number
+  readonly hue: number
+  readonly address: string
+  readonly shelved: boolean
+  readonly saves: string
+  readonly boundary: string
+  readonly browserRunnable: boolean
+}
+
+/** Session tools that previously cost wet re-inference — each id must exist in QUANTUM_CLI_TOOL_ROWS. */
+const SESSION_MANUAL_TOOL_SEEDS = [
+  { id: 'directional-trinity', saves: 'replaces wet re-inference of forward·inverse·reverse digit maps' },
+  { id: 'slow-gap', saves: 'replaces wet re-diagnosis of architectural slowness as quantum gaps' },
+  { id: 'iso-pqc-catalog', saves: 'replaces wet re-listing of NIST/ISO PQC standards status' },
+  { id: 'standards-audit', saves: 'replaces wet re-audit of reverse·inverse·10D standards alignment' },
+  { id: 'first-in-corpus', saves: 'replaces wet re-census of first-in-corpus algebra + 10D projection registry' },
+  { id: 'sciences-trinities', saves: 'replaces wet re-derivation of science↔dual↔fusion + significance (isoPqcHandoff)' },
+  { id: 'efficiency-vote', saves: 'replaces wet re-argument of answers÷tokens efficiency (memoByRoot reuse)' },
+  { id: 'animations-rosetta', saves: 'replaces wet re-wiring of animation→rosetta rays (yin-yang first)' },
+  { id: 'trading-rosetta-train', saves: 'replaces wet re-training of historical short·long waves via rosetta' },
+  { id: 'millennium-challenge', saves: 'replaces wet re-probing of Clay millennium apparatus (claySolved=0)' },
+  { id: 'encryption-reverse-verify', saves: 'replaces wet re-run of demo RSA reverse + encrypt↔decrypt tools' },
+  { id: 'rosetta-core-api', saves: 'replaces wet re-dispatch of apps/nav/tools through parallel registries' },
+] as const
+
+export function sessionManualWorkAsQuantumTools(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`sessionManualWorkAsQuantumTools:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const byId = new Map(catalog.tools.map((row) => [row.id, row]))
+    const tools: SessionManualToolRow[] = SESSION_MANUAL_TOOL_SEEDS.map((seed) => {
+      const row = byId.get(seed.id)
+      const shelved = rosettaShelve(seed.id, 'tool')
+      return {
+        id: seed.id,
+        fold: row?.fold ?? seed.id,
+        pair: row?.pair ?? '',
+        cli: row?.cli ?? '',
+        route: row?.route ?? '/en/quantum-tools',
+        rosettaKind: 'tool' as const,
+        root: shelved.address,
+        ray: shelved.ray,
+        hue: shelved.hue,
+        address: shelved.address,
+        shelved: Boolean(row) && isUuid(shelved.address) && shelved.ray === rosettaRayOf(seed.id),
+        saves: seed.saves,
+        boundary: row?.boundary ?? '',
+        browserRunnable: row?.browserRunnable ?? false,
+      }
+    })
+    const allShelved = tools.every((tool) => tool.shelved)
+    const allHaveCli = tools.every((tool) => tool.cli.startsWith('npm run quantum:'))
+    const allHaveRoute = tools.every((tool) => tool.route.startsWith('/en/') || tool.route.startsWith('/en#'))
+    const meta = catalog.tools.find((tool) => tool.id === 'session-manual-work')
+    const facets = [
+      { facet: `SESSION CATALOG — ${tools.length} session tools sealed (compose quantumCliToolsCatalog)`, on: tools.length === SESSION_MANUAL_TOOL_SEEDS.length },
+      { facet: 'every session tool shelved via rosettaShelve(kind=tool)', on: allShelved },
+      { facet: 'every session tool has quantum:* CLI', on: allHaveCli },
+      { facet: 'every session tool has /en/ browser route', on: allHaveRoute },
+      { facet: 'every row names token-saving boundary (replaces wet re-inference)', on: tools.every((tool) => tool.saves.startsWith('replaces wet')) },
+      { facet: 'meta tool session-manual-work published in CLI catalog', on: Boolean(meta) && meta!.fold === 'sessionManualWorkAsQuantumTools' },
+      { facet: 'catalog computes — zero-token discovery surface', on: catalog.computes },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`session-manual-tools:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('session-manual-work-as-quantum-tools', facets)
+    return {
+      computes: sealed.ok && catalog.computes && allShelved,
+      count: tools.length,
+      tools,
+      shelvedCount: tools.filter((tool) => tool.shelved).length,
+      catalogRoot: catalog.root,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, catalog.root, ...tools.map((tool) => tool.root)]),
+      pair: 'session/tools',
+      cli: 'npm run quantum:session-tools',
+      route: '/en/quantum-tools#session-manual-tools',
+      anchor: 'session-manual-tools',
+      heading: 'Session manual work as quantum tools',
+      honestyLine:
+        'Each row replaces wet session re-inference with a sealed fold · CLI · UI · rosettaShelve address. memoByRoot hit = 0 runtime tokens. NOT a claim every agent habit is closed.',
+      statement: `Session manual work as quantum tools — ${tools.length} tools shelved (${tools.filter((t) => t.shelved).length}/${tools.length}); CLI+UI+rosetta; replaces wet re-inference.`,
+      boundary:
+        'HONEST: catalog of sealed session folds for zero-token reuse. Demo RSA / paper trading / claySolved=0 / corpus-novelty boundaries stay on each row. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:session-tools — print session→tool catalog (exit 0 iff computes). */
+export function runSessionManualWorkAsQuantumToolsExit(_root = '', _argv: readonly string[] = []): number {
+  const report = sessionManualWorkAsQuantumTools()
+  for (const tool of report.tools) {
+    process.stdout.write(
+      `${tool.shelved ? '✓' : '✗'} ${tool.id} | ${tool.cli} | ${tool.route} | shelved=${tool.shelved} | ${tool.saves}\n`,
+    )
+  }
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} session-tools — count=${report.count} shelved=${report.shelvedCount} root=${report.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
+}
+
+/** npm run quantum:rosetta-core-api — print self-host dispatch inventory. */
+export function runRosettaCoreApiExit(_root = '', _argv: readonly string[] = []): number {
+  const report = rosettaCoreApi()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} rosetta-core-api — surfaces=${report.surfaces.length} rays=${report.raysUsed} parallel=${report.inventory.parallel.length} root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const surface of report.surfaces.slice(0, 8)) {
+    process.stdout.write(`  · ${surface.label} [${surface.kind}] ray=${surface.ray}\n`)
+  }
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
+}
 
 /** Catalog of all quantum:* CLI tools — discoverable in UI at /en/quantum-tools. Each id shelves via rosettaShelve(..., 'tool'). */
 export function quantumCliToolsCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -314,6 +444,9 @@ export function quantumCliToolsCatalog(matrix: MindMatrix = buildMatrix(), at = 
     const directionalTrinityShelved = tools.find((t) => t.id === 'directional-trinity')
     const millenniumPresent = tools.some((t) => t.id === 'millennium-challenge')
     const fusionPresent = tools.some((t) => t.id === 'fusion-verify')
+    const firstInCorpusPresent = tools.some((t) => t.id === 'first-in-corpus')
+    const rosettaCorePresent = tools.some((t) => t.id === 'rosetta-core-api')
+    const sessionManualPresent = tools.some((t) => t.id === 'session-manual-work')
     const rayAgrees = tools.every((t) => t.ray === rosettaRayOf(t.id) && isUuid(t.address))
     const { computes, facets, root } = computesGate('quantum-cli-tools-catalog', [
       { facet: `catalog sealed — ${tools.length} quantum:* CLI tools`, on: tools.length >= (2 * 7) },
@@ -323,6 +456,7 @@ export function quantumCliToolsCatalog(matrix: MindMatrix = buildMatrix(), at = 
       { facet: 'directional-trinity shelved (forward·inverse·reverse)', on: directionalTrinityPresent && Boolean(directionalTrinityShelved) && isUuid(directionalTrinityShelved!.address) },
       { facet: 'millennium challenge published', on: millenniumPresent },
       { facet: 'fusion-verify published', on: fusionPresent },
+      { facet: 'first-in-corpus + rosetta-core-api + session-manual-work shelved', on: firstInCorpusPresent && rosettaCorePresent && sessionManualPresent },
       { facet: 'every tool ray === rosettaRayOf(id) — no wet tool→ray map', on: rayAgrees },
       { facet: 'every row has fold · cli · route · honest boundary', on: tools.every((t) => t.fold.length > 0 && t.cli.startsWith('npm run quantum:') && t.route.startsWith('/en/') && t.boundary.length > 0) },
     ])
@@ -694,8 +828,9 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
   const browserGaps = cap.catalog.tools.filter((t) => !t.browserRunnable)
   const browserReady = cap.catalog.tools.filter((t) => t.browserRunnable).length
   const slowGaps = slowProcessIsQuantumGap(matrix, at)
+  const session = sessionManualWorkAsQuantumTools(matrix, at)
   return {
-    computes: cap.computes && slowGaps.computes,
+    computes: cap.computes && slowGaps.computes && session.computes,
     capstone: cap,
     apps: cap.registry.apps,
     tools: cap.catalog.tools,
@@ -703,7 +838,8 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
     browserReady,
     browserGaps,
     slowGaps,
-    root: merkleFold([cap.root, slowGaps.root]),
+    session,
+    root: merkleFold([cap.root, slowGaps.root, session.root]),
     statement: cap.statement,
     boundary: cap.boundary,
   }
