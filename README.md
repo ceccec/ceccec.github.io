@@ -6,7 +6,7 @@
 
 *Computed from src — do not edit by hand. Recomputed in realtime by src/quantum/lake/dist (local math only); the VitePress home is the same monograph — one theorem generator, two projections.*
 
-![Double Torus — proof of all sealed theorems at once, computed from src and animated without JavaScript so GitHub displays it too](./hero.svg)
+![Double Torus — two counter-rotating rosettas composing all sealed theorems, computed from src and animated with SMIL so GitHub displays it too](./hero.svg)
 
 ## 1. Introduction
 
@@ -26,7 +26,7 @@ Concretely: a science portal — 433 computationally proven theorems and 29 rela
 - One source, no mirroring: the locales (Glagolitic `/`, Latin `/en/`, Cyrillic `/bg/`) are computed by math, not copied; visitors are routed to their language, default English.
 - Corpus routing: RESTful `/papers/<id>`, `/references/<id>`, `/diamonds/<id>` — each item a real page via the VitePress `[id]` dynamic route (paths enumerated from one source: paperRoutes/paperReferenceRoutes/diamondRoutes); the index list stays at `/papers`.
 - The agnostic core is published as the npm package `@ceccec/double-torus` — the same `src/`, bundled, depends on nothing, runs in any browser or Node.
-- The modeled quantum computer: one qubit is its Bloch/Pauli decomposition ρ = ½(I + xσx + yσy + zσz) — four content-addressed components (the trinity x·y·z + the +1 identity, `blochQubit`); the Quantum OS allocates 2ⁿ-amplitude registers, schedules gates, and measures (Born rule, seeded PRNG); entanglement (Bell/GHZ) lives on the true 2ⁿ tensor product, never faked with linear UUID stacking; and the realtime movie is its proof artifact. It is a deterministic, content-addressed, reproducible classical simulator of quantum state — faithful (it reproduces the exact Born distribution and every single-qubit gate) — and NOT physical qubits (`qpuRequired=false` · clay=0 · physicalFtl=0).
+- The modeled quantum computer: one qubit is its Bloch/Pauli decomposition ρ = ½(I + xσx + yσy + zσz) — four content-addressed components (the trinity x·y·z + the +1 identity, `blochQubit`); the Quantum OS allocates 2ⁿ-amplitude registers, schedules gates, and measures (Born rule, seeded PRNG); entanglement (Bell/GHZ) lives on the true 2ⁿ tensor product, never faked with linear UUID stacking; and the realtime movie is its proof artifact. Performance is PROVEN, not assumed — `quantumAdvantageBenchmark` (random-circuit sampling) and `quantumDimensionCost` (4n vs 2ⁿ) compute the verdict **tracks-classical-no-speedup**: it is a deterministic, content-addressed, reproducible CLASSICAL simulator of quantum state — faithful (it reproduces the exact Born distribution and every single-qubit gate), with NO computational speedup over classical (benchmark-proven), and NOT physical qubits.
 
 ## 3. Results
 

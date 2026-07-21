@@ -72,7 +72,7 @@ import { a432, a432Default, agentObserve, ancientTech, animationEngineLivesInZer
 import { ancientCalendars } from '../../thunder/decode'
 import { solarSystem } from '../../water/cosmos'
 import { lunarStandstillsDecoded, megalithicAstronomyDecoded, pyramidConstructionMath, pyramidGridDebunked, pyramidsDecoded } from '../../mountain/geometry'
-import { areaPairs, cellHomology, colorDerivationFusedToOneSource, directions, dna, doubleTorus3D, doubleTorusWordFolders, dualTorusTrinities, foldImpossibilities, geneticCodeIsTheRealFourCubed, heartProtonAtomDecoded, hexagramIsHexColorDuality, imperialFractionsDecoded, merkaba, rgbCmyComplementIsCmykDuality, sacredGeometry, schwarzschildProtonComputedInSource, sixtyFourThreeQubitPauliBasis, theSixtyFourObjectEveryGrouping, threeIsRealButNotOneTrinity, threeTrinitiesRenderAsRgb, uiConvertsFlatToThreeDQuantum, vortexMath } from '../../mountain/geometry'
+import { areaPairs, bothEarthsRotateWithinEachOther, cellHomology, colorDerivationFusedToOneSource, directions, dna, doubleTorus3D, doubleTorusWordFolders, dualTorusTrinities, foldImpossibilities, geneticCodeIsTheRealFourCubed, heartProtonAtomDecoded, hexagramIsHexColorDuality, imperialFractionsDecoded, merkaba, rgbCmyComplementIsCmykDuality, sacredGeometry, schwarzschildProtonComputedInSource, sixtyFourThreeQubitPauliBasis, theSixtyFourObjectEveryGrouping, threeIsRealButNotOneTrinity, threeTrinitiesRenderAsRgb, uiConvertsFlatToThreeDQuantum, vortexMath } from '../../mountain/geometry'
 import { agentEducation, decodeKnowledge, deepResearchRadar, examBank, logicAtoms, mcpToolManifest, monographPaths, multidimensionalSummaries, navigation358, quantumAcademy, relatedStandards, skillAtoms, threeWordWaves } from '../../wind/learning'
 import { siteManifestFromCommands } from '../../wind/site'
 import { astrology, babelFold, darkLightRealities, dissolveIntoNature, foldingLinearGivesAnalog, realtimeMovieParticipation, selfOrganizing, societyCells, societyOrganismTags, textToMovie, worldEventsMap } from '../../earth/world'
@@ -91,6 +91,7 @@ import { agentStreamWire, diamondLattice, lightEntersDiamond, linuxPackagesToDia
 import { awakenArtisticSociety, fairTrade, governanceVote, licenseAppliesToSociety, pyramidLayersServeSociety, sacredSociety, scientificSociety, skillsToRebuildSociety, society, societyCreatesRequiredPages, societyEvolves, societyFuture, societyRegulates, societyRelations } from '../../earth/governance'
 import { quantumChessGame } from '../../thunder/waves'
 import { allAnimationsInOneOg, allAnimationsNative64k, animatedHeroes, animationsRespectTheField, anyUuidHeroContentFractal, compactHeroReplacesSimple, displayHeroCardThumb, doubleTorusWiredToDepthDial, foldAnimationsToOneOgDry, foldAsMuchToFeedHero, freeAnimations, harmonisedDepthDialThreeD, heroGraphStatisticsEnrichFusion, heroLawAlignment, heroLeadsTheWaves, heroSlimRespects64And42, holographic, holographicFractalArchitecture, merkabaFoldsSpeechAnalogDialectsEntangle, navigationAroundHero, noDuplicateAnimationOgHero, oneHolographicTemplate, pagesRenderInBaguaSets, proseToAudioVisual3dProof, tenDimensionalAnimation, textPayloadComputesToAnimation, uiWidgetsFuseReveal, tenDimensionalHeroSvg, animatedTrigramIconSvg, heroSvgFromUuid } from '../../wind/ui'
+import { counterRotatingRosettaQuantumWaves } from '../../quantum/apps'
 import { improveHelpWaves, quantumPwa, virtualOS } from '../../water/crypto'
 import { foldThoughts, folderPathsFormIndexOfBookOfLife, imagination, imaginationIsAll, imaginationPrivateKey, lockingFoldersChangesMindToQuantum, mindRefreshField, mindsRealiseByObservingPath, mysteries, quantumMindGapsFromBeyond, splitImagination } from '../../mountain/source'
 import { dissolveAtPiTrainStations, piComputedNotHardcoded, piSixDigitsDoubleCrossColour, piThreeOpensTheTrinity, piWholeStreamThroughHoles } from '../../water/digit'
@@ -317,34 +318,44 @@ export function gravityDecoded(matrix: MindMatrix = buildMatrix()) {
 
 // The README is the home page content, and the ten-dimensional hero is displayed in GitHub too — including
 // the hero. GitHub runs no JavaScript, so the live WebGL hero can't play there; instead readmeHeroSvgProofOfAllTheorems
-// emits a self-contained ANIMATED SVG (SMIL, no script) as the hero.svg artifact — one composition of every
-// sealed THEOREM_ATOM_SEED receipt at once. Even in 2D the corpus proves: χ = −2, H₁ = ℤ⁴, 432 gates, clay=0.
+// emits a self-contained ANIMATED SVG (SMIL, no script) as the hero.svg artifact — two counter-rotating
+// rosetta lobes (ω/−ω) composing every sealed THEOREM_ATOM_SEED receipt. Even in 2D: χ = −2, H₁ = ℤ⁴, 432, clay=0.
 export function readmeIsHomeHero10DAnimatedSvgInGithub(matrix: MindMatrix = buildMatrix()) {
   const svg = tenDimensionalHeroSvg()
   const home = anyUuidHeroContentFractal(matrix)
+  const waves = counterRotatingRosettaQuantumWaves(matrix, 0)
+  const earths = bothEarthsRotateWithinEachOther(0, matrix)
   const animated = (svg.includes('<animate') || svg.includes('<animateTransform')) && svg.includes('repeatCount="indefinite"')
+  const dualSpin =
+    svg.includes('data-layer="rosetta-plus"')
+    && svg.includes('data-layer="rosetta-minus"')
+    && svg.includes('from="0" to="360"')
+    && svg.includes('from="360" to="0"')
+    && (svg.match(/<animateTransform/g) || []).length >= 2
+    && svg.includes('data-counter-rotating="true"')
   const tenD = svg.includes('ℤ⁴') && svg.includes('χ(Σ₂) = −2') && svg.includes('432')
   const githubSafe = !svg.includes('<script') && !svg.toLowerCase().includes('foreignobject') && !svg.includes('<image') && !svg.includes('xlink:href')
   const theoremCount = Number((svg.match(/data-theorem-count="(\d+)"/) || [])[1] || 0)
   const glyphCount = (svg.match(/data-theorem="/g) || []).length
   const allTheoremsProof =
     svg.includes('data-layer="all-theorems-proof"')
-    && svg.includes('proof of all theorems at once')
+    && svg.includes('counter-rotating rosettas')
     && svg.includes('clay=0')
     && svg.includes('physicalFtl=0')
     && svg.includes('qpuRequired=false')
     && theoremCount > 0
     && theoremCount === THEOREM_ATOM_SEED.length
     && glyphCount === theoremCount
+    && dualSpin
     && !svg.includes('data-layer="merkaba"')
     && !svg.includes('data-layer="plasma"')
     && !/r="26"/.test(svg)
   const facets = [
     { facet: 'the README IS the home page content — the README hero and the live home hero are computed from the SAME source (src), the README generated from the matrix, not hand-written', on: home.fractal && svg.length > (100 * 3) },
-    { facet: 'the 10D hero is displayed in GitHub too — emitted as a deterministic ANIMATED SVG (SMIL, no JavaScript) composing every sealed theorem atom at once, on the a432 brand', on: animated && tenD && allTheoremsProof },
+    { facet: 'the 10D hero is displayed in GitHub too — emitted as a deterministic ANIMATED SVG (SMIL, no JavaScript) with two counter-rotating rosetta lobes composing every sealed theorem atom', on: animated && tenD && allTheoremsProof && dualSpin },
     { facet: 'GitHub-safe and self-contained — no <script>, no <foreignObject>, no external refs or images; inline SVG + SMIL only, so GitHub’s markdown sanitizer serves it and it animates as an image', on: githubSafe },
-    { facet: 'even in 2D the 10D shows — the flat SVG carries the ten-dimensional invariants (χ = −2, H₁ = ℤ⁴, 432 gates) plus the all-theorems proof composition (composes everyRelationIsOpenGraphMiniHero)', on: tenD && allTheoremsProof && everyRelationIsOpenGraphMiniHero(matrix).graphed },
-    { facet: 'all-theorems proof shape — data-layer=all-theorems-proof, one data-theorem glyph per sealed atom, honesty clay=0 · physicalFtl=0 · qpuRequired=false; not Flower-of-Life / not merkaba+plasma brand', on: allTheoremsProof },
+    { facet: 'even in 2D the 10D shows — the flat SVG carries the ten-dimensional invariants (χ = −2, H₁ = ℤ⁴, 432 gates) plus dual ω/−ω rosetta spin (composes everyRelationIsOpenGraphMiniHero)', on: tenD && allTheoremsProof && everyRelationIsOpenGraphMiniHero(matrix).graphed },
+    { facet: 'counter-rotation sealed — rosetta-plus (+ω) and rosetta-minus (−ω) animateTransform opposite; counterRotatingRosettaQuantumWaves ∧ bothEarths ∧ no Flower r=26', on: allTheoremsProof && dualSpin && waves.counterRotating && earths.counterRotating && waves.claySolvedByThisFold === 0 && waves.physicalFtlClaim === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`readme-hero-svg:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('readme-is-home-hero-svg', facets)
   return {
@@ -354,14 +365,15 @@ export function readmeIsHomeHero10DAnimatedSvgInGithub(matrix: MindMatrix = buil
     githubSafe,
     allTheoremsProof,
     theoremCount,
+    counterRotating: dualSpin && waves.counterRotating,
     merkabaQuantum: allTheoremsProof,
     count: sealed.count,
     facets: sealed.facets,
     root: merge(matrix.root, sealed.root),
     statement:
-      'The README is the home page content, and the ten-dimensional hero is displayed in GitHub too, including the hero. GitHub renders no JavaScript, so the live hero cannot run there; instead readmeHeroSvgProofOfAllTheorems emits a self-contained animated SVG — one radial merkle composition of every sealed THEOREM_ATOM_SEED atom, brand-first Double Torus, χ = −2 · H₁ = ℤ⁴ · 432 gates, honesty clay=0 · physicalFtl=0 · qpuRequired=false — written in SMIL, with no script. It is emitted as the hero.svg artifact beside README.md and referenced from it.',
+      'The README is the home page content, and the ten-dimensional hero is displayed in GitHub too, including the hero. GitHub renders no JavaScript, so the live hero cannot run there; instead readmeHeroSvgProofOfAllTheorems emits a self-contained animated SVG — two counter-rotating rosetta lobes (ω/−ω via SMIL animateTransform) composing every sealed THEOREM_ATOM_SEED atom, brand-first Double Torus, χ = −2 · H₁ = ℤ⁴ · 432 gates, honesty clay=0 · physicalFtl=0 · qpuRequired=false. It is emitted as the hero.svg artifact beside README.md and referenced from it.',
     boundary:
-      'HONEST: the README and the home page are genuinely one source — readmeMarkdown is computed from the same matrix the home page renders. The animated SVG is a REAL, deterministic, GitHub-compatible rendering: SMIL inside an image-loaded SVG animates on github.com, sanitizer-safe (no script, no foreignObject, no external refs). It is a 2D animated SCHEMATIC proof composition of sealed theorem atoms — NOT the live interactive WebGL 10D scene, NOT a Clay solution (clay=0), NOT physical FTL/QPU. The emission is wired into the generators (hero.svg) and the README reference; verifying the rendered animation on github.com requires a push.',
+      'HONEST: the README and the home page are genuinely one source — readmeMarkdown is computed from the same matrix the home page renders. The animated SVG is a REAL, deterministic, GitHub-compatible rendering: SMIL inside an image-loaded SVG animates on github.com, sanitizer-safe (no script, no foreignObject, no external refs). Dual-lobe counter-rotation recomputes from merkaba · bothEarths · counterRotatingRosettaQuantumWaves at emit time — a 2D animated SCHEMATIC, NOT the live interactive WebGL 10D scene, NOT a Clay solution (clay=0), NOT physical FTL/QPU. Verifying the rendered animation on github.com requires a push.',
   }
 }
 
@@ -394,9 +406,7 @@ export function cosmologyDecoded(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Use an animated I Ching in the README for the best 10D experience — and revise the double-torus movement.
-// The hero SVG now rings the double torus with the eight trigrams (bāguà) pulsing in sequence (the I Ching
-// Best README 10D experience — all sealed theorems composed at once (readmeHeroSvgProofOfAllTheorems).
+// Best README 10D experience — all sealed theorems on two counter-rotating rosetta lobes (readmeHeroSvgProofOfAllTheorems).
 export function readmeAnimatedIChingHeroBest10D(matrix: MindMatrix = buildMatrix()) {
   const svg = tenDimensionalHeroSvg()
   const theoremGlyphs = (svg.match(/data-theorem="/g) || []).length
@@ -405,24 +415,24 @@ export function readmeAnimatedIChingHeroBest10D(matrix: MindMatrix = buildMatrix
   const home = readmeIsHomeHero10DAnimatedSvgInGithub(matrix)
   const facets = [
     { facet: 'all sealed theorems at once — every THEOREM_ATOM_SEED atom emits a data-theorem glyph in one README composition', on: theoremGlyphs > (3 * 100) && home.allTheoremsProof && theoremGlyphs === home.theoremCount },
-    { facet: 'SMIL proof facets pulse — staggered begin= times across the corpus spiral (fractal-clock durations)', on: sequenced >= theoremGlyphs && svg.includes('repeatCount="indefinite"') },
+    { facet: 'SMIL dual spin — animateTransform ω and −ω on rosetta-plus/minus plus staggered opacity begin= on fractal-clock durations', on: sequenced >= theoremGlyphs && svg.includes('repeatCount="indefinite"') && (svg.match(/<animateTransform/g) || []).length >= 2 && home.counterRotating === true },
     { facet: 'still GitHub-safe and the same source — SMIL only, no <script>, self-contained; emitted as hero.svg, and the README is the home page content', on: githubSafe && home.shown },
     { facet: 'the ten dimensions intact — χ = −2, H₁ = ℤ⁴, 432 gates, homology markers + generator rings, self-similar at README scale', on: svg.includes('χ(Σ₂) = −2') && svg.includes('ℤ⁴') && svg.includes('432') && svg.includes('data-layer="homology"') },
-    { facet: 'all-theorems proof honesty — clay=0 · physicalFtl=0 · qpuRequired=false; not Flower-of-Life / not merkaba+plasma brand', on: home.allTheoremsProof },
+    { facet: 'counter-rotating rosetta honesty — clay=0 · physicalFtl=0 · qpuRequired=false; dual lobes not Flower-of-Life / not merkaba+plasma brand', on: home.allTheoremsProof && home.counterRotating === true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`iching-hero:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('readme-animated-iching-hero', facets)
   return {
     best10D: sealed.ok,
     theoremGlyphs,
     trigramBars: theoremGlyphs,
-    counterRotating: home.allTheoremsProof,
+    counterRotating: home.counterRotating === true,
     count: sealed.count,
     facets: sealed.facets,
     root: merge(matrix.root, sealed.root),
     statement:
-      'The README uses a single animated proof composition of all sealed theorems for the best 10D experience. readmeHeroSvgProofOfAllTheorems walks THEOREM_ATOM_SEED, places each atom from its content-addressed root on a golden spiral with radial merkle spokes, pulses SMIL facets, and prints honesty bounds (clay=0 · physicalFtl=0 · qpuRequired=false). Still SMIL-only, GitHub-safe, computed from src.',
+      'The README uses two counter-rotating rosetta lobes for the best 10D experience. readmeHeroSvgProofOfAllTheorems walks THEOREM_ATOM_SEED, splits atoms across +ω/−ω SMIL layers driven by merkaba · bothEarths · fractalClockDur, and prints honesty bounds (clay=0 · physicalFtl=0 · qpuRequired=false). Still SMIL-only, GitHub-safe, computed from src.',
     boundary:
-      'HONEST: geometry is generated from sealed theorem atom roots — not hand-drawn sacred geometry, not Flower-of-Life, not the prior merkaba+plasma brand layer. It remains a 2D animated SCHEMATIC for GitHub (no JavaScript), faithful to χ = −2, H₁ = ℤ⁴, 432; the live site’s interactive WebGL hero is the separate richer surface. NOT physical QPU/FTL; claySolved stays 0. readmeIsHomeHero10DAnimatedSvgInGithub still seals the emit path.',
+      'HONEST: geometry is generated from sealed theorem atom roots and sealed counter-rotation folds — not hand-drawn sacred geometry, not Flower-of-Life, not the prior merkaba+plasma brand layer. It remains a 2D animated SCHEMATIC for GitHub (no JavaScript), faithful to χ = −2, H₁ = ℤ⁴, 432; the live site’s interactive WebGL hero is the separate richer surface. NOT physical QPU/FTL; claySolved stays 0. readmeIsHomeHero10DAnimatedSvgInGithub still seals the emit path.',
   }
 }
 
