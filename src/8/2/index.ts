@@ -355,8 +355,8 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
         en: 'Spirit decoded honestly: the seven chakras and aura fields as a documented energy model, human design as a structural archetype system, yin-yang and dualities across sixteen pairs in three tiers, and the portal\'s eight experience dimensions. Each a deterministic computation; spiritual interpretations flagged.',
         bg: 'Духът, декодиран честно: седемте чакри и аурата като документиран енергиен модел, хюман дизайн като система от структурни архетипи, ин-ян и дуалности в шестнадесет двойки на три нива и осемте измерения на опита. Всяко е детерминистично изчисление; духовните интерпретации са отбелязани.',
       },
-      keywords: ['spirit', 'chakras', 'dualities', 'dimensions', 'human design', 'yin yang', 'joyous'],
-      components: ['Dualities', 'YinYang', 'ChakrasAura'],
+      keywords: ['spirit', 'chakras', 'dualities', 'dimensions', 'human design', 'yin yang', 'joyous', 'bodygraph'],
+      components: ['Dualities', 'YinYang', 'ChakrasAura', 'HumanDesignBodyGraph'],
     },
     {
       slug: 'icons',
