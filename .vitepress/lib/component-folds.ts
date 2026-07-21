@@ -540,13 +540,29 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
   EncryptionTools: async () => {
     const { encryptionPanelComputes } = await import('../../src/water/encryption/index')
     const fold = encryptionPanelComputes()
+    const timed = [
+      `catalog ${fold.timings.catalogMs.toFixed(3)}ms`,
+      `family ${fold.timings.familyMs.toFixed(3)}ms`,
+      `shor ${fold.timings.shorMapMs.toFixed(3)}ms`,
+      `trinity ${fold.timings.trinityMs.toFixed(3)}ms`,
+      `rsaGen ${fold.timings.rsaGenerateMs.toFixed(3)}ms`,
+    ]
     return {
-      title: 'Quantum encryption tools',
+      title: 'Quantum encryption tools — beyond RSA',
       statement: fold.statement,
       boundary: fold.boundary,
-      facets: fold.facets.map((entry) => ({ facet: entry.facet, on: entry.on })),
+      facets: [
+        ...fold.facets.map((entry) => ({ facet: entry.facet, on: entry.on })),
+        { facet: `TIMED — ${timed.join(' · ')}`, on: fold.beyond.computes },
+        { facet: `ML-KEM params ${fold.mlKemParams.join(', ')} (labels only)`, on: fold.mlKemParams.length === 3 },
+        { facet: `ECC/ECDSA Shor-vulnerable=${fold.eccShorBreaks} (theorem compose)`, on: fold.eccShorBreaks },
+        ...fold.sections.map((section) => ({ facet: section.title, on: section.on, link: section.route.replace('/en', '') })),
+      ],
       crosslinks: [
         { text: 'Encryption page', link: '/quantum-encryption', kind: 'topic' },
+        { text: 'Beyond RSA measured', link: '/quantum-encryption#crypto-beyond-rsa', kind: 'detail' },
+        { text: 'Demo RSA measured', link: '/quantum-encryption#demo-rsa-measure', kind: 'detail' },
+        { text: 'Standards audit', link: '/quantum-encryption#quantum-standards-audit', kind: 'detail' },
         { text: 'Quantum tools', link: '/quantum-tools', kind: 'detail' },
       ],
       ok: fold.computes,

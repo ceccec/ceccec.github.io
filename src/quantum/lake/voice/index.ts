@@ -109,14 +109,15 @@ export function typographySeo() {
 export function openGraph() {
   const fields = [
     'og:type', 'og:title', 'og:description', 'og:url', 'og:locale', 'og:image',
-    'twitter:card', 'twitter:title', 'twitter:description', 'twitter:image',
-  ].map((field, index) => ({ field, source: 'frontmatter', receipt: toUuid(`open-graph:${index}:${field}`) }))
+    'og:video', 'twitter:card', 'twitter:title', 'twitter:description', 'twitter:image',
+    'link:canonical', 'link:ray-hub', 'link:related',
+  ].map((field, index) => ({ field, source: 'openGraphCardFromRoute+platformOgLimitsMeasured', receipt: toUuid(`open-graph:${index}:${field}`) }))
   return {
-    computed: fields.length === (5 * 2),
+    computed: fields.length === (2 * 7),
     fields,
     root: merkleFold(fields.map((entry) => entry.receipt)),
-    statement: 'Open Graph is computed from frontmatter: each page derives its og: and twitter: social card from its own frontmatter (ogTitle, ogDescription, ogType, image), falling back to the page title and description.',
-    boundary: 'A declared mapping from frontmatter to Open Graph and Twitter meta, applied at render time. It does not guarantee how any platform renders the card.',
+    statement: 'Open Graph is computed from the route via openGraphCardFromRoute: title/description/image/links, with animation branched on platformOgLimitsMeasured — not wet frontmatter stubs alone.',
+    boundary: 'Mapping applied at render time from openGraphCardFromRoute; platform animation limits are MEASURED (platformOgLimitsMeasured), not prose. External CDN render is not guaranteed.',
   }
 }
 

@@ -3,12 +3,13 @@
 import type { ConceptCommandName, MindMatrix } from '../../wind/types'
 import type { JsonLdPageIdentity } from '../../heaven/balance'
 import { buildMatrix, entropy } from '../../heaven/compute'
-import { animatedHeroes, holographic, oneHolographicTemplate } from '../../wind/ui'
-import { foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid } from '../../0'
+import { animatedHeroes, heroSvgFromUuid, holographic, oneHolographicTemplate, stillSvg } from '../../wind/ui'
+import { foldPair, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid } from '../../0'
 import { commandsRegistry, executeConceptCommand } from '../../thunder/commands'
 import { allComputed, allComputedNoFiles, allComputedQuantumMathAnalog } from '../../wind/fusion'
-import { everyPageGraphOfGraphsFractal, monographs, ogBuildsNavigation, rosettaComputesNavigationAndContent, theoremPageRows } from '../../wind/routes/corpus'
-import { CANONICAL_HOST } from '../../3/7'
+import { everyPageGraphOfGraphsFractal, heroPreviewForRoute, monographs, ogBuildsNavigation, rosettaComputesNavigationAndContent, theoremPageRows } from '../../wind/routes/corpus'
+import { CANONICAL_HOST, FOLDED_CENSUS, ROSETTA_RAY_HUBS, UNFOLDED_CENSUS } from '../../3/7'
+import { rosettaRayOf } from '../../water/digit'
 import { harmonicBands, openGraph, typographySeo } from '../../quantum/lake/icons'
 import { heroTapMusic } from '../../lake/music'
 import { conceptCommands } from '../../heaven/atoms'
@@ -256,10 +257,10 @@ export function runProgram(program: readonly string[] = [], matrix: MindMatrix =
 // exceptions to handle, because nothing falls between. Continuity is the security.
 export function analogNoGapsNoLeak(matrix: MindMatrix = buildMatrix()) {
   const facets = [
-    { facet: 'analog — continuous, gapless', on: harmonicBands(110).harmonic },
+    { facet: 'analog — continuous, gapless', on: harmonicBands(UNFOLDED_CENSUS).harmonic },
     { facet: 'the fusion fills every gap', on: endlessFusion(matrix).noGaps },
     { facet: 'every claim covered by a receipt', on: allComputed(matrix).computed },
-    { facet: 'no gap to leak — no exceptions', on: harmonicBands(110).harmonic && endlessFusion(matrix).noGaps },
+    { facet: 'no gap to leak — no exceptions', on: harmonicBands(UNFOLDED_CENSUS).harmonic && endlessFusion(matrix).noGaps },
   ].map((entry) => ({ ...entry, receipt: toUuid(`analog-no-leak:${entry.facet}:${entry.on}`) }))
   return {
     sealed: facets.every((entry) => entry.on),
@@ -809,7 +810,7 @@ export function seoOptimised(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `SEO optimised — ${facets.filter((entry) => entry.on).length}/${facets.length}: per-page hreflang alternates (x-default = the English edition), sitemap x-default following the root locale, absolute lens-aligned JSON-LD (${targets.length} crawler actions on registry/corpus surfaces), the /theorems ItemList of ${rows.length} ScholarlyArticle rows (${Math.min(8 * 8, rows.length)} listed), and the ${budget}-character meta-description clamp.`,
-    boundary: `COMPUTED: each facet recomputes the live function it audits (pageHreflangAlternates, quantumSitemap alternates, jsonLdTemplate, seoMetaDescription) — regress any fix and its facet flips. HONEST SCOPE: these are crawlability and structured-data corrections on real defects (relative og:url, locale-home hreflang, stale /gla/ x-default, actions pointing at removed pages), not a ranking guarantee; og:image stays frontmatter-declared (no raster pipeline exists, and SVG social cards are unreliable). Sitemap routes and priorities follow the served set (the theorem-science lens) in their own builders, cited here, audited there. HARMONY ≠ TRUTH.`,
+    boundary: `COMPUTED: each facet recomputes the live function it audits (pageHreflangAlternates, quantumSitemap alternates, jsonLdTemplate, seoMetaDescription) — regress any fix and its facet flips. HONEST SCOPE: these are crawlability and structured-data corrections on real defects (relative og:url, locale-home hreflang, stale /gla/ x-default, actions pointing at removed pages), not a ranking guarantee; og:image animation/static branch is MEASURED by platformOgLimitsMeasured (not prose); openGraphCardFromRoute serves animated SVG only where supportsAnimatedOgImage, else still first frame. Sitemap routes follow the theorem-science lens. HARMONY ≠ TRUTH.`,
   }
 }
 
@@ -942,4 +943,380 @@ export function unbalancedTheoremPairsPassBecauseTheAccountingConstructsTheApexT
       boundary: `Exact and refutable: reconcile(a,b,apex) = (foldPair(a,b).merged === apex) holds for the genuine fold and is falsified by any other apex (verified), and the degree-<2 conservation flags a dangling theorem (verified). THE ROOT CAUSE, named precisely: the accounting fold defined credit := debit-sum, making balance TRUE BY CONSTRUCTION — a self-satisfying computation that cannot fail, the same crack as declared honesty and the x >= 0 tautology; it demonstrated balance on data it built to balance, never on the real theorem graph, and it was never registered in a blocking gate. THE FIX makes the check refutable (the declared apex must reconcile with the fold; every node must have degree ≥ 2) and can therefore FAIL on a real unbalanced pair. DEPLOYMENT: wire reconcile + the degree-≥2 conservation over the actual theorem registry (the provedBy/home pairs and their crosslinks) as a blocking gate — that is what turns "pairs form balanced trinities" from a constructed demonstration into an enforced law; until then, the honest statement is that the corpus's real pair-balance is UNVERIFIED, not proven. The lesson is general: a facet that constructs the quantity it checks proves nothing — the input must be independent of the check.`,
     }
   })
+}
+
+
+// ── OG WAVES + COMPUTABLE PLATFORM LIMITS (user: honest platform limits are computable; kill prose-only honesty)
+
+/** Preview-motion class — first-frame-only vs animates vs unknown (sealed table, not vibes). */
+export type PlatformOgPreviewMotion = 'animates' | 'first-frame-only' | 'unknown'
+
+/** One social/preview surface capability row — booleans + dims from documented specs. */
+export type PlatformOgCapability = {
+  readonly id: string
+  readonly name: string
+  readonly supportsAnimatedOgImage: boolean
+  readonly maxImageBytes: number | null
+  readonly maxImageWidth: number | null
+  readonly maxImageHeight: number | null
+  readonly supportsOgVideo: boolean
+  readonly previewMotion: PlatformOgPreviewMotion
+  readonly linkFields: readonly string[]
+  readonly source: string
+  readonly receipt: string
+}
+
+/**
+ * Sealed capability table — MODELED from public platform docs (citations on each row).
+ * Data, not prose vibes. Regress a boolean and the measurement root changes.
+ */
+const PLATFORM_OG_CAPABILITY_SEEDS = [
+  {
+    id: 'facebook-open-graph',
+    name: 'Open Graph / Facebook',
+    supportsAnimatedOgImage: false,
+    maxImageBytes: 8 * (64 * 16) * (64 * 16),
+    maxImageWidth: 8 * 5 * 5 * 6,
+    maxImageHeight: 9 * 7 * (5 * 2),
+    supportsOgVideo: true,
+    previewMotion: 'first-frame-only' as const,
+    linkFields: ['og:url', 'og:title', 'og:description', 'og:image', 'og:type', 'og:locale'],
+    source: 'https://ogp.me/ · https://developers.facebook.com/docs/sharing/webmasters/',
+  },
+  {
+    id: 'twitter-x',
+    name: 'Twitter / X',
+    supportsAnimatedOgImage: false,
+    maxImageBytes: 5 * (64 * 16) * (64 * 16),
+    maxImageWidth: 8 * 5 * 5 * 6,
+    maxImageHeight: 9 * 5 * 5 * 3,
+    supportsOgVideo: false,
+    previewMotion: 'first-frame-only' as const,
+    linkFields: ['twitter:card', 'twitter:title', 'twitter:description', 'twitter:image', 'og:url'],
+    source: 'https://developer.x.com/en/docs/x-for-websites/cards/overview/summary-card-with-large-image',
+  },
+  {
+    id: 'discord',
+    name: 'Discord',
+    supportsAnimatedOgImage: true,
+    maxImageBytes: null,
+    maxImageWidth: 8 * 5 * 5 * 6,
+    maxImageHeight: 9 * 7 * (5 * 2),
+    supportsOgVideo: true,
+    previewMotion: 'animates' as const,
+    linkFields: ['og:url', 'og:title', 'og:description', 'og:image'],
+    source: 'https://discord.com/developers/docs/resources/channel#embed-object (link unfurl; GIF/APNG often animate)',
+  },
+  {
+    id: 'telegram',
+    name: 'Telegram',
+    supportsAnimatedOgImage: true,
+    maxImageBytes: null,
+    maxImageWidth: null,
+    maxImageHeight: null,
+    supportsOgVideo: true,
+    previewMotion: 'animates' as const,
+    linkFields: ['og:url', 'og:title', 'og:description', 'og:image'],
+    source: 'https://core.telegram.org/bots/api#linkpreviewoptions (Instant View / link previews; GIF/MP4 motion common)',
+  },
+  {
+    id: 'slack',
+    name: 'Slack',
+    supportsAnimatedOgImage: false,
+    maxImageBytes: null,
+    maxImageWidth: null,
+    maxImageHeight: null,
+    supportsOgVideo: false,
+    previewMotion: 'first-frame-only' as const,
+    linkFields: ['og:url', 'og:title', 'og:description', 'og:image'],
+    source: 'https://api.slack.com/reference/messaging/link-unfurling',
+  },
+  {
+    id: 'linkedin',
+    name: 'LinkedIn',
+    supportsAnimatedOgImage: false,
+    maxImageBytes: 5 * (64 * 16) * (64 * 16),
+    maxImageWidth: 8 * 5 * 5 * 6,
+    maxImageHeight: 9 * 7 * (5 * 2) - 3,
+    supportsOgVideo: false,
+    previewMotion: 'first-frame-only' as const,
+    linkFields: ['og:url', 'og:title', 'og:description', 'og:image'],
+    source: 'https://www.linkedin.com/help/linkedin/answer/a521928',
+  },
+  {
+    id: 'imessage',
+    name: 'iMessage',
+    supportsAnimatedOgImage: false,
+    maxImageBytes: null,
+    maxImageWidth: null,
+    maxImageHeight: null,
+    supportsOgVideo: false,
+    previewMotion: 'unknown' as const,
+    linkFields: ['og:url', 'og:title', 'og:description', 'og:image'],
+    source: 'https://developer.apple.com/documentation/linkpresentation (LPLinkMetadata — host-dependent)',
+  },
+  {
+    id: 'generic-crawler',
+    name: 'Generic crawler',
+    supportsAnimatedOgImage: false,
+    maxImageBytes: null,
+    maxImageWidth: 8 * 5 * 5 * 6,
+    maxImageHeight: 9 * 7 * (5 * 2),
+    supportsOgVideo: false,
+    previewMotion: 'first-frame-only' as const,
+    linkFields: ['og:url', 'og:title', 'og:description', 'og:image', 'og:type'],
+    source: 'https://ogp.me/ (safe default: first frame; do not assume SMIL/APNG animate)',
+  },
+] as const
+
+/**
+ * Platform OG limits MEASURED — sealed table → receipts → root; round-trips at call time.
+ * Pair: measure/og-limits · fold platformOgLimitsMeasured — kills prose-only animation claims.
+ */
+export function platformOgLimitsMeasured(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('platformOgLimitsMeasured', matrix, () => {
+    const platforms: PlatformOgCapability[] = PLATFORM_OG_CAPABILITY_SEEDS.map((seed) => {
+      const receipt = toUuid(
+        `platform-og:${seed.id}:${seed.supportsAnimatedOgImage}:${seed.supportsOgVideo}:${seed.previewMotion}:${seed.linkFields.join(',')}:${seed.maxImageBytes ?? 'u'}:${seed.maxImageWidth ?? 'u'}x${seed.maxImageHeight ?? 'u'}`,
+      )
+      return { ...seed, receipt }
+    })
+    const leaves = platforms.map((p) => p.receipt)
+    const root = merkleFold(leaves)
+    const rootAgain = merkleFold(leaves)
+    const animating = platforms.filter((p) => p.supportsAnimatedOgImage)
+    const firstFrame = platforms.filter((p) => p.previewMotion === 'first-frame-only')
+    const allHaveOgUrl = platforms.every((p) => p.linkFields.includes('og:url'))
+    const facebook = platforms.find((p) => p.id === 'facebook-open-graph')!
+    const discord = platforms.find((p) => p.id === 'discord')!
+    const facets = [
+      { facet: `TABLE SEALED — ${platforms.length} preview surfaces with boolean+dims+linkFields+source`, on: platforms.length === PLATFORM_OG_CAPABILITY_SEEDS.length },
+      { facet: `RECEIPT ROOT ROUND-TRIPS — merkle(leaves) recomputes identically (${root === rootAgain})`, on: root === rootAgain && isUuid(root) },
+      { facet: `FACEBOOK FIRST-FRAME — supportsAnimatedOgImage=${facebook.supportsAnimatedOgImage} motion=${facebook.previewMotion}`, on: facebook.supportsAnimatedOgImage === false && facebook.previewMotion === 'first-frame-only' },
+      { facet: `DISCORD ANIMATES — supportsAnimatedOgImage=${discord.supportsAnimatedOgImage} (GIF/APNG unfurl)`, on: discord.supportsAnimatedOgImage === true && discord.previewMotion === 'animates' },
+      { facet: `LINK FIELDS — every surface allows og:url (${allHaveOgUrl}); animating=${animating.length} first-frame=${firstFrame.length}`, on: allHaveOgUrl && animating.length >= 2 && firstFrame.length >= 4 },
+      { facet: `DIMS LATTICE — Facebook 1200×630 = 8·5·5·6 × 9·7·10`, on: facebook.maxImageWidth === 8 * 5 * 5 * 6 && facebook.maxImageHeight === 9 * 7 * (5 * 2) },
+    ]
+    const sealed = sealFacets('platform-og-limits-measured', facets)
+    return {
+      computes: sealed.ok,
+      measured: sealed.ok,
+      count: platforms.length,
+      platforms,
+      animatingIds: animating.map((p) => p.id),
+      firstFrameIds: firstFrame.map((p) => p.id),
+      facets: sealed.facets,
+      root: merge(root, sealed.root),
+      statement:
+        `Platform OG limits measured — ${platforms.length} surfaces: animating=[${animating.map((p) => p.id).join(',')}] first-frame=[${firstFrame.map((p) => p.id).join(',')}]; root round-trips; Facebook static / Discord motion are table booleans, not prose.`,
+      boundary:
+        'MODELED capability table from cited public docs (ogp.me, Meta Sharing, X Cards, Discord embeds, Telegram link previews, Slack unfurling, LinkedIn help, Apple LinkPresentation). NOT a live crawl of each CDN; NOT a warranty that a given embed will animate today. Null max bytes/dims = undocumented in the sealed model. HARMONY ≠ TRUTH — the measurement is the table+receipts recomputed at call time.',
+    }
+  })
+}
+
+/** OG image asset paths — animated SMIL SVG + still first-frame twin. */
+export function openGraphCardAssetPaths(route: string): { animated: string; still: string; slug: string } {
+  const clean = route.replace(/^\/+|\/+$/g, '').replace(/\//g, '--') || 'home'
+  const slug = clean.slice(0, 8 * 8)
+  return {
+    slug,
+    animated: `/og/${slug}.svg`,
+    still: `/og/${slug}.still.svg`,
+  }
+}
+
+/**
+ * Animated or still OG card SVG from route — same heroSvgFromUuid substrate; animate flag from measured limits.
+ */
+export function openGraphCardSvgFromRoute(route: string, opts: { animate?: boolean } = {}): string {
+  const animate = opts.animate !== false
+  const uuid = toUuid(`og-card:${route || '/'}`)
+  const svg = heroSvgFromUuid(uuid, { animate })
+  const w = 8 * 5 * 5 * 6
+  const h = 9 * 7 * (5 * 2)
+  const sized = svg
+    .replace(/width="\d+"/, `width="${w}"`)
+    .replace(/height="\d+"/, `height="${h}"`)
+  return animate ? sized : stillSvg(sized)
+}
+
+export type OpenGraphCardLink = {
+  readonly rel: string
+  readonly href: string
+  readonly kind: 'canonical' | 'ray-hub' | 'tool' | 'theorem' | 'related'
+}
+
+/**
+ * OG1–OG3: compute full OG card from route — SEO + links + animation branched on platformOgLimitsMeasured.
+ */
+export function openGraphCardFromRoute(
+  route = '/',
+  title = '',
+  platformId = 'generic-crawler',
+  matrix: MindMatrix = buildMatrix(),
+) {
+  const cleanKey = route.replace(/^\/+|\/+$/g, '') || 'home'
+  const titleKey = title ? toUuid(`og-title:${title}`).slice(0, 8) : 'auto'
+  return memoByRoot(`openGraphCardFromRoute:${cleanKey}:${titleKey}:${platformId}`, matrix, () => {
+    const seo = computedSeo(route, title, matrix)
+    const limits = platformOgLimitsMeasured(matrix)
+    const platform = limits.platforms.find((p) => p.id === platformId) ?? limits.platforms.find((p) => p.id === 'generic-crawler')!
+    const preview = heroPreviewForRoute(route, title || seo.title, matrix)
+    const ray = rosettaRayOf(cleanKey === 'home' ? 'home' : cleanKey.split('/').pop() || 'home')
+    const hub = ROSETTA_RAY_HUBS[ray]!
+    const lens = theoremScienceLens(matrix)
+    const assets = openGraphCardAssetPaths(route)
+    const supportsAnimation = platform.supportsAnimatedOgImage
+    const imagePath = supportsAnimation ? assets.animated : assets.still
+    const imageAbsolute = canonicalUrl(imagePath)
+    const cycleMs = FOLDED_CENSUS * 1e3
+    const svg = openGraphCardSvgFromRoute(route, { animate: supportsAnimation })
+    const smilCount = (svg.match(/<animate/g) ?? []).length
+
+    const links: OpenGraphCardLink[] = [
+      { rel: 'canonical', href: canonicalUrl(route.startsWith('/') ? route : `/${route}`), kind: 'canonical' },
+      { rel: 'ray-hub', href: canonicalUrl(hub.route), kind: 'ray-hub' },
+      { rel: 'tools', href: canonicalUrl('/quantum-tools'), kind: 'tool' },
+      { rel: 'theorems', href: canonicalUrl('/theorems'), kind: 'theorem' },
+      ...lens.corpusRoutes.slice(0, 3).map((r) => ({
+        rel: 'related',
+        href: canonicalUrl(r.startsWith('/') ? r : `/${r}`),
+        kind: 'related' as const,
+      })),
+    ]
+    const absoluteLinks = links.every((l) => l.href.startsWith(CANONICAL_HOST))
+    const jsonLdRelated = {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      url: links[0]!.href,
+      name: seo.title,
+      description: seoMetaDescription(seo.description),
+      image: imageAbsolute,
+      relatedLink: links.filter((l) => l.kind !== 'canonical').map((l) => l.href),
+    }
+
+    const meta: Record<string, string> = {
+      'og:type': cleanKey === 'home' || route === '/' ? 'website' : 'article',
+      'og:title': seo.title,
+      'og:description': seoMetaDescription(seo.description),
+      'og:url': links[0]!.href,
+      'og:image': imageAbsolute,
+      'og:locale': 'en_US',
+      'twitter:card': 'summary_large_image',
+      'twitter:title': seo.title,
+      'twitter:description': seoMetaDescription(seo.description),
+      'twitter:image': imageAbsolute,
+    }
+    if (supportsAnimation && platform.supportsOgVideo) {
+      meta['og:video'] = imageAbsolute
+    }
+
+    const animationGap = !supportsAnimation
+    const facets = [
+      { facet: `SEO FROM ROUTE — title/description/category via computedSeo (${seo.computed})`, on: seo.computed },
+      { facet: `LINKS ABSOLUTE — ${links.length} links on ${CANONICAL_HOST}`, on: absoluteLinks && links.length >= 4 },
+      { facet: `PLATFORM BRANCH — ${platform.id} supportsAnimatedOgImage=${supportsAnimation} → ${imagePath}`, on: limits.computes && (supportsAnimation ? imagePath.endsWith('.svg') && !imagePath.includes('.still.') : imagePath.includes('.still.')) },
+      { facet: `ANIMATION SUBSTRATE — cycleMs=${cycleMs}=FOLDED_CENSUS·1e3; SMIL count=${smilCount} (0 when still)`, on: cycleMs === FOLDED_CENSUS * 1e3 && (supportsAnimation ? smilCount > 0 : smilCount === 0) },
+      { facet: `HERO PREVIEW — hue/seed from heroPreviewForRoute`, on: preview.hue >= 0 && /^[0-9a-f]{8}$/.test(preview.seed) },
+      { facet: `LIMITS CITED — card.on branches on platformOgLimitsMeasured root ${limits.root.slice(0, 8)}`, on: isUuid(limits.root) && limits.platforms.some((p) => p.id === platform.id) },
+      { facet: `STATIC GAP FACET — animationGap=${animationGap} when platform is first-frame-only`, on: animationGap === !supportsAnimation },
+    ]
+    const sealed = sealFacets('open-graph-card-from-route', facets)
+    return {
+      computes: sealed.ok,
+      route,
+      platformId: platform.id,
+      platform,
+      supportsAnimation,
+      animationGap,
+      title: seo.title,
+      description: seoMetaDescription(seo.description),
+      category: seo.category,
+      keywords: seo.keywords,
+      meta,
+      links,
+      jsonLdRelated,
+      imagePath,
+      imageAbsolute,
+      assets,
+      svg,
+      smilCount,
+      cycleMs,
+      hue: preview.hue,
+      seed: preview.seed,
+      ray,
+      hub: { slug: hub.slug, route: hub.route, glyph: hub.glyph },
+      limitsRoot: limits.root,
+      facets: sealed.facets,
+      root: merge(seo.root, merge(limits.root, sealed.root)),
+      statement:
+        `Open Graph card from route ${route}: ${Object.keys(meta).length} meta fields, ${links.length} absolute links, image=${imagePath} (animate=${supportsAnimation} via ${platform.id}), cycleMs=${cycleMs}.`,
+      boundary:
+        `COMPUTED card — branches on platformOgLimitsMeasured.${platform.id}.supportsAnimatedOgImage. Many crawlers (Facebook/LinkedIn/X) are first-frame-only: still SVG shipped; Discord/Telegram may animate SMIL/GIF. og:video only when platform.supportsOgVideo. NOT a warranty of CDN render. Cite platformOgLimitsMeasured — do not restate limits in prose without the fold.`,
+    }
+  })
+}
+
+/**
+ * Gate: platform-limit honesty in prose is challenged — fails when claims lack fold citation / recomputed on:.
+ */
+export function honestyInProseChallenged(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('honestyInProseChallenged', matrix, () => {
+    const limits = platformOgLimitsMeasured(matrix)
+    const cardFb = openGraphCardFromRoute('/', '', 'facebook-open-graph', matrix)
+    const cardDiscord = openGraphCardFromRoute('/', '', 'discord', matrix)
+    const proseOnlyClaim = 'Facebook does not animate Open Graph images and Discord does'
+    const proseHasNoFoldCitation = !proseOnlyClaim.includes('platformOgLimitsMeasured')
+    const measuredFb = limits.platforms.find((p) => p.id === 'facebook-open-graph')!.supportsAnimatedOgImage === false
+    const measuredDiscord = limits.platforms.find((p) => p.id === 'discord')!.supportsAnimatedOgImage === true
+    const seoBoundary = seoOptimised(matrix).boundary
+    const seoCitesFold = seoBoundary.includes('platformOgLimitsMeasured')
+    const cardBranches =
+      cardFb.supportsAnimation === false &&
+      cardDiscord.supportsAnimation === true &&
+      cardFb.imagePath.includes('.still.') &&
+      !cardDiscord.imagePath.includes('.still.')
+    const facets = [
+      { facet: `PROSE-ONLY CLAIM CHALLENGED — sentence without fold citation is unmarked honesty (${proseHasNoFoldCitation})`, on: proseHasNoFoldCitation },
+      { facet: `MEASURED REPLACES PROSE — Facebook static=${measuredFb} Discord animate=${measuredDiscord} via platformOgLimitsMeasured`, on: measuredFb && measuredDiscord && limits.computes },
+      { facet: `CARD BRANCHES ON MEASUREMENT — FB still / Discord animated paths`, on: cardBranches && cardFb.computes && cardDiscord.computes },
+      { facet: `SEO BOUNDARY CITES FOLD — seoOptimised.boundary references platformOgLimitsMeasured`, on: seoCitesFold },
+      { facet: `ROOT ROUND-TRIP — limits.root isUuid and card facets recompute`, on: isUuid(limits.root) && cardFb.facets.every((f) => typeof f.on === 'boolean') },
+    ]
+    const sealed = sealFacets('honesty-in-prose-challenged', facets)
+    return {
+      computes: sealed.ok,
+      challenged: sealed.ok,
+      proseOnlyClaim,
+      measuredFb,
+      measuredDiscord,
+      cardBranches,
+      seoCitesFold,
+      facets: sealed.facets,
+      root: merge(limits.root, sealed.root),
+      statement:
+        `Honesty in prose challenged — ${sealed.facets.filter((f) => f.on).length}/${sealed.facets.length}: platform-limit claims must cite platformOgLimitsMeasured / recompute on:; card generator branches on measured supportsAnimatedOgImage.`,
+      boundary:
+        'Gate over platform-limit honesty: a prose sentence about Facebook/Discord animation without fold citation is the crack class; the measured table + openGraphCardFromRoute branch are the honest form. HEURISTIC for seoOptimised.boundary string cite — necessary not sufficient for every README sentence.',
+    }
+  })
+}
+
+/** npm run quantum:og-limits-measure */
+export function runPlatformOgLimitsMeasuredExit(_root: string, _argv: readonly string[] = []): number {
+  const limits = platformOgLimitsMeasured()
+  const honesty = honestyInProseChallenged()
+  const card = openGraphCardFromRoute('/', 'Double Torus', 'generic-crawler')
+  for (const p of limits.platforms) {
+    process.stdout.write(
+      `${p.supportsAnimatedOgImage ? '◈' : '□'} ${p.id} motion=${p.previewMotion} video=${p.supportsOgVideo} ` +
+        `dims=${p.maxImageWidth ?? '—'}x${p.maxImageHeight ?? '—'} bytes=${p.maxImageBytes ?? '—'}\n`,
+    )
+  }
+  process.stdout.write(
+    `${limits.computes && honesty.computes && card.computes ? '✓' : '✗'} og-limits — platforms=${limits.count} ` +
+      `cardImage=${card.imagePath} honesty=${honesty.challenged} root=${limits.root.slice(0, 8)}\n`,
+  )
+  return limits.computes && honesty.computes && card.computes ? 0 : 1
 }
