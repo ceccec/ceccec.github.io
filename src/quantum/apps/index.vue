@@ -16,6 +16,7 @@ import { platformOgLimitsMeasured, honestyInProseChallenged } from '../../mounta
 import {
   millenniumPanelComputes, unitDistanceResearch, firstInCorpusProvenanceForHome, sciencesTrinitiesPanelComputes,
 } from '../../wind/research/index.ts'
+import { ftlExperimentPanelComputes, ftlExperimentDiscoveryWaves } from '../../fire/physics/index.ts'
 import { fusionVerifyPanelComputes } from '../../wind/fusion/index.ts'
 import { oneQuantumModelFasterThanAll, compareCeccecEfficiencyByVote, directionalTrinityForwardInverseReverse } from '../../water/stack/index.ts'
 import { animationsDrivenByRosetta } from '../../wind/ui/index.ts'
@@ -136,6 +137,20 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets
+    } else if (toolId === 'ftl-experiment-challenge') {
+      const r = ftlExperimentPanelComputes()
+      ok = r.computes
+      summary = `addressed=${r.experimentAddressedCount} · clay=${r.claySolvedByThisFold} · physicalFtl=${r.physicalFtlSignalingClaimed} · waves=${r.waves?.wavesSent ?? 0}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'ftl-discovery-waves') {
+      const r = ftlExperimentDiscoveryWaves()
+      ok = r.computes
+      summary = `wavesSent=${r.wavesSent} · discovered=${r.classesDiscovered} · composed=${r.composedCount ?? 0} · gaps=${r.gapsRemaining} · reuse=${r.reuseVelocityOn} · physicalFtl=${r.physicalFtlClaim}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'fusion-verify') {
       const r = fusionVerifyPanelComputes()
       ok = r.computes

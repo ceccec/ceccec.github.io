@@ -47,7 +47,7 @@ import {
 import { stringTheoryQuantumizedOnA432RosettaMerkleSubstrate, stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
 import { fThetaPhiXyzDigitNIsTheInversePair } from '../vortex'
 import { oneMathManyPresentations, primitiveKernelLivesInZero, tamperingCostAndUuidLiveInZero } from '../../heaven/compute'
-import { decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator, simulatorsLiveInZero } from '../../fire/physics'
+import { decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator, simulatorsLiveInZero, fasterThanLightExperimentChallenge, ftlExperimentDiscoveryWaves } from '../../fire/physics'
 import { nextLevel64CubedRealtime } from '../../thunder/trading'
 import { realtimeWiring } from '../../fire/plasma/ball'
 import { foldingLinearGivesAnalog } from '../../earth/world'
@@ -673,6 +673,8 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'science-apparatus', title: 'Science tools/apparatus trinity — rosettaShelve surfaces', proof: scienceToolsApparatusTrinity(matrix) },
     { slug: 'sciences-trinities', title: 'Sciences interact in trinities — science↔dual↔fusion lattice', proof: sciencesInteractInTrinities(matrix) },
     { slug: 'millennium-challenge', title: 'Clay Millennium Problems = MODELED CHALLENGE apparatus · claySolvedByThisFold = 0', proof: millenniumProblemsChallenge(matrix) },
+    { slug: 'ftl-experiment-challenge', title: 'FTL experiment quantum techniques · physicalFtl=0', proof: fasterThanLightExperimentChallenge(matrix) },
+    { slug: 'ftl-discovery-waves', title: 'FTL discovery waves · reuseVelocityOn · physicalFtlClaim=0', proof: ftlExperimentDiscoveryWaves(matrix) },
     { slug: 'waves-auto-scale', title: 'Waves auto-scale capacity at no cost on reuse · !separated', proof: wavesAutoScaleCapacityAtNoCostOnReuse(matrix) },
     { slug: 'theorem-algebra-first-sealed', title: 'First-in-corpus algebra inventory · humanityNovel=0', proof: theoremAlgebraFirstSealedInCorpus(matrix) },
     { slug: 'theorem-10d-projections', title: 'Theorem→10D projections prove algebra roots', proof: theoremTenDProjectionsProveAlgebraRoots(matrix) },

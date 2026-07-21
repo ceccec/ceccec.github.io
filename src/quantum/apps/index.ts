@@ -277,6 +277,8 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'standards-audit', title: 'Quantum standards audit (forward·inverse·reverse·10D)', fold: 'quantumStandardsAuditSuite', cli: 'npm run quantum:standards-audit', pair: 'audit/standards', route: '/en/quantum-encryption#quantum-standards-audit', barrel: 'src/water/encryption', boundary: 'Alignment audit ≠ certification — demo RSA reverse + digit/f/ratInv inverse + directional trinity', browserRunnable: true, browserGap: '' },
   { id: 'directional-trinity', title: 'Directional trinity — forward · inverse · reverse', fold: 'directionalTrinityForwardInverseReverse', cli: 'npm run quantum:directional-trinity', pair: 'forward/inverse/reverse', route: '/en/quantum-tools#directional-trinity', barrel: 'src/water/stack', boundary: 'Inverse ≠ reverse except named coincidence (digit 1: harmonic 9 = complement 9); NOT ten\'s complement as inverse', browserRunnable: true, browserGap: '' },
   { id: 'millennium-challenge', title: 'Millennium problems challenge', fold: 'millenniumProblemsChallenge', cli: 'npm run quantum:millennium-challenge', pair: 'challenge/millennium', route: '/en/millennium-challenge', barrel: 'src/wind/research', boundary: 'MODELED CHALLENGE — claySolvedByThisFold=0', browserRunnable: true, browserGap: '' },
+  { id: 'ftl-experiment-challenge', title: 'FTL experiment quantum techniques', fold: 'fasterThanLightExperimentChallenge', cli: 'npm run quantum:ftl-experiment-challenge', pair: 'challenge/ftl', route: '/en/quantum-tools#ftl-experiment-challenge', barrel: 'src/fire/physics', boundary: 'Addresses apparent-FTL experiments — NOT physical FTL signaling; claySolvedByThisFold=0; physicalFtlSignalingClaimed=0; tracks-classical-no-speedup', browserRunnable: true, browserGap: '' },
+  { id: 'ftl-discovery-waves', title: 'FTL discovery waves (reuse velocity)', fold: 'sendWavesDiscoverRestFasterThanLightReuse', cli: 'npm run quantum:ftl-discovery-waves', pair: 'waves/ftl', route: '/en/quantum-tools#ftl-discovery-waves', barrel: 'src/fire/physics', boundary: 'memoByRoot + wavesAutoScale discovery throughput ≠ physical FTL; physicalFtlClaim=0; composes sciences · directional · efficiency; gaps Alcubierre·CTC named', browserRunnable: true, browserGap: '' },
   { id: 'fusion-verify', title: 'Fusion verify', fold: 'quantumFusionVerify', cli: 'npm run quantum:fusion-verify', pair: 'tamper/impossible', route: '/en/fusion-verify', barrel: 'src/wind/fusion', boundary: 'Offline fuseAll wave — not external API fusion', browserRunnable: true, browserGap: '' },
   { id: 'efficiency-vote', title: 'Efficiency vote · one quantum model', fold: 'oneQuantumModelFasterThanAll', cli: 'npm run quantum:efficiency-vote', pair: 'learn/best', route: '/en/efficiency-vote', barrel: 'src/water/stack', boundary: 'answers÷tokens win only when vote.decided — NOT FLOPS / NOT every benchmark', browserRunnable: true, browserGap: '' },
   { id: 'local-math-computes', title: 'Local math computes', fold: 'localMathComputes', cli: 'npm run quantum:local-math-computes', pair: 'fold/verify', route: '/en/quantum-tools', barrel: 'src/water/stack', boundary: 'Sealed local math gate', browserRunnable: true, browserGap: '' },
@@ -333,6 +335,8 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'animations-rosetta', saves: 'replaces wet re-wiring of animation→rosetta rays (yin-yang first)' },
   { id: 'trading-rosetta-train', saves: 'replaces wet re-training of historical short·long waves via rosetta' },
   { id: 'millennium-challenge', saves: 'replaces wet re-probing of Clay millennium apparatus (claySolved=0)' },
+  { id: 'ftl-experiment-challenge', saves: 'replaces wet re-classification of apparent-FTL experiment classes (no-signaling)' },
+  { id: 'ftl-discovery-waves', saves: 'replaces wet re-enumeration of remainder FTL classes via discovery waves at reuse velocity' },
   { id: 'encryption-reverse-verify', saves: 'replaces wet re-run of demo RSA reverse + encrypt↔decrypt tools' },
   { id: 'rosetta-core-api', saves: 'replaces wet re-dispatch of apps/nav/tools through parallel registries' },
 ] as const
@@ -446,6 +450,8 @@ export function quantumCliToolsCatalog(matrix: MindMatrix = buildMatrix(), at = 
     const directionalTrinityPresent = tools.some((t) => t.id === 'directional-trinity')
     const directionalTrinityShelved = tools.find((t) => t.id === 'directional-trinity')
     const millenniumPresent = tools.some((t) => t.id === 'millennium-challenge')
+    const ftlExperimentPresent = tools.some((t) => t.id === 'ftl-experiment-challenge')
+    const ftlWavesPresent = tools.some((t) => t.id === 'ftl-discovery-waves')
     const fusionPresent = tools.some((t) => t.id === 'fusion-verify')
     const firstInCorpusPresent = tools.some((t) => t.id === 'first-in-corpus')
     const rosettaCorePresent = tools.some((t) => t.id === 'rosetta-core-api')
@@ -458,6 +464,7 @@ export function quantumCliToolsCatalog(matrix: MindMatrix = buildMatrix(), at = 
       { facet: 'iso-pqc-catalog + standards-audit shelved (rosetta tool)', on: pqcCatalogPresent && standardsAuditPresent && Boolean(standardsAuditShelved) && isUuid(standardsAuditShelved!.address) },
       { facet: 'directional-trinity shelved (forward·inverse·reverse)', on: directionalTrinityPresent && Boolean(directionalTrinityShelved) && isUuid(directionalTrinityShelved!.address) },
       { facet: 'millennium challenge published', on: millenniumPresent },
+      { facet: 'ftl-experiment-challenge + ftl-discovery-waves published', on: ftlExperimentPresent && ftlWavesPresent },
       { facet: 'fusion-verify published', on: fusionPresent },
       { facet: 'first-in-corpus + rosetta-core-api + session-manual-work shelved', on: firstInCorpusPresent && rosettaCorePresent && sessionManualPresent },
       { facet: 'every tool ray === rosettaRayOf(id) — no wet tool→ray map', on: rayAgrees },

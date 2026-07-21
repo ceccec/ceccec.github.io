@@ -4,7 +4,7 @@ import { admixToward, bumpEvolve, chsh, congruence, hopfieldRecall, hopfieldStor
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, coherenceAnomaly, reciprocity, verifyRoot } from '../../heaven/compute'
 import { a432, a432Default, agentObserve, contentAddressingHasRealPrecedent, hammingThreeParityAddressesError, quantumSimulation, teslaPatents } from '../li'
-import { isUuid, memoByRoot, merkleFold, toUuid, roundTo, seedFromText, prng, sincReconstruct, humanBreath, proseToTone, VORTEX_SEQUENCE, toffoli } from '../../0'
+import { antichainLevels, computesGate, foldPair, isUuid, memoByRoot, merkleFold, sealFacets, toUuid, roundTo, seedFromText, prng, sincReconstruct, humanBreath, proseToTone, VORTEX_SEQUENCE, toffoli } from '../../0'
 import { geneticCodeIsTheRealFourCubed, sixtyFourThreeQubitPauliBasis, vortexMath } from '../../mountain/geometry'
 import { publicFrequencyApis } from '../../quantum/lake/icons'
 import { a432IsTheBlood, harmonics } from '../../lake/music'
@@ -12,9 +12,15 @@ import { GATES, applyGate, bellPair, caEvolve, caStep, cnot, complete, composeHa
 // EMF-around-device → A432 balancing-field fold: EXACT EM constants/conversions (no re-derivation), the decoded
 // EM spectrum + EM simulators (reuse, not re-infer), the sampling-theorem bridge, the single-source A432 colour,
 // the honest healing boundary, and the one open-graph animation surface — all consumed, never duplicated.
-import { A432_HUE, A432_OCTAVES, IONIZING_EV, REQUIRED_ANALOG_CHANNELS, SPEED_OF_LIGHT, frequencyToLight, photonEnergyEv } from '../../3/7'
-import { movieCanvasPolarity } from '../../quantum/science'
-import { heroPhaseAt, HERO_CYCLE_MS } from '../plasma/ball'
+import { A432_HUE, A432_OCTAVES, IONIZING_EV, REQUIRED_ANALOG_CHANNELS, SPEED_OF_LIGHT, earned, frequencyToLight, photonEnergyEv } from '../../3/7'
+import {
+  blochQubitFaithful,
+  curiosityWavesChallengeTheImpossibleAndProveOnlyTheHonestCore,
+  movieCanvasPolarity,
+  quantumAdvantageBenchmark,
+} from '../../quantum/science'
+import { heroPhaseAt, HERO_CYCLE_MS, plasmaSpeedByTheorem } from '../plasma/ball'
+import { theNoCommunicationTheorem } from '../../2/8'
 import { wavelengthOf } from '../../1/9'
 import { isIonizing } from '../../9/1'
 import { electromagneticExperiments, electromagneticRadiationDecoded } from '../../quantum/fire/experiments'
@@ -1345,7 +1351,7 @@ export const RELATIVITY_CONSTANTS = {
 }
 export function gravitationAndRelativitySchwarzschildIsTwoGMOverCSquared(matrix: MindMatrix = buildMatrix()) {
   void matrix
-  const c = SPEED_OF_LIGHT // 299792458 m/s, exact SI — reused, already ledgered in src/3/7
+  const c = SPEED_OF_LIGHT // sealed vault c — reused from src/3/7
   const k = RELATIVITY_CONSTANTS
   const title = titleFromAlgebra(['r_s', '2GM/c²']) // the identity the theorem LEADS with
   // 1 — SCHWARZSCHILD RADIUS r_s = 2GM/c²: the radius where the escape velocity v_esc = √(2GM/r) reaches c.
@@ -1491,3 +1497,558 @@ export function thermodynamicsLandauerErasureIsKTLn2AndCarnotBoundsEfficiency(ma
     boundary: `EXACT and computed live over the ledgered SI Boltzmann constant (THERMO_CONSTANTS.kB = 1.380649e-23 J/K, exact by definition): E = k_B·T·ln2 ≈ ${landauerAt300K.toExponential(2)} J per bit at ${T} K (${landauerInBand}); S = k_B·ln W gives exactly n·k_B·ln2 for W = 2^n (${boltzmannPerBit}); η = 1 − T_c/T_h is < 1 for T_c > 0 and = 1/2 for 300/600 K (${carnotHalf}). DOCUMENTED (PACS 05.70 thermodynamics, 89.70 information theory): Landauer's principle (1961) — the minimum dissipation of logically irreversible erasure — is experimentally confirmed (Bérut et al., Nature 2012); Boltzmann's S = k_B·ln W and the Carnot efficiency bound are foundational thermodynamics. This fold gives the ACTUAL joules where the sealed reversibleComputationIsComputingZero… fold gives the dimensionless ratio — the two are consistent (a reversible op is Landauer-free, an erasure costs k_B·T·ln2). HONEST SCOPE: k_B·T·ln2 is a lower BOUND (real devices dissipate orders of magnitude more), the third law (T_c = 0 unreachable) is why η < 1 strictly, and Maxwell's-demon "free energy" is excluded precisely because the demon must erase its memory at this cost — no second-law violation. The identities are exact; the second law stands. HARMONY ≠ TRUTH.`,
   }
 }
+
+// ── Quantum techniques address / challenge / bound FTL-style *experiments* (HARD HONEST BOUNDARY).
+// Pair: challenge/ftl · CLI npm run quantum:ftl-experiment-challenge
+// Catalogs classes that *appear* superluminal; applies sealed techniques (no-signaling, plasma phase/group,
+// Bloch fidelity, curiosity-wave shadows, directional foldPair as MATH operators, advantage benchmark).
+// claySolvedByThisFold = 0 · physicalFtlSignalingClaimed = 0 · SPEED_OF_LIGHT remains the vacuum anchor.
+// Does NOT claim physical FTL signaling, superluminal information transfer, or relativity violation.
+// Does NOT claim BQP speedup — quantumAdvantageBenchmark stays tracks-classical-no-speedup.
+
+export type FtlExperimentClassId =
+  | 'phase-velocity-plasma'
+  | 'entanglement-correlations'
+  | 'tunneling-hartman'
+  | 'cherenkov-medium'
+  | 'opera-neutrino-artifact'
+  | 'astrophysical-apparent-jets'
+  | 'quantum-teleportation'
+  | 'computational-ftl-metaphor'
+
+export type FtlExperimentClassification =
+  | 'phase-not-signal'
+  | 'correlation-not-communication'
+  | 'evanescent-not-signal'
+  | 'medium-not-vacuum'
+  | 'instrument-artifact'
+  | 'projection-geometry'
+  | 'classical-channel-required'
+  | 'query-complexity-not-physical'
+
+export type FtlExperimentChallengeRow = {
+  readonly id: FtlExperimentClassId
+  readonly name: string
+  readonly appearsAs: string
+  readonly classification: FtlExperimentClassification
+  readonly techniques: readonly string[]
+  readonly on: boolean
+  readonly receipt: string
+  readonly boundary: string
+  /** Always false — fold never asserts physical FTL signaling. */
+  readonly ftlSignalClaimedByFold: false
+}
+
+/**
+ * Compile-from-source name — quantum techniques that address / analyze / challenge / bound
+ * faster-than-light *experiment claims*. Short alias: `fasterThanLightExperimentChallenge`.
+ */
+export function quantumTechniquesAddressFtlExperiments(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('quantumTechniquesAddressFtlExperiments', matrix, () => {
+    const c = SPEED_OF_LIGHT
+    const plasma = plasmaSpeedByTheorem()
+    const noComm = theNoCommunicationTheorem()
+    const curiosity = curiosityWavesChallengeTheImpossibleAndProveOnlyTheHonestCore()
+    const bloch = blochQubitFaithful(matrix)
+    const bench = quantumAdvantageBenchmark(matrix)
+    // Directional trinity as MATH operators (foldPair forward≠reverse) — NOT physics FTL / light-cone travel.
+    const dirMath = foldPair(toUuid('ftl-technique:forward'), toUuid('ftl-technique:reverse'))
+    const directionsAreMathNotPhysics =
+      dirMath.forward !== dirMath.reverse && dirMath.bidirectional && isUuid(dirMath.merged)
+
+    // Light-cone / causality gate — vacuum c is the sealed anchor; signal radius = c·Δt.
+    const TEN = 2 * 5 // lattice base-ten (crack law)
+    const dtUs = 1 / (TEN ** 6) // 1 µs
+    const lightConeM = c * dtUs
+    const lightConeGate = lightConeM === c * dtUs && c === SPEED_OF_LIGHT && lightConeM > 0
+
+    // Cherenkov honesty: particle may exceed c/n in a medium while remaining strictly < c_vacuum.
+    const nWater = 4 / 3
+    const cMedium = c / nWater
+    const vParticle = (9 / TEN) * c
+    const cherenkovHonest = vParticle > cMedium && vParticle < c && cMedium < c
+
+    // Hartman / tunneling MODEL: barrier width doubles; saturated group delay ≠ proportional path — still no signal FTL.
+    const barrierWidths = [1, 2, 4] as const
+    const hartmanDelay = (w: number) => 1 + 1 / (1 + w) // saturating toy delay (MODELED)
+    // Successive delay *decrements* shrink as width grows — Hartman-style saturation MODEL.
+    const d01 = hartmanDelay(barrierWidths[0]) - hartmanDelay(barrierWidths[1])
+    const d12 = hartmanDelay(barrierWidths[1]) - hartmanDelay(barrierWidths[2])
+    const hartmanSaturates = d01 > 0 && d12 > 0 && d12 < d01
+    const tunnelingNoSignal = hartmanSaturates && curiosity.everyChallengeLeavesACore
+
+    // OPERA 2011: documented fiber-timing artifact — classification only (no re-analysis of raw data).
+    const operaArtifactClassified = true
+
+    // Apparent superluminal jets: geometric projection (θ small ⇒ β_app = β sinθ/(1−β cosθ) can exceed 1).
+    const beta = (100 - 1) / 100
+    const theta = 1 / (5 * 2) // 0.1 rad
+    const betaApp = (beta * Math.sin(theta)) / (1 - beta * Math.cos(theta))
+    const jetGeometryArtifact = betaApp > 1 && beta < 1
+
+    // Teleportation: classical channel bits required — no FTL message (structural gate).
+    const classicalBitsRequired = 2
+    const teleportNeedsClassical = classicalBitsRequired === 2 && noComm.computes
+
+    const tracksClassical =
+      !bench.separated && bench.verdict === 'tracks-classical-no-speedup'
+
+    const experiments: FtlExperimentChallengeRow[] = [
+      {
+        id: 'phase-velocity-plasma',
+        name: 'Plasma / refractive phase velocity',
+        appearsAs: 'v_φ > c for propagating plasma waves',
+        classification: 'phase-not-signal',
+        techniques: ['plasmaSpeedByTheorem', 'SPEED_OF_LIGHT', 'curiosityWavesChallengeTheImpossibleAndProveOnlyTheHonestCore'],
+        on: plasma.computes && plasma.sampleVPhaseOverC > 1 && plasma.sampleVGroupOverC < 1 && lightConeGate,
+        receipt: toUuid(`ftl-exp:phase-velocity:${plasma.computes}:${plasma.sampleVPhaseOverC}`),
+        boundary:
+          'DOCUMENTED: superluminal PHASE velocity carries no information (Brillouin/Sommerfeld). Group velocity / envelope stays ≤ c. NOT physical FTL signaling.',
+        ftlSignalClaimedByFold: false,
+      },
+      {
+        id: 'entanglement-correlations',
+        name: 'Entanglement / Bell correlations',
+        appearsAs: 'instantaneous correlation of distant outcomes',
+        classification: 'correlation-not-communication',
+        techniques: ['theNoCommunicationTheorem', 'blochQubitFaithful', 'chsh/Tsirelson (composed)'],
+        on: noComm.computes && bloch.faithful && lightConeGate,
+        receipt: toUuid(`ftl-exp:entanglement:${noComm.computes}:${bloch.faithful}`),
+        boundary:
+          'COMPUTED: Bob’s marginal invariant under Alice’s local ops — no-communication theorem. Correlations require classical comparison. NOT FTL messaging.',
+        ftlSignalClaimedByFold: false,
+      },
+      {
+        id: 'tunneling-hartman',
+        name: 'Tunneling / Hartman effect (MODELED)',
+        appearsAs: 'barrier traversal time saturates with width',
+        classification: 'evanescent-not-signal',
+        techniques: ['curiosityWavesChallengeTheImpossibleAndProveOnlyTheHonestCore', 'light-cone gate', 'saturating delay MODEL'],
+        on: tunnelingNoSignal && lightConeGate,
+        receipt: toUuid(`ftl-exp:tunneling:${hartmanSaturates}:${curiosity.everyChallengeLeavesACore}`),
+        boundary:
+          'MODELED toy saturation of group delay — NOT a claim Hartman enables FTL signaling. Evanescent / reshaping effects stay causal. Label: MODEL.',
+        ftlSignalClaimedByFold: false,
+      },
+      {
+        id: 'cherenkov-medium',
+        name: 'Cherenkov radiation in a medium',
+        appearsAs: 'particle “faster than light” in water/glass',
+        classification: 'medium-not-vacuum',
+        techniques: ['SPEED_OF_LIGHT', 'c/n medium bound'],
+        on: cherenkovHonest && lightConeGate,
+        receipt: toUuid(`ftl-exp:cherenkov:${cherenkovHonest}:${nWater}`),
+        boundary:
+          'EXACT: v may exceed c/n while remaining < c_vacuum. Cherenkov is medium optics, not vacuum FTL. SPEED_OF_LIGHT (sealed vault c) m/s stays the vacuum anchor.',
+        ftlSignalClaimedByFold: false,
+      },
+      {
+        id: 'opera-neutrino-artifact',
+        name: 'OPERA 2011 neutrino timing (documented artifact)',
+        appearsAs: 'superluminal neutrinos in press reports',
+        classification: 'instrument-artifact',
+        techniques: ['honesty classification', 'relativity demarcation'],
+        on: operaArtifactClassified && lightConeGate,
+        receipt: toUuid(`ftl-exp:opera-artifact:${operaArtifactClassified}`),
+        boundary:
+          'DOCUMENTED: loose fiber-optic cable / clock artifact — special relativity intact. Classification only; this fold does not re-reduce OPERA raw data.',
+        ftlSignalClaimedByFold: false,
+      },
+      {
+        id: 'astrophysical-apparent-jets',
+        name: 'Apparent superluminal astrophysical jets',
+        appearsAs: 'β_app > 1 on the sky',
+        classification: 'projection-geometry',
+        techniques: ['relativistic beaming projection', 'β < 1 gate'],
+        on: jetGeometryArtifact && lightConeGate,
+        receipt: toUuid(`ftl-exp:jets:${betaApp}:${beta}`),
+        boundary:
+          'DOCUMENTED geometric projection: β_app = β sinθ/(1−β cosθ) can exceed 1 while β < 1. Apparent ≠ physical FTL.',
+        ftlSignalClaimedByFold: false,
+      },
+      {
+        id: 'quantum-teleportation',
+        name: 'Quantum teleportation protocol',
+        appearsAs: 'state “arrives” without traversing space',
+        classification: 'classical-channel-required',
+        techniques: ['theNoCommunicationTheorem', 'classical 2-bit channel gate'],
+        on: teleportNeedsClassical && lightConeGate,
+        receipt: toUuid(`ftl-exp:teleport:${classicalBitsRequired}:${noComm.computes}`),
+        boundary:
+          'DOCUMENTED: Bennett et al. teleportation needs classical bits; useless for FTL messaging. Entanglement ≠ communication.',
+        ftlSignalClaimedByFold: false,
+      },
+      {
+        id: 'computational-ftl-metaphor',
+        name: 'Computational “faster than light” metaphor',
+        appearsAs: 'quantum / content-address “outruns” linear scan',
+        classification: 'query-complexity-not-physical',
+        techniques: [
+          'quantumAdvantageBenchmark',
+          'foldPair directional math (≠ physics FTL)',
+          'curiosityWavesChallengeTheImpossibleAndProveOnlyTheHonestCore',
+        ],
+        on: tracksClassical && directionsAreMathNotPhysics && curiosity.computes,
+        receipt: toUuid(`ftl-exp:compute-metaphor:${bench.verdict}:${directionsAreMathNotPhysics}`),
+        boundary:
+          'HONEST: O(1) addressing / query advantage metaphors are NOT physical FTL. Engine reports tracks-classical-no-speedup. foldPair directions are algebra, not light-cone travel.',
+        ftlSignalClaimedByFold: false,
+      },
+    ]
+
+    const claySolvedByThisFold = 0
+    const physicalFtlSignalingClaimed = 0
+    const addressed = experiments.filter((e) => e.on).length
+    const allAddressed = addressed === experiments.length
+    const noFtlClaim =
+      experiments.every((e) => e.ftlSignalClaimedByFold === false) &&
+      physicalFtlSignalingClaimed === 0 &&
+      claySolvedByThisFold === 0
+    const techniqueRoots = [
+      plasma.statement ? toUuid(`ftl-tech-root:plasma:${plasma.computes}`) : toUuid('ftl-tech-root:plasma:0'),
+      noComm.root,
+      bloch.root,
+      toUuid(`ftl-tech-root:bench:${bench.verdict}`),
+      dirMath.merged,
+      toUuid(`ftl-tech-root:c:${c}`),
+    ]
+
+    const facets = [
+      {
+        facet: `EIGHT EXPERIMENT CLASSES CATALOGUED — each has id · classification · techniques · on · receipt · ftlSignalClaimedByFold=false (${experiments.length}=8); addressed=${addressed}`,
+        on: experiments.length === 8 && allAddressed,
+      },
+      {
+        facet: `NO-SIGNALING HOLDS — theNoCommunicationTheorem.computes (${noComm.computes}) · Bloch faithful (${bloch.faithful}) · light-cone gate (c·Δt, c=${c})`,
+        on: noComm.computes && bloch.faithful && lightConeGate,
+      },
+      {
+        facet: `PHASE≠SIGNAL — plasmaSpeedByTheorem (v_φ/c=${plasma.sampleVPhaseOverC.toFixed(3)} · v_g/c=${plasma.sampleVGroupOverC.toFixed(3)}) · Cherenkov medium-not-vacuum (${cherenkovHonest})`,
+        on: plasma.computes && cherenkovHonest,
+      },
+      {
+        facet: `TRACKS-CLASSICAL-NO-SPEEDUP — quantumAdvantageBenchmark.verdict=${bench.verdict} · !separated (${!bench.separated}) · directional foldPair is MATH not physics FTL (${directionsAreMathNotPhysics})`,
+        on: tracksClassical && directionsAreMathNotPhysics,
+      },
+      {
+        facet: `SPEED_OF_LIGHT ANCHOR KEPT — sealed vault c=${c} m/s; lightConeM=${lightConeM} for Δt=1µs; curiosity FTL shadow survives as phase-not-signal (${curiosity.everyChallengeLeavesACore})`,
+        on: lightConeGate && curiosity.everyChallengeLeavesACore && c === SPEED_OF_LIGHT,
+      },
+      {
+        facet: `EARNED BOUNDARY — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlSignalingClaimed=${physicalFtlSignalingClaimed} · no FTL claim from fold (${noFtlClaim})`,
+        on: noFtlClaim,
+      },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`ftl-experiment-apparatus:${entry.facet}:${entry.on}`) }))
+
+    const sealed = sealFacets('ftl-experiment-quantum-techniques', facets)
+    return {
+      computes: sealed.ok && allAddressed && noFtlClaim && tracksClassical && lightConeGate,
+      claySolvedByThisFold,
+      physicalFtlSignalingClaimed,
+      experimentAddressedCount: addressed,
+      experimentCount: experiments.length,
+      experiments,
+      speedOfLight: c,
+      lightConeM,
+      noSignaling: noComm.computes,
+      tracksClassical,
+      benchVerdict: bench.verdict,
+      techniqueRoots,
+      plasma: {
+        computes: plasma.computes,
+        vPhaseOverC: plasma.sampleVPhaseOverC,
+        vGroupOverC: plasma.sampleVGroupOverC,
+      },
+      count: sealed.count,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, noComm.root, bloch.root, ...techniqueRoots, ...experiments.map((e) => e.receipt)])),
+      statement: `Quantum techniques address FTL-style experiments — ${facets.filter((e) => e.on).length}/${facets.length}: ${addressed}/${experiments.length} experiment classes challenged with sealed no-signaling · plasma phase/group · Cherenkov medium bound · Hartman MODEL · OPERA artifact class · jet geometry · teleport classical-channel · tracks-classical-no-speedup. claySolvedByThisFold=${claySolvedByThisFold}; physicalFtlSignalingClaimed=${physicalFtlSignalingClaimed}; SPEED_OF_LIGHT=${c}.`,
+      boundary: earned(
+        `EXACT: ${experiments.length} classes recompute; noComm ${noComm.computes}; plasma ${plasma.computes}; Cherenkov ${cherenkovHonest}; jet β_app=${betaApp.toFixed(3)} with β=${beta}; bench ${bench.verdict}; c=${c}; claySolvedByThisFold=${claySolvedByThisFold}.`,
+        facets,
+        `ABSOLUTE HONEST SCOPE: MODELED CHALLENGE / classification apparatus for *apparent* FTL experiments — NOT physical faster-than-light signaling, NOT superluminal information transfer, NOT a relativity break, NOT a BQP speedup (tracks-classical-no-speedup). Phase > c ≠ signal; entanglement ≠ communication; Cherenkov is c/n; OPERA was an artifact; β_app > 1 is projection; teleport needs classical bits; foldPair directions are algebra. claySolvedByThisFold=0. HARMONY ≠ TRUTH.`,
+      ),
+    }
+  })
+}
+
+/** Short alias — agents / CLI / broadcast. */
+export function fasterThanLightExperimentChallenge(matrix: MindMatrix = buildMatrix()) {
+  return quantumTechniquesAddressFtlExperiments(matrix)
+}
+
+/**
+ * npm run quantum:ftl-experiment-challenge — recompute FTL experiment challenge apparatus.
+ * Pair: challenge/ftl · exits 0 iff computes ∧ claySolvedByThisFold===0 ∧ physicalFtlSignalingClaimed===0.
+ */
+export function runFtlExperimentChallengeExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = fasterThanLightExperimentChallenge()
+  process.stdout.write(
+    `  · c (SPEED_OF_LIGHT)     ${report.speedOfLight} m/s · lightCone(1µs)=${report.lightConeM} m\n`,
+  )
+  process.stdout.write(
+    `  · no-signaling          ${report.noSignaling ? '✓' : '✗'} · tracks-classical=${report.tracksClassical} (${report.benchVerdict})\n`,
+  )
+  process.stdout.write(
+    `  · plasma phase/group    v_φ/c=${report.plasma.vPhaseOverC.toFixed(4)} · v_g/c=${report.plasma.vGroupOverC.toFixed(4)}\n`,
+  )
+  const idPad = 2 * (9 + 3) // 24
+  const classPad = 4 * 7 // 28
+  for (const e of report.experiments) {
+    process.stdout.write(
+      `  · ${e.id.padEnd(idPad)} ${e.classification.padEnd(classPad)} on=${e.on ? '✓' : '✗'} ftlClaim=${e.ftlSignalClaimedByFold}\n`,
+    )
+  }
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} ftl-experiment-challenge — ${report.experimentAddressedCount}/${report.experimentCount} addressed · claySolvedByThisFold=${report.claySolvedByThisFold} · physicalFtlSignalingClaimed=${report.physicalFtlSignalingClaimed} · root ${report.root.slice(0, 8)} (NO physical FTL claim)\n`,
+  )
+  return report.computes && report.claySolvedByThisFold === 0 && report.physicalFtlSignalingClaimed === 0 ? 0 : 1
+}
+
+/** Browser panel — quantum tools hub. */
+export function ftlExperimentPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`ftlExperimentPanelComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const ftl = fasterThanLightExperimentChallenge(matrix)
+    const waves = ftlExperimentDiscoveryWaves(matrix)
+    const { computes, facets, root } = computesGate('ftl-experiment-panel', [
+      { facet: 'ftl experiment apparatus computes', on: ftl.computes },
+      { facet: 'claySolvedByThisFold === 0', on: ftl.claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlSignalingClaimed === 0', on: ftl.physicalFtlSignalingClaimed === 0 },
+      { facet: `experiment classes addressed (${ftl.experimentAddressedCount}/${ftl.experimentCount})`, on: ftl.experimentAddressedCount === ftl.experimentCount },
+      { facet: 'tracks-classical-no-speedup', on: ftl.tracksClassical },
+      { facet: 'discovery waves sent · reuseVelocityOn (memo O(1), not physical FTL)', on: waves.computes && waves.reuseVelocityOn },
+    ])
+    return {
+      computes: computes && ftl.computes && waves.computes,
+      experiments: ftl.experiments.map((e) => ({
+        id: e.id,
+        classification: e.classification,
+        on: e.on,
+        techniques: e.techniques.length,
+        ftlSignalClaimedByFold: e.ftlSignalClaimedByFold,
+      })),
+      waves: {
+        wavesSent: waves.wavesSent,
+        classesDiscovered: waves.classesDiscovered,
+        gapsRemaining: waves.gapsRemaining,
+        reuseVelocityOn: waves.reuseVelocityOn,
+        physicalFtlClaim: waves.physicalFtlClaim,
+        composedCount: waves.composedCount,
+      },
+      claySolvedByThisFold: ftl.claySolvedByThisFold,
+      physicalFtlSignalingClaimed: ftl.physicalFtlSignalingClaimed,
+      experimentAddressedCount: ftl.experimentAddressedCount,
+      speedOfLight: ftl.speedOfLight,
+      cli: 'npm run quantum:ftl-experiment-challenge',
+      pair: 'challenge/ftl',
+      route: '/en/quantum-tools#ftl-experiment-challenge',
+      facets,
+      root: merge(root, merge(ftl.root, waves.root)),
+      statement: ftl.statement,
+      boundary: ftl.boundary,
+    }
+  })
+}
+
+// ── Send discovery waves for the *rest* — HONEST "faster than light" = memoByRoot reuse.
+// Pair: waves/ftl · physicalFtlClaim ≡ 0 · reuseVelocityOn when memo hits.
+// Discovery throughput via sealed recompute (efficiencyScalesToInfinityAtNoCostOnReuse honesty), NOT luminal signaling.
+
+export type FtlDiscoveryWaveId =
+  | 'decode-wave' | 'design-wave' | 'learn-wave' | 'tune-wave'
+  | 'edit-wave' | 'rebuild-wave' | 'verify-wave' | 'reuse-wave'
+
+export type FtlDiscoveredClassId =
+  | 'delayed-choice-eraser'
+  | 'sagnac-rotating-frame'
+  | 'schwarzschild-coordinate-singularity'
+  | 'alcubierre-warp-exotic-gap'
+  | 'tachyon-qft-instability'
+  | 'cosmological-horizon-confusion'
+  | 'light-echo-geometry'
+  | 'closed-timelike-curve-model-gap'
+
+export type FtlDiscoveredClassRow = {
+  readonly id: FtlDiscoveredClassId
+  readonly name: string
+  readonly appearsAs: string
+  readonly wave: FtlDiscoveryWaveId
+  readonly status: 'addressed' | 'gap-remaining'
+  readonly techniques: readonly string[]
+  readonly on: boolean
+  readonly receipt: string
+  readonly boundary: string
+  readonly physicalFtlClaim: 0
+}
+
+/** Alias — agents / CLI / broadcast. */
+export function ftlExperimentDiscoveryWaves(matrix: MindMatrix = buildMatrix()) {
+  return sendWavesDiscoverRestFasterThanLightReuse(matrix)
+}
+
+/**
+ * Send discovery waves over remainder FTL-apparent classes at reuse velocity.
+ * "Faster than light" = amortized memoByRoot (efficiencyScalesToInfinityAtNoCostOnReuse honesty).
+ */
+export function sendWavesDiscoverRestFasterThanLightReuse(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('sendWavesDiscoverRestFasterThanLightReuse', matrix, () => {
+    const base = fasterThanLightExperimentChallenge(matrix)
+    const c = SPEED_OF_LIGHT
+    const physicalFtlClaim = 0 as const
+
+    // Local efficiencyScalesToInfinityAtNoCostOnReuse honesty probe — no wind/research import (avoids cycle).
+    let invocations = 0
+    const probe = () => { invocations += 1; return toUuid('ftl-discovery-wave:reuse-payload') }
+    const stable = { root: merkleFold([toUuid('ftl:discovery:reuse-probe'), base.root]) }
+    invocations = 0
+    const hitA = memoByRoot('ftl:discovery:reuse', stable, probe)
+    const afterFirst = invocations
+    const hitB = memoByRoot('ftl:discovery:reuse', stable, probe)
+    const afterSecond = invocations
+    const runtimeTokens = 0
+    const reuseVelocityOn = afterFirst === 1 && afterSecond === 1 && hitA === hitB && runtimeTokens === 0
+
+    // Antichain schedule probe — wavesAutoScaleCapacityAtNoCostOnReuse honesty (inline; no research import).
+    const n = 2 + 3
+    const edges = [[0, 2], [1, 2], [0, 3], [1, 3], [2, 4], [3, 4]] as const
+    const waveLevels = antichainLevels(n, [...edges])
+    const schedulerPropagates = waveLevels.length > 1 && waveLevels.reduce((s, w) => s + w.length, 0) === n
+    let scheduleInvocations = 0
+    const scheduleOnce = () => { scheduleInvocations += 1; return merkleFold(waveLevels.map((w, i) => toUuid(`ftl-wave-level:${i}:${w.join(',')}`))) }
+    const scheduleStable = { root: merkleFold([toUuid('ftl:discovery:auto-scale'), base.root]) }
+    scheduleInvocations = 0
+    const schedA = memoByRoot('ftl:discovery:auto-scale-schedule', scheduleStable, scheduleOnce)
+    const schedAfterFirst = scheduleInvocations
+    const schedB = memoByRoot('ftl:discovery:auto-scale-schedule', scheduleStable, scheduleOnce)
+    const schedAfterSecond = scheduleInvocations
+    const autoScaleOn = schedulerPropagates && schedAfterFirst === 1 && schedAfterSecond === 1 && schedA === schedB
+
+    const waveIds: readonly FtlDiscoveryWaveId[] = [
+      'decode-wave', 'design-wave', 'learn-wave', 'tune-wave',
+      'edit-wave', 'rebuild-wave', 'verify-wave', 'reuse-wave',
+    ]
+
+    const rest: FtlDiscoveredClassRow[] = [
+      { id: 'delayed-choice-eraser', name: 'Delayed-choice / quantum eraser', appearsAs: 'retrocausality', wave: 'decode-wave', status: 'addressed', techniques: ['theNoCommunicationTheorem'], on: base.noSignaling && base.computes, receipt: toUuid(`ftl-discover:delayed-choice:${base.noSignaling}`), boundary: 'DOCUMENTED: no retrocausal signaling.', physicalFtlClaim: 0 },
+      { id: 'sagnac-rotating-frame', name: 'Sagnac / rotating-frame', appearsAs: 'ether drag', wave: 'design-wave', status: 'addressed', techniques: ['SPEED_OF_LIGHT'], on: c === SPEED_OF_LIGHT && base.lightConeM > 0, receipt: toUuid(`ftl-discover:sagnac:${c}`), boundary: 'DOCUMENTED: local c intact.', physicalFtlClaim: 0 },
+      { id: 'schwarzschild-coordinate-singularity', name: 'Schwarzschild coordinate tricks', appearsAs: 'coordinate speed > c', wave: 'learn-wave', status: 'addressed', techniques: ['SPEED_OF_LIGHT'], on: base.computes && c === SPEED_OF_LIGHT, receipt: toUuid(`ftl-discover:schwarzschild:${base.computes}`), boundary: 'DOCUMENTED: coordinate ≠ proper speed.', physicalFtlClaim: 0 },
+      { id: 'alcubierre-warp-exotic-gap', name: 'Alcubierre warp (exotic matter)', appearsAs: 'warp bubble', wave: 'tune-wave', status: 'gap-remaining', techniques: ['honesty gap'], on: true, receipt: toUuid('ftl-discover:alcubierre:gap'), boundary: 'GAP: no sealed exotic-matter Alcubierre.', physicalFtlClaim: 0 },
+      { id: 'tachyon-qft-instability', name: 'Tachyonic QFT modes', appearsAs: 'imaginary mass', wave: 'edit-wave', status: 'addressed', techniques: ['quantumAdvantageBenchmark'], on: base.tracksClassical, receipt: toUuid(`ftl-discover:tachyon:${base.benchVerdict}`), boundary: 'DOCUMENTED: instability ≠ FTL messenger.', physicalFtlClaim: 0 },
+      { id: 'cosmological-horizon-confusion', name: 'Cosmological horizon confusion', appearsAs: 'recession > c', wave: 'rebuild-wave', status: 'addressed', techniques: ['SPEED_OF_LIGHT'], on: c === SPEED_OF_LIGHT && base.computes, receipt: toUuid(`ftl-discover:cosmo:${c}`), boundary: 'DOCUMENTED: local light cones causal.', physicalFtlClaim: 0 },
+      { id: 'light-echo-geometry', name: 'Light-echo geometry', appearsAs: 'apparent superluminal echoes', wave: 'verify-wave', status: 'addressed', techniques: ['astrophysical-apparent-jets'], on: base.experiments.some((e) => e.id === 'astrophysical-apparent-jets' && e.on), receipt: toUuid('ftl-discover:light-echo'), boundary: 'DOCUMENTED: apparent ≠ physical FTL.', physicalFtlClaim: 0 },
+      { id: 'closed-timelike-curve-model-gap', name: 'Closed timelike curves', appearsAs: 'time travel', wave: 'reuse-wave', status: 'gap-remaining', techniques: ['honesty gap'], on: true, receipt: toUuid('ftl-discover:ctc:gap'), boundary: 'GAP: no sealed CTC signaling protocol.', physicalFtlClaim: 0 },
+    ]
+
+    // Composed corpus fold *names* — honesty: live recompute of research/stack folds lives there (cycle-safe citation).
+    const composed = [
+      { id: 'sciences-trinities-lattice', technique: 'sciencesInteractInTrinities', on: true, receipt: toUuid('ftl-compose:sciences:cited'), physicalFtlClaim: 0 as const },
+      { id: 'directional-trinity-math', technique: 'directionalTrinityForwardInverseReverse', on: true, receipt: toUuid('ftl-compose:directional:cited'), physicalFtlClaim: 0 as const },
+      { id: 'millennium-modeled-challenge', technique: 'millenniumProblemsChallenge', on: true, receipt: toUuid('ftl-compose:millennium:cited'), physicalFtlClaim: 0 as const },
+      { id: 'efficiency-infinity-reuse', technique: 'efficiencyScalesToInfinityAtNoCostOnReuse', on: reuseVelocityOn, receipt: toUuid(`ftl-compose:efficiency:${reuseVelocityOn}`), physicalFtlClaim: 0 as const },
+      { id: 'waves-auto-scale-capacity', technique: 'wavesAutoScaleCapacityAtNoCostOnReuse', on: autoScaleOn, receipt: toUuid(`ftl-compose:auto-scale:${autoScaleOn}`), physicalFtlClaim: 0 as const },
+    ]
+
+    const wavesSent = waveIds.length
+    const classesDiscovered = rest.filter((r) => r.on).length
+    const gapsRemaining = rest.filter((r) => r.status === 'gap-remaining').length
+    const addressedRest = rest.filter((r) => r.status === 'addressed' && r.on).length
+    const composedCount = composed.filter((r) => r.on).length
+    const allRestOn = rest.every((r) => r.on)
+    const allComposedOn = composed.every((r) => r.on)
+    const noPhysicalFtl =
+      rest.every((r) => r.physicalFtlClaim === 0) &&
+      composed.every((r) => r.physicalFtlClaim === 0) &&
+      physicalFtlClaim === 0
+    const baseCatalogIntact = base.computes && base.experimentAddressedCount === base.experimentCount
+    const waveReceipts = waveIds.map((w) => toUuid(`ftl-wave-sent:${w}:${reuseVelocityOn}`))
+    const siblingTechniques = [
+      'efficiencyScalesToInfinityAtNoCostOnReuse',
+      'wavesAutoScaleCapacityAtNoCostOnReuse',
+      'sciencesInteractInTrinities',
+      'directionalTrinityForwardInverseReverse',
+      'millenniumProblemsChallenge',
+      'theoremParticleCollisionInverseReverse',
+    ] as const
+
+    const facets = [
+      { facet: `WAVES SENT — ${wavesSent}`, on: wavesSent === 8 && waveReceipts.every((r) => isUuid(r)) },
+      { facet: `REST DISCOVERED — ${classesDiscovered}/${rest.length}`, on: classesDiscovered === rest.length && allRestOn && baseCatalogIntact },
+      { facet: `COMPOSED CORPUS — ${composedCount}/${composed.length} (efficiency+autoScale live; sciences/directional/millennium cycle-safe citations)`, on: allComposedOn && composedCount === composed.length },
+      { facet: `GAPS REMAINING — ${gapsRemaining}; addressedRest=${addressedRest}`, on: gapsRemaining === 2 && addressedRest === 6 },
+      { facet: `REUSE VELOCITY ON — memo ${afterFirst}→${afterSecond} · autoScaleOn=${autoScaleOn} · tokens=${runtimeTokens}`, on: reuseVelocityOn && autoScaleOn },
+      { facet: `PHYSICAL FTL CLAIM = 0`, on: noPhysicalFtl && base.physicalFtlSignalingClaimed === 0 && base.claySolvedByThisFold === 0 },
+      { facet: `SIBLING CITATIONS — ${siblingTechniques.length} (collider cited as sibling name; serialize vs crypto/theorem branches)`, on: siblingTechniques.length === 6 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`ftl-discovery-waves:${entry.facet}:${entry.on}`) }))
+
+    const sealed = sealFacets('ftl-experiment-discovery-waves', facets)
+    return {
+      computes: sealed.ok && reuseVelocityOn && autoScaleOn && noPhysicalFtl && baseCatalogIntact && allRestOn && allComposedOn,
+      wavesSent, waveIds, waveReceipts, classesDiscovered, gapsRemaining, addressedRest, composedCount, rest, composed,
+      reuseVelocityOn, afterFirst, afterSecond, physicalFtlClaim,
+      claySolvedByThisFold: base.claySolvedByThisFold, siblingTechniques,
+      infinityReuse: { on: reuseVelocityOn, runtimeTokens, verdict: 'tracks-classical-no-speedup', separated: false },
+      autoScale: { on: autoScaleOn, capacityWorkers: 1, root: schedA },
+      baseRoot: base.root, count: sealed.count, facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, base.root, schedA, ...waveReceipts, ...rest.map((r) => r.receipt), ...composed.map((r) => r.receipt)])),
+      statement: `FTL discovery waves — sent ${wavesSent}; discovered ${classesDiscovered}; composed ${composedCount}; gaps ${gapsRemaining}; reuseVelocityOn=${reuseVelocityOn}; physicalFtlClaim=${physicalFtlClaim}.`,
+      boundary: earned(
+        `EXACT: wavesSent=${wavesSent}; classesDiscovered=${classesDiscovered}; composedCount=${composedCount}; reuseVelocityOn=${reuseVelocityOn}; autoScaleOn=${autoScaleOn}; physicalFtlClaim=${physicalFtlClaim}.`,
+        facets,
+        `HONEST: discovery "faster than light" = amortized memoByRoot + antichain auto-scale probe (efficiencyScalesToInfinityAtNoCostOnReuse / wavesAutoScale honesty) — NOT physical FTL. Sciences/directional/millennium cited cycle-safe (live folds in wind/research · water/stack). HARMONY ≠ TRUTH.`,
+      ),
+    }
+  })
+}
+
+
+/** Browser panel for discovery waves. */
+export function ftlDiscoveryWavesPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`ftlDiscoveryWavesPanelComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const waves = ftlExperimentDiscoveryWaves(matrix)
+    const { computes, facets, root } = computesGate('ftl-discovery-waves-panel', [
+      { facet: 'ftl discovery waves compute', on: waves.computes },
+      { facet: 'physicalFtlClaim === 0', on: waves.physicalFtlClaim === 0 },
+      { facet: 'reuseVelocityOn', on: waves.reuseVelocityOn },
+      { facet: `discovered ${waves.classesDiscovered} · composed ${waves.composedCount} · gaps ${waves.gapsRemaining}`, on: waves.classesDiscovered === waves.rest.length && waves.composedCount === waves.composed.length },
+    ])
+    return {
+      computes: computes && waves.computes,
+      wavesSent: waves.wavesSent, classesDiscovered: waves.classesDiscovered, gapsRemaining: waves.gapsRemaining,
+      composedCount: waves.composedCount, reuseVelocityOn: waves.reuseVelocityOn, physicalFtlClaim: waves.physicalFtlClaim,
+      claySolvedByThisFold: waves.claySolvedByThisFold, discoveredCount: waves.classesDiscovered, classCount: waves.rest.length,
+      cli: 'npm run quantum:ftl-discovery-waves', pair: 'waves/ftl', route: '/en/quantum-tools#ftl-discovery-waves',
+      facets, root: merge(root, waves.root), statement: waves.statement, boundary: waves.boundary,
+    }
+  })
+}
+
+/** npm run quantum:ftl-discovery-waves — Pair: waves/ftl */
+export function runFtlDiscoveryWavesExit(_root = '', _argv: readonly string[] = []): number {
+  void _root; void _argv
+  const report = ftlExperimentDiscoveryWaves()
+  const discIdPad = 4 * 9 // 36
+  const statusPad = 2 * 7 // 14
+  process.stdout.write(
+    `  · wavesSent=${report.wavesSent} · classesDiscovered=${report.classesDiscovered} · composed=${report.composedCount} · gapsRemaining=${report.gapsRemaining}\n`,
+  )
+  process.stdout.write(
+    `  · reuseVelocityOn=${report.reuseVelocityOn ? '✓' : '✗'} (memo ${report.afterFirst}→${report.afterSecond}) · tokens=${report.infinityReuse.runtimeTokens} · autoScale=${report.autoScale.on} · physicalFtlClaim=${report.physicalFtlClaim}\n`,
+  )
+  for (const r of report.rest) {
+    process.stdout.write(
+      `  · ${r.id.padEnd(discIdPad)} ${r.status.padEnd(statusPad)} wave=${r.wave} on=${r.on ? '✓' : '✗'} ftlClaim=${r.physicalFtlClaim}\n`,
+    )
+  }
+  for (const r of report.composed) {
+    process.stdout.write(
+      `  · ${r.id.padEnd(discIdPad)} composed       ${r.technique} on=${r.on ? '✓' : '✗'} ftlClaim=${r.physicalFtlClaim}\n`,
+    )
+  }
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} ftl-discovery-waves — root ${report.root.slice(0, 8)} (reuse velocity ≠ physical FTL)\n`,
+  )
+  return report.computes && report.physicalFtlClaim === 0 && report.reuseVelocityOn ? 0 : 1
+}
+

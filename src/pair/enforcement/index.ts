@@ -72,6 +72,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'animations/rosetta',
   'train/rosetta',
   'challenge/millennium',
+  'challenge/ftl',
+  'waves/ftl',
   'first/corpus',
   'session/tools',
   'string/quantumize',

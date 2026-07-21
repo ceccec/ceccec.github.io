@@ -1370,6 +1370,14 @@ export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatr
         boundary:
           'First sealed / derived in this content-addressed corpus; priority-date = seal root. NOT global priority. Capacity = reuse-deepen only.',
       },
+      {
+        theorem: 'quantum techniques address FTL-style experiments + discovery waves at reuse velocity',
+        algebraFold: 'fasterThanLightExperimentChallenge',
+        home: 'src/fire/physics',
+        kind: 'novel-corpus',
+        boundary:
+          'First sealed in this corpus; NOT global priority. physicalFtlSignalingClaimed=0; reuseVelocityOn ≠ physical FTL.',
+      },
     ]
 
     const classicalSeed: readonly Omit<TheoremAlgebraNoveltyRow, 'algebraRoot' | 'ray' | 'receipt' | 'novelty'>[] = [
@@ -1427,6 +1435,8 @@ export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatr
         case 'stringTheoryAlgebraDecoded': return stringAlgebra.root
         case 'wavesAutoScaleCapacityAtNoCostOnReuse':
           return toUuid('waves-auto-scale:capacity-at-no-cost-on-reuse') // stable seal id — avoids self-call while W1 memoises
+        case 'fasterThanLightExperimentChallenge':
+          return toUuid('ftl-experiment-quantum-techniques:apparatus')
         case 'discoveredTheoremsWaveTwentyNine': return toUuid(`classical:basel:${fold}`)
         case 'theSevenMillenniumProblemsDefinedFormallyUnclaimed': return toUuid(`classical:poincare-external:${fold}`)
         case 'quantumAdvantageBenchmark': return toUuid(`classical:qm-sim:${fold}`)
@@ -1647,6 +1657,7 @@ const FIRST_IN_CORPUS_ONE_LINER: Record<string, string> = {
   efficiencyScalesToInfinityAtNoCostOnReuse: 'memoByRoot hit O(1) · tokens=0 · !separated — amortized reuse only',
   stringTheoryQuantumizedOnA432RosettaMerkleSubstrate: 'A432/rosetta/merkle substrate probes — physics UNCONFIRMED',
   wavesAutoScaleCapacityAtNoCostOnReuse: 'wave schedule capacity deepens on content-addressed reuse only',
+  fasterThanLightExperimentChallenge: 'apparent-FTL experiment challenge + discovery waves · physicalFtlClaim=0 · reuseVelocityOn',
 }
 
 /** Site-relative routes (no /en/ prefix — VitePress locale + dead-link gate). Hash stays on-home. */
@@ -1657,6 +1668,7 @@ const FIRST_IN_CORPUS_ROUTE: Record<string, string> = {
   efficiencyScalesToInfinityAtNoCostOnReuse: '/efficiency-vote',
   stringTheoryQuantumizedOnA432RosettaMerkleSubstrate: '/millennium-challenge',
   wavesAutoScaleCapacityAtNoCostOnReuse: '#first-in-corpus',
+  fasterThanLightExperimentChallenge: '/quantum-tools#ftl-experiment-challenge',
 }
 
 /**
