@@ -75,6 +75,7 @@ computes=true · fourWayCounterRotating=true · claySolvedByThisFold=0 · physic
 
 - Routes: [research](https://ceccec.psg.bg/research) · [proofs](https://ceccec.psg.bg/proofs) · hero.svg 4-dir · fold `earthRealisedByComputingPolesAsPyramid`
 - Receipt: `954cee5d` · fold `earthRealisedByComputingPolesAsPyramid` · claySolvedByThisFold=0 · physicalFtlClaim=0.
+- Compose: N↔S × E↔W pole-cross → PQC signature + sealed certificate *structures* — `polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates` · CLI `npm run quantum:poles-cross-pqc` · [poles-cross-pqc](https://ceccec.psg.bg/quantum-encryption#poles-cross-pqc) · NOT CA/PKI · certified=false.
 
 ## Clay challenges are computable
 

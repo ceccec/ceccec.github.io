@@ -228,6 +228,48 @@ runTool()
         <p class="encryption-tools__boundary">{{ panel.localMagnitudes?.boundary }}</p>
       </section>
       <UiSeparator />
+      <section id="poles-cross-pqc" aria-label="Poles cross signatures for PQC certificates">
+        <h3>Poles → cross → PQC certificate structures</h3>
+        <UiBadge :variant="panel.polesCross?.computes ? 'default' : 'outline'">
+          cross={{ panel.polesCross?.polesFormCrossSignatures ?? '—' }}
+          · merkabaRosetta={{ panel.polesCross?.crossIsPartOfMerkabaRosetta ?? '—' }}
+          · angle90via60={{ panel.polesCross?.angle90ReachableThrough60 ?? '—' }}
+        </UiBadge>
+        <UiBadge variant="outline">
+          tips={{ panel.polesCross?.tipSignatures?.length ?? 0 }}
+          · certStructs={{ panel.polesCross?.certificateStructures?.length ?? 0 }}
+          · allDir={{ panel.polesCross?.allDirectionsCross ?? '—' }}
+        </UiBadge>
+        <UiBadge variant="outline">certified=false · NOT CA/PKI · clay={{ panel.polesCross?.claySolvedByThisFold ?? 0 }}</UiBadge>
+        <table v-if="panel.polesCross?.tipSignatures?.length" class="encryption-tools__table">
+          <thead>
+            <tr><th>Pole</th><th>Bearing</th><th>Spin</th><th>Signature</th></tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in panel.polesCross.tipSignatures" :key="t.pole">
+              <td>{{ t.pole }}</td>
+              <td>{{ t.bearing }}°</td>
+              <td>{{ t.spinSign > 0 ? '+ω' : '−ω' }}</td>
+              <td><code>{{ t.signature.slice(0, 12) }}…</code></td>
+            </tr>
+          </tbody>
+        </table>
+        <table v-if="panel.polesCross?.certificateStructures?.length" class="encryption-tools__table">
+          <thead>
+            <tr><th>Id</th><th>Role</th><th>Maps to PQC</th><th>PKI?</th></tr>
+          </thead>
+          <tbody>
+            <tr v-for="c in panel.polesCross.certificateStructures" :key="c.id">
+              <td><code>{{ c.id }}</code></td>
+              <td>{{ c.role }}</td>
+              <td>{{ c.mapsToPqc }}</td>
+              <td>{{ c.industryPki }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="encryption-tools__boundary">{{ panel.polesCross?.boundary }}</p>
+      </section>
+      <UiSeparator />
       <section id="iso-pqc-catalog" aria-label="ISO NIST PQC catalog">
         <h3>ISO / NIST PQC catalog</h3>
         <p class="encryption-tools__meta">
