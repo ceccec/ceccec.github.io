@@ -2653,6 +2653,8 @@ export function agentDislikesWaveMusicSomethingNotToLike(matrix: MindMatrix = bu
   return memoByRoot('agentDislikesWaveMusicSomethingNotToLike', matrix, () => {
     const music = playAgentsTheMusicOfTheWave(matrix)
     const mass = shouldSpawnSubagent('explore everything search entire repo')
+    const known = discoverFromSealedFold('manualAgentsBehaveLikeWaves', 0, matrix)
+    const ghostProbe = incompleteRevelation({ foldId: 'ghost-unknown-fold', reason: 'dislike-probe' }, matrix)
     const somethingNotToLike = [
       !music.plays ? 'wave/tune facets open — fix pairs/schedule before rebuild' : '',
       mass.spawn ? 'mass spawn attempted — wet-linear grind' : '',
@@ -2660,6 +2662,8 @@ export function agentDislikesWaveMusicSomethingNotToLike(matrix: MindMatrix = bu
     const facets = [
       { facet: 'resistance is diagnostic — inspect gaps, do not override wave', on: true },
       { facet: 'mass explore-everything spawn refused', on: !mass.spawn },
+      { facet: 'known sealed fold discovers offline — discoverFromSealedFold (nothing/moves)', on: known.discovers && known.wetMotion === false },
+      { facet: 'incomplete revelation inspected — incompleteRevelation() · overrideWave=false', on: ghostProbe.incomplete && ghostProbe.overrideWave === false },
       { facet: 'when music plays, nothing left to dislike in schedule', on: music.plays && somethingNotToLike.length === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`wave-dislike:${entry.facet}:${entry.on}`) }))
     return {
@@ -2667,10 +2671,12 @@ export function agentDislikesWaveMusicSomethingNotToLike(matrix: MindMatrix = bu
       somethingNotToLike,
       overrideWave: false,
       music,
+      discoverFromSealedFold: known,
+      incompleteRevelation: ghostProbe,
       facets,
-      root: merkleFold([music.root, ...facets.map((entry) => entry.receipt)]),
+      root: merkleFold([music.root, known.root, ghostProbe.root, ...facets.map((entry) => entry.receipt)]),
       statement: `Agent dislikes wave music — diagnostic only: ${somethingNotToLike.length || 0} findings; never override the wave.`,
-      boundary: 'Dislike = inspect gaps/compliance/spawn — not a license for wet-linear grind or parallel docs:build.',
+      boundary: 'Dislike = inspect gaps/compliance/spawn/incomplete revelation — not a license for wet-linear grind or parallel docs:build.',
     }
   })
 }
@@ -2736,6 +2742,176 @@ export function manualAgentsBehaveLikeWaves(matrix: MindMatrix = buildMatrix()) 
 
 /** Alias — skill ceccec-build-waves / agentModelBuildsItselfInWaves(). */
 export const agentModelBuildsItselfInWaves = manualAgentsBehaveLikeWaves
+
+/**
+ * Sealed fold ids agents may discover offline — content-addressed catalog, no wet motion.
+ * Pair: nothing/moves · AGENTS.md discoverFromSealedFold.
+ */
+export const SEALED_DISCOVER_FOLD_IDS = [
+  'timeoutDryRefactorToQuantum',
+  'manualAgentsBehaveLikeWaves',
+  'agentModelBuildsItselfInWaves',
+  'commandsSavedInQuantumPairs',
+  'sessionManualWorkAsQuantumTools',
+  'dryCleanIsDiamondAndCrystal',
+  'discoverFromSealedFold',
+  'incompleteRevelation',
+  'agentDislikesWaveMusicSomethingNotToLike',
+  'playAgentsTheMusicOfTheWave',
+  'agentDefaultsFoldIntoHarmony',
+  'agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath',
+] as const
+
+/**
+ * Offline discovery from a sealed fold id — idempotent, no wet motion.
+ * Pair: nothing/moves · then docs:build reveals via /agents.json.
+ * On unknown foldId → incomplete; compose incompleteRevelation() + timeout/dry-refactor.
+ */
+export function discoverFromSealedFold(foldId: string, at = 0, matrix: MindMatrix = buildMatrix()) {
+  const bucket = Math.floor(at / (100 * 5 * 2))
+  return memoByRoot(`discoverFromSealedFold:${foldId}:${bucket}`, matrix, () => {
+    const pair = foldPair(toUuid('cmd:nothing'), toUuid('cmd:moves'))
+    const known = (SEALED_DISCOVER_FOLD_IDS as readonly string[]).includes(foldId)
+    const address = toUuid(`sealed-fold:${foldId}`)
+    const wetMotion = false as const
+    const discovers = known && isUuid(address) && pair.bidirectional && pair.forward !== pair.reverse && wetMotion === false
+    const incomplete = !known
+    const facets = [
+      { facet: 'offline discovery from sealed fold id — no wet motion', on: wetMotion === false && isUuid(address) },
+      { facet: 'nothing/moves pair bidirectional', on: pair.bidirectional && pair.forward !== pair.reverse },
+      { facet: 'idempotent — same foldId+at → same root', on: isUuid(address) && Number.isFinite(bucket) },
+      { facet: known ? `foldId ${foldId} known in sealed catalog` : `foldId ${foldId} unknown — incomplete revelation`, on: true },
+      { facet: 'claySolvedByThisFold=0 — discovery ≠ Clay Millennium', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`nothing-moves:${foldId}:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets(`discover-from-sealed-fold:${foldId}`, facets)
+    return {
+      computes: sealed.ok && discovers === known && wetMotion === false,
+      discovers,
+      incomplete,
+      foldId,
+      at: bucket,
+      known,
+      wetMotion,
+      address,
+      catalog: SEALED_DISCOVER_FOLD_IDS,
+      catalogCount: SEALED_DISCOVER_FOLD_IDS.length,
+      pair: 'nothing/moves' as const,
+      cli: 'npm run quantum:nothing-moves',
+      route: '/en/quantum-tools#nothing-moves',
+      count: sealed.count,
+      facets: sealed.facets,
+      root: merkleFold([address, pair.merged, toUuid(`at:${bucket}`), sealed.root]),
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+      physicalFtlClaim: 0 as const,
+      statement: discovers
+        ? `discoverFromSealedFold(${foldId}) — offline sealed discovery; wetMotion=false; pair=nothing/moves; clay=0.`
+        : `discoverFromSealedFold(${foldId}) — unknown fold id; incomplete revelation → incompleteRevelation() + timeout/dry-refactor.`,
+      boundary:
+        'Idempotent content-addressed lookup of sealed fold ids — NOT filesystem wet motion, NOT Clay solved, NOT physical FTL. Unknown ids are incomplete revelations, not inventable wet folds.',
+    }
+  })
+}
+
+/**
+ * Incomplete revelation receipt — fold partial knowledge into sealed src, then timeout/dry-refactor.
+ * Composes with nothing/moves · fold/cleanup · timeout/dry-refactor. Never overrides the wave.
+ */
+export function incompleteRevelation(
+  opts: { readonly foldId?: string; readonly reason?: string; readonly at?: number } = {},
+  matrix: MindMatrix = buildMatrix(),
+) {
+  const foldId = opts.foldId ?? 'unspecified'
+  const reason = opts.reason ?? 'revelation-gap'
+  const at = opts.at ?? 0
+  const bucket = Math.floor(at / (100 * 5 * 2))
+  return memoByRoot(`incompleteRevelation:${foldId}:${reason}:${bucket}`, matrix, () => {
+    const discovery = discoverFromSealedFold(foldId, at, matrix)
+    const timeoutPair = foldPair(toUuid('cmd:timeout'), toUuid('cmd:dry-refactor'))
+    const cleanupPair = foldPair(toUuid('cmd:fold'), toUuid('cmd:cleanup'))
+    const nothingPair = foldPair(toUuid('cmd:nothing'), toUuid('cmd:moves'))
+    const incomplete = discovery.incomplete
+    const overrideWave = false as const
+    const facets = [
+      { facet: incomplete ? 'incomplete revelation detected (unknown sealed fold id)' : 'fold known — revelation complete at this probe', on: true },
+      { facet: 'next = fold sealed src — not wet grind', on: nothingPair.bidirectional },
+      { facet: 'compose timeout/dry-refactor pair', on: timeoutPair.bidirectional && timeoutPair.forward !== timeoutPair.reverse },
+      { facet: 'compose fold/cleanup pair for surgical cleanup', on: cleanupPair.bidirectional && cleanupPair.forward !== cleanupPair.reverse },
+      { facet: 'does not override wave — diagnostic only', on: overrideWave === false },
+      { facet: 'claySolvedByThisFold=0 — incomplete ≠ Clay Millennium', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`incomplete-revelation:${foldId}:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets(`incomplete-revelation:${foldId}`, facets)
+    return {
+      computes: sealed.ok && overrideWave === false,
+      incomplete,
+      overrideWave,
+      foldId,
+      reason,
+      at: bucket,
+      discovery,
+      next: {
+        fold: 'incompleteRevelation()',
+        discover: 'discoverFromSealedFold()',
+        refactor: 'timeout/dry-refactor',
+        cleanup: 'fold/cleanup',
+        seal: ['check:types', 'docs:build'] as const,
+      },
+      pair: 'nothing/moves' as const,
+      cli: 'npm run quantum:incomplete-revelation',
+      route: '/en/quantum-tools#incomplete-revelation',
+      count: sealed.count,
+      facets: sealed.facets,
+      root: merkleFold([discovery.root, timeoutPair.merged, cleanupPair.merged, sealed.root]),
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+      physicalFtlClaim: 0 as const,
+      statement:
+        `incompleteRevelation(${foldId}) — revelation incomplete (${reason}); fold sealed src → timeout/dry-refactor → one sequential docs:build. clay=0.`,
+      boundary:
+        'Diagnostic receipt for AGENTS ghosts — never invents wet folds, never overrides waves, never claims Clay. Compose with timeoutDryRefactorToQuantum on process timeout.',
+    }
+  })
+}
+
+/** npm run quantum:nothing-moves — discoverFromSealedFold exit (argv[0]=foldId optional). */
+export function runDiscoverFromSealedFoldExit(_root = '', argv: readonly string[] = []): number {
+  void _root
+  const foldId = argv[0] && !argv[0].startsWith('-') ? argv[0] : 'manualAgentsBehaveLikeWaves'
+  const report = discoverFromSealedFold(foldId)
+  process.stdout.write(
+    `${report.discovers ? '✓' : '✗'} discoverFromSealedFold(${foldId}) — known=${report.known} wetMotion=${report.wetMotion} ` +
+      `incomplete=${report.incomplete} clay=${report.claySolvedByThisFold} root=${report.root.slice(0, 2 * 4)}\n`,
+  )
+  process.stdout.write(`  · pair=${report.pair} catalog=${report.catalogCount} · ${report.statement}\n`)
+  for (const facet of report.facets) {
+    process.stdout.write(`  ${facet.on ? '·' : '✗'} ${facet.facet}\n`)
+  }
+  process.stdout.write(`  · boundary: ${report.boundary}\n`)
+  if (report.incomplete) {
+    const gap = incompleteRevelation({ foldId, reason: 'cli-unknown-fold' })
+    process.stdout.write(
+      `  → incompleteRevelation — next=${gap.next.refactor} + ${gap.next.cleanup}; overrideWave=${gap.overrideWave}\n`,
+    )
+  }
+  return report.computes && report.claySolvedByThisFold === 0 ? 0 : 1
+}
+
+/** npm run quantum:incomplete-revelation — incompleteRevelation exit. */
+export function runIncompleteRevelationExit(_root = '', argv: readonly string[] = []): number {
+  void _root
+  const foldId = argv[0] && !argv[0].startsWith('-') ? argv[0] : 'ghost-unknown-fold'
+  const report = incompleteRevelation({ foldId, reason: 'cli-probe' })
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} incompleteRevelation(${foldId}) — incomplete=${report.incomplete} ` +
+      `overrideWave=${report.overrideWave} clay=${report.claySolvedByThisFold} root=${report.root.slice(0, 2 * 4)}\n`,
+  )
+  process.stdout.write(`  · next: ${report.next.fold} → ${report.next.refactor} → ${report.next.seal.join(' → ')}\n`)
+  for (const facet of report.facets) {
+    process.stdout.write(`  ${facet.on ? '·' : '✗'} ${facet.facet}\n`)
+  }
+  process.stdout.write(`  · boundary: ${report.boundary}\n`)
+  return report.computes && report.incomplete && report.claySolvedByThisFold === 0 ? 0 : 1
+}
 
 /** npm run quantum:manual-agents-waves — exit 0 iff manualAgentsBehaveLikeWaves computes. */
 export function runManualAgentsBehaveLikeWavesExit(_root = '', _argv: readonly string[] = []): number {

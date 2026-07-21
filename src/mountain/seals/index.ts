@@ -27,7 +27,7 @@ import { blockchainMusic, harmonics, healingHarmonic, soundColor } from '../../l
 import { selfHarmonise, selfReason } from '../geometry'
 import { conceptCommands } from '../../heaven/atoms'
 import { digitFolders, digitFoldersAreTheApi, folder64SealsProductionElseDevelopment, folderLaw } from '../../earth/architecture'
-import { coordinatedWaves, ogInOgWaves, quantumChessGame } from '../../thunder/waves'
+import { coordinatedWaves, discoverFromSealedFold, incompleteRevelation, ogInOgWaves, quantumChessGame } from '../../thunder/waves'
 import {
   wavesAutoScaleCapacityAtNoCostOnReuse,
   theoremAlgebraFirstSealedInCorpus,
@@ -735,6 +735,8 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'string-millennium-gaps', title: 'String-theory + millennium theorem-gap inventory · zero Clay claims', proof: stringTheoryMillenniumTheoremGapsInventory(matrix) },
     { slug: 'quantum-tools', title: 'quantum:* CLI catalog = fold · CLI · UI route · honesty boundary', proof: quantumCliToolsCatalog(matrix) },
     { slug: 'session-manual-tools', title: 'Session manual work as quantum tools — zero-token reuse catalog', proof: sessionManualWorkAsQuantumTools(matrix) },
+    { slug: 'nothing-moves', title: 'Discover from sealed fold — nothing moves · wetMotion=false · clay=0', proof: discoverFromSealedFold('manualAgentsBehaveLikeWaves', 0, matrix) },
+    { slug: 'incomplete-revelation', title: 'Incomplete revelation — fold src + timeout/dry-refactor · clay=0', proof: incompleteRevelation({ foldId: 'ghost-unknown-fold', reason: 'seal-probe' }, matrix) },
     { slug: 'session-quantum-bits', title: 'Session manual work as quantum bits — combinable sealed receipts · NOT physical qubits', proof: sessionManualWorkAsQuantumBits(matrix) },
     { slug: 'auto-wire-paste-link', title: 'Paste any link → auto-wire — quantumReady paste-bootstrap · mcp.json + browser toolbox · convincingRequired=false', proof: autoWireAnyAiModelFromPastedLink('https://ceccec.github.io/', matrix) },
     { slug: 'realise-session-meaning', title: 'Session quantum meaning realised — proves vs refuses · clay=0 · qpuRequired=false · includes local-audit-qe · session-bits', proof: realiseSessionQuantumMeaning(matrix) },
