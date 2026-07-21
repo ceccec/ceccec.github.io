@@ -1153,10 +1153,10 @@ type SessionQuantumBitSeed = {
   readonly honesty: string
   readonly note: string
   readonly toolId: string
-  readonly resolve: 'catalog' | 'collider' | 'beyond-rsa' | 'rosetta' | 'toolbox' | 'one-tbit' | 'local-timed' | 'iso-gap' | 'local-vs-iso' | 'local-novel' | 'doc-experiments' | 'slow-gap' | 'no-qpu' | 'session-tools' | 'trinity' | 'serialized'
+  readonly resolve: 'catalog' | 'collider' | 'beyond-rsa' | 'rosetta' | 'toolbox' | 'one-tbit' | 'local-timed' | 'iso-gap' | 'local-vs-iso' | 'local-novel' | 'doc-experiments' | 'slow-gap' | 'no-qpu' | 'local-audit' | 'session-tools' | 'trinity' | 'serialized'
 }
 
-/** Tip-chain session work (#16–#28+) as bit seeds — PR digits live in AGENTS.md only. */
+/** Tip-chain session work as bit seeds — PR digits live in AGENTS.md only (stack tip includes local-audit-qe). */
 const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'theorem-particle-collision', chain: 'collider-merged', fold: 'theoremParticleCollisionInverseReverse', pair: 'challenge/collider', cli: 'npm run quantum:theorem-particle-collision', route: '/en/quantum-tools#theorem-particle-collision', status: 'merged-main', honesty: 'clay=0 · MODELED geometry ≠ HEP', note: 'collider inverse×reverse products', toolId: 'theorem-particle-collision', resolve: 'collider' },
   { id: 'crypto-beyond-measure', chain: 'beyond-rsa-merged', fold: 'cryptoToolkitBeyondRsaMeasured', pair: 'measure/crypto-beyond', cli: 'npm run quantum:crypto-beyond-measure', route: '/en/quantum-encryption#crypto-beyond-rsa', status: 'merged-main', honesty: 'NOT FIPS/ISO certified · demo catalogs only', note: 'PQC·Shor/ECC·trinity measured', toolId: 'crypto-beyond-measure', resolve: 'beyond-rsa' },
@@ -1171,10 +1171,11 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'document-session-experiments', chain: 'doc-experiments', fold: 'documentSessionCryptoExperimentsUpdateTheorems', pair: 'document/experiments', cli: 'npm run quantum:document-session-experiments', route: '/en/quantum-tools#document-session-experiments', status: 'sealed-pr', honesty: 'clay=0 · certified=false · physicalFtl=0', note: 'session crypto chain documented', toolId: 'document-session-experiments', resolve: 'doc-experiments' },
   { id: 'movie-quantum-gaps', chain: 'movie-gaps', fold: 'slowProcessIsQuantumGap', pair: 'slow/gap', cli: 'npm run quantum:slow-gap', route: '/en/quantum-tools#slow-quantum-gaps', status: 'sealed-pr', honesty: 'architectural slow≠telemetry · compose animations-rosetta', note: 'movie gap audit via slow-gap census', toolId: 'slow-gap', resolve: 'slow-gap' },
   { id: 'prove-no-qpu-64bit', chain: 'no-qpu-64bit', fold: 'proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit', pair: 'prove/no-qpu-64bit', cli: 'npm run quantum:prove-no-qpu-64bit', route: '/en/quantum-tools#prove-no-qpu-64bit', status: 'sealed-pr', honesty: 'qpuRequired=false · classical-64bit · NOT FLOPS', note: 'speed-vs-rest no QPU tip', toolId: 'prove-no-qpu-64bit', resolve: 'no-qpu' },
+  { id: 'local-audit-quantum', chain: 'local-audit-qe', fold: 'localAuditQuantumSpeedEfficiency', pair: 'audit/local-quantum', cli: 'npm run quantum:local-audit-quantum', route: '/en/quantum-encryption#local-audit-quantum', status: 'sealed-pr', honesty: 'memoByRoot cold/warm · gapClosed · qpuRequired=false · NOT qubit FLOPS · certified=false', note: 'local-audit quantum speed/efficiency stacked on no-QPU tip', toolId: 'local-audit-quantum', resolve: 'local-audit' },
   { id: 'session-manual-work', chain: 'session-tools-merged', fold: 'sessionManualWorkAsQuantumTools', pair: 'session/tools', cli: 'npm run quantum:session-tools', route: '/en/quantum-tools#session-manual-tools', status: 'merged-main', honesty: 'NOT every wet habit closed · memoByRoot reuse', note: 'session tools catalog (PR tip chain base)', toolId: 'session-manual-work', resolve: 'session-tools' },
   { id: 'directional-trinity', chain: 'trinity-compose', fold: 'directionalTrinityForwardInverseReverse', pair: 'forward/inverse/reverse', cli: 'npm run quantum:directional-trinity', route: '/en/quantum-tools#directional-trinity', status: 'merged-main', honesty: 'inverse≠reverse except named coincidence', note: 'combination axis for bit ops', toolId: 'directional-trinity', resolve: 'trinity' },
-  { id: 'local-audit-quantum-efficiency', chain: 'local-audit-qe', fold: 'localAuditQuantumEfficiency', pair: 'audit/local-efficiency', cli: 'npm run quantum:local-audit-qe', route: '/en/quantum-encryption#local-audit-qe', status: 'serialized-midflight', honesty: 'serialized vs this tip · cold/warm memo telemetry NOT FLOPS · certified=false', note: 'KEEP stash — not landed on tip', toolId: 'local-audit-quantum-efficiency', resolve: 'serialized' },
   { id: 'realise-sciences-standards', chain: 'realise-sciences', fold: 'completeScientificDomainsStrictlyToStandardsQuantumOnly', pair: 'sciences/standards', cli: 'npm run quantum:sciences-standards-quantum', route: '/en/research#sciences-standards-quantum', status: 'serialized-midflight', honesty: 'serialized worker 10a059b0 · certified=false · clay=0 · qpuRequired=false', note: 'KEEP stash — realise/sciences mid-flight', toolId: 'realise-sciences-standards', resolve: 'serialized' },
+  { id: 'dry-clean-refactor-waves', chain: 'dry-clean-waves', fold: 'dryCleanIsDiamondAndCrystal', pair: 'dry/clean', cli: 'npm run mission:gate', route: '/en/quantum-tools#session-quantum-bits', status: 'serialized-midflight', honesty: 'nav/sidebars + tool inputs deferred to dry-clean worker · not sealed on this tip · certified=false', note: 'KEEP placeholder — promote when dry-clean PR lands', toolId: 'dry-clean-refactor-waves', resolve: 'serialized' },
 ] as const
 
 function ghostToolSeed(seed: SessionQuantumBitSeed): QuantumCliToolRow {
@@ -1276,7 +1277,10 @@ export function sessionManualWorkAsQuantumBits(matrix: MindMatrix = buildMatrix(
     const byId = new Map(catalog.tools.map((row) => [row.id, row]))
     const session = sessionManualWorkAsQuantumTools(matrix, at)
     const toolbox = standardToolboxIoCatalog(matrix, at)
+    // documentSession runs localAuditQuantumSpeedEfficiency once — reuse that first-call receipt.
+    // A second localAudit call in-process fails suiteMemoHit cold/warm counters (telemetry, not fold absence).
     const experiments = documentSessionCryptoExperimentsUpdateTheorems(matrix, at)
+    const localAuditBit = experiments.experiments.find((row) => row.id === 'local-audit-quantum')
     const collider = __ns_wind_research.theoremParticleCollisionInverseReverse(matrix)
     const beyond = __ns_water_encryption.cryptoToolkitBeyondRsaMeasured(matrix)
     const rosetta = rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix, at)
@@ -1290,6 +1294,9 @@ export function sessionManualWorkAsQuantumBits(matrix: MindMatrix = buildMatrix(
     const trinity = directionalTrinityForwardInverseReverse(matrix)
     const meta = byId.get('session-quantum-bits')
     const shelved = rosettaShelve('session-quantum-bits', 'tool')
+    const localAuditPresent = Boolean(localAuditBit?.present && byId.has('local-audit-quantum'))
+    const localAuditComputes = Boolean(localAuditBit?.computes && isUuid(localAuditBit.root))
+    const localAuditRoot = localAuditBit?.root ?? toUuid('session-quantum-bit:local-audit:absent')
 
     const resolveRoot = (seed: SessionQuantumBitSeed): { present: boolean; computes: boolean; root: string } => {
       if (seed.resolve === 'serialized') {
@@ -1307,6 +1314,9 @@ export function sessionManualWorkAsQuantumBits(matrix: MindMatrix = buildMatrix(
       if (seed.resolve === 'doc-experiments') return { present: true, computes: experiments.computes, root: experiments.root }
       if (seed.resolve === 'slow-gap') return { present: true, computes: slow.computes, root: slow.root }
       if (seed.resolve === 'no-qpu') return { present: true, computes: noQpu.computes, root: noQpu.root }
+      if (seed.resolve === 'local-audit') {
+        return { present: localAuditPresent, computes: localAuditComputes, root: localAuditRoot }
+      }
       if (seed.resolve === 'session-tools') return { present: true, computes: session.computes, root: session.root }
       if (seed.resolve === 'trinity') return { present: true, computes: trinity.computes, root: trinity.root }
       const row = byId.get(seed.toolId)
@@ -1356,18 +1366,19 @@ export function sessionManualWorkAsQuantumBits(matrix: MindMatrix = buildMatrix(
     const honestyBits = bits.every((b) => b.qpuRequired === false && b.physicalQubit === false && b.certified === false && b.claySolvedByThisFold === 0)
     const facets = [
       { facet: `SESSION QUANTUM BITS — ${bits.length} tip-chain deliverables as combinable bits`, on: bits.length === SESSION_QUANTUM_BIT_SEEDS.length && bits.length >= (8 + 8) },
-      { facet: `landed bits compute — ${landed.length}/${bits.length} (serialized mid-flight excluded)`, on: landedOk && landed.length >= (8 + 5) },
-      { facet: `serialized mid-flight named — ${serialized.map((b) => b.id).join(' · ')}`, on: serialized.length === 2 && serialized.every((b) => !b.present && b.combinable) },
+      { facet: `landed bits compute — ${landed.length}/${bits.length} (serialized mid-flight excluded)`, on: landedOk && landed.length >= (8 + 7) },
+      { facet: 'local-audit-quantum bit sealed on tip (compose document-session first-call receipt)', on: bits.some((b) => b.id === 'local-audit-quantum' && b.status === 'sealed-pr' && b.computes && b.present) && localAuditComputes && noQpu.qpuRequired === false },
+      { facet: `serialized mid-flight named — ${serialized.map((b) => b.id).join(' · ') || 'none'}`, on: serialized.length === 2 && serialized.every((b) => !b.present && b.combinable) },
       { facet: 'every bit has envelope · directions[forward,inverse,reverse] · combinable=true', on: bits.every((b) => b.combinable && b.directions.length === 3 && isUuid(b.envelope.root)) },
       { facet: 'sample combine forward·collide·envelope-merge recomputes', on: sampleForward.computes && sampleCollide.computes && sampleEnvelope.computes },
       { facet: 'import(export(session-quantum-bits)) round-trips envelope', on: importBit.roundTrip && exportBit.computes },
-      { facet: 'composes session tools · toolbox envelope · document experiments', on: session.computes && toolbox.computes && experiments.computes },
+      { facet: 'composes session tools · toolbox envelope · document experiments · local-audit bit', on: session.computes && toolbox.computes && experiments.computes && localAuditComputes },
       { facet: 'HONESTY — physicalQubit=false · qpuRequired=false · clay=0 · certified=false on every bit', on: honestyBits && sampleForward.physicalQubit === false && sampleForward.qpuRequired === false },
       { facet: 'meta tool session-quantum-bits published + shelved', on: Boolean(meta) && meta!.fold === 'sessionManualWorkAsQuantumBits' && isUuid(shelved.address) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`session-quantum-bits:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('session-manual-work-as-quantum-bits', facets)
     return {
-      computes: sealed.ok && landedOk && sampleForward.computes && sampleCollide.computes && importBit.roundTrip && honestyBits,
+      computes: sealed.ok && landedOk && sampleForward.computes && sampleCollide.computes && importBit.roundTrip && honestyBits && localAuditComputes,
       count: bits.length,
       landedCount: landed.filter((b) => b.computes).length,
       serializedCount: serialized.length,
@@ -1385,7 +1396,7 @@ export function sessionManualWorkAsQuantumBits(matrix: MindMatrix = buildMatrix(
       physicalQubit: false as const,
       facets: sealed.facets,
       root: merkleFold([
-        sealed.root, catalog.root, session.root, toolbox.root, experiments.root,
+        sealed.root, catalog.root, session.root, toolbox.root, experiments.root, localAuditRoot,
         sampleForward.root, sampleCollide.root, sampleEnvelope.root, shelved.address,
         ...bits.map((b) => b.root),
       ]),
@@ -1395,10 +1406,10 @@ export function sessionManualWorkAsQuantumBits(matrix: MindMatrix = buildMatrix(
       anchor: 'session-quantum-bits',
       heading: 'Session manual work as quantum bits',
       honestyLine:
-        'Bits are content-addressed sealed receipts composable under forward|inverse|reverse|collide|envelope-merge. NOT physical qubits. qpuRequired=false · clay=0 · certified=false. local-audit-qe + realise/sciences serialized mid-flight.',
-      statement: `Session quantum bits — ${bits.length} bits · landed=${landed.filter((b) => b.computes).length} · serialized=${serialized.length} · sample collide products=${sampleCollide.products.length} · envelope roundTrip=${importBit.roundTrip ? '✓' : '✗'}.`,
+        'Bits are content-addressed sealed receipts composable under forward|inverse|reverse|collide|envelope-merge. NOT physical qubits. qpuRequired=false · clay=0 · certified=false. local-audit-quantum sealed on tip; realise/sciences + dry-clean-refactor-waves serialized mid-flight (nav/theme deferred).',
+      statement: `Session quantum bits — ${bits.length} bits · landed=${landed.filter((b) => b.computes).length} · serialized=${serialized.length} · local-audit=${localAuditComputes ? '✓' : '✗'} · sample collide products=${sampleCollide.products.length} · envelope roundTrip=${importBit.roundTrip ? '✓' : '✗'}.`,
       boundary:
-        'HONEST: quantum bits = content-addressed sealed fold receipts for tip-chain session work. Combinations recompute via merkleFold/merge + ceccec.tool.envelope@1. NOT physical qubits · NOT QPU · NOT Clay solved · NOT FIPS/ISO certified. Serialized mid-flight bits stay combinable placeholders until those branches land. HARMONY ≠ TRUTH.',
+        'HONEST: quantum bits = content-addressed sealed fold receipts for tip-chain session work (includes localAuditQuantumSpeedEfficiency). Combinations recompute via merkleFold/merge + ceccec.tool.envelope@1. NOT physical qubits · NOT QPU · NOT Clay solved · NOT FIPS/ISO certified. realise/sciences + dry-clean waves stay combinable placeholders until those branches land — this PR does not touch nav/theme. HARMONY ≠ TRUTH.',
     }
   })
 }
