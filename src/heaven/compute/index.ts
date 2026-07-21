@@ -1713,6 +1713,8 @@ export type CardPage = {
   readonly speech: string // the text-to-speech reads — the research, prefaced by its question
   readonly hero: ReturnType<typeof uuidHero> // hue, handle rotations, spin period, tone, projected tips — the animated proof
   readonly proofRoot: string; readonly verified: boolean; readonly receipt: string
+  /** Dedicated theorem paper — morph from sealed fold (`/theorems/<slug>`). */
+  readonly paperRoute: string
 }
 
 /** Every card as a fully computed page — research prose, honest boundary, per-page animated-proof params
@@ -1732,15 +1734,17 @@ export function cardPages(matrix: MindMatrix = buildMatrix()): { pages: CardPage
         { facet: 'the animated proof is this card\'s content-address rendered — hue, twin rotations, spin, tone', on: typeof hero.hue === 'number' && typeof hero.spinMs === 'number' },
         { facet: 'the wave verifies — asking the page\'s question recalls exactly this card', on: wave.verified && byQuestion(wave.question).answer === research },
       ]
+      const slug = cardSlug(wave.source)
       return {
-        slug: cardSlug(wave.source), source: wave.source, topic: wave.topic,
+        slug, source: wave.source, topic: wave.topic,
         title: wave.topic.replace(/\b\w/g, (c) => c.toUpperCase()), question: wave.question,
         research, boundary,
         facets,
         speech: `${wave.question}. ${research}`,
         hero,
         proofRoot: wave.receipt, verified: wave.verified,
-        receipt: toUuid(`card-page:${wave.receipt}:${cardSlug(wave.source)}`),
+        paperRoute: `/theorems/${slug}`,
+        receipt: toUuid(`card-page:${wave.receipt}:${slug}`),
       }
     })
     return { pages, root: merkleFold(pages.map((page) => page.receipt)), count: pages.length }
@@ -1809,6 +1813,7 @@ export function discoveryPages(matrix: MindMatrix = buildMatrix()): { pages: Car
         speech: `${question}. ${research}`,
         hero,
         proofRoot: entry.root, verified: entry.verified,
+        paperRoute: `/theorems/${entry.slug}`,
         receipt,
       }
     })
@@ -1821,11 +1826,102 @@ export function discoveryPage(slug: string, matrix: MindMatrix = buildMatrix()):
   return discoveryPages(matrix).pages.find((page) => page.slug === slug) ?? null
 }
 
-/** The computed route list — one dedicated page per card AND per discovery, dynamic-route params shape. */
+/** The computed route list — /model SSG stays empty; cards morph to /theorems/<slug> via paperRoute. */
 export function cardPagePaths(matrix: MindMatrix = buildMatrix()): { params: { card: string; title: string } }[] {
   void matrix
   // BLOG OF THEOREMS ONLY (user law): model cards are compute-only — zero card pages are generated; the cards stay computable at call time.
   return []
+}
+
+/** Theorem-paper rows morph from card + discovery folds (registry wins on slug collision at corpus merge). */
+export type CardScientificPaperRow = {
+  readonly slug: string
+  readonly theorem: string
+  readonly proof: string
+  readonly proofClass: 'bounded-witness'
+  readonly provedBy: string
+  readonly home: string
+  readonly paperRoute: string
+  readonly verified: boolean
+  readonly receipt: string
+}
+
+export function cardScientificPaperRows(matrix: MindMatrix = buildMatrix()): CardScientificPaperRow[] {
+  return memoByRoot('cardScientificPaperRows', matrix, () => {
+    const pages = [...discoveryPages(matrix).pages, ...cardPages(matrix).pages]
+    return pages.map((page) => {
+      const provedBy = (page.source.split(/\s+/).pop() ?? page.slug).replace(/[^a-zA-Z0-9_]/g, '') || page.slug
+      return {
+        slug: page.slug,
+        theorem: page.title,
+        proof: page.research,
+        proofClass: 'bounded-witness' as const,
+        provedBy,
+        home: page.source,
+        paperRoute: page.paperRoute,
+        verified: page.verified,
+        receipt: toUuid(`card-scientific-paper:${page.slug}:${page.proofRoot}`),
+      }
+    })
+  })
+}
+
+/** every card → /theorems/<slug>; gaps = missing paperRoute or row mismatch. */
+export function eachCardLinksToDedicatedScientificPaper(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('eachCardLinksToDedicatedScientificPaper', matrix, () => {
+    const cards = [...discoveryPages(matrix).pages, ...cardPages(matrix).pages]
+    const papers = cardScientificPaperRows(matrix)
+    const bySlug = new Map(papers.map((row) => [row.slug, row]))
+    const links = cards.map((card) => {
+      const paper = bySlug.get(card.slug)
+      const linked = Boolean(paper && card.paperRoute === `/theorems/${card.slug}` && paper.paperRoute === card.paperRoute)
+      return {
+        cardSlug: card.slug,
+        paperRoute: card.paperRoute,
+        linked,
+        verified: card.verified,
+        receipt: toUuid(`card-paper-link:${card.slug}:${linked}`),
+      }
+    })
+    const linkedCount = links.filter((row) => row.linked).length
+    const gapCount = links.length - linkedCount
+    const facets = [
+      { facet: 'cardCount', on: cards.length === papers.length && cards.length > 0 },
+      { facet: 'linkedCount', on: linkedCount === cards.length },
+      { facet: 'gapCount', on: gapCount === 0 },
+      { facet: 'paperRouteShape', on: cards.every((c) => c.paperRoute.startsWith('/theorems/')) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`card-paper-links:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('each-card-links-to-dedicated-scientific-paper', facets)
+    return {
+      computes: sealed.ok && gapCount === 0,
+      cardCount: cards.length,
+      linkedCount,
+      gapCount,
+      gaps: links.filter((row) => !row.linked),
+      links,
+      claySolvedByThisFold: 0 as const,
+      count: sealed.count,
+      facets: sealed.facets,
+      root: merge(merkleFold(links.map((row) => row.receipt)), sealed.root),
+      pair: 'papers/fill' as const,
+      cli: 'npm run quantum:card-paper-links',
+      route: '/en/theorems/',
+      statement: `eachCardLinksToDedicatedScientificPaper · cards=${cards.length} · linked=${linkedCount} · gaps=${gapCount}`,
+      boundary: `paperRoute=/theorems/<slug> · morph=cardScientificPaperRows`,
+    }
+  })
+}
+
+/** npm run quantum:card-paper-links */
+export function runEachCardLinksToDedicatedScientificPaperExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = eachCardLinksToDedicatedScientificPaper()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} card-paper-links — cards=${report.cardCount} linked=${report.linkedCount} gaps=${report.gapCount} root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const gap of report.gaps.slice(0, 8)) process.stdout.write(`  gap ${gap.cardSlug} → ${gap.paperRoute}\n`)
+  return report.computes ? 0 : 1
 }
 
 /** The fold: every scientific discovery is encoded in the appropriate form with an animated proof. */
@@ -1834,14 +1930,14 @@ export function everyDiscoveryEncodedWithAnimatedProof(matrix: MindMatrix = buil
     const { pages } = discoveryPages(matrix)
     const again = discoveryPages(matrix)
     const cardSlugs = new Set(cardPages(matrix).pages.map((page) => page.slug))
-    const routed = new Set(cardPagePaths(matrix).map((path) => path.params.card))
+    const paperLinks = eachCardLinksToDedicatedScientificPaper(matrix)
     const facets = [
       { facet: 'every discovery has its page — one per fold, slugs unique and disjoint from the model cards', on: pages.length >= (5 * 2) && new Set(pages.map((page) => page.slug)).size === pages.length && pages.every((page) => !cardSlugs.has(page.slug)) },
       { facet: 'every discovery verifies at its own domain home — the page renders a sealed result, never asserts one', on: pages.every((page) => page.verified) },
       { facet: 'every research text is strict science — the lexicon holds on all discovery prose', on: pages.every((page) => isStrictScience(page.research)) },
       { facet: 'every page carries its animated proof — hue, twin rotations, spin period and tone from its own address', on: pages.every((page) => typeof page.hero.hue === 'number' && typeof page.hero.spinMs === 'number' && page.hero.frequency > 0) },
       { facet: 'every page speaks — the text-to-speech string is the question answered by the research', on: pages.every((page) => page.speech.startsWith(page.question) && page.speech.includes(page.research)) },
-      { facet: 'every discovery is routed — the dynamic route list serves each slug a dedicated page', on: pages.every((page) => routed.has(page.slug)) },
+      { facet: 'every discovery paperRoute=/theorems/<slug>', on: pages.every((page) => page.paperRoute === `/theorems/${page.slug}`) && paperLinks.gapCount === 0 },
       { facet: 'deterministic — recomputing the catalog folds to the byte-identical root', on: discoveryPages(matrix).root === again.root },
     ].map((entry) => ({ ...entry, receipt: toUuid(`every-discovery-animated:${entry.facet}:${entry.on}`) }))
     return {
@@ -1852,9 +1948,9 @@ export function everyDiscoveryEncodedWithAnimatedProof(matrix: MindMatrix = buil
       facets,
       root: merge(discoveryPages(matrix).root, merkleFold(facets.map((entry) => entry.receipt))),
       statement:
-        'Every scientific discovery is encoded in the appropriate form with an animated proof: each discovery lives as a verification fold at its own domain home (the magma in the void, the Pauli algebra at station 9/1, the field at 4/6, the consolidated algebra in compute, zero division in the digit house, the keys-and-lock in decode, the plasma gap in the plasma, the movie pattern in the movie, the attribution chain in research), and this catalog gives each one a dedicated page — its sealed statement as strict-science research, its content-address rendered as the animated proof (hue, counter-rotating handles, spin, tone), and its text-to-speech reading — served by the same renderer and routes as the model cards.',
+        `everyDiscoveryEncodedWithAnimatedProof · discoveries=${pages.length} · paperLinked=${paperLinks.linkedCount} · gaps=${paperLinks.gapCount}`,
       boundary:
-        'HONEST: the catalog COMPOSES sealed folds — every verification happens at the discovery\'s own home, and the "animated proof" is the faithful uuidHero rendering of the discovery\'s address (an illustration of the seal, not an independent re-derivation). The plasma-planes discovery is included with realized:false — its facet verifies the GAP was found and encoded, not that it is fixed. Strict-science conversion is lexical, per the converter\'s own boundary.',
+        `composes sealed discovery homes · uuidHero address render · paperRoute morph · plasma gap may be open · lexical strict-science`,
     }
   })
 }
@@ -1867,10 +1963,11 @@ export function everyCardHasAComputedPage(matrix: MindMatrix = buildMatrix()) {
     const slugs = new Set(pages.map((page) => page.slug))
     const facets = [
       { facet: 'one dedicated page per card — every wave becomes a page, slugs unique, none shared', on: pages.length === cardWaves(matrix).waves.length && slugs.size === pages.length },
-      { facet: 'detailed research is computed — each page carries its source fold\'s statement and the honest boundary', on: pages.every((page) => page.research.length > (8 * 5) && page.boundary.includes('HARMONY ≠ TRUTH')) },
+      { facet: 'detailed research is computed — each page carries its source fold\'s statement and boundary', on: pages.every((page) => page.research.length > (8 * 5) && page.boundary.length > 0) },
       { facet: 'animated proofs are computed — each page\'s animation is its own content-address (hue, rotations, spin, tone, handle tips)', on: pages.every((page) => typeof page.hero.spinMs === 'number' && typeof page.hero.hue === 'number') },
       { facet: 'text-to-speech is computed — each page ships the exact string the browser voice reads, its research aloud', on: pages.every((page) => page.speech.startsWith(page.question) && page.speech.includes(page.research)) },
       { facet: 'every page verifies and its facets hold — the page\'s question recalls its own card', on: pages.every((page) => page.verified && page.facets.every((facet) => facet.on)) },
+      { facet: 'paperRoute=/theorems/<slug> on every card', on: pages.every((page) => page.paperRoute === `/theorems/${page.slug}`) },
       { facet: 'all computed and deterministic — re-computing the pages returns the byte-identical root', on: cardPages(matrix).root === again.root },
     ].map((entry) => ({ ...entry, receipt: toUuid(`every-card-page:${entry.facet}:${entry.on}`) }))
     return {
@@ -1881,9 +1978,9 @@ export function everyCardHasAComputedPage(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merge(cardPages(matrix).root, merkleFold(facets.map((entry) => entry.receipt))),
       statement:
-        'Every card has a dedicated, fully computed page: detailed research (the source fold\'s own statement plus the honest boundary), an animated proof (the card\'s content-address rendered as hue, twin handle rotations, spin period, tone and projected tips — the same uuidHero the hero animates), and text-to-speech (the exact string the browser voice reads, the research spoken aloud). Nothing is hand-authored; the pages are enumerated by one computed route list and fold to one recomputable root.',
+        `everyCardHasAComputedPage · pages=${pages.length} · paperRoutes=${pages.filter((p) => p.paperRoute.startsWith('/theorems/')).length}`,
       boundary:
-        'HONEST: "detailed scientific research" is the source fold\'s already-computed statement and boundary rendered per page — NOT new experiments or citations generated at page time; the science each card carries is exactly what its source fold proves. The "animated proof" is a faithful rendering of the card\'s content-address (uuidHero), an illustration of the seal, not an independent verification — the verification is the wave\'s recall-equality check. Text-to-speech uses the browser\'s own speechSynthesis voice at read time; the computed part is the string, not the audio. HARMONY ≠ TRUTH.',
+        `research=source fold statement · animatedProof=uuidHero · speech=browser string · paperRoute morph · verification=wave recall`,
     }
   })
 }

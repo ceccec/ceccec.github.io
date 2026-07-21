@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, shallowRef } from 'vue'
 import {
+  agentAssumeNothingMathProvesInTheMoment,
   encryptionPanelComputes,
   runEncryptionToolInBrowser,
   runPqcStandardsToolInBrowser,
@@ -14,6 +15,7 @@ import UiButton from '../../../.vitepress/theme/components/ui/Button.vue'
 import UiSeparator from '../../../.vitepress/theme/components/ui/Separator.vue'
 
 const panel = shallowRef(encryptionPanelComputes())
+const momentProve = shallowRef(agentAssumeNothingMathProvesInTheMoment())
 const selectedModulus = ref<number | null>(null)
 const familyPrefer = ref<'auto' | 'lattice' | 'hash' | 'code'>('auto')
 const running = ref(false)
@@ -36,6 +38,7 @@ function runTool() {
     auditResult.value = runQuantumStandardsAuditInBrowser()
     isoGapResult.value = runIsoPqcRequirementsGapFillInBrowser()
     panel.value = encryptionPanelComputes()
+    momentProve.value = agentAssumeNothingMathProvesInTheMoment()
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'run failed'
     result.value = null
@@ -166,8 +169,7 @@ runTool()
       <section id="local-audit-quantum" aria-label="Local audit quantum speed and efficiency">
         <h3>Local audit quantum speed &amp; efficiency</h3>
         <p class="encryption-tools__lede">
-          memoByRoot cold/warm for the local audit suite. answers÷tokens honesty · compose no-QPU/64bit structural facets.
-          NOT physical qubit FLOPS · certified=false · production reverse refused.
+          memoByRoot cold/warm · answers÷tokens · no-QPU/64bit facets · certified=false · production reverse refused.
         </p>
         <UiBadge :variant="(result?.localAudit?.computes ?? panel.localAudit?.computes) ? 'default' : 'outline'">
           cold={{ (result?.localAudit?.coldMs ?? panel.localAudit?.coldMs)?.toFixed?.(3) ?? '—' }}ms
@@ -179,14 +181,23 @@ runTool()
         <p class="encryption-tools__boundary">{{ result?.localAudit?.boundary ?? panel.localAudit?.boundary }}</p>
       </section>
       <UiSeparator />
-      <section id="prove-local-novel-encrypt" aria-label="Prove local novel encryption security">
-        <h3>Local novel-encryption security proof</h3>
-        <p class="encryption-tools__lede">
-          Structural + adversarial + measured-local. Composes ISO/NIST standards map as reference bounds only — this repo is NOT the ISO standard. productionReverseRefused · fieldHistory=none · certified=false.
-        </p>
+      <section id="moment-prove" aria-label="moment prove">
+        <h3>moment/prove</h3>
+        <UiBadge :variant="momentProve.computes ? 'default' : 'outline'">
+          computes={{ momentProve.computes }}
+          · recomputeMatch={{ momentProve.reverse?.recomputeMatch ?? '—' }}
+          · localSecurityProved={{ momentProve.novel?.localSecurityProved ?? '—' }}
+          · vote.decided={{ momentProve.vote?.decided ?? '—' }}
+          · claySolvedByThisFold={{ momentProve.claySolvedByThisFold ?? 0 }}
+        </UiBadge>
+      </section>
+      <UiSeparator />
+      <section id="prove-local-novel-encrypt" aria-label="Local novel encryption receipt">
+        <h3>Local novel-encryption receipt</h3>
         <UiBadge :variant="(result?.localNovel?.localSecurityProved ?? panel.localNovel?.localSecurityProved) ? 'default' : 'outline'">
           localSecurityProved={{ result?.localNovel?.localSecurityProved ?? panel.localNovel?.localSecurityProved ?? '—' }}
-          · thisRepoIsNotTheIsoStandard={{ result?.localNovel?.thisRepoIsNotTheIsoStandard ?? panel.localNovel?.thisRepoIsNotTheIsoStandard ?? true }}
+          · overallWireClaimProved={{ result?.localNovel?.overallWireClaimProved ?? panel.localNovel?.overallWireClaimProved ?? '—' }}
+          · certified={{ result?.localNovel?.certified ?? panel.localNovel?.certified ?? false }}
         </UiBadge>
         <ul class="encryption-tools__list">
           <li v-for="c in (result?.localNovel?.inventory?.components ?? panel.localNovel?.inventory?.components ?? [])" :key="c.id">

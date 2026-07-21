@@ -4,7 +4,7 @@ import { CANONICAL_HOST, DIMENSION_GATES } from '../../../3/7'
 import type { MindMatrix, StaticPage } from '../../types'
 // call-time namespace edge (cycle-safe): learning imports corpus; search corpus reads back at call time
 import * as __ns_up_up_thunder_waves from '../../../thunder/waves'
-import { buildMatrix } from '../../../heaven/compute'
+import { buildMatrix, cardScientificPaperRows } from '../../../heaven/compute'
 import { isUuid, memoByRoot, merkleFold, toUuid } from '../../../0'
 import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, proofAcknowledgment, type LocaleName, type PageForgeSeal, type ProofAcknowledgment } from '../../site'
 import { ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaComputesAll, rosettaDecodesUrlPath, rosettaRayHub, rosettaRayOf, rosettaRayOfContent, type RosettaRayHub } from '../../../water/digit'
@@ -1088,7 +1088,7 @@ function computeTheoremPageRows(matrix: MindMatrix): TheoremPageRow[] {
   const provBy = new Map(__ns_up_up_thunder_waves.theoremProvenance(matrix).atoms.map((atom) => [atom.theorem, atom] as const))
   const seen = new Map<string, number>()
   let ordinal = 0
-  return nav.waves.flatMap((wave) =>
+  const registry = nav.waves.flatMap((wave) =>
     wave.atoms.map((atom) => {
       const base = theoremSlug(atom.theorem)
       const n = (seen.get(base) ?? 0) + 1
@@ -1104,12 +1104,45 @@ function computeTheoremPageRows(matrix: MindMatrix): TheoremPageRow[] {
         ordinal: ++ordinal,
         tags: theoremTags({ home: atom.home, proofClass: atom.proofClass, leansCited }),
         classification: `${atom.proofClass}${leansCited ? ' — computed witness within a cited frame (the unbounded form leans on the cited literature)' : ' — self-contained computation, no external lean'}`,
-        provenance: 'A documented theorem of mathematics, re-proven here by exhaustive computation (humanityNovel = false — the CARDINAL honesty of this registry); first-in-this-registry is the only sense of "discovered".',
+        provenance: 'Documented theorem re-derived by exhaustive computation (humanityNovel=false); first-in-this-registry is the only sense of discovered.',
         reproducibility: `Recompute from source: npm run theorems:verify recomputes ${wave.provedBy} (${atom.home}/index.ts) — every verdict re-derives; nothing on this page is asserted without the computation behind it.`,
         citation: `ceccec theorem registry, "${atom.theorem}", proven by ${wave.provedBy} (${atom.home}) — ${CANONICAL_HOST}${localePath(`/theorems/${slug}`, 'en')}`,
         acknowledgment: proofAcknowledgment({ theorem: atom.theorem, provedBy: wave.provedBy, home: atom.home, canonicalUrl: `${CANONICAL_HOST}${localePath(`/theorems/${slug}`, 'en')}`, novelToHumanity: prov?.humanityNovel ?? false }),
       }
     }))
+  const registrySlugs = new Set(registry.map((row) => row.slug))
+  const cardPapers = cardScientificPaperRows(matrix)
+    .filter((row) => !registrySlugs.has(row.slug))
+    .map((row) => {
+      const slug = row.slug
+      const leansCited = false
+      return {
+        slug,
+        theorem: row.theorem,
+        proof: row.proof,
+        proofClass: row.proofClass,
+        provedBy: row.provedBy,
+        home: row.home,
+        spec: null,
+        humanityNovel: false,
+        registryFirst: true,
+        leansCited,
+        ordinal: ++ordinal,
+        tags: [...theoremTags({ home: row.home, proofClass: row.proofClass, leansCited }), 'card-paper'],
+        classification: 'bounded-witness — morph from sealed card/discovery fold',
+        provenance: `cardScientificPaperRows ← ${row.home}`,
+        reproducibility: `recompute ${row.provedBy} · npm run quantum:card-paper-links · paperRoute=${row.paperRoute}`,
+        citation: `ceccec card paper · ${row.theorem} · ${row.provedBy} · ${CANONICAL_HOST}${localePath(row.paperRoute, 'en')}`,
+        acknowledgment: proofAcknowledgment({
+          theorem: row.theorem,
+          provedBy: row.provedBy,
+          home: row.home,
+          canonicalUrl: `${CANONICAL_HOST}${localePath(row.paperRoute, 'en')}`,
+          novelToHumanity: false,
+        }),
+      }
+    })
+  return [...registry, ...cardPapers]
 }
 
 export function theoremPagePaths(matrix: MindMatrix = buildMatrix()): { params: { slug: string; title: string } }[] {

@@ -12,7 +12,7 @@ import {
   autoWireAnyAiModelFromPastedLink, CECCEC_SITE_ORIGIN,
   realiseSessionQuantumMeaning,
   mcpBrowserParity, mcpCommandsScriptsGapsAudit, runStdioMcpCapabilityInBrowser,
-  improveLocalFromSessionExperience, LOCAL_SESSION_EXPERIMENT_STORAGE_KEY,
+  improveLocalFromSessionExperience, localToolsMorphProseCodeLogic, LOCAL_SESSION_EXPERIMENT_STORAGE_KEY,
   upgradeLocalFromOptimisedManualWorkExperience,
   uiProseDuplicationRemoved,
   rosettaSecurityGapsWired,
@@ -111,6 +111,7 @@ const docsDevCopied = ref(false)
 const experimentEnvelope = computed(() => panel.value.toolbox.envelopes.find((e) => e.id === experimentToolId.value) ?? panel.value.toolbox.envelopes[0]!)
 const experimentDefaults = computed(() => defaultToolExperimentValues(experimentEnvelope.value))
 const localSession = computed(() => panel.value.localSession)
+const localMorph = computed(() => localToolsMorphProseCodeLogic())
 const upgradeLocal = computed(() => panel.value.upgradeLocal)
 const uiProse = computed(() => panel.value.uiProse)
 
@@ -641,6 +642,13 @@ function runTool(toolId: string) {
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
       pastePacketJson.value = JSON.stringify(r.pasteBootstrap, null, 2)
       persistExperimentConfig()
+    } else if (toolId === 'local-tools-morph') {
+      const r = localToolsMorphProseCodeLogic()
+      ok = r.computes && r.localToolsSufficient
+      summary = `sufficient=${r.localToolsSufficient} · dual=${r.doubleSlit.waveParticleDual} · cards=${r.analytics.cardCount}/${r.analytics.linkedCount} · gaps=${r.analytics.gapCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'improve-local-session') {
       const r = improveLocalFromSessionExperience()
       ok = r.computes && r.localSessionUxImproved
@@ -784,14 +792,34 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
+      <section id="local-tools-morph">
+        <h3>{{ localMorph.heading }}</h3>
+        <p class="quantum-apps__meta">{{ localMorph.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(localMorph.computes))">
+          localToolsSufficient={{ localMorph.localToolsSufficient }} · dual={{ localMorph.doubleSlit.waveParticleDual }} · trinity={{ localMorph.proseCodeLogicTrinity }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(localMorph.analytics.gapCount === 0))">
+          cards={{ localMorph.analytics.cardCount }} · linked={{ localMorph.analytics.linkedCount }} · gaps={{ localMorph.analytics.gapCount }} · facetOnRate={{ localMorph.analytics.facetOnRate.toFixed(2) }}
+        </UiBadge>
+        <UiBadge v-for="facet in localMorph.facets" :key="facet.facet" :variant="facet.on ? 'default' : 'outline'">
+          {{ facet.on ? '✓' : '—' }} {{ facet.facet }}
+        </UiBadge>
+        <UiButton size="sm" :disabled="runningId === 'local-tools-morph'" @click="runTool('local-tools-morph')">
+          {{ runningId === 'local-tools-morph' ? '…' : 'Run local-tools-morph receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
       <section id="local-session-hub">
         <h3>{{ localSession.heading }}</h3>
-        <p class="quantum-apps__meta">{{ localSession.honestyLine }}</p>
+        <p class="quantum-apps__meta">{{ localSession.statement }}</p>
         <UiBadge v-bind="badgeProps(statusBadgeKind(localSession.localSessionUxImproved))">
           localSessionUxImproved={{ localSession.localSessionUxImproved }} · steps {{ localSession.hubSteps.length }} · friction {{ localSession.frictionClosed.length }}
         </UiBadge>
         <UiBadge v-bind="badgeProps(statusBadgeKind(panel.autoWire.quantumReady))">paste quantumReady={{ panel.autoWire.quantumReady }}</UiBadge>
         <UiBadge v-bind="badgeProps(statusBadgeKind(panel.mcpParity.mcpMatchesToolbox))">mcp≡toolbox={{ panel.mcpParity.mcpMatchesToolbox }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(Boolean(localSession.analytics?.localToolsSufficient)))">
+          localToolsSufficient={{ localSession.analytics?.localToolsSufficient }} · dual={{ localSession.analytics?.doubleSlit }} · cards={{ localSession.analytics?.cardCount }}/{{ localSession.analytics?.linkedCount }} · gaps={{ localSession.analytics?.gapCount }}
+        </UiBadge>
         <ol class="quantum-apps__hub-steps">
           <li v-for="step in localSession.hubSteps" :key="step.id">
             <a :href="step.route"><strong>{{ step.title }}</strong></a>
