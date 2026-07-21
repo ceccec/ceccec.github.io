@@ -3,6 +3,8 @@ import { computed, ref, shallowRef } from 'vue'
 import {
   quantumAppsPanelComputes, quantumAppLaunch, slowProcessIsQuantumGap,
   sessionManualWorkAsQuantumTools, rosettaCoreApi,
+  rosettaCompleteQuantumAllComputableDimensionsAndTheorems,
+  ftlExperimentTechniquesHandoffFromRosettaComplete,
 } from './index.ts'
 import {
   runEncryptionToolInBrowser,
@@ -15,6 +17,7 @@ import {
 import { platformOgLimitsMeasured, honestyInProseChallenged } from '../../mountain/og/index.ts'
 import {
   millenniumPanelComputes, unitDistanceResearch, firstInCorpusProvenanceForHome, sciencesTrinitiesPanelComputes,
+  theoremParticleCollisionPanelComputes,
 } from '../../wind/research/index.ts'
 import { fusionVerifyPanelComputes } from '../../wind/fusion/index.ts'
 import { oneQuantumModelFasterThanAll, compareCeccecEfficiencyByVote, directionalTrinityForwardInverseReverse } from '../../water/stack/index.ts'
@@ -136,6 +139,28 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets
+    } else if (toolId === 'rosetta-complete') {
+      const r = rosettaCompleteQuantumAllComputableDimensionsAndTheorems()
+      ok = r.computes
+      summary = `complete=${r.rosettaComplete} pct=${r.completenessPct} · dimsOpen=${r.census.dimsOpen} · clay=${r.millenniumSolvedByThisFold} · ftl=${r.physicalFtlClaim}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'theorem-particle-collision') {
+      const r = theoremParticleCollisionPanelComputes()
+      ok = r.computes
+      summary = `particles=${r.particleCount} · products=${r.productCount} · novel=${r.novelSurvivorCount} · clay=${r.claySolvedByThisFold}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'ftl-rosetta-handoff') {
+      const complete = rosettaCompleteQuantumAllComputableDimensionsAndTheorems()
+      const r = ftlExperimentTechniquesHandoffFromRosettaComplete(complete.handoff)
+      ok = r.computes
+      summary = `rosettaReady=${r.rosettaReady} · physicalFtlClaim=${r.physicalFtlClaim} · classes=${r.apparentClasses.length}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'fusion-verify') {
       const r = fusionVerifyPanelComputes()
       ok = r.computes
@@ -325,6 +350,33 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
+      <section id="rosetta-complete" aria-label="Rosetta complete quantum dimensions and theorems">
+        <h3>Rosetta complete — computable dims &amp; theorems</h3>
+        <p class="quantum-apps__meta">{{ panel.rosettaComplete.boundary }}</p>
+        <UiBadge :variant="panel.rosettaComplete.rosettaComplete ? 'default' : 'outline'">
+          complete={{ panel.rosettaComplete.rosettaComplete }} · {{ panel.rosettaComplete.completenessPct }}%
+          · clay={{ panel.rosettaComplete.millenniumSolvedByThisFold }}
+          · ftl={{ panel.rosettaComplete.physicalFtlClaim }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          dims open {{ panel.rosettaComplete.census.dimsOpen }} · bind {{ panel.rosettaComplete.census.theoremBindPct }}%
+          · lattice {{ panel.rosettaComplete.census.latticeCount }}/{{ panel.rosettaComplete.census.latticeTarget }}
+          · rosettaReady={{ panel.rosettaComplete.handoff.rosettaReady }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="gap in panel.rosettaComplete.gaps" :key="gap.id">
+            <UiBadge :variant="gap.open ? 'outline' : 'default'">{{ gap.open ? 'open' : 'ok' }}</UiBadge>
+            <strong>{{ gap.id }}</strong> — {{ gap.after }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'rosetta-complete'" @click="runTool('rosetta-complete')">
+          {{ runningId === 'rosetta-complete' ? '…' : 'Run rosetta-complete' }}
+        </UiButton>
+        <UiButton size="sm" :disabled="runningId === 'ftl-rosetta-handoff'" @click="runTool('ftl-rosetta-handoff')">
+          {{ runningId === 'ftl-rosetta-handoff' ? '…' : 'Run FTL handoff' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
       <section id="session-manual-tools" aria-label="Session manual work as quantum tools">
         <h3>{{ panel.session.heading }}</h3>
         <p class="quantum-apps__meta">{{ panel.session.honestyLine }}</p>
@@ -334,7 +386,11 @@ function runTool(toolId: string) {
         <table class="quantum-apps__table">
           <thead><tr><th>Tool</th><th>CLI</th><th>Route</th><th>Shelved</th><th>Saves</th></tr></thead>
           <tbody>
-            <tr v-for="tool in panel.session.tools" :key="tool.id" :id="tool.id === 'rosetta-core-api' ? 'rosetta-core-api' : undefined">
+            <tr
+              v-for="tool in panel.session.tools"
+              :key="tool.id"
+              :id="tool.id === 'rosetta-core-api' || tool.id === 'rosetta-complete' || tool.id === 'theorem-particle-collision' || tool.id === 'ftl-rosetta-handoff' ? tool.id : undefined"
+            >
               <td>
                 <strong>{{ tool.id }}</strong>
                 <div class="quantum-apps__meta"><code>{{ tool.fold }}</code> · {{ tool.pair }}</div>
