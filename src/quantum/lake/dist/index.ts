@@ -39,7 +39,11 @@ import {
   type MindMatrix,
 } from '../../heaven/mind'
 import { readmeMarkdown } from './readme'
-import { agentBashWorkflowsAreToolsSavedInSrc, dynamicStrategiesFromTheorems, sequenceStations } from '../../../pair/enforcement'
+import {
+  agentBashWorkflowsAreToolsSavedInSrc, agentSubmissionProtocol,
+  dynamicStrategiesFromTheorems, sequenceStations,
+} from '../../../pair/enforcement'
+import { sessionManualWorkAsQuantumTools } from '../../apps'
 import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../../4/6'
 import { SESSION_SKILL_FNS } from '../../../2/8'
 import { STATIC_PAGE_SEED } from '../../../8/2'
@@ -85,6 +89,88 @@ export function workflowsJson(matrix: MindMatrix = buildMatrix()) {
   )}\n`
 }
 
+/**
+ * /agents.json — zero-token discovery: agent protocol + sessionManualWorkAsQuantumTools catalog.
+ * Pair: session/tools · compose agentHarmonise + session catalog (never a second wet list).
+ */
+export function agentsJson(matrix: MindMatrix = buildMatrix()) {
+  const harmonise = agentHarmonise(matrix)
+  const session = sessionManualWorkAsQuantumTools(matrix)
+  return `${JSON.stringify(
+    {
+      computes: Boolean(harmonise.harmonised && session.computes),
+      protocol: {
+        laws: harmonise.laws,
+        mcp: harmonise.mcp,
+        llms: harmonise.llms,
+        root: harmonise.root,
+        statement: harmonise.statement,
+        boundary: harmonise.boundary,
+      },
+      sessionManualWorkAsQuantumTools: {
+        computes: session.computes,
+        count: session.count,
+        shelvedCount: session.shelvedCount,
+        pair: session.pair,
+        cli: session.cli,
+        route: session.route,
+        root: session.root,
+        honestyLine: session.honestyLine,
+        statement: session.statement,
+        boundary: session.boundary,
+        tools: session.tools.map((tool) => ({
+          id: tool.id,
+          fold: tool.fold,
+          pair: tool.pair,
+          cli: tool.cli,
+          route: tool.route,
+          shelved: tool.shelved,
+          saves: tool.saves,
+          ray: tool.ray,
+          address: tool.address,
+          boundary: tool.boundary,
+          browserRunnable: tool.browserRunnable,
+        })),
+      },
+      surfaces: {
+        agents: '/agents.json',
+        compliance: '/agent-compliance.json',
+        mcp: '/mcp.json',
+        llms: '/llms.txt',
+        skills: '/skills.json',
+        workflows: '/workflows.json',
+        quantumTools: '/en/quantum-tools#session-manual-tools',
+      },
+    },
+    null,
+    2,
+  )}\n`
+}
+
+/**
+ * /agent-compliance.json — browser-safe submission/compliance broadcast.
+ * HONEST: shell line-budget scan (ops.agentGateComplianceChecklist) stays Node/CI; this surface
+ * broadcasts agentSubmissionProtocol facets that recompute without fs.
+ */
+export function agentComplianceJson(matrix: MindMatrix = buildMatrix()) {
+  const submission = agentSubmissionProtocol(matrix)
+  return `${JSON.stringify(
+    {
+      compliant: submission.submitted,
+      submitted: submission.submitted,
+      cliEntry: submission.cliEntry,
+      missionCount: submission.missionCount,
+      pairCount: submission.pairCount,
+      count: submission.count,
+      facets: submission.facets,
+      root: submission.root,
+      boundary: `${submission.boundary} Broadcast surface for /agent-compliance.json — Node shell-budget scan remains in ops.agentGateComplianceChecklist.`,
+    },
+    null,
+    2,
+  )}\n`
+}
+
 /** Every dist artifact — computed in one pass from the model. */
 export function computedDistFiles(siteUrl: string, matrix: MindMatrix = buildMatrix(), now = new Date().toISOString()): readonly DistFile[] {
   const site = siteUrl.replace(/\/$/, '')
@@ -99,6 +185,9 @@ export function computedDistFiles(siteUrl: string, matrix: MindMatrix = buildMat
     // The saved manual workflows (agentBashWorkflowsAreToolsSavedInSrc) as a served surface — the
     // agent's operational toolkit fetchable over MCP, computed from the one fold, never a second list.
     { path: 'workflows.json', content: workflowsJson(matrix), mime: 'application/json' },
+    // Session tools + agent protocol — zero-token discovery for arriving models.
+    { path: 'agents.json', content: agentsJson(matrix), mime: 'application/json' },
+    { path: 'agent-compliance.json', content: agentComplianceJson(matrix), mime: 'application/json' },
     // The print projection is its OWN file with media="print" (user law: separate css, skipping the
     // layout) — zero print bytes in the screen bundle; computed from src/wind/site printStylesheet.
     { path: 'print.css', content: printStylesheet(), mime: 'text/css' },
@@ -312,7 +401,7 @@ export const dual = 'src/pair/cache/quantum'
 // live at dev time. The same files are written to disk at build by the enforcement cross wave; here the
 // dev server serves them recomputed-per-request from the model (zero build). One folder, one index, its
 // own VitePress plugin — the dist half of the dist⇄quantum pair, gathered by srcFolderPlugins.
-const COMPUTED_PREFIXES = ['/sitemap.xml', '/sitemap-', '/sitemap.json', '/robots.txt', '/digit-index.json', '/mcp.json', '/skills.json', '/workflows.json', '/llms.txt', '/print.css', '/api/'] as const
+const COMPUTED_PREFIXES = ['/sitemap.xml', '/sitemap-', '/sitemap.json', '/robots.txt', '/digit-index.json', '/mcp.json', '/skills.json', '/workflows.json', '/agents.json', '/agent-compliance.json', '/llms.txt', '/print.css', '/api/'] as const
 export function vitePlugin(siteUrl: string): Plugin {
   return {
     name: 'double-torus:dist',
@@ -437,6 +526,9 @@ export function llmsTxt(matrix: MindMatrix = buildMatrix()) {
     '## Wiring',
     '',
     '- MCP: every command is a tool at `/mcp.json` (tools/list shape).',
+    '- Agents: `/agents.json` broadcasts the protocol + `sessionManualWorkAsQuantumTools` catalog (CLI · route · rosettaShelve · token-saving boundary) — fetch instead of re-inferring.',
+    '- Compliance: `/agent-compliance.json` — submission pairs + bootstrap routing.',
+    '- Session tools UI: `/en/quantum-tools#session-manual-tools` · CLI `npm run quantum:session-tools`.',
     '- Pasted: read this file; it is the protocol.',
     `- Call \`concept.agent.harmonise\` to recompute this protocol with receipts.`,
     `- Protocol root: ${harmonise.root}`,
