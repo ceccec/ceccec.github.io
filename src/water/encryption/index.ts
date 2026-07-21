@@ -20,7 +20,9 @@ import {
   rat,
   ratInv,
 } from '../../3/7'
-import { zeroDivisionTable } from '../digit'
+import { rosettaRayOf, zeroDivisionTable } from '../digit'
+// call-time namespace (cycle-safe): decode/one refuse path composes without wet bypass
+import * as __ns_thunder_decode from '../../thunder/decode'
 import {
   sixtyDegreeAngleReachesCardinalForFreeProvenByMath,
   universalNavigationalCrossInAllDimensions,
@@ -3778,4 +3780,162 @@ export function runSecp256k1FieldPrimeInvertAndDecodeExit(
     && report.claySolvedByThisFold === 0
     ? 0
     : 1
+}
+
+/**
+ * Production RSA refuse completes the quantum via sealed refuse receipts (rosetta-ray addressed).
+ * Every over-ceiling / production-shaped path must recompute a refuse receipt — no silent gap, no wet bypass.
+ * HONEST: refuseBeyond stays; does NOT enable production RSA break · clay=0 · certified=false · physicalFtl=0.
+ * Pair: refuse/rosetta · CLI npm run quantum:production-rsa-refuse-rosetta
+ */
+export type ProductionRsaRefusePathRow = {
+  readonly id: string
+  readonly surface: string
+  readonly refused: boolean
+  readonly reason: string
+  readonly receipt: string
+  readonly ray: number
+  readonly wired: boolean
+  readonly incomplete: boolean
+}
+
+export function productionRsaRefuseCompletesQuantumViaRosetta(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('productionRsaRefuseCompletesQuantumViaRosetta', matrix, () => {
+    const ceiling = productionCeilingRefuseHolds()
+    const far = farOverCeilingRefuseHolds()
+    const maxBits = maximumBitsEncryptDecryptInverseReverse(matrix)
+    const reverseVerify = encryptionReverseVerify(matrix)
+    const overCeil = ODD_OVER_CEILING_RSA_PROBE
+    const shorRefuse = modeledShorFactorToyModulus(overCeil)
+    const browserRefuse = runEncryptionToolInBrowser(overCeil, matrix)
+    const decodeRefuse = __ns_thunder_decode.oneCommandDecodeHashOrStringOrSequence(String(overCeil), matrix)
+    const bitcoin = refuseBitcoinMainnetMaterial('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa')
+
+    const mk = (
+      id: string,
+      surface: string,
+      refused: boolean,
+      reason: string,
+    ): ProductionRsaRefusePathRow => {
+      const receipt = toUuid(`prod-rsa-refuse:${id}:${refused}:${reason}`)
+      const ray = rosettaRayOf(id)
+      const wired = refused && isUuid(receipt) && ray >= 0 && reason.length > 0
+      return { id, surface, refused, reason, receipt, ray, wired, incomplete: !wired }
+    }
+
+    const paths: readonly ProductionRsaRefusePathRow[] = [
+      mk(
+        'refuse-non-demo-ceiling',
+        'refuseNonDemoRsaModulus · productionCeilingRefuseHolds',
+        ceiling.holds && !ceiling.gate.allowed,
+        ceiling.gate.reason,
+      ),
+      mk(
+        'refuse-far-over-ceiling',
+        'farOverCeilingRefuseHolds',
+        far.holds && !far.gate.allowed,
+        far.gate.reason,
+      ),
+      mk(
+        'refuse-bitcoin-mainnet',
+        'refuseBitcoinMainnetMaterial',
+        bitcoin.allowed === false,
+        bitcoin.reason,
+      ),
+      mk(
+        'refuse-modeled-shor-over-ceiling',
+        'modeledShorFactorToyModulus',
+        shorRefuse.refused && !shorRefuse.factored,
+        shorRefuse.reason,
+      ),
+      mk(
+        'refuse-browser-encryption-tool',
+        'runEncryptionToolInBrowser',
+        browserRefuse.refused === true,
+        browserRefuse.refuseReason,
+      ),
+      mk(
+        'refuse-max-bits-beyond',
+        'maximumBitsEncryptDecryptInverseReverse',
+        maxBits.refuseBeyond === true && maxBits.productionReverseRefused === true,
+        `refuseBeyond=${maxBits.refuseBeyond} reverseMaxBits=${maxBits.reverseMaxBits}`,
+      ),
+      mk(
+        'refuse-encryption-reverse-verify',
+        'encryptionReverseVerify',
+        reverseVerify.verified && reverseVerify.boundary.includes('DEMO_RSA_MODULI'),
+        'demo reverse only — production refused (boundary sealed)',
+      ),
+      mk(
+        'refuse-one-command-decode',
+        'oneCommandDecodeHashOrStringOrSequence',
+        decodeRefuse.refused && decodeRefuse.computes,
+        decodeRefuse.refuseReason,
+      ),
+    ]
+
+    const incompleteOpen = paths.filter((p) => p.incomplete).length
+    const allWired = incompleteOpen === 0 && paths.every((p) => p.wired && p.refused)
+    const claySolvedByThisFold = 0 as const
+    const certified = false as const
+    const physicalFtlClaim = 0 as const
+    const productionBreakEnabled = false as const
+
+    const facets = [
+      { facet: `incompleteOpen=${incompleteOpen} for refuse paths (must be 0)`, on: incompleteOpen === 0 },
+      { facet: `all ${paths.length} refuse paths sealed + ray-addressed (rosettaRayOf)`, on: allWired && paths.length >= (2 * 3) },
+      { facet: 'productionCeilingRefuseHolds + farOverCeilingRefuseHolds', on: ceiling.holds && far.holds },
+      { facet: 'modeledShor + browser tool + decode/one refuse over-ceiling', on: shorRefuse.refused && decodeRefuse.refused },
+      { facet: 'max-bits refuseBeyond ∧ productionReverseRefused (DEMO ceiling stays)', on: maxBits.refuseBeyond && maxBits.productionReverseRefused },
+      { facet: 'encryptionReverseVerify demo-only boundary (no production break)', on: reverseVerify.verified },
+      { facet: `productionBreakEnabled=${productionBreakEnabled}`, on: productionBreakEnabled === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold} certified=${certified} physicalFtl=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && !certified && physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`prod-rsa-refuse-complete:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('production-rsa-refuse-completes-quantum-via-rosetta', facets)
+    return {
+      computes: sealed.ok && allWired && incompleteOpen === 0,
+      incompleteOpen,
+      pathCount: paths.length,
+      wiredCount: paths.filter((p) => p.wired).length,
+      paths,
+      productionBreakEnabled,
+      refuseBeyond: maxBits.refuseBeyond,
+      demoBitCeiling: DEMO_RSA_BIT_CEILING,
+      claySolvedByThisFold,
+      certified,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, maxBits.root, reverseVerify.root, decodeRefuse.root, ...paths.map((p) => p.receipt)])),
+      pair: 'refuse/rosetta' as const,
+      cli: 'npm run quantum:production-rsa-refuse-rosetta',
+      route: '/en/quantum-encryption#production-rsa-refuse-rosetta',
+      statement:
+        `Production RSA refuse completes quantum via rosetta — paths=${paths.length} wired=${paths.filter((p) => p.wired).length} ` +
+        `incompleteOpen=${incompleteOpen} refuseBeyond=${maxBits.refuseBeyond} ceiling=${DEMO_RSA_BIT_CEILING}; clay=0 certified=false.`,
+      boundary:
+        'HONEST: sealed refuse receipts for every over-ceiling path (decode/one · reverse-verify · max-bits · modeled Shor · browser tool · Bitcoin). ' +
+        'Does NOT enable production RSA break. refuseBeyond / DEMO_RSA ceilings stay. claySolvedByThisFold=0 · certified=false · physicalFtl=0. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:production-rsa-refuse-rosetta */
+export function runProductionRsaRefuseCompletesQuantumViaRosettaExit(
+  _root: string,
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const r = productionRsaRefuseCompletesQuantumViaRosetta()
+  process.stdout.write(
+    `${r.computes ? '✓' : '✗'} production-rsa-refuse-rosetta — paths=${r.pathCount} wired=${r.wiredCount} ` +
+      `incompleteOpen=${r.incompleteOpen} refuseBeyond=${r.refuseBeyond} ceiling=${r.demoBitCeiling} ` +
+      `break=${r.productionBreakEnabled} clay=${r.claySolvedByThisFold} root=${r.root.slice(0, 2 ** 3)}\n`,
+  )
+  for (const p of r.paths) {
+    process.stdout.write(`  ${p.wired ? '✓' : '✗'} ${p.id} ray=${p.ray} — ${p.reason.slice(0, 8 * 9)}\n`)
+  }
+  process.stdout.write(`  boundary: ${r.boundary}\n`)
+  return r.computes && r.incompleteOpen === 0 && r.claySolvedByThisFold === 0 && !r.productionBreakEnabled ? 0 : 1
 }
