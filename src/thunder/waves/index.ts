@@ -2760,6 +2760,10 @@ export const SEALED_DISCOVER_FOLD_IDS = [
   'playAgentsTheMusicOfTheWave',
   'agentDefaultsFoldIntoHarmony',
   'agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath',
+  'manageComputationalDrift',
+  'driftInvertedIsTrinityGateway',
+  'hexInsteadOfTheoremIsCrack',
+  'computationsUseOnlyQuantumTheoremsAsConstants',
 ] as const
 
 /**

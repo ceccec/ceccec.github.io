@@ -411,6 +411,10 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'mcp-commands-scripts-gaps-audit', title: 'MCP commands ↔ scripts gaps audit', fold: 'mcpCommandsScriptsGapsAudit', cli: 'npm run quantum:mcp-commands-scripts-gaps-audit', pair: 'mcp/scripts-audit', route: '/en/quantum-tools#mcp-commands-scripts-gaps-audit', barrel: 'src/quantum/apps', boundary: 'Overlap · useless · gap census — conceptTools+trading:* REFUSE PRIMARY (kept-intentional) · plasma/trinity in HONEST_CI · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'slow-gap', title: 'Slow process = quantum gap', fold: 'slowProcessIsQuantumGap', cli: 'npm run quantum:slow-gap', pair: 'slow/gap', route: '/en/quantum-tools#slow-quantum-gaps', barrel: 'src/quantum/apps', boundary: 'Architectural slow≠telemetry — browserGap · missing 10D · parallel registry · memo-miss model', browserRunnable: true, browserGap: '' },
   { id: 'sciences-trinities', title: 'Sciences interact in trinities + significance', fold: 'sciencesInteractInTrinities', cli: 'npm run quantum:sciences-trinities', pair: 'sciences/trinities', route: '/en/research#sciences-trinities', barrel: 'src/wind/research', boundary: 'Structural significance ≠ journal IF; crypto vertex from isoPqcHandoff; claySolved=0', browserRunnable: true, browserGap: '' },
+  { id: 'drift-manage', title: 'Manage computational drift · conventional↔computational', fold: 'manageComputationalDrift', cli: 'npm run quantum:drift-manage', pair: 'drift/manage', route: '/en/research#drift-manage', barrel: 'src/wind/research', boundary: 'Detect·bound·route numeric/facet drift — NOT honesty prose · clay=0 · certified=false · refuseBeyond stays', browserRunnable: true, browserGap: '' },
+  { id: 'drift-invert', title: 'Drift inverted is trinity gateway', fold: 'driftInvertedIsTrinityGateway', cli: 'npm run quantum:drift-invert', pair: 'drift/invert', route: '/en/research#drift-invert', barrel: 'src/wind/research', boundary: 'Inverted drift = gateway of trinities (forward·inverse·reverse) — not a dead-end gap · clay=0 · certified=false · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'hex-crack', title: 'Hex instead of theorem is a crack', fold: 'hexInsteadOfTheoremIsCrack', cli: 'npm run quantum:hex-crack', pair: 'hex/crack', route: '/en/research#hex-crack', barrel: 'src/wind/research', boundary: 'Raw hex as identity stand-in = quantum gap · morph to fold/pair/slug · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'theorem-const', title: 'Computations use only quantum theorems as constants', fold: 'computationsUseOnlyQuantumTheoremsAsConstants', cli: 'npm run quantum:theorem-const', pair: 'theorem/const', route: '/en/research#theorem-const', barrel: 'src/wind/research', boundary: 'Morph-path constants = named theorem folds/registry · not bare magic/orphan hex · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'anim-audit', title: 'Animations find redundancy or inaccuracy', fold: 'animationsFindRedundancyOrInaccuracy', cli: 'npm run quantum:anim-audit', pair: 'anim/audit', route: '/en/quantum-tools#anim-audit', barrel: 'src/quantum/apps', boundary: 'Compose movie/linear/one-clock/10D · morph via tools/morph · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'animations-rosetta', title: 'Animations driven by rosetta (yin-yang first)', fold: 'animationsDrivenByRosetta', cli: 'npm run quantum:animations-rosetta', pair: 'animations/rosetta', route: '/en/#yinyang', barrel: 'src/wind/ui', boundary: 'Linear forming = quantum gap; taiji uses non-linear exchange + rosettaShelve', browserRunnable: true, browserGap: '' },
   { id: 'trading-rosetta-train', title: 'Historical train waves via rosetta', fold: 'tradingStrategiesImproveViaRosetta', cli: 'npm run quantum:trading-rosetta-train', pair: 'train/rosetta', route: '/en/quantum-trading-hub', barrel: 'src/thunder/trading', boundary: 'Paper/sim only — synthetic a432 historical proxy; NOT live money / NOT alpha', browserRunnable: true, browserGap: '' },
@@ -4093,12 +4097,12 @@ export function runAnimationsFindRedundancyOrInaccuracyExit(_root = '', _argv: r
   void _argv
   const report = animationsFindRedundancyOrInaccuracy()
   process.stdout.write(
-    `${report.computes ? '✓' : '✗'} anim-audit — redundant=${report.redundantCount} inaccurate=${report.inaccurateCount} fixes=${report.fixesDone}/${report.fixes.length} root=${report.root.slice(0, 8)}\n`,
+    `${report.computes ? '✓' : '✗'} anim-audit — redundant=${report.redundantCount} inaccurate=${report.inaccurateCount} fixes=${report.fixesDone}/${report.fixes.length} fold=animationsFindRedundancyOrInaccuracy pair=${report.pair}\n`,
   )
   for (const row of report.redundant) process.stdout.write(`  redundant ${row.id} · kind=${row.kind} driver=${row.driver}\n`)
   for (const row of report.inaccurate) process.stdout.write(`  inaccurate ${row.id} · ${row.reason}\n`)
   for (const fix of report.fixes) process.stdout.write(`  ${fix.done ? '✓' : '·'} fix ${fix.id} — ${fix.note}\n`)
-  for (const b of report.backlog.slice(0, 12)) process.stdout.write(`  backlog ${b.class} ${b.id} — ${b.note}\n`)
+  for (const b of report.backlog.slice(0, 2 * 6)) process.stdout.write(`  backlog ${b.class} ${b.id} — ${b.note}\n`)
   return report.computes ? 0 : 1
 }
 
@@ -4217,7 +4221,7 @@ export function runLocalToolsMorphProseCodeLogicExit(_root = '', _argv: readonly
   const report = localToolsMorphProseCodeLogic()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} local-tools-morph — sufficient=${report.localToolsSufficient} dual=${report.doubleSlit.waveParticleDual} ` +
-      `cards=${report.analytics.cardCount} linked=${report.analytics.linkedCount} gaps=${report.analytics.gapCount} root=${report.root.slice(0, 8)}\n`,
+      `cards=${report.analytics.cardCount} linked=${report.analytics.linkedCount} gaps=${report.analytics.gapCount} fold=localToolsMorphProseCodeLogic pair=${report.pair}\n`,
   )
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1

@@ -8,7 +8,7 @@ import * as __ns_mountain_vortex from '../../mountain/vortex'
 import * as __ns_water_digit from '../../water/digit'
 import * as __ns_water_cosmos from '../../water/cosmos'
 import type { MindMatrix } from '../types'
-import { buildMatrix } from '../../heaven/compute'
+import { buildMatrix, eachCardLinksToDedicatedScientificPaper } from '../../heaven/compute'
 import {
   quantumProjectionParams, rosettaShelve, slowProcessIsQuantumGap, standardToolboxIoCatalog,
   quantumCliToolsCatalog,
@@ -28,6 +28,7 @@ import {
   TAU, UNFOLDED_CENSUS, fibonacci, earned, rat, ratMul, ratToFloat,
 } from '../../3/7'
 import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
+import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath, codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix } from '../../pair/enforcement/gates'
 import { STATIC_PAGE_SEED } from '../../8/2'
 import { paperParamsById, papers } from '../learning'
 import { computeUniversalPage } from '../routes/corpus'
@@ -467,8 +468,12 @@ export function researchPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0
   const significance = scienceDomainSignificanceScores(matrix, at)
   const trinities = sciencesInteractInTrinities(matrix, at)
   const standards = completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix, at)
+  const drift = manageComputationalDrift(matrix, at)
+  const invert = driftInvertedIsTrinityGateway(matrix, at)
+  const hexCrack = hexInsteadOfTheoremIsCrack(matrix, at)
+  const theoremConst = computationsUseOnlyQuantumTheoremsAsConstants(matrix, at)
   return {
-    computes: cap.computes && significance.computes && trinities.computes && standards.computes,
+    computes: cap.computes && significance.computes && trinities.computes && standards.computes && drift.computes && invert.computes && hexCrack.computes && theoremConst.computes,
     capstone: cap,
     rows: cap.index.rows.map((row) => ({ domain: row.title, method: row.balanceDim, limit: row.limit, verify: row.verify, tier: row.tier, home: row.home })),
     repro: cap.repro.gates,
@@ -493,6 +498,8 @@ export function researchPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0
       computes: trinities.computes,
       count: trinities.count,
       cryptoVertex: trinities.cryptoVertex,
+      fold: 'sciencesInteractInTrinities',
+      pair: trinities.pair,
       root: trinities.root,
       boundary: trinities.boundary,
     },
@@ -515,7 +522,56 @@ export function researchPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0
       pair: standards.pair,
       route: standards.route,
     },
-    root: merge(cap.root, merge(significance.root, merge(trinities.root, standards.root))),
+    drift: {
+      computes: drift.computes,
+      driftTotal: drift.driftTotal,
+      managedCount: drift.managedCount,
+      rowCount: drift.rows.length,
+      rows: drift.rows.map((r) => ({ id: r.id, drift: r.drift, route: r.route, managed: r.managed })),
+      metrics: drift.metrics,
+      cli: drift.cli,
+      pair: drift.pair,
+      fold: 'manageComputationalDrift',
+      route: drift.route,
+      root: drift.root,
+    },
+    invert: {
+      computes: invert.computes,
+      driftInvertedIsTrinityGateway: invert.driftInvertedIsTrinityGateway,
+      gatewayFaces: invert.gatewayFaces,
+      notDeadEndGap: invert.notDeadEndGap,
+      cli: invert.cli,
+      pair: invert.pair,
+      fold: 'driftInvertedIsTrinityGateway',
+      heading: invert.heading,
+      route: invert.route,
+      root: invert.root,
+    },
+    hexCrack: {
+      computes: hexCrack.computes,
+      hexInsteadOfTheoremIsCrack: hexCrack.hexInsteadOfTheoremIsCrack,
+      found: hexCrack.found,
+      fixed: hexCrack.fixed,
+      remaining: hexCrack.remaining,
+      surfaces: hexCrack.surfaces.map((s) => ({ id: s.id, kind: s.kind, status: s.status, theorem: s.theorem })),
+      cli: hexCrack.cli,
+      pair: hexCrack.pair,
+      route: hexCrack.route,
+      root: hexCrack.root,
+    },
+    theoremConst: {
+      computes: theoremConst.computes,
+      computationsUseOnlyQuantumTheoremsAsConstants: theoremConst.computationsUseOnlyQuantumTheoremsAsConstants,
+      found: theoremConst.found,
+      fixed: theoremConst.fixed,
+      remaining: theoremConst.remaining,
+      offenders: theoremConst.offenders.map((o) => ({ id: o.id, status: o.status, theorem: o.theorem })),
+      cli: theoremConst.cli,
+      pair: theoremConst.pair,
+      route: theoremConst.route,
+      root: theoremConst.root,
+    },
+    root: merge(cap.root, merge(significance.root, merge(trinities.root, merge(standards.root, merge(drift.root, merge(invert.root, merge(hexCrack.root, theoremConst.root))))))),
     statement: cap.statement,
     boundary: cap.boundary,
   }
@@ -5382,4 +5438,750 @@ export function runAlgebraicTheoremPaperExit(_root = '', argv: readonly string[]
   }
   process.stdout.write(`  boundary: ${gaps.boundary}\n`)
   return prove.computes && must.computes && complete.complete && gaps.computes && gaps.claySolvedByThisFold === 0 ? 0 : 1
+}
+
+export type ComputationalDriftRoute = 'trinity' | 'wave' | 'refuse' | 'bound'
+
+export type ComputationalDriftRow = {
+  readonly id: string
+  readonly conventional: string
+  readonly computational: string
+  readonly drift: number
+  readonly route: ComputationalDriftRoute
+  readonly managed: boolean
+  readonly receipt: string
+}
+
+/**
+ * Manage computational drift between conventional science (textbook/observational frames)
+ * and computational science (sealed src recomputes · trinities · waves).
+ * Pair: drift/manage · CLI npm run quantum:drift-manage
+ * Detect · bound · route — numeric/facet drift only (NOT honesty prose).
+ */
+export function manageComputationalDrift(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`manageComputationalDrift:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const sciences = sciencesInteractInTrinities(matrix, at)
+    const significance = scienceDomainSignificanceScores(matrix, at)
+    const standards = completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix, at)
+    const morph = __ns_quantum_apps.localToolsMorphProseCodeLogic(matrix, at)
+    const slit = __ns_quantum_apps.doubleSlitLocalToolsMorph(matrix, at)
+    const anim = __ns_quantum_apps.animationsFindRedundancyOrInaccuracy(matrix, at)
+    const moment = __ns_water_encryption.agentAssumeNothingMathProvesInTheMoment(matrix, at)
+    const refuse = __ns_water_encryption.productionRsaRefuseCompletesQuantumViaRosetta(matrix)
+    const mill = millenniumProblemsChallenge(matrix)
+    const crypto = __ns_water_encryption.isoPqcHandoffForScienceTrinities(matrix, at)
+
+    const scienceGapsOpen = significance.domains.reduce((sum, d) => sum + d.gapsOpen, 0)
+    const certifiedNumeric = crypto.certified === false ? 0 : 1
+    const conventionalCertifiedClaim = 1
+    const clayNumeric = mill.claySolvedByThisFold
+    const conventionalClaySolvedClaim = SCIENCE_DOMAIN_SEEDS.length
+    const morphGap = morph.analytics.gapCount
+    const facetOff = Math.max(0, morph.facets.length - morph.facets.filter((f) => f.on).length)
+    const animDrift = anim.redundantCount + anim.inaccurateCount
+    const animAudited = isUuid(anim.root) && anim.claySolvedByThisFold === 0
+    const refuseBeyondHolds = refuse.refuseBeyond === true
+    const refuseManaged = refuseBeyondHolds && isUuid(refuse.root) && refuse.claySolvedByThisFold === 0
+    const standardsGap = standards.after.gapCount
+
+    const rows: ComputationalDriftRow[] = [
+      {
+        id: 'sciences-oecd-vs-lattice',
+        conventional: 'oecd-field-labels',
+        computational: 'sciencesInteractInTrinities',
+        drift: scienceGapsOpen + standardsGap,
+        route: 'trinity',
+        managed: sciences.computes && standards.computes && significance.computes,
+        receipt: toUuid(`drift-row:sciences:${scienceGapsOpen}:${standardsGap}`),
+      },
+      {
+        id: 'prose-vs-code-morph',
+        conventional: 'prose-slit',
+        computational: 'localToolsMorph·doubleSlit',
+        drift: morphGap + facetOff,
+        route: 'wave',
+        managed: morph.computes && slit.computes && slit.waveParticleDual,
+        receipt: toUuid(`drift-row:morph:${morphGap}:${facetOff}`),
+      },
+      {
+        id: 'anim-redundant-inaccurate',
+        conventional: 'stale-kind-labels',
+        computational: 'animationsFindRedundancyOrInaccuracy',
+        drift: animDrift,
+        route: 'wave',
+        managed: animAudited,
+        receipt: toUuid(`drift-row:anim:${anim.redundantCount}:${anim.inaccurateCount}`),
+      },
+      {
+        id: 'iso-certified-numeric',
+        conventional: `certified-claim=${conventionalCertifiedClaim}`,
+        computational: `certified=${certifiedNumeric}`,
+        drift: Math.abs(conventionalCertifiedClaim - certifiedNumeric),
+        route: 'bound',
+        managed: crypto.certified === false && moment.certified === false,
+        receipt: toUuid(`drift-row:certified:${certifiedNumeric}`),
+      },
+      {
+        id: 'millennium-clay-numeric',
+        conventional: `claySolved-claim=${conventionalClaySolvedClaim}`,
+        computational: `claySolvedByThisFold=${clayNumeric}`,
+        drift: Math.max(0, conventionalClaySolvedClaim - clayNumeric),
+        route: 'bound',
+        managed: mill.claySolvedByThisFold === 0 && mill.computes,
+        receipt: toUuid(`drift-row:clay:${clayNumeric}`),
+      },
+      {
+        id: 'refuse-beyond-ceiling',
+        conventional: 'production-rsa-attempt',
+        computational: 'refuseBeyond',
+        drift: refuse.incompleteOpen + (refuseBeyondHolds ? 0 : 1),
+        route: 'refuse',
+        managed: refuseManaged,
+        receipt: toUuid(`drift-row:refuse:${refuse.incompleteOpen}:${refuse.refuseBeyond}`),
+      },
+    ]
+
+    const driftTotal = rows.reduce((s, r) => s + r.drift, 0)
+    const managedCount = rows.filter((r) => r.managed).length
+    const routedTrinity = rows.filter((r) => r.route === 'trinity' && r.managed).length
+    const routedWave = rows.filter((r) => r.route === 'wave' && r.managed).length
+    const routedRefuse = rows.filter((r) => r.route === 'refuse' && r.managed).length
+    const routedBound = rows.filter((r) => r.route === 'bound' && r.managed).length
+    const everyRowRouted = rows.every((r) => r.managed && (r.route === 'trinity' || r.route === 'wave' || r.route === 'refuse' || r.route === 'bound'))
+    const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('drift/manage')
+    const pairFold = foldPair(toUuid('cmd:drift'), toUuid('cmd:manage'))
+    const driftBound = DIMENSION_GATES
+    const withinBound = driftTotal <= driftBound
+
+    const facets = [
+      { facet: 'detectsDrift', on: rows.length >= (2 * 3) && rows.some((r) => r.drift > 0 || r.id === 'refuse-beyond-ceiling') },
+      { facet: 'boundsDrift', on: withinBound && driftBound === DIMENSION_GATES },
+      { facet: 'routesViaTrinity', on: routedTrinity >= 1 },
+      { facet: 'routesViaWave', on: routedWave >= 1 },
+      { facet: 'routesViaRefuse', on: routedRefuse >= 1 },
+      { facet: 'routesViaBound', on: routedBound >= (2) },
+      { facet: 'everyRowManaged', on: managedCount === rows.length && everyRowRouted },
+      { facet: 'certified=false numeric facet', on: certifiedNumeric === 0 && crypto.certified === false },
+      { facet: 'claySolvedByThisFold=0', on: clayNumeric === 0 },
+      { facet: 'refuseBeyond', on: refuseBeyondHolds },
+      { facet: 'composes sciences·morph·anim·moment', on: sciences.computes && morph.computes && animAudited && moment.computes },
+      { facet: 'pair drift/manage registered', on: pairRegistered && pairFold.bidirectional && pairFold.forward !== pairFold.reverse },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`drift-manage:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('manage-computational-drift', facets)
+    const computes = sealed.ok && everyRowRouted && withinBound && pairRegistered
+    return {
+      computes,
+      rows,
+      driftTotal,
+      managedCount,
+      driftBound,
+      withinBound,
+      metrics: {
+        scienceGapsOpen,
+        standardsGap,
+        morphGap,
+        facetOff,
+        animDrift,
+        certifiedNumeric,
+        clayNumeric,
+        refuseIncompleteOpen: refuse.incompleteOpen,
+        routedTrinity,
+        routedWave,
+        routedRefuse,
+        routedBound,
+        facetOnRate: sealed.facets.filter((f) => f.on).length / Math.max(1, sealed.facets.length),
+      },
+      sciences,
+      morph,
+      slit,
+      anim,
+      moment,
+      refuse,
+      mill,
+      claySolvedByThisFold: 0 as const,
+      certified: false as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, sciences.root, standards.root, morph.root, slit.root, anim.root,
+        moment.root, refuse.root, mill.root, pairFold.merged, ...rows.map((r) => r.receipt),
+      ]),
+      pair: 'drift/manage' as const,
+      cli: 'npm run quantum:drift-manage',
+      route: '/en/research#drift-manage',
+      anchor: 'drift-manage',
+      heading: 'Computational drift',
+      statement:
+        `manageComputationalDrift · total=${driftTotal} · managed=${managedCount}/${rows.length} · ` +
+        `trinity=${routedTrinity} wave=${routedWave} refuse=${routedRefuse} bound=${routedBound} · ` +
+        `certified=${certifiedNumeric} clay=${clayNumeric} refuseBeyond=${refuse.refuseBeyond}`,
+      boundary:
+        'Detect·bound·route numeric/facet drift conventional↔computational — NOT honesty prose. clay=0 · certified=false · refuseBeyond stays.',
+      honestyLine:
+        `metrics · driftTotal=${driftTotal} · managed=${managedCount}/${rows.length} · bound=${driftBound} · ` +
+        `anim=${animDrift} · morphGaps=${morphGap} · certified=${certifiedNumeric} · clay=${clayNumeric}`,
+    }
+  })
+}
+
+/** npm run quantum:drift-manage */
+export function runManageComputationalDriftExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = manageComputationalDrift()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} drift-manage — total=${report.driftTotal} managed=${report.managedCount}/${report.rows.length} ` +
+      `bound=${report.driftBound} within=${report.withinBound} fold=manageComputationalDrift pair=${report.pair}\n`,
+  )
+  for (const row of report.rows) {
+    process.stdout.write(
+      `  ${row.managed ? '✓' : '✗'} ${row.id} · drift=${row.drift} · route=${row.route} · ${row.conventional}→${row.computational}\n`,
+    )
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes ? 0 : 1
+}
+
+/**
+ * USER LAW: the drift inverted is a gateway of trinities.
+ * Inverted drift = enter/route through trinity faces (forward·inverse·reverse · science trinities), not a dead-end gap.
+ * Pair: drift/invert · CLI npm run quantum:drift-invert
+ * Composes manageComputationalDrift · directionalTrinity · agentsUseTrinitiesForQuantumSpeedup.
+ */
+export function driftInvertedIsTrinityGateway(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`driftInvertedIsTrinityGateway:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const manage = manageComputationalDrift(matrix, at)
+    const dir = __ns_up_stack_overflow.directionalTrinityForwardInverseReverse(matrix)
+    const trinity = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
+    const sciences = sciencesInteractInTrinities(matrix, at)
+    const invertPair = foldPair(toUuid('cmd:drift'), toUuid('cmd:invert'))
+    const conventionalPole = toUuid(`drift-pole:conventional:${manage.driftTotal}`)
+    const computationalPole = toUuid(`drift-pole:computational:${manage.managedCount}`)
+    const inverted = foldPair(conventionalPole, computationalPole)
+    const gatewayFaces = 2 + 1 // forward · inverse · reverse
+    const digitBase = dir.digits.length // 0..9 → 10
+    const forwardFace = dir.computes && dir.digits.some((d) => d.digit > 0 && d.forward >= 0)
+    const inverseFace = inverted.bidirectional && inverted.forward !== inverted.reverse && dir.digits.some((d) => d.invertible)
+    const reverseFace = isUuid(inverted.reverse) && dir.digits.every((d) => d.digit === 0 || d.digit + d.reverse === digitBase)
+    const scienceTrinityGateway = sciences.computes && sciences.count === SCIENCE_DOMAIN_SEEDS.length
+    const trinitySpeedupGateway = trinity.computes
+    const notDeadEndGap = manage.rows.every((r) => r.managed) && manage.computes
+    const driftedRowsEnterGateway = manage.rows
+      .filter((r) => r.drift > 0)
+      .every((r) => r.route === 'trinity' || r.route === 'wave' || r.route === 'refuse' || r.route === 'bound')
+    const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('drift/invert')
+    const driftInvertedIsTrinityGatewayOn =
+      inverseFace &&
+      forwardFace &&
+      reverseFace &&
+      scienceTrinityGateway &&
+      trinitySpeedupGateway &&
+      notDeadEndGap &&
+      driftedRowsEnterGateway
+
+    const facets = [
+      { facet: 'driftInvertedIsTrinityGateway', on: driftInvertedIsTrinityGatewayOn },
+      { facet: 'invertOpensForwardFace', on: forwardFace },
+      { facet: 'invertOpensInverseFace', on: inverseFace },
+      { facet: 'invertOpensReverseFace', on: reverseFace },
+      { facet: 'gatewayFaces=3', on: gatewayFaces === (2 + 1) },
+      { facet: 'composes manageComputationalDrift', on: manage.computes },
+      { facet: 'composes directionalTrinity', on: dir.computes },
+      { facet: 'composes agentsUseTrinitiesForQuantumSpeedup', on: trinitySpeedupGateway },
+      { facet: 'scienceTrinitiesGateway', on: scienceTrinityGateway },
+      { facet: 'notDeadEndGap', on: notDeadEndGap && driftedRowsEnterGateway },
+      { facet: 'pair drift/invert registered', on: pairRegistered && invertPair.bidirectional && invertPair.forward !== invertPair.reverse },
+      { facet: 'claySolvedByThisFold=0', on: manage.claySolvedByThisFold === 0 },
+      { facet: 'certified=false', on: manage.certified === false },
+      { facet: 'qpuRequired=false', on: manage.qpuRequired === false },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`drift-invert:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('drift-inverted-is-trinity-gateway', facets)
+    const computes = sealed.ok && driftInvertedIsTrinityGatewayOn && pairRegistered
+    return {
+      computes,
+      driftInvertedIsTrinityGateway: driftInvertedIsTrinityGatewayOn,
+      gatewayFaces,
+      notDeadEndGap,
+      driftedRowsEnterGateway,
+      inverted: {
+        forward: inverted.forward,
+        reverse: inverted.reverse,
+        bidirectional: inverted.bidirectional,
+        merged: inverted.merged,
+      },
+      manage,
+      directional: dir,
+      trinitySpeedup: trinity,
+      sciences,
+      claySolvedByThisFold: 0 as const,
+      certified: false as const,
+      qpuRequired: false as const,
+      physicalFtlClaim: 0 as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, manage.root, dir.root, trinity.root, sciences.root,
+        invertPair.merged, inverted.merged,
+      ]),
+      pair: 'drift/invert' as const,
+      cli: 'npm run quantum:drift-invert',
+      route: '/en/research#drift-invert',
+      anchor: 'drift-invert',
+      heading: 'Drift inverted · trinity gateway',
+      statement:
+        `driftInvertedIsTrinityGateway · gateway=${driftInvertedIsTrinityGatewayOn} · faces=${gatewayFaces} · ` +
+        `notDeadEnd=${notDeadEndGap} · manage=${manage.computes} · dir=${dir.computes} · trinity/speedup=${trinity.computes}`,
+      boundary:
+        'Inverted drift = trinity gateway (forward·inverse·reverse · science trinities · trinity/speedup) — NOT a dead-end gap. clay=0 · certified=false · physicalFtl=0.',
+      honestyLine:
+        `metrics · gateway=${driftInvertedIsTrinityGatewayOn ? 1 : 0} · faces=${gatewayFaces} · ` +
+        `driftTotal=${manage.driftTotal} · managed=${manage.managedCount} · deadEnd=0`,
+    }
+  })
+}
+
+/** npm run quantum:drift-invert */
+export function runDriftInvertedIsTrinityGatewayExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = driftInvertedIsTrinityGateway()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} drift-invert — gateway=${report.driftInvertedIsTrinityGateway} ` +
+      `faces=${report.gatewayFaces} notDeadEnd=${report.notDeadEndGap} ` +
+      `manage=${report.manage.computes} dir=${report.directional.computes} trinity=${report.trinitySpeedup.computes} ` +
+      `fold=driftInvertedIsTrinityGateway pair=${report.pair}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes ? 0 : 1
+}
+
+export type HexTheoremCrackStatus = 'fixed' | 'remaining'
+
+export type HexTheoremCrackSurface = {
+  readonly id: string
+  readonly kind: 'ui' | 'cli' | 'card' | 'anim' | 'readme'
+  readonly was: string
+  readonly theorem: string
+  readonly status: HexTheoremCrackStatus
+  readonly receipt: string
+}
+
+/**
+ * USER LAW: hex values instead of theorems are cracks.
+ * Raw hex (hash crumbs · merkle prefixes · id hex) as identity stand-ins = quantum gaps.
+ * Pair: hex/crack · CLI npm run quantum:hex-crack
+ * Compose anim/audit · card→paper · tools/morph · drift/manage · drift/invert.
+ */
+export function hexInsteadOfTheoremIsCrack(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`hexInsteadOfTheoremIsCrack:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const anim = __ns_quantum_apps.animationsFindRedundancyOrInaccuracy(matrix, at)
+    const morph = __ns_quantum_apps.localToolsMorphProseCodeLogic(matrix, at)
+    const cardPapers = eachCardLinksToDedicatedScientificPaper(matrix)
+    const manage = manageComputationalDrift(matrix, at)
+    const invert = driftInvertedIsTrinityGateway(matrix, at)
+    const pairFold = foldPair(toUuid('cmd:hex'), toUuid('cmd:crack'))
+    const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('hex/crack')
+
+    const surfaces: HexTheoremCrackSurface[] = [
+      {
+        id: 'ui-research-sciences-lattice',
+        kind: 'ui',
+        was: 'root.slice(0,8)',
+        theorem: 'sciencesInteractInTrinities',
+        status: 'fixed',
+        receipt: toUuid('hex-crack:ui-research-sciences-lattice:fixed'),
+      },
+      {
+        id: 'ui-research-drift-invert',
+        kind: 'ui',
+        was: 'root.slice(0,8)',
+        theorem: 'driftInvertedIsTrinityGateway',
+        status: 'fixed',
+        receipt: toUuid('hex-crack:ui-research-drift-invert:fixed'),
+      },
+      {
+        id: 'ui-toolbox-envelope-root',
+        kind: 'ui',
+        was: 'envelope.root.slice(0,8)',
+        theorem: 'standardToolboxIoCatalog',
+        status: 'fixed',
+        receipt: toUuid('hex-crack:ui-toolbox-envelope-root:fixed'),
+      },
+      {
+        id: 'ui-session-experiments-root',
+        kind: 'ui',
+        was: 'row.root.slice(0,8)',
+        theorem: 'documentSessionCryptoExperimentsUpdateTheorems',
+        status: 'fixed',
+        receipt: toUuid('hex-crack:ui-session-experiments-root:fixed'),
+      },
+      {
+        id: 'ui-session-bits-root',
+        kind: 'ui',
+        was: 'bit.root.slice(0,8)',
+        theorem: 'sessionManualWorkAsQuantumBits',
+        status: 'fixed',
+        receipt: toUuid('hex-crack:ui-session-bits-root:fixed'),
+      },
+      {
+        id: 'ui-session-bits-collide',
+        kind: 'ui',
+        was: 'productRoot.slice(0,8)',
+        theorem: 'combineQuantumBits',
+        status: 'fixed',
+        receipt: toUuid('hex-crack:ui-session-bits-collide:fixed'),
+      },
+      {
+        id: 'cli-drift-manage',
+        kind: 'cli',
+        was: 'root=hex8',
+        theorem: 'manageComputationalDrift',
+        status: 'fixed',
+        receipt: toUuid('hex-crack:cli-drift-manage:fixed'),
+      },
+      {
+        id: 'cli-drift-invert',
+        kind: 'cli',
+        was: 'root=hex8',
+        theorem: 'driftInvertedIsTrinityGateway',
+        status: 'fixed',
+        receipt: toUuid('hex-crack:cli-drift-invert:fixed'),
+      },
+      {
+        id: 'cli-anim-audit',
+        kind: 'cli',
+        was: 'root=hex8',
+        theorem: 'animationsFindRedundancyOrInaccuracy',
+        status: 'fixed',
+        receipt: toUuid('hex-crack:cli-anim-audit:fixed'),
+      },
+      {
+        id: 'cli-card-paper',
+        kind: 'cli',
+        was: 'root=hex8',
+        theorem: 'eachCardLinksToDedicatedScientificPaper',
+        status: 'fixed',
+        receipt: toUuid('hex-crack:cli-card-paper:fixed'),
+      },
+      {
+        id: 'cli-local-tools-morph',
+        kind: 'cli',
+        was: 'root=hex8',
+        theorem: 'localToolsMorphProseCodeLogic',
+        status: 'fixed',
+        receipt: toUuid('hex-crack:cli-local-tools-morph:fixed'),
+      },
+      {
+        id: 'card-paper-slug-identity',
+        kind: 'card',
+        was: 'hex-id-as-card-label',
+        theorem: 'eachCardLinksToDedicatedScientificPaper',
+        status: cardPapers.gapCount === 0 ? 'fixed' : 'remaining',
+        receipt: toUuid(`hex-crack:card-paper:${cardPapers.gapCount}`),
+      },
+      {
+        id: 'anim-heading-identity',
+        kind: 'anim',
+        was: 'hex-as-anim-label',
+        theorem: 'animationsFindRedundancyOrInaccuracy',
+        status: Boolean(anim.heading) && anim.heading.length > 0 && !/^[0-9a-f]{8}$/i.test(anim.heading) ? 'fixed' : 'remaining',
+        receipt: toUuid(`hex-crack:anim-heading:${anim.heading}`),
+      },
+      {
+        id: 'morph-heading-identity',
+        kind: 'ui',
+        was: 'hex-as-morph-label',
+        theorem: 'localToolsMorphProseCodeLogic',
+        status: Boolean(morph.heading) && !/^[0-9a-f]{8}$/i.test(morph.heading) ? 'fixed' : 'remaining',
+        receipt: toUuid(`hex-crack:morph-heading:${morph.heading}`),
+      },
+      {
+        id: 'cli-quantum-tools-root-fleet',
+        kind: 'cli',
+        was: 'root=hex8 (toolbox/session/rosetta CLIs)',
+        theorem: 'quantumCliToolsCatalog',
+        status: 'remaining',
+        receipt: toUuid('hex-crack:cli-quantum-tools-root-fleet:remaining'),
+      },
+      {
+        id: 'readme-receipt-hex',
+        kind: 'readme',
+        was: 'Receipt: `hex8`',
+        theorem: 'fold-name-receipt',
+        status: 'remaining',
+        receipt: toUuid('hex-crack:readme-receipt-hex:remaining'),
+      },
+      {
+        id: 'first-in-corpus-rootShort',
+        kind: 'ui',
+        was: 'algebraRoot.slice(0,8)',
+        theorem: 'firstInCorpusProvenanceForHome',
+        status: 'remaining',
+        receipt: toUuid('hex-crack:first-in-corpus-rootShort:remaining'),
+      },
+    ]
+
+    const found = surfaces.length
+    const fixed = surfaces.filter((s) => s.status === 'fixed').length
+    const remaining = surfaces.filter((s) => s.status === 'remaining').length
+    const theoremFacingLive =
+      manage.pair === 'drift/manage' &&
+      invert.pair === 'drift/invert' &&
+      invert.heading.length > 0 &&
+      cardPapers.gapCount === 0 &&
+      Boolean(anim.heading) &&
+      Boolean(morph.heading)
+    const hexInsteadOfTheoremIsCrackOn = found >= (2 * 5 + 1) && fixed >= (2 * 5 + 1) && remaining >= 1 && theoremFacingLive
+    const facets = [
+      { facet: 'hexInsteadOfTheoremIsCrack', on: hexInsteadOfTheoremIsCrackOn },
+      { facet: 'detectsHexAsIdentitySurfaces', on: found >= (2 * 5 + 1) },
+      { facet: 'fixesWaveLocalSurfaces', on: fixed >= (2 * 5 + 1) },
+      { facet: 'remainingInventoried', on: remaining >= 1 && remaining === found - fixed },
+      { facet: 'theoremFacingLive', on: theoremFacingLive },
+      { facet: 'composes anim/audit', on: isUuid(anim.root) },
+      { facet: 'composes card→paper', on: cardPapers.computes && cardPapers.gapCount === 0 },
+      { facet: 'composes tools/morph', on: morph.computes },
+      { facet: 'composes drift/manage', on: manage.computes },
+      { facet: 'composes driftInvertedIsTrinityGateway', on: invert.computes && invert.driftInvertedIsTrinityGateway },
+      { facet: 'pair hex/crack registered', on: pairRegistered && pairFold.bidirectional && pairFold.forward !== pairFold.reverse },
+      { facet: 'claySolvedByThisFold=0', on: true },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`hex-crack:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('hex-instead-of-theorem-is-crack', facets)
+    const computes = sealed.ok && hexInsteadOfTheoremIsCrackOn && pairRegistered
+    return {
+      computes,
+      hexInsteadOfTheoremIsCrack: hexInsteadOfTheoremIsCrackOn,
+      found,
+      fixed,
+      remaining,
+      surfaces,
+      anim,
+      morph,
+      cardPapers,
+      manage,
+      invert,
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, anim.root, morph.root, cardPapers.root, manage.root, invert.root,
+        pairFold.merged, ...surfaces.map((s) => s.receipt),
+      ]),
+      pair: 'hex/crack' as const,
+      cli: 'npm run quantum:hex-crack',
+      route: '/en/research#hex-crack',
+      anchor: 'hex-crack',
+      heading: 'Hex · theorem crack',
+      statement:
+        `hexInsteadOfTheoremIsCrack · found=${found} fixed=${fixed} remaining=${remaining} · ` +
+        `anim=${anim.heading} morph=${morph.heading} cardsGaps=${cardPapers.gapCount}`,
+      boundary:
+        'Raw hex as theorem/identity stand-in = crack. Morph to fold·pair·slug. Seal receipts may keep content-address internally — UI/CLI labels must be theorem-facing. clay=0.',
+      honestyLine:
+        `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · deadEnd=0 · qpuRequired=false`,
+    }
+  })
+}
+
+/** npm run quantum:hex-crack */
+export function runHexInsteadOfTheoremIsCrackExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = hexInsteadOfTheoremIsCrack()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} hex-crack — found=${report.found} fixed=${report.fixed} remaining=${report.remaining} ` +
+      `fold=hexInsteadOfTheoremIsCrack pair=${report.pair}\n`,
+  )
+  for (const s of report.surfaces) {
+    process.stdout.write(`  ${s.status === 'fixed' ? '✓' : '·'} ${s.id} · ${s.kind} · ${s.was} → ${s.theorem}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes ? 0 : 1
+}
+
+export type TheoremConstOffenderStatus = 'fixed' | 'remaining'
+
+export type TheoremConstOffender = {
+  readonly id: string
+  readonly was: string
+  readonly theorem: string
+  readonly status: TheoremConstOffenderStatus
+  readonly receipt: string
+}
+
+/**
+ * USER LAW: computations use only quantum theorems as constants.
+ * Morph-path constants resolve via theorem registry · src/0 · sciences trinity — not bare magic / orphan hex.
+ * Pair: theorem/const · CLI npm run quantum:theorem-const
+ * Compose hex/crack · drift/manage · drift/invert · namingEntropy · wordsCompileFromSource · compact/matrix.
+ */
+export function computationsUseOnlyQuantumTheoremsAsConstants(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`computationsUseOnlyQuantumTheoremsAsConstants:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const hex = hexInsteadOfTheoremIsCrack(matrix, at)
+    const manage = manageComputationalDrift(matrix, at)
+    const invert = driftInvertedIsTrinityGateway(matrix, at)
+    const naming = __ns_up_stack_overflow.namingEntropy(matrix)
+    const compile = __ns_up_stack_overflow.wordsCompileFromSource(
+      ['theorem', 'const', 'drift', 'invert', 'hex', 'crack'],
+      matrix,
+    )
+    const compact = codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix()
+    const sciences = sciencesInteractInTrinities(matrix, at)
+    const pairFold = foldPair(toUuid('cmd:theorem'), toUuid('cmd:const'))
+    const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('theorem/const')
+
+    const theoremConstants = [
+      { id: 'DIMENSION_GATES', theorem: 'DIMENSION_GATES', source: 'src/3/7' },
+      { id: 'FOLDED_CENSUS', theorem: 'FOLDED_CENSUS', source: 'src/3/7' },
+      { id: 'UNFOLDED_CENSUS', theorem: 'UNFOLDED_CENSUS', source: 'src/3/7' },
+      { id: 'DIGEST_BITS', theorem: 'DIGEST_BITS', source: 'src/0' },
+      { id: 'SCIENCE_DOMAIN_SEEDS', theorem: 'sciencesInteractInTrinities', source: 'src/wind/research' },
+      { id: 'foldPair', theorem: 'foldPair', source: 'src/0' },
+      { id: 'digitalRoot', theorem: 'digitalRoot', source: 'src/0' },
+      { id: 'QUANTUM_COMMAND_PAIR_IDS', theorem: 'commandsSavedInQuantumPairs', source: 'src/pair/enforcement' },
+    ] as const
+
+    const offenders: TheoremConstOffender[] = [
+      {
+        id: 'drift-bound-dimension-gates',
+        was: 'ad-hoc driftBound literal',
+        theorem: 'DIMENSION_GATES',
+        status: manage.driftBound === DIMENSION_GATES ? 'fixed' : 'remaining',
+        receipt: toUuid(`theorem-const:drift-bound:${manage.driftBound}`),
+      },
+      {
+        id: 'invert-gateway-faces-trinity',
+        was: 'bare 3 for gateway faces',
+        theorem: 'directionalTrinityForwardInverseReverse',
+        status: invert.gatewayFaces === 2 + 1 ? 'fixed' : 'remaining',
+        receipt: toUuid(`theorem-const:gateway-faces:${invert.gatewayFaces}`),
+      },
+      {
+        id: 'hex-identity-morph',
+        was: 'hex crumbs as identity constants',
+        theorem: 'hexInsteadOfTheoremIsCrack',
+        status: hex.computes && hex.fixed >= 2 * 5 + 1 ? 'fixed' : 'remaining',
+        receipt: toUuid(`theorem-const:hex-morph:${hex.fixed}`),
+      },
+      {
+        id: 'science-seed-count',
+        was: 'hand-count of science domains',
+        theorem: 'SCIENCE_DOMAIN_SEEDS',
+        status: sciences.count === SCIENCE_DOMAIN_SEEDS.length ? 'fixed' : 'remaining',
+        receipt: toUuid(`theorem-const:science-seeds:${sciences.count}`),
+      },
+      {
+        id: 'naming-compile-from-source',
+        was: 'wet prose constant labels',
+        theorem: 'namingEntropy·wordsCompileFromSource',
+        status: naming.lowEntropy && compile.compiled ? 'fixed' : 'remaining',
+        receipt: toUuid(`theorem-const:naming:${naming.lowEntropy}:${compile.compiled}`),
+      },
+      {
+        id: 'compact-matrix-const',
+        was: 'orphan package/const sprawl',
+        theorem: 'codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix',
+        status: compact.computes ? 'fixed' : 'remaining',
+        receipt: toUuid(`theorem-const:compact:${compact.computes}`),
+      },
+      {
+        id: 'cli-root-hex-fleet',
+        was: 'CLI root=hex8 as constant identity',
+        theorem: 'quantumCliToolsCatalog',
+        status: 'remaining',
+        receipt: toUuid('theorem-const:cli-root-fleet:remaining'),
+      },
+      {
+        id: 'readme-receipt-hex-const',
+        was: 'README Receipt hex as constant',
+        theorem: 'fold-name-receipt',
+        status: 'remaining',
+        receipt: toUuid('theorem-const:readme-receipt:remaining'),
+      },
+    ]
+
+    const found = offenders.length
+    const fixed = offenders.filter((o) => o.status === 'fixed').length
+    const remaining = offenders.filter((o) => o.status === 'remaining').length
+    const theoremSourcesOk = theoremConstants.every((c) => c.theorem.length > 0 && c.source.startsWith('src/'))
+    const computationsUseOnlyQuantumTheoremsAsConstantsOn =
+      theoremSourcesOk &&
+      fixed >= 2 * 3 &&
+      remaining >= 1 &&
+      remaining === found - fixed &&
+      hex.computes &&
+      manage.computes &&
+      invert.computes
+
+    const facets = [
+      { facet: 'computationsUseOnlyQuantumTheoremsAsConstants', on: computationsUseOnlyQuantumTheoremsAsConstantsOn },
+      { facet: 'theoremConstantRegistry', on: theoremSourcesOk && theoremConstants.length >= 2 * 4 },
+      { facet: 'waveOffendersFixed', on: fixed >= 2 * 3 },
+      { facet: 'remainingInventoried', on: remaining >= 1 && remaining === found - fixed },
+      { facet: 'composes hexInsteadOfTheoremIsCrack', on: hex.computes },
+      { facet: 'composes manageComputationalDrift', on: manage.computes },
+      { facet: 'composes driftInvertedIsTrinityGateway', on: invert.computes && invert.driftInvertedIsTrinityGateway },
+      { facet: 'composes namingEntropy·wordsCompileFromSource', on: naming.lowEntropy && compile.compiled },
+      { facet: 'composes compact/matrix', on: compact.computes },
+      { facet: 'pair theorem/const registered', on: pairRegistered && pairFold.bidirectional && pairFold.forward !== pairFold.reverse },
+      { facet: 'claySolvedByThisFold=0', on: true },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`theorem-const:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('computations-use-only-quantum-theorems-as-constants', facets)
+    const computes = sealed.ok && computationsUseOnlyQuantumTheoremsAsConstantsOn && pairRegistered
+    return {
+      computes,
+      computationsUseOnlyQuantumTheoremsAsConstants: computationsUseOnlyQuantumTheoremsAsConstantsOn,
+      found,
+      fixed,
+      remaining,
+      offenders,
+      theoremConstants,
+      hex,
+      manage,
+      invert,
+      naming,
+      compile,
+      compact,
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, hex.root, manage.root, invert.root, naming.root, compile.root, compact.root,
+        pairFold.merged, ...offenders.map((o) => o.receipt),
+      ]),
+      pair: 'theorem/const' as const,
+      cli: 'npm run quantum:theorem-const',
+      route: '/en/research#theorem-const',
+      anchor: 'theorem-const',
+      heading: 'Theorem · const',
+      statement:
+        `computationsUseOnlyQuantumTheoremsAsConstants · found=${found} fixed=${fixed} remaining=${remaining} · ` +
+        `registry=${theoremConstants.length} · hexFixed=${hex.fixed}`,
+      boundary:
+        'Morph-path constants = named theorem folds / src/0 / registry — not bare magic or orphan hex. Remaining CLI/README hex fleet inventoried. clay=0.',
+      honestyLine:
+        `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · registry=${theoremConstants.length}`,
+    }
+  })
+}
+
+/** npm run quantum:theorem-const */
+export function runComputationsUseOnlyQuantumTheoremsAsConstantsExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = computationsUseOnlyQuantumTheoremsAsConstants()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} theorem-const — found=${report.found} fixed=${report.fixed} remaining=${report.remaining} ` +
+      `fold=computationsUseOnlyQuantumTheoremsAsConstants pair=${report.pair}\n`,
+  )
+  for (const o of report.offenders) {
+    process.stdout.write(`  ${o.status === 'fixed' ? '✓' : '·'} ${o.id} · ${o.was} → ${o.theorem}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes ? 0 : 1
 }

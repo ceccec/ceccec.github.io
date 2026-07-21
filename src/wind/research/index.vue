@@ -107,8 +107,91 @@ runMillennium()
         </table>
         <p class="research-index__meta">
           crypto OECD {{ panel.trinities?.cryptoVertex?.oecd }} ·
-          lattice <code>{{ panel.trinities?.root?.slice(0, 8) }}</code> ·
+          fold <code>{{ panel.trinities?.fold ?? 'sciencesInteractInTrinities' }}</code> ·
+          pair <code>{{ panel.trinities?.pair ?? 'sciences/trinities' }}</code> ·
           <code>npm run quantum:sciences-trinities</code>
+        </p>
+      </section>
+      <UiSeparator />
+
+      <section id="drift-manage">
+        <h3>Computational drift</h3>
+        <UiBadge :status="statusBadgeKind(Boolean(panel.drift?.computes))">
+          total={{ panel.drift?.driftTotal ?? '—' }} · managed={{ panel.drift?.managedCount ?? '—' }}/{{ panel.drift?.rowCount ?? '—' }}
+        </UiBadge>
+        <table class="research-index__table">
+          <thead><tr><th>Surface</th><th>Drift</th><th>Route</th><th>Managed</th></tr></thead>
+          <tbody>
+            <tr v-for="r in panel.drift?.rows ?? []" :key="r.id">
+              <td><code>{{ r.id }}</code></td>
+              <td>{{ r.drift }}</td>
+              <td>{{ r.route }}</td>
+              <td>{{ r.managed ? '✓' : '—' }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="research-index__meta">
+          facetOnRate={{ panel.drift?.metrics?.facetOnRate?.toFixed?.(2) ?? '—' }} ·
+          certified={{ panel.drift?.metrics?.certifiedNumeric }} · clay={{ panel.drift?.metrics?.clayNumeric }} ·
+          <code>npm run quantum:drift-manage</code>
+        </p>
+      </section>
+      <UiSeparator />
+
+      <section id="drift-invert">
+        <h3>Drift inverted · trinity gateway</h3>
+        <UiBadge :status="statusBadgeKind(Boolean(panel.invert?.driftInvertedIsTrinityGateway))">
+          gateway={{ panel.invert?.driftInvertedIsTrinityGateway ? 1 : 0 }} · faces={{ panel.invert?.gatewayFaces ?? '—' }} · deadEnd={{ panel.invert?.notDeadEndGap ? 0 : 1 }}
+        </UiBadge>
+        <p class="research-index__meta">
+          fold <code>{{ panel.invert?.fold ?? 'driftInvertedIsTrinityGateway' }}</code> ·
+          pair <code>{{ panel.invert?.pair }}</code> ·
+          <code>npm run quantum:drift-invert</code>
+        </p>
+      </section>
+      <UiSeparator />
+
+      <section id="hex-crack">
+        <h3>Hex · theorem crack</h3>
+        <UiBadge :status="statusBadgeKind(Boolean(panel.hexCrack?.hexInsteadOfTheoremIsCrack))">
+          found={{ panel.hexCrack?.found ?? '—' }} · fixed={{ panel.hexCrack?.fixed ?? '—' }} · remaining={{ panel.hexCrack?.remaining ?? '—' }}
+        </UiBadge>
+        <table class="research-index__table">
+          <thead><tr><th>Surface</th><th>Kind</th><th>Status</th><th>Theorem</th></tr></thead>
+          <tbody>
+            <tr v-for="s in panel.hexCrack?.surfaces ?? []" :key="s.id">
+              <td><code>{{ s.id }}</code></td>
+              <td>{{ s.kind }}</td>
+              <td>{{ s.status }}</td>
+              <td><code>{{ s.theorem }}</code></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="research-index__meta">
+          pair <code>{{ panel.hexCrack?.pair }}</code> ·
+          <code>npm run quantum:hex-crack</code>
+        </p>
+      </section>
+      <UiSeparator />
+
+      <section id="theorem-const">
+        <h3>Theorem · const</h3>
+        <UiBadge :status="statusBadgeKind(Boolean(panel.theoremConst?.computationsUseOnlyQuantumTheoremsAsConstants))">
+          found={{ panel.theoremConst?.found ?? '—' }} · fixed={{ panel.theoremConst?.fixed ?? '—' }} · remaining={{ panel.theoremConst?.remaining ?? '—' }}
+        </UiBadge>
+        <table class="research-index__table">
+          <thead><tr><th>Offender</th><th>Status</th><th>Theorem</th></tr></thead>
+          <tbody>
+            <tr v-for="o in panel.theoremConst?.offenders ?? []" :key="o.id">
+              <td><code>{{ o.id }}</code></td>
+              <td>{{ o.status }}</td>
+              <td><code>{{ o.theorem }}</code></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="research-index__meta">
+          pair <code>{{ panel.theoremConst?.pair }}</code> ·
+          <code>npm run quantum:theorem-const</code>
         </p>
       </section>
       <UiSeparator />
