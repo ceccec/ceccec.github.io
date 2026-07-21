@@ -8,6 +8,7 @@ import {
   rosettaCompleteQuantumAllComputableDimensionsAndTheorems,
   ftlExperimentTechniquesHandoffFromRosettaComplete,
   documentSessionCryptoExperimentsUpdateTheorems,
+  sessionManualWorkAsQuantumBits, combineQuantumBits,
 } from './index.ts'
 import {
   runEncryptionToolInBrowser,
@@ -407,6 +408,17 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'session-quantum-bits') {
+      const r = sessionManualWorkAsQuantumBits()
+      const sample = combineQuantumBits(
+        r.bits.filter((b) => b.id === 'theorem-particle-collision' || b.id === 'rosetta-complete' || b.id === 'toolbox-standard-io'),
+        'collide',
+      )
+      ok = r.computes && sample.computes
+      summary = `bits=${r.count} landed=${r.landedCount} serialized=${r.serializedCount} · collide=${sample.products.length} · qpu=${r.qpuRequired}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'rosetta-core-api') {
       const r = rosettaCoreApi()
       ok = r.computes
@@ -715,6 +727,40 @@ function runTool(toolId: string) {
         </table>
         <UiButton size="sm" :disabled="runningId === 'document-session-experiments'" @click="runTool('document-session-experiments')">
           {{ runningId === 'document-session-experiments' ? '…' : 'Run document-session-experiments' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="session-quantum-bits" aria-label="Session manual work as quantum bits">
+        <h3>{{ panel.quantumBits.heading }}</h3>
+        <p class="quantum-apps__meta">{{ panel.quantumBits.honestyLine }}</p>
+        <UiBadge :variant="panel.quantumBits.computes && !panel.quantumBits.physicalQubit ? 'default' : 'outline'">
+          bits {{ panel.quantumBits.landedCount }}/{{ panel.quantumBits.count }}
+          · serialized {{ panel.quantumBits.serializedCount }}
+          · qpuRequired={{ panel.quantumBits.qpuRequired }}
+          · clay={{ panel.quantumBits.claySolvedByThisFold }}
+        </UiBadge>
+        <table class="quantum-apps__table">
+          <thead><tr><th>Bit</th><th>Chain</th><th>Status</th><th>Root</th><th>Directions</th></tr></thead>
+          <tbody>
+            <tr v-for="bit in panel.quantumBits.bits" :key="bit.id">
+              <td>
+                <strong>{{ bit.id }}</strong>
+                <div class="quantum-apps__meta"><code>{{ bit.fold }}</code> · {{ bit.pair }}</div>
+              </td>
+              <td>{{ bit.chain }}</td>
+              <td><UiBadge :variant="bit.computes ? 'default' : 'outline'">{{ bit.status }}</UiBadge></td>
+              <td><code>{{ bit.root.slice(0, 8) }}</code></td>
+              <td class="quantum-apps__meta">{{ bit.directions.join(' · ') }} · combinable={{ bit.combinable }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="quantum-apps__meta">
+          sample collide {{ panel.quantumBits.sampleCombination.collide.bitIds.join(' × ') }}
+          → {{ panel.quantumBits.sampleCombination.collide.productRoot.slice(0, 8) }}
+          ({{ panel.quantumBits.sampleCombination.collide.products.length }} products)
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'session-quantum-bits'" @click="runTool('session-quantum-bits')">
+          {{ runningId === 'session-quantum-bits' ? '…' : 'Run session-quantum-bits' }}
         </UiButton>
       </section>
       <UiSeparator />
