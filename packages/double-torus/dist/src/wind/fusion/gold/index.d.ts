@@ -10,6 +10,7 @@ export type ThunderGoldGraphNode = {
     lat: number;
     lon: number;
     tier: GoldMineEvidenceTier;
+    declinationDeg: number;
     receipt: string;
 };
 export type ThunderGoldGraphEdge = {
@@ -223,16 +224,16 @@ export type GoldPositionFusionStrengthResearchSection = {
     body: string;
 };
 export declare const GOLD_FUSION_STRENGTH_WEIGHTS: {
-    readonly bearing: 0.25;
-    readonly navCross: 0.25;
-    readonly vortex: 0.25;
-    readonly schumann: 0.25;
+    readonly bearing: number;
+    readonly navCross: number;
+    readonly vortex: number;
+    readonly schumann: number;
 };
 export declare function goldPositionFusionStrengthResearch(matrix?: MindMatrix): {
     researched: boolean;
     formulaTable: {
         symbol: string;
-        weight: 0.25;
+        weight: number;
         description: string;
         source: string;
     }[];
@@ -573,7 +574,7 @@ export declare function goldPositionFusionStrengthComputes(matrix?: MindMatrix, 
         researched: boolean;
         formulaTable: {
             symbol: string;
-            weight: 0.25;
+            weight: number;
             description: string;
             source: string;
         }[];
@@ -1106,7 +1107,7 @@ export declare function fusionGoldComputes(matrix?: MindMatrix, at?: number): {
             researched: boolean;
             formulaTable: {
                 symbol: string;
-                weight: 0.25;
+                weight: number;
                 description: string;
                 source: string;
             }[];
@@ -1592,7 +1593,7 @@ export declare function goldFusionPipeline(at?: number, matrix?: MindMatrix): {
                 researched: boolean;
                 formulaTable: {
                     symbol: string;
-                    weight: 0.25;
+                    weight: number;
                     description: string;
                     source: string;
                 }[];
@@ -1799,7 +1800,7 @@ export declare function goldFusionComputes(matrix?: MindMatrix, at?: number): {
             researched: boolean;
             formulaTable: {
                 symbol: string;
-                weight: 0.25;
+                weight: number;
                 description: string;
                 source: string;
             }[];
@@ -2109,7 +2110,7 @@ export declare function goldFusionComputes(matrix?: MindMatrix, at?: number): {
                 researched: boolean;
                 formulaTable: {
                     symbol: string;
-                    weight: 0.25;
+                    weight: number;
                     description: string;
                     source: string;
                 }[];

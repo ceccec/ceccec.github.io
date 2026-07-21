@@ -55,7 +55,19 @@ console.log(conceptCommands.length)
   mapping to a single-word method and an MCP tool; `executeConceptCommand` runs
   them deterministically.
 - **The double torus** — `buildMatrix`, `torusUuid` (the 128-bit word, 2 x 32
-  hex), `completeDoubleTorus`, `areaPairs` (42 areas = 21 pairs).
+  hex), `completeDoubleTorus`, `areaPairs` (42 areas = 21 pairs),
+  `dualTorusTrinities`, `doubleTorus3D`, `doubleTorusMathAtAllScalesProofs`,
+  `merkaba` / `bothEarthsRotateWithinEachOther` (counter-rotating geometry).
+- **Vortex analyse** — `vortexMath`, `vortexComputes`, `allMathSaved`,
+  gateway/plasma gates, and the canonical inverse fold
+  `f(θ,φ,x,y,z,digit,n)→{p,q}` / `fThetaPhiXyzDigitNIsTheInversePair`
+  (multiplicative inverse mod 9 — inverse, not reverse).
+- **Quantum dynamics** — `quantumDynamicsComputes`, `quantumDynamicsResearch`,
+  `quantumStateEvolutionDecoded`, `quantumDynamicsSimulationAt`, and
+  `drawDynamicsProjection` (classical state-vector paint — not hardware QC).
+- **10D field** — `dims` / `dimWalk` / `tenDimensionalAnimation` /
+  `animationsAreGenuinely10DNotFaked` (6 appearance axes + 4 genus-2 homology
+  loops — model geometry, not physical spacetime).
 - **The seal** — `proofBundle`, `verifyRoot`, `entropy`, `coverage`,
   `boundaryAudit`, and the `fuseAll` fold of every capability into one wave.
 - **Simulators** — explicit, honest models across every decoded domain:
@@ -63,8 +75,10 @@ console.log(conceptCommands.length)
   `bellPair`, `grover`; `pbits`/`pflip`/`markovStep`/`stationary` (probabilistic);
   `rtoffoli` (reversible); `caStep`/`caEvolve` (cellular automaton);
   `inductionStep`/`oscillatorBank`/`cycleAdvance` (dynamical);
-  `hopfieldStore`/`hopfieldRecall`/`pmixStep` (network). Each is a **simulator**,
-  not the machine — `qubits` is a classical state-vector, not a quantum computer.
+  `hopfieldStore`/`hopfieldRecall`/`pmixStep` (network); plus `survive` /
+  `chsh` / Markov–Hopfield dynamics from the vortex surface. Each is a
+  **simulator**, not the machine — `qubits` is a classical state-vector, not a
+  quantum computer.
 - **Vetted crypto** — `sha256` (Web Crypto + a pure `sha256Sync`),
   `sha256MerkleRoot`/`sha256MerkleProof`, `ed25519Sign`/`ed25519Verify`, and an
   append-only `transparencyLogRoot` — the path from tamper-evident folds to
@@ -80,15 +94,20 @@ console.log(conceptCommands.length)
     genus-2 throat), `fieldLayers` / `rosettaPerspectiveFold` give its eight
     force/topology layers and seven perspectives, and `drawQuantumAppFrame`
     renders any projection of it.
-  - the single `createAnimationEngine` rAF driver both feed.
+  - the **one movie clock** — `HERO_CYCLE_MS`, `heroPhaseAt`,
+    `subscribeHeroClock`, and `createAnimationEngine` (rAF driver).
   (`paintHolographicPlasmaHeroMovie` and the death counter-flow are **internal**
-  to `src/` and ship fused inside `drawHeroMovieFrame`, not as separate exports.)
+  to `src/` and ship fused inside `drawHeroMovieFrame`, not as separate exports.
+  The orphan `drawDoubleTorusEarthHingeFrame` renderer is **retired** — live
+  paint is `sharedHeroAt` + `drawHeroMovieFrame` only.)
 - **Decoded library** — `toGlagolitic`, `gematria`, `mayaLongCount`,
   `sexagesimal`, `ifaOdu`, the parallel-scripture tools, and the ПесноПойка
   songbook decode (`pesnopoika`, `decodeSong`, `provePesnopoika`, the
   437-term `decodeDialect`) — decoded knowledge as reusable functions.
 - **Honesty** — every function returns a `boundary` string stating the limit of
-  its claim; `boundaryAudit()` collects them all.
+  its claim; `boundaryAudit()` collects them all. Completeness here is
+  **structural/computational** (sealed `src/` recomputes) — **not** physical
+  FTL and **not** a Clay Millennium solve.
 
 It is **agnostic**: no vendor, framework, platform, language, or protocol
 lock-in; open standards and pure computation only.

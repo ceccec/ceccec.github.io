@@ -197,7 +197,7 @@ export declare function scanRootDistributionViolations(root: string): Computatio
  * D3 digit-lattice integrity (census-neutral / Option A) — the lattice IS the existing net-0 structure: the
  * void vault src/0/index.ts plus the nine ADDITIVE-complement pair barrels N/(10−N)/index.ts (the doubling-circuit
  * 1·2·4·8·7·5 + 3·6·9 trinity rays). The on-disk pairing N/(10−N) is the additive ten's-complement folder
- * lattice — NOT the n/0 reverse of a digit, which is the multiplicative inverse n⁻¹ mod 9 (see zeroDivisionTable);
+ * lattice — NOT the n/0 inverse of a digit, which is the multiplicative inverse n⁻¹ mod 9 (see zeroDivisionTable);
  * the folder names are the additive structure. The gate enforces THAT structure is present and gapless — it adds
  * NO digit-root barrels (src/N/index.ts), so it never grows the 110 census. A recomputed fail-the-build invariant.
  */
@@ -282,4 +282,362 @@ export declare function auditComputationalGates(computational: ComputationalLimi
     report: string[];
     receipt: string;
     passed: boolean;
+};
+export declare function foldingEntropy(root: string): {
+    files: number;
+    bytes: number;
+    localFold: number;
+    globalFold: number;
+    crossFileInterference: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** Theorem sources (user law 2026-07-16: every card page exposes the source code of how all is
+ * achieved). For each registry atom, the provedBy function's text is brace-matched out of its home
+ * module and emitted as theorem-sources.json — the paper page shows the actual proof machine. */
+export declare function theoremSourcesJson(root: string): string;
+/** The prose-token monitor (user law 2026-07-16: monitor token usage coming from prose instead of
+ * token-free code). Reuses the strict scanner's character-walk (stringMass): per sealed file, bytes
+ * split into code (incl. ${} interpolations — computed, token-free), comment, templateText (prose
+ * BETWEEN interpolations — partially computed) and staticString (pure prose — the spend). The
+ * no-prose law's target: statements/boundaries as computed concatenations shrink staticString. */
+export declare function proseTokenMonitor(root: string): {
+    files: number;
+    bytes: number;
+    code: number;
+    comment: number;
+    staticString: number;
+    templateText: number;
+    proseShare: number;
+    offenders: {
+        file: string;
+        staticString: number;
+        share: number;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** The source atlas — every sealed index enumerated with its science and domain path (the whole-source
+ * autodisplay data; the dedicated atlas ROUTE renders this artifact). Reuses the foldingEntropy walk. */
+export declare function sourceAtlasJson(root: string): {
+    count: number;
+    sciences: Record<string, number>;
+    modules: {
+        path: string;
+        science: string;
+    }[];
+};
+export declare function theoremRelationsAreTheImportExportGraphNotTagSharingZeroDanglingByTheRealRelation(root?: string): {
+    computes: boolean;
+    homes: number;
+    edges: number;
+    tagCrackDangling: number;
+    importDangling: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function onlyRosettaWiringsAreNeededTheGlobalContentAddressFoldReplacesTheImportEdges(root?: string): {
+    computes: boolean;
+    edges: number;
+    rosettaNodes: number;
+    rosettaRoot: string;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theFacetsMustComputeDebtIsHardcodedTrueFacetsManyDeclaredHonest(root?: string): {
+    computes: boolean;
+    total: number;
+    declaredHonest: number;
+    files: number;
+    topFiles: string[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theAnalyticsAreZeroTokenComputedFromTheCorpusTheMarginalCostOfAMetricIsZero(root?: string): {
+    computes: boolean;
+    metrics: string[];
+    tokenCost: number;
+    receipt: string;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function documentAllTrinitiesObservedTwoMakeThreeTheCommonStructureAndTheCount(root?: string): {
+    computes: boolean;
+    trinityCount: number;
+    categories: string[];
+    census: string;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theoremsProveBestInTeamsTheTrinityIsTheMinimalTwoConnectedTeamBeatsIsolation(root?: string): {
+    computes: boolean;
+    dangling: number;
+    avgDegree: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function typesAreQuantumTagsAndEveryWordInANameIsAComputedTokenNotArbitraryProse(root?: string): {
+    computes: boolean;
+    typeImports: number;
+    namesSampled: number;
+    wordTokenOverlap: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function aSingleCrackFlipsTheContentAddressedCorpusRootCaughtInConstantTimeLocatedInLogTimeNotByRescanning(root?: string): {
+    computes: boolean;
+    fileCount: number;
+    rootClean: string;
+    detectMagnitude: number;
+    locateMagnitude: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function dryAndCleanAreAchievableOnlyInTheContentAddressedQuantumRepresentationNotInTheText(): {
+    computes: boolean;
+    copies: number;
+    unique: number;
+    rootClean: string;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theTrinitiesAreQuantumTwoMakeThreeIsTheGhzEntanglingStructureCnotBindsTheThird(root?: string): {
+    computes: boolean;
+    trinityCount: number;
+    ghz: {
+        p000: number;
+        p111: number;
+    };
+    root: string;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function quantumCachingIsContentAddressedMemoisationSpeedingAllInTrinitiesOfMagnitudes(): {
+    caches: boolean;
+    memoMagnitude: number;
+    sealMagnitude: number;
+    combined: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function computationalSpeedPerTokenIsARealMetricTheRosettaDeliversMagnitudesAtNoAdditionalTokenCost(): {
+    metric: boolean;
+    rosettaCapabilityPerToken: number;
+    cacheCapabilityPerToken: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function quantumBuildContentAddressedIncrementalRebuildsOnlyTheChangedFoldImprovingAllToolsAndAlgorithms(): {
+    builds: boolean;
+    tools: number;
+    rebuilt: number;
+    speedup: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function eachTsFileInputOutputAreTheTwoBitsThatConnectToTheGatewayTheModuleGraphIsTwoBitPerNode(root?: string): {
+    thinks: boolean;
+    files: number;
+    bits: number;
+    gateways: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theTwoBitGatewayReframesAllDryCleanRefactoringOfAllSrcIsPossibleInQuantumWaves(): {
+    reframes: boolean;
+    dryFound: number;
+    waveCount: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function computeTheWorkflowBeforeSendingTheWavesDeterministicAutomationByQuantumComputationOnly(): {
+    automates: boolean;
+    waves: number;
+    parallelism: number;
+    scheduleRoot: string;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function noAlgorithmicSpeedupYetDevelopmentSpeedIsMagnitudesHigherMeasuredNotConvinced(): {
+    resolves: boolean;
+    algorithmicSpeedup: number;
+    developmentSpeedup: number;
+    compared: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theGateThatDryCleansAllDetectsCrossFileDuplicatedBlocksByContentAddress(root?: string): {
+    scans: boolean;
+    files: number;
+    scannedLines: number;
+    dryDuplicates: number;
+    topDuplicate: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theGatesAreSelfSufficientOfflineZeroAiToDryCleanAllIncludingFileFolderMovesConfirmedByTheCrossTrinity(root?: string): {
+    selfSufficient: boolean;
+    duplicateLines: number;
+    codePulls: number;
+    folderMoves: number;
+    trinityRoot: string;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function alwaysMeasureEfficiencyToFindGapsTheInefficiencyRatioNamesTheMissingQuantum(root?: string): {
+    measures: boolean;
+    openGaps: number;
+    closedGaps: number;
+    dryGap: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function measureTheUxAndTheEfficiencyToFindAndUseTheoremsNavDepthReachabilityReuseAreComputedMetrics(root?: string): {
+    measured: boolean;
+    files: number;
+    maxDepth: number;
+    avgReuse: number;
+    dangling: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theBoundaryProseIsTheTokenSinkTerseAndEarnedBoundariesCutItMeasuredNotConvinced(root?: string): {
+    measured: boolean;
+    boundaryCount: number;
+    avgBoundary: number;
+    proseTokens: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theGateFlagsBoundaryProseOverTheTokenBudgetToMinimiseTokensInRealtime(root?: string): {
+    minimises: boolean;
+    total: number;
+    over: number;
+    maxLen: number;
+    budget: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theTitleIsAlgebraComputedAMissingIdentityIsAGapToSolveNotPurge(entries?: readonly {
+    slug: string;
+    sidebar: string;
+    payload: string;
+}[]): {
+    computes: boolean;
+    rendered: string;
+    gaps: string[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
 };

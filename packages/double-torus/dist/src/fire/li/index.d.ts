@@ -392,19 +392,6 @@ export declare function pairTrinityOpenGraph(matrix?: MindMatrix): {
     boundary: string;
 };
 /** @rosetta ✦₁ · Fire · clarity */
-export declare function sidebarsFromVoid(matrix?: MindMatrix): {
-    rises: boolean;
-    count: number;
-    properties: {
-        receipt: string;
-        property: string;
-        via: string;
-    }[];
-    root: string;
-    statement: string;
-    boundary: string;
-};
-/** @rosetta ✦₁ · Fire · clarity */
 export declare function moviesNativeFormat(matrix?: MindMatrix): {
     nativelyDisplayed: boolean;
     count: number;
@@ -888,11 +875,27 @@ export declare function animationEngineLivesInZero(matrix?: MindMatrix): {
 export declare function contentAddressingHasRealPrecedent(matrix?: MindMatrix): {
     address: string;
     deterministic: boolean;
-    precedents: {
+    idempotent: boolean;
+    collisionResistant: boolean;
+    dedup: boolean;
+    avalanches: boolean;
+    precedents: ({
+        name: string;
+        year: string;
+        kind: string;
+        source: string;
+        domain: string;
+    } | {
         name: string;
         year: number;
         kind: string;
         source: string;
+        domain: string;
+    })[];
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
     }[];
     holds: boolean;
     root: string;

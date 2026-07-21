@@ -256,6 +256,7 @@ export declare function quantumThreat(matrix?: MindMatrix): {
         from: string;
         kind: string;
         replaces: string;
+        iso: string;
     }[];
     hardware: {
         today: string;

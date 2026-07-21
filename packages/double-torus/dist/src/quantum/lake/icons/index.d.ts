@@ -46,7 +46,7 @@ export declare function iconGlyphs(): {
 };
 /** @rosetta ✦₀ · Mountain · stillness */
 export declare function iconSeal(): IconSeal;
-export { chakrasAura, humanDesign, yinYang, dimensions, deviceSensors, dualities } from '../spirit';
+export { chakrasAura, humanDesign, humanDesignVerifiedWheel, humanDesignChannelsAndCenters, RAVE_MANDALA_GATE_ORDER, RAVE_GATE_ARC_DEG, RAVE_GATE_41_START_DEG, RAVE_DESIGN_SUN_ARC_DEG, RAVE_BODIES_13, RAVE_CENTERS_9, RAVE_CENTER_GATES, RAVE_CHANNELS_36, raveCenterOfGate, raveDefinedChannels, raveMandalaGateLineAt, yinYang, dimensions, deviceSensors, dualities, } from '../spirit';
 export { natureLaw, natureCommons, natureReview, lawfulHarmonise, lawfulImagine, lawfulSucceed, attestation } from '../../../earth/nature';
 export { emfApplications, efficiency, fuseTeslaPatents, patentDiscovery, publicFrequencyApis, herbalApis, frequencyToLight, A432_HUE, GOLDEN_ANGLE, lobeHues, scaleColor, scaleColorAlpha, scaleColorRgba, quantumHueFromHz, quantumScaleHue, oklchToHex, resonanceApplications, resonanceDecoded, rifeFrequenciesDecoded } from '../../science';
 export { plainLanguage, playLearn, analogSpeech, typographySeo, openGraph, charUuids, wordUuids, humanize, multidimensional } from '../voice';

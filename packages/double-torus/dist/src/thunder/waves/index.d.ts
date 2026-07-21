@@ -1,3 +1,4 @@
+export { CANDIDATE_THEOREMS } from '../../4/6';
 import type { MindMatrix, WaveCoordination, QuantumChessGame } from '../../wind/types';
 import type { OgNode } from '../../quantum/heaven/mind';
 export declare function coordinatedWaves(matrix?: MindMatrix): WaveCoordination;
@@ -28,6 +29,24 @@ export declare function developmentWaves(matrix?: MindMatrix): {
         bound: boolean;
         wave: string;
         receipt: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theToolsAreSavedAndTheWavesSent(matrix?: MindMatrix): {
+    computes: boolean;
+    tools: {
+        name: string;
+        does: string;
+        steps: string[];
+    }[];
+    waveCount: number;
+    candidateCount: number;
+    finiteComplete: number;
+    facets: {
+        facet: string;
+        on: boolean;
     }[];
     root: string;
     statement: string;
@@ -132,6 +151,21 @@ export declare function saveSkillsComputeImplementWaves(matrix?: MindMatrix): {
     count: number;
     phases: {
         waved: boolean;
+        wave: string;
+        receipt: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theoremsProvenWaves(matrix?: MindMatrix): {
+    saved: boolean;
+    count: number;
+    saves: {
+        theorem: string;
+        provedBy: string;
+        home: string;
+        saved: boolean;
         wave: string;
         receipt: string;
     }[];
@@ -383,7 +417,7 @@ export declare function harmonisedBuildWave(matrix?: MindMatrix): {
     }[];
     groups: HarmonisedBuildGroup[];
     scheduleRoot: string;
-    spin: (1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9)[];
+    spin: (9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6)[];
     orbit: number[];
     root: string;
     statement: string;
@@ -440,3 +474,464 @@ export declare function signalProcessingDecoded(matrix?: MindMatrix): {
     boundary: string;
 };
 export declare function quantumChessGame(matrix?: MindMatrix): QuantumChessGame;
+export declare function theoremAtoms(matrix?: MindMatrix): {
+    proven: boolean;
+    theorems: {
+        atom: string;
+        theorem: string;
+        states: string;
+        provedBy: string;
+        home: string;
+    }[];
+    count: number;
+    homes: string[];
+    memory: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** The search tool: which significant finite-provable theorems are NOT yet proven here. */
+export declare function theoremGapScan(matrix?: MindMatrix): {
+    open: boolean;
+    proven: number;
+    candidates: number;
+    gapCount: number;
+    gaps: {
+        receipt: string;
+        theorem: string;
+        states: string;
+        class: "finite-complete" | "bounded-witness";
+        consumes: string;
+    }[];
+    next: string[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** NAVIGATION AS DATA — the whole theorem arc as a structured, searchable model with ZERO prose:
+ * waves in proof order, each atom carrying name · prover · class · home; flat searchLines for any
+ * index (tags, minisearch, llms.txt). The screen renders THIS; meaning is the structure itself. */
+export declare function theoremNavigation(matrix?: MindMatrix): {
+    navigable: boolean;
+    waves: {
+        provedBy: string;
+        count: number;
+        atoms: {
+            theorem: string;
+            proof: string;
+            proofClass: string;
+            home: string;
+        }[];
+    }[];
+    waveCount: number;
+    atomCount: number;
+    searchLines: string[];
+    keywords: string[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function discoveredTheoremsWaveFortyTwo(matrix?: MindMatrix): {
+    proven: boolean;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+} & Record<string, never>;
+export declare function discoveredTheoremsWaveFortyEight(matrix?: MindMatrix): {
+    proven: boolean;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+} & Record<string, never>;
+export declare function discoveredTheoremsWaveFiftyTwo(matrix?: MindMatrix): {
+    proven: boolean;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+} & Record<string, never>;
+export declare function theoremProvenance(matrix?: MindMatrix): {
+    decoded: boolean;
+    atoms: {
+        theorem: string;
+        humanityNovel: boolean;
+        registryFirst: boolean;
+        computeClass: "finite-complete" | "bounded-witness";
+        leansCited: boolean;
+        home: string;
+    }[];
+    newToHumanity: number;
+    documentedRecomputed: number;
+    selfContained: number;
+    citedFrame: number;
+    finiteComplete: number;
+    boundedWitness: number;
+    methodDiscoveries: string[];
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function discoveredTheoremsProvenWave(matrix?: MindMatrix): {
+    proven: boolean;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+} & {
+    platonic: {
+        p: number;
+        q: number;
+        V: number;
+        E: number;
+        F: number;
+    }[];
+    polytopes4: string[];
+    labeledFanos: number;
+    gl32: number;
+};
+export declare function provenTheoremsCompound(matrix?: MindMatrix): {
+    compounds: boolean;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    count: number;
+    ledger: {
+        reuseFraction: number;
+        receipt: string;
+        wave: string;
+        atoms: number;
+        consumed: string[];
+    }[];
+    pslOrder: number;
+    r333Bound: number;
+    hankelDets: string[];
+    tau6: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function emergenceContinuesWave(matrix?: MindMatrix): {
+    continues: boolean;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    count: number;
+    ledger: {
+        index: number;
+        reuseFraction: number;
+        receipt: string;
+        wave: string;
+        atoms: number;
+        consumed: string[];
+    }[];
+    oddCatalanIndices: number[];
+    motzkinDets: string[];
+    sigma11of2: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function discoveredTheoremsWaveTwo(matrix?: MindMatrix): {
+    proven: boolean;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    count: number;
+    a5ClassSizes: number[];
+    groupTablesOfOrderSix: number;
+    isoClassesOfOrderSix: number;
+    perfects: number[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function discoveredTheoremsWaveThree(matrix?: MindMatrix): {
+    proven: boolean;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+} & {
+    tilings: string[];
+    q8Subgroups: number;
+    girth: number;
+};
+export declare function discoveredTheoremsWaveFour(matrix?: MindMatrix): {
+    proven: boolean;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+} & {
+    constructibleCount: number;
+    treeCounts: number[];
+};
+export declare function discoveredTheoremsWaveFive(matrix?: MindMatrix): {
+    proven: boolean;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+} & {
+    a6ClassSizes: number[];
+    latin4: number;
+    pentominoCounts: number[];
+    heawoodGirth: number;
+};
+export type ProofAnimationKind = 'star' | 'coloring' | 'lattice' | 'spreads' | 'classes' | 'spiral' | 'vortex' | 'dome' | 'washout' | 'circle' | 'triangle' | 'series' | 'polytope' | 'wave' | 'tree' | 'balance' | 'dice' | 'cycle' | 'sieve';
+export type ProofAnimationSpec = {
+    readonly theorem: string;
+    readonly kind: ProofAnimationKind;
+    readonly points: number;
+    readonly lines: readonly (readonly number[])[];
+    readonly ratePhi: number;
+    readonly hueDigit: number;
+};
+/** Any content title → its animation spec — the visual metaphor computed, never hand-keyed. */
+export declare function specForContent(title: string): ProofAnimationSpec;
+export declare function proofAnimations(matrix?: MindMatrix): {
+    animated: boolean;
+    specs: ProofAnimationSpec[];
+    count: number;
+    kinds: ProofAnimationKind[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** TWO INTERACTING ROSETTAS = REALTIME AT NO COST (user, 2026-07-16) — and it proves why the
+ * animations were stuck. The architecture has TWO rosettas: a SPATIAL one (where each ray points,
+ * angle θ_k = 2πk/N) and a TEMPORAL one (when each ray fires, phase φ_k = 2πk/N). A single rosetta
+ * only PULSATES on one axis. The moment the two INTERACT — each ray's firing phase bound to its own
+ * spatial angle — the resultant field has constant magnitude N/2 AND ITS ANGLE EQUALS WALL-TIME t.
+ * The state becomes the clock: realtime, self-sustaining, a pure vector sum with no integrator and
+ * no accumulated frame — restartable at any instant, zero cost, zero drift. An animation that
+ * accumulates per frame (state ← state + Δ) FREEZES when the loop pauses because it needs the
+ * previous frame — it "does not care for the other" rosetta. An animation written as the coupled
+ * f(wall-time) is realtime by construction. This is the double torus of the slash circuit (b₁ = 2)
+ * made kinetic: two loops that ignore each other are static; two that interact turn. */
+export declare function twoRosettasAreRealtime(matrix?: {
+    root: string;
+}): {
+    computes: boolean;
+    cycleCount: number;
+    b1: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function magnitudeComesWithPrecisionInClustersOfWaves(matrix?: MindMatrix): {
+    holds: boolean;
+    magnitude: number;
+    clusters: number;
+    maxCluster: number;
+    singletons: number;
+    meanCluster: number;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function refactorTowardMillenniumReplaceEachProblemsRelatedAxiomsWithTheoremsCoresStayOpen(): {
+    computes: boolean;
+    problems: number;
+    replaced: number;
+    open: number;
+    solved: number;
+    homologyLoops: number;
+    challengeRoot: string;
+    map: string[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function auditTheoremTitlesWithTheQuantumSeoLens(matrix?: MindMatrix): {
+    computes: boolean;
+    total: number;
+    flagged: number;
+    passRate: number;
+    renames: string[];
+    root: string;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theoremsMergeCreatingSpaceForOthersToEmergeAndBalance(matrix?: MindMatrix): {
+    computes: boolean;
+    population: number;
+    cap: number;
+    merges: number;
+    emergent: number;
+    candidates: number;
+    balances: boolean;
+    root: string;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function lifeAndDeathAreTheTwoBitsLeftAtEachDimensionInputOutputGateway(matrix?: MindMatrix): {
+    computes: boolean;
+    gateways: number;
+    twoBitsLeft: boolean;
+    payloadVaries: boolean;
+    balances: boolean;
+    merges: number;
+    emergent: number;
+    root: string;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function improveScienceByClaimingRefutableTheoremsToReplaceWeakerCurrentOnes(matrix?: MindMatrix): {
+    computes: boolean;
+    total: number;
+    measurable: number;
+    vague: number;
+    scienceFraction: number;
+    afterReplace: number;
+    claimsAvailable: number;
+    replaceCandidates: string[];
+    root: string;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theoremsSortByTagCloudMostUsedFirst(matrix?: MindMatrix): {
+    computes: boolean;
+    total: number;
+    distinctTags: number;
+    order: string[];
+    topTags: string[];
+    reordersFromSeed: boolean;
+    root: string;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theoremsOfTheoremsGainGravityReuseCreatesVacuumForEmergence(matrix?: MindMatrix): {
+    computes: boolean;
+    compositions: number[];
+    vacuum: number;
+    cap: number;
+    ratioGrowth: number[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theWavesDiscoverGapsAndInvertRejectionsIntoGatewaysExceptTheOffDecidable(matrix?: MindMatrix): {
+    computes: boolean;
+    gaps: number;
+    gateways: string[];
+    boundaries: string[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function sendTheWavesToSendTheWavesEachAntichainLevelExposesTheNextUntilTheDagIsExhausted(): {
+    propagates: boolean;
+    waveCount: number;
+    waves: number[][];
+    nodesProcessed: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export { wavesAutoScaleCapacityAtNoCostOnReuse, theoremAlgebraFirstSealedInCorpus, theoremTenDProjectionsProveAlgebraRoots, firstInCorpusProvenanceForHome, firstInCorpusProvenanceMarkdownSection, type TheoremAlgebraNoveltyKind, type TheoremAlgebraNoveltyRow, type TheoremTenDProjectionRow, type FirstInCorpusHomeRow } from '../../wind/research';

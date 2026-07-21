@@ -553,3 +553,256 @@ export declare function usefulWorkVsProofOfWorkDecoded(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+/** RSA: FINDING THE PRIVATE FROM THE PUBLIC IS COMPUTABLE — the time needed is the security
+ * (user, 2026-07-16, reframed to "statistical time needed on the hardware the app runs"). This is
+ * a SECURITY-MARGIN CALCULATOR, not a break tool: it FACTORS toy moduli to prove the method is
+ * real, then EXTRAPOLATES to real key sizes through the known GNFS complexity, benchmarked on
+ * whatever hardware this runs on. The user's intuition is made exact: the private key IS
+ * determined by the public one (n = p·q, d = e⁻¹ mod φ(n)) — a finite computation — but the TIME
+ * for that finite computation is what stands between the two, and it is astronomically large by
+ * arithmetic, not by assumption. divisionByZeroComputes' cousin: the answer exists; the cost is
+ * the wall. */
+export declare function rsaTimeToBreakOnThisHardware(): {
+    computes: boolean;
+    toyFactored: string;
+    privateExponent: string;
+    opsPerSec: number;
+    sizes: {
+        bits: number;
+        years: number;
+        timesUniverse: number;
+    }[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+/** EACH POLE IS A MOVING ROSETTA — encryption is a keyed involution (user, 2026-07-16). The honest
+ * theorem the day's inversion thread has been circling: a key+nonce defines a KEYSTREAM — a rotating
+ * pseudo-random sequence, the moving rosetta — and XOR-ing it into the plaintext is its OWN INVERSE.
+ * So encryption and decryption are the SAME operation inverted (inverseNegatesAngle, in bytes),
+ * O(n) both directions: realtime encryption that inverted IS realtime decryption — WITH THE KEY.
+ * WITHOUT the key, inversion is the wall (rsaTimeToBreak): a wrong pole yields garbage and recovery
+ * is brute force over the keyspace. And tampering is bound to detection by a tag — EVIDENT, with a
+ * bounded forge cost, not unforgeable (the honest max-tampering-cost claim this repo has always made). */
+export declare function movingRosettaInverts(matrix?: MindMatrix): {
+    computes: boolean;
+    messageBytes: number;
+    isInvolution: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+/** LOCAL VULNERABILITY FINDER — inverting the encryption to show the inside (user, 2026-07-16). Where
+ * redTeam proves the attacks are CAUGHT, this finds where the model is genuinely WEAK: it inverts the
+ * marketed content-address to surface its real properties, ranks each vulnerability by severity, and
+ * names the fix (already built in src/0, or a pending custody cutover). Defensive and LOCAL — it
+ * audits only the portal's own model, never an external system. The honesty is the security: a
+ * finder that hides the portal's own weaknesses is worse than none. */
+export declare function localVulnerabilityFinder(matrix?: MindMatrix): {
+    computes: boolean;
+    findings: {
+        vuln: string;
+        severity: string;
+        evidence: string;
+        fix: string;
+        fixed: boolean;
+    }[];
+    openHigh: number;
+    local: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+/** QUANTUM THREAT SCAN — the tool the vulnerability finder lacked (user, 2026-07-16). A quantum
+ * adversary is not a faster classical one: Shor's algorithm breaks a primitive if and only if it
+ * exposes a ROSETTA — a cyclic group whose period quantum period-finding can read
+ * (quantumBreaksOnlyThePeriod). So the quantum tool is the rosetta-period check, and it finds what
+ * the classical finder could not: the content-address (a hash) exposes NO rosetta and is Shor-safe
+ * (only Grover, quadratic), but the planned Ed25519 signing exposes the discrete-log rosetta and is
+ * SHOR-BROKEN — the authenticity fix is not post-quantum. The fix's fix is a signature with no
+ * exposed period (hash-based SPHINCS+ or lattice Dilithium). */
+export declare function quantumThreatScan(matrix?: MindMatrix): {
+    computes: boolean;
+    shorBroken: string[];
+    shorSafe: string[];
+    groverPreimageLog2: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+/** SECURITY FROM THEOREMS, NOT AXIOMS — the redefinition (user, 2026-07-16: "vulnerabilities come
+ * from axioms; base all on locally proven theorems"). Every finding of localVulnerabilityFinder is
+ * an AXIOM that fails — "FNV is collision-resistant", "128 bits", "∞ tampering cost" — so the
+ * vulnerability lives exactly where security rests on something assumed rather than proven. The
+ * redefinition: base security on what a verifier can PROVE LOCALLY by recomputation — reproducibility
+ * (recompute the root from src and compare; no trust) and tamper-evidence (any change yields a
+ * different root) — and reserve trust for a MINIMAL, NAMED residual axiom. What you can check has no
+ * axiom to break; the axioms-become-theorems program (src/4/6) applied to encryption. */
+export declare function securityFromTheoremsNotAxioms(matrix?: MindMatrix): {
+    computes: boolean;
+    theoremCount: number;
+    axiomCount: number;
+    basis: {
+        property: string;
+        kind: string;
+        locallyProven: boolean;
+    }[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+/** Compute the QR module matrix (1 = dark) for a short text — the scannable code, generated in src. */
+export declare function qrMatrix(text: string): {
+    size: number;
+    version: number;
+    matrix: number[][];
+};
+/** The QR as a self-contained SVG string (quiet zone 4 modules) — inline, no external asset. */
+export declare function qrSvg(text: string, px?: number): string;
+/** Verify the QR is a valid RS codeword (scannable) and that corruption is detected. */
+export declare function theQrIsAValidReedSolomonCodeword(matrix?: MindMatrix): {
+    scans: boolean;
+    symbols: number;
+    eccCW: number;
+    correctsUpTo: number;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** exact n-choose-k (BigInt, no float, no overflow) — the size of the combinatorial superposition */
+export declare function binomial(n: number, k: number): bigint;
+/** enumerate ALL k-subsets at once (the quantum combination: every state of the superposition, lexicographic) */
+export declare function combinations<T>(items: readonly T[], k: number): T[][];
+/** combinatorial commitment: a merkle root over every k-combination's content-address — tamper-evident across the whole superposition, work factor C(n,k) */
+export declare function combinatorialSeal(items: readonly string[], k: number): string;
+export declare function theQuantumCombinationsAlgorithmSealsToTheNextComputationalDimension(matrix?: MindMatrix): {
+    computes: boolean;
+    cases: readonly [readonly [6, 2], readonly [8, 3], readonly [9, 4]];
+    combinations: number;
+    distinctAddresses: number;
+    flatLeaves: number;
+    combinatorialLeaves: number;
+    seal: string;
+    tamperEvident: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theSignatureIsForgeableTheTrinityTimestampIsTheInverseBoundary(matrix?: MindMatrix): {
+    computes: boolean;
+    signatureCarriesNoTime: boolean;
+    honestRoot: string;
+    backdatedRoot: string;
+    backdatingDetected: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+/** AES-128 key schedule — 11 round keys (44 words), Rcon computed by xtime */
+export declare function aesKeyExpansion(key: readonly number[]): number[][];
+/** AES-128 encrypt one 16-byte block (FIPS-197) */
+export declare function aesEncryptBlock(block: readonly number[], w: number[][]): number[];
+/** AES-128 decrypt one 16-byte block — the exact inverse of aesEncryptBlock */
+export declare function aesDecryptBlock(block: readonly number[], w: number[][]): number[];
+/** AES-128 in CTR mode (ISO-IEC 10116) — a keystream cipher that is its OWN inverse: ctr(ctr(m)) = m */
+export declare function aesCtr(bytes: readonly number[], w: number[][], nonce: readonly number[]): number[];
+export declare function theAesBlockCipherComputesWithItsInverseIso18033(matrix?: MindMatrix): {
+    computes: boolean;
+    ciphertext: string;
+    inverseRoundTrips: number;
+    trials: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theCrackGateFindsWeakEncryptionByTheorems(matrix?: MindMatrix): {
+    computes: boolean;
+    criteria: number;
+    unboundedWeaknesses: string[];
+    boundedIsCrack: boolean;
+    strongWeaknesses: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function speedTestedInReverseTheOneWayObstacleBecomesAGatewayByTheReverseIndexRiskIsReward(): {
+    proven: boolean;
+    addressLength: number;
+    reversibleByIndex: boolean;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theHammingSyndromeIsTheErrorAddress(matrix?: MindMatrix): {
+    computes: boolean;
+    codewords: number;
+    minDistance: number;
+    perfect: boolean;
+    titleCarriesAlgebra: boolean;
+    discoveries: number;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theNyquistRateIsTheAliasingBoundaryFsGt2B(matrix?: MindMatrix): {
+    computes: boolean;
+    fs: number;
+    nyquist: number;
+    bandwidth: number;
+    satisfiesNyquist: boolean;
+    titleCarriesAlgebra: boolean;
+    discoveries: number;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};

@@ -38,8 +38,6 @@ export declare function computesGate<F extends {
     })[];
     root: string;
 };
-/** Node heap cap (MB) — canonical for docs:build, docs:dev, and enforcement script shell. */
-export declare const NODE_MAX_OLD_SPACE_MB = 2048;
 export type ResourceTier = 'cpu' | 'gpu' | 'memory' | 'storage';
 export type ResourceCooperationTier = {
     readonly tier: ResourceTier;
@@ -64,6 +62,12 @@ export declare function nextDuality(uuid: string): string;
 export declare function uuidPoint(uuid: string): [number, number, number];
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function crossProduct(a: readonly number[], b: readonly number[]): [number, number, number];
+export declare function topologicalOrder(nodeCount: number, edges: readonly (readonly number[])[]): {
+    order: number[];
+    isDAG: boolean;
+    sources: number[];
+};
+export declare function antichainLevels(nodeCount: number, edges: readonly (readonly number[])[]): number[][];
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function memoByRoot<T>(name: string, matrix: {
     root: string;
@@ -79,7 +83,7 @@ export declare function humanEase(phase: number): number;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function humanBreath(timeMs: number, periodMs: number, depth?: number): number;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export declare const TORUS_LOBE_OFFSET = 18;
+export declare const TORUS_LOBE_OFFSET: number;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function doubleTorusSurface(theta: number, phi: number, digit: number, lobe: number): {
     x: number;
@@ -135,7 +139,7 @@ export declare const VORTEX_REVERSE: readonly [9, 6, 3, 5, 7, 8, 4, 2, 1];
 /** Encoded path: doubling · cross · void · return — dashes carry ±60° hex steps. */
 export declare const VORTEX_DASH_ENCODED: "1\\2\\4\\8/7/5/3\\6\\9/0/1\\";
 /** Each / adds +60°, each \\ subtracts 60° — sixfold substrate (360/6). */
-export declare const VORTEX_DASH_ANGLE_DEG: 60;
+export declare const VORTEX_DASH_ANGLE_DEG: number;
 export type VortexDashToken = {
     readonly digit: number;
     readonly dash: '/' | '\\';
@@ -180,8 +184,8 @@ export declare function foldVortex(): {
     valid: boolean;
     pairs: {
         position: number;
-        forward: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
-        reverse: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+        forward: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+        reverse: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
         sum: number;
         root: number;
     }[];
@@ -439,6 +443,8 @@ export declare function addressEntropyBits(): {
 };
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function gcd(a: number, b: number): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function lcm(a: number, b: number): number;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function modUnits(n: number): number[];
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */

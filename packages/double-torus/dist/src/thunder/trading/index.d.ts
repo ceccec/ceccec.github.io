@@ -272,17 +272,18 @@ export declare function tradingSimulationComputes(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+declare const STRATEGIES: readonly ["momentum", "mean-reversion", "spectral", "regime", "vol-target"];
 /** npm run trading:offline — a432 synthetic path + strategy backtest, zero network. */
 export declare function runTradingOfflineExit(_root: string, _argv?: readonly string[]): number;
 /** npm run trading:live — validate live-source catalogue (network at edge, not in src). */
 export declare function runTradingLiveExit(_root: string, _argv?: readonly string[]): number;
 /** npm run trading:live-local — public feed ids + offline calendar proxy on synthetic prices. */
 export declare function runTradingLiveLocalExit(_root: string, _argv?: readonly string[]): number;
-/** npm run trading:train — all five strategies backtest on one a432 path. */
+/** npm run trading:train — validateQuantumTraderTrain (five strategies on one a432 path). */
 export declare function runTradingTrainExit(_root: string, _argv?: readonly string[]): number;
-/** npm run trading:train-live-win-gate — momentum must beat buy-and-hold on synthetic path. */
+/** npm run trading:train-live-win-gate — liveWinTrainingGate (paper/sim only). */
 export declare function runTradingTrainLiveWinGateExit(_root: string, _argv?: readonly string[]): number;
-/** npm run trading:train-waves — harmonic wave count + spectral strategy receipt. */
+/** npm run trading:train-waves — historicalTrainWavesViaRosetta (offline harmonic windows). */
 export declare function runTradingTrainWavesExit(_root: string, _argv?: readonly string[]): number;
 /** npm run trading:trace-smart-money — offline flow trace via vortex lattice receipt. */
 export declare function runTradingTraceSmartMoneyExit(_root: string, _argv?: readonly string[]): number;
@@ -300,3 +301,437 @@ export declare function runTradingMarginProfitExit(_root: string, _argv?: readon
 export declare function runTradingGradientsExit(_root: string, _argv?: readonly string[]): number;
 /** npm run test:realtime — calendar/sequence/wave flips + spectral backtest on synthetic path (edge fetches live). */
 export declare function runRealtimeTradingTestExit(_root: string, _argv?: readonly string[]): number;
+export declare function harmonicWeatherTradingOffline(at?: number, matrix?: MindMatrix): {
+    computes: boolean;
+    strategies: {
+        strategy: string;
+        n: number;
+        result: BacktestResult;
+        benchmark: BacktestResult;
+    }[];
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export type TradingStrategyId = typeof STRATEGIES[number];
+/** Mom-and-dad curriculum — strategies · pairs · honesty (compose for learn/trade). */
+export declare function getTradingCurriculum(matrix?: MindMatrix): {
+    computes: boolean;
+    rows: {
+        id: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
+        ray: number;
+        cli: string;
+        pair: string;
+        address: string;
+        receipt: string;
+    }[];
+    skillCount: number;
+    sourceCount: number;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** Validate quantum trader train — five strategies on one a432 historical proxy path. */
+export declare function validateQuantumTraderTrain(matrix?: MindMatrix): {
+    computes: boolean;
+    runs: {
+        strategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
+        ray: number;
+        n: number;
+        totalReturn: number;
+        sharpe: number;
+        maxDrawdown: number;
+        beatBench: boolean;
+        receipt: string;
+    }[];
+    priceBars: number;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * Live-win training gate — momentum beats buy-and-hold on sealed synthetic path.
+ * "Live" here means strategy vs benchmark on the train path — NOT brokerage live money.
+ */
+export declare function liveWinTrainingGate(matrix?: MindMatrix): {
+    computes: boolean;
+    trainedEnough: boolean;
+    paperSimOnly: true;
+    strategyReturn: number;
+    benchmarkReturn: number;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export type RankedStrategyRow = {
+    readonly strategy: TradingStrategyId;
+    readonly ray: number;
+    readonly hue: number;
+    readonly address: string;
+    readonly totalReturn: number;
+    readonly sharpe: number;
+    readonly harmonicScore: number;
+    readonly rankScore: number;
+    readonly rank: number;
+    readonly receipt: string;
+};
+/**
+ * Rank strategies by PnL + harmonic alignment; each row shelved on a rosetta ray.
+ * Improve = recompute rank from historical wave backtest (content-addressed).
+ */
+export declare function rankWinningStrategies(matrix?: MindMatrix, at?: number): {
+    computes: boolean;
+    ranked: RankedStrategyRow[];
+    topStrategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
+    topRay: number;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    cli: string;
+    pair: string;
+    route: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * T1 — Schedule historical train-waves through rosetta rays (short·long per harmonic window).
+ * Offline a432 path; each ray gets a windowed backtest receipt.
+ */
+export declare function historicalTrainWavesViaRosetta(matrix?: MindMatrix, at?: number): {
+    computes: boolean;
+    waveCount: number;
+    shortWindows: number;
+    longWindows: number;
+    rayRuns: {
+        ray: number;
+        domain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
+        strategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
+        shortBars: number;
+        longBars: number;
+        shortReturn: number;
+        longReturn: number;
+        shortSharpe: number;
+        longSharpe: number;
+        address: string;
+        receipt: string;
+    }[];
+    topStrategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
+    topRay: number;
+    coordinatedWaveCount: number;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    cli: string;
+    pair: string;
+    route: string;
+    statement: string;
+    boundary: string;
+};
+/** T3/T4 compose — strategy improvement loop + honesty gate. */
+export declare function tradingStrategiesImproveViaRosetta(matrix?: MindMatrix, at?: number): {
+    computes: boolean;
+    hist: {
+        computes: boolean;
+        waveCount: number;
+        shortWindows: number;
+        longWindows: number;
+        rayRuns: {
+            ray: number;
+            domain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
+            strategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
+            shortBars: number;
+            longBars: number;
+            shortReturn: number;
+            longReturn: number;
+            shortSharpe: number;
+            longSharpe: number;
+            address: string;
+            receipt: string;
+        }[];
+        topStrategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
+        topRay: number;
+        coordinatedWaveCount: number;
+        facets: ({
+            receipt: string;
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        cli: string;
+        pair: string;
+        route: string;
+        statement: string;
+        boundary: string;
+    };
+    ranked: {
+        computes: boolean;
+        ranked: RankedStrategyRow[];
+        topStrategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
+        topRay: number;
+        facets: ({
+            receipt: string;
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        cli: string;
+        pair: string;
+        route: string;
+        statement: string;
+        boundary: string;
+    };
+    winGate: {
+        computes: boolean;
+        trainedEnough: boolean;
+        paperSimOnly: true;
+        strategyReturn: number;
+        benchmarkReturn: number;
+        facets: ({
+            receipt: string;
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    honesty: {
+        computes: boolean;
+        paperSimOnly: true;
+        liveMoneyClaimed: false;
+        facets: ({
+            receipt: string;
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    improvedStrategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    cli: string;
+    pair: string;
+    route: string;
+    statement: string;
+    boundary: string;
+};
+/** T4 — Honesty: paper/sim only; no live money claims. */
+export declare function tradingTrainHonestyGate(matrix?: MindMatrix): {
+    computes: boolean;
+    paperSimOnly: true;
+    liveMoneyClaimed: false;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** Browser panel for trading-rosetta train. */
+export declare function tradingRosettaTrainPanelComputes(matrix?: MindMatrix, at?: number): {
+    computes: boolean;
+    improve: {
+        computes: boolean;
+        hist: {
+            computes: boolean;
+            waveCount: number;
+            shortWindows: number;
+            longWindows: number;
+            rayRuns: {
+                ray: number;
+                domain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
+                strategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
+                shortBars: number;
+                longBars: number;
+                shortReturn: number;
+                longReturn: number;
+                shortSharpe: number;
+                longSharpe: number;
+                address: string;
+                receipt: string;
+            }[];
+            topStrategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
+            topRay: number;
+            coordinatedWaveCount: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            cli: string;
+            pair: string;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        ranked: {
+            computes: boolean;
+            ranked: RankedStrategyRow[];
+            topStrategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
+            topRay: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            cli: string;
+            pair: string;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        winGate: {
+            computes: boolean;
+            trainedEnough: boolean;
+            paperSimOnly: true;
+            strategyReturn: number;
+            benchmarkReturn: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        honesty: {
+            computes: boolean;
+            paperSimOnly: true;
+            liveMoneyClaimed: false;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        improvedStrategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
+        facets: ({
+            receipt: string;
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        cli: string;
+        pair: string;
+        route: string;
+        statement: string;
+        boundary: string;
+    };
+    ranked: {
+        strategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
+        rank: number;
+        ray: number;
+        return: number;
+        sharpe: number;
+        harmonic: number;
+    }[];
+    topStrategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
+    trainedEnough: boolean;
+    paperSimOnly: true;
+    cli: string;
+    pair: string;
+    route: string;
+    root: string;
+    statement: string;
+    boundary: string;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+};
+/** npm run quantum:trading-rosetta-train */
+export declare function runTradingRosettaTrainGuardedExit(_root: string, _argv?: readonly string[]): number;
+export declare function invertTheStrategiesToFillTheGapsMomentumAndMeanReversionAreInversesCoveringEachOthersRegimes(matrix?: MindMatrix): {
+    fills: boolean;
+    bars: number;
+    coverage: {
+        momentum: number;
+        reversion: number;
+        union: number;
+        gainByInverting: number;
+    };
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};

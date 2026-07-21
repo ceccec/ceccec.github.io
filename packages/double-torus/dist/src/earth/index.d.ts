@@ -613,7 +613,7 @@ export declare function earthComputes(matrix?: MindMatrix): {
                 bearing: number;
             };
             torus: {
-                index: 1 | 2;
+                index: 2 | 1;
                 lobe: number;
                 theta: number;
                 phi: number;
@@ -838,7 +838,7 @@ export declare function earthComputes(matrix?: MindMatrix): {
                 earth: __ns_up_double_torus_earth.EarthSheet;
                 angleDeg: number;
                 hue: number;
-                ring: 1 | 2;
+                ring: 2 | 1;
             }[];
             paintSteps: __ns_up_double_torus_earth.EarthHingeVortexStepView[];
             paintLayers: __ns_up_double_torus_earth.EarthHingePaintLayer[];

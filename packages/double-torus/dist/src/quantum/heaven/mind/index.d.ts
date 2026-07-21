@@ -43,6 +43,9 @@ export { hopfieldStore, hopfieldRecall, hopfieldEnergy, bumpStep, bumpEvolve } f
 export { codeRobustness } from '../../../earth/life';
 export { SPEED_OF_LIGHT, dopplerShift } from '../../../3/7';
 export { isIonizing } from '../../../9/1';
+export { anticommutator, trace, dagger, pauliAlgebraCloses } from '../../../9/1';
+export { foldMagmaLaws } from '../../../5/5';
+export { f2Add, f2Mul, f2FieldCloses } from '../../../4/6';
 export { PROTON_GYROMAGNETIC } from '../../../6/4';
 export { radarRange } from '../../../3/7';
 export { dims, DIMENSIONS, DIMENSION_NAMES } from '../../mountain/dimensions';

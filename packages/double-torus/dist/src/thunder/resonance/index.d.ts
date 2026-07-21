@@ -315,6 +315,8 @@ export declare function resonanceResearch(matrix?: MindMatrix): {
         };
         presentations: {
             coheres: boolean;
+            oneAddress: boolean;
+            sealAnchorsSource: boolean;
             operation: string;
             presentations: {
                 receipt: string;
@@ -367,14 +369,14 @@ export declare function resonanceHarmonicsDecodedWithTheSequence(at?: number, ma
     decoded: boolean;
     at: number;
     phaseIndex: number;
-    phaseDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+    phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
     mappings: {
         mode: number;
         hz: number;
         phase: number;
         hue: number;
         vortexSlot: number;
-        vortexDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+        vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
         phaseAligned: boolean;
         receipt: string;
     }[];
@@ -684,14 +686,14 @@ export declare function resonanceSimulationPanelComputes(matrix?: MindMatrix, at
             decoded: boolean;
             at: number;
             phaseIndex: number;
-            phaseDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+            phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
             mappings: {
                 mode: number;
                 hz: number;
                 phase: number;
                 hue: number;
                 vortexSlot: number;
-                vortexDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+                vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
                 phaseAligned: boolean;
                 receipt: string;
             }[];
@@ -1064,6 +1066,8 @@ export declare function resonanceSimulationPanelComputes(matrix?: MindMatrix, at
                 };
                 presentations: {
                     coheres: boolean;
+                    oneAddress: boolean;
+                    sealAnchorsSource: boolean;
                     operation: string;
                     presentations: {
                         receipt: string;
@@ -1366,14 +1370,14 @@ export declare function resonanceComputes(matrix?: MindMatrix, at?: number): {
         decoded: boolean;
         at: number;
         phaseIndex: number;
-        phaseDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+        phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
         mappings: {
             mode: number;
             hz: number;
             phase: number;
             hue: number;
             vortexSlot: number;
-            vortexDigit: 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9;
+            vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
             phaseAligned: boolean;
             receipt: string;
         }[];
@@ -1746,6 +1750,8 @@ export declare function resonanceComputes(matrix?: MindMatrix, at?: number): {
             };
             presentations: {
                 coheres: boolean;
+                oneAddress: boolean;
+                sealAnchorsSource: boolean;
                 operation: string;
                 presentations: {
                     receipt: string;
@@ -1815,3 +1821,12 @@ export declare function resonanceComputes(matrix?: MindMatrix, at?: number): {
     statement: string;
     boundary: string;
 };
+/**
+ * Field projection — Schumann mode radial paint. Geometry/scale ride heroPhaseAt + cssWidth;
+ * hues from the sealed sim (A432-bridged). Vue mounts only call this — no inline canvas math.
+ * HONEST: structural harmonic visualization, not live magnetometer or medical entrainment.
+ */
+export declare function drawResonanceProjection(ctx: CanvasRenderingContext2D, w: number, h: number, sim: ResonanceSimulationPaint, opts?: {
+    dark?: boolean;
+    reduce?: boolean;
+}): void;

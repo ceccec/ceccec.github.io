@@ -10,6 +10,10 @@
 //                       transparency log), the concept commands, and every fold/proof. It re-exports the
 //                       void/origin src/0 — the kernel, the cost math, the fold + presentations, and the
 //                       animation engine (createAnimationEngine, type AnimationEngine).
+//   • analyse/dynamics/geometry — sealed barrels mind does not fully surface: mountain/vortex (survive ·
+//                       Markov · f→{p,q} · gateway/plasma gates), quantum/dynamics (state evolution ·
+//                       simulators · drawDynamicsProjection), quantum/mountain/dimensions (10D honesty),
+//                       fire/plasma/ball + quantum movie clock (heroPhaseAt · subscribeHeroClock).
 //   • the animations — src/quantum: the two animation systems that share ONE phase clock —
 //                       (a) the classic hero scene (drawHero composing flower/calendars/architecture/
 //                       fractal/bursts over the 3D geometry + dimension walk), and
@@ -29,6 +33,8 @@
 // Honest export scope: paintHolographicPlasmaHeroMovie and drawDeathCounterFlow are INTERNAL to src/ —
 // they are not re-exported here because the source does not export them; they ship fused INSIDE the
 // exported drawHeroMovieFrame, which is the public entry to the fused life/death double-torus movie.
+// The orphan drawDoubleTorusEarthHingeFrame renderer is RETIRED — live paint is sharedHeroAt +
+// drawHeroMovieFrame only (structural completeness, not physical FTL / not Clay).
 
 // All the math — and, through src/0, the animation engine (createAnimationEngine, type AnimationEngine),
 // the fold (fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace) and its presentations, plus the ten
@@ -43,6 +49,49 @@ export {
   ed25519Keypair, ed25519Sign, ed25519Verify,
   transparencyLogRoot, logInclusion, logConsistent, toUuidSha256,
 } from '../../../src/0/index.ts'
+
+// Vortex analyse — mind only re-exports hopfield*/Edge; geometry already surfaces vortexMath /
+// allVortexMathSaved / vortexPaintTiers / merkaba / bothEarths. Named exports avoid Ambiguous duplicates:
+export {
+  survive, admixToward, injectError,
+  markovStep, markovEvolve, stationary, chsh,
+  residueVector, realign, phaseDrift, slip,
+  inductionStep, inductionEvolve, pmixStep, pmixEvolve, congruence,
+  vortexStrokeGateways, vortexGatewayPyramids, vortexPlasmaComputes,
+  f, fThetaPhiXyzDigitNIsTheInversePair,
+} from '../../../src/mountain/vortex/index.ts'
+
+// Quantum dynamics — sealed analyse + paint (not on the mind barrel public surface):
+export {
+  quantumDynamicsResearch,
+  quantumStateEvolutionDecoded,
+  decodeQuantumDynamicsThroughVortexSequence,
+  quantumDynamicsSimulationAt,
+  quantumDynamicsSimulationPanelComputes,
+  quantumChemistryToyComputes,
+  quantumDynamicsComputes,
+  drawDynamicsProjection,
+  updateQuantumTheHarmonicGatesNeverDriftTheMagicGatesCarryIrrationalDriftNotA432,
+  invertQuantumComputationsTheDaggerPairUncomputesExactlyAndIsTheBackwardPass,
+  irrationalProvesRationalMeasurementInvertsSuperpositionAndPellIsExact,
+  quantizeContentAddressPreimageSearchGroverIsRootNQueriesQuadraticQueryAdvantageOnly,
+  whichCorpusComputationsQuantizeMeasuredBySearchShortCircuit,
+  quantizeCountingHowManyAddressesMatchQuantumCountingIsRootNQueriesQuadraticQueryAdvantageOnly,
+} from '../../../src/quantum/dynamics/index.ts'
+export type {
+  QuantumDynamicsAmplitude,
+  QuantumDynamicsSimulationChannel,
+  QuantumDynamicsSimulationPaint,
+  QuantumDynamicsMapping,
+} from '../../../src/quantum/dynamics/index.ts'
+
+// 10D honesty proof (tenDimensionalAnimation already arrives via mind → wind/ui):
+export { animationsAreGenuinely10DNotFaked } from '../../../src/quantum/mountain/dimensions/index.ts'
+export type { Dims } from '../../../src/quantum/mountain/dimensions/index.ts'
+
+// Movie clock — one phase for hero + AnimationField (HERO_CYCLE_MS already exported below):
+export { heroPhaseAt } from '../../../src/fire/plasma/ball/index.ts'
+export { subscribeHeroClock } from '../../../src/quantum/index.ts'
 
 // All the animations — both systems, from the hero barrel. The shared animation engine, fold, presentations
 // and the dims/DIMENSIONS names already arrive through the math above, so here we re-export only the names
@@ -64,6 +113,7 @@ export type {
   HeroScene, Vec3, ArchNode, Burst,
   AnimationField, SharedHeroState, SharedHeroCopy,
   FieldForce, FieldLayer, RosettaPerspective, QuantumAppFrame, RealtimeSubtitleState,
+  LivingTorusCoordinate,
 } from '../../../src/quantum/index.ts'
 
 // The decoded-library folds the math core does not itself re-export — the ПесноПойка songbook decode,

@@ -643,3 +643,462 @@ export declare function reviewEuPatents(epNumbers: readonly string[], fetchImpl?
     statement: string;
     boundary: string;
 }>;
+export declare function theAutomaticNamingServiceDescribesTheoremsFromComputationNotPredefinedProse(matrix?: MindMatrix): {
+    computes: boolean;
+    formats: string[];
+    exampleTitle: string;
+    exampleSummary: string;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theReusableAgnosticToolSchemaHandlesAllScenariosLikeSchemaOrg(matrix?: MindMatrix): {
+    computes: boolean;
+    context: string;
+    tools: string[];
+    scenarios: string[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theAppStoreLikeGatesScanCodeLocallyForSecurityPrivacyPolicyQuality(matrix?: MindMatrix): {
+    computes: boolean;
+    gates: string[];
+    violationsCaught: string[];
+    cleanFindings: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function forgettingTheTwoBitsIsTheHurdleKeepingThemFoldsBidirectionallyToInfinity(matrix?: MindMatrix): {
+    computes: boolean;
+    variants: string[];
+    usablePayloadBits: number;
+    foldsKept: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theAlgebraicTheoremGateAnIdentityMustHoldOverAComputedRangeNotHandAssignedData(matrix?: MindMatrix): {
+    computes: boolean;
+    range: number;
+    algebraicHolds: boolean;
+    rejectsFalse: boolean;
+    handAssignedFails: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theTheoremsTraceToTheInvertedAlgebraEveryNonzeroHasAnExactInverse(matrix?: MindMatrix): {
+    computes: boolean;
+    prime: number;
+    everyInverts: boolean;
+    involution: boolean;
+    invertedAlgebras: string[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theMemoryAuditToolEachEntryMustPointToAComputedFoldFreestandingProseIsABypass(matrix?: MindMatrix): {
+    computes: boolean;
+    bypassesGates: boolean;
+    pointers: number;
+    prose: number;
+    pointerRatio: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function inversionIsDivisionInLinearAlgebraAndMultiplicationInQuantumOneConceptTwoFaces(matrix?: MindMatrix): {
+    computes: boolean;
+    detA: number;
+    Ainv: number[][];
+    divisionInverts: boolean;
+    multiplicationInverts: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theGateAutoTightensInRealtimeTheThresholdRatchetsTowardBestNeverLoosens(matrix?: MindMatrix): {
+    computes: boolean;
+    runs: number[];
+    thresholds: number[];
+    finalThreshold: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theRosettaAndIChingTrinitiesFoldAllTheoremsToOneRootAnyWaveOptimisesAtOnce(matrix?: MindMatrix): {
+    computes: boolean;
+    theorems: number;
+    root: string;
+    anyWaveSameRoot: boolean;
+    hexagramCube: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function compactingLessonsIsTheQuotientTheoremsThatProveEachOtherFormEquivalenceClasses(matrix?: MindMatrix): {
+    computes: boolean;
+    original: number;
+    compacted: number;
+    classes: number;
+    isEquivalence: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theTrinityWitnessesLessonTransferByTwoOfThreeMajorityOverTheContentAddress(matrix?: MindMatrix): {
+    computes: boolean;
+    majorityCount: number;
+    trinityWitnessed: boolean;
+    corruptionOutvoted: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theGateValidatesByAlgebraicEqualisationLhsMinusRhsIsZeroSecurityEfficiencyUsability(matrix?: MindMatrix): {
+    computes: boolean;
+    range: number;
+    equalisation: boolean;
+    security: boolean;
+    efficiency: boolean;
+    usability: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function realtimeScannersDetectManipulationsByContentAddressMismatchAndEqualisationFailure(matrix?: MindMatrix): {
+    computes: boolean;
+    expected: string;
+    detectsTampers: boolean;
+    avalanche: boolean;
+    equalisationScanner: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theManipulationScannerBecomesQuantumWithAVectorAddressCollisionBitsAdd(matrix?: MindMatrix): {
+    computes: boolean;
+    dimensions: number;
+    scalarSecurity: number;
+    vectorSecurity: number;
+    detects: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theCoordinateBasisXyzInvertsToAbcByAnInvertibleMapAndExtendsBeyondToNDimensions(matrix?: MindMatrix): {
+    computes: boolean;
+    detM: number;
+    permutationInverts: boolean;
+    changeOfBasisInverts: boolean;
+    beyond: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theoremsHandlingNastyInfinitiesTheProjectivePointTamesOneOverZeroRegularisationIsNotTheSum(matrix?: MindMatrix): {
+    computes: boolean;
+    partialSum: number;
+    regularised: number;
+    projectiveTames: boolean;
+    grows: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function inversionThroughZeroReplacesTheRegularisationAxiomWithAnExactTheoremForTamingTheInfinity(matrix?: MindMatrix): {
+    computes: boolean;
+    partial: number;
+    regularised: number;
+    inversionIsExact: boolean;
+    axiomBecomesTheorem: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theNoAssumptionGateCatchesImportedConstantsTheCrackGateMissesMathPiIsAnAssumption(matrix?: MindMatrix): {
+    computes: boolean;
+    assumedConstantsScanned: number;
+    crackGateMissesMathPi: boolean;
+    catches: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function importExportOrganisedByTheRosettaAndIChingIsADagChaosIsACycle(matrix?: MindMatrix): {
+    computes: boolean;
+    trigrams: number;
+    hexagrams: number;
+    organisedIsDAG: boolean;
+    chaoticHasCycle: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function thePrevNextCycleIsMutualReferencesTheFixIsIndexArithmeticOverTheOrderedListADag(matrix?: MindMatrix): {
+    computes: boolean;
+    cycleFromMutualRefs: boolean;
+    dagAfterFix: boolean;
+    listLen: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theComponentWiringMeasurementIsRegisteredPartitionedByConsumedSetAlgebra(matrix?: MindMatrix): {
+    computes: boolean;
+    floating: string[];
+    wiredCount: number;
+    span: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theTheoremAxiomAccountingProvesPairsInTrinitiesDoubleEntryBalances(matrix?: MindMatrix): {
+    computes: boolean;
+    balances: boolean;
+    span: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function optimiseAgentWorkWithQuantumCombinationsBatchingCollapsesTheQuadraticReadCost(matrix?: MindMatrix): {
+    computes: boolean;
+    quadraticExact: boolean;
+    span: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function axiomsAndTheoremsAreComplementaryInversesBidirectionallyAccountedToTheBitNoGaps(matrix?: MindMatrix): {
+    computes: boolean;
+    bitAccounts: boolean;
+    teslaAccounted: boolean;
+    gfAccounted: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theFacetTautologyGatePredicateCatchesGeZeroConjunctsSparesRangeChecks(matrix?: MindMatrix): {
+    computes: boolean;
+    catchesTautology: boolean;
+    sparesRange: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function searchKnownTheoremsToDiscoverTheUnknownAxiomsAreTheInDegreeZeroSourcesOfTheDependencyDag(matrix?: MindMatrix): {
+    computes: boolean;
+    axioms: number[];
+    discovered: number[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theHarmonicGateRejectsLonePrimePowersAHarmonicSpansMultiplePrimeDimensions(matrix?: MindMatrix): {
+    computes: boolean;
+    degenerate: {
+        n: number;
+        dims: number;
+    }[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function eachTheoremDisplaysTenDOfAllFourPolePerspectivesInEachDirection(matrix?: MindMatrix): {
+    computes: boolean;
+    perspectivesPerTheorem: number;
+    dimensions: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function thePolesAreSixtyDegreesApartNinetyIsReachableOnlyThroughInversionThePathlessTurn(matrix?: MindMatrix): {
+    computes: boolean;
+    c6: number[];
+    sharedAxis: number[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function invertedThirtyIsOneEightyTheAngleInversionIsTheProductNinetyTimesSixty(matrix?: MindMatrix): {
+    computes: boolean;
+    invertedThirty: number;
+    invariant: number;
+    selfInverse: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function navigationIsASelfProvingTheoremTheRouteTreeIsAnAcyclicCoveredDagBranchingAtMostEight(matrix?: MindMatrix): {
+    computes: boolean;
+    roots: number[];
+    covered: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function forecastIsASelfProvingTheoremDeterministicWithAChaosBoundedHorizon(matrix?: MindMatrix): {
+    computes: boolean;
+    horizon: number;
+    lyapunov: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function openMeteoForecastAdapterIsALiveNoKeyPureFunctionBoundedByTheChaosHorizon(matrix?: MindMatrix): {
+    computes: boolean;
+    points: number;
+    horizonHours: number;
+    forecastPoints: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function publicDataTrainsTheChaosRateCausallyTrainingFitIsNotSkillTheHorizonIsCalibratedNotBeaten(matrix?: MindMatrix): {
+    computes: boolean;
+    trainError: number;
+    testError: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function primesAndPiProveEachOtherThroughTheInvertedEulerProduct(matrix?: MindMatrix): {
+    computes: boolean;
+    piFromPrimes: number;
+    primeCount: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function inverseForecastsFillTheGapsForwardFromTheLeftInverseFromTheRightMeet(matrix?: MindMatrix): {
+    computes: boolean;
+    gap: number[];
+    filled: number[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function trainingIsMonotoneGradientDescentThatConvergesGatedByHeldOutTest(matrix?: MindMatrix): {
+    computes: boolean;
+    optimum: number;
+    finalTheta: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};

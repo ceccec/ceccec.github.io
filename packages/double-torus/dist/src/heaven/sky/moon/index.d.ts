@@ -756,12 +756,12 @@ export declare function moonComputes(matrix?: MindMatrix, at?: number): {
                     step: number;
                     bearing: number;
                     slug: string;
-                    realm: "animated" | "proven" | "presented";
-                    trinityLeg: "cross" | "fold" | "weave";
+                    realm: "proven" | "animated" | "presented";
+                    trinityLeg: "fold" | "cross" | "weave";
                     glyph: string;
                 }[];
                 hexEvenSteps: number[];
-                wiringSlugs: ("architecture" | "quantum-mind" | "show")[];
+                wiringSlugs: string[];
                 formed: {
                     formed: boolean;
                     path: string;

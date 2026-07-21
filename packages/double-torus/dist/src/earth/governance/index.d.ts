@@ -227,3 +227,21 @@ export declare function consensus(matrix?: MindMatrix, commit?: string): {
     statement: string;
     boundary: string;
 };
+export declare function societyMerkabaGraphComputes(matrix?: MindMatrix): {
+    computes: boolean;
+    actors: number;
+    edges: number;
+    nodes: {
+        actor: "science" | "commons" | "governance" | "observer" | "replicator" | "falsifier" | "steward" | "traditions" | "fair-life";
+        state: number[];
+        receipt: string;
+    }[];
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};

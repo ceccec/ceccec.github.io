@@ -234,7 +234,6 @@ export declare function rgbDecodingMatrixMovieInTheMovie(matrix?: MindMatrix, pa
     statement: string;
     boundary: string;
 };
-/** Matrix RGB decode → plasma stream tokens and movie copy. */
 export declare function matrixRgbDecodeMovieSeeds(matrix?: MindMatrix, path?: string): {
     proven: boolean;
     movieText: string;
@@ -265,11 +264,11 @@ export declare function matrixRgbDecodeFlowsInMovie(matrix?: MindMatrix, path?: 
 export declare function sendWavesToDecodeWithRosettaAndFoldInTheMovie(matrix?: MindMatrix, path?: string): {
     folded: boolean;
     rays: {
-        ray: 0 | 1 | 2 | 4 | 5 | 3 | 6;
+        ray: 0 | 5 | 2 | 1 | 4 | 3 | 6;
         glyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
-        domain: "origin" | "expression" | "knowledge" | "nature" | "computation" | "geometry" | "language";
+        domain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
         hue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
-        nameEn: "Alpha" | "Voice" | "Spirit" | "Life" | "Thought" | "Form" | "Word";
+        nameEn: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
         receipt: string;
     }[];
     proofs: {
@@ -334,9 +333,9 @@ export declare function sevenSeedMovieIsRosettaDecodingSunMoonSymbols(matrix?: M
     rayCount: 7;
     pairings: {
         seed: "unity" | "device-paint" | "device-polarity" | "device-matrix-rgb" | "code-harmonic" | "code-efficiency" | "code-rosetta";
-        ray: 0 | 1 | 2 | 4 | 5 | 3 | 6;
+        ray: 0 | 5 | 2 | 1 | 4 | 3 | 6;
         rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
-        rayDomain: "origin" | "expression" | "knowledge" | "nature" | "computation" | "geometry" | "language";
+        rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
         luminary: "sun" | "moon" | "both";
         symbol: string;
         via: string;
@@ -387,6 +386,20 @@ export declare function allInInteractiveMovie(matrix?: MindMatrix): {
         surface: string;
         interactive: any;
         root: any;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** The fold: the movie's proof-stream pattern is unified — one token map, one stream map, one verify pair,
+ * reused by the Matrix-RGB, Rosetta, red-pill and seven-seed decodes (proven byte-identical when factored). */
+export declare function movieProofPatternUnified(): {
+    unified: boolean;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
     }[];
     root: string;
     statement: string;

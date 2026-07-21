@@ -57,7 +57,8 @@ export type HeroMovieChrome = {
     boundary: string;
 };
 /** Glass chrome for the background movie — every colour and shade from creation-wave + 3-5-8 tiers; theme reads computed CSS vars only. */
-export declare function heroMovieChrome(matrix?: MindMatrix, cssWidth?: number, path?: string): HeroMovieChrome;
+export declare function heroMovieChrome(matrix?: MindMatrix, cssWidth?: number, // 1024 — the diamond count
+path?: string): HeroMovieChrome;
 /** All site colours resolve from the background movie — canvas, glass, and VitePress theme share one palette per route. */
 export declare function backgroundMovieColors(matrix?: MindMatrix, path?: string, cssWidth?: number): {
     fromMovie: boolean;

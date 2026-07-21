@@ -28,3 +28,101 @@ export { frequencyOf } from '../../3/7';
 export declare function phase(theta: number): number[];
 /** Fractional lag of the rotor behind the synchronous field (induction motor slip). */
 export declare function slip(wSync: number, wRotor: number): number;
+/** Geodesic dome computed from first principles (user realization: dome construction planned in
+ * detailed animations; all part of a fractal hologram). NOTHING is tabulated: the icosahedron is
+ * generated from φ, edges/faces are DISCOVERED by distance, subdivision applies one law at every
+ * scale (the fractal), and every strut length is the one chord law 2R·sin(θ/2) of the whole
+ * sphere (the hologram — the part encodes the whole). The assembly plan (rings, base up) is the
+ * animation: frame k = ring k of struts raised. */
+export declare function geodesicDomeComputes(frequency?: number): {
+    computes: boolean;
+    frequency: number;
+    animation: {
+        rings: number;
+        struts: {
+            a: readonly [number, number, number];
+            b: readonly [number, number, number];
+            ring: number;
+        }[];
+    };
+    vertices: number;
+    edges: number;
+    faces: number;
+    strutClasses: number;
+    chordLawMaxError: number;
+    rings: {
+        ring: number;
+        z: number;
+        struts: number;
+    }[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+/** COUNTERDIFFUSION ON THE DOUBLE TORUS — the claim tested, not assumed (user, 2026-07-16:
+ * "isobaric counterdiffusion could never exist in double torus"). The topology premise is RIGHT:
+ * the circulation IS a genus-2 object — pulmonary loop + systemic loop, first Betti number 2.
+ * The conclusion is REFUTED, and by the strongest possible witness: the human body HAS that
+ * topology, and isobaric counterdiffusion is documented IN human bodies (Lambertsen & Idicula
+ * 1975, skin lesions at constant pressure; Doolette & Mitchell 2003, inner-ear DCS from a gas
+ * switch). Computed below: the N₂→He switch at CONSTANT depth drives tissue tension ABOVE ambient
+ * with no pressure change at all. What the torus really buys is the true insight underneath —
+ * the compartments are COUPLED through one bloodstream, so the parallel-independent-compartment
+ * axiom is false, and that falsity is exactly why the models need their fine-tuning. */
+export declare function counterdiffusionOnTheDoubleTorus(): {
+    claimRefuted: boolean;
+    genus: number;
+    peakTension: number;
+    ambient: number;
+    supersaturation: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+/** ONE EXPONENTIAL LAW — decompression developed in detail, and it is the same math as everything
+ * else (user, 2026-07-16: "do the math and see it is all the same"). Every first-order approach
+ * obeys dy/dt = λ(y∞ − y) with λ = ln2/t½: tissue gas washout, RC charging, radioactive decay,
+ * Newton cooling AND animation easing are ONE equation wearing five costumes — verified by
+ * integrating the differential form and matching the closed form to 1e-4 in every costume.
+ * THE LADDER IS FRACTAL — and the fit shows: Bühlmann's 16 halftimes are quasi-geometric with a
+ * middle rung ratio ≈ √2 (two compartments per OCTAVE, the same log-uniform ladder as A432), but
+ * the ratio drifts to 2.0 at the head and 1.28 at the tail — a law he approached and never
+ * derived, which is exactly why the model needed fitting. REUSE: washoutEasing IS the animation
+ * kernel — 16 compartments = 16 rates = one multi-rate fractal ladder, painted by the 'dome'
+ * renderer's sibling family. */
+export declare function oneExponentialLaw(): {
+    computes: boolean;
+    ladder: number[];
+    ratios: number[];
+    geoMean: number;
+    middleMean: number;
+    perOctave: number;
+    approach: (y0: number, yInf: number, halftime: number, t: number) => number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function pyramidsDecodeIntoTheorems(): {
+    decoded: boolean;
+    sites: number;
+    bandFraction: number;
+    slopeDeg: number;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};

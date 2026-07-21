@@ -63,17 +63,117 @@ export declare function movieRouteKey(path: string): string;
 /** Client copy text — joins client bundle movieTexts (browser-safe). */
 export declare function clientMovieSeedCopyText(path?: string, matrix?: MindMatrix): string;
 export declare function allMovieSeedCopyText(path?: string, matrix?: MindMatrix): string;
+/** Every movement plane's visibility as DATA — exact lattice ratios, read by plasmaCanvasFor and verified by the fold. */
+export declare const PLANE_VIS: {
+    readonly tagLineL: readonly [3, 5];
+    readonly tagLineA0: readonly [16, 64];
+    readonly tagLineA1: readonly [2, 5];
+    readonly tagDotL: readonly [5, 8];
+    readonly tagDotA0: readonly [2, 5];
+    readonly tagDotA1: readonly [number, 64];
+    readonly tagGlyphL: readonly [number, 64];
+    readonly tagGlyphA0: readonly [number, 64];
+    readonly tagGlyphA1: readonly [2, 5];
+    readonly blobInnerL: readonly [29, 64];
+    readonly blobInnerA: readonly [number, 64];
+    readonly blobMidL: readonly [number, 64];
+    readonly blobMidA: readonly [number, 64];
+    readonly vignetteInnerL: readonly [number, 64];
+    readonly vignetteInnerA: readonly [number, 64];
+    readonly vignetteMidL: readonly [8, 64];
+    readonly vignetteMidA: readonly [19, 64];
+    readonly streamNearFactor: readonly [number, 64];
+    readonly streamFillNearL: readonly [number, 64];
+    readonly streamFillFarL: readonly [3, 5];
+    readonly streamGlowL: readonly [number, 64];
+    readonly streamGlowA: readonly [4, 5];
+    readonly voidCoreL: readonly [5, 64];
+    readonly voidCoreA: readonly [58, 64];
+    readonly voidMidL: readonly [number, 64];
+    readonly voidMidA: readonly [number, 64];
+    readonly voidOuterL: readonly [number, 64];
+    readonly voidOuterA: readonly [13, 64];
+    readonly ringL: readonly [3, 5];
+    readonly ringA0: readonly [19, 64];
+    readonly ringA1: readonly [number, 64];
+    readonly ballGlyphGlowL: readonly [number, 64];
+    readonly ballGlyphL: readonly [number, 64];
+    readonly ballGlyphStep: readonly [3, 64];
+    readonly reduceCoreL: readonly [6, 64];
+    readonly reduceCoreA: readonly [38, 64];
+};
 export declare const PLASMA_PAINT_TIERS: readonly [3, 5, 8];
-export declare const PLASMA_PAINT_CHROMA = 0.14;
-export declare const PLASMA_PAINT_L_BACK = 0.12;
-export declare const PLASMA_PAINT_L_SHELL = 0.22;
-export declare const PLASMA_PAINT_L_SOFT = 0.42;
-export declare const PLASMA_PAINT_L_CARD = 0.5;
-export declare const PLASMA_PAINT_L_GLOW = 0.7;
-export declare const HERO_CYCLE_MS = 120000;
-export declare const REALTIME_COMPUTE_MOVIE_CAP = 40;
+export declare const PLASMA_PAINT_CHROMA: number;
+export declare const PLASMA_PAINT_L_BACK: number;
+export declare const PLASMA_PAINT_L_SHELL: number;
+export declare const PLASMA_PAINT_L_SOFT: number;
+export declare const PLASMA_PAINT_L_CARD: number;
+export declare const PLASMA_PAINT_L_GLOW: number;
+export declare const HERO_CYCLE_MS: number;
+export declare const REALTIME_COMPUTE_MOVIE_CAP: number;
+export declare function plasmaPaintHardcodedPlanesDiscovered(matrix?: MindMatrix): {
+    discovered: boolean;
+    realized: boolean;
+    planes: number;
+    ratios: number;
+    remaining: any[];
+    chroma: {
+        value: number;
+        lattice: string;
+    };
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function heroClockOffTheLadderDiscovered(matrix?: MindMatrix): {
+    discovered: boolean;
+    realized: boolean;
+    cycleS: number;
+    nearestHarmonicS: number;
+    cap: {
+        value: number;
+        law: string;
+    };
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 /** 0..1 phase on the shared hero clock at time `at`. */
 export declare function heroPhaseAt(at?: number, cycleMs?: number): number;
+export declare const FRACTAL_CLOCK_DIVISORS: readonly number[];
+/** The divisor-d period in seconds, snapped to the nearest ladder step when d is off-lattice (total, never throws). */
+export declare function fractalClockS(d: number): number;
+/** The divisor-d period as a CSS/SMIL duration string — the ONE spelling every animation host uses. */
+export declare function fractalClockDur(d: number): string;
+export declare function animationsFractalOfOneClockDiscovered(matrix?: MindMatrix): {
+    discovered: boolean;
+    realized: boolean;
+    ladder: {
+        d: number;
+        s: number;
+    }[];
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function heroMovieWaveIndex(path?: string, matrix?: MindMatrix): number;
 /** Hue at the shared clock — route hue advanced by the golden angle over the cycle phase. */
 export declare function heroMoviePhaseHue(path?: string, at?: number, matrix?: MindMatrix): number;
@@ -242,15 +342,23 @@ export declare function sixSeedBundlesFormSevenAsWhole(path?: string, matrix?: M
     root: string;
 };
 export declare function plasmaWiredUuidStreams(path: string, matrix?: MindMatrix): PlasmaWiredStream[];
-export declare function realtimeWiring(path: string, matrix?: MindMatrix): {
+export declare function realtimeWiring(path?: string, matrix?: MindMatrix): {
     route: string;
     wired: boolean;
+    computes: boolean;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
     gateways: WiredGateway[];
     paths: WiredPath[];
     related: WiredPath[];
     streams: PlasmaWiredStream[];
     count: number;
     root: string;
+    statement: string;
+    boundary: string;
 };
 export type PlasmaWiredStreamKind = 'gateway' | 'related' | 'page' | 'source' | 'binding' | 'flow' | 'wiring' | 'math' | 'compute';
 export interface PlasmaWiredStream {
@@ -386,7 +494,7 @@ export declare function allInMovieOfLife(matrix?: MindMatrix): {
     root: string;
 };
 type ScreensaverTier = 'NATIVE' | 'FALLBACK' | 'UNAVAILABLE';
-export declare const SCREENSAVER_IDLE_MS = 120000;
+export declare const SCREENSAVER_IDLE_MS: number;
 export declare const SCREENSAVER_MOVIE_CHANNEL_IDS: readonly ["astronomy", "resonance", "dynamics", "gold-fusion", "weather", "gateway"];
 export declare function movieAsMostEfficientScreensaver(at?: number, path?: string, matrix?: MindMatrix): {
     efficient: boolean;
@@ -454,5 +562,39 @@ export declare function plasmaBallComputes(matrix?: MindMatrix, path?: string): 
         receipt: string;
     })[];
     root: string;
+};
+/** How fast plasma moves compared to c — BY THEOREM (user, 2026-07-16), and the reveal is that it
+ * is the SAME theorem as the void station's. From the cold-plasma dispersion ω² = ωₚ² + c²k²,
+ * nothing is postulated: the phase velocity EXCEEDS c for every propagating wave, the group
+ * velocity never does, and they are exact reciprocals about c — v_φ·v_g = c². So the "faster than
+ * light" plasma wave is a theorem that costs nothing: no signal rides the phase.
+ * THE SIMULTANEOUS REVEAL: at cutoff ω → ωₚ the refractive index n → 0, so v_φ = c/n → ∞ — this
+ * is division by zero at the pole (divisionByZeroComputes, src/9/1) and the reciprocal reflection
+ * (inverseNegatesAngle) in one physical object: v_g → 0 as v_φ → ∞, the wave stops and reflects.
+ * The ionosphere bouncing shortwave IS 1/0 = ∞ made audible. */
+export declare function plasmaSpeedByTheorem(): {
+    computes: boolean;
+    sampleVPhaseOverC: number;
+    sampleVGroupOverC: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theTracesFadeInHueFormingSpaceForNewEmergenceFromTheSource(matrix?: MindMatrix): {
+    computes: boolean;
+    capacity: number;
+    distinctHues: number;
+    aliveCount: number;
+    freedSlots: number;
+    luminances: number[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
 };
 export {};

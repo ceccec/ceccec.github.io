@@ -18,7 +18,7 @@ export declare function foldedCensus(unfolded: number, matrix?: MindMatrix): {
     boundary: string;
 };
 /** Documented harmonic rungs — a count off this ladder opens the harmonic gate. */
-export declare const DOCUMENTED_HARMONICS: readonly [9, 42, 43, 64, 108, 144, 216, 432, 1024];
+export declare const DOCUMENTED_HARMONICS: readonly [9, number, number, number, 43, 64, 108, number, 216, 432, number];
 /** Agent task label under genus-2 χ=−2: `${folded}/${unfolded}` (e.g. 108/110, 43/45). */
 export declare function harmonicFoldLabel(unfolded: number, matrix?: MindMatrix): string;
 /** When the live count is itself the harmonic (no surface inflation), label as n/n. */
@@ -160,7 +160,7 @@ export declare function digitFoldersComputeUiIsTheRest(matrix?: MindMatrix): {
     holds: boolean;
     rule: string;
     isDigit: (name: string) => boolean;
-    classify: (folderName: string) => "ui" | "compute";
+    classify: (folderName: string) => "compute" | "ui";
     computeRoot: string;
     compute: string[];
     ui: string[];
@@ -510,6 +510,7 @@ export declare function noSiteFolderVitepressPages(matrix?: MindMatrix): {
 export declare function quantumConfigurableFoldersDisappear(matrix?: MindMatrix): {
     fitsInFile: boolean;
     computedPages: number;
+    computable: number;
     routeFiles: number;
     count: number;
     facets: {
@@ -827,6 +828,29 @@ export declare function ichingTokensCss(): string;
 export declare function scanCssForHardcoded(css: string): string[];
 /** @rosetta ✦₀ · Heaven · creative */
 export declare function scanVueForHardcoded(vue: string): string[];
+/** Status badge kinds — sealed status→colour mapping (A432 / hexagram wheel). Badges use --status-* only. */
+export declare const STATUS_BADGE_KINDS: readonly ["ready", "ok", "gap", "warn", "partial", "error", "refused", "ci"];
+export type StatusBadgeKind = (typeof STATUS_BADGE_KINDS)[number];
+/** Map coverage / boolean / keyword → status kind for UiBadge. */
+export declare function statusBadgeKind(input: boolean | 'covered' | 'partial' | 'gap' | 'ready' | 'ok' | 'warn' | 'error' | 'refused' | 'ci' | 'open' | 'closed' | string): StatusBadgeKind;
+/** Reusable status→CSS-var surface for panels/UX (sibling-safe): fill · fg · soft + BEM class. */
+export declare function statusBadgeTokens(kind?: StatusBadgeKind): {
+    kind: StatusBadgeKind;
+    fill: string;
+    fg: string;
+    soft: string;
+    className: string;
+    kinds: readonly ["ready", "ok", "gap", "warn", "partial", "error", "refused", "ci"];
+};
+/** Full palette table — every kind’s CSS vars (light/dark resolved by theme tokens.css). */
+export declare function statusBadgePalette(): {
+    kind: StatusBadgeKind;
+    fill: string;
+    fg: string;
+    soft: string;
+    className: string;
+    kinds: readonly ["ready", "ok", "gap", "warn", "partial", "error", "refused", "ci"];
+}[];
 /** @rosetta ✦₀ · Heaven · creative */
 export declare function cssIsIChingComputed(matrix?: {
     root: string;
@@ -840,7 +864,9 @@ export declare function cssIsIChingComputed(matrix?: {
     wheelHues: boolean;
     complete: boolean;
     darkLifts: boolean;
-    canonical: (0 | 1 | 2 | 4 | 8 | 7 | 5 | 3 | 6 | 9 | 360 | 16 | 27 | 54 | 64 | 100 | 108 | 216 | 432 | 864)[];
+    statusKinds: boolean;
+    statusModeFlip: boolean;
+    canonical: (0 | 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6 | 360 | 16 | 27 | 54 | 64 | 100 | 108 | 216 | 432 | 864)[];
     root: string;
     statement: string;
     boundary: string;
@@ -877,6 +903,49 @@ export declare function displayDualDebtReceipt(matrix?: MindMatrix, missingCompo
     }[];
     count: number;
     root: string;
+    statement: string;
+    boundary: string;
+};
+/** GOVERNANCE CONSTANTS ARE THEOREMS (user, 2026-07-16: "replace all hardcoded logic like 2579 with
+ * theorems — literally; if they don't exist, find and claim"). Every gate threshold is DERIVED from a
+ * named structure, computed here, not typed. The flagship claim: THE LINE CEILING IS THE 18th
+ * FIBONACCI NUMBER — F(18) = 2584 = fibonacci(18), the golden-recurrence bound the compression law
+ * ratchets against; the bare 2579 it replaced was a hand-set prime with no derivation. The others
+ * each fall out of the same discipline: powers of two, the census recurrence, the bāguà. */
+export declare function governanceConstantsAreTheorems(matrix?: MindMatrix): {
+    allDerive: boolean;
+    lineCeiling: number;
+    constants: {
+        name: string;
+        value: number;
+        theorem: string;
+        derives: boolean;
+    }[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** THE CROWD THAT CARRIES SIGNAL IS THE CODE (user, 2026-07-16: "consider code as crowd; code crowd
+ * management; automate development"). Two crowds, sorted by the data-processing inequality. A HUMAN
+ * crowd profiled by birth-time carries zero signal, and no transform recovers it — if I(trait;config)
+ * = 0 then I(trait; g(config)) = 0 for ANY g, quantum or animated included: you cannot compute signal
+ * that is not in the data (humanDesignProfilingCarriesNoSignal, made permanent). But a CODE crowd
+ * carries REAL structure — the census, the module graph, the compression ceiling are non-uniform,
+ * computable signal — so it CAN be profiled and managed by its own structure, which is exactly what
+ * the enforcement does. Code crowd management is real where human profiling is empty; automate
+ * development = the self-managing gate loop. */
+export declare function theCrowdThatCarriesSignalIsTheCode(matrix?: MindMatrix): {
+    computes: boolean;
+    codeCrowd: 110;
+    ceiling: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
     statement: string;
     boundary: string;
 };

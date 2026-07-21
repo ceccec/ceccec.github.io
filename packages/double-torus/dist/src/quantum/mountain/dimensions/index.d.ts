@@ -28,3 +28,17 @@ export declare function tenDimensionalAnimation(matrix: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function animationsAreGenuinely10DNotFaked(matrix?: MindMatrix): {
+    genuine: boolean;
+    channels: number;
+    maxCorrelation: number;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};

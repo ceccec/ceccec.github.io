@@ -62,7 +62,7 @@ export declare function weatherForecastFromDoubleTorusEarthPerspective(at?: Weat
         bearing: number;
     };
     torus: {
-        index: 1 | 2;
+        index: 2 | 1;
         lobe: number;
         theta: number;
         phi: number;

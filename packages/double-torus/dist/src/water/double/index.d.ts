@@ -92,6 +92,8 @@ export declare function doubleTorusVortexComputes(matrix?: MindMatrix): {
             };
             presentations: {
                 coheres: boolean;
+                oneAddress: boolean;
+                sealAnchorsSource: boolean;
                 operation: string;
                 presentations: {
                     receipt: string;
@@ -315,6 +317,8 @@ export declare function doubleTorusMathComputes(matrix?: MindMatrix): {
         };
         presentations: {
             coheres: boolean;
+            oneAddress: boolean;
+            sealAnchorsSource: boolean;
             operation: string;
             presentations: {
                 receipt: string;
@@ -407,6 +411,8 @@ export declare function doubleTorusMathComputes(matrix?: MindMatrix): {
             };
             presentations: {
                 coheres: boolean;
+                oneAddress: boolean;
+                sealAnchorsSource: boolean;
                 operation: string;
                 presentations: {
                     receipt: string;
@@ -585,9 +591,9 @@ export declare function doubleTorusMovieComputes(matrix?: MindMatrix, path?: str
         rayCount: 7;
         pairings: {
             seed: "unity" | "device-paint" | "device-polarity" | "device-matrix-rgb" | "code-harmonic" | "code-efficiency" | "code-rosetta";
-            ray: 0 | 1 | 2 | 4 | 5 | 3 | 6;
+            ray: 0 | 5 | 2 | 1 | 4 | 3 | 6;
             rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
-            rayDomain: "origin" | "expression" | "knowledge" | "nature" | "computation" | "geometry" | "language";
+            rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
             luminary: "sun" | "moon" | "both";
             symbol: string;
             via: string;
@@ -710,7 +716,7 @@ export declare function doubleTorusMovieComputes(matrix?: MindMatrix, path?: str
             earth: import("./earth").EarthSheet;
             angleDeg: number;
             hue: number;
-            ring: 1 | 2;
+            ring: 2 | 1;
         }[];
         paintSteps: import("./earth").EarthHingeVortexStepView[];
         paintLayers: import("./earth").EarthHingePaintLayer[];
@@ -943,13 +949,7 @@ export declare function doubleTorusVoiceComputes(matrix?: MindMatrix): {
             analog: boolean;
             receipt: string;
             param: string;
-            range: readonly [0, 2];
-            note: string;
-        } | {
-            analog: boolean;
-            receipt: string;
-            param: string;
-            range: readonly [0.5, 2];
+            range: readonly [number, 2];
             note: string;
         } | {
             analog: boolean;
@@ -1330,6 +1330,32 @@ export declare function doubleTorusComputes(matrix?: MindMatrix): {
         receipt: string;
     })[];
     root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theLensSeesDoubleTorusesEverywhereExceptInCrackedCode(matrix?: MindMatrix): {
+    computes: boolean;
+    sealedSeen: number;
+    crackedRejected: number;
+    discriminates: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theRotatingLensFindsGapsAndOpportunitiesDescribesIn10DProseSignedZeroToken(matrix?: MindMatrix): {
+    computes: boolean;
+    gaps: number;
+    opportunities: number;
+    sealed: number;
+    dimensions: number;
+    signed: boolean;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
     statement: string;
     boundary: string;
 };

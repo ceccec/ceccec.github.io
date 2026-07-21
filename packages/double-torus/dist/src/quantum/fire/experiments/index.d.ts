@@ -212,4 +212,4 @@ export declare const HEALING_PAIRS: readonly {
     note: string;
 }[];
 export declare function makeBurst(xRatio: number, yRatio: number, w: number, h: number, hue: number): Burst;
-export declare function drawBursts(ctx: CanvasRenderingContext2D, w: number, h: number, bursts: Burst[]): void;
+export declare function drawBursts(ctx: CanvasRenderingContext2D, w: number, h: number, bursts: Burst[], dark?: boolean): void;

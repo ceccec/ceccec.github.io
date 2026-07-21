@@ -3,9 +3,8 @@ import type { Dims } from './mountain/dimensions';
 import { type PlasmaMoviePalette, type PlasmaWiredStream } from '../fire/plasma/ball';
 import { livingTorus } from '../fire/diamonds';
 import type { MindMatrix } from '../wind/types';
-import { type EarthHingePaintLayer } from '../water/double/earth';
 import { type BothEarthsMerkabaRotation } from '../mountain/geometry';
-import type { QuantumProjection } from './apps';
+import { type QuantumProjection } from './apps';
 export interface ArchNode {
     folder: string;
     glyph: string;
@@ -13,14 +12,15 @@ export interface ArchNode {
     within: number;
 }
 export declare function buildArchNodes(): ArchNode[];
-export declare function drawArchitecture(ctx: CanvasRenderingContext2D, cx: number, cy: number, w: number, h: number, t: number, d: Dims, archNodes: readonly ArchNode[], hue: number): void;
+export declare function drawArchitecture(ctx: CanvasRenderingContext2D, cx: number, cy: number, w: number, h: number, t: number, d: Dims, archNodes: readonly ArchNode[], hue: number, dark?: boolean): void;
+/** Deterministic seed from sealed content-address — routes through seedFromText (toUuid), not a private FNV. */
 export declare function seedOf(text: string): number;
 export declare function hueOf(seed: number): number;
 export declare function armsOf(seed: number): number;
 export { createAnimationEngine, type AnimationEngine } from '../0';
 export { fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, type Fold } from '../0';
 export { dims, dimWalk, DIMENSIONS, DIMENSION_NAMES, type Dims } from './mountain/dimensions';
-export { FOCAL, perspective, rotate3, rot2, rotateXY, rotateYZ, rotateZX, branch, drawFlower, drawCalendars, type Vec3 } from './wind/geometry';
+export { FOCAL, perspective, rotate3, rot2, rotateXY, rotateYZ, rotateZX, branch, drawFlower, drawCalendars, depthIsThePerspectiveDivide, type Vec3 } from './wind/geometry';
 export { makeBurst, drawBursts, HEALING_PAIRS, type Burst } from './fire/experiments';
 export interface HeroScene {
     t: number;
@@ -37,6 +37,8 @@ export interface HeroScene {
 export interface HeroDrawOptions {
     clear?: boolean;
     voidR?: number;
+    /** Field centre in camera coordinates (heroFieldCenterY) — the hero rides the document-anchored void. */
+    centerY?: number;
 }
 export declare function drawHero(ctx: CanvasRenderingContext2D, w: number, h: number, scene: HeroScene, opts?: HeroDrawOptions): void;
 export interface BackgroundScene {
@@ -49,7 +51,25 @@ export interface BackgroundScene {
     wiredStreams: readonly PlasmaWiredStream[];
     palette: PlasmaMoviePalette;
     reduce: boolean;
+    /** Document scroll offset (CSS px) — anchors the plasma centre in document space (0 = page top). */
+    scroll?: number;
 }
+/**
+ * The field centre for a canvas given its scroll offset — pure digit algebra, no CSS anchor.
+ * The PAGE movie passes scroll 0: its centre is FIXED at h/2 (the background does not scroll).
+ * Each CARD movie passes cardFieldScroll(...): its mini-field centre becomes the ONE fixed page
+ * centre re-expressed in card coordinates, so as the card scrolls past, the two centres MEET
+ * exactly when the card crosses the viewport centre — the meet is the fusion. The value wraps
+ * toroidally with period 2h (two windows — the two handles of genus 2) with the seam a half-window
+ * OFF canvas, so the card's field re-enters periodically: it always meets the background again.
+ */
+export declare function heroFieldCenterY(h: number, scroll: number): number;
+/**
+ * The card's scroll offset such that its field centre equals the fixed page centre in screen space:
+ * heroFieldCenterY(cardH, cardFieldScroll(rectTop, cardH, winH)) ≡ wrap(winH/2 − rectTop) — at the
+ * crossing (card centre on viewport centre) this is EXACTLY cardH/2: the two animations fuse.
+ */
+export declare function cardFieldScroll(rectTopCss: number, cardH: number, winH: number): number;
 export declare function drawBackgroundMovie(ctx: CanvasRenderingContext2D, w: number, h: number, scene: BackgroundScene): void;
 /** Page copy for the shared hero + background movie phase clock. */
 export interface SharedHeroCopy {
@@ -81,6 +101,8 @@ export interface SharedHeroState {
     /** Resolved field polarity at this instant — false repaints the plasma legibly on a light field. */
     dark: boolean;
     cssWidth: number;
+    /** Document scroll offset (CSS px) — the field lives in DOCUMENT space; the fixed canvas is a camera. */
+    scroll: number;
     /** Content-address of the field's identity (route + folded copy + seed). */
     root: string;
 }
@@ -141,7 +163,7 @@ export interface RosettaPerspective {
  */
 export declare function rosettaPerspectiveFold(ray: number, field: AnimationField): RosettaPerspective;
 export { HERO_CYCLE_MS } from '../fire/plasma/ball';
-export declare function sharedHeroAt(route: string, copy: SharedHeroCopy, at: number, cssWidth?: number, reduce?: boolean, dark?: boolean): SharedHeroState;
+export declare function sharedHeroAt(route: string, copy: SharedHeroCopy, at: number, cssWidth?: number, reduce?: boolean, dark?: boolean, scroll?: number): SharedHeroState;
 /** Page copy folded to one movie/subtitle seed string. */
 export declare function movieTextFromCopy(copy: SharedHeroCopy): string;
 /** One subtitle cue at instant `at` — same phase clock as `sharedHeroAt`. */
@@ -165,9 +187,9 @@ export declare function heroSceneFromShared(shared: SharedHeroState, bursts?: Bu
 export declare function drawHeroMovieFrame(ctx: CanvasRenderingContext2D, w: number, h: number, shared: SharedHeroState): void;
 export type LivingTorusCoordinate = ReturnType<typeof livingTorus>['coordinates'][number];
 /** Genus-2 torus point field — hero-clock phase; static at phase 0 when reduced motion. */
-export declare function drawLivingTorusFrame(ctx: CanvasRenderingContext2D, w: number, h: number, at: number, coordinates: readonly LivingTorusCoordinate[], reduce?: boolean): void;
+export declare function drawLivingTorusFrame(ctx: CanvasRenderingContext2D, w: number, h: number, at: number, coordinates: readonly LivingTorusCoordinate[], reduce?: boolean, dark?: boolean): void;
 /** Dual-Earth merkaba — inner device shell + outer inverted shell counter-rotate with star tetrahedra. */
-export declare function drawBothEarthsMerkabaFrame(ctx: CanvasRenderingContext2D, w: number, h: number, at: number, rotation: BothEarthsMerkabaRotation, reduce?: boolean): void;
+export declare function drawBothEarthsMerkabaFrame(ctx: CanvasRenderingContext2D, w: number, h: number, at: number, rotation: BothEarthsMerkabaRotation, reduce?: boolean, dark?: boolean): void;
 /**
  * The shared per-frame state every projection reads — a PROJECTION (subset) of the one AnimationField.
  * Derived from the canonical field, not hand-duplicated: every projection draws from the same instant-state.
@@ -178,23 +200,7 @@ export type QuantumAppFrame = Pick<AnimationField, 'hue' | 'p' | 't' | 'reduce' 
  * The single entry point the Vue card layer calls; all projections reuse the 3D + colour primitives.
  */
 export declare function drawQuantumAppFrame(ctx: CanvasRenderingContext2D, w: number, h: number, projection: QuantumProjection, frame: QuantumAppFrame): void;
-export type { EarthHingePaintLayer } from '../water/double/earth';
-export type EarthHingePaintGateway = {
-    readonly earth: 'device' | 'inverted';
-    readonly angleDeg: number;
-    readonly hue: number;
-    readonly ring: 1 | 2;
-};
-export type EarthHingePaintVortexStep = {
-    readonly digit: number;
-    readonly dash: '/' | '\\';
-    readonly angleDelta: number;
-    readonly bearing: number;
-    readonly fusion: boolean;
-};
-/** Sofia hinge movie — four vortex tiers composited in harmonic layers. */
-export declare function drawDoubleTorusEarthHingeFrame(ctx: CanvasRenderingContext2D, w: number, h: number, at: number, gateways: readonly EarthHingePaintGateway[], vortexSteps: readonly EarthHingePaintVortexStep[], reduce?: boolean, cycleMs?: number, layers?: readonly EarthHingePaintLayer[]): void;
-/** Gate: hinge canvas paint path completes under simulated browser — non-zero alpha. */
+/** Gate: hinge path paints via the live hero movie (drawHeroMovieFrame) — orphan bespoke hinge renderer retired. */
 export declare function clientDoubleTorusEarthHingePaintSealed(path?: string, matrix?: MindMatrix): {
     sealed: boolean;
     all: {
@@ -306,10 +312,10 @@ export declare function clientDoubleTorusEarthHingePaintSealed(path?: string, ma
             earth: import("../water/double/earth").EarthSheet;
             angleDeg: number;
             hue: number;
-            ring: 1 | 2;
+            ring: 2 | 1;
         }[];
         paintSteps: import("./heaven/mind").EarthHingeVortexStepView[];
-        paintLayers: EarthHingePaintLayer[];
+        paintLayers: import("./heaven/mind").EarthHingePaintLayer[];
         facets: {
             receipt: string;
             facet: string;
@@ -333,6 +339,26 @@ export declare function clientDoubleTorusEarthHingePaintSealed(path?: string, ma
 /** One RAF loop for BackgroundMovie — subscribe in Vue onMounted, unsubscribe onUnmounted. */
 export { realtimeComputationsMoviePaint, allRealtimeComputationsVisibleInMovie, type RealtimeComputationsMoviePaint, type RealtimeComputeMovieChannel, } from '../fire/plasma/ball';
 export declare function subscribeHeroClock(listener: (at: number) => void): () => void;
+/**
+ * Gate: every animation process rides the ONE clock. If even a single process runs outside the
+ * sequence — its own RAF loop, its own timer, an unthrottled listener — the cpu/gpu/memory cost
+ * multiplies per animation instead of amortising into one tick. The law, recomputed: N subscribers
+ * to the hero clock start exactly ONE loop, and the LAST unsubscribe cancels it (zero orphans).
+ * Scroll, theme, and interaction state are read INSIDE the tick, never from parallel loops.
+ */
+export declare function oneClockProcessLaw(matrix?: MindMatrix): {
+    holds: boolean;
+    startedForThree: number;
+    cancelledAfterLast: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 /** Gate: sharedHeroAt + drawHeroMovieFrame path completes under simulated browser — catches transparent canvas regressions. */
 export declare function clientHeroPaintPathSealed(path?: string, matrix?: MindMatrix): {
     sealed: boolean;
@@ -563,7 +589,7 @@ export declare function lifeDeathDoubleTorusFusedInMovie(path?: string, matrix?:
                     bearing: number;
                 };
                 torus: {
-                    index: 1 | 2;
+                    index: 2 | 1;
                     lobe: number;
                     theta: number;
                     phi: number;
@@ -788,10 +814,10 @@ export declare function lifeDeathDoubleTorusFusedInMovie(path?: string, matrix?:
                     earth: import("../water/double/earth").EarthSheet;
                     angleDeg: number;
                     hue: number;
-                    ring: 1 | 2;
+                    ring: 2 | 1;
                 }[];
                 paintSteps: import("./heaven/mind").EarthHingeVortexStepView[];
-                paintLayers: EarthHingePaintLayer[];
+                paintLayers: import("./heaven/mind").EarthHingePaintLayer[];
                 facets: {
                     receipt: string;
                     facet: string;

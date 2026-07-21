@@ -55,6 +55,11 @@ const NODE_BUILTIN_STUB = [
   'export const createHash = () => ({ update() { return this }, digest() { return "" } })',
   'export const pathToFileURL = (p) => ({ href: "file://" + String(p) })',
   'export const fileURLToPath = (u) => String(u).replace(/^file:\\/\\//, "")',
+  // child_process / module — repo tooling (enforcement shell, quantum cache). Never invoked by the
+  // published computational/animation API; stub so the browser/Node-neutral bundle stays zero-dep.
+  'export const spawn = () => ({ on() { return this }, kill() {}, pid: 0, stdout: null, stderr: null })',
+  'export const spawnSync = () => ({ status: 1, signal: null, stdout: "", stderr: "", error: new Error("node:child_process stub") })',
+  'export const createRequire = () => () => ({})',
   'export default {}',
 ].join('\n')
 
@@ -127,5 +132,45 @@ if (diagnostics.length || result.emitSkipped) {
 const shim = "// @ceccec/double-torus — types entry. Re-exports the bundled declaration graph.\nexport * from './packages/double-torus/src/index.js'\n"
 writeFileSync(join(outDir, 'index.d.ts'), shim)
 
+// 4. Gapless contract — public entry must surface analyse / dynamics / geometry / movie-clock symbols.
+//    Structural completeness only (NOT physical FTL / NOT Clay). Fail the build if any name is missing.
+const contract = [
+  'completeDoubleTorus', 'merkaba', 'bothEarthsRotateWithinEachOther', 'dualTorusTrinities',
+  'doubleTorusMathAtAllScalesProofs', 'doubleTorus3D', 'areaPairs',
+  'vortexMath', 'vortexComputes', 'allMathSaved', 'vortexStrokeGateways', 'vortexGatewayPyramids',
+  'vortexPlasmaComputes', 'f', 'fThetaPhiXyzDigitNIsTheInversePair',
+  'survive', 'markovStep', 'markovEvolve', 'stationary', 'chsh', 'inductionStep', 'pmixStep',
+  'quantumDynamicsComputes', 'quantumDynamicsResearch', 'quantumDynamicsSimulationAt',
+  'quantumStateEvolutionDecoded', 'drawDynamicsProjection', 'quantumChemistryToyComputes',
+  'dims', 'dimWalk', 'tenDimensionalAnimation', 'animationsAreGenuinely10DNotFaked',
+  'HERO_CYCLE_MS', 'heroPhaseAt', 'subscribeHeroClock', 'createAnimationEngine',
+  'sharedHeroAt', 'drawHeroMovieFrame', 'drawLivingTorusFrame', 'drawBothEarthsMerkabaFrame',
+  'fuseAll', 'proofBundle', 'buildMatrix', 'torusUuid',
+]
+const checkerHost = ts.createCompilerHost({})
+const checkProg = ts.createProgram([entryDts], {
+  moduleResolution: ts.ModuleResolutionKind.Bundler,
+  module: ts.ModuleKind.ESNext,
+  target: ts.ScriptTarget.ES2021,
+  skipLibCheck: true,
+}, checkerHost)
+const typeChecker = checkProg.getTypeChecker()
+const entrySf = checkProg.getSourceFile(entryDts)
+const exportNames = new Set(
+  typeChecker.getExportsOfModule(typeChecker.getSymbolAtLocation(entrySf)).map((s) => s.getName()),
+)
+const missing = contract.filter((name) => !exportNames.has(name))
+if (missing.length) {
+  console.error(`Build failed: @ceccec/double-torus public surface missing ${missing.length} contract export(s):`)
+  console.error(`  ${missing.join(', ')}`)
+  process.exit(1)
+}
+// Retired orphan must not reappear on the published surface.
+if (exportNames.has('drawDoubleTorusEarthHingeFrame')) {
+  console.error('Build failed: retired drawDoubleTorusEarthHingeFrame must not be exported (use sharedHeroAt + drawHeroMovieFrame).')
+  process.exit(1)
+}
+
 const bytes = readFileSync(join(outDir, 'index.js')).length
 console.log(`Built @ceccec/double-torus -> dist/index.js (${(bytes / 1024).toFixed(0)} KB, self-contained) + dist/index.d.ts`)
+console.log(`Gapless contract: ${contract.length}/${contract.length} analyse/dynamics/geometry/movie-clock exports present.`)

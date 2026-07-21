@@ -108,7 +108,7 @@ export declare function sealCube(matrix?: MindMatrix): {
     side: number;
     cube: number;
     trinity: {
-        position: "x" | "y" | "z";
+        position: "z" | "x" | "y";
         root: string;
     }[];
     trinityRoot: string;
@@ -227,8 +227,8 @@ export declare function holyBooksGeometry64SealedDiamonds(matrix?: MindMatrix): 
     boundary: string;
 };
 export declare function proofRegistry(matrix?: MindMatrix): ({
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         trinity: readonly [3, 6, 9];
         doubling: number[];
@@ -247,8 +247,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         pauliAxes: string[];
         dimSU2: number;
@@ -259,8 +259,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         alphabet: string[];
         qubits: number;
@@ -279,8 +279,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         parityBits: number;
         positions: number;
@@ -293,16 +293,32 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         address: string;
         deterministic: boolean;
-        precedents: {
+        idempotent: boolean;
+        collisionResistant: boolean;
+        dedup: boolean;
+        avalanches: boolean;
+        precedents: ({
+            name: string;
+            year: string;
+            kind: string;
+            source: string;
+            domain: string;
+        } | {
             name: string;
             year: number;
             kind: string;
             source: string;
+            domain: string;
+        })[];
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
         }[];
         holds: boolean;
         root: string;
@@ -310,8 +326,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         bases: string[];
         positions: number;
@@ -325,8 +341,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         units: number[];
         nonUnits: number[];
@@ -340,8 +356,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         colors: string[];
         black: string;
@@ -364,8 +380,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         groupings: {
             bitsPerDigit: number;
@@ -388,8 +404,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         pairs: {
             additive: string;
@@ -407,8 +423,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         trinities: number[];
         hues: number[];
@@ -422,12 +438,18 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         total: number;
         proven: number;
         purge: string[];
+        gateDiscriminates: boolean;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
         pureProof: boolean;
         holds: boolean;
         root: string;
@@ -435,8 +457,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         station: string;
         waves: number;
@@ -459,8 +481,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         station: string;
         wave: number;
@@ -479,10 +501,12 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         coheres: boolean;
+        oneAddress: boolean;
+        sealAnchorsSource: boolean;
         operation: string;
         presentations: {
             receipt: string;
@@ -500,8 +524,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         homed: boolean;
         station: string;
@@ -518,8 +542,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         homed: boolean;
         station: string;
@@ -536,8 +560,117 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
+    proof: {
+        verified: boolean;
+        crack: boolean;
+        trinitiesOrdered: boolean;
+        toolsReady: boolean;
+        demoReverse: boolean;
+        glyphBonus: number;
+        workerCap: number;
+        demoFactors: string[];
+        count: number;
+        facets: ({
+            receipt: string;
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+} | {
+    title: string;
+    slug: string;
+    proof: {
+        limitsRoot: string;
+        computes: boolean;
+        challenged: boolean;
+        proseOnlyClaim: string;
+        measuredFb: boolean;
+        measuredDiscord: boolean;
+        cardBranches: boolean;
+        seoCitesFold: boolean;
+        facets: ({
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+} | {
+    title: string;
+    slug: string;
+    proof: {
+        inventoried: boolean;
+        folds: {
+            receipt: string;
+            id: string;
+            home: string;
+            role: string;
+        }[];
+        theoremGaps: {
+            id: string;
+            problem: string;
+            gap: string;
+            mapsTo: string;
+        }[];
+        algebraDecoded: boolean;
+        count: number;
+        facets: ({
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+} | {
+    title: string;
+    slug: string;
+    proof: {
+        verified: boolean;
+        fused: boolean;
+        partCount: number;
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+} | {
+    title: string;
+    slug: string;
+    proof: {
+        optimized: boolean;
+        optimizations: {
+            receipt: string;
+            technique: string;
+            how: string;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+} | {
+    title: string;
+    slug: string;
+    proof: {
+        computes: boolean;
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+} | {
+    title: string;
+    slug: string;
     proof: {
         homed: boolean;
         station: string;
@@ -556,8 +689,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         homed: boolean;
         station: string;
@@ -580,8 +713,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         homed: boolean;
         station: string;
@@ -601,8 +734,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         grounded: boolean;
         canonical: string;
@@ -626,8 +759,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         consolidated: boolean;
         station: string;
@@ -641,8 +774,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         tenDimensional: boolean;
         grounded: boolean;
@@ -654,8 +787,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         holds: boolean;
         trinityUnitesAll: boolean;
@@ -671,8 +804,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         tenDimensional: boolean;
         entangled: boolean;
@@ -685,8 +818,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         decoded: boolean;
         factorization: string;
@@ -710,8 +843,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         decoded: boolean;
         platonicSolids: {
@@ -736,8 +869,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         decoded: boolean;
         tamperEvident: boolean;
@@ -780,8 +913,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         decoded: boolean;
         groverWeakens: boolean;
@@ -810,6 +943,7 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
             from: string;
             kind: string;
             replaces: string;
+            iso: string;
         }[];
         hardware: {
             today: string;
@@ -824,21 +958,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
-    proof: {
-        route: string;
-        wired: boolean;
-        gateways: import("../../fire/plasma/ball").WiredGateway[];
-        paths: import("../../fire/plasma/ball").WiredPath[];
-        related: import("../../fire/plasma/ball").WiredPath[];
-        streams: import("../../water/double").PlasmaWiredStream[];
-        count: number;
-        root: string;
-    };
-} | {
     slug: string;
-    title: string;
     proof: {
         foundationReady: boolean;
         complete: boolean;
@@ -875,8 +996,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         decoded: boolean;
         reconstructsExactly: boolean;
@@ -891,8 +1012,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         flows: boolean;
         doubling: number[];
@@ -919,8 +1040,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         holds: boolean;
         base: number;
@@ -1007,8 +1128,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         isApi: boolean;
         endpoints: {
@@ -1028,8 +1149,8 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 } | {
-    slug: string;
     title: string;
+    slug: string;
     proof: {
         proven: boolean;
         cubeIsDot: boolean;
@@ -1053,6 +1174,31 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 })[];
+export declare function theTheoremsFoldToFiveRootsOfGreaterSignificance(matrix?: MindMatrix): {
+    computes: boolean;
+    roots: ("trinity — 3 is the minimal complete basis" | "content-address — name = payload" | "agnostic completeness — any discovery plugs in" | "honest demarcation — only proven" | "waves — fold, do not accumulate")[];
+    folded: number;
+    of: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theCorpusTitlesAreAlgebraGapsToSolveAndDivergencesAreCracks(matrix?: MindMatrix): {
+    computes: boolean;
+    gaps: string[];
+    divergent: string[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function fuseAllTerabitEncryption(matrix?: MindMatrix): {
     here: boolean;
     terabitCells: number;
@@ -1343,6 +1489,18 @@ export declare function trinityFirstRedesign(matrix?: MindMatrix): {
     }[];
     pending: string[];
     root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theCommitPushPairIsAutomatedUnderTheSecurityStandards(): {
+    computes: boolean;
+    pair: readonly ["commit", "push"];
+    standards: string[];
+    seal: string;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
     statement: string;
     boundary: string;
 };

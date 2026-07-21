@@ -1,4 +1,5 @@
 import { vitepressAutomountPaths } from '../../../pair/enforcement/gates/computational';
+export { ROUTE_ALIASES } from '../../site';
 export { vitepressAutomountPaths } from '../../../pair/enforcement/gates/computational';
 /** @deprecated — rosetta corpus walk replaces automount enumeration */
 export { vitepressAutomountPaths as monographCatchAllPaths };
@@ -114,7 +115,6 @@ export declare function indexOfIndexes(projectRoot?: string): readonly import(".
 /** Declared route aliases — old/duplicate slugs that render a canonical page's content. The learning portal
  * unified the School age-ladder and the Academy tracks into one /learn surface, so /academy and /school are
  * kept as aliases (old URLs still resolve, canonical points at /learn) rather than separate pages. */
-export declare const ROUTE_ALIASES: Record<string, string>;
 export declare function catchAllRoutePaths(_locale: 'gla' | 'en' | 'bg'): {
     params: {
         path: string;
@@ -142,50 +142,50 @@ export declare function monographSliceFromRoute(path: string, locale?: 'gla' | '
         rayMeta: {
             readonly ray: 0;
             readonly glyph: "Ⰰ";
-            readonly nameEn: "Alpha";
-            readonly nameBg: "Алфа";
+            readonly nameEn: "Origin";
+            readonly nameBg: "Произход";
             readonly domain: "origin";
             readonly hue: 0;
         } | {
             readonly ray: 1;
             readonly glyph: "Ⰲ";
-            readonly nameEn: "Voice";
-            readonly nameBg: "Глас";
+            readonly nameEn: "Proof";
+            readonly nameBg: "Доказателства";
             readonly domain: "expression";
             readonly hue: 51;
         } | {
             readonly ray: 2;
             readonly glyph: "Ⰴ";
-            readonly nameEn: "Spirit";
-            readonly nameBg: "Дух";
+            readonly nameEn: "Explore";
+            readonly nameBg: "Изследване";
             readonly domain: "knowledge";
             readonly hue: 102;
         } | {
             readonly ray: 3;
             readonly glyph: "Ⰶ";
-            readonly nameEn: "Life";
-            readonly nameBg: "Живот";
+            readonly nameEn: "Learn";
+            readonly nameBg: "Обучение";
             readonly domain: "nature";
             readonly hue: 154;
         } | {
             readonly ray: 4;
             readonly glyph: "Ⰹ";
-            readonly nameEn: "Thought";
-            readonly nameBg: "Мисъл";
+            readonly nameEn: "Apps";
+            readonly nameBg: "Приложения";
             readonly domain: "computation";
             readonly hue: 205;
         } | {
             readonly ray: 5;
             readonly glyph: "Ⰿ";
-            readonly nameEn: "Form";
-            readonly nameBg: "Форма";
+            readonly nameEn: "Frontier";
+            readonly nameBg: "Граници";
             readonly domain: "geometry";
             readonly hue: 257;
         } | {
             readonly ray: 6;
             readonly glyph: "Ⱄ";
-            readonly nameEn: "Word";
-            readonly nameBg: "Слово";
+            readonly nameEn: "Reference";
+            readonly nameBg: "Справочник";
             readonly domain: "language";
             readonly hue: 308;
         };
