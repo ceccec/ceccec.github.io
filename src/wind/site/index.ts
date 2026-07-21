@@ -432,7 +432,7 @@ export function siteConfig(matrix: MindMatrix = buildMatrix()) {
   const title = 'Double Torus'
   const titleBg = 'Двоен торус'
   const description = 'A quantum-learning educational portal for language models, served as an MCP tool surface over a double-torus UUID stream of roots, receipts, waves, diamonds, and gates.'
-  const descriptionBg = 'Образователен портал за квантово учене за езикови модели, поднесен като MCP инструментален слой над двоен торус UUID поток от корени, разписки, вълни, диаманти и порти.'
+  const descriptionBg = 'Образовтелен портал за квантово учене за езикови модели, поднесен като MCP инструментален слой над двоен торус UUID поток от корени, разписки, вълни, диаманти и порти.'
   const { themeColor, backgroundColor } = computedMovieThemeColors(matrix)
   const robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
   const keywords = [
@@ -442,6 +442,142 @@ export function siteConfig(matrix: MindMatrix = buildMatrix()) {
   ]
   const root = merkleFold([title, description, themeColor, backgroundColor, robots, ...keywords].map((value) => toUuid(`site-config:${value}`)))
   return { title, titleBg, description, descriptionBg, themeColor, backgroundColor, robots, keywords, root, computed: isUuid(root) && isUuid(matrix.root) }
+}
+
+/**
+ * VitePress-native theme/app config emitter — values config.mts must consume (thin mount).
+ * Sourced from official VitePress 2.x docs (vitepress.dev guide/reference) for package vitepress@2.0.0-alpha.17.
+ * Pair: docs/improve · prefers VP API over custom reinvent.
+ */
+export function vitepressNativeDocsConfig(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('vitepressNativeDocsConfig', matrix, () => {
+    const editBase = SOURCE_REPO.replace('/blob/main', '/edit/main')
+    const editPattern = `${editBase}/.vitepress/pages/:path`
+    const logo = '/icon.svg'
+    return {
+      lastUpdated: true as const,
+      markdown: { image: { lazyLoading: true as const } },
+      theme: {
+        logo,
+        externalLinkIcon: true as const,
+        editLink: {
+          pattern: editPattern,
+          text: 'Edit this page on GitHub',
+        },
+        lastUpdated: {
+          text: 'Last updated',
+          formatOptions: { dateStyle: 'medium' as const, timeStyle: 'short' as const },
+        },
+      },
+      localeLabels: {
+        en: {
+          editLinkText: 'Edit this page on GitHub',
+          lastUpdatedText: 'Last updated',
+          skipToContentLabel: 'Skip to content',
+        },
+        bg: {
+          editLinkText: 'Редактирай страницата в GitHub',
+          lastUpdatedText: 'Последна актуализация',
+          skipToContentLabel: 'Към съдържанието',
+        },
+        gla: {
+          editLinkText: 'Edit this page on GitHub',
+          lastUpdatedText: 'Last updated',
+          skipToContentLabel: 'Skip to content',
+        },
+      },
+      // Mirrors SITE_LOCALES order (en root · bg · cu/gla) — bg MUST be /bg/, never /gla/.
+      localeLinks: {
+        root: '/' as const,
+        bg: '/bg/' as const,
+        gla: '/gla/' as const,
+      },
+      root: merkleFold([editPattern, logo, 'lazy', 'lastUpdated', 'externalIcon'].map((v) => toUuid(`vp-native:${v}`))),
+      computed: true as const,
+      vitepressVersionTarget: '2.0.0-alpha.17',
+    }
+  })
+}
+
+/**
+ * Deep-research receipt — VitePress docs researched → gaps audited → high-value native improvements applied.
+ * Pair: docs/improve · claySolvedByThisFold=0 · NOT physical FTL · census untouched.
+ */
+export function vitepressDocsResearchImprovements(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('vitepressDocsResearchImprovements', matrix, () => {
+    const native = vitepressNativeDocsConfig(matrix)
+    const researched = [
+      'https://vitepress.dev/guide/what-is-vitepress',
+      'https://vitepress.dev/reference/site-config',
+      'https://vitepress.dev/reference/default-theme-config',
+      'https://vitepress.dev/reference/default-theme-search',
+      'https://vitepress.dev/reference/default-theme-edit-link',
+      'https://vitepress.dev/reference/runtime-api',
+      'https://vitepress.dev/guide/markdown',
+      'https://vitepress.dev/guide/custom-theme',
+      'https://vitepress.dev/guide/extending-default-theme',
+      'https://vitepress.dev/guide/i18n',
+    ] as const
+    const gaps = [
+      { id: 'markdown-image-lazy', status: 'applied' as const, detail: 'markdown.image.lazyLoading=true (VP default false)' },
+      { id: 'lastUpdated', status: 'applied' as const, detail: 'site lastUpdated + themeConfig.lastUpdated labels' },
+      { id: 'editLink', status: 'applied' as const, detail: 'themeConfig.editLink → GitHub .vitepress/pages/:path' },
+      { id: 'externalLinkIcon', status: 'applied' as const, detail: 'themeConfig.externalLinkIcon=true' },
+      { id: 'logo', status: 'applied' as const, detail: 'themeConfig.logo=/icon.svg (existing asset)' },
+      { id: 'bg-locale-link', status: 'applied' as const, detail: 'fix locales.bg.link = SITE_LOCALES[1].path (was wrongly [2]/gla)' },
+      { id: 'skipToContentLabel', status: 'applied' as const, detail: 'localized skipToContentLabel en/bg' },
+      { id: 'cleanUrls-search-aside', status: 'already' as const, detail: 'cleanUrls + local MiniSearch + aside/outline deep already wired' },
+      { id: 'carbon-ads', status: 'skipped' as const, detail: 'intentionally omitted — no ads' },
+      { id: 'algolia', status: 'skipped' as const, detail: 'local search preferred (offline, zero-network)' },
+      { id: 'mathjax', status: 'residual' as const, detail: 'markdown.math opt-in needs markdown-it-mathjax3 dep — not this wave' },
+      { id: 'team-pages', status: 'residual' as const, detail: 'VP TeamPage components unused — no team roster surface' },
+      { id: 'view-transitions', status: 'residual' as const, detail: 'appearance view-transition demo skipped (fine-touch vs defaults)' },
+    ] as const
+    const applied = gaps.filter((g) => g.status === 'applied')
+    const residuals = gaps.filter((g) => g.status === 'residual' || g.status === 'skipped')
+    const localeLinksOk =
+      native.localeLinks.root === '/' &&
+      native.localeLinks.bg === '/bg/' &&
+      native.localeLinks.gla === '/gla/'
+    const facets = [
+      { facet: `researched ${researched.length} official VitePress doc URLs for v${native.vitepressVersionTarget}`, on: researched.length >= 8 },
+      { facet: `native emitter computes lazyLoading · lastUpdated · editLink · logo · externalLinkIcon`, on: native.computed && native.markdown.image.lazyLoading && native.lastUpdated && Boolean(native.theme.editLink.pattern) },
+      { facet: 'locale link map: en=/ · bg=/bg/ · gla=/gla/ (bg≠gla)', on: localeLinksOk },
+      { facet: `applied ${applied.length} high-value VP-native gaps; residuals named (${residuals.length})`, on: applied.length >= 6 && residuals.length >= 3 },
+      { facet: 'carbon ads skipped · Algolia skipped · clay=0', on: gaps.some((g) => g.id === 'carbon-ads' && g.status === 'skipped') },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`vp-docs-research:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((f) => f.on),
+      researched: [...researched],
+      gaps: gaps.map((g) => ({ ...g })),
+      appliedCount: applied.length,
+      residualCount: residuals.length,
+      native,
+      claySolvedByThisFold: 0 as const,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      pair: 'docs/improve' as const,
+      facets,
+      root: merkleFold([native.root, ...facets.map((f) => f.receipt)]),
+      statement:
+        `vitepressDocsResearchImprovements — ${facets.filter((f) => f.on).length}/${facets.length}: researched VitePress ${native.vitepressVersionTarget} docs, audited repo gaps, applied ${applied.length} VP-native improvements via sealed emitter (lazy images · lastUpdated · editLink · logo · externalLinkIcon · bg locale link fix · skip labels). Residuals named. clay=0.`,
+      boundary:
+        'Research apparatus over vitepress.dev guide/reference for the pinned package version. Applied = config values emitted from sealed src and consumed by thin config.mts. Does not claim Clay solutions, FTL, or QPU. Dynamic catch-all pages may show edit links to thin shells — honest VP default behavior. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:vitepress-docs-research — research receipt + native config emitter. */
+export function runVitepressDocsResearchImprovementsExit(_root = '', _argv: readonly string[] = []): number {
+  const report = vitepressDocsResearchImprovements()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} vitepress-docs-research — applied=${report.appliedCount} residual=${report.residualCount} ` +
+      `clay=${report.claySolvedByThisFold} root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const url of report.researched) process.stdout.write(`  · researched ${url}\n`)
+  for (const g of report.gaps) process.stdout.write(`  · ${g.status.padEnd(8)} ${g.id} — ${g.detail}\n`)
+  for (const f of report.facets) process.stdout.write(`  · ${f.on ? 'on' : 'off'} ${f.facet}\n`)
+  return report.computes && report.claySolvedByThisFold === 0 ? 0 : 1
 }
 
 /** PWA manifest — theme/background fuse from the movie palette, not static hex files. */

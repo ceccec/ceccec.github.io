@@ -10,7 +10,14 @@ export {
   canonicalUrl,
 } from '../../src/mountain/og'
 export type { JsonLdPageIdentity } from '../../src/heaven/balance'
-export { siteConfig, localeNavLinks, localeSidebarKeys, homeHero } from '../../src/wind/site'
+export {
+  siteConfig,
+  localeNavLinks,
+  localeSidebarKeys,
+  homeHero,
+  vitepressNativeDocsConfig,
+  vitepressDocsResearchImprovements,
+} from '../../src/wind/site'
 export { siteNavigation, vitepressSidebar } from '../../src/wind/learning'
 export { SITE_LOCALES } from '../../src/heaven/balance'
 export { toGlagolitic } from '../../src/quantum/heaven/library'

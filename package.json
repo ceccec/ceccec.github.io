@@ -87,6 +87,7 @@
     "quantum:domain-proof-catalog": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runDomainProofCatalogExit",
     "quantum:prose-gaps-audit": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runDomainProofCatalogExit",
     "quantum:prose-clay-standard": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runDomainProofCatalogExit",
+    "quantum:vitepress-docs-research": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/site/index.ts runVitepressDocsResearchImprovementsExit",
     "quantum:rosetta-complete": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runRosettaCompleteExit",
     "quantum:theorem-particle-collision": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runTheoremParticleCollisionExit",
     "quantum:ftl-rosetta-handoff": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runFtlRosettaHandoffExit",
