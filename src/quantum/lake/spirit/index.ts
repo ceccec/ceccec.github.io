@@ -35,14 +35,18 @@ export function humanDesign() {
     { tier: 8, name: 'eight trigrams (under the 64 gates)', members: ['☰', '☱', '☲', '☳', '☴', '☵', '☶', '☷'] },
   ]
   const wheel = humanDesignVerifiedWheel()
+  const lattice = humanDesignChannelsAndCenters()
   return {
-    complete: tiers[0].members.length === 3 && tiers[1].members.length === 5 && tiers[2].members.length === 8 && wheel.verified,
+    complete: tiers[0].members.length === 3 && tiers[1].members.length === 5 && tiers[2].members.length === 8 && wheel.verified && lattice.verified,
     gates: 64, // 8 x 8 trigrams = 64 gates = 64 I Ching hexagrams = 64 DNA codons
+    channels: lattice.channelCount,
+    centers: lattice.centerCount,
     tiers,
     wheel,
-    root: merkleFold([...tiers.flatMap((tier) => tier.members).map((member) => toUuid(`hd:${member}`)), wheel.root]),
-    statement: 'Human Design in 3-5-8: the three circuit groups (individual, tribal, collective), the five types, and the eight trigrams that underlie its 64 gates — 64 = the I Ching hexagrams = the 64 DNA codons — with the verified Rave Mandala wheel (Gate 41 @ 302°, 360/64° arcs, Design Sun −88°, 13 bodies).',
-    boundary: 'A correspondence to Human Design, a modern synthesis of I Ching, astrology, Kabbalah, and the chakras. Structure (wheel/combinatorics) is documented; predictive/aura claims are NOT scientifically validated — no factual claim about any person is made. HARMONY ≠ TRUTH.',
+    lattice,
+    root: merkleFold([...tiers.flatMap((tier) => tier.members).map((member) => toUuid(`hd:${member}`)), wheel.root, lattice.root]),
+    statement: 'Human Design in 3-5-8: the three circuit groups (individual, tribal, collective), the five types, and the eight trigrams that underlie its 64 gates — 64 = the I Ching hexagrams = the 64 DNA codons — with the verified Rave Mandala wheel (Gate 41 @ 302°, 360/64° arcs, Design Sun −88°, 13 bodies) and sealed 36-channel / 9-center lattice (W5).',
+    boundary: 'A correspondence to Human Design, a modern synthesis of I Ching, astrology, Kabbalah, and the chakras. Structure (wheel/channels/centers combinatorics) is documented; predictive/aura claims are NOT scientifically validated — no factual claim about any person is made. HARMONY ≠ TRUTH.',
   }
 }
 
@@ -68,6 +72,103 @@ export const RAVE_BODIES_13 = [
   'Sun', 'Earth', 'Moon', 'North Node', 'South Node',
   'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto',
 ] as const
+
+/** Nine BodyGraph centers — structure ids only (no aura / type prose). */
+export const RAVE_CENTERS_9 = [
+  'Head', 'Ajna', 'Throat', 'G', 'Heart', 'Sacral', 'SolarPlexus', 'Spleen', 'Root',
+] as const
+
+/** Gate sets per center — partition of 1..64 (structure-only; public BodyGraph lattice). */
+export const RAVE_CENTER_GATES = {
+  Head: [61, 63, 64],
+  Ajna: [4, 11, 17, 24, 43, 47],
+  Throat: [8, 12, 16, 20, 23, 31, 33, 35, 45, 56, 62],
+  G: [1, 2, 7, 10, 13, 15, 25, 46],
+  Heart: [21, 26, 40, 51],
+  Sacral: [3, 5, 9, 14, 27, 29, 34, 42, 59],
+  SolarPlexus: [6, 22, 30, 36, 37, 49, 55],
+  Spleen: [18, 28, 32, 44, 48, 50, 57],
+  Root: [19, 38, 39, 41, 52, 53, 54, 58, 60],
+} as const satisfies Record<(typeof RAVE_CENTERS_9)[number], readonly number[]>
+
+/**
+ * 36 channels as sorted [lo, hi] gate pairs.
+ * Integration multi-degree: gates 10 · 20 · 34 · 57 each appear in 3 channels (8 shared slots = 72−64).
+ */
+export const RAVE_CHANNELS_36 = [
+  [1, 8], [2, 14], [3, 60], [4, 63], [5, 15], [6, 59], [7, 31], [9, 52],
+  [10, 20], [10, 34], [10, 57], [11, 56], [12, 22], [13, 33], [16, 48], [17, 62],
+  [18, 58], [19, 49], [20, 34], [20, 57], [21, 45], [23, 43], [24, 61], [25, 51],
+  [26, 44], [27, 50], [28, 38], [29, 46], [30, 41], [32, 54], [34, 57], [35, 36],
+  [37, 40], [39, 55], [42, 53], [47, 64],
+] as const
+
+/** Gate → center lookup (derived once from RAVE_CENTER_GATES). */
+export function raveCenterOfGate(gate: number): (typeof RAVE_CENTERS_9)[number] | undefined {
+  for (const center of RAVE_CENTERS_9) {
+    if ((RAVE_CENTER_GATES[center] as readonly number[]).includes(gate)) return center
+  }
+  return undefined
+}
+
+/** Channels whose both gates are in the activated set (structure definition, not personality claim). */
+export function raveDefinedChannels(activated: ReadonlySet<number> | readonly number[]) {
+  const set = activated instanceof Set ? activated : new Set(activated)
+  return RAVE_CHANNELS_36.filter(([a, b]) => set.has(a) && set.has(b)).map(([a, b]) => ({
+    a, b, key: `${a}-${b}`, from: raveCenterOfGate(a)!, to: raveCenterOfGate(b)!,
+  }))
+}
+
+/**
+ * HD W5 — sealed 36 channels + gate→center partition.
+ * Composes with wheel W3; chart activation composes Meeus W4 separately.
+ */
+export function humanDesignChannelsAndCenters(matrixRoot = 'hd-channels') {
+  void matrixRoot
+  const centers = RAVE_CENTERS_9
+  const channelPairs = RAVE_CHANNELS_36
+  const allGates = centers.flatMap((c) => [...RAVE_CENTER_GATES[c]])
+  const uniqueGates = new Set(allGates)
+  const keys = channelPairs.map(([a, b]) => `${a}-${b}`)
+  const slotFreq = new Map<number, number>()
+  for (const [a, b] of channelPairs) {
+    slotFreq.set(a, (slotFreq.get(a) ?? 0) + 1)
+    slotFreq.set(b, (slotFreq.get(b) ?? 0) + 1)
+  }
+  const multi = [...slotFreq.entries()].filter(([, n]) => n > 1)
+  const integration = [10, 20, 34, 57] as const
+  const crossCenter = channelPairs.every(([a, b]) => {
+    const ca = raveCenterOfGate(a)
+    const cb = raveCenterOfGate(b)
+    return !!ca && !!cb && ca !== cb
+  })
+  const everyGateChanneled = [...Array(64)].every((_, i) => (slotFreq.get(i + 1) ?? 0) >= 1)
+  const facets = [
+    { facet: '9 centers · partition 64 gates (3+6+11+8+4+9+7+7+9)', on: centers.length === 9 && allGates.length === 64 && uniqueGates.size === 64 && [...uniqueGates].sort((x, y) => x - y).every((g, i) => g === i + 1) },
+    { facet: '36 unique sorted channel pairs', on: channelPairs.length === 36 && new Set(keys).size === 36 && channelPairs.every(([a, b]) => a < b) },
+    { facet: 'channel slots 72 − 64 gates = 8 shared (Integration 10·20·34·57 each degree 3)', on: channelPairs.length * 2 - 64 === 8 && multi.length === 4 && integration.every((g) => slotFreq.get(g) === 3) },
+    { facet: 'every channel joins two distinct centers', on: crossCenter },
+    { facet: 'every gate 1..64 appears in ≥1 channel', on: everyGateChanneled },
+    { facet: 'wheel W3 still verifies (compose, not replace)', on: humanDesignVerifiedWheel().verified },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`hd-channels-w5:${entry.facet}:${entry.on}`) }))
+  const verified = facets.every((entry) => entry.on)
+  return {
+    verified,
+    computes: verified,
+    centers: [...centers],
+    centerCount: centers.length,
+    channels: channelPairs.map(([a, b]) => ({ a, b, key: `${a}-${b}`, from: raveCenterOfGate(a)!, to: raveCenterOfGate(b)! })),
+    channelCount: channelPairs.length,
+    gateCenter: Object.fromEntries([...Array(64)].map((_, i) => [i + 1, raveCenterOfGate(i + 1)!])) as Record<number, (typeof RAVE_CENTERS_9)[number]>,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'HD W5 sealed BodyGraph lattice: 9 centers partition 64 gates; 36 channels as sorted gate pairs with Integration multi-degree on 10·20·34·57 (8 shared slots); every channel cross-center; composes verified wheel W3.',
+    boundary:
+      'DOCUMENTED STRUCTURE ONLY (public BodyGraph combinatorics: centers · gate homes · channel pairs). Zero in-copyright channel/keynote prose. NOT a natal chart engine and NOT a claim about persons. Predictive/aura/type claims remain flagged (humanDesignProfilingCarriesNoSignal). Chart activation + cusp UX compose Meeus W4 separately. HARMONY ≠ TRUTH.',
+  }
+}
 
 /** Longitude → gate.line on the verified wheel (tropical ecliptic degrees). */
 export function raveMandalaGateLineAt(longitudeDeg: number): { gate: number; line: number; index: number; startDeg: number } {
