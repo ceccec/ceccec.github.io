@@ -422,6 +422,7 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'translations-verify', title: 'Translation gaps gate (en/bg/gla parity)', fold: 'translationGapsGate', cli: 'npm run quantum:translations-verify', pair: 'translations/verify', route: '/en/quantum-tools#translations-verify', barrel: 'src/mountain/source', boundary: 'HARD discover-then-fail on missing/inaccurate en-parity · WARN offline phrase residual · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-commands-scripts-gaps-audit', title: 'MCP commands ↔ scripts gaps audit', fold: 'mcpCommandsScriptsGapsAudit', cli: 'npm run quantum:mcp-commands-scripts-gaps-audit', pair: 'mcp/scripts-audit', route: '/en/quantum-tools#mcp-commands-scripts-gaps-audit', barrel: 'src/quantum/apps', boundary: 'Overlap · useless · gap census — conceptTools+trading:* REFUSE PRIMARY (kept-intentional) · plasma/trinity in HONEST_CI · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'slow-gap', title: 'Slow process = quantum gap', fold: 'slowProcessIsQuantumGap', cli: 'npm run quantum:slow-gap', pair: 'slow/gap', route: '/en/quantum-tools#slow-quantum-gaps', barrel: 'src/quantum/apps', boundary: 'Architectural slow≠telemetry — browserGap · missing 10D · parallel registry · memo-miss model', browserRunnable: true, browserGap: '' },
+  { id: 'train-geodesy', title: 'Train geodesy — sphere primitives + double-torus invert decode', fold: 'trainGeodesyAsQuantumWave', cli: 'npm run quantum:train-geodesy', pair: 'geo/train', route: '/en/research#train-geodesy', barrel: 'src/wind/research', boundary: 'USER LAW geodesyDecodedIsDoubleTorusInverted · curriculum/validate · clay=0 · physicalFtl=0 · NOT live GNSS · NOT DE440', browserRunnable: true, browserGap: '' },
   { id: 'sciences-trinities', title: 'Sciences interact in trinities + significance', fold: 'sciencesInteractInTrinities', cli: 'npm run quantum:sciences-trinities', pair: 'sciences/trinities', route: '/en/research#sciences-trinities', barrel: 'src/wind/research', boundary: 'Structural significance ≠ journal IF; crypto vertex from isoPqcHandoff; claySolved=0', browserRunnable: true, browserGap: '' },
   { id: 'drift-manage', title: 'Manage computational drift · conventional↔computational', fold: 'manageComputationalDrift', cli: 'npm run quantum:drift-manage', pair: 'drift/manage', route: '/en/research#drift-manage', barrel: 'src/wind/research', boundary: 'Detect·bound·route numeric/facet drift — NOT honesty prose · clay=0 · certified=false · refuseBeyond stays', browserRunnable: true, browserGap: '' },
   { id: 'drift-invert', title: 'Drift inverted is trinity gateway', fold: 'driftInvertedIsTrinityGateway', cli: 'npm run quantum:drift-invert', pair: 'drift/invert', route: '/en/research#drift-invert', barrel: 'src/wind/research', boundary: 'Inverted drift = gateway of trinities (forward·inverse·reverse) — not a dead-end gap · clay=0 · certified=false · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1003,6 +1004,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'local-audit-quantum', saves: 'replaces wet re-run of local novel+reverse-vs-standards+audit — memoByRoot cold/warm reuse' },
   { id: 'standards-audit', saves: 'replaces wet re-audit of reverse·inverse·10D standards alignment' },
   { id: 'first-in-corpus', saves: 'replaces wet re-census of first-in-corpus algebra + 10D projection registry' },
+  { id: 'train-geodesy', saves: 'replaces wet re-training of geodesy primitives + geo/torus double-torus invert decode' },
   { id: 'sciences-trinities', saves: 'replaces wet re-derivation of science↔dual↔fusion + significance (isoPqcHandoff)' },
   { id: 'cmb-omega-c-over-b', saves: 'replaces wet re-statement of Ω_c/Ω_b CMB budget + null non-gravitational + quantum-gaps framing' },
   { id: 'wave-trinity-found', saves: 'replaces wet false conclusion that drained/closed PR means no waves/trinities' },
@@ -4612,7 +4614,7 @@ export const CRACK_GATE_MISS_ROWS = [
     id: 'maxbits-demo-as-hardware',
     priorFold: 'maximumBitsEncryptDecryptInverseReverse',
     miss: 'classesUngated' as GateMissKind,
-    why: 'static DEMO_RSA_MODULI boundary kept max-bits — demo sample pretended to be hardware ceiling',
+    why: 'static RSA_MODULI boundary kept max-bits — demo sample pretended to be hardware ceiling',
     nowGate: 'bits/hardware→gaps/invisible',
   },
 ] as const
@@ -5094,6 +5096,9 @@ export function improveLocalFromSessionExperience(matrix: MindMatrix = buildMatr
     const formulaCodeOk = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('formula/code')
       && SCIENCE_PAPER_SECTION_LABELS.formulas.length > 0
       && Boolean(catalog.tools.find((tool) => tool.id === 'formula-code'))
+    const geoTrainOk = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('geo/train')
+      && (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('geo/torus')
+      && Boolean(catalog.tools.find((tool) => tool.id === 'train-geodesy'))
     const localSessionUxImproved = session.computes && toolbox.computes && autoWire.computes && autoWire.quantumReady
       && mcpParity.computes && mcpParity.mcpMatchesToolbox && experiments.computes
       && hubSteps.length === LOCAL_SESSION_HUB_STEPS.length && LOCAL_SESSION_FRICTION_CLOSED.length >= (5 + 2)
@@ -5107,6 +5112,7 @@ export function improveLocalFromSessionExperience(matrix: MindMatrix = buildMatr
       { facet: 'composes paste-wire quantumReady + mcp-browser-parity', on: autoWire.quantumReady && mcpParity.mcpMatchesToolbox },
       { facet: 'composes localToolsMorph + doubleSlit', on: morph.computes && morph.doubleSlit.waveParticleDual },
       { facet: 'formula/code pair + labels surfaced', on: formulaCodeOk },
+      { facet: 'geo/train · geo/torus catalog surfaced', on: geoTrainOk },
       { facet: 'bits→tools→experiments link surface present', on: linksBitsToolsExperiments },
       { facet: 'docs:dev fast path ≥6 copy-paste lines', on: LOCAL_SESSION_DOCS_DEV_FAST_PATH.length >= (4 + 2) },
       { facet: 'next-steps after paste-wire ≥5', on: LOCAL_SESSION_NEXT_AFTER_PASTE.length >= 5 },
@@ -5130,13 +5136,14 @@ export function improveLocalFromSessionExperience(matrix: MindMatrix = buildMatr
         doubleSlit: morph.doubleSlit.waveParticleDual,
         localToolsSufficient: morph.localToolsSufficient,
         formulaCodeOk,
+        geoTrainOk,
       },
       morph,
-      root: merkleFold([sealed.root, session.root, toolbox.root, autoWire.root, mcpParity.root, experiments.root, morph.root, toUuid(`formula-code-ok:${formulaCodeOk}`), shelved.address, toUuid(`local-session-storage:${LOCAL_SESSION_EXPERIMENT_STORAGE_KEY}`)]),
+      root: merkleFold([sealed.root, session.root, toolbox.root, autoWire.root, mcpParity.root, experiments.root, morph.root, toUuid(`formula-code-ok:${formulaCodeOk}`), toUuid(`geo-train-ok:${geoTrainOk}`), shelved.address, toUuid(`local-session-storage:${LOCAL_SESSION_EXPERIMENT_STORAGE_KEY}`)]),
       pair: 'local/session', cli: 'npm run quantum:improve-local-session', route: '/en/quantum-tools#local-session-hub',
       anchor: 'local-session-hub', heading: 'Local from session',
-      honestyLine: `metrics · ux=${localSessionUxImproved} · toolbox=${toolbox.total} · cards=${morph.analytics.cardCount} · linked=${morph.analytics.linkedCount} · gaps=${morph.analytics.gapCount} · dual=${morph.doubleSlit.waveParticleDual} · formula/code=${formulaCodeOk} · qpuRequired=false`,
-      statement: `Local from session — uxImproved=${localSessionUxImproved} steps=${hubSteps.length} frictionClosed=${LOCAL_SESSION_FRICTION_CLOSED.length} · pasteReady=${autoWire.quantumReady} · mcpMatch=${mcpParity.mcpMatchesToolbox} · morph=${morph.computes} · formula/code=${formulaCodeOk} · cards=${morph.analytics.cardCount}/${morph.analytics.linkedCount} · qpuRequired=false.`,
+      honestyLine: `metrics · ux=${localSessionUxImproved} · toolbox=${toolbox.total} · cards=${morph.analytics.cardCount} · linked=${morph.analytics.linkedCount} · gaps=${morph.analytics.gapCount} · dual=${morph.doubleSlit.waveParticleDual} · formula/code=${formulaCodeOk} · geo/train=${geoTrainOk} · qpuRequired=false`,
+      statement: `Local from session — uxImproved=${localSessionUxImproved} steps=${hubSteps.length} frictionClosed=${LOCAL_SESSION_FRICTION_CLOSED.length} · pasteReady=${autoWire.quantumReady} · mcpMatch=${mcpParity.mcpMatchesToolbox} · morph=${morph.computes} · formula/code=${formulaCodeOk} · geo/train=${geoTrainOk} · cards=${morph.analytics.cardCount}/${morph.analytics.linkedCount} · qpuRequired=false.`,
       boundary: `local UX receipt · browser+docs:dev · localStorage sealed-safe preference · statusBadgeKind CSS-owned · morph=tools/morph · formula/code · qpuRequired=false`,
     }
   })
