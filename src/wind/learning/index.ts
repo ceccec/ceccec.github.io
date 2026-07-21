@@ -21,7 +21,7 @@ import { inverseShiftConsciousness, quantumSimulation, taxonomyIcons, universalL
 import { rhythm } from '../../lake/music'
 import { heartProtonAtomDecoded } from '../../mountain/geometry'
 import { monographSliceFromRoute, ROUTE_ALIASES } from '../routes/automount'
-import { homeHero, isServedRoute, localePath, pickLocale, displayText, quantumSitemap, staticPages, theoremScienceLens, theoremScienceVisible, siteDomainRegistry, applyDomainRegistrySidebars, dryCleanVitepressNavSidebarsFromDomainRegistry, type LocaleName } from '../site'
+import { homeHero, isServedRoute, localePath, pickLocale, displayText, quantumSitemap, staticPages, theoremScienceLens, theoremScienceVisible, siteDomainRegistry, applyDomainRegistrySidebars, dryCleanVitepressNavSidebarsFromDomainRegistry, folderMigrationDedupWaves, type LocaleName } from '../site'
 import { componentGraph } from '../../heaven/core'
 import { realtimeWiring } from '../../fire/plasma/ball'
 import { toGlagolitic } from '../../quantum/heaven/library'
@@ -2168,22 +2168,97 @@ function vitepressSidebarForLocale(
   const theoremSidebar = theoremRosettaSidebar(matrix)
   out['/theorems/'] = theoremSidebar
   out['/theorems'] = theoremSidebar
+  // #61 content match — /proofs sidebar from sealed proofs section (not a synonym hub)
+  const proofsItems = [
+    { text: i === 1 ? 'Теоремен регистър' : 'Theorem registry', link: '/frontiers' },
+    { text: i === 1 ? 'Домейнни доказателства' : 'Domain proofs', link: '/proofs' },
+    { text: i === 1 ? 'Таг индекс (машинно)' : 'Tag index (machine)', link: '/theorems/' },
+  ]
+  out['/proofs'] = [{ text: proofsLabel, items: proofsItems }, { text: portalLabel, collapsed: true, items: main }]
+  out['/proofs/'] = out['/proofs']
   return out
+}
+
+/** Collect sidebar hrefs (path only, no hash/locale) for orphan/dead-link audit. */
+function collectSidebarLinks(map: Record<string, VitePressSidebarItem[]>): string[] {
+  const links: string[] = []
+  const walk = (items: VitePressSidebarItem[]) => {
+    for (const item of items) {
+      if (item.link) links.push(item.link.split('#')[0]!.replace(/\/$/, '') || '/')
+      if (item.items?.length) walk(item.items)
+    }
+  }
+  for (const sections of Object.values(map)) walk(sections)
+  return [...new Set(links)]
 }
 
 /** Canonical VitePress themeConfig.sidebar — path-prefix map from siteNavigation + corpus REST. */
 export function vitepressSidebar(matrix: MindMatrix = buildMatrix()) {
   const nav = siteNavigation(matrix)
   const dry = dryCleanVitepressNavSidebarsFromDomainRegistry(matrix)
+  const folders = folderMigrationDedupWaves(matrix)
   const en = vitepressSidebarForLocale(nav.en, 0, matrix)
   const bg = vitepressSidebarForLocale(nav.bg, 1, matrix)
   const enMerge = applyDomainRegistrySidebars(nav.en.relatedSidebar, en['/']!, 'Portal', 0, matrix)
-  const root = merkleFold([nav.root, dry.root, merkleFold(Object.keys(en).sort().map((key) => toUuid(`vp-sidebar:en:${key}`))), merkleFold(Object.keys(bg).sort().map((key) => toUuid(`vp-sidebar:bg:${key}`)))])
+  const servedSlugs = new Set(staticPages().map((page) => `/${page.slug}`))
+  const allowedPrefixes = ['/papers', '/references', '/diamonds', '/theorems', '/proofs', '/frontiers', '/learn', '/']
+  const allowedExact = new Set([
+    '/',
+    '/frontiers',
+    '/proofs',
+    '/theorems',
+    '/papers',
+    '/references',
+    '/diamonds',
+    '/learn',
+    ...ROSETTA_RAY_HUB_SLUGS.map((slug) => `/${slug}`),
+    ...servedSlugs,
+  ])
+  const enLinks = collectSidebarLinks(en)
+  const orphanLinks = enLinks.filter((link) => {
+    if (allowedExact.has(link)) return false
+    if (allowedPrefixes.some((prefix) => link === prefix || link.startsWith(`${prefix}/`))) return false
+    return true
+  })
+  const contentMatchesSidebar =
+    Boolean(en['/proofs']) &&
+    Boolean(en['/frontiers'] || enMerge.domainKeysPresent) &&
+    orphanLinks.length === 0 &&
+    nav.aliasDiscoveryPurged
+  const root = merkleFold([
+    nav.root,
+    dry.root,
+    folders.root,
+    merkleFold(Object.keys(en).sort().map((key) => toUuid(`vp-sidebar:en:${key}`))),
+    merkleFold(Object.keys(bg).sort().map((key) => toUuid(`vp-sidebar:bg:${key}`))),
+    toUuid(`vp-sidebar-orphans:${orphanLinks.length}`),
+  ])
   return {
-    computed: Object.keys(en).length > bundleMinKeys(nav.en) && Object.keys(bg).length > bundleMinKeys(nav.bg) && en['/papers/']!.length >= 3 && dry.computes && enMerge.aliasKeysPurged && enMerge.domainKeysPresent && isUuid(root),
-    en, bg, dryClean: dry, aliasKeysPurged: enMerge.aliasKeysPurged, domainKeysPresent: enMerge.domainKeysPresent, root,
-    statement: 'Canonical VitePress sidebar: domain registry + rosetta related (aliases purged) + corpus path-prefixes. One source via localeNavLinks/localeSidebarKeys.',
-    boundary: 'Nav aliases omit discovery keys; domain canonicals (incl. learn) get registry sidebars. HARMONY ≠ TRUTH.',
+    computed:
+      Object.keys(en).length > bundleMinKeys(nav.en) &&
+      Object.keys(bg).length > bundleMinKeys(nav.bg) &&
+      en['/papers/']!.length >= 3 &&
+      dry.computes &&
+      enMerge.aliasKeysPurged &&
+      enMerge.domainKeysPresent &&
+      folders.computes &&
+      contentMatchesSidebar &&
+      isUuid(root),
+    en,
+    bg,
+    dryClean: dry,
+    folderWaves: folders,
+    aliasKeysPurged: enMerge.aliasKeysPurged,
+    domainKeysPresent: enMerge.domainKeysPresent,
+    contentMatchesSidebar,
+    orphanLinks,
+    navBefore: folders.navBefore,
+    navAfter: folders.navAfter,
+    root,
+    statement:
+      'Canonical VitePress sidebar: domain registry + rosetta related (aliases purged) + corpus path-prefixes + /proofs. Content matches sidebar (zero orphan links). One source via localeNavLinks/localeSidebarKeys.',
+    boundary:
+      'Nav aliases omit discovery keys; domain canonicals (incl. learn) get registry sidebars; /proofs is #61 domain-proof hub not a synonym. HARMONY ≠ TRUTH.',
   }
 }
 
