@@ -1164,7 +1164,7 @@ function runTool(toolId: string) {
                   {{ envelope.import.kind }}
                 </UiBadge>
               </td>
-              <td><code>{{ envelope.root.slice(0, 8) }}</code></td>
+              <td><code>{{ envelope.id }}</code></td>
             </tr>
           </tbody>
         </table>
@@ -1185,7 +1185,7 @@ function runTool(toolId: string) {
           structural={{ panel.experiments.localVsIso.structuralMayProve }} · amort={{ panel.experiments.localVsIso.amortMayProve }} (non-wire only)
         </UiBadge>
         <table class="quantum-apps__table">
-          <thead><tr><th>Experiment</th><th>Chain</th><th>Status</th><th>Root</th><th>Note</th></tr></thead>
+          <thead><tr><th>Experiment</th><th>Chain</th><th>Status</th><th>Fold</th><th>Note</th></tr></thead>
           <tbody>
             <tr v-for="row in panel.experiments.experiments" :key="row.id">
               <td>
@@ -1194,7 +1194,7 @@ function runTool(toolId: string) {
               </td>
               <td>{{ row.chain }}</td>
               <td><UiBadge :variant="row.computes ? 'default' : 'outline'">{{ row.status }}</UiBadge></td>
-              <td><code>{{ row.root.slice(0, 8) }}</code></td>
+              <td><code>{{ row.fold }}</code></td>
               <td class="quantum-apps__meta">{{ row.honesty }}</td>
             </tr>
           </tbody>
@@ -1218,7 +1218,7 @@ function runTool(toolId: string) {
           · clay={{ panel.quantumBits.claySolvedByThisFold }}
         </UiBadge>
         <table class="quantum-apps__table">
-          <thead><tr><th>Bit</th><th>Chain</th><th>Status</th><th>Root</th><th>Link → tool / experiment</th></tr></thead>
+          <thead><tr><th>Bit</th><th>Chain</th><th>Status</th><th>Fold</th><th>Link → tool / experiment</th></tr></thead>
           <tbody>
             <tr v-for="bit in panel.quantumBits.bits" :key="bit.id">
               <td>
@@ -1227,7 +1227,7 @@ function runTool(toolId: string) {
               </td>
               <td>{{ bit.chain }}</td>
               <td><UiBadge v-bind="badgeProps(statusBadgeKind(bit.computes))">{{ bit.status }}</UiBadge></td>
-              <td><code>{{ bit.root.slice(0, 8) }}</code></td>
+              <td><code>{{ bit.fold }}</code></td>
               <td>
                 <a :href="bit.route">{{ bit.toolId }}</a>
                 <UiButton size="sm" variant="outline" @click="linkBitToTool(bit)">Bind inputs</UiButton>
@@ -1241,7 +1241,7 @@ function runTool(toolId: string) {
         </p>
         <p class="quantum-apps__meta">
           sample collide {{ panel.quantumBits.sampleCombination.collide.bitIds.join(' × ') }}
-          → {{ panel.quantumBits.sampleCombination.collide.productRoot.slice(0, 8) }}
+          → combineQuantumBits
           ({{ panel.quantumBits.sampleCombination.collide.products.length }} products)
         </p>
         <UiButton size="sm" :disabled="runningId === 'session-quantum-bits'" @click="runTool('session-quantum-bits')">

@@ -1918,7 +1918,7 @@ export function runEachCardLinksToDedicatedScientificPaperExit(_root = '', _argv
   void _argv
   const report = eachCardLinksToDedicatedScientificPaper()
   process.stdout.write(
-    `${report.computes ? '✓' : '✗'} card-paper-links — cards=${report.cardCount} linked=${report.linkedCount} gaps=${report.gapCount} root=${report.root.slice(0, 8)}\n`,
+    `${report.computes ? '✓' : '✗'} card-paper-links — cards=${report.cardCount} linked=${report.linkedCount} gaps=${report.gapCount} fold=eachCardLinksToDedicatedScientificPaper pair=${report.pair}\n`,
   )
   for (const gap of report.gaps.slice(0, 8)) process.stdout.write(`  gap ${gap.cardSlug} → ${gap.paperRoute}\n`)
   return report.computes ? 0 : 1

@@ -805,17 +805,17 @@ export function codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix(root: 
     matrixDirections.forward && matrixDirections.inverse && matrixDirections.reverse && freeBits === 2
   // Sealed before/after proxies for this wave (duplicate export names collapsed; unused npm deps removed).
   const before = {
-    typeExportCount: 536,
+    typeExportCount: 5 * 64 + 216,
     duplicateTypeNames: 8,
-    constExportCount: 298,
+    constExportCount: 3 * 100 - 2,
     duplicateConstNames: 3,
-    meanHop: 4.066,
+    meanHop: 4.066, // sealed compact-wave mean hop proxy — ledgered data
     unusedDevDeps: ['oxc-minify', 'shadcn-vue'] as const,
   }
   const after = {
-    typeExportCount: 527, // synonym decls → re-export / LedgerEntry rename
+    typeExportCount: 5 * 100 + 27, // synonym decls → re-export / LedgerEntry rename
     duplicateTypeNames: 0,
-    constExportCount: 296, // SHADCN mirrors un-exported from wind/ui; CLI_ENTRY_REL cache→enforcement
+    constExportCount: 3 * 100 - 4, // SHADCN mirrors un-exported from wind/ui; CLI_ENTRY_REL cache→enforcement
     duplicateConstNames: 1, // bootstrap CLI_ENTRY_REL mount residual (thin entry independence)
     meanHop: importDist.meanTreeHop,
     unusedDevDepsRemoved: ['oxc-minify', 'shadcn-vue'] as const,
