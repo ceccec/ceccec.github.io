@@ -761,7 +761,7 @@ export function servedRouteFromSlugs(route: string, servedSlugs: ReadonlySet<str
   if (bare === '' || bare === 'home') return true
   if (/\.(json|txt|webmanifest|xml|svg|png|ico|css)$/.test(bare)) return true
   if (servedSlugs.has(bare)) return true
-  return ['theorems', 'papers', 'references', 'diamonds'].includes(bare.split('/')[0] ?? '')
+  return ['theorems', 'papers', 'references', 'diamonds', 'proofs'].includes(bare.split('/')[0] ?? '')
 }
 
 export const THEOREM_SCIENCE_NAME_STEMS = ['theorem', 'science'] as const

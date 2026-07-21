@@ -217,8 +217,10 @@ function computeHeroLawAlignment(matrix: MindMatrix) {
     const wave = foldPair(lawRoot, toUuid(`hero:${entry.line}:${entry.copy}`))
     return { ...entry, bound: wave.bidirectional, wave: wave.merged, receipt: toUuid(`hero-law:${entry.line}:${entry.copy}`) }
   })
+  // Editorial lines = name·text·tagline + discovery CTAs from homeHero (registry · domain proofs — not a fixed 4-synonym roster).
+  const expected = 3 + hero.actions.length
   return {
-    aligned: lines.length === 7 && lines.every((entry) => entry.bound),
+    aligned: lines.length === expected && hero.actions.length >= 2 && lines.every((entry) => entry.bound),
     waves: lines.length,
     lawRoot,
     lines,

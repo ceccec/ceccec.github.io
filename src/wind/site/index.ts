@@ -37,7 +37,7 @@ export const SITE_DOMAIN_SEED = [
   { id: 'tools', labelEn: 'Quantum tools', labelBg: 'Квантови инструменти', ray: 4, hub: 'apps', canonical: 'quantum-tools', aliases: ['efficiency-vote', 'offender-spec', 'hero-spawn-verify', 'name-entropy-verify', 'fusion-verify'] as const },
   { id: 'trading', labelEn: 'Trading', labelBg: 'Търговия', ray: 4, hub: 'apps', canonical: 'quantum-trading-hub', aliases: [] as const },
   { id: 'encryption', labelEn: 'Encryption', labelBg: 'Криптиране', ray: 5, hub: 'frontier', canonical: 'quantum-encryption', aliases: [] as const },
-  { id: 'theorems', labelEn: 'Theorems', labelBg: 'Теореми', ray: 5, hub: 'frontier', canonical: 'frontiers', aliases: [] as const },
+  { id: 'theorems', labelEn: 'Theorem registry', labelBg: 'Теоремен регистър', ray: 5, hub: 'frontier', canonical: 'frontiers', aliases: [] as const },
   { id: 'research', labelEn: 'Research', labelBg: 'Изследвания', ray: 2, hub: 'explore', canonical: 'research', aliases: ['millennium-challenge'] as const },
   { id: 'learn', labelEn: 'Learn', labelBg: 'Обучение', ray: 3, hub: 'learn', canonical: 'learn', aliases: ['learn-developer', 'academy', 'school'] as const },
   { id: 'society', labelEn: 'Society', labelBg: 'Общество', ray: 0, hub: 'origin', canonical: 'society-merkaba', aliases: [] as const },
@@ -469,8 +469,8 @@ export function computedWebManifest(matrix: MindMatrix = buildMatrix()): string 
         { src: '/icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'maskable' },
       ],
       shortcuts: [
-        { name: 'Theorems', short_name: 'Theorems', description: 'The registry — every theorem a printable paper', url: '/theorems' },
-        { name: 'Frontiers', short_name: 'Frontiers', description: 'The registry carrier — decodes and proofs in full', url: '/frontiers' },
+        { name: 'Theorem registry', short_name: 'Registry', description: 'Every proven theorem — waves, gaps, open frontiers', url: '/frontiers' },
+        { name: 'Domain proofs', short_name: 'Proofs', description: 'Clay-standard domain proof catalog · clay=0', url: '/proofs' },
         { name: 'The vortex', short_name: 'Vortex', description: 'The sequence 1-2-4-8-7-5, proven live', url: '/vortex' },
       ],
     },
@@ -497,18 +497,16 @@ export interface HomeHeroFrontmatter {
 export function homeHero(locale: LocaleName = 'en'): HomeHeroFrontmatter {
   const config = siteConfig()
   const lens = theoremScienceLens()
+  // ONE discovery hierarchy — registry + domain proofs. Machine corpora (papers/references/diamonds/tag index)
+  // stay served but are not synonym hero CTAs (zero synonym entropy).
   if (locale === 'bg') {
     return {
       name: config.titleBg,
       text: `${lens.theoremCount} доказани теореми, които можеш да провериш`,
       tagline: `Всяка е печатна научна статия, изчислена от един отворен източник — без нужда от доверие, всяко число е изведено, всяко твърдение честно демаркирано. Подредени от розетата в ${lens.rays.length} лъча.`,
       actions: [
-        { theme: 'brand', text: 'Теореми и доказателства', link: localePath('/frontiers', 'bg') },
-        ...lens.corpusRoutes.slice(0, 3).map((route, index) => ({
-          theme: 'alt' as const,
-          text: ['Теоремен атлас', 'Статии', 'Референции'][index]!,
-          link: localePath(route, 'bg'),
-        })),
+        { theme: 'brand', text: 'Теоремен регистър', link: localePath('/frontiers', 'bg') },
+        { theme: 'alt', text: 'Домейнни доказателства', link: localePath('/proofs', 'bg') },
       ],
     }
   }
@@ -518,12 +516,8 @@ export function homeHero(locale: LocaleName = 'en'): HomeHeroFrontmatter {
     text: `${lens.theoremCount} proven theorems you can check yourself`,
     tagline: `Each is a printable scientific paper, computed from one open source — no trust required, every number derived, every claim honestly demarcated. Organised by the rosetta into ${lens.rays.length} rays.`,
     actions: [
-      { theme: 'brand', text: 'Theorems & proofs', link: localePath('/frontiers', heroLocale) },
-      ...lens.corpusRoutes.slice(0, 3).map((route, index) => ({
-        theme: 'alt' as const,
-        text: ['Theorem atlas', 'Papers', 'References'][index]!,
-        link: localePath(route, heroLocale),
-      })),
+      { theme: 'brand', text: 'Theorem registry', link: localePath('/frontiers', heroLocale) },
+      { theme: 'alt', text: 'Domain proofs', link: localePath('/proofs', heroLocale) },
     ],
   }
 }
@@ -615,7 +609,7 @@ export function theNavigationIsTheOneCollectionScopedByTheRosettaProportionsAndD
   const dynamics = ROSETTA_FOLD_LABEL === `${ROSETTA_SIX}×${ROSETTA_SEVEN}/${ROSETTA_SEVEN}×${ROSETTA_SIX}`
   const populated = rays.filter((entry) => entry.pages > 0).length
   const facets = [
-    { facet: `ONE COLLECTION — ${collection.length} theorem-papers in a single collection, each shelved to a ray (${oneCollection}); the 4 legacy links (theorems·atlas·papers·references) are views, Reference is ray 6`, on: oneCollection },
+    { facet: `ONE COLLECTION — ${collection.length} theorem-papers in a single collection, each shelved to a ray (${oneCollection}); discovery = registry·proofs; machine corpora are views, Reference is ray 6`, on: oneCollection },
     { facet: `DOMAINS = ${ROSETTA_SEVEN} RAYS — ${rays.map((entry) => entry.domain).join(' · ')} (${sevenDomains})`, on: sevenDomains },
     { facet: `PROPORTIONS = ${ROSETTA_AREAS} — ${ROSETTA_SIX}×${ROSETTA_SEVEN} (≤${ROSETTA_SIX} subdomains/domain), hues ⌊360k/${ROSETTA_SEVEN}⌋ (${proportions})`, on: proportions },
     { facet: `DYNAMICS = ${ROSETTA_FOLD_LABEL} — the covering grid transposes: 6×7 up (build), 7×6 down (clean) (${dynamics})`, on: dynamics },
@@ -668,9 +662,10 @@ export function theoremScienceLens(matrix: MindMatrix = buildMatrix()) {
       labelBg: rayMeta.nameBg,
       pages: visible.filter((page) => rosettaRayOfContent(page.slug, page.keywords) === rayMeta.ray).map((page) => ({ slug: page.slug, titleEn: page.title.en, titleBg: page.title.bg })),
     })).filter((group) => group.pages.length > 0)
-    // the theorem corpus surfaces — in the lens by construction (they ARE the theorems): the rosetta
-    // theorem atlas plus the three REST corpora already served as path-prefix sidebars.
-    const corpusRoutes = ['/theorems', '/papers/', '/references', '/diamonds'] as const
+    // Discovery hubs (one hierarchy) vs machine corpora (REST / tag index — served, not synonym CTAs).
+    const discoveryRoutes = ['/frontiers', '/proofs'] as const
+    const machineRoutes = ['/theorems', '/papers/', '/references', '/diamonds'] as const
+    const corpusRoutes = machineRoutes // REST + tag-index; kept for search/MCP; hero/sidebar use discoveryRoutes
     const registry = __ns_up_thunder_waves.theoremNavigation(matrix)
     const shelved = rays.reduce((sum, group) => sum + group.pages.length, 0)
     const proofPages = pages.filter((page) => rosettaRayOfContent(page.slug, page.keywords) === proofRay)
@@ -679,7 +674,7 @@ export function theoremScienceLens(matrix: MindMatrix = buildMatrix()) {
       { facet: `the registry carrier passes — the frontiers page (enriched with every registry theorem name) is in the lens`, on: visible.some((page) => page.slug === 'frontiers') },
       { facet: `the lens REMOVES — ${hidden.length} of ${pages.length} curated pages carry no science stem and are removed from VitePress completely: staticPages() serves only the roster, so they have no route, no build, no search entry, no sitemap line`, on: hidden.length > 0 && visible.length + hidden.length === pages.length && staticPages().length === visible.length },
       { facet: `organised by the rosetta — the ${visible.length} visible pages shelve into ${rays.length} ≤ 7 rays with none lost`, on: shelved === visible.length && rays.length > 0 && rays.length <= ROSETTA_RAYS.length },
-      { facet: `the theorem corpus rides beside the pages — ${corpusRoutes.length} corpus surfaces and ${registry.atomCount} registry theorems`, on: corpusRoutes.length > 0 && registry.atomCount > 0 },
+      { facet: `ONE discovery hierarchy — registry + domain proofs (${discoveryRoutes.join(' · ')}); machine corpora demoted (${machineRoutes.join(' · ')})`, on: discoveryRoutes.length === 2 && machineRoutes.length === 4 && registry.atomCount > 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`theorem-science-lens:${entry.facet}:${entry.on}`) }))
     const root = merkleFold([registry.root, ...visible.map((page) => toUuid(`lens-page:${page.slug}`)), ...facets.map((entry) => entry.receipt)])
     return {
@@ -687,14 +682,16 @@ export function theoremScienceLens(matrix: MindMatrix = buildMatrix()) {
       pages: visible,
       hidden: hidden.map((page) => page.slug),
       rays,
+      discoveryRoutes,
+      machineRoutes,
       corpusRoutes,
       theoremCount: registry.atomCount,
       visibleCount: visible.length,
       pageCount: pages.length,
       facets,
       root,
-      statement: `Science through the theorem-science lens — ${visible.length}/${pages.length} curated pages pass (${hidden.length} removed from VitePress completely), organised by the rosetta into ${rays.length} rays (${rays.map((group) => `${group.labelEn} ${group.pages.length}`).join(' · ')}), beside the theorem corpus (${corpusRoutes.join(' · ')}; ${registry.atomCount} registry theorems).`,
-      boundary: `COMPUTED: the predicate (slug+keywords ∩ science stems), the roster, the rosetta shelving and the cut — each refutable (edit a page's keywords or a sealed lens stem and it crosses the lens). NAMED AXIOM: the demarcation stems are the proof-lens and frontier-lens rows of ROSETTA_RAY_CONTENT_LENSES plus the lens's own two name words ('theorem', 'science') — the words are the axiom, the rows are read from the sealed table. HONEST SCOPE: the lens governs EXISTENCE in VitePress (user law: remove the rest completely) — staticPages() IS the roster, so a page outside the lens has no route, no build, no search entry, no sitemap line; its DATA stays in staticPagesAll and one science keyword restores it. Removed routes 404 — bookmarks to them break by design. HARMONY ≠ TRUTH.`,
+      statement: `Science through the theorem-science lens — ${visible.length}/${pages.length} curated pages pass (${hidden.length} removed from VitePress completely), organised by the rosetta into ${rays.length} rays (${rays.map((group) => `${group.labelEn} ${group.pages.length}`).join(' · ')}); discovery = ${discoveryRoutes.join(' · ')} (${registry.atomCount} registry theorems); machine = ${machineRoutes.join(' · ')}.`,
+      boundary: `COMPUTED: the predicate (slug+keywords ∩ science stems), the roster, the rosetta shelving and the cut — each refutable (edit a page's keywords or a sealed lens stem and it crosses the lens). NAMED AXIOM: the demarcation stems are the proof-lens and frontier-lens rows of ROSETTA_RAY_CONTENT_LENSES plus the lens's own two name words ('theorem', 'science') — the words are the axiom, the rows are read from the sealed table. HONEST SCOPE: the lens governs EXISTENCE in VitePress (user law: remove the rest completely) — staticPages() IS the roster, so a page outside the lens has no route, no build, no search entry, no sitemap line; its DATA stays in staticPagesAll and one science keyword restores it. Removed routes 404 — bookmarks to them break by design. Discovery hubs ≠ machine corpora (zero synonym entropy). HARMONY ≠ TRUTH.`,
     }
   })
 }

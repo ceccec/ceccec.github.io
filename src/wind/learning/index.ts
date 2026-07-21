@@ -741,21 +741,21 @@ export function navigation358(matrix: MindMatrix = buildMatrix()) {
   const tiers = [
     { tier: 3, name: 'arrive', items: [
       { label: 'Home', route: '/', tip: 'The root monograph — the portal in one page.' },
-      { label: 'Frontiers', route: '/frontiers', tip: `The registry: ${lens.theoremCount} proven theorems.` },
-      { label: 'Theorems', route: '/theorems', tip: 'Every theorem as a printable scientific paper.' },
+      { label: 'Theorem registry', route: '/frontiers', tip: `The registry: ${lens.theoremCount} proven theorems.` },
+      { label: 'Domain proofs', route: '/proofs', tip: 'Clay-standard domain proof catalog · claySolvedByThisFold=0.' },
     ] },
     // BLOG OF THEOREMS: when fewer than 5 rays hold posts, the use tier FILLS with the first served
     // theorem posts themselves (lens order) — the gap is filled by theorems, never left ragged.
     { tier: 5, name: 'use', items: [...hubs, ...lens.pages.filter((page) => !hubs.some((hub) => hub.route === '/' + page.slug)).map((page) => ({ label: page.title.en, route: '/' + page.slug, tip: 'Theorem post: ' + page.title.en + '.' }))].slice(0, 5) },
     { tier: 8, name: 'go deep', items: [
-      { label: 'Papers', route: '/papers/', tip: 'The 432 proof papers, RESTful.' },
-      { label: 'References', route: '/references', tip: 'The reference corpus behind the papers.' },
-      { label: 'Diamonds', route: '/diamonds', tip: 'The computational diamond lattice.' },
+      { label: 'Tag index', route: '/theorems', tip: 'Registry theorems by tag — a view, not a second hub.' },
+      { label: 'Papers (REST)', route: '/papers/', tip: 'Machine export: 432 proof papers.' },
+      { label: 'References (REST)', route: '/references', tip: 'Machine export: bibliographic duals.' },
+      { label: 'Diamonds (REST)', route: '/diamonds', tip: 'Machine export: diamond lattice.' },
       { label: 'mcp.json', route: '/mcp.json', tip: 'Every command as an MCP tool.' },
       { label: 'llms.txt', route: '/llms.txt', tip: 'The agent protocol and the science corpus.' },
       { label: 'digit-index.json', route: '/digit-index.json', tip: 'The pi-digit fold index.' },
       { label: 'print.css', route: '/print.css', tip: 'The paper projection, media="print".' },
-      { label: 'site.webmanifest', route: '/site.webmanifest', tip: 'The installable PWA manifest.' },
     ] },
   ]
   const items = tiers.flatMap((tier) => tier.items.map((item) => {
@@ -781,8 +781,8 @@ export function navigation358(matrix: MindMatrix = buildMatrix()) {
     routesResolve: facets[0]!.on,
     unresolved: unresolved.map((item) => item.route),
     root: merkleFold([core.root, ...items.map((item) => item.address)]),
-    statement: `Navigation in 3-5-8, computed via rosettaCoreApi: three ways to arrive (home · frontiers · theorems), five to use (the populated ray hubs: ${hubs.map((hub) => hub.label).join(' · ')}), eight to go deep — every destination shelved on a rosetta ray.`,
-    boundary: 'The 3-5-8 map derives at call time from the theorem-science lens + rosettaShelve; isServedRoute gates every item. Addresses via the core API, not a parallel nav registry. HARMONY ≠ TRUTH.',
+    statement: `Navigation in 3-5-8, computed via rosettaCoreApi: three ways to arrive (home · theorem registry · domain proofs), five to use (the populated ray hubs: ${hubs.map((hub) => hub.label).join(' · ')}), eight to go deep (tag index + REST exports + machine artifacts) — every destination shelved on a rosetta ray.`,
+    boundary: 'The 3-5-8 map derives at call time from the theorem-science lens + rosettaShelve; isServedRoute gates every item. Discovery hubs ≠ machine corpora. Addresses via the core API, not a parallel nav registry. HARMONY ≠ TRUTH.',
   }
 }
 
@@ -1897,18 +1897,19 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
       const bucket = rayBuckets.get(ray.ray)!
       const total = [...bucket.values()].reduce((sum, n) => sum + n, 0)
       const top = [...bucket.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3).map(([category]) => category).join(" · ")
-      return { text: (i === 1 ? ray.nameBg : ray.nameEn) + " — " + total + " (" + top + ")", link: link("/theorems", i) }
+      return { text: (i === 1 ? ray.nameBg : ray.nameEn) + " — " + total + " (" + top + ")", link: link("/frontiers", i) }
     })
     return {
-      text: i === 1 ? `⊢ Теореми — ${nav358.atomCount} доказани` : `⊢ Theorems — ${nav358.atomCount} proven`,
+      text: i === 1 ? `⊢ Регистър — ${nav358.atomCount} доказани` : `⊢ Registry — ${nav358.atomCount} proven`,
       items: [
-        { text: i === 1 ? "Целият регистър" : "The full registry", link: link("/frontiers", i) },
-        ...rayItems.slice(0, 7),
+        { text: i === 1 ? 'Теоремен регистър' : 'Theorem registry', link: link('/frontiers', i) },
+        { text: i === 1 ? 'Домейнни доказателства' : 'Domain proofs', link: link('/proofs', i) },
+        ...rayItems.slice(0, 6),
       ],
     }
   }  // VITEPRESS SHOWS ONLY SCIENCE (user law) — the top nav IS the lens organised by the rosetta: Home (the
-  // bare link) + one dropdown per rosetta ray that holds lens survivors + the theorem dropdown (registry,
-  // corpus surfaces, crowns). No hand-listed routes: every item is a lens page or a corpus surface.
+  // bare link) + one dropdown per rosetta ray that holds lens survivors + the registry dropdown (one hierarchy:
+  // registry · domain proofs · ray buckets). No synonym hubs (atlas/papers/references) in discovery.
   const buildNav = (i: 0 | 1) => [
     { text: i === 1 ? 'Начало' : 'Home', link: link('/', i) },
     ...rosettaFold(i),
@@ -1981,7 +1982,7 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   const root = merkleFold([lens.root, index.root, ...pages.map((page) => toUuid(`nav:${routeOf(page.slug)}:${page.title.en}`)), ...navTags.map((tag) => toUuid(`nav-cluster:${tag}`))])
   // The lens law, checked on the rendered nav itself: every dropdown non-empty, within the eight-fold,
   // and every item a lens survivor, a corpus surface, or a frontiers/hub anchor — nothing else shows.
-  const visibleNavRoutes = new Set<string>(['/', '/frontiers', ...pages.map((page) => routeOf(page.slug)), ...lens.corpusRoutes, ...portal.parts.map((part) => part.route)])
+  const visibleNavRoutes = new Set<string>(['/', '/frontiers', '/proofs', ...pages.map((page) => routeOf(page.slug)), ...lens.corpusRoutes, ...portal.parts.map((part) => part.route)])
   const navGroups = buildNav(0).slice(1) as { text: string; items: { text: string; link: string }[] }[]
   const navLensed =
     navGroups.length > 0 &&
@@ -2000,9 +2001,9 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
     routes: pages.map((page) => routeOf(page.slug)),
     root,
     statement:
-      `VitePress shows science through the theorem-science lens: the top nav is Home plus ${navGroups.length} dropdowns — the rosetta rays holding the ${lens.visibleCount} lens survivors (group label = hub slug word, the findability law) and the theorem dropdown (the ${lens.theoremCount}-theorem registry, the corpus surfaces ${lens.corpusRoutes.join(' · ')}, the crown entries). The sidebar folds by the same rays over the same survivors; related sections, crosslinks and the footer are built from the lens roster; config.mts renders what this fold computes and nothing else.`,
+      `VitePress shows science through the theorem-science lens: the top nav is Home plus ${navGroups.length} dropdowns — the rosetta rays holding the ${lens.visibleCount} lens survivors (group label = hub slug word, the findability law) and the registry dropdown (theorem registry · domain proofs · ray buckets; ${lens.theoremCount} theorems). Machine corpora (${lens.corpusRoutes.join(' · ')}) stay served but are not synonym discovery hubs. The sidebar folds by the same rays; related sections, crosslinks and the footer are built from the lens roster.`,
     boundary:
-      `A computed projection of the VitePress navigation from the theorem-science lens (theoremScienceLens — the page set, ray shelving and corpus routes all read from it), the ray-hub grouping, and the keyword tag cloud — no hardcoded labels, groups, sidebar or footer routes. The lens law is checked on the rendered nav itself (navLensed): every item is a lens survivor, a corpus surface, or a frontiers/hub anchor. Hidden pages stay built and served — the lens governs discovery, not existence. License/Privacy remain as legal footer chrome.`,
+      `A computed projection of the VitePress navigation from the theorem-science lens (theoremScienceLens — the page set, ray shelving and discovery/machine routes all read from it), the ray-hub grouping, and the keyword tag cloud — no hardcoded synonym hubs. The lens law is checked on the rendered nav itself (navLensed): every item is a lens survivor, a discovery hub, a corpus surface, or a hub anchor. Hidden pages stay built and served — the lens governs discovery, not existence. License/Privacy remain as legal footer chrome.`,
   }
 }
 
@@ -2017,16 +2018,20 @@ export function vitepressShowsOnlyScience(matrix: MindMatrix = buildMatrix()) {
   const mcp = mcpUsesVitepressSearch(matrix)
   const hero = homeHero('en')
   const routeOf = (slug: string) => (slug === '' ? '/' : `/${slug}`)
-  const heroSurfaces = new Set<string>(['/frontiers', ...lens.corpusRoutes])
-  const heroLensed = hero.actions.length > 0 && hero.actions.every((action) => heroSurfaces.has(action.link))
-  const heroStatesTheLens = hero.tagline.includes(String(lens.theoremCount)) && hero.tagline.includes(String(lens.visibleCount))
+  const heroSurfaces = new Set<string>([...lens.discoveryRoutes])
+  const heroLensed = hero.actions.length === 2 && hero.actions.every((action) => heroSurfaces.has(action.link))
+  const heroZeroSynonym = hero.actions.every((action) => !['/theorems', '/papers/', '/papers', '/references', '/diamonds'].includes(action.link))
+  // text carries theorem count; tagline carries ray count (avoid substring false-positives like "5"∈"435")
+  const heroStatesTheLens =
+    hero.text.includes(`${lens.theoremCount} proven`) &&
+    hero.tagline.includes(`into ${lens.rays.length} rays`)
   const lensPagesRouted = lens.pages.every((page) => nav.routes.includes(routeOf(page.slug)))
   const facets = [
     { facet: `SCIENCE SHOWS, THE REST IS HIDDEN — the nav gate carries the lens law (every rendered item a lens survivor, corpus surface or hub anchor), the related sections and crosslinks cover exactly the lens roster, and the lens genuinely removes (${lens.hidden.length} pages with no route, no build, no search entry)`, on: nav.computed && nav.relatedSidebarComplete && nav.crosslinksComplete && lens.hidden.length > 0 },
     { facet: `ORGANISED BY THE ROSETTA — the ${lens.visibleCount} visible pages shelve into ${lens.rays.length} rosetta rays with none lost, and the theorem sidebar is the rosetta atlas tag cloud (${reconf.sidebarSections} sections by gravity)`, on: lens.computes && reconf.computes },
     { facet: `ALL WIRED IN VITEPRESS SEARCH — every one of the ${reconf.searchLines} registry theorems is a search line fed to the local index, and every lens page is a built route the same index covers (${lensPagesRouted})`, on: reconf.searchLines > 0 && lensPagesRouted },
     { facet: `THE MCP USES THE SAME SEARCH — the manifest instructions point agents at the VitePress local index and the searchable corpora are served pages`, on: mcp.computes },
-    { facet: `THE HOMEPAGE MATCHES — every hero action lands on the registry or a corpus surface (${heroLensed}) and the tagline states the computed lens counts (${lens.theoremCount} theorems, ${lens.visibleCount} pages)`, on: heroLensed && heroStatesTheLens },
+    { facet: `THE HOMEPAGE MATCHES — hero has exactly two discovery CTAs (registry · domain proofs), zero synonym corpus CTAs (${heroLensed && heroZeroSynonym}), text ${lens.theoremCount} proven · tagline ${lens.rays.length} rays`, on: heroLensed && heroZeroSynonym && heroStatesTheLens },
   ].map((entry) => ({ ...entry, receipt: toUuid(`vitepress-only-science:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2131,16 +2136,25 @@ function vitepressSidebarForLocale(
   matrix: MindMatrix,
 ): Record<string, VitePressSidebarItem[]> {
   const portalLabel = i === 1 ? 'Портал' : 'Portal'
-  const corpusLabel = i === 1 ? 'Корпус' : 'Corpus'
+  const proofsLabel = i === 1 ? 'Доказателства' : 'Proofs'
+  const machineLabel = i === 1 ? 'Машинни експорти' : 'Machine exports'
   const main: VitePressSidebarItem[] = [
     ...bundle.sidebar,
     {
-      text: corpusLabel,
+      text: proofsLabel,
       items: [
-        { text: i === 1 ? 'Теоремен атлас' : 'Theorem atlas', link: '/theorems/' },
-        { text: i === 1 ? '432 статии' : '432 papers', link: '/papers/' },
-        { text: i === 1 ? '432 референции' : '432 references', link: '/references/' },
-        { text: i === 1 ? 'Изчислителни диаманти' : 'Computational diamonds', link: '/diamonds/' },
+        { text: i === 1 ? 'Теоремен регистър' : 'Theorem registry', link: '/frontiers' },
+        { text: i === 1 ? 'Домейнни доказателства' : 'Domain proofs', link: '/proofs' },
+      ],
+    },
+    {
+      text: machineLabel,
+      collapsed: true,
+      items: [
+        { text: i === 1 ? 'Таг индекс' : 'Tag index', link: '/theorems/' },
+        { text: i === 1 ? 'Статии (REST)' : 'Papers (REST)', link: '/papers/' },
+        { text: i === 1 ? 'Референции (REST)' : 'References (REST)', link: '/references/' },
+        { text: i === 1 ? 'Диаманти (REST)' : 'Diamonds (REST)', link: '/diamonds/' },
       ],
     },
   ]

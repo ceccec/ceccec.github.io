@@ -37,47 +37,38 @@ runMillennium()
   <UiCard id="research-index" class="research-index" data-logic="src/wind/research/index.ts" data-target="src/wind/research/index.ts#millenniumPanelComputes" data-topic="research">
     <UiCardContent class="vp-doc research-index__content">
       <header class="research-index__header">
-        <h2>Research · millennium challenge</h2>
+        <h2>Research</h2>
         <p class="research-index__lede">
-          Browser-runnable MODELED CHALLENGE apparatus — claySolvedByThisFold must stay 0.
-          Dedicated Clay-standard pages:
-          <a href="/en/proofs">/en/proofs</a>.
+          Apparatus index — sciences, standards, reproducibility. Domain proofs live in one catalog:
+          <a href="/proofs">/proofs</a>
+          (Clay-standard · claySolvedByThisFold=0).
         </p>
-        <UiBadge :status="statusBadgeKind(panel.computes)">research.computes · {{ panel.computes ? '✓' : '—' }}</UiBadge>
-        <UiButton size="sm" :disabled="running" @click="runMillennium">{{ running ? 'Running…' : 'Recompute challenge' }}</UiButton>
+        <div class="research-index__actions">
+          <UiBadge :status="statusBadgeKind(panel.computes)">research.computes · {{ panel.computes ? '✓' : '—' }}</UiBadge>
+          <UiButton size="sm" :disabled="running" @click="runMillennium">{{ running ? 'Running…' : 'Recompute' }}</UiButton>
+        </div>
       </header>
       <UiSeparator />
       <p v-if="error" class="research-index__error" role="alert">{{ error }}</p>
-      <section id="proofs">
-        <h3>Domain proofs · Clay presentation + Prize Rules</h3>
+
+      <section id="proofs" class="research-index__hub-link">
+        <h3>Domain proofs</h3>
         <UiBadge :status="domainProofs.computes && domainProofs.claySolvedByThisFold === 0 ? 'ready' : 'warn'">
           rows={{ domainProofs.rows.length }} · clay={{ domainProofs.claySolvedByThisFold }} ·
-          gaps closed={{ domainProofs.closedGaps }} / open={{ domainProofs.openGaps }} / honest-open={{ domainProofs.honestOpenGaps }}
+          gaps closed={{ domainProofs.closedGaps }} / open={{ domainProofs.openGaps }}
         </UiBadge>
         <p class="research-index__meta">
-          Canonical:
+          Canonical catalog only — no parallel tables here.
+          <a href="/proofs">Open /proofs</a>
+          ·
           <a :href="domainProofs.problemsUrl" rel="noopener noreferrer" target="_blank">Millennium Problems</a>
           ·
           <a :href="domainProofs.rulesPdfUrl" rel="noopener noreferrer" target="_blank">Prize Rules PDF</a>
         </p>
-        <table class="research-index__table">
-          <thead><tr><th>Domain</th><th>Status</th><th>§5 Proposed?</th><th>Page</th></tr></thead>
-          <tbody>
-            <tr v-for="r in domainProofs.rows" :key="r.id">
-              <td><strong>{{ r.title }}</strong><div class="research-index__meta">{{ r.kind }}</div></td>
-              <td>{{ r.status }}</td>
-              <td>{{ r.qualifiesAsProposedSolutionUnderClayRules }}</td>
-              <td><a :href="r.route"><code>{{ r.slug }}</code></a></td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="research-index__meta">{{ domainProofs.boundary }}</p>
-        <p class="research-index__meta"><code>{{ domainProofs.cli }}</code> · <code>npm run quantum:prose-gaps-audit</code></p>
         <p class="research-index__meta">
-          Prose→Clay global:
-          audited={{ clayProse.auditedCount }} · pass={{ clayProse.passedCount }} · fail={{ clayProse.failedCount }} ·
-          clay={{ clayProse.claySolvedByThisFold }}
-          <code>npm run quantum:prose-clay-standard</code>
+          Prose→Clay:
+          audited={{ clayProse.auditedCount }} · pass={{ clayProse.passedCount }} · fail={{ clayProse.failedCount }}
+          · <code>npm run quantum:prose-clay-standard</code>
         </p>
         <ul v-if="clayProse.failedCount > 0" class="research-index__list">
           <li v-for="f in clayProse.failed" :key="f.id">
@@ -87,6 +78,7 @@ runMillennium()
         </ul>
       </section>
       <UiSeparator />
+
       <section id="millennium-challenge">
         <h3>Millennium challenge</h3>
         <UiBadge :status="millennium.claySolvedByThisFold === 0 && millennium.computes ? 'ready' : 'warn'">
@@ -97,23 +89,15 @@ runMillennium()
           memo {{ millennium.infinityReuse.afterFirst }}→{{ millennium.infinityReuse.afterSecond }} ·
           tokens={{ millennium.infinityReuse.runtimeTokens }}
         </p>
-        <table class="research-index__table">
-          <thead><tr><th>Problem</th><th>Status</th><th>On</th><th>Methods</th><th>Gap</th><th>Page</th></tr></thead>
-          <tbody>
-            <tr v-for="p in millennium.problems" :key="p.id">
-              <td><code>{{ p.id }}</code></td>
-              <td>{{ p.status }}</td>
-              <td>{{ p.on ? '✓' : '—' }}</td>
-              <td>{{ p.methods }}</td>
-              <td>{{ p.gap || '—' }}</td>
-              <td><a :href="`/en/proofs/millennium-${p.id}`">open</a></td>
-            </tr>
-          </tbody>
-        </table>
+        <p class="research-index__meta">
+          Per-problem Clay pages:
+          <a href="/proofs">/proofs</a>
+          (millennium-* slugs) · <code>{{ millennium.cli }}</code>
+        </p>
         <p class="research-index__meta">{{ millennium.boundary }}</p>
-        <p class="research-index__meta"><code>{{ millennium.cli }}</code> · route <code>{{ millennium.route }}</code></p>
       </section>
       <UiSeparator />
+
       <section id="sciences-trinities">
         <h3>Sciences · significance · trinities</h3>
         <UiBadge :status="statusBadgeKind(Boolean(panel.significance?.computes))">
@@ -138,6 +122,7 @@ runMillennium()
         </p>
       </section>
       <UiSeparator />
+
       <section id="sciences-standards-quantum">
         <h3>Sciences · standards (quantum only)</h3>
         <UiBadge :status="(panel.standards?.after?.gapCount ?? 1) === 0 ? 'ready' : (panel.standards?.after?.partialCount ?? 0) > 0 ? 'partial' : 'gap'">
@@ -165,6 +150,7 @@ runMillennium()
         </p>
       </section>
       <UiSeparator />
+
       <section>
         <h3>Reproducibility gates</h3>
         <ul class="research-index__list">
@@ -175,6 +161,7 @@ runMillennium()
         </ul>
       </section>
       <UiSeparator />
+
       <section>
         <h3>Programs</h3>
         <table class="research-index__table">
@@ -193,7 +180,10 @@ runMillennium()
 </template>
 
 <style scoped>
-.research-index__lede { opacity: var(--ich-op-card-soft); max-width: calc(1rem * (54 - 2)); }
+.research-index__header { display: grid; gap: var(--ich-sp3); }
+.research-index__actions { display: flex; flex-wrap: wrap; gap: var(--ich-sp3); align-items: center; }
+.research-index__lede { opacity: var(--ich-op-card-soft); max-width: calc(1rem * (54 - 2)); margin: 0; }
+.research-index__hub-link { display: grid; gap: var(--ich-sp3); }
 .research-index__table { width: 100%; border-collapse: collapse; font-size: var(--ich-text-ms); margin-top: var(--ich-sp4); }
 .research-index__table th, .research-index__table td { border: 1px solid color-mix(in srgb, currentColor calc(9% + 6%), transparent); padding: var(--ich-sp4) var(--ich-sp5); vertical-align: top; text-align: left; }
 .research-index__meta { font-size: var(--ich-text-xs); opacity: var(--ich-op-card-meta); margin-top: var(--ich-sp2); }

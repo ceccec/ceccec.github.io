@@ -27,12 +27,12 @@ const isHub = computed(() => !slugFromRoute.value)
 <template>
   <div class="proofs" data-logic="src/wind/research/index.ts#domainProofCatalog">
     <header v-if="isHub" class="proofs__hub">
-      <p class="proofs__mast">ceccec domain proofs · Clay presentation standard · claySolvedByThisFold=0</p>
+      <p class="proofs__mast">ceccec · one catalog · Clay presentation · claySolvedByThisFold=0</p>
       <h1>Domain proofs</h1>
       <p class="proofs__lede">
-        Dedicated pages matching Clay Millennium Problem presentation (title, official-style statement,
-        detailed explanation, formulas, status) — plus Prize Rules honesty for what counts as a solution.
-        This catalog is MODELED CHALLENGE apparatus only; it does not claim CMI Prize acceptance.
+        The single Clay-standard catalog (title · statement · explanation · formulas · status · Prize Rules honesty).
+        Not a second theorem hub — the registry is <a href="/frontiers">/frontiers</a>.
+        MODELED CHALLENGE apparatus only; not CMI Prize acceptance.
       </p>
       <p class="proofs__provenance">
         Canonical:
@@ -138,9 +138,11 @@ const isHub = computed(() => !slugFromRoute.value)
       </section>
 
       <p class="domain-proof__nav">
-        <a href="/en/proofs">← Domain proofs hub</a>
+        <a href="/proofs">← Domain proofs hub</a>
         ·
-        <a href="/en/research">Research index</a>
+        <a href="/frontiers">Theorem registry</a>
+        ·
+        <a href="/research">Research</a>
       </p>
     </article>
   </div>
