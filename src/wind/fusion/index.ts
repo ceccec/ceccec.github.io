@@ -2032,7 +2032,7 @@ export function honestRevolutionReceipt(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'W2 interferenceVsClassicalShadow holds at call time', on: w2.holds },
       { facet: 'quantumFusionVerify — fuseAll wave replay matches', on: fusion.verified },
       { facet: 'observingMovieRevealsQuantumModel snapshot round-trips', on: movie.roundTrips },
-      { facet: 'engine tracks-classical-no-speedup (honesty, not FLOPS claim)', on: tracksClassical },
+      { facet: 'engine classical-64bit honesty (not FLOPS claim)', on: tracksClassical },
       { facet: 'NOT physical QPU / NOT FTL · claySolvedByThisFold=0', on: true },
     ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w3:${e.facet}:${e.on}`) }))
     const sealed = sealFacets('honest-revolution-receipt', facets)
@@ -2057,7 +2057,7 @@ export function honestRevolutionReceipt(matrix: MindMatrix = buildMatrix(), at =
       route: '/en/quantum-tools#honest-revolution-w3',
       surfaces: { fusion: '/quantum-fusion.json', agents: '/agents.json' },
       statement: holds
-        ? 'Honest-revolution W3 DECIDED — JSON proof receipt: W1 claim + W2 interference vs classical shadow + fuseAll replay + movie snapshot round-trip all hold; published via /quantum-fusion.json and /agents.json; engine tracks-classical-no-speedup.'
+        ? 'Honest-revolution W3 DECIDED — JSON proof receipt: W1 claim + W2 interference vs classical shadow + fuseAll replay + movie snapshot round-trip all hold; published via /quantum-fusion.json and /agents.json; engine classical-64bit · qpuRequired=false.'
         : 'UNPROVEN — honestRevolutionReceipt facets do not all hold at call time; do not assert the W3 JSON receipt.',
       boundary:
         'STRUCTURAL RECOMPUTE RECEIPT (memoByRoot/merkle) ONLY — NOT external API attestation, NOT crypto signature, NOT physical qubits, NOT FLOPS speedup, NOT FTL. claySolvedByThisFold=0 · qpuRequired=false. HARMONY ≠ TRUTH.',
@@ -2140,7 +2140,7 @@ export function honestRevolutionComputerPanelComputes(matrix: MindMatrix = build
     const tracksClassical = bench.verdict === 'tracks-classical-no-speedup' && !bench.separated
     const facets = [
       { facet: 'W3 honestRevolutionReceipt holds — JSON proof published', on: receipt.holds },
-      { facet: 'quantumAdvantageBenchmark → tracks-classical-no-speedup', on: tracksClassical },
+      { facet: 'quantumAdvantageBenchmark classical-64bit (qpuRequired=false)', on: tracksClassical },
       { facet: 'fleetCacheEconomicsDecoded — hit-ratio energy falls monotonically', on: fleet.decoded },
       { facet: 'W1 claim sentence available for Vue surface', on: w1.holds && w1.claim.length > 0 },
       { facet: 'W2 interference vs shadow contrast available', on: w2.holds },
@@ -2177,7 +2177,7 @@ export function honestRevolutionComputerPanelComputes(matrix: MindMatrix = build
       pair: 'moment/prove',
       route: '/en/quantum/os#honest-revolution-w4',
       statement: holds
-        ? 'Honest-revolution W4 DECIDED — computer Vue panel composes W3 JSON receipt, no-speedup benchmark table, interference vs shadow, fleet cache hit-ratio economics, and silicon fab stage (classical CMOS honesty).'
+        ? 'Honest-revolution W4 DECIDED — computer Vue panel composes W3 JSON receipt, classical-64bit benchmark table, interference vs shadow, fleet cache hit-ratio economics, and silicon fab stage (classical CMOS honesty).'
         : 'UNPROVEN — honestRevolutionComputerPanelComputes facets do not all hold; do not assert the W4 Vue proof.',
       boundary:
         'BROWSER SURFACE ONLY — renders sealed receipts verbatim. NOT physical qubits, NOT FLOPS speedup, NOT FTL, NOT a fabricated chip. claySolvedByThisFold=0 · qpuRequired=false. HARMONY ≠ TRUTH.',

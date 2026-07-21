@@ -302,7 +302,7 @@ export function noSignallingComputes() {
     parties,
     facets,
     statement: `No-signalling computed — ${facets.filter((entry) => entry.on).length}/${facets.length}: Alice's marginal is I/2 and drifts ${maxDrift.toExponential(1)} across every basis Bob can choose. Entanglement carries no message; the speed question never arises. The correlations remain real and beat the classical bound — correlation without signalling, both by theorem.`,
-    boundary: 'DOCUMENTED: the no-communication theorem (linearity of the partial trace — Ghirardi/Rimini/Weber 1980, Eberhard 1978), verified here by explicit marginal sweep. FLAGGED, and this fold exists to flag it: entanglement, superluminal PHASE velocity (plasmaSpeedByTheorem) and quantum parallelism are each real and each carry NO faster-than-light information — "quantum FTL communication/computation" is pseudoscience regardless of how the pieces are combined. Quantum speedups are REAL but bounded and structure-specific (Grover quadratic, Shor for period-finding); this repo\'s own model reports tracks-classical-no-speedup. HARMONY ≠ TRUTH.',
+    boundary: 'DOCUMENTED: the no-communication theorem (linearity of the partial trace — Ghirardi/Rimini/Weber 1980, Eberhard 1978), verified here by explicit marginal sweep. FLAGGED, and this fold exists to flag it: entanglement, superluminal PHASE velocity (plasmaSpeedByTheorem) and quantum parallelism are each real and each carry NO faster-than-light information — "quantum FTL communication/computation" is pseudoscience regardless of how the pieces are combined. Quantum speedups are REAL but bounded and structure-specific (Grover quadratic, Shor for period-finding); this repo\'s own model is classical-64bit (qpuRequired=false). HARMONY ≠ TRUTH.',
   }
 }
 

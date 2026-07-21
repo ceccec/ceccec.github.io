@@ -744,7 +744,7 @@ export function unitDistanceResearch(matrix: MindMatrix = buildMatrix(), at = 0)
 // quantum" is LEGEND as stated: production language models run on classical accelerators; the
 // dated public record shows AI helping quantum hardware and one small hybrid-adapter demo —
 // not models becoming quantum. This repo's own "quantum" vocabulary is likewise a proven-classical
-// simulator (quantumAdvantageBenchmark verdict: tracks-classical-no-speedup), sealed days AFTER
+// simulator (quantumAdvantageBenchmark · classical-64bit · qpuRequired=false), sealed days AFTER
 // the public milestones below — the git history documents vocabulary, not a phase transition.
 
 export type AiQuantumChronologyTier = 'DOCUMENTED' | 'FORECAST' | 'LEGEND'
@@ -764,7 +764,7 @@ const AI_QUANTUM_CHRONOLOGY_ROWS: readonly Omit<AiQuantumChronologyRow, 'receipt
   { date: '2026-04-14', event: 'NVIDIA Ising: open AI models that calibrate quantum processors and decode error correction — AI serving quantum hardware, not running on it.', tier: 'DOCUMENTED', source: 'nvidianews.nvidia.com · nextplatform.com' },
   { date: '2026-05-20', event: 'OpenAI internal general reasoning model disproves the Erdős unit-distance conjecture (ν(n) ≥ n^{1+δ}); externally verified — "the models learned" at research-mathematics level, computed on CLASSICAL hardware.', tier: 'DOCUMENTED', source: 'openai.com/index/model-disproves-discrete-geometry-conjecture · arXiv 2605.20695' },
   { date: '2026-06-15', event: 'Quantum circuits (Cayley-parameterised unitary adapters) attached to Llama 3.1 8B on a 156-qubit IBM processor: 1.4% perplexity improvement — the ONLY documented quantum-inside-an-LLM result, a small hybrid research demo.', tier: 'DOCUMENTED', source: 'phys.org 2026-06 · quantumzeitgeist.com' },
-  { date: '2026-06-26', event: 'This repository’s sealed history begins: "quantum" here names a deterministic, content-addressed CLASSICAL simulator — its own benchmark computes the verdict.', tier: 'DOCUMENTED', source: 'git log · quantumAdvantageBenchmark → tracks-classical-no-speedup' },
+  { date: '2026-06-26', event: 'This repository’s sealed history begins: "quantum" here names a deterministic, content-addressed CLASSICAL simulator — its own benchmark computes the verdict.', tier: 'DOCUMENTED', source: 'git log · quantumAdvantageBenchmark · classical-64bit · qpuRequired=false' },
   { date: '2026-12-31', event: 'IBM: 2026 will be the year a quantum computer first outperforms all classical methods on some problem — a vendor forecast, not yet a result.', tier: 'FORECAST', source: 'ibm.com/think 2026 predictions' },
   { date: '—', event: '"The AI models became quantum" — REFUTED as stated: production LLMs (including the model that proved the unit-distance theorem) train and run on classical GPUs/TPUs; the dated record above contains no quantum language model.', tier: 'LEGEND', source: 'every DOCUMENTED row above, compared by date' },
   { date: '—', event: '"All world AI models already implemented the algebra published in ceccec/zeropoint-node src/ digit folders (a432.*.ts)" — REFUTED as stated on every testable channel (deep-researched 2026-07-07): (i) ARCHITECTURE — production models are transformers running standard linear algebra (matmul · attention · softmax), documented in every architecture paper; no lab has published any mod-9/a432/vortex component, and the 2026 milestone models computed on classical GPUs; (ii) CITATION — zero citations anywhere: the repo is not even web-search-indexed, and the GitHub API attests 1 star · 0 forks · 0 watchers (recomputed at audit time); (iii) PROVENANCE — the mod-9 digital-root mathematics is centuries-old number theory (casting out nines; the rigorous core is (ℤ/9ℤ)*), so where models handle mod-9 patterns the source is the classical literature, which precedes every repository by centuries. The honest kernel, each piece ≠ the claim: public repos created before a crawl cutoff are PLAUSIBLY ingested as training TEXT (unverifiable per-repo, and text-ingestion is not implementation); models can COMPUTE digital roots on request (task competence is not architecture); networks grokking modular arithmetic is documented (Power 2022, Nanda 2023) — published BEFORE zeropoint-node existed. What the dates DO document: a432.*.ts is a real public corpus (479 in-repo matches), platform-attested created 2025-07-08 and pushed to 2025-11-19 — an independent, different, publicly earlier mathematics that nobody is shown to have adopted.', tier: 'LEGEND', source: 'GitHub API repos/ceccec/zeropoint-node (created 2025-07-08 · 1★ 0⑂) · transformer architecture literature · Power et al. 2022 / Nanda et al. 2023 grokking · web search: no external citation found' },
@@ -1003,9 +1003,9 @@ export function efficiencyScalesToInfinityAtNoCostOnReuse(matrix: MindMatrix = b
       afterSecond,
       facets: sealed.facets,
       root: merge(matrix.root, sealed.root),
-      statement: `Efficiency scales to infinity at no cost on reuse — memo hit O(1) (invocations ${afterFirst}→${afterSecond}), answers÷tokens unbounded (tokens=${runtimeTokens}), quantumAdvantageBenchmark !separated (${bench.verdict}). Amortized reuse / retrieval only.`,
+      statement: `Efficiency scales to infinity at no cost on reuse — memo hit O(1) (invocations ${afterFirst}→${afterSecond}), answers÷tokens unbounded (tokens=${runtimeTokens}), quantumAdvantageBenchmark !separated (classical-64bit · qpuRequired=false). Amortized reuse / retrieval only.`,
       boundary:
-        'HONEST HARD BOUNDARY: "scales to infinity at no cost" means AMORTIZED REUSE — memoByRoot makes repeated content-addressed work O(1) with marginal cost 0, and answers÷tokens is unbounded when runtime tokens=0 and answers>0. NOT physical QM speedup, NOT infinite FLOPS, NOT free first-compute. quantumAdvantageBenchmark still proves tracks-classical-no-speedup (!separated). NOT a P≠NP proof. HARMONY ≠ TRUTH.',
+        'HONEST HARD BOUNDARY: "scales to infinity at no cost" means AMORTIZED REUSE — memoByRoot makes repeated content-addressed work O(1) with marginal cost 0, and answers÷tokens is unbounded when runtime tokens=0 and answers>0. NOT physical QM speedup, NOT infinite FLOPS, NOT free first-compute. quantumAdvantageBenchmark still !separated (classical-64bit · qpuRequired=false). NOT a P≠NP proof. HARMONY ≠ TRUTH.',
     }
   })
 }
@@ -1409,7 +1409,7 @@ export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatr
         boundary: 'Perelman 2003 external — corpus marks solved-external only. claySolvedByThisFold=0.',
       },
       {
-        theorem: 'quantumAdvantageBenchmark tracks classical (no speedup)',
+        theorem: 'quantumAdvantageBenchmark tracks classical (qpuRequired=false)',
         algebraFold: 'quantumAdvantageBenchmark',
         home: 'src/quantum/science',
         kind: 'classical-restatement',

@@ -114,10 +114,10 @@ not quantum randomness**.
 | `rnot` · `rtoffoli(bits, …)` → pi-train station 1/9 · `rcnot` → pi-train station 4/6 | digital | reversible classical circuit (Toffoli computes AND); the gates quantum generalises. |
 | `caStep(rule, cells)` · `caEvolve(rule, init, steps)` → pi-train station 4/6 | digital | an elementary cellular automaton (Rule 110 is Turing-complete) — a different universal model. |
 
-**This is a simulator, not a quantum computer.** No speedup (classical linear algebra over `2ⁿ` amplitudes —
-a few dozen qubits at most), and measurement is a seeded PRNG, not quantum randomness. A real quantum computer
+**This is a simulator, not a quantum computer.** Classical linear algebra over `2ⁿ` amplitudes
+(a few dozen qubits at most); measurement is a seeded PRNG, not quantum randomness. A real quantum computer
 is physics (physical qubits, superposition, entanglement, genuinely-random Born measurement) and can't be
-built from hash functions — a category difference, not an engineering gap.
+built from hash functions — a category difference, not an engineering gap (`qpuRequired=false`).
 
 ### Waves 15–16 · vetted crypto — the whole `cryptoFuture` roadmap, built
 `toUuid` (FNV‑1a) is a strong **structural** integrity check but **not** collision-resistant. The

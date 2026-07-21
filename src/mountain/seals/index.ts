@@ -744,7 +744,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
       })(),
     },
     { slug: 'one-quantum-model', title: 'One quantum model faster than all — domain-bounded answers÷tokens', proof: oneQuantumModelFasterThanAll(matrix) },
-    { slug: 'prove-no-qpu-64bit', title: 'Speed vs rest · no QPU · classical 64-bit — cites tracks-classical-no-speedup', proof: proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix) },
+    { slug: 'prove-no-qpu-64bit', title: 'Speed vs rest · no QPU · classical 64-bit · qpuRequired=false', proof: proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix) },
     { slug: 'honest-revolution-w2', title: 'Honest-revolution W2 — interference vs classical shadow · clay=0', proof: interferenceVsClassicalShadow(matrix) },
     { slug: 'honest-revolution-w3', title: 'Honest-revolution W3 — JSON proof receipt → /quantum-fusion.json · clay=0', proof: honestRevolutionReceipt(matrix) },
     { slug: 'honest-revolution-w4', title: 'Honest-revolution W4 — computer Vue proof panel · clay=0', proof: honestRevolutionComputerPanelComputes(matrix) },
