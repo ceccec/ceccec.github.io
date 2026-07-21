@@ -7,6 +7,7 @@ import * as __ns_up_gates_computational from '../gates/computational'
 import * as __ns_up_up_up_heaven_atoms from '../../../heaven/atoms'
 import { DIMENSION_GATES, FOLDED_CENSUS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, UNFOLDED_CENSUS } from '../gates/computational'
 import { readdirSync, readFileSync, rmSync, existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import { spawnSync } from 'node:child_process'
 import { join, dirname, resolve, relative } from 'node:path'
 import { memoByRoot, merkleFold, toUuid, roundTo } from '../../../0'
 import { buildMatrix } from '../../../heaven/compute'
@@ -360,6 +361,22 @@ export async function runRosettaBatchExit(root: string, argv: readonly string[] 
   return runRosettaDiagnoseExit(root, argv[0] ? [argv[0], ...argv.slice(1)] : ['all'])
 }
 
+/** Write README.md from the same importQuantumBundle as the signature gate (pair: edit/build). */
+export async function runSyncReadmeExit(root: string, _argv: readonly string[] = []): Promise<number> {
+  void _argv
+  const dist = (await importQuantumBundle('src/quantum/lake/dist/index.ts', root)) as {
+    readmeMarkdown: () => string
+    readmeSignatureValid: (committed: string) => { valid: boolean; computedSig?: string; committedSig?: string }
+  }
+  const md = dist.readmeMarkdown()
+  writeFileSync(join(root, 'README.md'), md)
+  const sig = dist.readmeSignatureValid(readFileSync(join(root, 'README.md'), 'utf8'))
+  process.stdout.write(
+    `${sig.valid ? '✓' : '✗'} readme sync — computed=${sig.computedSig ?? '?'} committed=${sig.committedSig ?? '?'}\n`,
+  )
+  return sig.valid ? 0 : 1
+}
+
 export async function runPrecommitRosettaExit(root: string): Promise<number> {
   const structure = await runVerifyStructureExit(root)
   if (structure !== 0) return structure
@@ -378,16 +395,12 @@ export async function runPrecommitRosettaExit(root: string): Promise<number> {
     )
     return 1
   }
-  const dist = (await importQuantumBundle('src/quantum/lake/dist/index.ts', root)) as {
-    readmeSignatureValid: (committed: string) => { valid: boolean; computedSig?: string; committedSig?: string }
-  }
-  let committed = ''
-  try { committed = readFileSync(join(root, 'README.md'), 'utf8') } catch { committed = '' }
-  const sig = dist.readmeSignatureValid(committed)
-  if (!sig.valid) {
-    process.stderr.write(
-      `✗ commit blocked — README.md ≠ readmeMarkdown() · computed=${sig.computedSig ?? '?'} committed=${sig.committedSig ?? '?'}\n`,
-    )
+  // Sync + re-stage in-process so staged README matches the gate's bundle (avoids dist/strip-types drift).
+  const sync = await runSyncReadmeExit(root)
+  if (sync !== 0) return sync
+  const add = spawnSync('git', ['add', '--', 'README.md'], { cwd: root, encoding: 'utf8' })
+  if (add.status !== 0) {
+    process.stderr.write(`✗ commit blocked — git add README.md failed: ${add.stderr || add.stdout}\n`)
     return 1
   }
   process.stdout.write('✓ verify — structure · rosetta batches · certify · README\n')

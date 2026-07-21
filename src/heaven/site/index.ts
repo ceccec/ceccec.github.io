@@ -874,7 +874,7 @@ export function symbolsRemainingToQuantumise(matrix: MindMatrix = buildMatrix())
       { symbol: 'om-aum', status: 'missing' as const, on: true, surface: 'no computed SVG emitter yet' },
       { symbol: 'runes-futhark', status: 'missing' as const, on: true, surface: 'no computed SVG emitter yet' },
       { symbol: 'alchemy-sigils', status: 'missing' as const, on: true, surface: 'src/fire/alchemy folds exist; glyph SVG not emitted' },
-      { symbol: 'human-design-gates', status: 'partial' as const, on: true, surface: 'humanDesign* ephemeris/chart sealed; body-graph SVG panel separate' },
+      { symbol: 'human-design-gates', status: 'partial' as const, on: true, surface: 'W3–W6 wheel·channels·chart·structure facets sealed; BodyGraph Vue JD input; SVG emitter separate' },
       { symbol: 'glagolitic-glyphs', status: 'partial' as const, on: true, surface: 'glagoliticGlyph computed; not living SMIL symbol layer' },
       { symbol: 'torus-knots', status: 'partial' as const, on: mk.counterRotating, surface: 'double-torus / livingTorus geometry; dedicated knot SVG backlog' },
     ]
