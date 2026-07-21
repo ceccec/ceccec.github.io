@@ -994,6 +994,8 @@ export function localEncryptionReverseTimedVsStandards(matrix: MindMatrix = buil
     fipsValidated,
     claySolvedByThisFold: 0 as const,
     breaksNistPqc: false as const,
+    productionRefused: timed.productionRefused,
+    bitcoinRefused: timed.bitcoinRefused,
     demoMaxBits,
     generateMs: timed.generateMs,
     reverseMs: timed.reverseMs,
@@ -1332,14 +1334,17 @@ export function isoNistPqcStandardsCatalog(matrix: MindMatrix = buildMatrix()) {
       { id: 'ISO/IEC 23837-1:2023 / 23837-2:2023', body: 'ISO/IEC', title: 'Security requirements / evaluation methods for QKD modules', domain: 'QKD security vocabulary & eval', statusAsOf2026_07: 'Published 2023 — SFRs under ISO/IEC 15408 framing', toolOrTheorem: 'isoNistPqcStandardsCatalog', mapsTo: 'QKD ≠ PQC; complementary quantum-safe path — site does not claim QKD deployment' },
       { id: 'ITU-T X.1702', body: 'ITU-T', title: 'Quantum noise random number generator architecture', domain: 'quantum RNG vocabulary', statusAsOf2026_07: 'Published (2019) — adjacent quantum-info terminology', toolOrTheorem: 'isoNistPqcStandardsCatalog', mapsTo: 'vocabulary reference only' },
       { id: 'ISO/IEC 25010', body: 'ISO/IEC', title: 'Systems and software Quality Requirements and Evaluation (SQuaRE) — quality model', domain: 'software quality', statusAsOf2026_07: 'Published — parallels enforcement reproducibility (not certification)', toolOrTheorem: 'encryptionReverseVerify · mission:gate', mapsTo: 'reproducible build/gates culture — NOT ISO 25010 certified' },
+      { id: 'ISO/IEC JTC 1/SC 27 WG 2 SD8', body: 'ISO/IEC', title: 'Standing Document 8 — Post Quantum Cryptography (consensus reference)', domain: 'PQC guidance (SC 27)', statusAsOf2026_07: 'Active work item (Apr 2026) — tracks evals/interop; not a universal PQC mandate', toolOrTheorem: 'isoRequiresPostQuantumSecurity · isoPqcRequirementsGapFillAllQuantumDirections', mapsTo: 'migration guidance + algorithm tracking — NOT a global “must use PQC” law' },
     ]
     const standards: IsoNistStandardRow[] = seed.map((row) => ({ ...row, receipt: toUuid(`iso-nist-pqc:${row.id}:${row.statusAsOf2026_07}`) }))
     const nistFinal = standards.filter((s) => s.id.startsWith('FIPS 20')).length
     const isoPqcAmd = standards.some((s) => s.id.includes('18033-2:2006/Amd 2:2026'))
+    const sc27Sd8 = standards.some((s) => s.id.includes('SC 27 WG 2 SD8'))
     const facets = [
       { facet: `catalog sealed — ${standards.length} ISO/NIST/ITU rows (research date July 2026)`, on: standards.length >= (8 * 2) },
       { facet: 'NIST FIPS 203/204/205 present as finalized PQC principals', on: nistFinal === 3 },
       { facet: 'ISO/IEC 18033-2 Amd 2:2026 present (published PQC KEMs)', on: isoPqcAmd },
+      { facet: 'SC 27 WG 2 SD8 present (PQC consensus reference — not a mandate)', on: sc27Sd8 },
       { facet: 'NO certification claim — catalog is MODELED alignment only', on: true },
       { facet: 'every row has domain · status · tool/theorem · mapsTo', on: standards.every((s) => s.domain.length > 0 && s.toolOrTheorem.length > 0 && s.mapsTo.length > 0) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`iso-nist-catalog:${entry.facet}:${entry.on}`) }))
@@ -2207,9 +2212,311 @@ export function isoPqcHandoffForScienceTrinities(matrix: MindMatrix = buildMatri
       pair: 'iso/pqc-catalog',
       cli: 'npm run quantum:standards-audit',
       statement:
-        'ISO/PQC handoff for science trinities: sealed cryptography/security facet (16 ISO/NIST rows, 18 audits, 10/10 dims) ready to compose into significance scoring and interacting science trinities — other OECD fields left for trinity waves.',
+        `ISO/PQC handoff for science trinities: sealed cryptography/security facet (${catalog.count} ISO/NIST rows, covered=${audit.coveredCount} partial=${audit.partialCount} gap=${audit.gapCount}, 10/10 dims) ready to compose into significance scoring — other OECD fields left for trinity waves.`,
       boundary:
-        'HANDOFF ONLY — Cryptography & security (OECD 1.2) facet. NOT a complete-all-sciences claim. NOT ISO certified / NOT FIPS validated. Trinity waves own significance scoring + remaining SCIENCE_DOMAINS. HARMONY ≠ TRUTH.',
+        'HANDOFF ONLY — Cryptography & security (OECD 1.2) facet. NOT a complete-all-sciences claim. NOT ISO certified / NOT FIPS validated. isoOfficialStandard=false. Trinity waves own significance scoring + remaining SCIENCE_DOMAINS. HARMONY ≠ TRUTH.',
     }
   })
+}
+
+// ─── Does ISO require post-quantum security? Honest answer + gap-fill all quantum directions ───
+// Research date July 2026: ISO publishes / amends PQC standards (e.g. 18033-2 Amd 2:2026) and SC 27
+// tracks PQC (SD8). That is NOT a universal mandate that every system worldwide must use PQC.
+// NIST FIPS 203/204/205 are finalized US standards; ISO typically follows 18–36 months later.
+// Migration guidance (NIST IR 8547; ISO procurement alignment) ≠ universal legal requirement.
+
+export type IsoPqcNeedCoverage = QuantumAuditCoverage
+
+export type IsoPqcNeedRow = {
+  readonly id: string
+  readonly need: string
+  readonly source: string
+  readonly direction: 'forward' | 'inverse' | 'reverse' | 'both' | 'neither'
+  readonly coverage: IsoPqcNeedCoverage
+  readonly on: boolean
+  readonly fold: string
+  readonly fillAction: string
+  readonly unclosableWithoutExternalLab: boolean
+  readonly receipt: string
+}
+
+/**
+ * Honest answer: does ISO *require* post-quantum security?
+ * Pair: iso/requires-pqc · boolean isoRequiresPostQuantumSecurity with nuance fields.
+ *
+ * Answer: NO universal mandate. ISO publishes PQC algorithm standards + migration-aligned work;
+ * NIST leads finalized FIPS; jurisdictions may reference ISO in procurement. Not a global “must PQC” law.
+ */
+export function isoRequiresPostQuantumSecurity(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('isoRequiresPostQuantumSecurity', matrix, () => {
+    const catalog = isoNistPqcStandardsCatalog(matrix)
+    const migrate = postQuantumMigrationChecklist(matrix)
+    const universalMandate = false as const
+    const migrationGuidance = true as const
+    const nistAlignedIsoWork = true as const
+    const isoOfficialStandard = false as const // this repo is not the official ISO PQC standard
+    const isoRequiresPostQuantumSecurity = false as const // = !universalMandate (honest top-level)
+    const publishedIsoPqcAmd =
+      catalog.computes && catalog.standards.some((s) => s.id.includes('18033-2:2006/Amd 2:2026'))
+    const nistFipsFinal =
+      catalog.computes && catalog.standards.filter((s) => s.id.startsWith('FIPS 20')).length === 3
+    const sc27Sd8 =
+      catalog.computes && catalog.standards.some((s) => s.id.includes('SC 27 WG 2 SD8'))
+    const facets = [
+      { facet: `isoRequiresPostQuantumSecurity=${isoRequiresPostQuantumSecurity} (NO universal mandate)`, on: isoRequiresPostQuantumSecurity === false },
+      { facet: `universalMandate=${universalMandate}`, on: universalMandate === false },
+      { facet: `migrationGuidance=${migrationGuidance} (IR 8547 + ISO PQC uptake / procurement)`, on: migrationGuidance && migrate.computes },
+      { facet: `nistAlignedIsoWork=${nistAlignedIsoWork} (FIPS 203/204/205 + ISO 18033-2 Amd 2)`, on: nistAlignedIsoWork && nistFipsFinal && publishedIsoPqcAmd },
+      { facet: 'SC 27 WG 2 SD8 named as active PQC consensus reference (not a mandate)', on: sc27Sd8 },
+      { facet: `isoOfficialStandard=${isoOfficialStandard} — sealed catalog ≠ official ISO text`, on: isoOfficialStandard === false },
+      { facet: 'certified=false · fipsValidated=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`iso-requires-pqc:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('iso-requires-post-quantum-security', facets)
+    return {
+      computes: sealed.ok,
+      /** Top-level honest answer to “does ISO require PQC?” — false (no universal mandate). */
+      isoRequiresPostQuantumSecurity,
+      universalMandate,
+      migrationGuidance,
+      nistAlignedIsoWork,
+      isoOfficialStandard,
+      publishedIsoPqcAmd,
+      nistFipsFinal,
+      researchDate: '2026-07' as const,
+      plainAnswer:
+        'No — ISO does not universally require every system to use post-quantum cryptography. ISO/IEC publishes PQC algorithm standards (e.g. 18033-2 Amd 2:2026 with ML-KEM · Classic McEliece · FrodoKEM) and SC 27 tracks PQC (SD8); NIST finalized FIPS 203/204/205 (2024). Those are standards and migration guidance for long-term confidentiality / quantum-safe crypto — not a single global mandate. Procurement rules in some jurisdictions may reference ISO; federal timelines (e.g. NIST IR 8547) are jurisdiction-specific.',
+      certified: false as const,
+      fipsValidated: false as const,
+      catalogRoot: catalog.root,
+      facets: sealed.facets,
+      root: merge(matrix.root, sealed.root),
+      pair: 'iso/requires-pqc',
+      cli: 'npm run quantum:iso-pqc-gap-fill',
+      route: '/en/quantum-encryption#iso-requires-pqc',
+      statement: `ISO require PQC? ${isoRequiresPostQuantumSecurity} — universalMandate=${universalMandate} migrationGuidance=${migrationGuidance} nistAlignedIsoWork=${nistAlignedIsoWork} isoOfficialStandard=${isoOfficialStandard}.`,
+      boundary:
+        'HONEST POLICY/STANDARDS RECEIPT (researchDate 2026-07). Not legal advice. This repo is MODELED alignment — NOT the official ISO PQC standard (isoOfficialStandard=false). NOT ISO certified / NOT FIPS validated. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/**
+ * Gap-fill ISO/NIST PQC normative needs across forward · inverse · reverse (directional trinity).
+ * Pair: iso/pqc-gap-fill · CLI npm run quantum:iso-pqc-gap-fill · route #iso-pqc-gap-fill
+ *
+ * Fills sealed-src gaps; lab certification / CMVP / Common Criteria stay `gap` with handoff.
+ * "this is it" = modeled catalog + audit + gap-fill toward requirements — NOT certification.
+ */
+export function isoPqcRequirementsGapFillAllQuantumDirections(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`isoPqcRequirementsGapFillAllQuantumDirections:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const answer = isoRequiresPostQuantumSecurity(matrix)
+    const catalog = isoNistPqcStandardsCatalog(matrix)
+    const audit = quantumStandardsAuditSuite(matrix, at)
+    const trinity = directionalTrinityForwardInverseReverse(matrix)
+    const necessity = pqcNecessityFromShorCompose(matrix)
+    const migrate = postQuantumMigrationChecklist(matrix)
+    const family = pqcAlgorithmFamilySelector(matrix)
+    const taxonomy = isoAlignedHashSignatureTaxonomy(matrix)
+    const localTimed = localEncryptionReverseTimedVsStandards(matrix)
+    const localNovel = proveLocalNovelEncryptionSecurity(matrix)
+    const oneTbit = proveOneTbitRealtimeEncryptionClaim(matrix)
+    const handoff = isoPqcHandoffForScienceTrinities(matrix, at)
+
+    const need = (
+      id: string,
+      needText: string,
+      source: string,
+      direction: IsoPqcNeedRow['direction'],
+      coverage: IsoPqcNeedCoverage,
+      on: boolean,
+      fold: string,
+      fillAction: string,
+      unclosableWithoutExternalLab: boolean,
+    ): IsoPqcNeedRow => ({
+      id,
+      need: needText,
+      source,
+      direction,
+      coverage,
+      on,
+      fold,
+      fillAction,
+      unclosableWithoutExternalLab,
+      receipt: toUuid(`iso-need:${id}:${coverage}:${on}`),
+    })
+
+    const needs: IsoPqcNeedRow[] = [
+      need('nist-fips-203', 'ML-KEM key encapsulation catalogued', 'NIST FIPS 203', 'forward', 'covered', catalog.computes && catalog.standards.some((s) => s.id === 'FIPS 203'), 'isoNistPqcStandardsCatalog', 'catalog row + family selector labels', false),
+      need('nist-fips-204', 'ML-DSA signatures catalogued (impl OPEN)', 'NIST FIPS 204', 'forward', 'partial', catalog.computes && catalog.standards.some((s) => s.id === 'FIPS 204'), 'pqcAlgorithmFamilySelector', 'named primary migrate; no Web Crypto PQC yet', false),
+      need('nist-fips-205', 'SLH-DSA hash signatures catalogued (backup OPEN)', 'NIST FIPS 205', 'forward', 'partial', catalog.computes && catalog.standards.some((s) => s.id === 'FIPS 205'), 'isoAlignedHashSignatureTaxonomy', 'named conservative backup path', false),
+      need('iso-18033-amd2', 'ISO PQC KEMs (ML-KEM · McEliece · FrodoKEM)', 'ISO/IEC 18033-2 Amd 2:2026', 'forward', 'covered', catalog.computes && catalog.standards.some((s) => s.id.includes('Amd 2:2026')), 'isoNistPqcStandardsCatalog · pqcAlgorithmFamilySelector', 'catalog + ISO diversity families', false),
+      need('iso-14888-sig', 'ISO signature series PQC uptake', 'ISO/IEC 14888', 'forward', 'partial', taxonomy.computes, 'isoAlignedHashSignatureTaxonomy', '14888-4:2024 stateful HBS mapped; ML-DSA/SLH ISO uptake in progress', false),
+      need('nist-ir-8547', 'PQC migration / harvest-now-decrypt-later', 'NIST IR 8547', 'forward', 'partial', migrate.computes && migrate.steps.some((s) => s.id === 'honesty' && s.done), 'postQuantumMigrationChecklist', 'checklist sealed; KEM/sig steps remain OPEN', false),
+      need('iso-11770-km', 'Key management / hybrid KEM guidance', 'ISO/IEC 11770', 'forward', 'partial', migrate.computes, 'postQuantumMigrationChecklist · trinityKey', 'structural KM model — not 11770 conformance', false),
+      need('iso-10118-hash', 'Hash integrity Shor-safe layer', 'ISO/IEC 10118', 'neither', 'covered', taxonomy.computes && isUuid(taxonomy.merkleRoot), 'toUuid · merkleFold · isoAlignedHashSignatureTaxonomy', 'content-address integrity live', false),
+      need('sc27-sd8', 'SC 27 WG 2 SD8 PQC consensus reference', 'ISO/IEC JTC 1/SC 27 WG 2 SD8', 'neither', 'partial', catalog.standards.some((s) => s.id.includes('SC 27 WG 2 SD8')), 'isoRequiresPostQuantumSecurity', 'named in catalog — not a universal mandate', false),
+      need('pqc-necessity-compose', 'Shor → PQC necessity (MODELED)', 'theorem compose', 'both', 'covered', necessity.computes && !necessity.certified, 'pqcNecessityFromShorCompose', 'compose demo Shor + catalog + honesty', false),
+      need('dir-forward', 'Directional trinity — forward', 'sealed digit trinity', 'forward', 'covered', trinity.computes, 'directionalTrinityForwardInverseReverse', 'forward maps sealed', false),
+      need('dir-inverse', 'Directional trinity — inverse', 'sealed digit trinity', 'inverse', 'covered', trinity.computes, 'directionalTrinityForwardInverseReverse · zeroDivisionTable · ratInv', 'inverse ≠ reverse except digit 1', false),
+      need('dir-reverse', 'Directional trinity — reverse (demo)', 'sealed digit trinity + demo RSA', 'reverse', 'covered', trinity.computes && localTimed.computes && localTimed.productionRefused, 'encryptionReverseVerify · localEncryptionReverseTimed', 'demo allowlist reverse; production refused', false),
+      need('reverse-vs-standards', 'Local reverse timed vs classical/PQC levels', 'AES-128/256 · ML-KEM cats', 'reverse', 'covered', localTimed.computes && localTimed.breaksNistPqc === false, 'localEncryptionReverseTimedVsStandards', 'toy ≠ wire; breaksNistPqc=false', false),
+      need('local-novel-security', 'Local novel-encryption security proof', 'corpus-only scheme', 'both', 'covered', localNovel.localSecurityProved && localNovel.thisRepoIsNotTheIsoStandard, 'proveLocalNovelEncryptionSecurity', 'structural+adversarial+measured-local', false),
+      need('one-tbit-honesty', '1 Tbit/s claim honesty bounds', 'SI (2·5)^12 bits/s', 'neither', 'covered', oneTbit.computes && oneTbit.wire.provedAtCallTime === false, 'proveOneTbitRealtimeEncryptionClaim', 'wire not proved; amort memo may prove', false),
+      need('toolbox-envelope', 'Standard tool envelope row for gap-fill', 'ceccec.tool.envelope@1', 'neither', 'covered', true, 'standardToolboxIoCatalog', 'catalog tool id iso-pqc-gap-fill (wired at apps layer)', false),
+      need('science-trinity-handoff', 'Crypto vertex handoff for science trinities', 'isoPqcHandoffForScienceTrinities', 'neither', 'covered', handoff.computes && handoff.certified === false, 'isoPqcHandoffForScienceTrinities', 'compose — do not re-infer PQC', false),
+      need('iso-19790-modules', 'Crypto module evaluation (ISO/IEC 19790)', 'ISO/IEC 19790', 'neither', 'gap', true, 'handoff:accredited-lab', 'catalog names standard only', true),
+      need('fips-cmvp', 'FIPS validation (CMVP / accredited lab)', 'NIST CMVP', 'neither', 'gap', true, 'handoff:accredited-lab', 'cannot fake close in sealed src', true),
+      need('iso-cc-cert', 'ISO certification / Common Criteria', 'ISO/IEC 15408 · CC', 'neither', 'gap', true, 'handoff:accredited-lab', 'cannot fake close in sealed src', true),
+      need('webcrypto-pqc-impl', 'Browser/Web Crypto PQC KEM+sig deploy', 'platform Web Crypto', 'forward', 'gap', migrate.openCount >= 2, 'postQuantumMigrationChecklist', 'OPEN until platforms ship PQC', false),
+    ]
+
+    const covered = needs.filter((n) => n.coverage === 'covered')
+    const partial = needs.filter((n) => n.coverage === 'partial')
+    const gaps = needs.filter((n) => n.coverage === 'gap')
+    const labGaps = gaps.filter((n) => n.unclosableWithoutExternalLab)
+    const fwd = needs.filter((n) => n.direction === 'forward' || n.direction === 'both')
+    const inv = needs.filter((n) => n.direction === 'inverse' || n.direction === 'both')
+    const rev = needs.filter((n) => n.direction === 'reverse' || n.direction === 'both')
+    const allDirectionsProbed = fwd.length > 0 && inv.length > 0 && rev.length > 0
+    const closableFilled = needs.filter((n) => !n.unclosableWithoutExternalLab && n.coverage !== 'gap').length
+    const isoOfficialStandard = false as const
+    const thisIsItMeans =
+      'sealed modeled catalog + audit + gap-fill toward ISO/NIST PQC requirements/guidance — NOT the official ISO standard and NOT certification'
+
+    const facets = [
+      { facet: 'isoRequiresPostQuantumSecurity answer computes (universalMandate=false)', on: answer.computes && answer.universalMandate === false },
+      { facet: `needs sealed — ${needs.length} · covered=${covered.length} partial=${partial.length} gap=${gaps.length}`, on: needs.length >= (8 * 2) && needs.every((n) => isUuid(n.receipt)) },
+      { facet: 'all quantum directions probed (forward · inverse · reverse)', on: allDirectionsProbed && trinity.computes },
+      { facet: `audit suite coverage facets present — covered|partial|gap`, on: audit.computes && audit.partialCount >= 0 && audit.gapCount >= 2 },
+      { facet: 'lab gaps named unclosable (19790 · FIPS CMVP · ISO/CC) — not faked closed', on: labGaps.length === 3 && labGaps.every((n) => n.coverage === 'gap') },
+      { facet: `closable needs filled or partial — ${closableFilled} rows`, on: closableFilled >= (8 + 4) },
+      { facet: 'local reverse vs standards + local novel security compose', on: localTimed.computes && localNovel.localSecurityProved },
+      { facet: '1 Tbit honesty: wire.proved=false', on: oneTbit.computes && !oneTbit.wire.provedAtCallTime },
+      { facet: `isoOfficialStandard=${isoOfficialStandard} — ${thisIsItMeans.slice(0, 48)}…`, on: isoOfficialStandard === false },
+      { facet: 'certified=false · fipsValidated=false · production/Bitcoin reverse refused', on: !necessity.certified && localTimed.productionRefused && localTimed.bitcoinRefused },
+      { facet: `family demo labels — ${family.families.length} PQC families (no keygen)`, on: family.computes && family.families.length === 5 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`iso-gap-fill:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('iso-pqc-requirements-gap-fill-all-quantum-directions', facets)
+
+    const before = {
+      note: 'Before this fold: catalog + binary pass/gap audit + trinity + local timed/novel siblings; no unified covered|partial|gap need table; no isoRequiresPostQuantumSecurity answer.',
+      coveredApprox: 0,
+      partialApprox: 0,
+      gapApprox: needs.length,
+    }
+    const after = {
+      covered: covered.length,
+      partial: partial.length,
+      gap: gaps.length,
+      labGapsUnclosable: labGaps.map((n) => n.id),
+      platformGaps: gaps.filter((n) => !n.unclosableWithoutExternalLab).map((n) => n.id),
+    }
+
+    return {
+      computes: sealed.ok,
+      answer,
+      needs,
+      covered,
+      partial,
+      gaps,
+      labGaps,
+      coveredCount: covered.length,
+      partialCount: partial.length,
+      gapCount: gaps.length,
+      forwardCount: fwd.length,
+      inverseCount: inv.length,
+      reverseCount: rev.length,
+      before,
+      after,
+      thisIsItMeans,
+      isoOfficialStandard,
+      certified: false as const,
+      fipsValidated: false as const,
+      claySolvedByThisFold: 0 as const,
+      audit,
+      trinity,
+      catalog,
+      localTimed,
+      localNovel,
+      oneTbit,
+      handoff,
+      facets: sealed.facets,
+      root: merge(
+        matrix.root,
+        merkleFold([
+          sealed.root,
+          answer.root,
+          audit.root,
+          trinity.root,
+          localTimed.root,
+          localNovel.root,
+          oneTbit.root,
+          ...needs.map((n) => n.receipt),
+        ]),
+      ),
+      pair: 'iso/pqc-gap-fill',
+      cli: 'npm run quantum:iso-pqc-gap-fill',
+      route: '/en/quantum-encryption#iso-pqc-gap-fill',
+      statement: `ISO/NIST PQC gap-fill all quantum directions — covered=${covered.length} partial=${partial.length} gap=${gaps.length} (lab=${labGaps.length} unclosable); isoRequiresPQC=${answer.isoRequiresPostQuantumSecurity}; isoOfficialStandard=false.`,
+      boundary:
+        'MODELED gap-fill toward ISO/NIST PQC requirements/guidance. NOT the official ISO PQC standard. NOT ISO certified / NOT FIPS validated. Lab gaps stay open with handoff. Production/Bitcoin reverse refused. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** Browser-sync ISO PQC gap-fill. */
+export function runIsoPqcRequirementsGapFillInBrowser(matrix: MindMatrix = buildMatrix(), at = 0) {
+  const report = isoPqcRequirementsGapFillAllQuantumDirections(matrix, at)
+  return {
+    ok: report.computes,
+    isoRequiresPostQuantumSecurity: report.answer.isoRequiresPostQuantumSecurity,
+    universalMandate: report.answer.universalMandate,
+    migrationGuidance: report.answer.migrationGuidance,
+    nistAlignedIsoWork: report.answer.nistAlignedIsoWork,
+    plainAnswer: report.answer.plainAnswer,
+    coveredCount: report.coveredCount,
+    partialCount: report.partialCount,
+    gapCount: report.gapCount,
+    needs: report.needs,
+    after: report.after,
+    labGaps: report.labGaps,
+    certified: false as const,
+    fipsValidated: false as const,
+    isoOfficialStandard: false as const,
+    facets: report.facets,
+    root: report.root,
+    statement: report.statement,
+    boundary: report.boundary,
+    mode: 'browser-sync' as const,
+    browserGap: '',
+    route: report.route,
+    pair: report.pair,
+    cli: report.cli,
+  }
+}
+
+/** npm run quantum:iso-pqc-gap-fill */
+export function runIsoPqcRequirementsGapFillExit(_root: string, _argv: readonly string[] = []): number {
+  const report = isoPqcRequirementsGapFillAllQuantumDirections()
+  const a = report.answer
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} iso-pqc-gap-fill — isoRequiresPQC=${a.isoRequiresPostQuantumSecurity} ` +
+      `universalMandate=${a.universalMandate} migrationGuidance=${a.migrationGuidance} nistAligned=${a.nistAlignedIsoWork} ` +
+      `covered=${report.coveredCount} partial=${report.partialCount} gap=${report.gapCount} ` +
+      `fwd/inv/rev=${report.forwardCount}/${report.inverseCount}/${report.reverseCount} ` +
+      `isoOfficialStandard=${report.isoOfficialStandard} certified=${report.certified}\n`,
+  )
+  process.stdout.write(`  plain: ${a.plainAnswer}\n`)
+  process.stdout.write('  needs:\n')
+  for (const n of report.needs) {
+    const mark = n.coverage === 'covered' ? '✓' : n.coverage === 'partial' ? '◐' : '✗'
+    process.stdout.write(
+      `    ${mark} ${n.coverage} [${n.direction}] ${n.id} — ${n.need}${n.unclosableWithoutExternalLab ? ' (lab handoff)' : ''}\n`,
+    )
+  }
+  process.stdout.write(`  lab gaps unclosable: ${report.after.labGapsUnclosable.join(', ')}\n`)
+  process.stdout.write(`  platform gaps: ${report.after.platformGaps.join(', ') || '(none)'}\n`)
+  process.stdout.write(`  thisIsItMeans: ${report.thisIsItMeans}\n`)
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
 }

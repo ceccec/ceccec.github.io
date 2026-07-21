@@ -70,6 +70,8 @@ import {
   localEncryptionReverseTimedVsStandards,
   proveLocalNovelEncryptionSecurity,
   proveOneTbitRealtimeEncryptionClaim,
+  isoRequiresPostQuantumSecurity,
+  isoPqcRequirementsGapFillAllQuantumDirections,
 } from '../../water/encryption'
 import { honestyInProseChallenged, platformOgLimitsMeasured } from '../og'
 import { quantumFusionVerify } from '../../wind/fusion'
@@ -678,7 +680,9 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'prove-1tbit', title: '1 Tbit/s realtime encryption claim — honest status receipt', proof: proveOneTbitRealtimeEncryptionClaim(matrix) },
     { slug: 'og-limits-measured', title: 'Platform OG limits measured + honesty-in-prose challenged', proof: { ...honestyInProseChallenged(matrix), limitsRoot: platformOgLimitsMeasured(matrix).root } },
     { slug: 'iso-pqc-catalog', title: 'ISO/NIST PQC standards catalog — MODELED alignment · NOT certified', proof: isoNistPqcStandardsCatalog(matrix) },
-    { slug: 'quantum-standards-audit', title: 'Quantum standards audit — reverse+inverse · 10D coverage · alignment≠certification', proof: quantumStandardsAuditSuite(matrix) },
+    { slug: 'iso-requires-pqc', title: 'Does ISO require PQC? — no universal mandate · migration guidance', proof: isoRequiresPostQuantumSecurity(matrix) },
+    { slug: 'iso-pqc-gap-fill', title: 'ISO/NIST PQC gap-fill all quantum directions — covered|partial|gap · certified=false', proof: isoPqcRequirementsGapFillAllQuantumDirections(matrix) },
+    { slug: 'quantum-standards-audit', title: 'Quantum standards audit — covered|partial|gap · forward·inverse·reverse · 10D', proof: quantumStandardsAuditSuite(matrix) },
     { slug: 'iso-pqc-handoff', title: 'ISO/PQC handoff for science trinities — crypto vertex · NOT certified', proof: isoPqcHandoffForScienceTrinities(matrix) },
     { slug: 'science-significance', title: 'Science-domain significance scores — NOT journal impact factor', proof: scienceDomainSignificanceScores(matrix) },
     { slug: 'science-solutions', title: 'Complete quantum solutions inventory — algebra·tool·apparatus·10D gaps', proof: completeQuantumSolutionsForAllSciences(matrix) },
