@@ -163,6 +163,22 @@ runTool()
         <p class="encryption-tools__boundary">{{ result?.localTimed?.boundary ?? panel.localTimed?.boundary }}</p>
       </section>
       <UiSeparator />
+      <section id="local-audit-quantum" aria-label="Local audit quantum speed and efficiency">
+        <h3>Local audit quantum speed &amp; efficiency</h3>
+        <p class="encryption-tools__lede">
+          memoByRoot cold/warm for the local audit suite. answers÷tokens honesty · compose no-QPU/64bit structural facets.
+          NOT physical qubit FLOPS · certified=false · production reverse refused.
+        </p>
+        <UiBadge :variant="(result?.localAudit?.computes ?? panel.localAudit?.computes) ? 'default' : 'outline'">
+          cold={{ (result?.localAudit?.coldMs ?? panel.localAudit?.coldMs)?.toFixed?.(3) ?? '—' }}ms
+          · warm={{ (result?.localAudit?.warmMs ?? panel.localAudit?.warmMs)?.toFixed?.(3) ?? '—' }}ms
+          · speedup={{ (result?.localAudit?.speedup ?? panel.localAudit?.speedup)?.toFixed?.(3) ?? '—' }}×
+          · gapClosed={{ result?.localAudit?.slowLocalAuditGapClosed ?? panel.localAudit?.slowLocalAuditGapClosed ?? '—' }}
+          · qpuRequired={{ result?.localAudit?.qpuRequired ?? panel.localAudit?.qpuRequired ?? '—' }}
+        </UiBadge>
+        <p class="encryption-tools__boundary">{{ result?.localAudit?.boundary ?? panel.localAudit?.boundary }}</p>
+      </section>
+      <UiSeparator />
       <section id="prove-local-novel-encrypt" aria-label="Prove local novel encryption security">
         <h3>Local novel-encryption security proof</h3>
         <p class="encryption-tools__lede">

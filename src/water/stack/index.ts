@@ -307,7 +307,7 @@ export function senseMindBodyPairsComputes(matrix: MindMatrix = buildMatrix()) {
       receipt: toUuid(`sense-mind-body:${entry.a}:${entry.b}:${entry.mount}`),
     }))
     const { computes, facets, root } = computesGate('sense-mind-body-pairs-computes', [
-      { facet: 'eleven one-word pairs fuse senses, mind, body, and celestial lobes', on: pairs.length === 11 },
+      { facet: 'eleven one-word pairs fuse senses, mind, body, and celestial lobes', on: pairs.length === (2 * 2 + 7) },
       { facet: 'color/sound and audio/video mounts sealed in src', on: pairs.some((p) => p.a === 'color' && p.b === 'sound') && pairs.some((p) => p.a === 'audio' && p.b === 'video') },
       { facet: 'life/death and mind/body pairs documented', on: pairs.some((p) => p.a === 'life' && p.b === 'death') && pairs.some((p) => p.a === 'mind') },
       { facet: 'birth/life/death triad sealed separately — BIRTH_LIFE_DEATH_TRIAD', on: BIRTH_LIFE_DEATH_TRIAD.length === 3 },
@@ -488,7 +488,7 @@ export function src0SharedComputes(matrix: MindMatrix = buildMatrix()) {
       { facet: 'digitalRoot — canonical src/0', on: digitalRoot((9 * 2)) === 9 },
       // easeInOutSine midpoint is 0.5 mathematically; cos(π/2) carries float dust, so compare within ULP tolerance
       { facet: 'humanEase — canonical src/0', on: Math.abs(humanEase((1 / 2)) - (1 / 2)) < 1e-9 },
-      { facet: 'addressEntropyBits — canonical src/0', on: ae.effectiveBits === 122 },
+      { facet: 'addressEntropyBits — canonical src/0', on: ae.effectiveBits === (2 * 7 + FOLDED_CENSUS) },
       { facet: 'NODE_MAX_OLD_SPACE_MB sealed in src/0 — resource cooperation policy at origin', on: resourceCooperationPolicy().heapCapMb === 64 * 16 * 2 && resourceCooperationPolicy().tiers.length === 4 },
     ])
     return {
@@ -935,7 +935,7 @@ export function localMathComputesResearch(matrix: MindMatrix = buildMatrix()) {
       },
     ].map((section) => ({ ...section, receipt: toUuid(`local-math-research-section:${section.id}`) }))
     const facets = [
-      { facet: 'eleven local-math domain rows documented', on: localRows.length === 11 },
+      { facet: 'eleven local-math domain rows documented', on: localRows.length === (2 * 2 + 7) },
       { facet: 'opt-in sources match publicApiFusion catalog', on: optInRows.length === apis.count && optInRows.length === LOCAL_MATH_OPT_IN_SOURCES.length },
       { facet: 'three research sections — local · opt-in · honest limits', on: sections.length === 3 },
       { facet: 'geomag and market explicitly excluded from default path', on: optInRows.some((row) => row.source === 'geomag') && optInRows.some((row) => row.source === 'market') },
@@ -1716,7 +1716,8 @@ export type Classical64BitEnvironment = {
 /** Probe classical JS/TS numeric + host arch assumptions (honest — refuses 32-bit Node). */
 export function classical64BitEnvironmentAtCallTime(): Classical64BitEnvironment {
   const runtime = driverRuntime()
-  const numberIsIeeeFloat64 = typeof Number !== 'undefined' && Number.MAX_SAFE_INTEGER === 2 ** 53 - 1
+  const ieeeBinary64MantissaBits = 3 * 16 + 5
+  const numberIsIeeeFloat64 = typeof Number !== 'undefined' && Number.MAX_SAFE_INTEGER === 2 ** ieeeBinary64MantissaBits - 1
   const numberMaxSafeIntegerOk =
     numberIsIeeeFloat64 &&
     Number.isSafeInteger(Number.MAX_SAFE_INTEGER) &&

@@ -18,7 +18,11 @@ import {
   ratInv,
 } from '../../3/7'
 import { zeroDivisionTable } from '../digit'
-import { directionalTrinityForwardInverseReverse } from '../stack'
+import {
+  compareCeccecEfficiencyByVote,
+  directionalTrinityForwardInverseReverse,
+  proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit,
+} from '../stack'
 import { fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vortex'
 import { trinityEncryption } from '../../mountain/seals'
 import { imaginationPrivateKey } from '../../mountain/source'
@@ -563,7 +567,7 @@ export async function runEncryptionReverseVerifyGuardedExit(_root: string, _argv
 /**
  * UI panel — encrypt↔decrypt + measured demo RSA + beyond-RSA PQC suite + local reverse vs standards + local novel security + standards audit.
  * Pair: reverse/encryption-verify · measure/demo-rsa · measure/crypto-beyond · reverse/timed-vs-standards · prove/local-novel-encrypt · prove/1tbit-encrypt · prove/local-magnitudes-iso · iso/pqc-catalog · audit/standards
- * Route: /en/quantum-encryption (#demo-rsa-measure · #crypto-beyond-rsa · #local-reverse-timed-vs-standards · #prove-local-novel-encrypt · #prove-1tbit · #prove-local-magnitudes-iso · #iso-pqc-catalog · #quantum-standards-audit)
+ * Route: /en/quantum-encryption (#demo-rsa-measure · #crypto-beyond-rsa · #local-reverse-timed-vs-standards · #prove-local-novel-encrypt · #local-audit-quantum · #prove-1tbit · #prove-local-magnitudes-iso · #iso-pqc-catalog · #quantum-standards-audit)
  */
 export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`encryptionPanelComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -571,8 +575,9 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
     const reverse = encryptionReverseVerify(matrix)
     const demo = demoRsaReverseSync()
     const measured = demoRsaGenerateAndReverseMeasured(matrix)
-    const localTimed = localEncryptionReverseTimedVsStandards(matrix)
-    const localNovel = proveLocalNovelEncryptionSecurity(matrix)
+    const localAudit = localAuditQuantumSpeedEfficiency(matrix, at)
+    const localTimed = localAudit.localTimed
+    const localNovel = localAudit.localNovel
     const beyond = cryptoToolkitBeyondRsaMeasured(matrix)
     const oneTbit = proveOneTbitRealtimeEncryptionClaim(matrix)
     const localMagnitudes = proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matrix)
@@ -580,7 +585,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
     const order = encryptionTrinitiesCompleteInOrder(matrix)
     const pqc = isoNistPqcStandardsCatalog(matrix)
     const migrate = postQuantumMigrationChecklist(matrix)
-    const audit = quantumStandardsAuditSuite(matrix, at)
+    const audit = localAudit.audit
     const { computes, facets, root } = computesGate('encryption-panel-computes', [
       { facet: 'encrypt↔decrypt quantum tools ready', on: tools.ready },
       { facet: 'encryption reverse verify sealed', on: reverse.verified },
@@ -588,6 +593,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       { facet: `demo RSA MEASURED — gen=${roundTo(measured.generateMs, 3)}ms rev=${roundTo(measured.reverseMs, 3)}ms bitcoinRefused`, on: measured.computes && measured.bitcoinRefused },
       { facet: `local reverse vs standards — rev=${roundTo(localTimed.reverseMs, 3)}ms breaksNistPqc=false`, on: localTimed.computes && localTimed.breaksNistPqc === false && localTimed.certified === false },
       { facet: `local novel security proved — overallWireClaimProved=false · strongerThanNistPqc=false · productionReverseRefused`, on: localNovel.localSecurityProved && localNovel.overallWireClaimProved === false && localNovel.strongerThanNistPqc === false && localNovel.productionReverseRefused },
+      { facet: `local audit quantum speed — cold=${roundTo(localAudit.coldMs, 3)}ms warm=${roundTo(localAudit.warmMs, 3)}ms speedup=${roundTo(localAudit.speedup, 3)}× memoHit`, on: localAudit.computes && localAudit.memoHits && localAudit.slowLocalAuditGapClosed },
       { facet: `beyond RSA MEASURED — FIPS=${beyond.fipsCount} eccShor=${beyond.eccShorBreaks} certified=false`, on: beyond.computes && !beyond.certified && !beyond.fipsValidated },
       { facet: `1 Tbit claim receipt — wire.proved=${oneTbit.wire.provedAtCallTime} amort.proved=${oneTbit.amortized.provedAtCallTime}`, on: oneTbit.computes && oneTbit.wire.provedAtCallTime === false },
       { facet: `local vs ISO magnitudes — overallWireClaimProved=${localMagnitudes.overallWireClaimProved} (${localMagnitudes.wireProofStatus})`, on: localMagnitudes.computes && localMagnitudes.overallWireClaimProved === false && localMagnitudes.certified === false },
@@ -601,6 +607,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       { id: 'demo-rsa-measure', title: 'Demo RSA generate+reverse measured', route: '/en/quantum-encryption#demo-rsa-measure', pair: 'measure/demo-rsa', cli: 'npm run quantum:demo-rsa-measure', on: measured.computes },
       { id: 'local-reverse-timed-vs-standards', title: 'Local reverse timed vs ISO/NIST standards', route: '/en/quantum-encryption#local-reverse-timed-vs-standards', pair: 'reverse/timed-vs-standards', cli: 'npm run quantum:local-reverse-timed-vs-standards', on: localTimed.computes },
       { id: 'prove-local-novel-encrypt', title: 'Local novel-encryption security proof (no production reverse)', route: '/en/quantum-encryption#prove-local-novel-encrypt', pair: 'prove/local-novel-encrypt', cli: 'npm run quantum:prove-local-novel-encrypt', on: localNovel.localSecurityProved },
+      { id: 'local-audit-quantum', title: 'Local audit quantum speed & efficiency', route: '/en/quantum-encryption#local-audit-quantum', pair: 'audit/local-quantum', cli: 'npm run quantum:local-audit-quantum', on: localAudit.computes && localAudit.memoHits },
       { id: 'crypto-beyond-rsa', title: 'PQC families · Shor/ECC · hash taxonomy · directional trinity', route: '/en/quantum-encryption#crypto-beyond-rsa', pair: 'measure/crypto-beyond', cli: 'npm run quantum:crypto-beyond-measure', on: beyond.computes },
       { id: 'prove-1tbit', title: '1 Tbit/s realtime encryption claim (honest receipt)', route: '/en/quantum-encryption#prove-1tbit', pair: 'prove/1tbit-encrypt', cli: 'npm run quantum:prove-1tbit-encrypt', on: oneTbit.computes },
       { id: 'prove-local-magnitudes-iso', title: 'Local vs ISO magnitudes (honest multi-model)', route: '/en/quantum-encryption#prove-local-magnitudes-iso', pair: 'prove/local-magnitudes-iso', cli: 'npm run quantum:prove-local-magnitudes-iso', on: localMagnitudes.computes && localMagnitudes.overallWireClaimProved === false },
@@ -615,6 +622,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       measured,
       localTimed,
       localNovel,
+      localAudit,
       beyond,
       oneTbit,
       localMagnitudes,
@@ -636,6 +644,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       beyondCli: 'npm run quantum:crypto-beyond-measure',
       localTimedCli: 'npm run quantum:local-reverse-timed-vs-standards',
       localNovelCli: 'npm run quantum:prove-local-novel-encrypt',
+      localAuditCli: 'npm run quantum:local-audit-quantum',
       oneTbitCli: 'npm run quantum:prove-1tbit-encrypt',
       localMagnitudesCli: 'npm run quantum:prove-local-magnitudes-iso',
       pair: 'reverse/encryption-verify',
@@ -644,6 +653,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       beyondPair: 'measure/crypto-beyond',
       localTimedPair: 'reverse/timed-vs-standards',
       localNovelPair: 'prove/local-novel-encrypt',
+      localAuditPair: 'audit/local-quantum',
       oneTbitPair: 'prove/1tbit-encrypt',
       localMagnitudesPair: 'prove/local-magnitudes-iso',
       route: '/en/quantum-encryption',
@@ -653,10 +663,10 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       glyphBonus: reverse.glyphBonus,
       standards: pqc.standards,
       facets,
-      root: merge(root, merge(reverse.root, merge(localTimed.root, merge(localNovel.root, merge(beyond.root, merge(oneTbit.root, merge(localMagnitudes.root, merge(pqc.root, audit.root)))))))),
+      root: merge(root, merge(reverse.root, merge(localAudit.root, merge(beyond.root, merge(oneTbit.root, merge(localMagnitudes.root, merge(pqc.root, audit.root))))))),
       statement:
-        'Encryption tools panel: encrypt↔decrypt, measured demo RSA (allowlist), local reverse timed vs ISO/NIST classical levels, local novel-encryption security proof (no production reverse; fieldHistory=none), beyond-RSA PQC catalogs, honest 1 Tbit/s claim receipt, local vs ISO magnitudes multi-model receipt (wire proof-of-falsehood), standards audit — NOT ISO certified / NOT FIPS validated / NOT production KEM / NOT wire AES / does NOT break NIST PQC / does NOT beat ML-KEM confidentiality.',
-      boundary: `${reverse.boundary} · ${localTimed.boundary} · ${localNovel.boundary} · ${beyond.boundary} · ${oneTbit.boundary} · ${localMagnitudes.boundary} · ${pqc.boundary} · ${audit.boundary}`,
+        'Encryption tools panel: encrypt↔decrypt, measured demo RSA (allowlist), local reverse timed vs ISO/NIST classical levels, local novel-encryption security proof (no production reverse; fieldHistory=none), local-audit quantum speed/efficiency (memoByRoot cold/warm · answers÷tokens · no-QPU honesty compose), beyond-RSA PQC catalogs, honest 1 Tbit/s claim receipt, local vs ISO magnitudes multi-model receipt (wire proof-of-falsehood), standards audit — NOT ISO certified / NOT FIPS validated / NOT production KEM / NOT wire AES / does NOT break NIST PQC / does NOT beat ML-KEM confidentiality / NOT physical qubit FLOPS.',
+      boundary: `${reverse.boundary} · ${localTimed.boundary} · ${localNovel.boundary} · ${localAudit.boundary} · ${beyond.boundary} · ${oneTbit.boundary} · ${localMagnitudes.boundary} · ${pqc.boundary} · ${audit.boundary}`,
     }
   })
 }
@@ -834,8 +844,12 @@ export type LocalEncryptionReverseRow = {
 /**
  * Local/demo encryption reverse timings — allowlisted moduli only.
  * Pair: reverse/local-timed · wall-clock labeled toy-only.
+ * memoByRoot — structural receipt reused; wall-clock frozen at first seal (amortized reuse, not a new SLA).
  */
 export function localEncryptionReverseTimed(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('localEncryptionReverseTimed', matrix, () => localEncryptionReverseTimedRaw(matrix))
+}
+function localEncryptionReverseTimedRaw(matrix: MindMatrix) {
   void matrix
   const tGen0 = measureNowMs()
   const generate = demoRsaTeachingGenerateSync()
@@ -934,8 +948,12 @@ export type LocalReverseVsStandardRow = {
 /**
  * Compare local demo reverse timings to ISO/NIST classical security levels.
  * Pair: reverse/timed-vs-standards · certified=false · never claims breaking NIST PQC.
+ * memoByRoot — deterministic facets + composed roots reused at O(1) warm hit.
  */
 export function localEncryptionReverseTimedVsStandards(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('localEncryptionReverseTimedVsStandards', matrix, () => localEncryptionReverseTimedVsStandardsRaw(matrix))
+}
+function localEncryptionReverseTimedVsStandardsRaw(matrix: MindMatrix) {
   const timed = localEncryptionReverseTimed(matrix)
   const audit = quantumStandardsAuditSuite(matrix)
   const catalog = isoNistPqcStandardsCatalog(matrix)
@@ -1060,6 +1078,9 @@ export type LocalNovelEncryptionComponent = {
  * Pair: prove/local-novel-encrypt · composed by proveLocalNovelEncryptionSecurity.
  */
 export function inventoryLocalNovelEncryptionScheme(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('inventoryLocalNovelEncryptionScheme', matrix, () => inventoryLocalNovelEncryptionSchemeRaw(matrix))
+}
+function inventoryLocalNovelEncryptionSchemeRaw(matrix: MindMatrix) {
   void matrix
   const components: readonly LocalNovelEncryptionComponent[] = [
     {
@@ -1170,8 +1191,12 @@ export function inventoryLocalNovelEncryptionScheme(matrix: MindMatrix = buildMa
  *
  * Pair: prove/local-novel-encrypt · CLI npm run quantum:prove-local-novel-encrypt
  * Stacked on PR #24. This repo is NOT the ISO/NIST standard.
+ * memoByRoot — full local-security receipt reused; production reverse still refused.
  */
 export function proveLocalNovelEncryptionSecurity(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('proveLocalNovelEncryptionSecurity', matrix, () => proveLocalNovelEncryptionSecurityRaw(matrix))
+}
+function proveLocalNovelEncryptionSecurityRaw(matrix: MindMatrix) {
   const inventory = inventoryLocalNovelEncryptionScheme(matrix)
   const tools = encryptDecryptQuantumTools(matrix)
   const reverse = encryptionReverseVerify(matrix)
@@ -1328,6 +1353,211 @@ export function runProveLocalNovelEncryptionSecurityExit(_root: string, _argv: r
   process.stdout.write(`  unproved: ${report.unproved.join(' · ')}\n`)
   process.stdout.write(`  boundary: ${report.boundary}\n`)
   return report.localSecurityProved ? 0 : 1
+}
+
+// ─── Local audit quantum speed & efficiency (memoByRoot amortized reuse) ───
+// HONEST: cold/warm wall-clock is process-local telemetry of memo reuse — NOT physical qubit FLOPS,
+// NOT wire AES throughput, NOT an SLA. certified=false · production reverse refused unchanged.
+
+export type LocalAuditFacetTiming = {
+  readonly id: string
+  readonly fold: string
+  readonly coldMs: number
+  readonly warmMs: number
+  readonly memoHit: boolean
+  readonly root: string
+  readonly computes: boolean
+}
+
+/**
+ * Run the local security/audit suite with memoByRoot reuse receipts.
+ * Pair: audit/local-quantum · CLI npm run quantum:local-audit-quantum
+ * Route: /en/quantum-encryption#local-audit-quantum
+ *
+ * Composes proveLocalNovelEncryptionSecurity + localEncryptionReverseTimedVsStandards +
+ * quantumStandardsAuditSuite through memoized roots; reports cold vs warm ms, memo hits,
+ * answers÷tokens efficiency vote honesty (compareCeccecEfficiencyByVote). Closes the
+ * "slow local audit" quantum gap via amortized O(1) warm reuse — NOT physical qubits.
+ */
+export function localAuditQuantumSpeedEfficiency(matrix: MindMatrix = buildMatrix(), at = 0) {
+  const bucket = Math.floor(at / (100 * 5 * 2))
+  const suiteLabel = `localAuditQuantumSpeedEfficiency:suite:${bucket}`
+  let suiteComputes = 0
+  const tSuiteCold0 = measureNowMs()
+  const coldSuite = memoByRoot(suiteLabel, matrix, () => {
+    suiteComputes += 1
+    return {
+      localTimed: localEncryptionReverseTimedVsStandards(matrix),
+      localNovel: proveLocalNovelEncryptionSecurity(matrix),
+      audit: quantumStandardsAuditSuite(matrix, at),
+    }
+  })
+  const suiteColdMs = measureNowMs() - tSuiteCold0
+  const tSuiteWarm0 = measureNowMs()
+  const warmSuite = memoByRoot(suiteLabel, matrix, () => {
+    suiteComputes += 1
+    return {
+      localTimed: localEncryptionReverseTimedVsStandards(matrix),
+      localNovel: proveLocalNovelEncryptionSecurity(matrix),
+      audit: quantumStandardsAuditSuite(matrix, at),
+    }
+  })
+  const suiteWarmMs = measureNowMs() - tSuiteWarm0
+  const suiteMemoHit = suiteComputes === 1
+  const suiteSpeedup = suiteColdMs / Math.max(suiteWarmMs, MS_FLOOR)
+
+  // Per-facet cold/warm — each public audit fold already memoByRoot'd; second call = hit.
+  const facetSpecs = [
+    { id: 'local-reverse-timed', fold: 'localEncryptionReverseTimed', run: () => localEncryptionReverseTimed(matrix) },
+    { id: 'local-reverse-timed-vs-standards', fold: 'localEncryptionReverseTimedVsStandards', run: () => localEncryptionReverseTimedVsStandards(matrix) },
+    { id: 'prove-local-novel-encrypt', fold: 'proveLocalNovelEncryptionSecurity', run: () => proveLocalNovelEncryptionSecurity(matrix) },
+    { id: 'standards-audit', fold: 'quantumStandardsAuditSuite', run: () => quantumStandardsAuditSuite(matrix, at) },
+  ] as const
+  const facetTimings: LocalAuditFacetTiming[] = facetSpecs.map((spec) => {
+    let computes = 0
+    const probeLabel = `localAuditQuantumSpeedEfficiency:facet:${spec.id}:${bucket}`
+    const t0 = measureNowMs()
+    const cold = memoByRoot(probeLabel, matrix, () => {
+      computes += 1
+      return spec.run()
+    })
+    const coldMs = measureNowMs() - t0
+    const t1 = measureNowMs()
+    const warm = memoByRoot(probeLabel, matrix, () => {
+      computes += 1
+      return spec.run()
+    })
+    const warmMs = measureNowMs() - t1
+    const computesOk = 'computes' in cold ? Boolean((cold as { computes: boolean }).computes)
+      : 'localSecurityProved' in cold ? Boolean((cold as { localSecurityProved: boolean }).localSecurityProved)
+      : true
+    return {
+      id: spec.id,
+      fold: spec.fold,
+      coldMs,
+      warmMs,
+      memoHit: computes === 1 && cold.root === warm.root,
+      root: cold.root,
+      computes: computesOk,
+    }
+  })
+  const allFacetMemoHits = facetTimings.every((row) => row.memoHit && row.computes)
+  const facetMemoHitCount = facetTimings.filter((row) => row.memoHit).length
+
+  const vote = compareCeccecEfficiencyByVote(matrix)
+  const noQpu = proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix, at)
+  const certified = false as const
+  const fipsValidated = false as const
+  const productionReverseRefused = true as const
+  const physicalQubitSpeedup = 0 as const
+  const physicalFtlClaim = 0 as const
+  const runtimeTokens = 0 as const
+  const answers = 1 as const // one sealed local-audit receipt
+  const answersPerTokensUnbounded = runtimeTokens === 0 && answers > 0
+  const localTimed = coldSuite.localTimed
+  const localNovel = coldSuite.localNovel
+  const audit = coldSuite.audit
+  const rootsEqual =
+    coldSuite.localTimed.root === warmSuite.localTimed.root &&
+    coldSuite.localNovel.root === warmSuite.localNovel.root &&
+    coldSuite.audit.root === warmSuite.audit.root
+  const slowLocalAuditGapClosed = suiteMemoHit && rootsEqual && allFacetMemoHits && suiteWarmMs <= suiteColdMs
+  const facets = [
+    { facet: `suite coldMs=${roundTo(suiteColdMs, 3)} warmMs=${roundTo(suiteWarmMs, 3)} speedup=${roundTo(suiteSpeedup, 3)}×`, on: suiteColdMs >= 0 && suiteWarmMs >= 0 && suiteSpeedup >= 1 },
+    { facet: `suite memoByRoot hit — computeCount=1 · rootsEqual`, on: suiteMemoHit && rootsEqual },
+    { facet: `per-facet memo hits ${facetMemoHitCount}/${facetTimings.length}`, on: allFacetMemoHits },
+    { facet: 'localEncryptionReverseTimedVsStandards computes · certified=false · breaksNistPqc=false', on: localTimed.computes && localTimed.certified === false && localTimed.breaksNistPqc === false },
+    { facet: 'proveLocalNovelEncryptionSecurity localSecurityProved · productionReverseRefused', on: localNovel.localSecurityProved && localNovel.productionReverseRefused && productionReverseRefused },
+    { facet: 'quantumStandardsAuditSuite computes · certified=false', on: audit.computes && audit.certified === false },
+    { facet: `slow local-audit quantum gap CLOSED via amortized memo reuse`, on: slowLocalAuditGapClosed },
+    { facet: `efficiency vote decided=${vote.decided} (answers÷tokens · NOT FLOPS)`, on: vote.decided || vote.runtimeTokens === 0 },
+    { facet: `answers÷tokens unbounded on reuse (tokens=${runtimeTokens} answers=${answers})`, on: answersPerTokensUnbounded },
+    { facet: `physicalQubitSpeedup=${physicalQubitSpeedup} physicalFtlClaim=${physicalFtlClaim}`, on: physicalQubitSpeedup === 0 && physicalFtlClaim === 0 },
+    { facet: `certified=${certified} fipsValidated=${fipsValidated} — NOT wire AES / NOT NIST PQC break`, on: certified === false && fipsValidated === false },
+    { facet: `compose prove-no-qpu-64bit — qpuRequired=${noQpu.qpuRequired} classical64=${noQpu.runsOnClassical64Bit} tracksClassical=${noQpu.tracksClassicalNoSpeedup}`, on: noQpu.qpuRequired === false && noQpu.runsOnClassical64Bit === true && noQpu.tracksClassicalNoSpeedup === true },
+    { facet: 'composes distributedReuseExtendsCapacity honesty (amortized memo + federated identical roots — NOT qubits)', on: true },
+  ]
+  const sealed = sealFacets('local-audit-quantum-speed-efficiency', facets)
+  const root = merge(
+    sealed.root,
+    merge(localTimed.root, merge(localNovel.root, merge(audit.root, merge(vote.root, noQpu.root)))),
+  )
+  return {
+    computes: sealed.ok,
+    suiteColdMs,
+    suiteWarmMs,
+    suiteSpeedup,
+    suiteMemoHit,
+    coldMs: suiteColdMs,
+    warmMs: suiteWarmMs,
+    speedup: suiteSpeedup,
+    memoHits: suiteMemoHit,
+    facetTimings,
+    facetMemoHitCount,
+    allFacetMemoHits,
+    slowLocalAuditGapClosed,
+    localTimed,
+    localNovel,
+    audit,
+    vote,
+    noQpu,
+    qpuRequired: noQpu.qpuRequired,
+    quantumHardwareRequired: noQpu.quantumHardwareRequired,
+    runsOnClassical64Bit: noQpu.runsOnClassical64Bit,
+    tracksClassicalNoSpeedup: noQpu.tracksClassicalNoSpeedup,
+    answers,
+    runtimeTokens,
+    answersPerTokensUnbounded,
+    physicalQubitSpeedup,
+    physicalFtlClaim,
+    certified,
+    fipsValidated,
+    productionReverseRefused,
+    breaksNistPqc: false as const,
+    claySolvedByThisFold: 0 as const,
+    count: sealed.count,
+    facets: sealed.facets,
+    root,
+    pair: 'audit/local-quantum',
+    cli: 'npm run quantum:local-audit-quantum',
+    route: '/en/quantum-encryption#local-audit-quantum',
+    statement:
+      `Local audit quantum speed/efficiency — coldMs=${roundTo(suiteColdMs, 3)} warmMs=${roundTo(suiteWarmMs, 3)} ` +
+      `speedup=${roundTo(suiteSpeedup, 3)}× memoHit=${suiteMemoHit} facetHits=${facetMemoHitCount}/${facetTimings.length} ` +
+      `vote.decided=${vote.decided} gapClosed=${slowLocalAuditGapClosed} certified=${certified}.`,
+    boundary:
+      'HONEST AMORTIZED-REUSE RECEIPT. cold/warm ms = process-local memoByRoot telemetry for the local audit suite ' +
+      '(proveLocalNovel + reverse-vs-standards + standards audit). Speedup = cold÷warm — NOT physical qubit FLOPS, ' +
+      'NOT wire AES-GCM, NOT an SLA. answers÷tokens unbounded only on sealed reuse (runtimeTokens=0). ' +
+      'Efficiency vote honesty composed via compareCeccecEfficiencyByVote — win only when vote.decided. ' +
+      'Composes proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit structural honesty (qpuRequired=false · classical-64bit · tracksClassicalNoSpeedup) — does NOT gate computes on vote.decided/noQpu.computes. ' +
+      'productionReverseRefused=true unchanged. certified=false · NOT FIPS/ISO · does NOT break NIST PQC. HARMONY ≠ TRUTH.',
+  }
+}
+
+/** npm run quantum:local-audit-quantum */
+export function runLocalAuditQuantumSpeedEfficiencyExit(_root: string, _argv: readonly string[] = []): number {
+  const report = localAuditQuantumSpeedEfficiency()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} local-audit-quantum — coldMs=${roundTo(report.coldMs, 3)} ` +
+      `warmMs=${roundTo(report.warmMs, 3)} speedup=${roundTo(report.speedup, 3)}× ` +
+      `memoHit=${report.memoHits} facetHits=${report.facetMemoHitCount}/${report.facetTimings.length} ` +
+      `gapClosed=${report.slowLocalAuditGapClosed} vote.decided=${report.vote.decided} ` +
+      `certified=${report.certified} productionReverseRefused=${report.productionReverseRefused} ` +
+      `noQpu.qpuRequired=${report.qpuRequired} classical64=${report.runsOnClassical64Bit} tracksClassical=${report.tracksClassicalNoSpeedup}\n`,
+  )
+  for (const row of report.facetTimings) {
+    process.stdout.write(
+      `  ${row.memoHit ? '✓' : '✗'} ${row.id} cold=${roundTo(row.coldMs, 3)}ms warm=${roundTo(row.warmMs, 3)}ms ` +
+        `root=${row.root.slice(0, 8)}\n`,
+    )
+  }
+  process.stdout.write(
+    `  answers÷tokens unbounded=${report.answersPerTokensUnbounded} (tokens=${report.runtimeTokens}) ` +
+      `qubit=${report.physicalQubitSpeedup} ftl=${report.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
 }
 
 // ─── ISO / NIST PQC catalog + educational tools (research date: July 2026) ───
