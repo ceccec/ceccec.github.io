@@ -21,7 +21,7 @@ import { ancientCalendars } from '../../thunder/decode'
 import { babelFold, textToMovie } from '../../earth/world'
 import { areaPairs, doubleTorus3D, hexagramIsHexColorDuality, merkaba, uiConvertsFlatToThreeDQuantum } from '../../mountain/geometry'
 import { DIMENSIONS, DIMENSION_NAMES, dims, dimWalk, type Dims, tenDimensionalAnimation as tenDimensionalAnimationCore } from '../../quantum/mountain/dimensions'
-import { depthIsThePerspectiveDivide, perspective, rot2 } from '../../quantum/wind/geometry' // the sealed projection atoms — FOCAL-2.4 perspective divide + the one planar rotation
+import { depthIsThePerspectiveDivide, perspective, rot2, rotate3 } from '../../quantum/wind/geometry' // the sealed projection atoms — FOCAL-2.4 perspective divide + the one planar rotation
 import { holographicFractalArchitecture as holographicFractalArchitectureCore } from '../../thunder/movie/glass'
 import { yinYang } from '../../quantum/lake/spirit'
 import { scaleColor, A432_HUE, GOLDEN_ANGLE, movieCanvasHex } from '../../quantum/science'
@@ -756,13 +756,13 @@ function heroSvgPaletteFromUuid(uuid: string) {
   }
 }
 
-// The plasma-ball layer — a glowing core with radial filaments flickering on the a432 spine, hex-only (no hsl)
-// and SMIL-only so it stays GitHub-safe. The plasma ball folded into the hero: the fire-li energy at the throat.
+// The plasma-ball layer — glowing core + radial filaments on the fractal clock / movieCanvasHex spine
+// (same palette atoms as fire/plasma/ball). Hex-only, SMIL-only, GitHub-safe. Filament count = vortex length.
 function heroPlasmaBallLayer(cx: number, cy: number, byte: (k: number) => number): string {
   const hue = Math.round((byte(6) * 360) / (64 * 4))
   const core = movieCanvasHex(hue, { L: 7 / 8 })
   const fil = movieCanvasHex((hue + (8 * 5)) % 360, { L: 1 - 3 / 16 })
-  const n = (6 * 2)
+  const n = VORTEX_SEQUENCE.length // sealed 1-2-4-8-7-5 doubling circuit — not a hand-picked ray count
   const filaments = Array.from({ length: n }, (_, k) => {
     const a = (k / n) * TAU
     const r = (6 * 5) + (byte(k) % 26)
@@ -770,21 +770,56 @@ function heroPlasmaBallLayer(cx: number, cy: number, byte: (k: number) => number
     const y2 = Math.round(cy + Math.sin(a) * r)
     return `<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="${fil}" stroke-width="1.5"><animate attributeName="opacity" values="0.12;0.7;0.12" dur="${fractalClockDur(FRACTAL_CLOCK_DIVISORS[9 - (k % 4)]!)}" begin="${(k % 9) * (2 / 5) + (1 / (5 * 2))}s" repeatCount="indefinite"/></line>`
   }).join('')
-  return `<g opacity="0.5">${filaments}<circle cx="${cx}" cy="${cy}" r="14" fill="${core}"><animate attributeName="r" values="11;18;11" dur="${fractalClockDur(9 * 2)}" repeatCount="indefinite"/><animate attributeName="opacity" values="0.35;0.85;0.35" dur="${fractalClockDur(9 * 2)}" repeatCount="indefinite"/></circle></g>`
+  return `<g opacity="0.5" data-layer="plasma">${filaments}<circle cx="${cx}" cy="${cy}" r="14" fill="${core}"><animate attributeName="r" values="11;18;11" dur="${fractalClockDur(9 * 2)}" repeatCount="indefinite"/><animate attributeName="opacity" values="0.35;0.85;0.35" dur="${fractalClockDur(9 * 2)}" repeatCount="indefinite"/></circle></g>`
 }
 
-// The sacred-geometry layer — the Flower of Life, a real compass construction (seven circles), drawn as faint
-// strokes slowly turning. Hex-only, SMIL-only, GitHub-safe. The geometry folded into the hero behind the torus.
-function heroFlowerOfLifeLayer(cx: number, cy: number, byte: (k: number) => number): string {
-  const hue = Math.round((byte(9) * 360) / (64 * 4))
-  const stroke = movieCanvasHex(hue, { L: 1 - 3 / 16 })
-  const R = 26
-  const centers: [number, number][] = [[0, 0], ...Array.from({ length: 6 }, (_, k): [number, number] => {
-    const a = (k / 6) * TAU
-    return [Math.cos(a) * R, Math.sin(a) * R]
-  })]
-  const circles = centers.map(([dx, dy]) => `<circle cx="${Math.round(dx)}" cy="${Math.round(dy)}" r="${R}" fill="none" stroke="${stroke}" stroke-width="1"/>`).join('')
-  return `<g transform="translate(${cx} ${cy})" opacity="0.26"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="${fractalClockDur(2)}" repeatCount="indefinite" additive="sum"/>${circles}</g>`
+// Merkaba layer — stella octangula from sealed merkaba().tetraUp/tetraDown, projected through the sealed
+// rotate3 + perspective atoms (same law as the live canvas). Counter-rotating SMIL groups. Computational
+// geometry, not Flower-of-Life / sacred-geometry prose.
+const HERO_MERKABA_EDGES: readonly (readonly [number, number])[] = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]]
+const HERO_OBLIQUE_TILT = -Math.asin((7 / (5 * 4))) // matches quantum canvas OBLIQUE_VIEW_TILT (I Ching ratio)
+
+function heroMerkabaLayer(cx: number, cy: number, byte: (k: number) => number): string {
+  const mk = merkaba()
+  const scale = (6 * 9) // ~54 px — nested under the double-torus ellipses
+  const project = (v: readonly [number, number, number]) => {
+    const unit = Math.hypot(v[0], v[1], v[2]) || 1
+    const r = rotate3(v[0] / unit, v[1] / unit, v[2] / unit, 0, HERO_OBLIQUE_TILT, 0)
+    const persp = perspective(r.Z)
+    return { x: Math.round(r.X * persp * scale * unit), y: Math.round(r.Y * persp * scale * unit) }
+  }
+  const tetra = (
+    verts: readonly (readonly [number, number, number])[],
+    hue: number,
+    from: string,
+    to: string,
+  ) => {
+    const pts = verts.map(project)
+    const lines = HERO_MERKABA_EDGES.map(([a, b]) => {
+      const p0 = pts[a]!
+      const p1 = pts[b]!
+      return `<line x1="${p0.x}" y1="${p0.y}" x2="${p1.x}" y2="${p1.y}" stroke="${movieCanvasHex(hue, { L: 1 - 3 / 16 })}" stroke-width="1.25"/>`
+    }).join('')
+    return `<g opacity="0.44"><animateTransform attributeName="transform" type="rotate" from="${from}" to="${to}" dur="${fractalClockDur(4)}" repeatCount="indefinite" additive="sum"/>${lines}</g>`
+  }
+  const hueUp = Math.round((byte(9) * 360) / (64 * 4))
+  const hueDown = Math.round((byte(11) * 360) / (64 * 4))
+  return `<g transform="translate(${cx} ${cy})" data-layer="merkaba" data-counter-rotating="${mk.counterRotating}">${tetra(mk.tetraUp, hueUp, '0', '360')}${tetra(mk.tetraDown, hueDown, '360', '0')}</g>`
+}
+
+// Seven rosetta rays — sealed ROSETTA_RAYS.length spokes at τ/7, hues stepped by GOLDEN_ANGLE, fractal-clock pulse.
+function heroRosettaRaysLayer(cx: number, cy: number, byte: (k: number) => number): string {
+  const n = ROSETTA_RAYS.length
+  const R = (16 * 9)
+  const hue0 = Math.round((byte(11) * 360) / (64 * 4))
+  const lines = Array.from({ length: n }, (_, k) => {
+    const a = (k / n) * TAU - Math.PI / 2
+    const x2 = Math.round(cx + Math.cos(a) * R)
+    const y2 = Math.round(cy + Math.sin(a) * R)
+    const stroke = movieCanvasHex((hue0 + Math.round(k * GOLDEN_ANGLE_DEG)) % 360, { L: 11 / 16 })
+    return `<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="${stroke}" stroke-width="1" opacity="0.45"><animate attributeName="opacity" values="0.18;0.55;0.18" dur="${fractalClockDur(FRACTAL_CLOCK_DIVISORS[k % 4]!)}" begin="${(k % 7) * (1 / 5)}s" repeatCount="indefinite"/></line>`
+  }).join('')
+  return `<g data-layer="rosetta">${lines}</g>`
 }
 
 /** The stillness channel for SMIL hosts — strips every self-closed animate/animateTransform element, leaving
@@ -822,14 +857,15 @@ export function heroSvgFromUuid(uuid: string, opts: { animate?: boolean } = {}):
     `<linearGradient id="torus" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${movieCanvasHex(G0, { L: 7 / 8 })}"/><stop offset="50%" stop-color="${colors.torusMid}"/><stop offset="100%" stop-color="${movieCanvasHex(G1, { L: 1 - 3 / 16 })}"/></linearGradient>`,
     `</defs>`,
     `<rect width="${W}" height="${H}" rx="18" fill="url(#bg)"/>`,
-    heroFlowerOfLifeLayer(cx, cy, byte),
+    heroRosettaRaysLayer(cx, cy, byte),
+    heroMerkabaLayer(cx, cy, byte),
     heroPlasmaBallLayer(cx, cy, byte),
     `<g>${bagua}</g>`,
     `<g fill="none" stroke="url(#torus)" stroke-width="2.5">`,
     torus(cx - (6 * 5 * 2), 'from="0" to="360"', '0s'),
     torus(cx + (6 * 5 * 2), 'from="360" to="0"', '-4.5s'),
     `</g>`,
-    ...LOOPS.map((L) => `<g transform="translate(${cx} ${cy})"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="${L.dur}s" repeatCount="indefinite" additive="sum"/><circle cx="${L.r}" cy="0" r="5.5" fill="${movieCanvasHex(L.hue, { L: 1 - 3 / 16 })}"/></g>`),
+    ...LOOPS.map((L) => `<g transform="translate(${cx} ${cy})" data-layer="homology"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="${L.dur}s" repeatCount="indefinite" additive="sum"/><circle cx="${L.r}" cy="0" r="5.5" fill="${movieCanvasHex(L.hue, { L: 1 - 3 / 16 })}"/></g>`),
     `<text x="${cx}" y="${cy + 6}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="28" font-weight="700" fill="${colors.title}">Double Torus</text>`,
     `<text x="${cx}" y="${H - (5 * 4)}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11.5" fill="${colors.accent}">χ(Σ₂) = −2 · H₁(Σ₂) = ℤ⁴ · I Ching 64 = 4³ · ten dimensions · 432 gates</text>`,
     `</svg>`,
@@ -837,11 +873,9 @@ export function heroSvgFromUuid(uuid: string, opts: { animate?: boolean } = {}):
   return opts.animate === false ? stillSvg(svg) : svg
 }
 
-// tenDimensionalHeroSvg — the README hero, FORGED: the brand is content-addressed at MAX tampering cost (the
-// SHA-256 UUID) and that UUID directly computes the hero (heroSvgFromUuid). Much less code — one parametric
-// generator for ANY uuid — and a lot more features: every uuid forges its own hero. All wired through the forge.
-// The hero now also carries the sacred geometry (the Flower of Life compass construction) and the plasma ball
-// (a glowing core with radial filaments) folded in behind the double torus — both hex-only, SMIL-only, GitHub-safe.
+// tenDimensionalHeroSvg — the README hero, FORGED: brand → SHA-256 UUID → heroSvgFromUuid (parametric).
+// Layers: rosetta rays (ROSETTA_RAYS) · merkaba (mountain/geometry + rotate3/perspective) · plasma (vortex +
+// fractal clock) · bāguà · counter-rotating double torus · four H₁ loops. Hex-only, SMIL-only, GitHub-safe.
 export function tenDimensionalHeroSvg(): string {
   return heroSvgFromUuid(toUuidSha256('double torus · ten dimensions · 432'))
 }
