@@ -4,6 +4,7 @@ import { useData, useRoute } from 'vitepress'
 import {
   drawHumanDesignBodyGraph,
   humanDesignBodyGraphPanelComputes,
+  humanDesignBodyGraphSvg,
   julianDayFromCivil,
   MEEUS_J2000_CIVIL,
   MEEUS_J2000_JD,
@@ -27,6 +28,7 @@ const displayTitle = computed(() => t('Human Design BodyGraph'))
 const seedParts = computed(() => ['HumanDesignBodyGraph', panel.value.root, String(birthJd.value), route.path] as const)
 const reduce = prefersReducedMotion()
 const { isDark } = useData()
+const structureSvg = computed(() => humanDesignBodyGraphSvg(undefined, birthJd.value, { animate: !reduce, dark: isDark.value }))
 
 const { repaint } = useVisibleMovieCanvas({
   canvas,
@@ -60,7 +62,7 @@ function resetJ2000() {
     :title="displayTitle"
   >
     <p class="hd-bodygraph__honesty">
-      Structure-only (W3–W6). Symbolic JD sample — not a person. Profiling/aura refuted.
+      Structure-only (W3–W7). Symbolic JD sample — not a person. Profiling/aura refuted.
     </p>
     <div class="hd-bodygraph__jd" role="group" :aria-label="t('Birth JD (symbolic)')">
       <label>
@@ -102,6 +104,12 @@ function resetJ2000() {
         :aria-label="displayTitle"
       />
     </div>
+    <div
+      class="hd-bodygraph__svg"
+      role="img"
+      :aria-label="t('BodyGraph structure SVG (W7)')"
+      v-html="structureSvg"
+    />
     <p class="hd-bodygraph__boundary">{{ panel.boundary }}</p>
   </UiCardShell>
 </template>
@@ -176,5 +184,18 @@ function resetJ2000() {
   height: min(var(--ich-vw-movie), var(--vp-movie-min-h));
   border-radius: calc(var(--vp-movie-radius) * calc(3 / 4));
   background: transparent;
+}
+
+.hd-bodygraph__svg {
+  margin-top: var(--ich-sp3);
+  width: min(100%, calc(var(--ich-vw-movie) * calc(3 / 4)));
+  max-width: 100%;
+}
+
+.hd-bodygraph__svg :deep(svg) {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: calc(var(--vp-movie-radius) * calc(3 / 4));
 }
 </style>

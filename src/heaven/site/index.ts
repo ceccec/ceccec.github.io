@@ -70,6 +70,7 @@ export { quantumSitemap, professionals, siteConfig, computedWebManifest, staticP
 
 // ☲ Lí · Fire · clinging · lower·yin · depthFade — auxiliary pure-leaf folds
 import { a432, a432Default, agentObserve, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, commitsAuthoredByUserOnly, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, foldBlockchain, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, siteRoutes, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from '../../fire/li'
+import { humanDesignBodyGraphSvg, humanDesignBodyGraphSvgW7 } from '../sky/astronomy'
 import { ancientCalendars } from '../../thunder/decode'
 import { solarSystem } from '../../water/cosmos'
 import { lunarStandstillsDecoded, megalithicAstronomyDecoded, pyramidConstructionMath, pyramidGridDebunked, pyramidsDecoded } from '../../mountain/geometry'
@@ -859,6 +860,8 @@ export function symbolsRemainingToQuantumise(matrix: MindMatrix = buildMatrix())
     const yantra = sriYantraSeedSvg({ animate: true })
     const tol = treeOfLifeSvg(matrix, { animate: true })
     const elements = platonicElementGlyphsSvg({ animate: true })
+    const hdBody = humanDesignBodyGraphSvg(matrix, undefined, { animate: true })
+    const hdW7 = humanDesignBodyGraphSvgW7(matrix)
     const inventory = [
       { symbol: 'i-ching-trigram-hexagram', status: 'sealed' as const, on: ich.rebuilt && ic.organised, surface: 'livingIChingSvg · iChing()' },
       { symbol: 'yin-yang-taijitu', status: 'sealed' as const, on: yy.computes, surface: 'yinYangDimensionsSvg · yinYangFoldsThroughDimensions' },
@@ -871,10 +874,10 @@ export function symbolsRemainingToQuantumise(matrix: MindMatrix = buildMatrix())
       { symbol: 'flower-of-life', status: 'sealed' as const, on: flowerFruit.decodes && home.flowerFruitPath === true, surface: 'flowerOfLifeCenters · readmeHeroSvgProofOfAllTheorems' },
       { symbol: 'fruit-of-life', status: 'sealed' as const, on: flowerFruit.decodes && home.flowerFruitPath === true, surface: 'fruitOfLifeCenters · FoL→Fruit unlock' },
       { symbol: 'merkaba-star-tetra', status: 'sealed' as const, on: mk.counterRotating && home.counterRotating === true, surface: 'merkaba · bothEarths · README 4-dir N·E·S·W ±ω' },
+      { symbol: 'human-design-gates', status: 'sealed' as const, on: hdW7.computes && /data-symbol="human-design-bodygraph"/.test(hdBody) && /wetStatic=false/.test(hdBody), surface: 'humanDesignBodyGraphSvg←W3–W7 panel∧layout (structure-only)' },
       { symbol: 'om-aum', status: 'missing' as const, on: true, surface: 'no computed SVG emitter yet' },
       { symbol: 'runes-futhark', status: 'missing' as const, on: true, surface: 'no computed SVG emitter yet' },
       { symbol: 'alchemy-sigils', status: 'missing' as const, on: true, surface: 'src/fire/alchemy folds exist; glyph SVG not emitted' },
-      { symbol: 'human-design-gates', status: 'partial' as const, on: true, surface: 'W3–W6 wheel·channels·chart·structure facets sealed; BodyGraph Vue JD input; SVG emitter separate' },
       { symbol: 'glagolitic-glyphs', status: 'partial' as const, on: true, surface: 'glagoliticGlyph computed; not living SMIL symbol layer' },
       { symbol: 'torus-knots', status: 'partial' as const, on: mk.counterRotating, surface: 'double-torus / livingTorus geometry; dedicated knot SVG backlog' },
     ]
@@ -888,14 +891,15 @@ export function symbolsRemainingToQuantumise(matrix: MindMatrix = buildMatrix())
       && /data-symbol=/.test(yantra)
       && /data-symbol=/.test(tol)
       && /data-symbol=/.test(elements)
-      && !/script/i.test(vesica + bagua + metatron + yantra + tol + elements)
+      && /data-symbol=/.test(hdBody)
+      && !/script/i.test(vesica + bagua + metatron + yantra + tol + elements + hdBody)
     const facets = [
       { facet: 'I Ching + yin-yang already sealed — continue from livingIChing ∧ taiji folds', on: ich.rebuilt && yy.computes && ic.organised },
       { facet: `inventory ${inventory.length} symbol surfaces at call time (sealed|partial|missing)`, on: inventory.length >= (8 + 5) && inventory.every((r) => r.on) },
-      { facet: `wave sealed ${sealedNow.length} — bagua · vesica · metatron · sri-yantra seed · tree · elements · FoL · Fruit · merkaba`, on: sealedNow.length >= (8 + 3) && emittersOk && sealedNow.every((r) => r.on) },
-      { facet: 'no wet Unicode sacred glyphs in new emitters — bagua drawn from bits; data-honesty wetStatic=false', on: !bagua.includes('☷') && /wetStatic=false/.test(vesica) && /wetStatic=false/.test(metatron) },
+      { facet: `wave sealed ${sealedNow.length} — bagua · vesica · metatron · sri-yantra seed · tree · elements · FoL · Fruit · merkaba · HD BodyGraph`, on: sealedNow.length >= (8 + 4) && emittersOk && sealedNow.every((r) => r.on) && hdW7.computes },
+      { facet: 'no wet Unicode sacred glyphs in new emitters — bagua drawn from bits; data-honesty wetStatic=false', on: !bagua.includes('☷') && /wetStatic=false/.test(vesica) && /wetStatic=false/.test(metatron) && /wetStatic=false/.test(hdBody) },
       { facet: 'FoL/Fruit/merkaba compose via readme/svg-trinity (PR #57) — wetStaticFoL=false', on: home.flowerFruitPath === true && home.counterRotating === true && flowerFruit.decodes },
-      { facet: `residual backlog named — missing ${missing.map((m) => m.symbol).join(' · ')} · partial ${partial.map((p) => p.symbol).join(' · ')}`, on: missing.length >= 3 && partial.length >= 3 },
+      { facet: `residual backlog named — missing ${missing.map((m) => m.symbol).join(' · ')} · partial ${partial.map((p) => p.symbol).join(' · ')}`, on: missing.length >= 3 && partial.length >= 2 },
       { facet: 'clay=0 · physicalFtl=0 · qpuRequired=false — geometry from sealed constants only', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`symbols-remaining:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('symbols-remaining-to-quantumise', facets)
@@ -917,14 +921,14 @@ export function symbolsRemainingToQuantumise(matrix: MindMatrix = buildMatrix())
       qpuRequired: false as const,
       count: sealed.count,
       facets: sealed.facets,
-      root: merkleFold([ich.root, yy.root, ic.root, flowerFruit.root, tree.root, cube.root, home.root, sealed.root]),
+      root: merkleFold([ich.root, yy.root, ic.root, flowerFruit.root, tree.root, cube.root, home.root, hdW7.root, sealed.root]),
       cli: 'npm run quantum:symbols-remaining-verify',
       pair: 'symbols/quantumise',
       route: '/en/#yinyang',
       statement:
-        `Symbols remaining to quantumise — inventory ${inventory.length}: sealed ${sealedNow.length} (I Ching · taiji · bagua · vesica · metatron · sri-yantra seed · tree of life · platonic elements · FoL · Fruit · merkaba), partial ${partial.length} (HD · Glagolitic · torus knots), missing ${missing.length} (om · runes · alchemy). Emitters recompute via memoByRoot; wetStatic=false; clay=0 · physicalFtl=0 · qpuRequired=false.`,
+        `Symbols remaining to quantumise — inventory ${inventory.length}: sealed ${sealedNow.length} (I Ching · taiji · bagua · vesica · metatron · sri-yantra seed · tree of life · platonic elements · FoL · Fruit · merkaba · HD BodyGraph W7), partial ${partial.length} (Glagolitic · torus knots), missing ${missing.length} (om · runes · alchemy). Emitters recompute via memoByRoot; wetStatic=false; clay=0 · physicalFtl=0 · qpuRequired=false.`,
       boundary:
-        'COMPUTED SVG from sealed BAGUA · metatronCube · treeOfLifeSephirotFolders · sacredGeometry · PHI/TAU · flowerOfLifeCenters — not wet decorative sacred-geometry copies, not full Sri Yantra nine-triangle tracing (seed only), not Kabbalah metaphysics (taxonomy). Compose with readme/svg-trinity for FoL hero. HARMONY ≠ TRUTH.',
+        'COMPUTED SVG from sealed BAGUA · metatronCube · treeOfLifeSephirotFolders · sacredGeometry · PHI/TAU · flowerOfLifeCenters · humanDesignBodyGraphSvg — not wet decorative sacred-geometry copies, not full Sri Yantra nine-triangle tracing (seed only), not Kabbalah metaphysics (taxonomy), not HD aura/type. Compose with readme/svg-trinity for FoL hero. HARMONY ≠ TRUTH.',
     }
   })
 }

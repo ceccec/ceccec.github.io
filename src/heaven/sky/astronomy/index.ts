@@ -22,9 +22,9 @@ import { allComputedNoFiles } from '../../../wind/fusion'
 import { animatedHeroes, freeAnimations } from '../../../wind/ui'
 import { atoms } from '../../atoms'
 import { atomInclusionProof } from '../../../lake/ledger'
-import { A432_HUE, GOLDEN_ANGLE, TAU } from '../../../3/7'
-import { movieCanvasPolarity } from '../../../quantum/science'
-import { heroPhaseAt } from '../../../fire/plasma/ball'
+import { A432_HUE, FIBONACCI, GOLDEN_ANGLE, PHI, TAU } from '../../../3/7'
+import { movieCanvasPolarity, scaleColor } from '../../../quantum/science'
+import { fractalClockDur, heroPhaseAt } from '../../../fire/plasma/ball'
 import {
   RAVE_BODIES_13, RAVE_CENTER_GATES, RAVE_CENTERS_9, RAVE_CHANNELS_36, RAVE_DESIGN_SUN_ARC_DEG, RAVE_GATE_ARC_DEG, RAVE_LINE_ARC_DEG,
   humanDesignChannelsAndCenters, humanDesignVerifiedWheel,
@@ -1301,6 +1301,159 @@ export function drawHumanDesignBodyGraph(
   void opts.at
 }
 
+const HD_BODYGRAPH_SVG_CHROMA = 9 / 64
+
+function hdCenterShapeSvg(
+  x: number,
+  y: number,
+  r: number,
+  shape: 'tri' | 'sq' | 'dia',
+  fill: string,
+  stroke: string,
+  strokeWidth: number,
+): string {
+  if (shape === 'sq') {
+    return `<rect x="${x - r}" y="${y - r}" width="${r * 2}" height="${r * 2}" fill="${fill}" stroke="${stroke}" stroke-width="${strokeWidth}"/>`
+  }
+  if (shape === 'dia') {
+    return `<polygon points="${x},${y - r} ${x + r},${y} ${x},${y + r} ${x - r},${y}" fill="${fill}" stroke="${stroke}" stroke-width="${strokeWidth}"/>`
+  }
+  return `<polygon points="${x},${y - r} ${x + r * (3 / 4)},${y + r * (3 / 5)} ${x - r * (3 / 4)},${y + r * (3 / 5)}" fill="${fill}" stroke="${stroke}" stroke-width="${strokeWidth}"/>`
+}
+
+/**
+ * HD W7 — BodyGraph structure SVG emitter (sealed layout + W5/W6 activations).
+ * HONEST: schematic SMIL-safe SVG for /en/spirit + symbols inventory — not commercial BodyGraph, not aura/type.
+ */
+export function humanDesignBodyGraphSvg(
+  matrix: MindMatrix = buildMatrix(),
+  birthJd = MEEUS_J2000_JD,
+  opts: { size?: number; animate?: boolean; dark?: boolean } = {},
+): string {
+  const size = opts.size ?? FIBONACCI[10]!
+  const animate = opts.animate !== false
+  const dark = opts.dark !== false
+  const panel = humanDesignBodyGraphPanelComputes(matrix, birthJd)
+  const pad = size / (8 * 2)
+  const bw = size - pad * 2
+  const bh = size - pad * 2
+  const r = size / (8 * 3)
+  const definedCh = new Set(panel.definedKeys)
+  const definedCtr = new Set(panel.definedCenters)
+  const activated = new Set(panel.activatedGates)
+  const ink = scaleColor(0, { seedHue: A432_HUE, dark, L: (5 * 3) / 16, C: HD_BODYGRAPH_SVG_CHROMA / 2 })
+  const accent = scaleColor(1, { seedHue: A432_HUE + GOLDEN_ANGLE / (2 * 2), dark, L: (5 * 3) / 16, C: HD_BODYGRAPH_SVG_CHROMA })
+  const mute = scaleColor(2, { seedHue: A432_HUE, dark, L: 1 / (5 * 2), C: HD_BODYGRAPH_SVG_CHROMA / 4 })
+  const xy = (center: keyof typeof RAVE_CENTER_LAYOUT) => {
+    const loc = RAVE_CENTER_LAYOUT[center]
+    return { x: pad + loc.x * bw, y: pad + loc.y * bh, shape: loc.shape }
+  }
+  const channels = panel.lattice.channels.map((ch) => {
+    const a = xy(ch.from as keyof typeof RAVE_CENTER_LAYOUT)
+    const b = xy(ch.to as keyof typeof RAVE_CENTER_LAYOUT)
+    const on = definedCh.has(ch.key)
+    return `<line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" stroke="${on ? accent : mute}" stroke-width="${on ? 2 : 1}" opacity="${on ? 7 / (5 * 2) : 2 / (5 * 5)}" data-channel="${ch.key}" data-defined="${on ? 'true' : 'false'}"/>`
+  }).join('')
+  const centers = panel.lattice.centers.map((center, i) => {
+    const key = center as keyof typeof RAVE_CENTER_LAYOUT
+    const p = xy(key)
+    const on = definedCtr.has(center)
+    const lit = (RAVE_CENTER_GATES[center as keyof typeof RAVE_CENTER_GATES] as readonly number[])
+      .filter((g) => activated.has(g))
+      .slice(0, 4)
+      .join('·')
+    const shape = hdCenterShapeSvg(p.x, p.y, r, p.shape, on ? accent : mute, on ? accent : ink, on ? 2 : 1)
+    const label = `<text x="${p.x}" y="${p.y - r - 2}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="${Math.max(9, Math.round(size / (8 * 4)))}" fill="${ink}">${center}</text>`
+    const gates = lit
+      ? `<text x="${p.x}" y="${p.y + r + Math.max(9, Math.round(size / (8 * 4)))}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="${Math.max(8, Math.round(size / (8 * 5)))}" fill="${ink}">${lit}</text>`
+      : ''
+    return `<g data-center="${center}" data-defined="${on ? 'true' : 'false'}" data-scale="${i}">${shape}${label}${gates}</g>`
+  }).join('')
+  const dur = fractalClockDur(9)
+  const breath = animate
+    ? `<animateTransform attributeName="transform" type="scale" values="1;${1 + 1 / (8 * PHI)};1" dur="${dur}" repeatCount="indefinite" additive="sum"/>`
+    : ''
+  const cx = size / 2
+  const cy = size / 2
+  return [
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Human Design BodyGraph — structure-only W7 SVG" data-symbol="human-design-bodygraph" data-definition="${panel.definitionKind}" data-defined-centers="${panel.definedCenters.length}" data-hanging="${panel.hangingGates.length}" data-jd="${birthJd}" data-compute="humanDesignBodyGraphPanelComputes∧RAVE_CENTER_LAYOUT∧scaleColor" data-honesty="clay=0;structureOnly=true;notAuraOrType=true;wetStatic=false;qpuRequired=false">`,
+    `<g transform="translate(${cx} ${cy})">${breath}<g transform="translate(${-cx} ${-cy})">${channels}${centers}</g></g>`,
+    `</svg>`,
+  ].join('')
+}
+
+/**
+ * HD W7 fold — BodyGraph SVG emitter recomputes from sealed W5/W6 panel + layout.
+ * Pair: symbols/quantumise · CLI npm run quantum:hd-w7-bodygraph-svg · route /en/spirit#human-design-bodygraph
+ */
+export function humanDesignBodyGraphSvgW7(matrix: MindMatrix = buildMatrix(), birthJd = MEEUS_J2000_JD) {
+  return memoByRoot(`humanDesignBodyGraphSvgW7:${roundTo(birthJd, 6)}`, matrix, () => {
+    const panel = humanDesignBodyGraphPanelComputes(matrix, birthJd)
+    const svg = humanDesignBodyGraphSvg(matrix, birthJd, { animate: true })
+    const still = humanDesignBodyGraphSvg(matrix, birthJd, { animate: false })
+    const hasSymbol = /data-symbol="human-design-bodygraph"/.test(svg)
+    const hasHonesty = /wetStatic=false/.test(svg) && /structureOnly=true/.test(svg) && /clay=0/.test(svg)
+    const centersMarked = (svg.match(/data-center=/g) || []).length === RAVE_CENTERS_9.length
+    const channelsMarked = (svg.match(/data-channel=/g) || []).length === RAVE_CHANNELS_36.length
+    const noScript = !/script/i.test(svg)
+    const facets = [
+      { facet: 'compose BodyGraph panel W5/W6 (Vue UX twin)', on: panel.computes },
+      { facet: 'SVG emits data-symbol=human-design-bodygraph', on: hasSymbol },
+      { facet: '9 centers + 36 channels marked in SVG', on: centersMarked && channelsMarked },
+      { facet: 'SMIL-safe — no script; animateTransform optional', on: noScript && still.includes('<svg') && !still.includes('animateTransform') },
+      { facet: 'honesty — clay=0 · structureOnly · wetStatic=false · not aura/type', on: hasHonesty },
+      { facet: 'definitionKind + hanging + JD attributes bound', on: svg.includes(`data-definition="${panel.definitionKind}"`) && svg.includes(`data-hanging="${panel.hangingGates.length}"`) },
+      { facet: 'NOT type/authority/aura — structure SVG only · clay=0', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`hd-svg-w7:${entry.facet}:${entry.on}`) }))
+    const computes = facets.every((f) => f.on)
+    return {
+      computes,
+      verified: computes,
+      birthJd,
+      svg,
+      svgBytes: svg.length,
+      definitionKind: panel.definitionKind,
+      definedCenters: panel.definedCenters,
+      hangingGates: panel.hangingGates,
+      panel,
+      count: facets.length,
+      facets,
+      root: merkleFold([panel.root, ...facets.map((f) => f.receipt), toUuid(`hd-w7-svg:${svg.length}:${panel.definitionKind}`)]),
+      pair: 'symbols/quantumise' as const,
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+      physicalFtlClaim: 0 as const,
+      route: '/en/spirit#human-design-bodygraph',
+      cli: 'npm run quantum:hd-w7-bodygraph-svg',
+      statement:
+        'HD W7 BodyGraph SVG emitter: sealed RAVE_CENTER_LAYOUT + W5/W6 panel activations → SMIL-safe structure SVG (9 centers · 36 channels · definition/hanging/JD attrs) for symbols inventory + /en/spirit — structure computer, not personality engine.',
+      boundary:
+        'HONEST STRUCTURE ONLY — computed SVG from sealed lattice/layout/Meeus×wheel activations. NOT commercial BodyGraph product · NOT aura/type/authority · NOT JPL DE440. claySolved=0 · physicalFtl=0 · qpuRequired=false. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** CLI — HD W7 BodyGraph SVG emitter. Pair: symbols/quantumise · waves/build. */
+export function runHumanDesignBodyGraphSvgW7Exit(_root = '', argv: readonly string[] = []): number {
+  void _root
+  const jdArg = argv.find((a) => a.startsWith('--jd='))
+  const birthJd = jdArg ? Number(jdArg.slice('--jd='.length)) : MEEUS_J2000_JD
+  if (!Number.isFinite(birthJd)) {
+    process.stderr.write('hd-w7: --jd= must be a finite Julian Day\n')
+    return 1
+  }
+  const receipt = humanDesignBodyGraphSvgW7(undefined, birthJd)
+  for (const f of receipt.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  process.stdout.write(
+    `${receipt.computes ? '✓' : '✗'} hd-w7-bodygraph-svg — computes=${receipt.computes} ` +
+      `def=${receipt.definitionKind} bytes=${receipt.svgBytes} centers=${receipt.definedCenters.length}/9 ` +
+      `hanging=${receipt.hangingGates.length} jd=${receipt.birthJd} ` +
+      `root=${receipt.root.slice(0, 8)} (structure-only · clay=0)\n`,
+  )
+  process.stdout.write(`  boundary: ${receipt.boundary}\n`)
+  return receipt.computes ? 0 : 1
+}
+
 export function astronomyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`astronomyComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const celestial = computeAllKnownCelestialBodies(matrix)
@@ -1314,6 +1467,7 @@ export function astronomyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
     const hdChart = humanDesignChartStructureAt(matrix, MEEUS_J2000_JD)
     const hdW6 = humanDesignChartStructureFacetsAt(matrix, MEEUS_J2000_JD)
     const hdBody = humanDesignBodyGraphPanelComputes(matrix, MEEUS_J2000_JD)
+    const hdW7 = humanDesignBodyGraphSvgW7(matrix, MEEUS_J2000_JD)
     const { computes, facets } = computesGate('astronomy-computes', [
       { facet: 'sixteen-body celestial catalog — computeAllKnownCelestialBodies', on: celestial.computed && celestial.count === 16 },
       { facet: 'exact match on encoded fields — discover wave', on: match.exactMatch },
@@ -1327,6 +1481,7 @@ export function astronomyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'HD W5 chart structure — wheel + channels + cusp band', on: hdChart.computes },
       { facet: 'HD W6 structure-only chart facets — definition · hanging · open', on: hdW6.computes },
       { facet: 'HD BodyGraph Vue panel — layout + W5/W6 compose', on: hdBody.computes },
+      { facet: 'HD W7 BodyGraph SVG emitter — structure SMIL', on: hdW7.computes },
     ])
     return {
       computes,
@@ -1341,12 +1496,13 @@ export function astronomyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       hdChart,
       hdW6,
       hdBody,
+      hdW7,
       facets,
-      root: merge(sequence.root, merkleFold([celestial.root, galaxy.root, hdEph.root, hdChart.root, hdW6.root, hdBody.root, toUuid(`astronomy-computes:${computes}`)])),
+      root: merge(sequence.root, merkleFold([celestial.root, galaxy.root, hdEph.root, hdChart.root, hdW6.root, hdBody.root, hdW7.root, toUuid(`astronomy-computes:${computes}`)])),
       statement:
-        'Astronomy computes: canonical celestial home — sixteen-body catalog, exact-match discover wave, deep-research tiers, galaxy Keplerian compute, VORTEX_SEQUENCE decode, research exposition, HD W4 sealed Meeus ephemeris (Design Sun−88°), HD W5 chart structure, HD W6 structure facets, and HD BodyGraph Vue panel — composed at call time from sun/moon/earth/nature lobes and decode/rosetta receipts.',
+        'Astronomy computes: canonical celestial home — sixteen-body catalog, exact-match discover wave, deep-research tiers, galaxy Keplerian compute, VORTEX_SEQUENCE decode, research exposition, HD W4 sealed Meeus ephemeris (Design Sun−88°), HD W5 chart structure, HD W6 structure facets, HD BodyGraph Vue panel, and HD W7 BodyGraph SVG emitter — composed at call time from sun/moon/earth/nature lobes and decode/rosetta receipts.',
       boundary:
-        'HONEST — circular Keplerian catalog PLUS sealed Meeus reduced-precision longitudes for HD (NOT live JPL DE440); VORTEX_SEQUENCE addresses bodies deterministically, NOT orbit control; BodyGraph UX is structure-only (not aura/type); pyramid/gateway display lives in double/torus/earth — astronomy does not duplicate portal nav/GPS folds.',
+        'HONEST — circular Keplerian catalog PLUS sealed Meeus reduced-precision longitudes for HD (NOT live JPL DE440); VORTEX_SEQUENCE addresses bodies deterministically, NOT orbit control; BodyGraph UX/SVG is structure-only (not aura/type); pyramid/gateway display lives in double/torus/earth — astronomy does not duplicate portal nav/GPS folds.',
     }
   })
 }
