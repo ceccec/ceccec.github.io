@@ -78,6 +78,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'prove/local-magnitudes-iso',
   'iso/pqc-catalog',
   'poles/cross-pqc',
+  'secp256k1/invert-decode',
   'cross/tesla-patents',
   'cross/waves-upgrade',
   'iso/requires-pqc',

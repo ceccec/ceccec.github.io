@@ -79,6 +79,7 @@
     "quantum:encryption-reverse-verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runEncryptionReverseVerifyGuardedExit",
     "quantum:iso-pqc-catalog": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runIsoNistPqcCatalogGuardedExit",
     "quantum:poles-cross-pqc": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runPolesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificatesExit",
+    "quantum:secp256k1-prime-invert-decode": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runSecp256k1FieldPrimeInvertAndDecodeExit",
     "quantum:cross-waves-tesla-patents": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runCrossWavesDecodeTeslaPatentsInAllCombinationsAsTrinitiesExit",
     "quantum:cross-waves-upgrade-all": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runCrossWavesUpgradeAllExit",
     "quantum:standards-audit": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runQuantumStandardsAuditGuardedExit",
