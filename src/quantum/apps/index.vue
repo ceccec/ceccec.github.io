@@ -14,6 +14,9 @@ import {
   runQuantumStandardsAuditInBrowser,
   cryptoToolkitBeyondRsaMeasured,
   demoRsaGenerateAndReverseMeasured,
+  localEncryptionReverseTimed,
+  localEncryptionReverseTimedVsStandards,
+  proveLocalNovelEncryptionSecurity,
   proveOneTbitRealtimeEncryptionClaim,
   encryptionPanelComputes,
 } from '../../water/encryption/index.ts'
@@ -99,6 +102,37 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'local-reverse-timed') {
+      const r = localEncryptionReverseTimed()
+      ok = r.computes
+      summary = `generateMs=${r.generateMs.toFixed(3)} reverseMs=${r.reverseMs.toFixed(3)} ops/s=${r.aggregateOpsPerSec.toFixed(3)} rows=${r.rows.length}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'local-reverse-timed-vs-standards') {
+      const r = localEncryptionReverseTimedVsStandards()
+      const exported = exportStandardToolEnvelope('local-reverse-timed-vs-standards', 'ceccec.local')
+      const imported = importStandardToolEnvelope(exported)
+      ok = r.computes && exported.computes && imported.roundTrip
+      summary = `rev=${r.reverseMs.toFixed(3)}ms ops/s=${r.aggregateOpsPerSec.toFixed(3)} demoMaxBits=${r.demoMaxBits} breaksNistPqc=${r.breaksNistPqc} certified=${r.certified} · envelope roundTrip=${imported.roundTrip}`
+      root = r.root
+      boundary = r.boundary
+      facets = [
+        ...r.facets.map((f) => ({ facet: f.facet, on: f.on })),
+        { facet: `standard envelope ${exported.kind}@${exported.version} import/export round-trip`, on: imported.roundTrip },
+      ]
+    } else if (toolId === 'prove-local-novel-encrypt') {
+      const r = proveLocalNovelEncryptionSecurity()
+      const exported = exportStandardToolEnvelope('prove-local-novel-encrypt', 'ceccec.local')
+      const imported = importStandardToolEnvelope(exported)
+      ok = r.localSecurityProved && exported.computes && imported.roundTrip
+      summary = `localSecurityProved=${r.localSecurityProved} productionReverseRefused=${r.productionReverseRefused} certified=${r.certified} fieldHistory=${r.fieldHistory} thisRepoIsNotTheIsoStandard=${r.thisRepoIsNotTheIsoStandard} · envelope roundTrip=${imported.roundTrip}`
+      root = r.root
+      boundary = r.boundary
+      facets = [
+        ...r.facets.map((f) => ({ facet: f.facet, on: f.on })),
+        { facet: `standard envelope ${exported.kind}@${exported.version} import/export round-trip`, on: imported.roundTrip },
+      ]
     } else if (toolId === 'crypto-beyond-measure') {
       const r = cryptoToolkitBeyondRsaMeasured()
       ok = r.computes
@@ -391,6 +425,61 @@ function runTool(toolId: string) {
         </UiButton>
         <UiButton size="sm" :disabled="runningId === 'demo-rsa-measure'" @click="runTool('demo-rsa-measure')">
           {{ runningId === 'demo-rsa-measure' ? '…' : 'Run demo-RSA measure' }}
+        </UiButton>
+        <UiButton size="sm" :disabled="runningId === 'local-reverse-timed-vs-standards'" @click="runTool('local-reverse-timed-vs-standards')">
+          {{ runningId === 'local-reverse-timed-vs-standards' ? '…' : 'Run local reverse vs standards' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="local-reverse-timed-vs-standards" aria-label="Local reverse timed versus ISO NIST standards">
+        <h3>Local reverse timed vs ISO/NIST standards</h3>
+        <p class="quantum-apps__meta">
+          Toy DEMO_RSA_MODULI wall-clock vs estimated classical 2^bits work (AES-128/256 · ML-KEM cats). certified=false · does NOT break NIST PQC · production/Bitcoin refused · reference bounds only (this repo is not the ISO standard).
+        </p>
+        <UiBadge :variant="encryption.localTimed?.computes && !encryption.localTimed?.breaksNistPqc ? 'default' : 'outline'">
+          rev={{ encryption.localTimed?.reverseMs?.toFixed?.(3) ?? '—' }}ms
+          · ops/s={{ encryption.localTimed?.aggregateOpsPerSec?.toFixed?.(3) ?? '—' }}
+          · demoMaxBits={{ encryption.localTimed?.demoMaxBits ?? '—' }}
+          · breaksNistPqc={{ encryption.localTimed?.breaksNistPqc ?? '—' }}
+        </UiBadge>
+        <table v-if="encryption.localTimed?.comparisons?.length" class="quantum-apps__table">
+          <thead>
+            <tr><th>Standard</th><th>Classical bits</th><th>log₂(est sec)</th><th>Gap log₂</th><th>Breaks?</th></tr>
+          </thead>
+          <tbody>
+            <tr v-for="c in encryption.localTimed.comparisons" :key="c.id">
+              <td><code>{{ c.id }}</code></td>
+              <td>{{ c.classicalSecurityBits }}</td>
+              <td>{{ c.estimatedClassicalLog2Sec.toFixed(1) }}</td>
+              <td>{{ c.demoOrdersOfMagnitudeFasterLog2.toFixed(1) }}</td>
+              <td>{{ c.breaksStandard }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <UiButton size="sm" :disabled="runningId === 'local-reverse-timed'" @click="runTool('local-reverse-timed')">
+          {{ runningId === 'local-reverse-timed' ? '…' : 'Run local-reverse-timed' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="prove-local-novel-encrypt" aria-label="Prove local novel encryption security">
+        <h3>Local novel-encryption security proof</h3>
+        <p class="quantum-apps__meta">
+          Property proofs + refuse gates + teaching round-trip + timed allowlisted reverse + ISO/NIST standards map as reference bounds.
+          productionReverseRefused=true · fieldHistory=none · certified=false · this repo is NOT the ISO standard.
+        </p>
+        <UiBadge :variant="encryption.localNovel?.localSecurityProved ? 'default' : 'outline'">
+          localSecurityProved={{ encryption.localNovel?.localSecurityProved ?? '—' }}
+          · productionReverseRefused={{ encryption.localNovel?.productionReverseRefused ?? true }}
+          · thisRepoIsNotTheIsoStandard={{ encryption.localNovel?.thisRepoIsNotTheIsoStandard ?? true }}
+        </UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="c in (encryption.localNovel?.inventory?.components ?? [])" :key="c.id">
+            <UiBadge variant="outline">{{ c.kind }}</UiBadge>
+            <strong>{{ c.id }}</strong> — {{ c.fold }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'prove-local-novel-encrypt'" @click="runTool('prove-local-novel-encrypt')">
+          {{ runningId === 'prove-local-novel-encrypt' ? '…' : 'Run prove-local-novel-encrypt' }}
         </UiButton>
       </section>
       <UiSeparator />

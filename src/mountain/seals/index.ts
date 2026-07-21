@@ -67,6 +67,8 @@ import {
   isoPqcHandoffForScienceTrinities,
   cryptoToolkitBeyondRsaMeasured,
   demoRsaGenerateAndReverseMeasured,
+  localEncryptionReverseTimedVsStandards,
+  proveLocalNovelEncryptionSecurity,
   proveOneTbitRealtimeEncryptionClaim,
 } from '../../water/encryption'
 import { honestyInProseChallenged, platformOgLimitsMeasured } from '../og'
@@ -670,6 +672,8 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'encryption-zero', title: 'all encryption logic — the content-addressed key layer — lives in src/0', proof: encryptionLivesInZero(matrix) },
     { slug: 'quantum-encryption', title: 'Encrypt ↔ decrypt = foldPair recompute; demo RSA reverse ≤12-bit toys only', proof: encryptionReverseVerify(matrix) },
     { slug: 'demo-rsa-measure', title: 'Demo RSA generate+reverse measured (wall-clock)', proof: demoRsaGenerateAndReverseMeasured(matrix) },
+    { slug: 'local-reverse-timed-vs-standards', title: 'Local reverse timed vs ISO/NIST standards — toy≠wire · certified=false', proof: localEncryptionReverseTimedVsStandards(matrix) },
+    { slug: 'prove-local-novel-encrypt', title: 'Local novel-encryption security — structural+adversarial+measured-local · no production reverse', proof: proveLocalNovelEncryptionSecurity(matrix) },
     { slug: 'crypto-beyond-rsa', title: 'Crypto toolkit beyond RSA measured (PQC·Shor/ECC·trinity)', proof: cryptoToolkitBeyondRsaMeasured(matrix) },
     { slug: 'prove-1tbit', title: '1 Tbit/s realtime encryption claim — honest status receipt', proof: proveOneTbitRealtimeEncryptionClaim(matrix) },
     { slug: 'og-limits-measured', title: 'Platform OG limits measured + honesty-in-prose challenged', proof: { ...honestyInProseChallenged(matrix), limitsRoot: platformOgLimitsMeasured(matrix).root } },

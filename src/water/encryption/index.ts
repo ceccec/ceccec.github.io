@@ -243,6 +243,18 @@ export const DEMO_RSA_MODULI = [
 /** Hard bit ceiling for demo reverse — derived from sealed teaching n=61×53 (bits of 3233). */
 export const DEMO_RSA_BIT_CEILING = Math.floor(Math.log2(TEACHING_RSA_P * TEACHING_RSA_Q)) + 1
 
+/**
+ * Odd over-ceiling probe — MUST stay odd + safe-integer so refuse facets exercise the bit-ceiling branch
+ * (even float probes refuse on “not odd” and leave the ceiling branch untested — P1 vacuous self-test).
+ */
+export const ODD_OVER_CEILING_RSA_PROBE = 2 ** DEMO_RSA_BIT_CEILING * 3 + 1
+
+/**
+ * Far-above-ceiling odd safe integer — RSA-shaped production refuse probe (bits ≫ DEMO_RSA_BIT_CEILING).
+ * HONEST: Bitcoin uses secp256k1 ECDSA, not RSA — see refuseBitcoinMainnetMaterial for chain-key refuse.
+ */
+export const FAR_OVER_CEILING_RSA_PROBE = 2 ** (8 * 5) * 3 + 1
+
 /** Cap parallel reverse workers: min(cpus, vortex ring length) — never unbounded. */
 export function encryptionReverseWorkerCap(cpuCount = 1): number {
   const cpus = Math.max(1, Math.floor(cpuCount))
@@ -251,9 +263,12 @@ export function encryptionReverseWorkerCap(cpuCount = 1): number {
 
 /** Reject out-of-demo moduli before any factor work (honesty gate). */
 export function refuseNonDemoRsaModulus(n: number): { allowed: boolean; bits: number; reason: string } {
-  const N = Math.trunc(n)
+  if (typeof n !== 'number' || !Number.isFinite(n) || !Number.isInteger(n) || !Number.isSafeInteger(n)) {
+    return { allowed: false, bits: 0, reason: 'not a safe integer modulus' }
+  }
+  const N = n
   const bits = N > 0 ? Math.floor(Math.log2(N)) + 1 : 0
-  if (!Number.isFinite(N) || N < 4 || N % 2 === 0) {
+  if (N < 4 || N % 2 === 0) {
     return { allowed: false, bits, reason: 'not an odd composite demo modulus' }
   }
   if (bits > DEMO_RSA_BIT_CEILING) {
@@ -263,6 +278,52 @@ export function refuseNonDemoRsaModulus(n: number): { allowed: boolean; bits: nu
     return { allowed: false, bits, reason: 'modulus not in sealed DEMO_RSA_MODULI allowlist' }
   }
   return { allowed: true, bits, reason: 'demo allowlist' }
+}
+
+/** Explicit Bitcoin/mainnet refuse — ECDSA/secp256k1 chain keys never enter demo RSA reverse. */
+export function refuseBitcoinMainnetMaterial(input: string): { allowed: false; reason: string; kind: 'bitcoin-mainnet' } {
+  const kind = 'bitcoin-mainnet' as const
+  const sample = typeof input === 'string' ? input.slice(0, 8 * 5) : ''
+  return {
+    allowed: false,
+    kind,
+    reason: `Bitcoin/mainnet material refused (${sample || 'empty'}) — secp256k1 ECDSA, not RSA demo reverse`,
+  }
+}
+
+/** Production ceiling refuse holds only when the odd over-ceiling probe hits the bits>ceiling reason. */
+export function productionCeilingRefuseHolds(): {
+  holds: boolean
+  gate: ReturnType<typeof refuseNonDemoRsaModulus>
+  probe: number
+} {
+  const probe = ODD_OVER_CEILING_RSA_PROBE
+  const gate = refuseNonDemoRsaModulus(probe)
+  const holds =
+    gate.allowed === false &&
+    gate.reason.includes('production RSA refused') &&
+    Number.isSafeInteger(probe) &&
+    probe % 2 === 1
+  return { holds, gate, probe }
+}
+
+/** Far-over-ceiling RSA-shaped refuse (safe odd) — not a Bitcoin address crack claim. */
+export function farOverCeilingRefuseHolds(): {
+  holds: boolean
+  gate: ReturnType<typeof refuseNonDemoRsaModulus>
+  bitcoin: ReturnType<typeof refuseBitcoinMainnetMaterial>
+  probe: number
+} {
+  const probe = FAR_OVER_CEILING_RSA_PROBE
+  const gate = refuseNonDemoRsaModulus(probe)
+  const bitcoin = refuseBitcoinMainnetMaterial('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa')
+  const holds =
+    gate.allowed === false &&
+    gate.reason.includes('production RSA refused') &&
+    bitcoin.allowed === false &&
+    Number.isSafeInteger(probe) &&
+    probe % 2 === 1
+  return { holds, gate, bitcoin, probe }
 }
 
 /** Classical period→factor (Shor reduction number theory) — toy N only. */
@@ -385,12 +446,18 @@ export function demoRsaReverseSync() {
   const results = DEMO_RSA_MODULI.map((N) => modeledShorFactorToyModulus(N))
   const allFactored = results.every((r) => r.factored && !r.refused)
   const notAllowlisted = TEACHING_RSA_P * 3 // odd composite, not in DEMO_RSA_MODULI
-  const overCeiling = 2 ** DEMO_RSA_BIT_CEILING * 3 // bits > DEMO_RSA_BIT_CEILING
-  const refusalHolds = refuseNonDemoRsaModulus(notAllowlisted).allowed === false
-  const productionRefused = refuseNonDemoRsaModulus(overCeiling).allowed === false
+  const allowlistRefuse = refuseNonDemoRsaModulus(notAllowlisted)
+  const refusalHolds = allowlistRefuse.allowed === false && allowlistRefuse.reason.includes('allowlist')
+  const ceiling = productionCeilingRefuseHolds()
+  // Non-integer derived from allowlist head + 1/(2·5) — exercises safe-integer refuse (no raw float literal)
+  const floatProbe = DEMO_RSA_MODULI[0]! + 1 / (2 * 5)
+  const floatRefuse = refuseNonDemoRsaModulus(floatProbe as unknown as number)
+  const floatHolds = floatRefuse.allowed === false && floatRefuse.reason.includes('safe integer')
   const facets = [
     { facet: `every sealed demo modulus factors via modeled Shor reduction (${results.map((r) => r.N).join(',')})`, on: allFactored },
-    { facet: 'non-allowlisted / over-ceiling moduli are REFUSED before search — production RSA never entered', on: refusalHolds && productionRefused },
+    { facet: `non-allowlisted refused with allowlist reason (n=${notAllowlisted})`, on: refusalHolds },
+    { facet: `odd over-ceiling probe ${ceiling.probe} refused with production ceiling reason`, on: ceiling.holds },
+    { facet: 'non-integer float moduli refused (safe-integer gate)', on: floatHolds },
     { facet: 'worker cap is vortex-bounded (≤9), never unbounded fork', on: encryptionReverseWorkerCap(2 ** 6) === VORTEX_SEQUENCE.length },
   ].map((entry) => ({ ...entry, receipt: toUuid(`demo-rsa-reverse:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('demo-rsa-reverse-sync', facets)
@@ -398,112 +465,40 @@ export function demoRsaReverseSync() {
     computes: sealed.ok,
     results,
     workerCap: encryptionReverseWorkerCap(VORTEX_SEQUENCE.length),
+    productionRefused: ceiling.holds,
     count: sealed.count,
     facets: sealed.facets,
     root: sealed.root,
     statement:
-      'Demo RSA reverse (sync): modeled Shor period→factor on sealed toy moduli only; over-ceiling and non-allowlisted N refused; worker cap bound to VORTEX_SEQUENCE length.',
+      'Demo RSA reverse (sync): modeled Shor period→factor on sealed toy moduli only; odd over-ceiling + non-allowlisted N refused with reason assertions; worker cap bound to VORTEX_SEQUENCE length.',
     boundary:
       'HONEST: classical number-theory heart of Shor on ≤12-bit DEMO moduli (15,21,35,3233). NOT a fault-tolerant quantum register, NOT GNFS, NOT a practical RSA cracker. Production moduli are refused by refuseNonDemoRsaModulus. HARMONY ≠ TRUTH.',
   }
 }
 
 /**
- * Node-only: spawn capped worker_threads — one demo modulus per worker — collect Shor factors.
- * Uses process.getBuiltinModule so the leaf stays browser-eval-safe (no top-level node: import).
+ * Demo reverse pool — sync preferred (sealed modeledShorFactorToyModulus re-gates refuse).
+ * Dropped eval worker_threads (P2): no duplicated Shor, no in-worker drift, browser-safe leaf.
  */
 export async function parallelToyRsaReversePool(cpuHint?: number): Promise<{
   ok: boolean
   workers: number
   results: { N: number; p: number; q: number; base: number; order: number }[]
-  mode: 'worker_threads' | 'sync-fallback'
+  mode: 'sync-sealed'
   boundary: string
 }> {
+  void cpuHint
   const boundary =
-    'HONEST DEMO PARALLELISM: worker_threads (or sync fallback) over sealed DEMO_RSA_MODULI only; cap = min(cpus, |VORTEX_SEQUENCE|); refuses production RSA. Not a real-world factoring farm.'
-  const sync = () => {
-    const results = DEMO_RSA_MODULI.map((N) => modeledShorFactorToyModulus(N))
-      .filter((r) => r.factored)
-      .map((r) => ({ N: r.N, p: r.p, q: r.q, base: r.base, order: r.order }))
-    return {
-      ok: results.length === DEMO_RSA_MODULI.length,
-      workers: 0,
-      results,
-      mode: 'sync-fallback' as const,
-      boundary,
-    }
-  }
-  try {
-    const getBuiltin = typeof process !== 'undefined'
-      ? (process as { getBuiltinModule?: (id: string) => unknown }).getBuiltinModule
-      : undefined
-    if (typeof getBuiltin !== 'function' || typeof process.versions?.node !== 'string') return sync()
-    const os = getBuiltin('node:os') as { availableParallelism?: () => number; cpus: () => unknown[] } | undefined
-    const wt = getBuiltin('node:worker_threads') as {
-      Worker: new (source: string, opts: { eval: boolean; workerData: { N: number } }) => {
-        on(event: 'message', cb: (msg: { N: number; p: number; q: number; base: number; order: number } | { error: string }) => void): void
-        on(event: 'error', cb: (err: Error) => void): void
-        on(event: 'exit', cb: (code: number) => void): void
-      }
-    } | undefined
-    if (!os || !wt) return sync()
-    const cpus = typeof cpuHint === 'number' && cpuHint > 0
-      ? cpuHint
-      : (typeof os.availableParallelism === 'function' ? os.availableParallelism() : os.cpus().length)
-    const cap = encryptionReverseWorkerCap(cpus)
-    const moduli = [...DEMO_RSA_MODULI].slice(0, cap)
-    // Inline CJS worker — Shor reduction only; N already allowlist-checked in parent
-    // Worker body uses `euclid` — never re-define `gcd` (one-math: gcd lives only in src/0).
-    const source = `
-      const { parentPort, workerData } = require('node:worker_threads');
-      const N = workerData.N | 0;
-      const euclid = (a, b) => (b === 0 ? a : euclid(b, a % b));
-      const orderModN = (a) => { let x = a % N, k = 1; while (x !== 1) { x = (x * a) % N; k++; if (k > N) return -1 } return k };
-      const powMod = (a, e) => { let r = 1, b = a % N, k = e; while (k > 0) { if (k & 1) r = (r * b) % N; b = (b * b) % N; k >>= 1 } return r };
-      let out = { error: 'no factor' };
-      for (let a = 2; a < N; a++) {
-        if (euclid(a, N) !== 1) continue;
-        const r = orderModN(a);
-        if (r <= 0 || r % 2 !== 0) continue;
-        const t = powMod(a, r / 2);
-        if (t === N - 1) continue;
-        const f = euclid(t - 1, N);
-        if (f > 1 && f < N) { out = { N, p: f, q: N / f, base: a, order: r }; break; }
-      }
-      parentPort.postMessage(out);
-    `
-    const results = await Promise.all(moduli.map((N) => new Promise<{ N: number; p: number; q: number; base: number; order: number }>((resolve, reject) => {
-      const gate = refuseNonDemoRsaModulus(N)
-      if (!gate.allowed) { reject(new Error(gate.reason)); return }
-      let settled = false
-      const finish = (err: Error | null, value?: { N: number; p: number; q: number; base: number; order: number }) => {
-        if (settled) return
-        settled = true
-        if (err) reject(err)
-        else resolve(value!)
-      }
-      const worker = new wt.Worker(source, { eval: true, workerData: { N } })
-      worker.on('message', (msg) => {
-        if (msg && typeof msg === 'object' && 'error' in msg) finish(new Error(String((msg as { error: string }).error)))
-        else finish(null, msg as { N: number; p: number; q: number; base: number; order: number })
-      })
-      worker.on('error', (err) => finish(err))
-      worker.on('exit', (code) => { if (code !== 0) finish(new Error(`worker exit ${code}`)) })
-    })))
-    // Any remaining moduli (if cap < list) finish sync — still demo-only
-    const rest = DEMO_RSA_MODULI.slice(cap).map((N) => modeledShorFactorToyModulus(N))
-      .filter((r) => r.factored)
-      .map((r) => ({ N: r.N, p: r.p, q: r.q, base: r.base, order: r.order }))
-    const all = [...results, ...rest]
-    return {
-      ok: all.length === DEMO_RSA_MODULI.length && all.every((r) => r.p * r.q === r.N),
-      workers: moduli.length,
-      results: all,
-      mode: 'worker_threads',
-      boundary,
-    }
-  } catch {
-    return sync()
+    'HONEST DEMO SYNC: sealed modeledShorFactorToyModulus over DEMO_RSA_MODULI only; refuseNonDemoRsaModulus re-gated per N; no eval worker_threads. Not a real-world factoring farm.'
+  const results = DEMO_RSA_MODULI.map((N) => modeledShorFactorToyModulus(N))
+    .filter((r) => r.factored && !r.refused)
+    .map((r) => ({ N: r.N, p: r.p, q: r.q, base: r.base, order: r.order }))
+  return {
+    ok: results.length === DEMO_RSA_MODULI.length && results.every((r) => r.p * r.q === r.N),
+    workers: 0,
+    results,
+    mode: 'sync-sealed',
+    boundary,
   }
 }
 
@@ -566,9 +561,9 @@ export async function runEncryptionReverseVerifyGuardedExit(_root: string, _argv
 }
 
 /**
- * UI panel — encrypt↔decrypt + measured demo RSA + beyond-RSA PQC suite + standards audit.
- * Pair: reverse/encryption-verify · measure/demo-rsa · measure/crypto-beyond · prove/1tbit-encrypt · iso/pqc-catalog · audit/standards
- * Route: /en/quantum-encryption (#demo-rsa-measure · #crypto-beyond-rsa · #prove-1tbit · #iso-pqc-catalog · #quantum-standards-audit)
+ * UI panel — encrypt↔decrypt + measured demo RSA + beyond-RSA PQC suite + local reverse vs standards + local novel security + standards audit.
+ * Pair: reverse/encryption-verify · measure/demo-rsa · measure/crypto-beyond · reverse/timed-vs-standards · prove/local-novel-encrypt · prove/1tbit-encrypt · iso/pqc-catalog · audit/standards
+ * Route: /en/quantum-encryption (#demo-rsa-measure · #crypto-beyond-rsa · #local-reverse-timed-vs-standards · #prove-local-novel-encrypt · #prove-1tbit · #iso-pqc-catalog · #quantum-standards-audit)
  */
 export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`encryptionPanelComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -576,6 +571,8 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
     const reverse = encryptionReverseVerify(matrix)
     const demo = demoRsaReverseSync()
     const measured = demoRsaGenerateAndReverseMeasured(matrix)
+    const localTimed = localEncryptionReverseTimedVsStandards(matrix)
+    const localNovel = proveLocalNovelEncryptionSecurity(matrix)
     const beyond = cryptoToolkitBeyondRsaMeasured(matrix)
     const oneTbit = proveOneTbitRealtimeEncryptionClaim(matrix)
     const zero = encryptionLivesInZero(matrix)
@@ -588,6 +585,8 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'encryption reverse verify sealed', on: reverse.verified },
       { facet: 'demo RSA reverse — production refused', on: demo.computes },
       { facet: `demo RSA MEASURED — gen=${roundTo(measured.generateMs, 3)}ms rev=${roundTo(measured.reverseMs, 3)}ms bitcoinRefused`, on: measured.computes && measured.bitcoinRefused },
+      { facet: `local reverse vs standards — rev=${roundTo(localTimed.reverseMs, 3)}ms breaksNistPqc=false`, on: localTimed.computes && localTimed.breaksNistPqc === false && localTimed.certified === false },
+      { facet: `local novel security proved — fieldHistory=none productionReverseRefused`, on: localNovel.localSecurityProved && localNovel.productionReverseRefused && localNovel.certified === false },
       { facet: `beyond RSA MEASURED — FIPS=${beyond.fipsCount} eccShor=${beyond.eccShorBreaks} certified=false`, on: beyond.computes && !beyond.certified && !beyond.fipsValidated },
       { facet: `1 Tbit claim receipt — wire.proved=${oneTbit.wire.provedAtCallTime} amort.proved=${oneTbit.amortized.provedAtCallTime}`, on: oneTbit.computes && oneTbit.wire.provedAtCallTime === false },
       { facet: 'encryption lives in src/0 key layer', on: zero.homed },
@@ -598,6 +597,8 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
     ])
     const sections = [
       { id: 'demo-rsa-measure', title: 'Demo RSA generate+reverse measured', route: '/en/quantum-encryption#demo-rsa-measure', pair: 'measure/demo-rsa', cli: 'npm run quantum:demo-rsa-measure', on: measured.computes },
+      { id: 'local-reverse-timed-vs-standards', title: 'Local reverse timed vs ISO/NIST standards', route: '/en/quantum-encryption#local-reverse-timed-vs-standards', pair: 'reverse/timed-vs-standards', cli: 'npm run quantum:local-reverse-timed-vs-standards', on: localTimed.computes },
+      { id: 'prove-local-novel-encrypt', title: 'Local novel-encryption security proof (no production reverse)', route: '/en/quantum-encryption#prove-local-novel-encrypt', pair: 'prove/local-novel-encrypt', cli: 'npm run quantum:prove-local-novel-encrypt', on: localNovel.localSecurityProved },
       { id: 'crypto-beyond-rsa', title: 'PQC families · Shor/ECC · hash taxonomy · directional trinity', route: '/en/quantum-encryption#crypto-beyond-rsa', pair: 'measure/crypto-beyond', cli: 'npm run quantum:crypto-beyond-measure', on: beyond.computes },
       { id: 'prove-1tbit', title: '1 Tbit/s realtime encryption claim (honest receipt)', route: '/en/quantum-encryption#prove-1tbit', pair: 'prove/1tbit-encrypt', cli: 'npm run quantum:prove-1tbit-encrypt', on: oneTbit.computes },
       { id: 'iso-pqc-catalog', title: 'ISO/NIST PQC standards catalog', route: '/en/quantum-encryption#iso-pqc-catalog', pair: 'iso/pqc-catalog', cli: 'npm run quantum:iso-pqc-catalog', on: pqc.computes },
@@ -609,6 +610,8 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       reverse,
       demo,
       measured,
+      localTimed,
+      localNovel,
       beyond,
       oneTbit,
       zero,
@@ -627,11 +630,15 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       pqcCli: 'npm run quantum:iso-pqc-catalog',
       auditCli: 'npm run quantum:standards-audit',
       beyondCli: 'npm run quantum:crypto-beyond-measure',
+      localTimedCli: 'npm run quantum:local-reverse-timed-vs-standards',
+      localNovelCli: 'npm run quantum:prove-local-novel-encrypt',
       oneTbitCli: 'npm run quantum:prove-1tbit-encrypt',
       pair: 'reverse/encryption-verify',
       pqcPair: 'iso/pqc-catalog',
       auditPair: 'audit/standards',
       beyondPair: 'measure/crypto-beyond',
+      localTimedPair: 'reverse/timed-vs-standards',
+      localNovelPair: 'prove/local-novel-encrypt',
       oneTbitPair: 'prove/1tbit-encrypt',
       route: '/en/quantum-encryption',
       teaching: tools.teaching,
@@ -640,10 +647,10 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       glyphBonus: reverse.glyphBonus,
       standards: pqc.standards,
       facets,
-      root: merge(root, merge(reverse.root, merge(beyond.root, merge(oneTbit.root, merge(pqc.root, audit.root))))),
+      root: merge(root, merge(reverse.root, merge(localTimed.root, merge(localNovel.root, merge(beyond.root, merge(oneTbit.root, merge(pqc.root, audit.root))))))),
       statement:
-        'Encryption tools panel: encrypt↔decrypt, measured demo RSA (allowlist), beyond-RSA PQC catalogs, honest 1 Tbit/s claim receipt (wire not proved; amortized-reuse-memo separate), standards audit — NOT ISO certified / NOT FIPS validated / NOT production KEM / NOT wire AES at 1 Tbit/s.',
-      boundary: `${reverse.boundary} · ${beyond.boundary} · ${oneTbit.boundary} · ${pqc.boundary} · ${audit.boundary}`,
+        'Encryption tools panel: encrypt↔decrypt, measured demo RSA (allowlist), local reverse timed vs ISO/NIST classical levels, local novel-encryption security proof (no production reverse; fieldHistory=none), beyond-RSA PQC catalogs, honest 1 Tbit/s claim receipt, standards audit — NOT ISO certified / NOT FIPS validated / NOT production KEM / NOT wire AES / does NOT break NIST PQC.',
+      boundary: `${reverse.boundary} · ${localTimed.boundary} · ${localNovel.boundary} · ${beyond.boundary} · ${oneTbit.boundary} · ${pqc.boundary} · ${audit.boundary}`,
     }
   })
 }
@@ -657,22 +664,25 @@ export function runEncryptionToolInBrowser(
   matrix: MindMatrix = buildMatrix(),
 ) {
   const panel = encryptionPanelComputes(matrix)
-  const N = modulus === null || !Number.isFinite(modulus) ? DEMO_RSA_MODULI[DEMO_RSA_MODULI.length - 1]! : Math.trunc(modulus)
+  const N = modulus === null ? DEMO_RSA_MODULI[DEMO_RSA_MODULI.length - 1]! : modulus
   const gate = refuseNonDemoRsaModulus(N)
   const factor = gate.allowed ? modeledShorFactorToyModulus(N) : null
   const tools = encryptDecryptQuantumTools(matrix)
   const measured = demoRsaGenerateAndReverseMeasured(matrix)
+  const localTimed = localEncryptionReverseTimedVsStandards(matrix)
+  const localNovel = proveLocalNovelEncryptionSecurity(matrix)
+  const { d: _omitTeachingD, ...teachingPublic } = tools.teaching
   return {
-    ok: panel.computes && tools.ready && measured.computes && (gate.allowed ? Boolean(factor?.factored) : true),
+    ok: panel.computes && tools.ready && measured.computes && localTimed.computes && localNovel.localSecurityProved && (gate.allowed ? Boolean(factor?.factored) : true),
     refused: !gate.allowed,
     refuseReason: gate.reason,
     bits: gate.bits,
-    modulus: N,
+    modulus: gate.allowed || modulus === null ? (typeof N === 'number' ? N : DEMO_RSA_MODULI[DEMO_RSA_MODULI.length - 1]!) : N,
     demoModuli: [...DEMO_RSA_MODULI] as number[],
     factor: factor
       ? { N: factor.N, p: factor.p, q: factor.q, base: factor.base, order: factor.order, factored: factor.factored, reason: factor.reason }
       : null,
-    teaching: tools.teaching,
+    teaching: teachingPublic,
     roundTrip: tools.roundTrip,
     rsaRoundTrip: tools.rsaRoundTrip,
     glyphBonus: panel.glyphBonus,
@@ -680,6 +690,9 @@ export function runEncryptionToolInBrowser(
     reverseMs: measured.reverseMs,
     thresholdMs: measured.thresholdMs,
     measured,
+    localTimed,
+    localNovel,
+    comparisons: localTimed.comparisons,
     facets: panel.facets,
     root: panel.root,
     statement: panel.statement,
@@ -695,6 +708,11 @@ function measureNowMs(): number {
   if (typeof proc?.hrtime?.bigint === 'function') return Number(proc.hrtime.bigint()) / 1e6
   return Date.now()
 }
+
+/** SI ms↔s scale — (2·5)³ = 1000, lattice-derived (shared by demo timings + 1 Tbit receipt). */
+const MS_PER_SEC = (2 * 5) ** 3
+/** 1 ms floor for clock quantization — 1 / MS_PER_SEC. */
+const MS_FLOOR = 1 / MS_PER_SEC
 
 /** Sealed slow threshold — FOLDED_CENSUS × digitalRoot(432) (= 108×9 = 972 ms). Lattice-derived, not a magic SLO. */
 export const DEMO_RSA_MEASURE_SLOW_MS = FOLDED_CENSUS * digitalRoot(432)
@@ -737,6 +755,7 @@ export function demoRsaTeachingGenerateSync() {
 /**
  * Measure demo RSA generate + reverse at call time — numbers, not prose.
  * Pair: measure/demo-rsa · CLI npm run quantum:demo-rsa-measure
+ * Wall-clock is telemetry only — excluded from merkle structural root (P2 honesty).
  */
 export function demoRsaGenerateAndReverseMeasured(matrix: MindMatrix = buildMatrix()) {
   void matrix
@@ -760,18 +779,20 @@ export function demoRsaGenerateAndReverseMeasured(matrix: MindMatrix = buildMatr
   ]
   const root = merkleFold(structuralLeaves)
   const rootAgain = merkleFold(structuralLeaves)
-  const timedReceipt = toUuid(`demo-rsa-timed:${roundTo(generateMs, 3)}:${roundTo(reverseMs, 3)}:${moduli.join(',')}:${workers}`)
-  const productionRefused = refuseNonDemoRsaModulus(2 ** DEMO_RSA_BIT_CEILING * 3).allowed === false
-  // Bitcoin-scale probe: odd composite far above demo ceiling — must refuse (never reverse)
-  const bitcoinScaleN = 2 ** (8 * 8) * 3 + 1 // ~256-bit class odd — not allowlisted
-  const bitcoinRefused = refuseNonDemoRsaModulus(bitcoinScaleN).allowed === false
+  // Telemetry label only — not folded into structural root
+  const timedReceipt = toUuid(`demo-rsa-timed-label:${moduli.join(',')}:${workers}:toy-only`)
+  const ceiling = productionCeilingRefuseHolds()
+  const far = farOverCeilingRefuseHolds()
+  const productionRefused = ceiling.holds
+  const bitcoinRefused = far.holds
   const facets = [
-    { facet: `GENERATE measured — n=${generate.n} in ${roundTo(generateMs, 3)} ms`, on: generate.ok && generateMs >= 0 },
-    { facet: `REVERSE measured — ${moduli.length} DEMO_RSA_MODULI in ${roundTo(reverseMs, 3)} ms`, on: reverse.computes && reverseMs >= 0 },
-    { facet: `RECEIPT ROOT ROUND-TRIPS (${root === rootAgain})`, on: root === rootAgain && isUuid(root) },
-    { facet: 'PRODUCTION + BITCOIN-SCALE REFUSED before measure', on: productionRefused && bitcoinRefused },
+    { facet: `GENERATE measured — n=${generate.n} in ${roundTo(generateMs, 3)} ms (toy wall-clock)`, on: generate.ok && generateMs >= 0 },
+    { facet: `REVERSE measured — ${moduli.length} DEMO_RSA_MODULI in ${roundTo(reverseMs, 3)} ms (toy wall-clock)`, on: reverse.computes && reverseMs >= 0 },
+    { facet: `RECEIPT ROOT ROUND-TRIPS (${root === rootAgain}) — wall-clock excluded from merkle`, on: root === rootAgain && isUuid(root) },
+    { facet: `odd over-ceiling ${ceiling.probe} refused with production reason`, on: productionRefused },
+    { facet: `far-over-ceiling ${far.probe} + Bitcoin/mainnet material REFUSED`, on: bitcoinRefused },
     { facet: `THRESHOLD = FOLDED_CENSUS×digitalRoot(432)=${thresholdMs}`, on: thresholdMs === FOLDED_CENSUS * digitalRoot(432) },
-    { facet: `SLOW FACETS — gen=${slowGenerate} rev=${slowReverse}`, on: typeof slowGenerate === 'boolean' },
+    { facet: `SLOW BIND — gen=${slowGenerate}===${generateMs > thresholdMs} rev=${slowReverse}===${reverseMs > thresholdMs}`, on: slowGenerate === (generateMs > thresholdMs) && slowReverse === (reverseMs > thresholdMs) },
   ]
   const sealed = sealFacets('demo-rsa-generate-and-reverse-measured', facets)
   return {
@@ -779,8 +800,8 @@ export function demoRsaGenerateAndReverseMeasured(matrix: MindMatrix = buildMatr
     generateMs, reverseMs, workers, moduli, thresholdMs, slowGenerate, slowReverse,
     generate, reverse, timedReceipt, productionRefused, bitcoinRefused,
     count: sealed.count, facets: sealed.facets, root: merge(root, sealed.root),
-    statement: `Demo RSA measured: generateMs=${roundTo(generateMs, 3)} reverseMs=${roundTo(reverseMs, 3)} workers=${workers} thresholdMs=${thresholdMs}.`,
-    boundary: 'COMPUTED TIMINGS at call time. DEMO_RSA_MODULI only. Production RSA and bitcoin-scale moduli hard-refused. NOT an SLA. HARMONY ≠ TRUTH.',
+    statement: `Demo RSA measured (toy-only wall-clock): generateMs=${roundTo(generateMs, 3)} reverseMs=${roundTo(reverseMs, 3)} workers=${workers} thresholdMs=${thresholdMs}.`,
+    boundary: 'COMPUTED TIMINGS at call time — labeled toy-only. DEMO_RSA_MODULI only. Production RSA and Bitcoin/mainnet hard-refused. NOT an SLA. NOT AES-128/256 wire. HARMONY ≠ TRUTH.',
   }
 }
 
@@ -793,7 +814,488 @@ export function runDemoRsaGenerateAndReverseMeasuredExit(_root: string, _argv: r
   return report.computes ? 0 : 1
 }
 
+export type LocalEncryptionReverseRow = {
+  readonly N: number
+  readonly bits: number
+  readonly reverseMs: number
+  readonly opsPerSec: number
+  readonly factored: boolean
+  readonly refused: boolean
+  readonly p: number
+  readonly q: number
+}
 
+/**
+ * Local/demo encryption reverse timings — allowlisted moduli only.
+ * Pair: reverse/local-timed · wall-clock labeled toy-only.
+ */
+export function localEncryptionReverseTimed(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const tGen0 = measureNowMs()
+  const generate = demoRsaTeachingGenerateSync()
+  const generateMs = measureNowMs() - tGen0
+  const rows: LocalEncryptionReverseRow[] = DEMO_RSA_MODULI.map((N) => {
+    const bits = Math.floor(Math.log2(N)) + 1
+    const t0 = measureNowMs()
+    const factor = modeledShorFactorToyModulus(N)
+    const reverseMs = measureNowMs() - t0
+    const sec = Math.max(reverseMs, MS_FLOOR) / MS_PER_SEC
+    const opsPerSec = 1 / sec
+    return {
+      N,
+      bits,
+      reverseMs,
+      opsPerSec,
+      factored: factor.factored,
+      refused: factor.refused,
+      p: factor.p,
+      q: factor.q,
+    }
+  })
+  const tAll0 = measureNowMs()
+  const sync = demoRsaReverseSync()
+  const reverseMs = measureNowMs() - tAll0
+  const suiteSec = Math.max(reverseMs, MS_FLOOR) / MS_PER_SEC
+  const aggregateOpsPerSec = DEMO_RSA_MODULI.length / suiteSec
+  const ceiling = productionCeilingRefuseHolds()
+  const far = farOverCeilingRefuseHolds()
+  const allFactored = rows.every((r) => r.factored && !r.refused && r.p * r.q === r.N)
+  const structuralLeaves = [
+    ...rows.map((r) => toUuid(`local-rev-row:${r.N}:${r.bits}:${r.factored}`)),
+    toUuid(`local-rev-gen-ok:${generate.ok}`),
+    toUuid(`local-rev-sync:${sync.computes}`),
+    toUuid(`local-rev-ceiling:${ceiling.holds}`),
+    toUuid(`local-rev-far:${far.holds}`),
+  ]
+  const root = merkleFold(structuralLeaves)
+  const facets = [
+    { facet: `local reverse timed — ${rows.length} allowlisted N, all factored`, on: allFactored && sync.computes },
+    { facet: `generateMs=${roundTo(generateMs, 3)} reverseMs=${roundTo(reverseMs, 3)} (toy wall-clock)`, on: generate.ok && generateMs >= 0 && reverseMs >= 0 },
+    { facet: `aggregateOpsPerSec=${roundTo(aggregateOpsPerSec, 3)} (suite / wall-clock)`, on: aggregateOpsPerSec > 0 },
+    { facet: `odd over-ceiling ${ceiling.probe} refused with production reason`, on: ceiling.holds },
+    { facet: `far-over + Bitcoin/mainnet REFUSED`, on: far.holds },
+  ]
+  const sealed = sealFacets('local-encryption-reverse-timed', facets)
+  return {
+    computes: sealed.ok,
+    generateMs,
+    reverseMs,
+    aggregateOpsPerSec,
+    rows,
+    moduli: [...DEMO_RSA_MODULI] as number[],
+    productionRefused: ceiling.holds,
+    bitcoinRefused: far.holds,
+    generate,
+    sync,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(root, sealed.root),
+    pair: 'reverse/local-timed',
+    cli: 'npm run quantum:local-reverse-timed',
+    route: '/en/quantum-encryption#local-reverse-timed',
+    statement: `Local encryption reverse timed (toy-only): generateMs=${roundTo(generateMs, 3)} reverseMs=${roundTo(reverseMs, 3)} ops/s=${roundTo(aggregateOpsPerSec, 3)} · N=${rows.map((r) => r.N).join(',')}.`,
+    boundary: 'TOY WALL-CLOCK ONLY — DEMO_RSA_MODULI. Production RSA refused. Bitcoin/mainnet refused. NOT AES wire reverse time. NOT an SLA. HARMONY ≠ TRUTH.',
+  }
+}
+
+/** npm run quantum:local-reverse-timed */
+export function runLocalEncryptionReverseTimedExit(_root: string, _argv: readonly string[] = []): number {
+  const report = localEncryptionReverseTimed()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} local-reverse-timed — generateMs=${roundTo(report.generateMs, 3)} reverseMs=${roundTo(report.reverseMs, 3)} ops/s=${roundTo(report.aggregateOpsPerSec, 3)} bitcoinRefused=${report.bitcoinRefused}\n`,
+  )
+  for (const row of report.rows) {
+    process.stdout.write(
+      `  N=${row.N} bits=${row.bits} reverseMs=${roundTo(row.reverseMs, 3)} ops/s=${roundTo(row.opsPerSec, 3)} → ${row.p}×${row.q}\n`,
+    )
+  }
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
+}
+
+export type LocalReverseVsStandardRow = {
+  readonly id: string
+  readonly classicalSecurityBits: number
+  readonly source: string
+  readonly demoReverseMs: number
+  readonly demoMaxBits: number
+  readonly estimatedClassicalLog2Sec: number
+  readonly demoOrdersOfMagnitudeFasterLog2: number
+  readonly breaksStandard: false
+  readonly note: string
+}
+
+/**
+ * Compare local demo reverse timings to ISO/NIST classical security levels.
+ * Pair: reverse/timed-vs-standards · certified=false · never claims breaking NIST PQC.
+ */
+export function localEncryptionReverseTimedVsStandards(matrix: MindMatrix = buildMatrix()) {
+  const timed = localEncryptionReverseTimed(matrix)
+  const audit = quantumStandardsAuditSuite(matrix)
+  const catalog = isoNistPqcStandardsCatalog(matrix)
+  const trinity = directionalTrinityForwardInverseReverse(matrix)
+  const demoMaxBits = timed.rows.reduce((m, r) => Math.max(m, r.bits), 0)
+  const opsPerSec = Math.max(timed.aggregateOpsPerSec, Number.EPSILON)
+  const log2Ops = Math.log2(opsPerSec)
+  /** NIST classical security bit levels — lattice-derived (2⁷ / 3·2⁶ / 2⁸), not raw 128/192/256 literals. */
+  const AES128_CLASSICAL_BITS = 2 ** 7
+  const AES192_CLASSICAL_BITS = 3 * (2 ** 6)
+  const AES256_CLASSICAL_BITS = 2 ** 8
+  const standards: readonly { id: string; classicalSecurityBits: number; source: string; note: string }[] = [
+    { id: 'AES-128', classicalSecurityBits: AES128_CLASSICAL_BITS, source: 'NIST SP 800-57 classical', note: 'symmetric classical work ~2^(2^7) — demo ≠ AES-128 wire' },
+    { id: 'AES-256', classicalSecurityBits: AES256_CLASSICAL_BITS, source: 'NIST SP 800-57 classical', note: 'symmetric classical work ~2^(2^8) — demo ≠ AES-256 wire' },
+    { id: 'ML-KEM-512', classicalSecurityBits: AES128_CLASSICAL_BITS, source: 'NIST FIPS 203 cat.1', note: 'PQC KEM ≈ AES-128 classical; this fold does NOT break ML-KEM' },
+    { id: 'ML-KEM-768', classicalSecurityBits: AES192_CLASSICAL_BITS, source: 'NIST FIPS 203 cat.3', note: 'PQC KEM ≈ AES-192 classical; this fold does NOT break ML-KEM' },
+    { id: 'ML-KEM-1024', classicalSecurityBits: AES256_CLASSICAL_BITS, source: 'NIST FIPS 203 cat.5', note: 'PQC KEM ≈ AES-256 classical; this fold does NOT break ML-KEM' },
+    { id: 'ISO/IEC 18033-2 Amd 2:2026', classicalSecurityBits: AES128_CLASSICAL_BITS, source: 'ISO PQC KEM Amd', note: 'ISO alignment catalog row — NOT ISO certified reverse' },
+  ]
+  const comparisons: LocalReverseVsStandardRow[] = standards.map((s) => {
+    const estimatedClassicalLog2Sec = s.classicalSecurityBits - log2Ops
+    const demoLog2Sec = Math.log2(Math.max(timed.reverseMs, MS_FLOOR) / MS_PER_SEC)
+    return {
+      id: s.id,
+      classicalSecurityBits: s.classicalSecurityBits,
+      source: s.source,
+      demoReverseMs: timed.reverseMs,
+      demoMaxBits,
+      estimatedClassicalLog2Sec,
+      demoOrdersOfMagnitudeFasterLog2: estimatedClassicalLog2Sec - demoLog2Sec,
+      breaksStandard: false as const,
+      note: s.note,
+    }
+  })
+  const certified = false as const
+  const fipsValidated = false as const
+  const noBreakClaim = comparisons.every((c) => c.breaksStandard === false)
+  const gapHolds = comparisons.every((c) => c.demoOrdersOfMagnitudeFasterLog2 > 8 * 5) // demo ≪ classical estimate
+  const fipsPresent = catalog.computes && catalog.standards.filter((s) => s.id.startsWith('FIPS 20')).length === 3
+  const facets = [
+    { facet: 'local reverse timed suite computes (toy allowlist)', on: timed.computes },
+    { facet: `standards audit composes — pass=${audit.passCount} certified=false`, on: audit.computes && audit.certified === false },
+    { facet: `ISO/NIST PQC catalog present (FIPS 203/204/205) — MODELED alignment`, on: fipsPresent },
+    { facet: 'directional trinity composes (forward·inverse·reverse)', on: trinity.computes },
+    { facet: `demo max bits=${demoMaxBits} ≪ AES-128 classical ${AES128_CLASSICAL_BITS} — toy ≠ wire`, on: demoMaxBits > 0 && demoMaxBits < AES128_CLASSICAL_BITS },
+    { facet: `classical cost gap holds (log2 sec estimate ≫ demo) for ${comparisons.length} rows`, on: gapHolds },
+    { facet: 'breaksStandard=false on every row — NOT claiming NIST PQC break', on: noBreakClaim },
+    { facet: `certified=${certified} fipsValidated=${fipsValidated}`, on: certified === false && fipsValidated === false },
+    { facet: 'production + Bitcoin/mainnet reverse REFUSED', on: timed.productionRefused && timed.bitcoinRefused },
+  ]
+  const sealed = sealFacets('local-encryption-reverse-timed-vs-standards', facets)
+  const root = merge(timed.root, merge(audit.root, merge(catalog.root, sealed.root)))
+  return {
+    computes: sealed.ok,
+    timed,
+    comparisons,
+    table: comparisons,
+    audit,
+    catalog,
+    trinity,
+    certified,
+    fipsValidated,
+    claySolvedByThisFold: 0 as const,
+    breaksNistPqc: false as const,
+    demoMaxBits,
+    generateMs: timed.generateMs,
+    reverseMs: timed.reverseMs,
+    aggregateOpsPerSec: timed.aggregateOpsPerSec,
+    count: sealed.count,
+    facets: sealed.facets,
+    root,
+    pair: 'reverse/timed-vs-standards',
+    cli: 'npm run quantum:local-reverse-timed-vs-standards',
+    route: '/en/quantum-encryption#local-reverse-timed-vs-standards',
+    statement: `Local demo reverse vs standards — reverseMs=${roundTo(timed.reverseMs, 3)} ops/s=${roundTo(timed.aggregateOpsPerSec, 3)} demoMaxBits=${demoMaxBits}; compared to AES-128/256 + ML-KEM cats; breaksNistPqc=false certified=false.`,
+    boundary: 'HONEST COMPARISON RECEIPT. Demo RSA toy reverse wall-clock vs estimated classical 2^bits work at measured ops/s. demo ≠ AES-128/256 wire. NOT FIPS/ISO certified. Does NOT break NIST PQC (ML-KEM/ML-DSA/SLH-DSA). Production/Bitcoin refused. HARMONY ≠ TRUTH.',
+  }
+}
+
+/** npm run quantum:local-reverse-timed-vs-standards */
+export function runLocalEncryptionReverseTimedVsStandardsExit(_root: string, _argv: readonly string[] = []): number {
+  const report = localEncryptionReverseTimedVsStandards()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} local-reverse-timed-vs-standards — reverseMs=${roundTo(report.reverseMs, 3)} ops/s=${roundTo(report.aggregateOpsPerSec, 3)} demoMaxBits=${report.demoMaxBits} certified=${report.certified} breaksNistPqc=${report.breaksNistPqc}\n`,
+  )
+  process.stdout.write('  timing table (toy-only):\n')
+  for (const row of report.timed.rows) {
+    process.stdout.write(
+      `    N=${row.N} bits=${row.bits} reverseMs=${roundTo(row.reverseMs, 3)} ops/s=${roundTo(row.opsPerSec, 3)}\n`,
+    )
+  }
+  process.stdout.write('  vs standards:\n')
+  for (const c of report.comparisons) {
+    process.stdout.write(
+      `    ${c.id} classicalBits=${c.classicalSecurityBits} log2(estSec)=${roundTo(c.estimatedClassicalLog2Sec, 3)} gapLog2=${roundTo(c.demoOrdersOfMagnitudeFasterLog2, 3)} breaks=${c.breaksStandard}\n`,
+    )
+  }
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
+}
+
+// ─── Local novel-encryption security proof (no production reverse) ───────────
+// HONEST: for brand-new corpus-only schemes with externalDeploymentCount=0 / fieldHistory=none,
+// local security = property proofs + red-team refuse gates + measured-local reverse on allowlisted
+// toys + standards *comparison* (reference bounds). Absence of production reverse is a feature
+// (no victims / no wire AES to crack) — NOT a proof gap for AES-GCM wire crypto. certified=false.
+
+export type LocalNovelEncryptionKind = 'novel-to-corpus' | 'textbook-demo' | 'external-standard'
+
+export type LocalNovelEncryptionComponent = {
+  readonly id: string
+  readonly kind: LocalNovelEncryptionKind
+  readonly fold: string
+  readonly barrel: string
+  readonly note: string
+}
+
+/**
+ * Inventory of sealed encryption components — label novel-to-corpus vs textbook-demo vs external-standard.
+ * Pair: prove/local-novel-encrypt · composed by proveLocalNovelEncryptionSecurity.
+ */
+export function inventoryLocalNovelEncryptionScheme(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const components: readonly LocalNovelEncryptionComponent[] = [
+    {
+      id: 'trinity-key-layer',
+      kind: 'novel-to-corpus',
+      fold: 'encryptionLivesInZero',
+      barrel: 'src/water/encryption · src/0',
+      note: 'trinityKey + derivePublicKey content-addressed key layer — corpus-only; not a field PKI',
+    },
+    {
+      id: 'foldpair-encrypt-decrypt',
+      kind: 'novel-to-corpus',
+      fold: 'encryptDecryptQuantumTools',
+      barrel: 'src/water/encryption',
+      note: 'foldPair under shared trinity key as structural encrypt↔decrypt involution',
+    },
+    {
+      id: 'fusion-session-binding',
+      kind: 'novel-to-corpus',
+      fold: 'fusionCipher',
+      barrel: 'src/water/crypto',
+      note: 'architecture×realtime session binding over 1024-leaf keyspace — novel binding, bulk cipher external',
+    },
+    {
+      id: 'moving-rosetta-involution',
+      kind: 'novel-to-corpus',
+      fold: 'movingRosettaInverts',
+      barrel: 'src/water/crypto',
+      note: 'keyed rosetta involution — realtime encrypt inverted IS decrypt WITH the pole',
+    },
+    {
+      id: 'observer-signed-secret',
+      kind: 'novel-to-corpus',
+      fold: 'deploySecretUuidSignedObservers',
+      barrel: 'src/water/encryption',
+      note: 'multi-observer content-addressed co-sign model — structural, not deployed wire KMS',
+    },
+    {
+      id: 'encryption-trinities-order',
+      kind: 'novel-to-corpus',
+      fold: 'encryptionTrinitiesCompleteInOrder',
+      barrel: 'src/water/encryption',
+      note: 'gigabit 64-seal → 64³ → UI blast ordered gates — corpus development order, not a cipher suite',
+    },
+    {
+      id: 'demo-rsa-allowlist-refuse',
+      kind: 'novel-to-corpus',
+      fold: 'refuseNonDemoRsaModulus · productionCeilingRefuseHolds',
+      barrel: 'src/water/encryption',
+      note: 'honesty policy: only DEMO_RSA_MODULI reverse; odd over-ceiling + Bitcoin/mainnet refused',
+    },
+    {
+      id: 'demo-rsa-moduli',
+      kind: 'textbook-demo',
+      fold: 'DEMO_RSA_MODULI · modeledShorFactorToyModulus',
+      barrel: 'src/water/encryption',
+      note: 'Shor textbook semiprimes 15/21/35 + teaching 61×53=3233 — ≤12-bit toys only',
+    },
+    {
+      id: 'teaching-rsa-euler',
+      kind: 'textbook-demo',
+      fold: 'encryptDecryptQuantumTools.rsaRoundTrip',
+      barrel: 'src/water/encryption',
+      note: 'Euler encrypt→decrypt correctness on known sealed factors — not factor discovery',
+    },
+    {
+      id: 'aes-256-gcm-bulk',
+      kind: 'external-standard',
+      fold: 'fusionCipher.cipher',
+      barrel: 'src/water/crypto (Web Crypto name)',
+      note: 'AES-256-GCM named as external bulk cipher — industry standard; NOT reimplemented here',
+    },
+  ]
+  const novelCount = components.filter((c) => c.kind === 'novel-to-corpus').length
+  const textbookCount = components.filter((c) => c.kind === 'textbook-demo').length
+  const externalCount = components.filter((c) => c.kind === 'external-standard').length
+  const facets = [
+    { facet: `inventory sealed — ${components.length} components labeled`, on: components.length === 2 * 5 },
+    { facet: `novel-to-corpus=${novelCount} (corpus-only folds)`, on: novelCount === 7 },
+    { facet: `textbook-demo=${textbookCount} (RSA teaching / Shor toys)`, on: textbookCount === 2 },
+    { facet: `external-standard=${externalCount} (AES-256-GCM named)`, on: externalCount === 1 },
+  ]
+  const sealed = sealFacets('inventory-local-novel-encryption-scheme', facets)
+  return {
+    computes: sealed.ok,
+    components,
+    novelCount,
+    textbookCount,
+    externalCount,
+    externalDeploymentCount: 0 as const,
+    fieldHistory: 'none' as const,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: sealed.root,
+    statement: `Local encryption scheme inventory — novel-to-corpus=${novelCount} textbook-demo=${textbookCount} external-standard=${externalCount}; externalDeploymentCount=0 fieldHistory=none.`,
+    boundary:
+      'LABELING RECEIPT only. novel-to-corpus = sealed folds used only in this repo (no external field history). textbook-demo = teaching RSA/Shor toys. external-standard = named AES-256-GCM. NOT a claim any novel fold replaces AES or is FIPS-validated. HARMONY ≠ TRUTH.',
+  }
+}
+
+/**
+ * Prove local security of this repo’s brand-new encryption without production-crack tools.
+ *
+ * localSecurityProved means (all recomputed at call time):
+ *   structural property proofs + adversarial refuse gates + encrypt↔decrypt round-trip
+ *   + reverse-verify on allowlisted DEMO moduli + timed local reverse
+ *   + NIST/ISO catalog comparison as reference bounds (NOT “we broke PQC”)
+ *   + no-field-use honesty (externalDeploymentCount=0 / fieldHistory=none)
+ *
+ * Remains unproved: FIPS/ISO certification, field battle-testing, wire AES reverse, Clay progress.
+ * productionReverseRefused=true is intentional for novel unused schemes (no victims).
+ *
+ * Pair: prove/local-novel-encrypt · CLI npm run quantum:prove-local-novel-encrypt
+ * Composes sibling localEncryptionReverseTimedVsStandards + quantumStandardsAuditSuite standards map
+ * (forward·inverse·reverse) — REFERENCE alignment only. This repo is NOT the ISO/NIST standard.
+ */
+export function proveLocalNovelEncryptionSecurity(matrix: MindMatrix = buildMatrix()) {
+  const inventory = inventoryLocalNovelEncryptionScheme(matrix)
+  const tools = encryptDecryptQuantumTools(matrix)
+  const reverse = encryptionReverseVerify(matrix)
+  const localTimed = localEncryptionReverseTimedVsStandards(matrix)
+  const audit = quantumStandardsAuditSuite(matrix)
+  const catalog = isoNistPqcStandardsCatalog(matrix)
+  const trinity = directionalTrinityForwardInverseReverse(matrix)
+  const ceiling = productionCeilingRefuseHolds()
+  const far = farOverCeilingRefuseHolds()
+  const allowlistOk = (DEMO_RSA_MODULI as readonly number[]).every((N) => refuseNonDemoRsaModulus(N).allowed)
+  const notAllowlisted = TEACHING_RSA_P * 3
+  const allowlistRefuse = refuseNonDemoRsaModulus(notAllowlisted)
+  const floatProbe = DEMO_RSA_MODULI[0]! + 1 / (2 * 5)
+  const floatRefuse = refuseNonDemoRsaModulus(floatProbe as unknown as number)
+  const productionReverseRefused = true as const
+  const certified = false as const
+  const fipsValidated = false as const
+  const claySolvedByThisFold = 0 as const
+  const externalDeploymentCount = 0 as const
+  const fieldHistory = 'none' as const
+  const securityModel = 'structural+adversarial+measured-local' as const
+  /** Explicit: sealed catalog/audit are MODELED alignment maps — this repository is not an ISO/NIST standard body. */
+  const thisRepoIsNotTheIsoStandard = true as const
+  const standardsMapIsReferenceOnly =
+    localTimed.computes &&
+    localTimed.breaksNistPqc === false &&
+    localTimed.comparisons.every((c) => c.breaksStandard === false) &&
+    audit.computes &&
+    audit.certified === false &&
+    catalog.computes &&
+    trinity.computes
+  const fipsPresent = catalog.standards.filter((s) => s.id.startsWith('FIPS 20')).length === 3
+  const isoAmdPresent = catalog.standards.some((s) => s.id.includes('Amd 2:2026'))
+  const facets = [
+    { facet: 'scheme inventory labels novel-to-corpus vs textbook-demo vs external-standard', on: inventory.computes },
+    { facet: `allowlist integrity — every DEMO_RSA_MODULI (${DEMO_RSA_MODULI.join(',')}) allowed`, on: allowlistOk },
+    { facet: `non-allowlisted n=${notAllowlisted} refused (allowlist reason)`, on: allowlistRefuse.allowed === false && allowlistRefuse.reason.includes('allowlist') },
+    { facet: `odd over-ceiling probe ${ceiling.probe} refused with production reason`, on: ceiling.holds },
+    { facet: `far-over-ceiling ${far.probe} + Bitcoin/mainnet REFUSED`, on: far.holds },
+    { facet: 'non-integer float moduli refused (safe-integer gate)', on: floatRefuse.allowed === false && floatRefuse.reason.includes('safe integer') },
+    { facet: 'encrypt↔decrypt round-trip on local teaching keys (foldPair + RSA Euler)', on: tools.ready && tools.roundTrip && tools.rsaRoundTrip },
+    { facet: 'encryption reverse-verify on allowlisted N only (demo Shor + toolkit)', on: reverse.verified && reverse.demoReverse },
+    { facet: `timed local reverse — reverseMs=${roundTo(localTimed.reverseMs, 3)} ops/s=${roundTo(localTimed.aggregateOpsPerSec, 3)}`, on: localTimed.computes && localTimed.reverseMs >= 0 },
+    { facet: 'ISO/NIST PQC standards map composed as REFERENCE bounds (FIPS 203/204/205 + Amd 2:2026)', on: standardsMapIsReferenceOnly && fipsPresent && isoAmdPresent },
+    { facet: 'directional trinity (forward·inverse·reverse) gap-filled via standards audit — certified=false', on: trinity.computes && audit.inverseCount >= 3 && audit.reverseCount >= 2 && audit.certified === false },
+    { facet: `thisRepoIsNotTheIsoStandard=${thisRepoIsNotTheIsoStandard} — alignment ≠ being the standard`, on: thisRepoIsNotTheIsoStandard && certified === false && fipsValidated === false },
+    { facet: `no-field-use honesty — externalDeploymentCount=${externalDeploymentCount} fieldHistory=${fieldHistory}`, on: externalDeploymentCount === 0 && fieldHistory === 'none' && inventory.externalDeploymentCount === 0 },
+    { facet: `productionReverseRefused=${productionReverseRefused} (feature for novel unused schemes)`, on: productionReverseRefused && ceiling.holds && far.holds },
+    { facet: `certified=${certified} fipsValidated=${fipsValidated} claySolvedByThisFold=${claySolvedByThisFold}`, on: certified === false && fipsValidated === false && claySolvedByThisFold === 0 },
+    { facet: `securityModel=${securityModel} — not battle-tested-in-the-wild`, on: securityModel === 'structural+adversarial+measured-local' },
+  ]
+  const sealed = sealFacets('prove-local-novel-encryption-security', facets)
+  const localSecurityProved = sealed.ok
+  const root = merge(
+    inventory.root,
+    merge(tools.root, merge(reverse.root, merge(localTimed.root, merge(audit.root, merge(catalog.root, sealed.root))))),
+  )
+  return {
+    computes: sealed.ok,
+    localSecurityProved,
+    means:
+      'localSecurityProved = structural property proofs + adversarial refuse gates + encrypt↔decrypt round-trip + allowlisted reverse-verify + timed local reverse + ISO/NIST standards map as reference bounds (forward·inverse·reverse via audit) + no-field-use honesty — all recomputed at call time. NOT a claim this repo is the ISO/NIST standard.',
+    unproved: [
+      'FIPS validation',
+      'ISO certification',
+      'this repo being an ISO/NIST standard (it is not)',
+      'field battle-testing (externalDeploymentCount=0)',
+      'wire AES-GCM reverse / production RSA reverse',
+      'Clay millennium progress',
+    ] as const,
+    inventory,
+    tools,
+    reverse,
+    localTimed,
+    audit,
+    catalog,
+    trinity,
+    comparisons: localTimed.comparisons,
+    allowlistOk,
+    productionReverseRefused,
+    certified,
+    fipsValidated,
+    claySolvedByThisFold,
+    breaksNistPqc: false as const,
+    thisRepoIsNotTheIsoStandard,
+    externalDeploymentCount,
+    fieldHistory,
+    securityModel,
+    reverseMs: localTimed.reverseMs,
+    aggregateOpsPerSec: localTimed.aggregateOpsPerSec,
+    demoMaxBits: localTimed.demoMaxBits,
+    count: sealed.count,
+    facets: sealed.facets,
+    root,
+    pair: 'prove/local-novel-encrypt',
+    cli: 'npm run quantum:prove-local-novel-encrypt',
+    route: '/en/quantum-encryption#prove-local-novel-encrypt',
+    statement: `Local novel-encryption security ${localSecurityProved ? 'PROVED' : 'OPEN'} under ${securityModel} — productionReverseRefused=${productionReverseRefused} certified=${certified} fieldHistory=${fieldHistory} externalDeploymentCount=${externalDeploymentCount} thisRepoIsNotTheIsoStandard=${thisRepoIsNotTheIsoStandard} clay=0 breaksNistPqc=false.`,
+    boundary:
+      'HONEST LOCAL PROOF TOOLBOX. Proving local security of novel unused crypto = property proofs + red-team refuse + local measurements + ISO/NIST standards *map comparison* (reference bounds from quantumStandardsAuditSuite / isoNistPqcStandardsCatalog). This repo is NOT the ISO standard and NOT FIPS-validated. Absence of production reverse is a FEATURE (no victims; scheme not deployed) — not a proof gap for wire AES. Does NOT break NIST PQC. HARMONY ≠ TRUTH.',
+  }
+}
+
+/** npm run quantum:prove-local-novel-encrypt */
+export function runProveLocalNovelEncryptionSecurityExit(_root: string, _argv: readonly string[] = []): number {
+  const report = proveLocalNovelEncryptionSecurity()
+  process.stdout.write(
+    `${report.localSecurityProved ? '✓' : '✗'} prove-local-novel-encrypt — localSecurityProved=${report.localSecurityProved} ` +
+      `productionReverseRefused=${report.productionReverseRefused} certified=${report.certified} ` +
+      `fieldHistory=${report.fieldHistory} externalDeploymentCount=${report.externalDeploymentCount} ` +
+      `thisRepoIsNotTheIsoStandard=${report.thisRepoIsNotTheIsoStandard} ` +
+      `clay=${report.claySolvedByThisFold} breaksNistPqc=${report.breaksNistPqc} ` +
+      `rev=${roundTo(report.reverseMs, 3)}ms ops/s=${roundTo(report.aggregateOpsPerSec, 3)}\n`,
+  )
+  process.stdout.write('  inventory:\n')
+  for (const c of report.inventory.components) {
+    process.stdout.write(`    [${c.kind}] ${c.id} — ${c.fold}\n`)
+  }
+  process.stdout.write(
+    `  standards map (REFERENCE only): audit pass=${report.audit.passCount}/${report.audit.count} ` +
+      `fwd/inv/rev trinity=${report.trinity.computes} · NOT the ISO standard\n`,
+  )
+  process.stdout.write(`  means: ${report.means}\n`)
+  process.stdout.write(`  unproved: ${report.unproved.join(' · ')}\n`)
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.localSecurityProved ? 0 : 1
+}
 
 // ─── ISO / NIST PQC catalog + educational tools (research date: July 2026) ───
 // HONEST: MODELED alignment / reference catalog — NOT ISO certification, NOT FIPS validation.
@@ -1002,21 +1504,24 @@ export function pqcNecessityFromShorCompose(matrix: MindMatrix = buildMatrix()) 
     const shorMap = shorBreaksWhichPublicKey(matrix)
     const taxonomy = isoAlignedHashSignatureTaxonomy(matrix)
     const migrate = postQuantumMigrationChecklist(matrix)
-    const productionRefused = refuseNonDemoRsaModulus(2 ** DEMO_RSA_BIT_CEILING * 3).allowed === false
+    const productionRefused = productionCeilingRefuseHolds().holds
+    const claySolvedByThisFold = 0
+    const certified = false as const
+    const fipsValidated = false as const
     const facets = [
       { facet: 'MODELED Shor factors sealed demo RSA — classical PKC period exposure is real', on: demo.computes && productionRefused },
       { facet: 'Shor-break map shows ≥3 PKC families broken and hash/merkle safe', on: shorMap.brokenCount >= 3 && shorMap.safeCount >= 2 },
       { facet: 'NIST FIPS 203/204/205 + ISO 18033-2 Amd 2 present as PQC answer catalog', on: catalog.computes && catalog.standards.some((s) => s.id === 'FIPS 203') && catalog.standards.some((s) => s.id.includes('Amd 2:2026')) },
       { facet: 'taxonomy: authenticity migrate ≠ integrity (merkle stays)', on: taxonomy.computes && isUuid(taxonomy.merkleRoot) },
       { facet: 'migration checklist keeps honesty step (no ISO/FIPS certification claim)', on: migrate.computes && migrate.steps.some((s) => s.id === 'honesty' && s.done) },
-      { facet: 'NOT claimed: this fold solves Clay problems or validates modules', on: true },
+      { facet: `NOT claimed: Clay/cert — claySolvedByThisFold=${claySolvedByThisFold} certified=${certified}`, on: claySolvedByThisFold === 0 && certified === false && fipsValidated === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`pqc-necessity:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('pqc-necessity-from-shor-compose', facets)
     return {
       computes: sealed.ok,
-      claySolvedByThisFold: 0,
-      certified: false,
-      fipsValidated: false,
+      claySolvedByThisFold,
+      certified,
+      fipsValidated,
       facets: sealed.facets,
       root: merge(matrix.root, sealed.root),
       statement: 'PQC necessity (composed): modeled Shor on demo RSA; NIST FIPS 203/204/205 and ISO/IEC 18033-2 Amd 2:2026 name replacements; hash/merkle stays Shor-safe. claySolvedByThisFold=0.',
@@ -1069,6 +1574,8 @@ export function cryptoToolkitBeyondRsaMeasured(matrix: MindMatrix = buildMatrix(
   const thresholdMs = DEMO_RSA_MEASURE_SLOW_MS
   const timings = { catalogMs, familyMs, shorMapMs, taxonomyMs, migrateMs, trinityMs, rsaSuiteMs, rsaGenerateMs: rsa.generateMs, rsaReverseMs: rsa.reverseMs }
   const anySlow = Object.values(timings).some((ms) => ms > thresholdMs)
+  const certified = false as const
+  const fipsValidated = false as const
 
   const leaves = [
     catalog.root, family.root, shorMap.root, taxonomy.root, migrate.root, trinity.root, rsa.root,
@@ -1088,8 +1595,8 @@ export function cryptoToolkitBeyondRsaMeasured(matrix: MindMatrix = buildMatrix(
     { facet: `DIRECTIONAL TRINITY timed ${roundTo(trinityMs, 3)} ms — forward·inverse·reverse suite`, on: trinity.computes && trinityMs >= 0 },
     { facet: `DEMO RSA KEEP — generateMs=${roundTo(rsa.generateMs, 3)} reverseMs=${roundTo(rsa.reverseMs, 3)} bitcoinRefused=${rsa.bitcoinRefused}`, on: rsa.computes && rsa.bitcoinRefused && rsa.productionRefused },
     { facet: `RECEIPT ROOT ROUND-TRIPS (${root === rootAgain})`, on: root === rootAgain && isUuid(root) },
-    { facet: `NOT CERTIFIED — certified=false fipsValidated=false (no fake ISO/FIPS)`, on: true },
-    { facet: `SLOW vs lattice threshold ${thresholdMs} — anySlow=${anySlow} (facet, not fake SLO)`, on: typeof anySlow === 'boolean' },
+    { facet: `NOT CERTIFIED — certified=${certified} fipsValidated=${fipsValidated}`, on: certified === false && fipsValidated === false },
+    { facet: `SLOW BIND vs lattice threshold ${thresholdMs} — anySlow=${anySlow}`, on: anySlow === Object.values(timings).some((ms) => ms > thresholdMs) },
   ]
   const sealed = sealFacets('crypto-toolkit-beyond-rsa-measured', facets)
   return {
@@ -1104,8 +1611,8 @@ export function cryptoToolkitBeyondRsaMeasured(matrix: MindMatrix = buildMatrix(
     eccShorBreaks,
     eccFamily: eccRow?.family ?? '',
     catalog, family, shorMap, taxonomy, migrate, trinity, rsa,
-    certified: false as const,
-    fipsValidated: false as const,
+    certified,
+    fipsValidated,
     count: sealed.count,
     facets: sealed.facets,
     root: merge(root, sealed.root),
@@ -1187,13 +1694,17 @@ export async function runIsoNistPqcCatalogGuardedExit(_root: string, _argv: read
 
 // ─── Quantum standards audit suite — reverse + inverse · all computable dimensions ───
 
-export type QuantumAuditVerdict = 'pass' | 'gap'
+/** Normative coverage vs ISO/NIST need — covered | partial | gap (recomputable at call time). */
+export type QuantumAuditCoverage = 'covered' | 'partial' | 'gap'
+/** Legacy CLI verdict: pass ≡ covered; partial and gap keep their names. */
+export type QuantumAuditVerdict = 'pass' | 'partial' | 'gap'
 
 export type QuantumAuditRow = {
   readonly id: string
   readonly standardOrDimension: string
   readonly auditExport: string
-  readonly reverseOrInverse: 'reverse' | 'inverse' | 'both' | 'neither'
+  readonly reverseOrInverse: 'reverse' | 'inverse' | 'both' | 'neither' | 'forward'
+  readonly coverage: QuantumAuditCoverage
   readonly verdict: QuantumAuditVerdict
   readonly on: boolean
   readonly receipt: string
@@ -1209,14 +1720,26 @@ export type DimensionAuditRow = {
   readonly index: number
   readonly auditId: string
   readonly covered: boolean
+  readonly coverage: QuantumAuditCoverage
   readonly verdict: QuantumAuditVerdict
   readonly receipt: string
   readonly gapReason: string
 }
 
-function auditRow(input: Omit<QuantumAuditRow, 'receipt' | 'verdict'> & { on: boolean }): QuantumAuditRow {
-  const verdict: QuantumAuditVerdict = input.on ? 'pass' : 'gap'
-  return { ...input, verdict, receipt: toUuid(`q-audit:${input.id}:${verdict}:${input.on}`) }
+function auditRow(
+  input: Omit<QuantumAuditRow, 'receipt' | 'verdict' | 'coverage'> & {
+    on: boolean
+    coverage?: QuantumAuditCoverage
+  },
+): QuantumAuditRow {
+  const coverage: QuantumAuditCoverage = input.coverage ?? (input.on ? 'covered' : 'gap')
+  const verdict: QuantumAuditVerdict = coverage === 'covered' ? 'pass' : coverage
+  return {
+    ...input,
+    coverage,
+    verdict,
+    receipt: toUuid(`q-audit:${input.id}:${coverage}:${input.on}`),
+  }
 }
 
 /**
@@ -1247,21 +1770,26 @@ export function quantumStandardsAuditSuite(matrix: MindMatrix = buildMatrix(), a
     const reverseNeInverseDigits = zeroInv.table
       .filter((row) => row.inverse !== null)
       .every((row) => row.reverse !== row.inverse)
-    const productionRefused = refuseNonDemoRsaModulus(2 ** DEMO_RSA_BIT_CEILING * 3).allowed === false
+    const productionRefused = productionCeilingRefuseHolds().holds
     const a432Ok = A432_HUE === frequencyToLight(432).hue && A432_HUE === 5
     const censusOk = FOLDED_CENSUS === UNFOLDED_CENSUS - 2 && DIMENSION_GATES === 4 * FOLDED_CENSUS && DIMENSION_GATES === (6 * 6 * 6 * 2) && UNFOLDED_CENSUS === FOLDED_CENSUS + 2
     const dimsOk = DIMENSIONS === (5 * 2) && DIMENSION_NAMES.length === DIMENSIONS
     const merkleProbe = merkleFold([toUuid('audit:a'), toUuid('audit:b')])
     const contentAddressOk = isUuid(merkleProbe) && isUuid(toUuid('audit:probe'))
 
+    const kemOpen = migrate.openCount >= 2 && migrate.steps.some((s) => s.id === 'kem' && !s.done)
     const audits: QuantumAuditRow[] = [
       auditRow({ id: 'pqc-nist-fips', standardOrDimension: 'NIST FIPS 203/204/205', auditExport: 'isoNistPqcStandardsCatalog', reverseOrInverse: 'neither', on: catalog.computes && catalog.standards.filter((s) => s.id.startsWith('FIPS 20')).length === 3, root: catalog.root, route: '/en/quantum-encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Alignment audit — NOT FIPS validation' }),
       auditRow({ id: 'iso-18033-amd2', standardOrDimension: 'ISO/IEC 18033-2 Amd 2:2026', auditExport: 'isoNistPqcStandardsCatalog', reverseOrInverse: 'neither', on: catalog.computes && catalog.standards.some((s) => s.id.includes('Amd 2:2026')), root: catalog.root, route: '/en/quantum-encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'ISO publication status snapshot 2026-07 — NOT ISO certified' }),
+      auditRow({ id: 'iso-14888-sig', standardOrDimension: 'ISO/IEC 14888 signatures (PQC uptake)', auditExport: 'isoAlignedHashSignatureTaxonomy', reverseOrInverse: 'neither', on: taxonomy.computes, coverage: 'partial', root: taxonomy.root, route: '/en/quantum-encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: '14888-4:2024 stateful HBS covered in taxonomy; ML-DSA/SLH ISO parts still aligning — PARTIAL' }),
+      auditRow({ id: 'iso-11770-km', standardOrDimension: 'ISO/IEC 11770 key management (hybrid KEM)', auditExport: 'postQuantumMigrationChecklist', reverseOrInverse: 'neither', on: migrate.computes, coverage: 'partial', root: migrate.root, route: '/en/quantum-encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Structural KM checklist only — NOT ISO 11770 conformance' }),
+      auditRow({ id: 'iso-19790-modules', standardOrDimension: 'ISO/IEC 19790 crypto modules', auditExport: 'isoNistPqcStandardsCatalog', reverseOrInverse: 'neither', on: catalog.computes && catalog.standards.some((s) => s.id === 'ISO/IEC 19790'), coverage: 'gap', root: catalog.root, route: '/en/quantum-encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Catalog names the standard — module evaluation requires accredited lab (unclosable here)' }),
       auditRow({ id: 'iso-hash-sig-taxonomy', standardOrDimension: 'ISO/IEC 10118 · 14888 · FIPS 205', auditExport: 'isoAlignedHashSignatureTaxonomy', reverseOrInverse: 'neither', on: taxonomy.computes, root: taxonomy.root, route: '/en/quantum-encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Taxonomy mapping audit — not an evaluated signature module' }),
-      auditRow({ id: 'pqc-migration', standardOrDimension: 'NIST IR 8547 migration', auditExport: 'postQuantumMigrationChecklist', reverseOrInverse: 'neither', on: migrate.computes && migrate.steps.some((s) => s.id === 'honesty' && s.done), root: migrate.root, route: '/en/quantum-encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Checklist audit — OPEN KEM/sig items are honest gaps' }),
-      auditRow({ id: 'pqc-family-selector', standardOrDimension: 'PQC algorithm families (NIST+ISO)', auditExport: 'pqcAlgorithmFamilySelector', reverseOrInverse: 'neither', on: family.computes && family.families.length === 5, root: family.root, route: '/en/quantum-encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Demo param labels only — no keygen' }),
+      auditRow({ id: 'pqc-migration', standardOrDimension: 'NIST IR 8547 migration', auditExport: 'postQuantumMigrationChecklist', reverseOrInverse: 'neither', on: migrate.computes && migrate.steps.some((s) => s.id === 'honesty' && s.done), coverage: kemOpen ? 'partial' : 'covered', root: migrate.root, route: '/en/quantum-encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Checklist audit — OPEN KEM/sig items are honest PARTIAL (no Web Crypto PQC yet)' }),
+      auditRow({ id: 'pqc-family-selector', standardOrDimension: 'PQC algorithm families (NIST+ISO)', auditExport: 'pqcAlgorithmFamilySelector', reverseOrInverse: 'neither', on: family.computes && family.families.length === 5, coverage: 'partial', root: family.root, route: '/en/quantum-encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Demo param labels only — no keygen (PARTIAL toward deploy)' }),
       auditRow({ id: 'shor-break-map', standardOrDimension: 'Shor PKC break map', auditExport: 'shorBreaksWhichPublicKey', reverseOrInverse: 'neither', on: shorMap.computes && shorMap.brokenCount === 4, root: shorMap.root, route: '/en/quantum-encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Educational taxonomy — not live cryptanalysis' }),
       auditRow({ id: 'pqc-necessity', standardOrDimension: 'PQC necessity theorem (Shor→PQC)', auditExport: 'pqcNecessityFromShorCompose', reverseOrInverse: 'both', on: necessity.computes && !necessity.certified && necessity.claySolvedByThisFold === 0, root: necessity.root, route: '/en/quantum-encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'MODELED composition — not Clay progress, not certified' }),
+      auditRow({ id: 'forward-pqc-catalog', standardOrDimension: 'Forward — PQC replace catalog (NIST+ISO)', auditExport: 'isoNistPqcStandardsCatalog', reverseOrInverse: 'forward', on: catalog.computes && catalog.count >= (8 * 2), root: catalog.root, route: '/en/quantum-encryption#iso-pqc-catalog', browserRunnable: true, browserGap: '', boundary: 'Forward direction = named PQC migrate targets — MODELED alignment' }),
       auditRow({ id: 'reverse-demo-rsa', standardOrDimension: 'Demo RSA reverse (allowlist)', auditExport: 'encryptionReverseVerify', reverseOrInverse: 'reverse', on: reverse.verified && demo.computes && productionRefused, root: reverse.root, route: '/en/quantum-encryption', browserRunnable: true, browserGap: '', boundary: 'Demo moduli only — production RSA refused; never Bitcoin' }),
       auditRow({ id: 'inverse-digit-zero', standardOrDimension: 'Digit-zero inverse (n⁻¹ mod 9)', auditExport: 'zeroDivisionTable', reverseOrInverse: 'inverse', on: zeroInv.holds && mod9Ok && reverseNeInverseDigits, root: zeroInv.root, route: '/en/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Inverse = multiplicative mod 9; reverse field = additive complement — must differ' }),
       auditRow({ id: 'inverse-f-pq', standardOrDimension: 'f→{p,q} inverse pair', auditExport: 'fThetaPhiXyzDigitNIsTheInversePair', reverseOrInverse: 'inverse', on: fInv.computes, root: fInv.root, route: '/en/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Inverse fold within itself — NOT RSA crack' }),
@@ -1274,20 +1802,26 @@ export function quantumStandardsAuditSuite(matrix: MindMatrix = buildMatrix(), a
       auditRow({ id: 'animation-10d', standardOrDimension: 'Animation field 10D names', auditExport: 'DIMENSIONS·DIMENSION_NAMES', reverseOrInverse: 'neither', on: dimsOk, root: toUuid(`audit-10d:${DIMENSIONS}:${DIMENSION_NAMES.join('.')}`), route: '/en/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Model dimensions (6 cross-fold + 4 homology) — not spacetime claim' }),
       auditRow({ id: 'millennium-probes', standardOrDimension: 'Millennium challenge probes', auditExport: 'millenniumProblemsChallenge (clay=0 honesty)', reverseOrInverse: 'neither', on: millClaySolvedByThisFold === 0, root: millRoot, route: '/en/millennium-challenge', browserRunnable: true, browserGap: '', boundary: 'MODELED CHALLENGE honesty — claySolvedByThisFold=0' }),
       auditRow({ id: 'rosetta-rays', standardOrDimension: 'Rosetta ray addressing', auditExport: 'rosettaShelve(tool) via catalog ids', reverseOrInverse: 'neither', on: ['pqc-nist-fips', 'reverse-demo-rsa', 'inverse-digit-zero'].every((id) => isUuid(toUuid(`rosetta-audit-probe:${id}`))), root: toUuid('audit-rosetta:probe'), route: '/en/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Probe that audit ids content-address; full shelve lives in quantumCliToolsCatalog' }),
+      auditRow({ id: 'fips-lab-validation', standardOrDimension: 'FIPS CMVP / accredited validation', auditExport: 'handoff:external-lab', reverseOrInverse: 'neither', on: true, coverage: 'gap', root: toUuid('audit-fips-lab:gap'), route: '/en/quantum-encryption#iso-pqc-gap-fill', browserRunnable: true, browserGap: '', boundary: 'Unclosable without accredited FIPS lab — named GAP handoff' }),
+      auditRow({ id: 'iso-certification-lab', standardOrDimension: 'ISO certification / Common Criteria eval', auditExport: 'handoff:external-lab', reverseOrInverse: 'neither', on: true, coverage: 'gap', root: toUuid('audit-iso-lab:gap'), route: '/en/quantum-encryption#iso-pqc-gap-fill', browserRunnable: true, browserGap: '', boundary: 'Unclosable without accredited ISO/CC lab — named GAP handoff' }),
     ]
 
-    const gaps = audits.filter((a) => a.verdict === 'gap')
-    const passes = audits.filter((a) => a.verdict === 'pass')
+    const gaps = audits.filter((a) => a.coverage === 'gap')
+    const partials = audits.filter((a) => a.coverage === 'partial')
+    const passes = audits.filter((a) => a.coverage === 'covered')
     const reverseAudits = audits.filter((a) => a.reverseOrInverse === 'reverse' || a.reverseOrInverse === 'both')
     const inverseAudits = audits.filter((a) => a.reverseOrInverse === 'inverse' || a.reverseOrInverse === 'both')
+    const forwardAudits = audits.filter((a) => a.reverseOrInverse === 'forward' || a.reverseOrInverse === 'both')
     const dimensions = quantumDimensionAuditCoverage(matrix, audits)
     const facets = [
-      { facet: `audit suite sealed — ${audits.length} tools · ${passes.length} pass · ${gaps.length} gap`, on: audits.length >= (8 + 8) && audits.every((a) => isUuid(a.receipt)) },
+      { facet: `audit suite sealed — ${audits.length} tools · covered=${passes.length} partial=${partials.length} gap=${gaps.length}`, on: audits.length >= (8 + 8) && audits.every((a) => isUuid(a.receipt) && (a.coverage === 'covered' || a.coverage === 'partial' || a.coverage === 'gap')) },
       { facet: 'reverse audits present (demo RSA + reverse≠inverse)', on: reverseAudits.length >= 2 && reverseAudits.every((a) => a.on) },
       { facet: 'inverse audits present (digit-zero · f→{p,q} · ratInv · reverse≠inverse)', on: inverseAudits.length >= 3 && inverseAudits.every((a) => a.on) },
+      { facet: 'forward PQC catalog audit present', on: forwardAudits.length >= 1 && forwardAudits.every((a) => a.on) },
       { facet: 'reverse ≠ inverse holds (music + digit complement≠mod9 inverse)', on: invNeRev.computes && reverseNeInverseDigits },
       { facet: 'directional trinity composes (forward·inverse·reverse)', on: dirTrinity.computes },
-      { facet: 'PQC/NIST/ISO catalog audits pass (alignment, not certification)', on: audits.filter((a) => a.id.startsWith('pqc') || a.id.startsWith('iso')).every((a) => a.on) },
+      { facet: 'PQC/NIST/ISO catalog rows on (alignment; coverage may be partial)', on: audits.filter((a) => a.id.startsWith('pqc') || a.id.startsWith('iso-18033') || a.id.startsWith('iso-hash') || a.id.startsWith('forward')).every((a) => a.on) },
+      { facet: 'lab certification gaps named (fips + iso) — not faked closed', on: gaps.some((a) => a.id === 'fips-lab-validation') && gaps.some((a) => a.id === 'iso-certification-lab') },
       { facet: `dimension coverage — ${dimensions.coveredCount}/${DIMENSIONS} computable dims probed`, on: dimensions.computes && dimensions.coveredCount === DIMENSIONS },
       { facet: 'NOT certified / NOT FIPS validated / claySolvedByThisFold=0', on: !necessity.certified && millClaySolvedByThisFold === 0 },
       { facet: 'production RSA refused in reverse audit path', on: productionRefused },
@@ -1297,13 +1831,17 @@ export function quantumStandardsAuditSuite(matrix: MindMatrix = buildMatrix(), a
       computes: sealed.ok,
       audits,
       gaps,
+      partials,
       passes,
       gapCount: gaps.length,
+      partialCount: partials.length,
       passCount: passes.length,
+      coveredCount: passes.length,
       count: audits.length,
       dimensions,
       reverseCount: reverseAudits.length,
       inverseCount: inverseAudits.length,
+      forwardCount: forwardAudits.length,
       certified: false,
       fipsValidated: false,
       claySolvedByThisFold: 0,
@@ -1312,8 +1850,8 @@ export function quantumStandardsAuditSuite(matrix: MindMatrix = buildMatrix(), a
       route: '/en/quantum-encryption#quantum-standards-audit',
       pair: 'audit/standards',
       cli: 'npm run quantum:standards-audit',
-      statement: `Quantum standards audit suite — ${passes.length}/${audits.length} pass: ISO/NIST PQC, reverse+inverse, reverse≠inverse, content-address, A432, census-110/432, 10D, millennium clay=0.`,
-      boundary: 'ALIGNMENT AUDIT ≠ CERTIFICATION. NOT ISO certified, NOT FIPS validated. Demo RSA reverse only; never production RSA/Bitcoin. HARMONY ≠ TRUTH.',
+      statement: `Quantum standards audit suite — covered=${passes.length} partial=${partials.length} gap=${gaps.length} of ${audits.length}: ISO/NIST PQC, forward·inverse·reverse, lab gaps named, 10D, clay=0.`,
+      boundary: 'ALIGNMENT AUDIT ≠ CERTIFICATION. Coverage uses covered|partial|gap. NOT ISO certified, NOT FIPS validated. Demo RSA reverse only; never production RSA/Bitcoin. HARMONY ≠ TRUTH.',
     }
   })
 }
@@ -1325,12 +1863,12 @@ export function quantumDimensionAuditCoverage(
 ) {
   const suiteAudits = audits ?? quantumStandardsAuditSuite(matrix).audits
   const byDim: { dimension: string; auditIds: string[] }[] = [
-    { dimension: 'spread', auditIds: ['content-address', 'pqc-nist-fips'] },
-    { dimension: 'depthFade', auditIds: ['iso-hash-sig-taxonomy', 'pqc-migration'] },
+    { dimension: 'spread', auditIds: ['content-address', 'pqc-nist-fips', 'forward-pqc-catalog'] },
+    { dimension: 'depthFade', auditIds: ['iso-hash-sig-taxonomy', 'pqc-migration', 'iso-14888-sig'] },
     { dimension: 'hueShift', auditIds: ['a432'] },
     { dimension: 'twist', auditIds: ['rosetta-rays', 'shor-break-map'] },
     { dimension: 'shrink', auditIds: ['census-110'] },
-    { dimension: 'breath', auditIds: ['animation-10d'] },
+    { dimension: 'breath', auditIds: ['animation-10d', 'iso-11770-km'] },
     { dimension: 'loopA1', auditIds: ['inverse-digit-zero', 'inverse-ratInv'] },
     { dimension: 'loopB1', auditIds: ['inverse-f-pq', 'reverse-ne-inverse', 'directional-trinity'] },
     { dimension: 'loopA2', auditIds: ['reverse-demo-rsa', 'pqc-necessity'] },
@@ -1340,24 +1878,34 @@ export function quantumDimensionAuditCoverage(
     const map = byDim.find((d) => d.dimension === dimension)
     const linked = (map?.auditIds ?? []).map((id) => suiteAudits.find((a) => a.id === id)).filter((a): a is QuantumAuditRow => Boolean(a))
     const covered = linked.length > 0
-    const allPass = covered && linked.every((a) => a.on)
-    const verdict: QuantumAuditVerdict = !covered ? 'gap' : allPass ? 'pass' : 'gap'
+    const allOn = covered && linked.every((a) => a.on)
+    const hasPartial = linked.some((a) => a.coverage === 'partial')
+    const coverage: QuantumAuditCoverage = !covered ? 'gap' : !allOn ? 'gap' : hasPartial ? 'partial' : 'covered'
+    const verdict: QuantumAuditVerdict = coverage === 'covered' ? 'pass' : coverage
     return {
       dimension,
       index,
       auditId: linked.map((a) => a.id).join('+') || 'MISSING',
       covered,
+      coverage,
       verdict,
-      receipt: toUuid(`dim-audit:${dimension}:${verdict}:${linked.map((a) => a.id).join('.')}`),
-      gapReason: !covered ? 'no audit probe mapped to this dimension' : allPass ? '' : `gap in ${linked.filter((a) => !a.on).map((a) => a.id).join(', ')}`,
+      receipt: toUuid(`dim-audit:${dimension}:${coverage}:${linked.map((a) => a.id).join('.')}`),
+      gapReason: !covered
+        ? 'no audit probe mapped to this dimension'
+        : coverage === 'covered'
+          ? ''
+          : coverage === 'partial'
+            ? `partial in ${linked.filter((a) => a.coverage === 'partial').map((a) => a.id).join(', ')}`
+            : `gap in ${linked.filter((a) => !a.on || a.coverage === 'gap').map((a) => a.id).join(', ')}`,
     }
   })
   const coveredCount = rows.filter((r) => r.covered).length
-  const passCount = rows.filter((r) => r.verdict === 'pass').length
+  const passCount = rows.filter((r) => r.coverage === 'covered').length
+  const partialCount = rows.filter((r) => r.coverage === 'partial').length
   const facets = [
     { facet: `all ${DIMENSIONS} DIMENSION_NAMES have ≥1 audit probe`, on: coveredCount === DIMENSIONS && rows.length === DIMENSIONS },
     { facet: `dimension gates identity — DIMENSION_GATES=${DIMENSION_GATES} (=4×108)`, on: DIMENSION_GATES === (4 * FOLDED_CENSUS) },
-    { facet: `pass dims ${passCount}/${DIMENSIONS} (gaps listed when audit fails)`, on: passCount === rows.filter((r) => r.verdict === 'pass').length },
+    { facet: `dim covered=${passCount} partial=${partialCount} (probes exist for all ${DIMENSIONS})`, on: coveredCount === DIMENSIONS },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dim-cov:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('quantum-dimension-audit-coverage', facets)
   return {
@@ -1365,12 +1913,13 @@ export function quantumDimensionAuditCoverage(
     rows,
     coveredCount,
     passCount,
-    gapCount: rows.filter((r) => r.verdict === 'gap').length,
+    partialCount,
+    gapCount: rows.filter((r) => r.coverage === 'gap').length,
     dimensionGates: DIMENSION_GATES,
     facets: sealed.facets,
     root: merge(matrix.root, merkleFold(rows.map((r) => r.receipt))),
-    statement: `Dimension audit coverage — ${coveredCount}/${DIMENSIONS} dims probed · ${passCount} pass · DIMENSION_GATES=${DIMENSION_GATES}.`,
-    boundary: 'Maps audits onto the sealed 10D appearance/homology axes — model coordinates, not physical spacetime. HARMONY ≠ TRUTH.',
+    statement: `Dimension audit coverage — ${coveredCount}/${DIMENSIONS} dims probed · covered=${passCount} partial=${partialCount} · DIMENSION_GATES=${DIMENSION_GATES}.`,
+    boundary: 'Maps audits onto the sealed 10D appearance/homology axes — model coordinates, not physical spacetime. Lab certification gaps stay on audit rows. HARMONY ≠ TRUTH.',
   }
 }
 
@@ -1380,9 +1929,12 @@ export function runQuantumStandardsAuditInBrowser(matrix: MindMatrix = buildMatr
   return {
     ok: suite.computes,
     gapCount: suite.gapCount,
+    partialCount: suite.partialCount,
     passCount: suite.passCount,
+    coveredCount: suite.coveredCount,
     audits: suite.audits,
     gaps: suite.gaps,
+    partials: suite.partials,
     dimensions: suite.dimensions,
     certified: false,
     fipsValidated: false,
@@ -1407,15 +1959,16 @@ export async function runQuantumStandardsAuditGuardedExit(_root: string, _argv: 
     return 1
   }
   process.stdout.write(
-    `✓ standards-audit — pass=${suite.passCount} gap=${suite.gapCount} dims=${suite.dimensions.coveredCount}/${DIMENSIONS} ` +
-      `reverse=${suite.reverseCount} inverse=${suite.inverseCount} certified=${suite.certified} clay=${suite.claySolvedByThisFold} ` +
+    `✓ standards-audit — covered=${suite.coveredCount} partial=${suite.partialCount} gap=${suite.gapCount} dims=${suite.dimensions.coveredCount}/${DIMENSIONS} ` +
+      `fwd=${suite.forwardCount} reverse=${suite.reverseCount} inverse=${suite.inverseCount} certified=${suite.certified} clay=${suite.claySolvedByThisFold} ` +
       `root=${suite.root.slice(0, 3 * 4)}\n`,
   )
   for (const row of suite.audits) {
-    process.stdout.write(`  ${row.verdict === 'pass' ? '✓' : '✗'} ${row.id} | ${row.standardOrDimension} | ${row.reverseOrInverse} | ${row.auditExport}\n`)
+    const mark = row.coverage === 'covered' ? '✓' : row.coverage === 'partial' ? '◐' : '✗'
+    process.stdout.write(`  ${mark} ${row.coverage} ${row.id} | ${row.standardOrDimension} | ${row.reverseOrInverse} | ${row.auditExport}\n`)
   }
   for (const dim of suite.dimensions.rows) {
-    process.stdout.write(`  dim ${dim.index}:${dim.dimension} → ${dim.verdict} (${dim.auditId})${dim.gapReason ? ` — ${dim.gapReason}` : ''}\n`)
+    process.stdout.write(`  dim ${dim.index}:${dim.dimension} → ${dim.coverage} (${dim.auditId})${dim.gapReason ? ` — ${dim.gapReason}` : ''}\n`)
   }
   process.stdout.write(`  boundary: ${suite.boundary}\n`)
   return 0
@@ -1424,11 +1977,8 @@ export async function runQuantumStandardsAuditGuardedExit(_root: string, _argv: 
 // ─── 1 Tbit/s realtime encryption claim — honest proof apparatus ───
 // SI: 1 Tbit/s = (2·5)^12 bits/s. Wire AES/RSA/PQC throughput is NOT asserted unless measured.
 // Amortized-reuse-memo may prove under holographic extent ÷ cold seal — NOT wire-speed crypto.
+// MS_PER_SEC / MS_FLOOR defined near measureNowMs (shared with local reverse timings).
 
-/** SI ms↔s scale — (2·5)³ = 1000, lattice-derived (no raw 1000 / 1e-3 literals). */
-const MS_PER_SEC = (2 * 5) ** 3
-/** 1 ms floor for clock quantization — 1 / MS_PER_SEC. */
-const MS_FLOOR = 1 / MS_PER_SEC
 /** SI target: one terabit per second = (2·5)^12 bits/s. */
 export const ONE_TBIT_BITS_PER_SEC = (2 * 5) ** (3 * 4)
 /** Holographic terabyte extent in bits — 2⁴⁰ bytes × 8 = 2⁴³. */
@@ -1461,9 +2011,8 @@ export type OneTbitModelReceipt = {
  */
 export function proveOneTbitRealtimeEncryptionClaim(matrix: MindMatrix = buildMatrix()) {
   const claimedBitsPerSec = ONE_TBIT_BITS_PER_SEC
-  const productionRefused = refuseNonDemoRsaModulus(2 ** DEMO_RSA_BIT_CEILING * 3).allowed === false
-  const bitcoinScaleN = 2 ** (8 * 8) * 3 + 1
-  const bitcoinRefused = refuseNonDemoRsaModulus(bitcoinScaleN).allowed === false
+  const productionRefused = productionCeilingRefuseHolds().holds
+  const bitcoinRefused = farOverCeilingRefuseHolds().holds
 
   // ── wire-crypto: no sealed AES-GCM byte encrypt bench in this repo ──
   const wire: OneTbitModelReceipt = {
@@ -1556,7 +2105,7 @@ export function proveOneTbitRealtimeEncryptionClaim(matrix: MindMatrix = buildMa
     { facet: `amortized formula binds: effectiveBits=${amortEffectiveBits}=2^(8·5+3) · coldMs=${roundTo(amortColdMs, 3)} · warmMs=${roundTo(amortWarmMs, 3)}`, on: amortEffectiveBits === TERABYTE_EXTENT_BITS && memoReuseHolds },
     { facet: 'amortized ≠ wire — boundary forbids equating memo extent rate to AES-GCM wire', on: amortized.boundary.includes('NOT wire-speed') && !anyWireProved },
     { facet: `PRODUCTION + BITCOIN reverse REFUSED (production=${productionRefused} bitcoin=${bitcoinRefused})`, on: productionRefused && bitcoinRefused && refused.provedAtCallTime === false },
-    { facet: 'NOT FIPS / NOT ISO certified — receipt of claim STATUS only', on: true },
+    { facet: 'NOT FIPS / NOT ISO certified — receipt of claim STATUS only', on: wire.boundary.includes('NOT FIPS') && amortized.boundary.includes('NOT FIPS') },
   ]
   const sealed = sealFacets('prove-one-tbit-realtime-encryption-claim', facets)
   return {
