@@ -4,6 +4,7 @@
 import type { ScientificPageMeaning } from '../../../src/quantum/apps/index.ts'
 import { SCIENCE_PAGE_CANON_SLOTS } from '../../../src/quantum/apps/index.ts'
 import ScientificPaperBody from './ScientificPaperBody.vue'
+import PageComputedGaps from './PageComputedGaps.vue'
 import UiBadge from './ui/Badge.vue'
 
 defineProps<{
@@ -52,6 +53,7 @@ defineProps<{
     </figure>
 
     <ScientificPaperBody :paper="meaning.paper" :logic="meaning.fold" />
+    <PageComputedGaps page-kind="paper" />
   </article>
 </template>
 

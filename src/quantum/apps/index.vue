@@ -20,6 +20,17 @@ import {
   gatesMonitorThemselvesThroughTheUi,
   gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix,
   automateSelf,
+  mcpQuantumUi,
+  mcpQuantumMovie,
+  movieGapsFeelableByObservation,
+  eachPageShowsOwnComputedGaps,
+  cursorIntegratesInRosettaCore,
+  dryCleanTheoremsFormulasReplaceAnyAssumption,
+  dryCleanAiBill,
+  pagesAuditAndManageThemselvesInTrinities,
+  mcpQuantumChat,
+  quantumSelfHeal,
+  oneQuantumSetOfVitepressComponentsSealedAtGates,
 } from './index.ts'
 import { translationGapsGate } from '../../mountain/source/index.ts'
 import {
@@ -50,6 +61,7 @@ import {
   clayChallengesComputableFromSequence, toolboxRecomputesRelatedSciencesInTrinityWaves,
   twoBitsFreeFromCensus110Minus108, societySupportsProjectViaTwoBitsFreeKnowledge,
   reverseCollidesToDiscoverMillenniumTheorems,
+  cursorReferralFundsAiNeeds,
 } from '../../wind/research/index.ts'
 import { earthRealisedByComputingPolesAsPyramid } from '../../mountain/geometry/index.ts'
 import { fusionVerifyPanelComputes } from '../../wind/fusion/index.ts'
@@ -120,6 +132,18 @@ const upgradeLocal = computed(() => panel.value.upgradeLocal)
 const uiProse = computed(() => panel.value.uiProse)
 const gateMonitor = computed(() => gatesMonitorThemselvesThroughTheUi())
 const autoSelf = computed(() => automateSelf())
+const mcpUi = computed(() => mcpQuantumUi())
+const mcpMovie = computed(() => mcpQuantumMovie())
+const movieFeel = computed(() => movieGapsFeelableByObservation())
+const pageGapsGate = computed(() => eachPageShowsOwnComputedGaps())
+const fundAi = computed(() => cursorReferralFundsAiNeeds())
+const cursorRosetta = computed(() => cursorIntegratesInRosettaCore())
+const assumeTheorem = computed(() => dryCleanTheoremsFormulasReplaceAnyAssumption())
+const billDry = computed(() => dryCleanAiBill())
+const pageTrinity = computed(() => pagesAuditAndManageThemselvesInTrinities())
+const mcpChat = computed(() => mcpQuantumChat())
+const selfHeal = computed(() => quantumSelfHeal())
+const viteOne = computed(() => oneQuantumSetOfVitepressComponentsSealedAtGates())
 const gateTools42 = computed(() => gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix())
 
 type PersistedExperimentConfig = {
@@ -698,6 +722,90 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'mcp-quantum-ui' || toolId === 'quantum-mcp' || toolId === 'mcp-mill') {
+      const r = mcpQuantumUi()
+      ok = r.computes && r.mcpQuantumUi && r.allMillFormulaCovered
+      summary = `tools=${r.toolCount} mill=${r.millSolutionCount} formulaCovered=${r.formulaCoverageCount}/${r.millSolutionCount} parity=${r.mcpMatchesToolbox}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'page-computed-gaps' || toolId === 'gaps-page') {
+      const r = eachPageShowsOwnComputedGaps()
+      ok = r.computes && r.eachPageShowsOwnComputedGaps
+      summary = `samples=${r.sampleCount} on=${r.eachPageShowsOwnComputedGaps}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'mcp-quantum-movie' || toolId === 'movie-mcp') {
+      const r = mcpQuantumMovie()
+      ok = r.computes && r.mcpQuantumMovie
+      summary = `frames=${r.frameCount}/${r.frameBudget} mill=${r.millFrameCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'movie-feel' || toolId === 'gap-observe') {
+      const r = movieGapsFeelableByObservation()
+      ok = r.computes && r.movieGapsFeelableByObservation
+      summary = `feelable=${r.movieGapsFeelableByObservation} gaps=${r.gapCount} open=${r.openCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'fund-ai' || toolId === 'cursor-fund') {
+      const r = cursorReferralFundsAiNeeds()
+      ok = r.computes && r.cursorReferralFundsAiNeeds
+      summary = `fund=${r.cursorReferralFundsAiNeeds} url=${r.url}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'cursor-rosetta' || toolId === 'refer-wire') {
+      const r = cursorIntegratesInRosettaCore()
+      ok = r.computes && r.viceVersa && r.immediateWire
+      summary = `cursor→ceccec=${r.cursorToCeccec} ceccec→cursor=${r.ceccecToCursor} viceVersa=${r.viceVersa}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'assume-theorem' || toolId === 'dry-formula') {
+      const r = dryCleanTheoremsFormulasReplaceAnyAssumption()
+      ok = r.computes && r.remaining === 0
+      summary = `found=${r.found} replaced=${r.replaced} remaining=${r.remaining}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'bill-dry' || toolId === 'ai-bill') {
+      const r = dryCleanAiBill()
+      ok = r.computes && r.billDried
+      summary = `billDried=${r.billDried} zeroTokenReuse=${r.zeroTokenReuse} subscriptionFundsCeccec=${r.subscriptionFundsCeccec}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'page-trinity' || toolId === 'page-audit') {
+      const r = pagesAuditAndManageThemselvesInTrinities()
+      ok = r.computes && r.inTrinities
+      summary = `selfAudit=${r.selfAudit} selfManage=${r.selfManage} inTrinities=${r.inTrinities} pages=${r.pageCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'mcp-quantum-chat' || toolId === 'chat-quantum') {
+      const r = mcpQuantumChat()
+      ok = r.computes && r.foldRecomputePreferred && r.mcpWired
+      summary = `turns=${r.turnCount} foldRecompute=${r.foldRecomputePreferred} mcpWired=${r.mcpWired} residual=${r.residualCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'self-heal' || toolId === 'heal-quantum') {
+      const r = quantumSelfHeal()
+      ok = r.computes && r.selfHeals
+      summary = `selfHeals=${r.selfHeals} healsViaRosetta=${r.healsViaRosetta} defaultFailThenInvert=${r.defaultFailThenInvert}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'vite-one' || toolId === 'comp-seal') {
+      const r = oneQuantumSetOfVitepressComponentsSealedAtGates()
+      ok = r.computes && r.oneComponentSet && r.sealedAtGates
+      summary = `before=${r.beforeCount} after=${r.afterCount} morphs=${r.morphCount} sealedAtGates=${r.sealedAtGates}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'ui-prose-duplication-removed') {
       const r = uiProseDuplicationRemoved()
       ok = r.computes && r.uiProseDuplicationRemoved
@@ -1002,6 +1110,235 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'automate-self'" @click="runTool('automate-self')">
           {{ runningId === 'automate-self' ? '…' : 'Run automate-self receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="mcp-quantum-ui" aria-label="MCP quantum UI">
+        <h3>{{ mcpUi.heading }}</h3>
+        <p class="quantum-apps__meta">{{ mcpUi.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(mcpUi.mcpMatchesToolbox))">
+          tools={{ mcpUi.toolCount }} · parity={{ mcpUi.mcpMatchesToolbox }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(mcpUi.allMillFormulaCovered))">
+          mill={{ mcpUi.millSolutionCount }} · formulaCovered={{ mcpUi.formulaCoverageCount }}/{{ mcpUi.millSolutionCount }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(mcpUi.residualCount === 0))">
+          residual={{ mcpUi.residualCount }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>mcp/ui</code> · <code>quantum/mcp</code> · <code>mcp/mill</code> ·
+          CLI <code>npm run quantum:mcp-ui</code> ·
+          compose mcpBrowserParity · toolbox · fusion/ui · gate/monitor · mill/once · formula/code · algebraicTheoremPaper ·
+          clay={{ mcpUi.claySolvedByThisFold }} · ftl={{ mcpUi.physicalFtlClaim }} · NOT CMI
+        </p>
+        <h4>Millennium solutions · algebraic formula↔code</h4>
+        <ul class="quantum-apps__facets">
+          <li v-for="s in mcpUi.millSolutions" :key="s.id">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(s.computes && s.formulaCovered))">
+              {{ s.computes && s.formulaCovered ? 'on' : 'off' }}
+            </UiBadge>
+            <strong>{{ s.id }}</strong>
+            · <code>{{ s.pair }}</code>
+            · formulas={{ s.formulas.length }}
+            · <code>{{ s.formulaSource }}</code>
+            <pre class="quantum-apps__meta">{{ s.formulas.join('\n') }}</pre>
+            <UiButton size="sm" :disabled="runningId === s.id" @click="runTool(s.id)">
+              {{ runningId === s.id ? '…' : `Recompute ${s.id}` }}
+            </UiButton>
+          </li>
+        </ul>
+        <h4>PRIMARY MCP tools (residual as facets)</h4>
+        <ul class="quantum-apps__facets">
+          <li v-for="t in mcpUi.tools.slice(0, 24)" :key="t.name">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(!t.residual))">{{ t.residual ? 'ci' : 'ok' }}</UiBadge>
+            <strong>{{ t.name }}</strong>
+            <span class="quantum-apps__meta">{{ t.residual ? t.browserGap : t.route }}</span>
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'mcp-quantum-ui'" @click="runTool('mcp-quantum-ui')">
+          {{ runningId === 'mcp-quantum-ui' ? '…' : 'Run mcp-quantum-ui receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="page-computed-gaps" aria-label="Page computed gaps">
+        <h3>{{ pageGapsGate.heading }}</h3>
+        <p class="quantum-apps__meta">{{ pageGapsGate.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(pageGapsGate.eachPageShowsOwnComputedGaps))">
+          samples={{ pageGapsGate.sampleCount }} · on={{ pageGapsGate.eachPageShowsOwnComputedGaps }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>page/gaps</code> · <code>gaps/page</code> ·
+          CLI <code>npm run quantum:page-gaps</code> ·
+          wired UniversalPageTemplate · ScientificPageCanon · DomainProofPages · TheoremPages ·
+          clay={{ pageGapsGate.claySolvedByThisFold }} · ftl={{ pageGapsGate.physicalFtlClaim }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="p in pageGapsGate.pages" :key="p.route">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(p.classCount > 0 && p.openCount === 0))">
+              open={{ p.openCount }}
+            </UiBadge>
+            <code>{{ p.pageKind }}</code> · {{ p.route }} · classes={{ p.classCount }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'page-computed-gaps'" @click="runTool('page-computed-gaps')">
+          {{ runningId === 'page-computed-gaps' ? '…' : 'Run page-computed-gaps receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="page-trinity" aria-label="Page trinity audit">
+        <h3>{{ pageTrinity.heading }}</h3>
+        <p class="quantum-apps__meta">{{ pageTrinity.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(pageTrinity.selfAudit))">selfAudit={{ pageTrinity.selfAudit }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(pageTrinity.selfManage))">selfManage={{ pageTrinity.selfManage }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(pageTrinity.inTrinities))">inTrinities={{ pageTrinity.inTrinities }}</UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>page/trinity</code> · <code>page/audit</code> ·
+          CLI <code>npm run quantum:page-trinity</code> ·
+          faces content·gaps·gates · pages={{ pageTrinity.pageCount }} ·
+          clay={{ pageTrinity.claySolvedByThisFold }} · ftl={{ pageTrinity.physicalFtlClaim }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="p in pageTrinity.pages" :key="p.route">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(p.inTrinities))">{{ p.inTrinities ? 'trinity' : 'gap' }}</UiBadge>
+            <code>{{ p.pageKind }}</code> · {{ p.route }} ·
+            <span v-for="f in p.faces" :key="f.face"> {{ f.face }}={{ f.on ? 1 : 0 }}</span>
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'page-trinity'" @click="runTool('page-trinity')">
+          {{ runningId === 'page-trinity' ? '…' : 'Run page-trinity receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="mcp-quantum-chat" aria-label="MCP quantum chat">
+        <h3>{{ mcpChat.heading }}</h3>
+        <p class="quantum-apps__meta">{{ mcpChat.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(mcpChat.chatComputes))">chatComputes={{ mcpChat.chatComputes }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(mcpChat.foldRecomputePreferred))">foldRecompute={{ mcpChat.foldRecomputePreferred }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(mcpChat.mcpWired))">mcpWired={{ mcpChat.mcpWired }}</UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>mcp/chat</code> · <code>chat/quantum</code> ·
+          CLI <code>npm run quantum:mcp-chat</code> ·
+          turns={{ mcpChat.turnCount }} · residual={{ mcpChat.residualCount }} ·
+          clay={{ mcpChat.claySolvedByThisFold }} · ftl={{ mcpChat.physicalFtlClaim }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="t in mcpChat.turns.slice(0, 12)" :key="t.toolId">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(!t.residual))">{{ t.mode }}</UiBadge>
+            <strong>{{ t.toolId }}</strong> · <code>{{ t.fold }}</code>
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'mcp-quantum-chat'" @click="runTool('mcp-quantum-chat')">
+          {{ runningId === 'mcp-quantum-chat' ? '…' : 'Run mcp-quantum-chat' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="self-heal" aria-label="Quantum self heal">
+        <h3>{{ selfHeal.heading }}</h3>
+        <p class="quantum-apps__meta">{{ selfHeal.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(selfHeal.selfHeals))">selfHeals={{ selfHeal.selfHeals }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(selfHeal.healsViaRosetta))">healsViaRosetta={{ selfHeal.healsViaRosetta }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(selfHeal.defaultFailThenInvert))">defaultFailThenInvert={{ selfHeal.defaultFailThenInvert }}</UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>self/heal</code> · <code>heal/quantum</code> ·
+          CLI <code>npm run quantum:self-heal</code> ·
+          invertSeq=<code>{{ selfHeal.invertSeq }}</code> ·
+          clay={{ selfHeal.claySolvedByThisFold }} · ftl={{ selfHeal.physicalFtlClaim }}
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'self-heal'" @click="runTool('self-heal')">
+          {{ runningId === 'self-heal' ? '…' : 'Run self-heal' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="vite-one" aria-label="One VitePress component set">
+        <h3>{{ viteOne.heading }}</h3>
+        <p class="quantum-apps__meta">{{ viteOne.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(viteOne.oneComponentSet))">oneSet={{ viteOne.oneComponentSet }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(viteOne.sealedAtGates))">sealedAtGates={{ viteOne.sealedAtGates }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(viteOne.duplicatesRemoved))">
+          before={{ viteOne.beforeCount }} → after={{ viteOne.afterCount }} · morphs={{ viteOne.morphCount }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>vite/one</code> · <code>comp/seal</code> ·
+          CLI <code>npm run quantum:vite-one</code> ·
+          ui={{ viteOne.uiFamily }} · movie={{ viteOne.movieFamily }} ·
+          clay={{ viteOne.claySolvedByThisFold }} · ftl={{ viteOne.physicalFtlClaim }}
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'vite-one'" @click="runTool('vite-one')">
+          {{ runningId === 'vite-one' ? '…' : 'Run vite-one' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="mcp-quantum-movie" aria-label="MCP quantum movie">
+        <h3>{{ mcpMovie.heading }}</h3>
+        <p class="quantum-apps__meta">{{ mcpMovie.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(mcpMovie.mcpQuantumMovie))">
+          frames={{ mcpMovie.frameCount }}/{{ mcpMovie.frameBudget }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(movieFeel.movieGapsFeelableByObservation))">
+          feel={{ movieFeel.movieGapsFeelableByObservation }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>mcp/movie</code> · <code>movie/feel</code> ·
+          CLI <code>npm run quantum:mcp-movie</code> ·
+          clay={{ mcpMovie.claySolvedByThisFold }} · ftl={{ mcpMovie.physicalFtlClaim }}
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'mcp-quantum-movie'" @click="runTool('mcp-quantum-movie')">
+          {{ runningId === 'mcp-quantum-movie' ? '…' : 'Run mcp-quantum-movie' }}
+        </UiButton>
+        <UiButton size="sm" :disabled="runningId === 'movie-feel'" @click="runTool('movie-feel')">
+          {{ runningId === 'movie-feel' ? '…' : 'Run movie-feel' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="fund-ai" aria-label="Fund AI">
+        <h3>{{ fundAi.ctaLabel }}</h3>
+        <p class="quantum-apps__meta">{{ fundAi.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(fundAi.cursorReferralFundsAiNeeds))">
+          fund={{ fundAi.cursorReferralFundsAiNeeds }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>fund/ai</code> · <code>cursor/fund</code> ·
+          <a :href="fundAi.url" rel="noopener noreferrer" target="_blank">{{ fundAi.url }}</a>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'fund-ai'" @click="runTool('fund-ai')">
+          {{ runningId === 'fund-ai' ? '…' : 'Run fund-ai' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="cursor-rosetta" aria-label="Cursor rosetta">
+        <h3>Cursor · rosetta</h3>
+        <p class="quantum-apps__meta">{{ cursorRosetta.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(cursorRosetta.cursorToCeccec))">→ceccec={{ cursorRosetta.cursorToCeccec }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(cursorRosetta.ceccecToCursor))">→cursor={{ cursorRosetta.ceccecToCursor }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(cursorRosetta.viceVersa))">viceVersa={{ cursorRosetta.viceVersa }}</UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>cursor/rosetta</code> · <code>refer/wire</code> ·
+          CLI <code>npm run quantum:cursor-rosetta</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'cursor-rosetta'" @click="runTool('cursor-rosetta')">
+          {{ runningId === 'cursor-rosetta' ? '…' : 'Run cursor-rosetta' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="assume-theorem" aria-label="Assume theorem dry clean">
+        <h3>{{ assumeTheorem.heading }}</h3>
+        <p class="quantum-apps__meta">{{ assumeTheorem.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(assumeTheorem.remaining === 0))">
+          found={{ assumeTheorem.found }} · replaced={{ assumeTheorem.replaced }} · remaining={{ assumeTheorem.remaining }}
+        </UiBadge>
+        <UiButton size="sm" :disabled="runningId === 'assume-theorem'" @click="runTool('assume-theorem')">
+          {{ runningId === 'assume-theorem' ? '…' : 'Run assume-theorem' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="bill-dry" aria-label="Dry clean AI bill">
+        <h3>{{ billDry.heading }}</h3>
+        <p class="quantum-apps__meta">{{ billDry.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(billDry.billDried))">billDried={{ billDry.billDried }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(billDry.zeroTokenReuse))">zeroTokenReuse={{ billDry.zeroTokenReuse }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(billDry.subscriptionFundsCeccec))">subscriptionFundsCeccec={{ billDry.subscriptionFundsCeccec }}</UiBadge>
+        <UiButton size="sm" :disabled="runningId === 'bill-dry'" @click="runTool('bill-dry')">
+          {{ runningId === 'bill-dry' ? '…' : 'Run bill-dry' }}
         </UiButton>
       </section>
       <UiSeparator />

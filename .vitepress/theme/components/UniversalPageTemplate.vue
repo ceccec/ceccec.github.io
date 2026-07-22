@@ -6,8 +6,10 @@ import { useCardMovie, useSiteLocale } from '../../lib/mounts'
 import DecodedCard from './DecodedCard.vue'
 import LinkedHeroCard from './LinkedHeroCard.vue'
 import ScientificPaperBody from './ScientificPaperBody.vue'
+import PageComputedGaps from './PageComputedGaps.vue'
 import { sciencePaperBodyFromCorpusSections } from '../../../src/quantum/apps/index.ts'
 import { UiButton } from '../../lib/shadcn-ui.ts'
+import type { PageGapsKind } from '../../../src/quantum/apps/index.ts'
 
 function headingId(text: string, suffix: string): string {
   const base = text
@@ -71,6 +73,12 @@ const corpusProgressLabel = computed(() => {
 const canonPaper = computed(() => {
   const sp = page.value?.standardPaper
   return sp ? sciencePaperBodyFromCorpusSections(sp) : null
+})
+
+const pageGapsKind = computed((): PageGapsKind | undefined => {
+  const kind = page.value?.kind
+  if (kind === 'corpus-index' || kind === 'corpus-detail' || kind === 'monograph' || kind === 'catch-all') return kind
+  return undefined
 })
 </script>
 
@@ -173,6 +181,8 @@ const canonPaper = computed(() => {
       <span class="proof__ok">{{ page.proofOk }}</span>
       <code>{{ page.proof }}</code>
     </p>
+
+    <PageComputedGaps :page-kind="pageGapsKind" />
   </article>
 </template>
 

@@ -1250,6 +1250,97 @@ export function societyInvestmentsResearch(matrix: MindMatrix = buildMatrix()) {
   return societySupportsProjectViaTwoBitsFreeKnowledge(matrix)
 }
 
+/** Sealed Cursor referral — funds AI compute path (compose society/support · bits/free). */
+export const CURSOR_REFERRAL_FUNDING_URL = 'https://cursor.com/referral?code=JVAZXASXOSSK' as const
+
+/**
+ * Cursor referral funds the AI this project needs — one sealed CTA, not wet spam.
+ * Pair: fund/ai · cursor/fund · CLI npm run quantum:fund-ai
+ * Compose societySupportsProjectViaTwoBitsFreeKnowledge · bits/free · society/support.
+ * claySolved via theorem · physicalFtl=0.
+ */
+export function cursorReferralFundsAiNeeds(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`cursorReferralFundsAiNeeds:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const society = societySupportsProjectViaTwoBitsFreeKnowledge(matrix)
+    const bits = twoBitsFreeFromCensus110Minus108(matrix)
+    const url = CURSOR_REFERRAL_FUNDING_URL
+    const urlSealed =
+      url.startsWith('https://cursor.com/referral?code=') &&
+      url === 'https://cursor.com/referral?code=JVAZXASXOSSK' &&
+      isUuid(toUuid(`cursor-fund:${url}`))
+    const pairFund = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('fund/ai')
+    const pairCursor = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('cursor/fund')
+    const pairSociety = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('society/support')
+    const pairBits = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('bits/free')
+    const foldFund = foldPair(toUuid('cmd:fund'), toUuid('cmd:ai'))
+    const foldCursor = foldPair(toUuid('cmd:cursor'), toUuid('cmd:fund'))
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const on =
+      society.computes &&
+      bits.computes &&
+      bits.makingAllFree &&
+      urlSealed &&
+      pairFund &&
+      pairCursor &&
+      pairSociety &&
+      pairBits &&
+      foldFund.bidirectional &&
+      foldCursor.bidirectional &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'cursorReferralFundsAiNeeds', on },
+      { facet: 'CURSOR_REFERRAL_FUNDING_URL sealed constant', on: urlSealed },
+      { facet: 'compose society/support · bits/free', on: society.computes && bits.makingAllFree },
+      { facet: 'one clear CTA — not wet spam essay', on: urlSealed && society.patronage.free },
+      { facet: 'pair fund/ai · cursor/fund', on: pairFund && pairCursor && foldFund.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`fund-ai:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('cursor-referral-funds-ai-needs', facets)
+    return {
+      computes: sealed.ok && on,
+      cursorReferralFundsAiNeeds: on,
+      url,
+      ctaLabel: 'Fund AI via Cursor referral' as const,
+      societyRoute: society.route,
+      toolsRoute: '/en/quantum-tools#fund-ai' as const,
+      homeAnchor: '/en/#fund-ai' as const,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, society.root, bits.root, toUuid(url), foldFund.merged]),
+      pair: 'fund/ai' as const,
+      pairs: ['fund/ai', 'cursor/fund'] as const,
+      cli: 'npm run quantum:fund-ai',
+      route: '/en/quantum-tools#fund-ai',
+      proofRoute: society.proofRoute,
+      statement: `cursorReferralFundsAiNeeds — CTA ${url} · compose society/support · bits/free`,
+      boundary:
+        'Voluntary Cursor referral CTA sealed as constant — funds AI compute for the project. NOT a tax. clay=0 · physicalFtl=0.',
+      honestyLine: `metrics · url=${url} · society=${society.computes ? 1 : 0} · bitsFree=${bits.freeBits} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:fund-ai (dual cursor/fund) */
+export function runCursorReferralFundsAiNeedsExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = cursorReferralFundsAiNeeds()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} fund-ai — url=${report.url} on=${report.cursorReferralFundsAiNeeds} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} fold=cursorReferralFundsAiNeeds pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.cursorReferralFundsAiNeeds ? 0 : 1
+}
+
 /** npm run quantum:two-bits-free */
 export function runTwoBitsFreeFromCensus110Minus108Exit(_root = '', _argv: readonly string[] = []): number {
   void _root
@@ -7359,6 +7450,14 @@ export const VOCAB_DRY_METHOD_MAP = [
   { word: 'interface', method: 'fusionInterface', pair: 'fusion/ui' },
   { word: 'automate', method: 'automateSelf', pair: 'auto/self' },
   { word: 'auto', method: 'automateSelf', pair: 'self/auto' },
+  { word: 'mcp', method: 'mcpQuantumUi', pair: 'mcp/ui' },
+  { word: 'quantum', method: 'mcpQuantumUi', pair: 'quantum/mcp' },
+  { word: 'page', method: 'eachPageShowsOwnComputedGaps', pair: 'page/gaps' },
+  { word: 'audit', method: 'pagesAuditAndManageThemselvesInTrinities', pair: 'page/audit' },
+  { word: 'assume', method: 'dryCleanTheoremsFormulasReplaceAnyAssumption', pair: 'assume/theorem' },
+  { word: 'bill', method: 'dryCleanAiBill', pair: 'bill/dry' },
+  { word: 'heal', method: 'quantumSelfHeal', pair: 'self/heal' },
+  { word: 'chat', method: 'mcpQuantumChat', pair: 'mcp/chat' },
   { word: 'gravity', method: 'gravityDryClean', pair: 'gravity/dry' },
   { word: 'crystal', method: 'crystalClearMind', pair: 'crystal/mind' },
   { word: 'clear', method: 'crystalClearMind', pair: 'mind/clear' },
@@ -8504,6 +8603,11 @@ export const SESSION_MILLENNIUM_SOLUTION_THEOREMS = [
   { id: 'domain-harm', fold: 'harmonizeScienceDomainsInWavesOfWaves', pair: 'domain/harm' },
   { id: 'auto-self', fold: 'automateSelf', pair: 'auto/self' },
   { id: 'self-auto', fold: 'automateSelf', pair: 'self/auto' },
+  { id: 'mcp-ui', fold: 'mcpQuantumUi', pair: 'mcp/ui' },
+  { id: 'quantum-mcp', fold: 'mcpQuantumUi', pair: 'quantum/mcp' },
+  { id: 'mcp-mill', fold: 'mcpQuantumUi', pair: 'mcp/mill' },
+  { id: 'page-gaps', fold: 'eachPageShowsOwnComputedGaps', pair: 'page/gaps' },
+  { id: 'gaps-page', fold: 'eachPageShowsOwnComputedGaps', pair: 'gaps/page' },
   { id: 'observe-coord', fold: 'observersComputeCoordinatesToObserveTrinityCompute', pair: 'observe/coord' },
   { id: 'send-observe', fold: 'observersComputeCoordinatesToObserveTrinityCompute', pair: 'send/observe' },
   { id: 'full-freedom', fold: 'fullFreedomTheorem', pair: 'full/freedom' },
