@@ -333,6 +333,9 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `folder/compact` — alias dual of `compact/folder` (`npm run quantum:folder-compact`)
   - `folder/discover` — folder/discover face of `wave/compact` (`npm run quantum:folder-discover`)
   - `discover/folder` — alias dual of `folder/discover` (`npm run quantum:discover-folder`)
+  - `balance/metrics` — `npm run quantum:balance-metrics` (`alwaysBalanceUsingRealtimeMetricsAndChat()` — always balance using realtime metrics and chat; facets alwaysBalance · realtimeMetrics · chatOn · hardwareMerkabasBalanced; compose mcp/metrics · formula/metrics · cold/warm · mcp/chat · dry/cool · gate/monitor · session/live · analytics/self · mcp/efficiency · moment/prove · hero clock; duals `metrics/chat` · `chat/balance`; census 110 · clay via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#balance-metrics`
+  - `metrics/chat` — alias dual of `balance/metrics` (`npm run quantum:metrics-chat`)
+  - `chat/balance` — alias dual of `metrics/chat` (`npm run quantum:chat-balance`)
   - `fund/ai` — `npm run quantum:fund-ai` (`cursorReferralFundsAiNeeds()` — sealed Cursor referral CTA funds AI; compose society/support · bits/free; dual `cursor/fund`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#fund-ai` · `/society-merkaba#two-bits-free`
   - `cursor/fund` — alias dual of `fund/ai` (`npm run quantum:cursor-fund`)
   - `cursor/rosetta` — `npm run quantum:cursor-rosetta` (`cursorIntegratesInRosettaCore()` — Cursor ⊂ rosetta ↔ ceccec ⊂ Cursor; facets cursorToCeccec · ceccecToCursor · viceVersa · immediateWire; compose auto-wire · upgrade/local · mcp/browser-parity · fund/ai · rosettaShelve; dual `refer/wire`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#cursor-rosetta`
