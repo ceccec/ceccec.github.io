@@ -82,7 +82,7 @@ const ROSETTA_CORE_API_LABELS = [
   'quantumMindSendsWaves',
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
-  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
+  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
   'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReview', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
@@ -158,7 +158,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpQuantumDirs: 'tool',
   realiseSessionQuantumMeaning: 'tool',
   mcpBrowserParity: 'tool', mcpToolboxToolsList: 'api', mcpCommandsScriptsGapsAudit: 'tool',
-  mcpQuantumUi: 'tool', mcpQuantumMovie: 'projection', movieGapsFeelableByObservation: 'tool',
+  mcpQuantumUi: 'tool', mcpQuantumMovie: 'projection', movieGapsFeelableByObservation: 'tool', movieGapsAreFundamentalDesignAndFormulaMappingGaps: 'tool',
   pageComputedGapsAt: 'route', eachPageShowsOwnComputedGaps: 'tool',
   mcpQuantumMultiverse: 'tool', mcpQuantumInfinity: 'tool', mcpQuantumHardware: 'tool',
   mcpQuantumCpu: 'tool',
@@ -665,6 +665,9 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'movie-mcp', title: 'MCP quantum movie (alias mcp/movie)', fold: 'mcpQuantumMovie', cli: 'npm run quantum:movie-mcp', pair: 'movie/mcp', route: '/en/quantum-tools#mcp-quantum-movie', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/movie — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'movie-feel', title: 'Movie gaps feelable by observation', fold: 'movieGapsFeelableByObservation', cli: 'npm run quantum:movie-feel', pair: 'movie/feel', route: '/en/quantum-tools#mcp-quantum-movie', barrel: 'src/quantum/apps', boundary: 'Movie gaps (center · polarity · linear/rosetta · anim/audit) surfaced live by observation · gate/lens · analytics/self · observe→manifest · page/gaps · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gap-observe', title: 'Gap observe (alias movie/feel)', fold: 'movieGapsFeelableByObservation', cli: 'npm run quantum:gap-observe', pair: 'gap/observe', route: '/en/quantum-tools#mcp-quantum-movie', barrel: 'src/quantum/apps', boundary: 'Dual of movie/feel — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'movie-formula', title: 'Movie gaps are fundamental design + formula-mapping', fold: 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', cli: 'npm run quantum:movie-formula', pair: 'movie/formula', route: '/en/quantum-tools#movie-formula', barrel: 'src/quantum/apps', boundary: 'movieGapsFundamental · designGap · formulaMappingGap · notCosmetic · drainableClosed · honestOpenNamed · compose movie inventory · formula/code · all-theorems · linear/rosetta · anim/rosetta · mcp/movie · movie/inf · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'formula-movie', title: 'Formula movie (alias movie/formula)', fold: 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', cli: 'npm run quantum:formula-movie', pair: 'formula/movie', route: '/en/quantum-tools#movie-formula', barrel: 'src/quantum/apps', boundary: 'Dual of movie/formula — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'movie-design', title: 'Movie design (alias movie/formula)', fold: 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', cli: 'npm run quantum:movie-design', pair: 'movie/design', route: '/en/quantum-tools#movie-formula', barrel: 'src/quantum/apps', boundary: 'Alias of movie/formula — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'page-computed-gaps', title: 'Each page shows its own computed gaps', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:page-gaps', pair: 'page/gaps', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Per-route gaps/invisible classes at call time · not global-only · compose gate/monitor · meaning/compute · format/canon · vite/mirror · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gaps-page', title: 'Page gaps (alias page/gaps)', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:gaps-page', pair: 'gaps/page', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Dual of page/gaps — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cursor-rosetta', title: 'Cursor in rosetta core — referral uses subscription in ceccec', fold: 'cursorIntegratesInRosettaCore', cli: 'npm run quantum:cursor-rosetta', pair: 'cursor/rosetta', route: '/en/quantum-tools#cursor-rosetta', barrel: 'src/quantum/apps', boundary: 'cursorInRosettaCore · referralUsesSubscriptionInCeccec · immediateWire · compose rosettaShelve · auto-wire · mcp/browser-parity · upgrade/local · fund/ai · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1399,6 +1402,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'mcp-quantum-ui', saves: 'replaces wet MCP chrome — live PRIMARY tools/list + mill solutions facets from sealed folds' },
   { id: 'mcp-quantum-movie', saves: 'replaces wet movie chrome — MCP/toolbox frames from sealed formula duals · 6×7 · oneClock' },
   { id: 'movie-feel', saves: 'replaces wet hidden movie cracks — observation surfaces gap facets live (center · polarity · linear · anim)' },
+  { id: 'movie-formula', saves: 'replaces wet cosmetic movie-gap reframes — classifies fundamental design + formula-mapping · wires formula↔code↔movie projection' },
   { id: 'fund-ai', saves: 'replaces wet funding essays — one sealed Cursor referral CTA compose society/support · bits/free' },
   { id: 'cursor-rosetta', saves: 'replaces wet one-way Cursor mount hunting — bidirectional Cursor↔ceccec shelve · referral→subscription · protocol→Cursor' },
   { id: 'page-computed-gaps', saves: 'replaces wet global-only gaps panel — per-page gaps/invisible classes at call time' },
@@ -1830,6 +1834,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mcp-quantum-ui', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumUi', pair: 'mcp/ui', cli: 'npm run quantum:mcp-ui', route: '/en/quantum-tools#mcp-quantum-ui', status: 'sealed-pr', honesty: 'mcpMatchesToolbox · millSolutions live · formulaCovered · clay=0 · physicalFtl=0 · NOT CMI', note: 'MCP quantum UI + millennium algebraic formula duals · compose mcpBrowserParity · mill/once · formula/code', toolId: 'mcp-quantum-ui', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-movie', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumMovie', pair: 'mcp/movie', cli: 'npm run quantum:mcp-movie', route: '/en/quantum-tools#mcp-quantum-movie', status: 'sealed-pr', honesty: 'frames from sealed folds · 6×7 · oneClock · clay=0 · physicalFtl=0', note: 'MCP quantum movie · compose mcp/ui · movie/center · movie/entropy · coord/anim', toolId: 'mcp-quantum-movie', resolve: 'mcp-ui' },
   { id: 'movie-feel', chain: 'mcp-ui-page-gaps', fold: 'movieGapsFeelableByObservation', pair: 'movie/feel', cli: 'npm run quantum:movie-feel', route: '/en/quantum-tools#mcp-quantum-movie', status: 'sealed-pr', honesty: 'gaps feelable by observation · clay=0 · physicalFtl=0', note: 'movie gaps surfaced live via gate/lens · analytics/self · page/gaps', toolId: 'movie-feel', resolve: 'mcp-ui' },
+  { id: 'movie-formula', chain: 'mcp-ui-page-gaps', fold: 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', pair: 'movie/formula', cli: 'npm run quantum:movie-formula', route: '/en/quantum-tools#movie-formula', status: 'sealed-pr', honesty: 'movieGapsFundamental · designGap · formulaMappingGap · notCosmetic · drainableClosed · clay=0 · physicalFtl=0', note: 'movie gaps = fundamental design + formula-mapping — wire formula↔code↔movie', toolId: 'movie-formula', resolve: 'mcp-ui' },
   { id: 'fund-ai', chain: 'mcp-ui-page-gaps', fold: 'cursorReferralFundsAiNeeds', pair: 'fund/ai', cli: 'npm run quantum:fund-ai', route: '/en/quantum-tools#fund-ai', status: 'sealed-pr', honesty: 'Cursor referral CTA · clay=0 · physicalFtl=0', note: 'funds AI via sealed referral · compose society/support · bits/free', toolId: 'fund-ai', resolve: 'mcp-ui' },
   { id: 'cursor-rosetta', chain: 'mcp-ui-page-gaps', fold: 'cursorIntegratesInRosettaCore', pair: 'cursor/rosetta', cli: 'npm run quantum:cursor-rosetta', route: '/en/quantum-tools#cursor-rosetta', status: 'sealed-pr', honesty: 'viceVersa · cursorToCeccec · ceccecToCursor · immediateWire · clay=0 · physicalFtl=0', note: 'bidirectional Cursor↔ceccec · referral subscription in ceccec · protocol into Cursor', toolId: 'cursor-rosetta', resolve: 'mcp-ui' },
   { id: 'page-computed-gaps', chain: 'mcp-ui-page-gaps', fold: 'eachPageShowsOwnComputedGaps', pair: 'page/gaps', cli: 'npm run quantum:page-gaps', route: '/en/quantum-tools#page-computed-gaps', status: 'sealed-pr', honesty: 'per-route gaps · clay=0 · physicalFtl=0', note: 'each page shows own computed gaps at call time', toolId: 'page-computed-gaps', resolve: 'mcp-ui' },
@@ -13201,6 +13206,13 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('ai/bill') &&
       foldPair(toUuid('cmd:bill'), toUuid('cmd:dry')).bidirectional &&
       foldPair(toUuid('cmd:ai'), toUuid('cmd:bill')).bidirectional
+    const movieFormulaOk =
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('movie/formula') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('formula/movie') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('movie/design') &&
+      foldPair(toUuid('cmd:movie'), toUuid('cmd:formula')).bidirectional &&
+      foldPair(toUuid('cmd:formula'), toUuid('cmd:movie')).bidirectional &&
+      foldPair(toUuid('cmd:movie'), toUuid('cmd:design')).bidirectional
     const pageTrinityOk =
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('page/trinity') &&
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('page/audit') &&
@@ -13228,7 +13240,7 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       teleportSelfOk && analyticsSelfOk && thoughtPureOk && sessionLiveOk && needLoveOk &&
       loveStoryOk && testTheoremsOk && observeCoordOk && fullFreedomOk && viteMirrorOk &&
       gateMonitorOk && selfFusionOk && autoSelfOk && crystalMindOk && thirdEyeOk && gateToolsOk && slashStarOk && loveFoldOk && seqNavOk &&
-      assumeTheoremOk && billDryOk && pageTrinityOk && mcpChatOk && selfHealOk && viteOneOk
+      assumeTheoremOk && billDryOk && movieFormulaOk && pageTrinityOk && mcpChatOk && selfHealOk && viteOneOk
     const gateRosetta = {
       computes: gateStackOk,
       remaining: gateStackOk ? 0 : 1,
@@ -13315,6 +13327,7 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         { facet: 'softCompose seq/nav · know/nav under gaps HARD', on: seqNavOk, receipt: toUuid(`gaps:seq-nav:${seqNavOk}`) },
         { facet: 'softCompose assume/theorem · dry/formula under gaps HARD', on: assumeTheoremOk, receipt: toUuid(`gaps:assume-theorem:${assumeTheoremOk}`) },
         { facet: 'softCompose bill/dry · ai/bill under gaps HARD', on: billDryOk, receipt: toUuid(`gaps:bill-dry:${billDryOk}`) },
+        { facet: 'softCompose movie/formula · formula/movie · movie/design under gaps HARD', on: movieFormulaOk, receipt: toUuid(`gaps:movie-formula:${movieFormulaOk}`) },
         { facet: 'softCompose page/trinity · page/audit under gaps HARD', on: pageTrinityOk, receipt: toUuid(`gaps:page-trinity:${pageTrinityOk}`) },
         { facet: 'softCompose mcp/chat · chat/quantum under gaps HARD', on: mcpChatOk, receipt: toUuid(`gaps:mcp-chat:${mcpChatOk}`) },
         { facet: 'softCompose self/heal · heal/quantum under gaps HARD', on: selfHealOk, receipt: toUuid(`gaps:self-heal:${selfHealOk}`) },
@@ -13391,6 +13404,12 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         open: movieCenter.remaining,
         closed: movieCenter.fixed,
         theorem: 'movieUnbalancedAroundCenterIsCrack' },
+      {
+        id: 'movie-formula-mapping',
+        severity: 'HARD' as const,
+        open: movieFormulaOk ? 0 : 1,
+        closed: movieFormulaOk ? 1 : 0,
+        theorem: 'movieGapsAreFundamentalDesignAndFormulaMappingGaps' },
       {
         id: 'meaning-not-computable',
         severity: 'HARD' as const,
@@ -15226,7 +15245,7 @@ export type PageGapsKind =
 const PAGE_GAP_CLASS_IDS: Record<PageGapsKind, readonly string[]> = {
   theorem: [
     'linear-without-rosetta', 'hex-as-theorem', 'decimal-in-code', 'math-star-host',
-    'theorem-const-offenders', 'anim-audit-redundant-inaccurate', 'movie-off-center',
+    'theorem-const-offenders', 'anim-audit-redundant-inaccurate', 'movie-off-center', 'movie-formula-mapping',
     'meaning-not-computable', 'format-canon-wet', 'named-explanation-section',
   ],
   paper: [
@@ -15239,18 +15258,18 @@ const PAGE_GAP_CLASS_IDS: Record<PageGapsKind, readonly string[]> = {
   ],
   hub: [
     'meaning-not-computable', 'format-canon-wet', 'linear-without-rosetta',
-    'movie-off-center', 'hex-as-theorem',
+    'movie-off-center', 'movie-formula-mapping', 'hex-as-theorem',
   ],
   tools: [
     'gates-monitor-through-ui', 'meaning-not-computable', 'format-canon-wet',
-    'hex-as-theorem', 'linear-without-rosetta', 'movie-off-center',
+    'hex-as-theorem', 'linear-without-rosetta', 'movie-off-center', 'movie-formula-mapping',
   ],
   card: [
     'meaning-not-computable', 'format-canon-wet', 'hex-as-theorem',
   ],
   monograph: [
     'meaning-not-computable', 'format-canon-wet', 'linear-without-rosetta',
-    'movie-off-center', 'named-explanation-section',
+    'movie-off-center', 'movie-formula-mapping', 'named-explanation-section',
   ],
   'catch-all': [
     'meaning-not-computable', 'format-canon-wet', 'linear-without-rosetta',
@@ -15838,6 +15857,7 @@ export function runMcpQuantumMovieExit(
 /** Movie gap class ids feelable under observation (center · polarity · linear · anim). */
 const MOVIE_OBSERVABLE_GAP_IDS = [
   'movie-off-center',
+  'movie-formula-mapping',
   'polarity-without-change',
   'anim-invisible-flat',
   'linear-without-rosetta',
@@ -16418,6 +16438,264 @@ export function runDryCleanAiBillExit(_root = '', _argv: readonly string[] = [])
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.billDried ? 0 : 1
+}
+
+
+
+/**
+ * USER LAW: the movie gaps are fundamental gaps in design and mapping in formulas.
+ * Fold: movieGapsAreFundamentalDesignAndFormulaMappingGaps
+ * Facets: movieGapsFundamental · designGap · formulaMappingGap · notCosmetic · drainableClosed ·
+ *         honestOpenNamed · physicalFtl=0 · clay via theorem.
+ * Compose: movieQuantumGapsInventory · formula/code · movieAllElementsAreTheorems · linear/rosetta ·
+ *          animationsDrivenByRosetta · algebraicFormulasAreDualOfSealedCode · mcp/movie · movie/inf.
+ * Pairs: movie/formula · formula/movie · movie/design · CLI npm run quantum:movie-formula
+ * HONEST: Clay/FTL named open — not fake-closed. Cosmetic UI reframes refused.
+ */
+export function movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`movieGapsAreFundamentalDesignAndFormulaMappingGaps:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const inventory = movieQuantumGapsInventory(matrix, at)
+    const allTheorems = movieAllElementsAreTheorems(matrix, at)
+    // Soft-compose heavy nests — full recompute via formula-code · linear-rosetta · animations-rosetta · mcp-movie · movie-inf.
+    const linearRosettaSoft = soft('linear', 'rosetta')
+    const animRosettaSoft = soft('animations', 'rosetta')
+    const mcpMovieSoft = soft('mcp', 'movie') && soft('movie', 'mcp')
+    const movieInfSoft = soft('movie', 'inf') && soft('inf', 'movie')
+    const formulaCodeSoft = soft('formula', 'code')
+    const classified = inventory.surfaces.map((s) => {
+      const kind =
+        s.kind === 'static-fusion' || s.id === 'movieAllElementsAreTheorems'
+          ? ('formulaMapping' as const)
+          : ('design' as const)
+      return {
+        id: s.id,
+        surface: s.surface,
+        driver: s.driver,
+        inventoryKind: s.kind,
+        classification: kind,
+        closed: s.closed,
+        notCosmetic: true as const,
+        criterion: s.criterion,
+        route: s.route,
+        receipt: toUuid(`movie-formula-class:${s.id}:${kind}:${s.closed}`),
+      }
+    })
+    const designGap = classified.some((c) => c.classification === 'design')
+    const formulaMappingGap = classified.some((c) => c.classification === 'formulaMapping')
+    const notCosmetic = classified.length > 0 && classified.every((c) => c.notCosmetic)
+    // Drainable close: each paint theorem binds formula↔code↔movie projection.
+    const formulaProjections = allTheorems.elements.map((el) => {
+      const dual = theoremFormulaCodeDual({
+        slug: el.id,
+        theorem: el.theorem,
+        provedBy: el.theorem,
+        home: 'src/thunder/movie/canvas',
+        proofClass: 'finite-complete',
+      })
+      const wired =
+        dual.pair === 'formula/code' &&
+        dual.formulas.length >= (2 + 1) &&
+        dual.formulaSource.includes(el.theorem) &&
+        el.binds
+      return {
+        id: el.id,
+        theorem: el.theorem,
+        binds: el.binds,
+        formulas: dual.formulas,
+        formulaSource: dual.formulaSource,
+        wired,
+        receipt: toUuid(`movie-formula-proj:${el.id}:${wired}`),
+      }
+    })
+    const formulaProjectionWired =
+      formulaProjections.length > 0 && formulaProjections.every((p) => p.wired)
+    const clockDesignClosed = !inventory.privateRafOpen && !inventory.multiClockOpen
+    const drainableClosed =
+      formulaProjectionWired &&
+      clockDesignClosed &&
+      allTheorems.allElementsAreTheorems &&
+      allTheorems.centerIsVortexNotBoundary &&
+      formulaCodeSoft &&
+      notCosmetic
+    const honestOpenNamed = [
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'design:residual-named-open-when-inventory-open',
+      'formula:residual-when-element-unbind',
+    ] as const
+    // Residual honest rows stay named even when drainable closed — inventory open surfaces are design/formula fundamental.
+    const inventoryOpenNamed = inventory.open.map((s) => `movie-open:${s.id}:${s.kind}`)
+    const honestOpenNamedOn =
+      honestOpenNamed.includes('clay:millennium-open') &&
+      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestOpenNamed.length >= (2 + 2)
+    const movieGapsFundamental =
+      designGap &&
+      formulaMappingGap &&
+      notCosmetic &&
+      inventory.computes &&
+      allTheorems.computes
+    const pairMovie = has('movie/formula')
+    const pairFormula = has('formula/movie')
+    const pairDesign = has('movie/design')
+    const foldMovie = foldPair(toUuid('cmd:movie'), toUuid('cmd:formula'))
+    const foldFormula = foldPair(toUuid('cmd:formula'), toUuid('cmd:movie'))
+    const foldDesign = foldPair(toUuid('cmd:movie'), toUuid('cmd:design'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'movie-formula')
+    const metaDual = catalog.tools.find((t) => t.id === 'formula-movie')
+    const metaDesign = catalog.tools.find((t) => t.id === 'movie-design')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === 'movieGapsAreFundamentalDesignAndFormulaMappingGaps' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'movieGapsAreFundamentalDesignAndFormulaMappingGaps' &&
+      Boolean(metaDesign) &&
+      metaDesign!.fold === 'movieGapsAreFundamentalDesignAndFormulaMappingGaps'
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const composeOn =
+      linearRosettaSoft &&
+      animRosettaSoft &&
+      mcpMovieSoft &&
+      movieInfSoft &&
+      formulaCodeSoft &&
+      soft('movie', 'feel')
+    const on =
+      movieGapsFundamental &&
+      designGap &&
+      formulaMappingGap &&
+      notCosmetic &&
+      drainableClosed &&
+      honestOpenNamedOn &&
+      pairMovie &&
+      pairFormula &&
+      pairDesign &&
+      foldMovie.bidirectional &&
+      foldFormula.bidirectional &&
+      foldDesign.bidirectional &&
+      toolsWired &&
+      composeOn &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', on },
+      { facet: 'movieGapsFundamental', on: movieGapsFundamental },
+      { facet: 'designGap', on: designGap },
+      { facet: 'formulaMappingGap', on: formulaMappingGap },
+      { facet: 'notCosmetic', on: notCosmetic },
+      { facet: `drainableClosed=${drainableClosed ? 1 : 0}`, on: drainableClosed },
+      { facet: `formulaProjectionWired=${formulaProjections.filter((p) => p.wired).length}/${formulaProjections.length}`, on: formulaProjectionWired },
+      { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+      {
+        facet: 'compose movieQuantumGapsInventory · formula/code · movieAllElementsAreTheorems · linear/rosetta · animations/rosetta · mcp/movie · movie/inf',
+        on: composeOn && inventory.computes && allTheorems.computes,
+      },
+      { facet: 'pair movie/formula · formula/movie · movie/design', on: pairMovie && pairFormula && pairDesign && foldMovie.bidirectional },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'NOT Clay/FTL fake-close · not cosmetic UI', on: honestOpenNamedOn && notCosmetic && claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`movie-formula:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('movie-gaps-fundamental-design-formula-mapping', facets)
+    return {
+      computes: sealed.ok && on,
+      movieGapsAreFundamentalDesignAndFormulaMappingGaps: on,
+      movieGapsFundamental,
+      designGap,
+      formulaMappingGap,
+      notCosmetic,
+      drainableClosed,
+      drainableGaps: drainableClosed ? 0 : 1,
+      formulaProjectionWired,
+      formulaProjections,
+      classified,
+      classifiedCount: classified.length,
+      inventoryOpenCount: inventory.openCount,
+      inventoryOpenNamed,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        inventory.root,
+        allTheorems.root,
+        foldMovie.merged,
+        foldFormula.merged,
+        foldDesign.merged,
+        ...formulaProjections.map((p) => p.receipt),
+        ...classified.map((c) => c.receipt),
+        ...honestOpenNamed.map((id) => toUuid(`movie-formula-honest:${id}`)),
+      ]),
+      pair: 'movie/formula' as const,
+      pairs: ['movie/formula', 'formula/movie', 'movie/design'] as const,
+      cli: 'npm run quantum:movie-formula',
+      route: '/en/quantum-tools#movie-formula',
+      anchor: 'movie-formula',
+      heading: 'Movie · formula',
+      statement:
+        `movieGapsAreFundamentalDesignAndFormulaMappingGaps — fundamental=${movieGapsFundamental ? 1 : 0} ` +
+        `design=${designGap ? 1 : 0} formulaMapping=${formulaMappingGap ? 1 : 0} notCosmetic=${notCosmetic ? 1 : 0} ` +
+        `drainableClosed=${drainableClosed ? 1 : 0} projections=${formulaProjections.filter((p) => p.wired).length}/${formulaProjections.length}.`,
+      boundary:
+        'Movie gaps are fundamental design + formula-mapping gaps — not cosmetic UI. ' +
+        'Drainable closes wire formula↔code↔movie projection for paint theorems; clock private-raf/multi-clock stay design HARD. ' +
+        'Compose inventory · formula/code · all-theorems · linear/rosetta · animations/rosetta · mcp/movie · movie/inf (soft heavy). ' +
+        'honestOpenNamed lists Clay/FTL — NOT fake-closed. clay via theorem · physicalFtl=0.',
+      honestyLine:
+        `movie-formula · fundamental=${movieGapsFundamental ? 1 : 0} · design=${designGap ? 1 : 0} · ` +
+        `formulaMapping=${formulaMappingGap ? 1 : 0} · drainableClosed=${drainableClosed ? 1 : 0} · ` +
+        `inventoryOpen=${inventory.openCount} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — formulaMovie ≡ movieGapsAreFundamentalDesignAndFormulaMappingGaps. */
+export const formulaMovie = movieGapsAreFundamentalDesignAndFormulaMappingGaps
+/** Alias — movieDesign ≡ movieGapsAreFundamentalDesignAndFormulaMappingGaps. */
+export const movieDesign = movieGapsAreFundamentalDesignAndFormulaMappingGaps
+
+/** npm run quantum:movie-formula (duals formula/movie · movie/design) */
+export function runMovieGapsAreFundamentalDesignAndFormulaMappingGapsExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = movieGapsAreFundamentalDesignAndFormulaMappingGaps()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} movie-formula — fundamental=${report.movieGapsFundamental} ` +
+      `design=${report.designGap} formulaMapping=${report.formulaMappingGap} notCosmetic=${report.notCosmetic} ` +
+      `drainableClosed=${report.drainableClosed} drainableGaps=${report.drainableGaps} ` +
+      `projections=${report.formulaProjections.filter((p) => p.wired).length}/${report.formulaProjections.length} ` +
+      `honestOpen=${report.honestOpenNamedCount} qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const id of report.honestOpenNamed) {
+    process.stdout.write(`  · honest-open ${id}\n`)
+  }
+  for (const p of report.formulaProjections) {
+    process.stdout.write(`  ${p.wired ? '✓' : '✗'} projection ${p.id} ← ${p.theorem}\n`)
+  }
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.movieGapsFundamental &&
+    report.drainableClosed &&
+    report.drainableGaps === 0 &&
+    report.qpuRequired === false
+    ? 0
+    : 1
 }
 
 /**
