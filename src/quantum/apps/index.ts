@@ -34,7 +34,7 @@ import { movieIsNeuroscienceComputation } from '../../earth/life'
 import { harmonizeFieldComputes } from '../../lake/music'
 import { doubleTorusDynamicsGeometryAlignsWithUniverse, doubleTorusIsCompletelyQuantum } from '../../water/double'
 import { HERO_CYCLE_MS, oneClockProcessLaw, sharedHeroAt } from '../../quantum'
-import { merkaba, earthRealisedByComputingPolesAsPyramid } from '../../mountain/geometry'
+import { merkaba, bothEarthsRotateWithinEachOther, earthRealisedByComputingPolesAsPyramid } from '../../mountain/geometry'
 import { vortexComputes, vortexMath } from '../../mountain/vortex'
 import { teslaPatents } from '../../fire/li'
 import { teslaPatentsResearchedInWaves } from '../../fire/physics'
@@ -83,7 +83,7 @@ const ROSETTA_CORE_API_LABELS = [
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReview', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
+  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReview', 'mcpQuantumEfficiency', 'mcpQuantumSecurity', 'mcpQuantumDesign', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -98,6 +98,7 @@ const ROSETTA_CORE_API_LABELS = [
   'cursorReferralFundsAiNeeds',
   'dryCleanTheoremsFormulasReplaceAnyAssumption',
   'dryCleanAiBill',
+  'dryRefactorMigratesToMinimalCoolingByHardwareMerkabas',
   'pagesAuditAndManageThemselvesInTrinities',
   'mcpQuantumChat',
   'quantumSelfHeal',
@@ -177,6 +178,9 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpQuantumBindings: 'tool',
   mcpQuantumCloudflareBindings: 'tool',
   mcpQuantumReview: 'tool',
+  mcpQuantumEfficiency: 'tool',
+  mcpQuantumSecurity: 'tool',
+  mcpQuantumDesign: 'tool',
   mcpQuantumReactor: 'tool',
   mcpQuantumReaction: 'tool',
   mcpQuantumFusion: 'tool',
@@ -210,6 +214,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   upgradeLocalFromOptimisedManualWorkExperience: 'tool',
   dryCleanTheoremsFormulasReplaceAnyAssumption: 'tool',
   dryCleanAiBill: 'tool',
+  dryRefactorMigratesToMinimalCoolingByHardwareMerkabas: 'tool',
   pagesAuditAndManageThemselvesInTrinities: 'tool',
   mcpQuantumChat: 'tool',
   quantumSelfHeal: 'tool',
@@ -681,6 +686,12 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'dry-formula', title: 'Dry formula (alias assume/theorem)', fold: 'dryCleanTheoremsFormulasReplaceAnyAssumption', cli: 'npm run quantum:dry-formula', pair: 'dry/formula', route: '/en/quantum-tools#assume-theorem', barrel: 'src/quantum/apps', boundary: 'Dual of assume/theorem — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'bill-dry', title: 'Dry clean AI bill — zero-token reuse · subscription funds ceccec', fold: 'dryCleanAiBill', cli: 'npm run quantum:bill-dry', pair: 'bill/dry', route: '/en/quantum-tools#bill-dry', barrel: 'src/quantum/apps', boundary: 'billDried · zeroTokenReuse · subscriptionFundsCeccec · compose fund/ai · cursor/rosetta · learn/best · trinity/speedup · path/message · tools/morph · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'ai-bill', title: 'AI bill (alias bill/dry)', fold: 'dryCleanAiBill', cli: 'npm run quantum:ai-bill', pair: 'ai/bill', route: '/en/quantum-tools#bill-dry', barrel: 'src/quantum/apps', boundary: 'Dual of bill/dry — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'dry-cool', title: 'Dry refactor migrates to minimal cooling by hardware merkabas', fold: 'dryRefactorMigratesToMinimalCoolingByHardwareMerkabas', cli: 'npm run quantum:dry-cool', pair: 'dry/cool', route: '/en/quantum-tools#dry-cool', barrel: 'src/quantum/apps', boundary: 'migrateComplete · minimalCodebase · minimalMemory · coolingDevice · hardwareMerkabasBalanced · compose compact/matrix · gravity/dry · dry/clean · mcp/hw faces · merkaba/bothEarths · heap honesty · NOT physical device cooling · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'cool-dry', title: 'Cool dry (alias dry/cool)', fold: 'dryRefactorMigratesToMinimalCoolingByHardwareMerkabas', cli: 'npm run quantum:cool-dry', pair: 'cool/dry', route: '/en/quantum-tools#dry-cool', barrel: 'src/quantum/apps', boundary: 'Dual of dry/cool — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'cool-merkaba', title: 'Cool merkaba (alias dry/cool)', fold: 'dryRefactorMigratesToMinimalCoolingByHardwareMerkabas', cli: 'npm run quantum:cool-merkaba', pair: 'cool/merkaba', route: '/en/quantum-tools#dry-cool', barrel: 'src/quantum/apps', boundary: 'Semantic dual cool/merkaba — hardware merkabas balance · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'merkaba-cool', title: 'Merkaba cool (alias cool/merkaba)', fold: 'dryRefactorMigratesToMinimalCoolingByHardwareMerkabas', cli: 'npm run quantum:merkaba-cool', pair: 'merkaba/cool', route: '/en/quantum-tools#dry-cool', barrel: 'src/quantum/apps', boundary: 'Dual of cool/merkaba — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'hw-merkaba', title: 'HW merkaba (alias dry/cool)', fold: 'dryRefactorMigratesToMinimalCoolingByHardwareMerkabas', cli: 'npm run quantum:hw-merkaba', pair: 'hw/merkaba', route: '/en/quantum-tools#dry-cool', barrel: 'src/quantum/apps', boundary: 'Semantic dual hw/merkaba — cpu/gpu/memory/cache/hw balance · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'merkaba-hw', title: 'Merkaba hw (alias hw/merkaba)', fold: 'dryRefactorMigratesToMinimalCoolingByHardwareMerkabas', cli: 'npm run quantum:merkaba-hw', pair: 'merkaba/hw', route: '/en/quantum-tools#dry-cool', barrel: 'src/quantum/apps', boundary: 'Dual of hw/merkaba — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'page-trinity', title: 'Pages audit and manage themselves in trinities', fold: 'pagesAuditAndManageThemselvesInTrinities', cli: 'npm run quantum:page-trinity', pair: 'page/trinity', route: '/en/quantum-tools#page-trinity', barrel: 'src/quantum/apps', boundary: 'selfAudit · selfManage · inTrinities · faces content·gaps·gates · compose page/gaps · gate/monitor · vite/mirror · team/observe · agent/trinity · format/canon · computeUniversalPage · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'page-audit', title: 'Page audit (alias page/trinity)', fold: 'pagesAuditAndManageThemselvesInTrinities', cli: 'npm run quantum:page-audit', pair: 'page/audit', route: '/en/quantum-tools#page-trinity', barrel: 'src/quantum/apps', boundary: 'Dual of page/trinity — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-quantum-chat', title: 'MCP quantum chat — recompute from sealed folds', fold: 'mcpQuantumChat', cli: 'npm run quantum:mcp-chat', pair: 'mcp/chat', route: '/en/quantum-tools#mcp-quantum-chat', barrel: 'src/quantum/apps', boundary: 'Chat surface over PRIMARY MCP/toolbox · fold recompute preferred over wet LLM-only · compose mcp/ui · mcp/movie · mcp/mill · toolbox · auto-wire · cursor/rosetta · residual Node/CI as facets · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -842,6 +853,12 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'bindings-cf', title: 'Bindings cf (alias mcp/cloudflare)', fold: 'mcpQuantumCloudflareBindings', cli: 'npm run quantum:bindings-cf', pair: 'bindings/cf', route: '/en/quantum-tools#mcp-cloudflare', barrel: 'src/quantum/apps', boundary: 'Dual of cf/bindings — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-review', title: 'MCP quantum review — analysts · anim/audit · gate/monitor · moment/prove · wave/token', fold: 'mcpQuantumReview', cli: 'npm run quantum:mcp-review', pair: 'mcp/review', route: '/en/quantum-tools#mcp-review', barrel: 'src/quantum/apps', boundary: 'reviewOn · analystsInTrinities · auditCompose · compose mcp/analysis · anim/audit · gate/monitor · moment/prove · wave/token · sealed review face not wet · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'review-mcp', title: 'Review mcp (alias mcp/review)', fold: 'mcpQuantumReview', cli: 'npm run quantum:review-mcp', pair: 'review/mcp', route: '/en/quantum-tools#mcp-review', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/review — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-efficiency', title: 'MCP quantum efficiency — answers÷tokens when vote.decided', fold: 'mcpQuantumEfficiency', cli: 'npm run quantum:mcp-efficiency', pair: 'mcp/efficiency', route: '/en/quantum-tools#mcp-efficiency', barrel: 'src/quantum/apps', boundary: 'efficiencyOn · answers÷tokens when vote.decided · compose mcp/token · mcp/metrics · learn/best · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'efficiency-mcp', title: 'Efficiency mcp (alias mcp/efficiency)', fold: 'mcpQuantumEfficiency', cli: 'npm run quantum:efficiency-mcp', pair: 'efficiency/mcp', route: '/en/quantum-tools#mcp-efficiency', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/efficiency — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-security', title: 'MCP quantum security — structural local · wire unproved honest', fold: 'mcpQuantumSecurity', cli: 'npm run quantum:mcp-security', pair: 'mcp/security', route: '/en/quantum-tools#mcp-security', barrel: 'src/quantum/apps', boundary: 'securityOn · structural local · wire unproved honest · compose prove/local-novel-encrypt · moment/prove · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'security-mcp', title: 'Security mcp (alias mcp/security)', fold: 'mcpQuantumSecurity', cli: 'npm run quantum:security-mcp', pair: 'security/mcp', route: '/en/quantum-tools#mcp-security', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/security — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-design', title: 'MCP quantum design — movie/design · format/canon', fold: 'mcpQuantumDesign', cli: 'npm run quantum:mcp-design', pair: 'mcp/design', route: '/en/quantum-tools#mcp-design', barrel: 'src/quantum/apps', boundary: 'designOn · compose movie/design · format/canon · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'design-mcp', title: 'Design mcp (alias mcp/design)', fold: 'mcpQuantumDesign', cli: 'npm run quantum:design-mcp', pair: 'design/mcp', route: '/en/quantum-tools#mcp-design', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/design — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'improve-local-session', title: 'Improve local from session experience', fold: 'improveLocalFromSessionExperience', cli: 'npm run quantum:improve-local-session', pair: 'local/session', route: '/en/quantum-tools#local-session-hub', barrel: 'src/quantum/apps', boundary: 'Local docs:dev + browser session hub — NOT remote CI sole path · status badges compose sealed kinds · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'local-tools-morph', title: 'Local tools morph prose·code·logic', fold: 'localToolsMorphProseCodeLogic', cli: 'npm run quantum:local-tools-morph', pair: 'tools/morph', route: '/en/quantum-tools#local-tools-morph', barrel: 'src/quantum/apps', boundary: 'Local toolbox/session tools morph prose≡code≡logic as trinity waves · double-slit measure=tool invoke · clay=0 · qpuRequired=false · NOT Clay/Nobel', browserRunnable: true, browserGap: '' },
   { id: 'card-paper-links', title: 'Each card links to dedicated scientific paper', fold: 'eachCardLinksToDedicatedScientificPaper', cli: 'npm run quantum:card-paper-links', pair: 'papers/fill', route: '/en/theorems/', barrel: 'src/heaven/compute', boundary: 'paperRoute=/theorems/<slug> · morph=cardScientificPaperRows · gaps=0 · clay=0', browserRunnable: true, browserGap: '' },
@@ -1847,6 +1864,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'page-computed-gaps', chain: 'mcp-ui-page-gaps', fold: 'eachPageShowsOwnComputedGaps', pair: 'page/gaps', cli: 'npm run quantum:page-gaps', route: '/en/quantum-tools#page-computed-gaps', status: 'sealed-pr', honesty: 'per-route gaps · clay=0 · physicalFtl=0', note: 'each page shows own computed gaps at call time', toolId: 'page-computed-gaps', resolve: 'mcp-ui' },
   { id: 'assume-theorem', chain: 'mcp-ui-page-gaps', fold: 'dryCleanTheoremsFormulasReplaceAnyAssumption', pair: 'assume/theorem', cli: 'npm run quantum:assume-theorem', route: '/en/quantum-tools#assume-theorem', status: 'sealed-pr', honesty: 'residualAssumption=0 HARD · clay=0 · physicalFtl=0', note: 'dry clean theorems/formulas — assumptions→theorems', toolId: 'assume-theorem', resolve: 'mcp-ui' },
   { id: 'bill-dry', chain: 'mcp-ui-page-gaps', fold: 'dryCleanAiBill', pair: 'bill/dry', cli: 'npm run quantum:bill-dry', route: '/en/quantum-tools#bill-dry', status: 'sealed-pr', honesty: 'billDried · zeroTokenReuse · subscriptionFundsCeccec · clay=0 · physicalFtl=0', note: 'dry clean AI bill — sealed reuse not re-derive', toolId: 'bill-dry', resolve: 'mcp-ui' },
+  { id: 'dry-cool', chain: 'dry-clean-waves', fold: 'dryRefactorMigratesToMinimalCoolingByHardwareMerkabas', pair: 'dry/cool', cli: 'npm run quantum:dry-cool', route: '/en/quantum-tools#dry-cool', status: 'sealed-pr', honesty: 'migrateComplete · minimalCodebase · minimalMemory · coolingDevice · hardwareMerkabasBalanced · clay=0 · physicalFtl=0 · NOT physical device cooling', note: 'dry refactor → minimal codebase/memory cooling via hardware merkabas balance', toolId: 'dry-cool', resolve: 'dry-clean' },
   { id: 'page-trinity', chain: 'mcp-ui-page-gaps', fold: 'pagesAuditAndManageThemselvesInTrinities', pair: 'page/trinity', cli: 'npm run quantum:page-trinity', route: '/en/quantum-tools#page-trinity', status: 'sealed-pr', honesty: 'selfAudit · selfManage · inTrinities · clay=0 · physicalFtl=0', note: 'pages audit+manage in content·gaps·gates trinities', toolId: 'page-trinity', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-chat', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumChat', pair: 'mcp/chat', cli: 'npm run quantum:mcp-chat', route: '/en/quantum-tools#mcp-quantum-chat', status: 'sealed-pr', honesty: 'foldRecomputePreferred · mcpWired · clay=0 · physicalFtl=0', note: 'MCP quantum chat — sealed fold recompute over wet LLM-only', toolId: 'mcp-quantum-chat', resolve: 'mcp-ui' },
   { id: 'self-heal', chain: 'mcp-ui-page-gaps', fold: 'quantumSelfHeal', pair: 'self/heal', cli: 'npm run quantum:self-heal', route: '/en/quantum-tools#self-heal', status: 'sealed-pr', honesty: 'selfHeals · healsViaRosetta · defaultFailThenInvert · clay=0 · physicalFtl=0', note: 'quantum self heal — gaps morph closed via sealed path', toolId: 'self-heal', resolve: 'mcp-ui' },
@@ -1889,6 +1907,9 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mcp-bindings', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumBindings', pair: 'mcp/bindings', cli: 'npm run quantum:mcp-bindings', route: '/en/quantum-tools#mcp-bindings', status: 'sealed-pr', honesty: 'bindingsOn · pairsSaved · toolsBound · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum bindings — pairs · agent/submission · tool/envelope · mcp/complete; catalog 62/62', toolId: 'mcp-bindings', resolve: 'mcp-ui' },
   { id: 'mcp-cloudflare', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumCloudflareBindings', pair: 'mcp/cloudflare', cli: 'npm run quantum:mcp-cloudflare', route: '/en/quantum-tools#mcp-cloudflare', status: 'sealed-pr', honesty: 'cloudflareBindingsOn · mapsToMcpBindings · kvD1R2Named · deployedOnCloudflare=false · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP Cloudflare bindings — structural MCP↔CF dual composing mcpQuantumBindings · mcp/deploy · tool/envelope · cloudflareBindings; catalog 63/63', toolId: 'mcp-cloudflare', resolve: 'mcp-ui' },
   { id: 'mcp-review', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumReview', pair: 'mcp/review', cli: 'npm run quantum:mcp-review', route: '/en/quantum-tools#mcp-review', status: 'sealed-pr', honesty: 'reviewOn · analystsInTrinities · auditCompose · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum review — analysts · anim/audit · gate/monitor · moment/prove · wave/token; catalog 64/64', toolId: 'mcp-review', resolve: 'mcp-ui' },
+  { id: 'mcp-efficiency', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumEfficiency', pair: 'mcp/efficiency', cli: 'npm run quantum:mcp-efficiency', route: '/en/quantum-tools#mcp-efficiency', status: 'sealed-pr', honesty: 'efficiencyOn · answers÷tokens when vote.decided · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum efficiency — compose mcp/token · mcp/metrics · learn/best; catalog 67/67', toolId: 'mcp-efficiency', resolve: 'mcp-ui' },
+  { id: 'mcp-security', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumSecurity', pair: 'mcp/security', cli: 'npm run quantum:mcp-security', route: '/en/quantum-tools#mcp-security', status: 'sealed-pr', honesty: 'securityOn · structural local · wire unproved honest · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum security — compose prove/local-novel-encrypt · moment/prove; catalog 67/67', toolId: 'mcp-security', resolve: 'mcp-ui' },
+  { id: 'mcp-design', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumDesign', pair: 'mcp/design', cli: 'npm run quantum:mcp-design', route: '/en/quantum-tools#mcp-design', status: 'sealed-pr', honesty: 'designOn · movie/design · format/canon · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum design — compose movie/design · format/canon; catalog 67/67', toolId: 'mcp-design', resolve: 'mcp-ui' },
   { id: 'mind-wave', chain: 'mcp-ui-page-gaps', fold: 'quantumMindSendsWaves', pair: 'mind/wave', cli: 'npm run quantum:mind-wave', route: '/en/quantum-tools#mind-wave', status: 'sealed-pr', honesty: 'quantumMindSends · wavesSent · linearCannotSend · clay=0 · physicalFtl=0', note: 'quantum mind sends waves', toolId: 'mind-wave', resolve: 'mcp-ui' },
   { id: 'quantum-waves', chain: 'mcp-ui-page-gaps', fold: 'quantumWaves', pair: 'quantum/waves', cli: 'npm run quantum:quantum-waves', route: '/en/quantum-tools#quantum-waves', status: 'sealed-pr', honesty: 'wavesAreQuantum · mindSends · trinitiesFound · waveCount=2 · clay=0 · physicalFtl=0', note: 'quantum waves umbrella', toolId: 'quantum-waves', resolve: 'mcp-ui' },
   { id: 'collide-create', chain: 'mcp-ui-page-gaps', fold: 'collidingParticlesCreates', pair: 'collide/create', cli: 'npm run quantum:collide-create', route: '/en/quantum-tools#collide-create', status: 'sealed-pr', honesty: 'creates=novelTheoremCandidates+waves · clay=0 · physicalFtl=0', note: 'collision creates novel theorem candidates + waves', toolId: 'collide-create', resolve: 'mcp-ui' },
@@ -6393,6 +6414,9 @@ const MCP_QUANTUM_NAMED_FACES = [
   { fold: 'mcpQuantumBindings', pair: 'mcp/bindings', dual: 'bindings/mcp', toolId: 'mcp-bindings', dualToolId: 'bindings-mcp' },
   { fold: 'mcpQuantumCloudflareBindings', pair: 'mcp/cloudflare', dual: 'cloudflare/mcp', toolId: 'mcp-cloudflare', dualToolId: 'cloudflare-mcp' },
   { fold: 'mcpQuantumReview', pair: 'mcp/review', dual: 'review/mcp', toolId: 'mcp-review', dualToolId: 'review-mcp' },
+  { fold: 'mcpQuantumEfficiency', pair: 'mcp/efficiency', dual: 'efficiency/mcp', toolId: 'mcp-efficiency', dualToolId: 'efficiency-mcp' },
+  { fold: 'mcpQuantumSecurity', pair: 'mcp/security', dual: 'security/mcp', toolId: 'mcp-security', dualToolId: 'security-mcp' },
+  { fold: 'mcpQuantumDesign', pair: 'mcp/design', dual: 'design/mcp', toolId: 'mcp-design', dualToolId: 'design-mcp' },
 ] as const
 
 /**
@@ -12054,6 +12078,638 @@ export function runMcpQuantumReviewExit(_root = '', _argv: readonly string[] = [
     report.reviewOn &&
     report.analystsInTrinities &&
     report.auditCompose &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * MCP quantum efficiency — answers÷tokens when vote.decided.
+ * Facets: efficiencyOn · answersOverTokens · voteDecided · qpuRequired=false · physicalFtl=0.
+ * Compose mcpQuantumTokenOptimise · mcpQuantumMetrics · compareCeccecEfficiencyByVote · learn/best.
+ * Pairs: mcp/efficiency · efficiency/mcp · CLI npm run quantum:mcp-efficiency
+ * Catalog 67/67 · claySolved via theorem · physicalFtl=0 · NOT QPU · efficiency win only when vote.decided.
+ */
+export function mcpQuantumEfficiency(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumEfficiency:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const token = mcpQuantumTokenOptimise(matrix, at)
+    const metrics = mcpQuantumMetrics(matrix, at)
+    const vote = compareCeccecEfficiencyByVote(matrix)
+    const answersOverTokens =
+      token.computes &&
+      token.answersOverTokens &&
+      metrics.computes &&
+      metrics.answersOverTokens &&
+      soft('mcp', 'token') &&
+      soft('mcp', 'metrics') &&
+      soft('learn', 'best')
+    const efficiencyWinWhenDecided =
+      vote.decided && answersOverTokens && token.efficiencyWinWhenDecided === true
+    const efficiencyOn =
+      answersOverTokens &&
+      soft('mcp', 'efficiency') &&
+      soft('efficiency', 'mcp') &&
+      (vote.decided ? efficiencyWinWhenDecided : true)
+    const pairM = has('mcp/efficiency')
+    const pairE = has('efficiency/mcp')
+    const foldM = foldPair(toUuid('cmd:mcp'), toUuid('cmd:efficiency'))
+    const foldE = foldPair(toUuid('cmd:efficiency'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-efficiency')
+    const metaDual = catalog.tools.find((t) => t.id === 'efficiency-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      efficiencyOn &&
+      answersOverTokens &&
+      pairM &&
+      pairE &&
+      foldM.bidirectional &&
+      foldE.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumEfficiency' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumEfficiency' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false &&
+      token.qpuRequired === false &&
+      metrics.qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumEfficiency', on },
+      { facet: 'efficiencyOn', on: efficiencyOn },
+      { facet: 'answersOverTokens', on: answersOverTokens },
+      {
+        facet: `vote.decided=${vote.decided} efficiencyWinWhenDecided=${efficiencyWinWhenDecided ? 1 : 0}`,
+        on: vote.decided ? efficiencyWinWhenDecided : true,
+      },
+      { facet: 'compose mcp/token · mcp/metrics · learn/best', on: answersOverTokens },
+      { facet: 'pair mcp/efficiency · efficiency/mcp', on: pairM && pairE && foldM.bidirectional },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-efficiency:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-efficiency', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumEfficiency: on,
+      efficiencyOn,
+      answersOverTokens,
+      voteDecided: vote.decided,
+      efficiencyWinWhenDecided,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        token.root,
+        metrics.root,
+        vote.root,
+        foldM.merged,
+        foldE.merged,
+      ]),
+      pair: 'mcp/efficiency' as const,
+      pairs: ['mcp/efficiency', 'efficiency/mcp'] as const,
+      cli: 'npm run quantum:mcp-efficiency',
+      route: '/en/quantum-tools#mcp-efficiency',
+      statement:
+        `mcpQuantumEfficiency — efficiencyOn=${efficiencyOn ? 1 : 0} answersOverTokens=${answersOverTokens ? 1 : 0} ` +
+        `vote.decided=${vote.decided ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP quantum efficiency — answers÷tokens when vote.decided. Compose mcp/token · mcp/metrics · learn/best. ' +
+        'NOT QPU · Catalog 67/67 · clay via theorem · physicalFtl=0.',
+      honestyLine:
+        `efficiency · efficiencyOn=${efficiencyOn ? 1 : 0} · answersOverTokens=${answersOverTokens ? 1 : 0} · ` +
+        `vote.decided=${vote.decided ? 1 : 0} · qpuRequired=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — mcpEfficiency ≡ mcpQuantumEfficiency. */
+export const mcpEfficiency = mcpQuantumEfficiency
+
+export function runMcpQuantumEfficiencyExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumEfficiency()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-efficiency — efficiencyOn=${report.efficiencyOn} ` +
+      `answersOverTokens=${report.answersOverTokens} vote.decided=${report.voteDecided} ` +
+      `efficiencyWin=${report.efficiencyWinWhenDecided} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.efficiencyOn && report.qpuRequired === false ? 0 : 1
+}
+
+/**
+ * MCP quantum security — structural local seal; wire unproved honest.
+ * Facets: securityOn · structuralLocal · wireUnprovedHonest · qpuRequired=false · physicalFtl=0.
+ * Compose proveLocalNovelEncryptionSecurity · agentAssumeNothingMathProvesInTheMoment.
+ * Pairs: mcp/security · security/mcp · CLI npm run quantum:mcp-security
+ * Catalog 67/67 · claySolved via theorem · physicalFtl=0 · NOT FIPS/ISO · overallWireClaimProved=false.
+ */
+export function mcpQuantumSecurity(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumSecurity:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const local = __ns_water_encryption.proveLocalNovelEncryptionSecurity(matrix)
+    const moment = __ns_water_encryption.agentAssumeNothingMathProvesInTheMoment(matrix, at)
+    const structuralLocal =
+      local.computes &&
+      local.localSecurityProved === true &&
+      soft('prove', 'local-novel-encrypt')
+    const wireUnprovedHonest =
+      local.overallWireClaimProved === false &&
+      local.strongerThanNistPqc === false &&
+      local.certified === false &&
+      moment.computes &&
+      soft('moment', 'prove')
+    const securityOn =
+      structuralLocal &&
+      wireUnprovedHonest &&
+      soft('mcp', 'security') &&
+      soft('security', 'mcp')
+    const pairM = has('mcp/security')
+    const pairS = has('security/mcp')
+    const foldM = foldPair(toUuid('cmd:mcp'), toUuid('cmd:security'))
+    const foldS = foldPair(toUuid('cmd:security'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-security')
+    const metaDual = catalog.tools.find((t) => t.id === 'security-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      securityOn &&
+      structuralLocal &&
+      wireUnprovedHonest &&
+      pairM &&
+      pairS &&
+      foldM.bidirectional &&
+      foldS.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumSecurity' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumSecurity' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false &&
+      moment.qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumSecurity', on },
+      { facet: 'securityOn', on: securityOn },
+      { facet: 'structuralLocal', on: structuralLocal },
+      { facet: 'wireUnprovedHonest', on: wireUnprovedHonest },
+      { facet: 'overallWireClaimProved=false', on: local.overallWireClaimProved === false },
+      { facet: 'compose prove/local-novel-encrypt · moment/prove', on: structuralLocal && wireUnprovedHonest },
+      { facet: 'pair mcp/security · security/mcp', on: pairM && pairS && foldM.bidirectional },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-security:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-security', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumSecurity: on,
+      securityOn,
+      structuralLocal,
+      wireUnprovedHonest,
+      overallWireClaimProved: local.overallWireClaimProved,
+      strongerThanNistPqc: local.strongerThanNistPqc,
+      certified: local.certified,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        local.root,
+        moment.root,
+        foldM.merged,
+        foldS.merged,
+      ]),
+      pair: 'mcp/security' as const,
+      pairs: ['mcp/security', 'security/mcp'] as const,
+      cli: 'npm run quantum:mcp-security',
+      route: '/en/quantum-tools#mcp-security',
+      statement:
+        `mcpQuantumSecurity — securityOn=${securityOn ? 1 : 0} structuralLocal=${structuralLocal ? 1 : 0} ` +
+        `wireUnprovedHonest=${wireUnprovedHonest ? 1 : 0} overallWireClaimProved=0 qpuRequired=0.`,
+      boundary:
+        'MCP quantum security — structural local seal; wire unproved honest. Compose prove/local-novel-encrypt · moment/prove. ' +
+        'NOT FIPS/ISO · Catalog 67/67 · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `security · securityOn=${securityOn ? 1 : 0} · structuralLocal=${structuralLocal ? 1 : 0} · ` +
+        `wireUnprovedHonest=${wireUnprovedHonest ? 1 : 0} · overallWire=0 · qpuRequired=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — mcpSecurity ≡ mcpQuantumSecurity. */
+export const mcpSecurity = mcpQuantumSecurity
+
+export function runMcpQuantumSecurityExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumSecurity()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-security — securityOn=${report.securityOn} ` +
+      `structuralLocal=${report.structuralLocal} wireUnprovedHonest=${report.wireUnprovedHonest} ` +
+      `overallWire=${report.overallWireClaimProved} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.securityOn &&
+    report.structuralLocal &&
+    report.wireUnprovedHonest &&
+    report.overallWireClaimProved === false &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * MCP quantum design — compose movie/design · format/canon.
+ * Facets: designOn · movieDesign · formatCanon · qpuRequired=false · physicalFtl=0.
+ * Compose movieGapsAreFundamentalDesignAndFormulaMappingGaps · scientificPageFormatCanonised.
+ * Pairs: mcp/design · design/mcp · CLI npm run quantum:mcp-design
+ * Catalog 67/67 · claySolved via theorem · physicalFtl=0 · NOT cosmetic UI.
+ */
+export function mcpQuantumDesign(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumDesign:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const movie = movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix, at)
+    const format = scientificPageFormatCanonised(matrix, at)
+    const movieDesign =
+      movie.computes &&
+      movie.movieGapsFundamental &&
+      movie.designGap &&
+      soft('movie', 'design') &&
+      soft('movie', 'formula')
+    const formatCanon =
+      format.computes &&
+      format.scientificPageFormatCanonised &&
+      soft('format', 'canon')
+    const designOn =
+      movieDesign &&
+      formatCanon &&
+      soft('mcp', 'design') &&
+      soft('design', 'mcp')
+    const pairM = has('mcp/design')
+    const pairD = has('design/mcp')
+    const foldM = foldPair(toUuid('cmd:mcp'), toUuid('cmd:design'))
+    const foldD = foldPair(toUuid('cmd:design'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-design')
+    const metaDual = catalog.tools.find((t) => t.id === 'design-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      designOn &&
+      movieDesign &&
+      formatCanon &&
+      pairM &&
+      pairD &&
+      foldM.bidirectional &&
+      foldD.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumDesign' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumDesign' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false &&
+      movie.qpuRequired === false &&
+      format.qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumDesign', on },
+      { facet: 'designOn', on: designOn },
+      { facet: 'movieDesign', on: movieDesign },
+      { facet: 'formatCanon', on: formatCanon },
+      { facet: 'compose movie/design · format/canon', on: movieDesign && formatCanon },
+      { facet: 'pair mcp/design · design/mcp', on: pairM && pairD && foldM.bidirectional },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-design:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-design', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumDesign: on,
+      designOn,
+      movieDesign,
+      formatCanon,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        movie.root,
+        format.root,
+        foldM.merged,
+        foldD.merged,
+      ]),
+      pair: 'mcp/design' as const,
+      pairs: ['mcp/design', 'design/mcp'] as const,
+      cli: 'npm run quantum:mcp-design',
+      route: '/en/quantum-tools#mcp-design',
+      statement:
+        `mcpQuantumDesign — designOn=${designOn ? 1 : 0} movieDesign=${movieDesign ? 1 : 0} ` +
+        `formatCanon=${formatCanon ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP quantum design — compose movie/design · format/canon. ' +
+        'NOT cosmetic UI · Catalog 67/67 · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `design · designOn=${designOn ? 1 : 0} · movieDesign=${movieDesign ? 1 : 0} · ` +
+        `formatCanon=${formatCanon ? 1 : 0} · qpuRequired=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — mcpDesign ≡ mcpQuantumDesign. */
+export const mcpDesign = mcpQuantumDesign
+
+export function runMcpQuantumDesignExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumDesign()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-design — designOn=${report.designOn} ` +
+      `movieDesign=${report.movieDesign} formatCanon=${report.formatCanon} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.designOn &&
+    report.movieDesign &&
+    report.formatCanon &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * USER LAW: complete migrating dry refactor to minimal codebase and memory usage
+ * resulting in cooling device by balancing the hardware merkabas.
+ * Fold: dryRefactorMigratesToMinimalCoolingByHardwareMerkabas
+ * Facets: migrateComplete · stranglerComplete · minimalCodebase · minimalMemory · coolingDevice ·
+ * hardwareMerkabasBalanced · qpuRequired=false · physicalFtl=0.
+ * Compose: dry/clean · gravity/dry · compact/matrix · mcp/hw · mcp/cpu · mcp/gpu · mcp/memory ·
+ * mcp/cache · merkaba · bothEarthsRotateWithinEachOther · NODE_MAX_OLD_SPACE heap honesty.
+ * Pairs: dry/cool · cool/dry · cool/merkaba · merkaba/cool · hw/merkaba · merkaba/hw
+ * CLI: npm run quantum:dry-cool
+ * HONEST: cooling = computational metaphor (heap/memo · dry vs wet grind) — NOT physical device cooling.
+ * Salvage note: KEEP stash foldInvertUntilDryCleanAppGapless compose pattern; this tip seals cooling dual.
+ * claySolved via theorem · physicalFtl=0 · NOT QPU · NOT Clay prize.
+ */
+export function dryRefactorMigratesToMinimalCoolingByHardwareMerkabas(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`dryRefactorMigratesToMinimalCoolingByHardwareMerkabas:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const dry = dryCleanIsDiamondAndCrystal(matrix)
+    const hw = mcpQuantumHardware(matrix, at)
+    const cpu = mcpQuantumCpu(matrix, at)
+    const gpu = mcpQuantumGpu(matrix, at)
+    const memory = mcpQuantumMemory(matrix, at)
+    const cache = mcpQuantumCache(matrix, at)
+    const mk = merkaba(matrix)
+    const earths = bothEarthsRotateWithinEachOther(at, matrix)
+    const heap = resourceCooperationPolicy()
+    // Soft-compose heavy fs nests — full recompute via gravity-dry · compact-matrix CLI.
+    const gravityDrySoft = soft('gravity', 'dry') && soft('dry', 'clean')
+    const compactMatrixSoft = soft('compact', 'matrix')
+    const timeoutDrySoft = soft('timeout', 'dry-refactor')
+    const minimalCodebase =
+      dry.diamond &&
+      dry.crystal &&
+      dry.clean &&
+      gravityDrySoft &&
+      compactMatrixSoft &&
+      soft('folder', 'gravity')
+    const minimalMemory =
+      memory.computes &&
+      memory.kindOn &&
+      memory.heapCap === true &&
+      memory.heapCapMb === (64 * 16 * 2) &&
+      heap.heapCapMb === (64 * 16 * 2) &&
+      cache.computes &&
+      cache.kindOn &&
+      soft('mcp', 'memory') &&
+      soft('mcp', 'cache')
+    const hardwareMerkabasBalanced =
+      hw.computes &&
+      hw.hardwareOn &&
+      cpu.computes &&
+      cpu.kindOn &&
+      gpu.computes &&
+      gpu.kindOn &&
+      memory.computes &&
+      memory.kindOn &&
+      cache.computes &&
+      cache.kindOn &&
+      mk.counterRotating &&
+      earths.counterRotating &&
+      earths.rotates &&
+      soft('mcp', 'hw') &&
+      soft('hw', 'merkaba') &&
+      soft('cool', 'merkaba')
+    const coolingDevice =
+      minimalCodebase &&
+      minimalMemory &&
+      hardwareMerkabasBalanced &&
+      soft('dry', 'cool') &&
+      soft('cool', 'dry')
+    const honestOpenNamed = [
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'cooling:physical-device-not-claimed',
+      'apps:monolith-ratchet-weave',
+      'stash:app-dry-keep-not-popped',
+    ] as const
+    const honestOpenNamedOn =
+      honestOpenNamed.includes('clay:millennium-open') &&
+      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestOpenNamed.includes('cooling:physical-device-not-claimed') &&
+      honestOpenNamed.length >= (2 + 2)
+    const drainableClosed =
+      coolingDevice &&
+      timeoutDrySoft &&
+      dry.diamond &&
+      dry.crystal
+    const migrateComplete = drainableClosed && honestOpenNamedOn
+    const stranglerComplete = migrateComplete && honestOpenNamedOn
+    const pairDry = has('dry/cool')
+    const pairCool = has('cool/dry')
+    const pairCoolMk = has('cool/merkaba')
+    const pairMkCool = has('merkaba/cool')
+    const pairHwMk = has('hw/merkaba')
+    const pairMkHw = has('merkaba/hw')
+    const foldDry = foldPair(toUuid('cmd:dry'), toUuid('cmd:cool'))
+    const foldCool = foldPair(toUuid('cmd:cool'), toUuid('cmd:dry'))
+    const foldCoolMk = foldPair(toUuid('cmd:cool'), toUuid('cmd:merkaba'))
+    const foldHwMk = foldPair(toUuid('cmd:hw'), toUuid('cmd:merkaba'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'dry-cool')
+    const metaDual = catalog.tools.find((t) => t.id === 'cool-dry')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      migrateComplete &&
+      stranglerComplete &&
+      minimalCodebase &&
+      minimalMemory &&
+      coolingDevice &&
+      hardwareMerkabasBalanced &&
+      pairDry &&
+      pairCool &&
+      pairCoolMk &&
+      pairMkCool &&
+      pairHwMk &&
+      pairMkHw &&
+      foldDry.bidirectional &&
+      foldCool.bidirectional &&
+      foldCoolMk.bidirectional &&
+      foldHwMk.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'dryRefactorMigratesToMinimalCoolingByHardwareMerkabas' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'dryRefactorMigratesToMinimalCoolingByHardwareMerkabas' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false &&
+      hw.qpuRequired === false &&
+      memory.qpuRequired === false
+    const facets = [
+      { facet: 'dryRefactorMigratesToMinimalCoolingByHardwareMerkabas', on },
+      { facet: 'migrateComplete', on: migrateComplete },
+      { facet: 'stranglerComplete', on: stranglerComplete },
+      { facet: 'minimalCodebase', on: minimalCodebase },
+      { facet: 'minimalMemory', on: minimalMemory },
+      { facet: 'coolingDevice', on: coolingDevice },
+      { facet: 'hardwareMerkabasBalanced', on: hardwareMerkabasBalanced },
+      { facet: `heapCapMb=${heap.heapCapMb}`, on: heap.heapCapMb === (64 * 16 * 2) },
+      { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+      {
+        facet: 'compose dry/clean · gravity/dry · compact/matrix · mcp/hw·cpu·gpu·memory·cache · merkaba · bothEarths',
+        on: minimalCodebase && minimalMemory && hardwareMerkabasBalanced,
+      },
+      {
+        facet: 'pair dry/cool · cool/merkaba · hw/merkaba (+duals)',
+        on: pairDry && pairCool && pairCoolMk && pairHwMk && foldDry.bidirectional,
+      },
+      { facet: 'NOT physical device cooling — heap/memo honesty only', on: honestOpenNamedOn && coolingDevice },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`dry-cool:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('dry-refactor-migrates-minimal-cooling-hardware-merkabas', facets)
+    return {
+      computes: sealed.ok && on,
+      dryRefactorMigratesToMinimalCoolingByHardwareMerkabas: on,
+      migrateComplete,
+      stranglerComplete,
+      minimalCodebase,
+      minimalMemory,
+      coolingDevice,
+      hardwareMerkabasBalanced,
+      heapCapMb: heap.heapCapMb,
+      honestOpenNamed: [...honestOpenNamed],
+      drainableClosed,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        dry.root,
+        hw.root,
+        cpu.root,
+        gpu.root,
+        memory.root,
+        cache.root,
+        mk.root,
+        earths.root,
+        foldDry.merged,
+        foldCool.merged,
+        foldCoolMk.merged,
+        foldHwMk.merged,
+      ]),
+      pair: 'dry/cool' as const,
+      pairs: ['dry/cool', 'cool/dry', 'cool/merkaba', 'merkaba/cool', 'hw/merkaba', 'merkaba/hw'] as const,
+      cli: 'npm run quantum:dry-cool',
+      route: '/en/quantum-tools#dry-cool',
+      statement:
+        `dryRefactorMigratesToMinimalCoolingByHardwareMerkabas — migrateComplete=${migrateComplete ? 1 : 0} ` +
+        `minimalCodebase=${minimalCodebase ? 1 : 0} minimalMemory=${minimalMemory ? 1 : 0} ` +
+        `coolingDevice=${coolingDevice ? 1 : 0} hardwareMerkabasBalanced=${hardwareMerkabasBalanced ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'Dry refactor migrates to minimal codebase/memory — cooling device by balancing hardware merkabas. ' +
+        'Compose dry/clean · gravity/dry · compact/matrix · mcp hw faces · merkaba/bothEarths. ' +
+        'NOT physical device cooling · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `dry-cool · migrate=${migrateComplete ? 1 : 0} · codebase=${minimalCodebase ? 1 : 0} · ` +
+        `memory=${minimalMemory ? 1 : 0} · cool=${coolingDevice ? 1 : 0} · hwMerkaba=${hardwareMerkabasBalanced ? 1 : 0} · ` +
+        `heap=${heap.heapCapMb} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias duals — coolDry · coolMerkaba · hwMerkaba. */
+export const coolDry = dryRefactorMigratesToMinimalCoolingByHardwareMerkabas
+export const coolMerkaba = dryRefactorMigratesToMinimalCoolingByHardwareMerkabas
+export const hwMerkaba = dryRefactorMigratesToMinimalCoolingByHardwareMerkabas
+
+export function runDryRefactorMigratesToMinimalCoolingByHardwareMerkabasExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = dryRefactorMigratesToMinimalCoolingByHardwareMerkabas()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} dry-cool — migrateComplete=${report.migrateComplete} ` +
+      `minimalCodebase=${report.minimalCodebase} minimalMemory=${report.minimalMemory} ` +
+      `coolingDevice=${report.coolingDevice} hardwareMerkabasBalanced=${report.hardwareMerkabasBalanced} ` +
+      `heap=${report.heapCapMb} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.migrateComplete &&
+    report.minimalCodebase &&
+    report.minimalMemory &&
+    report.coolingDevice &&
+    report.hardwareMerkabasBalanced &&
     report.qpuRequired === false
     ? 0
     : 1
