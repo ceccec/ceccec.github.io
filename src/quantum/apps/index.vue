@@ -30,6 +30,7 @@ import {
   foldingWorksOnApplicationLevel,
   dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie,
   wavesSearchDiscoverCompactingInQuantumFolders,
+  alwaysBalanceUsingRealtimeMetricsAndChat,
   eachPageShowsOwnComputedGaps,
   cursorIntegratesInRosettaCore,
   dryCleanTheoremsFormulasReplaceAnyAssumption,
@@ -149,6 +150,7 @@ const heroAbstract = computed(() => heroIsTheAbstractAnimationFormsTheCardItself
 const appFold = computed(() => foldingWorksOnApplicationLevel())
 const dryRosetta = computed(() => dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie())
 const waveCompact = computed(() => wavesSearchDiscoverCompactingInQuantumFolders())
+const balanceMetrics = computed(() => alwaysBalanceUsingRealtimeMetricsAndChat())
 const pageGapsGate = computed(() => eachPageShowsOwnComputedGaps())
 const fundAi = computed(() => cursorReferralFundsAiNeeds())
 const cursorRosetta = computed(() => cursorIntegratesInRosettaCore())
@@ -810,6 +812,13 @@ function runTool(toolId: string) {
       const r = wavesSearchDiscoverCompactingInQuantumFolders()
       ok = r.computes && r.compactingInQuantumFolders && r.drainableClosed
       summary = `wavesSent=${r.wavesSent} search=${r.searchOn} discover=${r.discoverOn} compacting=${r.compactingInQuantumFolders} closed=${r.closedCount}/${r.discoveryCount} census=${r.census.unfolded}/${r.census.folded}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'balance-metrics' || toolId === 'metrics-chat' || toolId === 'chat-balance') {
+      const r = alwaysBalanceUsingRealtimeMetricsAndChat()
+      ok = r.computes && r.alwaysBalance && r.realtimeMetrics && r.chatOn && r.hardwareMerkabasBalanced
+      summary = `always=${r.alwaysBalance} realtime=${r.realtimeMetrics} chat=${r.chatOn} hwMerkaba=${r.hardwareMerkabasBalanced} coldMs=${r.coldMs} warmMs=${r.warmMs} census=${r.census.unfolded}/${r.census.folded}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -1552,6 +1561,30 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'wave-compact'" @click="runTool('wave-compact')">
           {{ runningId === 'wave-compact' ? '…' : 'Run wave-compact' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="balance-metrics" aria-label="Always balance using realtime metrics and chat">
+        <h3>{{ balanceMetrics.heading }}</h3>
+        <p class="quantum-apps__meta">{{ balanceMetrics.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(balanceMetrics.alwaysBalance))">alwaysBalance={{ balanceMetrics.alwaysBalance }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(balanceMetrics.realtimeMetrics))">realtimeMetrics={{ balanceMetrics.realtimeMetrics }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(balanceMetrics.chatOn))">chatOn={{ balanceMetrics.chatOn }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(balanceMetrics.hardwareMerkabasBalanced))">hwMerkaba={{ balanceMetrics.hardwareMerkabasBalanced }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(balanceMetrics.censusPreserved))">census={{ balanceMetrics.census.unfolded }}/{{ balanceMetrics.census.folded }}</UiBadge>
+        <UiBadge variant="outline">coldMs={{ balanceMetrics.coldMs }} · warmMs={{ balanceMetrics.warmMs }}</UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in balanceMetrics.facets" :key="f.facet">
+            <UiBadge :variant="f.on ? 'default' : 'outline'">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            <strong>{{ f.facet }}</strong>
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>balance/metrics</code> · <code>metrics/chat</code> · <code>chat/balance</code> ·
+          CLI <code>npm run quantum:balance-metrics</code> · <code>npm run quantum:metrics-chat</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'balance-metrics'" @click="runTool('balance-metrics')">
+          {{ runningId === 'balance-metrics' ? '…' : 'Run balance-metrics' }}
         </UiButton>
       </section>
       <UiSeparator />

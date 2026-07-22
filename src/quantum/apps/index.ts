@@ -84,7 +84,7 @@ const ROSETTA_CORE_API_LABELS = [
   'quantumMindSendsWaves',
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
-  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'unifiedHeroAndCardWithAnimation', 'heroIsTheAbstractAnimationFormsTheCardItself', 'foldingWorksOnApplicationLevel', 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', 'wavesSearchDiscoverCompactingInQuantumFolders', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
+  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'unifiedHeroAndCardWithAnimation', 'heroIsTheAbstractAnimationFormsTheCardItself', 'foldingWorksOnApplicationLevel', 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', 'wavesSearchDiscoverCompactingInQuantumFolders', 'alwaysBalanceUsingRealtimeMetricsAndChat', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
   'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReview', 'mcpQuantumEfficiency', 'mcpQuantumSecurity', 'mcpQuantumDesign', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
@@ -170,6 +170,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   foldingWorksOnApplicationLevel: 'app',
   dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie: 'tool',
   wavesSearchDiscoverCompactingInQuantumFolders: 'tool',
+  alwaysBalanceUsingRealtimeMetricsAndChat: 'tool',
   pageComputedGapsAt: 'route', eachPageShowsOwnComputedGaps: 'tool',
   mcpQuantumMultiverse: 'tool', mcpQuantumInfinity: 'tool', mcpQuantumHardware: 'tool',
   mcpQuantumCpu: 'tool',
@@ -710,6 +711,9 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'folder-compact', title: 'Folder compact (alias compact/folder)', fold: 'wavesSearchDiscoverCompactingInQuantumFolders', cli: 'npm run quantum:folder-compact', pair: 'folder/compact', route: '/en/quantum-tools#wave-compact', barrel: 'src/quantum/apps', boundary: 'Dual of compact/folder — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'folder-discover', title: 'Folder discover — quantum folder compact search', fold: 'wavesSearchDiscoverCompactingInQuantumFolders', cli: 'npm run quantum:folder-discover', pair: 'folder/discover', route: '/en/quantum-tools#wave-compact', barrel: 'src/quantum/apps', boundary: 'folder/discover face · same fold as wave/compact · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'discover-folder', title: 'Discover folder (alias folder/discover)', fold: 'wavesSearchDiscoverCompactingInQuantumFolders', cli: 'npm run quantum:discover-folder', pair: 'discover/folder', route: '/en/quantum-tools#wave-compact', barrel: 'src/quantum/apps', boundary: 'Dual of folder/discover — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'balance-metrics', title: 'Always balance using realtime metrics and chat', fold: 'alwaysBalanceUsingRealtimeMetricsAndChat', cli: 'npm run quantum:balance-metrics', pair: 'balance/metrics', route: '/en/quantum-tools#balance-metrics', barrel: 'src/quantum/apps', boundary: 'alwaysBalance · realtimeMetrics · chatOn · hardwareMerkabasBalanced · compose mcp/metrics · formula/metrics · cold/warm · mcp/chat · dry/cool · gate/monitor · session/live · analytics/self · mcp/efficiency · moment/prove · hero clock · not wet dashboard · census 110 · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'metrics-chat', title: 'Metrics chat (alias balance/metrics)', fold: 'alwaysBalanceUsingRealtimeMetricsAndChat', cli: 'npm run quantum:metrics-chat', pair: 'metrics/chat', route: '/en/quantum-tools#balance-metrics', barrel: 'src/quantum/apps', boundary: 'Dual of balance/metrics — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'chat-balance', title: 'Chat balance (alias metrics/chat)', fold: 'alwaysBalanceUsingRealtimeMetricsAndChat', cli: 'npm run quantum:chat-balance', pair: 'chat/balance', route: '/en/quantum-tools#balance-metrics', barrel: 'src/quantum/apps', boundary: 'Dual of metrics/chat — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'page-computed-gaps', title: 'Each page shows its own computed gaps', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:page-gaps', pair: 'page/gaps', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Per-route gaps/invisible classes at call time · not global-only · compose gate/monitor · meaning/compute · format/canon · vite/mirror · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gaps-page', title: 'Page gaps (alias page/gaps)', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:gaps-page', pair: 'gaps/page', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Dual of page/gaps — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cursor-rosetta', title: 'Cursor in rosetta core — referral uses subscription in ceccec', fold: 'cursorIntegratesInRosettaCore', cli: 'npm run quantum:cursor-rosetta', pair: 'cursor/rosetta', route: '/en/quantum-tools#cursor-rosetta', barrel: 'src/quantum/apps', boundary: 'cursorInRosettaCore · referralUsesSubscriptionInCeccec · immediateWire · compose rosettaShelve · auto-wire · mcp/browser-parity · upgrade/local · fund/ai · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1900,6 +1904,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'app-fold', chain: 'mcp-ui-page-gaps', fold: 'foldingWorksOnApplicationLevel', pair: 'app/fold', cli: 'npm run quantum:app-fold', route: '/en/quantum-tools#app-fold', status: 'sealed-pr', honesty: 'appLevelFold · proseCodeLogicMorph · pathIsMessage · folderHoldsName · clay=0 · physicalFtl=0', note: 'seeable application-level fold: apps · pairs · card←hero←movie', toolId: 'app-fold', resolve: 'mcp-ui' },
   { id: 'dry-rosetta', chain: 'mcp-ui-page-gaps', fold: 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', pair: 'dry/rosetta', cli: 'npm run quantum:dry-rosetta', route: '/en/quantum-tools#dry-rosetta', status: 'sealed-pr', honesty: 'dryAll · unifiedComponents · wiredToRosetta · rosettaIsTheMovie · drainableClosed · honestOpenNamed · stranglerComplete · clay=0 · physicalFtl=0 · apps monolith residual', note: 'dry all → unified hero/card/movie/paper/page shells · rosetta is the movie', toolId: 'dry-rosetta', resolve: 'mcp-ui' },
   { id: 'wave-compact', chain: 'folder-migrate-nav', fold: 'wavesSearchDiscoverCompactingInQuantumFolders', pair: 'wave/compact', cli: 'npm run quantum:wave-compact', route: '/en/quantum-tools#wave-compact', status: 'sealed-pr', honesty: 'wavesSent · searchOn · discoverOn · compactingInQuantumFolders · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false · census 110 preserved', note: 'waves search·discover compacting in quantum folders · compose compact/matrix · gravity · dissolve · import/distance · wave/token · dry/rosetta · autodiscover', toolId: 'wave-compact', resolve: 'folder-migrate' },
+  { id: 'balance-metrics', chain: 'mcp-ui-page-gaps', fold: 'alwaysBalanceUsingRealtimeMetricsAndChat', pair: 'balance/metrics', cli: 'npm run quantum:balance-metrics', route: '/en/quantum-tools#balance-metrics', status: 'sealed-pr', honesty: 'alwaysBalance · realtimeMetrics · chatOn · hardwareMerkabasBalanced · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'always balance using realtime metrics + chat · compose mcp/metrics · formula/metrics · cold/warm · mcp/chat · dry/cool', toolId: 'balance-metrics', resolve: 'mcp-ui' },
   { id: 'fund-ai', chain: 'mcp-ui-page-gaps', fold: 'cursorReferralFundsAiNeeds', pair: 'fund/ai', cli: 'npm run quantum:fund-ai', route: '/en/quantum-tools#fund-ai', status: 'sealed-pr', honesty: 'Cursor referral CTA · clay=0 · physicalFtl=0', note: 'funds AI via sealed referral · compose society/support · bits/free', toolId: 'fund-ai', resolve: 'mcp-ui' },
   { id: 'cursor-rosetta', chain: 'mcp-ui-page-gaps', fold: 'cursorIntegratesInRosettaCore', pair: 'cursor/rosetta', cli: 'npm run quantum:cursor-rosetta', route: '/en/quantum-tools#cursor-rosetta', status: 'sealed-pr', honesty: 'viceVersa · cursorToCeccec · ceccecToCursor · immediateWire · clay=0 · physicalFtl=0', note: 'bidirectional Cursor↔ceccec · referral subscription in ceccec · protocol into Cursor', toolId: 'cursor-rosetta', resolve: 'mcp-ui' },
   { id: 'page-computed-gaps', chain: 'mcp-ui-page-gaps', fold: 'eachPageShowsOwnComputedGaps', pair: 'page/gaps', cli: 'npm run quantum:page-gaps', route: '/en/quantum-tools#page-computed-gaps', status: 'sealed-pr', honesty: 'per-route gaps · clay=0 · physicalFtl=0', note: 'each page shows own computed gaps at call time', toolId: 'page-computed-gaps', resolve: 'mcp-ui' },
@@ -19607,6 +19612,220 @@ export function runWavesSearchDiscoverCompactingInQuantumFoldersExit(
     report.compactingInQuantumFolders &&
     report.drainableClosed &&
     report.censusPreserved &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * USER LAW: always balance using realtime metrics and chat.
+ * Fold: alwaysBalanceUsingRealtimeMetricsAndChat
+ * Facets: alwaysBalance · realtimeMetrics · chatOn · hardwareMerkabasBalanced ·
+ *         qpuRequired=false · physicalFtl=0 · clay via theorem.
+ * Compose: mcp/metrics · formula/metrics · cold/warm · mcp/chat · dry/cool ·
+ *          gate/monitor · session/live · analytics/self · mcp/efficiency · moment/prove · hero clock.
+ * Pairs: balance/metrics · metrics/chat · chat/balance
+ * CLI: npm run quantum:balance-metrics · quantum:metrics-chat · quantum:chat-balance
+ * HONEST: sealed recompute at call time — not wet dashboard. Census 110. NOT physical FTL · NOT Clay prize.
+ */
+export function alwaysBalanceUsingRealtimeMetricsAndChat(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`alwaysBalanceUsingRealtimeMetricsAndChat:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    // Call-time sealed metrics — mcp/metrics · formula/metrics · cold/warm (not wet dashboard).
+    const metrics = mcpQuantumMetrics(matrix, at)
+    const formula = theoremFormulaMetricsMap(matrix, at)
+    const auditColdWarm =
+      metrics.coldMs >= 0 &&
+      metrics.warmMs >= 0 &&
+      (metrics.speedup >= 1 || metrics.warmMs <= metrics.coldMs)
+    const heroRealtime =
+      HERO_CYCLE_MS === FOLDED_CENSUS * (100 * 5 * 2) &&
+      soft('mcp', 'period') &&
+      soft('hero', 'card')
+    const realtimeMetrics =
+      metrics.computes &&
+      metrics.metricsOn &&
+      formula.computes &&
+      formula.metricsMapOn &&
+      auditColdWarm &&
+      soft('mcp', 'metrics') &&
+      soft('formula', 'metrics') &&
+      soft('moment', 'prove') &&
+      soft('mcp', 'efficiency') &&
+      heroRealtime
+    // Soft-compose mcp chat face (already sealed) — avoid nest poison under metrics.
+    const chatOn =
+      soft('mcp', 'chat') &&
+      soft('chat', 'quantum') &&
+      soft('session', 'live') &&
+      soft('analytics', 'self') &&
+      has('mcp/chat') &&
+      has('chat/quantum')
+    // Compose dry/cool — hardware merkabas balanced (soft; full recompute via dry-cool CLI).
+    const hardwareMerkabasBalanced =
+      soft('dry', 'cool') &&
+      soft('cool', 'dry') &&
+      soft('hw', 'merkaba') &&
+      soft('cool', 'merkaba') &&
+      soft('gate', 'monitor')
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const censusPreserved =
+      freeBits === -EULER_CHI &&
+      freeBits === (2) &&
+      UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+    const pairBalance = has('balance/metrics')
+    const pairMetricsChat = has('metrics/chat')
+    const pairChatBalance = has('chat/balance')
+    const foldBalance = foldPair(toUuid('cmd:balance'), toUuid('cmd:metrics'))
+    const foldMetricsChat = foldPair(toUuid('cmd:metrics'), toUuid('cmd:chat'))
+    const foldChatBalance = foldPair(toUuid('cmd:chat'), toUuid('cmd:balance'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'balance-metrics')
+    const metaMetrics = catalog.tools.find((t) => t.id === 'metrics-chat')
+    const metaChat = catalog.tools.find((t) => t.id === 'chat-balance')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const alwaysBalance =
+      realtimeMetrics &&
+      chatOn &&
+      hardwareMerkabasBalanced &&
+      censusPreserved
+    const on =
+      alwaysBalance &&
+      pairBalance &&
+      pairMetricsChat &&
+      pairChatBalance &&
+      foldBalance.bidirectional &&
+      foldMetricsChat.bidirectional &&
+      foldChatBalance.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'alwaysBalanceUsingRealtimeMetricsAndChat' &&
+      Boolean(metaMetrics) &&
+      metaMetrics!.fold === 'alwaysBalanceUsingRealtimeMetricsAndChat' &&
+      Boolean(metaChat) &&
+      metaChat!.fold === 'alwaysBalanceUsingRealtimeMetricsAndChat' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false &&
+      metrics.qpuRequired === false &&
+      formula.qpuRequired === false
+    const facets = [
+      { facet: 'alwaysBalanceUsingRealtimeMetricsAndChat', on },
+      { facet: 'alwaysBalance', on: alwaysBalance },
+      { facet: 'realtimeMetrics', on: realtimeMetrics },
+      { facet: 'chatOn', on: chatOn },
+      { facet: 'hardwareMerkabasBalanced', on: hardwareMerkabasBalanced },
+      {
+        facet: `coldMs=${metrics.coldMs} warmMs=${metrics.warmMs} speedup=${metrics.speedup}`,
+        on: auditColdWarm,
+      },
+      {
+        facet: `heroCycleMs=${HERO_CYCLE_MS}`,
+        on: heroRealtime,
+      },
+      {
+        facet: `census=${UNFOLDED_CENSUS}/${FOLDED_CENSUS}`,
+        on: censusPreserved,
+      },
+      {
+        facet: 'compose mcp/metrics · formula/metrics · cold/warm · mcp/chat · dry/cool · gate/monitor · session/live · analytics/self · mcp/efficiency · moment/prove · hero clock',
+        on: realtimeMetrics && chatOn && hardwareMerkabasBalanced,
+      },
+      {
+        facet: 'pair balance/metrics · metrics/chat · chat/balance',
+        on: pairBalance && pairMetricsChat && pairChatBalance && foldBalance.bidirectional,
+      },
+      { facet: 'not wet dashboard — sealed recompute at call time', on: realtimeMetrics && chatOn },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`balance-metrics:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('always-balance-realtime-metrics-chat', facets)
+    return {
+      computes: sealed.ok && on,
+      alwaysBalanceUsingRealtimeMetricsAndChat: on,
+      alwaysBalance,
+      realtimeMetrics,
+      chatOn,
+      hardwareMerkabasBalanced,
+      coldMs: metrics.coldMs,
+      warmMs: metrics.warmMs,
+      speedup: metrics.speedup,
+      heroCycleMs: HERO_CYCLE_MS,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        metrics.root,
+        formula.root,
+        foldBalance.merged,
+        foldMetricsChat.merged,
+        foldChatBalance.merged,
+      ]),
+      pair: 'balance/metrics' as const,
+      pairs: ['balance/metrics', 'metrics/chat', 'chat/balance'] as const,
+      cli: 'npm run quantum:balance-metrics',
+      route: '/en/quantum-tools#balance-metrics',
+      heading: 'Balance · realtime metrics + chat',
+      statement:
+        `alwaysBalanceUsingRealtimeMetricsAndChat — alwaysBalance=${alwaysBalance ? 1 : 0} ` +
+        `realtimeMetrics=${realtimeMetrics ? 1 : 0} chatOn=${chatOn ? 1 : 0} ` +
+        `hardwareMerkabasBalanced=${hardwareMerkabasBalanced ? 1 : 0} ` +
+        `coldMs=${metrics.coldMs} warmMs=${metrics.warmMs} qpuRequired=0.`,
+      boundary:
+        'Always balance using realtime sealed metrics (mcp/metrics · formula/metrics · cold/warm) and chat ' +
+        '(mcp/chat soft-compose) at call time — not a wet dashboard. Compose dry/cool hardware merkabas · ' +
+        'gate/monitor · session/live · analytics/self · mcp/efficiency · moment/prove · hero clock. ' +
+        'Census 110 · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `balance-metrics · always=${alwaysBalance ? 1 : 0} · realtime=${realtimeMetrics ? 1 : 0} · ` +
+        `chat=${chatOn ? 1 : 0} · hwMerkaba=${hardwareMerkabasBalanced ? 1 : 0} · ` +
+        `coldMs=${metrics.coldMs} · warmMs=${metrics.warmMs} · census=${UNFOLDED_CENSUS}/${FOLDED_CENSUS} · ` +
+        `qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — balanceMetrics ≡ alwaysBalanceUsingRealtimeMetricsAndChat. */
+export const balanceMetrics = alwaysBalanceUsingRealtimeMetricsAndChat
+/** Alias — metricsChat ≡ alwaysBalanceUsingRealtimeMetricsAndChat. */
+export const metricsChat = alwaysBalanceUsingRealtimeMetricsAndChat
+/** Alias — chatBalance ≡ alwaysBalanceUsingRealtimeMetricsAndChat. */
+export const chatBalance = alwaysBalanceUsingRealtimeMetricsAndChat
+
+/** npm run quantum:balance-metrics (duals metrics-chat · chat-balance) */
+export function runAlwaysBalanceUsingRealtimeMetricsAndChatExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = alwaysBalanceUsingRealtimeMetricsAndChat()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} balance-metrics — alwaysBalance=${report.alwaysBalance} ` +
+      `realtimeMetrics=${report.realtimeMetrics} chatOn=${report.chatOn} ` +
+      `hardwareMerkabasBalanced=${report.hardwareMerkabasBalanced} ` +
+      `coldMs=${report.coldMs} warmMs=${report.warmMs} ` +
+      `census=${report.census.unfolded}/${report.census.folded} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.alwaysBalance &&
+    report.realtimeMetrics &&
+    report.chatOn &&
+    report.hardwareMerkabasBalanced &&
     report.qpuRequired === false
     ? 0
     : 1
