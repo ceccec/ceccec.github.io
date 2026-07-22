@@ -369,6 +369,8 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `math/mcp` — alias dual of `mcp/math` (`npm run quantum:math-mcp`)
   - `mcp/vortex` — `npm run quantum:mcp-vortex` (`mcpQuantumVortex()` — MCP face for vortex · VORTEX digit · merkaba · trading:vortex; facets vortexOn · digitSequence; compose digit/fold · vortex/merkaba · mountain/vortex · merkaba; dual `vortex/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-vortex`
   - `vortex/mcp` — alias dual of `mcp/vortex` (`npm run quantum:vortex-mcp`)
+  - `mcp/torus` — `npm run quantum:mcp-torus` (`mcpQuantumTorus()` — MCP face for double-torus / geo torus · `@ceccec/double-torus` · living torus · bothEarths; facets torusOn · doubleTorus; compose geo/torus · universe/align · doubleTorusIsCompletelyQuantum · geodesyDecodedIsDoubleTorusInverted; dual `torus/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-torus`
+  - `torus/mcp` — alias dual of `mcp/torus` (`npm run quantum:torus-mcp`)
   - `mcp/reverse` — `npm run quantum:mcp-reverse` (`mcpQuantumReverse()` — reverseOn · refuseBeyond · demoBoundaryHardware; dual `reverse/quantum`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-reverse`
   - `reverse/quantum` — alias dual of `mcp/reverse` (`npm run quantum:reverse-quantum`)
   - `mcp/sign` — `npm run quantum:mcp-sign` (`mcpQuantumSign()` — signatureOn · crossSig · tamperEvident · certified=false · NOT CA/PKI; dual `sign/quantum`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-sign`
