@@ -8,6 +8,8 @@ export {
   REPO_ROOT,
   BOOTSTRAP_REL,
   DOCS_BUILD_ALLOW_ENV,
+  MCP_CANONICAL_BUILD_GATE,
+  MCP_DOCS_BUILD_BOOTSTRAP,
   runBootstrapCli,
   runGate,
   runCheckTypes,

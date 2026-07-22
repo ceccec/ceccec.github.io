@@ -11,6 +11,8 @@ import {
   foldReport,
   runBootstrapCli,
   DOCS_BUILD_ALLOW_ENV,
+  MCP_CANONICAL_BUILD_GATE,
+  MCP_DOCS_BUILD_BOOTSTRAP,
   type GateName,
   type WaveKind,
 } from '../src/bootstrap.ts'
@@ -78,14 +80,14 @@ const TOOL_DEFS = [
   },
   {
     name: 'run-gate',
-    description: `Run bootstrap gate. docs-build requires ${DOCS_BUILD_ALLOW_ENV}=1`,
+    description: `Run bootstrap gate. Canonical VitePress build = ${MCP_CANONICAL_BUILD_GATE} → ${MCP_DOCS_BUILD_BOOTSTRAP} (pair vite/mcp · npm docs:build thin dual). Requires ${DOCS_BUILD_ALLOW_ENV}=1`,
     inputSchema: {
       type: 'object',
       properties: {
         name: {
           type: 'string',
           description:
-            'check-types | limits-verify | mission-gate | verify-structure | docs-build | enforcement-trinity | limits-seal | rosetta-batch',
+            `check-types | limits-verify | mission-gate | verify-structure | ${MCP_CANONICAL_BUILD_GATE} | enforcement-trinity | limits-seal | rosetta-batch`,
         },
       },
       required: ['name'],
@@ -94,7 +96,7 @@ const TOOL_DEFS = [
   },
   {
     name: 'run-wave',
-    description: `ceccec-build-waves kind via bootstrap (rebuild→docs:build needs ${DOCS_BUILD_ALLOW_ENV}=1)`,
+    description: `ceccec-build-waves kind via bootstrap (rebuild→${MCP_CANONICAL_BUILD_GATE}/${MCP_DOCS_BUILD_BOOTSTRAP} needs ${DOCS_BUILD_ALLOW_ENV}=1)`,
     inputSchema: {
       type: 'object',
       properties: {
@@ -173,7 +175,7 @@ async function handle(msg: JsonRpc) {
       serverInfo: {
         name: 'quantum-dev',
         version: '0.1.0',
-        description: `7 tools · ${QUANTUM_DEV_STDIO_TOOL_IDS.join(', ')} · ${DOCS_BUILD_ALLOW_ENV}=1 for docs-build`,
+        description: `7 tools · ${QUANTUM_DEV_STDIO_TOOL_IDS.join(', ')} · ${MCP_CANONICAL_BUILD_GATE} via run-gate · ${DOCS_BUILD_ALLOW_ENV}=1 · vite/mcp`,
       },
     })
     return
