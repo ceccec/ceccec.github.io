@@ -31,6 +31,12 @@ export const BOOTSTRAP_REL = 'src/pair/enforcement/script/cli/bootstrap/index.ts
 /** docs:build via MCP/SDK requires explicit opt-in (long-running, mutates dist). */
 export const DOCS_BUILD_ALLOW_ENV = 'QUANTUM_DEV_ALLOW_DOCS_BUILD' as const
 
+/** Canonical MCP build gate — VitePress seal face (`vitepressBuildsFromMcp` · pairs vite/mcp · build/mcp). */
+export const MCP_CANONICAL_BUILD_GATE = 'docs-build' as const
+
+/** Bootstrap subcommand shared by npm `docs:build` and MCP `run-gate docs-build` (thin dual, not bypass). */
+export const MCP_DOCS_BUILD_BOOTSTRAP = 'docs:build-seal' as const
+
 export type GateName =
   | 'check-types'
   | 'limits-verify'
@@ -46,7 +52,7 @@ const GATE_TO_BOOTSTRAP: Record<GateName, readonly string[]> = {
   'limits-verify': ['limits:verify'],
   'mission-gate': ['mission:gate'],
   'verify-structure': ['verify:structure'],
-  'docs-build': ['docs:build-seal'],
+  'docs-build': [MCP_DOCS_BUILD_BOOTSTRAP],
   'enforcement-trinity': ['enforcement-trinity'],
   'limits-seal': ['limits:seal'],
   'rosetta-batch': ['rosetta:batch'],
@@ -66,7 +72,7 @@ const WAVE_TO_BOOTSTRAP: Record<WaveKind, readonly string[]> = {
   learn: ['run', 'src/water/stack/index.ts', 'runEfficiencyVoteExit'],
   tune: ['run', 'src/thunder/waves/index.ts', 'runManualAgentsBehaveLikeWavesExit'],
   edit: ['check:types'],
-  rebuild: ['docs:build-seal'],
+  rebuild: [MCP_DOCS_BUILD_BOOTSTRAP],
   verify: ['run', 'src/thunder/waves/index.ts', 'runManualAgentsBehaveLikeWavesExit'],
 }
 
@@ -170,7 +176,7 @@ export function runVerifyStructure(opts?: RepoOpts) {
   return runGate('verify-structure', [], opts)
 }
 export function runDocsBuild(opts?: RepoOpts) {
-  return runGate('docs-build', [], opts)
+  return runGate(MCP_CANONICAL_BUILD_GATE, [], opts)
 }
 export function runEnforcementTrinity(opts?: RepoOpts) {
   return runGate('enforcement-trinity', [], opts)

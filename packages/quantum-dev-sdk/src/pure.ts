@@ -3,7 +3,7 @@
  * Live sealed recompute for to-uuid / rosetta-ray goes through bootstrap (compute-exit.ts).
  * Pair: sdk/wire
  */
-import { DOCS_BUILD_ALLOW_ENV } from './bootstrap.ts'
+import { DOCS_BUILD_ALLOW_ENV, MCP_CANONICAL_BUILD_GATE, MCP_DOCS_BUILD_BOOTSTRAP } from './bootstrap.ts'
 
 export const QUANTUM_DEV_STDIO_TOOL_IDS = [
   'list-capabilities',
@@ -52,7 +52,9 @@ export function listStdioCapabilities() {
       description:
         name === 'list-capabilities'
           ? 'Meta browserAchievable matrix (complements tools/list)'
-          : name,
+          : name === 'run-gate'
+            ? `Gates incl. canonical VitePress ${MCP_CANONICAL_BUILD_GATE} → ${MCP_DOCS_BUILD_BOOTSTRAP} (vite/mcp)`
+            : name,
       browserGap:
         name === 'run-gate' || name === 'run-wave' || name === 'run-export'
           ? 'Node bootstrap spawn — CI/local only'
@@ -61,6 +63,9 @@ export function listStdioCapabilities() {
     stdioCount: QUANTUM_DEV_STDIO_TOOL_IDS.length,
     designToolCount: QUANTUM_DEV_STDIO_TOOL_IDS.length,
     docsBuildFlag: `${DOCS_BUILD_ALLOW_ENV}=1`,
+    canonicalBuildGate: MCP_CANONICAL_BUILD_GATE,
+    docsBuildBootstrap: MCP_DOCS_BUILD_BOOTSTRAP,
+    vitepressBuildsFromMcp: 'vite/mcp · mcp/vite · build/mcp · mcp/build',
     automationPath: 'npm-script / bootstrap CLI — local stdio MCP is IDE-only (not Cursor Automations dashboard)',
     package: '@ceccec/quantum-dev-sdk',
     mcpMount: '.cursor/mcp.json',

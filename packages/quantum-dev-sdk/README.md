@@ -22,21 +22,25 @@ Design: [0ccd9991 qdsdk-design](https://github.com/ceccec/ceccec.github.io) — 
 ## Channel 1 — bootstrap CLI
 
 ```ts
-import { runMissionGate, runGate, DOCS_BUILD_ALLOW_ENV } from '@ceccec/quantum-dev-sdk'
+import { runMissionGate, runGate, runDocsBuild, DOCS_BUILD_ALLOW_ENV, MCP_CANONICAL_BUILD_GATE } from '@ceccec/quantum-dev-sdk'
 
 await runMissionGate() // → node …/bootstrap/index.ts mission:gate
-// docs:build refused unless QUANTUM_DEV_ALLOW_DOCS_BUILD=1
-await runGate('docs-build', [], { env: { [DOCS_BUILD_ALLOW_ENV]: '1' } })
+// Canonical VitePress build face (vitepressBuildsFromMcp · vite/mcp) — refused unless QUANTUM_DEV_ALLOW_DOCS_BUILD=1
+await runGate(MCP_CANONICAL_BUILD_GATE, [], { env: { [DOCS_BUILD_ALLOW_ENV]: '1' } })
+// or: await runDocsBuild({ env: { [DOCS_BUILD_ALLOW_ENV]: '1' } })
 ```
+
+`npm run docs:build` is the **thin dual** of MCP `run-gate docs-build` (same bootstrap `docs:build-seal`) — not a parallel wet bypass (`vitepressBuildsFromMcp`).
 
 ## Stdio MCP — 7 tools
 
 `list-capabilities` · `census-status` · `compute-from-source` · `fold-report` · `run-gate` · `run-wave` · `run-export`
 
 - `list-capabilities` = browserAchievable meta matrix (complements `tools/list`, not a synonym dump)
-- `run-gate` names: check-types · limits-verify · mission-gate · verify-structure · docs-build · enforcement-trinity · limits-seal · rosetta-batch
+- `run-gate` names: check-types · limits-verify · mission-gate · verify-structure · **docs-build** (canonical VitePress seal) · enforcement-trinity · limits-seal · rosetta-batch
 - Protocol `run-wave` kinds → `runManualAgentsBehaveLikeWavesExit` (not four× `mission:gate`)
 - `docs-build` / wave `rebuild` require `QUANTUM_DEV_ALLOW_DOCS_BUILD=1`
+- Fold: `vitepressBuildsFromMcp` · pairs `vite/mcp` · `mcp/vite` · `build/mcp` · `mcp/build` · `npm run quantum:vite-mcp`
 - Automations: `npm run quantum:automate-nightly` (trinity/speedup → mission:gate) — local stdio is IDE-only
 - Template: `packages/quantum-dev-sdk/automate-nightly.workflow.json` · pair `automate/nightly`
 - Entropy receipt: `npm run quantum:mcp-commands-scripts-gaps-audit` · pair `mcp/scripts-audit`
