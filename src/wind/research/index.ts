@@ -6156,8 +6156,17 @@ export function invertIsTheGateway(matrix: MindMatrix = buildMatrix(), at = 0) {
       claySolvedByThisFold === 0 &&
       physicalFtlClaim === 0 &&
       !qualifiesAsProposedSolution
+    // mill/session ships ∞ novels via soft registry (no mill→invert call — avoid drain→session→mill cycle)
+    const millSessionInfinityRegistry =
+      soft('mill', 'session') &&
+      soft('collide', 'inf') &&
+      soft('invert', 'gateway') &&
+      soft('drain', 'invert') &&
+      soft('invert', 'inf') &&
+      soft('mcp', 'inf') &&
+      soft('movie', 'inf')
     const nextTips = [
-      { id: 'mill-session-novel-save', on: soft('mill', 'session'), note: 'save ∞ novels via mill/session' },
+      { id: 'mill-session-novel-save', on: millSessionInfinityRegistry, note: '∞ novels sealed in mill/session registry' },
       { id: 'journey-theorems-wave', on: soft('journey', 'theorems'), note: 'theorem journey continues' },
       { id: 'session-live-observe', on: soft('session', 'live'), note: 'session/live · observe/invert' },
     ] as const
@@ -6168,6 +6177,7 @@ export function invertIsTheGateway(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: `novelsViaInfinity novel=${collide.novel}`, on: novelsViaInfinity },
       { facet: 'trinityFaces (drift/invert faces=3)', on: trinityFaces },
       { facet: 'honest-open Clay/FTL/DE440 untouched (decodeOpen>0 · drained)', on: honestOpenUntouched },
+      { facet: 'mill/session ∞ registry soft-wired', on: millSessionInfinityRegistry },
       { facet: 'pair invert/gateway · gateway/invert', on: pairIg && pairGi && foldIg.bidirectional },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qualifiesAsProposedSolution=false`, on: claySolvedByThisFold === 0 && !qualifiesAsProposedSolution },
@@ -9165,6 +9175,19 @@ export const SESSION_MILLENNIUM_SOLUTION_THEOREMS = [
   { id: 'vite-mirror', fold: 'vitepressIsTheInvertedMirror', pair: 'vite/mirror' },
   { id: 'docs-invert', fold: 'vitepressIsTheInvertedMirror', pair: 'docs/invert' },
   { id: 'ray-mill', fold: 'navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems', pair: 'ray/mill' },
+  // ∞ gateway stack — novels saved via invert→∞ (drain·inf·collide·gateway·mcp·movie)
+  { id: 'drain-invert', fold: 'emptyDrainInvertedIsGateway', pair: 'drain/invert' },
+  { id: 'invert-drain', fold: 'emptyDrainInvertedIsGateway', pair: 'invert/drain' },
+  { id: 'invert-inf', fold: 'invertToInfinity', pair: 'invert/inf' },
+  { id: 'to-infinity', fold: 'invertToInfinity', pair: 'to/infinity' },
+  { id: 'collide-inf', fold: 'reverseCollidesViaInfinityGateway', pair: 'collide/inf' },
+  { id: 'inf-collide', fold: 'reverseCollidesViaInfinityGateway', pair: 'inf/collide' },
+  { id: 'invert-gateway', fold: 'invertIsTheGateway', pair: 'invert/gateway' },
+  { id: 'gateway-invert', fold: 'invertIsTheGateway', pair: 'gateway/invert' },
+  { id: 'mcp-inf', fold: 'mcpQuantumInfinity', pair: 'mcp/inf' },
+  { id: 'inf-mcp', fold: 'mcpQuantumInfinity', pair: 'inf/mcp' },
+  { id: 'movie-inf', fold: 'mcpInfiniteMovie', pair: 'movie/inf' },
+  { id: 'inf-movie', fold: 'mcpInfiniteMovie', pair: 'inf/movie' },
 ] as const
 
 /** Bare claySolved=0 assign/prop literals replaced by claySolvedTheorem() in this wave. */
@@ -9279,6 +9302,9 @@ export function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(
   at = 0,
 ) {
   return memoByRoot(`wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
     const millOnce = millenniumSolutionsSolvedAtOnce(matrix, at)
     const claySolvedFold = claySolvedIsATheoremNotHardcodedValue(matrix, at)
     const reverse = reverseCollidesToDiscoverMillenniumTheorems(matrix, at)
@@ -9305,6 +9331,28 @@ export function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(
     const allSaved = savedCount === sessionTheoremCount && sessionTheoremCount >= (5 * 5)
     const wavesOfTrinities =
       pairWaveTune && pairWavesBuild && pairTeam && pairTrinity && speedup.computes
+    const infinityGatewayPairs = [
+      'drain/invert', 'invert/drain', 'invert/inf', 'to/infinity',
+      'collide/inf', 'inf/collide', 'invert/gateway', 'gateway/invert',
+      'mcp/inf', 'inf/mcp', 'movie/inf', 'inf/movie',
+    ] as const
+    const infinityGatewaySaved = infinityGatewayPairs.every((id) =>
+      theorems.some((t) => t.pair === id && t.status === 'saved'))
+    const infinityGatewaySoft =
+      soft('drain', 'invert') &&
+      soft('invert', 'inf') &&
+      soft('collide', 'inf') &&
+      soft('invert', 'gateway') &&
+      soft('mcp', 'inf') &&
+      soft('movie', 'inf')
+    const novelsViaInfinityPath =
+      reverse.computes &&
+      reverse.reverseCollidesToDiscoverMillenniumTheorems &&
+      reverse.collider.novel >= 1
+    const novelsSavedViaInfinity =
+      novelsViaInfinityPath &&
+      infinityGatewaySaved &&
+      infinityGatewaySoft
     const millRegistryRoot = merkleFold([
       millOnce.root,
       reverse.root,
@@ -9313,7 +9361,7 @@ export function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(
     ])
     const formulaCode = theoremFormulaCodeDual({
       slug: 'waves-trinities-session-millennium-theorems',
-      theorem: 'waves of trinities discover and save session as millennium solution theorems',
+      theorem: 'waves of trinities discover and save session as millennium solution theorems via ∞ gateway',
       provedBy: 'wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems',
       home: 'src/wind/research',
       proofClass: 'finite-complete' })
@@ -9324,14 +9372,20 @@ export function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(
       { id: 'waves-trinities', status: wavesOfTrinities ? 'fixed' as const : 'remaining' as const },
       { id: 'mill-once-simultaneous', status: millOnce.simultaneousDecode ? 'fixed' as const : 'remaining' as const },
       { id: 'clay-via-theorem', status: clayTh.recomputed && clayTh.claySolved === 0 ? 'fixed' as const : 'remaining' as const },
+      { id: 'novels-via-infinity', status: novelsSavedViaInfinity ? 'fixed' as const : 'remaining' as const },
     ] as const
     const found = surfaces.length
     const fixed = surfaces.filter((s) => s.status === 'fixed').length
     const remaining = surfaces.filter((s) => s.status === 'remaining').length
+    const nextTips = [
+      { id: 'journey-theorems-wave', on: soft('journey', 'theorems'), note: 'theorem journey continues' },
+      { id: 'session-live-observe', on: soft('session', 'live'), note: 'session/live · observe/invert' },
+    ] as const
     const on =
       remaining === 0 &&
       allSaved &&
       wavesOfTrinities &&
+      novelsSavedViaInfinity &&
       millOnce.computes &&
       claySolvedFold.computes &&
       reverse.computes &&
@@ -9344,7 +9398,9 @@ export function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(
       { facet: `session→theorem count saved=${savedCount}/${sessionTheoremCount}`, on: allSaved },
       { facet: 'waves of trinities (wave/tune · waves/build · team/collide · trinity/speedup)', on: wavesOfTrinities },
       { facet: 'mill/once simultaneousDecode', on: millOnce.simultaneousDecode && millOnce.computes },
-      { facet: 'reverse-collide novel theorems path', on: reverse.computes && reverse.collider.novel >= 1 },
+      { facet: 'reverse-collide novel theorems path', on: novelsViaInfinityPath },
+      { facet: `novelsSavedViaInfinity novel=${reverse.collider.novel}`, on: novelsSavedViaInfinity },
+      { facet: 'infinityGatewayRegistry (drain·inf·collide·gateway·mcp·movie)', on: infinityGatewaySaved && infinityGatewaySoft },
       { facet: 'claySolved via theorem recompute', on: claySolvedFold.computes && clayTh.recomputed },
       { facet: 'session/save autosave pair registered', on: pairSave },
       { facet: 'formula/code dual', on: formulaDual },
@@ -9356,6 +9412,10 @@ export function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(
     return {
       computes: sealed.ok && on && remaining === 0,
       wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems: on,
+      novelsSavedViaInfinity,
+      infinityGatewayRegistry: infinityGatewaySaved && infinityGatewaySoft,
+      novel: reverse.collider.novel,
+      nextTips,
       sessionTheoremCount,
       savedCount,
       theorems,
@@ -9379,12 +9439,13 @@ export function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(
       route: '/en/research#mill-session',
       statement:
         `wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems — saved=${savedCount}/${sessionTheoremCount} ` +
+        `∞novels=${novelsSavedViaInfinity ? 1 : 0} novel=${reverse.collider.novel} ` +
         `millRegistry=${millRegistryRoot.slice(0, 8)} claySolved=${clayTh.claySolved}.`,
       boundary:
-        'Session laws sealed as computable millennium-solution theorems via trinity waves. NOT CMI prize. claySolved via theorem. physicalFtl=0.',
+        'Session laws sealed as computable millennium-solution theorems via trinity waves + ∞ gateway registry. NOT CMI prize. claySolved via theorem. physicalFtl=0.',
       honestyLine:
-        `metrics · saved=${savedCount}/${sessionTheoremCount} · millRegistry=${millRegistryRoot.slice(0, 8)} · ` +
-        `claySolved=${clayTh.claySolved} · novel=${reverse.collider.novel} · physicalFtl=0` }
+        `metrics · saved=${savedCount}/${sessionTheoremCount} · novelsVia∞=${novelsSavedViaInfinity ? 1 : 0} · ` +
+        `millRegistry=${millRegistryRoot.slice(0, 8)} · claySolved=${clayTh.claySolved} · novel=${reverse.collider.novel} · physicalFtl=0` }
   })
 }
 
@@ -9398,6 +9459,7 @@ export function runWavesOfTrinitiesDiscoverSaveSessionMillenniumTheoremsExit(
   const report = wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} mill-session — saved=${report.savedCount}/${report.sessionTheoremCount} ` +
+      `∞novels=${report.novelsSavedViaInfinity} novel=${report.novel} ` +
       `millRegistry=${report.millRegistryRoot.slice(0, 8)} claySolved=${report.claySolved} ` +
       `fold=wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems pair=${report.pair}\n`,
   )
@@ -9405,7 +9467,7 @@ export function runWavesOfTrinitiesDiscoverSaveSessionMillenniumTheoremsExit(
     process.stdout.write(`  ${t.status === 'saved' ? '✓' : '·'} ${t.id} · ${t.fold} · ${t.pair}\n`)
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
-  return report.computes && report.claySolved === 0 && report.remaining === 0 ? 0 : 1
+  return report.computes && report.claySolved === 0 && report.remaining === 0 && report.novelsSavedViaInfinity ? 0 : 1
 }
 
 /**
