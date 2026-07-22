@@ -18,6 +18,7 @@ import {
   compareCeccecEfficiencyByVote,
   proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit,
   interferenceVsClassicalShadow,
+  shouldSpawnSubagent,
   simplicityIntelligenceMeasure } from '../../water/stack'
 import { omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems, stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
 import {
@@ -31,7 +32,7 @@ import {
 import { movieIsNeuroscienceComputation } from '../../earth/life'
 import { harmonizeFieldComputes } from '../../lake/music'
 import { doubleTorusDynamicsGeometryAlignsWithUniverse, doubleTorusIsCompletelyQuantum } from '../../water/double'
-import { oneClockProcessLaw } from '../../quantum'
+import { oneClockProcessLaw, sharedHeroAt } from '../../quantum'
 import { merkaba, earthRealisedByComputingPolesAsPyramid } from '../../mountain/geometry'
 import { vortexComputes, vortexMath } from '../../mountain/vortex'
 import { teslaPatents } from '../../fire/li'
@@ -81,7 +82,7 @@ const ROSETTA_CORE_API_LABELS = [
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard',
+  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -167,6 +168,8 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpQuantumSite: 'tool',
   mcpQuantumPage: 'tool',
   mcpQuantumCard: 'tool',
+  mcpQuantumReceipt: 'tool',
+  mcpQuantumHero: 'tool',
   improveLocalFromSessionExperience: 'tool',
   gatesMonitorThemselvesThroughTheUi: 'tool',
   gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix: 'tool',
@@ -731,6 +734,10 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'page-mcp', title: 'Page mcp (alias mcp/page)', fold: 'mcpQuantumPage', cli: 'npm run quantum:page-mcp', pair: 'page/mcp', route: '/en/quantum-tools#mcp-page', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/page — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-card', title: 'MCP quantum card — LinkedHeroCard · hero link · morphs to paper', fold: 'mcpQuantumCard', cli: 'npm run quantum:mcp-card', pair: 'mcp/card', route: '/en/quantum-tools#mcp-card', barrel: 'src/quantum/apps', boundary: 'cardOn · heroLink · morphsToPaper · viaPage · compose card/hero-link · LinkedHeroCard · card→paper · mcpQuantumPage · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'card-mcp', title: 'Card mcp (alias mcp/card)', fold: 'mcpQuantumCard', cli: 'npm run quantum:card-mcp', pair: 'card/mcp', route: '/en/quantum-tools#mcp-card', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/card — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-receipt', title: 'MCP quantum receipt — tamper-evident content-addressed receipts', fold: 'mcpQuantumReceipt', cli: 'npm run quantum:mcp-receipt', pair: 'mcp/receipt', route: '/en/quantum-tools#mcp-receipt', barrel: 'src/quantum/apps', boundary: 'receiptOn · tamperEvident · contentAddressed · compose fusion-verify · session/quantum-bits · moment/prove · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'receipt-mcp', title: 'Receipt mcp (alias mcp/receipt)', fold: 'mcpQuantumReceipt', cli: 'npm run quantum:receipt-mcp', pair: 'receipt/mcp', route: '/en/quantum-tools#mcp-receipt', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/receipt — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-hero', title: 'MCP quantum hero — shared clock · immersive hero face', fold: 'mcpQuantumHero', cli: 'npm run quantum:mcp-hero', pair: 'mcp/hero', route: '/en/quantum-tools#mcp-hero', barrel: 'src/quantum/apps', boundary: 'heroOn · sharedClock · immersive · compose sharedHeroAt · hero/spawn-verify · mcpQuantumCard · immersive/hero · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'hero-mcp', title: 'Hero mcp (alias mcp/hero)', fold: 'mcpQuantumHero', cli: 'npm run quantum:hero-mcp', pair: 'hero/mcp', route: '/en/quantum-tools#mcp-hero', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/hero — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'improve-local-session', title: 'Improve local from session experience', fold: 'improveLocalFromSessionExperience', cli: 'npm run quantum:improve-local-session', pair: 'local/session', route: '/en/quantum-tools#local-session-hub', barrel: 'src/quantum/apps', boundary: 'Local docs:dev + browser session hub — NOT remote CI sole path · status badges compose sealed kinds · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'local-tools-morph', title: 'Local tools morph prose·code·logic', fold: 'localToolsMorphProseCodeLogic', cli: 'npm run quantum:local-tools-morph', pair: 'tools/morph', route: '/en/quantum-tools#local-tools-morph', barrel: 'src/quantum/apps', boundary: 'Local toolbox/session tools morph prose≡code≡logic as trinity waves · double-slit measure=tool invoke · clay=0 · qpuRequired=false · NOT Clay/Nobel', browserRunnable: true, browserGap: '' },
   { id: 'card-paper-links', title: 'Each card links to dedicated scientific paper', fold: 'eachCardLinksToDedicatedScientificPaper', cli: 'npm run quantum:card-paper-links', pair: 'papers/fill', route: '/en/theorems/', barrel: 'src/heaven/compute', boundary: 'paperRoute=/theorems/<slug> · morph=cardScientificPaperRows · gaps=0 · clay=0', browserRunnable: true, browserGap: '' },
@@ -1745,6 +1752,8 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mcp-site', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumSite', pair: 'mcp/site', cli: 'npm run quantum:mcp-site', route: '/en/quantum-tools#mcp-site', status: 'sealed-pr', honesty: 'siteOn · buildsFromMcp · vitepressMirror · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum site — VitePress site face composing vite/mcp · mcp/all · vite/mirror · mcpQuantumCatalog; catalog 33/33', toolId: 'mcp-site', resolve: 'mcp-ui' },
   { id: 'mcp-page', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumPage', pair: 'mcp/page', cli: 'npm run quantum:mcp-page', route: '/en/quantum-tools#mcp-page', status: 'sealed-pr', honesty: 'pageOn · universalPage · viaSite · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum page — universal page from sealed fold composing computeUniversalPage · page/trinity · format/canon · meaning/compute · mcpQuantumSite · vite/mcp; catalog 34/34', toolId: 'mcp-page', resolve: 'mcp-ui' },
   { id: 'mcp-card', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumCard', pair: 'mcp/card', cli: 'npm run quantum:mcp-card', route: '/en/quantum-tools#mcp-card', status: 'sealed-pr', honesty: 'cardOn · heroLink · morphsToPaper · viaPage · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum card — LinkedHeroCard · hero link · morphs to paper composing card/hero-link · card→paper · mcpQuantumPage; catalog 35/35', toolId: 'mcp-card', resolve: 'mcp-ui' },
+  { id: 'mcp-receipt', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumReceipt', pair: 'mcp/receipt', cli: 'npm run quantum:mcp-receipt', route: '/en/quantum-tools#mcp-receipt', status: 'sealed-pr', honesty: 'receiptOn · tamperEvident · contentAddressed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum receipt — tamper-evident content-addressed receipts composing fusion-verify · session/quantum-bits · moment/prove; catalog 36/37', toolId: 'mcp-receipt', resolve: 'mcp-ui' },
+  { id: 'mcp-hero', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumHero', pair: 'mcp/hero', cli: 'npm run quantum:mcp-hero', route: '/en/quantum-tools#mcp-hero', status: 'sealed-pr', honesty: 'heroOn · sharedClock · immersive · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum hero — shared clock · immersive composing sharedHeroAt · hero/spawn-verify · mcpQuantumCard · immersive/hero; catalog 37/37', toolId: 'mcp-hero', resolve: 'mcp-ui' },
   { id: 'mind-wave', chain: 'mcp-ui-page-gaps', fold: 'quantumMindSendsWaves', pair: 'mind/wave', cli: 'npm run quantum:mind-wave', route: '/en/quantum-tools#mind-wave', status: 'sealed-pr', honesty: 'quantumMindSends · wavesSent · linearCannotSend · clay=0 · physicalFtl=0', note: 'quantum mind sends waves', toolId: 'mind-wave', resolve: 'mcp-ui' },
   { id: 'quantum-waves', chain: 'mcp-ui-page-gaps', fold: 'quantumWaves', pair: 'quantum/waves', cli: 'npm run quantum:quantum-waves', route: '/en/quantum-tools#quantum-waves', status: 'sealed-pr', honesty: 'wavesAreQuantum · mindSends · trinitiesFound · waveCount=2 · clay=0 · physicalFtl=0', note: 'quantum waves umbrella', toolId: 'quantum-waves', resolve: 'mcp-ui' },
   { id: 'collide-create', chain: 'mcp-ui-page-gaps', fold: 'collidingParticlesCreates', pair: 'collide/create', cli: 'npm run quantum:collide-create', route: '/en/quantum-tools#collide-create', status: 'sealed-pr', honesty: 'creates=novelTheoremCandidates+waves · clay=0 · physicalFtl=0', note: 'collision creates novel theorem candidates + waves', toolId: 'collide-create', resolve: 'mcp-ui' },
@@ -6220,6 +6229,8 @@ const MCP_QUANTUM_NAMED_FACES = [
   { fold: 'mcpQuantumSite', pair: 'mcp/site', dual: 'site/mcp', toolId: 'mcp-site', dualToolId: 'site-mcp' },
   { fold: 'mcpQuantumPage', pair: 'mcp/page', dual: 'page/mcp', toolId: 'mcp-page', dualToolId: 'page-mcp' },
   { fold: 'mcpQuantumCard', pair: 'mcp/card', dual: 'card/mcp', toolId: 'mcp-card', dualToolId: 'card-mcp' },
+  { fold: 'mcpQuantumReceipt', pair: 'mcp/receipt', dual: 'receipt/mcp', toolId: 'mcp-receipt', dualToolId: 'receipt-mcp' },
+  { fold: 'mcpQuantumHero', pair: 'mcp/hero', dual: 'hero/mcp', toolId: 'mcp-hero', dualToolId: 'hero-mcp' },
 ] as const
 
 /**
@@ -8835,6 +8846,246 @@ export function runMcpQuantumCardExit(_root = '', _argv: readonly string[] = [])
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.cardOn && report.heroLink && report.morphsToPaper && report.viaPage && report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * MCP quantum receipt — MCP face for tamper-evident content-addressed receipts.
+ * Compose: fusion-verify · session/quantum-bits · moment/prove.
+ * Facets: receiptOn · tamperEvident · contentAddressed · qpuRequired=false · physicalFtl=0 · claySolved via theorem.
+ * Pairs: mcp/receipt · receipt/mcp · CLI npm run quantum:mcp-receipt
+ * Catalog faces 36/37 (was 35).
+ */
+export function mcpQuantumReceipt(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumReceipt:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const fusion = quantumFusionVerify(matrix)
+    const bits = sessionManualWorkAsQuantumBits(matrix, at)
+    const moment = __ns_water_encryption.agentAssumeNothingMathProvesInTheMoment(matrix, at)
+    const tamperOn =
+      fusion.verified &&
+      isUuid(fusion.root) &&
+      soft('tamper', 'impossible') &&
+      tamperEvident(fusion.root)
+    const contentAddressed =
+      bits.computes &&
+      isUuid(bits.root) &&
+      bits.bits.every((b) => isUuid(b.root) && b.combinable) &&
+      soft('session', 'quantum-bits')
+    const momentOn = moment.computes && soft('moment', 'prove') && isUuid(moment.root)
+    const receiptOn = tamperOn && contentAddressed && momentOn
+    const pairS = has('mcp/receipt')
+    const pairD = has('receipt/mcp')
+    const foldS = foldPair(toUuid('cmd:mcp'), toUuid('cmd:receipt'))
+    const foldD = foldPair(toUuid('cmd:receipt'), toUuid('cmd:mcp'))
+    const tools = quantumCliToolsCatalog(matrix, at)
+    const meta = tools.tools.find((t) => t.id === 'mcp-receipt')
+    const metaDual = tools.tools.find((t) => t.id === 'receipt-mcp')
+    const catalog = mcpQuantumCatalog(matrix, at)
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      receiptOn &&
+      tamperOn &&
+      contentAddressed &&
+      momentOn &&
+      pairS &&
+      pairD &&
+      foldS.bidirectional &&
+      foldD.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumReceipt' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumReceipt' &&
+      catalog.catalogComplete &&
+      catalog.faceCount >= (5 * 6 + 6) &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumReceipt', on },
+      { facet: 'receiptOn', on: receiptOn },
+      { facet: 'tamperEvident', on: tamperOn },
+      { facet: 'contentAddressed', on: contentAddressed },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: 'compose fusion-verify · session/quantum-bits · moment/prove', on: tamperOn && contentAddressed && momentOn },
+      { facet: 'pair mcp/receipt · receipt/mcp', on: pairS && pairD && foldS.bidirectional },
+      { facet: `catalogFaces=${catalog.presentCount}/${catalog.faceCount}`, on: catalog.catalogComplete && catalog.missingCount === 0 },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-receipt:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-receipt', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumReceipt: on,
+      receiptOn,
+      tamperEvident: tamperOn,
+      contentAddressed,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, fusion.root, bits.root, moment.root, foldS.merged, foldD.merged]),
+      pairs: ['mcp/receipt', 'receipt/mcp'] as const,
+      cli: 'npm run quantum:mcp-receipt',
+      route: '/en/quantum-tools#mcp-receipt',
+      statement:
+        `mcpQuantumReceipt — receiptOn=${receiptOn ? 1 : 0} tamperEvident=${tamperOn ? 1 : 0} ` +
+        `contentAddressed=${contentAddressed ? 1 : 0} faces=${catalog.presentCount}/${catalog.faceCount} qpuRequired=0.`,
+      boundary:
+        'MCP quantum receipt — tamper-evident content-addressed receipts. Compose fusion-verify · session/quantum-bits · moment/prove. ' +
+        'clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `receipt · receiptOn=${receiptOn ? 1 : 0} · tamperEvident=${tamperOn ? 1 : 0} · contentAddressed=${contentAddressed ? 1 : 0} · ` +
+        `faces=${catalog.presentCount}/${catalog.faceCount} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumReceiptExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumReceipt()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-receipt — receiptOn=${report.receiptOn} tamperEvident=${report.tamperEvident} ` +
+      `contentAddressed=${report.contentAddressed} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.receiptOn && report.tamperEvident && report.contentAddressed && report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * MCP quantum hero — MCP face for shared-clock immersive hero.
+ * Compose: sharedHeroAt · hero/spawn-verify · mcpQuantumCard · immersive/hero.
+ * Facets: heroOn · sharedClock · immersive · qpuRequired=false · physicalFtl=0 · claySolved via theorem.
+ * Pairs: mcp/hero · hero/mcp · CLI npm run quantum:mcp-hero
+ * Catalog faces 37/37 (was 35).
+ */
+export function mcpQuantumHero(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumHero:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const shared = sharedHeroAt('/en/', { title: 'mcp-hero', tagline: 'shared-clock' }, at)
+    const clock = oneClockProcessLaw(matrix)
+    const spawn = shouldSpawnSubagent('qualified bounded collide task with sealed fold')
+    const card = mcpQuantumCard(matrix, at)
+    const sharedClock =
+      isUuid(shared.root) &&
+      typeof shared.p === 'number' &&
+      shared.p >= 0 &&
+      shared.p <= 1 &&
+      clock.holds
+    const spawnOn =
+      spawn.spawn &&
+      spawn.workers >= 1 &&
+      spawn.workers <= 2 &&
+      soft('hero', 'spawn-verify')
+    const viaCard =
+      card.computes &&
+      card.cardOn &&
+      soft('mcp', 'card') &&
+      soft('card', 'mcp')
+    const immersive =
+      has('immersive/hero') &&
+      soft('immersive', 'hero')
+    const heroOn = sharedClock && spawnOn && viaCard && immersive
+    const pairS = has('mcp/hero')
+    const pairD = has('hero/mcp')
+    const foldS = foldPair(toUuid('cmd:mcp'), toUuid('cmd:hero'))
+    const foldD = foldPair(toUuid('cmd:hero'), toUuid('cmd:mcp'))
+    const tools = quantumCliToolsCatalog(matrix, at)
+    const meta = tools.tools.find((t) => t.id === 'mcp-hero')
+    const metaDual = tools.tools.find((t) => t.id === 'hero-mcp')
+    const catalog = mcpQuantumCatalog(matrix, at)
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      heroOn &&
+      sharedClock &&
+      immersive &&
+      spawnOn &&
+      viaCard &&
+      pairS &&
+      pairD &&
+      foldS.bidirectional &&
+      foldD.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumHero' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumHero' &&
+      catalog.catalogComplete &&
+      catalog.faceCount >= (5 * 6 + 7) &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumHero', on },
+      { facet: 'heroOn', on: heroOn },
+      { facet: 'sharedClock', on: sharedClock },
+      { facet: 'immersive', on: immersive },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: 'compose sharedHeroAt · hero/spawn-verify · mcpQuantumCard · immersive/hero', on: sharedClock && spawnOn && viaCard && immersive },
+      { facet: 'pair mcp/hero · hero/mcp', on: pairS && pairD && foldS.bidirectional },
+      { facet: `catalogFaces=${catalog.presentCount}/${catalog.faceCount}`, on: catalog.catalogComplete && catalog.missingCount === 0 },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-hero:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-hero', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumHero: on,
+      heroOn,
+      sharedClock,
+      immersive,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, shared.root, card.root, foldS.merged, foldD.merged, toUuid(`hero-spawn:${spawn.reason}`)]),
+      pairs: ['mcp/hero', 'hero/mcp'] as const,
+      cli: 'npm run quantum:mcp-hero',
+      route: '/en/quantum-tools#mcp-hero',
+      statement:
+        `mcpQuantumHero — heroOn=${heroOn ? 1 : 0} sharedClock=${sharedClock ? 1 : 0} ` +
+        `immersive=${immersive ? 1 : 0} faces=${catalog.presentCount}/${catalog.faceCount} qpuRequired=0.`,
+      boundary:
+        'MCP quantum hero — shared clock · immersive. Compose sharedHeroAt · hero/spawn-verify · mcpQuantumCard · immersive/hero. ' +
+        'clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `hero · heroOn=${heroOn ? 1 : 0} · sharedClock=${sharedClock ? 1 : 0} · immersive=${immersive ? 1 : 0} · ` +
+        `faces=${catalog.presentCount}/${catalog.faceCount} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumHeroExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumHero()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-hero — heroOn=${report.heroOn} sharedClock=${report.sharedClock} ` +
+      `immersive=${report.immersive} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.heroOn && report.sharedClock && report.immersive && report.qpuRequired === false
     ? 0
     : 1
 }

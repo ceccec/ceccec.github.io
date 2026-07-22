@@ -347,6 +347,10 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `page/mcp` — alias dual of `mcp/page` (`npm run quantum:page-mcp`)
   - `mcp/card` — `npm run quantum:mcp-card` (`mcpQuantumCard()` — MCP face for quantum card; facets cardOn · heroLink · morphsToPaper · viaPage; compose card/hero-link · LinkedHeroCard · card→paper · mcpQuantumPage; dual `card/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-card`
   - `card/mcp` — alias dual of `mcp/card` (`npm run quantum:card-mcp`)
+  - `mcp/receipt` — `npm run quantum:mcp-receipt` (`mcpQuantumReceipt()` — MCP face for quantum receipt; facets receiptOn · tamperEvident · contentAddressed; compose fusion-verify · session/quantum-bits · moment/prove; dual `receipt/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-receipt`
+  - `receipt/mcp` — alias dual of `mcp/receipt` (`npm run quantum:receipt-mcp`)
+  - `mcp/hero` — `npm run quantum:mcp-hero` (`mcpQuantumHero()` — MCP face for quantum hero; facets heroOn · sharedClock · immersive; compose sharedHeroAt · hero/spawn-verify · mcpQuantumCard · immersive/hero; dual `hero/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-hero`
+  - `hero/mcp` — alias dual of `mcp/hero` (`npm run quantum:hero-mcp`)
   - `mcp/sign` — `npm run quantum:mcp-sign` (`mcpQuantumSign()` — signatureOn · crossSig · tamperEvident · certified=false; dual `sign/quantum`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-sign`
   - `comp/seal` — alias dual of `vite/one` (`npm run quantum:comp-seal`)
   - `paste/local` — `npm run quantum:paste-local` (`pastedLinksStayOnlyIfComputedLocally()` — pasted URLs stay only if computed locally; facets ephemeralBootstrap · stayOnlyIfComputedLocally · foreignFetchBlockedNoStore · wireClassMayExist; dual `link/local`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#paste-local`
