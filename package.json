@@ -346,6 +346,8 @@
     "quantum:particle-collide": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runCollidingParticlesCreatesExit",
     "quantum:mcp-metrics": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumMetricsExit",
     "quantum:metrics-mcp": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumMetricsExit",
+    "quantum:mcp-analysis": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumAnalysisExit",
+    "quantum:analysis-mcp": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumAnalysisExit",
     "quantum:mcp-reverse": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumReverseExit",
     "quantum:mcp-sign": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumSignExit",
     "quantum:sign-quantum": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumSignExit",
