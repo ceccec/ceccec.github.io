@@ -83,7 +83,7 @@ const ROSETTA_CORE_API_LABELS = [
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
+  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReview', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -175,6 +175,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpQuantumDeploy: 'tool',
   mcpQuantumBindings: 'tool',
   mcpQuantumCloudflareBindings: 'tool',
+  mcpQuantumReview: 'tool',
   mcpQuantumReactor: 'tool',
   mcpQuantumReaction: 'tool',
   mcpQuantumFusion: 'tool',
@@ -831,6 +832,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'cloudflare-mcp', title: 'Cloudflare mcp (alias mcp/cloudflare)', fold: 'mcpQuantumCloudflareBindings', cli: 'npm run quantum:cloudflare-mcp', pair: 'cloudflare/mcp', route: '/en/quantum-tools#mcp-cloudflare', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/cloudflare — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cf-bindings', title: 'CF bindings (alias mcp/cloudflare)', fold: 'mcpQuantumCloudflareBindings', cli: 'npm run quantum:cf-bindings', pair: 'cf/bindings', route: '/en/quantum-tools#mcp-cloudflare', barrel: 'src/quantum/apps', boundary: 'Semantic dual cf/bindings — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'bindings-cf', title: 'Bindings cf (alias mcp/cloudflare)', fold: 'mcpQuantumCloudflareBindings', cli: 'npm run quantum:bindings-cf', pair: 'bindings/cf', route: '/en/quantum-tools#mcp-cloudflare', barrel: 'src/quantum/apps', boundary: 'Dual of cf/bindings — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-review', title: 'MCP quantum review — analysts · anim/audit · gate/monitor · moment/prove · wave/token', fold: 'mcpQuantumReview', cli: 'npm run quantum:mcp-review', pair: 'mcp/review', route: '/en/quantum-tools#mcp-review', barrel: 'src/quantum/apps', boundary: 'reviewOn · analystsInTrinities · auditCompose · compose mcp/analysis · anim/audit · gate/monitor · moment/prove · wave/token · sealed review face not wet · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'review-mcp', title: 'Review mcp (alias mcp/review)', fold: 'mcpQuantumReview', cli: 'npm run quantum:review-mcp', pair: 'review/mcp', route: '/en/quantum-tools#mcp-review', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/review — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'improve-local-session', title: 'Improve local from session experience', fold: 'improveLocalFromSessionExperience', cli: 'npm run quantum:improve-local-session', pair: 'local/session', route: '/en/quantum-tools#local-session-hub', barrel: 'src/quantum/apps', boundary: 'Local docs:dev + browser session hub — NOT remote CI sole path · status badges compose sealed kinds · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'local-tools-morph', title: 'Local tools morph prose·code·logic', fold: 'localToolsMorphProseCodeLogic', cli: 'npm run quantum:local-tools-morph', pair: 'tools/morph', route: '/en/quantum-tools#local-tools-morph', barrel: 'src/quantum/apps', boundary: 'Local toolbox/session tools morph prose≡code≡logic as trinity waves · double-slit measure=tool invoke · clay=0 · qpuRequired=false · NOT Clay/Nobel', browserRunnable: true, browserGap: '' },
   { id: 'card-paper-links', title: 'Each card links to dedicated scientific paper', fold: 'eachCardLinksToDedicatedScientificPaper', cli: 'npm run quantum:card-paper-links', pair: 'papers/fill', route: '/en/theorems/', barrel: 'src/heaven/compute', boundary: 'paperRoute=/theorems/<slug> · morph=cardScientificPaperRows · gaps=0 · clay=0', browserRunnable: true, browserGap: '' },
@@ -1873,6 +1876,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mcp-deploy', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumDeploy', pair: 'mcp/deploy', cli: 'npm run quantum:mcp-deploy', route: '/en/quantum-tools#mcp-deploy', status: 'sealed-pr', honesty: 'deployOn · buildsFromMcp · pagesSeal · this-repo Pages seal only · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum deploy — Pages seal via vite/mcp · mcp/site · waves/push · build/seal; catalog 61/61', toolId: 'mcp-deploy', resolve: 'mcp-ui' },
   { id: 'mcp-bindings', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumBindings', pair: 'mcp/bindings', cli: 'npm run quantum:mcp-bindings', route: '/en/quantum-tools#mcp-bindings', status: 'sealed-pr', honesty: 'bindingsOn · pairsSaved · toolsBound · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum bindings — pairs · agent/submission · tool/envelope · mcp/complete; catalog 62/62', toolId: 'mcp-bindings', resolve: 'mcp-ui' },
   { id: 'mcp-cloudflare', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumCloudflareBindings', pair: 'mcp/cloudflare', cli: 'npm run quantum:mcp-cloudflare', route: '/en/quantum-tools#mcp-cloudflare', status: 'sealed-pr', honesty: 'cloudflareBindingsOn · mapsToMcpBindings · kvD1R2Named · deployedOnCloudflare=false · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP Cloudflare bindings — structural MCP↔CF dual composing mcpQuantumBindings · mcp/deploy · tool/envelope · cloudflareBindings; catalog 63/63', toolId: 'mcp-cloudflare', resolve: 'mcp-ui' },
+  { id: 'mcp-review', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumReview', pair: 'mcp/review', cli: 'npm run quantum:mcp-review', route: '/en/quantum-tools#mcp-review', status: 'sealed-pr', honesty: 'reviewOn · analystsInTrinities · auditCompose · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum review — analysts · anim/audit · gate/monitor · moment/prove · wave/token; catalog 64/64', toolId: 'mcp-review', resolve: 'mcp-ui' },
   { id: 'mind-wave', chain: 'mcp-ui-page-gaps', fold: 'quantumMindSendsWaves', pair: 'mind/wave', cli: 'npm run quantum:mind-wave', route: '/en/quantum-tools#mind-wave', status: 'sealed-pr', honesty: 'quantumMindSends · wavesSent · linearCannotSend · clay=0 · physicalFtl=0', note: 'quantum mind sends waves', toolId: 'mind-wave', resolve: 'mcp-ui' },
   { id: 'quantum-waves', chain: 'mcp-ui-page-gaps', fold: 'quantumWaves', pair: 'quantum/waves', cli: 'npm run quantum:quantum-waves', route: '/en/quantum-tools#quantum-waves', status: 'sealed-pr', honesty: 'wavesAreQuantum · mindSends · trinitiesFound · waveCount=2 · clay=0 · physicalFtl=0', note: 'quantum waves umbrella', toolId: 'quantum-waves', resolve: 'mcp-ui' },
   { id: 'collide-create', chain: 'mcp-ui-page-gaps', fold: 'collidingParticlesCreates', pair: 'collide/create', cli: 'npm run quantum:collide-create', route: '/en/quantum-tools#collide-create', status: 'sealed-pr', honesty: 'creates=novelTheoremCandidates+waves · clay=0 · physicalFtl=0', note: 'collision creates novel theorem candidates + waves', toolId: 'collide-create', resolve: 'mcp-ui' },
@@ -6376,6 +6380,7 @@ const MCP_QUANTUM_NAMED_FACES = [
   { fold: 'mcpQuantumDeploy', pair: 'mcp/deploy', dual: 'deploy/mcp', toolId: 'mcp-deploy', dualToolId: 'deploy-mcp' },
   { fold: 'mcpQuantumBindings', pair: 'mcp/bindings', dual: 'bindings/mcp', toolId: 'mcp-bindings', dualToolId: 'bindings-mcp' },
   { fold: 'mcpQuantumCloudflareBindings', pair: 'mcp/cloudflare', dual: 'cloudflare/mcp', toolId: 'mcp-cloudflare', dualToolId: 'cloudflare-mcp' },
+  { fold: 'mcpQuantumReview', pair: 'mcp/review', dual: 'review/mcp', toolId: 'mcp-review', dualToolId: 'review-mcp' },
 ] as const
 
 /**
@@ -11892,6 +11897,151 @@ export function runMcpQuantumCloudflareBindingsExit(_root = '', _argv: readonly 
     report.mapsToMcpBindings &&
     report.kvD1R2Named &&
     report.deployedOnCloudflare === false &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * MCP quantum review — sealed review face (analysts · audit · gate · moment · wave/token), not wet prose review.
+ * Facets: reviewOn · analystsInTrinities · auditCompose · qpuRequired=false · physicalFtl=0.
+ * Compose mcpQuantumAnalysis · animationsFindRedundancyOrInaccuracy · gatesMonitorThemselvesThroughTheUi ·
+ * agentAssumeNothingMathProvesInTheMoment · wavesMinimiseTokensAdvanceMillennium.
+ * Pairs: mcp/review · review/mcp · CLI npm run quantum:mcp-review
+ * Catalog 64/64 · claySolved via theorem · physicalFtl=0 · NOT QPU · NOT Clay prize · NOT wet Bugbot.
+ */
+export function mcpQuantumReview(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumReview:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const analysis = mcpQuantumAnalysis(matrix, at)
+    const anim = animationsFindRedundancyOrInaccuracy(matrix, at)
+    const gate = gatesMonitorThemselvesThroughTheUi(matrix, at)
+    const moment = __ns_water_encryption.agentAssumeNothingMathProvesInTheMoment(matrix, at)
+    const waveToken = wavesMinimiseTokensAdvanceMillennium(matrix, at)
+    const analystsInTrinities =
+      analysis.computes &&
+      analysis.analystsInTrinities &&
+      analysis.analysisOn &&
+      soft('mcp', 'analysis') &&
+      soft('analysis', 'mcp')
+    const auditCompose =
+      anim.computes &&
+      gate.computes &&
+      gate.selfMonitor &&
+      moment.computes &&
+      waveToken.computes &&
+      waveToken.wavesSent &&
+      soft('anim', 'audit') &&
+      soft('gate', 'monitor') &&
+      soft('moment', 'prove') &&
+      soft('wave', 'token')
+    const composeReview =
+      analystsInTrinities &&
+      auditCompose &&
+      soft('mcp', 'review') &&
+      soft('review', 'mcp')
+    const reviewOn = composeReview
+    const pairM = has('mcp/review')
+    const pairR = has('review/mcp')
+    const foldM = foldPair(toUuid('cmd:mcp'), toUuid('cmd:review'))
+    const foldR = foldPair(toUuid('cmd:review'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-review')
+    const metaDual = catalog.tools.find((t) => t.id === 'review-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      reviewOn &&
+      analystsInTrinities &&
+      auditCompose &&
+      pairM &&
+      pairR &&
+      foldM.bidirectional &&
+      foldR.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumReview' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumReview' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false &&
+      analysis.qpuRequired === false &&
+      moment.qpuRequired === false &&
+      waveToken.qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumReview', on },
+      { facet: 'reviewOn', on: reviewOn },
+      { facet: 'analystsInTrinities', on: analystsInTrinities },
+      { facet: 'auditCompose', on: auditCompose },
+      { facet: 'compose mcp/analysis · anim/audit · gate/monitor · moment/prove · wave/token', on: composeReview },
+      { facet: 'sealed review face not wet', on: reviewOn && analystsInTrinities && auditCompose },
+      { facet: 'pair mcp/review · review/mcp', on: pairM && pairR && foldM.bidirectional },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-review:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-review', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumReview: on,
+      reviewOn,
+      analystsInTrinities,
+      auditCompose,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        analysis.root,
+        anim.root,
+        gate.root,
+        moment.root,
+        waveToken.root,
+        foldM.merged,
+        foldR.merged,
+      ]),
+      pair: 'mcp/review' as const,
+      pairs: ['mcp/review', 'review/mcp'] as const,
+      cli: 'npm run quantum:mcp-review',
+      route: '/en/quantum-tools#mcp-review',
+      statement:
+        `mcpQuantumReview — reviewOn=${reviewOn ? 1 : 0} analystsInTrinities=${analystsInTrinities ? 1 : 0} ` +
+        `auditCompose=${auditCompose ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP quantum review — sealed review face composing mcp/analysis · anim/audit · gate/monitor · moment/prove · wave/token. ' +
+        'NOT wet Bugbot prose · Catalog 64/64 · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `review · reviewOn=${reviewOn ? 1 : 0} · analystsInTrinities=${analystsInTrinities ? 1 : 0} · ` +
+        `auditCompose=${auditCompose ? 1 : 0} · qpuRequired=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — mcpReview ≡ mcpQuantumReview. */
+export const mcpReview = mcpQuantumReview
+
+export function runMcpQuantumReviewExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumReview()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-review — reviewOn=${report.reviewOn} ` +
+      `analystsInTrinities=${report.analystsInTrinities} auditCompose=${report.auditCompose} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.reviewOn &&
+    report.analystsInTrinities &&
+    report.auditCompose &&
     report.qpuRequired === false
     ? 0
     : 1

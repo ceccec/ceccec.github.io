@@ -473,6 +473,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'cloudflare/mcp',
   'cf/bindings',
   'bindings/cf',
+  'mcp/review',
+  'review/mcp',
   'sign/quantum',
   'mcp/sign',
   'reverse/quantum',
