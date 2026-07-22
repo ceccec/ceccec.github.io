@@ -403,6 +403,8 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `optimize/token` — US alias dual (`npm run quantum:optimize-token`)
   - `mcp/deploy` — `npm run quantum:mcp-deploy` (`mcpQuantumDeploy()` — deployOn · buildsFromMcp · pagesSeal; compose vite/mcp · mcp/site · waves/push · build/seal; GitHub Pages seal path for this repo only — not production infra ownership beyond Pages; dual `deploy/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-deploy`
   - `deploy/mcp` — alias dual of `mcp/deploy` (`npm run quantum:deploy-mcp`)
+  - `mcp/bindings` — `npm run quantum:mcp-bindings` (`mcpQuantumBindings()` — bindingsOn · pairsSaved · toolsBound; compose agent/submission · quantum pairs law · tool/envelope · mcp/complete; dual `bindings/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-bindings`
+  - `bindings/mcp` — alias dual of `mcp/bindings` (`npm run quantum:bindings-mcp`)
   - `mcp/sign` — `npm run quantum:mcp-sign` (`mcpQuantumSign()` — signatureOn · crossSig · tamperEvident · certified=false; dual `sign/quantum`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-sign`
   - `comp/seal` — alias dual of `vite/one` (`npm run quantum:comp-seal`)
   - `paste/local` — `npm run quantum:paste-local` (`pastedLinksStayOnlyIfComputedLocally()` — pasted URLs stay only if computed locally; facets ephemeralBootstrap · stayOnlyIfComputedLocally · foreignFetchBlockedNoStore · wireClassMayExist; dual `link/local`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#paste-local`

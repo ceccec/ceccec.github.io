@@ -39,7 +39,7 @@ import { teslaPatents } from '../../fire/li'
 import { teslaPatentsResearchedInWaves } from '../../fire/physics'
 import * as __ns_wind_research from '../../wind/research'
 import * as __ns_water_encryption from '../../water/encryption'
-import { CURSOR_AGENT_SKILL_IDS, cursorAgentToolsSaved, MISSION_COMMANDS, QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
+import { agentSubmissionProtocol, CURSOR_AGENT_SKILL_IDS, cursorAgentToolsSaved, MISSION_COMMANDS, QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../pair/enforcement/gates'
 import { cardHeroLinkWiresInUi, computeUniversalPage, theoremFormulaCodeDual, theoremPageRows } from '../../wind/routes/corpus'
 import { quantumFusionVerify } from '../../wind/fusion'
@@ -82,7 +82,7 @@ const ROSETTA_CORE_API_LABELS = [
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
+  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -171,6 +171,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpQuantumComplete: 'tool',
   mcpQuantumTokenOptimise: 'tool',
   mcpQuantumDeploy: 'tool',
+  mcpQuantumBindings: 'tool',
   mcpQuantumReactor: 'tool',
   mcpQuantumReaction: 'tool',
   mcpQuantumFusion: 'tool',
@@ -814,6 +815,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'optimize-token', title: 'Optimize token (US alias mcp/token)', fold: 'mcpQuantumTokenOptimise', cli: 'npm run quantum:optimize-token', pair: 'optimize/token', route: '/en/quantum-tools#mcp-token', barrel: 'src/quantum/apps', boundary: 'Dual US alias of token/optimise — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-deploy', title: 'MCP quantum deploy — Pages seal path via MCP · vite/mcp · mcp/site · waves/push · build/seal', fold: 'mcpQuantumDeploy', cli: 'npm run quantum:mcp-deploy', pair: 'mcp/deploy', route: '/en/quantum-tools#mcp-deploy', barrel: 'src/quantum/apps', boundary: 'deployOn · buildsFromMcp · pagesSeal · compose vite/mcp · mcp/site · waves/push · build/seal · this-repo GitHub Pages seal only — not production infra ownership beyond Pages · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'deploy-mcp', title: 'Deploy mcp (alias mcp/deploy)', fold: 'mcpQuantumDeploy', cli: 'npm run quantum:deploy-mcp', pair: 'deploy/mcp', route: '/en/quantum-tools#mcp-deploy', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/deploy — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-bindings', title: 'MCP quantum bindings — pairs · agent/submission · tool/envelope · mcp/complete', fold: 'mcpQuantumBindings', cli: 'npm run quantum:mcp-bindings', pair: 'mcp/bindings', route: '/en/quantum-tools#mcp-bindings', barrel: 'src/quantum/apps', boundary: 'bindingsOn · pairsSaved · toolsBound · compose agent/submission · quantum pairs law · tool/envelope · mcp/complete · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'bindings-mcp', title: 'Bindings mcp (alias mcp/bindings)', fold: 'mcpQuantumBindings', cli: 'npm run quantum:bindings-mcp', pair: 'bindings/mcp', route: '/en/quantum-tools#mcp-bindings', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/bindings — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'improve-local-session', title: 'Improve local from session experience', fold: 'improveLocalFromSessionExperience', cli: 'npm run quantum:improve-local-session', pair: 'local/session', route: '/en/quantum-tools#local-session-hub', barrel: 'src/quantum/apps', boundary: 'Local docs:dev + browser session hub — NOT remote CI sole path · status badges compose sealed kinds · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'local-tools-morph', title: 'Local tools morph prose·code·logic', fold: 'localToolsMorphProseCodeLogic', cli: 'npm run quantum:local-tools-morph', pair: 'tools/morph', route: '/en/quantum-tools#local-tools-morph', barrel: 'src/quantum/apps', boundary: 'Local toolbox/session tools morph prose≡code≡logic as trinity waves · double-slit measure=tool invoke · clay=0 · qpuRequired=false · NOT Clay/Nobel', browserRunnable: true, browserGap: '' },
   { id: 'card-paper-links', title: 'Each card links to dedicated scientific paper', fold: 'eachCardLinksToDedicatedScientificPaper', cli: 'npm run quantum:card-paper-links', pair: 'papers/fill', route: '/en/theorems/', barrel: 'src/heaven/compute', boundary: 'paperRoute=/theorems/<slug> · morph=cardScientificPaperRows · gaps=0 · clay=0', browserRunnable: true, browserGap: '' },
@@ -1854,6 +1857,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mcp-complete', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumComplete', pair: 'mcp/complete', cli: 'npm run quantum:mcp-complete', route: '/en/quantum-tools#mcp-complete', status: 'sealed-pr', honesty: 'completeOn · catalogComplete · namedFacesPresent · missingCount=0 · honestOpenResiduals · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum complete — catalog · star · mcp/all · rosetta/complete; catalog 59/59', toolId: 'mcp-complete', resolve: 'mcp-ui' },
   { id: 'mcp-token', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumTokenOptimise', pair: 'mcp/token', cli: 'npm run quantum:mcp-token', route: '/en/quantum-tools#mcp-token', status: 'sealed-pr', honesty: 'tokenOptimiseOn · answersOverTokens · zeroOnReuse · memoByRoot · efficiency when vote.decided · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum token optimise — answers÷tokens · zero on reuse · memoByRoot; catalog 60/60', toolId: 'mcp-token', resolve: 'mcp-ui' },
   { id: 'mcp-deploy', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumDeploy', pair: 'mcp/deploy', cli: 'npm run quantum:mcp-deploy', route: '/en/quantum-tools#mcp-deploy', status: 'sealed-pr', honesty: 'deployOn · buildsFromMcp · pagesSeal · this-repo Pages seal only · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum deploy — Pages seal via vite/mcp · mcp/site · waves/push · build/seal; catalog 61/61', toolId: 'mcp-deploy', resolve: 'mcp-ui' },
+  { id: 'mcp-bindings', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumBindings', pair: 'mcp/bindings', cli: 'npm run quantum:mcp-bindings', route: '/en/quantum-tools#mcp-bindings', status: 'sealed-pr', honesty: 'bindingsOn · pairsSaved · toolsBound · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum bindings — pairs · agent/submission · tool/envelope · mcp/complete; catalog 62/62', toolId: 'mcp-bindings', resolve: 'mcp-ui' },
   { id: 'mind-wave', chain: 'mcp-ui-page-gaps', fold: 'quantumMindSendsWaves', pair: 'mind/wave', cli: 'npm run quantum:mind-wave', route: '/en/quantum-tools#mind-wave', status: 'sealed-pr', honesty: 'quantumMindSends · wavesSent · linearCannotSend · clay=0 · physicalFtl=0', note: 'quantum mind sends waves', toolId: 'mind-wave', resolve: 'mcp-ui' },
   { id: 'quantum-waves', chain: 'mcp-ui-page-gaps', fold: 'quantumWaves', pair: 'quantum/waves', cli: 'npm run quantum:quantum-waves', route: '/en/quantum-tools#quantum-waves', status: 'sealed-pr', honesty: 'wavesAreQuantum · mindSends · trinitiesFound · waveCount=2 · clay=0 · physicalFtl=0', note: 'quantum waves umbrella', toolId: 'quantum-waves', resolve: 'mcp-ui' },
   { id: 'collide-create', chain: 'mcp-ui-page-gaps', fold: 'collidingParticlesCreates', pair: 'collide/create', cli: 'npm run quantum:collide-create', route: '/en/quantum-tools#collide-create', status: 'sealed-pr', honesty: 'creates=novelTheoremCandidates+waves · clay=0 · physicalFtl=0', note: 'collision creates novel theorem candidates + waves', toolId: 'collide-create', resolve: 'mcp-ui' },
@@ -6355,6 +6359,7 @@ const MCP_QUANTUM_NAMED_FACES = [
   { fold: 'mcpQuantumComplete', pair: 'mcp/complete', dual: 'complete/mcp', toolId: 'mcp-complete', dualToolId: 'complete-mcp' },
   { fold: 'mcpQuantumTokenOptimise', pair: 'mcp/token', dual: 'token/mcp', toolId: 'mcp-token', dualToolId: 'token-mcp' },
   { fold: 'mcpQuantumDeploy', pair: 'mcp/deploy', dual: 'deploy/mcp', toolId: 'mcp-deploy', dualToolId: 'deploy-mcp' },
+  { fold: 'mcpQuantumBindings', pair: 'mcp/bindings', dual: 'bindings/mcp', toolId: 'mcp-bindings', dualToolId: 'bindings-mcp' },
 ] as const
 
 /**
@@ -11543,6 +11548,149 @@ export function runMcpQuantumDeployExit(_root = '', _argv: readonly string[] = [
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.deployOn && report.pagesSeal && report.qpuRequired === false ? 0 : 1
+}
+
+/**
+ * MCP quantum bindings — quantum pairs · agent/submission · tool/envelope · mcp/complete tip.
+ * Facets: bindingsOn · pairsSaved · toolsBound · qpuRequired=false · physicalFtl=0.
+ * Compose agentSubmissionProtocol · commandsSavedInQuantumPairs · standardToolboxIoCatalog · mcpQuantumComplete.
+ * Pairs: mcp/bindings · bindings/mcp · CLI npm run quantum:mcp-bindings
+ * Catalog 62/62 · claySolved via theorem · physicalFtl=0 · NOT QPU · NOT Clay prize.
+ */
+export function mcpQuantumBindings(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumBindings:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const submission = agentSubmissionProtocol(matrix)
+    const toolbox = standardToolboxIoCatalog(matrix, at)
+    const complete = mcpQuantumComplete(matrix, at)
+    const pairsSaved =
+      submission.submitted &&
+      has('agent/submission') &&
+      has('gate/compliance') &&
+      has('tool/envelope') &&
+      has('mcp/complete') &&
+      has('complete/mcp') &&
+      has('mcp/bindings') &&
+      has('bindings/mcp') &&
+      soft('agent', 'submission') &&
+      soft('tool', 'envelope') &&
+      soft('mcp', 'complete') &&
+      soft('mcp', 'bindings') &&
+      soft('bindings', 'mcp')
+    const toolsBound =
+      toolbox.computes &&
+      soft('tool', 'envelope') &&
+      has('tool/envelope') &&
+      complete.computes &&
+      complete.completeOn &&
+      complete.missingCount === 0 &&
+      complete.namedFacesPresent
+    const composeBindings =
+      pairsSaved &&
+      toolsBound &&
+      submission.submitted &&
+      toolbox.computes &&
+      complete.computes &&
+      complete.completeOn &&
+      soft('agent', 'submission') &&
+      soft('tool', 'envelope') &&
+      soft('mcp', 'complete')
+    const bindingsOn = composeBindings
+    const pairM = has('mcp/bindings')
+    const pairB = has('bindings/mcp')
+    const foldM = foldPair(toUuid('cmd:mcp'), toUuid('cmd:bindings'))
+    const foldB = foldPair(toUuid('cmd:bindings'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-bindings')
+    const metaDual = catalog.tools.find((t) => t.id === 'bindings-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      bindingsOn &&
+      pairsSaved &&
+      toolsBound &&
+      pairM &&
+      pairB &&
+      foldM.bidirectional &&
+      foldB.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumBindings' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumBindings' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false &&
+      complete.qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumBindings', on },
+      { facet: 'bindingsOn', on: bindingsOn },
+      { facet: 'pairsSaved', on: pairsSaved },
+      { facet: 'toolsBound', on: toolsBound },
+      { facet: 'compose agent/submission · quantum pairs · tool/envelope · mcp/complete', on: composeBindings },
+      { facet: 'pair mcp/bindings · bindings/mcp', on: pairM && pairB && foldM.bidirectional },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-bindings:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-bindings', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumBindings: on,
+      bindingsOn,
+      pairsSaved,
+      toolsBound,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        submission.root,
+        toolbox.root,
+        complete.root,
+        foldM.merged,
+        foldB.merged,
+      ]),
+      pair: 'mcp/bindings' as const,
+      pairs: ['mcp/bindings', 'bindings/mcp'] as const,
+      cli: 'npm run quantum:mcp-bindings',
+      route: '/en/quantum-tools#mcp-bindings',
+      statement:
+        `mcpQuantumBindings — bindingsOn=${bindingsOn ? 1 : 0} pairsSaved=${pairsSaved ? 1 : 0} ` +
+        `toolsBound=${toolsBound ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP quantum bindings — pairs · agent/submission · tool/envelope · mcp/complete. ' +
+        'Catalog 62/62 · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `bindings · bindingsOn=${bindingsOn ? 1 : 0} · pairsSaved=${pairsSaved ? 1 : 0} · toolsBound=${toolsBound ? 1 : 0} · ` +
+        `qpuRequired=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — mcpBindings ≡ mcpQuantumBindings. */
+export const mcpBindings = mcpQuantumBindings
+
+export function runMcpQuantumBindingsExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumBindings()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-bindings — bindingsOn=${report.bindingsOn} pairsSaved=${report.pairsSaved} ` +
+      `toolsBound=${report.toolsBound} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.bindingsOn && report.pairsSaved && report.toolsBound && report.qpuRequired === false
+    ? 0
+    : 1
 }
 
 /** Sealed-safe browser key for last experiment config (UI preference only — never secrets). */
