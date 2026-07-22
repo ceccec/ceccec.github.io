@@ -395,6 +395,12 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `orientation/mcp` — alias dual of `mcp/orientation` (`npm run quantum:orientation-mcp`)
   - `mcp/complete` — `npm run quantum:mcp-complete` (`mcpQuantumComplete()` — completeOn · catalogComplete · namedFacesPresent · missingCount=0 · honestOpenResiduals Clay/FTL/CI named not fake-closed; compose mcpQuantumCatalog · mcpQuantumStar · mcp/all · rosetta/complete; dual `complete/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-complete`
   - `complete/mcp` — alias dual of `mcp/complete` (`npm run quantum:complete-mcp`)
+  - `mcp/token` — `npm run quantum:mcp-token` (`mcpQuantumTokenOptimise()` / `mcpTokenOptimise` — tokenOptimiseOn · answersOverTokens · zeroOnReuse · memoByRoot; compose mcp/metrics · learn/best · audit/local-quantum · trinity/speedup; efficiency win only when vote.decided; duals `token/mcp` · `token/optimise` · `optimise/token` · US `token/optimize` · `optimize/token`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-token`
+  - `token/mcp` — alias dual of `mcp/token` (`npm run quantum:token-mcp`)
+  - `token/optimise` — semantic dual of `mcp/token` (`npm run quantum:token-optimise`)
+  - `optimise/token` — alias dual of `token/optimise` (`npm run quantum:optimise-token`)
+  - `token/optimize` — US alias of `token/optimise` (`npm run quantum:token-optimize`)
+  - `optimize/token` — US alias dual (`npm run quantum:optimize-token`)
   - `mcp/sign` — `npm run quantum:mcp-sign` (`mcpQuantumSign()` — signatureOn · crossSig · tamperEvident · certified=false; dual `sign/quantum`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-sign`
   - `comp/seal` — alias dual of `vite/one` (`npm run quantum:comp-seal`)
   - `paste/local` — `npm run quantum:paste-local` (`pastedLinksStayOnlyIfComputedLocally()` — pasted URLs stay only if computed locally; facets ephemeralBootstrap · stayOnlyIfComputedLocally · foreignFetchBlockedNoStore · wireClassMayExist; dual `link/local`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#paste-local`

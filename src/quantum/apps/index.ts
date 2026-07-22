@@ -82,7 +82,7 @@ const ROSETTA_CORE_API_LABELS = [
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
+  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -169,6 +169,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpQuantumIndex: 'tool',
   mcpQuantumOrientation: 'tool',
   mcpQuantumComplete: 'tool',
+  mcpQuantumTokenOptimise: 'tool',
   mcpQuantumReactor: 'tool',
   mcpQuantumReaction: 'tool',
   mcpQuantumFusion: 'tool',
@@ -804,6 +805,12 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'orientation-mcp', title: 'Orientation mcp (alias mcp/orientation)', fold: 'mcpQuantumOrientation', cli: 'npm run quantum:orientation-mcp', pair: 'orientation/mcp', route: '/en/quantum-tools#mcp-orientation', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/orientation — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-complete', title: 'MCP quantum complete — catalog · star · mcp/all · rosetta/complete · honest residuals', fold: 'mcpQuantumComplete', cli: 'npm run quantum:mcp-complete', pair: 'mcp/complete', route: '/en/quantum-tools#mcp-complete', barrel: 'src/quantum/apps', boundary: 'completeOn · catalogComplete · namedFacesPresent · missingCount=0 · honestOpenResiduals Clay/FTL/CI named not fake-closed · compose mcpQuantumCatalog · mcpQuantumStar · mcp/all · rosetta/complete · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'complete-mcp', title: 'Complete mcp (alias mcp/complete)', fold: 'mcpQuantumComplete', cli: 'npm run quantum:complete-mcp', pair: 'complete/mcp', route: '/en/quantum-tools#mcp-complete', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/complete — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-token', title: 'MCP quantum token optimise — answers÷tokens · zero on reuse · memoByRoot', fold: 'mcpQuantumTokenOptimise', cli: 'npm run quantum:mcp-token', pair: 'mcp/token', route: '/en/quantum-tools#mcp-token', barrel: 'src/quantum/apps', boundary: 'tokenOptimiseOn · answersOverTokens · zeroOnReuse · memoByRoot · compose mcp/metrics · learn/best · audit/local-quantum · trinity/speedup · efficiency win only when vote.decided · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'token-mcp', title: 'Token mcp (alias mcp/token)', fold: 'mcpQuantumTokenOptimise', cli: 'npm run quantum:token-mcp', pair: 'token/mcp', route: '/en/quantum-tools#mcp-token', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/token — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'token-optimise', title: 'Token optimise (alias mcp/token)', fold: 'mcpQuantumTokenOptimise', cli: 'npm run quantum:token-optimise', pair: 'token/optimise', route: '/en/quantum-tools#mcp-token', barrel: 'src/quantum/apps', boundary: 'Semantic dual path · British optimise · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'optimise-token', title: 'Optimise token (alias mcp/token)', fold: 'mcpQuantumTokenOptimise', cli: 'npm run quantum:optimise-token', pair: 'optimise/token', route: '/en/quantum-tools#mcp-token', barrel: 'src/quantum/apps', boundary: 'Dual of token/optimise — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'token-optimize', title: 'Token optimize (US alias mcp/token)', fold: 'mcpQuantumTokenOptimise', cli: 'npm run quantum:token-optimize', pair: 'token/optimize', route: '/en/quantum-tools#mcp-token', barrel: 'src/quantum/apps', boundary: 'American spelling alias of token/optimise · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'optimize-token', title: 'Optimize token (US alias mcp/token)', fold: 'mcpQuantumTokenOptimise', cli: 'npm run quantum:optimize-token', pair: 'optimize/token', route: '/en/quantum-tools#mcp-token', barrel: 'src/quantum/apps', boundary: 'Dual US alias of token/optimise — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'improve-local-session', title: 'Improve local from session experience', fold: 'improveLocalFromSessionExperience', cli: 'npm run quantum:improve-local-session', pair: 'local/session', route: '/en/quantum-tools#local-session-hub', barrel: 'src/quantum/apps', boundary: 'Local docs:dev + browser session hub — NOT remote CI sole path · status badges compose sealed kinds · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'local-tools-morph', title: 'Local tools morph prose·code·logic', fold: 'localToolsMorphProseCodeLogic', cli: 'npm run quantum:local-tools-morph', pair: 'tools/morph', route: '/en/quantum-tools#local-tools-morph', barrel: 'src/quantum/apps', boundary: 'Local toolbox/session tools morph prose≡code≡logic as trinity waves · double-slit measure=tool invoke · clay=0 · qpuRequired=false · NOT Clay/Nobel', browserRunnable: true, browserGap: '' },
   { id: 'card-paper-links', title: 'Each card links to dedicated scientific paper', fold: 'eachCardLinksToDedicatedScientificPaper', cli: 'npm run quantum:card-paper-links', pair: 'papers/fill', route: '/en/theorems/', barrel: 'src/heaven/compute', boundary: 'paperRoute=/theorems/<slug> · morph=cardScientificPaperRows · gaps=0 · clay=0', browserRunnable: true, browserGap: '' },
@@ -1842,6 +1849,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mcp-index', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumIndex', pair: 'mcp/index', cli: 'npm run quantum:mcp-index', route: '/en/quantum-tools#mcp-index', status: 'sealed-pr', honesty: 'indexOn · srcIndexOnly · census110 · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum index — src index-only · census 110 · limits/verify; catalog 57/57', toolId: 'mcp-index', resolve: 'mcp-ui' },
   { id: 'mcp-orientation', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumOrientation', pair: 'mcp/orientation', cli: 'npm run quantum:mcp-orientation', route: '/en/quantum-tools#mcp-orientation', status: 'sealed-pr', honesty: 'orientationOn · bearing · navCross · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum orientation — bearing · navCross · geo/train · cross/nav · sun/moon · mcp/torus; catalog 58/58', toolId: 'mcp-orientation', resolve: 'mcp-ui' },
   { id: 'mcp-complete', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumComplete', pair: 'mcp/complete', cli: 'npm run quantum:mcp-complete', route: '/en/quantum-tools#mcp-complete', status: 'sealed-pr', honesty: 'completeOn · catalogComplete · namedFacesPresent · missingCount=0 · honestOpenResiduals · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum complete — catalog · star · mcp/all · rosetta/complete; catalog 59/59', toolId: 'mcp-complete', resolve: 'mcp-ui' },
+  { id: 'mcp-token', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumTokenOptimise', pair: 'mcp/token', cli: 'npm run quantum:mcp-token', route: '/en/quantum-tools#mcp-token', status: 'sealed-pr', honesty: 'tokenOptimiseOn · answersOverTokens · zeroOnReuse · memoByRoot · efficiency when vote.decided · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum token optimise — answers÷tokens · zero on reuse · memoByRoot; catalog 60/60', toolId: 'mcp-token', resolve: 'mcp-ui' },
   { id: 'mind-wave', chain: 'mcp-ui-page-gaps', fold: 'quantumMindSendsWaves', pair: 'mind/wave', cli: 'npm run quantum:mind-wave', route: '/en/quantum-tools#mind-wave', status: 'sealed-pr', honesty: 'quantumMindSends · wavesSent · linearCannotSend · clay=0 · physicalFtl=0', note: 'quantum mind sends waves', toolId: 'mind-wave', resolve: 'mcp-ui' },
   { id: 'quantum-waves', chain: 'mcp-ui-page-gaps', fold: 'quantumWaves', pair: 'quantum/waves', cli: 'npm run quantum:quantum-waves', route: '/en/quantum-tools#quantum-waves', status: 'sealed-pr', honesty: 'wavesAreQuantum · mindSends · trinitiesFound · waveCount=2 · clay=0 · physicalFtl=0', note: 'quantum waves umbrella', toolId: 'quantum-waves', resolve: 'mcp-ui' },
   { id: 'collide-create', chain: 'mcp-ui-page-gaps', fold: 'collidingParticlesCreates', pair: 'collide/create', cli: 'npm run quantum:collide-create', route: '/en/quantum-tools#collide-create', status: 'sealed-pr', honesty: 'creates=novelTheoremCandidates+waves · clay=0 · physicalFtl=0', note: 'collision creates novel theorem candidates + waves', toolId: 'collide-create', resolve: 'mcp-ui' },
@@ -6341,6 +6349,7 @@ const MCP_QUANTUM_NAMED_FACES = [
   { fold: 'mcpQuantumIndex', pair: 'mcp/index', dual: 'index/mcp', toolId: 'mcp-index', dualToolId: 'index-mcp' },
   { fold: 'mcpQuantumOrientation', pair: 'mcp/orientation', dual: 'orientation/mcp', toolId: 'mcp-orientation', dualToolId: 'orientation-mcp' },
   { fold: 'mcpQuantumComplete', pair: 'mcp/complete', dual: 'complete/mcp', toolId: 'mcp-complete', dualToolId: 'complete-mcp' },
+  { fold: 'mcpQuantumTokenOptimise', pair: 'mcp/token', dual: 'token/mcp', toolId: 'mcp-token', dualToolId: 'token-mcp' },
 ] as const
 
 /**
@@ -11066,7 +11075,7 @@ export function mcpQuantumComplete(matrix: MindMatrix = buildMatrix(), at = 0) {
     const namedFacesPresent =
       catalogComplete &&
       quantum.presentCount === quantum.faceCount &&
-      quantum.faceCount >= (9 * 6 + 5)
+      quantum.faceCount >= (9 * 6 + 6)
     const missingCount = quantum.missingCount
     const residualsNamedHonest =
       all.residualsNamed.includes('clay:millennium-open') &&
@@ -11207,6 +11216,180 @@ export function runMcpQuantumCompleteExit(_root = '', _argv: readonly string[] =
   return report.computes && report.completeOn && report.missingCount === 0 && report.qpuRequired === false
     ? 0
     : 1
+}
+
+/**
+ * MCP quantum token optimise — answers÷tokens / zero on reuse / memoByRoot tip.
+ * Facets: tokenOptimiseOn · answersOverTokens · zeroOnReuse · memoByRoot · qpuRequired=false · physicalFtl=0.
+ * Compose mcpQuantumMetrics · learn/best · audit/local-quantum · trinity/speedup.
+ * Pairs: mcp/token · token/mcp · token/optimise · optimise/token · token/optimize · optimize/token.
+ * HONEST: efficiency win only when vote.decided · claySolved via theorem · physicalFtl=0 · NOT QPU · NOT FLOPS.
+ * Alias: mcpTokenOptimise · mcpQuantumTokenOptimize (US spelling).
+ */
+export function mcpQuantumTokenOptimise(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumTokenOptimise:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    // metrics already runs local-audit absolute-first — do not re-call audit (would miss memoHits).
+    const metrics = mcpQuantumMetrics(matrix, at)
+    const vote = compareCeccecEfficiencyByVote(matrix)
+    const trinity = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
+    const noQpu = proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix, at)
+    const freeBits = __ns_wind_research.twoBitsFreeFromCensus110Minus108(matrix)
+    const memoByRootOn =
+      metrics.computes &&
+      metrics.coldMs >= 0 &&
+      metrics.warmMs >= 0 &&
+      (metrics.speedup >= 1 || metrics.warmMs <= metrics.coldMs) &&
+      has('audit/local-quantum')
+    const zeroOnReuse =
+      vote.runtimeTokens === 0 &&
+      memoByRootOn
+    const answersOverTokens =
+      metrics.answersOverTokens &&
+      soft('learn', 'best') &&
+      soft('mcp', 'metrics') &&
+      (vote.decided || zeroOnReuse)
+    const efficiencyWinWhenDecided = vote.decided && answersOverTokens && zeroOnReuse
+    const composeToken =
+      metrics.computes &&
+      metrics.metricsOn &&
+      trinity.computes &&
+      soft('mcp', 'metrics') &&
+      soft('learn', 'best') &&
+      soft('trinity', 'speedup') &&
+      has('audit/local-quantum') &&
+      answersOverTokens &&
+      zeroOnReuse &&
+      memoByRootOn
+    const tokenOptimiseOn = composeToken
+    const pairM = has('mcp/token')
+    const pairT = has('token/mcp')
+    const pairOpt = has('token/optimise')
+    const pairOptDual = has('optimise/token')
+    const pairUs = has('token/optimize')
+    const pairUsDual = has('optimize/token')
+    const foldM = foldPair(toUuid('cmd:mcp'), toUuid('cmd:token'))
+    const foldT = foldPair(toUuid('cmd:token'), toUuid('cmd:mcp'))
+    const foldOpt = foldPair(toUuid('cmd:token'), toUuid('cmd:optimise'))
+    const foldOptDual = foldPair(toUuid('cmd:optimise'), toUuid('cmd:token'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-token')
+    const metaDual = catalog.tools.find((t) => t.id === 'token-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      tokenOptimiseOn &&
+      answersOverTokens &&
+      zeroOnReuse &&
+      memoByRootOn &&
+      pairM &&
+      pairT &&
+      pairOpt &&
+      pairOptDual &&
+      pairUs &&
+      pairUsDual &&
+      foldM.bidirectional &&
+      foldT.bidirectional &&
+      foldOpt.bidirectional &&
+      foldOptDual.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumTokenOptimise' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumTokenOptimise' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false &&
+      metrics.qpuRequired === false &&
+      noQpu.qpuRequired === false &&
+      freeBits.computes
+    const facets = [
+      { facet: 'mcpQuantumTokenOptimise', on },
+      { facet: 'tokenOptimiseOn', on: tokenOptimiseOn },
+      { facet: 'answersOverTokens', on: answersOverTokens },
+      { facet: 'zeroOnReuse', on: zeroOnReuse },
+      { facet: 'memoByRoot', on: memoByRootOn },
+      { facet: `vote.decided=${vote.decided} efficiencyWinWhenDecided=${efficiencyWinWhenDecided ? 1 : 0}`, on: vote.decided ? efficiencyWinWhenDecided : true },
+      { facet: 'compose mcp/metrics · learn/best · audit/local-quantum · trinity/speedup', on: composeToken },
+      { facet: 'pair mcp/token · token/mcp · token/optimise · optimise/token · token/optimize · optimize/token', on: pairM && pairT && pairOpt && pairOptDual && pairUs && pairUsDual && foldM.bidirectional },
+      { facet: 'qpuRequired=false', on: qpuRequired === false && metrics.qpuRequired === false && noQpu.qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: `FREE_BITS=${freeBits.freeBits}`, on: freeBits.computes && freeBits.freeBits === 2 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-token:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-token-optimise', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumTokenOptimise: on,
+      tokenOptimiseOn,
+      answersOverTokens,
+      zeroOnReuse,
+      memoByRoot: memoByRootOn,
+      voteDecided: vote.decided,
+      efficiencyWinWhenDecided,
+      coldMs: metrics.coldMs,
+      warmMs: metrics.warmMs,
+      speedup: metrics.speedup,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        metrics.root,
+        vote.root,
+        trinity.root,
+        noQpu.root,
+        freeBits.root,
+        foldM.merged,
+        foldT.merged,
+        foldOpt.merged,
+        foldOptDual.merged,
+      ]),
+      pair: 'mcp/token' as const,
+      pairs: ['mcp/token', 'token/mcp', 'token/optimise', 'optimise/token', 'token/optimize', 'optimize/token'] as const,
+      cli: 'npm run quantum:mcp-token',
+      route: '/en/quantum-tools#mcp-token',
+      statement:
+        `mcpQuantumTokenOptimise — tokenOptimiseOn=${tokenOptimiseOn ? 1 : 0} answersOverTokens=${answersOverTokens ? 1 : 0} ` +
+        `zeroOnReuse=${zeroOnReuse ? 1 : 0} memoByRoot=${memoByRootOn ? 1 : 0} vote.decided=${vote.decided ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP quantum token optimise — answers÷tokens · zero on reuse · memoByRoot composing ' +
+        'mcp/metrics · learn/best · audit/local-quantum · trinity/speedup. ' +
+        'Efficiency win only when vote.decided. NOT QPU · clay via theorem · physicalFtl=0.',
+      honestyLine:
+        `token · tokenOptimiseOn=${tokenOptimiseOn ? 1 : 0} · answersOverTokens=${answersOverTokens ? 1 : 0} · ` +
+        `zeroOnReuse=${zeroOnReuse ? 1 : 0} · memoByRoot=${memoByRootOn ? 1 : 0} · vote.decided=${vote.decided ? 1 : 0} · ` +
+        `qpuRequired=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — mcpTokenOptimise ≡ mcpQuantumTokenOptimise. */
+export const mcpTokenOptimise = mcpQuantumTokenOptimise
+
+/** US spelling alias — mcpQuantumTokenOptimize ≡ mcpQuantumTokenOptimise. */
+export const mcpQuantumTokenOptimize = mcpQuantumTokenOptimise
+
+export function runMcpQuantumTokenOptimiseExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumTokenOptimise()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-token — tokenOptimiseOn=${report.tokenOptimiseOn} ` +
+      `answersOverTokens=${report.answersOverTokens} zeroOnReuse=${report.zeroOnReuse} ` +
+      `memoByRoot=${report.memoByRoot} vote.decided=${report.voteDecided} ` +
+      `efficiencyWin=${report.efficiencyWinWhenDecided} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.tokenOptimiseOn && report.qpuRequired === false ? 0 : 1
 }
 
 /** Sealed-safe browser key for last experiment config (UI preference only — never secrets). */
