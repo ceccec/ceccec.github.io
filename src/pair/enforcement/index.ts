@@ -345,6 +345,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'math/mcp',
   'mcp/vortex',
   'vortex/mcp',
+  'mcp/torus',
+  'torus/mcp',
   'mcp/reverse',
   'forward/reverse',
   'left/right',

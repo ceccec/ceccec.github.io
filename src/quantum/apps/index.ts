@@ -80,7 +80,7 @@ const ROSETTA_CORE_API_LABELS = [
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution',
+  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -144,6 +144,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpQuantumPhysics: 'tool',
   mcpQuantumMath: 'tool',
   mcpQuantumVortex: 'tool',
+  mcpQuantumTorus: 'tool',
   mcpQuantumReverse: 'tool',
   mcpQuantumSign: 'tool',
   mcpQuantumDirs: 'tool',
@@ -660,6 +661,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'math-mcp', title: 'Math mcp (alias mcp/math)', fold: 'mcpQuantumMath', cli: 'npm run quantum:math-mcp', pair: 'math/mcp', route: '/en/quantum-tools#mcp-math', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/math — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-vortex', title: 'MCP quantum vortex — VORTEX digit · merkaba · trading vortex', fold: 'mcpQuantumVortex', cli: 'npm run quantum:mcp-vortex', pair: 'mcp/vortex', route: '/en/quantum-tools#mcp-vortex', barrel: 'src/quantum/apps', boundary: 'vortexOn · digitSequence · compose digit/fold · vortex/merkaba · mountain/vortex · merkaba · claySolved via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'vortex-mcp', title: 'Vortex mcp (alias mcp/vortex)', fold: 'mcpQuantumVortex', cli: 'npm run quantum:vortex-mcp', pair: 'vortex/mcp', route: '/en/quantum-tools#mcp-vortex', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/vortex — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-torus', title: 'MCP quantum torus — double-torus · geo/torus · living torus · bothEarths', fold: 'mcpQuantumTorus', cli: 'npm run quantum:mcp-torus', pair: 'mcp/torus', route: '/en/quantum-tools#mcp-torus', barrel: 'src/quantum/apps', boundary: 'torusOn · doubleTorus · compose geo/torus · universe/align · doubleTorusIsCompletelyQuantum · geodesyDecodedIsDoubleTorusInverted · claySolved via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'torus-mcp', title: 'Torus mcp (alias mcp/torus)', fold: 'mcpQuantumTorus', cli: 'npm run quantum:torus-mcp', pair: 'torus/mcp', route: '/en/quantum-tools#mcp-torus', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/torus — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-reverse', title: 'MCP quantum reverse', fold: 'mcpQuantumReverse', cli: 'npm run quantum:mcp-reverse', pair: 'mcp/reverse', route: '/en/quantum-tools#mcp-reverse', barrel: 'src/quantum/apps', boundary: 'reverseOn · refuseBeyond · demoBoundaryHardware · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'reverse-quantum', title: 'Reverse quantum (alias mcp/reverse)', fold: 'mcpQuantumReverse', cli: 'npm run quantum:reverse-quantum', pair: 'reverse/quantum', route: '/en/quantum-tools#mcp-reverse', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/reverse — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-sign', title: 'MCP quantum sign', fold: 'mcpQuantumSign', cli: 'npm run quantum:mcp-sign', pair: 'mcp/sign', route: '/en/quantum-tools#mcp-sign', barrel: 'src/quantum/apps', boundary: 'signatureOn · crossSig · tamperEvident · certified=false · NOT CA/PKI · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1718,6 +1721,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mcp-physics', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumPhysics', pair: 'mcp/physics', cli: 'npm run quantum:mcp-physics', route: '/en/quantum-tools#mcp-physics', status: 'sealed-pr', honesty: 'physicsOn · classical64Bit · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum physics — sciences physics · particle/wave · cmb · geodesy', toolId: 'mcp-physics', resolve: 'mcp-ui' },
   { id: 'mcp-math', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumMath', pair: 'mcp/math', cli: 'npm run quantum:mcp-math', route: '/en/quantum-tools#mcp-math', status: 'sealed-pr', honesty: 'mathOn · theoremsAsConstants · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum math — digit/fold · theorem/const · run-the-math · golden/angle · formula/code', toolId: 'mcp-math', resolve: 'mcp-ui' },
   { id: 'mcp-vortex', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumVortex', pair: 'mcp/vortex', cli: 'npm run quantum:mcp-vortex', route: '/en/quantum-tools#mcp-vortex', status: 'sealed-pr', honesty: 'vortexOn · digitSequence · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum vortex — VORTEX digit · merkaba · trading vortex', toolId: 'mcp-vortex', resolve: 'mcp-ui' },
+  { id: 'mcp-torus', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumTorus', pair: 'mcp/torus', cli: 'npm run quantum:mcp-torus', route: '/en/quantum-tools#mcp-torus', status: 'sealed-pr', honesty: 'torusOn · doubleTorus · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum torus — double-torus · geo/torus · living torus · bothEarths', toolId: 'mcp-torus', resolve: 'mcp-ui' },
   { id: 'mcp-reverse', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumReverse', pair: 'mcp/reverse', cli: 'npm run quantum:mcp-reverse', route: '/en/quantum-tools#mcp-reverse', status: 'sealed-pr', honesty: 'reverseOn · refuseBeyond · demoBoundaryHardware · clay=0 · physicalFtl=0', note: 'MCP quantum reverse face', toolId: 'mcp-reverse', resolve: 'mcp-ui' },
   { id: 'mcp-sign', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumSign', pair: 'mcp/sign', cli: 'npm run quantum:mcp-sign', route: '/en/quantum-tools#mcp-sign', status: 'sealed-pr', honesty: 'signatureOn · crossSig · tamperEvident · certified=false · clay=0 · physicalFtl=0', note: 'MCP quantum sign', toolId: 'mcp-sign', resolve: 'mcp-ui' },
   { id: 'mcp-dirs', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumDirs', pair: 'mcp/dirs', cli: 'npm run quantum:mcp-dirs', route: '/en/quantum-tools#mcp-dirs', status: 'sealed-pr', honesty: 'left · right · forward · reverse · clay=0 · physicalFtl=0', note: 'MCP quantum dirs', toolId: 'mcp-dirs', resolve: 'mcp-ui' },
@@ -5708,6 +5712,122 @@ export function runMcpQuantumVortexExit(_root = '', _argv: readonly string[] = [
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.vortexOn && report.qpuRequired === false ? 0 : 1
+}
+
+/**
+ * MCP quantum torus — double-torus / geo torus · `@ceccec/double-torus` · living torus · bothEarths.
+ * Compose doubleTorusIsCompletelyQuantum · doubleTorusDynamicsGeometryAlignsWithUniverse ·
+ * geodesyDecodedIsDoubleTorusInverted · geo/torus · universe/align.
+ * Facets: torusOn · doubleTorus · qpuRequired=false · physicalFtl=0.
+ * Pairs: mcp/torus · torus/mcp · CLI npm run quantum:mcp-torus
+ * claySolved via theorem · physicalFtl=0 · NOT physical FTL · NOT QPU · NOT Clay.
+ */
+export function mcpQuantumTorus(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumTorus:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const completely = doubleTorusIsCompletelyQuantum(matrix)
+    const align = doubleTorusDynamicsGeometryAlignsWithUniverse(matrix, at)
+    const geodesy = __ns_wind_research.geodesyDecodedIsDoubleTorusInverted(matrix, at)
+    const doubleTorus =
+      completely.completelyQuantum &&
+      completely.computes &&
+      align.aligns &&
+      align.computes &&
+      geodesy.computes &&
+      align.dynamics.flow &&
+      align.dynamics.spin &&
+      align.dynamics.linking
+    const composeTorus =
+      doubleTorus &&
+      soft('geo', 'torus') &&
+      soft('universe', 'align') &&
+      soft('geo', 'train')
+    const torusOn = composeTorus
+    const pairM = has('mcp/torus')
+    const pairT = has('torus/mcp')
+    const foldM = foldPair(toUuid('cmd:mcp'), toUuid('cmd:torus'))
+    const foldT = foldPair(toUuid('cmd:torus'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-torus')
+    const metaDual = catalog.tools.find((t) => t.id === 'torus-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const on =
+      torusOn &&
+      doubleTorus &&
+      pairM &&
+      pairT &&
+      foldM.bidirectional &&
+      foldT.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumTorus' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumTorus' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'mcpQuantumTorus', on },
+      { facet: 'torusOn', on: torusOn },
+      { facet: `doubleTorus completely=${completely.completelyQuantum ? 1 : 0} aligns=${align.aligns ? 1 : 0} geo=${geodesy.computes ? 1 : 0}`, on: doubleTorus },
+      { facet: `universe/align flow=${align.dynamics.flow ? 1 : 0} spin=${align.dynamics.spin ? 1 : 0} linking=${align.dynamics.linking ? 1 : 0}`, on: align.aligns },
+      { facet: 'geo/torus · geodesyDecodedIsDoubleTorusInverted', on: geodesy.computes && soft('geo', 'torus') },
+      { facet: 'qpuRequired=false', on: true },
+      { facet: 'compose geo/torus · universe/align · doubleTorusIsCompletelyQuantum · geo/train', on: composeTorus },
+      { facet: 'pair mcp/torus · torus/mcp', on: pairM && pairT && foldM.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-torus:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-torus', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumTorus: on,
+      torusOn,
+      doubleTorus,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        completely.root,
+        align.root,
+        geodesy.root,
+        foldM.merged,
+        foldT.merged,
+      ]),
+      pair: 'mcp/torus' as const,
+      pairs: ['mcp/torus', 'torus/mcp'] as const,
+      cli: 'npm run quantum:mcp-torus',
+      route: '/en/quantum-tools#mcp-torus',
+      statement:
+        `mcpQuantumTorus — torusOn=${torusOn ? 1 : 0} doubleTorus=${doubleTorus ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP quantum torus — double-torus · geo/torus · living torus · bothEarths · @ceccec/double-torus. ' +
+        'NOT QPU · clay via theorem · physicalFtl=0 · NOT Clay · NOT Earth-is-genus-2.',
+      honestyLine:
+        `torus · torusOn=${torusOn ? 1 : 0} · doubleTorus=${doubleTorus ? 1 : 0} · ` +
+        `qpuRequired=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumTorusExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumTorus()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-torus — torusOn=${report.torusOn} ` +
+      `doubleTorus=${report.doubleTorus} qpuRequired=${report.qpuRequired} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.torusOn && report.qpuRequired === false ? 0 : 1
 }
 
 /**
