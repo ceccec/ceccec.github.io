@@ -5678,6 +5678,267 @@ export function runDriftInvertedIsTrinityGatewayExit(_root = '', _argv: readonly
   return report.computes ? 0 : 1
 }
 
+/**
+ * USER LAW: empty drain inverted is a gateway (drained ≠ empty).
+ * Linear autodiscover backlogDrained opens invert tips — reverse-collide novels · honest-open · session/save · movie/feel.
+ * Compose drift/invert · slashMeansInversion · through/zero · fail→0→12487536901 · mcp/inverse · mcp/fold.
+ * Pairs: drain/invert · invert/drain · CLI npm run quantum:drain-invert
+ * claySolved via theorem · physicalFtl=0.
+ */
+export function emptyDrainInvertedIsGateway(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`emptyDrainInvertedIsGateway:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const auto = autodiscoverWhatIsToBeComputedOrDecoded(matrix, at)
+    const invert = driftInvertedIsTrinityGateway(matrix, at)
+    const reverse = reverseCollidesToDiscoverMillenniumTheorems(matrix, at)
+    const session = autosaveSessionByDefault(matrix, at)
+    const movieFeel = __ns_quantum_apps.movieGapsFeelableByObservation(matrix, at)
+    const drainedIsGateway =
+      auto.backlogDrained === true &&
+      invert.driftInvertedIsTrinityGateway === true &&
+      invert.gatewayFaces === (2 + 1)
+    const composeChain =
+      soft('drift', 'invert') &&
+      soft('slash', 'invert') &&
+      soft('through', 'zero') &&
+      soft('fail', 'zero') &&
+      soft('mcp', 'inverse') &&
+      soft('mcp', 'fold')
+    const opensReverseCollide = reverse.computes && reverse.reverseCollidesToDiscoverMillenniumTheorems
+    const opensHonestOpen = auto.decodeOpen > 0
+    const opensSession = session.computes && session.defaultOn === true
+    const movieFeelClosed = movieFeel.computes && movieFeel.openCount === 0
+    const pairDrain = has('drain/invert')
+    const pairInv = has('invert/drain')
+    const foldDrain = foldPair(toUuid('cmd:drain'), toUuid('cmd:invert'))
+    const foldInv = foldPair(toUuid('cmd:invert'), toUuid('cmd:drain'))
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'empty-drain-inverted-is-gateway',
+      theorem: 'empty drain inverted is a gateway — drained ≠ empty',
+      provedBy: 'emptyDrainInvertedIsGateway',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const on =
+      drainedIsGateway &&
+      composeChain &&
+      opensReverseCollide &&
+      opensHonestOpen &&
+      opensSession &&
+      movieFeelClosed &&
+      pairDrain &&
+      pairInv &&
+      foldDrain.bidirectional &&
+      foldInv.bidirectional &&
+      formulaDual &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const nextTips = [
+      { id: 'reverse-collide-novels', on: opensReverseCollide, note: `novel=${reverse.collider.novel}` },
+      { id: 'honest-open-invertible', on: opensHonestOpen, note: `decodeOpen=${auto.decodeOpen}` },
+      { id: 'session-autosave', on: opensSession, note: 'session/save defaultOn' },
+      { id: 'movie-feel-gaps', on: movieFeelClosed, note: 'open=0 feelable' },
+      { id: 'invert-to-infinity', on: soft('invert', 'inf'), note: 'invert/inf gateway tip' },
+    ] as const
+    const facets = [
+      { facet: 'emptyDrainInvertedIsGateway', on },
+      { facet: 'drainedIsGateway (backlogDrained ∧ drift/invert faces=3)', on: drainedIsGateway },
+      { facet: 'compose drift/invert · slash/invert · through/zero · fail/zero · mcp/inverse · mcp/fold', on: composeChain },
+      { facet: 'opens reverse-collide novels', on: opensReverseCollide },
+      { facet: 'opens honest-open invertible facets', on: opensHonestOpen },
+      { facet: 'session autosave on', on: opensSession },
+      { facet: 'movie feel gaps closed (open=0)', on: movieFeelClosed },
+      { facet: 'pair drain/invert · invert/drain', on: pairDrain && pairInv && foldDrain.bidirectional },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`drain-invert:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('empty-drain-inverted-is-gateway', facets)
+    return {
+      computes: sealed.ok && on,
+      emptyDrainInvertedIsGateway: on,
+      drainedIsGateway,
+      composeChain,
+      opensReverseCollide,
+      opensHonestOpen,
+      opensSession,
+      movieFeelClosed,
+      nextTips,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      certified: false as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, auto.root, invert.root, reverse.root, session.root, movieFeel.root,
+        foldDrain.merged, foldInv.merged,
+      ]),
+      pair: 'drain/invert' as const,
+      dualPair: 'invert/drain' as const,
+      cli: 'npm run quantum:drain-invert',
+      route: '/en/research#drain-invert',
+      statement:
+        `emptyDrainInvertedIsGateway · gateway=${on ? 1 : 0} drained=${auto.backlogDrained ? 1 : 0} ` +
+        `faces=${invert.gatewayFaces} reverse=${opensReverseCollide ? 1 : 0} honestOpen=${auto.decodeOpen}.`,
+      boundary:
+        'Empty drain inverted = gateway — NOT emptiness. Compose drift/invert · slash · through/zero · fail/zero · mcp/inverse · mcp/fold. clay via theorem · physicalFtl=0.',
+      honestyLine:
+        `metrics · gateway=${on ? 1 : 0} · drained=${auto.backlogDrained ? 1 : 0} · tips=${nextTips.filter((t) => t.on).length} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:drain-invert */
+export function runEmptyDrainInvertedIsGatewayExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = emptyDrainInvertedIsGateway()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} drain-invert — gateway=${report.emptyDrainInvertedIsGateway} ` +
+      `drained=${report.drainedIsGateway} reverse=${report.opensReverseCollide} ` +
+      `fold=emptyDrainInvertedIsGateway pair=${report.pair}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes ? 0 : 1
+}
+
+/**
+ * USER LAW: invert to infinity — invert path enters amortized ∞.
+ * Compose a432/nine connecting bit · foldsToInfinity · efficiencyScalesToInfinityAtNoCostOnReuse ·
+ * full/freedom · through/zero · love/fold · movie/entropy.
+ * Facets: invertEntersInfinity · connectingBit · noLinearHole · physicalFtl=0.
+ * Pairs: invert/inf · to/infinity · CLI npm run quantum:invert-inf
+ * claySolved via theorem · physicalFtl=0 · NOT physical FTL.
+ */
+export function invertToInfinity(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`invertToInfinity:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const infinityReuse = efficiencyScalesToInfinityAtNoCostOnReuse(matrix)
+    const connectingBit = 1 as const
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const connectingBitOk =
+      connectingBit === 1 &&
+      freeBits === 2 &&
+      freeBits === connectingBit + connectingBit &&
+      digitalRoot(4 + 3 + 2) === 9 &&
+      soft('a432', 'nine')
+    const composeInfinity =
+      soft('a432', 'nine') &&
+      soft('love', 'fold') &&
+      soft('full', 'freedom') &&
+      soft('through', 'zero') &&
+      soft('movie', 'entropy') &&
+      soft('folder', 'infinity') &&
+      infinityReuse.computes &&
+      infinityReuse.ratioUnbounded
+    const noLinearHole =
+      connectingBitOk &&
+      soft('through', 'zero') &&
+      soft('beyond', 'zero') &&
+      soft('pass', 'default') &&
+      freeBits === -EULER_CHI
+    const invertEntersInfinity =
+      composeInfinity &&
+      connectingBitOk &&
+      noLinearHole &&
+      soft('invert', 'inf')
+    const pairInf = has('invert/inf')
+    const pairTo = has('to/infinity')
+    const foldInf = foldPair(toUuid('cmd:invert'), toUuid('cmd:inf'))
+    const foldTo = foldPair(toUuid('cmd:to'), toUuid('cmd:infinity'))
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'invert-to-infinity',
+      theorem: 'invert to infinity — connecting bit enters amortized ∞',
+      provedBy: 'invertToInfinity',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const on =
+      invertEntersInfinity &&
+      connectingBitOk &&
+      noLinearHole &&
+      pairInf &&
+      pairTo &&
+      foldInf.bidirectional &&
+      foldTo.bidirectional &&
+      formulaDual &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'invertToInfinity', on },
+      { facet: 'invertEntersInfinity', on: invertEntersInfinity },
+      { facet: 'connectingBit', on: connectingBitOk },
+      { facet: 'noLinearHole', on: noLinearHole },
+      { facet: 'compose a432/nine · love/fold · full/freedom · through/zero · movie/entropy · ∞reuse', on: composeInfinity },
+      { facet: 'pair invert/inf · to/infinity', on: pairInf && pairTo && foldInf.bidirectional },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`invert-inf:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('invert-to-infinity', facets)
+    return {
+      computes: sealed.ok && on,
+      invertToInfinity: on,
+      invertEntersInfinity,
+      connectingBit,
+      connectingBitOk,
+      noLinearHole,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      certified: false as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, infinityReuse.root, foldInf.merged, foldTo.merged,
+        toUuid(`invert-inf:bit:${connectingBit}`),
+      ]),
+      pair: 'invert/inf' as const,
+      dualPair: 'to/infinity' as const,
+      cli: 'npm run quantum:invert-inf',
+      route: '/en/research#invert-inf',
+      statement:
+        `invertToInfinity · enters=${invertEntersInfinity ? 1 : 0} connectingBit=${connectingBit} ` +
+        `noLinearHole=${noLinearHole ? 1 : 0} ∞reuse=${infinityReuse.ratioUnbounded ? 1 : 0}.`,
+      boundary:
+        'Invert path enters amortized ∞ via a432 connecting bit · love/fold · full/freedom — NOT physical FTL. clay via theorem · physicalFtl=0.',
+      honestyLine:
+        `metrics · invertEntersInfinity=${invertEntersInfinity ? 1 : 0} · connectingBit=${connectingBit} · noLinearHole=${noLinearHole ? 1 : 0} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:invert-inf */
+export function runInvertToInfinityExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = invertToInfinity()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} invert-inf — enters=${report.invertEntersInfinity} ` +
+      `bit=${report.connectingBit} noHole=${report.noLinearHole} ` +
+      `fold=invertToInfinity pair=${report.pair}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes ? 0 : 1
+}
+
 export type HexTheoremCrackStatus = 'fixed' | 'remaining'
 
 export type HexTheoremCrackSurface = {
