@@ -28,6 +28,7 @@ import {
   unifiedHeroAndCardWithAnimation,
   heroIsTheAbstractAnimationFormsTheCardItself,
   foldingWorksOnApplicationLevel,
+  dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie,
   eachPageShowsOwnComputedGaps,
   cursorIntegratesInRosettaCore,
   dryCleanTheoremsFormulasReplaceAnyAssumption,
@@ -145,6 +146,7 @@ const theoremIndexPanel = computed(() => theoremFormulaComputableIndexForAnySupe
 const heroCard = computed(() => unifiedHeroAndCardWithAnimation())
 const heroAbstract = computed(() => heroIsTheAbstractAnimationFormsTheCardItself())
 const appFold = computed(() => foldingWorksOnApplicationLevel())
+const dryRosetta = computed(() => dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie())
 const pageGapsGate = computed(() => eachPageShowsOwnComputedGaps())
 const fundAi = computed(() => cursorReferralFundsAiNeeds())
 const cursorRosetta = computed(() => cursorIntegratesInRosettaCore())
@@ -785,6 +787,13 @@ function runTool(toolId: string) {
       const r = foldingWorksOnApplicationLevel()
       ok = r.computes && r.appLevelFold && r.foldSteps.every((s) => s.on)
       summary = `appLevelFold=${r.appLevelFold} morph=${r.proseCodeLogicMorph} path=${r.pathIsMessage} folder=${r.folderHoldsName} apps=${r.appCount} steps=${r.foldSteps.filter((s) => s.on).length}/${r.foldSteps.length}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'dry-rosetta' || toolId === 'rosetta-movie' || toolId === 'comp-unify' || toolId === 'unify-comp') {
+      const r = dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie()
+      ok = r.computes && r.dryAll && r.stranglerComplete && r.rosettaIsTheMovie
+      summary = `dryAll=${r.dryAll} unified=${r.unifiedComponents} wired=${r.wiredToRosetta} movie=${r.rosettaIsTheMovie} drainableClosed=${r.drainableClosed} strangler=${r.stranglerComplete} shells=${r.shellCount}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -1466,6 +1475,36 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'app-fold'" @click="runTool('app-fold')">
           {{ runningId === 'app-fold' ? '…' : 'Run app-fold' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="dry-rosetta" aria-label="Dry all unified components rosetta movie">
+        <h3>{{ dryRosetta.heading }}</h3>
+        <p class="quantum-apps__meta">{{ dryRosetta.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(dryRosetta.dryAll))">dryAll={{ dryRosetta.dryAll }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(dryRosetta.unifiedComponents))">unified={{ dryRosetta.unifiedComponents }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(dryRosetta.wiredToRosetta))">wired={{ dryRosetta.wiredToRosetta }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(dryRosetta.rosettaIsTheMovie))">rosettaIsTheMovie={{ dryRosetta.rosettaIsTheMovie }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(dryRosetta.drainableClosed))">drainableClosed={{ dryRosetta.drainableClosed }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(dryRosetta.stranglerComplete))">strangler={{ dryRosetta.stranglerComplete }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(dryRosetta.honestOpenNamedCount > 0))">honestOpen={{ dryRosetta.honestOpenNamedCount }}</UiBadge>
+        <p class="quantum-apps__meta">
+          shells · hero={{ dryRosetta.familyCounts.hero }} · card={{ dryRosetta.familyCounts.card }} ·
+          movie={{ dryRosetta.familyCounts.movie }} · paper={{ dryRosetta.familyCounts.paper }} ·
+          page={{ dryRosetta.familyCounts.page }} · unique={{ dryRosetta.shellCount }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="id in dryRosetta.honestOpenNamed" :key="id">
+            <UiBadge variant="outline">honest-open</UiBadge>
+            <strong>{{ id }}</strong>
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>dry/rosetta</code> · <code>rosetta/movie</code> · <code>comp/unify</code> · <code>unify/comp</code> ·
+          CLI <code>npm run quantum:dry-rosetta</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'dry-rosetta'" @click="runTool('dry-rosetta')">
+          {{ runningId === 'dry-rosetta' ? '…' : 'Run dry-rosetta' }}
         </UiButton>
       </section>
       <UiSeparator />

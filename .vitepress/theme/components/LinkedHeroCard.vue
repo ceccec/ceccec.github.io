@@ -25,6 +25,8 @@ const displayTitle = computed(() => t(props.title) ?? preview.value.title)
   <a
     :href="href"
     class="linked-hero-card linked-hero-card--forms"
+    data-logic="src/quantum/apps/index.ts#dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie"
+    data-wire="rosetta→movie"
     :style="{ '--card-hue': props.hue ?? preview.hue }"
   >
     <UiCardShell

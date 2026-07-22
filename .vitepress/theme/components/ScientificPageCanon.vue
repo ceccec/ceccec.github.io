@@ -16,6 +16,7 @@ defineProps<{
   <article
     class="scientific-page-canon"
     data-logic="src/quantum/apps/index.ts#meaningIsQuantumComputable"
+    data-wire="rosetta→movie"
     :data-slots="SCIENCE_PAGE_CANON_SLOTS.join(',')"
     :data-fold="meaning.fold"
   >
