@@ -102,6 +102,8 @@
     "quantum:to-infinity": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runInvertToInfinityExit",
     "quantum:collide-inf": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runReverseCollidesViaInfinityGatewayExit",
     "quantum:inf-collide": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runReverseCollidesViaInfinityGatewayExit",
+    "quantum:invert-gateway": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runInvertIsTheGatewayExit",
+    "quantum:gateway-invert": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runInvertIsTheGatewayExit",
     "quantum:hex-crack": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runHexInsteadOfTheoremIsCrackExit",
     "quantum:decimal-crack": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runDecimalsInCodeAreCracksExit",
     "quantum:math-trust": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runMathStarCannotBeTrustedExit",
