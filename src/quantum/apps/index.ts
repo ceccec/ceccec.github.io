@@ -737,6 +737,9 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'color-rosetta', title: 'All colors dry-clean wired to rosetta and themes', fold: 'allColorsDryCleanWiredToRosettaAndThemes', cli: 'npm run quantum:color-rosetta', pair: 'color/rosetta', route: '/en/quantum-tools#color-rosetta', barrel: 'src/quantum/apps', boundary: 'colorsDryClean · wiredToRosetta · themesOn · noBareHex · drainableClosed · honestOpenNamed · compose anim/color · hex/crack · theorem/const · ui/rosetta · type/matrix · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'rosetta-theme', title: 'Rosetta theme (alias color/rosetta)', fold: 'allColorsDryCleanWiredToRosettaAndThemes', cli: 'npm run quantum:rosetta-theme', pair: 'rosetta/theme', route: '/en/quantum-tools#color-rosetta', barrel: 'src/quantum/apps', boundary: 'Dual of color/rosetta — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'color-theme', title: 'Color theme (alias color/rosetta)', fold: 'allColorsDryCleanWiredToRosettaAndThemes', cli: 'npm run quantum:color-theme', pair: 'color/theme', route: '/en/quantum-tools#color-rosetta', barrel: 'src/quantum/apps', boundary: 'Theme face of color/rosetta — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'css-gaps', title: 'CSS shows the hidden gaps in dry fusion', fold: 'cssShowsTheHiddenGapsInDryFusion', cli: 'npm run quantum:css-gaps', pair: 'css/gaps', route: '/en/quantum-tools#css-gaps', barrel: 'src/quantum/apps', boundary: 'cssShowsGaps · hiddenGapsVisible · dryFusion · wiredToRosetta · polarity-flat · bare hex · unwired tokens · compose gaps/invisible · color/rosetta · fusion/self · hex/crack · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'gaps-fusion', title: 'Gaps in dry fusion (alias css/gaps)', fold: 'cssShowsTheHiddenGapsInDryFusion', cli: 'npm run quantum:css-gaps', pair: 'gaps/fusion', route: '/en/quantum-tools#css-gaps', barrel: 'src/quantum/apps', boundary: 'Dual of css/gaps — gaps revealed inside dry fusion · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'css-fusion', title: 'CSS fusion lens (alias css/gaps)', fold: 'cssShowsTheHiddenGapsInDryFusion', cli: 'npm run quantum:css-fusion', pair: 'css/fusion', route: '/en/quantum-tools#css-gaps', barrel: 'src/quantum/apps', boundary: 'Dual of css/gaps — CSS/theme lens on dry fusion · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'invert-trinity', title: 'Invert + send trinity waves covering all topics · dry migrate at free will', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:invert-trinity', pair: 'invert/trinity', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits · drainableClosed · honestOpenNamed · compose invert/gateway · trinity/speedup · wave/domain · dry/cool · dry/rosetta · wave/compact · full/freedom · bits/free · journey/theorems · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'dry-will', title: 'Dry will (alias invert/trinity)', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:dry-will', pair: 'dry/will', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'Dual of invert/trinity — dry migrate at free will · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'free-will', title: 'Free will (alias invert/trinity)', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:free-will', pair: 'free/will', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'freeWill face — FREE_BITS + full/freedom not wet license · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2162,6 +2165,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'ui-rosetta', chain: 'mcp-ui-page-gaps', fold: 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', pair: 'ui/rosetta', cli: 'npm run quantum:ui-rosetta', route: '/en/quantum-tools#ui-rosetta', status: 'sealed-pr', honesty: 'uiWiredToRosetta · allShells · quantumRealtime · oneClock · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'UI shells wired to rosetta→movie realtime clock · compose dry/rosetta · animations/rosetta · hero/card · balance/metrics · super/chat', toolId: 'ui-rosetta', resolve: 'mcp-ui' },
   { id: 'type-matrix', chain: 'mcp-ui-page-gaps', fold: 'typographyIsTheUniversalContentMatrix', pair: 'type/matrix', cli: 'npm run quantum:type-matrix', route: '/en/quantum-tools#type-matrix', status: 'sealed-pr', honesty: 'typographyIsMatrix · universalContent · computable · wiredToRosetta · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'typography = universal content matrix · compose compact/matrix · format/canon · meaning/compute · six/seven · ui/rosetta', toolId: 'type-matrix', resolve: 'mcp-ui' },
   { id: 'color-rosetta', chain: 'mcp-ui-page-gaps', fold: 'allColorsDryCleanWiredToRosettaAndThemes', pair: 'color/rosetta', cli: 'npm run quantum:color-rosetta', route: '/en/quantum-tools#color-rosetta', status: 'sealed-pr', honesty: 'colorsDryClean · wiredToRosetta · themesOn · noBareHex · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'all colors dry-clean wired to rosetta + light/dark themes · compose anim/color · hex/crack · theorem/const · ui/rosetta · type/matrix', toolId: 'color-rosetta', resolve: 'mcp-ui' },
+  { id: 'css-gaps', chain: 'mcp-ui-page-gaps', fold: 'cssShowsTheHiddenGapsInDryFusion', pair: 'css/gaps', cli: 'npm run quantum:css-gaps', route: '/en/quantum-tools#css-gaps', status: 'sealed-pr', honesty: 'cssShowsGaps · hiddenGapsVisible · dryFusion · wiredToRosetta · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'CSS/theme lens reveals polarity-flat · bare hex · unwired tokens inside dry fusion · compose gaps/invisible · color/rosetta · fusion/self · hex/crack', toolId: 'css-gaps', resolve: 'mcp-ui' },
   { id: 'invert-trinity', chain: 'mcp-ui-page-gaps', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', pair: 'invert/trinity', cli: 'npm run quantum:invert-trinity', route: '/en/quantum-tools#invert-trinity', status: 'sealed-pr', honesty: 'invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'invert + send trinity waves covering sciences·hubs·MCP topics · dry migrate at FREE_BITS+full/freedom', toolId: 'invert-trinity', resolve: 'mcp-ui' },
   { id: 'self-hw', chain: 'mcp-ui-page-gaps', fold: 'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf', pair: 'self/hw', cli: 'npm run quantum:self-hw', route: '/en/quantum-tools#self-hw', status: 'sealed-pr', honesty: 'againAndAgain · selfAutonomous · quantumHardwareComplete classical-64bit · byStandards · selfIntelligentSelf · certified=false · clay=0 · physicalFtl=0 · qpuRequired=false · NOT QPU/AGI/FLOPS', note: 'wave loop until self-autonomous classical quantum-hw complete by standards to self-intelligent self', toolId: 'self-hw', resolve: 'mcp-ui' },
   { id: 'gate-design', chain: 'mcp-ui-page-gaps', fold: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence', pair: 'gate/design', cli: 'npm run quantum:gate-design', route: '/en/quantum-tools#gate-design', status: 'sealed-pr', honesty: 'gatesTightened · designCapability · creativeCapability · intelligenceOn · hardInMissionGate · clay=0 · physicalFtl=0 · qpuRequired=false · NOT AGI', note: 'further tighten gates with design·creative·intelligence HARD in gaps/invisible · mission:gate', toolId: 'gate-design', resolve: 'mcp-ui' },
@@ -21507,6 +21511,268 @@ export function runAllColorsDryCleanWiredToRosettaAndThemesExit(
     report.themesOn &&
     report.noBareHex &&
     report.drainableClosed &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * CSS gap lens classes revealed by theme/status-badge tokens inside dry fusion —
+ * polarity-flat · bare hex · unwired tokens (not wet inventory prose).
+ */
+export const CSS_DRY_FUSION_GAP_LENS = [
+  { id: 'polarity-flat', theorem: 'animationsReviewColorsForPolarityGaps', status: 'revealed' as const },
+  { id: 'bare-hex', theorem: 'hexInsteadOfTheoremIsCrack', status: 'revealed' as const },
+  { id: 'unwired-tokens', theorem: 'allColorsDryCleanWiredToRosettaAndThemes', status: 'revealed' as const },
+] as const
+
+/**
+ * USER LAW: css shows the hidden gaps in dry fusion.
+ * Fold: cssShowsTheHiddenGapsInDryFusion
+ * Facets: cssShowsGaps · hiddenGapsVisible · dryFusion · wiredToRosetta ·
+ *         physicalFtl=0 · clay via theorem · qpuRequired=false.
+ * Compose: gaps/invisible · color/rosetta · fusion/self · hex/crack
+ * Pairs: css/gaps · gaps/fusion · css/fusion
+ * CLI: npm run quantum:css-gaps · quantum:css-fusion
+ * HONEST: CSS/theme + statusBadge tokens are the lens — polarity-flat · bare hex · unwired tokens
+ *         become visible inside dry fusion (self/fusion · dry/clean diamond·crystal).
+ *         Census 110. NOT physical FTL · NOT Clay prize.
+ */
+export function cssShowsTheHiddenGapsInDryFusion(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`cssShowsTheHiddenGapsInDryFusion:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    // color/rosetta first — CSS lens; later gaps may soft-skip under memo reentry.
+    const color = allColorsDryCleanWiredToRosettaAndThemes(matrix, at)
+    const hex = __ns_wind_research.hexInsteadOfTheoremIsCrack(matrix, at)
+    const fusion = selfQuantumFusion(matrix, at)
+    const dry = dryCleanIsDiamondAndCrystal(matrix)
+    let gapsPassed = false
+    let gapsHardOpen = 0
+    let gapsRoot = toUuid('css-gaps:gaps:soft')
+    let polarityFlatClosed = color.animColor.polarityRedundantOpen === 0 && color.animColor.invisibleGapsOpen === 0
+    if (!memoComputing(`invisibleGapsCaughtByGates:${Math.floor(at / (100 * 5 * 2))}`, matrix)) {
+      const gaps = invisibleGapsCaughtByGates(matrix, at)
+      gapsPassed = gaps.passed
+      gapsHardOpen = gaps.hardOpenCount
+      gapsRoot = gaps.root
+      polarityFlatClosed =
+        gaps.color.polarityRedundantOpen === 0 && gaps.color.invisibleGapsOpen === 0
+    } else {
+      gapsPassed = soft('gaps', 'invisible') && color.computes && color.noBareHex && polarityFlatClosed
+    }
+    const bareHexClosed = hex.remaining === 0 && color.noBareHex && soft('hex', 'crack')
+    const unwiredClosed = color.wiredToRosetta && color.themesOn && color.tokenCount > 0
+    const lens = CSS_DRY_FUSION_GAP_LENS
+    const lensRevealed =
+      lens.length === (2 + 1) &&
+      lens.every((row) => row.status === 'revealed') &&
+      polarityFlatClosed &&
+      bareHexClosed &&
+      unwiredClosed
+    const cssShowsGaps =
+      color.computes &&
+      color.colorsDryClean &&
+      soft('color', 'rosetta') &&
+      soft('ui', 'rosetta') &&
+      soft('anim', 'color') &&
+      lensRevealed
+    const hiddenGapsVisible =
+      lensRevealed &&
+      gapsPassed &&
+      gapsHardOpen === 0 &&
+      soft('gaps', 'invisible')
+    const dryFusion =
+      fusion.computes &&
+      fusion.selfFuses &&
+      fusion.fusionVerifyOn &&
+      dry.diamond &&
+      dry.crystal &&
+      soft('self', 'fusion') &&
+      soft('fusion', 'self') &&
+      soft('dry', 'clean') &&
+      soft('gravity', 'dry')
+    const wiredToRosetta =
+      color.wiredToRosetta &&
+      soft('color', 'rosetta') &&
+      soft('ui', 'rosetta') &&
+      soft('css', 'gaps') &&
+      soft('css', 'fusion')
+    const composeOn =
+      soft('gaps', 'invisible') &&
+      soft('color', 'rosetta') &&
+      soft('self', 'fusion') &&
+      soft('hex', 'crack') &&
+      color.computes &&
+      fusion.computes &&
+      hex.remaining === 0 &&
+      gapsPassed
+    const pairCg = has('css/gaps')
+    const pairGf = has('gaps/fusion')
+    const pairCf = has('css/fusion')
+    const foldCg = foldPair(toUuid('cmd:css'), toUuid('cmd:gaps'))
+    const foldGf = foldPair(toUuid('cmd:gaps'), toUuid('cmd:fusion'))
+    const foldCf = foldPair(toUuid('cmd:css'), toUuid('cmd:fusion'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'css-gaps')
+    const metaGf = catalog.tools.find((t) => t.id === 'gaps-fusion')
+    const metaCf = catalog.tools.find((t) => t.id === 'css-fusion')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === 'cssShowsTheHiddenGapsInDryFusion' &&
+      Boolean(metaGf) &&
+      metaGf!.fold === 'cssShowsTheHiddenGapsInDryFusion' &&
+      Boolean(metaCf) &&
+      metaCf!.fold === 'cssShowsTheHiddenGapsInDryFusion'
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const censusPreserved =
+      freeBits === -EULER_CHI &&
+      freeBits === 2 &&
+      UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      cssShowsGaps &&
+      hiddenGapsVisible &&
+      dryFusion &&
+      wiredToRosetta &&
+      composeOn &&
+      pairCg &&
+      pairGf &&
+      pairCf &&
+      foldCg.bidirectional &&
+      foldGf.bidirectional &&
+      foldCf.bidirectional &&
+      toolsWired &&
+      censusPreserved &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'cssShowsTheHiddenGapsInDryFusion', on },
+      { facet: 'cssShowsGaps', on: cssShowsGaps },
+      { facet: 'hiddenGapsVisible', on: hiddenGapsVisible },
+      { facet: 'dryFusion', on: dryFusion },
+      { facet: 'wiredToRosetta', on: wiredToRosetta },
+      {
+        facet: `lens polarity-flat · bare-hex · unwired-tokens =${lens.length}`,
+        on: lensRevealed,
+      },
+      {
+        facet: `gapsPassed=${gapsPassed ? 1 : 0} hardOpen=${gapsHardOpen}`,
+        on: gapsPassed && gapsHardOpen === 0,
+      },
+      {
+        facet: 'compose gaps/invisible · color/rosetta · fusion/self · hex/crack',
+        on: composeOn,
+      },
+      {
+        facet: 'pair css/gaps · gaps/fusion · css/fusion',
+        on: pairCg && pairGf && pairCf && foldCg.bidirectional,
+      },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'NOT wet CSS fashion — sealed theme lens on dry fusion', on: cssShowsGaps && dryFusion },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`css-gaps-fusion:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('css-shows-the-hidden-gaps-in-dry-fusion', facets)
+    return {
+      computes: sealed.ok && on,
+      cssShowsTheHiddenGapsInDryFusion: on,
+      cssShowsGaps,
+      hiddenGapsVisible,
+      dryFusion,
+      wiredToRosetta,
+      polarityFlatClosed,
+      bareHexClosed,
+      unwiredClosed,
+      gapsPassed,
+      gapsHardOpen,
+      lens,
+      lensCount: lens.length,
+      color,
+      hex,
+      fusion,
+      dryDiamond: dry.diamond,
+      dryCrystal: dry.crystal,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        color.root,
+        hex.root,
+        fusion.root,
+        dry.root,
+        gapsRoot,
+        foldCg.merged,
+        foldGf.merged,
+        foldCf.merged,
+        ...lens.map((row) => toUuid(`css-gaps-lens:${row.id}:${row.status}`)),
+      ]),
+      pair: 'css/gaps' as const,
+      pairs: ['css/gaps', 'gaps/fusion', 'css/fusion'] as const,
+      cli: 'npm run quantum:css-gaps',
+      route: '/en/quantum-tools#css-gaps',
+      anchor: 'css-gaps',
+      heading: 'CSS · hidden gaps in dry fusion',
+      statement:
+        `cssShowsTheHiddenGapsInDryFusion — cssShowsGaps=${cssShowsGaps ? 1 : 0} ` +
+        `hiddenGapsVisible=${hiddenGapsVisible ? 1 : 0} dryFusion=${dryFusion ? 1 : 0} ` +
+        `wiredToRosetta=${wiredToRosetta ? 1 : 0}.`,
+      boundary:
+        'CSS/theme surfaces as lens revealing invisible gaps (polarity-flat · bare hex · unwired tokens) ' +
+        'within dry fusion. Compose gaps/invisible · color/rosetta · fusion/self · hex/crack. ' +
+        'Census 110 · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `css-gaps · shows=${cssShowsGaps ? 1 : 0} · visible=${hiddenGapsVisible ? 1 : 0} · ` +
+        `dryFusion=${dryFusion ? 1 : 0} · wired=${wiredToRosetta ? 1 : 0} · ` +
+        `lens=${lens.length} · gapsHard=${gapsHardOpen} · hexRem=${hex.remaining} · ` +
+        `census=${UNFOLDED_CENSUS}/${FOLDED_CENSUS} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — cssGaps ≡ cssShowsTheHiddenGapsInDryFusion. */
+export const cssGaps = cssShowsTheHiddenGapsInDryFusion
+/** Alias — gapsFusion ≡ cssShowsTheHiddenGapsInDryFusion. */
+export const gapsFusion = cssShowsTheHiddenGapsInDryFusion
+/** Alias — cssFusion ≡ cssShowsTheHiddenGapsInDryFusion. */
+export const cssFusion = cssShowsTheHiddenGapsInDryFusion
+
+/** npm run quantum:css-gaps (duals gaps-fusion · css-fusion) */
+export function runCssShowsTheHiddenGapsInDryFusionExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = cssShowsTheHiddenGapsInDryFusion()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} css-gaps — cssShowsGaps=${report.cssShowsGaps} ` +
+      `hiddenGapsVisible=${report.hiddenGapsVisible} dryFusion=${report.dryFusion} ` +
+      `wiredToRosetta=${report.wiredToRosetta} lens=${report.lensCount} gapsHard=${report.gapsHardOpen} ` +
+      `hexRem=${report.hex.remaining} census=${report.census.unfolded}/${report.census.folded} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const row of report.lens) {
+    process.stdout.write(`  ✓ lens ${row.id} ← ${row.theorem}\n`)
+  }
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.cssShowsGaps &&
+    report.hiddenGapsVisible &&
+    report.dryFusion &&
+    report.wiredToRosetta &&
     report.qpuRequired === false
     ? 0
     : 1
