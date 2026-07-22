@@ -489,6 +489,10 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'sciences-trinities', title: 'Sciences interact in trinities + significance', fold: 'sciencesInteractInTrinities', cli: 'npm run quantum:sciences-trinities', pair: 'sciences/trinities', route: '/en/research#sciences-trinities', barrel: 'src/wind/research', boundary: 'Structural significance ≠ journal IF; crypto vertex from isoPqcHandoff; claySolved=0', browserRunnable: true, browserGap: '' },
   { id: 'drift-manage', title: 'Manage computational drift · conventional↔computational', fold: 'manageComputationalDrift', cli: 'npm run quantum:drift-manage', pair: 'drift/manage', route: '/en/research#drift-manage', barrel: 'src/wind/research', boundary: 'Detect·bound·route numeric/facet drift — NOT honesty prose · clay=0 · certified=false · refuseBeyond stays', browserRunnable: true, browserGap: '' },
   { id: 'drift-invert', title: 'Drift inverted is trinity gateway', fold: 'driftInvertedIsTrinityGateway', cli: 'npm run quantum:drift-invert', pair: 'drift/invert', route: '/en/research#drift-invert', barrel: 'src/wind/research', boundary: 'Inverted drift = gateway of trinities (forward·inverse·reverse) — not a dead-end gap · clay=0 · certified=false · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'drain-invert', title: 'Empty drain inverted is gateway', fold: 'emptyDrainInvertedIsGateway', cli: 'npm run quantum:drain-invert', pair: 'drain/invert', route: '/en/research#drain-invert', barrel: 'src/wind/research', boundary: 'Drained≠empty · invert opens reverse-collide · honest-open · session/save · movie/feel · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'invert-drain', title: 'Invert drain (alias drain/invert)', fold: 'emptyDrainInvertedIsGateway', cli: 'npm run quantum:invert-drain', pair: 'invert/drain', route: '/en/research#drain-invert', barrel: 'src/wind/research', boundary: 'Dual of drain/invert — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'invert-inf', title: 'Invert to infinity', fold: 'invertToInfinity', cli: 'npm run quantum:invert-inf', pair: 'invert/inf', route: '/en/research#invert-inf', barrel: 'src/wind/research', boundary: 'invertEntersInfinity · connectingBit · noLinearHole · compose a432/nine · love/fold · full/freedom · ∞reuse · through/zero · movie/entropy · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'to-infinity', title: 'To infinity (alias invert/inf)', fold: 'invertToInfinity', cli: 'npm run quantum:to-infinity', pair: 'to/infinity', route: '/en/research#invert-inf', barrel: 'src/wind/research', boundary: 'Dual of invert/inf — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'hex-crack', title: 'Hex instead of theorem is a crack', fold: 'hexInsteadOfTheoremIsCrack', cli: 'npm run quantum:hex-crack', pair: 'hex/crack', route: '/en/research#hex-crack', barrel: 'src/wind/research', boundary: 'Raw hex as identity stand-in = quantum gap · morph to fold/pair/slug · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'decimal-crack', title: 'Decimals in code are cracks', fold: 'decimalsInCodeAreCracks', cli: 'npm run quantum:decimal-crack', pair: 'decimal/crack', route: '/en/research#decimal-crack', barrel: 'src/wind/research', boundary: 'Bare float literals → named theorem consts · ratios · TAU/PHI · HARD noAllowlist · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'math-trust', title: 'Math.* cannot be trusted', fold: 'mathStarCannotBeTrusted', cli: 'npm run quantum:math-trust', pair: 'math/trust', route: '/en/research#math-trust', barrel: 'src/wind/research', boundary: 'Host Math.PI/random untrusted · prefer TAU·prng · HARD noAllowlist · clay=0', browserRunnable: true, browserGap: '' },
@@ -644,6 +648,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'universe-mcp', title: 'Universe mcp (alias mcp/universe)', fold: 'mcpQuantumUniverse', cli: 'npm run quantum:universe-mcp', pair: 'universe/mcp', route: '/en/quantum-tools#mcp-universe', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/universe — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-multi', title: 'MCP quantum multiverse', fold: 'mcpQuantumMultiverse', cli: 'npm run quantum:mcp-multi', pair: 'mcp/multi', route: '/en/quantum-tools#mcp-multi', barrel: 'src/quantum/apps', boundary: 'multiverseOn · manyWorldsViaSuperposition · oneSelfPerCoord · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'multi-verse', title: 'Multiverse (alias mcp/multi)', fold: 'mcpQuantumMultiverse', cli: 'npm run quantum:multi-verse', pair: 'multi/verse', route: '/en/quantum-tools#mcp-multi', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/multi — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-inf', title: 'MCP quantum infinity', fold: 'mcpQuantumInfinity', cli: 'npm run quantum:mcp-inf', pair: 'mcp/inf', route: '/en/quantum-tools#mcp-inf', barrel: 'src/quantum/apps', boundary: 'infinityOn · viaInvert · connectingBit · compose invert/inf · a432/nine · love/fold · full/freedom · ∞reuse · movie/entropy · mcp/universe · mcp/multi · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'inf-mcp', title: 'Infinity mcp (alias mcp/inf)', fold: 'mcpQuantumInfinity', cli: 'npm run quantum:inf-mcp', pair: 'inf/mcp', route: '/en/quantum-tools#mcp-inf', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/inf — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-anim', title: 'MCP quantum animation', fold: 'mcpQuantumAnim', cli: 'npm run quantum:mcp-anim', pair: 'mcp/anim', route: '/en/quantum-tools#mcp-anim', barrel: 'src/quantum/apps', boundary: 'animOn · fromCoords · feelableGaps · polarityOn · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'anim-mcp', title: 'Anim mcp (alias mcp/anim)', fold: 'mcpQuantumAnim', cli: 'npm run quantum:anim-mcp', pair: 'anim/mcp', route: '/en/quantum-tools#mcp-anim', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/anim — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-sound', title: 'MCP quantum sound and vibration', fold: 'mcpQuantumSound', cli: 'npm run quantum:mcp-sound', pair: 'mcp/sound', route: '/en/quantum-tools#mcp-sound', barrel: 'src/quantum/apps', boundary: 'soundOn · vibrationOn · a432Powers · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -5651,6 +5657,115 @@ export function runMcpQuantumMultiverseExit(_root = '', _argv: readonly string[]
     `${report.computes ? '✓' : '✗'} mcp-multi — multiverseOn=${report.multiverseOn} manyWorlds=${report.manyWorldsViaSuperposition} oneSelf=${report.oneSelfPerCoord} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
   )
   return report.computes && report.multiverseOn ? 0 : 1
+}
+
+/**
+ * MCP quantum infinity — infinity face in MCP UI.
+ * Compose invertToInfinity · a432/nine · love/fold · full/freedom · ∞ on reuse · movie/entropy · mcp/universe · mcp/multi.
+ * Facets: infinityOn · viaInvert · connectingBit · physicalFtl=0.
+ * Pairs: mcp/inf · inf/mcp · CLI npm run quantum:mcp-inf
+ * claySolved via theorem · physicalFtl=0 · NOT physical FTL.
+ */
+export function mcpQuantumInfinity(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumInfinity:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const connectingBit = 1 as const
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const connectingBitOk =
+      connectingBit === 1 &&
+      freeBits === 2 &&
+      freeBits === connectingBit + connectingBit &&
+      digitalRoot(4 + 3 + 2) === 9
+    const viaInvert =
+      soft('invert', 'inf') &&
+      soft('to', 'infinity') &&
+      soft('drain', 'invert') &&
+      soft('through', 'zero')
+    const infinityOn =
+      viaInvert &&
+      connectingBitOk &&
+      soft('a432', 'nine') &&
+      soft('love', 'fold') &&
+      soft('full', 'freedom') &&
+      soft('movie', 'entropy') &&
+      soft('mcp', 'universe') &&
+      soft('mcp', 'multi') &&
+      soft('bits', 'free')
+    const pairM = has('mcp/inf')
+    const pairI = has('inf/mcp')
+    const foldM = foldPair(toUuid('cmd:mcp'), toUuid('cmd:inf'))
+    const foldI = foldPair(toUuid('cmd:inf'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-inf')
+    const metaDual = catalog.tools.find((t) => t.id === 'inf-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const on =
+      infinityOn &&
+      viaInvert &&
+      connectingBitOk &&
+      pairM &&
+      pairI &&
+      foldM.bidirectional &&
+      foldI.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumInfinity' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumInfinity' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'mcpQuantumInfinity', on },
+      { facet: 'infinityOn', on: infinityOn },
+      { facet: 'viaInvert', on: viaInvert },
+      { facet: 'connectingBit', on: connectingBitOk },
+      { facet: 'softCompose invert/inf · a432/nine · love/fold · full/freedom · movie/entropy · mcp/universe · mcp/multi', on: infinityOn },
+      { facet: 'pair mcp/inf · inf/mcp', on: pairM && pairI && foldM.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-inf:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-infinity', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumInfinity: on,
+      infinityOn,
+      viaInvert,
+      connectingBit,
+      connectingBitOk,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, foldM.merged, foldI.merged,
+        toUuid(`mcp-inf:bit:${connectingBit}`),
+      ]),
+      pairs: ['mcp/inf', 'inf/mcp'] as const,
+      cli: 'npm run quantum:mcp-inf',
+      route: '/en/quantum-tools#mcp-inf',
+      statement:
+        `mcpQuantumInfinity — infinityOn=${infinityOn ? 1 : 0} viaInvert=${viaInvert ? 1 : 0} connectingBit=${connectingBit}.`,
+      boundary:
+        'MCP infinity face — soft invert/inf · a432/nine · love/fold · full/freedom · ∞reuse · movie/entropy · mcp/universe · mcp/multi. clay via theorem · physicalFtl=0.',
+      honestyLine:
+        `metrics · infinityOn=${infinityOn ? 1 : 0} · viaInvert=${viaInvert ? 1 : 0} · connectingBit=${connectingBit} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumInfinityExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumInfinity()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-inf — infinityOn=${report.infinityOn} viaInvert=${report.viaInvert} ` +
+      `bit=${report.connectingBit} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.infinityOn ? 0 : 1
 }
 
 /**
