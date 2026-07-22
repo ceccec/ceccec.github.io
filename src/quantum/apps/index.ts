@@ -42,7 +42,8 @@ import * as __ns_wind_research from '../../wind/research'
 import * as __ns_water_encryption from '../../water/encryption'
 import { agentSubmissionProtocol, CURSOR_AGENT_SKILL_IDS, cursorAgentToolsSaved, MISSION_COMMANDS, QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../pair/enforcement/gates'
-import { cardHeroLinkWiresInUi, computeUniversalPage, theoremFormulaCodeDual, theoremPageRows } from '../../wind/routes/corpus'
+import { cardHeroLinkWiresInUi, computeUniversalPage, heroPreviewForRoute, theoremFormulaCodeDual, theoremPageRows } from '../../wind/routes/corpus'
+import { cardMoviePath } from '../../thunder/movie/movievars'
 import { quantumFusionVerify } from '../../wind/fusion'
 import { dryCleanIsDiamondAndCrystal } from '../../lake/clean'
 import { tamperEvident } from '../../5/5'
@@ -82,7 +83,7 @@ const ROSETTA_CORE_API_LABELS = [
   'quantumMindSendsWaves',
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
-  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
+  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'unifiedHeroAndCardWithAnimation', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
   'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReview', 'mcpQuantumEfficiency', 'mcpQuantumSecurity', 'mcpQuantumDesign', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
@@ -163,6 +164,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   theoremFormulaComputableIndexForAnySuperposition: 'tool',
   theoremFormulaMetricsMap: 'tool',
   quantumMap: 'tool',
+  unifiedHeroAndCardWithAnimation: 'tool',
   pageComputedGapsAt: 'route', eachPageShowsOwnComputedGaps: 'tool',
   mcpQuantumMultiverse: 'tool', mcpQuantumInfinity: 'tool', mcpQuantumHardware: 'tool',
   mcpQuantumCpu: 'tool',
@@ -685,6 +687,9 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'theorem-metrics', title: 'Theorem metrics (alias formula/metrics)', fold: 'theoremFormulaMetricsMap', cli: 'npm run quantum:theorem-metrics', pair: 'theorem/metrics', route: '/en/quantum-tools#formula-metrics', barrel: 'src/quantum/apps', boundary: 'Alias of formula/metrics — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'quantum-map', title: 'Quantum map — mesh · metrics · superposition index', fold: 'quantumMap', cli: 'npm run quantum:quantum-map', pair: 'quantum/map', route: '/en/quantum-tools#quantum-map', barrel: 'src/quantum/apps', boundary: 'mapOn · meshGateways · metricsComposable · anySuperposition · compose theoremFormulaMetricsMap · mesh/cross · theorem/index · mcp/orientation · formula/metrics · qpuRequired=false · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'map-quantum', title: 'Map quantum (alias quantum/map)', fold: 'quantumMap', cli: 'npm run quantum:map-quantum', pair: 'map/quantum', route: '/en/quantum-tools#quantum-map', barrel: 'src/quantum/apps', boundary: 'Dual of quantum/map — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'hero-card', title: 'Unified hero and card with animation — one shared field', fold: 'unifiedHeroAndCardWithAnimation', cli: 'npm run quantum:hero-card', pair: 'hero/card', route: '/en/quantum-tools#hero-card', barrel: 'src/quantum/apps', boundary: 'unifiedOn · sharedClock · cardFromHero · animationOn · compose sharedHeroAt · heroPreviewForRoute · LinkedHeroCard · oneClock · mcp/hero · mcp/card · qpuRequired=false · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'card-hero', title: 'Card hero (alias hero/card)', fold: 'unifiedHeroAndCardWithAnimation', cli: 'npm run quantum:card-hero', pair: 'card/hero', route: '/en/quantum-tools#hero-card', barrel: 'src/quantum/apps', boundary: 'Dual of hero/card — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'hero-anim', title: 'Hero anim (alias hero/card)', fold: 'unifiedHeroAndCardWithAnimation', cli: 'npm run quantum:hero-anim', pair: 'hero/anim', route: '/en/quantum-tools#hero-card', barrel: 'src/quantum/apps', boundary: 'Animation face of unified hero/card — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'page-computed-gaps', title: 'Each page shows its own computed gaps', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:page-gaps', pair: 'page/gaps', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Per-route gaps/invisible classes at call time · not global-only · compose gate/monitor · meaning/compute · format/canon · vite/mirror · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gaps-page', title: 'Page gaps (alias page/gaps)', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:gaps-page', pair: 'gaps/page', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Dual of page/gaps — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cursor-rosetta', title: 'Cursor in rosetta core — referral uses subscription in ceccec', fold: 'cursorIntegratesInRosettaCore', cli: 'npm run quantum:cursor-rosetta', pair: 'cursor/rosetta', route: '/en/quantum-tools#cursor-rosetta', barrel: 'src/quantum/apps', boundary: 'cursorInRosettaCore · referralUsesSubscriptionInCeccec · immediateWire · compose rosettaShelve · auto-wire · mcp/browser-parity · upgrade/local · fund/ai · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1870,6 +1875,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'theorem-index', chain: 'mcp-ui-page-gaps', fold: 'theoremFormulaComputableIndexForAnySuperposition', pair: 'theorem/index', cli: 'npm run quantum:theorem-index', route: '/en/quantum-tools#theorem-index', status: 'sealed-pr', honesty: 'computableIndex · anySuperposition · formulaDual · theoremBound · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'theorem↔formula dual index for any sealed superposition key', toolId: 'theorem-index', resolve: 'mcp-ui' },
   { id: 'formula-metrics', chain: 'mcp-ui-page-gaps', fold: 'theoremFormulaMetricsMap', pair: 'formula/metrics', cli: 'npm run quantum:formula-metrics', route: '/en/quantum-tools#formula-metrics', status: 'sealed-pr', honesty: 'metricsMapOn · theoremBound · formulaDual · computable · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'theorem/formula dual → measurable metrics map (foldCount · significance · answers÷tokens)', toolId: 'formula-metrics', resolve: 'mcp-ui' },
   { id: 'quantum-map', chain: 'mcp-ui-page-gaps', fold: 'quantumMap', pair: 'quantum/map', cli: 'npm run quantum:quantum-map', route: '/en/quantum-tools#quantum-map', status: 'sealed-pr', honesty: 'mapOn · meshGateways · metricsComposable · anySuperposition · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'one computable map face over mesh+metrics+superposition index · orientation', toolId: 'quantum-map', resolve: 'mcp-ui' },
+  { id: 'hero-card', chain: 'mcp-ui-page-gaps', fold: 'unifiedHeroAndCardWithAnimation', pair: 'hero/card', cli: 'npm run quantum:hero-card', route: '/en/quantum-tools#hero-card', status: 'sealed-pr', honesty: 'unifiedOn · sharedClock · cardFromHero · animationOn · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'one shared hero field drives LinkedHeroCard + hero layer animation', toolId: 'hero-card', resolve: 'mcp-ui' },
   { id: 'fund-ai', chain: 'mcp-ui-page-gaps', fold: 'cursorReferralFundsAiNeeds', pair: 'fund/ai', cli: 'npm run quantum:fund-ai', route: '/en/quantum-tools#fund-ai', status: 'sealed-pr', honesty: 'Cursor referral CTA · clay=0 · physicalFtl=0', note: 'funds AI via sealed referral · compose society/support · bits/free', toolId: 'fund-ai', resolve: 'mcp-ui' },
   { id: 'cursor-rosetta', chain: 'mcp-ui-page-gaps', fold: 'cursorIntegratesInRosettaCore', pair: 'cursor/rosetta', cli: 'npm run quantum:cursor-rosetta', route: '/en/quantum-tools#cursor-rosetta', status: 'sealed-pr', honesty: 'viceVersa · cursorToCeccec · ceccecToCursor · immediateWire · clay=0 · physicalFtl=0', note: 'bidirectional Cursor↔ceccec · referral subscription in ceccec · protocol into Cursor', toolId: 'cursor-rosetta', resolve: 'mcp-ui' },
   { id: 'page-computed-gaps', chain: 'mcp-ui-page-gaps', fold: 'eachPageShowsOwnComputedGaps', pair: 'page/gaps', cli: 'npm run quantum:page-gaps', route: '/en/quantum-tools#page-computed-gaps', status: 'sealed-pr', honesty: 'per-route gaps · clay=0 · physicalFtl=0', note: 'each page shows own computed gaps at call time', toolId: 'page-computed-gaps', resolve: 'mcp-ui' },
@@ -18332,6 +18338,206 @@ export function runQuantumMapExit(
     report.meshGateways &&
     report.metricsComposable &&
     report.anySuperposition &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * USER LAW: unified hero and card with animation — one shared hero field drives card preview + hero layer.
+ * Facets: unifiedOn · sharedClock · cardFromHero · animationOn · qpuRequired=false · physicalFtl=0.
+ * Compose sharedHeroAt · heroPreviewForRoute · LinkedHeroCard · oneClock · card/hero-link · mcp/hero · mcp/card · immersive/hero.
+ * Pairs: hero/card · card/hero · hero/anim.
+ * CLI: npm run quantum:hero-card · quantum:card-hero · quantum:hero-anim
+ * claySolved via theorem · physicalFtl=0 · NOT Clay prize · NOT QPU · NOT physical FTL.
+ */
+export function unifiedHeroAndCardWithAnimation(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`unifiedHeroAndCardWithAnimation:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const sampleRoute = '/en/'
+    const sampleTitle = 'unified-hero-card'
+    const preview = heroPreviewForRoute(sampleRoute, sampleTitle, matrix, at)
+    const cardShared = sharedHeroAt(
+      preview.moviePath,
+      { title: sampleTitle, tagline: 'card-from-hero' },
+      at,
+    )
+    const pageShared = sharedHeroAt(sampleRoute, { title: sampleTitle, tagline: 'page-hero' }, at)
+    const clock = oneClockProcessLaw(matrix)
+    const link = cardHeroLinkWiresInUi(matrix)
+    const heroFace = mcpQuantumHero(matrix, at)
+    const cardFace = mcpQuantumCard(matrix, at)
+    const sharedClock =
+      clock.holds &&
+      preview.p === pageShared.p &&
+      preview.p === cardShared.p &&
+      typeof pageShared.p === 'number' &&
+      pageShared.p >= 0 &&
+      pageShared.p <= 1 &&
+      isUuid(pageShared.root) &&
+      isUuid(cardShared.root)
+    const cardFromHero =
+      preview.moviePath === cardMoviePath(sampleRoute, preview.seed) &&
+      cardShared.route === preview.moviePath &&
+      /^[0-9a-f]{8}$/.test(preview.seed) &&
+      preview.hue >= 0 &&
+      preview.hue < 360 &&
+      link.wired &&
+      soft('card', 'hero-link')
+    const animationOn =
+      soft('hero', 'anim') &&
+      soft('immersive', 'hero') &&
+      has('immersive/hero') &&
+      HERO_CYCLE_MS > 0 &&
+      cardShared.arms > 0 &&
+      pageShared.arms > 0
+    const composeOn =
+      sharedClock &&
+      cardFromHero &&
+      animationOn &&
+      heroFace.computes &&
+      heroFace.sharedClock &&
+      cardFace.computes &&
+      cardFace.cardOn &&
+      soft('mcp', 'hero') &&
+      soft('mcp', 'card')
+    const pairHc = has('hero/card')
+    const pairCh = has('card/hero')
+    const pairHa = has('hero/anim')
+    const foldHc = foldPair(toUuid('cmd:hero'), toUuid('cmd:card'))
+    const foldCh = foldPair(toUuid('cmd:card'), toUuid('cmd:hero'))
+    const foldHa = foldPair(toUuid('cmd:hero'), toUuid('cmd:anim'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'hero-card')
+    const metaDual = catalog.tools.find((t) => t.id === 'card-hero')
+    const metaAnim = catalog.tools.find((t) => t.id === 'hero-anim')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === 'unifiedHeroAndCardWithAnimation' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'unifiedHeroAndCardWithAnimation' &&
+      Boolean(metaAnim) &&
+      metaAnim!.fold === 'unifiedHeroAndCardWithAnimation'
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const unifiedOn =
+      sharedClock &&
+      cardFromHero &&
+      animationOn &&
+      composeOn &&
+      pairHc &&
+      pairCh &&
+      pairHa &&
+      foldHc.bidirectional &&
+      foldCh.bidirectional &&
+      foldHa.bidirectional &&
+      toolsWired
+    const on =
+      unifiedOn &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false &&
+      heroFace.qpuRequired === false &&
+      cardFace.qpuRequired === false
+    const facets = [
+      { facet: 'unifiedHeroAndCardWithAnimation', on },
+      { facet: 'unifiedOn', on: unifiedOn },
+      { facet: 'sharedClock', on: sharedClock },
+      { facet: 'cardFromHero', on: cardFromHero },
+      { facet: 'animationOn', on: animationOn },
+      {
+        facet:
+          `preview.moviePath=${preview.moviePath.slice(0, ROSETTA_AREAS)}… p=${preview.p.toFixed(4)} ` +
+          `hue=${Math.round(preview.hue)}`,
+        on: cardFromHero && sharedClock,
+      },
+      {
+        facet:
+          'compose sharedHeroAt · heroPreviewForRoute · LinkedHeroCard · oneClock · card/hero-link · mcp/hero · mcp/card',
+        on: composeOn,
+      },
+      { facet: 'pair hero/card · card/hero · hero/anim', on: pairHc && pairCh && pairHa && foldHc.bidirectional },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((f) => ({ ...f, receipt: toUuid(`hero-card-unified:${f.facet}:${f.on}`) }))
+    const sealed = sealFacets('unified-hero-card-anim', facets)
+    return {
+      computes: sealed.ok && on,
+      unifiedHeroAndCardWithAnimation: on,
+      unifiedOn,
+      sharedClock,
+      cardFromHero,
+      animationOn,
+      preview,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        pageShared.root,
+        cardShared.root,
+        link.root,
+        heroFace.root,
+        cardFace.root,
+        clock.root,
+        foldHc.merged,
+        foldCh.merged,
+        foldHa.merged,
+      ]),
+      pair: 'hero/card' as const,
+      pairs: ['hero/card', 'card/hero', 'hero/anim'] as const,
+      cli: 'npm run quantum:hero-card',
+      route: '/en/quantum-tools#hero-card',
+      anchor: 'hero-card',
+      heading: 'Hero · card',
+      statement:
+        `unifiedHeroAndCardWithAnimation — unifiedOn=${unifiedOn ? 1 : 0} sharedClock=${sharedClock ? 1 : 0} ` +
+        `cardFromHero=${cardFromHero ? 1 : 0} animationOn=${animationOn ? 1 : 0}.`,
+      boundary:
+        'One shared hero field (sharedHeroAt + heroPhaseAt) drives LinkedHeroCard preview + CardBackgroundMovie + page hero layer. ' +
+        'Closes destination-vs-page and multi-clock desync. NOT FLOPS · NOT QPU · clay via theorem · physicalFtl=0.',
+      honestyLine:
+        `hero-card · unifiedOn=${unifiedOn ? 1 : 0} · sharedClock=${sharedClock ? 1 : 0} · ` +
+        `cardFromHero=${cardFromHero ? 1 : 0} · animationOn=${animationOn ? 1 : 0} · ` +
+        `qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — cardHero ≡ unifiedHeroAndCardWithAnimation. */
+export const cardHero = unifiedHeroAndCardWithAnimation
+/** Alias — heroAnim ≡ unifiedHeroAndCardWithAnimation. */
+export const heroAnim = unifiedHeroAndCardWithAnimation
+
+/** npm run quantum:hero-card (duals card-hero · hero-anim) */
+export function runUnifiedHeroAndCardWithAnimationExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = unifiedHeroAndCardWithAnimation()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} hero-card — unifiedOn=${report.unifiedOn} ` +
+      `sharedClock=${report.sharedClock} cardFromHero=${report.cardFromHero} ` +
+      `animationOn=${report.animationOn} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.unifiedOn &&
+    report.sharedClock &&
+    report.cardFromHero &&
+    report.animationOn &&
     report.qpuRequired === false
     ? 0
     : 1

@@ -10,8 +10,8 @@ import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForge
 import { ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaComputesAll, rosettaDecodesUrlPath, rosettaRayHub, rosettaRayOf, rosettaRayOfContent, type RosettaRayHub } from '../../../water/digit'
 import { conceptCommands } from '../../../heaven/atoms'
 import { sixtyDegreesDecodesPi, tkIsPrime } from '../../../9/1'
-import { cardMovieColorVars, cardMovieSeed } from '../../../thunder/movie/movievars'
-import { plasmaClientWorkBoundedByPureMath } from '../../../fire/plasma/ball'
+import { cardMovieColorVars, cardMoviePath, cardMovieSeed } from '../../../thunder/movie/movievars'
+import { heroMoviePhaseHue, heroPhaseAt, plasmaClientWorkBoundedByPureMath } from '../../../fire/plasma/ball'
 import { allPagesForPlasmaWiring } from '../../../water/double'
 import { monographSliceFromRoute } from '../automount'
 import { siteRoutes } from '../../../fire/li'
@@ -349,6 +349,10 @@ export type CorpusGridItem = {
 export type HeroPreview = {
   route: string
   seed: string
+  /** cardMoviePath(route, seed) — same path CardBackgroundMovie paints via sharedHeroAt. */
+  moviePath: string
+  /** Phase on the one hero clock (heroPhaseAt) — card + page share this. */
+  p: number
   hue: number
   title: string
   cardStyle: Record<string, string>
@@ -396,15 +400,31 @@ export type UniversalPage = {
   forge: PageForgeSeal
 }
 
-/** Linked card hero preview — rosetta hue + card movie vars from one route. */
-export function heroPreviewForRoute(route: string, title?: string, matrix: MindMatrix = buildMatrix()): HeroPreview {
+/**
+ * Linked card hero preview — one shared hero field for card CSS + CardBackgroundMovie.
+ * Seed = cardMovieSeed([route, title]); moviePath = cardMoviePath(route, seed); hue from
+ * heroMoviePhaseHue(moviePath, heroPhaseAt(at)) — same clock/path the canvas paints via sharedHeroAt.
+ * Closes multi-clock / destination-vs-page-route desync (pair hero/card · card/hero · hero/anim).
+ */
+export function heroPreviewForRoute(
+  route: string,
+  title?: string,
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+): HeroPreview {
   const rosetta = rosettaComputesAll(route, 0, matrix)
-  const seed = cardMovieSeed([route, title, rosetta.glaAddress])
+  const displayTitle = title ?? rosetta.slug
+  const seed = cardMovieSeed([route, displayTitle])
+  const moviePath = cardMoviePath(route, seed)
+  const p = heroPhaseAt(at)
+  const hue = heroMoviePhaseHue(moviePath, p, matrix)
   return {
     route,
     seed,
-    hue: rosetta.content.heroHue,
-    title: title ?? rosetta.slug,
+    moviePath,
+    p,
+    hue,
+    title: displayTitle,
     cardStyle: cardMovieColorVars(route, seed, (64 * 5), matrix) }
 }
 
@@ -531,11 +551,14 @@ export function cardHeroLinkWiresInUi(matrix: MindMatrix = buildMatrix()) {
   const hub = hubCardItems(locale, matrix)
   const tags = tagBrowserTags(matrix).filter((tag) => !META_TAGS.has(tag))
   const tagItems = tags.length ? tagBrowserItems(tags[0]!, locale, matrix) : []
-  const preview = heroPreviewForRoute('/start', undefined, matrix)
+  const preview = heroPreviewForRoute('/start', undefined, matrix, 0)
   const bounded = cardHeroClientWorkBoundedByPureMath(matrix)
+  const pathAligned = preview.moviePath === cardMoviePath(preview.route, preview.seed)
+  const phaseOnClock = preview.p === heroPhaseAt(0) && preview.p >= 0 && preview.p <= 1
   const facets = [
     { facet: 'all tools placed — Rosetta ray · I Ching cube · cross-fold-weave trinity', on: fusion.fused && fusion.placedCount > 0 && fusion.raysCovered === 7 },
-    { facet: 'heroPreviewForRoute — one route yields hue, seed, card movie vars', on: /^[0-9a-f]{8}$/.test(preview.seed) && preview.hue >= 0 && Object.keys(preview.cardStyle).length > 0 },
+    { facet: 'heroPreviewForRoute — one route yields hue, seed, moviePath, card movie vars', on: /^[0-9a-f]{8}$/.test(preview.seed) && preview.hue >= 0 && Object.keys(preview.cardStyle).length > 0 && pathAligned },
+    { facet: 'preview phase on one hero clock — heroPhaseAt', on: phaseOnClock },
     { facet: 'hub card grid — navigation358 + harmonised destinations (empty if fusion fails)', on: hub.length >= NAV358_TOTAL },
     { facet: 'tag browser — keyword clusters from staticPages (empty if fusion fails)', on: tags.length >= 2 && tagItems.length >= 2 },
     { facet: 'LinkedHeroCard consumes fused preview — experiments fail closed', on: hub.every((item) => item.hue >= 0) },
@@ -549,7 +572,7 @@ export function cardHeroLinkWiresInUi(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'Card hero link: heroPreviewForRoute computes linked page hero (hue, seed, card movie vars) from one route; HubCardGrid and TagBrowser render LinkedHeroCard on hub and tag-browser surfaces; corpus indexes use the same card.',
+      'Card hero link: heroPreviewForRoute computes linked page hero (hue, seed, moviePath, phase) from one route on the shared hero clock; HubCardGrid and TagBrowser render LinkedHeroCard; CardBackgroundMovie paints the same moviePath via sharedHeroAt.',
     boundary:
       'A structural check that hub destinations, tag clusters, and hero preview compose for LinkedHeroCard. Render verification is build-time SSG, not live preview.' }
 }

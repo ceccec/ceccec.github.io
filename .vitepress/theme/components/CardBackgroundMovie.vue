@@ -24,6 +24,11 @@ const props = withDefaults(
     app?: QuantumProjection
     /** Make the card movie touch-interactive (A432 sound + haptic). Defaults on for app-projection cards. */
     interactive?: boolean
+    /**
+     * Destination route for sharedHeroAt (LinkedHeroCard). Defaults to the live page path —
+     * same field root as heroPreviewForRoute.moviePath when set to the linked route.
+     */
+    movieRoute?: string
   }>(),
   { intensity: 'full' },
 )
@@ -36,7 +41,8 @@ const root = ref<HTMLElement | null>(null)
 const canvas = ref<HTMLCanvasElement | null>(null)
 const reduce = prefersReducedMotion()
 
-const moviePath = computed(() => cardMoviePath(route.path, props.seed))
+// One shared hero field: destination movieRoute (or page path) + seed → same path as heroPreviewForRoute.
+const moviePath = computed(() => cardMoviePath(props.movieRoute ?? route.path, props.seed))
 // App-projection cards are the proving animations meant to be played; they opt into touch/sound/haptic.
 const isInteractive = computed(() => props.interactive ?? Boolean(props.app))
 

@@ -134,11 +134,20 @@ export function cardMovieFromParts(
   return { seed, cardStyle: cardMovieColorVars(routePath, seed) }
 }
 
-export function useCardMovie(parts: MaybeRefOrGetter<readonly (string | undefined)[]>) {
+/**
+ * Card CSS vars + seed on the one shared hero field.
+ * Optional `movieRoute` = destination path (LinkedHeroCard) so CSS matches CardBackgroundMovie /
+ * heroPreviewForRoute — not the ambient page route.
+ */
+export function useCardMovie(
+  parts: MaybeRefOrGetter<readonly (string | undefined)[]>,
+  movieRoute?: MaybeRefOrGetter<string | undefined>,
+) {
   const route = useRoute()
   const seed = computed(() => cardMovieSeed(toValue(parts)))
-  const cardStyle = computed(() => cardMovieColorVars(route.path, seed.value))
-  return { seed, cardStyle }
+  const fieldRoute = computed(() => toValue(movieRoute) || route.path)
+  const cardStyle = computed(() => cardMovieColorVars(fieldRoute.value, seed.value))
+  return { seed, cardStyle, movieRoute: fieldRoute }
 }
 
 export function useImmersiveMovie() {
