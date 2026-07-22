@@ -348,6 +348,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'multi/verse',
   'mcp/inf',
   'inf/mcp',
+  'movie/inf',
+  'inf/movie',
   'mcp/anim',
   'anim/mcp',
   'mcp/sound',

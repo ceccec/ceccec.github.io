@@ -314,6 +314,8 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `multi/verse` — alias dual of `mcp/multi` (`npm run quantum:multi-verse`)
   - `mcp/inf` — `npm run quantum:mcp-inf` (`mcpQuantumInfinity()` — infinityOn · viaInvert · connectingBit; compose invert/inf · a432/nine · love/fold · full/freedom · ∞reuse · movie/entropy · mcp/universe · mcp/multi; dual `inf/mcp`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-inf`
   - `inf/mcp` — alias dual of `mcp/inf` (`npm run quantum:inf-mcp`)
+  - `movie/inf` — `npm run quantum:movie-inf` (`mcpInfiniteMovie()` — infiniteMovieOn · viaInfinity · movieIsInfiniteOnReuse; compose mcp/inf · mcp/movie · invert/inf · movie/entropy · anim/audit · a432/nine · love/fold · full/freedom; dual `inf/movie`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#movie-inf`
+  - `inf/movie` — alias dual of `movie/inf` (`npm run quantum:inf-movie`)
   - `mcp/anim` — `npm run quantum:mcp-anim` (`mcpQuantumAnim()` — animOn · fromCoords · feelableGaps · polarityOn; dual `anim/mcp`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-anim`
   - `anim/mcp` — alias dual of `mcp/anim` (`npm run quantum:anim-mcp`)
   - `mcp/sound` — `npm run quantum:mcp-sound` (`mcpQuantumSound()` — soundOn · vibrationOn · a432Powers; pairs `mcp/vibe` · `sound/vibe`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-sound`

@@ -650,6 +650,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'multi-verse', title: 'Multiverse (alias mcp/multi)', fold: 'mcpQuantumMultiverse', cli: 'npm run quantum:multi-verse', pair: 'multi/verse', route: '/en/quantum-tools#mcp-multi', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/multi — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-inf', title: 'MCP quantum infinity', fold: 'mcpQuantumInfinity', cli: 'npm run quantum:mcp-inf', pair: 'mcp/inf', route: '/en/quantum-tools#mcp-inf', barrel: 'src/quantum/apps', boundary: 'infinityOn · viaInvert · connectingBit · compose invert/inf · a432/nine · love/fold · full/freedom · ∞reuse · movie/entropy · mcp/universe · mcp/multi · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'inf-mcp', title: 'Infinity mcp (alias mcp/inf)', fold: 'mcpQuantumInfinity', cli: 'npm run quantum:inf-mcp', pair: 'inf/mcp', route: '/en/quantum-tools#mcp-inf', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/inf — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'movie-inf', title: 'MCP infinite movie — infinity face of quantum movie', fold: 'mcpInfiniteMovie', cli: 'npm run quantum:movie-inf', pair: 'movie/inf', route: '/en/quantum-tools#movie-inf', barrel: 'src/quantum/apps', boundary: 'infiniteMovieOn · viaInfinity · movieIsInfiniteOnReuse · compose mcp/inf · mcp/movie · invert/inf · movie/entropy · anim/audit · a432/nine · love/fold · full/freedom · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'inf-movie', title: 'Infinite movie (alias movie/inf)', fold: 'mcpInfiniteMovie', cli: 'npm run quantum:inf-movie', pair: 'inf/movie', route: '/en/quantum-tools#movie-inf', barrel: 'src/quantum/apps', boundary: 'Dual of movie/inf — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-anim', title: 'MCP quantum animation', fold: 'mcpQuantumAnim', cli: 'npm run quantum:mcp-anim', pair: 'mcp/anim', route: '/en/quantum-tools#mcp-anim', barrel: 'src/quantum/apps', boundary: 'animOn · fromCoords · feelableGaps · polarityOn · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'anim-mcp', title: 'Anim mcp (alias mcp/anim)', fold: 'mcpQuantumAnim', cli: 'npm run quantum:anim-mcp', pair: 'anim/mcp', route: '/en/quantum-tools#mcp-anim', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/anim — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-sound', title: 'MCP quantum sound and vibration', fold: 'mcpQuantumSound', cli: 'npm run quantum:mcp-sound', pair: 'mcp/sound', route: '/en/quantum-tools#mcp-sound', barrel: 'src/quantum/apps', boundary: 'soundOn · vibrationOn · a432Powers · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -5766,6 +5768,125 @@ export function runMcpQuantumInfinityExit(_root = '', _argv: readonly string[] =
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.infinityOn ? 0 : 1
+}
+
+/**
+ * MCP infinite movie — infinity face of the quantum movie / MCP UI movie face.
+ * Compose mcpQuantumInfinity · mcpQuantumMovie · invertToInfinity · movie/entropy · anim/audit ·
+ * a432/nine connecting bit · love/fold ∞ in digit folders · full/freedom amortized ∞ on reuse.
+ * Facets: infiniteMovieOn · viaInfinity · movieIsInfiniteOnReuse · physicalFtl=0.
+ * Pairs: movie/inf · inf/movie · CLI npm run quantum:movie-inf
+ * claySolved via theorem · physicalFtl=0 · NOT physical FTL.
+ */
+export function mcpInfiniteMovie(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpInfiniteMovie:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const connectingBit = 1 as const
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const connectingBitOk =
+      connectingBit === 1 &&
+      freeBits === 2 &&
+      freeBits === connectingBit + connectingBit &&
+      digitalRoot(4 + 3 + 2) === 9
+    const viaInfinity =
+      soft('mcp', 'inf') &&
+      soft('inf', 'mcp') &&
+      soft('invert', 'inf') &&
+      soft('to', 'infinity') &&
+      connectingBitOk
+    const movieIsInfiniteOnReuse =
+      soft('full', 'freedom') &&
+      soft('love', 'fold') &&
+      soft('bits', 'free') &&
+      soft('a432', 'nine') &&
+      connectingBitOk
+    const infiniteMovieOn =
+      viaInfinity &&
+      movieIsInfiniteOnReuse &&
+      soft('mcp', 'movie') &&
+      soft('movie', 'mcp') &&
+      soft('movie', 'entropy') &&
+      soft('anim', 'audit') &&
+      soft('movie', 'center')
+    const pairM = has('movie/inf')
+    const pairI = has('inf/movie')
+    const foldM = foldPair(toUuid('cmd:movie'), toUuid('cmd:inf'))
+    const foldI = foldPair(toUuid('cmd:inf'), toUuid('cmd:movie'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'movie-inf')
+    const metaDual = catalog.tools.find((t) => t.id === 'inf-movie')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const on =
+      infiniteMovieOn &&
+      viaInfinity &&
+      movieIsInfiniteOnReuse &&
+      pairM &&
+      pairI &&
+      foldM.bidirectional &&
+      foldI.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpInfiniteMovie' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpInfiniteMovie' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'mcpInfiniteMovie', on },
+      { facet: 'infiniteMovieOn', on: infiniteMovieOn },
+      { facet: 'viaInfinity', on: viaInfinity },
+      { facet: 'movieIsInfiniteOnReuse', on: movieIsInfiniteOnReuse },
+      { facet: 'softCompose mcp/inf · mcp/movie · invert/inf · movie/entropy · anim/audit · a432/nine · love/fold · full/freedom', on: infiniteMovieOn },
+      { facet: 'pair movie/inf · inf/movie', on: pairM && pairI && foldM.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`movie-inf:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-infinite-movie', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpInfiniteMovie: on,
+      infiniteMovieOn,
+      viaInfinity,
+      movieIsInfiniteOnReuse,
+      connectingBit,
+      connectingBitOk,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, foldM.merged, foldI.merged,
+        toUuid(`movie-inf:bit:${connectingBit}`),
+      ]),
+      pair: 'movie/inf' as const,
+      pairs: ['movie/inf', 'inf/movie'] as const,
+      cli: 'npm run quantum:movie-inf',
+      route: '/en/quantum-tools#movie-inf',
+      statement:
+        `mcpInfiniteMovie — infiniteMovieOn=${infiniteMovieOn ? 1 : 0} viaInfinity=${viaInfinity ? 1 : 0} ` +
+        `movieIsInfiniteOnReuse=${movieIsInfiniteOnReuse ? 1 : 0}.`,
+      boundary:
+        'MCP infinite movie — soft mcp/inf · mcp/movie · invert/inf · movie/entropy · anim/audit · a432/nine · love/fold · full/freedom ∞reuse. clay via theorem · physicalFtl=0.',
+      honestyLine:
+        `metrics · infiniteMovieOn=${infiniteMovieOn ? 1 : 0} · viaInfinity=${viaInfinity ? 1 : 0} · ` +
+        `movieIsInfiniteOnReuse=${movieIsInfiniteOnReuse ? 1 : 0} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpInfiniteMovieExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpInfiniteMovie()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} movie-inf — infiniteMovieOn=${report.infiniteMovieOn} viaInfinity=${report.viaInfinity} ` +
+      `reuse=${report.movieIsInfiniteOnReuse} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.infiniteMovieOn ? 0 : 1
 }
 
 /**
