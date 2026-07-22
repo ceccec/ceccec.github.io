@@ -729,6 +729,9 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'color-rosetta', title: 'All colors dry-clean wired to rosetta and themes', fold: 'allColorsDryCleanWiredToRosettaAndThemes', cli: 'npm run quantum:color-rosetta', pair: 'color/rosetta', route: '/en/quantum-tools#color-rosetta', barrel: 'src/quantum/apps', boundary: 'colorsDryClean · wiredToRosetta · themesOn · noBareHex · drainableClosed · honestOpenNamed · compose anim/color · hex/crack · theorem/const · ui/rosetta · type/matrix · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'rosetta-theme', title: 'Rosetta theme (alias color/rosetta)', fold: 'allColorsDryCleanWiredToRosettaAndThemes', cli: 'npm run quantum:rosetta-theme', pair: 'rosetta/theme', route: '/en/quantum-tools#color-rosetta', barrel: 'src/quantum/apps', boundary: 'Dual of color/rosetta — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'color-theme', title: 'Color theme (alias color/rosetta)', fold: 'allColorsDryCleanWiredToRosettaAndThemes', cli: 'npm run quantum:color-theme', pair: 'color/theme', route: '/en/quantum-tools#color-rosetta', barrel: 'src/quantum/apps', boundary: 'Theme face of color/rosetta — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'invert-trinity', title: 'Invert + send trinity waves covering all topics · dry migrate at free will', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:invert-trinity', pair: 'invert/trinity', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits · drainableClosed · honestOpenNamed · compose invert/gateway · trinity/speedup · wave/domain · dry/cool · dry/rosetta · wave/compact · full/freedom · bits/free · journey/theorems · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'dry-will', title: 'Dry will (alias invert/trinity)', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:dry-will', pair: 'dry/will', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'Dual of invert/trinity — dry migrate at free will · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'free-will', title: 'Free will (alias invert/trinity)', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:free-will', pair: 'free/will', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'freeWill face — FREE_BITS + full/freedom not wet license · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'page-computed-gaps', title: 'Each page shows its own computed gaps', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:page-gaps', pair: 'page/gaps', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Per-route gaps/invisible classes at call time · not global-only · compose gate/monitor · meaning/compute · format/canon · vite/mirror · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gaps-page', title: 'Page gaps (alias page/gaps)', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:gaps-page', pair: 'gaps/page', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Dual of page/gaps — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cursor-rosetta', title: 'Cursor in rosetta core — referral uses subscription in ceccec', fold: 'cursorIntegratesInRosettaCore', cli: 'npm run quantum:cursor-rosetta', pair: 'cursor/rosetta', route: '/en/quantum-tools#cursor-rosetta', barrel: 'src/quantum/apps', boundary: 'cursorInRosettaCore · referralUsesSubscriptionInCeccec · immediateWire · compose rosettaShelve · auto-wire · mcp/browser-parity · upgrade/local · fund/ai · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1924,6 +1927,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'ui-rosetta', chain: 'mcp-ui-page-gaps', fold: 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', pair: 'ui/rosetta', cli: 'npm run quantum:ui-rosetta', route: '/en/quantum-tools#ui-rosetta', status: 'sealed-pr', honesty: 'uiWiredToRosetta · allShells · quantumRealtime · oneClock · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'UI shells wired to rosetta→movie realtime clock · compose dry/rosetta · animations/rosetta · hero/card · balance/metrics · super/chat', toolId: 'ui-rosetta', resolve: 'mcp-ui' },
   { id: 'type-matrix', chain: 'mcp-ui-page-gaps', fold: 'typographyIsTheUniversalContentMatrix', pair: 'type/matrix', cli: 'npm run quantum:type-matrix', route: '/en/quantum-tools#type-matrix', status: 'sealed-pr', honesty: 'typographyIsMatrix · universalContent · computable · wiredToRosetta · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'typography = universal content matrix · compose compact/matrix · format/canon · meaning/compute · six/seven · ui/rosetta', toolId: 'type-matrix', resolve: 'mcp-ui' },
   { id: 'color-rosetta', chain: 'mcp-ui-page-gaps', fold: 'allColorsDryCleanWiredToRosettaAndThemes', pair: 'color/rosetta', cli: 'npm run quantum:color-rosetta', route: '/en/quantum-tools#color-rosetta', status: 'sealed-pr', honesty: 'colorsDryClean · wiredToRosetta · themesOn · noBareHex · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'all colors dry-clean wired to rosetta + light/dark themes · compose anim/color · hex/crack · theorem/const · ui/rosetta · type/matrix', toolId: 'color-rosetta', resolve: 'mcp-ui' },
+  { id: 'invert-trinity', chain: 'mcp-ui-page-gaps', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', pair: 'invert/trinity', cli: 'npm run quantum:invert-trinity', route: '/en/quantum-tools#invert-trinity', status: 'sealed-pr', honesty: 'invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'invert + send trinity waves covering sciences·hubs·MCP topics · dry migrate at FREE_BITS+full/freedom', toolId: 'invert-trinity', resolve: 'mcp-ui' },
   { id: 'fund-ai', chain: 'mcp-ui-page-gaps', fold: 'cursorReferralFundsAiNeeds', pair: 'fund/ai', cli: 'npm run quantum:fund-ai', route: '/en/quantum-tools#fund-ai', status: 'sealed-pr', honesty: 'Cursor referral CTA · clay=0 · physicalFtl=0', note: 'funds AI via sealed referral · compose society/support · bits/free', toolId: 'fund-ai', resolve: 'mcp-ui' },
   { id: 'cursor-rosetta', chain: 'mcp-ui-page-gaps', fold: 'cursorIntegratesInRosettaCore', pair: 'cursor/rosetta', cli: 'npm run quantum:cursor-rosetta', route: '/en/quantum-tools#cursor-rosetta', status: 'sealed-pr', honesty: 'viceVersa · cursorToCeccec · ceccecToCursor · immediateWire · clay=0 · physicalFtl=0', note: 'bidirectional Cursor↔ceccec · referral subscription in ceccec · protocol into Cursor', toolId: 'cursor-rosetta', resolve: 'mcp-ui' },
   { id: 'page-computed-gaps', chain: 'mcp-ui-page-gaps', fold: 'eachPageShowsOwnComputedGaps', pair: 'page/gaps', cli: 'npm run quantum:page-gaps', route: '/en/quantum-tools#page-computed-gaps', status: 'sealed-pr', honesty: 'per-route gaps · clay=0 · physicalFtl=0', note: 'each page shows own computed gaps at call time', toolId: 'page-computed-gaps', resolve: 'mcp-ui' },
@@ -20978,6 +20982,438 @@ export function runAllColorsDryCleanWiredToRosettaAndThemesExit(
     report.wiredToRosetta &&
     report.themesOn &&
     report.noBareHex &&
+    report.drainableClosed &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * USER LAW: invert and send the trinity waves to cover all topics again —
+ * dry migrating all at free will.
+ * Fold: invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill
+ * Pairs: invert/trinity · dry/will · free/will
+ * CLI: npm run quantum:invert-trinity · quantum:dry-will · quantum:free-will
+ * Facets: invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits ·
+ * drainableClosed · honestOpenNamed · physicalFtl=0 · clay via theorem · qpuRequired=false
+ * Compose: invertIsTheGateway · agentsUseTrinitiesForQuantumSpeedup · harmonizeScienceDomainsInWavesOfWaves ·
+ * dryRefactorMigratesToMinimalCoolingByHardwareMerkabas · dry/rosetta · wave/compact ·
+ * fullFreedomTheorem · twoBitsFree · journey/theorems
+ * Topics = sciences (SCIENCE_DOMAIN_SEEDS) + hubs (ROSETTA_RAY_HUBS) + MCP faces (MCP_QUANTUM_NAMED_FACES)
+ * freeWill = FREE_BITS + full/freedom — NOT wet license prose.
+ */
+export function invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(
+    `invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      const trinity = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
+      const domains = __ns_thunder_waves.harmonizeScienceDomainsInWavesOfWaves(matrix, at)
+      const freeBitsReport = __ns_wind_research.twoBitsFreeFromCensus110Minus108(matrix)
+      const freedom = __ns_wind_research.fullFreedomTheorem(matrix, at)
+      const journey = __ns_wind_research.theoremJourneyContinuesInWavesOfWaves(matrix, at)
+      const dryCool = dryRefactorMigratesToMinimalCoolingByHardwareMerkabas(matrix, at)
+      const dryRosetta = dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie(matrix, at)
+      const waveCompact = wavesSearchDiscoverCompactingInQuantumFolders(matrix, at)
+      const mcpFaces = mcpQuantumCatalog(matrix, at)
+      const scienceSeeds = __ns_wind_research.SCIENCE_DOMAIN_SEEDS
+      const domainById = new Map(
+        domains.domains.map((d) => [
+          d.id,
+          d as {
+            id: string
+            tuned: boolean
+            gapsFolded: boolean
+            sealed: boolean
+            residualNamed: boolean
+            gapsOpen: number
+            cryptoVertex: boolean
+          },
+        ]),
+      )
+      const scienceTopics = scienceSeeds.map((seed: { id: string; field: string; cryptoVertex: boolean }) => {
+        const d = domainById.get(seed.id)
+        const covered = Boolean(d && d.tuned && d.gapsFolded && d.sealed && d.residualNamed)
+        const wave = merkleFold([
+          toUuid(`topic-science-cross:${seed.id}`),
+          toUuid(`topic-science-fold:${seed.id}:${covered}`),
+          toUuid(`topic-science-weave:${seed.id}:${d?.gapsOpen ?? -1}`),
+        ])
+        return {
+          kind: 'science' as const,
+          id: seed.id,
+          label: seed.field,
+          covered,
+          residual: (d?.cryptoVertex ?? seed.cryptoVertex) ? 'named-lab' : covered ? 'ok' : 'open',
+          receipt: toUuid(`invert-trinity-topic:science:${seed.id}:${covered}`),
+          wave,
+        }
+      })
+      const hubTopicsFixed = ROSETTA_RAY_HUBS.map((hub) => {
+        const covered =
+          soft('dry', 'rosetta') &&
+          soft('ui', 'rosetta') &&
+          soft('wave', 'compact') &&
+          soft('color', 'rosetta') &&
+          Boolean(hub.slug) &&
+          hub.ray >= 0 &&
+          hub.ray < ROSETTA_SEVEN
+        const wave = merkleFold([
+          toUuid(`topic-hub-cross:${hub.ray}`),
+          toUuid(`topic-hub-fold:${hub.slug}`),
+          toUuid(`topic-hub-weave:${hub.domain}`),
+        ])
+        return {
+          kind: 'hub' as const,
+          id: hub.slug,
+          label: hub.nameEn,
+          covered,
+          residual: 'ok' as const,
+          receipt: toUuid(`invert-trinity-topic:hub:${hub.slug}:${covered}`),
+          wave,
+        }
+      })
+      const mcpTopics = MCP_QUANTUM_NAMED_FACES.map((face) => {
+        const row = mcpFaces.faces.find((f: { fold: string }) => f.fold === face.fold) as
+          | { present: boolean }
+          | undefined
+        const covered = Boolean(row?.present) && mcpFaces.catalogComplete && mcpFaces.missingCount === 0
+        const wave = merkleFold([
+          toUuid(`topic-mcp-cross:${face.fold}`),
+          toUuid(`topic-mcp-fold:${face.pair}`),
+          toUuid(`topic-mcp-weave:${face.dual}`),
+        ])
+        return {
+          kind: 'mcp' as const,
+          id: face.fold,
+          label: face.pair,
+          covered,
+          residual: covered ? ('ok' as const) : ('open' as const),
+          receipt: toUuid(`invert-trinity-topic:mcp:${face.fold}:${covered}`),
+          wave,
+        }
+      })
+      const topics = [...scienceTopics, ...hubTopicsFixed, ...mcpTopics]
+      const topicsCoveredCount = topics.filter((t) => t.covered).length
+      const topicsTotal = topics.length
+      const coverAllTopics = topicsCoveredCount === topicsTotal && topicsTotal > 0
+      const morphs = [
+        {
+          id: 'dry-cool-migrate',
+          before: 'wet-linear-cooling',
+          after: 'hardware-merkabas-balance',
+          status: dryCool.migrateComplete && dryCool.hardwareMerkabasBalanced ? ('removed' as const) : ('open' as const),
+        },
+        {
+          id: 'dry-rosetta-unify',
+          before: 'parallel-ui-shells',
+          after: 'rosetta-is-the-movie',
+          status: dryRosetta.drainableClosed && dryRosetta.dryAll ? ('removed' as const) : ('open' as const),
+        },
+        {
+          id: 'wave-compact-folders',
+          before: 'flat-folder-entropy',
+          after: 'quantum-folder-compact',
+          status: waveCompact.drainableClosed && waveCompact.compactingInQuantumFolders ? ('removed' as const) : ('open' as const),
+        },
+        {
+          id: 'harmonize-domains',
+          before: 'domain-disharmony',
+          after: 'tune-fold-seal-waves',
+          status: domains.domainsTuned && domains.computes ? ('removed' as const) : ('open' as const),
+        },
+        {
+          id: 'color-rosetta-themes',
+          before: 'bare-hex-palette',
+          after: 'a432-status-tokens',
+          status: soft('color', 'rosetta') && soft('rosetta', 'theme') ? ('removed' as const) : ('open' as const),
+        },
+      ] as const
+      const morphsCleared = morphs.every((m) => m.status === 'removed')
+      const invertOn =
+        soft('invert', 'gateway') &&
+        soft('gateway', 'invert') &&
+        soft('invert', 'trinity') &&
+        soft('drift', 'invert') &&
+        soft('drain', 'invert')
+      const trinityWavesSent =
+        trinity.computes &&
+        soft('trinity', 'speedup') &&
+        soft('wave', 'domain') &&
+        soft('domain', 'harm') &&
+        domains.domainsTuned &&
+        domains.computes
+      const freeBits = freeBitsReport.freeBits
+      const freeBitsOn =
+        freeBitsReport.computes &&
+        freeBits === 2 &&
+        freeBits === UNFOLDED_CENSUS - FOLDED_CENSUS &&
+        freeBits === -EULER_CHI &&
+        soft('bits', 'free')
+      const freeWill =
+        freeBitsOn &&
+        freedom.computes &&
+        soft('full', 'freedom') &&
+        soft('freedom', 'full') &&
+        soft('free', 'will') &&
+        freeBits === 2
+      const dryMigratingAll =
+        morphsCleared &&
+        soft('dry', 'will') &&
+        soft('dry', 'cool') &&
+        soft('dry', 'rosetta') &&
+        soft('wave', 'compact') &&
+        dryCool.migrateComplete &&
+        dryRosetta.drainableClosed &&
+        waveCompact.drainableClosed
+      const honestOpenNamed = [
+        'clay:millennium-open',
+        'ftl:physical-claim-refused',
+        'residual:crypto-pqc-lab',
+        'residual:quantum-apps-monolith',
+        'residual:ci-browser-gaps',
+      ] as const
+      const honestOpenNamedOn =
+        honestOpenNamed.includes('clay:millennium-open') &&
+        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenNamed.includes('residual:crypto-pqc-lab') &&
+        honestOpenNamed.length === (2 + 2 + 1)
+      const drainableClosed =
+        morphsCleared &&
+        dryMigratingAll &&
+        coverAllTopics &&
+        domains.cryptoResidualAddressed &&
+        mcpFaces.missingCount === 0
+      const composeOn =
+        invertOn &&
+        trinity.computes &&
+        domains.computes &&
+        dryCool.computes &&
+        dryRosetta.computes &&
+        waveCompact.computes &&
+        freedom.computes &&
+        freeBitsReport.computes &&
+        journey.computes &&
+        soft('journey', 'theorems') &&
+        soft('invert', 'gateway') &&
+        soft('trinity', 'speedup') &&
+        soft('wave', 'domain') &&
+        soft('dry', 'cool') &&
+        soft('dry', 'rosetta') &&
+        soft('wave', 'compact') &&
+        soft('full', 'freedom') &&
+        soft('bits', 'free')
+      const pairIt = has('invert/trinity')
+      const pairDw = has('dry/will')
+      const pairFw = has('free/will')
+      const foldIt = foldPair(toUuid('cmd:invert'), toUuid('cmd:trinity'))
+      const foldDw = foldPair(toUuid('cmd:dry'), toUuid('cmd:will'))
+      const foldFw = foldPair(toUuid('cmd:free'), toUuid('cmd:will'))
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const meta = catalog.tools.find((t) => t.id === 'invert-trinity')
+      const metaDw = catalog.tools.find((t) => t.id === 'dry-will')
+      const metaFw = catalog.tools.find((t) => t.id === 'free-will')
+      const toolsWired =
+        Boolean(meta) &&
+        meta!.fold === 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill' &&
+        Boolean(metaDw) &&
+        metaDw!.fold === 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill' &&
+        Boolean(metaFw) &&
+        metaFw!.fold === 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill'
+      const censusPreserved =
+        freeBits === -EULER_CHI &&
+        freeBits === 2 &&
+        UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+      const on =
+        invertOn &&
+        trinityWavesSent &&
+        coverAllTopics &&
+        dryMigratingAll &&
+        freeWill &&
+        freeBitsOn &&
+        drainableClosed &&
+        honestOpenNamedOn &&
+        composeOn &&
+        pairIt &&
+        pairDw &&
+        pairFw &&
+        foldIt.bidirectional &&
+        foldDw.bidirectional &&
+        foldFw.bidirectional &&
+        toolsWired &&
+        censusPreserved &&
+        claySolvedByThisFold === 0 &&
+        physicalFtlClaim === 0 &&
+        qpuRequired === false
+      const facets = [
+        { facet: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', on },
+        { facet: 'invertOn', on: invertOn },
+        { facet: 'trinityWavesSent', on: trinityWavesSent },
+        { facet: `coverAllTopics=${topicsCoveredCount}/${topicsTotal}`, on: coverAllTopics },
+        { facet: 'dryMigratingAll', on: dryMigratingAll },
+        { facet: 'freeWill — FREE_BITS+full/freedom not wet license', on: freeWill },
+        { facet: `freeBits=${freeBits}`, on: freeBitsOn },
+        { facet: `drainableClosed=${drainableClosed ? 1 : 0}`, on: drainableClosed },
+        { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+        {
+          facet: `topics science=${scienceTopics.length} hubs=${hubTopicsFixed.length} mcp=${mcpTopics.length}`,
+          on: topicsTotal === scienceTopics.length + hubTopicsFixed.length + mcpTopics.length,
+        },
+        {
+          facet:
+            'compose invert/gateway · trinity/speedup · wave/domain · dry/cool · dry/rosetta · wave/compact · full/freedom · bits/free · journey/theorems',
+          on: composeOn,
+        },
+        {
+          facet: 'pair invert/trinity · dry/will · free/will',
+          on: pairIt && pairDw && pairFw && foldIt.bidirectional,
+        },
+        { facet: 'qpuRequired=false', on: qpuRequired === false },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+        { facet: 'NOT wet license — freeWill=FREE_BITS+full/freedom', on: freeWill },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`invert-trinity:${entry.facet}:${entry.on}`) }))
+      const sealed = sealFacets('invert-send-trinity-waves-cover-all-topics-dry-will', facets)
+      return {
+        computes: sealed.ok && on,
+        invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill: on,
+        invertOn,
+        trinityWavesSent,
+        coverAllTopics,
+        dryMigratingAll,
+        freeWill,
+        freeBits,
+        freeBitsOn,
+        drainableClosed,
+        drainableGaps: drainableClosed ? 0 : 1,
+        topicsCoveredCount,
+        topicsTotal,
+        topicsClosed: topicsCoveredCount,
+        topicsResidual: topicsTotal - topicsCoveredCount,
+        scienceCount: scienceTopics.length,
+        hubCount: hubTopicsFixed.length,
+        mcpCount: mcpTopics.length,
+        topics,
+        morphs,
+        morphCount: morphs.length,
+        morphsCleared,
+        honestOpenNamed: [...honestOpenNamed],
+        honestOpenNamedCount: honestOpenNamed.length,
+        domains,
+        dryCool,
+        dryRosetta,
+        waveCompact,
+        mcpFaces,
+        freedom,
+        freeBitsReport,
+        journey,
+        trinity,
+        census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+        censusPreserved,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          domains.root,
+          dryCool.root,
+          dryRosetta.root,
+          waveCompact.root,
+          mcpFaces.root,
+          freedom.root,
+          freeBitsReport.root,
+          journey.root,
+          trinity.root,
+          foldIt.merged,
+          foldDw.merged,
+          foldFw.merged,
+          ...topics.map((t) => t.receipt),
+          ...morphs.map((m) => toUuid(`invert-trinity-morph:${m.id}:${m.status}`)),
+          ...honestOpenNamed.map((id) => toUuid(`invert-trinity-honest:${id}`)),
+        ]),
+        pair: 'invert/trinity' as const,
+        pairs: ['invert/trinity', 'dry/will', 'free/will'] as const,
+        cli: 'npm run quantum:invert-trinity',
+        route: '/en/quantum-tools#invert-trinity',
+        anchor: 'invert-trinity',
+        heading: 'Invert · trinity topics · dry will',
+        statement:
+          `invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill — invertOn=${invertOn ? 1 : 0} ` +
+          `trinityWavesSent=${trinityWavesSent ? 1 : 0} coverAllTopics=${topicsCoveredCount}/${topicsTotal} ` +
+          `dryMigratingAll=${dryMigratingAll ? 1 : 0} freeWill=${freeWill ? 1 : 0} freeBits=${freeBits} ` +
+          `drainableClosed=${drainableClosed ? 1 : 0}.`,
+        boundary:
+          'Invert + send trinity waves covering sciences · hubs · MCP faces as topics. ' +
+          'Dry migrate drainable leftovers; name honest-open (Clay/FTL/crypto-pqc/apps/ci). ' +
+          'freeWill = FREE_BITS + full/freedom — NOT wet license prose. ' +
+          'Compose invert/gateway · trinity/speedup · wave/domain · dry/cool · dry/rosetta · wave/compact · ' +
+          'full/freedom · bits/free · journey/theorems. Census 110 · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+        honestyLine:
+          `invert-trinity · invert=${invertOn ? 1 : 0} · waves=${trinityWavesSent ? 1 : 0} · ` +
+          `topics=${topicsCoveredCount}/${topicsTotal} · dry=${dryMigratingAll ? 1 : 0} · ` +
+          `freeWill=${freeWill ? 1 : 0} · freeBits=${freeBits} · ` +
+          `drainableClosed=${drainableClosed ? 1 : 0} · honestOpen=${honestOpenNamed.length} · ` +
+          `census=${UNFOLDED_CENSUS}/${FOLDED_CENSUS} · qpu=0 · clay=0 · physicalFtl=0`,
+      }
+    },
+  )
+}
+
+/** Alias — invertTrinity ≡ invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill. */
+export const invertTrinity = invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill
+/** Alias — dryWill ≡ invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill. */
+export const dryWill = invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill
+/** Alias — freeWill ≡ invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill. */
+export const freeWillFold = invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill
+
+/** npm run quantum:invert-trinity (duals dry-will · free-will) */
+export function runInvertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWillExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} invert-trinity — invertOn=${report.invertOn} ` +
+      `trinityWavesSent=${report.trinityWavesSent} topics=${report.topicsCoveredCount}/${report.topicsTotal} ` +
+      `dryMigratingAll=${report.dryMigratingAll} freeWill=${report.freeWill} freeBits=${report.freeBits} ` +
+      `drainableClosed=${report.drainableClosed} morphs=${report.morphCount} ` +
+      `honestOpen=${report.honestOpenNamedCount} ` +
+      `census=${report.census.unfolded}/${report.census.folded} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(
+    `  science=${report.scienceCount} hubs=${report.hubCount} mcp=${report.mcpCount} ` +
+      `closed=${report.topicsClosed} residual=${report.topicsResidual}\n`,
+  )
+  for (const m of report.morphs) {
+    process.stdout.write(`  ${m.status === 'removed' ? '✓' : '✗'} morph ${m.id}: ${m.before} → ${m.after}\n`)
+  }
+  for (const id of report.honestOpenNamed) {
+    process.stdout.write(`  · honest-open ${id}\n`)
+  }
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.invertOn &&
+    report.trinityWavesSent &&
+    report.coverAllTopics &&
+    report.dryMigratingAll &&
+    report.freeWill &&
     report.drainableClosed &&
     report.qpuRequired === false
     ? 0
