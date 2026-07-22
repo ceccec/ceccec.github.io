@@ -82,7 +82,7 @@ const ROSETTA_CORE_API_LABELS = [
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
+  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -167,6 +167,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpQuantumPeriod: 'tool',
   mcpQuantumDot: 'tool',
   mcpQuantumIndex: 'tool',
+  mcpQuantumOrientation: 'tool',
   mcpQuantumReactor: 'tool',
   mcpQuantumReaction: 'tool',
   mcpQuantumFusion: 'tool',
@@ -798,6 +799,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'dot-mcp', title: 'Dot mcp (alias mcp/dot)', fold: 'mcpQuantumDot', cli: 'npm run quantum:dot-mcp', pair: 'dot/mcp', route: '/en/quantum-tools#mcp-dot', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/dot — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-index', title: 'MCP quantum index — src index-only · census 110 · limits/verify', fold: 'mcpQuantumIndex', cli: 'npm run quantum:mcp-index', pair: 'mcp/index', route: '/en/quantum-tools#mcp-index', barrel: 'src/quantum/apps', boundary: 'indexOn · srcIndexOnly · census110 · compose src/index · folder/index · limits/verify · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'index-mcp', title: 'Index mcp (alias mcp/index)', fold: 'mcpQuantumIndex', cli: 'npm run quantum:index-mcp', pair: 'index/mcp', route: '/en/quantum-tools#mcp-index', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/index — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-orientation', title: 'MCP quantum orientation — bearing · navCross · geo/train · cross/nav · sun/moon · mcp/torus', fold: 'mcpQuantumOrientation', cli: 'npm run quantum:mcp-orientation', pair: 'mcp/orientation', route: '/en/quantum-tools#mcp-orientation', barrel: 'src/quantum/apps', boundary: 'orientationOn · bearing · navCross · compose geo/train · cross/nav · sun/moon · mcp/torus · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'orientation-mcp', title: 'Orientation mcp (alias mcp/orientation)', fold: 'mcpQuantumOrientation', cli: 'npm run quantum:orientation-mcp', pair: 'orientation/mcp', route: '/en/quantum-tools#mcp-orientation', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/orientation — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'improve-local-session', title: 'Improve local from session experience', fold: 'improveLocalFromSessionExperience', cli: 'npm run quantum:improve-local-session', pair: 'local/session', route: '/en/quantum-tools#local-session-hub', barrel: 'src/quantum/apps', boundary: 'Local docs:dev + browser session hub — NOT remote CI sole path · status badges compose sealed kinds · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'local-tools-morph', title: 'Local tools morph prose·code·logic', fold: 'localToolsMorphProseCodeLogic', cli: 'npm run quantum:local-tools-morph', pair: 'tools/morph', route: '/en/quantum-tools#local-tools-morph', barrel: 'src/quantum/apps', boundary: 'Local toolbox/session tools morph prose≡code≡logic as trinity waves · double-slit measure=tool invoke · clay=0 · qpuRequired=false · NOT Clay/Nobel', browserRunnable: true, browserGap: '' },
   { id: 'card-paper-links', title: 'Each card links to dedicated scientific paper', fold: 'eachCardLinksToDedicatedScientificPaper', cli: 'npm run quantum:card-paper-links', pair: 'papers/fill', route: '/en/theorems/', barrel: 'src/heaven/compute', boundary: 'paperRoute=/theorems/<slug> · morph=cardScientificPaperRows · gaps=0 · clay=0', browserRunnable: true, browserGap: '' },
@@ -1834,6 +1837,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mcp-period', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumPeriod', pair: 'mcp/period', cli: 'npm run quantum:mcp-period', route: '/en/quantum-tools#mcp-period', status: 'sealed-pr', honesty: 'periodOn · heroCycle · calendars · fold/count · time/invert · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum period — calendars · hero cycle · fold/count · time/invert; catalog 55/55', toolId: 'mcp-period', resolve: 'mcp-ui' },
   { id: 'mcp-dot', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumDot', pair: 'mcp/dot', cli: 'npm run quantum:mcp-dot', route: '/en/quantum-tools#mcp-dot', status: 'sealed-pr', honesty: 'dotOn · digitPoint · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum dot — digit point · fold · next · coord · particle/wave; catalog 56/56', toolId: 'mcp-dot', resolve: 'mcp-ui' },
   { id: 'mcp-index', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumIndex', pair: 'mcp/index', cli: 'npm run quantum:mcp-index', route: '/en/quantum-tools#mcp-index', status: 'sealed-pr', honesty: 'indexOn · srcIndexOnly · census110 · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum index — src index-only · census 110 · limits/verify; catalog 57/57', toolId: 'mcp-index', resolve: 'mcp-ui' },
+  { id: 'mcp-orientation', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumOrientation', pair: 'mcp/orientation', cli: 'npm run quantum:mcp-orientation', route: '/en/quantum-tools#mcp-orientation', status: 'sealed-pr', honesty: 'orientationOn · bearing · navCross · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum orientation — bearing · navCross · geo/train · cross/nav · sun/moon · mcp/torus; catalog 58/58', toolId: 'mcp-orientation', resolve: 'mcp-ui' },
   { id: 'mind-wave', chain: 'mcp-ui-page-gaps', fold: 'quantumMindSendsWaves', pair: 'mind/wave', cli: 'npm run quantum:mind-wave', route: '/en/quantum-tools#mind-wave', status: 'sealed-pr', honesty: 'quantumMindSends · wavesSent · linearCannotSend · clay=0 · physicalFtl=0', note: 'quantum mind sends waves', toolId: 'mind-wave', resolve: 'mcp-ui' },
   { id: 'quantum-waves', chain: 'mcp-ui-page-gaps', fold: 'quantumWaves', pair: 'quantum/waves', cli: 'npm run quantum:quantum-waves', route: '/en/quantum-tools#quantum-waves', status: 'sealed-pr', honesty: 'wavesAreQuantum · mindSends · trinitiesFound · waveCount=2 · clay=0 · physicalFtl=0', note: 'quantum waves umbrella', toolId: 'quantum-waves', resolve: 'mcp-ui' },
   { id: 'collide-create', chain: 'mcp-ui-page-gaps', fold: 'collidingParticlesCreates', pair: 'collide/create', cli: 'npm run quantum:collide-create', route: '/en/quantum-tools#collide-create', status: 'sealed-pr', honesty: 'creates=novelTheoremCandidates+waves · clay=0 · physicalFtl=0', note: 'collision creates novel theorem candidates + waves', toolId: 'collide-create', resolve: 'mcp-ui' },
@@ -6331,6 +6335,7 @@ const MCP_QUANTUM_NAMED_FACES = [
   { fold: 'mcpQuantumPeriod', pair: 'mcp/period', dual: 'period/mcp', toolId: 'mcp-period', dualToolId: 'period-mcp' },
   { fold: 'mcpQuantumDot', pair: 'mcp/dot', dual: 'dot/mcp', toolId: 'mcp-dot', dualToolId: 'dot-mcp' },
   { fold: 'mcpQuantumIndex', pair: 'mcp/index', dual: 'index/mcp', toolId: 'mcp-index', dualToolId: 'index-mcp' },
+  { fold: 'mcpQuantumOrientation', pair: 'mcp/orientation', dual: 'orientation/mcp', toolId: 'mcp-orientation', dualToolId: 'orientation-mcp' },
 ] as const
 
 /**
@@ -10877,6 +10882,155 @@ export function runMcpQuantumIndexExit(_root = '', _argv: readonly string[] = []
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.indexOn && report.qpuRequired === false ? 0 : 1
+}
+
+/**
+ * MCP quantum orientation — geodesy bearing · nav cross · sun/moon · torus.
+ * Facets: orientationOn · bearing · navCross · qpuRequired=false · physicalFtl=0.
+ * Compose geo/train · cross/nav · sun/moon · mcp/torus (soft: pyramid/seal · observe/coord · mcp/dirs).
+ * Pairs: mcp/orientation · orientation/mcp · CLI npm run quantum:mcp-orientation
+ * claySolved via theorem · physicalFtl=0 · NOT Clay prize · NOT QPU · NOT physical FTL.
+ */
+export function mcpQuantumOrientation(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumOrientation:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const geoTrain = __ns_wind_research.trainGeodesyAsQuantumWave(matrix, at)
+    const crossNav = __ns_wind_research.crossIsNavigationTraditionIsStory(matrix, at)
+    const sunMoon = __ns_wind_research.sunMoonRosettaRayPairDecodeInvert(matrix, at)
+    const torus = mcpQuantumTorus(matrix, at)
+    const dirs = mcpQuantumDirs(matrix, at)
+    const bearingDeg = Math.round(geoTrain.trained.bearing)
+    const bearing =
+      geoTrain.computes &&
+      geoTrain.trainedEnough &&
+      Number.isFinite(bearingDeg) &&
+      bearingDeg >= 0 &&
+      bearingDeg < 360
+    const navCross =
+      crossNav.computes &&
+      crossNav.crossIsNavigation &&
+      soft('cross', 'nav')
+    const composeOrientation =
+      bearing &&
+      navCross &&
+      soft('geo', 'train') &&
+      soft('sun', 'moon') &&
+      soft('mcp', 'torus') &&
+      sunMoon.computes &&
+      torus.computes &&
+      torus.torusOn &&
+      soft('pyramid', 'seal') &&
+      soft('observe', 'coord') &&
+      dirs.sixDirections
+    const orientationOn = composeOrientation
+    const pairM = has('mcp/orientation')
+    const pairO = has('orientation/mcp')
+    const foldM = foldPair(toUuid('cmd:mcp'), toUuid('cmd:orientation'))
+    const foldO = foldPair(toUuid('cmd:orientation'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-orientation')
+    const metaDual = catalog.tools.find((t) => t.id === 'orientation-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      orientationOn &&
+      bearing &&
+      navCross &&
+      pairM &&
+      pairO &&
+      foldM.bidirectional &&
+      foldO.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumOrientation' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumOrientation' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumOrientation', on },
+      { facet: 'orientationOn', on: orientationOn },
+      { facet: `bearing=${bearingDeg}`, on: bearing },
+      { facet: 'navCross', on: navCross },
+      { facet: 'geo/train', on: geoTrain.computes && soft('geo', 'train') },
+      { facet: 'cross/nav', on: navCross },
+      { facet: 'sun/moon', on: sunMoon.computes && soft('sun', 'moon') },
+      { facet: 'mcp/torus', on: torus.torusOn && soft('mcp', 'torus') },
+      { facet: 'soft pyramid/seal · observe/coord · mcp/dirs', on: soft('pyramid', 'seal') && soft('observe', 'coord') && dirs.sixDirections },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: 'compose geo/train · cross/nav · sun/moon · mcp/torus', on: composeOrientation },
+      { facet: 'pair mcp/orientation · orientation/mcp', on: pairM && pairO && foldM.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-orientation:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-orientation', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumOrientation: on,
+      orientationOn,
+      bearing,
+      bearingDeg,
+      navCross,
+      geoTrain: geoTrain.computes,
+      crossNav: crossNav.computes,
+      sunMoon: sunMoon.computes,
+      torusOn: torus.torusOn,
+      sixDirections: dirs.sixDirections,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        geoTrain.root,
+        crossNav.root,
+        sunMoon.root,
+        torus.root,
+        dirs.root,
+        foldM.merged,
+        foldO.merged,
+      ]),
+      pairs: ['mcp/orientation', 'orientation/mcp'] as const,
+      cli: 'npm run quantum:mcp-orientation',
+      route: '/en/quantum-tools#mcp-orientation',
+      statement:
+        `mcpQuantumOrientation — orientationOn=${orientationOn ? 1 : 0} bearing=${bearingDeg} ` +
+        `navCross=${navCross ? 1 : 0} geoTrain=${geoTrain.computes ? 1 : 0} ` +
+        `crossNav=${crossNav.computes ? 1 : 0} sunMoon=${sunMoon.computes ? 1 : 0} ` +
+        `torus=${torus.torusOn ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP quantum orientation — geodesy bearing · navCross · compose geo/train · cross/nav · sun/moon · mcp/torus. ' +
+        'clay via theorem · physicalFtl=0 · qpuRequired=false · NOT Clay · NOT GNSS live.',
+      honestyLine:
+        `orientation · orientationOn=${orientationOn ? 1 : 0} · bearing=${bearingDeg} · ` +
+        `navCross=${navCross ? 1 : 0} · geoTrain=${geoTrain.computes ? 1 : 0} · ` +
+        `crossNav=${crossNav.computes ? 1 : 0} · sunMoon=${sunMoon.computes ? 1 : 0} · ` +
+        `torus=${torus.torusOn ? 1 : 0} · dirs=${dirs.sixDirections ? 1 : 0} · ` +
+        `qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumOrientationExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumOrientation()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-orientation — orientationOn=${report.orientationOn} ` +
+      `bearing=${report.bearingDeg} navCross=${report.navCross} ` +
+      `geo=${report.geoTrain} cross=${report.crossNav} sunMoon=${report.sunMoon} ` +
+      `torus=${report.torusOn} dirs=${report.sixDirections} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const fct of report.facets) {
+    process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.orientationOn && report.qpuRequired === false ? 0 : 1
 }
 
 /** Sealed-safe browser key for last experiment config (UI preference only — never secrets). */
