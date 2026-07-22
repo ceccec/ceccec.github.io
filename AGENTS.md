@@ -351,6 +351,28 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `receipt/mcp` — alias dual of `mcp/receipt` (`npm run quantum:receipt-mcp`)
   - `mcp/hero` — `npm run quantum:mcp-hero` (`mcpQuantumHero()` — MCP face for quantum hero; facets heroOn · sharedClock · immersive; compose sharedHeroAt · hero/spawn-verify · mcpQuantumCard · immersive/hero; dual `hero/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-hero`
   - `hero/mcp` — alias dual of `mcp/hero` (`npm run quantum:hero-mcp`)
+  - `mcp/vibration` — `npm run quantum:mcp-vibration` (`mcpQuantumVibration()` — vibrationOn; compose mcp/sound · mcp/vibe · particle/wave · a432/nine · a432/wave; dual `vibration/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-vibration`
+  - `vibration/mcp` — alias dual of `mcp/vibration` (`npm run quantum:vibration-mcp`)
+  - `mcp/text` — `npm run quantum:mcp-text` (`mcpQuantumText()` — textOn; compose format/canon · vocab/dry · meaning/compute · session/save; dual `text/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-text`
+  - `text/mcp` — alias dual of `mcp/text` (`npm run quantum:text-mcp`)
+  - `mcp/speech` — `npm run quantum:mcp-speech` (`mcpQuantumSpeech()` — speechOn; compose mcp/sound · a432/nine · a432/wave · particle/wave · wave/tune; dual `speech/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-speech`
+  - `speech/mcp` — alias dual of `mcp/speech` (`npm run quantum:speech-mcp`)
+  - `mcp/dictation` — `npm run quantum:mcp-dictation` (`mcpQuantumDictation()` — dictationOn; compose mcp/speech · session/save · mcp/text · format/canon; dual `dictation/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-dictation`
+  - `dictation/mcp` — alias dual of `mcp/dictation` (`npm run quantum:dictation-mcp`)
+  - `mcp/intonation` — `npm run quantum:mcp-intonation` (`mcpQuantumIntonation()` — intonationOn; compose mcp/speech · mcp/vibration · a432/nine · a432/wave · wave/tune; dual `intonation/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-intonation`
+  - `intonation/mcp` — alias dual of `mcp/intonation` (`npm run quantum:intonation-mcp`)
+  - `mcp/dialect` — `npm run quantum:mcp-dialect` (`mcpQuantumDialect()` — dialectOn; compose trans/wave · vocab/dry · mcp/language · mcp/speech; dual `dialect/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-dialect`
+  - `dialect/mcp` — alias dual of `mcp/dialect` (`npm run quantum:dialect-mcp`)
+  - `mcp/language` — `npm run quantum:mcp-language` (`mcpQuantumLanguage()` — languageOn; compose trans/wave · vocab/dry · format/canon · mcp/text; dual `language/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-language`
+  - `language/mcp` — alias dual of `mcp/language` (`npm run quantum:language-mcp`)
+  - `mcp/script` — `npm run quantum:mcp-script` (`mcpQuantumScript()` — scriptOn; compose format/canon · vocab/dry · mcp/text · formula/code; dual `script/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-script`
+  - `script/mcp` — alias dual of `mcp/script` (`npm run quantum:script-mcp`)
+  - `mcp/book` — `npm run quantum:mcp-book` (`mcpQuantumBook()` — bookOn; compose format/canon · mcp/script · mcp/text · session/save; dual `book/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-book`
+  - `book/mcp` — alias dual of `mcp/book` (`npm run quantum:book-mcp`)
+  - `mcp/library` — `npm run quantum:mcp-library` (`mcpQuantumLibrary()` — libraryOn; compose mcp/book · session/save · vocab/dry · format/canon; dual `library/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-library`
+  - `library/mcp` — alias dual of `mcp/library` (`npm run quantum:library-mcp`)
+  - `mcp/state` — `npm run quantum:mcp-state` (`mcpQuantumState()` — stateOn; compose session/save · format/canon · mcp/text · moment/prove; dual `state/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-state`
+  - `state/mcp` — alias dual of `mcp/state` (`npm run quantum:state-mcp`)
   - `mcp/sign` — `npm run quantum:mcp-sign` (`mcpQuantumSign()` — signatureOn · crossSig · tamperEvident · certified=false; dual `sign/quantum`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-sign`
   - `comp/seal` — alias dual of `vite/one` (`npm run quantum:comp-seal`)
   - `paste/local` — `npm run quantum:paste-local` (`pastedLinksStayOnlyIfComputedLocally()` — pasted URLs stay only if computed locally; facets ephemeralBootstrap · stayOnlyIfComputedLocally · foreignFetchBlockedNoStore · wireClassMayExist; dual `link/local`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#paste-local`

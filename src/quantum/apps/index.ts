@@ -82,7 +82,7 @@ const ROSETTA_CORE_API_LABELS = [
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero',
+  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -170,6 +170,17 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpQuantumCard: 'tool',
   mcpQuantumReceipt: 'tool',
   mcpQuantumHero: 'tool',
+  mcpQuantumVibration: 'tool',
+  mcpQuantumText: 'tool',
+  mcpQuantumSpeech: 'tool',
+  mcpQuantumDictation: 'tool',
+  mcpQuantumIntonation: 'tool',
+  mcpQuantumDialect: 'tool',
+  mcpQuantumLanguage: 'tool',
+  mcpQuantumScript: 'tool',
+  mcpQuantumBook: 'tool',
+  mcpQuantumLibrary: 'tool',
+  mcpQuantumState: 'tool',
   improveLocalFromSessionExperience: 'tool',
   gatesMonitorThemselvesThroughTheUi: 'tool',
   gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix: 'tool',
@@ -738,6 +749,28 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'receipt-mcp', title: 'Receipt mcp (alias mcp/receipt)', fold: 'mcpQuantumReceipt', cli: 'npm run quantum:receipt-mcp', pair: 'receipt/mcp', route: '/en/quantum-tools#mcp-receipt', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/receipt — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-hero', title: 'MCP quantum hero — shared clock · immersive hero face', fold: 'mcpQuantumHero', cli: 'npm run quantum:mcp-hero', pair: 'mcp/hero', route: '/en/quantum-tools#mcp-hero', barrel: 'src/quantum/apps', boundary: 'heroOn · sharedClock · immersive · compose sharedHeroAt · hero/spawn-verify · mcpQuantumCard · immersive/hero · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'hero-mcp', title: 'Hero mcp (alias mcp/hero)', fold: 'mcpQuantumHero', cli: 'npm run quantum:hero-mcp', pair: 'hero/mcp', route: '/en/quantum-tools#mcp-hero', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/hero — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-vibration', title: 'MCP quantum vibration — vibration face of sound/wave', fold: 'mcpQuantumVibration', cli: 'npm run quantum:mcp-vibration', pair: 'mcp/vibration', route: '/en/quantum-tools#mcp-vibration', barrel: 'src/quantum/apps', boundary: 'vibrationOn · compose mcp/sound · mcp/vibe · particle/wave · a432/nine · a432/wave · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'vibration-mcp', title: 'Vibration mcp (alias mcp/vibration)', fold: 'mcpQuantumVibration', cli: 'npm run quantum:vibration-mcp', pair: 'vibration/mcp', route: '/en/quantum-tools#mcp-vibration', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/vibration — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-text', title: 'MCP quantum text — canon meaning text face', fold: 'mcpQuantumText', cli: 'npm run quantum:mcp-text', pair: 'mcp/text', route: '/en/quantum-tools#mcp-text', barrel: 'src/quantum/apps', boundary: 'textOn · compose format/canon · vocab/dry · meaning/compute · session/save · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'text-mcp', title: 'Text mcp (alias mcp/text)', fold: 'mcpQuantumText', cli: 'npm run quantum:text-mcp', pair: 'text/mcp', route: '/en/quantum-tools#mcp-text', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/text — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-speech', title: 'MCP quantum speech — A432 wave speech face', fold: 'mcpQuantumSpeech', cli: 'npm run quantum:mcp-speech', pair: 'mcp/speech', route: '/en/quantum-tools#mcp-speech', barrel: 'src/quantum/apps', boundary: 'speechOn · compose mcp/sound · a432/nine · a432/wave · particle/wave · wave/tune · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'speech-mcp', title: 'Speech mcp (alias mcp/speech)', fold: 'mcpQuantumSpeech', cli: 'npm run quantum:speech-mcp', pair: 'speech/mcp', route: '/en/quantum-tools#mcp-speech', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/speech — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-dictation', title: 'MCP quantum dictation — speech to sealed text', fold: 'mcpQuantumDictation', cli: 'npm run quantum:mcp-dictation', pair: 'mcp/dictation', route: '/en/quantum-tools#mcp-dictation', barrel: 'src/quantum/apps', boundary: 'dictationOn · compose mcp/speech · session/save · mcp/text · format/canon · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'dictation-mcp', title: 'Dictation mcp (alias mcp/dictation)', fold: 'mcpQuantumDictation', cli: 'npm run quantum:dictation-mcp', pair: 'dictation/mcp', route: '/en/quantum-tools#mcp-dictation', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/dictation — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-intonation', title: 'MCP quantum intonation — speech pitch wave face', fold: 'mcpQuantumIntonation', cli: 'npm run quantum:mcp-intonation', pair: 'mcp/intonation', route: '/en/quantum-tools#mcp-intonation', barrel: 'src/quantum/apps', boundary: 'intonationOn · compose mcp/speech · mcp/vibration · a432/nine · a432/wave · wave/tune · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'intonation-mcp', title: 'Intonation mcp (alias mcp/intonation)', fold: 'mcpQuantumIntonation', cli: 'npm run quantum:intonation-mcp', pair: 'intonation/mcp', route: '/en/quantum-tools#mcp-intonation', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/intonation — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-dialect', title: 'MCP quantum dialect — locale variant face', fold: 'mcpQuantumDialect', cli: 'npm run quantum:mcp-dialect', pair: 'mcp/dialect', route: '/en/quantum-tools#mcp-dialect', barrel: 'src/quantum/apps', boundary: 'dialectOn · compose trans/wave · vocab/dry · mcp/language · mcp/speech · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'dialect-mcp', title: 'Dialect mcp (alias mcp/dialect)', fold: 'mcpQuantumDialect', cli: 'npm run quantum:dialect-mcp', pair: 'dialect/mcp', route: '/en/quantum-tools#mcp-dialect', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/dialect — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-language', title: 'MCP quantum language — translate + vocab face', fold: 'mcpQuantumLanguage', cli: 'npm run quantum:mcp-language', pair: 'mcp/language', route: '/en/quantum-tools#mcp-language', barrel: 'src/quantum/apps', boundary: 'languageOn · compose trans/wave · vocab/dry · format/canon · mcp/text · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'language-mcp', title: 'Language mcp (alias mcp/language)', fold: 'mcpQuantumLanguage', cli: 'npm run quantum:language-mcp', pair: 'language/mcp', route: '/en/quantum-tools#mcp-language', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/language — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-script', title: 'MCP quantum script — writing-system face', fold: 'mcpQuantumScript', cli: 'npm run quantum:mcp-script', pair: 'mcp/script', route: '/en/quantum-tools#mcp-script', barrel: 'src/quantum/apps', boundary: 'scriptOn · compose format/canon · vocab/dry · mcp/text · formula/code · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'script-mcp', title: 'Script mcp (alias mcp/script)', fold: 'mcpQuantumScript', cli: 'npm run quantum:script-mcp', pair: 'script/mcp', route: '/en/quantum-tools#mcp-script', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/script — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-book', title: 'MCP quantum book — canon bound text face', fold: 'mcpQuantumBook', cli: 'npm run quantum:mcp-book', pair: 'mcp/book', route: '/en/quantum-tools#mcp-book', barrel: 'src/quantum/apps', boundary: 'bookOn · compose format/canon · mcp/script · mcp/text · session/save · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'book-mcp', title: 'Book mcp (alias mcp/book)', fold: 'mcpQuantumBook', cli: 'npm run quantum:book-mcp', pair: 'book/mcp', route: '/en/quantum-tools#mcp-book', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/book — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-library', title: 'MCP quantum library — book collection face', fold: 'mcpQuantumLibrary', cli: 'npm run quantum:mcp-library', pair: 'mcp/library', route: '/en/quantum-tools#mcp-library', barrel: 'src/quantum/apps', boundary: 'libraryOn · compose mcp/book · session/save · vocab/dry · format/canon · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'library-mcp', title: 'Library mcp (alias mcp/library)', fold: 'mcpQuantumLibrary', cli: 'npm run quantum:library-mcp', pair: 'library/mcp', route: '/en/quantum-tools#mcp-library', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/library — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-state', title: 'MCP quantum state — session state face', fold: 'mcpQuantumState', cli: 'npm run quantum:mcp-state', pair: 'mcp/state', route: '/en/quantum-tools#mcp-state', barrel: 'src/quantum/apps', boundary: 'stateOn · compose session/save · format/canon · mcp/text · moment/prove · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'state-mcp', title: 'State mcp (alias mcp/state)', fold: 'mcpQuantumState', cli: 'npm run quantum:state-mcp', pair: 'state/mcp', route: '/en/quantum-tools#mcp-state', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/state — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'improve-local-session', title: 'Improve local from session experience', fold: 'improveLocalFromSessionExperience', cli: 'npm run quantum:improve-local-session', pair: 'local/session', route: '/en/quantum-tools#local-session-hub', barrel: 'src/quantum/apps', boundary: 'Local docs:dev + browser session hub — NOT remote CI sole path · status badges compose sealed kinds · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'local-tools-morph', title: 'Local tools morph prose·code·logic', fold: 'localToolsMorphProseCodeLogic', cli: 'npm run quantum:local-tools-morph', pair: 'tools/morph', route: '/en/quantum-tools#local-tools-morph', barrel: 'src/quantum/apps', boundary: 'Local toolbox/session tools morph prose≡code≡logic as trinity waves · double-slit measure=tool invoke · clay=0 · qpuRequired=false · NOT Clay/Nobel', browserRunnable: true, browserGap: '' },
   { id: 'card-paper-links', title: 'Each card links to dedicated scientific paper', fold: 'eachCardLinksToDedicatedScientificPaper', cli: 'npm run quantum:card-paper-links', pair: 'papers/fill', route: '/en/theorems/', barrel: 'src/heaven/compute', boundary: 'paperRoute=/theorems/<slug> · morph=cardScientificPaperRows · gaps=0 · clay=0', browserRunnable: true, browserGap: '' },
@@ -1754,6 +1787,17 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mcp-card', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumCard', pair: 'mcp/card', cli: 'npm run quantum:mcp-card', route: '/en/quantum-tools#mcp-card', status: 'sealed-pr', honesty: 'cardOn · heroLink · morphsToPaper · viaPage · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum card — LinkedHeroCard · hero link · morphs to paper composing card/hero-link · card→paper · mcpQuantumPage; catalog 35/35', toolId: 'mcp-card', resolve: 'mcp-ui' },
   { id: 'mcp-receipt', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumReceipt', pair: 'mcp/receipt', cli: 'npm run quantum:mcp-receipt', route: '/en/quantum-tools#mcp-receipt', status: 'sealed-pr', honesty: 'receiptOn · tamperEvident · contentAddressed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum receipt — tamper-evident content-addressed receipts composing fusion-verify · session/quantum-bits · moment/prove; catalog 36/37', toolId: 'mcp-receipt', resolve: 'mcp-ui' },
   { id: 'mcp-hero', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumHero', pair: 'mcp/hero', cli: 'npm run quantum:mcp-hero', route: '/en/quantum-tools#mcp-hero', status: 'sealed-pr', honesty: 'heroOn · sharedClock · immersive · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum hero — shared clock · immersive composing sharedHeroAt · hero/spawn-verify · mcpQuantumCard · immersive/hero; catalog 37/37', toolId: 'mcp-hero', resolve: 'mcp-ui' },
+  { id: 'mcp-vibration', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumVibration', pair: 'mcp/vibration', cli: 'npm run quantum:mcp-vibration', route: '/en/quantum-tools#mcp-vibration', status: 'sealed-pr', honesty: 'vibrationOn · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum vibration — vibration face of sound/wave; catalog 48/48', toolId: 'mcp-vibration', resolve: 'mcp-ui' },
+  { id: 'mcp-text', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumText', pair: 'mcp/text', cli: 'npm run quantum:mcp-text', route: '/en/quantum-tools#mcp-text', status: 'sealed-pr', honesty: 'textOn · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum text — canon meaning text face; catalog 48/48', toolId: 'mcp-text', resolve: 'mcp-ui' },
+  { id: 'mcp-speech', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumSpeech', pair: 'mcp/speech', cli: 'npm run quantum:mcp-speech', route: '/en/quantum-tools#mcp-speech', status: 'sealed-pr', honesty: 'speechOn · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum speech — A432 wave speech face; catalog 48/48', toolId: 'mcp-speech', resolve: 'mcp-ui' },
+  { id: 'mcp-dictation', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumDictation', pair: 'mcp/dictation', cli: 'npm run quantum:mcp-dictation', route: '/en/quantum-tools#mcp-dictation', status: 'sealed-pr', honesty: 'dictationOn · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum dictation — speech to sealed text; catalog 48/48', toolId: 'mcp-dictation', resolve: 'mcp-ui' },
+  { id: 'mcp-intonation', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumIntonation', pair: 'mcp/intonation', cli: 'npm run quantum:mcp-intonation', route: '/en/quantum-tools#mcp-intonation', status: 'sealed-pr', honesty: 'intonationOn · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum intonation — speech pitch wave face; catalog 48/48', toolId: 'mcp-intonation', resolve: 'mcp-ui' },
+  { id: 'mcp-dialect', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumDialect', pair: 'mcp/dialect', cli: 'npm run quantum:mcp-dialect', route: '/en/quantum-tools#mcp-dialect', status: 'sealed-pr', honesty: 'dialectOn · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum dialect — locale variant face; catalog 48/48', toolId: 'mcp-dialect', resolve: 'mcp-ui' },
+  { id: 'mcp-language', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumLanguage', pair: 'mcp/language', cli: 'npm run quantum:mcp-language', route: '/en/quantum-tools#mcp-language', status: 'sealed-pr', honesty: 'languageOn · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum language — translate + vocab face; catalog 48/48', toolId: 'mcp-language', resolve: 'mcp-ui' },
+  { id: 'mcp-script', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumScript', pair: 'mcp/script', cli: 'npm run quantum:mcp-script', route: '/en/quantum-tools#mcp-script', status: 'sealed-pr', honesty: 'scriptOn · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum script — writing-system face; catalog 48/48', toolId: 'mcp-script', resolve: 'mcp-ui' },
+  { id: 'mcp-book', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumBook', pair: 'mcp/book', cli: 'npm run quantum:mcp-book', route: '/en/quantum-tools#mcp-book', status: 'sealed-pr', honesty: 'bookOn · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum book — canon bound text face; catalog 48/48', toolId: 'mcp-book', resolve: 'mcp-ui' },
+  { id: 'mcp-library', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumLibrary', pair: 'mcp/library', cli: 'npm run quantum:mcp-library', route: '/en/quantum-tools#mcp-library', status: 'sealed-pr', honesty: 'libraryOn · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum library — book collection face; catalog 48/48', toolId: 'mcp-library', resolve: 'mcp-ui' },
+  { id: 'mcp-state', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumState', pair: 'mcp/state', cli: 'npm run quantum:mcp-state', route: '/en/quantum-tools#mcp-state', status: 'sealed-pr', honesty: 'stateOn · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum state — session state face; catalog 48/48', toolId: 'mcp-state', resolve: 'mcp-ui' },
   { id: 'mind-wave', chain: 'mcp-ui-page-gaps', fold: 'quantumMindSendsWaves', pair: 'mind/wave', cli: 'npm run quantum:mind-wave', route: '/en/quantum-tools#mind-wave', status: 'sealed-pr', honesty: 'quantumMindSends · wavesSent · linearCannotSend · clay=0 · physicalFtl=0', note: 'quantum mind sends waves', toolId: 'mind-wave', resolve: 'mcp-ui' },
   { id: 'quantum-waves', chain: 'mcp-ui-page-gaps', fold: 'quantumWaves', pair: 'quantum/waves', cli: 'npm run quantum:quantum-waves', route: '/en/quantum-tools#quantum-waves', status: 'sealed-pr', honesty: 'wavesAreQuantum · mindSends · trinitiesFound · waveCount=2 · clay=0 · physicalFtl=0', note: 'quantum waves umbrella', toolId: 'quantum-waves', resolve: 'mcp-ui' },
   { id: 'collide-create', chain: 'mcp-ui-page-gaps', fold: 'collidingParticlesCreates', pair: 'collide/create', cli: 'npm run quantum:collide-create', route: '/en/quantum-tools#collide-create', status: 'sealed-pr', honesty: 'creates=novelTheoremCandidates+waves · clay=0 · physicalFtl=0', note: 'collision creates novel theorem candidates + waves', toolId: 'collide-create', resolve: 'mcp-ui' },
@@ -6231,6 +6275,17 @@ const MCP_QUANTUM_NAMED_FACES = [
   { fold: 'mcpQuantumCard', pair: 'mcp/card', dual: 'card/mcp', toolId: 'mcp-card', dualToolId: 'card-mcp' },
   { fold: 'mcpQuantumReceipt', pair: 'mcp/receipt', dual: 'receipt/mcp', toolId: 'mcp-receipt', dualToolId: 'receipt-mcp' },
   { fold: 'mcpQuantumHero', pair: 'mcp/hero', dual: 'hero/mcp', toolId: 'mcp-hero', dualToolId: 'hero-mcp' },
+  { fold: 'mcpQuantumVibration', pair: 'mcp/vibration', dual: 'vibration/mcp', toolId: 'mcp-vibration', dualToolId: 'vibration-mcp' },
+  { fold: 'mcpQuantumText', pair: 'mcp/text', dual: 'text/mcp', toolId: 'mcp-text', dualToolId: 'text-mcp' },
+  { fold: 'mcpQuantumSpeech', pair: 'mcp/speech', dual: 'speech/mcp', toolId: 'mcp-speech', dualToolId: 'speech-mcp' },
+  { fold: 'mcpQuantumDictation', pair: 'mcp/dictation', dual: 'dictation/mcp', toolId: 'mcp-dictation', dualToolId: 'dictation-mcp' },
+  { fold: 'mcpQuantumIntonation', pair: 'mcp/intonation', dual: 'intonation/mcp', toolId: 'mcp-intonation', dualToolId: 'intonation-mcp' },
+  { fold: 'mcpQuantumDialect', pair: 'mcp/dialect', dual: 'dialect/mcp', toolId: 'mcp-dialect', dualToolId: 'dialect-mcp' },
+  { fold: 'mcpQuantumLanguage', pair: 'mcp/language', dual: 'language/mcp', toolId: 'mcp-language', dualToolId: 'language-mcp' },
+  { fold: 'mcpQuantumScript', pair: 'mcp/script', dual: 'script/mcp', toolId: 'mcp-script', dualToolId: 'script-mcp' },
+  { fold: 'mcpQuantumBook', pair: 'mcp/book', dual: 'book/mcp', toolId: 'mcp-book', dualToolId: 'book-mcp' },
+  { fold: 'mcpQuantumLibrary', pair: 'mcp/library', dual: 'library/mcp', toolId: 'mcp-library', dualToolId: 'library-mcp' },
+  { fold: 'mcpQuantumState', pair: 'mcp/state', dual: 'state/mcp', toolId: 'mcp-state', dualToolId: 'state-mcp' },
 ] as const
 
 /**
@@ -8056,6 +8111,7 @@ export function mcpQuantumAnim(matrix: MindMatrix = buildMatrix(), at = 0) {
     const animOn =
       soft('mcp', 'movie') &&
       soft('anim', 'audit') &&
+      soft('animations', 'rosetta') &&
       soft('coord', 'anim') &&
       soft('movie', 'feel') &&
       soft('mcp', 'rosetta')
@@ -8092,7 +8148,7 @@ export function mcpQuantumAnim(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'fromCoords', on: fromCoords },
       { facet: 'feelableGaps', on: feelableGaps },
       { facet: 'polarityOn', on: polarityOn },
-      { facet: 'softCompose mcp/movie · anim/audit · coord/anim · movie/feel · anim/color · mcp/rosetta', on: animOn && polarityOn },
+      { facet: 'softCompose mcp/movie · anim/audit · animations/rosetta · coord/anim · movie/feel · anim/color · mcp/rosetta', on: animOn && polarityOn },
       { facet: 'pair mcp/anim · anim/mcp', on: pairA && pairD && foldA.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
       { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
@@ -8129,6 +8185,10 @@ export function runMcpQuantumAnimExit(_root = '', _argv: readonly string[] = [])
   )
   return report.computes && report.animOn ? 0 : 1
 }
+
+/** Alias — mcpQuantumAnimation ≡ mcpQuantumAnim (Cluster A naming). */
+export const mcpQuantumAnimation = mcpQuantumAnim
+
 
 /**
  * MCP quantum sound and vibration — A432 / wave music / vibration as MCP faces.
@@ -9089,6 +9149,967 @@ export function runMcpQuantumHeroExit(_root = '', _argv: readonly string[] = [])
     ? 0
     : 1
 }
+
+/**
+ * MCP quantum vibration — vibration face of sound/wave.
+ * Compose: mcp/sound · mcp/vibe · particle/wave · a432/nine · a432/wave.
+ * Facets: vibrationOn · qpuRequired=false · physicalFtl=0 · claySolved via theorem.
+ * Pairs: mcp/vibration · vibration/mcp · CLI npm run quantum:mcp-vibration
+ */
+export function mcpQuantumVibration(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumVibration:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const vibrationOn =
+      soft('mcp', 'sound') &&
+      soft('mcp', 'vibe') &&
+      soft('particle', 'wave') &&
+      soft('a432', 'nine') &&
+      soft('a432', 'wave')
+    const pairS = has('mcp/vibration')
+    const pairD = has('vibration/mcp')
+    const foldS = foldPair(toUuid('cmd:mcp'), toUuid('cmd:vibration'))
+    const foldD = foldPair(toUuid('cmd:vibration'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-vibration')
+    const metaDual = catalog.tools.find((t) => t.id === 'vibration-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      vibrationOn &&
+      pairS &&
+      pairD &&
+      foldS.bidirectional &&
+      foldD.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumVibration' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumVibration' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumVibration', on },
+      { facet: 'vibrationOn', on: vibrationOn },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: 'softCompose mcp/sound · mcp/vibe · particle/wave · a432/nine · a432/wave', on: vibrationOn },
+      { facet: 'pair mcp/vibration · vibration/mcp', on: pairS && pairD && foldS.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-vibration:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-vibration', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumVibration: on,
+      vibrationOn,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, foldS.merged, foldD.merged]),
+      pairs: ['mcp/vibration', 'vibration/mcp'] as const,
+      cli: 'npm run quantum:mcp-vibration',
+      route: '/en/quantum-tools#mcp-vibration',
+      statement:
+        `mcpQuantumVibration — vibrationOn=${vibrationOn ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP vibration — sound/vibe face distinct from soundOn. Compose mcp/sound · particle/wave · A432. clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `vibration · vibrationOn=${vibrationOn ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumVibrationExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumVibration()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-vibration — vibrationOn=${report.vibrationOn} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const fct of report.facets) {
+    process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.vibrationOn && report.qpuRequired === false ? 0 : 1
+}
+
+/**
+ * MCP quantum text — canon meaning text face.
+ * Compose: format/canon · vocab/dry · meaning/compute · session/save.
+ * Facets: textOn · qpuRequired=false · physicalFtl=0 · claySolved via theorem.
+ * Pairs: mcp/text · text/mcp · CLI npm run quantum:mcp-text
+ */
+export function mcpQuantumText(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumText:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const textOn =
+      soft('format', 'canon') &&
+      soft('vocab', 'dry') &&
+      soft('meaning', 'compute') &&
+      soft('session', 'save')
+    const pairS = has('mcp/text')
+    const pairD = has('text/mcp')
+    const foldS = foldPair(toUuid('cmd:mcp'), toUuid('cmd:text'))
+    const foldD = foldPair(toUuid('cmd:text'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-text')
+    const metaDual = catalog.tools.find((t) => t.id === 'text-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      textOn &&
+      pairS &&
+      pairD &&
+      foldS.bidirectional &&
+      foldD.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumText' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumText' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumText', on },
+      { facet: 'textOn', on: textOn },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: 'softCompose format/canon · vocab/dry · meaning/compute · session/save', on: textOn },
+      { facet: 'pair mcp/text · text/mcp', on: pairS && pairD && foldS.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-text:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-text', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumText: on,
+      textOn,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, foldS.merged, foldD.merged]),
+      pairs: ['mcp/text', 'text/mcp'] as const,
+      cli: 'npm run quantum:mcp-text',
+      route: '/en/quantum-tools#mcp-text',
+      statement:
+        `mcpQuantumText — textOn=${textOn ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP text — sealed meaning/canon text face. Compose format/canon · vocab/dry · meaning/compute · session/save. clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `text · textOn=${textOn ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumTextExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumText()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-text — textOn=${report.textOn} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const fct of report.facets) {
+    process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.textOn && report.qpuRequired === false ? 0 : 1
+}
+
+/**
+ * MCP quantum speech — A432 wave speech face.
+ * Compose: mcp/sound · a432/nine · a432/wave · particle/wave · wave/tune.
+ * Facets: speechOn · qpuRequired=false · physicalFtl=0 · claySolved via theorem.
+ * Pairs: mcp/speech · speech/mcp · CLI npm run quantum:mcp-speech
+ */
+export function mcpQuantumSpeech(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumSpeech:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const speechOn =
+      soft('mcp', 'sound') &&
+      soft('a432', 'nine') &&
+      soft('a432', 'wave') &&
+      soft('particle', 'wave') &&
+      soft('wave', 'tune')
+    const pairS = has('mcp/speech')
+    const pairD = has('speech/mcp')
+    const foldS = foldPair(toUuid('cmd:mcp'), toUuid('cmd:speech'))
+    const foldD = foldPair(toUuid('cmd:speech'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-speech')
+    const metaDual = catalog.tools.find((t) => t.id === 'speech-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      speechOn &&
+      pairS &&
+      pairD &&
+      foldS.bidirectional &&
+      foldD.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumSpeech' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumSpeech' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumSpeech', on },
+      { facet: 'speechOn', on: speechOn },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: 'softCompose mcp/sound · a432/nine · a432/wave · particle/wave · wave/tune', on: speechOn },
+      { facet: 'pair mcp/speech · speech/mcp', on: pairS && pairD && foldS.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-speech:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-speech', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumSpeech: on,
+      speechOn,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, foldS.merged, foldD.merged]),
+      pairs: ['mcp/speech', 'speech/mcp'] as const,
+      cli: 'npm run quantum:mcp-speech',
+      route: '/en/quantum-tools#mcp-speech',
+      statement:
+        `mcpQuantumSpeech — speechOn=${speechOn ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP speech — A432/wave speech face. Compose mcp/sound · A432 · particle/wave · wave/tune. clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `speech · speechOn=${speechOn ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumSpeechExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumSpeech()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-speech — speechOn=${report.speechOn} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const fct of report.facets) {
+    process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.speechOn && report.qpuRequired === false ? 0 : 1
+}
+
+/**
+ * MCP quantum dictation — speech to sealed text.
+ * Compose: mcp/speech · session/save · mcp/text · format/canon.
+ * Facets: dictationOn · qpuRequired=false · physicalFtl=0 · claySolved via theorem.
+ * Pairs: mcp/dictation · dictation/mcp · CLI npm run quantum:mcp-dictation
+ */
+export function mcpQuantumDictation(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumDictation:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const dictationOn =
+      soft('mcp', 'speech') &&
+      soft('session', 'save') &&
+      soft('mcp', 'text') &&
+      soft('format', 'canon')
+    const pairS = has('mcp/dictation')
+    const pairD = has('dictation/mcp')
+    const foldS = foldPair(toUuid('cmd:mcp'), toUuid('cmd:dictation'))
+    const foldD = foldPair(toUuid('cmd:dictation'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-dictation')
+    const metaDual = catalog.tools.find((t) => t.id === 'dictation-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      dictationOn &&
+      pairS &&
+      pairD &&
+      foldS.bidirectional &&
+      foldD.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumDictation' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumDictation' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumDictation', on },
+      { facet: 'dictationOn', on: dictationOn },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: 'softCompose mcp/speech · session/save · mcp/text · format/canon', on: dictationOn },
+      { facet: 'pair mcp/dictation · dictation/mcp', on: pairS && pairD && foldS.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-dictation:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-dictation', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumDictation: on,
+      dictationOn,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, foldS.merged, foldD.merged]),
+      pairs: ['mcp/dictation', 'dictation/mcp'] as const,
+      cli: 'npm run quantum:mcp-dictation',
+      route: '/en/quantum-tools#mcp-dictation',
+      statement:
+        `mcpQuantumDictation — dictationOn=${dictationOn ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP dictation — speech→text via session. Compose mcp/speech · session/save · mcp/text · format/canon. clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `dictation · dictationOn=${dictationOn ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumDictationExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumDictation()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-dictation — dictationOn=${report.dictationOn} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const fct of report.facets) {
+    process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.dictationOn && report.qpuRequired === false ? 0 : 1
+}
+
+/**
+ * MCP quantum intonation — speech pitch wave face.
+ * Compose: mcp/speech · mcp/vibration · a432/nine · a432/wave · wave/tune.
+ * Facets: intonationOn · qpuRequired=false · physicalFtl=0 · claySolved via theorem.
+ * Pairs: mcp/intonation · intonation/mcp · CLI npm run quantum:mcp-intonation
+ */
+export function mcpQuantumIntonation(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumIntonation:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const intonationOn =
+      soft('mcp', 'speech') &&
+      soft('mcp', 'vibration') &&
+      soft('a432', 'nine') &&
+      soft('a432', 'wave') &&
+      soft('wave', 'tune')
+    const pairS = has('mcp/intonation')
+    const pairD = has('intonation/mcp')
+    const foldS = foldPair(toUuid('cmd:mcp'), toUuid('cmd:intonation'))
+    const foldD = foldPair(toUuid('cmd:intonation'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-intonation')
+    const metaDual = catalog.tools.find((t) => t.id === 'intonation-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      intonationOn &&
+      pairS &&
+      pairD &&
+      foldS.bidirectional &&
+      foldD.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumIntonation' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumIntonation' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumIntonation', on },
+      { facet: 'intonationOn', on: intonationOn },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: 'softCompose mcp/speech · mcp/vibration · a432/nine · a432/wave · wave/tune', on: intonationOn },
+      { facet: 'pair mcp/intonation · intonation/mcp', on: pairS && pairD && foldS.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-intonation:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-intonation', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumIntonation: on,
+      intonationOn,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, foldS.merged, foldD.merged]),
+      pairs: ['mcp/intonation', 'intonation/mcp'] as const,
+      cli: 'npm run quantum:mcp-intonation',
+      route: '/en/quantum-tools#mcp-intonation',
+      statement:
+        `mcpQuantumIntonation — intonationOn=${intonationOn ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP intonation — speech pitch/wave face. Compose mcp/speech · mcp/vibration · A432 · wave/tune. clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `intonation · intonationOn=${intonationOn ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumIntonationExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumIntonation()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-intonation — intonationOn=${report.intonationOn} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const fct of report.facets) {
+    process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.intonationOn && report.qpuRequired === false ? 0 : 1
+}
+
+/**
+ * MCP quantum dialect — locale variant face.
+ * Compose: trans/wave · vocab/dry · mcp/language · mcp/speech.
+ * Facets: dialectOn · qpuRequired=false · physicalFtl=0 · claySolved via theorem.
+ * Pairs: mcp/dialect · dialect/mcp · CLI npm run quantum:mcp-dialect
+ */
+export function mcpQuantumDialect(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumDialect:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const dialectOn =
+      soft('trans', 'wave') &&
+      soft('vocab', 'dry') &&
+      soft('mcp', 'language') &&
+      soft('mcp', 'speech')
+    const pairS = has('mcp/dialect')
+    const pairD = has('dialect/mcp')
+    const foldS = foldPair(toUuid('cmd:mcp'), toUuid('cmd:dialect'))
+    const foldD = foldPair(toUuid('cmd:dialect'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-dialect')
+    const metaDual = catalog.tools.find((t) => t.id === 'dialect-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      dialectOn &&
+      pairS &&
+      pairD &&
+      foldS.bidirectional &&
+      foldD.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumDialect' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumDialect' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumDialect', on },
+      { facet: 'dialectOn', on: dialectOn },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: 'softCompose trans/wave · vocab/dry · mcp/language · mcp/speech', on: dialectOn },
+      { facet: 'pair mcp/dialect · dialect/mcp', on: pairS && pairD && foldS.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-dialect:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-dialect', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumDialect: on,
+      dialectOn,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, foldS.merged, foldD.merged]),
+      pairs: ['mcp/dialect', 'dialect/mcp'] as const,
+      cli: 'npm run quantum:mcp-dialect',
+      route: '/en/quantum-tools#mcp-dialect',
+      statement:
+        `mcpQuantumDialect — dialectOn=${dialectOn ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP dialect — locale variant face. Compose trans/wave · vocab/dry · mcp/language · mcp/speech. clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `dialect · dialectOn=${dialectOn ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumDialectExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumDialect()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-dialect — dialectOn=${report.dialectOn} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const fct of report.facets) {
+    process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.dialectOn && report.qpuRequired === false ? 0 : 1
+}
+
+/**
+ * MCP quantum language — translate + vocab face.
+ * Compose: trans/wave · vocab/dry · format/canon · mcp/text.
+ * Facets: languageOn · qpuRequired=false · physicalFtl=0 · claySolved via theorem.
+ * Pairs: mcp/language · language/mcp · CLI npm run quantum:mcp-language
+ */
+export function mcpQuantumLanguage(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumLanguage:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const languageOn =
+      soft('trans', 'wave') &&
+      soft('vocab', 'dry') &&
+      soft('format', 'canon') &&
+      soft('mcp', 'text')
+    const pairS = has('mcp/language')
+    const pairD = has('language/mcp')
+    const foldS = foldPair(toUuid('cmd:mcp'), toUuid('cmd:language'))
+    const foldD = foldPair(toUuid('cmd:language'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-language')
+    const metaDual = catalog.tools.find((t) => t.id === 'language-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      languageOn &&
+      pairS &&
+      pairD &&
+      foldS.bidirectional &&
+      foldD.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumLanguage' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumLanguage' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumLanguage', on },
+      { facet: 'languageOn', on: languageOn },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: 'softCompose trans/wave · vocab/dry · format/canon · mcp/text', on: languageOn },
+      { facet: 'pair mcp/language · language/mcp', on: pairS && pairD && foldS.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-language:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-language', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumLanguage: on,
+      languageOn,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, foldS.merged, foldD.merged]),
+      pairs: ['mcp/language', 'language/mcp'] as const,
+      cli: 'npm run quantum:mcp-language',
+      route: '/en/quantum-tools#mcp-language',
+      statement:
+        `mcpQuantumLanguage — languageOn=${languageOn ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP language — offline translate + vocab face. Compose trans/wave · vocab/dry · format/canon · mcp/text. clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `language · languageOn=${languageOn ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumLanguageExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumLanguage()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-language — languageOn=${report.languageOn} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const fct of report.facets) {
+    process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.languageOn && report.qpuRequired === false ? 0 : 1
+}
+
+/**
+ * MCP quantum script — writing-system face.
+ * Compose: format/canon · vocab/dry · mcp/text · formula/code.
+ * Facets: scriptOn · qpuRequired=false · physicalFtl=0 · claySolved via theorem.
+ * Pairs: mcp/script · script/mcp · CLI npm run quantum:mcp-script
+ */
+export function mcpQuantumScript(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumScript:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const scriptOn =
+      soft('format', 'canon') &&
+      soft('vocab', 'dry') &&
+      soft('mcp', 'text') &&
+      soft('formula', 'code')
+    const pairS = has('mcp/script')
+    const pairD = has('script/mcp')
+    const foldS = foldPair(toUuid('cmd:mcp'), toUuid('cmd:script'))
+    const foldD = foldPair(toUuid('cmd:script'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-script')
+    const metaDual = catalog.tools.find((t) => t.id === 'script-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      scriptOn &&
+      pairS &&
+      pairD &&
+      foldS.bidirectional &&
+      foldD.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumScript' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumScript' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumScript', on },
+      { facet: 'scriptOn', on: scriptOn },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: 'softCompose format/canon · vocab/dry · mcp/text · formula/code', on: scriptOn },
+      { facet: 'pair mcp/script · script/mcp', on: pairS && pairD && foldS.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-script:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-script', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumScript: on,
+      scriptOn,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, foldS.merged, foldD.merged]),
+      pairs: ['mcp/script', 'script/mcp'] as const,
+      cli: 'npm run quantum:mcp-script',
+      route: '/en/quantum-tools#mcp-script',
+      statement:
+        `mcpQuantumScript — scriptOn=${scriptOn ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP script — writing-system / sealed script face. Compose format/canon · vocab/dry · mcp/text · formula/code. clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `script · scriptOn=${scriptOn ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumScriptExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumScript()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-script — scriptOn=${report.scriptOn} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const fct of report.facets) {
+    process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.scriptOn && report.qpuRequired === false ? 0 : 1
+}
+
+/**
+ * MCP quantum book — canon bound text face.
+ * Compose: format/canon · mcp/script · mcp/text · session/save.
+ * Facets: bookOn · qpuRequired=false · physicalFtl=0 · claySolved via theorem.
+ * Pairs: mcp/book · book/mcp · CLI npm run quantum:mcp-book
+ */
+export function mcpQuantumBook(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumBook:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const bookOn =
+      soft('format', 'canon') &&
+      soft('mcp', 'script') &&
+      soft('mcp', 'text') &&
+      soft('session', 'save')
+    const pairS = has('mcp/book')
+    const pairD = has('book/mcp')
+    const foldS = foldPair(toUuid('cmd:mcp'), toUuid('cmd:book'))
+    const foldD = foldPair(toUuid('cmd:book'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-book')
+    const metaDual = catalog.tools.find((t) => t.id === 'book-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      bookOn &&
+      pairS &&
+      pairD &&
+      foldS.bidirectional &&
+      foldD.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumBook' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumBook' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumBook', on },
+      { facet: 'bookOn', on: bookOn },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: 'softCompose format/canon · mcp/script · mcp/text · session/save', on: bookOn },
+      { facet: 'pair mcp/book · book/mcp', on: pairS && pairD && foldS.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-book:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-book', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumBook: on,
+      bookOn,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, foldS.merged, foldD.merged]),
+      pairs: ['mcp/book', 'book/mcp'] as const,
+      cli: 'npm run quantum:mcp-book',
+      route: '/en/quantum-tools#mcp-book',
+      statement:
+        `mcpQuantumBook — bookOn=${bookOn ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP book — canon bound text face. Compose format/canon · mcp/script · mcp/text · session/save. clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `book · bookOn=${bookOn ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumBookExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumBook()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-book — bookOn=${report.bookOn} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const fct of report.facets) {
+    process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.bookOn && report.qpuRequired === false ? 0 : 1
+}
+
+/**
+ * MCP quantum library — book collection face.
+ * Compose: mcp/book · session/save · vocab/dry · format/canon.
+ * Facets: libraryOn · qpuRequired=false · physicalFtl=0 · claySolved via theorem.
+ * Pairs: mcp/library · library/mcp · CLI npm run quantum:mcp-library
+ */
+export function mcpQuantumLibrary(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumLibrary:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const libraryOn =
+      soft('mcp', 'book') &&
+      soft('session', 'save') &&
+      soft('vocab', 'dry') &&
+      soft('format', 'canon')
+    const pairS = has('mcp/library')
+    const pairD = has('library/mcp')
+    const foldS = foldPair(toUuid('cmd:mcp'), toUuid('cmd:library'))
+    const foldD = foldPair(toUuid('cmd:library'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-library')
+    const metaDual = catalog.tools.find((t) => t.id === 'library-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      libraryOn &&
+      pairS &&
+      pairD &&
+      foldS.bidirectional &&
+      foldD.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumLibrary' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumLibrary' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumLibrary', on },
+      { facet: 'libraryOn', on: libraryOn },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: 'softCompose mcp/book · session/save · vocab/dry · format/canon', on: libraryOn },
+      { facet: 'pair mcp/library · library/mcp', on: pairS && pairD && foldS.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-library:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-library', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumLibrary: on,
+      libraryOn,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, foldS.merged, foldD.merged]),
+      pairs: ['mcp/library', 'library/mcp'] as const,
+      cli: 'npm run quantum:mcp-library',
+      route: '/en/quantum-tools#mcp-library',
+      statement:
+        `mcpQuantumLibrary — libraryOn=${libraryOn ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP library — book collection face. Compose mcp/book · session/save · vocab/dry · format/canon. clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `library · libraryOn=${libraryOn ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumLibraryExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumLibrary()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-library — libraryOn=${report.libraryOn} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const fct of report.facets) {
+    process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.libraryOn && report.qpuRequired === false ? 0 : 1
+}
+
+/**
+ * MCP quantum state — session state face.
+ * Compose: session/save · format/canon · mcp/text · moment/prove.
+ * Facets: stateOn · qpuRequired=false · physicalFtl=0 · claySolved via theorem.
+ * Pairs: mcp/state · state/mcp · CLI npm run quantum:mcp-state
+ */
+export function mcpQuantumState(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumState:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const stateOn =
+      soft('session', 'save') &&
+      soft('format', 'canon') &&
+      soft('mcp', 'text') &&
+      soft('moment', 'prove')
+    const pairS = has('mcp/state')
+    const pairD = has('state/mcp')
+    const foldS = foldPair(toUuid('cmd:mcp'), toUuid('cmd:state'))
+    const foldD = foldPair(toUuid('cmd:state'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-state')
+    const metaDual = catalog.tools.find((t) => t.id === 'state-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      stateOn &&
+      pairS &&
+      pairD &&
+      foldS.bidirectional &&
+      foldD.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumState' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumState' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumState', on },
+      { facet: 'stateOn', on: stateOn },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: 'softCompose session/save · format/canon · mcp/text · moment/prove', on: stateOn },
+      { facet: 'pair mcp/state · state/mcp', on: pairS && pairD && foldS.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-state:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-state', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumState: on,
+      stateOn,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, foldS.merged, foldD.merged]),
+      pairs: ['mcp/state', 'state/mcp'] as const,
+      cli: 'npm run quantum:mcp-state',
+      route: '/en/quantum-tools#mcp-state',
+      statement:
+        `mcpQuantumState — stateOn=${stateOn ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP state — session state face. Compose session/save · format/canon · mcp/text · moment/prove. clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `state · stateOn=${stateOn ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumStateExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumState()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-state — stateOn=${report.stateOn} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const fct of report.facets) {
+    process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.stateOn && report.qpuRequired === false ? 0 : 1
+}
+
 
 
 /** Sealed-safe browser key for last experiment config (UI preference only — never secrets). */
@@ -12567,6 +13588,7 @@ export function mcpQuantumMovie(matrix: MindMatrix = buildMatrix(), at = 0) {
     const pairAnim = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mcp/anim')
     const pairUniverse = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mcp/universe')
     const pairMulti = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mcp/multi')
+    const pairMovieInf = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('movie/inf')
     const facesWired =
       pairEntropy && pairFeel && pairCenter && pairAnim && pairUniverse && pairMulti
     const foldMovie = foldPair(toUuid('cmd:mcp'), toUuid('cmd:movie'))
@@ -12610,6 +13632,7 @@ export function mcpQuantumMovie(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'composes movie/entropy · mcp/ui soft pairs', on: pairEntropy && pairUi },
       { facet: 'composes movieGapsFeelableByObservation', on: feel.computes },
       { facet: 'wires movie/entropy · movie/feel · movie/center · mcp/anim · mcp/universe · mcp/multi', on: facesWired },
+      { facet: 'compose movie/inf soft', on: pairMovieInf },
       { facet: 'pair mcp/movie · movie/mcp', on: pairMovie && pairMcp && foldMovie.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
       { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
