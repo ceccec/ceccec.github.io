@@ -415,6 +415,8 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `cloudflare/mcp` — alias dual of `mcp/cloudflare` (`npm run quantum:cloudflare-mcp`)
   - `cf/bindings` — semantic dual of `mcp/cloudflare` (`npm run quantum:cf-bindings`)
   - `bindings/cf` — alias dual of `cf/bindings` (`npm run quantum:bindings-cf`)
+  - `mcp/review` — `npm run quantum:mcp-review` (`mcpQuantumReview()` — MCP quantum review face; facets reviewOn · analystsInTrinities · auditCompose; compose mcp/analysis · anim/audit · gate/monitor · moment/prove · wave/token; sealed review face not wet; dual `review/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-review`
+  - `review/mcp` — alias dual of `mcp/review` (`npm run quantum:review-mcp`)
   - `mcp/sign` — `npm run quantum:mcp-sign` (`mcpQuantumSign()` — signatureOn · crossSig · tamperEvident · certified=false; dual `sign/quantum`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-sign`
   - `comp/seal` — alias dual of `vite/one` (`npm run quantum:comp-seal`)
   - `paste/local` — `npm run quantum:paste-local` (`pastedLinksStayOnlyIfComputedLocally()` — pasted URLs stay only if computed locally; facets ephemeralBootstrap · stayOnlyIfComputedLocally · foreignFetchBlockedNoStore · wireClassMayExist; dual `link/local`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#paste-local`
