@@ -353,6 +353,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'catalog/mcp',
   'mcp/star',
   'star/mcp',
+  'mcp/all',
+  'all/mcp',
   'mcp/reverse',
   'forward/reverse',
   'left/right',
