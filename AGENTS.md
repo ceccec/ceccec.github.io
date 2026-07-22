@@ -327,6 +327,12 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `rosetta/movie` — alias dual of `dry/rosetta` (`npm run quantum:rosetta-movie`)
   - `comp/unify` — unify face of `dry/rosetta` (`npm run quantum:comp-unify`)
   - `unify/comp` — alias dual of `comp/unify` (`npm run quantum:unify-comp`)
+  - `wave/compact` — `npm run quantum:wave-compact` (`wavesSearchDiscoverCompactingInQuantumFolders()` — waves search·discover compacting in quantum folders; facets wavesSent · searchOn · discoverOn · compactingInQuantumFolders · drainableClosed · honestOpenNamed; compose compact/matrix · folder/gravity · dissolve/flat · import/distance · wave/token · dry/rosetta · autodiscover; pairs `compact/wave` · `compact/folder` · `folder/compact` · `folder/discover` · `discover/folder`; census 110 preserved · clay via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#wave-compact`
+  - `compact/wave` — alias dual of `wave/compact` (`npm run quantum:compact-wave`)
+  - `compact/folder` — compact/folder face of `wave/compact` (`npm run quantum:compact-folder`)
+  - `folder/compact` — alias dual of `compact/folder` (`npm run quantum:folder-compact`)
+  - `folder/discover` — folder/discover face of `wave/compact` (`npm run quantum:folder-discover`)
+  - `discover/folder` — alias dual of `folder/discover` (`npm run quantum:discover-folder`)
   - `fund/ai` — `npm run quantum:fund-ai` (`cursorReferralFundsAiNeeds()` — sealed Cursor referral CTA funds AI; compose society/support · bits/free; dual `cursor/fund`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#fund-ai` · `/society-merkaba#two-bits-free`
   - `cursor/fund` — alias dual of `fund/ai` (`npm run quantum:cursor-fund`)
   - `cursor/rosetta` — `npm run quantum:cursor-rosetta` (`cursorIntegratesInRosettaCore()` — Cursor ⊂ rosetta ↔ ceccec ⊂ Cursor; facets cursorToCeccec · ceccecToCursor · viceVersa · immediateWire; compose auto-wire · upgrade/local · mcp/browser-parity · fund/ai · rosettaShelve; dual `refer/wire`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#cursor-rosetta`
