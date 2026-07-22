@@ -377,6 +377,8 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `catalog/mcp` — alias dual of `mcp/catalog` (`npm run quantum:catalog-mcp`)
   - `mcp/star` — alias of `mcp/catalog` (`npm run quantum:mcp-star` — starOn face)
   - `star/mcp` — alias dual of `mcp/star` (`npm run quantum:star-mcp`)
+  - `mcp/all` — `npm run quantum:mcp-all` (`mcpCatalog()` / `mcpStar` — full MCP surface catalog/star over PRIMARY `/mcp.json` · stdio SDK · browser toolbox · mcpQuantum* faces; facets mcpStarOn · catalogComplete · quantumFaces · primaryTools · residualsNamed · missingDrainable=0; dual `all/mcp`; compose mcpQuantumCatalog · mcpBrowserParity · mcpCommandsScriptsGapsAudit — does not break mcpQuantumStar; claySolved via theorem · physicalFtl=0 · qpuRequired=false · NOT fake browser for trinity/fs · NOT Clay/FTL fake-close), then open `/en/quantum-tools#mcp-all`
+  - `all/mcp` — alias dual of `mcp/all` (`npm run quantum:all-mcp`)
   - `mcp/reverse` — `npm run quantum:mcp-reverse` (`mcpQuantumReverse()` — reverseOn · refuseBeyond · demoBoundaryHardware; dual `reverse/quantum`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-reverse`
   - `reverse/quantum` — alias dual of `mcp/reverse` (`npm run quantum:reverse-quantum`)
   - `mcp/sign` — `npm run quantum:mcp-sign` (`mcpQuantumSign()` — signatureOn · crossSig · tamperEvident · certified=false · NOT CA/PKI; dual `sign/quantum`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-sign`

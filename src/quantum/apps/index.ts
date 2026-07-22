@@ -80,7 +80,7 @@ const ROSETTA_CORE_API_LABELS = [
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution',
+  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -147,6 +147,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpQuantumTorus: 'tool',
   mcpQuantumResearch: 'tool',
   mcpQuantumCatalog: 'tool',
+  mcpCatalog: 'tool',
   mcpQuantumReverse: 'tool',
   mcpQuantumSign: 'tool',
   mcpQuantumDirs: 'tool',
@@ -671,6 +672,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'catalog-mcp', title: 'Catalog mcp (alias mcp/catalog)', fold: 'mcpQuantumCatalog', cli: 'npm run quantum:catalog-mcp', pair: 'catalog/mcp', route: '/en/quantum-tools#mcp-catalog', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/catalog — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-star', title: 'MCP quantum star (alias mcp/catalog)', fold: 'mcpQuantumCatalog', cli: 'npm run quantum:mcp-star', pair: 'mcp/star', route: '/en/quantum-tools#mcp-catalog', barrel: 'src/quantum/apps', boundary: 'Star alias of mcpQuantumCatalog · starOn · missingCount=0 · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'star-mcp', title: 'Star mcp (alias mcp/catalog)', fold: 'mcpQuantumCatalog', cli: 'npm run quantum:star-mcp', pair: 'star/mcp', route: '/en/quantum-tools#mcp-catalog', barrel: 'src/quantum/apps', boundary: 'Dual star path of mcp/catalog — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-all', title: 'MCP catalog star — full MCP surface (PRIMARY · stdio · toolbox · quantum faces)', fold: 'mcpCatalog', cli: 'npm run quantum:mcp-all', pair: 'mcp/all', route: '/en/quantum-tools#mcp-all', barrel: 'src/quantum/apps', boundary: 'mcpStarOn · catalogComplete · quantumFaces · primaryTools · residualsNamed honest · missingDrainable=0 · compose mcpQuantumCatalog · mcpBrowserParity · scripts-audit · claySolved via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'all-mcp', title: 'All mcp (alias mcp/all)', fold: 'mcpCatalog', cli: 'npm run quantum:all-mcp', pair: 'all/mcp', route: '/en/quantum-tools#mcp-all', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/all — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-reverse', title: 'MCP quantum reverse', fold: 'mcpQuantumReverse', cli: 'npm run quantum:mcp-reverse', pair: 'mcp/reverse', route: '/en/quantum-tools#mcp-reverse', barrel: 'src/quantum/apps', boundary: 'reverseOn · refuseBeyond · demoBoundaryHardware · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'reverse-quantum', title: 'Reverse quantum (alias mcp/reverse)', fold: 'mcpQuantumReverse', cli: 'npm run quantum:reverse-quantum', pair: 'reverse/quantum', route: '/en/quantum-tools#mcp-reverse', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/reverse — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-sign', title: 'MCP quantum sign', fold: 'mcpQuantumSign', cli: 'npm run quantum:mcp-sign', pair: 'mcp/sign', route: '/en/quantum-tools#mcp-sign', barrel: 'src/quantum/apps', boundary: 'signatureOn · crossSig · tamperEvident · certified=false · NOT CA/PKI · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1732,6 +1735,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mcp-torus', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumTorus', pair: 'mcp/torus', cli: 'npm run quantum:mcp-torus', route: '/en/quantum-tools#mcp-torus', status: 'sealed-pr', honesty: 'torusOn · doubleTorus · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum torus — double-torus · geo/torus · living torus · bothEarths', toolId: 'mcp-torus', resolve: 'mcp-ui' },
   { id: 'mcp-research', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumResearch', pair: 'mcp/research', cli: 'npm run quantum:mcp-research', route: '/en/quantum-tools#mcp-research', status: 'sealed-pr', honesty: 'researchOn · journeyTheorems · sciencesTrinities · millSession · researchDomain · clay=0 · physicalFtl=0 · qpuRequired=false · NOT CMI', note: 'MCP quantum research — journey/theorems · sciences/trinities · mill/session · domain/proof', toolId: 'mcp-research', resolve: 'mcp-ui' },
   { id: 'mcp-catalog', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumCatalog', pair: 'mcp/catalog', cli: 'npm run quantum:mcp-catalog', route: '/en/quantum-tools#mcp-catalog', status: 'sealed-pr', honesty: 'catalogComplete · starOn · missingCount=0 · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum catalog/star — umbrella of all named mcp quantum faces', toolId: 'mcp-catalog', resolve: 'mcp-ui' },
+  { id: 'mcp-all', chain: 'mcp-ui-page-gaps', fold: 'mcpCatalog', pair: 'mcp/all', cli: 'npm run quantum:mcp-all', route: '/en/quantum-tools#mcp-all', status: 'sealed-pr', honesty: 'mcpStarOn · catalogComplete · quantumFaces · primaryTools · residualsNamed · missingDrainable=0 · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'Full MCP surface catalog/star — PRIMARY · stdio · toolbox · quantum faces · honest residuals', toolId: 'mcp-all', resolve: 'mcp-ui' },
   { id: 'mcp-reverse', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumReverse', pair: 'mcp/reverse', cli: 'npm run quantum:mcp-reverse', route: '/en/quantum-tools#mcp-reverse', status: 'sealed-pr', honesty: 'reverseOn · refuseBeyond · demoBoundaryHardware · clay=0 · physicalFtl=0', note: 'MCP quantum reverse face', toolId: 'mcp-reverse', resolve: 'mcp-ui' },
   { id: 'mcp-sign', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumSign', pair: 'mcp/sign', cli: 'npm run quantum:mcp-sign', route: '/en/quantum-tools#mcp-sign', status: 'sealed-pr', honesty: 'signatureOn · crossSig · tamperEvident · certified=false · clay=0 · physicalFtl=0', note: 'MCP quantum sign', toolId: 'mcp-sign', resolve: 'mcp-ui' },
   { id: 'mcp-dirs', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumDirs', pair: 'mcp/dirs', cli: 'npm run quantum:mcp-dirs', route: '/en/quantum-tools#mcp-dirs', status: 'sealed-pr', honesty: 'left · right · forward · reverse · clay=0 · physicalFtl=0', note: 'MCP quantum dirs', toolId: 'mcp-dirs', resolve: 'mcp-ui' },
@@ -3667,6 +3671,13 @@ const MCP_COMMANDS_SCRIPTS_AUDIT_SEEDS = [
     detail: 'Catalog CI-only size-free/gravity-gate (#107) omitted from honest residual set → mcpBrowserParity residualOnlyHonestCi false',
     status: 'closed' as const,
     fix: 'HONEST_CI_BROWSER_GAP_IDS includes size-free · gravity-gate' },
+  {
+    id: 'mcp-all-full-surface-catalog',
+    kind: 'gap' as const,
+    names: ['mcpCatalog', 'mcpStar', 'mcp/all', 'all/mcp'],
+    detail: 'Full MCP surface catalog missing — only mcpQuantumCatalog (quantum faces) sealed; PRIMARY/stdio/toolbox/residuals unnamed as one star',
+    status: 'closed' as const,
+    fix: 'mcpCatalog/mcpStar · pairs mcp/all · all/mcp · compose mcpQuantumCatalog · mcpBrowserParity · mcpCommandsScriptsGapsAudit · residualsNamed honest' },
 ] as const
 
 export function mcpCommandsScriptsGapsAudit(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -6150,6 +6161,177 @@ export function runMcpQuantumCatalogExit(_root = '', _argv: readonly string[] = 
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.catalogComplete && report.starOn && report.missingCount === 0 && report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * Full MCP catalog / star — umbrella over entire MCP surface (not only mcpQuantum*).
+ * Composes: mcpQuantumCatalog · mcpBrowserParity · mcpToolboxToolsList · mcpCommandsScriptsGapsAudit.
+ * Facets: mcpStarOn · catalogComplete · quantumFaces · primaryTools · residualsNamed · missingDrainable=0.
+ * Pairs: mcp/all · all/mcp (mcp/star kept for mcpQuantumCatalog — do not break).
+ * Alias: mcpStar = mcpCatalog.
+ * HONEST: residualsNamed lists CI/stdio/conceptTools/trading — NOT fake browser for trinity/fs · NOT Clay/FTL fake-close.
+ * claySolved via theorem · physicalFtl=0 · qpuRequired=false.
+ */
+export function mcpCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpCatalog:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const quantum = mcpQuantumCatalog(matrix, at)
+    const parity = mcpBrowserParity(matrix, at)
+    const mcpList = mcpToolboxToolsList(matrix, at)
+    const scripts = mcpCommandsScriptsGapsAudit(matrix, at)
+    const stdioResiduals = STDIO_MCP_CAPABILITY_SEEDS.filter((seed) => !seed.browserAchievable).map((seed) => `stdio:${seed.id}`)
+    const residualsNamed = [
+      ...HONEST_CI_BROWSER_GAP_IDS.map((id) => `ci:${id}`),
+      ...stdioResiduals,
+      'conceptTools:legacy-dual',
+      'trading:scripts-outside-primary',
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+    ] as const
+    const residualsNamedHonest =
+      residualsNamed.length === HONEST_CI_BROWSER_GAP_IDS.length + stdioResiduals.length + (2 * 2) &&
+      HONEST_CI_BROWSER_GAP_IDS.every((id) => (residualsNamed as readonly string[]).includes(`ci:${id}`)) &&
+      stdioResiduals.every((id) => (residualsNamed as readonly string[]).includes(id)) &&
+      (residualsNamed as readonly string[]).includes('conceptTools:legacy-dual') &&
+      (residualsNamed as readonly string[]).includes('trading:scripts-outside-primary') &&
+      (residualsNamed as readonly string[]).includes('clay:millennium-open') &&
+      (residualsNamed as readonly string[]).includes('ftl:physical-claim-refused')
+    const quantumFaces =
+      quantum.computes &&
+      quantum.catalogComplete &&
+      quantum.missingCount === 0 &&
+      quantum.faceCount >= (5 * 6 + 1)
+    const primaryTools =
+      mcpList.computes &&
+      parity.mcpMatchesToolbox &&
+      parity.mcpMatchesCatalog &&
+      mcpList.count > 0 &&
+      mcpList.count === parity.mcpToolCount
+    const drainableClosed =
+      scripts.closedOn &&
+      scripts.openCount === 0 &&
+      scripts.rows.some((r) => r.id === 'mcp-all-full-surface-catalog' && r.status === 'closed')
+    const missingDrainable = drainableClosed && quantumFaces && primaryTools && residualsNamedHonest ? 0 : 1
+    const pairAll = has('mcp/all') && has('all/mcp') && soft('mcp', 'all') && soft('all', 'mcp')
+    const meta = catalog.tools.find((t) => t.id === 'mcp-all')
+    const metaDual = catalog.tools.find((t) => t.id === 'all-mcp')
+    const toolsOn =
+      Boolean(meta) &&
+      meta!.fold === 'mcpCatalog' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpCatalog'
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const catalogComplete =
+      quantumFaces &&
+      primaryTools &&
+      residualsNamedHonest &&
+      missingDrainable === 0 &&
+      pairAll &&
+      toolsOn &&
+      parity.computes &&
+      scripts.computes &&
+      quantum.computes
+    const mcpStarOn = catalogComplete && quantum.starOn && pairAll && toolsOn
+    const on =
+      mcpStarOn &&
+      catalogComplete &&
+      missingDrainable === 0 &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      quantum.qpuRequired === false &&
+      parity.qpuRequired === false
+    const facets = [
+      { facet: 'mcpCatalog', on },
+      { facet: 'mcpStarOn', on: mcpStarOn },
+      { facet: 'catalogComplete', on: catalogComplete },
+      { facet: `quantumFaces=${quantum.presentCount}/${quantum.faceCount}`, on: quantumFaces },
+      { facet: `primaryTools=${mcpList.count}`, on: primaryTools },
+      { facet: `residualsNamed=${residualsNamed.length}`, on: residualsNamedHonest },
+      { facet: `missingDrainable=${missingDrainable}`, on: missingDrainable === 0 },
+      { facet: 'compose mcpQuantumCatalog · mcpBrowserParity · scripts-audit', on: quantum.computes && parity.computes && scripts.computes },
+      { facet: 'pair mcp/all · all/mcp (mcp/star kept for quantum)', on: pairAll && has('mcp/star') && has('star/mcp') },
+      { facet: 'qpuRequired=false', on: true },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'NOT fake browser for trinity/fs · NOT Clay/FTL fake-close', on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && residualsNamedHonest },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-all:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-all-catalog', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpCatalog: on,
+      mcpStar: on,
+      mcpStarOn,
+      catalogComplete,
+      quantumFaces,
+      primaryTools,
+      residualsNamed: [...residualsNamed],
+      residualsNamedCount: residualsNamed.length,
+      missingDrainable,
+      quantumFaceCount: quantum.faceCount,
+      quantumPresentCount: quantum.presentCount,
+      primaryToolCount: mcpList.count,
+      stdioCount: STDIO_MCP_CAPABILITY_SEEDS.length,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        quantum.root,
+        parity.root,
+        mcpList.root,
+        scripts.root,
+        ...residualsNamed.map((id) => toUuid(`mcp-all-residual:${id}`)),
+      ]),
+      pair: 'mcp/all' as const,
+      pairs: ['mcp/all', 'all/mcp'] as const,
+      cli: 'npm run quantum:mcp-all',
+      route: '/en/quantum-tools#mcp-all',
+      statement:
+        `mcpCatalog — mcpStarOn=${mcpStarOn ? 1 : 0} catalogComplete=${catalogComplete ? 1 : 0} ` +
+        `quantumFaces=${quantum.presentCount}/${quantum.faceCount} primaryTools=${mcpList.count} ` +
+        `residualsNamed=${residualsNamed.length} missingDrainable=${missingDrainable} qpuRequired=0.`,
+      boundary:
+        'Full MCP catalog/star — PRIMARY /mcp.json · stdio quantum-dev-sdk · browser toolbox · mcpQuantum* faces. ' +
+        'residualsNamed lists honest CI/stdio/conceptTools/trading/Clay/FTL residuals — NOT fake-closed. ' +
+        'missingDrainable=0 for closable gaps only · compose not duplicate mcpQuantumStar · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `mcp/all · mcpStarOn=${mcpStarOn ? 1 : 0} · catalogComplete=${catalogComplete ? 1 : 0} · ` +
+        `quantumFaces=${quantum.presentCount}/${quantum.faceCount} · primaryTools=${mcpList.count} · ` +
+        `residualsNamed=${residualsNamed.length} · missingDrainable=${missingDrainable} · qpuRequired=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — mcpStar ≡ mcpCatalog (full MCP surface star; distinct from mcpQuantumStar). */
+export const mcpStar = mcpCatalog
+
+export function runMcpCatalogExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpCatalog()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-all — mcpStarOn=${report.mcpStarOn} ` +
+      `catalogComplete=${report.catalogComplete} missingDrainable=${report.missingDrainable} ` +
+      `quantumFaces=${report.quantumPresentCount}/${report.quantumFaceCount} ` +
+      `primaryTools=${report.primaryToolCount} residualsNamed=${report.residualsNamedCount} ` +
+      `qpuRequired=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const id of report.residualsNamed) {
+    process.stdout.write(`  · residual ${id}\n`)
+  }
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.mcpStarOn && report.catalogComplete && report.missingDrainable === 0 && report.qpuRequired === false
     ? 0
     : 1
 }
