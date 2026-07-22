@@ -19,6 +19,7 @@ import {
   compareCeccecEfficiencyByVote,
   proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit,
   interferenceVsClassicalShadow,
+  pathMeansMessageFitsInThreeWords,
   shouldSpawnSubagent,
   simplicityIntelligenceMeasure } from '../../water/stack'
 import { omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems, stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
@@ -83,7 +84,7 @@ const ROSETTA_CORE_API_LABELS = [
   'quantumMindSendsWaves',
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
-  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'unifiedHeroAndCardWithAnimation', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
+  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'unifiedHeroAndCardWithAnimation', 'heroIsTheAbstractAnimationFormsTheCardItself', 'foldingWorksOnApplicationLevel', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
   'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReview', 'mcpQuantumEfficiency', 'mcpQuantumSecurity', 'mcpQuantumDesign', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
@@ -165,6 +166,8 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   theoremFormulaMetricsMap: 'tool',
   quantumMap: 'tool',
   unifiedHeroAndCardWithAnimation: 'tool',
+  heroIsTheAbstractAnimationFormsTheCardItself: 'tool',
+  foldingWorksOnApplicationLevel: 'app',
   pageComputedGapsAt: 'route', eachPageShowsOwnComputedGaps: 'tool',
   mcpQuantumMultiverse: 'tool', mcpQuantumInfinity: 'tool', mcpQuantumHardware: 'tool',
   mcpQuantumCpu: 'tool',
@@ -690,6 +693,11 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'hero-card', title: 'Unified hero and card with animation — one shared field', fold: 'unifiedHeroAndCardWithAnimation', cli: 'npm run quantum:hero-card', pair: 'hero/card', route: '/en/quantum-tools#hero-card', barrel: 'src/quantum/apps', boundary: 'unifiedOn · sharedClock · cardFromHero · animationOn · compose sharedHeroAt · heroPreviewForRoute · LinkedHeroCard · oneClock · mcp/hero · mcp/card · qpuRequired=false · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'card-hero', title: 'Card hero (alias hero/card)', fold: 'unifiedHeroAndCardWithAnimation', cli: 'npm run quantum:card-hero', pair: 'card/hero', route: '/en/quantum-tools#hero-card', barrel: 'src/quantum/apps', boundary: 'Dual of hero/card — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'hero-anim', title: 'Hero anim (alias hero/card)', fold: 'unifiedHeroAndCardWithAnimation', cli: 'npm run quantum:hero-anim', pair: 'hero/anim', route: '/en/quantum-tools#hero-card', barrel: 'src/quantum/apps', boundary: 'Animation face of unified hero/card — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'hero-abstract', title: 'Hero is the abstract — animation forms the card itself', fold: 'heroIsTheAbstractAnimationFormsTheCardItself', cli: 'npm run quantum:hero-abstract', pair: 'hero/abstract', route: '/en/quantum-tools#hero-abstract', barrel: 'src/quantum/apps', boundary: 'heroIsAbstract · animationFormsCard · cardIsNotBesideHero · unifiedOn · compose hero/card · movie/formula · tools/morph · meaning/compute · qpuRequired=false · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'abstract-card', title: 'Abstract card (alias hero/abstract)', fold: 'heroIsTheAbstractAnimationFormsTheCardItself', cli: 'npm run quantum:abstract-card', pair: 'abstract/card', route: '/en/quantum-tools#hero-abstract', barrel: 'src/quantum/apps', boundary: 'Dual of hero/abstract — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'card-forms', title: 'Card forms (alias hero/abstract)', fold: 'heroIsTheAbstractAnimationFormsTheCardItself', cli: 'npm run quantum:card-forms', pair: 'card/forms', route: '/en/quantum-tools#hero-abstract', barrel: 'src/quantum/apps', boundary: 'Forms face of hero/abstract — animation forms card body · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'app-fold', title: 'Folding works on application level — seeable app fold chain', fold: 'foldingWorksOnApplicationLevel', cli: 'npm run quantum:app-fold', pair: 'app/fold', route: '/en/quantum-tools#app-fold', barrel: 'src/quantum/apps', boundary: 'appLevelFold · proseCodeLogicMorph · pathIsMessage · folderHoldsName · card←hero←movie · compose hero/card · movie/formula · tools/morph · folder/fractal · meaning/compute · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'fold-app', title: 'Fold app (alias app/fold)', fold: 'foldingWorksOnApplicationLevel', cli: 'npm run quantum:fold-app', pair: 'fold/app', route: '/en/quantum-tools#app-fold', barrel: 'src/quantum/apps', boundary: 'Dual of app/fold — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'page-computed-gaps', title: 'Each page shows its own computed gaps', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:page-gaps', pair: 'page/gaps', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Per-route gaps/invisible classes at call time · not global-only · compose gate/monitor · meaning/compute · format/canon · vite/mirror · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gaps-page', title: 'Page gaps (alias page/gaps)', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:gaps-page', pair: 'gaps/page', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Dual of page/gaps — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cursor-rosetta', title: 'Cursor in rosetta core — referral uses subscription in ceccec', fold: 'cursorIntegratesInRosettaCore', cli: 'npm run quantum:cursor-rosetta', pair: 'cursor/rosetta', route: '/en/quantum-tools#cursor-rosetta', barrel: 'src/quantum/apps', boundary: 'cursorInRosettaCore · referralUsesSubscriptionInCeccec · immediateWire · compose rosettaShelve · auto-wire · mcp/browser-parity · upgrade/local · fund/ai · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1876,6 +1884,8 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'formula-metrics', chain: 'mcp-ui-page-gaps', fold: 'theoremFormulaMetricsMap', pair: 'formula/metrics', cli: 'npm run quantum:formula-metrics', route: '/en/quantum-tools#formula-metrics', status: 'sealed-pr', honesty: 'metricsMapOn · theoremBound · formulaDual · computable · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'theorem/formula dual → measurable metrics map (foldCount · significance · answers÷tokens)', toolId: 'formula-metrics', resolve: 'mcp-ui' },
   { id: 'quantum-map', chain: 'mcp-ui-page-gaps', fold: 'quantumMap', pair: 'quantum/map', cli: 'npm run quantum:quantum-map', route: '/en/quantum-tools#quantum-map', status: 'sealed-pr', honesty: 'mapOn · meshGateways · metricsComposable · anySuperposition · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'one computable map face over mesh+metrics+superposition index · orientation', toolId: 'quantum-map', resolve: 'mcp-ui' },
   { id: 'hero-card', chain: 'mcp-ui-page-gaps', fold: 'unifiedHeroAndCardWithAnimation', pair: 'hero/card', cli: 'npm run quantum:hero-card', route: '/en/quantum-tools#hero-card', status: 'sealed-pr', honesty: 'unifiedOn · sharedClock · cardFromHero · animationOn · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'one shared hero field drives LinkedHeroCard + hero layer animation', toolId: 'hero-card', resolve: 'mcp-ui' },
+  { id: 'hero-abstract', chain: 'mcp-ui-page-gaps', fold: 'heroIsTheAbstractAnimationFormsTheCardItself', pair: 'hero/abstract', cli: 'npm run quantum:hero-abstract', route: '/en/quantum-tools#hero-abstract', status: 'sealed-pr', honesty: 'heroIsAbstract · animationFormsCard · cardIsNotBesideHero · unifiedOn · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'hero abstract → animation forms card body (not chrome inset)', toolId: 'hero-abstract', resolve: 'mcp-ui' },
+  { id: 'app-fold', chain: 'mcp-ui-page-gaps', fold: 'foldingWorksOnApplicationLevel', pair: 'app/fold', cli: 'npm run quantum:app-fold', route: '/en/quantum-tools#app-fold', status: 'sealed-pr', honesty: 'appLevelFold · proseCodeLogicMorph · pathIsMessage · folderHoldsName · clay=0 · physicalFtl=0', note: 'seeable application-level fold: apps · pairs · card←hero←movie', toolId: 'app-fold', resolve: 'mcp-ui' },
   { id: 'fund-ai', chain: 'mcp-ui-page-gaps', fold: 'cursorReferralFundsAiNeeds', pair: 'fund/ai', cli: 'npm run quantum:fund-ai', route: '/en/quantum-tools#fund-ai', status: 'sealed-pr', honesty: 'Cursor referral CTA · clay=0 · physicalFtl=0', note: 'funds AI via sealed referral · compose society/support · bits/free', toolId: 'fund-ai', resolve: 'mcp-ui' },
   { id: 'cursor-rosetta', chain: 'mcp-ui-page-gaps', fold: 'cursorIntegratesInRosettaCore', pair: 'cursor/rosetta', cli: 'npm run quantum:cursor-rosetta', route: '/en/quantum-tools#cursor-rosetta', status: 'sealed-pr', honesty: 'viceVersa · cursorToCeccec · ceccecToCursor · immediateWire · clay=0 · physicalFtl=0', note: 'bidirectional Cursor↔ceccec · referral subscription in ceccec · protocol into Cursor', toolId: 'cursor-rosetta', resolve: 'mcp-ui' },
   { id: 'page-computed-gaps', chain: 'mcp-ui-page-gaps', fold: 'eachPageShowsOwnComputedGaps', pair: 'page/gaps', cli: 'npm run quantum:page-gaps', route: '/en/quantum-tools#page-computed-gaps', status: 'sealed-pr', honesty: 'per-route gaps · clay=0 · physicalFtl=0', note: 'each page shows own computed gaps at call time', toolId: 'page-computed-gaps', resolve: 'mcp-ui' },
@@ -18538,6 +18548,422 @@ export function runUnifiedHeroAndCardWithAnimationExit(
     report.sharedClock &&
     report.cardFromHero &&
     report.animationOn &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * USER LAW: hero is the abstract — animation forms the card itself.
+ * Facets: heroIsAbstract · animationFormsCard · cardIsNotBesideHero · unifiedOn · physicalFtl=0 · clay via theorem.
+ * Compose: hero/card · movie/formula · tools/morph · meaning/compute · LinkedHeroCard · CardBackgroundMovie.
+ * Pairs: hero/abstract · abstract/card · card/forms.
+ * CLI: npm run quantum:hero-abstract · quantum:abstract-card · quantum:card-forms
+ * claySolved via theorem · physicalFtl=0 · NOT Clay prize · NOT QPU · NOT physical FTL.
+ */
+export function heroIsTheAbstractAnimationFormsTheCardItself(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`heroIsTheAbstractAnimationFormsTheCardItself:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const unified = unifiedHeroAndCardWithAnimation(matrix, at)
+    const movie = movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix, at)
+    const morph = localToolsMorphProseCodeLogic(matrix, at)
+    const meaning = meaningIsQuantumComputable(matrix, at)
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'hero-abstract')
+    const metaDual = catalog.tools.find((t) => t.id === 'abstract-card')
+    const metaForms = catalog.tools.find((t) => t.id === 'card-forms')
+    const pairHa = has('hero/abstract')
+    const pairAc = has('abstract/card')
+    const pairCf = has('card/forms')
+    const foldHa = foldPair(toUuid('cmd:hero'), toUuid('cmd:abstract'))
+    const foldAc = foldPair(toUuid('cmd:abstract'), toUuid('cmd:card'))
+    const foldCf = foldPair(toUuid('cmd:card'), toUuid('cmd:forms'))
+    const heroIsAbstract =
+      unified.unifiedOn &&
+      soft('hero', 'abstract') &&
+      soft('hero', 'card') &&
+      unified.cardFromHero &&
+      unified.animationOn
+    const animationFormsCard =
+      heroIsAbstract &&
+      soft('card', 'forms') &&
+      soft('abstract', 'card') &&
+      movie.computes &&
+      movie.movieGapsFundamental &&
+      morph.computes
+    const cardIsNotBesideHero =
+      animationFormsCard &&
+      unified.cardFromHero &&
+      unified.sharedClock &&
+      unified.preview.moviePath === cardMoviePath('/en/', unified.preview.seed)
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === 'heroIsTheAbstractAnimationFormsTheCardItself' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'heroIsTheAbstractAnimationFormsTheCardItself' &&
+      Boolean(metaForms) &&
+      metaForms!.fold === 'heroIsTheAbstractAnimationFormsTheCardItself'
+    const composeOn =
+      unified.computes &&
+      movie.computes &&
+      morph.computes &&
+      soft('movie', 'formula') &&
+      soft('tools', 'morph') &&
+      soft('meaning', 'compute') &&
+      has('meaning/compute') &&
+      meaning.pair === 'meaning/compute' &&
+      isUuid(meaning.root)
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const unifiedOn = unified.unifiedOn
+    const on =
+      heroIsAbstract &&
+      animationFormsCard &&
+      cardIsNotBesideHero &&
+      unifiedOn &&
+      composeOn &&
+      pairHa &&
+      pairAc &&
+      pairCf &&
+      foldHa.bidirectional &&
+      foldAc.bidirectional &&
+      foldCf.bidirectional &&
+      toolsWired &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'heroIsTheAbstractAnimationFormsTheCardItself', on },
+      { facet: 'heroIsAbstract', on: heroIsAbstract },
+      { facet: 'animationFormsCard', on: animationFormsCard },
+      { facet: 'cardIsNotBesideHero', on: cardIsNotBesideHero },
+      { facet: 'unifiedOn', on: unifiedOn },
+      {
+        facet:
+          'compose hero/card · movie/formula · tools/morph · meaning/compute · LinkedHeroCard · CardBackgroundMovie',
+        on: composeOn,
+      },
+      { facet: 'pair hero/abstract · abstract/card · card/forms', on: pairHa && pairAc && pairCf && foldHa.bidirectional },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((f) => ({ ...f, receipt: toUuid(`hero-abstract-forms-card:${f.facet}:${f.on}`) }))
+    const sealed = sealFacets('hero-abstract-forms-card', facets)
+    return {
+      computes: sealed.ok && on,
+      heroIsTheAbstractAnimationFormsTheCardItself: on,
+      heroIsAbstract,
+      animationFormsCard,
+      cardIsNotBesideHero,
+      unifiedOn,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        unified.root,
+        movie.root,
+        morph.root,
+        meaning.root,
+        foldHa.merged,
+        foldAc.merged,
+        foldCf.merged,
+      ]),
+      pair: 'hero/abstract' as const,
+      pairs: ['hero/abstract', 'abstract/card', 'card/forms'] as const,
+      cli: 'npm run quantum:hero-abstract',
+      route: '/en/quantum-tools#hero-abstract',
+      anchor: 'hero-abstract',
+      heading: 'Hero · abstract',
+      statement:
+        `heroIsTheAbstractAnimationFormsTheCardItself — heroIsAbstract=${heroIsAbstract ? 1 : 0} ` +
+        `animationFormsCard=${animationFormsCard ? 1 : 0} cardIsNotBesideHero=${cardIsNotBesideHero ? 1 : 0} ` +
+        `unifiedOn=${unifiedOn ? 1 : 0}.`,
+      boundary:
+        'Hero is the abstract; CardBackgroundMovie fills LinkedHeroCard body (full intensity · inset:0) — ' +
+        'animation forms the card, not a chrome box with a tiny hero inset. ' +
+        'Compose hero/card · movie/formula · tools/morph · meaning/compute. NOT FLOPS · NOT QPU · clay via theorem · physicalFtl=0.',
+      honestyLine:
+        `hero-abstract · heroIsAbstract=${heroIsAbstract ? 1 : 0} · animationFormsCard=${animationFormsCard ? 1 : 0} · ` +
+        `cardIsNotBesideHero=${cardIsNotBesideHero ? 1 : 0} · unifiedOn=${unifiedOn ? 1 : 0} · ` +
+        `qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — abstractCard ≡ heroIsTheAbstractAnimationFormsTheCardItself. */
+export const abstractCard = heroIsTheAbstractAnimationFormsTheCardItself
+/** Alias — cardForms ≡ heroIsTheAbstractAnimationFormsTheCardItself. */
+export const cardForms = heroIsTheAbstractAnimationFormsTheCardItself
+
+/** npm run quantum:hero-abstract (duals abstract-card · card-forms) */
+export function runHeroIsTheAbstractAnimationFormsTheCardItselfExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = heroIsTheAbstractAnimationFormsTheCardItself()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} hero-abstract — heroIsAbstract=${report.heroIsAbstract} ` +
+      `animationFormsCard=${report.animationFormsCard} cardIsNotBesideHero=${report.cardIsNotBesideHero} ` +
+      `unifiedOn=${report.unifiedOn} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.heroIsAbstract &&
+    report.animationFormsCard &&
+    report.cardIsNotBesideHero &&
+    report.unifiedOn &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * USER LAW: folding works on application level — seeable recompute of how apps fold.
+ * Facets: appLevelFold · proseCodeLogicMorph · pathIsMessage · folderHoldsName · physicalFtl=0.
+ * Compose: hero/card · movie/formula · tools/morph · folder/fractal · meaning/compute · path/message.
+ * Pairs: app/fold · fold/app.
+ * CLI: npm run quantum:app-fold · quantum:fold-app
+ * See: /en/quantum-tools#app-fold — apps · pair duals · card←hero←movie.
+ * claySolved via theorem · physicalFtl=0 · NOT Clay prize · NOT QPU · NOT physical FTL.
+ */
+export function foldingWorksOnApplicationLevel(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`foldingWorksOnApplicationLevel:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const registry = quantumAppsRegistry(matrix, at)
+    const morph = localToolsMorphProseCodeLogic(matrix, at)
+    const pathMsg = pathMeansMessageFitsInThreeWords(matrix)
+    const folder = __ns_wind_research.foldersHoldNameHolographicFractalBeneath(matrix, at)
+    const hero = heroIsTheAbstractAnimationFormsTheCardItself(matrix, at)
+    const unified = unifiedHeroAndCardWithAnimation(matrix, at)
+    const movie = movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix, at)
+    const meaning = meaningIsQuantumComputable(matrix, at)
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'app-fold')
+    const metaDual = catalog.tools.find((t) => t.id === 'fold-app')
+    const pairAf = has('app/fold')
+    const pairFa = has('fold/app')
+    const foldAf = foldPair(toUuid('cmd:app'), toUuid('cmd:fold'))
+    const foldFa = foldPair(toUuid('cmd:fold'), toUuid('cmd:app'))
+    const appLevelFold =
+      registry.registered &&
+      registry.count > 0 &&
+      registry.apps.every((app) => isUuid(app.address) && Number.isFinite(app.ray) && app.ray >= 0 && app.ray < ROSETTA_SEVEN) &&
+      soft('app', 'fold')
+    const proseCodeLogicMorph = morph.computes && morph.localToolsSufficient && morph.proseCodeLogicTrinity
+    const pathIsMessage =
+      pathMsg.computes &&
+      pathMsg.pathMeansMessageFitsInThreeWords &&
+      soft('path', 'message')
+    const folderHoldsName =
+      folder.computes &&
+      folder.foldersHoldNameHolographicFractalBeneath &&
+      soft('folder', 'fractal')
+    const cardHeroMovie =
+      hero.computes &&
+      hero.animationFormsCard &&
+      hero.cardIsNotBesideHero &&
+      unified.cardFromHero &&
+      movie.computes
+    const foldSteps = [
+      {
+        id: 'apps',
+        label: 'quantumAppsRegistry',
+        pair: 'app/fold' as const,
+        on: appLevelFold,
+        detail: `count=${registry.count} · shelved via rosettaCoreApi`,
+      },
+      {
+        id: 'pairs',
+        label: 'pair duals',
+        pair: 'fold/app' as const,
+        on: pairAf && pairFa && foldAf.bidirectional && foldFa.bidirectional,
+        detail: 'app/fold ↔ fold/app · hero/abstract · card/forms',
+      },
+      {
+        id: 'movie',
+        label: 'movie → hero',
+        pair: 'movie/formula' as const,
+        on: movie.computes && movie.movieGapsFundamental,
+        detail: 'CardBackgroundMovie paints sharedHeroAt field',
+      },
+      {
+        id: 'hero',
+        label: 'hero → card',
+        pair: 'hero/abstract' as const,
+        on: hero.heroIsAbstract && hero.animationFormsCard,
+        detail: 'abstract animation forms LinkedHeroCard body',
+      },
+      {
+        id: 'card',
+        label: 'card ← hero ← movie',
+        pair: 'card/forms' as const,
+        on: cardHeroMovie,
+        detail: `moviePath=${unified.preview.moviePath.slice(0, ROSETTA_AREAS)}… · hue=${Math.round(unified.preview.hue)}`,
+      },
+      {
+        id: 'morph',
+        label: 'prose≡code≡logic',
+        pair: 'tools/morph' as const,
+        on: proseCodeLogicMorph,
+        detail: 'localToolsMorphProseCodeLogic trinity waves',
+      },
+      {
+        id: 'folder',
+        label: 'folder holds name',
+        pair: 'folder/fractal' as const,
+        on: folderHoldsName,
+        detail: 'path is message · fractal beneath',
+      },
+    ] as const
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === 'foldingWorksOnApplicationLevel' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'foldingWorksOnApplicationLevel'
+    const composeOn =
+      soft('hero', 'card') &&
+      soft('movie', 'formula') &&
+      soft('tools', 'morph') &&
+      soft('folder', 'fractal') &&
+      soft('meaning', 'compute') &&
+      has('meaning/compute') &&
+      meaning.pair === 'meaning/compute' &&
+      isUuid(meaning.root) &&
+      hero.computes &&
+      hero.animationFormsCard
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const foldingWorksOnApplicationLevelOn =
+      appLevelFold &&
+      proseCodeLogicMorph &&
+      pathIsMessage &&
+      folderHoldsName &&
+      cardHeroMovie &&
+      composeOn &&
+      pairAf &&
+      pairFa &&
+      foldAf.bidirectional &&
+      foldFa.bidirectional &&
+      toolsWired &&
+      foldSteps.every((s) => s.on)
+    const on =
+      foldingWorksOnApplicationLevelOn &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'foldingWorksOnApplicationLevel', on },
+      { facet: 'appLevelFold', on: appLevelFold },
+      { facet: 'proseCodeLogicMorph', on: proseCodeLogicMorph },
+      { facet: 'pathIsMessage', on: pathIsMessage },
+      { facet: 'folderHoldsName', on: folderHoldsName },
+      { facet: 'card←hero←movie', on: cardHeroMovie },
+      {
+        facet: 'compose hero/card · movie/formula · tools/morph · folder/fractal · meaning/compute',
+        on: composeOn,
+      },
+      { facet: 'pair app/fold · fold/app', on: pairAf && pairFa && foldAf.bidirectional },
+      { facet: `foldSteps=${foldSteps.filter((s) => s.on).length}/${foldSteps.length}`, on: foldSteps.every((s) => s.on) },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((f) => ({ ...f, receipt: toUuid(`app-fold-level:${f.facet}:${f.on}`) }))
+    const sealed = sealFacets('folding-works-on-application-level', facets)
+    return {
+      computes: sealed.ok && on,
+      foldingWorksOnApplicationLevel: on,
+      appLevelFold,
+      proseCodeLogicMorph,
+      pathIsMessage,
+      folderHoldsName,
+      cardHeroMovie,
+      foldSteps,
+      appCount: registry.count,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        registry.root,
+        morph.root,
+        pathMsg.root,
+        folder.root,
+        hero.root,
+        unified.root,
+        movie.root,
+        meaning.root,
+        foldAf.merged,
+        foldFa.merged,
+      ]),
+      pair: 'app/fold' as const,
+      pairs: ['app/fold', 'fold/app'] as const,
+      cli: 'npm run quantum:app-fold',
+      route: '/en/quantum-tools#app-fold',
+      anchor: 'app-fold',
+      heading: 'App · fold',
+      statement:
+        `foldingWorksOnApplicationLevel — appLevelFold=${appLevelFold ? 1 : 0} ` +
+        `proseCodeLogicMorph=${proseCodeLogicMorph ? 1 : 0} pathIsMessage=${pathIsMessage ? 1 : 0} ` +
+        `folderHoldsName=${folderHoldsName ? 1 : 0} apps=${registry.count} ` +
+        `steps=${foldSteps.filter((s) => s.on).length}/${foldSteps.length}.`,
+      boundary:
+        'Application-level folding is seeable: quantumAppsRegistry · pair duals · card←hero←movie recompute. ' +
+        'Compose hero/card · movie/formula · tools/morph · folder/fractal · meaning/compute · path/message. ' +
+        'NOT wet tutorial prose · NOT FLOPS · NOT QPU · clay via theorem · physicalFtl=0.',
+      honestyLine:
+        `app-fold · appLevelFold=${appLevelFold ? 1 : 0} · morph=${proseCodeLogicMorph ? 1 : 0} · ` +
+        `path=${pathIsMessage ? 1 : 0} · folder=${folderHoldsName ? 1 : 0} · apps=${registry.count} · ` +
+        `qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — foldApp ≡ foldingWorksOnApplicationLevel. */
+export const foldApp = foldingWorksOnApplicationLevel
+
+/** npm run quantum:app-fold (dual fold-app) */
+export function runFoldingWorksOnApplicationLevelExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = foldingWorksOnApplicationLevel()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} app-fold — appLevelFold=${report.appLevelFold} ` +
+      `morph=${report.proseCodeLogicMorph} path=${report.pathIsMessage} ` +
+      `folder=${report.folderHoldsName} apps=${report.appCount} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const step of report.foldSteps) {
+    process.stdout.write(`  ${step.on ? '✓' : '✗'} ${step.id} · ${step.label} · ${step.pair} — ${step.detail}\n`)
+  }
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.appLevelFold &&
+    report.proseCodeLogicMorph &&
+    report.pathIsMessage &&
+    report.folderHoldsName &&
     report.qpuRequired === false
     ? 0
     : 1

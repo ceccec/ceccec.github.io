@@ -25,6 +25,9 @@ import {
   movieGapsFeelableByObservation,
   movieGapsAreFundamentalDesignAndFormulaMappingGaps,
   theoremFormulaComputableIndexForAnySuperposition,
+  unifiedHeroAndCardWithAnimation,
+  heroIsTheAbstractAnimationFormsTheCardItself,
+  foldingWorksOnApplicationLevel,
   eachPageShowsOwnComputedGaps,
   cursorIntegratesInRosettaCore,
   dryCleanTheoremsFormulasReplaceAnyAssumption,
@@ -139,6 +142,9 @@ const mcpMovie = computed(() => mcpQuantumMovie())
 const movieFeel = computed(() => movieGapsFeelableByObservation())
 const movieFormula = computed(() => movieGapsAreFundamentalDesignAndFormulaMappingGaps())
 const theoremIndexPanel = computed(() => theoremFormulaComputableIndexForAnySuperposition())
+const heroCard = computed(() => unifiedHeroAndCardWithAnimation())
+const heroAbstract = computed(() => heroIsTheAbstractAnimationFormsTheCardItself())
+const appFold = computed(() => foldingWorksOnApplicationLevel())
 const pageGapsGate = computed(() => eachPageShowsOwnComputedGaps())
 const fundAi = computed(() => cursorReferralFundsAiNeeds())
 const cursorRosetta = computed(() => cursorIntegratesInRosettaCore())
@@ -758,6 +764,27 @@ function runTool(toolId: string) {
       const r = movieGapsAreFundamentalDesignAndFormulaMappingGaps()
       ok = r.computes && r.drainableClosed && r.movieGapsFundamental
       summary = `fundamental=${r.movieGapsFundamental} design=${r.designGap} formulaMapping=${r.formulaMappingGap} drainableClosed=${r.drainableClosed} projections=${r.formulaProjections.filter((p) => p.wired).length}/${r.formulaProjections.length}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'hero-card' || toolId === 'card-hero' || toolId === 'hero-anim') {
+      const r = unifiedHeroAndCardWithAnimation()
+      ok = r.computes && r.unifiedOn && r.cardFromHero
+      summary = `unifiedOn=${r.unifiedOn} sharedClock=${r.sharedClock} cardFromHero=${r.cardFromHero} animationOn=${r.animationOn}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'hero-abstract' || toolId === 'abstract-card' || toolId === 'card-forms') {
+      const r = heroIsTheAbstractAnimationFormsTheCardItself()
+      ok = r.computes && r.heroIsAbstract && r.animationFormsCard && r.cardIsNotBesideHero
+      summary = `heroIsAbstract=${r.heroIsAbstract} animationFormsCard=${r.animationFormsCard} cardIsNotBesideHero=${r.cardIsNotBesideHero} unifiedOn=${r.unifiedOn}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'app-fold' || toolId === 'fold-app') {
+      const r = foldingWorksOnApplicationLevel()
+      ok = r.computes && r.appLevelFold && r.foldSteps.every((s) => s.on)
+      summary = `appLevelFold=${r.appLevelFold} morph=${r.proseCodeLogicMorph} path=${r.pathIsMessage} folder=${r.folderHoldsName} apps=${r.appCount} steps=${r.foldSteps.filter((s) => s.on).length}/${r.foldSteps.length}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -1381,6 +1408,64 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'movie-formula'" @click="runTool('movie-formula')">
           {{ runningId === 'movie-formula' ? '…' : 'Run movie-formula' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="hero-card" aria-label="Unified hero and card with animation">
+        <h3>{{ heroCard.heading }}</h3>
+        <p class="quantum-apps__meta">{{ heroCard.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(heroCard.unifiedOn))">unifiedOn={{ heroCard.unifiedOn }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(heroCard.sharedClock))">sharedClock={{ heroCard.sharedClock }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(heroCard.cardFromHero))">cardFromHero={{ heroCard.cardFromHero }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(heroCard.animationOn))">animationOn={{ heroCard.animationOn }}</UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>hero/card</code> · <code>card/hero</code> · <code>hero/anim</code> ·
+          CLI <code>npm run quantum:hero-card</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'hero-card'" @click="runTool('hero-card')">
+          {{ runningId === 'hero-card' ? '…' : 'Run hero-card' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="hero-abstract" aria-label="Hero abstract animation forms the card">
+        <h3>{{ heroAbstract.heading }}</h3>
+        <p class="quantum-apps__meta">{{ heroAbstract.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(heroAbstract.heroIsAbstract))">heroIsAbstract={{ heroAbstract.heroIsAbstract }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(heroAbstract.animationFormsCard))">animationFormsCard={{ heroAbstract.animationFormsCard }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(heroAbstract.cardIsNotBesideHero))">cardIsNotBesideHero={{ heroAbstract.cardIsNotBesideHero }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(heroAbstract.unifiedOn))">unifiedOn={{ heroAbstract.unifiedOn }}</UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>hero/abstract</code> · <code>abstract/card</code> · <code>card/forms</code> ·
+          CLI <code>npm run quantum:hero-abstract</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'hero-abstract'" @click="runTool('hero-abstract')">
+          {{ runningId === 'hero-abstract' ? '…' : 'Run hero-abstract' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="app-fold" aria-label="Folding works on application level">
+        <h3>{{ appFold.heading }}</h3>
+        <p class="quantum-apps__meta">{{ appFold.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(appFold.appLevelFold))">appLevelFold={{ appFold.appLevelFold }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(appFold.proseCodeLogicMorph))">morph={{ appFold.proseCodeLogicMorph }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(appFold.pathIsMessage))">pathIsMessage={{ appFold.pathIsMessage }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(appFold.folderHoldsName))">folderHoldsName={{ appFold.folderHoldsName }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(appFold.cardHeroMovie))">card←hero←movie={{ appFold.cardHeroMovie }}</UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="step in appFold.foldSteps" :key="step.id">
+            <UiBadge :variant="step.on ? 'default' : 'outline'">{{ step.on ? '✓' : '—' }}</UiBadge>
+            <strong>{{ step.label }}</strong>
+            — <code>{{ step.pair }}</code>
+            · {{ step.detail }}
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>app/fold</code> · <code>fold/app</code> ·
+          CLI <code>npm run quantum:app-fold</code>
+          · apps={{ appFold.appCount }}
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'app-fold'" @click="runTool('app-fold')">
+          {{ runningId === 'app-fold' ? '…' : 'Run app-fold' }}
         </UiButton>
       </section>
       <UiSeparator />
