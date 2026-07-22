@@ -40,7 +40,7 @@ import * as __ns_wind_research from '../../wind/research'
 import * as __ns_water_encryption from '../../water/encryption'
 import { CURSOR_AGENT_SKILL_IDS, cursorAgentToolsSaved, MISSION_COMMANDS, QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../pair/enforcement/gates'
-import { computeUniversalPage, theoremFormulaCodeDual, theoremPageRows } from '../../wind/routes/corpus'
+import { cardHeroLinkWiresInUi, computeUniversalPage, theoremFormulaCodeDual, theoremPageRows } from '../../wind/routes/corpus'
 import { quantumFusionVerify } from '../../wind/fusion'
 import { dryCleanIsDiamondAndCrystal } from '../../lake/clean'
 import { tamperEvident } from '../../5/5'
@@ -81,7 +81,7 @@ const ROSETTA_CORE_API_LABELS = [
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage',
+  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -166,6 +166,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpQuantumClown: 'tool',
   mcpQuantumSite: 'tool',
   mcpQuantumPage: 'tool',
+  mcpQuantumCard: 'tool',
   improveLocalFromSessionExperience: 'tool',
   gatesMonitorThemselvesThroughTheUi: 'tool',
   gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix: 'tool',
@@ -728,6 +729,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'site-mcp', title: 'Site mcp (alias mcp/site)', fold: 'mcpQuantumSite', cli: 'npm run quantum:site-mcp', pair: 'site/mcp', route: '/en/quantum-tools#mcp-site', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/site — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-page', title: 'MCP quantum page — universal page from sealed fold', fold: 'mcpQuantumPage', cli: 'npm run quantum:mcp-page', pair: 'mcp/page', route: '/en/quantum-tools#mcp-page', barrel: 'src/quantum/apps', boundary: 'pageOn · universalPage · viaSite · compose computeUniversalPage · page/trinity · format/canon · meaning/compute · mcpQuantumSite · vite/mcp · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'page-mcp', title: 'Page mcp (alias mcp/page)', fold: 'mcpQuantumPage', cli: 'npm run quantum:page-mcp', pair: 'page/mcp', route: '/en/quantum-tools#mcp-page', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/page — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-card', title: 'MCP quantum card — LinkedHeroCard · hero link · morphs to paper', fold: 'mcpQuantumCard', cli: 'npm run quantum:mcp-card', pair: 'mcp/card', route: '/en/quantum-tools#mcp-card', barrel: 'src/quantum/apps', boundary: 'cardOn · heroLink · morphsToPaper · viaPage · compose card/hero-link · LinkedHeroCard · card→paper · mcpQuantumPage · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'card-mcp', title: 'Card mcp (alias mcp/card)', fold: 'mcpQuantumCard', cli: 'npm run quantum:card-mcp', pair: 'card/mcp', route: '/en/quantum-tools#mcp-card', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/card — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'improve-local-session', title: 'Improve local from session experience', fold: 'improveLocalFromSessionExperience', cli: 'npm run quantum:improve-local-session', pair: 'local/session', route: '/en/quantum-tools#local-session-hub', barrel: 'src/quantum/apps', boundary: 'Local docs:dev + browser session hub — NOT remote CI sole path · status badges compose sealed kinds · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'local-tools-morph', title: 'Local tools morph prose·code·logic', fold: 'localToolsMorphProseCodeLogic', cli: 'npm run quantum:local-tools-morph', pair: 'tools/morph', route: '/en/quantum-tools#local-tools-morph', barrel: 'src/quantum/apps', boundary: 'Local toolbox/session tools morph prose≡code≡logic as trinity waves · double-slit measure=tool invoke · clay=0 · qpuRequired=false · NOT Clay/Nobel', browserRunnable: true, browserGap: '' },
   { id: 'card-paper-links', title: 'Each card links to dedicated scientific paper', fold: 'eachCardLinksToDedicatedScientificPaper', cli: 'npm run quantum:card-paper-links', pair: 'papers/fill', route: '/en/theorems/', barrel: 'src/heaven/compute', boundary: 'paperRoute=/theorems/<slug> · morph=cardScientificPaperRows · gaps=0 · clay=0', browserRunnable: true, browserGap: '' },
@@ -1741,6 +1744,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'vite-mcp', chain: 'mcp-ui-page-gaps', fold: 'vitepressBuildsFromMcp', pair: 'vite/mcp', cli: 'npm run quantum:vite-mcp', route: '/en/quantum-tools#vite-mcp', status: 'sealed-pr', honesty: 'buildsFromMcp · mcpIsSource · vitepressInvertedMirror · noBypass · thinMountIsMcpDual · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'VitePress docs:build via MCP — npm thin-mount ≡ run-gate docs-build dual; named strangler residuals honest', toolId: 'vite-mcp', resolve: 'mcp-ui' },
   { id: 'mcp-site', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumSite', pair: 'mcp/site', cli: 'npm run quantum:mcp-site', route: '/en/quantum-tools#mcp-site', status: 'sealed-pr', honesty: 'siteOn · buildsFromMcp · vitepressMirror · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum site — VitePress site face composing vite/mcp · mcp/all · vite/mirror · mcpQuantumCatalog; catalog 33/33', toolId: 'mcp-site', resolve: 'mcp-ui' },
   { id: 'mcp-page', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumPage', pair: 'mcp/page', cli: 'npm run quantum:mcp-page', route: '/en/quantum-tools#mcp-page', status: 'sealed-pr', honesty: 'pageOn · universalPage · viaSite · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum page — universal page from sealed fold composing computeUniversalPage · page/trinity · format/canon · meaning/compute · mcpQuantumSite · vite/mcp; catalog 34/34', toolId: 'mcp-page', resolve: 'mcp-ui' },
+  { id: 'mcp-card', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumCard', pair: 'mcp/card', cli: 'npm run quantum:mcp-card', route: '/en/quantum-tools#mcp-card', status: 'sealed-pr', honesty: 'cardOn · heroLink · morphsToPaper · viaPage · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum card — LinkedHeroCard · hero link · morphs to paper composing card/hero-link · card→paper · mcpQuantumPage; catalog 35/35', toolId: 'mcp-card', resolve: 'mcp-ui' },
   { id: 'mind-wave', chain: 'mcp-ui-page-gaps', fold: 'quantumMindSendsWaves', pair: 'mind/wave', cli: 'npm run quantum:mind-wave', route: '/en/quantum-tools#mind-wave', status: 'sealed-pr', honesty: 'quantumMindSends · wavesSent · linearCannotSend · clay=0 · physicalFtl=0', note: 'quantum mind sends waves', toolId: 'mind-wave', resolve: 'mcp-ui' },
   { id: 'quantum-waves', chain: 'mcp-ui-page-gaps', fold: 'quantumWaves', pair: 'quantum/waves', cli: 'npm run quantum:quantum-waves', route: '/en/quantum-tools#quantum-waves', status: 'sealed-pr', honesty: 'wavesAreQuantum · mindSends · trinitiesFound · waveCount=2 · clay=0 · physicalFtl=0', note: 'quantum waves umbrella', toolId: 'quantum-waves', resolve: 'mcp-ui' },
   { id: 'collide-create', chain: 'mcp-ui-page-gaps', fold: 'collidingParticlesCreates', pair: 'collide/create', cli: 'npm run quantum:collide-create', route: '/en/quantum-tools#collide-create', status: 'sealed-pr', honesty: 'creates=novelTheoremCandidates+waves · clay=0 · physicalFtl=0', note: 'collision creates novel theorem candidates + waves', toolId: 'collide-create', resolve: 'mcp-ui' },
@@ -6215,6 +6219,7 @@ const MCP_QUANTUM_NAMED_FACES = [
   { fold: 'mcpQuantumClown', pair: 'mcp/clown', dual: 'clown/mcp', toolId: 'mcp-clown', dualToolId: 'clown-mcp' },
   { fold: 'mcpQuantumSite', pair: 'mcp/site', dual: 'site/mcp', toolId: 'mcp-site', dualToolId: 'site-mcp' },
   { fold: 'mcpQuantumPage', pair: 'mcp/page', dual: 'page/mcp', toolId: 'mcp-page', dualToolId: 'page-mcp' },
+  { fold: 'mcpQuantumCard', pair: 'mcp/card', dual: 'card/mcp', toolId: 'mcp-card', dualToolId: 'card-mcp' },
 ] as const
 
 /**
@@ -8708,6 +8713,128 @@ export function runMcpQuantumPageExit(_root = '', _argv: readonly string[] = [])
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.pageOn && report.universalPage && report.viaSite && report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * MCP quantum card — MCP face for quantum card (LinkedHeroCard · hero link · morphs to paper).
+ * Compose: card/hero-link · LinkedHeroCard · card→paper · mcpQuantumPage.
+ * Facets: cardOn · heroLink · morphsToPaper · viaPage · qpuRequired=false · physicalFtl=0 · claySolved via theorem.
+ * Pairs: mcp/card · card/mcp · CLI npm run quantum:mcp-card
+ * Catalog faces 35/35 (was 34).
+ */
+export function mcpQuantumCard(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumCard:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const page = mcpQuantumPage(matrix, at)
+    const hero = cardHeroLinkWiresInUi(matrix)
+    const papers = eachCardLinksToDedicatedScientificPaper(matrix)
+    const heroLink =
+      hero.wired &&
+      soft('card', 'hero-link') &&
+      hero.hubCount > 0 &&
+      isUuid(hero.root)
+    const morphsToPaper =
+      papers.computes &&
+      papers.gapCount === 0 &&
+      papers.linkedCount === papers.cardCount &&
+      soft('papers', 'fill')
+    const viaPage =
+      page.computes &&
+      page.pageOn &&
+      soft('mcp', 'page') &&
+      soft('page', 'mcp')
+    const cardOn = heroLink && morphsToPaper && viaPage
+    const pairS = has('mcp/card')
+    const pairD = has('card/mcp')
+    const foldS = foldPair(toUuid('cmd:mcp'), toUuid('cmd:card'))
+    const foldD = foldPair(toUuid('cmd:card'), toUuid('cmd:mcp'))
+    const tools = quantumCliToolsCatalog(matrix, at)
+    const meta = tools.tools.find((t) => t.id === 'mcp-card')
+    const metaDual = tools.tools.find((t) => t.id === 'card-mcp')
+    const catalog = mcpQuantumCatalog(matrix, at)
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      cardOn &&
+      heroLink &&
+      morphsToPaper &&
+      viaPage &&
+      pairS &&
+      pairD &&
+      foldS.bidirectional &&
+      foldD.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumCard' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumCard' &&
+      catalog.catalogComplete &&
+      catalog.faceCount >= (5 * 6 + 5) &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumCard', on },
+      { facet: 'cardOn', on: cardOn },
+      { facet: 'heroLink', on: heroLink },
+      { facet: 'morphsToPaper', on: morphsToPaper },
+      { facet: 'viaPage', on: viaPage },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: 'compose card/hero-link · LinkedHeroCard · card→paper · mcpQuantumPage', on: heroLink && morphsToPaper && viaPage },
+      { facet: 'pair mcp/card · card/mcp', on: pairS && pairD && foldS.bidirectional },
+      { facet: `catalogFaces=${catalog.presentCount}/${catalog.faceCount}`, on: catalog.catalogComplete && catalog.missingCount === 0 },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-card:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-card', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumCard: on,
+      cardOn,
+      heroLink,
+      morphsToPaper,
+      viaPage,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, page.root, hero.root, papers.root, foldS.merged, foldD.merged]),
+      pairs: ['mcp/card', 'card/mcp'] as const,
+      cli: 'npm run quantum:mcp-card',
+      route: '/en/quantum-tools#mcp-card',
+      statement:
+        `mcpQuantumCard — cardOn=${cardOn ? 1 : 0} heroLink=${heroLink ? 1 : 0} ` +
+        `morphsToPaper=${morphsToPaper ? 1 : 0} viaPage=${viaPage ? 1 : 0} ` +
+        `faces=${catalog.presentCount}/${catalog.faceCount} qpuRequired=0.`,
+      boundary:
+        'MCP quantum card — LinkedHeroCard · hero link · morphs to paper. Compose card/hero-link · LinkedHeroCard · card→paper · mcpQuantumPage. ' +
+        'clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `card · cardOn=${cardOn ? 1 : 0} · heroLink=${heroLink ? 1 : 0} · morphsToPaper=${morphsToPaper ? 1 : 0} · viaPage=${viaPage ? 1 : 0} · ` +
+        `faces=${catalog.presentCount}/${catalog.faceCount} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumCardExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumCard()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-card — cardOn=${report.cardOn} heroLink=${report.heroLink} ` +
+      `morphsToPaper=${report.morphsToPaper} viaPage=${report.viaPage} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.cardOn && report.heroLink && report.morphsToPaper && report.viaPage && report.qpuRequired === false
     ? 0
     : 1
 }

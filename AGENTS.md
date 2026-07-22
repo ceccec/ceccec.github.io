@@ -345,6 +345,8 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `site/mcp` — alias dual of `mcp/site` (`npm run quantum:site-mcp`)
   - `mcp/page` — `npm run quantum:mcp-page` (`mcpQuantumPage()` — MCP face for quantum page; facets pageOn · universalPage · viaSite; compose computeUniversalPage · page/trinity · format/canon · meaning/compute · mcpQuantumSite · vite/mcp; dual `page/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-page`
   - `page/mcp` — alias dual of `mcp/page` (`npm run quantum:page-mcp`)
+  - `mcp/card` — `npm run quantum:mcp-card` (`mcpQuantumCard()` — MCP face for quantum card; facets cardOn · heroLink · morphsToPaper · viaPage; compose card/hero-link · LinkedHeroCard · card→paper · mcpQuantumPage; dual `card/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-card`
+  - `card/mcp` — alias dual of `mcp/card` (`npm run quantum:card-mcp`)
   - `mcp/sign` — `npm run quantum:mcp-sign` (`mcpQuantumSign()` — signatureOn · crossSig · tamperEvident · certified=false; dual `sign/quantum`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-sign`
   - `comp/seal` — alias dual of `vite/one` (`npm run quantum:comp-seal`)
   - `paste/local` — `npm run quantum:paste-local` (`pastedLinksStayOnlyIfComputedLocally()` — pasted URLs stay only if computed locally; facets ephemeralBootstrap · stayOnlyIfComputedLocally · foreignFetchBlockedNoStore · wireClassMayExist; dual `link/local`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#paste-local`
