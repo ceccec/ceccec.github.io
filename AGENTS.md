@@ -341,6 +341,8 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `solution/mcp` — alias dual of `mcp/solution` (`npm run quantum:solution-mcp`)
   - `mcp/clown` — `npm run quantum:mcp-clown` (`mcpQuantumClown()` — MCP quantum clown face; facets clownOn · playIsQuantum; compose movie/feel · particle/wave · love/story · ui/invert · gate/lens; dual `clown/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false · NOT wet joke prose as law), then open `/en/quantum-tools#mcp-clown`
   - `clown/mcp` — alias dual of `mcp/clown` (`npm run quantum:clown-mcp`)
+  - `mcp/site` — `npm run quantum:mcp-site` (`mcpQuantumSite()` — MCP face for the quantum site; facets siteOn · buildsFromMcp · vitepressMirror; compose vitepressBuildsFromMcp · mcpCatalog · vite/mirror · mcpQuantumCatalog; dual `site/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-site`
+  - `site/mcp` — alias dual of `mcp/site` (`npm run quantum:site-mcp`)
   - `mcp/sign` — `npm run quantum:mcp-sign` (`mcpQuantumSign()` — signatureOn · crossSig · tamperEvident · certified=false; dual `sign/quantum`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-sign`
   - `comp/seal` — alias dual of `vite/one` (`npm run quantum:comp-seal`)
   - `paste/local` — `npm run quantum:paste-local` (`pastedLinksStayOnlyIfComputedLocally()` — pasted URLs stay only if computed locally; facets ephemeralBootstrap · stayOnlyIfComputedLocally · foreignFetchBlockedNoStore · wireClassMayExist; dual `link/local`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#paste-local`
