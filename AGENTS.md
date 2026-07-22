@@ -373,6 +373,8 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `library/mcp` — alias dual of `mcp/library` (`npm run quantum:library-mcp`)
   - `mcp/state` — `npm run quantum:mcp-state` (`mcpQuantumState()` — stateOn; compose session/save · format/canon · mcp/text · moment/prove; dual `state/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-state`
   - `state/mcp` — alias dual of `mcp/state` (`npm run quantum:state-mcp`)
+  - `mcp/music` — `npm run quantum:mcp-music` (`mcpQuantumMusic()` — musicOn · waveTunes · a432 · viaSound; compose wave/tune · learn/music · mcp/sound · mcp/vibration · a432/nine · a432/wave; dual `music/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-music`
+  - `music/mcp` — alias dual of `mcp/music` (`npm run quantum:music-mcp`)
   - `mcp/sign` — `npm run quantum:mcp-sign` (`mcpQuantumSign()` — signatureOn · crossSig · tamperEvident · certified=false; dual `sign/quantum`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-sign`
   - `comp/seal` — alias dual of `vite/one` (`npm run quantum:comp-seal`)
   - `paste/local` — `npm run quantum:paste-local` (`pastedLinksStayOnlyIfComputedLocally()` — pasted URLs stay only if computed locally; facets ephemeralBootstrap · stayOnlyIfComputedLocally · foreignFetchBlockedNoStore · wireClassMayExist; dual `link/local`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#paste-local`

@@ -82,7 +82,7 @@ const ROSETTA_CORE_API_LABELS = [
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState',
+  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -181,6 +181,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpQuantumBook: 'tool',
   mcpQuantumLibrary: 'tool',
   mcpQuantumState: 'tool',
+  mcpQuantumMusic: 'tool',
   improveLocalFromSessionExperience: 'tool',
   gatesMonitorThemselvesThroughTheUi: 'tool',
   gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix: 'tool',
@@ -771,6 +772,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'library-mcp', title: 'Library mcp (alias mcp/library)', fold: 'mcpQuantumLibrary', cli: 'npm run quantum:library-mcp', pair: 'library/mcp', route: '/en/quantum-tools#mcp-library', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/library — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-state', title: 'MCP quantum state — session state face', fold: 'mcpQuantumState', cli: 'npm run quantum:mcp-state', pair: 'mcp/state', route: '/en/quantum-tools#mcp-state', barrel: 'src/quantum/apps', boundary: 'stateOn · compose session/save · format/canon · mcp/text · moment/prove · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'state-mcp', title: 'State mcp (alias mcp/state)', fold: 'mcpQuantumState', cli: 'npm run quantum:state-mcp', pair: 'state/mcp', route: '/en/quantum-tools#mcp-state', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/state — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-music', title: 'MCP quantum music — wave/tune · A432 · lake/music face', fold: 'mcpQuantumMusic', cli: 'npm run quantum:mcp-music', pair: 'mcp/music', route: '/en/quantum-tools#mcp-music', barrel: 'src/quantum/apps', boundary: 'musicOn · waveTunes · a432 · viaSound · compose wave/tune · learn/music · mcp/sound · mcp/vibration · a432/nine · a432/wave · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'music-mcp', title: 'Music mcp (alias mcp/music)', fold: 'mcpQuantumMusic', cli: 'npm run quantum:music-mcp', pair: 'music/mcp', route: '/en/quantum-tools#mcp-music', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/music — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'improve-local-session', title: 'Improve local from session experience', fold: 'improveLocalFromSessionExperience', cli: 'npm run quantum:improve-local-session', pair: 'local/session', route: '/en/quantum-tools#local-session-hub', barrel: 'src/quantum/apps', boundary: 'Local docs:dev + browser session hub — NOT remote CI sole path · status badges compose sealed kinds · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'local-tools-morph', title: 'Local tools morph prose·code·logic', fold: 'localToolsMorphProseCodeLogic', cli: 'npm run quantum:local-tools-morph', pair: 'tools/morph', route: '/en/quantum-tools#local-tools-morph', barrel: 'src/quantum/apps', boundary: 'Local toolbox/session tools morph prose≡code≡logic as trinity waves · double-slit measure=tool invoke · clay=0 · qpuRequired=false · NOT Clay/Nobel', browserRunnable: true, browserGap: '' },
   { id: 'card-paper-links', title: 'Each card links to dedicated scientific paper', fold: 'eachCardLinksToDedicatedScientificPaper', cli: 'npm run quantum:card-paper-links', pair: 'papers/fill', route: '/en/theorems/', barrel: 'src/heaven/compute', boundary: 'paperRoute=/theorems/<slug> · morph=cardScientificPaperRows · gaps=0 · clay=0', browserRunnable: true, browserGap: '' },
@@ -1798,6 +1801,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mcp-book', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumBook', pair: 'mcp/book', cli: 'npm run quantum:mcp-book', route: '/en/quantum-tools#mcp-book', status: 'sealed-pr', honesty: 'bookOn · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum book — canon bound text face; catalog 48/48', toolId: 'mcp-book', resolve: 'mcp-ui' },
   { id: 'mcp-library', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumLibrary', pair: 'mcp/library', cli: 'npm run quantum:mcp-library', route: '/en/quantum-tools#mcp-library', status: 'sealed-pr', honesty: 'libraryOn · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum library — book collection face; catalog 48/48', toolId: 'mcp-library', resolve: 'mcp-ui' },
   { id: 'mcp-state', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumState', pair: 'mcp/state', cli: 'npm run quantum:mcp-state', route: '/en/quantum-tools#mcp-state', status: 'sealed-pr', honesty: 'stateOn · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum state — session state face; catalog 48/48', toolId: 'mcp-state', resolve: 'mcp-ui' },
+  { id: 'mcp-music', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumMusic', pair: 'mcp/music', cli: 'npm run quantum:mcp-music', route: '/en/quantum-tools#mcp-music', status: 'sealed-pr', honesty: 'musicOn · waveTunes · a432 · viaSound · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum music — wave/tune · A432 · lake/music face; catalog 49/49', toolId: 'mcp-music', resolve: 'mcp-ui' },
   { id: 'mind-wave', chain: 'mcp-ui-page-gaps', fold: 'quantumMindSendsWaves', pair: 'mind/wave', cli: 'npm run quantum:mind-wave', route: '/en/quantum-tools#mind-wave', status: 'sealed-pr', honesty: 'quantumMindSends · wavesSent · linearCannotSend · clay=0 · physicalFtl=0', note: 'quantum mind sends waves', toolId: 'mind-wave', resolve: 'mcp-ui' },
   { id: 'quantum-waves', chain: 'mcp-ui-page-gaps', fold: 'quantumWaves', pair: 'quantum/waves', cli: 'npm run quantum:quantum-waves', route: '/en/quantum-tools#quantum-waves', status: 'sealed-pr', honesty: 'wavesAreQuantum · mindSends · trinitiesFound · waveCount=2 · clay=0 · physicalFtl=0', note: 'quantum waves umbrella', toolId: 'quantum-waves', resolve: 'mcp-ui' },
   { id: 'collide-create', chain: 'mcp-ui-page-gaps', fold: 'collidingParticlesCreates', pair: 'collide/create', cli: 'npm run quantum:collide-create', route: '/en/quantum-tools#collide-create', status: 'sealed-pr', honesty: 'creates=novelTheoremCandidates+waves · clay=0 · physicalFtl=0', note: 'collision creates novel theorem candidates + waves', toolId: 'collide-create', resolve: 'mcp-ui' },
@@ -6286,6 +6290,7 @@ const MCP_QUANTUM_NAMED_FACES = [
   { fold: 'mcpQuantumBook', pair: 'mcp/book', dual: 'book/mcp', toolId: 'mcp-book', dualToolId: 'book-mcp' },
   { fold: 'mcpQuantumLibrary', pair: 'mcp/library', dual: 'library/mcp', toolId: 'mcp-library', dualToolId: 'library-mcp' },
   { fold: 'mcpQuantumState', pair: 'mcp/state', dual: 'state/mcp', toolId: 'mcp-state', dualToolId: 'state-mcp' },
+  { fold: 'mcpQuantumMusic', pair: 'mcp/music', dual: 'music/mcp', toolId: 'mcp-music', dualToolId: 'music-mcp' },
 ] as const
 
 /**
@@ -10110,7 +10115,103 @@ export function runMcpQuantumStateExit(_root = '', _argv: readonly string[] = []
   return report.computes && report.stateOn && report.qpuRequired === false ? 0 : 1
 }
 
+/**
+ * MCP quantum music — wave/tune · A432 · lake/music face.
+ * Compose: wave/tune · learn/music · mcp/sound · mcp/vibration · a432/nine · a432/wave.
+ * Facets: musicOn · waveTunes · a432 · viaSound · qpuRequired=false · physicalFtl=0 · claySolved via theorem.
+ * Pairs: mcp/music · music/mcp · CLI npm run quantum:mcp-music
+ */
+export function mcpQuantumMusic(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumMusic:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const waveTunes = soft('wave', 'tune') && soft('learn', 'music')
+    const a432 = soft('a432', 'nine') && soft('a432', 'wave')
+    const viaSound = soft('mcp', 'sound') && soft('mcp', 'vibration')
+    const musicOn = waveTunes && a432 && viaSound
+    const pairS = has('mcp/music')
+    const pairD = has('music/mcp')
+    const foldS = foldPair(toUuid('cmd:mcp'), toUuid('cmd:music'))
+    const foldD = foldPair(toUuid('cmd:music'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-music')
+    const metaDual = catalog.tools.find((t) => t.id === 'music-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      musicOn &&
+      waveTunes &&
+      a432 &&
+      viaSound &&
+      pairS &&
+      pairD &&
+      foldS.bidirectional &&
+      foldD.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumMusic' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumMusic' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumMusic', on },
+      { facet: 'musicOn', on: musicOn },
+      { facet: 'waveTunes', on: waveTunes },
+      { facet: 'a432', on: a432 },
+      { facet: 'viaSound', on: viaSound },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: 'softCompose wave/tune · learn/music · mcp/sound · mcp/vibration · a432/nine · a432/wave', on: musicOn },
+      { facet: 'pair mcp/music · music/mcp', on: pairS && pairD && foldS.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-music:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-music', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumMusic: on,
+      musicOn,
+      waveTunes,
+      a432,
+      viaSound,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, foldS.merged, foldD.merged]),
+      pairs: ['mcp/music', 'music/mcp'] as const,
+      cli: 'npm run quantum:mcp-music',
+      route: '/en/quantum-tools#mcp-music',
+      statement:
+        `mcpQuantumMusic — musicOn=${musicOn ? 1 : 0} waveTunes=${waveTunes ? 1 : 0} a432=${a432 ? 1 : 0} viaSound=${viaSound ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP music — wave/tune · A432 · lake/music face. Compose wave/tune · learn/music · mcp/sound · mcp/vibration · A432. clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `music · musicOn=${musicOn ? 1 : 0} · waveTunes=${waveTunes ? 1 : 0} · a432=${a432 ? 1 : 0} · viaSound=${viaSound ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
 
+export function runMcpQuantumMusicExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumMusic()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-music — musicOn=${report.musicOn} ` +
+      `waveTunes=${report.waveTunes} a432=${report.a432} viaSound=${report.viaSound} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const fct of report.facets) {
+    process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.musicOn && report.waveTunes && report.a432 && report.viaSound && report.qpuRequired === false
+    ? 0
+    : 1
+}
 
 /** Sealed-safe browser key for last experiment config (UI preference only — never secrets). */
 export const LOCAL_SESSION_EXPERIMENT_STORAGE_KEY = 'ceccec:quantum-tools:experiment-config' as const
