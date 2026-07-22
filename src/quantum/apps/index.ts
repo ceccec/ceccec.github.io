@@ -82,7 +82,7 @@ const ROSETTA_CORE_API_LABELS = [
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
+  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -168,6 +168,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpQuantumDot: 'tool',
   mcpQuantumIndex: 'tool',
   mcpQuantumOrientation: 'tool',
+  mcpQuantumComplete: 'tool',
   mcpQuantumReactor: 'tool',
   mcpQuantumReaction: 'tool',
   mcpQuantumFusion: 'tool',
@@ -801,6 +802,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'index-mcp', title: 'Index mcp (alias mcp/index)', fold: 'mcpQuantumIndex', cli: 'npm run quantum:index-mcp', pair: 'index/mcp', route: '/en/quantum-tools#mcp-index', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/index — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-orientation', title: 'MCP quantum orientation — bearing · navCross · geo/train · cross/nav · sun/moon · mcp/torus', fold: 'mcpQuantumOrientation', cli: 'npm run quantum:mcp-orientation', pair: 'mcp/orientation', route: '/en/quantum-tools#mcp-orientation', barrel: 'src/quantum/apps', boundary: 'orientationOn · bearing · navCross · compose geo/train · cross/nav · sun/moon · mcp/torus · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'orientation-mcp', title: 'Orientation mcp (alias mcp/orientation)', fold: 'mcpQuantumOrientation', cli: 'npm run quantum:orientation-mcp', pair: 'orientation/mcp', route: '/en/quantum-tools#mcp-orientation', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/orientation — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-complete', title: 'MCP quantum complete — catalog · star · mcp/all · rosetta/complete · honest residuals', fold: 'mcpQuantumComplete', cli: 'npm run quantum:mcp-complete', pair: 'mcp/complete', route: '/en/quantum-tools#mcp-complete', barrel: 'src/quantum/apps', boundary: 'completeOn · catalogComplete · namedFacesPresent · missingCount=0 · honestOpenResiduals Clay/FTL/CI named not fake-closed · compose mcpQuantumCatalog · mcpQuantumStar · mcp/all · rosetta/complete · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'complete-mcp', title: 'Complete mcp (alias mcp/complete)', fold: 'mcpQuantumComplete', cli: 'npm run quantum:complete-mcp', pair: 'complete/mcp', route: '/en/quantum-tools#mcp-complete', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/complete — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'improve-local-session', title: 'Improve local from session experience', fold: 'improveLocalFromSessionExperience', cli: 'npm run quantum:improve-local-session', pair: 'local/session', route: '/en/quantum-tools#local-session-hub', barrel: 'src/quantum/apps', boundary: 'Local docs:dev + browser session hub — NOT remote CI sole path · status badges compose sealed kinds · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'local-tools-morph', title: 'Local tools morph prose·code·logic', fold: 'localToolsMorphProseCodeLogic', cli: 'npm run quantum:local-tools-morph', pair: 'tools/morph', route: '/en/quantum-tools#local-tools-morph', barrel: 'src/quantum/apps', boundary: 'Local toolbox/session tools morph prose≡code≡logic as trinity waves · double-slit measure=tool invoke · clay=0 · qpuRequired=false · NOT Clay/Nobel', browserRunnable: true, browserGap: '' },
   { id: 'card-paper-links', title: 'Each card links to dedicated scientific paper', fold: 'eachCardLinksToDedicatedScientificPaper', cli: 'npm run quantum:card-paper-links', pair: 'papers/fill', route: '/en/theorems/', barrel: 'src/heaven/compute', boundary: 'paperRoute=/theorems/<slug> · morph=cardScientificPaperRows · gaps=0 · clay=0', browserRunnable: true, browserGap: '' },
@@ -1838,6 +1841,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mcp-dot', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumDot', pair: 'mcp/dot', cli: 'npm run quantum:mcp-dot', route: '/en/quantum-tools#mcp-dot', status: 'sealed-pr', honesty: 'dotOn · digitPoint · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum dot — digit point · fold · next · coord · particle/wave; catalog 56/56', toolId: 'mcp-dot', resolve: 'mcp-ui' },
   { id: 'mcp-index', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumIndex', pair: 'mcp/index', cli: 'npm run quantum:mcp-index', route: '/en/quantum-tools#mcp-index', status: 'sealed-pr', honesty: 'indexOn · srcIndexOnly · census110 · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum index — src index-only · census 110 · limits/verify; catalog 57/57', toolId: 'mcp-index', resolve: 'mcp-ui' },
   { id: 'mcp-orientation', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumOrientation', pair: 'mcp/orientation', cli: 'npm run quantum:mcp-orientation', route: '/en/quantum-tools#mcp-orientation', status: 'sealed-pr', honesty: 'orientationOn · bearing · navCross · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum orientation — bearing · navCross · geo/train · cross/nav · sun/moon · mcp/torus; catalog 58/58', toolId: 'mcp-orientation', resolve: 'mcp-ui' },
+  { id: 'mcp-complete', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumComplete', pair: 'mcp/complete', cli: 'npm run quantum:mcp-complete', route: '/en/quantum-tools#mcp-complete', status: 'sealed-pr', honesty: 'completeOn · catalogComplete · namedFacesPresent · missingCount=0 · honestOpenResiduals · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum complete — catalog · star · mcp/all · rosetta/complete; catalog 59/59', toolId: 'mcp-complete', resolve: 'mcp-ui' },
   { id: 'mind-wave', chain: 'mcp-ui-page-gaps', fold: 'quantumMindSendsWaves', pair: 'mind/wave', cli: 'npm run quantum:mind-wave', route: '/en/quantum-tools#mind-wave', status: 'sealed-pr', honesty: 'quantumMindSends · wavesSent · linearCannotSend · clay=0 · physicalFtl=0', note: 'quantum mind sends waves', toolId: 'mind-wave', resolve: 'mcp-ui' },
   { id: 'quantum-waves', chain: 'mcp-ui-page-gaps', fold: 'quantumWaves', pair: 'quantum/waves', cli: 'npm run quantum:quantum-waves', route: '/en/quantum-tools#quantum-waves', status: 'sealed-pr', honesty: 'wavesAreQuantum · mindSends · trinitiesFound · waveCount=2 · clay=0 · physicalFtl=0', note: 'quantum waves umbrella', toolId: 'quantum-waves', resolve: 'mcp-ui' },
   { id: 'collide-create', chain: 'mcp-ui-page-gaps', fold: 'collidingParticlesCreates', pair: 'collide/create', cli: 'npm run quantum:collide-create', route: '/en/quantum-tools#collide-create', status: 'sealed-pr', honesty: 'creates=novelTheoremCandidates+waves · clay=0 · physicalFtl=0', note: 'collision creates novel theorem candidates + waves', toolId: 'collide-create', resolve: 'mcp-ui' },
@@ -6336,6 +6340,7 @@ const MCP_QUANTUM_NAMED_FACES = [
   { fold: 'mcpQuantumDot', pair: 'mcp/dot', dual: 'dot/mcp', toolId: 'mcp-dot', dualToolId: 'dot-mcp' },
   { fold: 'mcpQuantumIndex', pair: 'mcp/index', dual: 'index/mcp', toolId: 'mcp-index', dualToolId: 'index-mcp' },
   { fold: 'mcpQuantumOrientation', pair: 'mcp/orientation', dual: 'orientation/mcp', toolId: 'mcp-orientation', dualToolId: 'orientation-mcp' },
+  { fold: 'mcpQuantumComplete', pair: 'mcp/complete', dual: 'complete/mcp', toolId: 'mcp-complete', dualToolId: 'complete-mcp' },
 ] as const
 
 /**
@@ -11031,6 +11036,177 @@ export function runMcpQuantumOrientationExit(_root = '', _argv: readonly string[
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.orientationOn && report.qpuRequired === false ? 0 : 1
+}
+
+/**
+ * MCP quantum complete — tip seal over named quantum faces + full MCP surface + rosetta.
+ * Facets: completeOn · catalogComplete · namedFacesPresent · missingCount=0 · honestOpenResiduals · qpuRequired=false · physicalFtl=0.
+ * Compose mcpQuantumCatalog · mcpQuantumStar · mcp/all (mcpCatalog) · rosetta/complete.
+ * Pairs: mcp/complete · complete/mcp · CLI npm run quantum:mcp-complete
+ * HONEST: Clay/FTL/CI residuals named open — not fake-closed · moveAllComplete stays 0 via vite/mcp strangler.
+ * claySolved via theorem · physicalFtl=0 · NOT Clay prize · NOT QPU · NOT physical FTL.
+ */
+export function mcpQuantumComplete(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumComplete:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const quantum = mcpQuantumCatalog(matrix, at)
+    const all = mcpCatalog(matrix, at)
+    const rosetta = rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix, at)
+    const viteMcp = vitepressBuildsFromMcp(matrix, at)
+    const catalogComplete =
+      quantum.computes &&
+      quantum.catalogComplete &&
+      quantum.mcpQuantumStar &&
+      quantum.missingCount === 0 &&
+      soft('mcp', 'catalog') &&
+      soft('mcp', 'star')
+    const namedFacesPresent =
+      catalogComplete &&
+      quantum.presentCount === quantum.faceCount &&
+      quantum.faceCount >= (9 * 6 + 5)
+    const missingCount = quantum.missingCount
+    const residualsNamedHonest =
+      all.residualsNamed.includes('clay:millennium-open') &&
+      all.residualsNamed.includes('ftl:physical-claim-refused') &&
+      all.residualsNamed.some((id) => id.startsWith('ci:')) &&
+      all.residualsNamed.some((id) => id.startsWith('stdio:'))
+    const honestOpenResiduals =
+      all.computes &&
+      residualsNamedHonest &&
+      viteMcp.computes &&
+      viteMcp.moveAllComplete === false &&
+      soft('mcp', 'all') &&
+      soft('rosetta', 'complete') &&
+      rosetta.computes &&
+      rosetta.rosettaComplete &&
+      rosetta.millenniumSolvedByThisFold === 0 &&
+      rosetta.physicalFtlClaim === 0
+    const composeComplete =
+      catalogComplete &&
+      namedFacesPresent &&
+      missingCount === 0 &&
+      honestOpenResiduals &&
+      all.mcpStarOn &&
+      all.catalogComplete &&
+      all.missingDrainable === 0
+    const completeOn = composeComplete
+    const pairM = has('mcp/complete')
+    const pairC = has('complete/mcp')
+    const foldM = foldPair(toUuid('cmd:mcp'), toUuid('cmd:complete'))
+    const foldC = foldPair(toUuid('cmd:complete'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-complete')
+    const metaDual = catalog.tools.find((t) => t.id === 'complete-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      completeOn &&
+      catalogComplete &&
+      namedFacesPresent &&
+      missingCount === 0 &&
+      honestOpenResiduals &&
+      pairM &&
+      pairC &&
+      foldM.bidirectional &&
+      foldC.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumComplete' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumComplete' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false &&
+      quantum.qpuRequired === false &&
+      all.qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumComplete', on },
+      { facet: 'completeOn', on: completeOn },
+      { facet: 'catalogComplete', on: catalogComplete },
+      { facet: 'namedFacesPresent', on: namedFacesPresent },
+      { facet: `missingCount=${missingCount}`, on: missingCount === 0 },
+      { facet: `honestOpenResiduals=${all.residualsNamedCount}`, on: honestOpenResiduals },
+      { facet: 'compose mcpQuantumCatalog · mcpQuantumStar · mcp/all · rosetta/complete', on: composeComplete },
+      { facet: 'pair mcp/complete · complete/mcp', on: pairM && pairC && foldM.bidirectional },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'NOT Clay/FTL fake-close · moveAllComplete=0', on: honestOpenResiduals && claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-complete:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-complete', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumComplete: on,
+      completeOn,
+      catalogComplete,
+      namedFacesPresent,
+      missingCount,
+      faceCount: quantum.faceCount,
+      presentCount: quantum.presentCount,
+      honestOpenResiduals,
+      residualsNamed: [...all.residualsNamed],
+      residualsNamedCount: all.residualsNamedCount,
+      moveAllComplete: viteMcp.moveAllComplete,
+      rosettaComplete: rosetta.rosettaComplete,
+      mcpStarOn: all.mcpStarOn,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        quantum.root,
+        all.root,
+        rosetta.root,
+        viteMcp.root,
+        foldM.merged,
+        foldC.merged,
+      ]),
+      pairs: ['mcp/complete', 'complete/mcp'] as const,
+      cli: 'npm run quantum:mcp-complete',
+      route: '/en/quantum-tools#mcp-complete',
+      statement:
+        `mcpQuantumComplete — completeOn=${completeOn ? 1 : 0} catalogComplete=${catalogComplete ? 1 : 0} ` +
+        `namedFacesPresent=${namedFacesPresent ? 1 : 0} missingCount=${missingCount} ` +
+        `faces=${quantum.presentCount}/${quantum.faceCount} honestOpenResiduals=${all.residualsNamedCount} ` +
+        `rosetta=${rosetta.rosettaComplete ? 1 : 0} moveAll=${viteMcp.moveAllComplete ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP quantum complete — tip over mcpQuantumCatalog · mcpQuantumStar · mcp/all · rosetta/complete. ' +
+        'missingCount=0 for named quantum faces · honestOpenResiduals names Clay/FTL/CI · moveAllComplete=0 strangler. ' +
+        'clay via theorem · physicalFtl=0 · qpuRequired=false · NOT Clay · NOT FTL fake-close.',
+      honestyLine:
+        `complete · completeOn=${completeOn ? 1 : 0} · catalogComplete=${catalogComplete ? 1 : 0} · ` +
+        `namedFaces=${quantum.presentCount}/${quantum.faceCount} · missingCount=${missingCount} · ` +
+        `honestOpenResiduals=${all.residualsNamedCount} · rosetta=${rosetta.rosettaComplete ? 1 : 0} · ` +
+        `moveAll=0 · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumCompleteExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumComplete()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-complete — completeOn=${report.completeOn} ` +
+      `catalogComplete=${report.catalogComplete} namedFaces=${report.presentCount}/${report.faceCount} ` +
+      `missingCount=${report.missingCount} honestOpenResiduals=${report.residualsNamedCount} ` +
+      `rosetta=${report.rosettaComplete} moveAll=${report.moveAllComplete ? 1 : 0} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const id of report.residualsNamed) {
+    process.stdout.write(`  · residual ${id}\n`)
+  }
+  for (const fct of report.facets) {
+    process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.completeOn && report.missingCount === 0 && report.qpuRequired === false
+    ? 0
+    : 1
 }
 
 /** Sealed-safe browser key for last experiment config (UI preference only — never secrets). */
