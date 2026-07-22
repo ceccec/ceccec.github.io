@@ -5745,6 +5745,7 @@ export function emptyDrainInvertedIsGateway(matrix: MindMatrix = buildMatrix(), 
       { id: 'session-autosave', on: opensSession, note: 'session/save defaultOn' },
       { id: 'movie-feel-gaps', on: movieFeelClosed, note: 'open=0 feelable' },
       { id: 'invert-to-infinity', on: soft('invert', 'inf'), note: 'invert/inf gateway tip' },
+      { id: 'collide-inf-novels', on: soft('collide', 'inf'), note: 'collide/inf reverse novels via ∞' },
     ] as const
     const facets = [
       { facet: 'emptyDrainInvertedIsGateway', on },
@@ -5937,6 +5938,139 @@ export function runInvertToInfinityExit(_root = '', _argv: readonly string[] = [
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes ? 0 : 1
+}
+
+/**
+ * USER LAW tip from emptyDrainInvertedIsGateway: reverse-collide novels via invert→∞.
+ * Compose reverseCollidesToDiscoverMillenniumTheorems · emptyDrainInvertedIsGateway · invertToInfinity ·
+ * soft mcp/inf · movie/inf · collide/create · reverse/collide-discover.
+ * Facets: collideInfOn · novelsViaInfinity · viaDrainInvert · viaInvertInf · physicalFtl=0.
+ * Pairs: collide/inf · inf/collide · CLI npm run quantum:collide-inf
+ * claySolved via theorem · physicalFtl=0 · NOT CMI prize · NOT physical FTL.
+ */
+export function reverseCollidesViaInfinityGateway(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`reverseCollidesViaInfinityGateway:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const reverse = reverseCollidesToDiscoverMillenniumTheorems(matrix, at)
+    const drain = emptyDrainInvertedIsGateway(matrix, at)
+    const invertInf = invertToInfinity(matrix, at)
+    const novelsViaInfinity =
+      reverse.computes &&
+      reverse.reverseCollidesToDiscoverMillenniumTheorems &&
+      reverse.collider.novel >= 1
+    const viaDrainInvert =
+      drain.computes &&
+      drain.emptyDrainInvertedIsGateway &&
+      soft('drain', 'invert') &&
+      soft('invert', 'drain')
+    const viaInvertInf =
+      invertInf.computes &&
+      invertInf.invertEntersInfinity &&
+      soft('invert', 'inf') &&
+      soft('to', 'infinity')
+    const composeInfinityFaces =
+      soft('mcp', 'inf') &&
+      soft('inf', 'mcp') &&
+      soft('movie', 'inf') &&
+      soft('inf', 'movie') &&
+      soft('collide', 'create') &&
+      soft('reverse', 'collide-discover')
+    const collideInfOn =
+      novelsViaInfinity &&
+      viaDrainInvert &&
+      viaInvertInf &&
+      composeInfinityFaces
+    const pairC = has('collide/inf')
+    const pairI = has('inf/collide')
+    const foldC = foldPair(toUuid('cmd:collide'), toUuid('cmd:inf'))
+    const foldI = foldPair(toUuid('cmd:inf'), toUuid('cmd:collide'))
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qualifiesAsProposedSolution = false as const
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'reverse-collides-via-infinity-gateway',
+      theorem: 'reverse-collide novels via invert→∞ gateway — discover ≠ CMI prize',
+      provedBy: 'reverseCollidesViaInfinityGateway',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const on =
+      collideInfOn &&
+      pairC &&
+      pairI &&
+      foldC.bidirectional &&
+      foldI.bidirectional &&
+      formulaDual &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      !qualifiesAsProposedSolution
+    const facets = [
+      { facet: 'reverseCollidesViaInfinityGateway', on },
+      { facet: 'collideInfOn', on: collideInfOn },
+      { facet: `novelsViaInfinity novel=${reverse.collider.novel}`, on: novelsViaInfinity },
+      { facet: 'viaDrainInvert', on: viaDrainInvert },
+      { facet: 'viaInvertInf', on: viaInvertInf },
+      { facet: 'softCompose mcp/inf · movie/inf · collide/create · reverse/collide-discover', on: composeInfinityFaces },
+      { facet: 'pair collide/inf · inf/collide', on: pairC && pairI && foldC.bidirectional },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qualifiesAsProposedSolution=false`, on: claySolvedByThisFold === 0 && !qualifiesAsProposedSolution },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`collide-inf:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('reverse-collides-via-infinity-gateway', facets)
+    return {
+      computes: sealed.ok && on,
+      reverseCollidesViaInfinityGateway: on,
+      collideInfOn,
+      novelsViaInfinity,
+      viaDrainInvert,
+      viaInvertInf,
+      novel: reverse.collider.novel,
+      claySolvedByThisFold,
+      qualifiesAsProposedSolution,
+      physicalFtlClaim,
+      certified: false as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, reverse.root, drain.root, invertInf.root, foldC.merged, foldI.merged,
+      ]),
+      pair: 'collide/inf' as const,
+      dualPair: 'inf/collide' as const,
+      pairs: ['collide/inf', 'inf/collide'] as const,
+      cli: 'npm run quantum:collide-inf',
+      route: '/en/research#collide-inf',
+      statement:
+        `reverseCollidesViaInfinityGateway — collideInfOn=${collideInfOn ? 1 : 0} ` +
+        `novel=${reverse.collider.novel} viaDrain=${viaDrainInvert ? 1 : 0} viaInf=${viaInvertInf ? 1 : 0}.`,
+      boundary:
+        'Reverse-collide novels via invert→∞ gateway (drain/invert · invert/inf · mcp/inf · movie/inf). ' +
+        'discover/computable ≠ CMI prize. clay via theorem · physicalFtl=0.',
+      honestyLine:
+        `metrics · collideInfOn=${collideInfOn ? 1 : 0} · novel=${reverse.collider.novel} · ` +
+        `viaDrainInvert=${viaDrainInvert ? 1 : 0} · viaInvertInf=${viaInvertInf ? 1 : 0} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:collide-inf */
+export function runReverseCollidesViaInfinityGatewayExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = reverseCollidesViaInfinityGateway()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} collide-inf — collideInfOn=${report.collideInfOn} ` +
+      `novel=${report.novel} viaDrain=${report.viaDrainInvert} viaInf=${report.viaInvertInf} ` +
+      `fold=reverseCollidesViaInfinityGateway pair=${report.pair}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.collideInfOn && report.claySolvedByThisFold === 0 ? 0 : 1
 }
 
 export type HexTheoremCrackStatus = 'fixed' | 'remaining'

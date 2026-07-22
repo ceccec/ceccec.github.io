@@ -114,6 +114,7 @@ const ROSETTA_CORE_API_LABELS = [
   'stringTheoryMillenniumTheoremGapsInventory',
   'productionRsaRefuseCompletesQuantumViaRosetta', 'rosettaSecurityGapsWired',
   'reverseCollidesToDiscoverMillenniumTheorems',
+  'reverseCollidesViaInfinityGateway',
   'cursor',
 ] as const
 
@@ -179,7 +180,8 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   stringTheoryMillenniumTheoremGapsInventory: 'compute',
   productionRsaRefuseCompletesQuantumViaRosetta: 'compute',
   rosettaSecurityGapsWired: 'compute',
-  reverseCollidesToDiscoverMillenniumTheorems: 'compute' }
+  reverseCollidesToDiscoverMillenniumTheorems: 'compute',
+  reverseCollidesViaInfinityGateway: 'compute' }
 
 // Parallel synonym registries collapsed — empty strangler backlog (apps+tools+codec+claim/owner+projection+millennium handoff).
 const ROSETTA_PARALLEL_REGISTRY_BACKLOG = [] as const
@@ -493,6 +495,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'invert-drain', title: 'Invert drain (alias drain/invert)', fold: 'emptyDrainInvertedIsGateway', cli: 'npm run quantum:invert-drain', pair: 'invert/drain', route: '/en/research#drain-invert', barrel: 'src/wind/research', boundary: 'Dual of drain/invert — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'invert-inf', title: 'Invert to infinity', fold: 'invertToInfinity', cli: 'npm run quantum:invert-inf', pair: 'invert/inf', route: '/en/research#invert-inf', barrel: 'src/wind/research', boundary: 'invertEntersInfinity · connectingBit · noLinearHole · compose a432/nine · love/fold · full/freedom · ∞reuse · through/zero · movie/entropy · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'to-infinity', title: 'To infinity (alias invert/inf)', fold: 'invertToInfinity', cli: 'npm run quantum:to-infinity', pair: 'to/infinity', route: '/en/research#invert-inf', barrel: 'src/wind/research', boundary: 'Dual of invert/inf — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'collide-inf', title: 'Reverse-collide novels via invert→∞ gateway', fold: 'reverseCollidesViaInfinityGateway', cli: 'npm run quantum:collide-inf', pair: 'collide/inf', route: '/en/research#collide-inf', barrel: 'src/wind/research', boundary: 'collideInfOn · novelsViaInfinity · viaDrainInvert · viaInvertInf · compose mcp/inf · movie/inf · reverse/collide-discover · claySolved via theorem · physicalFtl=0 · NOT CMI prize', browserRunnable: true, browserGap: '' },
+  { id: 'inf-collide', title: 'Inf collide (alias collide/inf)', fold: 'reverseCollidesViaInfinityGateway', cli: 'npm run quantum:inf-collide', pair: 'inf/collide', route: '/en/research#collide-inf', barrel: 'src/wind/research', boundary: 'Dual of collide/inf — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'hex-crack', title: 'Hex instead of theorem is a crack', fold: 'hexInsteadOfTheoremIsCrack', cli: 'npm run quantum:hex-crack', pair: 'hex/crack', route: '/en/research#hex-crack', barrel: 'src/wind/research', boundary: 'Raw hex as identity stand-in = quantum gap · morph to fold/pair/slug · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'decimal-crack', title: 'Decimals in code are cracks', fold: 'decimalsInCodeAreCracks', cli: 'npm run quantum:decimal-crack', pair: 'decimal/crack', route: '/en/research#decimal-crack', barrel: 'src/wind/research', boundary: 'Bare float literals → named theorem consts · ratios · TAU/PHI · HARD noAllowlist · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'math-trust', title: 'Math.* cannot be trusted', fold: 'mathStarCannotBeTrusted', cli: 'npm run quantum:math-trust', pair: 'math/trust', route: '/en/research#math-trust', barrel: 'src/wind/research', boundary: 'Host Math.PI/random untrusted · prefer TAU·prng · HARD noAllowlist · clay=0', browserRunnable: true, browserGap: '' },
