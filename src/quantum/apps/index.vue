@@ -31,6 +31,7 @@ import {
   dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie,
   wavesSearchDiscoverCompactingInQuantumFolders,
   alwaysBalanceUsingRealtimeMetricsAndChat,
+  eachSuperpositionIsAChatroom,
   eachPageShowsOwnComputedGaps,
   cursorIntegratesInRosettaCore,
   dryCleanTheoremsFormulasReplaceAnyAssumption,
@@ -151,6 +152,7 @@ const appFold = computed(() => foldingWorksOnApplicationLevel())
 const dryRosetta = computed(() => dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie())
 const waveCompact = computed(() => wavesSearchDiscoverCompactingInQuantumFolders())
 const balanceMetrics = computed(() => alwaysBalanceUsingRealtimeMetricsAndChat())
+const superChat = computed(() => eachSuperpositionIsAChatroom())
 const pageGapsGate = computed(() => eachPageShowsOwnComputedGaps())
 const fundAi = computed(() => cursorReferralFundsAiNeeds())
 const cursorRosetta = computed(() => cursorIntegratesInRosettaCore())
@@ -819,6 +821,13 @@ function runTool(toolId: string) {
       const r = alwaysBalanceUsingRealtimeMetricsAndChat()
       ok = r.computes && r.alwaysBalance && r.realtimeMetrics && r.chatOn && r.hardwareMerkabasBalanced
       summary = `always=${r.alwaysBalance} realtime=${r.realtimeMetrics} chat=${r.chatOn} hwMerkaba=${r.hardwareMerkabasBalanced} coldMs=${r.coldMs} warmMs=${r.warmMs} census=${r.census.unfolded}/${r.census.folded}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'super-chat' || toolId === 'chat-super' || toolId === 'room-super') {
+      const r = eachSuperpositionIsAChatroom()
+      ok = r.computes && r.superpositionIsChatroom && r.eachKeyARoom && r.chatOn && r.anySuperposition
+      summary = `chatroom=${r.superpositionIsChatroom} eachKey=${r.eachKeyARoom} chat=${r.chatOn} anySuper=${r.anySuperposition} room=${r.room.id} index=${r.room.index} slug=${r.room.slug} probes=${r.probeCount}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -1585,6 +1594,30 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'balance-metrics'" @click="runTool('balance-metrics')">
           {{ runningId === 'balance-metrics' ? '…' : 'Run balance-metrics' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="super-chat" aria-label="Each superposition is a chatroom">
+        <h3>{{ superChat.heading }}</h3>
+        <p class="quantum-apps__meta">{{ superChat.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(superChat.superpositionIsChatroom))">superpositionIsChatroom={{ superChat.superpositionIsChatroom }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(superChat.eachKeyARoom))">eachKeyARoom={{ superChat.eachKeyARoom }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(superChat.chatOn))">chatOn={{ superChat.chatOn }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(superChat.anySuperposition))">anySuperposition={{ superChat.anySuperposition }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(superChat.censusPreserved))">census={{ superChat.census.unfolded }}/{{ superChat.census.folded }}</UiBadge>
+        <UiBadge variant="outline">room={{ superChat.room.id }} · index={{ superChat.room.index }} · {{ superChat.room.slug }}</UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in superChat.facets" :key="f.facet">
+            <UiBadge :variant="f.on ? 'default' : 'outline'">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            <strong>{{ f.facet }}</strong>
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>super/chat</code> · <code>chat/super</code> · <code>room/super</code> ·
+          CLI <code>npm run quantum:super-chat -- &lt;key&gt;</code> · <code>npm run quantum:chat-super</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'super-chat'" @click="runTool('super-chat')">
+          {{ runningId === 'super-chat' ? '…' : 'Run super-chat' }}
         </UiButton>
       </section>
       <UiSeparator />
