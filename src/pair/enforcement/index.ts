@@ -431,6 +431,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'library/mcp',
   'mcp/state',
   'state/mcp',
+  'mcp/music',
+  'music/mcp',
   'sign/quantum',
   'mcp/sign',
   'reverse/quantum',
