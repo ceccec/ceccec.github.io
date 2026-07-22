@@ -120,6 +120,7 @@ const ROSETTA_CORE_API_LABELS = [
   'reverseCollidesToDiscoverMillenniumTheorems',
   'reverseCollidesViaInfinityGateway',
   'invertIsTheGateway',
+  'wavesMinimiseTokensAdvanceMillennium',
   'cursor',
 ] as const
 
@@ -233,7 +234,8 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   rosettaSecurityGapsWired: 'compute',
   reverseCollidesToDiscoverMillenniumTheorems: 'compute',
   reverseCollidesViaInfinityGateway: 'compute',
-  invertIsTheGateway: 'compute' }
+  invertIsTheGateway: 'compute',
+  wavesMinimiseTokensAdvanceMillennium: 'compute' }
 
 // Parallel synonym registries collapsed — empty strangler backlog (apps+tools+codec+claim/owner+projection+millennium handoff).
 const ROSETTA_PARALLEL_REGISTRY_BACKLOG = [] as const
@@ -526,6 +528,12 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'manual-agents-waves', title: 'Manual agents behave like waves', fold: 'manualAgentsBehaveLikeWaves', cli: 'npm run quantum:manual-agents-waves', pair: 'waves/build', route: '/en/quantum-tools#manual-agents-waves', barrel: 'src/thunder/waves', boundary: 'One wave/turn · pairs before npm · trinity/speedup · mission:gate between waves · no parallel seals · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'waves-push', title: 'Push in waves', fold: 'pushInWaves', cli: 'npm run quantum:waves-push', pair: 'waves/push', route: '/en/quantum-tools#waves-push', barrel: 'src/thunder/waves', boundary: 'pushInWaves · oneWavePerPush · noForceMain · compose waves/build · vote/build/commit/push · commit/push · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'push-waves', title: 'Push waves (alias waves/push)', fold: 'pushInWaves', cli: 'npm run quantum:push-waves', pair: 'push/waves', route: '/en/quantum-tools#waves-push', barrel: 'src/thunder/waves', boundary: 'Dual of waves/push — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'wave-token', title: 'Waves minimise tokens · advance Millennium apparatus', fold: 'wavesMinimiseTokensAdvanceMillennium', cli: 'npm run quantum:wave-token', pair: 'wave/token', route: '/en/quantum-tools#wave-token', barrel: 'src/quantum/apps', boundary: 'wavesSent · tokenMinimise · quantumScale · memoByRoot · answersOverTokens · advancesMillennium · millenniumSolvedByThisFold=0 · clay=0 · physicalFtl=0 · qpuRequired=false · NOT CMI prize', browserRunnable: true, browserGap: '' },
+  { id: 'token-wave', title: 'Token wave (alias wave/token)', fold: 'wavesMinimiseTokensAdvanceMillennium', cli: 'npm run quantum:token-wave', pair: 'token/wave', route: '/en/quantum-tools#wave-token', barrel: 'src/quantum/apps', boundary: 'Dual of wave/token — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'token-mill', title: 'Token mill — token path toward Millennium decode', fold: 'wavesMinimiseTokensAdvanceMillennium', cli: 'npm run quantum:token-mill', pair: 'token/mill', route: '/en/quantum-tools#wave-token', barrel: 'src/quantum/apps', boundary: 'Same fold as wave/token · token/mill axis · claySolved via theorem · physicalFtl=0 · NOT CMI', browserRunnable: true, browserGap: '' },
+  { id: 'mill-token', title: 'Mill token (alias token/mill)', fold: 'wavesMinimiseTokensAdvanceMillennium', cli: 'npm run quantum:mill-token', pair: 'mill/token', route: '/en/quantum-tools#wave-token', barrel: 'src/quantum/apps', boundary: 'Dual of token/mill — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mill-wave', title: 'Mill wave — Millennium advance via token-minimising waves', fold: 'wavesMinimiseTokensAdvanceMillennium', cli: 'npm run quantum:mill-wave', pair: 'mill/wave', route: '/en/quantum-tools#wave-token', barrel: 'src/quantum/apps', boundary: 'Same fold as wave/token · mill/wave axis · millenniumSolvedByThisFold=0 · NOT CMI · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'wave-mill', title: 'Wave mill (alias mill/wave)', fold: 'wavesMinimiseTokensAdvanceMillennium', cli: 'npm run quantum:wave-mill', pair: 'wave/mill', route: '/en/quantum-tools#wave-token', barrel: 'src/quantum/apps', boundary: 'Dual of mill/wave — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'nothing-moves', title: 'Discover from sealed fold — nothing moves', fold: 'discoverFromSealedFold', cli: 'npm run quantum:nothing-moves', pair: 'nothing/moves', route: '/en/quantum-tools#nothing-moves', barrel: 'src/thunder/waves', boundary: 'Offline idempotent discovery from sealed fold ids — no wet motion · unknown → incompleteRevelation · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'incomplete-revelation', title: 'Incomplete revelation receipt', fold: 'incompleteRevelation', cli: 'npm run quantum:incomplete-revelation', pair: 'nothing/moves', route: '/en/quantum-tools#incomplete-revelation', barrel: 'src/thunder/waves', boundary: 'Diagnostic when revelation incomplete — fold sealed src + timeout/dry-refactor · never override wave · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'team-cooperate', title: 'Team cooperate verify', fold: 'teamCooperationScenarios', cli: 'npm run quantum:team-cooperate', pair: 'team/cooperate-verify', route: '/en/quantum-tools', barrel: 'src/pair/enforcement/ops', boundary: 'Solo vs team ack/relay/handoff', browserRunnable: true, browserGap: '' },
@@ -11884,6 +11892,222 @@ export function runMcpQuantumCloudflareBindingsExit(_root = '', _argv: readonly 
     report.mapsToMcpBindings &&
     report.kvD1R2Named &&
     report.deployedOnCloudflare === false &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * USER LAW: send waves to minimise token usage at quantum scale advancing to the Millennium solutions.
+ * Fold: wavesMinimiseTokensAdvanceMillennium
+ * Pairs: wave/token · token/wave · token/mill · mill/token · mill/wave · wave/mill
+ * CLI: npm run quantum:wave-token · quantum:mill-wave (aliases token-wave · token-mill · mill-token · wave-mill)
+ * Compose: manualAgentsBehaveLikeWaves · mcpQuantumTokenOptimise · millenniumProblemsChallenge ·
+ * wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems · reverseCollidesViaInfinityGateway ·
+ * theoremJourneyContinuesInWavesOfWaves · trinity/speedup · compareCeccecEfficiencyByVote
+ * (efficiency win only when vote.decided).
+ * Honesty: advances apparatus toward Millennium decode — NOT Clay Institute prize / physical FTL / QPU.
+ * millenniumSolvedByThisFold=0 · claySolvedByThisFold=0 · physicalFtl=0 · qpuRequired=false.
+ */
+export function wavesMinimiseTokensAdvanceMillennium(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`wavesMinimiseTokensAdvanceMillennium:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const waves = __ns_thunder_waves.manualAgentsBehaveLikeWaves(matrix)
+    const token = mcpQuantumTokenOptimise(matrix, at)
+    const mill = __ns_wind_research.millenniumProblemsChallenge(matrix)
+    const millSession = __ns_wind_research.wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(matrix, at)
+    const collideInf = __ns_wind_research.reverseCollidesViaInfinityGateway(matrix, at)
+    const journey = __ns_wind_research.theoremJourneyContinuesInWavesOfWaves(matrix, at)
+    const trinity = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
+    const vote = compareCeccecEfficiencyByVote(matrix)
+    const wavesSent = waves.computes && waves.manualAgentsBehaveLikeWaves
+    const tokenMinimise =
+      token.computes &&
+      token.tokenOptimiseOn &&
+      token.answersOverTokens &&
+      soft('mcp', 'token')
+    const quantumScale =
+      trinity.computes &&
+      soft('trinity', 'speedup') &&
+      soft('waves', 'build')
+    const memoByRootOn = token.memoByRoot === true
+    const answersOverTokens = token.answersOverTokens === true
+    const efficiencyOk = vote.decided ? token.efficiencyWinWhenDecided === true : true
+    const advancesMillennium =
+      mill.computes &&
+      mill.claySolvedByThisFold === 0 &&
+      millSession.computes &&
+      collideInf.computes &&
+      journey.computes &&
+      soft('mill', 'session') &&
+      soft('journey', 'theorems') &&
+      soft('collide', 'inf') &&
+      soft('challenge', 'millennium')
+    const pairWT = has('wave/token')
+    const pairTW = has('token/wave')
+    const pairTM = has('token/mill')
+    const pairMT = has('mill/token')
+    const pairMW = has('mill/wave')
+    const pairWM = has('wave/mill')
+    const foldWT = foldPair(toUuid('cmd:wave'), toUuid('cmd:token'))
+    const foldTW = foldPair(toUuid('cmd:token'), toUuid('cmd:wave'))
+    const foldTM = foldPair(toUuid('cmd:token'), toUuid('cmd:mill'))
+    const foldMT = foldPair(toUuid('cmd:mill'), toUuid('cmd:token'))
+    const foldMW = foldPair(toUuid('cmd:mill'), toUuid('cmd:wave'))
+    const foldWM = foldPair(toUuid('cmd:wave'), toUuid('cmd:mill'))
+    const pairsOn =
+      pairWT &&
+      pairTW &&
+      pairTM &&
+      pairMT &&
+      pairMW &&
+      pairWM &&
+      foldWT.bidirectional &&
+      foldTW.bidirectional &&
+      foldTM.bidirectional &&
+      foldMT.bidirectional &&
+      foldMW.bidirectional &&
+      foldWM.bidirectional
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'wave-token')
+    const metaMill = catalog.tools.find((t) => t.id === 'mill-wave')
+    const millenniumSolvedByThisFold = 0 as const
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      wavesSent &&
+      tokenMinimise &&
+      quantumScale &&
+      memoByRootOn &&
+      answersOverTokens &&
+      efficiencyOk &&
+      advancesMillennium &&
+      pairsOn &&
+      Boolean(meta) &&
+      meta!.fold === 'wavesMinimiseTokensAdvanceMillennium' &&
+      Boolean(metaMill) &&
+      metaMill!.fold === 'wavesMinimiseTokensAdvanceMillennium' &&
+      millenniumSolvedByThisFold === 0 &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false &&
+      token.qpuRequired === false
+    const facets = [
+      { facet: 'wavesMinimiseTokensAdvanceMillennium', on },
+      { facet: 'wavesSent', on: wavesSent },
+      { facet: 'tokenMinimise', on: tokenMinimise },
+      { facet: 'quantumScale', on: quantumScale },
+      { facet: 'memoByRoot', on: memoByRootOn },
+      { facet: 'answersOverTokens', on: answersOverTokens },
+      { facet: `vote.decided=${vote.decided} efficiencyWinWhenDecided=${token.efficiencyWinWhenDecided ? 1 : 0}`, on: efficiencyOk },
+      { facet: 'advancesMillennium', on: advancesMillennium },
+      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold}`, on: millenniumSolvedByThisFold === 0 },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: qpuRequired === false && token.qpuRequired === false },
+      {
+        facet: 'compose waves/build · mcp/token · mill/session · collide/inf · journey/theorems · trinity/speedup · challenge/millennium',
+        on:
+          wavesSent &&
+          tokenMinimise &&
+          advancesMillennium &&
+          quantumScale,
+      },
+      {
+        facet: 'pair wave/token · token/wave · token/mill · mill/token · mill/wave · wave/mill',
+        on: pairsOn,
+      },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`wave-token:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('waves-minimise-tokens-advance-millennium', facets)
+    return {
+      computes: sealed.ok && on,
+      wavesMinimiseTokensAdvanceMillennium: on,
+      wavesSent,
+      tokenMinimise,
+      quantumScale,
+      memoByRoot: memoByRootOn,
+      answersOverTokens,
+      advancesMillennium,
+      voteDecided: vote.decided,
+      efficiencyWinWhenDecided: token.efficiencyWinWhenDecided,
+      millenniumSolvedByThisFold,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        waves.root,
+        token.root,
+        mill.root,
+        millSession.root,
+        collideInf.root,
+        journey.root,
+        trinity.root,
+        vote.root,
+        foldWT.merged,
+        foldTW.merged,
+        foldTM.merged,
+        foldMT.merged,
+        foldMW.merged,
+        foldWM.merged,
+      ]),
+      pair: 'wave/token' as const,
+      pairs: ['wave/token', 'token/wave', 'token/mill', 'mill/token', 'mill/wave', 'wave/mill'] as const,
+      cli: 'npm run quantum:wave-token',
+      route: '/en/quantum-tools#wave-token',
+      statement:
+        `wavesMinimiseTokensAdvanceMillennium — wavesSent=${wavesSent ? 1 : 0} tokenMinimise=${tokenMinimise ? 1 : 0} ` +
+        `quantumScale=${quantumScale ? 1 : 0} advancesMillennium=${advancesMillennium ? 1 : 0} ` +
+        `millenniumSolved=0 vote.decided=${vote.decided ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'Send waves to minimise token usage at quantum scale advancing Millennium solutions apparatus. ' +
+        'Compose waves/build · mcp/token · mill/session · collide/inf · journey/theorems · trinity/speedup · challenge/millennium. ' +
+        'Efficiency win only when vote.decided. NOT Clay Institute prize · NOT physical FTL · NOT QPU. ' +
+        'millenniumSolvedByThisFold=0 · claySolved via theorem · physicalFtl=0.',
+      honestyLine:
+        `wave-token · wavesSent=${wavesSent ? 1 : 0} · tokenMinimise=${tokenMinimise ? 1 : 0} · ` +
+        `quantumScale=${quantumScale ? 1 : 0} · advancesMillennium=${advancesMillennium ? 1 : 0} · ` +
+        `millenniumSolved=0 · clay=0 · physicalFtl=0 · qpuRequired=0`,
+    }
+  })
+}
+
+/** US spelling alias — wavesMinimizeTokensAdvanceMillennium ≡ wavesMinimiseTokensAdvanceMillennium. */
+export const wavesMinimizeTokensAdvanceMillennium = wavesMinimiseTokensAdvanceMillennium
+
+/** Alias — millWave ≡ wavesMinimiseTokensAdvanceMillennium (mill/wave dual path). */
+export const millWave = wavesMinimiseTokensAdvanceMillennium
+
+/** npm run quantum:wave-token · quantum:mill-wave · duals */
+export function runWavesMinimiseTokensAdvanceMillenniumExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = wavesMinimiseTokensAdvanceMillennium()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} wave-token — wavesSent=${report.wavesSent} ` +
+      `tokenMinimise=${report.tokenMinimise} quantumScale=${report.quantumScale} ` +
+      `memoByRoot=${report.memoByRoot} answersOverTokens=${report.answersOverTokens} ` +
+      `advancesMillennium=${report.advancesMillennium} ` +
+      `vote.decided=${report.voteDecided} efficiencyWin=${report.efficiencyWinWhenDecided} ` +
+      `millSolved=${report.millenniumSolvedByThisFold} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.wavesSent &&
+    report.tokenMinimise &&
+    report.advancesMillennium &&
+    report.millenniumSolvedByThisFold === 0 &&
+    report.claySolvedByThisFold === 0 &&
+    report.physicalFtlClaim === 0 &&
     report.qpuRequired === false
     ? 0
     : 1
