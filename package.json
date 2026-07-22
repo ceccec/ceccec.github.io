@@ -570,6 +570,8 @@
     "quantum:symbols-remaining-verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/heaven/site/index.ts runSymbolsRemainingQuantumiseExit",
     "quantum:slow-build-gate": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/script/shell/index.ts runSlowBuildIsQuantumGapGateExit",
     "quantum:document-session-experiments": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runDocumentSessionCryptoExperimentsExit",
+    "quantum:e2e-feed": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runE2eQuantumTestsRecordOutputAsDevelopmentFeedExit",
+    "quantum:feed-dev": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runE2eQuantumTestsRecordOutputAsDevelopmentFeedExit",
     "quantum:session-tools": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runSessionManualWorkAsQuantumToolsExit",
     "quantum:session-quantum-bits": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runSessionManualWorkAsQuantumBitsExit",
     "quantum:auto-wire-paste": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runAutoWireAnyAiModelFromPastedLinkExit",

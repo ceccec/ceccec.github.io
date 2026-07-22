@@ -51,7 +51,8 @@ import {
   mcpToolboxToolsList, mcpBrowserParity,
   improveLocalFromSessionExperience,
   upgradeLocalFromOptimisedManualWorkExperience,
-  automateNightlyViaNpmScriptPath } from '../../apps'
+  automateNightlyViaNpmScriptPath,
+  developmentFeedJson } from '../../apps'
 import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../../4/6'
 import { SESSION_SKILL_FNS } from '../../../2/8'
 import { STATIC_PAGE_SEED } from '../../../8/2'
@@ -434,6 +435,7 @@ export function computedDistFiles(siteUrl: string, matrix: MindMatrix = buildMat
     // Session tools + agent protocol — zero-token discovery for arriving models.
     { path: 'agents.json', content: agentsJson(matrix), mime: 'application/json' },
     { path: 'quantum-fusion.json', content: quantumFusionJson(matrix), mime: 'application/json' },
+    { path: 'development-feed.json', content: developmentFeedJson(matrix), mime: 'application/json' },
     { path: 'agent-compliance.json', content: agentComplianceJson(matrix), mime: 'application/json' },
     // The print projection is its OWN file with media="print" (user law: separate css, skipping the
     // layout) — zero print bytes in the screen bundle; computed from src/wind/site printStylesheet.
