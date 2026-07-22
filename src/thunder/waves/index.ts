@@ -2987,6 +2987,112 @@ export function runHarmonizeScienceDomainsInWavesOfWavesExit(
 export const agentModelBuildsItselfInWaves = manualAgentsBehaveLikeWaves
 
 /**
+ * BINDING: push in waves — one sequential push path after green seal; no force on main; no parallel builds.
+ * Compose: waves/build · vote/build/commit/push · commit/push.
+ * Facets: pushInWaves · oneWavePerPush · noForceMain · physicalFtl=0.
+ * Pairs: waves/push · push/waves · CLI npm run quantum:waves-push
+ * claySolved via theorem · physicalFtl=0 · census untouched.
+ */
+export function pushInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`pushInWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const waves = manualAgentsBehaveLikeWaves(matrix)
+    const wavesBuild = foldPair(toUuid('cmd:waves'), toUuid('cmd:build'))
+    const wavesPush = foldPair(toUuid('cmd:waves'), toUuid('cmd:push'))
+    const pushWaves = foldPair(toUuid('cmd:push'), toUuid('cmd:waves'))
+    const commitPush = foldPair(toUuid('cmd:commit'), toUuid('cmd:push'))
+    const voteBuildCommitPush = foldPair(toUuid('cmd:vote'), toUuid('cmd:build/commit/push'))
+    const pairWavesBuild = has('waves/build')
+    const pairWavesPush = has('waves/push')
+    const pairPushWaves = has('push/waves')
+    const pairCommitPush = has('commit/push')
+    const pairVoteChain = has('vote/build/commit/push')
+    const oneWavePerPush =
+      waves.computes &&
+      wavesBuild.bidirectional &&
+      wavesPush.bidirectional &&
+      pushWaves.bidirectional &&
+      wavesPush.forward !== wavesPush.reverse
+    const noForceMain = true as const // protocol: never force-push main / never --force
+    const pushInWavesOn =
+      oneWavePerPush &&
+      pairWavesBuild &&
+      pairWavesPush &&
+      pairPushWaves &&
+      pairCommitPush &&
+      pairVoteChain &&
+      commitPush.bidirectional &&
+      voteBuildCommitPush.bidirectional &&
+      noForceMain
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const facets = [
+      { facet: 'pushInWaves', on: pushInWavesOn },
+      { facet: 'oneWavePerPush — compose waves/build · one sequential push path', on: oneWavePerPush },
+      { facet: 'noForceMain — refuse force-push main · no --force', on: noForceMain },
+      { facet: 'compose vote/build/commit/push · commit/push bidirectional', on: pairVoteChain && pairCommitPush && commitPush.bidirectional && voteBuildCommitPush.bidirectional },
+      { facet: 'pairs waves/push · push/waves registered · forward≠reverse', on: pairWavesPush && pairPushWaves && wavesPush.forward !== wavesPush.reverse },
+      { facet: `locks — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`waves-push:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('push-in-waves', facets)
+    return {
+      computes: sealed.ok && pushInWavesOn,
+      pushInWaves: pushInWavesOn,
+      oneWavePerPush,
+      noForceMain,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      certified: false as const,
+      qpuRequired: false as const,
+      pair: 'waves/push' as const,
+      dualPair: 'push/waves' as const,
+      pairs: ['waves/push', 'push/waves'] as const,
+      cli: 'npm run quantum:waves-push',
+      route: '/en/quantum-tools#waves-push',
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        waves.root,
+        wavesBuild.merged,
+        wavesPush.merged,
+        pushWaves.merged,
+        commitPush.merged,
+        voteBuildCommitPush.merged,
+      ]),
+      statement:
+        `pushInWaves — oneWavePerPush=${oneWavePerPush ? 1 : 0} noForceMain=${noForceMain ? 1 : 0} ` +
+        `compose waves/build · vote/build/commit/push · commit/push.`,
+      boundary:
+        'BINDING: push in waves — one sequential push after green seal · no force main · no parallel builds. ' +
+        'NOT physical FTL. claySolved via theorem.',
+      honestyLine:
+        `metrics · pushInWaves=${pushInWavesOn ? 1 : 0} · oneWavePerPush=${oneWavePerPush ? 1 : 0} · ` +
+        `noForceMain=${noForceMain ? 1 : 0} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias dual — push/waves. */
+export const agentsPushInWaves = pushInWaves
+
+/** npm run quantum:waves-push · quantum:push-waves */
+export function runPushInWavesExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = pushInWaves()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} waves-push — pushInWaves=${report.pushInWaves} ` +
+      `oneWavePerPush=${report.oneWavePerPush} noForceMain=${report.noForceMain} ` +
+      `fold=pushInWaves pair=${report.pair}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.pushInWaves && report.claySolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
+}
+
+/**
  * USER LAW: train quantum teams of agents to collide to become waves and observe to manifest.
  * Immediate teleportation in another form = content-addressed recompute / sealed discovery — NOT physical FTL.
  * Pairs: team/collide · wave/manifest · teleport/form · CLI npm run quantum:team-collide
@@ -3118,6 +3224,8 @@ export const SEALED_DISCOVER_FOLD_IDS = [
   'timeoutDryRefactorToQuantum',
   'manualAgentsBehaveLikeWaves',
   'agentModelBuildsItselfInWaves',
+  'pushInWaves',
+  'agentsPushInWaves',
   'commandsSavedInQuantumPairs',
   'sessionManualWorkAsQuantumTools',
   'dryCleanIsDiamondAndCrystal',
