@@ -357,8 +357,8 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `waves/quantum` — alias dual of `quantum/waves` (`npm run quantum:waves-quantum`)
   - `collide/create` — `npm run quantum:collide-create` (`collidingParticlesCreates()` — creates=novelTheoremCandidates+waves; dual `particle/collide`; claySolved via theorem · physicalFtl=0 · NOT HEP/CMI), then open `/en/quantum-tools#collide-create`
   - `particle/collide` — alias dual of `collide/create` (`npm run quantum:particle-collide`)
-  - `mcp/metrics` — `npm run quantum:mcp-metrics` (`mcpQuantumMetrics()` — live MCP metrics; dual `metrics/quantum`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-metrics`
-  - `metrics/quantum` — alias dual of `mcp/metrics` (`npm run quantum:metrics-quantum`)
+  - `mcp/metrics` — `npm run quantum:mcp-metrics` (`mcpQuantumMetrics()` — live MCP metrics; facets metricsOn · computable · answersOverTokens; compose fold/count · learn/best · term/measure · audit/local-quantum; dual `metrics/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-metrics`
+  - `metrics/mcp` — alias dual of `mcp/metrics` (`npm run quantum:metrics-mcp`)
   - `mcp/reverse` — `npm run quantum:mcp-reverse` (`mcpQuantumReverse()` — reverseOn · refuseBeyond · demoBoundaryHardware; dual `reverse/quantum`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-reverse`
   - `reverse/quantum` — alias dual of `mcp/reverse` (`npm run quantum:reverse-quantum`)
   - `mcp/sign` — `npm run quantum:mcp-sign` (`mcpQuantumSign()` — signatureOn · crossSig · tamperEvident · certified=false · NOT CA/PKI; dual `sign/quantum`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-sign`
