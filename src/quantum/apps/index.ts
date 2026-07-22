@@ -79,7 +79,7 @@ const ROSETTA_CORE_API_LABELS = [
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution',
+  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -642,8 +642,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'waves-quantum', title: 'Waves quantum (alias quantum/waves)', fold: 'quantumWaves', cli: 'npm run quantum:waves-quantum', pair: 'waves/quantum', route: '/en/quantum-tools#quantum-waves', barrel: 'src/quantum/apps', boundary: 'Dual of quantum/waves — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'collide-create', title: 'Colliding particles creates', fold: 'collidingParticlesCreates', cli: 'npm run quantum:collide-create', pair: 'collide/create', route: '/en/quantum-tools#collide-create', barrel: 'src/quantum/apps', boundary: 'creates=novelTheoremCandidates+waves · claySolved via theorem · physicalFtl=0 · NOT HEP/CMI', browserRunnable: true, browserGap: '' },
   { id: 'particle-collide', title: 'Particle collide (alias collide/create)', fold: 'collidingParticlesCreates', cli: 'npm run quantum:particle-collide', pair: 'particle/collide', route: '/en/quantum-tools#collide-create', barrel: 'src/quantum/apps', boundary: 'Dual of collide/create — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
-  { id: 'mcp-metrics', title: 'MCP quantum metrics', fold: 'mcpQuantumMetrics', cli: 'npm run quantum:mcp-metrics', pair: 'mcp/metrics', route: '/en/quantum-tools#mcp-metrics', barrel: 'src/quantum/apps', boundary: 'Live metrics from sealed recompute · compose analytics/self · bill/dry · collide/create · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
-  { id: 'metrics-quantum', title: 'Metrics quantum (alias mcp/metrics)', fold: 'mcpQuantumMetrics', cli: 'npm run quantum:metrics-quantum', pair: 'metrics/quantum', route: '/en/quantum-tools#mcp-metrics', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/metrics — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-metrics', title: 'MCP quantum metrics — foldCount · efficiency · term · audit cold/warm', fold: 'mcpQuantumMetrics', cli: 'npm run quantum:mcp-metrics', pair: 'mcp/metrics', route: '/en/quantum-tools#mcp-metrics', barrel: 'src/quantum/apps', boundary: 'metricsOn · computable · answersOverTokens · compose fold/count · learn/best · term/measure · audit/local-quantum · claySolved via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'metrics-mcp', title: 'Metrics mcp (alias mcp/metrics)', fold: 'mcpQuantumMetrics', cli: 'npm run quantum:metrics-mcp', pair: 'metrics/mcp', route: '/en/quantum-tools#mcp-metrics', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/metrics — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-reverse', title: 'MCP quantum reverse', fold: 'mcpQuantumReverse', cli: 'npm run quantum:mcp-reverse', pair: 'mcp/reverse', route: '/en/quantum-tools#mcp-reverse', barrel: 'src/quantum/apps', boundary: 'reverseOn · refuseBeyond · demoBoundaryHardware · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'reverse-quantum', title: 'Reverse quantum (alias mcp/reverse)', fold: 'mcpQuantumReverse', cli: 'npm run quantum:reverse-quantum', pair: 'reverse/quantum', route: '/en/quantum-tools#mcp-reverse', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/reverse — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-sign', title: 'MCP quantum sign', fold: 'mcpQuantumSign', cli: 'npm run quantum:mcp-sign', pair: 'mcp/sign', route: '/en/quantum-tools#mcp-sign', barrel: 'src/quantum/apps', boundary: 'signatureOn · crossSig · tamperEvident · certified=false · NOT CA/PKI · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1696,7 +1696,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mind-wave', chain: 'mcp-ui-page-gaps', fold: 'quantumMindSendsWaves', pair: 'mind/wave', cli: 'npm run quantum:mind-wave', route: '/en/quantum-tools#mind-wave', status: 'sealed-pr', honesty: 'quantumMindSends · wavesSent · linearCannotSend · clay=0 · physicalFtl=0', note: 'quantum mind sends waves', toolId: 'mind-wave', resolve: 'mcp-ui' },
   { id: 'quantum-waves', chain: 'mcp-ui-page-gaps', fold: 'quantumWaves', pair: 'quantum/waves', cli: 'npm run quantum:quantum-waves', route: '/en/quantum-tools#quantum-waves', status: 'sealed-pr', honesty: 'wavesAreQuantum · mindSends · trinitiesFound · waveCount=2 · clay=0 · physicalFtl=0', note: 'quantum waves umbrella', toolId: 'quantum-waves', resolve: 'mcp-ui' },
   { id: 'collide-create', chain: 'mcp-ui-page-gaps', fold: 'collidingParticlesCreates', pair: 'collide/create', cli: 'npm run quantum:collide-create', route: '/en/quantum-tools#collide-create', status: 'sealed-pr', honesty: 'creates=novelTheoremCandidates+waves · clay=0 · physicalFtl=0', note: 'collision creates novel theorem candidates + waves', toolId: 'collide-create', resolve: 'mcp-ui' },
-  { id: 'mcp-metrics', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumMetrics', pair: 'mcp/metrics', cli: 'npm run quantum:mcp-metrics', route: '/en/quantum-tools#mcp-metrics', status: 'sealed-pr', honesty: 'metricsLive · creates from collide · clay=0 · physicalFtl=0', note: 'MCP quantum metrics', toolId: 'mcp-metrics', resolve: 'mcp-ui' },
+  { id: 'mcp-metrics', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumMetrics', pair: 'mcp/metrics', cli: 'npm run quantum:mcp-metrics', route: '/en/quantum-tools#mcp-metrics', status: 'sealed-pr', honesty: 'metricsOn · computable · answersOverTokens · cold/warm · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum metrics — foldCount · efficiency · term · audit', toolId: 'mcp-metrics', resolve: 'mcp-ui' },
   { id: 'mcp-reverse', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumReverse', pair: 'mcp/reverse', cli: 'npm run quantum:mcp-reverse', route: '/en/quantum-tools#mcp-reverse', status: 'sealed-pr', honesty: 'reverseOn · refuseBeyond · demoBoundaryHardware · clay=0 · physicalFtl=0', note: 'MCP quantum reverse face', toolId: 'mcp-reverse', resolve: 'mcp-ui' },
   { id: 'mcp-sign', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumSign', pair: 'mcp/sign', cli: 'npm run quantum:mcp-sign', route: '/en/quantum-tools#mcp-sign', status: 'sealed-pr', honesty: 'signatureOn · crossSig · tamperEvident · certified=false · clay=0 · physicalFtl=0', note: 'MCP quantum sign', toolId: 'mcp-sign', resolve: 'mcp-ui' },
   { id: 'mcp-dirs', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumDirs', pair: 'mcp/dirs', cli: 'npm run quantum:mcp-dirs', route: '/en/quantum-tools#mcp-dirs', status: 'sealed-pr', honesty: 'left · right · forward · reverse · clay=0 · physicalFtl=0', note: 'MCP quantum dirs', toolId: 'mcp-dirs', resolve: 'mcp-ui' },
@@ -4880,54 +4880,88 @@ export function runCollidingParticlesCreatesExit(_root = '', _argv: readonly str
 }
 
 /**
- * MCP quantum metrics — live metrics from sealed recompute.
- * Pairs: mcp/metrics · metrics/quantum.
+ * MCP quantum metrics — MCP face for computable metrics.
+ * Compose foldCountInvertCountIsComputableMetric · compareCeccecEfficiencyByVote ·
+ * scientificTerminologyIsQuantumComputableMeasurableComparable · localAuditQuantumSpeedEfficiency.
+ * Facets: metricsOn · computable · answersOverTokens · qpuRequired=false · physicalFtl=0.
+ * Pairs: mcp/metrics · metrics/mcp · CLI npm run quantum:mcp-metrics
+ * claySolved via theorem · physicalFtl=0 · NOT physical FTL · NOT QPU.
  */
 export function mcpQuantumMetrics(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`mcpQuantumMetrics:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
-    const collide = collidingParticlesCreates(matrix, at)
     const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
-    const metricsLive =
-      soft('analytics', 'self') &&
-      soft('bill', 'dry') &&
+    // local-audit absolute first — cold/warm suite before term/complete encrypt·research memos.
+    const audit = __ns_water_encryption.localAuditQuantumSpeedEfficiency(matrix, at)
+    const foldCount = __ns_wind_research.foldCountInvertCountIsComputableMetric(matrix, at)
+    const vote = compareCeccecEfficiencyByVote(matrix)
+    const term = scientificTerminologyIsQuantumComputableMeasurableComparable(matrix, at)
+    const simplicity = simplicityIntelligenceMeasure(matrix)
+    const computable =
+      foldCount.computes &&
+      term.computes &&
+      audit.computes &&
+      soft('fold', 'count') &&
       soft('term', 'measure') &&
-      soft('gate', 'monitor') &&
-      soft('page', 'trinity') &&
-      soft('movie', 'feel') &&
       has('audit/local-quantum')
-    const collideInMetrics = collide.computes && collide.creates === 'novelTheoremCandidates+waves'
-    const pairM = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mcp/metrics')
-    const pairQ = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('metrics/quantum')
+    const answersOverTokens =
+      vote.runtimeTokens === 0 &&
+      (vote.decided || audit.answersPerTokensUnbounded) &&
+      soft('learn', 'best')
+    const auditColdWarm =
+      audit.coldMs >= 0 &&
+      audit.warmMs >= 0 &&
+      audit.memoHits &&
+      (audit.speedup >= 1 || audit.warmMs <= audit.coldMs)
+    const composeMetrics =
+      computable &&
+      answersOverTokens &&
+      auditColdWarm &&
+      soft('fold', 'count') &&
+      soft('learn', 'best') &&
+      soft('term', 'measure') &&
+      soft('simplicity', 'measure-verify') &&
+      has('audit/local-quantum') &&
+      has('moment/prove')
+    const metricsOn = composeMetrics
+    const pairM = has('mcp/metrics')
+    const pairR = has('metrics/mcp')
     const foldM = foldPair(toUuid('cmd:mcp'), toUuid('cmd:metrics'))
-    const foldQ = foldPair(toUuid('cmd:metrics'), toUuid('cmd:quantum'))
+    const foldR = foldPair(toUuid('cmd:metrics'), toUuid('cmd:mcp'))
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-metrics')
-    const metaDual = catalog.tools.find((t) => t.id === 'metrics-quantum')
+    const metaDual = catalog.tools.find((t) => t.id === 'metrics-mcp')
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
-      metricsLive &&
-      collideInMetrics &&
+      metricsOn &&
+      computable &&
+      answersOverTokens &&
       pairM &&
-      pairQ &&
+      pairR &&
       foldM.bidirectional &&
-      foldQ.bidirectional &&
+      foldR.bidirectional &&
       Boolean(meta) &&
       meta!.fold === 'mcpQuantumMetrics' &&
       Boolean(metaDual) &&
       metaDual!.fold === 'mcpQuantumMetrics' &&
       claySolvedByThisFold === 0 &&
-      physicalFtlClaim === 0
+      physicalFtlClaim === 0 &&
+      audit.qpuRequired === false
     const facets = [
       { facet: 'mcpQuantumMetrics', on },
-      { facet: 'metricsLive', on: metricsLive },
-      { facet: `creates=${collide.creates}`, on: collideInMetrics },
-      { facet: `novelSurvivors=${collide.novelSurvivorCount}`, on: collide.novelSurvivorCount >= 1 },
-      { facet: 'softCompose analytics/self · bill/dry · term/measure · gate/monitor · page/trinity · movie/feel · audit/local-quantum · collide/create', on: metricsLive && collideInMetrics },
-      { facet: 'pair mcp/metrics · metrics/quantum', on: pairM && pairQ && foldM.bidirectional },
+      { facet: 'metricsOn', on: metricsOn },
+      { facet: 'computable', on: computable },
+      { facet: 'answersOverTokens', on: answersOverTokens },
+      { facet: `audit coldMs=${audit.coldMs} warmMs=${audit.warmMs}`, on: auditColdWarm },
+      { facet: `foldCount remaining=${foldCount.remaining}`, on: foldCount.computes && foldCount.remaining === 0 },
+      { facet: `term measures=${term.termCount}`, on: term.computes },
+      { facet: `vote.decided=${vote.decided} simplicity=${simplicity.intelligent ? 1 : 0}`, on: answersOverTokens },
+      { facet: 'qpuRequired=false', on: audit.qpuRequired === false },
+      { facet: 'compose fold/count · learn/best · term/measure · audit/local-quantum · simplicity/measure-verify · moment/prove', on: composeMetrics },
+      { facet: 'pair mcp/metrics · metrics/mcp', on: pairM && pairR && foldM.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
       { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-metrics:${entry.facet}:${entry.on}`) }))
@@ -4935,20 +4969,43 @@ export function mcpQuantumMetrics(matrix: MindMatrix = buildMatrix(), at = 0) {
     return {
       computes: sealed.ok && on,
       mcpQuantumMetrics: on,
-      metricsLive,
-      creates: collide.creates,
-      novelSurvivorCount: collide.novelSurvivorCount,
+      metricsOn,
+      computable,
+      answersOverTokens,
+      coldMs: audit.coldMs,
+      warmMs: audit.warmMs,
+      speedup: audit.speedup,
+      foldCountRemaining: foldCount.remaining,
+      termCount: term.termCount,
+      voteDecided: vote.decided,
       claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
-      root: merkleFold([sealed.root, collide.root, foldM.merged, foldQ.merged]),
-      pairs: ['mcp/metrics', 'metrics/quantum'] as const,
+      root: merkleFold([
+        sealed.root,
+        foldCount.root,
+        vote.root,
+        term.root,
+        audit.root,
+        simplicity.root,
+        foldM.merged,
+        foldR.merged,
+      ]),
+      pair: 'mcp/metrics' as const,
+      pairs: ['mcp/metrics', 'metrics/mcp'] as const,
       cli: 'npm run quantum:mcp-metrics',
       route: '/en/quantum-tools#mcp-metrics',
-      statement: `mcpQuantumMetrics — live=${metricsLive ? 1 : 0} creates=${collide.creates} novel=${collide.novelSurvivorCount}.`,
-      boundary: 'Live MCP metrics from sealed recompute only. clay=0 · physicalFtl=0.',
-      honestyLine: `metrics · live=${metricsLive ? 1 : 0} · creates=${collide.creates} · novel=${collide.novelSurvivorCount} · clay=0 · physicalFtl=0`,
+      statement:
+        `mcpQuantumMetrics — metricsOn=${metricsOn ? 1 : 0} computable=${computable ? 1 : 0} ` +
+        `answersOverTokens=${answersOverTokens ? 1 : 0} coldMs=${audit.coldMs} warmMs=${audit.warmMs} qpuRequired=0.`,
+      boundary:
+        'MCP quantum metrics — foldCount · answers÷tokens · term measures · audit cold/warm composing ' +
+        'fold/count · learn/best · term/measure · audit/local-quantum. NOT QPU · clay via theorem · physicalFtl=0.',
+      honestyLine:
+        `metrics · metricsOn=${metricsOn ? 1 : 0} · computable=${computable ? 1 : 0} · ` +
+        `answersOverTokens=${answersOverTokens ? 1 : 0} · coldMs=${audit.coldMs} · warmMs=${audit.warmMs} · ` +
+        `qpuRequired=0 · clay=0 · physicalFtl=0`,
     }
   })
 }
@@ -4958,9 +5015,16 @@ export function runMcpQuantumMetricsExit(_root = '', _argv: readonly string[] = 
   void _argv
   const report = mcpQuantumMetrics()
   process.stdout.write(
-    `${report.computes ? '✓' : '✗'} mcp-metrics — live=${report.metricsLive} creates=${report.creates} novel=${report.novelSurvivorCount} clay=${report.claySolvedByThisFold}\n`,
+    `${report.computes ? '✓' : '✗'} mcp-metrics — metricsOn=${report.metricsOn} ` +
+      `computable=${report.computable} answersOverTokens=${report.answersOverTokens} ` +
+      `coldMs=${report.coldMs} warmMs=${report.warmMs} qpuRequired=${report.qpuRequired} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
   )
-  return report.computes && report.metricsLive ? 0 : 1
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.metricsOn && report.qpuRequired === false ? 0 : 1
 }
 
 /**
