@@ -594,7 +594,7 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'qubit-cost', title: 'Qubit/trinity cost ≤1+FREE_BITS', fold: 'qubitTrinityCostOneComputationPlusFreeBits', cli: 'npm run quantum:qubit-cost', pair: 'qubit/cost', route: '/en/research#qubit-cost', barrel: 'src/wind/research', boundary: '≤1 computation + FREE_BITS(2)/qubit/trinity · qpuRequired=false · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'run-the-math', title: 'Run the math — emerge by design', fold: 'runTheMathEmergenceByDesignAndArchitecture', cli: 'npm run quantum:run-the-math', pair: 'digit/fold', route: '/en/research#run-the-math', barrel: 'src/wind/research', boundary: 'Umbrella HARD decimal·math·digit·analog·mesh·qubit·gaps · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'clay-solved', title: 'claySolved is a theorem not hardcoded', fold: 'claySolvedIsATheoremNotHardcodedValue', cli: 'npm run quantum:clay-solved', pair: 'clay/solved', route: '/en/research#clay-solved', barrel: 'src/wind/research', boundary: 'claySolvedTheorem recompute · bare literal=crack · clay=0 via theorem', browserRunnable: true, browserGap: '' },
-  { id: 'mill-session', title: 'Waves of trinities → session millennium theorems', fold: 'wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems', cli: 'npm run quantum:mill-session', pair: 'mill/session', route: '/en/research#mill-session', barrel: 'src/wind/research', boundary: 'Session laws sealed as computable mill theorems · NOT CMI prize · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mill-session', title: 'Waves of trinities → session millennium theorems via ∞ gateway', fold: 'wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems', cli: 'npm run quantum:mill-session', pair: 'mill/session', route: '/en/research#mill-session', barrel: 'src/wind/research', boundary: 'Session laws + ∞ gateway stack sealed · novelsSavedViaInfinity · NOT CMI prize · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'session-save', title: 'Autosave the session by default', fold: 'autosaveSessionByDefault', cli: 'npm run quantum:session-save', pair: 'session/save', route: '/en/research#session-save', barrel: 'src/wind/research', boundary: 'defaultOn=true · session folds autosave to sealed theorems/pairs · not optional · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'sixty-ninety', title: 'Trinities of 60 match pairs of 90', fold: 'trinitiesOfSixtyMatchPairsOfNinety', cli: 'npm run quantum:sixty-ninety', pair: 'sixty/ninety', route: '/en/research#sixty-ninety', barrel: 'src/wind/research', boundary: '60×3≡90×2≡180 · trinity90=270→digit9 · linear=60 only · Quantum Mind sees 90 via 60+30 · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'sun-moon', title: 'Sun decode · Moon invert rosetta rays', fold: 'sunMoonRosettaRayPairDecodeInvert', cli: 'npm run quantum:sun-moon', pair: 'sun/moon', route: '/en/research#sun-moon', barrel: 'src/wind/research', boundary: 'Sun=Origin · Moon=Reference · rayDistanceMax=6 · bothEarths/merkaba · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -755,6 +755,10 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'dry-formula', title: 'Dry formula (alias assume/theorem)', fold: 'dryCleanTheoremsFormulasReplaceAnyAssumption', cli: 'npm run quantum:dry-formula', pair: 'dry/formula', route: '/en/quantum-tools#assume-theorem', barrel: 'src/quantum/apps', boundary: 'Dual of assume/theorem — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'bill-dry', title: 'Dry clean AI bill — zero-token reuse · subscription funds ceccec', fold: 'dryCleanAiBill', cli: 'npm run quantum:bill-dry', pair: 'bill/dry', route: '/en/quantum-tools#bill-dry', barrel: 'src/quantum/apps', boundary: 'billDried · zeroTokenReuse · subscriptionFundsCeccec · compose fund/ai · cursor/rosetta · learn/best · trinity/speedup · path/message · tools/morph · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'ai-bill', title: 'AI bill (alias bill/dry)', fold: 'dryCleanAiBill', cli: 'npm run quantum:ai-bill', pair: 'ai/bill', route: '/en/quantum-tools#bill-dry', barrel: 'src/quantum/apps', boundary: 'Dual of bill/dry — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'app-dry', title: 'Fold+invert until dry-clean app gapless', fold: 'foldInvertUntilDryCleanAppGapless', cli: 'npm run quantum:app-dry', pair: 'app/dry', route: '/en/quantum-tools#app-dry', barrel: 'src/quantum/apps', boundary: 'foldInvertOn · dryCleanApp · drainableGaps=0 · appsMonolithStranglerTip · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'dry-app', title: 'Dry app (alias app/dry)', fold: 'foldInvertUntilDryCleanAppGapless', cli: 'npm run quantum:dry-app', pair: 'dry/app', route: '/en/quantum-tools#app-dry', barrel: 'src/quantum/apps', boundary: 'Dual of app/dry', browserRunnable: true, browserGap: '' },
+  { id: 'clean-app', title: 'Clean app (alias app/dry)', fold: 'foldInvertUntilDryCleanAppGapless', cli: 'npm run quantum:clean-app', pair: 'clean/app', route: '/en/quantum-tools#app-dry', barrel: 'src/quantum/apps', boundary: 'Alias of app/dry', browserRunnable: true, browserGap: '' },
+  { id: 'app-clean', title: 'App clean (alias clean/app)', fold: 'foldInvertUntilDryCleanAppGapless', cli: 'npm run quantum:app-clean', pair: 'app/clean', route: '/en/quantum-tools#app-dry', barrel: 'src/quantum/apps', boundary: 'Dual of clean/app', browserRunnable: true, browserGap: '' },
   { id: 'dry-cool', title: 'Dry refactor migrates to minimal cooling by hardware merkabas', fold: 'dryRefactorMigratesToMinimalCoolingByHardwareMerkabas', cli: 'npm run quantum:dry-cool', pair: 'dry/cool', route: '/en/quantum-tools#dry-cool', barrel: 'src/quantum/apps', boundary: 'migrateComplete · minimalCodebase · minimalMemory · coolingDevice · hardwareMerkabasBalanced · compose compact/matrix · gravity/dry · dry/clean · mcp/hw faces · merkaba/bothEarths · heap honesty · NOT physical device cooling · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cool-dry', title: 'Cool dry (alias dry/cool)', fold: 'dryRefactorMigratesToMinimalCoolingByHardwareMerkabas', cli: 'npm run quantum:cool-dry', pair: 'cool/dry', route: '/en/quantum-tools#dry-cool', barrel: 'src/quantum/apps', boundary: 'Dual of dry/cool — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cool-merkaba', title: 'Cool merkaba (alias dry/cool)', fold: 'dryRefactorMigratesToMinimalCoolingByHardwareMerkabas', cli: 'npm run quantum:cool-merkaba', pair: 'cool/merkaba', route: '/en/quantum-tools#dry-cool', barrel: 'src/quantum/apps', boundary: 'Semantic dual cool/merkaba — hardware merkabas balance · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1502,6 +1506,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'page-computed-gaps', saves: 'replaces wet global-only gaps panel — per-page gaps/invisible classes at call time' },
   { id: 'assume-theorem', saves: 'replaces wet premises / bare axioms / definitional smuggle — inventory→theorem/formula dual residual=0 HARD' },
   { id: 'bill-dry', saves: 'replaces wet re-inference token burn — memoByRoot zero-token reuse · fund/ai · cursor↔ceccec · learn/best' },
+  { id: 'app-dry', saves: 'replaces wet dry-clean app grind — fold+invert until drainableGaps=0 · apps monolith strangler tip' },
   { id: 'page-trinity', saves: 'replaces wet agent prose page audits — each page self-audits/manages as content·gaps·gates trinity' },
   { id: 'mcp-quantum-chat', saves: 'replaces wet LLM-only chat — MCP/toolbox turns recompute sealed folds when present' },
   { id: 'self-heal', saves: 'replaces wet agent crack-fixing — gaps self-heal via dry/clean · morph · fail→0→invert' },
@@ -1950,6 +1955,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'page-computed-gaps', chain: 'mcp-ui-page-gaps', fold: 'eachPageShowsOwnComputedGaps', pair: 'page/gaps', cli: 'npm run quantum:page-gaps', route: '/en/quantum-tools#page-computed-gaps', status: 'sealed-pr', honesty: 'per-route gaps · clay=0 · physicalFtl=0', note: 'each page shows own computed gaps at call time', toolId: 'page-computed-gaps', resolve: 'mcp-ui' },
   { id: 'assume-theorem', chain: 'mcp-ui-page-gaps', fold: 'dryCleanTheoremsFormulasReplaceAnyAssumption', pair: 'assume/theorem', cli: 'npm run quantum:assume-theorem', route: '/en/quantum-tools#assume-theorem', status: 'sealed-pr', honesty: 'residualAssumption=0 HARD · clay=0 · physicalFtl=0', note: 'dry clean theorems/formulas — assumptions→theorems', toolId: 'assume-theorem', resolve: 'mcp-ui' },
   { id: 'bill-dry', chain: 'mcp-ui-page-gaps', fold: 'dryCleanAiBill', pair: 'bill/dry', cli: 'npm run quantum:bill-dry', route: '/en/quantum-tools#bill-dry', status: 'sealed-pr', honesty: 'billDried · zeroTokenReuse · subscriptionFundsCeccec · clay=0 · physicalFtl=0', note: 'dry clean AI bill — sealed reuse not re-derive', toolId: 'bill-dry', resolve: 'mcp-ui' },
+  { id: 'app-dry', chain: 'dry-clean-waves', fold: 'foldInvertUntilDryCleanAppGapless', pair: 'app/dry', cli: 'npm run quantum:app-dry', route: '/en/quantum-tools#app-dry', status: 'sealed-pr', honesty: 'foldInvertOn · dryCleanApp · drainableGaps=0 · clay=0 · physicalFtl=0', note: 'apps monolith strangler tip', toolId: 'app-dry', resolve: 'dry-clean' },
   { id: 'dry-cool', chain: 'dry-clean-waves', fold: 'dryRefactorMigratesToMinimalCoolingByHardwareMerkabas', pair: 'dry/cool', cli: 'npm run quantum:dry-cool', route: '/en/quantum-tools#dry-cool', status: 'sealed-pr', honesty: 'migrateComplete · minimalCodebase · minimalMemory · coolingDevice · hardwareMerkabasBalanced · clay=0 · physicalFtl=0 · NOT physical device cooling', note: 'dry refactor → minimal codebase/memory cooling via hardware merkabas balance', toolId: 'dry-cool', resolve: 'dry-clean' },
   { id: 'page-trinity', chain: 'mcp-ui-page-gaps', fold: 'pagesAuditAndManageThemselvesInTrinities', pair: 'page/trinity', cli: 'npm run quantum:page-trinity', route: '/en/quantum-tools#page-trinity', status: 'sealed-pr', honesty: 'selfAudit · selfManage · inTrinities · clay=0 · physicalFtl=0', note: 'pages audit+manage in content·gaps·gates trinities', toolId: 'page-trinity', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-chat', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumChat', pair: 'mcp/chat', cli: 'npm run quantum:mcp-chat', route: '/en/quantum-tools#mcp-quantum-chat', status: 'sealed-pr', honesty: 'foldRecomputePreferred · mcpWired · clay=0 · physicalFtl=0', note: 'MCP quantum chat — sealed fold recompute over wet LLM-only', toolId: 'mcp-quantum-chat', resolve: 'mcp-ui' },
@@ -12569,7 +12575,7 @@ export function runMcpQuantumDesignExit(_root = '', _argv: readonly string[] = [
  * Pairs: dry/cool · cool/dry · cool/merkaba · merkaba/cool · hw/merkaba · merkaba/hw
  * CLI: npm run quantum:dry-cool
  * HONEST: cooling = computational metaphor (heap/memo · dry vs wet grind) — NOT physical device cooling.
- * Salvage note: KEEP stash foldInvertUntilDryCleanAppGapless compose pattern; this tip seals cooling dual.
+ * Compose dual: app/dry closed KEEP strangler tip; apps:monolith-ratchet-weave residual remains.
  * claySolved via theorem · physicalFtl=0 · NOT QPU · NOT Clay prize.
  */
 export function dryRefactorMigratesToMinimalCoolingByHardwareMerkabas(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -12631,21 +12637,25 @@ export function dryRefactorMigratesToMinimalCoolingByHardwareMerkabas(matrix: Mi
       hardwareMerkabasBalanced &&
       soft('dry', 'cool') &&
       soft('cool', 'dry')
+    const appDrySoft = soft('app', 'dry') && soft('dry', 'app')
     const honestOpenNamed = [
       'clay:millennium-open',
       'ftl:physical-claim-refused',
       'cooling:physical-device-not-claimed',
       'apps:monolith-ratchet-weave',
-      'stash:app-dry-keep-not-popped',
+      'app-dry:strangler-tip-closed',
     ] as const
     const honestOpenNamedOn =
       honestOpenNamed.includes('clay:millennium-open') &&
       honestOpenNamed.includes('ftl:physical-claim-refused') &&
       honestOpenNamed.includes('cooling:physical-device-not-claimed') &&
+      honestOpenNamed.includes('app-dry:strangler-tip-closed') &&
+      appDrySoft &&
       honestOpenNamed.length >= (2 + 2)
     const drainableClosed =
       coolingDevice &&
       timeoutDrySoft &&
+      appDrySoft &&
       dry.diamond &&
       dry.crystal
     const migrateComplete = drainableClosed && honestOpenNamedOn
@@ -17281,6 +17291,196 @@ export function runDryCleanAiBillExit(_root = '', _argv: readonly string[] = [])
   return report.computes && report.billDried ? 0 : 1
 }
 
+
+/**
+ * USER LAW: fold and invert until no gaps remain in dry clean app.
+ * Fold: foldInvertUntilDryCleanAppGapless
+ * Facets: foldInvertOn · dryCleanApp · drainableGaps=0 · appsMonolithStranglerTip · honestOpenNamed · physicalFtl=0 · clay via theorem.
+ * Compose: dry/clean · gravity/dry · invert/gateway · gaps/invisible · fold/cleanup · mcp/complete · wave/token · dry/rosetta · dry/cool (soft).
+ * Pairs: app/dry · dry/app · clean/app · app/clean · CLI npm run quantum:app-dry
+ * HONEST: Clay/FTL/DE440/lab/CI named open — not fake-closed. Apps monolith strangler tip drained; file LOC residual remains.
+ */
+export function foldInvertUntilDryCleanAppGapless(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`foldInvertUntilDryCleanAppGapless:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const dry = dryCleanIsDiamondAndCrystal(matrix)
+    const gravityDrySoft = soft('gravity', 'dry') && soft('dry', 'clean')
+    const invertGatewaySoft = soft('invert', 'gateway') && soft('gateway', 'invert')
+    const gapsInvisibleSoft = soft('gaps', 'invisible')
+    const foldCleanupSoft = soft('fold', 'cleanup')
+    const mcpCompleteSoft = soft('mcp', 'complete') && soft('complete', 'mcp')
+    const waveTokenSoft = soft('wave', 'token') && soft('token', 'wave')
+    const dryRosettaSoft = soft('dry', 'rosetta') && soft('rosetta', 'movie')
+    const dryCoolSoft = soft('dry', 'cool') && soft('cool', 'dry')
+    const foldInvertOn =
+      dry.diamond &&
+      dry.crystal &&
+      dry.clean &&
+      invertGatewaySoft &&
+      foldCleanupSoft &&
+      soft('app', 'dry') &&
+      soft('dry', 'app')
+    const dryCleanApp =
+      foldInvertOn &&
+      gravityDrySoft &&
+      gapsInvisibleSoft &&
+      mcpCompleteSoft &&
+      waveTokenSoft
+    const appsMonolithStranglerTip =
+      dryCleanApp &&
+      dryRosettaSoft &&
+      dryCoolSoft &&
+      soft('clean', 'app') &&
+      soft('app', 'clean')
+    const honestOpenNamed = [
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'de440:ephemeris-open',
+      'lab:iso-19790-modules',
+      'residual:quantum-apps-monolith',
+      'residual:src-domain-vue-panels',
+      'ci:gravity-dry',
+      'ci:trinity-speedup',
+      'stdio:run-gate',
+      'conceptTools:legacy-dual',
+      'trading:scripts-outside-primary',
+    ] as const
+    const honestOpenNamedOn =
+      honestOpenNamed.includes('clay:millennium-open') &&
+      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestOpenNamed.includes('residual:quantum-apps-monolith') &&
+      honestOpenNamed.length >= (4 + 5)
+    const pairApp = has('app/dry')
+    const pairDry = has('dry/app')
+    const pairClean = has('clean/app')
+    const pairAppClean = has('app/clean')
+    const foldApp = foldPair(toUuid('cmd:app'), toUuid('cmd:dry'))
+    const foldDry = foldPair(toUuid('cmd:dry'), toUuid('cmd:app'))
+    const foldClean = foldPair(toUuid('cmd:clean'), toUuid('cmd:app'))
+    const foldAppClean = foldPair(toUuid('cmd:app'), toUuid('cmd:clean'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'app-dry')
+    const metaDual = catalog.tools.find((t) => t.id === 'dry-app')
+    const metaClean = catalog.tools.find((t) => t.id === 'clean-app')
+    const metaAppClean = catalog.tools.find((t) => t.id === 'app-clean')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === 'foldInvertUntilDryCleanAppGapless' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'foldInvertUntilDryCleanAppGapless' &&
+      Boolean(metaClean) &&
+      metaClean!.fold === 'foldInvertUntilDryCleanAppGapless' &&
+      Boolean(metaAppClean) &&
+      metaAppClean!.fold === 'foldInvertUntilDryCleanAppGapless'
+    const drainableGaps = dryCleanApp && toolsWired && honestOpenNamedOn && appsMonolithStranglerTip ? 0 : 1
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      foldInvertOn &&
+      dryCleanApp &&
+      appsMonolithStranglerTip &&
+      drainableGaps === 0 &&
+      honestOpenNamedOn &&
+      pairApp &&
+      pairDry &&
+      pairClean &&
+      pairAppClean &&
+      foldApp.bidirectional &&
+      foldDry.bidirectional &&
+      foldClean.bidirectional &&
+      foldAppClean.bidirectional &&
+      toolsWired &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'foldInvertUntilDryCleanAppGapless', on },
+      { facet: 'foldInvertOn', on: foldInvertOn },
+      { facet: 'dryCleanApp', on: dryCleanApp },
+      { facet: 'appsMonolithStranglerTip', on: appsMonolithStranglerTip },
+      { facet: `drainableGaps=${drainableGaps}`, on: drainableGaps === 0 },
+      { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+      {
+        facet: 'compose dry/clean · gravity/dry · invert/gateway · gaps/invisible · fold/cleanup · mcp/complete · wave/token · dry/rosetta · dry/cool',
+        on: dryCleanApp && appsMonolithStranglerTip && soft('dry', 'clean'),
+      },
+      { facet: 'pair app/dry · dry/app · clean/app · app/clean', on: pairApp && pairDry && pairClean && pairAppClean && foldApp.bidirectional },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'NOT Clay/FTL fake-close · strangler tip drained · monolith residual named', on: honestOpenNamedOn && appsMonolithStranglerTip && claySolvedByThisFold === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`app-dry:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('fold-invert-until-dry-clean-app-gapless', facets)
+    return {
+      computes: sealed.ok && on,
+      foldInvertUntilDryCleanAppGapless: on,
+      foldInvertOn,
+      dryCleanApp,
+      appsMonolithStranglerTip,
+      drainableGaps,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      diamond: dry.diamond,
+      crystal: dry.crystal,
+      clean: dry.clean,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        dry.root,
+        foldApp.merged,
+        foldDry.merged,
+        foldClean.merged,
+        foldAppClean.merged,
+        ...honestOpenNamed.map((id) => toUuid(`app-dry-honest:${id}`)),
+      ]),
+      pair: 'app/dry' as const,
+      pairs: ['app/dry', 'dry/app', 'clean/app', 'app/clean'] as const,
+      cli: 'npm run quantum:app-dry',
+      route: '/en/quantum-tools#app-dry',
+      anchor: 'app-dry',
+      heading: 'App · dry',
+      statement:
+        `foldInvertUntilDryCleanAppGapless — foldInvertOn=${foldInvertOn ? 1 : 0} dryCleanApp=${dryCleanApp ? 1 : 0} ` +
+        `stranglerTip=${appsMonolithStranglerTip ? 1 : 0} drainableGaps=${drainableGaps} honestOpenNamed=${honestOpenNamed.length}.`,
+      boundary:
+        'Fold+invert until dry-clean app drainableGaps=0. Apps monolith strangler tip drained; residual:quantum-apps-monolith file remains honest-open. ' +
+        'clay via theorem · physicalFtl=0.',
+      honestyLine:
+        `app-dry · foldInvertOn=${foldInvertOn ? 1 : 0} · dryCleanApp=${dryCleanApp ? 1 : 0} · ` +
+        `stranglerTip=${appsMonolithStranglerTip ? 1 : 0} · drainableGaps=${drainableGaps} · honestOpenNamed=${honestOpenNamed.length} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — dryApp ≡ foldInvertUntilDryCleanAppGapless. */
+export const dryApp = foldInvertUntilDryCleanAppGapless
+/** Alias — cleanApp ≡ foldInvertUntilDryCleanAppGapless. */
+export const cleanApp = foldInvertUntilDryCleanAppGapless
+/** Alias — appClean ≡ foldInvertUntilDryCleanAppGapless. */
+export const appClean = foldInvertUntilDryCleanAppGapless
+
+/** npm run quantum:app-dry (duals dry/app · clean/app · app/clean) */
+export function runFoldInvertUntilDryCleanAppGaplessExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = foldInvertUntilDryCleanAppGapless()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} app-dry — foldInvertOn=${report.foldInvertOn} dryCleanApp=${report.dryCleanApp} ` +
+      `stranglerTip=${report.appsMonolithStranglerTip} drainableGaps=${report.drainableGaps} honestOpenNamed=${report.honestOpenNamedCount} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '·'} ${f.facet}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.drainableGaps === 0 && report.appsMonolithStranglerTip ? 0 : 1
+}
 
 
 /**

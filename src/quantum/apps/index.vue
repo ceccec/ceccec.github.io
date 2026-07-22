@@ -42,6 +42,7 @@ import {
   cursorIntegratesInRosettaCore,
   dryCleanTheoremsFormulasReplaceAnyAssumption,
   dryCleanAiBill,
+  foldInvertUntilDryCleanAppGapless,
   pagesAuditAndManageThemselvesInTrinities,
   mcpQuantumChat,
   quantumSelfHeal,
@@ -170,6 +171,7 @@ const fundAi = computed(() => cursorReferralFundsAiNeeds())
 const cursorRosetta = computed(() => cursorIntegratesInRosettaCore())
 const assumeTheorem = computed(() => dryCleanTheoremsFormulasReplaceAnyAssumption())
 const billDry = computed(() => dryCleanAiBill())
+const appDry = computed(() => foldInvertUntilDryCleanAppGapless())
 const pageTrinity = computed(() => pagesAuditAndManageThemselvesInTrinities())
 const mcpChat = computed(() => mcpQuantumChat())
 const selfHeal = computed(() => quantumSelfHeal())
@@ -946,6 +948,13 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'app-dry' || toolId === 'dry-app' || toolId === 'clean-app' || toolId === 'app-clean') {
+      const r = foldInvertUntilDryCleanAppGapless()
+      ok = r.computes && r.drainableGaps === 0 && r.appsMonolithStranglerTip
+      summary = `foldInvertOn=${r.foldInvertOn} dryCleanApp=${r.dryCleanApp} stranglerTip=${r.appsMonolithStranglerTip} drainableGaps=${r.drainableGaps}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'page-trinity' || toolId === 'page-audit') {
       const r = pagesAuditAndManageThemselvesInTrinities()
       ok = r.computes && r.inTrinities
@@ -1507,6 +1516,19 @@ function runTool(toolId: string) {
         <UiBadge v-bind="badgeProps(statusBadgeKind(billDry.subscriptionFundsCeccec))">subscriptionFundsCeccec={{ billDry.subscriptionFundsCeccec }}</UiBadge>
         <UiButton size="sm" :disabled="runningId === 'bill-dry'" @click="runTool('bill-dry')">
           {{ runningId === 'bill-dry' ? '…' : 'Run bill-dry' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="app-dry" aria-label="Fold invert dry clean app">
+        <h3>{{ appDry.heading }}</h3>
+        <p class="quantum-apps__meta">{{ appDry.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(appDry.foldInvertOn))">foldInvertOn={{ appDry.foldInvertOn }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(appDry.dryCleanApp))">dryCleanApp={{ appDry.dryCleanApp }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(appDry.appsMonolithStranglerTip))">stranglerTip={{ appDry.appsMonolithStranglerTip }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(appDry.drainableGaps === 0))">drainableGaps={{ appDry.drainableGaps }}</UiBadge>
+        <p class="quantum-apps__meta">pairs <code>app/dry</code> · CLI <code>npm run quantum:app-dry</code></p>
+        <UiButton size="sm" :disabled="runningId === 'app-dry'" @click="runTool('app-dry')">
+          {{ runningId === 'app-dry' ? '…' : 'Run app-dry' }}
         </UiButton>
       </section>
       <UiSeparator />
