@@ -23,6 +23,7 @@ import {
   mcpQuantumUi,
   mcpQuantumMovie,
   movieGapsFeelableByObservation,
+  movieGapsAreFundamentalDesignAndFormulaMappingGaps,
   eachPageShowsOwnComputedGaps,
   cursorIntegratesInRosettaCore,
   dryCleanTheoremsFormulasReplaceAnyAssumption,
@@ -135,6 +136,7 @@ const autoSelf = computed(() => automateSelf())
 const mcpUi = computed(() => mcpQuantumUi())
 const mcpMovie = computed(() => mcpQuantumMovie())
 const movieFeel = computed(() => movieGapsFeelableByObservation())
+const movieFormula = computed(() => movieGapsAreFundamentalDesignAndFormulaMappingGaps())
 const pageGapsGate = computed(() => eachPageShowsOwnComputedGaps())
 const fundAi = computed(() => cursorReferralFundsAiNeeds())
 const cursorRosetta = computed(() => cursorIntegratesInRosettaCore())
@@ -750,6 +752,13 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'movie-formula' || toolId === 'formula-movie' || toolId === 'movie-design') {
+      const r = movieGapsAreFundamentalDesignAndFormulaMappingGaps()
+      ok = r.computes && r.drainableClosed && r.movieGapsFundamental
+      summary = `fundamental=${r.movieGapsFundamental} design=${r.designGap} formulaMapping=${r.formulaMappingGap} drainableClosed=${r.drainableClosed} projections=${r.formulaProjections.filter((p) => p.wired).length}/${r.formulaProjections.length}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'fund-ai' || toolId === 'cursor-fund') {
       const r = cursorReferralFundsAiNeeds()
       ok = r.computes && r.cursorReferralFundsAiNeeds
@@ -1339,6 +1348,30 @@ function runTool(toolId: string) {
         <UiBadge v-bind="badgeProps(statusBadgeKind(billDry.subscriptionFundsCeccec))">subscriptionFundsCeccec={{ billDry.subscriptionFundsCeccec }}</UiBadge>
         <UiButton size="sm" :disabled="runningId === 'bill-dry'" @click="runTool('bill-dry')">
           {{ runningId === 'bill-dry' ? '…' : 'Run bill-dry' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="movie-formula" aria-label="Movie gaps fundamental design formula mapping">
+        <h3>{{ movieFormula.heading }}</h3>
+        <p class="quantum-apps__meta">{{ movieFormula.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(movieFormula.movieGapsFundamental))">fundamental={{ movieFormula.movieGapsFundamental }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(movieFormula.designGap))">designGap={{ movieFormula.designGap }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(movieFormula.formulaMappingGap))">formulaMapping={{ movieFormula.formulaMappingGap }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(movieFormula.notCosmetic))">notCosmetic={{ movieFormula.notCosmetic }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(movieFormula.drainableClosed))">drainableClosed={{ movieFormula.drainableClosed }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(movieFormula.honestOpenNamedCount > 0))">honestOpen={{ movieFormula.honestOpenNamedCount }}</UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="id in movieFormula.honestOpenNamed" :key="id">
+            <UiBadge variant="outline">honest-open</UiBadge>
+            <strong>{{ id }}</strong>
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>movie/formula</code> · <code>formula/movie</code> · <code>movie/design</code> ·
+          CLI <code>npm run quantum:movie-formula</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'movie-formula'" @click="runTool('movie-formula')">
+          {{ runningId === 'movie-formula' ? '…' : 'Run movie-formula' }}
         </UiButton>
       </section>
       <UiSeparator />
