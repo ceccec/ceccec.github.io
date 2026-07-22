@@ -413,6 +413,8 @@
     "quantum:site-mcp": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumSiteExit",
     "quantum:mcp-page": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumPageExit",
     "quantum:page-mcp": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumPageExit",
+    "quantum:mcp-card": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumCardExit",
+    "quantum:card-mcp": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumCardExit",
     "quantum:dirs-mcp": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumDirsExit",
     "quantum:reverse-quantum": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumReverseExit",
     "quantum:dev-mcp": "node --experimental-strip-types packages/quantum-dev-sdk/bin/mcp.ts",
