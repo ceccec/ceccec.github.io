@@ -401,6 +401,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'clown/mcp',
   'mcp/site',
   'site/mcp',
+  'mcp/page',
+  'page/mcp',
   'sign/quantum',
   'mcp/sign',
   'reverse/quantum',
