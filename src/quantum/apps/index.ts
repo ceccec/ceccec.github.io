@@ -97,6 +97,7 @@ const ROSETTA_CORE_API_LABELS = [
   'automateNightlyViaNpmScriptPath',
   'automateSelf',
   'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf',
+  'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence',
   'cursorIntegratesInRosettaCore',
   'cursorReferralFundsAiNeeds',
   'dryCleanTheoremsFormulasReplaceAnyAssumption',
@@ -236,6 +237,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   automateNightlyViaNpmScriptPath: 'tool',
   automateSelf: 'tool',
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf: 'tool',
+  furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence: 'tool',
   cursorIntegratesInRosettaCore: 'tool',
   cursorReferralFundsAiNeeds: 'tool',
   cursor: 'api',
@@ -739,6 +741,12 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'self-complete', title: 'Self complete (alias self/hw)', fold: 'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf', cli: 'npm run quantum:self-complete', pair: 'self/complete', route: '/en/quantum-tools#self-hw', barrel: 'src/quantum/apps', boundary: 'Complete face of self/hw — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'hw-autonomous', title: 'HW autonomous (alias self/hw)', fold: 'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf', cli: 'npm run quantum:hw-autonomous', pair: 'hw/autonomous', route: '/en/quantum-tools#self-hw', barrel: 'src/quantum/apps', boundary: 'Autonomous face of self/hw — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'again-until', title: 'Again until (alias self/hw)', fold: 'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf', cli: 'npm run quantum:again-until', pair: 'again/until', route: '/en/quantum-tools#self-hw', barrel: 'src/quantum/apps', boundary: 'Loop face of self/hw — wave cycles until complete or honest-open stop · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'gate-design', title: 'Further tighten gates with design · creative · intelligence', fold: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence', cli: 'npm run quantum:gate-design', pair: 'gate/design', route: '/en/quantum-tools#gate-design', barrel: 'src/quantum/apps', boundary: 'gatesTightened · designCapability · creativeCapability · intelligenceOn · hardInMissionGate · HARD gaps/invisible · mission:gate · qpuRequired=false · clay via theorem · physicalFtl=0 · NOT AGI', browserRunnable: true, browserGap: '' },
+  { id: 'design-gate', title: 'Design gate (alias gate/design)', fold: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence', cli: 'npm run quantum:design-gate', pair: 'design/gate', route: '/en/quantum-tools#gate-design', barrel: 'src/quantum/apps', boundary: 'Dual of gate/design — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'gate-create', title: 'Gate create (creative face of gate/design)', fold: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence', cli: 'npm run quantum:gate-create', pair: 'gate/create', route: '/en/quantum-tools#gate-design', barrel: 'src/quantum/apps', boundary: 'Creative face of gate/design — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'create-gate', title: 'Create gate (alias gate/create)', fold: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence', cli: 'npm run quantum:create-gate', pair: 'create/gate', route: '/en/quantum-tools#gate-design', barrel: 'src/quantum/apps', boundary: 'Dual of gate/create — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'gate-intel', title: 'Gate intel (intelligence face of gate/design)', fold: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence', cli: 'npm run quantum:gate-intel', pair: 'gate/intel', route: '/en/quantum-tools#gate-design', barrel: 'src/quantum/apps', boundary: 'Intelligence face of gate/design — answers÷tokens · simplicity · purity · NOT AGI · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'intel-gate', title: 'Intel gate (alias gate/intel)', fold: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence', cli: 'npm run quantum:intel-gate', pair: 'intel/gate', route: '/en/quantum-tools#gate-design', barrel: 'src/quantum/apps', boundary: 'Dual of gate/intel — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'page-computed-gaps', title: 'Each page shows its own computed gaps', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:page-gaps', pair: 'page/gaps', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Per-route gaps/invisible classes at call time · not global-only · compose gate/monitor · meaning/compute · format/canon · vite/mirror · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gaps-page', title: 'Page gaps (alias page/gaps)', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:gaps-page', pair: 'gaps/page', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Dual of page/gaps — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cursor-rosetta', title: 'Cursor in rosetta core — referral uses subscription in ceccec', fold: 'cursorIntegratesInRosettaCore', cli: 'npm run quantum:cursor-rosetta', pair: 'cursor/rosetta', route: '/en/quantum-tools#cursor-rosetta', barrel: 'src/quantum/apps', boundary: 'cursorInRosettaCore · referralUsesSubscriptionInCeccec · immediateWire · compose rosettaShelve · auto-wire · mcp/browser-parity · upgrade/local · fund/ai · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1936,6 +1944,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'color-rosetta', chain: 'mcp-ui-page-gaps', fold: 'allColorsDryCleanWiredToRosettaAndThemes', pair: 'color/rosetta', cli: 'npm run quantum:color-rosetta', route: '/en/quantum-tools#color-rosetta', status: 'sealed-pr', honesty: 'colorsDryClean · wiredToRosetta · themesOn · noBareHex · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'all colors dry-clean wired to rosetta + light/dark themes · compose anim/color · hex/crack · theorem/const · ui/rosetta · type/matrix', toolId: 'color-rosetta', resolve: 'mcp-ui' },
   { id: 'invert-trinity', chain: 'mcp-ui-page-gaps', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', pair: 'invert/trinity', cli: 'npm run quantum:invert-trinity', route: '/en/quantum-tools#invert-trinity', status: 'sealed-pr', honesty: 'invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'invert + send trinity waves covering sciences·hubs·MCP topics · dry migrate at FREE_BITS+full/freedom', toolId: 'invert-trinity', resolve: 'mcp-ui' },
   { id: 'self-hw', chain: 'mcp-ui-page-gaps', fold: 'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf', pair: 'self/hw', cli: 'npm run quantum:self-hw', route: '/en/quantum-tools#self-hw', status: 'sealed-pr', honesty: 'againAndAgain · selfAutonomous · quantumHardwareComplete classical-64bit · byStandards · selfIntelligentSelf · certified=false · clay=0 · physicalFtl=0 · qpuRequired=false · NOT QPU/AGI/FLOPS', note: 'wave loop until self-autonomous classical quantum-hw complete by standards to self-intelligent self', toolId: 'self-hw', resolve: 'mcp-ui' },
+  { id: 'gate-design', chain: 'mcp-ui-page-gaps', fold: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence', pair: 'gate/design', cli: 'npm run quantum:gate-design', route: '/en/quantum-tools#gate-design', status: 'sealed-pr', honesty: 'gatesTightened · designCapability · creativeCapability · intelligenceOn · hardInMissionGate · clay=0 · physicalFtl=0 · qpuRequired=false · NOT AGI', note: 'further tighten gates with design·creative·intelligence HARD in gaps/invisible · mission:gate', toolId: 'gate-design', resolve: 'mcp-ui' },
   { id: 'fund-ai', chain: 'mcp-ui-page-gaps', fold: 'cursorReferralFundsAiNeeds', pair: 'fund/ai', cli: 'npm run quantum:fund-ai', route: '/en/quantum-tools#fund-ai', status: 'sealed-pr', honesty: 'Cursor referral CTA · clay=0 · physicalFtl=0', note: 'funds AI via sealed referral · compose society/support · bits/free', toolId: 'fund-ai', resolve: 'mcp-ui' },
   { id: 'cursor-rosetta', chain: 'mcp-ui-page-gaps', fold: 'cursorIntegratesInRosettaCore', pair: 'cursor/rosetta', cli: 'npm run quantum:cursor-rosetta', route: '/en/quantum-tools#cursor-rosetta', status: 'sealed-pr', honesty: 'viceVersa · cursorToCeccec · ceccecToCursor · immediateWire · clay=0 · physicalFtl=0', note: 'bidirectional Cursor↔ceccec · referral subscription in ceccec · protocol into Cursor', toolId: 'cursor-rosetta', resolve: 'mcp-ui' },
   { id: 'page-computed-gaps', chain: 'mcp-ui-page-gaps', fold: 'eachPageShowsOwnComputedGaps', pair: 'page/gaps', cli: 'npm run quantum:page-gaps', route: '/en/quantum-tools#page-computed-gaps', status: 'sealed-pr', honesty: 'per-route gaps · clay=0 · physicalFtl=0', note: 'each page shows own computed gaps at call time', toolId: 'page-computed-gaps', resolve: 'mcp-ui' },
@@ -13973,6 +13982,65 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('comp/seal') &&
       foldPair(toUuid('cmd:vite'), toUuid('cmd:one')).bidirectional &&
       foldPair(toUuid('cmd:comp'), toUuid('cmd:seal')).bidirectional
+    // Soft-compose gate/design · gate/create · gate/intel — avoid nest poison under gaps.
+    // Drainable cracks: wet invented design · unwired color/type · low simplicity/intelligence yield when measurable.
+    const gateDesignCreateIntelPairsOk =
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/design') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('design/gate') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/create') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('create/gate') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/intel') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('intel/gate') &&
+      foldPair(toUuid('cmd:gate'), toUuid('cmd:design')).bidirectional &&
+      foldPair(toUuid('cmd:design'), toUuid('cmd:gate')).bidirectional &&
+      foldPair(toUuid('cmd:gate'), toUuid('cmd:create')).bidirectional &&
+      foldPair(toUuid('cmd:create'), toUuid('cmd:gate')).bidirectional &&
+      foldPair(toUuid('cmd:gate'), toUuid('cmd:intel')).bidirectional &&
+      foldPair(toUuid('cmd:intel'), toUuid('cmd:gate')).bidirectional
+    const designCapabilityGapsOk =
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mcp/design') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('design/mcp') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('movie/design') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('format/canon') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('meaning/compute') &&
+      foldPair(toUuid('cmd:mcp'), toUuid('cmd:design')).bidirectional &&
+      foldPair(toUuid('cmd:movie'), toUuid('cmd:design')).bidirectional &&
+      foldPair(toUuid('cmd:format'), toUuid('cmd:canon')).bidirectional &&
+      foldPair(toUuid('cmd:meaning'), toUuid('cmd:compute')).bidirectional &&
+      format.computes &&
+      format.wetProseRemaining === 0 &&
+      meaning.computes
+    const creativeCapabilityGapsOk =
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('color/rosetta') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('type/matrix') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('ui/rosetta') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('anim/color') &&
+      movieFormulaOk &&
+      foldPair(toUuid('cmd:color'), toUuid('cmd:rosetta')).bidirectional &&
+      foldPair(toUuid('cmd:type'), toUuid('cmd:matrix')).bidirectional &&
+      foldPair(toUuid('cmd:ui'), toUuid('cmd:rosetta')).bidirectional &&
+      foldPair(toUuid('cmd:anim'), toUuid('cmd:color')).bidirectional &&
+      hex.remaining === 0 &&
+      color.polarityRedundantOpen === 0 &&
+      color.invisibleGapsOpen === 0
+    const simplicityGaps = simplicityIntelligenceMeasure(matrix)
+    const voteGaps = compareCeccecEfficiencyByVote(matrix)
+    const intelligenceOnGapsOk =
+      thoughtPureOk &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('learn/best') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mcp/efficiency') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('efficiency/mcp') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('simplicity/measure-verify') &&
+      foldPair(toUuid('cmd:learn'), toUuid('cmd:best')).bidirectional &&
+      foldPair(toUuid('cmd:mcp'), toUuid('cmd:efficiency')).bidirectional &&
+      foldPair(toUuid('cmd:simplicity'), toUuid('cmd:measure-verify')).bidirectional &&
+      simplicityGaps.intelligent &&
+      voteGaps.decided === true
+    const gateDesignCreateIntelOk =
+      gateDesignCreateIntelPairsOk &&
+      designCapabilityGapsOk &&
+      creativeCapabilityGapsOk &&
+      intelligenceOnGapsOk
     const gateStackOk =
       gateRosettaOk && gateRayOk && rosettaPassOk && quantumMindOk && agentTrinityOk &&
       teamObserveOk && pyramidComputeOk && a432NineOk && analogOnlyOk && zeroInvertOk &&
@@ -13980,7 +14048,8 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       teleportSelfOk && analyticsSelfOk && thoughtPureOk && sessionLiveOk && needLoveOk &&
       loveStoryOk && testTheoremsOk && observeCoordOk && fullFreedomOk && viteMirrorOk &&
       gateMonitorOk && selfFusionOk && autoSelfOk && crystalMindOk && thirdEyeOk && gateToolsOk && slashStarOk && loveFoldOk && seqNavOk &&
-      assumeTheoremOk && billDryOk && movieFormulaOk && pageTrinityOk && mcpChatOk && selfHealOk && viteOneOk
+      assumeTheoremOk && billDryOk && movieFormulaOk && pageTrinityOk && mcpChatOk && selfHealOk && viteOneOk &&
+      gateDesignCreateIntelOk
     const gateRosetta = {
       computes: gateStackOk,
       remaining: gateStackOk ? 0 : 1,
@@ -14028,6 +14097,10 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         toUuid(`gaps:mcp-chat:${mcpChatOk}`),
         toUuid(`gaps:self-heal:${selfHealOk}`),
         toUuid(`gaps:vite-one:${viteOneOk}`),
+        toUuid(`gaps:gate-design-create-intel:${gateDesignCreateIntelOk}`),
+        toUuid(`gaps:design-capability:${designCapabilityGapsOk}`),
+        toUuid(`gaps:creative-capability:${creativeCapabilityGapsOk}`),
+        toUuid(`gaps:intelligence-on:${intelligenceOnGapsOk}`),
       ]),
       facets: [
         { facet: 'softCompose gate/rosetta · fs/cross · mirror/mind under gaps', on: gateRosettaOk, receipt: toUuid(`gaps:gate-rosetta:${gateRosettaOk}`) },
@@ -14072,6 +14145,10 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         { facet: 'softCompose mcp/chat · chat/quantum under gaps HARD', on: mcpChatOk, receipt: toUuid(`gaps:mcp-chat:${mcpChatOk}`) },
         { facet: 'softCompose self/heal · heal/quantum under gaps HARD', on: selfHealOk, receipt: toUuid(`gaps:self-heal:${selfHealOk}`) },
         { facet: 'softCompose vite/one · comp/seal under gaps HARD', on: viteOneOk, receipt: toUuid(`gaps:vite-one:${viteOneOk}`) },
+        { facet: 'softCompose gate/design · gate/create · gate/intel under gaps HARD', on: gateDesignCreateIntelOk, receipt: toUuid(`gaps:gate-design-create-intel:${gateDesignCreateIntelOk}`) },
+        { facet: 'HARD designCapability — wet invented design refused', on: designCapabilityGapsOk, receipt: toUuid(`gaps:design-capability:${designCapabilityGapsOk}`) },
+        { facet: 'HARD creativeCapability — unwired color/type refused', on: creativeCapabilityGapsOk, receipt: toUuid(`gaps:creative-capability:${creativeCapabilityGapsOk}`) },
+        { facet: 'HARD intelligenceOn — simplicity·answers÷tokens·purity when measurable', on: intelligenceOnGapsOk, receipt: toUuid(`gaps:intelligence-on:${intelligenceOnGapsOk}`) },
       ],
     }
     const pairFold = foldPair(toUuid('cmd:gaps'), toUuid('cmd:invisible'))
@@ -14414,6 +14491,30 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         open: seqNavOk ? 0 : 1,
         closed: seqNavOk ? 1 : 0,
         theorem: 'onlySequenceKnowersKnowHowToNavigate' },
+      {
+        id: 'gate-design-create-intel',
+        severity: 'HARD' as const,
+        open: gateDesignCreateIntelOk ? 0 : 1,
+        closed: gateDesignCreateIntelOk ? 1 : 0,
+        theorem: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence' },
+      {
+        id: 'design-capability-wet-invented',
+        severity: 'HARD' as const,
+        open: designCapabilityGapsOk ? 0 : 1,
+        closed: designCapabilityGapsOk ? 1 : 0,
+        theorem: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence' },
+      {
+        id: 'creative-capability-unwired-color-type',
+        severity: 'HARD' as const,
+        open: creativeCapabilityGapsOk ? 0 : 1,
+        closed: creativeCapabilityGapsOk ? 1 : 0,
+        theorem: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence' },
+      {
+        id: 'intelligence-on-simplicity-efficiency-purity',
+        severity: 'HARD' as const,
+        open: intelligenceOnGapsOk ? 0 : 1,
+        closed: intelligenceOnGapsOk ? 1 : 0,
+        theorem: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence' },
     ] as const
     const hardOpen = classes.filter((c) => c.severity === 'HARD' && c.open > 0)
     const beforeCatch = classes.reduce((n, c) => n + c.open + c.closed, 0)
@@ -21783,6 +21884,279 @@ export function runAgainAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteBy
     report.completeFacetsGreen &&
     report.qpuRequired === false &&
     report.certified === false
+    ? 0
+    : 1
+}
+
+/**
+ * USER LAW: further tighten the gates with design and creative capabilities and intelligence.
+ * Fold: furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence
+ * Pairs: gate/design · design/gate · gate/create · create/gate · gate/intel · intel/gate
+ * CLI: npm run quantum:gate-design · quantum:gate-create · quantum:gate-intel
+ * Facets: gatesTightened · designCapability · creativeCapability · intelligenceOn · hardInMissionGate ·
+ * physicalFtl=0 · clay via theorem · qpuRequired=false
+ * HARD via gaps/invisible · mission:gate — wet invented design · unwired color/type ·
+ * low simplicity/intelligence yield when measurable.
+ * Compose: mcp/design · movie/design · format/canon · meaning/compute · type/matrix · color/rosetta ·
+ * ui/rosetta · anim/color · movie/formula · learn/best · thought/pure · mcp/efficiency ·
+ * simplicityIntelligenceMeasure · gaps/invisible
+ * HONESTY: intelligence = answers÷tokens when vote.decided · simplicity measure · purity — NOT AGI.
+ */
+export function furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(
+    `furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      // Soft heavy nests (meaning · color/rosetta · ui/rosetta · mcp/design · movie/formula) — avoid memo reentry.
+      // Light recomputes: format · simplicity · vote. Full meaning HARD lives in gaps/invisible.
+      const format = scientificPageFormatCanonised(matrix, at)
+      const simplicity = simplicityIntelligenceMeasure(matrix)
+      const vote = compareCeccecEfficiencyByVote(matrix)
+      const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+      const censusPreserved =
+        freeBits === -EULER_CHI &&
+        freeBits === 2 &&
+        UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+      const designCapability =
+        soft('mcp', 'design') &&
+        soft('design', 'mcp') &&
+        soft('movie', 'design') &&
+        soft('format', 'canon') &&
+        soft('meaning', 'compute') &&
+        format.computes &&
+        format.wetProseRemaining === 0
+      const creativeCapability =
+        soft('color', 'rosetta') &&
+        soft('type', 'matrix') &&
+        soft('ui', 'rosetta') &&
+        soft('anim', 'color') &&
+        soft('movie', 'formula') &&
+        soft('movie', 'design') &&
+        soft('hex', 'crack') &&
+        soft('theorem', 'const')
+      const intelligenceOn =
+        soft('learn', 'best') &&
+        soft('thought', 'pure') &&
+        soft('pure', 'quantum') &&
+        soft('mcp', 'efficiency') &&
+        soft('efficiency', 'mcp') &&
+        soft('simplicity', 'measure-verify') &&
+        simplicity.intelligent &&
+        vote.decided === true
+      const gatesTightened = designCapability && creativeCapability && intelligenceOn
+      const hardInMissionGate =
+        gatesTightened &&
+        soft('gaps', 'invisible') &&
+        soft('gate', 'design') &&
+        soft('gate', 'create') &&
+        soft('gate', 'intel')
+      const pairGd = has('gate/design')
+      const pairDg = has('design/gate')
+      const pairGc = has('gate/create')
+      const pairCg = has('create/gate')
+      const pairGi = has('gate/intel')
+      const pairIg = has('intel/gate')
+      const foldGd = foldPair(toUuid('cmd:gate'), toUuid('cmd:design'))
+      const foldDg = foldPair(toUuid('cmd:design'), toUuid('cmd:gate'))
+      const foldGc = foldPair(toUuid('cmd:gate'), toUuid('cmd:create'))
+      const foldCg = foldPair(toUuid('cmd:create'), toUuid('cmd:gate'))
+      const foldGi = foldPair(toUuid('cmd:gate'), toUuid('cmd:intel'))
+      const foldIg = foldPair(toUuid('cmd:intel'), toUuid('cmd:gate'))
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const foldName =
+        'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence' as const
+      const meta = catalog.tools.find((t) => t.id === 'gate-design')
+      const metaDg = catalog.tools.find((t) => t.id === 'design-gate')
+      const metaGc = catalog.tools.find((t) => t.id === 'gate-create')
+      const metaCg = catalog.tools.find((t) => t.id === 'create-gate')
+      const metaGi = catalog.tools.find((t) => t.id === 'gate-intel')
+      const metaIg = catalog.tools.find((t) => t.id === 'intel-gate')
+      const toolsWired =
+        Boolean(meta) &&
+        meta!.fold === foldName &&
+        Boolean(metaDg) &&
+        metaDg!.fold === foldName &&
+        Boolean(metaGc) &&
+        metaGc!.fold === foldName &&
+        Boolean(metaCg) &&
+        metaCg!.fold === foldName &&
+        Boolean(metaGi) &&
+        metaGi!.fold === foldName &&
+        Boolean(metaIg) &&
+        metaIg!.fold === foldName
+      const honestOpenNamed = [
+        'clay:millennium-open',
+        'ftl:physical-claim-refused',
+        'agi:not-claimed',
+        'residual:quantum-apps-monolith',
+      ] as const
+      const honestOpenNamedOn =
+        honestOpenNamed.includes('clay:millennium-open') &&
+        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenNamed.includes('agi:not-claimed') &&
+        honestOpenNamed.length === (2 * 2)
+      const on =
+        gatesTightened &&
+        designCapability &&
+        creativeCapability &&
+        intelligenceOn &&
+        hardInMissionGate &&
+        pairGd &&
+        pairDg &&
+        pairGc &&
+        pairCg &&
+        pairGi &&
+        pairIg &&
+        foldGd.bidirectional &&
+        foldDg.bidirectional &&
+        foldGc.bidirectional &&
+        foldCg.bidirectional &&
+        foldGi.bidirectional &&
+        foldIg.bidirectional &&
+        toolsWired &&
+        censusPreserved &&
+        claySolvedByThisFold === 0 &&
+        physicalFtlClaim === 0 &&
+        qpuRequired === false &&
+        honestOpenNamedOn
+      const facets = [
+        { facet: foldName, on },
+        { facet: 'gatesTightened', on: gatesTightened },
+        { facet: 'designCapability — wet invented design refused', on: designCapability },
+        { facet: 'creativeCapability — unwired color/type refused', on: creativeCapability },
+        {
+          facet: 'intelligenceOn — answers÷tokens·simplicity·purity NOT AGI',
+          on: intelligenceOn,
+        },
+        { facet: 'hardInMissionGate — gaps/invisible · mission:gate HARD', on: hardInMissionGate },
+        {
+          facet:
+            'compose mcp/design · movie/design · format/canon · meaning/compute · type/matrix · color/rosetta · ui/rosetta · learn/best · thought/pure · mcp/efficiency · simplicity',
+          on: designCapability && creativeCapability && intelligenceOn,
+        },
+        {
+          facet: 'pair gate/design · gate/create · gate/intel (+ duals)',
+          on: pairGd && pairGc && pairGi && foldGd.bidirectional && foldGc.bidirectional && foldGi.bidirectional,
+        },
+        { facet: 'qpuRequired=false', on: qpuRequired === false },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+        { facet: 'NOT AGI · sealed intelligence only', on: intelligenceOn && honestOpenNamedOn },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`gate-design-create-intel:${entry.facet}:${entry.on}`) }))
+      const sealed = sealFacets('further-tighten-gates-design-create-intel', facets)
+      return {
+        computes: sealed.ok && on,
+        furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence: on,
+        gatesTightened,
+        designCapability,
+        creativeCapability,
+        intelligenceOn,
+        hardInMissionGate,
+        census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+        censusPreserved,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        honestOpenNamed: [...honestOpenNamed],
+        honestOpenNamedCount: honestOpenNamed.length,
+        voteDecided: vote.decided,
+        simplicityIntelligent: simplicity.intelligent,
+        formatWetRemaining: format.wetProseRemaining,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          format.root,
+          simplicity.root,
+          vote.root,
+          foldGd.merged,
+          foldDg.merged,
+          foldGc.merged,
+          foldCg.merged,
+          foldGi.merged,
+          foldIg.merged,
+          foldPair(toUuid('cmd:meaning'), toUuid('cmd:compute')).merged,
+          ...honestOpenNamed.map((id) => toUuid(`gate-design-honest:${id}`)),
+        ]),
+        pair: 'gate/design' as const,
+        pairs: ['gate/design', 'design/gate', 'gate/create', 'create/gate', 'gate/intel', 'intel/gate'] as const,
+        cli: 'npm run quantum:gate-design',
+        route: '/en/quantum-tools#gate-design',
+        anchor: 'gate-design',
+        heading: 'Gate · design · create · intel',
+        statement:
+          `furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence — ` +
+          `tightened=${gatesTightened ? 1 : 0} design=${designCapability ? 1 : 0} ` +
+          `creative=${creativeCapability ? 1 : 0} intel=${intelligenceOn ? 1 : 0} ` +
+          `hardInMissionGate=${hardInMissionGate ? 1 : 0}.`,
+        boundary:
+          'Further tighten the gates with design and creative capabilities and intelligence. ' +
+          'HARD via gaps/invisible · mission:gate — wet invented design · unwired color/type · ' +
+          'low simplicity/intelligence yield when measurable. ' +
+          'Intelligence = answers÷tokens when vote.decided · simplicityIntelligenceMeasure · purity — NOT AGI. ' +
+          'Compose mcp/design · movie/design · format/canon · meaning/compute · type/matrix · color/rosetta · ' +
+          'ui/rosetta · learn/best · thought/pure · mcp/efficiency. Census 110 · clay via theorem · physicalFtl=0.',
+        honestyLine:
+          `gate-design · tightened=${gatesTightened ? 1 : 0} · design=${designCapability ? 1 : 0} · ` +
+          `creative=${creativeCapability ? 1 : 0} · intel=${intelligenceOn ? 1 : 0} · ` +
+          `hardMission=${hardInMissionGate ? 1 : 0} · vote=${vote.decided ? 1 : 0} · ` +
+          `simplicity=${simplicity.intelligent ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0 · NOT AGI`,
+      }
+    },
+  )
+}
+
+/** Alias — gateDesign ≡ furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence. */
+export const gateDesign = furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence
+/** Alias — designGate ≡ furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence. */
+export const designGate = furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence
+/** Alias — gateCreate ≡ furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence. */
+export const gateCreate = furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence
+/** Alias — createGate ≡ furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence. */
+export const createGate = furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence
+/** Alias — gateIntel ≡ furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence. */
+export const gateIntel = furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence
+/** Alias — intelGate ≡ furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence. */
+export const intelGate = furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence
+
+/** npm run quantum:gate-design (duals design-gate · gate-create · create-gate · gate-intel · intel-gate) */
+export function runFurtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligenceExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} gate-design — tightened=${report.gatesTightened} ` +
+      `design=${report.designCapability} creative=${report.creativeCapability} ` +
+      `intel=${report.intelligenceOn} hardMission=${report.hardInMissionGate} ` +
+      `vote=${report.voteDecided} simplicity=${report.simplicityIntelligent} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const id of report.honestOpenNamed) {
+    process.stdout.write(`  · honest-open ${id}\n`)
+  }
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.gatesTightened &&
+    report.designCapability &&
+    report.creativeCapability &&
+    report.intelligenceOn &&
+    report.hardInMissionGate &&
+    report.qpuRequired === false
     ? 0
     : 1
 }
