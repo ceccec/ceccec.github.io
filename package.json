@@ -24,6 +24,8 @@
     "enforcement:trinity": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts enforcement-trinity",
     "quantum:trinity-speedup": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runTrinitySpeedupExit",
     "quantum:manual-agents-waves": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/waves/index.ts runManualAgentsBehaveLikeWavesExit",
+    "quantum:waves-push": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/waves/index.ts runPushInWavesExit",
+    "quantum:push-waves": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/waves/index.ts runPushInWavesExit",
     "quantum:nothing-moves": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/waves/index.ts runDiscoverFromSealedFoldExit",
     "quantum:incomplete-revelation": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/waves/index.ts runIncompleteRevelationExit",
     "dissolve:flat": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts dissolve-flat",

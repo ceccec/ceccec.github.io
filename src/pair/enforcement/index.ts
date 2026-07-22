@@ -26,6 +26,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'learn/build',
   'wave/tune',
   'waves/build',
+  'waves/push',
+  'push/waves',
   'document/experiments',
   'learn/music',
   'dev/preview',
@@ -506,6 +508,12 @@ export const MISSION_COMMANDS: readonly MissionCommand[] = [
     cli: 'run',
     pair: 'waves/build',
     does: 'Receipt: manualAgentsBehaveLikeWaves — one wave/turn · pairs before npm · trinity/speedup · no parallel seals',
+    workflow: 'ceccec-build-waves' },
+  {
+    npm: 'quantum:waves-push',
+    cli: 'run',
+    pair: 'waves/push',
+    does: 'Receipt: pushInWaves — one sequential push path · compose waves/build · vote/build/commit/push · commit/push · no force main',
     workflow: 'ceccec-build-waves' },
   {
     npm: 'quantum:nothing-moves',
