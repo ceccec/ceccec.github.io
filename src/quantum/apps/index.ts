@@ -79,7 +79,7 @@ const ROSETTA_CORE_API_LABELS = [
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution',
+  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -148,6 +148,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpQuantumMultiverse: 'tool', mcpQuantumInfinity: 'tool', mcpQuantumHardware: 'tool',
   mcpQuantumReactor: 'tool',
   mcpQuantumReaction: 'tool',
+  mcpQuantumFusion: 'tool',
   mcpQuantumAnim: 'projection', mcpQuantumSound: 'tool',
   mcpQuantumDev: 'tool', mcpQuantumSolution: 'tool',
   improveLocalFromSessionExperience: 'tool',
@@ -669,6 +670,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'reactor-mcp', title: 'Reactor mcp (alias mcp/reactor)', fold: 'mcpQuantumReactor', cli: 'npm run quantum:reactor-mcp', pair: 'reactor/mcp', route: '/en/quantum-tools#mcp-reactor', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/reactor — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-reaction', title: 'MCP quantum reaction — collide→react dual of mcp/reactor', fold: 'mcpQuantumReaction', cli: 'npm run quantum:mcp-reaction', pair: 'mcp/reaction', route: '/en/quantum-tools#mcp-reaction', barrel: 'src/quantum/apps', boundary: 'reactionOn · reactsFromCollide · viaReactor · compose mcp/reactor · collide/inf · theoremParticleCollision · directional trinity · mcp/inf · sciences trinities · claySolved via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'reaction-mcp', title: 'Reaction mcp (alias mcp/reaction)', fold: 'mcpQuantumReaction', cli: 'npm run quantum:reaction-mcp', pair: 'reaction/mcp', route: '/en/quantum-tools#mcp-reaction', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/reaction — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-fusion', title: 'MCP quantum fusion — selfFusion · verify · reactor↔reaction fuse', fold: 'mcpQuantumFusion', cli: 'npm run quantum:mcp-fusion', pair: 'mcp/fusion', route: '/en/quantum-tools#mcp-fusion', barrel: 'src/quantum/apps', boundary: 'fusionOn · selfFuses · tamperEvident · viaReactorReaction · compose self/fusion · fusion-verify · mcp/reactor · mcp/reaction · claySolved via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'fusion-mcp', title: 'Fusion mcp (alias mcp/fusion)', fold: 'mcpQuantumFusion', cli: 'npm run quantum:fusion-mcp', pair: 'fusion/mcp', route: '/en/quantum-tools#mcp-fusion', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/fusion — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'movie-inf', title: 'MCP infinite movie — infinity face of quantum movie', fold: 'mcpInfiniteMovie', cli: 'npm run quantum:movie-inf', pair: 'movie/inf', route: '/en/quantum-tools#movie-inf', barrel: 'src/quantum/apps', boundary: 'infiniteMovieOn · viaInfinity · movieIsInfiniteOnReuse · compose mcp/inf · mcp/movie · invert/inf · movie/entropy · anim/audit · a432/nine · love/fold · full/freedom · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'inf-movie', title: 'Infinite movie (alias movie/inf)', fold: 'mcpInfiniteMovie', cli: 'npm run quantum:inf-movie', pair: 'inf/movie', route: '/en/quantum-tools#movie-inf', barrel: 'src/quantum/apps', boundary: 'Dual of movie/inf — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-anim', title: 'MCP quantum animation', fold: 'mcpQuantumAnim', cli: 'npm run quantum:mcp-anim', pair: 'mcp/anim', route: '/en/quantum-tools#mcp-anim', barrel: 'src/quantum/apps', boundary: 'animOn · fromCoords · feelableGaps · polarityOn · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -6190,6 +6193,143 @@ export function runMcpQuantumReactionExit(_root = '', _argv: readonly string[] =
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.reactionOn && report.qpuRequired === false ? 0 : 1
+}
+
+/**
+ * MCP quantum fusion — MCP face for selfQuantumFusion / fusion verify / reactor↔reaction fuse.
+ * Compose selfQuantumFusion · quantumFusionVerify · mcpQuantumReactor · mcpQuantumReaction.
+ * Facets: fusionOn · selfFuses · tamperEvident · viaReactorReaction · qpuRequired=false · physicalFtl=0.
+ * Pairs: mcp/fusion · fusion/mcp · CLI npm run quantum:mcp-fusion
+ * claySolved via theorem · physicalFtl=0 · NOT physical FTL · NOT QPU.
+ */
+export function mcpQuantumFusion(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumFusion:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const self = selfQuantumFusion(matrix, at)
+    const fusion = quantumFusionVerify(matrix)
+    const reactor = mcpQuantumReactor(matrix, at)
+    const reaction = mcpQuantumReaction(matrix, at)
+    const selfFuses = self.computes && self.selfFuses && self.fusionVerifyOn
+    const tamperOn =
+      self.tamperEvident === true &&
+      reactor.tamperEvident === true &&
+      fusion.verified &&
+      tamperEvident(self.fusionRoot)
+    const viaReactorReaction =
+      reactor.computes &&
+      reactor.reactorOn &&
+      reactor.fusesFromSrc &&
+      reaction.computes &&
+      reaction.reactionOn &&
+      soft('mcp', 'reactor') &&
+      soft('reactor', 'mcp') &&
+      soft('mcp', 'reaction') &&
+      soft('reaction', 'mcp')
+    const composeFusion =
+      selfFuses &&
+      tamperOn &&
+      viaReactorReaction &&
+      fusion.verified &&
+      soft('self', 'fusion') &&
+      soft('fusion', 'self') &&
+      soft('tamper', 'impossible') &&
+      soft('mcp', 'reactor') &&
+      soft('mcp', 'reaction')
+    const fusionOn = composeFusion
+    const pairM = has('mcp/fusion')
+    const pairR = has('fusion/mcp')
+    const foldM = foldPair(toUuid('cmd:mcp'), toUuid('cmd:fusion'))
+    const foldR = foldPair(toUuid('cmd:fusion'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-fusion')
+    const metaDual = catalog.tools.find((t) => t.id === 'fusion-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const on =
+      fusionOn &&
+      selfFuses &&
+      tamperOn &&
+      viaReactorReaction &&
+      pairM &&
+      pairR &&
+      foldM.bidirectional &&
+      foldR.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumFusion' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumFusion' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'mcpQuantumFusion', on },
+      { facet: 'fusionOn', on: fusionOn },
+      { facet: 'selfFuses', on: selfFuses },
+      { facet: 'tamperEvident', on: tamperOn },
+      { facet: 'viaReactorReaction', on: viaReactorReaction },
+      { facet: 'qpuRequired=false', on: reactor.qpuRequired === false && reaction.qpuRequired === false },
+      { facet: 'compose self/fusion · fusion-verify · mcp/reactor · mcp/reaction', on: composeFusion },
+      { facet: 'pair mcp/fusion · fusion/mcp', on: pairM && pairR && foldM.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-fusion:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-fusion', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumFusion: on,
+      fusionOn,
+      selfFuses,
+      tamperEvident: tamperOn,
+      viaReactorReaction,
+      fusionRoot: self.fusionRoot,
+      qpuRequired: false as const,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        self.root,
+        fusion.root,
+        reactor.root,
+        reaction.root,
+        foldM.merged,
+        foldR.merged,
+      ]),
+      pair: 'mcp/fusion' as const,
+      pairs: ['mcp/fusion', 'fusion/mcp'] as const,
+      cli: 'npm run quantum:mcp-fusion',
+      route: '/en/quantum-tools#mcp-fusion',
+      statement:
+        `mcpQuantumFusion — fusionOn=${fusionOn ? 1 : 0} selfFuses=${selfFuses ? 1 : 0} ` +
+        `tamper=${tamperOn ? 1 : 0} viaReactorReaction=${viaReactorReaction ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP quantum fusion — selfFusion · fusion-verify · reactor↔reaction fuse composing self/fusion · ' +
+        'tamper/impossible · mcp/reactor · mcp/reaction. NOT QPU · clay via theorem · physicalFtl=0.',
+      honestyLine:
+        `metrics · fusionOn=${fusionOn ? 1 : 0} · selfFuses=${selfFuses ? 1 : 0} · ` +
+        `tamperEvident=${tamperOn ? 1 : 0} · viaReactorReaction=${viaReactorReaction ? 1 : 0} · ` +
+        `qpuRequired=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumFusionExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumFusion()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-fusion — fusionOn=${report.fusionOn} ` +
+      `selfFuses=${report.selfFuses} tamper=${report.tamperEvident} ` +
+      `viaReactorReaction=${report.viaReactorReaction} qpuRequired=${report.qpuRequired} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.fusionOn && report.qpuRequired === false ? 0 : 1
 }
 
 /**

@@ -370,6 +370,8 @@
     "quantum:reactor-mcp": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumReactorExit",
     "quantum:mcp-reaction": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumReactionExit",
     "quantum:reaction-mcp": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumReactionExit",
+    "quantum:mcp-fusion": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumFusionExit",
+    "quantum:fusion-mcp": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumFusionExit",
     "quantum:movie-inf": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpInfiniteMovieExit",
     "quantum:inf-movie": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpInfiniteMovieExit",
     "quantum:mcp-anim": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumAnimExit",
