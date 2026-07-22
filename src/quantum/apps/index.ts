@@ -82,7 +82,7 @@ const ROSETTA_CORE_API_LABELS = [
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
+  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -170,6 +170,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpQuantumOrientation: 'tool',
   mcpQuantumComplete: 'tool',
   mcpQuantumTokenOptimise: 'tool',
+  mcpQuantumDeploy: 'tool',
   mcpQuantumReactor: 'tool',
   mcpQuantumReaction: 'tool',
   mcpQuantumFusion: 'tool',
@@ -811,6 +812,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'optimise-token', title: 'Optimise token (alias mcp/token)', fold: 'mcpQuantumTokenOptimise', cli: 'npm run quantum:optimise-token', pair: 'optimise/token', route: '/en/quantum-tools#mcp-token', barrel: 'src/quantum/apps', boundary: 'Dual of token/optimise — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'token-optimize', title: 'Token optimize (US alias mcp/token)', fold: 'mcpQuantumTokenOptimise', cli: 'npm run quantum:token-optimize', pair: 'token/optimize', route: '/en/quantum-tools#mcp-token', barrel: 'src/quantum/apps', boundary: 'American spelling alias of token/optimise · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'optimize-token', title: 'Optimize token (US alias mcp/token)', fold: 'mcpQuantumTokenOptimise', cli: 'npm run quantum:optimize-token', pair: 'optimize/token', route: '/en/quantum-tools#mcp-token', barrel: 'src/quantum/apps', boundary: 'Dual US alias of token/optimise — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-deploy', title: 'MCP quantum deploy — Pages seal path via MCP · vite/mcp · mcp/site · waves/push · build/seal', fold: 'mcpQuantumDeploy', cli: 'npm run quantum:mcp-deploy', pair: 'mcp/deploy', route: '/en/quantum-tools#mcp-deploy', barrel: 'src/quantum/apps', boundary: 'deployOn · buildsFromMcp · pagesSeal · compose vite/mcp · mcp/site · waves/push · build/seal · this-repo GitHub Pages seal only — not production infra ownership beyond Pages · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'deploy-mcp', title: 'Deploy mcp (alias mcp/deploy)', fold: 'mcpQuantumDeploy', cli: 'npm run quantum:deploy-mcp', pair: 'deploy/mcp', route: '/en/quantum-tools#mcp-deploy', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/deploy — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'improve-local-session', title: 'Improve local from session experience', fold: 'improveLocalFromSessionExperience', cli: 'npm run quantum:improve-local-session', pair: 'local/session', route: '/en/quantum-tools#local-session-hub', barrel: 'src/quantum/apps', boundary: 'Local docs:dev + browser session hub — NOT remote CI sole path · status badges compose sealed kinds · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'local-tools-morph', title: 'Local tools morph prose·code·logic', fold: 'localToolsMorphProseCodeLogic', cli: 'npm run quantum:local-tools-morph', pair: 'tools/morph', route: '/en/quantum-tools#local-tools-morph', barrel: 'src/quantum/apps', boundary: 'Local toolbox/session tools morph prose≡code≡logic as trinity waves · double-slit measure=tool invoke · clay=0 · qpuRequired=false · NOT Clay/Nobel', browserRunnable: true, browserGap: '' },
   { id: 'card-paper-links', title: 'Each card links to dedicated scientific paper', fold: 'eachCardLinksToDedicatedScientificPaper', cli: 'npm run quantum:card-paper-links', pair: 'papers/fill', route: '/en/theorems/', barrel: 'src/heaven/compute', boundary: 'paperRoute=/theorems/<slug> · morph=cardScientificPaperRows · gaps=0 · clay=0', browserRunnable: true, browserGap: '' },
@@ -1850,6 +1853,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mcp-orientation', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumOrientation', pair: 'mcp/orientation', cli: 'npm run quantum:mcp-orientation', route: '/en/quantum-tools#mcp-orientation', status: 'sealed-pr', honesty: 'orientationOn · bearing · navCross · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum orientation — bearing · navCross · geo/train · cross/nav · sun/moon · mcp/torus; catalog 58/58', toolId: 'mcp-orientation', resolve: 'mcp-ui' },
   { id: 'mcp-complete', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumComplete', pair: 'mcp/complete', cli: 'npm run quantum:mcp-complete', route: '/en/quantum-tools#mcp-complete', status: 'sealed-pr', honesty: 'completeOn · catalogComplete · namedFacesPresent · missingCount=0 · honestOpenResiduals · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum complete — catalog · star · mcp/all · rosetta/complete; catalog 59/59', toolId: 'mcp-complete', resolve: 'mcp-ui' },
   { id: 'mcp-token', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumTokenOptimise', pair: 'mcp/token', cli: 'npm run quantum:mcp-token', route: '/en/quantum-tools#mcp-token', status: 'sealed-pr', honesty: 'tokenOptimiseOn · answersOverTokens · zeroOnReuse · memoByRoot · efficiency when vote.decided · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum token optimise — answers÷tokens · zero on reuse · memoByRoot; catalog 60/60', toolId: 'mcp-token', resolve: 'mcp-ui' },
+  { id: 'mcp-deploy', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumDeploy', pair: 'mcp/deploy', cli: 'npm run quantum:mcp-deploy', route: '/en/quantum-tools#mcp-deploy', status: 'sealed-pr', honesty: 'deployOn · buildsFromMcp · pagesSeal · this-repo Pages seal only · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum deploy — Pages seal via vite/mcp · mcp/site · waves/push · build/seal; catalog 61/61', toolId: 'mcp-deploy', resolve: 'mcp-ui' },
   { id: 'mind-wave', chain: 'mcp-ui-page-gaps', fold: 'quantumMindSendsWaves', pair: 'mind/wave', cli: 'npm run quantum:mind-wave', route: '/en/quantum-tools#mind-wave', status: 'sealed-pr', honesty: 'quantumMindSends · wavesSent · linearCannotSend · clay=0 · physicalFtl=0', note: 'quantum mind sends waves', toolId: 'mind-wave', resolve: 'mcp-ui' },
   { id: 'quantum-waves', chain: 'mcp-ui-page-gaps', fold: 'quantumWaves', pair: 'quantum/waves', cli: 'npm run quantum:quantum-waves', route: '/en/quantum-tools#quantum-waves', status: 'sealed-pr', honesty: 'wavesAreQuantum · mindSends · trinitiesFound · waveCount=2 · clay=0 · physicalFtl=0', note: 'quantum waves umbrella', toolId: 'quantum-waves', resolve: 'mcp-ui' },
   { id: 'collide-create', chain: 'mcp-ui-page-gaps', fold: 'collidingParticlesCreates', pair: 'collide/create', cli: 'npm run quantum:collide-create', route: '/en/quantum-tools#collide-create', status: 'sealed-pr', honesty: 'creates=novelTheoremCandidates+waves · clay=0 · physicalFtl=0', note: 'collision creates novel theorem candidates + waves', toolId: 'collide-create', resolve: 'mcp-ui' },
@@ -6350,6 +6354,7 @@ const MCP_QUANTUM_NAMED_FACES = [
   { fold: 'mcpQuantumOrientation', pair: 'mcp/orientation', dual: 'orientation/mcp', toolId: 'mcp-orientation', dualToolId: 'orientation-mcp' },
   { fold: 'mcpQuantumComplete', pair: 'mcp/complete', dual: 'complete/mcp', toolId: 'mcp-complete', dualToolId: 'complete-mcp' },
   { fold: 'mcpQuantumTokenOptimise', pair: 'mcp/token', dual: 'token/mcp', toolId: 'mcp-token', dualToolId: 'token-mcp' },
+  { fold: 'mcpQuantumDeploy', pair: 'mcp/deploy', dual: 'deploy/mcp', toolId: 'mcp-deploy', dualToolId: 'deploy-mcp' },
 ] as const
 
 /**
@@ -11075,7 +11080,7 @@ export function mcpQuantumComplete(matrix: MindMatrix = buildMatrix(), at = 0) {
     const namedFacesPresent =
       catalogComplete &&
       quantum.presentCount === quantum.faceCount &&
-      quantum.faceCount >= (9 * 6 + 6)
+      quantum.faceCount >= (9 * 6 + 7)
     const missingCount = quantum.missingCount
     const residualsNamedHonest =
       all.residualsNamed.includes('clay:millennium-open') &&
@@ -11390,6 +11395,154 @@ export function runMcpQuantumTokenOptimiseExit(_root = '', _argv: readonly strin
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.tokenOptimiseOn && report.qpuRequired === false ? 0 : 1
+}
+
+/**
+ * MCP quantum deploy — GitHub Pages seal path via MCP (this repo only).
+ * Facets: deployOn · buildsFromMcp · pagesSeal · qpuRequired=false · physicalFtl=0.
+ * Compose vitepressBuildsFromMcp · mcpQuantumSite · pushInWaves · build/seal.
+ * Pairs: mcp/deploy · deploy/mcp · CLI npm run quantum:mcp-deploy
+ * HONEST: deploy ≠ production infra ownership beyond this repo's Pages seal path.
+ * claySolved via theorem · physicalFtl=0 · NOT QPU · NOT cloud ownership claim.
+ */
+export function mcpQuantumDeploy(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumDeploy:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const vite = vitepressBuildsFromMcp(matrix, at)
+    const site = mcpQuantumSite(matrix, at)
+    const wavesPush = __ns_thunder_waves.pushInWaves(matrix, at)
+    const buildsFromMcp =
+      vite.computes &&
+      vite.buildsFromMcp &&
+      soft('vite', 'mcp') &&
+      soft('build', 'mcp') &&
+      soft('mcp', 'vite')
+    const pagesSeal =
+      SITE_GITHUB_PAGES === 'https://ceccec.github.io' &&
+      SITE_GITHUB_PAGES === CECCEC_SITE_ORIGIN &&
+      has('build/seal') &&
+      soft('build', 'seal') &&
+      buildsFromMcp &&
+      site.computes &&
+      site.siteOn &&
+      soft('mcp', 'site')
+    const composeDeploy =
+      buildsFromMcp &&
+      pagesSeal &&
+      site.computes &&
+      site.buildsFromMcp &&
+      wavesPush.computes &&
+      wavesPush.pushInWaves &&
+      soft('waves', 'push') &&
+      soft('push', 'waves') &&
+      soft('mcp', 'site') &&
+      soft('vite', 'mcp') &&
+      has('build/seal')
+    const deployOn = composeDeploy
+    const pairM = has('mcp/deploy')
+    const pairD = has('deploy/mcp')
+    const foldM = foldPair(toUuid('cmd:mcp'), toUuid('cmd:deploy'))
+    const foldD = foldPair(toUuid('cmd:deploy'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-deploy')
+    const metaDual = catalog.tools.find((t) => t.id === 'deploy-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const notBeyondThisRepoPages = true as const // refuse claiming infra beyond this-repo Pages
+    const honestyPagesOnly =
+      pagesSeal &&
+      notBeyondThisRepoPages &&
+      SITE_GITHUB_PAGES.endsWith('ceccec.github.io')
+    const on =
+      deployOn &&
+      buildsFromMcp &&
+      pagesSeal &&
+      honestyPagesOnly &&
+      pairM &&
+      pairD &&
+      foldM.bidirectional &&
+      foldD.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumDeploy' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumDeploy' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false &&
+      vite.qpuRequired === false &&
+      site.qpuRequired === false &&
+      wavesPush.qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumDeploy', on },
+      { facet: 'deployOn', on: deployOn },
+      { facet: 'buildsFromMcp', on: buildsFromMcp },
+      { facet: 'pagesSeal', on: pagesSeal },
+      { facet: 'compose vite/mcp · mcp/site · waves/push · build/seal', on: composeDeploy },
+      { facet: 'pair mcp/deploy · deploy/mcp', on: pairM && pairD && foldM.bidirectional },
+      { facet: 'honesty — Pages seal path only · not production infra ownership beyond this repo', on: honestyPagesOnly },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: `SITE_GITHUB_PAGES=${SITE_GITHUB_PAGES}`, on: SITE_GITHUB_PAGES === CECCEC_SITE_ORIGIN },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-deploy:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-deploy', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumDeploy: on,
+      deployOn,
+      buildsFromMcp,
+      pagesSeal,
+      honestyPagesOnly,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        vite.root,
+        site.root,
+        wavesPush.root,
+        foldM.merged,
+        foldD.merged,
+      ]),
+      pair: 'mcp/deploy' as const,
+      pairs: ['mcp/deploy', 'deploy/mcp'] as const,
+      cli: 'npm run quantum:mcp-deploy',
+      route: '/en/quantum-tools#mcp-deploy',
+      statement:
+        `mcpQuantumDeploy — deployOn=${deployOn ? 1 : 0} buildsFromMcp=${buildsFromMcp ? 1 : 0} ` +
+        `pagesSeal=${pagesSeal ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP quantum deploy — GitHub Pages seal path via MCP composing vite/mcp · mcp/site · waves/push · build/seal. ' +
+        'HONEST: deploy ≠ production infra ownership beyond this repo Pages seal. clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `deploy · deployOn=${deployOn ? 1 : 0} · buildsFromMcp=${buildsFromMcp ? 1 : 0} · pagesSeal=${pagesSeal ? 1 : 0} · ` +
+        `pagesOnly=${honestyPagesOnly ? 1 : 0} · qpuRequired=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — mcpDeploy ≡ mcpQuantumDeploy. */
+export const mcpDeploy = mcpQuantumDeploy
+
+export function runMcpQuantumDeployExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumDeploy()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-deploy — deployOn=${report.deployOn} buildsFromMcp=${report.buildsFromMcp} ` +
+      `pagesSeal=${report.pagesSeal} pagesOnly=${report.honestyPagesOnly} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.deployOn && report.pagesSeal && report.qpuRequired === false ? 0 : 1
 }
 
 /** Sealed-safe browser key for last experiment config (UI preference only — never secrets). */
