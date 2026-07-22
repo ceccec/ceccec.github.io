@@ -13,7 +13,8 @@ const props = defineProps<{
 
 const { t, localize, scriptGlyph } = useSiteLocale()
 
-// One shared hero field: preview seed + destination movieRoute drive CardBackgroundMovie + CSS.
+// Hero is the abstract: preview seed + destination movieRoute drive CardBackgroundMovie —
+// full intensity so animation *forms* the card body (not a whisper chrome inset).
 const preview = computed(() => heroPreviewForRoute(props.route, props.title))
 const href = computed(() => localize(props.route))
 const seedParts = computed(() => [props.route, preview.value.title] as const)
@@ -21,13 +22,17 @@ const displayTitle = computed(() => t(props.title) ?? preview.value.title)
 </script>
 
 <template>
-  <a :href="href" class="linked-hero-card" :style="{ '--card-hue': props.hue ?? preview.hue }">
+  <a
+    :href="href"
+    class="linked-hero-card linked-hero-card--forms"
+    :style="{ '--card-hue': props.hue ?? preview.hue }"
+  >
     <UiCardShell
       class="linked-hero-card__shell"
       :seed-parts="seedParts"
       :movie-route="route"
       :title="displayTitle"
-      movie-intensity="whisper"
+      movie-intensity="full"
     >
       <span v-if="scriptGlyph(glyph)" class="linked-hero-card__glyph" aria-hidden="true">{{ glyph }}</span>
       <span class="linked-hero-card__title">{{ displayTitle }}</span>
@@ -45,6 +50,43 @@ export default { name: 'LinkedHeroCard' }
   text-decoration: none;
   color: inherit;
   min-height: 100%;
+}
+
+/* Abstract → concrete: card body IS the hero movie plane (pair card/forms). */
+.linked-hero-card--forms :deep(.ui-card) {
+  min-height: calc(var(--vp-movie-min-h) * calc(5 / 4));
+  border-color: color-mix(
+    in oklch,
+    oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-glyph) calc(var(--card-hue) * 1deg)),
+    transparent calc(9 / 16 * 100%)
+  );
+  background: transparent;
+}
+
+.linked-hero-card--forms :deep(.ui-card__movie) {
+  opacity: 1;
+}
+
+.linked-hero-card--forms :deep(.ui-card::after) {
+  /* Soft morph accent — hue from the shared hero field, not chrome stripe. */
+  background: linear-gradient(
+    var(--vp-movie-gradient-angle),
+    color-mix(
+      in oklch,
+      oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-glyph) calc(var(--card-hue) * 1deg)),
+      transparent calc(9 / 16 * 100%)
+    ),
+    transparent
+  );
+  height: calc(var(--vp-movie-accent-h) * 2);
+}
+
+.linked-hero-card--forms :deep(.ui-card__content) {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: calc(var(--vp-movie-min-h) * calc(5 / 4));
+  padding: calc(var(--vp-movie-pad-y) * calc(5 / 4)) calc(var(--vp-movie-pad-x) * calc(5 / 4));
 }
 
 .linked-hero-card__shell {
