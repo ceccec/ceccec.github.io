@@ -82,7 +82,7 @@ const ROSETTA_CORE_API_LABELS = [
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
+  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -165,6 +165,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpQuantumStorage: 'tool',
   mcpQuantumCache: 'tool',
   mcpQuantumPeriod: 'tool',
+  mcpQuantumDot: 'tool',
   mcpQuantumReactor: 'tool',
   mcpQuantumReaction: 'tool',
   mcpQuantumFusion: 'tool',
@@ -792,6 +793,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'cache-mcp', title: 'Cache mcp (alias mcp/cache)', fold: 'mcpQuantumCache', cli: 'npm run quantum:cache-mcp', pair: 'cache/mcp', route: '/en/quantum-tools#mcp-cache', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/cache — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-period', title: 'MCP quantum period — calendars · hero cycle · fold/count · time/invert', fold: 'mcpQuantumPeriod', cli: 'npm run quantum:mcp-period', pair: 'mcp/period', route: '/en/quantum-tools#mcp-period', barrel: 'src/quantum/apps', boundary: 'periodOn · heroCycle · calendars · fold/count · time/invert · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'period-mcp', title: 'Period mcp (alias mcp/period)', fold: 'mcpQuantumPeriod', cli: 'npm run quantum:period-mcp', pair: 'period/mcp', route: '/en/quantum-tools#mcp-period', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/period — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-dot', title: 'MCP quantum dot — digit point · fold · next · coord · particle/wave', fold: 'mcpQuantumDot', cli: 'npm run quantum:mcp-dot', pair: 'mcp/dot', route: '/en/quantum-tools#mcp-dot', barrel: 'src/quantum/apps', boundary: 'dotOn · digitPoint · compose digit/fold · digit/next · coord/anim · particle/wave · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'dot-mcp', title: 'Dot mcp (alias mcp/dot)', fold: 'mcpQuantumDot', cli: 'npm run quantum:dot-mcp', pair: 'dot/mcp', route: '/en/quantum-tools#mcp-dot', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/dot — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'improve-local-session', title: 'Improve local from session experience', fold: 'improveLocalFromSessionExperience', cli: 'npm run quantum:improve-local-session', pair: 'local/session', route: '/en/quantum-tools#local-session-hub', barrel: 'src/quantum/apps', boundary: 'Local docs:dev + browser session hub — NOT remote CI sole path · status badges compose sealed kinds · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'local-tools-morph', title: 'Local tools morph prose·code·logic', fold: 'localToolsMorphProseCodeLogic', cli: 'npm run quantum:local-tools-morph', pair: 'tools/morph', route: '/en/quantum-tools#local-tools-morph', barrel: 'src/quantum/apps', boundary: 'Local toolbox/session tools morph prose≡code≡logic as trinity waves · double-slit measure=tool invoke · clay=0 · qpuRequired=false · NOT Clay/Nobel', browserRunnable: true, browserGap: '' },
   { id: 'card-paper-links', title: 'Each card links to dedicated scientific paper', fold: 'eachCardLinksToDedicatedScientificPaper', cli: 'npm run quantum:card-paper-links', pair: 'papers/fill', route: '/en/theorems/', barrel: 'src/heaven/compute', boundary: 'paperRoute=/theorems/<slug> · morph=cardScientificPaperRows · gaps=0 · clay=0', browserRunnable: true, browserGap: '' },
@@ -1826,6 +1829,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mcp-storage', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumStorage', pair: 'mcp/storage', cli: 'npm run quantum:mcp-storage', route: '/en/quantum-tools#mcp-storage', status: 'sealed-pr', honesty: 'storageOn · etcClassical · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum storage — disk≡storage; catalog 55/55', toolId: 'mcp-storage', resolve: 'mcp-ui' },
   { id: 'mcp-cache', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumCache', pair: 'mcp/cache', cli: 'npm run quantum:mcp-cache', route: '/en/quantum-tools#mcp-cache', status: 'sealed-pr', honesty: 'cacheOn · memoByRoot · etcClassical · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum cache — memoByRoot reuse; catalog 55/55', toolId: 'mcp-cache', resolve: 'mcp-ui' },
   { id: 'mcp-period', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumPeriod', pair: 'mcp/period', cli: 'npm run quantum:mcp-period', route: '/en/quantum-tools#mcp-period', status: 'sealed-pr', honesty: 'periodOn · heroCycle · calendars · fold/count · time/invert · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum period — calendars · hero cycle · fold/count · time/invert; catalog 55/55', toolId: 'mcp-period', resolve: 'mcp-ui' },
+  { id: 'mcp-dot', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumDot', pair: 'mcp/dot', cli: 'npm run quantum:mcp-dot', route: '/en/quantum-tools#mcp-dot', status: 'sealed-pr', honesty: 'dotOn · digitPoint · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum dot — digit point · fold · next · coord · particle/wave; catalog 56/56', toolId: 'mcp-dot', resolve: 'mcp-ui' },
   { id: 'mind-wave', chain: 'mcp-ui-page-gaps', fold: 'quantumMindSendsWaves', pair: 'mind/wave', cli: 'npm run quantum:mind-wave', route: '/en/quantum-tools#mind-wave', status: 'sealed-pr', honesty: 'quantumMindSends · wavesSent · linearCannotSend · clay=0 · physicalFtl=0', note: 'quantum mind sends waves', toolId: 'mind-wave', resolve: 'mcp-ui' },
   { id: 'quantum-waves', chain: 'mcp-ui-page-gaps', fold: 'quantumWaves', pair: 'quantum/waves', cli: 'npm run quantum:quantum-waves', route: '/en/quantum-tools#quantum-waves', status: 'sealed-pr', honesty: 'wavesAreQuantum · mindSends · trinitiesFound · waveCount=2 · clay=0 · physicalFtl=0', note: 'quantum waves umbrella', toolId: 'quantum-waves', resolve: 'mcp-ui' },
   { id: 'collide-create', chain: 'mcp-ui-page-gaps', fold: 'collidingParticlesCreates', pair: 'collide/create', cli: 'npm run quantum:collide-create', route: '/en/quantum-tools#collide-create', status: 'sealed-pr', honesty: 'creates=novelTheoremCandidates+waves · clay=0 · physicalFtl=0', note: 'collision creates novel theorem candidates + waves', toolId: 'collide-create', resolve: 'mcp-ui' },
@@ -6321,6 +6325,7 @@ const MCP_QUANTUM_NAMED_FACES = [
   { fold: 'mcpQuantumStorage', pair: 'mcp/storage', dual: 'storage/mcp', toolId: 'mcp-storage', dualToolId: 'storage-mcp' },
   { fold: 'mcpQuantumCache', pair: 'mcp/cache', dual: 'cache/mcp', toolId: 'mcp-cache', dualToolId: 'cache-mcp' },
   { fold: 'mcpQuantumPeriod', pair: 'mcp/period', dual: 'period/mcp', toolId: 'mcp-period', dualToolId: 'period-mcp' },
+  { fold: 'mcpQuantumDot', pair: 'mcp/dot', dual: 'dot/mcp', toolId: 'mcp-dot', dualToolId: 'dot-mcp' },
 ] as const
 
 /**
@@ -6360,7 +6365,7 @@ export function mcpQuantumCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
     const faceCount = faces.length
     const presentCount = faces.filter((f) => f.present).length
     const missingCount = faceCount - presentCount
-    const catalogComplete = missingCount === 0 && faceCount >= (9 * 6 + 1)
+    const catalogComplete = missingCount === 0 && faceCount >= (9 * 6 + 2)
     const starPairs = has('mcp/star') && has('star/mcp') && soft('mcp', 'star') && soft('star', 'mcp')
     const starMeta = catalog.tools.find((t) => t.id === 'mcp-star')
     const starMetaDual = catalog.tools.find((t) => t.id === 'star-mcp')
@@ -6514,7 +6519,7 @@ export function mcpCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
       quantum.computes &&
       quantum.catalogComplete &&
       quantum.missingCount === 0 &&
-      quantum.faceCount >= (9 * 6 + 1)
+      quantum.faceCount >= (9 * 6 + 2)
     const primaryTools =
       mcpList.computes &&
       parity.mcpMatchesToolbox &&
@@ -10641,6 +10646,116 @@ export function runMcpQuantumPeriodExit(_root = '', _argv: readonly string[] = [
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.periodOn && report.qpuRequired === false ? 0 : 1
+}
+
+/**
+ * MCP quantum dot — digit as a point (dot) on the quantum mesh.
+ * Facets: dotOn · digitPoint · qpuRequired=false · physicalFtl=0.
+ * Compose digit/fold · digit/next · coord/anim · particle/wave.
+ * Pairs: mcp/dot · dot/mcp · CLI npm run quantum:mcp-dot
+ * claySolved via theorem · physicalFtl=0 · NOT Clay prize · NOT QPU.
+ */
+export function mcpQuantumDot(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumDot:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const digitFold = soft('digit', 'fold')
+    const digitNext = soft('digit', 'next')
+    const coordAnim = soft('coord', 'anim')
+    const particleWave = soft('particle', 'wave')
+    const digitPoint = digitFold && digitNext && coordAnim
+    const dotOn = digitPoint && particleWave
+    const pairS = has('mcp/dot')
+    const pairD = has('dot/mcp')
+    const foldS = foldPair(toUuid('cmd:mcp'), toUuid('cmd:dot'))
+    const foldD = foldPair(toUuid('cmd:dot'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-dot')
+    const metaDual = catalog.tools.find((t) => t.id === 'dot-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      dotOn &&
+      digitPoint &&
+      digitFold &&
+      digitNext &&
+      coordAnim &&
+      particleWave &&
+      pairS &&
+      pairD &&
+      foldS.bidirectional &&
+      foldD.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumDot' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumDot' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumDot', on },
+      { facet: 'dotOn', on: dotOn },
+      { facet: 'digitPoint', on: digitPoint },
+      { facet: 'digit/fold', on: digitFold },
+      { facet: 'digit/next', on: digitNext },
+      { facet: 'coord/anim', on: coordAnim },
+      { facet: 'particle/wave', on: particleWave },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: 'compose digit/fold · digit/next · coord/anim · particle/wave', on: dotOn },
+      { facet: 'pair mcp/dot · dot/mcp', on: pairS && pairD && foldS.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-dot:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-dot', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumDot: on,
+      dotOn,
+      digitPoint,
+      digitFold,
+      digitNext,
+      coordAnim,
+      particleWave,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, foldS.merged, foldD.merged]),
+      pairs: ['mcp/dot', 'dot/mcp'] as const,
+      cli: 'npm run quantum:mcp-dot',
+      route: '/en/quantum-tools#mcp-dot',
+      statement:
+        `mcpQuantumDot — dotOn=${dotOn ? 1 : 0} digitPoint=${digitPoint ? 1 : 0} ` +
+        `digitFold=${digitFold ? 1 : 0} digitNext=${digitNext ? 1 : 0} ` +
+        `coordAnim=${coordAnim ? 1 : 0} particleWave=${particleWave ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP quantum dot — digit as point · digit/fold · digit/next · coord/anim · particle/wave. clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `dot · dotOn=${dotOn ? 1 : 0} · digitPoint=${digitPoint ? 1 : 0} · ` +
+        `digitFold=${digitFold ? 1 : 0} · digitNext=${digitNext ? 1 : 0} · ` +
+        `coordAnim=${coordAnim ? 1 : 0} · particleWave=${particleWave ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumDotExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumDot()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-dot — dotOn=${report.dotOn} digitPoint=${report.digitPoint} ` +
+      `fold=${report.digitFold} next=${report.digitNext} coord=${report.coordAnim} ` +
+      `particle=${report.particleWave} qpu=${report.qpuRequired} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const fct of report.facets) {
+    process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.dotOn && report.qpuRequired === false ? 0 : 1
 }
 
 /** Sealed-safe browser key for last experiment config (UI preference only — never secrets). */
