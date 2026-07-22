@@ -309,6 +309,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'formula/metrics',
   'metrics/map',
   'theorem/metrics',
+  'quantum/map',
+  'map/quantum',
   'page/gaps',
   'gaps/page',
   'fund/ai',
