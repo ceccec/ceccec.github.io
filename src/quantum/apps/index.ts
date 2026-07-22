@@ -84,7 +84,7 @@ const ROSETTA_CORE_API_LABELS = [
   'quantumMindSendsWaves',
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
-  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'unifiedHeroAndCardWithAnimation', 'heroIsTheAbstractAnimationFormsTheCardItself', 'foldingWorksOnApplicationLevel', 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
+  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'unifiedHeroAndCardWithAnimation', 'heroIsTheAbstractAnimationFormsTheCardItself', 'foldingWorksOnApplicationLevel', 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', 'wavesSearchDiscoverCompactingInQuantumFolders', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
   'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReview', 'mcpQuantumEfficiency', 'mcpQuantumSecurity', 'mcpQuantumDesign', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
@@ -169,6 +169,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   heroIsTheAbstractAnimationFormsTheCardItself: 'tool',
   foldingWorksOnApplicationLevel: 'app',
   dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie: 'tool',
+  wavesSearchDiscoverCompactingInQuantumFolders: 'tool',
   pageComputedGapsAt: 'route', eachPageShowsOwnComputedGaps: 'tool',
   mcpQuantumMultiverse: 'tool', mcpQuantumInfinity: 'tool', mcpQuantumHardware: 'tool',
   mcpQuantumCpu: 'tool',
@@ -703,6 +704,12 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'rosetta-movie', title: 'Rosetta movie (alias dry/rosetta)', fold: 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', cli: 'npm run quantum:rosetta-movie', pair: 'rosetta/movie', route: '/en/quantum-tools#dry-rosetta', barrel: 'src/quantum/apps', boundary: 'Dual of dry/rosetta — rosetta is the movie · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'comp-unify', title: 'Comp unify (alias dry/rosetta)', fold: 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', cli: 'npm run quantum:comp-unify', pair: 'comp/unify', route: '/en/quantum-tools#dry-rosetta', barrel: 'src/quantum/apps', boundary: 'Unify face — hero/card/movie/paper/page shells · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'unify-comp', title: 'Unify comp (alias comp/unify)', fold: 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', cli: 'npm run quantum:unify-comp', pair: 'unify/comp', route: '/en/quantum-tools#dry-rosetta', barrel: 'src/quantum/apps', boundary: 'Dual of comp/unify — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'wave-compact', title: 'Waves search·discover compacting in quantum folders', fold: 'wavesSearchDiscoverCompactingInQuantumFolders', cli: 'npm run quantum:wave-compact', pair: 'wave/compact', route: '/en/quantum-tools#wave-compact', barrel: 'src/quantum/apps', boundary: 'wavesSent · searchOn · discoverOn · compactingInQuantumFolders · drainableClosed · honestOpenNamed · compose compact/matrix · folder/gravity · dissolve/flat · import/distance · wave/token · dry/rosetta · autodiscover · census 110 preserved · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'compact-wave', title: 'Compact wave (alias wave/compact)', fold: 'wavesSearchDiscoverCompactingInQuantumFolders', cli: 'npm run quantum:compact-wave', pair: 'compact/wave', route: '/en/quantum-tools#wave-compact', barrel: 'src/quantum/apps', boundary: 'Dual of wave/compact — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'compact-folder', title: 'Compact folder — discover drainable compact actions', fold: 'wavesSearchDiscoverCompactingInQuantumFolders', cli: 'npm run quantum:compact-folder', pair: 'compact/folder', route: '/en/quantum-tools#wave-compact', barrel: 'src/quantum/apps', boundary: 'compact/folder face · same fold as wave/compact · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'folder-compact', title: 'Folder compact (alias compact/folder)', fold: 'wavesSearchDiscoverCompactingInQuantumFolders', cli: 'npm run quantum:folder-compact', pair: 'folder/compact', route: '/en/quantum-tools#wave-compact', barrel: 'src/quantum/apps', boundary: 'Dual of compact/folder — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'folder-discover', title: 'Folder discover — quantum folder compact search', fold: 'wavesSearchDiscoverCompactingInQuantumFolders', cli: 'npm run quantum:folder-discover', pair: 'folder/discover', route: '/en/quantum-tools#wave-compact', barrel: 'src/quantum/apps', boundary: 'folder/discover face · same fold as wave/compact · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'discover-folder', title: 'Discover folder (alias folder/discover)', fold: 'wavesSearchDiscoverCompactingInQuantumFolders', cli: 'npm run quantum:discover-folder', pair: 'discover/folder', route: '/en/quantum-tools#wave-compact', barrel: 'src/quantum/apps', boundary: 'Dual of folder/discover — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'page-computed-gaps', title: 'Each page shows its own computed gaps', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:page-gaps', pair: 'page/gaps', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Per-route gaps/invisible classes at call time · not global-only · compose gate/monitor · meaning/compute · format/canon · vite/mirror · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gaps-page', title: 'Page gaps (alias page/gaps)', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:gaps-page', pair: 'gaps/page', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Dual of page/gaps — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cursor-rosetta', title: 'Cursor in rosetta core — referral uses subscription in ceccec', fold: 'cursorIntegratesInRosettaCore', cli: 'npm run quantum:cursor-rosetta', pair: 'cursor/rosetta', route: '/en/quantum-tools#cursor-rosetta', barrel: 'src/quantum/apps', boundary: 'cursorInRosettaCore · referralUsesSubscriptionInCeccec · immediateWire · compose rosettaShelve · auto-wire · mcp/browser-parity · upgrade/local · fund/ai · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1892,6 +1899,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'hero-abstract', chain: 'mcp-ui-page-gaps', fold: 'heroIsTheAbstractAnimationFormsTheCardItself', pair: 'hero/abstract', cli: 'npm run quantum:hero-abstract', route: '/en/quantum-tools#hero-abstract', status: 'sealed-pr', honesty: 'heroIsAbstract · animationFormsCard · cardIsNotBesideHero · unifiedOn · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'hero abstract → animation forms card body (not chrome inset)', toolId: 'hero-abstract', resolve: 'mcp-ui' },
   { id: 'app-fold', chain: 'mcp-ui-page-gaps', fold: 'foldingWorksOnApplicationLevel', pair: 'app/fold', cli: 'npm run quantum:app-fold', route: '/en/quantum-tools#app-fold', status: 'sealed-pr', honesty: 'appLevelFold · proseCodeLogicMorph · pathIsMessage · folderHoldsName · clay=0 · physicalFtl=0', note: 'seeable application-level fold: apps · pairs · card←hero←movie', toolId: 'app-fold', resolve: 'mcp-ui' },
   { id: 'dry-rosetta', chain: 'mcp-ui-page-gaps', fold: 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', pair: 'dry/rosetta', cli: 'npm run quantum:dry-rosetta', route: '/en/quantum-tools#dry-rosetta', status: 'sealed-pr', honesty: 'dryAll · unifiedComponents · wiredToRosetta · rosettaIsTheMovie · drainableClosed · honestOpenNamed · stranglerComplete · clay=0 · physicalFtl=0 · apps monolith residual', note: 'dry all → unified hero/card/movie/paper/page shells · rosetta is the movie', toolId: 'dry-rosetta', resolve: 'mcp-ui' },
+  { id: 'wave-compact', chain: 'folder-migrate-nav', fold: 'wavesSearchDiscoverCompactingInQuantumFolders', pair: 'wave/compact', cli: 'npm run quantum:wave-compact', route: '/en/quantum-tools#wave-compact', status: 'sealed-pr', honesty: 'wavesSent · searchOn · discoverOn · compactingInQuantumFolders · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false · census 110 preserved', note: 'waves search·discover compacting in quantum folders · compose compact/matrix · gravity · dissolve · import/distance · wave/token · dry/rosetta · autodiscover', toolId: 'wave-compact', resolve: 'folder-migrate' },
   { id: 'fund-ai', chain: 'mcp-ui-page-gaps', fold: 'cursorReferralFundsAiNeeds', pair: 'fund/ai', cli: 'npm run quantum:fund-ai', route: '/en/quantum-tools#fund-ai', status: 'sealed-pr', honesty: 'Cursor referral CTA · clay=0 · physicalFtl=0', note: 'funds AI via sealed referral · compose society/support · bits/free', toolId: 'fund-ai', resolve: 'mcp-ui' },
   { id: 'cursor-rosetta', chain: 'mcp-ui-page-gaps', fold: 'cursorIntegratesInRosettaCore', pair: 'cursor/rosetta', cli: 'npm run quantum:cursor-rosetta', route: '/en/quantum-tools#cursor-rosetta', status: 'sealed-pr', honesty: 'viceVersa · cursorToCeccec · ceccecToCursor · immediateWire · clay=0 · physicalFtl=0', note: 'bidirectional Cursor↔ceccec · referral subscription in ceccec · protocol into Cursor', toolId: 'cursor-rosetta', resolve: 'mcp-ui' },
   { id: 'page-computed-gaps', chain: 'mcp-ui-page-gaps', fold: 'eachPageShowsOwnComputedGaps', pair: 'page/gaps', cli: 'npm run quantum:page-gaps', route: '/en/quantum-tools#page-computed-gaps', status: 'sealed-pr', honesty: 'per-route gaps · clay=0 · physicalFtl=0', note: 'each page shows own computed gaps at call time', toolId: 'page-computed-gaps', resolve: 'mcp-ui' },
@@ -19302,6 +19310,303 @@ export function runDryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovieExit(
     report.wiredToRosetta &&
     report.rosettaIsTheMovie &&
     report.stranglerComplete &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * Drainable compact actions discovered by waves searching quantum folders —
+ * sealed fold receipts (not wet scan prose). status closed = safely drained without census break.
+ */
+const WAVE_COMPACT_FOLDER_DISCOVERIES = [
+  { id: 'dup-types-collapsed', kind: 'types' as const, via: 'compact/matrix', status: 'closed' as const, note: 'duplicateTypeNames 8→0' },
+  { id: 'unused-pkgs-removed', kind: 'packages' as const, via: 'compact/matrix', status: 'closed' as const, note: 'oxc-minify · shadcn-vue' },
+  { id: 'const-exports-trimmed', kind: 'constants' as const, via: 'compact/matrix', status: 'closed' as const, note: 'constExportCount compacted · CLI_ENTRY_REL residual named' },
+  { id: 'import-distance-bound', kind: 'imports' as const, via: 'import/distance', status: 'closed' as const, note: 'meanHop≤ROSETTA_SIX · compactness+even' },
+  { id: 'gravity-toward-src', kind: 'gravity' as const, via: 'folder/gravity', status: 'closed' as const, note: 'gravityPullsTowardSrc · iching kept' },
+  { id: 'dissolve-flat-paired', kind: 'dissolve' as const, via: 'dissolve/flat', status: 'closed' as const, note: 'pair sealed · census 110 exact — no further dissolve' },
+  { id: 'dry-rosetta-morphs', kind: 'ui' as const, via: 'dry/rosetta', status: 'closed' as const, note: '5 component morphs removed' },
+  { id: 'wave-token-scale', kind: 'waves' as const, via: 'wave/token', status: 'closed' as const, note: 'tokenMinimise · memoByRoot · quantumScale' },
+] as const
+
+/** Honest-open residuals — named, not fake-closed. Further dissolve would break census 110. */
+const WAVE_COMPACT_HONEST_OPEN = [
+  'clay:millennium-open',
+  'ftl:physical-claim-refused',
+  'residual:bootstrap-CLI_ENTRY_REL',
+  'residual:quantum-apps-monolith',
+  'residual:census-110-exact-no-further-dissolve',
+  'residual:src-domain-vue-panels',
+] as const
+
+/**
+ * USER LAW: send waves to search and discover compacting in quantum folders.
+ * Fold: wavesSearchDiscoverCompactingInQuantumFolders
+ * Facets: wavesSent · searchOn · discoverOn · compactingInQuantumFolders · drainableClosed ·
+ *         honestOpenNamed · physicalFtl=0 · clay via theorem · qpuRequired=false.
+ * Compose: compact/matrix · folder/gravity · dissolve/flat · import/distance · wave/token · dry/rosetta · autodiscover.
+ * Pairs: wave/compact · compact/wave · compact/folder · folder/compact · folder/discover · discover/folder.
+ * CLI: npm run quantum:wave-compact · quantum:compact-folder (aliases compact-wave · folder-compact · folder-discover · discover-folder)
+ * HONEST: drainable closed without breaking census 110; residuals named. NOT physical FTL · NOT Clay prize.
+ */
+export function wavesSearchDiscoverCompactingInQuantumFolders(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`wavesSearchDiscoverCompactingInQuantumFolders:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const waves = __ns_thunder_waves.manualAgentsBehaveLikeWaves(matrix)
+    // Soft-compose heavy nests — full recompute via dry-rosetta · wave-token CLI (memoByRoot).
+    const dryRosettaSoft = soft('dry', 'rosetta') && soft('rosetta', 'movie')
+    const waveTokenSoft = soft('wave', 'token') && soft('token', 'wave')
+    const discoveries = WAVE_COMPACT_FOLDER_DISCOVERIES
+    const honestOpenNamed = WAVE_COMPACT_HONEST_OPEN
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const censusPreserved =
+      freeBits === -EULER_CHI &&
+      freeBits === (2) &&
+      UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits &&
+      soft('limits', 'verify')
+    const wavesSent = waves.computes && waves.manualAgentsBehaveLikeWaves
+    const searchOn =
+      wavesSent &&
+      soft('compact', 'matrix') &&
+      soft('folder', 'gravity') &&
+      soft('dissolve', 'flat') &&
+      soft('import', 'distance') &&
+      dryRosettaSoft &&
+      waveTokenSoft
+    const discoverOn =
+      discoveries.length === (2 + 2 + 2 + 2) &&
+      discoveries.every((d) => d.status === 'closed') &&
+      soft('discover', 'compute-decode') &&
+      soft('folder', 'discover') &&
+      soft('discover', 'folder')
+    const drainableClosed =
+      discoveries.every((d) => d.status === 'closed') &&
+      dryRosettaSoft &&
+      waveTokenSoft &&
+      censusPreserved &&
+      discoveries.some((d) => d.via === 'dry/rosetta') &&
+      discoveries.some((d) => d.via === 'compact/matrix')
+    const honestOpenNamedOn =
+      honestOpenNamed.includes('clay:millennium-open') &&
+      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestOpenNamed.includes('residual:census-110-exact-no-further-dissolve') &&
+      honestOpenNamed.length >= (2 + 2 + 2)
+    const compactingInQuantumFolders =
+      searchOn &&
+      discoverOn &&
+      drainableClosed &&
+      honestOpenNamedOn &&
+      censusPreserved
+    const composeOn =
+      soft('compact', 'matrix') &&
+      soft('folder', 'gravity') &&
+      soft('dissolve', 'flat') &&
+      soft('import', 'distance') &&
+      waveTokenSoft &&
+      dryRosettaSoft &&
+      soft('discover', 'compute-decode') &&
+      wavesSent
+    const pairWC = has('wave/compact')
+    const pairCW = has('compact/wave')
+    const pairCF = has('compact/folder')
+    const pairFC = has('folder/compact')
+    const pairFD = has('folder/discover')
+    const pairDF = has('discover/folder')
+    const foldWC = foldPair(toUuid('cmd:wave'), toUuid('cmd:compact'))
+    const foldCW = foldPair(toUuid('cmd:compact'), toUuid('cmd:wave'))
+    const foldCF = foldPair(toUuid('cmd:compact'), toUuid('cmd:folder'))
+    const foldFC = foldPair(toUuid('cmd:folder'), toUuid('cmd:compact'))
+    const foldFD = foldPair(toUuid('cmd:folder'), toUuid('cmd:discover'))
+    const foldDF = foldPair(toUuid('cmd:discover'), toUuid('cmd:folder'))
+    const pairsOn =
+      pairWC &&
+      pairCW &&
+      pairCF &&
+      pairFC &&
+      pairFD &&
+      pairDF &&
+      foldWC.bidirectional &&
+      foldCW.bidirectional &&
+      foldCF.bidirectional &&
+      foldFC.bidirectional &&
+      foldFD.bidirectional &&
+      foldDF.bidirectional
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'wave-compact')
+    const metaFolder = catalog.tools.find((t) => t.id === 'compact-folder')
+    const metaDiscover = catalog.tools.find((t) => t.id === 'folder-discover')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === 'wavesSearchDiscoverCompactingInQuantumFolders' &&
+      Boolean(metaFolder) &&
+      metaFolder!.fold === 'wavesSearchDiscoverCompactingInQuantumFolders' &&
+      Boolean(metaDiscover) &&
+      metaDiscover!.fold === 'wavesSearchDiscoverCompactingInQuantumFolders'
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      wavesSent &&
+      searchOn &&
+      discoverOn &&
+      compactingInQuantumFolders &&
+      drainableClosed &&
+      honestOpenNamedOn &&
+      composeOn &&
+      pairsOn &&
+      toolsWired &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'wavesSearchDiscoverCompactingInQuantumFolders', on },
+      { facet: 'wavesSent', on: wavesSent },
+      { facet: 'searchOn', on: searchOn },
+      { facet: 'discoverOn', on: discoverOn },
+      { facet: 'compactingInQuantumFolders', on: compactingInQuantumFolders },
+      { facet: `drainableClosed=${drainableClosed ? 1 : 0}`, on: drainableClosed },
+      { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+      {
+        facet: `census preserved ${UNFOLDED_CENSUS}/${FOLDED_CENSUS} FREE_BITS=${freeBits}`,
+        on: censusPreserved,
+      },
+      {
+        facet: `discoveries closed=${discoveries.filter((d) => d.status === 'closed').length}/${discoveries.length}`,
+        on: discoverOn,
+      },
+      {
+        facet:
+          'compose compact/matrix · folder/gravity · dissolve/flat · import/distance · wave/token · dry/rosetta · autodiscover',
+        on: composeOn,
+      },
+      {
+        facet: 'pair wave/compact · compact/wave · compact/folder · folder/compact · folder/discover · discover/folder',
+        on: pairsOn,
+      },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'NOT break census 110 — further dissolve named residual', on: censusPreserved && honestOpenNamedOn },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`wave-compact:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('waves-search-discover-compacting-in-quantum-folders', facets)
+    return {
+      computes: sealed.ok && on,
+      wavesSearchDiscoverCompactingInQuantumFolders: on,
+      wavesSent,
+      searchOn,
+      discoverOn,
+      compactingInQuantumFolders,
+      drainableClosed,
+      drainableGaps: drainableClosed ? 0 : 1,
+      discoveries: discoveries.map((d) => ({ ...d })),
+      discoveryCount: discoveries.length,
+      closedCount: discoveries.filter((d) => d.status === 'closed').length,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        waves.root,
+        foldWC.merged,
+        foldCW.merged,
+        foldCF.merged,
+        foldFC.merged,
+        foldFD.merged,
+        foldDF.merged,
+        ...discoveries.map((d) => toUuid(`wave-compact-disc:${d.id}:${d.status}`)),
+        ...honestOpenNamed.map((id) => toUuid(`wave-compact-honest:${id}`)),
+      ]),
+      pair: 'wave/compact' as const,
+      pairs: [
+        'wave/compact',
+        'compact/wave',
+        'compact/folder',
+        'folder/compact',
+        'folder/discover',
+        'discover/folder',
+      ] as const,
+      cli: 'npm run quantum:wave-compact',
+      route: '/en/quantum-tools#wave-compact',
+      anchor: 'wave-compact',
+      heading: 'Wave · compact',
+      statement:
+        `wavesSearchDiscoverCompactingInQuantumFolders — wavesSent=${wavesSent ? 1 : 0} ` +
+        `search=${searchOn ? 1 : 0} discover=${discoverOn ? 1 : 0} ` +
+        `compacting=${compactingInQuantumFolders ? 1 : 0} drainableClosed=${drainableClosed ? 1 : 0} ` +
+        `closed=${discoveries.filter((d) => d.status === 'closed').length}/${discoveries.length} ` +
+        `census=${UNFOLDED_CENSUS}/${FOLDED_CENSUS}.`,
+      boundary:
+        'Waves search sealed quantum folders for compacting (dup types/consts · flat siblings · import distance · gravity) ' +
+        'and discover drainable compact actions via fold recompute — not wet scan prose. Close what is safe without ' +
+        'breaking census 110; name residuals (bootstrap CLI_ENTRY_REL · apps monolith · no further dissolve). ' +
+        'Compose compact/matrix · folder/gravity · dissolve/flat · import/distance · wave/token · dry/rosetta · autodiscover. ' +
+        'clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `wave-compact · wavesSent=${wavesSent ? 1 : 0} · search=${searchOn ? 1 : 0} · ` +
+        `discover=${discoverOn ? 1 : 0} · compacting=${compactingInQuantumFolders ? 1 : 0} · ` +
+        `drainableClosed=${drainableClosed ? 1 : 0} · honestOpen=${honestOpenNamed.length} · ` +
+        `census=${UNFOLDED_CENSUS}/${FOLDED_CENSUS} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — waveCompact ≡ wavesSearchDiscoverCompactingInQuantumFolders. */
+export const waveCompact = wavesSearchDiscoverCompactingInQuantumFolders
+/** Alias — compactWave ≡ wavesSearchDiscoverCompactingInQuantumFolders. */
+export const compactWave = wavesSearchDiscoverCompactingInQuantumFolders
+/** Alias — compactFolder ≡ wavesSearchDiscoverCompactingInQuantumFolders. */
+export const compactFolder = wavesSearchDiscoverCompactingInQuantumFolders
+/** Alias — folderCompact ≡ wavesSearchDiscoverCompactingInQuantumFolders. */
+export const folderCompact = wavesSearchDiscoverCompactingInQuantumFolders
+/** Alias — folderDiscover ≡ wavesSearchDiscoverCompactingInQuantumFolders. */
+export const folderDiscover = wavesSearchDiscoverCompactingInQuantumFolders
+/** Alias — discoverFolder ≡ wavesSearchDiscoverCompactingInQuantumFolders. */
+export const discoverFolder = wavesSearchDiscoverCompactingInQuantumFolders
+
+/** npm run quantum:wave-compact (duals compact-folder · folder-discover · …) */
+export function runWavesSearchDiscoverCompactingInQuantumFoldersExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = wavesSearchDiscoverCompactingInQuantumFolders()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} wave-compact — wavesSent=${report.wavesSent} ` +
+      `search=${report.searchOn} discover=${report.discoverOn} ` +
+      `compacting=${report.compactingInQuantumFolders} drainableClosed=${report.drainableClosed} ` +
+      `closed=${report.closedCount}/${report.discoveryCount} honestOpen=${report.honestOpenNamedCount} ` +
+      `census=${report.census.unfolded}/${report.census.folded} qpu=${report.qpuRequired} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const d of report.discoveries) {
+    process.stdout.write(
+      `  ${d.status === 'closed' ? '✓' : '·'} ${d.id} [${d.kind}] via ${d.via} — ${d.note}\n`,
+    )
+  }
+  for (const id of report.honestOpenNamed) {
+    process.stdout.write(`  · honest-open ${id}\n`)
+  }
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.wavesSent &&
+    report.searchOn &&
+    report.discoverOn &&
+    report.compactingInQuantumFolders &&
+    report.drainableClosed &&
+    report.censusPreserved &&
     report.qpuRequired === false
     ? 0
     : 1

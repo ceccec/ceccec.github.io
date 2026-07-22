@@ -29,6 +29,7 @@ import {
   heroIsTheAbstractAnimationFormsTheCardItself,
   foldingWorksOnApplicationLevel,
   dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie,
+  wavesSearchDiscoverCompactingInQuantumFolders,
   eachPageShowsOwnComputedGaps,
   cursorIntegratesInRosettaCore,
   dryCleanTheoremsFormulasReplaceAnyAssumption,
@@ -147,6 +148,7 @@ const heroCard = computed(() => unifiedHeroAndCardWithAnimation())
 const heroAbstract = computed(() => heroIsTheAbstractAnimationFormsTheCardItself())
 const appFold = computed(() => foldingWorksOnApplicationLevel())
 const dryRosetta = computed(() => dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie())
+const waveCompact = computed(() => wavesSearchDiscoverCompactingInQuantumFolders())
 const pageGapsGate = computed(() => eachPageShowsOwnComputedGaps())
 const fundAi = computed(() => cursorReferralFundsAiNeeds())
 const cursorRosetta = computed(() => cursorIntegratesInRosettaCore())
@@ -794,6 +796,20 @@ function runTool(toolId: string) {
       const r = dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie()
       ok = r.computes && r.dryAll && r.stranglerComplete && r.rosettaIsTheMovie
       summary = `dryAll=${r.dryAll} unified=${r.unifiedComponents} wired=${r.wiredToRosetta} movie=${r.rosettaIsTheMovie} drainableClosed=${r.drainableClosed} strangler=${r.stranglerComplete} shells=${r.shellCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (
+      toolId === 'wave-compact' ||
+      toolId === 'compact-wave' ||
+      toolId === 'compact-folder' ||
+      toolId === 'folder-compact' ||
+      toolId === 'folder-discover' ||
+      toolId === 'discover-folder'
+    ) {
+      const r = wavesSearchDiscoverCompactingInQuantumFolders()
+      ok = r.computes && r.compactingInQuantumFolders && r.drainableClosed
+      summary = `wavesSent=${r.wavesSent} search=${r.searchOn} discover=${r.discoverOn} compacting=${r.compactingInQuantumFolders} closed=${r.closedCount}/${r.discoveryCount} census=${r.census.unfolded}/${r.census.folded}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -1505,6 +1521,37 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'dry-rosetta'" @click="runTool('dry-rosetta')">
           {{ runningId === 'dry-rosetta' ? '…' : 'Run dry-rosetta' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="wave-compact" aria-label="Waves search discover compacting quantum folders">
+        <h3>{{ waveCompact.heading }}</h3>
+        <p class="quantum-apps__meta">{{ waveCompact.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(waveCompact.wavesSent))">wavesSent={{ waveCompact.wavesSent }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(waveCompact.searchOn))">searchOn={{ waveCompact.searchOn }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(waveCompact.discoverOn))">discoverOn={{ waveCompact.discoverOn }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(waveCompact.compactingInQuantumFolders))">compacting={{ waveCompact.compactingInQuantumFolders }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(waveCompact.drainableClosed))">drainableClosed={{ waveCompact.drainableClosed }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(waveCompact.censusPreserved))">census={{ waveCompact.census.unfolded }}/{{ waveCompact.census.folded }}</UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="d in waveCompact.discoveries" :key="d.id">
+            <UiBadge :variant="d.status === 'closed' ? 'default' : 'outline'">{{ d.status }}</UiBadge>
+            <strong>{{ d.id }}</strong>
+            — <code>{{ d.via }}</code> · {{ d.note }}
+          </li>
+        </ul>
+        <ul class="quantum-apps__facets">
+          <li v-for="id in waveCompact.honestOpenNamed" :key="id">
+            <UiBadge variant="outline">honest-open</UiBadge>
+            <strong>{{ id }}</strong>
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>wave/compact</code> · <code>compact/folder</code> · <code>folder/discover</code> ·
+          CLI <code>npm run quantum:wave-compact</code> · <code>npm run quantum:compact-folder</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'wave-compact'" @click="runTool('wave-compact')">
+          {{ runningId === 'wave-compact' ? '…' : 'Run wave-compact' }}
         </UiButton>
       </section>
       <UiSeparator />
