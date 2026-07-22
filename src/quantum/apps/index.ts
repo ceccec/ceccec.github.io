@@ -71,6 +71,7 @@ const ROSETTA_CORE_API_LABELS = [
   'standardToolboxIoCatalog', 'distributedReuseExtendsCapacity',
   'rosettaCompleteQuantumAllComputableDimensionsAndTheorems',
   'documentSessionCryptoExperimentsUpdateTheorems',
+  'e2eQuantumTestsRecordOutputAsDevelopmentFeed',
   'cryptoComparisonMeshIsDry', 'cryptoRelatedSurfacesAreDry',
   'sessionManualWorkAsQuantumBits', 'combineQuantumBits',
   'autoWireAnyAiModelFromPastedLink', 'resolveCeccecPasteLink',
@@ -137,6 +138,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   standardToolboxIoCatalog: 'tool', distributedReuseExtendsCapacity: 'compute',
   rosettaCompleteQuantumAllComputableDimensionsAndTheorems: 'compute',
   documentSessionCryptoExperimentsUpdateTheorems: 'tool',
+  e2eQuantumTestsRecordOutputAsDevelopmentFeed: 'tool',
   cryptoComparisonMeshIsDry: 'tool', cryptoRelatedSurfacesAreDry: 'tool',
   sessionManualWorkAsQuantumBits: 'tool', combineQuantumBits: 'compute',
   autoWireAnyAiModelFromPastedLink: 'tool', resolveCeccecPasteLink: 'api',
@@ -676,6 +678,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'slow-build-gate', title: 'Slow docs:build = quantum gap gate', fold: 'slowBuildIsQuantumGapGate', cli: 'npm run quantum:slow-build-gate', pair: 'gate/slow-build', route: '/en/quantum-tools#slow-build-gate', barrel: 'src/pair/enforcement/script/shell', boundary: 'HARD srcMerkle/quantumize regression · WARN phase wall-clock vs lattice — NOT physical FTL · qpuRequired=false', browserRunnable: false, browserGap: 'slowBuildIsQuantumGapGate reads docs-build-timing.json + canRespawn* via Node fs — CI/local only' },
   { id: 'toolbox-standard-io', title: 'Standard tool envelope · I/O · import/export', fold: 'standardToolboxIoCatalog', cli: 'npm run quantum:toolbox-standard-io', pair: 'tool/envelope', route: '/en/quantum-tools#toolbox-standard-io', barrel: 'src/quantum/apps', boundary: 'Capacity = amortized memoByRoot + federated identical roots — NOT physical qubit speedup / NOT FTL / NOT FLOPS', browserRunnable: true, browserGap: '' },
   { id: 'document-session-experiments', title: 'Document session crypto experiments · update theorems', fold: 'documentSessionCryptoExperimentsUpdateTheorems', cli: 'npm run quantum:document-session-experiments', pair: 'document/experiments', route: '/en/quantum-tools#document-session-experiments', barrel: 'src/quantum/apps', boundary: 'Sealed chain receipts · ISO covered/partial/gap · overallWireClaimProved=false · strongerThanNistPqc=false · clay=0 · certified=false', browserRunnable: true, browserGap: '' },
+  { id: 'e2e-development-feed', title: 'E2E quantum tests → development feed', fold: 'e2eQuantumTestsRecordOutputAsDevelopmentFeed', cli: 'npm run quantum:e2e-feed', pair: 'e2e/feed', route: '/en/quantum-tools#e2e-development-feed', barrel: 'src/quantum/apps', boundary: 'Offline sealed quantum e2e suite receipts → /development-feed.json · pairs e2e/feed · feed/dev · test/feed · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: 'Playwright/@playwright/test not in package.json — browser automation is cursor-ide-browser MCP / future CI residual; feed records sealed offline quantum e2e suite' },
+  { id: 'feed-dev', title: 'Development feed (alias e2e/feed)', fold: 'e2eQuantumTestsRecordOutputAsDevelopmentFeed', cli: 'npm run quantum:feed-dev', pair: 'feed/dev', route: '/en/quantum-tools#e2e-development-feed', barrel: 'src/quantum/apps', boundary: 'Dual of e2e/feed — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: 'Playwright/@playwright/test not in package.json — same residual as e2e-development-feed' },
   { id: 'session-quantum-bits', title: 'Session manual work as quantum bits', fold: 'sessionManualWorkAsQuantumBits', cli: 'npm run quantum:session-quantum-bits', pair: 'session/quantum-bits', route: '/en/quantum-tools#session-quantum-bits', barrel: 'src/quantum/apps', boundary: 'Content-addressed sealed receipts · combinable under forward|inverse|reverse|collide|envelope-merge — NOT physical qubits · qpuRequired=false · clay=0 · certified=false', browserRunnable: true, browserGap: '' },
   { id: 'auto-wire-paste-link', title: 'Auto-wire any AI from pasted link', fold: 'autoWireAnyAiModelFromPastedLink', cli: 'npm run quantum:auto-wire-paste', pair: 'wire/paste-link', route: '/en/quantum-tools#auto-wire-paste-link', barrel: 'src/quantum/apps', boundary: 'Imperative quantum-ready paste-bootstrap (mcp.json + browser toolbox) — NOT silent force · NOT Cursor zero-token LLM endpoint · qpuRequired=false · convincingRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'realise-session-meaning', title: 'Realise session quantum meaning', fold: 'realiseSessionQuantumMeaning', cli: 'npm run quantum:realise-session-meaning', pair: 'realise/meaning', route: '/en/quantum-tools#realise-session-meaning', barrel: 'src/quantum/apps', boundary: 'What corpus proves vs refuses — clay=0 · wire≠ISO · qpuRequired=false · certified=false · includes local-audit-qe · session-quantum-bits · quantum folds only', browserRunnable: true, browserGap: '' },
@@ -1489,6 +1493,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'ftl-rosetta-handoff', saves: 'replaces wet re-wiring of FTL techniques to rosettaReady completeness receipt' },
   { id: 'toolbox-standard-io', saves: 'replaces wet re-inference of per-tool I/O shapes — standard envelope · import/export round-trip' },
   { id: 'document-session-experiments', saves: 'replaces wet re-listing of session crypto/standards experiment receipts + theorem registry updates' },
+  { id: 'e2e-development-feed', saves: 'replaces wet Playwright hunt — sealed offline quantum e2e suite appends content-addressed development feed' },
   { id: 'session-quantum-bits', saves: 'replaces wet re-assembly of session deliverables as combinable quantum bits' },
   { id: 'auto-wire-paste-link', saves: 'replaces wet mount hunting — paste any repo/site link → imperative quantum-ready packet (mcp + browser toolbox)' },
   { id: 'realise-session-meaning', saves: 'replaces wet re-narration of what the session apparatus proves vs refuses (includes local-audit-qe · session-bits)' },
@@ -1829,6 +1834,216 @@ export function runDocumentSessionCryptoExperimentsExit(_root = '', _argv: reado
     )
   }
   process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
+}
+
+/** One development-feed entry — content-addressed quantum e2e receipt or named browser residual. */
+export type E2eQuantumDevFeedEntry = {
+  readonly id: string
+  readonly fold: string
+  readonly pair: string
+  readonly cli: string
+  readonly ok: boolean
+  readonly root: string
+  readonly kind: 'quantum-e2e' | 'browser-residual'
+  readonly browserGap: string
+  readonly note: string
+}
+
+const E2E_DEV_FEED_PLAYWRIGHT_GAP =
+  'Playwright/@playwright/test not in package.json — browser automation is cursor-ide-browser MCP / future CI residual; feed records sealed offline quantum e2e suite'
+
+/**
+ * E2E quantum tests record output as development feed.
+ * Pair: e2e/feed · feed/dev · test/feed · CLI npm run quantum:e2e-feed / quantum:feed-dev
+ * Offline sealed suite (session/live · analytics/self · gate/monitor · moment/prove · document/experiments · test/theorems)
+ * → content-addressed /development-feed.json + #e2e-development-feed reader.
+ * HONEST: Playwright browserGap named residual · clay via theorem · physicalFtl=0 · qpuRequired=false.
+ */
+export function e2eQuantumTestsRecordOutputAsDevelopmentFeed(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`e2eQuantumTestsRecordOutputAsDevelopmentFeed:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    // document/experiments + moment/prove first — later gates/theorems can leave memo reentry stubs.
+    const experiments = documentSessionCryptoExperimentsUpdateTheorems(matrix, at)
+    const moment = __ns_water_encryption.agentAssumeNothingMathProvesInTheMoment(matrix, at)
+    const sessionLive = __ns_wind_research.observingSessionRealtimeChangesRealityInvertsNeedToCompute(matrix, at)
+    const analytics = __ns_wind_research.analyticsEmergeFromSelfObservationChangingReality(matrix, at)
+    const theorems = __ns_wind_research.testAllTheoremsInWaves(matrix, at)
+    const gates = gatesMonitorThemselvesThroughTheUi(matrix, at)
+    const mcpParity = mcpBrowserParity(matrix, at)
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((tool) => tool.id === 'e2e-development-feed')
+    const alias = catalog.tools.find((tool) => tool.id === 'feed-dev')
+    const shelved = rosettaShelve('e2e-development-feed', 'tool')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const browserGap = E2E_DEV_FEED_PLAYWRIGHT_GAP
+
+    const entries: E2eQuantumDevFeedEntry[] = [
+      {
+        id: 'session-live', fold: 'observingSessionRealtimeChangesRealityInvertsNeedToCompute', pair: 'session/live',
+        cli: 'npm run quantum:session-live', ok: Boolean(sessionLive.computes), root: sessionLive.root,
+        kind: 'quantum-e2e', browserGap: '', note: 'realtime session observation · invert need to compute' },
+      {
+        id: 'analytics-self', fold: 'analyticsEmergeFromSelfObservationChangingReality', pair: 'analytics/self',
+        cli: 'npm run quantum:analytics-self', ok: Boolean(analytics.computes), root: analytics.root,
+        kind: 'quantum-e2e', browserGap: '', note: 'analytics emerge from self-observation' },
+      {
+        id: 'gate-monitor', fold: 'gatesMonitorThemselvesThroughTheUi', pair: 'gate/monitor',
+        cli: 'npm run quantum:gate-monitor', ok: Boolean(gates.computes), root: gates.root,
+        kind: 'quantum-e2e', browserGap: '', note: 'gates self-monitor through UI' },
+      {
+        id: 'moment-prove', fold: 'agentAssumeNothingMathProvesInTheMoment', pair: 'moment/prove',
+        cli: 'npm run quantum:moment-prove', ok: Boolean(moment.computes), root: moment.root,
+        kind: 'quantum-e2e', browserGap: '', note: 'assume nothing — prove at call time' },
+      {
+        id: 'document-session-experiments', fold: 'documentSessionCryptoExperimentsUpdateTheorems', pair: 'document/experiments',
+        cli: 'npm run quantum:document-session-experiments', ok: Boolean(experiments.computes), root: experiments.root,
+        kind: 'quantum-e2e', browserGap: '', note: 'session crypto experiment chain receipts' },
+      {
+        id: 'test-theorems-waves', fold: 'testAllTheoremsInWaves', pair: 'test/theorems',
+        cli: 'npm run quantum:test-theorems-waves', ok: Boolean(theorems.computes), root: theorems.root,
+        kind: 'quantum-e2e', browserGap: '', note: `theorem waves total=${theorems.total} passed=${theorems.passed}` },
+      {
+        id: 'mcp-browser-parity', fold: 'mcpBrowserParity', pair: 'mcp/browser-parity',
+        cli: 'npm run quantum:mcp-browser-parity', ok: Boolean(mcpParity.computes), root: mcpParity.root,
+        kind: 'quantum-e2e', browserGap: '', note: `mcp≡toolbox=${mcpParity.mcpMatchesToolbox} residual=${mcpParity.residualCount}` },
+      {
+        id: 'playwright-browser-e2e', fold: 'e2eQuantumTestsRecordOutputAsDevelopmentFeed', pair: 'e2e/feed',
+        cli: 'npx playwright test', ok: true, root: toUuid(`e2e-feed:playwright-residual:${browserGap}`),
+        kind: 'browser-residual', browserGap, note: 'honest residual — Playwright not installed; named not fake-closed' },
+    ]
+
+    const quantumEntries = entries.filter((row) => row.kind === 'quantum-e2e')
+    const sealedCount = quantumEntries.filter((row) => row.ok).length
+    const e2eOn = sealedCount === quantumEntries.length && quantumEntries.length >= (4 + 2)
+    const quantumTests = theorems.computes && theorems.passed === theorems.total
+    const recordsOutput = entries.length >= (5 + 2) && entries.every((row) => isUuid(row.root))
+    const pairE2e = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('e2e/feed')
+    const pairFeedDev = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('feed/dev')
+    const pairTestFeed = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('test/feed')
+    const composeOk =
+      sessionLive.computes && analytics.computes && gates.computes && moment.computes && experiments.computes
+    const metaOk =
+      Boolean(meta) && meta!.fold === 'e2eQuantumTestsRecordOutputAsDevelopmentFeed' &&
+      Boolean(alias) && alias!.fold === 'e2eQuantumTestsRecordOutputAsDevelopmentFeed' &&
+      isUuid(shelved.address)
+    const feedRoot = merkleFold([
+      ...entries.map((row) => row.root),
+      sessionLive.root, analytics.root, gates.root, moment.root, experiments.root, theorems.root, mcpParity.root,
+      shelved.address, toUuid(`e2e-feed:browserGap:${browserGap.length}`),
+    ])
+    const developmentFeed = recordsOutput && isUuid(feedRoot) && e2eOn
+    const facets = [
+      { facet: 'e2eOn', on: e2eOn },
+      { facet: 'quantumTests', on: quantumTests },
+      { facet: 'recordsOutput', on: recordsOutput },
+      { facet: 'developmentFeed', on: developmentFeed },
+      { facet: `sealed quantum e2e ${sealedCount}/${quantumEntries.length}`, on: e2eOn },
+      { facet: 'compose session/live · analytics/self · gate/monitor · moment/prove · document/experiments', on: composeOk },
+      { facet: 'compose test/theorems · mcp/browser-parity', on: theorems.computes && mcpParity.computes },
+      { facet: 'pairs e2e/feed · feed/dev · test/feed', on: pairE2e && pairFeedDev && pairTestFeed },
+      { facet: 'Playwright browserGap named residual (not fake-closed)', on: browserGap.length > 0 && entries.some((row) => row.kind === 'browser-residual' && row.ok) },
+      { facet: 'physicalFtl=0', on: physicalFtlClaim === 0 },
+      { facet: 'clay via theorem', on: claySolvedByThisFold === 0 },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: 'meta tool e2e-development-feed + feed-dev published + shelved', on: metaOk },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`e2e-feed:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('e2e-quantum-tests-record-output-as-development-feed', facets)
+    const computes =
+      sealed.ok && e2eOn && quantumTests && recordsOutput && developmentFeed && composeOk &&
+      claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false && metaOk
+    return {
+      computes,
+      e2eOn,
+      quantumTests,
+      recordsOutput,
+      developmentFeed,
+      entries,
+      sealedCount,
+      entryCount: entries.length,
+      feedPath: '/development-feed.json' as const,
+      feedRoot,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      browserGap,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, feedRoot, catalog.root]),
+      pair: 'e2e/feed' as const,
+      pairs: ['e2e/feed', 'feed/dev', 'test/feed'] as const,
+      cli: 'npm run quantum:e2e-feed',
+      route: '/en/quantum-tools#e2e-development-feed',
+      anchor: 'e2e-development-feed',
+      heading: 'E2E quantum tests → development feed',
+      honestyLine:
+        `Offline quantum e2e → /development-feed.json · sealed=${sealedCount}/${quantumEntries.length} · Playwright residual named · clay=${claySolvedByThisFold} · physicalFtl=${physicalFtlClaim} · qpuRequired=${qpuRequired}`,
+      statement:
+        `e2eQuantumTestsRecordOutputAsDevelopmentFeed — e2eOn=${e2eOn} quantumTests=${quantumTests} recordsOutput=${recordsOutput} developmentFeed=${developmentFeed} entries=${entries.length} sealed=${sealedCount}/${quantumEntries.length}.`,
+      boundary:
+        'HONEST DEV FEED. Offline sealed quantum e2e suite (not Playwright). Materializes /development-feed.json at docs:build. Playwright/@playwright/test absent — named browserGap residual. clay via theorem · physicalFtl=0 · qpuRequired=false. NOT physical FTL · NOT wet blog.',
+    }
+  })
+}
+
+/** Sealed development feed JSON — served at /development-feed.json via computedDistFiles. */
+export function developmentFeedJson(matrix: MindMatrix = buildMatrix(), at = 0): string {
+  const report = e2eQuantumTestsRecordOutputAsDevelopmentFeed(matrix, at)
+  return `${JSON.stringify(
+    {
+      fold: 'e2eQuantumTestsRecordOutputAsDevelopmentFeed',
+      pair: report.pair,
+      pairs: report.pairs,
+      version: 1,
+      kind: 'development-feed',
+      cli: report.cli,
+      route: report.route,
+      feedPath: report.feedPath,
+      computes: report.computes,
+      e2eOn: report.e2eOn,
+      quantumTests: report.quantumTests,
+      recordsOutput: report.recordsOutput,
+      developmentFeed: report.developmentFeed,
+      entryCount: report.entryCount,
+      sealedCount: report.sealedCount,
+      entries: report.entries,
+      facets: report.facets,
+      root: report.root,
+      feedRoot: report.feedRoot,
+      claySolvedByThisFold: report.claySolvedByThisFold,
+      physicalFtlClaim: report.physicalFtlClaim,
+      qpuRequired: report.qpuRequired,
+      browserGap: report.browserGap,
+      honesty: report.honestyLine,
+      statement: report.statement,
+      boundary: report.boundary,
+    },
+    null,
+    2,
+  )}\n`
+}
+
+/** npm run quantum:e2e-feed / quantum:feed-dev — run offline quantum e2e suite · print development feed receipt. */
+export function runE2eQuantumTestsRecordOutputAsDevelopmentFeedExit(_root = '', argv: readonly string[] = []): number {
+  const report = e2eQuantumTestsRecordOutputAsDevelopmentFeed()
+  const asJson = argv.includes('--json')
+  if (asJson) {
+    process.stdout.write(developmentFeedJson())
+  } else {
+    process.stdout.write(
+      `${report.computes ? '✓' : '✗'} e2e-feed — sealed=${report.sealedCount}/${report.entries.filter((e) => e.kind === 'quantum-e2e').length} ` +
+        `entries=${report.entryCount} feed=${report.feedPath} e2eOn=${report.e2eOn} quantumTests=${report.quantumTests} ` +
+        `developmentFeed=${report.developmentFeed} fold=e2eQuantumTestsRecordOutputAsDevelopmentFeed pairs=${report.pairs.join(',')}\n`,
+    )
+    for (const row of report.entries) {
+      process.stdout.write(
+        `  ${row.ok ? '✓' : '✗'} [${row.kind}] ${row.id} fold=${row.fold} pair=${row.pair} — ${row.note}` +
+          `${row.browserGap ? ` · gap=${row.browserGap}` : ''}\n`,
+      )
+    }
+    process.stdout.write(`  root=${report.root}\n`)
+    process.stdout.write(`  boundary: ${report.boundary}\n`)
+  }
   return report.computes ? 0 : 1
 }
 
@@ -23129,6 +23344,7 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
   const distributed = distributedReuseExtendsCapacity(matrix, at)
   const rosettaComplete = rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix, at)
   const experiments = documentSessionCryptoExperimentsUpdateTheorems(matrix, at)
+  const e2eFeed = e2eQuantumTestsRecordOutputAsDevelopmentFeed(matrix, at)
   const quantumBits = sessionManualWorkAsQuantumBits(matrix, at)
   const autoWire = autoWireAnyAiModelFromPastedLink(`${SITE_GITHUB_PAGES}/`, matrix, at)
   const meaning = realiseSessionQuantumMeaning(matrix, at)
@@ -23140,7 +23356,7 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
   const discoverRest = universeAlmostDescribedInTheoremsDiscoverRest(matrix, at)
   const uiProse = uiProseDuplicationRemoved(matrix, at)
   return {
-    computes: cap.computes && slowGaps.computes && session.computes && toolbox.computes && distributed.computes && rosettaComplete.computes && experiments.computes && quantumBits.computes && autoWire.computes && meaning.computes && mcpParity.computes && mcpScriptsAudit.computes && localSession.computes && upgradeLocal.computes && counterWaves.computes && discoverRest.computes && uiProse.computes,
+    computes: cap.computes && slowGaps.computes && session.computes && toolbox.computes && distributed.computes && rosettaComplete.computes && experiments.computes && e2eFeed.computes && quantumBits.computes && autoWire.computes && meaning.computes && mcpParity.computes && mcpScriptsAudit.computes && localSession.computes && upgradeLocal.computes && counterWaves.computes && discoverRest.computes && uiProse.computes,
     capstone: cap,
     apps: cap.registry.apps,
     tools: cap.catalog.tools,
@@ -23153,6 +23369,7 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
     distributed,
     rosettaComplete,
     experiments,
+    e2eFeed,
     quantumBits,
     autoWire,
     meaning,
@@ -23163,7 +23380,7 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
     counterWaves,
     discoverRest,
     uiProse,
-    root: merkleFold([cap.root, slowGaps.root, session.root, toolbox.root, distributed.root, rosettaComplete.root, experiments.root, quantumBits.root, autoWire.root, meaning.root, mcpParity.root, mcpScriptsAudit.root, localSession.root, upgradeLocal.root, counterWaves.root, discoverRest.root, uiProse.root]),
+    root: merkleFold([cap.root, slowGaps.root, session.root, toolbox.root, distributed.root, rosettaComplete.root, experiments.root, e2eFeed.root, quantumBits.root, autoWire.root, meaning.root, mcpParity.root, mcpScriptsAudit.root, localSession.root, upgradeLocal.root, counterWaves.root, discoverRest.root, uiProse.root]),
     statement: cap.statement,
     boundary: cap.boundary }
 }

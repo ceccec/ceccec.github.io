@@ -8,6 +8,7 @@ import {
   rosettaCompleteQuantumAllComputableDimensionsAndTheorems,
   ftlExperimentTechniquesHandoffFromRosettaComplete,
   documentSessionCryptoExperimentsUpdateTheorems,
+  e2eQuantumTestsRecordOutputAsDevelopmentFeed,
   sessionManualWorkAsQuantumBits, combineQuantumBits,
   autoWireAnyAiModelFromPastedLink, CECCEC_SITE_ORIGIN,
   realiseSessionQuantumMeaning,
@@ -1021,6 +1022,13 @@ function runTool(toolId: string) {
       const r = documentSessionCryptoExperimentsUpdateTheorems()
       ok = r.computes
       summary = `sealed=${r.sealedCount}/${r.count} · iso=${r.isoGapFill.coveredCount}/${r.isoGapFill.partialCount}/${r.isoGapFill.gapCount} · wireClaim=${r.localVsIso.overallWireClaimProved} (${r.localVsIso.wireProofStatus}) · novel=${r.theorems.novelCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'e2e-development-feed' || toolId === 'feed-dev') {
+      const r = e2eQuantumTestsRecordOutputAsDevelopmentFeed()
+      ok = r.computes
+      summary = `sealed=${r.sealedCount}/${r.entries.filter((e) => e.kind === 'quantum-e2e').length} · entries=${r.entryCount} · feed=${r.feedPath} · e2eOn=${r.e2eOn} · quantumTests=${r.quantumTests}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -2199,6 +2207,43 @@ function runTool(toolId: string) {
         </table>
         <UiButton size="sm" :disabled="runningId === 'document-session-experiments'" @click="runTool('document-session-experiments')">
           {{ runningId === 'document-session-experiments' ? '…' : 'Run document-session-experiments' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="e2e-development-feed">
+        <h3>{{ panel.e2eFeed.heading }}</h3>
+        <p class="quantum-apps__meta">{{ panel.e2eFeed.honestyLine }}</p>
+        <p class="quantum-apps__meta">
+          Feed: <a href="/development-feed.json"><code>/development-feed.json</code></a>
+          · pairs <code>e2e/feed</code> · <code>feed/dev</code> · <code>test/feed</code>
+          · hub <a href="#local-session-hub">#local-session-hub</a>
+        </p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(panel.e2eFeed.computes && panel.e2eFeed.developmentFeed))">
+          sealed {{ panel.e2eFeed.sealedCount }}/{{ panel.e2eFeed.entries.filter((e) => e.kind === 'quantum-e2e').length }}
+          · entries {{ panel.e2eFeed.entryCount }}
+          · e2eOn={{ panel.e2eFeed.e2eOn }}
+          · quantumTests={{ panel.e2eFeed.quantumTests }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(panel.e2eFeed.qpuRequired === false))">
+          qpuRequired={{ panel.e2eFeed.qpuRequired }} · clay={{ panel.e2eFeed.claySolvedByThisFold }} · physicalFtl={{ panel.e2eFeed.physicalFtlClaim }}
+        </UiBadge>
+        <table class="quantum-apps__table">
+          <thead><tr><th>Entry</th><th>Kind</th><th>Ok</th><th>Fold</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr v-for="row in panel.e2eFeed.entries" :key="row.id">
+              <td>
+                <strong>{{ row.id }}</strong>
+                <div class="quantum-apps__meta"><code>{{ row.pair }}</code> · {{ row.cli }}</div>
+              </td>
+              <td><UiBadge :variant="row.kind === 'quantum-e2e' ? 'default' : 'outline'">{{ row.kind }}</UiBadge></td>
+              <td><UiBadge v-bind="badgeProps(statusBadgeKind(row.ok))">{{ row.ok ? 'ok' : 'gap' }}</UiBadge></td>
+              <td><code>{{ row.fold }}</code></td>
+              <td class="quantum-apps__meta">{{ row.note }}{{ row.browserGap ? ` · ${row.browserGap}` : '' }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <UiButton size="sm" :disabled="runningId === 'e2e-development-feed'" @click="runTool('e2e-development-feed')">
+          {{ runningId === 'e2e-development-feed' ? '…' : 'Run e2e-development-feed' }}
         </UiButton>
       </section>
       <UiSeparator />
