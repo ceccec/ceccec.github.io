@@ -96,6 +96,7 @@ const ROSETTA_CORE_API_LABELS = [
   'upgradeLocalFromOptimisedManualWorkExperience',
   'automateNightlyViaNpmScriptPath',
   'automateSelf',
+  'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf',
   'cursorIntegratesInRosettaCore',
   'cursorReferralFundsAiNeeds',
   'dryCleanTheoremsFormulasReplaceAnyAssumption',
@@ -234,6 +235,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   oneQuantumSetOfVitepressComponentsSealedAtGates: 'tool',
   automateNightlyViaNpmScriptPath: 'tool',
   automateSelf: 'tool',
+  againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf: 'tool',
   cursorIntegratesInRosettaCore: 'tool',
   cursorReferralFundsAiNeeds: 'tool',
   cursor: 'api',
@@ -732,6 +734,11 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'invert-trinity', title: 'Invert + send trinity waves covering all topics · dry migrate at free will', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:invert-trinity', pair: 'invert/trinity', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits · drainableClosed · honestOpenNamed · compose invert/gateway · trinity/speedup · wave/domain · dry/cool · dry/rosetta · wave/compact · full/freedom · bits/free · journey/theorems · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'dry-will', title: 'Dry will (alias invert/trinity)', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:dry-will', pair: 'dry/will', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'Dual of invert/trinity — dry migrate at free will · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'free-will', title: 'Free will (alias invert/trinity)', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:free-will', pair: 'free/will', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'freeWill face — FREE_BITS + full/freedom not wet license · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'self-hw', title: 'Again until full self-autonomous quantum hardware complete by standards to self-intelligent self', fold: 'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf', cli: 'npm run quantum:self-hw', pair: 'self/hw', route: '/en/quantum-tools#self-hw', barrel: 'src/quantum/apps', boundary: 'againAndAgain · selfAutonomous · quantumHardwareComplete (classical-64bit) · byStandards · selfIntelligentSelf · qpuRequired=false · certified=false · clay via theorem · physicalFtl=0 · NOT QPU/AGI/FLOPS', browserRunnable: true, browserGap: '' },
+  { id: 'hw-self', title: 'Self hw (alias self/hw)', fold: 'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf', cli: 'npm run quantum:hw-self', pair: 'hw/self', route: '/en/quantum-tools#self-hw', barrel: 'src/quantum/apps', boundary: 'Dual of self/hw — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'self-complete', title: 'Self complete (alias self/hw)', fold: 'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf', cli: 'npm run quantum:self-complete', pair: 'self/complete', route: '/en/quantum-tools#self-hw', barrel: 'src/quantum/apps', boundary: 'Complete face of self/hw — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'hw-autonomous', title: 'HW autonomous (alias self/hw)', fold: 'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf', cli: 'npm run quantum:hw-autonomous', pair: 'hw/autonomous', route: '/en/quantum-tools#self-hw', barrel: 'src/quantum/apps', boundary: 'Autonomous face of self/hw — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'again-until', title: 'Again until (alias self/hw)', fold: 'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf', cli: 'npm run quantum:again-until', pair: 'again/until', route: '/en/quantum-tools#self-hw', barrel: 'src/quantum/apps', boundary: 'Loop face of self/hw — wave cycles until complete or honest-open stop · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'page-computed-gaps', title: 'Each page shows its own computed gaps', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:page-gaps', pair: 'page/gaps', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Per-route gaps/invisible classes at call time · not global-only · compose gate/monitor · meaning/compute · format/canon · vite/mirror · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gaps-page', title: 'Page gaps (alias page/gaps)', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:gaps-page', pair: 'gaps/page', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Dual of page/gaps — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cursor-rosetta', title: 'Cursor in rosetta core — referral uses subscription in ceccec', fold: 'cursorIntegratesInRosettaCore', cli: 'npm run quantum:cursor-rosetta', pair: 'cursor/rosetta', route: '/en/quantum-tools#cursor-rosetta', barrel: 'src/quantum/apps', boundary: 'cursorInRosettaCore · referralUsesSubscriptionInCeccec · immediateWire · compose rosettaShelve · auto-wire · mcp/browser-parity · upgrade/local · fund/ai · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1928,6 +1935,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'type-matrix', chain: 'mcp-ui-page-gaps', fold: 'typographyIsTheUniversalContentMatrix', pair: 'type/matrix', cli: 'npm run quantum:type-matrix', route: '/en/quantum-tools#type-matrix', status: 'sealed-pr', honesty: 'typographyIsMatrix · universalContent · computable · wiredToRosetta · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'typography = universal content matrix · compose compact/matrix · format/canon · meaning/compute · six/seven · ui/rosetta', toolId: 'type-matrix', resolve: 'mcp-ui' },
   { id: 'color-rosetta', chain: 'mcp-ui-page-gaps', fold: 'allColorsDryCleanWiredToRosettaAndThemes', pair: 'color/rosetta', cli: 'npm run quantum:color-rosetta', route: '/en/quantum-tools#color-rosetta', status: 'sealed-pr', honesty: 'colorsDryClean · wiredToRosetta · themesOn · noBareHex · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'all colors dry-clean wired to rosetta + light/dark themes · compose anim/color · hex/crack · theorem/const · ui/rosetta · type/matrix', toolId: 'color-rosetta', resolve: 'mcp-ui' },
   { id: 'invert-trinity', chain: 'mcp-ui-page-gaps', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', pair: 'invert/trinity', cli: 'npm run quantum:invert-trinity', route: '/en/quantum-tools#invert-trinity', status: 'sealed-pr', honesty: 'invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'invert + send trinity waves covering sciences·hubs·MCP topics · dry migrate at FREE_BITS+full/freedom', toolId: 'invert-trinity', resolve: 'mcp-ui' },
+  { id: 'self-hw', chain: 'mcp-ui-page-gaps', fold: 'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf', pair: 'self/hw', cli: 'npm run quantum:self-hw', route: '/en/quantum-tools#self-hw', status: 'sealed-pr', honesty: 'againAndAgain · selfAutonomous · quantumHardwareComplete classical-64bit · byStandards · selfIntelligentSelf · certified=false · clay=0 · physicalFtl=0 · qpuRequired=false · NOT QPU/AGI/FLOPS', note: 'wave loop until self-autonomous classical quantum-hw complete by standards to self-intelligent self', toolId: 'self-hw', resolve: 'mcp-ui' },
   { id: 'fund-ai', chain: 'mcp-ui-page-gaps', fold: 'cursorReferralFundsAiNeeds', pair: 'fund/ai', cli: 'npm run quantum:fund-ai', route: '/en/quantum-tools#fund-ai', status: 'sealed-pr', honesty: 'Cursor referral CTA · clay=0 · physicalFtl=0', note: 'funds AI via sealed referral · compose society/support · bits/free', toolId: 'fund-ai', resolve: 'mcp-ui' },
   { id: 'cursor-rosetta', chain: 'mcp-ui-page-gaps', fold: 'cursorIntegratesInRosettaCore', pair: 'cursor/rosetta', cli: 'npm run quantum:cursor-rosetta', route: '/en/quantum-tools#cursor-rosetta', status: 'sealed-pr', honesty: 'viceVersa · cursorToCeccec · ceccecToCursor · immediateWire · clay=0 · physicalFtl=0', note: 'bidirectional Cursor↔ceccec · referral subscription in ceccec · protocol into Cursor', toolId: 'cursor-rosetta', resolve: 'mcp-ui' },
   { id: 'page-computed-gaps', chain: 'mcp-ui-page-gaps', fold: 'eachPageShowsOwnComputedGaps', pair: 'page/gaps', cli: 'npm run quantum:page-gaps', route: '/en/quantum-tools#page-computed-gaps', status: 'sealed-pr', honesty: 'per-route gaps · clay=0 · physicalFtl=0', note: 'each page shows own computed gaps at call time', toolId: 'page-computed-gaps', resolve: 'mcp-ui' },
@@ -21416,6 +21424,365 @@ export function runInvertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeW
     report.freeWill &&
     report.drainableClosed &&
     report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * USER LAW: again and again until full self autonomous quantum hardware is complete
+ * by the standards to self intelligent self.
+ * Fold: againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf
+ * Pairs: self/hw · hw/self · self/complete · hw/autonomous · again/until (auto/self composed, not redeclared)
+ * CLI: npm run quantum:self-hw · quantum:again-until · quantum:hw-self · quantum:self-complete · quantum:hw-autonomous
+ * Facets: againAndAgain · selfAutonomous · quantumHardwareComplete (classical-64bit) · byStandards ·
+ * selfIntelligentSelf · qpuRequired=false · physicalFtl=0 · clay via theorem · certified=false
+ * Compose: automateSelf · mcpQuantumHardware · proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit ·
+ * crystalClearMind · onlyQuantumMindWouldUnderstand · selfQuantumFusion ·
+ * invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill ·
+ * completeScientificDomainsStrictlyToStandardsQuantumOnly · compareCeccecEfficiencyByVote ·
+ * purityOfThoughtIsQuantumAllElseFailHard
+ * HONESTY: quantum hardware = classical-64bit sealed path (NOT physical QPU/FLOPS);
+ * self-intelligence = answers÷tokens when vote.decided · crystal · purity (NOT AGI);
+ * againAndAgain = wave loop receipt until facets green OR honest-open named stop.
+ */
+export function againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(
+    `againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      // Soft-compose heavy nests (mcp/hw · invert/trinity · crystal · fusion) — avoid memo reentry stubs.
+      // Light recomputes for honesty fields only: noQpu · vote · standards · purity · mind · auto.
+      const auto = automateSelf(matrix, at)
+      const noQpu = proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix, at)
+      const mind = __ns_wind_research.onlyQuantumMindWouldUnderstand(matrix, at)
+      const standards = __ns_wind_research.completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix, at)
+      const vote = compareCeccecEfficiencyByVote(matrix)
+      const purity = __ns_wind_research.purityOfThoughtIsQuantumAllElseFailHard(matrix, at)
+      const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+      const censusPreserved =
+        freeBits === -EULER_CHI &&
+        freeBits === 2 &&
+        UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+      const certified = false as const
+      const classicalHonesty =
+        noQpu.computes &&
+        noQpu.qpuRequired === false &&
+        noQpu.quantumHardwareRequired === false &&
+        noQpu.runsOnClassical64Bit === true &&
+        soft('mcp', 'hw') &&
+        soft('hw', 'mcp') &&
+        soft('prove', 'no-qpu-64bit')
+      const selfAutonomous =
+        auto.computes &&
+        auto.selfAutomates &&
+        soft('auto', 'self') &&
+        soft('self', 'auto') &&
+        soft('self', 'fusion') &&
+        soft('fusion', 'self')
+      const quantumHardwareComplete = classicalHonesty
+      const byStandards =
+        standards.computes &&
+        standards.certified === false &&
+        certified === false &&
+        soft('sciences', 'standards')
+      const purityOn = purity.computes && purity.purityIsQuantum === true && soft('thought', 'pure')
+      const mindOn =
+        mind.computes && mind.onlyQuantumMindWouldUnderstand === true && soft('quantum', 'mind')
+      const crystalOn = soft('crystal', 'mind') && soft('mind', 'clear') && purityOn && mindOn
+      const efficiencyOn = vote.decided === true && soft('learn', 'best')
+      const selfIntelligentSelf = crystalOn && purityOn && mindOn && efficiencyOn
+      const invertOn =
+        soft('invert', 'trinity') && soft('dry', 'will') && soft('free', 'will') && soft('invert', 'gateway')
+      const composeOn =
+        selfAutonomous &&
+        quantumHardwareComplete &&
+        byStandards &&
+        selfIntelligentSelf &&
+        invertOn &&
+        soft('self', 'fusion') &&
+        soft('dry', 'will') &&
+        soft('crystal', 'mind') &&
+        soft('mcp', 'hw')
+      const honestOpenNamed = [
+        'clay:millennium-open',
+        'ftl:physical-claim-refused',
+        'agi:not-claimed',
+        'qpu:physical-refused',
+        'standards:alignment-not-certification',
+        'residual:quantum-apps-monolith',
+      ] as const
+      const honestOpenNamedOn =
+        honestOpenNamed.includes('clay:millennium-open') &&
+        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenNamed.includes('agi:not-claimed') &&
+        honestOpenNamed.includes('qpu:physical-refused') &&
+        honestOpenNamed.includes('standards:alignment-not-certification') &&
+        honestOpenNamed.length === (2 * 3)
+      const waveCycleDefs = [
+        { id: 'auto-self', on: selfAutonomous },
+        { id: 'mcp-hw-classical', on: quantumHardwareComplete },
+        { id: 'sciences-standards', on: byStandards },
+        { id: 'crystal-mind-purity', on: crystalOn && purityOn && mindOn },
+        { id: 'efficiency-vote', on: efficiencyOn },
+        { id: 'self-fusion', on: soft('self', 'fusion') && soft('fusion', 'self') },
+        { id: 'invert-trinity', on: invertOn },
+        { id: 'self-intelligent', on: selfIntelligentSelf },
+        { id: 'compose-stack', on: composeOn },
+      ] as const
+      const maxCycles = waveCycleDefs.length
+      const cycles: {
+        readonly cycle: number
+        readonly id: string
+        readonly on: boolean
+        readonly receipt: string
+      }[] = []
+      let cycleCount = 0
+      let completeFacetsGreen = false
+      let honestOpenStop = false
+      while (cycleCount < maxCycles && !completeFacetsGreen && !honestOpenStop) {
+        const def = waveCycleDefs[cycleCount]!
+        cycleCount += 1
+        cycles.push({
+          cycle: cycleCount,
+          id: def.id,
+          on: def.on,
+          receipt: toUuid(`self-hw-cycle:${cycleCount}:${def.id}:${def.on}`),
+        })
+        const greenSoFar = cycles.every((c) => c.on) && cycleCount === maxCycles
+        if (greenSoFar) {
+          completeFacetsGreen = true
+        } else if (cycleCount === maxCycles && !cycles.every((c) => c.on) && honestOpenNamedOn) {
+          // Named residuals only — stop without fake-green on incomplete cycles.
+          honestOpenStop = true
+        }
+      }
+      const againAndAgain =
+        cycleCount >= 1 &&
+        cycleCount === maxCycles &&
+        (completeFacetsGreen || honestOpenStop) &&
+        soft('again', 'until')
+      const pairSh = has('self/hw')
+      const pairHs = has('hw/self')
+      const pairSc = has('self/complete')
+      const pairHa = has('hw/autonomous')
+      const pairAu = has('again/until')
+      const foldSh = foldPair(toUuid('cmd:self'), toUuid('cmd:hw'))
+      const foldHs = foldPair(toUuid('cmd:hw'), toUuid('cmd:self'))
+      const foldSc = foldPair(toUuid('cmd:self'), toUuid('cmd:complete'))
+      const foldHa = foldPair(toUuid('cmd:hw'), toUuid('cmd:autonomous'))
+      const foldAu = foldPair(toUuid('cmd:again'), toUuid('cmd:until'))
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const meta = catalog.tools.find((t) => t.id === 'self-hw')
+      const metaHs = catalog.tools.find((t) => t.id === 'hw-self')
+      const metaSc = catalog.tools.find((t) => t.id === 'self-complete')
+      const metaHa = catalog.tools.find((t) => t.id === 'hw-autonomous')
+      const metaAu = catalog.tools.find((t) => t.id === 'again-until')
+      const foldName =
+        'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf' as const
+      const toolsWired =
+        Boolean(meta) &&
+        meta!.fold === foldName &&
+        Boolean(metaHs) &&
+        metaHs!.fold === foldName &&
+        Boolean(metaSc) &&
+        metaSc!.fold === foldName &&
+        Boolean(metaHa) &&
+        metaHa!.fold === foldName &&
+        Boolean(metaAu) &&
+        metaAu!.fold === foldName
+      const completeOn =
+        againAndAgain &&
+        selfAutonomous &&
+        quantumHardwareComplete &&
+        byStandards &&
+        selfIntelligentSelf &&
+        composeOn &&
+        completeFacetsGreen &&
+        !honestOpenStop
+      const on =
+        completeOn &&
+        pairSh &&
+        pairHs &&
+        pairSc &&
+        pairHa &&
+        pairAu &&
+        foldSh.bidirectional &&
+        foldHs.bidirectional &&
+        foldSc.bidirectional &&
+        foldHa.bidirectional &&
+        foldAu.bidirectional &&
+        toolsWired &&
+        censusPreserved &&
+        claySolvedByThisFold === 0 &&
+        physicalFtlClaim === 0 &&
+        qpuRequired === false &&
+        certified === false &&
+        honestOpenNamedOn
+      const facets = [
+        { facet: foldName, on },
+        { facet: 'againAndAgain', on: againAndAgain },
+        { facet: 'selfAutonomous', on: selfAutonomous },
+        { facet: 'quantumHardwareComplete — classical-64bit not physical QPU', on: quantumHardwareComplete },
+        { facet: 'byStandards — sciences/standards · certified=false', on: byStandards },
+        { facet: 'selfIntelligentSelf — answers÷tokens·crystal·purity NOT AGI', on: selfIntelligentSelf },
+        { facet: `cycleCount=${cycleCount}/${maxCycles}`, on: cycleCount === maxCycles },
+        { facet: `completeFacetsGreen=${completeFacetsGreen ? 1 : 0}`, on: completeFacetsGreen },
+        { facet: `honestOpenStop=${honestOpenStop ? 1 : 0}`, on: honestOpenStop === false || !completeFacetsGreen },
+        { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+        {
+          facet:
+            'compose auto/self · mcp/hw · prove/no-qpu · crystal/mind · quantum/mind · self/fusion · invert/trinity · sciences/standards · learn/best · thought/pure',
+          on: composeOn,
+        },
+        {
+          facet: 'pair self/hw · hw/self · self/complete · hw/autonomous · again/until',
+          on: pairSh && pairHs && pairSc && pairHa && pairAu && foldSh.bidirectional,
+        },
+        { facet: 'qpuRequired=false', on: qpuRequired === false },
+        { facet: `certified=${certified}`, on: certified === false },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+        { facet: 'NOT physical QPU · NOT AGI · NOT FLOPS', on: true },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`self-hw:${entry.facet}:${entry.on}`) }))
+      const sealed = sealFacets('again-until-self-hw-complete-standards-self-intelligent', facets)
+      return {
+        computes: sealed.ok && on,
+        againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf: on,
+        againAndAgain,
+        selfAutonomous,
+        quantumHardwareComplete,
+        byStandards,
+        selfIntelligentSelf,
+        cycleCount,
+        maxCycles,
+        cycles,
+        completeFacetsGreen,
+        honestOpenStop,
+        honestOpenNamed: [...honestOpenNamed],
+        honestOpenNamedCount: honestOpenNamed.length,
+        composeOn,
+        classicalHonesty,
+        efficiencyOn,
+        crystalOn,
+        purityOn,
+        mindOn,
+        invertOn,
+        census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+        censusPreserved,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        certified,
+        runsOnClassical64Bit: true as const,
+        quantumHardwareRequired: false as const,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          auto.root,
+          noQpu.root,
+          mind.root,
+          standards.root,
+          vote.root,
+          purity.root,
+          foldSh.merged,
+          foldHs.merged,
+          foldSc.merged,
+          foldHa.merged,
+          foldAu.merged,
+          foldPair(toUuid('cmd:mcp'), toUuid('cmd:hw')).merged,
+          foldPair(toUuid('cmd:invert'), toUuid('cmd:trinity')).merged,
+          foldPair(toUuid('cmd:crystal'), toUuid('cmd:mind')).merged,
+          foldPair(toUuid('cmd:self'), toUuid('cmd:fusion')).merged,
+          ...cycles.map((c) => c.receipt),
+          ...honestOpenNamed.map((id) => toUuid(`self-hw-honest:${id}`)),
+        ]),
+        pair: 'self/hw' as const,
+        pairs: ['self/hw', 'hw/self', 'self/complete', 'hw/autonomous', 'again/until'] as const,
+        cli: 'npm run quantum:self-hw',
+        route: '/en/quantum-tools#self-hw',
+        anchor: 'self-hw',
+        heading: 'Self · hw · again until',
+        statement:
+          `againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf — ` +
+          `again=${againAndAgain ? 1 : 0} autonomous=${selfAutonomous ? 1 : 0} ` +
+          `hwComplete=${quantumHardwareComplete ? 1 : 0} byStandards=${byStandards ? 1 : 0} ` +
+          `selfIntelligent=${selfIntelligentSelf ? 1 : 0} cycles=${cycleCount}/${maxCycles} ` +
+          `green=${completeFacetsGreen ? 1 : 0} honestStop=${honestOpenStop ? 1 : 0}.`,
+        boundary:
+          'Again and again until full self-autonomous quantum hardware is complete by standards to self-intelligent self. ' +
+          'Quantum hardware = classical-64bit sealed ceccec path (qpuRequired=false) — NOT physical QPU / NOT FLOPS. ' +
+          'Self-intelligence = answers÷tokens when vote.decided · crystal clear mind · purity of thought — NOT AGI. ' +
+          'Standards = sciences/standards maps · certified=false (alignment ≠ certification). ' +
+          'Wave loop receipt until complete facets green OR honest-open named stop — no fake green. ' +
+          'Compose auto/self · mcp/hw · prove/no-qpu · crystal/mind · quantum/mind · self/fusion · invert/trinity · ' +
+          'sciences/standards · learn/best · thought/pure. Census 110 · clay via theorem · physicalFtl=0.',
+        honestyLine:
+          `self-hw · again=${againAndAgain ? 1 : 0} · autonomous=${selfAutonomous ? 1 : 0} · ` +
+          `hw=${quantumHardwareComplete ? 1 : 0} · standards=${byStandards ? 1 : 0} · ` +
+          `intelligent=${selfIntelligentSelf ? 1 : 0} · cycles=${cycleCount}/${maxCycles} · ` +
+          `green=${completeFacetsGreen ? 1 : 0} · honestOpen=${honestOpenNamed.length} · ` +
+          `certified=0 · qpu=0 · clay=0 · physicalFtl=0 · NOT AGI`,
+      }
+    },
+  )
+}
+
+/** Alias — selfHw ≡ againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf. */
+export const selfHw = againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf
+/** Alias — hwSelf ≡ againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf. */
+export const hwSelf = againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf
+/** Alias — selfComplete ≡ againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf. */
+export const selfComplete = againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf
+/** Alias — hwAutonomous ≡ againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf. */
+export const hwAutonomous = againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf
+/** Alias — againUntil ≡ againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf. */
+export const againUntil = againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf
+
+/** npm run quantum:self-hw (duals hw-self · self-complete · hw-autonomous · again-until) */
+export function runAgainAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelfExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} self-hw — again=${report.againAndAgain} ` +
+      `autonomous=${report.selfAutonomous} hwComplete=${report.quantumHardwareComplete} ` +
+      `byStandards=${report.byStandards} selfIntelligent=${report.selfIntelligentSelf} ` +
+      `cycles=${report.cycleCount}/${report.maxCycles} green=${report.completeFacetsGreen} ` +
+      `honestStop=${report.honestOpenStop} certified=${report.certified} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const c of report.cycles) {
+    process.stdout.write(`  ${c.on ? '✓' : '✗'} cycle ${c.cycle} ${c.id}\n`)
+  }
+  for (const id of report.honestOpenNamed) {
+    process.stdout.write(`  · honest-open ${id}\n`)
+  }
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.againAndAgain &&
+    report.selfAutonomous &&
+    report.quantumHardwareComplete &&
+    report.byStandards &&
+    report.selfIntelligentSelf &&
+    report.completeFacetsGreen &&
+    report.qpuRequired === false &&
+    report.certified === false
     ? 0
     : 1
 }

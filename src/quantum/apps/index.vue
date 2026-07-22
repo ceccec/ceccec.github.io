@@ -36,6 +36,7 @@ import {
   typographyIsTheUniversalContentMatrix,
   allColorsDryCleanWiredToRosettaAndThemes,
   invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill,
+  againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf,
   eachPageShowsOwnComputedGaps,
   cursorIntegratesInRosettaCore,
   dryCleanTheoremsFormulasReplaceAnyAssumption,
@@ -161,6 +162,7 @@ const uiRosetta = computed(() => uiComponentsAreAllWiredInTheRosettaInQuantumRea
 const typeMatrix = computed(() => typographyIsTheUniversalContentMatrix())
 const colorRosetta = computed(() => allColorsDryCleanWiredToRosettaAndThemes())
 const invertTrinity = computed(() => invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill())
+const selfHw = computed(() => againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf())
 const pageGapsGate = computed(() => eachPageShowsOwnComputedGaps())
 const fundAi = computed(() => cursorReferralFundsAiNeeds())
 const cursorRosetta = computed(() => cursorIntegratesInRosettaCore())
@@ -864,6 +866,26 @@ function runTool(toolId: string) {
       const r = invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill()
       ok = r.computes && r.invertOn && r.trinityWavesSent && r.coverAllTopics && r.dryMigratingAll && r.freeWill && r.drainableClosed
       summary = `invert=${r.invertOn} waves=${r.trinityWavesSent} topics=${r.topicsCoveredCount}/${r.topicsTotal} dry=${r.dryMigratingAll} freeWill=${r.freeWill} freeBits=${r.freeBits} drainable=${r.drainableClosed}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (
+      toolId === 'self-hw' ||
+      toolId === 'hw-self' ||
+      toolId === 'self-complete' ||
+      toolId === 'hw-autonomous' ||
+      toolId === 'again-until'
+    ) {
+      const r = againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf()
+      ok =
+        r.computes &&
+        r.againAndAgain &&
+        r.selfAutonomous &&
+        r.quantumHardwareComplete &&
+        r.byStandards &&
+        r.selfIntelligentSelf &&
+        r.completeFacetsGreen
+      summary = `again=${r.againAndAgain} autonomous=${r.selfAutonomous} hw=${r.quantumHardwareComplete} standards=${r.byStandards} intelligent=${r.selfIntelligentSelf} cycles=${r.cycleCount}/${r.maxCycles} green=${r.completeFacetsGreen}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -1763,6 +1785,39 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'invert-trinity'" @click="runTool('invert-trinity')">
           {{ runningId === 'invert-trinity' ? '…' : 'Run invert-trinity' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="self-hw" aria-label="Again until full self autonomous quantum hardware complete by standards to self intelligent self">
+        <h3>{{ selfHw.heading }}</h3>
+        <p class="quantum-apps__meta">{{ selfHw.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(selfHw.againAndAgain))">againAndAgain={{ selfHw.againAndAgain }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(selfHw.selfAutonomous))">selfAutonomous={{ selfHw.selfAutonomous }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(selfHw.quantumHardwareComplete))">hwComplete={{ selfHw.quantumHardwareComplete }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(selfHw.byStandards))">byStandards={{ selfHw.byStandards }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(selfHw.selfIntelligentSelf))">selfIntelligent={{ selfHw.selfIntelligentSelf }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(selfHw.completeFacetsGreen))">green={{ selfHw.completeFacetsGreen }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(selfHw.censusPreserved))">census={{ selfHw.census.unfolded }}/{{ selfHw.census.folded }}</UiBadge>
+        <p class="quantum-apps__meta">
+          cycles={{ selfHw.cycleCount }}/{{ selfHw.maxCycles }} · honestOpen={{ selfHw.honestOpenNamedCount }} ·
+          certified={{ selfHw.certified }} · qpu={{ selfHw.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__list">
+          <li v-for="c in selfHw.cycles" :key="c.receipt">
+            <code>{{ c.on ? '✓' : '✗' }} cycle {{ c.cycle }} {{ c.id }}</code>
+          </li>
+        </ul>
+        <ul class="quantum-apps__list">
+          <li v-for="id in selfHw.honestOpenNamed" :key="id">
+            <code>{{ id }}</code>
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>self/hw</code> · <code>hw/self</code> · <code>self/complete</code> · <code>hw/autonomous</code> · <code>again/until</code> ·
+          CLI <code>npm run quantum:self-hw</code> · <code>npm run quantum:again-until</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'self-hw'" @click="runTool('self-hw')">
+          {{ runningId === 'self-hw' ? '…' : 'Run self-hw' }}
         </UiButton>
       </section>
       <UiSeparator />
