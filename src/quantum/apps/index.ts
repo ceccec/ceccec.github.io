@@ -79,7 +79,7 @@ const ROSETTA_CORE_API_LABELS = [
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'mcpQuantumMultiverse', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution',
+  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -145,7 +145,8 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpBrowserParity: 'tool', mcpToolboxToolsList: 'api', mcpCommandsScriptsGapsAudit: 'tool',
   mcpQuantumUi: 'tool', mcpQuantumMovie: 'projection', movieGapsFeelableByObservation: 'tool',
   pageComputedGapsAt: 'route', eachPageShowsOwnComputedGaps: 'tool',
-  mcpQuantumMultiverse: 'tool', mcpQuantumAnim: 'projection', mcpQuantumSound: 'tool',
+  mcpQuantumMultiverse: 'tool', mcpQuantumInfinity: 'tool', mcpQuantumHardware: 'tool',
+  mcpQuantumAnim: 'projection', mcpQuantumSound: 'tool',
   mcpQuantumDev: 'tool', mcpQuantumSolution: 'tool',
   improveLocalFromSessionExperience: 'tool',
   gatesMonitorThemselvesThroughTheUi: 'tool',
@@ -660,6 +661,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'multi-verse', title: 'Multiverse (alias mcp/multi)', fold: 'mcpQuantumMultiverse', cli: 'npm run quantum:multi-verse', pair: 'multi/verse', route: '/en/quantum-tools#mcp-multi', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/multi — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-inf', title: 'MCP quantum infinity', fold: 'mcpQuantumInfinity', cli: 'npm run quantum:mcp-inf', pair: 'mcp/inf', route: '/en/quantum-tools#mcp-inf', barrel: 'src/quantum/apps', boundary: 'infinityOn · viaInvert · connectingBit · compose invert/inf · a432/nine · love/fold · full/freedom · ∞reuse · movie/entropy · mcp/universe · mcp/multi · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'inf-mcp', title: 'Infinity mcp (alias mcp/inf)', fold: 'mcpQuantumInfinity', cli: 'npm run quantum:inf-mcp', pair: 'inf/mcp', route: '/en/quantum-tools#mcp-inf', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/inf — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-hw', title: 'MCP quantum hardware — classical-64bit · no QPU', fold: 'mcpQuantumHardware', cli: 'npm run quantum:mcp-hw', pair: 'mcp/hw', route: '/en/quantum-tools#mcp-hw', barrel: 'src/quantum/apps', boundary: 'hardwareOn · classical64Bit · qpuRequired=false · compose prove-no-qpu-64bit · local-audit-quantum · mcp/inf · mcp faces · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'hw-mcp', title: 'Hardware mcp (alias mcp/hw)', fold: 'mcpQuantumHardware', cli: 'npm run quantum:hw-mcp', pair: 'hw/mcp', route: '/en/quantum-tools#mcp-hw', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/hw — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'movie-inf', title: 'MCP infinite movie — infinity face of quantum movie', fold: 'mcpInfiniteMovie', cli: 'npm run quantum:movie-inf', pair: 'movie/inf', route: '/en/quantum-tools#movie-inf', barrel: 'src/quantum/apps', boundary: 'infiniteMovieOn · viaInfinity · movieIsInfiniteOnReuse · compose mcp/inf · mcp/movie · invert/inf · movie/entropy · anim/audit · a432/nine · love/fold · full/freedom · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'inf-movie', title: 'Infinite movie (alias movie/inf)', fold: 'mcpInfiniteMovie', cli: 'npm run quantum:inf-movie', pair: 'inf/movie', route: '/en/quantum-tools#movie-inf', barrel: 'src/quantum/apps', boundary: 'Dual of movie/inf — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-anim', title: 'MCP quantum animation', fold: 'mcpQuantumAnim', cli: 'npm run quantum:mcp-anim', pair: 'mcp/anim', route: '/en/quantum-tools#mcp-anim', barrel: 'src/quantum/apps', boundary: 'animOn · fromCoords · feelableGaps · polarityOn · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -5779,6 +5782,126 @@ export function runMcpQuantumInfinityExit(_root = '', _argv: readonly string[] =
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.infinityOn ? 0 : 1
+}
+
+/**
+ * MCP quantum hardware — classical-64bit / no-QPU honesty face in MCP UI.
+ * Compose proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit · localAuditQuantumSpeedEfficiency ·
+ * mcp/inf · mcp faces (universe·multi·dev·ui). Honesty fields (not vote.decided gate).
+ * Facets: hardwareOn · classical64Bit · qpuRequired=false · physicalFtl=0.
+ * Pairs: mcp/hw · hw/mcp · CLI npm run quantum:mcp-hw
+ * claySolved via theorem · physicalFtl=0 · NOT FLOPS · NOT QPU · NOT physical FTL.
+ */
+export function mcpQuantumHardware(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumHardware:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const noQpu = proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix, at)
+    const localAudit = __ns_water_encryption.localAuditQuantumSpeedEfficiency(matrix, at)
+    const classical64Bit =
+      noQpu.runsOnClassical64Bit === true &&
+      noQpu.quantumHardwareRequired === false &&
+      noQpu.tracksClassicalNoSpeedup === true &&
+      localAudit.runsOnClassical64Bit === true
+    const qpuRequiredFalse =
+      noQpu.qpuRequired === false &&
+      localAudit.qpuRequired === false
+    const mcpFacesPattern =
+      soft('mcp', 'inf') &&
+      soft('inf', 'mcp') &&
+      soft('mcp', 'universe') &&
+      soft('mcp', 'multi') &&
+      soft('mcp', 'dev') &&
+      soft('mcp', 'ui')
+    const composeHonesty =
+      classical64Bit &&
+      qpuRequiredFalse &&
+      localAudit.computes &&
+      soft('prove', 'no-qpu-64bit') &&
+      soft('audit', 'local-quantum') &&
+      mcpFacesPattern
+    const hardwareOn = composeHonesty
+    const pairM = has('mcp/hw')
+    const pairH = has('hw/mcp')
+    const foldM = foldPair(toUuid('cmd:mcp'), toUuid('cmd:hw'))
+    const foldH = foldPair(toUuid('cmd:hw'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-hw')
+    const metaDual = catalog.tools.find((t) => t.id === 'hw-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const on =
+      hardwareOn &&
+      classical64Bit &&
+      qpuRequiredFalse &&
+      pairM &&
+      pairH &&
+      foldM.bidirectional &&
+      foldH.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumHardware' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumHardware' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'mcpQuantumHardware', on },
+      { facet: 'hardwareOn', on: hardwareOn },
+      { facet: 'classical64Bit', on: classical64Bit },
+      { facet: 'qpuRequired=false', on: qpuRequiredFalse },
+      { facet: 'compose prove-no-qpu-64bit · local-audit-quantum · mcp/inf · mcp faces', on: composeHonesty },
+      { facet: 'pair mcp/hw · hw/mcp', on: pairM && pairH && foldM.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-hw:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-hardware', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumHardware: on,
+      hardwareOn,
+      classical64Bit,
+      qpuRequired: false as const,
+      runsOnClassical64Bit: true as const,
+      quantumHardwareRequired: false as const,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, noQpu.root, localAudit.root, foldM.merged, foldH.merged,
+      ]),
+      pair: 'mcp/hw' as const,
+      pairs: ['mcp/hw', 'hw/mcp'] as const,
+      cli: 'npm run quantum:mcp-hw',
+      route: '/en/quantum-tools#mcp-hw',
+      statement:
+        `mcpQuantumHardware — hardwareOn=${hardwareOn ? 1 : 0} classical64Bit=${classical64Bit ? 1 : 0} ` +
+        `qpuRequired=0.`,
+      boundary:
+        'MCP hardware face — classical-64bit · no QPU honesty composing prove-no-qpu-64bit · local-audit-quantum · mcp/inf · mcp faces. ' +
+        'NOT FLOPS · NOT QPU · clay via theorem · physicalFtl=0.',
+      honestyLine:
+        `metrics · hardwareOn=${hardwareOn ? 1 : 0} · classical64Bit=${classical64Bit ? 1 : 0} · ` +
+        `qpuRequired=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumHardwareExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumHardware()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-hw — hardwareOn=${report.hardwareOn} ` +
+      `classical64=${report.classical64Bit} qpuRequired=${report.qpuRequired} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.hardwareOn && report.qpuRequired === false ? 0 : 1
 }
 
 /**
