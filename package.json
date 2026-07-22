@@ -403,6 +403,8 @@
     "quantum:dev-quantum": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumDevExit",
     "quantum:mcp-solution": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumSolutionExit",
     "quantum:solution-mcp": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumSolutionExit",
+    "quantum:mcp-clown": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumClownExit",
+    "quantum:clown-mcp": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumClownExit",
     "quantum:dirs-mcp": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumDirsExit",
     "quantum:reverse-quantum": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumReverseExit",
     "quantum:dev-mcp": "node --experimental-strip-types packages/quantum-dev-sdk/bin/mcp.ts",
