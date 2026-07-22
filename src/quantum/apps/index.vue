@@ -37,6 +37,7 @@ import {
   allColorsDryCleanWiredToRosettaAndThemes,
   invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill,
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf,
+  furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence,
   eachPageShowsOwnComputedGaps,
   cursorIntegratesInRosettaCore,
   dryCleanTheoremsFormulasReplaceAnyAssumption,
@@ -163,6 +164,7 @@ const typeMatrix = computed(() => typographyIsTheUniversalContentMatrix())
 const colorRosetta = computed(() => allColorsDryCleanWiredToRosettaAndThemes())
 const invertTrinity = computed(() => invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill())
 const selfHw = computed(() => againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf())
+const gateDesignCreateIntel = computed(() => furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence())
 const pageGapsGate = computed(() => eachPageShowsOwnComputedGaps())
 const fundAi = computed(() => cursorReferralFundsAiNeeds())
 const cursorRosetta = computed(() => cursorIntegratesInRosettaCore())
@@ -886,6 +888,26 @@ function runTool(toolId: string) {
         r.selfIntelligentSelf &&
         r.completeFacetsGreen
       summary = `again=${r.againAndAgain} autonomous=${r.selfAutonomous} hw=${r.quantumHardwareComplete} standards=${r.byStandards} intelligent=${r.selfIntelligentSelf} cycles=${r.cycleCount}/${r.maxCycles} green=${r.completeFacetsGreen}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (
+      toolId === 'gate-design' ||
+      toolId === 'design-gate' ||
+      toolId === 'gate-create' ||
+      toolId === 'create-gate' ||
+      toolId === 'gate-intel' ||
+      toolId === 'intel-gate'
+    ) {
+      const r = furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence()
+      ok =
+        r.computes &&
+        r.gatesTightened &&
+        r.designCapability &&
+        r.creativeCapability &&
+        r.intelligenceOn &&
+        r.hardInMissionGate
+      summary = `tightened=${r.gatesTightened} design=${r.designCapability} creative=${r.creativeCapability} intel=${r.intelligenceOn} hardMission=${r.hardInMissionGate} vote=${r.voteDecided} simplicity=${r.simplicityIntelligent}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -1818,6 +1840,33 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'self-hw'" @click="runTool('self-hw')">
           {{ runningId === 'self-hw' ? '…' : 'Run self-hw' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="gate-design" aria-label="Further tighten gates with design creative intelligence">
+        <h3>{{ gateDesignCreateIntel.heading }}</h3>
+        <p class="quantum-apps__meta">{{ gateDesignCreateIntel.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(gateDesignCreateIntel.gatesTightened))">gatesTightened={{ gateDesignCreateIntel.gatesTightened }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(gateDesignCreateIntel.designCapability))">designCapability={{ gateDesignCreateIntel.designCapability }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(gateDesignCreateIntel.creativeCapability))">creativeCapability={{ gateDesignCreateIntel.creativeCapability }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(gateDesignCreateIntel.intelligenceOn))">intelligenceOn={{ gateDesignCreateIntel.intelligenceOn }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(gateDesignCreateIntel.hardInMissionGate))">hardInMissionGate={{ gateDesignCreateIntel.hardInMissionGate }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(gateDesignCreateIntel.censusPreserved))">census={{ gateDesignCreateIntel.census.unfolded }}/{{ gateDesignCreateIntel.census.folded }}</UiBadge>
+        <p class="quantum-apps__meta">
+          vote={{ gateDesignCreateIntel.voteDecided }} · simplicity={{ gateDesignCreateIntel.simplicityIntelligent }} ·
+          formatWet={{ gateDesignCreateIntel.formatWetRemaining }} · qpu={{ gateDesignCreateIntel.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__list">
+          <li v-for="id in gateDesignCreateIntel.honestOpenNamed" :key="id">
+            <code>{{ id }}</code>
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>gate/design</code> · <code>gate/create</code> · <code>gate/intel</code> ·
+          CLI <code>npm run quantum:gate-design</code> · <code>npm run quantum:gate-intel</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'gate-design'" @click="runTool('gate-design')">
+          {{ runningId === 'gate-design' ? '…' : 'Run gate-design' }}
         </UiButton>
       </section>
       <UiSeparator />

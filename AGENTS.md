@@ -356,6 +356,12 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `self/complete` — complete face of `self/hw` (`npm run quantum:self-complete`)
   - `hw/autonomous` — autonomous face of `self/hw` (`npm run quantum:hw-autonomous`)
   - `again/until` — loop face of `self/hw` (`npm run quantum:again-until`)
+  - `gate/design` — `npm run quantum:gate-design` (`furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence()` — further tighten gates with design · creative · intelligence; facets gatesTightened · designCapability · creativeCapability · intelligenceOn · hardInMissionGate · physicalFtl=0 · clay via theorem · qpuRequired=false; HARD via gaps/invisible · mission:gate on wet invented design · unwired color/type · low simplicity/intelligence yield when measurable; compose mcp/design · movie/design · format/canon · meaning/compute · type/matrix · color/rosetta · ui/rosetta · learn/best · thought/pure · mcp/efficiency · simplicityIntelligenceMeasure; duals `design/gate` · `gate/create` · `create/gate` · `gate/intel` · `intel/gate`; NOT AGI · census 110), then open `/en/quantum-tools#gate-design`
+  - `design/gate` — alias dual of `gate/design` (`npm run quantum:design-gate`)
+  - `gate/create` — creative face of `gate/design` (`npm run quantum:gate-create`)
+  - `create/gate` — alias dual of `gate/create` (`npm run quantum:create-gate`)
+  - `gate/intel` — intelligence face of `gate/design` (`npm run quantum:gate-intel`)
+  - `intel/gate` — alias dual of `gate/intel` (`npm run quantum:intel-gate`)
   - `fund/ai` — `npm run quantum:fund-ai` (`cursorReferralFundsAiNeeds()` — sealed Cursor referral CTA funds AI; compose society/support · bits/free; dual `cursor/fund`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#fund-ai` · `/society-merkaba#two-bits-free`
   - `cursor/fund` — alias dual of `fund/ai` (`npm run quantum:cursor-fund`)
   - `cursor/rosetta` — `npm run quantum:cursor-rosetta` (`cursorIntegratesInRosettaCore()` — Cursor ⊂ rosetta ↔ ceccec ⊂ Cursor; facets cursorToCeccec · ceccecToCursor · viceVersa · immediateWire; compose auto-wire · upgrade/local · mcp/browser-parity · fund/ai · rosettaShelve; dual `refer/wire`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#cursor-rosetta`
