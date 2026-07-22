@@ -354,6 +354,8 @@
     "quantum:color-rosetta": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runAllColorsDryCleanWiredToRosettaAndThemesExit",
     "quantum:rosetta-theme": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runAllColorsDryCleanWiredToRosettaAndThemesExit",
     "quantum:color-theme": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runAllColorsDryCleanWiredToRosettaAndThemesExit",
+    "quantum:css-gaps": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runCssShowsTheHiddenGapsInDryFusionExit",
+    "quantum:css-fusion": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runCssShowsTheHiddenGapsInDryFusionExit",
     "quantum:invert-trinity": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runInvertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWillExit",
     "quantum:dry-will": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runInvertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWillExit",
     "quantum:free-will": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runInvertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWillExit",

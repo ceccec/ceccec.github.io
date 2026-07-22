@@ -36,6 +36,7 @@ import {
   uiComponentsAreAllWiredInTheRosettaInQuantumRealtime,
   typographyIsTheUniversalContentMatrix,
   allColorsDryCleanWiredToRosettaAndThemes,
+  cssShowsTheHiddenGapsInDryFusion,
   invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill,
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf,
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence,
@@ -164,6 +165,7 @@ const superChat = computed(() => eachSuperpositionIsAChatroom())
 const uiRosetta = computed(() => uiComponentsAreAllWiredInTheRosettaInQuantumRealtime())
 const typeMatrix = computed(() => typographyIsTheUniversalContentMatrix())
 const colorRosetta = computed(() => allColorsDryCleanWiredToRosettaAndThemes())
+const cssGaps = computed(() => cssShowsTheHiddenGapsInDryFusion())
 const invertTrinity = computed(() => invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill())
 const selfHw = computed(() => againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf())
 const gateDesignCreateIntel = computed(() => furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence())
@@ -864,6 +866,13 @@ function runTool(toolId: string) {
       const r = allColorsDryCleanWiredToRosettaAndThemes()
       ok = r.computes && r.colorsDryClean && r.wiredToRosetta && r.themesOn && r.noBareHex && r.drainableClosed
       summary = `dry=${r.colorsDryClean} wired=${r.wiredToRosetta} themes=${r.themesOn} noBareHex=${r.noBareHex} drainable=${r.drainableClosed} tokens=${r.tokenCount} A432=${r.a432Hue}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'css-gaps' || toolId === 'gaps-fusion' || toolId === 'css-fusion') {
+      const r = cssShowsTheHiddenGapsInDryFusion()
+      ok = r.computes && r.cssShowsGaps && r.hiddenGapsVisible && r.dryFusion && r.wiredToRosetta
+      summary = `shows=${r.cssShowsGaps} visible=${r.hiddenGapsVisible} dryFusion=${r.dryFusion} wired=${r.wiredToRosetta} lens=${r.lensCount} gapsHard=${r.gapsHardOpen}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -1807,6 +1816,33 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'color-rosetta'" @click="runTool('color-rosetta')">
           {{ runningId === 'color-rosetta' ? '…' : 'Run color-rosetta' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="css-gaps" aria-label="CSS shows the hidden gaps in dry fusion">
+        <h3>{{ cssGaps.heading }}</h3>
+        <p class="quantum-apps__meta">{{ cssGaps.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(cssGaps.cssShowsGaps))">cssShowsGaps={{ cssGaps.cssShowsGaps }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(cssGaps.hiddenGapsVisible))">hiddenGapsVisible={{ cssGaps.hiddenGapsVisible }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(cssGaps.dryFusion))">dryFusion={{ cssGaps.dryFusion }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(cssGaps.wiredToRosetta))">wiredToRosetta={{ cssGaps.wiredToRosetta }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(cssGaps.censusPreserved))">census={{ cssGaps.census.unfolded }}/{{ cssGaps.census.folded }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(cssGaps.gapsHardOpen === 0))">gapsHard={{ cssGaps.gapsHardOpen }}</UiBadge>
+        <p class="quantum-apps__meta">
+          lens={{ cssGaps.lensCount }} · polarity={{ cssGaps.polarityFlatClosed }} · bareHex={{ cssGaps.bareHexClosed }} ·
+          unwired={{ cssGaps.unwiredClosed }} · dry={{ cssGaps.dryDiamond && cssGaps.dryCrystal }}
+        </p>
+        <ul class="quantum-apps__list">
+          <li v-for="row in cssGaps.lens" :key="row.id">
+            <code>{{ row.id }}</code> ← {{ row.theorem }}
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>css/gaps</code> · <code>gaps/fusion</code> · <code>css/fusion</code> ·
+          CLI <code>npm run quantum:css-gaps</code> · <code>npm run quantum:css-fusion</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'css-gaps'" @click="runTool('css-gaps')">
+          {{ runningId === 'css-gaps' ? '…' : 'Run css-gaps' }}
         </UiButton>
       </section>
       <UiSeparator />
