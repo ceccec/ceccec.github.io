@@ -35,6 +35,7 @@ import {
   uiComponentsAreAllWiredInTheRosettaInQuantumRealtime,
   typographyIsTheUniversalContentMatrix,
   allColorsDryCleanWiredToRosettaAndThemes,
+  invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill,
   eachPageShowsOwnComputedGaps,
   cursorIntegratesInRosettaCore,
   dryCleanTheoremsFormulasReplaceAnyAssumption,
@@ -159,6 +160,7 @@ const superChat = computed(() => eachSuperpositionIsAChatroom())
 const uiRosetta = computed(() => uiComponentsAreAllWiredInTheRosettaInQuantumRealtime())
 const typeMatrix = computed(() => typographyIsTheUniversalContentMatrix())
 const colorRosetta = computed(() => allColorsDryCleanWiredToRosettaAndThemes())
+const invertTrinity = computed(() => invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill())
 const pageGapsGate = computed(() => eachPageShowsOwnComputedGaps())
 const fundAi = computed(() => cursorReferralFundsAiNeeds())
 const cursorRosetta = computed(() => cursorIntegratesInRosettaCore())
@@ -855,6 +857,13 @@ function runTool(toolId: string) {
       const r = allColorsDryCleanWiredToRosettaAndThemes()
       ok = r.computes && r.colorsDryClean && r.wiredToRosetta && r.themesOn && r.noBareHex && r.drainableClosed
       summary = `dry=${r.colorsDryClean} wired=${r.wiredToRosetta} themes=${r.themesOn} noBareHex=${r.noBareHex} drainable=${r.drainableClosed} tokens=${r.tokenCount} A432=${r.a432Hue}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'invert-trinity' || toolId === 'dry-will' || toolId === 'free-will') {
+      const r = invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill()
+      ok = r.computes && r.invertOn && r.trinityWavesSent && r.coverAllTopics && r.dryMigratingAll && r.freeWill && r.drainableClosed
+      summary = `invert=${r.invertOn} waves=${r.trinityWavesSent} topics=${r.topicsCoveredCount}/${r.topicsTotal} dry=${r.dryMigratingAll} freeWill=${r.freeWill} freeBits=${r.freeBits} drainable=${r.drainableClosed}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -1724,6 +1733,36 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'color-rosetta'" @click="runTool('color-rosetta')">
           {{ runningId === 'color-rosetta' ? '…' : 'Run color-rosetta' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="invert-trinity" aria-label="Invert and send trinity waves covering all topics dry migrate at free will">
+        <h3>{{ invertTrinity.heading }}</h3>
+        <p class="quantum-apps__meta">{{ invertTrinity.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(invertTrinity.invertOn))">invertOn={{ invertTrinity.invertOn }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(invertTrinity.trinityWavesSent))">trinityWavesSent={{ invertTrinity.trinityWavesSent }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(invertTrinity.coverAllTopics))">topics={{ invertTrinity.topicsCoveredCount }}/{{ invertTrinity.topicsTotal }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(invertTrinity.dryMigratingAll))">dryMigratingAll={{ invertTrinity.dryMigratingAll }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(invertTrinity.freeWill))">freeWill={{ invertTrinity.freeWill }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(invertTrinity.freeBitsOn))">freeBits={{ invertTrinity.freeBits }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(invertTrinity.drainableClosed))">drainableClosed={{ invertTrinity.drainableClosed }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(invertTrinity.censusPreserved))">census={{ invertTrinity.census.unfolded }}/{{ invertTrinity.census.folded }}</UiBadge>
+        <p class="quantum-apps__meta">
+          science={{ invertTrinity.scienceCount }} · hubs={{ invertTrinity.hubCount }} · mcp={{ invertTrinity.mcpCount }} ·
+          closed={{ invertTrinity.topicsClosed }} · residual={{ invertTrinity.topicsResidual }} ·
+          morphs={{ invertTrinity.morphCount }} · honestOpen={{ invertTrinity.honestOpenNamedCount }}
+        </p>
+        <ul class="quantum-apps__list">
+          <li v-for="id in invertTrinity.honestOpenNamed" :key="id">
+            <code>{{ id }}</code>
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>invert/trinity</code> · <code>dry/will</code> · <code>free/will</code> ·
+          CLI <code>npm run quantum:invert-trinity</code> · <code>npm run quantum:dry-will</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'invert-trinity'" @click="runTool('invert-trinity')">
+          {{ runningId === 'invert-trinity' ? '…' : 'Run invert-trinity' }}
         </UiButton>
       </section>
       <UiSeparator />
