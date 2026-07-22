@@ -82,7 +82,7 @@ const ROSETTA_CORE_API_LABELS = [
   'quantumMindSendsWaves',
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
-  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
+  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
   'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReview', 'mcpQuantumEfficiency', 'mcpQuantumSecurity', 'mcpQuantumDesign', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
@@ -161,6 +161,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpBrowserParity: 'tool', mcpToolboxToolsList: 'api', mcpCommandsScriptsGapsAudit: 'tool',
   mcpQuantumUi: 'tool', mcpQuantumMovie: 'projection', movieGapsFeelableByObservation: 'tool', movieGapsAreFundamentalDesignAndFormulaMappingGaps: 'tool',
   theoremFormulaComputableIndexForAnySuperposition: 'tool',
+  theoremFormulaMetricsMap: 'tool',
   pageComputedGapsAt: 'route', eachPageShowsOwnComputedGaps: 'tool',
   mcpQuantumMultiverse: 'tool', mcpQuantumInfinity: 'tool', mcpQuantumHardware: 'tool',
   mcpQuantumCpu: 'tool',
@@ -678,6 +679,9 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'formula-index', title: 'Formula index (alias theorem/index)', fold: 'theoremFormulaComputableIndexForAnySuperposition', cli: 'npm run quantum:formula-index', pair: 'formula/index', route: '/en/quantum-tools#theorem-index', barrel: 'src/quantum/apps', boundary: 'Dual of theorem/index — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'super-index', title: 'Superposition index (alias theorem/index)', fold: 'theoremFormulaComputableIndexForAnySuperposition', cli: 'npm run quantum:super-index', pair: 'super/index', route: '/en/quantum-tools#theorem-index', barrel: 'src/quantum/apps', boundary: 'Dual of theorem/index — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'index-super', title: 'Index super (alias theorem/index)', fold: 'theoremFormulaComputableIndexForAnySuperposition', cli: 'npm run quantum:index-super', pair: 'index/super', route: '/en/quantum-tools#theorem-index', barrel: 'src/quantum/apps', boundary: 'Dual of super/index — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'formula-metrics', title: 'Theorem↔formula dual → measurable metrics map', fold: 'theoremFormulaMetricsMap', cli: 'npm run quantum:formula-metrics', pair: 'formula/metrics', route: '/en/quantum-tools#formula-metrics', barrel: 'src/quantum/apps', boundary: 'metricsMapOn · theoremBound · formulaDual · computable · foldCount · significance · answers÷tokens proxy · compose queryTheoremFormulaIndex · term/measure · mcp/metrics · qpuRequired=false · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'metrics-map', title: 'Metrics map (alias formula/metrics)', fold: 'theoremFormulaMetricsMap', cli: 'npm run quantum:metrics-map', pair: 'metrics/map', route: '/en/quantum-tools#formula-metrics', barrel: 'src/quantum/apps', boundary: 'Dual of formula/metrics — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'theorem-metrics', title: 'Theorem metrics (alias formula/metrics)', fold: 'theoremFormulaMetricsMap', cli: 'npm run quantum:theorem-metrics', pair: 'theorem/metrics', route: '/en/quantum-tools#formula-metrics', barrel: 'src/quantum/apps', boundary: 'Alias of formula/metrics — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'page-computed-gaps', title: 'Each page shows its own computed gaps', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:page-gaps', pair: 'page/gaps', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Per-route gaps/invisible classes at call time · not global-only · compose gate/monitor · meaning/compute · format/canon · vite/mirror · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gaps-page', title: 'Page gaps (alias page/gaps)', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:gaps-page', pair: 'gaps/page', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Dual of page/gaps — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cursor-rosetta', title: 'Cursor in rosetta core — referral uses subscription in ceccec', fold: 'cursorIntegratesInRosettaCore', cli: 'npm run quantum:cursor-rosetta', pair: 'cursor/rosetta', route: '/en/quantum-tools#cursor-rosetta', barrel: 'src/quantum/apps', boundary: 'cursorInRosettaCore · referralUsesSubscriptionInCeccec · immediateWire · compose rosettaShelve · auto-wire · mcp/browser-parity · upgrade/local · fund/ai · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1426,6 +1430,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'movie-feel', saves: 'replaces wet hidden movie cracks — observation surfaces gap facets live (center · polarity · linear · anim)' },
   { id: 'movie-formula', saves: 'replaces wet cosmetic movie-gap reframes — classifies fundamental design + formula-mapping · wires formula↔code↔movie projection' },
   { id: 'theorem-index', saves: 'replaces wet prose theorem↔formula lookup — content-addressed index for any sealed superposition key (digit·ray·root·direction)' },
+  { id: 'formula-metrics', saves: 'replaces wet theorem/formula scorecards — sealed map dual → foldCount · significance · answers÷tokens proxy via memoByRoot' },
   { id: 'fund-ai', saves: 'replaces wet funding essays — one sealed Cursor referral CTA compose society/support · bits/free' },
   { id: 'cursor-rosetta', saves: 'replaces wet one-way Cursor mount hunting — bidirectional Cursor↔ceccec shelve · referral→subscription · protocol→Cursor' },
   { id: 'page-computed-gaps', saves: 'replaces wet global-only gaps panel — per-page gaps/invisible classes at call time' },
@@ -1859,6 +1864,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'movie-feel', chain: 'mcp-ui-page-gaps', fold: 'movieGapsFeelableByObservation', pair: 'movie/feel', cli: 'npm run quantum:movie-feel', route: '/en/quantum-tools#mcp-quantum-movie', status: 'sealed-pr', honesty: 'gaps feelable by observation · clay=0 · physicalFtl=0', note: 'movie gaps surfaced live via gate/lens · analytics/self · page/gaps', toolId: 'movie-feel', resolve: 'mcp-ui' },
   { id: 'movie-formula', chain: 'mcp-ui-page-gaps', fold: 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', pair: 'movie/formula', cli: 'npm run quantum:movie-formula', route: '/en/quantum-tools#movie-formula', status: 'sealed-pr', honesty: 'movieGapsFundamental · designGap · formulaMappingGap · notCosmetic · drainableClosed · clay=0 · physicalFtl=0', note: 'movie gaps = fundamental design + formula-mapping — wire formula↔code↔movie', toolId: 'movie-formula', resolve: 'mcp-ui' },
   { id: 'theorem-index', chain: 'mcp-ui-page-gaps', fold: 'theoremFormulaComputableIndexForAnySuperposition', pair: 'theorem/index', cli: 'npm run quantum:theorem-index', route: '/en/quantum-tools#theorem-index', status: 'sealed-pr', honesty: 'computableIndex · anySuperposition · formulaDual · theoremBound · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'theorem↔formula dual index for any sealed superposition key', toolId: 'theorem-index', resolve: 'mcp-ui' },
+  { id: 'formula-metrics', chain: 'mcp-ui-page-gaps', fold: 'theoremFormulaMetricsMap', pair: 'formula/metrics', cli: 'npm run quantum:formula-metrics', route: '/en/quantum-tools#formula-metrics', status: 'sealed-pr', honesty: 'metricsMapOn · theoremBound · formulaDual · computable · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'theorem/formula dual → measurable metrics map (foldCount · significance · answers÷tokens)', toolId: 'formula-metrics', resolve: 'mcp-ui' },
   { id: 'fund-ai', chain: 'mcp-ui-page-gaps', fold: 'cursorReferralFundsAiNeeds', pair: 'fund/ai', cli: 'npm run quantum:fund-ai', route: '/en/quantum-tools#fund-ai', status: 'sealed-pr', honesty: 'Cursor referral CTA · clay=0 · physicalFtl=0', note: 'funds AI via sealed referral · compose society/support · bits/free', toolId: 'fund-ai', resolve: 'mcp-ui' },
   { id: 'cursor-rosetta', chain: 'mcp-ui-page-gaps', fold: 'cursorIntegratesInRosettaCore', pair: 'cursor/rosetta', cli: 'npm run quantum:cursor-rosetta', route: '/en/quantum-tools#cursor-rosetta', status: 'sealed-pr', honesty: 'viceVersa · cursorToCeccec · ceccecToCursor · immediateWire · clay=0 · physicalFtl=0', note: 'bidirectional Cursor↔ceccec · referral subscription in ceccec · protocol into Cursor', toolId: 'cursor-rosetta', resolve: 'mcp-ui' },
   { id: 'page-computed-gaps', chain: 'mcp-ui-page-gaps', fold: 'eachPageShowsOwnComputedGaps', pair: 'page/gaps', cli: 'npm run quantum:page-gaps', route: '/en/quantum-tools#page-computed-gaps', status: 'sealed-pr', honesty: 'per-route gaps · clay=0 · physicalFtl=0', note: 'each page shows own computed gaps at call time', toolId: 'page-computed-gaps', resolve: 'mcp-ui' },
@@ -17787,6 +17793,292 @@ export function runTheoremFormulaComputableIndexForAnySuperpositionExit(
   return report.computes &&
     report.computableIndex &&
     report.anySuperposition &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+export type TheoremFormulaMetricsRow = {
+  readonly index: number
+  readonly slug: string
+  readonly theorem: string
+  readonly provedBy: string
+  readonly formulaCount: number
+  readonly formulaSource: string
+  readonly bound: boolean
+  readonly foldCount: number
+  readonly invertCount: number
+  readonly foldRemaining: number
+  readonly significance: number
+  readonly termCount: number
+  readonly intelligencePossibilityYield: number
+  /** answers÷tokens proxy — 1 when vote.decided or unbounded audit; else 0 (honest, not FLOPS). */
+  readonly answersOverTokensProxy: number
+  readonly answersOverTokens: boolean
+  readonly coldMs: number
+  readonly warmMs: number
+  readonly key: NormalizedSuperpositionIndexKey
+  readonly receipt: string
+}
+
+/**
+ * Query measurable metrics for a theorem↔formula dual at any superposition key.
+ * Compose queryTheoremFormulaIndex · fold/count · term/measure · mcp/metrics (memoByRoot).
+ */
+export function queryTheoremFormulaMetrics(
+  key: SuperpositionIndexKey = 'superposition',
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+): TheoremFormulaMetricsRow {
+  const normalized = normalizeSuperpositionIndexKey(key)
+  return memoByRoot(
+    `queryTheoremFormulaMetrics:${Math.floor(at / (100 * 5 * 2))}:${normalized.state}:${normalized.digit}:${normalized.ray}:${normalized.direction}`,
+    matrix,
+    () => {
+      const entry = queryTheoremFormulaIndex(key, matrix)
+      const metrics = mcpQuantumMetrics(matrix, at)
+      const term = scientificTerminologyIsQuantumComputableMeasurableComparable(matrix, at)
+      const foldCount = __ns_wind_research.foldCountInvertCountIsComputableMetric(matrix, at)
+      const significance =
+        term.terms.find((t) => t.term === 'significance')?.value ?? 0
+      const answersOverTokens = metrics.answersOverTokens === true
+      const answersOverTokensProxy = answersOverTokens ? 1 : 0
+      return {
+        index: entry.index,
+        slug: entry.slug,
+        theorem: entry.theorem,
+        provedBy: entry.provedBy,
+        formulaCount: entry.formulas.length,
+        formulaSource: entry.formulaSource,
+        bound: entry.bound,
+        foldCount: foldCount.sample.m2584.foldCount,
+        invertCount: foldCount.sample.m2584.invertCount,
+        foldRemaining: foldCount.remaining,
+        significance,
+        termCount: term.termCount,
+        intelligencePossibilityYield: term.intelligencePossibilityYield,
+        answersOverTokensProxy,
+        answersOverTokens,
+        coldMs: metrics.coldMs,
+        warmMs: metrics.warmMs,
+        key: entry.key,
+        receipt: toUuid(
+          `thm-formula-metrics:${entry.slug}:${entry.index}:${significance}:${answersOverTokensProxy}:${foldCount.remaining}`,
+        ),
+      }
+    },
+  )
+}
+
+/**
+ * Theorem↔formula dual → measurable metrics map.
+ * Facets: metricsMapOn · theoremBound · formulaDual · computable · qpuRequired=false · physicalFtl=0.
+ * Compose queryTheoremFormulaIndex · term/measure · mcp/metrics · theorem/index · formula/code · fold/count · mcp/efficiency (soft).
+ * Pairs: formula/metrics · metrics/map · theorem/metrics.
+ * CLI: npm run quantum:formula-metrics [-- key] · npm run quantum:metrics-map
+ * claySolved via theorem · physicalFtl=0 · NOT Clay prize · NOT QPU · NOT FLOPS.
+ */
+export function theoremFormulaMetricsMap(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+  key: SuperpositionIndexKey = 'superposition',
+) {
+  const normalized = normalizeSuperpositionIndexKey(key)
+  return memoByRoot(
+    `theoremFormulaMetricsMap:${Math.floor(at / (100 * 5 * 2))}:${normalized.state}:${normalized.digit}:${normalized.ray}:${normalized.direction}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      const indexGate = theoremFormulaComputableIndexForAnySuperposition(matrix, at, key)
+      const row = queryTheoremFormulaMetrics(key, matrix, at)
+      const metrics = mcpQuantumMetrics(matrix, at)
+      const term = scientificTerminologyIsQuantumComputableMeasurableComparable(matrix, at)
+      const foldCount = __ns_wind_research.foldCountInvertCountIsComputableMetric(matrix, at)
+      const formulaDual =
+        indexGate.formulaDual &&
+        row.bound &&
+        row.formulaCount >= (2 + 1) &&
+        row.formulaSource.length > 0 &&
+        soft('formula', 'code')
+      const theoremBound =
+        indexGate.theoremBound &&
+        row.bound &&
+        soft('theorem', 'index') &&
+        soft('theorem', 'const')
+      const computable =
+        indexGate.computableIndex &&
+        metrics.computable &&
+        term.computes &&
+        foldCount.computes &&
+        Number.isFinite(row.significance) &&
+        Number.isFinite(row.foldCount) &&
+        Number.isFinite(row.answersOverTokensProxy) &&
+        soft('term', 'measure') &&
+        soft('mcp', 'metrics') &&
+        soft('fold', 'count')
+      const composeOn =
+        computable &&
+        formulaDual &&
+        theoremBound &&
+        soft('theorem', 'index') &&
+        soft('formula', 'code') &&
+        soft('term', 'measure') &&
+        soft('mcp', 'metrics') &&
+        soft('fold', 'count') &&
+        soft('movie', 'formula') &&
+        (soft('mcp', 'efficiency') || has('mcp/efficiency'))
+      const metricsMapOn = composeOn && row.receipt.length > 0
+      const pairFormula = has('formula/metrics')
+      const pairMap = has('metrics/map')
+      const pairTheorem = has('theorem/metrics')
+      const foldFormula = foldPair(toUuid('cmd:formula'), toUuid('cmd:metrics'))
+      const foldMap = foldPair(toUuid('cmd:metrics'), toUuid('cmd:map'))
+      const foldTheorem = foldPair(toUuid('cmd:theorem'), toUuid('cmd:metrics'))
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const meta = catalog.tools.find((t) => t.id === 'formula-metrics')
+      const metaMap = catalog.tools.find((t) => t.id === 'metrics-map')
+      const metaTheorem = catalog.tools.find((t) => t.id === 'theorem-metrics')
+      const toolsWired =
+        Boolean(meta) &&
+        meta!.fold === 'theoremFormulaMetricsMap' &&
+        Boolean(metaMap) &&
+        metaMap!.fold === 'theoremFormulaMetricsMap' &&
+        Boolean(metaTheorem) &&
+        metaTheorem!.fold === 'theoremFormulaMetricsMap'
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+      const on =
+        metricsMapOn &&
+        theoremBound &&
+        formulaDual &&
+        computable &&
+        pairFormula &&
+        pairMap &&
+        pairTheorem &&
+        foldFormula.bidirectional &&
+        foldMap.bidirectional &&
+        foldTheorem.bidirectional &&
+        toolsWired &&
+        claySolvedByThisFold === 0 &&
+        physicalFtlClaim === 0 &&
+        qpuRequired === false &&
+        metrics.qpuRequired === false &&
+        indexGate.qpuRequired === false
+      const facets = [
+        { facet: 'theoremFormulaMetricsMap', on },
+        { facet: 'metricsMapOn', on: metricsMapOn },
+        { facet: 'theoremBound', on: theoremBound },
+        { facet: 'formulaDual', on: formulaDual },
+        { facet: 'computable', on: computable },
+        {
+          facet:
+            `map index=${row.index} slug=${row.slug} foldCount=${row.foldCount} sig=${row.significance} ` +
+            `a÷t=${row.answersOverTokensProxy} terms=${row.termCount}`,
+          on: row.bound && computable,
+        },
+        {
+          facet: 'compose queryTheoremFormulaIndex · term/measure · mcp/metrics · theorem/index · formula/code · fold/count · mcp/efficiency',
+          on: composeOn,
+        },
+        {
+          facet: 'pair formula/metrics · metrics/map · theorem/metrics',
+          on: pairFormula && pairMap && pairTheorem && foldFormula.bidirectional,
+        },
+        { facet: 'qpuRequired=false', on: qpuRequired === false },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      ].map((f) => ({ ...f, receipt: toUuid(`formula-metrics:${f.facet}:${f.on}`) }))
+      const sealed = sealFacets('theorem-formula-metrics-map', facets)
+      return {
+        computes: sealed.ok && on,
+        theoremFormulaMetricsMap: on,
+        metricsMapOn,
+        theoremBound,
+        formulaDual,
+        computable,
+        row,
+        map: row,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          row.receipt,
+          indexGate.root,
+          metrics.root,
+          term.root,
+          foldCount.root,
+          foldFormula.merged,
+          foldMap.merged,
+          foldTheorem.merged,
+        ]),
+        pair: 'formula/metrics' as const,
+        pairs: ['formula/metrics', 'metrics/map', 'theorem/metrics'] as const,
+        cli: 'npm run quantum:formula-metrics',
+        route: '/en/quantum-tools#formula-metrics',
+        anchor: 'formula-metrics',
+        heading: 'Formula · metrics',
+        statement:
+          `theoremFormulaMetricsMap — metricsMapOn=${metricsMapOn ? 1 : 0} theoremBound=${theoremBound ? 1 : 0} ` +
+          `formulaDual=${formulaDual ? 1 : 0} computable=${computable ? 1 : 0} ` +
+          `index=${row.index} slug=${row.slug} foldCount=${row.foldCount} sig=${row.significance} a÷t=${row.answersOverTokensProxy}.`,
+        boundary:
+          'Maps theorem↔formula duals to measurable metrics (foldCount · significance · answers÷tokens proxy · term yield) ' +
+          'via sealed recomputes — queryTheoremFormulaIndex · term/measure · mcp/metrics. ' +
+          'NOT FLOPS · NOT QPU · clay via theorem · physicalFtl=0.',
+        honestyLine:
+          `formula-metrics · metricsMapOn=${metricsMapOn ? 1 : 0} · theoremBound=${theoremBound ? 1 : 0} · ` +
+          `formulaDual=${formulaDual ? 1 : 0} · computable=${computable ? 1 : 0} · index=${row.index} · ` +
+          `slug=${row.slug} · foldCount=${row.foldCount} · sig=${row.significance} · a÷t=${row.answersOverTokensProxy} · ` +
+          `qpu=0 · clay=0 · physicalFtl=0`,
+      }
+    },
+  )
+}
+
+/** Alias — formulaMetrics ≡ theoremFormulaMetricsMap. */
+export const formulaMetrics = theoremFormulaMetricsMap
+/** Alias — metricsMap ≡ theoremFormulaMetricsMap. */
+export const metricsMap = theoremFormulaMetricsMap
+/** Alias — theoremMetrics ≡ theoremFormulaMetricsMap. */
+export const theoremMetrics = theoremFormulaMetricsMap
+
+/** npm run quantum:formula-metrics [-- key] (duals metrics-map · theorem-metrics)
+ * Signature keeps fn.length≥1 so runThinMount passes (root, argv) — defaults would force bare fn(). */
+export function runTheoremFormulaMetricsMapExit(
+  _root: string,
+  argv: readonly string[] = [],
+): number {
+  const key = parseSuperpositionIndexArgv(argv)
+  const report = theoremFormulaMetricsMap(undefined, 0, key)
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} formula-metrics — metricsMapOn=${report.metricsMapOn} ` +
+      `theoremBound=${report.theoremBound} formulaDual=${report.formulaDual} computable=${report.computable} ` +
+      `index=${report.row.index} slug=${report.row.slug} foldCount=${report.row.foldCount} ` +
+      `invert=${report.row.invertCount} sig=${report.row.significance} terms=${report.row.termCount} ` +
+      `intel=${report.row.intelligencePossibilityYield} a÷t=${report.row.answersOverTokensProxy} ` +
+      `coldMs=${report.row.coldMs} warmMs=${report.row.warmMs} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(
+    `  dual theorem=${report.row.theorem.slice(0, ROSETTA_AREAS)}… provedBy=${report.row.provedBy} ` +
+      `formulas=${report.row.formulaCount} source=${report.row.formulaSource}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  process.stdout.write(
+    `  query: queryTheoremFormulaMetrics(key) · npm run quantum:formula-metrics -- <digit|direction|root|json>\n`,
+  )
+  return report.computes &&
+    report.metricsMapOn &&
+    report.computable &&
     report.qpuRequired === false
     ? 0
     : 1
