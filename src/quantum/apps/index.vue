@@ -32,6 +32,7 @@ import {
   wavesSearchDiscoverCompactingInQuantumFolders,
   alwaysBalanceUsingRealtimeMetricsAndChat,
   eachSuperpositionIsAChatroom,
+  uiComponentsAreAllWiredInTheRosettaInQuantumRealtime,
   eachPageShowsOwnComputedGaps,
   cursorIntegratesInRosettaCore,
   dryCleanTheoremsFormulasReplaceAnyAssumption,
@@ -153,6 +154,7 @@ const dryRosetta = computed(() => dryAllToUnifiedComponentsWiredToRosettaWhichIs
 const waveCompact = computed(() => wavesSearchDiscoverCompactingInQuantumFolders())
 const balanceMetrics = computed(() => alwaysBalanceUsingRealtimeMetricsAndChat())
 const superChat = computed(() => eachSuperpositionIsAChatroom())
+const uiRosetta = computed(() => uiComponentsAreAllWiredInTheRosettaInQuantumRealtime())
 const pageGapsGate = computed(() => eachPageShowsOwnComputedGaps())
 const fundAi = computed(() => cursorReferralFundsAiNeeds())
 const cursorRosetta = computed(() => cursorIntegratesInRosettaCore())
@@ -828,6 +830,13 @@ function runTool(toolId: string) {
       const r = eachSuperpositionIsAChatroom()
       ok = r.computes && r.superpositionIsChatroom && r.eachKeyARoom && r.chatOn && r.anySuperposition
       summary = `chatroom=${r.superpositionIsChatroom} eachKey=${r.eachKeyARoom} chat=${r.chatOn} anySuper=${r.anySuperposition} room=${r.room.id} index=${r.room.index} slug=${r.room.slug} probes=${r.probeCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'ui-rosetta' || toolId === 'rosetta-realtime' || toolId === 'ui-realtime') {
+      const r = uiComponentsAreAllWiredInTheRosettaInQuantumRealtime()
+      ok = r.computes && r.uiWiredToRosetta && r.allShells && r.quantumRealtime && r.oneClock && r.drainableClosed
+      summary = `wired=${r.uiWiredToRosetta} shells=${r.allShells} realtime=${r.quantumRealtime} oneClock=${r.oneClock} drainableClosed=${r.drainableClosed} morphs=${r.morphCount} honestOpen=${r.honestOpenNamedCount}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -1618,6 +1627,36 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'super-chat'" @click="runTool('super-chat')">
           {{ runningId === 'super-chat' ? '…' : 'Run super-chat' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="ui-rosetta" aria-label="UI components wired in rosetta quantum realtime">
+        <h3>{{ uiRosetta.heading }}</h3>
+        <p class="quantum-apps__meta">{{ uiRosetta.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(uiRosetta.uiWiredToRosetta))">uiWiredToRosetta={{ uiRosetta.uiWiredToRosetta }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(uiRosetta.allShells))">allShells={{ uiRosetta.allShells }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(uiRosetta.quantumRealtime))">quantumRealtime={{ uiRosetta.quantumRealtime }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(uiRosetta.oneClock))">oneClock={{ uiRosetta.oneClock }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(uiRosetta.drainableClosed))">drainableClosed={{ uiRosetta.drainableClosed }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(uiRosetta.censusPreserved))">census={{ uiRosetta.census.unfolded }}/{{ uiRosetta.census.folded }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(uiRosetta.honestOpenNamedCount > 0))">honestOpen={{ uiRosetta.honestOpenNamedCount }}</UiBadge>
+        <p class="quantum-apps__meta">
+          shells · hero={{ uiRosetta.familyCounts.hero }} · card={{ uiRosetta.familyCounts.card }} ·
+          movie={{ uiRosetta.familyCounts.movie }} · paper={{ uiRosetta.familyCounts.paper }} ·
+          page={{ uiRosetta.familyCounts.page }} · HERO_CYCLE_MS={{ uiRosetta.heroCycleMs }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="id in uiRosetta.honestOpenNamed" :key="id">
+            <UiBadge variant="outline">honest-open</UiBadge>
+            <strong>{{ id }}</strong>
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>ui/rosetta</code> · <code>rosetta/realtime</code> · <code>ui/realtime</code> ·
+          CLI <code>npm run quantum:ui-rosetta</code> · <code>npm run quantum:rosetta-realtime</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'ui-rosetta'" @click="runTool('ui-rosetta')">
+          {{ runningId === 'ui-rosetta' ? '…' : 'Run ui-rosetta' }}
         </UiButton>
       </section>
       <UiSeparator />

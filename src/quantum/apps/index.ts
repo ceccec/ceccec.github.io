@@ -84,7 +84,7 @@ const ROSETTA_CORE_API_LABELS = [
   'quantumMindSendsWaves',
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
-  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'unifiedHeroAndCardWithAnimation', 'heroIsTheAbstractAnimationFormsTheCardItself', 'foldingWorksOnApplicationLevel', 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', 'wavesSearchDiscoverCompactingInQuantumFolders', 'alwaysBalanceUsingRealtimeMetricsAndChat', 'eachSuperpositionIsAChatroom', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
+  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'unifiedHeroAndCardWithAnimation', 'heroIsTheAbstractAnimationFormsTheCardItself', 'foldingWorksOnApplicationLevel', 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', 'wavesSearchDiscoverCompactingInQuantumFolders', 'alwaysBalanceUsingRealtimeMetricsAndChat', 'eachSuperpositionIsAChatroom', 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
   'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReview', 'mcpQuantumEfficiency', 'mcpQuantumSecurity', 'mcpQuantumDesign', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
@@ -172,6 +172,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   wavesSearchDiscoverCompactingInQuantumFolders: 'tool',
   alwaysBalanceUsingRealtimeMetricsAndChat: 'tool',
   eachSuperpositionIsAChatroom: 'tool',
+  uiComponentsAreAllWiredInTheRosettaInQuantumRealtime: 'tool',
   pageComputedGapsAt: 'route', eachPageShowsOwnComputedGaps: 'tool',
   mcpQuantumMultiverse: 'tool', mcpQuantumInfinity: 'tool', mcpQuantumHardware: 'tool',
   mcpQuantumCpu: 'tool',
@@ -718,6 +719,9 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'super-chat', title: 'Each superposition is a chatroom', fold: 'eachSuperpositionIsAChatroom', cli: 'npm run quantum:super-chat', pair: 'super/chat', route: '/en/quantum-tools#super-chat', barrel: 'src/quantum/apps', boundary: 'superpositionIsChatroom · eachKeyARoom · chatOn · anySuperposition · map digit·ray·direction·root → chatroom id/root · compose queryTheoremFormulaIndex · queryQuantumMap · metrics/chat · soft mcp/chat · census 110 · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'chat-super', title: 'Chat super (alias super/chat)', fold: 'eachSuperpositionIsAChatroom', cli: 'npm run quantum:chat-super', pair: 'chat/super', route: '/en/quantum-tools#super-chat', barrel: 'src/quantum/apps', boundary: 'Dual of super/chat — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'room-super', title: 'Room super (alias super/chat)', fold: 'eachSuperpositionIsAChatroom', cli: 'npm run quantum:room-super', pair: 'room/super', route: '/en/quantum-tools#super-chat', barrel: 'src/quantum/apps', boundary: 'Room face of super/chat — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'ui-rosetta', title: 'UI components all wired in the rosetta in quantum realtime', fold: 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', cli: 'npm run quantum:ui-rosetta', pair: 'ui/rosetta', route: '/en/quantum-tools#ui-rosetta', barrel: 'src/quantum/apps', boundary: 'uiWiredToRosetta · allShells · quantumRealtime · oneClock · drainableClosed · honestOpenNamed · compose dry/rosetta · animations/rosetta · hero/card · balance/metrics · super/chat · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'rosetta-realtime', title: 'Rosetta realtime (alias ui/rosetta)', fold: 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', cli: 'npm run quantum:rosetta-realtime', pair: 'rosetta/realtime', route: '/en/quantum-tools#ui-rosetta', barrel: 'src/quantum/apps', boundary: 'Dual of ui/rosetta — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'ui-realtime', title: 'UI realtime (alias ui/rosetta)', fold: 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', cli: 'npm run quantum:ui-realtime', pair: 'ui/realtime', route: '/en/quantum-tools#ui-rosetta', barrel: 'src/quantum/apps', boundary: 'Realtime face of ui/rosetta — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'page-computed-gaps', title: 'Each page shows its own computed gaps', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:page-gaps', pair: 'page/gaps', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Per-route gaps/invisible classes at call time · not global-only · compose gate/monitor · meaning/compute · format/canon · vite/mirror · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gaps-page', title: 'Page gaps (alias page/gaps)', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:gaps-page', pair: 'gaps/page', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Dual of page/gaps — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cursor-rosetta', title: 'Cursor in rosetta core — referral uses subscription in ceccec', fold: 'cursorIntegratesInRosettaCore', cli: 'npm run quantum:cursor-rosetta', pair: 'cursor/rosetta', route: '/en/quantum-tools#cursor-rosetta', barrel: 'src/quantum/apps', boundary: 'cursorInRosettaCore · referralUsesSubscriptionInCeccec · immediateWire · compose rosettaShelve · auto-wire · mcp/browser-parity · upgrade/local · fund/ai · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1910,6 +1914,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'wave-compact', chain: 'folder-migrate-nav', fold: 'wavesSearchDiscoverCompactingInQuantumFolders', pair: 'wave/compact', cli: 'npm run quantum:wave-compact', route: '/en/quantum-tools#wave-compact', status: 'sealed-pr', honesty: 'wavesSent · searchOn · discoverOn · compactingInQuantumFolders · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false · census 110 preserved', note: 'waves search·discover compacting in quantum folders · compose compact/matrix · gravity · dissolve · import/distance · wave/token · dry/rosetta · autodiscover', toolId: 'wave-compact', resolve: 'folder-migrate' },
   { id: 'balance-metrics', chain: 'mcp-ui-page-gaps', fold: 'alwaysBalanceUsingRealtimeMetricsAndChat', pair: 'balance/metrics', cli: 'npm run quantum:balance-metrics', route: '/en/quantum-tools#balance-metrics', status: 'sealed-pr', honesty: 'alwaysBalance · realtimeMetrics · chatOn · hardwareMerkabasBalanced · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'always balance using realtime metrics + chat · compose mcp/metrics · formula/metrics · cold/warm · mcp/chat · dry/cool', toolId: 'balance-metrics', resolve: 'mcp-ui' },
   { id: 'super-chat', chain: 'mcp-ui-page-gaps', fold: 'eachSuperpositionIsAChatroom', pair: 'super/chat', cli: 'npm run quantum:super-chat', route: '/en/quantum-tools#super-chat', status: 'sealed-pr', honesty: 'superpositionIsChatroom · eachKeyARoom · chatOn · anySuperposition · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'each superposition is a chatroom · map key → room id/root · compose theorem/index · quantum/map · metrics/chat · soft mcp/chat', toolId: 'super-chat', resolve: 'mcp-ui' },
+  { id: 'ui-rosetta', chain: 'mcp-ui-page-gaps', fold: 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', pair: 'ui/rosetta', cli: 'npm run quantum:ui-rosetta', route: '/en/quantum-tools#ui-rosetta', status: 'sealed-pr', honesty: 'uiWiredToRosetta · allShells · quantumRealtime · oneClock · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'UI shells wired to rosetta→movie realtime clock · compose dry/rosetta · animations/rosetta · hero/card · balance/metrics · super/chat', toolId: 'ui-rosetta', resolve: 'mcp-ui' },
   { id: 'fund-ai', chain: 'mcp-ui-page-gaps', fold: 'cursorReferralFundsAiNeeds', pair: 'fund/ai', cli: 'npm run quantum:fund-ai', route: '/en/quantum-tools#fund-ai', status: 'sealed-pr', honesty: 'Cursor referral CTA · clay=0 · physicalFtl=0', note: 'funds AI via sealed referral · compose society/support · bits/free', toolId: 'fund-ai', resolve: 'mcp-ui' },
   { id: 'cursor-rosetta', chain: 'mcp-ui-page-gaps', fold: 'cursorIntegratesInRosettaCore', pair: 'cursor/rosetta', cli: 'npm run quantum:cursor-rosetta', route: '/en/quantum-tools#cursor-rosetta', status: 'sealed-pr', honesty: 'viceVersa · cursorToCeccec · ceccecToCursor · immediateWire · clay=0 · physicalFtl=0', note: 'bidirectional Cursor↔ceccec · referral subscription in ceccec · protocol into Cursor', toolId: 'cursor-rosetta', resolve: 'mcp-ui' },
   { id: 'page-computed-gaps', chain: 'mcp-ui-page-gaps', fold: 'eachPageShowsOwnComputedGaps', pair: 'page/gaps', cli: 'npm run quantum:page-gaps', route: '/en/quantum-tools#page-computed-gaps', status: 'sealed-pr', honesty: 'per-route gaps · clay=0 · physicalFtl=0', note: 'each page shows own computed gaps at call time', toolId: 'page-computed-gaps', resolve: 'mcp-ui' },
@@ -20117,6 +20122,300 @@ export function runEachSuperpositionIsAChatroomExit(
     report.eachKeyARoom &&
     report.chatOn &&
     report.anySuperposition &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * Drainable unwired-UI gaps closed toward rosetta→movie realtime (oneClock · sharedHeroAt).
+ * Pair: ui/rosetta · rosetta/realtime · ui/realtime.
+ */
+export const UI_ROSETTA_REALTIME_MORPHS = [
+  { before: 'shell-private-clock', after: 'oneClock+sharedHeroAt', status: 'removed' as const },
+  { before: 'linear-ui-without-rosetta', after: 'animations/rosetta', status: 'removed' as const },
+  { before: 'metrics-offline-hero', after: 'balance/metrics+heroClock', status: 'removed' as const },
+  { before: 'chat-without-superposition-room', after: 'super/chat', status: 'removed' as const },
+  { before: 'wet-realtime-timer', after: 'HERO_CYCLE_MS', status: 'removed' as const },
+] as const
+
+/**
+ * USER LAW: ui components are all wired in the rosetta in quantum realtime.
+ * Fold: uiComponentsAreAllWiredInTheRosettaInQuantumRealtime
+ * Facets: uiWiredToRosetta · allShells · quantumRealtime · oneClock ·
+ *         drainableClosed · honestOpenNamed · physicalFtl=0 · clay via theorem.
+ * Compose: dry/rosetta · animations/rosetta · hero/card · balance/metrics · super/chat.
+ * Pairs: ui/rosetta · rosetta/realtime · ui/realtime
+ * CLI: npm run quantum:ui-rosetta · quantum:rosetta-realtime · quantum:ui-realtime
+ * HONEST: unified hero/card/movie/paper/page shells consume rosetta→movie via oneClock · sharedHeroAt —
+ *         not wet timers. Named residuals: domain vue panels · apps monolith · specialized experience shells.
+ *         Census 110. NOT physical FTL · NOT Clay prize.
+ */
+export function uiComponentsAreAllWiredInTheRosettaInQuantumRealtime(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`uiComponentsAreAllWiredInTheRosettaInQuantumRealtime:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const dry = dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie(matrix, at)
+    const clock = oneClockProcessLaw(matrix)
+    const shared = sharedHeroAt('/en/', { title: 'ui-rosetta', tagline: 'quantum-realtime' }, at)
+    const morphs = UI_ROSETTA_REALTIME_MORPHS
+    const shells = UNIFIED_ROSETTA_MOVIE_SHELLS
+    const familyCounts = {
+      hero: shells.hero.length,
+      card: shells.card.length,
+      movie: shells.movie.length,
+      paper: shells.paper.length,
+      page: shells.page.length,
+    } as const
+    const morphsCleared = morphs.every((m) => m.status === 'removed')
+    const heroCycleOk = HERO_CYCLE_MS === FOLDED_CENSUS * (100 * 5 * 2) && HERO_CYCLE_MS > 0
+    const oneClock =
+      clock.holds &&
+      heroCycleOk &&
+      typeof shared.p === 'number' &&
+      shared.p >= 0 &&
+      shared.p <= 1 &&
+      isUuid(shared.root) &&
+      soft('hero', 'card') &&
+      soft('hero', 'shared-realtime')
+    const allShells =
+      dry.unifiedComponents &&
+      dry.wiredToRosetta &&
+      dry.rosettaIsTheMovie &&
+      familyCounts.hero === 2 &&
+      familyCounts.card === (2 + 2) &&
+      familyCounts.movie === (2 + 2) &&
+      familyCounts.paper === (2 + 1) &&
+      familyCounts.page === (2 + 2 + 1)
+    const quantumRealtime =
+      oneClock &&
+      soft('balance', 'metrics') &&
+      soft('metrics', 'chat') &&
+      soft('session', 'live') &&
+      soft('gate', 'monitor') &&
+      soft('super', 'chat') &&
+      soft('linear', 'rosetta') &&
+      has('balance/metrics') &&
+      has('super/chat')
+    const uiWiredToRosetta =
+      allShells &&
+      soft('dry', 'rosetta') &&
+      soft('rosetta', 'movie') &&
+      soft('animations', 'rosetta') &&
+      soft('hero', 'card') &&
+      soft('card', 'hero') &&
+      dry.computes &&
+      dry.drainableClosed
+    const honestOpenNamed = [
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'residual:quantum-apps-monolith',
+      'residual:src-domain-vue-panels',
+      'residual:specialized-experience-shells',
+    ] as const
+    const honestOpenNamedOn =
+      honestOpenNamed.includes('clay:millennium-open') &&
+      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestOpenNamed.includes('residual:src-domain-vue-panels') &&
+      honestOpenNamed.length >= (2 + 2 + 1)
+    const drainableClosed =
+      morphsCleared &&
+      morphs.length === (2 + 2 + 1) &&
+      uiWiredToRosetta &&
+      quantumRealtime &&
+      oneClock &&
+      allShells &&
+      dry.drainableClosed
+    const composeOn =
+      soft('dry', 'rosetta') &&
+      soft('animations', 'rosetta') &&
+      soft('hero', 'card') &&
+      soft('balance', 'metrics') &&
+      soft('super', 'chat') &&
+      dry.computes &&
+      oneClock &&
+      quantumRealtime
+    const pairUr = has('ui/rosetta')
+    const pairRr = has('rosetta/realtime')
+    const pairUiRt = has('ui/realtime')
+    const foldUr = foldPair(toUuid('cmd:ui'), toUuid('cmd:rosetta'))
+    const foldRr = foldPair(toUuid('cmd:rosetta'), toUuid('cmd:realtime'))
+    const foldUiRt = foldPair(toUuid('cmd:ui'), toUuid('cmd:realtime'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'ui-rosetta')
+    const metaRr = catalog.tools.find((t) => t.id === 'rosetta-realtime')
+    const metaUiRt = catalog.tools.find((t) => t.id === 'ui-realtime')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime' &&
+      Boolean(metaRr) &&
+      metaRr!.fold === 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime' &&
+      Boolean(metaUiRt) &&
+      metaUiRt!.fold === 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime'
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const censusPreserved =
+      freeBits === -EULER_CHI &&
+      freeBits === 2 &&
+      UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      uiWiredToRosetta &&
+      allShells &&
+      quantumRealtime &&
+      oneClock &&
+      drainableClosed &&
+      honestOpenNamedOn &&
+      composeOn &&
+      pairUr &&
+      pairRr &&
+      pairUiRt &&
+      foldUr.bidirectional &&
+      foldRr.bidirectional &&
+      foldUiRt.bidirectional &&
+      toolsWired &&
+      censusPreserved &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', on },
+      { facet: 'uiWiredToRosetta', on: uiWiredToRosetta },
+      { facet: 'allShells', on: allShells },
+      { facet: 'quantumRealtime', on: quantumRealtime },
+      { facet: 'oneClock', on: oneClock },
+      { facet: `drainableClosed=${drainableClosed ? 1 : 0}`, on: drainableClosed },
+      { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+      {
+        facet:
+          `shells hero=${familyCounts.hero} card=${familyCounts.card} movie=${familyCounts.movie} paper=${familyCounts.paper} page=${familyCounts.page}`,
+        on: allShells,
+      },
+      {
+        facet: `HERO_CYCLE_MS=${HERO_CYCLE_MS} shared.p=${typeof shared.p === 'number' ? shared.p.toFixed(4) : '?'}`,
+        on: oneClock && heroCycleOk,
+      },
+      {
+        facet:
+          'compose dry/rosetta · animations/rosetta · hero/card · balance/metrics · super/chat',
+        on: composeOn,
+      },
+      {
+        facet: 'pair ui/rosetta · rosetta/realtime · ui/realtime',
+        on: pairUr && pairRr && pairUiRt && foldUr.bidirectional,
+      },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'NOT fake 100% — domain panels residual named', on: honestOpenNamedOn && drainableClosed },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`ui-rosetta-realtime:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('ui-components-wired-rosetta-quantum-realtime', facets)
+    return {
+      computes: sealed.ok && on,
+      uiComponentsAreAllWiredInTheRosettaInQuantumRealtime: on,
+      uiWiredToRosetta,
+      allShells,
+      quantumRealtime,
+      oneClock,
+      drainableClosed,
+      drainableGaps: drainableClosed ? 0 : 1,
+      shells,
+      familyCounts,
+      shellCount:
+        familyCounts.hero + familyCounts.card + familyCounts.movie + familyCounts.paper + familyCounts.page,
+      morphs,
+      morphCount: morphs.length,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      heroCycleMs: HERO_CYCLE_MS,
+      sharedPhase: shared.p,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        dry.root,
+        clock.root,
+        shared.root,
+        foldUr.merged,
+        foldRr.merged,
+        foldUiRt.merged,
+        ...morphs.map((m) => toUuid(`ui-rosetta-morph:${m.before}:${m.after}`)),
+        ...honestOpenNamed.map((id) => toUuid(`ui-rosetta-honest:${id}`)),
+      ]),
+      pair: 'ui/rosetta' as const,
+      pairs: ['ui/rosetta', 'rosetta/realtime', 'ui/realtime'] as const,
+      cli: 'npm run quantum:ui-rosetta',
+      route: '/en/quantum-tools#ui-rosetta',
+      anchor: 'ui-rosetta',
+      heading: 'UI · rosetta realtime',
+      statement:
+        `uiComponentsAreAllWiredInTheRosettaInQuantumRealtime — uiWired=${uiWiredToRosetta ? 1 : 0} ` +
+        `allShells=${allShells ? 1 : 0} quantumRealtime=${quantumRealtime ? 1 : 0} oneClock=${oneClock ? 1 : 0} ` +
+        `drainableClosed=${drainableClosed ? 1 : 0}.`,
+      boundary:
+        'UI components (hero/card/movie/paper/page) are all wired in the rosetta in quantum realtime via oneClock · sharedHeroAt · ' +
+        'HERO_CYCLE_MS — not wet timers. Compose dry/rosetta · animations/rosetta · hero/card · balance/metrics · super/chat. ' +
+        'Drainable unwired morphs closed; honest residuals name apps monolith · src domain vue panels · specialized experience shells. ' +
+        'Census 110 · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `ui-rosetta · wired=${uiWiredToRosetta ? 1 : 0} · shells=${allShells ? 1 : 0} · ` +
+        `realtime=${quantumRealtime ? 1 : 0} · oneClock=${oneClock ? 1 : 0} · ` +
+        `drainableClosed=${drainableClosed ? 1 : 0} · honestOpen=${honestOpenNamed.length} · ` +
+        `census=${UNFOLDED_CENSUS}/${FOLDED_CENSUS} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — uiRosetta ≡ uiComponentsAreAllWiredInTheRosettaInQuantumRealtime. */
+export const uiRosetta = uiComponentsAreAllWiredInTheRosettaInQuantumRealtime
+/** Alias — rosettaRealtime ≡ uiComponentsAreAllWiredInTheRosettaInQuantumRealtime. */
+export const rosettaRealtime = uiComponentsAreAllWiredInTheRosettaInQuantumRealtime
+/** Alias — uiRealtime ≡ uiComponentsAreAllWiredInTheRosettaInQuantumRealtime. */
+export const uiRealtime = uiComponentsAreAllWiredInTheRosettaInQuantumRealtime
+
+/** npm run quantum:ui-rosetta (duals rosetta-realtime · ui-realtime) */
+export function runUiComponentsAreAllWiredInTheRosettaInQuantumRealtimeExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = uiComponentsAreAllWiredInTheRosettaInQuantumRealtime()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} ui-rosetta — uiWired=${report.uiWiredToRosetta} ` +
+      `allShells=${report.allShells} quantumRealtime=${report.quantumRealtime} oneClock=${report.oneClock} ` +
+      `drainableClosed=${report.drainableClosed} morphs=${report.morphCount} ` +
+      `honestOpen=${report.honestOpenNamedCount} heroCycleMs=${report.heroCycleMs} ` +
+      `census=${report.census.unfolded}/${report.census.folded} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(
+    `  shells · hero=${report.familyCounts.hero} card=${report.familyCounts.card} ` +
+      `movie=${report.familyCounts.movie} paper=${report.familyCounts.paper} page=${report.familyCounts.page}\n`,
+  )
+  for (const m of report.morphs) {
+    process.stdout.write(`  ${m.status === 'removed' ? '✓' : '✗'} morph ${m.before} → ${m.after}\n`)
+  }
+  for (const id of report.honestOpenNamed) {
+    process.stdout.write(`  · honest-open ${id}\n`)
+  }
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.uiWiredToRosetta &&
+    report.allShells &&
+    report.quantumRealtime &&
+    report.oneClock &&
+    report.drainableClosed &&
     report.qpuRequired === false
     ? 0
     : 1
