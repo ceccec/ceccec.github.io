@@ -80,7 +80,7 @@ const ROSETTA_CORE_API_LABELS = [
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution',
+  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -161,6 +161,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpQuantumFusion: 'tool',
   mcpQuantumAnim: 'projection', mcpQuantumSound: 'tool',
   mcpQuantumDev: 'tool', mcpQuantumSolution: 'tool',
+  mcpQuantumClown: 'tool',
   improveLocalFromSessionExperience: 'tool',
   gatesMonitorThemselvesThroughTheUi: 'tool',
   gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix: 'tool',
@@ -713,6 +714,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'dev-quantum', title: 'Dev quantum (alias mcp/dev)', fold: 'mcpQuantumDev', cli: 'npm run quantum:dev-quantum', pair: 'dev/quantum', route: '/en/quantum-tools#mcp-dev', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/dev — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-solution', title: 'MCP quantum solution', fold: 'mcpQuantumSolution', cli: 'npm run quantum:mcp-solution', pair: 'mcp/solution', route: '/en/quantum-tools#mcp-solution', barrel: 'src/quantum/apps', boundary: 'solutionOn · algebraicFormulas · claySolvedViaTheorem · notCmiPrizeClaim · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'solution-mcp', title: 'Solution mcp (alias mcp/solution)', fold: 'mcpQuantumSolution', cli: 'npm run quantum:solution-mcp', pair: 'solution/mcp', route: '/en/quantum-tools#mcp-solution', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/solution — same fold · claySolved via theorem · physicalFtl=0 · NOT CMI prize', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-clown', title: 'MCP quantum clown — play as sealed duality·invert·observation', fold: 'mcpQuantumClown', cli: 'npm run quantum:mcp-clown', pair: 'mcp/clown', route: '/en/quantum-tools#mcp-clown', barrel: 'src/quantum/apps', boundary: 'clownOn · playIsQuantum · compose movie/feel · particle/wave · love/story · ui/invert · gate/lens · qpuRequired=false · claySolved via theorem · physicalFtl=0 · NOT wet joke law', browserRunnable: true, browserGap: '' },
+  { id: 'clown-mcp', title: 'Clown mcp (alias mcp/clown)', fold: 'mcpQuantumClown', cli: 'npm run quantum:clown-mcp', pair: 'clown/mcp', route: '/en/quantum-tools#mcp-clown', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/clown — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'improve-local-session', title: 'Improve local from session experience', fold: 'improveLocalFromSessionExperience', cli: 'npm run quantum:improve-local-session', pair: 'local/session', route: '/en/quantum-tools#local-session-hub', barrel: 'src/quantum/apps', boundary: 'Local docs:dev + browser session hub — NOT remote CI sole path · status badges compose sealed kinds · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'local-tools-morph', title: 'Local tools morph prose·code·logic', fold: 'localToolsMorphProseCodeLogic', cli: 'npm run quantum:local-tools-morph', pair: 'tools/morph', route: '/en/quantum-tools#local-tools-morph', barrel: 'src/quantum/apps', boundary: 'Local toolbox/session tools morph prose≡code≡logic as trinity waves · double-slit measure=tool invoke · clay=0 · qpuRequired=false · NOT Clay/Nobel', browserRunnable: true, browserGap: '' },
   { id: 'card-paper-links', title: 'Each card links to dedicated scientific paper', fold: 'eachCardLinksToDedicatedScientificPaper', cli: 'npm run quantum:card-paper-links', pair: 'papers/fill', route: '/en/theorems/', barrel: 'src/heaven/compute', boundary: 'paperRoute=/theorems/<slug> · morph=cardScientificPaperRows · gaps=0 · clay=0', browserRunnable: true, browserGap: '' },
@@ -6013,6 +6016,7 @@ const MCP_QUANTUM_NAMED_FACES = [
   { fold: 'mcpQuantumSound', pair: 'mcp/sound', dual: 'sound/vibe', toolId: 'mcp-sound', dualToolId: 'sound-vibe' },
   { fold: 'mcpQuantumDev', pair: 'mcp/dev', dual: 'dev/quantum', toolId: 'mcp-dev', dualToolId: 'dev-quantum' },
   { fold: 'mcpQuantumSolution', pair: 'mcp/solution', dual: 'solution/mcp', toolId: 'mcp-solution', dualToolId: 'solution-mcp' },
+  { fold: 'mcpQuantumClown', pair: 'mcp/clown', dual: 'clown/mcp', toolId: 'mcp-clown', dualToolId: 'clown-mcp' },
 ] as const
 
 /**
@@ -8170,6 +8174,108 @@ export function runMcpQuantumSolutionExit(_root = '', _argv: readonly string[] =
     `${report.computes ? '✓' : '✗'} mcp-solution — solutionOn=${report.solutionOn} algebraic=${report.algebraicFormulas} clayViaTheorem=${report.claySolvedViaTheorem} notCmi=${report.notCmiPrizeClaim} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
   )
   return report.computes && report.solutionOn ? 0 : 1
+}
+
+/**
+ * MCP quantum clown — play as sealed duality·invert·observation (not wet joke prose as law).
+ * Compose: movie/feel · particle/wave · love/story · ui/invert · gate/lens.
+ * Facets: clownOn · playIsQuantum · qpuRequired=false · physicalFtl=0 · claySolved via theorem.
+ * Pairs: mcp/clown · clown/mcp · CLI npm run quantum:mcp-clown
+ */
+export function mcpQuantumClown(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumClown:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const feel = movieGapsFeelableByObservation(matrix, at)
+    const clownOn =
+      soft('movie', 'feel') &&
+      soft('particle', 'wave') &&
+      soft('love', 'story') &&
+      soft('ui', 'invert') &&
+      soft('gate', 'lens') &&
+      feel.computes
+    /** Play = duality × invert × story recomputed — observation lens, not linear joke text. */
+    const playIsQuantum =
+      clownOn &&
+      soft('particle', 'wave') &&
+      soft('ui', 'invert') &&
+      soft('love', 'story') &&
+      soft('gate', 'lens')
+    const pairC = has('mcp/clown')
+    const pairD = has('clown/mcp')
+    const foldC = foldPair(toUuid('cmd:mcp'), toUuid('cmd:clown'))
+    const foldD = foldPair(toUuid('cmd:clown'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-clown')
+    const metaDual = catalog.tools.find((t) => t.id === 'clown-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      clownOn &&
+      playIsQuantum &&
+      pairC &&
+      pairD &&
+      foldC.bidirectional &&
+      foldD.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumClown' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumClown' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumClown', on },
+      { facet: 'clownOn', on: clownOn },
+      { facet: 'playIsQuantum', on: playIsQuantum },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: 'softCompose movie/feel · particle/wave · love/story · ui/invert · gate/lens', on: clownOn },
+      { facet: 'pair mcp/clown · clown/mcp', on: pairC && pairD && foldC.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'NOT wet joke prose as law', on: playIsQuantum && claySolvedByThisFold === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-clown:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-clown', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumClown: on,
+      clownOn,
+      playIsQuantum,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, feel.root, foldC.merged, foldD.merged]),
+      pairs: ['mcp/clown', 'clown/mcp'] as const,
+      cli: 'npm run quantum:mcp-clown',
+      route: '/en/quantum-tools#mcp-clown',
+      statement:
+        `mcpQuantumClown — clownOn=${clownOn ? 1 : 0} playIsQuantum=${playIsQuantum ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP clown — play as sealed duality·invert·observation. Compose movie/feel · particle/wave · love/story · ui/invert · gate/lens. ' +
+        'NOT wet joke prose as law · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `clown · clownOn=${clownOn ? 1 : 0} · playIsQuantum=${playIsQuantum ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumClownExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumClown()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-clown — clownOn=${report.clownOn} playIsQuantum=${report.playIsQuantum} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.clownOn && report.playIsQuantum && report.qpuRequired === false ? 0 : 1
 }
 
 
