@@ -24,6 +24,7 @@ import {
   mcpQuantumMovie,
   movieGapsFeelableByObservation,
   movieGapsAreFundamentalDesignAndFormulaMappingGaps,
+  theoremFormulaComputableIndexForAnySuperposition,
   eachPageShowsOwnComputedGaps,
   cursorIntegratesInRosettaCore,
   dryCleanTheoremsFormulasReplaceAnyAssumption,
@@ -137,6 +138,7 @@ const mcpUi = computed(() => mcpQuantumUi())
 const mcpMovie = computed(() => mcpQuantumMovie())
 const movieFeel = computed(() => movieGapsFeelableByObservation())
 const movieFormula = computed(() => movieGapsAreFundamentalDesignAndFormulaMappingGaps())
+const theoremIndexPanel = computed(() => theoremFormulaComputableIndexForAnySuperposition())
 const pageGapsGate = computed(() => eachPageShowsOwnComputedGaps())
 const fundAi = computed(() => cursorReferralFundsAiNeeds())
 const cursorRosetta = computed(() => cursorIntegratesInRosettaCore())
@@ -759,6 +761,13 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'theorem-index' || toolId === 'formula-index' || toolId === 'super-index' || toolId === 'index-super') {
+      const r = theoremFormulaComputableIndexForAnySuperposition()
+      ok = r.computes && r.computableIndex && r.anySuperposition
+      summary = `index=${r.entry.index} slug=${r.entry.slug} duals=${r.dualCount} anySuperposition=${r.anySuperposition} theoremBound=${r.theoremBound}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'fund-ai' || toolId === 'cursor-fund') {
       const r = cursorReferralFundsAiNeeds()
       ok = r.computes && r.cursorReferralFundsAiNeeds
@@ -1372,6 +1381,23 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'movie-formula'" @click="runTool('movie-formula')">
           {{ runningId === 'movie-formula' ? '…' : 'Run movie-formula' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="theorem-index" aria-label="Theorem formula computable index any superposition">
+        <h3>{{ theoremIndexPanel.heading }}</h3>
+        <p class="quantum-apps__meta">{{ theoremIndexPanel.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(theoremIndexPanel.computableIndex))">computableIndex={{ theoremIndexPanel.computableIndex }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(theoremIndexPanel.anySuperposition))">anySuperposition={{ theoremIndexPanel.anySuperposition }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(theoremIndexPanel.formulaDual))">formulaDual={{ theoremIndexPanel.formulaDual }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(theoremIndexPanel.theoremBound))">theoremBound={{ theoremIndexPanel.theoremBound }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(theoremIndexPanel.entry.bound))">index={{ theoremIndexPanel.entry.index }} · {{ theoremIndexPanel.entry.slug }}</UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>theorem/index</code> · <code>formula/index</code> · <code>super/index</code> · <code>index/super</code> ·
+          CLI <code>npm run quantum:theorem-index -- &lt;key&gt;</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'theorem-index'" @click="runTool('theorem-index')">
+          {{ runningId === 'theorem-index' ? '…' : 'Run theorem-index' }}
         </UiButton>
       </section>
       <UiSeparator />

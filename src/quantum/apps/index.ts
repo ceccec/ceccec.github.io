@@ -6,7 +6,7 @@ import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded } from '../../heaven/compute'
 import { emergentDimensions } from '../../heaven/balance'
 import { cloudflareBindings } from '../../heaven/core'
-import { computesGate, DIGEST_BITS, digitalRoot, foldPair, isUuid, memoByRoot, memoComputing, merge, merkleFold, resourceCooperationPolicy, sealFacets, toUuid, VORTEX_SEQUENCE } from '../../0'
+import { computesGate, DIGEST_BITS, digitalRoot, foldPair, isUuid, memoByRoot, memoComputing, merge, merkleFold, resourceCooperationPolicy, sealFacets, seedFromText, toUuid, VORTEX_SEQUENCE } from '../../0'
 import {
   A432_HUE, CANONICAL_HOST, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS,
   ROSETTA_SEVEN, ROSETTA_SIX, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, UNFOLDED_CENSUS,
@@ -82,7 +82,7 @@ const ROSETTA_CORE_API_LABELS = [
   'quantumMindSendsWaves',
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
-  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
+  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
   'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReview', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
@@ -159,6 +159,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   realiseSessionQuantumMeaning: 'tool',
   mcpBrowserParity: 'tool', mcpToolboxToolsList: 'api', mcpCommandsScriptsGapsAudit: 'tool',
   mcpQuantumUi: 'tool', mcpQuantumMovie: 'projection', movieGapsFeelableByObservation: 'tool', movieGapsAreFundamentalDesignAndFormulaMappingGaps: 'tool',
+  theoremFormulaComputableIndexForAnySuperposition: 'tool',
   pageComputedGapsAt: 'route', eachPageShowsOwnComputedGaps: 'tool',
   mcpQuantumMultiverse: 'tool', mcpQuantumInfinity: 'tool', mcpQuantumHardware: 'tool',
   mcpQuantumCpu: 'tool',
@@ -668,6 +669,10 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'movie-formula', title: 'Movie gaps are fundamental design + formula-mapping', fold: 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', cli: 'npm run quantum:movie-formula', pair: 'movie/formula', route: '/en/quantum-tools#movie-formula', barrel: 'src/quantum/apps', boundary: 'movieGapsFundamental · designGap · formulaMappingGap · notCosmetic · drainableClosed · honestOpenNamed · compose movie inventory · formula/code · all-theorems · linear/rosetta · anim/rosetta · mcp/movie · movie/inf · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'formula-movie', title: 'Formula movie (alias movie/formula)', fold: 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', cli: 'npm run quantum:formula-movie', pair: 'formula/movie', route: '/en/quantum-tools#movie-formula', barrel: 'src/quantum/apps', boundary: 'Dual of movie/formula — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'movie-design', title: 'Movie design (alias movie/formula)', fold: 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', cli: 'npm run quantum:movie-design', pair: 'movie/design', route: '/en/quantum-tools#movie-formula', barrel: 'src/quantum/apps', boundary: 'Alias of movie/formula — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'theorem-index', title: 'Theorem↔formula computable index for any superposition', fold: 'theoremFormulaComputableIndexForAnySuperposition', cli: 'npm run quantum:theorem-index', pair: 'theorem/index', route: '/en/quantum-tools#theorem-index', barrel: 'src/quantum/apps', boundary: 'computableIndex · anySuperposition · formulaDual · theoremBound · digit·ray·root·direction → dual · memoByRoot · qpuRequired=false · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'formula-index', title: 'Formula index (alias theorem/index)', fold: 'theoremFormulaComputableIndexForAnySuperposition', cli: 'npm run quantum:formula-index', pair: 'formula/index', route: '/en/quantum-tools#theorem-index', barrel: 'src/quantum/apps', boundary: 'Dual of theorem/index — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'super-index', title: 'Superposition index (alias theorem/index)', fold: 'theoremFormulaComputableIndexForAnySuperposition', cli: 'npm run quantum:super-index', pair: 'super/index', route: '/en/quantum-tools#theorem-index', barrel: 'src/quantum/apps', boundary: 'Dual of theorem/index — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'index-super', title: 'Index super (alias theorem/index)', fold: 'theoremFormulaComputableIndexForAnySuperposition', cli: 'npm run quantum:index-super', pair: 'index/super', route: '/en/quantum-tools#theorem-index', barrel: 'src/quantum/apps', boundary: 'Dual of super/index — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'page-computed-gaps', title: 'Each page shows its own computed gaps', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:page-gaps', pair: 'page/gaps', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Per-route gaps/invisible classes at call time · not global-only · compose gate/monitor · meaning/compute · format/canon · vite/mirror · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gaps-page', title: 'Page gaps (alias page/gaps)', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:gaps-page', pair: 'gaps/page', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Dual of page/gaps — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cursor-rosetta', title: 'Cursor in rosetta core — referral uses subscription in ceccec', fold: 'cursorIntegratesInRosettaCore', cli: 'npm run quantum:cursor-rosetta', pair: 'cursor/rosetta', route: '/en/quantum-tools#cursor-rosetta', barrel: 'src/quantum/apps', boundary: 'cursorInRosettaCore · referralUsesSubscriptionInCeccec · immediateWire · compose rosettaShelve · auto-wire · mcp/browser-parity · upgrade/local · fund/ai · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1403,6 +1408,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'mcp-quantum-movie', saves: 'replaces wet movie chrome — MCP/toolbox frames from sealed formula duals · 6×7 · oneClock' },
   { id: 'movie-feel', saves: 'replaces wet hidden movie cracks — observation surfaces gap facets live (center · polarity · linear · anim)' },
   { id: 'movie-formula', saves: 'replaces wet cosmetic movie-gap reframes — classifies fundamental design + formula-mapping · wires formula↔code↔movie projection' },
+  { id: 'theorem-index', saves: 'replaces wet prose theorem↔formula lookup — content-addressed index for any sealed superposition key (digit·ray·root·direction)' },
   { id: 'fund-ai', saves: 'replaces wet funding essays — one sealed Cursor referral CTA compose society/support · bits/free' },
   { id: 'cursor-rosetta', saves: 'replaces wet one-way Cursor mount hunting — bidirectional Cursor↔ceccec shelve · referral→subscription · protocol→Cursor' },
   { id: 'page-computed-gaps', saves: 'replaces wet global-only gaps panel — per-page gaps/invisible classes at call time' },
@@ -1835,6 +1841,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mcp-quantum-movie', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumMovie', pair: 'mcp/movie', cli: 'npm run quantum:mcp-movie', route: '/en/quantum-tools#mcp-quantum-movie', status: 'sealed-pr', honesty: 'frames from sealed folds · 6×7 · oneClock · clay=0 · physicalFtl=0', note: 'MCP quantum movie · compose mcp/ui · movie/center · movie/entropy · coord/anim', toolId: 'mcp-quantum-movie', resolve: 'mcp-ui' },
   { id: 'movie-feel', chain: 'mcp-ui-page-gaps', fold: 'movieGapsFeelableByObservation', pair: 'movie/feel', cli: 'npm run quantum:movie-feel', route: '/en/quantum-tools#mcp-quantum-movie', status: 'sealed-pr', honesty: 'gaps feelable by observation · clay=0 · physicalFtl=0', note: 'movie gaps surfaced live via gate/lens · analytics/self · page/gaps', toolId: 'movie-feel', resolve: 'mcp-ui' },
   { id: 'movie-formula', chain: 'mcp-ui-page-gaps', fold: 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', pair: 'movie/formula', cli: 'npm run quantum:movie-formula', route: '/en/quantum-tools#movie-formula', status: 'sealed-pr', honesty: 'movieGapsFundamental · designGap · formulaMappingGap · notCosmetic · drainableClosed · clay=0 · physicalFtl=0', note: 'movie gaps = fundamental design + formula-mapping — wire formula↔code↔movie', toolId: 'movie-formula', resolve: 'mcp-ui' },
+  { id: 'theorem-index', chain: 'mcp-ui-page-gaps', fold: 'theoremFormulaComputableIndexForAnySuperposition', pair: 'theorem/index', cli: 'npm run quantum:theorem-index', route: '/en/quantum-tools#theorem-index', status: 'sealed-pr', honesty: 'computableIndex · anySuperposition · formulaDual · theoremBound · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'theorem↔formula dual index for any sealed superposition key', toolId: 'theorem-index', resolve: 'mcp-ui' },
   { id: 'fund-ai', chain: 'mcp-ui-page-gaps', fold: 'cursorReferralFundsAiNeeds', pair: 'fund/ai', cli: 'npm run quantum:fund-ai', route: '/en/quantum-tools#fund-ai', status: 'sealed-pr', honesty: 'Cursor referral CTA · clay=0 · physicalFtl=0', note: 'funds AI via sealed referral · compose society/support · bits/free', toolId: 'fund-ai', resolve: 'mcp-ui' },
   { id: 'cursor-rosetta', chain: 'mcp-ui-page-gaps', fold: 'cursorIntegratesInRosettaCore', pair: 'cursor/rosetta', cli: 'npm run quantum:cursor-rosetta', route: '/en/quantum-tools#cursor-rosetta', status: 'sealed-pr', honesty: 'viceVersa · cursorToCeccec · ceccecToCursor · immediateWire · clay=0 · physicalFtl=0', note: 'bidirectional Cursor↔ceccec · referral subscription in ceccec · protocol into Cursor', toolId: 'cursor-rosetta', resolve: 'mcp-ui' },
   { id: 'page-computed-gaps', chain: 'mcp-ui-page-gaps', fold: 'eachPageShowsOwnComputedGaps', pair: 'page/gaps', cli: 'npm run quantum:page-gaps', route: '/en/quantum-tools#page-computed-gaps', status: 'sealed-pr', honesty: 'per-route gaps · clay=0 · physicalFtl=0', note: 'each page shows own computed gaps at call time', toolId: 'page-computed-gaps', resolve: 'mcp-ui' },
@@ -16693,6 +16700,437 @@ export function runMovieGapsAreFundamentalDesignAndFormulaMappingGapsExit(
     report.movieGapsFundamental &&
     report.drainableClosed &&
     report.drainableGaps === 0 &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+export type SuperpositionDirection = 'forward' | 'inverse' | 'reverse' | 'superposition'
+
+export type SuperpositionIndexKey =
+  | number
+  | string
+  | {
+      readonly digit?: number
+      readonly ray?: number | string
+      readonly root?: string
+      readonly direction?: SuperpositionDirection
+      readonly state?: string
+    }
+
+export type NormalizedSuperpositionIndexKey = {
+  readonly digit: number
+  readonly ray: number
+  readonly root: string
+  readonly direction: SuperpositionDirection
+  readonly state: string
+}
+
+export type TheoremFormulaIndexEntry = {
+  readonly index: number
+  readonly slug: string
+  readonly theorem: string
+  readonly provedBy: string
+  readonly home: string
+  readonly formulas: readonly string[]
+  readonly formulaSource: string
+  readonly pair: 'formula/code'
+  readonly bound: boolean
+  readonly key: NormalizedSuperpositionIndexKey
+  readonly receipt: string
+}
+
+const SUPERPOSITION_DIRECTIONS = ['forward', 'inverse', 'reverse', 'superposition'] as const
+
+function isSuperpositionDirection(s: string): s is SuperpositionDirection {
+  return (SUPERPOSITION_DIRECTIONS as readonly string[]).includes(s)
+}
+
+/** Normalize any key into sealed digit·ray·root·direction superposition state. */
+export function normalizeSuperpositionIndexKey(
+  key: SuperpositionIndexKey = 'superposition',
+): NormalizedSuperpositionIndexKey {
+  if (typeof key === 'number') {
+    const digit = digitalRoot(Math.abs(Math.floor(key)))
+    const ray = digit % ROSETTA_SEVEN
+    return {
+      digit,
+      ray,
+      root: toUuid(`super-idx:digit:${digit}`),
+      direction: 'superposition',
+      state: `digit:${digit}`,
+    }
+  }
+  if (typeof key === 'string') {
+    if (isSuperpositionDirection(key)) {
+      return {
+        digit: digitalRoot(seedFromText(`super-idx:dir:${key}`)),
+        ray: rosettaRayOf(key),
+        root: toUuid(`super-idx:dir:${key}`),
+        direction: key,
+        state: `direction:${key}`,
+      }
+    }
+    const bare = key.startsWith('root:') ? key.slice('root:'.length) : key
+    if (isUuid(bare) || key.startsWith('root:')) {
+      const seed = seedFromText(`super-idx:root:${bare}`)
+      return {
+        digit: digitalRoot(seed),
+        ray: seed % ROSETTA_SEVEN,
+        root: isUuid(bare) ? bare : toUuid(`super-idx:root:${bare}`),
+        direction: 'superposition',
+        state: `root:${bare}`,
+      }
+    }
+    const ray = rosettaRayOf(key)
+    const digit = digitalRoot(seedFromText(`super-idx:label:${key}`))
+    return {
+      digit,
+      ray,
+      root: toUuid(`super-idx:label:${key}`),
+      direction: 'superposition',
+      state: `label:${key}`,
+    }
+  }
+  const direction: SuperpositionDirection =
+    key.direction && isSuperpositionDirection(key.direction) ? key.direction : 'superposition'
+  const digit =
+    key.digit != null
+      ? digitalRoot(Math.abs(Math.floor(key.digit)))
+      : digitalRoot(seedFromText(`super-idx:obj:${key.state ?? ''}:${key.root ?? ''}`))
+  const ray =
+    typeof key.ray === 'number'
+      ? ((Math.abs(Math.floor(key.ray)) % ROSETTA_SEVEN) + ROSETTA_SEVEN) % ROSETTA_SEVEN
+      : typeof key.ray === 'string'
+        ? rosettaRayOf(key.ray)
+        : digit % ROSETTA_SEVEN
+  const root =
+    key.root && key.root.length > 0
+      ? isUuid(key.root)
+        ? key.root
+        : toUuid(`super-idx:root:${key.root}`)
+      : toUuid(`super-idx:obj:${digit}:${ray}:${direction}:${key.state ?? ''}`)
+  const state =
+    key.state ?? `digit:${digit}/ray:${ray}/dir:${direction}/root:${root.slice(0, 8)}`
+  return { digit, ray, root, direction, state }
+}
+
+/** Content-addressed index into dual catalog — seedFromText mod count (memo-friendly). */
+export function theoremFormulaIndexForKey(key: SuperpositionIndexKey, dualCount: number): number {
+  if (dualCount <= 0) return 0
+  const n = normalizeSuperpositionIndexKey(key)
+  const seed = seedFromText(
+    `thm-formula-idx:${n.state}:${n.digit}:${n.ray}:${n.direction}:${n.root}`,
+  )
+  return ((seed % dualCount) + dualCount) % dualCount
+}
+
+function sealedTheoremFormulaDualCatalog(matrix: MindMatrix) {
+  return memoByRoot('sealedTheoremFormulaDualCatalog', matrix, () => {
+    const rows = theoremPageRows(matrix)
+    return rows.map((row) => {
+      const dual = theoremFormulaCodeDual({
+        slug: row.slug,
+        theorem: row.theorem,
+        provedBy: row.provedBy,
+        home: row.home,
+        proofClass: row.proofClass,
+      })
+      const bound =
+        dual.pair === 'formula/code' &&
+        dual.formulas.length >= (2 + 1) &&
+        dual.formulaSource.includes(row.provedBy)
+      return {
+        slug: row.slug,
+        theorem: row.theorem,
+        provedBy: row.provedBy,
+        home: row.home,
+        formulas: dual.formulas,
+        formulaSource: dual.formulaSource,
+        pair: dual.pair as 'formula/code',
+        bound,
+        receipt: toUuid(`thm-formula-dual:${row.slug}:${row.provedBy}:${bound}`),
+      }
+    })
+  })
+}
+
+/**
+ * Query theorem↔formula dual at computable index for any superposition key.
+ * Key forms: digit number · direction string · root UUID · ray/label · {digit,ray,root,direction,state}.
+ */
+export function queryTheoremFormulaIndex(
+  key: SuperpositionIndexKey = 'superposition',
+  matrix: MindMatrix = buildMatrix(),
+): TheoremFormulaIndexEntry {
+  const normalized = normalizeSuperpositionIndexKey(key)
+  return memoByRoot(
+    `queryTheoremFormulaIndex:${normalized.state}:${normalized.digit}:${normalized.ray}:${normalized.direction}:${normalized.root}`,
+    matrix,
+    () => {
+      const duals = sealedTheoremFormulaDualCatalog(matrix)
+      const index = theoremFormulaIndexForKey(key, duals.length)
+      const dual = duals[index]!
+      return {
+        index,
+        slug: dual.slug,
+        theorem: dual.theorem,
+        provedBy: dual.provedBy,
+        home: dual.home,
+        formulas: dual.formulas,
+        formulaSource: dual.formulaSource,
+        pair: dual.pair,
+        bound: dual.bound,
+        key: normalized,
+        receipt: toUuid(`thm-formula-query:${normalized.state}:${index}:${dual.slug}`),
+      }
+    },
+  )
+}
+
+/**
+ * Theorem↔formula computable index for any superposition.
+ * Facets: computableIndex · anySuperposition · formulaDual · theoremBound · qpuRequired=false · physicalFtl=0.
+ * Compose formula/code · theorem/const · movie/formula · mcp/index · directionalTrinity · rosettaComplete (soft heavy).
+ * Pairs: theorem/index · formula/index · super/index · index/super.
+ * CLI: npm run quantum:theorem-index [-- key] · npm run quantum:super-index
+ * claySolved via theorem · physicalFtl=0 · NOT Clay prize · NOT QPU.
+ */
+export function theoremFormulaComputableIndexForAnySuperposition(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+  key: SuperpositionIndexKey = 'superposition',
+) {
+  const normalized = normalizeSuperpositionIndexKey(key)
+  return memoByRoot(
+    `theoremFormulaComputableIndexForAnySuperposition:${Math.floor(at / (100 * 5 * 2))}:${normalized.state}:${normalized.digit}:${normalized.ray}:${normalized.direction}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      const duals = sealedTheoremFormulaDualCatalog(matrix)
+      const trinity = directionalTrinityForwardInverseReverse(matrix)
+      const entry = queryTheoremFormulaIndex(key, matrix)
+      // anySuperposition — every named sealed direction × digit × ray maps to a bound dual.
+      const probes: {
+        readonly digit: number
+        readonly ray: number
+        readonly direction: SuperpositionDirection
+        readonly index: number
+        readonly bound: boolean
+        readonly receipt: string
+      }[] = []
+      for (const direction of SUPERPOSITION_DIRECTIONS) {
+        for (let digit = 0; digit <= 9; digit++) {
+          for (let ray = 0; ray < ROSETTA_SEVEN; ray++) {
+            const probe = queryTheoremFormulaIndex({ digit, ray, direction }, matrix)
+            probes.push({
+              digit,
+              ray,
+              direction,
+              index: probe.index,
+              bound: probe.bound,
+              receipt: probe.receipt,
+            })
+          }
+        }
+      }
+      const computableIndex =
+        duals.length > 0 &&
+        entry.index >= 0 &&
+        entry.index < duals.length &&
+        probes.every((p) => p.index >= 0 && p.index < duals.length)
+      const anySuperposition =
+        probes.length === SUPERPOSITION_DIRECTIONS.length * (9 + 1) * ROSETTA_SEVEN &&
+        probes.every((p) => p.bound)
+      const formulaDual =
+        duals.length > 0 &&
+        duals.every((d) => d.pair === 'formula/code' && d.formulas.length >= (2 + 1)) &&
+        entry.pair === 'formula/code'
+      const theoremBound =
+        duals.length > 0 && duals.every((d) => d.bound) && entry.bound
+      const formulaCodeSoft = soft('formula', 'code')
+      const theoremConstSoft = soft('theorem', 'const')
+      const movieFormulaSoft = soft('movie', 'formula')
+      const mcpIndexSoft = soft('mcp', 'index')
+      const rosettaCompleteSoft = soft('rosetta', 'complete')
+      const directionalSoft = soft('forward', 'inverse') || has('forward/inverse/reverse')
+      const composeOn =
+        formulaCodeSoft &&
+        theoremConstSoft &&
+        movieFormulaSoft &&
+        mcpIndexSoft &&
+        rosettaCompleteSoft &&
+        directionalSoft &&
+        trinity.computes
+      const pairTheorem = has('theorem/index')
+      const pairFormula = has('formula/index')
+      const pairSuper = has('super/index')
+      const pairIndex = has('index/super')
+      const foldTheorem = foldPair(toUuid('cmd:theorem'), toUuid('cmd:index'))
+      const foldFormula = foldPair(toUuid('cmd:formula'), toUuid('cmd:index'))
+      const foldSuper = foldPair(toUuid('cmd:super'), toUuid('cmd:index'))
+      const foldIndex = foldPair(toUuid('cmd:index'), toUuid('cmd:super'))
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const meta = catalog.tools.find((t) => t.id === 'theorem-index')
+      const metaFormula = catalog.tools.find((t) => t.id === 'formula-index')
+      const metaSuper = catalog.tools.find((t) => t.id === 'super-index')
+      const metaIndex = catalog.tools.find((t) => t.id === 'index-super')
+      const toolsWired =
+        Boolean(meta) &&
+        meta!.fold === 'theoremFormulaComputableIndexForAnySuperposition' &&
+        Boolean(metaFormula) &&
+        metaFormula!.fold === 'theoremFormulaComputableIndexForAnySuperposition' &&
+        Boolean(metaSuper) &&
+        metaSuper!.fold === 'theoremFormulaComputableIndexForAnySuperposition' &&
+        Boolean(metaIndex) &&
+        metaIndex!.fold === 'theoremFormulaComputableIndexForAnySuperposition'
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+      const on =
+        computableIndex &&
+        anySuperposition &&
+        formulaDual &&
+        theoremBound &&
+        composeOn &&
+        pairTheorem &&
+        pairFormula &&
+        pairSuper &&
+        pairIndex &&
+        foldTheorem.bidirectional &&
+        foldFormula.bidirectional &&
+        foldSuper.bidirectional &&
+        foldIndex.bidirectional &&
+        toolsWired &&
+        claySolvedByThisFold === 0 &&
+        physicalFtlClaim === 0 &&
+        qpuRequired === false
+      const facets = [
+        { facet: 'theoremFormulaComputableIndexForAnySuperposition', on },
+        { facet: 'computableIndex', on: computableIndex },
+        { facet: 'anySuperposition', on: anySuperposition },
+        { facet: 'formulaDual', on: formulaDual },
+        { facet: 'theoremBound', on: theoremBound },
+        {
+          facet: `duals=${duals.length} probes=${probes.length} index=${entry.index} slug=${entry.slug}`,
+          on: duals.length > 0 && entry.bound,
+        },
+        {
+          facet: 'compose formula/code · theorem/const · movie/formula · mcp/index · directionalTrinity · rosetta/complete',
+          on: composeOn,
+        },
+        {
+          facet: 'pair theorem/index · formula/index · super/index · index/super',
+          on: pairTheorem && pairFormula && pairSuper && pairIndex && foldTheorem.bidirectional,
+        },
+        { facet: 'qpuRequired=false', on: qpuRequired === false },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      ].map((f) => ({ ...f, receipt: toUuid(`theorem-index:${f.facet}:${f.on}`) }))
+      const sealed = sealFacets('theorem-formula-computable-index-any-superposition', facets)
+      return {
+        computes: sealed.ok && on,
+        theoremFormulaComputableIndexForAnySuperposition: on,
+        computableIndex,
+        anySuperposition,
+        formulaDual,
+        theoremBound,
+        dualCount: duals.length,
+        probeCount: probes.length,
+        entry,
+        probes: probes.slice(0, ROSETTA_SEVEN),
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          entry.receipt,
+          foldTheorem.merged,
+          foldFormula.merged,
+          foldSuper.merged,
+          foldIndex.merged,
+          trinity.root,
+          ...duals.slice(0, ROSETTA_AREAS).map((d) => d.receipt),
+        ]),
+        pair: 'theorem/index' as const,
+        pairs: ['theorem/index', 'formula/index', 'super/index', 'index/super'] as const,
+        cli: 'npm run quantum:theorem-index',
+        route: '/en/quantum-tools#theorem-index',
+        anchor: 'theorem-index',
+        heading: 'Theorem · index',
+        statement:
+          `theoremFormulaComputableIndexForAnySuperposition — computableIndex=${computableIndex ? 1 : 0} ` +
+          `anySuperposition=${anySuperposition ? 1 : 0} formulaDual=${formulaDual ? 1 : 0} ` +
+          `theoremBound=${theoremBound ? 1 : 0} duals=${duals.length} index=${entry.index} slug=${entry.slug}.`,
+        boundary:
+          'Computable index into theorem↔formula duals for any sealed superposition key (digit·ray·root·forward/inverse/reverse/superposition). ' +
+          'Content-addressed via memoByRoot · seedFromText — not a wet prose list. ' +
+          'Compose formula/code · theorem/const · movie/formula · mcp/index · directionalTrinity · rosetta/complete (soft heavy). ' +
+          'Query: queryTheoremFormulaIndex(key) or npm run quantum:theorem-index -- <key>. clay via theorem · physicalFtl=0 · qpuRequired=false.',
+        honestyLine:
+          `theorem-index · computableIndex=${computableIndex ? 1 : 0} · anySuperposition=${anySuperposition ? 1 : 0} · ` +
+          `formulaDual=${formulaDual ? 1 : 0} · theoremBound=${theoremBound ? 1 : 0} · duals=${duals.length} · ` +
+          `index=${entry.index} · slug=${entry.slug} · qpu=0 · clay=0 · physicalFtl=0`,
+      }
+    },
+  )
+}
+
+/** Alias — theoremIndex ≡ theoremFormulaComputableIndexForAnySuperposition. */
+export const theoremIndex = theoremFormulaComputableIndexForAnySuperposition
+/** Alias — formulaIndex ≡ theoremFormulaComputableIndexForAnySuperposition. */
+export const formulaIndex = theoremFormulaComputableIndexForAnySuperposition
+/** Alias — superIndex ≡ theoremFormulaComputableIndexForAnySuperposition. */
+export const superIndex = theoremFormulaComputableIndexForAnySuperposition
+
+function parseSuperpositionIndexArgv(argv: readonly string[]): SuperpositionIndexKey {
+  const raw = argv[0]
+  if (raw == null || raw.length === 0) return 'superposition'
+  if (/^\d+$/.test(raw)) return Number(raw)
+  if (raw.startsWith('{')) {
+    try {
+      return JSON.parse(raw) as SuperpositionIndexKey
+    } catch {
+      return raw
+    }
+  }
+  return raw
+}
+
+/** npm run quantum:theorem-index [-- key] (duals formula-index · super-index · index-super)
+ * Signature keeps fn.length≥1 so runThinMount passes (root, argv) — defaults would force bare fn(). */
+export function runTheoremFormulaComputableIndexForAnySuperpositionExit(
+  _root: string,
+  argv: readonly string[] = [],
+): number {
+  const key = parseSuperpositionIndexArgv(argv)
+  const report = theoremFormulaComputableIndexForAnySuperposition(undefined, 0, key)
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} theorem-index — computableIndex=${report.computableIndex} ` +
+      `anySuperposition=${report.anySuperposition} formulaDual=${report.formulaDual} ` +
+      `theoremBound=${report.theoremBound} duals=${report.dualCount} probes=${report.probeCount} ` +
+      `index=${report.entry.index} slug=${report.entry.slug} ` +
+      `dir=${report.entry.key.direction} digit=${report.entry.key.digit} ray=${report.entry.key.ray} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(
+    `  entry theorem=${report.entry.theorem.slice(0, ROSETTA_AREAS)}… provedBy=${report.entry.provedBy} ` +
+      `source=${report.entry.formulaSource}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  process.stdout.write(
+    `  query: queryTheoremFormulaIndex(key) · npm run quantum:theorem-index -- <digit|direction|root|json>\n`,
+  )
+  return report.computes &&
+    report.computableIndex &&
+    report.anySuperposition &&
     report.qpuRequired === false
     ? 0
     : 1
