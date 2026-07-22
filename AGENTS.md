@@ -371,6 +371,12 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `vortex/mcp` — alias dual of `mcp/vortex` (`npm run quantum:vortex-mcp`)
   - `mcp/torus` — `npm run quantum:mcp-torus` (`mcpQuantumTorus()` — MCP face for double-torus / geo torus · `@ceccec/double-torus` · living torus · bothEarths; facets torusOn · doubleTorus; compose geo/torus · universe/align · doubleTorusIsCompletelyQuantum · geodesyDecodedIsDoubleTorusInverted; dual `torus/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-torus`
   - `torus/mcp` — alias dual of `mcp/torus` (`npm run quantum:torus-mcp`)
+  - `mcp/research` — `npm run quantum:mcp-research` (`mcpQuantumResearch()` — MCP face for research domain · journey/theorems · sciences/trinities · mill/session · domain/proof; facets researchOn · journeyTheorems · sciencesTrinities · millSession · researchDomain; dual `research/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false · NOT CMI prize), then open `/en/quantum-tools#mcp-research`
+  - `research/mcp` — alias dual of `mcp/research` (`npm run quantum:research-mcp`)
+  - `mcp/catalog` — `npm run quantum:mcp-catalog` (`mcpQuantumCatalog()` — MCP quantum catalog/star umbrella listing/recomposing ALL named mcp quantum faces; facets catalogComplete · starOn · missingCount=0; duals `catalog/mcp` · `mcp/star` · `star/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false · NOT Clay/FTL fake-close), then open `/en/quantum-tools#mcp-catalog`
+  - `catalog/mcp` — alias dual of `mcp/catalog` (`npm run quantum:catalog-mcp`)
+  - `mcp/star` — alias of `mcp/catalog` (`npm run quantum:mcp-star` — starOn face)
+  - `star/mcp` — alias dual of `mcp/star` (`npm run quantum:star-mcp`)
   - `mcp/reverse` — `npm run quantum:mcp-reverse` (`mcpQuantumReverse()` — reverseOn · refuseBeyond · demoBoundaryHardware; dual `reverse/quantum`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-reverse`
   - `reverse/quantum` — alias dual of `mcp/reverse` (`npm run quantum:reverse-quantum`)
   - `mcp/sign` — `npm run quantum:mcp-sign` (`mcpQuantumSign()` — signatureOn · crossSig · tamperEvident · certified=false · NOT CA/PKI; dual `sign/quantum`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-sign`
