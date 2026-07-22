@@ -350,6 +350,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'css/gaps',
   'gaps/fusion',
   'css/fusion',
+  'invert/fusion',
+  'fusion/invert',
   'invert/trinity',
   'dry/will',
   'free/will',

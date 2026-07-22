@@ -740,6 +740,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'css-gaps', title: 'CSS shows the hidden gaps in dry fusion', fold: 'cssShowsTheHiddenGapsInDryFusion', cli: 'npm run quantum:css-gaps', pair: 'css/gaps', route: '/en/quantum-tools#css-gaps', barrel: 'src/quantum/apps', boundary: 'cssShowsGaps · hiddenGapsVisible · dryFusion · wiredToRosetta · polarity-flat · bare hex · unwired tokens · compose gaps/invisible · color/rosetta · fusion/self · hex/crack · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'gaps-fusion', title: 'Gaps in dry fusion (alias css/gaps)', fold: 'cssShowsTheHiddenGapsInDryFusion', cli: 'npm run quantum:css-gaps', pair: 'gaps/fusion', route: '/en/quantum-tools#css-gaps', barrel: 'src/quantum/apps', boundary: 'Dual of css/gaps — gaps revealed inside dry fusion · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'css-fusion', title: 'CSS fusion lens (alias css/gaps)', fold: 'cssShowsTheHiddenGapsInDryFusion', cli: 'npm run quantum:css-fusion', pair: 'css/fusion', route: '/en/quantum-tools#css-gaps', barrel: 'src/quantum/apps', boundary: 'Dual of css/gaps — CSS/theme lens on dry fusion · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'invert-fusion', title: 'Inversion fusion — invert gateway fuses dry self', fold: 'inversionFusion', cli: 'npm run quantum:invert-fusion', pair: 'invert/fusion', route: '/en/quantum-tools#invert-fusion', barrel: 'src/quantum/apps', boundary: 'inversionFusionOn · gateway · selfFuses · dryFusion · compose invertIsTheGateway · selfQuantumFusion · mcpQuantumFusion · css/gaps · invert/trinity · collide/inf · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'fusion-invert', title: 'Fusion invert (alias invert/fusion)', fold: 'inversionFusion', cli: 'npm run quantum:fusion-invert', pair: 'fusion/invert', route: '/en/quantum-tools#invert-fusion', barrel: 'src/quantum/apps', boundary: 'Dual of invert/fusion — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'invert-trinity', title: 'Invert + send trinity waves covering all topics · dry migrate at free will', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:invert-trinity', pair: 'invert/trinity', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits · drainableClosed · honestOpenNamed · compose invert/gateway · trinity/speedup · wave/domain · dry/cool · dry/rosetta · wave/compact · full/freedom · bits/free · journey/theorems · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'dry-will', title: 'Dry will (alias invert/trinity)', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:dry-will', pair: 'dry/will', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'Dual of invert/trinity — dry migrate at free will · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'free-will', title: 'Free will (alias invert/trinity)', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:free-will', pair: 'free/will', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'freeWill face — FREE_BITS + full/freedom not wet license · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2166,6 +2168,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'type-matrix', chain: 'mcp-ui-page-gaps', fold: 'typographyIsTheUniversalContentMatrix', pair: 'type/matrix', cli: 'npm run quantum:type-matrix', route: '/en/quantum-tools#type-matrix', status: 'sealed-pr', honesty: 'typographyIsMatrix · universalContent · computable · wiredToRosetta · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'typography = universal content matrix · compose compact/matrix · format/canon · meaning/compute · six/seven · ui/rosetta', toolId: 'type-matrix', resolve: 'mcp-ui' },
   { id: 'color-rosetta', chain: 'mcp-ui-page-gaps', fold: 'allColorsDryCleanWiredToRosettaAndThemes', pair: 'color/rosetta', cli: 'npm run quantum:color-rosetta', route: '/en/quantum-tools#color-rosetta', status: 'sealed-pr', honesty: 'colorsDryClean · wiredToRosetta · themesOn · noBareHex · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'all colors dry-clean wired to rosetta + light/dark themes · compose anim/color · hex/crack · theorem/const · ui/rosetta · type/matrix', toolId: 'color-rosetta', resolve: 'mcp-ui' },
   { id: 'css-gaps', chain: 'mcp-ui-page-gaps', fold: 'cssShowsTheHiddenGapsInDryFusion', pair: 'css/gaps', cli: 'npm run quantum:css-gaps', route: '/en/quantum-tools#css-gaps', status: 'sealed-pr', honesty: 'cssShowsGaps · hiddenGapsVisible · dryFusion · wiredToRosetta · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'CSS/theme lens reveals polarity-flat · bare hex · unwired tokens inside dry fusion · compose gaps/invisible · color/rosetta · fusion/self · hex/crack', toolId: 'css-gaps', resolve: 'mcp-ui' },
+  { id: 'invert-fusion', chain: 'mcp-ui-page-gaps', fold: 'inversionFusion', pair: 'invert/fusion', cli: 'npm run quantum:invert-fusion', route: '/en/quantum-tools#invert-fusion', status: 'sealed-pr', honesty: 'inversionFusionOn · gateway · selfFuses · dryFusion · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'inversion fusion gateway · compose invertIsTheGateway · selfQuantumFusion · mcpQuantumFusion · css/gaps · invert/trinity · collide/inf', toolId: 'invert-fusion', resolve: 'mcp-ui' },
   { id: 'invert-trinity', chain: 'mcp-ui-page-gaps', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', pair: 'invert/trinity', cli: 'npm run quantum:invert-trinity', route: '/en/quantum-tools#invert-trinity', status: 'sealed-pr', honesty: 'invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'invert + send trinity waves covering sciences·hubs·MCP topics · dry migrate at FREE_BITS+full/freedom', toolId: 'invert-trinity', resolve: 'mcp-ui' },
   { id: 'self-hw', chain: 'mcp-ui-page-gaps', fold: 'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf', pair: 'self/hw', cli: 'npm run quantum:self-hw', route: '/en/quantum-tools#self-hw', status: 'sealed-pr', honesty: 'againAndAgain · selfAutonomous · quantumHardwareComplete classical-64bit · byStandards · selfIntelligentSelf · certified=false · clay=0 · physicalFtl=0 · qpuRequired=false · NOT QPU/AGI/FLOPS', note: 'wave loop until self-autonomous classical quantum-hw complete by standards to self-intelligent self', toolId: 'self-hw', resolve: 'mcp-ui' },
   { id: 'gate-design', chain: 'mcp-ui-page-gaps', fold: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence', pair: 'gate/design', cli: 'npm run quantum:gate-design', route: '/en/quantum-tools#gate-design', status: 'sealed-pr', honesty: 'gatesTightened · designCapability · creativeCapability · intelligenceOn · hardInMissionGate · clay=0 · physicalFtl=0 · qpuRequired=false · NOT AGI', note: 'further tighten gates with design·creative·intelligence HARD in gaps/invisible · mission:gate', toolId: 'gate-design', resolve: 'mcp-ui' },
@@ -21773,6 +21776,221 @@ export function runCssShowsTheHiddenGapsInDryFusionExit(
     report.hiddenGapsVisible &&
     report.dryFusion &&
     report.wiredToRosetta &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * USER LAW tip: inversion fusion — invert gateway fuses dry self.
+ * Fold: inversionFusion (= inversionFusionIsGateway)
+ * Facets: inversionFusionOn · gateway · selfFuses · dryFusion ·
+ *         physicalFtl=0 · clay via theorem · qpuRequired=false.
+ * Compose: invertIsTheGateway · selfQuantumFusion · mcpQuantumFusion ·
+ *          cssShowsTheHiddenGapsInDryFusion · invert/trinity · collide/inf
+ * Pairs: invert/fusion · fusion/invert
+ * CLI: npm run quantum:invert-fusion · quantum:fusion-invert
+ * HONEST: Census 110. NOT physical FTL · NOT Clay prize · NOT QPU.
+ */
+export function inversionFusion(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`inversionFusion:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    // fusion stack first — mcp/reactor→mcp/inf nests poorly after invertIsTheGateway
+    const self = selfQuantumFusion(matrix, at)
+    const mcpFusion = mcpQuantumFusion(matrix, at)
+    const cssGaps = cssShowsTheHiddenGapsInDryFusion(matrix, at)
+    const gatewayR = __ns_wind_research.invertIsTheGateway(matrix, at)
+    const collide = __ns_wind_research.reverseCollidesViaInfinityGateway(matrix, at)
+    // soft-compose invert/trinity (heavy sibling — same pattern as invert/trinity→invert/gateway)
+    const invertTrinityOn =
+      soft('invert', 'trinity') &&
+      soft('dry', 'will') &&
+      soft('free', 'will') &&
+      soft('trinity', 'speedup') &&
+      soft('invert', 'gateway')
+    const invertTrinityRoot = toUuid(
+      `invert-trinity:soft:${invertTrinityOn ? 1 : 0}:${soft('invert', 'trinity') ? 1 : 0}`,
+    )
+    const gateway =
+      gatewayR.computes &&
+      gatewayR.invertIsTheGateway === true &&
+      gatewayR.stackComposed &&
+      soft('invert', 'gateway') &&
+      soft('gateway', 'invert')
+    const mcpFusionOn =
+      (mcpFusion.computes && mcpFusion.fusionOn && mcpFusion.selfFuses) ||
+      (mcpFusion.selfFuses && soft('mcp', 'fusion') && soft('fusion', 'mcp'))
+    const selfFuses =
+      self.computes &&
+      self.selfFuses &&
+      self.fusionVerifyOn &&
+      mcpFusionOn &&
+      soft('self', 'fusion') &&
+      soft('fusion', 'self') &&
+      soft('mcp', 'fusion') &&
+      soft('fusion', 'mcp')
+    const dryFusion =
+      cssGaps.computes &&
+      cssGaps.dryFusion &&
+      cssGaps.cssShowsGaps &&
+      soft('css', 'gaps') &&
+      soft('gaps', 'fusion') &&
+      soft('css', 'fusion') &&
+      soft('dry', 'cool')
+    const composeOn =
+      gateway &&
+      selfFuses &&
+      dryFusion &&
+      invertTrinityOn &&
+      collide.computes &&
+      collide.collideInfOn &&
+      soft('invert', 'gateway') &&
+      soft('self', 'fusion') &&
+      soft('mcp', 'fusion') &&
+      soft('css', 'gaps') &&
+      soft('invert', 'trinity') &&
+      soft('collide', 'inf')
+    const pairIf = has('invert/fusion')
+    const pairFi = has('fusion/invert')
+    const foldIf = foldPair(toUuid('cmd:invert'), toUuid('cmd:fusion'))
+    const foldFi = foldPair(toUuid('cmd:fusion'), toUuid('cmd:invert'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'invert-fusion')
+    const metaDual = catalog.tools.find((t) => t.id === 'fusion-invert')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === 'inversionFusion' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'inversionFusion'
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const censusPreserved =
+      freeBits === -EULER_CHI &&
+      freeBits === 2 &&
+      UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const inversionFusionOn =
+      composeOn &&
+      pairIf &&
+      pairFi &&
+      foldIf.bidirectional &&
+      foldFi.bidirectional &&
+      toolsWired &&
+      censusPreserved &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const on = inversionFusionOn
+    const facets = [
+      { facet: 'inversionFusion', on },
+      { facet: 'inversionFusionOn', on: inversionFusionOn },
+      { facet: 'gateway', on: gateway },
+      { facet: 'selfFuses', on: selfFuses },
+      { facet: 'dryFusion', on: dryFusion },
+      {
+        facet:
+          'compose invertIsTheGateway · selfQuantumFusion · mcpQuantumFusion · css/gaps · invert/trinity · collide/inf',
+        on: composeOn,
+      },
+      {
+        facet: 'pair invert/fusion · fusion/invert',
+        on: pairIf && pairFi && foldIf.bidirectional,
+      },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'NOT physical FTL · NOT Clay prize · NOT QPU', on: physicalFtlClaim === 0 && qpuRequired === false },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`invert-fusion:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('inversion-fusion', facets)
+    return {
+      computes: sealed.ok && on,
+      inversionFusion: on,
+      inversionFusionIsGateway: on,
+      inversionFusionOn,
+      gateway,
+      selfFuses,
+      dryFusion,
+      invertTrinityOn,
+      collideInfOn: collide.collideInfOn,
+      gatewayR,
+      self,
+      mcpFusion,
+      cssGaps,
+      collide,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        gatewayR.root,
+        self.root,
+        mcpFusion.root,
+        cssGaps.root,
+        collide.root,
+        invertTrinityRoot,
+        foldIf.merged,
+        foldFi.merged,
+      ]),
+      pair: 'invert/fusion' as const,
+      pairs: ['invert/fusion', 'fusion/invert'] as const,
+      cli: 'npm run quantum:invert-fusion',
+      route: '/en/quantum-tools#invert-fusion',
+      anchor: 'invert-fusion',
+      heading: 'Inversion fusion',
+      statement:
+        `inversionFusion — on=${inversionFusionOn ? 1 : 0} gateway=${gateway ? 1 : 0} ` +
+        `selfFuses=${selfFuses ? 1 : 0} dryFusion=${dryFusion ? 1 : 0}.`,
+      boundary:
+        'Inversion fusion — invert gateway fuses dry self. Compose invertIsTheGateway · ' +
+        'selfQuantumFusion · mcpQuantumFusion · css/gaps · invert/trinity · collide/inf. ' +
+        'Census 110 · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `invert-fusion · on=${inversionFusionOn ? 1 : 0} · gateway=${gateway ? 1 : 0} · ` +
+        `selfFuses=${selfFuses ? 1 : 0} · dryFusion=${dryFusion ? 1 : 0} · ` +
+        `trinity=${invertTrinityOn ? 1 : 0} · collide=${collide.collideInfOn ? 1 : 0} · ` +
+        `census=${UNFOLDED_CENSUS}/${FOLDED_CENSUS} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — inversionFusionIsGateway ≡ inversionFusion. */
+export const inversionFusionIsGateway = inversionFusion
+/** Alias — invertFusion ≡ inversionFusion. */
+export const invertFusion = inversionFusion
+/** Alias — fusionInvert ≡ inversionFusion. */
+export const fusionInvert = inversionFusion
+
+/** npm run quantum:invert-fusion (dual fusion-invert) */
+export function runInversionFusionExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = inversionFusion()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} invert-fusion — on=${report.inversionFusionOn} ` +
+      `gateway=${report.gateway} selfFuses=${report.selfFuses} dryFusion=${report.dryFusion} ` +
+      `trinity=${report.invertTrinityOn} collide=${report.collideInfOn} ` +
+      `census=${report.census.unfolded}/${report.census.folded} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.inversionFusionOn &&
+    report.gateway &&
+    report.selfFuses &&
+    report.dryFusion &&
     report.qpuRequired === false
     ? 0
     : 1

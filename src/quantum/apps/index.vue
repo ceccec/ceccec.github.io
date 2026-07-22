@@ -37,6 +37,7 @@ import {
   typographyIsTheUniversalContentMatrix,
   allColorsDryCleanWiredToRosettaAndThemes,
   cssShowsTheHiddenGapsInDryFusion,
+  inversionFusion,
   invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill,
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf,
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence,
@@ -166,6 +167,7 @@ const uiRosetta = computed(() => uiComponentsAreAllWiredInTheRosettaInQuantumRea
 const typeMatrix = computed(() => typographyIsTheUniversalContentMatrix())
 const colorRosetta = computed(() => allColorsDryCleanWiredToRosettaAndThemes())
 const cssGaps = computed(() => cssShowsTheHiddenGapsInDryFusion())
+const invertFusion = computed(() => inversionFusion())
 const invertTrinity = computed(() => invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill())
 const selfHw = computed(() => againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf())
 const gateDesignCreateIntel = computed(() => furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence())
@@ -873,6 +875,13 @@ function runTool(toolId: string) {
       const r = cssShowsTheHiddenGapsInDryFusion()
       ok = r.computes && r.cssShowsGaps && r.hiddenGapsVisible && r.dryFusion && r.wiredToRosetta
       summary = `shows=${r.cssShowsGaps} visible=${r.hiddenGapsVisible} dryFusion=${r.dryFusion} wired=${r.wiredToRosetta} lens=${r.lensCount} gapsHard=${r.gapsHardOpen}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'invert-fusion' || toolId === 'fusion-invert') {
+      const r = inversionFusion()
+      ok = r.computes && r.inversionFusionOn && r.gateway && r.selfFuses && r.dryFusion
+      summary = `on=${r.inversionFusionOn} gateway=${r.gateway} selfFuses=${r.selfFuses} dryFusion=${r.dryFusion} trinity=${r.invertTrinityOn} collide=${r.collideInfOn}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -1843,6 +1852,27 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'css-gaps'" @click="runTool('css-gaps')">
           {{ runningId === 'css-gaps' ? '…' : 'Run css-gaps' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="invert-fusion" aria-label="Inversion fusion">
+        <h3>{{ invertFusion.heading }}</h3>
+        <p class="quantum-apps__meta">{{ invertFusion.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(invertFusion.inversionFusionOn))">inversionFusionOn={{ invertFusion.inversionFusionOn }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(invertFusion.gateway))">gateway={{ invertFusion.gateway }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(invertFusion.selfFuses))">selfFuses={{ invertFusion.selfFuses }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(invertFusion.dryFusion))">dryFusion={{ invertFusion.dryFusion }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(invertFusion.censusPreserved))">census={{ invertFusion.census.unfolded }}/{{ invertFusion.census.folded }}</UiBadge>
+        <p class="quantum-apps__meta">
+          trinity={{ invertFusion.invertTrinityOn }} · collide={{ invertFusion.collideInfOn }} ·
+          qpu={{ invertFusion.qpuRequired }} · clay={{ invertFusion.claySolvedByThisFold }} · ftl={{ invertFusion.physicalFtlClaim }}
+        </p>
+        <p class="quantum-apps__meta">
+          pairs <code>invert/fusion</code> · <code>fusion/invert</code> ·
+          CLI <code>npm run quantum:invert-fusion</code> · <code>npm run quantum:fusion-invert</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'invert-fusion'" @click="runTool('invert-fusion')">
+          {{ runningId === 'invert-fusion' ? '…' : 'Run invert-fusion' }}
         </UiButton>
       </section>
       <UiSeparator />
