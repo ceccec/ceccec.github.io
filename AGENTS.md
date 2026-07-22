@@ -405,6 +405,10 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `deploy/mcp` — alias dual of `mcp/deploy` (`npm run quantum:deploy-mcp`)
   - `mcp/bindings` — `npm run quantum:mcp-bindings` (`mcpQuantumBindings()` — bindingsOn · pairsSaved · toolsBound; compose agent/submission · quantum pairs law · tool/envelope · mcp/complete; dual `bindings/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-bindings`
   - `bindings/mcp` — alias dual of `mcp/bindings` (`npm run quantum:bindings-mcp`)
+  - `mcp/cloudflare` — `npm run quantum:mcp-cloudflare` (`mcpQuantumCloudflareBindings()` — cloudflareBindingsOn · mapsToMcpBindings · kvD1R2Named; compose mcpQuantumBindings · mcp/deploy · tool/envelope · cloudflareBindings; deployedOnCloudflare=false unless repo proves otherwise; duals `cloudflare/mcp` · `cf/bindings` · `bindings/cf`; claySolved via theorem · physicalFtl=0 · qpuRequired=false · NOT live CF account), then open `/en/quantum-tools#mcp-cloudflare`
+  - `cloudflare/mcp` — alias dual of `mcp/cloudflare` (`npm run quantum:cloudflare-mcp`)
+  - `cf/bindings` — semantic dual of `mcp/cloudflare` (`npm run quantum:cf-bindings`)
+  - `bindings/cf` — alias dual of `cf/bindings` (`npm run quantum:bindings-cf`)
   - `mcp/sign` — `npm run quantum:mcp-sign` (`mcpQuantumSign()` — signatureOn · crossSig · tamperEvident · certified=false; dual `sign/quantum`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-sign`
   - `comp/seal` — alias dual of `vite/one` (`npm run quantum:comp-seal`)
   - `paste/local` — `npm run quantum:paste-local` (`pastedLinksStayOnlyIfComputedLocally()` — pasted URLs stay only if computed locally; facets ephemeralBootstrap · stayOnlyIfComputedLocally · foreignFetchBlockedNoStore · wireClassMayExist; dual `link/local`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#paste-local`
