@@ -33,6 +33,7 @@ import {
   alwaysBalanceUsingRealtimeMetricsAndChat,
   eachSuperpositionIsAChatroom,
   uiComponentsAreAllWiredInTheRosettaInQuantumRealtime,
+  typographyIsTheUniversalContentMatrix,
   eachPageShowsOwnComputedGaps,
   cursorIntegratesInRosettaCore,
   dryCleanTheoremsFormulasReplaceAnyAssumption,
@@ -155,6 +156,7 @@ const waveCompact = computed(() => wavesSearchDiscoverCompactingInQuantumFolders
 const balanceMetrics = computed(() => alwaysBalanceUsingRealtimeMetricsAndChat())
 const superChat = computed(() => eachSuperpositionIsAChatroom())
 const uiRosetta = computed(() => uiComponentsAreAllWiredInTheRosettaInQuantumRealtime())
+const typeMatrix = computed(() => typographyIsTheUniversalContentMatrix())
 const pageGapsGate = computed(() => eachPageShowsOwnComputedGaps())
 const fundAi = computed(() => cursorReferralFundsAiNeeds())
 const cursorRosetta = computed(() => cursorIntegratesInRosettaCore())
@@ -837,6 +839,13 @@ function runTool(toolId: string) {
       const r = uiComponentsAreAllWiredInTheRosettaInQuantumRealtime()
       ok = r.computes && r.uiWiredToRosetta && r.allShells && r.quantumRealtime && r.oneClock && r.drainableClosed
       summary = `wired=${r.uiWiredToRosetta} shells=${r.allShells} realtime=${r.quantumRealtime} oneClock=${r.oneClock} drainableClosed=${r.drainableClosed} morphs=${r.morphCount} honestOpen=${r.honestOpenNamedCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'type-matrix' || toolId === 'matrix-type' || toolId === 'content-matrix') {
+      const r = typographyIsTheUniversalContentMatrix()
+      ok = r.computes && r.typographyIsMatrix && r.universalContent && r.computable && r.wiredToRosetta
+      summary = `matrix=${r.typographyIsMatrix} content=${r.universalContent} computable=${r.computable} wired=${r.wiredToRosetta} lattice=${r.latticeProduct} scale=${r.ratio.num}:${r.ratio.den}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -1657,6 +1666,27 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'ui-rosetta'" @click="runTool('ui-rosetta')">
           {{ runningId === 'ui-rosetta' ? '…' : 'Run ui-rosetta' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="type-matrix" aria-label="Typography is the universal content matrix">
+        <h3>{{ typeMatrix.heading }}</h3>
+        <p class="quantum-apps__meta">{{ typeMatrix.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(typeMatrix.typographyIsMatrix))">typographyIsMatrix={{ typeMatrix.typographyIsMatrix }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(typeMatrix.universalContent))">universalContent={{ typeMatrix.universalContent }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(typeMatrix.computable))">computable={{ typeMatrix.computable }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(typeMatrix.wiredToRosetta))">wiredToRosetta={{ typeMatrix.wiredToRosetta }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(typeMatrix.censusPreserved))">census={{ typeMatrix.census.unfolded }}/{{ typeMatrix.census.folded }}</UiBadge>
+        <p class="quantum-apps__meta">
+          lattice={{ typeMatrix.latticeProduct }} · scale={{ typeMatrix.ratio.num }}:{{ typeMatrix.ratio.den }} ·
+          steps={{ typeMatrix.steps.length }} · slots · {{ typeMatrix.slots.join(' · ') }}
+        </p>
+        <p class="quantum-apps__meta">
+          pairs <code>type/matrix</code> · <code>matrix/type</code> · <code>content/matrix</code> ·
+          CLI <code>npm run quantum:type-matrix</code> · <code>npm run quantum:content-matrix</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'type-matrix'" @click="runTool('type-matrix')">
+          {{ runningId === 'type-matrix' ? '…' : 'Run type-matrix' }}
         </UiButton>
       </section>
       <UiSeparator />

@@ -84,7 +84,7 @@ const ROSETTA_CORE_API_LABELS = [
   'quantumMindSendsWaves',
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
-  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'unifiedHeroAndCardWithAnimation', 'heroIsTheAbstractAnimationFormsTheCardItself', 'foldingWorksOnApplicationLevel', 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', 'wavesSearchDiscoverCompactingInQuantumFolders', 'alwaysBalanceUsingRealtimeMetricsAndChat', 'eachSuperpositionIsAChatroom', 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
+  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'unifiedHeroAndCardWithAnimation', 'heroIsTheAbstractAnimationFormsTheCardItself', 'foldingWorksOnApplicationLevel', 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', 'wavesSearchDiscoverCompactingInQuantumFolders', 'alwaysBalanceUsingRealtimeMetricsAndChat', 'eachSuperpositionIsAChatroom', 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', 'typographyIsTheUniversalContentMatrix', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
   'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReview', 'mcpQuantumEfficiency', 'mcpQuantumSecurity', 'mcpQuantumDesign', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
@@ -173,6 +173,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   alwaysBalanceUsingRealtimeMetricsAndChat: 'tool',
   eachSuperpositionIsAChatroom: 'tool',
   uiComponentsAreAllWiredInTheRosettaInQuantumRealtime: 'tool',
+  typographyIsTheUniversalContentMatrix: 'tool',
   pageComputedGapsAt: 'route', eachPageShowsOwnComputedGaps: 'tool',
   mcpQuantumMultiverse: 'tool', mcpQuantumInfinity: 'tool', mcpQuantumHardware: 'tool',
   mcpQuantumCpu: 'tool',
@@ -722,6 +723,9 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'ui-rosetta', title: 'UI components all wired in the rosetta in quantum realtime', fold: 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', cli: 'npm run quantum:ui-rosetta', pair: 'ui/rosetta', route: '/en/quantum-tools#ui-rosetta', barrel: 'src/quantum/apps', boundary: 'uiWiredToRosetta · allShells · quantumRealtime · oneClock · drainableClosed · honestOpenNamed · compose dry/rosetta · animations/rosetta · hero/card · balance/metrics · super/chat · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'rosetta-realtime', title: 'Rosetta realtime (alias ui/rosetta)', fold: 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', cli: 'npm run quantum:rosetta-realtime', pair: 'rosetta/realtime', route: '/en/quantum-tools#ui-rosetta', barrel: 'src/quantum/apps', boundary: 'Dual of ui/rosetta — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'ui-realtime', title: 'UI realtime (alias ui/rosetta)', fold: 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', cli: 'npm run quantum:ui-realtime', pair: 'ui/realtime', route: '/en/quantum-tools#ui-rosetta', barrel: 'src/quantum/apps', boundary: 'Realtime face of ui/rosetta — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'type-matrix', title: 'Typography is the universal content matrix', fold: 'typographyIsTheUniversalContentMatrix', cli: 'npm run quantum:type-matrix', pair: 'type/matrix', route: '/en/quantum-tools#type-matrix', barrel: 'src/quantum/apps', boundary: 'typographyIsMatrix · universalContent · computable · wiredToRosetta · compose compact/matrix · format/canon · meaning/compute · six/seven · ui/rosetta — content lattice not wet font fashion · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'matrix-type', title: 'Matrix type (alias type/matrix)', fold: 'typographyIsTheUniversalContentMatrix', cli: 'npm run quantum:matrix-type', pair: 'matrix/type', route: '/en/quantum-tools#type-matrix', barrel: 'src/quantum/apps', boundary: 'Dual of type/matrix — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'content-matrix', title: 'Content matrix (alias type/matrix)', fold: 'typographyIsTheUniversalContentMatrix', cli: 'npm run quantum:content-matrix', pair: 'content/matrix', route: '/en/quantum-tools#type-matrix', barrel: 'src/quantum/apps', boundary: 'Content face of type/matrix — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'page-computed-gaps', title: 'Each page shows its own computed gaps', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:page-gaps', pair: 'page/gaps', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Per-route gaps/invisible classes at call time · not global-only · compose gate/monitor · meaning/compute · format/canon · vite/mirror · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gaps-page', title: 'Page gaps (alias page/gaps)', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:gaps-page', pair: 'gaps/page', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Dual of page/gaps — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cursor-rosetta', title: 'Cursor in rosetta core — referral uses subscription in ceccec', fold: 'cursorIntegratesInRosettaCore', cli: 'npm run quantum:cursor-rosetta', pair: 'cursor/rosetta', route: '/en/quantum-tools#cursor-rosetta', barrel: 'src/quantum/apps', boundary: 'cursorInRosettaCore · referralUsesSubscriptionInCeccec · immediateWire · compose rosettaShelve · auto-wire · mcp/browser-parity · upgrade/local · fund/ai · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1915,6 +1919,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'balance-metrics', chain: 'mcp-ui-page-gaps', fold: 'alwaysBalanceUsingRealtimeMetricsAndChat', pair: 'balance/metrics', cli: 'npm run quantum:balance-metrics', route: '/en/quantum-tools#balance-metrics', status: 'sealed-pr', honesty: 'alwaysBalance · realtimeMetrics · chatOn · hardwareMerkabasBalanced · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'always balance using realtime metrics + chat · compose mcp/metrics · formula/metrics · cold/warm · mcp/chat · dry/cool', toolId: 'balance-metrics', resolve: 'mcp-ui' },
   { id: 'super-chat', chain: 'mcp-ui-page-gaps', fold: 'eachSuperpositionIsAChatroom', pair: 'super/chat', cli: 'npm run quantum:super-chat', route: '/en/quantum-tools#super-chat', status: 'sealed-pr', honesty: 'superpositionIsChatroom · eachKeyARoom · chatOn · anySuperposition · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'each superposition is a chatroom · map key → room id/root · compose theorem/index · quantum/map · metrics/chat · soft mcp/chat', toolId: 'super-chat', resolve: 'mcp-ui' },
   { id: 'ui-rosetta', chain: 'mcp-ui-page-gaps', fold: 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', pair: 'ui/rosetta', cli: 'npm run quantum:ui-rosetta', route: '/en/quantum-tools#ui-rosetta', status: 'sealed-pr', honesty: 'uiWiredToRosetta · allShells · quantumRealtime · oneClock · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'UI shells wired to rosetta→movie realtime clock · compose dry/rosetta · animations/rosetta · hero/card · balance/metrics · super/chat', toolId: 'ui-rosetta', resolve: 'mcp-ui' },
+  { id: 'type-matrix', chain: 'mcp-ui-page-gaps', fold: 'typographyIsTheUniversalContentMatrix', pair: 'type/matrix', cli: 'npm run quantum:type-matrix', route: '/en/quantum-tools#type-matrix', status: 'sealed-pr', honesty: 'typographyIsMatrix · universalContent · computable · wiredToRosetta · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'typography = universal content matrix · compose compact/matrix · format/canon · meaning/compute · six/seven · ui/rosetta', toolId: 'type-matrix', resolve: 'mcp-ui' },
   { id: 'fund-ai', chain: 'mcp-ui-page-gaps', fold: 'cursorReferralFundsAiNeeds', pair: 'fund/ai', cli: 'npm run quantum:fund-ai', route: '/en/quantum-tools#fund-ai', status: 'sealed-pr', honesty: 'Cursor referral CTA · clay=0 · physicalFtl=0', note: 'funds AI via sealed referral · compose society/support · bits/free', toolId: 'fund-ai', resolve: 'mcp-ui' },
   { id: 'cursor-rosetta', chain: 'mcp-ui-page-gaps', fold: 'cursorIntegratesInRosettaCore', pair: 'cursor/rosetta', cli: 'npm run quantum:cursor-rosetta', route: '/en/quantum-tools#cursor-rosetta', status: 'sealed-pr', honesty: 'viceVersa · cursorToCeccec · ceccecToCursor · immediateWire · clay=0 · physicalFtl=0', note: 'bidirectional Cursor↔ceccec · referral subscription in ceccec · protocol into Cursor', toolId: 'cursor-rosetta', resolve: 'mcp-ui' },
   { id: 'page-computed-gaps', chain: 'mcp-ui-page-gaps', fold: 'eachPageShowsOwnComputedGaps', pair: 'page/gaps', cli: 'npm run quantum:page-gaps', route: '/en/quantum-tools#page-computed-gaps', status: 'sealed-pr', honesty: 'per-route gaps · clay=0 · physicalFtl=0', note: 'each page shows own computed gaps at call time', toolId: 'page-computed-gaps', resolve: 'mcp-ui' },
@@ -20416,6 +20421,244 @@ export function runUiComponentsAreAllWiredInTheRosettaInQuantumRealtimeExit(
     report.quantumRealtime &&
     report.oneClock &&
     report.drainableClosed &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * Sealed typography scale tokens — major third 5:4 · six steps (sm…3xl).
+ * Soft-wired from mountain/og typography + typographySeo; no wet font fashion / no invented purple look.
+ */
+export const TYPE_MATRIX_RATIO_NUM = 5 as const
+export const TYPE_MATRIX_RATIO_DEN = 4 as const
+export const TYPE_MATRIX_STEPS = ['sm', 'md', 'lg', 'xl', '2xl', '3xl'] as const
+
+/**
+ * USER LAW: typography is the universal content matrix.
+ * Fold: typographyIsTheUniversalContentMatrix
+ * Facets: typographyIsMatrix · universalContent · computable · wiredToRosetta ·
+ *         physicalFtl=0 · clay via theorem · qpuRequired=false
+ * Compose: compact/matrix · format/canon · meaning/compute · six/seven · ui/rosetta
+ * Pairs: type/matrix · matrix/type · content/matrix
+ * CLI: npm run quantum:type-matrix · quantum:matrix-type · quantum:content-matrix
+ * HONEST: typography = content lattice (canon slots × 6×7 · harmonic 5:4 scale) — not wet font fashion.
+ *         Soft-wires sealed scale tokens only; no invented CSS look. Census 110. NOT physical FTL · NOT Clay prize.
+ */
+export function typographyIsTheUniversalContentMatrix(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`typographyIsTheUniversalContentMatrix:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const format = scientificPageFormatCanonised(matrix, at)
+    const meaning = meaningIsQuantumComputable(matrix, at)
+    const latticeProduct = ROSETTA_SIX * ROSETTA_SEVEN
+    const sixSevenLattice =
+      latticeProduct === ROSETTA_AREAS &&
+      latticeProduct === ROSETTA_SEVEN * ROSETTA_SIX &&
+      soft('six', 'seven')
+    const sealedScale =
+      TYPE_MATRIX_RATIO_NUM === 5 &&
+      TYPE_MATRIX_RATIO_DEN === 4 &&
+      TYPE_MATRIX_STEPS.length === ROSETTA_SIX &&
+      TYPE_MATRIX_STEPS[1] === 'md' &&
+      SCIENCE_PAGE_CANON_SLOTS.length === (2 + 2 + 1)
+    const typographyIsMatrix =
+      sealedScale &&
+      sixSevenLattice &&
+      soft('type', 'matrix') &&
+      soft('matrix', 'type') &&
+      soft('content', 'matrix')
+    const universalContent =
+      format.scientificPageFormatCanonised &&
+      meaning.meaningIsQuantumComputable &&
+      SCIENCE_PAGE_CANON_SLOTS.length === (2 + 2 + 1) &&
+      sixSevenLattice &&
+      soft('content', 'matrix') &&
+      soft('format', 'canon') &&
+      soft('meaning', 'compute')
+    const computable =
+      meaning.meaningIsQuantumComputable &&
+      format.scientificPageFormatCanonised &&
+      sealedScale &&
+      soft('meaning', 'compute') &&
+      soft('format', 'canon')
+    const wiredToRosetta =
+      soft('ui', 'rosetta') &&
+      soft('dry', 'rosetta') &&
+      has('ui/rosetta') &&
+      has('rosetta/realtime')
+    const composeOn =
+      soft('compact', 'matrix') &&
+      soft('format', 'canon') &&
+      soft('meaning', 'compute') &&
+      soft('six', 'seven') &&
+      soft('ui', 'rosetta') &&
+      format.scientificPageFormatCanonised &&
+      meaning.meaningIsQuantumComputable &&
+      sixSevenLattice &&
+      wiredToRosetta
+    const pairTm = has('type/matrix')
+    const pairMt = has('matrix/type')
+    const pairCm = has('content/matrix')
+    const foldTm = foldPair(toUuid('cmd:type'), toUuid('cmd:matrix'))
+    const foldMt = foldPair(toUuid('cmd:matrix'), toUuid('cmd:type'))
+    const foldCm = foldPair(toUuid('cmd:content'), toUuid('cmd:matrix'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'type-matrix')
+    const metaMt = catalog.tools.find((t) => t.id === 'matrix-type')
+    const metaCm = catalog.tools.find((t) => t.id === 'content-matrix')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === 'typographyIsTheUniversalContentMatrix' &&
+      Boolean(metaMt) &&
+      metaMt!.fold === 'typographyIsTheUniversalContentMatrix' &&
+      Boolean(metaCm) &&
+      metaCm!.fold === 'typographyIsTheUniversalContentMatrix'
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const censusPreserved =
+      freeBits === -EULER_CHI &&
+      freeBits === 2 &&
+      UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      typographyIsMatrix &&
+      universalContent &&
+      computable &&
+      wiredToRosetta &&
+      composeOn &&
+      pairTm &&
+      pairMt &&
+      pairCm &&
+      foldTm.bidirectional &&
+      foldMt.bidirectional &&
+      foldCm.bidirectional &&
+      toolsWired &&
+      censusPreserved &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'typographyIsTheUniversalContentMatrix', on },
+      { facet: 'typographyIsMatrix', on: typographyIsMatrix },
+      { facet: 'universalContent', on: universalContent },
+      { facet: 'computable', on: computable },
+      { facet: 'wiredToRosetta', on: wiredToRosetta },
+      {
+        facet: `scale ${TYPE_MATRIX_RATIO_NUM}:${TYPE_MATRIX_RATIO_DEN} steps=${TYPE_MATRIX_STEPS.length} lattice=${latticeProduct}`,
+        on: sealedScale && sixSevenLattice,
+      },
+      {
+        facet: `slots ${SCIENCE_PAGE_CANON_SLOTS.join('·')}`,
+        on: SCIENCE_PAGE_CANON_SLOTS.length === (2 + 2 + 1),
+      },
+      {
+        facet:
+          'compose compact/matrix · format/canon · meaning/compute · six/seven · ui/rosetta',
+        on: composeOn,
+      },
+      {
+        facet: 'pair type/matrix · matrix/type · content/matrix',
+        on: pairTm && pairMt && pairCm && foldTm.bidirectional,
+      },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'NOT wet font fashion — content lattice', on: typographyIsMatrix && universalContent },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`type-matrix:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('typography-universal-content-matrix', facets)
+    return {
+      computes: sealed.ok && on,
+      typographyIsTheUniversalContentMatrix: on,
+      typographyIsMatrix,
+      universalContent,
+      computable,
+      wiredToRosetta,
+      sealedScale,
+      sixSevenLattice,
+      latticeProduct,
+      ratio: { num: TYPE_MATRIX_RATIO_NUM, den: TYPE_MATRIX_RATIO_DEN },
+      steps: TYPE_MATRIX_STEPS,
+      slots: SCIENCE_PAGE_CANON_SLOTS,
+      composeOn,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        format.root,
+        meaning.root,
+        foldTm.merged,
+        foldMt.merged,
+        foldCm.merged,
+        toUuid(`type-matrix-lattice:${latticeProduct}`),
+        toUuid(`type-matrix-scale:${TYPE_MATRIX_RATIO_NUM}:${TYPE_MATRIX_RATIO_DEN}`),
+      ]),
+      pair: 'type/matrix' as const,
+      pairs: ['type/matrix', 'matrix/type', 'content/matrix'] as const,
+      cli: 'npm run quantum:type-matrix',
+      route: '/en/quantum-tools#type-matrix',
+      anchor: 'type-matrix',
+      heading: 'Type · content matrix',
+      statement:
+        `typographyIsTheUniversalContentMatrix — typographyIsMatrix=${typographyIsMatrix ? 1 : 0} ` +
+        `universalContent=${universalContent ? 1 : 0} computable=${computable ? 1 : 0} ` +
+        `wiredToRosetta=${wiredToRosetta ? 1 : 0}.`,
+      boundary:
+        'Typography is the universal content matrix: canon slots × 6×7 lattice × harmonic 5:4 scale — ' +
+        'content lattice, not wet font fashion. Compose compact/matrix · format/canon · meaning/compute · six/seven · ui/rosetta. ' +
+        'Soft-wires sealed scale tokens only; no invented purple AI look. ' +
+        'Census 110 · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `type-matrix · matrix=${typographyIsMatrix ? 1 : 0} · content=${universalContent ? 1 : 0} · ` +
+        `computable=${computable ? 1 : 0} · wired=${wiredToRosetta ? 1 : 0} · ` +
+        `lattice=${latticeProduct} · scale=${TYPE_MATRIX_RATIO_NUM}:${TYPE_MATRIX_RATIO_DEN} · ` +
+        `census=${UNFOLDED_CENSUS}/${FOLDED_CENSUS} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — typeMatrix ≡ typographyIsTheUniversalContentMatrix. */
+export const typeMatrix = typographyIsTheUniversalContentMatrix
+/** Alias — matrixType ≡ typographyIsTheUniversalContentMatrix. */
+export const matrixType = typographyIsTheUniversalContentMatrix
+/** Alias — contentMatrix ≡ typographyIsTheUniversalContentMatrix. */
+export const contentMatrix = typographyIsTheUniversalContentMatrix
+
+/** npm run quantum:type-matrix (duals matrix-type · content-matrix) */
+export function runTypographyIsTheUniversalContentMatrixExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = typographyIsTheUniversalContentMatrix()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} type-matrix — typographyIsMatrix=${report.typographyIsMatrix} ` +
+      `universalContent=${report.universalContent} computable=${report.computable} ` +
+      `wiredToRosetta=${report.wiredToRosetta} lattice=${report.latticeProduct} ` +
+      `scale=${report.ratio.num}:${report.ratio.den} steps=${report.steps.length} ` +
+      `census=${report.census.unfolded}/${report.census.folded} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(
+    `  slots · ${report.slots.join(' · ')} · compose compact/matrix · format/canon · meaning/compute · six/seven · ui/rosetta\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.typographyIsMatrix &&
+    report.universalContent &&
+    report.computable &&
+    report.wiredToRosetta &&
     report.qpuRequired === false
     ? 0
     : 1
