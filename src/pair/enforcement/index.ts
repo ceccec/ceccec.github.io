@@ -447,6 +447,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'period/mcp',
   'mcp/dot',
   'dot/mcp',
+  'mcp/index',
+  'index/mcp',
   'sign/quantum',
   'mcp/sign',
   'reverse/quantum',
