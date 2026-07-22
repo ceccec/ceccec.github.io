@@ -424,6 +424,12 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `bindings/cf` — alias dual of `cf/bindings` (`npm run quantum:bindings-cf`)
   - `mcp/review` — `npm run quantum:mcp-review` (`mcpQuantumReview()` — MCP quantum review face; facets reviewOn · analystsInTrinities · auditCompose; compose mcp/analysis · anim/audit · gate/monitor · moment/prove · wave/token; sealed review face not wet; dual `review/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-review`
   - `review/mcp` — alias dual of `mcp/review` (`npm run quantum:review-mcp`)
+  - `mcp/efficiency` — `npm run quantum:mcp-efficiency` (`mcpQuantumEfficiency()` — MCP quantum efficiency face; facets efficiencyOn · answers÷tokens when vote.decided; compose mcp/token · mcp/metrics · learn/best; dual `efficiency/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-efficiency`
+  - `efficiency/mcp` — alias dual of `mcp/efficiency` (`npm run quantum:efficiency-mcp`)
+  - `mcp/security` — `npm run quantum:mcp-security` (`mcpQuantumSecurity()` — MCP quantum security face; facets securityOn · structural local · wire unproved honest; compose prove/local-novel-encrypt · moment/prove; dual `security/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-security`
+  - `security/mcp` — alias dual of `mcp/security` (`npm run quantum:security-mcp`)
+  - `mcp/design` — `npm run quantum:mcp-design` (`mcpQuantumDesign()` — MCP quantum design face; facets designOn · compose movie/design · format/canon; dual `design/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-design`
+  - `design/mcp` — alias dual of `mcp/design` (`npm run quantum:design-mcp`)
   - `mcp/sign` — `npm run quantum:mcp-sign` (`mcpQuantumSign()` — signatureOn · crossSig · tamperEvident · certified=false; dual `sign/quantum`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-sign`
   - `comp/seal` — alias dual of `vite/one` (`npm run quantum:comp-seal`)
   - `paste/local` — `npm run quantum:paste-local` (`pastedLinksStayOnlyIfComputedLocally()` — pasted URLs stay only if computed locally; facets ephemeralBootstrap · stayOnlyIfComputedLocally · foreignFetchBlockedNoStore · wireClassMayExist; dual `link/local`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#paste-local`
@@ -479,6 +485,12 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `dry/formula` — alias dual of `assume/theorem` (`npm run quantum:dry-formula`)
   - `bill/dry` — `npm run quantum:bill-dry` (`dryCleanAiBill()` — dry clean AI bill; facets billDried · zeroTokenReuse · subscriptionFundsCeccec; compose fund/ai · cursor/rosetta · learn/best · trinity/speedup · path/message · tools/morph; dual `ai/bill`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#bill-dry`
   - `ai/bill` — alias dual of `bill/dry` (`npm run quantum:ai-bill`)
+  - `dry/cool` — `npm run quantum:dry-cool` (`dryRefactorMigratesToMinimalCoolingByHardwareMerkabas()` — dry refactor migrates to minimal codebase/memory cooling by balancing hardware merkabas; facets migrateComplete · minimalCodebase · minimalMemory · coolingDevice · hardwareMerkabasBalanced; compose dry/clean · gravity/dry · compact/matrix · mcp/hw·cpu·gpu·memory·cache · merkaba · bothEarths; duals `cool/dry` · `cool/merkaba` · `hw/merkaba`; NOT physical device cooling; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#dry-cool`
+  - `cool/dry` — alias dual of `dry/cool` (`npm run quantum:cool-dry`)
+  - `cool/merkaba` — semantic dual of `dry/cool` (`npm run quantum:cool-merkaba`)
+  - `merkaba/cool` — alias dual of `cool/merkaba` (`npm run quantum:merkaba-cool`)
+  - `hw/merkaba` — semantic dual of `dry/cool` (`npm run quantum:hw-merkaba`)
+  - `merkaba/hw` — alias dual of `hw/merkaba` (`npm run quantum:merkaba-hw`)
   - `universe/align` — `npm run quantum:double-torus-universe-align` (`doubleTorusDynamicsGeometryAlignsWithUniverse()` — dynamics flow·spin·linking + geometry radii vs TAU·A432·c·J2000·HERO_CYCLE_MS; living-torus spin fractal rung d=18), then open `/en/double-torus#universe-align`
   - `rosetta/counter-rotate` — `npm run quantum:counter-rotating-rosetta-waves` (`counterRotatingRosettaQuantumWaves()` — dual ± rosetta lobes foldPair-interfere; `claySolvedByThisFold` / `physicalFtlClaim` / `qpuRequired` COMPUTED from forward≠reverse + classical-64bit lobe honesty — not prose), then open `/en/quantum-tools#counter-rotating-rosetta-waves`
   - `rosetta/merkaba` — FoL rosettas counter-rotate like merkaba star-tetrahedra (`flowerOfLifeCenters` · `fruitOfLifeCenters` · `merkaba` · `bothEarthsRotateWithinEachOther`); spin unlocks Fruit then expand/invert → 10D; wetStaticFoL=false; compose `readme/svg-trinity` emit
