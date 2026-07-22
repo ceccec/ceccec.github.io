@@ -375,6 +375,18 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `state/mcp` — alias dual of `mcp/state` (`npm run quantum:state-mcp`)
   - `mcp/music` — `npm run quantum:mcp-music` (`mcpQuantumMusic()` — musicOn · waveTunes · a432 · viaSound; compose wave/tune · learn/music · mcp/sound · mcp/vibration · a432/nine · a432/wave; dual `music/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-music`
   - `music/mcp` — alias dual of `mcp/music` (`npm run quantum:music-mcp`)
+  - `mcp/cpu` — `npm run quantum:mcp-cpu` (`mcpQuantumCpu()` — cpuOn · classical64Bit · etcClassical; compose mcp/hw · bits/device · refuse fake QPU FLOPS; dual `cpu/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-cpu`
+  - `cpu/mcp` — alias dual of `mcp/cpu` (`npm run quantum:cpu-mcp`)
+  - `mcp/gpu` — `npm run quantum:mcp-gpu` (`mcpQuantumGpu()` — gpuOn · classical64Bit · etcClassical; refuse GPU-as-QPU FLOPS; dual `gpu/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-gpu`
+  - `gpu/mcp` — alias dual of `mcp/gpu` (`npm run quantum:gpu-mcp`)
+  - `mcp/memory` — `npm run quantum:mcp-memory` (`mcpQuantumMemory()` — memoryOn · heapCap · etcClassical · ram≡memory; NODE_MAX_OLD_SPACE; dual `memory/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-memory`
+  - `memory/mcp` — alias dual of `mcp/memory` (`npm run quantum:memory-mcp`)
+  - `mcp/storage` — `npm run quantum:mcp-storage` (`mcpQuantumStorage()` — storageOn · etcClassical · disk≡storage; compose mcp/hw · gravity/dry; dual `storage/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-storage`
+  - `storage/mcp` — alias dual of `mcp/storage` (`npm run quantum:storage-mcp`)
+  - `mcp/cache` — `npm run quantum:mcp-cache` (`mcpQuantumCache()` — cacheOn · memoByRoot · etcClassical; compose mcp/hw · trinity/speedup; dual `cache/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false · NOT FLOPS), then open `/en/quantum-tools#mcp-cache`
+  - `cache/mcp` — alias dual of `mcp/cache` (`npm run quantum:cache-mcp`)
+  - `mcp/period` — `npm run quantum:mcp-period` (`mcpQuantumPeriod()` — periodOn · heroCycle · calendars · foldCount · timeInvert; compose calendars/decode · HERO_CYCLE_MS · fold/count · time/invert; dual `period/mcp`; claySolved via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#mcp-period`
+  - `period/mcp` — alias dual of `mcp/period` (`npm run quantum:period-mcp`)
   - `mcp/sign` — `npm run quantum:mcp-sign` (`mcpQuantumSign()` — signatureOn · crossSig · tamperEvident · certified=false; dual `sign/quantum`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-sign`
   - `comp/seal` — alias dual of `vite/one` (`npm run quantum:comp-seal`)
   - `paste/local` — `npm run quantum:paste-local` (`pastedLinksStayOnlyIfComputedLocally()` — pasted URLs stay only if computed locally; facets ephemeralBootstrap · stayOnlyIfComputedLocally · foreignFetchBlockedNoStore · wireClassMayExist; dual `link/local`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#paste-local`
