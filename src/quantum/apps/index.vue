@@ -34,6 +34,7 @@ import {
   eachSuperpositionIsAChatroom,
   uiComponentsAreAllWiredInTheRosettaInQuantumRealtime,
   typographyIsTheUniversalContentMatrix,
+  allColorsDryCleanWiredToRosettaAndThemes,
   eachPageShowsOwnComputedGaps,
   cursorIntegratesInRosettaCore,
   dryCleanTheoremsFormulasReplaceAnyAssumption,
@@ -157,6 +158,7 @@ const balanceMetrics = computed(() => alwaysBalanceUsingRealtimeMetricsAndChat()
 const superChat = computed(() => eachSuperpositionIsAChatroom())
 const uiRosetta = computed(() => uiComponentsAreAllWiredInTheRosettaInQuantumRealtime())
 const typeMatrix = computed(() => typographyIsTheUniversalContentMatrix())
+const colorRosetta = computed(() => allColorsDryCleanWiredToRosettaAndThemes())
 const pageGapsGate = computed(() => eachPageShowsOwnComputedGaps())
 const fundAi = computed(() => cursorReferralFundsAiNeeds())
 const cursorRosetta = computed(() => cursorIntegratesInRosettaCore())
@@ -846,6 +848,13 @@ function runTool(toolId: string) {
       const r = typographyIsTheUniversalContentMatrix()
       ok = r.computes && r.typographyIsMatrix && r.universalContent && r.computable && r.wiredToRosetta
       summary = `matrix=${r.typographyIsMatrix} content=${r.universalContent} computable=${r.computable} wired=${r.wiredToRosetta} lattice=${r.latticeProduct} scale=${r.ratio.num}:${r.ratio.den}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'color-rosetta' || toolId === 'rosetta-theme' || toolId === 'color-theme') {
+      const r = allColorsDryCleanWiredToRosettaAndThemes()
+      ok = r.computes && r.colorsDryClean && r.wiredToRosetta && r.themesOn && r.noBareHex && r.drainableClosed
+      summary = `dry=${r.colorsDryClean} wired=${r.wiredToRosetta} themes=${r.themesOn} noBareHex=${r.noBareHex} drainable=${r.drainableClosed} tokens=${r.tokenCount} A432=${r.a432Hue}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -1687,6 +1696,34 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'type-matrix'" @click="runTool('type-matrix')">
           {{ runningId === 'type-matrix' ? '…' : 'Run type-matrix' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="color-rosetta" aria-label="All colors dry-clean wired to rosetta and themes">
+        <h3>{{ colorRosetta.heading }}</h3>
+        <p class="quantum-apps__meta">{{ colorRosetta.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(colorRosetta.colorsDryClean))">colorsDryClean={{ colorRosetta.colorsDryClean }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(colorRosetta.wiredToRosetta))">wiredToRosetta={{ colorRosetta.wiredToRosetta }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(colorRosetta.themesOn))">themesOn={{ colorRosetta.themesOn }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(colorRosetta.noBareHex))">noBareHex={{ colorRosetta.noBareHex }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(colorRosetta.drainableClosed))">drainableClosed={{ colorRosetta.drainableClosed }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(colorRosetta.censusPreserved))">census={{ colorRosetta.census.unfolded }}/{{ colorRosetta.census.folded }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(colorRosetta.honestOpenNamedCount > 0))">honestOpen={{ colorRosetta.honestOpenNamedCount }}</UiBadge>
+        <p class="quantum-apps__meta">
+          tokens={{ colorRosetta.tokenCount }} · A432={{ colorRosetta.a432Hue }} · morphs={{ colorRosetta.morphCount }} ·
+          badges · {{ colorRosetta.badgeKinds.join(' · ') }}
+        </p>
+        <ul class="quantum-apps__list">
+          <li v-for="id in colorRosetta.honestOpenNamed" :key="id">
+            <code>{{ id }}</code>
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>color/rosetta</code> · <code>rosetta/theme</code> · <code>color/theme</code> ·
+          CLI <code>npm run quantum:color-rosetta</code> · <code>npm run quantum:color-theme</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'color-rosetta'" @click="runTool('color-rosetta')">
+          {{ runningId === 'color-rosetta' ? '…' : 'Run color-rosetta' }}
         </UiButton>
       </section>
       <UiSeparator />

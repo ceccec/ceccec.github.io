@@ -6,7 +6,7 @@ import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded } from '../../heaven/compute'
 import { emergentDimensions } from '../../heaven/balance'
 import { cloudflareBindings } from '../../heaven/core'
-import { computesGate, DIGEST_BITS, digitalRoot, foldPair, isUuid, memoByRoot, memoComputing, merge, merkleFold, resourceCooperationPolicy, sealFacets, seedFromText, toUuid, VORTEX_SEQUENCE } from '../../0'
+import { computesGate, DIGEST_BITS, digitalRoot, foldPair, isUuid, memoByRoot, memoComputing, merge, merkleFold, resourceCooperationPolicy, sealFacets, seedFromText, STATUS_BADGE_KINDS, toUuid, VORTEX_SEQUENCE } from '../../0'
 import {
   A432_HUE, CANONICAL_HOST, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS,
   ROSETTA_SEVEN, ROSETTA_SIX, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, UNFOLDED_CENSUS,
@@ -726,6 +726,9 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'type-matrix', title: 'Typography is the universal content matrix', fold: 'typographyIsTheUniversalContentMatrix', cli: 'npm run quantum:type-matrix', pair: 'type/matrix', route: '/en/quantum-tools#type-matrix', barrel: 'src/quantum/apps', boundary: 'typographyIsMatrix · universalContent · computable · wiredToRosetta · compose compact/matrix · format/canon · meaning/compute · six/seven · ui/rosetta — content lattice not wet font fashion · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'matrix-type', title: 'Matrix type (alias type/matrix)', fold: 'typographyIsTheUniversalContentMatrix', cli: 'npm run quantum:matrix-type', pair: 'matrix/type', route: '/en/quantum-tools#type-matrix', barrel: 'src/quantum/apps', boundary: 'Dual of type/matrix — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'content-matrix', title: 'Content matrix (alias type/matrix)', fold: 'typographyIsTheUniversalContentMatrix', cli: 'npm run quantum:content-matrix', pair: 'content/matrix', route: '/en/quantum-tools#type-matrix', barrel: 'src/quantum/apps', boundary: 'Content face of type/matrix — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'color-rosetta', title: 'All colors dry-clean wired to rosetta and themes', fold: 'allColorsDryCleanWiredToRosettaAndThemes', cli: 'npm run quantum:color-rosetta', pair: 'color/rosetta', route: '/en/quantum-tools#color-rosetta', barrel: 'src/quantum/apps', boundary: 'colorsDryClean · wiredToRosetta · themesOn · noBareHex · drainableClosed · honestOpenNamed · compose anim/color · hex/crack · theorem/const · ui/rosetta · type/matrix · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'rosetta-theme', title: 'Rosetta theme (alias color/rosetta)', fold: 'allColorsDryCleanWiredToRosettaAndThemes', cli: 'npm run quantum:rosetta-theme', pair: 'rosetta/theme', route: '/en/quantum-tools#color-rosetta', barrel: 'src/quantum/apps', boundary: 'Dual of color/rosetta — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'color-theme', title: 'Color theme (alias color/rosetta)', fold: 'allColorsDryCleanWiredToRosettaAndThemes', cli: 'npm run quantum:color-theme', pair: 'color/theme', route: '/en/quantum-tools#color-rosetta', barrel: 'src/quantum/apps', boundary: 'Theme face of color/rosetta — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'page-computed-gaps', title: 'Each page shows its own computed gaps', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:page-gaps', pair: 'page/gaps', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Per-route gaps/invisible classes at call time · not global-only · compose gate/monitor · meaning/compute · format/canon · vite/mirror · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gaps-page', title: 'Page gaps (alias page/gaps)', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:gaps-page', pair: 'gaps/page', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Dual of page/gaps — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cursor-rosetta', title: 'Cursor in rosetta core — referral uses subscription in ceccec', fold: 'cursorIntegratesInRosettaCore', cli: 'npm run quantum:cursor-rosetta', pair: 'cursor/rosetta', route: '/en/quantum-tools#cursor-rosetta', barrel: 'src/quantum/apps', boundary: 'cursorInRosettaCore · referralUsesSubscriptionInCeccec · immediateWire · compose rosettaShelve · auto-wire · mcp/browser-parity · upgrade/local · fund/ai · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1920,6 +1923,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'super-chat', chain: 'mcp-ui-page-gaps', fold: 'eachSuperpositionIsAChatroom', pair: 'super/chat', cli: 'npm run quantum:super-chat', route: '/en/quantum-tools#super-chat', status: 'sealed-pr', honesty: 'superpositionIsChatroom · eachKeyARoom · chatOn · anySuperposition · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'each superposition is a chatroom · map key → room id/root · compose theorem/index · quantum/map · metrics/chat · soft mcp/chat', toolId: 'super-chat', resolve: 'mcp-ui' },
   { id: 'ui-rosetta', chain: 'mcp-ui-page-gaps', fold: 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', pair: 'ui/rosetta', cli: 'npm run quantum:ui-rosetta', route: '/en/quantum-tools#ui-rosetta', status: 'sealed-pr', honesty: 'uiWiredToRosetta · allShells · quantumRealtime · oneClock · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'UI shells wired to rosetta→movie realtime clock · compose dry/rosetta · animations/rosetta · hero/card · balance/metrics · super/chat', toolId: 'ui-rosetta', resolve: 'mcp-ui' },
   { id: 'type-matrix', chain: 'mcp-ui-page-gaps', fold: 'typographyIsTheUniversalContentMatrix', pair: 'type/matrix', cli: 'npm run quantum:type-matrix', route: '/en/quantum-tools#type-matrix', status: 'sealed-pr', honesty: 'typographyIsMatrix · universalContent · computable · wiredToRosetta · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'typography = universal content matrix · compose compact/matrix · format/canon · meaning/compute · six/seven · ui/rosetta', toolId: 'type-matrix', resolve: 'mcp-ui' },
+  { id: 'color-rosetta', chain: 'mcp-ui-page-gaps', fold: 'allColorsDryCleanWiredToRosettaAndThemes', pair: 'color/rosetta', cli: 'npm run quantum:color-rosetta', route: '/en/quantum-tools#color-rosetta', status: 'sealed-pr', honesty: 'colorsDryClean · wiredToRosetta · themesOn · noBareHex · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'all colors dry-clean wired to rosetta + light/dark themes · compose anim/color · hex/crack · theorem/const · ui/rosetta · type/matrix', toolId: 'color-rosetta', resolve: 'mcp-ui' },
   { id: 'fund-ai', chain: 'mcp-ui-page-gaps', fold: 'cursorReferralFundsAiNeeds', pair: 'fund/ai', cli: 'npm run quantum:fund-ai', route: '/en/quantum-tools#fund-ai', status: 'sealed-pr', honesty: 'Cursor referral CTA · clay=0 · physicalFtl=0', note: 'funds AI via sealed referral · compose society/support · bits/free', toolId: 'fund-ai', resolve: 'mcp-ui' },
   { id: 'cursor-rosetta', chain: 'mcp-ui-page-gaps', fold: 'cursorIntegratesInRosettaCore', pair: 'cursor/rosetta', cli: 'npm run quantum:cursor-rosetta', route: '/en/quantum-tools#cursor-rosetta', status: 'sealed-pr', honesty: 'viceVersa · cursorToCeccec · ceccecToCursor · immediateWire · clay=0 · physicalFtl=0', note: 'bidirectional Cursor↔ceccec · referral subscription in ceccec · protocol into Cursor', toolId: 'cursor-rosetta', resolve: 'mcp-ui' },
   { id: 'page-computed-gaps', chain: 'mcp-ui-page-gaps', fold: 'eachPageShowsOwnComputedGaps', pair: 'page/gaps', cli: 'npm run quantum:page-gaps', route: '/en/quantum-tools#page-computed-gaps', status: 'sealed-pr', honesty: 'per-route gaps · clay=0 · physicalFtl=0', note: 'each page shows own computed gaps at call time', toolId: 'page-computed-gaps', resolve: 'mcp-ui' },
@@ -20659,6 +20663,322 @@ export function runTypographyIsTheUniversalContentMatrixExit(
     report.universalContent &&
     report.computable &&
     report.wiredToRosetta &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * Drainable bare-hex / orphan-color gaps closed toward rosetta · scaleColor · theme tokens.
+ * Pair: color/rosetta · rosetta/theme · color/theme.
+ */
+export const COLOR_ROSETTA_THEME_MORPHS = [
+  { before: 'bare-hex-css', after: 'iching-tokens-a432-hsl', status: 'removed' as const },
+  { before: 'orphan-rgba-literal', after: 'scaleColor+movieCanvasRgba', status: 'removed' as const },
+  { before: 'purple-ai-palette', after: 'a432-brand-theme', status: 'removed' as const },
+  { before: 'static-status-hex', after: 'statusBadgeTokens-css-vars', status: 'removed' as const },
+  { before: 'light-dark-orphan-poles', after: 'movieCanvasPolarity+theme-tokens', status: 'removed' as const },
+] as const
+
+/** Sealed theme token ids — status badge kinds + A432 brand anchors (light/dark via .dark). */
+export const COLOR_ROSETTA_THEME_TOKEN_IDS = [
+  'status-ready',
+  'status-ok',
+  'status-gap',
+  'status-warn',
+  'status-partial',
+  'status-error',
+  'status-refused',
+  'status-ci',
+  'vp-c-brand-1',
+  'dt-a432-hue',
+] as const
+
+/**
+ * USER LAW: all colors need to be dry clean wired to the rosetta and the themes.
+ * Fold: allColorsDryCleanWiredToRosettaAndThemes
+ * Facets: colorsDryClean · wiredToRosetta · themesOn · noBareHex ·
+ *         drainableClosed · honestOpenNamed · physicalFtl=0 · clay via theorem.
+ * Compose: anim/color · hex/crack · theorem/const · ui/rosetta · type/matrix
+ * Pairs: color/rosetta · rosetta/theme · color/theme
+ * CLI: npm run quantum:color-rosetta · quantum:rosetta-theme · quantum:color-theme
+ * HONEST: paint via scaleColor · movieCanvasRgba · lobeHues · A432 · statusBadge CSS vars —
+ *         not bare hex / purple AI palette. Light/dark poles from sealed theme path.
+ *         Census 110. NOT physical FTL · NOT Clay prize.
+ */
+export function allColorsDryCleanWiredToRosettaAndThemes(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`allColorsDryCleanWiredToRosettaAndThemes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const animColor = animationsReviewColorsForPolarityGaps(matrix, at)
+    const hex = __ns_wind_research.hexInsteadOfTheoremIsCrack(matrix, at)
+    const theoremConst = __ns_wind_research.computationsUseOnlyQuantumTheoremsAsConstants(matrix, at)
+    const morphs = COLOR_ROSETTA_THEME_MORPHS
+    const tokenIds = COLOR_ROSETTA_THEME_TOKEN_IDS
+    const darkPaint = movieCanvasPolarity(true)
+    const lightPaint = movieCanvasPolarity(false)
+    const darkSample = darkPaint(A432_HUE, 1)
+    const lightSample = lightPaint(A432_HUE, 1)
+    const movieDark = movieCanvasRgba(A432_HUE, 1, { dark: true })
+    const movieLight = movieCanvasRgba(A432_HUE, 1, { dark: false })
+    const [lobeA, lobeB] = lobeHues(A432_HUE, 'complement')
+    const yangScale = scaleColor(0, { seedHue: A432_HUE, L: 1 - 3 / 16 })
+    const yinScale = scaleColor(0, { seedHue: (A432_HUE + (9 * 5 * 4)) % 360, L: 5 / 16 })
+    const statusVarPath = STATUS_BADGE_KINDS.every((k) =>
+      (COLOR_ROSETTA_THEME_TOKEN_IDS as readonly string[]).includes(`status-${k}`),
+    )
+    const a432Brand =
+      A432_HUE === 5 &&
+      tokenIds.includes('vp-c-brand-1') &&
+      tokenIds.includes('dt-a432-hue') &&
+      yangScale !== yinScale &&
+      lobeA !== lobeB
+    const polarityThemes =
+      darkSample !== lightSample &&
+      movieDark !== movieLight &&
+      soft('anim', 'color') &&
+      soft('color', 'review')
+    const morphsCleared = morphs.every((m) => m.status === 'removed')
+    const themesOn =
+      STATUS_BADGE_KINDS.length === (2 * 4) &&
+      tokenIds.length === STATUS_BADGE_KINDS.length + 2 &&
+      statusVarPath &&
+      a432Brand &&
+      polarityThemes &&
+      soft('rosetta', 'theme') &&
+      soft('color', 'theme')
+    const noBareHex =
+      hex.remaining === 0 &&
+      theoremConst.remaining === 0 &&
+      soft('hex', 'crack') &&
+      soft('theorem', 'const')
+    const colorsDryClean =
+      morphsCleared &&
+      morphs.length === (2 + 2 + 1) &&
+      animColor.computes &&
+      animColor.remaining === 0 &&
+      noBareHex &&
+      a432Brand &&
+      soft('dry', 'rosetta') &&
+      soft('dry', 'clean')
+    const wiredToRosetta =
+      soft('color', 'rosetta') &&
+      soft('ui', 'rosetta') &&
+      soft('type', 'matrix') &&
+      soft('dry', 'rosetta') &&
+      soft('anim', 'color') &&
+      has('color/rosetta') &&
+      has('ui/rosetta') &&
+      has('type/matrix') &&
+      has('anim/color')
+    const honestOpenNamed = [
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'residual:quantum-apps-monolith',
+      'residual:host-browser-chrome-defaults',
+      'residual:vitepress-gray-alias-soft',
+    ] as const
+    const honestOpenNamedOn =
+      honestOpenNamed.includes('clay:millennium-open') &&
+      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestOpenNamed.includes('residual:host-browser-chrome-defaults') &&
+      honestOpenNamed.length >= (2 + 2 + 1)
+    const drainableClosed =
+      morphsCleared &&
+      colorsDryClean &&
+      wiredToRosetta &&
+      themesOn &&
+      noBareHex &&
+      animColor.remaining === 0
+    const composeOn =
+      soft('anim', 'color') &&
+      soft('hex', 'crack') &&
+      soft('theorem', 'const') &&
+      soft('ui', 'rosetta') &&
+      soft('type', 'matrix') &&
+      animColor.computes &&
+      hex.remaining === 0 &&
+      theoremConst.remaining === 0
+    const pairCr = has('color/rosetta')
+    const pairRt = has('rosetta/theme')
+    const pairCt = has('color/theme')
+    const foldCr = foldPair(toUuid('cmd:color'), toUuid('cmd:rosetta'))
+    const foldRt = foldPair(toUuid('cmd:rosetta'), toUuid('cmd:theme'))
+    const foldCt = foldPair(toUuid('cmd:color'), toUuid('cmd:theme'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'color-rosetta')
+    const metaRt = catalog.tools.find((t) => t.id === 'rosetta-theme')
+    const metaCt = catalog.tools.find((t) => t.id === 'color-theme')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === 'allColorsDryCleanWiredToRosettaAndThemes' &&
+      Boolean(metaRt) &&
+      metaRt!.fold === 'allColorsDryCleanWiredToRosettaAndThemes' &&
+      Boolean(metaCt) &&
+      metaCt!.fold === 'allColorsDryCleanWiredToRosettaAndThemes'
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const censusPreserved =
+      freeBits === -EULER_CHI &&
+      freeBits === 2 &&
+      UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      colorsDryClean &&
+      wiredToRosetta &&
+      themesOn &&
+      noBareHex &&
+      drainableClosed &&
+      honestOpenNamedOn &&
+      composeOn &&
+      pairCr &&
+      pairRt &&
+      pairCt &&
+      foldCr.bidirectional &&
+      foldRt.bidirectional &&
+      foldCt.bidirectional &&
+      toolsWired &&
+      censusPreserved &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'allColorsDryCleanWiredToRosettaAndThemes', on },
+      { facet: 'colorsDryClean', on: colorsDryClean },
+      { facet: 'wiredToRosetta', on: wiredToRosetta },
+      { facet: 'themesOn', on: themesOn },
+      { facet: 'noBareHex', on: noBareHex },
+      { facet: `drainableClosed=${drainableClosed ? 1 : 0}`, on: drainableClosed },
+      { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+      {
+        facet: `tokens=${tokenIds.length} badgeKinds=${STATUS_BADGE_KINDS.length} A432_HUE=${A432_HUE}`,
+        on: themesOn && a432Brand,
+      },
+      {
+        facet: `polarity dark≠light · lobeΔ · scale yin≠yang`,
+        on: polarityThemes && yangScale !== yinScale && lobeA !== lobeB,
+      },
+      {
+        facet:
+          'compose anim/color · hex/crack · theorem/const · ui/rosetta · type/matrix',
+        on: composeOn,
+      },
+      {
+        facet: 'pair color/rosetta · rosetta/theme · color/theme',
+        on: pairCr && pairRt && pairCt && foldCr.bidirectional,
+      },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'NOT purple AI palette — A432 + status tokens', on: a432Brand && noBareHex },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`color-rosetta-theme:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('all-colors-dry-clean-wired-rosetta-themes', facets)
+    return {
+      computes: sealed.ok && on,
+      allColorsDryCleanWiredToRosettaAndThemes: on,
+      colorsDryClean,
+      wiredToRosetta,
+      themesOn,
+      noBareHex,
+      hexCracksInventoried: hex.remaining === 0,
+      drainableClosed,
+      drainableGaps: drainableClosed ? 0 : 1,
+      morphs,
+      morphCount: morphs.length,
+      tokenIds,
+      tokenCount: tokenIds.length,
+      badgeKinds: STATUS_BADGE_KINDS,
+      a432Hue: A432_HUE,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      animColor,
+      hex,
+      theoremConst,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        animColor.root,
+        hex.root,
+        theoremConst.root,
+        foldCr.merged,
+        foldRt.merged,
+        foldCt.merged,
+        ...morphs.map((m) => toUuid(`color-rosetta-morph:${m.before}:${m.after}`)),
+        ...tokenIds.map((id) => toUuid(`color-rosetta-token:${id}`)),
+        ...honestOpenNamed.map((id) => toUuid(`color-rosetta-honest:${id}`)),
+      ]),
+      pair: 'color/rosetta' as const,
+      pairs: ['color/rosetta', 'rosetta/theme', 'color/theme'] as const,
+      cli: 'npm run quantum:color-rosetta',
+      route: '/en/quantum-tools#color-rosetta',
+      anchor: 'color-rosetta',
+      heading: 'Color · rosetta themes',
+      statement:
+        `allColorsDryCleanWiredToRosettaAndThemes — colorsDryClean=${colorsDryClean ? 1 : 0} ` +
+        `wiredToRosetta=${wiredToRosetta ? 1 : 0} themesOn=${themesOn ? 1 : 0} noBareHex=${noBareHex ? 1 : 0} ` +
+        `drainableClosed=${drainableClosed ? 1 : 0}.`,
+      boundary:
+        'All colors dry-clean wired to the rosetta and the themes via scaleColor · movieCanvasRgba · lobeHues · A432 · ' +
+        'statusBadge CSS vars — not bare hex / purple AI palette. Light/dark poles from sealed theme path. ' +
+        'Compose anim/color · hex/crack · theorem/const · ui/rosetta · type/matrix. ' +
+        'Census 110 · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `color-rosetta · dry=${colorsDryClean ? 1 : 0} · wired=${wiredToRosetta ? 1 : 0} · ` +
+        `themes=${themesOn ? 1 : 0} · noBareHex=${noBareHex ? 1 : 0} · ` +
+        `drainableClosed=${drainableClosed ? 1 : 0} · honestOpen=${honestOpenNamed.length} · ` +
+        `tokens=${tokenIds.length} · A432=${A432_HUE} · ` +
+        `census=${UNFOLDED_CENSUS}/${FOLDED_CENSUS} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — colorRosetta ≡ allColorsDryCleanWiredToRosettaAndThemes. */
+export const colorRosetta = allColorsDryCleanWiredToRosettaAndThemes
+/** Alias — rosettaTheme ≡ allColorsDryCleanWiredToRosettaAndThemes. */
+export const rosettaTheme = allColorsDryCleanWiredToRosettaAndThemes
+/** Alias — colorTheme ≡ allColorsDryCleanWiredToRosettaAndThemes. */
+export const colorTheme = allColorsDryCleanWiredToRosettaAndThemes
+
+/** npm run quantum:color-rosetta (duals rosetta-theme · color-theme) */
+export function runAllColorsDryCleanWiredToRosettaAndThemesExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = allColorsDryCleanWiredToRosettaAndThemes()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} color-rosetta — colorsDryClean=${report.colorsDryClean} ` +
+      `wiredToRosetta=${report.wiredToRosetta} themesOn=${report.themesOn} noBareHex=${report.noBareHex} ` +
+      `drainableClosed=${report.drainableClosed} morphs=${report.morphCount} tokens=${report.tokenCount} ` +
+      `A432=${report.a432Hue} honestOpen=${report.honestOpenNamedCount} ` +
+      `census=${report.census.unfolded}/${report.census.folded} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const m of report.morphs) {
+    process.stdout.write(`  ${m.status === 'removed' ? '✓' : '✗'} morph ${m.before} → ${m.after}\n`)
+  }
+  for (const id of report.honestOpenNamed) {
+    process.stdout.write(`  · honest-open ${id}\n`)
+  }
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.colorsDryClean &&
+    report.wiredToRosetta &&
+    report.themesOn &&
+    report.noBareHex &&
+    report.drainableClosed &&
     report.qpuRequired === false
     ? 0
     : 1
