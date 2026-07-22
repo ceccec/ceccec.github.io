@@ -79,7 +79,7 @@ const ROSETTA_CORE_API_LABELS = [
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution',
+  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -138,6 +138,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   quantumWaves: 'tool',
   collidingParticlesCreates: 'tool',
   mcpQuantumMetrics: 'tool',
+  mcpQuantumAnalysis: 'tool',
   mcpQuantumReverse: 'tool',
   mcpQuantumSign: 'tool',
   mcpQuantumDirs: 'tool',
@@ -644,6 +645,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'particle-collide', title: 'Particle collide (alias collide/create)', fold: 'collidingParticlesCreates', cli: 'npm run quantum:particle-collide', pair: 'particle/collide', route: '/en/quantum-tools#collide-create', barrel: 'src/quantum/apps', boundary: 'Dual of collide/create — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-metrics', title: 'MCP quantum metrics — foldCount · efficiency · term · audit cold/warm', fold: 'mcpQuantumMetrics', cli: 'npm run quantum:mcp-metrics', pair: 'mcp/metrics', route: '/en/quantum-tools#mcp-metrics', barrel: 'src/quantum/apps', boundary: 'metricsOn · computable · answersOverTokens · compose fold/count · learn/best · term/measure · audit/local-quantum · claySolved via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'metrics-mcp', title: 'Metrics mcp (alias mcp/metrics)', fold: 'mcpQuantumMetrics', cli: 'npm run quantum:metrics-mcp', pair: 'metrics/mcp', route: '/en/quantum-tools#mcp-metrics', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/metrics — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-analysis', title: 'MCP quantum analysis — analyst trinities · analyse·realise', fold: 'mcpQuantumAnalysis', cli: 'npm run quantum:mcp-analysis', pair: 'mcp/analysis', route: '/en/quantum-tools#mcp-analysis', barrel: 'src/quantum/apps', boundary: 'analysisOn · analystsInTrinities · analyseRealise · compose train/analyst · analyse/realise · team/observe · mcp/metrics · sciences/trinities · claySolved via theorem · physicalFtl=0 · qpuRequired=false · alias note analisis=analysis', browserRunnable: true, browserGap: '' },
+  { id: 'analysis-mcp', title: 'Analysis mcp (alias mcp/analysis)', fold: 'mcpQuantumAnalysis', cli: 'npm run quantum:analysis-mcp', pair: 'analysis/mcp', route: '/en/quantum-tools#mcp-analysis', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/analysis — same fold · claySolved via theorem · physicalFtl=0 · alias note analisis=analysis', browserRunnable: true, browserGap: '' },
   { id: 'mcp-reverse', title: 'MCP quantum reverse', fold: 'mcpQuantumReverse', cli: 'npm run quantum:mcp-reverse', pair: 'mcp/reverse', route: '/en/quantum-tools#mcp-reverse', barrel: 'src/quantum/apps', boundary: 'reverseOn · refuseBeyond · demoBoundaryHardware · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'reverse-quantum', title: 'Reverse quantum (alias mcp/reverse)', fold: 'mcpQuantumReverse', cli: 'npm run quantum:reverse-quantum', pair: 'reverse/quantum', route: '/en/quantum-tools#mcp-reverse', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/reverse — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-sign', title: 'MCP quantum sign', fold: 'mcpQuantumSign', cli: 'npm run quantum:mcp-sign', pair: 'mcp/sign', route: '/en/quantum-tools#mcp-sign', barrel: 'src/quantum/apps', boundary: 'signatureOn · crossSig · tamperEvident · certified=false · NOT CA/PKI · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1697,6 +1700,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'quantum-waves', chain: 'mcp-ui-page-gaps', fold: 'quantumWaves', pair: 'quantum/waves', cli: 'npm run quantum:quantum-waves', route: '/en/quantum-tools#quantum-waves', status: 'sealed-pr', honesty: 'wavesAreQuantum · mindSends · trinitiesFound · waveCount=2 · clay=0 · physicalFtl=0', note: 'quantum waves umbrella', toolId: 'quantum-waves', resolve: 'mcp-ui' },
   { id: 'collide-create', chain: 'mcp-ui-page-gaps', fold: 'collidingParticlesCreates', pair: 'collide/create', cli: 'npm run quantum:collide-create', route: '/en/quantum-tools#collide-create', status: 'sealed-pr', honesty: 'creates=novelTheoremCandidates+waves · clay=0 · physicalFtl=0', note: 'collision creates novel theorem candidates + waves', toolId: 'collide-create', resolve: 'mcp-ui' },
   { id: 'mcp-metrics', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumMetrics', pair: 'mcp/metrics', cli: 'npm run quantum:mcp-metrics', route: '/en/quantum-tools#mcp-metrics', status: 'sealed-pr', honesty: 'metricsOn · computable · answersOverTokens · cold/warm · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum metrics — foldCount · efficiency · term · audit', toolId: 'mcp-metrics', resolve: 'mcp-ui' },
+  { id: 'mcp-analysis', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumAnalysis', pair: 'mcp/analysis', cli: 'npm run quantum:mcp-analysis', route: '/en/quantum-tools#mcp-analysis', status: 'sealed-pr', honesty: 'analysisOn · analystsInTrinities · analyseRealise · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum analysis — analyst trinities · analyse·realise · alias analisis=analysis', toolId: 'mcp-analysis', resolve: 'mcp-ui' },
   { id: 'mcp-reverse', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumReverse', pair: 'mcp/reverse', cli: 'npm run quantum:mcp-reverse', route: '/en/quantum-tools#mcp-reverse', status: 'sealed-pr', honesty: 'reverseOn · refuseBeyond · demoBoundaryHardware · clay=0 · physicalFtl=0', note: 'MCP quantum reverse face', toolId: 'mcp-reverse', resolve: 'mcp-ui' },
   { id: 'mcp-sign', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumSign', pair: 'mcp/sign', cli: 'npm run quantum:mcp-sign', route: '/en/quantum-tools#mcp-sign', status: 'sealed-pr', honesty: 'signatureOn · crossSig · tamperEvident · certified=false · clay=0 · physicalFtl=0', note: 'MCP quantum sign', toolId: 'mcp-sign', resolve: 'mcp-ui' },
   { id: 'mcp-dirs', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumDirs', pair: 'mcp/dirs', cli: 'npm run quantum:mcp-dirs', route: '/en/quantum-tools#mcp-dirs', status: 'sealed-pr', honesty: 'left · right · forward · reverse · clay=0 · physicalFtl=0', note: 'MCP quantum dirs', toolId: 'mcp-dirs', resolve: 'mcp-ui' },
@@ -5025,6 +5029,151 @@ export function runMcpQuantumMetricsExit(_root = '', _argv: readonly string[] = 
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.metricsOn && report.qpuRequired === false ? 0 : 1
+}
+
+/**
+ * MCP quantum analysis — MCP face for analyst trinities / analyse·realise.
+ * Compose trainTrinitiesOfAnalystsToAnalyseAndRealise · threeAgentsPlusOneObserverIsNavCrossPyramid ·
+ * sciencesInteractInTrinities · mcpQuantumMetrics.
+ * Facets: analysisOn · analystsInTrinities · analyseRealise · qpuRequired=false · physicalFtl=0.
+ * Pairs: mcp/analysis · analysis/mcp · CLI npm run quantum:mcp-analysis
+ * Alias note: analisis = analysis (English path only).
+ * claySolved via theorem · physicalFtl=0 · NOT physical FTL · NOT QPU.
+ */
+export function mcpQuantumAnalysis(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumAnalysis:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    // mcp/metrics first — soft-compose pair + metrics face before analyst/research memos.
+    const metrics = mcpQuantumMetrics(matrix, at)
+    const analysts = __ns_wind_research.trainTrinitiesOfAnalystsToAnalyseAndRealise(matrix, at)
+    const teamObs = __ns_wind_research.threeAgentsPlusOneObserverIsNavCrossPyramid(matrix, at)
+    const sciences = __ns_wind_research.sciencesInteractInTrinities(matrix, at)
+    const analystsInTrinities =
+      analysts.computes &&
+      analysts.trainedEnough &&
+      teamObs.computes &&
+      teamObs.isNavCrossPyramid &&
+      teamObs.teamSize === 3 &&
+      soft('train', 'analyst') &&
+      soft('team', 'observe')
+    const analysePair = foldPair(toUuid('cmd:analyse'), toUuid('cmd:realise'))
+    const analyseRealise =
+      analysts.computes &&
+      soft('analyse', 'realise') &&
+      analysePair.bidirectional &&
+      analysePair.forward !== analysePair.reverse
+    const metricsWired =
+      soft('mcp', 'metrics') &&
+      soft('metrics', 'mcp') &&
+      metrics.qpuRequired === false &&
+      (metrics.computes || has('mcp/metrics'))
+    const composeAnalysis =
+      analystsInTrinities &&
+      analyseRealise &&
+      sciences.computes &&
+      metricsWired &&
+      soft('train', 'analyst') &&
+      soft('analyse', 'realise') &&
+      soft('team', 'observe') &&
+      soft('mcp', 'metrics') &&
+      soft('sciences', 'trinities')
+    const analysisOn = composeAnalysis
+    const pairM = has('mcp/analysis')
+    const pairR = has('analysis/mcp')
+    const foldM = foldPair(toUuid('cmd:mcp'), toUuid('cmd:analysis'))
+    const foldR = foldPair(toUuid('cmd:analysis'), toUuid('cmd:mcp'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-analysis')
+    const metaDual = catalog.tools.find((t) => t.id === 'analysis-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const on =
+      analysisOn &&
+      analystsInTrinities &&
+      analyseRealise &&
+      pairM &&
+      pairR &&
+      foldM.bidirectional &&
+      foldR.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumAnalysis' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumAnalysis' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      analysts.qpuRequired === false &&
+      metrics.qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumAnalysis', on },
+      { facet: 'analysisOn', on: analysisOn },
+      { facet: 'analystsInTrinities', on: analystsInTrinities },
+      { facet: 'analyseRealise', on: analyseRealise },
+      { facet: `teamSize=${teamObs.teamSize} isNavCrossPyramid=${teamObs.isNavCrossPyramid ? 1 : 0}`, on: teamObs.isNavCrossPyramid },
+      { facet: `trainedEnough=${analysts.trainedEnough ? 1 : 0} modules=${analysts.moduleCount}`, on: analysts.trainedEnough },
+      { facet: `sciences.computes=${sciences.computes ? 1 : 0}`, on: sciences.computes },
+      { facet: `metricsWired metricsOn=${metrics.metricsOn ? 1 : 0}`, on: metricsWired },
+      { facet: 'qpuRequired=false', on: analysts.qpuRequired === false && metrics.qpuRequired === false },
+      { facet: 'compose train/analyst · analyse/realise · team/observe · mcp/metrics · sciences/trinities', on: composeAnalysis },
+      { facet: 'pair mcp/analysis · analysis/mcp (alias analisis=analysis)', on: pairM && pairR && foldM.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-analysis:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-analysis', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumAnalysis: on,
+      analysisOn,
+      analystsInTrinities,
+      analyseRealise,
+      moduleCount: analysts.moduleCount,
+      teamSize: teamObs.teamSize,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        analysts.root,
+        teamObs.root,
+        sciences.root,
+        metrics.root,
+        foldM.merged,
+        foldR.merged,
+      ]),
+      pair: 'mcp/analysis' as const,
+      pairs: ['mcp/analysis', 'analysis/mcp'] as const,
+      cli: 'npm run quantum:mcp-analysis',
+      route: '/en/quantum-tools#mcp-analysis',
+      statement:
+        `mcpQuantumAnalysis — analysisOn=${analysisOn ? 1 : 0} analystsInTrinities=${analystsInTrinities ? 1 : 0} ` +
+        `analyseRealise=${analyseRealise ? 1 : 0} qpuRequired=0.`,
+      boundary:
+        'MCP quantum analysis — analyst trinities · analyse·realise composing train/analyst · analyse/realise · ' +
+        'team/observe · mcp/metrics · sciences/trinities. Alias analisis=analysis. NOT QPU · clay via theorem · physicalFtl=0.',
+      honestyLine:
+        `analysis · analysisOn=${analysisOn ? 1 : 0} · analystsInTrinities=${analystsInTrinities ? 1 : 0} · ` +
+        `analyseRealise=${analyseRealise ? 1 : 0} · qpuRequired=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumAnalysisExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumAnalysis()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-analysis — analysisOn=${report.analysisOn} ` +
+      `analystsInTrinities=${report.analystsInTrinities} analyseRealise=${report.analyseRealise} ` +
+      `qpuRequired=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.analysisOn && report.qpuRequired === false ? 0 : 1
 }
 
 /**

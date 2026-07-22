@@ -335,6 +335,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'particle/collide',
   'mcp/metrics',
   'metrics/mcp',
+  'mcp/analysis',
+  'analysis/mcp',
   'mcp/reverse',
   'forward/reverse',
   'left/right',
