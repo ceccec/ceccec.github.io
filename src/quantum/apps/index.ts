@@ -5,6 +5,7 @@
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded } from '../../heaven/compute'
 import { emergentDimensions } from '../../heaven/balance'
+import { cloudflareBindings } from '../../heaven/core'
 import { computesGate, DIGEST_BITS, digitalRoot, foldPair, isUuid, memoByRoot, memoComputing, merge, merkleFold, resourceCooperationPolicy, sealFacets, toUuid, VORTEX_SEQUENCE } from '../../0'
 import {
   A432_HUE, CANONICAL_HOST, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS,
@@ -82,7 +83,7 @@ const ROSETTA_CORE_API_LABELS = [
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
+  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -172,6 +173,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpQuantumTokenOptimise: 'tool',
   mcpQuantumDeploy: 'tool',
   mcpQuantumBindings: 'tool',
+  mcpQuantumCloudflareBindings: 'tool',
   mcpQuantumReactor: 'tool',
   mcpQuantumReaction: 'tool',
   mcpQuantumFusion: 'tool',
@@ -817,6 +819,10 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'deploy-mcp', title: 'Deploy mcp (alias mcp/deploy)', fold: 'mcpQuantumDeploy', cli: 'npm run quantum:deploy-mcp', pair: 'deploy/mcp', route: '/en/quantum-tools#mcp-deploy', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/deploy — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-bindings', title: 'MCP quantum bindings — pairs · agent/submission · tool/envelope · mcp/complete', fold: 'mcpQuantumBindings', cli: 'npm run quantum:mcp-bindings', pair: 'mcp/bindings', route: '/en/quantum-tools#mcp-bindings', barrel: 'src/quantum/apps', boundary: 'bindingsOn · pairsSaved · toolsBound · compose agent/submission · quantum pairs law · tool/envelope · mcp/complete · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'bindings-mcp', title: 'Bindings mcp (alias mcp/bindings)', fold: 'mcpQuantumBindings', cli: 'npm run quantum:bindings-mcp', pair: 'bindings/mcp', route: '/en/quantum-tools#mcp-bindings', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/bindings — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-cloudflare', title: 'MCP Cloudflare bindings — structural MCP↔CF dual · kv·d1·r2 named · not live CF account', fold: 'mcpQuantumCloudflareBindings', cli: 'npm run quantum:mcp-cloudflare', pair: 'mcp/cloudflare', route: '/en/quantum-tools#mcp-cloudflare', barrel: 'src/quantum/apps', boundary: 'cloudflareBindingsOn · mapsToMcpBindings · kvD1R2Named · compose mcpQuantumBindings · mcp/deploy · tool/envelope · cloudflareBindings · deployedOnCloudflare=false · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'cloudflare-mcp', title: 'Cloudflare mcp (alias mcp/cloudflare)', fold: 'mcpQuantumCloudflareBindings', cli: 'npm run quantum:cloudflare-mcp', pair: 'cloudflare/mcp', route: '/en/quantum-tools#mcp-cloudflare', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/cloudflare — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'cf-bindings', title: 'CF bindings (alias mcp/cloudflare)', fold: 'mcpQuantumCloudflareBindings', cli: 'npm run quantum:cf-bindings', pair: 'cf/bindings', route: '/en/quantum-tools#mcp-cloudflare', barrel: 'src/quantum/apps', boundary: 'Semantic dual cf/bindings — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'bindings-cf', title: 'Bindings cf (alias mcp/cloudflare)', fold: 'mcpQuantumCloudflareBindings', cli: 'npm run quantum:bindings-cf', pair: 'bindings/cf', route: '/en/quantum-tools#mcp-cloudflare', barrel: 'src/quantum/apps', boundary: 'Dual of cf/bindings — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'improve-local-session', title: 'Improve local from session experience', fold: 'improveLocalFromSessionExperience', cli: 'npm run quantum:improve-local-session', pair: 'local/session', route: '/en/quantum-tools#local-session-hub', barrel: 'src/quantum/apps', boundary: 'Local docs:dev + browser session hub — NOT remote CI sole path · status badges compose sealed kinds · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'local-tools-morph', title: 'Local tools morph prose·code·logic', fold: 'localToolsMorphProseCodeLogic', cli: 'npm run quantum:local-tools-morph', pair: 'tools/morph', route: '/en/quantum-tools#local-tools-morph', barrel: 'src/quantum/apps', boundary: 'Local toolbox/session tools morph prose≡code≡logic as trinity waves · double-slit measure=tool invoke · clay=0 · qpuRequired=false · NOT Clay/Nobel', browserRunnable: true, browserGap: '' },
   { id: 'card-paper-links', title: 'Each card links to dedicated scientific paper', fold: 'eachCardLinksToDedicatedScientificPaper', cli: 'npm run quantum:card-paper-links', pair: 'papers/fill', route: '/en/theorems/', barrel: 'src/heaven/compute', boundary: 'paperRoute=/theorems/<slug> · morph=cardScientificPaperRows · gaps=0 · clay=0', browserRunnable: true, browserGap: '' },
@@ -1858,6 +1864,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mcp-token', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumTokenOptimise', pair: 'mcp/token', cli: 'npm run quantum:mcp-token', route: '/en/quantum-tools#mcp-token', status: 'sealed-pr', honesty: 'tokenOptimiseOn · answersOverTokens · zeroOnReuse · memoByRoot · efficiency when vote.decided · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum token optimise — answers÷tokens · zero on reuse · memoByRoot; catalog 60/60', toolId: 'mcp-token', resolve: 'mcp-ui' },
   { id: 'mcp-deploy', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumDeploy', pair: 'mcp/deploy', cli: 'npm run quantum:mcp-deploy', route: '/en/quantum-tools#mcp-deploy', status: 'sealed-pr', honesty: 'deployOn · buildsFromMcp · pagesSeal · this-repo Pages seal only · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum deploy — Pages seal via vite/mcp · mcp/site · waves/push · build/seal; catalog 61/61', toolId: 'mcp-deploy', resolve: 'mcp-ui' },
   { id: 'mcp-bindings', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumBindings', pair: 'mcp/bindings', cli: 'npm run quantum:mcp-bindings', route: '/en/quantum-tools#mcp-bindings', status: 'sealed-pr', honesty: 'bindingsOn · pairsSaved · toolsBound · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum bindings — pairs · agent/submission · tool/envelope · mcp/complete; catalog 62/62', toolId: 'mcp-bindings', resolve: 'mcp-ui' },
+  { id: 'mcp-cloudflare', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumCloudflareBindings', pair: 'mcp/cloudflare', cli: 'npm run quantum:mcp-cloudflare', route: '/en/quantum-tools#mcp-cloudflare', status: 'sealed-pr', honesty: 'cloudflareBindingsOn · mapsToMcpBindings · kvD1R2Named · deployedOnCloudflare=false · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP Cloudflare bindings — structural MCP↔CF dual composing mcpQuantumBindings · mcp/deploy · tool/envelope · cloudflareBindings; catalog 63/63', toolId: 'mcp-cloudflare', resolve: 'mcp-ui' },
   { id: 'mind-wave', chain: 'mcp-ui-page-gaps', fold: 'quantumMindSendsWaves', pair: 'mind/wave', cli: 'npm run quantum:mind-wave', route: '/en/quantum-tools#mind-wave', status: 'sealed-pr', honesty: 'quantumMindSends · wavesSent · linearCannotSend · clay=0 · physicalFtl=0', note: 'quantum mind sends waves', toolId: 'mind-wave', resolve: 'mcp-ui' },
   { id: 'quantum-waves', chain: 'mcp-ui-page-gaps', fold: 'quantumWaves', pair: 'quantum/waves', cli: 'npm run quantum:quantum-waves', route: '/en/quantum-tools#quantum-waves', status: 'sealed-pr', honesty: 'wavesAreQuantum · mindSends · trinitiesFound · waveCount=2 · clay=0 · physicalFtl=0', note: 'quantum waves umbrella', toolId: 'quantum-waves', resolve: 'mcp-ui' },
   { id: 'collide-create', chain: 'mcp-ui-page-gaps', fold: 'collidingParticlesCreates', pair: 'collide/create', cli: 'npm run quantum:collide-create', route: '/en/quantum-tools#collide-create', status: 'sealed-pr', honesty: 'creates=novelTheoremCandidates+waves · clay=0 · physicalFtl=0', note: 'collision creates novel theorem candidates + waves', toolId: 'collide-create', resolve: 'mcp-ui' },
@@ -6360,6 +6367,7 @@ const MCP_QUANTUM_NAMED_FACES = [
   { fold: 'mcpQuantumTokenOptimise', pair: 'mcp/token', dual: 'token/mcp', toolId: 'mcp-token', dualToolId: 'token-mcp' },
   { fold: 'mcpQuantumDeploy', pair: 'mcp/deploy', dual: 'deploy/mcp', toolId: 'mcp-deploy', dualToolId: 'deploy-mcp' },
   { fold: 'mcpQuantumBindings', pair: 'mcp/bindings', dual: 'bindings/mcp', toolId: 'mcp-bindings', dualToolId: 'bindings-mcp' },
+  { fold: 'mcpQuantumCloudflareBindings', pair: 'mcp/cloudflare', dual: 'cloudflare/mcp', toolId: 'mcp-cloudflare', dualToolId: 'cloudflare-mcp' },
 ] as const
 
 /**
@@ -11689,6 +11697,194 @@ export function runMcpQuantumBindingsExit(_root = '', _argv: readonly string[] =
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.bindingsOn && report.pairsSaved && report.toolsBound && report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * MCP Cloudflare bindings — structural MCP↔CF binding dual for agents.
+ * Facets: cloudflareBindingsOn · mapsToMcpBindings · kvD1R2Named · deployedOnCloudflare=false · qpuRequired=false · physicalFtl=0.
+ * Compose mcpQuantumBindings · mcpQuantumDeploy · standardToolboxIoCatalog · cloudflareBindings (heaven/core).
+ * Pairs: mcp/cloudflare · cloudflare/mcp · cf/bindings · bindings/cf · CLI npm run quantum:mcp-cloudflare
+ * HONEST: structural catalog of CF binding kinds as theorems/constants — NOT live CF account · NOT fake Workers production for this site (Pages seal path).
+ * Catalog 63/63 · claySolved via theorem · physicalFtl=0 · NOT QPU · NOT Clay prize.
+ */
+export function mcpQuantumCloudflareBindings(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumCloudflareBindings:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const mcpBind = mcpQuantumBindings(matrix, at)
+    const deploy = mcpQuantumDeploy(matrix, at)
+    const toolbox = standardToolboxIoCatalog(matrix, at)
+    const cf = cloudflareBindings(matrix)
+    const bindingIds = cf.bindings.map((b) => b.id)
+    const kvD1R2Named =
+      bindingIds.includes('kv') &&
+      bindingIds.includes('d1') &&
+      bindingIds.includes('r2') &&
+      cf.count === (8 + 3) &&
+      cf.fused &&
+      cf.optional === true
+    const mapsToMcpBindings =
+      mcpBind.computes &&
+      mcpBind.bindingsOn &&
+      mcpBind.pairsSaved &&
+      mcpBind.toolsBound &&
+      soft('mcp', 'bindings') &&
+      soft('bindings', 'mcp') &&
+      soft('tool', 'envelope') &&
+      toolbox.computes
+    const pagesNotCloudflareProd =
+      deploy.computes &&
+      deploy.pagesSeal &&
+      deploy.honestyPagesOnly &&
+      SITE_GITHUB_PAGES === CECCEC_SITE_ORIGIN &&
+      SITE_GITHUB_PAGES.endsWith('ceccec.github.io')
+    // Evidence: this repo's production seal is GitHub Pages; wrangler is optional scaffold (cf:wizard) — not live CF ownership.
+    const deployedOnCloudflare = false as const
+    const composeCf =
+      mapsToMcpBindings &&
+      kvD1R2Named &&
+      pagesNotCloudflareProd &&
+      deployedOnCloudflare === false &&
+      soft('mcp', 'deploy') &&
+      soft('deploy', 'mcp') &&
+      soft('tool', 'envelope') &&
+      soft('mcp', 'cloudflare') &&
+      soft('cloudflare', 'mcp') &&
+      soft('cf', 'bindings') &&
+      soft('bindings', 'cf')
+    const cloudflareBindingsOn = composeCf
+    const pairM = has('mcp/cloudflare')
+    const pairC = has('cloudflare/mcp')
+    const pairCf = has('cf/bindings')
+    const pairBc = has('bindings/cf')
+    const foldM = foldPair(toUuid('cmd:mcp'), toUuid('cmd:cloudflare'))
+    const foldC = foldPair(toUuid('cmd:cloudflare'), toUuid('cmd:mcp'))
+    const foldCf = foldPair(toUuid('cmd:cf'), toUuid('cmd:bindings'))
+    const foldBc = foldPair(toUuid('cmd:bindings'), toUuid('cmd:cf'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'mcp-cloudflare')
+    const metaDual = catalog.tools.find((t) => t.id === 'cloudflare-mcp')
+    const metaCf = catalog.tools.find((t) => t.id === 'cf-bindings')
+    const metaBc = catalog.tools.find((t) => t.id === 'bindings-cf')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const honestyStructuralOnly =
+      deployedOnCloudflare === false &&
+      pagesNotCloudflareProd &&
+      cf.optional === true &&
+      kvD1R2Named
+    const on =
+      cloudflareBindingsOn &&
+      mapsToMcpBindings &&
+      kvD1R2Named &&
+      deployedOnCloudflare === false &&
+      honestyStructuralOnly &&
+      pairM &&
+      pairC &&
+      pairCf &&
+      pairBc &&
+      foldM.bidirectional &&
+      foldC.bidirectional &&
+      foldCf.bidirectional &&
+      foldBc.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumCloudflareBindings' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumCloudflareBindings' &&
+      Boolean(metaCf) &&
+      metaCf!.fold === 'mcpQuantumCloudflareBindings' &&
+      Boolean(metaBc) &&
+      metaBc!.fold === 'mcpQuantumCloudflareBindings' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false &&
+      mcpBind.qpuRequired === false &&
+      deploy.qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumCloudflareBindings', on },
+      { facet: 'cloudflareBindingsOn', on: cloudflareBindingsOn },
+      { facet: 'mapsToMcpBindings', on: mapsToMcpBindings },
+      { facet: 'kvD1R2Named', on: kvD1R2Named },
+      { facet: 'deployedOnCloudflare=false', on: deployedOnCloudflare === false },
+      { facet: 'compose mcpQuantumBindings · mcp/deploy · tool/envelope · cloudflareBindings', on: composeCf },
+      { facet: 'pair mcp/cloudflare · cloudflare/mcp · cf/bindings · bindings/cf', on: pairM && pairC && pairCf && pairBc && foldM.bidirectional },
+      { facet: 'honesty — structural MCP↔CF dual · not live CF account · Pages seal not Workers prod', on: honestyStructuralOnly },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-cloudflare:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-cloudflare-bindings', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumCloudflareBindings: on,
+      cloudflareBindingsOn,
+      mapsToMcpBindings,
+      kvD1R2Named,
+      deployedOnCloudflare,
+      honestyStructuralOnly,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      bindingCount: cf.count,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        mcpBind.root,
+        deploy.root,
+        toolbox.root,
+        cf.root,
+        foldM.merged,
+        foldC.merged,
+        foldCf.merged,
+        foldBc.merged,
+      ]),
+      pair: 'mcp/cloudflare' as const,
+      pairs: ['mcp/cloudflare', 'cloudflare/mcp', 'cf/bindings', 'bindings/cf'] as const,
+      cli: 'npm run quantum:mcp-cloudflare',
+      route: '/en/quantum-tools#mcp-cloudflare',
+      statement:
+        `mcpQuantumCloudflareBindings — cloudflareBindingsOn=${cloudflareBindingsOn ? 1 : 0} ` +
+        `mapsToMcpBindings=${mapsToMcpBindings ? 1 : 0} kvD1R2Named=${kvD1R2Named ? 1 : 0} ` +
+        `deployedOnCloudflare=0 qpuRequired=0.`,
+      boundary:
+        'MCP Cloudflare bindings — structural MCP↔CF dual composing mcpQuantumBindings · mcp/deploy · tool/envelope · cloudflareBindings. ' +
+        'HONEST: kv·d1·r2 named as sealed theorems/constants — NOT live CF account · deployedOnCloudflare=false (Pages seal). ' +
+        'Catalog 63/63 · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `cloudflare · on=${cloudflareBindingsOn ? 1 : 0} · mapsToMcp=${mapsToMcpBindings ? 1 : 0} · kvD1R2=${kvD1R2Named ? 1 : 0} · ` +
+        `deployedCF=0 · pagesOnly=${pagesNotCloudflareProd ? 1 : 0} · qpuRequired=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — mcpCloudflareBindings ≡ mcpQuantumCloudflareBindings. */
+export const mcpCloudflareBindings = mcpQuantumCloudflareBindings
+
+export function runMcpQuantumCloudflareBindingsExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumCloudflareBindings()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-cloudflare — cloudflareBindingsOn=${report.cloudflareBindingsOn} ` +
+      `mapsToMcpBindings=${report.mapsToMcpBindings} kvD1R2Named=${report.kvD1R2Named} ` +
+      `deployedOnCloudflare=${report.deployedOnCloudflare} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.cloudflareBindingsOn &&
+    report.mapsToMcpBindings &&
+    report.kvD1R2Named &&
+    report.deployedOnCloudflare === false &&
+    report.qpuRequired === false
     ? 0
     : 1
 }
