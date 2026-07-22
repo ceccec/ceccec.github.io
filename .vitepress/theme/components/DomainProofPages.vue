@@ -11,6 +11,7 @@ import {
 } from '../../../src/wind/research/index.ts'
 import { sciencePaperBodyFromDomainRow } from '../../../src/quantum/apps/index.ts'
 import ScientificPaperBody from './ScientificPaperBody.vue'
+import PageComputedGaps from './PageComputedGaps.vue'
 
 const route = useRoute()
 const slugFromRoute = computed(() => {
@@ -77,6 +78,8 @@ const bodyOf = (row: DomainProofCatalogRow) => sciencePaperBodyFromDomainRow(row
         <p><code>{{ row.cli }}</code> · pair <code>{{ row.pair }}</code></p>
         <p class="domain-proof__meta"><code>{{ row.receipt }}</code></p>
       </section>
+
+      <PageComputedGaps page-kind="domain-proof" />
 
       <p class="domain-proof__nav">
         <a :href="vpHref('/proofs')">← /proofs</a>

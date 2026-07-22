@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { revolutChannel } from '../../../src/wind/site/index'
+import { cursorReferralFundsAiNeeds } from '../../../src/wind/research/index'
 import { qrSvg } from '../../../src/water/crypto/index'
 import { useSiteLocale } from '../../lib/mounts'
 
 const { pick } = useSiteLocale()
 const channel = computed(() => revolutChannel())
+const fund = computed(() => cursorReferralFundsAiNeeds())
 // The QR is computed in src (GF(256) Reed–Solomon, byte mode, ECC-M) — scan to pay or message.
 const qr = computed(() => qrSvg(channel.value.url))
 
@@ -16,6 +18,7 @@ const labels = computed(() => ({
     'Полезно ли беше? Докосни, за да отвориш Revolut, или сканирай, за да платиш или пишеш — хармонична част (1/9), дадена свободно.',
   ),
   tap: pick('Open Revolut', 'Отвори Revolut'),
+  fundAi: pick(fund.value.ctaLabel, 'Финансирай AI чрез Cursor referral'),
   scan: pick('Scan to pay or message', 'Сканирай, за да платиш или пишеш'),
   aria: pick('Support and contact — tap the link or scan the QR code', 'Подкрепа и контакт — докосни връзката или сканирай QR кода'),
 }))
@@ -33,6 +36,16 @@ const labels = computed(() => ({
         target="_blank"
       >
         {{ labels.tap }} · &#64;{{ channel.handle }}
+      </a>
+      <a
+        id="fund-ai"
+        class="theorem-support__tap theorem-support__fund"
+        :href="fund.url"
+        rel="noopener noreferrer"
+        target="_blank"
+        data-logic="src/wind/research/index.ts#cursorReferralFundsAiNeeds"
+      >
+        {{ labels.fundAi }}
       </a>
     </div>
     <a
@@ -84,6 +97,11 @@ const labels = computed(() => ({
   font-weight: var(--ich-weight-medium);
   color: var(--vp-c-brand-1);
   text-decoration: none;
+}
+
+.theorem-support__fund {
+  display: block;
+  margin-top: var(--ich-sp3, 0.4rem);
 }
 
 .theorem-support__tap:hover {

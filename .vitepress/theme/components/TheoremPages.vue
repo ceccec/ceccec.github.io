@@ -11,6 +11,7 @@ import { theoremPageBySlug, theoremPageRows, type TheoremPageRow } from '../../.
 import type { ProofAnimationSpec } from '../../../src/thunder/waves'
 import ProofAnimation from './ProofAnimation.vue'
 import TheoremFigure from './TheoremFigure.vue'
+import PageComputedGaps from './PageComputedGaps.vue'
 import { theoremFigure } from '../../../src/wind/routes/corpus/index.ts'
 
 const route = useRoute()
@@ -117,6 +118,8 @@ const figureOf = (row: TheoremPageRow) => theoremFigure(row.slug)
         <h2>Cite as</h2>
         <p>{{ row.citation }}</p>
       </footer>
+
+      <PageComputedGaps page-kind="theorem" />
     </article>
   </div>
 </template>
