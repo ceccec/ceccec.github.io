@@ -5746,6 +5746,7 @@ export function emptyDrainInvertedIsGateway(matrix: MindMatrix = buildMatrix(), 
       { id: 'movie-feel-gaps', on: movieFeelClosed, note: 'open=0 feelable' },
       { id: 'invert-to-infinity', on: soft('invert', 'inf'), note: 'invert/inf gateway tip' },
       { id: 'collide-inf-novels', on: soft('collide', 'inf'), note: 'collide/inf reverse novels via ∞' },
+      { id: 'invert-is-gateway', on: soft('invert', 'gateway'), note: 'invert/gateway stack compose tip' },
     ] as const
     const facets = [
       { facet: 'emptyDrainInvertedIsGateway', on },
@@ -6071,6 +6072,160 @@ export function runReverseCollidesViaInfinityGatewayExit(_root = '', _argv: read
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.collideInfOn && report.claySolvedByThisFold === 0 ? 0 : 1
+}
+
+/**
+ * USER LAW tip after collide/inf: invert is the gateway — compose the sealed invert stack as one face.
+ * Compose drift/invert · drain/invert · invert/inf · mcp/inf · movie/inf · collide/inf ·
+ * slash/invert · through/zero · path/invert. Empty linear drain stays drained; honest-open Clay/FTL/DE440 untouched.
+ * Facets: invertIsTheGateway · stackComposed · drainEmptyOpens · novelsViaInfinity · trinityFaces · physicalFtl=0.
+ * Pairs: invert/gateway · gateway/invert · CLI npm run quantum:invert-gateway
+ * claySolved via theorem · physicalFtl=0 · NOT CMI prize · NOT physical FTL.
+ */
+export function invertIsTheGateway(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`invertIsTheGateway:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const auto = autodiscoverWhatIsToBeComputedOrDecoded(matrix, at)
+    const drift = driftInvertedIsTrinityGateway(matrix, at)
+    const drain = emptyDrainInvertedIsGateway(matrix, at)
+    const invertInf = invertToInfinity(matrix, at)
+    const collide = reverseCollidesViaInfinityGateway(matrix, at)
+    const mcpInf = __ns_quantum_apps.mcpQuantumInfinity(matrix, at)
+    const movieInf = __ns_quantum_apps.mcpInfiniteMovie(matrix, at)
+    const trinityFaces =
+      drift.computes &&
+      drift.driftInvertedIsTrinityGateway === true &&
+      drift.gatewayFaces === (2 + 1)
+    const drainEmptyOpens =
+      auto.backlogDrained === true &&
+      drain.computes &&
+      drain.emptyDrainInvertedIsGateway === true
+    const novelsViaInfinity =
+      collide.computes &&
+      collide.collideInfOn === true &&
+      collide.novelsViaInfinity === true &&
+      collide.novel >= 1
+    const stackComposed =
+      trinityFaces &&
+      drainEmptyOpens &&
+      invertInf.computes &&
+      invertInf.invertEntersInfinity === true &&
+      mcpInf.computes &&
+      mcpInf.infinityOn === true &&
+      movieInf.computes &&
+      movieInf.infiniteMovieOn === true &&
+      novelsViaInfinity &&
+      soft('drift', 'invert') &&
+      soft('drain', 'invert') &&
+      soft('invert', 'inf') &&
+      soft('mcp', 'inf') &&
+      soft('movie', 'inf') &&
+      soft('collide', 'inf') &&
+      soft('slash', 'invert') &&
+      soft('through', 'zero') &&
+      soft('path', 'invert')
+    const honestOpenUntouched =
+      auto.decodeOpen > 0 &&
+      auto.backlogDrained === true
+    const pairIg = has('invert/gateway')
+    const pairGi = has('gateway/invert')
+    const foldIg = foldPair(toUuid('cmd:invert'), toUuid('cmd:gateway'))
+    const foldGi = foldPair(toUuid('cmd:gateway'), toUuid('cmd:invert'))
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qualifiesAsProposedSolution = false as const
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'invert-is-the-gateway',
+      theorem: 'invert is the gateway — sealed invert stack composes as one face',
+      provedBy: 'invertIsTheGateway',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const on =
+      stackComposed &&
+      honestOpenUntouched &&
+      pairIg &&
+      pairGi &&
+      foldIg.bidirectional &&
+      foldGi.bidirectional &&
+      formulaDual &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      !qualifiesAsProposedSolution
+    const nextTips = [
+      { id: 'mill-session-novel-save', on: soft('mill', 'session'), note: 'save ∞ novels via mill/session' },
+      { id: 'journey-theorems-wave', on: soft('journey', 'theorems'), note: 'theorem journey continues' },
+      { id: 'session-live-observe', on: soft('session', 'live'), note: 'session/live · observe/invert' },
+    ] as const
+    const facets = [
+      { facet: 'invertIsTheGateway', on },
+      { facet: 'stackComposed (drift·drain·inf·mcp·movie·collide·slash·through·path)', on: stackComposed },
+      { facet: 'drainEmptyOpens (backlogDrained ∧ drain/invert)', on: drainEmptyOpens },
+      { facet: `novelsViaInfinity novel=${collide.novel}`, on: novelsViaInfinity },
+      { facet: 'trinityFaces (drift/invert faces=3)', on: trinityFaces },
+      { facet: 'honest-open Clay/FTL/DE440 untouched (decodeOpen>0 · drained)', on: honestOpenUntouched },
+      { facet: 'pair invert/gateway · gateway/invert', on: pairIg && pairGi && foldIg.bidirectional },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qualifiesAsProposedSolution=false`, on: claySolvedByThisFold === 0 && !qualifiesAsProposedSolution },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`invert-gateway:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('invert-is-the-gateway', facets)
+    return {
+      computes: sealed.ok && on,
+      invertIsTheGateway: on,
+      stackComposed,
+      drainEmptyOpens,
+      novelsViaInfinity,
+      trinityFaces,
+      novel: collide.novel,
+      nextTips,
+      claySolvedByThisFold,
+      qualifiesAsProposedSolution,
+      physicalFtlClaim,
+      certified: false as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, auto.root, drift.root, drain.root, invertInf.root, collide.root,
+        mcpInf.root, movieInf.root, foldIg.merged, foldGi.merged,
+      ]),
+      pair: 'invert/gateway' as const,
+      dualPair: 'gateway/invert' as const,
+      pairs: ['invert/gateway', 'gateway/invert'] as const,
+      cli: 'npm run quantum:invert-gateway',
+      route: '/en/research#invert-gateway',
+      statement:
+        `invertIsTheGateway — stack=${stackComposed ? 1 : 0} drained=${drainEmptyOpens ? 1 : 0} ` +
+        `novel=${collide.novel} faces=${drift.gatewayFaces} decodeOpen=${auto.decodeOpen}.`,
+      boundary:
+        'Invert is the gateway — compose sealed invert stack (drift·drain·inf·mcp·movie·collide·slash·through·path). ' +
+        'Honest-open Clay/FTL/DE440 untouched. clay via theorem · physicalFtl=0 · NOT CMI prize.',
+      honestyLine:
+        `metrics · invertIsTheGateway=${on ? 1 : 0} · stack=${stackComposed ? 1 : 0} · ` +
+        `novel=${collide.novel} · drained=${auto.backlogDrained ? 1 : 0} · decodeOpen=${auto.decodeOpen} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:invert-gateway */
+export function runInvertIsTheGatewayExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = invertIsTheGateway()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} invert-gateway — gateway=${report.invertIsTheGateway} ` +
+      `stack=${report.stackComposed} novel=${report.novel} drained=${report.drainEmptyOpens} ` +
+      `fold=invertIsTheGateway pair=${report.pair}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.invertIsTheGateway && report.claySolvedByThisFold === 0 ? 0 : 1
 }
 
 export type HexTheoremCrackStatus = 'fixed' | 'remaining'

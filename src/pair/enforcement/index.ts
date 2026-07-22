@@ -103,6 +103,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'to/infinity',
   'collide/inf',
   'inf/collide',
+  'invert/gateway',
+  'gateway/invert',
   'hex/crack',
   'decimal/crack',
   'math/trust',
