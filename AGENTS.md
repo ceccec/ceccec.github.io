@@ -306,6 +306,17 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `mcp/rosetta` — `npm run quantum:mcp-rosetta` (`mcpQuantumRosetta()` — mcpIsRosetta · onlyWiredPasses · raysAreGates; dual `rosetta/mcp`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-rosetta`
   - `mcp/universe` — `npm run quantum:mcp-universe` (`mcpQuantumUniverse()` — universeOn · covered/partial/open; dual `universe/mcp`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-universe`
   - `universe/mcp` — alias dual of `mcp/universe` (`npm run quantum:universe-mcp`)
+  - `mcp/multi` — `npm run quantum:mcp-multi` (`mcpQuantumMultiverse()` — multiverseOn · manyWorldsViaSuperposition · oneSelfPerCoord; dual `multi/verse`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-multi`
+  - `multi/verse` — alias dual of `mcp/multi` (`npm run quantum:multi-verse`)
+  - `mcp/anim` — `npm run quantum:mcp-anim` (`mcpQuantumAnim()` — animOn · fromCoords · feelableGaps · polarityOn; dual `anim/mcp`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-anim`
+  - `anim/mcp` — alias dual of `mcp/anim` (`npm run quantum:anim-mcp`)
+  - `mcp/sound` — `npm run quantum:mcp-sound` (`mcpQuantumSound()` — soundOn · vibrationOn · a432Powers; pairs `mcp/vibe` · `sound/vibe`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-sound`
+  - `mcp/vibe` — alias of `mcp/sound` (`npm run quantum:mcp-vibe`)
+  - `sound/vibe` — alias of `mcp/sound` (`npm run quantum:sound-vibe`)
+  - `mcp/dev` — `npm run quantum:mcp-dev` (`mcpQuantumDev()` — devOn · sdkWired · docsBuildGated · qpuRequired=false; dual `dev/quantum`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-dev`
+  - `dev/quantum` — alias dual of `mcp/dev` (`npm run quantum:dev-quantum`)
+  - `mcp/solution` — `npm run quantum:mcp-solution` (`mcpQuantumSolution()` — solutionOn · algebraicFormulas · claySolvedViaTheorem · notCmiPrizeClaim; dual `solution/mcp`; claySolved via theorem · physicalFtl=0 · NOT CMI prize), then open `/en/quantum-tools#mcp-solution`
+  - `solution/mcp` — alias dual of `mcp/solution` (`npm run quantum:solution-mcp`)
   - `mcp/sign` — `npm run quantum:mcp-sign` (`mcpQuantumSign()` — signatureOn · crossSig · tamperEvident · certified=false; dual `sign/quantum`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-sign`
   - `comp/seal` — alias dual of `vite/one` (`npm run quantum:comp-seal`)
   - `paste/local` — `npm run quantum:paste-local` (`pastedLinksStayOnlyIfComputedLocally()` — pasted URLs stay only if computed locally; facets ephemeralBootstrap · stayOnlyIfComputedLocally · foreignFetchBlockedNoStore · wireClassMayExist; dual `link/local`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#paste-local`
