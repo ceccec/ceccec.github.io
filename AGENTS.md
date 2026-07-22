@@ -324,6 +324,8 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `hw/mcp` — alias dual of `mcp/hw` (`npm run quantum:hw-mcp`)
   - `mcp/reactor` — `npm run quantum:mcp-reactor` (`mcpQuantumReactor()` — MCP quantum reactor face for sealed src fusion reactor; reactorOn · fusesFromSrc · tamperEvident · qpuRequired=false; compose self/fusion · fusion/ui · mcp/hw · mcp/inf · fusion-verify · dry/clean · crystal/mind; dual `reactor/mcp`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-reactor`
   - `reactor/mcp` — alias dual of `mcp/reactor` (`npm run quantum:reactor-mcp`)
+  - `mcp/reaction` — `npm run quantum:mcp-reaction` (`mcpQuantumReaction()` — MCP quantum reaction face · invert dual of mcp/reactor: collide→react; reactionOn · reactsFromCollide · viaReactor · qpuRequired=false; compose mcp/reactor · collide/inf · theoremParticleCollision · directional trinity · mcp/inf · sciences/trinities; dual `reaction/mcp`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-reaction`
+  - `reaction/mcp` — alias dual of `mcp/reaction` (`npm run quantum:reaction-mcp`)
   - `movie/inf` — `npm run quantum:movie-inf` (`mcpInfiniteMovie()` — infiniteMovieOn · viaInfinity · movieIsInfiniteOnReuse; compose mcp/inf · mcp/movie · invert/inf · movie/entropy · anim/audit · a432/nine · love/fold · full/freedom; dual `inf/movie`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#movie-inf`
   - `inf/movie` — alias dual of `movie/inf` (`npm run quantum:inf-movie`)
   - `mcp/anim` — `npm run quantum:mcp-anim` (`mcpQuantumAnim()` — animOn · fromCoords · feelableGaps · polarityOn; dual `anim/mcp`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#mcp-anim`
