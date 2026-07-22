@@ -13,9 +13,10 @@ const props = defineProps<{
 
 const { t, localize, scriptGlyph } = useSiteLocale()
 
+// One shared hero field: preview seed + destination movieRoute drive CardBackgroundMovie + CSS.
 const preview = computed(() => heroPreviewForRoute(props.route, props.title))
 const href = computed(() => localize(props.route))
-const seedParts = computed(() => [props.route, props.title, props.glyph] as const)
+const seedParts = computed(() => [props.route, preview.value.title] as const)
 const displayTitle = computed(() => t(props.title) ?? preview.value.title)
 </script>
 
@@ -24,6 +25,7 @@ const displayTitle = computed(() => t(props.title) ?? preview.value.title)
     <UiCardShell
       class="linked-hero-card__shell"
       :seed-parts="seedParts"
+      :movie-route="route"
       :title="displayTitle"
       movie-intensity="whisper"
     >

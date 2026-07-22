@@ -95,9 +95,9 @@ export function useHeroClock(onTick?: (at: number) => void) {
 }
 
 /**
- * One hub for BackgroundMovie · card previews · LinkedHeroCard phase — pair `hero/shared-realtime`.
- * Wraps `sharedHeroAt` on the ONE hero clock; consumers paint via drawHeroMovieFrame / CardBackgroundMovie.
- * HONEST: neuroscience/computation visualization field — not physical QM speedup.
+ * One hub for BackgroundMovie · card previews · LinkedHeroCard phase — pairs `hero/card` · `hero/anim`.
+ * Wraps `sharedHeroAt` on the ONE hero clock (subscribeHeroClock); CardBackgroundMovie + hero layer
+ * share phase `p` / root — no private rAF. HONEST: neuroscience/computation field — not physical QM.
  */
 export function useSharedHero(
   route: () => string,

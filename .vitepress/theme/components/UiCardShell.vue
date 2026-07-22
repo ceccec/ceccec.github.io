@@ -15,11 +15,19 @@ const props = withDefaults(
     movieIntensity?: MovieIntensity
     /** Paint a quantum-app projection of the shared field as the card movie. */
     movieApp?: QuantumProjection
+    /**
+     * Destination route for the card's sharedHeroAt field (LinkedHeroCard).
+     * Defaults to the page route — closes destination-vs-page multi-field gap.
+     */
+    movieRoute?: string
   }>(),
   { immersiveShadow: true, movieIntensity: 'full' },
 )
 
-const { seed, cardStyle } = useCardMovie(() => props.seedParts)
+const { seed, cardStyle } = useCardMovie(
+  () => props.seedParts,
+  () => props.movieRoute,
+)
 const { textShadow } = useImmersiveMovie()
 
 const contentStyle = computed(() =>
@@ -34,7 +42,13 @@ const contentStyle = computed(() =>
     :style="cardStyle"
     :data-component="component"
   >
-    <CardBackgroundMovie :seed="seed" :title="title" :intensity="movieIntensity" :app="movieApp" />
+    <CardBackgroundMovie
+      :seed="seed"
+      :title="title"
+      :intensity="movieIntensity"
+      :app="movieApp"
+      :movie-route="movieRoute"
+    />
     <UiCardContent class="vp-doc" :style="contentStyle">
       <slot />
     </UiCardContent>
