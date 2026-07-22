@@ -10,6 +10,9 @@ import { movieCanvasRgba, subscribeHeroClock } from '../../lib/hero-movie-paint'
 import { geodesicDomeComputes, oneExponentialLaw } from '../../../src/6/4'
 import type { ProofAnimationSpec } from '../../../src/thunder/waves'
 
+// Rosetta→movie: oneClock (subscribeHeroClock) + vortex hues — not a decoration layer beside the rosetta.
+// Fold: dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie · pair dry/rosetta · rosetta/movie.
+
 // The ν=3 icosphere computed once from φ — 270 struts in 3 classes; the dome painter raises it ring by ring.
 const DOME = geodesicDomeComputes(3).animation
 // The 16-compartment ladder — real Bühlmann halftimes (via Graham), reused as 16 animation rates:
