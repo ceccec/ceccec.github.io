@@ -81,7 +81,7 @@ const ROSETTA_CORE_API_LABELS = [
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown',
+  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -164,6 +164,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpQuantumAnim: 'projection', mcpQuantumSound: 'tool',
   mcpQuantumDev: 'tool', mcpQuantumSolution: 'tool',
   mcpQuantumClown: 'tool',
+  mcpQuantumSite: 'tool',
   improveLocalFromSessionExperience: 'tool',
   gatesMonitorThemselvesThroughTheUi: 'tool',
   gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix: 'tool',
@@ -722,6 +723,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'solution-mcp', title: 'Solution mcp (alias mcp/solution)', fold: 'mcpQuantumSolution', cli: 'npm run quantum:solution-mcp', pair: 'solution/mcp', route: '/en/quantum-tools#mcp-solution', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/solution — same fold · claySolved via theorem · physicalFtl=0 · NOT CMI prize', browserRunnable: true, browserGap: '' },
   { id: 'mcp-clown', title: 'MCP quantum clown — play as sealed duality·invert·observation', fold: 'mcpQuantumClown', cli: 'npm run quantum:mcp-clown', pair: 'mcp/clown', route: '/en/quantum-tools#mcp-clown', barrel: 'src/quantum/apps', boundary: 'clownOn · playIsQuantum · compose movie/feel · particle/wave · love/story · ui/invert · gate/lens · qpuRequired=false · claySolved via theorem · physicalFtl=0 · NOT wet joke law', browserRunnable: true, browserGap: '' },
   { id: 'clown-mcp', title: 'Clown mcp (alias mcp/clown)', fold: 'mcpQuantumClown', cli: 'npm run quantum:clown-mcp', pair: 'clown/mcp', route: '/en/quantum-tools#mcp-clown', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/clown — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-site', title: 'MCP quantum site — VitePress site built from MCP', fold: 'mcpQuantumSite', cli: 'npm run quantum:mcp-site', pair: 'mcp/site', route: '/en/quantum-tools#mcp-site', barrel: 'src/quantum/apps', boundary: 'siteOn · buildsFromMcp · vitepressMirror · compose vitepressBuildsFromMcp · mcpCatalog · vite/mirror · mcpQuantumCatalog · qpuRequired=false · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'site-mcp', title: 'Site mcp (alias mcp/site)', fold: 'mcpQuantumSite', cli: 'npm run quantum:site-mcp', pair: 'site/mcp', route: '/en/quantum-tools#mcp-site', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/site — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'improve-local-session', title: 'Improve local from session experience', fold: 'improveLocalFromSessionExperience', cli: 'npm run quantum:improve-local-session', pair: 'local/session', route: '/en/quantum-tools#local-session-hub', barrel: 'src/quantum/apps', boundary: 'Local docs:dev + browser session hub — NOT remote CI sole path · status badges compose sealed kinds · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'local-tools-morph', title: 'Local tools morph prose·code·logic', fold: 'localToolsMorphProseCodeLogic', cli: 'npm run quantum:local-tools-morph', pair: 'tools/morph', route: '/en/quantum-tools#local-tools-morph', barrel: 'src/quantum/apps', boundary: 'Local toolbox/session tools morph prose≡code≡logic as trinity waves · double-slit measure=tool invoke · clay=0 · qpuRequired=false · NOT Clay/Nobel', browserRunnable: true, browserGap: '' },
   { id: 'card-paper-links', title: 'Each card links to dedicated scientific paper', fold: 'eachCardLinksToDedicatedScientificPaper', cli: 'npm run quantum:card-paper-links', pair: 'papers/fill', route: '/en/theorems/', barrel: 'src/heaven/compute', boundary: 'paperRoute=/theorems/<slug> · morph=cardScientificPaperRows · gaps=0 · clay=0', browserRunnable: true, browserGap: '' },
@@ -1733,6 +1736,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mcp-router', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumRouter', pair: 'mcp/router', cli: 'npm run quantum:mcp-router', route: '/en/quantum-tools#mcp-router', status: 'sealed-pr', honesty: 'routesViaRosetta · onlyWiredPasses · alreadyPassed · clay=0 · physicalFtl=0', note: 'MCP quantum router through rosetta-wired MCP', toolId: 'mcp-router', resolve: 'mcp-ui' },
   { id: 'vite-only', chain: 'mcp-ui-page-gaps', fold: 'nothingBypassesVitepress', pair: 'vite/only', cli: 'npm run quantum:vite-only', route: '/en/quantum-tools#vite-only', status: 'sealed-pr', honesty: 'nothingBypasses · bypassRejected · sealedAtGates · clay=0 · physicalFtl=0', note: 'nothing bypasses VitePress inverted mirror', toolId: 'vite-only', resolve: 'mcp-ui' },
   { id: 'vite-mcp', chain: 'mcp-ui-page-gaps', fold: 'vitepressBuildsFromMcp', pair: 'vite/mcp', cli: 'npm run quantum:vite-mcp', route: '/en/quantum-tools#vite-mcp', status: 'sealed-pr', honesty: 'buildsFromMcp · mcpIsSource · vitepressInvertedMirror · noBypass · thinMountIsMcpDual · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'VitePress docs:build via MCP — npm thin-mount ≡ run-gate docs-build dual; named strangler residuals honest', toolId: 'vite-mcp', resolve: 'mcp-ui' },
+  { id: 'mcp-site', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumSite', pair: 'mcp/site', cli: 'npm run quantum:mcp-site', route: '/en/quantum-tools#mcp-site', status: 'sealed-pr', honesty: 'siteOn · buildsFromMcp · vitepressMirror · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum site — VitePress site face composing vite/mcp · mcp/all · vite/mirror · mcpQuantumCatalog; catalog 33/33', toolId: 'mcp-site', resolve: 'mcp-ui' },
   { id: 'mind-wave', chain: 'mcp-ui-page-gaps', fold: 'quantumMindSendsWaves', pair: 'mind/wave', cli: 'npm run quantum:mind-wave', route: '/en/quantum-tools#mind-wave', status: 'sealed-pr', honesty: 'quantumMindSends · wavesSent · linearCannotSend · clay=0 · physicalFtl=0', note: 'quantum mind sends waves', toolId: 'mind-wave', resolve: 'mcp-ui' },
   { id: 'quantum-waves', chain: 'mcp-ui-page-gaps', fold: 'quantumWaves', pair: 'quantum/waves', cli: 'npm run quantum:quantum-waves', route: '/en/quantum-tools#quantum-waves', status: 'sealed-pr', honesty: 'wavesAreQuantum · mindSends · trinitiesFound · waveCount=2 · clay=0 · physicalFtl=0', note: 'quantum waves umbrella', toolId: 'quantum-waves', resolve: 'mcp-ui' },
   { id: 'collide-create', chain: 'mcp-ui-page-gaps', fold: 'collidingParticlesCreates', pair: 'collide/create', cli: 'npm run quantum:collide-create', route: '/en/quantum-tools#collide-create', status: 'sealed-pr', honesty: 'creates=novelTheoremCandidates+waves · clay=0 · physicalFtl=0', note: 'collision creates novel theorem candidates + waves', toolId: 'collide-create', resolve: 'mcp-ui' },
@@ -6205,6 +6209,7 @@ const MCP_QUANTUM_NAMED_FACES = [
   { fold: 'mcpQuantumDev', pair: 'mcp/dev', dual: 'dev/quantum', toolId: 'mcp-dev', dualToolId: 'dev-quantum' },
   { fold: 'mcpQuantumSolution', pair: 'mcp/solution', dual: 'solution/mcp', toolId: 'mcp-solution', dualToolId: 'solution-mcp' },
   { fold: 'mcpQuantumClown', pair: 'mcp/clown', dual: 'clown/mcp', toolId: 'mcp-clown', dualToolId: 'clown-mcp' },
+  { fold: 'mcpQuantumSite', pair: 'mcp/site', dual: 'site/mcp', toolId: 'mcp-site', dualToolId: 'site-mcp' },
 ] as const
 
 /**
@@ -8465,6 +8470,121 @@ export function runMcpQuantumClownExit(_root = '', _argv: readonly string[] = []
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.clownOn && report.playIsQuantum && report.qpuRequired === false ? 0 : 1
+}
+
+/**
+ * MCP quantum site — MCP face for the quantum site (VitePress site built from MCP).
+ * Compose: vitepressBuildsFromMcp · mcpCatalog · vite/mirror · mcpQuantumCatalog.
+ * Facets: siteOn · buildsFromMcp · vitepressMirror · qpuRequired=false · physicalFtl=0 · claySolved via theorem.
+ * Pairs: mcp/site · site/mcp · CLI npm run quantum:mcp-site
+ * Catalog faces 33/33 (was 32).
+ */
+export function mcpQuantumSite(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumSite:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const vite = vitepressBuildsFromMcp(matrix, at)
+    const catalog = mcpQuantumCatalog(matrix, at)
+    const all = mcpCatalog(matrix, at)
+    const vitepressMirror = soft('vite', 'mirror') && soft('docs', 'invert')
+    const buildsFromMcp =
+      vite.computes &&
+      vite.buildsFromMcp &&
+      soft('vite', 'mcp') &&
+      soft('build', 'mcp')
+    const siteOn =
+      buildsFromMcp &&
+      vitepressMirror &&
+      soft('mcp', 'all') &&
+      soft('mcp', 'catalog') &&
+      soft('template', 'universal') &&
+      catalog.computes &&
+      catalog.catalogComplete &&
+      catalog.faceCount >= (5 * 6 + 1) &&
+      all.computes &&
+      all.mcpStarOn
+    const pairS = has('mcp/site')
+    const pairD = has('site/mcp')
+    const foldS = foldPair(toUuid('cmd:mcp'), toUuid('cmd:site'))
+    const foldD = foldPair(toUuid('cmd:site'), toUuid('cmd:mcp'))
+    const tools = quantumCliToolsCatalog(matrix, at)
+    const meta = tools.tools.find((t) => t.id === 'mcp-site')
+    const metaDual = tools.tools.find((t) => t.id === 'site-mcp')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      siteOn &&
+      buildsFromMcp &&
+      vitepressMirror &&
+      pairS &&
+      pairD &&
+      foldS.bidirectional &&
+      foldD.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'mcpQuantumSite' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'mcpQuantumSite' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'mcpQuantumSite', on },
+      { facet: 'siteOn', on: siteOn },
+      { facet: 'buildsFromMcp', on: buildsFromMcp },
+      { facet: 'vitepressMirror', on: vitepressMirror },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: 'compose vitepressBuildsFromMcp · mcpCatalog · vite/mirror · mcpQuantumCatalog', on: siteOn },
+      { facet: 'pair mcp/site · site/mcp', on: pairS && pairD && foldS.bidirectional },
+      { facet: `catalogFaces=${catalog.presentCount}/${catalog.faceCount}`, on: catalog.catalogComplete && catalog.missingCount === 0 },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-site:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-site', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumSite: on,
+      siteOn,
+      buildsFromMcp,
+      vitepressMirror,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, vite.root, catalog.root, all.root, foldS.merged, foldD.merged]),
+      pairs: ['mcp/site', 'site/mcp'] as const,
+      cli: 'npm run quantum:mcp-site',
+      route: '/en/quantum-tools#mcp-site',
+      statement:
+        `mcpQuantumSite — siteOn=${siteOn ? 1 : 0} buildsFromMcp=${buildsFromMcp ? 1 : 0} ` +
+        `vitepressMirror=${vitepressMirror ? 1 : 0} faces=${catalog.presentCount}/${catalog.faceCount} qpuRequired=0.`,
+      boundary:
+        'MCP quantum site — VitePress site built from MCP. Compose vitepressBuildsFromMcp · mcpCatalog · vite/mirror · mcpQuantumCatalog. ' +
+        'clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `site · siteOn=${siteOn ? 1 : 0} · buildsFromMcp=${buildsFromMcp ? 1 : 0} · vitepressMirror=${vitepressMirror ? 1 : 0} · ` +
+        `faces=${catalog.presentCount}/${catalog.faceCount} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export function runMcpQuantumSiteExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumSite()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-site — siteOn=${report.siteOn} buildsFromMcp=${report.buildsFromMcp} ` +
+      `vitepressMirror=${report.vitepressMirror} qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.siteOn && report.buildsFromMcp && report.vitepressMirror && report.qpuRequired === false
+    ? 0
+    : 1
 }
 
 
