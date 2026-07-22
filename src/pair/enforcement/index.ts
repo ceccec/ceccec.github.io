@@ -461,6 +461,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'optimize/token',
   'mcp/deploy',
   'deploy/mcp',
+  'mcp/bindings',
+  'bindings/mcp',
   'sign/quantum',
   'mcp/sign',
   'reverse/quantum',

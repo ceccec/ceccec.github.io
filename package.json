@@ -471,6 +471,8 @@
     "quantum:optimize-token": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumTokenOptimiseExit",
     "quantum:mcp-deploy": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumDeployExit",
     "quantum:deploy-mcp": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumDeployExit",
+    "quantum:mcp-bindings": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumBindingsExit",
+    "quantum:bindings-mcp": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumBindingsExit",
     "quantum:dirs-mcp": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumDirsExit",
     "quantum:reverse-quantum": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumReverseExit",
     "quantum:dev-mcp": "node --experimental-strip-types packages/quantum-dev-sdk/bin/mcp.ts",
