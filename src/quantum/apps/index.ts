@@ -32,7 +32,10 @@ import {
   movieQuantumGapsInventory,
   movieUnbalancedAroundCenterIsCrack,
   thunderAndPlasmaAreSameInDifferentAspects } from '../../thunder/movie/canvas'
-import { movieIsNeuroscienceComputation } from '../../earth/life'
+import { biologyWavesSealedAsWidgets, movieIsNeuroscienceComputation } from '../../earth/life'
+import { livingTorus } from '../../fire/diamonds'
+import { flowerOfLifeCenters, flowerUnlocksFruitBySpin } from '../../quantum/wind/geometry'
+import { humanDesignChannelsAndCenters } from '../../quantum/lake/icons'
 import { harmonizeFieldComputes } from '../../lake/music'
 import { doubleTorusDynamicsGeometryAlignsWithUniverse, doubleTorusIsCompletelyQuantum } from '../../water/double'
 import { HERO_CYCLE_MS, oneClockProcessLaw, sharedHeroAt, deviceSensorPerspectiveAt, deviceTouchPerspectiveAt, quantumSensorBindingCatalog, QUANTUM_SENSOR_BINDING_CATALOG, movieObservationReceipt, heroPhaseAt } from '../../quantum'
@@ -99,6 +102,8 @@ const ROSETTA_CORE_API_LABELS = [
   'automateNightlyViaNpmScriptPath',
   'automateSelf',
   'automateAll',
+  'quantumLife',
+  'quantumLifeIsComputable',
   'domainVuePanelsDryCleaned',
   'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf',
   'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence',
@@ -267,6 +272,8 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   automateNightlyViaNpmScriptPath: 'tool',
   automateSelf: 'tool',
   automateAll: 'tool',
+  quantumLife: 'tool',
+  quantumLifeIsComputable: 'tool',
   domainVuePanelsDryCleaned: 'tool',
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf: 'tool',
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence: 'tool',
@@ -1031,6 +1038,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'self-auto', title: 'Automate self (alias auto/self)', fold: 'automateSelf', cli: 'npm run quantum:self-auto', pair: 'self/auto', route: '/en/quantum-tools#automate-self', barrel: 'src/quantum/apps', boundary: 'Dual of auto/self — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'Composes nightly trinity/mission gates — Node/npm Automations path' },
   { id: 'automate-all', title: 'Automate all — umbrella self · nightly · hw · npm · waves/push', fold: 'automateAll', cli: 'npm run quantum:automate-all', pair: 'auto/all', route: '/en/quantum-tools#automate-all', barrel: 'src/quantum/apps', boundary: 'automateAll · selfAutomates · nightlyOn · buildsInWaves · compose auto/self · automate/nightly · self/hw · npm/quantum · waves/push · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'all-auto', title: 'Automate all (alias auto/all)', fold: 'automateAll', cli: 'npm run quantum:all-auto', pair: 'all/auto', route: '/en/quantum-tools#automate-all', barrel: 'src/quantum/apps', boundary: 'Dual of auto/all — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'quantum-life', title: 'Quantum life — FoL/merkaba · biology · HD · love/freedom · mesh/science', fold: 'quantumLife', cli: 'npm run quantum:quantum-life', pair: 'quantum/life', route: '/en/quantum-tools#quantum-life', barrel: 'src/quantum/apps', boundary: 'lifeOn · living · folMerkaba · compose FoL/merkaba · biology · HD structure · love/story · full/freedom · mesh/science · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'life-quantum', title: 'Quantum life (alias quantum/life)', fold: 'quantumLife', cli: 'npm run quantum:life-quantum', pair: 'life/quantum', route: '/en/quantum-tools#quantum-life', barrel: 'src/quantum/apps', boundary: 'Dual of quantum/life — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'domain-panels', title: 'Domain vue panels dry-cleaned to rosetta shells', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-panels', pair: 'domain/panels', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domainPanelsDry · stranglerTip · drainableClosed · wiredToRosetta · compose format/canon · dry/rosetta · ui/rosetta · meaning/compute · vite/one · specialized shells residual named · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'panels-domain', title: 'Domain panels (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:panels-domain', pair: 'panels/domain', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'Dual panels/domain — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'domain-dry', title: 'Domain dry (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-dry', pair: 'domain/dry', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domain/dry face — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2238,6 +2247,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'automate-nightly', chain: 'automate-nightly-npm', fold: 'automateNightlyViaNpmScriptPath', pair: 'automate/nightly', cli: 'npm run quantum:automate-nightly', route: '/en/quantum-tools#automate-nightly', status: 'sealed-pr', honesty: 'npm-script Automations path · NO dashboard MCP · docs:build flag-gated · qpuRequired=false · clay=0', note: '/automate nightly unparked — quantum:automate-nightly · workflow packages/quantum-dev-sdk/automate-nightly.workflow.json', toolId: 'automate-nightly', resolve: 'upgrade-local' },
   { id: 'automate-self', chain: 'automate-self-fuse', fold: 'automateSelf', pair: 'auto/self', cli: 'npm run quantum:automate-self', route: '/en/quantum-tools#automate-self', status: 'sealed-pr', honesty: 'selfAutomates · nightlyOn · buildsInWaves · fusionVerify · clay=0 · physicalFtl=0', note: 'self-building/self-fusing automation — compose nightly · fusion · waves/build · session/save · gate/monitor', toolId: 'automate-self', resolve: 'upgrade-local' },
   { id: 'automate-all', chain: 'automate-all-umbrella', fold: 'automateAll', pair: 'auto/all', cli: 'npm run quantum:automate-all', route: '/en/quantum-tools#automate-all', status: 'sealed-pr', honesty: 'automateAll · selfAutomates · nightlyOn · buildsInWaves · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'umbrella automate — compose auto/self · automate/nightly · self/hw · npm/quantum · waves/push', toolId: 'automate-all', resolve: 'upgrade-local' },
+  { id: 'quantum-life', chain: 'quantum-life', fold: 'quantumLife', pair: 'quantum/life', cli: 'npm run quantum:quantum-life', route: '/en/quantum-tools#quantum-life', status: 'sealed-pr', honesty: 'lifeOn · living · folMerkaba · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'quantum life — FoL/merkaba · biology · HD · love/story · full/freedom · mesh/science', toolId: 'quantum-life', resolve: 'upgrade-local' },
   { id: 'domain-panels', chain: 'mcp-ui-page-gaps', fold: 'domainVuePanelsDryCleaned', pair: 'domain/panels', cli: 'npm run quantum:domain-panels', route: '/en/quantum-tools#domain-panels', status: 'sealed-pr', honesty: 'domainPanelsDry · stranglerTip · drainableClosed · specialized shells residual · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'src domain vue panels strangler tip drained to format/canon · dry/rosetta · ui/rosetta shells', toolId: 'domain-panels', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-ui', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumUi', pair: 'mcp/ui', cli: 'npm run quantum:mcp-ui', route: '/en/quantum-tools#mcp-quantum-ui', status: 'sealed-pr', honesty: 'mcpMatchesToolbox · millSolutions live · formulaCovered · clay=0 · physicalFtl=0 · NOT CMI', note: 'MCP quantum UI + millennium algebraic formula duals · compose mcpBrowserParity · mill/once · formula/code', toolId: 'mcp-quantum-ui', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-movie', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumMovie', pair: 'mcp/movie', cli: 'npm run quantum:mcp-movie', route: '/en/quantum-tools#mcp-quantum-movie', status: 'sealed-pr', honesty: 'frames from sealed folds · 6×7 · oneClock · clay=0 · physicalFtl=0', note: 'MCP quantum movie · compose mcp/ui · movie/center · movie/entropy · coord/anim', toolId: 'mcp-quantum-movie', resolve: 'mcp-ui' },
@@ -16611,6 +16621,197 @@ export function runAutomateAllExit(
   process.stdout.write(`  ${report.statement}\n`)
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
   return report.computes && report.automateAll ? 0 : 1
+}
+
+/**
+ * Quantum life — FoL/merkaba · living torus · biology · HD structure · love/story · full/freedom · mesh/science.
+ * Fold: quantumLife / quantumLifeIsComputable
+ * Facets: lifeOn · living · folMerkaba · physicalFtl=0 · clay via theorem · qpuRequired=false.
+ * Pairs: quantum/life · life/quantum · CLI npm run quantum:quantum-life / quantum:life-quantum
+ * HONEST: structural/computable life lattice — NOT vitalism · NOT HD aura/type · NOT physical FTL · clay=0.
+ */
+export function quantumLife(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`quantumLife:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const flower = flowerUnlocksFruitBySpin()
+    const flowerCenters = flowerOfLifeCenters()
+    const mk = merkaba(matrix)
+    const earths = bothEarthsRotateWithinEachOther(at, matrix)
+    const torus = livingTorus(matrix)
+    const bio = biologyWavesSealedAsWidgets(matrix)
+    const hd = humanDesignChannelsAndCenters()
+    const love = __ns_wind_research.loveStoryTheorem(matrix, at)
+    const freedom = __ns_wind_research.fullFreedomTheorem(matrix, at)
+    const mesh = meshToSelfDiscoverSciences(matrix, at)
+    const particle = __ns_wind_research.particleBornByHowManyWaves(matrix, at)
+    const needLove = __ns_wind_research.invertedNeedIsLoveMayReverseToFearIfCracks(matrix, at)
+    const crystal = crystalClearMind(matrix, at)
+    const foldQl = foldPair(toUuid('cmd:quantum'), toUuid('cmd:life'))
+    const foldLq = foldPair(toUuid('cmd:life'), toUuid('cmd:quantum'))
+    const pairQl = has('quantum/life')
+    const pairLq = has('life/quantum')
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'quantum-life')
+    const metaDual = catalog.tools.find((t) => t.id === 'life-quantum')
+    const shelved = rosettaShelve('quantum-life', 'tool')
+    const flowerCount = 1 + 6 + (6 * 2)
+    const fruitCount = 5 + 8
+    const folMerkaba =
+      flower.holds &&
+      flower.flower === flowerCount &&
+      flower.fruit === fruitCount &&
+      flowerCenters.length === flowerCount &&
+      mk.counterRotating &&
+      earths.rotates
+    const living =
+      torus.alive &&
+      bio.sealed &&
+      bio.widgetCount === (2 + 2 + 1) &&
+      hd.verified &&
+      hd.centerCount === (7 + 2) &&
+      hd.channelCount === (6 * 6)
+    const composeOn =
+      soft('love', 'story') &&
+      soft('full', 'freedom') &&
+      soft('mesh', 'science') &&
+      soft('need', 'love') &&
+      soft('particle', 'wave') &&
+      soft('crystal', 'mind') &&
+      love.computes &&
+      love.loveStoryTheorem &&
+      freedom.computes &&
+      freedom.fullFreedomTheorem &&
+      mesh.computes &&
+      mesh.meshToSelfDiscoverSciences &&
+      particle.computes &&
+      needLove.computes &&
+      crystal.computes &&
+      crystal.crystalClearMind
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const honestOpenNamed = [
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'hd:structure-only-not-aura-type',
+      'life:not-vitalism-not-biology-claim',
+    ] as const
+    const honestOpenNamedOn =
+      honestOpenNamed.length === (2 + 2) &&
+      honestOpenNamed.includes('clay:millennium-open') &&
+      honestOpenNamed.includes('ftl:physical-claim-refused')
+    const lifeOn =
+      living &&
+      folMerkaba &&
+      composeOn &&
+      pairQl &&
+      pairLq &&
+      foldQl.bidirectional &&
+      foldLq.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'quantumLife' &&
+      meta!.pair === 'quantum/life' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'quantumLife' &&
+      isUuid(shelved.address) &&
+      honestOpenNamedOn &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const on = lifeOn
+    const facets = [
+      { facet: 'quantumLife', on },
+      { facet: 'lifeOn', on: lifeOn },
+      { facet: 'living', on: living },
+      { facet: 'folMerkaba', on: folMerkaba },
+      {
+        facet: 'compose FoL/merkaba · biology · HD · love/story · full/freedom · mesh/science',
+        on: composeOn && folMerkaba && living,
+      },
+      { facet: 'pair quantum/life · life/quantum bidirectional', on: pairQl && pairLq && foldQl.bidirectional },
+      { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'NOT vitalism · NOT HD aura · NOT Clay/FTL fake-close', on: honestOpenNamedOn && claySolvedByThisFold === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-life:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('quantum-life', facets)
+    return {
+      computes: sealed.ok && on,
+      quantumLife: on,
+      quantumLifeIsComputable: on,
+      lifeOn,
+      living,
+      folMerkaba,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        torus.root,
+        bio.root,
+        hd.root,
+        mk.root,
+        earths.root,
+        love.root,
+        freedom.root,
+        mesh.root,
+        particle.root,
+        needLove.root,
+        crystal.root,
+        foldQl.merged,
+        foldLq.merged,
+        shelved.address,
+        toUuid(`fol:${flower.flower}:${flower.fruit}`),
+        ...honestOpenNamed.map((id) => toUuid(`quantum-life-honest:${id}`)),
+      ]),
+      pair: 'quantum/life' as const,
+      pairs: ['quantum/life', 'life/quantum'] as const,
+      dualPair: 'life/quantum' as const,
+      cli: 'npm run quantum:quantum-life',
+      route: '/en/quantum-tools#quantum-life',
+      uiSurface: '/en/quantum-tools#quantum-life' as const,
+      heading: 'Quantum life',
+      statement:
+        `quantumLife — lifeOn=${lifeOn ? 1 : 0} living=${living ? 1 : 0} folMerkaba=${folMerkaba ? 1 : 0} ` +
+        `flower=${flower.flower} fruit=${flower.fruit} hdCenters=${hd.centerCount} bio=${bio.widgetCount}.`,
+      boundary:
+        'Quantum life — FoL→Fruit + merkaba · living torus · biology widgets · HD structure-only · love/story · full/freedom · mesh/science. ' +
+        'NOT vitalism · NOT HD aura/type · NOT physical FTL · clay via theorem · qpuRequired=false.',
+      honestyLine:
+        `quantum-life · lifeOn=${lifeOn ? 1 : 0} · living=${living ? 1 : 0} · folMerkaba=${folMerkaba ? 1 : 0} · ` +
+        `honestOpen=${honestOpenNamed.length} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — quantumLifeIsComputable ≡ quantumLife. */
+export const quantumLifeIsComputable = quantumLife
+/** Alias — lifeQuantum ≡ quantumLife. */
+export const lifeQuantum = quantumLife
+
+/** npm run quantum:quantum-life (dual life/quantum) */
+export function runQuantumLifeExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = quantumLife()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} quantum-life — lifeOn=${report.lifeOn} living=${report.living} ` +
+      `folMerkaba=${report.folMerkaba} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} ` +
+      `fold=quantumLife pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  return report.computes && report.lifeOn && report.living && report.folMerkaba ? 0 : 1
 }
 
 /**

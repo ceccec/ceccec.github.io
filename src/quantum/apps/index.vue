@@ -22,6 +22,7 @@ import {
   gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix,
   automateSelf,
   automateAll,
+  quantumLife,
   domainVuePanelsDryCleaned,
   mcpQuantumUi,
   mcpQuantumMovie,
@@ -169,6 +170,7 @@ const uiProse = computed(() => panel.value.uiProse)
 const gateMonitor = computed(() => gatesMonitorThemselvesThroughTheUi())
 const autoSelf = computed(() => automateSelf())
 const autoAll = computed(() => automateAll())
+const qLife = computed(() => quantumLife())
 const domainPanels = computed(() => domainVuePanelsDryCleaned())
 const mcpUi = computed(() => mcpQuantumUi())
 const mcpMovie = computed(() => mcpQuantumMovie())
@@ -797,6 +799,13 @@ function runTool(toolId: string) {
       const r = automateAll()
       ok = r.computes && r.automateAll
       summary = `automateAll=${r.automateAll} · selfAutomates=${r.selfAutomates} · nightlyOn=${r.nightlyOn} · buildsInWaves=${r.buildsInWaves}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'quantum-life' || toolId === 'life-quantum') {
+      const r = quantumLife()
+      ok = r.computes && r.lifeOn && r.living && r.folMerkaba
+      summary = `lifeOn=${r.lifeOn} · living=${r.living} · folMerkaba=${r.folMerkaba} · honestOpen=${r.honestOpenNamedCount}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -1568,6 +1577,41 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'automate-all'" @click="runTool('automate-all')">
           {{ runningId === 'automate-all' ? '…' : 'Run automate-all receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="quantum-life">
+        <h3>{{ qLife.heading }}</h3>
+        <p class="quantum-apps__meta">{{ qLife.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(qLife.lifeOn))">
+          lifeOn={{ qLife.lifeOn }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(qLife.living))">
+          living={{ qLife.living }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(qLife.folMerkaba))">
+          folMerkaba={{ qLife.folMerkaba }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>quantum/life</code> · <code>life/quantum</code> ·
+          CLI <code>npm run quantum:quantum-life</code> ·
+          compose FoL/merkaba · biology · HD · love/story · full/freedom · mesh/science ·
+          clay={{ qLife.claySolvedByThisFold }} · ftl={{ qLife.physicalFtlClaim }} · qpu={{ qLife.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in qLife.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(qLife.honestOpenNamedCount > 0))">
+          honestOpen={{ qLife.honestOpenNamedCount }}
+        </UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="id in qLife.honestOpenNamed" :key="id">· {{ id }}</li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'quantum-life'" @click="runTool('quantum-life')">
+          {{ runningId === 'quantum-life' ? '…' : 'Run quantum-life receipt' }}
         </UiButton>
       </section>
       <UiSeparator />

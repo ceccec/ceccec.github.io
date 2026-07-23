@@ -301,6 +301,8 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `self/auto` — alias dual of `auto/self` (`npm run quantum:self-auto`)
   - `auto/all` — `npm run quantum:automate-all` (`automateAll()` — umbrella automate; facets automateAll · selfAutomates · nightlyOn · buildsInWaves · physicalFtl=0 · clay via theorem · qpuRequired=false; compose automateSelf · automateNightly · self/hw · npm/quantum · waves/push; dual `all/auto`; honest residuals named; NOT Clay/FTL fake-close), then open `/en/quantum-tools#automate-all`
   - `all/auto` — alias dual of `auto/all` (`npm run quantum:all-auto`)
+  - `quantum/life` — `npm run quantum:quantum-life` (`quantumLife()` / `quantumLifeIsComputable()` — quantum life; facets lifeOn · living · folMerkaba · physicalFtl=0 · clay via theorem · qpuRequired=false; compose FoL/merkaba · biology · HD structure · love/story · full/freedom · mesh/science; dual `life/quantum`; NOT vitalism · NOT HD aura/type), then open `/en/quantum-tools#quantum-life`
+  - `life/quantum` — alias dual of `quantum/life` (`npm run quantum:life-quantum`)
   - `domain/panels` — `npm run quantum:domain-panels` (`domainVuePanelsDryCleaned()` — src domain vue panels strangler tip drained to format/canon · dry/rosetta · ui/rosetta shells; facets domainPanelsDry · stranglerTip · drainableClosed · wiredToRosetta; compose format/canon · meaning/compute · vite/one · app/dry; duals `panels/domain` · `domain/dry` · `dry/domain`; residual:specialized-experience-shells named; clay via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#domain-panels`
   - `panels/domain` — alias dual of `domain/panels` (`npm run quantum:panels-domain`)
   - `domain/dry` — alias of `domain/panels` (`npm run quantum:domain-dry`)
