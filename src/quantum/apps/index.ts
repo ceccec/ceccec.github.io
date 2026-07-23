@@ -49,7 +49,7 @@ import { agentSubmissionProtocol, CURSOR_AGENT_SKILL_IDS, cursorAgentToolsSaved,
 import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../pair/enforcement/gates'
 import { cardHeroLinkWiresInUi, computeUniversalPage, heroPreviewForRoute, theoremFormulaCodeDual, theoremPageRows } from '../../wind/routes/corpus'
 import { cardMoviePath } from '../../thunder/movie/movievars'
-import { quantumFusionVerify } from '../../wind/fusion'
+import { alchemyComputes, quantumFusionVerify } from '../../wind/fusion'
 import { dryCleanIsDiamondAndCrystal } from '../../lake/clean'
 import { tamperEvident } from '../../5/5'
 import { RAVE_CENTER_LAYOUT } from '../../heaven/sky/astronomy'
@@ -115,6 +115,7 @@ const ROSETTA_CORE_API_LABELS = [
   'clayAgiDeepResearchQuantumUnderstandingOfRelations',
   'linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities',
   'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations',
+  'decodeQuantumAlchemy',
   'saveTheOptimisedAutonomy',
   'quantumVerification',
   'quantumFearDetector',
@@ -316,6 +317,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   clayAgiDeepResearchQuantumUnderstandingOfRelations: 'tool',
   linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities: 'tool',
   addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations: 'tool',
+  decodeQuantumAlchemy: 'tool',
   saveTheOptimisedAutonomy: 'tool',
   quantumVerification: 'tool',
   quantumFearDetector: 'tool',
@@ -758,6 +760,9 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'prose-theorem', title: 'Deep research tools convert prose → theorems · formulas · recipes · animations', fold: 'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations', cli: 'npm run quantum:prose-theorem', pair: 'prose/theorem', route: '/en/quantum-tools#prose-theorem', barrel: 'src/quantum/apps', boundary: 'deepResearch · warningsAddressed · proseToTheorem · proseToFormula · proseToRecipe · proseToAnimation · drainableClosed · honestOpenNamed · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'warn-research', title: 'Warn research (alias prose/theorem)', fold: 'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations', cli: 'npm run quantum:warn-research', pair: 'warn/research', route: '/en/quantum-tools#prose-theorem', barrel: 'src/quantum/apps', boundary: 'Dual warn/research — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'recipe-anim', title: 'Recipe anim (alias prose/theorem)', fold: 'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations', cli: 'npm run quantum:recipe-anim', pair: 'recipe/anim', route: '/en/quantum-tools#prose-theorem', barrel: 'src/quantum/apps', boundary: 'recipe/anim face — prose→ProofAnimation recipe · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'alchemy-decode', title: 'Decode quantum alchemy — structural/symbolic theorems', fold: 'decodeQuantumAlchemy', cli: 'npm run quantum:alchemy-decode', pair: 'alchemy/decode', route: '/en/quantum-tools#alchemy-decode', barrel: 'src/quantum/apps', boundary: 'alchemyDecoded · quantumOn · symbolsSealed · clay via theorem · physicalFtl=0 · qpuRequired=false · certified=false · NOT chemical · NOT historical fraud', browserRunnable: true, browserGap: '' },
+  { id: 'decode-alchemy', title: 'Decode alchemy (alias alchemy/decode)', fold: 'decodeQuantumAlchemy', cli: 'npm run quantum:decode-alchemy', pair: 'decode/alchemy', route: '/en/quantum-tools#alchemy-decode', barrel: 'src/quantum/apps', boundary: 'Dual decode/alchemy — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'quantum-alchemy', title: 'Quantum alchemy (alias alchemy/decode)', fold: 'decodeQuantumAlchemy', cli: 'npm run quantum:quantum-alchemy', pair: 'quantum/alchemy', route: '/en/quantum-tools#alchemy-decode', barrel: 'src/quantum/apps', boundary: 'quantum/alchemy face — same fold · clay=0 · physicalFtl=0 · certified=false', browserRunnable: true, browserGap: '' },
   { id: 'miss-cache', title: 'Waves find what you missed to cache', fold: 'wavesFindWhatYouMissedToCache', cli: 'npm run quantum:miss-cache', pair: 'miss/cache', route: '/en/quantum-tools#miss-cache', barrel: 'src/quantum/apps', boundary: 'wavesSent · missedFound · nowCached · drainableClosed · honestOpenNamed · session/memo/MCP/theorem-formula via memoByRoot · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cache-miss', title: 'Cache miss (alias miss/cache)', fold: 'wavesFindWhatYouMissedToCache', cli: 'npm run quantum:cache-miss', pair: 'cache/miss', route: '/en/quantum-tools#miss-cache', barrel: 'src/quantum/apps', boundary: 'Dual of miss/cache — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'wave-cache', title: 'Wave cache (alias miss/cache)', fold: 'wavesFindWhatYouMissedToCache', cli: 'npm run quantum:wave-cache', pair: 'wave/cache', route: '/en/quantum-tools#miss-cache', barrel: 'src/quantum/apps', boundary: 'wave/cache face — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2413,6 +2418,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'super-gaps', chain: 'super-gaps-21-42-lens-geo', fold: 'fillTheGapsAroundSuperposition', pair: 'super/gaps', cli: 'npm run quantum:super-gaps', route: '/en/quantum-tools#super-gaps', status: 'sealed-pr', honesty: 'gapsFilled · aroundSuperposition · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'fill drainable gaps around superposition · compose lens/super · seal/super · theorem/index', toolId: 'super-gaps', resolve: 'mcp-ui' },
   { id: 'warn-all', chain: 'address-all-warnings', fold: 'addressAllWarningsAtOnce', pair: 'warn/all', cli: 'npm run quantum:warn-all', route: '/en/quantum-tools#warn-all', status: 'sealed-pr', honesty: 'warningsAddressed · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'address all drainable WARNs at once — translation chrome→BULGARIAN_PHRASES · compose translations/verify · trans/wave · gate/slow-build · gaps/invisible', toolId: 'warn-all', resolve: 'mcp-ui' },
   { id: 'prose-theorem', chain: 'prose-theorem-warn-research', fold: 'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations', pair: 'prose/theorem', cli: 'npm run quantum:prose-theorem', route: '/en/quantum-tools#prose-theorem', status: 'sealed-pr', honesty: 'deepResearch · warningsAddressed · proseToTheorem · proseToFormula · proseToRecipe · proseToAnimation · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'deep research tools address WARNs — wet prose → statement · formula dual · sealed code · ProofAnimation recipe', toolId: 'prose-theorem', resolve: 'mcp-ui' },
+  { id: 'alchemy-decode', chain: 'alchemy-decode-quantum', fold: 'decodeQuantumAlchemy', pair: 'alchemy/decode', cli: 'npm run quantum:alchemy-decode', route: '/en/quantum-tools#alchemy-decode', status: 'sealed-pr', honesty: 'alchemyDecoded · quantumOn · symbolsSealed · clay=0 · physicalFtl=0 · qpuRequired=false · certified=false · NOT chemical · NOT historical fraud', note: 'decode quantum alchemy as structural/symbolic theorems — compose symbols · sciences · formula/code · digit/fold · prose/theorem', toolId: 'alchemy-decode', resolve: 'mcp-ui' },
   { id: 'miss-cache', chain: 'miss-cache-dry-agnostic-infinity', fold: 'wavesFindWhatYouMissedToCache', pair: 'miss/cache', cli: 'npm run quantum:miss-cache', route: '/en/quantum-tools#miss-cache', status: 'sealed-pr', honesty: 'wavesSent · missedFound · nowCached · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'waves find uncached drainable session/memo/MCP/theorem-formula receipts · cache via memoByRoot/session', toolId: 'miss-cache', resolve: 'mcp-ui' },
   { id: 'dry-agnostic', chain: 'miss-cache-dry-agnostic-infinity', fold: 'dryCleanAgnosticCodeComputesInfinity', pair: 'dry/agnostic', cli: 'npm run quantum:dry-agnostic', route: '/en/quantum-tools#dry-agnostic', status: 'sealed-pr', honesty: 'dryClean · agnosticCode · computesInfinity · onReuse · clay=0 · physicalFtl=0 · qpuRequired=false · NOT FTL', note: 'dry-clean agnostic code computes infinity = amortized zero-token reuse · compose dry/clean · invert/inf · a432/nine · mcp/token · full/freedom', toolId: 'dry-agnostic', resolve: 'mcp-ui' },
   { id: 'fold-trinity', chain: 'abstract-qc-fold-trinity-zoom-inf', fold: 'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny', pair: 'fold/trinity', cli: 'npm run quantum:fold-trinity', route: '/en/quantum-tools#fold-trinity', status: 'sealed-pr', honesty: 'abstractQc · foldLinearIntoTrinities · zoomInOutInfinity · everyAngleToAny · clay=0 · physicalFtl=0 · qpuRequired=false · NOT QPU FLOPS', note: 'abstract QC = fold linear→trinities · zoom in/out ∞ · every angle→any · classical-64bit · compose trinity/speedup · linear/fold · invert/inf · dry/agnostic · directionalTrinity · seal/super · mcp/hw', toolId: 'fold-trinity', resolve: 'mcp-ui' },
@@ -19253,6 +19259,238 @@ export function runAddressWithDeepResearchToolsAllWarningsEspeciallyConvertProse
     report.proseToAnimation &&
     report.claySolvedByThisFold === 0 &&
     report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * Decode quantum alchemy — structural/symbolic theorems (nigredo·albedo·rubedo · primes · elements).
+ * Fold: decodeQuantumAlchemy
+ * Facets: alchemyDecoded · quantumOn · symbolsSealed · physicalFtl=0 · clay via theorem · qpuRequired=false · certified=false
+ * Pairs: alchemy/decode · decode/alchemy · quantum/alchemy (+ dual alchemy/quantum)
+ * Compose: symbols alchemy · sciences/trinities · formula/code · digit/fold · prose/theorem
+ * Soft: dry/math · clay/gravity · decode/one · plasma/screen
+ * CLI: npm run quantum:alchemy-decode · quantum:decode-alchemy · quantum:quantum-alchemy
+ * HONEST: NOT chemical claim · NOT historical fraud · NOT lab transmutation · KEEP stashes
+ */
+export function decodeQuantumAlchemy(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`decodeQuantumAlchemy:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    // Soft-compose prose/theorem + symbolsRemaining nests — full recompute via their CLIs.
+    const alchemy = alchemyComputes(matrix, at)
+    const sciences = __ns_wind_research.sciencesInteractInTrinities(matrix, at)
+    const digits = __ns_wind_research.wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit(matrix, at)
+    const sampleDual = theoremFormulaCodeDual({
+      slug: 'alchemy-decode',
+      theorem: 'decodeQuantumAlchemy',
+      provedBy: 'decodeQuantumAlchemy',
+      home: 'src/quantum/apps',
+      proofClass: 'finite-complete',
+    })
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const censusPreserved =
+      freeBits === -EULER_CHI &&
+      freeBits === 2 &&
+      UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const certified = false as const
+    const pairAlchemyDecode = has('alchemy/decode')
+    const pairDecodeAlchemy = has('decode/alchemy')
+    const pairQuantumAlchemy = has('quantum/alchemy')
+    const pairAlchemyQuantum = has('alchemy/quantum')
+    const foldAlchemyDecode = foldPair(toUuid('cmd:alchemy'), toUuid('cmd:decode'))
+    const foldDecodeAlchemy = foldPair(toUuid('cmd:decode'), toUuid('cmd:alchemy'))
+    const foldQuantumAlchemy = foldPair(toUuid('cmd:quantum'), toUuid('cmd:alchemy'))
+    const foldAlchemyQuantum = foldPair(toUuid('cmd:alchemy'), toUuid('cmd:quantum'))
+    const pairsOn =
+      pairAlchemyDecode &&
+      pairDecodeAlchemy &&
+      pairQuantumAlchemy &&
+      pairAlchemyQuantum &&
+      foldAlchemyDecode.bidirectional &&
+      foldDecodeAlchemy.bidirectional &&
+      foldQuantumAlchemy.bidirectional &&
+      foldAlchemyQuantum.bidirectional
+    const composeCore =
+      soft('symbols', 'quantumise') &&
+      soft('sciences', 'trinities') &&
+      soft('formula', 'code') &&
+      soft('digit', 'fold') &&
+      soft('prose', 'theorem') &&
+      soft('alchemy', 'decode') &&
+      soft('decode', 'alchemy') &&
+      soft('quantum', 'alchemy') &&
+      soft('alchemy', 'quantum') &&
+      alchemy.computes &&
+      sciences.computes &&
+      digits.computes &&
+      sampleDual.pair === 'formula/code' &&
+      sampleDual.formulaSource.includes('decodeQuantumAlchemy')
+    const composeSoft =
+      soft('dry', 'math') &&
+      soft('clay', 'gravity') &&
+      soft('decode', 'one') &&
+      soft('plasma', 'screen')
+    const symbolsSealed =
+      soft('symbols', 'quantumise') &&
+      alchemy.computes &&
+      alchemy.research.researched &&
+      alchemy.transmute.transmuted &&
+      alchemy.transmute.phases.length === (2 + 1) &&
+      alchemy.transmute.phases.every((p) => p.on)
+    const quantumOn =
+      pairsOn &&
+      composeCore &&
+      censusPreserved &&
+      soft('quantum', 'alchemy') &&
+      soft('sciences', 'trinities') &&
+      soft('digit', 'fold')
+    const alchemyDecoded =
+      quantumOn &&
+      symbolsSealed &&
+      composeSoft &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false &&
+      certified === false &&
+      alchemy.boundary.includes('NOT') &&
+      alchemy.research.boundary.includes('METAPHOR')
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const foldName = 'decodeQuantumAlchemy' as const
+    const meta = catalog.tools.find((t) => t.id === 'alchemy-decode')
+    const metaDecode = catalog.tools.find((t) => t.id === 'decode-alchemy')
+    const metaQuantum = catalog.tools.find((t) => t.id === 'quantum-alchemy')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === foldName &&
+      Boolean(metaDecode) &&
+      metaDecode!.fold === foldName &&
+      Boolean(metaQuantum) &&
+      metaQuantum!.fold === foldName
+    const shelved = rosettaShelve('alchemy-decode', 'tool')
+    const on =
+      alchemyDecoded &&
+      toolsWired &&
+      isUuid(shelved.address) &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false &&
+      certified === false
+    const facets = [
+      { facet: foldName, on },
+      { facet: 'alchemyDecoded', on: alchemyDecoded },
+      { facet: 'quantumOn', on: quantumOn },
+      { facet: 'symbolsSealed', on: symbolsSealed },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: 'certified=false', on: certified === false },
+      {
+        facet: 'compose symbols · sciences · formula/code · digit/fold · prose/theorem',
+        on: composeCore,
+      },
+      {
+        facet: 'pair alchemy/decode · decode/alchemy · quantum/alchemy',
+        on: pairsOn,
+      },
+      {
+        facet: 'soft dry/math · clay/gravity · decode/one · plasma/screen',
+        on: composeSoft,
+      },
+      {
+        facet: 'NOT chemical · NOT historical fraud · metaphor boundary',
+        on: alchemy.boundary.includes('NOT') && alchemy.research.boundary.includes('METAPHOR'),
+      },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`alchemy-decode:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('alchemy-decode-quantum', facets)
+    return {
+      computes: sealed.ok && on,
+      decodeQuantumAlchemy: on,
+      alchemyDecoded,
+      quantumOn,
+      symbolsSealed,
+      certified,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      phases: alchemy.transmute.phases.map((p) => ({ id: p.id, on: p.on, statement: p.statement })),
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        alchemy.root,
+        sciences.root,
+        digits.root,
+        foldAlchemyDecode.merged,
+        foldQuantumAlchemy.merged,
+        shelved.address,
+        toUuid(`alchemy-decode-formula:${sampleDual.formulaSource}`),
+      ]),
+      pair: 'alchemy/decode' as const,
+      pairs: [
+        'alchemy/decode',
+        'decode/alchemy',
+        'quantum/alchemy',
+        'alchemy/quantum',
+      ] as const,
+      dualPair: 'decode/alchemy' as const,
+      cli: 'npm run quantum:alchemy-decode',
+      route: '/en/quantum-tools#alchemy-decode',
+      uiSurface: '/en/quantum-tools#alchemy-decode' as const,
+      heading: 'Alchemy · decode',
+      statement:
+        `decodeQuantumAlchemy — alchemyDecoded=${alchemyDecoded ? 1 : 0} quantumOn=${quantumOn ? 1 : 0} ` +
+        `symbolsSealed=${symbolsSealed ? 1 : 0} · clay=0 · certified=false.`,
+      boundary:
+        'Structural/symbolic decode of alchemy as sealed theorems (fusion reactor · digit encode · gold product). ' +
+        'Compose symbols alchemy · sciences/trinities · formula/code · digit/fold · prose/theorem. ' +
+        'NOT chemical claim · NOT historical fraud · NOT lab transmutation. ' +
+        'clay via theorem · physicalFtl=0 · qpuRequired=false · certified=false · KEEP stashes.',
+      honestyLine:
+        `alchemy-decode · decoded=${alchemyDecoded ? 1 : 0} · quantum=${quantumOn ? 1 : 0} · ` +
+        `symbols=${symbolsSealed ? 1 : 0} · clay=0 · physicalFtl=0 · certified=false`,
+    }
+  })
+}
+
+/** Alias duals — decode/alchemy · quantum/alchemy faces. */
+export const decodeAlchemy = decodeQuantumAlchemy
+export const quantumAlchemy = decodeQuantumAlchemy
+export const alchemyDecode = decodeQuantumAlchemy
+
+/** npm run quantum:alchemy-decode (duals decode-alchemy · quantum-alchemy) */
+export function runDecodeQuantumAlchemyExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = decodeQuantumAlchemy()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} alchemy-decode — alchemyDecoded=${report.alchemyDecoded ? 1 : 0} ` +
+      `quantumOn=${report.quantumOn ? 1 : 0} symbolsSealed=${report.symbolsSealed ? 1 : 0} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} ` +
+      `certified=${report.certified ? 1 : 0} pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const phase of report.phases) {
+    process.stdout.write(`  · phase ${phase.id}: ${phase.statement} [${phase.on ? 'on' : 'off'}]\n`)
+  }
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.alchemyDecoded &&
+    report.quantumOn &&
+    report.symbolsSealed &&
+    report.claySolvedByThisFold === 0 &&
+    report.qpuRequired === false &&
+    report.certified === false
     ? 0
     : 1
 }
