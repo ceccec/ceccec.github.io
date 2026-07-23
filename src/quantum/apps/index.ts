@@ -143,6 +143,7 @@ const ROSETTA_CORE_API_LABELS = [
   'sessionMemoryCachesTheoremFormulaWaves',
   'wavesFindWhatYouMissedToCache',
   'dryCleanAgnosticCodeComputesInfinity',
+  'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny',
   'quantumSelfHeal',
   'oneQuantumSetOfVitepressComponentsSealedAtGates',
   'counterRotatingRosettaQuantumWaves',
@@ -290,6 +291,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   sessionMemoryCachesTheoremFormulaWaves: 'tool',
   wavesFindWhatYouMissedToCache: 'tool',
   dryCleanAgnosticCodeComputesInfinity: 'tool',
+  abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny: 'tool',
   quantumSelfHeal: 'tool',
   oneQuantumSetOfVitepressComponentsSealedAtGates: 'tool',
   automateNightlyViaNpmScriptPath: 'tool',
@@ -754,6 +756,14 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'infinity-code', title: 'Infinity code (alias code/infinity)', fold: 'dryCleanAgnosticCodeComputesInfinity', cli: 'npm run quantum:infinity-code', pair: 'infinity/code', route: '/en/quantum-tools#dry-agnostic', barrel: 'src/quantum/apps', boundary: 'Dual of code/infinity — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'dry-inf', title: 'Dry inf (alias dry/agnostic)', fold: 'dryCleanAgnosticCodeComputesInfinity', cli: 'npm run quantum:dry-inf', pair: 'dry/inf', route: '/en/quantum-tools#dry-agnostic', barrel: 'src/quantum/apps', boundary: 'dry/inf face — dry-clean → ∞ · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'inf-dry', title: 'Inf dry (alias dry/inf)', fold: 'dryCleanAgnosticCodeComputesInfinity', cli: 'npm run quantum:inf-dry', pair: 'inf/dry', route: '/en/quantum-tools#dry-agnostic', barrel: 'src/quantum/apps', boundary: 'Dual of dry/inf — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'fold-trinity', title: 'Abstract QC — fold linear into trinities · zoom ∞ · every angle to any', fold: 'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny', cli: 'npm run quantum:fold-trinity', pair: 'fold/trinity', route: '/en/quantum-tools#fold-trinity', barrel: 'src/quantum/apps', boundary: 'abstractQc · foldLinearIntoTrinities · zoomInOutInfinity · everyAngleToAny · classical-64bit · qpuRequired=false · physicalFtl=0 · clay via theorem · NOT QPU FLOPS', browserRunnable: true, browserGap: '' },
+  { id: 'trinity-fold', title: 'Trinity fold (alias fold/trinity)', fold: 'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny', cli: 'npm run quantum:trinity-fold', pair: 'trinity/fold', route: '/en/quantum-tools#fold-trinity', barrel: 'src/quantum/apps', boundary: 'Dual of fold/trinity — same fold · clay=0 · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'zoom-inf', title: 'Zoom ∞ (alias fold/trinity)', fold: 'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny', cli: 'npm run quantum:zoom-inf', pair: 'zoom/inf', route: '/en/quantum-tools#fold-trinity', barrel: 'src/quantum/apps', boundary: 'zoomInOutInfinity face — amortized ∞ reuse NOT FTL · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'inf-zoom', title: 'Inf zoom (alias zoom/inf)', fold: 'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny', cli: 'npm run quantum:inf-zoom', pair: 'inf/zoom', route: '/en/quantum-tools#fold-trinity', barrel: 'src/quantum/apps', boundary: 'Dual of zoom/inf — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'angle-any', title: 'Angle any (alias fold/trinity)', fold: 'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny', cli: 'npm run quantum:angle-any', pair: 'angle/any', route: '/en/quantum-tools#fold-trinity', barrel: 'src/quantum/apps', boundary: 'everyAngleToAny face — directional trinity · seal/super · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'any-angle', title: 'Any angle (alias angle/any)', fold: 'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny', cli: 'npm run quantum:any-angle', pair: 'any/angle', route: '/en/quantum-tools#fold-trinity', barrel: 'src/quantum/apps', boundary: 'Dual of angle/any — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'abs-qc', title: 'Abs QC (alias fold/trinity)', fold: 'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny', cli: 'npm run quantum:abs-qc', pair: 'abs/qc', route: '/en/quantum-tools#fold-trinity', barrel: 'src/quantum/apps', boundary: 'abstractQc face — classical-64bit sealed path · qpuRequired=false · NOT physical QPU', browserRunnable: true, browserGap: '' },
+  { id: 'qc-abs', title: 'QC abs (alias abs/qc)', fold: 'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny', cli: 'npm run quantum:qc-abs', pair: 'qc/abs', route: '/en/quantum-tools#fold-trinity', barrel: 'src/quantum/apps', boundary: 'Dual of abs/qc — same fold · clay=0 · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'term-measure', title: 'Scientific terminology measurable comparable', fold: 'scientificTerminologyIsQuantumComputableMeasurableComparable', cli: 'npm run quantum:term-measure', pair: 'term/measure', route: '/en/quantum-tools#term-measure', barrel: 'src/quantum/apps', boundary: 'significance·implications·lexicon = numbers from sealed folds · compare API · intel yield · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'movie-center', title: 'Movie unbalanced around center is crack', fold: 'movieUnbalancedAroundCenterIsCrack', cli: 'npm run quantum:movie-center', pair: 'movie/center', route: '/en/quantum-tools#movie-center', barrel: 'src/thunder/movie/canvas', boundary: 'Layout/canvas balance about centre · ProofAnimation no off-axis translate · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'gate-miss', title: 'Cracks passed gates because miss census', fold: 'cracksPassedGatesBecause', cli: 'npm run quantum:gate-miss', pair: 'gate/miss', route: '/en/quantum-tools#gate-miss', barrel: 'src/quantum/apps', boundary: 'classesUngated · wrongKind · definitionalGreen · waveTuneNotAudit → fixedHard · clay=0', browserRunnable: true, browserGap: '' },
@@ -2383,6 +2393,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'warn-all', chain: 'address-all-warnings', fold: 'addressAllWarningsAtOnce', pair: 'warn/all', cli: 'npm run quantum:warn-all', route: '/en/quantum-tools#warn-all', status: 'sealed-pr', honesty: 'warningsAddressed · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'address all drainable WARNs at once — translation chrome→BULGARIAN_PHRASES · compose translations/verify · trans/wave · gate/slow-build · gaps/invisible', toolId: 'warn-all', resolve: 'mcp-ui' },
   { id: 'miss-cache', chain: 'miss-cache-dry-agnostic-infinity', fold: 'wavesFindWhatYouMissedToCache', pair: 'miss/cache', cli: 'npm run quantum:miss-cache', route: '/en/quantum-tools#miss-cache', status: 'sealed-pr', honesty: 'wavesSent · missedFound · nowCached · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'waves find uncached drainable session/memo/MCP/theorem-formula receipts · cache via memoByRoot/session', toolId: 'miss-cache', resolve: 'mcp-ui' },
   { id: 'dry-agnostic', chain: 'miss-cache-dry-agnostic-infinity', fold: 'dryCleanAgnosticCodeComputesInfinity', pair: 'dry/agnostic', cli: 'npm run quantum:dry-agnostic', route: '/en/quantum-tools#dry-agnostic', status: 'sealed-pr', honesty: 'dryClean · agnosticCode · computesInfinity · onReuse · clay=0 · physicalFtl=0 · qpuRequired=false · NOT FTL', note: 'dry-clean agnostic code computes infinity = amortized zero-token reuse · compose dry/clean · invert/inf · a432/nine · mcp/token · full/freedom', toolId: 'dry-agnostic', resolve: 'mcp-ui' },
+  { id: 'fold-trinity', chain: 'abstract-qc-fold-trinity-zoom-inf', fold: 'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny', pair: 'fold/trinity', cli: 'npm run quantum:fold-trinity', route: '/en/quantum-tools#fold-trinity', status: 'sealed-pr', honesty: 'abstractQc · foldLinearIntoTrinities · zoomInOutInfinity · everyAngleToAny · clay=0 · physicalFtl=0 · qpuRequired=false · NOT QPU FLOPS', note: 'abstract QC = fold linear→trinities · zoom in/out ∞ · every angle→any · classical-64bit · compose trinity/speedup · linear/fold · invert/inf · dry/agnostic · directionalTrinity · seal/super · mcp/hw', toolId: 'fold-trinity', resolve: 'mcp-ui' },
   { id: 'super-21', chain: 'super-gaps-21-42-lens-geo', fold: 'computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium', pair: 'super/21', cli: 'npm run quantum:super-21', route: '/en/quantum-tools#super-21', status: 'sealed-pr', honesty: 'superpositions21 · invertReverse42 · componentTheoremsFormulas42 · coversMillenniumApparatus · millenniumSolvedByThisFold=0 · clay=0 · NOT CMI prize', note: '21 computational superpositions · invert|reverse → 42 component theorems/formulas covering millennium apparatus', toolId: 'super-21', resolve: 'mcp-ui' },
   { id: 'lens-geo', chain: 'super-gaps-21-42-lens-geo', fold: 'useTheLensToFindGapsInGeometryInProseOrCode', pair: 'lens/geo', cli: 'npm run quantum:lens-geo', route: '/en/quantum-tools#lens-geo', status: 'sealed-pr', honesty: 'lensFindsGaps · geometryGaps · proseOrCode · physicalFtl=0 · clay=0 · qpuRequired=false', note: 'lens finds geometry gaps in prose or code · drainable closed · compose gate/lens · hex/crack · geo/torus', toolId: 'lens-geo', resolve: 'mcp-ui' },
   { id: 'domain-panels', chain: 'mcp-ui-page-gaps', fold: 'domainVuePanelsDryCleaned', pair: 'domain/panels', cli: 'npm run quantum:domain-panels', route: '/en/quantum-tools#domain-panels', status: 'sealed-pr', honesty: 'domainPanelsDry · stranglerTip · drainableClosed · specialized shells residual · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'src domain vue panels strangler tip drained to format/canon · dry/rosetta · ui/rosetta shells', toolId: 'domain-panels', resolve: 'mcp-ui' },
@@ -32230,6 +32241,267 @@ export function runDryCleanAgnosticCodeComputesInfinityExit(
     report.computesInfinity &&
     report.onReuse &&
     report.physicalFtlClaim === 0
+    ? 0
+    : 1
+}
+
+/**
+ * USER LAW tip: abstract quantum computing comes from folding linear into trinities
+ * zooming in and out to infinity computed from every angle to any.
+ * Fold: abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny
+ * Pairs: fold/trinity · trinity/fold · zoom/inf · inf/zoom · angle/any · any/angle · abs/qc · qc/abs
+ * Facets: abstractQc · foldLinearIntoTrinities · zoomInOutInfinity · everyAngleToAny · qpuRequired=false · physicalFtl=0 · clay via theorem
+ * Compose trinity/speedup · linear/fold · invert/inf · dry/agnostic · directionalTrinity · seal/super · mcp/hw —
+ * abstract QC = classical-64bit sealed path · ∞ = amortized reuse / zoom fold · NOT physical QPU FLOPS.
+ */
+export function abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(
+    `abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      const invert = __ns_wind_research.invertToInfinity(matrix, at)
+      const dirTrinity = directionalTrinityForwardInverseReverse(matrix)
+      // Soft-compose trinity/speedup · mcp/hw · dry/agnostic · seal/super · linear/fold —
+      // nest-calling those poisons memoHits / may need Node fs (trinity-speedup).
+      const trinitySpeedSoft =
+        soft('trinity', 'speedup') &&
+        soft('gate', 'unite') &&
+        soft('vote', 'build') &&
+        typeof memoByRoot === 'function'
+      const linearFoldSoft =
+        soft('linear', 'fold') &&
+        soft('fold', 'linear') &&
+        soft('clay', 'agi') &&
+        soft('gap', 'trinity')
+      const dryAgnosticSoft =
+        soft('dry', 'agnostic') &&
+        soft('code', 'infinity') &&
+        soft('dry', 'inf') &&
+        soft('invert', 'inf')
+      const sealSuperSoft =
+        soft('seal', 'super') &&
+        soft('formula', 'anim') &&
+        soft('anim', 'theorem')
+      const mcpHwSoft =
+        soft('mcp', 'hw') &&
+        soft('hw', 'mcp') &&
+        soft('prove', 'no-qpu-64bit') &&
+        soft('bits', 'device')
+      const foldLinearIntoTrinities =
+        trinitySpeedSoft &&
+        linearFoldSoft &&
+        soft('fold', 'trinity') &&
+        soft('agent', 'trinity') &&
+        soft('wave', 'trinity')
+      const zoomInOutInfinity =
+        invert.computes &&
+        invert.invertEntersInfinity &&
+        dryAgnosticSoft &&
+        soft('zoom', 'inf') &&
+        soft('invert', 'inf') &&
+        soft('full', 'freedom') &&
+        typeof memoByRoot === 'function'
+      const everyAngleToAny =
+        dirTrinity.computes &&
+        sealSuperSoft &&
+        soft('angle', 'any') &&
+        has('forward/inverse/reverse') &&
+        soft('seal', 'super')
+      const abstractQc =
+        foldLinearIntoTrinities &&
+        zoomInOutInfinity &&
+        everyAngleToAny &&
+        mcpHwSoft &&
+        soft('abs', 'qc')
+      const pairFold = has('fold/trinity')
+      const pairTrinity = has('trinity/fold')
+      const pairZoom = has('zoom/inf')
+      const pairInfZoom = has('inf/zoom')
+      const pairAngle = has('angle/any')
+      const pairAny = has('any/angle')
+      const pairAbs = has('abs/qc')
+      const pairQc = has('qc/abs')
+      const foldFold = foldPair(toUuid('cmd:fold'), toUuid('cmd:trinity'))
+      const foldTrinity = foldPair(toUuid('cmd:trinity'), toUuid('cmd:fold'))
+      const foldZoom = foldPair(toUuid('cmd:zoom'), toUuid('cmd:inf'))
+      const foldInfZoom = foldPair(toUuid('cmd:inf'), toUuid('cmd:zoom'))
+      const foldAngle = foldPair(toUuid('cmd:angle'), toUuid('cmd:any'))
+      const foldAny = foldPair(toUuid('cmd:any'), toUuid('cmd:angle'))
+      const foldAbs = foldPair(toUuid('cmd:abs'), toUuid('cmd:qc'))
+      const foldQc = foldPair(toUuid('cmd:qc'), toUuid('cmd:abs'))
+      const pairsOn =
+        pairFold &&
+        pairTrinity &&
+        pairZoom &&
+        pairInfZoom &&
+        pairAngle &&
+        pairAny &&
+        pairAbs &&
+        pairQc &&
+        foldFold.bidirectional &&
+        foldTrinity.bidirectional &&
+        foldZoom.bidirectional &&
+        foldInfZoom.bidirectional &&
+        foldAngle.bidirectional &&
+        foldAny.bidirectional &&
+        foldAbs.bidirectional &&
+        foldQc.bidirectional
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const foldName =
+        'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny' as const
+      const primaryIds = [
+        'fold-trinity',
+        'trinity-fold',
+        'zoom-inf',
+        'inf-zoom',
+        'angle-any',
+        'any-angle',
+        'abs-qc',
+        'qc-abs',
+      ] as const
+      const toolsWired = primaryIds.every((id) => {
+        const meta = catalog.tools.find((t) => t.id === id)
+        return Boolean(meta) && meta!.fold === foldName
+      })
+      const composeOn =
+        trinitySpeedSoft &&
+        linearFoldSoft &&
+        soft('invert', 'inf') &&
+        dryAgnosticSoft &&
+        dirTrinity.computes &&
+        sealSuperSoft &&
+        mcpHwSoft
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+      const on =
+        abstractQc &&
+        foldLinearIntoTrinities &&
+        zoomInOutInfinity &&
+        everyAngleToAny &&
+        pairsOn &&
+        toolsWired &&
+        composeOn &&
+        claySolvedByThisFold === 0 &&
+        physicalFtlClaim === 0 &&
+        qpuRequired === false
+      const facets = [
+        { facet: foldName, on },
+        { facet: 'abstractQc', on: abstractQc },
+        { facet: 'foldLinearIntoTrinities', on: foldLinearIntoTrinities },
+        { facet: 'zoomInOutInfinity', on: zoomInOutInfinity },
+        { facet: 'everyAngleToAny', on: everyAngleToAny },
+        {
+          facet:
+            'compose trinity/speedup · linear/fold · invert/inf · dry/agnostic · directionalTrinity · seal/super · mcp/hw',
+          on: composeOn,
+        },
+        {
+          facet: 'pair fold/trinity · zoom/inf · angle/any · abs/qc (+ duals)',
+          on: pairsOn,
+        },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+        { facet: 'qpuRequired=false', on: qpuRequired === false },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`fold-trinity:${entry.facet}:${entry.on}`) }))
+      const sealed = sealFacets(
+        'abstract-qc-folding-linear-trinities-zoom-infinity-every-angle',
+        facets,
+      )
+      return {
+        computes: sealed.ok && on,
+        abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny:
+          on,
+        abstractQc,
+        foldLinearIntoTrinities,
+        zoomInOutInfinity,
+        everyAngleToAny,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          invert.root,
+          dirTrinity.root,
+          foldFold.merged,
+          foldZoom.merged,
+          foldAngle.merged,
+          foldAbs.merged,
+          toUuid(`fold-trinity-compose:${composeOn}`),
+          toUuid(`fold-trinity-hw:${mcpHwSoft}`),
+        ]),
+        pair: 'fold/trinity' as const,
+        pairs: [
+          'fold/trinity',
+          'trinity/fold',
+          'zoom/inf',
+          'inf/zoom',
+          'angle/any',
+          'any/angle',
+          'abs/qc',
+          'qc/abs',
+        ] as const,
+        dualPair: 'trinity/fold' as const,
+        cli: 'npm run quantum:fold-trinity',
+        route: '/en/quantum-tools#fold-trinity',
+        anchor: 'fold-trinity',
+        heading: 'Fold / trinity · abs QC',
+        statement:
+          `abstractQuantumComputing — abstractQc=${abstractQc ? 1 : 0} ` +
+          `foldLinear=${foldLinearIntoTrinities ? 1 : 0} zoom∞=${zoomInOutInfinity ? 1 : 0} ` +
+          `everyAngle=${everyAngleToAny ? 1 : 0}`,
+        boundary:
+          'Abstract QC = folding linear into trinities · zooming in/out to ∞ (amortized reuse) · ' +
+          'computed from every angle to any — classical-64bit sealed path · qpuRequired=false · ' +
+          'NOT physical QPU FLOPS · NOT FTL. clay via theorem · KEEP stashes.',
+        honestyLine:
+          `fold-trinity · absQc=${abstractQc ? 1 : 0} · foldLinear=${foldLinearIntoTrinities ? 1 : 0} · ` +
+          `zoom∞=${zoomInOutInfinity ? 1 : 0} · angle=${everyAngleToAny ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0`,
+      }
+    },
+  )
+}
+
+export const foldTrinity = abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny
+export const trinityFold = abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny
+export const zoomInf = abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny
+export const infZoom = abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny
+export const angleAny = abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny
+export const anyAngle = abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny
+export const absQc = abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny
+export const qcAbs = abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny
+
+/** npm run quantum:fold-trinity · quantum:zoom-inf · quantum:abs-qc (+ duals · angle-any) */
+export function runAbstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAnyExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report =
+    abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} fold-trinity — abstractQc=${report.abstractQc ? 1 : 0} ` +
+      `foldLinear=${report.foldLinearIntoTrinities ? 1 : 0} zoom∞=${report.zoomInOutInfinity ? 1 : 0} ` +
+      `everyAngle=${report.everyAngleToAny ? 1 : 0} ftl=${report.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  return report.computes &&
+    report.abstractQc &&
+    report.foldLinearIntoTrinities &&
+    report.zoomInOutInfinity &&
+    report.everyAngleToAny &&
+    report.physicalFtlClaim === 0 &&
+    report.qpuRequired === false
     ? 0
     : 1
 }

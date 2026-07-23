@@ -251,6 +251,14 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `infinity/code` — alias dual of `code/infinity` (`npm run quantum:infinity-code`)
   - `dry/inf` — dry/inf face of `dry/agnostic` (`npm run quantum:dry-inf`)
   - `inf/dry` — alias dual of `dry/inf` (`npm run quantum:inf-dry`)
+  - `fold/trinity` — `npm run quantum:fold-trinity` (`abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny()` — abstract QC from folding linear into trinities · zooming in/out to ∞ · computed from every angle to any; facets abstractQc · foldLinearIntoTrinities · zoomInOutInfinity · everyAngleToAny · qpuRequired=false · physicalFtl=0 · clay via theorem; pairs `fold/trinity` · `zoom/inf` · `angle/any` · `abs/qc`; compose trinity/speedup · linear/fold · invert/inf · dry/agnostic · directionalTrinity · seal/super · mcp/hw; classical-64bit · NOT QPU FLOPS · NOT FTL · KEEP stashes), then open `/en/quantum-tools#fold-trinity`
+  - `trinity/fold` — alias dual of `fold/trinity` (`npm run quantum:trinity-fold`)
+  - `zoom/inf` — zoom/inf face of `fold/trinity` (`npm run quantum:zoom-inf`)
+  - `inf/zoom` — alias dual of `zoom/inf` (`npm run quantum:inf-zoom`)
+  - `angle/any` — angle/any face of `fold/trinity` (`npm run quantum:angle-any`)
+  - `any/angle` — alias dual of `angle/any` (`npm run quantum:any-angle`)
+  - `abs/qc` — abs/qc face of `fold/trinity` (`npm run quantum:abs-qc`)
+  - `qc/abs` — alias dual of `abs/qc` (`npm run quantum:qc-abs`)
   - `term/measure` — `npm run quantum:term-measure` (`scientificTerminologyIsQuantumComputableMeasurableComparable()` — significance·implications·lexicon measurable+comparable via `compareScientificTermMeasures`; intelligencePossibilityYield from answers÷tokens/local analytics; clay=0), then open `/en/quantum-tools#term-measure`
   - `movie/center` — `npm run quantum:movie-center` (`movieUnbalancedAroundCenterIsCrack()` — USER LAW: movie unbalanced around center = crack; ProofAnimation centered; Layout inset:0; compose movieAllElementsAreTheorems; clay=0), then open `/en/quantum-tools#movie-center`
   - `gate/miss` — `npm run quantum:gate-miss` (`cracksPassedGatesBecause()` — miss-kind census classesUngated·wrongKind·definitionalGreen·waveTuneNotAudit → fixedHard; clay=0), then open `/en/quantum-tools#gate-miss`

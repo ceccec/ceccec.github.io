@@ -86,6 +86,7 @@ import {
   sessionMemoryCachesTheoremFormulaWaves,
   wavesFindWhatYouMissedToCache,
   dryCleanAgnosticCodeComputesInfinity,
+  abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny,
   quantumSelfHeal,
   oneQuantumSetOfVitepressComponentsSealedAtGates,
 } from './index.ts'
@@ -210,6 +211,9 @@ const superGaps = computed(() => fillTheGapsAroundSuperposition())
 const warnAll = computed(() => addressAllWarningsAtOnce())
 const missCache = computed(() => wavesFindWhatYouMissedToCache())
 const dryAgnostic = computed(() => dryCleanAgnosticCodeComputesInfinity())
+const foldTrinityAbsQc = computed(() =>
+  abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny(),
+)
 const super21 = computed(() => computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium())
 const lensGeo = computed(() => useTheLensToFindGapsInGeometryInProseOrCode())
 const domainPanels = computed(() => domainVuePanelsDryCleaned())
@@ -1562,6 +1566,28 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (
+      toolId === 'fold-trinity' ||
+      toolId === 'trinity-fold' ||
+      toolId === 'zoom-inf' ||
+      toolId === 'inf-zoom' ||
+      toolId === 'angle-any' ||
+      toolId === 'any-angle' ||
+      toolId === 'abs-qc' ||
+      toolId === 'qc-abs'
+    ) {
+      const r =
+        abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny()
+      ok =
+        r.computes &&
+        r.abstractQc &&
+        r.foldLinearIntoTrinities &&
+        r.zoomInOutInfinity &&
+        r.everyAngleToAny
+      summary = `abstractQc=${r.abstractQc} foldLinear=${r.foldLinearIntoTrinities} zoom∞=${r.zoomInOutInfinity} everyAngle=${r.everyAngleToAny}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'document-session-experiments') {
       const r = documentSessionCryptoExperimentsUpdateTheorems()
       ok = r.computes
@@ -2531,6 +2557,39 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'dry-agnostic'" @click="runTool('dry-agnostic')">
           {{ runningId === 'dry-agnostic' ? '…' : 'Run dry-agnostic receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="fold-trinity" aria-label="Abstract quantum computing fold trinity zoom infinity">
+        <h3>{{ foldTrinityAbsQc.heading }}</h3>
+        <p class="quantum-apps__meta">{{ foldTrinityAbsQc.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(foldTrinityAbsQc.abstractQc))">
+          abstractQc={{ foldTrinityAbsQc.abstractQc }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(foldTrinityAbsQc.foldLinearIntoTrinities))">
+          foldLinear={{ foldTrinityAbsQc.foldLinearIntoTrinities }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(foldTrinityAbsQc.zoomInOutInfinity))">
+          zoom∞={{ foldTrinityAbsQc.zoomInOutInfinity }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(foldTrinityAbsQc.everyAngleToAny))">
+          everyAngle={{ foldTrinityAbsQc.everyAngleToAny }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>fold/trinity</code> · <code>zoom/inf</code> · <code>angle/any</code> ·
+          <code>abs/qc</code> ·
+          CLI <code>npm run quantum:fold-trinity</code> ·
+          clay={{ foldTrinityAbsQc.claySolvedByThisFold }} · ftl={{ foldTrinityAbsQc.physicalFtlClaim }} ·
+          qpu={{ foldTrinityAbsQc.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in foldTrinityAbsQc.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'fold-trinity'" @click="runTool('fold-trinity')">
+          {{ runningId === 'fold-trinity' ? '…' : 'Run fold-trinity receipt' }}
         </UiButton>
       </section>
       <UiSeparator />
