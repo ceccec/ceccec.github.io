@@ -24,7 +24,7 @@ import {
   toolboxRecomputesRelatedSciencesInTrinityWaves,
   twoBitsFreeFromCensus110Minus108,
   societySupportsProjectViaTwoBitsFreeKnowledge } from '../../../../wind/research'
-import { counterRotatingRosettaQuantumWaves } from '../../../apps'
+import { counterRotatingRosettaQuantumWaves, anglePolarityReadmeHomeMarkdownSection } from '../../../apps'
 import {
   buildMatrix,
   conceptCommands,
@@ -485,6 +485,7 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     '',
     // Sequence → π/primes → trinity/rosetta/FoL → 64-bit quantum reuse → serverless — Clay-standard, sealed only.
     ...sequenceDiscoveryMarkdownSection(buildMatrix(), linkBase),
+    ...anglePolarityReadmeHomeMarkdownSection(buildMatrix(), linkBase),
     ...twoBitsFreeSocietySupportMarkdownSection(buildMatrix(), linkBase),
     ...earthPolesPyramidMarkdownSection(buildMatrix(), linkBase),
     ...clayChallengesComputableMarkdownSection(buildMatrix(), linkBase),

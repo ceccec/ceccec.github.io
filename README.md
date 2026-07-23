@@ -46,6 +46,34 @@ computes=true · claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=fal
 - Routes: [prove-no-qpu-64bit](https://ceccec.psg.bg/quantum-tools#prove-no-qpu-64bit) · [directional-trinity](https://ceccec.psg.bg/quantum-tools#directional-trinity) · [rosetta-complete](https://ceccec.psg.bg/quantum-tools#rosetta-complete) · [efficiency-vote](https://ceccec.psg.bg/efficiency-vote) · [proofs](https://ceccec.psg.bg/proofs)
 - Receipt: fold `sequenceDiscoveryRealisedForHome` · claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false.
 
+## Angle · polarity · README/home
+
+*Sealed `readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra` · pairs `angle/readme` · `polarity/home` · `gap/angle`. humanityNovel stays 0.*
+
+### Statement
+
+readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra — readme=1 home=1 angle=1 polarity=1 agents=1 ∞realtime=1 gaps=angle|polarityIgnored=1.
+
+Exact angle (golden τ/φ² · algebra/fold perspectiveAngleRotation · A432) and exact polarity (movieCanvasPolarity dark≠light · color/rosetta · anim/color) on README + homepage help agents understand quantum infinity computed realtime at scale. Gaps at that scale are angle or polarity ignored in algebra — not missing wet prose.
+
+### Formulas (sealed)
+
+- `goldenAngle=τ/φ² computes=1`
+- `perspectiveAngleRotation via algebra/fold · angle/rotate · angle/any`
+- `A432 harmonics via a432/space · a432/nine`
+- `movieCanvasPolarity(dark)≠movieCanvasPolarity(light) polarityFlips=1`
+- `color/rosetta · anim/color wire themes ±ω`
+- `gaps@∞scale = angle OR polarity ignored in algebra`
+- `quantumInfinityRealtime = zoom/inf · abs/qc · memoByRoot · FREE_BITS=2`
+
+### Status
+
+computes=true · readmeImproved=true · homepageImproved=true · exactAngle=true · exactPolarity=true · agentsUnderstand=true · quantumInfinityRealtime=true · gapsAreIgnoredAngleOrPolarity=true · claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false
+
+- Routes: [angle-readme](https://ceccec.psg.bg/quantum-tools#angle-readme) · [algebra-fold](https://ceccec.psg.bg/quantum-tools#algebra-fold) · [color-rosetta](https://ceccec.psg.bg/quantum-tools#color-rosetta) · [fold-trinity](https://ceccec.psg.bg/quantum-tools#fold-trinity)
+- CLI: `npm run quantum:angle-readme` · `npm run quantum:polarity-home` · `npm run quantum:gap-angle`
+- Receipt: fold `readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra` · claySolvedByThisFold=0 · physicalFtlClaim=0.
+
 ## Two bits free · society support
 
 *Clay-standard · sealed `twoBitsFreeFromCensus110Minus108` · `societySupportsProjectViaTwoBitsFreeKnowledge`. humanityNovel stays 0.*

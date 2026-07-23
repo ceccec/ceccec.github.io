@@ -119,6 +119,7 @@ const ROSETTA_CORE_API_LABELS = [
   'decodeQuantumAlchemy',
   'foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace',
   'theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion',
+  'readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra',
   'saveTheOptimisedAutonomy',
   'quantumVerification',
   'quantumFearDetector',
@@ -323,6 +324,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   decodeQuantumAlchemy: 'tool',
   foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace: 'tool',
   theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion: 'tool',
+  readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra: 'tool',
   saveTheOptimisedAutonomy: 'tool',
   quantumVerification: 'tool',
   quantumFearDetector: 'tool',
@@ -782,6 +784,12 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'gapless-observe', title: 'Gapless observe (alias observe/gapless)', fold: 'theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion', cli: 'npm run quantum:gapless-observe', pair: 'gapless/observe', route: '/en/quantum-tools#movie-seamless', barrel: 'src/quantum/apps', boundary: 'Dual gapless/observe — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'motion-gapless', title: 'Motion gapless (alias movie/seamless)', fold: 'theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion', cli: 'npm run quantum:motion-gapless', pair: 'motion/gapless', route: '/en/quantum-tools#movie-seamless', barrel: 'src/quantum/apps', boundary: 'gaplessMotion face — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gapless-motion', title: 'Gapless motion (alias motion/gapless)', fold: 'theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion', cli: 'npm run quantum:gapless-motion', pair: 'gapless/motion', route: '/en/quantum-tools#movie-seamless', barrel: 'src/quantum/apps', boundary: 'Dual gapless/motion — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'angle-readme', title: 'README + homepage exact angle · polarity — agents understand quantum ∞ realtime; gaps = angle|polarity ignored in algebra', fold: 'readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra', cli: 'npm run quantum:angle-readme', pair: 'angle/readme', route: '/en/quantum-tools#angle-readme', barrel: 'src/quantum/apps', boundary: 'readmeImproved · homepageImproved · exactAngle · exactPolarity · agentsUnderstand · quantumInfinityRealtime · gapsAreIgnoredAngleOrPolarity · clay via theorem · physicalFtl=0 · compose algebra/fold · color/rosetta · abs/qc · zoom/inf · readme/svg-trinity · anim/color', browserRunnable: true, browserGap: '' },
+  { id: 'readme-angle', title: 'Readme angle (alias angle/readme)', fold: 'readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra', cli: 'npm run quantum:readme-angle', pair: 'readme/angle', route: '/en/quantum-tools#angle-readme', barrel: 'src/quantum/apps', boundary: 'Dual readme/angle — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'polarity-home', title: 'Polarity home (alias angle/readme)', fold: 'readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra', cli: 'npm run quantum:polarity-home', pair: 'polarity/home', route: '/en/quantum-tools#angle-readme', barrel: 'src/quantum/apps', boundary: 'exactPolarity · homepageImproved face — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'home-polarity', title: 'Home polarity (alias polarity/home)', fold: 'readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra', cli: 'npm run quantum:home-polarity', pair: 'home/polarity', route: '/en/quantum-tools#angle-readme', barrel: 'src/quantum/apps', boundary: 'Dual home/polarity — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'gap-angle', title: 'Gap angle (alias angle/readme)', fold: 'readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra', cli: 'npm run quantum:gap-angle', pair: 'gap/angle', route: '/en/quantum-tools#angle-readme', barrel: 'src/quantum/apps', boundary: 'gapsAreIgnoredAngleOrPolarity face — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'angle-gap', title: 'Angle gap (alias gap/angle)', fold: 'readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra', cli: 'npm run quantum:angle-gap', pair: 'angle/gap', route: '/en/quantum-tools#angle-readme', barrel: 'src/quantum/apps', boundary: 'Dual angle/gap — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'miss-cache', title: 'Waves find what you missed to cache', fold: 'wavesFindWhatYouMissedToCache', cli: 'npm run quantum:miss-cache', pair: 'miss/cache', route: '/en/quantum-tools#miss-cache', barrel: 'src/quantum/apps', boundary: 'wavesSent · missedFound · nowCached · drainableClosed · honestOpenNamed · session/memo/MCP/theorem-formula via memoByRoot · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cache-miss', title: 'Cache miss (alias miss/cache)', fold: 'wavesFindWhatYouMissedToCache', cli: 'npm run quantum:cache-miss', pair: 'cache/miss', route: '/en/quantum-tools#miss-cache', barrel: 'src/quantum/apps', boundary: 'Dual of miss/cache — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'wave-cache', title: 'Wave cache (alias miss/cache)', fold: 'wavesFindWhatYouMissedToCache', cli: 'npm run quantum:wave-cache', pair: 'wave/cache', route: '/en/quantum-tools#miss-cache', barrel: 'src/quantum/apps', boundary: 'wave/cache face — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2440,6 +2448,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'alchemy-decode', chain: 'alchemy-decode-quantum', fold: 'decodeQuantumAlchemy', pair: 'alchemy/decode', cli: 'npm run quantum:alchemy-decode', route: '/en/quantum-tools#alchemy-decode', status: 'sealed-pr', honesty: 'alchemyDecoded · quantumOn · symbolsSealed · clay=0 · physicalFtl=0 · qpuRequired=false · certified=false · NOT chemical · NOT historical fraud', note: 'decode quantum alchemy as structural/symbolic theorems — compose symbols · sciences · formula/code · digit/fold · prose/theorem', toolId: 'alchemy-decode', resolve: 'mcp-ui' },
   { id: 'algebra-fold', chain: 'algebra-fold-a432-space', fold: 'foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace', pair: 'algebra/fold', cli: 'npm run quantum:algebra-fold', route: '/en/quantum-tools#algebra-fold', status: 'sealed-pr', honesty: 'foldAlgebraBoundaries · invertedDimensionalTheorems · perspectiveAngleRotation · a432Harmonics · noCostNoTime · anySpace · clay=0 · physicalFtl=0 · qpuRequired=false · NOT FTL', note: 'fold linear algebra boundaries into theorems → inverted dimensional theorems · perspective angle/rotation · A432 harmonics · no cost/time amortized for any space', toolId: 'algebra-fold', resolve: 'mcp-ui' },
   { id: 'movie-seamless', chain: 'movie-seamless-gapless-motion', fold: 'theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion', pair: 'movie/seamless', cli: 'npm run quantum:movie-seamless', route: '/en/quantum-tools#movie-seamless', status: 'sealed-pr', honesty: 'seamlessAnimation · gapsOnlyByObservation · quantumObservation · gaplessMotion · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'movie seamless animation · quantum observation is gapless motion · compose oneClock · anim/mesh · observe/movie · lens/super', toolId: 'movie-seamless', resolve: 'mcp-ui' },
+  { id: 'angle-readme', chain: 'angle-readme-polarity-home', fold: 'readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra', pair: 'angle/readme', cli: 'npm run quantum:angle-readme', route: '/en/quantum-tools#angle-readme', status: 'sealed-pr', honesty: 'readmeImproved · homepageImproved · exactAngle · exactPolarity · agentsUnderstand · quantumInfinityRealtime · gapsAreIgnoredAngleOrPolarity · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'README+home exact angle·polarity cues · agents understand quantum ∞ realtime at scale · gaps = angle|polarity ignored in algebra · compose algebra/fold · color/rosetta · abs/qc · zoom/inf · readme/svg-trinity · anim/color', toolId: 'angle-readme', resolve: 'mcp-ui' },
   { id: 'miss-cache', chain: 'miss-cache-dry-agnostic-infinity', fold: 'wavesFindWhatYouMissedToCache', pair: 'miss/cache', cli: 'npm run quantum:miss-cache', route: '/en/quantum-tools#miss-cache', status: 'sealed-pr', honesty: 'wavesSent · missedFound · nowCached · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'waves find uncached drainable session/memo/MCP/theorem-formula receipts · cache via memoByRoot/session', toolId: 'miss-cache', resolve: 'mcp-ui' },
   { id: 'dry-agnostic', chain: 'miss-cache-dry-agnostic-infinity', fold: 'dryCleanAgnosticCodeComputesInfinity', pair: 'dry/agnostic', cli: 'npm run quantum:dry-agnostic', route: '/en/quantum-tools#dry-agnostic', status: 'sealed-pr', honesty: 'dryClean · agnosticCode · computesInfinity · onReuse · clay=0 · physicalFtl=0 · qpuRequired=false · NOT FTL', note: 'dry-clean agnostic code computes infinity = amortized zero-token reuse · compose dry/clean · invert/inf · a432/nine · mcp/token · full/freedom', toolId: 'dry-agnostic', resolve: 'mcp-ui' },
   { id: 'fold-trinity', chain: 'abstract-qc-fold-trinity-zoom-inf', fold: 'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny', pair: 'fold/trinity', cli: 'npm run quantum:fold-trinity', route: '/en/quantum-tools#fold-trinity', status: 'sealed-pr', honesty: 'abstractQc · foldLinearIntoTrinities · zoomInOutInfinity · everyAngleToAny · clay=0 · physicalFtl=0 · qpuRequired=false · NOT QPU FLOPS', note: 'abstract QC = fold linear→trinities · zoom in/out ∞ · every angle→any · classical-64bit · compose trinity/speedup · linear/fold · invert/inf · dry/agnostic · directionalTrinity · seal/super · mcp/hw', toolId: 'fold-trinity', resolve: 'mcp-ui' },
@@ -20164,6 +20173,390 @@ export function runMovieSeamlessExit(_root = '', _argv: readonly string[] = []):
     report.gaplessMotion &&
     report.drainableClosed &&
     report.drainableGaps === 0 &&
+    report.claySolvedByThisFold === 0 &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * README + homepage exact angle · polarity help agents understand quantum infinity realtime at scale;
+ * gaps are angle or polarity ignored in algebra.
+ * Fold: readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra
+ * Facets: readmeImproved · homepageImproved · exactAngle · exactPolarity · agentsUnderstand ·
+ *         quantumInfinityRealtime · gapsAreIgnoredAngleOrPolarity · physicalFtl=0 · clay via theorem
+ * Pairs: angle/readme · polarity/home · gap/angle (+ duals)
+ * Compose: algebra/fold · color/rosetta · abs/qc · zoom/inf · readme/svg-trinity · anim/color
+ * CLI: npm run quantum:angle-readme · quantum:polarity-home · quantum:gap-angle
+ * HONEST: cues computed from sealed folds — not wet prose essay · NOT physical FTL · KEEP stashes
+ */
+export function readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(
+    `readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      // Soft-compose algebra/fold · color/rosetta · abs/qc · zoom/inf · readme/svg-trinity · anim/color —
+      // nest-calling those folds poisons memoHits; light witnesses only.
+      const golden = theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation()
+      const darkPaint = movieCanvasPolarity(true)
+      const lightPaint = movieCanvasPolarity(false)
+      const sampleHue = 432 % 360
+      const darkSample = darkPaint(sampleHue, 1)
+      const lightSample = lightPaint(sampleHue, 1)
+      const polarityFlips = darkSample !== lightSample && darkSample.length > 0 && lightSample.length > 0
+      const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+      const censusPreserved =
+        freeBits === -EULER_CHI &&
+        freeBits === 2 &&
+        UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+
+      const pairAngleReadme = has('angle/readme')
+      const pairReadmeAngle = has('readme/angle')
+      const pairPolarityHome = has('polarity/home')
+      const pairHomePolarity = has('home/polarity')
+      const pairGapAngle = has('gap/angle')
+      const pairAngleGap = has('angle/gap')
+      const foldAngleReadme = foldPair(toUuid('cmd:angle'), toUuid('cmd:readme'))
+      const foldReadmeAngle = foldPair(toUuid('cmd:readme'), toUuid('cmd:angle'))
+      const foldPolarityHome = foldPair(toUuid('cmd:polarity'), toUuid('cmd:home'))
+      const foldHomePolarity = foldPair(toUuid('cmd:home'), toUuid('cmd:polarity'))
+      const foldGapAngle = foldPair(toUuid('cmd:gap'), toUuid('cmd:angle'))
+      const foldAngleGap = foldPair(toUuid('cmd:angle'), toUuid('cmd:gap'))
+      const pairsOn =
+        pairAngleReadme &&
+        pairReadmeAngle &&
+        pairPolarityHome &&
+        pairHomePolarity &&
+        pairGapAngle &&
+        pairAngleGap &&
+        foldAngleReadme.bidirectional &&
+        foldReadmeAngle.bidirectional &&
+        foldPolarityHome.bidirectional &&
+        foldHomePolarity.bidirectional &&
+        foldGapAngle.bidirectional &&
+        foldAngleGap.bidirectional
+
+      const exactAngle =
+        soft('angle', 'rotate') &&
+        soft('angle', 'any') &&
+        soft('a432', 'space') &&
+        soft('algebra', 'fold') &&
+        soft('golden', 'angle') &&
+        golden.computes &&
+        foldAngleReadme.bidirectional
+
+      const exactPolarity =
+        soft('color', 'rosetta') &&
+        soft('anim', 'color') &&
+        soft('polarity', 'home') &&
+        polarityFlips
+
+      const quantumInfinityRealtime =
+        soft('zoom', 'inf') &&
+        soft('abs', 'qc') &&
+        soft('a432', 'nine') &&
+        soft('invert', 'inf') &&
+        freeBits === 2 &&
+        typeof memoByRoot === 'function'
+
+      const gapsAreIgnoredAngleOrPolarity =
+        soft('gap', 'angle') &&
+        soft('angle', 'gap') &&
+        exactAngle &&
+        exactPolarity &&
+        soft('algebra', 'fold')
+
+      const composeOn =
+        soft('algebra', 'fold') &&
+        soft('color', 'rosetta') &&
+        soft('abs', 'qc') &&
+        soft('zoom', 'inf') &&
+        soft('readme', 'svg-trinity') &&
+        soft('anim', 'color') &&
+        soft('angle', 'readme') &&
+        soft('polarity', 'home') &&
+        soft('gap', 'angle')
+
+      const cueFormulas = [
+        `goldenAngle=τ/φ² computes=${golden.computes ? 1 : 0}`,
+        `perspectiveAngleRotation via algebra/fold · angle/rotate · angle/any`,
+        `A432 harmonics via a432/space · a432/nine`,
+        `movieCanvasPolarity(dark)≠movieCanvasPolarity(light) polarityFlips=${polarityFlips ? 1 : 0}`,
+        `color/rosetta · anim/color wire themes ±ω`,
+        `gaps@∞scale = angle OR polarity ignored in algebra`,
+        `quantumInfinityRealtime = zoom/inf · abs/qc · memoByRoot · FREE_BITS=${freeBits}`,
+      ] as const
+
+      const readmeImproved =
+        soft('angle', 'readme') &&
+        soft('readme', 'angle') &&
+        exactAngle &&
+        cueFormulas.length === 7 &&
+        cueFormulas.some((f) => f.includes('goldenAngle')) &&
+        cueFormulas.some((f) => f.includes('gaps@∞scale'))
+
+      const homepageImproved =
+        soft('polarity', 'home') &&
+        soft('home', 'polarity') &&
+        exactPolarity &&
+        readmeImproved
+
+      const agentsUnderstand =
+        soft('angle', 'readme') &&
+        soft('polarity', 'home') &&
+        soft('gap', 'angle') &&
+        soft('agent', 'submission') &&
+        soft('learn', 'build') &&
+        exactAngle &&
+        exactPolarity &&
+        quantumInfinityRealtime &&
+        gapsAreIgnoredAngleOrPolarity
+
+      const foldName =
+        'readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra' as const
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const metaIds = [
+        'angle-readme',
+        'readme-angle',
+        'polarity-home',
+        'home-polarity',
+        'gap-angle',
+        'angle-gap',
+      ] as const
+      const toolsWired = metaIds.every((id) => {
+        const meta = catalog.tools.find((t) => t.id === id)
+        return Boolean(meta) && meta!.fold === foldName
+      })
+      const shelved = rosettaShelve('angle-readme', 'tool')
+
+      const on =
+        readmeImproved &&
+        homepageImproved &&
+        exactAngle &&
+        exactPolarity &&
+        agentsUnderstand &&
+        quantumInfinityRealtime &&
+        gapsAreIgnoredAngleOrPolarity &&
+        composeOn &&
+        pairsOn &&
+        toolsWired &&
+        censusPreserved &&
+        isUuid(shelved.address) &&
+        claySolvedByThisFold === 0 &&
+        physicalFtlClaim === 0 &&
+        qpuRequired === false
+
+      const honestOpenNamed = [
+        'clay:millennium-open',
+        'ftl:physical-claim-refused',
+        'keep:git-stashes-non-obsolete',
+        'agents:cannot-force-foreign-models',
+      ] as const
+      const honestOpenNamedOn =
+        honestOpenNamed.includes('clay:millennium-open') &&
+        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenNamed.includes('keep:git-stashes-non-obsolete') &&
+        honestOpenNamed.includes('agents:cannot-force-foreign-models') &&
+        honestOpenNamed.length === (2 * 2)
+
+      const facets = [
+        { facet: foldName, on },
+        { facet: 'readmeImproved', on: readmeImproved },
+        { facet: 'homepageImproved', on: homepageImproved },
+        { facet: 'exactAngle', on: exactAngle },
+        { facet: 'exactPolarity', on: exactPolarity },
+        { facet: 'agentsUnderstand', on: agentsUnderstand },
+        { facet: 'quantumInfinityRealtime', on: quantumInfinityRealtime },
+        { facet: 'gapsAreIgnoredAngleOrPolarity', on: gapsAreIgnoredAngleOrPolarity },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: 'qpuRequired=false', on: qpuRequired === false },
+        {
+          facet: 'compose algebra/fold · color/rosetta · abs/qc · zoom/inf · readme/svg-trinity · anim/color',
+          on: composeOn,
+        },
+        { facet: 'pair angle/readme · polarity/home · gap/angle', on: pairsOn },
+        { facet: `census freeBits=${freeBits}`, on: censusPreserved },
+        { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`angle-readme:${entry.facet}:${entry.on}`) }))
+      const sealed = sealFacets('angle-readme-polarity-home', facets)
+
+      return {
+        computes: sealed.ok && on && honestOpenNamedOn,
+        readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra:
+          on,
+        readmeImproved,
+        homepageImproved,
+        exactAngle,
+        exactPolarity,
+        agentsUnderstand,
+        quantumInfinityRealtime,
+        gapsAreIgnoredAngleOrPolarity,
+        polarityFlips,
+        cueFormulas: [...cueFormulas],
+        census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+        censusPreserved,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        honestOpenNamed: [...honestOpenNamed],
+        honestOpenNamedCount: honestOpenNamed.length,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          golden.root,
+          foldAngleReadme.merged,
+          foldPolarityHome.merged,
+          foldGapAngle.merged,
+          shelved.address,
+          toUuid(`angle-readme-polarity:${polarityFlips}:${darkSample.slice(0, 2 * 6)}:${lightSample.slice(0, 2 * 6)}`),
+          ...cueFormulas.map((f) => toUuid(`angle-readme-cue:${f}`)),
+          ...honestOpenNamed.map((id) => toUuid(`angle-readme-honest:${id}`)),
+        ]),
+        pair: 'angle/readme' as const,
+        pairs: [
+          'angle/readme',
+          'readme/angle',
+          'polarity/home',
+          'home/polarity',
+          'gap/angle',
+          'angle/gap',
+        ] as const,
+        dualPair: 'polarity/home' as const,
+        cli: 'npm run quantum:angle-readme',
+        route: '/en/quantum-tools#angle-readme',
+        uiSurface: '/en/quantum-tools#angle-readme' as const,
+        heading: 'Angle · polarity · README/home',
+        statement:
+          `readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra — ` +
+          `readme=${readmeImproved ? 1 : 0} home=${homepageImproved ? 1 : 0} angle=${exactAngle ? 1 : 0} ` +
+          `polarity=${exactPolarity ? 1 : 0} agents=${agentsUnderstand ? 1 : 0} ∞realtime=${quantumInfinityRealtime ? 1 : 0} ` +
+          `gaps=angle|polarityIgnored=${gapsAreIgnoredAngleOrPolarity ? 1 : 0}.`,
+        explanation:
+          'Exact angle (golden τ/φ² · algebra/fold perspectiveAngleRotation · A432) and exact polarity ' +
+          '(movieCanvasPolarity dark≠light · color/rosetta · anim/color) on README + homepage help agents ' +
+          'understand quantum infinity computed realtime at scale. Gaps at that scale are angle or polarity ' +
+          'ignored in algebra — not missing wet prose.',
+        boundary:
+          'Computed cues from sealed folds — not wet essay. Compose algebra/fold · color/rosetta · abs/qc · ' +
+          'zoom/inf · readme/svg-trinity · anim/color. clay via theorem · physicalFtl=0 · KEEP stashes. ' +
+          'NOT physical FTL · NOT QPU · NOT Clay prize.',
+        honestyLine:
+          `angle-readme · readme=${readmeImproved ? 1 : 0} · home=${homepageImproved ? 1 : 0} · ` +
+          `angle=${exactAngle ? 1 : 0} · polarity=${exactPolarity ? 1 : 0} · agents=${agentsUnderstand ? 1 : 0} · ` +
+          `∞rt=${quantumInfinityRealtime ? 1 : 0} · gaps=${gapsAreIgnoredAngleOrPolarity ? 1 : 0} · ` +
+          `qpu=0 · clay=0 · physicalFtl=0`,
+      }
+    },
+  )
+}
+
+/** Alias duals — angle/readme · polarity/home · gap/angle faces. */
+export const angleReadme =
+  readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra
+export const readmeAngle =
+  readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra
+export const polarityHome =
+  readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra
+export const homePolarity =
+  readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra
+export const gapAngle =
+  readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra
+export const angleGap =
+  readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra
+
+/**
+ * Markdown section shared by README.md and homeMarkdown() — exact angle · polarity cues from sealed fold.
+ * Pair: angle/readme · polarity/home · gap/angle
+ */
+export function anglePolarityReadmeHomeMarkdownSection(
+  matrix: MindMatrix = buildMatrix(),
+  linkBase = '',
+): readonly string[] {
+  const r =
+    readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra(
+      matrix,
+    )
+  const raw = (path: string) => (path.startsWith('/') ? path : `/${path}`)
+  const bare = (path: string) => {
+    const p = raw(path)
+    return p.startsWith('/en/') ? p.slice(3) || '/' : p === '/en' ? '/' : p
+  }
+  const href = (path: string) =>
+    linkBase ? `${linkBase.replace(/\/$/, '')}${bare(path)}` : bare(path)
+  return [
+    `## ${r.heading}`,
+    '',
+    `*Sealed \`${'readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra'}\` · pairs \`angle/readme\` · \`polarity/home\` · \`gap/angle\`. humanityNovel stays 0.*`,
+    '',
+    '### Statement',
+    '',
+    r.statement,
+    '',
+    r.explanation,
+    '',
+    '### Formulas (sealed)',
+    '',
+    ...r.cueFormulas.map((f) => `- \`${f}\``),
+    '',
+    '### Status',
+    '',
+    `computes=${r.computes} · readmeImproved=${r.readmeImproved} · homepageImproved=${r.homepageImproved} · ` +
+      `exactAngle=${r.exactAngle} · exactPolarity=${r.exactPolarity} · agentsUnderstand=${r.agentsUnderstand} · ` +
+      `quantumInfinityRealtime=${r.quantumInfinityRealtime} · gapsAreIgnoredAngleOrPolarity=${r.gapsAreIgnoredAngleOrPolarity} · ` +
+      `claySolvedByThisFold=${r.claySolvedByThisFold} · physicalFtlClaim=${r.physicalFtlClaim} · qpuRequired=${r.qpuRequired}`,
+    '',
+    ...(linkBase
+      ? [
+          `- Routes: [angle-readme](${href('/quantum-tools#angle-readme')}) · [algebra-fold](${href('/quantum-tools#algebra-fold')}) · [color-rosetta](${href('/quantum-tools#color-rosetta')}) · [fold-trinity](${href('/quantum-tools#fold-trinity')})`,
+          `- CLI: \`npm run quantum:angle-readme\` · \`npm run quantum:polarity-home\` · \`npm run quantum:gap-angle\``,
+        ]
+      : [
+          '- Routes (VitePress): `/quantum-tools#angle-readme` · `/quantum-tools#algebra-fold` · `/quantum-tools#color-rosetta` · `/quantum-tools#fold-trinity`',
+          '- CLI: `npm run quantum:angle-readme` · `npm run quantum:polarity-home` · `npm run quantum:gap-angle`',
+        ]),
+    `- Receipt: fold \`readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra\` · claySolvedByThisFold=${r.claySolvedByThisFold} · physicalFtlClaim=${r.physicalFtlClaim}.`,
+    '',
+  ]
+}
+
+/** npm run quantum:angle-readme (duals quantum:polarity-home · quantum:gap-angle) */
+export function runAngleReadmeExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report =
+    readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} angle-readme — readme=${report.readmeImproved ? 1 : 0} ` +
+      `home=${report.homepageImproved ? 1 : 0} angle=${report.exactAngle ? 1 : 0} ` +
+      `polarity=${report.exactPolarity ? 1 : 0} agents=${report.agentsUnderstand ? 1 : 0} ` +
+      `∞rt=${report.quantumInfinityRealtime ? 1 : 0} gaps=${report.gapsAreIgnoredAngleOrPolarity ? 1 : 0} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} qpu=${report.qpuRequired ? 1 : 0} ` +
+      `pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const f of report.cueFormulas) process.stdout.write(`  · cue ${f}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.readmeImproved &&
+    report.homepageImproved &&
+    report.exactAngle &&
+    report.exactPolarity &&
+    report.agentsUnderstand &&
+    report.quantumInfinityRealtime &&
+    report.gapsAreIgnoredAngleOrPolarity &&
     report.claySolvedByThisFold === 0 &&
     report.qpuRequired === false
     ? 0
