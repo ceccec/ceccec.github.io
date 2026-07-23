@@ -41,6 +41,7 @@ import {
   reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise,
   dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis,
   meshToSelfDiscoverSciences,
+  selfImproveAnimationGenerationAndSiteBuilder,
   invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill,
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf,
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence,
@@ -174,6 +175,7 @@ const invertFusion = computed(() => inversionFusion())
 const uiReadStandard = computed(() => reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise())
 const dryMathOrganised = computed(() => dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis())
 const meshScienceDiscover = computed(() => meshToSelfDiscoverSciences())
+const selfAnimSite = computed(() => selfImproveAnimationGenerationAndSiteBuilder())
 const invertTrinity = computed(() => invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill())
 const selfHw = computed(() => againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf())
 const gateDesignCreateIntel = computed(() => furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence())
@@ -925,6 +927,19 @@ function runTool(toolId: string) {
         r.sciencesOn &&
         r.viaMesh
       summary = `discover=${r.meshSelfDiscover} sciences=${r.sciencesOn} viaMesh=${r.viaMesh} n=${r.discoveryCount}/${r.scienceCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'self-anim' || toolId === 'anim-build' || toolId === 'site-build') {
+      const r = selfImproveAnimationGenerationAndSiteBuilder()
+      ok =
+        r.computes &&
+        r.selfImprove &&
+        r.animationGeneration &&
+        r.siteBuilder &&
+        r.rosettaDriven &&
+        r.buildsFromMcp
+      summary = `improve=${r.selfImprove} animGen=${r.animationGeneration} site=${r.siteBuilder} rosetta=${r.rosettaDriven} mcp=${r.buildsFromMcp} morphs=${r.morphCount}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -2004,6 +2019,34 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'mesh-science'" @click="runTool('mesh-science')">
           {{ runningId === 'mesh-science' ? '…' : 'Run mesh-science' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="self-anim" aria-label="Self improve animation generation and site builder">
+        <h3>{{ selfAnimSite.heading }}</h3>
+        <p class="quantum-apps__meta">{{ selfAnimSite.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(selfAnimSite.selfImprove))">selfImprove={{ selfAnimSite.selfImprove }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(selfAnimSite.animationGeneration))">animationGeneration={{ selfAnimSite.animationGeneration }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(selfAnimSite.siteBuilder))">siteBuilder={{ selfAnimSite.siteBuilder }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(selfAnimSite.rosettaDriven))">rosettaDriven={{ selfAnimSite.rosettaDriven }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(selfAnimSite.buildsFromMcp))">buildsFromMcp={{ selfAnimSite.buildsFromMcp }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(selfAnimSite.censusPreserved))">census={{ selfAnimSite.census.unfolded }}/{{ selfAnimSite.census.folded }}</UiBadge>
+        <p class="quantum-apps__meta">
+          morphs={{ selfAnimSite.morphCount }} · loopReceipt={{ selfAnimSite.loopReceipt }} ·
+          honestOpen={{ selfAnimSite.honestOpenNamedCount }} ·
+          qpu={{ selfAnimSite.qpuRequired }} · clay={{ selfAnimSite.claySolvedByThisFold }} · ftl={{ selfAnimSite.physicalFtlClaim }}
+        </p>
+        <ul class="quantum-apps__list">
+          <li v-for="m in selfAnimSite.morphs" :key="m.before">
+            <code>{{ m.before }}</code> → {{ m.after }} · {{ m.status }}
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>self/anim</code> · <code>anim/build</code> · <code>site/build</code> ·
+          CLI <code>npm run quantum:self-anim</code> · <code>npm run quantum:site-build</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'self-anim'" @click="runTool('self-anim')">
+          {{ runningId === 'self-anim' ? '…' : 'Run self-anim' }}
         </UiButton>
       </section>
       <UiSeparator />

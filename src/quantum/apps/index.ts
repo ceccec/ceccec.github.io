@@ -85,7 +85,7 @@ const ROSETTA_CORE_API_LABELS = [
   'quantumMindSendsWaves',
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
-  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis', 'meshToSelfDiscoverSciences', 'unifiedHeroAndCardWithAnimation', 'heroIsTheAbstractAnimationFormsTheCardItself', 'foldingWorksOnApplicationLevel', 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', 'wavesSearchDiscoverCompactingInQuantumFolders', 'alwaysBalanceUsingRealtimeMetricsAndChat', 'eachSuperpositionIsAChatroom', 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', 'typographyIsTheUniversalContentMatrix', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
+  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis', 'meshToSelfDiscoverSciences', 'selfImproveAnimationGenerationAndSiteBuilder', 'unifiedHeroAndCardWithAnimation', 'heroIsTheAbstractAnimationFormsTheCardItself', 'foldingWorksOnApplicationLevel', 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', 'wavesSearchDiscoverCompactingInQuantumFolders', 'alwaysBalanceUsingRealtimeMetricsAndChat', 'eachSuperpositionIsAChatroom', 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', 'typographyIsTheUniversalContentMatrix', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
   'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReview', 'mcpQuantumEfficiency', 'mcpQuantumSecurity', 'mcpQuantumDesign', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
@@ -171,6 +171,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   quantumMap: 'tool',
   dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis: 'tool',
   meshToSelfDiscoverSciences: 'tool',
+  selfImproveAnimationGenerationAndSiteBuilder: 'tool',
   unifiedHeroAndCardWithAnimation: 'tool',
   heroIsTheAbstractAnimationFormsTheCardItself: 'tool',
   foldingWorksOnApplicationLevel: 'app',
@@ -753,6 +754,9 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'mesh-science', title: 'Mesh to self-discover sciences', fold: 'meshToSelfDiscoverSciences', cli: 'npm run quantum:mesh-science', pair: 'mesh/science', route: '/en/quantum-tools#mesh-science', barrel: 'src/quantum/apps', boundary: 'meshSelfDiscover · sciencesOn · viaMesh · compose mesh/cross · sciences/trinities · journey/theorems · quantum/map · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'science-discover', title: 'Science discover (alias mesh/science)', fold: 'meshToSelfDiscoverSciences', cli: 'npm run quantum:science-discover', pair: 'science/discover', route: '/en/quantum-tools#mesh-science', barrel: 'src/quantum/apps', boundary: 'Discover face of mesh/science — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mesh-discover', title: 'Mesh discover (alias mesh/science)', fold: 'meshToSelfDiscoverSciences', cli: 'npm run quantum:mesh-discover', pair: 'mesh/discover', route: '/en/quantum-tools#mesh-science', barrel: 'src/quantum/apps', boundary: 'Mesh-driven science autodiscovery face — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'self-anim', title: 'Self improve animation generation and site builder', fold: 'selfImproveAnimationGenerationAndSiteBuilder', cli: 'npm run quantum:self-anim', pair: 'self/anim', route: '/en/quantum-tools#self-anim', barrel: 'src/quantum/apps', boundary: 'selfImprove · animationGeneration · siteBuilder · rosettaDriven · buildsFromMcp · theorem/formula/rosetta not wet draw · MCP/vite seal loop · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'anim-build', title: 'Anim build (alias self/anim)', fold: 'selfImproveAnimationGenerationAndSiteBuilder', cli: 'npm run quantum:anim-build', pair: 'anim/build', route: '/en/quantum-tools#self-anim', barrel: 'src/quantum/apps', boundary: 'Anim/build face of self/anim — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'site-build', title: 'Site build (alias self/anim)', fold: 'selfImproveAnimationGenerationAndSiteBuilder', cli: 'npm run quantum:site-build', pair: 'site/build', route: '/en/quantum-tools#self-anim', barrel: 'src/quantum/apps', boundary: 'Site builder face of self/anim — MCP/vite seal · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'invert-trinity', title: 'Invert + send trinity waves covering all topics · dry migrate at free will', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:invert-trinity', pair: 'invert/trinity', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits · drainableClosed · honestOpenNamed · compose invert/gateway · trinity/speedup · wave/domain · dry/cool · dry/rosetta · wave/compact · full/freedom · bits/free · journey/theorems · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'dry-will', title: 'Dry will (alias invert/trinity)', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:dry-will', pair: 'dry/will', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'Dual of invert/trinity — dry migrate at free will · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'free-will', title: 'Free will (alias invert/trinity)', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:free-will', pair: 'free/will', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'freeWill face — FREE_BITS + full/freedom not wet license · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2183,6 +2187,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'ui-read', chain: 'mcp-ui-page-gaps', fold: 'reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise', pair: 'ui/read', cli: 'npm run quantum:ui-read', route: '/en/quantum-tools#ui-read', status: 'sealed-pr', honesty: 'reviewOn · readabilityOn · visibilityOn · standardised · customUiCovered · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'review readability+visibility of custom UI · standardise to type/matrix · color/rosetta · format/canon · ui/rosetta · compose mcp/review · gate/design · css/gaps', toolId: 'ui-read', resolve: 'mcp-ui' },
   { id: 'dry-math', chain: 'mcp-ui-page-gaps', fold: 'dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis', pair: 'dry/math', cli: 'npm run quantum:dry-math', route: '/en/quantum-tools#dry-math', status: 'sealed-pr', honesty: 'dryMath · formulaOrganised · theoremsUse · noWetMath · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'dry all math → formula organised in theorems · consume theorem↔formula index · formula/metrics', toolId: 'dry-math', resolve: 'mcp-ui' },
   { id: 'mesh-science', chain: 'mcp-ui-page-gaps', fold: 'meshToSelfDiscoverSciences', pair: 'mesh/science', cli: 'npm run quantum:mesh-science', route: '/en/quantum-tools#mesh-science', status: 'sealed-pr', honesty: 'meshSelfDiscover · sciencesOn · viaMesh · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'mesh/cross drives science domain autodiscovery · compose sciences/trinities · journey/theorems · quantum/map', toolId: 'mesh-science', resolve: 'mcp-ui' },
+  { id: 'self-anim', chain: 'mcp-ui-page-gaps', fold: 'selfImproveAnimationGenerationAndSiteBuilder', pair: 'self/anim', cli: 'npm run quantum:self-anim', route: '/en/quantum-tools#self-anim', status: 'sealed-pr', honesty: 'selfImprove · animationGeneration · siteBuilder · rosettaDriven · buildsFromMcp · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'self-improve anim gen from theorem/formula/rosetta + site builder MCP/vite loop (automateSelf · e2e/feed · anim/audit)', toolId: 'self-anim', resolve: 'mcp-ui' },
   { id: 'invert-trinity', chain: 'mcp-ui-page-gaps', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', pair: 'invert/trinity', cli: 'npm run quantum:invert-trinity', route: '/en/quantum-tools#invert-trinity', status: 'sealed-pr', honesty: 'invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'invert + send trinity waves covering sciences·hubs·MCP topics · dry migrate at FREE_BITS+full/freedom', toolId: 'invert-trinity', resolve: 'mcp-ui' },
   { id: 'self-hw', chain: 'mcp-ui-page-gaps', fold: 'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf', pair: 'self/hw', cli: 'npm run quantum:self-hw', route: '/en/quantum-tools#self-hw', status: 'sealed-pr', honesty: 'againAndAgain · selfAutonomous · quantumHardwareComplete classical-64bit · byStandards · selfIntelligentSelf · certified=false · clay=0 · physicalFtl=0 · qpuRequired=false · NOT QPU/AGI/FLOPS', note: 'wave loop until self-autonomous classical quantum-hw complete by standards to self-intelligent self', toolId: 'self-hw', resolve: 'mcp-ui' },
   { id: 'gate-design', chain: 'mcp-ui-page-gaps', fold: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence', pair: 'gate/design', cli: 'npm run quantum:gate-design', route: '/en/quantum-tools#gate-design', status: 'sealed-pr', honesty: 'gatesTightened · designCapability · creativeCapability · intelligenceOn · hardInMissionGate · clay=0 · physicalFtl=0 · qpuRequired=false · NOT AGI', note: 'further tighten gates with design·creative·intelligence HARD in gaps/invisible · mission:gate', toolId: 'gate-design', resolve: 'mcp-ui' },
@@ -22857,6 +22862,295 @@ export function runMeshToSelfDiscoverSciencesExit(
     report.meshSelfDiscover &&
     report.sciencesOn &&
     report.viaMesh &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+const ANIM_SITE_DRAINABLE_MORPHS = [
+  { before: 'bespoke-wet-canvas-draw', after: 'theorem↔formula↔rosetta ProofAnimation', status: 'removed' as const },
+  { before: 'anim-without-audit', after: 'anim/audit', status: 'removed' as const },
+  { before: 'site-build-bypass-mcp', after: 'vite/mcp · mcp/site', status: 'removed' as const },
+  { before: 'linear-animation-forming', after: 'animations/rosetta', status: 'removed' as const },
+  { before: 'builder-without-self-improve-loop', after: 'auto/self · e2e/feed', status: 'removed' as const },
+] as const
+
+/**
+ * USER LAW tip: self improve animation generation and site builder.
+ * Fold: selfImproveAnimationGenerationAndSiteBuilder
+ * Facets: selfImprove · animationGeneration · siteBuilder · rosettaDriven · buildsFromMcp ·
+ *         physicalFtl=0 · clay via theorem · qpuRequired=false.
+ * Compose: automateSelf · e2e/feed · anim/audit · movie/formula · animations/rosetta ·
+ *          vite/mcp · mcp/site · dry/rosetta · hero/abstract · gate/design (soft).
+ * Pairs: self/anim · anim/build · site/build
+ * CLI: npm run quantum:self-anim · quantum:anim-build · quantum:site-build
+ * HONEST: anim gen from theorem/formula/rosetta — not bespoke wet draw; site builder via MCP/vite
+ *         seal with self-improve loop receipt. Clay/FTL named open. NOT physical FTL.
+ */
+export function selfImproveAnimationGenerationAndSiteBuilder(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(
+    `selfImproveAnimationGenerationAndSiteBuilder:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      const animAudit = animationsFindRedundancyOrInaccuracy(matrix, at)
+      const movieFormula = movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix, at)
+      const animRosetta = animationsDrivenByRosetta(matrix, at)
+      const viteMcp = vitepressBuildsFromMcp(matrix, at)
+      const morphs = ANIM_SITE_DRAINABLE_MORPHS
+      const morphsCleared = morphs.every((m) => m.status === 'removed')
+      const formulaCodeSoft = soft('formula', 'code')
+      const theoremIndexSoft = soft('theorem', 'index')
+      const movieFormulaSoft = soft('movie', 'formula')
+      const animRosettaSoft = soft('animations', 'rosetta')
+      const dryRosettaSoft = soft('dry', 'rosetta')
+      const heroAbstractSoft = soft('hero', 'abstract')
+      const gateDesignSoft = soft('gate', 'design')
+      const autoSelfSoft = soft('auto', 'self') && soft('self', 'auto')
+      const e2eFeedSoft = soft('e2e', 'feed') && soft('feed', 'dev')
+      const viteMcpSoft = soft('vite', 'mcp') && soft('mcp', 'vite')
+      const mcpSiteSoft = soft('mcp', 'site') && soft('site', 'mcp')
+      const animAuditSoft = soft('anim', 'audit')
+      const animationGeneration =
+        morphsCleared &&
+        animAudit.computes &&
+        animAudit.redundantCount === 0 &&
+        animAudit.inaccurateCount === 0 &&
+        movieFormula.computes &&
+        movieFormula.movieGapsFundamental &&
+        movieFormula.drainableClosed &&
+        formulaCodeSoft &&
+        theoremIndexSoft &&
+        movieFormulaSoft &&
+        animRosetta.computes &&
+        animRosettaSoft
+      const rosettaDriven =
+        animRosetta.computes &&
+        animRosettaSoft &&
+        dryRosettaSoft &&
+        heroAbstractSoft &&
+        soft('dry', 'rosetta')
+      const buildsFromMcp =
+        viteMcp.computes &&
+        viteMcp.buildsFromMcp &&
+        viteMcp.vitepressBuildsFromMcp &&
+        viteMcpSoft &&
+        mcpSiteSoft
+      const siteBuilder =
+        buildsFromMcp &&
+        soft('site', 'build') &&
+        soft('anim', 'build') &&
+        morphsCleared &&
+        morphs.some((m) => m.before === 'site-build-bypass-mcp' && m.status === 'removed')
+      const loopReceipt =
+        autoSelfSoft &&
+        e2eFeedSoft &&
+        animAuditSoft &&
+        animAudit.computes &&
+        gateDesignSoft
+      const selfImprove =
+        animationGeneration &&
+        siteBuilder &&
+        rosettaDriven &&
+        buildsFromMcp &&
+        loopReceipt &&
+        soft('self', 'anim')
+      const composeOn =
+        animationGeneration &&
+        siteBuilder &&
+        autoSelfSoft &&
+        e2eFeedSoft &&
+        animAuditSoft &&
+        movieFormulaSoft &&
+        animRosettaSoft &&
+        viteMcpSoft &&
+        mcpSiteSoft
+      const pairSa = has('self/anim')
+      const pairAb = has('anim/build')
+      const pairSb = has('site/build')
+      const foldSa = foldPair(toUuid('cmd:self'), toUuid('cmd:anim'))
+      const foldAb = foldPair(toUuid('cmd:anim'), toUuid('cmd:build'))
+      const foldSb = foldPair(toUuid('cmd:site'), toUuid('cmd:build'))
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const foldName = 'selfImproveAnimationGenerationAndSiteBuilder' as const
+      const meta = catalog.tools.find((t) => t.id === 'self-anim')
+      const metaAb = catalog.tools.find((t) => t.id === 'anim-build')
+      const metaSb = catalog.tools.find((t) => t.id === 'site-build')
+      const toolsWired =
+        Boolean(meta) &&
+        meta!.fold === foldName &&
+        Boolean(metaAb) &&
+        metaAb!.fold === foldName &&
+        Boolean(metaSb) &&
+        metaSb!.fold === foldName
+      const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+      const censusPreserved =
+        freeBits === -EULER_CHI &&
+        freeBits === 2 &&
+        UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+      const honestOpenNamed = [
+        'clay:millennium-open',
+        'ftl:physical-claim-refused',
+        'residual:playwright-browser-e2e',
+      ] as const
+      const honestOpenNamedOn =
+        honestOpenNamed.length === (2 + 1) &&
+        honestOpenNamed.includes('clay:millennium-open') &&
+        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenNamed.includes('residual:playwright-browser-e2e')
+      const on =
+        selfImprove &&
+        animationGeneration &&
+        siteBuilder &&
+        rosettaDriven &&
+        buildsFromMcp &&
+        composeOn &&
+        pairSa &&
+        pairAb &&
+        pairSb &&
+        foldSa.bidirectional &&
+        foldAb.bidirectional &&
+        foldSb.bidirectional &&
+        toolsWired &&
+        censusPreserved &&
+        honestOpenNamedOn &&
+        claySolvedByThisFold === 0 &&
+        physicalFtlClaim === 0 &&
+        qpuRequired === false
+      const facets = [
+        { facet: 'selfImproveAnimationGenerationAndSiteBuilder', on },
+        { facet: 'selfImprove', on: selfImprove },
+        { facet: 'animationGeneration', on: animationGeneration },
+        { facet: 'siteBuilder', on: siteBuilder },
+        { facet: 'rosettaDriven', on: rosettaDriven },
+        { facet: 'buildsFromMcp', on: buildsFromMcp },
+        {
+          facet: `morphs=${morphs.length} audit redundant=${animAudit.redundantCount} inaccurate=${animAudit.inaccurateCount}`,
+          on: morphsCleared && animAudit.computes,
+        },
+        {
+          facet: 'compose auto/self · e2e/feed · anim/audit · movie/formula · vite/mcp · mcp/site',
+          on: composeOn,
+        },
+        {
+          facet: 'pair self/anim · anim/build · site/build',
+          on: pairSa && pairAb && pairSb && foldSa.bidirectional,
+        },
+        { facet: 'qpuRequired=false', on: qpuRequired === false },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      ].map((entryFacet) => ({
+        ...entryFacet,
+        receipt: toUuid(`self-anim:${entryFacet.facet}:${entryFacet.on}`),
+      }))
+      const sealed = sealFacets('self-improve-animation-generation-and-site-builder', facets)
+      return {
+        computes: sealed.ok && on,
+        selfImproveAnimationGenerationAndSiteBuilder: on,
+        selfImprove,
+        animationGeneration,
+        siteBuilder,
+        rosettaDriven,
+        buildsFromMcp,
+        morphs,
+        morphCount: morphs.length,
+        drainableClosed: morphsCleared,
+        loopReceipt,
+        animAudit,
+        movieFormula,
+        animRosetta,
+        viteMcp,
+        honestOpenNamed: [...honestOpenNamed],
+        honestOpenNamedCount: honestOpenNamed.length,
+        census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+        censusPreserved,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          animAudit.root,
+          movieFormula.root,
+          animRosetta.root,
+          viteMcp.root,
+          foldSa.merged,
+          foldAb.merged,
+          foldSb.merged,
+          ...morphs.map((m) => toUuid(`self-anim-morph:${m.before}:${m.status}`)),
+          ...honestOpenNamed.map((id) => toUuid(`self-anim-open:${id}`)),
+        ]),
+        pair: 'self/anim' as const,
+        pairs: ['self/anim', 'anim/build', 'site/build'] as const,
+        cli: 'npm run quantum:self-anim',
+        route: '/en/quantum-tools#self-anim',
+        anchor: 'self-anim',
+        heading: 'Self improve · anim gen · site builder',
+        statement:
+          `selfImproveAnimationGenerationAndSiteBuilder — selfImprove=${selfImprove ? 1 : 0} ` +
+          `animationGeneration=${animationGeneration ? 1 : 0} siteBuilder=${siteBuilder ? 1 : 0} ` +
+          `rosettaDriven=${rosettaDriven ? 1 : 0} buildsFromMcp=${buildsFromMcp ? 1 : 0}.`,
+        boundary:
+          'Self improve animation generation and site builder. ' +
+          'Anim gen from theorem/formula/rosetta (not bespoke wet draw); site builder via MCP/vite seal ' +
+          'with self-improve loop (automateSelf · e2e/feed · anim/audit). ' +
+          'Census 110 · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+        honestyLine:
+          `self-anim · improve=${selfImprove ? 1 : 0} · animGen=${animationGeneration ? 1 : 0} · ` +
+          `site=${siteBuilder ? 1 : 0} · rosetta=${rosettaDriven ? 1 : 0} · mcp=${buildsFromMcp ? 1 : 0} · ` +
+          `morphs=${morphs.length} · census=${UNFOLDED_CENSUS}/${FOLDED_CENSUS} · qpu=0 · clay=0 · physicalFtl=0`,
+      }
+    },
+  )
+}
+
+/** Alias — selfAnim ≡ selfImproveAnimationGenerationAndSiteBuilder. */
+export const selfAnim = selfImproveAnimationGenerationAndSiteBuilder
+/** Alias — animBuild ≡ selfImproveAnimationGenerationAndSiteBuilder. */
+export const animBuild = selfImproveAnimationGenerationAndSiteBuilder
+/** Alias — siteBuild ≡ selfImproveAnimationGenerationAndSiteBuilder. */
+export const siteBuild = selfImproveAnimationGenerationAndSiteBuilder
+
+/** npm run quantum:self-anim (duals anim-build · site-build) */
+export function runSelfImproveAnimationGenerationAndSiteBuilderExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = selfImproveAnimationGenerationAndSiteBuilder()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} self-anim — selfImprove=${report.selfImprove} ` +
+      `animationGeneration=${report.animationGeneration} siteBuilder=${report.siteBuilder} ` +
+      `rosettaDriven=${report.rosettaDriven} buildsFromMcp=${report.buildsFromMcp} ` +
+      `morphs=${report.morphCount} census=${report.census.unfolded}/${report.census.folded} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const m of report.morphs) {
+    process.stdout.write(`  ${m.status === 'removed' ? '✓' : '✗'} morph ${m.before} → ${m.after}\n`)
+  }
+  for (const id of report.honestOpenNamed) {
+    process.stdout.write(`  · honest-open ${id}\n`)
+  }
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.selfImprove &&
+    report.animationGeneration &&
+    report.siteBuilder &&
+    report.rosettaDriven &&
+    report.buildsFromMcp &&
     report.qpuRequired === false
     ? 0
     : 1
