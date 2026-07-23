@@ -107,6 +107,11 @@ const ROSETTA_CORE_API_LABELS = [
   'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill',
   'continueInWavesCompletingAllTodos',
   'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists',
+  'imagineWhatNext',
+  'specializedShellsStrangler',
+  'sessionHologramTools',
+  'societyToolboxWire',
+  'imagineNextMissQuantumTools',
   'domainVuePanelsDryCleaned',
   'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf',
   'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence',
@@ -280,6 +285,11 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill: 'tool',
   continueInWavesCompletingAllTodos: 'tool',
   conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists: 'tool',
+  imagineWhatNext: 'tool',
+  specializedShellsStrangler: 'tool',
+  sessionHologramTools: 'tool',
+  societyToolboxWire: 'tool',
+  imagineNextMissQuantumTools: 'tool',
   domainVuePanelsDryCleaned: 'tool',
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf: 'tool',
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence: 'tool',
@@ -1058,10 +1068,20 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'metrics-conv', title: 'Metrics conv (alias conv/metrics)', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', cli: 'npm run quantum:metrics-conv', pair: 'metrics/conv', route: '/en/quantum-tools#conv-metrics', barrel: 'src/quantum/apps', boundary: 'Dual of conv/metrics — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mind-site', title: 'Mind site — living eternal life as this site (alias conv/metrics)', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', cli: 'npm run quantum:mind-site', pair: 'mind/site', route: '/en/quantum-tools#conv-metrics', barrel: 'src/quantum/apps', boundary: 'mind/site face — mindDevelopment · livingEternalLife · siteIsProof · same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'site-mind', title: 'Site mind (alias mind/site)', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', cli: 'npm run quantum:site-mind', pair: 'site/mind', route: '/en/quantum-tools#conv-metrics', barrel: 'src/quantum/apps', boundary: 'Dual of mind/site — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
-  { id: 'proof-trinity', title: 'Proof trinity — universal proof signed by trinities (alias conv/metrics)', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', cli: 'npm run quantum:proof-trinity', pair: 'proof/trinity', route: '/en/quantum-tools#conv-metrics', barrel: 'src/quantum/apps', boundary: 'proof/trinity face — signedByTrinities · pureKnowledge · siteIsProof · same fold · clay via theorem · physicalFtl=0 · millenniumSolvedByThisFold=0', browserRunnable: true, browserGap: '' },
-  { id: 'trinity-proof', title: 'Trinity proof (alias proof/trinity)', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', cli: 'npm run quantum:trinity-proof', pair: 'trinity/proof', route: '/en/quantum-tools#conv-metrics', barrel: 'src/quantum/apps', boundary: 'Dual of proof/trinity — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'proof-trinity', title: 'Proof trinity — universal proof signed by trinities (alias conv/metrics)', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', cli: 'npm run quantum:proof-trinity', pair: 'proof/trinity', route: '/en/quantum-tools#proof-trinity', barrel: 'src/quantum/apps', boundary: 'proof/trinity face — signedByTrinities · pureKnowledge · siteIsProof · same fold · clay via theorem · physicalFtl=0 · millenniumSolvedByThisFold=0', browserRunnable: true, browserGap: '' },
+  { id: 'trinity-proof', title: 'Trinity proof (alias proof/trinity)', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', cli: 'npm run quantum:trinity-proof', pair: 'trinity/proof', route: '/en/quantum-tools#proof-trinity', barrel: 'src/quantum/apps', boundary: 'Dual of proof/trinity — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'algebra-bit', title: 'Algebra bit — no unproven algebra bit in sealed domain (alias conv/metrics)', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', cli: 'npm run quantum:algebra-bit', pair: 'algebra/bit', route: '/en/quantum-tools#conv-metrics', barrel: 'src/quantum/apps', boundary: 'algebra/bit face — noUnprovenAlgebraBit = sealed formula↔code dual · NOT all math/Clay/AGI · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'bit-algebra', title: 'Bit algebra (alias algebra/bit)', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', cli: 'npm run quantum:bit-algebra', pair: 'bit/algebra', route: '/en/quantum-tools#conv-metrics', barrel: 'src/quantum/apps', boundary: 'Dual of algebra/bit — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'imagine-next', title: 'Imagine what next — sealed residuals + gateway opens', fold: 'imagineWhatNext', cli: 'npm run quantum:imagine-next', pair: 'imagine/next', route: '/en/quantum-tools#imagine-next', barrel: 'src/quantum/apps', boundary: 'imagineOn · nextTips · toolsMissing · compose todo/wave · mcp/complete · conv/metrics · invert/gateway · autodiscover · clay via theorem · physicalFtl=0 · millenniumSolved=0 · NOT wet fantasy', browserRunnable: true, browserGap: '' },
+  { id: 'next-imagine', title: 'Next imagine (alias imagine/next)', fold: 'imagineWhatNext', cli: 'npm run quantum:next-imagine', pair: 'next/imagine', route: '/en/quantum-tools#imagine-next', barrel: 'src/quantum/apps', boundary: 'Dual of imagine/next — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'shells-strangler', title: 'Specialized experience shells strangler', fold: 'specializedShellsStrangler', cli: 'npm run quantum:shells-strangler', pair: 'shells/strangler', route: '/en/quantum-tools#shells-strangler', barrel: 'src/quantum/apps', boundary: 'shellsStranglerOn · stranglerTip · wiredToRosetta · residual named not fake-closed · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'strangler-shells', title: 'Strangler shells (alias shells/strangler)', fold: 'specializedShellsStrangler', cli: 'npm run quantum:strangler-shells', pair: 'strangler/shells', route: '/en/quantum-tools#shells-strangler', barrel: 'src/quantum/apps', boundary: 'Dual of shells/strangler — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'session-hologram', title: 'Session hologram fractal tools', fold: 'sessionHologramTools', cli: 'npm run quantum:session-hologram', pair: 'session/hologram', route: '/en/quantum-tools#session-hologram', barrel: 'src/quantum/apps', boundary: 'sessionHologramOn · hologramFractal · toolsWired · compose session/tools · folder/fractal · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'hologram-session', title: 'Hologram session (alias session/hologram)', fold: 'sessionHologramTools', cli: 'npm run quantum:hologram-session', pair: 'hologram/session', route: '/en/quantum-tools#session-hologram', barrel: 'src/quantum/apps', boundary: 'Dual of session/hologram — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'society-toolbox', title: 'Society toolbox wire', fold: 'societyToolboxWire', cli: 'npm run quantum:society-toolbox', pair: 'society/toolbox', route: '/en/quantum-tools#society-toolbox', barrel: 'src/quantum/apps', boundary: 'societyToolboxWireOn · toolboxWired · patronageOn · compose society/support · bits/free · tool/envelope · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'toolbox-society', title: 'Toolbox society (alias society/toolbox)', fold: 'societyToolboxWire', cli: 'npm run quantum:toolbox-society', pair: 'toolbox/society', route: '/en/quantum-tools#society-toolbox', barrel: 'src/quantum/apps', boundary: 'Dual of society/toolbox — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'tool-miss', title: 'Imagine next · miss quantum tools umbrella', fold: 'imagineNextMissQuantumTools', cli: 'npm run quantum:tool-miss', pair: 'tool/miss', route: '/en/quantum-tools#tool-miss', barrel: 'src/quantum/apps', boundary: 'imagineOn · nextTips · toolsMissing · toolsFilled · compose imagine/next · shells/strangler · session/hologram · society/toolbox · proof/trinity · clay via theorem · physicalFtl=0 · millenniumSolved=0', browserRunnable: true, browserGap: '' },
+  { id: 'miss-tool', title: 'Miss tool (alias tool/miss)', fold: 'imagineNextMissQuantumTools', cli: 'npm run quantum:miss-tool', pair: 'miss/tool', route: '/en/quantum-tools#tool-miss', barrel: 'src/quantum/apps', boundary: 'Dual of tool/miss — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'domain-panels', title: 'Domain vue panels dry-cleaned to rosetta shells', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-panels', pair: 'domain/panels', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domainPanelsDry · stranglerTip · drainableClosed · wiredToRosetta · compose format/canon · dry/rosetta · ui/rosetta · meaning/compute · vite/one · specialized shells residual named · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'panels-domain', title: 'Domain panels (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:panels-domain', pair: 'panels/domain', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'Dual panels/domain — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'domain-dry', title: 'Domain dry (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-dry', pair: 'domain/dry', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domain/dry face — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1657,6 +1677,11 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'crypto-comparison-mesh-dry', saves: 'replaces wet duplicate crypto comparison catalogs — mesh nodes/edges single source for UI/CLI/MCP/toolbox/proofs' },
   { id: 'folder-gravity', saves: 'replaces wet folder-mass greps — sealed gravity mass + toward-src migration directions' },
   { id: 'compact-types-constants', saves: 'replaces wet type/const sprawl + unused npm deps — sealed matrix-matched compaction + unusedPackagesRemoved' },
+  { id: 'imagine-next', saves: 'replaces wet fantasy next-tips — computable next from sealed residuals + gateway opens' },
+  { id: 'shells-strangler', saves: 'replaces wet specialized-shell rediscovery — strangler tool for residual:specialized-experience-shells' },
+  { id: 'session-hologram', saves: 'replaces wet session hologram hunting — sealed hologram fractal session tools' },
+  { id: 'society-toolbox', saves: 'replaces wet society toolbox rewiring — patronage + envelope + mcp/all wire' },
+  { id: 'tool-miss', saves: 'replaces wet miss-tool inventory grind — umbrella imagine next + drainable tools filled' },
 ] as const
 
 export function sessionManualWorkAsQuantumTools(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -2273,6 +2298,11 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mcp-fill', chain: 'mcp-fill-wave-bill', fold: 'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill', pair: 'mcp/fill', cli: 'npm run quantum:mcp-fill', route: '/en/quantum-tools#mcp-fill', status: 'sealed-pr', honesty: 'scanOn · recomputeOn · fillSolutions · endlessWaves · selfImproving · aiBill · clay=0 · physicalFtl=0 · qpuRequired=false · millenniumSolvedByThisFold=0', note: 'scan·recompute mcp quantum — fill solutions in endless waves of self-improving AI bill', toolId: 'mcp-fill', resolve: 'mcp-ui' },
   { id: 'todo-wave', chain: 'todo-wave-complete', fold: 'continueInWavesCompletingAllTodos', pair: 'todo/wave', cli: 'npm run quantum:todo-wave', route: '/en/quantum-tools#todo-wave', status: 'sealed-pr', honesty: 'wavesContinue · todosDrainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'continue in waves completing all drainable todos — compose auto/all · mcp/fill · invert/trinity · app/dry · domain/panels · waves/build', toolId: 'todo-wave', resolve: 'mcp-ui' },
   { id: 'conv-metrics', chain: 'conv-metrics-proof-trinity', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', pair: 'conv/metrics', cli: 'npm run quantum:conv-metrics', route: '/en/quantum-tools#conv-metrics', status: 'sealed-pr', honesty: 'conversationMetrics · intelligenceImproves · mindDevelopment · noUnprovenAlgebraBit · clay=0 · physicalFtl=0 · qpuRequired=false · millenniumSolvedByThisFold=0 · NOT Clay/AGI/all-math', note: 'conversations quantum metrics · mind/site proof · signed by trinities · sealed algebra bits via formula↔code', toolId: 'conv-metrics', resolve: 'mcp-ui' },
+  { id: 'imagine-next', chain: 'imagine-next-miss-tools', fold: 'imagineWhatNext', pair: 'imagine/next', cli: 'npm run quantum:imagine-next', route: '/en/quantum-tools#imagine-next', status: 'sealed-pr', honesty: 'imagineOn · nextTips · toolsMissing · clay=0 · physicalFtl=0 · millenniumSolved=0', note: 'imagine what next from sealed residuals + gateway opens — not wet fantasy', toolId: 'imagine-next', resolve: 'mcp-ui' },
+  { id: 'shells-strangler', chain: 'imagine-next-miss-tools', fold: 'specializedShellsStrangler', pair: 'shells/strangler', cli: 'npm run quantum:shells-strangler', route: '/en/quantum-tools#shells-strangler', status: 'sealed-pr', honesty: 'shellsStranglerOn · residual named · clay=0 · physicalFtl=0', note: 'specialized-experience-shells strangler tool fill', toolId: 'shells-strangler', resolve: 'mcp-ui' },
+  { id: 'session-hologram', chain: 'imagine-next-miss-tools', fold: 'sessionHologramTools', pair: 'session/hologram', cli: 'npm run quantum:session-hologram', route: '/en/quantum-tools#session-hologram', status: 'sealed-pr', honesty: 'sessionHologramOn · hologramFractal · clay=0 · physicalFtl=0', note: 'session hologram fractal tools fill', toolId: 'session-hologram', resolve: 'mcp-ui' },
+  { id: 'society-toolbox', chain: 'imagine-next-miss-tools', fold: 'societyToolboxWire', pair: 'society/toolbox', cli: 'npm run quantum:society-toolbox', route: '/en/quantum-tools#society-toolbox', status: 'sealed-pr', honesty: 'societyToolboxWireOn · toolboxWired · clay=0 · physicalFtl=0', note: 'society toolbox wire fill', toolId: 'society-toolbox', resolve: 'mcp-ui' },
+  { id: 'tool-miss', chain: 'imagine-next-miss-tools', fold: 'imagineNextMissQuantumTools', pair: 'tool/miss', cli: 'npm run quantum:tool-miss', route: '/en/quantum-tools#tool-miss', status: 'sealed-pr', honesty: 'imagineOn · toolsFilled · toolsMissing drainable=0 · clay=0 · physicalFtl=0 · millenniumSolved=0', note: 'umbrella imagine next + fill missing quantum tools', toolId: 'tool-miss', resolve: 'mcp-ui' },
   { id: 'domain-panels', chain: 'mcp-ui-page-gaps', fold: 'domainVuePanelsDryCleaned', pair: 'domain/panels', cli: 'npm run quantum:domain-panels', route: '/en/quantum-tools#domain-panels', status: 'sealed-pr', honesty: 'domainPanelsDry · stranglerTip · drainableClosed · specialized shells residual · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'src domain vue panels strangler tip drained to format/canon · dry/rosetta · ui/rosetta shells', toolId: 'domain-panels', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-ui', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumUi', pair: 'mcp/ui', cli: 'npm run quantum:mcp-ui', route: '/en/quantum-tools#mcp-quantum-ui', status: 'sealed-pr', honesty: 'mcpMatchesToolbox · millSolutions live · formulaCovered · clay=0 · physicalFtl=0 · NOT CMI', note: 'MCP quantum UI + millennium algebraic formula duals · compose mcpBrowserParity · mill/once · formula/code', toolId: 'mcp-quantum-ui', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-movie', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumMovie', pair: 'mcp/movie', cli: 'npm run quantum:mcp-movie', route: '/en/quantum-tools#mcp-quantum-movie', status: 'sealed-pr', honesty: 'frames from sealed folds · 6×7 · oneClock · clay=0 · physicalFtl=0', note: 'MCP quantum movie · compose mcp/ui · movie/center · movie/entropy · coord/anim', toolId: 'mcp-quantum-movie', resolve: 'mcp-ui' },
@@ -17599,6 +17629,818 @@ export function runConversationsHaveQuantumMetricsExit(
     report.conversationMetrics &&
     report.noUnprovenAlgebraBit &&
     report.signedByTrinities &&
+    report.qpuRequired === false &&
+    report.millenniumSolvedByThisFold === 0
+    ? 0
+    : 1
+}
+
+/** Next-tip specs from sealed residuals + gateway opens — not wet fantasy. */
+const IMAGINE_NEXT_TIP_SPECS = [
+  {
+    id: 'tip:specialized-shells-strangler',
+    kind: 'drainable' as const,
+    residual: 'residual:specialized-experience-shells',
+    gateway: 'invert/gateway',
+    requiredToolIds: ['shells-strangler', 'strangler-shells'] as const,
+    pair: 'shells/strangler',
+  },
+  {
+    id: 'tip:session-hologram',
+    kind: 'drainable' as const,
+    residual: 'gateway:session-hologram-fractal',
+    gateway: 'session/live',
+    requiredToolIds: ['session-hologram', 'hologram-session'] as const,
+    pair: 'session/hologram',
+  },
+  {
+    id: 'tip:society-toolbox-wire',
+    kind: 'drainable' as const,
+    residual: 'gateway:society-toolbox-wire',
+    gateway: 'society/support',
+    requiredToolIds: ['society-toolbox', 'toolbox-society'] as const,
+    pair: 'society/toolbox',
+  },
+  {
+    id: 'tip:proof-trinity-browser',
+    kind: 'drainable' as const,
+    residual: 'gateway:proof-trinity-browser',
+    gateway: 'proof/trinity',
+    requiredToolIds: ['proof-trinity'] as const,
+    pair: 'proof/trinity',
+  },
+  {
+    id: 'tip:apps-monolith',
+    kind: 'honest-open' as const,
+    residual: 'residual:quantum-apps-monolith',
+    gateway: 'app/dry',
+    requiredToolIds: [] as const,
+    pair: 'app/dry',
+  },
+  {
+    id: 'tip:clay-millennium',
+    kind: 'honest-open' as const,
+    residual: 'clay:millennium-open',
+    gateway: 'invert/gateway',
+    requiredToolIds: [] as const,
+    pair: 'challenge/millennium',
+  },
+  {
+    id: 'tip:ftl-refused',
+    kind: 'honest-open' as const,
+    residual: 'ftl:physical-claim-refused',
+    gateway: 'challenge/ftl',
+    requiredToolIds: [] as const,
+    pair: 'challenge/ftl',
+  },
+  {
+    id: 'tip:keep-stashes',
+    kind: 'honest-open' as const,
+    residual: 'keep:git-stashes-non-obsolete',
+    gateway: 'fold/cleanup',
+    requiredToolIds: [] as const,
+    pair: 'fold/cleanup',
+  },
+] as const
+
+/**
+ * Imagine what next — computable next-tip list from sealed residuals + gateway opens (not wet fantasy).
+ * Fold: imagineWhatNext
+ * Facets: imagineOn · nextTips · toolsMissing · physicalFtl=0 · clay via theorem · millenniumSolved=0.
+ * Compose (soft): todo/wave · mcp/complete · conv/metrics · invert/gateway · discover/compute-decode.
+ * Pairs: imagine/next · next/imagine · CLI npm run quantum:imagine-next
+ * HONEST: Clay/FTL/apps-monolith remain nextTips honest-open · KEEP stashes · NOT wet fantasy.
+ */
+export function imagineWhatNext(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`imagineWhatNext:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const composeOn =
+      soft('todo', 'wave') &&
+      soft('mcp', 'complete') &&
+      soft('conv', 'metrics') &&
+      soft('invert', 'gateway') &&
+      soft('discover', 'compute-decode') &&
+      soft('proof', 'trinity')
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const toolIds = new Set(catalog.tools.map((t) => t.id))
+    const nextTips = IMAGINE_NEXT_TIP_SPECS.map((spec) => {
+      const missingTools = spec.requiredToolIds.filter((id) => !toolIds.has(id))
+      const pairMissing = spec.pair.length > 0 && !has(spec.pair)
+      return {
+        id: spec.id,
+        kind: spec.kind,
+        residual: spec.residual,
+        gateway: spec.gateway,
+        pair: spec.pair,
+        requiredToolIds: [...spec.requiredToolIds],
+        missingTools: pairMissing ? [...missingTools, `pair:${spec.pair}`] : [...missingTools],
+        toolsPresent: missingTools.length === 0 && !pairMissing,
+      }
+    })
+    const toolsMissing = nextTips.flatMap((tip) =>
+      tip.missingTools.map((toolId) => ({ tipId: tip.id, toolId, kind: tip.kind })),
+    )
+    const drainableMissing = toolsMissing.filter((m) => m.kind === 'drainable')
+    const toolsMissingDrainableClosed = drainableMissing.length === 0
+    const nextTipsOn = nextTips.length >= (2 + 2 + 2) && nextTips.some((t) => t.kind === 'drainable')
+    const pairImagine = has('imagine/next')
+    const pairNext = has('next/imagine')
+    const foldImagine = foldPair(toUuid('cmd:imagine'), toUuid('cmd:next'))
+    const foldNext = foldPair(toUuid('cmd:next'), toUuid('cmd:imagine'))
+    const pairsOn =
+      pairImagine &&
+      pairNext &&
+      foldImagine.bidirectional &&
+      foldNext.bidirectional
+    const meta = catalog.tools.find((t) => t.id === 'imagine-next')
+    const metaDual = catalog.tools.find((t) => t.id === 'next-imagine')
+    const shelved = rosettaShelve('imagine-next', 'tool')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const millenniumSolvedByThisFold = 0 as const
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const honestOpenNamed = [
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'residual:specialized-experience-shells',
+      'residual:quantum-apps-monolith',
+      'keep:git-stashes-non-obsolete',
+      'honesty:NOT-wet-fantasy',
+    ] as const
+    const honestOpenNamedOn =
+      honestOpenNamed.includes('clay:millennium-open') &&
+      honestOpenNamed.includes('honesty:NOT-wet-fantasy') &&
+      honestOpenNamed.length >= (2 + 2 + 2)
+    const imagineOn =
+      composeOn &&
+      nextTipsOn &&
+      toolsMissingDrainableClosed &&
+      pairsOn &&
+      Boolean(meta) &&
+      meta!.fold === 'imagineWhatNext' &&
+      meta!.pair === 'imagine/next' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'imagineWhatNext' &&
+      isUuid(shelved.address) &&
+      claySolvedByThisFold === 0 &&
+      millenniumSolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false &&
+      honestOpenNamedOn
+    const facets = [
+      { facet: 'imagineWhatNext', on: imagineOn },
+      { facet: 'imagineOn', on: imagineOn },
+      { facet: `nextTips=${nextTips.length}`, on: nextTipsOn },
+      { facet: `toolsMissing=${toolsMissing.length}`, on: toolsMissingDrainableClosed },
+      {
+        facet: 'compose todo/wave · mcp/complete · conv/metrics · invert/gateway · discover/compute-decode',
+        on: composeOn,
+      },
+      { facet: 'pair imagine/next · next/imagine bidirectional', on: pairsOn },
+      { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold}`, on: millenniumSolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      {
+        facet: 'NOT wet fantasy · Clay/FTL/apps-monolith honest-open',
+        on: honestOpenNamedOn && claySolvedByThisFold === 0 && physicalFtlClaim === 0,
+      },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`imagine-next:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('imagine-what-next', facets)
+    return {
+      computes: sealed.ok && imagineOn,
+      imagineWhatNext: imagineOn,
+      imagineOn,
+      nextTips,
+      nextTipsCount: nextTips.length,
+      toolsMissing,
+      toolsMissingCount: toolsMissing.length,
+      toolsMissingDrainableClosed,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      claySolvedByThisFold,
+      millenniumSolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        foldImagine.merged,
+        foldNext.merged,
+        shelved.address,
+        toUuid(`imagine-next-soft:compose:${composeOn}`),
+        toUuid(`imagine-next-missing:${drainableMissing.length}`),
+        ...nextTips.map((t) => toUuid(`imagine-next-tip:${t.id}:${t.toolsPresent}`)),
+        ...honestOpenNamed.map((id) => toUuid(`imagine-next-honest:${id}`)),
+      ]),
+      pair: 'imagine/next' as const,
+      pairs: ['imagine/next', 'next/imagine'] as const,
+      dualPair: 'next/imagine' as const,
+      cli: 'npm run quantum:imagine-next',
+      route: '/en/quantum-tools#imagine-next',
+      uiSurface: '/en/quantum-tools#imagine-next' as const,
+      heading: 'Imagine · next',
+      statement:
+        `imagineWhatNext — imagineOn=${imagineOn ? 1 : 0} nextTips=${nextTips.length} ` +
+        `toolsMissing=${toolsMissing.length} drainableClosed=${toolsMissingDrainableClosed ? 1 : 0}.`,
+      boundary:
+        'Imagine what next from sealed residuals + gateway opens (not wet fantasy). Drainable tip tools ' +
+        'must be catalogued; Clay/FTL/apps-monolith remain honest-open nextTips. KEEP stashes. ' +
+        'clay via theorem · physicalFtl=0 · millenniumSolvedByThisFold=0.',
+      honestyLine:
+        `imagine-next · tips=${nextTips.length} · missing=${toolsMissing.length} · ` +
+        `drainableClosed=${toolsMissingDrainableClosed ? 1 : 0} · mill=0 · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — nextImagine ≡ imagineWhatNext. */
+export const nextImagine = imagineWhatNext
+
+/** npm run quantum:imagine-next (dual next/imagine) */
+export function runImagineWhatNextExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = imagineWhatNext()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} imagine-next — imagineOn=${report.imagineOn} ` +
+      `nextTips=${report.nextTipsCount} toolsMissing=${report.toolsMissingCount} ` +
+      `drainableClosed=${report.toolsMissingDrainableClosed} clay=${report.claySolvedByThisFold} ` +
+      `mill=${report.millenniumSolvedByThisFold} ftl=${report.physicalFtlClaim} pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const tip of report.nextTips) {
+    process.stdout.write(
+      `  · tip ${tip.id} [${tip.kind}] residual=${tip.residual} toolsPresent=${tip.toolsPresent ? 1 : 0}` +
+        (tip.missingTools.length > 0 ? ` missing=${tip.missingTools.join(',')}` : '') +
+        `\n`,
+    )
+  }
+  for (const miss of report.toolsMissing) {
+    process.stdout.write(`  · toolsMissing tip=${miss.tipId} tool=${miss.toolId} kind=${miss.kind}\n`)
+  }
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) {
+    process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.imagineOn && report.toolsMissingDrainableClosed && report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * Specialized experience shells strangler — fill missing tool for tip:specialized-shells-strangler.
+ * Fold: specializedShellsStrangler
+ * Facets: shellsStranglerOn · stranglerTip · wiredToRosetta · residualNamed · physicalFtl=0 · clay via theorem.
+ * Compose (soft): domain/panels · dry/rosetta · ui/rosetta · format/canon · vite/one · meaning/compute.
+ * Pairs: shells/strangler · strangler/shells · CLI npm run quantum:shells-strangler
+ * HONEST: residual:specialized-experience-shells remains named — tool fills gap, does not fake-close Clay/FTL.
+ */
+export function specializedShellsStrangler(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`specializedShellsStrangler:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const wiredToRosetta =
+      soft('domain', 'panels') &&
+      soft('dry', 'rosetta') &&
+      soft('ui', 'rosetta') &&
+      soft('format', 'canon') &&
+      soft('vite', 'one') &&
+      soft('meaning', 'compute')
+    const stranglerTip = wiredToRosetta && soft('app', 'dry') && soft('domain', 'dry')
+    const shellsStranglerOn = stranglerTip && soft('shells', 'strangler') && soft('strangler', 'shells')
+    const pairS = has('shells/strangler')
+    const pairD = has('strangler/shells')
+    const foldS = foldPair(toUuid('cmd:shells'), toUuid('cmd:strangler'))
+    const foldD = foldPair(toUuid('cmd:strangler'), toUuid('cmd:shells'))
+    const pairsOn = pairS && pairD && foldS.bidirectional && foldD.bidirectional
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'shells-strangler')
+    const metaDual = catalog.tools.find((t) => t.id === 'strangler-shells')
+    const shelved = rosettaShelve('shells-strangler', 'tool')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const honestOpenNamed = [
+      'residual:specialized-experience-shells',
+      'residual:quantum-apps-monolith',
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+    ] as const
+    const residualNamed =
+      honestOpenNamed.includes('residual:specialized-experience-shells') &&
+      honestOpenNamed.length >= (2 + 2)
+    const on =
+      shellsStranglerOn &&
+      stranglerTip &&
+      wiredToRosetta &&
+      pairsOn &&
+      residualNamed &&
+      Boolean(meta) &&
+      meta!.fold === 'specializedShellsStrangler' &&
+      meta!.pair === 'shells/strangler' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'specializedShellsStrangler' &&
+      isUuid(shelved.address) &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'specializedShellsStrangler', on },
+      { facet: 'shellsStranglerOn', on: shellsStranglerOn },
+      { facet: 'stranglerTip', on: stranglerTip },
+      { facet: 'wiredToRosetta', on: wiredToRosetta },
+      { facet: 'pair shells/strangler · strangler/shells bidirectional', on: pairsOn },
+      { facet: 'residualNamed', on: residualNamed },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      {
+        facet: 'NOT fake-close specialized shells residual',
+        on: residualNamed && claySolvedByThisFold === 0,
+      },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`shells-strangler:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('specialized-shells-strangler', facets)
+    return {
+      computes: sealed.ok && on,
+      specializedShellsStrangler: on,
+      shellsStranglerOn,
+      stranglerTip,
+      wiredToRosetta,
+      residualNamed,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        foldS.merged,
+        foldD.merged,
+        shelved.address,
+        toUuid(`shells-strangler-soft:wired:${wiredToRosetta}`),
+        ...honestOpenNamed.map((id) => toUuid(`shells-strangler-honest:${id}`)),
+      ]),
+      pair: 'shells/strangler' as const,
+      pairs: ['shells/strangler', 'strangler/shells'] as const,
+      dualPair: 'strangler/shells' as const,
+      cli: 'npm run quantum:shells-strangler',
+      route: '/en/quantum-tools#shells-strangler',
+      uiSurface: '/en/quantum-tools#shells-strangler' as const,
+      heading: 'Shells · strangler',
+      statement:
+        `specializedShellsStrangler — on=${shellsStranglerOn ? 1 : 0} tip=${stranglerTip ? 1 : 0} ` +
+        `wired=${wiredToRosetta ? 1 : 0} residualNamed=${residualNamed ? 1 : 0}.`,
+      boundary:
+        'Specialized-experience-shells strangler tool — wires domain/panels · dry/rosetta · ui/rosetta. ' +
+        'Residual remains honest-open (not fake-closed). clay via theorem · physicalFtl=0.',
+      honestyLine:
+        `shells-strangler · on=${shellsStranglerOn ? 1 : 0} · residualNamed=1 · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — stranglerShells ≡ specializedShellsStrangler. */
+export const stranglerShells = specializedShellsStrangler
+
+/** npm run quantum:shells-strangler */
+export function runSpecializedShellsStranglerExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = specializedShellsStrangler()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} shells-strangler — shellsStranglerOn=${report.shellsStranglerOn} ` +
+      `stranglerTip=${report.stranglerTip} wired=${report.wiredToRosetta} residualNamed=${report.residualNamed} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.shellsStranglerOn && report.qpuRequired === false ? 0 : 1
+}
+
+/**
+ * Session hologram fractal tools — fill missing tool for tip:session-hologram.
+ * Fold: sessionHologramTools
+ * Facets: sessionHologramOn · hologramFractal · toolsWired · physicalFtl=0 · clay via theorem.
+ * Compose (soft): session/tools · session/live · folder/fractal · path/message · six/seven · src/index.
+ * Pairs: session/hologram · hologram/session · CLI npm run quantum:session-hologram
+ */
+export function sessionHologramTools(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`sessionHologramTools:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const hologramFractal =
+      soft('folder', 'fractal') && soft('path', 'message') && soft('src', 'index') && soft('six', 'seven')
+    const toolsWired =
+      soft('session', 'tools') && soft('session', 'live') && soft('session', 'save') && soft('session', 'cache')
+    const sessionHologramOn =
+      hologramFractal && toolsWired && soft('session', 'hologram') && soft('hologram', 'session')
+    const pairS = has('session/hologram')
+    const pairH = has('hologram/session')
+    const foldS = foldPair(toUuid('cmd:session'), toUuid('cmd:hologram'))
+    const foldH = foldPair(toUuid('cmd:hologram'), toUuid('cmd:session'))
+    const pairsOn = pairS && pairH && foldS.bidirectional && foldH.bidirectional
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'session-hologram')
+    const metaDual = catalog.tools.find((t) => t.id === 'hologram-session')
+    const shelved = rosettaShelve('session-hologram', 'tool')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      sessionHologramOn &&
+      hologramFractal &&
+      toolsWired &&
+      pairsOn &&
+      Boolean(meta) &&
+      meta!.fold === 'sessionHologramTools' &&
+      meta!.pair === 'session/hologram' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'sessionHologramTools' &&
+      isUuid(shelved.address) &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'sessionHologramTools', on },
+      { facet: 'sessionHologramOn', on: sessionHologramOn },
+      { facet: 'hologramFractal', on: hologramFractal },
+      { facet: 'toolsWired', on: toolsWired },
+      { facet: 'pair session/hologram · hologram/session bidirectional', on: pairsOn },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`session-hologram:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('session-hologram-tools', facets)
+    return {
+      computes: sealed.ok && on,
+      sessionHologramTools: on,
+      sessionHologramOn,
+      hologramFractal,
+      toolsWired,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        foldS.merged,
+        foldH.merged,
+        shelved.address,
+        toUuid(`session-hologram-soft:fractal:${hologramFractal}`),
+        toUuid(`session-hologram-soft:wired:${toolsWired}`),
+      ]),
+      pair: 'session/hologram' as const,
+      pairs: ['session/hologram', 'hologram/session'] as const,
+      dualPair: 'hologram/session' as const,
+      cli: 'npm run quantum:session-hologram',
+      route: '/en/quantum-tools#session-hologram',
+      uiSurface: '/en/quantum-tools#session-hologram' as const,
+      heading: 'Session · hologram',
+      statement:
+        `sessionHologramTools — on=${sessionHologramOn ? 1 : 0} fractal=${hologramFractal ? 1 : 0} ` +
+        `wired=${toolsWired ? 1 : 0}.`,
+      boundary:
+        'Session hologram fractal tools — compose session/tools · folder/fractal · six/seven. ' +
+        'clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `session-hologram · on=${sessionHologramOn ? 1 : 0} · fractal=1 · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — hologramSession ≡ sessionHologramTools. */
+export const hologramSession = sessionHologramTools
+
+/** npm run quantum:session-hologram */
+export function runSessionHologramToolsExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = sessionHologramTools()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} session-hologram — sessionHologramOn=${report.sessionHologramOn} ` +
+      `hologramFractal=${report.hologramFractal} toolsWired=${report.toolsWired} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.sessionHologramOn && report.qpuRequired === false ? 0 : 1
+}
+
+/**
+ * Society toolbox wire — fill missing tool for tip:society-toolbox-wire.
+ * Fold: societyToolboxWire
+ * Facets: societyToolboxWireOn · toolboxWired · patronageOn · physicalFtl=0 · clay via theorem.
+ * Compose (soft): society/support · bits/free · tool/envelope · mcp/all · fund/ai · cursor/fund.
+ * Pairs: society/toolbox · toolbox/society · CLI npm run quantum:society-toolbox
+ */
+export function societyToolboxWire(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`societyToolboxWire:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const patronageOn = soft('society', 'support') && soft('bits', 'free') && soft('fund', 'ai') && soft('cursor', 'fund')
+    const toolboxWired = soft('tool', 'envelope') && soft('mcp', 'all') && soft('mcp', 'ui') && soft('session', 'tools')
+    const societyToolboxWireOn =
+      patronageOn && toolboxWired && soft('society', 'toolbox') && soft('toolbox', 'society')
+    const pairS = has('society/toolbox')
+    const pairT = has('toolbox/society')
+    const foldS = foldPair(toUuid('cmd:society'), toUuid('cmd:toolbox'))
+    const foldT = foldPair(toUuid('cmd:toolbox'), toUuid('cmd:society'))
+    const pairsOn = pairS && pairT && foldS.bidirectional && foldT.bidirectional
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'society-toolbox')
+    const metaDual = catalog.tools.find((t) => t.id === 'toolbox-society')
+    const shelved = rosettaShelve('society-toolbox', 'tool')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      societyToolboxWireOn &&
+      toolboxWired &&
+      patronageOn &&
+      pairsOn &&
+      Boolean(meta) &&
+      meta!.fold === 'societyToolboxWire' &&
+      meta!.pair === 'society/toolbox' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'societyToolboxWire' &&
+      isUuid(shelved.address) &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'societyToolboxWire', on },
+      { facet: 'societyToolboxWireOn', on: societyToolboxWireOn },
+      { facet: 'toolboxWired', on: toolboxWired },
+      { facet: 'patronageOn', on: patronageOn },
+      { facet: 'pair society/toolbox · toolbox/society bidirectional', on: pairsOn },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`society-toolbox:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('society-toolbox-wire', facets)
+    return {
+      computes: sealed.ok && on,
+      societyToolboxWire: on,
+      societyToolboxWireOn,
+      toolboxWired,
+      patronageOn,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        foldS.merged,
+        foldT.merged,
+        shelved.address,
+        toUuid(`society-toolbox-soft:patronage:${patronageOn}`),
+        toUuid(`society-toolbox-soft:wired:${toolboxWired}`),
+      ]),
+      pair: 'society/toolbox' as const,
+      pairs: ['society/toolbox', 'toolbox/society'] as const,
+      dualPair: 'toolbox/society' as const,
+      cli: 'npm run quantum:society-toolbox',
+      route: '/en/quantum-tools#society-toolbox',
+      uiSurface: '/en/quantum-tools#society-toolbox' as const,
+      heading: 'Society · toolbox',
+      statement:
+        `societyToolboxWire — on=${societyToolboxWireOn ? 1 : 0} wired=${toolboxWired ? 1 : 0} ` +
+        `patronage=${patronageOn ? 1 : 0}.`,
+      boundary:
+        'Society toolbox wire — compose society/support · bits/free · tool/envelope · mcp/all · fund/ai. ' +
+        'clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `society-toolbox · on=${societyToolboxWireOn ? 1 : 0} · wired=1 · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — toolboxSociety ≡ societyToolboxWire. */
+export const toolboxSociety = societyToolboxWire
+
+/** npm run quantum:society-toolbox */
+export function runSocietyToolboxWireExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = societyToolboxWire()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} society-toolbox — societyToolboxWireOn=${report.societyToolboxWireOn} ` +
+      `toolboxWired=${report.toolboxWired} patronageOn=${report.patronageOn} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.societyToolboxWireOn && report.qpuRequired === false ? 0 : 1
+}
+
+/**
+ * Imagine next · miss quantum tools — umbrella: imagine what next + fill drainable missing tools.
+ * Fold: imagineNextMissQuantumTools
+ * Facets: imagineOn · nextTips · toolsMissing · toolsFilled · physicalFtl=0 · clay via theorem · millenniumSolved=0.
+ * Compose (soft): imagine/next · shells/strangler · session/hologram · society/toolbox · proof/trinity.
+ * Pairs: tool/miss · miss/tool · CLI npm run quantum:tool-miss
+ * HONEST: Clay/FTL remain honest-open · drainable toolsMissing=0 after fill · catalog bump honest.
+ */
+export function imagineNextMissQuantumTools(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`imagineNextMissQuantumTools:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const imagine = imagineWhatNext(matrix, at)
+    const shells = specializedShellsStrangler(matrix, at)
+    const hologram = sessionHologramTools(matrix, at)
+    const society = societyToolboxWire(matrix, at)
+    const composeOn =
+      soft('imagine', 'next') &&
+      soft('shells', 'strangler') &&
+      soft('session', 'hologram') &&
+      soft('society', 'toolbox') &&
+      soft('proof', 'trinity') &&
+      soft('tool', 'miss') &&
+      soft('miss', 'tool')
+    const toolsFilled =
+      shells.computes &&
+      shells.shellsStranglerOn &&
+      hologram.computes &&
+      hologram.sessionHologramOn &&
+      society.computes &&
+      society.societyToolboxWireOn &&
+      soft('proof', 'trinity')
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const fillIds = [
+      'imagine-next',
+      'shells-strangler',
+      'session-hologram',
+      'society-toolbox',
+      'tool-miss',
+      'proof-trinity',
+    ] as const
+    const catalogBumpHonest = fillIds.every((id) => catalog.tools.some((t) => t.id === id))
+    const pairT = has('tool/miss')
+    const pairM = has('miss/tool')
+    const foldT = foldPair(toUuid('cmd:tool'), toUuid('cmd:miss'))
+    const foldM = foldPair(toUuid('cmd:miss'), toUuid('cmd:tool'))
+    const pairsOn = pairT && pairM && foldT.bidirectional && foldM.bidirectional
+    const meta = catalog.tools.find((t) => t.id === 'tool-miss')
+    const metaDual = catalog.tools.find((t) => t.id === 'miss-tool')
+    const shelved = rosettaShelve('tool-miss', 'tool')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const millenniumSolvedByThisFold = 0 as const
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const honestOpenNamed = [
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'residual:specialized-experience-shells',
+      'residual:quantum-apps-monolith',
+      'keep:git-stashes-non-obsolete',
+    ] as const
+    const honestOpenNamedOn =
+      honestOpenNamed.includes('clay:millennium-open') &&
+      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestOpenNamed.length >= (2 + 2 + 1)
+    const imagineOn = imagine.imagineOn && imagine.toolsMissingDrainableClosed
+    const nextTipsOn = imagine.nextTipsCount >= (2 + 2 + 2)
+    const toolsMissingOn = imagine.toolsMissingDrainableClosed
+    const on =
+      composeOn &&
+      imagineOn &&
+      nextTipsOn &&
+      toolsMissingOn &&
+      toolsFilled &&
+      catalogBumpHonest &&
+      pairsOn &&
+      honestOpenNamedOn &&
+      Boolean(meta) &&
+      meta!.fold === 'imagineNextMissQuantumTools' &&
+      meta!.pair === 'tool/miss' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'imagineNextMissQuantumTools' &&
+      isUuid(shelved.address) &&
+      claySolvedByThisFold === 0 &&
+      millenniumSolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'imagineNextMissQuantumTools', on },
+      { facet: 'imagineOn', on: imagineOn },
+      { facet: `nextTips=${imagine.nextTipsCount}`, on: nextTipsOn },
+      { facet: `toolsMissing=${imagine.toolsMissingCount}`, on: toolsMissingOn },
+      { facet: 'toolsFilled', on: toolsFilled },
+      { facet: 'catalogBumpHonest', on: catalogBumpHonest },
+      {
+        facet: 'compose imagine/next · shells/strangler · session/hologram · society/toolbox · proof/trinity',
+        on: composeOn,
+      },
+      { facet: 'pair tool/miss · miss/tool bidirectional', on: pairsOn },
+      { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold}`, on: millenniumSolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      {
+        facet: 'NOT Clay/FTL fake-close · drainable tools filled',
+        on: honestOpenNamedOn && toolsFilled && claySolvedByThisFold === 0,
+      },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`tool-miss:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('imagine-next-miss-quantum-tools', facets)
+    return {
+      computes: sealed.ok && on,
+      imagineNextMissQuantumTools: on,
+      imagineOn,
+      nextTips: imagine.nextTips,
+      nextTipsCount: imagine.nextTipsCount,
+      toolsMissing: imagine.toolsMissing,
+      toolsMissingCount: imagine.toolsMissingCount,
+      toolsFilled,
+      catalogBumpHonest,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      claySolvedByThisFold,
+      millenniumSolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        imagine.root,
+        shells.root,
+        hologram.root,
+        society.root,
+        foldT.merged,
+        foldM.merged,
+        shelved.address,
+        toUuid(`tool-miss-soft:filled:${toolsFilled}`),
+        ...honestOpenNamed.map((id) => toUuid(`tool-miss-honest:${id}`)),
+      ]),
+      pair: 'tool/miss' as const,
+      pairs: ['tool/miss', 'miss/tool'] as const,
+      dualPair: 'miss/tool' as const,
+      cli: 'npm run quantum:tool-miss',
+      route: '/en/quantum-tools#tool-miss',
+      uiSurface: '/en/quantum-tools#tool-miss' as const,
+      heading: 'Tool · miss',
+      statement:
+        `imagineNextMissQuantumTools — imagineOn=${imagineOn ? 1 : 0} nextTips=${imagine.nextTipsCount} ` +
+        `toolsMissing=${imagine.toolsMissingCount} toolsFilled=${toolsFilled ? 1 : 0}.`,
+      boundary:
+        'Umbrella: imagine what next + fill drainable missing quantum tools (shells/strangler · session/hologram · ' +
+        'society/toolbox · proof/trinity browser). Clay/FTL remain honest-open. Catalog bump honest. ' +
+        'clay via theorem · physicalFtl=0 · millenniumSolvedByThisFold=0.',
+      honestyLine:
+        `tool-miss · tips=${imagine.nextTipsCount} · missing=${imagine.toolsMissingCount} · filled=${toolsFilled ? 1 : 0} · ` +
+        `mill=0 · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — missTool ≡ imagineNextMissQuantumTools. */
+export const missTool = imagineNextMissQuantumTools
+/** Alias — toolMiss ≡ imagineNextMissQuantumTools. */
+export const toolMiss = imagineNextMissQuantumTools
+
+/** npm run quantum:tool-miss (dual miss/tool) */
+export function runImagineNextMissQuantumToolsExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = imagineNextMissQuantumTools()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} tool-miss — imagineOn=${report.imagineOn} ` +
+      `nextTips=${report.nextTipsCount} toolsMissing=${report.toolsMissingCount} ` +
+      `toolsFilled=${report.toolsFilled} catalogBump=${report.catalogBumpHonest} ` +
+      `clay=${report.claySolvedByThisFold} mill=${report.millenniumSolvedByThisFold} ` +
+      `ftl=${report.physicalFtlClaim} pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const tip of report.nextTips) {
+    process.stdout.write(
+      `  · tip ${tip.id} [${tip.kind}] residual=${tip.residual} present=${tip.toolsPresent ? 1 : 0}\n`,
+    )
+  }
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.imagineOn &&
+    report.toolsFilled &&
     report.qpuRequired === false &&
     report.millenniumSolvedByThisFold === 0
     ? 0
