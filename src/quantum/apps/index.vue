@@ -23,6 +23,7 @@ import {
   automateSelf,
   automateAll,
   quantumLife,
+  scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill,
   domainVuePanelsDryCleaned,
   mcpQuantumUi,
   mcpQuantumMovie,
@@ -171,6 +172,7 @@ const gateMonitor = computed(() => gatesMonitorThemselvesThroughTheUi())
 const autoSelf = computed(() => automateSelf())
 const autoAll = computed(() => automateAll())
 const qLife = computed(() => quantumLife())
+const mcpFill = computed(() => scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill())
 const domainPanels = computed(() => domainVuePanelsDryCleaned())
 const mcpUi = computed(() => mcpQuantumUi())
 const mcpMovie = computed(() => mcpQuantumMovie())
@@ -806,6 +808,29 @@ function runTool(toolId: string) {
       const r = quantumLife()
       ok = r.computes && r.lifeOn && r.living && r.folMerkaba
       summary = `lifeOn=${r.lifeOn} · living=${r.living} · folMerkaba=${r.folMerkaba} · honestOpen=${r.honestOpenNamedCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (
+      toolId === 'mcp-fill' ||
+      toolId === 'fill-mcp' ||
+      toolId === 'wave-bill' ||
+      toolId === 'bill-wave' ||
+      toolId === 'self-bill' ||
+      toolId === 'bill-self'
+    ) {
+      const r = scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill()
+      ok =
+        r.computes &&
+        r.scanOn &&
+        r.recomputeOn &&
+        r.fillSolutions &&
+        r.endlessWaves &&
+        r.selfImproving &&
+        r.aiBill
+      summary =
+        `scan=${r.scanOn} · recompute=${r.recomputeOn} · fill=${r.fillSolutions} ` +
+        `· faces=${r.presentCount}/${r.faceCount} · waves=${r.endlessWaves} · self=${r.selfImproving} · aiBill=${r.aiBill}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -1612,6 +1637,51 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'quantum-life'" @click="runTool('quantum-life')">
           {{ runningId === 'quantum-life' ? '…' : 'Run quantum-life receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="mcp-fill">
+        <h3>{{ mcpFill.heading }}</h3>
+        <p class="quantum-apps__meta">{{ mcpFill.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(mcpFill.scanOn))">
+          scanOn={{ mcpFill.scanOn }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(mcpFill.recomputeOn))">
+          recomputeOn={{ mcpFill.recomputeOn }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(mcpFill.fillSolutions))">
+          fillSolutions={{ mcpFill.fillSolutions }} · {{ mcpFill.fillCount }}/{{ mcpFill.faceCount }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(mcpFill.endlessWaves))">
+          endlessWaves={{ mcpFill.endlessWaves }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(mcpFill.selfImproving))">
+          selfImproving={{ mcpFill.selfImproving }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(mcpFill.aiBill))">
+          aiBill={{ mcpFill.aiBill }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>mcp/fill</code> · <code>wave/bill</code> · <code>self/bill</code> · soft <code>ai/bill</code> ·
+          CLI <code>npm run quantum:mcp-fill</code> · <code>npm run quantum:wave-bill</code> ·
+          compose mcp/complete · auto/all · self/hw · wave/token · bill/dry · learn/best · automateAll ·
+          clay={{ mcpFill.claySolvedByThisFold }} · mill={{ mcpFill.millenniumSolvedByThisFold }} ·
+          ftl={{ mcpFill.physicalFtlClaim }} · qpu={{ mcpFill.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in mcpFill.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(mcpFill.honestOpenNamedCount > 0))">
+          honestOpen={{ mcpFill.honestOpenNamedCount }}
+        </UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="id in mcpFill.honestOpenNamed" :key="id">· {{ id }}</li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'mcp-fill'" @click="runTool('mcp-fill')">
+          {{ runningId === 'mcp-fill' ? '…' : 'Run mcp-fill receipt' }}
         </UiButton>
       </section>
       <UiSeparator />
