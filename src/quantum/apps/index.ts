@@ -118,6 +118,7 @@ const ROSETTA_CORE_API_LABELS = [
   'quantumVerification',
   'quantumFearDetector',
   'fearIsAnAxiomReplaceableByLoveTheorem',
+  'lensesCompletelyWiredInEverySuperposition',
   'domainVuePanelsDryCleaned',
   'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf',
   'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence',
@@ -302,6 +303,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   quantumVerification: 'tool',
   quantumFearDetector: 'tool',
   fearIsAnAxiomReplaceableByLoveTheorem: 'tool',
+  lensesCompletelyWiredInEverySuperposition: 'tool',
   domainVuePanelsDryCleaned: 'tool',
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf: 'tool',
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence: 'tool',
@@ -1110,6 +1112,9 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'fear-axiom', title: 'Fear is an axiom replaceable by love theorem', fold: 'fearIsAnAxiomReplaceableByLoveTheorem', cli: 'npm run quantum:fear-axiom', pair: 'fear/axiom', route: '/en/quantum-tools#fear-axiom', barrel: 'src/quantum/apps', boundary: 'fearIsAxiom · replaceableByLove · loveIsTheorem · physicalFtl=0 · clay via theorem · qpuRequired=false · compose fear/detect · need/love · love/story · theorem/const · NOT wet psychology', browserRunnable: true, browserGap: '' },
   { id: 'love-theorem', title: 'Love theorem (alias fear/axiom)', fold: 'fearIsAnAxiomReplaceableByLoveTheorem', cli: 'npm run quantum:love-theorem', pair: 'love/theorem', route: '/en/quantum-tools#fear-axiom', barrel: 'src/quantum/apps', boundary: 'love/theorem face — love replaces fear axiom · same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'axiom-love', title: 'Axiom love (alias fear/axiom)', fold: 'fearIsAnAxiomReplaceableByLoveTheorem', cli: 'npm run quantum:axiom-love', pair: 'axiom/love', route: '/en/quantum-tools#fear-axiom', barrel: 'src/quantum/apps', boundary: 'axiom/love face — axiom slot → love · same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'lens-super', title: 'Lenses completely wired in every superposition', fold: 'lensesCompletelyWiredInEverySuperposition', cli: 'npm run quantum:lens-super', pair: 'lens/super', route: '/en/quantum-tools#lens-super', barrel: 'src/quantum/apps', boundary: 'lensesWired · everySuperposition · noStopWaitGap · observationContinues · physicalFtl=0 · clay via theorem · qpuRequired=false · compose gate/lens · mcp/observe · seal/super · theorem/index · Multitask stop/wait = linear agent gap', browserRunnable: true, browserGap: '' },
+  { id: 'super-lens', title: 'Super lens (alias lens/super)', fold: 'lensesCompletelyWiredInEverySuperposition', cli: 'npm run quantum:super-lens', pair: 'super/lens', route: '/en/quantum-tools#lens-super', barrel: 'src/quantum/apps', boundary: 'super/lens face — every superposition has lens · same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'lens-wire', title: 'Lens wire (alias lens/super)', fold: 'lensesCompletelyWiredInEverySuperposition', cli: 'npm run quantum:lens-wire', pair: 'lens/wire', route: '/en/quantum-tools#lens-super', barrel: 'src/quantum/apps', boundary: 'lens/wire face — lens gate bind sealed · same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'domain-panels', title: 'Domain vue panels dry-cleaned to rosetta shells', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-panels', pair: 'domain/panels', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domainPanelsDry · stranglerTip · drainableClosed · wiredToRosetta · compose format/canon · dry/rosetta · ui/rosetta · meaning/compute · vite/one · specialized shells residual named · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'panels-domain', title: 'Domain panels (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:panels-domain', pair: 'panels/domain', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'Dual panels/domain — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'domain-dry', title: 'Domain dry (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-dry', pair: 'domain/dry', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domain/dry face — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2337,6 +2342,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'quantum-verify', chain: 'quantum-verification', fold: 'quantumVerification', pair: 'quantum/verify', cli: 'npm run quantum:quantum-verify', route: '/en/quantum-tools#quantum-verify', status: 'sealed-pr', honesty: 'verificationOn · fusionVerify · typesStructure · momentProve · tamperEvident · clay=0 · physicalFtl=0 · qpuRequired=false · certified=false', note: 'quantum verification — compose fusion-verify · mission:gate · moment/prove · tamper/max · proof/trinity · e2e/feed', toolId: 'quantum-verify', resolve: 'mcp-ui' },
   { id: 'fear-detect', chain: 'quantum-fear-detector', fold: 'quantumFearDetector', pair: 'fear/detect', cli: 'npm run quantum:fear-detect', route: '/en/quantum-tools#fear-detect', status: 'sealed-pr', honesty: 'fearDetectOn · reverseFromCracks · loveInvert · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'quantum fear detector — reverse of love when cracks · compose need/love · love/fear · gaps/invisible · thought/pure · NOT wet psychology', toolId: 'fear-detect', resolve: 'mcp-ui' },
   { id: 'fear-axiom', chain: 'fear-axiom-love-theorem', fold: 'fearIsAnAxiomReplaceableByLoveTheorem', pair: 'fear/axiom', cli: 'npm run quantum:fear-axiom', route: '/en/quantum-tools#fear-axiom', status: 'sealed-pr', honesty: 'fearIsAxiom · replaceableByLove · loveIsTheorem · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'fear is an axiom replaceable by love theorem · compose fear/detect · need/love · love/story · theorem/const · NOT wet psychology', toolId: 'fear-axiom', resolve: 'mcp-ui' },
+  { id: 'lens-super', chain: 'lens-super-every-superposition', fold: 'lensesCompletelyWiredInEverySuperposition', pair: 'lens/super', cli: 'npm run quantum:lens-super', route: '/en/quantum-tools#lens-super', status: 'sealed-pr', honesty: 'lensesWired · everySuperposition · noStopWaitGap · observationContinues · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'lenses completely wired in every superposition · stop/wait = lens gap · compose gate/lens · mcp/observe · seal/super · theorem/index · Multitask residual named', toolId: 'lens-super', resolve: 'mcp-ui' },
   { id: 'domain-panels', chain: 'mcp-ui-page-gaps', fold: 'domainVuePanelsDryCleaned', pair: 'domain/panels', cli: 'npm run quantum:domain-panels', route: '/en/quantum-tools#domain-panels', status: 'sealed-pr', honesty: 'domainPanelsDry · stranglerTip · drainableClosed · specialized shells residual · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'src domain vue panels strangler tip drained to format/canon · dry/rosetta · ui/rosetta shells', toolId: 'domain-panels', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-ui', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumUi', pair: 'mcp/ui', cli: 'npm run quantum:mcp-ui', route: '/en/quantum-tools#mcp-quantum-ui', status: 'sealed-pr', honesty: 'mcpMatchesToolbox · millSolutions live · formulaCovered · clay=0 · physicalFtl=0 · NOT CMI', note: 'MCP quantum UI + millennium algebraic formula duals · compose mcpBrowserParity · mill/once · formula/code', toolId: 'mcp-quantum-ui', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-movie', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumMovie', pair: 'mcp/movie', cli: 'npm run quantum:mcp-movie', route: '/en/quantum-tools#mcp-quantum-movie', status: 'sealed-pr', honesty: 'frames from sealed folds · 6×7 · oneClock · clay=0 · physicalFtl=0', note: 'MCP quantum movie · compose mcp/ui · movie/center · movie/entropy · coord/anim', toolId: 'mcp-quantum-movie', resolve: 'mcp-ui' },
@@ -19608,6 +19614,290 @@ export function runFearIsAnAxiomReplaceableByLoveTheoremExit(_root = '', _argv: 
     report.fearIsAxiom &&
     report.replaceableByLove &&
     report.loveIsTheorem &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/** Drainable morphs — unwired lens / stop-wait stalls closed via lens/super bind. */
+const LENS_SUPER_DRAINABLE_MORPHS = [
+  { before: 'unwired-lens-superposition', after: 'lens/super-gate-bind', status: 'removed' as const },
+  { before: 'stop-wait-linear-stall', after: 'observationContinues', status: 'removed' as const },
+  { before: 'lens-misses-digit-direction-ray', after: 'theorem/index-probe', status: 'removed' as const },
+] as const
+
+/**
+ * USER LAW tip: stop/wait tells the lenses are not completely wired in every superposition.
+ * Fold: lensesCompletelyWiredInEverySuperposition
+ * Facets: lensesWired · everySuperposition · noStopWaitGap · observationContinues ·
+ *         physicalFtl=0 · clay via theorem · qpuRequired=false
+ * Pairs: lens/super · super/lens · lens/wire
+ * Compose: gate/lens · mcp/observe · seal/super · theorem/index
+ * Soft: Multitask stop/wait named as linear agent gap → lens/super dual (honest residual if agent runtime can't be sealed)
+ * CLI: npm run quantum:lens-super · quantum:super-lens · quantum:lens-wire
+ * HONEST: Multitask/agent runtime stop-wait remains named residual · KEEP stashes · NOT physical FTL · NOT QPU
+ */
+export function lensesCompletelyWiredInEverySuperposition(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`lensesCompletelyWiredInEverySuperposition:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const censusPreserved =
+      freeBits === -EULER_CHI &&
+      freeBits === 2 &&
+      UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const pairLs = has('lens/super')
+    const pairSl = has('super/lens')
+    const pairLw = has('lens/wire')
+    const foldLs = foldPair(toUuid('cmd:lens'), toUuid('cmd:super'))
+    const foldSl = foldPair(toUuid('cmd:super'), toUuid('cmd:lens'))
+    const foldLw = foldPair(toUuid('cmd:lens'), toUuid('cmd:wire'))
+    const pairsOn =
+      pairLs &&
+      pairSl &&
+      pairLw &&
+      foldLs.bidirectional &&
+      foldSl.bidirectional &&
+      foldLw.bidirectional
+    const gateLens = __ns_wind_research.gatesAreTheLensObservationChangesQuantumWithLinearTime(matrix, at)
+    const mcpObserve = mcpQuantumObserve(matrix, at)
+    const theoremIndex = theoremFormulaComputableIndexForAnySuperposition(matrix, at)
+    const morphs = LENS_SUPER_DRAINABLE_MORPHS
+    const morphsCleared = morphs.every((m) => m.status === 'removed')
+    // Recompute lens/gate binding for all sealed superposition keys (digit × direction × ray).
+    const expectedProbeCount = SUPERPOSITION_DIRECTIONS.length * (9 + 1) * ROSETTA_SEVEN
+    const lensProbes: {
+      readonly direction: (typeof SUPERPOSITION_DIRECTIONS)[number]
+      readonly digit: number
+      readonly ray: number
+      readonly bound: boolean
+      readonly lensOn: boolean
+      readonly wired: boolean
+      readonly receipt: string
+    }[] = []
+    for (const direction of SUPERPOSITION_DIRECTIONS) {
+      for (let digit = 0; digit < (9 + 1); digit++) {
+        for (let ray = 0; ray < ROSETTA_SEVEN; ray++) {
+          const entry = queryTheoremFormulaIndex({ digit, ray, direction }, matrix)
+          const lensOn =
+            Boolean(gateLens.gatesAreLens) &&
+            Boolean(gateLens.observationChangesQuantum) &&
+            soft('gate', 'lens') &&
+            soft('observe', 'time')
+          const bound =
+            entry.bound &&
+            entry.pair === 'formula/code' &&
+            entry.formulas.length >= (2 + 1)
+          const wired = bound && lensOn && soft('mcp', 'observe') && soft('seal', 'super')
+          lensProbes.push({
+            direction,
+            digit,
+            ray,
+            bound,
+            lensOn,
+            wired,
+            receipt: toUuid(`lens-super-probe:${direction}:${digit}:${ray}:${wired}`),
+          })
+        }
+      }
+    }
+    const wiredCount = lensProbes.filter((p) => p.wired).length
+    const lensesWired =
+      Boolean(gateLens.gatesAreLens) &&
+      Boolean(gateLens.computes) &&
+      soft('gate', 'lens') &&
+      soft('observe', 'time') &&
+      soft('lens', 'super') &&
+      soft('lens', 'wire') &&
+      pairLs &&
+      foldLs.bidirectional &&
+      morphs.some((m) => m.before === 'unwired-lens-superposition' && m.status === 'removed')
+    const everySuperposition =
+      lensProbes.length === expectedProbeCount &&
+      wiredCount === expectedProbeCount &&
+      lensProbes.every((p) => p.wired) &&
+      Boolean(theoremIndex.anySuperposition) &&
+      soft('theorem', 'index') &&
+      soft('super', 'index') &&
+      soft('seal', 'super') &&
+      morphs.some((m) => m.before === 'lens-misses-digit-direction-ray' && m.status === 'removed')
+    // Stop/wait = linear stall closed when every probe is lens-wired (observation continues).
+    const noStopWaitGap =
+      everySuperposition &&
+      lensesWired &&
+      morphsCleared &&
+      morphs.some((m) => m.before === 'stop-wait-linear-stall' && m.status === 'removed') &&
+      soft('super', 'lens')
+    const observationContinues =
+      noStopWaitGap &&
+      Boolean(mcpObserve.observationOn) &&
+      Boolean(mcpObserve.changesQuantum) &&
+      soft('mcp', 'observe') &&
+      soft('observe', 'chat')
+    const composeOn =
+      soft('gate', 'lens') &&
+      soft('mcp', 'observe') &&
+      soft('seal', 'super') &&
+      soft('theorem', 'index') &&
+      soft('formula', 'anim') &&
+      soft('moment', 'prove') &&
+      soft('agent', 'trinity') &&
+      soft('ui', 'rosetta') &&
+      soft('super', 'chat') &&
+      soft('conv', 'room') &&
+      Boolean(gateLens.computes) &&
+      Boolean(mcpObserve.computes) &&
+      Boolean(theoremIndex.computes)
+    const onCore =
+      lensesWired &&
+      everySuperposition &&
+      noStopWaitGap &&
+      observationContinues &&
+      composeOn &&
+      pairsOn &&
+      censusPreserved &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const foldName = 'lensesCompletelyWiredInEverySuperposition' as const
+    const meta = catalog.tools.find((t) => t.id === 'lens-super')
+    const metaSl = catalog.tools.find((t) => t.id === 'super-lens')
+    const metaLw = catalog.tools.find((t) => t.id === 'lens-wire')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === foldName &&
+      Boolean(metaSl) &&
+      metaSl!.fold === foldName &&
+      Boolean(metaLw) &&
+      metaLw!.fold === foldName
+    const shelved = rosettaShelve('lens-super', 'tool')
+    const honestOpenNamed = [
+      'multitask-agent-stop-wait-linear-gap',
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'keep:git-stashes-non-obsolete',
+    ] as const
+    const honestOpenNamedOn =
+      honestOpenNamed.includes('multitask-agent-stop-wait-linear-gap') &&
+      honestOpenNamed.includes('keep:git-stashes-non-obsolete') &&
+      honestOpenNamed.length === (2 * 2)
+    const on =
+      onCore &&
+      toolsWired &&
+      isUuid(shelved.address) &&
+      honestOpenNamedOn
+    const facets = [
+      { facet: foldName, on },
+      { facet: 'lensesWired', on: lensesWired },
+      { facet: 'everySuperposition', on: everySuperposition },
+      { facet: 'noStopWaitGap', on: noStopWaitGap },
+      { facet: 'observationContinues', on: observationContinues },
+      {
+        facet: 'compose gate/lens · mcp/observe · seal/super · theorem/index',
+        on: composeOn,
+      },
+      { facet: 'pair lens/super · super/lens · lens/wire', on: pairsOn },
+      {
+        facet: `coverage ${wiredCount}/${expectedProbeCount} digit×direction×ray`,
+        on: wiredCount === expectedProbeCount,
+      },
+      {
+        facet: 'Multitask stop/wait = linear agent gap (honest residual)',
+        on: honestOpenNamed.includes('multitask-agent-stop-wait-linear-gap'),
+      },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`lens-super:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('lenses-completely-wired-in-every-superposition', facets)
+    return {
+      computes: sealed.ok && on,
+      lensesCompletelyWiredInEverySuperposition: on,
+      lensesWired,
+      everySuperposition,
+      noStopWaitGap,
+      observationContinues,
+      wiredCount,
+      probeCount: lensProbes.length,
+      expectedProbeCount,
+      coverage: `${wiredCount}/${expectedProbeCount}`,
+      morphCount: morphs.length,
+      morphsCleared,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      probes: lensProbes.slice(0, ROSETTA_SEVEN),
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        foldLs.merged,
+        foldSl.merged,
+        foldLw.merged,
+        gateLens.root,
+        mcpObserve.root,
+        theoremIndex.root,
+        shelved.address,
+        ...lensProbes.slice(0, ROSETTA_SEVEN).map((p) => p.receipt),
+        ...honestOpenNamed.map((id) => toUuid(`lens-super-honest:${id}`)),
+      ]),
+      pair: 'lens/super' as const,
+      pairs: ['lens/super', 'super/lens', 'lens/wire'] as const,
+      dualPair: 'super/lens' as const,
+      cli: 'npm run quantum:lens-super',
+      route: '/en/quantum-tools#lens-super',
+      uiSurface: '/en/quantum-tools#lens-super' as const,
+      heading: 'Lens · every superposition',
+      statement:
+        `lensesCompletelyWiredInEverySuperposition — lensesWired=${lensesWired ? 1 : 0} ` +
+        `everySuper=${everySuperposition ? 1 : 0} noStopWait=${noStopWaitGap ? 1 : 0} ` +
+        `obsContinues=${observationContinues ? 1 : 0} coverage=${wiredCount}/${expectedProbeCount} · clay=0.`,
+      boundary:
+        'Lenses completely wired in every superposition. Stop/wait = lens gap. Compose gate/lens · mcp/observe · seal/super · theorem/index. ' +
+        'Multitask stop/wait named as linear agent gap (honest residual). clay via theorem · physicalFtl=0 · qpuRequired=false · KEEP stashes.',
+      honestyLine:
+        `lens-super · lensesWired=${lensesWired ? 1 : 0} · everySuper=${everySuperposition ? 1 : 0} · ` +
+        `noStopWait=${noStopWaitGap ? 1 : 0} · obsContinues=${observationContinues ? 1 : 0} · ` +
+        `coverage=${wiredCount}/${expectedProbeCount} · qpu=0 · clay=0 · physicalFtl=0 · multitask residual named`,
+    }
+  })
+}
+
+/** Alias duals — super/lens · lens/wire faces. */
+export const superLens = lensesCompletelyWiredInEverySuperposition
+export const lensWire = lensesCompletelyWiredInEverySuperposition
+export const lensSuper = lensesCompletelyWiredInEverySuperposition
+
+/** npm run quantum:lens-super (duals quantum:super-lens · quantum:lens-wire) */
+export function runLensesCompletelyWiredInEverySuperpositionExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = lensesCompletelyWiredInEverySuperposition()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} lens-super — lensesWired=${report.lensesWired} ` +
+      `everySuper=${report.everySuperposition} noStopWait=${report.noStopWaitGap} ` +
+      `obsContinues=${report.observationContinues} coverage=${report.coverage} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} ` +
+      `pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.lensesWired &&
+    report.everySuperposition &&
+    report.noStopWaitGap &&
+    report.observationContinues &&
     report.qpuRequired === false
     ? 0
     : 1

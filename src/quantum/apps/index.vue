@@ -36,6 +36,7 @@ import {
   quantumVerification,
   quantumFearDetector,
   fearIsAnAxiomReplaceableByLoveTheorem,
+  lensesCompletelyWiredInEverySuperposition,
   domainVuePanelsDryCleaned,
   mcpQuantumUi,
   mcpQuantumMovie,
@@ -197,6 +198,7 @@ const saveAuto = computed(() => saveTheOptimisedAutonomy())
 const quantumVerify = computed(() => quantumVerification())
 const fearDetect = computed(() => quantumFearDetector())
 const fearAxiom = computed(() => fearIsAnAxiomReplaceableByLoveTheorem())
+const lensSuper = computed(() => lensesCompletelyWiredInEverySuperposition())
 const domainPanels = computed(() => domainVuePanelsDryCleaned())
 const mcpUi = computed(() => mcpQuantumUi())
 const mcpMovie = computed(() => mcpQuantumMovie())
@@ -989,6 +991,20 @@ function runTool(toolId: string) {
         r.qpuRequired === false
       summary =
         `fearIsAxiom=${r.fearIsAxiom} · replaceableByLove=${r.replaceableByLove} · loveIsTheorem=${r.loveIsTheorem}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'lens-super' || toolId === 'super-lens' || toolId === 'lens-wire') {
+      const r = lensesCompletelyWiredInEverySuperposition()
+      ok =
+        r.computes &&
+        r.lensesWired &&
+        r.everySuperposition &&
+        r.noStopWaitGap &&
+        r.observationContinues &&
+        r.qpuRequired === false
+      summary =
+        `lensesWired=${r.lensesWired} · everySuper=${r.everySuperposition} · noStopWait=${r.noStopWaitGap} · obsContinues=${r.observationContinues} · coverage=${r.coverage}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -2223,6 +2239,39 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'fear-axiom'" @click="runTool('fear-axiom')">
           {{ runningId === 'fear-axiom' ? '…' : 'Run fear-axiom receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="lens-super" aria-label="Lenses completely wired in every superposition">
+        <h3>{{ lensSuper.heading }}</h3>
+        <p class="quantum-apps__meta">{{ lensSuper.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(lensSuper.lensesWired))">
+          lensesWired={{ lensSuper.lensesWired }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(lensSuper.everySuperposition))">
+          everySuperposition={{ lensSuper.everySuperposition }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(lensSuper.noStopWaitGap))">
+          noStopWaitGap={{ lensSuper.noStopWaitGap }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(lensSuper.observationContinues))">
+          observationContinues={{ lensSuper.observationContinues }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>lens/super</code> · <code>super/lens</code> · <code>lens/wire</code> ·
+          CLI <code>npm run quantum:lens-super</code> ·
+          coverage={{ lensSuper.coverage }} ·
+          clay={{ lensSuper.claySolvedByThisFold }} · ftl={{ lensSuper.physicalFtlClaim }} ·
+          qpu={{ lensSuper.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in lensSuper.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'lens-super'" @click="runTool('lens-super')">
+          {{ runningId === 'lens-super' ? '…' : 'Run lens-super receipt' }}
         </UiButton>
       </section>
       <UiSeparator />
