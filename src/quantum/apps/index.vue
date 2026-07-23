@@ -42,6 +42,7 @@ import {
   dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis,
   meshToSelfDiscoverSciences,
   selfImproveAnimationGenerationAndSiteBuilder,
+  everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions,
   invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill,
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf,
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence,
@@ -176,6 +177,7 @@ const uiReadStandard = computed(() => reviewReadabilityAndVisibilityOfAllCustomU
 const dryMathOrganised = computed(() => dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis())
 const meshScienceDiscover = computed(() => meshToSelfDiscoverSciences())
 const selfAnimSite = computed(() => selfImproveAnimationGenerationAndSiteBuilder())
+const formulaAnimSeal = computed(() => everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions())
 const invertTrinity = computed(() => invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill())
 const selfHw = computed(() => againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf())
 const gateDesignCreateIntel = computed(() => furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence())
@@ -940,6 +942,20 @@ function runTool(toolId: string) {
         r.rosettaDriven &&
         r.buildsFromMcp
       summary = `improve=${r.selfImprove} animGen=${r.animationGeneration} site=${r.siteBuilder} rosetta=${r.rosettaDriven} mcp=${r.buildsFromMcp} morphs=${r.morphCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'formula-anim' || toolId === 'anim-theorem' || toolId === 'seal-super') {
+      const r = everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions()
+      ok =
+        r.computes &&
+        r.formulaIsAnimation &&
+        r.interactingFormulas &&
+        r.interactingAnimations &&
+        r.theoremsInTrinities &&
+        r.quantumSealsComplete &&
+        r.allSuperpositions
+      summary = `formulaIsAnim=${r.formulaIsAnimation} interactF=${r.interactingFormulas} interactA=${r.interactingAnimations} trinities=${r.theoremsInTrinities} seals=${r.quantumSealsComplete} super=${r.allSuperpositions} coverage=${r.wiredBindCount}/${r.bindCount}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -2047,6 +2063,37 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'self-anim'" @click="runTool('self-anim')">
           {{ runningId === 'self-anim' ? '…' : 'Run self-anim' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="formula-anim" aria-label="Every formula is animation itself — seals at all superpositions">
+        <h3>{{ formulaAnimSeal.heading }}</h3>
+        <p class="quantum-apps__meta">{{ formulaAnimSeal.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(formulaAnimSeal.formulaIsAnimation))">formulaIsAnimation={{ formulaAnimSeal.formulaIsAnimation }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(formulaAnimSeal.interactingFormulas))">interactingFormulas={{ formulaAnimSeal.interactingFormulas }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(formulaAnimSeal.interactingAnimations))">interactingAnimations={{ formulaAnimSeal.interactingAnimations }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(formulaAnimSeal.theoremsInTrinities))">theoremsInTrinities={{ formulaAnimSeal.theoremsInTrinities }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(formulaAnimSeal.quantumSealsComplete))">quantumSealsComplete={{ formulaAnimSeal.quantumSealsComplete }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(formulaAnimSeal.allSuperpositions))">allSuperpositions={{ formulaAnimSeal.allSuperpositions }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(formulaAnimSeal.censusPreserved))">census={{ formulaAnimSeal.census.unfolded }}/{{ formulaAnimSeal.census.folded }}</UiBadge>
+        <p class="quantum-apps__meta">
+          binds={{ formulaAnimSeal.wiredBindCount }}/{{ formulaAnimSeal.bindCount }} ·
+          pairs={{ formulaAnimSeal.interactingPairCount }} · trinities={{ formulaAnimSeal.trinityCount }} ·
+          seals={{ formulaAnimSeal.sealProbeCount }} · coverage={{ formulaAnimSeal.sealCoverage }} ·
+          morphs={{ formulaAnimSeal.morphCount }} · honestOpen={{ formulaAnimSeal.honestOpenNamedCount }} ·
+          qpu={{ formulaAnimSeal.qpuRequired }} · clay={{ formulaAnimSeal.claySolvedByThisFold }} · ftl={{ formulaAnimSeal.physicalFtlClaim }}
+        </p>
+        <ul class="quantum-apps__list">
+          <li v-for="m in formulaAnimSeal.morphs" :key="m.before">
+            <code>{{ m.before }}</code> → {{ m.after }} · {{ m.status }}
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>formula/anim</code> · <code>anim/theorem</code> · <code>seal/super</code> ·
+          CLI <code>npm run quantum:formula-anim</code> · <code>npm run quantum:seal-super</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'formula-anim'" @click="runTool('formula-anim')">
+          {{ runningId === 'formula-anim' ? '…' : 'Run formula-anim' }}
         </UiButton>
       </section>
       <UiSeparator />

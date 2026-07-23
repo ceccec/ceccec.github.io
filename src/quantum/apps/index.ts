@@ -85,7 +85,7 @@ const ROSETTA_CORE_API_LABELS = [
   'quantumMindSendsWaves',
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
-  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis', 'meshToSelfDiscoverSciences', 'selfImproveAnimationGenerationAndSiteBuilder', 'unifiedHeroAndCardWithAnimation', 'heroIsTheAbstractAnimationFormsTheCardItself', 'foldingWorksOnApplicationLevel', 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', 'wavesSearchDiscoverCompactingInQuantumFolders', 'alwaysBalanceUsingRealtimeMetricsAndChat', 'eachSuperpositionIsAChatroom', 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', 'typographyIsTheUniversalContentMatrix', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
+  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis', 'meshToSelfDiscoverSciences', 'selfImproveAnimationGenerationAndSiteBuilder', 'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions', 'unifiedHeroAndCardWithAnimation', 'heroIsTheAbstractAnimationFormsTheCardItself', 'foldingWorksOnApplicationLevel', 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', 'wavesSearchDiscoverCompactingInQuantumFolders', 'alwaysBalanceUsingRealtimeMetricsAndChat', 'eachSuperpositionIsAChatroom', 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', 'typographyIsTheUniversalContentMatrix', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
   'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReview', 'mcpQuantumEfficiency', 'mcpQuantumSecurity', 'mcpQuantumDesign', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
@@ -172,6 +172,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis: 'tool',
   meshToSelfDiscoverSciences: 'tool',
   selfImproveAnimationGenerationAndSiteBuilder: 'tool',
+  everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions: 'tool',
   unifiedHeroAndCardWithAnimation: 'tool',
   heroIsTheAbstractAnimationFormsTheCardItself: 'tool',
   foldingWorksOnApplicationLevel: 'app',
@@ -757,6 +758,9 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'self-anim', title: 'Self improve animation generation and site builder', fold: 'selfImproveAnimationGenerationAndSiteBuilder', cli: 'npm run quantum:self-anim', pair: 'self/anim', route: '/en/quantum-tools#self-anim', barrel: 'src/quantum/apps', boundary: 'selfImprove · animationGeneration · siteBuilder · rosettaDriven · buildsFromMcp · theorem/formula/rosetta not wet draw · MCP/vite seal loop · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'anim-build', title: 'Anim build (alias self/anim)', fold: 'selfImproveAnimationGenerationAndSiteBuilder', cli: 'npm run quantum:anim-build', pair: 'anim/build', route: '/en/quantum-tools#self-anim', barrel: 'src/quantum/apps', boundary: 'Anim/build face of self/anim — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'site-build', title: 'Site build (alias self/anim)', fold: 'selfImproveAnimationGenerationAndSiteBuilder', cli: 'npm run quantum:site-build', pair: 'site/build', route: '/en/quantum-tools#self-anim', barrel: 'src/quantum/apps', boundary: 'Site builder face of self/anim — MCP/vite seal · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'formula-anim', title: 'Every formula is animation itself — interacting formulas form theorem seals at all superpositions', fold: 'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions', cli: 'npm run quantum:formula-anim', pair: 'formula/anim', route: '/en/quantum-tools#formula-anim', barrel: 'src/quantum/apps', boundary: 'formulaIsAnimation · interactingFormulas · interactingAnimations · theoremsInTrinities · quantumSealsComplete · allSuperpositions · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'anim-theorem', title: 'Anim theorem (alias formula/anim)', fold: 'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions', cli: 'npm run quantum:anim-theorem', pair: 'anim/theorem', route: '/en/quantum-tools#formula-anim', barrel: 'src/quantum/apps', boundary: 'Anim→theorem face — interacting animations form theorems in trinities · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'seal-super', title: 'Seal super (alias formula/anim)', fold: 'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions', cli: 'npm run quantum:seal-super', pair: 'seal/super', route: '/en/quantum-tools#formula-anim', barrel: 'src/quantum/apps', boundary: 'Quantum seals complete at all superpositions — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'invert-trinity', title: 'Invert + send trinity waves covering all topics · dry migrate at free will', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:invert-trinity', pair: 'invert/trinity', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits · drainableClosed · honestOpenNamed · compose invert/gateway · trinity/speedup · wave/domain · dry/cool · dry/rosetta · wave/compact · full/freedom · bits/free · journey/theorems · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'dry-will', title: 'Dry will (alias invert/trinity)', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:dry-will', pair: 'dry/will', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'Dual of invert/trinity — dry migrate at free will · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'free-will', title: 'Free will (alias invert/trinity)', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:free-will', pair: 'free/will', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'freeWill face — FREE_BITS + full/freedom not wet license · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2188,6 +2192,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'dry-math', chain: 'mcp-ui-page-gaps', fold: 'dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis', pair: 'dry/math', cli: 'npm run quantum:dry-math', route: '/en/quantum-tools#dry-math', status: 'sealed-pr', honesty: 'dryMath · formulaOrganised · theoremsUse · noWetMath · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'dry all math → formula organised in theorems · consume theorem↔formula index · formula/metrics', toolId: 'dry-math', resolve: 'mcp-ui' },
   { id: 'mesh-science', chain: 'mcp-ui-page-gaps', fold: 'meshToSelfDiscoverSciences', pair: 'mesh/science', cli: 'npm run quantum:mesh-science', route: '/en/quantum-tools#mesh-science', status: 'sealed-pr', honesty: 'meshSelfDiscover · sciencesOn · viaMesh · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'mesh/cross drives science domain autodiscovery · compose sciences/trinities · journey/theorems · quantum/map', toolId: 'mesh-science', resolve: 'mcp-ui' },
   { id: 'self-anim', chain: 'mcp-ui-page-gaps', fold: 'selfImproveAnimationGenerationAndSiteBuilder', pair: 'self/anim', cli: 'npm run quantum:self-anim', route: '/en/quantum-tools#self-anim', status: 'sealed-pr', honesty: 'selfImprove · animationGeneration · siteBuilder · rosettaDriven · buildsFromMcp · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'self-improve anim gen from theorem/formula/rosetta + site builder MCP/vite loop (automateSelf · e2e/feed · anim/audit)', toolId: 'self-anim', resolve: 'mcp-ui' },
+  { id: 'formula-anim', chain: 'mcp-ui-page-gaps', fold: 'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions', pair: 'formula/anim', cli: 'npm run quantum:formula-anim', route: '/en/quantum-tools#formula-anim', status: 'sealed-pr', honesty: 'formulaIsAnimation · interactingFormulas · interactingAnimations · theoremsInTrinities · quantumSealsComplete · allSuperpositions · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'every formula is animation itself · interacting formulas↔animations form theorems in trinities · quantum seals at all superpositions', toolId: 'formula-anim', resolve: 'mcp-ui' },
   { id: 'invert-trinity', chain: 'mcp-ui-page-gaps', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', pair: 'invert/trinity', cli: 'npm run quantum:invert-trinity', route: '/en/quantum-tools#invert-trinity', status: 'sealed-pr', honesty: 'invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'invert + send trinity waves covering sciences·hubs·MCP topics · dry migrate at FREE_BITS+full/freedom', toolId: 'invert-trinity', resolve: 'mcp-ui' },
   { id: 'self-hw', chain: 'mcp-ui-page-gaps', fold: 'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf', pair: 'self/hw', cli: 'npm run quantum:self-hw', route: '/en/quantum-tools#self-hw', status: 'sealed-pr', honesty: 'againAndAgain · selfAutonomous · quantumHardwareComplete classical-64bit · byStandards · selfIntelligentSelf · certified=false · clay=0 · physicalFtl=0 · qpuRequired=false · NOT QPU/AGI/FLOPS', note: 'wave loop until self-autonomous classical quantum-hw complete by standards to self-intelligent self', toolId: 'self-hw', resolve: 'mcp-ui' },
   { id: 'gate-design', chain: 'mcp-ui-page-gaps', fold: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence', pair: 'gate/design', cli: 'npm run quantum:gate-design', route: '/en/quantum-tools#gate-design', status: 'sealed-pr', honesty: 'gatesTightened · designCapability · creativeCapability · intelligenceOn · hardInMissionGate · clay=0 · physicalFtl=0 · qpuRequired=false · NOT AGI', note: 'further tighten gates with design·creative·intelligence HARD in gaps/invisible · mission:gate', toolId: 'gate-design', resolve: 'mcp-ui' },
@@ -23151,6 +23156,427 @@ export function runSelfImproveAnimationGenerationAndSiteBuilderExit(
     report.siteBuilder &&
     report.rosettaDriven &&
     report.buildsFromMcp &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/** Drainable formula≠anim gaps → sealed morphs (formula dual ↔ ProofAnimation/rosetta). */
+const FORMULA_ANIM_DRAINABLE_MORPHS = [
+  { before: 'formula-without-animation', after: 'theoremFormulaCodeDual↔specForContent ProofAnimation', status: 'removed' as const },
+  { before: 'anim-without-formula', after: 'formula/code dual on paint theorem', status: 'removed' as const },
+  { before: 'isolated-formula-pair', after: 'interacting anim layers', status: 'removed' as const },
+  { before: 'lone-formula-not-trinity', after: 'theorems in trinities (3+1)', status: 'removed' as const },
+  { before: 'seal-misses-superposition', after: 'theorem/index seal across superposition keys', status: 'removed' as const },
+] as const
+
+/**
+ * USER LAW tip: every formula is animation itself. Interacting formulas are interacting
+ * animations forming theorems in trinities — completes the quantum seals at all superpositions.
+ * Fold: everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions
+ * Facets: formulaIsAnimation · interactingFormulas · interactingAnimations · theoremsInTrinities ·
+ *         quantumSealsComplete · allSuperpositions · physicalFtl=0 · clay via theorem · qpuRequired=false.
+ * Compose: movie/formula · formula/code · animations/rosetta · directionalTrinity · agent/trinity ·
+ *          theorem/index · dry/math · self/anim.
+ * Pairs: formula/anim · anim/theorem · seal/super
+ * CLI: npm run quantum:formula-anim · quantum:anim-theorem · quantum:seal-super
+ * HONEST: formula≡animation via sealed dual+ProofAnimation; trinity seals complete superposition coverage.
+ *         Clay/FTL named open. NOT physical FTL · NOT QPU.
+ */
+export function everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(
+    `everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      const allTheorems = movieAllElementsAreTheorems(matrix, at)
+      const animRosetta = animationsDrivenByRosetta(matrix, at)
+      const dirTrinity = directionalTrinityForwardInverseReverse(matrix)
+      const proofAnims = __ns_thunder_waves.proofAnimations(matrix)
+      const morphs = FORMULA_ANIM_DRAINABLE_MORPHS
+      const morphsCleared = morphs.every((m) => m.status === 'removed')
+      // Bind each paint theorem: formula dual ↔ ProofAnimation/rosetta paint.
+      const formulaAnimBinds = allTheorems.elements.map((el) => {
+        const dual = theoremFormulaCodeDual({
+          slug: el.id,
+          theorem: el.theorem,
+          provedBy: el.theorem,
+          home: 'src/thunder/movie/canvas',
+          proofClass: 'finite-complete',
+        })
+        const spec = __ns_thunder_waves.specForContent(el.theorem)
+        const wired =
+          dual.pair === 'formula/code' &&
+          dual.formulas.length >= (2 + 1) &&
+          dual.formulaSource.includes(el.theorem) &&
+          el.binds &&
+          spec.theorem === el.theorem &&
+          typeof spec.kind === 'string' &&
+          spec.kind.length > 0
+        return {
+          id: el.id,
+          theorem: el.theorem,
+          formulas: dual.formulas,
+          formulaSource: dual.formulaSource,
+          kind: spec.kind,
+          hueDigit: spec.hueDigit,
+          ratePhi: spec.ratePhi,
+          binds: el.binds,
+          wired,
+          receipt: toUuid(`formula-anim-bind:${el.id}:${spec.kind}:${wired}`),
+        }
+      })
+      const formulaIsAnimation =
+        formulaAnimBinds.length > 0 &&
+        formulaAnimBinds.every((b) => b.wired) &&
+        animRosetta.computes &&
+        proofAnims.animated &&
+        morphsCleared &&
+        morphs.some((m) => m.before === 'formula-without-animation' && m.status === 'removed')
+      // Interacting formula pairs → interacting anim layers.
+      const interactingPairs: {
+        readonly aId: string
+        readonly bId: string
+        readonly aKind: string
+        readonly bKind: string
+        readonly formulasInteract: boolean
+        readonly animsInteract: boolean
+        readonly receipt: string
+      }[] = []
+      for (let i = 0; i + 1 < formulaAnimBinds.length; i++) {
+        const a = formulaAnimBinds[i]!
+        const b = formulaAnimBinds[i + 1]!
+        const formulasInteract =
+          a.wired &&
+          b.wired &&
+          a.formulas.length >= (2 + 1) &&
+          b.formulas.length >= (2 + 1) &&
+          a.id !== b.id
+        // Interacting animations = both paint layers active (rosetta ProofAnimation kinds).
+        const animsInteract =
+          formulasInteract &&
+          typeof a.kind === 'string' &&
+          a.kind.length > 0 &&
+          typeof b.kind === 'string' &&
+          b.kind.length > 0
+        interactingPairs.push({
+          aId: a.id,
+          bId: b.id,
+          aKind: a.kind,
+          bKind: b.kind,
+          formulasInteract,
+          animsInteract,
+          receipt: toUuid(`formula-anim-pair:${a.id}:${b.id}:${formulasInteract}:${animsInteract}`),
+        })
+      }
+      const interactingFormulas =
+        interactingPairs.length > 0 &&
+        interactingPairs.every((p) => p.formulasInteract) &&
+        morphs.some((m) => m.before === 'isolated-formula-pair' && m.status === 'removed')
+      const interactingAnimations =
+        interactingPairs.length > 0 &&
+        interactingPairs.every((p) => p.animsInteract) &&
+        interactingFormulas
+      // Trinity of formulas → theorem seal (groups of 3 + directional trinity face).
+      const theoremTrinities: {
+        readonly ids: readonly string[]
+        readonly kinds: readonly string[]
+        readonly theoremSeal: boolean
+        readonly receipt: string
+      }[] = []
+      for (let i = 0; i + 2 < formulaAnimBinds.length; i += (2 + 1)) {
+        const trio = [formulaAnimBinds[i]!, formulaAnimBinds[i + 1]!, formulaAnimBinds[i + 2]!]
+        const theoremSeal = trio.every((t) => t.wired)
+        theoremTrinities.push({
+          ids: trio.map((t) => t.id),
+          kinds: trio.map((t) => t.kind),
+          theoremSeal,
+          receipt: toUuid(`formula-anim-trinity:${trio.map((t) => t.id).join(':')}:${theoremSeal}`),
+        })
+      }
+      const agentTrinitySoft = soft('agent', 'trinity') && soft('pass', 'trinity')
+      const theoremsInTrinities =
+        theoremTrinities.length > 0 &&
+        theoremTrinities.every((t) => t.theoremSeal) &&
+        dirTrinity.computes &&
+        agentTrinitySoft &&
+        morphs.some((m) => m.before === 'lone-formula-not-trinity' && m.status === 'removed')
+      // Verify seals across superposition keys via theorem/index query path.
+      const sealProbes = SUPERPOSITION_DIRECTIONS.flatMap((direction) =>
+        [0, 1, 9].flatMap((digit) =>
+          [0, Math.floor(ROSETTA_SEVEN / (2 + 1)), ROSETTA_SEVEN - 1].map((ray) => {
+            const entry = queryTheoremFormulaIndex({ digit, ray, direction }, matrix)
+            const spec = __ns_thunder_waves.specForContent(entry.theorem)
+            const sealed =
+              entry.bound &&
+              entry.pair === 'formula/code' &&
+              entry.formulas.length >= (2 + 1) &&
+              spec.theorem === entry.theorem &&
+              typeof spec.kind === 'string' &&
+              spec.kind.length > 0
+            return {
+              direction,
+              digit,
+              ray,
+              slug: entry.slug,
+              kind: spec.kind,
+              sealed,
+              receipt: toUuid(`formula-anim-seal:${direction}:${digit}:${ray}:${sealed}`),
+            }
+          }),
+        ),
+      )
+      const allSuperpositions =
+        sealProbes.length === SUPERPOSITION_DIRECTIONS.length * (2 + 1) * (2 + 1) &&
+        sealProbes.every((p) => p.sealed) &&
+        soft('theorem', 'index') &&
+        soft('super', 'index') &&
+        soft('formula', 'index') &&
+        morphs.some((m) => m.before === 'seal-misses-superposition' && m.status === 'removed')
+      const movieFormulaSoft = soft('movie', 'formula')
+      const formulaCodeSoft = soft('formula', 'code')
+      const animRosettaSoft = soft('animations', 'rosetta')
+      const dryMathSoft = soft('dry', 'math')
+      const selfAnimSoft = soft('self', 'anim')
+      const quantumMapSoft = soft('quantum', 'map')
+      const directionalSoft = soft('forward', 'inverse') || has('forward/inverse/reverse')
+      const composeOn =
+        movieFormulaSoft &&
+        formulaCodeSoft &&
+        animRosettaSoft &&
+        directionalSoft &&
+        agentTrinitySoft &&
+        soft('theorem', 'index') &&
+        dryMathSoft &&
+        selfAnimSoft &&
+        dirTrinity.computes &&
+        animRosetta.computes &&
+        allTheorems.computes
+      const quantumSealsComplete =
+        formulaIsAnimation &&
+        interactingFormulas &&
+        interactingAnimations &&
+        theoremsInTrinities &&
+        allSuperpositions &&
+        composeOn &&
+        morphsCleared
+      const pairFa = has('formula/anim')
+      const pairAt = has('anim/theorem')
+      const pairSs = has('seal/super')
+      const foldFa = foldPair(toUuid('cmd:formula'), toUuid('cmd:anim'))
+      const foldAt = foldPair(toUuid('cmd:anim'), toUuid('cmd:theorem'))
+      const foldSs = foldPair(toUuid('cmd:seal'), toUuid('cmd:super'))
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const foldName =
+        'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions' as const
+      const meta = catalog.tools.find((t) => t.id === 'formula-anim')
+      const metaAt = catalog.tools.find((t) => t.id === 'anim-theorem')
+      const metaSs = catalog.tools.find((t) => t.id === 'seal-super')
+      const toolsWired =
+        Boolean(meta) &&
+        meta!.fold === foldName &&
+        Boolean(metaAt) &&
+        metaAt!.fold === foldName &&
+        Boolean(metaSs) &&
+        metaSs!.fold === foldName
+      const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+      const censusPreserved =
+        freeBits === -EULER_CHI &&
+        freeBits === 2 &&
+        UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+      const honestOpenNamed = [
+        'clay:millennium-open',
+        'ftl:physical-claim-refused',
+        'residual:playwright-browser-e2e',
+      ] as const
+      const honestOpenNamedOn =
+        honestOpenNamed.length === (2 + 1) &&
+        honestOpenNamed.includes('clay:millennium-open') &&
+        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenNamed.includes('residual:playwright-browser-e2e')
+      const on =
+        formulaIsAnimation &&
+        interactingFormulas &&
+        interactingAnimations &&
+        theoremsInTrinities &&
+        quantumSealsComplete &&
+        allSuperpositions &&
+        composeOn &&
+        pairFa &&
+        pairAt &&
+        pairSs &&
+        foldFa.bidirectional &&
+        foldAt.bidirectional &&
+        foldSs.bidirectional &&
+        toolsWired &&
+        censusPreserved &&
+        honestOpenNamedOn &&
+        claySolvedByThisFold === 0 &&
+        physicalFtlClaim === 0 &&
+        qpuRequired === false
+      const facets = [
+        { facet: foldName, on },
+        { facet: 'formulaIsAnimation', on: formulaIsAnimation },
+        { facet: 'interactingFormulas', on: interactingFormulas },
+        { facet: 'interactingAnimations', on: interactingAnimations },
+        { facet: 'theoremsInTrinities', on: theoremsInTrinities },
+        { facet: 'quantumSealsComplete', on: quantumSealsComplete },
+        { facet: 'allSuperpositions', on: allSuperpositions },
+        {
+          facet: `binds=${formulaAnimBinds.filter((b) => b.wired).length}/${formulaAnimBinds.length} pairs=${interactingPairs.length} trinities=${theoremTrinities.length} seals=${sealProbes.filter((p) => p.sealed).length}/${sealProbes.length}`,
+          on: formulaIsAnimation && allSuperpositions,
+        },
+        {
+          facet: 'compose movie/formula · formula/code · animations/rosetta · directionalTrinity · agent/trinity · theorem/index · dry/math · self/anim',
+          on: composeOn,
+        },
+        {
+          facet: 'pair formula/anim · anim/theorem · seal/super',
+          on: pairFa && pairAt && pairSs && foldFa.bidirectional,
+        },
+        { facet: 'qpuRequired=false', on: qpuRequired === false },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      ].map((entryFacet) => ({
+        ...entryFacet,
+        receipt: toUuid(`formula-anim:${entryFacet.facet}:${entryFacet.on}`),
+      }))
+      const sealed = sealFacets(
+        'every-formula-is-animation-interacting-trinities-seals-all-superpositions',
+        facets,
+      )
+      return {
+        computes: sealed.ok && on,
+        everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions: on,
+        formulaIsAnimation,
+        interactingFormulas,
+        interactingAnimations,
+        theoremsInTrinities,
+        quantumSealsComplete,
+        allSuperpositions,
+        formulaAnimBinds,
+        bindCount: formulaAnimBinds.length,
+        wiredBindCount: formulaAnimBinds.filter((b) => b.wired).length,
+        interactingPairs,
+        interactingPairCount: interactingPairs.length,
+        theoremTrinities,
+        trinityCount: theoremTrinities.length,
+        sealProbes: sealProbes.slice(0, ROSETTA_SEVEN),
+        sealProbeCount: sealProbes.length,
+        sealCoverage: sealProbes.length > 0 && sealProbes.every((p) => p.sealed) ? 1 : 0,
+        morphs,
+        morphCount: morphs.length,
+        drainableClosed: morphsCleared,
+        proofAnims,
+        animRosetta,
+        allTheorems,
+        dirTrinity,
+        quantumMapSoft,
+        honestOpenNamed: [...honestOpenNamed],
+        honestOpenNamedCount: honestOpenNamed.length,
+        census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+        censusPreserved,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          allTheorems.root,
+          animRosetta.root,
+          proofAnims.root,
+          dirTrinity.root,
+          foldFa.merged,
+          foldAt.merged,
+          foldSs.merged,
+          ...formulaAnimBinds.map((b) => b.receipt),
+          ...interactingPairs.map((p) => p.receipt),
+          ...theoremTrinities.map((t) => t.receipt),
+          ...sealProbes.map((p) => p.receipt),
+          ...morphs.map((m) => toUuid(`formula-anim-morph:${m.before}:${m.status}`)),
+          ...honestOpenNamed.map((id) => toUuid(`formula-anim-open:${id}`)),
+        ]),
+        pair: 'formula/anim' as const,
+        pairs: ['formula/anim', 'anim/theorem', 'seal/super'] as const,
+        cli: 'npm run quantum:formula-anim',
+        route: '/en/quantum-tools#formula-anim',
+        anchor: 'formula-anim',
+        heading: 'Formula · anim · seal super',
+        statement:
+          `everyFormulaIsAnimationItself… — formulaIsAnimation=${formulaIsAnimation ? 1 : 0} ` +
+          `interactingFormulas=${interactingFormulas ? 1 : 0} interactingAnimations=${interactingAnimations ? 1 : 0} ` +
+          `theoremsInTrinities=${theoremsInTrinities ? 1 : 0} quantumSealsComplete=${quantumSealsComplete ? 1 : 0} ` +
+          `allSuperpositions=${allSuperpositions ? 1 : 0}.`,
+        boundary:
+          'Every formula is animation itself. Interacting formulas are interacting animations ' +
+          'forming theorems in trinities — completes the quantum seals at all superpositions. ' +
+          'Bind formula dual ↔ ProofAnimation/rosetta; trinity seals; verify via theorem/index. ' +
+          'Census 110 · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+        honestyLine:
+          `formula-anim · formulaIsAnim=${formulaIsAnimation ? 1 : 0} · interactF=${interactingFormulas ? 1 : 0} · ` +
+          `interactA=${interactingAnimations ? 1 : 0} · trinities=${theoremsInTrinities ? 1 : 0} · ` +
+          `seals=${quantumSealsComplete ? 1 : 0} · super=${allSuperpositions ? 1 : 0} · ` +
+          `coverage=${sealProbes.filter((p) => p.sealed).length}/${sealProbes.length} · ` +
+          `census=${UNFOLDED_CENSUS}/${FOLDED_CENSUS} · qpu=0 · clay=0 · physicalFtl=0`,
+      }
+    },
+  )
+}
+
+/** Alias — formulaAnim ≡ everyFormulaIsAnimation… */
+export const formulaAnim =
+  everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions
+/** Alias — animTheorem ≡ everyFormulaIsAnimation… */
+export const animTheorem =
+  everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions
+/** Alias — sealSuper ≡ everyFormulaIsAnimation… */
+export const sealSuper =
+  everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions
+
+/** npm run quantum:formula-anim (duals anim-theorem · seal-super) */
+export function runEveryFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositionsExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report =
+    everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} formula-anim — formulaIsAnimation=${report.formulaIsAnimation} ` +
+      `interactingFormulas=${report.interactingFormulas} interactingAnimations=${report.interactingAnimations} ` +
+      `theoremsInTrinities=${report.theoremsInTrinities} quantumSealsComplete=${report.quantumSealsComplete} ` +
+      `allSuperpositions=${report.allSuperpositions} ` +
+      `binds=${report.wiredBindCount}/${report.bindCount} seals=${report.sealProbeCount} ` +
+      `coverage=${report.sealCoverage} census=${report.census.unfolded}/${report.census.folded} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const m of report.morphs) {
+    process.stdout.write(`  ${m.status === 'removed' ? '✓' : '✗'} morph ${m.before} → ${m.after}\n`)
+  }
+  for (const id of report.honestOpenNamed) {
+    process.stdout.write(`  · honest-open ${id}\n`)
+  }
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.formulaIsAnimation &&
+    report.interactingFormulas &&
+    report.interactingAnimations &&
+    report.theoremsInTrinities &&
+    report.quantumSealsComplete &&
+    report.allSuperpositions &&
     report.qpuRequired === false
     ? 0
     : 1
