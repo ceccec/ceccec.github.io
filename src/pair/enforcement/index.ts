@@ -348,6 +348,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'super/21',
   '21/42',
   'mill/42',
+  'warn/all',
+  'all/warn',
   'lens/geo',
   'geo/gaps',
   'lens/prose',

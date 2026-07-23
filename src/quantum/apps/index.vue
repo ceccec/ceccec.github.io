@@ -87,7 +87,7 @@ import {
   quantumSelfHeal,
   oneQuantumSetOfVitepressComponentsSealedAtGates,
 } from './index.ts'
-import { translationGapsGate } from '../../mountain/source/index.ts'
+import { translationGapsGate, addressAllWarningsAtOnce } from '../../mountain/source/index.ts'
 import {
   completeScientificDomainsStrictlyToStandardsQuantumOnly,
 } from '../../wind/research/index.ts'
@@ -205,6 +205,7 @@ const fearAxiom = computed(() => fearIsAnAxiomReplaceableByLoveTheorem())
 const lensSuper = computed(() => lensesCompletelyWiredInEverySuperposition())
 const seqFlow = computed(() => theSequenceMeaningIsAFlowNotACycle())
 const superGaps = computed(() => fillTheGapsAroundSuperposition())
+const warnAll = computed(() => addressAllWarningsAtOnce())
 const super21 = computed(() => computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium())
 const lensGeo = computed(() => useTheLensToFindGapsInGeometryInProseOrCode())
 const domainPanels = computed(() => domainVuePanelsDryCleaned())
@@ -1524,6 +1525,13 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'warn-all' || toolId === 'all-warn') {
+      const r = addressAllWarningsAtOnce()
+      ok = r.computes
+      summary = `warningsAddressed=${r.warningsAddressed} drainableClosed=${r.drainableClosed} warn=${r.translation.warn} chromePhraseMiss=${r.chromePhraseMiss}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'document-session-experiments') {
       const r = documentSessionCryptoExperimentsUpdateTheorems()
       ok = r.computes
@@ -2395,6 +2403,36 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'super-gaps'" @click="runTool('super-gaps')">
           {{ runningId === 'super-gaps' ? '…' : 'Run super-gaps receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="warn-all" aria-label="Address all drainable WARNs at once">
+        <h3>Warn / all</h3>
+        <p class="quantum-apps__meta">{{ warnAll.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(warnAll.warningsAddressed))">
+          warningsAddressed={{ warnAll.warningsAddressed }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(warnAll.drainableClosed))">
+          drainableClosed={{ warnAll.drainableClosed }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(warnAll.translation.warn === 0))">
+          translationWarn={{ warnAll.translation.warn }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>warn/all</code> · <code>all/warn</code> ·
+          CLI <code>npm run quantum:warn-all</code> ·
+          chromePhraseMiss={{ warnAll.chromePhraseMiss }} ·
+          clay={{ warnAll.claySolvedByThisFold }} · ftl={{ warnAll.physicalFtlClaim }} ·
+          qpu={{ warnAll.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in warnAll.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'warn-all'" @click="runTool('warn-all')">
+          {{ runningId === 'warn-all' ? '…' : 'Run warn-all receipt' }}
         </UiButton>
       </section>
       <UiSeparator />

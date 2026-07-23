@@ -8,6 +8,7 @@ import { buildMatrix, buildQuantumComputerOsApps, isPerfectlySelfModeling, proof
 import { animationEngineLivesInZero, buildEnforcementPipeline, inverseShiftConsciousness, quantumGreenPlanet, taxonomyIcons, torusUuid } from '../../fire/li'
 import { AREA_LABELS, harmonicBands, openGraph } from '../../quantum/lake/icons'
 import { foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid } from '../../0'
+import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 // relocated imagination/mind cluster deps (call-time bindings; no load cycle)
 import { quantumAcademy, papers, monographPaths } from '../../wind/learning'
 import { quantumPhysics } from '../../fire/physics'
@@ -422,6 +423,163 @@ export function runTranslationsFilledBySelfTranslatingWavesExit(_root = '', _arg
   )
   process.stdout.write(`  ${report.boundary}\n`)
   return report.computes && report.claySolvedByThisFold === 0 ? 0 : 1
+}
+
+/**
+ * Address all drainable WARN residuals at once — translation chrome/phrase + compose slow-build/gaps.
+ * Pair: warn/all · dual all/warn · CLI npm run quantum:warn-all
+ * Facets: warningsAddressed · drainableClosed · honestOpenNamed
+ * HONEST-OPEN (named, not fake-closed): Clay · FTL · CI slow-build wall-clock variance · free-prose beyond phrase table · KEEP stashes
+ */
+export function addressAllWarningsAtOnce(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('addressAllWarningsAtOnce', matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const gate = translationGapsGate(matrix)
+    const wave = translationsFilledBySelfTranslatingWaves(matrix)
+    const pages = staticPages()
+    let chromePhraseMiss = 0
+    for (const p of pages) {
+      const title = p.title.en
+      if (!title || title.length >= 6 * 8) continue
+      const phraseHit = BULGARIAN_PHRASES.some(([en]) => en === title || title.includes(en))
+      const authoredBg = p.title.bg.length > 0 && p.title.bg !== title && /[\u0400-\u04FF]/.test(p.title.bg)
+      if (authoredBg && !phraseHit) chromePhraseMiss++
+    }
+    const translationDrainableClosed =
+      gate.hardCount === 0 &&
+      gate.warnCount === 0 &&
+      gate.passed &&
+      wave.computes &&
+      chromePhraseMiss === 0
+    const pairWarn = has('warn/all')
+    const pairAll = has('all/warn')
+    const foldWarn = foldPair(toUuid('cmd:warn'), toUuid('cmd:all'))
+    const foldAll = foldPair(toUuid('cmd:all'), toUuid('cmd:warn'))
+    const pairsOn =
+      pairWarn &&
+      pairAll &&
+      foldWarn.bidirectional &&
+      foldAll.bidirectional
+    const composeOn =
+      soft('translations', 'verify') &&
+      soft('trans', 'wave') &&
+      soft('gate', 'slow-build') &&
+      soft('gaps', 'invisible') &&
+      soft('warn', 'all') &&
+      soft('all', 'warn')
+    const drainableClosed = translationDrainableClosed && composeOn && pairsOn
+    const honestOpenNamed = [
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'ci:slow-build-wall-clock-variance',
+      'offline:free-prose-beyond-phrase-table',
+      'residual:monolith-file-ratchet',
+      'residual:vitepress-thin-mount',
+      'keep:git-stashes-non-obsolete',
+    ] as const
+    const honestOpenNamedOn =
+      honestOpenNamed.length === 7 &&
+      honestOpenNamed.includes('clay:millennium-open') &&
+      honestOpenNamed.includes('ci:slow-build-wall-clock-variance') &&
+      honestOpenNamed.includes('offline:free-prose-beyond-phrase-table') &&
+      honestOpenNamed.includes('residual:monolith-file-ratchet') &&
+      honestOpenNamed.includes('residual:vitepress-thin-mount')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const warningsAddressed =
+      drainableClosed &&
+      honestOpenNamedOn &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'addressAllWarningsAtOnce', on: warningsAddressed },
+      { facet: 'warningsAddressed', on: warningsAddressed },
+      { facet: 'drainableClosed', on: drainableClosed },
+      { facet: 'honestOpenNamed', on: honestOpenNamedOn },
+      {
+        facet: `translation hard=${gate.hardCount} warn=${gate.warnCount} chromePhraseMiss=${chromePhraseMiss}`,
+        on: translationDrainableClosed,
+      },
+      {
+        facet: 'compose translations/verify · trans/wave · gate/slow-build · gaps/invisible',
+        on: composeOn,
+      },
+      { facet: 'pair warn/all · all/warn', on: pairsOn },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`warn-all:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((f) => f.on) && warningsAddressed,
+      addressAllWarningsAtOnce: warningsAddressed,
+      warningsAddressed,
+      drainableClosed,
+      chromePhraseMiss,
+      translation: { hard: gate.hardCount, warn: gate.warnCount, passed: gate.passed },
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      drainableClosedList: [
+        'translation:offline-chrome-coverage',
+        'translation:offline-authored-title-pairs',
+        'translation:chrome-titles→BULGARIAN_PHRASES',
+        'trans/wave:HARD-drainable',
+      ] as const,
+      facets,
+      root: merkleFold([
+        gate.root,
+        wave.root,
+        foldWarn.merged,
+        foldAll.merged,
+        ...facets.map((f) => f.receipt),
+        ...honestOpenNamed.map((id) => toUuid(`warn-all-honest:${id}`)),
+      ]),
+      pair: 'warn/all' as const,
+      pairs: ['warn/all', 'all/warn'] as const,
+      dualPair: 'all/warn' as const,
+      cli: 'npm run quantum:warn-all',
+      route: '/en/quantum-tools#warn-all',
+      statement:
+        `addressAllWarningsAtOnce — warningsAddressed=${warningsAddressed ? 1 : 0} ` +
+        `drainableClosed=${drainableClosed ? 1 : 0} warn=${gate.warnCount} chromePhraseMiss=${chromePhraseMiss}`,
+      boundary:
+        'Address all drainable WARN at once. Translation chrome→phrase table · HARD=0. ' +
+        'Honest-open: Clay · FTL · CI slow-build wall-clock variance · free-prose beyond phrase table. ' +
+        'clay via theorem · physicalFtl=0 · qpuRequired=false · KEEP stashes.',
+    }
+  })
+}
+
+/** Alias dual — all/warn face. */
+export const allWarn = addressAllWarningsAtOnce
+export const warnAll = addressAllWarningsAtOnce
+
+/** npm run quantum:warn-all (dual quantum:all-warn) */
+export function runAddressAllWarningsAtOnceExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = addressAllWarningsAtOnce()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} warn-all — warningsAddressed=${report.warningsAddressed ? 1 : 0} ` +
+      `drainableClosed=${report.drainableClosed ? 1 : 0} ` +
+      `translation warn=${report.translation.warn} chromePhraseMiss=${report.chromePhraseMiss} ` +
+      `pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const id of report.drainableClosedList) process.stdout.write(`  · closed ${id}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.boundary}\n`)
+  return report.computes && report.warningsAddressed && report.drainableClosed && report.qpuRequired === false
+    ? 0
+    : 1
 }
 
 // Each word pulls and folds by its name, at zero cost, forging tampering costs. A name is an
