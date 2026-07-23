@@ -39,6 +39,8 @@ import {
   cssShowsTheHiddenGapsInDryFusion,
   inversionFusion,
   reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise,
+  dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis,
+  meshToSelfDiscoverSciences,
   invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill,
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf,
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence,
@@ -170,6 +172,8 @@ const colorRosetta = computed(() => allColorsDryCleanWiredToRosettaAndThemes())
 const cssGaps = computed(() => cssShowsTheHiddenGapsInDryFusion())
 const invertFusion = computed(() => inversionFusion())
 const uiReadStandard = computed(() => reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise())
+const dryMathOrganised = computed(() => dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis())
+const meshScienceDiscover = computed(() => meshToSelfDiscoverSciences())
 const invertTrinity = computed(() => invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill())
 const selfHw = computed(() => againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf())
 const gateDesignCreateIntel = computed(() => furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence())
@@ -898,6 +902,29 @@ function runTool(toolId: string) {
         r.customUiCovered &&
         r.drainableClosed
       summary = `review=${r.reviewOn} read=${r.readabilityOn} vis=${r.visibilityOn} std=${r.standardised} covered=${r.customUiCovered} drainable=${r.drainableClosed} surfaces=${r.surfaceCount} morphs=${r.morphCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'dry-math' || toolId === 'math-formula' || toolId === 'formula-theorem') {
+      const r = dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis()
+      ok =
+        r.computes &&
+        r.dryMath &&
+        r.formulaOrganised &&
+        r.theoremsUse &&
+        r.noWetMath
+      summary = `dry=${r.dryMath} organised=${r.formulaOrganised} use=${r.theoremsUse} noWet=${r.noWetMath} morphs=${r.morphCount} slug=${r.entry.slug}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'mesh-science' || toolId === 'science-discover' || toolId === 'mesh-discover') {
+      const r = meshToSelfDiscoverSciences()
+      ok =
+        r.computes &&
+        r.meshSelfDiscover &&
+        r.sciencesOn &&
+        r.viaMesh
+      summary = `discover=${r.meshSelfDiscover} sciences=${r.sciencesOn} viaMesh=${r.viaMesh} n=${r.discoveryCount}/${r.scienceCount}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -1924,6 +1951,59 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'ui-read'" @click="runTool('ui-read')">
           {{ runningId === 'ui-read' ? '…' : 'Run ui-read' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="dry-math" aria-label="Dry all math to formula organised in theorems">
+        <h3>{{ dryMathOrganised.heading }}</h3>
+        <p class="quantum-apps__meta">{{ dryMathOrganised.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(dryMathOrganised.dryMath))">dryMath={{ dryMathOrganised.dryMath }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(dryMathOrganised.formulaOrganised))">formulaOrganised={{ dryMathOrganised.formulaOrganised }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(dryMathOrganised.theoremsUse))">theoremsUse={{ dryMathOrganised.theoremsUse }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(dryMathOrganised.noWetMath))">noWetMath={{ dryMathOrganised.noWetMath }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(dryMathOrganised.censusPreserved))">census={{ dryMathOrganised.census.unfolded }}/{{ dryMathOrganised.census.folded }}</UiBadge>
+        <p class="quantum-apps__meta">
+          slug={{ dryMathOrganised.entry.slug }} · morphs={{ dryMathOrganised.morphCount }} ·
+          honestOpen={{ dryMathOrganised.honestOpenNamedCount }} ·
+          qpu={{ dryMathOrganised.qpuRequired }} · clay={{ dryMathOrganised.claySolvedByThisFold }} · ftl={{ dryMathOrganised.physicalFtlClaim }}
+        </p>
+        <ul class="quantum-apps__list">
+          <li v-for="m in dryMathOrganised.morphs" :key="m.before">
+            <code>{{ m.before }}</code> → {{ m.after }} · {{ m.status }}
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>math/formula</code> · <code>formula/theorem</code> · <code>dry/math</code> ·
+          CLI <code>npm run quantum:dry-math</code> · <code>npm run quantum:math-formula</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'dry-math'" @click="runTool('dry-math')">
+          {{ runningId === 'dry-math' ? '…' : 'Run dry-math' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="mesh-science" aria-label="Mesh to self-discover sciences">
+        <h3>{{ meshScienceDiscover.heading }}</h3>
+        <p class="quantum-apps__meta">{{ meshScienceDiscover.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(meshScienceDiscover.meshSelfDiscover))">meshSelfDiscover={{ meshScienceDiscover.meshSelfDiscover }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(meshScienceDiscover.sciencesOn))">sciencesOn={{ meshScienceDiscover.sciencesOn }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(meshScienceDiscover.viaMesh))">viaMesh={{ meshScienceDiscover.viaMesh }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(meshScienceDiscover.censusPreserved))">census={{ meshScienceDiscover.census.unfolded }}/{{ meshScienceDiscover.census.folded }}</UiBadge>
+        <p class="quantum-apps__meta">
+          discoveries={{ meshScienceDiscover.discoveryCount }}/{{ meshScienceDiscover.scienceCount }} ·
+          honestOpen={{ meshScienceDiscover.honestOpenNamedCount }} ·
+          qpu={{ meshScienceDiscover.qpuRequired }} · clay={{ meshScienceDiscover.claySolvedByThisFold }} · ftl={{ meshScienceDiscover.physicalFtlClaim }}
+        </p>
+        <ul class="quantum-apps__list">
+          <li v-for="d in meshScienceDiscover.discoveries" :key="d.scienceId">
+            <code>{{ d.scienceId }}</code> ↔ {{ d.dualId }} · {{ d.fusionLabel }}
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>mesh/science</code> · <code>science/discover</code> · <code>mesh/discover</code> ·
+          CLI <code>npm run quantum:mesh-science</code> · <code>npm run quantum:science-discover</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'mesh-science'" @click="runTool('mesh-science')">
+          {{ runningId === 'mesh-science' ? '…' : 'Run mesh-science' }}
         </UiButton>
       </section>
       <UiSeparator />

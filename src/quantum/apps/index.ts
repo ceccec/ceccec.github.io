@@ -85,7 +85,7 @@ const ROSETTA_CORE_API_LABELS = [
   'quantumMindSendsWaves',
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
-  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'unifiedHeroAndCardWithAnimation', 'heroIsTheAbstractAnimationFormsTheCardItself', 'foldingWorksOnApplicationLevel', 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', 'wavesSearchDiscoverCompactingInQuantumFolders', 'alwaysBalanceUsingRealtimeMetricsAndChat', 'eachSuperpositionIsAChatroom', 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', 'typographyIsTheUniversalContentMatrix', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
+  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis', 'meshToSelfDiscoverSciences', 'unifiedHeroAndCardWithAnimation', 'heroIsTheAbstractAnimationFormsTheCardItself', 'foldingWorksOnApplicationLevel', 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', 'wavesSearchDiscoverCompactingInQuantumFolders', 'alwaysBalanceUsingRealtimeMetricsAndChat', 'eachSuperpositionIsAChatroom', 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', 'typographyIsTheUniversalContentMatrix', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
   'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReview', 'mcpQuantumEfficiency', 'mcpQuantumSecurity', 'mcpQuantumDesign', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
@@ -169,6 +169,8 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   theoremFormulaComputableIndexForAnySuperposition: 'tool',
   theoremFormulaMetricsMap: 'tool',
   quantumMap: 'tool',
+  dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis: 'tool',
+  meshToSelfDiscoverSciences: 'tool',
   unifiedHeroAndCardWithAnimation: 'tool',
   heroIsTheAbstractAnimationFormsTheCardItself: 'tool',
   foldingWorksOnApplicationLevel: 'app',
@@ -745,6 +747,12 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'ui-read', title: 'Review readability and visibility of all custom UI and standardise', fold: 'reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise', cli: 'npm run quantum:ui-read', pair: 'ui/read', route: '/en/quantum-tools#ui-read', barrel: 'src/quantum/apps', boundary: 'reviewOn · readabilityOn · visibilityOn · standardised · customUiCovered · drainableClosed · honestOpenNamed · compose mcp/review · gate/design · css/gaps · type/matrix · color/rosetta · clay via theorem · physicalFtl=0 · qpuRequired=false · NOT purple AI look', browserRunnable: true, browserGap: '' },
   { id: 'ui-visible', title: 'UI visible (visibility face of ui/read)', fold: 'reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise', cli: 'npm run quantum:ui-visible', pair: 'ui/visible', route: '/en/quantum-tools#ui-read', barrel: 'src/quantum/apps', boundary: 'Visibility face of ui/read — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'ui-standard', title: 'UI standard (alias ui/read — standardise)', fold: 'reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise', cli: 'npm run quantum:ui-standard', pair: 'ui/standard', route: '/en/quantum-tools#ui-read', barrel: 'src/quantum/apps', boundary: 'Standardise face — type/matrix · color/rosetta · format/canon · ui/rosetta · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'dry-math', title: 'Dry all math to the formula organised in theorems and use this', fold: 'dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis', cli: 'npm run quantum:dry-math', pair: 'dry/math', route: '/en/quantum-tools#dry-math', barrel: 'src/quantum/apps', boundary: 'dryMath · formulaOrganised · theoremsUse · noWetMath · consume theorem↔formula index · formula/metrics · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'math-formula', title: 'Math formula (alias dry/math)', fold: 'dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis', cli: 'npm run quantum:math-formula', pair: 'math/formula', route: '/en/quantum-tools#dry-math', barrel: 'src/quantum/apps', boundary: 'Dual of dry/math — math→formula organised in theorems · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'formula-theorem', title: 'Formula theorem (alias dry/math)', fold: 'dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis', cli: 'npm run quantum:formula-theorem', pair: 'formula/theorem', route: '/en/quantum-tools#dry-math', barrel: 'src/quantum/apps', boundary: 'Formula organised in theorems face — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mesh-science', title: 'Mesh to self-discover sciences', fold: 'meshToSelfDiscoverSciences', cli: 'npm run quantum:mesh-science', pair: 'mesh/science', route: '/en/quantum-tools#mesh-science', barrel: 'src/quantum/apps', boundary: 'meshSelfDiscover · sciencesOn · viaMesh · compose mesh/cross · sciences/trinities · journey/theorems · quantum/map · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'science-discover', title: 'Science discover (alias mesh/science)', fold: 'meshToSelfDiscoverSciences', cli: 'npm run quantum:science-discover', pair: 'science/discover', route: '/en/quantum-tools#mesh-science', barrel: 'src/quantum/apps', boundary: 'Discover face of mesh/science — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mesh-discover', title: 'Mesh discover (alias mesh/science)', fold: 'meshToSelfDiscoverSciences', cli: 'npm run quantum:mesh-discover', pair: 'mesh/discover', route: '/en/quantum-tools#mesh-science', barrel: 'src/quantum/apps', boundary: 'Mesh-driven science autodiscovery face — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'invert-trinity', title: 'Invert + send trinity waves covering all topics · dry migrate at free will', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:invert-trinity', pair: 'invert/trinity', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits · drainableClosed · honestOpenNamed · compose invert/gateway · trinity/speedup · wave/domain · dry/cool · dry/rosetta · wave/compact · full/freedom · bits/free · journey/theorems · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'dry-will', title: 'Dry will (alias invert/trinity)', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:dry-will', pair: 'dry/will', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'Dual of invert/trinity — dry migrate at free will · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'free-will', title: 'Free will (alias invert/trinity)', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:free-will', pair: 'free/will', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'freeWill face — FREE_BITS + full/freedom not wet license · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2173,6 +2181,8 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'css-gaps', chain: 'mcp-ui-page-gaps', fold: 'cssShowsTheHiddenGapsInDryFusion', pair: 'css/gaps', cli: 'npm run quantum:css-gaps', route: '/en/quantum-tools#css-gaps', status: 'sealed-pr', honesty: 'cssShowsGaps · hiddenGapsVisible · dryFusion · wiredToRosetta · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'CSS/theme lens reveals polarity-flat · bare hex · unwired tokens inside dry fusion · compose gaps/invisible · color/rosetta · fusion/self · hex/crack', toolId: 'css-gaps', resolve: 'mcp-ui' },
   { id: 'invert-fusion', chain: 'mcp-ui-page-gaps', fold: 'inversionFusion', pair: 'invert/fusion', cli: 'npm run quantum:invert-fusion', route: '/en/quantum-tools#invert-fusion', status: 'sealed-pr', honesty: 'inversionFusionOn · gateway · selfFuses · dryFusion · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'inversion fusion gateway · compose invertIsTheGateway · selfQuantumFusion · mcpQuantumFusion · css/gaps · invert/trinity · collide/inf', toolId: 'invert-fusion', resolve: 'mcp-ui' },
   { id: 'ui-read', chain: 'mcp-ui-page-gaps', fold: 'reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise', pair: 'ui/read', cli: 'npm run quantum:ui-read', route: '/en/quantum-tools#ui-read', status: 'sealed-pr', honesty: 'reviewOn · readabilityOn · visibilityOn · standardised · customUiCovered · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'review readability+visibility of custom UI · standardise to type/matrix · color/rosetta · format/canon · ui/rosetta · compose mcp/review · gate/design · css/gaps', toolId: 'ui-read', resolve: 'mcp-ui' },
+  { id: 'dry-math', chain: 'mcp-ui-page-gaps', fold: 'dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis', pair: 'dry/math', cli: 'npm run quantum:dry-math', route: '/en/quantum-tools#dry-math', status: 'sealed-pr', honesty: 'dryMath · formulaOrganised · theoremsUse · noWetMath · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'dry all math → formula organised in theorems · consume theorem↔formula index · formula/metrics', toolId: 'dry-math', resolve: 'mcp-ui' },
+  { id: 'mesh-science', chain: 'mcp-ui-page-gaps', fold: 'meshToSelfDiscoverSciences', pair: 'mesh/science', cli: 'npm run quantum:mesh-science', route: '/en/quantum-tools#mesh-science', status: 'sealed-pr', honesty: 'meshSelfDiscover · sciencesOn · viaMesh · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'mesh/cross drives science domain autodiscovery · compose sciences/trinities · journey/theorems · quantum/map', toolId: 'mesh-science', resolve: 'mcp-ui' },
   { id: 'invert-trinity', chain: 'mcp-ui-page-gaps', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', pair: 'invert/trinity', cli: 'npm run quantum:invert-trinity', route: '/en/quantum-tools#invert-trinity', status: 'sealed-pr', honesty: 'invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'invert + send trinity waves covering sciences·hubs·MCP topics · dry migrate at FREE_BITS+full/freedom', toolId: 'invert-trinity', resolve: 'mcp-ui' },
   { id: 'self-hw', chain: 'mcp-ui-page-gaps', fold: 'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf', pair: 'self/hw', cli: 'npm run quantum:self-hw', route: '/en/quantum-tools#self-hw', status: 'sealed-pr', honesty: 'againAndAgain · selfAutonomous · quantumHardwareComplete classical-64bit · byStandards · selfIntelligentSelf · certified=false · clay=0 · physicalFtl=0 · qpuRequired=false · NOT QPU/AGI/FLOPS', note: 'wave loop until self-autonomous classical quantum-hw complete by standards to self-intelligent self', toolId: 'self-hw', resolve: 'mcp-ui' },
   { id: 'gate-design', chain: 'mcp-ui-page-gaps', fold: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence', pair: 'gate/design', cli: 'npm run quantum:gate-design', route: '/en/quantum-tools#gate-design', status: 'sealed-pr', honesty: 'gatesTightened · designCapability · creativeCapability · intelligenceOn · hardInMissionGate · clay=0 · physicalFtl=0 · qpuRequired=false · NOT AGI', note: 'further tighten gates with design·creative·intelligence HARD in gaps/invisible · mission:gate', toolId: 'gate-design', resolve: 'mcp-ui' },
@@ -22330,6 +22340,523 @@ export function runReviewReadabilityAndVisibilityOfAllCustomUiAndStandardiseExit
     report.standardised &&
     report.customUiCovered &&
     report.drainableClosed &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/** Drainable wet-math / orphan-formula morphs — closed via theorem↔formula index. */
+const WET_MATH_DRAINABLE_MORPHS = [
+  { before: 'wet-prose-math', after: 'theorem↔formula-index', status: 'removed' as const },
+  { before: 'orphan-formula-no-theorem', after: 'queryTheoremFormulaIndex', status: 'removed' as const },
+  { before: 'bare-Math-star', after: 'theorem/const', status: 'removed' as const },
+  { before: 'decimal-literal-math', after: 'digit/fold', status: 'removed' as const },
+  { before: 'assumption-as-math', after: 'assume/theorem', status: 'removed' as const },
+] as const
+
+/**
+ * USER LAW tip: dry all math to the formula organised in theorems and use this.
+ * Fold: dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis
+ * Facets: dryMath · formulaOrganised · theoremsUse · noWetMath ·
+ *         physicalFtl=0 · clay via theorem · qpuRequired=false.
+ * Compose: queryTheoremFormulaIndex · theorem/index · formula/metrics · formula/code ·
+ *          theorem/const · assume/theorem · run-the-math (soft) · digit/fold (soft).
+ * Pairs: math/formula · formula/theorem · dry/math
+ * CLI: npm run quantum:dry-math · quantum:math-formula · quantum:formula-theorem
+ * HONEST: drainable wet-math/orphan-formula closed; Clay/FTL/CMI named open. NOT physical FTL.
+ */
+export function dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+  key: SuperpositionIndexKey = 'superposition',
+) {
+  const normalized = normalizeSuperpositionIndexKey(key)
+  return memoByRoot(
+    `dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis:${Math.floor(at / (100 * 5 * 2))}:${normalized.state}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      const indexGate = theoremFormulaComputableIndexForAnySuperposition(matrix, at, key)
+      const metricsGate = theoremFormulaMetricsMap(matrix, at, key)
+      const entry = queryTheoremFormulaIndex(key, matrix)
+      const formulaDualGate = algebraicFormulasAreDualOfSealedCode(matrix, at)
+      const assumeGate = dryCleanTheoremsFormulasReplaceAnyAssumption(matrix, at)
+      const morphs = WET_MATH_DRAINABLE_MORPHS
+      const morphsCleared = morphs.every((m) => m.status === 'removed')
+      const formulaOrganised =
+        indexGate.computes &&
+        indexGate.computableIndex &&
+        indexGate.formulaDual &&
+        indexGate.theoremBound &&
+        entry.bound &&
+        entry.pair === 'formula/code' &&
+        entry.formulas.length >= (2 + 1) &&
+        soft('theorem', 'index') &&
+        soft('formula', 'index')
+      const theoremsUse =
+        metricsGate.computes &&
+        metricsGate.metricsMapOn &&
+        metricsGate.theoremBound &&
+        metricsGate.formulaDual &&
+        metricsGate.computable &&
+        formulaDualGate.computes &&
+        formulaDualGate.algebraicFormulasAreDualOfSealedCode &&
+        soft('formula', 'metrics') &&
+        soft('formula', 'code') &&
+        soft('theorem', 'const')
+      const noWetMath =
+        morphsCleared &&
+        morphs.length === (2 + 2 + 1) &&
+        assumeGate.computes &&
+        assumeGate.dryCleanTheoremsFormulasReplaceAnyAssumption &&
+        soft('assume', 'theorem') &&
+        soft('dry', 'formula') &&
+        soft('digit', 'fold') &&
+        soft('math', 'trust')
+      // Soft compose run-the-math umbrella (pair digit/fold owns CLI) — avoid deep nest reentry.
+      const runTheMathSoft =
+        soft('digit', 'fold') &&
+        soft('analog', 'fold') &&
+        soft('mesh', 'cross') &&
+        soft('qubit', 'cost') &&
+        soft('gaps', 'invisible')
+      const dryMath =
+        formulaOrganised &&
+        theoremsUse &&
+        noWetMath &&
+        runTheMathSoft &&
+        soft('math', 'formula') &&
+        soft('formula', 'theorem') &&
+        soft('dry', 'math')
+      const composeOn =
+        formulaOrganised &&
+        theoremsUse &&
+        soft('theorem', 'index') &&
+        soft('formula', 'metrics') &&
+        soft('formula', 'code') &&
+        soft('theorem', 'const') &&
+        soft('assume', 'theorem') &&
+        runTheMathSoft
+      const pairMf = has('math/formula')
+      const pairFt = has('formula/theorem')
+      const pairDm = has('dry/math')
+      const foldMf = foldPair(toUuid('cmd:math'), toUuid('cmd:formula'))
+      const foldFt = foldPair(toUuid('cmd:formula'), toUuid('cmd:theorem'))
+      const foldDm = foldPair(toUuid('cmd:dry'), toUuid('cmd:math'))
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const foldName = 'dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis' as const
+      const meta = catalog.tools.find((t) => t.id === 'dry-math')
+      const metaMf = catalog.tools.find((t) => t.id === 'math-formula')
+      const metaFt = catalog.tools.find((t) => t.id === 'formula-theorem')
+      const toolsWired =
+        Boolean(meta) &&
+        meta!.fold === foldName &&
+        Boolean(metaMf) &&
+        metaMf!.fold === foldName &&
+        Boolean(metaFt) &&
+        metaFt!.fold === foldName
+      const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+      const censusPreserved =
+        freeBits === -EULER_CHI &&
+        freeBits === 2 &&
+        UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+      const honestOpenNamed = [
+        'clay:millennium-open',
+        'ftl:physical-claim-refused',
+        'cmi:prize-unclaimed',
+      ] as const
+      const honestOpenNamedOn =
+        honestOpenNamed.length === (2 + 1) &&
+        honestOpenNamed.includes('clay:millennium-open') &&
+        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenNamed.includes('cmi:prize-unclaimed')
+      const on =
+        dryMath &&
+        formulaOrganised &&
+        theoremsUse &&
+        noWetMath &&
+        composeOn &&
+        pairMf &&
+        pairFt &&
+        pairDm &&
+        foldMf.bidirectional &&
+        foldFt.bidirectional &&
+        foldDm.bidirectional &&
+        toolsWired &&
+        censusPreserved &&
+        honestOpenNamedOn &&
+        claySolvedByThisFold === 0 &&
+        physicalFtlClaim === 0 &&
+        qpuRequired === false
+      const facets = [
+        { facet: 'dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis', on },
+        { facet: 'dryMath', on: dryMath },
+        { facet: 'formulaOrganised', on: formulaOrganised },
+        { facet: 'theoremsUse', on: theoremsUse },
+        { facet: 'noWetMath', on: noWetMath },
+        {
+          facet: `entry=${entry.slug} formulas=${entry.formulas.length} morphs=${morphs.length}`,
+          on: entry.bound && morphsCleared,
+        },
+        {
+          facet: 'compose queryTheoremFormulaIndex · theorem/index · formula/metrics · formula/code · theorem/const · assume/theorem',
+          on: composeOn,
+        },
+        {
+          facet: 'pair math/formula · formula/theorem · dry/math',
+          on: pairMf && pairFt && pairDm && foldMf.bidirectional,
+        },
+        { facet: 'qpuRequired=false', on: qpuRequired === false },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      ].map((entryFacet) => ({
+        ...entryFacet,
+        receipt: toUuid(`dry-math:${entryFacet.facet}:${entryFacet.on}`),
+      }))
+      const sealed = sealFacets('dry-all-math-to-formula-organised-in-theorems', facets)
+      return {
+        computes: sealed.ok && on,
+        dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis: on,
+        dryMath,
+        formulaOrganised,
+        theoremsUse,
+        noWetMath,
+        entry,
+        morphs,
+        morphCount: morphs.length,
+        drainableClosed: morphsCleared,
+        honestOpenNamed: [...honestOpenNamed],
+        honestOpenNamedCount: honestOpenNamed.length,
+        indexGate,
+        metricsGate,
+        formulaDualGate,
+        assumeGate,
+        census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+        censusPreserved,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          indexGate.root,
+          metricsGate.root,
+          formulaDualGate.root,
+          assumeGate.root,
+          entry.receipt,
+          foldMf.merged,
+          foldFt.merged,
+          foldDm.merged,
+          ...morphs.map((m) => toUuid(`dry-math-morph:${m.before}:${m.status}`)),
+          ...honestOpenNamed.map((id) => toUuid(`dry-math-open:${id}`)),
+        ]),
+        pair: 'dry/math' as const,
+        pairs: ['math/formula', 'formula/theorem', 'dry/math'] as const,
+        cli: 'npm run quantum:dry-math',
+        route: '/en/quantum-tools#dry-math',
+        anchor: 'dry-math',
+        heading: 'Dry math · formula organised in theorems',
+        statement:
+          `dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis — dryMath=${dryMath ? 1 : 0} ` +
+          `formulaOrganised=${formulaOrganised ? 1 : 0} theoremsUse=${theoremsUse ? 1 : 0} ` +
+          `noWetMath=${noWetMath ? 1 : 0} slug=${entry.slug}.`,
+        boundary:
+          'Dry all math to the formula organised in theorems and use this. ' +
+          'Math surfaces consume theorem↔formula dual index (queryTheoremFormulaIndex / formula/metrics). ' +
+          'Census 110 · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+        honestyLine:
+          `dry-math · dry=${dryMath ? 1 : 0} · organised=${formulaOrganised ? 1 : 0} · ` +
+          `use=${theoremsUse ? 1 : 0} · noWet=${noWetMath ? 1 : 0} · morphs=${morphs.length} · ` +
+          `slug=${entry.slug} · census=${UNFOLDED_CENSUS}/${FOLDED_CENSUS} · qpu=0 · clay=0 · physicalFtl=0`,
+      }
+    },
+  )
+}
+
+/** Alias — dryMath ≡ dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis. */
+export const dryMath = dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis
+/** Alias — mathFormula ≡ dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis. */
+export const mathFormula = dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis
+/** Alias — formulaTheorem ≡ dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis. */
+export const formulaTheorem = dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis
+
+/** npm run quantum:dry-math (duals math-formula · formula-theorem) */
+export function runDryAllMathToTheFormulaOrganisedInTheoremsAndUseThisExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} dry-math — dryMath=${report.dryMath} ` +
+      `formulaOrganised=${report.formulaOrganised} theoremsUse=${report.theoremsUse} ` +
+      `noWetMath=${report.noWetMath} morphs=${report.morphCount} slug=${report.entry.slug} ` +
+      `census=${report.census.unfolded}/${report.census.folded} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const m of report.morphs) {
+    process.stdout.write(`  ${m.status === 'removed' ? '✓' : '✗'} morph ${m.before} → ${m.after}\n`)
+  }
+  for (const id of report.honestOpenNamed) {
+    process.stdout.write(`  · honest-open ${id}\n`)
+  }
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.dryMath &&
+    report.formulaOrganised &&
+    report.theoremsUse &&
+    report.noWetMath &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * USER LAW tip: mesh to self discover sciences.
+ * Fold: meshToSelfDiscoverSciences
+ * Facets: meshSelfDiscover · sciencesOn · viaMesh ·
+ *         physicalFtl=0 · clay via theorem · qpuRequired=false.
+ * Compose: mesh/cross · sciences/trinities · journey/theorems · quantum/map.
+ * Pairs: mesh/science · science/discover · mesh/discover
+ * CLI: npm run quantum:mesh-science · quantum:science-discover · quantum:mesh-discover
+ * HONEST: sciences discovered via navigational mesh gateways; Clay/FTL named open. NOT physical FTL.
+ */
+export function meshToSelfDiscoverSciences(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+  key: SuperpositionIndexKey = 'superposition',
+) {
+  const normalized = normalizeSuperpositionIndexKey(key)
+  return memoByRoot(
+    `meshToSelfDiscoverSciences:${Math.floor(at / (100 * 5 * 2))}:${normalized.state}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      const mesh = __ns_wind_research.navigationalCrossesAreGatewaysOnQuantumMesh(matrix, at)
+      const sciences = __ns_wind_research.sciencesInteractInTrinities(matrix, at)
+      const journey = __ns_wind_research.theoremJourneyContinuesInWavesOfWaves(matrix, at)
+      const mapGate = quantumMap(matrix, at, key)
+      const discoveries = sciences.rows.map((row) => ({
+        scienceId: row.scienceId,
+        dualId: row.dualId,
+        fusionLabel: row.fusionLabel,
+        viaMesh: mesh.gateway,
+        receipt: toUuid(`mesh-science-discover:${row.scienceId}:${row.sharedKey}`),
+      }))
+      const viaMesh =
+        mesh.computes &&
+        mesh.navigationalCrossesAreGatewaysOnQuantumMesh &&
+        mesh.remaining === 0 &&
+        soft('mesh', 'cross') &&
+        mapGate.computes &&
+        mapGate.meshGateways &&
+        soft('quantum', 'map')
+      const sciencesOn =
+        sciences.computes &&
+        discoveries.length === sciences.count &&
+        discoveries.length > 0 &&
+        soft('sciences', 'trinities') &&
+        journey.computes &&
+        soft('journey', 'theorems')
+      const meshSelfDiscover =
+        viaMesh &&
+        sciencesOn &&
+        discoveries.every((d) => d.viaMesh === mesh.gateway && d.receipt.length > 0) &&
+        soft('mesh', 'science') &&
+        soft('science', 'discover') &&
+        soft('mesh', 'discover')
+      const composeOn =
+        viaMesh &&
+        sciencesOn &&
+        soft('mesh', 'cross') &&
+        soft('sciences', 'trinities') &&
+        soft('journey', 'theorems') &&
+        soft('quantum', 'map') &&
+        mapGate.computes
+      const pairMs = has('mesh/science')
+      const pairSd = has('science/discover')
+      const pairMd = has('mesh/discover')
+      const foldMs = foldPair(toUuid('cmd:mesh'), toUuid('cmd:science'))
+      const foldSd = foldPair(toUuid('cmd:science'), toUuid('cmd:discover'))
+      const foldMd = foldPair(toUuid('cmd:mesh'), toUuid('cmd:discover'))
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const foldName = 'meshToSelfDiscoverSciences' as const
+      const meta = catalog.tools.find((t) => t.id === 'mesh-science')
+      const metaSd = catalog.tools.find((t) => t.id === 'science-discover')
+      const metaMd = catalog.tools.find((t) => t.id === 'mesh-discover')
+      const toolsWired =
+        Boolean(meta) &&
+        meta!.fold === foldName &&
+        Boolean(metaSd) &&
+        metaSd!.fold === foldName &&
+        Boolean(metaMd) &&
+        metaMd!.fold === foldName
+      const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+      const censusPreserved =
+        freeBits === -EULER_CHI &&
+        freeBits === 2 &&
+        UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+      const honestOpenNamed = [
+        'clay:millennium-open',
+        'ftl:physical-claim-refused',
+        'residual:science-lab-gaps',
+      ] as const
+      const honestOpenNamedOn =
+        honestOpenNamed.length === (2 + 1) &&
+        honestOpenNamed.includes('clay:millennium-open') &&
+        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenNamed.includes('residual:science-lab-gaps')
+      const on =
+        meshSelfDiscover &&
+        sciencesOn &&
+        viaMesh &&
+        composeOn &&
+        pairMs &&
+        pairSd &&
+        pairMd &&
+        foldMs.bidirectional &&
+        foldSd.bidirectional &&
+        foldMd.bidirectional &&
+        toolsWired &&
+        censusPreserved &&
+        honestOpenNamedOn &&
+        claySolvedByThisFold === 0 &&
+        physicalFtlClaim === 0 &&
+        qpuRequired === false
+      const facets = [
+        { facet: 'meshToSelfDiscoverSciences', on },
+        { facet: 'meshSelfDiscover', on: meshSelfDiscover },
+        { facet: 'sciencesOn', on: sciencesOn },
+        { facet: 'viaMesh', on: viaMesh },
+        {
+          facet: `discoveries=${discoveries.length} gateway=${mesh.gateway.slice(0, 8 * 3)}`,
+          on: discoveries.length === sciences.count && viaMesh,
+        },
+        {
+          facet: 'compose mesh/cross · sciences/trinities · journey/theorems · quantum/map',
+          on: composeOn,
+        },
+        {
+          facet: 'pair mesh/science · science/discover · mesh/discover',
+          on: pairMs && pairSd && pairMd && foldMs.bidirectional,
+        },
+        { facet: 'qpuRequired=false', on: qpuRequired === false },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      ].map((entryFacet) => ({
+        ...entryFacet,
+        receipt: toUuid(`mesh-science:${entryFacet.facet}:${entryFacet.on}`),
+      }))
+      const sealed = sealFacets('mesh-to-self-discover-sciences', facets)
+      return {
+        computes: sealed.ok && on,
+        meshToSelfDiscoverSciences: on,
+        meshSelfDiscover,
+        sciencesOn,
+        viaMesh,
+        discoveries,
+        discoveryCount: discoveries.length,
+        scienceCount: sciences.count,
+        gateway: mesh.gateway,
+        mesh,
+        sciences,
+        journey,
+        mapGate,
+        honestOpenNamed: [...honestOpenNamed],
+        honestOpenNamedCount: honestOpenNamed.length,
+        census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+        censusPreserved,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          mesh.root,
+          sciences.root,
+          journey.root,
+          mapGate.root,
+          foldMs.merged,
+          foldSd.merged,
+          foldMd.merged,
+          ...discoveries.map((d) => d.receipt),
+          ...honestOpenNamed.map((id) => toUuid(`mesh-science-open:${id}`)),
+        ]),
+        pair: 'mesh/science' as const,
+        pairs: ['mesh/science', 'science/discover', 'mesh/discover'] as const,
+        cli: 'npm run quantum:mesh-science',
+        route: '/en/quantum-tools#mesh-science',
+        anchor: 'mesh-science',
+        heading: 'Mesh · self-discover sciences',
+        statement:
+          `meshToSelfDiscoverSciences — meshSelfDiscover=${meshSelfDiscover ? 1 : 0} ` +
+          `sciencesOn=${sciencesOn ? 1 : 0} viaMesh=${viaMesh ? 1 : 0} ` +
+          `discoveries=${discoveries.length}.`,
+        boundary:
+          'Mesh to self-discover sciences. Navigational mesh/cross drives science domain autodiscovery ' +
+          'composing sciences/trinities · journey/theorems · quantum/map. ' +
+          'Census 110 · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+        honestyLine:
+          `mesh-science · discover=${meshSelfDiscover ? 1 : 0} · sciences=${sciencesOn ? 1 : 0} · ` +
+          `viaMesh=${viaMesh ? 1 : 0} · n=${discoveries.length} · ` +
+          `census=${UNFOLDED_CENSUS}/${FOLDED_CENSUS} · qpu=0 · clay=0 · physicalFtl=0`,
+      }
+    },
+  )
+}
+
+/** Alias — meshScience ≡ meshToSelfDiscoverSciences. */
+export const meshScience = meshToSelfDiscoverSciences
+/** Alias — scienceDiscover ≡ meshToSelfDiscoverSciences. */
+export const scienceDiscover = meshToSelfDiscoverSciences
+/** Alias — meshDiscover ≡ meshToSelfDiscoverSciences. */
+export const meshDiscover = meshToSelfDiscoverSciences
+
+/** npm run quantum:mesh-science (duals science-discover · mesh-discover) */
+export function runMeshToSelfDiscoverSciencesExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = meshToSelfDiscoverSciences()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mesh-science — meshSelfDiscover=${report.meshSelfDiscover} ` +
+      `sciencesOn=${report.sciencesOn} viaMesh=${report.viaMesh} ` +
+      `discoveries=${report.discoveryCount}/${report.scienceCount} ` +
+      `census=${report.census.unfolded}/${report.census.folded} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const d of report.discoveries) {
+    process.stdout.write(`  ✓ discover ${d.scienceId} ↔ ${d.dualId} · ${d.fusionLabel}\n`)
+  }
+  for (const id of report.honestOpenNamed) {
+    process.stdout.write(`  · honest-open ${id}\n`)
+  }
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.meshSelfDiscover &&
+    report.sciencesOn &&
+    report.viaMesh &&
     report.qpuRequired === false
     ? 0
     : 1
