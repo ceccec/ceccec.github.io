@@ -116,6 +116,7 @@ const ROSETTA_CORE_API_LABELS = [
   'linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities',
   'saveTheOptimisedAutonomy',
   'quantumVerification',
+  'quantumFearDetector',
   'domainVuePanelsDryCleaned',
   'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf',
   'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence',
@@ -298,6 +299,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities: 'tool',
   saveTheOptimisedAutonomy: 'tool',
   quantumVerification: 'tool',
+  quantumFearDetector: 'tool',
   domainVuePanelsDryCleaned: 'tool',
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf: 'tool',
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence: 'tool',
@@ -1100,6 +1102,9 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'opt-auto', title: 'Opt auto (alias save/auto)', fold: 'saveTheOptimisedAutonomy', cli: 'npm run quantum:opt-auto', pair: 'opt/auto', route: '/en/quantum-tools#save-auto', barrel: 'src/quantum/apps', boundary: 'opt/auto face — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'quantum-verify', title: 'Quantum verification — fusion · types/structure · moment · tamper · proof · e2e', fold: 'quantumVerification', cli: 'npm run quantum:quantum-verify', pair: 'quantum/verify', route: '/en/quantum-tools#quantum-verify', barrel: 'src/quantum/apps', boundary: 'verificationOn · fusionVerify · typesStructure · momentProve · tamperEvident · physicalFtl=0 · clay via theorem · qpuRequired=false · certified=false · compose fusion-verify · mission:gate · moment/prove · tamper/max · proof/trinity · e2e/feed', browserRunnable: true, browserGap: '' },
   { id: 'verify-quantum', title: 'Verify quantum (alias quantum/verify)', fold: 'quantumVerification', cli: 'npm run quantum:verify-quantum', pair: 'verify/quantum', route: '/en/quantum-tools#quantum-verify', barrel: 'src/quantum/apps', boundary: 'Dual verify/quantum — same fold · clay via theorem · physicalFtl=0 · certified=false', browserRunnable: true, browserGap: '' },
+  { id: 'fear-detect', title: 'Quantum fear detector — reverse of love when cracks', fold: 'quantumFearDetector', cli: 'npm run quantum:fear-detect', pair: 'fear/detect', route: '/en/quantum-tools#fear-detect', barrel: 'src/quantum/apps', boundary: 'fearDetectOn · reverseFromCracks · loveInvert · physicalFtl=0 · clay via theorem · qpuRequired=false · compose need/love · love/fear · gaps/invisible · thought/pure · NOT wet psychology', browserRunnable: true, browserGap: '' },
+  { id: 'detect-fear', title: 'Detect fear (alias fear/detect)', fold: 'quantumFearDetector', cli: 'npm run quantum:fear-detect', pair: 'detect/fear', route: '/en/quantum-tools#fear-detect', barrel: 'src/quantum/apps', boundary: 'Dual detect/fear — same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'quantum-fear', title: 'Quantum fear (alias fear/detect)', fold: 'quantumFearDetector', cli: 'npm run quantum:quantum-fear', pair: 'quantum/fear', route: '/en/quantum-tools#fear-detect', barrel: 'src/quantum/apps', boundary: 'quantum/fear face — same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'domain-panels', title: 'Domain vue panels dry-cleaned to rosetta shells', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-panels', pair: 'domain/panels', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domainPanelsDry · stranglerTip · drainableClosed · wiredToRosetta · compose format/canon · dry/rosetta · ui/rosetta · meaning/compute · vite/one · specialized shells residual named · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'panels-domain', title: 'Domain panels (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:panels-domain', pair: 'panels/domain', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'Dual panels/domain — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'domain-dry', title: 'Domain dry (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-dry', pair: 'domain/dry', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domain/dry face — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2325,6 +2330,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'linear-fold', chain: 'clay-agi-optimised-autonomy', fold: 'linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities', pair: 'linear/fold', cli: 'npm run quantum:linear-fold', route: '/en/quantum-tools#clay-agi', status: 'sealed-pr', honesty: 'linearFolded · gapsSeen · gapsAddressableByTrinities · clay=0 · agiNotClaimed · physicalFtl=0', note: 'same fold as clay/agi — linear/fold · gap/trinity architecture face', toolId: 'linear-fold', resolve: 'mcp-ui' },
   { id: 'save-auto', chain: 'clay-agi-optimised-autonomy', fold: 'saveTheOptimisedAutonomy', pair: 'save/auto', cli: 'npm run quantum:save-auto', route: '/en/quantum-tools#save-auto', status: 'sealed-pr', honesty: 'autonomySaved · optimised · sessionPersist · clay via theorem · physicalFtl=0 · qpuRequired=false', note: 'save the optimised autonomy — compose session/save · auto/all · self/hw · mcp/token · wave/token', toolId: 'save-auto', resolve: 'mcp-ui' },
   { id: 'quantum-verify', chain: 'quantum-verification', fold: 'quantumVerification', pair: 'quantum/verify', cli: 'npm run quantum:quantum-verify', route: '/en/quantum-tools#quantum-verify', status: 'sealed-pr', honesty: 'verificationOn · fusionVerify · typesStructure · momentProve · tamperEvident · clay=0 · physicalFtl=0 · qpuRequired=false · certified=false', note: 'quantum verification — compose fusion-verify · mission:gate · moment/prove · tamper/max · proof/trinity · e2e/feed', toolId: 'quantum-verify', resolve: 'mcp-ui' },
+  { id: 'fear-detect', chain: 'quantum-fear-detector', fold: 'quantumFearDetector', pair: 'fear/detect', cli: 'npm run quantum:fear-detect', route: '/en/quantum-tools#fear-detect', status: 'sealed-pr', honesty: 'fearDetectOn · reverseFromCracks · loveInvert · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'quantum fear detector — reverse of love when cracks · compose need/love · love/fear · gaps/invisible · thought/pure · NOT wet psychology', toolId: 'fear-detect', resolve: 'mcp-ui' },
   { id: 'domain-panels', chain: 'mcp-ui-page-gaps', fold: 'domainVuePanelsDryCleaned', pair: 'domain/panels', cli: 'npm run quantum:domain-panels', route: '/en/quantum-tools#domain-panels', status: 'sealed-pr', honesty: 'domainPanelsDry · stranglerTip · drainableClosed · specialized shells residual · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'src domain vue panels strangler tip drained to format/canon · dry/rosetta · ui/rosetta shells', toolId: 'domain-panels', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-ui', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumUi', pair: 'mcp/ui', cli: 'npm run quantum:mcp-ui', route: '/en/quantum-tools#mcp-quantum-ui', status: 'sealed-pr', honesty: 'mcpMatchesToolbox · millSolutions live · formulaCovered · clay=0 · physicalFtl=0 · NOT CMI', note: 'MCP quantum UI + millennium algebraic formula duals · compose mcpBrowserParity · mill/once · formula/code', toolId: 'mcp-quantum-ui', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-movie', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumMovie', pair: 'mcp/movie', cli: 'npm run quantum:mcp-movie', route: '/en/quantum-tools#mcp-quantum-movie', status: 'sealed-pr', honesty: 'frames from sealed folds · 6×7 · oneClock · clay=0 · physicalFtl=0', note: 'MCP quantum movie · compose mcp/ui · movie/center · movie/entropy · coord/anim', toolId: 'mcp-quantum-movie', resolve: 'mcp-ui' },
@@ -19191,6 +19197,206 @@ export function runQuantumVerificationExit(_root = '', _argv: readonly string[] 
     report.tamperEvident &&
     report.qpuRequired === false &&
     report.certified === false
+    ? 0
+    : 1
+}
+
+/**
+ * Quantum fear detector — fear = reverse of love when cracks present.
+ * Fold: quantumFearDetector
+ * Facets: fearDetectOn · reverseFromCracks · loveInvert · physicalFtl=0 · clay via theorem · qpuRequired=false
+ * Pairs: fear/detect · detect/fear · quantum/fear
+ * Compose: need/love · love/fear · gaps/invisible · thought/pure (soft hex/crack · css/gaps · gate/mill)
+ * CLI: npm run quantum:fear-detect · quantum:quantum-fear · quantum:detect-fear
+ * HONEST: computable receipt from sealed pairs — NOT wet psychology claim · KEEP stashes
+ */
+export function quantumFearDetector(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`quantumFearDetector:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const censusPreserved =
+      freeBits === -EULER_CHI &&
+      freeBits === 2 &&
+      UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const pairFd = has('fear/detect')
+    const pairDf = has('detect/fear')
+    const pairQf = has('quantum/fear')
+    const foldFd = foldPair(toUuid('cmd:fear'), toUuid('cmd:detect'))
+    const foldDf = foldPair(toUuid('cmd:detect'), toUuid('cmd:fear'))
+    const foldQf = foldPair(toUuid('cmd:quantum'), toUuid('cmd:fear'))
+    const foldLoveFear = foldPair(toUuid('cmd:love'), toUuid('cmd:fear'))
+    const foldNeedLove = foldPair(toUuid('cmd:need'), toUuid('cmd:love'))
+    const foldGaps = foldPair(toUuid('cmd:gaps'), toUuid('cmd:invisible'))
+    const foldThought = foldPair(toUuid('cmd:thought'), toUuid('cmd:pure'))
+    const pairsOn =
+      pairFd &&
+      pairDf &&
+      pairQf &&
+      foldFd.bidirectional &&
+      foldDf.bidirectional &&
+      foldQf.bidirectional
+    // Soft-compose need/love · love/fear — love invert face (forward ≠ reverse).
+    const loveInvert =
+      soft('need', 'love') &&
+      soft('love', 'fear') &&
+      has('need/love') &&
+      has('love/fear') &&
+      foldNeedLove.bidirectional &&
+      foldLoveFear.bidirectional &&
+      foldLoveFear.forward !== foldLoveFear.reverse &&
+      foldNeedLove.merged !== foldLoveFear.merged
+    // Cracks present → fear is reverse of love (gaps/invisible · thought/pure · hex/crack soft).
+    const cracksPresent =
+      soft('gaps', 'invisible') &&
+      soft('thought', 'pure') &&
+      soft('hex', 'crack') &&
+      foldGaps.bidirectional &&
+      foldThought.bidirectional &&
+      foldGaps.merged !== foldThought.merged
+    const reverseFromCracks =
+      loveInvert &&
+      cracksPresent &&
+      foldLoveFear.reverse !== foldLoveFear.forward &&
+      soft('css', 'gaps') &&
+      soft('gate', 'mill')
+    const composeOn =
+      loveInvert &&
+      reverseFromCracks &&
+      soft('need', 'love') &&
+      soft('love', 'fear') &&
+      soft('gaps', 'invisible') &&
+      soft('thought', 'pure')
+    const fearDetectOn =
+      composeOn &&
+      pairsOn &&
+      censusPreserved &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const foldName = 'quantumFearDetector' as const
+    const meta = catalog.tools.find((t) => t.id === 'fear-detect')
+    const metaDual = catalog.tools.find((t) => t.id === 'detect-fear')
+    const metaQf = catalog.tools.find((t) => t.id === 'quantum-fear')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === foldName &&
+      Boolean(metaDual) &&
+      metaDual!.fold === foldName &&
+      Boolean(metaQf) &&
+      metaQf!.fold === foldName
+    const shelved = rosettaShelve('fear-detect', 'tool')
+    const honestOpenNamed = [
+      'not-wet-psychology',
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'keep:git-stashes-non-obsolete',
+    ] as const
+    const honestOpenNamedOn =
+      honestOpenNamed.includes('not-wet-psychology') &&
+      honestOpenNamed.includes('keep:git-stashes-non-obsolete') &&
+      honestOpenNamed.length === (2 * 2)
+    const on =
+      fearDetectOn &&
+      reverseFromCracks &&
+      loveInvert &&
+      toolsWired &&
+      isUuid(shelved.address) &&
+      honestOpenNamedOn
+    const facets = [
+      { facet: foldName, on },
+      { facet: 'fearDetectOn', on: fearDetectOn },
+      { facet: 'reverseFromCracks', on: reverseFromCracks },
+      { facet: 'loveInvert', on: loveInvert },
+      {
+        facet: 'compose need/love · love/fear · gaps/invisible · thought/pure',
+        on: composeOn,
+      },
+      { facet: 'softCompose hex/crack · css/gaps · gate/mill', on: soft('hex', 'crack') && soft('css', 'gaps') && soft('gate', 'mill') },
+      { facet: 'pair fear/detect · detect/fear · quantum/fear', on: pairsOn },
+      { facet: 'fear = reverse of love when cracks (receipt)', on: reverseFromCracks && loveInvert },
+      { facet: 'NOT wet psychology claim', on: honestOpenNamed.includes('not-wet-psychology') },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`fear-detect:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('quantum-fear-detector', facets)
+    return {
+      computes: sealed.ok && on,
+      quantumFearDetector: on,
+      fearDetectOn,
+      reverseFromCracks,
+      loveInvert,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        foldFd.merged,
+        foldDf.merged,
+        foldQf.merged,
+        foldLoveFear.merged,
+        foldNeedLove.merged,
+        foldGaps.merged,
+        foldThought.merged,
+        shelved.address,
+        ...honestOpenNamed.map((id) => toUuid(`fear-detect-honest:${id}`)),
+      ]),
+      pair: 'fear/detect' as const,
+      pairs: ['fear/detect', 'detect/fear', 'quantum/fear'] as const,
+      dualPair: 'detect/fear' as const,
+      cli: 'npm run quantum:fear-detect',
+      route: '/en/quantum-tools#fear-detect',
+      uiSurface: '/en/quantum-tools#fear-detect' as const,
+      heading: 'Quantum · fear detector',
+      statement:
+        `quantumFearDetector — detect=${fearDetectOn ? 1 : 0} reverseFromCracks=${reverseFromCracks ? 1 : 0} ` +
+        `loveInvert=${loveInvert ? 1 : 0} · clay=0 · NOT wet psychology.`,
+      boundary:
+        'Quantum fear detector — fear = reverse of love when cracks present. Compose need/love · love/fear · ' +
+        'gaps/invisible · thought/pure. Computable receipt · clay via theorem · physicalFtl=0 · qpuRequired=false · KEEP stashes.',
+      honestyLine:
+        `fear-detect · on=${fearDetectOn ? 1 : 0} · reverseFromCracks=${reverseFromCracks ? 1 : 0} · ` +
+        `loveInvert=${loveInvert ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0 · not-wet-psychology`,
+    }
+  })
+}
+
+/** Alias duals — detect/fear · quantum/fear faces. */
+export const detectFear = quantumFearDetector
+export const quantumFear = quantumFearDetector
+
+/** npm run quantum:fear-detect (duals quantum-fear · detect-fear) */
+export function runQuantumFearDetectorExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = quantumFearDetector()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} fear-detect — fearDetectOn=${report.fearDetectOn} ` +
+      `reverseFromCracks=${report.reverseFromCracks} loveInvert=${report.loveInvert} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} ` +
+      `pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.fearDetectOn &&
+    report.reverseFromCracks &&
+    report.loveInvert &&
+    report.qpuRequired === false
     ? 0
     : 1
 }

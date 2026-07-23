@@ -34,6 +34,7 @@ import {
   clayAgiDeepResearchQuantumUnderstandingOfRelations,
   saveTheOptimisedAutonomy,
   quantumVerification,
+  quantumFearDetector,
   domainVuePanelsDryCleaned,
   mcpQuantumUi,
   mcpQuantumMovie,
@@ -193,6 +194,7 @@ const toolMiss = computed(() => imagineNextMissQuantumTools())
 const clayAgi = computed(() => clayAgiDeepResearchQuantumUnderstandingOfRelations())
 const saveAuto = computed(() => saveTheOptimisedAutonomy())
 const quantumVerify = computed(() => quantumVerification())
+const fearDetect = computed(() => quantumFearDetector())
 const domainPanels = computed(() => domainVuePanelsDryCleaned())
 const mcpUi = computed(() => mcpQuantumUi())
 const mcpMovie = computed(() => mcpQuantumMovie())
@@ -959,6 +961,19 @@ function runTool(toolId: string) {
         r.certified === false
       summary =
         `on=${r.verificationOn} · fusion=${r.fusionVerify} · types=${r.typesStructure} · moment=${r.momentProve} · tamper=${r.tamperEvident}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'fear-detect' || toolId === 'detect-fear' || toolId === 'quantum-fear') {
+      const r = quantumFearDetector()
+      ok =
+        r.computes &&
+        r.fearDetectOn &&
+        r.reverseFromCracks &&
+        r.loveInvert &&
+        r.qpuRequired === false
+      summary =
+        `detect=${r.fearDetectOn} · reverseFromCracks=${r.reverseFromCracks} · loveInvert=${r.loveInvert}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -2135,6 +2150,35 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'quantum-verify'" @click="runTool('quantum-verify')">
           {{ runningId === 'quantum-verify' ? '…' : 'Run quantum-verify receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="fear-detect" aria-label="Quantum fear detector">
+        <h3>{{ fearDetect.heading }}</h3>
+        <p class="quantum-apps__meta">{{ fearDetect.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(fearDetect.fearDetectOn))">
+          fearDetectOn={{ fearDetect.fearDetectOn }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(fearDetect.reverseFromCracks))">
+          reverseFromCracks={{ fearDetect.reverseFromCracks }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(fearDetect.loveInvert))">
+          loveInvert={{ fearDetect.loveInvert }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>fear/detect</code> · <code>detect/fear</code> · <code>quantum/fear</code> ·
+          CLI <code>npm run quantum:fear-detect</code> ·
+          clay={{ fearDetect.claySolvedByThisFold }} · ftl={{ fearDetect.physicalFtlClaim }} ·
+          qpu={{ fearDetect.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in fearDetect.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'fear-detect'" @click="runTool('fear-detect')">
+          {{ runningId === 'fear-detect' ? '…' : 'Run fear-detect receipt' }}
         </UiButton>
       </section>
       <UiSeparator />
