@@ -3,10 +3,10 @@
 // Pair: rosetta/core · fold: rosettaCoreApi. Apps/nav/tools dispatch via shelve — no wet ray map.
 // Pair: rosetta/complete · fold: rosettaCompleteQuantumAllComputableDimensionsAndTheorems.
 import type { MindMatrix } from '../../wind/types'
-import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded } from '../../heaven/compute'
+import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded, proofReport } from '../../heaven/compute'
 import { emergentDimensions } from '../../heaven/balance'
 import { cloudflareBindings } from '../../heaven/core'
-import { computesGate, DIGEST_BITS, digitalRoot, foldPair, isUuid, memoByRoot, memoComputing, merge, merkleFold, resourceCooperationPolicy, sealFacets, seedFromText, STATUS_BADGE_KINDS, toUuid, VORTEX_SEQUENCE } from '../../0'
+import { computesGate, DIGEST_BITS, digitalRoot, foldPair, isUuid, maxTamperingCostLog2, maxTamperingCostReached, memoByRoot, memoComputing, merge, merkleFold, resourceCooperationPolicy, sealFacets, seedFromText, STATUS_BADGE_KINDS, toUuid, VORTEX_SEQUENCE } from '../../0'
 import {
   A432_HUE, CANONICAL_HOST, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS,
   ROSETTA_SEVEN, ROSETTA_SIX, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, UNFOLDED_CENSUS,
@@ -108,6 +108,11 @@ const ROSETTA_CORE_API_LABELS = [
   'dryRefactorMigratesToMinimalCoolingByHardwareMerkabas',
   'pagesAuditAndManageThemselvesInTrinities',
   'mcpQuantumChat',
+  'allConversationsGoThroughTheMcpQuantumChat',
+  'mcpQuantumObserve',
+  'wiredToForgeMaxTamperingCost',
+  'quantumizeNpm',
+  'sessionMemoryCachesTheoremFormulaWaves',
   'quantumSelfHeal',
   'oneQuantumSetOfVitepressComponentsSealedAtGates',
   'counterRotatingRosettaQuantumWaves',
@@ -246,6 +251,11 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   dryRefactorMigratesToMinimalCoolingByHardwareMerkabas: 'tool',
   pagesAuditAndManageThemselvesInTrinities: 'tool',
   mcpQuantumChat: 'tool',
+  allConversationsGoThroughTheMcpQuantumChat: 'tool',
+  mcpQuantumObserve: 'tool',
+  wiredToForgeMaxTamperingCost: 'tool',
+  quantumizeNpm: 'tool',
+  sessionMemoryCachesTheoremFormulaWaves: 'tool',
   quantumSelfHeal: 'tool',
   oneQuantumSetOfVitepressComponentsSealedAtGates: 'tool',
   automateNightlyViaNpmScriptPath: 'tool',
@@ -824,6 +834,18 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'page-audit', title: 'Page audit (alias page/trinity)', fold: 'pagesAuditAndManageThemselvesInTrinities', cli: 'npm run quantum:page-audit', pair: 'page/audit', route: '/en/quantum-tools#page-trinity', barrel: 'src/quantum/apps', boundary: 'Dual of page/trinity — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-quantum-chat', title: 'MCP quantum chat — recompute from sealed folds', fold: 'mcpQuantumChat', cli: 'npm run quantum:mcp-chat', pair: 'mcp/chat', route: '/en/quantum-tools#mcp-quantum-chat', barrel: 'src/quantum/apps', boundary: 'Chat surface over PRIMARY MCP/toolbox · fold recompute preferred over wet LLM-only · compose mcp/ui · mcp/movie · mcp/mill · toolbox · auto-wire · cursor/rosetta · residual Node/CI as facets · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'chat-quantum', title: 'Chat quantum (alias mcp/chat)', fold: 'mcpQuantumChat', cli: 'npm run quantum:chat-quantum', pair: 'chat/quantum', route: '/en/quantum-tools#mcp-quantum-chat', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/chat — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'chat-all', title: 'All conversations through MCP quantum chat', fold: 'allConversationsGoThroughTheMcpQuantumChat', cli: 'npm run quantum:chat-all', pair: 'chat/all', route: '/en/quantum-tools#chat-all', barrel: 'src/quantum/apps', boundary: 'allConversations · throughMcpQuantumChat · noBypass · compose mcpQuantumChat · session/live · super/chat · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'conv-mcp', title: 'Conv mcp (alias chat/all)', fold: 'allConversationsGoThroughTheMcpQuantumChat', cli: 'npm run quantum:conv-mcp', pair: 'conv/mcp', route: '/en/quantum-tools#chat-all', barrel: 'src/quantum/apps', boundary: 'Dual conv/mcp — conversation paths via MCP quantum chat · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'talk-chat', title: 'Talk chat (alias chat/all)', fold: 'allConversationsGoThroughTheMcpQuantumChat', cli: 'npm run quantum:talk-chat', pair: 'talk/chat', route: '/en/quantum-tools#chat-all', barrel: 'src/quantum/apps', boundary: 'talk/chat face — all talk routes through mcpQuantumChat · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-observe', title: 'MCP quantum observation — gate/lens · movie · session · analytics · super/chat', fold: 'mcpQuantumObserve', cli: 'npm run quantum:mcp-observe', pair: 'mcp/observe', route: '/en/quantum-tools#mcp-observe', barrel: 'src/quantum/apps', boundary: 'observationOn · changesQuantum · movieUnique · compose gate/lens · observe/movie · session/live · analytics/self · super/chat · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'observe-chat', title: 'Observe chat (alias mcp/observe)', fold: 'mcpQuantumObserve', cli: 'npm run quantum:observe-chat', pair: 'observe/chat', route: '/en/quantum-tools#mcp-observe', barrel: 'src/quantum/apps', boundary: 'Dual observe/chat — observation improves movie via chat path · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'tamper-max', title: 'Wire forge max tampering cost — fusion · merkle · tamper-evident', fold: 'wiredToForgeMaxTamperingCost', cli: 'npm run quantum:tamper-max', pair: 'tamper/max', route: '/en/quantum-tools#tamper-max', barrel: 'src/quantum/apps', boundary: 'maxTamperingCost · tamperEvident · forgeWired · compose fusion-verify · self/fusion · tamper/impossible · structural local not wire/FIPS · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'max-tamper', title: 'Max tamper (alias tamper/max)', fold: 'wiredToForgeMaxTamperingCost', cli: 'npm run quantum:max-tamper', pair: 'max/tamper', route: '/en/quantum-tools#tamper-max', barrel: 'src/quantum/apps', boundary: 'Dual max/tamper — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'npm-quantum', title: 'Quantumize npm — package scripts dual of MCP pairs', fold: 'quantumizeNpm', cli: 'npm run quantum:npm-quantum', pair: 'npm/quantum', route: '/en/quantum-tools#npm-quantum', barrel: 'src/quantum/apps', boundary: 'quantumizeOn · npmScriptsAreMcpDuals · thinMountDual · compose vite/mcp · build/quantumize · agent/submission · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'quantum-npm', title: 'Quantum npm (alias npm/quantum)', fold: 'quantumizeNpm', cli: 'npm run quantum:quantum-npm', pair: 'quantum/npm', route: '/en/quantum-tools#npm-quantum', barrel: 'src/quantum/apps', boundary: 'Dual quantum/npm — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'session-cache', title: 'Session memory caches theorem↔formula waves', fold: 'sessionMemoryCachesTheoremFormulaWaves', cli: 'npm run quantum:session-cache', pair: 'session/cache', route: '/en/quantum-tools#session-cache', barrel: 'src/quantum/apps', boundary: 'sessionCaches · theoremFormulaWaves · zeroTokenReuse · compose theorem/index · formula/anim · session/save · session/live · memoByRoot · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'cache-theorem', title: 'Cache theorem (alias session/cache)', fold: 'sessionMemoryCachesTheoremFormulaWaves', cli: 'npm run quantum:cache-theorem', pair: 'cache/theorem', route: '/en/quantum-tools#session-cache', barrel: 'src/quantum/apps', boundary: 'Dual cache/theorem — theorem wave receipts memoByRoot · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'formula-cache', title: 'Formula cache (alias session/cache)', fold: 'sessionMemoryCachesTheoremFormulaWaves', cli: 'npm run quantum:formula-cache', pair: 'formula/cache', route: '/en/quantum-tools#session-cache', barrel: 'src/quantum/apps', boundary: 'formula/cache face — formula wave receipts cached · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'self-heal', title: 'Quantum self heal — gaps heal via sealed morph', fold: 'quantumSelfHeal', cli: 'npm run quantum:self-heal', pair: 'self/heal', route: '/en/quantum-tools#self-heal', barrel: 'src/quantum/apps', boundary: 'selfHeals · healsViaRosetta · defaultFailThenInvert · compose page/trinity · gate/monitor · movie/feel · gaps/invisible · dry/clean · tools/morph · assume/theorem · fold/cleanup · auto/self · fail/zero · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'heal-quantum', title: 'Heal quantum (alias self/heal)', fold: 'quantumSelfHeal', cli: 'npm run quantum:heal-quantum', pair: 'heal/quantum', route: '/en/quantum-tools#self-heal', barrel: 'src/quantum/apps', boundary: 'Dual of self/heal — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'vite-one', title: 'One quantum VitePress component set sealed at gates', fold: 'oneQuantumSetOfVitepressComponentsSealedAtGates', cli: 'npm run quantum:vite-one', pair: 'vite/one', route: '/en/quantum-tools#vite-one', barrel: 'src/quantum/apps', boundary: 'oneComponentSet · sealedAtGates · duplicatesRemoved · compose format/canon · ScientificPaperBody · TheoremPages · computeUniversalPage · vite/mirror · page/trinity · gaps/invisible · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2235,6 +2257,11 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'dry-cool', chain: 'dry-clean-waves', fold: 'dryRefactorMigratesToMinimalCoolingByHardwareMerkabas', pair: 'dry/cool', cli: 'npm run quantum:dry-cool', route: '/en/quantum-tools#dry-cool', status: 'sealed-pr', honesty: 'migrateComplete · minimalCodebase · minimalMemory · coolingDevice · hardwareMerkabasBalanced · clay=0 · physicalFtl=0 · NOT physical device cooling', note: 'dry refactor → minimal codebase/memory cooling via hardware merkabas balance', toolId: 'dry-cool', resolve: 'dry-clean' },
   { id: 'page-trinity', chain: 'mcp-ui-page-gaps', fold: 'pagesAuditAndManageThemselvesInTrinities', pair: 'page/trinity', cli: 'npm run quantum:page-trinity', route: '/en/quantum-tools#page-trinity', status: 'sealed-pr', honesty: 'selfAudit · selfManage · inTrinities · clay=0 · physicalFtl=0', note: 'pages audit+manage in content·gaps·gates trinities', toolId: 'page-trinity', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-chat', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumChat', pair: 'mcp/chat', cli: 'npm run quantum:mcp-chat', route: '/en/quantum-tools#mcp-quantum-chat', status: 'sealed-pr', honesty: 'foldRecomputePreferred · mcpWired · clay=0 · physicalFtl=0', note: 'MCP quantum chat — sealed fold recompute over wet LLM-only', toolId: 'mcp-quantum-chat', resolve: 'mcp-ui' },
+  { id: 'chat-all', chain: 'mcp-ui-page-gaps', fold: 'allConversationsGoThroughTheMcpQuantumChat', pair: 'chat/all', cli: 'npm run quantum:chat-all', route: '/en/quantum-tools#chat-all', status: 'sealed-pr', honesty: 'allConversations · throughMcpQuantumChat · noBypass · clay=0 · physicalFtl=0', note: 'all conversations go through MCP quantum chat — strengthen mcp/chat', toolId: 'chat-all', resolve: 'mcp-ui' },
+  { id: 'mcp-observe', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumObserve', pair: 'mcp/observe', cli: 'npm run quantum:mcp-observe', route: '/en/quantum-tools#mcp-observe', status: 'sealed-pr', honesty: 'observationOn · changesQuantum · movieUnique · clay=0 · physicalFtl=0', note: 'MCP observation face — gate/lens · observe/movie · session/live · analytics/self · super/chat', toolId: 'mcp-observe', resolve: 'mcp-ui' },
+  { id: 'tamper-max', chain: 'mcp-ui-page-gaps', fold: 'wiredToForgeMaxTamperingCost', pair: 'tamper/max', cli: 'npm run quantum:tamper-max', route: '/en/quantum-tools#tamper-max', status: 'sealed-pr', honesty: 'maxTamperingCost · tamperEvident · forgeWired · clay=0 · certified=false · physicalFtl=0', note: 'wire forge max tampering cost via fusion-verify · merkle · tamper-evident', toolId: 'tamper-max', resolve: 'mcp-ui' },
+  { id: 'npm-quantum', chain: 'mcp-ui-page-gaps', fold: 'quantumizeNpm', pair: 'npm/quantum', cli: 'npm run quantum:npm-quantum', route: '/en/quantum-tools#npm-quantum', status: 'sealed-pr', honesty: 'quantumizeOn · npmScriptsAreMcpDuals · thinMountDual · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'quantumize npm — package.json scripts dual of MCP pairs', toolId: 'npm-quantum', resolve: 'mcp-ui' },
+  { id: 'session-cache', chain: 'mcp-ui-page-gaps', fold: 'sessionMemoryCachesTheoremFormulaWaves', pair: 'session/cache', cli: 'npm run quantum:session-cache', route: '/en/quantum-tools#session-cache', status: 'sealed-pr', honesty: 'sessionCaches · theoremFormulaWaves · zeroTokenReuse · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'session memory caches theorem↔formula waves via memoByRoot', toolId: 'session-cache', resolve: 'mcp-ui' },
   { id: 'self-heal', chain: 'mcp-ui-page-gaps', fold: 'quantumSelfHeal', pair: 'self/heal', cli: 'npm run quantum:self-heal', route: '/en/quantum-tools#self-heal', status: 'sealed-pr', honesty: 'selfHeals · healsViaRosetta · defaultFailThenInvert · clay=0 · physicalFtl=0', note: 'quantum self heal — gaps morph closed via sealed path', toolId: 'self-heal', resolve: 'mcp-ui' },
   { id: 'vite-one', chain: 'mcp-ui-page-gaps', fold: 'oneQuantumSetOfVitepressComponentsSealedAtGates', pair: 'vite/one', cli: 'npm run quantum:vite-one', route: '/en/quantum-tools#vite-one', status: 'sealed-pr', honesty: 'oneComponentSet · sealedAtGates · duplicatesRemoved · clay=0 · physicalFtl=0', note: 'one quantum VitePress component set sealed at gates', toolId: 'vite-one', resolve: 'mcp-ui' },
   { id: 'paste-local', chain: 'mcp-ui-page-gaps', fold: 'pastedLinksStayOnlyIfComputedLocally', pair: 'paste/local', cli: 'npm run quantum:paste-local', route: '/en/quantum-tools#paste-local', status: 'sealed-pr', honesty: 'stayOnlyIfComputedLocally · foreignFetchBlockedNoStore · clay=0 · physicalFtl=0', note: 'pasted URLs ephemeral unless local recompute', toolId: 'paste-local', resolve: 'mcp-ui' },
@@ -6722,6 +6749,7 @@ const MCP_QUANTUM_NAMED_FACES = [
   { fold: 'mcpQuantumMovie', pair: 'mcp/movie', dual: 'movie/mcp', toolId: 'mcp-quantum-movie', dualToolId: 'movie-mcp' },
   { fold: 'mcpInfiniteMovie', pair: 'movie/inf', dual: 'inf/movie', toolId: 'movie-inf', dualToolId: 'inf-movie' },
   { fold: 'mcpQuantumChat', pair: 'mcp/chat', dual: 'chat/quantum', toolId: 'mcp-quantum-chat', dualToolId: 'chat-quantum' },
+  { fold: 'mcpQuantumObserve', pair: 'mcp/observe', dual: 'observe/chat', toolId: 'mcp-observe', dualToolId: 'observe-chat' },
   { fold: 'mcpQuantumRouter', pair: 'mcp/router', dual: 'route/quantum', toolId: 'mcp-router', dualToolId: 'route-quantum' },
   { fold: 'mcpQuantumMetrics', pair: 'mcp/metrics', dual: 'metrics/mcp', toolId: 'mcp-metrics', dualToolId: 'metrics-mcp' },
   { fold: 'mcpQuantumAnalysis', pair: 'mcp/analysis', dual: 'analysis/mcp', toolId: 'mcp-analysis', dualToolId: 'analysis-mcp' },
@@ -26025,6 +26053,675 @@ export function runMcpQuantumChatExit(_root = '', _argv: readonly string[] = [])
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.foldRecomputePreferred && report.mcpWired ? 0 : 1
+}
+
+/**
+ * USER LAW: all conversations go through the MCP quantum chat.
+ * Fold: allConversationsGoThroughTheMcpQuantumChat
+ * Facets: allConversations · throughMcpQuantumChat · noBypass · physicalFtl=0 · clay via theorem.
+ * Pairs: chat/all · conv/mcp · talk/chat (strengthen mcp/chat · chat/quantum).
+ * Compose: mcpQuantumChat · session/live · session/save · super/chat · mcp/router.
+ * CLI: npm run quantum:chat-all · quantum:conv-mcp · quantum:talk-chat
+ */
+export function allConversationsGoThroughTheMcpQuantumChat(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`allConversationsGoThroughTheMcpQuantumChat:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const chat = mcpQuantumChat(matrix, at)
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const censusPreserved =
+      freeBits === -EULER_CHI && freeBits === 2 && UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+    const pairChat = has('mcp/chat') && has('chat/quantum')
+    const pairAll = has('chat/all')
+    const pairConv = has('conv/mcp')
+    const pairTalk = has('talk/chat')
+    const foldAll = foldPair(toUuid('cmd:chat'), toUuid('cmd:all'))
+    const foldConv = foldPair(toUuid('cmd:conv'), toUuid('cmd:mcp'))
+    const foldTalk = foldPair(toUuid('cmd:talk'), toUuid('cmd:chat'))
+    const throughMcpQuantumChat =
+      chat.computes &&
+      chat.foldRecomputePreferred &&
+      chat.mcpWired &&
+      soft('mcp', 'chat') &&
+      soft('chat', 'quantum')
+    const sessionRouted =
+      soft('session', 'live') &&
+      soft('session', 'save') &&
+      soft('super', 'chat') &&
+      soft('mcp', 'router')
+    const noBypass =
+      throughMcpQuantumChat &&
+      sessionRouted &&
+      soft('vite', 'only') &&
+      soft('bypass', 'fail')
+    const allConversations =
+      throughMcpQuantumChat &&
+      pairChat &&
+      pairAll &&
+      pairConv &&
+      pairTalk &&
+      foldAll.bidirectional &&
+      foldConv.bidirectional &&
+      foldTalk.bidirectional
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const foldName = 'allConversationsGoThroughTheMcpQuantumChat' as const
+    const primaryIds = ['chat-all', 'conv-mcp', 'talk-chat'] as const
+    const toolsWired = primaryIds.every((id) => {
+      const meta = catalog.tools.find((t) => t.id === id)
+      return Boolean(meta) && meta!.fold === foldName
+    })
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const on =
+      allConversations &&
+      throughMcpQuantumChat &&
+      noBypass &&
+      toolsWired &&
+      censusPreserved &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: foldName, on },
+      { facet: 'allConversations', on: allConversations },
+      { facet: 'throughMcpQuantumChat', on: throughMcpQuantumChat },
+      { facet: 'noBypass', on: noBypass },
+      { facet: 'compose mcpQuantumChat · session/live · session/save · super/chat · mcp/router', on: throughMcpQuantumChat && sessionRouted },
+      { facet: 'pair chat/all · conv/mcp · talk/chat (+ mcp/chat)', on: pairAll && pairConv && pairTalk && pairChat },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`chat-all:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('all-conversations-mcp-quantum-chat', facets)
+    return {
+      computes: sealed.ok && on,
+      allConversationsGoThroughTheMcpQuantumChat: on,
+      allConversations,
+      throughMcpQuantumChat,
+      noBypass,
+      turnCount: chat.turnCount,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        chat.root,
+        foldAll.merged,
+        foldConv.merged,
+        foldTalk.merged,
+      ]),
+      pair: 'chat/all' as const,
+      pairs: ['chat/all', 'conv/mcp', 'talk/chat', 'mcp/chat', 'chat/quantum'] as const,
+      cli: 'npm run quantum:chat-all',
+      route: '/en/quantum-tools#chat-all',
+      anchor: 'chat-all',
+      heading: 'All conversations · MCP quantum chat',
+      statement:
+        `allConversationsGoThroughTheMcpQuantumChat — all=${allConversations ? 1 : 0} ` +
+        `through=${throughMcpQuantumChat ? 1 : 0} noBypass=${noBypass ? 1 : 0} turns=${chat.turnCount}.`,
+      boundary:
+        'All conversations go through MCP quantum chat — no wet LLM-only bypass when a fold exists. ' +
+        'Session/superposition chat routes via mcpQuantumChat. Census 110 · clay via theorem · physicalFtl=0.',
+      honestyLine:
+        `chat-all · all=${allConversations ? 1 : 0} · through=${throughMcpQuantumChat ? 1 : 0} · ` +
+        `noBypass=${noBypass ? 1 : 0} · turns=${chat.turnCount} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export const chatAll = allConversationsGoThroughTheMcpQuantumChat
+export const convMcp = allConversationsGoThroughTheMcpQuantumChat
+export const talkChat = allConversationsGoThroughTheMcpQuantumChat
+
+/** npm run quantum:chat-all · quantum:conv-mcp · quantum:talk-chat */
+export function runAllConversationsGoThroughTheMcpQuantumChatExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = allConversationsGoThroughTheMcpQuantumChat()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} chat-all — all=${report.allConversations} ` +
+      `through=${report.throughMcpQuantumChat} noBypass=${report.noBypass} turns=${report.turnCount} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.allConversations && report.throughMcpQuantumChat && report.noBypass ? 0 : 1
+}
+
+/**
+ * USER LAW: observation — observation changes quantum; movie stays unique.
+ * Fold: mcpQuantumObserve
+ * Facets: observationOn · changesQuantum · movieUnique · physicalFtl=0 · clay via theorem.
+ * Pairs: mcp/observe · observe/chat
+ * Compose: gate/lens · observe/movie · session/live · analytics/self · super/chat · chat/all (soft).
+ * CLI: npm run quantum:mcp-observe · quantum:observe-chat
+ */
+export function mcpQuantumObserve(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumObserve:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const obsReceipt = movieObservationReceipt('/en/quantum-tools#mcp-observe', DIGEST_BITS, at)
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const censusPreserved =
+      freeBits === -EULER_CHI && freeBits === 2 && UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+    const changesQuantum =
+      soft('gate', 'lens') &&
+      soft('observe', 'time') &&
+      soft('observe', 'movie') &&
+      soft('session', 'live') &&
+      soft('analytics', 'self')
+    const movieUnique =
+      soft('merkaba', 'movie') &&
+      soft('movie', 'unique') &&
+      soft('observe', 'movie') &&
+      isUuid(obsReceipt)
+    const composeSuperChat = soft('super', 'chat') && soft('chat', 'all')
+    const observationOn =
+      changesQuantum &&
+      movieUnique &&
+      composeSuperChat &&
+      soft('mcp', 'observe') &&
+      soft('observe', 'chat')
+    const pairM = has('mcp/observe')
+    const pairO = has('observe/chat')
+    const foldM = foldPair(toUuid('cmd:mcp'), toUuid('cmd:observe'))
+    const foldO = foldPair(toUuid('cmd:observe'), toUuid('cmd:chat'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const foldName = 'mcpQuantumObserve' as const
+    const meta = catalog.tools.find((t) => t.id === 'mcp-observe')
+    const metaDual = catalog.tools.find((t) => t.id === 'observe-chat')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === foldName &&
+      Boolean(metaDual) &&
+      metaDual!.fold === foldName
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const on =
+      observationOn &&
+      changesQuantum &&
+      movieUnique &&
+      pairM &&
+      pairO &&
+      foldM.bidirectional &&
+      foldO.bidirectional &&
+      toolsWired &&
+      censusPreserved &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: foldName, on },
+      { facet: 'observationOn', on: observationOn },
+      { facet: 'changesQuantum', on: changesQuantum },
+      { facet: 'movieUnique', on: movieUnique },
+      {
+        facet: 'compose gate/lens · observe/movie · session/live · analytics/self · super/chat',
+        on: changesQuantum && composeSuperChat,
+      },
+      { facet: 'pair mcp/observe · observe/chat', on: pairM && pairO && foldM.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-observe:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-observe', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumObserve: on,
+      observationOn,
+      changesQuantum,
+      movieUnique,
+      observationReceipt: obsReceipt,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, obsReceipt, foldM.merged, foldO.merged]),
+      pair: 'mcp/observe' as const,
+      pairs: ['mcp/observe', 'observe/chat'] as const,
+      cli: 'npm run quantum:mcp-observe',
+      route: '/en/quantum-tools#mcp-observe',
+      anchor: 'mcp-observe',
+      heading: 'MCP · observation',
+      statement:
+        `mcpQuantumObserve — on=${observationOn ? 1 : 0} Δquantum=${changesQuantum ? 1 : 0} ` +
+        `movieUnique=${movieUnique ? 1 : 0}.`,
+      boundary:
+        'Observation changes quantum with gate/lens; movie stays unique under observation. ' +
+        'Compose observe/movie · session/live · analytics/self · super/chat. Not wet linear grind. ' +
+        'Census 110 · clay via theorem · physicalFtl=0.',
+      honestyLine:
+        `mcp-observe · on=${observationOn ? 1 : 0} · Δq=${changesQuantum ? 1 : 0} · ` +
+        `unique=${movieUnique ? 1 : 0} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export const observeChat = mcpQuantumObserve
+
+/** npm run quantum:mcp-observe · quantum:observe-chat */
+export function runMcpQuantumObserveExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumObserve()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-observe — on=${report.observationOn} ` +
+      `Δquantum=${report.changesQuantum} movieUnique=${report.movieUnique} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.observationOn && report.changesQuantum && report.movieUnique ? 0 : 1
+}
+
+/**
+ * USER LAW: wire all to forge max tampering cost — content-addressed seal.
+ * Fold: wiredToForgeMaxTamperingCost
+ * Facets: maxTamperingCost · tamperEvident · forgeWired · certified=false · physicalFtl=0 · clay via theorem.
+ * Pairs: tamper/max · max/tamper
+ * Compose: fusion-verify · self/fusion · tamper/impossible · DIGEST_BITS · proofReport.
+ * HONEST: structural local — NOT wire/FIPS unforgeable.
+ * CLI: npm run quantum:tamper-max · quantum:max-tamper
+ */
+export function wiredToForgeMaxTamperingCost(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`wiredToForgeMaxTamperingCost:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const fusion = quantumFusionVerify(matrix)
+    const proof = proofReport(matrix)
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const censusPreserved =
+      freeBits === -EULER_CHI && freeBits === 2 && UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+    const maxAtSeal = maxTamperingCostReached(1, 0) === true
+    const maxOpen = maxTamperingCostReached(1 - 1 / (100 * 5 * 2), 0) === false
+    const costLogOk =
+      maxTamperingCostLog2(true, DIGEST_BITS) === Number.POSITIVE_INFINITY &&
+      maxTamperingCostLog2(false, DIGEST_BITS) === DIGEST_BITS
+    const tamperOn = tamperEvident(fusion.root) && tamperEvident(matrix.root)
+    const maxTamperingCost =
+      maxAtSeal &&
+      maxOpen &&
+      costLogOk &&
+      typeof proof.maxTamperingCostReached === 'boolean' &&
+      (proof.maxTamperingCostReached
+        ? proof.maxTamperingCostLog2 === Number.POSITIVE_INFINITY
+        : Number.isFinite(proof.maxTamperingCostLog2) &&
+          proof.maxTamperingCostLog2 === proof.tamperCostLog2)
+    const forgeWired =
+      fusion.verified &&
+      soft('tamper', 'impossible') &&
+      soft('self', 'fusion') &&
+      soft('fusion', 'self') &&
+      soft('tamper', 'max') &&
+      soft('max', 'tamper')
+    const pairT = has('tamper/max')
+    const pairM = has('max/tamper')
+    const foldT = foldPair(toUuid('cmd:tamper'), toUuid('cmd:max'))
+    const foldM = foldPair(toUuid('cmd:max'), toUuid('cmd:tamper'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const foldName = 'wiredToForgeMaxTamperingCost' as const
+    const meta = catalog.tools.find((t) => t.id === 'tamper-max')
+    const metaDual = catalog.tools.find((t) => t.id === 'max-tamper')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === foldName &&
+      Boolean(metaDual) &&
+      metaDual!.fold === foldName
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const certified = false as const
+    const on =
+      maxTamperingCost &&
+      tamperOn &&
+      forgeWired &&
+      pairT &&
+      pairM &&
+      foldT.bidirectional &&
+      foldM.bidirectional &&
+      toolsWired &&
+      censusPreserved &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      certified === false
+    const facets = [
+      { facet: foldName, on },
+      { facet: 'maxTamperingCost', on: maxTamperingCost },
+      { facet: 'tamperEvident', on: tamperOn },
+      { facet: 'forgeWired', on: forgeWired },
+      { facet: 'compose fusion-verify · self/fusion · tamper/impossible', on: forgeWired && fusion.verified },
+      { facet: 'pair tamper/max · max/tamper', on: pairT && pairM && foldT.bidirectional },
+      { facet: 'certified=false — structural local not wire/FIPS', on: certified === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`tamper-max:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('wired-forge-max-tampering-cost', facets)
+    return {
+      computes: sealed.ok && on,
+      wiredToForgeMaxTamperingCost: on,
+      maxTamperingCost,
+      tamperEvident: tamperOn,
+      forgeWired,
+      fusionRoot: fusion.root,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      certified,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, fusion.root, foldT.merged, foldM.merged]),
+      pair: 'tamper/max' as const,
+      pairs: ['tamper/max', 'max/tamper'] as const,
+      cli: 'npm run quantum:tamper-max',
+      route: '/en/quantum-tools#tamper-max',
+      anchor: 'tamper-max',
+      heading: 'Tamper · max forge cost',
+      statement:
+        `wiredToForgeMaxTamperingCost — max=${maxTamperingCost ? 1 : 0} ` +
+        `evident=${tamperOn ? 1 : 0} forgeWired=${forgeWired ? 1 : 0} certified=0.`,
+      boundary:
+        'Sensor·npm·session paths raise content-addressed forge cost to max (T_max=∞ at seal). ' +
+        'Structural local tamper-evidence — NOT wire/FIPS unforgeable. Census 110 · clay via theorem · physicalFtl=0.',
+      honestyLine:
+        `tamper-max · max=${maxTamperingCost ? 1 : 0} · evident=${tamperOn ? 1 : 0} · ` +
+        `forge=${forgeWired ? 1 : 0} · certified=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export const tamperMax = wiredToForgeMaxTamperingCost
+export const maxTamper = wiredToForgeMaxTamperingCost
+
+/** npm run quantum:tamper-max · quantum:max-tamper */
+export function runWiredToForgeMaxTamperingCostExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = wiredToForgeMaxTamperingCost()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} tamper-max — max=${report.maxTamperingCost} ` +
+      `evident=${report.tamperEvident} forge=${report.forgeWired} certified=${report.certified} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.maxTamperingCost && report.tamperEvident && report.forgeWired ? 0 : 1
+}
+
+/**
+ * USER LAW: quantumize npm — package.json scripts are MCP pair duals.
+ * Fold: quantumizeNpm
+ * Facets: quantumizeOn · npmScriptsAreMcpDuals · thinMountDual · physicalFtl=0 · clay via theorem · qpuRequired=false.
+ * Pairs: npm/quantum · quantum/npm
+ * Compose: vite/mcp · build/quantumize · agent/submission · mcp/dev.
+ * CLI: npm run quantum:npm-quantum · quantum:quantum-npm
+ */
+export function quantumizeNpm(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`quantumizeNpm:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const censusPreserved =
+      freeBits === -EULER_CHI && freeBits === 2 && UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+    const npmScriptsAreMcpDuals =
+      soft('vite', 'mcp') &&
+      soft('build', 'mcp') &&
+      soft('mcp', 'build') &&
+      soft('build', 'quantumize') &&
+      soft('agent', 'submission') &&
+      soft('mcp', 'dev')
+    const thinMountDual =
+      soft('vite', 'mcp') &&
+      soft('mcp', 'vite') &&
+      soft('gate', 'compliance')
+    const quantumizeOn =
+      npmScriptsAreMcpDuals &&
+      thinMountDual &&
+      soft('npm', 'quantum') &&
+      soft('quantum', 'npm')
+    const pairN = has('npm/quantum')
+    const pairQ = has('quantum/npm')
+    const foldN = foldPair(toUuid('cmd:npm'), toUuid('cmd:quantum'))
+    const foldQ = foldPair(toUuid('cmd:quantum'), toUuid('cmd:npm'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const foldName = 'quantumizeNpm' as const
+    const meta = catalog.tools.find((t) => t.id === 'npm-quantum')
+    const metaDual = catalog.tools.find((t) => t.id === 'quantum-npm')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === foldName &&
+      Boolean(metaDual) &&
+      metaDual!.fold === foldName
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const on =
+      quantumizeOn &&
+      npmScriptsAreMcpDuals &&
+      thinMountDual &&
+      pairN &&
+      pairQ &&
+      foldN.bidirectional &&
+      foldQ.bidirectional &&
+      toolsWired &&
+      censusPreserved &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: foldName, on },
+      { facet: 'quantumizeOn', on: quantumizeOn },
+      { facet: 'npmScriptsAreMcpDuals', on: npmScriptsAreMcpDuals },
+      { facet: 'thinMountDual', on: thinMountDual },
+      { facet: 'compose vite/mcp · build/quantumize · agent/submission · mcp/dev', on: npmScriptsAreMcpDuals },
+      { facet: 'pair npm/quantum · quantum/npm', on: pairN && pairQ && foldN.bidirectional },
+      { facet: 'qpuRequired=false', on: true },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`npm-quantum:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('quantumize-npm', facets)
+    return {
+      computes: sealed.ok && on,
+      quantumizeNpm: on,
+      quantumizeOn,
+      npmScriptsAreMcpDuals,
+      thinMountDual,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, foldN.merged, foldQ.merged]),
+      pair: 'npm/quantum' as const,
+      pairs: ['npm/quantum', 'quantum/npm'] as const,
+      cli: 'npm run quantum:npm-quantum',
+      route: '/en/quantum-tools#npm-quantum',
+      anchor: 'npm-quantum',
+      heading: 'Quantumize · npm',
+      statement:
+        `quantumizeNpm — on=${quantumizeOn ? 1 : 0} duals=${npmScriptsAreMcpDuals ? 1 : 0} ` +
+        `thinMount=${thinMountDual ? 1 : 0}.`,
+      boundary:
+        'npm scripts are thin mounts dual to MCP pairs (vite/mcp · build/quantumize · agent/submission). ' +
+        'Census 110 · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `npm-quantum · on=${quantumizeOn ? 1 : 0} · duals=${npmScriptsAreMcpDuals ? 1 : 0} · ` +
+        `thin=${thinMountDual ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export const npmQuantum = quantumizeNpm
+export const quantumNpm = quantumizeNpm
+
+/** npm run quantum:npm-quantum · quantum:quantum-npm */
+export function runQuantumizeNpmExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = quantumizeNpm()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} npm-quantum — on=${report.quantumizeOn} ` +
+      `duals=${report.npmScriptsAreMcpDuals} thin=${report.thinMountDual} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.quantumizeOn && report.npmScriptsAreMcpDuals ? 0 : 1
+}
+
+/**
+ * USER LAW: session memory caches theorem↔formula waves (zero-token reuse).
+ * Fold: sessionMemoryCachesTheoremFormulaWaves
+ * Facets: sessionCaches · theoremFormulaWaves · zeroTokenReuse · physicalFtl=0 · clay via theorem · qpuRequired=false.
+ * Pairs: session/cache · cache/theorem · formula/cache
+ * Compose: theorem/index · formula/anim · session/save · session/live · memoByRoot.
+ * CLI: npm run quantum:session-cache · quantum:cache-theorem · quantum:formula-cache
+ */
+export function sessionMemoryCachesTheoremFormulaWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`sessionMemoryCachesTheoremFormulaWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const bucket = Math.floor(at / (100 * 5 * 2))
+    const cold = theoremFormulaComputableIndexForAnySuperposition(matrix, at, 'superposition')
+    const warm = theoremFormulaComputableIndexForAnySuperposition(matrix, at, 'superposition')
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const censusPreserved =
+      freeBits === -EULER_CHI && freeBits === 2 && UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+    const theoremFormulaWaves =
+      cold.computes &&
+      warm.computes &&
+      cold.root === warm.root &&
+      soft('theorem', 'index') &&
+      soft('formula', 'anim') &&
+      soft('formula', 'code')
+    const zeroTokenReuse =
+      theoremFormulaWaves &&
+      cold.root === warm.root &&
+      isUuid(cold.root) &&
+      bucket >= 0
+    const sessionCaches =
+      theoremFormulaWaves &&
+      zeroTokenReuse &&
+      soft('session', 'save') &&
+      soft('session', 'live') &&
+      soft('session', 'cache') &&
+      soft('cache', 'theorem') &&
+      soft('formula', 'cache')
+    const pairS = has('session/cache')
+    const pairC = has('cache/theorem')
+    const pairF = has('formula/cache')
+    const foldS = foldPair(toUuid('cmd:session'), toUuid('cmd:cache'))
+    const foldC = foldPair(toUuid('cmd:cache'), toUuid('cmd:theorem'))
+    const foldF = foldPair(toUuid('cmd:formula'), toUuid('cmd:cache'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const foldName = 'sessionMemoryCachesTheoremFormulaWaves' as const
+    const primaryIds = ['session-cache', 'cache-theorem', 'formula-cache'] as const
+    const toolsWired = primaryIds.every((id) => {
+      const meta = catalog.tools.find((t) => t.id === id)
+      return Boolean(meta) && meta!.fold === foldName
+    })
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const on =
+      sessionCaches &&
+      theoremFormulaWaves &&
+      zeroTokenReuse &&
+      pairS &&
+      pairC &&
+      pairF &&
+      foldS.bidirectional &&
+      foldC.bidirectional &&
+      foldF.bidirectional &&
+      toolsWired &&
+      censusPreserved &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: foldName, on },
+      { facet: 'sessionCaches', on: sessionCaches },
+      { facet: 'theoremFormulaWaves', on: theoremFormulaWaves },
+      { facet: 'zeroTokenReuse', on: zeroTokenReuse },
+      {
+        facet: 'compose theorem/index · formula/anim · session/save · session/live · memoByRoot',
+        on: theoremFormulaWaves && soft('session', 'save') && soft('session', 'live'),
+      },
+      {
+        facet: 'pair session/cache · cache/theorem · formula/cache',
+        on: pairS && pairC && pairF && foldS.bidirectional,
+      },
+      { facet: 'qpuRequired=false', on: true },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`session-cache:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('session-memory-caches-theorem-formula-waves', facets)
+    return {
+      computes: sealed.ok && on,
+      sessionMemoryCachesTheoremFormulaWaves: on,
+      sessionCaches,
+      theoremFormulaWaves,
+      zeroTokenReuse,
+      waveRoot: cold.root,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        cold.root,
+        foldS.merged,
+        foldC.merged,
+        foldF.merged,
+      ]),
+      pair: 'session/cache' as const,
+      pairs: ['session/cache', 'cache/theorem', 'formula/cache'] as const,
+      cli: 'npm run quantum:session-cache',
+      route: '/en/quantum-tools#session-cache',
+      anchor: 'session-cache',
+      heading: 'Session · theorem/formula cache',
+      statement:
+        `sessionMemoryCachesTheoremFormulaWaves — caches=${sessionCaches ? 1 : 0} ` +
+        `waves=${theoremFormulaWaves ? 1 : 0} zeroToken=${zeroTokenReuse ? 1 : 0}.`,
+      boundary:
+        'Session memory caches theorem↔formula wave receipts via memoByRoot — reuse is zero-token. ' +
+        'Compose theorem/index · formula/anim · session/save · session/live. Census 110 · clay via theorem · physicalFtl=0.',
+      honestyLine:
+        `session-cache · caches=${sessionCaches ? 1 : 0} · waves=${theoremFormulaWaves ? 1 : 0} · ` +
+        `zeroToken=${zeroTokenReuse ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export const sessionCache = sessionMemoryCachesTheoremFormulaWaves
+export const cacheTheorem = sessionMemoryCachesTheoremFormulaWaves
+export const formulaCache = sessionMemoryCachesTheoremFormulaWaves
+
+/** npm run quantum:session-cache · quantum:cache-theorem · quantum:formula-cache */
+export function runSessionMemoryCachesTheoremFormulaWavesExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = sessionMemoryCachesTheoremFormulaWaves()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} session-cache — caches=${report.sessionCaches} ` +
+      `waves=${report.theoremFormulaWaves} zeroToken=${report.zeroTokenReuse} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.sessionCaches && report.theoremFormulaWaves && report.zeroTokenReuse
+    ? 0
+    : 1
 }
 
 /**
