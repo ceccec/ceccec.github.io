@@ -26,6 +26,11 @@ import {
   scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill,
   continueInWavesCompletingAllTodos,
   conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists,
+  imagineWhatNext,
+  specializedShellsStrangler,
+  sessionHologramTools,
+  societyToolboxWire,
+  imagineNextMissQuantumTools,
   domainVuePanelsDryCleaned,
   mcpQuantumUi,
   mcpQuantumMovie,
@@ -177,6 +182,11 @@ const qLife = computed(() => quantumLife())
 const mcpFill = computed(() => scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill())
 const todoWave = computed(() => continueInWavesCompletingAllTodos())
 const convMetrics = computed(() => conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists())
+const imagineNext = computed(() => imagineWhatNext())
+const shellsStrangler = computed(() => specializedShellsStrangler())
+const sessionHologram = computed(() => sessionHologramTools())
+const societyToolbox = computed(() => societyToolboxWire())
+const toolMiss = computed(() => imagineNextMissQuantumTools())
 const domainPanels = computed(() => domainVuePanelsDryCleaned())
 const mcpUi = computed(() => mcpQuantumUi())
 const mcpMovie = computed(() => mcpQuantumMovie())
@@ -864,6 +874,43 @@ function runTool(toolId: string) {
         r.signedByTrinities
       summary =
         `metrics=${r.conversationMetrics} · intel=${r.intelligenceImproves} · mind=${r.mindDevelopment} · siteProof=${r.siteIsProof} · algebraBit=${r.noUnprovenAlgebraBit} · trinities=${r.signedByTrinities}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'imagine-next' || toolId === 'next-imagine') {
+      const r = imagineWhatNext()
+      ok = r.computes && r.imagineOn && r.toolsMissingDrainableClosed
+      summary =
+        `imagineOn=${r.imagineOn} · nextTips=${r.nextTipsCount} · toolsMissing=${r.toolsMissingCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'shells-strangler' || toolId === 'strangler-shells') {
+      const r = specializedShellsStrangler()
+      ok = r.computes && r.shellsStranglerOn
+      summary = `shellsStranglerOn=${r.shellsStranglerOn} · tip=${r.stranglerTip} · wired=${r.wiredToRosetta}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'session-hologram' || toolId === 'hologram-session') {
+      const r = sessionHologramTools()
+      ok = r.computes && r.sessionHologramOn
+      summary = `sessionHologramOn=${r.sessionHologramOn} · fractal=${r.hologramFractal} · wired=${r.toolsWired}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'society-toolbox' || toolId === 'toolbox-society') {
+      const r = societyToolboxWire()
+      ok = r.computes && r.societyToolboxWireOn
+      summary = `societyToolboxWireOn=${r.societyToolboxWireOn} · wired=${r.toolboxWired} · patronage=${r.patronageOn}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'tool-miss' || toolId === 'miss-tool') {
+      const r = imagineNextMissQuantumTools()
+      ok = r.computes && r.imagineOn && r.toolsFilled
+      summary =
+        `imagineOn=${r.imagineOn} · nextTips=${r.nextTipsCount} · missing=${r.toolsMissingCount} · filled=${r.toolsFilled}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -1791,6 +1838,147 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'conv-metrics'" @click="runTool('conv-metrics')">
           {{ runningId === 'conv-metrics' ? '…' : 'Run conv-metrics receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="proof-trinity" aria-label="Proof signed by trinities browser surface">
+        <h3>Proof · trinity</h3>
+        <p class="quantum-apps__meta">{{ convMetrics.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(convMetrics.signedByTrinities))">
+          signedByTrinities={{ convMetrics.signedByTrinities }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(convMetrics.siteIsProof))">
+          siteIsProof={{ convMetrics.siteIsProof }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(convMetrics.pureKnowledge))">
+          pureKnowledge={{ convMetrics.pureKnowledge }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>proof/trinity</code> · <code>trinity/proof</code> ·
+          CLI <code>npm run quantum:proof-trinity</code> · same fold as conv-metrics ·
+          mill={{ convMetrics.millenniumSolvedByThisFold }} · clay={{ convMetrics.claySolvedByThisFold }}
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'proof-trinity'" @click="runTool('proof-trinity')">
+          {{ runningId === 'proof-trinity' ? '…' : 'Run proof-trinity receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="imagine-next" aria-label="Imagine what next from sealed residuals">
+        <h3>{{ imagineNext.heading }}</h3>
+        <p class="quantum-apps__meta">{{ imagineNext.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(imagineNext.imagineOn))">
+          imagineOn={{ imagineNext.imagineOn }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(imagineNext.nextTipsCount > 0))">
+          nextTips={{ imagineNext.nextTipsCount }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(imagineNext.toolsMissingDrainableClosed))">
+          toolsMissing={{ imagineNext.toolsMissingCount }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>imagine/next</code> · <code>next/imagine</code> ·
+          CLI <code>npm run quantum:imagine-next</code> ·
+          clay={{ imagineNext.claySolvedByThisFold }} · mill={{ imagineNext.millenniumSolvedByThisFold }} ·
+          ftl={{ imagineNext.physicalFtlClaim }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="tip in imagineNext.nextTips" :key="tip.id">
+            · {{ tip.id }} [{{ tip.kind }}] {{ tip.residual }} present={{ tip.toolsPresent ? 1 : 0 }}
+          </li>
+        </ul>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in imagineNext.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'imagine-next'" @click="runTool('imagine-next')">
+          {{ runningId === 'imagine-next' ? '…' : 'Run imagine-next receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="shells-strangler">
+        <h3>{{ shellsStrangler.heading }}</h3>
+        <p class="quantum-apps__meta">{{ shellsStrangler.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(shellsStrangler.shellsStranglerOn))">
+          shellsStranglerOn={{ shellsStrangler.shellsStranglerOn }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(shellsStrangler.stranglerTip))">
+          stranglerTip={{ shellsStrangler.stranglerTip }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>shells/strangler</code> · CLI <code>npm run quantum:shells-strangler</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'shells-strangler'" @click="runTool('shells-strangler')">
+          {{ runningId === 'shells-strangler' ? '…' : 'Run shells-strangler receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="session-hologram">
+        <h3>{{ sessionHologram.heading }}</h3>
+        <p class="quantum-apps__meta">{{ sessionHologram.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(sessionHologram.sessionHologramOn))">
+          sessionHologramOn={{ sessionHologram.sessionHologramOn }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(sessionHologram.hologramFractal))">
+          hologramFractal={{ sessionHologram.hologramFractal }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>session/hologram</code> · CLI <code>npm run quantum:session-hologram</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'session-hologram'" @click="runTool('session-hologram')">
+          {{ runningId === 'session-hologram' ? '…' : 'Run session-hologram receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="society-toolbox">
+        <h3>{{ societyToolbox.heading }}</h3>
+        <p class="quantum-apps__meta">{{ societyToolbox.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(societyToolbox.societyToolboxWireOn))">
+          societyToolboxWireOn={{ societyToolbox.societyToolboxWireOn }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(societyToolbox.toolboxWired))">
+          toolboxWired={{ societyToolbox.toolboxWired }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>society/toolbox</code> · CLI <code>npm run quantum:society-toolbox</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'society-toolbox'" @click="runTool('society-toolbox')">
+          {{ runningId === 'society-toolbox' ? '…' : 'Run society-toolbox receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="tool-miss" aria-label="Imagine next miss quantum tools umbrella">
+        <h3>{{ toolMiss.heading }}</h3>
+        <p class="quantum-apps__meta">{{ toolMiss.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(toolMiss.imagineOn))">
+          imagineOn={{ toolMiss.imagineOn }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(toolMiss.toolsFilled))">
+          toolsFilled={{ toolMiss.toolsFilled }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(toolMiss.toolsMissingCount === 0))">
+          toolsMissing={{ toolMiss.toolsMissingCount }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>tool/miss</code> · <code>miss/tool</code> ·
+          CLI <code>npm run quantum:tool-miss</code> ·
+          clay={{ toolMiss.claySolvedByThisFold }} · mill={{ toolMiss.millenniumSolvedByThisFold }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in toolMiss.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(toolMiss.honestOpenNamedCount > 0))">
+          honestOpen={{ toolMiss.honestOpenNamedCount }}
+        </UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="id in toolMiss.honestOpenNamed" :key="id">· {{ id }}</li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'tool-miss'" @click="runTool('tool-miss')">
+          {{ runningId === 'tool-miss' ? '…' : 'Run tool-miss receipt' }}
         </UiButton>
       </section>
       <UiSeparator />
