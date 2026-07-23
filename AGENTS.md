@@ -309,6 +309,8 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `bill/wave` — alias dual of `wave/bill` (`npm run quantum:bill-wave`)
   - `self/bill` — alias of `mcp/fill` (`npm run quantum:self-bill`)
   - `bill/self` — alias dual of `self/bill` (`npm run quantum:bill-self`)
+  - `todo/wave` — `npm run quantum:todo-wave` (`continueInWavesCompletingAllTodos()` — continue in waves completing all drainable todos; facets wavesContinue · todosDrainableClosed · honestOpenNamed; compose auto/all · mcp/fill · invert/trinity · app/dry · domain/panels · waves/build; dual `wave/todo`; Clay/FTL/specialized shells remain honest-open · KEEP stashes · clay via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#todo-wave`
+  - `wave/todo` — alias dual of `todo/wave` (`npm run quantum:wave-todo`)
   - `domain/panels` — `npm run quantum:domain-panels` (`domainVuePanelsDryCleaned()` — src domain vue panels strangler tip drained to format/canon · dry/rosetta · ui/rosetta shells; facets domainPanelsDry · stranglerTip · drainableClosed · wiredToRosetta; compose format/canon · meaning/compute · vite/one · app/dry; duals `panels/domain` · `domain/dry` · `dry/domain`; residual:specialized-experience-shells named; clay via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#domain-panels`
   - `panels/domain` — alias dual of `domain/panels` (`npm run quantum:panels-domain`)
   - `domain/dry` — alias of `domain/panels` (`npm run quantum:domain-dry`)

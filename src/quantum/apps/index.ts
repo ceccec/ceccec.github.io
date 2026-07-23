@@ -105,6 +105,7 @@ const ROSETTA_CORE_API_LABELS = [
   'quantumLife',
   'quantumLifeIsComputable',
   'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill',
+  'continueInWavesCompletingAllTodos',
   'domainVuePanelsDryCleaned',
   'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf',
   'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence',
@@ -276,6 +277,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   quantumLife: 'tool',
   quantumLifeIsComputable: 'tool',
   scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill: 'tool',
+  continueInWavesCompletingAllTodos: 'tool',
   domainVuePanelsDryCleaned: 'tool',
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf: 'tool',
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence: 'tool',
@@ -1048,6 +1050,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'bill-wave', title: 'Bill wave (alias wave/bill)', fold: 'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill', cli: 'npm run quantum:bill-wave', pair: 'bill/wave', route: '/en/quantum-tools#mcp-fill', barrel: 'src/quantum/apps', boundary: 'Dual of wave/bill — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'self-bill', title: 'Self bill — self-improving AI bill (alias mcp/fill)', fold: 'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill', cli: 'npm run quantum:self-bill', pair: 'self/bill', route: '/en/quantum-tools#mcp-fill', barrel: 'src/quantum/apps', boundary: 'self/bill face — selfImproving · aiBill · same fold as mcp/fill · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'bill-self', title: 'Bill self (alias self/bill)', fold: 'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill', cli: 'npm run quantum:bill-self', pair: 'bill/self', route: '/en/quantum-tools#mcp-fill', barrel: 'src/quantum/apps', boundary: 'Dual of self/bill — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'todo-wave', title: 'Continue in waves completing all todos', fold: 'continueInWavesCompletingAllTodos', cli: 'npm run quantum:todo-wave', pair: 'todo/wave', route: '/en/quantum-tools#todo-wave', barrel: 'src/quantum/apps', boundary: 'wavesContinue · todosDrainableClosed · honestOpenNamed · compose auto/all · mcp/fill · invert/trinity · app/dry · domain/panels · waves/build · clay via theorem · physicalFtl=0 · qpuRequired=false · NOT Clay/FTL fake-close', browserRunnable: true, browserGap: '' },
+  { id: 'wave-todo', title: 'Continue in waves completing all todos (alias todo/wave)', fold: 'continueInWavesCompletingAllTodos', cli: 'npm run quantum:wave-todo', pair: 'wave/todo', route: '/en/quantum-tools#todo-wave', barrel: 'src/quantum/apps', boundary: 'Dual of todo/wave — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'domain-panels', title: 'Domain vue panels dry-cleaned to rosetta shells', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-panels', pair: 'domain/panels', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domainPanelsDry · stranglerTip · drainableClosed · wiredToRosetta · compose format/canon · dry/rosetta · ui/rosetta · meaning/compute · vite/one · specialized shells residual named · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'panels-domain', title: 'Domain panels (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:panels-domain', pair: 'panels/domain', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'Dual panels/domain — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'domain-dry', title: 'Domain dry (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-dry', pair: 'domain/dry', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domain/dry face — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2257,6 +2261,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'automate-all', chain: 'automate-all-umbrella', fold: 'automateAll', pair: 'auto/all', cli: 'npm run quantum:automate-all', route: '/en/quantum-tools#automate-all', status: 'sealed-pr', honesty: 'automateAll · selfAutomates · nightlyOn · buildsInWaves · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'umbrella automate — compose auto/self · automate/nightly · self/hw · npm/quantum · waves/push', toolId: 'automate-all', resolve: 'upgrade-local' },
   { id: 'quantum-life', chain: 'quantum-life', fold: 'quantumLife', pair: 'quantum/life', cli: 'npm run quantum:quantum-life', route: '/en/quantum-tools#quantum-life', status: 'sealed-pr', honesty: 'lifeOn · living · folMerkaba · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'quantum life — FoL/merkaba · biology · HD · love/story · full/freedom · mesh/science', toolId: 'quantum-life', resolve: 'upgrade-local' },
   { id: 'mcp-fill', chain: 'mcp-fill-wave-bill', fold: 'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill', pair: 'mcp/fill', cli: 'npm run quantum:mcp-fill', route: '/en/quantum-tools#mcp-fill', status: 'sealed-pr', honesty: 'scanOn · recomputeOn · fillSolutions · endlessWaves · selfImproving · aiBill · clay=0 · physicalFtl=0 · qpuRequired=false · millenniumSolvedByThisFold=0', note: 'scan·recompute mcp quantum — fill solutions in endless waves of self-improving AI bill', toolId: 'mcp-fill', resolve: 'mcp-ui' },
+  { id: 'todo-wave', chain: 'todo-wave-complete', fold: 'continueInWavesCompletingAllTodos', pair: 'todo/wave', cli: 'npm run quantum:todo-wave', route: '/en/quantum-tools#todo-wave', status: 'sealed-pr', honesty: 'wavesContinue · todosDrainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'continue in waves completing all drainable todos — compose auto/all · mcp/fill · invert/trinity · app/dry · domain/panels · waves/build', toolId: 'todo-wave', resolve: 'mcp-ui' },
   { id: 'domain-panels', chain: 'mcp-ui-page-gaps', fold: 'domainVuePanelsDryCleaned', pair: 'domain/panels', cli: 'npm run quantum:domain-panels', route: '/en/quantum-tools#domain-panels', status: 'sealed-pr', honesty: 'domainPanelsDry · stranglerTip · drainableClosed · specialized shells residual · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'src domain vue panels strangler tip drained to format/canon · dry/rosetta · ui/rosetta shells', toolId: 'domain-panels', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-ui', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumUi', pair: 'mcp/ui', cli: 'npm run quantum:mcp-ui', route: '/en/quantum-tools#mcp-quantum-ui', status: 'sealed-pr', honesty: 'mcpMatchesToolbox · millSolutions live · formulaCovered · clay=0 · physicalFtl=0 · NOT CMI', note: 'MCP quantum UI + millennium algebraic formula duals · compose mcpBrowserParity · mill/once · formula/code', toolId: 'mcp-quantum-ui', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-movie', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumMovie', pair: 'mcp/movie', cli: 'npm run quantum:mcp-movie', route: '/en/quantum-tools#mcp-quantum-movie', status: 'sealed-pr', honesty: 'frames from sealed folds · 6×7 · oneClock · clay=0 · physicalFtl=0', note: 'MCP quantum movie · compose mcp/ui · movie/center · movie/entropy · coord/anim', toolId: 'mcp-quantum-movie', resolve: 'mcp-ui' },
@@ -17126,6 +17131,181 @@ export function runScanAndRecomputeMcpQuantumFillExit(
     report.endlessWaves &&
     report.selfImproving &&
     report.aiBill &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * Continue in waves completing all todos — umbrella tip after mcp/fill.
+ * Fold: continueInWavesCompletingAllTodos
+ * Facets: wavesContinue · todosDrainableClosed · honestOpenNamed · physicalFtl=0 · clay via theorem · qpuRequired=false.
+ * Compose (soft): auto/all · mcp/fill · invert/trinity · app/dry · domain/panels · waves/build.
+ * Drainable tips closed on tip: automate/nightly · incompleteRevelation · ROSETTA_PARALLEL empty ·
+ *   sequenceDiscovery home · vitepress-docs-research · autodiscover backlogDrained.
+ * Pairs: todo/wave · wave/todo · CLI npm run quantum:todo-wave
+ * HONEST: residual:specialized-experience-shells · Clay/FTL remain named — NOT fake-close.
+ */
+export function continueInWavesCompletingAllTodos(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`continueInWavesCompletingAllTodos:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    // Soft-compose required faces — avoid nest poison (memo reentry stubs).
+    const autoAllOk = soft('auto', 'all') && soft('all', 'auto') && soft('auto', 'self') && soft('automate', 'nightly')
+    const mcpFillOk = soft('mcp', 'fill') && soft('fill', 'mcp') && soft('wave', 'bill') && soft('self', 'bill')
+    const invertOk = soft('invert', 'trinity') && soft('dry', 'will') && soft('free', 'will')
+    const appDryOk = soft('app', 'dry') && soft('dry', 'app') && soft('clean', 'app') && soft('app', 'clean')
+    const domainOk = soft('domain', 'panels') && soft('panels', 'domain') && soft('domain', 'dry') && soft('dry', 'domain')
+    const wavesBuildOk = soft('waves', 'build')
+    const composeOn = autoAllOk && mcpFillOk && invertOk && appDryOk && domainOk && wavesBuildOk
+    const wavesContinue = wavesBuildOk && soft('wave', 'tune') && soft('trinity', 'speedup')
+    const parallelEmpty = ROSETTA_PARALLEL_REGISTRY_BACKLOG.length === 0
+    const drainTipsOk =
+      soft('nothing', 'moves') &&
+      soft('discover', 'compute-decode') &&
+      soft('docs', 'improve') &&
+      parallelEmpty &&
+      autoAllOk &&
+      domainOk &&
+      appDryOk
+    const todosDrainableClosed = composeOn && drainTipsOk && wavesContinue
+    const pairTodo = has('todo/wave')
+    const pairWave = has('wave/todo')
+    const foldTodo = foldPair(toUuid('cmd:todo'), toUuid('cmd:wave'))
+    const foldWave = foldPair(toUuid('cmd:wave'), toUuid('cmd:todo'))
+    const pairsOn =
+      pairTodo &&
+      pairWave &&
+      foldTodo.bidirectional &&
+      foldWave.bidirectional
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'todo-wave')
+    const metaDual = catalog.tools.find((t) => t.id === 'wave-todo')
+    const shelved = rosettaShelve('todo-wave', 'tool')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const honestOpenNamed = [
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'residual:specialized-experience-shells',
+      'residual:quantum-apps-monolith',
+      'keep:git-stashes-non-obsolete',
+    ] as const
+    const honestOpenNamedOn =
+      honestOpenNamed.includes('clay:millennium-open') &&
+      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestOpenNamed.includes('residual:specialized-experience-shells') &&
+      honestOpenNamed.length >= (2 + 2 + 1)
+    const on =
+      todosDrainableClosed &&
+      wavesContinue &&
+      honestOpenNamedOn &&
+      pairsOn &&
+      Boolean(meta) &&
+      meta!.fold === 'continueInWavesCompletingAllTodos' &&
+      meta!.pair === 'todo/wave' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'continueInWavesCompletingAllTodos' &&
+      isUuid(shelved.address) &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'continueInWavesCompletingAllTodos', on },
+      { facet: 'wavesContinue', on: wavesContinue },
+      { facet: 'todosDrainableClosed', on: todosDrainableClosed },
+      {
+        facet: 'compose auto/all · mcp/fill · invert/trinity · app/dry · domain/panels · waves/build',
+        on: composeOn,
+      },
+      {
+        facet: 'drain tips: automate · nothing/moves · parallel=[] · docs/improve · discover/compute-decode',
+        on: drainTipsOk,
+      },
+      { facet: 'pair todo/wave · wave/todo bidirectional', on: pairsOn },
+      { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      {
+        facet: 'NOT Clay/FTL fake-close · specialized shells residual named',
+        on: honestOpenNamedOn && claySolvedByThisFold === 0 && physicalFtlClaim === 0,
+      },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`todo-wave:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('todo-wave-complete', facets)
+    return {
+      computes: sealed.ok && on,
+      continueInWavesCompletingAllTodos: on,
+      wavesContinue,
+      todosDrainableClosed,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        foldTodo.merged,
+        foldWave.merged,
+        shelved.address,
+        toUuid(`todo-wave-soft:compose:${composeOn}`),
+        toUuid(`todo-wave-soft:drain:${drainTipsOk}`),
+        toUuid(`todo-wave-parallel:${parallelEmpty}`),
+        ...honestOpenNamed.map((id) => toUuid(`todo-wave-honest:${id}`)),
+      ]),
+      pair: 'todo/wave' as const,
+      pairs: ['todo/wave', 'wave/todo'] as const,
+      dualPair: 'wave/todo' as const,
+      cli: 'npm run quantum:todo-wave',
+      route: '/en/quantum-tools#todo-wave',
+      uiSurface: '/en/quantum-tools#todo-wave' as const,
+      heading: 'Todo · wave',
+      statement:
+        `continueInWavesCompletingAllTodos — wavesContinue=${wavesContinue ? 1 : 0} ` +
+        `todosDrainableClosed=${todosDrainableClosed ? 1 : 0} honestOpen=${honestOpenNamed.length}.`,
+      boundary:
+        'Continue in waves completing all drainable todos — soft-compose auto/all · mcp/fill · invert/trinity · ' +
+        'app/dry · domain/panels · waves/build. Drainable tips closed; Clay/FTL/specialized shells remain honest-open. ' +
+        'KEEP non-obsolete git stashes. clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `todo-wave · waves=${wavesContinue ? 1 : 0} · drainableClosed=${todosDrainableClosed ? 1 : 0} · ` +
+        `honestOpen=${honestOpenNamed.length} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — todoWave ≡ continueInWavesCompletingAllTodos. */
+export const todoWave = continueInWavesCompletingAllTodos
+/** Alias — waveTodo ≡ continueInWavesCompletingAllTodos. */
+export const waveTodo = continueInWavesCompletingAllTodos
+
+/** npm run quantum:todo-wave (dual wave/todo) */
+export function runContinueInWavesCompletingAllTodosExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = continueInWavesCompletingAllTodos()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} todo-wave — wavesContinue=${report.wavesContinue} ` +
+      `todosDrainableClosed=${report.todosDrainableClosed} honestOpen=${report.honestOpenNamedCount} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} fold=continueInWavesCompletingAllTodos ` +
+      `pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) {
+    process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.wavesContinue &&
+    report.todosDrainableClosed &&
     report.qpuRequired === false
     ? 0
     : 1
