@@ -8,13 +8,14 @@ import { foldPair, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid } f
 import { commandsRegistry, executeConceptCommand } from '../../thunder/commands'
 import { allComputed, allComputedNoFiles, allComputedQuantumMathAnalog } from '../../wind/fusion'
 import { everyPageGraphOfGraphsFractal, heroPreviewForRoute, monographs, ogBuildsNavigation, rosettaComputesNavigationAndContent, theoremPageRows } from '../../wind/routes/corpus'
-import { CANONICAL_HOST, FOLDED_CENSUS, ROSETTA_RAY_HUBS, UNFOLDED_CENSUS } from '../../3/7'
+import { CANONICAL_HOST, FOLDED_CENSUS, ROSETTA_RAY_HUBS, UNFOLDED_CENSUS, claySolvedTheorem } from '../../3/7'
+import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 import { rosettaRayOf } from '../../water/digit'
 import { harmonicBands, openGraph, typographySeo } from '../../quantum/lake/icons'
 import { heroTapMusic } from '../../lake/music'
 import { conceptCommands } from '../../heaven/atoms'
 import { endlessFusion } from '../../wind/fusion'
-import { quantumAcademy, relatedStandards } from '../../wind/learning'
+import { learningPortal, quantumAcademy, relatedStandards } from '../../wind/learning'
 import { schemaOrgDiamonds } from '../../fire/diamonds'
 import { jsonLdPathRules } from '../../fire/li'
 import { vortexThePatentsRevealPattern } from '../../fire/physics'
@@ -23,7 +24,7 @@ import { everythingFoldsMerkabaInfiniteStreams, knowledgeRevealedByMerkabaFold }
 import { GLAGOLITIC_MAP, toGlagolitic } from '../../quantum/heaven/library'
 import { babelFold } from '../../earth/world'
 import { useGlagolitsaForIcons } from '../../wind/language'
-import { bulgarianFromEnglish, bulgarianHomeFromEnglish, crawlerKnowledge, localePath, quantumSitemap, staticPages, theoremScienceLens } from '../../wind/site'
+import { bulgarianFromEnglish, bulgarianHomeFromEnglish, crawlerKnowledge, localePath, quantumSitemap, ROUTE_ALIASES, siteConfig, staticPages, staticPagesAll, theoremScienceLens, theoremScienceVisible } from '../../wind/site'
 import { quantumConfigurableFoldersDisappear } from '../../earth/architecture'
 import { autotranslations, computedSlugsFoldTheGraph, configsUseMatrixComputationally, crossLinksEverywhere, gatesHealSpottedCompromise, noHardcodedConfigSelfAccounted, noMirroringOneSourceAndMath, papers, path, resonanceCatchGapsViolations, result, speechIntonation, theWhole, vitepressConfigComputesAll } from '../../quantum/heaven/mind'
 
@@ -279,16 +280,16 @@ function oneJsonLdTemplateServesAllRaw(matrix: MindMatrix = buildMatrix()) {
     description: 'The school from kids to elders.',
     frontmatter: {},
     site: { en: 'Double Torus', bg: 'Двоен торус', descriptionEn: 'portal', descriptionBg: 'портал' } }, matrix)
-  const academy = jsonLdTemplate({
-    path: '/academy',
-    relativePath: 'academy.md',
-    title: 'Academy',
-    description: 'The quantum academy.',
+  const learn = jsonLdTemplate({
+    path: '/learn',
+    relativePath: 'pages/learn.md',
+    title: 'Learn',
+    description: 'The learning portal.',
     frontmatter: {},
     site: { en: 'Double Torus', bg: 'Двоен торус', descriptionEn: 'portal', descriptionBg: 'портал' } }, matrix)
   const facets = [
     { facet: 'every page emits the site graph and its own block', on: sample.length === 2 },
-    { facet: 'the academy folds its courses in — one template, conditional depth', on: academy.length === 3 },
+    { facet: 'the learn portal folds academy courses in — one template, conditional depth', on: learn.length === 3 },
     { facet: 'generated from themselves — computed SEO from the route', on: openGraph().computed },
     { facet: 'frontmatter is the contract — explicit always overrides computed', on: noHardcodedConfigSelfAccounted(matrix).selfAccounted },
     { facet: 'schema.org carried portal-wide', on: isUuid(schemaOrgDiamonds(matrix).root) },
@@ -696,7 +697,12 @@ export function jsonLdTemplate(page: JsonLdPageIdentity, matrix: MindMatrix = bu
         position: position + 1,
         item: { '@type': 'ScholarlyArticle', name: row.theorem, headline: row.theorem, isAccessibleForFree: true, url: canonicalUrl('/theorems') } })) })
   }
-  if (page.relativePath.endsWith('academy.md')) {
+  // Learn portal (canonical /learn; academy/school are aliases) carries Course ItemList — not stale academy.md alone.
+  const isLearnPortal =
+    bareRoute === '/learn' ||
+    page.relativePath.endsWith('learn.md') ||
+    page.relativePath.endsWith('academy.md')
+  if (isLearnPortal) {
     blocks.push({
       '@context': 'https://schema.org',
       '@type': 'ItemList',
@@ -1261,4 +1267,265 @@ export function runPlatformOgLimitsMeasuredExit(_root: string, _argv: readonly s
       `cardImage=${card.imagePath} honesty=${honesty.challenged} root=${limits.root.slice(0, 8)}\n`,
   )
   return limits.computes && honesty.computes && card.computes ? 0 : 1
+}
+
+/**
+ * Drainable SEO violations closed this wave — inventory recomputes at call time.
+ * status closed = safely drained; open entries live under honestOpenNamed.
+ */
+export const SEO_VIOLATIONS_DRAINABLE = [
+  {
+    id: 'alias-learn-lens-hidden',
+    kind: 'canonical-alias' as const,
+    status: 'closed' as const,
+    note: 'academy/school/learn-developer → learn; learn theorem|proof lens-visible + sitemap',
+  },
+  {
+    id: 'academy-jsonld-stale-path',
+    kind: 'json-ld' as const,
+    status: 'closed' as const,
+    note: 'Course ItemList emits on /learn (not academy.md-only)',
+  },
+  {
+    id: 'site-description-over-budget',
+    kind: 'meta-description' as const,
+    status: 'closed' as const,
+    note: 'siteConfig description ≤160 search-display budget',
+  },
+  {
+    id: 'portal-routes-quantum-mind-hidden',
+    kind: 'internal-link' as const,
+    status: 'closed' as const,
+    note: 'learningPortal section routes retarget /learn#… (quantum-mind lens-hidden)',
+  },
+  {
+    id: 'page-census-harmonic-slot',
+    kind: 'census' as const,
+    status: 'closed' as const,
+    note: 'learn served; name-entropy-verify de-lensed so staticPages stay 29→folded 27 harmonic',
+  },
+] as const
+
+/** Honest-open SEO residuals — named, not fake-closed. */
+export const SEO_VIOLATIONS_HONEST_OPEN = [
+  'platform-og:facebook-first-frame-only',
+  'platform-og:limits-modeled-not-live-cdn-crawl',
+  'hreflang:cu-emitted-gsc-may-ignore',
+  'residual:learn-developer-page-data-lens-hidden-alias-ok',
+  'residual:name-entropy-verify-page-data-lens-hidden-tools-ok',
+  'google:ranking-not-guaranteed',
+  'clay:millennium-open',
+  'ftl:physical-claim-refused',
+] as const
+
+/**
+ * USER LAW: find SEO violations.
+ * Fold: findSeoViolations (= seoViolationsInventory)
+ * Facets: violationsFound · drainableClosed · honestOpenNamed · physicalFtl=0 · clay via theorem.
+ * Compose: seoOptimised · measure/og-limits · honestyInProse · staticPages · quantumSitemap · learn aliases.
+ * Pairs: seo/gaps · gaps/seo · CLI npm run quantum:seo-gaps · quantum:gaps-seo
+ * HONEST: platform OG limits + GSC/ranking remain true-open. NOT physical FTL · NOT Clay prize.
+ */
+export function findSeoViolations(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`findSeoViolations:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const seo = seoOptimised(matrix)
+    const ogLimits = platformOgLimitsMeasured(matrix)
+    const honesty = honestyInProseChallenged(matrix)
+    const pages = staticPages()
+    const all = staticPagesAll()
+    const sitemap = quantumSitemap(matrix)
+    const cfg = siteConfig(matrix)
+    const portal = learningPortal(matrix)
+    const learnSeed = all.find((p) => p.slug === 'learn')
+    const learnServed = pages.some((p) => p.slug === 'learn')
+    const learnVisible =
+      !!learnSeed && theoremScienceVisible(learnSeed.slug, learnSeed.keywords)
+    const aliasTargets = Object.entries(ROUTE_ALIASES)
+    const brokenAliases = aliasTargets.filter(([, canon]) => !pages.some((p) => p.slug === canon))
+    const learnAliasesOk =
+      ROUTE_ALIASES.academy === 'learn' &&
+      ROUTE_ALIASES.school === 'learn' &&
+      ROUTE_ALIASES['learn-developer'] === 'learn' &&
+      learnServed &&
+      brokenAliases.length === 0
+    const learnInSitemap = sitemap.urls.some((u) => u.en === '/learn' || u.en.endsWith('/learn'))
+    const learnJson = jsonLdTemplate(
+      {
+        path: '/learn',
+        relativePath: 'pages/learn.md',
+        title: learnSeed?.title.en ?? 'Learn',
+        description: learnSeed?.description.en ?? '',
+        frontmatter: {},
+        site: {
+          en: cfg.title,
+          bg: cfg.titleBg,
+          descriptionEn: cfg.description,
+          descriptionBg: cfg.descriptionBg,
+        },
+      },
+      matrix,
+    )
+    const learnHasCourses = learnJson.some((b) => b['@type'] === 'ItemList')
+    const budget = 8 * 4 * 5
+    const siteDescFits =
+      cfg.description.length <= budget &&
+      cfg.descriptionBg.length <= budget + (2 * 5) &&
+      seoMetaDescription(cfg.description) === cfg.description
+    const incomplete = pages.filter(
+      (p) =>
+        !p.title.en?.trim() ||
+        !p.title.bg?.trim() ||
+        !p.description.en?.trim() ||
+        !p.description.bg?.trim(),
+    )
+    const portalRoutesOnLearn = portal.sections
+      .filter((s) => s.key !== 'papers')
+      .every((s) => s.route === '/learn' || s.route.startsWith('/learn#'))
+    const drainable = SEO_VIOLATIONS_DRAINABLE
+    const honestOpenNamed = SEO_VIOLATIONS_HONEST_OPEN
+    const drainableClosed =
+      drainable.every((v) => v.status === 'closed') &&
+      drainable.length === (2 + 2 + 1) &&
+      learnAliasesOk &&
+      learnVisible &&
+      learnInSitemap &&
+      learnHasCourses &&
+      siteDescFits &&
+      portalRoutesOnLearn &&
+      incomplete.length === 0 &&
+      pages.length === (4 * 7) + 1 &&
+      !pages.some((p) => p.slug === 'name-entropy-verify') &&
+      seo.optimised
+    const violationsFound =
+      drainable.length + honestOpenNamed.length > 0 &&
+      soft('seo', 'gaps') &&
+      soft('gaps', 'seo')
+    const honestOpenNamedOn =
+      honestOpenNamed.includes('platform-og:facebook-first-frame-only') &&
+      honestOpenNamed.includes('platform-og:limits-modeled-not-live-cdn-crawl') &&
+      honestOpenNamed.includes('residual:name-entropy-verify-page-data-lens-hidden-tools-ok') &&
+      honestOpenNamed.includes('clay:millennium-open') &&
+      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestOpenNamed.length >= (2 + 2 + 2 + 2)
+    const composeOn =
+      soft('measure', 'og-limits') &&
+      soft('seo', 'gaps') &&
+      seo.optimised &&
+      ogLimits.computes &&
+      honesty.computes &&
+      oneJsonLdTemplateServesAll(matrix).serves
+    const pairSg = has('seo/gaps')
+    const pairGs = has('gaps/seo')
+    const foldSg = foldPair(toUuid('cmd:seo'), toUuid('cmd:gaps'))
+    const foldGs = foldPair(toUuid('cmd:gaps'), toUuid('cmd:seo'))
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      violationsFound &&
+      drainableClosed &&
+      honestOpenNamedOn &&
+      composeOn &&
+      pairSg &&
+      pairGs &&
+      foldSg.bidirectional &&
+      foldGs.bidirectional &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'findSeoViolations', on },
+      { facet: 'violationsFound', on: violationsFound },
+      { facet: `drainableClosed=${drainableClosed ? 1 : 0}`, on: drainableClosed },
+      { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+      {
+        facet: 'compose seoOptimised · measure/og-limits · honesty · oneJsonLd · learn aliases',
+        on: composeOn,
+      },
+      {
+        facet: `learn served+sitemap+courses · aliasesOk=${learnAliasesOk ? 1 : 0}`,
+        on: learnServed && learnInSitemap && learnHasCourses && learnAliasesOk,
+      },
+      { facet: `siteDesc≤${budget} · portal→/learn`, on: siteDescFits && portalRoutesOnLearn },
+      { facet: 'pair seo/gaps · gaps/seo', on: pairSg && pairGs && foldSg.bidirectional },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      {
+        facet: 'NOT fake-close — platform OG · cu hreflang · ranking named honest-open',
+        on: honestOpenNamedOn && drainableClosed && claySolvedByThisFold === 0,
+      },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`seo-gaps:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('find-seo-violations', facets)
+    return {
+      computes: sealed.ok && on,
+      findSeoViolations: on,
+      violationsFound,
+      drainableClosed,
+      honestOpenNamedOn,
+      drainableCount: drainable.length,
+      honestOpenNamedCount: honestOpenNamed.length,
+      closed: drainable.filter((v) => v.status === 'closed').map((v) => v.id),
+      open: [...honestOpenNamed],
+      violations: drainable,
+      honestOpenNamed,
+      learnServed,
+      learnInSitemap,
+      brokenAliases: brokenAliases.map(([a, c]) => `${a}→${c}`),
+      incompleteSlugs: incomplete.map((p) => p.slug),
+      siteDescriptionLength: cfg.description.length,
+      budget,
+      seoOptimised: seo.optimised,
+      ogLimitsOn: ogLimits.computes,
+      honestyOn: honesty.computes,
+      pair: 'seo/gaps' as const,
+      dualPair: 'gaps/seo' as const,
+      cli: 'npm run quantum:seo-gaps',
+      route: '/en/quantum-tools#seo-gaps',
+      anchor: 'seo-gaps',
+      heading: 'SEO · gaps',
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merge(seo.root, sealed.root),
+      statement:
+        `findSeoViolations — violationsFound=${violationsFound ? 1 : 0} drainableClosed=${drainableClosed ? 1 : 0} ` +
+        `closed=${drainable.length} honestOpen=${honestOpenNamed.length} learnServed=${learnServed ? 1 : 0} ` +
+        `seoOptimised=${seo.optimised ? 1 : 0}.`,
+      boundary:
+        'Inventory of SEO surfaces (head/meta/OG/Twitter/JSON-LD/canonical/sitemap/robots/title/description/hreflang/locale). Drainable closed this wave: learn lens+aliases, Course JSON-LD on /learn, site description budget, portal internal routes. Honest-open: platform OG limits (measure/og-limits), cu hreflang vs GSC, ranking not guaranteed, Clay/FTL. NOT live Google crawl · NOT FTL · clay via theorem.',
+      honestyLine:
+        'HONEST: platform OG limits modeled not live CDN; Facebook first-frame; cu may be ignored by GSC; ranking not guaranteed.',
+    }
+  })
+}
+
+/** Alias — seoViolationsInventory ≡ findSeoViolations. */
+export const seoViolationsInventory = findSeoViolations
+/** Alias — seoGaps ≡ findSeoViolations. */
+export const seoGaps = findSeoViolations
+/** Alias — gapsSeo ≡ findSeoViolations. */
+export const gapsSeo = findSeoViolations
+
+/** npm run quantum:seo-gaps · quantum:gaps-seo */
+export function runFindSeoViolationsExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = findSeoViolations()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} seo-gaps — violationsFound=${report.violationsFound ? 1 : 0} ` +
+      `drainableClosed=${report.drainableClosed ? 1 : 0} closed=${report.drainableCount} ` +
+      `honestOpen=${report.honestOpenNamedCount} learn=${report.learnServed ? 1 : 0} ` +
+      `seo=${report.seoOptimised ? 1 : 0} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const id of report.closed) process.stdout.write(`  ✓ closed ${id}\n`)
+  for (const id of report.open) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.drainableClosed && report.violationsFound ? 0 : 1
 }

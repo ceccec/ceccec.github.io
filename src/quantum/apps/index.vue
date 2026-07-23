@@ -114,7 +114,7 @@ import {
   productionRsaRefuseCompletesQuantumViaRosetta,
   cryptoComparisonMeshIsDry,
 } from '../../water/encryption/index.ts'
-import { platformOgLimitsMeasured, honestyInProseChallenged } from '../../mountain/og/index.ts'
+import { platformOgLimitsMeasured, honestyInProseChallenged, findSeoViolations } from '../../mountain/og/index.ts'
 import {
   millenniumPanelComputes, unitDistanceResearch, firstInCorpusProvenanceForHome, sciencesTrinitiesPanelComputes,
   theoremParticleCollisionPanelComputes,
@@ -232,6 +232,7 @@ const heroAbstract = computed(() => heroIsTheAbstractAnimationFormsTheCardItself
 const appFold = computed(() => foldingWorksOnApplicationLevel())
 const dryRosetta = computed(() => dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie())
 const vueDryUniversal = computed(() => dryCleanAllVueComponentsToTheUniversalSet())
+const seoGapsReport = computed(() => findSeoViolations())
 const waveCompact = computed(() => wavesSearchDiscoverCompactingInQuantumFolders())
 const balanceMetrics = computed(() => alwaysBalanceUsingRealtimeMetricsAndChat())
 const superChat = computed(() => eachSuperpositionIsAChatroom())
@@ -521,6 +522,13 @@ function runTool(toolId: string) {
       root = honesty.root
       boundary = honesty.boundary
       facets = [...limits.facets, ...honesty.facets].map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'seo-gaps' || toolId === 'gaps-seo') {
+      const r = findSeoViolations()
+      ok = r.computes && r.violationsFound && r.drainableClosed
+      summary = `violationsFound=${r.violationsFound} drainableClosed=${r.drainableClosed} closed=${r.drainableCount} honestOpen=${r.honestOpenNamedCount} learn=${r.learnServed}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'iso-pqc-catalog') {
       const r = runPqcStandardsToolInBrowser('auto')
       ok = r.ok
@@ -3253,6 +3261,46 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'vue-dry'" @click="runTool('vue-dry')">
           {{ runningId === 'vue-dry' ? '…' : 'Run vue-dry' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="seo-gaps" aria-label="Find SEO violations">
+        <h3>{{ seoGapsReport.heading }}</h3>
+        <p class="quantum-apps__meta">{{ seoGapsReport.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(seoGapsReport.violationsFound))">
+          violationsFound={{ seoGapsReport.violationsFound }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(seoGapsReport.drainableClosed))">
+          drainableClosed={{ seoGapsReport.drainableClosed }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(seoGapsReport.learnServed))">
+          learnServed={{ seoGapsReport.learnServed }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(seoGapsReport.honestOpenNamedCount > 0))">
+          honestOpen={{ seoGapsReport.honestOpenNamedCount }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          closed={{ seoGapsReport.drainableCount }} · clay={{ seoGapsReport.claySolvedByThisFold }} ·
+          ftl={{ seoGapsReport.physicalFtlClaim }} · qpu={{ seoGapsReport.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="id in seoGapsReport.closed" :key="id">
+            <UiBadge variant="default">closed</UiBadge>
+            <strong>{{ id }}</strong>
+          </li>
+        </ul>
+        <ul class="quantum-apps__facets">
+          <li v-for="id in seoGapsReport.honestOpenNamed" :key="id">
+            <UiBadge variant="outline">honest-open</UiBadge>
+            <strong>{{ id }}</strong>
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>seo/gaps</code> · <code>gaps/seo</code> ·
+          CLI <code>npm run quantum:seo-gaps</code> · <code>npm run quantum:gaps-seo</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'seo-gaps'" @click="runTool('seo-gaps')">
+          {{ runningId === 'seo-gaps' ? '…' : 'Run seo-gaps' }}
         </UiButton>
       </section>
       <UiSeparator />

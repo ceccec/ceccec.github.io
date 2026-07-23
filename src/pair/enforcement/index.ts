@@ -76,6 +76,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'challenge/og-honesty',
   'og/card',
   'measure/og-limits',
+  'seo/gaps',
+  'gaps/seo',
   'measure/crypto-beyond',
   'measure/demo-rsa',
   'reverse/local-timed',
