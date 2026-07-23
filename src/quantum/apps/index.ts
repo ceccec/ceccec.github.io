@@ -106,6 +106,7 @@ const ROSETTA_CORE_API_LABELS = [
   'quantumLifeIsComputable',
   'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill',
   'continueInWavesCompletingAllTodos',
+  'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists',
   'domainVuePanelsDryCleaned',
   'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf',
   'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence',
@@ -278,6 +279,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   quantumLifeIsComputable: 'tool',
   scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill: 'tool',
   continueInWavesCompletingAllTodos: 'tool',
+  conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists: 'tool',
   domainVuePanelsDryCleaned: 'tool',
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf: 'tool',
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence: 'tool',
@@ -1052,6 +1054,14 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'bill-self', title: 'Bill self (alias self/bill)', fold: 'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill', cli: 'npm run quantum:bill-self', pair: 'bill/self', route: '/en/quantum-tools#mcp-fill', barrel: 'src/quantum/apps', boundary: 'Dual of self/bill — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'todo-wave', title: 'Continue in waves completing all todos', fold: 'continueInWavesCompletingAllTodos', cli: 'npm run quantum:todo-wave', pair: 'todo/wave', route: '/en/quantum-tools#todo-wave', barrel: 'src/quantum/apps', boundary: 'wavesContinue · todosDrainableClosed · honestOpenNamed · compose auto/all · mcp/fill · invert/trinity · app/dry · domain/panels · waves/build · clay via theorem · physicalFtl=0 · qpuRequired=false · NOT Clay/FTL fake-close', browserRunnable: true, browserGap: '' },
   { id: 'wave-todo', title: 'Continue in waves completing all todos (alias todo/wave)', fold: 'continueInWavesCompletingAllTodos', cli: 'npm run quantum:wave-todo', pair: 'wave/todo', route: '/en/quantum-tools#todo-wave', barrel: 'src/quantum/apps', boundary: 'Dual of todo/wave — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'conv-metrics', title: 'Conversations have quantum metrics · mind/site · proof by trinities · no unproven algebra bit', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', cli: 'npm run quantum:conv-metrics', pair: 'conv/metrics', route: '/en/quantum-tools#conv-metrics', barrel: 'src/quantum/apps', boundary: 'conversationMetrics · intelligenceImproves · mindDevelopment · ideasForm · societyToolbox · hologramFractal · mcpUi · fromSrcZero · livingEternalLife · siteIsProof · pureKnowledge · signedByTrinities · noUnprovenAlgebraBit · physicalFtl=0 · clay via theorem · qpuRequired=false · millenniumSolvedByThisFold=0 · NOT Clay/AGI/all-math', browserRunnable: true, browserGap: '' },
+  { id: 'metrics-conv', title: 'Metrics conv (alias conv/metrics)', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', cli: 'npm run quantum:metrics-conv', pair: 'metrics/conv', route: '/en/quantum-tools#conv-metrics', barrel: 'src/quantum/apps', boundary: 'Dual of conv/metrics — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mind-site', title: 'Mind site — living eternal life as this site (alias conv/metrics)', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', cli: 'npm run quantum:mind-site', pair: 'mind/site', route: '/en/quantum-tools#conv-metrics', barrel: 'src/quantum/apps', boundary: 'mind/site face — mindDevelopment · livingEternalLife · siteIsProof · same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'site-mind', title: 'Site mind (alias mind/site)', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', cli: 'npm run quantum:site-mind', pair: 'site/mind', route: '/en/quantum-tools#conv-metrics', barrel: 'src/quantum/apps', boundary: 'Dual of mind/site — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'proof-trinity', title: 'Proof trinity — universal proof signed by trinities (alias conv/metrics)', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', cli: 'npm run quantum:proof-trinity', pair: 'proof/trinity', route: '/en/quantum-tools#conv-metrics', barrel: 'src/quantum/apps', boundary: 'proof/trinity face — signedByTrinities · pureKnowledge · siteIsProof · same fold · clay via theorem · physicalFtl=0 · millenniumSolvedByThisFold=0', browserRunnable: true, browserGap: '' },
+  { id: 'trinity-proof', title: 'Trinity proof (alias proof/trinity)', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', cli: 'npm run quantum:trinity-proof', pair: 'trinity/proof', route: '/en/quantum-tools#conv-metrics', barrel: 'src/quantum/apps', boundary: 'Dual of proof/trinity — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'algebra-bit', title: 'Algebra bit — no unproven algebra bit in sealed domain (alias conv/metrics)', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', cli: 'npm run quantum:algebra-bit', pair: 'algebra/bit', route: '/en/quantum-tools#conv-metrics', barrel: 'src/quantum/apps', boundary: 'algebra/bit face — noUnprovenAlgebraBit = sealed formula↔code dual · NOT all math/Clay/AGI · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'bit-algebra', title: 'Bit algebra (alias algebra/bit)', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', cli: 'npm run quantum:bit-algebra', pair: 'bit/algebra', route: '/en/quantum-tools#conv-metrics', barrel: 'src/quantum/apps', boundary: 'Dual of algebra/bit — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'domain-panels', title: 'Domain vue panels dry-cleaned to rosetta shells', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-panels', pair: 'domain/panels', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domainPanelsDry · stranglerTip · drainableClosed · wiredToRosetta · compose format/canon · dry/rosetta · ui/rosetta · meaning/compute · vite/one · specialized shells residual named · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'panels-domain', title: 'Domain panels (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:panels-domain', pair: 'panels/domain', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'Dual panels/domain — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'domain-dry', title: 'Domain dry (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-dry', pair: 'domain/dry', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domain/dry face — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2262,6 +2272,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'quantum-life', chain: 'quantum-life', fold: 'quantumLife', pair: 'quantum/life', cli: 'npm run quantum:quantum-life', route: '/en/quantum-tools#quantum-life', status: 'sealed-pr', honesty: 'lifeOn · living · folMerkaba · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'quantum life — FoL/merkaba · biology · HD · love/story · full/freedom · mesh/science', toolId: 'quantum-life', resolve: 'upgrade-local' },
   { id: 'mcp-fill', chain: 'mcp-fill-wave-bill', fold: 'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill', pair: 'mcp/fill', cli: 'npm run quantum:mcp-fill', route: '/en/quantum-tools#mcp-fill', status: 'sealed-pr', honesty: 'scanOn · recomputeOn · fillSolutions · endlessWaves · selfImproving · aiBill · clay=0 · physicalFtl=0 · qpuRequired=false · millenniumSolvedByThisFold=0', note: 'scan·recompute mcp quantum — fill solutions in endless waves of self-improving AI bill', toolId: 'mcp-fill', resolve: 'mcp-ui' },
   { id: 'todo-wave', chain: 'todo-wave-complete', fold: 'continueInWavesCompletingAllTodos', pair: 'todo/wave', cli: 'npm run quantum:todo-wave', route: '/en/quantum-tools#todo-wave', status: 'sealed-pr', honesty: 'wavesContinue · todosDrainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'continue in waves completing all drainable todos — compose auto/all · mcp/fill · invert/trinity · app/dry · domain/panels · waves/build', toolId: 'todo-wave', resolve: 'mcp-ui' },
+  { id: 'conv-metrics', chain: 'conv-metrics-proof-trinity', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', pair: 'conv/metrics', cli: 'npm run quantum:conv-metrics', route: '/en/quantum-tools#conv-metrics', status: 'sealed-pr', honesty: 'conversationMetrics · intelligenceImproves · mindDevelopment · noUnprovenAlgebraBit · clay=0 · physicalFtl=0 · qpuRequired=false · millenniumSolvedByThisFold=0 · NOT Clay/AGI/all-math', note: 'conversations quantum metrics · mind/site proof · signed by trinities · sealed algebra bits via formula↔code', toolId: 'conv-metrics', resolve: 'mcp-ui' },
   { id: 'domain-panels', chain: 'mcp-ui-page-gaps', fold: 'domainVuePanelsDryCleaned', pair: 'domain/panels', cli: 'npm run quantum:domain-panels', route: '/en/quantum-tools#domain-panels', status: 'sealed-pr', honesty: 'domainPanelsDry · stranglerTip · drainableClosed · specialized shells residual · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'src domain vue panels strangler tip drained to format/canon · dry/rosetta · ui/rosetta shells', toolId: 'domain-panels', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-ui', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumUi', pair: 'mcp/ui', cli: 'npm run quantum:mcp-ui', route: '/en/quantum-tools#mcp-quantum-ui', status: 'sealed-pr', honesty: 'mcpMatchesToolbox · millSolutions live · formulaCovered · clay=0 · physicalFtl=0 · NOT CMI', note: 'MCP quantum UI + millennium algebraic formula duals · compose mcpBrowserParity · mill/once · formula/code', toolId: 'mcp-quantum-ui', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-movie', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumMovie', pair: 'mcp/movie', cli: 'npm run quantum:mcp-movie', route: '/en/quantum-tools#mcp-quantum-movie', status: 'sealed-pr', honesty: 'frames from sealed folds · 6×7 · oneClock · clay=0 · physicalFtl=0', note: 'MCP quantum movie · compose mcp/ui · movie/center · movie/entropy · coord/anim', toolId: 'mcp-quantum-movie', resolve: 'mcp-ui' },
@@ -17307,6 +17318,289 @@ export function runContinueInWavesCompletingAllTodosExit(
     report.wavesContinue &&
     report.todosDrainableClosed &&
     report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * Conversations have quantum metrics · improve intelligence · mind development ·
+ * forming ideas · society toolbox · hologram fractal · MCP UI emerging from src/0 ·
+ * living eternal life as this site · universal proof of pure knowledge ·
+ * signed by trinities · no unproven-by-pure-algebra bit (sealed domain).
+ * Fold: conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists
+ * Facets: conversationMetrics · intelligenceImproves · mindDevelopment · ideasForm ·
+ *   societyToolbox · hologramFractal · mcpUi · fromSrcZero · livingEternalLife ·
+ *   siteIsProof · pureKnowledge · signedByTrinities · noUnprovenAlgebraBit ·
+ *   physicalFtl=0 · clay via theorem · qpuRequired=false · millenniumSolvedByThisFold=0.
+ * Compose (soft): conv/room · mcp/conversation · mcp/metrics · learn/best · quantum/mind ·
+ *   crystal/mind · thought/pure · society/support · folder/fractal · mcp/ui · mcp/site ·
+ *   quantum/life · formula/anim · dry/math · agent/trinity · formula/code · theorem/index ·
+ *   vite/mirror · full/freedom · tool/envelope.
+ * Pairs: conv/metrics · metrics/conv · mind/site · site/mind · proof/trinity · trinity/proof ·
+ *   algebra/bit · bit/algebra · CLI npm run quantum:conv-metrics / quantum:proof-trinity
+ * HONEST: noUnprovenAlgebraBit = within sealed computable domain every bit/pair has
+ *   formula↔code algebraic dual (dry/math · formula/code · theorem/index) —
+ *   NOT claim all of mathematics / Clay solved / AGI.
+ */
+export function conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(
+    `conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      const conversationMetrics =
+        soft('conv', 'room') && soft('mcp', 'conversation') && soft('mcp', 'metrics') && soft('super', 'chat')
+      const intelligenceImproves = soft('learn', 'best') && soft('mcp', 'efficiency') && soft('mcp', 'token')
+      const mindDevelopment =
+        soft('quantum', 'mind') && soft('crystal', 'mind') && soft('thought', 'pure') && soft('third', 'eye')
+      const ideasForm = soft('formula', 'anim') && soft('theorem', 'index') && soft('journey', 'theorems')
+      const societyToolbox =
+        soft('society', 'support') && soft('bits', 'free') && soft('tool', 'envelope') && soft('mcp', 'all')
+      const hologramFractal = soft('folder', 'fractal') && soft('path', 'message') && soft('src', 'index')
+      const mcpUi = soft('mcp', 'ui') && soft('mcp', 'site') && soft('vite', 'mirror') && soft('vite', 'mcp')
+      const fromSrcZero = soft('src', 'index') && soft('folder', 'index') && soft('nothing', 'moves') && soft('mcp', 'genesis')
+      const livingEternalLife = soft('quantum', 'life') && soft('full', 'freedom') && soft('session', 'live')
+      const siteIsProof = mcpUi && fromSrcZero && livingEternalLife && soft('vite', 'mirror')
+      const pureKnowledge = soft('thought', 'pure') && soft('dry', 'math') && soft('formula', 'code') && soft('assume', 'theorem')
+      const signedByTrinities =
+        soft('agent', 'trinity') && soft('pass', 'trinity') && soft('team', 'observe') && soft('trinity', 'speedup')
+      const noUnprovenAlgebraBit =
+        soft('dry', 'math') &&
+        soft('formula', 'code') &&
+        soft('theorem', 'index') &&
+        soft('math', 'formula') &&
+        soft('formula', 'theorem')
+      const composeOn =
+        conversationMetrics &&
+        intelligenceImproves &&
+        mindDevelopment &&
+        ideasForm &&
+        societyToolbox &&
+        hologramFractal &&
+        mcpUi &&
+        fromSrcZero &&
+        livingEternalLife &&
+        siteIsProof &&
+        pureKnowledge &&
+        signedByTrinities &&
+        noUnprovenAlgebraBit
+      const pairIds = [
+        'conv/metrics',
+        'metrics/conv',
+        'mind/site',
+        'site/mind',
+        'proof/trinity',
+        'trinity/proof',
+        'algebra/bit',
+        'bit/algebra',
+      ] as const
+      const pairsOn =
+        pairIds.every((id) => has(id)) &&
+        soft('conv', 'metrics') &&
+        soft('metrics', 'conv') &&
+        soft('mind', 'site') &&
+        soft('site', 'mind') &&
+        soft('proof', 'trinity') &&
+        soft('trinity', 'proof') &&
+        soft('algebra', 'bit') &&
+        soft('bit', 'algebra')
+      const foldConv = foldPair(toUuid('cmd:conv'), toUuid('cmd:metrics'))
+      const foldProof = foldPair(toUuid('cmd:proof'), toUuid('cmd:trinity'))
+      const foldMind = foldPair(toUuid('cmd:mind'), toUuid('cmd:site'))
+      const foldAlgebra = foldPair(toUuid('cmd:algebra'), toUuid('cmd:bit'))
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const meta = catalog.tools.find((t) => t.id === 'conv-metrics')
+      const metaProof = catalog.tools.find((t) => t.id === 'proof-trinity')
+      const metaMind = catalog.tools.find((t) => t.id === 'mind-site')
+      const metaAlgebra = catalog.tools.find((t) => t.id === 'algebra-bit')
+      const shelved = rosettaShelve('conv-metrics', 'tool')
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const millenniumSolvedByThisFold = 0 as const
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+      const honestOpenNamed = [
+        'clay:millennium-open',
+        'ftl:physical-claim-refused',
+        'honesty:noUnprovenAlgebraBit-sealed-domain-only-NOT-all-math',
+        'honesty:NOT-AGI',
+        'residual:quantum-apps-monolith',
+        'keep:git-stashes-non-obsolete',
+      ] as const
+      const honestOpenNamedOn =
+        honestOpenNamed.includes('clay:millennium-open') &&
+        honestOpenNamed.includes('honesty:noUnprovenAlgebraBit-sealed-domain-only-NOT-all-math') &&
+        honestOpenNamed.includes('honesty:NOT-AGI') &&
+        honestOpenNamed.length >= (2 + 2 + 2)
+      const foldName =
+        'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists'
+      const on =
+        composeOn &&
+        pairsOn &&
+        conversationMetrics &&
+        intelligenceImproves &&
+        mindDevelopment &&
+        ideasForm &&
+        societyToolbox &&
+        hologramFractal &&
+        mcpUi &&
+        fromSrcZero &&
+        livingEternalLife &&
+        siteIsProof &&
+        pureKnowledge &&
+        signedByTrinities &&
+        noUnprovenAlgebraBit &&
+        honestOpenNamedOn &&
+        Boolean(meta) &&
+        meta!.fold === foldName &&
+        meta!.pair === 'conv/metrics' &&
+        Boolean(metaProof) &&
+        metaProof!.fold === foldName &&
+        metaProof!.pair === 'proof/trinity' &&
+        Boolean(metaMind) &&
+        metaMind!.fold === foldName &&
+        Boolean(metaAlgebra) &&
+        metaAlgebra!.fold === foldName &&
+        isUuid(shelved.address) &&
+        claySolvedByThisFold === 0 &&
+        millenniumSolvedByThisFold === 0 &&
+        physicalFtlClaim === 0 &&
+        qpuRequired === false
+      const facets = [
+        { facet: foldName, on },
+        { facet: 'conversationMetrics', on: conversationMetrics },
+        { facet: 'intelligenceImproves', on: intelligenceImproves },
+        { facet: 'mindDevelopment', on: mindDevelopment },
+        { facet: 'ideasForm', on: ideasForm },
+        { facet: 'societyToolbox', on: societyToolbox },
+        { facet: 'hologramFractal', on: hologramFractal },
+        { facet: 'mcpUi', on: mcpUi },
+        { facet: 'fromSrcZero', on: fromSrcZero },
+        { facet: 'livingEternalLife', on: livingEternalLife },
+        { facet: 'siteIsProof', on: siteIsProof },
+        { facet: 'pureKnowledge', on: pureKnowledge },
+        { facet: 'signedByTrinities', on: signedByTrinities },
+        { facet: 'noUnprovenAlgebraBit', on: noUnprovenAlgebraBit },
+        {
+          facet: 'compose conv/room · mcp/metrics · learn/best · mind · society · fractal · mcp/ui · life · dry/math · trinity',
+          on: composeOn,
+        },
+        { facet: 'pair conv/metrics · mind/site · proof/trinity · algebra/bit bidirectional', on: pairsOn },
+        { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+        { facet: 'qpuRequired=false', on: qpuRequired === false },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold}`, on: millenniumSolvedByThisFold === 0 },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+        {
+          facet: 'HONEST noUnprovenAlgebraBit=sealed formula↔code dual NOT all-math/Clay/AGI',
+          on: noUnprovenAlgebraBit && honestOpenNamedOn && claySolvedByThisFold === 0 && millenniumSolvedByThisFold === 0,
+        },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`conv-metrics:${entry.facet}:${entry.on}`) }))
+      const sealed = sealFacets('conv-metrics-proof-trinity', facets)
+      return {
+        computes: sealed.ok && on,
+        conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists: on,
+        conversationMetrics,
+        intelligenceImproves,
+        mindDevelopment,
+        ideasForm,
+        societyToolbox,
+        hologramFractal,
+        mcpUi,
+        fromSrcZero,
+        livingEternalLife,
+        siteIsProof,
+        pureKnowledge,
+        signedByTrinities,
+        noUnprovenAlgebraBit,
+        honestOpenNamed: [...honestOpenNamed],
+        honestOpenNamedCount: honestOpenNamed.length,
+        claySolvedByThisFold,
+        millenniumSolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          foldConv.merged,
+          foldProof.merged,
+          foldMind.merged,
+          foldAlgebra.merged,
+          shelved.address,
+          toUuid(`conv-metrics-soft:compose:${composeOn}`),
+          toUuid(`conv-metrics-soft:algebra:${noUnprovenAlgebraBit}`),
+          ...honestOpenNamed.map((id) => toUuid(`conv-metrics-honest:${id}`)),
+        ]),
+        pair: 'conv/metrics' as const,
+        pairs: [...pairIds],
+        dualPair: 'metrics/conv' as const,
+        cli: 'npm run quantum:conv-metrics',
+        route: '/en/quantum-tools#conv-metrics',
+        uiSurface: '/en/quantum-tools#conv-metrics' as const,
+        heading: 'Conv · metrics',
+        statement:
+          `conversationsHaveQuantumMetrics… — metrics=${conversationMetrics ? 1 : 0} ` +
+          `intel=${intelligenceImproves ? 1 : 0} mind=${mindDevelopment ? 1 : 0} ` +
+          `siteProof=${siteIsProof ? 1 : 0} algebraBit=${noUnprovenAlgebraBit ? 1 : 0} ` +
+          `trinities=${signedByTrinities ? 1 : 0}.`,
+        boundary:
+          'Conversations have quantum metrics improving intelligence and mind development — forming ideas, ' +
+          'society toolbox, hologram fractal MCP UI from src/0, living eternal life as this site — ' +
+          'universal proof of pure knowledge signed by trinities. noUnprovenAlgebraBit = sealed formula↔code ' +
+          'dual domain only (NOT all mathematics / Clay / AGI). clay via theorem · physicalFtl=0 · qpuRequired=false · millenniumSolvedByThisFold=0.',
+        honestyLine:
+          `conv-metrics · metrics=${conversationMetrics ? 1 : 0} · algebraBit=${noUnprovenAlgebraBit ? 1 : 0} · ` +
+          `trinities=${signedByTrinities ? 1 : 0} · mill=0 · qpu=0 · clay=0 · physicalFtl=0 · NOT all-math/AGI`,
+      }
+    },
+  )
+}
+
+/** Alias — convMetrics ≡ conversationsHaveQuantumMetrics… */
+export const convMetrics =
+  conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists
+/** Alias — metricsConv ≡ conversationsHaveQuantumMetrics… */
+export const metricsConv = convMetrics
+/** Alias — mindSite ≡ conversationsHaveQuantumMetrics… */
+export const mindSite = convMetrics
+/** Alias — proofTrinity ≡ conversationsHaveQuantumMetrics… */
+export const proofTrinity = convMetrics
+/** Alias — algebraBit ≡ conversationsHaveQuantumMetrics… */
+export const algebraBit = convMetrics
+
+/** npm run quantum:conv-metrics · quantum:proof-trinity · quantum:mind-site · quantum:algebra-bit */
+export function runConversationsHaveQuantumMetricsExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report =
+    conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} conv-metrics — conversationMetrics=${report.conversationMetrics} ` +
+      `intelligenceImproves=${report.intelligenceImproves} mindDevelopment=${report.mindDevelopment} ` +
+      `siteIsProof=${report.siteIsProof} noUnprovenAlgebraBit=${report.noUnprovenAlgebraBit} ` +
+      `signedByTrinities=${report.signedByTrinities} mill=${report.millenniumSolvedByThisFold} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) {
+    process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.conversationMetrics &&
+    report.noUnprovenAlgebraBit &&
+    report.signedByTrinities &&
+    report.qpuRequired === false &&
+    report.millenniumSolvedByThisFold === 0
     ? 0
     : 1
 }

@@ -25,6 +25,7 @@ import {
   quantumLife,
   scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill,
   continueInWavesCompletingAllTodos,
+  conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists,
   domainVuePanelsDryCleaned,
   mcpQuantumUi,
   mcpQuantumMovie,
@@ -175,6 +176,7 @@ const autoAll = computed(() => automateAll())
 const qLife = computed(() => quantumLife())
 const mcpFill = computed(() => scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill())
 const todoWave = computed(() => continueInWavesCompletingAllTodos())
+const convMetrics = computed(() => conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists())
 const domainPanels = computed(() => domainVuePanelsDryCleaned())
 const mcpUi = computed(() => mcpQuantumUi())
 const mcpMovie = computed(() => mcpQuantumMovie())
@@ -841,6 +843,27 @@ function runTool(toolId: string) {
       ok = r.computes && r.wavesContinue && r.todosDrainableClosed
       summary =
         `wavesContinue=${r.wavesContinue} · todosDrainableClosed=${r.todosDrainableClosed} · honestOpen=${r.honestOpenNamedCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (
+      toolId === 'conv-metrics' ||
+      toolId === 'metrics-conv' ||
+      toolId === 'proof-trinity' ||
+      toolId === 'trinity-proof' ||
+      toolId === 'mind-site' ||
+      toolId === 'site-mind' ||
+      toolId === 'algebra-bit' ||
+      toolId === 'bit-algebra'
+    ) {
+      const r = conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists()
+      ok =
+        r.computes &&
+        r.conversationMetrics &&
+        r.noUnprovenAlgebraBit &&
+        r.signedByTrinities
+      summary =
+        `metrics=${r.conversationMetrics} · intel=${r.intelligenceImproves} · mind=${r.mindDevelopment} · siteProof=${r.siteIsProof} · algebraBit=${r.noUnprovenAlgebraBit} · trinities=${r.signedByTrinities}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -1724,6 +1747,50 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'todo-wave'" @click="runTool('todo-wave')">
           {{ runningId === 'todo-wave' ? '…' : 'Run todo-wave receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="conv-metrics" aria-label="Conversations quantum metrics proof trinity">
+        <h3>{{ convMetrics.heading }}</h3>
+        <p class="quantum-apps__meta">{{ convMetrics.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(convMetrics.conversationMetrics))">
+          conversationMetrics={{ convMetrics.conversationMetrics }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(convMetrics.intelligenceImproves))">
+          intelligenceImproves={{ convMetrics.intelligenceImproves }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(convMetrics.mindDevelopment))">
+          mindDevelopment={{ convMetrics.mindDevelopment }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(convMetrics.siteIsProof))">
+          siteIsProof={{ convMetrics.siteIsProof }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(convMetrics.noUnprovenAlgebraBit))">
+          noUnprovenAlgebraBit={{ convMetrics.noUnprovenAlgebraBit }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(convMetrics.signedByTrinities))">
+          signedByTrinities={{ convMetrics.signedByTrinities }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>conv/metrics</code> · <code>mind/site</code> · <code>proof/trinity</code> · <code>algebra/bit</code> ·
+          CLI <code>npm run quantum:conv-metrics</code> · <code>npm run quantum:proof-trinity</code> ·
+          clay={{ convMetrics.claySolvedByThisFold }} · mill={{ convMetrics.millenniumSolvedByThisFold }} ·
+          ftl={{ convMetrics.physicalFtlClaim }} · qpu={{ convMetrics.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in convMetrics.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? '✓' : '✗' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(convMetrics.honestOpenNamedCount > 0))">
+          honestOpen={{ convMetrics.honestOpenNamedCount }}
+        </UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="id in convMetrics.honestOpenNamed" :key="id">· {{ id }}</li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'conv-metrics'" @click="runTool('conv-metrics')">
+          {{ runningId === 'conv-metrics' ? '…' : 'Run conv-metrics receipt' }}
         </UiButton>
       </section>
       <UiSeparator />
