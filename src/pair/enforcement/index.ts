@@ -778,6 +778,12 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'rosetta/reuse',
   'rosetta/core',
   'dissolve/flat',
+  'cmd/place',
+  'place/cmd',
+  'place/audit',
+  'audit/place',
+  'dry/full',
+  'full/dry',
   'mission/gate',
 ] as const
 
