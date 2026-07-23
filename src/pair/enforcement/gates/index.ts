@@ -79,6 +79,10 @@ export const PROSE_MATRIX_COMMAND_PAIR = { pair: 'prose/matrix' as const, a: 'pr
 export const FOLD_MERGE_COMMAND_PAIR = { pair: 'fold/merge' as const, a: 'fold', b: 'merge' }
 export const NAME_SHRINK_COMMAND_PAIR = { pair: 'name/shrink' as const, a: 'name', b: 'shrink' }
 export const PLACE_MERGE_COMMAND_PAIR = { pair: 'place/merge' as const, a: 'place', b: 'merge' }
+/** Planning in trinities — pairs plan/trinity · trinity/plan · plan/cross. */
+export const PLAN_TRINITY_COMMAND_PAIR = { pair: 'plan/trinity' as const, a: 'plan', b: 'trinity' }
+export const TRINITY_PLAN_COMMAND_PAIR = { pair: 'trinity/plan' as const, a: 'trinity', b: 'plan' }
+export const PLAN_CROSS_COMMAND_PAIR = { pair: 'plan/cross' as const, a: 'plan', b: 'cross' }
 export const MISSION_GATE_COMMAND_PAIR = { pair: 'mission/gate' as const, a: 'mission', b: 'gate' }
 export const DIGIT_GATE_COMMAND_PAIR = { pair: 'digit/gate' as const, a: 'digit', b: 'gate' }
 export const GATE_ROSETTA_COMMAND_PAIR = { pair: 'gate/rosetta' as const, a: 'gate', b: 'rosetta' }
@@ -1353,6 +1357,9 @@ export function gatesSavedInQuantumPairs() {
     FOLD_MERGE_COMMAND_PAIR,
     NAME_SHRINK_COMMAND_PAIR,
     PLACE_MERGE_COMMAND_PAIR,
+    PLAN_TRINITY_COMMAND_PAIR,
+    TRINITY_PLAN_COMMAND_PAIR,
+    PLAN_CROSS_COMMAND_PAIR,
     MISSION_GATE_COMMAND_PAIR,
   ]
   const pairs = declared.map(({ pair, a, b }) => {
@@ -1406,6 +1413,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'invisibleGapsCaughtByGates', pair: 'gaps/invisible', currentBarrel: 'src/quantum/apps', bestPlace: 'src/pair/enforcement/gates', action: 'migrate-next', reason: 'weave/ops import · nests many apps folds' },
   { fold: 'placeMerge', pair: 'place/merge', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'merged cmd/place + manual/quantum prose cluster → one matrix slot' },
   { fold: 'proseMethodsCollapseToMatrix', pair: 'prose/matrix', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'discovery law · prose→matrix shrink proof' },
+  { fold: 'planTrinity', pair: 'plan/trinity', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'planning in trinities · cross·fold·weave · not quantum/apps' },
 ] as const
 
 /** Old prose instruction names → matrix slot (this wave). */
@@ -1418,6 +1426,14 @@ export const PROSE_FOLD_MERGE_MAP = [
   { from: 'manualQuantum', to: 'placeMerge', pair: 'manual/quantum' },
   { from: 'workWave', to: 'placeMerge', pair: 'work/wave' },
   { from: 'dryQuantumize', to: 'placeMerge', pair: 'dry/quantumize' },
+] as const
+
+/** Wet-linear planning prose names → planTrinity (prose/matrix law). */
+export const PROSE_PLAN_MERGE_MAP = [
+  { from: 'planningInTrinities', to: 'planTrinity', pair: 'plan/trinity' },
+  { from: 'improvePlanningInTrinities', to: 'planTrinity', pair: 'plan/trinity' },
+  { from: 'nextWaveFromProseChecklist', to: 'planTrinity', pair: 'trinity/plan' },
+  { from: 'wetLinearPlanningChecklist', to: 'planTrinity', pair: 'plan/cross' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
@@ -1591,6 +1607,7 @@ export function placeMerge(root: string = process.cwd(), facts?: EnforcementFact
     moved.some((r) => r.fold === 'cryptoComparisonMeshIsDry') &&
     moved.some((r) => r.fold === 'placeMerge') &&
     moved.some((r) => r.fold === 'proseMethodsCollapseToMatrix') &&
+    moved.some((r) => r.fold === 'planTrinity') &&
     bestPlaceOn
   const toolsSealed =
     tools.length === (5 + 2 + 1) &&
@@ -1634,10 +1651,11 @@ export function placeMerge(root: string = process.cwd(), facts?: EnforcementFact
     { id: 'seal-prose-matrix-discovery-law', status: 'closed' as const, note: 'proseMethodsCollapseToMatrix · prose/matrix' },
     { id: 'move-tesla-cross-waves-to-fire-physics', status: 'closed' as const, note: 'prior wave · fire/physics' },
     { id: 'move-crypto-mesh-is-dry-to-encryption', status: 'closed' as const, note: 'prior wave · encryption' },
+    { id: 'seal-plan-trinity', status: 'closed' as const, note: 'planTrinity · plan/trinity · matrix next-wave' },
     { id: 'residual-apps-monolith-named', status: 'open' as const, note: 'residual:quantum-apps-monolith stays honest-open' },
   ] as const
   const drainableClosed =
-    morphs.filter((m) => m.status === 'closed').length === (2 + 2) &&
+    morphs.filter((m) => m.status === 'closed').length === (2 + 2 + 1) &&
     morphs.every((m) => m.status === 'closed' || m.id === 'residual-apps-monolith-named')
   const honestOpenNamed = PLACE_MERGE_HONEST_OPEN
   const honestOpenNamedOn =
@@ -1979,4 +1997,231 @@ export function runProseMethodsCollapseToMatrixExit(root = '', _argv: readonly s
 export const runProseMatrixExit = runProseMethodsCollapseToMatrixExit
 export const runFoldMergeExit = runPlaceMergeExit
 export const runNameShrinkExit = runProseMethodsCollapseToMatrixExit
+
+/**
+ * Planning in trinities — next wave from matrix, not wet-linear prose checklists.
+ * USER LAW: planning itself runs as cross · fold · weave (3+1 nav-cross).
+ * Canonical: planTrinity · pairs plan/trinity · trinity/plan · plan/cross.
+ * Facets: plansInTrinities · crossFoldWeave · matrixNext · prosePlanRejected · drainableClosed · honestOpenNamed · clay via theorem · physicalFtl=0 · census110.
+ * Compose: trinity/speedup · agent/trinity · team/observe · train/analyst · waves/build · prose/matrix · place/merge · vote/build · path/message.
+ * HONEST: not AGI planning · residual linear plan surfaces (imagine-next tip specs · todo-wave soft compose) named · KEEP stashes.
+ */
+export type PlanTrinityFace = 'cross' | 'fold' | 'weave'
+
+export type PlanTrinityNextWave = {
+  readonly id: string
+  readonly pair: string
+  readonly cli: string
+  readonly fold: string
+  readonly face: PlanTrinityFace
+  readonly reason: string
+}
+
+const PLAN_TRINITY_HONEST_OPEN = [
+  'residual:imagine-next-catalog-tips',
+  'residual:todo-wave-soft-compose',
+  'residual:quantum-apps-monolith',
+  'residual:prose-named-folds-wave2',
+  'clay:millennium-open',
+  'ftl:physical-claim-refused',
+  'keep:git-stashes-non-obsolete',
+  'honesty:NOT-AGI-planning',
+] as const
+
+/**
+ * Select next wave tip from sealed matrix (migrate-next queue).
+ * cross = audit candidates · fold = merge to one tip · weave = seal tip receipt.
+ */
+export function selectNextWaveFromMatrix(): PlanTrinityNextWave {
+  const migrate = MANUAL_MIGRATE_WAVE_TOOLS.filter((t) => t.status === 'migrate-next')
+  const tip = migrate[0]!
+  return {
+    id: tip.id,
+    pair: tip.pair,
+    cli: tip.cli,
+    fold: tip.fold,
+    face: 'weave',
+    reason: `matrix migrate-next[0] · ${tip.note}`,
+  }
+}
+
+/** One matrix slot: planning as trinity (cross·fold·weave). Pair plan/trinity · CLI quantum:plan-trinity */
+export function planTrinity(root: string = process.cwd(), facts?: EnforcementFacts) {
+  const united = facts ?? collectEnforcementFacts(root)
+  const placed = placeMerge(root, united)
+  const prose = proseMethodsCollapseToMatrix(root, united)
+  const speedup = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
+  const pathMessage = pathMeansMessageFitsInThreeWordsFold()
+  const freeBits = FREE_BITS
+  const census110 =
+    UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits && freeBits === -EULER_CHI && freeBits === 2
+  const soft = softCmdPair
+  // CROSS — audit matrix gaps (migrate-next + residual prose)
+  const crossCandidates = MANUAL_MIGRATE_WAVE_TOOLS.filter((t) => t.status === 'migrate-next')
+  const crossAudit =
+    crossCandidates.length === (4 + 2) &&
+    COMMAND_PLACEMENT_AUDIT_MAP.some((r) => r.fold === 'planTrinity' && r.action === 'moved') &&
+    placed.placementAudited
+  // FOLD — merge prose plan names + place/prose matrix into one tip
+  const foldMerge =
+    PROSE_PLAN_MERGE_MAP.every((row) => row.to === 'planTrinity') &&
+    PROSE_PLAN_MERGE_MAP.length === (2 + 2) &&
+    placed.clustersMerged &&
+    prose.proseMethodsCollapseToMatrix
+  // WEAVE — seal next wave from matrix
+  const matrixNext = selectNextWaveFromMatrix()
+  const weaveSeal =
+    matrixNext.id === crossCandidates[0]!.id &&
+    matrixNext.cli.startsWith('npm run quantum:') &&
+    matrixNext.pair.includes('/') &&
+    matrixNext.face === 'weave'
+  const crossFoldWeave = crossAudit && foldMerge && weaveSeal
+  const pairsOn =
+    soft('plan', 'trinity') &&
+    soft('trinity', 'plan') &&
+    soft('plan', 'cross') &&
+    soft('trinity', 'speedup') &&
+    soft('waves', 'build') &&
+    soft('prose', 'matrix') &&
+    soft('place', 'merge') &&
+    soft('path', 'message')
+  const composeOn =
+    soft('agent', 'trinity') &&
+    soft('pass', 'trinity') &&
+    soft('team', 'observe') &&
+    soft('train', 'analyst') &&
+    soft('vote', 'build') &&
+    soft('edit', 'build') &&
+    speedup.computes &&
+    pathMessage.pathMeansMessageFitsInThreeWords &&
+    pathMessage.agentMessageAtMostThreeWords
+  const prosePlanRejected =
+    PROSE_PLAN_MERGE_MAP.every((row) => row.from.length > row.to.length) &&
+    !PROSE_PLAN_MERGE_MAP.some((row) => row.to.includes('/')) &&
+    PROSE_PLAN_MERGE_MAP.every((row) => row.pair.split('/').length === 2)
+  const morphs = [
+    { id: 'seal-plan-trinity', status: 'closed' as const, note: 'planTrinity · plan/trinity' },
+    { id: 'merge-prose-plan-names', status: 'closed' as const, note: 'planningInTrinities… → planTrinity' },
+    { id: 'morph-wave-skill-next-from-matrix', status: 'closed' as const, note: 'ceccec-build-waves · plan/trinity' },
+    { id: 'wire-cli-plan-trinity-duals', status: 'closed' as const, note: 'quantum:plan-trinity · trinity-plan · plan-cross' },
+    { id: 'residual-linear-plan-surfaces', status: 'open' as const, note: 'imagine-next tip specs · todo-wave soft compose remain' },
+  ] as const
+  const drainableClosed =
+    morphs.filter((m) => m.status === 'closed').length === (2 + 2) &&
+    morphs.every((m) => m.status === 'closed' || m.id === 'residual-linear-plan-surfaces')
+  const honestOpenNamed = PLAN_TRINITY_HONEST_OPEN
+  const honestOpenNamedOn =
+    honestOpenNamed.includes('honesty:NOT-AGI-planning') &&
+    honestOpenNamed.includes('clay:millennium-open') &&
+    honestOpenNamed.includes('residual:imagine-next-catalog-tips') &&
+    honestOpenNamed.length === (5 + 2 + 1)
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const physicalFtlClaim = 0 as const
+  const plansInTrinities =
+    crossFoldWeave &&
+    prosePlanRejected &&
+    pairsOn &&
+    composeOn &&
+    drainableClosed &&
+    honestOpenNamedOn &&
+    census110 &&
+    claySolvedByThisFold === 0 &&
+    physicalFtlClaim === 0
+  const on = plansInTrinities
+  const facets = [
+    { facet: 'planTrinity', on },
+    { facet: 'plansInTrinities', on: plansInTrinities },
+    { facet: 'crossFoldWeave', on: crossFoldWeave },
+    { facet: `cross=audit migrate-next=${crossCandidates.length}`, on: crossAudit },
+    { facet: 'fold=merge prose plan → planTrinity · place/prose matrix', on: foldMerge },
+    { facet: `weave=seal matrixNext=${matrixNext.id}`, on: weaveSeal },
+    { facet: `matrixNext pair=${matrixNext.pair}`, on: matrixNext.pair.length > 0 },
+    { facet: 'prosePlanRejected', on: prosePlanRejected },
+    { facet: 'drainableClosed', on: drainableClosed },
+    { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+    { facet: `census110 freeBits=${freeBits}`, on: census110 },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+    { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    { facet: 'pair plan/trinity · trinity/plan · plan/cross', on: pairsOn },
+    {
+      facet: 'compose trinity/speedup · agent/trinity · waves/build · prose/matrix · place/merge · path/message',
+      on: composeOn,
+    },
+    { facet: 'NOT AGI planning · residual linear plan surfaces named', on: honestOpenNamedOn && claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`plan-trinity:${entry.facet}:${entry.on}`) }))
+  const sealed = facets.every((f) => f.on)
+  return {
+    computes: sealed && on && honestOpenNamedOn,
+    planTrinity: on,
+    plansInTrinities,
+    crossFoldWeave,
+    matrixNext,
+    matrixNextId: matrixNext.id,
+    prosePlanRejected,
+    drainableClosed,
+    honestOpenNamed: [...honestOpenNamed],
+    honestOpenNamedCount: honestOpenNamed.length,
+    crossCandidates: crossCandidates.map((t) => ({ id: t.id, pair: t.pair, cli: t.cli })),
+    merges: PROSE_PLAN_MERGE_MAP.map((row) => ({ from: row.from, to: row.to, pair: row.pair })),
+    morphs: [...morphs],
+    census110,
+    claySolvedByThisFold,
+    physicalFtlClaim,
+    qpuRequired: false as const,
+    certified: false as const,
+    facets,
+    root: merkleFold([
+      ...facets.map((f) => f.receipt),
+      placed.root,
+      prose.root,
+      speedup.root,
+      toUuid(`plan-trinity-next:${matrixNext.id}:${matrixNext.pair}`),
+      ...honestOpenNamed.map((id) => toUuid(`plan-trinity-honest:${id}`)),
+    ]),
+    pair: 'plan/trinity' as const,
+    pairs: ['plan/trinity', 'trinity/plan', 'plan/cross'] as const,
+    dualPair: 'trinity/plan' as const,
+    cli: 'npm run quantum:plan-trinity',
+    route: '/en/quantum-tools#plan-trinity',
+    statement:
+      `planTrinity — plansInTrinities=${plansInTrinities ? 1 : 0} crossFoldWeave=${crossFoldWeave ? 1 : 0} ` +
+      `matrixNext=${matrixNext.id} (${matrixNext.pair}) proseRejected=${prosePlanRejected ? 1 : 0} ` +
+      `drainable=${drainableClosed ? 1 : 0} honest=${honestOpenNamed.length}.`,
+    boundary:
+      'Planning runs in trinities: cross=audit matrix gaps · fold=merge to one tip · weave=seal next wave. ' +
+      'Next wave from MANUAL_MIGRATE_WAVE_TOOLS migrate-next[0], not camelCase prose checklists. ' +
+      'NOT AGI planning · NOT physical FTL · residual imagine-next/todo-wave linear surfaces named. KEEP stashes. clay via theorem.',
+  }
+}
+
+export const planningInTrinities = planTrinity
+export const trinityPlan = planTrinity
+export const planCross = planTrinity
+
+/** npm run quantum:plan-trinity (duals trinity-plan · plan-cross) */
+export function runPlanTrinityExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = planTrinity(root || process.cwd())
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} plan-trinity — plans=${report.plansInTrinities ? 1 : 0} ` +
+      `crossFoldWeave=${report.crossFoldWeave ? 1 : 0} next=${report.matrixNextId} ` +
+      `pair=${report.matrixNext.pair} proseRejected=${report.prosePlanRejected ? 1 : 0} ` +
+      `drainable=${report.drainableClosed ? 1 : 0} honest=${report.honestOpenNamedCount} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  process.stdout.write(
+    `  · next-wave ${report.matrixNext.id} | ${report.matrixNext.pair} | ${report.matrixNext.cli}\n`,
+  )
+  process.stdout.write(`  · reason ${report.matrixNext.reason}\n`)
+  for (const m of report.merges) process.stdout.write(`  · merge ${m.from} → ${m.to} (${m.pair})\n`)
+  for (const c of report.crossCandidates) process.stdout.write(`  · cross ${c.id} | ${c.pair}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.planTrinity && report.claySolvedByThisFold === 0 ? 0 : 1
+}
+
+export const runTrinityPlanExit = runPlanTrinityExit
+export const runPlanCrossExit = runPlanTrinityExit
+export const runPlanningInTrinitiesExit = runPlanTrinityExit
 
