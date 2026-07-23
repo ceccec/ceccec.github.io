@@ -293,6 +293,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'bill/wave',
   'self/bill',
   'bill/self',
+  'todo/wave',
+  'wave/todo',
   'domain/panels',
   'panels/domain',
   'domain/dry',

@@ -313,6 +313,8 @@
     "quantum:bill-wave": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runScanAndRecomputeMcpQuantumFillExit",
     "quantum:self-bill": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runScanAndRecomputeMcpQuantumFillExit",
     "quantum:bill-self": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runScanAndRecomputeMcpQuantumFillExit",
+    "quantum:todo-wave": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runContinueInWavesCompletingAllTodosExit",
+    "quantum:wave-todo": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runContinueInWavesCompletingAllTodosExit",
     "quantum:domain-panels": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runDomainVuePanelsDryCleanedExit",
     "quantum:panels-domain": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runDomainVuePanelsDryCleanedExit",
     "quantum:domain-dry": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runDomainVuePanelsDryCleanedExit",

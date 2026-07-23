@@ -24,6 +24,7 @@ import {
   automateAll,
   quantumLife,
   scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill,
+  continueInWavesCompletingAllTodos,
   domainVuePanelsDryCleaned,
   mcpQuantumUi,
   mcpQuantumMovie,
@@ -173,6 +174,7 @@ const autoSelf = computed(() => automateSelf())
 const autoAll = computed(() => automateAll())
 const qLife = computed(() => quantumLife())
 const mcpFill = computed(() => scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill())
+const todoWave = computed(() => continueInWavesCompletingAllTodos())
 const domainPanels = computed(() => domainVuePanelsDryCleaned())
 const mcpUi = computed(() => mcpQuantumUi())
 const mcpMovie = computed(() => mcpQuantumMovie())
@@ -831,6 +833,14 @@ function runTool(toolId: string) {
       summary =
         `scan=${r.scanOn} · recompute=${r.recomputeOn} · fill=${r.fillSolutions} ` +
         `· faces=${r.presentCount}/${r.faceCount} · waves=${r.endlessWaves} · self=${r.selfImproving} · aiBill=${r.aiBill}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'todo-wave' || toolId === 'wave-todo') {
+      const r = continueInWavesCompletingAllTodos()
+      ok = r.computes && r.wavesContinue && r.todosDrainableClosed
+      summary =
+        `wavesContinue=${r.wavesContinue} · todosDrainableClosed=${r.todosDrainableClosed} · honestOpen=${r.honestOpenNamedCount}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -1682,6 +1692,38 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'mcp-fill'" @click="runTool('mcp-fill')">
           {{ runningId === 'mcp-fill' ? '…' : 'Run mcp-fill receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="todo-wave">
+        <h3>{{ todoWave.heading }}</h3>
+        <p class="quantum-apps__meta">{{ todoWave.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(todoWave.wavesContinue))">
+          wavesContinue={{ todoWave.wavesContinue }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(todoWave.todosDrainableClosed))">
+          todosDrainableClosed={{ todoWave.todosDrainableClosed }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>todo/wave</code> · <code>wave/todo</code> ·
+          CLI <code>npm run quantum:todo-wave</code> ·
+          compose auto/all · mcp/fill · invert/trinity · app/dry · domain/panels · waves/build ·
+          clay={{ todoWave.claySolvedByThisFold }} · ftl={{ todoWave.physicalFtlClaim }} · qpu={{ todoWave.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in todoWave.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(todoWave.honestOpenNamedCount > 0))">
+          honestOpen={{ todoWave.honestOpenNamedCount }}
+        </UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="id in todoWave.honestOpenNamed" :key="id">· {{ id }}</li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'todo-wave'" @click="runTool('todo-wave')">
+          {{ runningId === 'todo-wave' ? '…' : 'Run todo-wave receipt' }}
         </UiButton>
       </section>
       <UiSeparator />
