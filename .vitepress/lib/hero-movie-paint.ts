@@ -9,6 +9,8 @@ export {
   movieTextFromCopy,
   realtimeSubtitleAt,
   sharedHeroAt,
+  deviceSensorPerspectiveAt,
+  movieObservationReceipt,
   cardFieldScroll,
   heroFieldCenterY,
   subscribeHeroClock,
@@ -19,6 +21,8 @@ export {
   type RealtimeSubtitleState,
   type SharedHeroCopy,
   type SharedHeroState,
+  type DeviceSensorSample,
+  type MoviePerspectiveBias,
 } from '../../src/quantum/index'
 // The one multi-sensory interaction mapping — touch→phase scrub, fold→A432 tone, fold→haptic vibration.
 // Imported straight from the void/origin kernel (src/0); the render harness (movie-canvas) wires the Web APIs.

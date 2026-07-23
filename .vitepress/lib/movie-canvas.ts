@@ -3,9 +3,11 @@ import { computed, nextTick, onMounted, onUnmounted, ref, shallowRef, type Ref }
 import {
   HERO_CYCLE_MS,
   SCREENSAVER_IDLE_MS,
+  deviceSensorPerspectiveAt,
   pointerInteraction,
   sharedHeroAt,
   subscribeHeroClock,
+  type DeviceSensorSample,
   type PointerInteraction,
   type SharedHeroCopy,
   type SharedHeroState,
@@ -97,7 +99,9 @@ export function useHeroClock(onTick?: (at: number) => void) {
 /**
  * One hub for BackgroundMovie · card previews · LinkedHeroCard phase — pairs `hero/card` · `hero/anim`.
  * Wraps `sharedHeroAt` on the ONE hero clock (subscribeHeroClock); CardBackgroundMovie + hero layer
- * share phase `p` / root — no private rAF. HONEST: neuroscience/computation field — not physical QM.
+ * share phase `p` / root — no private rAF. DeviceOrientation/DeviceMotion (or pointer fallback)
+ * maps to rosetta perspective via `deviceSensorPerspectiveAt` — honest browserGap if denied.
+ * HONEST: neuroscience/computation field — not physical QM.
  */
 export function useSharedHero(
   route: () => string,
@@ -105,6 +109,84 @@ export function useSharedHero(
   opts: { reduce?: () => boolean; dark?: () => boolean; cssWidth?: () => number } = {},
 ) {
   const { at } = useHeroClock()
+  const perspective = shallowRef(
+    deviceSensorPerspectiveAt({ permission: 'unavailable' }),
+  )
+  let detachSensors: (() => void) | null = null
+
+  onMounted(() => {
+    if (typeof window === 'undefined') return
+    const reduce = opts.reduce?.() ?? prefersReducedMotion()
+    if (reduce) return
+
+    let permission: DeviceSensorSample['permission'] = 'unavailable'
+    const applyOrient = (ev: DeviceOrientationEvent) => {
+      perspective.value = deviceSensorPerspectiveAt({
+        alpha: ev.alpha ?? undefined,
+        beta: ev.beta ?? undefined,
+        gamma: ev.gamma ?? undefined,
+        permission: permission === 'granted' ? 'granted' : 'prompt',
+      })
+    }
+    const applyMotion = (ev: DeviceMotionEvent) => {
+      const a = ev.accelerationIncludingGravity
+      if (!a) return
+      perspective.value = deviceSensorPerspectiveAt({
+        ax: a.x ?? undefined,
+        ay: a.y ?? undefined,
+        az: a.z ?? undefined,
+        permission: permission === 'granted' ? 'granted' : 'prompt',
+      })
+    }
+    const applyPointer = (ev: PointerEvent) => {
+      const w = window.innerWidth || 1
+      const h = window.innerHeight || 1
+      perspective.value = deviceSensorPerspectiveAt({
+        px: ev.clientX / w,
+        py: ev.clientY / h,
+        permission: permission === 'denied' ? 'denied' : 'unavailable',
+      })
+    }
+
+    const DOE = typeof DeviceOrientationEvent !== 'undefined' ? DeviceOrientationEvent : null
+    const requestPerm = (
+      DOE as unknown as { requestPermission?: () => Promise<'granted' | 'denied'> } | null
+    )?.requestPermission
+    const attach = () => {
+      window.addEventListener('deviceorientation', applyOrient, { passive: true })
+      window.addEventListener('devicemotion', applyMotion, { passive: true })
+      window.addEventListener('pointermove', applyPointer, { passive: true })
+      detachSensors = () => {
+        window.removeEventListener('deviceorientation', applyOrient)
+        window.removeEventListener('devicemotion', applyMotion)
+        window.removeEventListener('pointermove', applyPointer)
+      }
+    }
+    if (typeof requestPerm === 'function') {
+      void requestPerm()
+        .then((state) => {
+          permission = state
+          if (state === 'denied') {
+            perspective.value = deviceSensorPerspectiveAt({ permission: 'denied' })
+          }
+          attach()
+        })
+        .catch(() => {
+          permission = 'denied'
+          perspective.value = deviceSensorPerspectiveAt({ permission: 'denied' })
+          attach()
+        })
+    } else {
+      permission = typeof DeviceOrientationEvent !== 'undefined' ? 'prompt' : 'unavailable'
+      attach()
+    }
+  })
+
+  onUnmounted(() => {
+    detachSensors?.()
+    detachSensors = null
+  })
+
   const shared = computed<SharedHeroState>(() =>
     sharedHeroAt(
       route(),
@@ -113,9 +195,11 @@ export function useSharedHero(
       opts.cssWidth?.() ?? (64 * 16),
       opts.reduce?.() ?? false,
       opts.dark?.() ?? true,
+      0,
+      perspective.value,
     ),
   )
-  return { at, shared }
+  return { at, shared, perspective }
 }
 
 export function resizeCanvas2d(

@@ -43,6 +43,7 @@ import {
   meshToSelfDiscoverSciences,
   selfImproveAnimationGenerationAndSiteBuilder,
   everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions,
+  wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero,
   invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill,
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf,
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence,
@@ -178,6 +179,7 @@ const dryMathOrganised = computed(() => dryAllMathToTheFormulaOrganisedInTheorem
 const meshScienceDiscover = computed(() => meshToSelfDiscoverSciences())
 const selfAnimSite = computed(() => selfImproveAnimationGenerationAndSiteBuilder())
 const formulaAnimSeal = computed(() => everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions())
+const merkabaMovieSeal = computed(() => wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero())
 const invertTrinity = computed(() => invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill())
 const selfHw = computed(() => againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf())
 const gateDesignCreateIntel = computed(() => furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence())
@@ -956,6 +958,34 @@ function runTool(toolId: string) {
         r.quantumSealsComplete &&
         r.allSuperpositions
       summary = `formulaIsAnim=${r.formulaIsAnimation} interactF=${r.interactingFormulas} interactA=${r.interactingAnimations} trinities=${r.theoremsInTrinities} seals=${r.quantumSealsComplete} super=${r.allSuperpositions} coverage=${r.wiredBindCount}/${r.bindCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (
+      toolId === 'merkaba-movie' ||
+      toolId === 'movie-unique' ||
+      toolId === 'observe-movie' ||
+      toolId === 'sensor-movie' ||
+      toolId === 'movie-perspective' ||
+      toolId === 'cosmo-wave' ||
+      toolId === 'ui-crystal' ||
+      toolId === 'cycle-linear' ||
+      toolId === 'quantumise-cycle' ||
+      toolId === 'plasma-vortex' ||
+      toolId === 'thunder-zero' ||
+      toolId === 'anim-mesh'
+    ) {
+      const r = wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero()
+      ok =
+        r.computes &&
+        r.merkabaFeedsRosettaMovie &&
+        r.movieUniqueNeverRepeats &&
+        r.sensorPerspective &&
+        r.uiCrystallises &&
+        r.linearCyclesQuantumised &&
+        r.animMeshPlasma &&
+        r.thunderFromZero
+      summary = `feeds=${r.merkabaFeedsRosettaMovie} unique=${r.movieUniqueNeverRepeats} sensor=${r.sensorPerspective} crystal=${r.uiCrystallises} cycles=${r.linearQuantumisedCount}/${r.linearCycleCount} mesh=${r.meshBoundCount}/${r.meshBindCount} thunder0=${r.thunderFromZero}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -2094,6 +2124,42 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'formula-anim'" @click="runTool('formula-anim')">
           {{ runningId === 'formula-anim' ? '…' : 'Run formula-anim' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="merkaba-movie" aria-label="Merkaba rosetta movie sensors cosmology plasma thunder">
+        <h3>{{ merkabaMovieSeal.heading }}</h3>
+        <p class="quantum-apps__meta">{{ merkabaMovieSeal.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(merkabaMovieSeal.merkabaFeedsRosettaMovie))">feeds={{ merkabaMovieSeal.merkabaFeedsRosettaMovie }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(merkabaMovieSeal.movieUniqueNeverRepeats))">unique={{ merkabaMovieSeal.movieUniqueNeverRepeats }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(merkabaMovieSeal.observeOnly))">observe={{ merkabaMovieSeal.observeOnly }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(merkabaMovieSeal.sensorPerspective))">sensor={{ merkabaMovieSeal.sensorPerspective }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(merkabaMovieSeal.uiCrystallises))">crystal={{ merkabaMovieSeal.uiCrystallises }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(merkabaMovieSeal.linearCyclesQuantumised))">cycles={{ merkabaMovieSeal.linearQuantumisedCount }}/{{ merkabaMovieSeal.linearCycleCount }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(merkabaMovieSeal.animMeshPlasma))">mesh={{ merkabaMovieSeal.meshBoundCount }}/{{ merkabaMovieSeal.meshBindCount }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(merkabaMovieSeal.thunderFromZero))">thunder0={{ merkabaMovieSeal.thunderFromZero }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(merkabaMovieSeal.censusPreserved))">census={{ merkabaMovieSeal.census.unfolded }}/{{ merkabaMovieSeal.census.folded }}</UiBadge>
+        <p class="quantum-apps__meta">
+          morphs={{ merkabaMovieSeal.morphCount }} · honestOpen={{ merkabaMovieSeal.honestOpenNamedCount }} ·
+          sensorGap={{ merkabaMovieSeal.sensor.browserGap }} ·
+          qpu={{ merkabaMovieSeal.qpuRequired }} · clay={{ merkabaMovieSeal.claySolvedByThisFold }} · ftl={{ merkabaMovieSeal.physicalFtlClaim }}
+        </p>
+        <ul class="quantum-apps__list">
+          <li v-for="c in merkabaMovieSeal.linearCycles" :key="c.id">
+            <code>{{ c.quantumised ? '✓' : '✗' }} {{ c.id }}</code> · {{ c.kind }}
+          </li>
+        </ul>
+        <ul class="quantum-apps__list">
+          <li v-for="m in merkabaMovieSeal.morphs" :key="m.before">
+            <code>{{ m.before }}</code> → {{ m.after }} · {{ m.status }}
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>merkaba/movie</code> · <code>movie/unique</code> · <code>sensor/movie</code> · <code>cosmo/wave</code> · <code>cycle/linear</code> · <code>plasma/vortex</code> · <code>thunder/zero</code> ·
+          CLI <code>npm run quantum:merkaba-movie</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'merkaba-movie'" @click="runTool('merkaba-movie')">
+          {{ runningId === 'merkaba-movie' ? '…' : 'Run merkaba-movie' }}
         </UiButton>
       </section>
       <UiSeparator />
