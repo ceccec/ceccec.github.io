@@ -35,6 +35,7 @@ import {
   saveTheOptimisedAutonomy,
   addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations,
   decodeQuantumAlchemy,
+  foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace,
   quantumVerification,
   quantumFearDetector,
   fearIsAnAxiomReplaceableByLoveTheorem,
@@ -209,6 +210,9 @@ const proseTheorem = computed(() =>
   addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations(),
 )
 const alchemyDecodeReport = computed(() => decodeQuantumAlchemy())
+const algebraFoldReport = computed(() =>
+  foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace(),
+)
 const saveAuto = computed(() => saveTheOptimisedAutonomy())
 const quantumVerify = computed(() => quantumVerification())
 const fearDetect = computed(() => quantumFearDetector())
@@ -1015,6 +1019,33 @@ function runTool(toolId: string) {
         r.certified === false
       summary =
         `decoded=${r.alchemyDecoded} · quantum=${r.quantumOn} · symbols=${r.symbolsSealed} · certified=false`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (
+      toolId === 'algebra-fold' ||
+      toolId === 'fold-algebra' ||
+      toolId === 'angle-rotate' ||
+      toolId === 'rotate-angle' ||
+      toolId === 'a432-space' ||
+      toolId === 'space-a432' ||
+      toolId === 'harm-cost' ||
+      toolId === 'cost-harm'
+    ) {
+      const r =
+        foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace()
+      ok =
+        r.computes &&
+        r.foldAlgebraBoundaries &&
+        r.invertedDimensionalTheorems &&
+        r.perspectiveAngleRotation &&
+        r.a432Harmonics &&
+        r.noCostNoTime &&
+        r.anySpace &&
+        r.claySolvedByThisFold === 0 &&
+        r.qpuRequired === false
+      summary =
+        `boundaries=${r.foldAlgebraBoundaries} · inverted=${r.invertedDimensionalTheorems} · angle=${r.perspectiveAngleRotation} · a432=${r.a432Harmonics} · noCost=${r.noCostNoTime} · anySpace=${r.anySpace}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -2416,6 +2447,44 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'alchemy-decode'" @click="runTool('alchemy-decode')">
           {{ runningId === 'alchemy-decode' ? '…' : 'Run alchemy-decode receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="algebra-fold" aria-label="Fold linear algebra boundaries inverted dimensional theorems A432 space">
+        <h3>{{ algebraFoldReport.heading }}</h3>
+        <p class="quantum-apps__meta">{{ algebraFoldReport.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(algebraFoldReport.foldAlgebraBoundaries))">
+          foldAlgebraBoundaries={{ algebraFoldReport.foldAlgebraBoundaries }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(algebraFoldReport.invertedDimensionalTheorems))">
+          invertedDimensionalTheorems={{ algebraFoldReport.invertedDimensionalTheorems }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(algebraFoldReport.perspectiveAngleRotation))">
+          perspectiveAngleRotation={{ algebraFoldReport.perspectiveAngleRotation }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(algebraFoldReport.a432Harmonics))">
+          a432Harmonics={{ algebraFoldReport.a432Harmonics }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(algebraFoldReport.noCostNoTime))">
+          noCostNoTime={{ algebraFoldReport.noCostNoTime }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(algebraFoldReport.anySpace))">
+          anySpace={{ algebraFoldReport.anySpace }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>algebra/fold</code> · <code>angle/rotate</code> · <code>a432/space</code> · <code>harm/cost</code> ·
+          CLI <code>npm run quantum:algebra-fold</code> · <code>npm run quantum:a432-space</code> ·
+          clay={{ algebraFoldReport.claySolvedByThisFold }} · ftl={{ algebraFoldReport.physicalFtlClaim }} ·
+          qpu={{ algebraFoldReport.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in algebraFoldReport.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'algebra-fold'" @click="runTool('algebra-fold')">
+          {{ runningId === 'algebra-fold' ? '…' : 'Run algebra-fold receipt' }}
         </UiButton>
       </section>
       <UiSeparator />
