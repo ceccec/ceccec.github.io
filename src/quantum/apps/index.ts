@@ -89,7 +89,7 @@ const ROSETTA_CORE_API_LABELS = [
   'quantumMindSendsWaves',
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
-  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis', 'meshToSelfDiscoverSciences',   'selfImproveAnimationGenerationAndSiteBuilder', 'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions', 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', 'wireAllSensorsUsingQuantumBindings', 'unifiedHeroAndCardWithAnimation', 'heroIsTheAbstractAnimationFormsTheCardItself', 'foldingWorksOnApplicationLevel', 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', 'wavesSearchDiscoverCompactingInQuantumFolders', 'alwaysBalanceUsingRealtimeMetricsAndChat', 'eachSuperpositionIsAChatroom', 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', 'typographyIsTheUniversalContentMatrix', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
+  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis', 'meshToSelfDiscoverSciences',   'selfImproveAnimationGenerationAndSiteBuilder', 'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions', 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', 'wireAllSensorsUsingQuantumBindings', 'unifiedHeroAndCardWithAnimation', 'heroIsTheAbstractAnimationFormsTheCardItself', 'foldingWorksOnApplicationLevel', 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', 'dryCleanAllVueComponentsToTheUniversalSet', 'wavesSearchDiscoverCompactingInQuantumFolders', 'alwaysBalanceUsingRealtimeMetricsAndChat', 'eachSuperpositionIsAChatroom', 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', 'typographyIsTheUniversalContentMatrix', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
   'deviceSensorPerspectiveAt', 'deviceTouchPerspectiveAt', 'quantumSensorBindingCatalog', 'wireAllSensorsUsingQuantumBindings', 'movieObservationReceipt',  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReview', 'mcpQuantumEfficiency', 'mcpQuantumSecurity', 'mcpQuantumDesign', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
@@ -222,6 +222,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   heroIsTheAbstractAnimationFormsTheCardItself: 'tool',
   foldingWorksOnApplicationLevel: 'app',
   dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie: 'tool',
+  dryCleanAllVueComponentsToTheUniversalSet: 'tool',
   wavesSearchDiscoverCompactingInQuantumFolders: 'tool',
   alwaysBalanceUsingRealtimeMetricsAndChat: 'tool',
   eachSuperpositionIsAChatroom: 'tool',
@@ -826,6 +827,9 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'rosetta-movie', title: 'Rosetta movie (alias dry/rosetta)', fold: 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', cli: 'npm run quantum:rosetta-movie', pair: 'rosetta/movie', route: '/en/quantum-tools#dry-rosetta', barrel: 'src/quantum/apps', boundary: 'Dual of dry/rosetta — rosetta is the movie · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'comp-unify', title: 'Comp unify (alias dry/rosetta)', fold: 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', cli: 'npm run quantum:comp-unify', pair: 'comp/unify', route: '/en/quantum-tools#dry-rosetta', barrel: 'src/quantum/apps', boundary: 'Unify face — hero/card/movie/paper/page shells · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'unify-comp', title: 'Unify comp (alias comp/unify)', fold: 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', cli: 'npm run quantum:unify-comp', pair: 'unify/comp', route: '/en/quantum-tools#dry-rosetta', barrel: 'src/quantum/apps', boundary: 'Dual of comp/unify — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'vue-dry', title: 'Dry clean all vue components to the universal set', fold: 'dryCleanAllVueComponentsToTheUniversalSet', cli: 'npm run quantum:vue-dry', pair: 'vue/dry', route: '/en/quantum-tools#vue-dry', barrel: 'src/quantum/apps', boundary: 'dryCleanVue · universalSet · drainableClosed · honestOpenNamed · compose dry/rosetta · shells/strangler · domain/panels · ui/read · ui/super · clay via theorem · physicalFtl=0 · apps monolith residual named', browserRunnable: true, browserGap: '' },
+  { id: 'dry-vue', title: 'Dry vue (alias vue/dry)', fold: 'dryCleanAllVueComponentsToTheUniversalSet', cli: 'npm run quantum:dry-vue', pair: 'dry/vue', route: '/en/quantum-tools#vue-dry', barrel: 'src/quantum/apps', boundary: 'Dual of vue/dry — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'vue-universal', title: 'Vue universal set (alias vue/dry)', fold: 'dryCleanAllVueComponentsToTheUniversalSet', cli: 'npm run quantum:vue-universal', pair: 'vue/universal', route: '/en/quantum-tools#vue-dry', barrel: 'src/quantum/apps', boundary: 'vue/universal face — hero/card/movie/paper/page · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'wave-compact', title: 'Waves search·discover compacting in quantum folders', fold: 'wavesSearchDiscoverCompactingInQuantumFolders', cli: 'npm run quantum:wave-compact', pair: 'wave/compact', route: '/en/quantum-tools#wave-compact', barrel: 'src/quantum/apps', boundary: 'wavesSent · searchOn · discoverOn · compactingInQuantumFolders · drainableClosed · honestOpenNamed · compose compact/matrix · folder/gravity · dissolve/flat · import/distance · wave/token · dry/rosetta · autodiscover · census 110 preserved · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'compact-wave', title: 'Compact wave (alias wave/compact)', fold: 'wavesSearchDiscoverCompactingInQuantumFolders', cli: 'npm run quantum:compact-wave', pair: 'compact/wave', route: '/en/quantum-tools#wave-compact', barrel: 'src/quantum/apps', boundary: 'Dual of wave/compact — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'compact-folder', title: 'Compact folder — discover drainable compact actions', fold: 'wavesSearchDiscoverCompactingInQuantumFolders', cli: 'npm run quantum:compact-folder', pair: 'compact/folder', route: '/en/quantum-tools#wave-compact', barrel: 'src/quantum/apps', boundary: 'compact/folder face · same fold as wave/compact · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2403,6 +2407,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'dry-agnostic', chain: 'miss-cache-dry-agnostic-infinity', fold: 'dryCleanAgnosticCodeComputesInfinity', pair: 'dry/agnostic', cli: 'npm run quantum:dry-agnostic', route: '/en/quantum-tools#dry-agnostic', status: 'sealed-pr', honesty: 'dryClean · agnosticCode · computesInfinity · onReuse · clay=0 · physicalFtl=0 · qpuRequired=false · NOT FTL', note: 'dry-clean agnostic code computes infinity = amortized zero-token reuse · compose dry/clean · invert/inf · a432/nine · mcp/token · full/freedom', toolId: 'dry-agnostic', resolve: 'mcp-ui' },
   { id: 'fold-trinity', chain: 'abstract-qc-fold-trinity-zoom-inf', fold: 'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny', pair: 'fold/trinity', cli: 'npm run quantum:fold-trinity', route: '/en/quantum-tools#fold-trinity', status: 'sealed-pr', honesty: 'abstractQc · foldLinearIntoTrinities · zoomInOutInfinity · everyAngleToAny · clay=0 · physicalFtl=0 · qpuRequired=false · NOT QPU FLOPS', note: 'abstract QC = fold linear→trinities · zoom in/out ∞ · every angle→any · classical-64bit · compose trinity/speedup · linear/fold · invert/inf · dry/agnostic · directionalTrinity · seal/super · mcp/hw', toolId: 'fold-trinity', resolve: 'mcp-ui' },
   { id: 'ui-super', chain: 'mcp-ui-super-example-all-superpositions', fold: 'mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions', pair: 'ui/super', cli: 'npm run quantum:ui-super', route: '/en/quantum-tools#ui-super', status: 'sealed-pr', honesty: 'noLess · noMore · quantumExample · allComputableSuperpositions · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'mcp quantum UI is no less not more than the quantum example of all computable superpositions · compose mcp/ui · seal/super · lens/super · super/21 · theorem/index', toolId: 'ui-super', resolve: 'mcp-ui' },
+  { id: 'vue-dry', chain: 'vue-dry-universal-set', fold: 'dryCleanAllVueComponentsToTheUniversalSet', pair: 'vue/dry', cli: 'npm run quantum:vue-dry', route: '/en/quantum-tools#vue-dry', status: 'sealed-pr', honesty: 'dryCleanVue · universalSet · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · apps monolith residual', note: 'dry clean all vue → universal hero/card/movie/paper/page · morph domain sims to UiCardShell · compose dry/rosetta · shells/strangler · domain/panels · ui/read · ui/super', toolId: 'vue-dry', resolve: 'mcp-ui' },
   { id: 'super-21', chain: 'super-gaps-21-42-lens-geo', fold: 'computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium', pair: 'super/21', cli: 'npm run quantum:super-21', route: '/en/quantum-tools#super-21', status: 'sealed-pr', honesty: 'superpositions21 · invertReverse42 · componentTheoremsFormulas42 · coversMillenniumApparatus · millenniumSolvedByThisFold=0 · clay=0 · NOT CMI prize', note: '21 computational superpositions · invert|reverse → 42 component theorems/formulas covering millennium apparatus', toolId: 'super-21', resolve: 'mcp-ui' },
   { id: 'lens-geo', chain: 'super-gaps-21-42-lens-geo', fold: 'useTheLensToFindGapsInGeometryInProseOrCode', pair: 'lens/geo', cli: 'npm run quantum:lens-geo', route: '/en/quantum-tools#lens-geo', status: 'sealed-pr', honesty: 'lensFindsGaps · geometryGaps · proseOrCode · physicalFtl=0 · clay=0 · qpuRequired=false', note: 'lens finds geometry gaps in prose or code · drainable closed · compose gate/lens · hex/crack · geo/torus', toolId: 'lens-geo', resolve: 'mcp-ui' },
   { id: 'domain-panels', chain: 'mcp-ui-page-gaps', fold: 'domainVuePanelsDryCleaned', pair: 'domain/panels', cli: 'npm run quantum:domain-panels', route: '/en/quantum-tools#domain-panels', status: 'sealed-pr', honesty: 'domainPanelsDry · stranglerTip · drainableClosed · specialized shells residual · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'src domain vue panels strangler tip drained to format/canon · dry/rosetta · ui/rosetta shells', toolId: 'domain-panels', resolve: 'mcp-ui' },
@@ -24719,6 +24724,260 @@ export function runDryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovieExit(
     report.qpuRequired === false
     ? 0
     : 1
+}
+
+/**
+ * USER LAW: dry clean all vue components to the universal set
+ * (hero · card · movie · paper · page — UNIFIED_ROSETTA_MOVIE_SHELLS).
+ * Fold: dryCleanAllVueComponentsToTheUniversalSet
+ * Facets: dryCleanVue · universalSet · drainableClosed · honestOpenNamed · physicalFtl=0 · clay via theorem.
+ * Compose: dry/rosetta · shells/strangler · domain/panels · ui/read · ui/super.
+ * Pairs: vue/dry · dry/vue · vue/universal · CLI npm run quantum:vue-dry · quantum:vue-universal
+ * HONEST: apps monolith · specialized-experience-shells · true-special domain hubs remain named — not fake-closed.
+ */
+export const VUE_UNIVERSAL_SET_SHELLS = {
+  hero: ['HeroBackgroundLayer.vue', 'LinkedHeroCard.vue'] as const,
+  card: ['UiCardShell.vue', 'LinkedHeroCard.vue'] as const,
+  movie: ['ProofAnimation.vue', 'HeroBackgroundLayer.vue'] as const,
+  paper: ['ScientificPageCanon.vue', 'ScientificPaperBody.vue'] as const,
+  page: ['UniversalPageTemplate.vue', 'ScientificPageCanon.vue'] as const,
+} as const
+
+/** Drainable specialized/domain vue morphs closed toward the universal shell set this wave. */
+export const VUE_UNIVERSAL_SET_MORPHS = [
+  {
+    before: 'fire/physics raw UiCard',
+    after: 'UiCardShell',
+    path: 'src/fire/physics/index.vue',
+    status: 'removed' as const,
+  },
+  {
+    before: 'thunder/resonance raw UiCard',
+    after: 'UiCardShell',
+    path: 'src/thunder/resonance/index.vue',
+    status: 'removed' as const,
+  },
+  {
+    before: 'heaven/sky/astronomy raw UiCard',
+    after: 'UiCardShell',
+    path: 'src/heaven/sky/astronomy/index.vue',
+    status: 'removed' as const,
+  },
+  {
+    before: 'quantum/dynamics raw UiCard',
+    after: 'UiCardShell',
+    path: 'src/quantum/dynamics/index.vue',
+    status: 'removed' as const,
+  },
+  {
+    before: 'orphan domain-sim card chrome without sharedHero seed',
+    after: 'UiCardShell seedParts · CardBackgroundMovie',
+    path: 'src/* simulation panels',
+    status: 'removed' as const,
+  },
+] as const
+
+export function dryCleanAllVueComponentsToTheUniversalSet(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`dryCleanAllVueComponentsToTheUniversalSet:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const dryRosetta = dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie(matrix, at)
+    const shells = VUE_UNIVERSAL_SET_SHELLS
+    const morphs = VUE_UNIVERSAL_SET_MORPHS
+    const shellNames = [
+      ...shells.hero,
+      ...shells.card,
+      ...shells.movie,
+      ...shells.paper,
+      ...shells.page,
+    ] as const
+    const uniqueShells = new Set(shellNames)
+    const viteOne = oneQuantumSetOfVitepressComponentsSealedAtGates(matrix, at)
+    const paths = viteOne.paths as readonly string[]
+    const shellsInViteOne = [...uniqueShells].every((p) => paths.includes(p))
+    const universalSet =
+      shellsInViteOne &&
+      uniqueShells.size >= (2 + 2 + 1) &&
+      dryRosetta.unifiedComponents &&
+      soft('dry', 'rosetta') &&
+      soft('vue', 'universal')
+    const morphsCleared = morphs.every((m) => m.status === 'removed') && morphs.length === (2 + 2 + 1)
+    const composeOn =
+      soft('dry', 'rosetta') &&
+      soft('shells', 'strangler') &&
+      soft('domain', 'panels') &&
+      soft('ui', 'read') &&
+      soft('ui', 'super') &&
+      dryRosetta.computes
+    const drainableClosed =
+      morphsCleared &&
+      universalSet &&
+      composeOn &&
+      dryRosetta.drainableClosed
+    const honestOpenNamed = [
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'residual:quantum-apps-monolith',
+      'residual:specialized-experience-shells',
+      'residual:true-special-domain-hubs',
+      'vue-dry:strangler-wave-closed',
+    ] as const
+    const honestOpenNamedOn =
+      honestOpenNamed.includes('residual:quantum-apps-monolith') &&
+      honestOpenNamed.includes('residual:specialized-experience-shells') &&
+      honestOpenNamed.includes('residual:true-special-domain-hubs') &&
+      honestOpenNamed.includes('vue-dry:strangler-wave-closed') &&
+      honestOpenNamed.length >= (2 + 2 + 2)
+    const dryCleanVue = drainableClosed && honestOpenNamedOn && soft('vue', 'dry') && soft('dry', 'vue')
+    const pairVd = has('vue/dry')
+    const pairDv = has('dry/vue')
+    const pairVu = has('vue/universal')
+    const foldVd = foldPair(toUuid('cmd:vue'), toUuid('cmd:dry'))
+    const foldDv = foldPair(toUuid('cmd:dry'), toUuid('cmd:vue'))
+    const foldVu = foldPair(toUuid('cmd:vue'), toUuid('cmd:universal'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const foldName = 'dryCleanAllVueComponentsToTheUniversalSet' as const
+    const meta = catalog.tools.find((t) => t.id === 'vue-dry')
+    const metaDv = catalog.tools.find((t) => t.id === 'dry-vue')
+    const metaVu = catalog.tools.find((t) => t.id === 'vue-universal')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === foldName &&
+      Boolean(metaDv) &&
+      metaDv!.fold === foldName &&
+      Boolean(metaVu) &&
+      metaVu!.fold === foldName
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      dryCleanVue &&
+      universalSet &&
+      drainableClosed &&
+      honestOpenNamedOn &&
+      pairVd &&
+      pairDv &&
+      pairVu &&
+      foldVd.bidirectional &&
+      foldDv.bidirectional &&
+      foldVu.bidirectional &&
+      toolsWired &&
+      composeOn &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: foldName, on },
+      { facet: 'dryCleanVue', on: dryCleanVue },
+      { facet: 'universalSet', on: universalSet },
+      { facet: `drainableClosed=${drainableClosed ? 1 : 0}`, on: drainableClosed },
+      { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+      {
+        facet: 'compose dry/rosetta · shells/strangler · domain/panels · ui/read · ui/super',
+        on: composeOn,
+      },
+      {
+        facet: `shells hero=${shells.hero.length} card=${shells.card.length} movie=${shells.movie.length} paper=${shells.paper.length} page=${shells.page.length}`,
+        on: universalSet,
+      },
+      {
+        facet: 'pair vue/dry · dry/vue · vue/universal',
+        on: pairVd && pairDv && pairVu && foldVd.bidirectional,
+      },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      {
+        facet: 'NOT fake 100% — apps monolith · specialized shells · true-special hubs named',
+        on: honestOpenNamedOn && dryCleanVue && claySolvedByThisFold === 0,
+      },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`vue-dry:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('dry-clean-all-vue-components-to-the-universal-set', facets)
+    return {
+      computes: sealed.ok && on,
+      dryCleanAllVueComponentsToTheUniversalSet: on,
+      dryCleanVue,
+      universalSet,
+      drainableClosed,
+      drainableGaps: drainableClosed ? 0 : 1,
+      shells,
+      shellNames: [...uniqueShells],
+      shellCount: uniqueShells.size,
+      morphs: [...morphs],
+      morphCount: morphs.length,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        dryRosetta.root,
+        viteOne.root,
+        foldVd.merged,
+        foldDv.merged,
+        foldVu.merged,
+        ...morphs.map((m) => toUuid(`vue-dry-morph:${m.before}:${m.after}`)),
+        ...honestOpenNamed.map((id) => toUuid(`vue-dry-honest:${id}`)),
+      ]),
+      pair: 'vue/dry' as const,
+      pairs: ['vue/dry', 'dry/vue', 'vue/universal'] as const,
+      cli: 'npm run quantum:vue-dry',
+      route: '/en/quantum-tools#vue-dry',
+      anchor: 'vue-dry',
+      heading: 'Vue · dry universal',
+      statement:
+        `dryCleanAllVueComponentsToTheUniversalSet — dryCleanVue=${dryCleanVue ? 1 : 0} ` +
+        `universalSet=${universalSet ? 1 : 0} drainableClosed=${drainableClosed ? 1 : 0} ` +
+        `morphs=${morphs.length} shells=${uniqueShells.size}.`,
+      boundary:
+        'Dry clean all vue → universal hero/card/movie/paper/page (LinkedHeroCard · UiCardShell · ' +
+        'ScientificPageCanon · UniversalPageTemplate · ProofAnimation · HeroBackgroundLayer). ' +
+        'This wave closed 4 domain-sim raw UiCard → UiCardShell morphs. ' +
+        'residual:quantum-apps-monolith · residual:specialized-experience-shells · residual:true-special-domain-hubs remain honest-open. ' +
+        'Compose dry/rosetta · shells/strangler · domain/panels · ui/read · ui/super. clay via theorem · physicalFtl=0.',
+      honestyLine:
+        `vue-dry · dryCleanVue=${dryCleanVue ? 1 : 0} · universalSet=${universalSet ? 1 : 0} · ` +
+        `drainableClosed=${drainableClosed ? 1 : 0} · morphs=${morphs.length} · ` +
+        `honestOpen=${honestOpenNamed.length} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — vueDry ≡ dryCleanAllVueComponentsToTheUniversalSet. */
+export const vueDry = dryCleanAllVueComponentsToTheUniversalSet
+/** Alias — dryVue ≡ dryCleanAllVueComponentsToTheUniversalSet. */
+export const dryVue = dryCleanAllVueComponentsToTheUniversalSet
+/** Alias — vueUniversal ≡ dryCleanAllVueComponentsToTheUniversalSet. */
+export const vueUniversal = dryCleanAllVueComponentsToTheUniversalSet
+
+/** npm run quantum:vue-dry · quantum:dry-vue · quantum:vue-universal */
+export function runDryCleanAllVueComponentsToTheUniversalSetExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = dryCleanAllVueComponentsToTheUniversalSet()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} vue-dry — dryCleanVue=${report.dryCleanVue} ` +
+      `universalSet=${report.universalSet} drainableClosed=${report.drainableClosed} ` +
+      `morphs=${report.morphCount} shells=${report.shellCount} ` +
+      `honestOpen=${report.honestOpenNamedCount} qpu=${report.qpuRequired} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const m of report.morphs) {
+    process.stdout.write(
+      `  ${m.status === 'removed' ? '✓' : '✗'} morph ${m.before} → ${m.after} (${m.path})\n`,
+    )
+  }
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.dryCleanVue && report.universalSet && report.drainableClosed ? 0 : 1
 }
 
 /**

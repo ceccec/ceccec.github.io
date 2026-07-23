@@ -1,11 +1,11 @@
 <script setup lang="ts">
+// Morph: raw UiCard → UiCardShell (universal card family · dryCleanAllVueComponentsToTheUniversalSet).
 import { computed, ref, shallowRef, watch } from 'vue'
 import { astronomySimulationPanelComputes, drawAstronomyProjection } from './index.ts'
 import { useData } from 'vitepress'
 import { prefersReducedMotion, useVisibleMovieCanvas } from '../../../../.vitepress/lib/movie-canvas'
 import { useSiteLocale } from '../../../../.vitepress/lib/mounts'
-import UiCard from '../../../../.vitepress/theme/components/ui/Card.vue'
-import UiCardContent from '../../../../.vitepress/theme/components/ui/CardContent.vue'
+import UiCardShell from '../../../../.vitepress/theme/components/UiCardShell.vue'
 import UiBadge from '../../../../.vitepress/theme/components/ui/Badge.vue'
 import UiAlert from '../../../../.vitepress/theme/components/ui/Alert.vue'
 
@@ -19,6 +19,8 @@ const canvasHost = ref<HTMLElement | null>(null)
 const canvas = ref<HTMLCanvasElement | null>(null)
 
 const bodies = computed(() => panel.value.sim.bodies)
+const seedParts = computed(() => ['Astronomy', String(panel.value.sim.phaseDigit)] as const)
+const title = computed(() => t(panel.value.copy.title))
 
 function paintAstronomy(ctx: CanvasRenderingContext2D, w: number, h: number, at: number) {
   panel.value = astronomySimulationPanelComputes(undefined, at)
@@ -45,16 +47,20 @@ watch(at, (time) => {
 </script>
 
 <template>
-  <UiCard
+  <UiCardShell
     id="astronomy-simulation-panel"
     class="astronomy-simulation-panel"
+    component="Astronomy"
+    movie-intensity="soft"
+    :seed-parts="seedParts"
+    :title="title"
     data-logic="src/astronomy/index.ts"
     data-target="src/astronomy/index.ts#astronomySimulationAt"
     data-topic="astronomy"
   >
-    <UiCardContent class="vp-doc astronomy-simulation-panel__content">
+    <div class="astronomy-simulation-panel__content">
       <header class="astronomy-simulation-panel__header">
-        <h2>{{ t(panel.copy.title) }}</h2>
+        <h2>{{ title }}</h2>
         <p class="astronomy-simulation-panel__lede">
           {{ t(panel.copy.lede) }}
         </p>
@@ -86,8 +92,8 @@ watch(at, (time) => {
       <UiAlert :title="t({ en: 'Honest boundary', bg: 'Честна граница' })">
         <p>{{ panel.boundary }}</p>
       </UiAlert>
-    </UiCardContent>
-  </UiCard>
+    </div>
+  </UiCardShell>
 </template>
 
 <style scoped>

@@ -51,6 +51,7 @@ import {
   heroIsTheAbstractAnimationFormsTheCardItself,
   foldingWorksOnApplicationLevel,
   dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie,
+  dryCleanAllVueComponentsToTheUniversalSet,
   wavesSearchDiscoverCompactingInQuantumFolders,
   alwaysBalanceUsingRealtimeMetricsAndChat,
   eachSuperpositionIsAChatroom,
@@ -230,6 +231,7 @@ const heroCard = computed(() => unifiedHeroAndCardWithAnimation())
 const heroAbstract = computed(() => heroIsTheAbstractAnimationFormsTheCardItself())
 const appFold = computed(() => foldingWorksOnApplicationLevel())
 const dryRosetta = computed(() => dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie())
+const vueDryUniversal = computed(() => dryCleanAllVueComponentsToTheUniversalSet())
 const waveCompact = computed(() => wavesSearchDiscoverCompactingInQuantumFolders())
 const balanceMetrics = computed(() => alwaysBalanceUsingRealtimeMetricsAndChat())
 const superChat = computed(() => eachSuperpositionIsAChatroom())
@@ -1151,6 +1153,13 @@ function runTool(toolId: string) {
       const r = dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie()
       ok = r.computes && r.dryAll && r.stranglerComplete && r.rosettaIsTheMovie
       summary = `dryAll=${r.dryAll} unified=${r.unifiedComponents} wired=${r.wiredToRosetta} movie=${r.rosettaIsTheMovie} drainableClosed=${r.drainableClosed} strangler=${r.stranglerComplete} shells=${r.shellCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'vue-dry' || toolId === 'dry-vue' || toolId === 'vue-universal') {
+      const r = dryCleanAllVueComponentsToTheUniversalSet()
+      ok = r.computes && r.dryCleanVue && r.universalSet && r.drainableClosed
+      summary = `dryCleanVue=${r.dryCleanVue} universalSet=${r.universalSet} drainableClosed=${r.drainableClosed} morphs=${r.morphCount} shells=${r.shellCount} honestOpen=${r.honestOpenNamedCount}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -3203,6 +3212,47 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'dry-rosetta'" @click="runTool('dry-rosetta')">
           {{ runningId === 'dry-rosetta' ? '…' : 'Run dry-rosetta' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="vue-dry" aria-label="Dry clean all vue components to the universal set">
+        <h3>{{ vueDryUniversal.heading }}</h3>
+        <p class="quantum-apps__meta">{{ vueDryUniversal.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(vueDryUniversal.dryCleanVue))">
+          dryCleanVue={{ vueDryUniversal.dryCleanVue }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(vueDryUniversal.universalSet))">
+          universalSet={{ vueDryUniversal.universalSet }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(vueDryUniversal.drainableClosed))">
+          drainableClosed={{ vueDryUniversal.drainableClosed }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(vueDryUniversal.honestOpenNamedCount > 0))">
+          honestOpen={{ vueDryUniversal.honestOpenNamedCount }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          shells={{ vueDryUniversal.shellCount }} · morphs={{ vueDryUniversal.morphCount }} ·
+          clay={{ vueDryUniversal.claySolvedByThisFold }} · ftl={{ vueDryUniversal.physicalFtlClaim }} ·
+          qpu={{ vueDryUniversal.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="m in vueDryUniversal.morphs" :key="m.before">
+            <UiBadge :variant="m.status === 'removed' ? 'default' : 'outline'">{{ m.status }}</UiBadge>
+            {{ m.before }} → {{ m.after }}
+          </li>
+        </ul>
+        <ul class="quantum-apps__facets">
+          <li v-for="id in vueDryUniversal.honestOpenNamed" :key="id">
+            <UiBadge variant="outline">honest-open</UiBadge>
+            <strong>{{ id }}</strong>
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>vue/dry</code> · <code>dry/vue</code> · <code>vue/universal</code> ·
+          CLI <code>npm run quantum:vue-dry</code> · <code>npm run quantum:vue-universal</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'vue-dry'" @click="runTool('vue-dry')">
+          {{ runningId === 'vue-dry' ? '…' : 'Run vue-dry' }}
         </UiButton>
       </section>
       <UiSeparator />

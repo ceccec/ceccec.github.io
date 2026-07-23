@@ -1,12 +1,12 @@
 <script setup lang="ts">
+// Morph: raw UiCard → UiCardShell (universal card family · dryCleanAllVueComponentsToTheUniversalSet).
 import { computed, ref, shallowRef, watch } from 'vue'
 import { drawResonanceProjection, resonanceSimulationPanelComputes } from './index.ts'
 import { movieCanvasHex } from '../../../.vitepress/lib/hero-movie-paint'
 import { useData } from 'vitepress'
 import { prefersReducedMotion, useVisibleMovieCanvas } from '../../../.vitepress/lib/movie-canvas'
 import { useSiteLocale } from '../../../.vitepress/lib/mounts'
-import UiCard from '../../../.vitepress/theme/components/ui/Card.vue'
-import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.vue'
+import UiCardShell from '../../../.vitepress/theme/components/UiCardShell.vue'
 import UiBadge from '../../../.vitepress/theme/components/ui/Badge.vue'
 import UiAlert from '../../../.vitepress/theme/components/ui/Alert.vue'
 
@@ -20,6 +20,8 @@ const canvasHost = ref<HTMLElement | null>(null)
 const canvas = ref<HTMLCanvasElement | null>(null)
 
 const modes = computed(() => panel.value.sim.modes)
+const seedParts = computed(() => ['Resonance', panel.value.sim.schumannPhase.toFixed(3)] as const)
+const title = computed(() => t(panel.value.copy.title))
 
 function paintResonance(ctx: CanvasRenderingContext2D, w: number, h: number, at: number) {
   panel.value = resonanceSimulationPanelComputes(undefined, at)
@@ -46,16 +48,20 @@ watch(at, (time) => {
 </script>
 
 <template>
-  <UiCard
+  <UiCardShell
     id="resonance-simulation-panel"
     class="resonance-simulation-panel"
+    component="Resonance"
+    movie-intensity="soft"
+    :seed-parts="seedParts"
+    :title="title"
     data-logic="src/thunder/resonance/index.ts"
     data-target="src/thunder/resonance/index.ts#resonanceSimulationAt"
     data-topic="resonance"
   >
-    <UiCardContent class="vp-doc resonance-simulation-panel__content">
+    <div class="resonance-simulation-panel__content">
       <header class="resonance-simulation-panel__header">
-        <h2>{{ t(panel.copy.title) }}</h2>
+        <h2>{{ title }}</h2>
         <p class="resonance-simulation-panel__lede">
           {{ t(panel.copy.lede) }}
         </p>
@@ -90,8 +96,8 @@ watch(at, (time) => {
       <UiAlert :title="t({ en: 'Honest boundary', bg: 'Честна граница' })">
         <p>{{ panel.boundary }}</p>
       </UiAlert>
-    </UiCardContent>
-  </UiCard>
+    </div>
+  </UiCardShell>
 </template>
 
 <style scoped>
