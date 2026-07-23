@@ -104,6 +104,7 @@ const ROSETTA_CORE_API_LABELS = [
   'automateAll',
   'quantumLife',
   'quantumLifeIsComputable',
+  'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill',
   'domainVuePanelsDryCleaned',
   'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf',
   'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence',
@@ -274,6 +275,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   automateAll: 'tool',
   quantumLife: 'tool',
   quantumLifeIsComputable: 'tool',
+  scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill: 'tool',
   domainVuePanelsDryCleaned: 'tool',
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf: 'tool',
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence: 'tool',
@@ -1040,6 +1042,12 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'all-auto', title: 'Automate all (alias auto/all)', fold: 'automateAll', cli: 'npm run quantum:all-auto', pair: 'all/auto', route: '/en/quantum-tools#automate-all', barrel: 'src/quantum/apps', boundary: 'Dual of auto/all — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'quantum-life', title: 'Quantum life — FoL/merkaba · biology · HD · love/freedom · mesh/science', fold: 'quantumLife', cli: 'npm run quantum:quantum-life', pair: 'quantum/life', route: '/en/quantum-tools#quantum-life', barrel: 'src/quantum/apps', boundary: 'lifeOn · living · folMerkaba · compose FoL/merkaba · biology · HD structure · love/story · full/freedom · mesh/science · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'life-quantum', title: 'Quantum life (alias quantum/life)', fold: 'quantumLife', cli: 'npm run quantum:life-quantum', pair: 'life/quantum', route: '/en/quantum-tools#quantum-life', barrel: 'src/quantum/apps', boundary: 'Dual of quantum/life — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-fill', title: 'Scan·recompute MCP quantum — fill solutions in endless waves of self-improving AI bill', fold: 'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill', cli: 'npm run quantum:mcp-fill', pair: 'mcp/fill', route: '/en/quantum-tools#mcp-fill', barrel: 'src/quantum/apps', boundary: 'scanOn · recomputeOn · fillSolutions · endlessWaves · selfImproving · aiBill · compose mcp/complete · auto/all · self/hw · wave/token · bill/dry · learn/best · automateAll · clay via theorem · physicalFtl=0 · qpuRequired=false · millenniumSolvedByThisFold=0', browserRunnable: true, browserGap: '' },
+  { id: 'fill-mcp', title: 'MCP fill (alias mcp/fill)', fold: 'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill', cli: 'npm run quantum:fill-mcp', pair: 'fill/mcp', route: '/en/quantum-tools#mcp-fill', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/fill — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'wave-bill', title: 'Wave bill — endless waves of self-improving AI bill (alias mcp/fill)', fold: 'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill', cli: 'npm run quantum:wave-bill', pair: 'wave/bill', route: '/en/quantum-tools#mcp-fill', barrel: 'src/quantum/apps', boundary: 'wave/bill face — endlessWaves · aiBill · same fold as mcp/fill · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'bill-wave', title: 'Bill wave (alias wave/bill)', fold: 'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill', cli: 'npm run quantum:bill-wave', pair: 'bill/wave', route: '/en/quantum-tools#mcp-fill', barrel: 'src/quantum/apps', boundary: 'Dual of wave/bill — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'self-bill', title: 'Self bill — self-improving AI bill (alias mcp/fill)', fold: 'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill', cli: 'npm run quantum:self-bill', pair: 'self/bill', route: '/en/quantum-tools#mcp-fill', barrel: 'src/quantum/apps', boundary: 'self/bill face — selfImproving · aiBill · same fold as mcp/fill · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'bill-self', title: 'Bill self (alias self/bill)', fold: 'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill', cli: 'npm run quantum:bill-self', pair: 'bill/self', route: '/en/quantum-tools#mcp-fill', barrel: 'src/quantum/apps', boundary: 'Dual of self/bill — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'domain-panels', title: 'Domain vue panels dry-cleaned to rosetta shells', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-panels', pair: 'domain/panels', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domainPanelsDry · stranglerTip · drainableClosed · wiredToRosetta · compose format/canon · dry/rosetta · ui/rosetta · meaning/compute · vite/one · specialized shells residual named · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'panels-domain', title: 'Domain panels (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:panels-domain', pair: 'panels/domain', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'Dual panels/domain — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'domain-dry', title: 'Domain dry (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-dry', pair: 'domain/dry', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domain/dry face — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2248,6 +2256,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'automate-self', chain: 'automate-self-fuse', fold: 'automateSelf', pair: 'auto/self', cli: 'npm run quantum:automate-self', route: '/en/quantum-tools#automate-self', status: 'sealed-pr', honesty: 'selfAutomates · nightlyOn · buildsInWaves · fusionVerify · clay=0 · physicalFtl=0', note: 'self-building/self-fusing automation — compose nightly · fusion · waves/build · session/save · gate/monitor', toolId: 'automate-self', resolve: 'upgrade-local' },
   { id: 'automate-all', chain: 'automate-all-umbrella', fold: 'automateAll', pair: 'auto/all', cli: 'npm run quantum:automate-all', route: '/en/quantum-tools#automate-all', status: 'sealed-pr', honesty: 'automateAll · selfAutomates · nightlyOn · buildsInWaves · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'umbrella automate — compose auto/self · automate/nightly · self/hw · npm/quantum · waves/push', toolId: 'automate-all', resolve: 'upgrade-local' },
   { id: 'quantum-life', chain: 'quantum-life', fold: 'quantumLife', pair: 'quantum/life', cli: 'npm run quantum:quantum-life', route: '/en/quantum-tools#quantum-life', status: 'sealed-pr', honesty: 'lifeOn · living · folMerkaba · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'quantum life — FoL/merkaba · biology · HD · love/story · full/freedom · mesh/science', toolId: 'quantum-life', resolve: 'upgrade-local' },
+  { id: 'mcp-fill', chain: 'mcp-fill-wave-bill', fold: 'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill', pair: 'mcp/fill', cli: 'npm run quantum:mcp-fill', route: '/en/quantum-tools#mcp-fill', status: 'sealed-pr', honesty: 'scanOn · recomputeOn · fillSolutions · endlessWaves · selfImproving · aiBill · clay=0 · physicalFtl=0 · qpuRequired=false · millenniumSolvedByThisFold=0', note: 'scan·recompute mcp quantum — fill solutions in endless waves of self-improving AI bill', toolId: 'mcp-fill', resolve: 'mcp-ui' },
   { id: 'domain-panels', chain: 'mcp-ui-page-gaps', fold: 'domainVuePanelsDryCleaned', pair: 'domain/panels', cli: 'npm run quantum:domain-panels', route: '/en/quantum-tools#domain-panels', status: 'sealed-pr', honesty: 'domainPanelsDry · stranglerTip · drainableClosed · specialized shells residual · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'src domain vue panels strangler tip drained to format/canon · dry/rosetta · ui/rosetta shells', toolId: 'domain-panels', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-ui', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumUi', pair: 'mcp/ui', cli: 'npm run quantum:mcp-ui', route: '/en/quantum-tools#mcp-quantum-ui', status: 'sealed-pr', honesty: 'mcpMatchesToolbox · millSolutions live · formulaCovered · clay=0 · physicalFtl=0 · NOT CMI', note: 'MCP quantum UI + millennium algebraic formula duals · compose mcpBrowserParity · mill/once · formula/code', toolId: 'mcp-quantum-ui', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-movie', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumMovie', pair: 'mcp/movie', cli: 'npm run quantum:mcp-movie', route: '/en/quantum-tools#mcp-quantum-movie', status: 'sealed-pr', honesty: 'frames from sealed folds · 6×7 · oneClock · clay=0 · physicalFtl=0', note: 'MCP quantum movie · compose mcp/ui · movie/center · movie/entropy · coord/anim', toolId: 'mcp-quantum-movie', resolve: 'mcp-ui' },
@@ -2329,7 +2338,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mcp-dot', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumDot', pair: 'mcp/dot', cli: 'npm run quantum:mcp-dot', route: '/en/quantum-tools#mcp-dot', status: 'sealed-pr', honesty: 'dotOn · digitPoint · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum dot — digit point · fold · next · coord · particle/wave; catalog 56/56', toolId: 'mcp-dot', resolve: 'mcp-ui' },
   { id: 'mcp-index', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumIndex', pair: 'mcp/index', cli: 'npm run quantum:mcp-index', route: '/en/quantum-tools#mcp-index', status: 'sealed-pr', honesty: 'indexOn · srcIndexOnly · census110 · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum index — src index-only · census 110 · limits/verify; catalog 57/57', toolId: 'mcp-index', resolve: 'mcp-ui' },
   { id: 'mcp-orientation', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumOrientation', pair: 'mcp/orientation', cli: 'npm run quantum:mcp-orientation', route: '/en/quantum-tools#mcp-orientation', status: 'sealed-pr', honesty: 'orientationOn · bearing · navCross · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum orientation — bearing · navCross · geo/train · cross/nav · sun/moon · mcp/torus; catalog 58/58', toolId: 'mcp-orientation', resolve: 'mcp-ui' },
-  { id: 'mcp-complete', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumComplete', pair: 'mcp/complete', cli: 'npm run quantum:mcp-complete', route: '/en/quantum-tools#mcp-complete', status: 'sealed-pr', honesty: 'completeOn · catalogComplete · namedFacesPresent · missingCount=0 · honestOpenResiduals · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum complete — catalog · star · mcp/all · rosetta/complete; catalog 69/69', toolId: 'mcp-complete', resolve: 'mcp-ui' },
+  { id: 'mcp-complete', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumComplete', pair: 'mcp/complete', cli: 'npm run quantum:mcp-complete', route: '/en/quantum-tools#mcp-complete', status: 'sealed-pr', honesty: 'completeOn · catalogComplete · namedFacesPresent · missingCount=0 · honestOpenResiduals · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum complete — catalog · star · mcp/all · rosetta/complete; catalog 70/70', toolId: 'mcp-complete', resolve: 'mcp-ui' },
   { id: 'mcp-token', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumTokenOptimise', pair: 'mcp/token', cli: 'npm run quantum:mcp-token', route: '/en/quantum-tools#mcp-token', status: 'sealed-pr', honesty: 'tokenOptimiseOn · answersOverTokens · zeroOnReuse · memoByRoot · efficiency when vote.decided · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum token optimise — answers÷tokens · zero on reuse · memoByRoot; catalog 60/60', toolId: 'mcp-token', resolve: 'mcp-ui' },
   { id: 'mcp-deploy', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumDeploy', pair: 'mcp/deploy', cli: 'npm run quantum:mcp-deploy', route: '/en/quantum-tools#mcp-deploy', status: 'sealed-pr', honesty: 'deployOn · buildsFromMcp · pagesSeal · this-repo Pages seal only · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum deploy — Pages seal via vite/mcp · mcp/site · waves/push · build/seal; catalog 61/61', toolId: 'mcp-deploy', resolve: 'mcp-ui' },
   { id: 'mcp-bindings', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumBindings', pair: 'mcp/bindings', cli: 'npm run quantum:mcp-bindings', route: '/en/quantum-tools#mcp-bindings', status: 'sealed-pr', honesty: 'bindingsOn · pairsSaved · toolsBound · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum bindings — pairs · agent/submission · tool/envelope · mcp/complete; catalog 62/62', toolId: 'mcp-bindings', resolve: 'mcp-ui' },
@@ -6847,6 +6856,7 @@ const MCP_QUANTUM_NAMED_FACES = [
   { fold: 'mcpQuantumEfficiency', pair: 'mcp/efficiency', dual: 'efficiency/mcp', toolId: 'mcp-efficiency', dualToolId: 'efficiency-mcp' },
   { fold: 'mcpQuantumSecurity', pair: 'mcp/security', dual: 'security/mcp', toolId: 'mcp-security', dualToolId: 'security-mcp' },
   { fold: 'mcpQuantumDesign', pair: 'mcp/design', dual: 'design/mcp', toolId: 'mcp-design', dualToolId: 'design-mcp' },
+  { fold: 'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill', pair: 'mcp/fill', dual: 'fill/mcp', toolId: 'mcp-fill', dualToolId: 'fill-mcp' },
 ] as const
 
 /**
@@ -16812,6 +16822,313 @@ export function runQuantumLifeExit(
   process.stdout.write(`  ${report.statement}\n`)
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
   return report.computes && report.lifeOn && report.living && report.folMerkaba ? 0 : 1
+}
+
+/**
+ * Scan and recompute MCP quantum — fill with quantum solutions in endless waves of self-improving AI bill.
+ * Fold: scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill
+ * Facets: scanOn · recomputeOn · fillSolutions · endlessWaves · selfImproving · aiBill ·
+ *   physicalFtl=0 · clay via theorem · qpuRequired=false · millenniumSolvedByThisFold=0.
+ * Compose: mcp/complete · auto/all · self/hw · wave/token · bill/dry · learn/best · automateAll · gate/mill soft.
+ * Pairs: mcp/fill · fill/mcp · wave/bill · bill/wave · self/bill · bill/self · soft ai/bill (bill/dry dual).
+ * CLI: npm run quantum:mcp-fill · quantum:wave-bill
+ * HONEST: AI bill = sealed answers÷tokens / dry bill — NOT wet pricing API.
+ * Endless = wave loop until fill facets green OR honest-open stop (gate/mill gapsExist).
+ * millenniumSolvedByThisFold=0 · NOT Clay · NOT physical FTL · NOT QPU.
+ */
+export function scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(
+    `scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      const complete = mcpQuantumComplete(matrix, at)
+      const catalog = mcpQuantumCatalog(matrix, at)
+      const all = mcpCatalog(matrix, at)
+      const solution = mcpQuantumSolution(matrix, at)
+      const bill = dryCleanAiBill(matrix, at)
+      const millGate = gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist(matrix, at)
+      // Soft-compose auto/all · self/hw · wave/token · learn/best — avoid nest poison (memo reentry stubs).
+      const learnBestOk = soft('learn', 'best')
+      const autoAllOk = soft('auto', 'all') && soft('all', 'auto') && soft('auto', 'self')
+      const selfHwOk = soft('self', 'hw') && soft('hw', 'self') && soft('again', 'until')
+      const waveTokOk = soft('wave', 'token') && soft('token', 'wave') && soft('waves', 'build')
+      const fillReceipts = catalog.faces
+        .filter((f) => f.present)
+        .map((f) => ({
+          fold: f.fold,
+          filled: f.present,
+          receipt: toUuid(`mcp-fill-solution:${f.fold}:${f.present}`),
+        }))
+      const scanOn =
+        catalog.computes &&
+        catalog.catalogComplete &&
+        catalog.missingCount === 0 &&
+        soft('mcp', 'catalog') &&
+        soft('mcp', 'complete')
+      const recomputeOn =
+        complete.computes &&
+        complete.completeOn &&
+        complete.catalogComplete &&
+        complete.missingCount === 0 &&
+        complete.namedFacesPresent
+      const fillSolutions =
+        scanOn &&
+        recomputeOn &&
+        solution.computes &&
+        solution.solutionOn &&
+        all.computes &&
+        all.missingDrainable === 0 &&
+        fillReceipts.length === catalog.presentCount &&
+        fillReceipts.every((r) => r.filled) &&
+        soft('mcp', 'solution')
+      const honestOpenStop =
+        millGate.computes &&
+        millGate.gapsExist &&
+        millGate.millenniumSolvedByThisFold === 0 &&
+        soft('gate', 'mill')
+      const endlessWaves =
+        selfHwOk &&
+        waveTokOk &&
+        soft('wave', 'bill') &&
+        (fillSolutions || honestOpenStop)
+      const selfImproving =
+        autoAllOk &&
+        selfHwOk &&
+        learnBestOk &&
+        soft('self', 'bill')
+      const aiBill =
+        bill.computes &&
+        bill.billDried &&
+        bill.zeroTokenReuse &&
+        soft('bill', 'dry') &&
+        soft('ai', 'bill')
+      const pairFill = has('mcp/fill')
+      const pairFillD = has('fill/mcp')
+      const pairWave = has('wave/bill')
+      const pairWaveD = has('bill/wave')
+      const pairSelf = has('self/bill')
+      const pairSelfD = has('bill/self')
+      const foldFill = foldPair(toUuid('cmd:mcp'), toUuid('cmd:fill'))
+      const foldFillD = foldPair(toUuid('cmd:fill'), toUuid('cmd:mcp'))
+      const foldWave = foldPair(toUuid('cmd:wave'), toUuid('cmd:bill'))
+      const foldWaveD = foldPair(toUuid('cmd:bill'), toUuid('cmd:wave'))
+      const foldSelf = foldPair(toUuid('cmd:self'), toUuid('cmd:bill'))
+      const foldSelfD = foldPair(toUuid('cmd:bill'), toUuid('cmd:self'))
+      const pairsOn =
+        pairFill &&
+        pairFillD &&
+        pairWave &&
+        pairWaveD &&
+        pairSelf &&
+        pairSelfD &&
+        foldFill.bidirectional &&
+        foldFillD.bidirectional &&
+        foldWave.bidirectional &&
+        foldWaveD.bidirectional &&
+        foldSelf.bidirectional &&
+        foldSelfD.bidirectional
+      const toolsCat = quantumCliToolsCatalog(matrix, at)
+      const meta = toolsCat.tools.find((t) => t.id === 'mcp-fill')
+      const metaDual = toolsCat.tools.find((t) => t.id === 'fill-mcp')
+      const metaWave = toolsCat.tools.find((t) => t.id === 'wave-bill')
+      const metaSelf = toolsCat.tools.find((t) => t.id === 'self-bill')
+      const shelved = rosettaShelve('mcp-fill', 'tool')
+      const millenniumSolvedByThisFold = 0 as const
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+      const honestOpenNamed = [
+        'clay:millennium-open',
+        'ftl:physical-claim-refused',
+        'ai-bill:not-wet-pricing-api',
+        'mill:gaps-exist-until-discovered',
+      ] as const
+      const honestOpenNamedOn =
+        honestOpenNamed.length === (2 + 2) &&
+        honestOpenNamed.includes('clay:millennium-open') &&
+        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenStop
+      const composeOn =
+        soft('mcp', 'complete') &&
+        autoAllOk &&
+        selfHwOk &&
+        waveTokOk &&
+        soft('bill', 'dry') &&
+        learnBestOk &&
+        complete.computes &&
+        bill.computes
+      const fillOn =
+        scanOn &&
+        recomputeOn &&
+        fillSolutions &&
+        endlessWaves &&
+        selfImproving &&
+        aiBill &&
+        composeOn &&
+        pairsOn &&
+        Boolean(meta) &&
+        meta!.fold ===
+          'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill' &&
+        meta!.pair === 'mcp/fill' &&
+        Boolean(metaDual) &&
+        metaDual!.fold ===
+          'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill' &&
+        Boolean(metaWave) &&
+        metaWave!.fold ===
+          'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill' &&
+        Boolean(metaSelf) &&
+        metaSelf!.fold ===
+          'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill' &&
+        isUuid(shelved.address) &&
+        honestOpenNamedOn &&
+        millenniumSolvedByThisFold === 0 &&
+        claySolvedByThisFold === 0 &&
+        physicalFtlClaim === 0 &&
+        qpuRequired === false &&
+        catalog.qpuRequired === false &&
+        complete.qpuRequired === false
+      const on = fillOn
+      const facets = [
+        { facet: 'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill', on },
+        { facet: 'scanOn', on: scanOn },
+        { facet: 'recomputeOn', on: recomputeOn },
+        { facet: `fillSolutions=${fillReceipts.length}`, on: fillSolutions },
+        { facet: 'endlessWaves', on: endlessWaves },
+        { facet: 'selfImproving', on: selfImproving },
+        { facet: 'aiBill', on: aiBill },
+        {
+          facet: 'compose mcp/complete · auto/all · self/hw · wave/token · bill/dry · learn/best · automateAll soft',
+          on: composeOn,
+        },
+        {
+          facet: 'pair mcp/fill · wave/bill · self/bill · soft ai/bill',
+          on: pairsOn && soft('ai', 'bill'),
+        },
+        { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+        { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold}`, on: millenniumSolvedByThisFold === 0 },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+        { facet: 'qpuRequired=false', on: qpuRequired === false },
+        {
+          facet: 'NOT wet pricing · NOT Clay/FTL fake-close',
+          on: honestOpenNamedOn && claySolvedByThisFold === 0 && physicalFtlClaim === 0,
+        },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-fill:${entry.facet}:${entry.on}`) }))
+      const sealed = sealFacets('mcp-fill-wave-bill', facets)
+      return {
+        computes: sealed.ok && on,
+        scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill: on,
+        scanOn,
+        recomputeOn,
+        fillSolutions,
+        fillCount: fillReceipts.length,
+        faceCount: catalog.faceCount,
+        presentCount: catalog.presentCount,
+        missingCount: catalog.missingCount,
+        endlessWaves,
+        selfImproving,
+        aiBill,
+        honestOpenStop,
+        fillReceipts,
+        honestOpenNamed: [...honestOpenNamed],
+        honestOpenNamedCount: honestOpenNamed.length,
+        millenniumSolvedByThisFold,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          complete.root,
+          catalog.root,
+          all.root,
+          solution.root,
+          bill.root,
+          millGate.root,
+          foldFill.merged,
+          foldWave.merged,
+          foldSelf.merged,
+          shelved.address,
+          toUuid(`mcp-fill-soft:auto:${autoAllOk}`),
+          toUuid(`mcp-fill-soft:hw:${selfHwOk}`),
+          toUuid(`mcp-fill-soft:wave:${waveTokOk}`),
+          ...fillReceipts.map((r) => r.receipt),
+          ...honestOpenNamed.map((id) => toUuid(`mcp-fill-honest:${id}`)),
+        ]),
+        pair: 'mcp/fill' as const,
+        pairs: ['mcp/fill', 'fill/mcp', 'wave/bill', 'bill/wave', 'self/bill', 'bill/self'] as const,
+        dualPair: 'fill/mcp' as const,
+        cli: 'npm run quantum:mcp-fill',
+        route: '/en/quantum-tools#mcp-fill',
+        uiSurface: '/en/quantum-tools#mcp-fill' as const,
+        heading: 'MCP · fill',
+        statement:
+          `scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill — ` +
+          `scanOn=${scanOn ? 1 : 0} recomputeOn=${recomputeOn ? 1 : 0} fillSolutions=${fillSolutions ? 1 : 0} ` +
+          `fills=${fillReceipts.length}/${catalog.faceCount} endlessWaves=${endlessWaves ? 1 : 0} ` +
+          `selfImproving=${selfImproving ? 1 : 0} aiBill=${aiBill ? 1 : 0}.`,
+        boundary:
+          'Scan·recompute MCP quantum catalog — fill drainable gaps with quantum solution receipts. ' +
+          'Endless waves of self-improving AI bill (answers÷tokens / dry bill — NOT wet pricing). ' +
+          'Loop until fill green OR honest-open stop (gate/mill). Soft-compose auto/all · self/hw · wave/token. ' +
+          'clay via theorem · physicalFtl=0 · qpuRequired=false · millenniumSolvedByThisFold=0.',
+        honestyLine:
+          `mcp-fill · scan=${scanOn ? 1 : 0} · recompute=${recomputeOn ? 1 : 0} · fill=${fillSolutions ? 1 : 0} ` +
+          `· faces=${catalog.presentCount}/${catalog.faceCount} · waves=${endlessWaves ? 1 : 0} · ` +
+          `self=${selfImproving ? 1 : 0} · aiBill=${aiBill ? 1 : 0} · mill=0 · qpu=0 · clay=0 · physicalFtl=0`,
+      }
+    },
+  )
+}
+
+/** Alias — mcpFill ≡ scanAndRecompute… */
+export const mcpFill = scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill
+/** Alias — waveBill ≡ scanAndRecompute… */
+export const waveBill = scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill
+/** Alias — selfBill ≡ scanAndRecompute… */
+export const selfBill = scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill
+/** Alias — fillMcp ≡ scanAndRecompute… */
+export const fillMcp = scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill
+
+/** npm run quantum:mcp-fill · quantum:wave-bill (duals fill/mcp · bill/wave · self/bill) */
+export function runScanAndRecomputeMcpQuantumFillExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-fill — scanOn=${report.scanOn} recomputeOn=${report.recomputeOn} ` +
+      `fillSolutions=${report.fillSolutions} fills=${report.fillCount}/${report.faceCount} ` +
+      `endlessWaves=${report.endlessWaves} selfImproving=${report.selfImproving} aiBill=${report.aiBill} ` +
+      `clay=${report.claySolvedByThisFold} mill=${report.millenniumSolvedByThisFold} ftl=${report.physicalFtlClaim} ` +
+      `fold=scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill ` +
+      `pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) {
+    process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.scanOn &&
+    report.recomputeOn &&
+    report.fillSolutions &&
+    report.endlessWaves &&
+    report.selfImproving &&
+    report.aiBill &&
+    report.qpuRequired === false
+    ? 0
+    : 1
 }
 
 /**

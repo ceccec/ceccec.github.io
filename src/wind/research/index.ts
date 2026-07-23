@@ -8018,6 +8018,7 @@ export const VOCAB_DRY_METHOD_MAP = [
   { word: 'audit', method: 'pagesAuditAndManageThemselvesInTrinities', pair: 'page/audit' },
   { word: 'assume', method: 'dryCleanTheoremsFormulasReplaceAnyAssumption', pair: 'assume/theorem' },
   { word: 'bill', method: 'dryCleanAiBill', pair: 'bill/dry' },
+  { word: 'fill', method: 'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill', pair: 'mcp/fill' },
   { word: 'heal', method: 'quantumSelfHeal', pair: 'self/heal' },
   { word: 'chat', method: 'mcpQuantumChat', pair: 'mcp/chat' },
   { word: 'conversation', method: 'mcpQuantumConversation', pair: 'mcp/conversation' },
