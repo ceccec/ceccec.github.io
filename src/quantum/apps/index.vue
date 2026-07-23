@@ -21,6 +21,8 @@ import {
   gatesMonitorThemselvesThroughTheUi,
   gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix,
   automateSelf,
+  automateAll,
+  domainVuePanelsDryCleaned,
   mcpQuantumUi,
   mcpQuantumMovie,
   movieGapsFeelableByObservation,
@@ -166,6 +168,8 @@ const upgradeLocal = computed(() => panel.value.upgradeLocal)
 const uiProse = computed(() => panel.value.uiProse)
 const gateMonitor = computed(() => gatesMonitorThemselvesThroughTheUi())
 const autoSelf = computed(() => automateSelf())
+const autoAll = computed(() => automateAll())
+const domainPanels = computed(() => domainVuePanelsDryCleaned())
 const mcpUi = computed(() => mcpQuantumUi())
 const mcpMovie = computed(() => mcpQuantumMovie())
 const movieFeel = computed(() => movieGapsFeelableByObservation())
@@ -786,6 +790,20 @@ function runTool(toolId: string) {
       const r = automateSelf()
       ok = r.computes && r.selfAutomates
       summary = `selfAutomates=${r.selfAutomates} · nightlyOn=${r.nightlyOn} · buildsInWaves=${r.buildsInWaves} · fusionVerify=${r.fusionVerify}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'automate-all' || toolId === 'all-auto') {
+      const r = automateAll()
+      ok = r.computes && r.automateAll
+      summary = `automateAll=${r.automateAll} · selfAutomates=${r.selfAutomates} · nightlyOn=${r.nightlyOn} · buildsInWaves=${r.buildsInWaves}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'domain-panels' || toolId === 'panels-domain' || toolId === 'domain-dry' || toolId === 'dry-domain') {
+      const r = domainVuePanelsDryCleaned()
+      ok = r.computes && r.domainPanelsDry && r.stranglerTip
+      summary = `dry=${r.domainPanelsDry} · tip=${r.stranglerTip} · drainableClosed=${r.drainableClosed} · morphs=${r.morphCount} · honestOpen=${r.honestOpenNamedCount}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -1512,6 +1530,73 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'automate-self'" @click="runTool('automate-self')">
           {{ runningId === 'automate-self' ? '…' : 'Run automate-self receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="automate-all">
+        <h3>{{ autoAll.heading }}</h3>
+        <p class="quantum-apps__meta">{{ autoAll.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(autoAll.automateAll))">
+          automateAll={{ autoAll.automateAll }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(autoAll.selfAutomates))">
+          selfAutomates={{ autoAll.selfAutomates }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(autoAll.nightlyOn))">
+          nightlyOn={{ autoAll.nightlyOn }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(autoAll.buildsInWaves))">
+          buildsInWaves={{ autoAll.buildsInWaves }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>auto/all</code> · <code>all/auto</code> ·
+          CLI <code>npm run quantum:automate-all</code> ·
+          compose auto/self · automate/nightly · self/hw · npm/quantum · waves/push ·
+          clay={{ autoAll.claySolvedByThisFold }} · ftl={{ autoAll.physicalFtlClaim }} · qpu={{ autoAll.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in autoAll.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(autoAll.honestOpenNamedCount > 0))">
+          honestOpen={{ autoAll.honestOpenNamedCount }}
+        </UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="id in autoAll.honestOpenNamed" :key="id">· {{ id }}</li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'automate-all'" @click="runTool('automate-all')">
+          {{ runningId === 'automate-all' ? '…' : 'Run automate-all receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="domain-panels">
+        <h3>{{ domainPanels.heading }}</h3>
+        <p class="quantum-apps__meta">{{ domainPanels.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(domainPanels.domainPanelsDry))">
+          domainPanelsDry={{ domainPanels.domainPanelsDry }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(domainPanels.stranglerTip))">
+          stranglerTip={{ domainPanels.stranglerTip }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(domainPanels.drainableClosed))">
+          drainableClosed={{ domainPanels.drainableClosed }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>domain/panels</code> · <code>panels/domain</code> · <code>domain/dry</code> · <code>dry/domain</code> ·
+          CLI <code>npm run quantum:domain-panels</code> ·
+          morphs={{ domainPanels.morphCount }} ·
+          clay={{ domainPanels.claySolvedByThisFold }} · ftl={{ domainPanels.physicalFtlClaim }}
+        </p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(domainPanels.honestOpenNamedCount > 0))">
+          honestOpen={{ domainPanels.honestOpenNamedCount }}
+        </UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="id in domainPanels.honestOpenNamed" :key="id">· {{ id }}</li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'domain-panels'" @click="runTool('domain-panels')">
+          {{ runningId === 'domain-panels' ? '…' : 'Run domain-panels receipt' }}
         </UiButton>
       </section>
       <UiSeparator />

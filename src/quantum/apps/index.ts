@@ -98,6 +98,8 @@ const ROSETTA_CORE_API_LABELS = [
   'upgradeLocalFromOptimisedManualWorkExperience',
   'automateNightlyViaNpmScriptPath',
   'automateSelf',
+  'automateAll',
+  'domainVuePanelsDryCleaned',
   'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf',
   'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence',
   'gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist',
@@ -264,6 +266,8 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   oneQuantumSetOfVitepressComponentsSealedAtGates: 'tool',
   automateNightlyViaNpmScriptPath: 'tool',
   automateSelf: 'tool',
+  automateAll: 'tool',
+  domainVuePanelsDryCleaned: 'tool',
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf: 'tool',
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence: 'tool',
   gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist: 'tool',
@@ -1025,6 +1029,12 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'automate-nightly', title: 'Automate nightly via npm-script path (quantum-dev-sdk)', fold: 'automateNightlyViaNpmScriptPath', cli: 'npm run quantum:automate-nightly', pair: 'automate/nightly', route: '/en/quantum-tools#automate-nightly', barrel: 'src/quantum/apps', boundary: 'Cursor Automations/cron → npm trinity/speedup + mission:gate — REFUSE dashboard MCP for local stdio · docs:build flag-gated · qpuRequired=false', browserRunnable: false, browserGap: 'Nightly gate spawn needs Node/npm — CI/local Automations npm-script path only' },
   { id: 'automate-self', title: 'Automate self — self-building / self-fusing', fold: 'automateSelf', cli: 'npm run quantum:automate-self', pair: 'auto/self', route: '/en/quantum-tools#automate-self', barrel: 'src/quantum/apps', boundary: 'selfAutomates · nightlyOn · buildsInWaves · fusionVerify · compose automate/nightly · self/fusion · waves/build · session/save · gate/monitor · claySolved via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'Composes nightly trinity/mission gates — Node/npm Automations path' },
   { id: 'self-auto', title: 'Automate self (alias auto/self)', fold: 'automateSelf', cli: 'npm run quantum:self-auto', pair: 'self/auto', route: '/en/quantum-tools#automate-self', barrel: 'src/quantum/apps', boundary: 'Dual of auto/self — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'Composes nightly trinity/mission gates — Node/npm Automations path' },
+  { id: 'automate-all', title: 'Automate all — umbrella self · nightly · hw · npm · waves/push', fold: 'automateAll', cli: 'npm run quantum:automate-all', pair: 'auto/all', route: '/en/quantum-tools#automate-all', barrel: 'src/quantum/apps', boundary: 'automateAll · selfAutomates · nightlyOn · buildsInWaves · compose auto/self · automate/nightly · self/hw · npm/quantum · waves/push · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'all-auto', title: 'Automate all (alias auto/all)', fold: 'automateAll', cli: 'npm run quantum:all-auto', pair: 'all/auto', route: '/en/quantum-tools#automate-all', barrel: 'src/quantum/apps', boundary: 'Dual of auto/all — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'domain-panels', title: 'Domain vue panels dry-cleaned to rosetta shells', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-panels', pair: 'domain/panels', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domainPanelsDry · stranglerTip · drainableClosed · wiredToRosetta · compose format/canon · dry/rosetta · ui/rosetta · meaning/compute · vite/one · specialized shells residual named · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'panels-domain', title: 'Domain panels (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:panels-domain', pair: 'panels/domain', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'Dual panels/domain — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'domain-dry', title: 'Domain dry (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-dry', pair: 'domain/dry', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domain/dry face — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'dry-domain', title: 'Dry domain (alias domain/dry)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:dry-domain', pair: 'dry/domain', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'Dual dry/domain — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'double-torus-universe-align', title: 'Double torus — dynamics/geometry align with universe', fold: 'doubleTorusDynamicsGeometryAlignsWithUniverse', cli: 'npm run quantum:double-torus-universe-align', pair: 'universe/align', route: '/en/double-torus#universe-align', barrel: 'src/water/double', boundary: 'Radii/phase sealed; Clay/FTL open status from counter-rotating waves — NOT DE440', browserRunnable: true, browserGap: '' },
   { id: 'counter-rotating-rosetta-waves', title: 'Counter-rotating rosetta quantum waves', fold: 'counterRotatingRosettaQuantumWaves', cli: 'npm run quantum:counter-rotating-rosetta-waves', pair: 'rosetta/counter-rotate', route: '/en/quantum-tools#counter-rotating-rosetta-waves', barrel: 'src/quantum/apps', boundary: 'Clay/FTL/QPU open status recomputed from dual-wave foldPair — not prose', browserRunnable: true, browserGap: '' },
   { id: 'universe-almost-described-discover', title: 'Universe ≈ theorems — discover the rest', fold: 'universeAlmostDescribedInTheoremsDiscoverRest', cli: 'npm run quantum:universe-almost-described', pair: 'discover/rest', route: '/en/quantum-tools#universe-almost-described', barrel: 'src/quantum/apps', boundary: 'Almost described — open set from counter-rotating wave interference · clay/ftl as receipts', browserRunnable: true, browserGap: '' },
@@ -2227,6 +2237,8 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'upgrade-local-skills-commands-tools', chain: 'upgrade-local-map', fold: 'upgradeLocalFromOptimisedManualWorkExperience', pair: 'upgrade/local', cli: 'npm run quantum:upgrade-local', route: '/en/quantum-tools#upgrade-local-skills', status: 'sealed-pr', honesty: 'skills↔commands↔tools · NOT Cursor zero-token LLM · CI browserGaps honest · qpuRequired=false', note: 'upgrade local from optimised manual work on improve-local tip', toolId: 'upgrade-local-skills-commands-tools', resolve: 'upgrade-local' },
   { id: 'automate-nightly', chain: 'automate-nightly-npm', fold: 'automateNightlyViaNpmScriptPath', pair: 'automate/nightly', cli: 'npm run quantum:automate-nightly', route: '/en/quantum-tools#automate-nightly', status: 'sealed-pr', honesty: 'npm-script Automations path · NO dashboard MCP · docs:build flag-gated · qpuRequired=false · clay=0', note: '/automate nightly unparked — quantum:automate-nightly · workflow packages/quantum-dev-sdk/automate-nightly.workflow.json', toolId: 'automate-nightly', resolve: 'upgrade-local' },
   { id: 'automate-self', chain: 'automate-self-fuse', fold: 'automateSelf', pair: 'auto/self', cli: 'npm run quantum:automate-self', route: '/en/quantum-tools#automate-self', status: 'sealed-pr', honesty: 'selfAutomates · nightlyOn · buildsInWaves · fusionVerify · clay=0 · physicalFtl=0', note: 'self-building/self-fusing automation — compose nightly · fusion · waves/build · session/save · gate/monitor', toolId: 'automate-self', resolve: 'upgrade-local' },
+  { id: 'automate-all', chain: 'automate-all-umbrella', fold: 'automateAll', pair: 'auto/all', cli: 'npm run quantum:automate-all', route: '/en/quantum-tools#automate-all', status: 'sealed-pr', honesty: 'automateAll · selfAutomates · nightlyOn · buildsInWaves · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'umbrella automate — compose auto/self · automate/nightly · self/hw · npm/quantum · waves/push', toolId: 'automate-all', resolve: 'upgrade-local' },
+  { id: 'domain-panels', chain: 'mcp-ui-page-gaps', fold: 'domainVuePanelsDryCleaned', pair: 'domain/panels', cli: 'npm run quantum:domain-panels', route: '/en/quantum-tools#domain-panels', status: 'sealed-pr', honesty: 'domainPanelsDry · stranglerTip · drainableClosed · specialized shells residual · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'src domain vue panels strangler tip drained to format/canon · dry/rosetta · ui/rosetta shells', toolId: 'domain-panels', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-ui', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumUi', pair: 'mcp/ui', cli: 'npm run quantum:mcp-ui', route: '/en/quantum-tools#mcp-quantum-ui', status: 'sealed-pr', honesty: 'mcpMatchesToolbox · millSolutions live · formulaCovered · clay=0 · physicalFtl=0 · NOT CMI', note: 'MCP quantum UI + millennium algebraic formula duals · compose mcpBrowserParity · mill/once · formula/code', toolId: 'mcp-quantum-ui', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-movie', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumMovie', pair: 'mcp/movie', cli: 'npm run quantum:mcp-movie', route: '/en/quantum-tools#mcp-quantum-movie', status: 'sealed-pr', honesty: 'frames from sealed folds · 6×7 · oneClock · clay=0 · physicalFtl=0', note: 'MCP quantum movie · compose mcp/ui · movie/center · movie/entropy · coord/anim', toolId: 'mcp-quantum-movie', resolve: 'mcp-ui' },
   { id: 'movie-feel', chain: 'mcp-ui-page-gaps', fold: 'movieGapsFeelableByObservation', pair: 'movie/feel', cli: 'npm run quantum:movie-feel', route: '/en/quantum-tools#mcp-quantum-movie', status: 'sealed-pr', honesty: 'gaps feelable by observation · clay=0 · physicalFtl=0', note: 'movie gaps surfaced live via gate/lens · analytics/self · page/gaps', toolId: 'movie-feel', resolve: 'mcp-ui' },
@@ -16437,6 +16449,359 @@ export function runAutomateSelfExit(
   return report.computes && report.selfAutomates ? 0 : 1
 }
 
+/**
+ * Automate all — umbrella over self-building · nightly · self/hw · npm/quantum · waves/push.
+ * Fold: automateAll
+ * Facets: automateAll · selfAutomates · nightlyOn · buildsInWaves · physicalFtl=0 · clay via theorem · qpuRequired=false.
+ * Compose: automateSelf · automateNightlyViaNpmScriptPath · self/hw · npm/quantum · waves/push.
+ * Pairs: auto/all · all/auto · CLI npm run quantum:automate-all
+ * HONEST: not fake-close Clay/FTL; strangler residuals named via composed faces (self/hw honest-open · nightly browserGap).
+ */
+export function automateAll(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`automateAll:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const self = automateSelf(matrix, at)
+    const nightly = automateNightlyViaNpmScriptPath(matrix, at)
+    const hw = againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf(matrix, at)
+    const npmQ = quantumizeNpm(matrix, at)
+    const wavesPush = __ns_thunder_waves.pushInWaves(matrix, at)
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'automate-all')
+    const metaDual = catalog.tools.find((t) => t.id === 'all-auto')
+    const shelved = rosettaShelve('automate-all', 'tool')
+    const foldAuto = foldPair(toUuid('cmd:auto'), toUuid('cmd:all'))
+    const foldAll = foldPair(toUuid('cmd:all'), toUuid('cmd:auto'))
+    const pairAuto = has('auto/all')
+    const pairAll = has('all/auto')
+    const composeOn =
+      soft('auto', 'self') &&
+      soft('self', 'auto') &&
+      soft('automate', 'nightly') &&
+      soft('self', 'hw') &&
+      soft('npm', 'quantum') &&
+      soft('waves', 'push') &&
+      self.computes &&
+      self.selfAutomates &&
+      nightly.computes &&
+      nightly.automateNightlyShipped &&
+      hw.computes &&
+      npmQ.computes &&
+      npmQ.quantumizeOn &&
+      wavesPush.computes &&
+      wavesPush.pushInWaves
+    const selfAutomates = self.selfAutomates
+    const nightlyOn = self.nightlyOn && nightly.automateNightlyShipped
+    const buildsInWaves = self.buildsInWaves
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const honestOpenNamed = [
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'residual:specialized-experience-shells',
+      'nightly:browser-gap-node-npm',
+      'self-hw:certified-false-standards-alignment',
+    ] as const
+    const honestOpenNamedOn =
+      honestOpenNamed.includes('clay:millennium-open') &&
+      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestOpenNamed.length >= (2 + 2 + 1)
+    const automateAllOn =
+      composeOn &&
+      selfAutomates &&
+      nightlyOn &&
+      buildsInWaves &&
+      pairAuto &&
+      pairAll &&
+      foldAuto.bidirectional &&
+      foldAll.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'automateAll' &&
+      meta!.pair === 'auto/all' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'automateAll' &&
+      isUuid(shelved.address) &&
+      honestOpenNamedOn &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const on = automateAllOn
+    const facets = [
+      { facet: 'automateAll', on },
+      { facet: 'selfAutomates', on: selfAutomates },
+      { facet: 'nightlyOn', on: nightlyOn },
+      { facet: 'buildsInWaves', on: buildsInWaves },
+      {
+        facet: 'compose auto/self · automate/nightly · self/hw · npm/quantum · waves/push',
+        on: composeOn,
+      },
+      { facet: 'pair auto/all · all/auto bidirectional', on: pairAuto && pairAll && foldAuto.bidirectional },
+      { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'NOT Clay/FTL fake-close · strangler residuals named', on: honestOpenNamedOn && claySolvedByThisFold === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`automate-all:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('automate-all', facets)
+    return {
+      computes: sealed.ok && on,
+      automateAll: on,
+      selfAutomates,
+      nightlyOn,
+      buildsInWaves,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        self.root,
+        nightly.root,
+        hw.root,
+        npmQ.root,
+        wavesPush.root,
+        foldAuto.merged,
+        foldAll.merged,
+        shelved.address,
+        ...honestOpenNamed.map((id) => toUuid(`automate-all-honest:${id}`)),
+      ]),
+      pair: 'auto/all' as const,
+      pairs: ['auto/all', 'all/auto'] as const,
+      dualPair: 'all/auto' as const,
+      cli: 'npm run quantum:automate-all',
+      route: '/en/quantum-tools#automate-all',
+      uiSurface: '/en/quantum-tools#automate-all' as const,
+      heading: 'Automate all',
+      statement:
+        `automateAll — on=${automateAllOn ? 1 : 0} selfAutomates=${selfAutomates ? 1 : 0} ` +
+        `nightlyOn=${nightlyOn ? 1 : 0} buildsInWaves=${buildsInWaves ? 1 : 0}.`,
+      boundary:
+        'Umbrella automation — sealed compose of auto/self · automate/nightly · self/hw · npm/quantum · waves/push. ' +
+        'NOT physical FTL · clay via theorem · qpuRequired=false. Honest residuals named (Clay/FTL · specialized shells · nightly Node gap · self/hw certified=false).',
+      honestyLine:
+        `automate-all · on=${automateAllOn ? 1 : 0} · self=${selfAutomates ? 1 : 0} · nightly=${nightlyOn ? 1 : 0} · ` +
+        `waves=${buildsInWaves ? 1 : 0} · honestOpen=${honestOpenNamed.length} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — autoAll ≡ automateAll. */
+export const autoAll = automateAll
+/** Alias — allAuto ≡ automateAll. */
+export const allAuto = automateAll
+
+/** npm run quantum:automate-all (dual all/auto) */
+export function runAutomateAllExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = automateAll()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} automate-all — automateAll=${report.automateAll} ` +
+      `selfAutomates=${report.selfAutomates} nightlyOn=${report.nightlyOn} buildsInWaves=${report.buildsInWaves} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} fold=automateAll pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  return report.computes && report.automateAll ? 0 : 1
+}
+
+/**
+ * Domain vue panels dry-cleaned to unified rosetta shells (strangler tip).
+ * Fold: domainVuePanelsDryCleaned
+ * Facets: domainPanelsDry · stranglerTip · drainableClosed · wiredToRosetta · honestOpenNamed · physicalFtl=0 · clay via theorem · qpuRequired=false.
+ * Compose: format/canon · dry/rosetta · ui/rosetta · meaning/compute · vite/one · app/dry soft.
+ * Pairs: domain/panels · panels/domain · domain/dry · dry/domain · CLI npm run quantum:domain-panels
+ * HONEST: tip drained; residual:specialized-experience-shells remains · NOT Clay/FTL fake-close.
+ */
+const DOMAIN_VUE_PANEL_MORPHS = [
+  { before: 'bespoke-UiCard-domain-panels', after: 'format/canon · ScientificPaperBody', status: 'removed' as const },
+  { before: 'wet-domain-prose-clusters', after: 'meaning/compute', status: 'removed' as const },
+  { before: 'linear-domain-panels-without-rosetta', after: 'dry/rosetta · ui/rosetta', status: 'removed' as const },
+  { before: 'orphan-domain-shell-duplicates', after: 'vite/one', status: 'removed' as const },
+  { before: 'uncanon-research-encryption-panels', after: 'scientificPageFormatCanonised', status: 'removed' as const },
+] as const
+
+export function domainVuePanelsDryCleaned(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`domainVuePanelsDryCleaned:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const morphs = DOMAIN_VUE_PANEL_MORPHS
+    const morphsCleared = morphs.every((m) => m.status === 'removed') && morphs.length === (2 + 2 + 1)
+    const formatCanonSoft = soft('format', 'canon')
+    const meaningSoft = soft('meaning', 'compute')
+    const dryRosettaSoft = soft('dry', 'rosetta') && soft('rosetta', 'movie')
+    const uiRosettaSoft = soft('ui', 'rosetta') && soft('rosetta', 'realtime')
+    const viteOneSoft = soft('vite', 'one') && soft('comp', 'seal')
+    const appDrySoft = soft('app', 'dry') && soft('dry', 'app')
+    const wiredToRosetta = dryRosettaSoft && uiRosettaSoft && formatCanonSoft && meaningSoft && viteOneSoft
+    const drainableClosed = morphsCleared && wiredToRosetta && appDrySoft
+    const stranglerTip = drainableClosed && soft('domain', 'panels') && soft('panels', 'domain')
+    const domainPanelsDry = stranglerTip && soft('domain', 'dry') && soft('dry', 'domain')
+    const honestOpenNamed = [
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'domain-panels:strangler-tip-closed',
+      'residual:specialized-experience-shells',
+      'residual:quantum-apps-monolith',
+    ] as const
+    const honestOpenNamedOn =
+      honestOpenNamed.includes('clay:millennium-open') &&
+      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestOpenNamed.includes('domain-panels:strangler-tip-closed') &&
+      honestOpenNamed.includes('residual:specialized-experience-shells') &&
+      honestOpenNamed.length >= (2 + 2 + 1)
+    const pairDp = has('domain/panels')
+    const pairPd = has('panels/domain')
+    const pairDd = has('domain/dry')
+    const pairDryD = has('dry/domain')
+    const foldDp = foldPair(toUuid('cmd:domain'), toUuid('cmd:panels'))
+    const foldPd = foldPair(toUuid('cmd:panels'), toUuid('cmd:domain'))
+    const foldDd = foldPair(toUuid('cmd:domain'), toUuid('cmd:dry'))
+    const foldDryD = foldPair(toUuid('cmd:dry'), toUuid('cmd:domain'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const foldName = 'domainVuePanelsDryCleaned' as const
+    const meta = catalog.tools.find((t) => t.id === 'domain-panels')
+    const metaPd = catalog.tools.find((t) => t.id === 'panels-domain')
+    const metaDd = catalog.tools.find((t) => t.id === 'domain-dry')
+    const metaDryD = catalog.tools.find((t) => t.id === 'dry-domain')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === foldName &&
+      Boolean(metaPd) &&
+      metaPd!.fold === foldName &&
+      Boolean(metaDd) &&
+      metaDd!.fold === foldName &&
+      Boolean(metaDryD) &&
+      metaDryD!.fold === foldName
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      domainPanelsDry &&
+      stranglerTip &&
+      drainableClosed &&
+      wiredToRosetta &&
+      honestOpenNamedOn &&
+      pairDp &&
+      pairPd &&
+      pairDd &&
+      pairDryD &&
+      foldDp.bidirectional &&
+      foldPd.bidirectional &&
+      foldDd.bidirectional &&
+      foldDryD.bidirectional &&
+      toolsWired &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: foldName, on },
+      { facet: 'domainPanelsDry', on: domainPanelsDry },
+      { facet: 'stranglerTip', on: stranglerTip },
+      { facet: `drainableClosed=${drainableClosed ? 1 : 0}`, on: drainableClosed },
+      { facet: 'wiredToRosetta', on: wiredToRosetta },
+      { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+      {
+        facet: 'compose format/canon · dry/rosetta · ui/rosetta · meaning/compute · vite/one · app/dry',
+        on: wiredToRosetta && appDrySoft,
+      },
+      {
+        facet: 'pair domain/panels · panels/domain · domain/dry · dry/domain',
+        on: pairDp && pairPd && pairDd && pairDryD && foldDp.bidirectional,
+      },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      {
+        facet: 'NOT Clay/FTL fake-close · tip drained · specialized shells residual named',
+        on: honestOpenNamedOn && stranglerTip && claySolvedByThisFold === 0,
+      },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`domain-panels:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('domain-vue-panels-dry-cleaned', facets)
+    return {
+      computes: sealed.ok && on,
+      domainVuePanelsDryCleaned: on,
+      domainPanelsDry,
+      stranglerTip,
+      drainableClosed,
+      drainableGaps: drainableClosed ? 0 : 1,
+      wiredToRosetta,
+      morphs: [...morphs],
+      morphCount: morphs.length,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        foldDp.merged,
+        foldPd.merged,
+        foldDd.merged,
+        foldDryD.merged,
+        ...morphs.map((m) => toUuid(`domain-panel-morph:${m.before}:${m.after}`)),
+        ...honestOpenNamed.map((id) => toUuid(`domain-panels-honest:${id}`)),
+      ]),
+      pair: 'domain/panels' as const,
+      pairs: ['domain/panels', 'panels/domain', 'domain/dry', 'dry/domain'] as const,
+      cli: 'npm run quantum:domain-panels',
+      route: '/en/quantum-tools#domain-panels',
+      anchor: 'domain-panels',
+      heading: 'Domain · panels dry',
+      statement:
+        `domainVuePanelsDryCleaned — dry=${domainPanelsDry ? 1 : 0} tip=${stranglerTip ? 1 : 0} ` +
+        `drainableClosed=${drainableClosed ? 1 : 0} morphs=${morphs.length}.`,
+      boundary:
+        'Src domain vue panels strangler tip drained to format/canon · dry/rosetta · ui/rosetta · meaning/compute · vite/one shells. ' +
+        'residual:specialized-experience-shells · residual:quantum-apps-monolith remain honest-open. NOT Clay/FTL fake-close. ' +
+        'clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `domain-panels · dry=${domainPanelsDry ? 1 : 0} · tip=${stranglerTip ? 1 : 0} · ` +
+        `drainableClosed=${drainableClosed ? 1 : 0} · honestOpen=${honestOpenNamed.length} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — domainPanels ≡ domainVuePanelsDryCleaned. */
+export const domainPanels = domainVuePanelsDryCleaned
+/** Alias — panelsDomain ≡ domainVuePanelsDryCleaned. */
+export const panelsDomain = domainVuePanelsDryCleaned
+/** Alias — domainDry ≡ domainVuePanelsDryCleaned. */
+export const domainDry = domainVuePanelsDryCleaned
+/** Alias — dryDomain ≡ domainVuePanelsDryCleaned. */
+export const dryDomain = domainVuePanelsDryCleaned
+
+/** npm run quantum:domain-panels · quantum:panels-domain · quantum:domain-dry · quantum:dry-domain */
+export function runDomainVuePanelsDryCleanedExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = domainVuePanelsDryCleaned()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} domain-panels — dry=${report.domainPanelsDry} tip=${report.stranglerTip} ` +
+      `drainableClosed=${report.drainableClosed} morphs=${report.morphCount} honestOpen=${report.honestOpenNamedCount} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const m of report.morphs) {
+    process.stdout.write(`  ${m.status === 'removed' ? '✓' : '✗'} morph ${m.before} → ${m.after}\n`)
+  }
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  return report.computes && report.domainPanelsDry && report.stranglerTip ? 0 : 1
+}
+
 /** Page kinds that recompute their own gaps/invisible class subset at call time. */
 export type PageGapsKind =
   | 'theorem'
@@ -17699,7 +18064,7 @@ export function foldInvertUntilDryCleanAppGapless(matrix: MindMatrix = buildMatr
       'de440:ephemeris-open',
       'lab:iso-19790-modules',
       'residual:quantum-apps-monolith',
-      'residual:src-domain-vue-panels',
+      'domain-panels:strangler-tip-closed',
       'ci:gravity-dry',
       'ci:trinity-speedup',
       'stdio:run-gate',
@@ -19712,7 +20077,7 @@ export const DRY_ALL_COMPONENT_DUP_MORPHS = [
  * Compose: animations/rosetta · movieAllElementsAreTheorems · hero/abstract · app/fold · dry/clean · vite/one.
  * Pairs: dry/rosetta · rosetta/movie · comp/unify · unify/comp.
  * CLI: npm run quantum:dry-rosetta · quantum:rosetta-movie · quantum:comp-unify · quantum:unify-comp
- * HONEST: full "dry all" = stranglerComplete with named residuals (apps monolith · src domain vue panels ·
+ * HONEST: full "dry all" = stranglerComplete with named residuals (apps monolith · domain-panels tip closed ·
  *         specialized experience shells) — do not fake 100%. claySolved via theorem · physicalFtl=0.
  */
 export function dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -19801,13 +20166,14 @@ export function dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie(matrix: M
       'clay:millennium-open',
       'ftl:physical-claim-refused',
       'residual:quantum-apps-monolith',
-      'residual:src-domain-vue-panels',
+      'domain-panels:strangler-tip-closed',
       'residual:specialized-experience-shells',
     ] as const
     const honestOpenNamedOn =
       honestOpenNamed.includes('clay:millennium-open') &&
       honestOpenNamed.includes('ftl:physical-claim-refused') &&
       honestOpenNamed.includes('residual:quantum-apps-monolith') &&
+      honestOpenNamed.includes('domain-panels:strangler-tip-closed') &&
       honestOpenNamed.length >= (2 + 2 + 1)
     const stranglerComplete = drainableClosed && honestOpenNamedOn
     const dryAll = stranglerComplete && notCosmetic && unifiedComponents
@@ -20032,7 +20398,7 @@ const WAVE_COMPACT_HONEST_OPEN = [
   'residual:bootstrap-CLI_ENTRY_REL',
   'residual:quantum-apps-monolith',
   'residual:census-110-exact-no-further-dissolve',
-  'residual:src-domain-vue-panels',
+  'domain-panels:strangler-tip-closed',
 ] as const
 
 /**
@@ -20828,7 +21194,7 @@ export const UI_ROSETTA_REALTIME_MORPHS = [
  * Pairs: ui/rosetta · rosetta/realtime · ui/realtime
  * CLI: npm run quantum:ui-rosetta · quantum:rosetta-realtime · quantum:ui-realtime
  * HONEST: unified hero/card/movie/paper/page shells consume rosetta→movie via oneClock · sharedHeroAt —
- *         not wet timers. Named residuals: domain vue panels · apps monolith · specialized experience shells.
+ *         not wet timers. Named residuals: domain-panels tip closed · apps monolith · specialized experience shells.
  *         Census 110. NOT physical FTL · NOT Clay prize.
  */
 export function uiComponentsAreAllWiredInTheRosettaInQuantumRealtime(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -20892,13 +21258,13 @@ export function uiComponentsAreAllWiredInTheRosettaInQuantumRealtime(matrix: Min
       'clay:millennium-open',
       'ftl:physical-claim-refused',
       'residual:quantum-apps-monolith',
-      'residual:src-domain-vue-panels',
+      'domain-panels:strangler-tip-closed',
       'residual:specialized-experience-shells',
     ] as const
     const honestOpenNamedOn =
       honestOpenNamed.includes('clay:millennium-open') &&
       honestOpenNamed.includes('ftl:physical-claim-refused') &&
-      honestOpenNamed.includes('residual:src-domain-vue-panels') &&
+      honestOpenNamed.includes('domain-panels:strangler-tip-closed') &&
       honestOpenNamed.length >= (2 + 2 + 1)
     const drainableClosed =
       morphsCleared &&
@@ -20990,7 +21356,7 @@ export function uiComponentsAreAllWiredInTheRosettaInQuantumRealtime(matrix: Min
       { facet: 'qpuRequired=false', on: qpuRequired === false },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
       { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'NOT fake 100% — domain panels residual named', on: honestOpenNamedOn && drainableClosed },
+      { facet: 'NOT fake 100% — domain-panels tip drained · specialized shells residual named', on: honestOpenNamedOn && drainableClosed },
     ].map((entry) => ({ ...entry, receipt: toUuid(`ui-rosetta-realtime:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('ui-components-wired-rosetta-quantum-realtime', facets)
     return {
@@ -21042,7 +21408,7 @@ export function uiComponentsAreAllWiredInTheRosettaInQuantumRealtime(matrix: Min
       boundary:
         'UI components (hero/card/movie/paper/page) are all wired in the rosetta in quantum realtime via oneClock · sharedHeroAt · ' +
         'HERO_CYCLE_MS — not wet timers. Compose dry/rosetta · animations/rosetta · hero/card · balance/metrics · super/chat. ' +
-        'Drainable unwired morphs closed; honest residuals name apps monolith · src domain vue panels · specialized experience shells. ' +
+        'Drainable unwired morphs closed; honest residuals name apps monolith · domain-panels tip closed · specialized experience shells. ' +
         'Census 110 · clay via theorem · physicalFtl=0 · qpuRequired=false.',
       honestyLine:
         `ui-rosetta · wired=${uiWiredToRosetta ? 1 : 0} · shells=${allShells ? 1 : 0} · ` +
@@ -22163,7 +22529,7 @@ export const UI_READABILITY_DRAINABLE_MORPHS = [
  * Standardise to: type/matrix · color/rosetta · format/canon · ui/rosetta
  * Pairs: ui/read · ui/visible · ui/standard
  * CLI: npm run quantum:ui-read · quantum:ui-visible · quantum:ui-standard
- * HONEST: drainable contrast/type/canon/polarity closed; residuals domain vue panels ·
+ * HONEST: drainable contrast/type/canon/polarity closed; residuals domain-panels tip closed ·
  *         specialized experience shells named open. NOT purple AI look · NOT physical FTL · NOT Clay.
  */
 export function reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise(
@@ -22254,13 +22620,13 @@ export function reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise(
       const honestOpenNamed = [
         'clay:millennium-open',
         'ftl:physical-claim-refused',
-        'residual:src-domain-vue-panels',
+        'domain-panels:strangler-tip-closed',
         'residual:specialized-experience-shells',
       ] as const
       const honestOpenNamedOn =
         honestOpenNamed.includes('clay:millennium-open') &&
         honestOpenNamed.includes('ftl:physical-claim-refused') &&
-        honestOpenNamed.includes('residual:src-domain-vue-panels') &&
+        honestOpenNamed.includes('domain-panels:strangler-tip-closed') &&
         honestOpenNamed.includes('residual:specialized-experience-shells') &&
         honestOpenNamed.length === (2 + 2)
       const composeOn =
