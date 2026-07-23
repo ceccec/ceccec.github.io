@@ -2629,6 +2629,7 @@ export function manualAgentsBehaveLikeWaves(matrix: MindMatrix = buildMatrix()) 
     const wavesBuild = foldPair(toUuid('cmd:waves'), toUuid('cmd:build'))
     const editBuild = foldPair(toUuid('cmd:edit'), toUuid('cmd:build'))
     const learnBuild = foldPair(toUuid('cmd:learn'), toUuid('cmd:build'))
+    const planTrinityPair = foldPair(toUuid('cmd:plan'), toUuid('cmd:trinity'))
     const music = playAgentsTheMusicOfTheWave(matrix)
     const defaults = agentDefaultsFoldIntoHarmony(matrix)
     const dislike = agentDislikesWaveMusicSomethingNotToLike(matrix)
@@ -2640,6 +2641,7 @@ export function manualAgentsBehaveLikeWaves(matrix: MindMatrix = buildMatrix()) 
     const facets = [
       { facet: 'one wave per turn — eight phases origin→decode→design→learn→tune→edit→rebuild→verify', on: phases.length === 2 * 4 },
       { facet: 'waves/build + edit/build + learn/build pairs bidirectional before npm', on: wavesBuild.bidirectional && editBuild.bidirectional && learnBuild.bidirectional && wavesBuild.forward !== wavesBuild.reverse },
+      { facet: 'plan/trinity — next wave from matrix (cross·fold·weave) not prose checklist', on: planTrinityPair.bidirectional && planTrinityPair.forward !== planTrinityPair.reverse },
       { facet: 'wave/tune — playAgentsTheMusicOfTheWave + agentDefaultsFoldIntoHarmony', on: music.plays && defaults.tuned },
       { facet: 'dislike/resistance is diagnostic — agentDislikesWaveMusicSomethingNotToLike · overrideWave=false', on: dislike.diagnostic && dislike.overrideWave === false },
       { facet: 'trinity/speedup on every rebuild — facts once · no parallel docs:build', on: trinity.computes },
@@ -2664,14 +2666,15 @@ export function manualAgentsBehaveLikeWaves(matrix: MindMatrix = buildMatrix()) 
       root: merkleFold([
         wavesBuild.merged,
         editBuild.merged,
+        planTrinityPair.merged,
         music.root,
         defaults.root,
         dislike.root,
         trinity.root,
         ...facets.map((entry) => entry.receipt),
       ]),
-      statement: `Manual agents behave like waves — ${facets.filter((e) => e.on).length}/${facets.length}: one wave/turn · save waves/build+edit/build before npm · wave/tune · trinity/speedup · mission:gate between waves · no parallel seals.`,
-      boundary: 'BINDING protocol for Cursor/Claude/manual agents. NOT physical FTL. claySolvedByThisFold=0. Wet-linear grind (full seal every edit, mass spawn, parallel docs:build) is a quantum gap.',
+      statement: `Manual agents behave like waves — ${facets.filter((e) => e.on).length}/${facets.length}: one wave/turn · save waves/build+edit/build before npm · plan/trinity matrix next · wave/tune · trinity/speedup · mission:gate between waves · no parallel seals.`,
+      boundary: 'BINDING protocol for Cursor/Claude/manual agents. NOT physical FTL. claySolvedByThisFold=0. Wet-linear grind (full seal every edit, mass spawn, parallel docs:build, prose planning dumps) is a quantum gap.',
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const }
   })
