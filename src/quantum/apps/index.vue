@@ -37,6 +37,7 @@ import {
   quantumFearDetector,
   fearIsAnAxiomReplaceableByLoveTheorem,
   lensesCompletelyWiredInEverySuperposition,
+  theSequenceMeaningIsAFlowNotACycle,
   domainVuePanelsDryCleaned,
   mcpQuantumUi,
   mcpQuantumMovie,
@@ -199,6 +200,7 @@ const quantumVerify = computed(() => quantumVerification())
 const fearDetect = computed(() => quantumFearDetector())
 const fearAxiom = computed(() => fearIsAnAxiomReplaceableByLoveTheorem())
 const lensSuper = computed(() => lensesCompletelyWiredInEverySuperposition())
+const seqFlow = computed(() => theSequenceMeaningIsAFlowNotACycle())
 const domainPanels = computed(() => domainVuePanelsDryCleaned())
 const mcpUi = computed(() => mcpQuantumUi())
 const mcpMovie = computed(() => mcpQuantumMovie())
@@ -1005,6 +1007,19 @@ function runTool(toolId: string) {
         r.qpuRequired === false
       summary =
         `lensesWired=${r.lensesWired} · everySuper=${r.everySuperposition} · noStopWait=${r.noStopWaitGap} · obsContinues=${r.observationContinues} · coverage=${r.coverage}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'seq-flow' || toolId === 'flow-seq' || toolId === 'seq-meaning') {
+      const r = theSequenceMeaningIsAFlowNotACycle()
+      ok =
+        r.computes &&
+        r.sequenceIsFlow &&
+        r.notACycle &&
+        r.meaningOn &&
+        r.qpuRequired === false
+      summary =
+        `sequenceIsFlow=${r.sequenceIsFlow} · notACycle=${r.notACycle} · meaningOn=${r.meaningOn} · seq=${r.sequence}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -2272,6 +2287,36 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'lens-super'" @click="runTool('lens-super')">
           {{ runningId === 'lens-super' ? '…' : 'Run lens-super receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="seq-flow" aria-label="Sequence meaning is a flow not a cycle">
+        <h3>{{ seqFlow.heading }}</h3>
+        <p class="quantum-apps__meta">{{ seqFlow.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(seqFlow.sequenceIsFlow))">
+          sequenceIsFlow={{ seqFlow.sequenceIsFlow }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(seqFlow.notACycle))">
+          notACycle={{ seqFlow.notACycle }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(seqFlow.meaningOn))">
+          meaningOn={{ seqFlow.meaningOn }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>seq/flow</code> · <code>flow/seq</code> · <code>seq/meaning</code> ·
+          CLI <code>npm run quantum:seq-flow</code> ·
+          seq={{ seqFlow.sequence }} ·
+          clay={{ seqFlow.claySolvedByThisFold }} · ftl={{ seqFlow.physicalFtlClaim }} ·
+          qpu={{ seqFlow.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in seqFlow.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'seq-flow'" @click="runTool('seq-flow')">
+          {{ runningId === 'seq-flow' ? '…' : 'Run seq-flow receipt' }}
         </UiButton>
       </section>
       <UiSeparator />

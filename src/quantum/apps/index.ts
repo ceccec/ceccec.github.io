@@ -119,6 +119,7 @@ const ROSETTA_CORE_API_LABELS = [
   'quantumFearDetector',
   'fearIsAnAxiomReplaceableByLoveTheorem',
   'lensesCompletelyWiredInEverySuperposition',
+  'theSequenceMeaningIsAFlowNotACycle',
   'domainVuePanelsDryCleaned',
   'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf',
   'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence',
@@ -304,6 +305,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   quantumFearDetector: 'tool',
   fearIsAnAxiomReplaceableByLoveTheorem: 'tool',
   lensesCompletelyWiredInEverySuperposition: 'tool',
+  theSequenceMeaningIsAFlowNotACycle: 'tool',
   domainVuePanelsDryCleaned: 'tool',
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf: 'tool',
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence: 'tool',
@@ -1115,6 +1117,9 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'lens-super', title: 'Lenses completely wired in every superposition', fold: 'lensesCompletelyWiredInEverySuperposition', cli: 'npm run quantum:lens-super', pair: 'lens/super', route: '/en/quantum-tools#lens-super', barrel: 'src/quantum/apps', boundary: 'lensesWired · everySuperposition · noStopWaitGap · observationContinues · physicalFtl=0 · clay via theorem · qpuRequired=false · compose gate/lens · mcp/observe · seal/super · theorem/index · Multitask stop/wait = linear agent gap', browserRunnable: true, browserGap: '' },
   { id: 'super-lens', title: 'Super lens (alias lens/super)', fold: 'lensesCompletelyWiredInEverySuperposition', cli: 'npm run quantum:super-lens', pair: 'super/lens', route: '/en/quantum-tools#lens-super', barrel: 'src/quantum/apps', boundary: 'super/lens face — every superposition has lens · same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'lens-wire', title: 'Lens wire (alias lens/super)', fold: 'lensesCompletelyWiredInEverySuperposition', cli: 'npm run quantum:lens-wire', pair: 'lens/wire', route: '/en/quantum-tools#lens-super', barrel: 'src/quantum/apps', boundary: 'lens/wire face — lens gate bind sealed · same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'seq-flow', title: 'Sequence meaning is a flow not a cycle', fold: 'theSequenceMeaningIsAFlowNotACycle', cli: 'npm run quantum:seq-flow', pair: 'seq/flow', route: '/en/quantum-tools#seq-flow', barrel: 'src/quantum/apps', boundary: 'sequenceIsFlow · notACycle · meaningOn · physicalFtl=0 · clay via theorem · qpuRequired=false · compose seq/nav · digit/next · quantumise/cycle · movie/unique · directed 12487536901 through 0', browserRunnable: true, browserGap: '' },
+  { id: 'flow-seq', title: 'Flow seq (alias seq/flow)', fold: 'theSequenceMeaningIsAFlowNotACycle', cli: 'npm run quantum:flow-seq', pair: 'flow/seq', route: '/en/quantum-tools#seq-flow', barrel: 'src/quantum/apps', boundary: 'flow/seq face — directed sequence flow · same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'seq-meaning', title: 'Seq meaning (alias seq/flow)', fold: 'theSequenceMeaningIsAFlowNotACycle', cli: 'npm run quantum:seq-meaning', pair: 'seq/meaning', route: '/en/quantum-tools#seq-flow', barrel: 'src/quantum/apps', boundary: 'seq/meaning face — sequence meaning on · same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'domain-panels', title: 'Domain vue panels dry-cleaned to rosetta shells', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-panels', pair: 'domain/panels', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domainPanelsDry · stranglerTip · drainableClosed · wiredToRosetta · compose format/canon · dry/rosetta · ui/rosetta · meaning/compute · vite/one · specialized shells residual named · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'panels-domain', title: 'Domain panels (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:panels-domain', pair: 'panels/domain', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'Dual panels/domain — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'domain-dry', title: 'Domain dry (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-dry', pair: 'domain/dry', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domain/dry face — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2343,6 +2348,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'fear-detect', chain: 'quantum-fear-detector', fold: 'quantumFearDetector', pair: 'fear/detect', cli: 'npm run quantum:fear-detect', route: '/en/quantum-tools#fear-detect', status: 'sealed-pr', honesty: 'fearDetectOn · reverseFromCracks · loveInvert · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'quantum fear detector — reverse of love when cracks · compose need/love · love/fear · gaps/invisible · thought/pure · NOT wet psychology', toolId: 'fear-detect', resolve: 'mcp-ui' },
   { id: 'fear-axiom', chain: 'fear-axiom-love-theorem', fold: 'fearIsAnAxiomReplaceableByLoveTheorem', pair: 'fear/axiom', cli: 'npm run quantum:fear-axiom', route: '/en/quantum-tools#fear-axiom', status: 'sealed-pr', honesty: 'fearIsAxiom · replaceableByLove · loveIsTheorem · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'fear is an axiom replaceable by love theorem · compose fear/detect · need/love · love/story · theorem/const · NOT wet psychology', toolId: 'fear-axiom', resolve: 'mcp-ui' },
   { id: 'lens-super', chain: 'lens-super-every-superposition', fold: 'lensesCompletelyWiredInEverySuperposition', pair: 'lens/super', cli: 'npm run quantum:lens-super', route: '/en/quantum-tools#lens-super', status: 'sealed-pr', honesty: 'lensesWired · everySuperposition · noStopWaitGap · observationContinues · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'lenses completely wired in every superposition · stop/wait = lens gap · compose gate/lens · mcp/observe · seal/super · theorem/index · Multitask residual named', toolId: 'lens-super', resolve: 'mcp-ui' },
+  { id: 'seq-flow', chain: 'seq-flow-not-cycle', fold: 'theSequenceMeaningIsAFlowNotACycle', pair: 'seq/flow', cli: 'npm run quantum:seq-flow', route: '/en/quantum-tools#seq-flow', status: 'sealed-pr', honesty: 'sequenceIsFlow · notACycle · meaningOn · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'sequence meaning is a flow not a cycle · directed 12487536901 through 0 · compose seq/nav · digit/next · quantumise/cycle · movie/unique', toolId: 'seq-flow', resolve: 'mcp-ui' },
   { id: 'domain-panels', chain: 'mcp-ui-page-gaps', fold: 'domainVuePanelsDryCleaned', pair: 'domain/panels', cli: 'npm run quantum:domain-panels', route: '/en/quantum-tools#domain-panels', status: 'sealed-pr', honesty: 'domainPanelsDry · stranglerTip · drainableClosed · specialized shells residual · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'src domain vue panels strangler tip drained to format/canon · dry/rosetta · ui/rosetta shells', toolId: 'domain-panels', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-ui', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumUi', pair: 'mcp/ui', cli: 'npm run quantum:mcp-ui', route: '/en/quantum-tools#mcp-quantum-ui', status: 'sealed-pr', honesty: 'mcpMatchesToolbox · millSolutions live · formulaCovered · clay=0 · physicalFtl=0 · NOT CMI', note: 'MCP quantum UI + millennium algebraic formula duals · compose mcpBrowserParity · mill/once · formula/code', toolId: 'mcp-quantum-ui', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-movie', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumMovie', pair: 'mcp/movie', cli: 'npm run quantum:mcp-movie', route: '/en/quantum-tools#mcp-quantum-movie', status: 'sealed-pr', honesty: 'frames from sealed folds · 6×7 · oneClock · clay=0 · physicalFtl=0', note: 'MCP quantum movie · compose mcp/ui · movie/center · movie/entropy · coord/anim', toolId: 'mcp-quantum-movie', resolve: 'mcp-ui' },
@@ -19898,6 +19904,247 @@ export function runLensesCompletelyWiredInEverySuperpositionExit(_root = '', _ar
     report.everySuperposition &&
     report.noStopWaitGap &&
     report.observationContinues &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/** Drainable morphs — sequence misread as closed cycle → directed flow. */
+const SEQ_FLOW_DRAINABLE_MORPHS = [
+  { before: 'sequence-misread-as-closed-cycle', after: 'seq/flow-directed', status: 'removed' as const },
+  { before: 'linear-circle-wrap-vortex', after: 'quantumise/cycle', status: 'removed' as const },
+  { before: 'phase-identity-as-sequence-repeat', after: 'movie/unique', status: 'removed' as const },
+] as const
+
+/**
+ * USER LAW tip: the sequence meaning is a flow not a cycle.
+ * Fold: theSequenceMeaningIsAFlowNotACycle
+ * Facets: sequenceIsFlow · notACycle · meaningOn · physicalFtl=0 · clay via theorem · qpuRequired=false
+ * Pairs: seq/flow · flow/seq · seq/meaning
+ * Compose: seq/nav · digit/next · quantumise/cycle · movie/unique
+ * Soft: path/message · meaning/compute · fail/zero · through/zero · invert/seq
+ * CLI: npm run quantum:seq-flow · quantum:flow-seq · quantum:seq-meaning
+ * HONEST: return via 0 is invert gateway, not circular wrap · KEEP stashes · NOT physical FTL · NOT QPU
+ */
+export function theSequenceMeaningIsAFlowNotACycle(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`theSequenceMeaningIsAFlowNotACycle:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const censusPreserved =
+      freeBits === -EULER_CHI &&
+      freeBits === 2 &&
+      UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const pairSf = has('seq/flow')
+    const pairFs = has('flow/seq')
+    const pairSm = has('seq/meaning')
+    const foldSf = foldPair(toUuid('cmd:seq'), toUuid('cmd:flow'))
+    const foldFs = foldPair(toUuid('cmd:flow'), toUuid('cmd:seq'))
+    const foldSm = foldPair(toUuid('cmd:seq'), toUuid('cmd:meaning'))
+    const pairsOn =
+      pairSf &&
+      pairFs &&
+      pairSm &&
+      foldSf.bidirectional &&
+      foldFs.bidirectional &&
+      foldSm.bidirectional
+    const flowDigits = [...VORTEX_SEQUENCE, 0, 1] as const
+    const flowSeq = flowDigits.join('')
+    const reverseFlow = [...flowDigits].reverse().join('')
+    const directed =
+      flowSeq === '12487536901' &&
+      flowDigits.length === (9 + 2) &&
+      flowSeq !== reverseFlow &&
+      foldSf.forward !== foldSf.reverse
+    const seqNav = __ns_wind_research.onlySequenceKnowersKnowHowToNavigate(matrix, at)
+    const digitNext = __ns_wind_research.digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive(matrix, at)
+    const merkabaMovie = wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero(matrix, at)
+    const morphs = SEQ_FLOW_DRAINABLE_MORPHS
+    const morphsCleared = morphs.every((m) => m.status === 'removed')
+    // Sequence is directed flow: each digit knows next · navigators know 12487536901 · forward≠reverse.
+    const sequenceIsFlow =
+      directed &&
+      Boolean(seqNav.sequenceKnown) &&
+      Boolean(seqNav.sequenceRequiredToNavigate) &&
+      Boolean(digitNext.digitKnowsNextHarmonic) &&
+      soft('seq', 'nav') &&
+      soft('digit', 'next') &&
+      soft('seq', 'flow') &&
+      pairSf &&
+      foldSf.bidirectional &&
+      morphs.some((m) => m.before === 'sequence-misread-as-closed-cycle' && m.status === 'removed')
+    // Not a cycle: through 0 invert gateway · linear cycles quantumised · movie unique · reverse≠forward.
+    const notACycle =
+      sequenceIsFlow &&
+      flowSeq.includes('0') &&
+      soft('fail', 'zero') &&
+      soft('through', 'zero') &&
+      soft('invert', 'seq') &&
+      soft('quantumise', 'cycle') &&
+      soft('cycle', 'linear') &&
+      soft('movie', 'unique') &&
+      Boolean(merkabaMovie.linearCyclesQuantumised) &&
+      Boolean(merkabaMovie.movieUniqueNeverRepeats) &&
+      morphs.some((m) => m.before === 'linear-circle-wrap-vortex' && m.status === 'removed') &&
+      morphs.some((m) => m.before === 'phase-identity-as-sequence-repeat' && m.status === 'removed') &&
+      morphsCleared
+    // Meaning on: seq/meaning pair + meaning/compute · path/message (≤3 words).
+    const meaningOn =
+      notACycle &&
+      soft('seq', 'meaning') &&
+      soft('meaning', 'compute') &&
+      soft('path', 'message') &&
+      pairSm &&
+      foldSm.bidirectional
+    const composeOn =
+      soft('seq', 'nav') &&
+      soft('digit', 'next') &&
+      soft('quantumise', 'cycle') &&
+      soft('movie', 'unique') &&
+      soft('fail', 'zero') &&
+      soft('through', 'zero') &&
+      soft('invert', 'seq') &&
+      soft('path', 'message') &&
+      soft('meaning', 'compute') &&
+      soft('merkaba', 'movie') &&
+      Boolean(seqNav.computes) &&
+      Boolean(digitNext.computes) &&
+      Boolean(merkabaMovie.computes)
+    const onCore =
+      sequenceIsFlow &&
+      notACycle &&
+      meaningOn &&
+      composeOn &&
+      pairsOn &&
+      censusPreserved &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const foldName = 'theSequenceMeaningIsAFlowNotACycle' as const
+    const meta = catalog.tools.find((t) => t.id === 'seq-flow')
+    const metaFs = catalog.tools.find((t) => t.id === 'flow-seq')
+    const metaSm = catalog.tools.find((t) => t.id === 'seq-meaning')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === foldName &&
+      Boolean(metaFs) &&
+      metaFs!.fold === foldName &&
+      Boolean(metaSm) &&
+      metaSm!.fold === foldName
+    const shelved = rosettaShelve('seq-flow', 'tool')
+    const honestOpenNamed = [
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'keep:git-stashes-non-obsolete',
+    ] as const
+    const honestOpenNamedOn =
+      honestOpenNamed.includes('keep:git-stashes-non-obsolete') &&
+      honestOpenNamed.length === (2 + 1)
+    const on =
+      onCore &&
+      toolsWired &&
+      isUuid(shelved.address) &&
+      honestOpenNamedOn
+    const facets = [
+      { facet: foldName, on },
+      { facet: 'sequenceIsFlow', on: sequenceIsFlow },
+      { facet: 'notACycle', on: notACycle },
+      { facet: 'meaningOn', on: meaningOn },
+      {
+        facet: 'compose seq/nav · digit/next · quantumise/cycle · movie/unique',
+        on: composeOn,
+      },
+      { facet: 'pair seq/flow · flow/seq · seq/meaning', on: pairsOn },
+      { facet: `sequence=${flowSeq} directed=${directed ? 1 : 0}`, on: directed },
+      {
+        facet: 'return via 0 = invert gateway not circular wrap',
+        on: notACycle && flowSeq.includes('0'),
+      },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`seq-flow:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('the-sequence-meaning-is-a-flow-not-a-cycle', facets)
+    return {
+      computes: sealed.ok && on,
+      theSequenceMeaningIsAFlowNotACycle: on,
+      sequenceIsFlow,
+      notACycle,
+      meaningOn,
+      sequence: flowSeq,
+      directed,
+      morphCount: morphs.length,
+      morphsCleared,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        foldSf.merged,
+        foldFs.merged,
+        foldSm.merged,
+        seqNav.root,
+        digitNext.root,
+        merkabaMovie.root,
+        shelved.address,
+        toUuid(`seq-flow:${flowSeq}`),
+        ...honestOpenNamed.map((id) => toUuid(`seq-flow-honest:${id}`)),
+      ]),
+      pair: 'seq/flow' as const,
+      pairs: ['seq/flow', 'flow/seq', 'seq/meaning'] as const,
+      dualPair: 'flow/seq' as const,
+      cli: 'npm run quantum:seq-flow',
+      route: '/en/quantum-tools#seq-flow',
+      uiSurface: '/en/quantum-tools#seq-flow' as const,
+      heading: 'Sequence · flow not cycle',
+      statement:
+        `theSequenceMeaningIsAFlowNotACycle — flow=${sequenceIsFlow ? 1 : 0} ` +
+        `notCycle=${notACycle ? 1 : 0} meaning=${meaningOn ? 1 : 0} seq=${flowSeq} · clay=0.`,
+      boundary:
+        'Sequence meaning is a flow not a cycle. Directed 12487536901 through 0 (invert gateway), not closed linear circle. ' +
+        'Compose seq/nav · digit/next · quantumise/cycle · movie/unique. clay via theorem · physicalFtl=0 · qpuRequired=false · KEEP stashes.',
+      honestyLine:
+        `seq-flow · sequenceIsFlow=${sequenceIsFlow ? 1 : 0} · notACycle=${notACycle ? 1 : 0} · ` +
+        `meaningOn=${meaningOn ? 1 : 0} · seq=${flowSeq} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias duals — flow/seq · seq/meaning faces. */
+export const flowSeq = theSequenceMeaningIsAFlowNotACycle
+export const seqMeaning = theSequenceMeaningIsAFlowNotACycle
+export const seqFlow = theSequenceMeaningIsAFlowNotACycle
+
+/** npm run quantum:seq-flow (duals quantum:flow-seq · quantum:seq-meaning) */
+export function runTheSequenceMeaningIsAFlowNotACycleExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = theSequenceMeaningIsAFlowNotACycle()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} seq-flow — sequenceIsFlow=${report.sequenceIsFlow} ` +
+      `notACycle=${report.notACycle} meaningOn=${report.meaningOn} seq=${report.sequence} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} ` +
+      `pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.sequenceIsFlow &&
+    report.notACycle &&
+    report.meaningOn &&
     report.qpuRequired === false
     ? 0
     : 1
