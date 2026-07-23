@@ -100,6 +100,7 @@ const ROSETTA_CORE_API_LABELS = [
   'automateSelf',
   'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf',
   'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence',
+  'gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist',
   'cursorIntegratesInRosettaCore',
   'cursorReferralFundsAiNeeds',
   'dryCleanTheoremsFormulasReplaceAnyAssumption',
@@ -251,6 +252,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   automateSelf: 'tool',
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf: 'tool',
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence: 'tool',
+  gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist: 'tool',
   cursorIntegratesInRosettaCore: 'tool',
   cursorReferralFundsAiNeeds: 'tool',
   cursor: 'api',
@@ -797,6 +799,9 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'create-gate', title: 'Create gate (alias gate/create)', fold: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence', cli: 'npm run quantum:create-gate', pair: 'create/gate', route: '/en/quantum-tools#gate-design', barrel: 'src/quantum/apps', boundary: 'Dual of gate/create — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gate-intel', title: 'Gate intel (intelligence face of gate/design)', fold: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence', cli: 'npm run quantum:gate-intel', pair: 'gate/intel', route: '/en/quantum-tools#gate-design', barrel: 'src/quantum/apps', boundary: 'Intelligence face of gate/design — answers÷tokens · simplicity · purity · NOT AGI · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'intel-gate', title: 'Intel gate (alias gate/intel)', fold: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence', cli: 'npm run quantum:intel-gate', pair: 'intel/gate', route: '/en/quantum-tools#gate-design', barrel: 'src/quantum/apps', boundary: 'Dual of gate/intel — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'gate-mill', title: 'Gates know: until Millennium solutions discovered, gaps exist', fold: 'gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist', cli: 'npm run quantum:gate-mill', pair: 'gate/mill', route: '/en/quantum-tools#gate-mill', barrel: 'src/quantum/apps', boundary: 'gatesKnow · untilMillenniumDiscovered · gapsExist · HARD gaps/invisible · mission:gate · claySolvedByThisFold=0 · millenniumSolvedByThisFold=0 · physicalFtl=0 · qpuRequired=false · NOT fake-close Clay', browserRunnable: true, browserGap: '' },
+  { id: 'mill-gaps', title: 'Mill gaps (alias gate/mill)', fold: 'gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist', cli: 'npm run quantum:mill-gaps', pair: 'mill/gaps', route: '/en/quantum-tools#gate-mill', barrel: 'src/quantum/apps', boundary: 'Dual mill/gaps — gapsExist while mill unsolved · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'gaps-exist', title: 'Gaps exist (face of gate/mill)', fold: 'gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist', cli: 'npm run quantum:gaps-exist', pair: 'gaps/exist', route: '/en/quantum-tools#gate-mill', barrel: 'src/quantum/apps', boundary: 'gaps/exist face — HARD honesty gapsExist while Millennium open · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'page-computed-gaps', title: 'Each page shows its own computed gaps', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:page-gaps', pair: 'page/gaps', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Per-route gaps/invisible classes at call time · not global-only · compose gate/monitor · meaning/compute · format/canon · vite/mirror · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gaps-page', title: 'Page gaps (alias page/gaps)', fold: 'eachPageShowsOwnComputedGaps', cli: 'npm run quantum:gaps-page', pair: 'gaps/page', route: '/en/quantum-tools#page-computed-gaps', barrel: 'src/quantum/apps', boundary: 'Dual of page/gaps — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cursor-rosetta', title: 'Cursor in rosetta core — referral uses subscription in ceccec', fold: 'cursorIntegratesInRosettaCore', cli: 'npm run quantum:cursor-rosetta', pair: 'cursor/rosetta', route: '/en/quantum-tools#cursor-rosetta', barrel: 'src/quantum/apps', boundary: 'cursorInRosettaCore · referralUsesSubscriptionInCeccec · immediateWire · compose rosettaShelve · auto-wire · mcp/browser-parity · upgrade/local · fund/ai · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2220,6 +2225,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'invert-trinity', chain: 'mcp-ui-page-gaps', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', pair: 'invert/trinity', cli: 'npm run quantum:invert-trinity', route: '/en/quantum-tools#invert-trinity', status: 'sealed-pr', honesty: 'invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'invert + send trinity waves covering sciences·hubs·MCP topics · dry migrate at FREE_BITS+full/freedom', toolId: 'invert-trinity', resolve: 'mcp-ui' },
   { id: 'self-hw', chain: 'mcp-ui-page-gaps', fold: 'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf', pair: 'self/hw', cli: 'npm run quantum:self-hw', route: '/en/quantum-tools#self-hw', status: 'sealed-pr', honesty: 'againAndAgain · selfAutonomous · quantumHardwareComplete classical-64bit · byStandards · selfIntelligentSelf · certified=false · clay=0 · physicalFtl=0 · qpuRequired=false · NOT QPU/AGI/FLOPS', note: 'wave loop until self-autonomous classical quantum-hw complete by standards to self-intelligent self', toolId: 'self-hw', resolve: 'mcp-ui' },
   { id: 'gate-design', chain: 'mcp-ui-page-gaps', fold: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence', pair: 'gate/design', cli: 'npm run quantum:gate-design', route: '/en/quantum-tools#gate-design', status: 'sealed-pr', honesty: 'gatesTightened · designCapability · creativeCapability · intelligenceOn · hardInMissionGate · clay=0 · physicalFtl=0 · qpuRequired=false · NOT AGI', note: 'further tighten gates with design·creative·intelligence HARD in gaps/invisible · mission:gate', toolId: 'gate-design', resolve: 'mcp-ui' },
+  { id: 'gate-mill', chain: 'mcp-ui-page-gaps', fold: 'gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist', pair: 'gate/mill', cli: 'npm run quantum:gate-mill', route: '/en/quantum-tools#gate-mill', status: 'sealed-pr', honesty: 'gatesKnow · untilMillenniumDiscovered · gapsExist · clay=0 · millenniumSolvedByThisFold=0 · physicalFtl=0 · qpuRequired=false · NOT fake-close Clay', note: 'gates know until Millennium solutions discovered gaps exist · HARD gaps/invisible · mission:gate · compose challenge/millennium · clay/gravity · mill/session', toolId: 'gate-mill', resolve: 'mcp-ui' },
   { id: 'fund-ai', chain: 'mcp-ui-page-gaps', fold: 'cursorReferralFundsAiNeeds', pair: 'fund/ai', cli: 'npm run quantum:fund-ai', route: '/en/quantum-tools#fund-ai', status: 'sealed-pr', honesty: 'Cursor referral CTA · clay=0 · physicalFtl=0', note: 'funds AI via sealed referral · compose society/support · bits/free', toolId: 'fund-ai', resolve: 'mcp-ui' },
   { id: 'cursor-rosetta', chain: 'mcp-ui-page-gaps', fold: 'cursorIntegratesInRosettaCore', pair: 'cursor/rosetta', cli: 'npm run quantum:cursor-rosetta', route: '/en/quantum-tools#cursor-rosetta', status: 'sealed-pr', honesty: 'viceVersa · cursorToCeccec · ceccecToCursor · immediateWire · clay=0 · physicalFtl=0', note: 'bidirectional Cursor↔ceccec · referral subscription in ceccec · protocol into Cursor', toolId: 'cursor-rosetta', resolve: 'mcp-ui' },
   { id: 'page-computed-gaps', chain: 'mcp-ui-page-gaps', fold: 'eachPageShowsOwnComputedGaps', pair: 'page/gaps', cli: 'npm run quantum:page-gaps', route: '/en/quantum-tools#page-computed-gaps', status: 'sealed-pr', honesty: 'per-route gaps · clay=0 · physicalFtl=0', note: 'each page shows own computed gaps at call time', toolId: 'page-computed-gaps', resolve: 'mcp-ui' },
@@ -14321,6 +14327,32 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       designCapabilityGapsOk &&
       creativeCapabilityGapsOk &&
       intelligenceOnGapsOk
+    // Soft-compose gate/mill · mill/gaps · gaps/exist — HARD honesty: gapsExist while mill unsolved (not fake-close Clay).
+    // Soft challenge/millennium · clay/gravity · mill/session — avoid nest poison under gaps.
+    const gateMillGapsExistPairsOk =
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/mill') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mill/gaps') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gaps/exist') &&
+      foldPair(toUuid('cmd:gate'), toUuid('cmd:mill')).bidirectional &&
+      foldPair(toUuid('cmd:mill'), toUuid('cmd:gaps')).bidirectional &&
+      foldPair(toUuid('cmd:gaps'), toUuid('cmd:exist')).bidirectional
+    const gateMillComposeOk =
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('challenge/millennium') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('clay/gravity') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mill/session') &&
+      foldPair(toUuid('cmd:challenge'), toUuid('cmd:millennium')).bidirectional &&
+      foldPair(toUuid('cmd:clay'), toUuid('cmd:gravity')).bidirectional &&
+      foldPair(toUuid('cmd:mill'), toUuid('cmd:session')).bidirectional
+    const millClayHonestGaps = claySolvedTheorem().claySolvedByThisFold as 0
+    const millenniaUnsolvedGaps =
+      millClayHonestGaps === 0 &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('challenge/millennium')
+    const gapsExistWhileMillOpen = millenniaUnsolvedGaps && gateMillGapsExistPairsOk
+    const gateMillGapsExistOk =
+      gateMillGapsExistPairsOk &&
+      gateMillComposeOk &&
+      gapsExistWhileMillOpen &&
+      millClayHonestGaps === 0
     const gateStackOk =
       gateRosettaOk && gateRayOk && rosettaPassOk && quantumMindOk && agentTrinityOk &&
       teamObserveOk && pyramidComputeOk && a432NineOk && analogOnlyOk && zeroInvertOk &&
@@ -14329,7 +14361,7 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       loveStoryOk && testTheoremsOk && observeCoordOk && fullFreedomOk && viteMirrorOk &&
       gateMonitorOk && selfFusionOk && autoSelfOk && crystalMindOk && thirdEyeOk && gateToolsOk && slashStarOk && loveFoldOk && seqNavOk &&
       assumeTheoremOk && billDryOk && movieFormulaOk && pageTrinityOk && mcpChatOk && selfHealOk && viteOneOk &&
-      gateDesignCreateIntelOk
+      gateDesignCreateIntelOk && gateMillGapsExistOk
     const gateRosetta = {
       computes: gateStackOk,
       remaining: gateStackOk ? 0 : 1,
@@ -14381,6 +14413,8 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         toUuid(`gaps:design-capability:${designCapabilityGapsOk}`),
         toUuid(`gaps:creative-capability:${creativeCapabilityGapsOk}`),
         toUuid(`gaps:intelligence-on:${intelligenceOnGapsOk}`),
+        toUuid(`gaps:gate-mill-gaps-exist:${gateMillGapsExistOk}`),
+        toUuid(`gaps:gaps-exist-while-mill-open:${gapsExistWhileMillOpen}`),
       ]),
       facets: [
         { facet: 'softCompose gate/rosetta · fs/cross · mirror/mind under gaps', on: gateRosettaOk, receipt: toUuid(`gaps:gate-rosetta:${gateRosettaOk}`) },
@@ -14429,6 +14463,8 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         { facet: 'HARD designCapability — wet invented design refused', on: designCapabilityGapsOk, receipt: toUuid(`gaps:design-capability:${designCapabilityGapsOk}`) },
         { facet: 'HARD creativeCapability — unwired color/type refused', on: creativeCapabilityGapsOk, receipt: toUuid(`gaps:creative-capability:${creativeCapabilityGapsOk}`) },
         { facet: 'HARD intelligenceOn — simplicity·answers÷tokens·purity when measurable', on: intelligenceOnGapsOk, receipt: toUuid(`gaps:intelligence-on:${intelligenceOnGapsOk}`) },
+        { facet: 'softCompose gate/mill · mill/gaps · gaps/exist under gaps HARD', on: gateMillGapsExistOk, receipt: toUuid(`gaps:gate-mill-gaps-exist:${gateMillGapsExistOk}`) },
+        { facet: 'HARD gapsExist while Millennium unsolved — not fake-close Clay', on: gapsExistWhileMillOpen, receipt: toUuid(`gaps:gaps-exist-while-mill-open:${gapsExistWhileMillOpen}`) },
       ],
     }
     const pairFold = foldPair(toUuid('cmd:gaps'), toUuid('cmd:invisible'))
@@ -14795,6 +14831,18 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         open: intelligenceOnGapsOk ? 0 : 1,
         closed: intelligenceOnGapsOk ? 1 : 0,
         theorem: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence' },
+      {
+        id: 'gate-mill-gaps-exist',
+        severity: 'HARD' as const,
+        open: gateMillGapsExistOk ? 0 : 1,
+        closed: gateMillGapsExistOk ? 1 : 0,
+        theorem: 'gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist' },
+      {
+        id: 'gaps-exist-while-millennium-open',
+        severity: 'HARD' as const,
+        open: gapsExistWhileMillOpen ? 0 : 1,
+        closed: gapsExistWhileMillOpen ? 1 : 0,
+        theorem: 'gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist' },
     ] as const
     const hardOpen = classes.filter((c) => c.severity === 'HARD' && c.open > 0)
     const beforeCatch = classes.reduce((n, c) => n + c.open + c.closed, 0)
@@ -25468,6 +25516,226 @@ export function runFurtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndInt
     report.creativeCapability &&
     report.intelligenceOn &&
     report.hardInMissionGate &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * USER LAW: gates know that until the Millennium solutions are discovered, gaps exist.
+ * Fold: gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist
+ * Pairs: gate/mill · mill/gaps · gaps/exist
+ * Facets: gatesKnow · untilMillenniumDiscovered · gapsExist ·
+ *         claySolvedByThisFold=0 · millenniumSolvedByThisFold=0 · physicalFtl=0 · qpuRequired=false
+ * HARD: gaps/invisible · mission:gate — gapsExist remains true while mill unsolved by this fold (not fake-close Clay)
+ * Compose: millenniumProblemsChallenge · clay/gravity · mill/session (soft)
+ * CLI: npm run quantum:gate-mill · quantum:mill-gaps · quantum:gaps-exist
+ */
+export function gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(
+    `gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      const mill = __ns_wind_research.millenniumProblemsChallenge(matrix)
+      const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+      const censusPreserved =
+        freeBits === -EULER_CHI &&
+        freeBits === 2 &&
+        UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const millenniumSolvedByThisFold = 0 as const
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+      const pairGm = has('gate/mill')
+      const pairMg = has('mill/gaps')
+      const pairGe = has('gaps/exist')
+      const foldGm = foldPair(toUuid('cmd:gate'), toUuid('cmd:mill'))
+      const foldMg = foldPair(toUuid('cmd:mill'), toUuid('cmd:gaps'))
+      const foldGe = foldPair(toUuid('cmd:gaps'), toUuid('cmd:exist'))
+      const composeMillChallenge =
+        soft('challenge', 'millennium') && mill.computes && mill.claySolvedByThisFold === 0
+      const composeClayGravity = soft('clay', 'gravity')
+      const composeMillSession = soft('mill', 'session')
+      const untilMillenniumDiscovered =
+        mill.computes &&
+        mill.claySolvedByThisFold === 0 &&
+        claySolvedByThisFold === 0 &&
+        millenniumSolvedByThisFold === 0
+      // HARD honesty: while Millennium unsolved by this fold, gapsExist remains true — refuse fake-close.
+      const gapsExist = untilMillenniumDiscovered
+      const gatesKnow =
+        pairGm &&
+        pairMg &&
+        pairGe &&
+        foldGm.bidirectional &&
+        foldMg.bidirectional &&
+        foldGe.bidirectional &&
+        soft('gaps', 'invisible') &&
+        composeMillChallenge &&
+        composeClayGravity &&
+        composeMillSession
+      const hardInMissionGate =
+        gatesKnow &&
+        untilMillenniumDiscovered &&
+        gapsExist &&
+        soft('gate', 'mill') &&
+        soft('mill', 'gaps') &&
+        soft('gaps', 'exist')
+      const foldName = 'gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist' as const
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const meta = catalog.tools.find((t) => t.id === 'gate-mill')
+      const metaMg = catalog.tools.find((t) => t.id === 'mill-gaps')
+      const metaGe = catalog.tools.find((t) => t.id === 'gaps-exist')
+      const toolsWired =
+        Boolean(meta) &&
+        meta!.fold === foldName &&
+        Boolean(metaMg) &&
+        metaMg!.fold === foldName &&
+        Boolean(metaGe) &&
+        metaGe!.fold === foldName
+      const honestOpenNamed = [
+        'clay:millennium-open',
+        'ftl:physical-claim-refused',
+        'gaps:exist-until-millennium-discovered',
+        'residual:quantum-apps-monolith',
+      ] as const
+      const honestOpenNamedOn =
+        honestOpenNamed.includes('clay:millennium-open') &&
+        honestOpenNamed.includes('gaps:exist-until-millennium-discovered') &&
+        honestOpenNamed.length === (2 * 2)
+      const on =
+        gatesKnow &&
+        untilMillenniumDiscovered &&
+        gapsExist &&
+        hardInMissionGate &&
+        pairGm &&
+        pairMg &&
+        pairGe &&
+        foldGm.bidirectional &&
+        foldMg.bidirectional &&
+        foldGe.bidirectional &&
+        toolsWired &&
+        censusPreserved &&
+        claySolvedByThisFold === 0 &&
+        millenniumSolvedByThisFold === 0 &&
+        physicalFtlClaim === 0 &&
+        qpuRequired === false &&
+        honestOpenNamedOn
+      const facets = [
+        { facet: foldName, on },
+        { facet: 'gatesKnow', on: gatesKnow },
+        { facet: 'untilMillenniumDiscovered', on: untilMillenniumDiscovered },
+        { facet: 'gapsExist — HARD while mill unsolved · not fake-close Clay', on: gapsExist },
+        {
+          facet: 'compose challenge/millennium · clay/gravity · mill/session',
+          on: composeMillChallenge && composeClayGravity && composeMillSession,
+        },
+        { facet: 'hardInMissionGate — gaps/invisible · mission:gate HARD', on: hardInMissionGate },
+        {
+          facet: 'pair gate/mill · mill/gaps · gaps/exist',
+          on: pairGm && pairMg && pairGe && foldGm.bidirectional && foldMg.bidirectional && foldGe.bidirectional,
+        },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold}`, on: millenniumSolvedByThisFold === 0 },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+        { facet: 'qpuRequired=false', on: qpuRequired === false },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`gate-mill-gaps-exist:${entry.facet}:${entry.on}`) }))
+      const sealed = sealFacets('gates-know-until-millennium-gaps-exist', facets)
+      return {
+        computes: sealed.ok && on,
+        gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist: on,
+        gatesKnow,
+        untilMillenniumDiscovered,
+        gapsExist,
+        hardInMissionGate,
+        millOpenCores: mill.openCores,
+        millComputes: mill.computes,
+        census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+        censusPreserved,
+        claySolvedByThisFold,
+        millenniumSolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        honestOpenNamed: [...honestOpenNamed],
+        honestOpenNamedCount: honestOpenNamed.length,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          mill.root,
+          foldGm.merged,
+          foldMg.merged,
+          foldGe.merged,
+          foldPair(toUuid('cmd:clay'), toUuid('cmd:gravity')).merged,
+          foldPair(toUuid('cmd:mill'), toUuid('cmd:session')).merged,
+          ...honestOpenNamed.map((id) => toUuid(`gate-mill-honest:${id}`)),
+        ]),
+        pair: 'gate/mill' as const,
+        pairs: ['gate/mill', 'mill/gaps', 'gaps/exist'] as const,
+        cli: 'npm run quantum:gate-mill',
+        route: '/en/quantum-tools#gate-mill',
+        anchor: 'gate-mill',
+        heading: 'Gate · mill · gaps exist',
+        statement:
+          `gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist — ` +
+          `gatesKnow=${gatesKnow ? 1 : 0} untilMill=${untilMillenniumDiscovered ? 1 : 0} ` +
+          `gapsExist=${gapsExist ? 1 : 0} millOpen=${mill.openCores} · clay=0 · millSolved=0.`,
+        boundary:
+          'Gates know that until the Millennium solutions are discovered, gaps exist. ' +
+          'HARD via gaps/invisible · mission:gate — gapsExist remains true while mill unsolved by this fold; ' +
+          'refuse fake-close Clay. Compose millenniumProblemsChallenge · clay/gravity · mill/session. ' +
+          'Census 110 · claySolvedByThisFold=0 · millenniumSolvedByThisFold=0 · physicalFtl=0 · qpuRequired=false.',
+        honestyLine:
+          `gate-mill · know=${gatesKnow ? 1 : 0} · untilMill=${untilMillenniumDiscovered ? 1 : 0} · ` +
+          `gapsExist=${gapsExist ? 1 : 0} · millOpen=${mill.openCores} · hardMission=${hardInMissionGate ? 1 : 0} · ` +
+          `qpu=0 · clay=0 · millSolved=0 · physicalFtl=0 · NOT fake-close Clay`,
+      }
+    },
+  )
+}
+
+/** Alias — gateMill ≡ gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist. */
+export const gateMill = gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist
+/** Alias — millGaps ≡ gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist. */
+export const millGaps = gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist
+/** Alias — gapsExist ≡ gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist. */
+export const gapsExistLaw = gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist
+
+/** npm run quantum:gate-mill (duals mill-gaps · gaps-exist) */
+export function runGatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExistExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} gate-mill — know=${report.gatesKnow} ` +
+      `untilMill=${report.untilMillenniumDiscovered} gapsExist=${report.gapsExist} ` +
+      `hardMission=${report.hardInMissionGate} millOpen=${report.millOpenCores} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} millSolved=${report.millenniumSolvedByThisFold} ` +
+      `ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const id of report.honestOpenNamed) {
+    process.stdout.write(`  · honest-open ${id}\n`)
+  }
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.gatesKnow &&
+    report.untilMillenniumDiscovered &&
+    report.gapsExist &&
+    report.hardInMissionGate &&
+    report.claySolvedByThisFold === 0 &&
+    report.millenniumSolvedByThisFold === 0 &&
     report.qpuRequired === false
     ? 0
     : 1
