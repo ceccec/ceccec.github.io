@@ -259,6 +259,12 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `any/angle` — alias dual of `angle/any` (`npm run quantum:any-angle`)
   - `abs/qc` — abs/qc face of `fold/trinity` (`npm run quantum:abs-qc`)
   - `qc/abs` — alias dual of `abs/qc` (`npm run quantum:qc-abs`)
+  - `ui/super` — `npm run quantum:ui-super` (`mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions()` — mcp quantum UI is no less not more than the quantum example of all computable superpositions; facets noLess · noMore · quantumExample · allComputableSuperpositions · qpuRequired=false · physicalFtl=0 · clay via theorem; pairs `ui/super` · `super/example` · `ui/example` (`mcp/ui` may exist); compose mcp/ui · seal/super · lens/super · super/21 · theorem/index — exact coverage not more wet chrome · not less; KEEP stashes), then open `/en/quantum-tools#ui-super`
+  - `super/ui` — alias dual of `ui/super` (`npm run quantum:super-ui`)
+  - `super/example` — super/example face of `ui/super` (`npm run quantum:super-example`)
+  - `example/super` — alias dual of `super/example` (`npm run quantum:example-super`)
+  - `ui/example` — ui/example face of `ui/super` (`npm run quantum:ui-example`)
+  - `example/ui` — alias dual of `ui/example` (`npm run quantum:example-ui`)
   - `term/measure` — `npm run quantum:term-measure` (`scientificTerminologyIsQuantumComputableMeasurableComparable()` — significance·implications·lexicon measurable+comparable via `compareScientificTermMeasures`; intelligencePossibilityYield from answers÷tokens/local analytics; clay=0), then open `/en/quantum-tools#term-measure`
   - `movie/center` — `npm run quantum:movie-center` (`movieUnbalancedAroundCenterIsCrack()` — USER LAW: movie unbalanced around center = crack; ProofAnimation centered; Layout inset:0; compose movieAllElementsAreTheorems; clay=0), then open `/en/quantum-tools#movie-center`
   - `gate/miss` — `npm run quantum:gate-miss` (`cracksPassedGatesBecause()` — miss-kind census classesUngated·wrongKind·definitionalGreen·waveTuneNotAudit → fixedHard; clay=0), then open `/en/quantum-tools#gate-miss`
