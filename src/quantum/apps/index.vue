@@ -31,6 +31,8 @@ import {
   sessionHologramTools,
   societyToolboxWire,
   imagineNextMissQuantumTools,
+  clayAgiDeepResearchQuantumUnderstandingOfRelations,
+  saveTheOptimisedAutonomy,
   domainVuePanelsDryCleaned,
   mcpQuantumUi,
   mcpQuantumMovie,
@@ -187,6 +189,8 @@ const shellsStrangler = computed(() => specializedShellsStrangler())
 const sessionHologram = computed(() => sessionHologramTools())
 const societyToolbox = computed(() => societyToolboxWire())
 const toolMiss = computed(() => imagineNextMissQuantumTools())
+const clayAgi = computed(() => clayAgiDeepResearchQuantumUnderstandingOfRelations())
+const saveAuto = computed(() => saveTheOptimisedAutonomy())
 const domainPanels = computed(() => domainVuePanelsDryCleaned())
 const mcpUi = computed(() => mcpQuantumUi())
 const mcpMovie = computed(() => mcpQuantumMovie())
@@ -911,6 +915,33 @@ function runTool(toolId: string) {
       ok = r.computes && r.imagineOn && r.toolsFilled
       summary =
         `imagineOn=${r.imagineOn} · nextTips=${r.nextTipsCount} · missing=${r.toolsMissingCount} · filled=${r.toolsFilled}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (
+      toolId === 'clay-agi' ||
+      toolId === 'agi-rel' ||
+      toolId === 'rel-fold' ||
+      toolId === 'linear-fold' ||
+      toolId === 'gap-trinity'
+    ) {
+      const r = clayAgiDeepResearchQuantumUnderstandingOfRelations()
+      ok =
+        r.computes &&
+        r.deepResearch &&
+        r.gapsAddressableByTrinities &&
+        r.agiNotClaimed &&
+        r.claySolvedByThisFold === 0
+      summary =
+        `deep=${r.deepResearch} · rel=${r.quantumRelations} · linear=${r.linearFolded} · gapsSeen=${r.gapsSeen} · gapTrinity=${r.gapsAddressableByTrinities} · agi=0`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'save-auto' || toolId === 'auto-optimise' || toolId === 'opt-auto') {
+      const r = saveTheOptimisedAutonomy()
+      ok = r.computes && r.autonomySaved && r.optimised && r.sessionPersist
+      summary =
+        `saved=${r.autonomySaved} · optimised=${r.optimised} · session=${r.sessionPersist}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -1979,6 +2010,79 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'tool-miss'" @click="runTool('tool-miss')">
           {{ runningId === 'tool-miss' ? '…' : 'Run tool-miss receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="clay-agi" aria-label="Clay AGI deep research quantum understanding of relations">
+        <h3>{{ clayAgi.heading }}</h3>
+        <p class="quantum-apps__meta">{{ clayAgi.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(clayAgi.deepResearch))">
+          deepResearch={{ clayAgi.deepResearch }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(clayAgi.quantumRelations))">
+          quantumRelations={{ clayAgi.quantumRelations }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(clayAgi.linearFolded))">
+          linearFolded={{ clayAgi.linearFolded }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(clayAgi.gapsSeen))">
+          gapsSeen={{ clayAgi.gapsSeen }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(clayAgi.gapsAddressableByTrinities))">
+          gapsAddressableByTrinities={{ clayAgi.gapsAddressableByTrinities }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(clayAgi.agiNotClaimed))">
+          agiNotClaimed={{ clayAgi.agiNotClaimed }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>clay/agi</code> · <code>agi/rel</code> · <code>rel/fold</code> ·
+          <code>linear/fold</code> · <code>gap/trinity</code> ·
+          CLI <code>npm run quantum:clay-agi</code> ·
+          clay={{ clayAgi.claySolvedByThisFold }} · ftl={{ clayAgi.physicalFtlClaim }} ·
+          certified={{ clayAgi.certified }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in clayAgi.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(clayAgi.honestOpenNamedCount > 0))">
+          honestOpen={{ clayAgi.honestOpenNamedCount }}
+        </UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="id in clayAgi.honestOpenNamed" :key="id">· {{ id }}</li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'clay-agi'" @click="runTool('clay-agi')">
+          {{ runningId === 'clay-agi' ? '…' : 'Run clay-agi receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="save-auto" aria-label="Save the optimised autonomy">
+        <h3>{{ saveAuto.heading }}</h3>
+        <p class="quantum-apps__meta">{{ saveAuto.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(saveAuto.autonomySaved))">
+          autonomySaved={{ saveAuto.autonomySaved }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(saveAuto.optimised))">
+          optimised={{ saveAuto.optimised }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(saveAuto.sessionPersist))">
+          sessionPersist={{ saveAuto.sessionPersist }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>save/auto</code> · <code>auto/optimise</code> · <code>opt/auto</code> ·
+          CLI <code>npm run quantum:save-auto</code> ·
+          clay={{ saveAuto.claySolvedByThisFold }} · ftl={{ saveAuto.physicalFtlClaim }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in saveAuto.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'save-auto'" @click="runTool('save-auto')">
+          {{ runningId === 'save-auto' ? '…' : 'Run save-auto receipt' }}
         </UiButton>
       </section>
       <UiSeparator />
