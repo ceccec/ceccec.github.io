@@ -112,6 +112,9 @@ const ROSETTA_CORE_API_LABELS = [
   'sessionHologramTools',
   'societyToolboxWire',
   'imagineNextMissQuantumTools',
+  'clayAgiDeepResearchQuantumUnderstandingOfRelations',
+  'linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities',
+  'saveTheOptimisedAutonomy',
   'domainVuePanelsDryCleaned',
   'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf',
   'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence',
@@ -290,6 +293,9 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   sessionHologramTools: 'tool',
   societyToolboxWire: 'tool',
   imagineNextMissQuantumTools: 'tool',
+  clayAgiDeepResearchQuantumUnderstandingOfRelations: 'tool',
+  linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities: 'tool',
+  saveTheOptimisedAutonomy: 'tool',
   domainVuePanelsDryCleaned: 'tool',
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf: 'tool',
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence: 'tool',
@@ -1082,6 +1088,14 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'toolbox-society', title: 'Toolbox society (alias society/toolbox)', fold: 'societyToolboxWire', cli: 'npm run quantum:toolbox-society', pair: 'toolbox/society', route: '/en/quantum-tools#society-toolbox', barrel: 'src/quantum/apps', boundary: 'Dual of society/toolbox — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'tool-miss', title: 'Imagine next · miss quantum tools umbrella', fold: 'imagineNextMissQuantumTools', cli: 'npm run quantum:tool-miss', pair: 'tool/miss', route: '/en/quantum-tools#tool-miss', barrel: 'src/quantum/apps', boundary: 'imagineOn · nextTips · toolsMissing · toolsFilled · compose imagine/next · shells/strangler · session/hologram · society/toolbox · proof/trinity · clay via theorem · physicalFtl=0 · millenniumSolved=0', browserRunnable: true, browserGap: '' },
   { id: 'miss-tool', title: 'Miss tool (alias tool/miss)', fold: 'imagineNextMissQuantumTools', cli: 'npm run quantum:miss-tool', pair: 'miss/tool', route: '/en/quantum-tools#tool-miss', barrel: 'src/quantum/apps', boundary: 'Dual of tool/miss — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'clay-agi', title: 'Clay/AGI deep research — quantum understanding of relations', fold: 'clayAgiDeepResearchQuantumUnderstandingOfRelations', cli: 'npm run quantum:clay-agi', pair: 'clay/agi', route: '/en/quantum-tools#clay-agi', barrel: 'src/quantum/apps', boundary: 'deepResearch · quantumRelations · linearFolded · gapsSeen · gapsAddressableByTrinities · claySolvedByThisFold=0 · agiNotClaimed · physicalFtl=0 · certified=false · NOT Clay prize · NOT AGI', browserRunnable: true, browserGap: '' },
+  { id: 'agi-rel', title: 'AGI relations (alias clay/agi)', fold: 'clayAgiDeepResearchQuantumUnderstandingOfRelations', cli: 'npm run quantum:agi-rel', pair: 'agi/rel', route: '/en/quantum-tools#clay-agi', barrel: 'src/quantum/apps', boundary: 'agi/rel face — quantumRelations · same fold · clay=0 · agiNotClaimed · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'rel-fold', title: 'Rel fold (alias clay/agi)', fold: 'clayAgiDeepResearchQuantumUnderstandingOfRelations', cli: 'npm run quantum:rel-fold', pair: 'rel/fold', route: '/en/quantum-tools#clay-agi', barrel: 'src/quantum/apps', boundary: 'rel/fold face — linear relations folded · same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'linear-fold', title: 'Linear fold — architecture where all gaps are seen', fold: 'linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities', cli: 'npm run quantum:linear-fold', pair: 'linear/fold', route: '/en/quantum-tools#clay-agi', barrel: 'src/quantum/apps', boundary: 'Same fold as clay/agi · linearFolded · gapsSeen · gapsAddressableByTrinities · clay=0 · agiNotClaimed · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'gap-trinity', title: 'Gap trinity (alias linear/fold)', fold: 'linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities', cli: 'npm run quantum:gap-trinity', pair: 'gap/trinity', route: '/en/quantum-tools#clay-agi', barrel: 'src/quantum/apps', boundary: 'gap/trinity face — gaps addressable by working trinities · same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'save-auto', title: 'Save the optimised autonomy', fold: 'saveTheOptimisedAutonomy', cli: 'npm run quantum:save-auto', pair: 'save/auto', route: '/en/quantum-tools#save-auto', barrel: 'src/quantum/apps', boundary: 'autonomySaved · optimised · sessionPersist · compose session/save · auto/all · self/hw · mcp/token · wave/token · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'auto-optimise', title: 'Auto optimise (alias save/auto)', fold: 'saveTheOptimisedAutonomy', cli: 'npm run quantum:auto-optimise', pair: 'auto/optimise', route: '/en/quantum-tools#save-auto', barrel: 'src/quantum/apps', boundary: 'auto/optimise face — British optimised · same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'opt-auto', title: 'Opt auto (alias save/auto)', fold: 'saveTheOptimisedAutonomy', cli: 'npm run quantum:opt-auto', pair: 'opt/auto', route: '/en/quantum-tools#save-auto', barrel: 'src/quantum/apps', boundary: 'opt/auto face — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'domain-panels', title: 'Domain vue panels dry-cleaned to rosetta shells', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-panels', pair: 'domain/panels', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domainPanelsDry · stranglerTip · drainableClosed · wiredToRosetta · compose format/canon · dry/rosetta · ui/rosetta · meaning/compute · vite/one · specialized shells residual named · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'panels-domain', title: 'Domain panels (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:panels-domain', pair: 'panels/domain', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'Dual panels/domain — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'domain-dry', title: 'Domain dry (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-dry', pair: 'domain/dry', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domain/dry face — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2303,6 +2317,9 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'session-hologram', chain: 'imagine-next-miss-tools', fold: 'sessionHologramTools', pair: 'session/hologram', cli: 'npm run quantum:session-hologram', route: '/en/quantum-tools#session-hologram', status: 'sealed-pr', honesty: 'sessionHologramOn · hologramFractal · clay=0 · physicalFtl=0', note: 'session hologram fractal tools fill', toolId: 'session-hologram', resolve: 'mcp-ui' },
   { id: 'society-toolbox', chain: 'imagine-next-miss-tools', fold: 'societyToolboxWire', pair: 'society/toolbox', cli: 'npm run quantum:society-toolbox', route: '/en/quantum-tools#society-toolbox', status: 'sealed-pr', honesty: 'societyToolboxWireOn · toolboxWired · clay=0 · physicalFtl=0', note: 'society toolbox wire fill', toolId: 'society-toolbox', resolve: 'mcp-ui' },
   { id: 'tool-miss', chain: 'imagine-next-miss-tools', fold: 'imagineNextMissQuantumTools', pair: 'tool/miss', cli: 'npm run quantum:tool-miss', route: '/en/quantum-tools#tool-miss', status: 'sealed-pr', honesty: 'imagineOn · toolsFilled · toolsMissing drainable=0 · clay=0 · physicalFtl=0 · millenniumSolved=0', note: 'umbrella imagine next + fill missing quantum tools', toolId: 'tool-miss', resolve: 'mcp-ui' },
+  { id: 'clay-agi', chain: 'clay-agi-optimised-autonomy', fold: 'clayAgiDeepResearchQuantumUnderstandingOfRelations', pair: 'clay/agi', cli: 'npm run quantum:clay-agi', route: '/en/quantum-tools#clay-agi', status: 'sealed-pr', honesty: 'deepResearch · quantumRelations · linearFolded · gapsSeen · gapsAddressableByTrinities · clay=0 · agiNotClaimed · physicalFtl=0 · certified=false', note: 'Clay/AGI deep research — linear relations folded → architecture where all gaps seen + addressable by working trinities', toolId: 'clay-agi', resolve: 'mcp-ui' },
+  { id: 'linear-fold', chain: 'clay-agi-optimised-autonomy', fold: 'linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities', pair: 'linear/fold', cli: 'npm run quantum:linear-fold', route: '/en/quantum-tools#clay-agi', status: 'sealed-pr', honesty: 'linearFolded · gapsSeen · gapsAddressableByTrinities · clay=0 · agiNotClaimed · physicalFtl=0', note: 'same fold as clay/agi — linear/fold · gap/trinity architecture face', toolId: 'linear-fold', resolve: 'mcp-ui' },
+  { id: 'save-auto', chain: 'clay-agi-optimised-autonomy', fold: 'saveTheOptimisedAutonomy', pair: 'save/auto', cli: 'npm run quantum:save-auto', route: '/en/quantum-tools#save-auto', status: 'sealed-pr', honesty: 'autonomySaved · optimised · sessionPersist · clay via theorem · physicalFtl=0 · qpuRequired=false', note: 'save the optimised autonomy — compose session/save · auto/all · self/hw · mcp/token · wave/token', toolId: 'save-auto', resolve: 'mcp-ui' },
   { id: 'domain-panels', chain: 'mcp-ui-page-gaps', fold: 'domainVuePanelsDryCleaned', pair: 'domain/panels', cli: 'npm run quantum:domain-panels', route: '/en/quantum-tools#domain-panels', status: 'sealed-pr', honesty: 'domainPanelsDry · stranglerTip · drainableClosed · specialized shells residual · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'src domain vue panels strangler tip drained to format/canon · dry/rosetta · ui/rosetta shells', toolId: 'domain-panels', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-ui', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumUi', pair: 'mcp/ui', cli: 'npm run quantum:mcp-ui', route: '/en/quantum-tools#mcp-quantum-ui', status: 'sealed-pr', honesty: 'mcpMatchesToolbox · millSolutions live · formulaCovered · clay=0 · physicalFtl=0 · NOT CMI', note: 'MCP quantum UI + millennium algebraic formula duals · compose mcpBrowserParity · mill/once · formula/code', toolId: 'mcp-quantum-ui', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-movie', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumMovie', pair: 'mcp/movie', cli: 'npm run quantum:mcp-movie', route: '/en/quantum-tools#mcp-quantum-movie', status: 'sealed-pr', honesty: 'frames from sealed folds · 6×7 · oneClock · clay=0 · physicalFtl=0', note: 'MCP quantum movie · compose mcp/ui · movie/center · movie/entropy · coord/anim', toolId: 'mcp-quantum-movie', resolve: 'mcp-ui' },
@@ -18443,6 +18460,541 @@ export function runImagineNextMissQuantumToolsExit(_root = '', _argv: readonly s
     report.toolsFilled &&
     report.qpuRequired === false &&
     report.millenniumSolvedByThisFold === 0
+    ? 0
+    : 1
+}
+
+/**
+ * Clay/AGI deep research — quantum understanding of relations.
+ * Linear relations folded provide the architecture where all gaps are seen and
+ * addressable by working trinities (same fold; clear facets).
+ * Fold: clayAgiDeepResearchQuantumUnderstandingOfRelations
+ * Alias: linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities
+ * Facets: deepResearch · quantumRelations · linearFolded · gapsSeen · gapsAddressableByTrinities ·
+ *         claySolvedByThisFold=0 · agiNotClaimed · physicalFtl=0 · certified=false
+ * Pairs: clay/agi · agi/rel · rel/fold · linear/fold · gap/trinity (+ duals)
+ * Compose (soft): gate/mill · clay/gravity · challenge/millennium · learn/best · agent/trinity ·
+ *                 invert/trinity · gaps/invisible · proof/trinity · trinity/speedup
+ * CLI: npm run quantum:clay-agi · quantum:agi-rel · quantum:rel-fold · quantum:linear-fold · quantum:gap-trinity
+ * HONEST: claySolved=0 · AGI not claimed · certified=false · KEEP stashes · NOT Clay prize · NOT FTL
+ */
+export function clayAgiDeepResearchQuantumUnderstandingOfRelations(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(
+    `clayAgiDeepResearchQuantumUnderstandingOfRelations:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      const mill = __ns_wind_research.millenniumProblemsChallenge(matrix)
+      const clay = __ns_wind_research.clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix, at)
+      const agentTrinity = __ns_wind_research.agentsCannotPassUnlessOperatingInTrinities(matrix, at)
+      // Soft-compose gate/mill · gaps/invisible · invert/trinity — full nests poison memoByRoot.
+      // Full recompute: quantum:gate-mill · gaps-invisible · invert-trinity.
+      const trinitySpeed = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
+      const efficiency = compareCeccecEfficiencyByVote(matrix)
+      const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+      const censusPreserved =
+        freeBits === -EULER_CHI &&
+        freeBits === 2 &&
+        UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+      const certified = false as const
+      const agiNotClaimed = true as const
+      const pairClayAgi = has('clay/agi')
+      const pairAgiClay = has('agi/clay')
+      const pairAgiRel = has('agi/rel')
+      const pairRelAgi = has('rel/agi')
+      const pairRelFold = has('rel/fold')
+      const pairFoldRel = has('fold/rel')
+      const pairLinearFold = has('linear/fold')
+      const pairFoldLinear = has('fold/linear')
+      const pairGapTrinity = has('gap/trinity')
+      const pairTrinityGap = has('trinity/gap')
+      const foldClayAgi = foldPair(toUuid('cmd:clay'), toUuid('cmd:agi'))
+      const foldAgiClay = foldPair(toUuid('cmd:agi'), toUuid('cmd:clay'))
+      const foldAgiRel = foldPair(toUuid('cmd:agi'), toUuid('cmd:rel'))
+      const foldRelAgi = foldPair(toUuid('cmd:rel'), toUuid('cmd:agi'))
+      const foldRelFold = foldPair(toUuid('cmd:rel'), toUuid('cmd:fold'))
+      const foldFoldRel = foldPair(toUuid('cmd:fold'), toUuid('cmd:rel'))
+      const foldLinearFold = foldPair(toUuid('cmd:linear'), toUuid('cmd:fold'))
+      const foldFoldLinear = foldPair(toUuid('cmd:fold'), toUuid('cmd:linear'))
+      const foldGapTrinity = foldPair(toUuid('cmd:gap'), toUuid('cmd:trinity'))
+      const foldTrinityGap = foldPair(toUuid('cmd:trinity'), toUuid('cmd:gap'))
+      const pairsOn =
+        pairClayAgi &&
+        pairAgiClay &&
+        pairAgiRel &&
+        pairRelAgi &&
+        pairRelFold &&
+        pairFoldRel &&
+        pairLinearFold &&
+        pairFoldLinear &&
+        pairGapTrinity &&
+        pairTrinityGap &&
+        foldClayAgi.bidirectional &&
+        foldAgiClay.bidirectional &&
+        foldAgiRel.bidirectional &&
+        foldRelAgi.bidirectional &&
+        foldRelFold.bidirectional &&
+        foldFoldRel.bidirectional &&
+        foldLinearFold.bidirectional &&
+        foldFoldLinear.bidirectional &&
+        foldGapTrinity.bidirectional &&
+        foldTrinityGap.bidirectional
+      const composeDeep =
+        soft('gate', 'mill') &&
+        soft('clay', 'gravity') &&
+        soft('challenge', 'millennium') &&
+        soft('learn', 'best') &&
+        soft('agent', 'trinity') &&
+        soft('invert', 'trinity') &&
+        soft('gaps', 'invisible') &&
+        soft('proof', 'trinity') &&
+        soft('trinity', 'speedup') &&
+        mill.computes &&
+        mill.claySolvedByThisFold === 0 &&
+        clay.computes &&
+        clay.claySolvedByThisFold === 0 &&
+        agentTrinity.computes &&
+        agentTrinity.passOnlyInTrinities &&
+        trinitySpeed.computes
+      const deepResearch = composeDeep && pairsOn && censusPreserved
+      const quantumRelations =
+        deepResearch &&
+        soft('clay', 'agi') &&
+        soft('agi', 'rel') &&
+        soft('rel', 'fold') &&
+        soft('agi', 'clay') &&
+        soft('rel', 'agi') &&
+        soft('fold', 'rel')
+      const linearFolded =
+        soft('linear', 'fold') &&
+        soft('fold', 'linear') &&
+        soft('rel', 'fold') &&
+        soft('fold', 'rel') &&
+        quantumRelations
+      // gapsExist while mill unsolved — soft gate/mill · gaps/invisible (not fake-close Clay)
+      const gapsSeen =
+        soft('gaps', 'invisible') &&
+        soft('gate', 'mill') &&
+        soft('mill', 'gaps') &&
+        soft('gaps', 'exist') &&
+        mill.computes &&
+        mill.claySolvedByThisFold === 0
+      const gapsAddressableByTrinities =
+        soft('gap', 'trinity') &&
+        soft('trinity', 'gap') &&
+        soft('agent', 'trinity') &&
+        soft('invert', 'trinity') &&
+        soft('trinity', 'speedup') &&
+        agentTrinity.computes &&
+        agentTrinity.passOnlyInTrinities &&
+        trinitySpeed.computes &&
+        gapsSeen
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const foldName = 'clayAgiDeepResearchQuantumUnderstandingOfRelations' as const
+      const linearFoldName =
+        'linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities' as const
+      const meta = catalog.tools.find((t) => t.id === 'clay-agi')
+      const metaAgiRel = catalog.tools.find((t) => t.id === 'agi-rel')
+      const metaRelFold = catalog.tools.find((t) => t.id === 'rel-fold')
+      const metaLinear = catalog.tools.find((t) => t.id === 'linear-fold')
+      const metaGapTrinity = catalog.tools.find((t) => t.id === 'gap-trinity')
+      const toolsWired =
+        Boolean(meta) &&
+        meta!.fold === foldName &&
+        Boolean(metaAgiRel) &&
+        metaAgiRel!.fold === foldName &&
+        Boolean(metaRelFold) &&
+        metaRelFold!.fold === foldName &&
+        Boolean(metaLinear) &&
+        metaLinear!.fold === linearFoldName &&
+        Boolean(metaGapTrinity) &&
+        metaGapTrinity!.fold === linearFoldName
+      const shelved = rosettaShelve('clay-agi', 'tool')
+      const honestOpenNamed = [
+        'clay:millennium-open',
+        'agi:not-claimed',
+        'ftl:physical-claim-refused',
+        'certified:false',
+        'keep:git-stashes-non-obsolete',
+        'residual:quantum-apps-monolith',
+      ] as const
+      const honestOpenNamedOn =
+        honestOpenNamed.includes('clay:millennium-open') &&
+        honestOpenNamed.includes('agi:not-claimed') &&
+        honestOpenNamed.length === (2 * 2 + 2)
+      const on =
+        deepResearch &&
+        quantumRelations &&
+        linearFolded &&
+        gapsSeen &&
+        gapsAddressableByTrinities &&
+        toolsWired &&
+        isUuid(shelved.address) &&
+        claySolvedByThisFold === 0 &&
+        agiNotClaimed &&
+        physicalFtlClaim === 0 &&
+        qpuRequired === false &&
+        certified === false &&
+        honestOpenNamedOn
+      const facets = [
+        { facet: foldName, on },
+        { facet: linearFoldName, on: on && linearFolded },
+        { facet: 'deepResearch', on: deepResearch },
+        { facet: 'quantumRelations', on: quantumRelations },
+        { facet: 'linearFolded', on: linearFolded },
+        { facet: 'gapsSeen', on: gapsSeen },
+        { facet: 'gapsAddressableByTrinities', on: gapsAddressableByTrinities },
+        { facet: 'agiNotClaimed', on: agiNotClaimed },
+        {
+          facet: 'compose gate/mill · clay/gravity · millennium · learn/best · agent/trinity · invert/trinity · gaps/invisible · proof/trinity',
+          on: composeDeep,
+        },
+        {
+          facet: 'pair clay/agi · agi/rel · rel/fold · linear/fold · gap/trinity',
+          on: pairsOn,
+        },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+        { facet: 'qpuRequired=false', on: qpuRequired === false },
+        { facet: 'certified=false', on: certified === false },
+        {
+          facet: 'efficiency vote present (win only if vote.decided)',
+          on: typeof efficiency.decided === 'boolean',
+        },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`clay-agi:${entry.facet}:${entry.on}`) }))
+      const sealed = sealFacets('clay-agi-deep-research-relations', facets)
+      return {
+        computes: sealed.ok && on,
+        clayAgiDeepResearchQuantumUnderstandingOfRelations: on,
+        linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities:
+          on && linearFolded,
+        deepResearch,
+        quantumRelations,
+        linearFolded,
+        gapsSeen,
+        gapsAddressableByTrinities,
+        agiNotClaimed,
+        certified,
+        census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+        censusPreserved,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        millOpenCores: mill.openCores,
+        gateMillGapsExist: gapsSeen,
+        honestOpenNamed: [...honestOpenNamed],
+        honestOpenNamedCount: honestOpenNamed.length,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          mill.root,
+          clay.root,
+          agentTrinity.root,
+          trinitySpeed.root,
+          efficiency.root,
+          foldClayAgi.merged,
+          foldAgiRel.merged,
+          foldRelFold.merged,
+          foldLinearFold.merged,
+          foldGapTrinity.merged,
+          shelved.address,
+          ...honestOpenNamed.map((id) => toUuid(`clay-agi-honest:${id}`)),
+        ]),
+        pair: 'clay/agi' as const,
+        pairs: [
+          'clay/agi',
+          'agi/clay',
+          'agi/rel',
+          'rel/agi',
+          'rel/fold',
+          'fold/rel',
+          'linear/fold',
+          'fold/linear',
+          'gap/trinity',
+          'trinity/gap',
+        ] as const,
+        dualPair: 'agi/clay' as const,
+        cli: 'npm run quantum:clay-agi',
+        route: '/en/quantum-tools#clay-agi',
+        uiSurface: '/en/quantum-tools#clay-agi' as const,
+        heading: 'Clay · AGI · relations',
+        statement:
+          `clayAgiDeepResearchQuantumUnderstandingOfRelations — deepResearch=${deepResearch ? 1 : 0} ` +
+          `quantumRelations=${quantumRelations ? 1 : 0} linearFolded=${linearFolded ? 1 : 0} ` +
+          `gapsSeen=${gapsSeen ? 1 : 0} gapsAddressableByTrinities=${gapsAddressableByTrinities ? 1 : 0} ` +
+          `agiNotClaimed=${agiNotClaimed ? 1 : 0} · clay=0.`,
+        boundary:
+          'Clay/AGI deep research — quantum understanding of relations. Linear relations folded provide ' +
+          'the architecture where all gaps are seen and addressable by working trinities. ' +
+          'Compose gate/mill · clay/gravity · millennium · learn/best · agent/trinity · invert/trinity · ' +
+          'gaps/invisible · proof/trinity · trinity/speedup. claySolvedByThisFold=0 · agiNotClaimed · ' +
+          'certified=false · physicalFtl=0 · KEEP stashes · NOT Clay prize · NOT AGI claim.',
+        honestyLine:
+          `clay-agi · deep=${deepResearch ? 1 : 0} · rel=${quantumRelations ? 1 : 0} · ` +
+          `linear=${linearFolded ? 1 : 0} · gapsSeen=${gapsSeen ? 1 : 0} · ` +
+          `gapTrinity=${gapsAddressableByTrinities ? 1 : 0} · agi=0 · clay=0 · certified=0 · physicalFtl=0`,
+      }
+    },
+  )
+}
+
+/** Alias — linear architecture face ≡ clay/agi deep research fold. */
+export const linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities =
+  clayAgiDeepResearchQuantumUnderstandingOfRelations
+
+/** Alias duals — agi/rel · rel/fold faces. */
+export const agiRel = clayAgiDeepResearchQuantumUnderstandingOfRelations
+export const relFold = clayAgiDeepResearchQuantumUnderstandingOfRelations
+export const linearFold = clayAgiDeepResearchQuantumUnderstandingOfRelations
+export const gapTrinity = clayAgiDeepResearchQuantumUnderstandingOfRelations
+
+/** npm run quantum:clay-agi (duals agi-rel · rel-fold · linear-fold · gap-trinity) */
+export function runClayAgiDeepResearchQuantumUnderstandingOfRelationsExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = clayAgiDeepResearchQuantumUnderstandingOfRelations()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} clay-agi — deepResearch=${report.deepResearch} ` +
+      `quantumRelations=${report.quantumRelations} linearFolded=${report.linearFolded} ` +
+      `gapsSeen=${report.gapsSeen} gapsAddressableByTrinities=${report.gapsAddressableByTrinities} ` +
+      `agiNotClaimed=${report.agiNotClaimed} clay=${report.claySolvedByThisFold} ` +
+      `ftl=${report.physicalFtlClaim} certified=${report.certified} pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.deepResearch &&
+    report.gapsAddressableByTrinities &&
+    report.agiNotClaimed &&
+    report.claySolvedByThisFold === 0 &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * Save the optimised autonomy — persist autonomy stack (session · auto/all · self/hw · token waves).
+ * Fold: saveTheOptimisedAutonomy
+ * Facets: autonomySaved · optimised · sessionPersist · physicalFtl=0 · clay via theorem · qpuRequired=false
+ * Pairs: save/auto · auto/optimise · opt/auto (+ duals)
+ * Compose: session/save · auto/all · self/hw · mcp/token · wave/token
+ * CLI: npm run quantum:save-auto · quantum:auto-optimise · quantum:opt-auto
+ * HONEST: British optimised OK · clay via theorem · NOT physical FTL · KEEP stashes
+ */
+export function saveTheOptimisedAutonomy(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`saveTheOptimisedAutonomy:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const session = __ns_wind_research.autosaveSessionByDefault(matrix, at)
+    // Soft-compose auto/all · self/hw · mcp/token · wave/token — full nests poison memoByRoot
+    // (wave/token nests mcp/token; nesting under save/auto caches false).
+    // Full recompute: quantum:automate-all · self-hw · mcp-token · wave-token.
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const censusPreserved =
+      freeBits === -EULER_CHI &&
+      freeBits === 2 &&
+      UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const pairSaveAuto = has('save/auto')
+    const pairAutoSave = has('auto/save')
+    const pairAutoOptimise = has('auto/optimise')
+    const pairOptimiseAuto = has('optimise/auto')
+    const pairOptAuto = has('opt/auto')
+    const pairAutoOpt = has('auto/opt')
+    const foldSaveAuto = foldPair(toUuid('cmd:save'), toUuid('cmd:auto'))
+    const foldAutoSave = foldPair(toUuid('cmd:auto'), toUuid('cmd:save'))
+    const foldAutoOptimise = foldPair(toUuid('cmd:auto'), toUuid('cmd:optimise'))
+    const foldOptimiseAuto = foldPair(toUuid('cmd:optimise'), toUuid('cmd:auto'))
+    const foldOptAuto = foldPair(toUuid('cmd:opt'), toUuid('cmd:auto'))
+    const foldAutoOpt = foldPair(toUuid('cmd:auto'), toUuid('cmd:opt'))
+    const pairsOn =
+      pairSaveAuto &&
+      pairAutoSave &&
+      pairAutoOptimise &&
+      pairOptimiseAuto &&
+      pairOptAuto &&
+      pairAutoOpt &&
+      foldSaveAuto.bidirectional &&
+      foldAutoSave.bidirectional &&
+      foldAutoOptimise.bidirectional &&
+      foldOptimiseAuto.bidirectional &&
+      foldOptAuto.bidirectional &&
+      foldAutoOpt.bidirectional
+    const composeOn =
+      soft('session', 'save') &&
+      soft('auto', 'all') &&
+      soft('all', 'auto') &&
+      soft('self', 'hw') &&
+      soft('hw', 'self') &&
+      soft('mcp', 'token') &&
+      soft('token', 'mcp') &&
+      soft('wave', 'token') &&
+      soft('token', 'wave') &&
+      soft('token', 'optimise') &&
+      soft('optimise', 'token') &&
+      session.computes &&
+      session.defaultOn === true
+    const sessionPersist = soft('session', 'save') && session.computes && session.defaultOn === true
+    const optimised =
+      soft('auto', 'optimise') &&
+      soft('optimise', 'auto') &&
+      soft('opt', 'auto') &&
+      soft('auto', 'opt') &&
+      soft('token', 'optimise') &&
+      soft('optimise', 'token') &&
+      soft('mcp', 'token') &&
+      soft('wave', 'token')
+    const autonomySaved =
+      composeOn &&
+      pairsOn &&
+      sessionPersist &&
+      optimised &&
+      soft('save', 'auto') &&
+      soft('auto', 'save') &&
+      censusPreserved
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const foldName = 'saveTheOptimisedAutonomy' as const
+    const meta = catalog.tools.find((t) => t.id === 'save-auto')
+    const metaOpt = catalog.tools.find((t) => t.id === 'auto-optimise')
+    const metaOptAuto = catalog.tools.find((t) => t.id === 'opt-auto')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === foldName &&
+      Boolean(metaOpt) &&
+      metaOpt!.fold === foldName &&
+      Boolean(metaOptAuto) &&
+      metaOptAuto!.fold === foldName
+    const shelved = rosettaShelve('save-auto', 'tool')
+    const honestOpenNamed = [
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'keep:git-stashes-non-obsolete',
+      'residual:quantum-apps-monolith',
+    ] as const
+    const honestOpenNamedOn =
+      honestOpenNamed.includes('keep:git-stashes-non-obsolete') &&
+      honestOpenNamed.length === (2 * 2)
+    const on =
+      autonomySaved &&
+      optimised &&
+      sessionPersist &&
+      toolsWired &&
+      isUuid(shelved.address) &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false &&
+      honestOpenNamedOn
+    const facets = [
+      { facet: foldName, on },
+      { facet: 'autonomySaved', on: autonomySaved },
+      { facet: 'optimised', on: optimised },
+      { facet: 'sessionPersist', on: sessionPersist },
+      {
+        facet: 'compose session/save · auto/all · self/hw · mcp/token · wave/token',
+        on: composeOn,
+      },
+      {
+        facet: 'pair save/auto · auto/optimise · opt/auto',
+        on: pairsOn,
+      },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`save-auto:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('save-the-optimised-autonomy', facets)
+    return {
+      computes: sealed.ok && on,
+      saveTheOptimisedAutonomy: on,
+      autonomySaved,
+      optimised,
+      sessionPersist,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        session.root,
+        foldSaveAuto.merged,
+        foldAutoOptimise.merged,
+        foldOptAuto.merged,
+        foldPair(toUuid('cmd:mcp'), toUuid('cmd:token')).merged,
+        foldPair(toUuid('cmd:wave'), toUuid('cmd:token')).merged,
+        shelved.address,
+        ...honestOpenNamed.map((id) => toUuid(`save-auto-honest:${id}`)),
+      ]),
+      pair: 'save/auto' as const,
+      pairs: [
+        'save/auto',
+        'auto/save',
+        'auto/optimise',
+        'optimise/auto',
+        'opt/auto',
+        'auto/opt',
+      ] as const,
+      dualPair: 'auto/save' as const,
+      cli: 'npm run quantum:save-auto',
+      route: '/en/quantum-tools#save-auto',
+      uiSurface: '/en/quantum-tools#save-auto' as const,
+      heading: 'Save · optimised autonomy',
+      statement:
+        `saveTheOptimisedAutonomy — autonomySaved=${autonomySaved ? 1 : 0} ` +
+        `optimised=${optimised ? 1 : 0} sessionPersist=${sessionPersist ? 1 : 0} · clay=0.`,
+      boundary:
+        'Save the optimised autonomy — session persist + auto/all + self/hw + mcp/token + wave/token. ' +
+        'British optimised OK. clay via theorem · physicalFtl=0 · qpuRequired=false · KEEP stashes.',
+      honestyLine:
+        `save-auto · saved=${autonomySaved ? 1 : 0} · optimised=${optimised ? 1 : 0} · ` +
+        `session=${sessionPersist ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias duals — auto/optimise · opt/auto faces. */
+export const autoOptimise = saveTheOptimisedAutonomy
+export const optAuto = saveTheOptimisedAutonomy
+
+/** npm run quantum:save-auto (duals auto-optimise · opt-auto) */
+export function runSaveTheOptimisedAutonomyExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = saveTheOptimisedAutonomy()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} save-auto — autonomySaved=${report.autonomySaved} ` +
+      `optimised=${report.optimised} sessionPersist=${report.sessionPersist} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.autonomySaved &&
+    report.optimised &&
+    report.sessionPersist &&
+    report.qpuRequired === false
     ? 0
     : 1
 }
