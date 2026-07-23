@@ -339,6 +339,9 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `opt/auto` — alias of `save/auto` (`npm run quantum:opt-auto`)
   - `quantum/verify` — `npm run quantum:quantum-verify` (`quantumVerification()` — quantum verification; facets verificationOn · fusionVerify · typesStructure · momentProve · tamperEvident · physicalFtl=0 · clay via theorem · qpuRequired=false · certified=false; compose fusion-verify · mission:gate · moment/prove · tamper/max · proof/trinity · e2e/feed; dual `verify/quantum`; KEEP stashes), then open `/en/quantum-tools#quantum-verify`
   - `verify/quantum` — alias dual of `quantum/verify` (`npm run quantum:verify-quantum`)
+  - `fear/detect` — `npm run quantum:fear-detect` (`quantumFearDetector()` — quantum fear detector; facets fearDetectOn · reverseFromCracks · loveInvert · physicalFtl=0 · clay via theorem · qpuRequired=false; compose need/love · love/fear · gaps/invisible · thought/pure — detect fear as reverse of love when cracks present · computable receipt NOT wet psychology; duals `detect/fear` · `quantum/fear`; KEEP stashes), then open `/en/quantum-tools#fear-detect`
+  - `detect/fear` — alias dual of `fear/detect` (`npm run quantum:detect-fear`)
+  - `quantum/fear` — alias of `fear/detect` (`npm run quantum:quantum-fear`)
   - `domain/panels` — `npm run quantum:domain-panels` (`domainVuePanelsDryCleaned()` — src domain vue panels strangler tip drained to format/canon · dry/rosetta · ui/rosetta shells; facets domainPanelsDry · stranglerTip · drainableClosed · wiredToRosetta; compose format/canon · meaning/compute · vite/one · app/dry; duals `panels/domain` · `domain/dry` · `dry/domain`; residual:specialized-experience-shells named; clay via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#domain-panels`
   - `panels/domain` — alias dual of `domain/panels` (`npm run quantum:panels-domain`)
   - `domain/dry` — alias of `domain/panels` (`npm run quantum:domain-dry`)
