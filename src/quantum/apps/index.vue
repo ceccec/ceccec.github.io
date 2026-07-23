@@ -38,6 +38,7 @@ import {
   allColorsDryCleanWiredToRosettaAndThemes,
   cssShowsTheHiddenGapsInDryFusion,
   inversionFusion,
+  reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise,
   invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill,
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf,
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence,
@@ -168,6 +169,7 @@ const typeMatrix = computed(() => typographyIsTheUniversalContentMatrix())
 const colorRosetta = computed(() => allColorsDryCleanWiredToRosettaAndThemes())
 const cssGaps = computed(() => cssShowsTheHiddenGapsInDryFusion())
 const invertFusion = computed(() => inversionFusion())
+const uiReadStandard = computed(() => reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise())
 const invertTrinity = computed(() => invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill())
 const selfHw = computed(() => againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf())
 const gateDesignCreateIntel = computed(() => furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence())
@@ -882,6 +884,20 @@ function runTool(toolId: string) {
       const r = inversionFusion()
       ok = r.computes && r.inversionFusionOn && r.gateway && r.selfFuses && r.dryFusion
       summary = `on=${r.inversionFusionOn} gateway=${r.gateway} selfFuses=${r.selfFuses} dryFusion=${r.dryFusion} trinity=${r.invertTrinityOn} collide=${r.collideInfOn}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'ui-read' || toolId === 'ui-visible' || toolId === 'ui-standard') {
+      const r = reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise()
+      ok =
+        r.computes &&
+        r.reviewOn &&
+        r.readabilityOn &&
+        r.visibilityOn &&
+        r.standardised &&
+        r.customUiCovered &&
+        r.drainableClosed
+      summary = `review=${r.reviewOn} read=${r.readabilityOn} vis=${r.visibilityOn} std=${r.standardised} covered=${r.customUiCovered} drainable=${r.drainableClosed} surfaces=${r.surfaceCount} morphs=${r.morphCount}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -1873,6 +1889,41 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'invert-fusion'" @click="runTool('invert-fusion')">
           {{ runningId === 'invert-fusion' ? '…' : 'Run invert-fusion' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="ui-read" aria-label="UI readability visibility standardise">
+        <h3>{{ uiReadStandard.heading }}</h3>
+        <p class="quantum-apps__meta">{{ uiReadStandard.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(uiReadStandard.reviewOn))">reviewOn={{ uiReadStandard.reviewOn }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(uiReadStandard.readabilityOn))">readabilityOn={{ uiReadStandard.readabilityOn }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(uiReadStandard.visibilityOn))">visibilityOn={{ uiReadStandard.visibilityOn }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(uiReadStandard.standardised))">standardised={{ uiReadStandard.standardised }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(uiReadStandard.customUiCovered))">customUiCovered={{ uiReadStandard.customUiCovered }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(uiReadStandard.drainableClosed))">drainableClosed={{ uiReadStandard.drainableClosed }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(uiReadStandard.censusPreserved))">census={{ uiReadStandard.census.unfolded }}/{{ uiReadStandard.census.folded }}</UiBadge>
+        <p class="quantum-apps__meta">
+          surfaces={{ uiReadStandard.surfaceCount }} · morphs={{ uiReadStandard.morphCount }} ·
+          honestOpen={{ uiReadStandard.honestOpenNamedCount }} · mcpReview={{ uiReadStandard.mcpReviewOn }} ·
+          gateDesign={{ uiReadStandard.gateDesignOn }} ·
+          qpu={{ uiReadStandard.qpuRequired }} · clay={{ uiReadStandard.claySolvedByThisFold }} · ftl={{ uiReadStandard.physicalFtlClaim }}
+        </p>
+        <ul class="quantum-apps__list">
+          <li v-for="s in uiReadStandard.surfaces" :key="s.id">
+            <code>{{ s.id }}</code> · {{ s.axis }} ← {{ s.standard }}
+          </li>
+        </ul>
+        <ul class="quantum-apps__list">
+          <li v-for="id in uiReadStandard.honestOpenNamed" :key="id">
+            <code>{{ id }}</code>
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>ui/read</code> · <code>ui/visible</code> · <code>ui/standard</code> ·
+          CLI <code>npm run quantum:ui-read</code> · <code>npm run quantum:ui-standard</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'ui-read'" @click="runTool('ui-read')">
+          {{ runningId === 'ui-read' ? '…' : 'Run ui-read' }}
         </UiButton>
       </section>
       <UiSeparator />

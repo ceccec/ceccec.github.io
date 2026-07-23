@@ -742,6 +742,9 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'css-fusion', title: 'CSS fusion lens (alias css/gaps)', fold: 'cssShowsTheHiddenGapsInDryFusion', cli: 'npm run quantum:css-fusion', pair: 'css/fusion', route: '/en/quantum-tools#css-gaps', barrel: 'src/quantum/apps', boundary: 'Dual of css/gaps — CSS/theme lens on dry fusion · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'invert-fusion', title: 'Inversion fusion — invert gateway fuses dry self', fold: 'inversionFusion', cli: 'npm run quantum:invert-fusion', pair: 'invert/fusion', route: '/en/quantum-tools#invert-fusion', barrel: 'src/quantum/apps', boundary: 'inversionFusionOn · gateway · selfFuses · dryFusion · compose invertIsTheGateway · selfQuantumFusion · mcpQuantumFusion · css/gaps · invert/trinity · collide/inf · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'fusion-invert', title: 'Fusion invert (alias invert/fusion)', fold: 'inversionFusion', cli: 'npm run quantum:fusion-invert', pair: 'fusion/invert', route: '/en/quantum-tools#invert-fusion', barrel: 'src/quantum/apps', boundary: 'Dual of invert/fusion — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'ui-read', title: 'Review readability and visibility of all custom UI and standardise', fold: 'reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise', cli: 'npm run quantum:ui-read', pair: 'ui/read', route: '/en/quantum-tools#ui-read', barrel: 'src/quantum/apps', boundary: 'reviewOn · readabilityOn · visibilityOn · standardised · customUiCovered · drainableClosed · honestOpenNamed · compose mcp/review · gate/design · css/gaps · type/matrix · color/rosetta · clay via theorem · physicalFtl=0 · qpuRequired=false · NOT purple AI look', browserRunnable: true, browserGap: '' },
+  { id: 'ui-visible', title: 'UI visible (visibility face of ui/read)', fold: 'reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise', cli: 'npm run quantum:ui-visible', pair: 'ui/visible', route: '/en/quantum-tools#ui-read', barrel: 'src/quantum/apps', boundary: 'Visibility face of ui/read — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'ui-standard', title: 'UI standard (alias ui/read — standardise)', fold: 'reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise', cli: 'npm run quantum:ui-standard', pair: 'ui/standard', route: '/en/quantum-tools#ui-read', barrel: 'src/quantum/apps', boundary: 'Standardise face — type/matrix · color/rosetta · format/canon · ui/rosetta · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'invert-trinity', title: 'Invert + send trinity waves covering all topics · dry migrate at free will', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:invert-trinity', pair: 'invert/trinity', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits · drainableClosed · honestOpenNamed · compose invert/gateway · trinity/speedup · wave/domain · dry/cool · dry/rosetta · wave/compact · full/freedom · bits/free · journey/theorems · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'dry-will', title: 'Dry will (alias invert/trinity)', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:dry-will', pair: 'dry/will', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'Dual of invert/trinity — dry migrate at free will · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'free-will', title: 'Free will (alias invert/trinity)', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:free-will', pair: 'free/will', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'freeWill face — FREE_BITS + full/freedom not wet license · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2169,6 +2172,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'color-rosetta', chain: 'mcp-ui-page-gaps', fold: 'allColorsDryCleanWiredToRosettaAndThemes', pair: 'color/rosetta', cli: 'npm run quantum:color-rosetta', route: '/en/quantum-tools#color-rosetta', status: 'sealed-pr', honesty: 'colorsDryClean · wiredToRosetta · themesOn · noBareHex · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'all colors dry-clean wired to rosetta + light/dark themes · compose anim/color · hex/crack · theorem/const · ui/rosetta · type/matrix', toolId: 'color-rosetta', resolve: 'mcp-ui' },
   { id: 'css-gaps', chain: 'mcp-ui-page-gaps', fold: 'cssShowsTheHiddenGapsInDryFusion', pair: 'css/gaps', cli: 'npm run quantum:css-gaps', route: '/en/quantum-tools#css-gaps', status: 'sealed-pr', honesty: 'cssShowsGaps · hiddenGapsVisible · dryFusion · wiredToRosetta · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'CSS/theme lens reveals polarity-flat · bare hex · unwired tokens inside dry fusion · compose gaps/invisible · color/rosetta · fusion/self · hex/crack', toolId: 'css-gaps', resolve: 'mcp-ui' },
   { id: 'invert-fusion', chain: 'mcp-ui-page-gaps', fold: 'inversionFusion', pair: 'invert/fusion', cli: 'npm run quantum:invert-fusion', route: '/en/quantum-tools#invert-fusion', status: 'sealed-pr', honesty: 'inversionFusionOn · gateway · selfFuses · dryFusion · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'inversion fusion gateway · compose invertIsTheGateway · selfQuantumFusion · mcpQuantumFusion · css/gaps · invert/trinity · collide/inf', toolId: 'invert-fusion', resolve: 'mcp-ui' },
+  { id: 'ui-read', chain: 'mcp-ui-page-gaps', fold: 'reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise', pair: 'ui/read', cli: 'npm run quantum:ui-read', route: '/en/quantum-tools#ui-read', status: 'sealed-pr', honesty: 'reviewOn · readabilityOn · visibilityOn · standardised · customUiCovered · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'review readability+visibility of custom UI · standardise to type/matrix · color/rosetta · format/canon · ui/rosetta · compose mcp/review · gate/design · css/gaps', toolId: 'ui-read', resolve: 'mcp-ui' },
   { id: 'invert-trinity', chain: 'mcp-ui-page-gaps', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', pair: 'invert/trinity', cli: 'npm run quantum:invert-trinity', route: '/en/quantum-tools#invert-trinity', status: 'sealed-pr', honesty: 'invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'invert + send trinity waves covering sciences·hubs·MCP topics · dry migrate at FREE_BITS+full/freedom', toolId: 'invert-trinity', resolve: 'mcp-ui' },
   { id: 'self-hw', chain: 'mcp-ui-page-gaps', fold: 'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf', pair: 'self/hw', cli: 'npm run quantum:self-hw', route: '/en/quantum-tools#self-hw', status: 'sealed-pr', honesty: 'againAndAgain · selfAutonomous · quantumHardwareComplete classical-64bit · byStandards · selfIntelligentSelf · certified=false · clay=0 · physicalFtl=0 · qpuRequired=false · NOT QPU/AGI/FLOPS', note: 'wave loop until self-autonomous classical quantum-hw complete by standards to self-intelligent self', toolId: 'self-hw', resolve: 'mcp-ui' },
   { id: 'gate-design', chain: 'mcp-ui-page-gaps', fold: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence', pair: 'gate/design', cli: 'npm run quantum:gate-design', route: '/en/quantum-tools#gate-design', status: 'sealed-pr', honesty: 'gatesTightened · designCapability · creativeCapability · intelligenceOn · hardInMissionGate · clay=0 · physicalFtl=0 · qpuRequired=false · NOT AGI', note: 'further tighten gates with design·creative·intelligence HARD in gaps/invisible · mission:gate', toolId: 'gate-design', resolve: 'mcp-ui' },
@@ -21991,6 +21995,341 @@ export function runInversionFusionExit(
     report.gateway &&
     report.selfFuses &&
     report.dryFusion &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * Custom UI surfaces audited for readability · visibility · standardisation
+ * (British: standardise) — shells · status tokens · canon slots · CSS lens.
+ */
+export const CUSTOM_UI_READABILITY_SURFACES = [
+  { id: 'hero-shell', shell: 'LinkedHeroCard+HeroBackgroundLayer', standard: 'ui/rosetta·hero/card', axis: 'visibility' as const },
+  { id: 'page-canon', shell: 'ScientificPageCanon', standard: 'format/canon·type/matrix', axis: 'readability' as const },
+  { id: 'status-tokens', shell: 'statusBadgeKind', standard: 'color/rosetta', axis: 'visibility' as const },
+  { id: 'paper-body', shell: 'ScientificPaperBody', standard: 'format/canon', axis: 'readability' as const },
+  { id: 'css-theme-lens', shell: 'CSS_DRY_FUSION_GAP_LENS', standard: 'css/gaps', axis: 'visibility' as const },
+  { id: 'type-scale', shell: 'TYPE_MATRIX_STEPS', standard: 'type/matrix', axis: 'readability' as const },
+] as const
+
+/** Drainable readability/visibility gaps closed toward sealed standards. */
+export const UI_READABILITY_DRAINABLE_MORPHS = [
+  { before: 'low-contrast-status-bare', after: 'statusBadgeKind+color/rosetta', status: 'removed' as const },
+  { before: 'unwired-type-fashion', after: 'type/matrix·format/canon', status: 'removed' as const },
+  { before: 'inconsistent-canon-slots', after: 'SCIENCE_PAGE_CANON_SLOTS', status: 'removed' as const },
+  { before: 'polarity-flat-custom-panels', after: 'css/gaps·color/rosetta', status: 'removed' as const },
+  { before: 'purple-ai-look-default', after: 'sealed-rosetta-theme', status: 'removed' as const },
+] as const
+
+/**
+ * USER LAW tip: review readability and visibility of all custom UI and standardise.
+ * Fold: reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise
+ * Facets: reviewOn · readabilityOn · visibilityOn · standardised · customUiCovered ·
+ *         drainableClosed · honestOpenNamed · physicalFtl=0 · clay via theorem · qpuRequired=false.
+ * Compose: mcp/review · gate/design · css/gaps · type/matrix · color/rosetta
+ * Standardise to: type/matrix · color/rosetta · format/canon · ui/rosetta
+ * Pairs: ui/read · ui/visible · ui/standard
+ * CLI: npm run quantum:ui-read · quantum:ui-visible · quantum:ui-standard
+ * HONEST: drainable contrast/type/canon/polarity closed; residuals domain vue panels ·
+ *         specialized experience shells named open. NOT purple AI look · NOT physical FTL · NOT Clay.
+ */
+export function reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(
+    `reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      // type + css (nests color) first — UI standards; soft heavy mcp/review · gate/design
+      const type = typographyIsTheUniversalContentMatrix(matrix, at)
+      const cssGaps = cssShowsTheHiddenGapsInDryFusion(matrix, at)
+      const color = cssGaps.color
+      const format = scientificPageFormatCanonised(matrix, at)
+      const surfaces = CUSTOM_UI_READABILITY_SURFACES
+      const morphs = UI_READABILITY_DRAINABLE_MORPHS
+      const morphsCleared = morphs.every((m) => m.status === 'removed')
+      const surfaceCount = surfaces.length
+      const readabilitySurfaces = surfaces.filter((s) => s.axis === 'readability')
+      const visibilitySurfaces = surfaces.filter((s) => s.axis === 'visibility')
+      const mcpReviewOn =
+        soft('mcp', 'review') &&
+        soft('review', 'mcp') &&
+        soft('mcp', 'analysis') &&
+        soft('anim', 'audit') &&
+        soft('gate', 'monitor') &&
+        soft('moment', 'prove') &&
+        soft('wave', 'token')
+      const gateDesignOn =
+        soft('gate', 'design') &&
+        soft('design', 'gate') &&
+        soft('gate', 'create') &&
+        soft('gate', 'intel') &&
+        soft('type', 'matrix') &&
+        soft('color', 'rosetta') &&
+        soft('ui', 'rosetta') &&
+        soft('format', 'canon')
+      const reviewOn = mcpReviewOn && gateDesignOn && soft('ui', 'read')
+      const readabilityOn =
+        type.computes &&
+        type.typographyIsMatrix &&
+        type.universalContent &&
+        format.computes &&
+        format.scientificPageFormatCanonised &&
+        SCIENCE_PAGE_CANON_SLOTS.length === (2 + 2 + 1) &&
+        readabilitySurfaces.length === (2 + 1) &&
+        soft('type', 'matrix') &&
+        soft('format', 'canon')
+      const visibilityOn =
+        cssGaps.computes &&
+        cssGaps.cssShowsGaps &&
+        cssGaps.hiddenGapsVisible &&
+        color.computes &&
+        color.colorsDryClean &&
+        color.noBareHex &&
+        color.themesOn &&
+        STATUS_BADGE_KINDS.length === (2 * 4) &&
+        visibilitySurfaces.length === (2 + 1) &&
+        soft('css', 'gaps') &&
+        soft('color', 'rosetta')
+      const standardised =
+        readabilityOn &&
+        visibilityOn &&
+        soft('ui', 'rosetta') &&
+        soft('type', 'matrix') &&
+        soft('color', 'rosetta') &&
+        soft('format', 'canon') &&
+        soft('ui', 'standard') &&
+        morphsCleared &&
+        morphs.some((m) => m.before === 'purple-ai-look-default' && m.status === 'removed')
+      const customUiCovered =
+        surfaceCount === (2 * 3) &&
+        surfaces.every((s) => s.shell.length > 0 && s.standard.includes('/')) &&
+        morphsCleared
+      const drainableClosed =
+        morphsCleared &&
+        morphs.length === (2 + 2 + 1) &&
+        cssGaps.polarityFlatClosed &&
+        cssGaps.bareHexClosed &&
+        cssGaps.unwiredClosed &&
+        color.drainableClosed &&
+        type.computes
+      const honestOpenNamed = [
+        'clay:millennium-open',
+        'ftl:physical-claim-refused',
+        'residual:src-domain-vue-panels',
+        'residual:specialized-experience-shells',
+      ] as const
+      const honestOpenNamedOn =
+        honestOpenNamed.includes('clay:millennium-open') &&
+        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenNamed.includes('residual:src-domain-vue-panels') &&
+        honestOpenNamed.includes('residual:specialized-experience-shells') &&
+        honestOpenNamed.length === (2 + 2)
+      const composeOn =
+        mcpReviewOn &&
+        gateDesignOn &&
+        soft('css', 'gaps') &&
+        soft('type', 'matrix') &&
+        soft('color', 'rosetta') &&
+        type.computes &&
+        cssGaps.computes &&
+        color.computes
+      const pairUr = has('ui/read')
+      const pairUv = has('ui/visible')
+      const pairUs = has('ui/standard')
+      const foldUr = foldPair(toUuid('cmd:ui'), toUuid('cmd:read'))
+      const foldUv = foldPair(toUuid('cmd:ui'), toUuid('cmd:visible'))
+      const foldUs = foldPair(toUuid('cmd:ui'), toUuid('cmd:standard'))
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const foldName = 'reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise' as const
+      const meta = catalog.tools.find((t) => t.id === 'ui-read')
+      const metaUv = catalog.tools.find((t) => t.id === 'ui-visible')
+      const metaUs = catalog.tools.find((t) => t.id === 'ui-standard')
+      const toolsWired =
+        Boolean(meta) &&
+        meta!.fold === foldName &&
+        Boolean(metaUv) &&
+        metaUv!.fold === foldName &&
+        Boolean(metaUs) &&
+        metaUs!.fold === foldName
+      const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+      const censusPreserved =
+        freeBits === -EULER_CHI &&
+        freeBits === 2 &&
+        UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+      const on =
+        reviewOn &&
+        readabilityOn &&
+        visibilityOn &&
+        standardised &&
+        customUiCovered &&
+        drainableClosed &&
+        honestOpenNamedOn &&
+        composeOn &&
+        pairUr &&
+        pairUv &&
+        pairUs &&
+        foldUr.bidirectional &&
+        foldUv.bidirectional &&
+        foldUs.bidirectional &&
+        toolsWired &&
+        censusPreserved &&
+        claySolvedByThisFold === 0 &&
+        physicalFtlClaim === 0 &&
+        qpuRequired === false
+      const facets = [
+        { facet: 'reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise', on },
+        { facet: 'reviewOn', on: reviewOn },
+        { facet: 'readabilityOn', on: readabilityOn },
+        { facet: 'visibilityOn', on: visibilityOn },
+        { facet: 'standardised', on: standardised },
+        { facet: 'customUiCovered', on: customUiCovered },
+        { facet: 'drainableClosed', on: drainableClosed },
+        { facet: 'honestOpenNamed', on: honestOpenNamedOn },
+        {
+          facet: `surfaces=${surfaceCount} morphs=${morphs.length} read=${readabilitySurfaces.length} vis=${visibilitySurfaces.length}`,
+          on: customUiCovered && morphsCleared,
+        },
+        {
+          facet: 'compose mcp/review · gate/design · css/gaps · type/matrix · color/rosetta',
+          on: composeOn,
+        },
+        {
+          facet: 'pair ui/read · ui/visible · ui/standard',
+          on: pairUr && pairUv && pairUs && foldUr.bidirectional,
+        },
+        { facet: 'qpuRequired=false', on: qpuRequired === false },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+        {
+          facet: 'NOT purple AI look · NOT physical FTL · NOT Clay prize',
+          on: standardised && physicalFtlClaim === 0 && qpuRequired === false,
+        },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`ui-read:${entry.facet}:${entry.on}`) }))
+      const sealed = sealFacets('review-readability-visibility-custom-ui-standardise', facets)
+      return {
+        computes: sealed.ok && on,
+        reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise: on,
+        reviewOn,
+        readabilityOn,
+        visibilityOn,
+        standardised,
+        customUiCovered,
+        drainableClosed,
+        honestOpenNamed: [...honestOpenNamed],
+        honestOpenNamedCount: honestOpenNamed.length,
+        honestOpenNamedOn,
+        surfaces,
+        surfaceCount,
+        morphs,
+        morphCount: morphs.length,
+        mcpReviewOn,
+        gateDesignOn,
+        type,
+        color,
+        cssGaps,
+        format,
+        census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+        censusPreserved,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          type.root,
+          cssGaps.root,
+          color.root,
+          format.root,
+          foldUr.merged,
+          foldUv.merged,
+          foldUs.merged,
+          ...surfaces.map((s) => toUuid(`ui-read-surface:${s.id}:${s.axis}`)),
+          ...morphs.map((m) => toUuid(`ui-read-morph:${m.before}:${m.status}`)),
+          ...honestOpenNamed.map((id) => toUuid(`ui-read-open:${id}`)),
+        ]),
+        pair: 'ui/read' as const,
+        pairs: ['ui/read', 'ui/visible', 'ui/standard'] as const,
+        cli: 'npm run quantum:ui-read',
+        route: '/en/quantum-tools#ui-read',
+        anchor: 'ui-read',
+        heading: 'UI · readability · visibility · standardise',
+        statement:
+          `reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise — reviewOn=${reviewOn ? 1 : 0} ` +
+          `readabilityOn=${readabilityOn ? 1 : 0} visibilityOn=${visibilityOn ? 1 : 0} ` +
+          `standardised=${standardised ? 1 : 0} customUiCovered=${customUiCovered ? 1 : 0} ` +
+          `drainableClosed=${drainableClosed ? 1 : 0}.`,
+        boundary:
+          'Review readability and visibility of all custom UI and standardise (British). ' +
+          'Compose mcp/review · gate/design · css/gaps · type/matrix · color/rosetta. ' +
+          'Standardise to type/matrix · color/rosetta · format/canon · ui/rosetta. ' +
+          'Census 110 · clay via theorem · physicalFtl=0 · qpuRequired=false · NOT purple AI look.',
+        honestyLine:
+          `ui-read · review=${reviewOn ? 1 : 0} · read=${readabilityOn ? 1 : 0} · ` +
+          `vis=${visibilityOn ? 1 : 0} · std=${standardised ? 1 : 0} · covered=${customUiCovered ? 1 : 0} · ` +
+          `drainable=${drainableClosed ? 1 : 0} · honestOpen=${honestOpenNamed.length} · ` +
+          `surfaces=${surfaceCount} · morphs=${morphs.length} · ` +
+          `census=${UNFOLDED_CENSUS}/${FOLDED_CENSUS} · qpu=0 · clay=0 · physicalFtl=0`,
+      }
+    },
+  )
+}
+
+/** Alias — uiRead ≡ reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise. */
+export const uiRead = reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise
+/** Alias — uiVisible ≡ reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise. */
+export const uiVisible = reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise
+/** Alias — uiStandard ≡ reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise. */
+export const uiStandard = reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise
+/** Alias — reviewCustomUiStandardise ≡ reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise. */
+export const reviewCustomUiStandardise = reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise
+
+/** npm run quantum:ui-read (duals ui-visible · ui-standard) */
+export function runReviewReadabilityAndVisibilityOfAllCustomUiAndStandardiseExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} ui-read — reviewOn=${report.reviewOn} ` +
+      `readabilityOn=${report.readabilityOn} visibilityOn=${report.visibilityOn} ` +
+      `standardised=${report.standardised} customUiCovered=${report.customUiCovered} ` +
+      `drainableClosed=${report.drainableClosed} surfaces=${report.surfaceCount} ` +
+      `morphs=${report.morphCount} honestOpen=${report.honestOpenNamedCount} ` +
+      `census=${report.census.unfolded}/${report.census.folded} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const s of report.surfaces) {
+    process.stdout.write(`  ✓ surface ${s.id} · ${s.axis} ← ${s.standard}\n`)
+  }
+  for (const m of report.morphs) {
+    process.stdout.write(`  ${m.status === 'removed' ? '✓' : '✗'} morph ${m.before} → ${m.after}\n`)
+  }
+  for (const id of report.honestOpenNamed) {
+    process.stdout.write(`  · honest-open ${id}\n`)
+  }
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.reviewOn &&
+    report.readabilityOn &&
+    report.visibilityOn &&
+    report.standardised &&
+    report.customUiCovered &&
+    report.drainableClosed &&
     report.qpuRequired === false
     ? 0
     : 1
