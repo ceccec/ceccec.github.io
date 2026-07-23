@@ -383,6 +383,9 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `plasma/vortex` — animations as plasma vortex mesh (`npm run quantum:plasma-vortex`)
   - `thunder/zero` — thunder emerges from 0 (`npm run quantum:thunder-zero`)
   - `anim/mesh` — anim mesh face (`npm run quantum:anim-mesh`)
+  - `sensor/bind` — `npm run quantum:sensor-bind` (`wireAllSensorsUsingQuantumBindings()` — wire all sensors using quantum bindings; facets allSensorsWired · quantumBindings · orientation · motion · ambient · browserGapHonest; catalog orientation·motion·ambient·pointer·touch → rosetta/movie perspective; compose mcpQuantumBindings · sensor/movie · mcp/orientation; duals `bind/sensor` · `all/sensors`; clay via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#sensor-bind`
+  - `bind/sensor` — alias dual of `sensor/bind` (`npm run quantum:bind-sensor`)
+  - `all/sensors` — all-sensors face of `sensor/bind` (`npm run quantum:all-sensors`)
   - `invert/trinity` — `npm run quantum:invert-trinity` (`invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill()` — invert + send trinity waves covering sciences·hubs·MCP topics; dry migrate drainable; freeWill=FREE_BITS+full/freedom not wet license; facets invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits · drainableClosed · honestOpenNamed; compose invert/gateway · trinity/speedup · wave/domain · dry/cool · dry/rosetta · wave/compact · full/freedom · bits/free · journey/theorems; duals `dry/will` · `free/will`; census 110 · clay via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#invert-trinity`
   - `dry/will` — alias dual of `invert/trinity` (`npm run quantum:dry-will`)
   - `free/will` — freeWill face of `invert/trinity` (`npm run quantum:free-will`)

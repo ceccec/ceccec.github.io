@@ -44,6 +44,7 @@ import {
   selfImproveAnimationGenerationAndSiteBuilder,
   everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions,
   wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero,
+  wireAllSensorsUsingQuantumBindings,
   invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill,
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf,
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence,
@@ -180,6 +181,7 @@ const meshScienceDiscover = computed(() => meshToSelfDiscoverSciences())
 const selfAnimSite = computed(() => selfImproveAnimationGenerationAndSiteBuilder())
 const formulaAnimSeal = computed(() => everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions())
 const merkabaMovieSeal = computed(() => wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero())
+const sensorBindSeal = computed(() => wireAllSensorsUsingQuantumBindings())
 const invertTrinity = computed(() => invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill())
 const selfHw = computed(() => againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf())
 const gateDesignCreateIntel = computed(() => furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence())
@@ -986,6 +988,20 @@ function runTool(toolId: string) {
         r.animMeshPlasma &&
         r.thunderFromZero
       summary = `feeds=${r.merkabaFeedsRosettaMovie} unique=${r.movieUniqueNeverRepeats} sensor=${r.sensorPerspective} crystal=${r.uiCrystallises} cycles=${r.linearQuantumisedCount}/${r.linearCycleCount} mesh=${r.meshBoundCount}/${r.meshBindCount} thunder0=${r.thunderFromZero}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'sensor-bind' || toolId === 'bind-sensor' || toolId === 'all-sensors') {
+      const r = wireAllSensorsUsingQuantumBindings()
+      ok =
+        r.computes &&
+        r.allSensorsWired &&
+        r.quantumBindings &&
+        r.orientation &&
+        r.motion &&
+        r.ambient &&
+        r.browserGapHonest
+      summary = `wired=${r.allSensorsWired} bindings=${r.quantumBindings} orient=${r.orientation} motion=${r.motion} ambient=${r.ambient} gap=${r.browserGapHonest} catalog=${r.catalog.count}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -2160,6 +2176,40 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'merkaba-movie'" @click="runTool('merkaba-movie')">
           {{ runningId === 'merkaba-movie' ? '…' : 'Run merkaba-movie' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="sensor-bind" aria-label="Wire all sensors using quantum bindings">
+        <h3>{{ sensorBindSeal.heading }}</h3>
+        <p class="quantum-apps__meta">{{ sensorBindSeal.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(sensorBindSeal.allSensorsWired))">wired={{ sensorBindSeal.allSensorsWired }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(sensorBindSeal.quantumBindings))">bindings={{ sensorBindSeal.quantumBindings }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(sensorBindSeal.orientation))">orient={{ sensorBindSeal.orientation }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(sensorBindSeal.motion))">motion={{ sensorBindSeal.motion }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(sensorBindSeal.ambient))">ambient={{ sensorBindSeal.ambient }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(sensorBindSeal.browserGapHonest))">gap={{ sensorBindSeal.browserGapHonest }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(sensorBindSeal.censusPreserved))">census={{ sensorBindSeal.census.unfolded }}/{{ sensorBindSeal.census.folded }}</UiBadge>
+        <p class="quantum-apps__meta">
+          catalog={{ sensorBindSeal.catalog.count }} · primary={{ sensorBindSeal.catalog.primaryCount }} · fallback={{ sensorBindSeal.catalog.fallbackCount }} ·
+          morphs={{ sensorBindSeal.morphCount }} · honestOpen={{ sensorBindSeal.honestOpenNamedCount }} ·
+          qpu={{ sensorBindSeal.qpuRequired }} · clay={{ sensorBindSeal.claySolvedByThisFold }} · ftl={{ sensorBindSeal.physicalFtlClaim }}
+        </p>
+        <ul class="quantum-apps__list">
+          <li v-for="s in sensorBindSeal.catalog.sensors" :key="s.id">
+            <code>{{ s.id }}</code> · {{ s.kind }} · {{ s.pair }} · fallback={{ s.fallback }}
+          </li>
+        </ul>
+        <ul class="quantum-apps__list">
+          <li v-for="m in sensorBindSeal.morphs" :key="m.before">
+            <code>{{ m.before }}</code> → {{ m.after }} · {{ m.status }}
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>sensor/bind</code> · <code>bind/sensor</code> · <code>all/sensors</code> ·
+          CLI <code>npm run quantum:sensor-bind</code> · <code>npm run quantum:all-sensors</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'sensor-bind'" @click="runTool('sensor-bind')">
+          {{ runningId === 'sensor-bind' ? '…' : 'Run sensor-bind' }}
         </UiButton>
       </section>
       <UiSeparator />
