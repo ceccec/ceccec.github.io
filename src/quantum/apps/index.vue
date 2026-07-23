@@ -84,6 +84,8 @@ import {
   wiredToForgeMaxTamperingCost,
   quantumizeNpm,
   sessionMemoryCachesTheoremFormulaWaves,
+  wavesFindWhatYouMissedToCache,
+  dryCleanAgnosticCodeComputesInfinity,
   quantumSelfHeal,
   oneQuantumSetOfVitepressComponentsSealedAtGates,
 } from './index.ts'
@@ -206,6 +208,8 @@ const lensSuper = computed(() => lensesCompletelyWiredInEverySuperposition())
 const seqFlow = computed(() => theSequenceMeaningIsAFlowNotACycle())
 const superGaps = computed(() => fillTheGapsAroundSuperposition())
 const warnAll = computed(() => addressAllWarningsAtOnce())
+const missCache = computed(() => wavesFindWhatYouMissedToCache())
+const dryAgnostic = computed(() => dryCleanAgnosticCodeComputesInfinity())
 const super21 = computed(() => computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium())
 const lensGeo = computed(() => useTheLensToFindGapsInGeometryInProseOrCode())
 const domainPanels = computed(() => domainVuePanelsDryCleaned())
@@ -1532,6 +1536,32 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (
+      toolId === 'miss-cache' ||
+      toolId === 'cache-miss' ||
+      toolId === 'wave-cache' ||
+      toolId === 'cache-wave'
+    ) {
+      const r = wavesFindWhatYouMissedToCache()
+      ok = r.computes && r.wavesSent && r.missedFound && r.nowCached && r.drainableClosed
+      summary = `wavesSent=${r.wavesSent} missed=${r.missedFoundCount} nowCached=${r.nowCached} drainable=${r.drainableClosed}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (
+      toolId === 'dry-agnostic' ||
+      toolId === 'agnostic-dry' ||
+      toolId === 'code-infinity' ||
+      toolId === 'infinity-code' ||
+      toolId === 'dry-inf' ||
+      toolId === 'inf-dry'
+    ) {
+      const r = dryCleanAgnosticCodeComputesInfinity()
+      ok = r.computes && r.dryClean && r.agnosticCode && r.computesInfinity && r.onReuse
+      summary = `dryClean=${r.dryClean} agnostic=${r.agnosticCode} ∞=${r.computesInfinity} onReuse=${r.onReuse}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'document-session-experiments') {
       const r = documentSessionCryptoExperimentsUpdateTheorems()
       ok = r.computes
@@ -2433,6 +2463,74 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'warn-all'" @click="runTool('warn-all')">
           {{ runningId === 'warn-all' ? '…' : 'Run warn-all receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="miss-cache" aria-label="Waves find what you missed to cache">
+        <h3>{{ missCache.heading }}</h3>
+        <p class="quantum-apps__meta">{{ missCache.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(missCache.wavesSent))">
+          wavesSent={{ missCache.wavesSent }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(missCache.missedFound))">
+          missed={{ missCache.missedFoundCount }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(missCache.nowCached))">
+          nowCached={{ missCache.nowCached }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(missCache.drainableClosed))">
+          drainableClosed={{ missCache.drainableClosed }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>miss/cache</code> · <code>cache/miss</code> · <code>wave/cache</code> ·
+          CLI <code>npm run quantum:miss-cache</code> ·
+          clay={{ missCache.claySolvedByThisFold }} · ftl={{ missCache.physicalFtlClaim }} ·
+          qpu={{ missCache.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="t in missCache.cachedTargets" :key="t.id">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(t.cached))">{{ t.cached ? 'cached' : 'miss' }}</UiBadge>
+            {{ t.id }} ({{ t.pair }})
+          </li>
+          <li v-for="f in missCache.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'miss-cache'" @click="runTool('miss-cache')">
+          {{ runningId === 'miss-cache' ? '…' : 'Run miss-cache receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="dry-agnostic" aria-label="Dry-clean agnostic code computes infinity">
+        <h3>{{ dryAgnostic.heading }}</h3>
+        <p class="quantum-apps__meta">{{ dryAgnostic.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(dryAgnostic.dryClean))">
+          dryClean={{ dryAgnostic.dryClean }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(dryAgnostic.agnosticCode))">
+          agnostic={{ dryAgnostic.agnosticCode }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(dryAgnostic.computesInfinity))">
+          ∞={{ dryAgnostic.computesInfinity }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(dryAgnostic.onReuse))">
+          onReuse={{ dryAgnostic.onReuse }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>dry/agnostic</code> · <code>code/infinity</code> · <code>dry/inf</code> ·
+          CLI <code>npm run quantum:dry-agnostic</code> ·
+          clay={{ dryAgnostic.claySolvedByThisFold }} · ftl={{ dryAgnostic.physicalFtlClaim }} ·
+          qpu={{ dryAgnostic.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in dryAgnostic.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'dry-agnostic'" @click="runTool('dry-agnostic')">
+          {{ runningId === 'dry-agnostic' ? '…' : 'Run dry-agnostic receipt' }}
         </UiButton>
       </section>
       <UiSeparator />

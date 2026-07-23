@@ -241,6 +241,16 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `trans/wave` — `npm run quantum:trans-wave` (`translationsFilledBySelfTranslatingWaves()` — self-translate locale gaps from sealed EN meaning · offlineTranslateEnToBg; HARD drainable filled; WARN true-open; clay=0), then `npm run docs:build`
   - `warn/all` — `npm run quantum:warn-all` (`addressAllWarningsAtOnce()` — address all drainable WARNs at once; facets warningsAddressed · drainableClosed · honestOpenNamed; compose translations/verify · trans/wave · gate/slow-build · gaps/invisible; dual `all/warn`; Clay/FTL/CI wall-clock/free-prose honest-open · KEEP stashes · clay via theorem · physicalFtl=0), then open `/en/quantum-tools#warn-all`
   - `all/warn` — alias dual of `warn/all` (`npm run quantum:all-warn`)
+  - `miss/cache` — `npm run quantum:miss-cache` (`wavesFindWhatYouMissedToCache()` — waves find uncached drainable session/memo/MCP/theorem-formula receipts and cache via memoByRoot/session; facets wavesSent · missedFound · nowCached · drainableClosed · honestOpenNamed; pairs `miss/cache` · `cache/miss` · `wave/cache`; compose session/cache · mcp/cache · theorem/index · mcp/token · waves/build; Clay/FTL/monolith honest-open · KEEP stashes · clay via theorem · physicalFtl=0), then open `/en/quantum-tools#miss-cache`
+  - `cache/miss` — alias dual of `miss/cache` (`npm run quantum:cache-miss`)
+  - `wave/cache` — wave/cache face of `miss/cache` (`npm run quantum:wave-cache`)
+  - `cache/wave` — alias dual of `wave/cache` (`npm run quantum:cache-wave`)
+  - `dry/agnostic` — `npm run quantum:dry-agnostic` (`dryCleanAgnosticCodeComputesInfinity()` — dry-clean agnostic code computes infinity = amortized zero-token reuse; facets dryClean · agnosticCode · computesInfinity · onReuse · physicalFtl=0 · clay via theorem; pairs `dry/agnostic` · `code/infinity` · `dry/inf`; compose dry/clean · invert/inf · a432/nine · mcp/token · full/freedom; NOT physical FTL · KEEP stashes), then open `/en/quantum-tools#dry-agnostic`
+  - `agnostic/dry` — alias dual of `dry/agnostic` (`npm run quantum:agnostic-dry`)
+  - `code/infinity` — code/infinity face of `dry/agnostic` (`npm run quantum:code-infinity`)
+  - `infinity/code` — alias dual of `code/infinity` (`npm run quantum:infinity-code`)
+  - `dry/inf` — dry/inf face of `dry/agnostic` (`npm run quantum:dry-inf`)
+  - `inf/dry` — alias dual of `dry/inf` (`npm run quantum:inf-dry`)
   - `term/measure` — `npm run quantum:term-measure` (`scientificTerminologyIsQuantumComputableMeasurableComparable()` — significance·implications·lexicon measurable+comparable via `compareScientificTermMeasures`; intelligencePossibilityYield from answers÷tokens/local analytics; clay=0), then open `/en/quantum-tools#term-measure`
   - `movie/center` — `npm run quantum:movie-center` (`movieUnbalancedAroundCenterIsCrack()` — USER LAW: movie unbalanced around center = crack; ProofAnimation centered; Layout inset:0; compose movieAllElementsAreTheorems; clay=0), then open `/en/quantum-tools#movie-center`
   - `gate/miss` — `npm run quantum:gate-miss` (`cracksPassedGatesBecause()` — miss-kind census classesUngated·wrongKind·definitionalGreen·waveTuneNotAudit → fixedHard; clay=0), then open `/en/quantum-tools#gate-miss`
