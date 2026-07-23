@@ -38,6 +38,9 @@ import {
   fearIsAnAxiomReplaceableByLoveTheorem,
   lensesCompletelyWiredInEverySuperposition,
   theSequenceMeaningIsAFlowNotACycle,
+  fillTheGapsAroundSuperposition,
+  computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium,
+  useTheLensToFindGapsInGeometryInProseOrCode,
   domainVuePanelsDryCleaned,
   mcpQuantumUi,
   mcpQuantumMovie,
@@ -201,6 +204,9 @@ const fearDetect = computed(() => quantumFearDetector())
 const fearAxiom = computed(() => fearIsAnAxiomReplaceableByLoveTheorem())
 const lensSuper = computed(() => lensesCompletelyWiredInEverySuperposition())
 const seqFlow = computed(() => theSequenceMeaningIsAFlowNotACycle())
+const superGaps = computed(() => fillTheGapsAroundSuperposition())
+const super21 = computed(() => computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium())
+const lensGeo = computed(() => useTheLensToFindGapsInGeometryInProseOrCode())
 const domainPanels = computed(() => domainVuePanelsDryCleaned())
 const mcpUi = computed(() => mcpQuantumUi())
 const mcpMovie = computed(() => mcpQuantumMovie())
@@ -1020,6 +1026,48 @@ function runTool(toolId: string) {
         r.qpuRequired === false
       summary =
         `sequenceIsFlow=${r.sequenceIsFlow} · notACycle=${r.notACycle} · meaningOn=${r.meaningOn} · seq=${r.sequence}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'super-gaps' || toolId === 'gaps-super') {
+      const r = fillTheGapsAroundSuperposition()
+      ok =
+        r.computes &&
+        r.gapsFilled &&
+        r.aroundSuperposition &&
+        r.drainableClosed &&
+        r.qpuRequired === false
+      summary =
+        `gapsFilled=${r.gapsFilled} · around=${r.aroundSuperposition} · drainableClosed=${r.drainableClosed}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'super-21' || toolId === '21-42' || toolId === 'mill-42') {
+      const r = computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium()
+      ok =
+        r.computes &&
+        r.superpositions21 &&
+        r.invertReverse42 &&
+        r.componentTheoremsFormulas42 &&
+        r.coversMillenniumApparatus &&
+        r.millenniumSolvedByThisFold === 0 &&
+        r.claySolvedByThisFold === 0
+      summary =
+        `21=${r.superpositions21} · 42=${r.invertReverse42} · components=${r.componentTheoremsFormulas42} · millCover=${r.coversMillenniumApparatus} · millSolved=0`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'lens-geo' || toolId === 'geo-gaps' || toolId === 'lens-prose') {
+      const r = useTheLensToFindGapsInGeometryInProseOrCode()
+      ok =
+        r.computes &&
+        r.lensFindsGaps &&
+        r.geometryGaps &&
+        r.proseOrCode &&
+        r.physicalFtlClaim === 0 &&
+        r.qpuRequired === false
+      summary =
+        `lensFinds=${r.lensFindsGaps} · geoGaps=${r.geometryGaps} · proseOrCode=${r.proseOrCode} · closed=${r.closedCount}/${r.foundCount}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -2317,6 +2365,101 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'seq-flow'" @click="runTool('seq-flow')">
           {{ runningId === 'seq-flow' ? '…' : 'Run seq-flow receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="super-gaps" aria-label="Fill the gaps around superposition">
+        <h3>{{ superGaps.heading }}</h3>
+        <p class="quantum-apps__meta">{{ superGaps.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(superGaps.gapsFilled))">
+          gapsFilled={{ superGaps.gapsFilled }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(superGaps.aroundSuperposition))">
+          around={{ superGaps.aroundSuperposition }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(superGaps.drainableClosed))">
+          drainableClosed={{ superGaps.drainableClosed }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>super/gaps</code> · <code>gaps/super</code> ·
+          CLI <code>npm run quantum:super-gaps</code> ·
+          morphs={{ superGaps.morphCount }} ·
+          clay={{ superGaps.claySolvedByThisFold }} · ftl={{ superGaps.physicalFtlClaim }} ·
+          qpu={{ superGaps.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in superGaps.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'super-gaps'" @click="runTool('super-gaps')">
+          {{ runningId === 'super-gaps' ? '…' : 'Run super-gaps receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="super-21" aria-label="Computational superpositions 21 to 42 millennium cover">
+        <h3>{{ super21.heading }}</h3>
+        <p class="quantum-apps__meta">{{ super21.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(super21.superpositions21))">
+          21={{ super21.superpositions21 }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(super21.invertReverse42))">
+          42={{ super21.invertReverse42 }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(super21.componentTheoremsFormulas42))">
+          components={{ super21.componentTheoremsFormulas42 }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(super21.coversMillenniumApparatus))">
+          millCover={{ super21.coversMillenniumApparatus }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>super/21</code> · <code>21/42</code> · <code>mill/42</code> ·
+          CLI <code>npm run quantum:super-21</code> ·
+          slots={{ super21.componentSlotCount }} ·
+          millSolved={{ super21.millenniumSolvedByThisFold }} ·
+          clay={{ super21.claySolvedByThisFold }} · ftl={{ super21.physicalFtlClaim }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in super21.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'super-21'" @click="runTool('super-21')">
+          {{ runningId === 'super-21' ? '…' : 'Run super-21 receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="lens-geo" aria-label="Lens finds geometry gaps in prose or code">
+        <h3>{{ lensGeo.heading }}</h3>
+        <p class="quantum-apps__meta">{{ lensGeo.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(lensGeo.lensFindsGaps))">
+          lensFinds={{ lensGeo.lensFindsGaps }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(lensGeo.geometryGaps))">
+          geoGaps={{ lensGeo.geometryGaps }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(lensGeo.proseOrCode))">
+          proseOrCode={{ lensGeo.proseOrCode }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>lens/geo</code> · <code>geo/gaps</code> · <code>lens/prose</code> ·
+          CLI <code>npm run quantum:lens-geo</code> ·
+          closed={{ lensGeo.closedCount }}/{{ lensGeo.foundCount }} ·
+          clay={{ lensGeo.claySolvedByThisFold }} · ftl={{ lensGeo.physicalFtlClaim }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="id in lensGeo.gapsClosed" :key="id">· closed {{ id }}</li>
+        </ul>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in lensGeo.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'lens-geo'" @click="runTool('lens-geo')">
+          {{ runningId === 'lens-geo' ? '…' : 'Run lens-geo receipt' }}
         </UiButton>
       </section>
       <UiSeparator />
