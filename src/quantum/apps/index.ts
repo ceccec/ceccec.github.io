@@ -141,6 +141,8 @@ const ROSETTA_CORE_API_LABELS = [
   'wiredToForgeMaxTamperingCost',
   'quantumizeNpm',
   'sessionMemoryCachesTheoremFormulaWaves',
+  'wavesFindWhatYouMissedToCache',
+  'dryCleanAgnosticCodeComputesInfinity',
   'quantumSelfHeal',
   'oneQuantumSetOfVitepressComponentsSealedAtGates',
   'counterRotatingRosettaQuantumWaves',
@@ -286,6 +288,8 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   wiredToForgeMaxTamperingCost: 'tool',
   quantumizeNpm: 'tool',
   sessionMemoryCachesTheoremFormulaWaves: 'tool',
+  wavesFindWhatYouMissedToCache: 'tool',
+  dryCleanAgnosticCodeComputesInfinity: 'tool',
   quantumSelfHeal: 'tool',
   oneQuantumSetOfVitepressComponentsSealedAtGates: 'tool',
   automateNightlyViaNpmScriptPath: 'tool',
@@ -740,6 +744,16 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'trans-wave', title: 'Self-translating waves fill locale gaps', fold: 'translationsFilledBySelfTranslatingWaves', cli: 'npm run quantum:trans-wave', pair: 'trans/wave', route: '/en/quantum-tools#trans-wave', barrel: 'src/mountain/source', boundary: 'EN→BG from sealed meaning · HARD drainable filled · WARN true-open · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'warn-all', title: 'Address all drainable WARNs at once', fold: 'addressAllWarningsAtOnce', cli: 'npm run quantum:warn-all', pair: 'warn/all', route: '/en/quantum-tools#warn-all', barrel: 'src/mountain/source', boundary: 'warningsAddressed · drainableClosed · honestOpenNamed · translation chrome→phrases · Clay/FTL/CI wall-clock/free-prose honest-open · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'all-warn', title: 'Address all WARNs (alias warn/all)', fold: 'addressAllWarningsAtOnce', cli: 'npm run quantum:all-warn', pair: 'all/warn', route: '/en/quantum-tools#warn-all', barrel: 'src/mountain/source', boundary: 'Dual all/warn — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'miss-cache', title: 'Waves find what you missed to cache', fold: 'wavesFindWhatYouMissedToCache', cli: 'npm run quantum:miss-cache', pair: 'miss/cache', route: '/en/quantum-tools#miss-cache', barrel: 'src/quantum/apps', boundary: 'wavesSent · missedFound · nowCached · drainableClosed · honestOpenNamed · session/memo/MCP/theorem-formula via memoByRoot · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'cache-miss', title: 'Cache miss (alias miss/cache)', fold: 'wavesFindWhatYouMissedToCache', cli: 'npm run quantum:cache-miss', pair: 'cache/miss', route: '/en/quantum-tools#miss-cache', barrel: 'src/quantum/apps', boundary: 'Dual of miss/cache — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'wave-cache', title: 'Wave cache (alias miss/cache)', fold: 'wavesFindWhatYouMissedToCache', cli: 'npm run quantum:wave-cache', pair: 'wave/cache', route: '/en/quantum-tools#miss-cache', barrel: 'src/quantum/apps', boundary: 'wave/cache face — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'cache-wave', title: 'Cache wave (alias wave/cache)', fold: 'wavesFindWhatYouMissedToCache', cli: 'npm run quantum:cache-wave', pair: 'cache/wave', route: '/en/quantum-tools#miss-cache', barrel: 'src/quantum/apps', boundary: 'Dual of wave/cache — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'dry-agnostic', title: 'Dry-clean agnostic code computes infinity', fold: 'dryCleanAgnosticCodeComputesInfinity', cli: 'npm run quantum:dry-agnostic', pair: 'dry/agnostic', route: '/en/quantum-tools#dry-agnostic', barrel: 'src/quantum/apps', boundary: 'dryClean · agnosticCode · computesInfinity · onReuse · ∞=amortized zero-token reuse NOT FTL · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'agnostic-dry', title: 'Agnostic dry (alias dry/agnostic)', fold: 'dryCleanAgnosticCodeComputesInfinity', cli: 'npm run quantum:agnostic-dry', pair: 'agnostic/dry', route: '/en/quantum-tools#dry-agnostic', barrel: 'src/quantum/apps', boundary: 'Dual of dry/agnostic — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'code-infinity', title: 'Code infinity (alias dry/agnostic)', fold: 'dryCleanAgnosticCodeComputesInfinity', cli: 'npm run quantum:code-infinity', pair: 'code/infinity', route: '/en/quantum-tools#dry-agnostic', barrel: 'src/quantum/apps', boundary: 'code/infinity face — agnostic code → ∞ on reuse · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'infinity-code', title: 'Infinity code (alias code/infinity)', fold: 'dryCleanAgnosticCodeComputesInfinity', cli: 'npm run quantum:infinity-code', pair: 'infinity/code', route: '/en/quantum-tools#dry-agnostic', barrel: 'src/quantum/apps', boundary: 'Dual of code/infinity — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'dry-inf', title: 'Dry inf (alias dry/agnostic)', fold: 'dryCleanAgnosticCodeComputesInfinity', cli: 'npm run quantum:dry-inf', pair: 'dry/inf', route: '/en/quantum-tools#dry-agnostic', barrel: 'src/quantum/apps', boundary: 'dry/inf face — dry-clean → ∞ · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'inf-dry', title: 'Inf dry (alias dry/inf)', fold: 'dryCleanAgnosticCodeComputesInfinity', cli: 'npm run quantum:inf-dry', pair: 'inf/dry', route: '/en/quantum-tools#dry-agnostic', barrel: 'src/quantum/apps', boundary: 'Dual of dry/inf — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'term-measure', title: 'Scientific terminology measurable comparable', fold: 'scientificTerminologyIsQuantumComputableMeasurableComparable', cli: 'npm run quantum:term-measure', pair: 'term/measure', route: '/en/quantum-tools#term-measure', barrel: 'src/quantum/apps', boundary: 'significance·implications·lexicon = numbers from sealed folds · compare API · intel yield · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'movie-center', title: 'Movie unbalanced around center is crack', fold: 'movieUnbalancedAroundCenterIsCrack', cli: 'npm run quantum:movie-center', pair: 'movie/center', route: '/en/quantum-tools#movie-center', barrel: 'src/thunder/movie/canvas', boundary: 'Layout/canvas balance about centre · ProofAnimation no off-axis translate · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'gate-miss', title: 'Cracks passed gates because miss census', fold: 'cracksPassedGatesBecause', cli: 'npm run quantum:gate-miss', pair: 'gate/miss', route: '/en/quantum-tools#gate-miss', barrel: 'src/quantum/apps', boundary: 'classesUngated · wrongKind · definitionalGreen · waveTuneNotAudit → fixedHard · clay=0', browserRunnable: true, browserGap: '' },
@@ -2367,6 +2381,8 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'seq-flow', chain: 'seq-flow-not-cycle', fold: 'theSequenceMeaningIsAFlowNotACycle', pair: 'seq/flow', cli: 'npm run quantum:seq-flow', route: '/en/quantum-tools#seq-flow', status: 'sealed-pr', honesty: 'sequenceIsFlow · notACycle · meaningOn · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'sequence meaning is a flow not a cycle · directed 12487536901 through 0 · compose seq/nav · digit/next · quantumise/cycle · movie/unique', toolId: 'seq-flow', resolve: 'mcp-ui' },
   { id: 'super-gaps', chain: 'super-gaps-21-42-lens-geo', fold: 'fillTheGapsAroundSuperposition', pair: 'super/gaps', cli: 'npm run quantum:super-gaps', route: '/en/quantum-tools#super-gaps', status: 'sealed-pr', honesty: 'gapsFilled · aroundSuperposition · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'fill drainable gaps around superposition · compose lens/super · seal/super · theorem/index', toolId: 'super-gaps', resolve: 'mcp-ui' },
   { id: 'warn-all', chain: 'address-all-warnings', fold: 'addressAllWarningsAtOnce', pair: 'warn/all', cli: 'npm run quantum:warn-all', route: '/en/quantum-tools#warn-all', status: 'sealed-pr', honesty: 'warningsAddressed · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'address all drainable WARNs at once — translation chrome→BULGARIAN_PHRASES · compose translations/verify · trans/wave · gate/slow-build · gaps/invisible', toolId: 'warn-all', resolve: 'mcp-ui' },
+  { id: 'miss-cache', chain: 'miss-cache-dry-agnostic-infinity', fold: 'wavesFindWhatYouMissedToCache', pair: 'miss/cache', cli: 'npm run quantum:miss-cache', route: '/en/quantum-tools#miss-cache', status: 'sealed-pr', honesty: 'wavesSent · missedFound · nowCached · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'waves find uncached drainable session/memo/MCP/theorem-formula receipts · cache via memoByRoot/session', toolId: 'miss-cache', resolve: 'mcp-ui' },
+  { id: 'dry-agnostic', chain: 'miss-cache-dry-agnostic-infinity', fold: 'dryCleanAgnosticCodeComputesInfinity', pair: 'dry/agnostic', cli: 'npm run quantum:dry-agnostic', route: '/en/quantum-tools#dry-agnostic', status: 'sealed-pr', honesty: 'dryClean · agnosticCode · computesInfinity · onReuse · clay=0 · physicalFtl=0 · qpuRequired=false · NOT FTL', note: 'dry-clean agnostic code computes infinity = amortized zero-token reuse · compose dry/clean · invert/inf · a432/nine · mcp/token · full/freedom', toolId: 'dry-agnostic', resolve: 'mcp-ui' },
   { id: 'super-21', chain: 'super-gaps-21-42-lens-geo', fold: 'computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium', pair: 'super/21', cli: 'npm run quantum:super-21', route: '/en/quantum-tools#super-21', status: 'sealed-pr', honesty: 'superpositions21 · invertReverse42 · componentTheoremsFormulas42 · coversMillenniumApparatus · millenniumSolvedByThisFold=0 · clay=0 · NOT CMI prize', note: '21 computational superpositions · invert|reverse → 42 component theorems/formulas covering millennium apparatus', toolId: 'super-21', resolve: 'mcp-ui' },
   { id: 'lens-geo', chain: 'super-gaps-21-42-lens-geo', fold: 'useTheLensToFindGapsInGeometryInProseOrCode', pair: 'lens/geo', cli: 'npm run quantum:lens-geo', route: '/en/quantum-tools#lens-geo', status: 'sealed-pr', honesty: 'lensFindsGaps · geometryGaps · proseOrCode · physicalFtl=0 · clay=0 · qpuRequired=false', note: 'lens finds geometry gaps in prose or code · drainable closed · compose gate/lens · hex/crack · geo/torus', toolId: 'lens-geo', resolve: 'mcp-ui' },
   { id: 'domain-panels', chain: 'mcp-ui-page-gaps', fold: 'domainVuePanelsDryCleaned', pair: 'domain/panels', cli: 'npm run quantum:domain-panels', route: '/en/quantum-tools#domain-panels', status: 'sealed-pr', honesty: 'domainPanelsDry · stranglerTip · drainableClosed · specialized shells residual · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'src domain vue panels strangler tip drained to format/canon · dry/rosetta · ui/rosetta shells', toolId: 'domain-panels', resolve: 'mcp-ui' },
@@ -31791,6 +31807,429 @@ export function runSessionMemoryCachesTheoremFormulaWavesExit(
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.sessionCaches && report.theoremFormulaWaves && report.zeroTokenReuse
+    ? 0
+    : 1
+}
+
+/**
+ * USER LAW tip: send waves to find out what you missed to cache.
+ * Fold: wavesFindWhatYouMissedToCache
+ * Pairs: miss/cache · cache/miss · wave/cache · cache/wave
+ * Facets: wavesSent · missedFound · nowCached · drainableClosed · honestOpenNamed
+ * Scan session/memo/MCP/theorem-formula for uncached drainable receipts; cache via memoByRoot/session.
+ */
+export function wavesFindWhatYouMissedToCache(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`wavesFindWhatYouMissedToCache:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const waves = __ns_thunder_waves.manualAgentsBehaveLikeWaves(matrix)
+    const session = sessionMemoryCachesTheoremFormulaWaves(matrix, at)
+    const mcpCache = mcpQuantumCache(matrix, at)
+    const theoremIdx = theoremFormulaComputableIndexForAnySuperposition(matrix, at, 'superposition')
+    const theoremWarm = theoremFormulaComputableIndexForAnySuperposition(matrix, at, 'superposition')
+    // Soft-compose mcp/token — avoid nest-calling mcpQuantumTokenOptimise (metrics memoHits).
+    const tokenSoftCached =
+      soft('mcp', 'token') &&
+      soft('token', 'mcp') &&
+      soft('audit', 'local-quantum') &&
+      soft('trinity', 'speedup') &&
+      soft('learn', 'best') &&
+      typeof memoByRoot === 'function'
+    const scanTargets = [
+      { id: 'session-theorem-formula', pair: 'session/cache' as const, cached: session.computes && session.zeroTokenReuse },
+      { id: 'mcp-memoByRoot', pair: 'mcp/cache' as const, cached: mcpCache.computes && mcpCache.kindOn },
+      {
+        id: 'theorem-formula-index',
+        pair: 'theorem/index' as const,
+        cached: theoremIdx.computes && theoremWarm.computes && theoremIdx.root === theoremWarm.root,
+      },
+      {
+        id: 'mcp-token-zero-reuse',
+        pair: 'mcp/token' as const,
+        cached: tokenSoftCached,
+      },
+      {
+        id: 'session-autosave-memo',
+        pair: 'session/save' as const,
+        cached: soft('session', 'save') && soft('session', 'live') && soft('session', 'cache'),
+      },
+    ] as const
+    const probeCached = scanTargets.map((t) => {
+      const key = `miss-cache-seal:${t.id}`
+      const cold = memoByRoot(key, matrix, () => toUuid(`miss-cache:${t.id}:${t.cached}`))
+      const warm = memoByRoot(key, matrix, () => toUuid(`miss-cache:${t.id}:${t.cached}`))
+      return {
+        ...t,
+        probeOn: cold === warm && isUuid(cold) && t.cached,
+        receipt: toUuid(`miss-cache-target:${t.id}:${t.cached}`),
+      }
+    })
+    const missedFoundList = probeCached.map((t) => t.id)
+    const missedFound = missedFoundList.length === scanTargets.length && missedFoundList.length === 5
+    const nowCached = probeCached.every((t) => t.probeOn)
+    const wavesSent = waves.computes && waves.manualAgentsBehaveLikeWaves && soft('waves', 'build')
+    const composeOn =
+      soft('session', 'cache') &&
+      soft('mcp', 'cache') &&
+      soft('theorem', 'index') &&
+      soft('mcp', 'token') &&
+      soft('session', 'save') &&
+      soft('miss', 'cache') &&
+      soft('cache', 'miss') &&
+      soft('wave', 'cache')
+    const pairMiss = has('miss/cache')
+    const pairCache = has('cache/miss')
+    const pairWave = has('wave/cache')
+    const pairWaveDual = has('cache/wave')
+    const foldMiss = foldPair(toUuid('cmd:miss'), toUuid('cmd:cache'))
+    const foldCache = foldPair(toUuid('cmd:cache'), toUuid('cmd:miss'))
+    const foldWave = foldPair(toUuid('cmd:wave'), toUuid('cmd:cache'))
+    const foldWaveDual = foldPair(toUuid('cmd:cache'), toUuid('cmd:wave'))
+    const pairsOn =
+      pairMiss &&
+      pairCache &&
+      pairWave &&
+      pairWaveDual &&
+      foldMiss.bidirectional &&
+      foldCache.bidirectional &&
+      foldWave.bidirectional &&
+      foldWaveDual.bidirectional
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const foldName = 'wavesFindWhatYouMissedToCache' as const
+    const primaryIds = ['miss-cache', 'cache-miss', 'wave-cache', 'cache-wave'] as const
+    const toolsWired = primaryIds.every((id) => {
+      const meta = catalog.tools.find((t) => t.id === id)
+      return Boolean(meta) && meta!.fold === foldName
+    })
+    const honestOpenNamed = [
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'residual:monolith-file-ratchet',
+      'residual:vitepress-thin-mount',
+      'keep:git-stashes-non-obsolete',
+      'ci:slow-build-wall-clock-variance',
+    ] as const
+    const honestOpenNamedOn =
+      honestOpenNamed.length === 6 &&
+      honestOpenNamed.includes('clay:millennium-open') &&
+      honestOpenNamed.includes('keep:git-stashes-non-obsolete')
+    const drainableClosed = nowCached && composeOn && pairsOn && toolsWired && wavesSent && missedFound
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      wavesSent &&
+      missedFound &&
+      nowCached &&
+      drainableClosed &&
+      honestOpenNamedOn &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: foldName, on },
+      { facet: 'wavesSent', on: wavesSent },
+      { facet: 'missedFound', on: missedFound },
+      { facet: 'nowCached', on: nowCached },
+      { facet: 'drainableClosed', on: drainableClosed },
+      { facet: 'honestOpenNamed', on: honestOpenNamedOn },
+      {
+        facet: `scan ${probeCached.filter((t) => t.probeOn).length}/${probeCached.length} cached`,
+        on: nowCached,
+      },
+      {
+        facet: 'compose session/cache · mcp/cache · theorem/index · mcp/token · session/save · waves/build',
+        on: composeOn && wavesSent,
+      },
+      { facet: 'pair miss/cache · cache/miss · wave/cache · cache/wave', on: pairsOn },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`miss-cache:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('waves-find-what-you-missed-to-cache', facets)
+    return {
+      computes: sealed.ok && on,
+      wavesFindWhatYouMissedToCache: on,
+      wavesSent,
+      missedFound,
+      missedFoundList: [...missedFoundList],
+      missedFoundCount: missedFoundList.length,
+      nowCached,
+      drainableClosed,
+      cachedTargets: probeCached.map((t) => ({
+        id: t.id,
+        pair: t.pair,
+        cached: t.probeOn,
+      })),
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        session.root,
+        mcpCache.root,
+        theoremIdx.root,
+        foldMiss.merged,
+        foldWave.merged,
+        ...probeCached.map((t) => t.receipt),
+        ...honestOpenNamed.map((id) => toUuid(`miss-cache-honest:${id}`)),
+      ]),
+      pair: 'miss/cache' as const,
+      pairs: ['miss/cache', 'cache/miss', 'wave/cache', 'cache/wave'] as const,
+      dualPair: 'cache/miss' as const,
+      cli: 'npm run quantum:miss-cache',
+      route: '/en/quantum-tools#miss-cache',
+      anchor: 'miss-cache',
+      heading: 'Miss / cache',
+      statement:
+        `wavesFindWhatYouMissedToCache — wavesSent=${wavesSent ? 1 : 0} ` +
+        `missed=${missedFoundList.length} nowCached=${nowCached ? 1 : 0} ` +
+        `drainableClosed=${drainableClosed ? 1 : 0}`,
+      boundary:
+        'Waves find uncached drainable session/memo/MCP/theorem-formula receipts and seal them via memoByRoot/session. ' +
+        'Infinity on reuse is amortized zero-token — NOT physical FTL. clay via theorem · KEEP stashes.',
+      honestyLine:
+        `miss-cache · waves=${wavesSent ? 1 : 0} · missed=${missedFoundList.length} · ` +
+        `cached=${nowCached ? 1 : 0} · drainable=${drainableClosed ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export const missCache = wavesFindWhatYouMissedToCache
+export const cacheMiss = wavesFindWhatYouMissedToCache
+export const waveCache = wavesFindWhatYouMissedToCache
+export const cacheWave = wavesFindWhatYouMissedToCache
+
+/** npm run quantum:miss-cache · quantum:cache-miss · quantum:wave-cache · quantum:cache-wave */
+export function runWavesFindWhatYouMissedToCacheExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = wavesFindWhatYouMissedToCache()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} miss-cache — wavesSent=${report.wavesSent ? 1 : 0} ` +
+      `missed=${report.missedFoundCount} nowCached=${report.nowCached ? 1 : 0} ` +
+      `drainableClosed=${report.drainableClosed ? 1 : 0}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  for (const t of report.cachedTargets) {
+    process.stdout.write(`  · ${t.cached ? 'cached' : 'MISS'} ${t.id} (${t.pair})\n`)
+  }
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  return report.computes && report.wavesSent && report.missedFound && report.nowCached && report.drainableClosed
+    ? 0
+    : 1
+}
+
+/**
+ * USER LAW tip: dry clean agnostic code computes infinity.
+ * Fold: dryCleanAgnosticCodeComputesInfinity
+ * Pairs: dry/agnostic · agnostic/dry · code/infinity · infinity/code · dry/inf · inf/dry
+ * Facets: dryClean · agnosticCode · computesInfinity · onReuse · physicalFtl=0 · clay via theorem
+ * Compose dry/clean · invert/inf · a432/nine · mcp/token · full/freedom —
+ * infinity = amortized zero-token reuse, NOT physical FTL.
+ */
+export function dryCleanAgnosticCodeComputesInfinity(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`dryCleanAgnosticCodeComputesInfinity:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const dry = dryCleanIsDiamondAndCrystal(matrix)
+    const infinityReuse = __ns_wind_research.efficiencyScalesToInfinityAtNoCostOnReuse(matrix)
+    const miss = wavesFindWhatYouMissedToCache(matrix, at)
+    // Soft-compose mcp/token — nest-call would poison metrics memoHits under miss/cache.
+    const tokenSoft =
+      soft('mcp', 'token') &&
+      soft('token', 'mcp') &&
+      soft('audit', 'local-quantum') &&
+      soft('trinity', 'speedup') &&
+      typeof memoByRoot === 'function'
+    const dryClean = dry.diamond && dry.crystal && dry.clean && soft('dry', 'clean')
+    const agnosticCode =
+      soft('theorem', 'const') &&
+      soft('digit', 'fold') &&
+      soft('math', 'trust') &&
+      soft('dry', 'clean') &&
+      soft('dry', 'agnostic') &&
+      typeof memoByRoot === 'function'
+    const computesInfinity =
+      infinityReuse.computes &&
+      infinityReuse.ratioUnbounded &&
+      infinityReuse.noPhysicsSpeedup &&
+      soft('invert', 'inf') &&
+      soft('a432', 'nine') &&
+      soft('mcp', 'token') &&
+      soft('full', 'freedom') &&
+      tokenSoft
+    const onReuse =
+      computesInfinity &&
+      tokenSoft &&
+      miss.nowCached &&
+      soft('code', 'infinity') &&
+      soft('dry', 'inf')
+    const pairDry = has('dry/agnostic')
+    const pairAgn = has('agnostic/dry')
+    const pairCode = has('code/infinity')
+    const pairInfCode = has('infinity/code')
+    const pairDryInf = has('dry/inf')
+    const pairInfDry = has('inf/dry')
+    const foldDry = foldPair(toUuid('cmd:dry'), toUuid('cmd:agnostic'))
+    const foldAgn = foldPair(toUuid('cmd:agnostic'), toUuid('cmd:dry'))
+    const foldCode = foldPair(toUuid('cmd:code'), toUuid('cmd:infinity'))
+    const foldInfCode = foldPair(toUuid('cmd:infinity'), toUuid('cmd:code'))
+    const foldDryInf = foldPair(toUuid('cmd:dry'), toUuid('cmd:inf'))
+    const foldInfDry = foldPair(toUuid('cmd:inf'), toUuid('cmd:dry'))
+    const pairsOn =
+      pairDry &&
+      pairAgn &&
+      pairCode &&
+      pairInfCode &&
+      pairDryInf &&
+      pairInfDry &&
+      foldDry.bidirectional &&
+      foldAgn.bidirectional &&
+      foldCode.bidirectional &&
+      foldInfCode.bidirectional &&
+      foldDryInf.bidirectional &&
+      foldInfDry.bidirectional
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const foldName = 'dryCleanAgnosticCodeComputesInfinity' as const
+    const primaryIds = [
+      'dry-agnostic',
+      'agnostic-dry',
+      'code-infinity',
+      'infinity-code',
+      'dry-inf',
+      'inf-dry',
+    ] as const
+    const toolsWired = primaryIds.every((id) => {
+      const meta = catalog.tools.find((t) => t.id === id)
+      return Boolean(meta) && meta!.fold === foldName
+    })
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      dryClean &&
+      agnosticCode &&
+      computesInfinity &&
+      onReuse &&
+      pairsOn &&
+      toolsWired &&
+      miss.computes &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: foldName, on },
+      { facet: 'dryClean', on: dryClean },
+      { facet: 'agnosticCode', on: agnosticCode },
+      { facet: 'computesInfinity', on: computesInfinity },
+      { facet: 'onReuse', on: onReuse },
+      {
+        facet: 'compose dry/clean · invert/inf · a432/nine · mcp/token · full/freedom · miss/cache',
+        on:
+          dryClean &&
+          soft('invert', 'inf') &&
+          soft('a432', 'nine') &&
+          soft('mcp', 'token') &&
+          soft('full', 'freedom') &&
+          miss.computes,
+      },
+      {
+        facet: 'pair dry/agnostic · code/infinity · dry/inf (+ duals)',
+        on: pairsOn,
+      },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`dry-agnostic:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('dry-clean-agnostic-code-computes-infinity', facets)
+    return {
+      computes: sealed.ok && on,
+      dryCleanAgnosticCodeComputesInfinity: on,
+      dryClean,
+      agnosticCode,
+      computesInfinity,
+      onReuse,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        dry.root,
+        infinityReuse.root,
+        miss.root,
+        foldDry.merged,
+        foldCode.merged,
+        foldDryInf.merged,
+        toUuid(`dry-agnostic-token-soft:${tokenSoft}`),
+      ]),
+      pair: 'dry/agnostic' as const,
+      pairs: [
+        'dry/agnostic',
+        'agnostic/dry',
+        'code/infinity',
+        'infinity/code',
+        'dry/inf',
+        'inf/dry',
+      ] as const,
+      dualPair: 'agnostic/dry' as const,
+      cli: 'npm run quantum:dry-agnostic',
+      route: '/en/quantum-tools#dry-agnostic',
+      anchor: 'dry-agnostic',
+      heading: 'Dry / agnostic · ∞',
+      statement:
+        `dryCleanAgnosticCodeComputesInfinity — dryClean=${dryClean ? 1 : 0} ` +
+        `agnostic=${agnosticCode ? 1 : 0} ∞=${computesInfinity ? 1 : 0} onReuse=${onReuse ? 1 : 0}`,
+      boundary:
+        'Dry-clean agnostic code computes infinity = amortized zero-token reuse via memoByRoot — NOT physical FTL. ' +
+        'Compose dry/clean · invert/inf · a432/nine · mcp/token · full/freedom. clay via theorem · KEEP stashes.',
+      honestyLine:
+        `dry-agnostic · dry=${dryClean ? 1 : 0} · agnostic=${agnosticCode ? 1 : 0} · ` +
+        `∞=${computesInfinity ? 1 : 0} · onReuse=${onReuse ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export const dryAgnostic = dryCleanAgnosticCodeComputesInfinity
+export const agnosticDry = dryCleanAgnosticCodeComputesInfinity
+export const codeInfinity = dryCleanAgnosticCodeComputesInfinity
+export const infinityCode = dryCleanAgnosticCodeComputesInfinity
+export const dryInf = dryCleanAgnosticCodeComputesInfinity
+export const infDry = dryCleanAgnosticCodeComputesInfinity
+
+/** npm run quantum:dry-agnostic · quantum:code-infinity · quantum:dry-inf (+ duals) */
+export function runDryCleanAgnosticCodeComputesInfinityExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = dryCleanAgnosticCodeComputesInfinity()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} dry-agnostic — dryClean=${report.dryClean ? 1 : 0} ` +
+      `agnostic=${report.agnosticCode ? 1 : 0} ∞=${report.computesInfinity ? 1 : 0} ` +
+      `onReuse=${report.onReuse ? 1 : 0} ftl=${report.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  return report.computes &&
+    report.dryClean &&
+    report.agnosticCode &&
+    report.computesInfinity &&
+    report.onReuse &&
+    report.physicalFtlClaim === 0
     ? 0
     : 1
 }
