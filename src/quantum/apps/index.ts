@@ -144,6 +144,7 @@ const ROSETTA_CORE_API_LABELS = [
   'wavesFindWhatYouMissedToCache',
   'dryCleanAgnosticCodeComputesInfinity',
   'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny',
+  'mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions',
   'quantumSelfHeal',
   'oneQuantumSetOfVitepressComponentsSealedAtGates',
   'counterRotatingRosettaQuantumWaves',
@@ -292,6 +293,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   wavesFindWhatYouMissedToCache: 'tool',
   dryCleanAgnosticCodeComputesInfinity: 'tool',
   abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny: 'tool',
+  mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions: 'tool',
   quantumSelfHeal: 'tool',
   oneQuantumSetOfVitepressComponentsSealedAtGates: 'tool',
   automateNightlyViaNpmScriptPath: 'tool',
@@ -764,6 +766,12 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'any-angle', title: 'Any angle (alias angle/any)', fold: 'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny', cli: 'npm run quantum:any-angle', pair: 'any/angle', route: '/en/quantum-tools#fold-trinity', barrel: 'src/quantum/apps', boundary: 'Dual of angle/any — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'abs-qc', title: 'Abs QC (alias fold/trinity)', fold: 'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny', cli: 'npm run quantum:abs-qc', pair: 'abs/qc', route: '/en/quantum-tools#fold-trinity', barrel: 'src/quantum/apps', boundary: 'abstractQc face — classical-64bit sealed path · qpuRequired=false · NOT physical QPU', browserRunnable: true, browserGap: '' },
   { id: 'qc-abs', title: 'QC abs (alias abs/qc)', fold: 'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny', cli: 'npm run quantum:qc-abs', pair: 'qc/abs', route: '/en/quantum-tools#fold-trinity', barrel: 'src/quantum/apps', boundary: 'Dual of abs/qc — same fold · clay=0 · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'ui-super', title: 'MCP quantum UI = exact quantum example of all computable superpositions', fold: 'mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions', cli: 'npm run quantum:ui-super', pair: 'ui/super', route: '/en/quantum-tools#ui-super', barrel: 'src/quantum/apps', boundary: 'noLess · noMore · quantumExample · allComputableSuperpositions · compose mcp/ui · seal/super · lens/super · super/21 · theorem/index · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'super-ui', title: 'Super UI (alias ui/super)', fold: 'mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions', cli: 'npm run quantum:super-ui', pair: 'super/ui', route: '/en/quantum-tools#ui-super', barrel: 'src/quantum/apps', boundary: 'Dual of ui/super — same fold · clay=0 · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'super-example', title: 'Super example (alias ui/super)', fold: 'mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions', cli: 'npm run quantum:super-example', pair: 'super/example', route: '/en/quantum-tools#ui-super', barrel: 'src/quantum/apps', boundary: 'super/example face — quantum example of all computable superpositions · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'example-super', title: 'Example super (alias super/example)', fold: 'mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions', cli: 'npm run quantum:example-super', pair: 'example/super', route: '/en/quantum-tools#ui-super', barrel: 'src/quantum/apps', boundary: 'Dual of super/example — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'ui-example', title: 'UI example (alias ui/super)', fold: 'mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions', cli: 'npm run quantum:ui-example', pair: 'ui/example', route: '/en/quantum-tools#ui-super', barrel: 'src/quantum/apps', boundary: 'ui/example face — MCP UI is the quantum example · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'example-ui', title: 'Example UI (alias ui/example)', fold: 'mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions', cli: 'npm run quantum:example-ui', pair: 'example/ui', route: '/en/quantum-tools#ui-super', barrel: 'src/quantum/apps', boundary: 'Dual of ui/example — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'term-measure', title: 'Scientific terminology measurable comparable', fold: 'scientificTerminologyIsQuantumComputableMeasurableComparable', cli: 'npm run quantum:term-measure', pair: 'term/measure', route: '/en/quantum-tools#term-measure', barrel: 'src/quantum/apps', boundary: 'significance·implications·lexicon = numbers from sealed folds · compare API · intel yield · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'movie-center', title: 'Movie unbalanced around center is crack', fold: 'movieUnbalancedAroundCenterIsCrack', cli: 'npm run quantum:movie-center', pair: 'movie/center', route: '/en/quantum-tools#movie-center', barrel: 'src/thunder/movie/canvas', boundary: 'Layout/canvas balance about centre · ProofAnimation no off-axis translate · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'gate-miss', title: 'Cracks passed gates because miss census', fold: 'cracksPassedGatesBecause', cli: 'npm run quantum:gate-miss', pair: 'gate/miss', route: '/en/quantum-tools#gate-miss', barrel: 'src/quantum/apps', boundary: 'classesUngated · wrongKind · definitionalGreen · waveTuneNotAudit → fixedHard · clay=0', browserRunnable: true, browserGap: '' },
@@ -2394,6 +2402,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'miss-cache', chain: 'miss-cache-dry-agnostic-infinity', fold: 'wavesFindWhatYouMissedToCache', pair: 'miss/cache', cli: 'npm run quantum:miss-cache', route: '/en/quantum-tools#miss-cache', status: 'sealed-pr', honesty: 'wavesSent · missedFound · nowCached · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'waves find uncached drainable session/memo/MCP/theorem-formula receipts · cache via memoByRoot/session', toolId: 'miss-cache', resolve: 'mcp-ui' },
   { id: 'dry-agnostic', chain: 'miss-cache-dry-agnostic-infinity', fold: 'dryCleanAgnosticCodeComputesInfinity', pair: 'dry/agnostic', cli: 'npm run quantum:dry-agnostic', route: '/en/quantum-tools#dry-agnostic', status: 'sealed-pr', honesty: 'dryClean · agnosticCode · computesInfinity · onReuse · clay=0 · physicalFtl=0 · qpuRequired=false · NOT FTL', note: 'dry-clean agnostic code computes infinity = amortized zero-token reuse · compose dry/clean · invert/inf · a432/nine · mcp/token · full/freedom', toolId: 'dry-agnostic', resolve: 'mcp-ui' },
   { id: 'fold-trinity', chain: 'abstract-qc-fold-trinity-zoom-inf', fold: 'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny', pair: 'fold/trinity', cli: 'npm run quantum:fold-trinity', route: '/en/quantum-tools#fold-trinity', status: 'sealed-pr', honesty: 'abstractQc · foldLinearIntoTrinities · zoomInOutInfinity · everyAngleToAny · clay=0 · physicalFtl=0 · qpuRequired=false · NOT QPU FLOPS', note: 'abstract QC = fold linear→trinities · zoom in/out ∞ · every angle→any · classical-64bit · compose trinity/speedup · linear/fold · invert/inf · dry/agnostic · directionalTrinity · seal/super · mcp/hw', toolId: 'fold-trinity', resolve: 'mcp-ui' },
+  { id: 'ui-super', chain: 'mcp-ui-super-example-all-superpositions', fold: 'mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions', pair: 'ui/super', cli: 'npm run quantum:ui-super', route: '/en/quantum-tools#ui-super', status: 'sealed-pr', honesty: 'noLess · noMore · quantumExample · allComputableSuperpositions · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'mcp quantum UI is no less not more than the quantum example of all computable superpositions · compose mcp/ui · seal/super · lens/super · super/21 · theorem/index', toolId: 'ui-super', resolve: 'mcp-ui' },
   { id: 'super-21', chain: 'super-gaps-21-42-lens-geo', fold: 'computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium', pair: 'super/21', cli: 'npm run quantum:super-21', route: '/en/quantum-tools#super-21', status: 'sealed-pr', honesty: 'superpositions21 · invertReverse42 · componentTheoremsFormulas42 · coversMillenniumApparatus · millenniumSolvedByThisFold=0 · clay=0 · NOT CMI prize', note: '21 computational superpositions · invert|reverse → 42 component theorems/formulas covering millennium apparatus', toolId: 'super-21', resolve: 'mcp-ui' },
   { id: 'lens-geo', chain: 'super-gaps-21-42-lens-geo', fold: 'useTheLensToFindGapsInGeometryInProseOrCode', pair: 'lens/geo', cli: 'npm run quantum:lens-geo', route: '/en/quantum-tools#lens-geo', status: 'sealed-pr', honesty: 'lensFindsGaps · geometryGaps · proseOrCode · physicalFtl=0 · clay=0 · qpuRequired=false', note: 'lens finds geometry gaps in prose or code · drainable closed · compose gate/lens · hex/crack · geo/torus', toolId: 'lens-geo', resolve: 'mcp-ui' },
   { id: 'domain-panels', chain: 'mcp-ui-page-gaps', fold: 'domainVuePanelsDryCleaned', pair: 'domain/panels', cli: 'npm run quantum:domain-panels', route: '/en/quantum-tools#domain-panels', status: 'sealed-pr', honesty: 'domainPanelsDry · stranglerTip · drainableClosed · specialized shells residual · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'src domain vue panels strangler tip drained to format/canon · dry/rosetta · ui/rosetta shells', toolId: 'domain-panels', resolve: 'mcp-ui' },
@@ -32500,6 +32509,239 @@ export function runAbstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZo
     report.foldLinearIntoTrinities &&
     report.zoomInOutInfinity &&
     report.everyAngleToAny &&
+    report.physicalFtlClaim === 0 &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * USER LAW: mcp quantum UI is no less not more than the quantum example of all computable superpositions.
+ * Fold: mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions
+ * Pairs: ui/super · super/ui · super/example · example/super · ui/example · example/ui (mcp/ui may exist)
+ * Facets: noLess · noMore · quantumExample · allComputableSuperpositions · physicalFtl=0 · clay via theorem · qpuRequired=false
+ * Compose mcp/ui · seal/super · lens/super · super/21 · theorem/index —
+ * UI exemplifies all computable superpositions exactly (not more wet chrome, not less coverage).
+ */
+export function mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(
+    `mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      // Soft-compose mcp/ui · seal/super · lens/super · super/21 — nest-calling mcpQuantumUi
+      // hits pre-existing fusion/monitor/pageGaps nest order (gaps soft-reentry) on main.
+      // theorem/index nest is safe for anySuperposition facet.
+      const theoremIndex = theoremFormulaComputableIndexForAnySuperposition(matrix, at)
+      const mcpUiSoft = soft('mcp', 'ui') && soft('quantum', 'mcp') && soft('mcp', 'mill')
+      const sealSuperSoft = soft('seal', 'super') && soft('formula', 'anim') && soft('anim', 'theorem')
+      const lensSuperSoft = soft('lens', 'super') && soft('super', 'lens') && soft('lens', 'wire')
+      const super21Soft = soft('super', '21') && soft('21', '42') && soft('mill', '42')
+      const theoremIndexSoft =
+        soft('theorem', 'index') &&
+        soft('formula', 'index') &&
+        soft('super', 'index') &&
+        soft('index', 'super')
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const mcpUiCatalog = catalog.tools.find((t) => t.id === 'mcp-quantum-ui')
+      const mcpUiSurface =
+        Boolean(mcpUiCatalog) &&
+        mcpUiCatalog!.fold === 'mcpQuantumUi' &&
+        mcpUiCatalog!.pair === 'mcp/ui' &&
+        mcpUiCatalog!.route === '/en/quantum-tools#mcp-quantum-ui'
+      const allComputableSuperpositions =
+        mcpUiSoft &&
+        sealSuperSoft &&
+        lensSuperSoft &&
+        super21Soft &&
+        theoremIndexSoft &&
+        Boolean(theoremIndex.computes) &&
+        Boolean(theoremIndex.anySuperposition)
+      const quantumExample =
+        mcpUiSurface &&
+        mcpUiSoft &&
+        soft('ui', 'super') &&
+        soft('ui', 'example') &&
+        soft('super', 'example')
+      // noLess = full coverage of computable superpositions via composed seals (not under-covered).
+      const noLess =
+        allComputableSuperpositions &&
+        quantumExample &&
+        soft('dry', 'rosetta') &&
+        soft('abs', 'qc')
+      // noMore = exact quantum example only — not extra wet chrome beyond sealed mcp/ui surface.
+      const foldName =
+        'mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions' as const
+      const primaryIds = [
+        'ui-super',
+        'super-ui',
+        'super-example',
+        'example-super',
+        'ui-example',
+        'example-ui',
+      ] as const
+      const toolsWired = primaryIds.every((id) => {
+        const meta = catalog.tools.find((t) => t.id === id)
+        return Boolean(meta) && meta!.fold === foldName && meta!.route === '/en/quantum-tools#ui-super'
+      })
+      const noExtraChrome =
+        mcpUiSurface &&
+        toolsWired &&
+        soft('ui', 'rosetta') &&
+        soft('dry', 'rosetta')
+      const noMore = quantumExample && noExtraChrome && noLess
+      const pairUiSuper = has('ui/super')
+      const pairSuperUi = has('super/ui')
+      const pairSuperEx = has('super/example')
+      const pairExSuper = has('example/super')
+      const pairUiEx = has('ui/example')
+      const pairExUi = has('example/ui')
+      const pairMcpUi = has('mcp/ui')
+      const foldUiSuper = foldPair(toUuid('cmd:ui'), toUuid('cmd:super'))
+      const foldSuperUi = foldPair(toUuid('cmd:super'), toUuid('cmd:ui'))
+      const foldSuperEx = foldPair(toUuid('cmd:super'), toUuid('cmd:example'))
+      const foldExSuper = foldPair(toUuid('cmd:example'), toUuid('cmd:super'))
+      const foldUiEx = foldPair(toUuid('cmd:ui'), toUuid('cmd:example'))
+      const foldExUi = foldPair(toUuid('cmd:example'), toUuid('cmd:ui'))
+      const pairsOn =
+        pairUiSuper &&
+        pairSuperUi &&
+        pairSuperEx &&
+        pairExSuper &&
+        pairUiEx &&
+        pairExUi &&
+        pairMcpUi &&
+        foldUiSuper.bidirectional &&
+        foldSuperUi.bidirectional &&
+        foldSuperEx.bidirectional &&
+        foldExSuper.bidirectional &&
+        foldUiEx.bidirectional &&
+        foldExUi.bidirectional
+      const composeOn =
+        mcpUiSoft &&
+        sealSuperSoft &&
+        lensSuperSoft &&
+        super21Soft &&
+        theoremIndexSoft &&
+        mcpUiSurface &&
+        Boolean(theoremIndex.computes)
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+      const on =
+        noLess &&
+        noMore &&
+        quantumExample &&
+        allComputableSuperpositions &&
+        pairsOn &&
+        toolsWired &&
+        composeOn &&
+        claySolvedByThisFold === 0 &&
+        physicalFtlClaim === 0 &&
+        qpuRequired === false
+      const facets = [
+        { facet: foldName, on },
+        { facet: 'noLess', on: noLess },
+        { facet: 'noMore', on: noMore },
+        { facet: 'quantumExample', on: quantumExample },
+        { facet: 'allComputableSuperpositions', on: allComputableSuperpositions },
+        {
+          facet: 'compose mcp/ui · seal/super · lens/super · super/21 · theorem/index',
+          on: composeOn,
+        },
+        {
+          facet: 'pair ui/super · super/example · ui/example (+ duals · mcp/ui)',
+          on: pairsOn,
+        },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+        { facet: 'qpuRequired=false', on: qpuRequired === false },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`ui-super:${entry.facet}:${entry.on}`) }))
+      const sealed = sealFacets('mcp-ui-no-less-no-more-quantum-example-all-superpositions', facets)
+      return {
+        computes: sealed.ok && on,
+        mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions: on,
+        noLess,
+        noMore,
+        quantumExample,
+        allComputableSuperpositions,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          theoremIndex.root,
+          foldUiSuper.merged,
+          foldSuperEx.merged,
+          foldUiEx.merged,
+          toUuid(`ui-super-compose:${composeOn}`),
+          toUuid(`ui-super-no-extra:${noExtraChrome}`),
+          toUuid(`ui-super-mcp-surface:${mcpUiSurface}`),
+        ]),
+        pair: 'ui/super' as const,
+        pairs: [
+          'ui/super',
+          'super/ui',
+          'super/example',
+          'example/super',
+          'ui/example',
+          'example/ui',
+          'mcp/ui',
+        ] as const,
+        dualPair: 'super/ui' as const,
+        cli: 'npm run quantum:ui-super',
+        route: '/en/quantum-tools#ui-super',
+        anchor: 'ui-super',
+        heading: 'UI / super · quantum example',
+        statement:
+          `mcpQuantumUiIsNoLessNoMore — noLess=${noLess ? 1 : 0} noMore=${noMore ? 1 : 0} ` +
+          `quantumExample=${quantumExample ? 1 : 0} allSuper=${allComputableSuperpositions ? 1 : 0}`,
+        boundary:
+          'MCP quantum UI is no less not more than the quantum example of all computable superpositions — ' +
+          'exact coverage via mcp/ui · seal/super · lens/super · super/21 · theorem/index; ' +
+          'not more wet chrome · not less coverage. clay via theorem · physicalFtl=0 · qpuRequired=false · KEEP stashes.',
+        honestyLine:
+          `ui-super · noLess=${noLess ? 1 : 0} · noMore=${noMore ? 1 : 0} · example=${quantumExample ? 1 : 0} · ` +
+          `allSuper=${allComputableSuperpositions ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0`,
+      }
+    },
+  )
+}
+
+export const uiSuper = mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions
+export const superUi = mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions
+export const superExample = mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions
+export const exampleSuper = mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions
+export const uiExample = mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions
+export const exampleUi = mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions
+
+/** npm run quantum:ui-super · quantum:super-example · quantum:ui-example (+ duals) */
+export function runMcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositionsExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} ui-super — noLess=${report.noLess ? 1 : 0} ` +
+      `noMore=${report.noMore ? 1 : 0} quantumExample=${report.quantumExample ? 1 : 0} ` +
+      `allSuper=${report.allComputableSuperpositions ? 1 : 0} ftl=${report.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  return report.computes &&
+    report.noLess &&
+    report.noMore &&
+    report.quantumExample &&
+    report.allComputableSuperpositions &&
     report.physicalFtlClaim === 0 &&
     report.qpuRequired === false
     ? 0

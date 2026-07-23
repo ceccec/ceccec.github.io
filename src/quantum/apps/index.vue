@@ -87,6 +87,7 @@ import {
   wavesFindWhatYouMissedToCache,
   dryCleanAgnosticCodeComputesInfinity,
   abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny,
+  mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions,
   quantumSelfHeal,
   oneQuantumSetOfVitepressComponentsSealedAtGates,
 } from './index.ts'
@@ -213,6 +214,9 @@ const missCache = computed(() => wavesFindWhatYouMissedToCache())
 const dryAgnostic = computed(() => dryCleanAgnosticCodeComputesInfinity())
 const foldTrinityAbsQc = computed(() =>
   abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny(),
+)
+const uiSuperExample = computed(() =>
+  mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions(),
 )
 const super21 = computed(() => computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium())
 const lensGeo = computed(() => useTheLensToFindGapsInGeometryInProseOrCode())
@@ -1588,6 +1592,25 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (
+      toolId === 'ui-super' ||
+      toolId === 'super-ui' ||
+      toolId === 'super-example' ||
+      toolId === 'example-super' ||
+      toolId === 'ui-example' ||
+      toolId === 'example-ui'
+    ) {
+      const r = mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions()
+      ok =
+        r.computes &&
+        r.noLess &&
+        r.noMore &&
+        r.quantumExample &&
+        r.allComputableSuperpositions
+      summary = `noLess=${r.noLess} noMore=${r.noMore} example=${r.quantumExample} allSuper=${r.allComputableSuperpositions}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'document-session-experiments') {
       const r = documentSessionCryptoExperimentsUpdateTheorems()
       ok = r.computes
@@ -2590,6 +2613,39 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'fold-trinity'" @click="runTool('fold-trinity')">
           {{ runningId === 'fold-trinity' ? '…' : 'Run fold-trinity receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="ui-super" aria-label="MCP quantum UI exact example of all computable superpositions">
+        <h3>{{ uiSuperExample.heading }}</h3>
+        <p class="quantum-apps__meta">{{ uiSuperExample.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(uiSuperExample.noLess))">
+          noLess={{ uiSuperExample.noLess }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(uiSuperExample.noMore))">
+          noMore={{ uiSuperExample.noMore }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(uiSuperExample.quantumExample))">
+          quantumExample={{ uiSuperExample.quantumExample }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(uiSuperExample.allComputableSuperpositions))">
+          allSuper={{ uiSuperExample.allComputableSuperpositions }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>ui/super</code> · <code>super/example</code> · <code>ui/example</code> ·
+          <code>mcp/ui</code> ·
+          CLI <code>npm run quantum:ui-super</code> ·
+          clay={{ uiSuperExample.claySolvedByThisFold }} · ftl={{ uiSuperExample.physicalFtlClaim }} ·
+          qpu={{ uiSuperExample.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in uiSuperExample.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'ui-super'" @click="runTool('ui-super')">
+          {{ runningId === 'ui-super' ? '…' : 'Run ui-super receipt' }}
         </UiButton>
       </section>
       <UiSeparator />
