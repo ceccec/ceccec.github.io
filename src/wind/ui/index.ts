@@ -2750,3 +2750,39 @@ export function paperAbstractOmitsTitleEcho(title: string, description: string):
   }
   return out.replace(/^Explanation:\s*/i, '').trim()
 }
+
+/**
+ * Color/rosetta · css/gaps strangler tip — theme morphs + token ids + CSS lens live in wind/ui
+ * (paint home). Fold bodies remain apps until catalog/gaps cycle-safe. Placed via manual/quantum.
+ */
+export const COLOR_ROSETTA_THEME_MORPHS = [
+  { before: 'bare-hex-css', after: 'iching-tokens-a432-hsl', status: 'removed' as const },
+  { before: 'orphan-rgba-literal', after: 'scaleColor+movieCanvasRgba', status: 'removed' as const },
+  { before: 'purple-ai-palette', after: 'a432-brand-theme', status: 'removed' as const },
+  { before: 'static-status-hex', after: 'statusBadgeTokens-css-vars', status: 'removed' as const },
+  { before: 'light-dark-orphan-poles', after: 'movieCanvasPolarity+theme-tokens', status: 'removed' as const },
+] as const
+
+/** Sealed theme token ids — status badge kinds + A432 brand anchors (light/dark via .dark). */
+export const COLOR_ROSETTA_THEME_TOKEN_IDS = [
+  'status-ready',
+  'status-ok',
+  'status-gap',
+  'status-warn',
+  'status-partial',
+  'status-error',
+  'status-refused',
+  'status-ci',
+  'vp-c-brand-1',
+  'dt-a432-hue',
+] as const
+
+/**
+ * CSS gap lens classes revealed by theme/status-badge tokens inside dry fusion —
+ * polarity-flat · bare hex · unwired tokens (not wet inventory prose).
+ */
+export const CSS_DRY_FUSION_GAP_LENS = [
+  { id: 'polarity-flat', theorem: 'animationsReviewColorsForPolarityGaps', status: 'revealed' as const },
+  { id: 'bare-hex', theorem: 'hexInsteadOfTheoremIsCrack', status: 'revealed' as const },
+  { id: 'unwired-tokens', theorem: 'allColorsDryCleanWiredToRosettaAndThemes', status: 'revealed' as const },
+] as const

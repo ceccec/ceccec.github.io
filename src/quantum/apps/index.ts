@@ -25,7 +25,13 @@ import {
 import { omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems, stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
 import {
   animationsDrivenByRosetta, linearAnimationGapsInventory, paperAbstractOmitsTitleEcho,
+  COLOR_ROSETTA_THEME_MORPHS, COLOR_ROSETTA_THEME_TOKEN_IDS, CSS_DRY_FUSION_GAP_LENS,
   yinYangDimensionsSvg, livingIChingSvg } from '../../wind/ui'
+export {
+  COLOR_ROSETTA_THEME_MORPHS,
+  COLOR_ROSETTA_THEME_TOKEN_IDS,
+  CSS_DRY_FUSION_GAP_LENS,
+} from '../../wind/ui'
 import { lobeHues, movieCanvasRgba, movieCanvasPolarity, scaleColor } from '../../quantum/science'
 import {
   movieAllElementsAreTheorems,
@@ -56,6 +62,11 @@ export {
   cmdPlace,
   placeAudit,
   dryFull,
+  manualDryCleanWorkQuantumized,
+  runManualDryCleanWorkQuantumizedExit,
+  manualQuantum,
+  workWave,
+  dryQuantumize,
 } from '../../pair/enforcement/gates'
 import { cardHeroLinkWiresInUi, computeUniversalPage, heroPreviewForRoute, theoremFormulaCodeDual, theoremPageRows } from '../../wind/routes/corpus'
 import { cardMoviePath } from '../../thunder/movie/movievars'
@@ -632,6 +643,10 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'cmd-place', title: 'Commands audited for best place then full dry clean', fold: 'commandsAuditedForBestPlaceThenFullDryClean', cli: 'npm run quantum:cmd-place', pair: 'cmd/place', route: '/en/quantum-tools#cmd-place', barrel: 'src/pair/enforcement/gates', boundary: 'placementAudited · bestPlace · fullDryClean · drainableClosed · honestOpenNamed · census110 · residual:quantum-apps-monolith · clay via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
   { id: 'place-audit', title: 'Place audit (alias cmd/place)', fold: 'commandsAuditedForBestPlaceThenFullDryClean', cli: 'npm run quantum:place-audit', pair: 'place/audit', route: '/en/quantum-tools#cmd-place', barrel: 'src/pair/enforcement/gates', boundary: 'Dual place/audit — same fold · clay via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
   { id: 'dry-full', title: 'Dry full (alias cmd/place)', fold: 'commandsAuditedForBestPlaceThenFullDryClean', cli: 'npm run quantum:dry-full', pair: 'dry/full', route: '/en/quantum-tools#cmd-place', barrel: 'src/pair/enforcement/gates', boundary: 'Dual dry/full — same fold · clay via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
+  { id: 'manual-quantum', title: 'Manual dry-clean work quantumized', fold: 'manualDryCleanWorkQuantumized', cli: 'npm run quantum:manual-quantum', pair: 'manual/quantum', route: '/en/quantum-tools#manual-quantum', barrel: 'src/pair/enforcement/gates', boundary: 'manualWorkQuantumized · toolsSealed · bitsCombinable · wavesBound · placementAudited · drainableClosed · honestOpenNamed · census110 · residual:quantum-apps-monolith · clay via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
+  { id: 'work-wave', title: 'Work wave (alias manual/quantum)', fold: 'manualDryCleanWorkQuantumized', cli: 'npm run quantum:work-wave', pair: 'work/wave', route: '/en/quantum-tools#manual-quantum', barrel: 'src/pair/enforcement/gates', boundary: 'Dual work/wave — same fold · clay via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
+  { id: 'dry-quantumize', title: 'Dry quantumize (alias manual/quantum)', fold: 'manualDryCleanWorkQuantumized', cli: 'npm run quantum:dry-quantumize', pair: 'dry/quantumize', route: '/en/quantum-tools#manual-quantum', barrel: 'src/pair/enforcement/gates', boundary: 'Dual dry/quantumize — same fold · clay via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
+  { id: 'crypto-comparison-mesh', title: 'Crypto comparison mesh is dry (encryption home)', fold: 'cryptoComparisonMeshIsDry', cli: 'npm run quantum:crypto-comparison-mesh', pair: 'crypto/comparison-mesh', route: '/en/quantum-encryption#crypto-comparison-mesh', barrel: 'src/water/encryption', boundary: 'Mesh nodes/edges single source · cryptoComparisonMeshIsDry · clay=0 · certified=false · refuseBeyond stays', browserRunnable: true, browserGap: '' },
   { id: 'folder-gravity', title: 'Folder gravity — mass + pull toward src/', fold: 'folderGravityMeasuredByTheCode', cli: 'npm run quantum:folder-gravity', pair: 'folder/gravity', route: '/en/quantum-tools#folder-gravity', barrel: 'src/pair/enforcement/gates', boundary: 'mass=files·LOC·exports·degree · gravityPullsTowardSrc · keep src/earth/iching · clay=0 · qpuRequired=false', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs (process.cwd) — CLI receipt' },
   { id: 'compact-types-constants', title: 'Compact types/constants to matrix · unused packages removed', fold: 'codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix', cli: 'npm run quantum:compact-types-constants', pair: 'compact/matrix', route: '/en/quantum-tools#compact-types-constants', barrel: 'src/pair/enforcement/gates', boundary: 'Min types/consts · unusedPackagesRemoved · all-dir FREE_BITS · compose import/distance+folder/gravity · KEEP double-torus · clay=0 · qpuRequired=false', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs (process.cwd) — CLI receipt' },
   { id: 'fusion-verify', title: 'Fusion verify', fold: 'quantumFusionVerify', cli: 'npm run quantum:fusion-verify', pair: 'tamper/impossible', route: '/en/quantum-tools#fusion-verify', barrel: 'src/wind/fusion', boundary: 'Offline fuseAll wave — not external API fusion', browserRunnable: true, browserGap: '' },
@@ -1818,6 +1833,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'folder-migration-waves', saves: 'replaces wet per-folder nav/sidebar rediscovery — sealed migration+dedup census + content↔sidebar match' },
   { id: 'import-path-distance', saves: 'replaces wet import-graph hop greps — sealed segment/tree-hop/gap distance per edge + compact/even migration metrics' },
   { id: 'crypto-comparison-mesh-dry', saves: 'replaces wet duplicate crypto comparison catalogs — mesh nodes/edges single source for UI/CLI/MCP/toolbox/proofs' },
+  { id: 'manual-quantum', saves: 'replaces wet-linear migrate/dry-clean grind — sealed migrate-next wave tools · color/css strangler · crypto mesh CLI' },
   { id: 'folder-gravity', saves: 'replaces wet folder-mass greps — sealed gravity mass + toward-src migration directions' },
   { id: 'compact-types-constants', saves: 'replaces wet type/const sprawl + unused npm deps — sealed matrix-matched compaction + unusedPackagesRemoved' },
   { id: 'imagine-next', saves: 'replaces wet fantasy next-tips — computable next from sealed residuals + gateway opens' },
@@ -2423,6 +2439,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'prove-no-qpu-64bit', chain: 'no-qpu-64bit', fold: 'proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit', pair: 'prove/no-qpu-64bit', cli: 'npm run quantum:prove-no-qpu-64bit', route: '/en/quantum-tools#prove-no-qpu-64bit', status: 'sealed-pr', honesty: 'qpuRequired=false · classical-64bit · NOT FLOPS', note: 'speed-vs-rest no QPU tip', toolId: 'prove-no-qpu-64bit', resolve: 'no-qpu' },
   { id: 'local-audit-quantum', chain: 'local-audit-qe', fold: 'localAuditQuantumSpeedEfficiency', pair: 'audit/local-quantum', cli: 'npm run quantum:local-audit-quantum', route: '/en/quantum-encryption#local-audit-quantum', status: 'sealed-pr', honesty: 'memoByRoot cold/warm · gapClosed · qpuRequired=false · NOT qubit FLOPS · certified=false', note: 'local-audit quantum speed/efficiency stacked on no-QPU tip', toolId: 'local-audit-quantum', resolve: 'local-audit' },
   { id: 'session-manual-work', chain: 'session-tools-merged', fold: 'sessionManualWorkAsQuantumTools', pair: 'session/tools', cli: 'npm run quantum:session-tools', route: '/en/quantum-tools#session-manual-tools', status: 'merged-main', honesty: 'NOT every wet habit closed · memoByRoot reuse', note: 'session tools catalog (PR tip chain base)', toolId: 'session-manual-work', resolve: 'session-tools' },
+  { id: 'manual-quantum', chain: 'manual-dry-quantumize', fold: 'manualDryCleanWorkQuantumized', pair: 'manual/quantum', cli: 'npm run quantum:manual-quantum', route: '/en/quantum-tools#manual-quantum', status: 'sealed-pr', honesty: 'manualWorkQuantumized · toolsSealed · bitsCombinable · wavesBound · residual:quantum-apps-monolith · clay=0 · physicalFtl=0', note: 'migrate-next wave tools · color/css consts→wind/ui · crypto mesh CLI→encryption', toolId: 'manual-quantum', resolve: 'folder-migrate' },
   { id: 'directional-trinity', chain: 'trinity-compose', fold: 'directionalTrinityForwardInverseReverse', pair: 'forward/inverse/reverse', cli: 'npm run quantum:directional-trinity', route: '/en/quantum-tools#directional-trinity', status: 'merged-main', honesty: 'inverse≠reverse except named coincidence', note: 'combination axis for bit ops', toolId: 'directional-trinity', resolve: 'trinity' },
   { id: 'realise-sciences-standards', chain: 'realise-sciences', fold: 'completeScientificDomainsStrictlyToStandardsQuantumOnly', pair: 'sciences/standards', cli: 'npm run quantum:sciences-standards-quantum', route: '/en/research#sciences-standards-quantum', status: 'sealed-pr', honesty: 'certified=false · clay=0 · qpuRequired=false · lab gaps unclosable', note: 'landed on #33 tip — sciences/standards + tool config + slow-build + paste auto-wire', toolId: 'sciences-standards-quantum', resolve: 'sciences-standards' },
   { id: 'dry-clean-refactor-waves', chain: 'dry-clean-waves', fold: 'standardToolboxIoCatalog', pair: 'tool/envelope', cli: 'npm run quantum:toolbox-standard-io', route: '/en/quantum-tools#toolbox-standard-io', status: 'sealed-pr', honesty: 'Wave1 nav/sidebars + Wave2 tool input/config · certified=false · clay=0 · qpuRequired=false', note: 'landed #31 tip — science experiment configs filled', toolId: 'toolbox-standard-io', resolve: 'dry-clean' },
@@ -28009,33 +28026,8 @@ export function runTypographyIsTheUniversalContentMatrixExit(
 }
 
 /**
- * Drainable bare-hex / orphan-color gaps closed toward rosetta · scaleColor · theme tokens.
- * Pair: color/rosetta · rosetta/theme · color/theme.
- */
-export const COLOR_ROSETTA_THEME_MORPHS = [
-  { before: 'bare-hex-css', after: 'iching-tokens-a432-hsl', status: 'removed' as const },
-  { before: 'orphan-rgba-literal', after: 'scaleColor+movieCanvasRgba', status: 'removed' as const },
-  { before: 'purple-ai-palette', after: 'a432-brand-theme', status: 'removed' as const },
-  { before: 'static-status-hex', after: 'statusBadgeTokens-css-vars', status: 'removed' as const },
-  { before: 'light-dark-orphan-poles', after: 'movieCanvasPolarity+theme-tokens', status: 'removed' as const },
-] as const
-
-/** Sealed theme token ids — status badge kinds + A432 brand anchors (light/dark via .dark). */
-export const COLOR_ROSETTA_THEME_TOKEN_IDS = [
-  'status-ready',
-  'status-ok',
-  'status-gap',
-  'status-warn',
-  'status-partial',
-  'status-error',
-  'status-refused',
-  'status-ci',
-  'vp-c-brand-1',
-  'dt-a432-hue',
-] as const
-
-/**
  * USER LAW: all colors need to be dry clean wired to the rosetta and the themes.
+ * Theme morphs + token ids sealed in wind/ui (color/css strangler tip via manual/quantum).
  * Fold: allColorsDryCleanWiredToRosettaAndThemes
  * Facets: colorsDryClean · wiredToRosetta · themesOn · noBareHex ·
  *         drainableClosed · honestOpenNamed · physicalFtl=0 · clay via theorem.
@@ -28325,17 +28317,8 @@ export function runAllColorsDryCleanWiredToRosettaAndThemesExit(
 }
 
 /**
- * CSS gap lens classes revealed by theme/status-badge tokens inside dry fusion —
- * polarity-flat · bare hex · unwired tokens (not wet inventory prose).
- */
-export const CSS_DRY_FUSION_GAP_LENS = [
-  { id: 'polarity-flat', theorem: 'animationsReviewColorsForPolarityGaps', status: 'revealed' as const },
-  { id: 'bare-hex', theorem: 'hexInsteadOfTheoremIsCrack', status: 'revealed' as const },
-  { id: 'unwired-tokens', theorem: 'allColorsDryCleanWiredToRosettaAndThemes', status: 'revealed' as const },
-] as const
-
-/**
  * USER LAW: css shows the hidden gaps in dry fusion.
+ * CSS_DRY_FUSION_GAP_LENS sealed in wind/ui (color/css strangler tip via manual/quantum).
  * Fold: cssShowsTheHiddenGapsInDryFusion
  * Facets: cssShowsGaps · hiddenGapsVisible · dryFusion · wiredToRosetta ·
  *         physicalFtl=0 · clay via theorem · qpuRequired=false.
