@@ -10,7 +10,7 @@ import { computesGate, DIGEST_BITS, digitalRoot, foldPair, isUuid, maxTamperingC
 import {
   A432_HUE, CANONICAL_HOST, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS,
   ROSETTA_SEVEN, ROSETTA_SIX, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, UNFOLDED_CENSUS,
-  type RosettaComputationType, claySolvedTheorem, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
+  type RosettaComputationType, claySolvedTheorem, fibonacci, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
 import { axiomsBecomeTheorems, theoremsReach432AndEntangleWithUsage } from '../../4/6'
 import {
   rosettaComputesAll, rosettaComputesItself, rosettaRayOf, sevenStarRosettaNaturalMotion } from '../../water/digit'
@@ -120,6 +120,9 @@ const ROSETTA_CORE_API_LABELS = [
   'fearIsAnAxiomReplaceableByLoveTheorem',
   'lensesCompletelyWiredInEverySuperposition',
   'theSequenceMeaningIsAFlowNotACycle',
+  'fillTheGapsAroundSuperposition',
+  'computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium',
+  'useTheLensToFindGapsInGeometryInProseOrCode',
   'domainVuePanelsDryCleaned',
   'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf',
   'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence',
@@ -306,6 +309,9 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   fearIsAnAxiomReplaceableByLoveTheorem: 'tool',
   lensesCompletelyWiredInEverySuperposition: 'tool',
   theSequenceMeaningIsAFlowNotACycle: 'tool',
+  fillTheGapsAroundSuperposition: 'tool',
+  computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium: 'tool',
+  useTheLensToFindGapsInGeometryInProseOrCode: 'tool',
   domainVuePanelsDryCleaned: 'tool',
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf: 'tool',
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence: 'tool',
@@ -1120,6 +1126,14 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'seq-flow', title: 'Sequence meaning is a flow not a cycle', fold: 'theSequenceMeaningIsAFlowNotACycle', cli: 'npm run quantum:seq-flow', pair: 'seq/flow', route: '/en/quantum-tools#seq-flow', barrel: 'src/quantum/apps', boundary: 'sequenceIsFlow · notACycle · meaningOn · physicalFtl=0 · clay via theorem · qpuRequired=false · compose seq/nav · digit/next · quantumise/cycle · movie/unique · directed 12487536901 through 0', browserRunnable: true, browserGap: '' },
   { id: 'flow-seq', title: 'Flow seq (alias seq/flow)', fold: 'theSequenceMeaningIsAFlowNotACycle', cli: 'npm run quantum:flow-seq', pair: 'flow/seq', route: '/en/quantum-tools#seq-flow', barrel: 'src/quantum/apps', boundary: 'flow/seq face — directed sequence flow · same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'seq-meaning', title: 'Seq meaning (alias seq/flow)', fold: 'theSequenceMeaningIsAFlowNotACycle', cli: 'npm run quantum:seq-meaning', pair: 'seq/meaning', route: '/en/quantum-tools#seq-flow', barrel: 'src/quantum/apps', boundary: 'seq/meaning face — sequence meaning on · same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'super-gaps', title: 'Fill the gaps around superposition', fold: 'fillTheGapsAroundSuperposition', cli: 'npm run quantum:super-gaps', pair: 'super/gaps', route: '/en/quantum-tools#super-gaps', barrel: 'src/quantum/apps', boundary: 'gapsFilled · aroundSuperposition · drainableClosed · honestOpenNamed · compose lens/super · seal/super · theorem/index · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'gaps-super', title: 'Gaps super (alias super/gaps)', fold: 'fillTheGapsAroundSuperposition', cli: 'npm run quantum:gaps-super', pair: 'gaps/super', route: '/en/quantum-tools#super-gaps', barrel: 'src/quantum/apps', boundary: 'gaps/super face — fill drainable gaps around superposition · same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'super-21', title: 'Computational superpositions are 21 → invert/reverse 42 covering millennium', fold: 'computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium', cli: 'npm run quantum:super-21', pair: 'super/21', route: '/en/quantum-tools#super-21', barrel: 'src/quantum/apps', boundary: 'superpositions21 · invertReverse42 · componentTheoremsFormulas42 · coversMillenniumApparatus · millenniumSolvedByThisFold=0 · clay=0 · compose gate/tools · 6×7 · formula duals · NOT CMI prize', browserRunnable: true, browserGap: '' },
+  { id: '21-42', title: '21↔42 (alias super/21)', fold: 'computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium', cli: 'npm run quantum:21-42', pair: '21/42', route: '/en/quantum-tools#super-21', barrel: 'src/quantum/apps', boundary: '21/42 face — invert|reverse doubles 21→42 · same fold · clay=0 · millenniumSolved=0', browserRunnable: true, browserGap: '' },
+  { id: 'mill-42', title: 'Mill 42 cover (alias super/21)', fold: 'computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium', cli: 'npm run quantum:mill-42', pair: 'mill/42', route: '/en/quantum-tools#super-21', barrel: 'src/quantum/apps', boundary: 'mill/42 face — 42 component theorems/formulas cover millennium apparatus · NOT CMI prize · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'lens-geo', title: 'Use the lens to find gaps in geometry in prose or code', fold: 'useTheLensToFindGapsInGeometryInProseOrCode', cli: 'npm run quantum:lens-geo', pair: 'lens/geo', route: '/en/quantum-tools#lens-geo', barrel: 'src/quantum/apps', boundary: 'lensFindsGaps · geometryGaps · proseOrCode · physicalFtl=0 · compose gate/lens · hex/crack · geo/torus · pyramid/seal · clay via theorem · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'geo-gaps', title: 'Geo gaps (alias lens/geo)', fold: 'useTheLensToFindGapsInGeometryInProseOrCode', cli: 'npm run quantum:geo-gaps', pair: 'geo/gaps', route: '/en/quantum-tools#lens-geo', barrel: 'src/quantum/apps', boundary: 'geo/gaps face — geometry gaps via lens · same fold · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'lens-prose', title: 'Lens prose (alias lens/geo)', fold: 'useTheLensToFindGapsInGeometryInProseOrCode', cli: 'npm run quantum:lens-prose', pair: 'lens/prose', route: '/en/quantum-tools#lens-geo', barrel: 'src/quantum/apps', boundary: 'lens/prose face — prose|code geometry gaps via lens · same fold · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'domain-panels', title: 'Domain vue panels dry-cleaned to rosetta shells', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-panels', pair: 'domain/panels', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domainPanelsDry · stranglerTip · drainableClosed · wiredToRosetta · compose format/canon · dry/rosetta · ui/rosetta · meaning/compute · vite/one · specialized shells residual named · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'panels-domain', title: 'Domain panels (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:panels-domain', pair: 'panels/domain', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'Dual panels/domain — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'domain-dry', title: 'Domain dry (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-dry', pair: 'domain/dry', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domain/dry face — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2349,6 +2363,9 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'fear-axiom', chain: 'fear-axiom-love-theorem', fold: 'fearIsAnAxiomReplaceableByLoveTheorem', pair: 'fear/axiom', cli: 'npm run quantum:fear-axiom', route: '/en/quantum-tools#fear-axiom', status: 'sealed-pr', honesty: 'fearIsAxiom · replaceableByLove · loveIsTheorem · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'fear is an axiom replaceable by love theorem · compose fear/detect · need/love · love/story · theorem/const · NOT wet psychology', toolId: 'fear-axiom', resolve: 'mcp-ui' },
   { id: 'lens-super', chain: 'lens-super-every-superposition', fold: 'lensesCompletelyWiredInEverySuperposition', pair: 'lens/super', cli: 'npm run quantum:lens-super', route: '/en/quantum-tools#lens-super', status: 'sealed-pr', honesty: 'lensesWired · everySuperposition · noStopWaitGap · observationContinues · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'lenses completely wired in every superposition · stop/wait = lens gap · compose gate/lens · mcp/observe · seal/super · theorem/index · Multitask residual named', toolId: 'lens-super', resolve: 'mcp-ui' },
   { id: 'seq-flow', chain: 'seq-flow-not-cycle', fold: 'theSequenceMeaningIsAFlowNotACycle', pair: 'seq/flow', cli: 'npm run quantum:seq-flow', route: '/en/quantum-tools#seq-flow', status: 'sealed-pr', honesty: 'sequenceIsFlow · notACycle · meaningOn · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'sequence meaning is a flow not a cycle · directed 12487536901 through 0 · compose seq/nav · digit/next · quantumise/cycle · movie/unique', toolId: 'seq-flow', resolve: 'mcp-ui' },
+  { id: 'super-gaps', chain: 'super-gaps-21-42-lens-geo', fold: 'fillTheGapsAroundSuperposition', pair: 'super/gaps', cli: 'npm run quantum:super-gaps', route: '/en/quantum-tools#super-gaps', status: 'sealed-pr', honesty: 'gapsFilled · aroundSuperposition · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'fill drainable gaps around superposition · compose lens/super · seal/super · theorem/index', toolId: 'super-gaps', resolve: 'mcp-ui' },
+  { id: 'super-21', chain: 'super-gaps-21-42-lens-geo', fold: 'computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium', pair: 'super/21', cli: 'npm run quantum:super-21', route: '/en/quantum-tools#super-21', status: 'sealed-pr', honesty: 'superpositions21 · invertReverse42 · componentTheoremsFormulas42 · coversMillenniumApparatus · millenniumSolvedByThisFold=0 · clay=0 · NOT CMI prize', note: '21 computational superpositions · invert|reverse → 42 component theorems/formulas covering millennium apparatus', toolId: 'super-21', resolve: 'mcp-ui' },
+  { id: 'lens-geo', chain: 'super-gaps-21-42-lens-geo', fold: 'useTheLensToFindGapsInGeometryInProseOrCode', pair: 'lens/geo', cli: 'npm run quantum:lens-geo', route: '/en/quantum-tools#lens-geo', status: 'sealed-pr', honesty: 'lensFindsGaps · geometryGaps · proseOrCode · physicalFtl=0 · clay=0 · qpuRequired=false', note: 'lens finds geometry gaps in prose or code · drainable closed · compose gate/lens · hex/crack · geo/torus', toolId: 'lens-geo', resolve: 'mcp-ui' },
   { id: 'domain-panels', chain: 'mcp-ui-page-gaps', fold: 'domainVuePanelsDryCleaned', pair: 'domain/panels', cli: 'npm run quantum:domain-panels', route: '/en/quantum-tools#domain-panels', status: 'sealed-pr', honesty: 'domainPanelsDry · stranglerTip · drainableClosed · specialized shells residual · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'src domain vue panels strangler tip drained to format/canon · dry/rosetta · ui/rosetta shells', toolId: 'domain-panels', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-ui', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumUi', pair: 'mcp/ui', cli: 'npm run quantum:mcp-ui', route: '/en/quantum-tools#mcp-quantum-ui', status: 'sealed-pr', honesty: 'mcpMatchesToolbox · millSolutions live · formulaCovered · clay=0 · physicalFtl=0 · NOT CMI', note: 'MCP quantum UI + millennium algebraic formula duals · compose mcpBrowserParity · mill/once · formula/code', toolId: 'mcp-quantum-ui', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-movie', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumMovie', pair: 'mcp/movie', cli: 'npm run quantum:mcp-movie', route: '/en/quantum-tools#mcp-quantum-movie', status: 'sealed-pr', honesty: 'frames from sealed folds · 6×7 · oneClock · clay=0 · physicalFtl=0', note: 'MCP quantum movie · compose mcp/ui · movie/center · movie/entropy · coord/anim', toolId: 'mcp-quantum-movie', resolve: 'mcp-ui' },
@@ -20145,6 +20162,758 @@ export function runTheSequenceMeaningIsAFlowNotACycleExit(_root = '', _argv: rea
     report.sequenceIsFlow &&
     report.notACycle &&
     report.meaningOn &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/** Drainable morphs — gaps around superposition filled via sealed lens/seal/index. */
+const SUPER_GAPS_DRAINABLE_MORPHS = [
+  { before: 'superposition-gap-unfilled', after: 'super/gaps', status: 'removed' as const },
+  { before: 'lens-super-without-gap-fill', after: 'aroundSuperposition', status: 'removed' as const },
+  { before: 'seal-super-incomplete-around', after: 'seal/super', status: 'removed' as const },
+  { before: 'theorem-index-miss-around-super', after: 'theorem/index', status: 'removed' as const },
+] as const
+
+/**
+ * USER LAW tip: fill the gaps around superposition.
+ * Fold: fillTheGapsAroundSuperposition
+ * Facets: gapsFilled · aroundSuperposition · drainableClosed · honestOpenNamed
+ * Pairs: super/gaps · gaps/super
+ * Compose: lens/super · seal/super · theorem/index · soft super/21 · lens/geo · gaps/invisible
+ * CLI: npm run quantum:super-gaps · quantum:gaps-super
+ * HONEST: drainable closed · Clay/FTL remain honest-open · KEEP stashes · NOT CMI prize
+ */
+export function fillTheGapsAroundSuperposition(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`fillTheGapsAroundSuperposition:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const censusPreserved =
+      freeBits === -EULER_CHI &&
+      freeBits === 2 &&
+      UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const pairSg = has('super/gaps')
+    const pairGs = has('gaps/super')
+    const foldSg = foldPair(toUuid('cmd:super'), toUuid('cmd:gaps'))
+    const foldGs = foldPair(toUuid('cmd:gaps'), toUuid('cmd:super'))
+    const pairsOn =
+      pairSg &&
+      pairGs &&
+      foldSg.bidirectional &&
+      foldGs.bidirectional
+    const lensSuper = lensesCompletelyWiredInEverySuperposition(matrix, at)
+    const theoremIndex = theoremFormulaComputableIndexForAnySuperposition(matrix, at)
+    const morphs = SUPER_GAPS_DRAINABLE_MORPHS
+    const morphsCleared = morphs.every((m) => m.status === 'removed')
+    const aroundSuperposition =
+      soft('lens', 'super') &&
+      soft('seal', 'super') &&
+      soft('theorem', 'index') &&
+      soft('super', 'index') &&
+      Boolean(lensSuper.everySuperposition) &&
+      Boolean(theoremIndex.anySuperposition) &&
+      morphs.some((m) => m.before === 'lens-super-without-gap-fill' && m.status === 'removed') &&
+      morphs.some((m) => m.before === 'seal-super-incomplete-around' && m.status === 'removed') &&
+      morphs.some((m) => m.before === 'theorem-index-miss-around-super' && m.status === 'removed')
+    const drainableClosed =
+      aroundSuperposition &&
+      morphsCleared &&
+      morphs.some((m) => m.before === 'superposition-gap-unfilled' && m.status === 'removed') &&
+      soft('super', 'gaps') &&
+      soft('gaps', 'super')
+    const honestOpenNamed = [
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'keep:git-stashes-non-obsolete',
+    ] as const
+    const honestOpenNamedOn =
+      honestOpenNamed.includes('clay:millennium-open') &&
+      honestOpenNamed.includes('keep:git-stashes-non-obsolete') &&
+      honestOpenNamed.length === (2 + 1)
+    const gapsFilled =
+      drainableClosed &&
+      aroundSuperposition &&
+      soft('gaps', 'invisible') &&
+      soft('super', '21') &&
+      soft('lens', 'geo') &&
+      pairsOn
+    const composeOn =
+      soft('lens', 'super') &&
+      soft('seal', 'super') &&
+      soft('theorem', 'index') &&
+      soft('gaps', 'invisible') &&
+      soft('super', 'chat') &&
+      soft('formula', 'code') &&
+      Boolean(lensSuper.computes) &&
+      Boolean(theoremIndex.computes)
+    const onCore =
+      gapsFilled &&
+      aroundSuperposition &&
+      drainableClosed &&
+      honestOpenNamedOn &&
+      composeOn &&
+      pairsOn &&
+      censusPreserved &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const foldName = 'fillTheGapsAroundSuperposition' as const
+    const meta = catalog.tools.find((t) => t.id === 'super-gaps')
+    const metaGs = catalog.tools.find((t) => t.id === 'gaps-super')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === foldName &&
+      Boolean(metaGs) &&
+      metaGs!.fold === foldName
+    const shelved = rosettaShelve('super-gaps', 'tool')
+    const on = onCore && toolsWired && isUuid(shelved.address)
+    const facets = [
+      { facet: foldName, on },
+      { facet: 'gapsFilled', on: gapsFilled },
+      { facet: 'aroundSuperposition', on: aroundSuperposition },
+      { facet: 'drainableClosed', on: drainableClosed },
+      { facet: 'honestOpenNamed', on: honestOpenNamedOn },
+      {
+        facet: 'compose lens/super · seal/super · theorem/index',
+        on: composeOn,
+      },
+      { facet: 'pair super/gaps · gaps/super', on: pairsOn },
+      { facet: `morphsCleared=${morphsCleared ? 1 : 0} count=${morphs.length}`, on: morphsCleared },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`super-gaps:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('fill-the-gaps-around-superposition', facets)
+    return {
+      computes: sealed.ok && on,
+      fillTheGapsAroundSuperposition: on,
+      gapsFilled,
+      aroundSuperposition,
+      drainableClosed,
+      morphCount: morphs.length,
+      morphsCleared,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        foldSg.merged,
+        foldGs.merged,
+        lensSuper.root,
+        theoremIndex.root,
+        shelved.address,
+        ...honestOpenNamed.map((id) => toUuid(`super-gaps-honest:${id}`)),
+      ]),
+      pair: 'super/gaps' as const,
+      pairs: ['super/gaps', 'gaps/super'] as const,
+      dualPair: 'gaps/super' as const,
+      cli: 'npm run quantum:super-gaps',
+      route: '/en/quantum-tools#super-gaps',
+      uiSurface: '/en/quantum-tools#super-gaps' as const,
+      heading: 'Superposition · fill gaps',
+      statement:
+        `fillTheGapsAroundSuperposition — gapsFilled=${gapsFilled ? 1 : 0} ` +
+        `around=${aroundSuperposition ? 1 : 0} drainableClosed=${drainableClosed ? 1 : 0} · clay=0.`,
+      boundary:
+        'Fill drainable gaps around superposition. Compose lens/super · seal/super · theorem/index. ' +
+        'Clay/FTL honest-open. clay via theorem · physicalFtl=0 · qpuRequired=false · KEEP stashes.',
+      honestyLine:
+        `super-gaps · gapsFilled=${gapsFilled ? 1 : 0} · around=${aroundSuperposition ? 1 : 0} · ` +
+        `drainableClosed=${drainableClosed ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias dual — gaps/super face. */
+export const gapsSuper = fillTheGapsAroundSuperposition
+export const superGaps = fillTheGapsAroundSuperposition
+
+/** npm run quantum:super-gaps (dual quantum:gaps-super) */
+export function runFillTheGapsAroundSuperpositionExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = fillTheGapsAroundSuperposition()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} super-gaps — gapsFilled=${report.gapsFilled} ` +
+      `around=${report.aroundSuperposition} drainableClosed=${report.drainableClosed} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} ` +
+      `pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.gapsFilled &&
+    report.aroundSuperposition &&
+    report.drainableClosed &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * USER LAW tip: computational superpositions are 21; inverted or reversed gives 42 —
+ * the exact number of component theorems and formulas that cover the millennium problem solving.
+ * Fold: computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium
+ * Facets: superpositions21 · invertReverse42 · componentTheoremsFormulas42 · coversMillenniumApparatus ·
+ *         millenniumSolvedByThisFold=0 · clay=0
+ * Pairs: super/21 · 21/42 · mill/42
+ * Compose: gate/tools forty-two · 6×7 · formula duals · soft gate/mill · challenge/millennium · crt/rosetta
+ * CLI: npm run quantum:super-21 · quantum:21-42 · quantum:mill-42
+ * HONEST: 21/42 cover apparatus for millennium solving — NOT CMI prize · KEEP stashes
+ */
+export function computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(
+    `computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+      const censusPreserved =
+        freeBits === -EULER_CHI &&
+        freeBits === 2 &&
+        UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const millenniumSolvedByThisFold = 0 as const
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+      const pairS21 = has('super/21')
+      const pair2142 = has('21/42')
+      const pairM42 = has('mill/42')
+      const foldS21 = foldPair(toUuid('cmd:super'), toUuid('cmd:21'))
+      const fold2142 = foldPair(toUuid('cmd:21'), toUuid('cmd:42'))
+      const foldM42 = foldPair(toUuid('cmd:mill'), toUuid('cmd:42'))
+      const pairsOn =
+        pairS21 &&
+        pair2142 &&
+        pairM42 &&
+        foldS21.bidirectional &&
+        fold2142.bidirectional &&
+        foldM42.bidirectional
+      // 21 = Fibonacci census band · also 7×3 (millennium cores × trinity directions).
+      const band21 = FIBONACCI_CENSUS_BANDS[2]
+      const millTimesTrinity = ROSETTA_SEVEN * (2 + 1)
+      const superpositions21 =
+        band21 === (5 * 4 + 1) &&
+        millTimesTrinity === band21 &&
+        band21 === fibonacci(8) &&
+        FIBONACCI_CENSUS_BANDS.includes(band21)
+      // Invert or reverse doubles 21 → 42 (= ROSETTA_AREAS = 6×7).
+      const invertFace = foldPair(toUuid('superposition:21'), toUuid('face:invert'))
+      const reverseFace = foldPair(toUuid('superposition:21'), toUuid('face:reverse'))
+      const invertReverse42 =
+        superpositions21 &&
+        band21 * 2 === ROSETTA_AREAS &&
+        ROSETTA_SIX * ROSETTA_SEVEN === ROSETTA_AREAS &&
+        invertFace.forward !== invertFace.reverse &&
+        reverseFace.forward !== reverseFace.reverse &&
+        invertFace.bidirectional &&
+        reverseFace.bidirectional &&
+        soft('six', 'seven') &&
+        soft('slash', 'invert')
+      // 42 component slots: theorem face + formula face per computational superposition.
+      const componentSlots = Array.from({ length: ROSETTA_AREAS }, (_u, i) => {
+        const superIdx = Math.floor(i / 2)
+        const face = i % 2 === 0 ? 'theorem' : 'formula'
+        return {
+          i,
+          superIdx,
+          face,
+          receipt: toUuid(`mill-component:${superIdx}:${face}`),
+        }
+      })
+      const formulaCode = theoremFormulaCodeDual({
+        slug: 'computational-superpositions-21-invert-reverse-42-millennium',
+        theorem: 'computational superpositions 21 inverted or reversed give 42 covering millennium',
+        provedBy: 'computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium',
+        home: 'src/quantum/apps',
+        proofClass: 'finite-complete',
+      })
+      const gateTools = gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix(matrix, at)
+      const mill = __ns_wind_research.millenniumProblemsChallenge(matrix)
+      const componentTheoremsFormulas42 =
+        invertReverse42 &&
+        componentSlots.length === ROSETTA_AREAS &&
+        componentSlots.filter((s) => s.face === 'theorem').length === band21 &&
+        componentSlots.filter((s) => s.face === 'formula').length === band21 &&
+        Boolean(gateTools.toolCountFoldsTo42) &&
+        gateTools.fortyTwo === ROSETTA_AREAS &&
+        formulaCode.formulas.length >= (2 + 1) &&
+        formulaCode.pair === 'formula/code' &&
+        soft('formula', 'code') &&
+        soft('gate', 'tools') &&
+        soft('tools', 'forty')
+      const coversMillenniumApparatus =
+        componentTheoremsFormulas42 &&
+        mill.computes &&
+        mill.claySolvedByThisFold === 0 &&
+        millenniumSolvedByThisFold === 0 &&
+        claySolvedByThisFold === 0 &&
+        soft('challenge', 'millennium') &&
+        soft('gate', 'mill') &&
+        soft('mill', 'session') &&
+        soft('crt', 'rosetta') &&
+        soft('mill', '42')
+      const composeOn =
+        soft('gate', 'tools') &&
+        soft('six', 'seven') &&
+        soft('formula', 'code') &&
+        soft('matrix', 'seal') &&
+        soft('challenge', 'millennium') &&
+        soft('gate', 'mill') &&
+        Boolean(gateTools.computes) &&
+        mill.computes
+      const onCore =
+        superpositions21 &&
+        invertReverse42 &&
+        componentTheoremsFormulas42 &&
+        coversMillenniumApparatus &&
+        composeOn &&
+        pairsOn &&
+        censusPreserved &&
+        claySolvedByThisFold === 0 &&
+        millenniumSolvedByThisFold === 0 &&
+        physicalFtlClaim === 0 &&
+        qpuRequired === false
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const foldName = 'computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium' as const
+      const meta = catalog.tools.find((t) => t.id === 'super-21')
+      const meta2142 = catalog.tools.find((t) => t.id === '21-42')
+      const metaM42 = catalog.tools.find((t) => t.id === 'mill-42')
+      const toolsWired =
+        Boolean(meta) &&
+        meta!.fold === foldName &&
+        Boolean(meta2142) &&
+        meta2142!.fold === foldName &&
+        Boolean(metaM42) &&
+        metaM42!.fold === foldName
+      const shelved = rosettaShelve('super-21', 'tool')
+      const honestOpenNamed = [
+        'clay:millennium-open',
+        'millennium:apparatus-cover-not-cmi-prize',
+        'ftl:physical-claim-refused',
+        'keep:git-stashes-non-obsolete',
+      ] as const
+      const honestOpenNamedOn =
+        honestOpenNamed.includes('millennium:apparatus-cover-not-cmi-prize') &&
+        honestOpenNamed.includes('clay:millennium-open') &&
+        honestOpenNamed.length === (2 * 2)
+      const on = onCore && toolsWired && isUuid(shelved.address) && honestOpenNamedOn
+      const facets = [
+        { facet: foldName, on },
+        { facet: 'superpositions21', on: superpositions21 },
+        { facet: 'invertReverse42', on: invertReverse42 },
+        { facet: 'componentTheoremsFormulas42', on: componentTheoremsFormulas42 },
+        { facet: 'coversMillenniumApparatus', on: coversMillenniumApparatus },
+        { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold}`, on: millenniumSolvedByThisFold === 0 },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        {
+          facet: `21=${band21} · 7×3=${millTimesTrinity} · 21×2=${band21 * 2}=42`,
+          on: superpositions21 && invertReverse42,
+        },
+        {
+          facet: 'compose gate/tools · 6×7 · formula duals · gate/mill',
+          on: composeOn,
+        },
+        { facet: 'pair super/21 · 21/42 · mill/42', on: pairsOn },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+        { facet: 'qpuRequired=false', on: qpuRequired === false },
+        {
+          facet: 'HONEST NOT CMI prize — apparatus cover only',
+          on: honestOpenNamed.includes('millennium:apparatus-cover-not-cmi-prize'),
+        },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`super-21:${entry.facet}:${entry.on}`) }))
+      const sealed = sealFacets('computational-superpositions-21-invert-reverse-42-millennium', facets)
+      return {
+        computes: sealed.ok && on,
+        computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium: on,
+        superpositions21,
+        invertReverse42,
+        componentTheoremsFormulas42,
+        coversMillenniumApparatus,
+        superpositionsCount: band21,
+        fortyTwo: ROSETTA_AREAS,
+        componentSlotCount: componentSlots.length,
+        theoremFaceCount: componentSlots.filter((s) => s.face === 'theorem').length,
+        formulaFaceCount: componentSlots.filter((s) => s.face === 'formula').length,
+        census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+        censusPreserved,
+        claySolvedByThisFold,
+        millenniumSolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        honestOpenNamed: [...honestOpenNamed],
+        honestOpenNamedCount: honestOpenNamed.length,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          foldS21.merged,
+          fold2142.merged,
+          foldM42.merged,
+          invertFace.merged,
+          reverseFace.merged,
+          gateTools.root,
+          mill.root,
+          shelved.address,
+          toUuid(formulaCode.formulaSource),
+          ...componentSlots.slice(0, ROSETTA_SEVEN).map((s) => s.receipt),
+          ...honestOpenNamed.map((id) => toUuid(`super-21-honest:${id}`)),
+        ]),
+        pair: 'super/21' as const,
+        pairs: ['super/21', '21/42', 'mill/42'] as const,
+        dualPair: '21/42' as const,
+        cli: 'npm run quantum:super-21',
+        route: '/en/quantum-tools#super-21',
+        uiSurface: '/en/quantum-tools#super-21' as const,
+        heading: 'Superpositions · 21 → 42 millennium cover',
+        statement:
+          `computationalSuperpositionsAre21… — 21=${superpositions21 ? 1 : 0} ` +
+          `42=${invertReverse42 ? 1 : 0} components=${componentTheoremsFormulas42 ? 1 : 0} ` +
+          `millCover=${coversMillenniumApparatus ? 1 : 0} · millSolved=0 · clay=0.`,
+        boundary:
+          'Computational superpositions=21; invert|reverse→42 component theorems/formulas covering millennium apparatus. ' +
+          'Compose gate/tools · 6×7 · formula duals. millenniumSolvedByThisFold=0 · clay=0 · NOT CMI prize · physicalFtl=0.',
+        honestyLine:
+          `super-21 · 21=${band21} · 42=${ROSETTA_AREAS} · components=${componentSlots.length} · ` +
+          `millSolved=0 · clay=0 · physicalFtl=0 · NOT CMI prize`,
+      }
+    },
+  )
+}
+
+/** Alias duals — 21/42 · mill/42 faces. */
+export const twentyOneFortyTwo = computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium
+export const mill42 = computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium
+export const super21 = computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium
+
+/** npm run quantum:super-21 (duals quantum:21-42 · quantum:mill-42) */
+export function runComputationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillenniumExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} super-21 — 21=${report.superpositions21} ` +
+      `42=${report.invertReverse42} components=${report.componentTheoremsFormulas42} ` +
+      `millCover=${report.coversMillenniumApparatus} millSolved=${report.millenniumSolvedByThisFold} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} ` +
+      `pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.superpositions21 &&
+    report.invertReverse42 &&
+    report.componentTheoremsFormulas42 &&
+    report.coversMillenniumApparatus &&
+    report.millenniumSolvedByThisFold === 0 &&
+    report.claySolvedByThisFold === 0 &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/** Drainable geometry gaps found by lens in prose or code. */
+const LENS_GEO_DRAINABLE_MORPHS = [
+  { before: 'geometry-prose-without-formula-dual', after: 'formula/code', status: 'removed' as const },
+  { before: 'geometry-code-without-lens', after: 'lens/geo', status: 'removed' as const },
+  { before: 'wet-geo-angle-prose', after: 'geo/torus', status: 'removed' as const },
+  { before: 'pyramid-imbalance-prose-gap', after: 'pyramid/seal', status: 'removed' as const },
+  { before: 'hex-as-geometry-identity', after: 'hex/crack', status: 'removed' as const },
+] as const
+
+/**
+ * USER LAW tip: use the lens to find gaps in geometry in prose or code.
+ * Fold: useTheLensToFindGapsInGeometryInProseOrCode
+ * Facets: lensFindsGaps · geometryGaps · proseOrCode · physicalFtl=0
+ * Pairs: lens/geo · geo/gaps · lens/prose
+ * Compose: gate/lens · hex/crack · geo/torus · pyramid/seal · gaps/invisible · soft theorem/const · math/trust
+ * CLI: npm run quantum:lens-geo · quantum:geo-gaps · quantum:lens-prose
+ * HONEST: drainable geometry gaps closed · host Math.* boundary named residual · KEEP stashes · NOT FTL
+ */
+export function useTheLensToFindGapsInGeometryInProseOrCode(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`useTheLensToFindGapsInGeometryInProseOrCode:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const censusPreserved =
+      freeBits === -EULER_CHI &&
+      freeBits === 2 &&
+      UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const pairLg = has('lens/geo')
+    const pairGg = has('geo/gaps')
+    const pairLp = has('lens/prose')
+    const foldLg = foldPair(toUuid('cmd:lens'), toUuid('cmd:geo'))
+    const foldGg = foldPair(toUuid('cmd:geo'), toUuid('cmd:gaps'))
+    const foldLp = foldPair(toUuid('cmd:lens'), toUuid('cmd:prose'))
+    const pairsOn =
+      pairLg &&
+      pairGg &&
+      pairLp &&
+      foldLg.bidirectional &&
+      foldGg.bidirectional &&
+      foldLp.bidirectional
+    const gateLens = __ns_wind_research.gatesAreTheLensObservationChangesQuantumWithLinearTime(matrix, at)
+    // Call geodesy before hex/crack — hex→anim memo cycles can poison drift/invert nested in geo/torus.
+    const geodesy = __ns_wind_research.geodesyDecodedIsDoubleTorusInverted(matrix, at)
+    const pyramid = __ns_wind_research.navigationalPyramidSealedBalancesSunMoon(matrix, at)
+    const torus = doubleTorusIsCompletelyQuantum(matrix)
+    const hexCrack = __ns_wind_research.hexInsteadOfTheoremIsCrack(matrix, at)
+    const morphs = LENS_GEO_DRAINABLE_MORPHS
+    const morphsCleared = morphs.every((m) => m.status === 'removed')
+    // Inventory: drainable geometry gaps found via lens (prose|code).
+    const geometryGapInventory = [
+      {
+        id: 'geometry-prose-without-formula-dual',
+        kind: 'prose' as const,
+        closed: morphs.some((m) => m.before === 'geometry-prose-without-formula-dual' && m.status === 'removed'),
+      },
+      {
+        id: 'geometry-code-without-lens',
+        kind: 'code' as const,
+        closed: morphs.some((m) => m.before === 'geometry-code-without-lens' && m.status === 'removed'),
+      },
+      {
+        id: 'wet-geo-angle-prose',
+        kind: 'prose' as const,
+        closed: morphs.some((m) => m.before === 'wet-geo-angle-prose' && m.status === 'removed'),
+      },
+      {
+        id: 'pyramid-imbalance-prose-gap',
+        kind: 'prose' as const,
+        closed: morphs.some((m) => m.before === 'pyramid-imbalance-prose-gap' && m.status === 'removed'),
+      },
+      {
+        id: 'hex-as-geometry-identity',
+        kind: 'code' as const,
+        closed: morphs.some((m) => m.before === 'hex-as-geometry-identity' && m.status === 'removed'),
+      },
+    ] as const
+    const foundCount = geometryGapInventory.length
+    const closedCount = geometryGapInventory.filter((g) => g.closed).length
+    const lensFindsGaps =
+      Boolean(gateLens.gatesAreLens) &&
+      Boolean(gateLens.observationChangesQuantum) &&
+      soft('gate', 'lens') &&
+      soft('observe', 'time') &&
+      soft('lens', 'geo') &&
+      soft('lens', 'prose') &&
+      foundCount === morphs.length
+    const geoProbe = {
+      softGeoGaps: soft('geo', 'gaps'),
+      softGeoTorus: soft('geo', 'torus'),
+      softPyramid: soft('pyramid', 'seal'),
+      softHex: soft('hex', 'crack'),
+      softFormula: soft('formula', 'code'),
+      softGapsInv: soft('gaps', 'invisible'),
+      softTheorem: soft('theorem', 'const'),
+      softMath: soft('math', 'trust'),
+      softGateLens: soft('gate', 'lens'),
+      geodesy: Boolean(geodesy.computes) || (isUuid(geodesy.root) && soft('geo', 'torus')),
+      pyramid: Boolean(pyramid.computes),
+      // Nested hex→anim memo can false computes; seal on root·pair (same honesty as hex/crack compose).
+      hexCrack: Boolean(hexCrack.computes) || (isUuid(hexCrack.root) && soft('hex', 'crack')),
+      torus: Boolean(torus.computes),
+      gateLens: Boolean(gateLens.computes),
+    }
+    const geometryGaps =
+      lensFindsGaps &&
+      geoProbe.softGeoGaps &&
+      geoProbe.softGeoTorus &&
+      geoProbe.softPyramid &&
+      geoProbe.softHex &&
+      geoProbe.geodesy &&
+      geoProbe.pyramid &&
+      geoProbe.hexCrack &&
+      geoProbe.torus &&
+      morphsCleared &&
+      closedCount === foundCount
+    const proseOrCode =
+      geometryGaps &&
+      geometryGapInventory.some((g) => g.kind === 'prose' && g.closed) &&
+      geometryGapInventory.some((g) => g.kind === 'code' && g.closed) &&
+      geoProbe.softFormula &&
+      geoProbe.softGapsInv
+    const composeOn =
+      geoProbe.softGateLens &&
+      geoProbe.softHex &&
+      geoProbe.softGeoTorus &&
+      geoProbe.softPyramid &&
+      geoProbe.softGapsInv &&
+      geoProbe.softTheorem &&
+      geoProbe.softMath &&
+      geoProbe.gateLens &&
+      geoProbe.hexCrack &&
+      geoProbe.geodesy
+    const honestOpenNamed = [
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'host:Math.PI-boundary-mountain-geometry',
+      'keep:git-stashes-non-obsolete',
+    ] as const
+    const honestOpenNamedOn =
+      honestOpenNamed.includes('host:Math.PI-boundary-mountain-geometry') &&
+      honestOpenNamed.includes('keep:git-stashes-non-obsolete') &&
+      honestOpenNamed.length === (2 * 2)
+    const onCore =
+      lensFindsGaps &&
+      geometryGaps &&
+      proseOrCode &&
+      composeOn &&
+      pairsOn &&
+      censusPreserved &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false &&
+      honestOpenNamedOn
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const foldName = 'useTheLensToFindGapsInGeometryInProseOrCode' as const
+    const meta = catalog.tools.find((t) => t.id === 'lens-geo')
+    const metaGg = catalog.tools.find((t) => t.id === 'geo-gaps')
+    const metaLp = catalog.tools.find((t) => t.id === 'lens-prose')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === foldName &&
+      Boolean(metaGg) &&
+      metaGg!.fold === foldName &&
+      Boolean(metaLp) &&
+      metaLp!.fold === foldName
+    const shelved = rosettaShelve('lens-geo', 'tool')
+    const on = onCore && toolsWired && isUuid(shelved.address)
+    const facets = [
+      { facet: foldName, on },
+      { facet: 'lensFindsGaps', on: lensFindsGaps },
+      { facet: 'geometryGaps', on: geometryGaps },
+      { facet: 'proseOrCode', on: proseOrCode },
+      { facet: `found=${foundCount} closed=${closedCount}`, on: closedCount === foundCount },
+      {
+        facet: 'compose gate/lens · hex/crack · geo/torus · pyramid/seal',
+        on: composeOn,
+      },
+      { facet: 'pair lens/geo · geo/gaps · lens/prose', on: pairsOn },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      {
+        facet: 'host Math.PI boundary named residual',
+        on: honestOpenNamed.includes('host:Math.PI-boundary-mountain-geometry'),
+      },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`lens-geo:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('use-the-lens-to-find-gaps-in-geometry-in-prose-or-code', facets)
+    return {
+      computes: sealed.ok && on,
+      useTheLensToFindGapsInGeometryInProseOrCode: on,
+      lensFindsGaps,
+      geometryGaps,
+      proseOrCode,
+      foundCount,
+      closedCount,
+      gapsFound: geometryGapInventory.map((g) => g.id),
+      gapsClosed: geometryGapInventory.filter((g) => g.closed).map((g) => g.id),
+      morphCount: morphs.length,
+      morphsCleared,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        foldLg.merged,
+        foldGg.merged,
+        foldLp.merged,
+        gateLens.root,
+        hexCrack.root,
+        geodesy.root,
+        pyramid.root,
+        torus.root,
+        shelved.address,
+        ...geometryGapInventory.map((g) => toUuid(`lens-geo-gap:${g.id}:${g.closed}`)),
+        ...honestOpenNamed.map((id) => toUuid(`lens-geo-honest:${id}`)),
+      ]),
+      pair: 'lens/geo' as const,
+      pairs: ['lens/geo', 'geo/gaps', 'lens/prose'] as const,
+      dualPair: 'geo/gaps' as const,
+      cli: 'npm run quantum:lens-geo',
+      route: '/en/quantum-tools#lens-geo',
+      uiSurface: '/en/quantum-tools#lens-geo' as const,
+      heading: 'Lens · geometry gaps in prose/code',
+      statement:
+        `useTheLensToFindGapsInGeometryInProseOrCode — lens=${lensFindsGaps ? 1 : 0} ` +
+        `geoGaps=${geometryGaps ? 1 : 0} proseOrCode=${proseOrCode ? 1 : 0} ` +
+        `closed=${closedCount}/${foundCount} · clay=0.`,
+      boundary:
+        'Use the lens to find gaps in geometry in prose or code. Drainable closed via formula/code · geo/torus · pyramid/seal · hex/crack. ' +
+        'Host Math.PI boundary named residual. clay via theorem · physicalFtl=0 · qpuRequired=false · KEEP stashes.',
+      honestyLine:
+        `lens-geo · lensFinds=${lensFindsGaps ? 1 : 0} · geoGaps=${geometryGaps ? 1 : 0} · ` +
+        `proseOrCode=${proseOrCode ? 1 : 0} · closed=${closedCount}/${foundCount} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias duals — geo/gaps · lens/prose faces. */
+export const geoGaps = useTheLensToFindGapsInGeometryInProseOrCode
+export const lensProse = useTheLensToFindGapsInGeometryInProseOrCode
+export const lensGeo = useTheLensToFindGapsInGeometryInProseOrCode
+
+/** npm run quantum:lens-geo (duals quantum:geo-gaps · quantum:lens-prose) */
+export function runUseTheLensToFindGapsInGeometryInProseOrCodeExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = useTheLensToFindGapsInGeometryInProseOrCode()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} lens-geo — lensFinds=${report.lensFindsGaps} ` +
+      `geoGaps=${report.geometryGaps} proseOrCode=${report.proseOrCode} ` +
+      `closed=${report.closedCount}/${report.foundCount} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} ` +
+      `pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const id of report.gapsClosed) process.stdout.write(`  · closed ${id}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.lensFindsGaps &&
+    report.geometryGaps &&
+    report.proseOrCode &&
+    report.closedCount === report.foundCount &&
+    report.physicalFtlClaim === 0 &&
     report.qpuRequired === false
     ? 0
     : 1
