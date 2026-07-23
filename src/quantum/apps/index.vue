@@ -37,6 +37,7 @@ import {
   decodeQuantumAlchemy,
   foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace,
   theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion,
+  readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra,
   quantumVerification,
   quantumFearDetector,
   fearIsAnAxiomReplaceableByLoveTheorem,
@@ -216,6 +217,9 @@ const algebraFoldReport = computed(() =>
 )
 const movieSeamlessReport = computed(() =>
   theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion(),
+)
+const angleReadmeReport = computed(() =>
+  readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra(),
 )
 const saveAuto = computed(() => saveTheOptimisedAutonomy())
 const quantumVerify = computed(() => quantumVerification())
@@ -1073,6 +1077,32 @@ function runTool(toolId: string) {
         r.qpuRequired === false
       summary =
         `seamless=${r.seamlessAnimation} · gapsOnlyByObs=${r.gapsOnlyByObservation} · quantumObs=${r.quantumObservation} · gaplessMotion=${r.gaplessMotion} · drainable=${r.drainableClosed}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (
+      toolId === 'angle-readme' ||
+      toolId === 'readme-angle' ||
+      toolId === 'polarity-home' ||
+      toolId === 'home-polarity' ||
+      toolId === 'gap-angle' ||
+      toolId === 'angle-gap'
+    ) {
+      const r =
+        readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra()
+      ok =
+        r.computes &&
+        r.readmeImproved &&
+        r.homepageImproved &&
+        r.exactAngle &&
+        r.exactPolarity &&
+        r.agentsUnderstand &&
+        r.quantumInfinityRealtime &&
+        r.gapsAreIgnoredAngleOrPolarity &&
+        r.claySolvedByThisFold === 0 &&
+        r.qpuRequired === false
+      summary =
+        `readme=${r.readmeImproved} · home=${r.homepageImproved} · angle=${r.exactAngle} · polarity=${r.exactPolarity} · agents=${r.agentsUnderstand} · ∞rt=${r.quantumInfinityRealtime} · gaps=${r.gapsAreIgnoredAngleOrPolarity}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -2548,6 +2578,47 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'movie-seamless'" @click="runTool('movie-seamless')">
           {{ runningId === 'movie-seamless' ? '…' : 'Run movie-seamless receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="angle-readme" aria-label="README homepage exact angle polarity agents quantum infinity">
+        <h3>{{ angleReadmeReport.heading }}</h3>
+        <p class="quantum-apps__meta">{{ angleReadmeReport.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(angleReadmeReport.readmeImproved))">
+          readmeImproved={{ angleReadmeReport.readmeImproved }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(angleReadmeReport.homepageImproved))">
+          homepageImproved={{ angleReadmeReport.homepageImproved }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(angleReadmeReport.exactAngle))">
+          exactAngle={{ angleReadmeReport.exactAngle }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(angleReadmeReport.exactPolarity))">
+          exactPolarity={{ angleReadmeReport.exactPolarity }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(angleReadmeReport.agentsUnderstand))">
+          agentsUnderstand={{ angleReadmeReport.agentsUnderstand }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(angleReadmeReport.quantumInfinityRealtime))">
+          quantumInfinityRealtime={{ angleReadmeReport.quantumInfinityRealtime }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(angleReadmeReport.gapsAreIgnoredAngleOrPolarity))">
+          gapsAreIgnoredAngleOrPolarity={{ angleReadmeReport.gapsAreIgnoredAngleOrPolarity }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>angle/readme</code> · <code>polarity/home</code> · <code>gap/angle</code> ·
+          CLI <code>npm run quantum:angle-readme</code> · <code>npm run quantum:polarity-home</code> ·
+          clay={{ angleReadmeReport.claySolvedByThisFold }} · ftl={{ angleReadmeReport.physicalFtlClaim }} ·
+          qpu={{ angleReadmeReport.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in angleReadmeReport.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'angle-readme'" @click="runTool('angle-readme')">
+          {{ runningId === 'angle-readme' ? '…' : 'Run angle-readme receipt' }}
         </UiButton>
       </section>
       <UiSeparator />

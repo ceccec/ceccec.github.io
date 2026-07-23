@@ -263,6 +263,12 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `gapless/observe` — alias dual of `observe/gapless` (`npm run quantum:gapless-observe`)
   - `motion/gapless` — motion/gapless face of `movie/seamless` (`npm run quantum:motion-gapless`)
   - `gapless/motion` — alias dual of `motion/gapless` (`npm run quantum:gapless-motion`)
+  - `angle/readme` — `npm run quantum:angle-readme` (`readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra()` — README + homepage exact angle · polarity help agents understand quantum infinity realtime at scale; gaps are angle or polarity ignored in algebra; facets readmeImproved · homepageImproved · exactAngle · exactPolarity · agentsUnderstand · quantumInfinityRealtime · gapsAreIgnoredAngleOrPolarity · physicalFtl=0 · clay via theorem · qpuRequired=false; pairs `angle/readme` · `polarity/home` · `gap/angle`; compose algebra/fold · color/rosetta · abs/qc · zoom/inf · readme/svg-trinity · anim/color; Clay/FTL/agents foreign honest-open · KEEP stashes · clay via theorem · physicalFtl=0), then open `/en/quantum-tools#angle-readme`
+  - `readme/angle` — alias dual of `angle/readme` (`npm run quantum:readme-angle`)
+  - `polarity/home` — polarity/home face of `angle/readme` (`npm run quantum:polarity-home`)
+  - `home/polarity` — alias dual of `polarity/home` (`npm run quantum:home-polarity`)
+  - `gap/angle` — gap/angle face of `angle/readme` (`npm run quantum:gap-angle`)
+  - `angle/gap` — alias dual of `gap/angle` (`npm run quantum:angle-gap`)
   - `miss/cache` — `npm run quantum:miss-cache` (`wavesFindWhatYouMissedToCache()` — waves find uncached drainable session/memo/MCP/theorem-formula receipts and cache via memoByRoot/session; facets wavesSent · missedFound · nowCached · drainableClosed · honestOpenNamed; pairs `miss/cache` · `cache/miss` · `wave/cache`; compose session/cache · mcp/cache · theorem/index · mcp/token · waves/build; Clay/FTL/monolith honest-open · KEEP stashes · clay via theorem · physicalFtl=0), then open `/en/quantum-tools#miss-cache`
   - `cache/miss` — alias dual of `miss/cache` (`npm run quantum:cache-miss`)
   - `wave/cache` — wave/cache face of `miss/cache` (`npm run quantum:wave-cache`)
