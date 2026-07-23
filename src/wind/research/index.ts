@@ -8019,6 +8019,7 @@ export const VOCAB_DRY_METHOD_MAP = [
   { word: 'heal', method: 'quantumSelfHeal', pair: 'self/heal' },
   { word: 'chat', method: 'mcpQuantumChat', pair: 'mcp/chat' },
   { word: 'conversation', method: 'mcpQuantumConversation', pair: 'mcp/conversation' },
+  { word: 'organise', method: 'organiseConversationsInChatRoomsPerSuperposition', pair: 'chat/organise' },
   { word: 'gravity', method: 'gravityDryClean', pair: 'gravity/dry' },
   { word: 'crystal', method: 'crystalClearMind', pair: 'crystal/mind' },
   { word: 'clear', method: 'crystalClearMind', pair: 'mind/clear' },

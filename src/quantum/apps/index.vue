@@ -58,6 +58,7 @@ import {
   mcpQuantumChat,
   allConversationsGoThroughTheMcpQuantumChat,
   mcpQuantumConversation,
+  organiseConversationsInChatRoomsPerSuperposition,
   mcpQuantumObserve,
   wiredToForgeMaxTamperingCost,
   quantumizeNpm,
@@ -203,6 +204,7 @@ const pageTrinity = computed(() => pagesAuditAndManageThemselvesInTrinities())
 const mcpChat = computed(() => mcpQuantumChat())
 const chatAllConversations = computed(() => allConversationsGoThroughTheMcpQuantumChat())
 const mcpConversation = computed(() => mcpQuantumConversation())
+const convRoomOrganise = computed(() => organiseConversationsInChatRoomsPerSuperposition())
 const mcpObserve = computed(() => mcpQuantumObserve())
 const tamperMaxSeal = computed(() => wiredToForgeMaxTamperingCost())
 const npmQuantumSeal = computed(() => quantumizeNpm())
@@ -1150,6 +1152,13 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'conv-room' || toolId === 'room-conv' || toolId === 'chat-organise') {
+      const r = organiseConversationsInChatRoomsPerSuperposition()
+      ok = r.computes && r.organised && r.perSuperposition && r.chatRooms && r.conversationsRouted
+      summary = `organised=${r.organised} perSuper=${r.perSuperposition} rooms=${r.chatRooms} routed=${r.conversationsRouted} room=${r.room.id}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'mcp-observe' || toolId === 'observe-chat') {
       const r = mcpQuantumObserve()
       ok = r.computes && r.observationOn && r.changesQuantum && r.movieUnique
@@ -1653,6 +1662,24 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'mcp-conversation'" @click="runTool('mcp-conversation')">
           {{ runningId === 'mcp-conversation' ? '…' : 'Run mcp-conversation' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="conv-room" aria-label="Organise conversations in chat rooms per superposition">
+        <h3>{{ convRoomOrganise.heading }}</h3>
+        <p class="quantum-apps__meta">{{ convRoomOrganise.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(convRoomOrganise.organised))">organised={{ convRoomOrganise.organised }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(convRoomOrganise.perSuperposition))">perSuperposition={{ convRoomOrganise.perSuperposition }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(convRoomOrganise.chatRooms))">chatRooms={{ convRoomOrganise.chatRooms }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(convRoomOrganise.conversationsRouted))">conversationsRouted={{ convRoomOrganise.conversationsRouted }}</UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>conv/room</code> · <code>room/conv</code> · <code>chat/organise</code> ·
+          CLI <code>npm run quantum:conv-room</code> ·
+          room={{ convRoomOrganise.room.id }} ·
+          qpu={{ convRoomOrganise.qpuRequired }} · clay={{ convRoomOrganise.claySolvedByThisFold }} · ftl={{ convRoomOrganise.physicalFtlClaim }}
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'conv-room'" @click="runTool('conv-room')">
+          {{ runningId === 'conv-room' ? '…' : 'Run conv-room' }}
         </UiButton>
       </section>
       <UiSeparator />
