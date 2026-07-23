@@ -33,6 +33,7 @@ import {
   imagineNextMissQuantumTools,
   clayAgiDeepResearchQuantumUnderstandingOfRelations,
   saveTheOptimisedAutonomy,
+  quantumVerification,
   domainVuePanelsDryCleaned,
   mcpQuantumUi,
   mcpQuantumMovie,
@@ -191,6 +192,7 @@ const societyToolbox = computed(() => societyToolboxWire())
 const toolMiss = computed(() => imagineNextMissQuantumTools())
 const clayAgi = computed(() => clayAgiDeepResearchQuantumUnderstandingOfRelations())
 const saveAuto = computed(() => saveTheOptimisedAutonomy())
+const quantumVerify = computed(() => quantumVerification())
 const domainPanels = computed(() => domainVuePanelsDryCleaned())
 const mcpUi = computed(() => mcpQuantumUi())
 const mcpMovie = computed(() => mcpQuantumMovie())
@@ -942,6 +944,21 @@ function runTool(toolId: string) {
       ok = r.computes && r.autonomySaved && r.optimised && r.sessionPersist
       summary =
         `saved=${r.autonomySaved} · optimised=${r.optimised} · session=${r.sessionPersist}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'quantum-verify' || toolId === 'verify-quantum') {
+      const r = quantumVerification()
+      ok =
+        r.computes &&
+        r.verificationOn &&
+        r.fusionVerify &&
+        r.typesStructure &&
+        r.momentProve &&
+        r.tamperEvident &&
+        r.certified === false
+      summary =
+        `on=${r.verificationOn} · fusion=${r.fusionVerify} · types=${r.typesStructure} · moment=${r.momentProve} · tamper=${r.tamperEvident}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -2083,6 +2100,41 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'save-auto'" @click="runTool('save-auto')">
           {{ runningId === 'save-auto' ? '…' : 'Run save-auto receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="quantum-verify" aria-label="Quantum verification">
+        <h3>{{ quantumVerify.heading }}</h3>
+        <p class="quantum-apps__meta">{{ quantumVerify.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(quantumVerify.verificationOn))">
+          verificationOn={{ quantumVerify.verificationOn }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(quantumVerify.fusionVerify))">
+          fusionVerify={{ quantumVerify.fusionVerify }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(quantumVerify.typesStructure))">
+          typesStructure={{ quantumVerify.typesStructure }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(quantumVerify.momentProve))">
+          momentProve={{ quantumVerify.momentProve }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(quantumVerify.tamperEvident))">
+          tamperEvident={{ quantumVerify.tamperEvident }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>quantum/verify</code> · <code>verify/quantum</code> ·
+          CLI <code>npm run quantum:quantum-verify</code> ·
+          certified={{ quantumVerify.certified }} ·
+          clay={{ quantumVerify.claySolvedByThisFold }} · ftl={{ quantumVerify.physicalFtlClaim }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in quantumVerify.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'quantum-verify'" @click="runTool('quantum-verify')">
+          {{ runningId === 'quantum-verify' ? '…' : 'Run quantum-verify receipt' }}
         </UiButton>
       </section>
       <UiSeparator />

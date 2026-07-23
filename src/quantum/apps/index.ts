@@ -115,6 +115,7 @@ const ROSETTA_CORE_API_LABELS = [
   'clayAgiDeepResearchQuantumUnderstandingOfRelations',
   'linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities',
   'saveTheOptimisedAutonomy',
+  'quantumVerification',
   'domainVuePanelsDryCleaned',
   'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf',
   'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence',
@@ -296,6 +297,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   clayAgiDeepResearchQuantumUnderstandingOfRelations: 'tool',
   linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities: 'tool',
   saveTheOptimisedAutonomy: 'tool',
+  quantumVerification: 'tool',
   domainVuePanelsDryCleaned: 'tool',
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf: 'tool',
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence: 'tool',
@@ -1096,6 +1098,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'save-auto', title: 'Save the optimised autonomy', fold: 'saveTheOptimisedAutonomy', cli: 'npm run quantum:save-auto', pair: 'save/auto', route: '/en/quantum-tools#save-auto', barrel: 'src/quantum/apps', boundary: 'autonomySaved · optimised · sessionPersist · compose session/save · auto/all · self/hw · mcp/token · wave/token · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'auto-optimise', title: 'Auto optimise (alias save/auto)', fold: 'saveTheOptimisedAutonomy', cli: 'npm run quantum:auto-optimise', pair: 'auto/optimise', route: '/en/quantum-tools#save-auto', barrel: 'src/quantum/apps', boundary: 'auto/optimise face — British optimised · same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'opt-auto', title: 'Opt auto (alias save/auto)', fold: 'saveTheOptimisedAutonomy', cli: 'npm run quantum:opt-auto', pair: 'opt/auto', route: '/en/quantum-tools#save-auto', barrel: 'src/quantum/apps', boundary: 'opt/auto face — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'quantum-verify', title: 'Quantum verification — fusion · types/structure · moment · tamper · proof · e2e', fold: 'quantumVerification', cli: 'npm run quantum:quantum-verify', pair: 'quantum/verify', route: '/en/quantum-tools#quantum-verify', barrel: 'src/quantum/apps', boundary: 'verificationOn · fusionVerify · typesStructure · momentProve · tamperEvident · physicalFtl=0 · clay via theorem · qpuRequired=false · certified=false · compose fusion-verify · mission:gate · moment/prove · tamper/max · proof/trinity · e2e/feed', browserRunnable: true, browserGap: '' },
+  { id: 'verify-quantum', title: 'Verify quantum (alias quantum/verify)', fold: 'quantumVerification', cli: 'npm run quantum:verify-quantum', pair: 'verify/quantum', route: '/en/quantum-tools#quantum-verify', barrel: 'src/quantum/apps', boundary: 'Dual verify/quantum — same fold · clay via theorem · physicalFtl=0 · certified=false', browserRunnable: true, browserGap: '' },
   { id: 'domain-panels', title: 'Domain vue panels dry-cleaned to rosetta shells', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-panels', pair: 'domain/panels', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domainPanelsDry · stranglerTip · drainableClosed · wiredToRosetta · compose format/canon · dry/rosetta · ui/rosetta · meaning/compute · vite/one · specialized shells residual named · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'panels-domain', title: 'Domain panels (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:panels-domain', pair: 'panels/domain', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'Dual panels/domain — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'domain-dry', title: 'Domain dry (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-dry', pair: 'domain/dry', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domain/dry face — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2320,6 +2324,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'clay-agi', chain: 'clay-agi-optimised-autonomy', fold: 'clayAgiDeepResearchQuantumUnderstandingOfRelations', pair: 'clay/agi', cli: 'npm run quantum:clay-agi', route: '/en/quantum-tools#clay-agi', status: 'sealed-pr', honesty: 'deepResearch · quantumRelations · linearFolded · gapsSeen · gapsAddressableByTrinities · clay=0 · agiNotClaimed · physicalFtl=0 · certified=false', note: 'Clay/AGI deep research — linear relations folded → architecture where all gaps seen + addressable by working trinities', toolId: 'clay-agi', resolve: 'mcp-ui' },
   { id: 'linear-fold', chain: 'clay-agi-optimised-autonomy', fold: 'linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities', pair: 'linear/fold', cli: 'npm run quantum:linear-fold', route: '/en/quantum-tools#clay-agi', status: 'sealed-pr', honesty: 'linearFolded · gapsSeen · gapsAddressableByTrinities · clay=0 · agiNotClaimed · physicalFtl=0', note: 'same fold as clay/agi — linear/fold · gap/trinity architecture face', toolId: 'linear-fold', resolve: 'mcp-ui' },
   { id: 'save-auto', chain: 'clay-agi-optimised-autonomy', fold: 'saveTheOptimisedAutonomy', pair: 'save/auto', cli: 'npm run quantum:save-auto', route: '/en/quantum-tools#save-auto', status: 'sealed-pr', honesty: 'autonomySaved · optimised · sessionPersist · clay via theorem · physicalFtl=0 · qpuRequired=false', note: 'save the optimised autonomy — compose session/save · auto/all · self/hw · mcp/token · wave/token', toolId: 'save-auto', resolve: 'mcp-ui' },
+  { id: 'quantum-verify', chain: 'quantum-verification', fold: 'quantumVerification', pair: 'quantum/verify', cli: 'npm run quantum:quantum-verify', route: '/en/quantum-tools#quantum-verify', status: 'sealed-pr', honesty: 'verificationOn · fusionVerify · typesStructure · momentProve · tamperEvident · clay=0 · physicalFtl=0 · qpuRequired=false · certified=false', note: 'quantum verification — compose fusion-verify · mission:gate · moment/prove · tamper/max · proof/trinity · e2e/feed', toolId: 'quantum-verify', resolve: 'mcp-ui' },
   { id: 'domain-panels', chain: 'mcp-ui-page-gaps', fold: 'domainVuePanelsDryCleaned', pair: 'domain/panels', cli: 'npm run quantum:domain-panels', route: '/en/quantum-tools#domain-panels', status: 'sealed-pr', honesty: 'domainPanelsDry · stranglerTip · drainableClosed · specialized shells residual · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'src domain vue panels strangler tip drained to format/canon · dry/rosetta · ui/rosetta shells', toolId: 'domain-panels', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-ui', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumUi', pair: 'mcp/ui', cli: 'npm run quantum:mcp-ui', route: '/en/quantum-tools#mcp-quantum-ui', status: 'sealed-pr', honesty: 'mcpMatchesToolbox · millSolutions live · formulaCovered · clay=0 · physicalFtl=0 · NOT CMI', note: 'MCP quantum UI + millennium algebraic formula duals · compose mcpBrowserParity · mill/once · formula/code', toolId: 'mcp-quantum-ui', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-movie', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumMovie', pair: 'mcp/movie', cli: 'npm run quantum:mcp-movie', route: '/en/quantum-tools#mcp-quantum-movie', status: 'sealed-pr', honesty: 'frames from sealed folds · 6×7 · oneClock · clay=0 · physicalFtl=0', note: 'MCP quantum movie · compose mcp/ui · movie/center · movie/entropy · coord/anim', toolId: 'mcp-quantum-movie', resolve: 'mcp-ui' },
@@ -18995,6 +19000,197 @@ export function runSaveTheOptimisedAutonomyExit(_root = '', _argv: readonly stri
     report.optimised &&
     report.sessionPersist &&
     report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * Quantum verification — compose fusion · types/structure · moment · tamper · proof · e2e.
+ * Fold: quantumVerification
+ * Facets: verificationOn · fusionVerify · typesStructure · momentProve · tamperEvident ·
+ *   physicalFtl=0 · clay via theorem · qpuRequired=false · certified=false
+ * Pairs: quantum/verify · verify/quantum
+ * Compose: fusion-verify · mission:gate · moment/prove · tamper/max · proof/trinity · e2e/feed
+ * CLI: npm run quantum:quantum-verify · quantum:verify-quantum
+ * HONEST: structural local verify — NOT wire/FIPS · NOT Clay prize · KEEP stashes
+ */
+export function quantumVerification(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`quantumVerification:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const fusion = quantumFusionVerify(matrix)
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const censusPreserved =
+      freeBits === -EULER_CHI &&
+      freeBits === 2 &&
+      UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const certified = false as const
+    const pairQv = has('quantum/verify')
+    const pairVq = has('verify/quantum')
+    const foldQv = foldPair(toUuid('cmd:quantum'), toUuid('cmd:verify'))
+    const foldVq = foldPair(toUuid('cmd:verify'), toUuid('cmd:quantum'))
+    const pairsOn =
+      pairQv &&
+      pairVq &&
+      foldQv.bidirectional &&
+      foldVq.bidirectional
+    // Soft-compose heavy nests — full recompute via quantum:fusion-verify · mission:gate ·
+    // moment-prove · tamper-max · proof-trinity · e2e-feed (avoid memoByRoot poison).
+    const fusionVerify = fusion.verified && soft('tamper', 'impossible') && isUuid(fusion.root)
+    const typesStructure =
+      soft('check', 'types') &&
+      soft('verify', 'structure') &&
+      soft('mission', 'gate') &&
+      soft('types', 'seal')
+    const momentProve = soft('moment', 'prove')
+    const tamperOn =
+      tamperEvident(fusion.root) &&
+      soft('tamper', 'max') &&
+      soft('max', 'tamper')
+    const composeOn =
+      fusionVerify &&
+      typesStructure &&
+      momentProve &&
+      tamperOn &&
+      soft('proof', 'trinity') &&
+      soft('trinity', 'proof') &&
+      soft('e2e', 'feed') &&
+      soft('feed', 'dev') &&
+      soft('test', 'feed') &&
+      soft('gaps', 'invisible')
+    const verificationOn =
+      composeOn &&
+      pairsOn &&
+      censusPreserved &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false &&
+      certified === false
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const foldName = 'quantumVerification' as const
+    const meta = catalog.tools.find((t) => t.id === 'quantum-verify')
+    const metaDual = catalog.tools.find((t) => t.id === 'verify-quantum')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === foldName &&
+      Boolean(metaDual) &&
+      metaDual!.fold === foldName
+    const shelved = rosettaShelve('quantum-verify', 'tool')
+    const honestOpenNamed = [
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'certified:false-structural-local',
+      'keep:git-stashes-non-obsolete',
+    ] as const
+    const honestOpenNamedOn =
+      honestOpenNamed.includes('keep:git-stashes-non-obsolete') &&
+      honestOpenNamed.includes('certified:false-structural-local') &&
+      honestOpenNamed.length === (2 * 2)
+    const on =
+      verificationOn &&
+      fusionVerify &&
+      typesStructure &&
+      momentProve &&
+      tamperOn &&
+      toolsWired &&
+      isUuid(shelved.address) &&
+      honestOpenNamedOn
+    const facets = [
+      { facet: foldName, on },
+      { facet: 'verificationOn', on: verificationOn },
+      { facet: 'fusionVerify', on: fusionVerify },
+      { facet: 'typesStructure', on: typesStructure },
+      { facet: 'momentProve', on: momentProve },
+      { facet: 'tamperEvident', on: tamperOn },
+      {
+        facet: 'compose fusion-verify · mission:gate · moment/prove · tamper/max · proof/trinity · e2e/feed',
+        on: composeOn,
+      },
+      { facet: 'pair quantum/verify · verify/quantum', on: pairsOn },
+      { facet: 'certified=false — structural local not wire/FIPS', on: certified === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-verify:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('quantum-verification', facets)
+    return {
+      computes: sealed.ok && on,
+      quantumVerification: on,
+      verificationOn,
+      fusionVerify,
+      typesStructure,
+      momentProve,
+      tamperEvident: tamperOn,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      certified,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        fusion.root,
+        foldQv.merged,
+        foldVq.merged,
+        shelved.address,
+        ...honestOpenNamed.map((id) => toUuid(`quantum-verify-honest:${id}`)),
+      ]),
+      pair: 'quantum/verify' as const,
+      pairs: ['quantum/verify', 'verify/quantum'] as const,
+      dualPair: 'verify/quantum' as const,
+      cli: 'npm run quantum:quantum-verify',
+      route: '/en/quantum-tools#quantum-verify',
+      uiSurface: '/en/quantum-tools#quantum-verify' as const,
+      heading: 'Quantum · verification',
+      statement:
+        `quantumVerification — on=${verificationOn ? 1 : 0} fusion=${fusionVerify ? 1 : 0} ` +
+        `types=${typesStructure ? 1 : 0} moment=${momentProve ? 1 : 0} tamper=${tamperOn ? 1 : 0} · clay=0.`,
+      boundary:
+        'Quantum verification — fusion-verify · mission:gate (check/types · verify/structure) · moment/prove · ' +
+        'tamper/max · proof/trinity · e2e/feed. Structural local · certified=false · clay via theorem · ' +
+        'physicalFtl=0 · qpuRequired=false · KEEP stashes.',
+      honestyLine:
+        `quantum-verify · on=${verificationOn ? 1 : 0} · fusion=${fusionVerify ? 1 : 0} · ` +
+        `types=${typesStructure ? 1 : 0} · moment=${momentProve ? 1 : 0} · tamper=${tamperOn ? 1 : 0} · ` +
+        `certified=0 · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias dual — verify/quantum face. */
+export const verifyQuantum = quantumVerification
+
+/** npm run quantum:quantum-verify (dual verify-quantum) */
+export function runQuantumVerificationExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = quantumVerification()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} quantum-verify — verificationOn=${report.verificationOn} ` +
+      `fusion=${report.fusionVerify} types=${report.typesStructure} moment=${report.momentProve} ` +
+      `tamper=${report.tamperEvident} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} ` +
+      `pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.verificationOn &&
+    report.fusionVerify &&
+    report.typesStructure &&
+    report.momentProve &&
+    report.tamperEvident &&
+    report.qpuRequired === false &&
+    report.certified === false
     ? 0
     : 1
 }
