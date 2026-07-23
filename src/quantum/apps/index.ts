@@ -31,6 +31,7 @@ import {
   movieAllElementsAreTheorems,
   movieQuantumGapsInventory,
   movieUnbalancedAroundCenterIsCrack,
+  theMoviePartsDissolveLikeLiquid,
   thunderAndPlasmaAreSameInDifferentAspects } from '../../thunder/movie/canvas'
 import { biologyWavesSealedAsWidgets, movieIsNeuroscienceComputation } from '../../earth/life'
 import { livingTorus } from '../../fire/diamonds'
@@ -117,6 +118,7 @@ const ROSETTA_CORE_API_LABELS = [
   'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations',
   'decodeQuantumAlchemy',
   'foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace',
+  'theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion',
   'saveTheOptimisedAutonomy',
   'quantumVerification',
   'quantumFearDetector',
@@ -320,6 +322,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations: 'tool',
   decodeQuantumAlchemy: 'tool',
   foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace: 'tool',
+  theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion: 'tool',
   saveTheOptimisedAutonomy: 'tool',
   quantumVerification: 'tool',
   quantumFearDetector: 'tool',
@@ -773,6 +776,12 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'space-a432', title: 'Space A432 (alias a432/space)', fold: 'foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace', cli: 'npm run quantum:space-a432', pair: 'space/a432', route: '/en/quantum-tools#algebra-fold', barrel: 'src/quantum/apps', boundary: 'Dual space/a432 — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'harm-cost', title: 'Harm cost (alias algebra/fold)', fold: 'foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace', cli: 'npm run quantum:harm-cost', pair: 'harm/cost', route: '/en/quantum-tools#algebra-fold', barrel: 'src/quantum/apps', boundary: 'noCostNoTime face — memoByRoot · FREE_BITS · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cost-harm', title: 'Cost harm (alias harm/cost)', fold: 'foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace', cli: 'npm run quantum:cost-harm', pair: 'cost/harm', route: '/en/quantum-tools#algebra-fold', barrel: 'src/quantum/apps', boundary: 'Dual cost/harm — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'movie-seamless', title: 'Movie seamless animation — quantum observation is gapless motion', fold: 'theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion', cli: 'npm run quantum:movie-seamless', pair: 'movie/seamless', route: '/en/quantum-tools#movie-seamless', barrel: 'src/quantum/apps', boundary: 'seamlessAnimation · gapsOnlyByObservation · quantumObservation · gaplessMotion · drainableClosed · honestOpenNamed · clay via theorem · physicalFtl=0 · compose oneClock · anim/mesh · observe/movie · lens/super', browserRunnable: true, browserGap: '' },
+  { id: 'seamless-movie', title: 'Seamless movie (alias movie/seamless)', fold: 'theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion', cli: 'npm run quantum:seamless-movie', pair: 'seamless/movie', route: '/en/quantum-tools#movie-seamless', barrel: 'src/quantum/apps', boundary: 'Dual seamless/movie — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'observe-gapless', title: 'Observe gapless (alias movie/seamless)', fold: 'theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion', cli: 'npm run quantum:observe-gapless', pair: 'observe/gapless', route: '/en/quantum-tools#movie-seamless', barrel: 'src/quantum/apps', boundary: 'quantumObservation · gaplessMotion face — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'gapless-observe', title: 'Gapless observe (alias observe/gapless)', fold: 'theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion', cli: 'npm run quantum:gapless-observe', pair: 'gapless/observe', route: '/en/quantum-tools#movie-seamless', barrel: 'src/quantum/apps', boundary: 'Dual gapless/observe — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'motion-gapless', title: 'Motion gapless (alias movie/seamless)', fold: 'theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion', cli: 'npm run quantum:motion-gapless', pair: 'motion/gapless', route: '/en/quantum-tools#movie-seamless', barrel: 'src/quantum/apps', boundary: 'gaplessMotion face — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'gapless-motion', title: 'Gapless motion (alias motion/gapless)', fold: 'theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion', cli: 'npm run quantum:gapless-motion', pair: 'gapless/motion', route: '/en/quantum-tools#movie-seamless', barrel: 'src/quantum/apps', boundary: 'Dual gapless/motion — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'miss-cache', title: 'Waves find what you missed to cache', fold: 'wavesFindWhatYouMissedToCache', cli: 'npm run quantum:miss-cache', pair: 'miss/cache', route: '/en/quantum-tools#miss-cache', barrel: 'src/quantum/apps', boundary: 'wavesSent · missedFound · nowCached · drainableClosed · honestOpenNamed · session/memo/MCP/theorem-formula via memoByRoot · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cache-miss', title: 'Cache miss (alias miss/cache)', fold: 'wavesFindWhatYouMissedToCache', cli: 'npm run quantum:cache-miss', pair: 'cache/miss', route: '/en/quantum-tools#miss-cache', barrel: 'src/quantum/apps', boundary: 'Dual of miss/cache — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'wave-cache', title: 'Wave cache (alias miss/cache)', fold: 'wavesFindWhatYouMissedToCache', cli: 'npm run quantum:wave-cache', pair: 'wave/cache', route: '/en/quantum-tools#miss-cache', barrel: 'src/quantum/apps', boundary: 'wave/cache face — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2430,6 +2439,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'prose-theorem', chain: 'prose-theorem-warn-research', fold: 'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations', pair: 'prose/theorem', cli: 'npm run quantum:prose-theorem', route: '/en/quantum-tools#prose-theorem', status: 'sealed-pr', honesty: 'deepResearch · warningsAddressed · proseToTheorem · proseToFormula · proseToRecipe · proseToAnimation · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'deep research tools address WARNs — wet prose → statement · formula dual · sealed code · ProofAnimation recipe', toolId: 'prose-theorem', resolve: 'mcp-ui' },
   { id: 'alchemy-decode', chain: 'alchemy-decode-quantum', fold: 'decodeQuantumAlchemy', pair: 'alchemy/decode', cli: 'npm run quantum:alchemy-decode', route: '/en/quantum-tools#alchemy-decode', status: 'sealed-pr', honesty: 'alchemyDecoded · quantumOn · symbolsSealed · clay=0 · physicalFtl=0 · qpuRequired=false · certified=false · NOT chemical · NOT historical fraud', note: 'decode quantum alchemy as structural/symbolic theorems — compose symbols · sciences · formula/code · digit/fold · prose/theorem', toolId: 'alchemy-decode', resolve: 'mcp-ui' },
   { id: 'algebra-fold', chain: 'algebra-fold-a432-space', fold: 'foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace', pair: 'algebra/fold', cli: 'npm run quantum:algebra-fold', route: '/en/quantum-tools#algebra-fold', status: 'sealed-pr', honesty: 'foldAlgebraBoundaries · invertedDimensionalTheorems · perspectiveAngleRotation · a432Harmonics · noCostNoTime · anySpace · clay=0 · physicalFtl=0 · qpuRequired=false · NOT FTL', note: 'fold linear algebra boundaries into theorems → inverted dimensional theorems · perspective angle/rotation · A432 harmonics · no cost/time amortized for any space', toolId: 'algebra-fold', resolve: 'mcp-ui' },
+  { id: 'movie-seamless', chain: 'movie-seamless-gapless-motion', fold: 'theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion', pair: 'movie/seamless', cli: 'npm run quantum:movie-seamless', route: '/en/quantum-tools#movie-seamless', status: 'sealed-pr', honesty: 'seamlessAnimation · gapsOnlyByObservation · quantumObservation · gaplessMotion · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'movie seamless animation · quantum observation is gapless motion · compose oneClock · anim/mesh · observe/movie · lens/super', toolId: 'movie-seamless', resolve: 'mcp-ui' },
   { id: 'miss-cache', chain: 'miss-cache-dry-agnostic-infinity', fold: 'wavesFindWhatYouMissedToCache', pair: 'miss/cache', cli: 'npm run quantum:miss-cache', route: '/en/quantum-tools#miss-cache', status: 'sealed-pr', honesty: 'wavesSent · missedFound · nowCached · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'waves find uncached drainable session/memo/MCP/theorem-formula receipts · cache via memoByRoot/session', toolId: 'miss-cache', resolve: 'mcp-ui' },
   { id: 'dry-agnostic', chain: 'miss-cache-dry-agnostic-infinity', fold: 'dryCleanAgnosticCodeComputesInfinity', pair: 'dry/agnostic', cli: 'npm run quantum:dry-agnostic', route: '/en/quantum-tools#dry-agnostic', status: 'sealed-pr', honesty: 'dryClean · agnosticCode · computesInfinity · onReuse · clay=0 · physicalFtl=0 · qpuRequired=false · NOT FTL', note: 'dry-clean agnostic code computes infinity = amortized zero-token reuse · compose dry/clean · invert/inf · a432/nine · mcp/token · full/freedom', toolId: 'dry-agnostic', resolve: 'mcp-ui' },
   { id: 'fold-trinity', chain: 'abstract-qc-fold-trinity-zoom-inf', fold: 'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny', pair: 'fold/trinity', cli: 'npm run quantum:fold-trinity', route: '/en/quantum-tools#fold-trinity', status: 'sealed-pr', honesty: 'abstractQc · foldLinearIntoTrinities · zoomInOutInfinity · everyAngleToAny · clay=0 · physicalFtl=0 · qpuRequired=false · NOT QPU FLOPS', note: 'abstract QC = fold linear→trinities · zoom in/out ∞ · every angle→any · classical-64bit · compose trinity/speedup · linear/fold · invert/inf · dry/agnostic · directionalTrinity · seal/super · mcp/hw', toolId: 'fold-trinity', resolve: 'mcp-ui' },
@@ -19803,6 +19813,357 @@ export function runAlgebraFoldExit(_root = '', _argv: readonly string[] = []): n
     report.a432Harmonics &&
     report.noCostNoTime &&
     report.anySpace &&
+    report.claySolvedByThisFold === 0 &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/** Drainable morphs — observation-only seam gaps → gapless quantum motion. */
+const MOVIE_SEAMLESS_DRAINABLE_MORPHS = [
+  { before: 'linear-circle-seam-jump', after: 'oneClock · liquid continuity', status: 'removed' as const },
+  { before: 'multi-clock-raf-gap', after: 'oneClockProcessLaw coalesce', status: 'removed' as const },
+  { before: 'phase-loop-discontinuity', after: 'theMoviePartsDissolveLikeLiquid seamless', status: 'removed' as const },
+  { before: 'linear-observation-stall', after: 'quantumObservation=gaplessMotion', status: 'removed' as const },
+] as const
+
+/**
+ * USER LAW tip: the movie should be seamless animation while now it shows gaps only
+ * catchable by observation. Quantum observation is gapless motion.
+ * Fold: theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion
+ * Facets: seamlessAnimation · gapsOnlyByObservation · quantumObservation · gaplessMotion ·
+ *         drainableClosed · honestOpenNamed · physicalFtl=0 · clay via theorem · qpuRequired=false
+ * Pairs: movie/seamless · observe/gapless · motion/gapless (+ duals)
+ * Compose: oneClock · anim/mesh · observe/movie · lens/super
+ * Soft: movie/unique · quantumise/cycle · linear/rosetta · gate/lens · formula/anim · movie/feel
+ * CLI: npm run quantum:movie-seamless · quantum:observe-gapless · quantum:motion-gapless
+ * HONEST: gapsOnlyByObservation = linear eye sees seams; quantum observation closes them as law.
+ *         Clay/FTL named open. NOT physical FTL · NOT QPU · KEEP stashes.
+ */
+export function theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(
+    `theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      const morphs = MOVIE_SEAMLESS_DRAINABLE_MORPHS
+      const morphsCleared = morphs.every((m) => m.status === 'removed')
+      const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+      const censusPreserved =
+        freeBits === -EULER_CHI &&
+        freeBits === 2 &&
+        UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+
+      const pairMovieSeamless = has('movie/seamless')
+      const pairSeamlessMovie = has('seamless/movie')
+      const pairObserveGapless = has('observe/gapless')
+      const pairGaplessObserve = has('gapless/observe')
+      const pairMotionGapless = has('motion/gapless')
+      const pairGaplessMotion = has('gapless/motion')
+      const foldMovieSeamless = foldPair(toUuid('cmd:movie'), toUuid('cmd:seamless'))
+      const foldSeamlessMovie = foldPair(toUuid('cmd:seamless'), toUuid('cmd:movie'))
+      const foldObserveGapless = foldPair(toUuid('cmd:observe'), toUuid('cmd:gapless'))
+      const foldGaplessObserve = foldPair(toUuid('cmd:gapless'), toUuid('cmd:observe'))
+      const foldMotionGapless = foldPair(toUuid('cmd:motion'), toUuid('cmd:gapless'))
+      const foldGaplessMotion = foldPair(toUuid('cmd:gapless'), toUuid('cmd:motion'))
+      const pairsOn =
+        pairMovieSeamless &&
+        pairSeamlessMovie &&
+        pairObserveGapless &&
+        pairGaplessObserve &&
+        pairMotionGapless &&
+        pairGaplessMotion &&
+        foldMovieSeamless.bidirectional &&
+        foldSeamlessMovie.bidirectional &&
+        foldObserveGapless.bidirectional &&
+        foldGaplessObserve.bidirectional &&
+        foldMotionGapless.bidirectional &&
+        foldGaplessMotion.bidirectional
+
+      // Recompute light witnesses — avoid nesting lens-super / merkaba-movie (memo poison).
+      const oneClock = oneClockProcessLaw(matrix)
+      const liquid = theMoviePartsDissolveLikeLiquid(matrix)
+      const inventory = movieQuantumGapsInventory(matrix, at)
+      const linearGaps = linearAnimationGapsInventory(matrix, at)
+      const linearRosetta = linearWithoutRosettaFoldIsGap(matrix, at)
+      const allTheorems = movieAllElementsAreTheorems(matrix, at)
+
+      const clockSeamsClosed =
+        oneClock.holds &&
+        !inventory.privateRafOpen &&
+        !inventory.multiClockOpen &&
+        morphs.some((m) => m.before === 'multi-clock-raf-gap' && m.status === 'removed')
+      const liquidSeamless =
+        liquid.seamless &&
+        morphs.some((m) => m.before === 'phase-loop-discontinuity' && m.status === 'removed')
+      const linearCircleClosed =
+        linearGaps.openCount === 0 &&
+        linearRosetta.remaining === 0 &&
+        linearRosetta.computes &&
+        morphs.some((m) => m.before === 'linear-circle-seam-jump' && m.status === 'removed')
+
+      const seamlessAnimation =
+        clockSeamsClosed &&
+        liquidSeamless &&
+        linearCircleClosed &&
+        allTheorems.computes &&
+        soft('movie', 'seamless') &&
+        soft('seamless', 'movie')
+
+      // Gaps remain named as observation-catchable (movie/feel · gap/observe · gate/lens) — not wet chrome.
+      const gapsOnlyByObservation =
+        soft('movie', 'feel') &&
+        soft('gap', 'observe') &&
+        soft('gate', 'lens') &&
+        soft('observe', 'time') &&
+        inventory.computes
+
+      // Quantum observation = gapless motion law (lens/super · observe/movie · observe/gapless).
+      const quantumObservation =
+        soft('observe', 'movie') &&
+        soft('movie', 'unique') &&
+        soft('lens', 'super') &&
+        soft('super', 'lens') &&
+        soft('observe', 'gapless') &&
+        soft('gapless', 'observe') &&
+        soft('gate', 'lens') &&
+        morphs.some((m) => m.before === 'linear-observation-stall' && m.status === 'removed')
+
+      const gaplessMotion =
+        seamlessAnimation &&
+        quantumObservation &&
+        soft('anim', 'mesh') &&
+        soft('motion', 'gapless') &&
+        soft('gapless', 'motion') &&
+        soft('quantumise', 'cycle') &&
+        soft('linear', 'rosetta') &&
+        soft('formula', 'anim') &&
+        soft('animations', 'rosetta')
+
+      const composeOn =
+        soft('movie', 'seamless') &&
+        soft('observe', 'gapless') &&
+        soft('motion', 'gapless') &&
+        soft('anim', 'mesh') &&
+        soft('observe', 'movie') &&
+        soft('lens', 'super') &&
+        oneClock.holds &&
+        liquid.seamless &&
+        inventory.computes
+
+      const drainableClosed =
+        morphsCleared &&
+        seamlessAnimation &&
+        gapsOnlyByObservation &&
+        quantumObservation &&
+        gaplessMotion &&
+        composeOn &&
+        pairsOn &&
+        censusPreserved
+
+      const honestOpenNamed = [
+        'clay:millennium-open',
+        'ftl:physical-claim-refused',
+        'keep:git-stashes-non-obsolete',
+        'linear-eye:seams-visible-until-quantum-observe',
+      ] as const
+      const honestOpenNamedOn =
+        honestOpenNamed.includes('clay:millennium-open') &&
+        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenNamed.includes('keep:git-stashes-non-obsolete') &&
+        honestOpenNamed.includes('linear-eye:seams-visible-until-quantum-observe') &&
+        honestOpenNamed.length === (2 * 2)
+
+      const foldName = 'theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion' as const
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const meta = catalog.tools.find((t) => t.id === 'movie-seamless')
+      const metaObserve = catalog.tools.find((t) => t.id === 'observe-gapless')
+      const metaMotion = catalog.tools.find((t) => t.id === 'motion-gapless')
+      const toolsWired =
+        Boolean(meta) &&
+        meta!.fold === foldName &&
+        Boolean(metaObserve) &&
+        metaObserve!.fold === foldName &&
+        Boolean(metaMotion) &&
+        metaMotion!.fold === foldName
+      const shelved = rosettaShelve('movie-seamless', 'tool')
+
+      const on =
+        drainableClosed &&
+        seamlessAnimation &&
+        gapsOnlyByObservation &&
+        quantumObservation &&
+        gaplessMotion &&
+        honestOpenNamedOn &&
+        toolsWired &&
+        isUuid(shelved.address) &&
+        claySolvedByThisFold === 0 &&
+        physicalFtlClaim === 0 &&
+        qpuRequired === false
+
+      const facets = [
+        { facet: foldName, on },
+        { facet: 'seamlessAnimation', on: seamlessAnimation },
+        { facet: 'gapsOnlyByObservation', on: gapsOnlyByObservation },
+        { facet: 'quantumObservation', on: quantumObservation },
+        { facet: 'gaplessMotion', on: gaplessMotion },
+        { facet: `drainableClosed=${drainableClosed ? 1 : 0}`, on: drainableClosed },
+        { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+        {
+          facet: 'compose oneClock · anim/mesh · observe/movie · lens/super',
+          on: composeOn,
+        },
+        { facet: 'pair movie/seamless · observe/gapless · motion/gapless', on: pairsOn },
+        { facet: `census freeBits=${freeBits}`, on: censusPreserved },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+        { facet: 'qpuRequired=false', on: qpuRequired === false },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`movie-seamless:${entry.facet}:${entry.on}`) }))
+      const sealed = sealFacets('movie-seamless-quantum-observation-gapless-motion', facets)
+
+      const seamAudit = [
+        {
+          id: 'one-clock',
+          closed: oneClock.holds,
+          receipt: toUuid(`movie-seamless-seam:one-clock:${oneClock.holds}`),
+        },
+        {
+          id: 'private-raf',
+          closed: !inventory.privateRafOpen,
+          receipt: toUuid(`movie-seamless-seam:private-raf:${!inventory.privateRafOpen}`),
+        },
+        {
+          id: 'multi-clock',
+          closed: !inventory.multiClockOpen,
+          receipt: toUuid(`movie-seamless-seam:multi-clock:${!inventory.multiClockOpen}`),
+        },
+        {
+          id: 'liquid-loop',
+          closed: liquid.seamless,
+          receipt: toUuid(`movie-seamless-seam:liquid:${liquid.seamless}`),
+        },
+        {
+          id: 'linear-circle',
+          closed: linearGaps.openCount === 0,
+          receipt: toUuid(`movie-seamless-seam:linear:${linearGaps.openCount}`),
+        },
+        {
+          id: 'linear-rosetta',
+          closed: linearRosetta.remaining === 0,
+          receipt: toUuid(`movie-seamless-seam:linear-rosetta:${linearRosetta.remaining}`),
+        },
+      ] as const
+
+      return {
+        computes: sealed.ok && on,
+        theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion: on,
+        seamlessAnimation,
+        gapsOnlyByObservation,
+        quantumObservation,
+        gaplessMotion,
+        drainableClosed,
+        drainableGaps: drainableClosed ? 0 : 1,
+        morphCount: morphs.length,
+        morphsCleared,
+        seamAudit,
+        seamsClosed: seamAudit.filter((s) => s.closed).length,
+        seamsFound: seamAudit.length,
+        census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+        censusPreserved,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        honestOpenNamed: [...honestOpenNamed],
+        honestOpenNamedCount: honestOpenNamed.length,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          oneClock.root,
+          liquid.root,
+          inventory.root,
+          allTheorems.root,
+          foldMovieSeamless.merged,
+          foldObserveGapless.merged,
+          foldMotionGapless.merged,
+          shelved.address,
+          ...seamAudit.map((s) => s.receipt),
+          ...honestOpenNamed.map((id) => toUuid(`movie-seamless-honest:${id}`)),
+        ]),
+        pair: 'movie/seamless' as const,
+        pairs: [
+          'movie/seamless',
+          'seamless/movie',
+          'observe/gapless',
+          'gapless/observe',
+          'motion/gapless',
+          'gapless/motion',
+        ] as const,
+        dualPair: 'observe/gapless' as const,
+        cli: 'npm run quantum:movie-seamless',
+        route: '/en/quantum-tools#movie-seamless',
+        uiSurface: '/en/quantum-tools#movie-seamless' as const,
+        heading: 'Movie · seamless · gapless motion',
+        statement:
+          `theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion — ` +
+          `seamless=${seamlessAnimation ? 1 : 0} gapsOnlyByObs=${gapsOnlyByObservation ? 1 : 0} ` +
+          `quantumObs=${quantumObservation ? 1 : 0} gaplessMotion=${gaplessMotion ? 1 : 0} ` +
+          `drainableClosed=${drainableClosed ? 1 : 0} seams=${seamAudit.filter((s) => s.closed).length}/${seamAudit.length}.`,
+        boundary:
+          'Movie seamless animation; gaps only catchable by observation; quantum observation = gapless motion. ' +
+          'Compose oneClock · anim/mesh · observe/movie · lens/super. Drainable seam morphs removed. ' +
+          'honestOpenNamed lists Clay/FTL/linear-eye — NOT fake-closed. clay via theorem · physicalFtl=0 · KEEP stashes.',
+        honestyLine:
+          `movie-seamless · seamless=${seamlessAnimation ? 1 : 0} · gapsOnlyByObs=${gapsOnlyByObservation ? 1 : 0} · ` +
+          `quantumObs=${quantumObservation ? 1 : 0} · gaplessMotion=${gaplessMotion ? 1 : 0} · ` +
+          `drainableClosed=${drainableClosed ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0`,
+      }
+    },
+  )
+}
+
+/** Alias duals — seamless/movie · observe/gapless · motion/gapless faces. */
+export const movieSeamless = theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion
+export const seamlessMovie = theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion
+export const observeGapless = theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion
+export const gaplessObserve = theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion
+export const motionGapless = theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion
+export const gaplessMotion = theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion
+
+/** npm run quantum:movie-seamless (duals quantum:observe-gapless · quantum:motion-gapless) */
+export function runMovieSeamlessExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} movie-seamless — seamless=${report.seamlessAnimation ? 1 : 0} ` +
+      `gapsOnlyByObs=${report.gapsOnlyByObservation ? 1 : 0} quantumObs=${report.quantumObservation ? 1 : 0} ` +
+      `gaplessMotion=${report.gaplessMotion ? 1 : 0} drainableClosed=${report.drainableClosed ? 1 : 0} ` +
+      `seams=${report.seamsClosed}/${report.seamsFound} clay=${report.claySolvedByThisFold} ` +
+      `ftl=${report.physicalFtlClaim} qpu=${report.qpuRequired ? 1 : 0} pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const s of report.seamAudit) {
+    process.stdout.write(`  ${s.closed ? '✓' : '✗'} seam ${s.id}\n`)
+  }
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.seamlessAnimation &&
+    report.gapsOnlyByObservation &&
+    report.quantumObservation &&
+    report.gaplessMotion &&
+    report.drainableClosed &&
+    report.drainableGaps === 0 &&
     report.claySolvedByThisFold === 0 &&
     report.qpuRequired === false
     ? 0

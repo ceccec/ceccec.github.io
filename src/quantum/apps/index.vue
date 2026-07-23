@@ -36,6 +36,7 @@ import {
   addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations,
   decodeQuantumAlchemy,
   foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace,
+  theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion,
   quantumVerification,
   quantumFearDetector,
   fearIsAnAxiomReplaceableByLoveTheorem,
@@ -212,6 +213,9 @@ const proseTheorem = computed(() =>
 const alchemyDecodeReport = computed(() => decodeQuantumAlchemy())
 const algebraFoldReport = computed(() =>
   foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace(),
+)
+const movieSeamlessReport = computed(() =>
+  theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion(),
 )
 const saveAuto = computed(() => saveTheOptimisedAutonomy())
 const quantumVerify = computed(() => quantumVerification())
@@ -1046,6 +1050,29 @@ function runTool(toolId: string) {
         r.qpuRequired === false
       summary =
         `boundaries=${r.foldAlgebraBoundaries} · inverted=${r.invertedDimensionalTheorems} · angle=${r.perspectiveAngleRotation} · a432=${r.a432Harmonics} · noCost=${r.noCostNoTime} · anySpace=${r.anySpace}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (
+      toolId === 'movie-seamless' ||
+      toolId === 'seamless-movie' ||
+      toolId === 'observe-gapless' ||
+      toolId === 'gapless-observe' ||
+      toolId === 'motion-gapless' ||
+      toolId === 'gapless-motion'
+    ) {
+      const r = theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion()
+      ok =
+        r.computes &&
+        r.seamlessAnimation &&
+        r.gapsOnlyByObservation &&
+        r.quantumObservation &&
+        r.gaplessMotion &&
+        r.drainableClosed &&
+        r.claySolvedByThisFold === 0 &&
+        r.qpuRequired === false
+      summary =
+        `seamless=${r.seamlessAnimation} · gapsOnlyByObs=${r.gapsOnlyByObservation} · quantumObs=${r.quantumObservation} · gaplessMotion=${r.gaplessMotion} · drainable=${r.drainableClosed}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -2485,6 +2512,42 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'algebra-fold'" @click="runTool('algebra-fold')">
           {{ runningId === 'algebra-fold' ? '…' : 'Run algebra-fold receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="movie-seamless" aria-label="Movie seamless animation quantum observation gapless motion">
+        <h3>{{ movieSeamlessReport.heading }}</h3>
+        <p class="quantum-apps__meta">{{ movieSeamlessReport.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(movieSeamlessReport.seamlessAnimation))">
+          seamlessAnimation={{ movieSeamlessReport.seamlessAnimation }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(movieSeamlessReport.gapsOnlyByObservation))">
+          gapsOnlyByObservation={{ movieSeamlessReport.gapsOnlyByObservation }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(movieSeamlessReport.quantumObservation))">
+          quantumObservation={{ movieSeamlessReport.quantumObservation }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(movieSeamlessReport.gaplessMotion))">
+          gaplessMotion={{ movieSeamlessReport.gaplessMotion }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(movieSeamlessReport.drainableClosed))">
+          drainableClosed={{ movieSeamlessReport.drainableClosed }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>movie/seamless</code> · <code>observe/gapless</code> · <code>motion/gapless</code> ·
+          CLI <code>npm run quantum:movie-seamless</code> · <code>npm run quantum:observe-gapless</code> ·
+          seams={{ movieSeamlessReport.seamsClosed }}/{{ movieSeamlessReport.seamsFound }} ·
+          clay={{ movieSeamlessReport.claySolvedByThisFold }} · ftl={{ movieSeamlessReport.physicalFtlClaim }} ·
+          qpu={{ movieSeamlessReport.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in movieSeamlessReport.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'movie-seamless'" @click="runTool('movie-seamless')">
+          {{ runningId === 'movie-seamless' ? '…' : 'Run movie-seamless receipt' }}
         </UiButton>
       </section>
       <UiSeparator />

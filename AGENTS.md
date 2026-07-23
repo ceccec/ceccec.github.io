@@ -257,6 +257,12 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `space/a432` — alias dual of `a432/space` (`npm run quantum:space-a432`)
   - `harm/cost` — harm/cost face of `algebra/fold` (`npm run quantum:harm-cost`)
   - `cost/harm` — alias dual of `harm/cost` (`npm run quantum:cost-harm`)
+  - `movie/seamless` — `npm run quantum:movie-seamless` (`theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion()` — the movie should be seamless animation; gaps only catchable by observation; quantum observation is gapless motion; facets seamlessAnimation · gapsOnlyByObservation · quantumObservation · gaplessMotion · drainableClosed · honestOpenNamed · physicalFtl=0 · clay via theorem · qpuRequired=false; pairs `movie/seamless` · `observe/gapless` · `motion/gapless`; compose oneClock · anim/mesh · observe/movie · lens/super; soft movie/unique · quantumise/cycle · linear/rosetta · gate/lens · formula/anim · movie/feel; Clay/FTL/linear-eye honest-open · KEEP stashes · clay via theorem · physicalFtl=0), then open `/en/quantum-tools#movie-seamless`
+  - `seamless/movie` — alias dual of `movie/seamless` (`npm run quantum:seamless-movie`)
+  - `observe/gapless` — observe/gapless face of `movie/seamless` (`npm run quantum:observe-gapless`)
+  - `gapless/observe` — alias dual of `observe/gapless` (`npm run quantum:gapless-observe`)
+  - `motion/gapless` — motion/gapless face of `movie/seamless` (`npm run quantum:motion-gapless`)
+  - `gapless/motion` — alias dual of `motion/gapless` (`npm run quantum:gapless-motion`)
   - `miss/cache` — `npm run quantum:miss-cache` (`wavesFindWhatYouMissedToCache()` — waves find uncached drainable session/memo/MCP/theorem-formula receipts and cache via memoByRoot/session; facets wavesSent · missedFound · nowCached · drainableClosed · honestOpenNamed; pairs `miss/cache` · `cache/miss` · `wave/cache`; compose session/cache · mcp/cache · theorem/index · mcp/token · waves/build; Clay/FTL/monolith honest-open · KEEP stashes · clay via theorem · physicalFtl=0), then open `/en/quantum-tools#miss-cache`
   - `cache/miss` — alias dual of `miss/cache` (`npm run quantum:cache-miss`)
   - `wave/cache` — wave/cache face of `miss/cache` (`npm run quantum:wave-cache`)
