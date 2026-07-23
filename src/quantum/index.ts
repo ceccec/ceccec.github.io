@@ -659,9 +659,12 @@ export interface SharedHeroCopy {
 }
 
 /**
- * Device / pointer sample for movie perspective — DeviceOrientation · DeviceMotion · pointer fallback.
- * HONEST: browserGap when permission denied / API unavailable.
+ * Device / pointer sample for movie perspective —
+ * DeviceOrientation · DeviceMotion · AmbientLight · pointer/touch fallbacks.
+ * HONEST: browserGap when permission denied / API unavailable (AmbientLight rarely present).
  */
+export type QuantumSensorKind = 'orientation' | 'motion' | 'ambient' | 'pointer' | 'touch' | 'none'
+
 export interface DeviceSensorSample {
   readonly alpha?: number
   readonly beta?: number
@@ -669,29 +672,85 @@ export interface DeviceSensorSample {
   readonly ax?: number
   readonly ay?: number
   readonly az?: number
+  /** AmbientLightSensor illuminance (lux) — integer-folded when present. */
+  readonly illuminance?: number
   readonly px?: number
   readonly py?: number
   readonly permission?: 'granted' | 'denied' | 'prompt' | 'unavailable'
 }
+
+/**
+ * Sealed quantum sensor binding catalog — each kind wires to rosetta/movie perspective via pair.
+ * Soft UI (`useSharedHero`) attaches by catalog id — not wet ad-hoc listeners.
+ * AmbientLight API is sparse → browserGapHonest when unavailable.
+ */
+export const QUANTUM_SENSOR_BINDING_CATALOG = [
+  {
+    id: 'orientation',
+    kind: 'orientation' as const,
+    pair: 'orient/sensor',
+    event: 'deviceorientation',
+    api: 'DeviceOrientationEvent',
+    fallback: false,
+    permissionGated: true,
+  },
+  {
+    id: 'motion',
+    kind: 'motion' as const,
+    pair: 'motion/sensor',
+    event: 'devicemotion',
+    api: 'DeviceMotionEvent',
+    fallback: false,
+    permissionGated: true,
+  },
+  {
+    id: 'ambient',
+    kind: 'ambient' as const,
+    pair: 'ambient/sensor',
+    event: null,
+    api: 'AmbientLightSensor',
+    fallback: false,
+    permissionGated: true,
+  },
+  {
+    id: 'pointer',
+    kind: 'pointer' as const,
+    pair: 'pointer/sensor',
+    event: 'pointermove',
+    api: 'PointerEvent',
+    fallback: true,
+    permissionGated: false,
+  },
+  {
+    id: 'touch',
+    kind: 'touch' as const,
+    pair: 'touch/sensor',
+    event: 'touchmove',
+    api: 'TouchEvent',
+    fallback: true,
+    permissionGated: false,
+  },
+] as const
 
 /** Rosetta perspective bias folded into sharedHeroAt seed/hue. */
 export interface MoviePerspectiveBias {
   readonly seedBias?: string
   readonly hueBias?: number
   readonly ray?: number
-  readonly source?: 'orientation' | 'motion' | 'pointer' | 'none'
+  readonly source?: QuantumSensorKind
   readonly browserGap?: boolean
 }
 
 /**
- * Map device sensors (or pointer fallback) → rosetta ray + hue/seed bias for the movie.
- * Pure · deterministic · SSR-safe. browserGap when permission denied or APIs unavailable.
+ * Map device sensors (or pointer/touch fallback) → rosetta ray + hue/seed bias for the movie.
+ * Pure · deterministic · SSR-safe. Priority: orientation → motion → ambient → pointer → touch → none.
+ * browserGap when permission denied or APIs unavailable.
  */
 export function deviceSensorPerspectiveAt(sample: DeviceSensorSample = {}): {
   readonly ray: number
   readonly hueBias: number
   readonly seedBias: string
-  readonly source: 'orientation' | 'motion' | 'pointer' | 'none'
+  readonly source: QuantumSensorKind
   readonly browserGap: boolean
 } {
   const perm = sample.permission ?? 'unavailable'
@@ -700,6 +759,7 @@ export function deviceSensorPerspectiveAt(sample: DeviceSensorSample = {}): {
     typeof sample.alpha === 'number' || typeof sample.beta === 'number' || typeof sample.gamma === 'number'
   const hasMotion =
     typeof sample.ax === 'number' || typeof sample.ay === 'number' || typeof sample.az === 'number'
+  const hasAmbient = typeof sample.illuminance === 'number'
   const hasPointer = typeof sample.px === 'number' || typeof sample.py === 'number'
   if (hasOrient && perm === 'granted') {
     const a = (((sample.alpha ?? 0) % 360) + 360) % 360
@@ -730,6 +790,18 @@ export function deviceSensorPerspectiveAt(sample: DeviceSensorSample = {}): {
       browserGap: false,
     }
   }
+  if (hasAmbient && (perm === 'granted' || perm === 'prompt')) {
+    const lux = Math.abs(Math.floor(sample.illuminance ?? 0))
+    const ray = ((lux % ROSETTA_SEVEN) + ROSETTA_SEVEN) % ROSETTA_SEVEN
+    const hueBias = (lux * 9) % 360
+    return {
+      ray,
+      hueBias,
+      seedBias: `ambient:${ray}:${hueBias}`,
+      source: 'ambient' as const,
+      browserGap: false,
+    }
+  }
   if (hasPointer) {
     const px = Math.min(1, Math.max(0, sample.px ?? 0))
     const py = Math.min(1, Math.max(0, sample.py ?? 0))
@@ -749,6 +821,58 @@ export function deviceSensorPerspectiveAt(sample: DeviceSensorSample = {}): {
     seedBias: 'none',
     source: 'none' as const,
     browserGap: true,
+  }
+}
+
+/**
+ * Touch fallback sample → pointer-space fold with source `touch`.
+ * Sealed dual of pointer for quantum sensor bindings (catalog id `touch`).
+ */
+export function deviceTouchPerspectiveAt(
+  px: number,
+  py: number,
+  permission: DeviceSensorSample['permission'] = 'unavailable',
+): ReturnType<typeof deviceSensorPerspectiveAt> {
+  const base = deviceSensorPerspectiveAt({ px, py, permission })
+  if (base.source !== 'pointer') return base
+  return {
+    ...base,
+    seedBias: `touch:${base.ray}:${base.hueBias}`,
+    source: 'touch' as const,
+  }
+}
+
+/** Sealed catalog receipt — all sensor kinds bound for tip wireAllSensorsUsingQuantumBindings. */
+export function quantumSensorBindingCatalog() {
+  const sensors = QUANTUM_SENSOR_BINDING_CATALOG.map((s) => ({
+    ...s,
+    receipt: toUuid(`sensor-bind:${s.id}:${s.pair}`),
+  }))
+  const kinds = sensors.map((s) => s.kind)
+  const orientation = kinds.includes('orientation')
+  const motion = kinds.includes('motion')
+  const ambient = kinds.includes('ambient')
+  const pointer = kinds.includes('pointer')
+  const touch = kinds.includes('touch')
+  const fallbacks = sensors.filter((s) => s.fallback)
+  const primary = sensors.filter((s) => !s.fallback)
+  return {
+    sensors,
+    count: sensors.length,
+    kinds,
+    orientation,
+    motion,
+    ambient,
+    pointer,
+    touch,
+    primaryCount: primary.length,
+    fallbackCount: fallbacks.length,
+    allKindsPresent: orientation && motion && ambient && pointer && touch && sensors.length === (3 + 2),
+    root: merkleFold(sensors.map((s) => s.receipt)),
+    statement:
+      'Quantum sensor binding catalog — orientation · motion · ambient · pointer · touch → rosetta/movie perspective.',
+    boundary:
+      'Sealed catalog only; AmbientLightSensor sparse → browserGapHonest; pointer/touch are sealed fallbacks.',
   }
 }
 
@@ -792,8 +916,8 @@ export interface SharedHeroState {
   observationRoot: string
   /** Optional rosetta ray from device/pointer perspective. */
   perspectiveRay?: number
-  /** Optional perspective source (orientation · motion · pointer · none). */
-  perspectiveSource?: 'orientation' | 'motion' | 'pointer' | 'none'
+  /** Optional perspective source (orientation · motion · ambient · pointer · touch · none). */
+  perspectiveSource?: QuantumSensorKind
 }
 
 /**

@@ -3,7 +3,9 @@ import { computed, nextTick, onMounted, onUnmounted, ref, shallowRef, type Ref }
 import {
   HERO_CYCLE_MS,
   SCREENSAVER_IDLE_MS,
+  QUANTUM_SENSOR_BINDING_CATALOG,
   deviceSensorPerspectiveAt,
+  deviceTouchPerspectiveAt,
   pointerInteraction,
   sharedHeroAt,
   subscribeHeroClock,
@@ -99,8 +101,9 @@ export function useHeroClock(onTick?: (at: number) => void) {
 /**
  * One hub for BackgroundMovie · card previews · LinkedHeroCard phase — pairs `hero/card` · `hero/anim`.
  * Wraps `sharedHeroAt` on the ONE hero clock (subscribeHeroClock); CardBackgroundMovie + hero layer
- * share phase `p` / root — no private rAF. DeviceOrientation/DeviceMotion (or pointer fallback)
- * maps to rosetta perspective via `deviceSensorPerspectiveAt` — honest browserGap if denied.
+ * share phase `p` / root — no private rAF. All sensors attach via QUANTUM_SENSOR_BINDING_CATALOG
+ * (orientation · motion · ambient · pointer · touch) → `deviceSensorPerspectiveAt` /
+ * `deviceTouchPerspectiveAt` — honest browserGap if denied / AmbientLight unavailable.
  * HONEST: neuroscience/computation field — not physical QM.
  */
 export function useSharedHero(
@@ -120,7 +123,11 @@ export function useSharedHero(
     if (reduce) return
 
     let permission: DeviceSensorSample['permission'] = 'unavailable'
+    const catalog = QUANTUM_SENSOR_BINDING_CATALOG
+    const has = (id: (typeof catalog)[number]['id']) => catalog.some((b) => b.id === id)
+
     const applyOrient = (ev: DeviceOrientationEvent) => {
+      if (!has('orientation')) return
       perspective.value = deviceSensorPerspectiveAt({
         alpha: ev.alpha ?? undefined,
         beta: ev.beta ?? undefined,
@@ -129,6 +136,7 @@ export function useSharedHero(
       })
     }
     const applyMotion = (ev: DeviceMotionEvent) => {
+      if (!has('motion')) return
       const a = ev.accelerationIncludingGravity
       if (!a) return
       perspective.value = deviceSensorPerspectiveAt({
@@ -139,6 +147,7 @@ export function useSharedHero(
       })
     }
     const applyPointer = (ev: PointerEvent) => {
+      if (!has('pointer')) return
       const w = window.innerWidth || 1
       const h = window.innerHeight || 1
       perspective.value = deviceSensorPerspectiveAt({
@@ -147,19 +156,62 @@ export function useSharedHero(
         permission: permission === 'denied' ? 'denied' : 'unavailable',
       })
     }
+    const applyTouch = (ev: TouchEvent) => {
+      if (!has('touch')) return
+      const t = ev.touches.item(0)
+      if (!t) return
+      const w = window.innerWidth || 1
+      const h = window.innerHeight || 1
+      perspective.value = deviceTouchPerspectiveAt(
+        t.clientX / w,
+        t.clientY / h,
+        permission === 'denied' ? 'denied' : 'unavailable',
+      )
+    }
+
+    let ambientSensor: { stop: () => void } | null = null
+    const attachAmbient = () => {
+      if (!has('ambient')) return
+      const ALS = (window as unknown as { AmbientLightSensor?: new (opts?: { frequency?: number }) => {
+        addEventListener: (type: string, fn: () => void) => void
+        start: () => void
+        stop: () => void
+        illuminance: number
+      } }).AmbientLightSensor
+      if (typeof ALS !== 'function') return
+      try {
+        const sensor = new ALS({ frequency: 1 })
+        const onReading = () => {
+          perspective.value = deviceSensorPerspectiveAt({
+            illuminance: sensor.illuminance,
+            permission: permission === 'granted' ? 'granted' : 'prompt',
+          })
+        }
+        sensor.addEventListener('reading', onReading)
+        sensor.start()
+        ambientSensor = { stop: () => sensor.stop() }
+      } catch {
+        // AmbientLightSensor sparse / permission — browserGap honest via pointer/touch fallback
+      }
+    }
 
     const DOE = typeof DeviceOrientationEvent !== 'undefined' ? DeviceOrientationEvent : null
     const requestPerm = (
       DOE as unknown as { requestPermission?: () => Promise<'granted' | 'denied'> } | null
     )?.requestPermission
     const attach = () => {
-      window.addEventListener('deviceorientation', applyOrient, { passive: true })
-      window.addEventListener('devicemotion', applyMotion, { passive: true })
-      window.addEventListener('pointermove', applyPointer, { passive: true })
+      if (has('orientation')) window.addEventListener('deviceorientation', applyOrient, { passive: true })
+      if (has('motion')) window.addEventListener('devicemotion', applyMotion, { passive: true })
+      if (has('pointer')) window.addEventListener('pointermove', applyPointer, { passive: true })
+      if (has('touch')) window.addEventListener('touchmove', applyTouch, { passive: true })
+      attachAmbient()
       detachSensors = () => {
-        window.removeEventListener('deviceorientation', applyOrient)
-        window.removeEventListener('devicemotion', applyMotion)
-        window.removeEventListener('pointermove', applyPointer)
+        if (has('orientation')) window.removeEventListener('deviceorientation', applyOrient)
+        if (has('motion')) window.removeEventListener('devicemotion', applyMotion)
+        if (has('pointer')) window.removeEventListener('pointermove', applyPointer)
+        if (has('touch')) window.removeEventListener('touchmove', applyTouch)
+        ambientSensor?.stop()
+        ambientSensor = null
       }
     }
     if (typeof requestPerm === 'function') {

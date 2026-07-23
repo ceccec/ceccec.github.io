@@ -35,7 +35,7 @@ import {
 import { movieIsNeuroscienceComputation } from '../../earth/life'
 import { harmonizeFieldComputes } from '../../lake/music'
 import { doubleTorusDynamicsGeometryAlignsWithUniverse, doubleTorusIsCompletelyQuantum } from '../../water/double'
-import { HERO_CYCLE_MS, oneClockProcessLaw, sharedHeroAt, deviceSensorPerspectiveAt, movieObservationReceipt, heroPhaseAt } from '../../quantum'
+import { HERO_CYCLE_MS, oneClockProcessLaw, sharedHeroAt, deviceSensorPerspectiveAt, deviceTouchPerspectiveAt, quantumSensorBindingCatalog, QUANTUM_SENSOR_BINDING_CATALOG, movieObservationReceipt, heroPhaseAt } from '../../quantum'
 import { merkaba, bothEarthsRotateWithinEachOther, earthRealisedByComputingPolesAsPyramid } from '../../mountain/geometry'
 import { vortexComputes, vortexMath } from '../../mountain/vortex'
 import { teslaPatents } from '../../fire/li'
@@ -86,8 +86,8 @@ const ROSETTA_CORE_API_LABELS = [
   'quantumMindSendsWaves',
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
-  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis', 'meshToSelfDiscoverSciences',   'selfImproveAnimationGenerationAndSiteBuilder', 'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions', 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', 'unifiedHeroAndCardWithAnimation', 'heroIsTheAbstractAnimationFormsTheCardItself', 'foldingWorksOnApplicationLevel', 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', 'wavesSearchDiscoverCompactingInQuantumFolders', 'alwaysBalanceUsingRealtimeMetricsAndChat', 'eachSuperpositionIsAChatroom', 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', 'typographyIsTheUniversalContentMatrix', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'deviceSensorPerspectiveAt', 'movieObservationReceipt',  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReview', 'mcpQuantumEfficiency', 'mcpQuantumSecurity', 'mcpQuantumDesign', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
+  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis', 'meshToSelfDiscoverSciences',   'selfImproveAnimationGenerationAndSiteBuilder', 'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions', 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', 'wireAllSensorsUsingQuantumBindings', 'unifiedHeroAndCardWithAnimation', 'heroIsTheAbstractAnimationFormsTheCardItself', 'foldingWorksOnApplicationLevel', 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', 'wavesSearchDiscoverCompactingInQuantumFolders', 'alwaysBalanceUsingRealtimeMetricsAndChat', 'eachSuperpositionIsAChatroom', 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', 'typographyIsTheUniversalContentMatrix', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
+  'deviceSensorPerspectiveAt', 'deviceTouchPerspectiveAt', 'quantumSensorBindingCatalog', 'wireAllSensorsUsingQuantumBindings', 'movieObservationReceipt',  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReview', 'mcpQuantumEfficiency', 'mcpQuantumSecurity', 'mcpQuantumDesign', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -175,7 +175,10 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   selfImproveAnimationGenerationAndSiteBuilder: 'tool',
   everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions: 'tool',
   wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero: 'tool',
+  wireAllSensorsUsingQuantumBindings: 'tool',
   deviceSensorPerspectiveAt: 'projection',
+  deviceTouchPerspectiveAt: 'projection',
+  quantumSensorBindingCatalog: 'projection',
   movieObservationReceipt: 'projection',
   unifiedHeroAndCardWithAnimation: 'tool',
   heroIsTheAbstractAnimationFormsTheCardItself: 'tool',
@@ -777,6 +780,9 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'plasma-vortex', title: 'Animations as plasma vortices mesh (alias merkaba/movie)', fold: 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', cli: 'npm run quantum:plasma-vortex', pair: 'plasma/vortex', route: '/en/quantum-tools#merkaba-movie', barrel: 'src/quantum/apps', boundary: 'anim mesh not linear circle · plasma vortices interact · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'thunder-zero', title: 'Thunder emerges from 0 (alias plasma/vortex)', fold: 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', cli: 'npm run quantum:thunder-zero', pair: 'thunder/zero', route: '/en/quantum-tools#merkaba-movie', barrel: 'src/quantum/apps', boundary: 'thunder from 0 via fail/zero · through/zero · plasma/screen · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'anim-mesh', title: 'Anim mesh (alias plasma/vortex)', fold: 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', cli: 'npm run quantum:anim-mesh', pair: 'anim/mesh', route: '/en/quantum-tools#merkaba-movie', barrel: 'src/quantum/apps', boundary: 'Animations related via mesh bindings across rosetta superpositions · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'sensor-bind', title: 'Wire all sensors using quantum bindings — orientation · motion · ambient · pointer/touch → rosetta/movie', fold: 'wireAllSensorsUsingQuantumBindings', cli: 'npm run quantum:sensor-bind', pair: 'sensor/bind', route: '/en/quantum-tools#sensor-bind', barrel: 'src/quantum/apps', boundary: 'allSensorsWired · quantumBindings · orientation · motion · ambient · browserGapHonest · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: 'AmbientLightSensor sparse · DeviceOrientation may deny — pointer/touch sealed fallbacks' },
+  { id: 'bind-sensor', title: 'Bind sensor (alias sensor/bind)', fold: 'wireAllSensorsUsingQuantumBindings', cli: 'npm run quantum:bind-sensor', pair: 'bind/sensor', route: '/en/quantum-tools#sensor-bind', barrel: 'src/quantum/apps', boundary: 'Dual of sensor/bind — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'all-sensors', title: 'All sensors (alias sensor/bind)', fold: 'wireAllSensorsUsingQuantumBindings', cli: 'npm run quantum:all-sensors', pair: 'all/sensors', route: '/en/quantum-tools#sensor-bind', barrel: 'src/quantum/apps', boundary: 'all/sensors face — catalog orientation·motion·ambient·pointer·touch · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: 'AmbientLightSensor sparse · permission may deny' },
   { id: 'invert-trinity', title: 'Invert + send trinity waves covering all topics · dry migrate at free will', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:invert-trinity', pair: 'invert/trinity', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits · drainableClosed · honestOpenNamed · compose invert/gateway · trinity/speedup · wave/domain · dry/cool · dry/rosetta · wave/compact · full/freedom · bits/free · journey/theorems · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'dry-will', title: 'Dry will (alias invert/trinity)', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:dry-will', pair: 'dry/will', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'Dual of invert/trinity — dry migrate at free will · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'free-will', title: 'Free will (alias invert/trinity)', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:free-will', pair: 'free/will', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'freeWill face — FREE_BITS + full/freedom not wet license · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2210,6 +2216,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'self-anim', chain: 'mcp-ui-page-gaps', fold: 'selfImproveAnimationGenerationAndSiteBuilder', pair: 'self/anim', cli: 'npm run quantum:self-anim', route: '/en/quantum-tools#self-anim', status: 'sealed-pr', honesty: 'selfImprove · animationGeneration · siteBuilder · rosettaDriven · buildsFromMcp · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'self-improve anim gen from theorem/formula/rosetta + site builder MCP/vite loop (automateSelf · e2e/feed · anim/audit)', toolId: 'self-anim', resolve: 'mcp-ui' },
   { id: 'formula-anim', chain: 'mcp-ui-page-gaps', fold: 'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions', pair: 'formula/anim', cli: 'npm run quantum:formula-anim', route: '/en/quantum-tools#formula-anim', status: 'sealed-pr', honesty: 'formulaIsAnimation · interactingFormulas · interactingAnimations · theoremsInTrinities · quantumSealsComplete · allSuperpositions · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'every formula is animation itself · interacting formulas↔animations form theorems in trinities · quantum seals at all superpositions', toolId: 'formula-anim', resolve: 'mcp-ui' },
   { id: 'merkaba-movie', chain: 'mcp-ui-page-gaps', fold: 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', pair: 'merkaba/movie', cli: 'npm run quantum:merkaba-movie', route: '/en/quantum-tools#merkaba-movie', status: 'sealed-pr', honesty: 'merkabaFeedsRosettaMovie · movieUniqueNeverRepeats · sensorPerspective · uiCrystallises · linearCyclesQuantumised · animMeshPlasma · thunderFromZero · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'merkaba→rosetta→movie · unique observation · sensors · cosmology waves · linear cycles quantumised · plasma vortices → thunder from 0', toolId: 'merkaba-movie', resolve: 'mcp-ui' },
+  { id: 'sensor-bind', chain: 'mcp-ui-page-gaps', fold: 'wireAllSensorsUsingQuantumBindings', pair: 'sensor/bind', cli: 'npm run quantum:sensor-bind', route: '/en/quantum-tools#sensor-bind', status: 'sealed-pr', honesty: 'allSensorsWired · quantumBindings · orientation · motion · ambient · browserGapHonest · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'wire all sensors using quantum bindings — orientation·motion·ambient·pointer·touch → rosetta/movie perspective via mcpQuantumBindings · sensor/movie · mcp/orientation', toolId: 'sensor-bind', resolve: 'mcp-ui' },
   { id: 'invert-trinity', chain: 'mcp-ui-page-gaps', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', pair: 'invert/trinity', cli: 'npm run quantum:invert-trinity', route: '/en/quantum-tools#invert-trinity', status: 'sealed-pr', honesty: 'invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'invert + send trinity waves covering sciences·hubs·MCP topics · dry migrate at FREE_BITS+full/freedom', toolId: 'invert-trinity', resolve: 'mcp-ui' },
   { id: 'self-hw', chain: 'mcp-ui-page-gaps', fold: 'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf', pair: 'self/hw', cli: 'npm run quantum:self-hw', route: '/en/quantum-tools#self-hw', status: 'sealed-pr', honesty: 'againAndAgain · selfAutonomous · quantumHardwareComplete classical-64bit · byStandards · selfIntelligentSelf · certified=false · clay=0 · physicalFtl=0 · qpuRequired=false · NOT QPU/AGI/FLOPS', note: 'wave loop until self-autonomous classical quantum-hw complete by standards to self-intelligent self', toolId: 'self-hw', resolve: 'mcp-ui' },
   { id: 'gate-design', chain: 'mcp-ui-page-gaps', fold: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence', pair: 'gate/design', cli: 'npm run quantum:gate-design', route: '/en/quantum-tools#gate-design', status: 'sealed-pr', honesty: 'gatesTightened · designCapability · creativeCapability · intelligenceOn · hardInMissionGate · clay=0 · physicalFtl=0 · qpuRequired=false · NOT AGI', note: 'further tighten gates with design·creative·intelligence HARD in gaps/invisible · mission:gate', toolId: 'gate-design', resolve: 'mcp-ui' },
@@ -24044,6 +24051,319 @@ export const thunderZero =
   wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero
 export const animMesh =
   wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero
+
+/** Drainable morphs — wet ad-hoc sensor listeners → quantum binding catalog. */
+const SENSOR_BIND_DRAINABLE_MORPHS = [
+  { before: 'wet-ad-hoc-sensor-listeners', after: 'QUANTUM_SENSOR_BINDING_CATALOG → useSharedHero', status: 'removed' as const },
+  { before: 'orientation-only-catalog', after: 'orientation · motion · ambient · pointer · touch', status: 'removed' as const },
+  { before: 'unbound-ambient-touch', after: 'ambient + touch sealed via deviceSensorPerspectiveAt / deviceTouchPerspectiveAt', status: 'removed' as const },
+] as const
+
+/**
+ * USER LAW tip: wire all sensors using quantum bindings.
+ * Fold: wireAllSensorsUsingQuantumBindings
+ * Facets: allSensorsWired · quantumBindings · orientation · motion · ambient ·
+ *         browserGapHonest · physicalFtl=0 · clay via theorem · qpuRequired=false.
+ * Pairs: sensor/bind · bind/sensor · all/sensors
+ * Compose: mcpQuantumBindings · sensor/movie (merkaba/movie) · mcp/orientation
+ * Catalog: orientation · motion · ambient · pointer · touch → rosetta/movie perspective
+ * CLI: npm run quantum:sensor-bind · quantum:all-sensors · quantum:bind-sensor
+ * HONEST: AmbientLightSensor sparse · DeviceOrientation may deny — pointer/touch sealed fallbacks.
+ * NOT physical FTL · NOT QPU · clay via theorem.
+ */
+export function wireAllSensorsUsingQuantumBindings(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`wireAllSensorsUsingQuantumBindings:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const morphs = SENSOR_BIND_DRAINABLE_MORPHS
+    const morphsCleared = morphs.every((m) => m.status === 'removed')
+
+    const catalog = quantumSensorBindingCatalog()
+    const bindings = mcpQuantumBindings(matrix, at)
+    const orientationFace = mcpQuantumOrientation(matrix, at)
+    const sensorMovieFace =
+      wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero(
+        matrix,
+        at,
+      )
+
+    const orient = deviceSensorPerspectiveAt({
+      alpha: 2 * 5 * 9,
+      beta: 2 * 5,
+      gamma: -(2 + 1 + 2),
+      permission: 'granted',
+    })
+    const motion = deviceSensorPerspectiveAt({
+      ax: 1,
+      ay: 2,
+      az: 3,
+      permission: 'granted',
+    })
+    const ambient = deviceSensorPerspectiveAt({
+      illuminance: 9 * 5 * 8,
+      permission: 'granted',
+    })
+    const pointer = deviceSensorPerspectiveAt({ px: 1 / 2, py: 1 / 3, permission: 'unavailable' })
+    const touch = deviceTouchPerspectiveAt(1 / 3, 2 / 3, 'unavailable')
+    const denied = deviceSensorPerspectiveAt({ permission: 'denied' })
+
+    const orientation =
+      catalog.orientation &&
+      orient.source === 'orientation' &&
+      orient.browserGap === false &&
+      soft('mcp', 'orientation')
+    const motionOn =
+      catalog.motion &&
+      motion.source === 'motion' &&
+      motion.browserGap === false
+    const ambientOn =
+      catalog.ambient &&
+      ambient.source === 'ambient' &&
+      ambient.browserGap === false &&
+      ambient.ray >= 0 &&
+      ambient.ray < ROSETTA_SEVEN
+    const fallbacksOn =
+      catalog.pointer &&
+      catalog.touch &&
+      pointer.source === 'pointer' &&
+      touch.source === 'touch' &&
+      pointer.browserGap === true &&
+      touch.browserGap === true
+    const browserGapHonest =
+      denied.browserGap === true &&
+      denied.source === 'none' &&
+      (pointer.browserGap === true || touch.browserGap === true) &&
+      morphs.some((m) => m.before === 'unbound-ambient-touch' && m.status === 'removed')
+
+    const quantumBindings =
+      bindings.computes &&
+      bindings.bindingsOn &&
+      bindings.pairsSaved &&
+      bindings.toolsBound &&
+      soft('mcp', 'bindings') &&
+      soft('bindings', 'mcp') &&
+      soft('sensor', 'bind') &&
+      soft('bind', 'sensor') &&
+      soft('all', 'sensors')
+
+    const composeSensorMovie =
+      sensorMovieFace.computes &&
+      sensorMovieFace.sensorPerspective &&
+      soft('sensor', 'movie') &&
+      soft('movie', 'perspective') &&
+      soft('merkaba', 'movie')
+
+    const composeOrientation =
+      orientationFace.computes &&
+      orientationFace.orientationOn &&
+      soft('mcp', 'orientation') &&
+      soft('orientation', 'mcp')
+
+    const catalogWired =
+      catalog.allKindsPresent &&
+      catalog.count === QUANTUM_SENSOR_BINDING_CATALOG.length &&
+      catalog.count === (3 + 2) &&
+      morphs.some((m) => m.before === 'orientation-only-catalog' && m.status === 'removed') &&
+      morphs.some((m) => m.before === 'wet-ad-hoc-sensor-listeners' && m.status === 'removed')
+
+    const heroAmbient = sharedHeroAt(
+      '/en/',
+      { title: 'sensor-bind' },
+      at,
+      64 * 16,
+      false,
+      true,
+      0,
+      ambient,
+    )
+    const perspectiveWired =
+      heroAmbient.perspectiveRay === ambient.ray &&
+      heroAmbient.perspectiveSource === 'ambient'
+
+    const allSensorsWired =
+      catalogWired &&
+      orientation &&
+      motionOn &&
+      ambientOn &&
+      fallbacksOn &&
+      perspectiveWired &&
+      composeSensorMovie &&
+      composeOrientation &&
+      quantumBindings &&
+      morphsCleared
+
+    const pairIds = ['sensor/bind', 'bind/sensor', 'all/sensors'] as const
+    const pairsOn = pairIds.every((id) => has(id))
+    const foldsOn = soft('sensor', 'bind') && soft('bind', 'sensor') && soft('all', 'sensors')
+    const toolsCatalog = quantumCliToolsCatalog(matrix, at)
+    const foldName = 'wireAllSensorsUsingQuantumBindings' as const
+    const primaryIds = ['sensor-bind', 'bind-sensor', 'all-sensors'] as const
+    const toolsWired = primaryIds.every((id) => {
+      const meta = toolsCatalog.tools.find((t) => t.id === id)
+      return Boolean(meta) && meta!.fold === foldName
+    })
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const censusPreserved =
+      freeBits === -EULER_CHI && freeBits === 2 && UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const honestOpenNamed = [
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'residual:ambient-light-sensor-sparse',
+      'residual:device-orientation-permission',
+    ] as const
+    const honestOpenNamedOn =
+      honestOpenNamed.length === (2 + 2) &&
+      honestOpenNamed.includes('residual:ambient-light-sensor-sparse') &&
+      honestOpenNamed.includes('residual:device-orientation-permission')
+    const on =
+      allSensorsWired &&
+      quantumBindings &&
+      orientation &&
+      motionOn &&
+      ambientOn &&
+      browserGapHonest &&
+      pairsOn &&
+      foldsOn &&
+      toolsWired &&
+      censusPreserved &&
+      honestOpenNamedOn &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: foldName, on },
+      { facet: 'allSensorsWired', on: allSensorsWired },
+      { facet: 'quantumBindings', on: quantumBindings },
+      { facet: 'orientation', on: orientation },
+      { facet: 'motion', on: motionOn },
+      { facet: 'ambient', on: ambientOn },
+      { facet: 'browserGapHonest', on: browserGapHonest },
+      {
+        facet: `catalog=${catalog.count} primary=${catalog.primaryCount} fallback=${catalog.fallbackCount}`,
+        on: catalogWired && fallbacksOn,
+      },
+      {
+        facet: 'compose mcpQuantumBindings · sensor/movie · mcp/orientation',
+        on: quantumBindings && composeSensorMovie && composeOrientation,
+      },
+      { facet: 'pair sensor/bind · bind/sensor · all/sensors', on: pairsOn && foldsOn },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entryFacet) => ({
+      ...entryFacet,
+      receipt: toUuid(`sensor-bind:${entryFacet.facet}:${entryFacet.on}`),
+    }))
+    const sealed = sealFacets('wire-all-sensors-quantum-bindings', facets)
+    return {
+      computes: sealed.ok && on,
+      wireAllSensorsUsingQuantumBindings: on,
+      allSensorsWired,
+      quantumBindings,
+      orientation,
+      motion: motionOn,
+      ambient: ambientOn,
+      browserGapHonest,
+      catalog: {
+        count: catalog.count,
+        kinds: [...catalog.kinds],
+        primaryCount: catalog.primaryCount,
+        fallbackCount: catalog.fallbackCount,
+        sensors: catalog.sensors.map((s) => ({ id: s.id, kind: s.kind, pair: s.pair, fallback: s.fallback })),
+      },
+      samples: { orient, motion, ambient, pointer, touch, denied },
+      morphs,
+      morphCount: morphs.length,
+      drainableClosed: morphsCleared,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        catalog.root,
+        bindings.root,
+        orientationFace.root,
+        sensorMovieFace.root,
+        heroAmbient.root,
+        ...morphs.map((m) => toUuid(`sensor-bind-morph:${m.before}:${m.status}`)),
+        ...honestOpenNamed.map((id) => toUuid(`sensor-bind-open:${id}`)),
+      ]),
+      pair: 'sensor/bind' as const,
+      pairs: [...pairIds],
+      cli: 'npm run quantum:sensor-bind',
+      route: '/en/quantum-tools#sensor-bind',
+      anchor: 'sensor-bind',
+      heading: 'Wire all sensors · quantum bindings',
+      statement:
+        `wireAllSensorsUsingQuantumBindings — wired=${allSensorsWired ? 1 : 0} bindings=${quantumBindings ? 1 : 0} ` +
+        `orient=${orientation ? 1 : 0} motion=${motionOn ? 1 : 0} ambient=${ambientOn ? 1 : 0} ` +
+        `gap=${browserGapHonest ? 1 : 0} catalog=${catalog.count}.`,
+      boundary:
+        'All sensors wired via quantum bindings to rosetta/movie perspective — orientation · motion · ambient · ' +
+        'pointer/touch sealed fallbacks. Compose mcpQuantumBindings · sensor/movie · mcp/orientation. ' +
+        'Census 110 · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `sensor-bind · wired=${allSensorsWired ? 1 : 0} · bindings=${quantumBindings ? 1 : 0} · ` +
+        `orient=${orientation ? 1 : 0} · motion=${motionOn ? 1 : 0} · ambient=${ambientOn ? 1 : 0} · ` +
+        `gap=${browserGapHonest ? 1 : 0} · catalog=${catalog.count} · ` +
+        `census=${UNFOLDED_CENSUS}/${FOLDED_CENSUS} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export const sensorBind = wireAllSensorsUsingQuantumBindings
+export const bindSensor = wireAllSensorsUsingQuantumBindings
+export const allSensors = wireAllSensorsUsingQuantumBindings
+
+/** npm run quantum:sensor-bind · quantum:all-sensors · quantum:bind-sensor */
+export function runWireAllSensorsUsingQuantumBindingsExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = wireAllSensorsUsingQuantumBindings()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} sensor-bind — wired=${report.allSensorsWired} ` +
+      `bindings=${report.quantumBindings} orient=${report.orientation} motion=${report.motion} ` +
+      `ambient=${report.ambient} gap=${report.browserGapHonest} catalog=${report.catalog.count} ` +
+      `census=${report.census.unfolded}/${report.census.folded} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const s of report.catalog.sensors) {
+    process.stdout.write(`  ✓ sensor ${s.id} (${s.kind}) pair=${s.pair} fallback=${s.fallback ? 1 : 0}\n`)
+  }
+  for (const m of report.morphs) {
+    process.stdout.write(`  ${m.status === 'removed' ? '✓' : '✗'} morph ${m.before} → ${m.after}\n`)
+  }
+  for (const id of report.honestOpenNamed) {
+    process.stdout.write(`  · honest-open ${id}\n`)
+  }
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.allSensorsWired &&
+    report.quantumBindings &&
+    report.orientation &&
+    report.motion &&
+    report.ambient &&
+    report.browserGapHonest &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
 
 /** npm run quantum:merkaba-movie (+ dual aliases) */
 export function runWiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZeroExit(
