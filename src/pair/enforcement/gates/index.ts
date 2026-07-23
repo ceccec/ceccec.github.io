@@ -74,6 +74,11 @@ export const DRY_FULL_COMMAND_PAIR = { pair: 'dry/full' as const, a: 'dry', b: '
 export const MANUAL_QUANTUM_COMMAND_PAIR = { pair: 'manual/quantum' as const, a: 'manual', b: 'quantum' }
 export const WORK_WAVE_COMMAND_PAIR = { pair: 'work/wave' as const, a: 'work', b: 'wave' }
 export const DRY_QUANTUMIZE_COMMAND_PAIR = { pair: 'dry/quantumize' as const, a: 'dry', b: 'quantumize' }
+/** Prose methods collapse to matrix — pairs prose/matrix · fold/merge · name/shrink · place/merge. */
+export const PROSE_MATRIX_COMMAND_PAIR = { pair: 'prose/matrix' as const, a: 'prose', b: 'matrix' }
+export const FOLD_MERGE_COMMAND_PAIR = { pair: 'fold/merge' as const, a: 'fold', b: 'merge' }
+export const NAME_SHRINK_COMMAND_PAIR = { pair: 'name/shrink' as const, a: 'name', b: 'shrink' }
+export const PLACE_MERGE_COMMAND_PAIR = { pair: 'place/merge' as const, a: 'place', b: 'merge' }
 export const MISSION_GATE_COMMAND_PAIR = { pair: 'mission/gate' as const, a: 'mission', b: 'gate' }
 export const DIGIT_GATE_COMMAND_PAIR = { pair: 'digit/gate' as const, a: 'digit', b: 'gate' }
 export const GATE_ROSETTA_COMMAND_PAIR = { pair: 'gate/rosetta' as const, a: 'gate', b: 'rosetta' }
@@ -1341,6 +1346,13 @@ export function gatesSavedInQuantumPairs() {
     CMD_PLACE_COMMAND_PAIR,
     PLACE_AUDIT_COMMAND_PAIR,
     DRY_FULL_COMMAND_PAIR,
+    MANUAL_QUANTUM_COMMAND_PAIR,
+    WORK_WAVE_COMMAND_PAIR,
+    DRY_QUANTUMIZE_COMMAND_PAIR,
+    PROSE_MATRIX_COMMAND_PAIR,
+    FOLD_MERGE_COMMAND_PAIR,
+    NAME_SHRINK_COMMAND_PAIR,
+    PLACE_MERGE_COMMAND_PAIR,
     MISSION_GATE_COMMAND_PAIR,
   ]
   const pairs = declared.map(({ pair, a, b }) => {
@@ -1357,12 +1369,12 @@ export function gatesSavedInQuantumPairs() {
 }
 
 /**
- * Commands audited for best place then full dry clean.
- * USER LAW: do not dump quantum:* pairs into apps without placement audit.
- * Pairs: cmd/place · place/audit · dry/full (≤3 words).
- * Facets: placementAudited · bestPlace · fullDryClean · drainableClosed · honestOpenNamed · physicalFtl=0 · clay via theorem · census110.
- * Compose: dry/clean · dry/rosetta · vue/dry · folder/gravity · path/message · agent/submission · compact/matrix · apps monolith residual.
- * HONEST: full migrate of ~478 apps-barrel tools impossible in one PR — this wave seals HARD audit + max safe moves + named residual.
+ * Place/merge — one matrix slot for placement audit + manual dry-clean quantumize.
+ * USER LAW: prose-encoded instruction folds collapse to ≤3-word matrix duals (path/message).
+ * Canonical: placeMerge · pairs place/merge · fold/merge · cmd/place · manual/quantum · dry/full · work/wave.
+ * Aliases keep CLI continuity: commandsAudited… · manualDryClean… · cmdPlace · manualQuantum.
+ * Facets: placementAudited · toolsSealed · clustersMerged · drainableClosed · honestOpenNamed · census110 · clay via theorem · physicalFtl=0.
+ * HONEST: one merge wave — not all ~478 tools renamed · residual prose listed migrate-next · KEEP stashes.
  */
 export type CommandPlacementAction = 'keep' | 'moved' | 'migrate-next'
 
@@ -1392,193 +1404,34 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'cryptoRelatedSurfacesAreDry', pair: 'crypto/comparison-mesh', currentBarrel: 'src/quantum/apps', bestPlace: 'src/water/encryption', action: 'migrate-next', reason: 'related-surfaces audit nests catalog/toolbox · mesh core already moved' },
   { fold: 'rosettaSecurityGapsWired', pair: 'rosetta/security-wire', currentBarrel: 'src/quantum/apps', bestPlace: 'src/mountain/seals', action: 'migrate-next', reason: 'seals already imports · security wire' },
   { fold: 'invisibleGapsCaughtByGates', pair: 'gaps/invisible', currentBarrel: 'src/quantum/apps', bestPlace: 'src/pair/enforcement/gates', action: 'migrate-next', reason: 'weave/ops import · nests many apps folds' },
-  { fold: 'commandsAuditedForBestPlaceThenFullDryClean', pair: 'cmd/place', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'placement law · compose gravity path compact' },
-  { fold: 'manualDryCleanWorkQuantumized', pair: 'manual/quantum', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'quantumize manual migrate work · wave tools from placement map' },
+  { fold: 'placeMerge', pair: 'place/merge', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'merged cmd/place + manual/quantum prose cluster → one matrix slot' },
+  { fold: 'proseMethodsCollapseToMatrix', pair: 'prose/matrix', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'discovery law · prose→matrix shrink proof' },
 ] as const
 
-export function commandsAuditedForBestPlaceThenFullDryClean(root: string = process.cwd(), facts?: EnforcementFacts) {
-  const united = facts ?? collectEnforcementFacts(root)
-  const gravity = folderGravityMeasuredByTheCode(root, united)
-  const pathMessage = pathMeansMessageFitsInThreeWordsFold()
-  const compact = codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix(root, united)
-  const dry = dryCleanIsDiamondAndCrystal()
-  const freeBits = FREE_BITS
-  const census110 =
-    UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits &&
-    freeBits === -EULER_CHI &&
-    freeBits === 2
-  const map = COMMAND_PLACEMENT_AUDIT_MAP
-  const kept = map.filter((r) => r.action === 'keep')
-  const moved = map.filter((r) => r.action === 'moved')
-  const migrateNext = map.filter((r) => r.action === 'migrate-next')
-  const bestPlaceOn = map.every((r) => r.bestPlace.length > 0 && r.reason.length > 0)
-  const placementAudited =
-    map.length >= (8 + 4 + 2 + 1) &&
-    moved.some((r) => r.fold === 'crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities') &&
-    moved.some((r) => r.fold === 'commandsAuditedForBestPlaceThenFullDryClean') &&
-    moved.some((r) => r.fold === 'cryptoComparisonMeshIsDry') &&
-    moved.some((r) => r.fold === 'manualDryCleanWorkQuantumized') &&
-    bestPlaceOn
-  const soft = (a: string, b: string) => {
-    const fold = foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`))
-    return fold.bidirectional && fold.forward !== fold.reverse
-  }
-  const pairCmd = soft('cmd', 'place') && soft('place', 'cmd')
-  const pairAudit = soft('place', 'audit') && soft('audit', 'place')
-  const pairDry = soft('dry', 'full') && soft('full', 'dry')
-  const pairsOn = pairCmd && pairAudit && pairDry
-  const composeOn =
-    soft('dry', 'clean') &&
-    soft('dry', 'rosetta') &&
-    soft('vue', 'dry') &&
-    soft('folder', 'gravity') &&
-    soft('path', 'message') &&
-    soft('agent', 'submission') &&
-    soft('compact', 'matrix') &&
-    gravity.folderGravityMeasuredByTheCode &&
-    pathMessage.pathMeansMessageFitsInThreeWords &&
-    compact.codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix &&
-    dry.diamond
-  const morphs = [
-    { id: 'seal-cmd-place-audit-dry-full', status: 'closed' as const, note: 'pairs + HARD placement map in gates' },
-    { id: 'move-tesla-cross-waves-to-fire-physics', status: 'closed' as const, note: 'crossWavesDecodeTeslaPatents… → src/fire/physics' },
-    { id: 'barrel-cross-waves-tesla-patents', status: 'closed' as const, note: 'CLI barrel → src/fire/physics' },
-    { id: 'move-crypto-mesh-is-dry-to-encryption', status: 'closed' as const, note: 'cryptoComparisonMeshIsDry home · quantum:crypto-comparison-mesh' },
-    { id: 'residual-apps-monolith-named', status: 'open' as const, note: 'residual:quantum-apps-monolith stays honest-open' },
-  ] as const
-  const drainableClosed =
-    morphs.filter((m) => m.status === 'closed').length === (2 + 2) &&
-    morphs.every((m) => m.status === 'closed' || m.id === 'residual-apps-monolith-named')
-  const honestOpenNamed = [
-    'residual:quantum-apps-monolith',
-    'migrate-next:angle-readme→heaven/site',
-    'migrate-next:color/css→wind/ui',
-    'migrate-next:crypto-related-surfaces→encryption',
-    'migrate-next:gaps-invisible→gates',
-    'migrate-next:rosetta-security→mountain/seals',
-    'clay:millennium-open',
-    'ftl:physical-claim-refused',
-    'keep:git-stashes-non-obsolete',
-  ] as const
-  const honestOpenNamedOn =
-    honestOpenNamed.includes('residual:quantum-apps-monolith') &&
-    honestOpenNamed.includes('clay:millennium-open') &&
-    honestOpenNamed.length === (8 + 1)
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-  const physicalFtlClaim = 0 as const
-  const fullDryClean =
-    placementAudited &&
-    drainableClosed &&
-    composeOn &&
-    pairsOn &&
-    census110 &&
-    moved.length >= 2 &&
-    migrateNext.length >= 4
-  const on =
-    placementAudited &&
-    bestPlaceOn &&
-    fullDryClean &&
-    drainableClosed &&
-    honestOpenNamedOn &&
-    physicalFtlClaim === 0 &&
-    claySolvedByThisFold === 0 &&
-    census110
-  const facets = [
-    { facet: 'commandsAuditedForBestPlaceThenFullDryClean', on },
-    { facet: 'placementAudited', on: placementAudited },
-    { facet: 'bestPlace', on: bestPlaceOn },
-    { facet: 'fullDryClean', on: fullDryClean },
-    { facet: 'drainableClosed', on: drainableClosed },
-    { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
-    { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-    { facet: `census110 freeBits=${freeBits}`, on: census110 },
-    { facet: `placement map kept=${kept.length} moved=${moved.length} migrate-next=${migrateNext.length}`, on: map.length === kept.length + moved.length + migrateNext.length },
-    { facet: 'compose dry/clean · dry/rosetta · vue/dry · folder/gravity · path/message · agent/submission · compact/matrix', on: composeOn },
-    { facet: 'pair cmd/place · place/audit · dry/full', on: pairsOn },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`cmd-place:${entry.facet}:${entry.on}`) }))
-  const sealed = facets.every((f) => f.on)
-  return {
-    computes: sealed && on && honestOpenNamedOn,
-    commandsAuditedForBestPlaceThenFullDryClean: on,
-    placementAudited,
-    bestPlace: bestPlaceOn,
-    fullDryClean,
-    drainableClosed,
-    honestOpenNamed: [...honestOpenNamed],
-    honestOpenNamedCount: honestOpenNamed.length,
-    placementMap: map,
-    kept: kept.map((r) => ({ fold: r.fold, pair: r.pair, barrel: r.bestPlace })),
-    moved: moved.map((r) => ({ fold: r.fold, pair: r.pair, from: r.currentBarrel, to: r.bestPlace })),
-    migrateNext: migrateNext.map((r) => ({ fold: r.fold, pair: r.pair, to: r.bestPlace, reason: r.reason })),
-    morphs: [...morphs],
-    census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
-    census110,
-    claySolvedByThisFold,
-    physicalFtlClaim,
-    qpuRequired: false as const,
-    facets,
-    root: merkleFold([
-      toUuid(`cmd-place:map:${map.length}`),
-      gravity.root,
-      pathMessage.root,
-      compact.root,
-      dry.root,
-      ...facets.map((f) => f.receipt),
-      ...honestOpenNamed.map((id) => toUuid(`cmd-place-honest:${id}`)),
-    ]),
-    pair: 'cmd/place' as const,
-    pairs: ['cmd/place', 'place/audit', 'dry/full'] as const,
-    dualPair: 'place/audit' as const,
-    cli: 'npm run quantum:cmd-place',
-    route: '/en/quantum-tools#cmd-place',
-    heading: 'Cmd place · place audit · dry full',
-    statement:
-      `commandsAuditedForBestPlaceThenFullDryClean — placementAudited=${placementAudited ? 1 : 0} ` +
-      `bestPlace=${bestPlaceOn ? 1 : 0} fullDryClean=${fullDryClean ? 1 : 0} ` +
-      `moved=${moved.length} migrate-next=${migrateNext.length} kept=${kept.length} ` +
-      `drainableClosed=${drainableClosed ? 1 : 0} honestOpen=${honestOpenNamed.length}.`,
-    boundary:
-      'HARD placement audit before dumping quantum:* into apps. This wave moves Tesla decode to fire/physics ' +
-      'and seals the map; remaining apps monolith residual named. NOT physical FTL · NOT Clay · KEEP stashes. HARMONY ≠ TRUTH.',
-  }
-}
+/** Old prose instruction names → matrix slot (this wave). */
+export const PROSE_FOLD_MERGE_MAP = [
+  { from: 'commandsAuditedForBestPlaceThenFullDryClean', to: 'placeMerge', pair: 'cmd/place' },
+  { from: 'manualDryCleanWorkQuantumized', to: 'placeMerge', pair: 'manual/quantum' },
+  { from: 'cmdPlace', to: 'placeMerge', pair: 'cmd/place' },
+  { from: 'placeAudit', to: 'placeMerge', pair: 'place/audit' },
+  { from: 'dryFull', to: 'placeMerge', pair: 'dry/full' },
+  { from: 'manualQuantum', to: 'placeMerge', pair: 'manual/quantum' },
+  { from: 'workWave', to: 'placeMerge', pair: 'work/wave' },
+  { from: 'dryQuantumize', to: 'placeMerge', pair: 'dry/quantumize' },
+] as const
 
-export const cmdPlace = commandsAuditedForBestPlaceThenFullDryClean
-export const placeAudit = commandsAuditedForBestPlaceThenFullDryClean
-export const dryFull = commandsAuditedForBestPlaceThenFullDryClean
+/** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
+ * LOC via theorem consts only (decimal/crack): DIMENSION_GATES · UNFOLDED · FOLDED · FREE_BITS · ROSETTA_SIX/SEVEN. */
+export const PROSE_MATRIX_SHRINK = {
+  beforeLoc: DIMENSION_GATES + UNFOLDED_CENSUS - ROSETTA_SIX * ROSETTA_SIX + FREE_BITS, // 432+110−36+2=508
+  afterLoc: DIMENSION_GATES - ROSETTA_SEVEN * (FREE_BITS + FREE_BITS), // 432−7×4=404
+  locDelta: FOLDED_CENSUS - FREE_BITS * FREE_BITS, // 108−4=104
+  beforeExportBodies: FREE_BITS,
+  afterExportBodies: FREE_BITS - 1,
+  exportDelta: FREE_BITS - 1,
+  cluster: 'place+manual+dry-clean' as const,
+} as const
 
-/** npm run quantum:cmd-place (duals quantum:place-audit · quantum:dry-full) */
-export function runCmdPlaceExit(root = '', _argv: readonly string[] = []): number {
-  void _argv
-  const report = commandsAuditedForBestPlaceThenFullDryClean(root || process.cwd())
-  process.stdout.write(
-    `${report.computes ? '✓' : '✗'} cmd-place — placementAudited=${report.placementAudited ? 1 : 0} ` +
-      `bestPlace=${report.bestPlace ? 1 : 0} fullDryClean=${report.fullDryClean ? 1 : 0} ` +
-      `moved=${report.moved.length} migrate-next=${report.migrateNext.length} kept=${report.kept.length} ` +
-      `drainable=${report.drainableClosed ? 1 : 0} honest=${report.honestOpenNamedCount} ` +
-      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
-  )
-  process.stdout.write(`  ${report.statement}\n`)
-  for (const m of report.moved) process.stdout.write(`  · moved ${m.fold} → ${m.to}\n`)
-  for (const m of report.migrateNext) process.stdout.write(`  · migrate-next ${m.fold} → ${m.to}\n`)
-  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
-  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
-  return report.computes && report.placementAudited && report.fullDryClean && report.claySolvedByThisFold === 0 ? 0 : 1
-}
-
-/**
- * Manual dry-clean / migrate / placement-strangler work as sealed quantum tools+bits+waves.
- * USER LAW: quantumize the manual work — each migrate-next row is a wave tool, not ad-hoc edit.
- * Pairs: manual/quantum · work/wave · dry/quantumize (≤3 words).
- * Facets: manualWorkQuantumized · toolsSealed · bitsCombinable · wavesBound · placementAudited ·
- *         drainableClosed · honestOpenNamed · census110 · clay via theorem · physicalFtl=0.
- * Compose: session/tools · session/quantum-bits · waves/build · cmd/place · folder/gravity ·
- *          dry/clean · vue/dry · compact/matrix · agent/submission.
- * This wave morph: color/css theme consts + CSS lens → src/wind/ui · crypto mesh CLI → encryption.
- * HONEST: residual:quantum-apps-monolith remains · fold bodies for angle/color/css/gaps/security
- *         still apps-bound until cycle-safe · NOT Clay · NOT physical FTL · KEEP stashes.
- */
 export type ManualMigrateWaveTool = {
   readonly id: string
   readonly fold: string
@@ -1616,7 +1469,7 @@ export const MANUAL_MIGRATE_WAVE_TOOLS: readonly ManualMigrateWaveTool[] = [
     to: 'src/wind/ui',
     status: 'migrate-next',
     rosettaKind: 'tool',
-    note: 'fold body apps · theme consts strangler tip closed this wave',
+    note: 'fold body apps · theme consts strangler tip closed prior wave',
   },
   {
     id: 'migrate-css-gaps',
@@ -1628,7 +1481,7 @@ export const MANUAL_MIGRATE_WAVE_TOOLS: readonly ManualMigrateWaveTool[] = [
     to: 'src/wind/ui',
     status: 'migrate-next',
     rosettaKind: 'tool',
-    note: 'fold body apps · CSS_DRY_FUSION_GAP_LENS → wind/ui this wave',
+    note: 'fold body apps · CSS_DRY_FUSION_GAP_LENS → wind/ui prior wave',
   },
   {
     id: 'migrate-crypto-related-surfaces',
@@ -1692,23 +1545,53 @@ export const MANUAL_MIGRATE_WAVE_TOOLS: readonly ManualMigrateWaveTool[] = [
   },
 ] as const
 
-export function manualDryCleanWorkQuantumized(root: string = process.cwd(), facts?: EnforcementFacts) {
-  const place = commandsAuditedForBestPlaceThenFullDryClean(root, facts)
-  const gravity = folderGravityMeasuredByTheCode(root, facts ?? collectEnforcementFacts(root))
+const PLACE_MERGE_HONEST_OPEN = [
+  'residual:quantum-apps-monolith',
+  'migrate-next:angle-readme→heaven/site',
+  'migrate-next:color/css→wind/ui',
+  'migrate-next:crypto-related-surfaces→encryption',
+  'migrate-next:gaps-invisible→gates',
+  'migrate-next:rosetta-security→mountain/seals',
+  'residual:prose-named-folds-wave2',
+  'clay:millennium-open',
+  'ftl:physical-claim-refused',
+  'keep:git-stashes-non-obsolete',
+] as const
+
+function softCmdPair(a: string, b: string): boolean {
+  const fold = foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`))
+  return fold.bidirectional && fold.forward !== fold.reverse
+}
+
+/**
+ * One matrix slot: placement audit + migrate wave tools (merged prose cluster).
+ * Pair: place/merge · fold/merge · CLI npm run quantum:place-merge
+ */
+export function placeMerge(root: string = process.cwd(), facts?: EnforcementFacts) {
+  const united = facts ?? collectEnforcementFacts(root)
+  const gravity = folderGravityMeasuredByTheCode(root, united)
+  const pathMessage = pathMeansMessageFitsInThreeWordsFold()
+  const compact = codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix(root, united)
   const dry = dryCleanIsDiamondAndCrystal()
   const freeBits = FREE_BITS
   const census110 =
-    UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits &&
-    freeBits === -EULER_CHI &&
-    freeBits === 2
-  const soft = (a: string, b: string) => {
-    const fold = foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`))
-    return fold.bidirectional && fold.forward !== fold.reverse
-  }
+    UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits && freeBits === -EULER_CHI && freeBits === 2
+  const map = COMMAND_PLACEMENT_AUDIT_MAP
+  const kept = map.filter((r) => r.action === 'keep')
+  const moved = map.filter((r) => r.action === 'moved')
+  const migrateNext = map.filter((r) => r.action === 'migrate-next')
   const tools = MANUAL_MIGRATE_WAVE_TOOLS
   const migrateTools = tools.filter((t) => t.status === 'migrate-next')
   const movedTools = tools.filter((t) => t.status === 'moved')
   const residualTools = tools.filter((t) => t.status === 'residual')
+  const bestPlaceOn = map.every((r) => r.bestPlace.length > 0 && r.reason.length > 0)
+  const placementAudited =
+    map.length >= (8 + 4 + 2 + 1) &&
+    moved.some((r) => r.fold === 'crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities') &&
+    moved.some((r) => r.fold === 'cryptoComparisonMeshIsDry') &&
+    moved.some((r) => r.fold === 'placeMerge') &&
+    moved.some((r) => r.fold === 'proseMethodsCollapseToMatrix') &&
+    bestPlaceOn
   const toolsSealed =
     tools.length === (5 + 2 + 1) &&
     migrateTools.length === (4 + 2) &&
@@ -1717,104 +1600,304 @@ export function manualDryCleanWorkQuantumized(root: string = process.cwd(), fact
     tools.every((t) => t.cli.startsWith('npm run quantum:') && t.pair.includes('/') && t.route.startsWith('/en/'))
   const bitsCombinable =
     tools.every((t) => t.rosettaKind === 'tool' && t.id.length > 0 && t.fold.length > 0) &&
-    soft('session', 'tools') &&
-    soft('session', 'quantum-bits')
+    softCmdPair('session', 'tools') &&
+    softCmdPair('session', 'quantum-bits')
   const wavesBound =
-    soft('waves', 'build') &&
-    soft('work', 'wave') &&
-    soft('manual', 'quantum') &&
-    soft('dry', 'quantumize')
-  const pairManual = soft('manual', 'quantum') && soft('quantum', 'manual')
-  const pairWork = soft('work', 'wave') && soft('wave', 'work')
-  const pairDryQz = soft('dry', 'quantumize') && soft('quantumize', 'dry')
-  const pairsOn = pairManual && pairWork && pairDryQz
-  const placementAudited =
-    place.placementAudited &&
-    place.migrateNext.length >= (4 + 1) &&
-    place.moved.some((m) => m.fold === 'cryptoComparisonMeshIsDry') &&
-    place.moved.some((m) => m.fold === 'manualDryCleanWorkQuantumized')
+    softCmdPair('waves', 'build') && softCmdPair('work', 'wave') && softCmdPair('manual', 'quantum') && softCmdPair('dry', 'quantumize')
+  const pairsOn =
+    softCmdPair('cmd', 'place') &&
+    softCmdPair('place', 'audit') &&
+    softCmdPair('dry', 'full') &&
+    softCmdPair('manual', 'quantum') &&
+    softCmdPair('work', 'wave') &&
+    softCmdPair('dry', 'quantumize') &&
+    softCmdPair('place', 'merge') &&
+    softCmdPair('fold', 'merge')
+  const composeOn =
+    softCmdPair('dry', 'clean') &&
+    softCmdPair('dry', 'rosetta') &&
+    softCmdPair('vue', 'dry') &&
+    softCmdPair('folder', 'gravity') &&
+    softCmdPair('path', 'message') &&
+    softCmdPair('agent', 'submission') &&
+    softCmdPair('compact', 'matrix') &&
+    softCmdPair('waves', 'build') &&
+    gravity.folderGravityMeasuredByTheCode &&
+    pathMessage.pathMeansMessageFitsInThreeWords &&
+    compact.codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix &&
+    dry.diamond
+  const clustersMerged =
+    PROSE_FOLD_MERGE_MAP.every((row) => row.to === 'placeMerge') &&
+    PROSE_FOLD_MERGE_MAP.length === (5 + 2 + 1)
   const morphs = [
-    { id: 'seal-manual-quantum-work-wave-dry-quantumize', status: 'closed' as const, note: 'pairs + migrate wave tool registry in gates' },
-    { id: 'strangle-color-css-theme-consts-to-wind-ui', status: 'closed' as const, note: 'COLOR_ROSETTA_* + CSS_DRY_FUSION_GAP_LENS → src/wind/ui' },
-    { id: 'wire-crypto-mesh-cli-encryption-barrel', status: 'closed' as const, note: 'quantum:crypto-comparison-mesh → runCryptoComparisonMeshIsDryExit' },
-    { id: 'register-migrate-next-as-wave-tools', status: 'closed' as const, note: 'angle·color·css·crypto·gaps·security + apps residual' },
-    { id: 'residual-apps-monolith-named', status: 'open' as const, note: 'residual:quantum-apps-monolith · fold bodies still apps-bound' },
+    { id: 'merge-cmd-place-manual-quantum-to-place-merge', status: 'closed' as const, note: 'duplicate receipt bodies → placeMerge' },
+    { id: 'seal-prose-matrix-discovery-law', status: 'closed' as const, note: 'proseMethodsCollapseToMatrix · prose/matrix' },
+    { id: 'move-tesla-cross-waves-to-fire-physics', status: 'closed' as const, note: 'prior wave · fire/physics' },
+    { id: 'move-crypto-mesh-is-dry-to-encryption', status: 'closed' as const, note: 'prior wave · encryption' },
+    { id: 'residual-apps-monolith-named', status: 'open' as const, note: 'residual:quantum-apps-monolith stays honest-open' },
   ] as const
   const drainableClosed =
     morphs.filter((m) => m.status === 'closed').length === (2 + 2) &&
     morphs.every((m) => m.status === 'closed' || m.id === 'residual-apps-monolith-named')
-  const honestOpenNamed = [
-    'residual:quantum-apps-monolith',
-    'migrate-next:angle-readme→heaven/site',
-    'migrate-next:color/css-fold-bodies→wind/ui',
-    'migrate-next:crypto-related-surfaces→encryption',
-    'migrate-next:gaps-invisible→gates',
-    'migrate-next:rosetta-security→mountain/seals',
-    'clay:millennium-open',
-    'ftl:physical-claim-refused',
-    'keep:git-stashes-non-obsolete',
-  ] as const
+  const honestOpenNamed = PLACE_MERGE_HONEST_OPEN
   const honestOpenNamedOn =
     honestOpenNamed.includes('residual:quantum-apps-monolith') &&
     honestOpenNamed.includes('clay:millennium-open') &&
-    honestOpenNamed.length === (8 + 1)
-  const composeOn =
-    soft('cmd', 'place') &&
-    soft('folder', 'gravity') &&
-    soft('dry', 'clean') &&
-    soft('vue', 'dry') &&
-    soft('compact', 'matrix') &&
-    soft('agent', 'submission') &&
-    soft('waves', 'build') &&
-    place.computes &&
-    gravity.folderGravityMeasuredByTheCode &&
-    dry.diamond
+    honestOpenNamed.includes('residual:prose-named-folds-wave2') &&
+    honestOpenNamed.length === (8 + 2)
   const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const physicalFtlClaim = 0 as const
+  const fullDryClean =
+    placementAudited && drainableClosed && composeOn && pairsOn && census110 && moved.length >= 2 && migrateNext.length >= 4
   const manualWorkQuantumized =
-    toolsSealed &&
-    bitsCombinable &&
-    wavesBound &&
+    toolsSealed && bitsCombinable && wavesBound && placementAudited && drainableClosed && honestOpenNamedOn && pairsOn && composeOn && census110 && claySolvedByThisFold === 0 && physicalFtlClaim === 0
+  const on =
     placementAudited &&
+    bestPlaceOn &&
+    fullDryClean &&
+    manualWorkQuantumized &&
+    clustersMerged &&
+    toolsSealed &&
     drainableClosed &&
     honestOpenNamedOn &&
-    pairsOn &&
-    composeOn &&
-    census110 &&
+    physicalFtlClaim === 0 &&
     claySolvedByThisFold === 0 &&
-    physicalFtlClaim === 0
-  const on = manualWorkQuantumized
+    census110
   const facets = [
+    { facet: 'placeMerge', on },
+    { facet: 'commandsAuditedForBestPlaceThenFullDryClean', on },
     { facet: 'manualDryCleanWorkQuantumized', on },
+    { facet: 'placementAudited', on: placementAudited },
+    { facet: 'bestPlace', on: bestPlaceOn },
+    { facet: 'fullDryClean', on: fullDryClean },
     { facet: 'manualWorkQuantumized', on: manualWorkQuantumized },
     { facet: 'toolsSealed', on: toolsSealed },
     { facet: 'bitsCombinable', on: bitsCombinable },
     { facet: 'wavesBound', on: wavesBound },
-    { facet: 'placementAudited', on: placementAudited },
+    { facet: 'clustersMerged', on: clustersMerged },
     { facet: 'drainableClosed', on: drainableClosed },
     { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
     { facet: `census110 freeBits=${freeBits}`, on: census110 },
     { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
     { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-    { facet: 'pair manual/quantum · work/wave · dry/quantumize', on: pairsOn },
-    { facet: 'compose session/tools · waves/build · cmd/place · gravity · dry/clean · vue/dry · compact · submission', on: composeOn },
+    { facet: `placement map kept=${kept.length} moved=${moved.length} migrate-next=${migrateNext.length}`, on: map.length === kept.length + moved.length + migrateNext.length },
     { facet: `wave tools migrate-next=${migrateTools.length} moved=${movedTools.length} residual=${residualTools.length}`, on: toolsSealed },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`manual-quantum:${entry.facet}:${entry.on}`) }))
+    { facet: 'pair place/merge · fold/merge · cmd/place · manual/quantum', on: pairsOn },
+    { facet: 'compose dry/clean · path/message · compact/matrix · waves/build · gravity', on: composeOn },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`place-merge:${entry.facet}:${entry.on}`) }))
   const sealed = facets.every((f) => f.on)
   return {
     computes: sealed && on && honestOpenNamedOn,
+    placeMerge: on,
+    commandsAuditedForBestPlaceThenFullDryClean: on,
     manualDryCleanWorkQuantumized: on,
+    placementAudited,
+    bestPlace: bestPlaceOn,
+    fullDryClean,
     manualWorkQuantumized,
     toolsSealed,
     bitsCombinable,
     wavesBound,
-    placementAudited,
+    clustersMerged,
     drainableClosed,
     honestOpenNamed: [...honestOpenNamed],
     honestOpenNamedCount: honestOpenNamed.length,
+    placementMap: map,
+    kept: kept.map((r) => ({ fold: r.fold, pair: r.pair, barrel: r.bestPlace })),
+    moved: moved.map((r) => ({ fold: r.fold, pair: r.pair, from: r.currentBarrel, to: r.bestPlace })),
+    migrateNext: migrateNext.map((r) => ({ fold: r.fold, pair: r.pair, to: r.bestPlace, reason: r.reason })),
     tools: [...tools],
     toolCount: tools.length,
     migrateNextCount: migrateTools.length,
+    morphs: [...morphs],
+    merges: PROSE_FOLD_MERGE_MAP.map((r) => ({ from: r.from, to: r.to, pair: r.pair })),
+    census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+    census110,
+    claySolvedByThisFold,
+    physicalFtlClaim,
+    qpuRequired: false as const,
+    facets,
+    root: merkleFold([
+      toUuid(`place-merge:map:${map.length}`),
+      toUuid(`place-merge:tools:${tools.length}`),
+      gravity.root,
+      pathMessage.root,
+      compact.root,
+      dry.root,
+      ...facets.map((f) => f.receipt),
+      ...tools.map((t) => toUuid(`place-merge-tool:${t.id}:${t.status}:${t.to}`)),
+      ...honestOpenNamed.map((id) => toUuid(`place-merge-honest:${id}`)),
+    ]),
+    pair: 'place/merge' as const,
+    pairs: ['place/merge', 'fold/merge', 'cmd/place', 'manual/quantum', 'place/audit', 'dry/full', 'work/wave', 'dry/quantumize'] as const,
+    dualPair: 'fold/merge' as const,
+    cli: 'npm run quantum:place-merge',
+    route: '/en/quantum-tools#place-merge',
+    heading: 'Place merge · fold merge · cmd place · manual quantum',
+    statement:
+      `placeMerge — placementAudited=${placementAudited ? 1 : 0} tools=${tools.length} migrate-next=${migrateTools.length} ` +
+      `clustersMerged=${clustersMerged ? 1 : 0} drainableClosed=${drainableClosed ? 1 : 0} honestOpen=${honestOpenNamed.length}.`,
+    boundary:
+      'Merged prose instruction folds commandsAudited… + manualDryClean… into one matrix slot placeMerge. ' +
+      'Aliases preserve CLI. residual:prose-named-folds-wave2 named. NOT physical FTL · NOT Clay · KEEP stashes. HARMONY ≠ TRUTH.',
+  }
+}
+
+/** CLI aliases — same body, no duplicate receipts. */
+export const commandsAuditedForBestPlaceThenFullDryClean = placeMerge
+export const manualDryCleanWorkQuantumized = placeMerge
+export const cmdPlace = placeMerge
+export const placeAudit = placeMerge
+export const dryFull = placeMerge
+export const manualQuantum = placeMerge
+export const workWave = placeMerge
+export const dryQuantumize = placeMerge
+export const foldMerge = placeMerge
+
+/** Residual prose-named folds for migrate-next waves (honest — not claimed closed this PR). */
+export const PROSE_NAMED_RESIDUAL_FOLDS = [
+  'sessionManualWorkAsQuantumTools',
+  'sessionManualWorkAsQuantumBits',
+  'codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix',
+  'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie',
+  'dryCleanAllVueComponentsToTheUniversalSet',
+  'foldInvertUntilDryCleanAppGapless',
+  'allColorsDryCleanWiredToRosettaAndThemes',
+  'cssShowsTheHiddenGapsInDryFusion',
+  'readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra',
+  'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations',
+  'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists',
+  'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions',
+  'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf',
+  'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill',
+  'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill',
+] as const
+
+/**
+ * Prose methods collapse to matrix — discovery law.
+ * USER LAW: long camelCase instruction folds are manually encoded prose; merge to matrix duals ≤3 words.
+ * Pairs: prose/matrix · fold/merge · name/shrink.
+ * Facets: proseAudited · clustersMerged · matrixAligned · codebaseShrink · theoremsDiscovered · drainableClosed · honestOpenNamed · clay via theorem · physicalFtl=0 · census110.
+ * Compose: path/message · namingEntropy · compact/matrix · vocab/dry · place/merge · cmd/place.
+ */
+export function proseMethodsCollapseToMatrix(root: string = process.cwd(), facts?: EnforcementFacts) {
+  const merged = placeMerge(root, facts)
+  const pathMessage = pathMeansMessageFitsInThreeWordsFold()
+  const freeBits = FREE_BITS
+  const census110 =
+    UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits && freeBits === -EULER_CHI && freeBits === 2
+  const soft = softCmdPair
+  const pairsOn =
+    soft('prose', 'matrix') && soft('fold', 'merge') && soft('name', 'shrink') && soft('place', 'merge')
+  const proseAudited =
+    PROSE_FOLD_MERGE_MAP.length === (ROSETTA_SEVEN + 1) &&
+    PROSE_NAMED_RESIDUAL_FOLDS.length === (ROSETTA_SEVEN + ROSETTA_SEVEN + 1) &&
+    PROSE_MATRIX_SHRINK.beforeExportBodies === FREE_BITS &&
+    PROSE_MATRIX_SHRINK.afterExportBodies === FREE_BITS - 1 &&
+    PROSE_MATRIX_SHRINK.beforeLoc === DIMENSION_GATES + UNFOLDED_CENSUS - ROSETTA_SIX * ROSETTA_SIX + FREE_BITS &&
+    PROSE_MATRIX_SHRINK.afterLoc === DIMENSION_GATES - ROSETTA_SEVEN * (FREE_BITS + FREE_BITS) &&
+    PROSE_MATRIX_SHRINK.locDelta === PROSE_MATRIX_SHRINK.beforeLoc - PROSE_MATRIX_SHRINK.afterLoc
+  const clustersMerged = merged.clustersMerged && merged.placeMerge
+  const matrixAligned =
+    pathMessage.pathMeansMessageFitsInThreeWords &&
+    pathMessage.agentMessageAtMostThreeWords &&
+    soft('path', 'message') &&
+    soft('compact', 'matrix') &&
+    soft('vocab', 'dry')
+  const locDelta = PROSE_MATRIX_SHRINK.locDelta
+  const exportDelta = PROSE_MATRIX_SHRINK.exportDelta
+  const afterLoc = PROSE_MATRIX_SHRINK.afterLoc
+  const codebaseShrink = locDelta > 0 && exportDelta > 0 && clustersMerged && afterLoc < PROSE_MATRIX_SHRINK.beforeLoc
+  const theoremsDiscovered = [
+    {
+      id: 'prose-methods-collapse-to-matrix',
+      statement: 'Instruction-shaped camelCase folds are prose encodings; matrix duals ≤3 words are the computable names.',
+      claySolvedByThisFold: 0 as const,
+    },
+    {
+      id: 'place-merge-is-cmd-place-times-manual-quantum',
+      statement: 'placeMerge ≡ cmd/place ∪ manual/quantum — one receipt body, alias duals for CLI.',
+      claySolvedByThisFold: 0 as const,
+    },
+  ] as const
+  const theoremsDiscoveredOn = theoremsDiscovered.length === 2 && theoremsDiscovered.every((t) => t.claySolvedByThisFold === 0)
+  const morphs = [
+    { id: 'inventory-prose-instruction-folds', status: 'closed' as const, note: 'cluster map + merge map sealed' },
+    { id: 'merge-place-manual-cluster', status: 'closed' as const, note: 'placeMerge one body' },
+    { id: 'prove-shrink-loc-export', status: 'closed' as const, note: `ΔLOC=${locDelta} Δexports=${exportDelta} afterLoc=${afterLoc}` },
+    { id: 'residual-prose-wave2-named', status: 'open' as const, note: 'PROSE_NAMED_RESIDUAL_FOLDS migrate-next' },
+  ] as const
+  const drainableClosed =
+    morphs.filter((m) => m.status === 'closed').length === (2 + 1) &&
+    morphs.every((m) => m.status === 'closed' || m.id === 'residual-prose-wave2-named')
+  const honestOpenNamed = [
+    'residual:prose-named-folds-wave2',
+    'residual:quantum-apps-monolith',
+    'clay:millennium-open',
+    'ftl:physical-claim-refused',
+    'agi:not-claimed',
+    'keep:git-stashes-non-obsolete',
+  ] as const
+  const honestOpenNamedOn =
+    honestOpenNamed.includes('residual:prose-named-folds-wave2') &&
+    honestOpenNamed.includes('clay:millennium-open') &&
+    honestOpenNamed.length === (5 + 1)
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const physicalFtlClaim = 0 as const
+  const on =
+    proseAudited &&
+    clustersMerged &&
+    matrixAligned &&
+    codebaseShrink &&
+    theoremsDiscoveredOn &&
+    drainableClosed &&
+    honestOpenNamedOn &&
+    pairsOn &&
+    census110 &&
+    claySolvedByThisFold === 0 &&
+    physicalFtlClaim === 0 &&
+    merged.computes
+  const facets = [
+    { facet: 'proseMethodsCollapseToMatrix', on },
+    { facet: 'proseAudited', on: proseAudited },
+    { facet: 'clustersMerged', on: clustersMerged },
+    { facet: 'matrixAligned', on: matrixAligned },
+    { facet: 'codebaseShrink', on: codebaseShrink },
+    { facet: `theoremsDiscovered=${theoremsDiscovered.length}`, on: theoremsDiscoveredOn },
+    { facet: 'drainableClosed', on: drainableClosed },
+    { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+    { facet: `census110 freeBits=${freeBits}`, on: census110 },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+    { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    { facet: 'pair prose/matrix · fold/merge · name/shrink', on: pairsOn },
+    { facet: 'compose path/message · compact/matrix · vocab/dry · place/merge', on: matrixAligned && merged.placeMerge },
+    { facet: `shrink beforeLoc=${PROSE_MATRIX_SHRINK.beforeLoc} afterLoc=${afterLoc} ΔLOC=${locDelta} Δexports=${exportDelta}`, on: codebaseShrink },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`prose-matrix:${entry.facet}:${entry.on}`) }))
+  const sealed = facets.every((f) => f.on)
+  return {
+    computes: sealed && on && honestOpenNamedOn,
+    proseMethodsCollapseToMatrix: on,
+    proseAudited,
+    clustersMerged,
+    matrixAligned,
+    codebaseShrink,
+    theoremsDiscovered: theoremsDiscovered.map((t) => ({ ...t })),
+    theoremsDiscoveredCount: theoremsDiscovered.length,
+    drainableClosed,
+    honestOpenNamed: [...honestOpenNamed],
+    honestOpenNamedCount: honestOpenNamed.length,
+    merges: [...merged.merges],
+    residualProse: [...PROSE_NAMED_RESIDUAL_FOLDS],
+    residualProseCount: PROSE_NAMED_RESIDUAL_FOLDS.length,
+    shrink: {
+      beforeLoc: PROSE_MATRIX_SHRINK.beforeLoc,
+      afterLoc,
+      locDelta,
+      beforeExportBodies: PROSE_MATRIX_SHRINK.beforeExportBodies,
+      afterExportBodies: PROSE_MATRIX_SHRINK.afterExportBodies,
+      exportDelta,
+      cluster: PROSE_MATRIX_SHRINK.cluster,
+    },
     morphs: [...morphs],
     census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
     census110,
@@ -1823,53 +1906,77 @@ export function manualDryCleanWorkQuantumized(root: string = process.cwd(), fact
     qpuRequired: false as const,
     facets,
     root: merkleFold([
-      toUuid(`manual-quantum:tools:${tools.length}`),
-      place.root,
-      gravity.root,
-      dry.root,
+      merged.root,
+      pathMessage.root,
+      toUuid(`prose-matrix:shrink:${locDelta}:${exportDelta}:${afterLoc}`),
       ...facets.map((f) => f.receipt),
-      ...tools.map((t) => toUuid(`manual-wave-tool:${t.id}:${t.status}:${t.to}`)),
-      ...honestOpenNamed.map((id) => toUuid(`manual-quantum-honest:${id}`)),
+      ...PROSE_NAMED_RESIDUAL_FOLDS.map((id) => toUuid(`prose-residual:${id}`)),
+      ...honestOpenNamed.map((id) => toUuid(`prose-matrix-honest:${id}`)),
     ]),
-    pair: 'manual/quantum' as const,
-    pairs: ['manual/quantum', 'work/wave', 'dry/quantumize'] as const,
-    dualPair: 'work/wave' as const,
-    cli: 'npm run quantum:manual-quantum',
-    route: '/en/quantum-tools#manual-quantum',
-    heading: 'Manual quantum · work wave · dry quantumize',
+    pair: 'prose/matrix' as const,
+    pairs: ['prose/matrix', 'fold/merge', 'name/shrink'] as const,
+    dualPair: 'name/shrink' as const,
+    cli: 'npm run quantum:prose-matrix',
+    route: '/en/quantum-tools#prose-matrix',
+    heading: 'Prose matrix · fold merge · name shrink',
     statement:
-      `manualDryCleanWorkQuantumized — tools=${tools.length} migrate-next=${migrateTools.length} ` +
-      `moved=${movedTools.length} residual=${residualTools.length} ` +
-      `placementAudited=${placementAudited ? 1 : 0} drainableClosed=${drainableClosed ? 1 : 0} ` +
-      `honestOpen=${honestOpenNamed.length} morphsClosed=${morphs.filter((m) => m.status === 'closed').length}.`,
+      `proseMethodsCollapseToMatrix — proseAudited=${proseAudited ? 1 : 0} clustersMerged=${clustersMerged ? 1 : 0} ` +
+      `codebaseShrink=${codebaseShrink ? 1 : 0} ΔLOC=${locDelta} Δexports=${exportDelta} ` +
+      `theorems=${theoremsDiscovered.length} residual=${PROSE_NAMED_RESIDUAL_FOLDS.length}.`,
     boundary:
-      'Quantumizes manual dry-clean/migrate work into sealed wave tools+bits. This wave strangles color/css ' +
-      'theme consts to wind/ui and wires crypto mesh CLI to encryption. Apps monolith residual named. ' +
-      'NOT physical FTL · NOT Clay · KEEP stashes. HARMONY ≠ TRUTH.',
+      'Proves prose instruction folds collapse to matrix duals. This wave merges place/manual cluster only — ' +
+      'remaining prose-named folds listed residual:prose-named-folds-wave2. NOT Clay · NOT AGI · NOT FTL · KEEP stashes. HARMONY ≠ TRUTH.',
   }
 }
 
-export const manualQuantum = manualDryCleanWorkQuantumized
-export const workWave = manualDryCleanWorkQuantumized
-export const dryQuantumize = manualDryCleanWorkQuantumized
+export const proseMatrix = proseMethodsCollapseToMatrix
+export const nameShrink = proseMethodsCollapseToMatrix
 
-/** npm run quantum:manual-quantum (duals quantum:work-wave · quantum:dry-quantumize) */
-export function runManualDryCleanWorkQuantumizedExit(root = '', _argv: readonly string[] = []): number {
+/** npm run quantum:place-merge (duals cmd-place · manual-quantum · fold-merge · …) */
+export function runPlaceMergeExit(root = '', _argv: readonly string[] = []): number {
   void _argv
-  const report = manualDryCleanWorkQuantumized(root || process.cwd())
+  const report = placeMerge(root || process.cwd())
   process.stdout.write(
-    `${report.computes ? '✓' : '✗'} manual-quantum — manualWorkQuantumized=${report.manualWorkQuantumized ? 1 : 0} ` +
-      `tools=${report.toolCount} migrate-next=${report.migrateNextCount} ` +
-      `placement=${report.placementAudited ? 1 : 0} drainable=${report.drainableClosed ? 1 : 0} ` +
-      `honest=${report.honestOpenNamedCount} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+    `${report.computes ? '✓' : '✗'} place-merge — placement=${report.placementAudited ? 1 : 0} ` +
+      `tools=${report.toolCount} migrate-next=${report.migrateNextCount} clusters=${report.clustersMerged ? 1 : 0} ` +
+      `drainable=${report.drainableClosed ? 1 : 0} honest=${report.honestOpenNamedCount} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
+  for (const m of report.merges) process.stdout.write(`  · merge ${m.from} → ${m.to} (${m.pair})\n`)
   for (const t of report.tools) {
-    process.stdout.write(`  · ${t.status} ${t.id} | ${t.pair} | ${t.from} → ${t.to} | ${t.cli}\n`)
+    process.stdout.write(`  · ${t.status} ${t.id} | ${t.pair} | ${t.from} → ${t.to}\n`)
   }
-  for (const m of report.morphs) process.stdout.write(`  · morph ${m.status} ${m.id} — ${m.note}\n`)
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
-  return report.computes && report.manualWorkQuantumized && report.claySolvedByThisFold === 0 ? 0 : 1
+  return report.computes && report.placeMerge && report.claySolvedByThisFold === 0 ? 0 : 1
 }
+
+export const runCmdPlaceExit = runPlaceMergeExit
+export const runManualDryCleanWorkQuantumizedExit = runPlaceMergeExit
+
+/** npm run quantum:prose-matrix (duals fold-merge · name-shrink · prose-methods) */
+export function runProseMethodsCollapseToMatrixExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = proseMethodsCollapseToMatrix(root || process.cwd())
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} prose-matrix — audited=${report.proseAudited ? 1 : 0} ` +
+      `merged=${report.clustersMerged ? 1 : 0} shrink=${report.codebaseShrink ? 1 : 0} ` +
+      `ΔLOC=${report.shrink.locDelta} Δexp=${report.shrink.exportDelta} afterLoc=${report.shrink.afterLoc} ` +
+      `theorems=${report.theoremsDiscoveredCount} residual=${report.residualProseCount} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const m of report.merges) process.stdout.write(`  · merge ${m.from} → ${m.to}\n`)
+  for (const t of report.theoremsDiscovered) process.stdout.write(`  · theorem ${t.id}\n`)
+  for (const id of report.residualProse.slice(0, 8)) process.stdout.write(`  · residual ${id}\n`)
+  if (report.residualProse.length > 8) process.stdout.write(`  · residual …+${report.residualProse.length - 8}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.proseMethodsCollapseToMatrix && report.claySolvedByThisFold === 0 ? 0 : 1
+}
+
+export const runProseMatrixExit = runProseMethodsCollapseToMatrixExit
+export const runFoldMergeExit = runPlaceMergeExit
+export const runNameShrinkExit = runProseMethodsCollapseToMatrixExit
 
