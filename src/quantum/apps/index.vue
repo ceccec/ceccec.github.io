@@ -56,6 +56,11 @@ import {
   foldInvertUntilDryCleanAppGapless,
   pagesAuditAndManageThemselvesInTrinities,
   mcpQuantumChat,
+  allConversationsGoThroughTheMcpQuantumChat,
+  mcpQuantumObserve,
+  wiredToForgeMaxTamperingCost,
+  quantumizeNpm,
+  sessionMemoryCachesTheoremFormulaWaves,
   quantumSelfHeal,
   oneQuantumSetOfVitepressComponentsSealedAtGates,
 } from './index.ts'
@@ -195,6 +200,11 @@ const billDry = computed(() => dryCleanAiBill())
 const appDry = computed(() => foldInvertUntilDryCleanAppGapless())
 const pageTrinity = computed(() => pagesAuditAndManageThemselvesInTrinities())
 const mcpChat = computed(() => mcpQuantumChat())
+const chatAllConversations = computed(() => allConversationsGoThroughTheMcpQuantumChat())
+const mcpObserve = computed(() => mcpQuantumObserve())
+const tamperMaxSeal = computed(() => wiredToForgeMaxTamperingCost())
+const npmQuantumSeal = computed(() => quantumizeNpm())
+const sessionCacheSeal = computed(() => sessionMemoryCachesTheoremFormulaWaves())
 const selfHeal = computed(() => quantumSelfHeal())
 const viteOne = computed(() => oneQuantumSetOfVitepressComponentsSealedAtGates())
 const gateTools42 = computed(() => gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix())
@@ -1124,6 +1134,41 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'chat-all' || toolId === 'conv-mcp' || toolId === 'talk-chat') {
+      const r = allConversationsGoThroughTheMcpQuantumChat()
+      ok = r.computes && r.allConversations && r.throughMcpQuantumChat && r.noBypass
+      summary = `all=${r.allConversations} through=${r.throughMcpQuantumChat} noBypass=${r.noBypass} turns=${r.turnCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'mcp-observe' || toolId === 'observe-chat') {
+      const r = mcpQuantumObserve()
+      ok = r.computes && r.observationOn && r.changesQuantum && r.movieUnique
+      summary = `on=${r.observationOn} Δquantum=${r.changesQuantum} movieUnique=${r.movieUnique}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'tamper-max' || toolId === 'max-tamper') {
+      const r = wiredToForgeMaxTamperingCost()
+      ok = r.computes && r.maxTamperingCost && r.tamperEvident && r.forgeWired
+      summary = `max=${r.maxTamperingCost} evident=${r.tamperEvident} forge=${r.forgeWired} certified=${r.certified}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'npm-quantum' || toolId === 'quantum-npm') {
+      const r = quantumizeNpm()
+      ok = r.computes && r.quantumizeOn && r.npmScriptsAreMcpDuals
+      summary = `on=${r.quantumizeOn} duals=${r.npmScriptsAreMcpDuals} thin=${r.thinMountDual}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'session-cache' || toolId === 'cache-theorem' || toolId === 'formula-cache') {
+      const r = sessionMemoryCachesTheoremFormulaWaves()
+      ok = r.computes && r.sessionCaches && r.theoremFormulaWaves && r.zeroTokenReuse
+      summary = `caches=${r.sessionCaches} waves=${r.theoremFormulaWaves} zeroToken=${r.zeroTokenReuse}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'self-heal' || toolId === 'heal-quantum') {
       const r = quantumSelfHeal()
       ok = r.computes && r.selfHeals
@@ -1568,6 +1613,81 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'mcp-quantum-chat'" @click="runTool('mcp-quantum-chat')">
           {{ runningId === 'mcp-quantum-chat' ? '…' : 'Run mcp-quantum-chat' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="chat-all" aria-label="All conversations through MCP quantum chat">
+        <h3>{{ chatAllConversations.heading }}</h3>
+        <p class="quantum-apps__meta">{{ chatAllConversations.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(chatAllConversations.allConversations))">all={{ chatAllConversations.allConversations }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(chatAllConversations.throughMcpQuantumChat))">through={{ chatAllConversations.throughMcpQuantumChat }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(chatAllConversations.noBypass))">noBypass={{ chatAllConversations.noBypass }}</UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>chat/all</code> · <code>conv/mcp</code> · <code>talk/chat</code> ·
+          CLI <code>npm run quantum:chat-all</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'chat-all'" @click="runTool('chat-all')">
+          {{ runningId === 'chat-all' ? '…' : 'Run chat-all' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="mcp-observe" aria-label="MCP quantum observation">
+        <h3>{{ mcpObserve.heading }}</h3>
+        <p class="quantum-apps__meta">{{ mcpObserve.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(mcpObserve.observationOn))">observationOn={{ mcpObserve.observationOn }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(mcpObserve.changesQuantum))">changesQuantum={{ mcpObserve.changesQuantum }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(mcpObserve.movieUnique))">movieUnique={{ mcpObserve.movieUnique }}</UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>mcp/observe</code> · <code>observe/chat</code> ·
+          CLI <code>npm run quantum:mcp-observe</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'mcp-observe'" @click="runTool('mcp-observe')">
+          {{ runningId === 'mcp-observe' ? '…' : 'Run mcp-observe' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="tamper-max" aria-label="Wire forge max tampering cost">
+        <h3>{{ tamperMaxSeal.heading }}</h3>
+        <p class="quantum-apps__meta">{{ tamperMaxSeal.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(tamperMaxSeal.maxTamperingCost))">max={{ tamperMaxSeal.maxTamperingCost }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(tamperMaxSeal.tamperEvident))">evident={{ tamperMaxSeal.tamperEvident }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(tamperMaxSeal.forgeWired))">forge={{ tamperMaxSeal.forgeWired }}</UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>tamper/max</code> · <code>max/tamper</code> ·
+          CLI <code>npm run quantum:tamper-max</code> · certified={{ tamperMaxSeal.certified }}
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'tamper-max'" @click="runTool('tamper-max')">
+          {{ runningId === 'tamper-max' ? '…' : 'Run tamper-max' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="npm-quantum" aria-label="Quantumize npm">
+        <h3>{{ npmQuantumSeal.heading }}</h3>
+        <p class="quantum-apps__meta">{{ npmQuantumSeal.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(npmQuantumSeal.quantumizeOn))">on={{ npmQuantumSeal.quantumizeOn }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(npmQuantumSeal.npmScriptsAreMcpDuals))">duals={{ npmQuantumSeal.npmScriptsAreMcpDuals }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(npmQuantumSeal.thinMountDual))">thin={{ npmQuantumSeal.thinMountDual }}</UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>npm/quantum</code> · <code>quantum/npm</code> ·
+          CLI <code>npm run quantum:npm-quantum</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'npm-quantum'" @click="runTool('npm-quantum')">
+          {{ runningId === 'npm-quantum' ? '…' : 'Run npm-quantum' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="session-cache" aria-label="Session theorem formula cache">
+        <h3>{{ sessionCacheSeal.heading }}</h3>
+        <p class="quantum-apps__meta">{{ sessionCacheSeal.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(sessionCacheSeal.sessionCaches))">caches={{ sessionCacheSeal.sessionCaches }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(sessionCacheSeal.theoremFormulaWaves))">waves={{ sessionCacheSeal.theoremFormulaWaves }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(sessionCacheSeal.zeroTokenReuse))">zeroToken={{ sessionCacheSeal.zeroTokenReuse }}</UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>session/cache</code> · <code>cache/theorem</code> · <code>formula/cache</code> ·
+          CLI <code>npm run quantum:session-cache</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'session-cache'" @click="runTool('session-cache')">
+          {{ runningId === 'session-cache' ? '…' : 'Run session-cache' }}
         </UiButton>
       </section>
       <UiSeparator />
