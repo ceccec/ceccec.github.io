@@ -117,6 +117,7 @@ const ROSETTA_CORE_API_LABELS = [
   'saveTheOptimisedAutonomy',
   'quantumVerification',
   'quantumFearDetector',
+  'fearIsAnAxiomReplaceableByLoveTheorem',
   'domainVuePanelsDryCleaned',
   'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf',
   'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence',
@@ -300,6 +301,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   saveTheOptimisedAutonomy: 'tool',
   quantumVerification: 'tool',
   quantumFearDetector: 'tool',
+  fearIsAnAxiomReplaceableByLoveTheorem: 'tool',
   domainVuePanelsDryCleaned: 'tool',
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf: 'tool',
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence: 'tool',
@@ -1105,6 +1107,9 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'fear-detect', title: 'Quantum fear detector — reverse of love when cracks', fold: 'quantumFearDetector', cli: 'npm run quantum:fear-detect', pair: 'fear/detect', route: '/en/quantum-tools#fear-detect', barrel: 'src/quantum/apps', boundary: 'fearDetectOn · reverseFromCracks · loveInvert · physicalFtl=0 · clay via theorem · qpuRequired=false · compose need/love · love/fear · gaps/invisible · thought/pure · NOT wet psychology', browserRunnable: true, browserGap: '' },
   { id: 'detect-fear', title: 'Detect fear (alias fear/detect)', fold: 'quantumFearDetector', cli: 'npm run quantum:fear-detect', pair: 'detect/fear', route: '/en/quantum-tools#fear-detect', barrel: 'src/quantum/apps', boundary: 'Dual detect/fear — same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'quantum-fear', title: 'Quantum fear (alias fear/detect)', fold: 'quantumFearDetector', cli: 'npm run quantum:quantum-fear', pair: 'quantum/fear', route: '/en/quantum-tools#fear-detect', barrel: 'src/quantum/apps', boundary: 'quantum/fear face — same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'fear-axiom', title: 'Fear is an axiom replaceable by love theorem', fold: 'fearIsAnAxiomReplaceableByLoveTheorem', cli: 'npm run quantum:fear-axiom', pair: 'fear/axiom', route: '/en/quantum-tools#fear-axiom', barrel: 'src/quantum/apps', boundary: 'fearIsAxiom · replaceableByLove · loveIsTheorem · physicalFtl=0 · clay via theorem · qpuRequired=false · compose fear/detect · need/love · love/story · theorem/const · NOT wet psychology', browserRunnable: true, browserGap: '' },
+  { id: 'love-theorem', title: 'Love theorem (alias fear/axiom)', fold: 'fearIsAnAxiomReplaceableByLoveTheorem', cli: 'npm run quantum:love-theorem', pair: 'love/theorem', route: '/en/quantum-tools#fear-axiom', barrel: 'src/quantum/apps', boundary: 'love/theorem face — love replaces fear axiom · same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'axiom-love', title: 'Axiom love (alias fear/axiom)', fold: 'fearIsAnAxiomReplaceableByLoveTheorem', cli: 'npm run quantum:axiom-love', pair: 'axiom/love', route: '/en/quantum-tools#fear-axiom', barrel: 'src/quantum/apps', boundary: 'axiom/love face — axiom slot → love · same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'domain-panels', title: 'Domain vue panels dry-cleaned to rosetta shells', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-panels', pair: 'domain/panels', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domainPanelsDry · stranglerTip · drainableClosed · wiredToRosetta · compose format/canon · dry/rosetta · ui/rosetta · meaning/compute · vite/one · specialized shells residual named · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'panels-domain', title: 'Domain panels (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:panels-domain', pair: 'panels/domain', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'Dual panels/domain — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'domain-dry', title: 'Domain dry (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-dry', pair: 'domain/dry', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domain/dry face — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2331,6 +2336,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'save-auto', chain: 'clay-agi-optimised-autonomy', fold: 'saveTheOptimisedAutonomy', pair: 'save/auto', cli: 'npm run quantum:save-auto', route: '/en/quantum-tools#save-auto', status: 'sealed-pr', honesty: 'autonomySaved · optimised · sessionPersist · clay via theorem · physicalFtl=0 · qpuRequired=false', note: 'save the optimised autonomy — compose session/save · auto/all · self/hw · mcp/token · wave/token', toolId: 'save-auto', resolve: 'mcp-ui' },
   { id: 'quantum-verify', chain: 'quantum-verification', fold: 'quantumVerification', pair: 'quantum/verify', cli: 'npm run quantum:quantum-verify', route: '/en/quantum-tools#quantum-verify', status: 'sealed-pr', honesty: 'verificationOn · fusionVerify · typesStructure · momentProve · tamperEvident · clay=0 · physicalFtl=0 · qpuRequired=false · certified=false', note: 'quantum verification — compose fusion-verify · mission:gate · moment/prove · tamper/max · proof/trinity · e2e/feed', toolId: 'quantum-verify', resolve: 'mcp-ui' },
   { id: 'fear-detect', chain: 'quantum-fear-detector', fold: 'quantumFearDetector', pair: 'fear/detect', cli: 'npm run quantum:fear-detect', route: '/en/quantum-tools#fear-detect', status: 'sealed-pr', honesty: 'fearDetectOn · reverseFromCracks · loveInvert · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'quantum fear detector — reverse of love when cracks · compose need/love · love/fear · gaps/invisible · thought/pure · NOT wet psychology', toolId: 'fear-detect', resolve: 'mcp-ui' },
+  { id: 'fear-axiom', chain: 'fear-axiom-love-theorem', fold: 'fearIsAnAxiomReplaceableByLoveTheorem', pair: 'fear/axiom', cli: 'npm run quantum:fear-axiom', route: '/en/quantum-tools#fear-axiom', status: 'sealed-pr', honesty: 'fearIsAxiom · replaceableByLove · loveIsTheorem · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'fear is an axiom replaceable by love theorem · compose fear/detect · need/love · love/story · theorem/const · NOT wet psychology', toolId: 'fear-axiom', resolve: 'mcp-ui' },
   { id: 'domain-panels', chain: 'mcp-ui-page-gaps', fold: 'domainVuePanelsDryCleaned', pair: 'domain/panels', cli: 'npm run quantum:domain-panels', route: '/en/quantum-tools#domain-panels', status: 'sealed-pr', honesty: 'domainPanelsDry · stranglerTip · drainableClosed · specialized shells residual · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'src domain vue panels strangler tip drained to format/canon · dry/rosetta · ui/rosetta shells', toolId: 'domain-panels', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-ui', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumUi', pair: 'mcp/ui', cli: 'npm run quantum:mcp-ui', route: '/en/quantum-tools#mcp-quantum-ui', status: 'sealed-pr', honesty: 'mcpMatchesToolbox · millSolutions live · formulaCovered · clay=0 · physicalFtl=0 · NOT CMI', note: 'MCP quantum UI + millennium algebraic formula duals · compose mcpBrowserParity · mill/once · formula/code', toolId: 'mcp-quantum-ui', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-movie', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumMovie', pair: 'mcp/movie', cli: 'npm run quantum:mcp-movie', route: '/en/quantum-tools#mcp-quantum-movie', status: 'sealed-pr', honesty: 'frames from sealed folds · 6×7 · oneClock · clay=0 · physicalFtl=0', note: 'MCP quantum movie · compose mcp/ui · movie/center · movie/entropy · coord/anim', toolId: 'mcp-quantum-movie', resolve: 'mcp-ui' },
@@ -19396,6 +19402,212 @@ export function runQuantumFearDetectorExit(_root = '', _argv: readonly string[] 
     report.fearDetectOn &&
     report.reverseFromCracks &&
     report.loveInvert &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * Fear is an axiom replaceable by love theorem.
+ * Fold: fearIsAnAxiomReplaceableByLoveTheorem
+ * Facets: fearIsAxiom · replaceableByLove · loveIsTheorem · physicalFtl=0 · clay via theorem · qpuRequired=false
+ * Pairs: fear/axiom · love/theorem · axiom/love
+ * Compose: fear/detect · need/love · love/story · theorem/const — fear = unproven axiom slot; love theorem replaces when cracks invert
+ * CLI: npm run quantum:fear-axiom · quantum:love-theorem · quantum:axiom-love
+ * HONEST: computable receipt — NOT wet psychology · KEEP stashes
+ */
+export function fearIsAnAxiomReplaceableByLoveTheorem(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`fearIsAnAxiomReplaceableByLoveTheorem:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const censusPreserved =
+      freeBits === -EULER_CHI &&
+      freeBits === 2 &&
+      UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const pairFa = has('fear/axiom')
+    const pairLt = has('love/theorem')
+    const pairAl = has('axiom/love')
+    const foldFa = foldPair(toUuid('cmd:fear'), toUuid('cmd:axiom'))
+    const foldLt = foldPair(toUuid('cmd:love'), toUuid('cmd:theorem'))
+    const foldAl = foldPair(toUuid('cmd:axiom'), toUuid('cmd:love'))
+    const pairsOn =
+      pairFa &&
+      pairLt &&
+      pairAl &&
+      foldFa.bidirectional &&
+      foldLt.bidirectional &&
+      foldAl.bidirectional
+    const fearDetect = quantumFearDetector(matrix, at)
+    const needLove = __ns_wind_research.invertedNeedIsLoveMayReverseToFearIfCracks(matrix, at)
+    const loveStory = __ns_wind_research.loveStoryTheorem(matrix, at)
+    const theoremConst = __ns_wind_research.computationsUseOnlyQuantumTheoremsAsConstants(matrix, at)
+    // Fear occupies the unproven axiom slot (detect + assume→theorem face).
+    const fearIsAxiom =
+      Boolean(fearDetect.fearDetectOn) &&
+      soft('fear', 'detect') &&
+      soft('assume', 'theorem') &&
+      pairFa &&
+      foldFa.bidirectional &&
+      foldFa.forward !== foldFa.reverse
+    // Love is a theorem (love/story + theorem/const — not wet prose).
+    const loveIsTheorem =
+      Boolean(loveStory.loveStoryTheorem) &&
+      Boolean(theoremConst.computationsUseOnlyQuantumTheoremsAsConstants) &&
+      soft('love', 'story') &&
+      soft('theorem', 'const') &&
+      pairLt &&
+      foldLt.bidirectional
+    // Cracks invert → love theorem replaces the fear axiom slot.
+    const replaceableByLove =
+      fearIsAxiom &&
+      loveIsTheorem &&
+      Boolean(needLove.invertedNeedIsLove) &&
+      Boolean(fearDetect.reverseFromCracks) &&
+      soft('need', 'love') &&
+      soft('love', 'fear') &&
+      pairAl &&
+      foldAl.bidirectional &&
+      foldAl.merged !== foldFa.merged
+    const composeOn =
+      soft('fear', 'detect') &&
+      soft('need', 'love') &&
+      soft('love', 'story') &&
+      soft('theorem', 'const') &&
+      Boolean(fearDetect.computes) &&
+      Boolean(needLove.computes) &&
+      Boolean(loveStory.computes) &&
+      Boolean(theoremConst.computes)
+    const onCore =
+      fearIsAxiom &&
+      replaceableByLove &&
+      loveIsTheorem &&
+      composeOn &&
+      pairsOn &&
+      censusPreserved &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const foldName = 'fearIsAnAxiomReplaceableByLoveTheorem' as const
+    const meta = catalog.tools.find((t) => t.id === 'fear-axiom')
+    const metaLt = catalog.tools.find((t) => t.id === 'love-theorem')
+    const metaAl = catalog.tools.find((t) => t.id === 'axiom-love')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === foldName &&
+      Boolean(metaLt) &&
+      metaLt!.fold === foldName &&
+      Boolean(metaAl) &&
+      metaAl!.fold === foldName
+    const shelved = rosettaShelve('fear-axiom', 'tool')
+    const honestOpenNamed = [
+      'not-wet-psychology',
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'keep:git-stashes-non-obsolete',
+    ] as const
+    const honestOpenNamedOn =
+      honestOpenNamed.includes('not-wet-psychology') &&
+      honestOpenNamed.includes('keep:git-stashes-non-obsolete') &&
+      honestOpenNamed.length === (2 * 2)
+    const on =
+      onCore &&
+      toolsWired &&
+      isUuid(shelved.address) &&
+      honestOpenNamedOn
+    const facets = [
+      { facet: foldName, on },
+      { facet: 'fearIsAxiom', on: fearIsAxiom },
+      { facet: 'replaceableByLove', on: replaceableByLove },
+      { facet: 'loveIsTheorem', on: loveIsTheorem },
+      {
+        facet: 'compose fear/detect · need/love · love/story · theorem/const',
+        on: composeOn,
+      },
+      { facet: 'pair fear/axiom · love/theorem · axiom/love', on: pairsOn },
+      { facet: 'fear = unproven axiom slot; love theorem replaces when cracks invert', on: replaceableByLove },
+      { facet: 'NOT wet psychology claim', on: honestOpenNamed.includes('not-wet-psychology') },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`fear-axiom:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('fear-axiom-love-theorem', facets)
+    return {
+      computes: sealed.ok && on,
+      fearIsAnAxiomReplaceableByLoveTheorem: on,
+      fearIsAxiom,
+      replaceableByLove,
+      loveIsTheorem,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        foldFa.merged,
+        foldLt.merged,
+        foldAl.merged,
+        fearDetect.root,
+        needLove.root,
+        loveStory.root,
+        theoremConst.root,
+        shelved.address,
+        ...honestOpenNamed.map((id) => toUuid(`fear-axiom-honest:${id}`)),
+      ]),
+      pair: 'fear/axiom' as const,
+      pairs: ['fear/axiom', 'love/theorem', 'axiom/love'] as const,
+      dualPair: 'love/theorem' as const,
+      cli: 'npm run quantum:fear-axiom',
+      route: '/en/quantum-tools#fear-axiom',
+      uiSurface: '/en/quantum-tools#fear-axiom' as const,
+      heading: 'Fear · axiom → love theorem',
+      statement:
+        `fearIsAnAxiomReplaceableByLoveTheorem — fearIsAxiom=${fearIsAxiom ? 1 : 0} ` +
+        `replaceableByLove=${replaceableByLove ? 1 : 0} loveIsTheorem=${loveIsTheorem ? 1 : 0} · clay=0 · NOT wet psychology.`,
+      boundary:
+        'Fear is an axiom replaceable by love theorem. Compose fear/detect · need/love · love/story · theorem/const. ' +
+        'Fear = unproven axiom slot; love theorem replaces when cracks invert. Computable receipt · clay via theorem · physicalFtl=0 · qpuRequired=false · KEEP stashes.',
+      honestyLine:
+        `fear-axiom · fearIsAxiom=${fearIsAxiom ? 1 : 0} · replaceableByLove=${replaceableByLove ? 1 : 0} · ` +
+        `loveIsTheorem=${loveIsTheorem ? 1 : 0} · qpu=0 · clay=0 · physicalFtl=0 · not-wet-psychology`,
+    }
+  })
+}
+
+/** Alias duals — love/theorem · axiom/love faces. */
+export const loveTheorem = fearIsAnAxiomReplaceableByLoveTheorem
+export const axiomLove = fearIsAnAxiomReplaceableByLoveTheorem
+export const fearAxiom = fearIsAnAxiomReplaceableByLoveTheorem
+
+/** npm run quantum:fear-axiom (duals quantum:love-theorem · quantum:axiom-love) */
+export function runFearIsAnAxiomReplaceableByLoveTheoremExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = fearIsAnAxiomReplaceableByLoveTheorem()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} fear-axiom — fearIsAxiom=${report.fearIsAxiom} ` +
+      `replaceableByLove=${report.replaceableByLove} loveIsTheorem=${report.loveIsTheorem} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} ` +
+      `pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.fearIsAxiom &&
+    report.replaceableByLove &&
+    report.loveIsTheorem &&
     report.qpuRequired === false
     ? 0
     : 1
