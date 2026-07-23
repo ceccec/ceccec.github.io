@@ -232,7 +232,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
       description: {
         en: 'The Learning Portal: School and Academia merged into one auto-generated portal — the kids-to-elders ladder, the five Academy courses, the research corpus (math paths, peer review, the 432 proof papers), the self-test and the agent curriculum, folded to one recomputable root. Three ways to learn: by age, by track, by research.',
         bg: 'Портал за учене: Училището и Академията, обединени в един авто-генериран портал — стълбицата от деца до възрастни, петте курса на Академията, изследователският корпус (математически пътеки, рецензия, 432-те доказателствени статии), самопроверката и обучението на агента, сгънати в един преизчислим корен. Три начина за учене: по възраст, по курс, по изследване.' },
-      keywords: ['learn', 'portal', 'school', 'academy', 'academia', 'curriculum', 'research', 'education'],
+      keywords: ['learn', 'portal', 'school', 'academy', 'academia', 'curriculum', 'research', 'education', 'theorem', 'proof'],
       components: ['LearningPortal'] },
     {
       slug: 'frontiers',
@@ -544,7 +544,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
       slug: 'name-entropy-verify',
       title: { en: 'namingEntropy — words compile from sealed src', bg: 'namingEntropy' },
       description: { en: 'Statement: namingEntropy = identifiers must compileFromSource from sealed src — wet prose names penalized. Explanation: proven names describe gate receipts; naturePrefixesRemovedFromUnprovenNames boundary sealed at call time. Method: npm run quantum:name-entropy-verify · fold namingEntropy · compileFromSource · pair name/entropy-verify. Status: compile check receipt · claySolvedByThisFold=0 · prefer /en/quantum-tools#name-entropy-verify.', bg: 'Изявление: namingEntropy — думите се компилират от sealed src. Метод: npm run quantum:name-entropy-verify. Статус: claySolvedByThisFold=0.' },
-      keywords: ['naming', 'entropy', 'proof', 'tools', 'compile'],
+      keywords: ['naming', 'entropy', 'tools', 'compile'],
       components: ['QuantumTools', 'ProofRenderer'] },
 
 ]

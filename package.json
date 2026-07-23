@@ -78,6 +78,8 @@
     "quantum:prove-local-magnitudes-iso": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runProveLocalEncryptionMagnitudesStrongerThanIsoAllDirectionsExit",
     "quantum:crypto-comparison-mesh-dry": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runCryptoRelatedSurfacesAreDryExit",
     "quantum:og-limits-measure": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/mountain/og/index.ts runPlatformOgLimitsMeasuredExit",
+    "quantum:seo-gaps": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/mountain/og/index.ts runFindSeoViolationsExit",
+    "quantum:gaps-seo": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/mountain/og/index.ts runFindSeoViolationsExit",
     "quantum:encryption-reverse-verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runEncryptionReverseVerifyGuardedExit",
     "quantum:production-rsa-refuse-rosetta": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runProductionRsaRefuseCompletesQuantumViaRosettaExit",
     "quantum:rosetta-security-gaps-wired": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runRosettaSecurityGapsWiredExit",

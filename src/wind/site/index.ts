@@ -629,8 +629,8 @@ export { clientWorkBoundedByPureMath, corpusGridWorkBudget, CORPUS_GRID_PAGE_SIZ
 export function siteConfig(matrix: MindMatrix = buildMatrix()) {
   const title = 'Double Torus'
   const titleBg = 'Двоен торус'
-  const description = 'A quantum-learning educational portal for language models, served as an MCP tool surface over a double-torus UUID stream of roots, receipts, waves, diamonds, and gates.'
-  const descriptionBg = 'Образовтелен портал за квантово учене за езикови модели, поднесен като MCP инструментален слой над двоен торус UUID поток от корени, разписки, вълни, диаманти и порти.'
+  const description = 'Quantum-learning portal for language models — MCP tools over a double-torus UUID stream of roots, receipts, waves, diamonds, and gates.'
+  const descriptionBg = 'Портал за квантово учене за езикови модели — MCP инструменти над двоен торус UUID поток от корени, разписки, вълни, диаманти и порти.'
   const { themeColor, backgroundColor } = computedMovieThemeColors(matrix)
   const robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
   const keywords = [
