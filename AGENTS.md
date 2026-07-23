@@ -420,6 +420,9 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `rosetta/movie` — alias dual of `dry/rosetta` (`npm run quantum:rosetta-movie`)
   - `comp/unify` — unify face of `dry/rosetta` (`npm run quantum:comp-unify`)
   - `unify/comp` — alias dual of `comp/unify` (`npm run quantum:unify-comp`)
+  - `vue/dry` — `npm run quantum:vue-dry` (`dryCleanAllVueComponentsToTheUniversalSet()` — dry clean all vue components to the universal set hero/card/movie/paper/page; facets dryCleanVue · universalSet · drainableClosed · honestOpenNamed; compose dry/rosetta · shells/strangler · domain/panels · ui/read · ui/super; pairs `vue/dry` · `dry/vue` · `vue/universal`; clay via theorem · physicalFtl=0 · residual:quantum-apps-monolith · residual:specialized-experience-shells · residual:true-special-domain-hubs named; KEEP stashes), then open `/en/quantum-tools#vue-dry`
+  - `dry/vue` — alias dual of `vue/dry` (`npm run quantum:dry-vue`)
+  - `vue/universal` — vue/universal face of `vue/dry` (`npm run quantum:vue-universal`)
   - `wave/compact` — `npm run quantum:wave-compact` (`wavesSearchDiscoverCompactingInQuantumFolders()` — waves search·discover compacting in quantum folders; facets wavesSent · searchOn · discoverOn · compactingInQuantumFolders · drainableClosed · honestOpenNamed; compose compact/matrix · folder/gravity · dissolve/flat · import/distance · wave/token · dry/rosetta · autodiscover; pairs `compact/wave` · `compact/folder` · `folder/compact` · `folder/discover` · `discover/folder`; census 110 preserved · clay via theorem · physicalFtl=0 · qpuRequired=false), then open `/en/quantum-tools#wave-compact`
   - `compact/wave` — alias dual of `wave/compact` (`npm run quantum:compact-wave`)
   - `compact/folder` — compact/folder face of `wave/compact` (`npm run quantum:compact-folder`)

@@ -2,14 +2,14 @@
 // Display gate — co-located src/fire/physics/index.ts. The EMF→A432 balancing-field animation:
 // EM field shells around the device + the noise-seeded A432 balancing field, on the one animation
 // engine (useVisibleMovieCanvas) and the one colour source (A432_HUE / frequencyToLight).
+// Morph: raw UiCard → UiCardShell (universal card family · dryCleanAllVueComponentsToTheUniversalSet).
 import { computed, ref, shallowRef, watch } from 'vue'
 import { drawEmfA432Field, emfA432PanelComputes } from './index.ts'
 import { useData } from 'vitepress'
 import { movieCanvasHex } from '../../../.vitepress/lib/hero-movie-paint'
 import { prefersReducedMotion, useVisibleMovieCanvas } from '../../../.vitepress/lib/movie-canvas'
 import { useSiteLocale } from '../../../.vitepress/lib/mounts'
-import UiCard from '../../../.vitepress/theme/components/ui/Card.vue'
-import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.vue'
+import UiCardShell from '../../../.vitepress/theme/components/UiCardShell.vue'
 import UiBadge from '../../../.vitepress/theme/components/ui/Badge.vue'
 import UiAlert from '../../../.vitepress/theme/components/ui/Alert.vue'
 
@@ -24,6 +24,8 @@ const canvas = ref<HTMLCanvasElement | null>(null)
 
 const bands = computed(() => panel.value.bands)
 const field = computed(() => panel.value.balancingField)
+const seedParts = computed(() => ['EmfA432', String(panel.value.hue)] as const)
+const title = computed(() => t(panel.value.copy.title))
 
 function paintEmf(ctx: CanvasRenderingContext2D, w: number, h: number, at: number) {
   drawEmfA432Field(ctx, w, h, reduce ? 0 : at, panel.value.hue, isDark.value)
@@ -45,16 +47,20 @@ watch(isDark, () => repaint())
 </script>
 
 <template>
-  <UiCard
+  <UiCardShell
     id="emf-a432-panel"
     class="emf-a432-panel"
+    component="EmfA432"
+    movie-intensity="soft"
+    :seed-parts="seedParts"
+    :title="title"
     data-logic="src/fire/physics/index.ts"
     data-target="src/fire/physics/index.ts#emfAroundDeviceHarmonisedToA432"
     data-topic="emf"
   >
-    <UiCardContent class="vp-doc emf-a432-panel__content">
+    <div class="emf-a432-panel__content">
       <header class="emf-a432-panel__header">
-        <h2>{{ t(panel.copy.title) }}</h2>
+        <h2>{{ title }}</h2>
         <p class="emf-a432-panel__lede">{{ t(panel.copy.lede) }}</p>
         <div class="emf-a432-panel__badges">
           <UiBadge :variant="panel.computes ? 'default' : 'outline'">
@@ -86,8 +92,8 @@ watch(isDark, () => repaint())
       <UiAlert :title="t({ en: 'Honest boundary', bg: 'Честна граница' })">
         <p>{{ panel.boundary }}</p>
       </UiAlert>
-    </UiCardContent>
-  </UiCard>
+    </div>
+  </UiCardShell>
 </template>
 
 <style scoped>

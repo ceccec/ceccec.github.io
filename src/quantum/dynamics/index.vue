@@ -1,13 +1,13 @@
 <script setup lang="ts">
+// Morph: raw UiCard → UiCardShell (universal card family · dryCleanAllVueComponentsToTheUniversalSet).
 import { computed, ref, shallowRef, watch } from 'vue'
 import { drawDynamicsProjection, quantumDynamicsSimulationPanelComputes } from './index.ts'
 import { useData } from 'vitepress'
-import { prefersReducedMotion, useVisibleMovieCanvas } from '../../.vitepress/lib/movie-canvas'
-import { useSiteLocale } from '../../.vitepress/lib/mounts'
-import UiCard from '../../.vitepress/theme/components/ui/Card.vue'
-import UiCardContent from '../../.vitepress/theme/components/ui/CardContent.vue'
-import UiBadge from '../../.vitepress/theme/components/ui/Badge.vue'
-import UiAlert from '../../.vitepress/theme/components/ui/Alert.vue'
+import { prefersReducedMotion, useVisibleMovieCanvas } from '../../../.vitepress/lib/movie-canvas'
+import { useSiteLocale } from '../../../.vitepress/lib/mounts'
+import UiCardShell from '../../../.vitepress/theme/components/UiCardShell.vue'
+import UiBadge from '../../../.vitepress/theme/components/ui/Badge.vue'
+import UiAlert from '../../../.vitepress/theme/components/ui/Alert.vue'
 
 const panel = shallowRef(quantumDynamicsSimulationPanelComputes())
 const { pick } = useSiteLocale()
@@ -19,6 +19,15 @@ const canvasHost = ref<HTMLElement | null>(null)
 const canvas = ref<HTMLCanvasElement | null>(null)
 
 const amplitudes = computed(() => panel.value.sim.amplitudes)
+const seedParts = computed(
+  () =>
+    [
+      'QuantumDynamics',
+      panel.value.sim.superposition ? 'super' : 'collapse',
+      panel.value.sim.entangled ? 'entangled' : 'product',
+    ] as const,
+)
+const title = computed(() => t(panel.value.copy.title))
 
 function paintQuantum(ctx: CanvasRenderingContext2D, w: number, h: number, at: number) {
   panel.value = quantumDynamicsSimulationPanelComputes(undefined, at)
@@ -45,16 +54,20 @@ watch(at, (time) => {
 </script>
 
 <template>
-  <UiCard
+  <UiCardShell
     id="quantum-dynamics-simulation-panel"
     class="quantum-dynamics-simulation-panel"
+    component="QuantumDynamics"
+    movie-intensity="soft"
+    :seed-parts="seedParts"
+    :title="title"
     data-logic="src/quantum/dynamics/index.ts"
     data-target="src/quantum/dynamics/index.ts#quantumDynamicsSimulationAt"
     data-topic="quantum-dynamics"
   >
-    <UiCardContent class="vp-doc quantum-dynamics-simulation-panel__content">
+    <div class="quantum-dynamics-simulation-panel__content">
       <header class="quantum-dynamics-simulation-panel__header">
-        <h2>{{ t(panel.copy.title) }}</h2>
+        <h2>{{ title }}</h2>
         <p class="quantum-dynamics-simulation-panel__lede">
           {{ t(panel.copy.lede) }}
         </p>
@@ -91,8 +104,8 @@ watch(at, (time) => {
       <UiAlert :title="t({ en: 'Honest boundary', bg: 'Честна граница' })">
         <p>{{ panel.boundary }}</p>
       </UiAlert>
-    </UiCardContent>
-  </UiCard>
+    </div>
+  </UiCardShell>
 </template>
 
 <style scoped>
