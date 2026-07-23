@@ -285,6 +285,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'self/auto',
   'auto/all',
   'all/auto',
+  'quantum/life',
+  'life/quantum',
   'domain/panels',
   'panels/domain',
   'domain/dry',
