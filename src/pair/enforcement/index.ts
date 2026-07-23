@@ -784,6 +784,12 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'audit/place',
   'dry/full',
   'full/dry',
+  'manual/quantum',
+  'quantum/manual',
+  'work/wave',
+  'wave/work',
+  'dry/quantumize',
+  'quantumize/dry',
   'mission/gate',
 ] as const
 
