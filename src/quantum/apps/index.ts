@@ -110,6 +110,7 @@ const ROSETTA_CORE_API_LABELS = [
   'mcpQuantumChat',
   'allConversationsGoThroughTheMcpQuantumChat',
   'mcpQuantumConversation',
+  'organiseConversationsInChatRoomsPerSuperposition',
   'mcpQuantumObserve',
   'wiredToForgeMaxTamperingCost',
   'quantumizeNpm',
@@ -254,6 +255,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpQuantumChat: 'tool',
   allConversationsGoThroughTheMcpQuantumChat: 'tool',
   mcpQuantumConversation: 'tool',
+  organiseConversationsInChatRoomsPerSuperposition: 'tool',
   mcpQuantumObserve: 'tool',
   wiredToForgeMaxTamperingCost: 'tool',
   quantumizeNpm: 'tool',
@@ -839,8 +841,11 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'chat-all', title: 'All conversations through MCP quantum chat', fold: 'allConversationsGoThroughTheMcpQuantumChat', cli: 'npm run quantum:chat-all', pair: 'chat/all', route: '/en/quantum-tools#chat-all', barrel: 'src/quantum/apps', boundary: 'allConversations · throughMcpQuantumChat · noBypass · compose mcpQuantumChat · session/live · super/chat · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'conv-mcp', title: 'Conv mcp (alias chat/all)', fold: 'allConversationsGoThroughTheMcpQuantumChat', cli: 'npm run quantum:conv-mcp', pair: 'conv/mcp', route: '/en/quantum-tools#chat-all', barrel: 'src/quantum/apps', boundary: 'Dual conv/mcp — conversation paths via MCP quantum chat · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'talk-chat', title: 'Talk chat (alias chat/all)', fold: 'allConversationsGoThroughTheMcpQuantumChat', cli: 'npm run quantum:talk-chat', pair: 'talk/chat', route: '/en/quantum-tools#chat-all', barrel: 'src/quantum/apps', boundary: 'talk/chat face — all talk routes through mcpQuantumChat · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
-  { id: 'mcp-conversation', title: 'MCP quantum conversation — chat/all · mcp/chat · super/chat · observe · session/cache', fold: 'mcpQuantumConversation', cli: 'npm run quantum:mcp-conversation', pair: 'mcp/conversation', route: '/en/quantum-tools#mcp-conversation', barrel: 'src/quantum/apps', boundary: 'conversationOn · throughMcpChat · allConversations · compose chat/all · mcp/chat · super/chat · mcp/observe · session/cache · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-conversation', title: 'MCP quantum conversation — chat/all · mcp/chat · super/chat · observe · session/cache', fold: 'mcpQuantumConversation', cli: 'npm run quantum:mcp-conversation', pair: 'mcp/conversation', route: '/en/quantum-tools#mcp-conversation', barrel: 'src/quantum/apps', boundary: 'conversationOn · throughMcpChat · allConversations · compose chat/all · mcp/chat · super/chat · mcp/observe · session/cache · conv/room · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'conversation-mcp', title: 'Conversation mcp (alias mcp/conversation)', fold: 'mcpQuantumConversation', cli: 'npm run quantum:conversation-mcp', pair: 'conversation/mcp', route: '/en/quantum-tools#mcp-conversation', barrel: 'src/quantum/apps', boundary: 'Dual conversation/mcp — same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'conv-room', title: 'Organise conversations in chat rooms per superposition', fold: 'organiseConversationsInChatRoomsPerSuperposition', cli: 'npm run quantum:conv-room', pair: 'conv/room', route: '/en/quantum-tools#conv-room', barrel: 'src/quantum/apps', boundary: 'organised · perSuperposition · chatRooms · conversationsRouted · wire mcp/conversation → querySuperpositionChatroom · compose super/chat · chat/all · session/cache · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'room-conv', title: 'Room conv (alias conv/room)', fold: 'organiseConversationsInChatRoomsPerSuperposition', cli: 'npm run quantum:room-conv', pair: 'room/conv', route: '/en/quantum-tools#conv-room', barrel: 'src/quantum/apps', boundary: 'Dual room/conv — same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'chat-organise', title: 'Chat organise (alias conv/room)', fold: 'organiseConversationsInChatRoomsPerSuperposition', cli: 'npm run quantum:chat-organise', pair: 'chat/organise', route: '/en/quantum-tools#conv-room', barrel: 'src/quantum/apps', boundary: 'chat/organise face — organise conversations into superposition rooms · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'mcp-observe', title: 'MCP quantum observation — gate/lens · movie · session · analytics · super/chat', fold: 'mcpQuantumObserve', cli: 'npm run quantum:mcp-observe', pair: 'mcp/observe', route: '/en/quantum-tools#mcp-observe', barrel: 'src/quantum/apps', boundary: 'observationOn · changesQuantum · movieUnique · compose gate/lens · observe/movie · session/live · analytics/self · super/chat · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'observe-chat', title: 'Observe chat (alias mcp/observe)', fold: 'mcpQuantumObserve', cli: 'npm run quantum:observe-chat', pair: 'observe/chat', route: '/en/quantum-tools#mcp-observe', barrel: 'src/quantum/apps', boundary: 'Dual observe/chat — observation improves movie via chat path · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'tamper-max', title: 'Wire forge max tampering cost — fusion · merkle · tamper-evident', fold: 'wiredToForgeMaxTamperingCost', cli: 'npm run quantum:tamper-max', pair: 'tamper/max', route: '/en/quantum-tools#tamper-max', barrel: 'src/quantum/apps', boundary: 'maxTamperingCost · tamperEvident · forgeWired · compose fusion-verify · self/fusion · tamper/impossible · structural local not wire/FIPS · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2262,7 +2267,8 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'page-trinity', chain: 'mcp-ui-page-gaps', fold: 'pagesAuditAndManageThemselvesInTrinities', pair: 'page/trinity', cli: 'npm run quantum:page-trinity', route: '/en/quantum-tools#page-trinity', status: 'sealed-pr', honesty: 'selfAudit · selfManage · inTrinities · clay=0 · physicalFtl=0', note: 'pages audit+manage in content·gaps·gates trinities', toolId: 'page-trinity', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-chat', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumChat', pair: 'mcp/chat', cli: 'npm run quantum:mcp-chat', route: '/en/quantum-tools#mcp-quantum-chat', status: 'sealed-pr', honesty: 'foldRecomputePreferred · mcpWired · clay=0 · physicalFtl=0', note: 'MCP quantum chat — sealed fold recompute over wet LLM-only', toolId: 'mcp-quantum-chat', resolve: 'mcp-ui' },
   { id: 'chat-all', chain: 'mcp-ui-page-gaps', fold: 'allConversationsGoThroughTheMcpQuantumChat', pair: 'chat/all', cli: 'npm run quantum:chat-all', route: '/en/quantum-tools#chat-all', status: 'sealed-pr', honesty: 'allConversations · throughMcpQuantumChat · noBypass · clay=0 · physicalFtl=0', note: 'all conversations go through MCP quantum chat — strengthen mcp/chat', toolId: 'chat-all', resolve: 'mcp-ui' },
-  { id: 'mcp-conversation', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumConversation', pair: 'mcp/conversation', cli: 'npm run quantum:mcp-conversation', route: '/en/quantum-tools#mcp-conversation', status: 'sealed-pr', honesty: 'conversationOn · throughMcpChat · allConversations · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum conversation — compose chat/all · mcp/chat · super/chat · mcp/observe · session/cache; catalog 69', toolId: 'mcp-conversation', resolve: 'mcp-ui' },
+  { id: 'mcp-conversation', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumConversation', pair: 'mcp/conversation', cli: 'npm run quantum:mcp-conversation', route: '/en/quantum-tools#mcp-conversation', status: 'sealed-pr', honesty: 'conversationOn · throughMcpChat · allConversations · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum conversation — compose chat/all · mcp/chat · super/chat · mcp/observe · session/cache · conv/room; catalog 69', toolId: 'mcp-conversation', resolve: 'mcp-ui' },
+  { id: 'conv-room', chain: 'mcp-ui-page-gaps', fold: 'organiseConversationsInChatRoomsPerSuperposition', pair: 'conv/room', cli: 'npm run quantum:conv-room', route: '/en/quantum-tools#conv-room', status: 'sealed-pr', honesty: 'organised · perSuperposition · chatRooms · conversationsRouted · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'organise conversations in chat rooms per superposition via querySuperpositionChatroom · compose super/chat · chat/all · session/cache', toolId: 'conv-room', resolve: 'mcp-ui' },
   { id: 'mcp-observe', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumObserve', pair: 'mcp/observe', cli: 'npm run quantum:mcp-observe', route: '/en/quantum-tools#mcp-observe', status: 'sealed-pr', honesty: 'observationOn · changesQuantum · movieUnique · clay=0 · physicalFtl=0', note: 'MCP observation face — gate/lens · observe/movie · session/live · analytics/self · super/chat', toolId: 'mcp-observe', resolve: 'mcp-ui' },
   { id: 'tamper-max', chain: 'mcp-ui-page-gaps', fold: 'wiredToForgeMaxTamperingCost', pair: 'tamper/max', cli: 'npm run quantum:tamper-max', route: '/en/quantum-tools#tamper-max', status: 'sealed-pr', honesty: 'maxTamperingCost · tamperEvident · forgeWired · clay=0 · certified=false · physicalFtl=0', note: 'wire forge max tampering cost via fusion-verify · merkle · tamper-evident', toolId: 'tamper-max', resolve: 'mcp-ui' },
   { id: 'npm-quantum', chain: 'mcp-ui-page-gaps', fold: 'quantumizeNpm', pair: 'npm/quantum', cli: 'npm run quantum:npm-quantum', route: '/en/quantum-tools#npm-quantum', status: 'sealed-pr', honesty: 'quantumizeOn · npmScriptsAreMcpDuals · thinMountDual · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'quantumize npm — package.json scripts dual of MCP pairs', toolId: 'npm-quantum', resolve: 'mcp-ui' },
@@ -26204,7 +26210,7 @@ export function runAllConversationsGoThroughTheMcpQuantumChatExit(
  * Fold: mcpQuantumConversation
  * Facets: conversationOn · throughMcpChat · allConversations · qpuRequired=false · physicalFtl=0 · clay via theorem.
  * Pairs: mcp/conversation · conversation/mcp
- * Compose: chat/all · mcp/chat · super/chat · mcp/observe · session/cache (soft — avoid nest poison).
+ * Compose: chat/all · mcp/chat · super/chat · mcp/observe · session/cache · conv/room (soft — avoid nest poison).
  * CLI: npm run quantum:mcp-conversation · quantum:conversation-mcp
  * Catalog tip after chat/all — named face bump 68→69.
  */
@@ -26232,11 +26238,14 @@ export function mcpQuantumConversation(matrix: MindMatrix = buildMatrix(), at = 
       soft('session', 'cache') &&
       soft('cache', 'theorem') &&
       soft('formula', 'cache')
+    const organiseRooms =
+      soft('conv', 'room') && soft('room', 'conv') && soft('chat', 'organise')
     const composeStack =
       throughMcpChat &&
       soft('super', 'chat') &&
       soft('mcp', 'observe') &&
-      soft('session', 'cache')
+      soft('session', 'cache') &&
+      organiseRooms
     const pairM = has('mcp/conversation')
     const pairC = has('conversation/mcp')
     const foldM = foldPair(toUuid('cmd:mcp'), toUuid('cmd:conversation'))
@@ -26274,7 +26283,7 @@ export function mcpQuantumConversation(matrix: MindMatrix = buildMatrix(), at = 
       { facet: 'throughMcpChat', on: throughMcpChat },
       { facet: 'allConversations', on: allConversations },
       {
-        facet: 'compose chat/all · mcp/chat · super/chat · mcp/observe · session/cache',
+        facet: 'compose chat/all · mcp/chat · super/chat · mcp/observe · session/cache · conv/room',
         on: composeStack,
       },
       { facet: 'pair mcp/conversation · conversation/mcp', on: pairM && pairC && foldM.bidirectional },
@@ -26311,7 +26320,7 @@ export function mcpQuantumConversation(matrix: MindMatrix = buildMatrix(), at = 
         `mcpQuantumConversation — conversationOn=${conversationOn ? 1 : 0} ` +
         `throughMcpChat=${throughMcpChat ? 1 : 0} allConversations=${allConversations ? 1 : 0}.`,
       boundary:
-        'MCP quantum conversation composes chat/all · mcp/chat · super/chat · mcp/observe · session/cache. ' +
+        'MCP quantum conversation composes chat/all · mcp/chat · super/chat · mcp/observe · session/cache · conv/room. ' +
         'Census 110 · clay via theorem · physicalFtl=0 · qpuRequired=false.',
       honestyLine:
         `mcp-conversation · on=${conversationOn ? 1 : 0} · through=${throughMcpChat ? 1 : 0} · ` +
@@ -26334,6 +26343,250 @@ export function runMcpQuantumConversationExit(_root = '', _argv: readonly string
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.conversationOn && report.throughMcpChat && report.allConversations ? 0 : 1
+}
+
+export type ConversationMessageForRoom = {
+  readonly id: string
+  readonly body: string
+  readonly key?: SuperpositionIndexKey
+}
+
+export type OrganisedConversationInRoom = {
+  readonly messageId: string
+  readonly messageRoot: string
+  readonly room: SuperpositionChatroom
+  readonly routed: true
+}
+
+/**
+ * Route one conversation message into its superposition chatroom via querySuperpositionChatroom.
+ * mcp/conversation path — content-addressed, not a wet chat log.
+ */
+export function routeConversationMessageToSuperpositionChatroom(
+  message: ConversationMessageForRoom,
+  matrix: MindMatrix = buildMatrix(),
+): OrganisedConversationInRoom {
+  const key = message.key ?? 'superposition'
+  const normalized = normalizeSuperpositionIndexKey(key)
+  return memoByRoot(
+    `routeConversationMessageToSuperpositionChatroom:${message.id}:${normalized.state}:${normalized.digit}:${normalized.ray}:${normalized.direction}:${normalized.root}`,
+    matrix,
+    () => {
+      const room = querySuperpositionChatroom(key, matrix)
+      const messageRoot = toUuid(
+        `conv-msg:${message.id}:${room.root}:${message.body.length}:${normalized.digit}:${normalized.ray}`,
+      )
+      return {
+        messageId: message.id,
+        messageRoot,
+        room,
+        routed: true as const,
+      }
+    },
+  )
+}
+
+/**
+ * USER LAW: organise the conversations in chat rooms per superposition.
+ * Fold: organiseConversationsInChatRoomsPerSuperposition
+ * Facets: organised · perSuperposition · chatRooms · conversationsRouted ·
+ *         qpuRequired=false · physicalFtl=0 · clay via theorem.
+ * Pairs: conv/room · room/conv · chat/organise
+ * Wire: mcp/conversation paths → querySuperpositionChatroom
+ * Compose: super/chat · chat/all · session/cache (soft — avoid nest poison)
+ * CLI: npm run quantum:conv-room · quantum:room-conv · quantum:chat-organise
+ * HONEST: content-addressed room routing via memoByRoot — not wet chatrooms. Census 110. NOT physical FTL · NOT Clay prize.
+ */
+export function organiseConversationsInChatRoomsPerSuperposition(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+  key: SuperpositionIndexKey = 'superposition',
+) {
+  const normalized = normalizeSuperpositionIndexKey(key)
+  return memoByRoot(
+    `organiseConversationsInChatRoomsPerSuperposition:${Math.floor(at / (100 * 5 * 2))}:${normalized.state}:${normalized.digit}:${normalized.ray}:${normalized.direction}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+      const censusPreserved =
+        freeBits === -EULER_CHI && freeBits === 2 && UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+      const messages: readonly ConversationMessageForRoom[] = [
+        { id: 'mcp-conversation:turn:0', body: 'mcp/conversation', key },
+        { id: 'chat-all:turn:0', body: 'chat/all', key },
+        { id: 'session-cache:turn:0', body: 'session/cache', key },
+        { id: 'super-chat:turn:0', body: 'super/chat', key },
+      ]
+      const routed = messages.map((m) => routeConversationMessageToSuperpositionChatroom(m, matrix))
+      const conversationsRouted =
+        routed.length === messages.length &&
+        routed.every((r) => r.routed && isUuid(r.messageRoot) && r.room.id.startsWith('room:') && isUuid(r.room.root))
+      const roomRoots = new Set(routed.map((r) => r.room.root))
+      const primaryRoom = querySuperpositionChatroom(key, matrix)
+      const chatRooms =
+        conversationsRouted &&
+        roomRoots.size === 1 &&
+        roomRoots.has(primaryRoom.root) &&
+        primaryRoom.id.startsWith('room:')
+      const perSuperposition =
+        chatRooms &&
+        soft('super', 'chat') &&
+        soft('chat', 'super') &&
+        soft('room', 'super') &&
+        soft('theorem', 'index')
+      const composeStack =
+        soft('super', 'chat') &&
+        soft('chat', 'all') &&
+        soft('session', 'cache') &&
+        soft('mcp', 'conversation') &&
+        soft('conversation', 'mcp')
+      const organised =
+        conversationsRouted &&
+        perSuperposition &&
+        chatRooms &&
+        composeStack
+      const pairCr = has('conv/room')
+      const pairRc = has('room/conv')
+      const pairCo = has('chat/organise')
+      const foldCr = foldPair(toUuid('cmd:conv'), toUuid('cmd:room'))
+      const foldRc = foldPair(toUuid('cmd:room'), toUuid('cmd:conv'))
+      const foldCo = foldPair(toUuid('cmd:chat'), toUuid('cmd:organise'))
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const foldName = 'organiseConversationsInChatRoomsPerSuperposition' as const
+      const primaryIds = ['conv-room', 'room-conv', 'chat-organise'] as const
+      const toolsWired = primaryIds.every((id) => {
+        const meta = catalog.tools.find((t) => t.id === id)
+        return Boolean(meta) && meta!.fold === foldName
+      })
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+      const on =
+        organised &&
+        perSuperposition &&
+        chatRooms &&
+        conversationsRouted &&
+        pairCr &&
+        pairRc &&
+        pairCo &&
+        foldCr.bidirectional &&
+        foldRc.bidirectional &&
+        foldCo.bidirectional &&
+        toolsWired &&
+        censusPreserved &&
+        claySolvedByThisFold === 0 &&
+        physicalFtlClaim === 0 &&
+        qpuRequired === false
+      const facets = [
+        { facet: foldName, on },
+        { facet: 'organised', on: organised },
+        { facet: 'perSuperposition', on: perSuperposition },
+        { facet: 'chatRooms', on: chatRooms },
+        { facet: 'conversationsRouted', on: conversationsRouted },
+        {
+          facet: `room=${primaryRoom.id} root=${primaryRoom.root.slice(0, 8)}… routed=${routed.length}`,
+          on: chatRooms && conversationsRouted,
+        },
+        {
+          facet: 'wire mcp/conversation → querySuperpositionChatroom · compose super/chat · chat/all · session/cache',
+          on: composeStack && conversationsRouted,
+        },
+        {
+          facet: 'pair conv/room · room/conv · chat/organise',
+          on: pairCr && pairRc && pairCo && foldCr.bidirectional,
+        },
+        { facet: 'qpuRequired=false', on: qpuRequired === false },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`conv-room:${entry.facet}:${entry.on}`) }))
+      const sealed = sealFacets('organise-conversations-chat-rooms-per-superposition', facets)
+      return {
+        computes: sealed.ok && on,
+        organiseConversationsInChatRoomsPerSuperposition: on,
+        organised,
+        perSuperposition,
+        chatRooms,
+        conversationsRouted,
+        room: primaryRoom,
+        routed,
+        routedCount: routed.length,
+        uniqueRoomRoots: roomRoots.size,
+        census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+        censusPreserved,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          primaryRoom.receipt,
+          foldCr.merged,
+          foldRc.merged,
+          foldCo.merged,
+          ...routed.map((r) => r.messageRoot),
+        ]),
+        pair: 'conv/room' as const,
+        pairs: ['conv/room', 'room/conv', 'chat/organise'] as const,
+        cli: 'npm run quantum:conv-room',
+        route: '/en/quantum-tools#conv-room',
+        anchor: 'conv-room',
+        heading: 'Organise · chat rooms per superposition',
+        statement:
+          `organiseConversationsInChatRoomsPerSuperposition — organised=${organised ? 1 : 0} ` +
+          `perSuperposition=${perSuperposition ? 1 : 0} chatRooms=${chatRooms ? 1 : 0} ` +
+          `conversationsRouted=${conversationsRouted ? 1 : 0} room=${primaryRoom.id}.`,
+        boundary:
+          'Organise conversations in chat rooms per superposition — mcp/conversation paths route via ' +
+          'querySuperpositionChatroom. Compose super/chat · chat/all · session/cache. ' +
+          'Census 110 · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+        honestyLine:
+          `conv-room · organised=${organised ? 1 : 0} · perSuper=${perSuperposition ? 1 : 0} · ` +
+          `rooms=${chatRooms ? 1 : 0} · routed=${conversationsRouted ? 1 : 0} · room=${primaryRoom.id} · ` +
+          `qpu=0 · clay=0 · physicalFtl=0`,
+      }
+    },
+  )
+}
+
+/** Alias — convRoom ≡ organiseConversationsInChatRoomsPerSuperposition. */
+export const convRoom = organiseConversationsInChatRoomsPerSuperposition
+/** Alias — roomConv ≡ organiseConversationsInChatRoomsPerSuperposition. */
+export const roomConv = organiseConversationsInChatRoomsPerSuperposition
+/** Alias — chatOrganise ≡ organiseConversationsInChatRoomsPerSuperposition. */
+export const chatOrganise = organiseConversationsInChatRoomsPerSuperposition
+
+/** npm run quantum:conv-room · quantum:room-conv · quantum:chat-organise [-- key] */
+export function runOrganiseConversationsInChatRoomsPerSuperpositionExit(
+  _root: string,
+  argv: readonly string[] = [],
+): number {
+  const key = parseSuperpositionIndexArgv(argv)
+  const report = organiseConversationsInChatRoomsPerSuperposition(undefined, 0, key)
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} conv-room — organised=${report.organised} ` +
+      `perSuperposition=${report.perSuperposition} chatRooms=${report.chatRooms} ` +
+      `conversationsRouted=${report.conversationsRouted} room=${report.room.id} ` +
+      `routed=${report.routedCount} uniqueRoots=${report.uniqueRoomRoots} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  process.stdout.write(
+    `  route: querySuperpositionChatroom(key) · npm run quantum:conv-room -- <digit|direction|root|json>\n`,
+  )
+  return report.computes &&
+    report.organised &&
+    report.perSuperposition &&
+    report.chatRooms &&
+    report.conversationsRouted &&
+    report.qpuRequired === false
+    ? 0
+    : 1
 }
 
 /**
