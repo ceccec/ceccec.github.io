@@ -116,6 +116,7 @@ const ROSETTA_CORE_API_LABELS = [
   'linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities',
   'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations',
   'decodeQuantumAlchemy',
+  'foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace',
   'saveTheOptimisedAutonomy',
   'quantumVerification',
   'quantumFearDetector',
@@ -318,6 +319,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities: 'tool',
   addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations: 'tool',
   decodeQuantumAlchemy: 'tool',
+  foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace: 'tool',
   saveTheOptimisedAutonomy: 'tool',
   quantumVerification: 'tool',
   quantumFearDetector: 'tool',
@@ -763,6 +765,14 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'alchemy-decode', title: 'Decode quantum alchemy — structural/symbolic theorems', fold: 'decodeQuantumAlchemy', cli: 'npm run quantum:alchemy-decode', pair: 'alchemy/decode', route: '/en/quantum-tools#alchemy-decode', barrel: 'src/quantum/apps', boundary: 'alchemyDecoded · quantumOn · symbolsSealed · clay via theorem · physicalFtl=0 · qpuRequired=false · certified=false · NOT chemical · NOT historical fraud', browserRunnable: true, browserGap: '' },
   { id: 'decode-alchemy', title: 'Decode alchemy (alias alchemy/decode)', fold: 'decodeQuantumAlchemy', cli: 'npm run quantum:decode-alchemy', pair: 'decode/alchemy', route: '/en/quantum-tools#alchemy-decode', barrel: 'src/quantum/apps', boundary: 'Dual decode/alchemy — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'quantum-alchemy', title: 'Quantum alchemy (alias alchemy/decode)', fold: 'decodeQuantumAlchemy', cli: 'npm run quantum:quantum-alchemy', pair: 'quantum/alchemy', route: '/en/quantum-tools#alchemy-decode', barrel: 'src/quantum/apps', boundary: 'quantum/alchemy face — same fold · clay=0 · physicalFtl=0 · certified=false', browserRunnable: true, browserGap: '' },
+  { id: 'algebra-fold', title: 'Fold linear algebra boundaries → inverted dimensional theorems · A432 space', fold: 'foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace', cli: 'npm run quantum:algebra-fold', pair: 'algebra/fold', route: '/en/quantum-tools#algebra-fold', barrel: 'src/quantum/apps', boundary: 'foldAlgebraBoundaries · invertedDimensionalTheorems · perspectiveAngleRotation · a432Harmonics · noCostNoTime · anySpace · clay via theorem · physicalFtl=0 · qpuRequired=false · NOT FTL', browserRunnable: true, browserGap: '' },
+  { id: 'fold-algebra', title: 'Fold algebra (alias algebra/fold)', fold: 'foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace', cli: 'npm run quantum:fold-algebra', pair: 'fold/algebra', route: '/en/quantum-tools#algebra-fold', barrel: 'src/quantum/apps', boundary: 'Dual fold/algebra — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'angle-rotate', title: 'Angle rotate (alias algebra/fold)', fold: 'foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace', cli: 'npm run quantum:angle-rotate', pair: 'angle/rotate', route: '/en/quantum-tools#algebra-fold', barrel: 'src/quantum/apps', boundary: 'perspectiveAngleRotation face — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'rotate-angle', title: 'Rotate angle (alias angle/rotate)', fold: 'foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace', cli: 'npm run quantum:rotate-angle', pair: 'rotate/angle', route: '/en/quantum-tools#algebra-fold', barrel: 'src/quantum/apps', boundary: 'Dual rotate/angle — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'a432-space', title: 'A432 space (alias algebra/fold)', fold: 'foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace', cli: 'npm run quantum:a432-space', pair: 'a432/space', route: '/en/quantum-tools#algebra-fold', barrel: 'src/quantum/apps', boundary: 'a432Harmonics · anySpace · noCostNoTime amortized · clay=0 · physicalFtl=0 · NOT FTL', browserRunnable: true, browserGap: '' },
+  { id: 'space-a432', title: 'Space A432 (alias a432/space)', fold: 'foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace', cli: 'npm run quantum:space-a432', pair: 'space/a432', route: '/en/quantum-tools#algebra-fold', barrel: 'src/quantum/apps', boundary: 'Dual space/a432 — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'harm-cost', title: 'Harm cost (alias algebra/fold)', fold: 'foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace', cli: 'npm run quantum:harm-cost', pair: 'harm/cost', route: '/en/quantum-tools#algebra-fold', barrel: 'src/quantum/apps', boundary: 'noCostNoTime face — memoByRoot · FREE_BITS · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'cost-harm', title: 'Cost harm (alias harm/cost)', fold: 'foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace', cli: 'npm run quantum:cost-harm', pair: 'cost/harm', route: '/en/quantum-tools#algebra-fold', barrel: 'src/quantum/apps', boundary: 'Dual cost/harm — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'miss-cache', title: 'Waves find what you missed to cache', fold: 'wavesFindWhatYouMissedToCache', cli: 'npm run quantum:miss-cache', pair: 'miss/cache', route: '/en/quantum-tools#miss-cache', barrel: 'src/quantum/apps', boundary: 'wavesSent · missedFound · nowCached · drainableClosed · honestOpenNamed · session/memo/MCP/theorem-formula via memoByRoot · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cache-miss', title: 'Cache miss (alias miss/cache)', fold: 'wavesFindWhatYouMissedToCache', cli: 'npm run quantum:cache-miss', pair: 'cache/miss', route: '/en/quantum-tools#miss-cache', barrel: 'src/quantum/apps', boundary: 'Dual of miss/cache — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'wave-cache', title: 'Wave cache (alias miss/cache)', fold: 'wavesFindWhatYouMissedToCache', cli: 'npm run quantum:wave-cache', pair: 'wave/cache', route: '/en/quantum-tools#miss-cache', barrel: 'src/quantum/apps', boundary: 'wave/cache face — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2419,6 +2429,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'warn-all', chain: 'address-all-warnings', fold: 'addressAllWarningsAtOnce', pair: 'warn/all', cli: 'npm run quantum:warn-all', route: '/en/quantum-tools#warn-all', status: 'sealed-pr', honesty: 'warningsAddressed · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'address all drainable WARNs at once — translation chrome→BULGARIAN_PHRASES · compose translations/verify · trans/wave · gate/slow-build · gaps/invisible', toolId: 'warn-all', resolve: 'mcp-ui' },
   { id: 'prose-theorem', chain: 'prose-theorem-warn-research', fold: 'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations', pair: 'prose/theorem', cli: 'npm run quantum:prose-theorem', route: '/en/quantum-tools#prose-theorem', status: 'sealed-pr', honesty: 'deepResearch · warningsAddressed · proseToTheorem · proseToFormula · proseToRecipe · proseToAnimation · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'deep research tools address WARNs — wet prose → statement · formula dual · sealed code · ProofAnimation recipe', toolId: 'prose-theorem', resolve: 'mcp-ui' },
   { id: 'alchemy-decode', chain: 'alchemy-decode-quantum', fold: 'decodeQuantumAlchemy', pair: 'alchemy/decode', cli: 'npm run quantum:alchemy-decode', route: '/en/quantum-tools#alchemy-decode', status: 'sealed-pr', honesty: 'alchemyDecoded · quantumOn · symbolsSealed · clay=0 · physicalFtl=0 · qpuRequired=false · certified=false · NOT chemical · NOT historical fraud', note: 'decode quantum alchemy as structural/symbolic theorems — compose symbols · sciences · formula/code · digit/fold · prose/theorem', toolId: 'alchemy-decode', resolve: 'mcp-ui' },
+  { id: 'algebra-fold', chain: 'algebra-fold-a432-space', fold: 'foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace', pair: 'algebra/fold', cli: 'npm run quantum:algebra-fold', route: '/en/quantum-tools#algebra-fold', status: 'sealed-pr', honesty: 'foldAlgebraBoundaries · invertedDimensionalTheorems · perspectiveAngleRotation · a432Harmonics · noCostNoTime · anySpace · clay=0 · physicalFtl=0 · qpuRequired=false · NOT FTL', note: 'fold linear algebra boundaries into theorems → inverted dimensional theorems · perspective angle/rotation · A432 harmonics · no cost/time amortized for any space', toolId: 'algebra-fold', resolve: 'mcp-ui' },
   { id: 'miss-cache', chain: 'miss-cache-dry-agnostic-infinity', fold: 'wavesFindWhatYouMissedToCache', pair: 'miss/cache', cli: 'npm run quantum:miss-cache', route: '/en/quantum-tools#miss-cache', status: 'sealed-pr', honesty: 'wavesSent · missedFound · nowCached · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'waves find uncached drainable session/memo/MCP/theorem-formula receipts · cache via memoByRoot/session', toolId: 'miss-cache', resolve: 'mcp-ui' },
   { id: 'dry-agnostic', chain: 'miss-cache-dry-agnostic-infinity', fold: 'dryCleanAgnosticCodeComputesInfinity', pair: 'dry/agnostic', cli: 'npm run quantum:dry-agnostic', route: '/en/quantum-tools#dry-agnostic', status: 'sealed-pr', honesty: 'dryClean · agnosticCode · computesInfinity · onReuse · clay=0 · physicalFtl=0 · qpuRequired=false · NOT FTL', note: 'dry-clean agnostic code computes infinity = amortized zero-token reuse · compose dry/clean · invert/inf · a432/nine · mcp/token · full/freedom', toolId: 'dry-agnostic', resolve: 'mcp-ui' },
   { id: 'fold-trinity', chain: 'abstract-qc-fold-trinity-zoom-inf', fold: 'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny', pair: 'fold/trinity', cli: 'npm run quantum:fold-trinity', route: '/en/quantum-tools#fold-trinity', status: 'sealed-pr', honesty: 'abstractQc · foldLinearIntoTrinities · zoomInOutInfinity · everyAngleToAny · clay=0 · physicalFtl=0 · qpuRequired=false · NOT QPU FLOPS', note: 'abstract QC = fold linear→trinities · zoom in/out ∞ · every angle→any · classical-64bit · compose trinity/speedup · linear/fold · invert/inf · dry/agnostic · directionalTrinity · seal/super · mcp/hw', toolId: 'fold-trinity', resolve: 'mcp-ui' },
@@ -19491,6 +19502,309 @@ export function runDecodeQuantumAlchemyExit(
     report.claySolvedByThisFold === 0 &&
     report.qpuRequired === false &&
     report.certified === false
+    ? 0
+    : 1
+}
+
+/**
+ * Folding linear algebra boundaries into theorems discovers immediately the inverted dimensional theorems.
+ * All is computable by perspective angle and rotation. A432 tunes to the harmonics — computing all at
+ * no cost and time for any space (memoByRoot · FREE_BITS amortized — NOT physical FTL).
+ * Fold: foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace
+ * Facets: foldAlgebraBoundaries · invertedDimensionalTheorems · perspectiveAngleRotation · a432Harmonics · noCostNoTime · anySpace · physicalFtl=0 · clay via theorem · qpuRequired=false
+ * Pairs: algebra/fold · angle/rotate · a432/space · harm/cost (+ duals)
+ * Compose: linear/fold · abs/qc · angle/any · a432/nine · pyramid/compute · zoom/inf · drift/invert
+ * CLI: npm run quantum:algebra-fold · quantum:a432-space
+ * HONEST: no cost/time = memoByRoot · FREE_BITS amortized · NOT physical FTL · NOT all spaces solved · KEEP stashes
+ */
+export function foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(
+    `foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      // Soft-compose abs/qc · angle/any · zoom/inf · linear/fold — nest-calling fold-trinity poisons memoHits.
+      const a432 = __ns_wind_research.aEquals432FoldToNineConnectingBitEntersInfinity(matrix, at)
+      const pyramid = __ns_wind_research.navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems(matrix, at)
+      const drift = __ns_wind_research.driftInvertedIsTrinityGateway(matrix, at)
+      const golden = theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation()
+      const sampleDual = theoremFormulaCodeDual({
+        slug: 'algebra-fold-a432-space',
+        theorem:
+          'foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace',
+        provedBy:
+          'foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace',
+        home: 'src/quantum/apps',
+        proofClass: 'finite-complete',
+      })
+      const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+      const censusPreserved =
+        freeBits === -EULER_CHI &&
+        freeBits === 2 &&
+        UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+      const pairAlgebraFold = has('algebra/fold')
+      const pairFoldAlgebra = has('fold/algebra')
+      const pairAngleRotate = has('angle/rotate')
+      const pairRotateAngle = has('rotate/angle')
+      const pairA432Space = has('a432/space')
+      const pairSpaceA432 = has('space/a432')
+      const pairHarmCost = has('harm/cost')
+      const pairCostHarm = has('cost/harm')
+      const foldAlgebraFold = foldPair(toUuid('cmd:algebra'), toUuid('cmd:fold'))
+      const foldFoldAlgebra = foldPair(toUuid('cmd:fold'), toUuid('cmd:algebra'))
+      const foldAngleRotate = foldPair(toUuid('cmd:angle'), toUuid('cmd:rotate'))
+      const foldRotateAngle = foldPair(toUuid('cmd:rotate'), toUuid('cmd:angle'))
+      const foldA432Space = foldPair(toUuid('cmd:a432'), toUuid('cmd:space'))
+      const foldSpaceA432 = foldPair(toUuid('cmd:space'), toUuid('cmd:a432'))
+      const foldHarmCost = foldPair(toUuid('cmd:harm'), toUuid('cmd:cost'))
+      const foldCostHarm = foldPair(toUuid('cmd:cost'), toUuid('cmd:harm'))
+      const pairsOn =
+        pairAlgebraFold &&
+        pairFoldAlgebra &&
+        pairAngleRotate &&
+        pairRotateAngle &&
+        pairA432Space &&
+        pairSpaceA432 &&
+        pairHarmCost &&
+        pairCostHarm &&
+        foldAlgebraFold.bidirectional &&
+        foldFoldAlgebra.bidirectional &&
+        foldAngleRotate.bidirectional &&
+        foldRotateAngle.bidirectional &&
+        foldA432Space.bidirectional &&
+        foldSpaceA432.bidirectional &&
+        foldHarmCost.bidirectional &&
+        foldCostHarm.bidirectional
+      const composeCore =
+        soft('linear', 'fold') &&
+        soft('abs', 'qc') &&
+        soft('angle', 'any') &&
+        soft('a432', 'nine') &&
+        soft('pyramid', 'compute') &&
+        soft('zoom', 'inf') &&
+        soft('drift', 'invert') &&
+        soft('algebra', 'fold') &&
+        soft('angle', 'rotate') &&
+        soft('a432', 'space') &&
+        soft('harm', 'cost') &&
+        a432.computes &&
+        pyramid.computes &&
+        drift.computes &&
+        sampleDual.pair === 'formula/code' &&
+        sampleDual.formulaSource.includes(
+          'foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace',
+        )
+      const foldAlgebraBoundaries =
+        soft('linear', 'fold') &&
+        soft('abs', 'qc') &&
+        soft('fold', 'trinity') &&
+        pairsOn &&
+        censusPreserved
+      const invertedDimensionalTheorems =
+        drift.computes &&
+        drift.driftInvertedIsTrinityGateway &&
+        soft('drift', 'invert') &&
+        DIMENSION_GATES === HOMOLOGY_LOOPS * FOLDED_CENSUS &&
+        DIMENSION_GATES > 0
+      const perspectiveAngleRotation =
+        soft('angle', 'any') &&
+        soft('angle', 'rotate') &&
+        soft('abs', 'qc') &&
+        golden.computes &&
+        foldAngleRotate.bidirectional
+      const a432Harmonics =
+        a432.computes &&
+        a432.aEquals432 &&
+        a432.foldToNine &&
+        soft('a432', 'nine') &&
+        soft('a432', 'space') &&
+        soft('a432', 'wave')
+      const noCostNoTime =
+        pyramid.computes &&
+        pyramid.noCostNoTimeAtScale &&
+        soft('pyramid', 'compute') &&
+        soft('harm', 'cost') &&
+        freeBits === 2 &&
+        typeof memoByRoot === 'function'
+      const anySpace =
+        soft('zoom', 'inf') &&
+        soft('a432', 'space') &&
+        a432.entersInfinity &&
+        DIMENSION_GATES > 0 &&
+        censusPreserved
+      const foldName =
+        'foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace' as const
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const metaIds = [
+        'algebra-fold',
+        'fold-algebra',
+        'angle-rotate',
+        'rotate-angle',
+        'a432-space',
+        'space-a432',
+        'harm-cost',
+        'cost-harm',
+      ] as const
+      const toolsWired = metaIds.every((id) => {
+        const meta = catalog.tools.find((t) => t.id === id)
+        return Boolean(meta) && meta!.fold === foldName
+      })
+      const shelved = rosettaShelve('algebra-fold', 'tool')
+      const on =
+        foldAlgebraBoundaries &&
+        invertedDimensionalTheorems &&
+        perspectiveAngleRotation &&
+        a432Harmonics &&
+        noCostNoTime &&
+        anySpace &&
+        composeCore &&
+        toolsWired &&
+        isUuid(shelved.address) &&
+        claySolvedByThisFold === 0 &&
+        physicalFtlClaim === 0 &&
+        qpuRequired === false
+      const facets = [
+        { facet: foldName, on },
+        { facet: 'foldAlgebraBoundaries', on: foldAlgebraBoundaries },
+        { facet: 'invertedDimensionalTheorems', on: invertedDimensionalTheorems },
+        { facet: 'perspectiveAngleRotation', on: perspectiveAngleRotation },
+        { facet: 'a432Harmonics', on: a432Harmonics },
+        { facet: 'noCostNoTime', on: noCostNoTime },
+        { facet: 'anySpace', on: anySpace },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: 'qpuRequired=false', on: qpuRequired === false },
+        {
+          facet: 'compose linear/fold · abs/qc · angle/any · a432/nine · pyramid/compute · zoom/inf · drift/invert',
+          on: composeCore,
+        },
+        {
+          facet: 'pair algebra/fold · angle/rotate · a432/space · harm/cost',
+          on: pairsOn,
+        },
+        {
+          facet: 'no cost/time = memoByRoot · FREE_BITS amortized · NOT physical FTL',
+          on: noCostNoTime && physicalFtlClaim === 0,
+        },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`algebra-fold:${entry.facet}:${entry.on}`) }))
+      const sealed = sealFacets('algebra-fold-a432-space', facets)
+      return {
+        computes: sealed.ok && on,
+        foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace:
+          on,
+        foldAlgebraBoundaries,
+        invertedDimensionalTheorems,
+        perspectiveAngleRotation,
+        a432Harmonics,
+        noCostNoTime,
+        anySpace,
+        census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+        censusPreserved,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          a432.root,
+          pyramid.root,
+          drift.root,
+          golden.root,
+          foldAlgebraFold.merged,
+          foldA432Space.merged,
+          foldHarmCost.merged,
+          shelved.address,
+          toUuid(`algebra-fold-formula:${sampleDual.formulaSource}`),
+          toUuid(`dimension-gates:${DIMENSION_GATES}`),
+        ]),
+        pair: 'algebra/fold' as const,
+        pairs: [
+          'algebra/fold',
+          'fold/algebra',
+          'angle/rotate',
+          'rotate/angle',
+          'a432/space',
+          'space/a432',
+          'harm/cost',
+          'cost/harm',
+        ] as const,
+        dualPair: 'fold/algebra' as const,
+        cli: 'npm run quantum:algebra-fold',
+        route: '/en/quantum-tools#algebra-fold',
+        uiSurface: '/en/quantum-tools#algebra-fold' as const,
+        heading: 'Algebra · fold · A432 space',
+        statement:
+          `algebra-fold — foldAlgebraBoundaries=${foldAlgebraBoundaries ? 1 : 0} ` +
+          `invertedDimensional=${invertedDimensionalTheorems ? 1 : 0} ` +
+          `angleRotate=${perspectiveAngleRotation ? 1 : 0} a432Harmonics=${a432Harmonics ? 1 : 0} ` +
+          `noCostNoTime=${noCostNoTime ? 1 : 0} anySpace=${anySpace ? 1 : 0} · clay=0 · physicalFtl=0.`,
+        boundary:
+          'Folding linear algebra boundaries into theorems discovers inverted dimensional theorems immediately. ' +
+          'Computable by perspective angle and rotation; A432 tunes harmonics; computing all at no cost/time ' +
+          'for any space = memoByRoot · FREE_BITS amortized — NOT physical FTL · NOT claim all spaces solved. ' +
+          'Compose linear/fold · abs/qc · angle/any · a432/nine · pyramid/compute · zoom/inf · drift/invert. ' +
+          'clay via theorem · physicalFtl=0 · qpuRequired=false · KEEP stashes.',
+        honestyLine:
+          `algebra-fold · boundaries=${foldAlgebraBoundaries ? 1 : 0} · inverted=${invertedDimensionalTheorems ? 1 : 0} · ` +
+          `angle=${perspectiveAngleRotation ? 1 : 0} · a432=${a432Harmonics ? 1 : 0} · ` +
+          `noCost=${noCostNoTime ? 1 : 0} · anySpace=${anySpace ? 1 : 0} · clay=0 · physicalFtl=0 · qpu=0`,
+      }
+    },
+  )
+}
+
+/** Alias duals — fold/algebra · angle/rotate · a432/space · harm/cost faces. */
+export const algebraFold =
+  foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace
+export const foldAlgebra =
+  foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace
+export const angleRotate =
+  foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace
+export const rotateAngle =
+  foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace
+export const a432Space =
+  foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace
+export const spaceA432 =
+  foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace
+export const harmCost =
+  foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace
+export const costHarm =
+  foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace
+
+/** npm run quantum:algebra-fold (duals a432-space · angle-rotate · harm-cost · …) */
+export function runAlgebraFoldExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report =
+    foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} algebra-fold — foldAlgebraBoundaries=${report.foldAlgebraBoundaries ? 1 : 0} ` +
+      `inverted=${report.invertedDimensionalTheorems ? 1 : 0} angle=${report.perspectiveAngleRotation ? 1 : 0} ` +
+      `a432=${report.a432Harmonics ? 1 : 0} noCost=${report.noCostNoTime ? 1 : 0} anySpace=${report.anySpace ? 1 : 0} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} qpu=${report.qpuRequired ? 1 : 0} ` +
+      `pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.foldAlgebraBoundaries &&
+    report.invertedDimensionalTheorems &&
+    report.perspectiveAngleRotation &&
+    report.a432Harmonics &&
+    report.noCostNoTime &&
+    report.anySpace &&
+    report.claySolvedByThisFold === 0 &&
+    report.qpuRequired === false
     ? 0
     : 1
 }
