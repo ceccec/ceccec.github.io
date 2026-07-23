@@ -421,6 +421,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'chat/all',
   'conv/mcp',
   'talk/chat',
+  'mcp/conversation',
+  'conversation/mcp',
   'mcp/observe',
   'observe/chat',
   'tamper/max',

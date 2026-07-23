@@ -109,6 +109,7 @@ const ROSETTA_CORE_API_LABELS = [
   'pagesAuditAndManageThemselvesInTrinities',
   'mcpQuantumChat',
   'allConversationsGoThroughTheMcpQuantumChat',
+  'mcpQuantumConversation',
   'mcpQuantumObserve',
   'wiredToForgeMaxTamperingCost',
   'quantumizeNpm',
@@ -252,6 +253,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   pagesAuditAndManageThemselvesInTrinities: 'tool',
   mcpQuantumChat: 'tool',
   allConversationsGoThroughTheMcpQuantumChat: 'tool',
+  mcpQuantumConversation: 'tool',
   mcpQuantumObserve: 'tool',
   wiredToForgeMaxTamperingCost: 'tool',
   quantumizeNpm: 'tool',
@@ -837,6 +839,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'chat-all', title: 'All conversations through MCP quantum chat', fold: 'allConversationsGoThroughTheMcpQuantumChat', cli: 'npm run quantum:chat-all', pair: 'chat/all', route: '/en/quantum-tools#chat-all', barrel: 'src/quantum/apps', boundary: 'allConversations · throughMcpQuantumChat · noBypass · compose mcpQuantumChat · session/live · super/chat · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'conv-mcp', title: 'Conv mcp (alias chat/all)', fold: 'allConversationsGoThroughTheMcpQuantumChat', cli: 'npm run quantum:conv-mcp', pair: 'conv/mcp', route: '/en/quantum-tools#chat-all', barrel: 'src/quantum/apps', boundary: 'Dual conv/mcp — conversation paths via MCP quantum chat · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'talk-chat', title: 'Talk chat (alias chat/all)', fold: 'allConversationsGoThroughTheMcpQuantumChat', cli: 'npm run quantum:talk-chat', pair: 'talk/chat', route: '/en/quantum-tools#chat-all', barrel: 'src/quantum/apps', boundary: 'talk/chat face — all talk routes through mcpQuantumChat · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-conversation', title: 'MCP quantum conversation — chat/all · mcp/chat · super/chat · observe · session/cache', fold: 'mcpQuantumConversation', cli: 'npm run quantum:mcp-conversation', pair: 'mcp/conversation', route: '/en/quantum-tools#mcp-conversation', barrel: 'src/quantum/apps', boundary: 'conversationOn · throughMcpChat · allConversations · compose chat/all · mcp/chat · super/chat · mcp/observe · session/cache · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'conversation-mcp', title: 'Conversation mcp (alias mcp/conversation)', fold: 'mcpQuantumConversation', cli: 'npm run quantum:conversation-mcp', pair: 'conversation/mcp', route: '/en/quantum-tools#mcp-conversation', barrel: 'src/quantum/apps', boundary: 'Dual conversation/mcp — same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'mcp-observe', title: 'MCP quantum observation — gate/lens · movie · session · analytics · super/chat', fold: 'mcpQuantumObserve', cli: 'npm run quantum:mcp-observe', pair: 'mcp/observe', route: '/en/quantum-tools#mcp-observe', barrel: 'src/quantum/apps', boundary: 'observationOn · changesQuantum · movieUnique · compose gate/lens · observe/movie · session/live · analytics/self · super/chat · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'observe-chat', title: 'Observe chat (alias mcp/observe)', fold: 'mcpQuantumObserve', cli: 'npm run quantum:observe-chat', pair: 'observe/chat', route: '/en/quantum-tools#mcp-observe', barrel: 'src/quantum/apps', boundary: 'Dual observe/chat — observation improves movie via chat path · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'tamper-max', title: 'Wire forge max tampering cost — fusion · merkle · tamper-evident', fold: 'wiredToForgeMaxTamperingCost', cli: 'npm run quantum:tamper-max', pair: 'tamper/max', route: '/en/quantum-tools#tamper-max', barrel: 'src/quantum/apps', boundary: 'maxTamperingCost · tamperEvident · forgeWired · compose fusion-verify · self/fusion · tamper/impossible · structural local not wire/FIPS · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2258,6 +2262,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'page-trinity', chain: 'mcp-ui-page-gaps', fold: 'pagesAuditAndManageThemselvesInTrinities', pair: 'page/trinity', cli: 'npm run quantum:page-trinity', route: '/en/quantum-tools#page-trinity', status: 'sealed-pr', honesty: 'selfAudit · selfManage · inTrinities · clay=0 · physicalFtl=0', note: 'pages audit+manage in content·gaps·gates trinities', toolId: 'page-trinity', resolve: 'mcp-ui' },
   { id: 'mcp-quantum-chat', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumChat', pair: 'mcp/chat', cli: 'npm run quantum:mcp-chat', route: '/en/quantum-tools#mcp-quantum-chat', status: 'sealed-pr', honesty: 'foldRecomputePreferred · mcpWired · clay=0 · physicalFtl=0', note: 'MCP quantum chat — sealed fold recompute over wet LLM-only', toolId: 'mcp-quantum-chat', resolve: 'mcp-ui' },
   { id: 'chat-all', chain: 'mcp-ui-page-gaps', fold: 'allConversationsGoThroughTheMcpQuantumChat', pair: 'chat/all', cli: 'npm run quantum:chat-all', route: '/en/quantum-tools#chat-all', status: 'sealed-pr', honesty: 'allConversations · throughMcpQuantumChat · noBypass · clay=0 · physicalFtl=0', note: 'all conversations go through MCP quantum chat — strengthen mcp/chat', toolId: 'chat-all', resolve: 'mcp-ui' },
+  { id: 'mcp-conversation', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumConversation', pair: 'mcp/conversation', cli: 'npm run quantum:mcp-conversation', route: '/en/quantum-tools#mcp-conversation', status: 'sealed-pr', honesty: 'conversationOn · throughMcpChat · allConversations · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum conversation — compose chat/all · mcp/chat · super/chat · mcp/observe · session/cache; catalog 69', toolId: 'mcp-conversation', resolve: 'mcp-ui' },
   { id: 'mcp-observe', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumObserve', pair: 'mcp/observe', cli: 'npm run quantum:mcp-observe', route: '/en/quantum-tools#mcp-observe', status: 'sealed-pr', honesty: 'observationOn · changesQuantum · movieUnique · clay=0 · physicalFtl=0', note: 'MCP observation face — gate/lens · observe/movie · session/live · analytics/self · super/chat', toolId: 'mcp-observe', resolve: 'mcp-ui' },
   { id: 'tamper-max', chain: 'mcp-ui-page-gaps', fold: 'wiredToForgeMaxTamperingCost', pair: 'tamper/max', cli: 'npm run quantum:tamper-max', route: '/en/quantum-tools#tamper-max', status: 'sealed-pr', honesty: 'maxTamperingCost · tamperEvident · forgeWired · clay=0 · certified=false · physicalFtl=0', note: 'wire forge max tampering cost via fusion-verify · merkle · tamper-evident', toolId: 'tamper-max', resolve: 'mcp-ui' },
   { id: 'npm-quantum', chain: 'mcp-ui-page-gaps', fold: 'quantumizeNpm', pair: 'npm/quantum', cli: 'npm run quantum:npm-quantum', route: '/en/quantum-tools#npm-quantum', status: 'sealed-pr', honesty: 'quantumizeOn · npmScriptsAreMcpDuals · thinMountDual · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'quantumize npm — package.json scripts dual of MCP pairs', toolId: 'npm-quantum', resolve: 'mcp-ui' },
@@ -2296,7 +2301,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mcp-dot', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumDot', pair: 'mcp/dot', cli: 'npm run quantum:mcp-dot', route: '/en/quantum-tools#mcp-dot', status: 'sealed-pr', honesty: 'dotOn · digitPoint · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum dot — digit point · fold · next · coord · particle/wave; catalog 56/56', toolId: 'mcp-dot', resolve: 'mcp-ui' },
   { id: 'mcp-index', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumIndex', pair: 'mcp/index', cli: 'npm run quantum:mcp-index', route: '/en/quantum-tools#mcp-index', status: 'sealed-pr', honesty: 'indexOn · srcIndexOnly · census110 · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum index — src index-only · census 110 · limits/verify; catalog 57/57', toolId: 'mcp-index', resolve: 'mcp-ui' },
   { id: 'mcp-orientation', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumOrientation', pair: 'mcp/orientation', cli: 'npm run quantum:mcp-orientation', route: '/en/quantum-tools#mcp-orientation', status: 'sealed-pr', honesty: 'orientationOn · bearing · navCross · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum orientation — bearing · navCross · geo/train · cross/nav · sun/moon · mcp/torus; catalog 58/58', toolId: 'mcp-orientation', resolve: 'mcp-ui' },
-  { id: 'mcp-complete', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumComplete', pair: 'mcp/complete', cli: 'npm run quantum:mcp-complete', route: '/en/quantum-tools#mcp-complete', status: 'sealed-pr', honesty: 'completeOn · catalogComplete · namedFacesPresent · missingCount=0 · honestOpenResiduals · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum complete — catalog · star · mcp/all · rosetta/complete; catalog 59/59', toolId: 'mcp-complete', resolve: 'mcp-ui' },
+  { id: 'mcp-complete', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumComplete', pair: 'mcp/complete', cli: 'npm run quantum:mcp-complete', route: '/en/quantum-tools#mcp-complete', status: 'sealed-pr', honesty: 'completeOn · catalogComplete · namedFacesPresent · missingCount=0 · honestOpenResiduals · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum complete — catalog · star · mcp/all · rosetta/complete; catalog 69/69', toolId: 'mcp-complete', resolve: 'mcp-ui' },
   { id: 'mcp-token', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumTokenOptimise', pair: 'mcp/token', cli: 'npm run quantum:mcp-token', route: '/en/quantum-tools#mcp-token', status: 'sealed-pr', honesty: 'tokenOptimiseOn · answersOverTokens · zeroOnReuse · memoByRoot · efficiency when vote.decided · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum token optimise — answers÷tokens · zero on reuse · memoByRoot; catalog 60/60', toolId: 'mcp-token', resolve: 'mcp-ui' },
   { id: 'mcp-deploy', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumDeploy', pair: 'mcp/deploy', cli: 'npm run quantum:mcp-deploy', route: '/en/quantum-tools#mcp-deploy', status: 'sealed-pr', honesty: 'deployOn · buildsFromMcp · pagesSeal · this-repo Pages seal only · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum deploy — Pages seal via vite/mcp · mcp/site · waves/push · build/seal; catalog 61/61', toolId: 'mcp-deploy', resolve: 'mcp-ui' },
   { id: 'mcp-bindings', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumBindings', pair: 'mcp/bindings', cli: 'npm run quantum:mcp-bindings', route: '/en/quantum-tools#mcp-bindings', status: 'sealed-pr', honesty: 'bindingsOn · pairsSaved · toolsBound · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum bindings — pairs · agent/submission · tool/envelope · mcp/complete; catalog 62/62', toolId: 'mcp-bindings', resolve: 'mcp-ui' },
@@ -6749,6 +6754,7 @@ const MCP_QUANTUM_NAMED_FACES = [
   { fold: 'mcpQuantumMovie', pair: 'mcp/movie', dual: 'movie/mcp', toolId: 'mcp-quantum-movie', dualToolId: 'movie-mcp' },
   { fold: 'mcpInfiniteMovie', pair: 'movie/inf', dual: 'inf/movie', toolId: 'movie-inf', dualToolId: 'inf-movie' },
   { fold: 'mcpQuantumChat', pair: 'mcp/chat', dual: 'chat/quantum', toolId: 'mcp-quantum-chat', dualToolId: 'chat-quantum' },
+  { fold: 'mcpQuantumConversation', pair: 'mcp/conversation', dual: 'conversation/mcp', toolId: 'mcp-conversation', dualToolId: 'conversation-mcp' },
   { fold: 'mcpQuantumObserve', pair: 'mcp/observe', dual: 'observe/chat', toolId: 'mcp-observe', dualToolId: 'observe-chat' },
   { fold: 'mcpQuantumRouter', pair: 'mcp/router', dual: 'route/quantum', toolId: 'mcp-router', dualToolId: 'route-quantum' },
   { fold: 'mcpQuantumMetrics', pair: 'mcp/metrics', dual: 'metrics/mcp', toolId: 'mcp-metrics', dualToolId: 'metrics-mcp' },
@@ -26191,6 +26197,143 @@ export function runAllConversationsGoThroughTheMcpQuantumChatExit(
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.allConversations && report.throughMcpQuantumChat && report.noBypass ? 0 : 1
+}
+
+/**
+ * USER LAW: MCP quantum conversation — conversations are MCP quantum chat surfaces.
+ * Fold: mcpQuantumConversation
+ * Facets: conversationOn · throughMcpChat · allConversations · qpuRequired=false · physicalFtl=0 · clay via theorem.
+ * Pairs: mcp/conversation · conversation/mcp
+ * Compose: chat/all · mcp/chat · super/chat · mcp/observe · session/cache (soft — avoid nest poison).
+ * CLI: npm run quantum:mcp-conversation · quantum:conversation-mcp
+ * Catalog tip after chat/all — named face bump 68→69.
+ */
+export function mcpQuantumConversation(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumConversation:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const censusPreserved =
+      freeBits === -EULER_CHI && freeBits === 2 && UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+    const throughMcpChat =
+      soft('mcp', 'chat') &&
+      soft('chat', 'quantum') &&
+      soft('chat', 'all') &&
+      soft('conv', 'mcp') &&
+      soft('talk', 'chat')
+    const allConversations =
+      throughMcpChat &&
+      soft('super', 'chat') &&
+      soft('chat', 'super') &&
+      soft('mcp', 'observe') &&
+      soft('observe', 'chat') &&
+      soft('session', 'cache') &&
+      soft('cache', 'theorem') &&
+      soft('formula', 'cache')
+    const composeStack =
+      throughMcpChat &&
+      soft('super', 'chat') &&
+      soft('mcp', 'observe') &&
+      soft('session', 'cache')
+    const pairM = has('mcp/conversation')
+    const pairC = has('conversation/mcp')
+    const foldM = foldPair(toUuid('cmd:mcp'), toUuid('cmd:conversation'))
+    const foldC = foldPair(toUuid('cmd:conversation'), toUuid('cmd:mcp'))
+    const conversationOn =
+      allConversations &&
+      throughMcpChat &&
+      composeStack &&
+      pairM &&
+      pairC &&
+      foldM.bidirectional &&
+      foldC.bidirectional
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const foldName = 'mcpQuantumConversation' as const
+    const meta = catalog.tools.find((t) => t.id === 'mcp-conversation')
+    const metaDual = catalog.tools.find((t) => t.id === 'conversation-mcp')
+    const toolsWired =
+      Boolean(meta) &&
+      meta!.fold === foldName &&
+      Boolean(metaDual) &&
+      metaDual!.fold === foldName
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const on =
+      conversationOn &&
+      throughMcpChat &&
+      allConversations &&
+      toolsWired &&
+      censusPreserved &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: foldName, on },
+      { facet: 'conversationOn', on: conversationOn },
+      { facet: 'throughMcpChat', on: throughMcpChat },
+      { facet: 'allConversations', on: allConversations },
+      {
+        facet: 'compose chat/all · mcp/chat · super/chat · mcp/observe · session/cache',
+        on: composeStack,
+      },
+      { facet: 'pair mcp/conversation · conversation/mcp', on: pairM && pairC && foldM.bidirectional },
+      { facet: 'qpuRequired=false', on: true },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-conversation:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('mcp-quantum-conversation', facets)
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumConversation: on,
+      conversationOn,
+      throughMcpChat,
+      allConversations,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        foldM.merged,
+        foldC.merged,
+        toUuid(`mcp-conversation:compose:${composeStack}`),
+      ]),
+      pair: 'mcp/conversation' as const,
+      pairs: ['mcp/conversation', 'conversation/mcp'] as const,
+      cli: 'npm run quantum:mcp-conversation',
+      route: '/en/quantum-tools#mcp-conversation',
+      anchor: 'mcp-conversation',
+      heading: 'MCP · quantum conversation',
+      statement:
+        `mcpQuantumConversation — conversationOn=${conversationOn ? 1 : 0} ` +
+        `throughMcpChat=${throughMcpChat ? 1 : 0} allConversations=${allConversations ? 1 : 0}.`,
+      boundary:
+        'MCP quantum conversation composes chat/all · mcp/chat · super/chat · mcp/observe · session/cache. ' +
+        'Census 110 · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `mcp-conversation · on=${conversationOn ? 1 : 0} · through=${throughMcpChat ? 1 : 0} · ` +
+        `all=${allConversations ? 1 : 0} · clay=0 · physicalFtl=0 · qpuRequired=0`,
+    }
+  })
+}
+
+export const conversationMcp = mcpQuantumConversation
+
+/** npm run quantum:mcp-conversation · quantum:conversation-mcp */
+export function runMcpQuantumConversationExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = mcpQuantumConversation()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} mcp-conversation — on=${report.conversationOn} ` +
+      `through=${report.throughMcpChat} all=${report.allConversations} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} qpu=${report.qpuRequired}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.conversationOn && report.throughMcpChat && report.allConversations ? 0 : 1
 }
 
 /**
