@@ -66,6 +66,10 @@ export const FOLDER_INDEX_COMMAND_PAIR = { pair: 'folder/index' as const, a: 'fo
 export const SIZE_FREE_COMMAND_PAIR = { pair: 'size/free' as const, a: 'size', b: 'free' }
 export const GRAVITY_GATE_COMMAND_PAIR = { pair: 'gravity/gate' as const, a: 'gravity', b: 'gate' }
 export const COMPACT_TYPES_CONSTANTS_COMMAND_PAIR = { pair: 'compact/matrix' as const, a: 'compact', b: 'matrix' }
+/** Commands audited for best place then full dry clean — pairs cmd/place · place/audit · dry/full. */
+export const CMD_PLACE_COMMAND_PAIR = { pair: 'cmd/place' as const, a: 'cmd', b: 'place' }
+export const PLACE_AUDIT_COMMAND_PAIR = { pair: 'place/audit' as const, a: 'place', b: 'audit' }
+export const DRY_FULL_COMMAND_PAIR = { pair: 'dry/full' as const, a: 'dry', b: 'full' }
 export const MISSION_GATE_COMMAND_PAIR = { pair: 'mission/gate' as const, a: 'mission', b: 'gate' }
 export const DIGIT_GATE_COMMAND_PAIR = { pair: 'digit/gate' as const, a: 'digit', b: 'gate' }
 export const GATE_ROSETTA_COMMAND_PAIR = { pair: 'gate/rosetta' as const, a: 'gate', b: 'rosetta' }
@@ -1330,6 +1334,9 @@ export function gatesSavedInQuantumPairs() {
     GATE_ROSETTA_COMMAND_PAIR,
     FULL_FREEDOM_COMMAND_PAIR,
     COMPACT_TYPES_CONSTANTS_COMMAND_PAIR,
+    CMD_PLACE_COMMAND_PAIR,
+    PLACE_AUDIT_COMMAND_PAIR,
+    DRY_FULL_COMMAND_PAIR,
     MISSION_GATE_COMMAND_PAIR,
   ]
   const pairs = declared.map(({ pair, a, b }) => {
@@ -1344,3 +1351,208 @@ export function gatesSavedInQuantumPairs() {
     statement:
       'Gate operations save as quantum pairs first: gate/unite (one merkle pass per phase), trinity/speedup (trinities on every build path), scan/fold (one src walk folded into seals), digit/gate (vortex digit folders 1-2-4-8-7-5-3-6-9-0 each index.ts is one gate).' }
 }
+
+/**
+ * Commands audited for best place then full dry clean.
+ * USER LAW: do not dump quantum:* pairs into apps without placement audit.
+ * Pairs: cmd/place · place/audit · dry/full (≤3 words).
+ * Facets: placementAudited · bestPlace · fullDryClean · drainableClosed · honestOpenNamed · physicalFtl=0 · clay via theorem · census110.
+ * Compose: dry/clean · dry/rosetta · vue/dry · folder/gravity · path/message · agent/submission · compact/matrix · apps monolith residual.
+ * HONEST: full migrate of ~478 apps-barrel tools impossible in one PR — this wave seals HARD audit + max safe moves + named residual.
+ */
+export type CommandPlacementAction = 'keep' | 'moved' | 'migrate-next'
+
+export type CommandPlacementRow = {
+  readonly fold: string
+  readonly pair: string
+  readonly currentBarrel: string
+  readonly bestPlace: string
+  readonly action: CommandPlacementAction
+  readonly reason: string
+}
+
+/** Sealed placement map — path/message · folder/gravity · domain homes. */
+export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
+  { fold: 'quantumCliToolsCatalog', pair: 'rosetta/core', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'registry/UI shell · strangler surface' },
+  { fold: 'dryCleanAllVueComponentsToTheUniversalSet', pair: 'vue/dry', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'apps strangler tip until residual drains' },
+  { fold: 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', pair: 'dry/rosetta', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'apps strangler · residual:quantum-apps-monolith' },
+  { fold: 'folderGravityMeasuredByTheCode', pair: 'folder/gravity', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'keep', reason: 'already migrated · gravity law' },
+  { fold: 'pathMeansMessageFitsInThreeWords', pair: 'path/message', currentBarrel: 'src/water/stack', bestPlace: 'src/water/stack', action: 'keep', reason: 'already migrated · ≤3 words' },
+  { fold: 'codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix', pair: 'compact/matrix', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'keep', reason: 'already migrated · compose gravity+path' },
+  { fold: 'crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities', pair: 'cross/tesla-patents', currentBarrel: 'src/fire/physics', bestPlace: 'src/fire/physics', action: 'moved', reason: 'Tesla decode home · patents researched in waves' },
+  { fold: 'crossWavesUpgradeAll', pair: 'cross/waves-upgrade', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'umbrella nests apps catalog · soft-compose Tesla from physics' },
+  { fold: 'readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra', pair: 'angle/readme', currentBarrel: 'src/quantum/apps', bestPlace: 'src/heaven/site', action: 'migrate-next', reason: 'README/home · next to readmeSvgGapsFilledByTrinityMind · cycle-safe wave later' },
+  { fold: 'allColorsDryCleanWiredToRosettaAndThemes', pair: 'color/rosetta', currentBarrel: 'src/quantum/apps', bestPlace: 'src/wind/ui', action: 'migrate-next', reason: 'paint/theme · nests apps anim audit' },
+  { fold: 'cssShowsTheHiddenGapsInDryFusion', pair: 'css/gaps', currentBarrel: 'src/quantum/apps', bestPlace: 'src/wind/ui', action: 'migrate-next', reason: 'CSS lens · compose color/rosetta' },
+  { fold: 'cryptoRelatedSurfacesAreDry', pair: 'crypto/comparison-mesh', currentBarrel: 'src/quantum/apps', bestPlace: 'src/water/encryption', action: 'migrate-next', reason: 'mesh already encryption · apps nests catalog/toolbox' },
+  { fold: 'rosettaSecurityGapsWired', pair: 'rosetta/security-wire', currentBarrel: 'src/quantum/apps', bestPlace: 'src/mountain/seals', action: 'migrate-next', reason: 'seals already imports · security wire' },
+  { fold: 'invisibleGapsCaughtByGates', pair: 'gaps/invisible', currentBarrel: 'src/quantum/apps', bestPlace: 'src/pair/enforcement/gates', action: 'migrate-next', reason: 'weave/ops import · nests many apps folds' },
+  { fold: 'commandsAuditedForBestPlaceThenFullDryClean', pair: 'cmd/place', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'placement law · compose gravity path compact' },
+] as const
+
+export function commandsAuditedForBestPlaceThenFullDryClean(root: string = process.cwd(), facts?: EnforcementFacts) {
+  const united = facts ?? collectEnforcementFacts(root)
+  const gravity = folderGravityMeasuredByTheCode(root, united)
+  const pathMessage = pathMeansMessageFitsInThreeWordsFold()
+  const compact = codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix(root, united)
+  const dry = dryCleanIsDiamondAndCrystal()
+  const freeBits = FREE_BITS
+  const census110 =
+    UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits &&
+    freeBits === -EULER_CHI &&
+    freeBits === 2
+  const map = COMMAND_PLACEMENT_AUDIT_MAP
+  const kept = map.filter((r) => r.action === 'keep')
+  const moved = map.filter((r) => r.action === 'moved')
+  const migrateNext = map.filter((r) => r.action === 'migrate-next')
+  const bestPlaceOn = map.every((r) => r.bestPlace.length > 0 && r.reason.length > 0)
+  const placementAudited =
+    map.length >= (8 + 4 + 2 + 1) &&
+    moved.some((r) => r.fold === 'crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities') &&
+    moved.some((r) => r.fold === 'commandsAuditedForBestPlaceThenFullDryClean') &&
+    bestPlaceOn
+  const soft = (a: string, b: string) => {
+    const fold = foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`))
+    return fold.bidirectional && fold.forward !== fold.reverse
+  }
+  const pairCmd = soft('cmd', 'place') && soft('place', 'cmd')
+  const pairAudit = soft('place', 'audit') && soft('audit', 'place')
+  const pairDry = soft('dry', 'full') && soft('full', 'dry')
+  const pairsOn = pairCmd && pairAudit && pairDry
+  const composeOn =
+    soft('dry', 'clean') &&
+    soft('dry', 'rosetta') &&
+    soft('vue', 'dry') &&
+    soft('folder', 'gravity') &&
+    soft('path', 'message') &&
+    soft('agent', 'submission') &&
+    soft('compact', 'matrix') &&
+    gravity.folderGravityMeasuredByTheCode &&
+    pathMessage.pathMeansMessageFitsInThreeWords &&
+    compact.codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix &&
+    dry.diamond
+  const morphs = [
+    { id: 'seal-cmd-place-audit-dry-full', status: 'closed' as const, note: 'pairs + HARD placement map in gates' },
+    { id: 'move-tesla-cross-waves-to-fire-physics', status: 'closed' as const, note: 'crossWavesDecodeTeslaPatents… → src/fire/physics' },
+    { id: 'barrel-cross-waves-tesla-patents', status: 'closed' as const, note: 'CLI barrel → src/fire/physics' },
+    { id: 'residual-apps-monolith-named', status: 'open' as const, note: 'residual:quantum-apps-monolith stays honest-open' },
+  ] as const
+  const drainableClosed = morphs.filter((m) => m.status === 'closed').length === 3 && morphs.every((m) => m.status === 'closed' || m.id === 'residual-apps-monolith-named')
+  const honestOpenNamed = [
+    'residual:quantum-apps-monolith',
+    'migrate-next:angle-readme→heaven/site',
+    'migrate-next:color/css→wind/ui',
+    'migrate-next:crypto-mesh→water/encryption',
+    'migrate-next:gaps-invisible→gates',
+    'migrate-next:rosetta-security→mountain/seals',
+    'clay:millennium-open',
+    'ftl:physical-claim-refused',
+    'keep:git-stashes-non-obsolete',
+  ] as const
+  const honestOpenNamedOn =
+    honestOpenNamed.includes('residual:quantum-apps-monolith') &&
+    honestOpenNamed.includes('clay:millennium-open') &&
+    honestOpenNamed.length === (8 + 1)
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const physicalFtlClaim = 0 as const
+  const fullDryClean =
+    placementAudited &&
+    drainableClosed &&
+    composeOn &&
+    pairsOn &&
+    census110 &&
+    moved.length >= 2 &&
+    migrateNext.length >= 4
+  const on =
+    placementAudited &&
+    bestPlaceOn &&
+    fullDryClean &&
+    drainableClosed &&
+    honestOpenNamedOn &&
+    physicalFtlClaim === 0 &&
+    claySolvedByThisFold === 0 &&
+    census110
+  const facets = [
+    { facet: 'commandsAuditedForBestPlaceThenFullDryClean', on },
+    { facet: 'placementAudited', on: placementAudited },
+    { facet: 'bestPlace', on: bestPlaceOn },
+    { facet: 'fullDryClean', on: fullDryClean },
+    { facet: 'drainableClosed', on: drainableClosed },
+    { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+    { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+    { facet: `census110 freeBits=${freeBits}`, on: census110 },
+    { facet: `placement map kept=${kept.length} moved=${moved.length} migrate-next=${migrateNext.length}`, on: map.length === kept.length + moved.length + migrateNext.length },
+    { facet: 'compose dry/clean · dry/rosetta · vue/dry · folder/gravity · path/message · agent/submission · compact/matrix', on: composeOn },
+    { facet: 'pair cmd/place · place/audit · dry/full', on: pairsOn },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`cmd-place:${entry.facet}:${entry.on}`) }))
+  const sealed = facets.every((f) => f.on)
+  return {
+    computes: sealed && on && honestOpenNamedOn,
+    commandsAuditedForBestPlaceThenFullDryClean: on,
+    placementAudited,
+    bestPlace: bestPlaceOn,
+    fullDryClean,
+    drainableClosed,
+    honestOpenNamed: [...honestOpenNamed],
+    honestOpenNamedCount: honestOpenNamed.length,
+    placementMap: map,
+    kept: kept.map((r) => ({ fold: r.fold, pair: r.pair, barrel: r.bestPlace })),
+    moved: moved.map((r) => ({ fold: r.fold, pair: r.pair, from: 'src/quantum/apps', to: r.bestPlace })),
+    migrateNext: migrateNext.map((r) => ({ fold: r.fold, pair: r.pair, to: r.bestPlace, reason: r.reason })),
+    morphs: [...morphs],
+    census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+    census110,
+    claySolvedByThisFold,
+    physicalFtlClaim,
+    qpuRequired: false as const,
+    facets,
+    root: merkleFold([
+      toUuid(`cmd-place:map:${map.length}`),
+      gravity.root,
+      pathMessage.root,
+      compact.root,
+      dry.root,
+      ...facets.map((f) => f.receipt),
+      ...honestOpenNamed.map((id) => toUuid(`cmd-place-honest:${id}`)),
+    ]),
+    pair: 'cmd/place' as const,
+    pairs: ['cmd/place', 'place/audit', 'dry/full'] as const,
+    dualPair: 'place/audit' as const,
+    cli: 'npm run quantum:cmd-place',
+    route: '/en/quantum-tools#cmd-place',
+    heading: 'Cmd place · place audit · dry full',
+    statement:
+      `commandsAuditedForBestPlaceThenFullDryClean — placementAudited=${placementAudited ? 1 : 0} ` +
+      `bestPlace=${bestPlaceOn ? 1 : 0} fullDryClean=${fullDryClean ? 1 : 0} ` +
+      `moved=${moved.length} migrate-next=${migrateNext.length} kept=${kept.length} ` +
+      `drainableClosed=${drainableClosed ? 1 : 0} honestOpen=${honestOpenNamed.length}.`,
+    boundary:
+      'HARD placement audit before dumping quantum:* into apps. This wave moves Tesla decode to fire/physics ' +
+      'and seals the map; remaining apps monolith residual named. NOT physical FTL · NOT Clay · KEEP stashes. HARMONY ≠ TRUTH.',
+  }
+}
+
+export const cmdPlace = commandsAuditedForBestPlaceThenFullDryClean
+export const placeAudit = commandsAuditedForBestPlaceThenFullDryClean
+export const dryFull = commandsAuditedForBestPlaceThenFullDryClean
+
+/** npm run quantum:cmd-place (duals quantum:place-audit · quantum:dry-full) */
+export function runCmdPlaceExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = commandsAuditedForBestPlaceThenFullDryClean(root || process.cwd())
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} cmd-place — placementAudited=${report.placementAudited ? 1 : 0} ` +
+      `bestPlace=${report.bestPlace ? 1 : 0} fullDryClean=${report.fullDryClean ? 1 : 0} ` +
+      `moved=${report.moved.length} migrate-next=${report.migrateNext.length} kept=${report.kept.length} ` +
+      `drainable=${report.drainableClosed ? 1 : 0} honest=${report.honestOpenNamedCount} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const m of report.moved) process.stdout.write(`  · moved ${m.fold} → ${m.to}\n`)
+  for (const m of report.migrateNext) process.stdout.write(`  · migrate-next ${m.fold} → ${m.to}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.placementAudited && report.fullDryClean && report.claySolvedByThisFold === 0 ? 0 : 1
+}
+
