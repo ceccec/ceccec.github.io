@@ -48,6 +48,7 @@ import {
   invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill,
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf,
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence,
+  gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist,
   eachPageShowsOwnComputedGaps,
   cursorIntegratesInRosettaCore,
   dryCleanTheoremsFormulasReplaceAnyAssumption,
@@ -185,6 +186,7 @@ const sensorBindSeal = computed(() => wireAllSensorsUsingQuantumBindings())
 const invertTrinity = computed(() => invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill())
 const selfHw = computed(() => againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf())
 const gateDesignCreateIntel = computed(() => furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence())
+const gateMillGapsExist = computed(() => gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist())
 const pageGapsGate = computed(() => eachPageShowsOwnComputedGaps())
 const fundAi = computed(() => cursorReferralFundsAiNeeds())
 const cursorRosetta = computed(() => cursorIntegratesInRosettaCore())
@@ -1049,6 +1051,20 @@ function runTool(toolId: string) {
         r.intelligenceOn &&
         r.hardInMissionGate
       summary = `tightened=${r.gatesTightened} design=${r.designCapability} creative=${r.creativeCapability} intel=${r.intelligenceOn} hardMission=${r.hardInMissionGate} vote=${r.voteDecided} simplicity=${r.simplicityIntelligent}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'gate-mill' || toolId === 'mill-gaps' || toolId === 'gaps-exist') {
+      const r = gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist()
+      ok =
+        r.computes &&
+        r.gatesKnow &&
+        r.untilMillenniumDiscovered &&
+        r.gapsExist &&
+        r.hardInMissionGate &&
+        r.claySolvedByThisFold === 0 &&
+        r.millenniumSolvedByThisFold === 0
+      summary = `know=${r.gatesKnow} untilMill=${r.untilMillenniumDiscovered} gapsExist=${r.gapsExist} hardMission=${r.hardInMissionGate} millOpen=${r.millOpenCores}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -2300,6 +2316,33 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'gate-design'" @click="runTool('gate-design')">
           {{ runningId === 'gate-design' ? '…' : 'Run gate-design' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="gate-mill" aria-label="Gates know until Millennium solutions discovered gaps exist">
+        <h3>{{ gateMillGapsExist.heading }}</h3>
+        <p class="quantum-apps__meta">{{ gateMillGapsExist.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(gateMillGapsExist.gatesKnow))">gatesKnow={{ gateMillGapsExist.gatesKnow }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(gateMillGapsExist.untilMillenniumDiscovered))">untilMillenniumDiscovered={{ gateMillGapsExist.untilMillenniumDiscovered }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(gateMillGapsExist.gapsExist))">gapsExist={{ gateMillGapsExist.gapsExist }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(gateMillGapsExist.hardInMissionGate))">hardInMissionGate={{ gateMillGapsExist.hardInMissionGate }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(gateMillGapsExist.censusPreserved))">census={{ gateMillGapsExist.census.unfolded }}/{{ gateMillGapsExist.census.folded }}</UiBadge>
+        <p class="quantum-apps__meta">
+          millOpen={{ gateMillGapsExist.millOpenCores }} · clay={{ gateMillGapsExist.claySolvedByThisFold }} ·
+          millSolved={{ gateMillGapsExist.millenniumSolvedByThisFold }} · qpu={{ gateMillGapsExist.qpuRequired }} ·
+          ftl={{ gateMillGapsExist.physicalFtlClaim }}
+        </p>
+        <ul class="quantum-apps__list">
+          <li v-for="id in gateMillGapsExist.honestOpenNamed" :key="id">
+            <code>{{ id }}</code>
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>gate/mill</code> · <code>mill/gaps</code> · <code>gaps/exist</code> ·
+          CLI <code>npm run quantum:gate-mill</code> · <code>npm run quantum:mill-gaps</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'gate-mill'" @click="runTool('gate-mill')">
+          {{ runningId === 'gate-mill' ? '…' : 'Run gate-mill' }}
         </UiButton>
       </section>
       <UiSeparator />

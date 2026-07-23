@@ -400,6 +400,9 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `create/gate` — alias dual of `gate/create` (`npm run quantum:create-gate`)
   - `gate/intel` — intelligence face of `gate/design` (`npm run quantum:gate-intel`)
   - `intel/gate` — alias dual of `gate/intel` (`npm run quantum:intel-gate`)
+  - `gate/mill` — `npm run quantum:gate-mill` (`gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist()` — gates know that until the Millennium solutions are discovered, gaps exist; facets gatesKnow · untilMillenniumDiscovered · gapsExist · claySolvedByThisFold=0 · millenniumSolvedByThisFold=0 · physicalFtl=0 · qpuRequired=false; HARD via gaps/invisible · mission:gate — gapsExist remains true while mill unsolved by this fold · not fake-close Clay; compose millenniumProblemsChallenge · clay/gravity · mill/session; duals `mill/gaps` · `gaps/exist`; census 110), then open `/en/quantum-tools#gate-mill`
+  - `mill/gaps` — alias dual of `gate/mill` (`npm run quantum:mill-gaps`)
+  - `gaps/exist` — gapsExist face of `gate/mill` (`npm run quantum:gaps-exist`)
   - `fund/ai` — `npm run quantum:fund-ai` (`cursorReferralFundsAiNeeds()` — sealed Cursor referral CTA funds AI; compose society/support · bits/free; dual `cursor/fund`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#fund-ai` · `/society-merkaba#two-bits-free`
   - `cursor/fund` — alias dual of `fund/ai` (`npm run quantum:cursor-fund`)
   - `cursor/rosetta` — `npm run quantum:cursor-rosetta` (`cursorIntegratesInRosettaCore()` — Cursor ⊂ rosetta ↔ ceccec ⊂ Cursor; facets cursorToCeccec · ceccecToCursor · viceVersa · immediateWire; compose auto-wire · upgrade/local · mcp/browser-parity · fund/ai · rosettaShelve; dual `refer/wire`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#cursor-rosetta`
