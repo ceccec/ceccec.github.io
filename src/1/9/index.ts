@@ -155,11 +155,15 @@ export const BULGARIAN_PHRASES: readonly (readonly [string, string])[] = [
   ['Open Revolut', 'Отвори Revolut'],
   ['Hide text (i)', 'Скрий текста (i)'],
   ['Show text (i)', 'Покажи текста (i)'],
-  // Chrome titles — authored staticPages title.bg folded into phrase table (warn/all drainable)
+  // Chrome titles — authored staticPages title.bg folded into phrase table (warn/all · prose/theorem drainable)
   ['Heaven', 'Небе'],
   ['Human', 'Човек'],
   ['Earth', 'Земя'],
   ['Explore', 'Изследвай'],
+  ['Learn', 'Обучение'],
+  ['Show', 'Покажи'],
+  ['Heritage', 'Наследство'],
+  ['Nature', 'Природа'],
   ['Folding linear gives analog', 'Сгъването на линейното дава аналогово'],
   ['Simulations', 'Симулации'],
   ['Quantum Mind', 'Квантов ум'],

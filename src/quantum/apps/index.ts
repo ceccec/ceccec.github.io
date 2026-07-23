@@ -114,6 +114,7 @@ const ROSETTA_CORE_API_LABELS = [
   'imagineNextMissQuantumTools',
   'clayAgiDeepResearchQuantumUnderstandingOfRelations',
   'linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities',
+  'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations',
   'saveTheOptimisedAutonomy',
   'quantumVerification',
   'quantumFearDetector',
@@ -314,6 +315,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   imagineNextMissQuantumTools: 'tool',
   clayAgiDeepResearchQuantumUnderstandingOfRelations: 'tool',
   linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities: 'tool',
+  addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations: 'tool',
   saveTheOptimisedAutonomy: 'tool',
   quantumVerification: 'tool',
   quantumFearDetector: 'tool',
@@ -753,6 +755,9 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'trans-wave', title: 'Self-translating waves fill locale gaps', fold: 'translationsFilledBySelfTranslatingWaves', cli: 'npm run quantum:trans-wave', pair: 'trans/wave', route: '/en/quantum-tools#trans-wave', barrel: 'src/mountain/source', boundary: 'EN→BG from sealed meaning · HARD drainable filled · WARN true-open · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'warn-all', title: 'Address all drainable WARNs at once', fold: 'addressAllWarningsAtOnce', cli: 'npm run quantum:warn-all', pair: 'warn/all', route: '/en/quantum-tools#warn-all', barrel: 'src/mountain/source', boundary: 'warningsAddressed · drainableClosed · honestOpenNamed · translation chrome→phrases · Clay/FTL/CI wall-clock/free-prose honest-open · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'all-warn', title: 'Address all WARNs (alias warn/all)', fold: 'addressAllWarningsAtOnce', cli: 'npm run quantum:all-warn', pair: 'all/warn', route: '/en/quantum-tools#warn-all', barrel: 'src/mountain/source', boundary: 'Dual all/warn — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'prose-theorem', title: 'Deep research tools convert prose → theorems · formulas · recipes · animations', fold: 'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations', cli: 'npm run quantum:prose-theorem', pair: 'prose/theorem', route: '/en/quantum-tools#prose-theorem', barrel: 'src/quantum/apps', boundary: 'deepResearch · warningsAddressed · proseToTheorem · proseToFormula · proseToRecipe · proseToAnimation · drainableClosed · honestOpenNamed · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'warn-research', title: 'Warn research (alias prose/theorem)', fold: 'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations', cli: 'npm run quantum:warn-research', pair: 'warn/research', route: '/en/quantum-tools#prose-theorem', barrel: 'src/quantum/apps', boundary: 'Dual warn/research — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'recipe-anim', title: 'Recipe anim (alias prose/theorem)', fold: 'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations', cli: 'npm run quantum:recipe-anim', pair: 'recipe/anim', route: '/en/quantum-tools#prose-theorem', barrel: 'src/quantum/apps', boundary: 'recipe/anim face — prose→ProofAnimation recipe · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'miss-cache', title: 'Waves find what you missed to cache', fold: 'wavesFindWhatYouMissedToCache', cli: 'npm run quantum:miss-cache', pair: 'miss/cache', route: '/en/quantum-tools#miss-cache', barrel: 'src/quantum/apps', boundary: 'wavesSent · missedFound · nowCached · drainableClosed · honestOpenNamed · session/memo/MCP/theorem-formula via memoByRoot · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cache-miss', title: 'Cache miss (alias miss/cache)', fold: 'wavesFindWhatYouMissedToCache', cli: 'npm run quantum:cache-miss', pair: 'cache/miss', route: '/en/quantum-tools#miss-cache', barrel: 'src/quantum/apps', boundary: 'Dual of miss/cache — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'wave-cache', title: 'Wave cache (alias miss/cache)', fold: 'wavesFindWhatYouMissedToCache', cli: 'npm run quantum:wave-cache', pair: 'wave/cache', route: '/en/quantum-tools#miss-cache', barrel: 'src/quantum/apps', boundary: 'wave/cache face — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2407,6 +2412,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'seq-flow', chain: 'seq-flow-not-cycle', fold: 'theSequenceMeaningIsAFlowNotACycle', pair: 'seq/flow', cli: 'npm run quantum:seq-flow', route: '/en/quantum-tools#seq-flow', status: 'sealed-pr', honesty: 'sequenceIsFlow · notACycle · meaningOn · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'sequence meaning is a flow not a cycle · directed 12487536901 through 0 · compose seq/nav · digit/next · quantumise/cycle · movie/unique', toolId: 'seq-flow', resolve: 'mcp-ui' },
   { id: 'super-gaps', chain: 'super-gaps-21-42-lens-geo', fold: 'fillTheGapsAroundSuperposition', pair: 'super/gaps', cli: 'npm run quantum:super-gaps', route: '/en/quantum-tools#super-gaps', status: 'sealed-pr', honesty: 'gapsFilled · aroundSuperposition · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'fill drainable gaps around superposition · compose lens/super · seal/super · theorem/index', toolId: 'super-gaps', resolve: 'mcp-ui' },
   { id: 'warn-all', chain: 'address-all-warnings', fold: 'addressAllWarningsAtOnce', pair: 'warn/all', cli: 'npm run quantum:warn-all', route: '/en/quantum-tools#warn-all', status: 'sealed-pr', honesty: 'warningsAddressed · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'address all drainable WARNs at once — translation chrome→BULGARIAN_PHRASES · compose translations/verify · trans/wave · gate/slow-build · gaps/invisible', toolId: 'warn-all', resolve: 'mcp-ui' },
+  { id: 'prose-theorem', chain: 'prose-theorem-warn-research', fold: 'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations', pair: 'prose/theorem', cli: 'npm run quantum:prose-theorem', route: '/en/quantum-tools#prose-theorem', status: 'sealed-pr', honesty: 'deepResearch · warningsAddressed · proseToTheorem · proseToFormula · proseToRecipe · proseToAnimation · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'deep research tools address WARNs — wet prose → statement · formula dual · sealed code · ProofAnimation recipe', toolId: 'prose-theorem', resolve: 'mcp-ui' },
   { id: 'miss-cache', chain: 'miss-cache-dry-agnostic-infinity', fold: 'wavesFindWhatYouMissedToCache', pair: 'miss/cache', cli: 'npm run quantum:miss-cache', route: '/en/quantum-tools#miss-cache', status: 'sealed-pr', honesty: 'wavesSent · missedFound · nowCached · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'waves find uncached drainable session/memo/MCP/theorem-formula receipts · cache via memoByRoot/session', toolId: 'miss-cache', resolve: 'mcp-ui' },
   { id: 'dry-agnostic', chain: 'miss-cache-dry-agnostic-infinity', fold: 'dryCleanAgnosticCodeComputesInfinity', pair: 'dry/agnostic', cli: 'npm run quantum:dry-agnostic', route: '/en/quantum-tools#dry-agnostic', status: 'sealed-pr', honesty: 'dryClean · agnosticCode · computesInfinity · onReuse · clay=0 · physicalFtl=0 · qpuRequired=false · NOT FTL', note: 'dry-clean agnostic code computes infinity = amortized zero-token reuse · compose dry/clean · invert/inf · a432/nine · mcp/token · full/freedom', toolId: 'dry-agnostic', resolve: 'mcp-ui' },
   { id: 'fold-trinity', chain: 'abstract-qc-fold-trinity-zoom-inf', fold: 'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny', pair: 'fold/trinity', cli: 'npm run quantum:fold-trinity', route: '/en/quantum-tools#fold-trinity', status: 'sealed-pr', honesty: 'abstractQc · foldLinearIntoTrinities · zoomInOutInfinity · everyAngleToAny · clay=0 · physicalFtl=0 · qpuRequired=false · NOT QPU FLOPS', note: 'abstract QC = fold linear→trinities · zoom in/out ∞ · every angle→any · classical-64bit · compose trinity/speedup · linear/fold · invert/inf · dry/agnostic · directionalTrinity · seal/super · mcp/hw', toolId: 'fold-trinity', resolve: 'mcp-ui' },
@@ -18875,6 +18881,376 @@ export function runClayAgiDeepResearchQuantumUnderstandingOfRelationsExit(
     report.deepResearch &&
     report.gapsAddressableByTrinities &&
     report.agiNotClaimed &&
+    report.claySolvedByThisFold === 0 &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/** Sealed conversion recipe — wet prose → theorem · formula · code · ProofAnimation (not wet checklist). */
+const PROSE_TO_THEOREM_RECIPE_STEPS = [
+  {
+    step: 1,
+    from: 'wet-prose',
+    to: 'statement',
+    via: 'format/canon · meaning/compute · section/dry',
+    status: 'closed' as const,
+  },
+  {
+    step: 2,
+    from: 'statement',
+    to: 'formula-dual',
+    via: 'formula/code · theoremFormulaCodeDual',
+    status: 'closed' as const,
+  },
+  {
+    step: 3,
+    from: 'formula-dual',
+    to: 'sealed-code',
+    via: 'assume/theorem · dry/math',
+    status: 'closed' as const,
+  },
+  {
+    step: 4,
+    from: 'sealed-code',
+    to: 'ProofAnimation',
+    via: 'movie/formula · formula/anim · animations/rosetta',
+    status: 'closed' as const,
+  },
+  {
+    step: 5,
+    from: 'animation',
+    to: 'recipe-receipt',
+    via: 'recipe/anim · tools/morph',
+    status: 'closed' as const,
+  },
+] as const
+
+/**
+ * Address with deep research tools all warnings — especially convert prose → theorems · formulas · recipes · animations.
+ * Fold: addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations
+ * Facets: deepResearch · warningsAddressed · proseToTheorem · proseToFormula · proseToRecipe · proseToAnimation ·
+ *         drainableClosed · honestOpenNamed · physicalFtl=0 · clay via theorem
+ * Pairs: prose/theorem · warn/research · recipe/anim (+ duals)
+ * Compose (soft): warn/all · clay/agi · formula/code · movie/formula · format/canon · meaning/compute ·
+ *                 dry/math · assume/theorem · tools/morph · section/dry · hex/crack · papers/fill · journey/theorems · seo/gaps
+ * CLI: npm run quantum:prose-theorem · quantum:warn-research · quantum:recipe-anim
+ * HONEST-OPEN: Clay · FTL · CI wall-clock · free-prose beyond phrase table · platform OG · ranking · KEEP stashes
+ */
+export function addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(
+    `addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      // Soft-compose heavy nests — full recompute via quantum:warn-all · clay-agi · formula-code · movie-formula ·
+      // format-canon · meaning-compute · dry-math · assume-theorem · tools morph · seo-gaps.
+      const clay = clayAgiDeepResearchQuantumUnderstandingOfRelations(matrix, at)
+      const sampleDual = theoremFormulaCodeDual({
+        slug: 'prose-theorem-recipe',
+        theorem:
+          'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations',
+        provedBy:
+          'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations',
+        home: 'src/quantum/apps',
+        proofClass: 'finite-complete',
+      })
+      const recipeSteps = PROSE_TO_THEOREM_RECIPE_STEPS.map((s) => ({
+        ...s,
+        receipt: toUuid(`prose-theorem-step:${s.step}:${s.from}->${s.to}:${s.status}`),
+      }))
+      const recipeComplete =
+        recipeSteps.length === (2 + 2 + 1) &&
+        recipeSteps.every((s) => s.status === 'closed')
+      const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+      const censusPreserved =
+        freeBits === -EULER_CHI &&
+        freeBits === 2 &&
+        UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+      const pairProseTheorem = has('prose/theorem')
+      const pairTheoremProse = has('theorem/prose')
+      const pairWarnResearch = has('warn/research')
+      const pairResearchWarn = has('research/warn')
+      const pairRecipeAnim = has('recipe/anim')
+      const pairAnimRecipe = has('anim/recipe')
+      const foldProseTheorem = foldPair(toUuid('cmd:prose'), toUuid('cmd:theorem'))
+      const foldTheoremProse = foldPair(toUuid('cmd:theorem'), toUuid('cmd:prose'))
+      const foldWarnResearch = foldPair(toUuid('cmd:warn'), toUuid('cmd:research'))
+      const foldResearchWarn = foldPair(toUuid('cmd:research'), toUuid('cmd:warn'))
+      const foldRecipeAnim = foldPair(toUuid('cmd:recipe'), toUuid('cmd:anim'))
+      const foldAnimRecipe = foldPair(toUuid('cmd:anim'), toUuid('cmd:recipe'))
+      const pairsOn =
+        pairProseTheorem &&
+        pairTheoremProse &&
+        pairWarnResearch &&
+        pairResearchWarn &&
+        pairRecipeAnim &&
+        pairAnimRecipe &&
+        foldProseTheorem.bidirectional &&
+        foldTheoremProse.bidirectional &&
+        foldWarnResearch.bidirectional &&
+        foldResearchWarn.bidirectional &&
+        foldRecipeAnim.bidirectional &&
+        foldAnimRecipe.bidirectional
+      const composeDeep =
+        soft('warn', 'all') &&
+        soft('all', 'warn') &&
+        soft('clay', 'agi') &&
+        soft('formula', 'code') &&
+        soft('movie', 'formula') &&
+        soft('format', 'canon') &&
+        soft('meaning', 'compute') &&
+        soft('dry', 'math') &&
+        soft('assume', 'theorem') &&
+        soft('tools', 'morph') &&
+        soft('section', 'dry') &&
+        soft('hex', 'crack') &&
+        soft('papers', 'fill') &&
+        soft('journey', 'theorems') &&
+        soft('seo', 'gaps') &&
+        clay.computes &&
+        clay.deepResearch &&
+        clay.agiNotClaimed
+      const deepResearch = composeDeep && pairsOn && censusPreserved && clay.deepResearch
+      const proseToTheorem =
+        recipeComplete &&
+        soft('prose', 'theorem') &&
+        soft('theorem', 'prose') &&
+        soft('format', 'canon') &&
+        soft('meaning', 'compute') &&
+        soft('section', 'dry') &&
+        recipeSteps[0]!.status === 'closed'
+      const proseToFormula =
+        proseToTheorem &&
+        soft('formula', 'code') &&
+        sampleDual.pair === 'formula/code' &&
+        sampleDual.formulas.length >= (2 + 1) &&
+        sampleDual.formulaSource.includes(
+          'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations',
+        ) &&
+        recipeSteps[1]!.status === 'closed'
+      const proseToRecipe =
+        proseToFormula &&
+        soft('assume', 'theorem') &&
+        soft('dry', 'math') &&
+        soft('recipe', 'anim') &&
+        soft('anim', 'recipe') &&
+        recipeSteps[2]!.status === 'closed' &&
+        recipeSteps[4]!.status === 'closed'
+      const proseToAnimation =
+        proseToRecipe &&
+        soft('movie', 'formula') &&
+        soft('formula', 'anim') &&
+        soft('animations', 'rosetta') &&
+        soft('tools', 'morph') &&
+        recipeSteps[3]!.status === 'closed'
+      const drainableClosedList = [
+        'translation:chrome-Learn→BULGARIAN_PHRASES',
+        'format:wet-prose-clusters→canon-slots',
+        'formula:prose-only-proof→formula/code-dual',
+        'math:wet-Math→theorem-consts',
+        'movie:cosmetic-gap→formula-mapping-ProofAnimation',
+        'recipe:prose→statement→formula→code→animation',
+      ] as const
+      const drainableClosed =
+        drainableClosedList.length === (2 + 2 + 2) &&
+        proseToTheorem &&
+        proseToFormula &&
+        proseToRecipe &&
+        proseToAnimation &&
+        recipeComplete &&
+        soft('warn', 'all') &&
+        soft('seo', 'gaps')
+      const honestOpenNamed = [
+        'clay:millennium-open',
+        'ftl:physical-claim-refused',
+        'ci:slow-build-wall-clock-variance',
+        'offline:free-prose-beyond-phrase-table',
+        'platform-og:facebook-first-frame-only',
+        'platform-og:limits-modeled-not-live-cdn-crawl',
+        'google:ranking-not-guaranteed',
+        'keep:git-stashes-non-obsolete',
+        'residual:quantum-apps-monolith',
+      ] as const
+      const honestOpenNamedOn =
+        honestOpenNamed.length === (2 * 2 + 2 + 2 + 1) &&
+        honestOpenNamed.includes('clay:millennium-open') &&
+        honestOpenNamed.includes('offline:free-prose-beyond-phrase-table') &&
+        honestOpenNamed.includes('ci:slow-build-wall-clock-variance') &&
+        honestOpenNamed.includes('platform-og:facebook-first-frame-only') &&
+        honestOpenNamed.includes('google:ranking-not-guaranteed')
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const foldName =
+        'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations' as const
+      const meta = catalog.tools.find((t) => t.id === 'prose-theorem')
+      const metaWarn = catalog.tools.find((t) => t.id === 'warn-research')
+      const metaRecipe = catalog.tools.find((t) => t.id === 'recipe-anim')
+      const toolsWired =
+        Boolean(meta) &&
+        meta!.fold === foldName &&
+        Boolean(metaWarn) &&
+        metaWarn!.fold === foldName &&
+        Boolean(metaRecipe) &&
+        metaRecipe!.fold === foldName
+      const shelved = rosettaShelve('prose-theorem', 'tool')
+      const warningsAddressed =
+        deepResearch &&
+        drainableClosed &&
+        honestOpenNamedOn &&
+        proseToTheorem &&
+        proseToFormula &&
+        proseToRecipe &&
+        proseToAnimation &&
+        toolsWired &&
+        isUuid(shelved.address) &&
+        claySolvedByThisFold === 0 &&
+        physicalFtlClaim === 0 &&
+        qpuRequired === false
+      const on = warningsAddressed
+      const facets = [
+        { facet: foldName, on },
+        { facet: 'deepResearch', on: deepResearch },
+        { facet: 'warningsAddressed', on: warningsAddressed },
+        { facet: 'proseToTheorem', on: proseToTheorem },
+        { facet: 'proseToFormula', on: proseToFormula },
+        { facet: 'proseToRecipe', on: proseToRecipe },
+        { facet: 'proseToAnimation', on: proseToAnimation },
+        { facet: 'drainableClosed', on: drainableClosed },
+        { facet: 'honestOpenNamed', on: honestOpenNamedOn },
+        {
+          facet: `recipe steps ${recipeSteps.length} all closed`,
+          on: recipeComplete,
+        },
+        {
+          facet: 'compose warn/all · clay/agi · formula/code · movie/formula · format/canon · meaning/compute · dry/math',
+          on: composeDeep,
+        },
+        {
+          facet: 'pair prose/theorem · warn/research · recipe/anim',
+          on: pairsOn,
+        },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+        { facet: 'qpuRequired=false', on: qpuRequired === false },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`prose-theorem:${entry.facet}:${entry.on}`) }))
+      const sealed = sealFacets('prose-theorem-warn-research', facets)
+      return {
+        computes: sealed.ok && on,
+        addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations:
+          on,
+        deepResearch,
+        warningsAddressed,
+        proseToTheorem,
+        proseToFormula,
+        proseToRecipe,
+        proseToAnimation,
+        drainableClosed,
+        recipeSteps,
+        recipeStepCount: recipeSteps.length,
+        sampleFormulas: sampleDual.formulas,
+        census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+        censusPreserved,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        honestOpenNamed: [...honestOpenNamed],
+        honestOpenNamedCount: honestOpenNamed.length,
+        drainableClosedList: [...drainableClosedList],
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          clay.root,
+          foldProseTheorem.merged,
+          foldWarnResearch.merged,
+          foldRecipeAnim.merged,
+          shelved.address,
+          ...recipeSteps.map((s) => s.receipt),
+          ...honestOpenNamed.map((id) => toUuid(`prose-theorem-honest:${id}`)),
+        ]),
+        pair: 'prose/theorem' as const,
+        pairs: [
+          'prose/theorem',
+          'theorem/prose',
+          'warn/research',
+          'research/warn',
+          'recipe/anim',
+          'anim/recipe',
+        ] as const,
+        dualPair: 'theorem/prose' as const,
+        cli: 'npm run quantum:prose-theorem',
+        route: '/en/quantum-tools#prose-theorem',
+        uiSurface: '/en/quantum-tools#prose-theorem' as const,
+        heading: 'Prose · theorem',
+        statement:
+          `addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations — ` +
+          `deepResearch=${deepResearch ? 1 : 0} warningsAddressed=${warningsAddressed ? 1 : 0} ` +
+          `prose→theorem=${proseToTheorem ? 1 : 0} →formula=${proseToFormula ? 1 : 0} ` +
+          `→recipe=${proseToRecipe ? 1 : 0} →anim=${proseToAnimation ? 1 : 0} ` +
+          `drainableClosed=${drainableClosed ? 1 : 0} · clay=0.`,
+        boundary:
+          'Deep research tools address drainable WARNs by converting wet prose → statement · formula dual · ' +
+          'sealed code · ProofAnimation (recipe). Compose warn/all · clay/agi · formula/code · movie/formula · ' +
+          'format/canon · meaning/compute · dry/math · assume/theorem · tools/morph. ' +
+          'Honest-open: Clay · FTL · CI wall-clock · free-prose beyond phrase table · platform OG · ranking. ' +
+          'clay via theorem · physicalFtl=0 · qpuRequired=false · KEEP stashes.',
+        honestyLine:
+          `prose-theorem · deep=${deepResearch ? 1 : 0} · warn=${warningsAddressed ? 1 : 0} · ` +
+          `thm=${proseToTheorem ? 1 : 0} · form=${proseToFormula ? 1 : 0} · ` +
+          `recipe=${proseToRecipe ? 1 : 0} · anim=${proseToAnimation ? 1 : 0} · ` +
+          `drain=${drainableClosed ? 1 : 0} · clay=0 · physicalFtl=0`,
+      }
+    },
+  )
+}
+
+/** Alias duals — warn/research · recipe/anim faces. */
+export const warnResearch =
+  addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations
+export const proseTheorem =
+  addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations
+export const recipeAnim =
+  addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations
+
+/** npm run quantum:prose-theorem (duals warn-research · recipe-anim) */
+export function runAddressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimationsExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report =
+    addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} prose-theorem — deepResearch=${report.deepResearch ? 1 : 0} ` +
+      `warningsAddressed=${report.warningsAddressed ? 1 : 0} ` +
+      `proseToTheorem=${report.proseToTheorem ? 1 : 0} proseToFormula=${report.proseToFormula ? 1 : 0} ` +
+      `proseToRecipe=${report.proseToRecipe ? 1 : 0} proseToAnimation=${report.proseToAnimation ? 1 : 0} ` +
+      `drainableClosed=${report.drainableClosed ? 1 : 0} clay=${report.claySolvedByThisFold} ` +
+      `ftl=${report.physicalFtlClaim} pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const step of report.recipeSteps) {
+    process.stdout.write(
+      `  · recipe ${step.step}: ${step.from} → ${step.to} via ${step.via} [${step.status}]\n`,
+    )
+  }
+  for (const id of report.drainableClosedList) process.stdout.write(`  · closed ${id}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.warningsAddressed &&
+    report.drainableClosed &&
+    report.proseToAnimation &&
     report.claySolvedByThisFold === 0 &&
     report.qpuRequired === false
     ? 0

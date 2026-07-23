@@ -33,6 +33,7 @@ import {
   imagineNextMissQuantumTools,
   clayAgiDeepResearchQuantumUnderstandingOfRelations,
   saveTheOptimisedAutonomy,
+  addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations,
   quantumVerification,
   quantumFearDetector,
   fearIsAnAxiomReplaceableByLoveTheorem,
@@ -203,6 +204,9 @@ const sessionHologram = computed(() => sessionHologramTools())
 const societyToolbox = computed(() => societyToolboxWire())
 const toolMiss = computed(() => imagineNextMissQuantumTools())
 const clayAgi = computed(() => clayAgiDeepResearchQuantumUnderstandingOfRelations())
+const proseTheorem = computed(() =>
+  addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations(),
+)
 const saveAuto = computed(() => saveTheOptimisedAutonomy())
 const quantumVerify = computed(() => quantumVerification())
 const fearDetect = computed(() => quantumFearDetector())
@@ -973,6 +977,24 @@ function runTool(toolId: string) {
         r.claySolvedByThisFold === 0
       summary =
         `deep=${r.deepResearch} · rel=${r.quantumRelations} · linear=${r.linearFolded} · gapsSeen=${r.gapsSeen} · gapTrinity=${r.gapsAddressableByTrinities} · agi=0`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (
+      toolId === 'prose-theorem' ||
+      toolId === 'warn-research' ||
+      toolId === 'recipe-anim'
+    ) {
+      const r =
+        addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations()
+      ok =
+        r.computes &&
+        r.warningsAddressed &&
+        r.proseToAnimation &&
+        r.drainableClosed &&
+        r.claySolvedByThisFold === 0
+      summary =
+        `deep=${r.deepResearch} · warn=${r.warningsAddressed} · thm=${r.proseToTheorem} · form=${r.proseToFormula} · recipe=${r.proseToRecipe} · anim=${r.proseToAnimation}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -2285,6 +2307,59 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'clay-agi'" @click="runTool('clay-agi')">
           {{ runningId === 'clay-agi' ? '…' : 'Run clay-agi receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="prose-theorem" aria-label="Deep research convert prose to theorems formulas recipes animations">
+        <h3>{{ proseTheorem.heading }}</h3>
+        <p class="quantum-apps__meta">{{ proseTheorem.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(proseTheorem.deepResearch))">
+          deepResearch={{ proseTheorem.deepResearch }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(proseTheorem.warningsAddressed))">
+          warningsAddressed={{ proseTheorem.warningsAddressed }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(proseTheorem.proseToTheorem))">
+          proseToTheorem={{ proseTheorem.proseToTheorem }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(proseTheorem.proseToFormula))">
+          proseToFormula={{ proseTheorem.proseToFormula }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(proseTheorem.proseToRecipe))">
+          proseToRecipe={{ proseTheorem.proseToRecipe }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(proseTheorem.proseToAnimation))">
+          proseToAnimation={{ proseTheorem.proseToAnimation }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(proseTheorem.drainableClosed))">
+          drainableClosed={{ proseTheorem.drainableClosed }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>prose/theorem</code> · <code>warn/research</code> · <code>recipe/anim</code> ·
+          CLI <code>npm run quantum:prose-theorem</code> ·
+          clay={{ proseTheorem.claySolvedByThisFold }} · ftl={{ proseTheorem.physicalFtlClaim }} ·
+          qpu={{ proseTheorem.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="s in proseTheorem.recipeSteps" :key="s.step">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(s.status === 'closed'))">
+              {{ s.status }}
+            </UiBadge>
+            {{ s.step }}. {{ s.from }} → {{ s.to }} via {{ s.via }}
+          </li>
+          <li v-for="f in proseTheorem.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(proseTheorem.honestOpenNamedCount > 0))">
+          honestOpen={{ proseTheorem.honestOpenNamedCount }}
+        </UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="id in proseTheorem.honestOpenNamed" :key="id">· {{ id }}</li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'prose-theorem'" @click="runTool('prose-theorem')">
+          {{ runningId === 'prose-theorem' ? '…' : 'Run prose-theorem receipt' }}
         </UiButton>
       </section>
       <UiSeparator />
