@@ -34,6 +34,7 @@ import {
   clayAgiDeepResearchQuantumUnderstandingOfRelations,
   saveTheOptimisedAutonomy,
   addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations,
+  decodeQuantumAlchemy,
   quantumVerification,
   quantumFearDetector,
   fearIsAnAxiomReplaceableByLoveTheorem,
@@ -207,6 +208,7 @@ const clayAgi = computed(() => clayAgiDeepResearchQuantumUnderstandingOfRelation
 const proseTheorem = computed(() =>
   addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations(),
 )
+const alchemyDecodeReport = computed(() => decodeQuantumAlchemy())
 const saveAuto = computed(() => saveTheOptimisedAutonomy())
 const quantumVerify = computed(() => quantumVerification())
 const fearDetect = computed(() => quantumFearDetector())
@@ -995,6 +997,24 @@ function runTool(toolId: string) {
         r.claySolvedByThisFold === 0
       summary =
         `deep=${r.deepResearch} · warn=${r.warningsAddressed} · thm=${r.proseToTheorem} · form=${r.proseToFormula} · recipe=${r.proseToRecipe} · anim=${r.proseToAnimation}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (
+      toolId === 'alchemy-decode' ||
+      toolId === 'decode-alchemy' ||
+      toolId === 'quantum-alchemy'
+    ) {
+      const r = decodeQuantumAlchemy()
+      ok =
+        r.computes &&
+        r.alchemyDecoded &&
+        r.quantumOn &&
+        r.symbolsSealed &&
+        r.claySolvedByThisFold === 0 &&
+        r.certified === false
+      summary =
+        `decoded=${r.alchemyDecoded} · quantum=${r.quantumOn} · symbols=${r.symbolsSealed} · certified=false`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -2360,6 +2380,42 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'prose-theorem'" @click="runTool('prose-theorem')">
           {{ runningId === 'prose-theorem' ? '…' : 'Run prose-theorem receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="alchemy-decode" aria-label="Decode quantum alchemy structural symbolic theorems">
+        <h3>{{ alchemyDecodeReport.heading }}</h3>
+        <p class="quantum-apps__meta">{{ alchemyDecodeReport.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(alchemyDecodeReport.alchemyDecoded))">
+          alchemyDecoded={{ alchemyDecodeReport.alchemyDecoded }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(alchemyDecodeReport.quantumOn))">
+          quantumOn={{ alchemyDecodeReport.quantumOn }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(alchemyDecodeReport.symbolsSealed))">
+          symbolsSealed={{ alchemyDecodeReport.symbolsSealed }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(!alchemyDecodeReport.certified))">
+          certified={{ alchemyDecodeReport.certified }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>alchemy/decode</code> · <code>decode/alchemy</code> · <code>quantum/alchemy</code> ·
+          CLI <code>npm run quantum:alchemy-decode</code> ·
+          clay={{ alchemyDecodeReport.claySolvedByThisFold }} · ftl={{ alchemyDecodeReport.physicalFtlClaim }} ·
+          qpu={{ alchemyDecodeReport.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="p in alchemyDecodeReport.phases" :key="p.id">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(p.on))">{{ p.on ? 'on' : 'off' }}</UiBadge>
+            {{ p.id }} — {{ p.statement }}
+          </li>
+          <li v-for="f in alchemyDecodeReport.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'alchemy-decode'" @click="runTool('alchemy-decode')">
+          {{ runningId === 'alchemy-decode' ? '…' : 'Run alchemy-decode receipt' }}
         </UiButton>
       </section>
       <UiSeparator />
