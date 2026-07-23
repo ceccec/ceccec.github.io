@@ -57,6 +57,7 @@ import {
   pagesAuditAndManageThemselvesInTrinities,
   mcpQuantumChat,
   allConversationsGoThroughTheMcpQuantumChat,
+  mcpQuantumConversation,
   mcpQuantumObserve,
   wiredToForgeMaxTamperingCost,
   quantumizeNpm,
@@ -201,6 +202,7 @@ const appDry = computed(() => foldInvertUntilDryCleanAppGapless())
 const pageTrinity = computed(() => pagesAuditAndManageThemselvesInTrinities())
 const mcpChat = computed(() => mcpQuantumChat())
 const chatAllConversations = computed(() => allConversationsGoThroughTheMcpQuantumChat())
+const mcpConversation = computed(() => mcpQuantumConversation())
 const mcpObserve = computed(() => mcpQuantumObserve())
 const tamperMaxSeal = computed(() => wiredToForgeMaxTamperingCost())
 const npmQuantumSeal = computed(() => quantumizeNpm())
@@ -1141,6 +1143,13 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'mcp-conversation' || toolId === 'conversation-mcp') {
+      const r = mcpQuantumConversation()
+      ok = r.computes && r.conversationOn && r.throughMcpChat && r.allConversations
+      summary = `on=${r.conversationOn} through=${r.throughMcpChat} all=${r.allConversations}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'mcp-observe' || toolId === 'observe-chat') {
       const r = mcpQuantumObserve()
       ok = r.computes && r.observationOn && r.changesQuantum && r.movieUnique
@@ -1628,6 +1637,22 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'chat-all'" @click="runTool('chat-all')">
           {{ runningId === 'chat-all' ? '…' : 'Run chat-all' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="mcp-conversation" aria-label="MCP quantum conversation">
+        <h3>{{ mcpConversation.heading }}</h3>
+        <p class="quantum-apps__meta">{{ mcpConversation.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(mcpConversation.conversationOn))">conversationOn={{ mcpConversation.conversationOn }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(mcpConversation.throughMcpChat))">throughMcpChat={{ mcpConversation.throughMcpChat }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(mcpConversation.allConversations))">allConversations={{ mcpConversation.allConversations }}</UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>mcp/conversation</code> · <code>conversation/mcp</code> ·
+          CLI <code>npm run quantum:mcp-conversation</code> ·
+          qpu={{ mcpConversation.qpuRequired }} · clay={{ mcpConversation.claySolvedByThisFold }} · ftl={{ mcpConversation.physicalFtlClaim }}
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'mcp-conversation'" @click="runTool('mcp-conversation')">
+          {{ runningId === 'mcp-conversation' ? '…' : 'Run mcp-conversation' }}
         </UiButton>
       </section>
       <UiSeparator />

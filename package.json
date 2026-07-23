@@ -433,6 +433,8 @@
     "quantum:chat-all": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runAllConversationsGoThroughTheMcpQuantumChatExit",
     "quantum:conv-mcp": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runAllConversationsGoThroughTheMcpQuantumChatExit",
     "quantum:talk-chat": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runAllConversationsGoThroughTheMcpQuantumChatExit",
+    "quantum:mcp-conversation": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumConversationExit",
+    "quantum:conversation-mcp": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumConversationExit",
     "quantum:mcp-observe": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumObserveExit",
     "quantum:observe-chat": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpQuantumObserveExit",
     "quantum:tamper-max": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runWiredToForgeMaxTamperingCostExit",
