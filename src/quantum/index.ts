@@ -26,7 +26,7 @@ import type { MindMatrix } from '../wind/types'
 import { doubleTorusEarthHingeComputesAll, bothEarthsAreOneWhiteBlackHoleThroatProvenByMath } from '../water/double/earth'
 import { type BothEarthsMerkabaRotation } from '../mountain/geometry'
 import { quantumProjectionParams, type QuantumProjection } from './apps'
-import { FIBONACCI, GOLDEN_ANGLE, GOLDEN_ANGLE_RAD, PHI, ROSETTA_RAYS, TAU } from '../3/7'
+import { FIBONACCI, GOLDEN_ANGLE, GOLDEN_ANGLE_RAD, PHI, ROSETTA_RAYS, ROSETTA_SEVEN, TAU } from '../3/7'
 
 const PLASMA_TIERS = [3, 5, 8] as const
 
@@ -659,11 +659,114 @@ export interface SharedHeroCopy {
 }
 
 /**
+ * Device / pointer sample for movie perspective — DeviceOrientation · DeviceMotion · pointer fallback.
+ * HONEST: browserGap when permission denied / API unavailable.
+ */
+export interface DeviceSensorSample {
+  readonly alpha?: number
+  readonly beta?: number
+  readonly gamma?: number
+  readonly ax?: number
+  readonly ay?: number
+  readonly az?: number
+  readonly px?: number
+  readonly py?: number
+  readonly permission?: 'granted' | 'denied' | 'prompt' | 'unavailable'
+}
+
+/** Rosetta perspective bias folded into sharedHeroAt seed/hue. */
+export interface MoviePerspectiveBias {
+  readonly seedBias?: string
+  readonly hueBias?: number
+  readonly ray?: number
+  readonly source?: 'orientation' | 'motion' | 'pointer' | 'none'
+  readonly browserGap?: boolean
+}
+
+/**
+ * Map device sensors (or pointer fallback) → rosetta ray + hue/seed bias for the movie.
+ * Pure · deterministic · SSR-safe. browserGap when permission denied or APIs unavailable.
+ */
+export function deviceSensorPerspectiveAt(sample: DeviceSensorSample = {}): {
+  readonly ray: number
+  readonly hueBias: number
+  readonly seedBias: string
+  readonly source: 'orientation' | 'motion' | 'pointer' | 'none'
+  readonly browserGap: boolean
+} {
+  const perm = sample.permission ?? 'unavailable'
+  const deniedOrMissing = perm === 'denied' || perm === 'unavailable'
+  const hasOrient =
+    typeof sample.alpha === 'number' || typeof sample.beta === 'number' || typeof sample.gamma === 'number'
+  const hasMotion =
+    typeof sample.ax === 'number' || typeof sample.ay === 'number' || typeof sample.az === 'number'
+  const hasPointer = typeof sample.px === 'number' || typeof sample.py === 'number'
+  if (hasOrient && perm === 'granted') {
+    const a = (((sample.alpha ?? 0) % 360) + 360) % 360
+    const b = sample.beta ?? 0
+    const g = sample.gamma ?? 0
+    const ray = Math.floor((((a / 360) * ROSETTA_SEVEN) % ROSETTA_SEVEN + ROSETTA_SEVEN) % ROSETTA_SEVEN)
+    const hueBias = Math.floor((((b + g) % 360) + 360) % 360)
+    return {
+      ray,
+      hueBias,
+      seedBias: `orient:${ray}:${hueBias}`,
+      source: 'orientation' as const,
+      browserGap: false,
+    }
+  }
+  if (hasMotion && (perm === 'granted' || perm === 'prompt')) {
+    const ax = sample.ax ?? 0
+    const ay = sample.ay ?? 0
+    const az = sample.az ?? 0
+    const mag = Math.abs(ax) + Math.abs(ay) + Math.abs(az)
+    const ray = Math.floor((mag * ROSETTA_SEVEN) % ROSETTA_SEVEN)
+    const hueBias = Math.floor((((ax * (9 * 5) + ay * (9 * 4) + az * 9) % 360) + 360) % 360)
+    return {
+      ray,
+      hueBias,
+      seedBias: `motion:${ray}:${hueBias}`,
+      source: 'motion' as const,
+      browserGap: false,
+    }
+  }
+  if (hasPointer) {
+    const px = Math.min(1, Math.max(0, sample.px ?? 0))
+    const py = Math.min(1, Math.max(0, sample.py ?? 0))
+    const ray = Math.floor((px * ROSETTA_SEVEN) % ROSETTA_SEVEN)
+    const hueBias = Math.floor((py * 360) % 360)
+    return {
+      ray,
+      hueBias,
+      seedBias: `pointer:${ray}:${hueBias}`,
+      source: 'pointer' as const,
+      browserGap: deniedOrMissing,
+    }
+  }
+  return {
+    ray: 0,
+    hueBias: 0,
+    seedBias: 'none',
+    source: 'none' as const,
+    browserGap: true,
+  }
+}
+
+/**
+ * Observation receipt for the movie at absolute `at` — unique never-repeats identity.
+ * Field `root` may be phase-stable; observation folds absolute time so same phase ≠ same observation.
+ */
+export function movieObservationReceipt(route: string, seed: number, at: number): string {
+  return toUuid(`movie-observe:${route || '/'}:${seed}:${Math.floor(at)}`)
+}
+
+/**
  * Resolved hero + movie state at one instant — deterministic from route, copy, and `at`.
  * This IS the one animation field every surface reads: the background movie, the on-top app
  * projections (QuantumAppFrame ⊂ this), and the per-page hero are all PROJECTIONS of it.
- * `root` is the field's content-address (route + content + seed) — stable across the phase cycle,
- * so layers/perspectives key off it without recomputing per frame.
+ * `root` is the field's content-address (route + content + seed [+ perspective]) — stable across
+ * the phase cycle for layer keying; `observationRoot` folds absolute `at` so the movie never
+ * repeats under observation (phase coincidence ≠ observation identity).
  */
 export interface SharedHeroState {
   route: string
@@ -683,8 +786,14 @@ export interface SharedHeroState {
   cssWidth: number
   /** Document scroll offset (CSS px) — the field lives in DOCUMENT space; the fixed canvas is a camera. */
   scroll: number
-  /** Content-address of the field's identity (route + folded copy + seed). */
+  /** Content-address of the field's identity (route + folded copy + seed [+ perspective]). */
   root: string
+  /** Unique observation receipt — includes absolute `at`; never equals across distinct wall times. */
+  observationRoot: string
+  /** Optional rosetta ray from device/pointer perspective. */
+  perspectiveRay?: number
+  /** Optional perspective source (orientation · motion · pointer · none). */
+  perspectiveSource?: 'orientation' | 'motion' | 'pointer' | 'none'
 }
 
 /**
@@ -779,7 +888,7 @@ export function rosettaPerspectiveFold(ray: number, field: AnimationField): Rose
     root: toUuid(`rosetta-perspective:${field.root}:${r}`) }
 }
 
-export { HERO_CYCLE_MS } from '../fire/plasma/ball'
+export { HERO_CYCLE_MS, heroPhaseAt } from '../fire/plasma/ball'
 
 export function sharedHeroAt(
   route: string,
@@ -789,6 +898,7 @@ export function sharedHeroAt(
   reduce = false,
   dark = true,
   scroll = 0,
+  perspective?: MoviePerspectiveBias,
 ): SharedHeroState {
   const path = route || '/'
   const p = heroPhaseAt(at)
@@ -798,12 +908,16 @@ export function sharedHeroAt(
   const fusedCopy = typeof window !== 'undefined'
     ? clientMovieSeedCopyText(path, matrix)
     : allMovieSeedCopyText(path, matrix)
-  const movieText = [movieTextFromCopy(copy), fusedCopy, path].filter(Boolean).join(' ')
+  const seedBias = perspective?.seedBias && perspective.seedBias !== 'none' ? perspective.seedBias : ''
+  const movieText = [movieTextFromCopy(copy), fusedCopy, path, seedBias].filter(Boolean).join(' ')
   const seed = seedOf(movieText)
   const wired = plasmaMovieStreams(path, movieText, matrix)
   const palette = plasmaMoviePalette(matrix, path, true, dark)
   const computePaint = realtimeComputationsMoviePaint(at, path, matrix)
-  const hue = (heroMoviePhaseHue(path, p, matrix) + computePaint.hueShift) % 360
+  const hueBias = typeof perspective?.hueBias === 'number' ? perspective.hueBias : 0
+  const hue = (heroMoviePhaseHue(path, p, matrix) + computePaint.hueShift + hueBias) % 360
+  const fieldRoot = toUuid(`animation-field:${path}:${seed}${seedBias ? `:${seedBias}` : ''}`)
+  const observationRoot = movieObservationReceipt(path, seed, at)
   return {
     route: path,
     at,
@@ -820,7 +934,11 @@ export function sharedHeroAt(
     dark,
     cssWidth,
     scroll,
-    root: toUuid(`animation-field:${path}:${seed}`) }
+    root: fieldRoot,
+    observationRoot,
+    perspectiveRay: perspective?.ray,
+    perspectiveSource: perspective?.source,
+  }
 }
 
 /** Page copy folded to one movie/subtitle seed string. */
@@ -1257,7 +1375,9 @@ function drawTaijiProjection(ctx: CanvasRenderingContext2D, w: number, h: number
     dark: frame.palette.dark,
     cssWidth: frame.cssWidth,
     scroll: 0,
-    root: toUuid(`taiji-field:${frame.hue}:${Math.floor(frame.p * (5 * 2 * 100))}`) }
+    root: toUuid(`taiji-field:${frame.hue}:${Math.floor(frame.p * (5 * 2 * 100))}`),
+    observationRoot: movieObservationReceipt('/en/#yinyang', Math.floor(frame.hue), 0),
+  }
   const ray = VORTEX_SEQUENCE[Math.floor(frame.p * VORTEX_SEQUENCE.length) % VORTEX_SEQUENCE.length]! % 7
   const view = rosettaPerspectiveFold(ray, field)
   const yinHue = view.hue % 360

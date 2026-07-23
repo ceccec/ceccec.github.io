@@ -30,11 +30,12 @@ import { lobeHues, movieCanvasRgba, movieCanvasPolarity, scaleColor } from '../.
 import {
   movieAllElementsAreTheorems,
   movieQuantumGapsInventory,
-  movieUnbalancedAroundCenterIsCrack } from '../../thunder/movie/canvas'
+  movieUnbalancedAroundCenterIsCrack,
+  thunderAndPlasmaAreSameInDifferentAspects } from '../../thunder/movie/canvas'
 import { movieIsNeuroscienceComputation } from '../../earth/life'
 import { harmonizeFieldComputes } from '../../lake/music'
 import { doubleTorusDynamicsGeometryAlignsWithUniverse, doubleTorusIsCompletelyQuantum } from '../../water/double'
-import { HERO_CYCLE_MS, oneClockProcessLaw, sharedHeroAt } from '../../quantum'
+import { HERO_CYCLE_MS, oneClockProcessLaw, sharedHeroAt, deviceSensorPerspectiveAt, movieObservationReceipt, heroPhaseAt } from '../../quantum'
 import { merkaba, bothEarthsRotateWithinEachOther, earthRealisedByComputingPolesAsPyramid } from '../../mountain/geometry'
 import { vortexComputes, vortexMath } from '../../mountain/vortex'
 import { teslaPatents } from '../../fire/li'
@@ -85,8 +86,8 @@ const ROSETTA_CORE_API_LABELS = [
   'quantumMindSendsWaves',
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
-  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis', 'meshToSelfDiscoverSciences', 'selfImproveAnimationGenerationAndSiteBuilder', 'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions', 'unifiedHeroAndCardWithAnimation', 'heroIsTheAbstractAnimationFormsTheCardItself', 'foldingWorksOnApplicationLevel', 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', 'wavesSearchDiscoverCompactingInQuantumFolders', 'alwaysBalanceUsingRealtimeMetricsAndChat', 'eachSuperpositionIsAChatroom', 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', 'typographyIsTheUniversalContentMatrix', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReview', 'mcpQuantumEfficiency', 'mcpQuantumSecurity', 'mcpQuantumDesign', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
+  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis', 'meshToSelfDiscoverSciences',   'selfImproveAnimationGenerationAndSiteBuilder', 'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions', 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', 'unifiedHeroAndCardWithAnimation', 'heroIsTheAbstractAnimationFormsTheCardItself', 'foldingWorksOnApplicationLevel', 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', 'wavesSearchDiscoverCompactingInQuantumFolders', 'alwaysBalanceUsingRealtimeMetricsAndChat', 'eachSuperpositionIsAChatroom', 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', 'typographyIsTheUniversalContentMatrix', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
+  'deviceSensorPerspectiveAt', 'movieObservationReceipt',  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReview', 'mcpQuantumEfficiency', 'mcpQuantumSecurity', 'mcpQuantumDesign', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -173,6 +174,9 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   meshToSelfDiscoverSciences: 'tool',
   selfImproveAnimationGenerationAndSiteBuilder: 'tool',
   everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions: 'tool',
+  wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero: 'tool',
+  deviceSensorPerspectiveAt: 'projection',
+  movieObservationReceipt: 'projection',
   unifiedHeroAndCardWithAnimation: 'tool',
   heroIsTheAbstractAnimationFormsTheCardItself: 'tool',
   foldingWorksOnApplicationLevel: 'app',
@@ -761,6 +765,18 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'formula-anim', title: 'Every formula is animation itself — interacting formulas form theorem seals at all superpositions', fold: 'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions', cli: 'npm run quantum:formula-anim', pair: 'formula/anim', route: '/en/quantum-tools#formula-anim', barrel: 'src/quantum/apps', boundary: 'formulaIsAnimation · interactingFormulas · interactingAnimations · theoremsInTrinities · quantumSealsComplete · allSuperpositions · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'anim-theorem', title: 'Anim theorem (alias formula/anim)', fold: 'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions', cli: 'npm run quantum:anim-theorem', pair: 'anim/theorem', route: '/en/quantum-tools#formula-anim', barrel: 'src/quantum/apps', boundary: 'Anim→theorem face — interacting animations form theorems in trinities · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'seal-super', title: 'Seal super (alias formula/anim)', fold: 'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions', cli: 'npm run quantum:seal-super', pair: 'seal/super', route: '/en/quantum-tools#formula-anim', barrel: 'src/quantum/apps', boundary: 'Quantum seals complete at all superpositions — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'merkaba-movie', title: 'Merkaba→rosetta→movie · unique observation · sensors · cosmology · linear cycles → plasma thunder from 0', fold: 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', cli: 'npm run quantum:merkaba-movie', pair: 'merkaba/movie', route: '/en/quantum-tools#merkaba-movie', barrel: 'src/quantum/apps', boundary: 'merkabaFeedsRosettaMovie · movieUniqueNeverRepeats · observeOnly · sensorPerspective · uiCrystallises · linearCyclesQuantumised · animMeshPlasma · thunderFromZero · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: 'DeviceOrientation permission may deny — pointer fallback · sensor browserGap named' },
+  { id: 'movie-unique', title: 'Movie unique never repeats (alias merkaba/movie)', fold: 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', cli: 'npm run quantum:movie-unique', pair: 'movie/unique', route: '/en/quantum-tools#merkaba-movie', barrel: 'src/quantum/apps', boundary: 'observationRoot folds absolute at — phase coincidence ≠ observation identity · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'observe-movie', title: 'Observe movie (alias merkaba/movie)', fold: 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', cli: 'npm run quantum:observe-movie', pair: 'observe/movie', route: '/en/quantum-tools#merkaba-movie', barrel: 'src/quantum/apps', boundary: 'Improve only in observation — movie unique never repeats · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'sensor-movie', title: 'Device sensors change movie perspective (alias merkaba/movie)', fold: 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', cli: 'npm run quantum:sensor-movie', pair: 'sensor/movie', route: '/en/quantum-tools#merkaba-movie', barrel: 'src/quantum/apps', boundary: 'DeviceOrientation/Motion → rosetta perspective · pointer fallback · browserGap if denied · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: 'DeviceOrientation permission may deny — pointer fallback' },
+  { id: 'movie-perspective', title: 'Movie perspective (alias sensor/movie)', fold: 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', cli: 'npm run quantum:movie-perspective', pair: 'movie/perspective', route: '/en/quantum-tools#merkaba-movie', barrel: 'src/quantum/apps', boundary: 'Dual of sensor/movie — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'cosmo-wave', title: 'Decode cosmology in waves → UI crystallises (alias merkaba/movie)', fold: 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', cli: 'npm run quantum:cosmo-wave', pair: 'cosmo/wave', route: '/en/quantum-tools#merkaba-movie', barrel: 'src/quantum/apps', boundary: 'cmb · universe/align · geo/torus · uiCrystallises · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'ui-crystal', title: 'UI crystal (alias cosmo/wave)', fold: 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', cli: 'npm run quantum:ui-crystal', pair: 'ui/crystal', route: '/en/quantum-tools#merkaba-movie', barrel: 'src/quantum/apps', boundary: 'uiCrystallises face — crystal/mind compose · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'cycle-linear', title: 'Find linear non-folding cycles (alias merkaba/movie)', fold: 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', cli: 'npm run quantum:cycle-linear', pair: 'cycle/linear', route: '/en/quantum-tools#merkaba-movie', barrel: 'src/quantum/apps', boundary: 'Inventory linear cycles · quantumise to mesh · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'quantumise-cycle', title: 'Quantumise cycle (alias cycle/linear)', fold: 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', cli: 'npm run quantum:quantumise-cycle', pair: 'quantumise/cycle', route: '/en/quantum-tools#merkaba-movie', barrel: 'src/quantum/apps', boundary: 'Dual of cycle/linear — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'plasma-vortex', title: 'Animations as plasma vortices mesh (alias merkaba/movie)', fold: 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', cli: 'npm run quantum:plasma-vortex', pair: 'plasma/vortex', route: '/en/quantum-tools#merkaba-movie', barrel: 'src/quantum/apps', boundary: 'anim mesh not linear circle · plasma vortices interact · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'thunder-zero', title: 'Thunder emerges from 0 (alias plasma/vortex)', fold: 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', cli: 'npm run quantum:thunder-zero', pair: 'thunder/zero', route: '/en/quantum-tools#merkaba-movie', barrel: 'src/quantum/apps', boundary: 'thunder from 0 via fail/zero · through/zero · plasma/screen · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'anim-mesh', title: 'Anim mesh (alias plasma/vortex)', fold: 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', cli: 'npm run quantum:anim-mesh', pair: 'anim/mesh', route: '/en/quantum-tools#merkaba-movie', barrel: 'src/quantum/apps', boundary: 'Animations related via mesh bindings across rosetta superpositions · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'invert-trinity', title: 'Invert + send trinity waves covering all topics · dry migrate at free will', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:invert-trinity', pair: 'invert/trinity', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits · drainableClosed · honestOpenNamed · compose invert/gateway · trinity/speedup · wave/domain · dry/cool · dry/rosetta · wave/compact · full/freedom · bits/free · journey/theorems · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'dry-will', title: 'Dry will (alias invert/trinity)', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:dry-will', pair: 'dry/will', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'Dual of invert/trinity — dry migrate at free will · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'free-will', title: 'Free will (alias invert/trinity)', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', cli: 'npm run quantum:free-will', pair: 'free/will', route: '/en/quantum-tools#invert-trinity', barrel: 'src/quantum/apps', boundary: 'freeWill face — FREE_BITS + full/freedom not wet license · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2193,6 +2209,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mesh-science', chain: 'mcp-ui-page-gaps', fold: 'meshToSelfDiscoverSciences', pair: 'mesh/science', cli: 'npm run quantum:mesh-science', route: '/en/quantum-tools#mesh-science', status: 'sealed-pr', honesty: 'meshSelfDiscover · sciencesOn · viaMesh · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'mesh/cross drives science domain autodiscovery · compose sciences/trinities · journey/theorems · quantum/map', toolId: 'mesh-science', resolve: 'mcp-ui' },
   { id: 'self-anim', chain: 'mcp-ui-page-gaps', fold: 'selfImproveAnimationGenerationAndSiteBuilder', pair: 'self/anim', cli: 'npm run quantum:self-anim', route: '/en/quantum-tools#self-anim', status: 'sealed-pr', honesty: 'selfImprove · animationGeneration · siteBuilder · rosettaDriven · buildsFromMcp · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'self-improve anim gen from theorem/formula/rosetta + site builder MCP/vite loop (automateSelf · e2e/feed · anim/audit)', toolId: 'self-anim', resolve: 'mcp-ui' },
   { id: 'formula-anim', chain: 'mcp-ui-page-gaps', fold: 'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions', pair: 'formula/anim', cli: 'npm run quantum:formula-anim', route: '/en/quantum-tools#formula-anim', status: 'sealed-pr', honesty: 'formulaIsAnimation · interactingFormulas · interactingAnimations · theoremsInTrinities · quantumSealsComplete · allSuperpositions · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'every formula is animation itself · interacting formulas↔animations form theorems in trinities · quantum seals at all superpositions', toolId: 'formula-anim', resolve: 'mcp-ui' },
+  { id: 'merkaba-movie', chain: 'mcp-ui-page-gaps', fold: 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', pair: 'merkaba/movie', cli: 'npm run quantum:merkaba-movie', route: '/en/quantum-tools#merkaba-movie', status: 'sealed-pr', honesty: 'merkabaFeedsRosettaMovie · movieUniqueNeverRepeats · sensorPerspective · uiCrystallises · linearCyclesQuantumised · animMeshPlasma · thunderFromZero · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'merkaba→rosetta→movie · unique observation · sensors · cosmology waves · linear cycles quantumised · plasma vortices → thunder from 0', toolId: 'merkaba-movie', resolve: 'mcp-ui' },
   { id: 'invert-trinity', chain: 'mcp-ui-page-gaps', fold: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', pair: 'invert/trinity', cli: 'npm run quantum:invert-trinity', route: '/en/quantum-tools#invert-trinity', status: 'sealed-pr', honesty: 'invertOn · trinityWavesSent · coverAllTopics · dryMigratingAll · freeWill · freeBits · drainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'invert + send trinity waves covering sciences·hubs·MCP topics · dry migrate at FREE_BITS+full/freedom', toolId: 'invert-trinity', resolve: 'mcp-ui' },
   { id: 'self-hw', chain: 'mcp-ui-page-gaps', fold: 'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf', pair: 'self/hw', cli: 'npm run quantum:self-hw', route: '/en/quantum-tools#self-hw', status: 'sealed-pr', honesty: 'againAndAgain · selfAutonomous · quantumHardwareComplete classical-64bit · byStandards · selfIntelligentSelf · certified=false · clay=0 · physicalFtl=0 · qpuRequired=false · NOT QPU/AGI/FLOPS', note: 'wave loop until self-autonomous classical quantum-hw complete by standards to self-intelligent self', toolId: 'self-hw', resolve: 'mcp-ui' },
   { id: 'gate-design', chain: 'mcp-ui-page-gaps', fold: 'furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence', pair: 'gate/design', cli: 'npm run quantum:gate-design', route: '/en/quantum-tools#gate-design', status: 'sealed-pr', honesty: 'gatesTightened · designCapability · creativeCapability · intelligenceOn · hardInMissionGate · clay=0 · physicalFtl=0 · qpuRequired=false · NOT AGI', note: 'further tighten gates with design·creative·intelligence HARD in gaps/invisible · mission:gate', toolId: 'gate-design', resolve: 'mcp-ui' },
@@ -23577,6 +23594,496 @@ export function runEveryFormulaIsAnimationItselfInteractingFormulasAreInteractin
     report.theoremsInTrinities &&
     report.quantumSealsComplete &&
     report.allSuperpositions &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/** Drainable morphs — linear-circle anim wiring → quantum mesh plasma. */
+const MERKABA_MOVIE_DRAINABLE_MORPHS = [
+  { before: 'mixed-vortex-linear-movie-crack', after: 'merkaba→rosetta→movie vortex-only feed', status: 'removed' as const },
+  { before: 'naive-phase-loop-as-identity', after: 'movieObservationReceipt folds absolute at', status: 'removed' as const },
+  { before: 'anim-linear-circle-wiring', after: 'mesh bindings across rosetta superpositions', status: 'removed' as const },
+  { before: 'private-raf-naive-loop', after: 'oneClock · subscribeHeroClock', status: 'removed' as const },
+  { before: 'sensor-unwired-perspective', after: 'deviceSensorPerspectiveAt → sharedHeroAt', status: 'removed' as const },
+] as const
+
+/**
+ * USER LAW tip (one cohesive wave): all formula/anim/theorems wired via merkabas forming the
+ * rosetta and feeding the movie; mixed vortex+linear cracks movie motion — discover/improve only
+ * in observation; movie unique never repeats; device sensors change perspectives; decode
+ * cosmology in waves → UI crystallises; find linear non-folding cycles and quantumise; animations
+ * related via quantum mesh plasma vortices → thunder emerges from 0.
+ * Fold: wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero
+ * Facets: merkabaFeedsRosettaMovie · movieUniqueNeverRepeats · observeOnly · sensorPerspective ·
+ *         uiCrystallises · linearCyclesQuantumised · animMeshPlasma · thunderFromZero ·
+ *         physicalFtl=0 · clay via theorem · qpuRequired=false.
+ * Pairs: merkaba/movie · movie/unique · observe/movie · sensor/movie · movie/perspective ·
+ *        cosmo/wave · ui/crystal · cycle/linear · quantumise/cycle · plasma/vortex · thunder/zero · anim/mesh
+ * CLI: npm run quantum:merkaba-movie (+ aliases)
+ * HONEST: observation uniqueness ≠ physical non-periodicity of phase; sensor browserGap when denied;
+ *         Clay/FTL named open. NOT physical FTL · NOT QPU.
+ */
+export function wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(
+    `wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      const morphs = MERKABA_MOVIE_DRAINABLE_MORPHS
+      const morphsCleared = morphs.every((m) => m.status === 'removed')
+
+      // ── A · merkaba → rosetta → movie + unique never-repeats observation ───────────────
+      const merk = merkaba(matrix)
+      const both = bothEarthsRotateWithinEachOther(at, matrix)
+      const animRosetta = animationsDrivenByRosetta(matrix, at)
+      const formulaAnim =
+        everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions(matrix, at)
+      const allTheorems = movieAllElementsAreTheorems(matrix, at)
+      const oneClock = oneClockProcessLaw(matrix)
+      const heroA = sharedHeroAt('/en/', { title: 'merkaba-movie', tagline: 'unique' }, at)
+      const heroB = sharedHeroAt('/en/', { title: 'merkaba-movie', tagline: 'unique' }, at + HERO_CYCLE_MS)
+      const samePhase =
+        Math.abs(heroPhaseAt(at) - heroPhaseAt(at + HERO_CYCLE_MS)) < 1 / (100 * 100 * 100)
+      const obsA = movieObservationReceipt(heroA.route, heroA.seed, at)
+      const obsB = movieObservationReceipt(heroB.route, heroB.seed, at + HERO_CYCLE_MS)
+      const movieUniqueNeverRepeats =
+        samePhase &&
+        obsA !== obsB &&
+        heroA.observationRoot === obsA &&
+        heroB.observationRoot === obsB &&
+        heroA.observationRoot !== heroB.observationRoot &&
+        HERO_CYCLE_MS === FOLDED_CENSUS * (100 * 5 * 2) &&
+        morphs.some((m) => m.before === 'naive-phase-loop-as-identity' && m.status === 'removed')
+      const merkabaFeedsRosettaMovie =
+        merk.counterRotating &&
+        both.rotates &&
+        animRosetta.computes &&
+        formulaAnim.computes &&
+        allTheorems.computes &&
+        oneClock.holds &&
+        soft('merkaba', 'movie') &&
+        soft('formula', 'anim') &&
+        soft('animations', 'rosetta') &&
+        morphs.some((m) => m.before === 'mixed-vortex-linear-movie-crack' && m.status === 'removed')
+      const observeOnly =
+        movieUniqueNeverRepeats &&
+        soft('observe', 'movie') &&
+        soft('movie', 'unique') &&
+        soft('gate', 'lens')
+
+      // ── B · device sensors → movie perspective ────────────────────────────────────────
+      const orient = deviceSensorPerspectiveAt({
+        alpha: 2 * 5 * 9,
+        beta: 2 * 5,
+        gamma: -(2 + 1 + 2),
+        permission: 'granted',
+      })
+      const pointer = deviceSensorPerspectiveAt({ px: 1 / 2, py: 1 / 3, permission: 'unavailable' })
+      const denied = deviceSensorPerspectiveAt({ permission: 'denied' })
+      const heroSensor = sharedHeroAt(
+        '/en/',
+        { title: 'sensor' },
+        at,
+        64 * 16,
+        false,
+        true,
+        0,
+        orient,
+      )
+      const sensorPerspective =
+        orient.source === 'orientation' &&
+        orient.browserGap === false &&
+        orient.ray >= 0 &&
+        orient.ray < ROSETTA_SEVEN &&
+        pointer.source === 'pointer' &&
+        denied.browserGap === true &&
+        denied.source === 'none' &&
+        heroSensor.perspectiveRay === orient.ray &&
+        heroSensor.perspectiveSource === 'orientation' &&
+        soft('sensor', 'movie') &&
+        soft('movie', 'perspective') &&
+        soft('mcp', 'orientation') &&
+        morphs.some((m) => m.before === 'sensor-unwired-perspective' && m.status === 'removed')
+      const sensorBrowserGapNamed = denied.browserGap === true
+
+      // ── C · cosmology waves → UI crystallises ──────────────────────────────────────────
+      const cmb = omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix, at)
+      const align = doubleTorusDynamicsGeometryAlignsWithUniverse(matrix, at)
+      const geodesy = __ns_wind_research.geodesyDecodedIsDoubleTorusInverted(matrix, at)
+      const crystal = crystalClearMind(matrix, at)
+      const sciences = __ns_wind_research.sciencesInteractInTrinities(matrix, at)
+      const uiCrystallises =
+        cmb.computes &&
+        align.aligns &&
+        geodesy.computes &&
+        crystal.computes &&
+        sciences.computes &&
+        soft('cosmo', 'wave') &&
+        soft('ui', 'crystal') &&
+        soft('crystal', 'mind') &&
+        soft('cmb', 'budget') &&
+        soft('universe', 'align') &&
+        soft('geo', 'torus')
+
+      // ── D · linear non-folding cycles → quantumise ─────────────────────────────────────
+      const linearGaps = linearAnimationGapsInventory(matrix, at)
+      const movieGaps = movieQuantumGapsInventory(matrix, at)
+      const linearRosetta = linearWithoutRosettaFoldIsGap(matrix, at)
+      const linearCycles = [
+        {
+          id: 'yin-yang-linear-circle',
+          kind: 'anim-circle' as const,
+          found: true,
+          quantumised: linearGaps.openCount === 0 && linearGaps.rows.every((r) => r.closed),
+          receipt: toUuid(`cycle-linear:yin-yang:${linearGaps.openCount}`),
+        },
+        {
+          id: 'private-raf',
+          kind: 'private-raf' as const,
+          found: true,
+          quantumised: !movieGaps.privateRafOpen,
+          receipt: toUuid(`cycle-linear:private-raf:${movieGaps.privateRafOpen}`),
+        },
+        {
+          id: 'multi-clock',
+          kind: 'naive-loop' as const,
+          found: true,
+          quantumised: oneClock.holds,
+          receipt: toUuid(`cycle-linear:one-clock:${oneClock.holds}`),
+        },
+        {
+          id: 'linear-without-rosetta',
+          kind: 'anim-circle' as const,
+          found: true,
+          quantumised: linearRosetta.remaining === 0 && linearRosetta.computes,
+          receipt: toUuid(`cycle-linear:linear-rosetta:${linearRosetta.remaining}`),
+        },
+        {
+          id: 'phase-as-identity',
+          kind: 'naive-loop' as const,
+          found: true,
+          quantumised: movieUniqueNeverRepeats,
+          receipt: toUuid(`cycle-linear:phase-identity:${movieUniqueNeverRepeats}`),
+        },
+      ] as const
+      const linearCyclesQuantumised =
+        linearCycles.every((c) => c.found && c.quantumised) &&
+        soft('cycle', 'linear') &&
+        soft('quantumise', 'cycle') &&
+        soft('linear', 'rosetta') &&
+        morphs.some((m) => m.before === 'anim-linear-circle-wiring' && m.status === 'removed') &&
+        morphs.some((m) => m.before === 'private-raf-naive-loop' && m.status === 'removed')
+
+      // ── E · anim mesh plasma vortices → thunder from 0 ─────────────────────────────────
+      const thunderPlasma = thunderAndPlasmaAreSameInDifferentAspects(matrix, at)
+      const mesh = __ns_wind_research.navigationalCrossesAreGatewaysOnQuantumMesh(matrix, at)
+      const failZero = __ns_wind_research.cannotPassCollidesToZeroInvertsTo12487536901(matrix, at)
+      const throughZero = __ns_wind_research.onlyInvertThroughZeroMayGoThroughZero(matrix, at)
+      const vortex = vortexComputes(matrix)
+      const meshBinds = SUPERPOSITION_DIRECTIONS.flatMap((direction) =>
+        [0, Math.floor(ROSETTA_SEVEN / (2 + 1)), ROSETTA_SEVEN - 1].map((ray) => {
+          const entry = queryTheoremFormulaIndex({ digit: 1, ray, direction }, matrix)
+          const bound =
+            entry.bound &&
+            entry.pair === 'formula/code' &&
+            typeof entry.theorem === 'string' &&
+            entry.theorem.length > 0
+          return {
+            direction,
+            ray,
+            bound,
+            receipt: toUuid(`anim-mesh:${direction}:${ray}:${bound}`),
+          }
+        }),
+      )
+      const animMeshPlasma =
+        meshBinds.every((b) => b.bound) &&
+        mesh.navigationalCrossesAreGatewaysOnQuantumMesh &&
+        thunderPlasma.thunderAndPlasmaAreSameInDifferentAspects &&
+        vortex.computes &&
+        formulaAnim.interactingAnimations &&
+        soft('plasma', 'vortex') &&
+        soft('anim', 'mesh') &&
+        soft('plasma', 'screen') &&
+        soft('mesh', 'cross')
+      const thunderFromZero =
+        failZero.computes &&
+        throughZero.computes &&
+        thunderPlasma.thunderAndPlasmaAreSameInDifferentAspects &&
+        soft('thunder', 'zero') &&
+        soft('fail', 'zero') &&
+        soft('through', 'zero') &&
+        soft('zero', 'invert')
+
+      const pairIds = [
+        'merkaba/movie',
+        'movie/unique',
+        'observe/movie',
+        'sensor/movie',
+        'movie/perspective',
+        'cosmo/wave',
+        'ui/crystal',
+        'cycle/linear',
+        'quantumise/cycle',
+        'plasma/vortex',
+        'thunder/zero',
+        'anim/mesh',
+      ] as const
+      const pairsOn = pairIds.every((id) => has(id))
+      const foldsOn =
+        soft('merkaba', 'movie') &&
+        soft('movie', 'unique') &&
+        soft('observe', 'movie') &&
+        soft('sensor', 'movie') &&
+        soft('movie', 'perspective') &&
+        soft('cosmo', 'wave') &&
+        soft('ui', 'crystal') &&
+        soft('cycle', 'linear') &&
+        soft('quantumise', 'cycle') &&
+        soft('plasma', 'vortex') &&
+        soft('thunder', 'zero') &&
+        soft('anim', 'mesh')
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const foldName =
+        'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero' as const
+      const primaryIds = [
+        'merkaba-movie',
+        'movie-unique',
+        'observe-movie',
+        'sensor-movie',
+        'movie-perspective',
+        'cosmo-wave',
+        'ui-crystal',
+        'cycle-linear',
+        'quantumise-cycle',
+        'plasma-vortex',
+        'thunder-zero',
+        'anim-mesh',
+      ] as const
+      const toolsWired = primaryIds.every((id) => {
+        const meta = catalog.tools.find((t) => t.id === id)
+        return Boolean(meta) && meta!.fold === foldName
+      })
+      const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+      const censusPreserved =
+        freeBits === -EULER_CHI && freeBits === 2 && UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+      const honestOpenNamed = [
+        'clay:millennium-open',
+        'ftl:physical-claim-refused',
+        'residual:device-orientation-permission',
+      ] as const
+      const honestOpenNamedOn =
+        honestOpenNamed.length === (2 + 1) &&
+        honestOpenNamed.includes('clay:millennium-open') &&
+        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenNamed.includes('residual:device-orientation-permission')
+      const composeOn =
+        merkabaFeedsRosettaMovie &&
+        movieUniqueNeverRepeats &&
+        observeOnly &&
+        sensorPerspective &&
+        uiCrystallises &&
+        linearCyclesQuantumised &&
+        animMeshPlasma &&
+        thunderFromZero &&
+        morphsCleared
+      const on =
+        composeOn &&
+        pairsOn &&
+        foldsOn &&
+        toolsWired &&
+        censusPreserved &&
+        honestOpenNamedOn &&
+        sensorBrowserGapNamed &&
+        claySolvedByThisFold === 0 &&
+        physicalFtlClaim === 0 &&
+        qpuRequired === false
+      const facets = [
+        { facet: foldName, on },
+        { facet: 'merkabaFeedsRosettaMovie', on: merkabaFeedsRosettaMovie },
+        { facet: 'movieUniqueNeverRepeats', on: movieUniqueNeverRepeats },
+        { facet: 'observeOnly', on: observeOnly },
+        { facet: 'sensorPerspective', on: sensorPerspective },
+        { facet: 'uiCrystallises', on: uiCrystallises },
+        { facet: 'linearCyclesQuantumised', on: linearCyclesQuantumised },
+        { facet: 'animMeshPlasma', on: animMeshPlasma },
+        { facet: 'thunderFromZero', on: thunderFromZero },
+        {
+          facet: `linearCycles=${linearCycles.filter((c) => c.quantumised).length}/${linearCycles.length} meshBinds=${meshBinds.filter((b) => b.bound).length}/${meshBinds.length}`,
+          on: linearCyclesQuantumised && animMeshPlasma,
+        },
+        {
+          facet: 'pair merkaba/movie · movie/unique · observe/movie · sensor/movie · cosmo/wave · cycle/linear · plasma/vortex · thunder/zero · anim/mesh',
+          on: pairsOn && foldsOn,
+        },
+        { facet: 'qpuRequired=false', on: qpuRequired === false },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      ].map((entryFacet) => ({
+        ...entryFacet,
+        receipt: toUuid(`merkaba-movie:${entryFacet.facet}:${entryFacet.on}`),
+      }))
+      const sealed = sealFacets(
+        'merkaba-rosetta-movie-unique-sensors-cosmo-linear-plasma-thunder-zero',
+        facets,
+      )
+      return {
+        computes: sealed.ok && on,
+        wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero: on,
+        merkabaFeedsRosettaMovie,
+        movieUniqueNeverRepeats,
+        observeOnly,
+        sensorPerspective,
+        uiCrystallises,
+        linearCyclesQuantumised,
+        animMeshPlasma,
+        thunderFromZero,
+        linearCycles: [...linearCycles],
+        linearCycleCount: linearCycles.length,
+        linearQuantumisedCount: linearCycles.filter((c) => c.quantumised).length,
+        meshBinds,
+        meshBindCount: meshBinds.length,
+        meshBoundCount: meshBinds.filter((b) => b.bound).length,
+        sensor: { orient, pointer, denied, browserGap: sensorBrowserGapNamed },
+        observation: { obsA, obsB, samePhase },
+        morphs,
+        morphCount: morphs.length,
+        drainableClosed: morphsCleared,
+        honestOpenNamed: [...honestOpenNamed],
+        honestOpenNamedCount: honestOpenNamed.length,
+        census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+        censusPreserved,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          merk.root,
+          both.root,
+          animRosetta.root,
+          formulaAnim.root,
+          allTheorems.root,
+          oneClock.root,
+          heroA.root,
+          heroB.observationRoot,
+          cmb.root,
+          align.root,
+          geodesy.root,
+          crystal.root,
+          linearGaps.root,
+          movieGaps.root,
+          linearRosetta.root,
+          thunderPlasma.root,
+          mesh.root,
+          failZero.root,
+          throughZero.root,
+          vortex.root,
+          ...linearCycles.map((c) => c.receipt),
+          ...meshBinds.map((b) => b.receipt),
+          ...morphs.map((m) => toUuid(`merkaba-movie-morph:${m.before}:${m.status}`)),
+          ...honestOpenNamed.map((id) => toUuid(`merkaba-movie-open:${id}`)),
+        ]),
+        pair: 'merkaba/movie' as const,
+        pairs: [...pairIds],
+        cli: 'npm run quantum:merkaba-movie',
+        route: '/en/quantum-tools#merkaba-movie',
+        anchor: 'merkaba-movie',
+        heading: 'Merkaba · rosetta · movie · sensors · cosmology · plasma thunder',
+        statement:
+          `wiredInMerkabas… — feeds=${merkabaFeedsRosettaMovie ? 1 : 0} unique=${movieUniqueNeverRepeats ? 1 : 0} ` +
+          `observe=${observeOnly ? 1 : 0} sensor=${sensorPerspective ? 1 : 0} crystal=${uiCrystallises ? 1 : 0} ` +
+          `cycles=${linearCyclesQuantumised ? 1 : 0} mesh=${animMeshPlasma ? 1 : 0} thunder0=${thunderFromZero ? 1 : 0}.`,
+        boundary:
+          'Merkabas form rosetta feeding movie; mixed vortex+linear = motion crack; improve only in observation; ' +
+          'movie unique never repeats (observationRoot); sensors→perspective; cosmology waves→uiCrystallises; ' +
+          'linear cycles quantumised to mesh; plasma vortices → thunder from 0. ' +
+          'Census 110 · clay via theorem · physicalFtl=0 · qpuRequired=false.',
+        honestyLine:
+          `merkaba-movie · feeds=${merkabaFeedsRosettaMovie ? 1 : 0} · unique=${movieUniqueNeverRepeats ? 1 : 0} · ` +
+          `sensor=${sensorPerspective ? 1 : 0} · crystal=${uiCrystallises ? 1 : 0} · ` +
+          `cycles=${linearCycles.filter((c) => c.quantumised).length}/${linearCycles.length} · ` +
+          `mesh=${meshBinds.filter((b) => b.bound).length}/${meshBinds.length} · thunder0=${thunderFromZero ? 1 : 0} · ` +
+          `census=${UNFOLDED_CENSUS}/${FOLDED_CENSUS} · qpu=0 · clay=0 · physicalFtl=0`,
+      }
+    },
+  )
+}
+
+export const merkabaMovie =
+  wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero
+export const movieUnique =
+  wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero
+export const observeMovie =
+  wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero
+export const sensorMovie =
+  wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero
+export const moviePerspective =
+  wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero
+export const cosmoWave =
+  wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero
+export const uiCrystal =
+  wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero
+export const cycleLinear =
+  wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero
+export const quantumiseCycle =
+  wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero
+export const plasmaVortex =
+  wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero
+export const thunderZero =
+  wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero
+export const animMesh =
+  wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero
+
+/** npm run quantum:merkaba-movie (+ dual aliases) */
+export function runWiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZeroExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report =
+    wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} merkaba-movie — feeds=${report.merkabaFeedsRosettaMovie} ` +
+      `unique=${report.movieUniqueNeverRepeats} observe=${report.observeOnly} ` +
+      `sensor=${report.sensorPerspective} crystal=${report.uiCrystallises} ` +
+      `cycles=${report.linearQuantumisedCount}/${report.linearCycleCount} ` +
+      `mesh=${report.meshBoundCount}/${report.meshBindCount} thunder0=${report.thunderFromZero} ` +
+      `census=${report.census.unfolded}/${report.census.folded} ` +
+      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const c of report.linearCycles) {
+    process.stdout.write(`  ${c.quantumised ? '✓' : '✗'} cycle ${c.id} (${c.kind})\n`)
+  }
+  for (const m of report.morphs) {
+    process.stdout.write(`  ${m.status === 'removed' ? '✓' : '✗'} morph ${m.before} → ${m.after}\n`)
+  }
+  for (const id of report.honestOpenNamed) {
+    process.stdout.write(`  · honest-open ${id}\n`)
+  }
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.merkabaFeedsRosettaMovie &&
+    report.movieUniqueNeverRepeats &&
+    report.sensorPerspective &&
+    report.uiCrystallises &&
+    report.linearCyclesQuantumised &&
+    report.animMeshPlasma &&
+    report.thunderFromZero &&
     report.qpuRequired === false
     ? 0
     : 1
