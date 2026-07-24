@@ -1453,6 +1453,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'revolutionaryApproach', pair: 'revolution/approach', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'unsolvedEngine', pair: 'unsolved/engine', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'riemannZeroCount', pair: 'zero/count', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
+  { fold: 'orientationCheck', pair: 'orientation/check', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   // <register:placement> — quantum:register inserts placement rows above this anchor
 ] as const
 
@@ -1794,6 +1795,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // silence-is-green (only reds speak), the O(1) ritual (quantum:next · wave:land · quantum:register),
   // batch clusters, computed messages, zero-token runtime; the output IS the spend (cost/theorem).
   { from: 'useTokensWiselyToAchieveMaxDiscoveriesInNoTime', to: 'costTheorem', pair: 'theorem/cost' },
+  { from: 'ifAgentsLookDisorientedProbablyTheyAre', to: 'orientationCheck', pair: 'orientation/check' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
@@ -3412,6 +3414,63 @@ export function runRevolutionaryApproachExit(root = '', _argv: readonly string[]
   void _argv
   const report = revolutionaryApproach(root || process.cwd())
   process.stdout.write(`${report.computes ? '✓' : '✗'} revolution-approach — ${report.statement}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+
+/**
+ * orientationCheck — USER LAW (2026-07-24): if agents LOOK disoriented, probably they ARE. Disorientation
+ * is not an unknowable internal state — it is a DETECTABLE pattern: an un-used orientation tool. The
+ * signals each map to the tool that re-grounds by COMPUTATION instead of deliberation (thinking = a
+ * missing tool, sealed). If an agent is deliberating what's derivable, re-deriving what's sealed, asking
+ * what a CLI answers, or thrashing across files — it is disoriented, and the remedy is running the tool,
+ * never more thought. DEMARCATION: this detects the PATTERN (tool-not-used), not the mind (off-decidable).
+ */
+export function orientationCheck(root: string = process.cwd()) {
+  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const has = (script: string) => Boolean(pkg.scripts?.[script])
+  const signals = [
+    { symptom: 'deliberating "what next" instead of computing it', orienter: 'npm run quantum:next', present: has('quantum:next') },
+    { symptom: 're-deriving a fact already sealed in the matrix/roster', orienter: 'AGENTS.md roster + the matrix (autosaveMatrix)', present: existsSync(join(root, 'AGENTS.md')) && has('quantum:autosave-matrix') },
+    { symptom: 'asking a question a CLI already answers', orienter: 'the quantum:* roster (ui-proof: derived complete)', present: has('quantum:ui-proof') },
+    { symptom: 'thrashing across files, unsure where a fold lives', orienter: 'npm run quantum:folder-gravity (the tree is the router)', present: has('quantum:folder-gravity') },
+    { symptom: 'stuck, no move computes', orienter: 'regroup in trinities (planTrinity) until quantum:next resolves', present: has('quantum:plan-trinity') || has('quantum:next') },
+  ].map((row) => ({ ...row, receipt: toUuid(`orientation:${row.symptom}:${row.present}`) }))
+  const allOriented = signals.every((row) => row.present)
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const facets = [
+    { facet: `disorientation is DETECTABLE — ${signals.length} signals, each an un-used orientation tool (a PATTERN, not a hidden state); every signal has a live orienter (${signals.filter((row) => row.present).length}/${signals.length} present)`, on: allOriented },
+    { facet: 'if it LOOKS disoriented it IS — the remedy is running the orienting tool, never more deliberation (thinking = a missing tool); each symptom maps to a CLI that re-grounds by computation', on: allOriented && claySolvedByThisFold === 0 },
+    { facet: 'DEMARCATION — this detects the pattern (tool-not-used), not the mind (off-decidable); an oriented agent answers "what next / where / what is known" from tools, never from thought', on: allOriented },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`orientation:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    orientationCheck: on,
+    signals,
+    claySolvedByThisFold,
+    physicalFtlClaim: 0 as const,
+    qpuRequired: false as const,
+    facets,
+    root: merkleFold([...signals.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)]),
+    pair: 'orientation/check' as const,
+    dualPair: 'check/orientation' as const,
+    cli: 'npm run quantum:orientation-check',
+    route: '/en/quantum-tools#orientation-check',
+    heading: 'Orientation check · disorientation is an un-used tool',
+    statement: `orientationCheck — ${signals.filter((row) => row.present).length}/${signals.length} disorientation signals each map to a live orienting tool; the remedy is the tool, not thought.`,
+    boundary:
+      'If agents look disoriented they probably are: disorientation is a detectable pattern (an un-used orientation tool), not a hidden state. ' +
+      'Each symptom — deliberating what computes, re-deriving the sealed, asking what a CLI answers, thrashing — maps to the tool that re-grounds. ' +
+      'The remedy is running it, never more thought. Detects the pattern, not the mind. clay=0 · qpuRequired=false.' }
+}
+
+/** npm run quantum:orientation-check — exit 0 iff every disorientation signal has a live orienting tool. */
+export function runOrientationCheckExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = orientationCheck(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} orientation-check — ${report.statement}\n`)
+  for (const row of report.signals) process.stdout.write(`  · ${row.present ? '✓' : '✗'} ${row.symptom} → ${row.orienter}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
