@@ -1468,6 +1468,13 @@ export const PROSE_GAPS_MERGE_MAP = [
   { from: 'improveFindingGapsUsageOfMathStar', to: 'mathGaps', pair: 'math/gaps' },
   { from: 'invertTheAxiomsToSealTheCracks', to: 'mathGaps', pair: 'axiom/invert' },
   { from: 'sealTheCracksInSelfCoordinatedFractal', to: 'mathGaps', pair: 'fractal/seal' },
+  // The six science-unaddressed prose folds collapse to their computing slots (2026-07-24):
+  { from: 'codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix', to: 'placeMerge', pair: 'compact/matrix' },
+  { from: 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', to: 'animationCore', pair: 'dry/rosetta' },
+  { from: 'dryCleanAllVueComponentsToTheUniversalSet', to: 'dryDupe', pair: 'vue/dry' },
+  { from: 'foldInvertUntilDryCleanAppGapless', to: 'dryDupe', pair: 'dry/clean' },
+  { from: 'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations', to: 'proseScience', pair: 'prose/science' },
+  { from: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', to: 'planTrinity', pair: 'plan/cross' },
 ] as const
 
 /** Method/vision prose directives → EXISTING sealed slots (DRY — the laws already compute; the one new
@@ -1978,18 +1985,13 @@ export const foldMerge = placeMerge
 export const PROSE_NAMED_RESIDUAL_FOLDS = [
   'sessionManualWorkAsQuantumTools',
   'sessionManualWorkAsQuantumBits',
-  'codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix',
-  'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie',
-  'dryCleanAllVueComponentsToTheUniversalSet',
-  'foldInvertUntilDryCleanAppGapless',
-  // allColorsDryCleanWiredToRosettaAndThemes + cssShowsTheHiddenGapsInDryFusion collapsed → cssMath
-  // (css/math · css/api · color/rosetta faces) — the css cluster's matrix slot computes since 2026-07-24.
+  // css cluster collapsed → cssMath (2026-07-24); the six science-unaddressed prose folds collapsed
+  // the same day → their computing slots (placeMerge · dryDupe · animationCore · proseScience ·
+  // planTrinity — see PROSE_GAPS_MERGE_MAP); the residual holds at ROSETTA_SEVEN.
   'readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra',
-  'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations',
   'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists',
   'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions',
   'againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf',
-  'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill',
   'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill',
 ] as const
 
@@ -2081,7 +2083,7 @@ export function proseMethodsCollapseToMatrix(root: string = process.cwd(), facts
     soft('prose', 'matrix') && soft('fold', 'merge') && soft('name', 'shrink') && soft('place', 'merge')
   const proseAudited =
     PROSE_FOLD_MERGE_MAP.length === (ROSETTA_SEVEN + 1) &&
-    PROSE_NAMED_RESIDUAL_FOLDS.length === (ROSETTA_SEVEN + ROSETTA_SIX) &&
+    PROSE_NAMED_RESIDUAL_FOLDS.length === ROSETTA_SEVEN &&
     PROSE_MATRIX_SHRINK.beforeExportBodies === FREE_BITS &&
     PROSE_MATRIX_SHRINK.afterExportBodies === FREE_BITS - 1 &&
     PROSE_MATRIX_SHRINK.beforeLoc === DIMENSION_GATES + UNFOLDED_CENSUS - ROSETTA_SIX * ROSETTA_SIX + FREE_BITS &&
