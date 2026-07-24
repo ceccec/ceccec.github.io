@@ -892,6 +892,9 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'speed/word',
   'theorem/speed',
   'speed/theorem',
+  'register/quartet',
+  'quartet/register',
+  // <register:pairs> — quantum:register inserts dual pairs above this anchor
 ] as const
 
 export function foldQuantumCommandPairs(pairIds: readonly string[] = QUANTUM_COMMAND_PAIR_IDS) {

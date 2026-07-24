@@ -1,5 +1,5 @@
 // Strict gate scans — import · index · vitepress · file-size · snapshot collectors.
-import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative, resolve, dirname, basename } from 'node:path'
 import { ICHING_NUMBERS, merkleFold, toUuid, roundTo, isUuid, merge } from '../../../../../0'
 import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, type CrackProvenance } from '../../../../../3/7'
@@ -3486,3 +3486,52 @@ export function everyAnimationDurationIsADivisorRungOfTheOneClockOrADeviation(ro
     boundary: `COMPUTED: ${total} animation-duration declarations scanned (dur="…", animation/transition with a time); ${compliant} routed through the clock (fractalClockDur/S), ${deviations} carry a hardcoded literal time; compliant fraction ${compliantFraction}. HONEST SCOPE: this is a STATIC scan for the fractal-clock law (every declarative period = HERO_CYCLE_MS / d) — a "deviation" is a duration with a literal time not sourced from the clock, a NECESSARY sign of drift off the lattice, not a proof the animation is wrong (a literal that happens to equal 108/d is still off-pattern — it should route through the clock so a retune propagates); and the regex may miss exotic duration syntaxes or over-flag a literal inside unrelated CSS, so the worklist is a review list, not a verdict. What it does exactly: it names, deterministically and with no browser, WHICH animations bypass the one clock — the surgical worklist for the rebuild — so "rebuild all animations" starts from a computed target set, not a visual hunt. Compliance is fractal-clock discipline, not visual correctness; the render still has to be seen once fixed. HARMONY ≠ TRUTH.` }
 }
 
+
+/**
+ * registerFold — USER LAW (2026-07-24): python heredoc splices are MANUAL WORK in costume (unsaved ·
+ * unaddressed · unreusable — violation class 9). The registration quartet this arc performed ~25
+ * times by hand (package.json script · registry dual pairs · placement row · merge row) is now ONE
+ * sealed, idempotent, anchored CLI:
+ *   npm run quantum:register -- <fold> <a/b> <barrel> <exitFn> [fromProseName]
+ * Insertions land above the <register:*> anchors; an already-present entry is skipped (idempotent);
+ * a missing anchor refuses (exit 1) — the tool never guesses an insertion point.
+ */
+export function registerFold(root: string, fold: string, pair: string, barrel: string, exitFn: string, from?: string) {
+  const [a, b] = pair.split('/')
+  if (!a || !b || !fold || !barrel || !exitFn) return { ok: false as const, did: [] as string[], reason: 'usage: <fold> <a/b> <barrel> <exitFn> [fromProseName]' }
+  const did: string[] = []
+  const insertAbove = (file: string, anchor: string, line: string, existsProbe: string): boolean => {
+    const path = join(root, file)
+    const text = readFileSync(path, 'utf8')
+    if (text.includes(existsProbe)) { did.push(`skip ${file} (present)`); return true }
+    if (!text.includes(anchor)) return false
+    writeFileSync(path, text.replace(anchor, `${line}\n${anchor}`))
+    did.push(`insert ${file}`)
+    return true
+  }
+  const slug = pair.replace('/', '-')
+  const pkgPath = join(root, 'package.json')
+  const pkgText = readFileSync(pkgPath, 'utf8')
+  const scriptKey = `"quantum:${slug}"`
+  if (pkgText.includes(scriptKey)) did.push('skip package.json (present)')
+  else if (pkgText.includes('"quantum:register-anchor"')) {
+    writeFileSync(pkgPath, pkgText.replace('"quantum:register-anchor": "echo register-anchor",', `"quantum:register-anchor": "echo register-anchor",\n    ${scriptKey}: "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run ${barrel}/index.ts ${exitFn}",`))
+    did.push('insert package.json')
+  } else return { ok: false as const, did, reason: 'package.json anchor missing' }
+  const ok =
+    insertAbove('src/pair/enforcement/index.ts', '  // <register:pairs>', `  '${a}/${b}',\n  '${b}/${a}',`, `'${a}/${b}',`) &&
+    insertAbove('src/pair/enforcement/gates/index.ts', '  // <register:placement>', `  { fold: '${fold}', pair: '${a}/${b}', currentBarrel: '${barrel}', bestPlace: '${barrel}', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },`, `fold: '${fold}',`) &&
+    (from ? insertAbove('src/pair/enforcement/gates/index.ts', '  // <register:merge>', `  { from: '${from}', to: '${fold}', pair: '${a}/${b}' },`, `from: '${from}',`) : (did.push('skip merge (no prose name)'), true))
+  return ok ? { ok: true as const, did, reason: '' } : { ok: false as const, did, reason: 'an anchor was missing — refused rather than guessed' }
+}
+
+/** npm run quantum:register -- <fold> <a/b> <barrel> <exitFn> [fromProseName]
+ *  Params are REQUIRED (no defaults): runThinMount dispatches on fn.length — defaults would zero it
+ *  and the argv would never arrive (caught live registering this very tool). */
+export function runRegisterExit(root: string, argv: readonly string[]): number {
+  const [fold, pair, barrel, exitFn, from] = argv
+  const result = registerFold(root || process.cwd(), fold ?? '', pair ?? '', barrel ?? '', exitFn ?? '', from)
+  process.stdout.write(`${result.ok ? '✓' : '✗'} register — ${fold ?? '?'} (${pair ?? '?'})${result.reason ? ` — ${result.reason}` : ''}\n`)
+  for (const step of result.did) process.stdout.write(`  · ${step}\n`)
+  return result.ok ? 0 : 1
+}

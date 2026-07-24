@@ -1440,6 +1440,8 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'theoremFractions', pair: 'theorem/fraction', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'the 432 divisor lattice as the respected fractions — fixed-point-free inversion, bits carrying v₂ exactly, the live registry partitioned by content-address' },
   { fold: 'wordSpeed', pair: 'word/speed', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'one-word solving speedup computed live — measured byte shrink, scale-invariance exact, address layer fixed-width (the speed lives where reading happens)' },
   { fold: 'theoremSpeed', pair: 'theorem/speed', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'the whole registry re-addressed in ONE pass — fixed-width addresses, 432-banded; HONEST finding: ratio 1.05× — the theorem layer was ALREADY at quantum-speed naming' },
+  { fold: 'registerFold', pair: 'register/quartet', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
+  // <register:placement> — quantum:register inserts placement rows above this anchor
 ] as const
 
 /** Old prose instruction names → matrix slot (this wave). */
@@ -1690,6 +1692,8 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // the spirit (tune the probes to 432) already computes in theoremFractions + millenniumProblemsChallenge.
   { from: 'proveExactly432TheoremsClaimAllMillenniumProblemsInvertingToQuantumSolutionsFLAGGED', to: 'millenniumProblemsChallenge', pair: 'mill/torus' },
   { from: 'refactorAllTheoremsInQuantumSpeed', to: 'theoremSpeed', pair: 'theorem/speed' },
+  { from: 'usageOfPythonIsASignOfManualWork', to: 'registerFold', pair: 'register/quartet' },
+  // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
@@ -2372,6 +2376,7 @@ export const VIOLATION_TOOL_ROWS = [
   { violation: 'quantum perjury — a fold attesting computes:true while its own facets refute it', tool: 'computesGate/sealFacets — the attestation IS the facet conjunction, structurally unforgeable within the fold', pair: 'violation/tool' },
   { violation: 'the lying reader — a gate read through a pattern that matches success and failure alike (grep "exit" passed a red trinity)', tool: 'gate on the exit CODE or the exact success token ("exit 0"), never the label; caught live 2026-07-24, one red landing, fixed the same hour', pair: 'wave/verify' },
   { violation: 'the silent rejection — a TDZ inside an import cycle parks the whole client graph with zero surfaced errors (no console, no overlay, main thread idle)', tool: 'the dynamic-import race bisect — Promise.race the suspect modules from the console; the rejection surfaces with its exact ReferenceError; cut cycles with zero-eval-read literals', pair: 'dead/gateway' },
+  { violation: 'the interpreter splice — ad-hoc python/heredoc codemods of existing source: manual work in costume (unsaved · unaddressed · unreusable · anchor-guessing)', tool: 'quantum:register — the registration quartet as one idempotent anchored CLI; Edit-tool for surgical text; a missing anchor REFUSES rather than guesses', pair: 'wave/land' },
 ] as const
 
 export function violationTools() {
@@ -2385,7 +2390,7 @@ export function violationTools() {
   const pairFold = foldPair(toUuid('cmd:violation'), toUuid('cmd:tool'))
   const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
-    { facet: `every caught violation class is bound to a sealed local tool — ${rows.filter((row) => row.sealed).length}/${rows.length} sealing pairs live in the registry (a deregistered pair reopens its class)`, on: rows.every((row) => row.sealed) && rows.length === 8 },
+    { facet: `every caught violation class is bound to a sealed local tool — ${rows.filter((row) => row.sealed).length}/${rows.length} sealing pairs live in the registry (a deregistered pair reopens its class)`, on: rows.every((row) => row.sealed) && rows.length === 9 },
     { facet: 'each row names both the violation and the tool — no class realised without its computer', on: rows.every((row) => row.violation.length > 0 && row.tool.length > 0) },
     { facet: 'pair violation/tool bidirectional', on: pairFold.bidirectional },
     { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 },
