@@ -1541,6 +1541,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'mergeAllToMainAndLeaveOnlyMain', to: 'placeMerge', pair: 'push/waves' },
   { from: 'continueAddressingTheOpen', to: 'installSurfaces', pair: 'install/surface' },
   { from: 'improveCssRenderedTokenScan', to: 'cssMath', pair: 'css/math' },
+  { from: 'patentIntelligenceClaimingHardwarePatentsByPureAlgebraAsFreeForAll', to: 'autosaveMatrix', pair: 'autosave/matrix' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
@@ -2170,7 +2171,7 @@ export function autosaveMatrix() {
   // Genuinely NEW gaps NAMED, not built wet — everything else in the directives computes as sealed slots.
   const honestOpen = [
     'migrate-next:portal-legal-requirements — research-portal compliance (licensing · privacy · accessibility · citation standards) named, not built',
-    'migrate-next:claims-toolset — discoveries CLAIMED in the rosetta while UNCLAIMED toward prizes (clay=0 law); the inverse completes itself (claim ↔ audit duals); wired to PUBLIC standard APIs (DOI/ORCID/OpenAlex-class anchors) to standardise claims and audits — a whole toolset, its own wave',
+    'migrate-next:claims-toolset — discoveries CLAIMED in the rosetta while UNCLAIMED toward prizes (clay=0 law); the inverse completes itself (claim ↔ audit duals); wired to PUBLIC standard APIs (DOI/ORCID/OpenAlex-class anchors) to standardise claims and audits; PATENT INTELLIGENCE face: pure-algebra hardware designs published as DEFENSIVE DISCLOSURE — prior art FREE FOR ALL, proprietary claiming refused by construction — a whole toolset, its own wave',
     'migrate-next:life-torus-equations — document every life-forming superposition as a double-torus equation grounded in the sealed theorems (quantumLife · emergence ladder · doubleTorus dynamics); the NAMED next life to form (ground law: one per wave)',
   ] as const
   const facets = [
