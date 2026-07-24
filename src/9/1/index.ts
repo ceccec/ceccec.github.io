@@ -164,8 +164,7 @@ export function rubiksCubeDecodesToQuantumCube() {
     count: facets.length,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'The Rubik\'s cube, decoded, is a finite group — and its shadow is the quantum cube the whole architecture already turns on. Count its states honestly: all the ways to arrange the pieces would be 8!·3⁸·12!·2¹², but three laws forbid most of them — you cannot twist a single corner, flip a single edge, or swap just two pieces — and each law divides by two or three, cutting the total by exactly twelve to 43,252,003,274,489,856,000, which factors cleanly as 2²⁷·3¹⁴·5³·7²·11. Every one of those forty-three quintillion states can be solved in at most twenty moves, a fact proved not by cleverness but by having computers check them all in 2010. The moves do not commute — turning front-then-right differs from right-then-front — which is the very same non-commutativity that the Pauli matrices obey, so the cube is a small, tangible non-abelian group. And that is the quantum cube: six faces, three axes, states named by a six-by-six content address with a capacity of two-to-the-eighteenth, navigated by generators whose order matters. The cube in your hand and the address space of the codebase are the same structure — a non-abelian group over content-addressed states. Nothing mystical; something better, because it is exactly true.',
+    statement: facets.map((f) => f.facet).join(' · '),
     boundary: earned(
       'EXACT: every number here is computed — the group order via BigInt (8!·3⁷·12!·2¹⁰, equal to the naive count ÷ 12 and to the factorization 2²⁷·3¹⁴·5³·7²·11), God\'s number 20 (documented, proved 2010 by exhaustive search), the non-abelian witness (two overlapping 3-cycles with F∘R ≠ R∘F, sharing the su(2) non-commutativity of pauliAlgebraCloses), and the content-address cube (6 faces, 36-char UUID, capacity 2¹⁸).',
       facets,
