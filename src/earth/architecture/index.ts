@@ -698,7 +698,7 @@ export function folderLaw() {
     // (machinery), or on this allowlist — anything else is logic that belongs in src/.
     rootAllowlist: {
       dirs: ['public', 'scripts', 'packages', 'src', 'skills'], // static assets, build tooling, npm package, logic home — page mounts live in .vitepress/pages/; skills/ is the Claude Code plugin skill mount (EXTERNAL editor contract: plugins discover skills/<name>/SKILL.md at the plugin root — installSurfaces scans it; the skill's content points INTO src, no logic lives there)
-      files: ['package.json', 'package-lock.json', 'pnpm-lock.yaml', 'pnpm-workspace.yaml', 'wrangler.jsonc', 'tsconfig.json', 'README.md', 'AGENTS.md', 'hero.svg'], // root config (npm + pnpm lockfiles, tsconfig for check:types), repo docs, and the generated README hero (scripts/iching.mjs → tenDimensionalHeroSvg in dist/generators.ts, emitted to root so GitHub — which runs no scripts — renders it)
+      files: ['package.json', 'package-lock.json', 'pnpm-lock.yaml', 'pnpm-workspace.yaml', 'wrangler.jsonc', 'tsconfig.json', 'README.md', 'AGENTS.md', 'hero.svg', 'LICENSE', 'NOTICE', '.mcp.json'], // root config (npm + pnpm lockfiles, tsconfig for check:types), repo docs, the generated README hero, the LEGAL contract pair (Apache-2.0 LICENSE + NOTICE — external legal convention requires root placement, like the plugin manifests), and the Claude Code MCP wiring (.mcp.json — external editor contract)
       filePrefixes: ['bible.'], // generated Bible-in-Glagolitic artifacts (scripts/iching.mjs bible) — a generated family with varying names (bible.glagolitic.json/.txt, bible.parallel.json)
     },
     // The STRICT tree law (the architect's directive): the src folder TREE is the router and the nav —

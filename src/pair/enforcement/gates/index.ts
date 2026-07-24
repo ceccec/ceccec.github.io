@@ -1435,6 +1435,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'bindFuse', pair: 'bind/fuse', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'all binding families fused through the one standard envelope, usable from any superposition (toolbox · mcp.json · CLI · themeConfig) — unfusing any surface refutes' },
   { fold: 'costBound', pair: 'cost/bound', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'binding costs bounded by four sealed laws (zero-token · Fibonacci client cap · build ratchet · no-key adapters); the ledger gap now CLOSED by costTheorem' },
   { fold: 'costTheorem', pair: 'cost/theorem', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'the cost↔theorem ledger FORMED — six cost-carrying bindings each citing the living theorem their cost purchases (markers verified); uncited costs refuse (exit 1); the zero-token null row bounds the cheapest binding' },
+  { fold: 'legalCanon', pair: 'legal/canon', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'portal legal faces computed — privacy by measured absence · accessibility/citation composed · Apache-2.0 + CC BY 4.0 chosen by user delegation (recognition + monetisation); counsel the residue' },
 ] as const
 
 /** Old prose instruction names → matrix slot (this wave). */
@@ -2340,6 +2341,7 @@ export const VIOLATION_TOOL_ROWS = [
   { violation: 'directive worked but never saved to the matrix', tool: 'autosaveMatrix — refutable row join', pair: 'autosave/matrix' },
   { violation: 'pattern remembered outside its dimension — a bound valid only where measured', tool: 'fractalCompute — truth-dimension is an output', pair: 'fractal/compute' },
   { violation: 'quantum perjury — a fold attesting computes:true while its own facets refute it', tool: 'computesGate/sealFacets — the attestation IS the facet conjunction, structurally unforgeable within the fold', pair: 'violation/tool' },
+  { violation: 'the lying reader — a gate read through a pattern that matches success and failure alike (grep "exit" passed a red trinity)', tool: 'gate on the exit CODE or the exact success token ("exit 0"), never the label; caught live 2026-07-24, one red landing, fixed the same hour', pair: 'wave/verify' },
 ] as const
 
 export function violationTools() {
@@ -2353,7 +2355,7 @@ export function violationTools() {
   const pairFold = foldPair(toUuid('cmd:violation'), toUuid('cmd:tool'))
   const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
-    { facet: `every caught violation class is bound to a sealed local tool — ${rows.filter((row) => row.sealed).length}/${rows.length} sealing pairs live in the registry (a deregistered pair reopens its class)`, on: rows.every((row) => row.sealed) && rows.length === 6 },
+    { facet: `every caught violation class is bound to a sealed local tool — ${rows.filter((row) => row.sealed).length}/${rows.length} sealing pairs live in the registry (a deregistered pair reopens its class)`, on: rows.every((row) => row.sealed) && rows.length === 7 },
     { facet: 'each row names both the violation and the tool — no class realised without its computer', on: rows.every((row) => row.violation.length > 0 && row.tool.length > 0) },
     { facet: 'pair violation/tool bidirectional', on: pairFold.bidirectional },
     { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 },
