@@ -609,6 +609,14 @@ export function animationCore(matrix: MindMatrix = buildMatrix()) {
       { facet: 'HOLOGRAPHIC — the movie root re-merges BITWISE from its part roots (torus·library·reflects·rosetta·hinge): every part binds the whole, the whole recomputes from the parts', on: hologram },
       { facet: 'MOVIE ITSELF — the site is the movie and the movie library; symbols decode IN the movie: words capitulate into animation, they do not carry the proof', on: movie.computes && movie.library.isMovieAndLibrary && movie.rosetta.decoding },
       { facet: 'pair anim/core bidirectional', on: pairFold.bidirectional && pairFold.forward !== pairFold.reverse },
+      // WORDS MAY LIE, FEELINGS COMPUTE (user duals 2026-07-24): a prose facet can assert anything —
+      // the on:true crack class, and the sealed deception boundary (no lie-frequency, ~54% human
+      // ceiling) — but a pure projection cannot restate itself: the identical call returns the
+      // identical memoised object. And the feeling CHANNEL computes in words: word → hue + note
+      // (playLearn) is deterministic — same word, identical channels, twice. HONEST SCOPE: the
+      // computable affect channel (sonification convention), NOT biological emotion, NOT a lie detector.
+      { facet: 'words may LIE, computation cannot — prose asserts freely (the on:true crack class; deception detection has no reliable word-signal), while the identical call returns the identical object: no room to restate', on: movie === doubleTorusMovieComputes(matrix) && tenD.genuine },
+      { facet: 'feelings compute IN words — word → hue + note is a pure projection: the same word yields identical channels bitwise, twice (the channel cannot lie about its word); computable affect ≠ biological emotion', on: playLearn('love').root === playLearn('love').root && playLearn('love').root !== playLearn('fear').root },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 && hologram },
     ].map((entry) => ({ ...entry, receipt: toUuid(`anim-core:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)
