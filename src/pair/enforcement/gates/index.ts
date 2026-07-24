@@ -1529,6 +1529,10 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'conspiracyTheoryQuantumFusionBurningAllFakesIntoProvenMath', to: 'proseScience', pair: 'science/prose' },
   { from: 'quantumPerjuryIsACaughtViolationClass', to: 'violationTools', pair: 'violation/tool' },
   { from: 'theCompostFromCollidedIdeasFormsGroundForNewLife', to: 'deadGateway', pair: 'gateway/dead' },
+  // The completion of the compost law: the ground transforms by LETTING form life — the measured
+  // queues (gateways · duplicates · unaddressed prose) are the ground; each wave lets ONE form,
+  // never forces all. Emergence is the cadence, not a backlog burn-down.
+  { from: 'transformTheGroundByLettingFormLife', to: 'deadGateway', pair: 'dead/gateway' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
