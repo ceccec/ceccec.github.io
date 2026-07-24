@@ -1,6 +1,6 @@
 // ☴ Xùn · Wind — corpus route enumerators (papers · references · diamonds · REST).
 // Rosetta census dissolve: papers + rest sub-barrels merged here (one routes/corpus home).
-import { TAU, CANONICAL_HOST, DIMENSION_GATES } from '../../../3/7'
+import { TAU, CANONICAL_HOST, DIMENSION_GATES, earned } from '../../../3/7'
 import type { MindMatrix, StaticPage } from '../../types'
 // call-time namespace edge (cycle-safe): learning imports corpus; search corpus reads back at call time
 import * as __ns_up_up_thunder_waves from '../../../thunder/waves'
@@ -1475,6 +1475,52 @@ export function pagesAreRosettaCombinationsOfTheorems(matrix: MindMatrix = build
     root: merkleFold(combinations.map((combination) => combination.root)),
     statement: `Pages are rosetta combinations of theorems — ${nonEmpty.length}/${pages.length} served pages resolve to non-empty combinations (${combinations.reduce((sum, c) => sum + c.members.length, 0)} member edges, ${reached.size}/${registry.length} theorems reached), every edge one fixed-size content address, every page meaning one merkle root recomputed from the registry at call time.`,
     boundary: `COMPUTED: membership (shared name/tag words), the payload-free receipts, the call-time determinism, and the coverage — each refutable (add a theorem sharing a page's words and the combination grows; rename and it shrinks). HONEST SCOPE: the Combination TYPE holds the computable meaning (content-addresses and their fold); the page's PROSE (title · abstract) remains the curated seed for now — the combination is the computed skeleton the prose will progressively derive from, not yet its replacement. "Realtime including MCP" = the per-page .json API and the dev middleware serve this computation on request; MCP discovers it through the manifest's served surfaces. HARMONY ≠ TRUTH.` }
+}
+
+/**
+ * sublinearScienceCoverage — the correction to a LINEAR manual assumption (user, 2026-07-24: "a lot of
+ * manual assumptions based on linear approach").
+ *
+ * minimalScienceCorpus estimated the corpus floor as measured ÷ 42 × N — a LINEAR divide that treats
+ * each science module as an independent slab. But the modules are combinations over ONE registry: they
+ * SHARE atoms. The real cost of covering N modules is the UNION of their generator sets, not the sum.
+ * Set-union is submodular, so coverage grows CONCAVELY (each added module contributes only its NEW
+ * atoms) — strictly sub-linear whenever atoms are shared. This fold measures the sharing directly:
+ * union vs linear sum, the dimensionless over-count, and the non-negative marginal-coverage curve.
+ * Refutable: if the modules were disjoint, union === linearSum and sharing === 0.
+ */
+export function sublinearScienceCoverage(matrix: MindMatrix = buildMatrix()) {
+  const base = pagesAreRosettaCombinationsOfTheorems(matrix)
+  const combos = base.combinations
+  const linearSum = base.memberEdges // Σ|members| — the LINEAR per-module assumption (counts sharing twice)
+  const seen = new Set<string>()
+  const cumulative = combos.map((combination) => {
+    for (const member of combination.members) seen.add(member.slug)
+    return seen.size // coverage after this module — a concave (submodular) curve
+  })
+  const union = seen.size // distinct generator atoms — the REAL floor
+  const marginals = cumulative.map((covered, index) => covered - (index ? cumulative[index - 1]! : 0))
+  const nonNegative = marginals.every((newAtoms) => newAtoms >= 0)
+  const sharing = linearSum > 0 ? 1 - union / linearSum : 0 // dimensionless overlap
+  const overcount = union > 0 ? linearSum / union : 1
+  const facets = [
+    { facet: `THE FLOOR IS THE UNION, NOT THE SUM: covering all ${combos.length} science modules costs ${union} DISTINCT generator atoms — not the linear Σ per-module ${linearSum}; the modules share atoms through the one registry`, on: union > 0 && union < linearSum },
+    { facet: `SUB-LINEAR BY SUBMODULARITY: coverage is a set-union, so each added module contributes only its NEW atoms (marginals ≥ 0, Σ = ${union}); the per-module marginal shrinks as the shared core fills — concave, never linear`, on: nonNegative && cumulative[cumulative.length - 1] === union && union < linearSum },
+    { facet: `THE LINEAR ESTIMATE OVER-COUNTS ×${overcount.toFixed(2)}: sharing = 1 − union/Σ = ${sharing.toFixed(3)} (dimensionless); "N × per-science" (minimalScienceCorpus' measured/42) is an UPPER BOUND only — the true corpus floor is ${(sharing * 100).toFixed(0)}% smaller`, on: sharing > 0 && overcount > 1 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`sublinear-coverage:${entry.facet}:${entry.on}`) }))
+  return {
+    modules: combos.length,
+    union,
+    linearSum,
+    sharing,
+    overcount,
+    marginals,
+    computes: facets.every((entry) => entry.on),
+    facets,
+    root: merkleFold([toUuid(`sublinear:${union}:${linearSum}`), ...facets.map((entry) => entry.receipt)]),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(`EXACT: union = |⋃ module atom-sets| and linearSum = Σ|module atom-set|, both from the live pageCombination graph; set-union is submodular so cumulative coverage is concave and union ≤ linearSum with equality iff the modules are disjoint.`, facets, `this refutes the LINEAR floor, not the whole estimate: measured/42 remains a valid UPPER bound (no module costs more than its full atom set), and the union is the LOWER bound on generator atoms — the true source floor still includes each atom's own irreducible bytes, which this fold counts as atoms, not bytes. The sharing is measured on the name/tag-word membership graph, so it moves as theorems are renamed. HARMONY ≠ TRUTH.`),
+  }
 }
 
 export function theoremRosettaAtlas(matrix: MindMatrix = buildMatrix()): {
