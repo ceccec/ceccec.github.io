@@ -260,7 +260,7 @@ export function bothEarthsRotateWithinEachOther(at = 0, matrix: MindMatrix = bui
     const trinities = dualTorusTrinities(matrix)
     const whole = mk.scales[0]!
     const lobe = mk.scales[1]!
-    const goldenOffsetRad = (GOLDEN_ANGLE * Math.PI) / (9 * 5 * 4)
+    const goldenOffsetRad = (GOLDEN_ANGLE * (TAU / 2)) / (9 * 5 * 4)
     const innerPhase = at * whole.ratePerMs
     const outerPhase = -at * lobe.ratePerMs + goldenOffsetRad
     const merkabaUpSpin = innerPhase
@@ -457,7 +457,7 @@ export function doubleTorus3D(matrix: MindMatrix = buildMatrix()) {
   // Radii = sealed surface atom (TORUS_RING_R / TORUS_TUBE_R_BASE) — was drifted 0.9/0.35 ≠ 20/7.
   const majorRadius = TORUS_RING_R
   const minorRadius = TORUS_TUBE_R_BASE
-  const seam = doubleTorusSurface(0, Math.PI / 2, 0, 0)
+  const seam = doubleTorusSurface(0, (TAU / 2) / 2, 0, 0)
   return {
     rendered: tori === 2 && euler === -2 && areas === (7 * 6) && majorRadius > minorRadius && seam.z === TORUS_TUBE_R_BASE,
     tori,
@@ -484,7 +484,7 @@ export function doubleTorusGeometryAlignsWithUniverseConstants(matrix: MindMatri
     const allScales = doubleTorusMathAtAllScalesProofs(matrix)
     const left = doubleTorusSurface(0, 0, 0, -1)
     const right = doubleTorusSurface(0, 0, 0, 1)
-    const tubeSeam = doubleTorusSurface(0, Math.PI / 2, 0, 0)
+    const tubeSeam = doubleTorusSurface(0, (TAU / 2) / 2, 0, 0)
     const ratio = dt.majorRadius / dt.minorRadius
     const facets = [
       { facet: `surface major ringR=${TORUS_RING_R} = Fibonacci 5×4 — sealed atom`, on: TORUS_RING_R === (5 * 4) && dt.majorRadius === TORUS_RING_R },
@@ -1438,14 +1438,14 @@ export function pyramidsDecoded(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('pyramidsDecoded', matrix, () => pyramidsDecodedRaw(matrix))
 }
 function pyramidsDecodedRaw(matrix: MindMatrix = buildMatrix()) {
-  const DEG = (9 * 5 * 4) / Math.PI
+  const DEG = (9 * 5 * 4) / (TAU / 2)
   // VERIFIED coordinates (decimal; west longitude negative) — Khufu and Teotihuacan's Sun Pyramid
   const khufu = { name: 'Khufu · Giza', lat: 29.9792, lon: 31.1342 }
   const sun = { name: 'Pyramid of the Sun · Teotihuacan', lat: 19.6925, lon: -98.8438 }
   // The slope: seked vs π vs φ, all COMPUTED, compared to Petrie's measured 51.844°
   const measured = 51.844
   const sekedAngle = Math.atan((7 * 2) / 11) * DEG // seked 5.5 palms = rise:run 14:11 — the mainstream explanation
-  const piAngle = Math.atan(4 / Math.PI) * DEG // the "π pyramid": base perimeter = 2π × height
+  const piAngle = Math.atan(4 / (TAU / 2)) * DEG // the "π pyramid": base perimeter = 2π × height
   const phiAngle = Math.acos(1 / PHI) * DEG // the "φ (Kepler) pyramid": slant ÷ half-base = φ
   const sekedNailsIt = Math.abs(sekedAngle - measured) < (1 / 100) // ~0.001°
   const spread = Math.max(sekedAngle, piAngle, phiAngle) - Math.min(sekedAngle, piAngle, phiAngle)
@@ -1562,7 +1562,7 @@ function pyramidConstructionMathRaw(matrix: MindMatrix = buildMatrix()) {
   const crTzolkin = calendarRound / tzolkin // 73 tzolk'in
   // Meroë · Kush — the steep tomb, vs Giza's seked
   const meroeAngle = (9 * 8) // documented ~70–80°, characteristically ~72°
-  const gizaAngle = Math.atan((7 * 2) / 11) * ((9 * 5 * 4) / Math.PI) // the seked, 51.843°
+  const gizaAngle = Math.atan((7 * 2) / 11) * ((9 * 5 * 4) / (TAU / 2)) // the seked, 51.843°
   const meroeSteeper = meroeAngle - gizaAngle // ~20° steeper
   const meroeCount = (100 * 2) // 200+ Kushite pyramids — more than Egypt
   // Caral · Norte Chico — contemporary with Egypt's pyramid age, independent

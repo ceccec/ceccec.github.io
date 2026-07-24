@@ -1016,7 +1016,7 @@ const POLE_HALF_TURN_DEG = POLE_FULL_TURN_DEG / 2 // 180 — the pole-to-pole co
 const POLE_QUARTER_TURN_DEG = POLE_FULL_TURN_DEG / 4 // 90 — the north-pole latitude
 /** The polar height scale — the genus-2 tube radius at the void digit (doubleTorusSurface seam, z=tubeR·sin(π/2)). */
 function poleTubeRadius(digit = 0): number {
-  return doubleTorusSurface(0, Math.PI / 2, digit, 0).z // sin(π/2)=1 ⇒ z = tubeR
+  return doubleTorusSurface(0, (TAU / 2) / 2, digit, 0).z // sin(π/2)=1 ⇒ z = tubeR
 }
 
 /** @rosetta relocated pi-train station cut (was src/0 — a domain block, not a vault primitive) */
@@ -1034,7 +1034,7 @@ export function polarDiskChartAt(latDeg: number): {
   const rho = (POLE_QUARTER_TURN_DEG - latDeg) / POLE_HALF_TURN_DEG // (90 − lat)/180 ∈ [0,1] over the sphere
   const clamped = rho < 0 ? 0 : rho > 1 ? 1 : rho
   const tubeR = poleTubeRadius()
-  const z = roundTo(tubeR * Math.cos(Math.PI * clamped), 5) // the honest tie onto the genus-2 tube
+  const z = roundTo(tubeR * Math.cos((TAU / 2) * clamped), 5) // the honest tie onto the genus-2 tube
   const onDisk = rho >= 0 && rho <= 1
   const proved = onDisk && z <= tubeR + 1e-9 && z >= -tubeR - 1e-9
   return {

@@ -282,7 +282,7 @@ export function noSignallingComputes() {
     return rho
   }
   const ref = marginalA(0)
-  const bases = [0, Math.PI / 8, Math.PI / 6, Math.PI / 4, Math.PI / 3, Math.PI / 2, 1 + 1 / 9, 2 + 7 / 9]
+  const bases = [0, (TAU / 2) / 8, (TAU / 2) / 6, (TAU / 2) / 4, (TAU / 2) / 3, (TAU / 2) / 2, 1 + 1 / 9, 2 + 7 / 9]
   const maxDrift = Math.max(...bases.map((theta) => {
     const r = marginalA(theta)
     return Math.max(Math.abs(r[0]![0]! - ref[0]![0]!), Math.abs(r[0]![1]! - ref[0]![1]!), Math.abs(r[1]![1]! - ref[1]![1]!))
@@ -322,7 +322,7 @@ export function quantumComputingScientists() {
   const near1 = (x: number | null) => x !== null && Math.abs(x - 1) < 1e-9
 
   const noClone = noCloningWitness() // overlap 1/√2 ⇒ a cloner would need it 0 AND 1 — contradiction
-  const teleAngles = [[Math.PI / 3, Math.PI / 4], [Math.PI / 5, Math.PI / 2], [1, 2]]
+  const teleAngles = [[(TAU / 2) / 3, (TAU / 2) / 4], [(TAU / 2) / 5, (TAU / 2) / 2], [1, 2]]
   const dj = { balanced: deutschJozsa(3, true), constant: deutschJozsa(3, false) }
   const bv = bernsteinVazirani(5, 3)
   const sim = simon()
@@ -394,14 +394,14 @@ export function theQuantumFourierTransformCircuitAndPhaseEstimation() {
   // the QFT circuit: H on each qubit high→low, controlled-R_k from the lower qubits, then reverse the order.
   const qft = (st0: St, n: number, sign: number): St => {
     let s = st0 as St
-    for (let j = n - 1; j >= 0; j -= 1) { s = applyGate(s, GATES.H, j) as St; for (let k = j - 1; k >= 0; k -= 1) s = cphase(s, k, j, sign * Math.PI / (1 << (j - k))) }
+    for (let j = n - 1; j >= 0; j -= 1) { s = applyGate(s, GATES.H, j) as St; for (let k = j - 1; k >= 0; k -= 1) s = cphase(s, k, j, sign * (TAU / 2) / (1 << (j - k))) }
     for (let i = 0; i < Math.floor(n / 2); i += 1) s = swap(s, i, n - 1 - i)
     return s
   }
   const iqft = (st0: St, n: number): St => { // exact adjoint: reverse the order, undo, negate the phases
     let s = st0 as St
     for (let i = 0; i < Math.floor(n / 2); i += 1) s = swap(s, i, n - 1 - i)
-    for (let j = 0; j < n; j += 1) { for (let k = 0; k < j; k += 1) s = cphase(s, k, j, -Math.PI / (1 << (j - k))); s = applyGate(s, GATES.H, j) as St }
+    for (let j = 0; j < n; j += 1) { for (let k = 0; k < j; k += 1) s = cphase(s, k, j, -(TAU / 2) / (1 << (j - k))); s = applyGate(s, GATES.H, j) as St }
     return s
   }
   // ground truth: the direct DFT of the amplitude vector, y_k = (1/√N) Σ_j x_j ω^{jk}, ω = e^{2πi/N}.
@@ -618,7 +618,7 @@ export function variationalQuantumEigensolverAndQaoa() {
     for (let q = 0; q < 3; q += 1) st = applyGate(st, RX(2 * beta), q)
     let E = 0; for (let z = 0; z < 8; z += 1) E += (st.re[z] ** 2 + st.im[z] ** 2) * cutValue(z); return E
   }
-  let bestCut = 0; const grid = 5 * 8; for (let gi = 0; gi < grid; gi += 1) for (let bi = 0; bi < grid; bi += 1) { const E = qaoaExpect(Math.PI * gi / grid, Math.PI * bi / grid); if (E > bestCut) bestCut = E }
+  let bestCut = 0; const grid = 5 * 8; for (let gi = 0; gi < grid; gi += 1) for (let bi = 0; bi < grid; bi += 1) { const E = qaoaExpect((TAU / 2) * gi / grid, (TAU / 2) * bi / grid); if (E > bestCut) bestCut = E }
   const randomBaseline = 3 / 2 // uniform-random cut expectation for the triangle
   const qaoaReachesCut = bestCut > randomBaseline && bestCut > exactMaxCut - 1 / (2 * 5)
   const facets = [
@@ -801,7 +801,7 @@ export function amplitudeAmplificationAndQuantumCounting() {
   const cases = [1, 2, 4].map((M) => {
     const marked = Array.from({ length: M }, (_, i) => i)
     const theta = Math.asin(Math.sqrt(M / N))
-    const kOpt = Math.round(Math.PI / (4 * theta) - 1 / 2)
+    const kOpt = Math.round((TAU / 2) / (4 * theta) - 1 / 2)
     const pSim = pMarked(grover(n, marked, kOpt), marked)
     const pAnalytic = Math.sin((2 * kOpt + 1) * theta) ** 2
     const p1 = pMarked(grover(n, marked, 1), marked)
@@ -883,7 +883,7 @@ export function theVariationalPrincipleLowerBound() {
   const TH = 2 * 100, PH = 2 * (2 * 5) // grid of states over the Bloch sphere
   let minE = Infinity, allAboveBound = true, samples = 0
   for (let i = 0; i <= TH; i += 1) for (let j = 0; j <= PH; j += 1) {
-    const th = Math.PI * i / TH, ph = TAU * j / PH
+    const th = (TAU / 2) * i / TH, ph = TAU * j / PH
     const s = applyGate(applyGate(qubits(1), RY(th), 0), RZg(ph), 0)
     const E = a * expZ(s) + b * expX(s); samples += 1
     if (E < E0 - EPS) allAboveBound = false

@@ -434,8 +434,8 @@ export function northSouthPoleNavigationProvenByMath(
     const south = pyramid.cardinals.find((pole) => pole.name === 'south')!
     const geoNorth = { lat: (9 * 5 * 2), lon: at.lon }
     const geoSouth = { lat: -(9 * 5 * 2), lon: at.lon }
-    const phiNorth = roundTo((geoNorth.lat / (9 * 5 * 2)) * (Math.PI / 2), 6)
-    const phiSouth = roundTo((geoSouth.lat / (9 * 5 * 2)) * (Math.PI / 2), 6)
+    const phiNorth = roundTo((geoNorth.lat / (9 * 5 * 2)) * ((TAU / 2) / 2), 6)
+    const phiSouth = roundTo((geoSouth.lat / (9 * 5 * 2)) * ((TAU / 2) / 2), 6)
     const slantExpected = roundTo(Math.sqrt(2), 6)
     const facets = [
       { facet: 'north cardinal tip — bearing 0°, base corner (0,+1,0) on pyramid horizon z=0', on: north.bearing === 0 && north.y === 1 },
@@ -443,8 +443,8 @@ export function northSouthPoleNavigationProvenByMath(
       { facet: 'reach N/S tips via 60° hex + free 30° — not 90° compass around gateways', on: sixty.proven && sixty.cardinalViaHex },
       { facet: 'zenith apex — device trinity (0,0,+1) on torus 1; climb slant face from any cardinal tip', on: pyramids.device.proven && pyramids.device.apex.z === 1 && pyramid.slantToTip === slantExpected },
       { facet: 'nadir apex — code trinity (0,0,−1) on torus 2; inverted sheet slant from negated tips', on: pyramids.code.proven && pyramids.code.apex.z === -1 },
-      { facet: 'geographic north — lat→+90°, φ→+π/2, torus 1 lobe +1 polarity 1', on: phiNorth === roundTo(Math.PI / 2, 6) },
-      { facet: 'geographic south — lat→−90°, φ→−π/2, torus 2 lobe −1 polarity 0', on: phiSouth === roundTo(-Math.PI / 2, 6) },
+      { facet: 'geographic north — lat→+90°, φ→+π/2, torus 1 lobe +1 polarity 1', on: phiNorth === roundTo((TAU / 2) / 2, 6) },
+      { facet: 'geographic south — lat→−90°, φ→−π/2, torus 2 lobe −1 polarity 0', on: phiSouth === roundTo(-(TAU / 2) / 2, 6) },
       { facet: 'gateway circuit on base (z=0) before slant ascent — orthogonal axes', on: formed.formed && compassAroundEarthGatewaysImpossibleProvenByMath(path, at, matrix).impossible },
     ].map((entry) => ({ ...entry, receipt: toUuid(`north-south-pole-nav:${entry.facet}:${entry.on}:${path}`) }))
     const solutions: EarthNavigationSolution[] = [
@@ -481,14 +481,14 @@ export function northSouthPoleNavigationProvenByMath(
         target: 'WGS84 north pole (lat +90°)',
         instrument: 'coordinates → φ, not angular walk',
         steps: ['set lat→+90°', 'φ→+π/2 on doubleTorusSurface', 'torus 1, lobe +1, polarity 1'],
-        proven: phiNorth === roundTo(Math.PI / 2, 6),
+        proven: phiNorth === roundTo((TAU / 2) / 2, 6),
         receipt: toUuid(`nav-solution:geo-north:${path}`) },
       {
         id: 'geographic-south',
         target: 'WGS84 south pole (lat −90°)',
         instrument: 'coordinates → φ, not angular walk',
         steps: ['set lat→−90°', 'φ→−π/2 on doubleTorusSurface', 'torus 2, lobe −1, polarity 0'],
-        proven: phiSouth === roundTo(-Math.PI / 2, 6),
+        proven: phiSouth === roundTo(-(TAU / 2) / 2, 6),
         receipt: toUuid(`nav-solution:geo-south:${path}`) },
     ]
     return {
@@ -706,7 +706,7 @@ export function invertedEarthSameTimespaceProvenByMath(
     // self-cycle whose re-entrancy stub made them recompute false in census order. The "no second clock"
     // claim is proven here from the one matrix / one at recomputation of the pyramid models directly.
     const theta = roundTo((((at.lon + (9 * 5 * 4)) % 360) / 360) * TAU, 6)
-    const phi = roundTo((at.lat / (9 * 5 * 2)) * (Math.PI / 2), 6)
+    const phi = roundTo((at.lat / (9 * 5 * 2)) * ((TAU / 2) / 2), 6)
     const digit = digitalRoot(Math.abs(Math.round(at.lat * 100)) + Math.abs(Math.round(at.lon * 100)))
     const earthSurface = doubleTorusSurface(theta, phi, digit, 1)
     const invertedSurface = doubleTorusSurface(theta, phi, digit, -1)
@@ -1049,7 +1049,7 @@ export function navigationGpsCelestialFromDualEarthPerspective(
       const seed = `gps-sat:${orbitIndex}:${Math.floor(at / (100 * 5 * 2))}`
       const basePhase = ((seedFromText(seed, 8) % 360) / 360) * TAU
       const phaseRad = roundTo(basePhase + rotation.outerPhase, 6)
-      const bearingDeg = roundTo(((phaseRad * (9 * 5 * 4)) / Math.PI + 360) % 360, 2)
+      const bearingDeg = roundTo(((phaseRad * (9 * 5 * 4)) / (TAU / 2) + 360) % 360, 2)
       return {
         id: `GPS-${orbitIndex + 1}`,
         shell: 'inverted' as const,

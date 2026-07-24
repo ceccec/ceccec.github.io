@@ -1647,6 +1647,9 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // false-match), complementIsInverse and vaultSplitCamelSegment deduped to their leaf homes;
   // the sharper instrument immediately revealed deeper twins — discovery leads to discoveries.
   { from: 'upgradeToolsByDryCleanRefactoringOfMethodsAndNames', to: 'dryDupe', pair: 'dry/dupe' },
+  // BATCH AUTHORIZATION: the queue implemented as one sustained cluster, ONE final push lands all
+  // (magnitude-in-clusters law — the push-per-feature thrash retired).
+  { from: 'continueUntilAllImplementedBatchClusterOnePush', to: 'placeMerge', pair: 'work/wave' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
@@ -2270,7 +2273,8 @@ export function autosaveMatrix() {
   })
   // Genuinely NEW gaps NAMED, not built wet — everything else in the directives computes as sealed slots.
   const honestOpen = [
-    'migrate-next:portal-legal-requirements — research-portal compliance (licensing · privacy · accessibility · citation standards) named, not built',
+    'formed:portal-legal-requirements — FORMED as legalCanon (legal/canon, gates/strict/scan): privacy by measured absence (0 tracked pages) · accessibility composed (uiAudit) · citation composed (patentCanon) · LICENSE the named user act (patent-granting class recommended); counsel the stated residue',
+    'migrate-next:dev-mount-await — the dev client stalls DETERMINISTICALLY at 250 modules (last: node-stub:computational, stub valid, main thread idle, zero errors): the module graph waits on an UNSETTLED TOP-LEVEL AWAIT — the bisect (which client-reachable module top-level-awaits a promise that never resolves in dev) is the named next probe; production build unaffected (trinity green)',
     'formed:claims-toolset — FORMED as claimAudit (claim/audit, gates): content-addressed claims with the audit as exact inverse (tamper refutes), DOI/ORCID-checksum/OpenAlex validators, CLAIMED-in-rosetta ∧ UNCLAIMED-toward-prizes structural on every row; patent face = defensive disclosure (patentCanon); residual open: RFC 3161 qualified timestamping',
     'formed:life-torus-equations — the named life FORMED as lifeTorus (life/torus, src/water/double): seven superpositions · seven computing equations; the queue advances (ground law: one per wave)',
     'formed:agnostic-torus-data — FORMED as torusData (torus/data, src/fire/features): four no-key API families through one pure adapter shape, dimensionless ratios gate, units labelled never theorems, gates network-free; a fifth source is a function, not a framework change',
@@ -2280,7 +2284,7 @@ export function autosaveMatrix() {
     { facet: `REVERT — all ${distinctPairs.length} merge pairs fold bidirectionally in both orders: an undone row is a measured branch, never a silent loss`, on: reverted },
     { facet: 'superposition COMPLETE — save · invert · revert all compute; the measurement algebra is saved WITH its inverse', on: invertible && reverted && unsaved.length === 0 },
     { facet: `flagged is FLAGGED by algebra — ${mergeRows.filter((row) => row.from.endsWith('FLAGGED')).length} flagged rows, each held by the computed refutation claySolvedByThisFold=${claySolvedByThisFold} (the flag is a theorem's output, never a label)`, on: mergeRows.filter((row) => row.from.endsWith('FLAGGED')).length >= 1 && claySolvedByThisFold === 0 },
-    { facet: `new gaps NAMED, not built — ${honestOpen.length} honest-open (portal legal requirements · claims toolset · life-torus equations · agnostic torus data); existing laws reused for the rest (DRY)`, on: honestOpen.length === 4 },
+    { facet: `named entries — ${honestOpen.length} honest-open rows (${honestOpen.filter((entry) => entry.startsWith('formed:')).length} formed · ${honestOpen.filter((entry) => entry.startsWith('migrate-next:')).length} migrate-next); a formed entry keeps its history, a migrate-next names its wave`, on: honestOpen.length === 5 && honestOpen.every((entry) => entry.startsWith('formed:') || entry.startsWith('migrate-next:')) },
     { facet: `autosaved — ${targets.length - unsaved.length}/${targets.length} prose-merge targets hold a matrix row · unsaved=[${unsaved.join(',')}]`, on: allSaved },
     { facet: 'merge rows well-formed — every slot compresses its longest prose name · pair is a dual · slot is a fold name', on: rowsWellFormed },
     { facet: 'this turn autosaved itself — frontierQuantum row (water/cosmos) + autosaveMatrix row present', on: frontierSaved && selfSaved },

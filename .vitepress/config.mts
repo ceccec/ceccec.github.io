@@ -222,6 +222,18 @@ export function scanCrackSurface() { return [] }
 export function stripComments(text) { return text }
 export const ONE_MATH_LAW = 'one math — every derived constant/primitive is defined once at its home and imported everywhere else'
 export function scanOneMathOffenders() { return [] }
+// PURE string helpers deduped to this leaf (dry/dupe spin 1) — real bodies, client-safe:
+export function relativeImportSpecs(text) {
+  return [
+    ...[...text.matchAll(/\\b(?:import|export)\\b[\\s\\S]*?\\bfrom\\s*['"]([^'"]+)['"]/g)].map((m) => m[1]),
+    ...[...text.matchAll(/\\bimport\\s*\\(\\s*['"]([^'"]+)['"]\\s*\\)/g)].map((m) => m[1]),
+    ...[...text.matchAll(/\\bimport\\s+['"]([^'"]+)['"]/g)].map((m) => m[1]),
+  ].filter((spec) => spec.startsWith('.'))
+}
+export function importGapCount(spec) {
+  const match = spec.match(/^(\\.\\.\\/)+/)
+  return match ? (match[0].match(/\\.\\.\\//g)?.length ?? 0) : 0
+}
 `
       }
       if (id === '\0node-stub:computational') return computationalClientStubSource()

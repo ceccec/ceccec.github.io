@@ -251,7 +251,7 @@ export function blackHoleMergerSimulatedFromZero(at = 0, params: BlackHoleMerger
     remnant: blackHoleEntropyBits(mfKg) }
   const breath = humanBreath(at, (100 * 16 * 5), (3 / (5 * 4)))
   const omega0 = TAU * citation.ringdownF220Hz
-  const q = omega0 / (4 * Math.PI * Math.max(citation.ringdownGamma220Hz, 1))
+  const q = omega0 / (4 * (TAU / 2) * Math.max(citation.ringdownGamma220Hz, 1))
   const ringdown = {
     frequencyHz: citation.ringdownF220Hz,
     dampingHz: citation.ringdownGamma220Hz,

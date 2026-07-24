@@ -1283,7 +1283,7 @@ export function discoveredTheoremsWaveTwentySeven(matrix: { root: string } = { r
     // magic wand — there is no O(log N) quantum search (BBBV lower bound), so NP does not collapse.
     const groverProb = (nQ: number, marked: number, fracNum: number, fracDen: number) => {
       const N = 1 << nQ
-      const iters = Math.round((fracNum / fracDen) * (Math.PI / 4) * Math.sqrt(N))
+      const iters = Math.round((fracNum / fracDen) * ((TAU / 2) / 4) * Math.sqrt(N))
       let amp = Array(N).fill(1 / Math.sqrt(N))
       for (let it = 0; it < iters; it += 1) { amp = amp.map((a, i) => (i === marked ? -a : a)); const m = amp.reduce((sum, a) => sum + a, 0) / N; amp = amp.map((a) => 2 * m - a) }
       return amp[marked] ** 2
@@ -2187,7 +2187,7 @@ export function discoveredTheoremsWaveFortyThree(matrix: { root: string } = { ro
     // T_{n−2}) satisfy T_n(cos θ) = cos(nθ) for all n ≤ 10 and a grid of angles.
     const cheb = (n: number, x: number) => { if (n === 0) return 1; let a = 1, b = x; for (let i = 2; i <= n; i += 1) { const cc = 2 * x * b - a; a = b; b = cc } return n === 1 ? x : b }
     let chebyshev = true
-    for (let n = 0; n <= 2 * 5; n += 1) for (let j = 0; j < 4 * 5; j += 1) { const th = (j * Math.PI) / (2 * 5); if (Math.abs(cheb(n, Math.cos(th)) - Math.cos(n * th)) > 1 / 1e9) chebyshev = false }
+    for (let n = 0; n <= 2 * 5; n += 1) for (let j = 0; j < 4 * 5; j += 1) { const th = (j * (TAU / 2)) / (2 * 5); if (Math.abs(cheb(n, Math.cos(th)) - Math.cos(n * th)) > 1 / 1e9) chebyshev = false }
 
     return {
       facets: [
@@ -2480,7 +2480,7 @@ export function inverseNegatesAngle() {
     return Math.atan2(b[1] - a[1], b[0] - a[0])
   })
   // finite differences carry O(ε) error — the tolerance must match the method, not flatter it
-  const betweenSurvives = Math.abs(Math.abs(wrap(rays[1]! - rays[0]!)) - Math.PI / 4) < 1e-4
+  const betweenSurvives = Math.abs(Math.abs(wrap(rays[1]! - rays[0]!)) - (TAU / 2) / 4) < 1e-4
   const facets = [
     { facet: 'complex: arg(1/z) = −arg(z) on every off-axis sample — the reciprocal reflects the phase', on: reciprocalNegates },
     { facet: 'rotations: R(θ)·R(−θ) = I computed — the inverse rotation IS the negated angle', on: rotationInverse },
@@ -2520,7 +2520,7 @@ export function sixtyDegreesDecodesPi() {
     rungs.push({ n, lower: b / 2, upper: a / 2 })
   }
   const last = rungs[rungs.length - 1]!
-  const bracket = rungs.every((r) => r.lower < Math.PI && Math.PI < r.upper)
+  const bracket = rungs.every((r) => r.lower < (TAU / 2) && (TAU / 2) < r.upper)
   const tightens = rungs.every((r, i) => i === 0 || (r.lower > rungs[i - 1]!.lower && r.upper < rungs[i - 1]!.upper))
   // erpax cross-check: the ring (x↦2x) and the void (x↦1−x) generate AGL(1,ℤ/9) — order 54
   const apply = (f: readonly [number, number], x: number) => (((f[0] * x + f[1]) % 9) + 9) % 9
@@ -2543,7 +2543,7 @@ export function sixtyDegreesDecodesPi() {
   const isAffineGroup = groupOrder === 54 && [...seen.values()].every((f) => [1, 2, 4, 5, 7, 8].includes(((f[0] % 9) + 9) % 9))
   void apply
   const facets = [
-    { facet: 'the vortex quantum is τ/6 = 60° = π/3, and cos 60° = ½ EXACTLY — the hexagon is chords of the radius, which is why it seeds everything', on: cosSixtyExact && Math.abs(step - Math.PI / 3) < 1e-15 },
+    { facet: 'the vortex quantum is τ/6 = 60° = π/3, and cos 60° = ½ EXACTLY — the hexagon is chords of the radius, which is why it seeds everything', on: cosSixtyExact && Math.abs(step - (TAU / 2) / 3) < 1e-15 },
     { facet: 'three steps make π and negate: 2³ ≡ −1 (mod 9) beside cos(3·60°) = −1 — Euler\'s identity e^{iπ} = −1, discretely on the digit circle', on: discreteEuler },
     { facet: `Archimedes decoded π FROM 60°: hexagon → ${last.n}-gon by doubling, ${last.lower.toFixed(4)} < π < ${last.upper.toFixed(4)} — every rung brackets and tightens`, on: bracket && tightens && last.n === (2 ** 5) * 3 },
     { facet: `the ring and the void generate everything (erpax, same-day commit, verified here): ⟨x↦2x, x↦1−x⟩ closes to order ${groupOrder} = 6·9 = AGL(1,ℤ/9) with every slope a unit`, on: isAffineGroup },

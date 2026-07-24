@@ -7107,25 +7107,25 @@ export function mathStarCannotBeTrusted(matrix: MindMatrix = buildMatrix(), at =
     const surfaces: MathTrustSurface[] = [
       {
         id: 'tau-host-pi-root',
-        was: 'Math.PI scattered',
+        was: '(TAU / 2) scattered',
         theorem: 'TAU',
         status: tauRoot ? 'theorem-anchor' : 'remaining',
         receipt: toUuid(`math-trust:tau:${tauRoot}`) },
       {
         id: 'reduced-planck-via-tau',
-        was: 'PLANCK/(2·Math.PI)',
+        was: 'PLANCK/(2·(TAU / 2))',
         theorem: 'PLANCK/TAU',
         status: tauRoot ? 'fixed' : 'remaining',
         receipt: toUuid(`math-trust:hbar:${tauRoot}`) },
       {
         id: 'geodesy-deg2rad-tau',
-        was: 'Math.PI/180 in greatCircleKm·initialBearing',
+        was: '(TAU / 2)/180 in greatCircleKm·initialBearing',
         theorem: 'TAU/360',
         status: Number.isFinite(gcProbe) && gcProbe > (64 * 64 * 2) && deg2rad === TAU / 360 ? 'fixed' : 'remaining',
         receipt: toUuid(`math-trust:deg2rad:${gcProbe}`) },
       {
         id: 'lens-ratio-tau-half',
-        was: 'Math.PI in unitDistanceLensRatio',
+        was: '(TAU / 2) in unitDistanceLensRatio',
         theorem: 'TAU/2',
         status: lensViaTau ? 'fixed' : 'remaining',
         receipt: toUuid(`math-trust:lens:${lensViaTau}`) },
@@ -7171,10 +7171,10 @@ export function mathStarCannotBeTrusted(matrix: MindMatrix = buildMatrix(), at =
     const facets = [
       { facet: 'mathStarCannotBeTrusted', on: mathStarCannotBeTrustedOn },
       { facet: 'HARD noAllowlistExceptions', on: noAllowlistExceptions },
-      { facet: 'TAU sealed host Math.PI root only', on: tauRoot },
+      { facet: 'TAU sealed host (TAU / 2) root only', on: tauRoot },
       { facet: 'geodesy deg2rad via TAU', on: deg2rad === TAU / 360 && Number.isFinite(gcProbe) },
       { facet: 'no Math.random in sealed compute — axiom inverted to the mathGaps scan (math/gaps · HARD 0 · self-coordinated fractal)', on: (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('math/gaps') && (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('fractal/seal') },
-      { facet: 'host trig inventoried as host-boundary (not Math.PI/random exception)', on: hostBoundary >= 1 },
+      { facet: 'host trig inventoried as host-boundary (not (TAU / 2)/random exception)', on: hostBoundary >= 1 },
       { facet: 'composes decimal/crack', on: decimals.computes && decimals.remaining === 0 && decimals.noAllowlistExceptions },
       { facet: 'composes theorem/const', on: theoremConst.computes && theoremConst.remaining === 0 },
       { facet: 'pair math/trust registered', on: pairRegistered && pairFold.bidirectional },

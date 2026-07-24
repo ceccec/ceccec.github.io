@@ -593,7 +593,7 @@ function torusPoint(index: number, digit: number, total: number): { theta: numbe
   const lobe = onLeft ? -1 : 1
   // Start the right ring at the neck (offset by pi) so the train crosses the neck
   // exactly at the handoff between lobes — the genus-2 join, not a stray bridge.
-  const theta = (localIndex / Math.max(1, localCount)) * TAU + (onLeft ? 0 : Math.PI) // major angle, around the hole
+  const theta = (localIndex / Math.max(1, localCount)) * TAU + (onLeft ? 0 : (TAU / 2)) // major angle, around the hole
   const phi = ((digit + index * (1 / 2)) / (5 * 2)) * TAU // minor angle, around the tube
   const point = doubleTorusSurface(theta, phi, digit, lobe)
   const x = point.x

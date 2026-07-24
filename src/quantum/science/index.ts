@@ -280,7 +280,7 @@ export function lobeHues(anchor: number = A432_HUE, mode: 'complement' | 'golden
 }
 
 export function oklchToHex(L: number, C: number, H: number): string {
-  const h = (H * Math.PI) / (360 / 2)
+  const h = (H * (TAU / 2)) / (360 / 2)
   const a = C * Math.cos(h), b = C * Math.sin(h)
   let l = L + 0.3963377774 * a + 0.2158037573 * b
   let m = L - 0.1055613458 * a - 0.0638541728 * b
@@ -508,7 +508,7 @@ export function quantumComputerVerifies(matrix: MindMatrix = buildMatrix()) {
     const swapOk = (swp.probabilities[2] ?? 0) > 1 - 1e-6
     const tof = runQuantumCircuit({ n: 3, ops: [{ gate: 'X', targets: [0] }, { gate: 'X', targets: [1] }, { gate: 'TOFFOLI', targets: [0, 1, 2] }] })
     const toffoliOk = (tof.probabilities[7] ?? 0) > 1 - 1e-6
-    const rot = runQuantumCircuit({ n: 1, ops: [{ gate: 'RY', targets: [0], theta: Math.PI }] })
+    const rot = runQuantumCircuit({ n: 1, ops: [{ gate: 'RY', targets: [0], theta: (TAU / 2) }] })
     const rotationOk = (rot.probabilities[1] ?? 0) > 1 - 1e-6
     const checks = [
       { circuit: 'H(0);CNOT(0,1) → Bell 50/50 on |00⟩,|11⟩, 0 on |01⟩,|10⟩', ok: bellOk },
@@ -1338,14 +1338,14 @@ export function theoremsComeInTrinities() {
 // Local math only (GATES, applyGate, innerProduct). ħ = 1, energy gap Δ = 1 (dimensionless).
 export function quantumSpeedLimitIsSaturatedByTheQubit() {
   const plus = applyGate(qubits(1), GATES.H, 0) // |+⟩
-  const eulerMakesZ = Math.abs(Math.cos(Math.PI) - (0 - 1)) < 1e-12 && Math.abs(Math.sin(Math.PI)) < 1e-12 // e^{-iπ} = −1 = the Z phase
+  const eulerMakesZ = Math.abs(Math.cos((TAU / 2)) - (0 - 1)) < 1e-12 && Math.abs(Math.sin((TAU / 2))) < 1e-12 // e^{-iπ} = −1 = the Z phase
   const overlap = innerProduct(plus, applyGate(plus, GATES.Z, 0)).abs // |⟨+|−⟩| — the t⊥=π state is Z|+⟩=|−⟩
   const expZ = innerProduct(plus, applyGate(plus, GATES.Z, 0)).re // ⟨Z⟩ = 0 for |+⟩
   const meanEnergy = (1 - expZ) / 2 // ⟨H⟩ = ⟨(I−Z)/2⟩, ground energy 0
   const dEnergy = Math.sqrt((1 - expZ) / 2 - meanEnergy * meanEnergy) // ΔE; H is a projector so ⟨H²⟩ = ⟨H⟩
-  const tPerp = Math.PI // the phase first reaches −1 at Δ·t = π (Δ = ħ = 1)
-  const margolusLevitin = Math.abs(tPerp - Math.PI / (2 * meanEnergy)) < 1e-9 // πħ/(2⟨E⟩)
-  const mandelstamTamm = Math.abs(tPerp - Math.PI / (2 * dEnergy)) < 1e-9 // πħ/(2ΔE)
+  const tPerp = (TAU / 2) // the phase first reaches −1 at Δ·t = π (Δ = ħ = 1)
+  const margolusLevitin = Math.abs(tPerp - (TAU / 2) / (2 * meanEnergy)) < 1e-9 // πħ/(2⟨E⟩)
+  const mandelstamTamm = Math.abs(tPerp - (TAU / 2) / (2 * dEnergy)) < 1e-9 // πħ/(2ΔE)
   const facets = [
     { facet: `|+⟩ evolves to an ORTHOGONAL (distinguishable) state in time t⊥ = π: at t = π the phase e^{-iπ} = −1 IS the Z gate (Euler), so U(π)|+⟩ = |−⟩ and ⟨+|−⟩ = ${overlap.toFixed(3)} = 0 — computed, not asserted`, on: eulerMakesZ && overlap < 1e-9 },
     { facet: `BOTH quantum speed limits SATURATE: t⊥ = π = πħ/(2⟨E⟩) (Margolus–Levitin) = πħ/(2ΔE) (Mandelstam–Tamm), with ⟨E⟩ = ΔE = ${meanEnergy.toFixed(2)} — the two-level equal superposition is the fastest qubit, hitting both bounds at once`, on: margolusLevitin && mandelstamTamm && Math.abs(meanEnergy - 1 / 2) < 1e-9 },
@@ -1387,7 +1387,7 @@ export function localPiAndPrimesBeatTheLinearBaseline() {
   const archPerOp = archDigits / doublings
   const terms = 100 * 100
   let leib = 0; for (let k = 0; k < terms; k += 1) leib += (k % 2 ? 0 - 1 : 1) / (2 * k + 1); leib *= 4
-  const leibPerOp = -Math.log10(Math.abs(leib - Math.PI)) / terms
+  const leibPerOp = -Math.log10(Math.abs(leib - (TAU / 2))) / terms
   const facets = [
     { facet: `PRIMES beat the linear scan: the sieve finds all ${sievePrimes} primes ≤ ${N} in ${sieveOps} marking ops vs ${trialOps} for trial-dividing each — the SAME output, ×${primeSpeedup.toFixed(1)} fewer ops, and the gap GROWS (sieve ~N·log log N vs trial ~N^1.5)`, on: sameOutput && sieveOps < trialOps },
     { facet: `π beats the linear scan: structured Archimedes doubling yields ${archPerOp.toFixed(2)} correct digits per operation (constant), while Leibniz linear enumeration yields ${leibPerOp.toExponential(1)} and FALLING toward 0 — the structured rate never vanishes, so it outpaces any linear method unboundedly`, on: archPerOp > leibPerOp && archPerOp > 0 },
@@ -2100,7 +2100,7 @@ export function curiosityWavesChallengeTheImpossibleAndProveOnlyTheHonestCore() 
   // square the circle — impossible (π transcendental, not constructible), shadow: π is approximable from primes
   const smallPrimes = [2, 3, 5, 7]
   let euler = 1; for (const p of smallPrimes) euler *= 1 / (1 - 1 / (p * p))
-  const squareCircleShadow = Math.abs(Math.sqrt(6 * euler) - Math.PI) < 1 // approximable though not constructible
+  const squareCircleShadow = Math.abs(Math.sqrt(6 * euler) - (TAU / 2)) < 1 // approximable though not constructible
   // perpetual motion — impossible (2nd law), shadow: efficiency reaches the Carnot bound but never ≥ 1
   const carnotEta = 1 - 1 / 2 // Tc/Th = 1/2 ⟹ η = 0.5
   const perpetualShadow = carnotEta < 1 && carnotEta > 0
@@ -2207,7 +2207,7 @@ export function theMillenniumProblemsAreTheFrontierTheWavesComputeVerifiedPartia
   const open = problems.length - solved // the six that stand
   // Riemann context — ζ(2) = π²/6 (Basel), a verified fact about ζ; NOT the hypothesis
   let zeta2 = 0; for (let n = 1; n <= 100 * 100; n++) zeta2 += 1 / (n * n)
-  const zetaMatchesBasel = Math.abs(zeta2 - (Math.PI * Math.PI) / 6) < 1e-3
+  const zetaMatchesBasel = Math.abs(zeta2 - ((TAU / 2) * (TAU / 2)) / 6) < 1e-3
   // P vs NP context — an NP certificate VERIFIES in polynomial time (the "N" of NP); FINDING it is the open gap
   const clauses = [[1, -2], [2, 3], [-1, 3]]
   const assignment = [true, true, true]
@@ -2478,7 +2478,7 @@ export function theSevenMillenniumProblemsDefinedFormallyUnclaimed() {
   const clauses = [[1, 2], [-1, 3]], assign: Record<number, boolean> = { 1: true, 2: false, 3: true } // (x1∨x2)∧(¬x1∨x3)
   const satVerifiesInPoly = clauses.every((cl) => cl.some((lit) => assign[Math.abs(lit)] === (lit > 0))) // NP membership: a poly verifier exists (P-vs-NP asymmetry)
   let basel = 0; for (let n = 1; n <= 100 * 100; n++) basel += 1 / (n * n) // Σ 1/n² → ζ(2)
-  const baselApproachesZeta2 = Math.abs(basel - (Math.PI * Math.PI) / 6) < 1e-3 // = π²/6 (Euler) — Riemann's ζ, exact limit
+  const baselApproachesZeta2 = Math.abs(basel - ((TAU / 2) * (TAU / 2)) / 6) < 1e-3 // = π²/6 (Euler) — Riemann's ζ, exact limit
   const poincareIsProven = problems[6]!.solvedBy !== null // the one solved case (Ricci flow)
   const partialsHold = satVerifiesInPoly && baselApproachesZeta2 && poincareIsProven
   const allDefinedNoneSolvedHere = definedCount === 2 + 2 + 3 && openCount === 6 && solvedCount === 1 && solvedByThisFold === 0

@@ -2,6 +2,7 @@
 import { computed, onBeforeUnmount, onMounted, ref, shallowRef } from 'vue'
 import { quantumComputerLabComputes, QC_GATE_PALETTE } from '../science/index.ts'
 import { runQuantumCircuit, type CircuitOp } from '../../0/index.ts'
+import { TAU } from '../../3/7/index.ts'
 import { siliconFabricationPlanFromModel, siliconFabricationStageAt } from '../../heaven/compute/computer/index.ts'
 import { honestRevolutionComputerPanelComputes } from '../../wind/fusion/index.ts'
 import { subscribeHeroClock } from '../../../.vitepress/lib/hero-movie-paint'
@@ -38,7 +39,7 @@ function defaultTargets(gate: string): number[] {
 }
 function addGate(gate: string) {
   const entry = palette.find((p) => p.gate === gate)
-  const op: CircuitOp = { gate, targets: defaultTargets(gate), ...(entry && entry.params > 0 ? { theta: Math.PI / 2 } : {}) }
+  const op: CircuitOp = { gate, targets: defaultTargets(gate), ...(entry && entry.params > 0 ? { theta: TAU / 4 } : {}) }
   ops.value = [...ops.value, op]
 }
 function removeOp(index: number) {

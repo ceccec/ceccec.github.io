@@ -650,7 +650,7 @@ export function baguaWheelSvg(opts: { size?: number; animate?: boolean; scale?: 
     ? `<animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="-360 ${cx} ${cy}" dur="${dur}" repeatCount="indefinite"/>`
     : ''
   const cells = BAGUA.map((b, i) => {
-    const a = (i / BAGUA.length) * TAU - Math.PI / 2
+    const a = (i / BAGUA.length) * TAU - (TAU / 2) / 2
     const x = cx + Math.cos(a) * R
     const y = cy + Math.sin(a) * R
     const bars = [0, 1, 2].map((row) => {
@@ -883,7 +883,7 @@ export function elderFutharkGridSvg(opts: { size?: number; animate?: boolean; sc
     const h = cellH / (2 + 1 / PHI)
     const stroke = scaleColor(scale + aett + pos, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })
     // Branch angle from position index on TAU/8 — tent/stave cipher, not a wet glyph table.
-    const branchA = ((pos - 1) / cols) * TAU - Math.PI / 2
+    const branchA = ((pos - 1) / cols) * TAU - (TAU / 2) / 2
     const bx = x + Math.cos(branchA) * (h / PHI)
     const by = y + Math.sin(branchA) * (h / PHI)
     return [
@@ -922,7 +922,7 @@ export function alchemySigilsSvg(opts: { size?: number; animate?: boolean; scale
     `<polygon points="${cx},${cy - salt / PHI} ${cx - salt / PHI},${cy + salt / (2 * PHI)} ${cx + salt / PHI},${cy + salt / (2 * PHI)}" fill="none" stroke="${stroke(2)}" stroke-width="${1 + 1 / PHI}" data-prime="sulfur"/>`,
   ].join('')
   const four = (['fire', 'air', 'water', 'earth'] as const).map((el, i) => {
-    const a = (i / 4) * TAU - Math.PI / 2
+    const a = (i / 4) * TAU - (TAU / 2) / 2
     const x = cx + Math.cos(a) * (R * PHI / 2)
     const y = cy + Math.sin(a) * (R * PHI / 2)
     const h = R / 8
@@ -957,7 +957,7 @@ export function glagoliticLivingSmilSvg(opts: { size?: number; animate?: boolean
   const n = GLAGOLITIC_LETTERS.length
   const sample = glagoliticGlyph('symbols-quantumise-living-smil')
   const cells = GLAGOLITIC_LETTERS.map((letter, i) => {
-    const a = (i / n) * TAU - Math.PI / 2
+    const a = (i / n) * TAU - (TAU / 2) / 2
     const x = cx + Math.cos(a) * R
     const y = cy + Math.sin(a) * R
     const val = glagoliticValue(i + 1)

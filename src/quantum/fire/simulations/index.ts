@@ -101,7 +101,7 @@ export function forwardProjectAxis(phantom: readonly (readonly number[])[]): num
 // Spatial Ram-Lak ramp filter taps n=−half..half: h[0]=¼, h[odd]=−1/(π²n²), h[even≠0]=0 (Kak & Slaney).
 /** @rosetta ✦₁ · Fire · clarity (EM simulators) */
 export function ramLakKernel(half: number): number[] {
-  return Array.from({ length: 2 * half + 1 }, (_, kk) => { const n = kk - half; if (n === 0) return (1 / 4); if (n % 2 !== 0) return -1 / (Math.PI * Math.PI * n * n); return 0 })
+  return Array.from({ length: 2 * half + 1 }, (_, kk) => { const n = kk - half; if (n === 0) return (1 / 4); if (n % 2 !== 0) return -1 / ((TAU / 2) * (TAU / 2) * n * n); return 0 })
 }
 /** @rosetta ✦₁ · Fire · clarity (EM simulators) */
 export function rampFilter(projection: readonly number[], half = 3): number[] {

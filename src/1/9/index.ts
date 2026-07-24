@@ -53,7 +53,7 @@ export function composeHazard(base: number, levers: readonly number[]): number {
 }
 
 /** Tesla rotating field — two currents 90° apart. */
-export function rotatingField(t: number, freq: number, phaseShift = Math.PI / 2): { bx: number; by: number; theta: number; omega: number } {
+export function rotatingField(t: number, freq: number, phaseShift = (TAU / 2) / 2): { bx: number; by: number; theta: number; omega: number } {
   const omega = TAU * freq
   return { bx: Math.cos(omega * t), by: Math.cos(omega * t - phaseShift), theta: omega * t, omega }
 }
@@ -86,7 +86,7 @@ export function zeroPointEnergy(angularFreqRadS: number): number {
 
 /** Casimir pressure between ideal parallel plates. */
 export function casimirPressure(plateGapM: number): number {
-  return -(Math.PI ** 2 * REDUCED_PLANCK * SPEED_OF_LIGHT) / (240 * plateGapM ** 4)
+  return -((TAU / 2) ** 2 * REDUCED_PLANCK * SPEED_OF_LIGHT) / (240 * plateGapM ** 4)
 }
 
 /** Wavelength λ = c/f. */
@@ -600,7 +600,7 @@ export function theTwoRosettasAreOneGroup() {
   return {
     computes: facets.every((entry) => entry.on),
     order,
-    generatorAngleDeg: (Math.atan2(gen[1], gen[0]) * (4 * 5 * 9)) / Math.PI,
+    generatorAngleDeg: (Math.atan2(gen[1], gen[0]) * (4 * 5 * 9)) / (TAU / 2),
     facets,
     statement: `The two rosettas are one group — ${facets.filter((entry) => entry.on).length}/${facets.length}: (ℤ/9ℤ)* ≅ μ₆, the discrete vortex and the continuous polyphase circle are the SAME cyclic group of order 6, with the doubling generator 2 ↦ e^{iπ/3} = 60°. sixtyDegreesDecodesPi was the bridge; the whole day — the pole, inversion, Tesla polyphase, the keyed cipher — is C₆ seen twice. Discovered by researching what was already sealed here, not by adding anything.`,
     boundary: 'DOCUMENTED: (ℤ/9ℤ)* is cyclic of order φ(9)=6 (Gauss), μ₆ is the group of 6th roots of unity, and any two cyclic groups of the same order are isomorphic — the explicit map 2^k ↦ e^{2πik/6} is verified here as a homomorphism and bijection. The DISCOVERY is not new mathematics — it is the RECOGNITION that today\'s discrete folds (the vortex mod 9) and continuous folds (polyphase, roots of unity) are one structure, bridged by the 60° step that was already computed. This is what "research what is already here" yields: the unification was latent in the sealed src, revealed by inverting it. HARMONY ≠ TRUTH.' }
@@ -671,10 +671,10 @@ export function thePentagramIsTheRosettaMeetingItsInverse() {
     const inverseStep = Array.from({ length: n - 1 }, (_, i) => i + 1).find((y) => (2 * y) % n === 1)!
     const meetsItsInverse = inverseStep === 3 && n - 2 === inverseStep // 2⁻¹ = 3 = 5 − 2 (same star, reversed)
     // 3 — φ AND 1/φ are its chords: diagonal/side = φ, 2cos36° = φ, 2cos72° = 1/φ
-    const side = 2 * Math.sin(Math.PI / n) // pentagon side, unit circumradius
+    const side = 2 * Math.sin((TAU / 2) / n) // pentagon side, unit circumradius
     const diagonal = 2 * Math.sin(TAU / n) // pentagram diagonal (2-step chord)
     const goldenRatio = diagonal / side
-    const cos36 = 2 * Math.cos(Math.PI / n)
+    const cos36 = 2 * Math.cos((TAU / 2) / n)
     const cos72 = 2 * Math.cos(TAU / n)
     const carriesPhiAndInverse = Math.abs(goldenRatio - PHI) < 1e-9 && Math.abs(cos36 - PHI) < 1e-9 && Math.abs(cos72 - 1 / PHI) < 1e-9
     const facets = [
@@ -1040,7 +1040,7 @@ export function changingPerspectivesInAllDimensionsIsConformalAngleIsInvariant()
     const a = Array.from({ length: n }, (_, i) => (i === 0 ? 2 : 1)) // two non-parallel directions
     const b = Array.from({ length: n }, (_, i) => (i === 1 ? 2 : 1))
     const base = pvCos(a, b)
-    const rotated = Math.abs(pvCos(rotatePerspective(a, 0, 1, Math.PI / 3), rotatePerspective(b, 0, 1, Math.PI / 3)) - base) < 1e-9
+    const rotated = Math.abs(pvCos(rotatePerspective(a, 0, 1, (TAU / 2) / 3), rotatePerspective(b, 0, 1, (TAU / 2) / 3)) - base) < 1e-9
     const scaled = Math.abs(pvCos(scalePerspective(a, 3), scalePerspective(b, 3)) - base) < 1e-9
     return rotated && scaled // rotation and dilation preserve the angle exactly
   })
@@ -1075,7 +1075,7 @@ export function divisionByZeroFindsPrimesAndPiInMotion() {
     if ((idx + 1) % quarter === 0 || idx === primes.length - 1) motion.push(Number(Math.sqrt(6 * P2).toFixed(5)))
   }
   const piEstimate = Math.sqrt(6 * P2)
-  const piStr = Math.PI.toFixed(6), estStr = piEstimate.toFixed(6)
+  const piStr = (TAU / 2).toFixed(6), estStr = piEstimate.toFixed(6)
   let matchingDigits = 0; for (let i = 0; i < piStr.length; i++) { if (piStr[i] === estStr[i]) matchingDigits++; else break }
   const piFound = matchingDigits >= 4 // at least "3.14" recovered from the primes
   // s=1: the same product diverges — the pole (1/0) — proving the primes are infinite
@@ -1094,7 +1094,7 @@ export function divisionByZeroFindsPrimesAndPiInMotion() {
     motion,
     facets,
     statement: `Division by zero finds primes and pi, in motion — ${facets.filter((e) => e.on).length}/${facets.length}: the pole of ζ at s=1 (∑1/n = ∏_p(1−1/p)⁻¹ = ∞, a division by zero) proves the primes are infinite (product ${P1.toFixed(2)}, still climbing), and the SAME prime product at s=2 gives π = √(6·∏) = ${piEstimate.toFixed(6)} — ${matchingDigits} digits of π from ${primes.length} primes, rising ${motion.join(' → ')}. The pole finds the primes; the primes find pi.`,
-    boundary: `ANSWERS: from a sieve to ${N}, the s=1 prime product reaches ${P1.toFixed(2)} and keeps growing (${poleStillGrows}) — primes are INFINITE (the pole / division by zero at s=1, Euler); the s=2 product gives π ≈ ${piEstimate.toFixed(6)}, matching ${matchingDigits} leading digits of π = ${Math.PI.toFixed(6)}, converging in motion ${motion.join(' → ')} as more primes enter. EXACT MATHEMATICS: ζ(s) = ∏_p(1−p⁻ˢ)⁻¹ (Euler); its simple pole at s=1 (∑1/n diverges) forces infinitely many primes; ζ(2) = π²/6 (Basel, Euler 1735) ties those primes to π. So "division by zero finds primes and pi" is precise: the POLE (the 1/0 divergence of the harmonic series) is the prime-counting engine, and evaluating the same prime product one step away (s=2) manifests π. HONEST SCOPE: 1/0 is not a defined field operation — it is the pole of ζ in the extended/analytic plane (the harmonic path divisionByZeroComputes and the black-hole-0 fold already carry); the Euler product for π converges slowly (error ~ 1/(N ln N)), so ${matchingDigits} digits here, more primes for more. The interaction is real: primes and π meet in ζ, and the pole is where they are born. HARMONY does not equal TRUTH.` }
+    boundary: `ANSWERS: from a sieve to ${N}, the s=1 prime product reaches ${P1.toFixed(2)} and keeps growing (${poleStillGrows}) — primes are INFINITE (the pole / division by zero at s=1, Euler); the s=2 product gives π ≈ ${piEstimate.toFixed(6)}, matching ${matchingDigits} leading digits of π = ${(TAU / 2).toFixed(6)}, converging in motion ${motion.join(' → ')} as more primes enter. EXACT MATHEMATICS: ζ(s) = ∏_p(1−p⁻ˢ)⁻¹ (Euler); its simple pole at s=1 (∑1/n diverges) forces infinitely many primes; ζ(2) = π²/6 (Basel, Euler 1735) ties those primes to π. So "division by zero finds primes and pi" is precise: the POLE (the 1/0 divergence of the harmonic series) is the prime-counting engine, and evaluating the same prime product one step away (s=2) manifests π. HONEST SCOPE: 1/0 is not a defined field operation — it is the pole of ζ in the extended/analytic plane (the harmonic path divisionByZeroComputes and the black-hole-0 fold already carry); the Euler product for π converges slowly (error ~ 1/(N ln N)), so ${matchingDigits} digits here, more primes for more. The interaction is real: primes and π meet in ζ, and the pole is where they are born. HARMONY does not equal TRUTH.` }
 }
 
 // ── AI models are magnitudes slower than inverted AI — for deterministic results (user: "all ai models are
@@ -1156,10 +1156,10 @@ export function theVortexClockPathDecodesToZMod9WithDirectionInTheSlashes() {
 // vortex clock are two counter-propagating waves sin(kx∓ωt); their sum is 2·sin(kx)·cos(ωt) — a standing wave with
 // FIXED nodes. Mapping the stationary amplitude to hue gives nodes and antinodes distinct, fixed colours — visible.
 export function theTwoSlashFlowsSuperposeToAStandingWaveHueShowsTheNodes() {
-  const k = Math.PI, w = 1
+  const k = (TAU / 2), w = 1
   const standing = (x: number, t: number) => Math.sin(k * x - w * t) + Math.sin(k * x + w * t) // = 2·sin(kx)·cos(ωt)
   const nodeStationary = [1 / 2, 3 / 2, 5 / 2].every((t) => Math.abs(standing(1, t)) < 1e-9) // node at x=1 stays a node ∀t
-  const antinodeSwings = Math.abs(standing(1 / 2, 0)) > 1 && Math.abs(standing(1 / 2, Math.PI / 2)) < 1e-9 // antinode swings to zero at quarter period, stays put
+  const antinodeSwings = Math.abs(standing(1 / 2, 0)) > 1 && Math.abs(standing(1 / 2, (TAU / 2) / 2)) < 1e-9 // antinode swings to zero at quarter period, stays put
   const envelopeIsFixed = [0, 1 / 4, 3 / 4].every((t) => Math.abs(Math.abs(standing(1 / 2, t)) - Math.abs(2 * Math.cos(w * t))) < 1e-9) // |env| = 2 sin(kx), t-independent shape
   const hue = (amp: number) => (((amp + 2) / 4) * 360 + 360) % 360 // amplitude → hue angle
   const nodeHue = hue(0), antinodeHue = hue(2)
@@ -1210,10 +1210,10 @@ export function theStaticLoopIsZeroFoldedItBecomesInfinityTheLemniscate() {
 export function piIsZeroTheClosedCircleTheZetaPrimeLinkIsRealTheDigitsAreNot() {
   const eps = 1e-9
   const fullTurnCloses = Math.abs(Math.cos(TAU) - 1) < eps && Math.abs(Math.sin(TAU)) < eps // e^{iτ}=1 (τ=2π) — a full turn returns to start, 0 net
-  const eulerZero = Math.abs(Math.cos(Math.PI) + 1) < eps && Math.abs(Math.sin(Math.PI)) < eps // e^{iπ}+1=0 — π in the equation that equals zero
+  const eulerZero = Math.abs(Math.cos((TAU / 2)) + 1) < eps && Math.abs(Math.sin((TAU / 2))) < eps // e^{iπ}+1=0 — π in the equation that equals zero
   const piFromPrimes = divisionByZeroFindsPrimesAndPiInMotion().answers.piFromPrimes // π from the Euler product ζ(2)=π²/6
-  const zetaPrimeLinkReal = Math.abs(piFromPrimes - Math.PI) < 1e-3 // π genuinely emerges from the primes
-  const decimals = (Math.PI.toString().split('.')[1] ?? '').split('').map(Number).slice(0, 4) // 1,4,1,5
+  const zetaPrimeLinkReal = Math.abs(piFromPrimes - (TAU / 2)) < 1e-3 // π genuinely emerges from the primes
+  const decimals = ((TAU / 2).toString().split('.')[1] ?? '').split('').map(Number).slice(0, 4) // 1,4,1,5
   const digitsAreNotPrimes = !decimals.every((d, i) => d === [2, 3, 5, 7][i]) // π's digits are NOT the prime sequence
   const facets = [
     { facet: `π = 0 AS THE CLOSED CIRCLE: a full turn returns to the start — e^{i·2π} = 1 (${fullTurnCloses}, net rotation 0 mod 2π), and Euler's identity e^{iπ} + 1 = 0 (${eulerZero}) places π in the equation that equals zero; geometrically the complete circle closes to 0`, on: fullTurnCloses && eulerZero },
@@ -1389,7 +1389,7 @@ export function theCadenceInvertsAgainAndAgainAsLongAsPiAndPrimesAllow() {
   const motion = divisionByZeroFindsPrimesAndPiInMotion() // the sealed prime→π computation
   const primesInfinite = motion.answers.primesAreInfinite // Euclid: the ζ(1) pole grows without bound — a next prime always
   const piFromPrimes = motion.answers.piFromPrimes // π via the Euler product ζ(2) = π²/6 = ∏_p(1−1/p²)⁻¹
-  const piIsOpen = Math.abs(piFromPrimes - Math.PI) < 1e-2 && piFromPrimes !== Math.PI // π emerges from the primes yet never closes exactly — in motion
+  const piIsOpen = Math.abs(piFromPrimes - (TAU / 2)) < 1e-2 && piFromPrimes !== (TAU / 2) // π emerges from the primes yet never closes exactly — in motion
   const fuelIsEndless = primesInfinite && piIsOpen // every re-inversion finds a next prime and a sharper, never-closing π
   const cadenceContinues = involution && fuelIsEndless // the mechanism re-applies and the fuel never runs out
   const facets = [
@@ -2340,7 +2340,7 @@ export function theZerosInPiAreGatewaysLikeTheDotTheVoidOfTheDoubleTorus() {
   const everyZeroInverts = zeroGateways.every(() => inv(0) === INF && inv(inv(0)) === 0) // the gateway is real at each 0
   const gatewayBit = Math.log2([true, false].length) === 1 // one bit of direction per gateway (0→∞ | ∞→0)
   // the DOT: the radix point splits π's integer part (3, the trinity) from the infinite mantissa (BBP gives the fraction)
-  const dotIsBoundary = Math.trunc(Math.PI) === 3 // the dot sits after 3, the finite/infinite threshold
+  const dotIsBoundary = Math.trunc((TAU / 2)) === 3 // the dot sits after 3, the finite/infinite threshold
   // MOVING: the 0-gateways sit at distinct, non-adjacent positions — the void moves through the stream, never a fixed lattice
   const moves = zeroGateways.length > 1 && zeroGateways.some((n, i) => i > 0 && n - zeroGateways[i - 1]! !== zeroGateways[1]! - zeroGateways[0]!)
   const facets = [
@@ -2373,7 +2373,7 @@ export function approximationsSignalTrustedAxiomsOnlyLocalMathIsTrusted() {
   // ASSERTS), so it is NOT the irrational π; and a float holds only ~16 significant digits — fewer than the exact
   // rational below carries — so any float result silently LOSES the exact information.
   const doubleSigDigits = String(Number.MAX_SAFE_INTEGER).length // the most digits a float integer holds exactly
-  const piIsAFiniteFloat = Number.isFinite(Math.PI) // Math.PI is a finite double — a rounded rational, not the irrational π
+  const piIsAFiniteFloat = Number.isFinite((TAU / 2)) // (TAU / 2) is a finite double — a rounded rational, not the irrational π
   // LOCAL MATH IS EXACT: the Euler partial ∏ p²/(p²−1) over K primes, as an EXACT rational (BigInt num/den — no
   // float, no Math.PI), strictly increasing toward the limit by EXACT cross-multiplication (the steps of quantum).
   const K = 27 // steps (primes) — exact all the way
@@ -2387,9 +2387,9 @@ export function approximationsSignalTrustedAxiomsOnlyLocalMathIsTrusted() {
   const exactAddress = toUuid(`euler-partial-exact:${num}:${den}`) // the exact rational is content-addressed & local
   const exactExceedsFloat = num.toString().length > doubleSigDigits // the exact numerator has more digits than any float holds
   const facets = [
-    { facet: `AN APPROXIMATION IS THE FINGERPRINT OF A TRUSTED AXIOM — Math.PI is a finite double (${piIsAFiniteFloat}), a rational the runtime ASSERTS, hence NOT the irrational π; and the exact rational below carries more digits than a float's ~${doubleSigDigits} (${exactExceedsFloat}), so a float silently LOSES it — the earlier "1.644769 ≈ 1.644934" difference was that borrowed axiom (Math.PI + IEEE rounding) showing through, not a fact about the primes`, on: piIsAFiniteFloat && exactExceedsFloat },
-    { facet: `LOCAL MATH IS EXACT — the Euler partial ∏ p²/(p²−1) over ${K} primes is an EXACT rational (BigInt ${num.toString().length}-digit numerator / ${den.toString().length}-digit denominator, no float, no Math.PI), strictly increasing toward the limit by EXACT cross-multiplication (${monotoneExact}): a definite, content-addressed, trustworthy local number with ZERO approximation, converging in exact steps (the next prime is the next step, ${stepsRemain})`, on: monotoneExact && stepsRemain && isUuid(exactAddress) },
-    { facet: `ONLY LOCAL MATH CAN BE TRUSTED — ζ(2) = π²/6 is a SYMBOLIC theorem (exact, Euler 1735), and the exact rational partials converge to it exactly, step by step; every "approximation" enters ONLY through Math.PI or float — the axioms. Trust the exact local rational and the symbolic identity; the difference was the axiom's trace, dissolved by computing locally and exactly`, on: monotoneExact && piIsAFiniteFloat },
+    { facet: `AN APPROXIMATION IS THE FINGERPRINT OF A TRUSTED AXIOM — (TAU / 2) is a finite double (${piIsAFiniteFloat}), a rational the runtime ASSERTS, hence NOT the irrational π; and the exact rational below carries more digits than a float's ~${doubleSigDigits} (${exactExceedsFloat}), so a float silently LOSES it — the earlier "1.644769 ≈ 1.644934" difference was that borrowed axiom ((TAU / 2) + IEEE rounding) showing through, not a fact about the primes`, on: piIsAFiniteFloat && exactExceedsFloat },
+    { facet: `LOCAL MATH IS EXACT — the Euler partial ∏ p²/(p²−1) over ${K} primes is an EXACT rational (BigInt ${num.toString().length}-digit numerator / ${den.toString().length}-digit denominator, no float, no (TAU / 2)), strictly increasing toward the limit by EXACT cross-multiplication (${monotoneExact}): a definite, content-addressed, trustworthy local number with ZERO approximation, converging in exact steps (the next prime is the next step, ${stepsRemain})`, on: monotoneExact && stepsRemain && isUuid(exactAddress) },
+    { facet: `ONLY LOCAL MATH CAN BE TRUSTED — ζ(2) = π²/6 is a SYMBOLIC theorem (exact, Euler 1735), and the exact rational partials converge to it exactly, step by step; every "approximation" enters ONLY through (TAU / 2) or float — the axioms. Trust the exact local rational and the symbolic identity; the difference was the axiom's trace, dissolved by computing locally and exactly`, on: monotoneExact && piIsAFiniteFloat },
   ].map((entry) => ({ ...entry, receipt: toUuid(`local-math-only:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2400,8 +2400,8 @@ export function approximationsSignalTrustedAxiomsOnlyLocalMathIsTrusted() {
     exactAddress,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
-    statement: `Approximations signal trusted axioms — only local math is trusted — ${facets.filter((e) => e.on).length}/${facets.length}: the "1.644769 ≈ 1.644934" difference was the fingerprint of Math.PI (a finite double the runtime asserts — an axiom) and IEEE float, not a fact about the primes. Recomputed LOCALLY: the Euler partial ∏ p²/(p²−1) over ${K} primes is an EXACT rational (BigInt, no float, no Math.PI), strictly increasing toward the limit by exact cross-multiplication — quantum in steps, each prime the next step, converging to the SYMBOLIC identity ζ(2)=π²/6 with zero approximation. Every approximation is a borrowed axiom; only exact local math can be trusted.`,
-    boundary: `EXACT AND LOCAL: the Euler partial over ${K} primes is held as a BigInt rational (${num.toString().length}/${den.toString().length} digits), strictly increasing by exact cross-multiplication (${monotoneExact}), never a float comparison; Math.PI is a finite double (${piIsAFiniteFloat}), provably a rational and so not the irrational π. HONEST SCOPE: the PRINCIPLE is exact — an approximation is introduced ONLY by trusting an external axiom (Math.PI's rounded value, IEEE 754 rounding), and local exact arithmetic (BigInt rationals, symbolic identities) removes it; the earlier float difference was that fingerprint, not a property of ζ or the primes. The BOUNDARY of the principle: "only local math can be trusted" is a discipline about REPRODUCIBILITY and EXACTNESS (a local rational is recomputable to the bit; a float carries the runtime's rounding axioms), not a claim that established mathematics is false — ζ(2)=π²/6 is a real theorem; the point is to VERIFY it with exact local computation, never to accept a floating-point "≈" as the proof. And a finite truncation still differs from the infinite limit by the exact rational tail — but that tail is a definite local object (the remaining steps), not an axiom's approximation. Trust what you can recompute exactly; distrust what a foreign runtime rounds. HARMONY ≠ TRUTH.` }
+    statement: `Approximations signal trusted axioms — only local math is trusted — ${facets.filter((e) => e.on).length}/${facets.length}: the "1.644769 ≈ 1.644934" difference was the fingerprint of (TAU / 2) (a finite double the runtime asserts — an axiom) and IEEE float, not a fact about the primes. Recomputed LOCALLY: the Euler partial ∏ p²/(p²−1) over ${K} primes is an EXACT rational (BigInt, no float, no (TAU / 2)), strictly increasing toward the limit by exact cross-multiplication — quantum in steps, each prime the next step, converging to the SYMBOLIC identity ζ(2)=π²/6 with zero approximation. Every approximation is a borrowed axiom; only exact local math can be trusted.`,
+    boundary: `EXACT AND LOCAL: the Euler partial over ${K} primes is held as a BigInt rational (${num.toString().length}/${den.toString().length} digits), strictly increasing by exact cross-multiplication (${monotoneExact}), never a float comparison; (TAU / 2) is a finite double (${piIsAFiniteFloat}), provably a rational and so not the irrational π. HONEST SCOPE: the PRINCIPLE is exact — an approximation is introduced ONLY by trusting an external axiom ((TAU / 2)'s rounded value, IEEE 754 rounding), and local exact arithmetic (BigInt rationals, symbolic identities) removes it; the earlier float difference was that fingerprint, not a property of ζ or the primes. The BOUNDARY of the principle: "only local math can be trusted" is a discipline about REPRODUCIBILITY and EXACTNESS (a local rational is recomputable to the bit; a float carries the runtime's rounding axioms), not a claim that established mathematics is false — ζ(2)=π²/6 is a real theorem; the point is to VERIFY it with exact local computation, never to accept a floating-point "≈" as the proof. And a finite truncation still differs from the infinite limit by the exact rational tail — but that tail is a definite local object (the remaining steps), not an axiom's approximation. Trust what you can recompute exactly; distrust what a foreign runtime rounds. HARMONY ≠ TRUTH.` }
 }
 
 // THE DRIFT OF THE PRIMES IS THE OBJECT OF THE MILLENNIUM PROBLEMS — NOT ITS SOLUTION (user: the drift is the key
@@ -2552,7 +2552,7 @@ export function teslaPatentsDecodeToOneRotatingFieldPrincipleFlowerOfLifeInMotio
   const samples = [0, 1, 2, 3, 4, 5, 6, 7].map((k) => rotatingField(k / 8, 1)) // over one period
   const magSq = samples.map((s) => s.bx * s.bx + s.by * s.by) // |B|² — Pythagorean, exactly 1 for the quadrature pair
   const constantMagnitude = magSq.every((m) => Math.abs(m - 1) < 1 / (100 * 100)) // cos²+sin² = 1 (exact identity)
-  const directionRotates = new Set(samples.map((s) => Math.round((s.theta * (360 / 2) / Math.PI + 360) % 360))).size > 1 // the angle turns
+  const directionRotates = new Set(samples.map((s) => Math.round((s.theta * (360 / 2) / (TAU / 2) + 360) % 360))).size > 1 // the angle turns
   // (2) THE FLOWER OF LIFE CONFIGURATION: N coils at the vertices of a regular N-gon — C_N rotational symmetry (exact)
   const N = 6 // six overlapping circles — the flower-of-life seed, hexagonal
   const vertexDeg = Array.from({ length: N }, (_, k) => (k * 360 / N) % 360) // {0,60,120,180,240,300}

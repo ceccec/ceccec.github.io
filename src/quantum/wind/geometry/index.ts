@@ -162,8 +162,8 @@ export function drawFlower(
   const paint = movieCanvasPolarity(dark)
   const R = Math.min(w, h) * 0.22
   const centers: { x: number; y: number }[] = [{ x: 0, y: 0 }]
-  for (let k = 0; k < 6; k += 1) { const a = (k * Math.PI) / 3; centers.push({ x: Math.cos(a) * R, y: Math.sin(a) * R }) }
-  for (let k = 0; k < 6; k += 1) { const a = (k * Math.PI) / 3 + Math.PI / 6; const d = R * Math.sqrt(3); centers.push({ x: Math.cos(a) * d, y: Math.sin(a) * d }) }
+  for (let k = 0; k < 6; k += 1) { const a = (k * (TAU / 2)) / 3; centers.push({ x: Math.cos(a) * R, y: Math.sin(a) * R }) }
+  for (let k = 0; k < 6; k += 1) { const a = (k * (TAU / 2)) / 3 + (TAU / 2) / 6; const d = R * Math.sqrt(3); centers.push({ x: Math.cos(a) * d, y: Math.sin(a) * d }) }
   const localR = R * (1 / 2)
   const trail = reduce ? 1 : (8 * 5)
   const td = t * 8

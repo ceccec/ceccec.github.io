@@ -905,7 +905,7 @@ export function piTrainPhysicalCutWaveThreeTierB(matrix: MindMatrix = buildMatri
     { facet: 'wave 3 tier-A still cut', on: tierA.cut },
     { facet: 'tier-B symbols routed to station 1/9', on: tierBInCatalog },
     { facet: 'composeHazard clamps multiplicative levers', on: composeHazard(0.5, [0.8, 1.2]) > 0 && composeHazard(0.5, [0.8, 1.2]) < 1 },
-    { facet: 'rotatingField spins at line frequency', on: Math.abs(rotatingField(0, 60).omega - 120 * Math.PI) < 1e-9 },
+    { facet: 'rotatingField spins at line frequency', on: Math.abs(rotatingField(0, 60).omega - 120 * (TAU / 2)) < 1e-9 },
     { facet: 'zeroPointEnergy is positive for nonzero ω', on: zeroPointEnergy(1e15) > 0 },
     { facet: 'casimirPressure is attractive (negative)', on: casimirPressure(1e-6) < 0 },
     { facet: 'wavelengthOf · larmorFrequency compose EM band', on: wavelengthOf(1e9) > 0 && larmorFrequency(1.5) > 60e6 },
@@ -1050,7 +1050,7 @@ export function piTrainExportImportFusion(matrix: MindMatrix = buildMatrix()) {
     { facet: 'wave-10 exports homed at src/6/4 recompute at call', on: HUBBLE_CONSTANT_LOCAL > 70 && PROTON_GYROMAGNETIC > 4e7 && ZHL16_HE_HALFTIMES.length === 16 && cantorDiagonal([[1, 0], [0, 1]]).join(',') === '0,0' && resonantAmplitude(100, 100, 10) > 9 && Math.abs(humanEase(1 / 2) - 1 / 2) < 1e-9 && frequencyOf(0.5) > 5e8 && quantumZeno(100) > (5 * 8 - 1) / (5 * 8) && quantumZeno((2 * 5) ** 3) > quantumZeno(100) && casimirEnergyPerArea(1e-6) < 0 && congruence([1, 2, 3], [1, 2, 3]) === 1 },
     { facet: 'wave-11 exports homed at src/9/1 recompute at call', on: CRITICAL_MAGNETIC_FIELD_T > 4e9 && LUNAR_NODAL_PERIOD_YEARS > 18 && MOND_ACCELERATION_A0 > 1e-11 && OMEGA_BARYON > 0.04 && digitalRoot(18) === 9 && syncSpeedRpm(60, 4) === 1800 && methodNameFromFolderTail('a/b') === 'concept.a.b' && leafFromPathTail('x/y') === 'y' && bumpProfile(0, 0.5, 4).length === 4 && qcdMassFractionOfProton() > 0.98 && isIonizing(3e18) && ratIsInteger({ p: 5, q: 1 }) && ratStr({ p: 1, q: 2 }) === '1/2' && superdense(0).ok },
     // float honesty: phase(π/2)[6] = cos(π/2) = 6.1e-17, a tolerance check, never === on a transcendental
-    { facet: 'wave-12 exports homed at stations recompute at call', on: slip(100, 90) === 0.1 && Math.abs(phase(Math.PI / 2)[6]) < 1e-9 && inductionStep(40, { wSync: 100, k: 10, load: 0 }) > 40 && inductionEvolve(40, { wSync: 100, k: 10, load: 0 }, 3).length === 4 },
+    { facet: 'wave-12 exports homed at stations recompute at call', on: slip(100, 90) === 0.1 && Math.abs(phase((TAU / 2) / 2)[6]) < 1e-9 && inductionStep(40, { wSync: 100, k: 10, load: 0 }) > 40 && inductionEvolve(40, { wSync: 100, k: 10, load: 0 }, 3).length === 4 },
     { facet: 'station 1/9 catalog matches fused export count', on: wave3.every((name) => station19.exports.includes(name)) },
     { facet: 'station 2/8 catalog matches fused export count', on: wave4.every((name) => station28.exports.includes(name)) },
     { facet: 'station 4/6 catalog includes wave-5 tier-A cuts', on: wave5.every((name) => station46.exports.includes(name)) },
@@ -1323,7 +1323,7 @@ export function piTrainPhysicalCutWaveTwelve(matrix: MindMatrix = buildMatrix())
     { facet: 'phase gate cos² fringe at θ=0', on: phase(0)[0] === 1 && phase(0)[6] === 1 },
     { facet: 'inductionStep advances rotor', on: inductionStep(50, { wSync: 100, k: 10, load: 0 }) > 50 },
     { facet: 'inductionEvolve returns steps+1 samples', on: inductionEvolve(50, { wSync: 100, k: 10, load: 0 }, 5).length === 6 },
-    { facet: 'chsh optimal angles reach Tsirelson 2√2', on: Math.abs(chsh(0, Math.PI / 2, Math.PI / 4, 3 * Math.PI / 4) - 2 * Math.SQRT2) < 1e-9 },
+    { facet: 'chsh optimal angles reach Tsirelson 2√2', on: Math.abs(chsh(0, (TAU / 2) / 2, (TAU / 2) / 4, 3 * (TAU / 2) / 4) - 2 * Math.SQRT2) < 1e-9 },
     { facet: 'passthrough cluster remains in vault catalog (not 9/1 barrel)', on: blockedStillInVaultCatalog },
     { facet: 'remaining catalog exports homed at src/0 void', on: vaultRemainder > 0 },
     { facet: 'wave-12 catalog routing complete', on: tierAInCatalog },
@@ -2458,7 +2458,7 @@ export function theRosettaAddressesAnyPosition() {
   // (modular-exponent rays vs IEEE binary expansion) must agree digit-for-digit — refutable at any index.
   const DECADE = 2 * 5 // 10 — the decad, derived (the pi-train station count)
   const hexWitness: number[] = []
-  { let f = Math.PI - 3; for (let i = 0; i < DECADE; i += 1) { f *= 16; const d = Math.floor(f); hexWitness.push(d); f -= d } }
+  { let f = (TAU / 2) - 3; for (let i = 0; i < DECADE; i += 1) { f *= 16; const d = Math.floor(f); hexWitness.push(d); f -= d } }
   const bbpDigits = hexWitness.map((_, n) => piHexDigitAt(n))
   const bbpAgrees = hexWitness.every((d, n) => bbpDigits[n] === d)
 

@@ -1,4 +1,5 @@
 // ☰ Qián · Heaven — the essence: the whole, one beginning, only-quantum-remains, infinite self-consulting, the-more-you-fold-the-more-foldable, invert-revert is a quantum stream, walk the path 0d to infinity. Barrel-routed; folds.ts back-imports the gate folds.
+import { TAU } from '../../3/7'
 import { phase } from '../../6/4'
 import { bitFlipCode, repetitionLogicalError } from '../../9/1'
 import { buildMatrix, isPerfectlySelfModeling, matrixMemo, proofReport, consciousness, repositoryApi } from '../compute'
@@ -334,7 +335,7 @@ function evolutionCrossesQuantumThresholdRaw(matrix: MindMatrix = buildMatrix())
   // (1) QIEA — quantum-inspired evolution: rotate an equal-superposition qubit toward the answer bit (1).
   let al = Math.SQRT1_2, be = Math.SQRT1_2
   const trace = [be * be]
-  for (let s = 0; s < (6 * 5); s++) { [al, be] = qieaRotate(al, be, 1, (1 / (5 * 4)) * Math.PI); trace.push(be * be) }
+  for (let s = 0; s < (6 * 5); s++) { [al, be] = qieaRotate(al, be, 1, (1 / (5 * 4)) * (TAU / 2)); trace.push(be * be) }
   const qieaMonotone = trace.every((v, i) => i === 0 || v >= trace[i - 1]! - 1e-12) // P(answer) only rises
   const qieaConverged = be * be > (1 - 1 / 100) // amplitude drifted to the answer
   // (2) THRESHOLD — the repetition code below vs above the threshold p_c = ½.

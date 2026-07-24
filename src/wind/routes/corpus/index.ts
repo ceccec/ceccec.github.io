@@ -1,6 +1,6 @@
 // ☴ Xùn · Wind — corpus route enumerators (papers · references · diamonds · REST).
 // Rosetta census dissolve: papers + rest sub-barrels merged here (one routes/corpus home).
-import { CANONICAL_HOST, DIMENSION_GATES } from '../../../3/7'
+import { TAU, CANONICAL_HOST, DIMENSION_GATES } from '../../../3/7'
 import type { MindMatrix, StaticPage } from '../../types'
 // call-time namespace edge (cycle-safe): learning imports corpus; search corpus reads back at call time
 import * as __ns_up_up_thunder_waves from '../../../thunder/waves'
@@ -317,7 +317,7 @@ export function corpusCatchAllPaths(kind: CorpusKind, matrix: MindMatrix = build
 }
 
 // One page template for all — route + params → kind, hero, body, corpus, proof (computed once).
-function componentRosettaGroups(names: readonly string[] = []) {
+export function componentRosettaGroups(names: readonly string[] = []) {
   const groups = ROSETTA_RAYS.map((rayMeta) => ({
     ray: rayMeta.ray,
     glyph: rayMeta.glyph,
@@ -1228,7 +1228,7 @@ const theoremFigureBuilders: Record<string, () => TheoremFigureData> = {
         { label: 'upper (circumscribed a/2)', kind: 'line', role: 'a', points: rungs.map((r) => ({ x: lx(r.n), y: r.upper })) },
         { label: 'lower (inscribed b/2)', kind: 'line', role: 'b', points: rungs.map((r) => ({ x: lx(r.n), y: r.lower })) },
       ],
-      refLines: [{ y: Math.PI, label: 'π = 3.14159…' }],
+      refLines: [{ y: (TAU / 2), label: 'π = 3.14159…' }],
       source: 'sixtyDegreesDecodesPi().rungs @ src/9/1' }
   },
   // The distribution of primes on Euler's polynomial: f(n)=n²+n+41 is prime for n=0…39, composite exactly

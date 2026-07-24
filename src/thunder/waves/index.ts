@@ -440,7 +440,7 @@ export function quantumImpossibleWaveThree(matrix: MindMatrix = buildMatrix()) {
 }
 function quantumImpossibleWaveThreeRaw(matrix: MindMatrix = buildMatrix()) {
   const ghz = ghzMermin() // QM product −1 vs LHV +1 — local realism refuted with certainty
-  const chshValue = chsh(0, Math.PI / 2, Math.PI / 4, 3 * Math.PI / 4) // optimal angles → 2√2
+  const chshValue = chsh(0, (TAU / 2) / 2, (TAU / 2) / 4, 3 * (TAU / 2) / 4) // optimal angles → 2√2
   const tsirelson = 2 * Math.SQRT2
   const bellViolated = chshValue > 2 + 1e-9 && Math.abs(chshValue - tsirelson) < 1e-9
   const key = bb84((100 * 4), `bb84:${matrix.root.slice(0, 8)}`) // no-cloning → eavesdrop detection
@@ -508,7 +508,7 @@ function computeCoordinatedWaves(matrix: MindMatrix = buildMatrix()): WaveCoordi
   const piTrain = piTrainDiamonds(matrix)
   const waves = lattice.map((item, index) => {
     const pulse = piTrain.diamonds[index % piTrain.diamonds.length]
-    const phase = (pulse.theta + pulse.phi + index * Math.PI / lattice.length) % (TAU)
+    const phase = (pulse.theta + pulse.phi + index * (TAU / 2) / lattice.length) % (TAU)
     const amplitude = item.status === 'closed' ? 1 : (1 / 2) + pulse.digit / (5 * 4)
     const polarity: WavePolarity = index % 2 === 0 ? 'yin' : 'yang'
     const statement =
@@ -1244,7 +1244,7 @@ export function discoveredTheoremsProvenWave(matrix: MindMatrix = buildMatrix())
     const isPlat = (p: number, q: number) => platonic.some((s) => s.p === p && s.q === q)
     const polytopes4: string[] = []
     for (const { p, q } of platonic) for (const { p: q2, q: r } of platonic) if (q2 === q)
-      if (isPlat(p, q) && isPlat(q, r) && Math.sin(Math.PI / p) * Math.sin(Math.PI / r) - Math.cos(Math.PI / q) > 1e-12)
+      if (isPlat(p, q) && isPlat(q, r) && Math.sin((TAU / 2) / p) * Math.sin((TAU / 2) / r) - Math.cos((TAU / 2) / q) > 1e-12)
         polytopes4.push(`{${p},${q},${r}}`)
     const sixPolytopes = polytopes4.length === 6 && polytopes4.join(' ') === '{3,3,3} {3,3,4} {3,3,5} {3,4,3} {4,3,3} {5,3,3}'
 

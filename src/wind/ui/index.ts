@@ -840,7 +840,7 @@ export function readmeHeroSvgProofOfAllTheorems(matrix: MindMatrix = buildMatrix
     const maxR = Math.min(cx, cy) - 36
     // Unit spacing so FoL diameter (~4 units) fits maxR; avoid wet decorative seven-circle.
     const unit = Math.max(9 * 2, Math.round(maxR / (2 + 1 / 2)))
-    const golden = (GOLDEN_ANGLE_DEG * Math.PI) / 180
+    const golden = (GOLDEN_ANGLE_DEG * (TAU / 2)) / 180
     const earthPoles = earthRealisedByComputingPolesAsPyramid(matrix)
     const pyramidTips = cardinalPyramidTipsProvenByMath(matrix)
     void pyramidTips
@@ -870,7 +870,7 @@ export function readmeHeroSvgProofOfAllTheorems(matrix: MindMatrix = buildMatrix
     type LobeBag = { homology: string[]; glyphs: string[]; spokes: string[] }
     const bags: LobeBag[] = CARDINAL_ROSETTA_SPINS.map(() => ({ homology: [], glyphs: [], spokes: [] }))
     for (let k = 0; k < HOMOLOGY_LOOPS; k += 1) {
-      const a = (k / HOMOLOGY_LOOPS) * TAU - Math.PI / 2
+      const a = (k / HOMOLOGY_LOOPS) * TAU - (TAU / 2) / 2
       const x = Math.round(cx + Math.cos(a) * (maxR + 10))
       const y = Math.round(cy + Math.sin(a) * (maxR + 10))
       const mark = `<circle cx="${x}" cy="${y}" r="3" fill="${movieCanvasHex((A432_HUE + k * (9 * 5 * 2)) % (9 * 5 * 8), { L: 11 / 16 })}" data-layer="homology" data-h1="${k}" data-cardinal="${CARDINAL_ROSETTA_SPINS[k]!.id}"/>`
@@ -1039,7 +1039,7 @@ export function computedIconSvg(matrix: MindMatrix = buildMatrix(), opts: { anim
   const cy = 256
   const R = 100 + 2 * 5
   const lobe = (card: typeof CARDINAL_ROSETTA_SPINS[number]) => {
-    const rad = (card.bearing * TAU) / 360 - Math.PI / 2
+    const rad = (card.bearing * TAU) / 360 - (TAU / 2) / 2
     const ox = Math.round(cx + Math.cos(rad) * (R / 2))
     const oy = Math.round(cy + Math.sin(rad) * (R / 2))
     const spin = animate ? merkabaRosettaSpinSmil(card.sign, spinDur, card.bearing) : ''
@@ -1808,7 +1808,7 @@ function clownStage() {
   const pts: { x: number; y: number }[] = []
   const arc: number[] = [0]
   for (let i = 0; i <= N; i++) {
-    const q = clownLemniscate(Math.PI / 2 + (i / N) * TAU, CLOWN_A)
+    const q = clownLemniscate((TAU / 2) / 2 + (i / N) * TAU, CLOWN_A)
     pts.push(q)
     if (i > 0) arc.push(arc[i - 1]! + Math.hypot(q.x - pts[i - 1]!.x, q.y - pts[i - 1]!.y))
   }
@@ -2023,8 +2023,8 @@ export function clownStepSvg(step: number, opts: { animate?: boolean; size?: num
     : ''
   const huOpen = has('hueShift') ? `<g class="hu"${animate ? '' : ` style="filter:hue-rotate(${first.hue}deg)"`}>` : '' // hue is appearance — a filter, never a transform
   const scene =
-    `<path d="${lobe(-Math.PI / 2 + (1 / (5 * 5 * 2)), Math.PI / 2 - (1 / (5 * 5 * 2)))}" fill="${upperCorner}" fill-opacity=".08" stroke="${stroke}" stroke-width="1.2"/>` + // handle B (comedy) — the upper trigram's corner; the flat floor NEVER scales
-    `<path d="${lobe(Math.PI / 2 + (1 / (5 * 5 * 2)), (3 * Math.PI) / 2 - (1 / (5 * 5 * 2)))}" fill="${lowerCorner}" fill-opacity=".08" stroke="${stroke}" stroke-width="1.2"/>` + // handle A (tragedy) — the lower trigram's corner
+    `<path d="${lobe(-(TAU / 2) / 2 + (1 / (5 * 5 * 2)), (TAU / 2) / 2 - (1 / (5 * 5 * 2)))}" fill="${upperCorner}" fill-opacity=".08" stroke="${stroke}" stroke-width="1.2"/>` + // handle B (comedy) — the upper trigram's corner; the flat floor NEVER scales
+    `<path d="${lobe((TAU / 2) / 2 + (1 / (5 * 5 * 2)), (3 * (TAU / 2)) / 2 - (1 / (5 * 5 * 2)))}" fill="${lowerCorner}" fill-opacity=".08" stroke="${stroke}" stroke-width="1.2"/>` + // handle A (tragedy) — the lower trigram's corner
     `<circle cx="30" cy="30" r="17" fill="none" stroke="${inkCol}" stroke-width=".8" opacity=".7"/><line x1="13" y1="30" x2="47" y2="30" stroke="${inkCol}" stroke-width=".5" stroke-dasharray="2 2" opacity=".5"/>` + // the Bloch disc + equator
     `<line class="v" x1="30" y1="30" x2="30" y2="13" stroke="${vecCol}" stroke-width="2" stroke-linecap="round"${animate ? '' : ` transform="rotate(${first.bloch.deg} 30 30)"`}/>` +
     extras +
@@ -2112,8 +2112,8 @@ export function clownActSvg(opts: { animate?: boolean; size?: number } = {}): st
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 110" width="${size}" height="${r((size * 110) / (100 * 2))}" class="${sc}" role="img" data-dims="2→10" data-channels="${CLOWN_DIM_LADDER[5]!.join(' ')}" data-projection="oblique-perspective-no-zoom" data-loop="reenters" aria-label="The whole clown life — one ${fractalClockS(3)}-second loop of all six steps on the fractal clock, 2D to 10D by projection, ending flat on its shadow and re-entering: the 100% frame is the 0% frame">` +
     (css ? `<style>${css}</style>` : '') +
     `<g class="hu">` +
-    `<path d="${lobe(-Math.PI / 2 + (1 / (5 * 5 * 2)), Math.PI / 2 - (1 / (5 * 5 * 2)))}" fill="${upperCorner}" fill-opacity=".08" stroke="${stroke}" stroke-width="1.2"/>` +
-    `<path d="${lobe(Math.PI / 2 + (1 / (5 * 5 * 2)), (3 * Math.PI) / 2 - (1 / (5 * 5 * 2)))}" fill="${lowerCorner}" fill-opacity=".08" stroke="${stroke}" stroke-width="1.2"/>` +
+    `<path d="${lobe(-(TAU / 2) / 2 + (1 / (5 * 5 * 2)), (TAU / 2) / 2 - (1 / (5 * 5 * 2)))}" fill="${upperCorner}" fill-opacity=".08" stroke="${stroke}" stroke-width="1.2"/>` +
+    `<path d="${lobe((TAU / 2) / 2 + (1 / (5 * 5 * 2)), (3 * (TAU / 2)) / 2 - (1 / (5 * 5 * 2)))}" fill="${lowerCorner}" fill-opacity=".08" stroke="${stroke}" stroke-width="1.2"/>` +
     `<circle cx="30" cy="30" r="17" fill="none" stroke="${inkCol}" stroke-width=".8" opacity=".7"/><line x1="13" y1="30" x2="47" y2="30" stroke="${inkCol}" stroke-width=".5" stroke-dasharray="2 2" opacity=".5"/>` +
     `<line class="v" x1="30" y1="30" x2="30" y2="13" stroke="${vecCol}" stroke-width="2" stroke-linecap="round"${animate ? '' : ` transform="rotate(${first.bloch.deg} 30 30)"`}/>` +
     `<line class="g1" x1="30" y1="30" x2="30" y2="13" stroke="${vecCol}" stroke-width="1" opacity="0"/><line class="g2" x1="30" y1="30" x2="30" y2="13" stroke="${vecCol}" stroke-width="1" opacity="0"/>` +

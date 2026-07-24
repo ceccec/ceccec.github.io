@@ -646,23 +646,10 @@ export function componentBaguaGroups(names: readonly string[] = []) {
   return { groups: groups.map((group) => ({ ...group, grouped })), grouped, count: groups.length }
 }
 
-// Render-time grouping of a page's components by the 7-star rosetta rays — the coprime replacement
-// for componentBaguaGroups. Each component's name → rosettaRayOf → one of 7 rays. Pages with components
-// spanning more than one ray get ray headers; small pages render flat. Pure and deterministic.
-export function componentRosettaGroups(names: readonly string[] = []) {
-  const groups = ROSETTA_RAYS.map((rayMeta) => ({
-    ray: rayMeta.ray,
-    glyph: rayMeta.glyph,
-    name: rayMeta.nameEn,
-    nameBg: rayMeta.nameBg,
-    domain: rayMeta.domain,
-    hue: rayMeta.hue,
-    labelEn: rayMeta.nameEn,
-    labelBg: rayMeta.nameBg,
-    components: names.filter((name) => rosettaRayOf(name) === rayMeta.ray) })).filter((group) => group.components.length > 0)
-  const grouped = groups.length > 1
-  return { groups: groups.map((group) => ({ ...group, grouped })), grouped, count: groups.length }
-}
+// Render-time grouping by the 7-star rosetta rays — the body deduped to wind/routes/corpus (the
+// upstream home this barrel already imports; dry/dupe spin 3, 2026-07-24), re-exported here so the
+// heaven/core public surface is unchanged: one payload, one address, two doors.
+export { componentRosettaGroups } from '../../wind/routes/corpus'
 
 // The eight-fold, redone as a COMPUTED, self-measuring balance — and the honest answer to "the quantum
 // meaning of all". Every page is placed on one of the eight trigrams by its own content-address (the uniform

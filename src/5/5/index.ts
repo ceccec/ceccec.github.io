@@ -15,7 +15,7 @@ export function carnotEfficiency(coldK: number, hotK: number): number {
 
 /** Haversine great-circle distance (km) between two lat/long points. */
 export function greatCircleKm(lat1: number, lon1: number, lat2: number, lon2: number): number {
-  const r = TAU / (9 * 8 * 5) // deg→rad via sealed TAU (math/trust — not bare Math.PI)
+  const r = TAU / (9 * 8 * 5) // deg→rad via sealed TAU (math/trust — not bare (TAU / 2))
   const dLat = (lat2 - lat1) * r
   const dLon = (lon2 - lon1) * r
   const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * r) * Math.cos(lat2 * r) * Math.sin(dLon / 2) ** 2

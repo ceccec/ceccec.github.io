@@ -129,7 +129,7 @@ export function vortexGatewayPyramids(matrix: MindMatrix = buildMatrix()) {
       .filter((v) => v.incoming !== v.outgoing)
       .map((v) => {
         const peak = v.incoming === '\\' && v.outgoing === '/'
-        const angle = (v.i / tourSize) * TAU - Math.PI / 2
+        const angle = (v.i / tourSize) * TAU - (TAU / 2) / 2
         return { digit: v.digit, peak, x: Math.cos(angle), y: Math.sin(angle), z: peak ? 1 : -1 }
       })
     const peaks = vertices.filter((v) => v.peak).map((v) => v.digit)

@@ -101,7 +101,7 @@ export function weatherForecastFromDoubleTorusEarthPerspective(
   const weather = weatherForecastQuantumComputedRealtime(matrix)
   const earth = doubleTorusEarthPyramidTipsProvenByMath(matrix)
   const theta = roundTo((((at.lon + (9 * 5 * 4)) % 360) / 360) * TAU, 6)
-  const phi = roundTo((at.lat / (9 * 5 * 2)) * (Math.PI / 2), 6)
+  const phi = roundTo((at.lat / (9 * 5 * 2)) * ((TAU / 2) / 2), 6)
   const northern = at.lat >= 0
   const torusIndex = northern ? (1 as const) : (2 as const)
   const lobe = northern ? 1 : -1
@@ -112,7 +112,7 @@ export function weatherForecastFromDoubleTorusEarthPerspective(
   const cardinal = nearestCardinalTip(bearing)
   const facets = [
     { facet: 'realtime weather feeds folded — Open-Meteo + US NWS composed with genus-2 Earth model', on: weather.realtime && earth.proven },
-    { facet: 'longitude → θ (0..2π) and latitude → φ (−π/2..π/2) on the shared doubleTorusSurface', on: theta >= 0 && theta <= TAU && phi >= -Math.PI / 2 && phi <= Math.PI / 2 },
+    { facet: 'longitude → θ (0..2π) and latitude → φ (−π/2..π/2) on the shared doubleTorusSurface', on: theta >= 0 && theta <= TAU && phi >= -(TAU / 2) / 2 && phi <= (TAU / 2) / 2 },
     { facet: 'northern hemisphere → torus 1 (+lobe, polarity 1); southern → torus 2 (−lobe, inverted polarity 0)', on: (northern && torusIndex === 1 && lobe === 1 && polarity === 1) || (!northern && torusIndex === 2 && lobe === -1 && polarity === 0) },
     { facet: 'vortex digit from digital root of rounded |lat|·100 + |lon|·100 — tube radius modulation on genus-2 surface', on: digit >= 1 && digit <= 9 },
     { facet: 'nearest cardinal pyramid tip (N·E·S·W) from initial bearing (0°,0°) → (lat,lon)', on: CARDINAL_TIPS.some((tip) => tip.name === cardinal.name) && cardinal.angularDistance <= (9 * 5) },

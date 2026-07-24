@@ -496,7 +496,7 @@ function quantumSitemapRaw(matrix: MindMatrix = buildMatrix()) {
   const urls = routes.map((route, index) => {
     const { gla, en, bg } = localePaths(route)
     // Place the page on the double torus: two angles fold it, as with pi's digits.
-    const theta = (index / routes.length) * Math.PI * 4
+    const theta = (index / routes.length) * (TAU / 2) * 4
     const phi = (index / routes.length) * TAU
     // x-default follows the ROOT locale: English lives at the canonical bare URLs (the /en/ tree is
     // deleted), so the default edition a crawler falls back to is the English one, never /gla/.

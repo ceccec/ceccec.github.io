@@ -3,7 +3,7 @@
 
 import { MOON_ORBIT_INCLINATION_DEG } from '../../8/2'
 import { gcd, merkleFold, toUuid } from '../../0'
-import { rat, ratAdd, ratDiv, ratEq, ratMul, ratSub } from '../../3/7'
+import { TAU, rat, ratAdd, ratDiv, ratEq, ratMul, ratSub } from '../../3/7'
 
 /** Planck 2018 primordial spectral index n_s. */
 export const SCALAR_SPECTRAL_INDEX_NS = 0.9649
@@ -26,7 +26,7 @@ export function hardyWeinbergGenotypes(p: number): { AA: number; Aa: number; aa:
 /** Han–Kim QIEA amplitude rotation toward target bit pole. */
 export function qieaRotate(alpha: number, beta: number, targetBit: number, angle: number): [number, number] {
   const phi = Math.atan2(beta, alpha)
-  const target = targetBit === 1 ? Math.PI / 2 : 0
+  const target = targetBit === 1 ? (TAU / 2) / 2 : 0
   const delta = target - phi
   const step = Math.sign(delta) * Math.min(angle, Math.abs(delta))
   return [Math.cos(phi + step), Math.sin(phi + step)]
@@ -189,7 +189,7 @@ export function theCountOfPrimesFollowsTheLog() {
   const c4 = [1, 4, 6, 4, 1] // C(4,k) — the binomial the fourth power of 2cos produces
   const kernel = (x: number) => c4.reduce((s, w, k) => s + w * Math.cos((k - 2) * x), 0)
   const ANGLES = 3 * 5 * 16 // 240 grid angles over [0, 2π) — derived
-  const grid = Array.from({ length: ANGLES }, (_, i) => (i * Math.PI) / (ANGLES / 2))
+  const grid = Array.from({ length: ANGLES }, (_, i) => (i * (TAU / 2)) / (ANGLES / 2))
   const kernelIsIdentity = grid.every((x) => Math.abs(kernel(x) - (2 * Math.cos(x / 2)) ** 4) < 1e-9)
   const kernelNonNegative = grid.every((x) => kernel(x) >= -1e-9)
 

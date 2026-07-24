@@ -2,7 +2,7 @@
 // Export-import fusion: fused local exports only; vault imports are dependency edges only.
 
 import { phase, slip } from '../../6/4'
-import { DIMENSION_GATES, A432_OCTAVES, BOLTZMANN, FOLDED_CENSUS, NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
+import { TAU, DIMENSION_GATES, A432_OCTAVES, BOLTZMANN, FOLDED_CENSUS, NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
 import { foldPair, merkleFold, toUuid, memoByRoot, sealFacets, merge, gcd, lcm, digitalRoot, ICHING_NUMBERS, applyGate, GATES, probabilities, roundTo } from '../../0'
 import { sealFold } from '../../9/1'
 // MAX_TAMPERING_COST_PRINCIPLE is hosted in the zero-import leaf src/3/7 (re-exported below) so it initialises
@@ -40,7 +40,7 @@ export function soundPressureLevelDb(pressurePa: number): number {
 
 /** Hawking temperature T_H = ħc³/(8πGMk_B). */
 export function hawkingTemperature(massKg: number): number {
-  return (REDUCED_PLANCK * SPEED_OF_LIGHT ** 3) / (8 * Math.PI * NEWTON_G * massKg * BOLTZMANN)
+  return (REDUCED_PLANCK * SPEED_OF_LIGHT ** 3) / (8 * (TAU / 2) * NEWTON_G * massKg * BOLTZMANN)
 }
 
 /** Helmholtz free energy F = U − TS. */
@@ -1890,7 +1890,7 @@ export function theBoundedWitnessCannotClaimTheUniversal() {
   const polyaFlawlessInSweep = worst <= 0
   const counterexampleBeyondSweep = N < 9 * (2 * 5) ** 8 // the cited minimal crossing 906,150,257 exceeds even 9×10⁸
   const oscillatesNotAlwaysFalse = touchesZero > 0 && polyaFlawlessInSweep // grazes 0 yet never crosses here — neither always-true nor always-false
-  const bridgeTarget = (Math.PI * Math.PI) / (3 * 5) // ζ(4)/ζ(2) = π²/15 — the spectrum side of the inversion
+  const bridgeTarget = ((TAU / 2) * (TAU / 2)) / (3 * 5) // ζ(4)/ζ(2) = π²/15 — the spectrum side of the inversion
   const inversionBridgeHolds = Math.abs(dirichlet - bridgeTarget) < 1 / (2 * 5) ** 3 // partial sum meets the zeta side within the tail bound ~1/N
 
   // the registry refuses the claim by construction, and the trust law computes in this same file.

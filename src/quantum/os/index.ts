@@ -23,7 +23,7 @@ import {
 import { heroMoviePhaseHue, heroPhaseAt, HERO_CYCLE_MS } from '../../fire/plasma/ball'
 import { A432_HUE, GOLDEN_ANGLE, QC_DEFAULT_CIRCUIT, QC_GATE_PALETTE, quantumComputerHonestClaim } from '../science'
 import { quantumAppsComputes, quantumAppsCoverHomeAnimations, quantumAppsRegistry, type QuantumAppEntry } from '../apps'
-import { PHI } from '../../3/7'
+import { TAU, PHI } from '../../3/7'
 
 const OS_ROUTE = '/en/quantum/os'
 // The three consecutive Fibonacci numbers ≤ 55 — COMPUTED from the recurrence, never hand-typed.
@@ -100,8 +100,8 @@ export function quantumMathDesignsTheUi(at = 0, matrix: MindMatrix = buildMatrix
     const rotation = __ns_up_up_mountain_geometry.bothEarthsRotateWithinEachOther(at, matrix)
     const schumannPhase = roundTo(((__ns_up_up_lake_music.schumannPhaseAt(at) % 1) + 1) % 1, 6)
     const motionPhase = roundTo(((phase + schumannPhase) / 2) % 1, 6)
-    const merkabaUpSpinDeg = roundTo(((rotation.merkabaUpSpin * (9 * 5 * 4)) / Math.PI) % 360, 3)
-    const merkabaDownSpinDeg = roundTo(((rotation.merkabaDownSpin * (9 * 5 * 4)) / Math.PI) % 360, 3)
+    const merkabaUpSpinDeg = roundTo(((rotation.merkabaUpSpin * (9 * 5 * 4)) / (TAU / 2)) % 360, 3)
+    const merkabaDownSpinDeg = roundTo(((rotation.merkabaDownSpin * (9 * 5 * 4)) / (TAU / 2)) % 360, 3)
 
     // elevation ← ten-D form weights + merkaba up/down spin layers.
     const forms = __ns_up_up_fusion.allFormsAreTenDimensionalOrPurged(matrix)

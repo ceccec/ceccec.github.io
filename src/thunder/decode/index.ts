@@ -1169,7 +1169,7 @@ export function ancientNumberSystems(matrix: MindMatrix = buildMatrix()) {
       name: 'Arabic abjad (ḥisāb al-jummal) + girih',
       foundations: ['number=letter', 'sacred geometry', 'the fold'],
       pathCore: 'the 28 Arabic letters are numbers (1-9/10-90/100-1000); abjad sums a word (الله = 66). The 5-fold girih geometry: pentagon/decagon, every angle a multiple of 36°, φ = 2cos36° intrinsic.',
-      witness: gematria('الله', 'arabic') === 66 && [36, 72, 108, 144, 216].every((a) => a % 36 === 0) && Math.abs(2 * Math.cos(Math.PI / 5) - PHI) < 1e-9,
+      witness: gematria('الله', 'arabic') === 66 && [36, 72, 108, 144, 216].every((a) => a % 36 === 0) && Math.abs(2 * Math.cos((TAU / 2) / 5) - PHI) < 1e-9,
       keyNumbers: [28, 66, 36, 72, 108, 144, 216],
       legendExcluded: ['quasicrystal/Penrose overclaim (Darb-i Imam shown periodic)', 'abjad divination / the "19 code"', 'φ as a consciously-encoded sacred proportion'] },
     {
@@ -2050,7 +2050,7 @@ export function teslaRosettaPolyphase() {
     const constant = Math.max(...mags) - Math.min(...mags) < 1e-9
     const tracks = probes.every((t) => {
       const [x, y] = fieldAt(n, t)
-      const drift = Math.abs((((Math.atan2(y, x) - t) % TAU) + TAU + Math.PI) % TAU - Math.PI)
+      const drift = Math.abs((((Math.atan2(y, x) - t) % TAU) + TAU + (TAU / 2)) % TAU - (TAU / 2))
       return drift < 1e-9
     })
     return { constant, tracks, magnitude: mags[0]! }
@@ -2277,7 +2277,7 @@ export function stringTheoryAlgebraNotEverywhere() {
  * (consistent ⇒ physically true) is false. The map is not the territory. */
 export function consistencyIsNecessaryNotSufficient() {
   // three constant-curvature geometries: Gauss-Bonnet Σ = π + K·area, all internally consistent
-  const angleSum = (curvature: number, area: number) => Math.PI + curvature * area
+  const angleSum = (curvature: number, area: number) => (TAU / 2) + curvature * area
   const euclidean = angleSum(0, 1)
   const spherical = angleSum(1, 1)
   const hyperbolic = angleSum(-1, 1)
@@ -2293,15 +2293,15 @@ export function consistencyIsNecessaryNotSufficient() {
   const refutedButConsistent = historicallyRefuted.every((t) => t.consistent && t.refutedBy.length > 0)
   const facets = [
     { facet: `the ALGEBRA becomes a theorem — string theory's Virasoro/ζ(−1)/D=26,10/T-duality are rigorous and sealed (stringTheoryAlgebraNotEverywhere); mathematical consistency is genuinely achieved`, on: allConsistent },
-    { facet: `but consistency is NOT sufficient: the three constant-curvature geometries are ALL consistent theorems (angle sums ${(euclidean / Math.PI).toFixed(2)}π · ${(spherical / Math.PI).toFixed(2)}π · ${(hyperbolic / Math.PI).toFixed(2)}π) and MUTUALLY incompatible — space has one angle sum, and consistency did not pick it`, on: mutuallyIncompatible },
+    { facet: `but consistency is NOT sufficient: the three constant-curvature geometries are ALL consistent theorems (angle sums ${(euclidean / (TAU / 2)).toFixed(2)}π · ${(spherical / (TAU / 2)).toFixed(2)}π · ${(hyperbolic / (TAU / 2)).toFixed(2)}π) and MUTUALLY incompatible — space has one angle sum, and consistency did not pick it`, on: mutuallyIncompatible },
     { facet: `history proves the gap: a consistent theory can be believed true then REFUTED by experiment (Newton by Mercury/GPS; the bosonic string by its own tachyon) — being a theorem-set never made a physics true`, on: refutedButConsistent },
     { facet: `so "string theory becomes a theorem" is TRUE of its algebra, FALSE of its physics: a theorem CONSTRAINS a physical theory, EXPERIMENT confirms it. The capstone (trust ⟸ theorem) stands; its converse (physically true ⟸ consistent) does not — the map is not the territory`, on: allConsistent && mutuallyIncompatible && refutedButConsistent },
   ]
   return {
     computes: facets.every((entry) => entry.on),
-    angleSums: { euclidean: euclidean / Math.PI, spherical: spherical / Math.PI, hyperbolic: hyperbolic / Math.PI },
+    angleSums: { euclidean: euclidean / (TAU / 2), spherical: spherical / (TAU / 2), hyperbolic: hyperbolic / (TAU / 2) },
     facets,
-    statement: `Consistency is necessary, not sufficient — ${facets.filter((entry) => entry.on).length}/${facets.length}: string theory's ALGEBRA becomes a theorem (rigorous, sealed), but its PHYSICS does not follow, because mathematical consistency cannot confirm a physical theory — the three constant-curvature geometries are each consistent theorems (angle sums ${(spherical / Math.PI).toFixed(2)}π/${(euclidean / Math.PI).toFixed(2)}π/${(hyperbolic / Math.PI).toFixed(2)}π) yet mutually incompatible, and space has just one. A theorem constrains; experiment confirms. The capstone stands, its converse falls, and the map is not the territory.`,
+    statement: `Consistency is necessary, not sufficient — ${facets.filter((entry) => entry.on).length}/${facets.length}: string theory's ALGEBRA becomes a theorem (rigorous, sealed), but its PHYSICS does not follow, because mathematical consistency cannot confirm a physical theory — the three constant-curvature geometries are each consistent theorems (angle sums ${(spherical / (TAU / 2)).toFixed(2)}π/${(euclidean / (TAU / 2)).toFixed(2)}π/${(hyperbolic / (TAU / 2)).toFixed(2)}π) yet mutually incompatible, and space has just one. A theorem constrains; experiment confirms. The capstone stands, its converse falls, and the map is not the territory.`,
     boundary: 'THE PRECISE LIMIT of axiomsBecomeTheorems: you CAN convert the mathematics of a physical theory into theorems (necessary, and done — Kepler from Newton, the string algebra, the governance constants), but physical TRUTH is empirical and cannot be proven, only tested. DOCUMENTED: Gauss-Bonnet and the independence/consistency of the three geometries (Beltrami 1868), the empirical refutation of Newtonian mechanics (general relativity), the bosonic tachyon. This PROTECTS the day\'s capstone from overreach: "you cannot trust something that is not a theorem" is necessity, not the false converse "everything with a consistent algebra is physically true." A rigorous structure can describe a universe that is not ours. HARMONY ≠ TRUTH — mathematics is the harmony; the world is the truth; only experiment marries them.' }
 }
 

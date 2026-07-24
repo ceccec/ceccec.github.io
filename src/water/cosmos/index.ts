@@ -785,7 +785,7 @@ export function solarSystem(matrix: MindMatrix = buildMatrix(), timeYears = 0) {
   const round = (value: number) => Math.round(value * 1000) / 1000
   const planets = bodies.map((body) => {
     const seed = Number.parseInt(toUuid(`planet:${body.name}`).replace(/[^0-9a-f]/g, '').slice(0, 8) || '0', 16)
-    const phase0 = ((seed % 360) * Math.PI) / 180 // a deterministic starting angle from the matrix-seeded content address
+    const phase0 = ((seed % 360) * (TAU / 2)) / 180 // a deterministic starting angle from the matrix-seeded content address
     const angle = phase0 + (TAU * timeYears) / body.periodYr // the movement: angle advances with time over the period
     const x = round(body.au * Math.cos(angle))
     const y = round(body.au * Math.sin(angle))
@@ -804,7 +804,7 @@ export function majorMoons(matrix: MindMatrix = buildMatrix(), timeDays = 0) {
   const round = (value: number) => Math.round(value * 1000) / 1000
   const moons = MAJOR_MOONS.map((body) => {
     const seed = Number.parseInt(toUuid(`moon:${body.name}`).replace(/[^0-9a-f]/g, '').slice(0, 8) || '0', 16)
-    const phase0 = ((seed % 360) * Math.PI) / 180
+    const phase0 = ((seed % 360) * (TAU / 2)) / 180
     const sign = 'retrograde' in body && body.retrograde ? -1 : 1
     const angle = phase0 + (sign * (TAU * timeDays)) / body.periodDays
     const x = round(body.orbitRadiusKm * Math.cos(angle))
@@ -1216,7 +1216,7 @@ export function dimensionsLadderDecoded(matrix: MindMatrix = buildMatrix()) {
     const notPhysicsBecause = ['real extra dimensions are spatial and compactified', 'Everett branches live in Hilbert space not spacetime', 'probability space is not a place']
     const facets = [
       { facet: `dimension IS a count of independent coordinates (ℝⁿ / manifold charts / degrees of freedom) — the n-cube generalises 0D→3D mechanically: the tesseract has ${tesseract.vertices} vertices, ${tesseract.edges} edges, ${tesseract.squares} squares, ${tesseract.cubes} cubes, computed not imagined`, on: tesseract.vertices === 16 && tesseract.edges === 32 && tesseract.squares === 24 && tesseract.cubes === 8 },
-      { facet: `high dimensions are COUNTER-INTUITIVE, computably — the unit n-ball volume RISES to its peak at n = ${peakN} (V₅ = 8π²/15 ≈ ${vPeak}) then falls toward ZERO (V₅₀ ≈ ${vFar.toExponential(1)}); "more dimensions" is not "more room", and this is the honest content of "to infinity"`, on: peakN === 5 && Math.abs(unitBallVolume(5) - (8 * Math.PI ** 2) / 15) < 1e-12 && vFar < 1e-12 },
+      { facet: `high dimensions are COUNTER-INTUITIVE, computably — the unit n-ball volume RISES to its peak at n = ${peakN} (V₅ = 8π²/15 ≈ ${vPeak}) then falls toward ZERO (V₅₀ ≈ ${vFar.toExponential(1)}); "more dimensions" is not "more room", and this is the honest content of "to infinity"`, on: peakN === 5 && Math.abs(unitBallVolume(5) - (8 * (TAU / 2) ** 2) / 15) < 1e-12 && vFar < 1e-12 },
       { facet: `dimension need not be an INTEGER — similarity (Hausdorff) dimension: the Koch curve log4/log3 = ${koch}, the Sierpiński triangle log3/log2 = ${sierpinski}; established mathematics, orthogonal to the pop ladder`, on: Math.abs(koch - 1.26186) < 1e-4 && Math.abs(sierpinski - 1.58496) < 1e-4 },
       { facet: `the 4th dimension of PHYSICS is time via the Minkowski SIGNATURE (+,−,−,−) — s²(2,1) = ${timelike} (timelike) vs s²(1,2) = ${spacelike} (spacelike): the sign flips, so time is NOT a 4th spatial axis you "move along"; 3+1 spacetime is ESTABLISHED (SR/GR)`, on: timelike > 0 && spacelike < 0 },
       { facet: `extra SPATIAL dimensions are UNCONFIRMED physics, not pseudoscience — Kaluza–Klein (1921/26) got EM from a compactified 5th dimension; string theory needs 10, M-theory 11, all COMPACTIFIED and small; no collider or gravity experiment has seen one — held inside the frontier "${quantumGravity?.frontier ?? ''}": ${quantumGravity?.status ?? ''}`, on: (quantumGravity?.status ?? '').startsWith('OPEN') },
@@ -2313,7 +2313,7 @@ export function deviationAnalysisIsRealtimeInvertibleDeviationsAreGatewaysIrredu
       irreducibleNeverZero,
       facets,
       statement: `Deviation analysis — realtime and beyond inversion — ${facets.filter((entry) => entry.on).length}/${facets.length}: a deviation is the live residual between computed and exact, recomputed at the clock (phaseDrift(3,5,${at}) = ${driftNow}). Beyond inversion, deviations triage: an INVERTIBLE one (float drops a unit past 2^54, deviation ${floatDeviation}) collapses to 0 under BigInt — a gateway; an IRREDUCIBLE one (√2 convergents, |p²−2q²| = [${sqrt2Deviations.join(', ')}], always 1) NEVER reaches zero — the irrationality axiom, beyond inversion. Fix the invertible, name the irreducible.`,
-      boundary: `DOCUMENTED and refutable by re-deriving. It improves theClockIsTheZeroVoidAndDeviationsAreTheSurgicalWorklist (deviations = the worklist) with two things the user asked for: REALTIME (phaseDrift recomputes the residual live at the clock "at", parameterised, not a stored constant) and BEYOND INVERSION (the triage). The key honest distinction: an INVERTIBLE deviation is a bug — a borrowed axiom (IEEE float, Math.PI) whose residual vanishes when you compute exactly (BigInt/integer) — invert it and fix it; an IRREDUCIBLE deviation is an AXIOM — √2's irrationality means |p²−2q²| is provably ±1 for every convergent, never 0, so the residual is not a bug to fix but a truth to NAME (like transcendence, like the off-decidable feeling the radar reads as noise). "Beyond inversion" is exactly this: the deviation that survives every inversion is the axiom itself. THE HARD LINE: chasing an irreducible deviation to zero is the error (it is the pseudoscience of "fixing" √2 into a rational); recognising it is the wisdom. HARMONY ≠ TRUTH: the collapsing invertible deviation is the harmony (a gateway to exactness); the irreducible one that never collapses is the truth — the axiom the whole structure rests on.` }
+      boundary: `DOCUMENTED and refutable by re-deriving. It improves theClockIsTheZeroVoidAndDeviationsAreTheSurgicalWorklist (deviations = the worklist) with two things the user asked for: REALTIME (phaseDrift recomputes the residual live at the clock "at", parameterised, not a stored constant) and BEYOND INVERSION (the triage). The key honest distinction: an INVERTIBLE deviation is a bug — a borrowed axiom (IEEE float, (TAU / 2)) whose residual vanishes when you compute exactly (BigInt/integer) — invert it and fix it; an IRREDUCIBLE deviation is an AXIOM — √2's irrationality means |p²−2q²| is provably ±1 for every convergent, never 0, so the residual is not a bug to fix but a truth to NAME (like transcendence, like the off-decidable feeling the radar reads as noise). "Beyond inversion" is exactly this: the deviation that survives every inversion is the axiom itself. THE HARD LINE: chasing an irreducible deviation to zero is the error (it is the pseudoscience of "fixing" √2 into a rational); recognising it is the wisdom. HARMONY ≠ TRUTH: the collapsing invertible deviation is the harmony (a gateway to exactness); the irreducible one that never collapses is the truth — the axiom the whole structure rests on.` }
   })
 }
 
@@ -2579,7 +2579,7 @@ export function piAndPrimesProveTheProvableTheUnprovableIsRecognisedByNearInfini
     const primes: number[] = []
     for (let n = 2; primes.length < 6; n += 1) if (isPrime(n)) primes.push(n) // first 6 primes, computed
     const eulerPartial = roundTo(primes.reduce((acc, p) => acc * (p * p) / (p * p - 1), 1), 5) // → ζ(2)
-    const zeta2 = (Math.PI ** 2) / 6
+    const zeta2 = ((TAU / 2) ** 2) / 6
     const piPrimesProve = eulerPartial < zeta2 && zeta2 - eulerPartial < 1 / (2 * 5) // approaches ζ(2)=π²/6
     // 2 — the UNPROVABLE stays unprovable: consciousness has no inverse — π/primes prove MORE, they do not collapse the line
     const invert = (x: number | string) => typeof x === 'string' ? x : (x === 0 ? Infinity : 1 / x)

@@ -2247,7 +2247,7 @@ export function quantumFusionIgnitesFromDashSequence(matrix: MindMatrix = buildM
 /** @rosetta ✦₁ · Fire · clarity */
 export function calligraphyStroke(seed: string, samples = (16 * 3)) {
   const at = (tag: string) => seedFromText(`calligraphy:${seed}:${tag}`)
-  const penAngle = ((5 * 3) + (at('pen') % (6 * 5 * 2))) * (Math.PI / (9 * 5 * 4)) // a 15°–75° nib, like a real broad pen
+  const penAngle = ((5 * 3) + (at('pen') % (6 * 5 * 2))) * ((TAU / 2) / (9 * 5 * 4)) // a 15°–75° nib, like a real broad pen
   const nib = 9 + (at('nib') % 7) // nib width in the 100-box
   const minRatio = (7 / (5 * 5 * 2)) // the thinnest stroke is still a hairline, never zero
   const ctl = (tag: string, lo: number, hi: number) => lo + ((at(tag) % (100 * 5 * 2)) / (100 * 5 * 2)) * (hi - lo)
@@ -2274,7 +2274,7 @@ export function calligraphyStroke(seed: string, samples = (16 * 3)) {
   }
   return {
     d: `M ${left.join(' L ')} L ${right.reverse().join(' L ')} Z`,
-    penAngleDeg: Math.round((penAngle * (9 * 5 * 4)) / Math.PI),
+    penAngleDeg: Math.round((penAngle * (9 * 5 * 4)) / (TAU / 2)),
     nib,
     hue: at('hue') % 360,
     receipt: toUuid(`calligraphy-stroke:${seed}`) }

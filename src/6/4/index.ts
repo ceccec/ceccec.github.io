@@ -8,7 +8,7 @@ import { TAU } from '../../3/7'
 import { PHI } from '../../3/7'
 
 export function initialBearing(lat1: number, lon1: number, lat2: number, lon2: number): number {
-  const r = TAU / (9 * 8 * 5) // deg→rad via sealed TAU (math/trust — not bare Math.PI)
+  const r = TAU / (9 * 8 * 5) // deg→rad via sealed TAU (math/trust — not bare (TAU / 2))
   const y = Math.sin((lon2 - lon1) * r) * Math.cos(lat2 * r)
   const x = Math.cos(lat1 * r) * Math.sin(lat2 * r) - Math.sin(lat1 * r) * Math.cos(lat2 * r) * Math.cos((lon2 - lon1) * r)
   return (Math.atan2(y, x) / r + 360) % 360

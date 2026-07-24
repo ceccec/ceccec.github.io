@@ -53,12 +53,18 @@ export function toolsSavedInSrcFirst(scripts: readonly { path: string; lines: nu
   return { enforced: scripts.length > 0 && violations.length === 0, count: scripts.length, violations }
 }
 
-export function importsAreFoldersOnly(offenders: readonly { file: string; spec: string; reason: string }[] = [], scanned = 0) {
+/** One gate envelope — enforced iff zero offenders; the named laws are TYPED doors onto this single
+ * body (dry/dupe spin 3, 2026-07-24: three raw-identical copies collapsed to one payload). */
+function gateEnvelope<T>(offenders: readonly T[], scanned: number) {
   return { enforced: offenders.length === 0, count: offenders.length, offenders: [...offenders], scanned }
 }
 
+export function importsAreFoldersOnly(offenders: readonly { file: string; spec: string; reason: string }[] = [], scanned = 0) {
+  return gateEnvelope(offenders, scanned)
+}
+
 export function mathIsOneSource(offenders: readonly { file: string; spec: string; reason: string }[] = [], scanned = 0) {
-  return { enforced: offenders.length === 0, count: offenders.length, offenders: [...offenders], scanned }
+  return gateEnvelope(offenders, scanned)
 }
 
 export function foldersAreOneWordPerLevel(offenders: readonly { path: string; segment: string; reason: string }[] = [], scanned = 0) {
@@ -66,7 +72,7 @@ export function foldersAreOneWordPerLevel(offenders: readonly { path: string; se
 }
 
 export function glagoliticLabelsAreComputed(offenders: readonly { file: string; reason: string }[] = [], scanned = 0) {
-  return { enforced: offenders.length === 0, count: offenders.length, offenders: [...offenders], scanned }
+  return gateEnvelope(offenders, scanned)
 }
 
 export function unexpectedSituationsRefactorTools(facts: { untrackedSrcFiles?: readonly string[] } = {}) {

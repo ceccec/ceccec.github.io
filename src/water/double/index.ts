@@ -956,7 +956,7 @@ export function doubleTorusIsCompletelyQuantum(matrix: MindMatrix = buildMatrix(
       { facet: 'animationsAreGenuinely10DNotFaked — 6 appearance + 4 homology channels', on: tenD.genuine },
       { facet: `one hero clock — heroPhaseAt on HERO_CYCLE_MS=${HERO_CYCLE_MS} (= FOLDED_CENSUS×1e3)`, on: oneClock },
       { facet: 'movieCanvas* palette sealed — hex/rgba/polarity from quantum/science (no ad-hoc hex)', on: paletteSealed },
-      { facet: 'TAU sealed from 3/7 — full-turn constant (not ad-hoc Math.PI halves on the contract)', on: tauSealed },
+      { facet: 'TAU sealed from 3/7 — full-turn constant (not ad-hoc (TAU / 2) halves on the contract)', on: tauSealed },
       { facet: `package completely-quantum contract names ${contract.length}/${7 * 7} (sync with build.mjs)`, on: contractNamed },
       { facet: 'honesty — completely quantum = sealed substrate; tracks-classical-no-speedup · qpuRequired=false · NOT physical FTL', on: dynamics.computes && oneClock && tenD.genuine },
     ].map((entry) => ({ ...entry, receipt: toUuid(`double-torus-completely-quantum:${entry.facet}:${entry.on}`) }))

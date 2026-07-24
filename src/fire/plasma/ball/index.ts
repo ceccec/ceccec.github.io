@@ -19,7 +19,7 @@ import * as __ns_up_up_thunder_trading from '../../../thunder/trading'
 import type { MindMatrix, StaticPage } from '../../../wind/types'
 import { buildMatrix, coverage } from '../../../heaven/compute'
 import { computesGate, isUuid, memoByRoot, merge, merkleFold, roundTo, seedFromText, toUuid } from '../../../0'
-import { A432_OCTAVES, EULER_CHI, FOLDED_CENSUS, PHI, ROSETTA_AREAS, SPEED_OF_LIGHT } from '../../../3/7'
+import { TAU, A432_OCTAVES, EULER_CHI, FOLDED_CENSUS, PHI, ROSETTA_AREAS, SPEED_OF_LIGHT } from '../../../3/7'
 import { creationWave, completeAllInWaves } from '../../../thunder/waves'
 import { A432_HUE, GOLDEN_ANGLE, quantumHueFromHz, quantumScaleHue, scaleColor, scaleColorRgba } from '../../../quantum/science'
 import { colorFromSound, soundFromColor, a432 } from '../../li'
@@ -622,7 +622,7 @@ export function plasmaMoviePalette(matrix: MindMatrix = buildMatrix(), path = '/
     waveHue,
     waveIndex,
     holographicAlpha: endless ? 4 / (5 * 5) : 3 / (5 * 5), // 0.16 : 0.12
-    glassReveal: clamp01(1 / 2 + (1 / 2) * Math.cos((waveIndex / TIERS[2]) * Math.PI)),
+    glassReveal: clamp01(1 / 2 + (1 / 2) * Math.cos((waveIndex / TIERS[2]) * (TAU / 2))),
     back: css(L_BACK),
     shell: css(L_SHELL),
     soft: css(L_SOFT),

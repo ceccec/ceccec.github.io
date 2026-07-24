@@ -1,4 +1,5 @@
 // ☱ Duì · Lake — analytics, ledger & widget folds, dissolved out of the monolith. Independent; folds.ts back-imports the gate folds.
+import { TAU } from '../../3/7'
 import { phase } from '../../6/4'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
@@ -50,7 +51,7 @@ export function harmonicApparatus(matrix: MindMatrix = buildMatrix()) {
   const NN = 2
   for (let j = 0; j < N; j += 1) {
     const row: number[] = []
-    for (let i = 0; i < N; i += 1) row.push(round(Math.sin(M * Math.PI * (i / (N - 1))) * Math.sin(NN * Math.PI * (j / (N - 1))), 3))
+    for (let i = 0; i < N; i += 1) row.push(round(Math.sin(M * (TAU / 2) * (i / (N - 1))) * Math.sin(NN * (TAU / 2) * (j / (N - 1))), 3))
     grid.push(row)
   }
   return {
@@ -542,7 +543,7 @@ export function quantumProofs(matrix: MindMatrix = buildMatrix()) {
   const N = 96
   const fringe: number[] = []
   for (let i = 0; i < N; i += 1) {
-    const delta = (i / (N - 1) - 0.5) * Math.PI * 12 // path-difference phase across the screen
+    const delta = (i / (N - 1) - 0.5) * (TAU / 2) * 12 // path-difference phase across the screen
     const amplitude = 2 * Math.cos(delta / 2) // |e^{+id/2} + e^{-id/2}|
     fringe.push((amplitude * amplitude) / 4) // normalized to [0,1]
   }

@@ -1701,7 +1701,7 @@ export function clownActQuantumSteps(matrix: MindMatrix = buildMatrix()) {
     const hexagram = bits.reduce((n, bit, k) => n | (bit << k), 0)
 
     const landauer = 1.380649e-23 * (100 * 3) * Math.log(2) // kT ln 2 at 300 K — the receipt's burn price, in joules
-    const zeno64 = (1 / 2) * (1 - Math.cos(Math.PI / 64) ** 64) // Itano's law at n = 64 — the frozen bow
+    const zeno64 = (1 / 2) * (1 - Math.cos((TAU / 2) / 64) ** 64) // Itano's law at n = 64 — the frozen bow
     const routes = new Set(steps.filter((s) => s.route !== 'crossing').map((s) => s.route))
 
     const facets = [

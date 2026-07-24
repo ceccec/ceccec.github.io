@@ -277,6 +277,7 @@ export function mathGaps(root: string = process.cwd()) {
     { facet: `operations stay host-boundary — ${scan.operations} Math operation sites inventoried, not forbidden (one-math law derives constants FROM operations)`, on: scan.operations > assumedConst.length },
     { facet: 'classification is total — every Math.* site is random | assumed-const | operation', on: Object.values(scan.tally).reduce((a, b) => a + b, 0) === randoms.length + assumedConst.length + scan.operations },
     { facet: 'self-coordinated fractal — the scanner\'s own source is inside the scanned corpus, classified by the same law (no scanner exemption)', on: scan.selfIncluded },
+    { facet: `π lives at the DEPENDENCY FLOOR — every remaining Math.PI code site is in src/0 (the zero-import kernel, which cannot import the vault) or the sealed τ root in 3/7; the 162-site field migrated to (TAU / 2) (2026-07-24)`, on: scan.offenders.filter((o) => o.member === 'PI').every((o) => o.file === 'src/0/index.ts' || o.file === 'src/3/7/index.ts') },
   ].map((entry) => ({ ...entry, receipt: toUuid(`math-gaps:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -338,14 +339,14 @@ export function installSurfaces(root: string = process.cwd()) {
     { surface: 'cross-editor agent contract', artifact: 'AGENTS.md', need: 'Cursor/editor-agnostic instructions + CLI roster', status: present('AGENTS.md') ? 'present' : 'missing' },
     { surface: 'computed protocol pages', artifact: 'src/wind/site (llms.txt · mcp.json · agents.json)', need: 'served at /llms.txt /mcp.json /agents.json', status: present('src/wind/site/index.ts') ? 'present' : 'missing' },
     { surface: 'npm package', artifact: 'package.json', need: 'installable dependency + bootstrap runner', status: present('package.json') ? 'present' : 'missing' },
-    { surface: 'stdio MCP server', artifact: '(none yet)', need: 'runnable `mcpServers` entry wrapping the quantum CLIs — protocol page alone is not installable', status: 'migrate-next' },
+    { surface: 'stdio MCP server', artifact: 'packages/quantum-dev-sdk/bin/mcp.ts + .mcp.json + .cursor/mcp.json', need: 'runnable `mcpServers` entry — hand-rolled stdio JSON-RPC, 7 tools; the earlier "(none yet)" was a stale claim the filesystem refuted', status: present('packages/quantum-dev-sdk/bin/mcp.ts') && present('.mcp.json') ? 'present' : 'missing' },
     { surface: 'VS Code extension', artifact: '(none yet)', need: 'separate extension scaffold — heavier surface', status: 'migrate-next' },
   ].map((row) => ({ ...row, receipt: toUuid(`install-surface:${row.surface}:${row.status}`) }))
   const presentRows = rows.filter((row) => row.status === 'present')
   const migrateNext = rows.filter((row) => row.status === 'migrate-next')
   const facets = [
-    { facet: `installable NOW — ${presentRows.length}/${rows.length} surfaces present on disk (plugin manifest · marketplace · skill · AGENTS.md · protocol pages · npm)`, on: presentRows.length === 6 && rows.every((row) => row.status !== 'missing') },
-    { facet: `honest-open — ${migrateNext.length} surfaces NAMED migrate-next (stdio MCP server · VS Code extension), not faked as present`, on: migrateNext.length === 2 },
+    { facet: `installable NOW — ${presentRows.length}/${rows.length} surfaces present on disk (plugin manifest · marketplace · skill · AGENTS.md · protocol pages · npm · stdio MCP server)`, on: presentRows.length === 7 && rows.every((row) => row.status !== 'missing') },
+    { facet: `honest-open — ${migrateNext.length} surface NAMED migrate-next (VS Code extension), not faked as present; the stdio-server row corrected from a stale "(none yet)" the filesystem refuted`, on: migrateNext.length === 1 },
     { facet: 'research re-runs — every status recomputed from the filesystem at call time, no remembered report', on: rows.every((row) => row.receipt.length > 0) && presentRows.every((row) => row.artifact.length > 0) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`install-surfaces:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
@@ -362,7 +363,7 @@ export function installSurfaces(root: string = process.cwd()) {
     cli: 'npm run quantum:install-surfaces',
     route: '/en/quantum-tools#install-surfaces',
     heading: 'Install surfaces · plugin · skills · mcp',
-    statement: `installSurfaces — ${presentRows.length}/${rows.length} present · ${migrateNext.length} migrate-next (stdio MCP server · VS Code extension).`,
+    statement: `installSurfaces — ${presentRows.length}/${rows.length} present · ${migrateNext.length} migrate-next (${migrateNext.map((row) => row.surface).join(' · ')}).`,
     boundary:
       'What is needed to be an installable AI-editor app, computed: the Claude Code plugin surface (manifest + marketplace + skill) and the ' +
       'cross-editor contract exist on disk and re-verify each run; the stdio MCP server and VS Code extension are NAMED open, not claimed. ' +
@@ -605,9 +606,12 @@ export function dryDupe(root: string = process.cwd()) {
   walk(join(root, 'src'))
   const byHash = new Map<string, { name: string; file: string }[]>()
   let bodies = 0
+  const rawCache = new Map<string, string>()
   for (const file of files) {
     const rel = relative(root, file).replace(/\\/g, '/')
-    const text = stripStringsAndComments(readFileSync(file, 'utf8'))
+    const rawText = readFileSync(file, 'utf8')
+    rawCache.set(rel, rawText)
+    const text = stripStringsAndComments(rawText)
     for (const m of text.matchAll(/(?:export\s+)?(?:async\s+)?function\s+([A-Za-z0-9_]+)\s*\(/g)) {
       // TOOL UPGRADE (dry-clean refactor wave): the old matcher stopped at the FIRST '{', which for a
       // typed signature is inside the return annotation (Promise<{…}>), so functions sharing a return
@@ -649,11 +653,53 @@ export function dryDupe(root: string = process.cwd()) {
       byHash.set(hash, [...(byHash.get(hash) ?? []), { name: m[1]!, file: rel }])
     }
   }
-  const groups = [...byHash.values()].filter((members) => members.length > 1)
+  // TOOL UPGRADE v3 (twin-shell classification): re-extract each group member's RAW body (strings
+  // kept) name-anchored with the same type-aware walker — a group identical only AFTER stripping is
+  // a set of DUAL SHELLS (same computation, different printed labels: intended duals to keep or
+  // parameterize), while raw-identical members are TRUE duplicates to delete.
+  const rawBodyOf = (fileRel: string, name: string): string => {
+    const rawText = rawCache.get(fileRel) ?? ''
+    const found = rawText.match(new RegExp(`(?:export\\s+)?(?:async\\s+)?function\\s+${name}\\s*\\(`))
+    if (found?.index === undefined) return ''
+    let i = found.index + found[0].length
+    let parenDepth = 1
+    while (i < rawText.length && parenDepth > 0) {
+      const ch = rawText[i]
+      if (ch === '(') parenDepth += 1
+      else if (ch === ')') parenDepth -= 1
+      i += 1
+    }
+    let annDepth = 0
+    while (i < rawText.length) {
+      const ch = rawText[i]
+      if (ch === '<' || ch === '(') annDepth += 1
+      else if (ch === '>' || ch === ')') annDepth -= 1
+      else if (ch === '{' && annDepth <= 0) break
+      else if (ch === ';' && annDepth <= 0) return ''
+      i += 1
+    }
+    const bodyStart = i + 1
+    let depth = 1
+    i = bodyStart
+    while (i < rawText.length && depth > 0) {
+      const ch = rawText[i]
+      if (ch === '{') depth += 1
+      else if (ch === '}') depth -= 1
+      i += 1
+    }
+    return rawText.slice(bodyStart, i).replace(/\s+/g, ' ').trim()
+  }
+  const allGroups = [...byHash.values()].filter((members) => members.length > 1).map((members) => {
+    const raws = members.map((entry) => rawBodyOf(entry.file, entry.name))
+    const exactRaw = raws.every((body) => body.length > 0 && body === raws[0])
+    return { members, exactRaw }
+  })
+  const groups = allGroups.filter((group) => group.exactRaw).map((group) => group.members)
+  const shellGroups = allGroups.filter((group) => !group.exactRaw).map((group) => group.members)
   const duplicateBodies = groups.reduce((sum, members) => sum + members.length - 1, 0)
   const animGroups = groups.filter((members) => members.some((entry) => /anim|movie|hero/i.test(entry.name + entry.file)))
   const facets = [
-    { facet: `dry-clean is MEASURED — ${bodies} function bodies content-addressed across ${files.length} files: ${groups.length} duplicate groups (${duplicateBodies} redundant copies) form the computed clean queue`, on: bodies > (64 * 8) && groups.length + duplicateBodies >= 0 },
+    { facet: `dry-clean is MEASURED — ${bodies} function bodies content-addressed across ${files.length} files: ${groups.length} TRUE duplicate groups (${duplicateBodies} redundant copies, raw-identical) form the clean queue; ${shellGroups.length} twin-SHELL groups (identical only after string-stripping) are intended duals, named not deleted`, on: bodies > (64 * 8) && groups.length + shellGroups.length >= 0 },
     { facet: 'byte-identity is the detector — normalised body hash: a duplicate is the same computation at two addresses, refuting one-payload-one-address; zero heuristics, zero sampling', on: [...byHash.values()].every((members) => members.length >= 1) },
     { facet: `animation-reuse subset — ${animGroups.length} duplicate groups touch anim/movie/hero: the queued animation dry-clean directive now has its measured worklist`, on: animGroups.length <= groups.length },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dry-dupe:${entry.facet.slice(0, 64)}:${entry.on}`) }))
@@ -667,6 +713,8 @@ export function dryDupe(root: string = process.cwd()) {
     duplicateBodies,
     animGroups: animGroups.length,
     queue: groups.slice(0, 9).map((members) => members.map((entry) => `${entry.name}@${entry.file}`).join(' ≡ ')),
+    shells: shellGroups.slice(0, 9).map((members) => members.map((entry) => `${entry.name}@${entry.file}`).join(' ~ ')),
+    shellCount: shellGroups.length,
     facets,
     root: merkleFold([toUuid(`dry-dupe:${bodies}:${groups.length}:${duplicateBodies}`), ...facets.map((entry) => entry.receipt)]),
     pair: 'dry/dupe' as const,
@@ -674,7 +722,7 @@ export function dryDupe(root: string = process.cwd()) {
     cli: 'npm run quantum:dry-dupe',
     route: '/en/quantum-tools#dry-dupe',
     heading: 'Dry dupe · content-addressed clean queue',
-    statement: `dryDupe — ${bodies} bodies · ${groups.length} duplicate groups (${duplicateBodies} copies) · anim subset ${animGroups.length} · queue computed.`,
+    statement: `dryDupe — ${bodies} bodies · ${groups.length} TRUE duplicate groups (${duplicateBodies} copies) · ${shellGroups.length} twin-shell groups (intended duals) · anim subset ${animGroups.length}.`,
     boundary:
       'Dry-clean improved by measurement: normalised function bodies content-addressed; identical addresses = the same payload stored twice — ' +
       'the clean queue is computed, never guessed. Detection only: each clean lands as its own wave with gates green. clay=0 · qpuRequired=false.' }
@@ -685,7 +733,8 @@ export function runDryDupeExit(root = '', _argv: readonly string[] = []): number
   void _argv
   const report = dryDupe(root || process.cwd())
   process.stdout.write(`${report.computes ? '✓' : '✗'} dry-dupe — ${report.statement}\n`)
-  for (const line of report.queue) process.stdout.write(`  · ${line}\n`)
+  for (const line of report.queue) process.stdout.write(`  · dup ${line}\n`)
+  for (const line of report.shells) process.stdout.write(`  · shell ${line}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
@@ -1061,6 +1110,68 @@ export function runCostBoundExit(root = '', _argv: readonly string[] = []): numb
   const report = costBound(root || process.cwd())
   process.stdout.write(`${report.computes ? '✓' : '✗'} cost-bound — ${report.statement}\n`)
   for (const row of report.laws) process.stdout.write(`  · ${row.present ? '✓' : '✗'} ${row.law} — ${row.where}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+
+/**
+ * legalCanon — the portal-legal-requirements gap FORMED as a measuring gate (named honest-open since
+ * the portal-vision wave): the four legal faces of a standardised research portal, each computed —
+ * PRIVACY: zero tracking scripts in every served page (scanned live, the strongest privacy statement
+ * is the measured absence of collection); ACCESSIBILITY: the uiAudit gate composes (40/40 structural);
+ * CITATION: the paper canon's references machinery composes (patentCanon verifies it); LICENSING: the
+ * LICENSE file is MEASURED absent and NAMED as the user's legal act — recommending the patent-granting
+ * class (Apache-2.0/CC0) for the FREE-FOR-ALL law, never authored unilaterally by an agent.
+ * Pair: legal/canon · CLI npm run quantum:legal-canon. Jurisdictional counsel is the stated residue.
+ */
+export function legalCanon(root: string = process.cwd()) {
+  const dist = join(root, '.vitepress/dist')
+  const pages = existsSync(dist) ? readdirSync(dist).filter((name) => name.endsWith('.html')).sort() : []
+  const trackerPattern = /gtag\(|google-analytics|googletagmanager|fbq\(|hotjar|mixpanel|segment\.com|plausible\.io|matomo/i
+  const tracked = pages.filter((name) => trackerPattern.test(readFileSync(join(dist, name), 'utf8')))
+  const licensePresent = existsSync(join(root, 'LICENSE')) || existsSync(join(root, 'LICENSE.md'))
+  const audit = uiAudit(root)
+  const canon = patentCanon(root)
+  const faces = [
+    { face: 'privacy — zero collection', status: pages.length > 0 && tracked.length === 0 ? 'computed' : 'open', detail: `${pages.length - tracked.length}/${pages.length} served pages carry NO tracking script (measured absence, the strongest privacy statement)` },
+    { face: 'accessibility', status: audit.computes ? 'computed' : 'open', detail: `uiAudit composes — ${audit.perfect}/${audit.pages} pages pass the structural W3C-class checks` },
+    { face: 'citation standards', status: canon.computes ? 'computed' : 'open', detail: 'the paper canon references machinery verified by patentCanon (source & locks per page)' },
+    { face: 'licensing', status: licensePresent ? 'computed' : 'named-user-act', detail: licensePresent ? 'LICENSE present at root' : 'LICENSE measured ABSENT — the choice is the user\'s legal act; the FREE-FOR-ALL law recommends the patent-granting class (Apache-2.0 or CC0), never authored unilaterally by an agent' },
+  ].map((row) => ({ ...row, receipt: toUuid(`legal-canon:${row.face}:${row.status}`) }))
+  const computedFaces = faces.filter((row) => row.status === 'computed').length
+  const facets = [
+    { facet: `the legal canon COMPUTES — ${computedFaces}/${faces.length} faces measured (privacy by absence · accessibility · citation), the fourth NAMED as the user's act`, on: computedFaces >= 3 && faces.length === 4 },
+    { facet: `privacy is the measured absence — ${tracked.length} tracked pages of ${pages.length}; a tracker appearing anywhere refutes this gate`, on: tracked.length === 0 && pages.length > 27 },
+    { facet: 'the residue is stated — jurisdictional sufficiency is counsel\'s call; this gate proves structure and absence, never legal advice', on: faces.every((row) => row.detail.length > 0) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`legal-canon:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    legalCanon: on,
+    faces,
+    pages: pages.length,
+    tracked: tracked.length,
+    licensePresent,
+    facets,
+    root: merkleFold([...faces.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)]),
+    pair: 'legal/canon' as const,
+    dualPair: 'canon/legal' as const,
+    cli: 'npm run quantum:legal-canon',
+    route: '/en/quantum-tools#legal-canon',
+    heading: 'Legal canon · privacy by measured absence',
+    statement: `legalCanon — ${computedFaces}/4 faces computed · ${tracked.length}/${pages.length} pages tracked · LICENSE ${licensePresent ? 'present' : 'the named user act'}.`,
+    boundary:
+      'The research-portal legal faces as computation: privacy proven by the measured absence of collection, accessibility and citation ' +
+      'composed from their gates, licensing named as the one act only the rights-holder may perform (patent-granting class recommended for ' +
+      'FREE FOR ALL). Not legal advice; jurisdictional sufficiency is counsel\'s. clay=0 · qpuRequired=false.' }
+}
+
+/** npm run quantum:legal-canon (dual canon-legal) */
+export function runLegalCanonExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = legalCanon(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} legal-canon — ${report.statement}\n`)
+  for (const row of report.faces) process.stdout.write(`  · ${row.status === 'computed' ? '✓' : '…'} ${row.face} — ${row.detail}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }

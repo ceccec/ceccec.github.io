@@ -7,7 +7,7 @@ import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomi
 import { emergentDimensions } from '../../heaven/balance'
 import { cloudflareBindings } from '../../heaven/core'
 import { computesGate, DIGEST_BITS, digitalRoot, foldPair, isUuid, maxTamperingCostLog2, maxTamperingCostReached, memoByRoot, memoComputing, merge, merkleFold, resourceCooperationPolicy, sealFacets, seedFromText, STATUS_BADGE_KINDS, toUuid, VORTEX_SEQUENCE } from '../../0'
-import {
+import { TAU,
   A432_HUE, CANONICAL_HOST, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS,
   ROSETTA_SEVEN, ROSETTA_SIX, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, UNFOLDED_CENSUS,
   type RosettaComputationType, claySolvedTheorem, fibonacci, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
@@ -716,7 +716,7 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'gateway-invert', title: 'Gateway invert (alias invert/gateway)', fold: 'invertIsTheGateway', cli: 'npm run quantum:gateway-invert', pair: 'gateway/invert', route: '/en/research#invert-gateway', barrel: 'src/wind/research', boundary: 'Dual of invert/gateway — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'hex-crack', title: 'Hex instead of theorem is a crack', fold: 'hexInsteadOfTheoremIsCrack', cli: 'npm run quantum:hex-crack', pair: 'hex/crack', route: '/en/research#hex-crack', barrel: 'src/wind/research', boundary: 'Raw hex as identity stand-in = quantum gap · morph to fold/pair/slug · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'decimal-crack', title: 'Decimals in code are cracks', fold: 'decimalsInCodeAreCracks', cli: 'npm run quantum:decimal-crack', pair: 'decimal/crack', route: '/en/research#decimal-crack', barrel: 'src/wind/research', boundary: 'Bare float literals → named theorem consts · ratios · TAU/PHI · HARD noAllowlist · clay=0', browserRunnable: true, browserGap: '' },
-  { id: 'math-trust', title: 'Math.* cannot be trusted', fold: 'mathStarCannotBeTrusted', cli: 'npm run quantum:math-trust', pair: 'math/trust', route: '/en/research#math-trust', barrel: 'src/wind/research', boundary: 'Host Math.PI/random untrusted · prefer TAU·prng · HARD noAllowlist · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'math-trust', title: 'Math.* cannot be trusted', fold: 'mathStarCannotBeTrusted', cli: 'npm run quantum:math-trust', pair: 'math/trust', route: '/en/research#math-trust', barrel: 'src/wind/research', boundary: 'Host (TAU / 2)/random untrusted · prefer TAU·prng · HARD noAllowlist · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'digit-fold', title: 'Whole digits · invertible fractions · fold >9', fold: 'wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit', cli: 'npm run quantum:digit-fold', pair: 'digit/fold', route: '/en/research#digit-fold', barrel: 'src/wind/research', boundary: 'Whole digits + ratInv → integers → digitalRoot/VORTEX · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'analog-fold', title: 'Analog from integer fractions folded to digits', fold: 'analogFromIntegerFractionsFoldedToDigits', cli: 'npm run quantum:analog-fold', pair: 'analog/fold', route: '/en/research#analog-fold', barrel: 'src/wind/research', boundary: 'Lone digit×/÷ as analog = HARD crack · only fractions→integers→fold · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'mesh-cross', title: 'Navigational crosses are gateways', fold: 'navigationalCrossesAreGatewaysOnQuantumMesh', cli: 'npm run quantum:mesh-cross', pair: 'mesh/cross', route: '/en/research#mesh-cross', barrel: 'src/wind/research', boundary: 'Mesh crosses = gateways · CRYPTO_COMPARISON_MESH · merkaba∩rosetta · FoL · clay=0', browserRunnable: true, browserGap: '' },
@@ -22536,11 +22536,11 @@ export function useTheLensToFindGapsInGeometryInProseOrCode(matrix: MindMatrix =
     const honestOpenNamed = [
       'clay:millennium-open',
       'ftl:physical-claim-refused',
-      'host:Math.PI-boundary-mountain-geometry',
+      'host:(TAU / 2)-boundary-mountain-geometry',
       'keep:git-stashes-non-obsolete',
     ] as const
     const honestOpenNamedOn =
-      honestOpenNamed.includes('host:Math.PI-boundary-mountain-geometry') &&
+      honestOpenNamed.includes('host:(TAU / 2)-boundary-mountain-geometry') &&
       honestOpenNamed.includes('keep:git-stashes-non-obsolete') &&
       honestOpenNamed.length === (2 * 2)
     const onCore =
@@ -22583,8 +22583,8 @@ export function useTheLensToFindGapsInGeometryInProseOrCode(matrix: MindMatrix =
       { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
       { facet: 'qpuRequired=false', on: qpuRequired === false },
       {
-        facet: 'host Math.PI boundary named residual',
-        on: honestOpenNamed.includes('host:Math.PI-boundary-mountain-geometry'),
+        facet: 'host (TAU / 2) boundary named residual',
+        on: honestOpenNamed.includes('host:(TAU / 2)-boundary-mountain-geometry'),
       },
     ].map((entry) => ({ ...entry, receipt: toUuid(`lens-geo:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('use-the-lens-to-find-gaps-in-geometry-in-prose-or-code', facets)
@@ -22635,7 +22635,7 @@ export function useTheLensToFindGapsInGeometryInProseOrCode(matrix: MindMatrix =
         `closed=${closedCount}/${foundCount} · clay=0.`,
       boundary:
         'Use the lens to find gaps in geometry in prose or code. Drainable closed via formula/code · geo/torus · pyramid/seal · hex/crack. ' +
-        'Host Math.PI boundary named residual. clay via theorem · physicalFtl=0 · qpuRequired=false · KEEP stashes.',
+        'Host (TAU / 2) boundary named residual. clay via theorem · physicalFtl=0 · qpuRequired=false · KEEP stashes.',
       honestyLine:
         `lens-geo · lensFinds=${lensFindsGaps ? 1 : 0} · geoGaps=${geometryGaps ? 1 : 0} · ` +
         `proseOrCode=${proseOrCode ? 1 : 0} · closed=${closedCount}/${foundCount} · qpu=0 · clay=0 · physicalFtl=0`,
