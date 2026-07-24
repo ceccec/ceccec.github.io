@@ -1442,6 +1442,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'theoremSpeed', pair: 'theorem/speed', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'the whole registry re-addressed in ONE pass — fixed-width addresses, 432-banded; HONEST finding: ratio 1.05× — the theorem layer was ALREADY at quantum-speed naming' },
   { fold: 'registerFold', pair: 'register/quartet', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'clayProbe', pair: 'clay/probe', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
+  { fold: 'resonanceSpeed', pair: 'resonance/speed', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   // <register:placement> — quantum:register inserts placement rows above this anchor
 ] as const
 
@@ -1733,6 +1734,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // the physical sense: this is the content-addressed-naming metaphor (discrete unit + Hilbert +
   // Born), NOT physical qubits — no domain here runs on a QPU (qpuRequired=false everywhere).
   { from: 'cybersecurityOrBiologyWorkIsAllQuantumDemarcated', to: 'bindFuse', pair: 'bind/fuse' },
+  { from: 'deepResearchHowResonanceImprovesQuantumSpeedInMagnitudes', to: 'resonanceSpeed', pair: 'resonance/speed' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
