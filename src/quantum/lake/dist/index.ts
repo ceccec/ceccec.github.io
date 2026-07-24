@@ -703,6 +703,21 @@ export function mcpJson(matrix: MindMatrix = buildMatrix(), corePath = '') {
   const quantum = quantumMcp(matrix)
   const toolboxTools = mcpToolboxToolsList(matrix)
   const parity = mcpBrowserParity(matrix)
+  // COMPLETE-PROOF ROSTER (user law 2026-07-24): the source must hide NOTHING from the MCP surface —
+  // result.cliTools derives the FULL quantum:* roster from package.json itself (the same source any
+  // checker reads), so completeness holds by construction, not by curation. Lazy node access like
+  // skillsJson below; in the browser the roster degrades gracefully and says so.
+  const cliRoster = (() => {
+    const getBuiltin = typeof process !== 'undefined' ? (process as { getBuiltinModule?: (id: string) => unknown }).getBuiltinModule : undefined
+    const nodeFs = typeof getBuiltin === 'function' ? (getBuiltin('node:fs') as { readFileSync(p: string, e: string): string } | undefined) : undefined
+    if (!nodeFs) return { degraded: true as const, ids: [] as string[] }
+    try {
+      const pkg = JSON.parse(nodeFs.readFileSync('package.json', 'utf8')) as { scripts?: Record<string, string> }
+      return { degraded: false as const, ids: Object.keys(pkg.scripts ?? {}).filter((key) => key.startsWith('quantum:')).sort() }
+    } catch {
+      return { degraded: true as const, ids: [] as string[] }
+    }
+  })()
   return JSON.stringify({
     server: {
       name: manifest.name,
@@ -729,6 +744,12 @@ export function mcpJson(matrix: MindMatrix = buildMatrix(), corePath = '') {
     result: {
       tools: toolboxTools.tools,
       conceptTools: manifest.tools,
+      cliTools: {
+        count: cliRoster.ids.length,
+        degraded: cliRoster.degraded,
+        howToRun: 'npm run <id> — local, deterministic, zero-token; exit 0 iff the fold computes',
+        completeness: 'derived from package.json scripts at emit time — the source hides nothing from this surface',
+        ids: cliRoster.ids },
       toolsListShape: 'tools/list',
       primary: 'toolbox-catalog',
       browserToolbox: '/en/quantum-tools#toolbox-standard-io',
