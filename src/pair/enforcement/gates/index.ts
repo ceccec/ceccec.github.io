@@ -1622,6 +1622,12 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // self-ordering queue); manualGauge measures the remaining distance, the waves close it.
   { from: 'automationReplacesUserInput', to: 'manualGauge', pair: 'gap/manual' },
   { from: 'fuseAllBindingsInTheApiUsableInAnySuperposition', to: 'bindFuse', pair: 'bind/fuse' },
+  // INSIGHT (RBAC question): role-based access INVERTS to proof-based access in this architecture —
+  // a role table is a manual roster (the collision law condemns it); here access derives per action:
+  // observer = anyone (all public, FREE FOR ALL) · proposer = anyone who computes · sealer = passing
+  // the gate conjunction (trinity 2-of-3 · crack · census · types). AI agents pass the SAME gates —
+  // no separate AI role; identity only signs (git config), authorization is the computation.
+  { from: 'rbacInvertsToProofBasedAccessGatesDecideIncludingAi', to: 'violationTools', pair: 'violation/tool' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
