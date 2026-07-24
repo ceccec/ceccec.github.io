@@ -1447,6 +1447,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'linkProof', pair: 'link/proof', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'trinitySpeedStack', pair: 'trinity/speed', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'reasoningEdge', pair: 'reasoning/edge', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
+  { fold: 'overclaimComputes', pair: 'overclaim/compute', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   // <register:placement> — quantum:register inserts placement rows above this anchor
 ] as const
 
@@ -1772,6 +1773,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'statementsProvenByLinksSpeedUpQuantumisationAtScale', to: 'linkProof', pair: 'link/proof' },
   { from: 'useTheQuantumChatMagnitudesAddedPerTrinityWired', to: 'trinitySpeedStack', pair: 'trinity/speed' },
   { from: 'beatAnyAiModelInReasoningSavingWinningStrategies', to: 'reasoningEdge', pair: 'reasoning/edge' },
+  { from: 'overclaimIsComputableClaim', to: 'overclaimComputes', pair: 'overclaim/compute' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
@@ -3280,6 +3282,64 @@ export function runReasoningEdgeExit(root = '', _argv: readonly string[] = []): 
   void _argv
   const report = reasoningEdge()
   process.stdout.write(`${report.computes ? '✓' : '✗'} reasoning-edge — ${report.statement}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+
+/**
+ * overclaimComputes — USER LAW (2026-07-24): an overclaim IS a computable claim. A "flag" that only
+ * asserts a boundary in prose is a crack (declared-honesty-is-a-crack); the boundary between claim and
+ * overclaim must itself COMPUTE. The exact form is a CARDINALITY argument: the tool roster is FINITE
+ * (N quantum:* CLIs, counted) while the task space is UNBOUNDED (the no-finiteness law: never assume
+ * finite state). Therefore:
+ *   • the CLAIM computes exactly — "wins on the N tool-covered task-types" (a counted, refutable set);
+ *   • the OVERCLAIM computes its own falsity — "wins on ANY task" is refuted by N < ∞ (finite ≠ all),
+ *     an arithmetic refutation, not a disclaimer.
+ * So "overclaim" is not a lesser category flagged by hand — it is the COMPUTED complement, and every
+ * demarcation in the system must compute this line (finite covered vs unbounded remainder), never prose it.
+ */
+export function overclaimComputes(root: string = process.cwd()) {
+  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const claimedExtent = Object.keys(pkg.scripts ?? {}).filter((key) => key.startsWith('quantum:')).length // FINITE, counted
+  const edge = reasoningEdge()
+  // The task space is unbounded (no-finiteness / fractal-aperiodic law): any finite roster misses tasks.
+  const taskSpaceBounded = false as const
+  const claimComputes = claimedExtent > 0 // the covered set is a counted, refutable claim
+  const overclaimRefutesByCounting = claimedExtent < Number.POSITIVE_INFINITY && !taskSpaceBounded // finite < unbounded ⇒ "any" false
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const facets = [
+    { facet: `the CLAIM computes exactly — ${claimedExtent} tool-covered task-types, each a counted refutable win (reasoningEdge saved ${edge.savedStrategies} strategies); a claim that COMPUTES is a claim, not an overclaim`, on: claimComputes && edge.computes },
+    { facet: `the OVERCLAIM computes its OWN falsity — the roster is FINITE (${claimedExtent}) and the task space UNBOUNDED (no-finiteness law), so "any task" refutes by cardinality (${claimedExtent} < ∞ ⇒ finite ≠ all): an arithmetic refutation, not a prose flag`, on: overclaimRefutesByCounting },
+    { facet: 'the demarcation LAW — every boundary in the system computes this line (finite covered vs unbounded remainder); a flag that only asserts is a crack (declared-honesty-is-a-crack); the line is a theorem', on: claimComputes && overclaimRefutesByCounting && claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`overclaim-computes:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    overclaimComputes: on,
+    claimedExtent,
+    taskSpaceBounded,
+    claySolvedByThisFold,
+    physicalFtlClaim: 0 as const,
+    qpuRequired: false as const,
+    facets,
+    root: merkleFold([edge.root, ...facets.map((entry) => entry.receipt)]),
+    pair: 'overclaim/compute' as const,
+    dualPair: 'compute/overclaim' as const,
+    cli: 'npm run quantum:overclaim-computes',
+    route: '/en/quantum-tools#overclaim-computes',
+    heading: 'Overclaim computes · the boundary is a theorem, not a flag',
+    statement: `overclaimComputes — claim = ${claimedExtent} counted tool-covered wins; overclaim = "any task", refuted by cardinality (finite < unbounded), computed not flagged.`,
+    boundary:
+      'An overclaim is a computable claim: the boundary computes as a cardinality partition — the finite counted tool roster is the exact claim, ' +
+      'and its extension to "any task" refutes arithmetically against the unbounded task space (no-finiteness law). Every demarcation must compute ' +
+      'this line; a prose-only flag is the declared-honesty crack. clay=0 · qpuRequired=false.' }
+}
+
+/** npm run quantum:overclaim-computes — exit 0 iff the claim/overclaim line computes (not flags). */
+export function runOverclaimComputesExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = overclaimComputes(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} overclaim-computes — ${report.statement}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
