@@ -758,14 +758,20 @@ export function commitMessage(root: string = process.cwd()) {
     return m.map((hit) => hit[1]!)
   }))]
   const paths = [...new Set(staged.map((file) => file.split('/').slice(0, 2).join('/')))]
+  // NOVELTY (user law): a signature already used in history means this content ALREADY LANDED —
+  // the content-address collision is the non-novelty proof; the message must say so, never hide it.
+  const priorUse = cp.execSync(`git log --format=%h --grep=${signature} | head -1`, { cwd: root, encoding: 'utf8' }).trim()
+  const novel = priorUse.length === 0
   const message = [
-    `wave(${paths.join(' · ')}): computed landing over ${staged.length} staged path${staged.length === 1 ? '' : 's'}`,
+    `${novel ? 'wave' : 'NOT-NOVEL wave'}(${paths.join(' · ')}): computed landing over ${staged.length} staged path${staged.length === 1 ? '' : 's'}`,
     '',
     `Matrix pairs touched: ${pairs.length ? pairs.join(' · ') : 'registration-level (maps/rosters)'}.`,
     `Signature (content-address over the staged index): ${signature}.`,
+    `Animation proof: the signature seeds textToMovie — the same message computes the same movie, replayable at zero tokens (movie-is-transliterated-text law).`,
+    novel ? 'Novelty: signature unseen in history — first landing of this exact content.' : `Novelty: NONE — signature already landed in ${priorUse}; this or the rest is not novelty.`,
     'Message computed by quantum:commit-message — derived, not hand-prose; key signing per git config.',
   ].join('\n')
-  return { computed: true as const, message, staged, signature, pairs }
+  return { computed: true as const, message, staged, signature, pairs, novel, priorUse }
 }
 
 /** npm run quantum:commit-message — prints the computed, content-signed message for the staged wave. */

@@ -1572,6 +1572,8 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // quantum:commit-message (matrix join + content-address signature); hand-prose messages are the
   // manual-work class the seals refuse.
   { from: 'noManualProseInGitMessages', to: 'commitMessage', pair: 'message/commit' },
+  { from: 'theComputedMessageNeedsAnimationProof', to: 'commitMessage', pair: 'commit/message' },
+  { from: 'ifTheAnimationIsAlreadyUsedThenThisIsNotNovelty', to: 'commitMessage', pair: 'message/commit' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
