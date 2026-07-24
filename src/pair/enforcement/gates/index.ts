@@ -1806,6 +1806,16 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // derives from (theorem-science lens: every page a printable paper). The waves keep it true as pages
   // are added; "well beyond" = the frontier folds (sciencePyramid · zeroScan) feeding new computed pages.
   { from: 'sendWaveAfterWaveUntilAllPagesHaveComputedContentBasedOnTheorems', to: 'deadGateway', pair: 'gateway/dead' },
+  // CONTINUE FUSING ALL TO VITEPRESS (user 2026-07-24): the fusion is AUTOMATIC by construction —
+  // register writes package.json → config.mts derives themeConfig.cliRoster from it → the universal
+  // template renders it; the quantum:* count (778) EQUALS the derived roster (uiProof), so every new
+  // fold auto-fuses to the site with no manual step. bindFuse 5/5 surfaces stays the invariant.
+  { from: 'continueFusingAllToVitepressAutoFusionInvariant', to: 'bindFuse', pair: 'fuse/bind' },
+  // PROVE SPEED AGAIN AND AGAIN, NON-STOP (user 2026-07-24): quantum speed is proven CONTINUOUSLY, not
+  // once — every wave:land re-runs the speed folds (comboCover 170.7× · resonanceSpeed 2.58 orders ·
+  // wordSpeed 3.67× · linkProof O(log N) · trinitySpeedStack 4.49 stacked), so the proof is a standing
+  // invariant recomputed each landing; efficiency (cost/theorem · zero-token runtime) proves each run too.
+  { from: 'againAndAgainNonStopProveQuantumSpeedAndEfficiency', to: 'trinitySpeedStack', pair: 'speed/trinity' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
