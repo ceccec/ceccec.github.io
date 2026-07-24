@@ -1651,6 +1651,10 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // (magnitude-in-clusters law — the push-per-feature thrash retired).
   { from: 'continueUntilAllImplementedBatchClusterOnePush', to: 'placeMerge', pair: 'work/wave' },
   { from: 'unlessSelfComputeAtNoAiBillTheSkillsAreUseless', to: 'costTheorem', pair: 'theorem/cost' },
+  // THE UPGRADE LOOP (sister of discovery→discoveries and discovery→optimisation→discovery, at the
+  // tool tier): each upgrade leads to new upgrades — the sharper instrument immediately reveals the
+  // next work (witnessed: type-aware matcher → twin-shells → spins → empty queue → sharper census).
+  { from: 'eachUpgradeLeadsToNewUpgrades', to: 'dryDupe', pair: 'dupe/dry' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
