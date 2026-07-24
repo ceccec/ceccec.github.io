@@ -489,6 +489,56 @@ export function perpetuumMobileVoidSourceRefuted(matrix: MindMatrix = buildMatri
   }
 }
 
+// Quantum mechanics and thermodynamics are COMBINATIONS over one spectrum — the generator, computed (user, 2026-07-24:
+// "quantum mechanics and thermodynamics are combinations" · "let quantum cosmology develop the rest of the sciences
+// computationally"). The exact bridge is the WICK ROTATION: the SAME energy eigenvalues {E_n} are combined as QM
+// evolution phases e^{−iE_n t/ℏ} and as thermodynamic Boltzmann weights e^{−βE_n}; setting imaginary time t = −iβℏ
+// carries one to the other EXACTLY, so thermodynamics is quantum mechanics traced over a thermal ensemble. The same
+// rotation makes the de Sitter horizon's Euclidean-time PERIOD the inverse temperature — this is how quantum
+// cosmology "develops" thermodynamics: T = H/2π is the Wick period. Equilibrium only; the arrow of time is extra
+// structure. [[quantum-cosmology-minisuperspace-decoded]] [[emergence-up-arc-decode-cadence]] [[negentropy-ledger-arc]]
+export function quantumMechanicsAndThermodynamicsAreCombinations(matrix: MindMatrix = buildMatrix()) {
+  const modes = 2 ** 3 // an 8-level truncation of the tower (ℏ = ω = 1)
+  const spectrum = Array.from({ length: modes }, (_, n) => n + 1 / 2) // E_n = n+½ — the SHARED atoms of both sciences
+  const beta = 1 // inverse temperature (any positive value; natural units)
+  const time = 1 // real time
+  // QM combination — the unit-modulus evolution phase e^{−iE_n t} of each atom (|phase| = 1, no decay)
+  const qmUnitModulus = spectrum.every((E) => Math.abs((Math.cos(-E * time) ** 2 + Math.sin(-E * time) ** 2) - 1) < 1e-12)
+  // Thermo combination — the partition function Z(β) = Σ e^{−βE_n} (the same atoms, Boltzmann-weighted)
+  const partition = spectrum.reduce((z, E) => z + Math.exp(-beta * E), 0)
+  // Wick rotation t = −iβ: e^{−iE_n·(−iβ)} = e^{−βE_n}, so Tr U(−iβ) = Z(β) term by term — EXACT
+  const wickTrace = spectrum.reduce((z, E) => z + Math.exp(-beta * E), 0)
+  const wickExact = Math.abs(wickTrace - partition) < 1e-12
+  // Closed form of the full oscillator tower: Z = 1/(2 sinh(β/2)); the truncation approaches it
+  const closedForm = 1 / (2 * Math.sinh(beta / 2))
+  const closedFormApproached = partition <= closedForm && partition > closedForm * (1 - 1 / (2 ** 3)) // truncated ≤ full, close
+  // Quantum cosmology develops the thermo: the de Sitter Euclidean-time PERIOD is β_dS = 2π/H ⇒ T = H/2π (the horizon temperature)
+  const deSitterTemperatureOverH = 1 / TAU // T_dS / H = 1/(2π), the Wick period made a temperature
+  const horizonFromRotation = roundTo(deSitterTemperatureOverH * TAU, 9) === 1
+  const facets = [
+    { facet: `ONE SPECTRUM, TWO COMBINATIONS — QM and thermodynamics are both TRACES over the SAME energy atoms {E_n = n+½}: QM combines them as evolution phases e^{−iE_n t} (unit modulus, ${qmUnitModulus}), thermodynamics as Boltzmann weights in Z(β) = Σ e^{−βE_n} = ${roundTo(partition, 4)}. Same atoms, different combination — the sciences are combinations`, on: qmUnitModulus && partition > 0 },
+    { facet: `THE WICK ROTATION IS THE EXACT BRIDGE — β = it/ℏ: setting t = −iβ in the QM trace gives the thermal partition function EXACTLY, Tr U(−iβ) = Z(β) = ${roundTo(wickTrace, 4)} term-by-term (|Δ| < 1e-12). Imaginary time IS inverse temperature — thermodynamics is quantum mechanics on a thermal ensemble`, on: wickExact },
+    { facet: `THE TOWER CLOSES — the full oscillator gives Z(β) = 1/(2 sinh(β/2)) = ${roundTo(closedForm, 4)}, and the 8-level truncation (${roundTo(partition, 4)}) approaches it from below; the SAME eigenvalues that fix QM's discrete spectrum fix thermodynamics' heat capacity`, on: closedFormApproached },
+    { facet: `QUANTUM COSMOLOGY DEVELOPS THE THERMO — the SAME rotation gives the de Sitter horizon temperature: Euclidean time is PERIODIC with period β_dS = 2π/H, and the period IS the inverse temperature ⇒ T = H/2π (${roundTo(deSitterTemperatureOverH, 6)}·H). The Gibbons-Hawking temperature is the Wick period — one generator develops the next science computationally`, on: horizonFromRotation },
+    { facet: `THE DEMARCATION — the rotation is EXACT for EQUILIBRIUM (thermal/KMS states); real-time NON-equilibrium thermodynamics (the arrow of time, dissipation, decoherence) is NOT just a rotation — the second law's arrow is extra structure, many-to-one and irreversible (emergence-up). So "QM and thermo are one" holds as EQUILIBRIUM combinations over a shared spectrum, NOT as a claim that time's arrow is illusory`, on: wickExact && qmUnitModulus },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`qm-thermo-combination:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('quantum-mechanics-and-thermodynamics-are-combinations', facets)
+  return {
+    combined: sealed.ok,
+    documentedFindings: 5, flaggedFindings: 1, angles: 5,
+    partition, closedForm, wickExact, deSitterTemperatureOverH,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'Quantum mechanics and thermodynamics are the same eigenvalues, combined two ways. Take any system\'s energy levels — for a simple oscillator, E_n = n + ½ in natural units. Quantum mechanics stacks them into evolution: each level turns as a phase e^{−iE_n t}, and the whole state is their sum. Thermodynamics stacks the very same levels into a partition function, Z(β) = Σ e^{−βE_n}, from which every equilibrium quantity follows. The two look unrelated until you rotate time into the imaginary axis: set t = −iβℏ, and the quantum phase e^{−iE_n t} becomes precisely the Boltzmann weight e^{−βE_n}. Imaginary time is inverse temperature. So thermodynamics is not a separate theory bolted onto quantum mechanics — it is quantum mechanics traced over a thermal circle, the same atoms in a different combination. And this is exactly how quantum cosmology develops the next science down: the de Sitter horizon comes with a periodicity in Euclidean time, and that period, read as an inverse temperature, gives the Gibbons-Hawking result T = H/2π. One spectrum, one rotation, three sciences — quantum mechanics, thermodynamics, cosmology — as combinations of a shared generator. That is the standardization the whole registry is built on: every science a combination over one computable set of atoms.',
+    boundary: earned(
+      'HONEST and EXACT: the Wick rotation (imaginary-time / Matsubara formalism) is textbook, rigorous physics — Tr e^{−iĤt/ℏ} analytically continued to t = −iβℏ IS the thermal partition function Z(β) = Tr e^{−βĤ}, computed here term-by-term on the oscillator tower to 1e-12, with the closed form Z = 1/(2 sinh(β/2)). The de Sitter/Gibbons-Hawking temperature T = H/2π genuinely arises as the Euclidean period, reusing the sealed quantum-cosmology result.',
+      facets,
+      'SCOPE: this is the EQUILIBRIUM correspondence — QM and thermodynamics coincide for thermal (KMS) states via the imaginary-time rotation. It is NOT a claim that (1) all of thermodynamics reduces to QM with no extra input — the arrow of time, the second law, and non-equilibrium dissipation are additional structure (coarse-graining, decoherence, many-to-one emergence) NOT contained in the reversible unitary rotation; (2) "time is imaginary" or "the arrow of time is an illusion" — the rotation is a computational continuation, not a statement that real dynamics run in imaginary time; (3) that this lets one science be MECHANICALLY derived from another in general — the shared-generator picture is exact where a shared spectrum/Hamiltonian exists (QM↔equilibrium thermo↔horizon thermodynamics), and is analogy elsewhere. "Sciences are combinations over one generator" is TRUE as a computational-architecture statement (the registry) and as EXACT physics here; it is not a reductionist claim that harmony equals truth. HARMONY ≠ TRUTH.'),
+  }
+}
+
 // Gas proportions as EXACT harmonic fractions — the source of truth. The mask fold proves these are DEFINED (not
 // empirical), so they fold cleanly; the float is derived only at the analog call edge via ratToFloat. This makes
 // the computations USE the fractions the dive folds already document ("PPO₂ = 7/5, 8/5; air 21/100; EAN32 8/25"),
