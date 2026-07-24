@@ -1427,6 +1427,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'animationCore', pair: 'anim/core', currentBarrel: 'src/water/double', bestPlace: 'src/water/double', action: 'moved', reason: 'animation IS the core — derived 108s clock exact-periodic · genuine 10D formula-field · movie root re-merges bitwise (hologram) · site is the movie; words capitulate' },
   { fold: 'proseScience', pair: 'prose/science', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'all sciences × open prose as a derived join — SCIENCE_DOMAINS vocabulary vs residual fold tokens, witnessed; UNADDRESSED = the conversion queue' },
   { fold: 'waveVerify', pair: 'wave/verify', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'right-sized per-wave gate — types + the SAME enforcement trinity as the build seal, render subtracted (measured 68s→~21s per wave); docs:build per push' },
+  { fold: 'cssMath', pair: 'css/math', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'CSS as computed math + the quantum API — declarations classified totally, raw magnitudes the measured queue, observables counted (--ich lattice), content-addressed seal inside the respawn merkle' },
 ] as const
 
 /** Old prose instruction names → matrix slot (this wave). */
@@ -1496,6 +1497,9 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'selfAnsweredQuestionsWithHarmonicAnswersFromMinimumStructureAnyEntropyBreaksHarmony', to: 'animationCore', pair: 'core/anim' },
   { from: 'researchAllSciencesAddressingTheOpenProse', to: 'proseScience', pair: 'prose/science' },
   { from: 'improveSpeedAndEfficiency', to: 'waveVerify', pair: 'wave/verify' },
+  { from: 'cssIsTheWholeMathItselfInTheoremsAndFormulasSealedSelfComputedUntampered', to: 'cssMath', pair: 'css/math' },
+  { from: 'cssIsTheQuantumApiItself', to: 'cssMath', pair: 'css/api' },
+  { from: 'oneCoreCssDrivesTheWholeDevelopmentOfNewComputablePerspectives', to: 'cssMath', pair: 'math/css' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.

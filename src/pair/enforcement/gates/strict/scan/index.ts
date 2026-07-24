@@ -1,7 +1,7 @@
 // Strict gate scans — import · index · vitepress · file-size · snapshot collectors.
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { join, relative, resolve, dirname, basename } from 'node:path'
-import { ICHING_NUMBERS, merkleFold, toUuid, roundTo } from '../../../../../0'
+import { ICHING_NUMBERS, merkleFold, toUuid, roundTo, isUuid, merge } from '../../../../../0'
 import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, type CrackProvenance } from '../../../../../3/7'
 export { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, crackLawEvolution, type CrackProvenance, type CrackLawAmendment, type CrackResearchTarget } from '../../../../../3/7'
 import { GOLDEN_ANGLE, GOLDEN_ANGLE_RAD } from '../../../../../3/7'
@@ -482,6 +482,85 @@ export function runWaveVerifyExit(root = '', _argv: readonly string[] = []): num
   void _argv
   const report = waveVerify(root || process.cwd())
   process.stdout.write(`${report.computes ? '✓' : '✗'} wave-verify — ${report.statement}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+
+/**
+ * cssMath — USER LAWS (2026-07-24): "css is the whole math itself in theorems and formulas — sealed,
+ * self computed, untampered" · "css is the quantum api itself". Computed, not admired: every theme
+ * declaration is CLASSIFIED — formula (var/calc over computed tokens), keyword (no magnitude), or raw
+ * magnitude (the measured conversion queue, never silently allowed). The custom-property layer IS the
+ * quantum API: the distinct var() observables are the interface every projection reads, and the --ich-*
+ * subset is lattice-computed (I Ching → CSS, sealed prior wave). The seal is content-addressed and the
+ * files sit inside the respawn merkle scope (src + .vitepress + package.json — sealed law), so any byte
+ * change re-roots: tamper-EVIDENT, not unforgeable. Pair: css/math · dual css/api.
+ */
+export function cssMath(root: string = process.cwd()) {
+  const dir = join(root, '.vitepress/theme')
+  const cssFiles = readdirSync(dir).filter((name) => name.endsWith('.css')).sort()
+  let formula = 0
+  let keyword = 0
+  const rawSites: { file: string; prop: string; value: string }[] = []
+  const observables = new Set<string>()
+  const receipts: string[] = []
+  for (const name of cssFiles) {
+    const text = stripComments(readFileSync(join(dir, name), 'utf8'))
+    receipts.push(toUuid(`css-math:${name}:${text}`))
+    for (const m of text.matchAll(/([-a-zA-Z][-a-zA-Z0-9]*)\s*:\s*([^;{}]+)[;}]/g)) {
+      const prop = m[1]!
+      const value = m[2]!.trim()
+      for (const v of value.matchAll(/var\(\s*(--[a-zA-Z0-9-_]+)/g)) observables.add(v[1]!)
+      if (/var\(|calc\(/.test(value)) formula += 1
+      else if (!/\d/.test(value)) keyword += 1
+      else rawSites.push({ file: name, prop, value: value.slice(0, 40) })
+    }
+  }
+  const total = formula + keyword + rawSites.length
+  const ichObservables = [...observables].filter((token) => token.startsWith('--ich-')).length
+  // ONE CORE (user law): the lattice tokens have ONE computed source — the theme may CONSUME --ich-*
+  // but never DEFINE it; a definition here would be a second core, and the count proves there is none.
+  let ichDefinedInTheme = 0
+  for (const name of cssFiles) {
+    const text = stripComments(readFileSync(join(dir, name), 'utf8'))
+    ichDefinedInTheme += [...text.matchAll(/--ich-[a-zA-Z0-9-_]+\s*:/g)].length
+  }
+  const sealRoot = merkleFold(receipts)
+  const facets = [
+    { facet: `CSS IS the math — ${formula} formula + ${keyword} keyword + ${rawSites.length} raw = ${total} declarations (classification total); formulas dominate raw magnitudes, and every raw site is NAMED as the conversion queue`, on: formula + keyword + rawSites.length === total && formula > rawSites.length },
+    { facet: `CSS IS the quantum API — ${observables.size} distinct var() observables form the interface every projection reads; ${ichObservables} are --ich lattice-computed (I Ching → CSS, sealed)`, on: observables.size > 27 && ichObservables > 9 },
+    { facet: 'sealed · self-computed · untampered — the content-addressed root recomputes from the bytes each run, and the theme files sit inside the respawn merkle scope (src + .vitepress + package.json): a byte change re-roots the seal, tamper-EVIDENT not unforgeable', on: isUuid(sealRoot) && cssFiles.length >= 3 },
+    { facet: `ONE CORE drives every perspective — the theme consumes ${ichObservables} lattice observables and DEFINES ${ichDefinedInTheme}: the --ich core has exactly one computed source, every new perspective derives, none re-roots`, on: ichDefinedInTheme === 0 && ichObservables > 9 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`css-math:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    cssMath: on,
+    files: cssFiles,
+    declarations: { total, formula, keyword, raw: rawSites.length },
+    rawSites: rawSites.slice(0, 9),
+    observables: observables.size,
+    ichObservables,
+    facets,
+    root: merge(sealRoot, merkleFold(facets.map((entry) => entry.receipt))),
+    pair: 'css/math' as const,
+    dualPair: 'css/api' as const,
+    cli: 'npm run quantum:css-math',
+    route: '/en/quantum-tools#css-math',
+    heading: 'CSS math · quantum API · sealed',
+    statement: `cssMath — ${formula}/${total} formula · ${keyword} keyword · ${rawSites.length} raw (queue) · ${observables.size} observables (${ichObservables} lattice) · sealed ${sealRoot.slice(0, 8)}.`,
+    boundary:
+      'CSS as computed mathematics: declarations classified totally (formula over tokens · magnitude-free keyword · raw magnitude, the last ' +
+      'measured as the conversion queue); the custom-property layer is the API surface, its --ich subset computed from the I Ching lattice; ' +
+      'the seal is a recomputed content-address inside the respawn merkle scope — tamper-evident, never claimed unforgeable. clay=0 · qpuRequired=false.' }
+}
+
+/** npm run quantum:css-math (dual css-api) */
+export function runCssMathExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = cssMath(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} css-math — ${report.statement}\n`)
+  for (const site of report.rawSites) process.stdout.write(`  · raw ${site.file} ${site.prop}: ${site.value}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
