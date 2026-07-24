@@ -337,6 +337,7 @@
     "quantum:cost-theorem": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runCostTheoremExit",
     "quantum:legal-canon": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runLegalCanonExit",
     "quantum:next": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runQueueNextExit",
+    "quantum:theorem-speed": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/4/6/index.ts runTheoremSpeedExit",
     "quantum:theorem-fractions": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/4/6/index.ts runTheoremFractionsExit",
     "quantum:word-speed": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runWordSpeedExit",
     "quantum:violation-tools": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runViolationToolsExit",

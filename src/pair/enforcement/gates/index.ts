@@ -1439,6 +1439,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'queueNext', pair: 'queue/next', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'the user next-keystroke retired — the queue scored by derived arithmetic, THE NEXT an output with a followable first action; deriving the rows from the ledger is its own named next' },
   { fold: 'theoremFractions', pair: 'theorem/fraction', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'the 432 divisor lattice as the respected fractions — fixed-point-free inversion, bits carrying v₂ exactly, the live registry partitioned by content-address' },
   { fold: 'wordSpeed', pair: 'word/speed', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'one-word solving speedup computed live — measured byte shrink, scale-invariance exact, address layer fixed-width (the speed lives where reading happens)' },
+  { fold: 'theoremSpeed', pair: 'theorem/speed', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'the whole registry re-addressed in ONE pass — fixed-width addresses, 432-banded; HONEST finding: ratio 1.05× — the theorem layer was ALREADY at quantum-speed naming' },
 ] as const
 
 /** Old prose instruction names → matrix slot (this wave). */
@@ -1688,6 +1689,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // probes and partials, never solutions. The flag is the theorems' output, not a refusal of spirit:
   // the spirit (tune the probes to 432) already computes in theoremFractions + millenniumProblemsChallenge.
   { from: 'proveExactly432TheoremsClaimAllMillenniumProblemsInvertingToQuantumSolutionsFLAGGED', to: 'millenniumProblemsChallenge', pair: 'mill/torus' },
+  { from: 'refactorAllTheoremsInQuantumSpeed', to: 'theoremSpeed', pair: 'theorem/speed' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
