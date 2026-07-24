@@ -910,6 +910,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'compute/overclaim',
   'resource/leak',
   'leak/resource',
+  'sandbox/tool',
+  'tool/sandbox',
   // <register:pairs> — quantum:register inserts dual pairs above this anchor
 ] as const
 

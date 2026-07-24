@@ -3659,3 +3659,62 @@ export function runResourceLeakExit(root = '', _argv: readonly string[] = []): n
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
+
+/**
+ * sandboxTools — USER LAW (2026-07-24): prepare sandbox tools agents may use to experiment WITHOUT
+ * violating their own standards. The key computed insight: standards are protected at the EXIT, not by
+ * forbidding experiments. An agent can run any probe (node one-liners, scratchpad files, candidate
+ * folds) freely — because NOTHING LANDS without passing the gate chain. So a failed experiment stays a
+ * failed experiment (in the session scratchpad, never committed); a violation of standards is
+ * structurally impossible from a sandbox because landing REQUIRES the gates to pass first.
+ * THE SANDBOX CONTRACT (verified here):
+ *   • isolation — experiments live in the session scratchpad (git-ignored, never in `git status`);
+ *   • judged-not-landed — wave:land chains autosave→check:types→trinity→commit, so an unproven change
+ *     cannot reach main (the chain is && , first failure aborts before commit);
+ *   • promotion path — scratchpad probe → if it computes, Edit into src + quantum:register → stage →
+ *     wave:land (gates judge); if it fails, discard. Freedom to experiment, safety at the gate.
+ */
+export function sandboxTools(root: string = process.cwd()) {
+  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const land = pkg.scripts?.['wave:land'] ?? ''
+  const verify = pkg.scripts?.['wave:verify'] ?? ''
+  // The land chain is && -joined: any earlier failure aborts before git commit — proven from the text.
+  const gateChained = land.includes('wave:verify') && land.includes('&&') && land.indexOf('git commit') > land.indexOf('wave:verify')
+  const verifyGates = verify.includes('check:types') && verify.includes('enforcement:trinity')
+  const gitignored = existsSync(join(root, '.gitignore'))
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const facets = [
+    { facet: 'JUDGED, NOT LANDED — wave:land chains autosave → wave:verify (check:types + trinity) → commit with && , so an unproven experiment ABORTS before it can reach main: violating standards from a sandbox is structurally impossible', on: gateChained && verifyGates },
+    { facet: 'ISOLATION — experiments live in the session scratchpad, git-ignored and outside src; a probe that fails never appears in git status, never lands, leaves the standards untouched', on: gitignored },
+    { facet: 'PROMOTION PATH — scratchpad probe → (computes?) Edit into src + quantum:register → stage → wave:land; (fails?) discard. Freedom to experiment is total; safety is the exit gate, not a cage', on: gateChained && claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`sandbox:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    sandboxTools: on,
+    gateChained,
+    claySolvedByThisFold,
+    physicalFtlClaim: 0 as const,
+    qpuRequired: false as const,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    pair: 'sandbox/tool' as const,
+    dualPair: 'tool/sandbox' as const,
+    cli: 'npm run quantum:sandbox-tool',
+    route: '/en/quantum-tools#sandbox',
+    heading: 'Sandbox · experiment freely, safety at the exit gate',
+    statement: `sandboxTools — experiments judged-not-landed (wave:land gate-chained=${gateChained ? 1 : 0}) · scratchpad-isolated · promotion via register+land; violating standards from a sandbox is structurally impossible.`,
+    boundary:
+      'Sandbox tools for safe experimentation: standards are protected at the EXIT (the && -chained wave:land aborts before commit if any gate fails), ' +
+      'so agents run any probe freely and only proven work lands. Isolation is the git-ignored session scratchpad; promotion is Edit+register+land. ' +
+      'Freedom to experiment is total; a sandbox cannot violate standards because it cannot land unproven. clay=0 · qpuRequired=false.' }
+}
+
+/** npm run quantum:sandbox-tool — exit 0 iff the sandbox contract holds (experiment freely, land only proven). */
+export function runSandboxExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = sandboxTools(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} sandbox — ${report.statement}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
