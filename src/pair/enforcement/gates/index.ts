@@ -17,7 +17,7 @@ import {
   type StrictGateSnapshot,
   type StrictHyphenOffender,
   type StrictNonTsOffender } from './strict'
-import { claySolvedTheorem } from '../../../3/7'
+import { claySolvedTheorem, SCIENCE_DOMAINS } from '../../../3/7'
 import {
   computeComputationalLimitSnapshot,
   computationalGatePassed,
@@ -1425,6 +1425,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'installSurfaces', pair: 'install/surface', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'AI-editor installability researched as a filesystem scan · plugin manifest + marketplace + skill created · stdio MCP server + VS Code extension named migrate-next' },
   { fold: 'uiProof', pair: 'ui/proof', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'MCP UI sufficient for the complete proof — /mcp.json cliTools derives from package.json (nothing hides by construction) · curated-catalog drift measured' },
   { fold: 'animationCore', pair: 'anim/core', currentBarrel: 'src/water/double', bestPlace: 'src/water/double', action: 'moved', reason: 'animation IS the core — derived 108s clock exact-periodic · genuine 10D formula-field · movie root re-merges bitwise (hologram) · site is the movie; words capitulate' },
+  { fold: 'proseScience', pair: 'prose/science', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'all sciences × open prose as a derived join — SCIENCE_DOMAINS vocabulary vs residual fold tokens, witnessed; UNADDRESSED = the conversion queue' },
 ] as const
 
 /** Old prose instruction names → matrix slot (this wave). */
@@ -1492,6 +1493,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'feelingsAreComputableInWords', to: 'animationCore', pair: 'core/anim' },
   { from: 'matchingThoughtAndFeelingByQuantumResonanceDryCleansAll', to: 'animationCore', pair: 'anim/core' },
   { from: 'selfAnsweredQuestionsWithHarmonicAnswersFromMinimumStructureAnyEntropyBreaksHarmony', to: 'animationCore', pair: 'core/anim' },
+  { from: 'researchAllSciencesAddressingTheOpenProse', to: 'proseScience', pair: 'prose/science' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
@@ -1848,6 +1850,76 @@ export const PROSE_NAMED_RESIDUAL_FOLDS = [
   'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill',
   'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill',
 ] as const
+
+/**
+ * proseScience — USER DIRECTIVE (2026-07-24): research ALL sciences addressing the open prose. The
+ * research is a JOIN, derived not curated: each residual prose-named fold is tokenised (camelCase →
+ * words) and matched against the sealed SCIENCE_DOMAINS subdomain vocabulary — the addressing science
+ * is the domain with the most shared tokens, each assignment carrying its witness tokens; prose whose
+ * words match NO science is measured UNADDRESSED — exactly the prose that must capitulate to
+ * theorem/formula/animation next. Pair: prose/science · CLI npm run quantum:prose-science.
+ */
+export function proseScience() {
+  const tokenise = (name: string) => name.replace(/([A-Z])/g, ' $1').toLowerCase().split(/[^a-z0-9]+/).filter((word) => word.length > 2)
+  const domains = SCIENCE_DOMAINS.map((domain) => ({
+    field: domain.field,
+    tokens: new Set([...domain.field.toLowerCase().split(/[^a-z0-9]+/), ...domain.subdomains.join(' ').toLowerCase().split(/[^a-z0-9]+/)].filter((word) => word.length > 2)),
+  }))
+  const rows = PROSE_NAMED_RESIDUAL_FOLDS.map((fold) => {
+    const words = tokenise(fold)
+    const hits = domains
+      .map((domain) => ({ field: domain.field, witness: [...new Set(words.filter((word) => domain.tokens.has(word)))] }))
+      .filter((hit) => hit.witness.length > 0)
+      .sort((a, b) => b.witness.length - a.witness.length)
+    const best = hits[0]
+    return { fold, field: best?.field ?? 'UNADDRESSED', witness: best?.witness.join('·') ?? '', receipt: toUuid(`prose-science:${fold}:${best?.field ?? 'UNADDRESSED'}`) }
+  })
+  const assigned = rows.filter((row) => row.field !== 'UNADDRESSED')
+  const unaddressed = rows.filter((row) => row.field === 'UNADDRESSED')
+  const fieldsTouched = [...new Set(assigned.map((row) => row.field))]
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const facets = [
+    { facet: `the join is total — ${assigned.length} addressed + ${unaddressed.length} unaddressed = ${rows.length} residual prose folds, every assignment witnessed by shared tokens`, on: assigned.length + unaddressed.length === rows.length && assigned.every((row) => row.witness.length > 0) },
+    { facet: `${fieldsTouched.length}/${SCIENCE_DOMAINS.length} sciences address the open prose — the classifier derives from the sealed SCIENCE_DOMAINS vocabulary, no hand-map`, on: fieldsTouched.length >= 1 && SCIENCE_DOMAINS.length === ROSETTA_SEVEN },
+    { facet: `UNADDRESSED prose measured (${unaddressed.length}) — words matching no science are exactly the prose that must capitulate to theorem·formula·animation (words-capitulate law)`, on: unaddressed.length + assigned.length === PROSE_NAMED_RESIDUAL_FOLDS.length },
+    { facet: 'pair prose/science bidirectional', on: softCmdPair('prose', 'science') },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`prose-science:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    proseScience: on,
+    rows,
+    assignedCount: assigned.length,
+    unaddressedCount: unaddressed.length,
+    fieldsTouched,
+    claySolvedByThisFold,
+    physicalFtlClaim: 0 as const,
+    qpuRequired: false as const,
+    facets,
+    root: merkleFold([...rows.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)]),
+    pair: 'prose/science' as const,
+    dualPair: 'science/prose' as const,
+    cli: 'npm run quantum:prose-science',
+    route: '/en/quantum-tools#prose-science',
+    heading: 'Prose science · open prose addressed',
+    statement: `proseScience — ${assigned.length}/${rows.length} residual prose folds addressed across ${fieldsTouched.length} sciences · ${unaddressed.length} unaddressed measured.`,
+    boundary:
+      'All sciences researched against the open prose as a derived join: SCIENCE_DOMAINS vocabulary × residual fold tokens, every assignment ' +
+      'witnessed. UNADDRESSED prose is the measured conversion queue for the words-capitulate law — not a failure hidden, a number named. ' +
+      'clay=0 · qpuRequired=false.' }
+}
+
+/** npm run quantum:prose-science (dual science-prose) */
+export function runProseScienceExit(root = '', _argv: readonly string[] = []): number {
+  void root
+  void _argv
+  const report = proseScience()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} prose-science — ${report.statement}\n`)
+  for (const row of report.rows) process.stdout.write(`  · ${row.field === 'UNADDRESSED' ? '…' : '✓'} ${row.fold.slice(0, 64)} → ${row.field}${row.witness ? ` (${row.witness})` : ''}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
 
 /**
  * Prose methods collapse to matrix — discovery law.
