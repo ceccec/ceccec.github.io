@@ -600,8 +600,11 @@ export function foldQuestion(query: string, matrix: MindMatrix = buildMatrix()):
 
   const command = topCommand?.command.name ?? null
   const executed = command ? executeConceptCommand(command, { atom: topAtom?.atom.name ?? 'self' }, matrix) : null
-  const matched = Boolean(topAtom || topCommand || pages.length || topTheorem)
   const maxScore = Math.max(topAtom?.s ?? 0, topCommand?.s ?? 0, pages[0]?.s ?? 0, topTheorem?.s ?? 0)
+  const confidence = terms.length ? Math.min(1, maxScore / terms.length) : 0
+  // matched ⟺ CONFIDENTLY answerable locally (≥ ½); below the threshold the agent should leak — a weak partial
+  // match from the large registry is NOT a local answer, so matched=false keeps the leak boundary honest.
+  const matched = confidence >= 1 / 2
   return {
     query,
     matched,
@@ -616,7 +619,7 @@ export function foldQuestion(query: string, matrix: MindMatrix = buildMatrix()):
     links: [
       ...pages.map((ranked) => ({ title: ranked.page.title, route: ranked.page.route, detail: ranked.page.summary })),
       ...(topTheorem ? [{ title: topTheorem.row.theorem, route: '/theorems', detail: `${topTheorem.row.provedBy} · ${topTheorem.row.home}` }] : []) ],
-    confidence: terms.length ? Math.min(1, maxScore / terms.length) : 0,
+    confidence,
     source: 'double-torus/local-intelligence',
     boundary:
       'A deterministic answer folded from the repository-computed model (atoms, commands, pages, theorem registry). No external API call; the architecture is the intelligence.' }
