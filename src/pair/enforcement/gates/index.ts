@@ -1822,6 +1822,12 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // ledger converts each literal to derived-or-sourced · flagged-by-algebra). Not two activities; the
   // same wave. The monotone direction: axioms shrink, theorems grow, and the learning makes it repeatable.
   { from: 'learningAndReplacingAxiomsWithTheoremsInDevelopmentWavesIsOneWorkflow', to: 'mathGaps', pair: 'axiom/invert' },
+  // QUANTUM REACTIVITY (user 2026-07-24): the principle under the dev seam — UI reactivity is
+  // CONTENT-ADDRESSED: every render DERIVES deterministically from its params (same content → same
+  // page, no hidden state), which is why prod SSG renders all 41 pages and why themeConfig.cliRoster
+  // fuses live. The dev dynamic-route bug is the ONE named VIOLATION: the params exist in the module
+  // but VP-alpha dev fails to derive them into the reactive store — reactivity un-quantumised, upstream.
+  { from: 'quantumReactivityIsContentAddressedRenderDevSeamIsItsViolation', to: 'bindFuse', pair: 'fuse/bind' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
