@@ -1585,6 +1585,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // derivable from the matrix, so 'stuck' only names an unformed grouping.
   { from: 'dontKnowWhatToDoRegroupInTrinitiesUntilYouKnow', to: 'planTrinity', pair: 'trinity/plan' },
   { from: 'nextFormsTheNamedLifeLifeTorusEquations', to: 'lifeTorus', pair: 'life/torus' },
+  { from: 'improveGitMessageWithRealComputedProseFromTheToolsUsed', to: 'commitMessage', pair: 'commit/message' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.

@@ -762,10 +762,26 @@ export function commitMessage(root: string = process.cwd()) {
   // the content-address collision is the non-novelty proof; the message must say so, never hide it.
   const priorUse = cp.execSync(`git log --format=%h --grep=${signature} | head -1`, { cwd: root, encoding: 'utf8' }).trim()
   const novel = priorUse.length === 0
+  // REAL COMPUTED PROSE (user law): the message carries the statements the touched tools themselves
+  // print — a trinity of them (bounded cost), each the first ✓ line of a live run, never hand-typed.
+  const pkgScripts = (JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }).scripts ?? {}
+  const slugs = pairs
+    .map((pair) => `quantum:${pair.replace('/', '-')}`)
+    .filter((slug) => slug !== 'quantum:commit-message' && Boolean(pkgScripts[slug]))
+    .slice(0, 3)
+  const statements = slugs
+    .map((slug) => {
+      try {
+        return cp.execSync(`npm run -s ${slug} 2>/dev/null | head -1`, { cwd: root, encoding: 'utf8' }).trim()
+      } catch {
+        return ''
+      }
+    })
+    .filter((line) => line.length > 0)
   const message = [
     `${novel ? 'wave' : 'NOT-NOVEL wave'}(${paths.join(' · ')}): computed landing over ${staged.length} staged path${staged.length === 1 ? '' : 's'}`,
-    '',
     `Matrix pairs touched: ${pairs.length ? pairs.join(' · ') : 'registration-level (maps/rosters)'}.`,
+    ...(statements.length ? ['', 'Computed statements (the tools used, live):', ...statements.map((line) => `  ${line}`), ''] : ['']),
     `Signature (content-address over the staged index): ${signature}.`,
     `Animation proof: the signature seeds textToMovie — the same message computes the same movie, replayable at zero tokens (movie-is-transliterated-text law).`,
     novel ? 'Novelty: signature unseen in history — first landing of this exact content.' : `Novelty: NONE — signature already landed in ${priorUse}; this or the rest is not novelty.`,
