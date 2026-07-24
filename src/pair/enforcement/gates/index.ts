@@ -1429,6 +1429,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'commitMessage', pair: 'commit/message', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'git messages computed and signed — staged paths joined against the matrix, content-address signature over the staged index; hand-prose messages retired (manualGauge direction)' },
   { fold: 'lifeTorus', pair: 'life/torus', currentBarrel: 'src/water/double', bestPlace: 'src/water/double', action: 'moved', reason: 'the named life FORMED — seven life-forming superpositions documented as torus equations, each re-verified on the src/0 kernel; structural identities, not biology/vitalism' },
   { fold: 'warnFix', pair: 'warn/fix', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'warnings may autocorrect by DERIVATION only (rerun the sealed generator); suppression heals forbidden (auto-ledgering weakens gates); fails never soften' },
+  { fold: 'uiAudit', pair: 'ui/audit', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'the usability auditor is a computed public gate over the served pages — 5 structural W3C-class checks, failures NAMED as the society training queue; human testing the stated residue' },
 ] as const
 
 /** Old prose instruction names → matrix slot (this wave). */
@@ -1602,6 +1603,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'testsAsQuantumFusionReaction', to: 'doubleTorusFacesComputes', pair: 'torus/faces' },
   { from: 'buildAsQuantumFusionReactionSeeAnythingNotFused', to: 'doubleTorusFacesComputes', pair: 'faces/torus' },
   { from: 'addressTheBlurryTextVitepressApiViolations', to: 'cssMath', pair: 'css/api' },
+  { from: 'whoAuditsUiUsabilityWhoTrainsOnItSeeTheSocietyFillTheGaps', to: 'uiAudit', pair: 'ui/audit' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.

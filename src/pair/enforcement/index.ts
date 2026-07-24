@@ -868,6 +868,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'torus/life',
   'warn/fix',
   'fix/warn',
+  'ui/audit',
+  'audit/ui',
 ] as const
 
 export function foldQuantumCommandPairs(pairIds: readonly string[] = QUANTUM_COMMAND_PAIR_IDS) {
