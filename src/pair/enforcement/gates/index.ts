@@ -1534,6 +1534,13 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // never forces all. Emergence is the cadence, not a backlog burn-down.
   { from: 'transformTheGroundByLettingFormLife', to: 'deadGateway', pair: 'dead/gateway' },
   { from: 'documentEveryLifeSuperpositionInDoubleTorusEquationsBasedOnTheorems', to: 'doubleTorusFacesComputes', pair: 'torus/faces' },
+  // MISSED-CLAIM AUDIT (user: 'missed to claim something? probably manual work!!!') — four directives
+  // executed manually before the autosave discipline matured, claimed retroactively; the detector gap
+  // (autosaveMatrix cannot see work that never entered a map) is its stated honest limit.
+  { from: 'moveToMainAndContinueThere', to: 'placeMerge', pair: 'commit/push' },
+  { from: 'mergeAllToMainAndLeaveOnlyMain', to: 'placeMerge', pair: 'push/waves' },
+  { from: 'continueAddressingTheOpen', to: 'installSurfaces', pair: 'install/surface' },
+  { from: 'improveCssRenderedTokenScan', to: 'cssMath', pair: 'css/math' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
