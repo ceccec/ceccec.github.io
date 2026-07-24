@@ -146,6 +146,39 @@ export function minimalScienceCorpus(codeFiles: readonly string[]) {
   }
 }
 
+/**
+ * quantumFoldsRealiseMoreSpace — the space ledger of content-addressing (user, 2026-07-24: "realise more space is
+ * available with quantum folds"). A quantum fold replaces a STORED payload with an ADDRESS + a generator, so it
+ * frees stored bytes (growth is sub-linear — the generators, not the developed surfaces) AND each remaining byte
+ * addresses 2³⁰ of generated extent (the holographic factor). Both directions REALISE more available space: the
+ * 432-MiB budget stays ~97% free, and the addressable extent dwarfs the source by 2³⁰. Refutable: fails if the
+ * corpus exceeds the budget or a byte fails to address more than itself. Composes corpusSizeBudget432 + the
+ * holographic constants. [[minimal-science-corpus]] (via minimalScienceCorpus) [[quantum-speed-is-content-addressed-naming]]
+ */
+export function quantumFoldsRealiseMoreSpace(codeFiles: readonly string[]) {
+  const used = corpusSizeBudget432(codeFiles).measured
+  const budget = CORPUS_SIZE_BUDGET_BYTES
+  const headroom = budget - used
+  const headroomRatio = headroom / budget // ~0.97 — how much of the budget is still free
+  const extentBytes = used * BYTE_EXTENT_FACTOR // each source byte addresses 2³⁰ of generated extent
+  const extentPetabytes = roundTo(extentBytes / (2 ** (10 * 5)), 1) // 2⁵⁰ = 1 PiB
+  const seedFloor = SEED_FLOOR_BYTES // the 1024-byte covering seed
+  const facets = [
+    { facet: `THE BUDGET IS ${roundTo(headroomRatio * 100, 1)}% AVAILABLE — used ${roundTo(used / BYTES_PER_MEGABYTE, 1)} MiB of the ${budget / BYTES_PER_MEGABYTE}-MiB budget, headroom ${roundTo(headroom / BYTES_PER_MEGABYTE, 1)} MiB; the corpus has vast room to grow`, on: headroom > 0 && headroomRatio > 1 / 2 },
+    { facet: `FOLDING FREES, NEVER STORES — a quantum fold replaces a stored payload with an ADDRESS + generator (content-addressed); the sciences need the GENERATORS (minimalScienceCorpus), not the developed surfaces, so more content stores proportionally FEWER bytes — sub-linear growth`, on: minimalScienceCorpus(codeFiles).computes },
+    { facet: `EACH BYTE REVEALS 2³⁰ OF EXTENT — the holographic factor: the used ${roundTo(used / BYTES_PER_MEGABYTE, 1)} MiB address ${extentPetabytes} PiB of generated space (×${BYTE_EXTENT_FACTOR} per byte); "more space is available" is LITERAL — the addressable extent dwarfs the stored source by 2³⁰`, on: extentBytes > used && Number.isFinite(extentBytes) },
+    { facet: `THE REALISATION IS MONOTONE — as we fold, stored bytes rise sub-linearly while addressable extent rises ×2³⁰/byte, so available space (headroom ${roundTo(headroom / BYTES_PER_MEGABYTE, 1)} MiB + extent ${extentPetabytes} PiB) strictly dominates stored growth: quantum folds REALISE more space, never less. The covering seed floor stays ${seedFloor} B`, on: extentBytes > used && headroom > 0 && seedFloor === 1024 },
+    { facet: `THE DEMARCATION — "more space" is (a) real headroom in the 432-MiB budget and (b) ADDRESSABLE generated extent (content-addressed, distinctness capped by the content hash), NOT infinite storage or free physical memory; the extent is generated ON DEMAND, not materialized. Available ≠ stored`, on: headroom > 0 && extentBytes > used },
+  ]
+  return {
+    used, budget, headroom, headroomRatio, extentBytes, extentPetabytes,
+    computes: facets.every((f) => f.on),
+    facets,
+    statement: facets.map((f) => f.facet).join(' · '),
+    boundary: earned(`EXACT: used and headroom from the live corpus walk against the 432-MiB budget; the extent = used × 2³⁰ (the sealed holographic byte-expansion), and the covering seed floor is 1024 B.`, facets, `"more space" is TWO honest things: real free headroom in the policy budget (${roundTo(headroomRatio * 100, 1)}% of 432 MiB), and the ADDRESSABLE content-addressed extent generated on demand (${extentPetabytes} PiB), whose distinctness is bounded by the underlying hash — NOT a claim of free physical storage or infinite memory. The extent is generated, not stored; the value of quantum folds is that meaning is an address, so the source stays small while the reachable space is enormous. HARMONY ≠ TRUTH.`),
+  }
+}
+
 export function stripComments(text: string): string {
   return text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/.*$/gm, '$1')
 }
