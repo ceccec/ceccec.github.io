@@ -1457,6 +1457,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'riemannZeroScan', pair: 'zero/scan', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'sciencePyramid', pair: 'science/pyramid', currentBarrel: 'src/water/cosmos', bestPlace: 'src/water/cosmos', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'reactivityMagnitude', pair: 'reactivity/magnitude', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
+  { fold: 'superpositionCompleteness', pair: 'superposition/complete', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   // <register:placement> — quantum:register inserts placement rows above this anchor
 ] as const
 
@@ -1863,6 +1864,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // recompute cycle collapses to an O(1) cache hit = the theorem). A cycle that ISN'T a theorem (a
   // private rAF, an un-memoised per-frame recompute) is the gap the criterion catches; none remain.
   { from: 'theWayTheMovieComputesHasCyclesReplaceableByTheorems', to: 'reactivityMagnitude', pair: 'magnitude/reactivity' },
+  { from: 'enforce432TheoremsComputeAllSuperpositionsOrProveWrong', to: 'superpositionCompleteness', pair: 'superposition/complete' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
