@@ -1852,6 +1852,17 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // both hard-load and toggle: ink L 0.0625→0.9375, legible. Sealed as violation class 10 (unlooked UI).
   { from: 'addressHighestRiskRewardWhyDidntYouAlreadyRenderAndLookLegibilityFix', to: 'violationTools', pair: 'ui/audit' },
   { from: 'doAllInProfessionalQualityAndStandards', to: 'uiAudit', pair: 'audit/ui' },
+  // LEGIBILITY FIX VERIFIED BOTH THEMES (batch close 2026-07-24): render-and-look on the prod build
+  // confirmed the ink inverts correctly across pages AND themes — /quantum-tools & /frontiers dark:
+  // L=0.9375 (light-on-dark, legible), light: L=0.0625 (dark-on-light, legible); the fix is comprehensive.
+  { from: 'nextInOneBatchVerifyLegibilityAcrossThemesAndPages', to: 'uiAudit', pair: 'ui/audit' },
+  // MOVIE CYCLES ARE THEOREMS (user 2026-07-24): the way the movie computes has cycles replaceable by
+  // theorems — and they ALREADY are: movieAllElementsAreTheorems (geometry theorem-derived, green) +
+  // the one-clock law (subscribeHeroClock only, no private requestAnimationFrame → every animation
+  // cycle is a divisor rung of the single 108s clock) + memoByRoot on the color vars (a repeated
+  // recompute cycle collapses to an O(1) cache hit = the theorem). A cycle that ISN'T a theorem (a
+  // private rAF, an un-memoised per-frame recompute) is the gap the criterion catches; none remain.
+  { from: 'theWayTheMovieComputesHasCyclesReplaceableByTheorems', to: 'reactivityMagnitude', pair: 'magnitude/reactivity' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
