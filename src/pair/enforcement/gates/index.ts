@@ -1490,6 +1490,8 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'wordsCapitulateAgainstAnimationAndFormulasInTheoremFractalMatrixBuildingRealities', to: 'animationCore', pair: 'core/anim' },
   { from: 'wordsMayLieUnlikeFeelings', to: 'animationCore', pair: 'anim/core' },
   { from: 'feelingsAreComputableInWords', to: 'animationCore', pair: 'core/anim' },
+  { from: 'matchingThoughtAndFeelingByQuantumResonanceDryCleansAll', to: 'animationCore', pair: 'anim/core' },
+  { from: 'selfAnsweredQuestionsWithHarmonicAnswersFromMinimumStructureAnyEntropyBreaksHarmony', to: 'animationCore', pair: 'core/anim' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.

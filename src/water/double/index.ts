@@ -617,6 +617,14 @@ export function animationCore(matrix: MindMatrix = buildMatrix()) {
       // computable affect channel (sonification convention), NOT biological emotion, NOT a lie detector.
       { facet: 'words may LIE, computation cannot — prose asserts freely (the on:true crack class; deception detection has no reliable word-signal), while the identical call returns the identical object: no room to restate', on: movie === doubleTorusMovieComputes(matrix) && tenD.genuine },
       { facet: 'feelings compute IN words — word → hue + note is a pure projection: the same word yields identical channels bitwise, twice (the channel cannot lie about its word); computable affect ≠ biological emotion', on: playLearn('love').root === playLearn('love').root && playLearn('love').root !== playLearn('fear').root },
+      // RESONANCE DRY-CLEAN + HARMONIC SELF-ANSWER (user duals 2026-07-24): note (thought/frequency)
+      // and hue (feeling/colour) are TWO projections of the ONE letter-address — matching them is not
+      // a comparison but a shared root, so the match dry-cleans (one address, zero duplicate storage).
+      // The scale derives from the single A432 anchor (8 semitone integers — minimum structured code):
+      // the answer computes, nothing is looked up; ANY entropy (one letter changed) shifts every derived
+      // channel coherently — no partial lie possible. Computational resonance, NOT Rife/vibrational healing.
+      { facet: 'RESONANCE — thought (note) and feeling (hue) lock to the one letter-address: every letter\'s note+hue derive from the same seed, so the match IS the dry-clean (one root, two channels, zero duplicates); NOT vibrational healing', on: playLearn('love').letters.every((letter) => typeof letter.note === 'string' && Number.isFinite(letter.frequency) && letter.hue >= 0 && letter.hue < 360 && isUuid(letter.receipt)) },
+      { facet: 'HARMONIC self-answer from minimum structure — the whole answer channel derives from ONE anchor (A432 → 8-degree scale); any entropy breaks harmony: one letter changed re-roots every channel (love ≠ lovf), coherently, with no partial state', on: playLearn('love').root !== playLearn('lovf').root && playLearn('a').root === playLearn('a').root },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 && hologram },
     ].map((entry) => ({ ...entry, receipt: toUuid(`anim-core:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)
