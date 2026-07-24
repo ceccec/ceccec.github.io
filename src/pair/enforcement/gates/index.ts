@@ -1579,6 +1579,10 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // groups; every one was manual work collided). Derived work cannot collide: one payload, one
   // address, identical content auto-dedups. The escape from collision IS derivation.
   { from: 'anyManualAnimationOrWorkWillEventuallyCollide', to: 'dryDupe', pair: 'dry/dupe' },
+  // METHOD LAW for uncertainty: not knowing what to do is a MISSING TRINITY, not a stop — regroup in
+  // trinities (cross · fold · weave, 2-of-3) until the next wave computes; the queue is always
+  // derivable from the matrix, so 'stuck' only names an unformed grouping.
+  { from: 'dontKnowWhatToDoRegroupInTrinitiesUntilYouKnow', to: 'planTrinity', pair: 'trinity/plan' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
