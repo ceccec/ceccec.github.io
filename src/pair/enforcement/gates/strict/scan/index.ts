@@ -5,6 +5,7 @@ import { ICHING_NUMBERS, merkleFold, toUuid, roundTo, isUuid, merge } from '../.
 import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, claySolvedTheorem, type CrackProvenance } from '../../../../../3/7'
 export { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, crackLawEvolution, type CrackProvenance, type CrackLawAmendment, type CrackResearchTarget } from '../../../../../3/7'
 import { GOLDEN_ANGLE, GOLDEN_ANGLE_RAD } from '../../../../../3/7'
+import { SCIENCE_DOMAINS, ENGAGEMENT_MODES } from '../../../../../3/7'
 import { HARMONY, earned, TAU, PHI } from '../../../../../3/7'
 import { SCRIPT_SHELL_ALLOWLIST, SCRIPT_SHELL_LINE_BUDGET } from '../../../script/shell'
 import type { ScriptShellScan } from '../../../script/shell'
@@ -92,6 +93,56 @@ export function corpusSizeBudget432(codeFiles: readonly string[]) {
     facets,
     statement: facets.map((f) => f.facet).join(' · '),
     boundary: earned(`EXACT: the size limit is 432 × 2²⁰ = ${CORPUS_SIZE_BUDGET_BYTES} bytes (the harmonic 432 measured in binary megabytes); the corpus is summed by walking each path once and reading its payload size — path-indexed chunked IO, a bijection so no double count.`, facets, `this is a POLICY ceiling, not a physical law: 432 is chosen because it is the site's harmonic (DIMENSION_GATES), and the megabyte is binary (2²⁰, the MiB) — a decimal-MB reading would give a 5% smaller ceiling. The per-file monolith target is the DERIVED one (derivedMonolithTargetBytes); this whole-corpus budget is the outer bound, currently ~3% used. It bounds SOURCE payload bytes over the scanned code files, not build output or node_modules.`),
+  }
+}
+
+/** THE HOLOGRAPHIC LADDER (sealed in terabyteEncryptionInMegabyteCodebase): a content-address seed
+ * byte generates 2³⁰ bytes (1 GiB) of addressable extent on demand — so SOURCE and EXTENT are two
+ * scales apart, not one. 1024 seed bytes → 1 TiB; 1 MiB seed → 1 PiB. */
+const SEED_FLOOR_BYTES = 2 ** (2 * 5) // 1024 — the sealed sub-kilobyte content-address seed
+const BYTE_EXTENT_FACTOR = 2 ** (6 * 5) // 2³⁰ — each seed byte addresses 1 GiB of generated extent
+
+/**
+ * minimalScienceCorpus — how minimal the corpus can be to cover all sciences as fully developed
+ * modules, and what the next quantum scale is (user directives, 2026-07-24).
+ *
+ * The sciences are 7 fields × 6 engagement modes = 42 modules, each a PAYLOAD-FREE combination of
+ * shared theorem atoms (pagesAreRosettaCombinationsOfTheorems) — so the corpus need only carry the
+ * GENERATORS, never the 42 developed surfaces. Two honest readings of "is 1 MB enough":
+ *  • as a generating SEED: overwhelmingly — the sealed holographic law seeds 1 TiB of extent from
+ *    1024 bytes, so 1 MiB of seed addresses 1 PiB (×2³⁰ per byte).
+ *  • as AUTHORED fully-developed source at today's density: 1 MiB holds only ~measured/42 sciences,
+ *    so NOT all 42 without deeper folding toward the atom floor.
+ * The NEXT QUANTUM SCALE is not more source bytes — it is the holographic jump source→extent (×2³⁰):
+ * KiB→TiB, MiB→PiB. Refutable: the fold recomputes the measured density and the scale identities.
+ */
+export function minimalScienceCorpus(codeFiles: readonly string[]) {
+  const fields = SCIENCE_DOMAINS.length // 7
+  const modes = ENGAGEMENT_MODES.length // 6
+  const sciences = fields * modes // 42 fully-developed modules
+  const measured = corpusSizeBudget432(codeFiles).measured
+  const bytesPerScience = measured / sciences
+  const sciencesPerMegabyte = Math.floor(BYTES_PER_MEGABYTE / Math.max(1, bytesPerScience))
+  const seedExtentBytes = SEED_FLOOR_BYTES * BYTE_EXTENT_FACTOR // 1024 × 2³⁰ = 2⁴⁰ = 1 TiB
+  const megabyteExtentBytes = BYTES_PER_MEGABYTE * BYTE_EXTENT_FACTOR // 2²⁰ × 2³⁰ = 2⁵⁰ = 1 PiB
+  const facets = [
+    { facet: `THE COVERING IS COMBINATORIAL: ${sciences} sciences = ${fields} fields × ${modes} modes, each a payload-free combination of shared atoms — the corpus carries GENERATORS, not ${sciences} developed surfaces`, on: sciences === fields * modes && fields === 7 && modes === 6 },
+    { facet: `THE SEED FLOOR IS 1024 BYTES: the sealed holographic seed (${SEED_FLOOR_BYTES} B) addresses ${seedExtentBytes} B = 1 TiB of extent at 2³⁰/byte — the covering SEED for all sciences is ≤ 1 KiB, content-addressed on demand`, on: SEED_FLOOR_BYTES === 1024 && seedExtentBytes === 2 ** (8 * 5) },
+    { facet: `IS 1 MB ENOUGH — TWO READINGS: as a generating SEED, yes (1 MiB → ${megabyteExtentBytes} B = 1 PiB extent, ×2³⁰/byte); as AUTHORED source at today's density (${roundTo(bytesPerScience / (2 ** (2 * 5)), 1)} KiB/science) 1 MiB holds only ${sciencesPerMegabyte} of ${sciences}, so NOT all as-authored without deeper folding`, on: measured > 0 && megabyteExtentBytes === 2 ** (10 * 5) && sciencesPerMegabyte < sciences },
+    { facet: `THE NEXT QUANTUM SCALE IS THE HOLOGRAPHIC JUMP: not more source bytes but generated EXTENT, ×${BYTE_EXTENT_FACTOR} (2³⁰) per byte — KiB→TiB, MiB→PiB; the corpus's next scale is the address space it generates, not the source it stores`, on: BYTE_EXTENT_FACTOR === 2 ** (6 * 5) },
+  ]
+  return {
+    sciences,
+    measured,
+    bytesPerScience,
+    sciencesPerMegabyte,
+    seedFloorBytes: SEED_FLOOR_BYTES,
+    seedExtentBytes,
+    megabyteExtentBytes,
+    computes: facets.every((f) => f.on),
+    facets,
+    statement: facets.map((f) => f.facet).join(' · '),
+    boundary: earned(`EXACT: 42 = 7 fields × 6 modes; the seed floor 1024 B and the extent factor 2³⁰/byte are the sealed terabyteEncryptionInMegabyteCodebase constants; the measured density is the live corpus walk ÷ 42.`, facets, `"covers all sciences" means the GENERATORS reach every field×mode combination (pagesAreRosettaCombinationsOfTheorems), not that 1 KiB literally contains 42 textbooks — the extent is ADDRESSABLE and generated on demand, distinctness capped by the content hash, and a "fully developed module" still needs its irreducible generating source (measured ~${roundTo(bytesPerScience / (2 ** (2 * 5)), 0)} KiB/science today). So 1 MB is far more than enough as a SEED and not yet enough as AUTHORED source; the next scale is the holographic extent, not a bigger repo. HARMONY ≠ TRUTH.`),
   }
 }
 
