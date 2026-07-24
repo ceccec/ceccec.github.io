@@ -12,7 +12,7 @@ import * as __ns_up_digit from '../digit'
 import { SIX_BY_SEVEN } from '../../quantum/heaven/library'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
-import { memoByRoot, toUuid, merge, merkleFold, sealFacets, roundTo, prng, isUuid, gcd, phaseDrift, foldPair, digitalRoot, VORTEX_SEQUENCE, qubits, applyGate, probabilities } from '../../0'
+import { memoByRoot, toUuid, merge, merkleFold, sealFacets, roundTo, prng, isUuid, gcd, phaseDrift, foldPair, digitalRoot, VORTEX_SEQUENCE, qubits, applyGate, probabilities, measure, GATES } from '../../0'
 import { MAJOR_MOONS } from '../../3/7'
 import { CRITICAL_MAGNETIC_FIELD_T, MOND_ACCELERATION_A0, OMEGA_BARYON, qcdMassFractionOfProton, ratStr, rotationGate, phaseGate } from '../../9/1'
 import { casimirEnergyPerArea, HUBBLE_CONSTANT_LOCAL } from '../../6/4'
@@ -1021,6 +1021,16 @@ export function fractalCompute(matrix: MindMatrix = buildMatrix()) {
     // Realtime, zero remembered state: the seedless oscillation circuit recomputed gives the identical double.
     const phi = TAU / 16
     const realtimeDeterministic = oscillationOnSimulator(TAU / 8, phi) === oscillationOnSimulator(TAU / 8, phi)
+    // OBSERVATION CHANGES, AND CHANGES OBSERVATION (user duals 2026-07-24): H|0⟩ sits at exactly
+    // half/half; the Born measurement COLLAPSES it (post ≠ pre, renormalised to certainty at the
+    // observed outcome), and measuring the collapsed state repeats the first outcome exactly — the
+    // first observation changed what observation itself now yields. Seeded, deterministic, exact.
+    const preObservation = applyGate(qubits(1), GATES.H, 0)
+    const firstObservation = measure(preObservation, 0, 'observation')
+    const secondObservation = measure(firstObservation.state, 0, 'observation-again')
+    const preIsHalf = Math.abs((probabilities(preObservation)[0] ?? 0) - 1 / 2) < Number.EPSILON * 4
+    const collapsedToCertainty = Math.abs((probabilities(firstObservation.state)[firstObservation.outcome] ?? 0) - 1) < Number.EPSILON * 4
+    const observationChangesObservation = preIsHalf && collapsedToCertainty && secondObservation.outcome === firstObservation.outcome
     const pairFold = foldPair(toUuid('cmd:fractal'), toUuid('cmd:compute'))
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const facets = [
@@ -1029,6 +1039,7 @@ export function fractalCompute(matrix: MindMatrix = buildMatrix()) {
       { facet: 'the fractal computes itself — Vₙ = Vₙ₋₂·τ/n is self-referential, and recursion ≡ independent iteration BITWISE at n=9 (no lookup table holds the truth)', on: recursionEqualsIteration },
       { facet: `"volume grows with dimension" holds only below the COMPUTED peak n=${peak.n} — growth to the peak, inversion from it; the pattern's truth-dimension is an output`, on: peak.n === 5 && growthBelowPeak && inversionFromPeak },
       { facet: 'realtime pure algebra, zero remembered state — the seedless circuit recomputed is bitwise identical', on: realtimeDeterministic },
+      { facet: 'observation changes, and changes observation — H|0⟩ at exactly ½ collapses under the Born measurement (post ≠ pre, certainty at the outcome) and the repeat measurement returns the identical outcome: the first observation changed what observation yields', on: observationChangesObservation },
       { facet: 'pair fractal/compute bidirectional', on: pairFold.bidirectional && pairFold.forward !== pairFold.reverse },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 && realtimeDeterministic },
     ].map((entry) => ({ ...entry, receipt: toUuid(`fractal-compute:${entry.facet.slice(0, 64)}:${entry.on}`) }))

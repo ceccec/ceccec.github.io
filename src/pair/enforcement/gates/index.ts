@@ -1552,6 +1552,8 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // circuit within the same wave (witnessed: every crack-gate catch this arc was traced and fixed by
   // the agent it caught); split custody would orphan the context the fix needs.
   { from: 'offendersInvestigatedAndCracksFixedByTheSameAgents', to: 'violationTools', pair: 'tool/violation' },
+  { from: 'observationChanges', to: 'fractalCompute', pair: 'fractal/compute' },
+  { from: 'observationChangesObservation', to: 'fractalCompute', pair: 'compute/fractal' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
