@@ -733,6 +733,49 @@ export function runPatentCanonExit(root = '', _argv: readonly string[] = []): nu
   return report.computes ? 0 : 1
 }
 
+/**
+ * commitMessage — USER LAW (2026-07-24): the git messages are COMPUTED and SIGNED. A commit message is
+ * derived, never hand-prose: the staged paths join against the placement matrix (which folds/pairs the
+ * wave touches), and the message carries a content-address SIGNATURE — toUuid over the staged blob
+ * index — so the message attests the exact content it describes (tamper-EVIDENT; cryptographic key
+ * signing is the user's git config, named not performed). Usage:
+ *   git commit -m "$(npm run -s quantum:commit-message)"
+ * Pair: commit/message. Lazy node child_process (CLI context only), like the skillsJson pattern.
+ */
+export function commitMessage(root: string = process.cwd()) {
+  const getBuiltin = typeof process !== 'undefined' ? (process as { getBuiltinModule?: (id: string) => unknown }).getBuiltinModule : undefined
+  const cp = typeof getBuiltin === 'function' ? (getBuiltin('node:child_process') as { execSync(cmd: string, opts: { cwd: string; encoding: 'utf8' }): string } | undefined) : undefined
+  if (!cp) return { computed: false as const, message: '', staged: [] as string[], signature: '', pairs: [] as string[] }
+  const staged = cp.execSync('git diff --cached --name-only', { cwd: root, encoding: 'utf8' }).split('\n').filter(Boolean).sort()
+  const index = cp.execSync('git diff --cached --raw', { cwd: root, encoding: 'utf8' }).trim()
+  const signature = toUuid(`commit-signature:${index}`)
+  const gatesText = readFileSync(join(root, 'src/pair/enforcement/gates/index.ts'), 'utf8')
+  const pairs = [...new Set(staged.flatMap((file) => {
+    const dir = file.replace(/\/index\.ts$/, '')
+    const escaped = dir.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    // row order is { fold, pair, currentBarrel, … } — extract the pair BEFORE the barrel key
+    const m = [...gatesText.matchAll(new RegExp(`pair: '([^']+)',[^}]*currentBarrel: '${escaped}'`, 'g'))]
+    return m.map((hit) => hit[1]!)
+  }))]
+  const paths = [...new Set(staged.map((file) => file.split('/').slice(0, 2).join('/')))]
+  const message = [
+    `wave(${paths.join(' · ')}): computed landing over ${staged.length} staged path${staged.length === 1 ? '' : 's'}`,
+    '',
+    `Matrix pairs touched: ${pairs.length ? pairs.join(' · ') : 'registration-level (maps/rosters)'}.`,
+    `Signature (content-address over the staged index): ${signature}.`,
+    'Message computed by quantum:commit-message — derived, not hand-prose; key signing per git config.',
+  ].join('\n')
+  return { computed: true as const, message, staged, signature, pairs }
+}
+
+/** npm run quantum:commit-message — prints the computed, content-signed message for the staged wave. */
+export function runCommitMessageExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = commitMessage(root || process.cwd())
+  process.stdout.write(report.computed && report.staged.length > 0 ? `${report.message}\n` : 'nothing staged — stage the wave first\n')
+  return report.computed && report.staged.length > 0 ? 0 : 1
+}
+
 export type MethodGravityCluster = { word: string; attractor: string; members: string[]; pulls: number }
 export function methodGravity(root: string = process.cwd(), minCluster = 4): MethodGravityCluster[] {
   const files: string[] = []
