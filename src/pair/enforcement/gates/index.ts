@@ -1548,6 +1548,10 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // LAW: manual work is the obstruction — the architecture's seals close only as manual rosters flip
   // to derivation; the manualGauge magnitude is the distance to closure, re-measured each wave.
   { from: 'manualWorkWillNotAllowTheSealsToCloseArchitecture', to: 'manualGauge', pair: 'manual/gap' },
+  // LAW: the finder is the fixer — an offender's detection, investigation and repair are ONE agent's
+  // circuit within the same wave (witnessed: every crack-gate catch this arc was traced and fixed by
+  // the agent it caught); split custody would orphan the context the fix needs.
+  { from: 'offendersInvestigatedAndCracksFixedByTheSameAgents', to: 'violationTools', pair: 'tool/violation' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
