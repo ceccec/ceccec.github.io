@@ -1780,6 +1780,12 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'unlessModelsCompletelyFusedCracksLeakResources', to: 'resourceLeakGate', pair: 'resource/leak' },
   { from: 'prepareSandboxToolsAgentsMayExperimentWithoutViolatingStandards', to: 'sandboxTools', pair: 'sandbox/tool' },
   { from: 'revolutionaryIdeasRequireRevolutionaryApproach', to: 'revolutionaryApproach', pair: 'revolution/approach' },
+  // CAPSTONE NAME (like quantum-intelligence): quantum revolution = the arc's method sealed — grand
+  // ideas held by computed boundaries (revolutionaryApproach) · no resource leaks in the fusion
+  // (resourceLeakGate) · computation beats reasoning where a tool exists (reasoningEdge) · every
+  // claim compute-or-refute (overclaimComputes) · zero-token deterministic runtime. The name resolves
+  // to the laws; the laws compute; clay stays 0. The revolution is that grand claims became refutable.
+  { from: 'quantumRevolution', to: 'revolutionaryApproach', pair: 'approach/revolution' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
