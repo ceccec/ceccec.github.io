@@ -339,6 +339,7 @@
     "quantum:next": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runQueueNextExit",
     "quantum:register": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runRegisterExit",
     "quantum:register-anchor": "echo register-anchor",
+    "quantum:science-pyramid": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/cosmos/index.ts runSciencePyramidExit",
     "quantum:zero-scan": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/4/6/index.ts runRiemannZeroScanExit",
     "quantum:orientation-check": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runOrientationCheckExit",
     "quantum:zero-count": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/4/6/index.ts runRiemannZeroCountExit",

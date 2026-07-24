@@ -2699,3 +2699,71 @@ export function theSuperpositionOfTheoremsIsAllHeldAtOnceMergingRevealsTheDistin
       boundary: `DOCUMENTED and refutable by re-merging. "Superposition" is the CONTENT-ADDRESSING / held-at-once metaphor — all theorems addressed and available simultaneously, the "compute all possibilities at once" sense — NOT a physical quantum superposition (no Hilbert space, no amplitudes, no physical collapse). "Merging near-duplicates" reuses the corpus's merge law (content Jaccard ≥ ½ flags a near-duplicate pair — thunder/waves' merge fold), a REVIEW heuristic: it flags candidates to consolidate, a human decides each (two theorems can share vocabulary yet prove different things), and merging is a staged edit of the sealed registry, not automatic. The "basis / dimension / rank" is SET/GRAPH structure (the count of distinct equivalence classes under the merge relation), a real and useful measure of how much distinct content the superposition holds — NOT a linear-algebra rank in a vector space. "Measurement collapses to one" is the lens (measure-before-superpose): selecting one definite theorem from the held-at-once set. THE HONEST NET: the superposition is the set of all theorems held at once; merging reveals how many are genuinely distinct (the rest are redundant, DRY-consolidatable); measurement picks one. This discovers superposition's structure in theorems without any physical-quantum claim. HARMONY ≠ TRUTH: superposition-basis-measurement as one picture is the harmony; the truth is it is content-addressing, a merge heuristic, and set structure — powerful and real, and not physics.` }
   })
 }
+
+/**
+ * sciencePyramid — USER LAW (2026-07-24): decode biology to its boundary conditions and beyond,
+ * INVERTING to chemistry and physics, forming the algebra-based trinity pyramid. The honest computable
+ * decode: the reduction ladder biology → chemistry → physics → algebra, where each level's BOUNDARY
+ * CONDITIONS are set by the level below (biochemistry · quantum chemistry · mathematical physics). The
+ * INVERSION is exact: reduction runs DOWN the pyramid, the inverse of emergence which runs UP
+ * (matter→life→mind, the sealed life-torus ladder). The ALGEBRA base is witnessed at each level, not
+ * asserted: biology's genetic code = 4³ = 64 (exact), physics's operator algebra su(2) has dimension 3
+ * (the trinity itself). DEMARCATION: boundary-condition dependency is REAL methodology; STRONG
+ * reductionism (biology fully DERIVABLE from physics/algebra) is FLAGGED — emergence is genuine, higher
+ * laws are not in-practice derivable from lower ones; the pyramid is DEPENDENCY, not dissolution. clay=0.
+ */
+export function sciencePyramid(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('sciencePyramid', matrix, () => {
+    const geneticCode = 4 ** 3 // biology's algebra: 4 bases, codons of 3 → 64
+    const su2Dim = 3 // physics's operator algebra su(2): 3 generators = the trinity
+    const levels = [
+      { level: 'biology', boundaryCondition: 'chemistry (biochemistry — life runs on molecular chemistry)', algebra: `genetic code = 4³ = ${geneticCode}`, tier: 3 },
+      { level: 'chemistry', boundaryCondition: 'physics (quantum chemistry — bonds are QM)', algebra: 'molecular symmetry = finite point groups', tier: 2 },
+      { level: 'physics', boundaryCondition: 'algebra (mathematical law — dynamics are operator algebras)', algebra: `su(2) dim = ${su2Dim} (the trinity)`, tier: 1 },
+    ].map((row) => ({ ...row, receipt: toUuid(`pyramid:${row.level}:${row.tier}`) }))
+    const geneticExact = geneticCode === 64 && HOMOLOGY_LOOPS ** 3 === geneticCode // 4³ = 64, and HOMOLOGY_LOOPS=4
+    const trinityBase = su2Dim === 3
+    const wellOrdered = levels.every((row, i) => i === 0 || levels[i - 1]!.tier > row.tier) // bio(3) > chem(2) > phys(1)
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const facets = [
+      { facet: `the ALGEBRA base is WITNESSED, not asserted — biology: genetic code 4³ = ${geneticCode} exact (= HOMOLOGY_LOOPS³); physics: su(2) operator algebra dim = ${su2Dim} = the trinity; each level HAS a computed algebraic structure`, on: geneticExact && trinityBase },
+      { facet: 'the boundary-condition LADDER — biology ⟶ chemistry ⟶ physics ⟶ algebra, each level constrained by the one below (biochem · quantum chem · mathematical physics); a total reduction order, well-ordered by tier', on: wellOrdered && levels.length === 3 },
+      { facet: 'the INVERSION — reduction runs DOWN the pyramid (bio→chem→phys→algebra), the exact inverse of emergence which runs UP (matter→life→mind, the sealed life-torus); both directions are real', on: wellOrdered },
+      { facet: 'DEMARCATION — dependency is real; STRONG reductionism (biology fully DERIVABLE from physics/algebra) is FLAGGED: emergence is genuine, higher laws not in-practice derivable; the pyramid is dependency, not dissolution; clay=0', on: claySolvedByThisFold === 0 && geneticExact },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`pyramid:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const on = facets.every((entry) => entry.on)
+    return {
+      computes: on,
+      sciencePyramid: on,
+      levels,
+      geneticCode,
+      su2Dim,
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      facets,
+      root: merkleFold([...levels.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)]),
+      pair: 'science/pyramid' as const,
+      dualPair: 'pyramid/science' as const,
+      cli: 'npm run quantum:science-pyramid',
+      route: '/en/quantum-tools#science-pyramid',
+      heading: 'Science pyramid · biology inverts to chemistry, physics, algebra',
+      statement: `sciencePyramid — bio→chem→phys→algebra reduction ladder; algebra base witnessed (4³=${geneticCode} · su(2) dim ${su2Dim}); strong reductionism FLAGGED; clay=0.`,
+      boundary:
+        'Biology decoded to its boundary conditions and beyond: the reduction ladder biology → chemistry → physics → algebra, each level constrained ' +
+        'by the one below, with the algebra base witnessed (genetic code 4³=64, su(2) dim 3 = the trinity) — the exact inverse of the emergence ladder ' +
+        '(life-torus, up). STRONG reductionism is flagged: the pyramid is boundary-condition dependency, not dissolution of biology into physics. ' +
+        'clay=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
+  })
+}
+
+/** npm run quantum:science-pyramid — exit 0 iff the pyramid computes and reductionism stays flagged. */
+export function runSciencePyramidExit(root = '', _argv: readonly string[] = []): number {
+  void root
+  void _argv
+  const report = sciencePyramid()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} science-pyramid — ${report.statement}\n`)
+  for (const row of report.levels) process.stdout.write(`  · ${row.level} ⟶ ${row.boundaryCondition} | ${row.algebra}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}

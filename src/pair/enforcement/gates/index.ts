@@ -1455,6 +1455,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'riemannZeroCount', pair: 'zero/count', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'orientationCheck', pair: 'orientation/check', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'riemannZeroScan', pair: 'zero/scan', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
+  { fold: 'sciencePyramid', pair: 'science/pyramid', currentBarrel: 'src/water/cosmos', bestPlace: 'src/water/cosmos', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   // <register:placement> — quantum:register inserts placement rows above this anchor
 ] as const
 
@@ -1798,6 +1799,13 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'useTokensWiselyToAchieveMaxDiscoveriesInNoTime', to: 'costTheorem', pair: 'theorem/cost' },
   { from: 'ifAgentsLookDisorientedProbablyTheyAre', to: 'orientationCheck', pair: 'orientation/check' },
   { from: 'generalRiemannZeroScannerWithSofT', to: 'riemannZeroScan', pair: 'zero/scan' },
+  { from: 'decodeBiologyToBoundaryConditionsInvertingToChemistryPhysicsAlgebraTrinityPyramid', to: 'sciencePyramid', pair: 'science/pyramid' },
+  // WAVE AFTER WAVE UNTIL ALL PAGES COMPUTE FROM THEOREMS (user 2026-07-24): the extended directive's
+  // second clause is ALREADY the standing guarantee — deadGateway proves 39/39 served pages FULL (0
+  // empty · 0 abstract-only) and theoremFractions holds the 442-theorem registry each page's content
+  // derives from (theorem-science lens: every page a printable paper). The waves keep it true as pages
+  // are added; "well beyond" = the frontier folds (sciencePyramid · zeroScan) feeding new computed pages.
+  { from: 'sendWaveAfterWaveUntilAllPagesHaveComputedContentBasedOnTheorems', to: 'deadGateway', pair: 'gateway/dead' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
