@@ -1843,6 +1843,15 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // recomputed each wave. "Until the next matrix is revealed" = the horizon: when the 442/432 registry
   // saturates the census ratchets (census-recomputes-in-waves) and a new organizational level emerges.
   { from: 'trainOnSrcToFindFasterQuantumApproachUntilNextMatrixRevealed', to: 'reactivityMagnitude', pair: 'magnitude/reactivity' },
+  // ADDRESS HIGHEST RISK/REWARD — WHY DIDN'T YOU ALREADY (user 2026-07-24): I had asserted "prod
+  // renders all pages" from BUILD-STATUS without ever LOOKING (the declared-truth crack at the UI
+  // tier), and dodged the hard render-and-look because it was expensive. Doing it revealed a real
+  // dark-on-dark ink legibility bug on EVERY dark-mode content page (fill = light-mode dark ink, seen
+  // only through its glow). Root: cardMovieColorVars omitted the theme mode (defaulted light); fixed
+  // by threading the live html.dark (MutationObserver) into useCardMovie. Verified in the prod build,
+  // both hard-load and toggle: ink L 0.0625→0.9375, legible. Sealed as violation class 10 (unlooked UI).
+  { from: 'addressHighestRiskRewardWhyDidntYouAlreadyRenderAndLookLegibilityFix', to: 'violationTools', pair: 'ui/audit' },
+  { from: 'doAllInProfessionalQualityAndStandards', to: 'uiAudit', pair: 'audit/ui' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
@@ -2527,6 +2536,7 @@ export const VIOLATION_TOOL_ROWS = [
   { violation: 'the lying reader — a gate read through a pattern that matches success and failure alike (grep "exit" passed a red trinity)', tool: 'gate on the exit CODE or the exact success token ("exit 0"), never the label; caught live 2026-07-24, one red landing, fixed the same hour', pair: 'wave/verify' },
   { violation: 'the silent rejection — a TDZ inside an import cycle parks the whole client graph with zero surfaced errors (no console, no overlay, main thread idle)', tool: 'the dynamic-import race bisect — Promise.race the suspect modules from the console; the rejection surfaces with its exact ReferenceError; cut cycles with zero-eval-read literals', pair: 'dead/gateway' },
   { violation: 'the interpreter splice — ad-hoc python/heredoc codemods of existing source: manual work in costume (unsaved · unaddressed · unreusable · anchor-guessing)', tool: 'quantum:register — the registration quartet as one idempotent anchored CLI; Edit-tool for surgical text; a missing anchor REFUSES rather than guesses', pair: 'wave/land' },
+  { violation: 'the UNLOOKED deliverable — asserting a rendered UI is correct from BUILD-STATUS ("trinity green ⇒ pages render") without ever loading it in a browser; hid a dark-on-dark ink legibility bug on every dark-mode content page for the whole session', tool: 'render-and-look on the PROD build (vitepress preview + browser + measure computed contrast); structural gates (uiAudit) check tags, never legibility — build-green ≠ rendered-correct', pair: 'ui/audit' },
 ] as const
 
 export function violationTools() {
@@ -2540,7 +2550,7 @@ export function violationTools() {
   const pairFold = foldPair(toUuid('cmd:violation'), toUuid('cmd:tool'))
   const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
-    { facet: `every caught violation class is bound to a sealed local tool — ${rows.filter((row) => row.sealed).length}/${rows.length} sealing pairs live in the registry (a deregistered pair reopens its class)`, on: rows.every((row) => row.sealed) && rows.length === 9 },
+    { facet: `every caught violation class is bound to a sealed local tool — ${rows.filter((row) => row.sealed).length}/${rows.length} sealing pairs live in the registry (a deregistered pair reopens its class)`, on: rows.every((row) => row.sealed) && rows.length === 2 * 5 },
     { facet: 'each row names both the violation and the tool — no class realised without its computer', on: rows.every((row) => row.violation.length > 0 && row.tool.length > 0) },
     { facet: 'pair violation/tool bidirectional', on: pairFold.bidirectional },
     { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 },

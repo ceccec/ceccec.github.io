@@ -181,8 +181,12 @@ export function cardMoviePath(route: string, seed: string): string {
   return `${route || '/'}#card:${seed}`
 }
 
-export function cardMovieColorVars(route: string, seed: string, cssWidth = 5 * 64, matrix: MindMatrix = buildMatrix()): Record<string, string> {
-  return backgroundMovieColorVars(matrix, cssWidth, cardMoviePath(route, seed), true)
+export function cardMovieColorVars(route: string, seed: string, cssWidth = 5 * 64, matrix: MindMatrix = buildMatrix(), mode: 'light' | 'dark' = 'light'): Record<string, string> {
+  // THREAD THE THEME (2026-07-24 legibility fix): the card/page ink (--vp-hero-ink on .universal-page)
+  // must follow the live theme — omitting mode defaulted to 'light', painting dark ink (L=1−15/16) on
+  // dark pages, legible only through its glow (found by render-and-look on the prod build). mode is LAST
+  // so existing positional callers stay valid; the reactive client path (useCardMovie) passes the theme.
+  return backgroundMovieColorVars(matrix, cssWidth, cardMoviePath(route, seed), true, mode)
 }
 
 export type PolarityMathProof = {

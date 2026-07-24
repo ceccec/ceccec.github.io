@@ -146,7 +146,20 @@ export function useCardMovie(
   const route = useRoute()
   const seed = computed(() => cardMovieSeed(toValue(parts)))
   const fieldRoute = computed(() => toValue(movieRoute) || route.path)
-  const cardStyle = computed(() => cardMovieColorVars(fieldRoute.value, seed.value))
+  // LEGIBILITY FIX (2026-07-24): the page ink (--vp-hero-ink) must follow the theme. useData().isDark
+  // LAGS the html.dark class on the initial auto-resolution, so the first computed baked light-mode
+  // (dark) ink onto dark pages. Read the AUTHORITATIVE html.dark class directly, seeded on mount and
+  // kept live by a MutationObserver — correct on first client paint and reactive to every toggle.
+  const dark = ref(false)
+  onMounted(() => {
+    const el = document.documentElement
+    const sync = () => { dark.value = el.classList.contains('dark') }
+    sync()
+    const obs = new MutationObserver(sync)
+    obs.observe(el, { attributes: true, attributeFilter: ['class'] })
+    onUnmounted(() => obs.disconnect())
+  })
+  const cardStyle = computed(() => cardMovieColorVars(fieldRoute.value, seed.value, undefined, undefined, dark.value ? 'dark' : 'light'))
   return { seed, cardStyle, movieRoute: fieldRoute }
 }
 
