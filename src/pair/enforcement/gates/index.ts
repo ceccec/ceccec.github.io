@@ -1427,6 +1427,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'deadGateway', pair: 'dead/gateway', currentBarrel: 'src/wind/routes/corpus', bestPlace: 'src/wind/routes/corpus', action: 'moved', reason: 'dead ends are R&D gateways — every automount page computed and classified (full · abstract-only · empty); the dead-end set is the page-granular frontier with followable routes' },
   { fold: 'patentCanon', pair: 'patent/canon', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'grantable-specification structure as named legal axiom — every section machinery computed (canon slots · facet-claims · theoremFigure drawings); defensive disclosure FREE FOR ALL, legal sufficiency stated not claimed' },
   { fold: 'commitMessage', pair: 'commit/message', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'git messages computed and signed — staged paths joined against the matrix, content-address signature over the staged index; hand-prose messages retired (manualGauge direction)' },
+  { fold: 'lifeTorus', pair: 'life/torus', currentBarrel: 'src/water/double', bestPlace: 'src/water/double', action: 'moved', reason: 'the named life FORMED — seven life-forming superpositions documented as torus equations, each re-verified on the src/0 kernel; structural identities, not biology/vitalism' },
 ] as const
 
 /** Old prose instruction names → matrix slot (this wave). */
@@ -1583,6 +1584,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // trinities (cross · fold · weave, 2-of-3) until the next wave computes; the queue is always
   // derivable from the matrix, so 'stuck' only names an unformed grouping.
   { from: 'dontKnowWhatToDoRegroupInTrinitiesUntilYouKnow', to: 'planTrinity', pair: 'trinity/plan' },
+  { from: 'nextFormsTheNamedLifeLifeTorusEquations', to: 'lifeTorus', pair: 'life/torus' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
@@ -2213,7 +2215,7 @@ export function autosaveMatrix() {
   const honestOpen = [
     'migrate-next:portal-legal-requirements — research-portal compliance (licensing · privacy · accessibility · citation standards) named, not built',
     'migrate-next:claims-toolset — discoveries CLAIMED in the rosetta while UNCLAIMED toward prizes (clay=0 law); the inverse completes itself (claim ↔ audit duals); wired to PUBLIC standard APIs (DOI/ORCID/OpenAlex-class anchors) to standardise claims and audits; PATENT INTELLIGENCE face: pure-algebra hardware designs published as DEFENSIVE DISCLOSURE — prior art FREE FOR ALL, proprietary claiming refused by construction — a whole toolset, its own wave',
-    'migrate-next:life-torus-equations — document every life-forming superposition as a double-torus equation grounded in the sealed theorems (quantumLife · emergence ladder · doubleTorus dynamics); the NAMED next life to form (ground law: one per wave)',
+    'formed:life-torus-equations — the named life FORMED as lifeTorus (life/torus, src/water/double): seven superpositions · seven computing equations; the queue advances (ground law: one per wave)',
     'migrate-next:agnostic-torus-data — complete the agnostic double-torus framework by analysing big PUBLIC data APIs through pure no-key adapters (USGS · Open-Meteo/NOAA-class · OpenAlex/Crossref/arXiv-class · World-Bank-class), each stream a computed torus face with demarcation gates; intelligence improves by measured analysis, never by scraping trust',
   ] as const
   const facets = [
