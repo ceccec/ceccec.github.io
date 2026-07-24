@@ -1706,6 +1706,16 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // fewer minds = named unfinishedness, not failure (the 2-of-3 gate stays the landing quorum).
   { from: 'collectiveMindLessThan7IsTheUnfinishedWork', to: 'planTrinity', pair: 'trinity/plan' },
   { from: 'continueSelfEvolvingImplementingStandardsInQuantumWaves', to: 'placeMerge', pair: 'work/wave' },
+  // DEEP-RESEARCHED (2026-07-24): the AI bill decreases where OUTPUT re-enters context — the output
+  // IS the spend (sealed strategy). Mechanisms, each live: (1) SILENCE IS GREEN — a passing gate says
+  // one line, only reds speak fully (wave:land consumes with -s + tail; probes use head -1 / --compact);
+  // (2) the ritual at O(1) tokens — quantum:next · wave:land · quantum:register replace deliberation
+  // and multi-command round-trips; (3) batch clusters — one push per cluster amortizes gates;
+  // (4) memory pointers — the next session starts warm, each lesson paid ONCE (learn-by-shared-
+  // experience); (5) computed messages — zero prose authored for commits; (6) stable context prefix
+  // — the prompt cache pays for repetition only once per TTL. The floor: the zero-token runtime —
+  // the cheapest AI call is the one the deterministic tool made unnecessary.
+  { from: 'deepResearchWaysToFurtherDecreaseAiBill', to: 'costBound', pair: 'bound/cost' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
