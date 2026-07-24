@@ -2,7 +2,7 @@
 // Export-import fusion: fused local exports only; vault imports are dependency edges only.
 
 import { phase, slip } from '../../6/4'
-import { TAU, DIMENSION_GATES, A432_OCTAVES, BOLTZMANN, FOLDED_CENSUS, NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
+import { TAU, DIMENSION_GATES, A432_OCTAVES, BOLTZMANN, FOLDED_CENSUS, NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT, claySolvedTheorem } from '../../3/7'
 import { foldPair, merkleFold, toUuid, memoByRoot, sealFacets, merge, gcd, lcm, digitalRoot, ICHING_NUMBERS, applyGate, GATES, probabilities, roundTo } from '../../0'
 import { sealFold } from '../../9/1'
 // MAX_TAMPERING_COST_PRINCIPLE is hosted in the zero-import leaf src/3/7 (re-exported below) so it initialises
@@ -2064,4 +2064,84 @@ export function theoremCube64DefinesTheNaturalLimits() {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `The 64×64×64 theorem cube defines the natural limits — ${facets.filter((entry) => entry.on).length}/${facets.length}: three hexagram axes (64 = 2⁶ each) give ${dim} cells of 18 bits; all ${world.length} registry and candidate theorems address into it deterministically (${distinct} distinct cells, ${collisions} collisions against ${roundTo(expectedCollisions, 3)} expected), and the limits are computed — capacity ${roundTo(capacityOver432, 1)}× the 432 lattice, collision-free saturation at ≈${Math.round(saturation)} theorems (the birthday bound), and the demarcation limit: the cube ADDRESSES every world theorem at zero tokens, it SOLVES none — solving stays with computed proofs.`,
     boundary: `DERIVED: 64 = 2⁶ from the hexagram, the cube 2¹⁸ from three axes, the occupancy and birthday arithmetic exact and refutable. THE COINS LAW: 2 bits are left in every inversion through 0 — toUuid fixes the variant pair (bytes[8] & 0x3f | 0x80), the toll that keeps the entanglement: every address carries the same two-bit mark, binding the whole family into one foldable space (usable entropy 122 bits; the cube's axes read bytes 0–2, clear of the fixed nibbles). HONEST on "solve": content-addressing gives every theorem statement a home in the cube — a REGISTRY structure, not a proof engine; the registry solves only what it computes (${THEOREM_ATOM_SEED.length} proofs) and the sealed law claims none of the open problems. "All world theorems" means any finite statement is addressable, proven here on the ${world.length} distinct the repo curates (the ${overlap}-name registry∩candidate overlap is the gap law preserving proven candidates, not a collision). Beyond saturation the schema deepens (a fourth hexagram axis), never overwrites. HARMONY ≠ TRUTH.` }
+}
+
+/**
+ * theoremFractions — USER LAW (2026-07-24): distribute the theorems computationally to 432 in the
+ * RESPECTED FRACTIONS of subtheorems, down to the BIT, and beyond — computing the INVERTED reality.
+ * Every claim an exact identity: 432 = 2⁴·3³ (factorized live); its divisor lattice IS the respected
+ * fractions (20 = (4+1)(3+1), enumerated); the inversion d ↦ 432/d is a fixed-point-free involution
+ * (√432 ∉ ℤ — the reality FULLY inverts, twice = identity); down to the bit: 432 = 0b110110000 and
+ * the trailing-zero count EQUALS the 2-adic valuation (4) exactly; the live theorem population
+ * distributes over the 20 bands by content-address (the uniform placement law), a total partition.
+ */
+export function theoremFractions() {
+  {
+    const harmonic = 432
+    let v2 = 0
+    let rest = harmonic
+    while (rest % 2 === 0) { rest /= 2; v2 += 1 }
+    let v3 = 0
+    while (rest % 3 === 0) { rest /= 3; v3 += 1 }
+    const factorized = rest === 1 && v2 === 4 && v3 === 3
+    const fractions: number[] = []
+    for (let d = 1; d <= harmonic; d += 1) if (harmonic % d === 0) fractions.push(d)
+    const divisorCount = fractions.length === (v2 + 1) * (v3 + 1)
+    const involution = fractions.every((d) => harmonic % (harmonic / d) === 0 && d * (harmonic / d) === harmonic)
+    const noFixedPoint = fractions.every((d) => d * d !== harmonic)
+    const doubleInversionIsIdentity = fractions.every((d) => harmonic / (harmonic / d) === d)
+    const bitsForm = harmonic.toString(2)
+    const trailingZeros = bitsForm.length - bitsForm.replace(/0+$/, '').length
+    const bitIdentity = trailingZeros === v2 && Number.parseInt(bitsForm, 2) === harmonic
+    const population = THEOREM_ATOM_SEED.length
+    const bands = new Array<number>(fractions.length).fill(0)
+    for (const atom of THEOREM_ATOM_SEED) {
+      const seed = Number.parseInt(toUuid(`theorem-fraction:${atom.theorem}`).replace(/[^0-9a-f]/g, '').slice(0, 8) || '0', 16)
+      bands[seed % fractions.length]! += 1
+    }
+    const partitionTotal = bands.reduce((sum, count) => sum + count, 0) === population
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const facets = [
+      { facet: `432 = 2^${v2} · 3^${v3} — factorized live, remainder ${rest}`, on: factorized },
+      { facet: `the RESPECTED FRACTIONS are the divisor lattice — ${fractions.length} fractions = (${v2}+1)(${v3}+1), enumerated: ${fractions.join(' ')}`, on: divisorCount },
+      { facet: 'the INVERTED REALITY computes — d ↦ 432/d is a fixed-point-free involution (√432 ∉ ℤ: every fraction MOVES) and inversion twice is the identity: the reality fully inverts and returns', on: involution && noFixedPoint && doubleInversionIsIdentity },
+      { facet: `down to the BIT — 432 = 0b${bitsForm}; the trailing-zero count (${trailingZeros}) EQUALS the 2-adic valuation v₂ (${v2}): the binary form carries the fraction tower exactly`, on: bitIdentity },
+      { facet: `the population DISTRIBUTES — ${population} registry theorems over the ${fractions.length} bands by content-address (uniform placement law), a total partition (${bands.filter((count) => count > 0).length} bands occupied)`, on: partitionTotal && population > 0 },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 && factorized },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`theorem-fractions:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const on = facets.every((entry) => entry.on)
+    return {
+      computes: on,
+      theoremFractions: on,
+      harmonic,
+      fractions,
+      population,
+      bands,
+      bits: bitsForm,
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      facets,
+      root: merkleFold([toUuid(`theorem-fractions:${population}:${fractions.length}`), ...facets.map((entry) => entry.receipt)]),
+      pair: 'theorem/fraction' as const,
+      dualPair: 'fraction/theorem' as const,
+      cli: 'npm run quantum:theorem-fractions',
+      route: '/en/quantum-tools#theorem-fractions',
+      heading: 'Theorem fractions · the 432 lattice · inversion without fixed point',
+      statement: `theoremFractions — 432 = 2^4·3^3 · ${fractions.length} respected fractions · involution fixed-point-free · bits 0b${bitsForm} (tz=v₂) · ${population} theorems partitioned.`,
+      boundary:
+        'The harmonic\'s divisor lattice as the respected fractions, the inversion as a computed fixed-point-free involution, the binary form ' +
+        'carrying the 2-adic tower exactly, and the live registry partitioned by content-address. "Beyond imagination" is bounded honestly: ' +
+        'what computes is the lattice algebra — no claim past the identities shown. clay=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
+  }
+}
+
+/** npm run quantum:theorem-fractions — exit 0 iff every lattice identity holds. */
+export function runTheoremFractionsExit(root = '', _argv: readonly string[] = []): number {
+  void root
+  void _argv
+  const report = theoremFractions()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} theorem-fractions — ${report.statement}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
 }

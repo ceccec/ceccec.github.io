@@ -1437,6 +1437,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'costTheorem', pair: 'cost/theorem', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'the cost↔theorem ledger FORMED — six cost-carrying bindings each citing the living theorem their cost purchases (markers verified); uncited costs refuse (exit 1); the zero-token null row bounds the cheapest binding' },
   { fold: 'legalCanon', pair: 'legal/canon', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'portal legal faces computed — privacy by measured absence · accessibility/citation composed · Apache-2.0 + CC BY 4.0 chosen by user delegation (recognition + monetisation); counsel the residue' },
   { fold: 'queueNext', pair: 'queue/next', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'the user next-keystroke retired — the queue scored by derived arithmetic, THE NEXT an output with a followable first action; deriving the rows from the ledger is its own named next' },
+  { fold: 'theoremFractions', pair: 'theorem/fraction', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'the 432 divisor lattice as the respected fractions — fixed-point-free inversion, bits carrying v₂ exactly, the live registry partitioned by content-address' },
 ] as const
 
 /** Old prose instruction names → matrix slot (this wave). */
@@ -1668,6 +1669,10 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'fuseOrRefuse', to: 'violationTools', pair: 'violation/tool' },
   { from: 'nextImprovesIntelligenceBecauseUserInputWasRequiredToProceed', to: 'queueNext', pair: 'queue/next' },
   { from: 'whyNotAllComputedAtOnceAvoidingNextTheToolsMakeTheLastCost', to: 'queueNext', pair: 'next/queue' },
+  // REBUKE sealed: the closing solicitation was needless input-seeking — waves end with the record,
+  // never an invitation; the queue advances by quantum:next, steering arrives unprompted.
+  { from: 'upgradeAllBecauseYouAskedForUserInputNeedlessly', to: 'queueNext', pair: 'queue/next' },
+  { from: 'distributeTheoremsTo432InRespectedFractionsDownToTheBitComputingInvertedReality', to: 'theoremFractions', pair: 'theorem/fraction' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
