@@ -1,6 +1,6 @@
 // ☵ Kǎn · Water — cryptography & tamper-evidence: the content-address as a ledger (claim=credit, capability=debit), SHA-256/Ed25519 hardening, transparency log, red-team challenges. HONEST: tamper-EVIDENT, not unforgeable. Barrel-routed; folds.ts back-imports the gate folds.
 import { SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, SIEGE_WAVES } from '../../pair/enforcement/gates/computational'
-import { rat, ratMul, ratToFloat, JULIAN_YEAR_SECONDS, UNIVERSE_AGE_YEARS, TEACHING_RSA_P, TEACHING_RSA_Q } from '../../3/7'
+import { rat, ratMul, ratToFloat, JULIAN_YEAR_SECONDS, UNIVERSE_AGE_YEARS, TEACHING_RSA_P, TEACHING_RSA_Q, complementIsInverse } from '../../3/7'
 import { conditionalEntropyBits, landauerLimit, TAU } from '../../3/7'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
@@ -1865,10 +1865,7 @@ export function speedTestedInReverseTheOneWayObstacleBecomesAGatewayByTheReverse
 function isTotalBijection<T>(domain: readonly T[], fn: (x: T) => unknown): boolean {
   return new Set(domain.map(fn)).size === domain.length
 }
-/** n ↦ max − n is its own inverse — the fold/complement involution (Nyquist folding about f_s/2). */
-function complementIsInverse(max: number, fn: (n: number) => number, samples: readonly number[]): boolean {
-  return samples.every((n) => fn(n) === max - n && fn(fn(n)) === n)
-}
+// complementIsInverse deduped → the 3/7 vault export (one body, one address; dry/dupe spin 2, 2026-07-24).
 /** a title CARRIES ALGEBRA iff it renders an identity: an equals/floor, a super/subscript, or a digit-sequence. */
 function titleCarriesAlgebra(title: string): boolean {
   return /[=·⁰¹²³⁴⁵⁶⁷⁸⁹⁻⌊⌋]|\b\d+\b|\d[-·]\d/u.test(title)

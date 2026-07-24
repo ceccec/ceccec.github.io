@@ -9,21 +9,9 @@ import { splitCamelSegment, EIGHT_FOLD_SCIENCES, RENDER_UI_SCIENCE_MASK } from '
 import { THEOREM_ATOM_SEED } from '../../../../4/6'
 import { harmonicBands } from '../../../../quantum/lake/icons'
 
-function vaultSplitCamelSegment(segment: string): readonly string[] {
-  const words: string[] = []
-  let current = ''
-  for (let i = 0; i < segment.length; i++) {
-    const ch = segment[i]!
-    if (ch >= 'A' && ch <= 'Z') {
-      if (current) words.push(current.toLowerCase())
-      current = ch.toLowerCase()
-    } else {
-      current += ch
-    }
-  }
-  if (current) words.push(current.toLowerCase())
-  return words.filter((w) => /^[a-z]+$/.test(w))
-}
+// vaultSplitCamelSegment deduped → splitCamelSegment (the 8/2 pi-train leaf owns the body;
+// dry/dupe spin 2, 2026-07-24) — the vault name stays as the local alias documenting intent.
+const vaultSplitCamelSegment = splitCamelSegment
 
 export function splitMethodWords(name: string, prefix = 'concept.'): readonly string[] {
   const stripped = name.startsWith(prefix) ? name.slice(prefix.length) : name

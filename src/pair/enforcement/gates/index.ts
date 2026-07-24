@@ -1643,6 +1643,10 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // (revert as a measured branch). The prose/matrix law completed as operation algebra.
   { from: 'crudMatrixEliminatesProse', to: 'autosaveMatrix', pair: 'matrix/autosave' },
   { from: 'nextFormsTheCostTheoremLedger', to: 'costTheorem', pair: 'cost/theorem' },
+  // Spin 2 + tool upgrade: the dry-dupe matcher became type-aware (return annotations no longer
+  // false-match), complementIsInverse and vaultSplitCamelSegment deduped to their leaf homes;
+  // the sharper instrument immediately revealed deeper twins — discovery leads to discoveries.
+  { from: 'upgradeToolsByDryCleanRefactoringOfMethodsAndNames', to: 'dryDupe', pair: 'dry/dupe' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.

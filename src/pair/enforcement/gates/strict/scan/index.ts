@@ -608,10 +608,34 @@ export function dryDupe(root: string = process.cwd()) {
   for (const file of files) {
     const rel = relative(root, file).replace(/\\/g, '/')
     const text = stripStringsAndComments(readFileSync(file, 'utf8'))
-    for (const m of text.matchAll(/(?:export\s+)?function\s+([A-Za-z0-9_]+)\s*\([^)]*\)[^{]*\{/g)) {
-      const start = m.index! + m[0].length
+    for (const m of text.matchAll(/(?:export\s+)?(?:async\s+)?function\s+([A-Za-z0-9_]+)\s*\(/g)) {
+      // TOOL UPGRADE (dry-clean refactor wave): the old matcher stopped at the FIRST '{', which for a
+      // typed signature is inside the return annotation (Promise<{…}>), so functions sharing a return
+      // type false-matched as duplicates. Walk the parens closed, then skip the annotation at
+      // angle/paren depth 0 to the true body brace; a ';' first means a bodiless declaration — skip.
+      let i = m.index! + m[0].length - 1
+      let parenDepth = 1
+      i += 1
+      while (i < text.length && parenDepth > 0) {
+        const ch = text[i]
+        if (ch === '(') parenDepth += 1
+        else if (ch === ')') parenDepth -= 1
+        i += 1
+      }
+      let annDepth = 0
+      let found = false
+      while (i < text.length) {
+        const ch = text[i]
+        if (ch === '<' || ch === '(') annDepth += 1
+        else if (ch === '>' || ch === ')') annDepth -= 1
+        else if (ch === '{' && annDepth <= 0) { found = true; break }
+        else if (ch === ';' && annDepth <= 0) break
+        i += 1
+      }
+      if (!found) continue
+      const start = i + 1
       let depth = 1
-      let i = start
+      i = start
       while (i < text.length && depth > 0) {
         const ch = text[i]
         if (ch === '{') depth += 1
