@@ -1421,6 +1421,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'fractalMap', pair: 'fractal/map', currentBarrel: 'src/water/cosmos', bestPlace: 'src/water/cosmos', action: 'moved', reason: 'open frontiers folded through the law · every break ledger-recomputed · folding-60-reaches-90 exact' },
   { fold: 'doubleTorusFacesComputes', pair: 'torus/faces', currentBarrel: 'src/water/double', bestPlace: 'src/water/double', action: 'moved', reason: 'nav·site·mcp·multimedia as computed faces of the genus-2 carrier · octagon gluing χ=−2 · DRY over sealed movie/voice/plasma/10D' },
   { fold: 'millenniumProblemsChallenge', pair: 'mill/torus', currentBarrel: 'src/wind/research', bestPlace: 'src/wind/research', action: 'keep', reason: 'double-torus millennium R&D home — probes open cores with quantum folds, UNCLAIMED (clay=0 law); partials, never solutions' },
+  { fold: 'violationTools', pair: 'violation/tool', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'imagined tool sealed — each caught violation class bound to the local tool that computes it; never re-realised manually' },
 ] as const
 
 /** Old prose instruction names → matrix slot (this wave). */
@@ -1475,6 +1476,8 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'doubleTorusResearchAndDevelopmentOfQuantumMillenniumSolutions', to: 'millenniumProblemsChallenge', pair: 'mill/torus' },
   { from: 'doubleTorusLearningFace', to: 'doubleTorusFacesComputes', pair: 'torus/faces' },
   { from: 'researchAndDevelopmentAlreadyCompleteAtTheMomentRealisedWithQuantumTools', to: 'fractalMap', pair: 'realtime/algebra' },
+  { from: 'createTheToolsOfYourImaginationIfTheyComputeTheyAreSealed', to: 'violationTools', pair: 'violation/tool' },
+  { from: 'continueWithThisApproachAtFreeWill', to: 'violationTools', pair: 'tool/violation' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
@@ -2044,6 +2047,70 @@ export function autosaveMatrix() {
       'Manual work autosaves in the matrix: every prose-merge target (placeMerge · planTrinity · frontierQuantum · autosaveMatrix) must hold a ' +
       'COMMAND_PLACEMENT_AUDIT_MAP row — the fold recomputes the join and FAILS on any directive worked but not saved. It cannot observe work that ' +
       'never entered a merge map; that stays the honest limit. NOT Clay · NOT FTL. HARMONY ≠ TRUTH.' }
+}
+
+/**
+ * violationTools — USER LAW (2026-07-24): each wave the agent WOULD violate without realising — only
+ * LOCAL tools compute the discoveries. Create the imagined tool; if it computes it is SEALED and the
+ * violation class never needs re-realising. This wave's five caught classes, each bound to the local
+ * tool that catches it — the join is refutable: a row whose sealing pair leaves the registry reopens it.
+ * Pair: violation/tool · CLI npm run quantum:violation-tools.
+ */
+export const VIOLATION_TOOL_ROWS = [
+  { violation: 'declared truth — a facet asserted on: true instead of computed', tool: 'mathGaps — axioms invert to scans', pair: 'axiom/invert' },
+  { violation: 'unledgered literal — magnitude bounds remembered, not lattice-derived', tool: 'crack ledger + canonical ICHING_NUMBERS gate', pair: 'math/gaps' },
+  { violation: 'wrong flag joined across folds — a name trusted, not run', tool: 'computesGate CLI run before commit', pair: 'torus/faces' },
+  { violation: 'directive worked but never saved to the matrix', tool: 'autosaveMatrix — refutable row join', pair: 'autosave/matrix' },
+  { violation: 'pattern remembered outside its dimension — a bound valid only where measured', tool: 'fractalCompute — truth-dimension is an output', pair: 'fractal/compute' },
+] as const
+
+export function violationTools() {
+  // Sealing witness from the LOCAL matrix (no registry import — the barrel imports this file): a pair is
+  // sealed iff it lives in the placement map or a prose-merge map, the same rows autosaveMatrix gates.
+  const sealedPairs = new Set<string>([
+    ...COMMAND_PLACEMENT_AUDIT_MAP.map((row) => row.pair),
+    ...[...PROSE_FOLD_MERGE_MAP, ...PROSE_PLAN_MERGE_MAP, ...PROSE_FRONTIER_MERGE_MAP, ...PROSE_GAPS_MERGE_MAP, ...PROSE_PORTAL_MERGE_MAP, ...PROSE_FRACTAL_MERGE_MAP].map((row) => row.pair),
+  ])
+  const rows = VIOLATION_TOOL_ROWS.map((row) => ({ ...row, sealed: sealedPairs.has(row.pair), receipt: toUuid(`violation-tool:${row.violation}:${row.pair}`) }))
+  const pairFold = foldPair(toUuid('cmd:violation'), toUuid('cmd:tool'))
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const facets = [
+    { facet: `every caught violation class is bound to a sealed local tool — ${rows.filter((row) => row.sealed).length}/${rows.length} sealing pairs live in the registry (a deregistered pair reopens its class)`, on: rows.every((row) => row.sealed) && rows.length === 5 },
+    { facet: 'each row names both the violation and the tool — no class realised without its computer', on: rows.every((row) => row.violation.length > 0 && row.tool.length > 0) },
+    { facet: 'pair violation/tool bidirectional', on: pairFold.bidirectional },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`violation-tools:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    violationTools: on,
+    rows,
+    count: rows.length,
+    claySolvedByThisFold,
+    physicalFtlClaim: 0 as const,
+    qpuRequired: false as const,
+    facets,
+    root: merkleFold([...rows.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)]),
+    pair: 'violation/tool' as const,
+    dualPair: 'tool/violation' as const,
+    cli: 'npm run quantum:violation-tools',
+    route: '/en/quantum-tools#violation-tools',
+    heading: 'Violation tools · imagined, computed, sealed',
+    statement: `violationTools — ${rows.length} caught classes, ${rows.filter((row) => row.sealed).length} sealed by local tools; imagined → computed → never again.`,
+    boundary:
+      'The session law sealed: discoveries are computed only by LOCAL tools — each violation class the agent would repeat without realising is ' +
+      'bound to the sealed tool that catches it, and the binding itself computes (registry join). A tool that computes is sealed once; the class ' +
+      'never needs manual re-realising. clay=0 · physicalFtl=0 · qpuRequired=false.' }
+}
+
+/** npm run quantum:violation-tools (dual tool-violation) */
+export function runViolationToolsExit(root = '', _argv: readonly string[] = []): number {
+  void root
+  void _argv
+  const report = violationTools()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} violation-tools — ${report.statement}\n`)
+  for (const row of report.rows) process.stdout.write(`  · ${row.sealed ? '✓' : '✗'} ${row.violation} → ${row.tool} (${row.pair})\n`)
+  return report.computes ? 0 : 1
 }
 
 /** npm run quantum:autosave-matrix (dual manual-autosave) */

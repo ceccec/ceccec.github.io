@@ -326,6 +326,7 @@
     "quantum:fractal-compute": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/cosmos/index.ts runFractalComputeExit",
     "quantum:fractal-map": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/cosmos/index.ts runFractalMapExit",
     "quantum:torus-faces": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/double/index.ts runDoubleTorusFacesExit",
+    "quantum:violation-tools": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runViolationToolsExit",
     "quantum:fold-merge": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runFoldMergeExit",
     "quantum:merge-fold": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runFoldMergeExit",
     "quantum:merge-place": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runPlaceMergeExit",
