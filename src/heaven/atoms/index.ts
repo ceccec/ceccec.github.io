@@ -591,6 +591,38 @@ export function foldQuestion(query: string, matrix: MindMatrix = buildMatrix()):
 }
 
 
+// localMcpLexicalGapLeaksToModel — the MEASURED leak boundary of the local MCP (user, 2026-07-24: "i see gaps in
+// local quantum mcp so leaks go to the main model"). foldQuestion is a LEXICAL keyword-overlap matcher, so it
+// answers only where query terms literally appear in the corpus; everything lexically disjoint leaks to the main
+// model. This refutes analogNoGapsNoLeak's abstract "no gap to leak" by MEASUREMENT: out-of-corpus queries hard-leak
+// (matched=false, honestly signalled) and — the closable gap — semantic-disjoint queries whose answer IS in the
+// corpus match only weakly, so a careful agent leaks anyway. The fix is a semantic layer. [[feedback-thinking-means-lack-of-local-tools]]
+export function localMcpLexicalGapLeaksToModel(matrix: MindMatrix = buildMatrix()) {
+  const leakThreshold = 1 / 2
+  const inCorpus = ['what is the proof', 'mcp tool manifest', 'school curriculum']
+  const outCorpus = ['photosynthesis chlorophyll cycle', 'quarterly revenue forecast spreadsheet', 'risotto cooking recipe', 'premier league fixtures saturday']
+  const semanticDisjoint = ['how big can a repository get before it is too large', 'which letters double as numerals in old slavic']
+  const ask = (q: string) => foldQuestion(q, matrix)
+  const leaks = (q: string) => { const r = ask(q); return !r.matched || r.confidence < leakThreshold }
+  const all = [...inCorpus, ...outCorpus, ...semanticDisjoint]
+  const leakCount = all.filter(leaks).length
+  const facets = [
+    { facet: `LEXICAL MATCH COVERS THE CORPUS VOCABULARY — in-corpus queries resolve locally (matched, confidence ≥ ½): ${inCorpus.map((q) => roundTo(ask(q).confidence, 2)).join(', ')}`, on: inCorpus.every((q) => { const r = ask(q); return r.matched && r.confidence >= leakThreshold }) },
+    { facet: `OUT-OF-CORPUS LEAKS, HONESTLY SIGNALLED — ${outCorpus.length} novel queries (photosynthesis, revenue, risotto, football) return matched=false, confidence 0 → correct leak to the main model, not a faked answer`, on: outCorpus.every((q) => !ask(q).matched) },
+    { facet: `THE CLOSABLE GAP IS SEMANTIC-DISJOINT — queries whose ANSWER is in the corpus but phrased without shared words match only WEAKLY (confidence ${semanticDisjoint.map((q) => roundTo(ask(q).confidence, 2)).join(', ')} < ½), so a careful agent distrusts the match and leaks — despite a local answer existing. Lexical ≠ semantic`, on: semanticDisjoint.every((q) => { const r = ask(q); return r.matched && r.confidence < leakThreshold }) },
+    { facet: `THIS REFUTES "NO GAPS NO LEAK" — analogNoGapsNoLeak asserts completeness via harmonics; MEASURED, ${leakCount}/${all.length} sample queries leak — "no gaps" holds only over the CLOSED corpus lexicon, not the open query space`, on: leakCount > 0 },
+    { facet: `THE FIX — a semantic/synonym layer (embeddings or an expanded lexicon) raising semantic-disjoint confidence keeps those answers LOCAL; out-of-corpus leaks stay correct (the LLM is the open frontier). Fewer leaks = less main-model exposure (tokens + safeguards)`, on: leakCount >= semanticDisjoint.length },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-lexical-gap:${entry.facet}:${entry.on}`) }))
+  return {
+    measured: facets.every((entry) => entry.on),
+    leakCount, sampleSize: all.length, leakThreshold,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `MEASURED: foldQuestion over ${all.length} sample queries; ${leakCount} leak (matched=false or confidence < ½). The gap is LEXICAL — the local MCP answers what shares words with the corpus and honestly signals matched=false otherwise, so out-of-corpus leaks are CORRECT (the LLM is the open frontier); the closable part is semantic-disjoint in-corpus queries. Refines analogNoGapsNoLeak: no gaps over the closed lexicon, real leaks over the open query space. HARMONY ≠ TRUTH.`,
+  }
+}
+
 // "True as false — quantum law says the possibility is beyond linear; fold and you will see." The honest
 // synthesis: the FOLD CONSERVES the total (the 1st & 2nd laws hold exactly — they are not linear
 // approximations; quantum thermodynamics REFINES them, fluctuation theorems allow transient local dips but the

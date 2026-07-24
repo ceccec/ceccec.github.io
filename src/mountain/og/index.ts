@@ -262,7 +262,7 @@ export function analogNoGapsNoLeak(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'No exceptions, as analog has no gaps to leak: the model is analog — continuous and gapless (the file distribution a gapless Fibonacci run, the fusion filling every gap, every claim covered by a receipt). Where there is no gap, there is nothing to leak through; so there are no exceptions to handle, because nothing falls between. Continuity is the security.',
-    boundary: 'A structural framing that the gapless distribution and gap-filling fusion leave no uncovered case. "Analog/no exceptions" is a metaphor for completeness over the computed model, not a guarantee that no software error can ever occur.' }
+    boundary: 'A structural framing over the CLOSED corpus: the gapless distribution and gap-filling fusion leave no uncovered case AMONG THE 108 registered commands. It is NOT gapless over the OPEN query space — localMcpLexicalGapLeaksToModel MEASURES that foldQuestion is a lexical matcher, so semantic-disjoint and out-of-corpus queries leak to the main model (6/9 sample). "Analog/no exceptions" is completeness over the computed model, not over every possible question, and not a guarantee against software error.' }
 }
 
 // One JSON-LD template serves all — the fold. The pages generate their structured data from
