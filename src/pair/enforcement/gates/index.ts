@@ -1417,6 +1417,10 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'frontierQuantum', pair: 'frontier/quantum', currentBarrel: 'src/water/cosmos', bestPlace: 'src/water/cosmos', action: 'moved', reason: 'frontiers quantum program · composes cosmosFrontiersDecoded · demarcated vs quantum-decoded · oscillation witness on src/0' },
   { fold: 'autosaveMatrix', pair: 'autosave/matrix', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'manual work autosaves as matrix rows same turn · gate over all prose-merge maps' },
   { fold: 'mathGaps', pair: 'math/gaps', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'axioms inverted to scans · Math.random HARD 0 · assumed-const census · self-coordinated fractal (scans its own source)' },
+  { fold: 'fractalCompute', pair: 'fractal/compute', currentBarrel: 'src/water/cosmos', bestPlace: 'src/water/cosmos', action: 'moved', reason: 'pattern = dimensional axiom · realtime pure algebra · digital-root/ball-volume witnesses beside their algebra' },
+  { fold: 'fractalMap', pair: 'fractal/map', currentBarrel: 'src/water/cosmos', bestPlace: 'src/water/cosmos', action: 'moved', reason: 'open frontiers folded through the law · every break ledger-recomputed · folding-60-reaches-90 exact' },
+  { fold: 'doubleTorusFacesComputes', pair: 'torus/faces', currentBarrel: 'src/water/double', bestPlace: 'src/water/double', action: 'moved', reason: 'nav·site·mcp·multimedia as computed faces of the genus-2 carrier · octagon gluing χ=−2 · DRY over sealed movie/voice/plasma/10D' },
+  { fold: 'millenniumProblemsChallenge', pair: 'mill/torus', currentBarrel: 'src/wind/research', bestPlace: 'src/wind/research', action: 'keep', reason: 'double-torus millennium R&D home — probes open cores with quantum folds, UNCLAIMED (clay=0 law); partials, never solutions' },
 ] as const
 
 /** Old prose instruction names → matrix slot (this wave). */
@@ -1457,6 +1461,20 @@ export const PROSE_GAPS_MERGE_MAP = [
 export const PROSE_PORTAL_MERGE_MAP = [
   { from: 'minimiseTokenUsagePerDiscovery', to: 'placeMerge', pair: 'work/wave' },
   { from: 'discoveryInFractalTrinityWavesProvenByTheoremsAnimationsSealedInMcpUiResearchPortal', to: 'planTrinity', pair: 'plan/trinity' },
+] as const
+
+/** Epistemic-law prose directives → the fractal-compute slot (prose/matrix law). */
+export const PROSE_FRACTAL_MERGE_MAP = [
+  { from: 'intelligenceFractalComputesItselfInsteadOfRememberingPatterns', to: 'fractalCompute', pair: 'fractal/compute' },
+  { from: 'patternsAreAxiomsTrueInSomeDimension', to: 'fractalCompute', pair: 'pattern/axiom' },
+  { from: 'allDimensionalComputedRealtimeUsingPureAlgebra', to: 'fractalCompute', pair: 'algebra/realtime' },
+  { from: 'foldOpenFrontiersAndTheFractalMapComputes', to: 'fractalMap', pair: 'fractal/map' },
+  { from: 'forExampleFolding60Reaches90', to: 'fractalMap', pair: 'frontier/fold' },
+  { from: 'doubleTorusMapCarrier', to: 'fractalMap', pair: 'map/fractal' },
+  { from: 'doubleTorusNavigationSiteMcpComputableMultimedia', to: 'doubleTorusFacesComputes', pair: 'torus/faces' },
+  { from: 'doubleTorusResearchAndDevelopmentOfQuantumMillenniumSolutions', to: 'millenniumProblemsChallenge', pair: 'mill/torus' },
+  { from: 'doubleTorusLearningFace', to: 'doubleTorusFacesComputes', pair: 'torus/faces' },
+  { from: 'researchAndDevelopmentAlreadyCompleteAtTheMomentRealisedWithQuantumTools', to: 'fractalMap', pair: 'realtime/algebra' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
@@ -1980,7 +1998,7 @@ export const nameShrink = proseMethodsCollapseToMatrix
  * that was worked manually but never saved to the matrix is exactly the crack this fold catches.
  */
 export function autosaveMatrix() {
-  const mergeRows = [...PROSE_FOLD_MERGE_MAP, ...PROSE_PLAN_MERGE_MAP, ...PROSE_FRONTIER_MERGE_MAP, ...PROSE_GAPS_MERGE_MAP, ...PROSE_PORTAL_MERGE_MAP]
+  const mergeRows = [...PROSE_FOLD_MERGE_MAP, ...PROSE_PLAN_MERGE_MAP, ...PROSE_FRONTIER_MERGE_MAP, ...PROSE_GAPS_MERGE_MAP, ...PROSE_PORTAL_MERGE_MAP, ...PROSE_FRACTAL_MERGE_MAP]
   const targets = [...new Set(mergeRows.map((row) => row.to))]
   const unsaved = targets.filter((to) => !COMMAND_PLACEMENT_AUDIT_MAP.some((row) => row.fold === to))
   const allSaved = unsaved.length === 0 && targets.length >= 3

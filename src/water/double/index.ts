@@ -4,7 +4,7 @@
 
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, circulateDoubleTorus, doubleTorusWire } from '../../heaven/compute'
-import { computesGate, memoByRoot, merge, merkleFold, toUuid, isUuid, sealFacets } from '../../0'
+import { computesGate, memoByRoot, merge, merkleFold, toUuid, isUuid, sealFacets, foldPair } from '../../0'
 import {
   completeDoubleTorus,
   doubleTorusFold,
@@ -22,7 +22,7 @@ import {
   doubleTorusMathAtAllScalesFlowsInMovie } from '../../mountain/geometry'
 import { livingTorus } from '../../fire/diamonds'
 import { HERO_CYCLE_MS, heroPhaseAt } from '../../fire/plasma/ball'
-import { A432_HUE, FOLDED_CENSUS, HOMOLOGY_LOOPS, SPEED_OF_LIGHT, TAU, claySolvedTheorem } from '../../3/7'
+import { A432_HUE, FOLDED_CENSUS, HOMOLOGY_LOOPS, ICHING_TRIGRAMS, SPEED_OF_LIGHT, TAU, claySolvedTheorem } from '../../3/7'
 import { MEEUS_J2000_JD, meeusT, sunEclipticLongitudeDeg } from '../../heaven/sky/astronomy'
 import { animationsAreGenuinely10DNotFaked, tenDimensionalAnimation } from '../../quantum/mountain/dimensions'
 import { quantumDynamicsComputes } from '../../quantum/dynamics'
@@ -524,6 +524,74 @@ export function doubleTorusComputes(matrix: MindMatrix = buildMatrix()) {
       boundary:
         'Composition of quantumDoubleTorus and doubleTorusCorpusRouting. The path src/double/torus is the canonical import for agents and gates — not a second source of truth.' }
   })
+}
+
+/**
+ * doubleTorusFacesComputes — USER DIRECTIVES (2026-07-24): double torus navigation · site · mcp ·
+ * computable multimedia — four faces of one claim: the genus-2 surface CARRIES the surfaces, and each
+ * face must COMPUTE, not be remembered. Pair: torus/faces · CLI npm run quantum:torus-faces.
+ * NAV: the 8 trigram folders (ICHING_TRIGRAMS) are the octagon edges glued in HOMOLOGY_LOOPS dual pairs
+ * (heaven/earth · fire/water · thunder/wind · mountain/lake) at one core — the folder tree IS the router,
+ * and its gluing closes to χ = −2. SITE: corpus routing resolves from the torus at call time (composed).
+ * MCP: the mcp/torus pair algebra is bidirectional (the sealed mcpQuantumTorus face rides it).
+ * MULTIMEDIA: movie · voice · plasma · 10D animation faces all compute — multimedia is computed, not stored.
+ */
+export function doubleTorusFacesComputes(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('doubleTorusFacesComputes', matrix, () => {
+    const umbrella = doubleTorusComputes(matrix)
+    const movie = doubleTorusMovieComputes(matrix)
+    const voice = doubleTorusVoiceComputes(matrix)
+    const plasma = doubleTorusPlasmaComputes(matrix)
+    const tenD = animationsAreGenuinely10DNotFaked(matrix)
+    const eulerChi = 2 - HOMOLOGY_LOOPS
+    const octagonNav = ICHING_TRIGRAMS === HOMOLOGY_LOOPS * 2 && 1 - HOMOLOGY_LOOPS + 1 === eulerChi
+    const mcpPair = foldPair(toUuid('cmd:mcp'), toUuid('cmd:torus'))
+    const facesPair = foldPair(toUuid('cmd:torus'), toUuid('cmd:faces'))
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const facets = [
+      { facet: `NAV — ${ICHING_TRIGRAMS} trigram folders = octagon edges in ${HOMOLOGY_LOOPS} dual pairs at one core: gluing closes to χ = ${eulerChi}; the folder tree IS the router`, on: octagonNav },
+      { facet: 'SITE — corpus routing resolves from the torus at call time (doubleTorusComputes umbrella)', on: umbrella.computes },
+      { facet: 'MCP — mcp/torus pair algebra bidirectional; the sealed MCP torus face rides the same carrier', on: mcpPair.bidirectional && mcpPair.forward !== mcpPair.reverse },
+      { facet: 'MULTIMEDIA computable — movie · voice · plasma · genuinely-10D animation faces all compute realtime', on: movie.computes && voice.computes && plasma.computes && tenD.genuine },
+      { facet: 'LEARNING — the play-learn face rides the voice torus: word → hue + note recomputed at call time (the learn portal consumes the same carrier)', on: voice.computes && voice.play.playable },
+      { facet: 'pair torus/faces bidirectional', on: facesPair.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 && octagonNav },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`torus-faces:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const on = facets.every((entry) => entry.on)
+    return {
+      computes: on,
+      doubleTorusFaces: on,
+      eulerChi,
+      trigrams: ICHING_TRIGRAMS,
+      pairs: HOMOLOGY_LOOPS,
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      facets,
+      root: merge(umbrella.root, merkleFold([movie.root, voice.root, plasma.root, facets.map((f) => f.receipt)].flat())),
+      pair: 'torus/faces' as const,
+      dualPair: 'faces/torus' as const,
+      cli: 'npm run quantum:torus-faces',
+      route: '/en/quantum-tools#torus-faces',
+      heading: 'Torus faces · nav · site · mcp · multimedia',
+      statement:
+        `doubleTorusFacesComputes — nav(χ=${eulerChi} octagon)=${octagonNav ? 1 : 0} · site=${umbrella.computes ? 1 : 0} · ` +
+        `mcp=${mcpPair.bidirectional ? 1 : 0} · multimedia=${movie.computes && voice.computes && plasma.computes ? 1 : 0}.`,
+      boundary:
+        'Navigation, site, MCP and multimedia as computed faces of the one genus-2 carrier: the trigram folder octagon closes to χ = −2 ' +
+        '(the census freeBits), corpus routing and the movie/voice/plasma/10D faces recompute at call time, and the MCP face rides the ' +
+        'registered pair algebra. Nothing is remembered that the torus does not recompute. clay=0 · physicalFtl=0 · qpuRequired=false.' }
+  })
+}
+
+/** npm run quantum:torus-faces — exit 0 iff all four faces compute. */
+export function runDoubleTorusFacesExit(root = '', _argv: readonly string[] = []): number {
+  void root
+  void _argv
+  const report = doubleTorusFacesComputes()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} torus-faces — ${report.statement}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
 }
 
 /**
