@@ -10,13 +10,20 @@ import { join, relative } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { toUuid, merkleFold, foldPair, type Uuid } from '../../../0'
 import { computedDistRoute } from '../../../quantum/lake/dist'
-import { CLI_ENTRY_REL } from '../../enforcement'
+// DEV-MOUNT ROOT FIX (2026-07-24): importing CLI_ENTRY_REL from the enforcement barrel put this
+// module inside the enforcement↔cache evaluation cycle — in dev's per-module ESM the computed key
+// below read the const in its TEMPORAL DEAD ZONE, rejecting the whole client graph silently (the
+// page never mounted, zero errors surfaced; bisected via console dynamic-import race). The cut:
+// ZERO eval-time read — the allowlist key is the literal path (gravity covers path strings) and the
+// re-export below stays a LIVE BINDING (no read at eval). The leaf import would trade TDZ for
+// node-externals in the browser; the literal is the honest cycle cut.
+const CLI_ENTRY = 'src/pair/enforcement/script/cli/bootstrap/index.ts' // = CLI_ENTRY_REL by value
 // call-time namespace edge (cycle-safe): the skill registry reads back at call time
 import * as __ns_cache_learning from '../../../wind/learning'
 
 export { computedDistFiles, computedDistRoute, type DistFile } from '../../../quantum/lake/dist'
 export type { Uuid }
-export { CLI_ENTRY_REL }
+export { CLI_ENTRY_REL } from '../../enforcement'
 
 /** Find a dist artifact by pathname (leading slash optional). */
 export function artifactForPath(pathname: string, siteUrl: string) {
@@ -117,7 +124,7 @@ const nodeRequire = (): NodeRequireLike => (lazyRequire ??= nodeModuleBuiltin().
 const memory = new Map<string, Record<string, unknown>>()
 
 export const SCRIPT_SHELL_LINE_BUDGET = (8 * 3)
-export const SCRIPT_SHELL_ALLOWLIST: Readonly<Record<string, number>> = { [CLI_ENTRY_REL]: (9 * 8) }
+export const SCRIPT_SHELL_ALLOWLIST: Readonly<Record<string, number>> = { [CLI_ENTRY]: (9 * 8) } // key = CLI_ENTRY_REL by value; the local literal cuts the TDZ cycle (dev-mount root)
 
 export type ScriptShellScan = {
   readonly path: string
@@ -230,10 +237,10 @@ export async function importQuantumBundle(entryRel: string, root: string): Promi
 const ROUTES_RE = /runCliExit|loadCli|cli\/index|script\/shell|importQuantumBundle|runThinMount/
 
 export function scanScriptShells(root: string, opts?: { wiredOnly?: boolean }): ScriptShellScan[] {
-  const entryPath = join(root, CLI_ENTRY_REL)
+  const entryPath = join(root, CLI_ENTRY)
   if (!existsSync(entryPath)) return []
   const text = readFileSync(entryPath, 'utf8')
-  return [{ path: CLI_ENTRY_REL, lines: text.split('\n').length, routesThroughSrc: ROUTES_RE.test(text), inlineEsbuild: false }]
+  return [{ path: CLI_ENTRY, lines: text.split('\n').length, routesThroughSrc: ROUTES_RE.test(text), inlineEsbuild: false }]
 }
 
 export function scriptShellGateReceipt(scripts: readonly ScriptShellScan[]) {

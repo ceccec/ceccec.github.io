@@ -1661,6 +1661,10 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // form; NOTICE-carried attribution = recognition; permissive adoption keeps monetisation with the
   // sealed voluntary-patronage model. Content: CC BY 4.0 (attribution = recognition for the papers).
   { from: 'choseALicenseForBestRecognitionAndMonetisation', to: 'legalCanon', pair: 'legal/canon' },
+  // THE BINARY LAW: fuse or refuse — a wave either fuses (every gate green, lands) or is refused
+  // (any red, nothing lands); a red landing is neither, and violation class 7 (the lying reader)
+  // exists precisely to make the third state impossible.
+  { from: 'fuseOrRefuse', to: 'violationTools', pair: 'violation/tool' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
@@ -2285,7 +2289,7 @@ export function autosaveMatrix() {
   // Genuinely NEW gaps NAMED, not built wet — everything else in the directives computes as sealed slots.
   const honestOpen = [
     'formed:portal-legal-requirements — FORMED as legalCanon (legal/canon, gates/strict/scan): privacy by measured absence (0 tracked pages) · accessibility composed (uiAudit) · citation composed (patentCanon) · LICENSE the named user act (patent-granting class recommended); counsel the stated residue',
-    'migrate-next:dev-mount-await — the dev client stalls DETERMINISTICALLY at 250 modules (last: node-stub:computational, stub valid, main thread idle, zero errors): the module graph waits on an UNSETTLED TOP-LEVEL AWAIT — the bisect (which client-reachable module top-level-awaits a promise that never resolves in dev) is the named next probe; production build unaffected (trinity green)',
+    'formed:dev-mount-root — SOLVED (2026-07-24): the dev client\'s silent no-mount was a TDZ in the enforcement↔cache import cycle (SCRIPT_SHELL_ALLOWLIST\'s computed key read CLI_ENTRY_REL before initialization — the graph rejected with zero surfaced errors; the earlier top-level-await hypothesis was WRONG and is corrected here); bisected by a console dynamic-import race, cut by a zero-eval-read local literal; the theme now mounts in dev (Layout · hero canvas · lattice tokens live)',
     'formed:claims-toolset — FORMED as claimAudit (claim/audit, gates): content-addressed claims with the audit as exact inverse (tamper refutes), DOI/ORCID-checksum/OpenAlex validators, CLAIMED-in-rosetta ∧ UNCLAIMED-toward-prizes structural on every row; patent face = defensive disclosure (patentCanon); residual open: RFC 3161 qualified timestamping',
     'formed:life-torus-equations — the named life FORMED as lifeTorus (life/torus, src/water/double): seven superpositions · seven computing equations; the queue advances (ground law: one per wave)',
     'formed:agnostic-torus-data — FORMED as torusData (torus/data, src/fire/features): four no-key API families through one pure adapter shape, dimensionless ratios gate, units labelled never theorems, gates network-free; a fifth source is a function, not a framework change',
@@ -2342,6 +2346,7 @@ export const VIOLATION_TOOL_ROWS = [
   { violation: 'pattern remembered outside its dimension — a bound valid only where measured', tool: 'fractalCompute — truth-dimension is an output', pair: 'fractal/compute' },
   { violation: 'quantum perjury — a fold attesting computes:true while its own facets refute it', tool: 'computesGate/sealFacets — the attestation IS the facet conjunction, structurally unforgeable within the fold', pair: 'violation/tool' },
   { violation: 'the lying reader — a gate read through a pattern that matches success and failure alike (grep "exit" passed a red trinity)', tool: 'gate on the exit CODE or the exact success token ("exit 0"), never the label; caught live 2026-07-24, one red landing, fixed the same hour', pair: 'wave/verify' },
+  { violation: 'the silent rejection — a TDZ inside an import cycle parks the whole client graph with zero surfaced errors (no console, no overlay, main thread idle)', tool: 'the dynamic-import race bisect — Promise.race the suspect modules from the console; the rejection surfaces with its exact ReferenceError; cut cycles with zero-eval-read literals', pair: 'dead/gateway' },
 ] as const
 
 export function violationTools() {
@@ -2355,7 +2360,7 @@ export function violationTools() {
   const pairFold = foldPair(toUuid('cmd:violation'), toUuid('cmd:tool'))
   const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
-    { facet: `every caught violation class is bound to a sealed local tool — ${rows.filter((row) => row.sealed).length}/${rows.length} sealing pairs live in the registry (a deregistered pair reopens its class)`, on: rows.every((row) => row.sealed) && rows.length === 7 },
+    { facet: `every caught violation class is bound to a sealed local tool — ${rows.filter((row) => row.sealed).length}/${rows.length} sealing pairs live in the registry (a deregistered pair reopens its class)`, on: rows.every((row) => row.sealed) && rows.length === 8 },
     { facet: 'each row names both the violation and the tool — no class realised without its computer', on: rows.every((row) => row.violation.length > 0 && row.tool.length > 0) },
     { facet: 'pair violation/tool bidirectional', on: pairFold.bidirectional },
     { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 },
