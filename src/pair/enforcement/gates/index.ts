@@ -1424,6 +1424,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'manualGauge', pair: 'manual/gap', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'manual rows counted per roster vs the derived CLI roster — the gap is the dimensionless order log10(derived/manual); each manual roster a migrate target' },
   { fold: 'comboCover', pair: 'combo/cover', currentBarrel: 'src/pair/enforcement', bestPlace: 'src/pair/enforcement', action: 'moved', reason: 'covering-array theorem verified exhaustively — 6 rows cover all pairwise states of 10 factors vs 2¹⁰ exhaustive; the ground of the dual-pair registry' },
   { fold: 'dryDupe', pair: 'dry/dupe', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'dry-clean improved by measurement — function bodies content-addressed, duplicate groups = the computed clean queue; anim subset feeds the queued animation dry-clean' },
+  { fold: 'deadGateway', pair: 'dead/gateway', currentBarrel: 'src/wind/routes/corpus', bestPlace: 'src/wind/routes/corpus', action: 'moved', reason: 'dead ends are R&D gateways — every automount page computed and classified (full · abstract-only · empty); the dead-end set is the page-granular frontier with followable routes' },
 ] as const
 
 /** Old prose instruction names → matrix slot (this wave). */
@@ -1522,6 +1523,10 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // METHOD LAW: every page must present immediately followable solutions (a CLI to run, a route to
   // open, a ✓/✗ facet to refute) — a page without them is itself the finding: reconsider the page.
   { from: 'seeSolutionsFromEveryPageFollowThemOrReconsiderThePage', to: 'uiProof', pair: 'proof/ui' },
+  { from: 'deadEndsLikeNoContentOrOnlyAbstractAreRealResearchAndDevelopGateways', to: 'deadGateway', pair: 'dead/gateway' },
+  { from: 'flaggedIsFlaggedIfComputedSoByAlgebra', to: 'autosaveMatrix', pair: 'matrix/autosave' },
+  { from: 'quantumMathRebuildsMathFromScratch', to: 'fractalCompute', pair: 'fractal/compute' },
+  { from: 'conspiracyTheoryQuantumFusionBurningAllFakesIntoProvenMath', to: 'proseScience', pair: 'science/prose' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
@@ -2157,6 +2162,7 @@ export function autosaveMatrix() {
     { facet: `INVERT — the autosave projection is invertible: to→{from} recovers every directive (round-trip identity over ${mergeRows.length} rows), doubleMapped=${doubleMapped.length}`, on: invertible },
     { facet: `REVERT — all ${distinctPairs.length} merge pairs fold bidirectionally in both orders: an undone row is a measured branch, never a silent loss`, on: reverted },
     { facet: 'superposition COMPLETE — save · invert · revert all compute; the measurement algebra is saved WITH its inverse', on: invertible && reverted && unsaved.length === 0 },
+    { facet: `flagged is FLAGGED by algebra — ${mergeRows.filter((row) => row.from.endsWith('FLAGGED')).length} flagged rows, each held by the computed refutation claySolvedByThisFold=${claySolvedByThisFold} (the flag is a theorem's output, never a label)`, on: mergeRows.filter((row) => row.from.endsWith('FLAGGED')).length >= 1 && claySolvedByThisFold === 0 },
     { facet: `new gaps NAMED, not built — ${honestOpen.length} honest-open (portal legal requirements · claims toolset); existing laws reused for the rest (DRY)`, on: honestOpen.length === 2 },
     { facet: `autosaved — ${targets.length - unsaved.length}/${targets.length} prose-merge targets hold a matrix row · unsaved=[${unsaved.join(',')}]`, on: allSaved },
     { facet: 'merge rows well-formed — every slot compresses its longest prose name · pair is a dual · slot is a fold name', on: rowsWellFormed },

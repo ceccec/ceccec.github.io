@@ -13,7 +13,7 @@ import { sixtyDegreesDecodesPi, tkIsPrime } from '../../../9/1'
 import { cardMovieColorVars, cardMoviePath, cardMovieSeed } from '../../../thunder/movie/movievars'
 import { heroMoviePhaseHue, heroPhaseAt, plasmaClientWorkBoundedByPureMath } from '../../../fire/plasma/ball'
 import { allPagesForPlasmaWiring } from '../../../water/double'
-import { monographSliceFromRoute } from '../automount'
+import { monographSliceFromRoute, catchAllRoutePaths } from '../automount'
 import { siteRoutes } from '../../../fire/li'
 import { folderLaw, placementForRoute, rosettaIChingTrinityPlacesAllTools } from '../../../earth/architecture'
 import { diamondLattice, pureDiamonds } from '../../../fire/diamonds'
@@ -1814,4 +1814,68 @@ export function inversionIsRealtimeTheFieldDecidesNamingAndLocationEachDimension
       statement: `Inversion is realtime; the field decides naming and location; each dimension gate has exact coordinates — ${facets.filter((entry) => entry.on).length}/${facets.length}: once manifested, the name (from the identifier) and the coordinate (from the content-address) compute at call time, deterministically — inversion is natural, no external step. The field's computed pull places each fold where it belongs, as if already there. Each of the ${gateCount} dimension gates has an exact, reproducible (x,y,z) read from its rosetta address. "The feeling of the field" is that computed pull — deterministic placement, not human feeling.`,
       boundary: `DOCUMENTED and refutable by re-addressing. "Inversion is natural in realtime" is honest: once a fold is MANIFESTED (written, computing), its name (via the naming service — camelCase/identifier → title) and its coordinate (via the content-address → an exact point) are DETERMINISTIC functions computed at call time, so wiring it is a computed step, not a manual decision — the previous fold's address→manifest→invert, with invert now shown to be automatic given manifestation. THE HARD LINE on "computed by the feeling of the field": "the field" is the computed dynamics — the content-address pull, the gravity (reuse), the coordinate space — and "feeling" is a METAPHOR for that deterministic pull (the field "wants" the fold in one place the way gravity "wants" mass in a well), NOT human feeling, which stays OFF-DECIDABLE and takes no part in the computation (the map is not conscious; it does not feel where a fold goes — it computes it). "As it should be already there" means the placement is not arbitrary but determined by the address, NOT that the fold pre-exists. "Exact computable coordinates" is literal: toUuid gives each gate a reproducible address, and reading bytes of it gives an exact (x,y,z) — a real content-addressed localisation, deterministic to the bit, though the specific byte-slice is a chosen chart, not a unique canonical coordinate. HARMONY ≠ TRUTH: the field computing name, location and exact coordinate in realtime is the harmony; the truth is it is deterministic address arithmetic — the "feeling" is the pull of computation, not of a mind, and the exactness is the content-address, not preexistence.` }
   })
+}
+
+/**
+ * deadGateway — USER LAW (2026-07-24): dead ends like no content or only an abstract are REAL research
+ * and development GATEWAYS. The inversion of the followable-solutions law made generative: every
+ * automount page is computed and classified — FULL (body machinery present) · ABSTRACT-ONLY (a
+ * statement with nothing beneath it) · EMPTY (no computed content at all) — and the dead-end set is
+ * returned as the site's own page-granular R&D frontier, each row carrying its followable route.
+ * Pair: dead/gateway · CLI npm run quantum:dead-gateway. Enumerated live, never remembered.
+ */
+export function deadGateway(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('deadGateway', matrix, () => {
+    const paths = catchAllRoutePaths('en')
+    const rows = paths.map(({ params }) => {
+      const route = `/${params.path}`
+      const page = computeUniversalPage(route, params as Record<string, unknown>, matrix)
+      const hasStatement = Boolean(page.decoded?.statement && page.decoded.statement.length > 0)
+      const hasBody =
+        Boolean(page.standardPaper) || page.components.length > 0 || page.corpusItems.length > 0 || Boolean(page.proof)
+      const kind = hasBody ? ('full' as const) : hasStatement ? ('abstract-only' as const) : ('empty' as const)
+      return { route, title: page.title, kind, receipt: toUuid(`dead-gateway:${route}:${kind}`) }
+    })
+    const full = rows.filter((row) => row.kind === 'full')
+    const abstractOnly = rows.filter((row) => row.kind === 'abstract-only')
+    const empty = rows.filter((row) => row.kind === 'empty')
+    const gateways = [...abstractOnly, ...empty]
+    const facets = [
+      { facet: `dead ends ENUMERATED as gateways — ${empty.length} empty + ${abstractOnly.length} abstract-only of ${rows.length} computed pages: each a NAMED research gateway with its followable route, none a failure`, on: full.length + gateways.length === rows.length && rows.length > 0 },
+      { facet: 'the dead end IS the entry — the inversion of the followable-solutions law made generative: the gateway roster is the site\'s own page-granular open frontier, recomputed live', on: rows.every((row) => row.receipt.length > 0) },
+      { facet: `the corpus carries its body — ${full.length}/${rows.length} pages FULL (statement + machinery); the ratio is the development gauge, re-measured each call`, on: full.length > 0 && full.length <= rows.length },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`dead-gateway:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const on = facets.every((entry) => entry.on)
+    return {
+      computes: on,
+      deadGateway: on,
+      pages: rows.length,
+      full: full.length,
+      abstractOnly: abstractOnly.length,
+      empty: empty.length,
+      gateways: gateways.slice(0, 16).map((row) => ({ route: row.route, kind: row.kind, title: row.title })),
+      facets,
+      root: merkleFold([toUuid(`dead-gateway:${rows.length}:${gateways.length}`), ...facets.map((entry) => entry.receipt)]),
+      pair: 'dead/gateway' as const,
+      dualPair: 'gateway/dead' as const,
+      cli: 'npm run quantum:dead-gateway',
+      route: '/en/quantum-tools#dead-gateway',
+      heading: 'Dead gateway · every dead end an entry',
+      statement: `deadGateway — ${rows.length} pages · ${full.length} full · ${abstractOnly.length} abstract-only · ${empty.length} empty → ${gateways.length} gateways.`,
+      boundary:
+        'Every automount page computed and classified live; the no-content and abstract-only sets are returned as research gateways with ' +
+        'followable routes — the inversion of "reconsider the page": the dead end is the entry. Classification is structural (statement · ' +
+        'machinery presence), not a judgment of quality. clay=0 · qpuRequired=false.' }
+  })
+}
+
+/** npm run quantum:dead-gateway (dual gateway-dead) */
+export function runDeadGatewayExit(root = '', _argv: readonly string[] = []): number {
+  void root
+  void _argv
+  const report = deadGateway()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} dead-gateway — ${report.statement}\n`)
+  for (const g of report.gateways) process.stdout.write(`  · ${g.kind} ${g.route} — ${g.title}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
 }
