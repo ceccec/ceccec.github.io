@@ -338,6 +338,7 @@
     "quantum:combo-cover": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/index.ts runComboCoverExit",
     "quantum:dry-dupe": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runDryDupeExit",
     "quantum:dead-gateway": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/routes/corpus/index.ts runDeadGatewayExit",
+    "quantum:patent-canon": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runPatentCanonExit",
     "quantum:fold-merge": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runFoldMergeExit",
     "quantum:merge-fold": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runFoldMergeExit",
     "quantum:merge-place": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runPlaceMergeExit",

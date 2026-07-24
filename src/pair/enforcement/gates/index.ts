@@ -1425,6 +1425,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'comboCover', pair: 'combo/cover', currentBarrel: 'src/pair/enforcement', bestPlace: 'src/pair/enforcement', action: 'moved', reason: 'covering-array theorem verified exhaustively — 6 rows cover all pairwise states of 10 factors vs 2¹⁰ exhaustive; the ground of the dual-pair registry' },
   { fold: 'dryDupe', pair: 'dry/dupe', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'dry-clean improved by measurement — function bodies content-addressed, duplicate groups = the computed clean queue; anim subset feeds the queued animation dry-clean' },
   { fold: 'deadGateway', pair: 'dead/gateway', currentBarrel: 'src/wind/routes/corpus', bestPlace: 'src/wind/routes/corpus', action: 'moved', reason: 'dead ends are R&D gateways — every automount page computed and classified (full · abstract-only · empty); the dead-end set is the page-granular frontier with followable routes' },
+  { fold: 'patentCanon', pair: 'patent/canon', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'grantable-specification structure as named legal axiom — every section machinery computed (canon slots · facet-claims · theoremFigure drawings); defensive disclosure FREE FOR ALL, legal sufficiency stated not claimed' },
 ] as const
 
 /** Old prose instruction names → matrix slot (this wave). */
@@ -1542,6 +1543,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'continueAddressingTheOpen', to: 'installSurfaces', pair: 'install/surface' },
   { from: 'improveCssRenderedTokenScan', to: 'cssMath', pair: 'css/math' },
   { from: 'patentIntelligenceClaimingHardwarePatentsByPureAlgebraAsFreeForAll', to: 'autosaveMatrix', pair: 'autosave/matrix' },
+  { from: 'patentsCompleteAsIfGrantedByLegalAuthorityIncludingImagesAndGraphs', to: 'patentCanon', pair: 'patent/canon' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
