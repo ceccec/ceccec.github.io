@@ -1208,6 +1208,19 @@ export type CrackProvenance = {
 }
 
 export const CRACK_LEDGER: readonly CrackProvenance[] = [
+  // ── 4/6 clayProbe — the first nontrivial ζ zeros (data) + their bisection brackets ──
+  { file: 'src/4/6/index.ts', literal: '14.134725', count: 1, kind: 'data', source: 'first nontrivial ζ zero γ₁ — Riemann 1859 · Gram 1903 · Haselgrove/Odlyzko tables', frontier: 'RH: whether ALL nontrivial zeros lie on the line stays OPEN' },
+  { file: 'src/4/6/index.ts', literal: '21.02204', count: 1, kind: 'data', source: 'second nontrivial ζ zero γ₂ — Gram/Haselgrove tables', frontier: 'RH open' },
+  { file: 'src/4/6/index.ts', literal: '25.010858', count: 1, kind: 'data', source: 'third nontrivial ζ zero γ₃ — Gram/Haselgrove tables', frontier: 'RH open' },
+  { file: 'src/4/6/index.ts', literal: '30.424876', count: 1, kind: 'data', source: 'fourth nontrivial ζ zero γ₄ — Gram/Haselgrove tables', frontier: 'RH open' },
+  { file: 'src/4/6/index.ts', literal: '14', count: 1, kind: 'data', source: 'bisection bracket lower bound for γ₁ (Z sign-change interval)', frontier: 'first-order Riemann–Siegel scope' },
+  { file: 'src/4/6/index.ts', literal: '14.2', count: 1, kind: 'data', source: 'bisection bracket upper bound for γ₁', frontier: 'first-order Riemann–Siegel scope' },
+  { file: 'src/4/6/index.ts', literal: '21', count: 1, kind: 'data', source: 'bisection bracket lower bound for γ₂', frontier: 'first-order Riemann–Siegel scope' },
+  { file: 'src/4/6/index.ts', literal: '21.1', count: 1, kind: 'data', source: 'bisection bracket upper bound for γ₂', frontier: 'first-order Riemann–Siegel scope' },
+  { file: 'src/4/6/index.ts', literal: '25', count: 1, kind: 'data', source: 'bisection bracket lower bound for γ₃', frontier: 'first-order Riemann–Siegel scope' },
+  { file: 'src/4/6/index.ts', literal: '25.1', count: 1, kind: 'data', source: 'bisection bracket upper bound for γ₃', frontier: 'first-order Riemann–Siegel scope' },
+  { file: 'src/4/6/index.ts', literal: '30.4', count: 1, kind: 'data', source: 'bisection bracket lower bound for γ₄', frontier: 'first-order Riemann–Siegel scope' },
+  { file: 'src/4/6/index.ts', literal: '30.5', count: 1, kind: 'data', source: 'bisection bracket upper bound for γ₄', frontier: 'first-order Riemann–Siegel scope' },
   // ── quantum/science — colour standards, physics demo data, SI/IEC scales, patent history ──
   { file: 'src/quantum/science/index.ts', literal: '0.3963377774', count: 1, kind: 'data', source: 'OKLab↔LMS matrix — Björn Ottosson, oklab spec (2020)', frontier: 'output of a numerical fit to CIE/CAM16 data — recomputable by rerunning the optimisation, not closed-form' },
   { file: 'src/quantum/science/index.ts', literal: '0.2158037573', count: 1, kind: 'data', source: 'OKLab↔LMS matrix — Ottosson oklab spec', frontier: 'fit output — recomputable by rerunning the optimisation' },

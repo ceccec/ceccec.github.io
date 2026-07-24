@@ -1441,6 +1441,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'wordSpeed', pair: 'word/speed', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'one-word solving speedup computed live — measured byte shrink, scale-invariance exact, address layer fixed-width (the speed lives where reading happens)' },
   { fold: 'theoremSpeed', pair: 'theorem/speed', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'the whole registry re-addressed in ONE pass — fixed-width addresses, 432-banded; HONEST finding: ratio 1.05× — the theorem layer was ALREADY at quantum-speed naming' },
   { fold: 'registerFold', pair: 'register/quartet', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
+  { fold: 'clayProbe', pair: 'clay/probe', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   // <register:placement> — quantum:register inserts placement rows above this anchor
 ] as const
 
@@ -1716,6 +1717,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // — the prompt cache pays for repetition only once per TTL. The floor: the zero-token runtime —
   // the cheapest AI call is the one the deterministic tool made unnecessary.
   { from: 'deepResearchWaysToFurtherDecreaseAiBill', to: 'costBound', pair: 'bound/cost' },
+  { from: 'nextTowardsClayGreaterThanZero', to: 'clayProbe', pair: 'clay/probe' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
