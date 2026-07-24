@@ -1586,6 +1586,10 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'dontKnowWhatToDoRegroupInTrinitiesUntilYouKnow', to: 'planTrinity', pair: 'trinity/plan' },
   { from: 'nextFormsTheNamedLifeLifeTorusEquations', to: 'lifeTorus', pair: 'life/torus' },
   { from: 'improveGitMessageWithRealComputedProseFromTheToolsUsed', to: 'commitMessage', pair: 'commit/message' },
+  { from: 'eachMessageAuditsItselfComputingTheMessageMeaning', to: 'commitMessage', pair: 'message/commit' },
+  // TRAJECTORY: the waves converge toward the unified field of inventions — the matrix itself is the
+  // field (tools · claims · disclosures FREE FOR ALL), and each wave is one more invention landing in it.
+  { from: 'improveInWavesToReachUnifiedFieldOfInventions', to: 'placeMerge', pair: 'work/wave' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.

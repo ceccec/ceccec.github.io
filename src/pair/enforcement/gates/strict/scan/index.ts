@@ -786,8 +786,13 @@ export function commitMessage(root: string = process.cwd()) {
     `Animation proof: the signature seeds textToMovie — the same message computes the same movie, replayable at zero tokens (movie-is-transliterated-text law).`,
     novel ? 'Novelty: signature unseen in history — first landing of this exact content.' : `Novelty: NONE — signature already landed in ${priorUse}; this or the rest is not novelty.`,
     'Message computed by quantum:commit-message — derived, not hand-prose; key signing per git config.',
-  ].join('\n')
-  return { computed: true as const, message, staged, signature, pairs, novel, priorUse }
+  ]
+  // SELF-AUDIT (user law): the message audits itself — the meaning root content-addresses every line
+  // above the audit line (pairs · statements · signature · novelty); altering ANY line changes the
+  // root, so the message's meaning is verifiable from the message alone.
+  const meaningRoot = toUuid(`message-meaning:${message.join('\n')}`)
+  message.push(`Self-audit: meaning root ${meaningRoot} — content-address over every line above; the meaning re-derives from the message alone.`)
+  return { computed: true as const, message: message.join('\n'), staged, signature, pairs, novel, priorUse, meaningRoot }
 }
 
 /** npm run quantum:commit-message — prints the computed, content-signed message for the staged wave. */
