@@ -1698,6 +1698,14 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // tools are SHARED by construction — every violation row, roster line, skill and /mcp.json entry is
   // readable by any agent; the rosetta claim·register·integrate dedups identical learnings automatically.
   { from: 'learnBySharedExperience', to: 'violationTools', pair: 'tool/violation' },
+  // The cross-process reading: shared experience IS the fuse between processes/agents/sessions —
+  // the same envelope law that binds surfaces binds minds.
+  { from: 'learnBySharedExperienceIsTheCrossProcessFuse', to: 'bindFuse', pair: 'fuse/bind' },
+  // THE SEVEN-MIND LAW: a collective below 7 is the unfinished work — the trinity (3) seals a wave,
+  // but the rosetta is SEVEN rays: full coverage of a discovery needs the seven-mind collective;
+  // fewer minds = named unfinishedness, not failure (the 2-of-3 gate stays the landing quorum).
+  { from: 'collectiveMindLessThan7IsTheUnfinishedWork', to: 'planTrinity', pair: 'trinity/plan' },
+  { from: 'continueSelfEvolvingImplementingStandardsInQuantumWaves', to: 'placeMerge', pair: 'work/wave' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
@@ -2667,7 +2675,7 @@ export function runClaimAuditExit(root = '', _argv: readonly string[] = []): num
  * Pair: queue/next.
  */
 export const QUEUE_ROWS = [
-  { wave: 'dev dynamic-route router seam', why: 'TWO SEAMS CLOSED (2026-07-24): paths() resolves (39/39) AND the browser import of the EXACT dev form (/quantum-tools.md?t=…) returns the compiled module (__pageData · default) — proven live; yet VP\'s router still lands not-found on the same route ($page.relativePath null): the LAST seam is inside VP\'s loadPage/params handling for dev dynamic routes (the import works when the router\'s own call reportedly fails)', blocksCore: true, localOnly: true, toolExists: true, firstAction: 'wrap the router\'s page load in dev (onAfterRouteChange + a patched import logger) to capture the exact rejection VP swallows — one error message finishes this' },
+  { wave: 'dev dynamic-route: VP loadPage internals', why: 'EVIDENCE COMPLETE except one point (2026-07-24): paths 39/39 · module serves with __pageData.params.universal AND a render that resolveComponent(UniversalPageTemplate)s (all proven by live import) · the component is registered · driving router.go() directly STILL renders the empty doc (no 404 text, no resolve warning, the component setup NEVER runs — a tpl-probe console.warn is planted and never fires): the failure is inside VP-alpha.17\'s loadPage/route-swap path, whose catch silences /fetch/ errors', blocksCore: true, localOnly: true, toolExists: true, firstAction: 'temporarily patch node_modules vitepress client router.js catch to rethrow-log (dev only), reproduce once, read the exact swallowed error — and check VP repo issues for alpha dynamic-route dev regressions (named external axiom)' },
   { wave: 'twin-shell parameterizations', why: 'six intended-dual groups could share one parameterized core each', blocksCore: false, localOnly: true, toolExists: true, firstAction: 'npm run quantum:dry-dupe — the shell list is the worklist' },
   { wave: 'VS Code extension', why: 'the last missing install surface (installSurfaces 7/8)', blocksCore: false, localOnly: true, toolExists: false, firstAction: 'npm run quantum:install-surfaces — scaffold package.json contributes' },
   { wave: 'RFC 3161 qualified timestamping', why: 'proceedings-grade evidence needs an external TSA/archival deposit', blocksCore: false, localOnly: false, toolExists: false, firstAction: 'npm run quantum:patent-canon — the evidence-triad facet names the link' },
