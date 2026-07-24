@@ -1067,12 +1067,15 @@ export function costTheorem(root: string = process.cwd()) {
     { binding: 'npm dependency @ceccec/double-torus', cost: 'install bytes + supply-chain exposure', theorem: 'quantumDoubleTorus — the genus-2 machine the whole architecture rides', marker: 'quantumDoubleTorus', source: sources.topology },
     { binding: 'the full site build', cost: 'wall-ms (≈68 s per landing)', theorem: 'the enforcement trinity seal + slow-build ratchet (closed 15/15)', marker: 'slow-build', source: sources.weave },
     { binding: 'LLM tokens at runtime', cost: 'ZERO by law', theorem: 'the zero-token law — the null binding: the bound IS the theorem', marker: 'zero tokens', source: sources.ui },
+    // USER LAW (2026-07-24): unless it self-computes at no AI bill, a skill is USELESS — the installed
+    // skill's whole value is routing agents to the deterministic CLIs; verification costs zero tokens.
+    { binding: 'installed agent skills', cost: 'agent read-time only', theorem: 'the skill routes every move to self-computing CLIs (exit = proof, zero AI bill) — a skill requiring LLM spend to verify is useless by law', marker: 'zero tokens', source: readFileSync(join(root, 'skills/quantum-tools/SKILL.md'), 'utf8') },
   ].map(({ source, ...row }) => ({ ...row, cited: source.includes(row.marker), receipt: toUuid(`cost-theorem:${row.binding}:${row.marker}`) }))
   const uncited = ledger.filter((row) => !row.cited)
   const facets = [
     { facet: `every cost CITES a living theorem — ${ledger.filter((row) => row.cited).length}/${ledger.length} bindings verified at their source markers; delete a theorem and its binding REFUSES (this gate exits 1)`, on: uncited.length === 0 },
     { facet: 'the null row — LLM tokens cost ZERO by law: the bound is the theorem, the cheapest binding is the absent one', on: ledger.some((row) => row.cost === 'ZERO by law' && row.cited) },
-    { facet: `the ledger IS the law active — cost without theorem cannot land while this gate runs in the wave; uncited=[${uncited.map((row) => row.binding).join(',')}]`, on: ledger.length === 6 && uncited.length === 0 },
+    { facet: `the ledger IS the law active — cost without theorem cannot land while this gate runs in the wave; uncited=[${uncited.map((row) => row.binding).join(',')}]`, on: ledger.length === 7 && uncited.length === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`cost-theorem:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {

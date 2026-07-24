@@ -6,6 +6,8 @@ description: Use the ceccec quantum portal's local deterministic tools — run t
 # Quantum tools — local computation over memory
 
 Only LOCAL tools compute the discoveries. Never assert what a fold proves — run it.
+THE SKILL LAW: every move below routes to self-computing CLIs at zero tokens of AI bill —
+exit code is the proof. A skill that needed LLM spend to verify would be useless by law.
 
 ## Core moves
 

@@ -1650,6 +1650,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // BATCH AUTHORIZATION: the queue implemented as one sustained cluster, ONE final push lands all
   // (magnitude-in-clusters law — the push-per-feature thrash retired).
   { from: 'continueUntilAllImplementedBatchClusterOnePush', to: 'placeMerge', pair: 'work/wave' },
+  { from: 'unlessSelfComputeAtNoAiBillTheSkillsAreUseless', to: 'costTheorem', pair: 'theorem/cost' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
