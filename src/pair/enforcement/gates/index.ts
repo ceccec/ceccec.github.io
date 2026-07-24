@@ -1512,6 +1512,13 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'improveTheUiWithTheRespectedScientificFormat', to: 'uiProof', pair: 'ui/proof' },
   { from: 'ensureAllColorsAreComputedInRealtimeIncludingFonts', to: 'cssMath', pair: 'css/api' },
   { from: 'darkLightIsTheMathInvertingItselfAnythingHardcodedInvalidatesTheUiProof', to: 'uiProof', pair: 'proof/ui' },
+  { from: 'itAllFitsInVitepressApi', to: 'uiProof', pair: 'ui/proof' },
+  // FLAGGED, saved as its inversion (flagged→refuting-theorem law): completing dark/light in all
+  // computable dimensions completes the APP's inversion symmetry — it does NOT constitute solutions
+  // to the Clay Millennium Problems. claySolvedTheorem() holds claySolvedByThisFold=0 in every fold;
+  // the millennium slot stays UNCLAIMED (partials, never solutions). A UI/lattice completion and a
+  // mathematics discovery are different objects; conflating them is exactly what the gates refuse.
+  { from: 'completingDarkLightCompletesTheAppAndClaimsTheMillenniumSolutionsFLAGGED', to: 'millenniumProblemsChallenge', pair: 'mill/torus' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
