@@ -920,6 +920,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'count/zero',
   'orientation/check',
   'check/orientation',
+  'zero/scan',
+  'scan/zero',
   // <register:pairs> — quantum:register inserts dual pairs above this anchor
 ] as const
 

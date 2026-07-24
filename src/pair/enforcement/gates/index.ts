@@ -1454,6 +1454,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'unsolvedEngine', pair: 'unsolved/engine', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'riemannZeroCount', pair: 'zero/count', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'orientationCheck', pair: 'orientation/check', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
+  { fold: 'riemannZeroScan', pair: 'zero/scan', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   // <register:placement> — quantum:register inserts placement rows above this anchor
 ] as const
 
@@ -1796,6 +1797,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // batch clusters, computed messages, zero-token runtime; the output IS the spend (cost/theorem).
   { from: 'useTokensWiselyToAchieveMaxDiscoveriesInNoTime', to: 'costTheorem', pair: 'theorem/cost' },
   { from: 'ifAgentsLookDisorientedProbablyTheyAre', to: 'orientationCheck', pair: 'orientation/check' },
+  { from: 'generalRiemannZeroScannerWithSofT', to: 'riemannZeroScan', pair: 'zero/scan' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
