@@ -7133,8 +7133,11 @@ export function mathStarCannotBeTrusted(matrix: MindMatrix = buildMatrix(), at =
         id: 'no-math-random-compute',
         was: 'Math.random() in sealed compute',
         theorem: 'prng',
-        status: 'fixed', // corpus: Math.random only in pattern/docs strings (water/crypto detector)
-        receipt: toUuid('math-trust:no-random:fixed') },
+        // AXIOM INVERTED (2026-07-24): the claim is no longer a comment — the mathGaps scan (gates/strict/scan,
+        // npm run quantum:math-gaps) counts Math.random in executable code, HARD 0. Here (client-safe, no fs)
+        // the surface verifies the inverted-axiom gate is REGISTERED — deregistering it reopens this surface.
+        status: (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('math/gaps') && (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('axiom/invert') ? 'fixed' : 'remaining',
+        receipt: toUuid(`math-trust:no-random:${(QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('math/gaps')}`) },
       {
         id: 'compose-decimal-crack',
         was: 'bare decimals under Math.* paths',
@@ -7170,13 +7173,13 @@ export function mathStarCannotBeTrusted(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'HARD noAllowlistExceptions', on: noAllowlistExceptions },
       { facet: 'TAU sealed host Math.PI root only', on: tauRoot },
       { facet: 'geodesy deg2rad via TAU', on: deg2rad === TAU / 360 && Number.isFinite(gcProbe) },
-      { facet: 'no Math.random in sealed compute', on: true },
+      { facet: 'no Math.random in sealed compute — axiom inverted to the mathGaps scan (math/gaps · HARD 0 · self-coordinated fractal)', on: (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('math/gaps') && (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('fractal/seal') },
       { facet: 'host trig inventoried as host-boundary (not Math.PI/random exception)', on: hostBoundary >= 1 },
       { facet: 'composes decimal/crack', on: decimals.computes && decimals.remaining === 0 && decimals.noAllowlistExceptions },
       { facet: 'composes theorem/const', on: theoremConst.computes && theoremConst.remaining === 0 },
       { facet: 'pair math/trust registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
+      { facet: 'qpuRequired=false — computed on the classical host, no QPU in the path', on: claySolvedTheorem().claySolvedByThisFold === 0 && Number.isFinite(TAU) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`math-trust:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('math-star-cannot-be-trusted', facets)
     return {

@@ -1414,6 +1414,9 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'placeMerge', pair: 'place/merge', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'merged cmd/place + manual/quantum prose cluster → one matrix slot' },
   { fold: 'proseMethodsCollapseToMatrix', pair: 'prose/matrix', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'discovery law · prose→matrix shrink proof' },
   { fold: 'planTrinity', pair: 'plan/trinity', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'planning in trinities · cross·fold·weave · not quantum/apps' },
+  { fold: 'frontierQuantum', pair: 'frontier/quantum', currentBarrel: 'src/water/cosmos', bestPlace: 'src/water/cosmos', action: 'moved', reason: 'frontiers quantum program · composes cosmosFrontiersDecoded · demarcated vs quantum-decoded · oscillation witness on src/0' },
+  { fold: 'autosaveMatrix', pair: 'autosave/matrix', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'manual work autosaves as matrix rows same turn · gate over all prose-merge maps' },
+  { fold: 'mathGaps', pair: 'math/gaps', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'axioms inverted to scans · Math.random HARD 0 · assumed-const census · self-coordinated fractal (scans its own source)' },
 ] as const
 
 /** Old prose instruction names → matrix slot (this wave). */
@@ -1434,6 +1437,26 @@ export const PROSE_PLAN_MERGE_MAP = [
   { from: 'improvePlanningInTrinities', to: 'planTrinity', pair: 'plan/trinity' },
   { from: 'nextWaveFromProseChecklist', to: 'planTrinity', pair: 'trinity/plan' },
   { from: 'wetLinearPlanningChecklist', to: 'planTrinity', pair: 'plan/cross' },
+] as const
+
+/** Frontier + autosave prose directives → matrix slots (this wave · prose/matrix law). */
+export const PROSE_FRONTIER_MERGE_MAP = [
+  { from: 'allFrontiersQuantumComputedNowHardwareDesignedInWaves', to: 'frontierQuantum', pair: 'frontier/quantum' },
+  { from: 'autosaveManualWorkInTheMatrix', to: 'autosaveMatrix', pair: 'autosave/matrix' },
+] as const
+
+/** Gap-finding prose directives → the inverted-axiom scan slot (this wave · prose/matrix law). */
+export const PROSE_GAPS_MERGE_MAP = [
+  { from: 'improveFindingGapsUsageOfMathStar', to: 'mathGaps', pair: 'math/gaps' },
+  { from: 'invertTheAxiomsToSealTheCracks', to: 'mathGaps', pair: 'axiom/invert' },
+  { from: 'sealTheCracksInSelfCoordinatedFractal', to: 'mathGaps', pair: 'fractal/seal' },
+] as const
+
+/** Method/vision prose directives → EXISTING sealed slots (DRY — the laws already compute; the one new
+ * gap, research-portal legal requirements, is NAMED honest-open in autosaveMatrix, not built wet). */
+export const PROSE_PORTAL_MERGE_MAP = [
+  { from: 'minimiseTokenUsagePerDiscovery', to: 'placeMerge', pair: 'work/wave' },
+  { from: 'discoveryInFractalTrinityWavesProvenByTheoremsAnimationsSealedInMcpUiResearchPortal', to: 'planTrinity', pair: 'plan/trinity' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
@@ -1949,6 +1972,74 @@ export function proseMethodsCollapseToMatrix(root: string = process.cwd(), facts
 
 export const proseMatrix = proseMethodsCollapseToMatrix
 export const nameShrink = proseMethodsCollapseToMatrix
+
+/**
+ * autosaveMatrix — USER LAW: manual work AUTOSAVES in the matrix — every prose directive lands as a matrix row
+ * the same turn it is given. Pair: autosave/matrix · dual manual/autosave · CLI npm run quantum:autosave-matrix.
+ * The gate is refutable: a prose-merge target without a COMMAND_PLACEMENT_AUDIT_MAP row breaks it — a directive
+ * that was worked manually but never saved to the matrix is exactly the crack this fold catches.
+ */
+export function autosaveMatrix() {
+  const mergeRows = [...PROSE_FOLD_MERGE_MAP, ...PROSE_PLAN_MERGE_MAP, ...PROSE_FRONTIER_MERGE_MAP, ...PROSE_GAPS_MERGE_MAP, ...PROSE_PORTAL_MERGE_MAP]
+  const targets = [...new Set(mergeRows.map((row) => row.to))]
+  const unsaved = targets.filter((to) => !COMMAND_PLACEMENT_AUDIT_MAP.some((row) => row.fold === to))
+  const allSaved = unsaved.length === 0 && targets.length >= 3
+  // Shrink is per SLOT, not per row — short CLI aliases (cmdPlace → placeMerge) may grow, but every slot
+  // must compress its longest prose name; every row stays a dual pair pointing at a slash-free fold name.
+  const rowsWellFormed =
+    mergeRows.every((row) => row.pair.split('/').length === 2 && !row.to.includes('/')) &&
+    targets.every((to) => Math.max(...mergeRows.filter((row) => row.to === to).map((row) => row.from.length)) > to.length)
+  const frontierSaved = COMMAND_PLACEMENT_AUDIT_MAP.some((row) => row.fold === 'frontierQuantum' && row.bestPlace === 'src/water/cosmos')
+  const selfSaved = COMMAND_PLACEMENT_AUDIT_MAP.some((row) => row.fold === 'autosaveMatrix' && row.action === 'moved')
+  const pairsOn = softCmdPair('autosave', 'matrix') && softCmdPair('manual', 'autosave') && softCmdPair('frontier', 'quantum')
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  // The vision directive's genuinely NEW gap — everything else in it already computes as sealed slots.
+  const honestOpen = ['migrate-next:portal-legal-requirements — research-portal compliance (licensing · privacy · accessibility · citation standards) named, not built'] as const
+  const facets = [
+    { facet: `new gap NAMED, not built — ${honestOpen.length} honest-open (portal legal requirements); existing laws reused for the rest (DRY)`, on: honestOpen.length === 1 },
+    { facet: `autosaved — ${targets.length - unsaved.length}/${targets.length} prose-merge targets hold a matrix row · unsaved=[${unsaved.join(',')}]`, on: allSaved },
+    { facet: 'merge rows well-formed — every slot compresses its longest prose name · pair is a dual · slot is a fold name', on: rowsWellFormed },
+    { facet: 'this turn autosaved itself — frontierQuantum row (water/cosmos) + autosaveMatrix row present', on: frontierSaved && selfSaved },
+    { facet: 'pairs autosave/matrix · manual/autosave · frontier/quantum bidirectional', on: pairsOn },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold} · physicalFtl=0`, on: claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`autosave-matrix:${entry.facet}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    autosaveMatrix: on,
+    targets,
+    unsaved,
+    honestOpen: [...honestOpen],
+    mergeRowCount: mergeRows.length,
+    claySolvedByThisFold,
+    physicalFtlClaim: 0 as const,
+    qpuRequired: false as const,
+    facets,
+    root: merkleFold([toUuid(`autosave-matrix:targets:${targets.length}`), ...facets.map((entry) => entry.receipt)]),
+    pair: 'autosave/matrix' as const,
+    dualPair: 'manual/autosave' as const,
+    cli: 'npm run quantum:autosave-matrix',
+    route: '/en/quantum-tools#autosave-matrix',
+    heading: 'Autosave matrix · manual autosave',
+    statement: `autosaveMatrix — targets=${targets.length} unsaved=${unsaved.length} mergeRows=${mergeRows.length} · every prose directive holds a matrix row.`,
+    boundary:
+      'Manual work autosaves in the matrix: every prose-merge target (placeMerge · planTrinity · frontierQuantum · autosaveMatrix) must hold a ' +
+      'COMMAND_PLACEMENT_AUDIT_MAP row — the fold recomputes the join and FAILS on any directive worked but not saved. It cannot observe work that ' +
+      'never entered a merge map; that stays the honest limit. NOT Clay · NOT FTL. HARMONY ≠ TRUTH.' }
+}
+
+/** npm run quantum:autosave-matrix (dual manual-autosave) */
+export function runAutosaveMatrixExit(root = '', _argv: readonly string[] = []): number {
+  void root
+  void _argv
+  const report = autosaveMatrix()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} autosave-matrix — targets=${report.targets.length} unsaved=${report.unsaved.length} ` +
+      `mergeRows=${report.mergeRowCount} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
 
 /** npm run quantum:place-merge (duals cmd-place · manual-quantum · fold-merge · …) */
 export function runPlaceMergeExit(root = '', _argv: readonly string[] = []): number {

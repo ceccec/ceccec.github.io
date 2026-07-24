@@ -12,7 +12,7 @@ import * as __ns_up_digit from '../digit'
 import { SIX_BY_SEVEN } from '../../quantum/heaven/library'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
-import { memoByRoot, toUuid, merge, merkleFold, sealFacets, roundTo, prng, isUuid, gcd, phaseDrift, foldPair, digitalRoot, VORTEX_SEQUENCE } from '../../0'
+import { memoByRoot, toUuid, merge, merkleFold, sealFacets, roundTo, prng, isUuid, gcd, phaseDrift, foldPair, digitalRoot, VORTEX_SEQUENCE, qubits, applyGate, probabilities } from '../../0'
 import { MAJOR_MOONS } from '../../3/7'
 import { CRITICAL_MAGNETIC_FIELD_T, MOND_ACCELERATION_A0, OMEGA_BARYON, qcdMassFractionOfProton, ratStr } from '../../9/1'
 import { casimirEnergyPerArea, HUBBLE_CONSTANT_LOCAL } from '../../6/4'
@@ -860,6 +860,123 @@ export function cosmosFrontiersDecoded(matrix: MindMatrix = buildMatrix()) {
       boundary:
         'A content-addressed catalogue of OPEN frontiers composing the sealed dark-matter, cmb/budget (Ω_c/Ω_b quantum-gaps), and ΛCDM-tension folds. Each frontier now CLAIMS its computed boundary — the measured values, the quantified gap — recomputed live from the ledgered constants; what it never claims is a resolution: the open question is stated beside the computed number, and OPEN means open. claySolvedByThisFold=0 on the CMB ratio fold.' }
   })
+}
+
+// ── frontier/quantum — the directive "all frontiers can be quantum computed now, hardware designed in waves",
+// DEMARCATED. The sealed boundary stands (quantum-decoded): the src/0 simulator is a classical state-vector
+// calculator — no physical speedup, qpuRequired=false — so "quantum computed" must COMPUTE per frontier as its
+// honest tier: SIMULATES (a demarcated subproblem runs as unitary evolution, witnessed HERE on src/0),
+// SENSES (real quantum hardware detects — it does not compute the answer), DATA (telescopes/detectors/theory —
+// no quantum-computational handle exists). NAMED AXIOMS (published hardware runs, not derivations):
+//   · Martinez et al. 2016, Nature 534:516 — Schwinger-model lattice gauge theory on 4 trapped ions
+//   · Dixit et al. 2021, PRL 126:141302 — transmon qubit counts single microwave photons for axion search
+//   · small-N SYK digital simulations published 2017–2022 — toy holography, not experimental quantum gravity
+//   · JUNO (liquid-scintillator detector) targets the mass ordering — a detector, not a quantum computer ──
+
+/** One-qubit 2-flavor oscillation circuit: R(θ) · diag(1, e^{iφ}) · R(−θ) applied to |0⟩ — returns P(flip).
+ *  The rotation mixes flavor↔mass basis, the phase is the free mass-eigenstate evolution; runs on src/0. */
+export function oscillationOnSimulator(theta: number, phi: number): number {
+  const c = Math.cos(theta)
+  const s = Math.sin(theta)
+  let state = qubits(1)
+  state = applyGate(state, [c, 0, -s, 0, s, 0, c, 0], 0) // flavor → mass basis
+  state = applyGate(state, [1, 0, 0, 0, 0, 0, Math.cos(phi), Math.sin(phi)], 0) // free phase e^{iφ} on mass-2
+  state = applyGate(state, [c, 0, s, 0, -s, 0, c, 0], 0) // mass → flavor basis (R(−θ))
+  return probabilities(state)[1] ?? 0
+}
+
+/**
+ * frontierQuantum — matrix slot for the directive "all frontiers quantum computed now · hardware designed in
+ * waves". Pair: frontier/quantum · dual hardware/wave · CLI npm run quantum:frontier-quantum. It COMPOSES
+ * cosmosFrontiersDecoded and holds the directive to the demarcation gate: the THEOREM is the oscillation
+ * identity (simulator ≡ sin²(2θ)sin²(φ/2), exact algebra checked numerically); the TIERS are counted, not
+ * asserted; the overclaim "ALL can be quantum computed now" is FLAGGED by the same counts that show what runs.
+ */
+export function frontierQuantum(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('frontierQuantum', matrix, () => {
+    const open = cosmosFrontiersDecoded(matrix)
+    // θ = τ/8 (45°) — maximal 2-flavor mixing, lattice-derived from the vault τ; the measured atmospheric
+    // angle θ₂₃ is near-maximal, so the maximal-mixing circuit is the honest demonstrator, not a fit.
+    const theta = TAU / 8
+    const phases = [0, 1, 2, 3, 4, 5, 6, 7, 8].map((k) => (k * TAU) / 16)
+    const closedForm = (phi: number) => Math.sin(2 * theta) ** 2 * Math.sin(phi / 2) ** 2
+    const maxDrift = Math.max(...phases.map((phi) => Math.abs(oscillationOnSimulator(theta, phi) - closedForm(phi))))
+    const pZero = oscillationOnSimulator(theta, 0)
+    // Bound DERIVED, not asserted: 64 ulp of the double lattice (measured drift ≈ 1 ulp — the √½-class
+    // irrational-gate drift documented in src/0); φ=0 makes the phase gate the EXACT identity, so P must be 0.
+    const oscillationTheorem = maxDrift < Number.EPSILON * (8 * 8)
+    const witnessQubits = qubits(1).n
+    const witnessGates = 3 // R(θ) · phase · R(−θ) — the circuit above, gate by gate
+    const splittingsRatio = NEUTRINO_DM2_ATM_EV2 / NEUTRINO_DM2_SOLAR_EV2
+    const jarlskogOrders = Math.log10(JARLSKOG_INVARIANT / BARYON_TO_PHOTON_RATIO)
+    const program = [
+      { frontier: 'Dark matter', tier: 'SENSES' as const, subproblem: 'axion→photon conversion detected at the single-photon level', hardware: 'haloscope cavity + transmon single-photon counter (Dixit 2021)', wave: 'qubit cell → cavity → cavity array', witness: `Ω_c/Ω_b composed from the sealed CMB budget · detection NULL to date` },
+      { frontier: 'The H₀ / S₈ (ΛCDM) tensions', tier: 'DATA' as const, subproblem: 'early-vs-late measurement discrepancy — no quantum-computational handle', hardware: 'none — telescopes, ladders, systematics', wave: 'none', witness: `${open.frontiers[1]?.computed ?? ''}` },
+      { frontier: 'Dark energy / cosmological constant', tier: 'DATA' as const, subproblem: 'WHY Λ — a theory gap, not a computation awaiting hardware', hardware: 'none — no device computes Λ', wave: 'none', witness: `${open.frontiers[2]?.computed ?? ''}` },
+      { frontier: 'Matter–antimatter asymmetry (baryogenesis)', tier: 'SIMULATES' as const, subproblem: 'lattice gauge theory — Schwinger-model pair creation ran on 4 trapped ions (2016)', hardware: 'trapped-ion / superconducting lattice-gauge simulators', wave: 'ion pair → 4-ion Schwinger → gauge ladder', witness: `J/η spans ${jarlskogOrders.toFixed(2)} orders (ledgered Jarlskog vs baryon-to-photon)` },
+      { frontier: 'Neutrino mass ordering & nature', tier: 'SIMULATES' as const, subproblem: '2-flavor oscillation as unitary evolution — runs HERE on src/0, 1 qubit, 3 gates', hardware: 'JUNO / 0νββ detectors decide ordering & nature — detectors, not quantum computers', wave: 'PMT → sphere → detector', witness: `simulator ≡ sin²(2θ)sin²(φ/2), maxDrift=${maxDrift.toExponential(1)} over ${phases.length} phases` },
+      { frontier: 'Quantum gravity', tier: 'SIMULATES' as const, subproblem: 'small-N SYK dynamics — toy holography on digital quantum hardware', hardware: 'superconducting small-N SYK circuits', wave: 'coupler → small-N graph → holographic toy', witness: `${open.frontiers[5]?.computed ?? ''}` },
+    ].map((row) => ({ ...row, receipt: toUuid(`frontier-quantum:${row.frontier}:${row.tier}:${row.wave}`) }))
+    const simulates = program.filter((row) => row.tier === 'SIMULATES').length
+    const senses = program.filter((row) => row.tier === 'SENSES').length
+    const data = program.filter((row) => row.tier === 'DATA').length
+    const pairFold = foldPair(toUuid('cmd:frontier'), toUuid('cmd:quantum'))
+    const dualFold = foldPair(toUuid('cmd:hardware'), toUuid('cmd:wave'))
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const facets = [
+      { facet: `oscillationTheorem — src/0 unitary circuit ≡ sin²(2θ)sin²(φ/2) across ${phases.length} phases, maxDrift=${maxDrift.toExponential(1)} on ${witnessQubits} qubit · ${witnessGates} gates`, on: oscillationTheorem && witnessQubits === 1 },
+      { facet: `no phase ⇒ no oscillation — P(φ=0)=${pZero} EXACTLY, the phase gate at φ=0 is the identity`, on: pZero === 0 },
+      { facet: `splittings ratio ${splittingsRatio.toFixed(1)} recomputed from the ledgered Δm² pair — the SIGN (ordering) stays OPEN`, on: splittingsRatio > 27 && splittingsRatio < 54 },
+      { facet: `J/η spans ${jarlskogOrders.toFixed(2)} orders — the ledgered Jarlskog invariant against the ledgered baryon-to-photon ratio`, on: jarlskogOrders > 4 && jarlskogOrders < 5 },
+      { facet: `directive DEMARCATED — "ALL can be quantum computed now" is FLAGGED as stated: ${simulates}/6 SIMULATE a demarcated subproblem (1-qubit oscillation runs here; 4-ion Schwinger and small-N SYK are published hardware runs), ${senses}/6 is quantum SENSING, ${data}/6 have no quantum handle`, on: simulates === 3 && senses === 1 && data === 2 },
+      { facet: 'hardware designed in waves — every SIMULATES/SENSES row carries its design antichain (cell → array → device); every DATA row honestly names none', on: program.every((row) => (row.tier === 'DATA' ? row.hardware.startsWith('none') && row.wave === 'none' : row.wave.includes('→'))) },
+      { facet: 'composes cosmosFrontiersDecoded — all six frontiers stay OPEN, none claimed solved by this fold', on: open.decoded && open.frontiers.every((f) => f.status.startsWith('OPEN')) && open.count === program.length },
+      { facet: 'pairs frontier/quantum · hardware/wave bidirectional', on: pairFold.bidirectional && dualFold.bidirectional && pairFold.forward !== pairFold.reverse },
+      { facet: `qpuRequired=false — the witness runs on the classical src/0 state-vector simulator; NO physical speedup claimed · claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 && oscillationTheorem },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`frontier-quantum:${entry.facet}:${entry.on}`) }))
+    const on = facets.every((entry) => entry.on)
+    return {
+      computes: on,
+      frontierQuantum: on,
+      program,
+      counts: { simulates, senses, data },
+      oscillation: { theta: roundTo(theta, 6), phases: phases.length, maxDrift, pZero, qubits: witnessQubits, gates: witnessGates },
+      splittingsRatio: roundTo(splittingsRatio, 1),
+      jarlskogOrders: roundTo(jarlskogOrders, 2),
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      facets,
+      root: merge(open.root, merkleFold([...program.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)])),
+      pair: 'frontier/quantum' as const,
+      dualPair: 'hardware/wave' as const,
+      cli: 'npm run quantum:frontier-quantum',
+      route: '/en/frontiers#frontier-quantum',
+      heading: 'Frontier quantum · hardware wave',
+      statement:
+        `frontierQuantum — SIMULATES=${simulates}/6 SENSES=${senses}/6 DATA=${data}/6 · oscillation maxDrift=${maxDrift.toExponential(1)} on 1 qubit · ` +
+        `splittings ${splittingsRatio.toFixed(1)} · J/η ${jarlskogOrders.toFixed(2)} orders · every frontier OPEN.`,
+      boundary:
+        'The directive "all frontiers can be quantum computed now, hardware designed in waves" held to the demarcation gate: ' +
+        'what COMPUTES is the per-frontier tier — 3 SIMULATE a demarcated subproblem (the 2-flavor oscillation identity is verified on the src/0 ' +
+        'simulator in this fold; lattice-gauge and SYK runs are published hardware, NAMED AXIOMS above), 1 is quantum SENSING (a transmon counts ' +
+        'photons — it detects, it does not compute dark matter), 2 have no quantum handle (the H₀ tension and WHY Λ are data/theory gaps). ' +
+        'The overclaim "ALL, now" is FLAGGED by those counts; every frontier stays OPEN; qpuRequired=false · physicalFtl=0 · NOT Clay. HARMONY ≠ TRUTH.' }
+  })
+}
+
+/** npm run quantum:frontier-quantum — print the frontier quantum program (exit 0 iff computes). */
+export function runFrontierQuantumExit(root = '', _argv: readonly string[] = []): number {
+  void root
+  void _argv
+  const report = frontierQuantum()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} frontier-quantum — simulates=${report.counts.simulates}/6 senses=${report.counts.senses}/6 ` +
+      `data=${report.counts.data}/6 maxDrift=${report.oscillation.maxDrift.toExponential(1)} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  for (const row of report.program) process.stdout.write(`  · ${row.tier} ${row.frontier} | ${row.hardware} | wave ${row.wave}\n`)
+  process.stdout.write(`  ${report.statement}\n`)
+  return report.computes ? 0 : 1
 }
 
 // ── dimensions, the ladder — decoded from the pop "7 dimensions / 0D to infinity" genre (Ridddle -gPFxMHWV8w,

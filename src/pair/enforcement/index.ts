@@ -803,6 +803,19 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'plan/cross',
   'cross/plan',
   'mission/gate',
+  'frontier/quantum',
+  'quantum/frontier',
+  'hardware/wave',
+  'wave/hardware',
+  'autosave/matrix',
+  'matrix/autosave',
+  'manual/autosave',
+  'math/gaps',
+  'gaps/math',
+  'axiom/invert',
+  'invert/axiom',
+  'fractal/seal',
+  'seal/fractal',
 ] as const
 
 export function foldQuantumCommandPairs(pairIds: readonly string[] = QUANTUM_COMMAND_PAIR_IDS) {

@@ -215,6 +215,110 @@ export function scanUuidKernelOffenders(root: string = process.cwd()): { file: s
   return offenders
 }
 
+/** AXIOMS INVERT TO SEAL THE CRACKS (user law, 2026-07-24): a trust claim about the corpus is never
+ * asserted — it INVERTS into the scan that would refute it. "No Math.random in sealed compute" (held as
+ * `on: true` prose in mathStarCannotBeTrusted) inverts to the finder that counts Math.random in executable
+ * code — HARD 0; "TAU, not Math.PI" inverts to the census of assumed host constants — MEASURED and named
+ * migrate-next, never silently allowed. Math OPERATIONS (sin·cos·sqrt·…) stay host-boundary: inventoried,
+ * not forbidden — deriving constants from operations is the one-math law (RSQRT2 in src/0). */
+export const MATH_ASSUMED_CONSTS = ['PI', 'E', 'SQRT2', 'SQRT1_2', 'LN2', 'LN10', 'LOG2E', 'LOG10E'] as const
+export type MathGapOffender = { file: string; line: number; member: string; cls: 'random' | 'assumed-const' }
+
+/** Walk src (index.ts + .vue — the crack law scans .vue too), strip strings/comments, classify Math.<member>. */
+export function scanMathGapOffenders(root: string = process.cwd()) {
+  const files: string[] = []
+  const walk = (d: string) => {
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      if (e.name.startsWith('.') || e.name === 'node_modules' || e.name === 'dist') continue
+      const f = join(d, e.name)
+      if (e.isDirectory()) walk(f)
+      else if (e.name === 'index.ts' || e.name.endsWith('.vue')) files.push(f)
+    }
+  }
+  walk(join(root, 'src'))
+  const assumed = new Set<string>(MATH_ASSUMED_CONSTS)
+  const offenders: MathGapOffender[] = []
+  const tally: Record<string, number> = {}
+  let operations = 0
+  let selfIncluded = false // self-coordinated fractal — the scanner's own source passes through the same law
+  for (const file of files) {
+    const rel = relative(root, file).replace(/\\/g, '/')
+    if (rel === 'src/pair/enforcement/gates/strict/scan/index.ts') selfIncluded = true
+    const text = stripStringsAndComments(readFileSync(file, 'utf8'))
+    for (const m of text.matchAll(/\bMath\.([A-Za-z_][A-Za-z0-9_]*)/g)) {
+      const member = m[1]!
+      tally[member] = (tally[member] ?? 0) + 1
+      if (member === 'random') offenders.push({ file: rel, line: text.slice(0, m.index!).split('\n').length, member, cls: 'random' })
+      else if (assumed.has(member)) offenders.push({ file: rel, line: text.slice(0, m.index!).split('\n').length, member, cls: 'assumed-const' })
+      else operations += 1
+    }
+  }
+  return { files: files.length, offenders, tally, operations, selfIncluded }
+}
+
+/**
+ * mathGaps — improved gap finding: the Math.* trust axioms inverted into a live corpus scan.
+ * Pair: math/gaps · dual axiom/invert · CLI npm run quantum:math-gaps.
+ * HARD: Math.random in executable code = 0 (prng is the seeded home). MEASURED: assumed host constants
+ * (Math.PI vs the vault TAU, Math.LN2 vs a derived log, …) counted per member and per file — the census is
+ * the ratchet floor for the migrate waves, named honest-open, never an allowlist.
+ */
+export function mathGaps(root: string = process.cwd()) {
+  const scan = scanMathGapOffenders(root)
+  const randoms = scan.offenders.filter((o) => o.cls === 'random')
+  const assumedConst = scan.offenders.filter((o) => o.cls === 'assumed-const')
+  const perFile = new Map<string, number>()
+  for (const o of assumedConst) perFile.set(o.file, (perFile.get(o.file) ?? 0) + 1)
+  const topFiles = [...perFile.entries()].sort((a, b) => b[1] - a[1]).slice(0, 9)
+  const perMember = MATH_ASSUMED_CONSTS.map((m) => ({ member: m, count: assumedConst.filter((o) => o.member === m).length })).filter((e) => e.count > 0)
+  const facets = [
+    { facet: `axiom INVERTED — "no Math.random in sealed compute" is now a scan, not prose: random-in-code=${randoms.length} across ${scan.files} files (strings/comments/regex stripped)`, on: randoms.length === 0 && scan.files > (64 * 2) },
+    { facet: `assumed host constants MEASURED — ${assumedConst.length} sites · ${perFile.size} files · members ${perMember.map((e) => `${e.member}=${e.count}`).join(' ')} — the census is the ratchet floor, migrate-next to vault derivations (TAU · derived logs)`, on: assumedConst.length > 0 && perMember.every((e) => e.count > 0) },
+    { facet: `operations stay host-boundary — ${scan.operations} Math operation sites inventoried, not forbidden (one-math law derives constants FROM operations)`, on: scan.operations > assumedConst.length },
+    { facet: 'classification is total — every Math.* site is random | assumed-const | operation', on: Object.values(scan.tally).reduce((a, b) => a + b, 0) === randoms.length + assumedConst.length + scan.operations },
+    { facet: 'self-coordinated fractal — the scanner\'s own source is inside the scanned corpus, classified by the same law (no scanner exemption)', on: scan.selfIncluded },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`math-gaps:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    mathGaps: on,
+    files: scan.files,
+    randomInCode: randoms.length,
+    randomOffenders: randoms,
+    assumedConstCount: assumedConst.length,
+    assumedConstFiles: perFile.size,
+    perMember,
+    topFiles: topFiles.map(([file, count]) => ({ file, count })),
+    operations: scan.operations,
+    facets,
+    root: merkleFold([toUuid(`math-gaps:${scan.files}:${randoms.length}:${assumedConst.length}:${scan.operations}`), ...facets.map((entry) => entry.receipt)]),
+    pair: 'math/gaps' as const,
+    dualPair: 'axiom/invert' as const,
+    cli: 'npm run quantum:math-gaps',
+    route: '/en/quantum-tools#math-gaps',
+    heading: 'Math gaps · axiom invert',
+    statement: `mathGaps — random-in-code=${randoms.length} (HARD 0) · assumed-const=${assumedConst.length} sites/${perFile.size} files · operations=${scan.operations} · files=${scan.files}.`,
+    boundary:
+      'The Math.* trust axioms inverted into a live scan: the HARD claim (no Math.random) is enforced by counting, the soft claim ' +
+      '(vault constants, not host constants) is measured into a per-member census that names the migrate wave — no allowlist, no prose. ' +
+      'Operations are host-boundary by the one-math law. clay=0 · qpuRequired=false.' }
+}
+
+/** npm run quantum:math-gaps (dual axiom-invert) — exit 0 iff the inverted axioms hold. */
+export function runMathGapsExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = mathGaps(root || process.cwd())
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} math-gaps — random=${report.randomInCode} assumed-const=${report.assumedConstCount}/${report.assumedConstFiles} files ` +
+      `operations=${report.operations} scanned=${report.files}\n`,
+  )
+  for (const o of report.randomOffenders) process.stdout.write(`  ✗ Math.random ${o.file}:${o.line}\n`)
+  for (const e of report.perMember) process.stdout.write(`  · Math.${e.member} × ${e.count}\n`)
+  for (const t of report.topFiles) process.stdout.write(`  · ${t.file} — ${t.count} assumed-const sites\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+
 export type MethodGravityCluster = { word: string; attractor: string; members: string[]; pulls: number }
 export function methodGravity(root: string = process.cwd(), minCluster = 4): MethodGravityCluster[] {
   const files: string[] = []
