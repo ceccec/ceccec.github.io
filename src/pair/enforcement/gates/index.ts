@@ -1433,7 +1433,8 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'torusData', pair: 'torus/data', currentBarrel: 'src/fire/features', bestPlace: 'src/fire/features', action: 'moved', reason: 'agnostic framework completed at the adapter algebra — four no-key API families through one pure shape, dimensionless ratios gate, units labelled never theorems, gates network-free' },
   { fold: 'claimAudit', pair: 'claim/audit', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'claims toolset FORMED — content-addressed claims, audit the exact inverse (tamper refutes), DOI/ORCID/OpenAlex validators, CLAIMED-in-UNCLAIMED structural; timestamping named open' },
   { fold: 'bindFuse', pair: 'bind/fuse', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'all binding families fused through the one standard envelope, usable from any superposition (toolbox · mcp.json · CLI · themeConfig) — unfusing any surface refutes' },
-  { fold: 'costBound', pair: 'cost/bound', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'binding costs bounded by four sealed laws (zero-token · Fibonacci client cap · build ratchet · no-key adapters); per-binding cost↔theorem ledger NAMED migrate-next' },
+  { fold: 'costBound', pair: 'cost/bound', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'binding costs bounded by four sealed laws (zero-token · Fibonacci client cap · build ratchet · no-key adapters); the ledger gap now CLOSED by costTheorem' },
+  { fold: 'costTheorem', pair: 'cost/theorem', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'the cost↔theorem ledger FORMED — six cost-carrying bindings each citing the living theorem their cost purchases (markers verified); uncited costs refuse (exit 1); the zero-token null row bounds the cheapest binding' },
 ] as const
 
 /** Old prose instruction names → matrix slot (this wave). */
@@ -1634,6 +1635,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // matrix: CREATE (autosave a row) · READ (the joins) · UPDATE (flip migrate-next→formed) · DELETE
   // (revert as a measured branch). The prose/matrix law completed as operation algebra.
   { from: 'crudMatrixEliminatesProse', to: 'autosaveMatrix', pair: 'matrix/autosave' },
+  { from: 'nextFormsTheCostTheoremLedger', to: 'costTheorem', pair: 'cost/theorem' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.

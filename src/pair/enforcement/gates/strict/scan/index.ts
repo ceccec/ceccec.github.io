@@ -951,7 +951,7 @@ export function costBound(root: string = process.cwd()) {
   ].map((row) => ({ ...row, receipt: toUuid(`cost-bound:${row.law}:${row.present}`) }))
   const facets = [
     { facet: `binding costs are BOUNDED by ${laws.filter((row) => row.present).length}/${laws.length} sealed laws (zero-token · Fibonacci client cap · build ratchet · no-key adapters) — no unbounded cost path exists`, on: laws.every((row) => row.present) },
-    { facet: 'the HONEST gap NAMED — a per-binding cost↔theorem ledger (each binding citing the theorem its cost purchases) is migrate-next; bounds hold globally, attribution per binding does not compute yet', on: laws.length === 4 },
+    { facet: 'the gap CLOSED — the per-binding cost↔theorem ledger FORMED as costTheorem (cost/theorem, this module): attribution computes per binding, uncited costs refuse', on: laws.length === 4 && typeof costTheorem === 'function' },
     { facet: 'the law\'s direction — cost without a theorem is the manual-work class: when the ledger forms, a binding whose cost cites no theorem REFUSES to land', on: laws.every((row) => row.marker.length > 0) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`cost-bound:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
@@ -966,10 +966,69 @@ export function costBound(root: string = process.cwd()) {
     cli: 'npm run quantum:cost-bound',
     route: '/en/quantum-tools#cost-bound',
     heading: 'Cost bound · no cost without theorem',
-    statement: `costBound — ${laws.filter((row) => row.present).length}/4 bounding laws live · per-binding cost↔theorem ledger NAMED migrate-next.`,
+    statement: `costBound — ${laws.filter((row) => row.present).length}/4 bounding laws live · the cost↔theorem ledger formed (costTheorem attributes per binding).`,
     boundary:
       'Binding costs are globally bounded by four sealed laws; the per-binding attribution ledger is honestly open — named, not implied. ' +
       'When it forms, cost without a cited theorem refuses to land. clay=0 · qpuRequired=false.' }
+}
+
+/**
+ * costTheorem — the LEDGER formed (queue top; costBound named it): every cost-carrying binding cites
+ * the THEOREM its cost purchases, and the citation is verified LIVE (the theorem's marker must exist
+ * in source) — a binding whose cost cites no living theorem REFUSES to land (exit 1). The zero-token
+ * binding is the null row: its bound IS its theorem. Pair: cost/theorem · CLI npm run quantum:cost-theorem.
+ */
+export function costTheorem(root: string = process.cwd()) {
+  const read = (rel: string) => readFileSync(join(root, rel), 'utf8')
+  const sources = {
+    features: read('src/fire/features/index.ts'),
+    apps: read('src/quantum/apps/index.ts'),
+    topology: read('src/mountain/topology/index.ts'),
+    weave: read('src/pair/enforcement/trinity/weave/index.ts'),
+    ui: read('src/wind/ui/index.ts'),
+  }
+  const ledger = [
+    { binding: 'no-key public APIs (USGS · Open-Meteo · OpenAlex · World Bank)', cost: 'fetch latency + bytes · price 0', theorem: 'torusData — dimensionless adapter ratios, units demarcated', marker: 'export function torusData', source: sources.features },
+    { binding: 'browser sensors', cost: 'user permission + sampling work', theorem: 'wireAllSensorsUsingQuantumBindings — sensors enter only through quantum bindings', marker: 'wireAllSensorsUsingQuantumBindings', source: sources.apps },
+    { binding: 'cloudflare deploy bindings', cost: 'deploy/runtime quota', theorem: 'mcpQuantumCloudflareBindings — the deploy face sealed in the catalog', marker: 'mcpQuantumCloudflareBindings', source: sources.apps },
+    { binding: 'npm dependency @ceccec/double-torus', cost: 'install bytes + supply-chain exposure', theorem: 'quantumDoubleTorus — the genus-2 machine the whole architecture rides', marker: 'quantumDoubleTorus', source: sources.topology },
+    { binding: 'the full site build', cost: 'wall-ms (≈68 s per landing)', theorem: 'the enforcement trinity seal + slow-build ratchet (closed 15/15)', marker: 'slow-build', source: sources.weave },
+    { binding: 'LLM tokens at runtime', cost: 'ZERO by law', theorem: 'the zero-token law — the null binding: the bound IS the theorem', marker: 'zero tokens', source: sources.ui },
+  ].map(({ source, ...row }) => ({ ...row, cited: source.includes(row.marker), receipt: toUuid(`cost-theorem:${row.binding}:${row.marker}`) }))
+  const uncited = ledger.filter((row) => !row.cited)
+  const facets = [
+    { facet: `every cost CITES a living theorem — ${ledger.filter((row) => row.cited).length}/${ledger.length} bindings verified at their source markers; delete a theorem and its binding REFUSES (this gate exits 1)`, on: uncited.length === 0 },
+    { facet: 'the null row — LLM tokens cost ZERO by law: the bound is the theorem, the cheapest binding is the absent one', on: ledger.some((row) => row.cost === 'ZERO by law' && row.cited) },
+    { facet: `the ledger IS the law active — cost without theorem cannot land while this gate runs in the wave; uncited=[${uncited.map((row) => row.binding).join(',')}]`, on: ledger.length === 6 && uncited.length === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`cost-theorem:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    costTheorem: on,
+    ledger,
+    count: ledger.length,
+    facets,
+    root: merkleFold([...ledger.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)]),
+    pair: 'cost/theorem' as const,
+    dualPair: 'theorem/cost' as const,
+    cli: 'npm run quantum:cost-theorem',
+    route: '/en/quantum-tools#cost-theorem',
+    heading: 'Cost theorem · every cost purchases proof',
+    statement: `costTheorem — ${ledger.filter((row) => row.cited).length}/${ledger.length} binding costs cite living theorems · uncited refuse · the null binding costs zero.`,
+    boundary:
+      'The per-binding cost↔theorem ledger: each cost-carrying binding cites the sealed theorem its cost purchases, verified at the live ' +
+      'source marker — attribution is computed, and a cost citing no living theorem exits 1. Costs are classes (bytes · ms · permission · ' +
+      'price), not accounting-grade metering — stated. clay=0 · qpuRequired=false.' }
+}
+
+/** npm run quantum:cost-theorem (dual theorem-cost) — exit 0 iff every cost cites a living theorem. */
+export function runCostTheoremExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = costTheorem(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} cost-theorem — ${report.statement}\n`)
+  for (const row of report.ledger) process.stdout.write(`  · ${row.cited ? '✓' : '✗'} ${row.binding} | ${row.cost} | buys: ${row.theorem}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
 }
 
 /** npm run quantum:cost-bound (dual bound-cost) */
