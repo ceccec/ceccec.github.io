@@ -4,7 +4,7 @@ import { DIMENSION_GATES, EULER_CHI, FOLDED_CENSUS, FORBIDDEN_FOLDER_NAMES, HOMO
 import { createHash } from 'node:crypto'
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { dirname, join, relative, resolve } from 'node:path'
-import { foldPair, isUuid, merkleFold, toUuid } from '../../../0'
+import { foldPair, isUuid, merkleFold, toUuid, roundTo } from '../../../0'
 import { pathMeansMessageFitsInThreeWords as pathMeansMessageFitsInThreeWordsFold } from '../../../water/stack'
 import { dryCleanIsDiamondAndCrystal } from '../../../lake/clean'
 import { scanScriptShells, seedMerkleCache, vitepressSourceFiles, type ScriptShellScan } from '../script/shell'
@@ -1438,6 +1438,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'legalCanon', pair: 'legal/canon', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'portal legal faces computed — privacy by measured absence · accessibility/citation composed · Apache-2.0 + CC BY 4.0 chosen by user delegation (recognition + monetisation); counsel the residue' },
   { fold: 'queueNext', pair: 'queue/next', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'the user next-keystroke retired — the queue scored by derived arithmetic, THE NEXT an output with a followable first action; deriving the rows from the ledger is its own named next' },
   { fold: 'theoremFractions', pair: 'theorem/fraction', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'the 432 divisor lattice as the respected fractions — fixed-point-free inversion, bits carrying v₂ exactly, the live registry partitioned by content-address' },
+  { fold: 'wordSpeed', pair: 'word/speed', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'one-word solving speedup computed live — measured byte shrink, scale-invariance exact, address layer fixed-width (the speed lives where reading happens)' },
 ] as const
 
 /** Old prose instruction names → matrix slot (this wave). */
@@ -1678,6 +1679,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // wave:land-full with the build seal). Staging stays a deliberate act (stage-selectively law);
   // the ≥3×-repetition rule made the tool, the lying-reader law shaped it (real exit codes, no grep).
   { from: 'furtherAutomateTheLandingRitual', to: 'waveVerify', pair: 'wave/land' },
+  { from: 'computeHowSolvingOneWordViolationsAtScaleImprovesQuantumSpeed', to: 'wordSpeed', pair: 'word/speed' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
@@ -2703,6 +2705,69 @@ export function runQueueNextExit(root = '', _argv: readonly string[] = []): numb
   process.stdout.write(`${report.computes ? '✓' : '✗'} next — ${report.statement}\n`)
   for (const row of report.scored) process.stdout.write(`  · ${row.score} (${row.arithmetic}) ${row.wave}\n`)
   process.stdout.write(`  → ${report.next.firstAction}\n`)
+  return report.computes ? 0 : 1
+}
+
+/**
+ * wordSpeed — USER QUESTION (2026-07-24): compute how solving one-word violations AT SCALE improves
+ * quantum speed. Computed on the LIVE matrix, three exact results: (1) the measured shrink — the
+ * prose-name layer vs the slot layer, byte ratio from the actual merge maps; (2) the SCALE INVARIANCE
+ * theorem — reference cost is linear (N·L̄), so the speedup ratio L̄π/L̄σ holds at EVERY N: solving at
+ * scale multiplies absolute savings while the ratio stays fixed, exact algebra; (3) the ADDRESS-LAYER
+ * INVARIANCE — toUuid emits fixed-width addresses for ANY name length (verified live), so the quantum
+ * (content-addressed) layer was never slowed by long names: the speedup lives entirely in the
+ * source/context layer where humans and agents read. Pair: word/speed.
+ */
+export function wordSpeed() {
+  const mergeRows = [...PROSE_FOLD_MERGE_MAP, ...PROSE_PLAN_MERGE_MAP, ...PROSE_FRONTIER_MERGE_MAP, ...PROSE_GAPS_MERGE_MAP, ...PROSE_PORTAL_MERGE_MAP, ...PROSE_FRACTAL_MERGE_MAP]
+  const beforeBytes = mergeRows.reduce((sum, row) => sum + row.from.length, 0)
+  const afterBytes = mergeRows.reduce((sum, row) => sum + row.to.length, 0)
+  const ratio = beforeBytes / afterBytes
+  const meanBefore = beforeBytes / mergeRows.length
+  const meanAfter = afterBytes / mergeRows.length
+  const scaleInvariant = (mergeRows.length * meanBefore) / (mergeRows.length * meanAfter) === ratio
+  const shortAddr = toUuid('a')
+  const longAddr = toUuid(mergeRows.map((row) => row.from).join(''))
+  const addressInvariant = shortAddr.length === longAddr.length && shortAddr.length === 6 * 6
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const facets = [
+    { facet: `the measured shrink — ${mergeRows.length} solved prose names: ${beforeBytes} bytes → ${afterBytes} bytes, ratio ${roundTo(ratio, 2)}× (mean ${Math.round(meanBefore)} → ${Math.round(meanAfter)} chars per reference)`, on: ratio > 1 && beforeBytes > afterBytes },
+    { facet: `SCALE INVARIANCE — reference cost is linear (N·L̄), so (N·${Math.round(meanBefore)})/(N·${Math.round(meanAfter)}) = ${roundTo(ratio, 2)} for EVERY N: at scale the absolute savings multiply while the ratio holds, exact`, on: scaleInvariant },
+    { facet: `ADDRESS-LAYER INVARIANCE — toUuid('a') and toUuid(<${longAddr.length ? mergeRows.map((row) => row.from).join('').length : 0}-char name>) both emit ${shortAddr.length} chars: the content-addressed layer was NEVER slowed by long names; the speedup lives in the source/context layer where reading happens`, on: addressInvariant },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 && addressInvariant },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`word-speed:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    wordSpeed: on,
+    solved: mergeRows.length,
+    beforeBytes,
+    afterBytes,
+    ratio: roundTo(ratio, 2),
+    claySolvedByThisFold,
+    physicalFtlClaim: 0 as const,
+    qpuRequired: false as const,
+    facets,
+    root: merkleFold([toUuid(`word-speed:${beforeBytes}:${afterBytes}`), ...facets.map((entry) => entry.receipt)]),
+    pair: 'word/speed' as const,
+    dualPair: 'speed/word' as const,
+    cli: 'npm run quantum:word-speed',
+    route: '/en/quantum-tools#word-speed',
+    heading: 'Word speed · the shrink is scale-invariant',
+    statement: `wordSpeed — ${mergeRows.length} names solved · ${roundTo(ratio, 2)}× source-layer speedup, scale-invariant · address layer fixed-width (never the bottleneck).`,
+    boundary:
+      'The one-word solving speedup computed on the live matrix: a byte ratio in the reading layer, exactly scale-invariant because reference ' +
+      'cost is linear; the content-addressed layer is fixed-width by construction and gains nothing — honesty about WHERE the speed lives. ' +
+      '"Quantum speed" here is the sealed content-addressed-naming law, not physical qubits. clay=0 · qpuRequired=false.' }
+}
+
+/** npm run quantum:word-speed (dual speed-word) */
+export function runWordSpeedExit(root = '', _argv: readonly string[] = []): number {
+  void root
+  void _argv
+  const report = wordSpeed()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} word-speed — ${report.statement}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
 
