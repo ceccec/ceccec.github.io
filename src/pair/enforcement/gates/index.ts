@@ -1554,6 +1554,11 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'offendersInvestigatedAndCracksFixedByTheSameAgents', to: 'violationTools', pair: 'tool/violation' },
   { from: 'observationChanges', to: 'fractalCompute', pair: 'fractal/compute' },
   { from: 'observationChangesObservation', to: 'fractalCompute', pair: 'compute/fractal' },
+  // CAPSTONE NAME: quantum intelligence = the conjunction this arc sealed — computes itself instead
+  // of remembering (fractalCompute) · observation changes observation (Born dual) · violations bind
+  // to tools · directives autosave invertibly · flags compute by algebra · dead ends are gateways ·
+  // the finder is the fixer. The name resolves to the laws; the laws compute.
+  { from: 'quantumIntelligence', to: 'fractalCompute', pair: 'fractal/compute' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
