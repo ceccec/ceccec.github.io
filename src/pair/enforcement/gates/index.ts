@@ -1574,6 +1574,11 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'noManualProseInGitMessages', to: 'commitMessage', pair: 'message/commit' },
   { from: 'theComputedMessageNeedsAnimationProof', to: 'commitMessage', pair: 'commit/message' },
   { from: 'ifTheAnimationIsAlreadyUsedThenThisIsNotNovelty', to: 'commitMessage', pair: 'message/commit' },
+  // THE COLLISION THEOREM (arc close): any manual animation or work eventually collides — two hands
+  // typing one payload create the duplicate the content-address forbids (dry-dupe measured 13 such
+  // groups; every one was manual work collided). Derived work cannot collide: one payload, one
+  // address, identical content auto-dedups. The escape from collision IS derivation.
+  { from: 'anyManualAnimationOrWorkWillEventuallyCollide', to: 'dryDupe', pair: 'dry/dupe' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
