@@ -328,6 +328,7 @@
     "quantum:torus-faces": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/double/index.ts runDoubleTorusFacesExit",
     "quantum:anim-core": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/double/index.ts runAnimationCoreExit",
     "quantum:life-torus": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/double/index.ts runLifeTorusExit",
+    "quantum:warn-fix": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runWarnFixExit",
     "quantum:violation-tools": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runViolationToolsExit",
     "quantum:install-surfaces": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runInstallSurfacesExit",
     "quantum:ui-proof": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runUiProofExit",

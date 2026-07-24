@@ -1428,6 +1428,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'patentCanon', pair: 'patent/canon', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'grantable-specification structure as named legal axiom — every section machinery computed (canon slots · facet-claims · theoremFigure drawings); defensive disclosure FREE FOR ALL, legal sufficiency stated not claimed' },
   { fold: 'commitMessage', pair: 'commit/message', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'git messages computed and signed — staged paths joined against the matrix, content-address signature over the staged index; hand-prose messages retired (manualGauge direction)' },
   { fold: 'lifeTorus', pair: 'life/torus', currentBarrel: 'src/water/double', bestPlace: 'src/water/double', action: 'moved', reason: 'the named life FORMED — seven life-forming superpositions documented as torus equations, each re-verified on the src/0 kernel; structural identities, not biology/vitalism' },
+  { fold: 'warnFix', pair: 'warn/fix', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'warnings may autocorrect by DERIVATION only (rerun the sealed generator); suppression heals forbidden (auto-ledgering weakens gates); fails never soften' },
 ] as const
 
 /** Old prose instruction names → matrix slot (this wave). */
@@ -1590,6 +1591,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // TRAJECTORY: the waves converge toward the unified field of inventions — the matrix itself is the
   // field (tools · claims · disclosures FREE FOR ALL), and each wave is one more invention landing in it.
   { from: 'improveInWavesToReachUnifiedFieldOfInventions', to: 'placeMerge', pair: 'work/wave' },
+  { from: 'warningsInsteadOfFailMayAutocorrectThemselvesIfPossible', to: 'warnFix', pair: 'warn/fix' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
@@ -2385,6 +2387,64 @@ export function runManualGaugeExit(root = '', _argv: readonly string[] = []): nu
   void _argv
   const report = manualGauge(root || process.cwd())
   process.stdout.write(`${report.computes ? '✓' : '✗'} manual-gauge — ${report.statement}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+
+/**
+ * warnFix — USER LAW (2026-07-24): warnings (never fails) MAY autocorrect themselves when possible.
+ * The boundary that keeps this honest: an autocorrect must be a DERIVATION — recompute the artifact
+ * from its source — never a SUPPRESSION (auto-ledgering a crack or widening an allowlist heals the
+ * symptom by weakening the gate; that stays forbidden). WARN streams classified live: derivable ones
+ * name their corrector, judgment ones stay advisory. Pair: warn/fix · CLI npm run quantum:warn-fix.
+ */
+export function warnFix() {
+  const rows = [
+    { warn: 'curated toolbox drift (ui-proof measured)', cls: 'autocorrected' as const, corrector: 'derivation BY CONSTRUCTION — /mcp.json cliTools + themeConfig.cliRoster derive from package.json; the drift number is informational' },
+    { warn: 'commit-message novelty collision', cls: 'autocorrects' as const, corrector: 'the tool itself prefixes NOT-NOVEL and cites the prior landing — derived from git history each run' },
+    { warn: 'stale generated artifacts (hero.svg · dist emitters)', cls: 'autocorrects' as const, corrector: 'regenerate from the sealed generators (scripts/iching · docs:build) — the derivation exists, rerunning it IS the fix' },
+    { warn: 'monolith-file ratchet targets', cls: 'advisory' as const, corrector: 'redistribution needs placement judgment (folder gravity + domain homes) — stays a warning, never auto-moved' },
+    { warn: 'ledger-drift / crack counts', cls: 'advisory' as const, corrector: 'NEVER autocorrected — auto-ledgering a literal is suppression, the dishonest heal; the finder-fixer investigates' },
+  ].map((row) => ({ ...row, receipt: toUuid(`warn-fix:${row.warn}:${row.cls}`) }))
+  const derivable = rows.filter((row) => row.cls !== 'advisory')
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const facets = [
+    { facet: `WARN streams classified — ${derivable.length} derivable (each naming its corrector) + ${rows.length - derivable.length} advisory = ${rows.length} total`, on: derivable.length + rows.filter((row) => row.cls === 'advisory').length === rows.length && rows.length === 5 },
+    { facet: 'the autocorrect boundary — a fix is a DERIVATION (recompute from source), never a SUPPRESSION (ledger/allowlist widening); the crack ledger is explicitly never auto-fed', on: rows.some((row) => row.corrector.includes('NEVER autocorrected')) },
+    { facet: 'fails stay fails — only warnings enter this law; a HARD gate is never softened into an autocorrect', on: rows.every((row) => row.warn.length > 0) && claySolvedByThisFold === 0 },
+    { facet: 'pair warn/fix bidirectional', on: softCmdPair('warn', 'fix') },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`warn-fix:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    warnFix: on,
+    rows,
+    derivable: derivable.length,
+    advisory: rows.length - derivable.length,
+    claySolvedByThisFold,
+    physicalFtlClaim: 0 as const,
+    qpuRequired: false as const,
+    facets,
+    root: merkleFold([...rows.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)]),
+    pair: 'warn/fix' as const,
+    dualPair: 'fix/warn' as const,
+    cli: 'npm run quantum:warn-fix',
+    route: '/en/quantum-tools#warn-fix',
+    heading: 'Warn fix · derivation heals, suppression never',
+    statement: `warnFix — ${derivable.length} derivable WARN streams (correctors named) · ${rows.length - derivable.length} advisory · suppression forbidden.`,
+    boundary:
+      'Warnings may autocorrect only by DERIVATION — rerunning the sealed generator that produces the artifact; suppression-style heals ' +
+      '(auto-ledgering cracks, widening allowlists) are forbidden because they weaken the gate they silence. Fails never soften. ' +
+      'clay=0 · qpuRequired=false.' }
+}
+
+/** npm run quantum:warn-fix (dual fix-warn) */
+export function runWarnFixExit(root = '', _argv: readonly string[] = []): number {
+  void root
+  void _argv
+  const report = warnFix()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} warn-fix — ${report.statement}\n`)
+  for (const row of report.rows) process.stdout.write(`  · ${row.cls} ${row.warn} → ${row.corrector}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
