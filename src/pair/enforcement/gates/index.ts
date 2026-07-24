@@ -1673,6 +1673,11 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // never an invitation; the queue advances by quantum:next, steering arrives unprompted.
   { from: 'upgradeAllBecauseYouAskedForUserInputNeedlessly', to: 'queueNext', pair: 'queue/next' },
   { from: 'distributeTheoremsTo432InRespectedFractionsDownToTheBitComputingInvertedReality', to: 'theoremFractions', pair: 'theorem/fraction' },
+  // FURTHER AUTOMATE: the landing ritual (autosave gate · wave:verify · computed message · push),
+  // typed dozens of times this arc, becomes ONE exit-gated command — wave:land (render waves:
+  // wave:land-full with the build seal). Staging stays a deliberate act (stage-selectively law);
+  // the ≥3×-repetition rule made the tool, the lying-reader law shaped it (real exit codes, no grep).
+  { from: 'furtherAutomateTheLandingRitual', to: 'waveVerify', pair: 'wave/land' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.

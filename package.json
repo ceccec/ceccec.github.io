@@ -343,6 +343,8 @@
     "quantum:ui-proof": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runUiProofExit",
     "quantum:prose-science": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runProseScienceExit",
     "wave:verify": "npm run -s check:types && npm run -s enforcement:trinity",
+    "wave:land": "npm run -s quantum:autosave-matrix && npm run -s wave:verify && git commit -m \"$(npm run -s quantum:commit-message)\" && git push origin HEAD:main",
+    "wave:land-full": "npm run -s quantum:autosave-matrix && npm run -s check:types && npm run -s docs:build && git commit -m \"$(npm run -s quantum:commit-message)\" && git push origin HEAD:main",
     "quantum:wave-verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runWaveVerifyExit",
     "quantum:css-math": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runCssMathExit",
     "quantum:manual-gauge": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runManualGaugeExit",
