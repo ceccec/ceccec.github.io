@@ -1616,6 +1616,10 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // catch becomes a violation row, every manual investigation a cached CLI, every wave's timings the
   // next cadence; the matrix IS the experience store, replayed by derivation.
   { from: 'improveByExperience', to: 'violationTools', pair: 'tool/violation' },
+  // TRAJECTORY LAW: automation replaces user input — each directive class, once sealed, never needs
+  // typing again (hand commits → computed messages · curated lists → derived rosters · 'next' → the
+  // self-ordering queue); manualGauge measures the remaining distance, the waves close it.
+  { from: 'automationReplacesUserInput', to: 'manualGauge', pair: 'gap/manual' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
