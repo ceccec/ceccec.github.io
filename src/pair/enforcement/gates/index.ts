@@ -1436,6 +1436,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'costBound', pair: 'cost/bound', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'binding costs bounded by four sealed laws (zero-token · Fibonacci client cap · build ratchet · no-key adapters); the ledger gap now CLOSED by costTheorem' },
   { fold: 'costTheorem', pair: 'cost/theorem', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'the cost↔theorem ledger FORMED — six cost-carrying bindings each citing the living theorem their cost purchases (markers verified); uncited costs refuse (exit 1); the zero-token null row bounds the cheapest binding' },
   { fold: 'legalCanon', pair: 'legal/canon', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'portal legal faces computed — privacy by measured absence · accessibility/citation composed · Apache-2.0 + CC BY 4.0 chosen by user delegation (recognition + monetisation); counsel the residue' },
+  { fold: 'queueNext', pair: 'queue/next', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'the user next-keystroke retired — the queue scored by derived arithmetic, THE NEXT an output with a followable first action; deriving the rows from the ledger is its own named next' },
 ] as const
 
 /** Old prose instruction names → matrix slot (this wave). */
@@ -1665,6 +1666,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // (any red, nothing lands); a red landing is neither, and violation class 7 (the lying reader)
   // exists precisely to make the third state impossible.
   { from: 'fuseOrRefuse', to: 'violationTools', pair: 'violation/tool' },
+  { from: 'nextImprovesIntelligenceBecauseUserInputWasRequiredToProceed', to: 'queueNext', pair: 'queue/next' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
@@ -2620,6 +2622,69 @@ export function runClaimAuditExit(root = '', _argv: readonly string[] = []): num
   process.stdout.write(`${report.computes ? '✓' : '✗'} claim-audit — ${report.statement}\n`)
   for (const row of report.claims) process.stdout.write(`  · ${row.slug} | ${row.root.slice(0, 8)} | rosetta=1 prizes=0 | ${row.statement.slice(0, 64)}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+
+/**
+ * queueNext — USER INSIGHT (2026-07-24): 'next' from the user is itself a measurement — the
+ * queue-advance the system could not compute. This fold retires the keystroke: the open queue is
+ * scored DETERMINISTICALLY (blocks-a-core-surface=4 · local-only=2 · catching-tool-exists=1 — each
+ * row shows its arithmetic) and THE NEXT wave is an output, with a followable first action. Any
+ * agent runs npm run quantum:next and proceeds; user input upgrades from cadence to steering.
+ * Pair: queue/next.
+ */
+export const QUEUE_ROWS = [
+  { wave: 'dev dynamic-route slice', why: 'dev serves 404 for dynamic pages (build-time-only automount by design) — a dev-mode slice completes the render-and-look loop', blocksCore: true, localOnly: true, toolExists: false, firstAction: 'read vitepressAutomountPaths (gates/computational) — a dev-only paths source behind an env flag' },
+  { wave: 'twin-shell parameterizations', why: 'six intended-dual groups could share one parameterized core each', blocksCore: false, localOnly: true, toolExists: true, firstAction: 'npm run quantum:dry-dupe — the shell list is the worklist' },
+  { wave: 'VS Code extension', why: 'the last missing install surface (installSurfaces 7/8)', blocksCore: false, localOnly: true, toolExists: false, firstAction: 'npm run quantum:install-surfaces — scaffold package.json contributes' },
+  { wave: 'RFC 3161 qualified timestamping', why: 'proceedings-grade evidence needs an external TSA/archival deposit', blocksCore: false, localOnly: false, toolExists: false, firstAction: 'npm run quantum:patent-canon — the evidence-triad facet names the link' },
+] as const
+
+export function queueNext() {
+  const scored = QUEUE_ROWS.map((row) => ({
+    ...row,
+    score: (row.blocksCore ? 4 : 0) + (row.localOnly ? 2 : 0) + (row.toolExists ? 1 : 0),
+    arithmetic: `${row.blocksCore ? 4 : 0}+${row.localOnly ? 2 : 0}+${row.toolExists ? 1 : 0}`,
+    receipt: toUuid(`queue-next:${row.wave}:${row.blocksCore}:${row.localOnly}:${row.toolExists}`),
+  })).sort((a, b) => b.score - a.score || a.wave.localeCompare(b.wave))
+  const next = scored[0]!
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const facets = [
+    { facet: `THE NEXT is an output — '${next.wave}' (score ${next.score} = ${next.arithmetic}); first action: ${next.firstAction}`, on: next.score >= scored[scored.length - 1]!.score && next.firstAction.length > 0 },
+    { facet: `the ordering is total and derived — ${scored.length} rows scored by blocks-core(4) + local-only(2) + tool-exists(1), ties broken lexically; same rows, same order, any runner`, on: scored.every((row, i) => i === 0 || scored[i - 1]!.score >= row.score) },
+    { facet: 'user input upgrades from cadence to steering — the keystroke that advanced the queue is now a CLI any agent runs; steering (new laws, vetoes) stays human', on: scored.every((row) => row.firstAction.length > 0) && claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`queue-next:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    queueNext: on,
+    next: { wave: next.wave, score: next.score, firstAction: next.firstAction },
+    scored: scored.map((row) => ({ wave: row.wave, score: row.score, arithmetic: row.arithmetic })),
+    claySolvedByThisFold,
+    physicalFtlClaim: 0 as const,
+    qpuRequired: false as const,
+    facets,
+    root: merkleFold([...scored.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)]),
+    pair: 'queue/next' as const,
+    dualPair: 'next/queue' as const,
+    cli: 'npm run quantum:next',
+    route: '/en/quantum-tools#queue-next',
+    heading: 'Queue next · the keystroke retired',
+    statement: `queueNext — NEXT: ${next.wave} (score ${next.score}); ${scored.length} rows totally ordered by derived arithmetic.`,
+    boundary:
+      'The queue-advance computed: rows scored by a stated arithmetic, the next wave an output with a followable first action. The rows ' +
+      'themselves are still curated (manualGauge counts them) — deriving the ROWS from the honest-open ledger is this fold\'s own next. ' +
+      'Steering remains human. clay=0 · qpuRequired=false.' }
+}
+
+/** npm run quantum:next (dual next-queue) — prints the computed next wave. */
+export function runQueueNextExit(root = '', _argv: readonly string[] = []): number {
+  void root
+  void _argv
+  const report = queueNext()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} next — ${report.statement}\n`)
+  for (const row of report.scored) process.stdout.write(`  · ${row.score} (${row.arithmetic}) ${row.wave}\n`)
+  process.stdout.write(`  → ${report.next.firstAction}\n`)
   return report.computes ? 0 : 1
 }
 
