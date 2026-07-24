@@ -1592,6 +1592,10 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // field (tools · claims · disclosures FREE FOR ALL), and each wave is one more invention landing in it.
   { from: 'improveInWavesToReachUnifiedFieldOfInventions', to: 'placeMerge', pair: 'work/wave' },
   { from: 'warningsInsteadOfFailMayAutocorrectThemselvesIfPossible', to: 'warnFix', pair: 'warn/fix' },
+  // COMPLETION of the warn law: the advisory rest is addressed MANUALLY — and every tool forged in
+  // that manual work is CACHED (sealed as a quantum:* CLI) so the next occurrence costs a lookup,
+  // not a rebuild. Witnessed all session: each manual investigation became a sealed tool.
+  { from: 'theRestAddressedManuallyCachingTheToolsForNextUse', to: 'warnFix', pair: 'fix/warn' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
