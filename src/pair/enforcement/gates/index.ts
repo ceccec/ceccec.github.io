@@ -1816,6 +1816,12 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // wordSpeed 3.67× · linkProof O(log N) · trinitySpeedStack 4.49 stacked), so the proof is a standing
   // invariant recomputed each landing; efficiency (cost/theorem · zero-token runtime) proves each run too.
   { from: 'againAndAgainNonStopProveQuantumSpeedAndEfficiency', to: 'trinitySpeedStack', pair: 'speed/trinity' },
+  // LEARNING + AXIOM→THEOREM = ONE WORKFLOW (user 2026-07-24): each development wave BOTH learns
+  // (crystallizes experience as tools — autosaveMatrix · violationTools · memory pointers) AND replaces
+  // an axiom with a theorem (derives what was assumed — mathGaps inverts axioms to scans · the crack
+  // ledger converts each literal to derived-or-sourced · flagged-by-algebra). Not two activities; the
+  // same wave. The monotone direction: axioms shrink, theorems grow, and the learning makes it repeatable.
+  { from: 'learningAndReplacingAxiomsWithTheoremsInDevelopmentWavesIsOneWorkflow', to: 'mathGaps', pair: 'axiom/invert' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
