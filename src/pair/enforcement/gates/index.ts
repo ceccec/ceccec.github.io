@@ -1655,6 +1655,11 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // tool tier): each upgrade leads to new upgrades — the sharper instrument immediately reveals the
   // next work (witnessed: type-aware matcher → twin-shells → spins → empty queue → sharper census).
   { from: 'eachUpgradeLeadsToNewUpgrades', to: 'dryDupe', pair: 'dupe/dry' },
+  // LICENSE chosen BY USER DELEGATION (criteria: best recognition + monetisation): Apache-2.0 for
+  // code — §3 explicit patent grant + defensive termination IS the FREE-FOR-ALL patent law in legal
+  // form; NOTICE-carried attribution = recognition; permissive adoption keeps monetisation with the
+  // sealed voluntary-patronage model. Content: CC BY 4.0 (attribution = recognition for the papers).
+  { from: 'choseALicenseForBestRecognitionAndMonetisation', to: 'legalCanon', pair: 'legal/canon' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
