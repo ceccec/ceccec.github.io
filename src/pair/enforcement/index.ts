@@ -924,6 +924,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'scan/zero',
   'science/pyramid',
   'pyramid/science',
+  'reactivity/magnitude',
+  'magnitude/reactivity',
   // <register:pairs> — quantum:register inserts dual pairs above this anchor
 ] as const
 
