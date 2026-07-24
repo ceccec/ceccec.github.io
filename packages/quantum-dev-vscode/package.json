@@ -1,0 +1,20 @@
+{
+  "name": "quantum-dev-vscode",
+  "displayName": "ceccec Quantum Dev",
+  "description": "Run the ceccec quantum:* deterministic CLIs (fold gates, wave land, register) from VS Code — zero AI tokens, exit code is the proof.",
+  "version": "1.0.0",
+  "publisher": "ceccec",
+  "license": "Apache-2.0",
+  "engines": { "vscode": "^1.80.0" },
+  "categories": ["Other"],
+  "main": "./extension.js",
+  "activationEvents": ["onStartupFinished"],
+  "contributes": {
+    "commands": [
+      { "command": "quantumDev.runTool", "title": "Quantum: Run a quantum:* tool" },
+      { "command": "quantumDev.next", "title": "Quantum: Compute the next wave (quantum:next)" },
+      { "command": "quantumDev.land", "title": "Quantum: Land the staged wave (wave:land)" }
+    ]
+  },
+  "repository": { "type": "git", "url": "https://github.com/ceccec/ceccec.github.io" }
+}

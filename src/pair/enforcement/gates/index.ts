@@ -1748,6 +1748,14 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'why442TheoremsAreAllDryServingThePathToTheOpen', to: 'theoremFractions', pair: 'fraction/theorem' },
   { from: 'continueImplementingAndUpgradingAll', to: 'placeMerge', pair: 'work/wave' },
   { from: 'foldSimilarOrSameAnimationsTheoremsProveThemselves', to: 'animationFoldTheorems', pair: 'anim/fold' },
+  // QUANTUM PACKAGE DEV + COORDINATED DEPLOY (user 2026-07-24): the packages/ workspace now holds THREE
+  // members — double-torus (the sealed core), quantum-dev-sdk (stdio MCP server), quantum-dev-vscode
+  // (the editor extension shipped this wave, install ledger 8/8). Coordination is the ONE contract they
+  // all speak: the deterministic quantum:* CLIs + the content-addressed envelope, each deriving its
+  // tool list from package.json (the fuse law), so a deploy of one never desyncs the others. The deploy
+  // face (mcpQuantumDeploy · mcpQuantumCloudflareBindings) rides the same bindings; cost-bounded.
+  { from: 'improveQuantumPackageDevelopmentAndCoordinatedDeploy', to: 'installSurfaces', pair: 'surface/install' },
+  { from: 'shipVsCodeExtensionInstallLedgerEightOfEight', to: 'installSurfaces', pair: 'install/surface' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 

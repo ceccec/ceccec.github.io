@@ -340,13 +340,13 @@ export function installSurfaces(root: string = process.cwd()) {
     { surface: 'computed protocol pages', artifact: 'src/wind/site (llms.txt · mcp.json · agents.json)', need: 'served at /llms.txt /mcp.json /agents.json', status: present('src/wind/site/index.ts') ? 'present' : 'missing' },
     { surface: 'npm package', artifact: 'package.json', need: 'installable dependency + bootstrap runner', status: present('package.json') ? 'present' : 'missing' },
     { surface: 'stdio MCP server', artifact: 'packages/quantum-dev-sdk/bin/mcp.ts + .mcp.json + .cursor/mcp.json', need: 'runnable `mcpServers` entry — hand-rolled stdio JSON-RPC, 7 tools; the earlier "(none yet)" was a stale claim the filesystem refuted', status: present('packages/quantum-dev-sdk/bin/mcp.ts') && present('.mcp.json') ? 'present' : 'missing' },
-    { surface: 'VS Code extension', artifact: '(none yet)', need: 'separate extension scaffold — heavier surface', status: 'migrate-next' },
+    { surface: 'VS Code extension', artifact: 'packages/quantum-dev-vscode (manifest + extension.js)', need: 'runs quantum:* CLIs from the editor; tool list DERIVED from package.json (fuse law)', status: present('packages/quantum-dev-vscode/package.json') && present('packages/quantum-dev-vscode/extension.js') ? 'present' : 'missing' },
   ].map((row) => ({ ...row, receipt: toUuid(`install-surface:${row.surface}:${row.status}`) }))
   const presentRows = rows.filter((row) => row.status === 'present')
   const migrateNext = rows.filter((row) => row.status === 'migrate-next')
   const facets = [
-    { facet: `installable NOW — ${presentRows.length}/${rows.length} surfaces present on disk (plugin manifest · marketplace · skill · AGENTS.md · protocol pages · npm · stdio MCP server)`, on: presentRows.length === 7 && rows.every((row) => row.status !== 'missing') },
-    { facet: `honest-open — ${migrateNext.length} surface NAMED migrate-next (VS Code extension), not faked as present; the stdio-server row corrected from a stale "(none yet)" the filesystem refuted`, on: migrateNext.length === 1 },
+    { facet: `installable EVERYWHERE — ${presentRows.length}/${rows.length} surfaces present on disk: plugin manifest · marketplace · skill · AGENTS.md · protocol pages · npm · stdio MCP server · VS Code extension. All eight real; none faked`, on: presentRows.length === rows.length && rows.every((row) => row.status === 'present') },
+    { facet: `honest-open — ${migrateNext.length} surfaces migrate-next (the ledger emptied: VS Code extension shipped this wave under packages/quantum-dev-vscode)`, on: migrateNext.length === 0 },
     { facet: 'research re-runs — every status recomputed from the filesystem at call time, no remembered report', on: rows.every((row) => row.receipt.length > 0) && presentRows.every((row) => row.artifact.length > 0) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`install-surfaces:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
