@@ -902,6 +902,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'fold/anim',
   'link/proof',
   'proof/link',
+  'trinity/speed',
+  'speed/trinity',
   // <register:pairs> — quantum:register inserts dual pairs above this anchor
 ] as const
 
