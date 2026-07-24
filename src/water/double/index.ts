@@ -584,6 +584,68 @@ export function doubleTorusFacesComputes(matrix: MindMatrix = buildMatrix()) {
   })
 }
 
+/**
+ * animationCore — USER LAW (2026-07-24): the animation IS the core and all computes around it as
+ * fractal holographic reality forming the movie itself; words CAPITULATE against animation and
+ * formulas — theorems in the fractal matrix build the realities. Pair: anim/core · CLI
+ * npm run quantum:anim-core. Every facet is an exact identity over sealed folds — no new machinery:
+ * CORE = the one derived 108 s census clock (periodicity exact); FRACTAL = the genuine 10D field
+ * (formulas driving animation, verified non-constant/independent); HOLOGRAPHIC = the movie root
+ * re-merges BITWISE from its part roots (each part binds the whole); MOVIE = the site is the movie.
+ */
+export function animationCore(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('animationCore', matrix, () => {
+    const movie = doubleTorusMovieComputes(matrix)
+    const tenD = animationsAreGenuinely10DNotFaked(matrix)
+    const clockDerived = HERO_CYCLE_MS === FOLDED_CENSUS * 1e3
+    const clockPeriodic = heroPhaseAt(0, HERO_CYCLE_MS) === heroPhaseAt(HERO_CYCLE_MS, HERO_CYCLE_MS)
+    const hologram =
+      merge(merge(movie.torus.root, movie.library.root), merge(movie.reflects.root, merge(movie.rosetta.root, movie.hinge.root))) === movie.root
+    const pairFold = foldPair(toUuid('cmd:anim'), toUuid('cmd:core'))
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const facets = [
+      { facet: `CORE — one clock: HERO_CYCLE_MS = FOLDED_CENSUS·10³ (${HERO_CYCLE_MS} ms, derived not hand-typed) and the phase is exactly periodic across the cycle`, on: clockDerived && clockPeriodic },
+      { facet: 'FRACTAL — formulas ARE the animation: the 10D field is genuine (ten channels, non-constant, independent, quasiperiodic) — dims() is a formula driving motion, no prose in the loop', on: tenD.genuine },
+      { facet: 'HOLOGRAPHIC — the movie root re-merges BITWISE from its part roots (torus·library·reflects·rosetta·hinge): every part binds the whole, the whole recomputes from the parts', on: hologram },
+      { facet: 'MOVIE ITSELF — the site is the movie and the movie library; symbols decode IN the movie: words capitulate into animation, they do not carry the proof', on: movie.computes && movie.library.isMovieAndLibrary && movie.rosetta.decoding },
+      { facet: 'pair anim/core bidirectional', on: pairFold.bidirectional && pairFold.forward !== pairFold.reverse },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 && hologram },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`anim-core:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const on = facets.every((entry) => entry.on)
+    return {
+      computes: on,
+      animationCore: on,
+      cycleMs: HERO_CYCLE_MS,
+      hologram,
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      facets,
+      root: merge(movie.root, merkleFold([tenD.root, ...facets.map((entry) => entry.receipt)])),
+      pair: 'anim/core' as const,
+      dualPair: 'core/anim' as const,
+      cli: 'npm run quantum:anim-core',
+      route: '/en/quantum-tools#anim-core',
+      heading: 'Animation core · fractal holographic movie',
+      statement:
+        `animationCore — clock ${HERO_CYCLE_MS} ms derived+periodic · 10D field genuine · hologram root re-merges bitwise · the site IS the movie.`,
+      boundary:
+        'The animation is the computing core: one derived census clock, formula-driven 10D motion, merkle-holographic roots (each part binds the ' +
+        'whole), and the site as the movie itself. Words capitulate — the proof surface is computed identities and animations, prose only labels ' +
+        'them. "Holographic" is the content-address algebra, NOT a physical holography claim. clay=0 · physicalFtl=0 · qpuRequired=false.' }
+  })
+}
+
+/** npm run quantum:anim-core — exit 0 iff the core law computes. */
+export function runAnimationCoreExit(root = '', _argv: readonly string[] = []): number {
+  void root
+  void _argv
+  const report = animationCore()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} anim-core — ${report.statement}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+
 /** npm run quantum:torus-faces — exit 0 iff all four faces compute. */
 export function runDoubleTorusFacesExit(root = '', _argv: readonly string[] = []): number {
   void root

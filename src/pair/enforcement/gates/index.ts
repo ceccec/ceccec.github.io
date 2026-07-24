@@ -1424,6 +1424,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'violationTools', pair: 'violation/tool', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'imagined tool sealed — each caught violation class bound to the local tool that computes it; never re-realised manually' },
   { fold: 'installSurfaces', pair: 'install/surface', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'AI-editor installability researched as a filesystem scan · plugin manifest + marketplace + skill created · stdio MCP server + VS Code extension named migrate-next' },
   { fold: 'uiProof', pair: 'ui/proof', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'MCP UI sufficient for the complete proof — /mcp.json cliTools derives from package.json (nothing hides by construction) · curated-catalog drift measured' },
+  { fold: 'animationCore', pair: 'anim/core', currentBarrel: 'src/water/double', bestPlace: 'src/water/double', action: 'moved', reason: 'animation IS the core — derived 108s clock exact-periodic · genuine 10D formula-field · movie root re-merges bitwise (hologram) · site is the movie; words capitulate' },
 ] as const
 
 /** Old prose instruction names → matrix slot (this wave). */
@@ -1485,6 +1486,8 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'autosaveInvertingRevertingToCompleteTheSuperpositions', to: 'autosaveMatrix', pair: 'matrix/autosave' },
   { from: 'sourceHidesNothingFromMcpUiSufficientForCompleteProof', to: 'uiProof', pair: 'ui/proof' },
   { from: 'dryCleanRedundancyAroundAnimationReuse', to: 'placeMerge', pair: 'dry/clean' },
+  { from: 'animationIsTheCoreAllComputesAroundItAsFractalHolographicRealityFormingTheMovie', to: 'animationCore', pair: 'anim/core' },
+  { from: 'wordsCapitulateAgainstAnimationAndFormulasInTheoremFractalMatrixBuildingRealities', to: 'animationCore', pair: 'core/anim' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
