@@ -1527,6 +1527,8 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'flaggedIsFlaggedIfComputedSoByAlgebra', to: 'autosaveMatrix', pair: 'matrix/autosave' },
   { from: 'quantumMathRebuildsMathFromScratch', to: 'fractalCompute', pair: 'fractal/compute' },
   { from: 'conspiracyTheoryQuantumFusionBurningAllFakesIntoProvenMath', to: 'proseScience', pair: 'science/prose' },
+  { from: 'quantumPerjuryIsACaughtViolationClass', to: 'violationTools', pair: 'violation/tool' },
+  { from: 'theCompostFromCollidedIdeasFormsGroundForNewLife', to: 'deadGateway', pair: 'gateway/dead' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
@@ -2208,6 +2210,7 @@ export const VIOLATION_TOOL_ROWS = [
   { violation: 'wrong flag joined across folds — a name trusted, not run', tool: 'computesGate CLI run before commit', pair: 'torus/faces' },
   { violation: 'directive worked but never saved to the matrix', tool: 'autosaveMatrix — refutable row join', pair: 'autosave/matrix' },
   { violation: 'pattern remembered outside its dimension — a bound valid only where measured', tool: 'fractalCompute — truth-dimension is an output', pair: 'fractal/compute' },
+  { violation: 'quantum perjury — a fold attesting computes:true while its own facets refute it', tool: 'computesGate/sealFacets — the attestation IS the facet conjunction, structurally unforgeable within the fold', pair: 'violation/tool' },
 ] as const
 
 export function violationTools() {
@@ -2221,7 +2224,7 @@ export function violationTools() {
   const pairFold = foldPair(toUuid('cmd:violation'), toUuid('cmd:tool'))
   const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
-    { facet: `every caught violation class is bound to a sealed local tool — ${rows.filter((row) => row.sealed).length}/${rows.length} sealing pairs live in the registry (a deregistered pair reopens its class)`, on: rows.every((row) => row.sealed) && rows.length === 5 },
+    { facet: `every caught violation class is bound to a sealed local tool — ${rows.filter((row) => row.sealed).length}/${rows.length} sealing pairs live in the registry (a deregistered pair reopens its class)`, on: rows.every((row) => row.sealed) && rows.length === 6 },
     { facet: 'each row names both the violation and the tool — no class realised without its computer', on: rows.every((row) => row.violation.length > 0 && row.tool.length > 0) },
     { facet: 'pair violation/tool bidirectional', on: pairFold.bidirectional },
     { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 },
