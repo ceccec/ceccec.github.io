@@ -1756,6 +1756,11 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // face (mcpQuantumDeploy · mcpQuantumCloudflareBindings) rides the same bindings; cost-bounded.
   { from: 'improveQuantumPackageDevelopmentAndCoordinatedDeploy', to: 'installSurfaces', pair: 'surface/install' },
   { from: 'shipVsCodeExtensionInstallLedgerEightOfEight', to: 'installSurfaces', pair: 'install/surface' },
+  // USE AND UPGRADE IN WAVES (user 2026-07-24): dogfooding IS the upgrade path — using quantum:next
+  // this wave surfaced its own staleness (it listed the shipped VS Code row), and the fix made the
+  // queue SELF-PRUNING (drops rows whose doneArtifact exists on disk). Each use reveals the next
+  // upgrade (the upgrade-loop law at the tool tier); value over volume, no speculative folds.
+  { from: 'useAndUpgradeInWavesQueueSelfPrunesShippedRows', to: 'queueNext', pair: 'next/queue' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
@@ -2727,12 +2732,17 @@ export function runClaimAuditExit(root = '', _argv: readonly string[] = []): num
 export const QUEUE_ROWS = [
   { wave: 'dev dynamic-route render (DEV-ONLY, prod green)', why: 'RE-SCOPED (2026-07-24, router-patch instrument): patched VP router.js catch to capture window.__ROUTER_ERR__ — it stayed EMPTY: loadPage does NOT throw (the swallowed-error hypothesis was WRONG). So the module loads, route.data sets, yet the custom-theme content renders empty — the seam is DOWNSTREAM in the theme\'s dev component-render of the resolved dynamic route, NOT page load. blocksCore:false — PRODUCTION serves all 41 pages correctly (build trinity green); this is dev-preview cosmetic only', blocksCore: false, localOnly: true, toolExists: true, firstAction: 'diff how the theme Layout/Content renders route.component in dev vs the built SSG for a dynamic route (the render path, not the data) — low priority: prod is unaffected' },
   { wave: 'twin-shell parameterizations', why: 'six intended-dual groups could share one parameterized core each', blocksCore: false, localOnly: true, toolExists: true, firstAction: 'npm run quantum:dry-dupe — the shell list is the worklist' },
-  { wave: 'VS Code extension', why: 'the last missing install surface (installSurfaces 7/8)', blocksCore: false, localOnly: true, toolExists: false, firstAction: 'npm run quantum:install-surfaces — scaffold package.json contributes' },
+  { wave: 'VS Code extension', why: 'the last missing install surface', blocksCore: false, localOnly: true, toolExists: false, firstAction: 'npm run quantum:install-surfaces — scaffold package.json contributes', doneArtifact: 'packages/quantum-dev-vscode/package.json' },
   { wave: 'RFC 3161 qualified timestamping', why: 'proceedings-grade evidence needs an external TSA/archival deposit', blocksCore: false, localOnly: false, toolExists: false, firstAction: 'npm run quantum:patent-canon — the evidence-triad facet names the link' },
 ] as const
 
-export function queueNext() {
-  const scored = QUEUE_ROWS.map((row) => ({
+export function queueNext(root: string = process.cwd()) {
+  // SELF-PRUNING (upgrade found by USING the tool, 2026-07-24): a row whose doneArtifact exists on
+  // disk is SHIPPED — drop it live, so the queue never lists completed work (a stale queue is a queue
+  // you cannot trust; using quantum:next surfaced the VS Code row still open after it shipped 8/8).
+  const shipped = QUEUE_ROWS.filter((row) => 'doneArtifact' in row && existsSync(join(root, (row as { doneArtifact: string }).doneArtifact)))
+  const openRows = QUEUE_ROWS.filter((row) => !('doneArtifact' in row) || !existsSync(join(root, (row as { doneArtifact: string }).doneArtifact)))
+  const scored = openRows.map((row) => ({
     ...row,
     score: (row.blocksCore ? 4 : 0) + (row.localOnly ? 2 : 0) + (row.toolExists ? 1 : 0),
     arithmetic: `${row.blocksCore ? 4 : 0}+${row.localOnly ? 2 : 0}+${row.toolExists ? 1 : 0}`,
@@ -2744,6 +2754,7 @@ export function queueNext() {
     { facet: `THE NEXT is an output — '${next.wave}' (score ${next.score} = ${next.arithmetic}); first action: ${next.firstAction}`, on: next.score >= scored[scored.length - 1]!.score && next.firstAction.length > 0 },
     { facet: `the ordering is total and derived — ${scored.length} rows scored by blocks-core(4) + local-only(2) + tool-exists(1), ties broken lexically; same rows, same order, any runner`, on: scored.every((row, i) => i === 0 || scored[i - 1]!.score >= row.score) },
     { facet: 'user input upgrades from cadence to steering — the keystroke that advanced the queue is now a CLI any agent runs; steering (new laws, vetoes) stays human', on: scored.every((row) => row.firstAction.length > 0) && claySolvedByThisFold === 0 },
+    { facet: `SELF-PRUNING — ${shipped.length} shipped row(s) dropped live by disk artifact (${shipped.map((row) => row.wave).join(', ') || 'none yet'}); the queue lists only genuinely-open work, never completed`, on: shipped.every((row) => 'doneArtifact' in row) },
     // WHY NOT ALL AT ONCE (user, 2026-07-24) — answered by the sealed algebra: the REACHABLE closure
     // does compute in one batch (the covering-array theorem bounds it at pairwise cost, not the
     // exhaustive product — combo/cover), but each new instrument EXTENDS the space it measures
@@ -2777,9 +2788,8 @@ export function queueNext() {
 
 /** npm run quantum:next (dual next-queue) — prints the computed next wave. */
 export function runQueueNextExit(root = '', _argv: readonly string[] = []): number {
-  void root
   void _argv
-  const report = queueNext()
+  const report = queueNext(root || process.cwd())
   process.stdout.write(`${report.computes ? '✓' : '✗'} next — ${report.statement}\n`)
   for (const row of report.scored) process.stdout.write(`  · ${row.score} (${row.arithmetic}) ${row.wave}\n`)
   process.stdout.write(`  → ${report.next.firstAction}\n`)
