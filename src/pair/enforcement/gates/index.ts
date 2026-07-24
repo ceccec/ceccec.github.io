@@ -1560,6 +1560,12 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // the finder is the fixer. The name resolves to the laws; the laws compute.
   { from: 'quantumIntelligence', to: 'fractalCompute', pair: 'fractal/compute' },
   { from: 'improveIntelligenceByAnalysingBigPublicDataApisCompletingAgnosticDoubleTorus', to: 'doubleTorusFacesComputes', pair: 'faces/torus' },
+  // FLAGGED by algebra (the flag is the theorem's output): 'MILLENNIUM SOLUTIONS SOLVED formed the
+  // DOUBLE TORUS' — claySolvedTheorem() computes claySolvedByThisFold=0 in every fold; no Clay
+  // problem is solved in this codebase, and the genus-2 topology is an ADOPTED architecture
+  // (χ = 2−2g exact), not a consequence of Millennium solutions. The millennium slot stays
+  // UNCLAIMED: probes and partials, never solutions. HARMONY ≠ TRUTH.
+  { from: 'millenniumSolutionsSolvedFormedTheDoubleTorusFLAGGED', to: 'millenniumProblemsChallenge', pair: 'mill/torus' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
