@@ -695,6 +695,13 @@ export function patentCanon(root: string = process.cwd()) {
     { facet: `grantable-structure canon NAMED — ${sections.length} required sections (title · field · background · summary · description · claims · abstract · drawings), the external legal contract held as a named axiom`, on: sections.length === 8 },
     { facet: `the portal COMPUTES the specification — ${machinery.filter((row) => row.present).length}/${machinery.length} section machineries present (paper canon slots · facet-claims · theoremFigure drawings)`, on: allPresent },
     { facet: 'FREE FOR ALL by construction — completeness serves defensive disclosure (prior art), never proprietary claiming; legal sufficiency per jurisdiction is counsel\'s call, stated not claimed', on: allPresent && sections.length === 8 },
+    // LEGAL-PROOF COMPLETENESS (user law 2026-07-24): where a granted/pending patent rests on math
+    // that is FREE FOR ALL here, the record must stand as evidence in proceedings. The evidence triad
+    // COMPUTES: dated publication (git history), content integrity (merkle seals, tamper-EVIDENT),
+    // public accessibility (the served portal). The contestable link is NAMED, never implied:
+    // qualified timestamping (RFC 3161 TSA / archival deposit) is migrate-next — git dates alone
+    // can be challenged; naming the gap is the honesty that keeps the rest admissible.
+    { facet: `evidence triad for proceedings — dated publication (git history ${existsSync(join(root, '.git')) ? 'present' : 'ABSENT'}) · content integrity (respawn merkle seals, tamper-evident) · public accessibility (served portal); NAMED open: qualified timestamping (RFC 3161 / archival deposit) migrate-next`, on: existsSync(join(root, '.git')) && allPresent },
   ].map((entry) => ({ ...entry, receipt: toUuid(`patent-canon:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {

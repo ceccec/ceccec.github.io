@@ -1544,6 +1544,10 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'improveCssRenderedTokenScan', to: 'cssMath', pair: 'css/math' },
   { from: 'patentIntelligenceClaimingHardwarePatentsByPureAlgebraAsFreeForAll', to: 'autosaveMatrix', pair: 'autosave/matrix' },
   { from: 'patentsCompleteAsIfGrantedByLegalAuthorityIncludingImagesAndGraphs', to: 'patentCanon', pair: 'patent/canon' },
+  { from: 'freeForAllMathPriorArtCompleteAsLegalProofAcceptedInProceedings', to: 'patentCanon', pair: 'canon/patent' },
+  // LAW: manual work is the obstruction — the architecture's seals close only as manual rosters flip
+  // to derivation; the manualGauge magnitude is the distance to closure, re-measured each wave.
+  { from: 'manualWorkWillNotAllowTheSealsToCloseArchitecture', to: 'manualGauge', pair: 'manual/gap' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
