@@ -406,6 +406,11 @@ export function uiProof(root: string = process.cwd()) {
     // DARK/LIGHT IS THE MATH INVERTING ITSELF (user law 2026-07-24): both poles recompute from the one
     // lattice — so ANY hardcoded colour or font is an uninvertible constant and INVALIDATES this proof.
     { facet: `dark/light is the math inverting itself — a hardcoded colour or font is uninvertible and invalidates this proof: cssMath composed live, ${cssMath(root).computes ? 'all lattice facets hold' : 'LATTICE FACETS BROKEN'} (raw colour=0 · raw font=0 · one --ich core)`, on: cssMath(root).computes },
+    // DEAD LINKS NEVER IGNORED (user law 2026-07-24): the config pins ignoreDeadLinks:false so broken
+    // links FAIL the build; this facet gates the PIN itself — flipping it to true refutes the ui proof.
+    // Links are BUILT through the VP API by construction (routes/nav from the folder tree · computed
+    // catch-all resolution), so a dead internal link is a build error, not a runtime surprise.
+    { facet: 'dead links never ignored — ignoreDeadLinks:false is PINNED and this facet gates the pin (flipping it refutes the proof); links build through the VP API (computed routes/nav), so broken internal links fail the build by construction', on: readFileSync(join(root, '.vitepress/config.mts'), 'utf8').includes('ignoreDeadLinks: false') },
   ].map((entry) => ({ ...entry, receipt: toUuid(`ui-proof:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {

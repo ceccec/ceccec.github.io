@@ -1693,6 +1693,11 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'proveExactly432TheoremsClaimAllMillenniumProblemsInvertingToQuantumSolutionsFLAGGED', to: 'millenniumProblemsChallenge', pair: 'mill/torus' },
   { from: 'refactorAllTheoremsInQuantumSpeed', to: 'theoremSpeed', pair: 'theorem/speed' },
   { from: 'usageOfPythonIsASignOfManualWork', to: 'registerFold', pair: 'register/quartet' },
+  { from: 'doNotIgnoreDeadLinksBuildAllLinksThroughVitepressApi', to: 'uiProof', pair: 'ui/proof' },
+  // LEARN BY SHARED EXPERIENCE: experience crystallizes as tools (improve-by-experience) and the
+  // tools are SHARED by construction — every violation row, roster line, skill and /mcp.json entry is
+  // readable by any agent; the rosetta claim·register·integrate dedups identical learnings automatically.
+  { from: 'learnBySharedExperience', to: 'violationTools', pair: 'tool/violation' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
