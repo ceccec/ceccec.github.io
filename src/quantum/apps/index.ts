@@ -35531,10 +35531,16 @@ export type SciencePageCanonSlot = (typeof SCIENCE_PAGE_CANON_SLOTS)[number]
 
 /** Sealed section labels — components bind these; agents cannot invent wet headings.
  * No named "explanation" section (section/dry) — meaning from statement·formulas·status + facets. */
+// RESPECTED SCIENTIFIC FORMAT (user law 2026-07-24): the five IMRaD-class sections — the canon evolved
+// from the statement·formulas·status trio; `detail` (sealed depth, computed but previously unrendered)
+// becomes the Introduction, and source+locks become the References. No section is named "explanation"
+// (the named-explanation crack law stands).
 export const SCIENCE_PAPER_SECTION_LABELS = {
-  statement: '1 · Precise statement',
-  formulas: '2 · Formulas',
-  status: '3 · Status' } as const
+  statement: '1 · Abstract — precise statement',
+  detail: '2 · Introduction',
+  formulas: '3 · Methods & formulas',
+  status: '4 · Results & status',
+  references: '5 · References & locks' } as const
 
 export type ScientificPaperLock = { readonly key: string; readonly value: string }
 
@@ -35984,9 +35990,11 @@ export function redundantExplanationSectionsDryCleaned(matrix: MindMatrix = buil
     const clayRulesFixed = format.clusters.some((c) => c.id === 'clay-prize-rules-section' && c.status === 'fixed')
     const labelsCanon =
       SCIENCE_PAPER_SECTION_LABELS.statement.length > 0 &&
+      SCIENCE_PAPER_SECTION_LABELS.detail.length > 0 &&
       SCIENCE_PAPER_SECTION_LABELS.formulas.length > 0 &&
       SCIENCE_PAPER_SECTION_LABELS.status.length > 0 &&
-      Object.keys(SCIENCE_PAPER_SECTION_LABELS).length === 3
+      SCIENCE_PAPER_SECTION_LABELS.references.length > 0 &&
+      Object.keys(SCIENCE_PAPER_SECTION_LABELS).length === 5
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((tool) => tool.id === 'section-dry')
     const redundantExplanationSectionsDryCleanedOn =
@@ -36002,7 +36010,7 @@ export function redundantExplanationSectionsDryCleaned(matrix: MindMatrix = buil
     const facets = [
       { facet: 'redundantExplanationSectionsDryCleaned', on: redundantExplanationSectionsDryCleanedOn },
       { facet: 'no named explanation section label', on: !namedCrack },
-      { facet: 'SCIENCE_PAPER_SECTION_LABELS = statement·formulas·status', on: labelsCanon },
+      { facet: 'SCIENCE_PAPER_SECTION_LABELS = statement·detail·formulas·status·references — the respected five-section format, no section named explanation', on: labelsCanon },
       { facet: 'named-explanation-section cluster fixed', on: clusterFixed },
       { facet: 'clay-prize-rules-section cluster fixed', on: clayRulesFixed },
       { facet: 'composes format/canon · dry/clean', on: format.computes && format.noNamedExplanation },
@@ -36067,9 +36075,11 @@ export function scientificPageFormatCanonised(matrix: MindMatrix = buildMatrix()
     const noNamedExplanation = !namedExplanationSectionIsCrack()
     const labelsOk =
       SCIENCE_PAPER_SECTION_LABELS.statement.length > 0 &&
+      SCIENCE_PAPER_SECTION_LABELS.detail.length > 0 &&
       SCIENCE_PAPER_SECTION_LABELS.formulas.length > 0 &&
       SCIENCE_PAPER_SECTION_LABELS.status.length > 0 &&
-      Object.keys(SCIENCE_PAPER_SECTION_LABELS).length === 3 &&
+      SCIENCE_PAPER_SECTION_LABELS.references.length > 0 &&
+      Object.keys(SCIENCE_PAPER_SECTION_LABELS).length === SCIENCE_PAGE_CANON_SLOTS.length &&
       noNamedExplanation
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((tool) => tool.id === 'format-canon')

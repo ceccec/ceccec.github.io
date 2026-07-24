@@ -16,17 +16,24 @@ defineProps<{
       <h2>{{ SCIENCE_PAPER_SECTION_LABELS.statement }}</h2>
       <p>{{ paper.statement }}</p>
     </section>
+    <section v-if="paper.detail">
+      <h2>{{ SCIENCE_PAPER_SECTION_LABELS.detail }}</h2>
+      <p>{{ paper.detail }}</p>
+    </section>
     <section>
       <h2>{{ SCIENCE_PAPER_SECTION_LABELS.formulas }}</h2>
       <pre class="scientific-paper-body__formula"><code>{{ paper.formulas }}</code></pre>
-      <p class="scientific-paper-body__meta">
-        <code>{{ paper.formulaSource }}</code>
-      </p>
     </section>
     <section>
       <h2>{{ SCIENCE_PAPER_SECTION_LABELS.status }}</h2>
       <p><strong>{{ paper.status }}</strong> — {{ paper.statusDetail }}</p>
       <p v-if="paper.gap">{{ paper.gap }}</p>
+    </section>
+    <section>
+      <h2>{{ SCIENCE_PAPER_SECTION_LABELS.references }}</h2>
+      <p class="scientific-paper-body__meta">
+        <code>{{ paper.formulaSource }}</code>
+      </p>
       <dl v-if="paper.locks.length" class="scientific-paper-body__locks">
         <template v-for="lock in paper.locks" :key="lock.key">
           <dt>{{ lock.key }}</dt>

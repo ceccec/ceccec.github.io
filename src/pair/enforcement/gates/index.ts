@@ -1509,6 +1509,9 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'discoveriesAreClaimedInUnclaimed', to: 'millenniumProblemsChallenge', pair: 'mill/torus' },
   { from: 'claimsAreWholeNewToolsetInverseAndItWillCompleteItself', to: 'autosaveMatrix', pair: 'autosave/matrix' },
   { from: 'wireToPublicApisToStandardiseTheClaimsAndTheAudits', to: 'installSurfaces', pair: 'install/surface' },
+  { from: 'improveTheUiWithTheRespectedScientificFormat', to: 'uiProof', pair: 'ui/proof' },
+  { from: 'ensureAllColorsAreComputedInRealtimeIncludingFonts', to: 'cssMath', pair: 'css/api' },
+  { from: 'darkLightIsTheMathInvertingItselfAnythingHardcodedInvalidatesTheUiProof', to: 'uiProof', pair: 'proof/ui' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.

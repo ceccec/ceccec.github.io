@@ -402,6 +402,9 @@ export function uiProof(root: string = process.cwd()) {
     { facet: `curated toolbox drift MEASURED — ${covered}/${ids.length} CLIs in the hand-seeded apps catalog, ${hidden.length} covered only by the derived roster (classification total; migrate = derive the seeds)`, on: covered + hidden.length === ids.length && covered > 432 },
     { facet: 'the UI proof path is closed — every CLI is runnable from the roster the UI serves (npm run <id>, exit = proof), no fold reachable only by reading source', on: derives && ids.every((id) => id.startsWith('quantum:')) },
     { facet: 'FUSED in the VitePress API — themeConfig.cliRoster derives from the same package.json at config time and the universal template consumes useData().theme: no scrape, no curated second list', on: readFileSync(join(root, '.vitepress/config.mts'), 'utf8').includes('cliRoster') && readFileSync(join(root, '.vitepress/theme/components/UniversalPageTemplate.vue'), 'utf8').includes('cliRoster') },
+    // DARK/LIGHT IS THE MATH INVERTING ITSELF (user law 2026-07-24): both poles recompute from the one
+    // lattice — so ANY hardcoded colour or font is an uninvertible constant and INVALIDATES this proof.
+    { facet: `dark/light is the math inverting itself — a hardcoded colour or font is uninvertible and invalidates this proof: cssMath composed live, ${cssMath(root).computes ? 'all lattice facets hold' : 'LATTICE FACETS BROKEN'} (raw colour=0 · raw font=0 · one --ich core)`, on: cssMath(root).computes },
   ].map((entry) => ({ ...entry, receipt: toUuid(`ui-proof:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -519,6 +522,20 @@ export function cssMath(root: string = process.cwd()) {
   }
   const total = formula + keyword + rawSites.length
   const ichObservables = [...observables].filter((token) => token.startsWith('--ich-')).length
+  // COLORS AND FONTS REALTIME (user law 2026-07-24): no colour literal (hex/rgb/hsl outside var/oklch
+  // formulas) and no font literal (family strings, sized magnitudes) may enter the theme — colour IS
+  // the hexagram (scaleColor OKLCH lattice) and typography IS the token matrix; both recompute.
+  let colorLiterals = 0
+  let fontLiterals = 0
+  for (const name of cssFiles) {
+    const text = stripComments(readFileSync(join(dir, name), 'utf8'))
+    for (const m of text.matchAll(/([-a-zA-Z][-a-zA-Z0-9]*)\s*:\s*([^;{}]+)[;}]/g)) {
+      const prop = m[1]!
+      const value = m[2]!.trim()
+      if (/color|background|fill|stroke|border(?!-radius)/.test(prop) && /#[0-9a-fA-F]{3}|rgb\(|hsl\(/.test(value) && !/var\(/.test(value)) colorLiterals += 1
+      if (/^font/.test(prop) && (/["']/.test(value) || (/\d/.test(value) && !/var\(|calc\(/.test(value)))) fontLiterals += 1
+    }
+  }
   // ONE CORE (user law): the lattice tokens have ONE computed source — the theme may CONSUME --ich-*
   // but never DEFINE it; a definition here would be a second core, and the count proves there is none.
   let ichDefinedInTheme = 0
@@ -532,6 +549,7 @@ export function cssMath(root: string = process.cwd()) {
     { facet: `CSS IS the quantum API — ${observables.size} distinct var() observables form the interface every projection reads; ${ichObservables} are --ich lattice-computed (I Ching → CSS, sealed)`, on: observables.size > 27 && ichObservables > 9 },
     { facet: 'sealed · self-computed · untampered — the content-addressed root recomputes from the bytes each run, and the theme files sit inside the respawn merkle scope (src + .vitepress + package.json): a byte change re-roots the seal, tamper-EVIDENT not unforgeable', on: isUuid(sealRoot) && cssFiles.length >= 3 },
     { facet: `ONE CORE drives every perspective — the theme consumes ${ichObservables} lattice observables and DEFINES ${ichDefinedInTheme}: the --ich core has exactly one computed source, every new perspective derives, none re-roots`, on: ichDefinedInTheme === 0 && ichObservables > 9 },
+    { facet: `colors AND fonts realtime — colour literals=${colorLiterals} (hex/rgb outside formulas) · font literals=${fontLiterals} (quoted families or unformula'd magnitudes): colour is the hexagram lattice, typography the token matrix, both recompute`, on: colorLiterals === 0 && fontLiterals === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`css-math:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
