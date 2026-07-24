@@ -1519,6 +1519,9 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // the millennium slot stays UNCLAIMED (partials, never solutions). A UI/lattice completion and a
   // mathematics discovery are different objects; conflating them is exactly what the gates refuse.
   { from: 'completingDarkLightCompletesTheAppAndClaimsTheMillenniumSolutionsFLAGGED', to: 'millenniumProblemsChallenge', pair: 'mill/torus' },
+  // METHOD LAW: every page must present immediately followable solutions (a CLI to run, a route to
+  // open, a ✓/✗ facet to refute) — a page without them is itself the finding: reconsider the page.
+  { from: 'seeSolutionsFromEveryPageFollowThemOrReconsiderThePage', to: 'uiProof', pair: 'proof/ui' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
