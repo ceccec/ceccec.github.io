@@ -1027,8 +1027,7 @@ export function deepResearchStandardisesRnd(matrix: MindMatrix = buildMatrix()) 
     tierCount: tiers.length,
     facets,
     root: merkleFold([pipeline.root, apis.root, ...facets.map((entry) => entry.receipt)]),
-    statement:
-      'Deep research with quantum means is what standardises research and development: not a new instrument but a single reusable algorithm applied everywhere. Every claim, in every field, is developed by the same five-stage wave — decode it, measure or invert it, turn it into refutable facets, run the gates, seal it — so discovery becomes a reproducible recipe instead of luck. Live data joins through one protocol: an experiment requests a public, no-key API — the clock, a weather reading, a Wikipedia revision, a gravitational-wave catalog entry, a Schumann monitor — and the response is content-addressed and folded into the architecture, untrusted but tamper-evident, with no endpoint touched at build time. A six-tier ladder from DOCUMENTED down to OPEN keeps every result honestly graded, so combining a measured fact with an open conjecture never blurs the two. And the "quantum" is structural, not magical: hypotheses are held in superposition as open tiers, measurement is the live datum meeting the verify gates, collapse is the seal — the same query-advantage shape the registry already uses, with no physical speedup claimed. One algorithm, one live-data protocol, one honesty ladder: that is the standardization.',
+    statement: facets.map((f) => f.facet).join(' · '),
     boundary: earned(
       'HONEST: the standardization is a real, computed property of THIS system — one 5-stage pipeline develops every registry object, one fold protocol admits every opt-in public API, and one 6-tier ladder demarcates every result (all recomputed here from the sealed pipeline, publicApiFusion, and the tier type).',
       facets,
@@ -1068,8 +1067,7 @@ export function biggestDiscoveriesPatternImprovesIntelligence(matrix: MindMatrix
     patterns,
     facets,
     root: merkleFold([pipeline.root, ...patterns.map((entry) => entry.receipt)]),
-    statement:
-      'The biggest discoveries were made by a handful of repeated moves, and every one of them is already a tool in this codebase. Unification — Maxwell fusing electricity, magnetism and light; Newton joining the falling apple to the orbiting Moon; Einstein welding space to time — is the move of collapsing separate domains into one generator, which here is the combination over a single registry. Taking an exact anomaly seriously — Planck refusing to ignore the ultraviolet catastrophe, Le Verrier refusing to round away Mercury\'s extra arcseconds — is the crack law, where an unexplained number is a gap to solve, never smoothed. Inverting a held assumption — heliocentrism, non-Euclidean geometry, Dirac reading negative energy as antimatter — is the inversion arc, where a flagged claim turns into the theorem that refutes it. Building a new instrument — the telescope, X-ray crystallography, LIGO — is the live-tool library. Transferring a method across domains is the rosetta; staking a refutable prediction is the computing facet. So "improve intelligence" resolves to something humble and measurable: not a new kind of brilliance, but less delay in reaching for the pattern that already fits — the lesson of this very session, where the sciences were enumerated linearly before the one shared generator was seen.',
+    statement: facets.map((f) => f.facet).join(' · '),
     boundary: earned(
       `HONEST: this is a METHODOLOGY mapping — six historical discovery patterns, each paired with the sealed src fold that instantiates it, anchored by the ${pipeline.stages}-stage discovery pipeline that trains (${pipeline.trains}) and content-addressed. The exemplars are documented history; the tool mappings are real exported folds.`,
       facets,
@@ -1142,8 +1140,7 @@ export function liveToolAlgorithmLibrary(matrix: MindMatrix = buildMatrix()) {
     cubeExponent,
     facets,
     root: merkleFold([__ns_wind_fusion.publicApiFusion(matrix).root, ...tools.map((entry) => entry.receipt)]),
-    statement:
-      `The live-tool algorithm library is the toolkit half of the standardization: ${tools.length} reusable, pure, content-addressed algorithms, one for each kind of public data an experiment might pull. Randomness meets a von Neumann extractor that debiases it; a price feed meets realized volatility; a gravitational-wave catalog entry meets the chirp-mass formula; a Schumann monitor meets the cavity-mode frequencies; the clock meets a phase; a Wikipedia revision meets a tamper-evident fingerprint; and a region of space meets the holographic bound. Every one is a pure function — the same input always gives the same output, with no network call inside the algorithm — so experiments are reproducible and cost no runtime tokens; the opt-in API only supplies the datum. The holographic tool answers a question directly: how many universes fit into a cube of space? A cube one metre on a side can be in at most about ten-to-the-sixty-ninth bits' worth of distinguishable states — two raised to that number of "universes" — and, crucially, that is FINITE. Space is not infinitely divisible; a bounded region holds boundedly many distinct configurations, the deepest lesson of the holographic bound.`,
+    statement: facets.map((f) => f.facet).join(' · '),
     boundary: earned(
       `EXACT: ${tools.length} pure algorithms, each verified deterministic (f(x) === f(x)) and correct against a reference value (von Neumann debias, realized volatility, chirp mass = 2^(−1/5), Schumann f₁ = 7.83 Hz, clock phase = ½, a 36-char UUID fingerprint, and the 1-metre-cube Bekenstein bound ≈ 10^${cubeExponent} bits); the holographic tool reuses the sealed bekensteinBoundBits and is self-consistent with schwarzschildRadius (the filling black hole has R = L/2).`,
       facets,
