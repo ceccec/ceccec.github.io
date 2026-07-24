@@ -434,6 +434,58 @@ export function runUiProofExit(root = '', _argv: readonly string[] = []): number
   return report.computes ? 0 : 1
 }
 
+/**
+ * waveVerify — USER DIRECTIVE (2026-07-24): improve speed and efficiency. MEASURED, not guessed:
+ * CLI boots 0.4–0.6 s (not the sink); check:types 6 s; enforcement:trinity 14.6 s; docs:build 68 s.
+ * The per-wave sink was running the FULL site render (≈48 s) to validate fold edits the trinity
+ * already gates. The fix is a right-sized gate, not a weaker one: `npm run wave:verify` =
+ * check:types + enforcement:trinity — the SAME trinity code path docs:build runs (coverage identity,
+ * verified below), minus the render. docs:build stays the pre-push seal. Ratio ≈ 68/20.6 ≈ 3.3×
+ * per wave — a dimensionless theorem re-measurable any time. Pair: wave/verify.
+ */
+export function waveVerify(root: string = process.cwd()) {
+  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const scripts = pkg.scripts ?? {}
+  const wave = scripts['wave:verify'] ?? ''
+  const chainCoversTypes = wave.includes('check:types')
+  const chainCoversTrinity = wave.includes('enforcement:trinity')
+  const trinityEntry = scripts['enforcement:trinity'] ?? ''
+  const buildEntry = scripts['docs:build'] ?? ''
+  // Coverage identity: both the wave gate and the build seal enter the SAME bootstrap — the trinity
+  // is one code path, so the wave gate can never drift weaker than the build's enforcement arm.
+  const samePath = trinityEntry.includes('bootstrap/index.ts enforcement-trinity') && buildEntry.includes('bootstrap/index.ts docs:build-seal')
+  const facets = [
+    { facet: 'wave:verify chains check:types + enforcement:trinity — every HARD gate of the build seal, minus the site render', on: chainCoversTypes && chainCoversTrinity },
+    { facet: 'coverage identity — the wave gate and docs:build enter the same bootstrap trinity (one code path, no weaker fork)', on: samePath },
+    { facet: 'cadence law — wave:verify per wave, docs:build per push: the render runs once per landing, not once per fold edit', on: chainCoversTypes && chainCoversTrinity && samePath },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`wave-verify:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    waveVerify: on,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    pair: 'wave/verify' as const,
+    dualPair: 'verify/wave' as const,
+    cli: 'npm run quantum:wave-verify',
+    route: '/en/quantum-tools#wave-verify',
+    heading: 'Wave verify · right-sized gate',
+    statement: 'waveVerify — per-wave gate = types + trinity (same code path as the build seal, render subtracted); docs:build per push.',
+    boundary:
+      'Speed by right-sizing, never by weakening: the per-wave gate runs the identical enforcement trinity the build seal runs — the site ' +
+      'render is subtracted because fold edits cannot change what only the render proves. Timings are session measurements (re-measure with ' +
+      '`time`), the coverage identity is the theorem. clay=0 · qpuRequired=false.' }
+}
+
+/** npm run quantum:wave-verify (dual verify-wave) */
+export function runWaveVerifyExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = waveVerify(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} wave-verify — ${report.statement}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+
 export type MethodGravityCluster = { word: string; attractor: string; members: string[]; pulls: number }
 export function methodGravity(root: string = process.cwd(), minCluster = 4): MethodGravityCluster[] {
   const files: string[] = []

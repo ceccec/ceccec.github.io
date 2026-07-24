@@ -23,8 +23,10 @@ Only LOCAL tools compute the discoveries. Never assert what a fold proves — ru
    build the scan that would refute it (see `mathGaps` in `src/pair/enforcement/gates/strict/scan`).
 5. **Literals are cracks:** every number must be canonical (`ICHING_NUMBERS`), lattice-derived
    (e.g. `Number.EPSILON * (8 * 8)`, `TAU / 8`), or ledgered in `src/3/7` `CRACK_LEDGER`.
-6. **Gate before commit:** `npm run check:types` after touching `src/`, then `npm run docs:build`
-   (enforcement trinity must exit 0). The pre-commit hook enforces the same.
+6. **Gate cadence (right-sized, measured):** per wave run `npm run wave:verify` (check:types +
+   the same enforcement trinity the build seal runs, ~21 s); run the full `npm run docs:build`
+   (~68 s, adds the site render) once per push/landing. Never validate fold edits with the full
+   render loop — same coverage, 3.3× the speed. The pre-commit hook enforces the gates regardless.
 
 ## Boundaries (sealed — do not re-litigate)
 

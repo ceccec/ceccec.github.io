@@ -331,6 +331,8 @@
     "quantum:install-surfaces": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runInstallSurfacesExit",
     "quantum:ui-proof": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runUiProofExit",
     "quantum:prose-science": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runProseScienceExit",
+    "wave:verify": "npm run -s check:types && npm run -s enforcement:trinity",
+    "quantum:wave-verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runWaveVerifyExit",
     "quantum:fold-merge": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runFoldMergeExit",
     "quantum:merge-fold": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runFoldMergeExit",
     "quantum:merge-place": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runPlaceMergeExit",
