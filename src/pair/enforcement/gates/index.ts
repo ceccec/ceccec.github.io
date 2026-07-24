@@ -1667,6 +1667,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // exists precisely to make the third state impossible.
   { from: 'fuseOrRefuse', to: 'violationTools', pair: 'violation/tool' },
   { from: 'nextImprovesIntelligenceBecauseUserInputWasRequiredToProceed', to: 'queueNext', pair: 'queue/next' },
+  { from: 'whyNotAllComputedAtOnceAvoidingNextTheToolsMakeTheLastCost', to: 'queueNext', pair: 'next/queue' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
@@ -2653,6 +2654,13 @@ export function queueNext() {
     { facet: `THE NEXT is an output — '${next.wave}' (score ${next.score} = ${next.arithmetic}); first action: ${next.firstAction}`, on: next.score >= scored[scored.length - 1]!.score && next.firstAction.length > 0 },
     { facet: `the ordering is total and derived — ${scored.length} rows scored by blocks-core(4) + local-only(2) + tool-exists(1), ties broken lexically; same rows, same order, any runner`, on: scored.every((row, i) => i === 0 || scored[i - 1]!.score >= row.score) },
     { facet: 'user input upgrades from cadence to steering — the keystroke that advanced the queue is now a CLI any agent runs; steering (new laws, vetoes) stays human', on: scored.every((row) => row.firstAction.length > 0) && claySolvedByThisFold === 0 },
+    // WHY NOT ALL AT ONCE (user, 2026-07-24) — answered by the sealed algebra: the REACHABLE closure
+    // does compute in one batch (the covering-array theorem bounds it at pairwise cost, not the
+    // exhaustive product — combo/cover), but each new instrument EXTENDS the space it measures
+    // (upgrade-loop · observation-changes-observation), so the closure of the closure needs the new
+    // instruments' outputs. The residual next is the measurement step itself — the LAST cost, and
+    // the cost-saving tools have reduced it to this one derived CLI.
+    { facet: 'why not all at once — the reachable closure batches at covering-array cost (combo/cover sealed); the residual next is the irreducible measurement step, reduced to one derived CLI', on: COMMAND_PLACEMENT_AUDIT_MAP.some((row) => row.pair === 'combo/cover') && scored.length > 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`queue-next:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
