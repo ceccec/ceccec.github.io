@@ -1718,6 +1718,21 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // the cheapest AI call is the one the deterministic tool made unnecessary.
   { from: 'deepResearchWaysToFurtherDecreaseAiBill', to: 'costBound', pair: 'bound/cost' },
   { from: 'nextTowardsClayGreaterThanZero', to: 'clayProbe', pair: 'clay/probe' },
+  // MANUAL MEASURING FINDS REAL GAPS (user law 2026-07-24): the automated gates report structural
+  // zero (deadGateway 39/39 · uiAudit 40/40) yet manual measuring surfaced the router seam, the
+  // Riemann–Siegel accuracy limit, the semantic-depth residue — REAL gaps the gates could not see.
+  // A gate measures what is ALREADY measurable; manual measuring finds the NEXT thing to make
+  // measurable (the upgrade loop at the gate tier). So manual work is not only residue to derive
+  // away (manualGauge) — it is the gap-DISCOVERY frontier, and each manual gap found becomes the
+  // next gate. Never trust a green gate as proof of NO gaps; measure by hand past it.
+  { from: 'manualMeasuringAndAnalysisShowsRealGaps', to: 'manualGauge', pair: 'manual/gap' },
+  // "ALL QUANTUM" — DEMARCATED (user 2026-07-24: cybersecurity/biology work is all quantum): what
+  // COMPUTES is the sealed sense — every domain reduces to content-addressed folds (cybersecurity =
+  // the crypto/tamper-evidence mesh + the crack/gate discipline; biology = the genetic code as the
+  // real 4³=64, the emergence ladder, life-torus) all riding the ONE envelope. What is FLAGGED is
+  // the physical sense: this is the content-addressed-naming metaphor (discrete unit + Hilbert +
+  // Born), NOT physical qubits — no domain here runs on a QPU (qpuRequired=false everywhere).
+  { from: 'cybersecurityOrBiologyWorkIsAllQuantumDemarcated', to: 'bindFuse', pair: 'bind/fuse' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
