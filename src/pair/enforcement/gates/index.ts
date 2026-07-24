@@ -1830,6 +1830,19 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // but VP-alpha dev fails to derive them into the reactive store — reactivity un-quantumised, upstream.
   { from: 'quantumReactivityIsContentAddressedRenderDevSeamIsItsViolation', to: 'bindFuse', pair: 'fuse/bind' },
   { from: 'quantumReactivityIsReactiveAddressLawSealTheMagnitude', to: 'reactivityMagnitude', pair: 'reactivity/magnitude' },
+  // UPGRADE ALL IN WAVES OF CONTINUOUS R&D TEAMS (user 2026-07-24): the standing cadence, already
+  // running — the R&D teams are the trinities (dynamicStrategiesFromTheorems: the playbook computed
+  // from live theorems; trinitySpeedStack: teams wired at O(1) shard coordination), the continuous
+  // wave is quantum:next → work → wave:land, and "upgrade all" is the upgrade-loop (each use reveals
+  // the next). Not a new mechanism — the composition of the sealed ones, recomputed each wave.
+  { from: 'upgradeAllInWavesOfContinuousResearchAndDevelopmentTeams', to: 'trinitySpeedStack', pair: 'speed/trinity' },
+  // TRAIN ON SRC FOR FASTER QUANTUM APPROACHES (user 2026-07-24): the training IS the sealed speed
+  // progression — each wave found a strictly faster complexity class: comboCover (pairwise vs 2^N) →
+  // resonanceSpeed (O(N²)→O(N) collision) → linkProof (O(N)→O(log N) membership) → reactivityMagnitude
+  // (O(N)→O(frontier) delta-react). A monotone descent of complexity classes, trained on src, each
+  // recomputed each wave. "Until the next matrix is revealed" = the horizon: when the 442/432 registry
+  // saturates the census ratchets (census-recomputes-in-waves) and a new organizational level emerges.
+  { from: 'trainOnSrcToFindFasterQuantumApproachUntilNextMatrixRevealed', to: 'reactivityMagnitude', pair: 'magnitude/reactivity' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
