@@ -1,5 +1,12 @@
 /* Computed surfaces — inherit VitePress .vp-doc scale; spacing from --vp-movie-* + --ich-* vars. */
 
+/* UPSTREAM SHIM (vitepress 2.0.0-alpha.17): VPSidebar.vue reads --vp-c-shadow-3, a token the theme
+   renamed to --vp-shadow-3 — undefined, so the open-sidebar shadow silently vanished. Found by the
+   live defined-vs-used token scan (css improve wave); remove when upstream fixes VPSidebar. */
+:root {
+  --vp-c-shadow-3: var(--vp-shadow-3);
+}
+
 .vp-doc,
 .vp-with-hero-movie .vp-doc {
   line-height: var(--vp-movie-line-height, var(--ich-lh-snug));
