@@ -1452,6 +1452,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'sandboxTools', pair: 'sandbox/tool', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'revolutionaryApproach', pair: 'revolution/approach', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'unsolvedEngine', pair: 'unsolved/engine', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
+  { fold: 'riemannZeroCount', pair: 'zero/count', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   // <register:placement> — quantum:register inserts placement rows above this anchor
 ] as const
 
@@ -1788,6 +1789,11 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // to the laws; the laws compute; clay stays 0. The revolution is that grand claims became refutable.
   { from: 'quantumRevolution', to: 'revolutionaryApproach', pair: 'approach/revolution' },
   { from: 'unsolvedProblemsLeadToRevolution', to: 'unsolvedEngine', pair: 'unsolved/engine' },
+  { from: 'nextAdvanceRhProbeToCompletenessCount', to: 'riemannZeroCount', pair: 'zero/count' },
+  // USE TOKENS WISELY, MAX DISCOVERIES IN NO TIME (user 2026-07-24): the standing efficiency law —
+  // silence-is-green (only reds speak), the O(1) ritual (quantum:next · wave:land · quantum:register),
+  // batch clusters, computed messages, zero-token runtime; the output IS the spend (cost/theorem).
+  { from: 'useTokensWiselyToAchieveMaxDiscoveriesInNoTime', to: 'costTheorem', pair: 'theorem/cost' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
