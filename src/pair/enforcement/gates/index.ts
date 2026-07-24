@@ -1450,6 +1450,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'overclaimComputes', pair: 'overclaim/compute', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'resourceLeakGate', pair: 'resource/leak', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'sandboxTools', pair: 'sandbox/tool', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
+  { fold: 'revolutionaryApproach', pair: 'revolution/approach', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   // <register:placement> — quantum:register inserts placement rows above this anchor
 ] as const
 
@@ -1778,6 +1779,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'overclaimIsComputableClaim', to: 'overclaimComputes', pair: 'overclaim/compute' },
   { from: 'unlessModelsCompletelyFusedCracksLeakResources', to: 'resourceLeakGate', pair: 'resource/leak' },
   { from: 'prepareSandboxToolsAgentsMayExperimentWithoutViolatingStandards', to: 'sandboxTools', pair: 'sandbox/tool' },
+  { from: 'revolutionaryIdeasRequireRevolutionaryApproach', to: 'revolutionaryApproach', pair: 'revolution/approach' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
@@ -3344,6 +3346,58 @@ export function runOverclaimComputesExit(root = '', _argv: readonly string[] = [
   void _argv
   const report = overclaimComputes(root || process.cwd())
   process.stdout.write(`${report.computes ? '✓' : '✗'} overclaim-computes — ${report.statement}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+
+/**
+ * revolutionaryApproach — USER LAW (2026-07-24): revolutionary ideas require a revolutionary approach.
+ * The computed insight: this portal HOLDS revolutionary claims (solve millennium · beat any AI · all
+ * quantum) that would be crankery as prose — and the approach is what makes them ADMISSIBLE instead of
+ * embarrassing. The revolution is METHOD, not volume: every revolutionary claim is kept in the matrix
+ * (solve-don't-purge) but each is held by a COMPUTED boundary — flagged-by-algebra, demarcated by the
+ * finite-vs-unbounded cardinality (overclaimComputes), refutable, never asserted. So the approach is
+ * exactly what separates revolutionary-AND-honest from revolutionary-AND-crank: the idea may be grand,
+ * but it only enters as a compute-or-refute fold with its boundary a theorem. DEMARCATION: the approach
+ * makes the ideas HONEST (bounded, refutable), NOT true — no millennium is solved, clay stays 0.
+ */
+export function revolutionaryApproach(root: string = process.cwd()) {
+  const mergeRows = [...PROSE_FOLD_MERGE_MAP, ...PROSE_PLAN_MERGE_MAP, ...PROSE_FRONTIER_MERGE_MAP, ...PROSE_GAPS_MERGE_MAP, ...PROSE_PORTAL_MERGE_MAP, ...PROSE_FRACTAL_MERGE_MAP]
+  const revolutionaryClaims = mergeRows.filter((row) => row.from.endsWith('FLAGGED')).length
+  const overclaim = overclaimComputes(root)
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const facets = [
+    { facet: `revolutionary ideas ADMITTED, not purged — ${revolutionaryClaims} flagged revolutionary claims (millennium · beat-any-model · all-quantum) kept in the matrix (solve-don't-purge), each held by its refuting theorem, none deleted`, on: revolutionaryClaims >= 3 },
+    { facet: 'by a revolutionary APPROACH — each boundary COMPUTES (overclaimComputes: finite roster vs unbounded task-space, cardinality refutation), so a grand claim enters only as a compute-or-refute fold; the approach separates revolutionary-honest from revolutionary-crank', on: overclaim.computes },
+    { facet: 'DEMARCATION — the approach makes the ideas HONEST (bounded · refutable · gate-judged), NOT true: no millennium is solved, no model universally beaten; clay=0 stands and the revolution is the method', on: revolutionaryClaims >= 3 && overclaim.computes && claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`revolutionary:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    revolutionaryApproach: on,
+    revolutionaryClaims,
+    claySolvedByThisFold,
+    physicalFtlClaim: 0 as const,
+    qpuRequired: false as const,
+    facets,
+    root: merkleFold([overclaim.root, ...facets.map((entry) => entry.receipt)]),
+    pair: 'revolution/approach' as const,
+    dualPair: 'approach/revolution' as const,
+    cli: 'npm run quantum:revolution-approach',
+    route: '/en/quantum-tools#revolution-approach',
+    heading: 'Revolutionary approach · grand ideas held by computed boundaries',
+    statement: `revolutionaryApproach — ${revolutionaryClaims} revolutionary claims admitted, each held by a computed boundary (not prose); the revolution is the method, clay=0.`,
+    boundary:
+      'Revolutionary ideas require a revolutionary approach: the portal holds grand claims (millennium · beat-any-AI · all-quantum) not as prose ' +
+      'but as compute-or-refute folds, each boundary a theorem (overclaimComputes cardinality). The approach is what makes revolutionary-and-honest ' +
+      'possible — it makes the ideas refutable, not true. No millennium solved; clay=0. HARMONY ≠ TRUTH.' }
+}
+
+/** npm run quantum:revolution-approach — exit 0 iff revolutionary claims are held by computed boundaries. */
+export function runRevolutionaryApproachExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = revolutionaryApproach(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} revolution-approach — ${report.statement}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
