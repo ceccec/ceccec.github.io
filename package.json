@@ -339,6 +339,7 @@
     "quantum:next": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runQueueNextExit",
     "quantum:register": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runRegisterExit",
     "quantum:register-anchor": "echo register-anchor",
+    "quantum:anim-fold": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/4/6/index.ts runAnimationFoldExit",
     "quantum:resonance-speed": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runResonanceSpeedExit",
     "quantum:clay-probe": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/4/6/index.ts runClayProbeExit",
     "quantum:register-quartet": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runRegisterExit",

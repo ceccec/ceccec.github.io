@@ -1443,6 +1443,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'registerFold', pair: 'register/quartet', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'clayProbe', pair: 'clay/probe', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'resonanceSpeed', pair: 'resonance/speed', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
+  { fold: 'animationFoldTheorems', pair: 'anim/fold', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   // <register:placement> — quantum:register inserts placement rows above this anchor
 ] as const
 
@@ -1735,6 +1736,18 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // Born), NOT physical qubits — no domain here runs on a QPU (qpuRequired=false everywhere).
   { from: 'cybersecurityOrBiologyWorkIsAllQuantumDemarcated', to: 'bindFuse', pair: 'bind/fuse' },
   { from: 'deepResearchHowResonanceImprovesQuantumSpeedInMagnitudes', to: 'resonanceSpeed', pair: 'resonance/speed' },
+  // WHY 442? — MEASURED (2026-07-24): the theorem registry (THEOREM_ATOM_SEED) holds 442 entries, ALL
+  // UNIQUE (zero duplicate names → DRY at the content-address layer, confirmed by dryDupe on the code).
+  // 442 = 432 + 10: 432 is the harmonic DIMENSION seal (425 base + 7 I Ching scales, dimensions.emerge.
+  // within:432); the theorem POPULATION is a living count (theoremsAreLivingOrganisms) sitting 10 above
+  // that seal — a different lattice (theorems address INTO the 432/64³ cube, capacity 2¹⁸, not equal to
+  // it). ARE ALL DRY SERVING THE PATH TO THE OPEN: yes — 442/442 unique, every candidate name maps to a
+  // registry theorem, and the registry composes toward the frontiers (cosmosFrontiersDecoded ·
+  // millenniumProblemsChallenge · clayProbe the newest rung toward RH). The 10-over-432 is the honest
+  // OPEN: reconcile by ratcheting the harmonic seal (census-recomputes-in-waves) or by the growth law.
+  { from: 'why442TheoremsAreAllDryServingThePathToTheOpen', to: 'theoremFractions', pair: 'fraction/theorem' },
+  { from: 'continueImplementingAndUpgradingAll', to: 'placeMerge', pair: 'work/wave' },
+  { from: 'foldSimilarOrSameAnimationsTheoremsProveThemselves', to: 'animationFoldTheorems', pair: 'anim/fold' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
@@ -2704,7 +2717,7 @@ export function runClaimAuditExit(root = '', _argv: readonly string[] = []): num
  * Pair: queue/next.
  */
 export const QUEUE_ROWS = [
-  { wave: 'dev dynamic-route: VP loadPage internals', why: 'EVIDENCE COMPLETE except one point (2026-07-24): paths 39/39 · module serves with __pageData.params.universal AND a render that resolveComponent(UniversalPageTemplate)s (all proven by live import) · the component is registered · driving router.go() directly STILL renders the empty doc (no 404 text, no resolve warning, the component setup NEVER runs — a tpl-probe console.warn is planted and never fires): the failure is inside VP-alpha.17\'s loadPage/route-swap path, whose catch silences /fetch/ errors', blocksCore: true, localOnly: true, toolExists: true, firstAction: 'temporarily patch node_modules vitepress client router.js catch to rethrow-log (dev only), reproduce once, read the exact swallowed error — and check VP repo issues for alpha dynamic-route dev regressions (named external axiom)' },
+  { wave: 'dev dynamic-route render (DEV-ONLY, prod green)', why: 'RE-SCOPED (2026-07-24, router-patch instrument): patched VP router.js catch to capture window.__ROUTER_ERR__ — it stayed EMPTY: loadPage does NOT throw (the swallowed-error hypothesis was WRONG). So the module loads, route.data sets, yet the custom-theme content renders empty — the seam is DOWNSTREAM in the theme\'s dev component-render of the resolved dynamic route, NOT page load. blocksCore:false — PRODUCTION serves all 41 pages correctly (build trinity green); this is dev-preview cosmetic only', blocksCore: false, localOnly: true, toolExists: true, firstAction: 'diff how the theme Layout/Content renders route.component in dev vs the built SSG for a dynamic route (the render path, not the data) — low priority: prod is unaffected' },
   { wave: 'twin-shell parameterizations', why: 'six intended-dual groups could share one parameterized core each', blocksCore: false, localOnly: true, toolExists: true, firstAction: 'npm run quantum:dry-dupe — the shell list is the worklist' },
   { wave: 'VS Code extension', why: 'the last missing install surface (installSurfaces 7/8)', blocksCore: false, localOnly: true, toolExists: false, firstAction: 'npm run quantum:install-surfaces — scaffold package.json contributes' },
   { wave: 'RFC 3161 qualified timestamping', why: 'proceedings-grade evidence needs an external TSA/archival deposit', blocksCore: false, localOnly: false, toolExists: false, firstAction: 'npm run quantum:patent-canon — the evidence-triad facet names the link' },
