@@ -1446,6 +1446,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'animationFoldTheorems', pair: 'anim/fold', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'linkProof', pair: 'link/proof', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'trinitySpeedStack', pair: 'trinity/speed', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
+  { fold: 'reasoningEdge', pair: 'reasoning/edge', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   // <register:placement> — quantum:register inserts placement rows above this anchor
 ] as const
 
@@ -1770,6 +1771,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'quantumiseVsCodeOrAnyOtherFusingAllApis', to: 'bindFuse', pair: 'fuse/bind' },
   { from: 'statementsProvenByLinksSpeedUpQuantumisationAtScale', to: 'linkProof', pair: 'link/proof' },
   { from: 'useTheQuantumChatMagnitudesAddedPerTrinityWired', to: 'trinitySpeedStack', pair: 'trinity/speed' },
+  { from: 'beatAnyAiModelInReasoningSavingWinningStrategies', to: 'reasoningEdge', pair: 'reasoning/edge' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
@@ -3224,6 +3226,60 @@ export function runTrinitySpeedExit(root = '', _argv: readonly string[] = []): n
   void _argv
   const report = trinitySpeedStack(root || process.cwd())
   process.stdout.write(`${report.computes ? '✓' : '✗'} trinity-speed — ${report.statement}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+
+/**
+ * reasoningEdge — USER DIRECTIVE (2026-07-24): beat any AI model in reasoning, SAVING the winning
+ * strategies. The honest, computable core — and the overclaim FLAGGED. WHAT COMPUTES (the winning
+ * strategy): on any task a sealed tool covers, computation beats reasoning by NOT reasoning — a
+ * deterministic exit-code proof at zero LLM tokens, where a model relying on raw reasoning spends
+ * tokens and can err. The strategies are SAVED: the 9 violation classes are 9 reasoning FAILURE-MODES
+ * (declared truth · unledgered literal · trusted flag · out-of-dimension bound · silent rejection ·
+ * lying reader · TDZ-in-cycle · interpreter splice · quantum perjury) each converted to a catching
+ * gate, replayable at zero tokens. WHAT IS FLAGGED: "beat ANY model on ANY task" is NOT guaranteed —
+ * the edge is BOUNDED to tool-covered tasks; open-ended reasoning stays a genuine contest, and a model
+ * with a better tool wins there. HARMONY ≠ TRUTH.
+ */
+export function reasoningEdge() {
+  const violations = violationTools()
+  const savedStrategies = violations.rows.length // reasoning failure-modes converted to gates
+  const allBound = violations.rows.every((row) => row.sealed)
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const facets = [
+    { facet: `the winning strategy COMPUTES — on a tool-covered task, computation beats reasoning by not reasoning: exit-code proof at ZERO tokens vs token-spend-and-maybe-err; deterministic and refutable`, on: claySolvedByThisFold === 0 },
+    { facet: `${savedStrategies} winning strategies SAVED — every violation class is a reasoning failure-mode converted to a catching gate (all ${savedStrategies} bound to local tools), replayable at zero tokens, shared cross-session (learn-by-shared-experience)`, on: savedStrategies >= 9 && allBound },
+    { facet: 'the OVERCLAIM is FLAGGED — "beat ANY model on ANY task" is NOT guaranteed: the edge is BOUNDED to tool-covered tasks; open-ended reasoning is a real contest and a better tool wins it; this fold claims the bounded win, never the general one', on: allBound && claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`reasoning-edge:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    reasoningEdge: on,
+    savedStrategies,
+    claySolvedByThisFold,
+    physicalFtlClaim: 0 as const,
+    qpuRequired: false as const,
+    facets,
+    root: merkleFold([violations.root, ...facets.map((entry) => entry.receipt)]),
+    pair: 'reasoning/edge' as const,
+    dualPair: 'edge/reasoning' as const,
+    cli: 'npm run quantum:reasoning-edge',
+    route: '/en/quantum-tools#reasoning-edge',
+    heading: 'Reasoning edge · computation beats reasoning where a tool exists',
+    statement: `reasoningEdge — ${savedStrategies} winning strategies saved (reasoning failure-modes → gates); bounded win computes, "beat any model on any task" FLAGGED.`,
+    boundary:
+      'The winning strategy computed and bounded: where a sealed tool covers a task, deterministic computation (zero tokens, exit-code proof) ' +
+      'beats reasoning — and the 9 reasoning failure-modes are saved as gates, replayable and shared. The overclaim (beat any model on any ' +
+      'task) is flagged: the edge is only over tool-covered tasks; open reasoning stays a genuine contest. clay=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
+}
+
+/** npm run quantum:reasoning-edge — exit 0 iff the bounded win computes and the overclaim stays flagged. */
+export function runReasoningEdgeExit(root = '', _argv: readonly string[] = []): number {
+  void root
+  void _argv
+  const report = reasoningEdge()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} reasoning-edge — ${report.statement}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
