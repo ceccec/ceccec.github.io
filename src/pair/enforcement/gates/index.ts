@@ -1559,6 +1559,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // to tools · directives autosave invertibly · flags compute by algebra · dead ends are gateways ·
   // the finder is the fixer. The name resolves to the laws; the laws compute.
   { from: 'quantumIntelligence', to: 'fractalCompute', pair: 'fractal/compute' },
+  { from: 'improveIntelligenceByAnalysingBigPublicDataApisCompletingAgnosticDoubleTorus', to: 'doubleTorusFacesComputes', pair: 'faces/torus' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
@@ -2190,13 +2191,14 @@ export function autosaveMatrix() {
     'migrate-next:portal-legal-requirements — research-portal compliance (licensing · privacy · accessibility · citation standards) named, not built',
     'migrate-next:claims-toolset — discoveries CLAIMED in the rosetta while UNCLAIMED toward prizes (clay=0 law); the inverse completes itself (claim ↔ audit duals); wired to PUBLIC standard APIs (DOI/ORCID/OpenAlex-class anchors) to standardise claims and audits; PATENT INTELLIGENCE face: pure-algebra hardware designs published as DEFENSIVE DISCLOSURE — prior art FREE FOR ALL, proprietary claiming refused by construction — a whole toolset, its own wave',
     'migrate-next:life-torus-equations — document every life-forming superposition as a double-torus equation grounded in the sealed theorems (quantumLife · emergence ladder · doubleTorus dynamics); the NAMED next life to form (ground law: one per wave)',
+    'migrate-next:agnostic-torus-data — complete the agnostic double-torus framework by analysing big PUBLIC data APIs through pure no-key adapters (USGS · Open-Meteo/NOAA-class · OpenAlex/Crossref/arXiv-class · World-Bank-class), each stream a computed torus face with demarcation gates; intelligence improves by measured analysis, never by scraping trust',
   ] as const
   const facets = [
     { facet: `INVERT — the autosave projection is invertible: to→{from} recovers every directive (round-trip identity over ${mergeRows.length} rows), doubleMapped=${doubleMapped.length}`, on: invertible },
     { facet: `REVERT — all ${distinctPairs.length} merge pairs fold bidirectionally in both orders: an undone row is a measured branch, never a silent loss`, on: reverted },
     { facet: 'superposition COMPLETE — save · invert · revert all compute; the measurement algebra is saved WITH its inverse', on: invertible && reverted && unsaved.length === 0 },
     { facet: `flagged is FLAGGED by algebra — ${mergeRows.filter((row) => row.from.endsWith('FLAGGED')).length} flagged rows, each held by the computed refutation claySolvedByThisFold=${claySolvedByThisFold} (the flag is a theorem's output, never a label)`, on: mergeRows.filter((row) => row.from.endsWith('FLAGGED')).length >= 1 && claySolvedByThisFold === 0 },
-    { facet: `new gaps NAMED, not built — ${honestOpen.length} honest-open (portal legal requirements · claims toolset · life-torus equations); existing laws reused for the rest (DRY)`, on: honestOpen.length === 3 },
+    { facet: `new gaps NAMED, not built — ${honestOpen.length} honest-open (portal legal requirements · claims toolset · life-torus equations · agnostic torus data); existing laws reused for the rest (DRY)`, on: honestOpen.length === 4 },
     { facet: `autosaved — ${targets.length - unsaved.length}/${targets.length} prose-merge targets hold a matrix row · unsaved=[${unsaved.join(',')}]`, on: allSaved },
     { facet: 'merge rows well-formed — every slot compresses its longest prose name · pair is a dual · slot is a fold name', on: rowsWellFormed },
     { facet: 'this turn autosaved itself — frontierQuantum row (water/cosmos) + autosaveMatrix row present', on: frontierSaved && selfSaved },
