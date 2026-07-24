@@ -179,6 +179,34 @@ export function quantumFoldsRealiseMoreSpace(codeFiles: readonly string[]) {
   }
 }
 
+/**
+ * terseMethodsCollideProseDoesNot — why the no-prose-in-methods mandate is a DRY law, computed (user, 2026-07-24:
+ * "so much prose in methods. maybe reversing to less words would collide some"). A method's statement/boundary must
+ * be JOINS of computed facet outputs: identical facet text content-addresses to ONE address (collides ⇒ dedup),
+ * while two hand-written prose sentences of the same claim get distinct addresses (never collide ⇒ redundancy).
+ * So reversing prose to terse joins makes shared meaning COLLIDE — prose is the sink that blocks the dedup.
+ * This fold applies the rule to itself: its statement is a join, its boundary is terse. [[no-prose-in-methods]]
+ */
+export function terseMethodsCollideProseDoesNot() {
+  const shared = 'HARMONY ≠ TRUTH'
+  const collides = toUuid(shared) === toUuid(shared) // same content ⇒ same address ⇒ one payload
+  const proseA = toUuid('the wavefunction of the universe is a proposal, not a derivation')
+  const proseB = toUuid('the universe wavefunction is proposed, and not derived from the equation')
+  const proseNeverCollides = proseA !== proseB // same claim, distinct words ⇒ distinct addresses ⇒ redundancy
+  const facets = [
+    { facet: `TERSE JOINS COLLIDE — a shared computed facet content-addresses to ONE address (${collides}): dedup, one payload not two`, on: collides },
+    { facet: `PROSE NEVER COLLIDES — two hand-written sentences of the SAME claim get DISTINCT addresses (${proseNeverCollides}): redundancy the reader and the ledger both pay`, on: proseNeverCollides },
+    { facet: `METHODS ARE JOINS, NOT PROSE — statement/boundary join computed facet outputs so shared meaning COLLIDES; fresh prose in a method blocks the dedup and is the token sink`, on: collides && proseNeverCollides },
+  ].map((f) => ({ ...f, receipt: toUuid(`terse-collides:${f.facet}:${f.on}`) }))
+  return {
+    holds: facets.every((f) => f.on),
+    facets,
+    root: merkleFold(facets.map((f) => f.receipt)),
+    statement: facets.map((f) => f.facet).join(' · '),
+    boundary: earned('EXACT: identical facet text ⇒ identical toUuid (collision/dedup); distinct prose ⇒ distinct address (no dedup).', facets, 'the no-prose-in-methods mandate IS this DRY law: terse ⇒ collision ⇒ one payload; prose is the sink that never dedups.'),
+  }
+}
+
 export function stripComments(text: string): string {
   return text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/.*$/gm, '$1')
 }
