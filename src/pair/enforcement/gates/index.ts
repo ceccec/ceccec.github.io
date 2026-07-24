@@ -1503,6 +1503,8 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'oneCoreCssDrivesTheWholeDevelopmentOfNewComputablePerspectives', to: 'cssMath', pair: 'math/css' },
   { from: 'fuseAllSeamlesslyInVitepressApi', to: 'uiProof', pair: 'proof/ui' },
   { from: 'howMuchManualWorkAtTheGatesShowsTheGapsInMagnitudes', to: 'manualGauge', pair: 'manual/gap' },
+  { from: 'allColorsDryCleanWiredToRosettaAndThemes', to: 'cssMath', pair: 'color/rosetta' },
+  { from: 'cssShowsTheHiddenGapsInDryFusion', to: 'cssMath', pair: 'css/gaps' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
@@ -1849,8 +1851,8 @@ export const PROSE_NAMED_RESIDUAL_FOLDS = [
   'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie',
   'dryCleanAllVueComponentsToTheUniversalSet',
   'foldInvertUntilDryCleanAppGapless',
-  'allColorsDryCleanWiredToRosettaAndThemes',
-  'cssShowsTheHiddenGapsInDryFusion',
+  // allColorsDryCleanWiredToRosettaAndThemes + cssShowsTheHiddenGapsInDryFusion collapsed → cssMath
+  // (css/math · css/api · color/rosetta faces) — the css cluster's matrix slot computes since 2026-07-24.
   'readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra',
   'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations',
   'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists',
@@ -1948,7 +1950,7 @@ export function proseMethodsCollapseToMatrix(root: string = process.cwd(), facts
     soft('prose', 'matrix') && soft('fold', 'merge') && soft('name', 'shrink') && soft('place', 'merge')
   const proseAudited =
     PROSE_FOLD_MERGE_MAP.length === (ROSETTA_SEVEN + 1) &&
-    PROSE_NAMED_RESIDUAL_FOLDS.length === (ROSETTA_SEVEN + ROSETTA_SEVEN + 1) &&
+    PROSE_NAMED_RESIDUAL_FOLDS.length === (ROSETTA_SEVEN + ROSETTA_SIX) &&
     PROSE_MATRIX_SHRINK.beforeExportBodies === FREE_BITS &&
     PROSE_MATRIX_SHRINK.afterExportBodies === FREE_BITS - 1 &&
     PROSE_MATRIX_SHRINK.beforeLoc === DIMENSION_GATES + UNFOLDED_CENSUS - ROSETTA_SIX * ROSETTA_SIX + FREE_BITS &&
