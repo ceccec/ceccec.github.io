@@ -20,9 +20,15 @@ function headingId(text: string, suffix: string): string {
   return base ? `${base}-${suffix}` : suffix
 }
 
-const { params } = useData()
+const { params, theme } = useData()
 const route = useRoute()
 const { pick, scriptGlyph } = useSiteLocale()
+
+// Fused via the VitePress API: themeConfig.cliRoster (derived from package.json at config time) —
+// rendered only on the quantum-tools page; the template stays a thin shell over useData().
+const cliRoster = computed(() =>
+  route.path.includes('quantum-tools') ? ((theme.value as { cliRoster?: string[] }).cliRoster ?? []) : [],
+)
 
 const page = computed(
   () => (params.value as { universal?: UniversalPage })?.universal as UniversalPage,
@@ -125,6 +131,14 @@ const pageGapsKind = computed((): PageGapsKind | undefined => {
         <dd><code>{{ page.target }}</code></dd>
       </div>
     </dl>
+
+    <section v-if="cliRoster.length" id="cli-roster" class="cli-roster" :aria-label="pick('Complete CLI roster', 'Пълен CLI регистър')">
+      <h2 id="cli-roster-heading">{{ pick('Complete CLI roster', 'Пълен CLI регистър') }} · {{ cliRoster.length }}</h2>
+      <p>{{ pick('Derived from package.json at build — the same single source as /mcp.json cliTools. Nothing curated, nothing hidden; run any id locally, exit 0 iff the fold computes.', 'Извлечен от package.json при билд — същият единствен източник като /mcp.json. Нищо ръчно, нищо скрито; изпълни локално, изход 0 само ако фолдът изчислява.') }}</p>
+      <ul class="cli-roster__list">
+        <li v-for="id in cliRoster" :key="id"><code>npm run {{ id }}</code></li>
+      </ul>
+    </section>
 
     <section
       v-if="page.kind === 'corpus-index' && page.corpusItems.length"

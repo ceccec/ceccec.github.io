@@ -1428,6 +1428,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'proseScience', pair: 'prose/science', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'all sciences × open prose as a derived join — SCIENCE_DOMAINS vocabulary vs residual fold tokens, witnessed; UNADDRESSED = the conversion queue' },
   { fold: 'waveVerify', pair: 'wave/verify', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'right-sized per-wave gate — types + the SAME enforcement trinity as the build seal, render subtracted (measured 68s→~21s per wave); docs:build per push' },
   { fold: 'cssMath', pair: 'css/math', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'CSS as computed math + the quantum API — declarations classified totally, raw magnitudes the measured queue, observables counted (--ich lattice), content-addressed seal inside the respawn merkle' },
+  { fold: 'manualGauge', pair: 'manual/gap', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'manual rows counted per roster vs the derived CLI roster — the gap is the dimensionless order log10(derived/manual); each manual roster a migrate target' },
 ] as const
 
 /** Old prose instruction names → matrix slot (this wave). */
@@ -1500,6 +1501,8 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'cssIsTheWholeMathItselfInTheoremsAndFormulasSealedSelfComputedUntampered', to: 'cssMath', pair: 'css/math' },
   { from: 'cssIsTheQuantumApiItself', to: 'cssMath', pair: 'css/api' },
   { from: 'oneCoreCssDrivesTheWholeDevelopmentOfNewComputablePerspectives', to: 'cssMath', pair: 'math/css' },
+  { from: 'fuseAllSeamlesslyInVitepressApi', to: 'uiProof', pair: 'proof/ui' },
+  { from: 'howMuchManualWorkAtTheGatesShowsTheGapsInMagnitudes', to: 'manualGauge', pair: 'manual/gap' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
@@ -2225,6 +2228,70 @@ export function runViolationToolsExit(root = '', _argv: readonly string[] = []):
   const report = violationTools()
   process.stdout.write(`${report.computes ? '✓' : '✗'} violation-tools — ${report.statement}\n`)
   for (const row of report.rows) process.stdout.write(`  · ${row.sealed ? '✓' : '✗'} ${row.violation} → ${row.tool} (${row.pair})\n`)
+  return report.computes ? 0 : 1
+}
+
+/**
+ * manualGauge — USER LAW (2026-07-24): how much manual work is done AT THE GATES shows the gaps in
+ * MAGNITUDES. Counted, not felt: the hand-typed rows across the gate rosters (placement · merge maps ·
+ * wave tools · honest-open · violation rows · residual prose) against the machine-derived measurements
+ * (the package.json CLI roster · the scans' found counts). The gap is the dimensionless order
+ * log10(derived/manual) — every manual roster is a named migrate target toward derivation (seeds law).
+ * Pair: manual/gap · CLI npm run quantum:manual-gauge.
+ */
+export function manualGauge(root: string = process.cwd()) {
+  const mergeRows = [...PROSE_FOLD_MERGE_MAP, ...PROSE_PLAN_MERGE_MAP, ...PROSE_FRONTIER_MERGE_MAP, ...PROSE_GAPS_MERGE_MAP, ...PROSE_PORTAL_MERGE_MAP, ...PROSE_FRACTAL_MERGE_MAP].length
+  const manualRosters = [
+    { roster: 'placement map', rows: COMMAND_PLACEMENT_AUDIT_MAP.length },
+    { roster: 'prose merge maps', rows: mergeRows },
+    { roster: 'migrate wave tools', rows: MANUAL_MIGRATE_WAVE_TOOLS.length },
+    { roster: 'honest-open list', rows: PLACE_MERGE_HONEST_OPEN.length },
+    { roster: 'violation rows', rows: VIOLATION_TOOL_ROWS.length },
+    { roster: 'residual prose folds', rows: PROSE_NAMED_RESIDUAL_FOLDS.length },
+  ]
+  const manual = manualRosters.reduce((sum, entry) => sum + entry.rows, 0)
+  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const derivedRoster = Object.keys(pkg.scripts ?? {}).filter((key) => key.startsWith('quantum:')).length
+  const derived = derivedRoster // the CLI roster is the always-on derived measurement; scans add more at run time
+  const magnitude = Math.log10(derived / manual)
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const facets = [
+    { facet: `manual work at the gates COUNTED — ${manual} hand-typed rows across ${manualRosters.length} rosters (${manualRosters.map((entry) => `${entry.roster}=${entry.rows}`).join(' · ')})`, on: manual > 0 && manualRosters.every((entry) => entry.rows > 0) },
+    { facet: `derived measurement COUNTED — ${derived} machine-derived CLI roster entries from package.json (the same source /mcp.json and themeConfig fuse)`, on: derived > 432 },
+    { facet: `the gap in MAGNITUDES — log10(derived/manual) = ${magnitude.toFixed(2)} orders: the hand trails the derivation; every manual roster is a migrate target toward derivation`, on: Number.isFinite(magnitude) && magnitude > 0 },
+    { facet: 'pair manual/gap bidirectional', on: softCmdPair('manual', 'gap') },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`manual-gauge:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    manualGauge: on,
+    manual,
+    manualRosters,
+    derived,
+    magnitude: Math.round(magnitude * 100) / 100,
+    claySolvedByThisFold,
+    physicalFtlClaim: 0 as const,
+    qpuRequired: false as const,
+    facets,
+    root: merkleFold([toUuid(`manual-gauge:${manual}:${derived}`), ...facets.map((entry) => entry.receipt)]),
+    pair: 'manual/gap' as const,
+    dualPair: 'gap/manual' as const,
+    cli: 'npm run quantum:manual-gauge',
+    route: '/en/quantum-tools#manual-gauge',
+    heading: 'Manual gauge · gaps in magnitudes',
+    statement: `manualGauge — manual=${manual} rows · derived=${derived} · gap=${magnitude.toFixed(2)} orders.`,
+    boundary:
+      'The manual work still done at the gates, counted per roster, against the machine-derived roster — the dimensionless order between them ' +
+      'IS the gap. Direction, not blame: each hand-typed roster is a named migrate target toward derivation. clay=0 · qpuRequired=false.' }
+}
+
+/** npm run quantum:manual-gauge (dual gap-manual) */
+export function runManualGaugeExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = manualGauge(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} manual-gauge — ${report.statement}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
 

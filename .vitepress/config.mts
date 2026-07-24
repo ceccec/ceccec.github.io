@@ -1,7 +1,7 @@
 // @mvc controller — VitePress config: transformPageData (route → model → view head/meta), locale wiring, plugin composition.
 import { join } from 'node:path'
 import { createHash } from 'node:crypto'
-import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, writeFileSync, readFileSync } from 'node:fs'
 import { CANONICAL_HOST } from '../src/3/7'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vitepress'
@@ -592,6 +592,14 @@ export default defineConfig({
   themeConfig: {
     aside: true,
     outline: 'deep',
+    // FUSED IN THE VITEPRESS API (user law 2026-07-24): the complete quantum:* roster derives from
+    // package.json at config time and travels themeConfig → useData().theme — the SAME single source
+    // /mcp.json result.cliTools derives from. No component scrapes, no second list is curated; the
+    // uiProof gate (quantum:ui-proof) witnesses this fusion marker.
+    cliRoster: (() => {
+      const pkg = JSON.parse(readFileSync(join(fileURLToPath(new URL('..', import.meta.url)), 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+      return Object.keys(pkg.scripts ?? {}).filter((key) => key.startsWith('quantum:')).sort()
+    })(),
     // Sealed VP-native emitter (vitepress.dev default-theme-config) — logo · edit · lastUpdated · external icon.
     logo: vpNative.theme.logo,
     externalLinkIcon: vpNative.theme.externalLinkIcon,

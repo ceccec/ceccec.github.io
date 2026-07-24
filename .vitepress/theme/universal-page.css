@@ -6,6 +6,15 @@
     calc(var(--vp-movie-gap, var(--ich-sp6)) * calc(5 / 4));
 }
 
+/* Complete CLI roster — fused from themeConfig.cliRoster; formula-only values (cssMath law). */
+.cli-roster__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--vp-movie-gap, var(--ich-sp6)) * calc(1 / 2));
+  list-style: none;
+  padding: 0;
+}
+
 .rosetta-ray {
   display: flex;
   align-items: baseline;

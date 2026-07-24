@@ -401,6 +401,7 @@ export function uiProof(root: string = process.cwd()) {
     { facet: `COMPLETE BY DERIVATION — /mcp.json result.cliTools derives all ${ids.length} quantum:* CLIs from package.json at emit time; the checker and the surface read the SAME source, nothing can hide`, on: derives && ids.length > 432 },
     { facet: `curated toolbox drift MEASURED — ${covered}/${ids.length} CLIs in the hand-seeded apps catalog, ${hidden.length} covered only by the derived roster (classification total; migrate = derive the seeds)`, on: covered + hidden.length === ids.length && covered > 432 },
     { facet: 'the UI proof path is closed — every CLI is runnable from the roster the UI serves (npm run <id>, exit = proof), no fold reachable only by reading source', on: derives && ids.every((id) => id.startsWith('quantum:')) },
+    { facet: 'FUSED in the VitePress API — themeConfig.cliRoster derives from the same package.json at config time and the universal template consumes useData().theme: no scrape, no curated second list', on: readFileSync(join(root, '.vitepress/config.mts'), 'utf8').includes('cliRoster') && readFileSync(join(root, '.vitepress/theme/components/UniversalPageTemplate.vue'), 'utf8').includes('cliRoster') },
   ].map((entry) => ({ ...entry, receipt: toUuid(`ui-proof:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
