@@ -1,0 +1,8 @@
+{
+  "name": "ceccec-quantum",
+  "description": "Zero-token deterministic quantum research portal — sealed folds, theorem CLIs (quantum:*), pair-dual commands, crack/census gates, and the src/0 state-vector simulator. Install to give agents the local tools that compute discoveries instead of remembering patterns.",
+  "version": "1.0.0",
+  "author": {
+    "name": "ceccec"
+  }
+}

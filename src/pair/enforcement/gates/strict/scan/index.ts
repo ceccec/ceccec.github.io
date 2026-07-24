@@ -319,6 +319,66 @@ export function runMathGapsExit(root = '', _argv: readonly string[] = []): numbe
   return report.computes ? 0 : 1
 }
 
+/**
+ * installSurfaces — RESEARCH SEALED AS A SCAN (user directive 2026-07-24: "what needs to be done to
+ * become ai editor installable app plugin skills and more"). Each installable surface is a row whose
+ * presence COMPUTES from the filesystem — research that re-runs, not a remembered report.
+ * NAMED AXIOMS (editor contracts, Jan-2026): Claude Code plugins = `.claude-plugin/plugin.json`
+ * (+ optional commands/ agents/ skills/ hooks/ `.mcp.json`), distributed via a repo carrying
+ * `.claude-plugin/marketplace.json` (`/plugin marketplace add ceccec/ceccec.github.io`); agent skills =
+ * `skills/<name>/SKILL.md` with YAML frontmatter; AGENTS.md is the cross-editor (Cursor et al.) standard;
+ * MCP install needs a runnable stdio server, not only a protocol page. Pair: install/surface.
+ */
+export function installSurfaces(root: string = process.cwd()) {
+  const present = (rel: string) => existsSync(join(root, rel))
+  const rows = [
+    { surface: 'claude-code plugin manifest', artifact: '.claude-plugin/plugin.json', need: 'plugin identity for /plugin install', status: present('.claude-plugin/plugin.json') ? 'present' : 'missing' },
+    { surface: 'plugin marketplace', artifact: '.claude-plugin/marketplace.json', need: 'installable via /plugin marketplace add ceccec/ceccec.github.io', status: present('.claude-plugin/marketplace.json') ? 'present' : 'missing' },
+    { surface: 'agent skill', artifact: 'skills/quantum-tools/SKILL.md', need: 'teaches agents the local quantum CLIs', status: present('skills/quantum-tools/SKILL.md') ? 'present' : 'missing' },
+    { surface: 'cross-editor agent contract', artifact: 'AGENTS.md', need: 'Cursor/editor-agnostic instructions + CLI roster', status: present('AGENTS.md') ? 'present' : 'missing' },
+    { surface: 'computed protocol pages', artifact: 'src/wind/site (llms.txt · mcp.json · agents.json)', need: 'served at /llms.txt /mcp.json /agents.json', status: present('src/wind/site/index.ts') ? 'present' : 'missing' },
+    { surface: 'npm package', artifact: 'package.json', need: 'installable dependency + bootstrap runner', status: present('package.json') ? 'present' : 'missing' },
+    { surface: 'stdio MCP server', artifact: '(none yet)', need: 'runnable `mcpServers` entry wrapping the quantum CLIs — protocol page alone is not installable', status: 'migrate-next' },
+    { surface: 'VS Code extension', artifact: '(none yet)', need: 'separate extension scaffold — heavier surface', status: 'migrate-next' },
+  ].map((row) => ({ ...row, receipt: toUuid(`install-surface:${row.surface}:${row.status}`) }))
+  const presentRows = rows.filter((row) => row.status === 'present')
+  const migrateNext = rows.filter((row) => row.status === 'migrate-next')
+  const facets = [
+    { facet: `installable NOW — ${presentRows.length}/${rows.length} surfaces present on disk (plugin manifest · marketplace · skill · AGENTS.md · protocol pages · npm)`, on: presentRows.length === 6 && rows.every((row) => row.status !== 'missing') },
+    { facet: `honest-open — ${migrateNext.length} surfaces NAMED migrate-next (stdio MCP server · VS Code extension), not faked as present`, on: migrateNext.length === 2 },
+    { facet: 'research re-runs — every status recomputed from the filesystem at call time, no remembered report', on: rows.every((row) => row.receipt.length > 0) && presentRows.every((row) => row.artifact.length > 0) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`install-surfaces:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    installSurfaces: on,
+    rows,
+    presentCount: presentRows.length,
+    migrateNextCount: migrateNext.length,
+    facets,
+    root: merkleFold([...rows.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)]),
+    pair: 'install/surface' as const,
+    dualPair: 'surface/install' as const,
+    cli: 'npm run quantum:install-surfaces',
+    route: '/en/quantum-tools#install-surfaces',
+    heading: 'Install surfaces · plugin · skills · mcp',
+    statement: `installSurfaces — ${presentRows.length}/${rows.length} present · ${migrateNext.length} migrate-next (stdio MCP server · VS Code extension).`,
+    boundary:
+      'What is needed to be an installable AI-editor app, computed: the Claude Code plugin surface (manifest + marketplace + skill) and the ' +
+      'cross-editor contract exist on disk and re-verify each run; the stdio MCP server and VS Code extension are NAMED open, not claimed. ' +
+      'Editor contract formats are NAMED AXIOMS (external specs), the presence checks are theorems. clay=0 · qpuRequired=false.' }
+}
+
+/** npm run quantum:install-surfaces (dual surface-install) */
+export function runInstallSurfacesExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = installSurfaces(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} install-surfaces — ${report.statement}\n`)
+  for (const row of report.rows) process.stdout.write(`  · ${row.status === 'present' ? '✓' : row.status === 'missing' ? '✗' : '…'} ${row.surface} | ${row.artifact} | ${row.need}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+
 export type MethodGravityCluster = { word: string; attractor: string; members: string[]; pulls: number }
 export function methodGravity(root: string = process.cwd(), minCluster = 4): MethodGravityCluster[] {
   const files: string[] = []

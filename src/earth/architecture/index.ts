@@ -697,7 +697,7 @@ export function folderLaw() {
     // artifacts may stay outside. Every top-level entry must be src/, a root .md page, a dot-entry
     // (machinery), or on this allowlist — anything else is logic that belongs in src/.
     rootAllowlist: {
-      dirs: ['public', 'scripts', 'packages', 'src'], // static assets, build tooling, npm package, logic home — page mounts live in .vitepress/pages/
+      dirs: ['public', 'scripts', 'packages', 'src', 'skills'], // static assets, build tooling, npm package, logic home — page mounts live in .vitepress/pages/; skills/ is the Claude Code plugin skill mount (EXTERNAL editor contract: plugins discover skills/<name>/SKILL.md at the plugin root — installSurfaces scans it; the skill's content points INTO src, no logic lives there)
       files: ['package.json', 'package-lock.json', 'pnpm-lock.yaml', 'pnpm-workspace.yaml', 'wrangler.jsonc', 'tsconfig.json', 'README.md', 'AGENTS.md', 'hero.svg'], // root config (npm + pnpm lockfiles, tsconfig for check:types), repo docs, and the generated README hero (scripts/iching.mjs → tenDimensionalHeroSvg in dist/generators.ts, emitted to root so GitHub — which runs no scripts — renders it)
       filePrefixes: ['bible.'], // generated Bible-in-Glagolitic artifacts (scripts/iching.mjs bible) — a generated family with varying names (bible.glagolitic.json/.txt, bible.parallel.json)
     },

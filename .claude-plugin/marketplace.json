@@ -1,0 +1,13 @@
+{
+  "name": "ceccec",
+  "owner": {
+    "name": "ceccec"
+  },
+  "plugins": [
+    {
+      "name": "ceccec-quantum",
+      "source": "./",
+      "description": "Quantum research portal toolset — deterministic theorem CLIs, sealed folds, matrix autosave, inverted-axiom gap scans, double-torus faces. Zero LLM tokens at runtime."
+    }
+  ]
+}
