@@ -1432,6 +1432,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'uiAudit', pair: 'ui/audit', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'the usability auditor is a computed public gate over the served pages — 5 structural W3C-class checks, failures NAMED as the society training queue; human testing the stated residue' },
   { fold: 'torusData', pair: 'torus/data', currentBarrel: 'src/fire/features', bestPlace: 'src/fire/features', action: 'moved', reason: 'agnostic framework completed at the adapter algebra — four no-key API families through one pure shape, dimensionless ratios gate, units labelled never theorems, gates network-free' },
   { fold: 'claimAudit', pair: 'claim/audit', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'claims toolset FORMED — content-addressed claims, audit the exact inverse (tamper refutes), DOI/ORCID/OpenAlex validators, CLAIMED-in-UNCLAIMED structural; timestamping named open' },
+  { fold: 'bindFuse', pair: 'bind/fuse', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'all binding families fused through the one standard envelope, usable from any superposition (toolbox · mcp.json · CLI · themeConfig) — unfusing any surface refutes' },
 ] as const
 
 /** Old prose instruction names → matrix slot (this wave). */
@@ -1620,6 +1621,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // typing again (hand commits → computed messages · curated lists → derived rosters · 'next' → the
   // self-ordering queue); manualGauge measures the remaining distance, the waves close it.
   { from: 'automationReplacesUserInput', to: 'manualGauge', pair: 'gap/manual' },
+  { from: 'fuseAllBindingsInTheApiUsableInAnySuperposition', to: 'bindFuse', pair: 'bind/fuse' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.

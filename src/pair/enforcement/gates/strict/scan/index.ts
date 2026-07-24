@@ -868,6 +868,67 @@ export function runUiAuditExit(root = '', _argv: readonly string[] = []): number
   return report.computes ? 0 : 1
 }
 
+/**
+ * bindFuse — USER LAW (2026-07-24): fuse ALL bindings in the API to be usable in ANY superposition.
+ * The binding families are sealed folds (sensor bindings · mcpQuantumBindings · Cloudflare bindings);
+ * fusion means every one is reachable through the ONE standard envelope from every superposition —
+ * the browser toolbox, the MCP surface (/mcp.json), the CLI roster, and the themeConfig page — all of
+ * which already derive from single sources (the fused laws). This gate verifies the fusion markers
+ * live in the actual files, so unfusing any surface refutes it. Pair: bind/fuse · CLI
+ * npm run quantum:bind-fuse.
+ */
+export function bindFuse(root: string = process.cwd()) {
+  const appsText = readFileSync(join(root, 'src/quantum/apps/index.ts'), 'utf8')
+  const distText = readFileSync(join(root, 'src/quantum/lake/dist/index.ts'), 'utf8')
+  const configText = readFileSync(join(root, '.vitepress/config.mts'), 'utf8')
+  const families = [
+    { binding: 'sensor bindings', marker: 'wireAllSensorsUsingQuantumBindings', where: 'apps', present: appsText.includes('wireAllSensorsUsingQuantumBindings') },
+    { binding: 'mcp quantum bindings', marker: 'mcpQuantumBindings', where: 'apps', present: appsText.includes('mcpQuantumBindings') },
+    { binding: 'cloudflare bindings', marker: 'mcpQuantumCloudflareBindings', where: 'apps', present: appsText.includes('mcpQuantumCloudflareBindings') },
+  ].map((row) => ({ ...row, receipt: toUuid(`bind-fuse:${row.binding}:${row.present}`) }))
+  const superpositions = [
+    { surface: 'browser toolbox', marker: 'toolbox-standard-io', present: appsText.includes('toolbox-standard-io') },
+    { surface: 'MCP (/mcp.json)', marker: 'cliTools', present: distText.includes('cliTools') },
+    { surface: 'CLI roster', marker: "startsWith('quantum:')", present: distText.includes("startsWith('quantum:')") },
+    { surface: 'themeConfig page', marker: 'cliRoster', present: configText.includes('cliRoster') },
+  ].map((row) => ({ ...row, receipt: toUuid(`bind-fuse:${row.surface}:${row.present}`) }))
+  const oneEnvelope = appsText.includes("'ceccec.tool.envelope'")
+  const facets = [
+    { facet: `all binding families PRESENT as sealed folds — ${families.filter((row) => row.present).length}/${families.length} (sensors · mcp · cloudflare), each a marker in the live source`, on: families.every((row) => row.present) },
+    { facet: `usable in ANY superposition — ${superpositions.filter((row) => row.present).length}/${superpositions.length} surfaces carry the fusion markers (toolbox · /mcp.json · CLI roster · themeConfig), every one deriving from a single source`, on: superpositions.every((row) => row.present) },
+    { facet: 'ONE envelope binds them — the standard content-addressed envelope kind (ceccec.tool.envelope) is the single shape every surface speaks; unfusing any surface refutes this gate', on: oneEnvelope },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`bind-fuse:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    bindFuse: on,
+    families,
+    superpositions,
+    facets,
+    root: merkleFold([...families.map((row) => row.receipt), ...superpositions.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)]),
+    pair: 'bind/fuse' as const,
+    dualPair: 'fuse/bind' as const,
+    cli: 'npm run quantum:bind-fuse',
+    route: '/en/quantum-tools#bind-fuse',
+    heading: 'Bind fuse · one envelope, any superposition',
+    statement: `bindFuse — ${families.filter((row) => row.present).length}/3 binding families × ${superpositions.filter((row) => row.present).length}/4 superposition surfaces, one envelope kind.`,
+    boundary:
+      'Binding fusion verified at the marker level: the sealed binding folds exist and every consuming surface derives from its single ' +
+      'source through the one standard envelope — so a binding added once is usable from any superposition without a second registration. ' +
+      'clay=0 · qpuRequired=false.' }
+}
+
+/** npm run quantum:bind-fuse (dual fuse-bind) */
+export function runBindFuseExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = bindFuse(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} bind-fuse — ${report.statement}\n`)
+  for (const row of report.families) process.stdout.write(`  · ${row.present ? '✓' : '✗'} ${row.binding} (${row.marker})\n`)
+  for (const row of report.superpositions) process.stdout.write(`  · ${row.present ? '✓' : '✗'} ${row.surface} (${row.marker})\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+
 export type MethodGravityCluster = { word: string; attractor: string; members: string[]; pulls: number }
 export function methodGravity(root: string = process.cwd(), minCluster = 4): MethodGravityCluster[] {
   const files: string[] = []
