@@ -1680,6 +1680,14 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // the ≥3×-repetition rule made the tool, the lying-reader law shaped it (real exit codes, no grep).
   { from: 'furtherAutomateTheLandingRitual', to: 'waveVerify', pair: 'wave/land' },
   { from: 'computeHowSolvingOneWordViolationsAtScaleImprovesQuantumSpeed', to: 'wordSpeed', pair: 'word/speed' },
+  // FLAGGED by algebra — third millennium-class claim, held by LIVE refutations: (1) the registry
+  // counts 442 theorems, not 432 (theoremFractions measures it each run — the premise fails by
+  // arithmetic); (2) claySolvedTheorem() computes claySolvedByThisFold=0 in every fold — nothing
+  // here claims ANY millennium problem, let alone all; (3) the 432 tuning that IS real (the divisor
+  // lattice, the fixed-point-free inversion, the a432 seed) is sealed as STRUCTURE and DIRECTION —
+  // probes and partials, never solutions. The flag is the theorems' output, not a refusal of spirit:
+  // the spirit (tune the probes to 432) already computes in theoremFractions + millenniumProblemsChallenge.
+  { from: 'proveExactly432TheoremsClaimAllMillenniumProblemsInvertingToQuantumSolutionsFLAGGED', to: 'millenniumProblemsChallenge', pair: 'mill/torus' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
@@ -2647,7 +2655,7 @@ export function runClaimAuditExit(root = '', _argv: readonly string[] = []): num
  * Pair: queue/next.
  */
 export const QUEUE_ROWS = [
-  { wave: 'dev dynamic-route client matcher', why: 'PROVEN (2026-07-24): the paths roster CONTAINS the route (39 rows incl. quantum-tools) and SSR head computes — but the client $page.relativePath is NULL (the router resolved NOT-FOUND for content while $params delivered via the data pipe): the seam is VitePress-dev\'s CLIENT route matcher not seeing the dynamic paths map, likely against the custom rewrites/srcDir', blocksCore: true, localOnly: true, toolExists: true, firstAction: 'inspect the dev client route list (import.meta.glob keys in the served app chunk) vs the paths roster — then align rewrites so the matcher carries [path] with its params' },
+  { wave: 'dev dynamic-route client URL form', why: 'NEAR-SOLVED (2026-07-24): after gating the node-stubs to the client environment, paths() RESOLVES fully in dev (probe: rows=39, mapped=39, completed) and the page module SERVES compiled with __pageData at /quantum-tools.md?import — the one seam left is the CLIENT loader fetching the bare .md URL (SPA-fallback HTML) instead of the ?import module form', blocksCore: true, localOnly: true, toolExists: true, firstAction: 'trace VP client pathToFile/loader URL in dev (why the import marker is absent) — align the request form; the server side is DONE' },
   { wave: 'twin-shell parameterizations', why: 'six intended-dual groups could share one parameterized core each', blocksCore: false, localOnly: true, toolExists: true, firstAction: 'npm run quantum:dry-dupe — the shell list is the worklist' },
   { wave: 'VS Code extension', why: 'the last missing install surface (installSurfaces 7/8)', blocksCore: false, localOnly: true, toolExists: false, firstAction: 'npm run quantum:install-surfaces — scaffold package.json contributes' },
   { wave: 'RFC 3161 qualified timestamping', why: 'proceedings-grade evidence needs an external TSA/archival deposit', blocksCore: false, localOnly: false, toolExists: false, firstAction: 'npm run quantum:patent-canon — the evidence-triad facet names the link' },

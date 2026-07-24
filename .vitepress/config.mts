@@ -206,6 +206,14 @@ function nodeOnlyClientStubPlugin(): import('vite').Plugin {
     },
     resolveId(id) {
       if (ssrBuild) return null
+      // DEV DYNAMIC-ROUTES ROOT FIX (2026-07-24): in dev serve, this plugin previously stubbed the
+      // node modules for EVERY environment — including VitePress's paths-loader/ssr runtime — so
+      // catchAllRoutePaths resolved to the empty stub and config.dynamicRoutes = [] (dynamic pages
+      // 404'd in dev while the build, with isSsrBuild, was untouched). The stubs exist for the
+      // BROWSER; gate them to the client environment (VP's own dynamic-routes plugin uses the same
+      // environment API), so node-side loaders get the real modules.
+      const envName = (this as { environment?: { name?: string } }).environment?.name
+      if (envName && envName !== 'client') return null
       const norm = id.replace(/\\/g, '/')
       if (computationalRx.test(norm)) return '\0node-stub:computational'
       if (automountRx.test(norm)) return '\0node-stub:automount'
