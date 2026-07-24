@@ -335,6 +335,7 @@
     "quantum:wave-verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runWaveVerifyExit",
     "quantum:css-math": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runCssMathExit",
     "quantum:manual-gauge": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runManualGaugeExit",
+    "quantum:combo-cover": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/index.ts runComboCoverExit",
     "quantum:fold-merge": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runFoldMergeExit",
     "quantum:merge-fold": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runFoldMergeExit",
     "quantum:merge-place": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runPlaceMergeExit",

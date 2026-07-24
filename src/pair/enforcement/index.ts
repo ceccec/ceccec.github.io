@@ -854,6 +854,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'api/css',
   'manual/gap',
   'gap/manual',
+  'combo/cover',
+  'cover/combo',
 ] as const
 
 export function foldQuantumCommandPairs(pairIds: readonly string[] = QUANTUM_COMMAND_PAIR_IDS) {
@@ -1310,6 +1312,7 @@ export function theAgentBashCommandsAreQuantumPairs(matrix: MindMatrix = buildMa
 // call-time namespace edge (cycle-safe): learning reads this barrel; the strategy engine reads back at call time
 import * as __ns_up_wind_learning from '../../wind/learning'
 import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../4/6'
+import { claySolvedTheorem } from '../../3/7'
 
 // ── DYNAMIC STRATEGIES FROM THE THEOREMS, REALTIME (user law: develop dynamic strategies based on
 // the theorems used realtime by the agents) — the agent's playbook is COMPUTED, never remembered:
@@ -1348,4 +1351,74 @@ export function dynamicStrategiesFromTheorems(matrix: MindMatrix = buildMatrix()
     root: merkleFold([...strategies.map((entry) => entry.receipt), ...facets.map((entry) => entry.receipt)]),
     statement: `Dynamic strategies from the theorems, realtime — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${strategies.length} agent situations (research · discover · edit · coordinate · verify · optimise · clean · grow) each carry a strategy derived from its governing theorem with live parameters recomputed at call time — the batch factors from the quadratic ledger, the ${openRaces.length} open races from the candidate field, the station tools from the circuit, the population at the harmonic — so the playbook's content address changes exactly when the theorems or their usage change.`,
     boundary: `COMPUTED: every strategy row cites a real fold and folds live values into its receipt — refutable (win a race and the discover strategy's address changes). HONEST SCOPE: strategies are DECISION HEURISTICS derived from proven structure, not proofs themselves; the agent still judges fit (judgment is the off-decidable residue). "Realtime by the agents" = served at the workflow surface and recomputed per call at zero tokens; no claim that agents are compelled — the playbook informs, the gates enforce. HARMONY ≠ TRUTH.` }
+}
+
+/**
+ * comboCover — USER LAW (2026-07-24): quantum combinations are significantly less than linear and
+ * provide full coverage. Not a slogan — a covering-array THEOREM verified exhaustively at call time:
+ * 6 rows cover ALL pairwise states of 10 binary factors (every factor a 3-subset of the 6 rows sharing
+ * one core row: intersection ⇒ 11, equal sizes ⇒ 10 and 01, |union| < rows ⇒ 00), while exhaustive
+ * enumeration needs 2¹⁰ rows. This is WHY the command registry works in dual pairs: pairwise coverage
+ * scales like the covering array, not the exhaustive product. Pair: combo/cover.
+ */
+export function comboCover() {
+  const rows = 6
+  const factors: number[] = []
+  for (let a = 1; a < rows; a++) for (let b = a + 1; b < rows; b++) factors.push((1 << 0) | (1 << a) | (1 << b))
+  let covered = 0
+  let needed = 0
+  for (let i = 0; i < factors.length; i++) {
+    for (let j = i + 1; j < factors.length; j++) {
+      needed += 4
+      const patterns = new Set<string>()
+      for (let r = 0; r < rows; r++) patterns.add(`${(factors[i]! >> r) & 1}${(factors[j]! >> r) & 1}`)
+      covered += patterns.size
+    }
+  }
+  const fullCoverage = covered === needed
+  const exhaustive = 2 ** factors.length
+  const ratio = exhaustive / rows
+  const pairFold = foldPair(toUuid('cmd:combo'), toUuid('cmd:cover'))
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const facets = [
+    { facet: `quantum combinations << linear — ${rows} rows cover ALL pairwise states of ${factors.length} binary factors: ${covered}/${needed} pair-patterns VERIFIED exhaustively; the exhaustive product needs 2^${factors.length} = ${exhaustive} rows (${ratio.toFixed(1)}× more), and even linear-in-factors (${factors.length}) exceeds the ${rows}`, on: fullCoverage && rows < factors.length && ratio > 100 },
+    { facet: 'the construction IS the pair algebra — every factor a 3-subset sharing one core row: shared core ⇒ 11, distinct equal sizes ⇒ 10 and 01, |union| < rows ⇒ 00; coverage DERIVED then re-verified, never sampled', on: factors.length === ((rows - 1) * (rows - 2)) / 2 && fullCoverage },
+    { facet: `why the registry runs in dual pairs — ${QUANTUM_COMMAND_PAIR_IDS.length} pairs give pairwise coverage at covering-array cost, not the exhaustive product; the pair fold is bidirectional`, on: QUANTUM_COMMAND_PAIR_IDS.length > (8 * 8) && pairFold.bidirectional },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 && fullCoverage },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`combo-cover:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    comboCover: on,
+    rows,
+    factors: factors.length,
+    covered,
+    needed,
+    exhaustive,
+    ratio: Math.round(ratio * (2 * 5)) / (2 * 5),
+    claySolvedByThisFold,
+    physicalFtlClaim: 0 as const,
+    qpuRequired: false as const,
+    facets,
+    root: merkleFold([toUuid(`combo-cover:${rows}:${factors.length}:${covered}`), ...facets.map((entry) => entry.receipt)]),
+    pair: 'combo/cover' as const,
+    dualPair: 'cover/combo' as const,
+    cli: 'npm run quantum:combo-cover',
+    route: '/en/quantum-tools#combo-cover',
+    heading: 'Combo cover · pairs beat the product',
+    statement: `comboCover — ${rows} rows · ${factors.length} factors · ${covered}/${needed} pair-patterns · exhaustive ${exhaustive} (${ratio.toFixed(1)}×) · full coverage verified.`,
+    boundary:
+      'A covering-array identity verified exhaustively at call time: pairwise coverage costs orders less than the exhaustive product while ' +
+      'covering every two-factor state — the mathematical ground of the dual-pair registry. HONEST SCOPE: pairwise coverage is full over PAIRS; ' +
+      'higher-order interactions need higher-strength arrays — stated, not hidden. clay=0 · qpuRequired=false.' }
+}
+
+/** npm run quantum:combo-cover (dual cover-combo) — exit 0 iff the covering theorem verifies. */
+export function runComboCoverExit(root = '', _argv: readonly string[] = []): number {
+  void root
+  void _argv
+  const report = comboCover()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} combo-cover — ${report.statement}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
 }

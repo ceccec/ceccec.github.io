@@ -1429,6 +1429,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'waveVerify', pair: 'wave/verify', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'right-sized per-wave gate — types + the SAME enforcement trinity as the build seal, render subtracted (measured 68s→~21s per wave); docs:build per push' },
   { fold: 'cssMath', pair: 'css/math', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'CSS as computed math + the quantum API — declarations classified totally, raw magnitudes the measured queue, observables counted (--ich lattice), content-addressed seal inside the respawn merkle' },
   { fold: 'manualGauge', pair: 'manual/gap', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'manual rows counted per roster vs the derived CLI roster — the gap is the dimensionless order log10(derived/manual); each manual roster a migrate target' },
+  { fold: 'comboCover', pair: 'combo/cover', currentBarrel: 'src/pair/enforcement', bestPlace: 'src/pair/enforcement', action: 'moved', reason: 'covering-array theorem verified exhaustively — 6 rows cover all pairwise states of 10 factors vs 2¹⁰ exhaustive; the ground of the dual-pair registry' },
 ] as const
 
 /** Old prose instruction names → matrix slot (this wave). */
@@ -1505,6 +1506,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'howMuchManualWorkAtTheGatesShowsTheGapsInMagnitudes', to: 'manualGauge', pair: 'manual/gap' },
   { from: 'allColorsDryCleanWiredToRosettaAndThemes', to: 'cssMath', pair: 'color/rosetta' },
   { from: 'cssShowsTheHiddenGapsInDryFusion', to: 'cssMath', pair: 'css/gaps' },
+  { from: 'quantumCombinationsAreSignificantlyLessThanLinearAndProvideFullCoverage', to: 'comboCover', pair: 'combo/cover' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
