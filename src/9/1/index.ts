@@ -87,6 +87,18 @@ const twoI = (a: readonly number[]): number[] => a.flatMap((_, i) => (i % 2 === 
 const TWO_I2 = [2, 0, 0, 0, 0, 0, 2, 0]
 const ZERO8 = new Array<number>(8).fill(0)
 
+// Parametric su(2) gates — homed HERE beside the closed operator algebra (dry/dupe spin 2026-07-24;
+// the src/0 purity law holds the void station at ≤126 exports, and R(θ)/phase ARE su(2) elements):
+// R(θ) real rotation and diag(1, e^{iφ}) phase, in the kernel's flat complex 2×2 form.
+export function rotationGate(theta: number): readonly number[] {
+  const c = Math.cos(theta)
+  const s = Math.sin(theta)
+  return [c, 0, -s, 0, s, 0, c, 0]
+}
+export function phaseGate(phi: number): readonly number[] {
+  return [1, 0, 0, 0, 0, 0, Math.cos(phi), Math.sin(phi)]
+}
+
 /** The fold: the operator algebra closes — the Pauli defining relations all hold, computed not asserted.
  * Fills the gap the inventory named: gateMul + commutator alone are a product and a bracket; with the Jordan
  * product, trace and adjoint the su(2) ⊂ M₂(ℂ) *-algebra is complete and self-verifying. */

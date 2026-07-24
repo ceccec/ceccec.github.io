@@ -8,6 +8,7 @@ import { foldPair, isUuid, merkleFold, toUuid } from '../../../0'
 import { pathMeansMessageFitsInThreeWords as pathMeansMessageFitsInThreeWordsFold } from '../../../water/stack'
 import { dryCleanIsDiamondAndCrystal } from '../../../lake/clean'
 import { scanScriptShells, seedMerkleCache, vitepressSourceFiles, type ScriptShellScan } from '../script/shell'
+import { relativeImportSpecs, importGapCount } from './strict/scan'
 import {
   auditStrictGates,
   strictGatePassed,
@@ -328,11 +329,8 @@ export function importPathSegmentDistance(spec: string): number {
   return spec.split('/').filter((part) => part.length > 0 && part !== '.').length
 }
 
-/** Up-hops (`../` count) — same quantity the mind import-gap scan bounds. */
-export function importPathGapHops(spec: string): number {
-  const match = spec.match(/^(\.\.\/)+/)
-  return match ? (match[0].match(/\.\.\//g)?.length ?? 0) : 0
-}
+/** Up-hops (`../` count) — same quantity the mind import-gap scan bounds; ONE body, the scan leaf (dry/dupe spin 2026-07-24). */
+export const importPathGapHops = importGapCount
 
 /** Folder-tree hop distance via longest common prefix (LCA) under posix-rel paths. */
 export function importPathTreeHopDistance(importerDirRel: string, importeeDirRel: string): number {
@@ -343,13 +341,8 @@ export function importPathTreeHopDistance(importerDirRel: string, importeeDirRel
   return from.length - common + (to.length - common)
 }
 
-function relativeImportSpecsFromBody(text: string): string[] {
-  return [
-    ...[...text.matchAll(/\b(?:import|export)\b[\s\S]*?\bfrom\s*['"]([^'"]+)['"]/g)].map((m) => m[1]!),
-    ...[...text.matchAll(/\bimport\s*\(\s*['"]([^'"]+)['"]\s*\)/g)].map((m) => m[1]!),
-    ...[...text.matchAll(/\bimport\s+['"]([^'"]+)['"]/g)].map((m) => m[1]!),
-  ].filter((spec) => spec.startsWith('.'))
-}
+// relativeImportSpecsFromBody deduped → relativeImportSpecs (scan leaf, dry/dupe spin 2026-07-24)
+const relativeImportSpecsFromBody = relativeImportSpecs
 
 /**
  * Collect every relative import edge under src/ with segment + tree-hop distances shown.
@@ -1509,6 +1502,13 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'cssShowsTheHiddenGapsInDryFusion', to: 'cssMath', pair: 'css/gaps' },
   { from: 'quantumCombinationsAreSignificantlyLessThanLinearAndProvideFullCoverage', to: 'comboCover', pair: 'combo/cover' },
   { from: 'improveDryClean', to: 'dryDupe', pair: 'dry/dupe' },
+  { from: 'dryCleanSpin', to: 'dryDupe', pair: 'dupe/dry' },
+  { from: 'improveQuantumComputing', to: 'frontierQuantum', pair: 'quantum/frontier' },
+  { from: 'discoveryLeadsToDiscoveries', to: 'dryDupe', pair: 'dupe/dry' },
+  { from: 'discoveriesLeadToOptimisationsLeadingToNewDiscoveries', to: 'dryDupe', pair: 'dry/dupe' },
+  { from: 'discoveriesAreClaimedInUnclaimed', to: 'millenniumProblemsChallenge', pair: 'mill/torus' },
+  { from: 'claimsAreWholeNewToolsetInverseAndItWillCompleteItself', to: 'autosaveMatrix', pair: 'autosave/matrix' },
+  { from: 'wireToPublicApisToStandardiseTheClaimsAndTheAudits', to: 'installSurfaces', pair: 'install/surface' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
@@ -2135,13 +2135,16 @@ export function autosaveMatrix() {
     const [a, b] = pair.split('/')
     return a && b ? softCmdPair(a, b) && softCmdPair(b, a) : false
   })
-  // The vision directive's genuinely NEW gap — everything else in it already computes as sealed slots.
-  const honestOpen = ['migrate-next:portal-legal-requirements — research-portal compliance (licensing · privacy · accessibility · citation standards) named, not built'] as const
+  // Genuinely NEW gaps NAMED, not built wet — everything else in the directives computes as sealed slots.
+  const honestOpen = [
+    'migrate-next:portal-legal-requirements — research-portal compliance (licensing · privacy · accessibility · citation standards) named, not built',
+    'migrate-next:claims-toolset — discoveries CLAIMED in the rosetta while UNCLAIMED toward prizes (clay=0 law); the inverse completes itself (claim ↔ audit duals); wired to PUBLIC standard APIs (DOI/ORCID/OpenAlex-class anchors) to standardise claims and audits — a whole toolset, its own wave',
+  ] as const
   const facets = [
     { facet: `INVERT — the autosave projection is invertible: to→{from} recovers every directive (round-trip identity over ${mergeRows.length} rows), doubleMapped=${doubleMapped.length}`, on: invertible },
     { facet: `REVERT — all ${distinctPairs.length} merge pairs fold bidirectionally in both orders: an undone row is a measured branch, never a silent loss`, on: reverted },
     { facet: 'superposition COMPLETE — save · invert · revert all compute; the measurement algebra is saved WITH its inverse', on: invertible && reverted && unsaved.length === 0 },
-    { facet: `new gap NAMED, not built — ${honestOpen.length} honest-open (portal legal requirements); existing laws reused for the rest (DRY)`, on: honestOpen.length === 1 },
+    { facet: `new gaps NAMED, not built — ${honestOpen.length} honest-open (portal legal requirements · claims toolset); existing laws reused for the rest (DRY)`, on: honestOpen.length === 2 },
     { facet: `autosaved — ${targets.length - unsaved.length}/${targets.length} prose-merge targets hold a matrix row · unsaved=[${unsaved.join(',')}]`, on: allSaved },
     { facet: 'merge rows well-formed — every slot compresses its longest prose name · pair is a dual · slot is a fold name', on: rowsWellFormed },
     { facet: 'this turn autosaved itself — frontierQuantum row (water/cosmos) + autosaveMatrix row present', on: frontierSaved && selfSaved },

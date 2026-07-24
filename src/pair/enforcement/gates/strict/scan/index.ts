@@ -968,7 +968,7 @@ function filenameModuleExists(parentDir: string, base: string): boolean {
   return existsSync(join(parentDir, `${base}.ts`))
 }
 
-function relativeImportSpecs(text: string): string[] {
+export function relativeImportSpecs(text: string): string[] {
   return [
     ...[...text.matchAll(/\b(?:import|export)\b[\s\S]*?\bfrom\s*['"]([^'"]+)['"]/g)].map((m) => m[1]!),
     ...[...text.matchAll(/\bimport\s*\(\s*['"]([^'"]+)['"]\s*\)/g)].map((m) => m[1]!),
@@ -976,7 +976,7 @@ function relativeImportSpecs(text: string): string[] {
   ].filter((spec) => spec.startsWith('.'))
 }
 
-function importGapCount(spec: string): number {
+export function importGapCount(spec: string): number {
   const match = spec.match(/^(\.\.\/)+/)
   return match ? (match[0].match(/\.\.\//g)?.length ?? 0) : 0
 }

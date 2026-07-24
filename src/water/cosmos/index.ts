@@ -14,7 +14,7 @@ import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
 import { memoByRoot, toUuid, merge, merkleFold, sealFacets, roundTo, prng, isUuid, gcd, phaseDrift, foldPair, digitalRoot, VORTEX_SEQUENCE, qubits, applyGate, probabilities } from '../../0'
 import { MAJOR_MOONS } from '../../3/7'
-import { CRITICAL_MAGNETIC_FIELD_T, MOND_ACCELERATION_A0, OMEGA_BARYON, qcdMassFractionOfProton, ratStr } from '../../9/1'
+import { CRITICAL_MAGNETIC_FIELD_T, MOND_ACCELERATION_A0, OMEGA_BARYON, qcdMassFractionOfProton, ratStr, rotationGate, phaseGate } from '../../9/1'
 import { casimirEnergyPerArea, HUBBLE_CONSTANT_LOCAL } from '../../6/4'
 import { OMEGA_DARK_MATTER, unruhTemperature } from '../../5/5'
 import { DARK_ENERGY_EOS_W, ELECTRONVOLT, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, NEWTON_G, SPEED_OF_LIGHT, otuPerMin } from '../../3/7'
@@ -876,12 +876,10 @@ export function cosmosFrontiersDecoded(matrix: MindMatrix = buildMatrix()) {
 /** One-qubit 2-flavor oscillation circuit: R(θ) · diag(1, e^{iφ}) · R(−θ) applied to |0⟩ — returns P(flip).
  *  The rotation mixes flavor↔mass basis, the phase is the free mass-eigenstate evolution; runs on src/0. */
 export function oscillationOnSimulator(theta: number, phi: number): number {
-  const c = Math.cos(theta)
-  const s = Math.sin(theta)
   let state = qubits(1)
-  state = applyGate(state, [c, 0, -s, 0, s, 0, c, 0], 0) // flavor → mass basis
-  state = applyGate(state, [1, 0, 0, 0, 0, 0, Math.cos(phi), Math.sin(phi)], 0) // free phase e^{iφ} on mass-2
-  state = applyGate(state, [c, 0, s, 0, -s, 0, c, 0], 0) // mass → flavor basis (R(−θ))
+  state = applyGate(state, rotationGate(theta), 0) // flavor → mass basis
+  state = applyGate(state, phaseGate(phi), 0) // free phase e^{iφ} on mass-2
+  state = applyGate(state, rotationGate(-theta), 0) // mass → flavor basis (R(−θ))
   return probabilities(state)[1] ?? 0
 }
 
