@@ -1430,6 +1430,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'lifeTorus', pair: 'life/torus', currentBarrel: 'src/water/double', bestPlace: 'src/water/double', action: 'moved', reason: 'the named life FORMED — seven life-forming superpositions documented as torus equations, each re-verified on the src/0 kernel; structural identities, not biology/vitalism' },
   { fold: 'warnFix', pair: 'warn/fix', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'warnings may autocorrect by DERIVATION only (rerun the sealed generator); suppression heals forbidden (auto-ledgering weakens gates); fails never soften' },
   { fold: 'uiAudit', pair: 'ui/audit', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'the usability auditor is a computed public gate over the served pages — 5 structural W3C-class checks, failures NAMED as the society training queue; human testing the stated residue' },
+  { fold: 'torusData', pair: 'torus/data', currentBarrel: 'src/fire/features', bestPlace: 'src/fire/features', action: 'moved', reason: 'agnostic framework completed at the adapter algebra — four no-key API families through one pure shape, dimensionless ratios gate, units labelled never theorems, gates network-free' },
 ] as const
 
 /** Old prose instruction names → matrix slot (this wave). */
@@ -1604,6 +1605,11 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'buildAsQuantumFusionReactionSeeAnythingNotFused', to: 'doubleTorusFacesComputes', pair: 'faces/torus' },
   { from: 'addressTheBlurryTextVitepressApiViolations', to: 'cssMath', pair: 'css/api' },
   { from: 'whoAuditsUiUsabilityWhoTrainsOnItSeeTheSocietyFillTheGaps', to: 'uiAudit', pair: 'ui/audit' },
+  { from: 'nextFormsAgnosticTorusDataAdapters', to: 'torusData', pair: 'torus/data' },
+  // LAW: constantly improve BY any constant used — every constant that enters the code is a lever:
+  // derived or ledgered (crack law) AND carrying its improvement duty (a constant used twice is a
+  // candidate derivation; a constant used once is a candidate inline) — the ratchet reads the census.
+  { from: 'constantlyImproveByAnyConstantUsed', to: 'mathGaps', pair: 'math/gaps' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
@@ -2235,7 +2241,7 @@ export function autosaveMatrix() {
     'migrate-next:portal-legal-requirements — research-portal compliance (licensing · privacy · accessibility · citation standards) named, not built',
     'migrate-next:claims-toolset — discoveries CLAIMED in the rosetta while UNCLAIMED toward prizes (clay=0 law); the inverse completes itself (claim ↔ audit duals); wired to PUBLIC standard APIs (DOI/ORCID/OpenAlex-class anchors) to standardise claims and audits; PATENT INTELLIGENCE face: pure-algebra hardware designs published as DEFENSIVE DISCLOSURE — prior art FREE FOR ALL, proprietary claiming refused by construction — a whole toolset, its own wave',
     'formed:life-torus-equations — the named life FORMED as lifeTorus (life/torus, src/water/double): seven superpositions · seven computing equations; the queue advances (ground law: one per wave)',
-    'migrate-next:agnostic-torus-data — complete the agnostic double-torus framework by analysing big PUBLIC data APIs through pure no-key adapters (USGS · Open-Meteo/NOAA-class · OpenAlex/Crossref/arXiv-class · World-Bank-class), each stream a computed torus face with demarcation gates; intelligence improves by measured analysis, never by scraping trust',
+    'formed:agnostic-torus-data — FORMED as torusData (torus/data, src/fire/features): four no-key API families through one pure adapter shape, dimensionless ratios gate, units labelled never theorems, gates network-free; a fifth source is a function, not a framework change',
   ] as const
   const facets = [
     { facet: `INVERT — the autosave projection is invertible: to→{from} recovers every directive (round-trip identity over ${mergeRows.length} rows), doubleMapped=${doubleMapped.length}`, on: invertible },
