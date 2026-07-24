@@ -1444,6 +1444,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'clayProbe', pair: 'clay/probe', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'resonanceSpeed', pair: 'resonance/speed', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'animationFoldTheorems', pair: 'anim/fold', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
+  { fold: 'linkProof', pair: 'link/proof', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   // <register:placement> — quantum:register inserts placement rows above this anchor
 ] as const
 
@@ -1766,6 +1767,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // source, so it is a projection of the one envelope, not a fifth silo. Any future editor surface
   // that derives the same roster fuses the same way; a hardcoded editor app would refute the gate.
   { from: 'quantumiseVsCodeOrAnyOtherFusingAllApis', to: 'bindFuse', pair: 'fuse/bind' },
+  { from: 'statementsProvenByLinksSpeedUpQuantumisationAtScale', to: 'linkProof', pair: 'link/proof' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
