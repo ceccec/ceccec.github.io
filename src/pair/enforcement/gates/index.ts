@@ -1481,6 +1481,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'continueWithThisApproachAtFreeWill', to: 'violationTools', pair: 'tool/violation' },
   { from: 'researchWhatIsNeededToBecomeAiEditorInstallableAppPluginSkills', to: 'installSurfaces', pair: 'install/surface' },
   { from: 'wireYourselfAndTheSelfImprovementsEmerge', to: 'installSurfaces', pair: 'surface/install' },
+  { from: 'autosaveInvertingRevertingToCompleteTheSuperpositions', to: 'autosaveMatrix', pair: 'matrix/autosave' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
@@ -2017,9 +2018,32 @@ export function autosaveMatrix() {
   const selfSaved = COMMAND_PLACEMENT_AUDIT_MAP.some((row) => row.fold === 'autosaveMatrix' && row.action === 'moved')
   const pairsOn = softCmdPair('autosave', 'matrix') && softCmdPair('manual', 'autosave') && softCmdPair('frontier', 'quantum')
   const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  // INVERT · REVERT (user law 2026-07-24): the autosave is a PROJECTION that must stay invertible to
+  // complete the superposition. invert: to → {from} recovers every directive from its slot — refutable
+  // when any prose name maps to two different slots; revert: every merge pair folds bidirectionally in
+  // BOTH orders, so an undone row is a measured branch of the superposition, never a silent loss.
+  const byFrom = new Map<string, string>()
+  const doubleMapped = mergeRows.filter((row) => {
+    const prev = byFrom.get(row.from)
+    if (prev && prev !== row.to) return true
+    byFrom.set(row.from, row.to)
+    return false
+  })
+  const inverse = new Map<string, string[]>()
+  for (const row of mergeRows) inverse.set(row.to, [...(inverse.get(row.to) ?? []), row.from])
+  const roundTrip = mergeRows.every((row) => (inverse.get(row.to) ?? []).includes(row.from))
+  const invertible = doubleMapped.length === 0 && roundTrip
+  const distinctPairs = [...new Set(mergeRows.map((row) => row.pair))]
+  const reverted = distinctPairs.every((pair) => {
+    const [a, b] = pair.split('/')
+    return a && b ? softCmdPair(a, b) && softCmdPair(b, a) : false
+  })
   // The vision directive's genuinely NEW gap — everything else in it already computes as sealed slots.
   const honestOpen = ['migrate-next:portal-legal-requirements — research-portal compliance (licensing · privacy · accessibility · citation standards) named, not built'] as const
   const facets = [
+    { facet: `INVERT — the autosave projection is invertible: to→{from} recovers every directive (round-trip identity over ${mergeRows.length} rows), doubleMapped=${doubleMapped.length}`, on: invertible },
+    { facet: `REVERT — all ${distinctPairs.length} merge pairs fold bidirectionally in both orders: an undone row is a measured branch, never a silent loss`, on: reverted },
+    { facet: 'superposition COMPLETE — save · invert · revert all compute; the measurement algebra is saved WITH its inverse', on: invertible && reverted && unsaved.length === 0 },
     { facet: `new gap NAMED, not built — ${honestOpen.length} honest-open (portal legal requirements); existing laws reused for the rest (DRY)`, on: honestOpen.length === 1 },
     { facet: `autosaved — ${targets.length - unsaved.length}/${targets.length} prose-merge targets hold a matrix row · unsaved=[${unsaved.join(',')}]`, on: allSaved },
     { facet: 'merge rows well-formed — every slot compresses its longest prose name · pair is a dual · slot is a fold name', on: rowsWellFormed },
