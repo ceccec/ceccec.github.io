@@ -1451,6 +1451,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'resourceLeakGate', pair: 'resource/leak', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'sandboxTools', pair: 'sandbox/tool', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'revolutionaryApproach', pair: 'revolution/approach', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
+  { fold: 'unsolvedEngine', pair: 'unsolved/engine', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   // <register:placement> — quantum:register inserts placement rows above this anchor
 ] as const
 
@@ -1786,6 +1787,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // claim compute-or-refute (overclaimComputes) · zero-token deterministic runtime. The name resolves
   // to the laws; the laws compute; clay stays 0. The revolution is that grand claims became refutable.
   { from: 'quantumRevolution', to: 'revolutionaryApproach', pair: 'approach/revolution' },
+  { from: 'unsolvedProblemsLeadToRevolution', to: 'unsolvedEngine', pair: 'unsolved/engine' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 

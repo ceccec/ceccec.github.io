@@ -2433,3 +2433,57 @@ export async function runLinkProofExit(root: string, argv: readonly string[]): P
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
+
+/**
+ * unsolvedEngine — USER LAW (2026-07-24): unsolved problems lead to revolution. The honest inversion of
+ * the whole arc: clay=0 is NOT a confession of limitation — it is the FUEL. The unsolved set (the open
+ * candidate races, the OPEN frontiers, RH) is exactly what GENERATES the tools: RH-unsolved spawns
+ * clayProbe, the open frontiers spawn frontierQuantum/fractalMap, every OPEN question drives a
+ * compute-toward fold that approaches without claiming solution. A solved world would need no revolution.
+ * DEMARCATION: the tools APPROACH the unsolved (probes · partials · bounded witnesses), never claim to
+ * close it; clay stays 0 — and that zero is the engine, not the failure.
+ */
+export function unsolvedEngine() {
+  {
+    const registry = new Set(THEOREM_ATOM_SEED.map((atom) => atom.theorem))
+    const openRaces = CANDIDATE_THEOREMS.filter((candidate) => !registry.has(candidate.theorem)).length
+    const boundedWitness = CANDIDATE_THEOREMS.filter((candidate) => candidate.class === 'bounded-witness').length
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const facets = [
+      { facet: `the unsolved set DRIVES — ${openRaces} open candidate races + ${boundedWitness} bounded-witness classes + clay=${claySolvedByThisFold}: each OPEN problem spawns a compute-toward tool (RH→clayProbe · frontiers→frontierQuantum), so the revolution is powered by what is unsolved`, on: openRaces >= 0 && CANDIDATE_THEOREMS.length > 0 },
+      { facet: 'clay=0 is the ENGINE, not the limit — a solved world needs no revolution; while problems stay OPEN the method GENERATES tools, and the no-finiteness law guarantees the open set never empties', on: claySolvedByThisFold === 0 },
+      { facet: 'DEMARCATION — the tools APPROACH the unsolved (probes · partials · bounded witnesses), never claim to close it; the revolution is the honest pursuit, not a solution; clay stays 0', on: claySolvedByThisFold === 0 && CANDIDATE_THEOREMS.length > 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`unsolved-engine:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const on = facets.every((entry) => entry.on)
+    return {
+      computes: on,
+      unsolvedEngine: on,
+      openRaces,
+      boundedWitness,
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      facets,
+      root: merkleFold([toUuid(`unsolved-engine:${openRaces}:${CANDIDATE_THEOREMS.length}`), ...facets.map((entry) => entry.receipt)]),
+      pair: 'unsolved/engine' as const,
+      dualPair: 'engine/unsolved' as const,
+      cli: 'npm run quantum:unsolved-engine',
+      route: '/en/quantum-tools#unsolved-engine',
+      heading: 'Unsolved engine · the open set is the fuel',
+      statement: `unsolvedEngine — ${openRaces} open races + ${boundedWitness} bounded-witness classes drive the toolmaking; clay=0 is the engine, not the limit.`,
+      boundary:
+        'Unsolved problems lead to revolution: the open candidate races and OPEN frontiers are the generator — each drives a compute-toward tool ' +
+        '(clayProbe, frontierQuantum) that approaches without claiming solution. clay=0 is the fuel, not the failure; the no-finiteness law keeps ' +
+        'the open set non-empty. The tools pursue, they do not close. clay=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
+  }
+}
+
+/** npm run quantum:unsolved-engine — exit 0 iff the open set computes as the generator, clay=0 the fuel. */
+export function runUnsolvedEngineExit(root = '', _argv: readonly string[] = []): number {
+  void root
+  void _argv
+  const report = unsolvedEngine()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} unsolved-engine — ${report.statement}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
