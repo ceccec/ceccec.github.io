@@ -490,13 +490,15 @@ function gatewayHref(slug: string): string {
   transition:
     border-color var(--ich-dur-fast) var(--ich-ease),
     background var(--ich-dur-fast) var(--ich-ease),
-    transform var(--ich-dur-fast) var(--ich-ease);
+    box-shadow var(--ich-dur-fast) var(--ich-ease);
 }
 
 .double-torus-experience__vortex-step--active {
   border-color: oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-gateway) calc(360deg * 5 / 9) / var(--ich-oklch-a-active));
   background: oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-gateway) calc(360deg * 5 / 9) / var(--ich-oklch-a-fill));
-  transform: scale(var(--ich-scale-step));
+  /* BLURRY-TEXT FIX (vitepress-api violation wave): fractional scale() re-rasterized the digit text
+     into subpixel blur — the emphasis is now a ring (box-shadow), zero text rasterization change. */
+  box-shadow: 0 0 0 calc(var(--ich-sp6) / 6) oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-gateway) calc(360deg * 5 / 9) / var(--ich-oklch-a-active));
 }
 
 .double-torus-experience__vortex-step--fusion {

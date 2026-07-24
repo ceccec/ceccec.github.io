@@ -1596,6 +1596,12 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // that manual work is CACHED (sealed as a quantum:* CLI) so the next occurrence costs a lookup,
   // not a rebuild. Witnessed all session: each manual investigation became a sealed tool.
   { from: 'theRestAddressedManuallyCachingTheToolsForNextUse', to: 'warnFix', pair: 'fix/warn' },
+  { from: 'hardLimitationsComputedByTheTorusShrinkThinkingIntoReusableSurgicalPieces', to: 'planTrinity', pair: 'plan/cross' },
+  { from: 'lessThinkingBringsMoreIdeasFromObservation', to: 'fractalCompute', pair: 'compute/fractal' },
+  { from: 'agentKnowsWhatFeelsComputationallyPossibleEverySolutionOpensGatewaysWhoAuditsUiUsabilityWhoTrainsSeeSocietyFillGaps', to: 'deadGateway', pair: 'dead/gateway' },
+  { from: 'testsAsQuantumFusionReaction', to: 'doubleTorusFacesComputes', pair: 'torus/faces' },
+  { from: 'buildAsQuantumFusionReactionSeeAnythingNotFused', to: 'doubleTorusFacesComputes', pair: 'faces/torus' },
+  { from: 'addressTheBlurryTextVitepressApiViolations', to: 'cssMath', pair: 'css/api' },
 ] as const
 
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
