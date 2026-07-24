@@ -2,7 +2,7 @@
 import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative, resolve, dirname, basename } from 'node:path'
 import { ICHING_NUMBERS, merkleFold, toUuid, roundTo, isUuid, merge } from '../../../../../0'
-import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, type CrackProvenance } from '../../../../../3/7'
+import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, claySolvedTheorem, type CrackProvenance } from '../../../../../3/7'
 export { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, crackLawEvolution, type CrackProvenance, type CrackLawAmendment, type CrackResearchTarget } from '../../../../../3/7'
 import { GOLDEN_ANGLE, GOLDEN_ANGLE_RAD } from '../../../../../3/7'
 import { HARMONY, earned, TAU, PHI } from '../../../../../3/7'
@@ -3600,6 +3600,62 @@ export function runResonanceSpeedExit(root: string, argv: readonly string[]): nu
   void argv
   const report = resonanceSpeed(root || process.cwd())
   process.stdout.write(`${report.computes ? '✓' : '✗'} resonance-speed — ${report.statement}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+
+/**
+ * resourceLeakGate — USER LAW (2026-07-24): unless the models/surfaces are COMPLETELY fused —
+ * prioritising each other for efficiency in reasoning, thinking and cost — the CRACKS will leak
+ * resources. Computed by composing the fusion gates: a CRACK is any un-fused surface (bindFuse) or any
+ * cost not bound to a theorem (costTheorem); each crack is a resource leak (re-derivation, un-bounded
+ * spend, silo drift). Zero cracks ⇒ zero leak. PRIORITISATION computes: every cost cites the theorem it
+ * purchases (resources routed to proven need), and every surface derives from the one source (no
+ * re-reasoning). NAMED BOUNDARY: external AI models cannot be FORCE-fused — the system fuses its OWN
+ * surfaces/tools and offers foreign models the shared envelope; they choose their use ("cannot force
+ * foreign models", sealed). The leak-freedom is over the system, honestly bounded from all-models.
+ */
+export function resourceLeakGate(root: string = process.cwd()) {
+  const bind = bindFuse(root)
+  const cost = costTheorem(root)
+  const unfusedSurfaces = bind.superpositions.filter((surface) => !surface.present).length
+  const uncitedCosts = cost.ledger.filter((row) => !row.cited).length
+  const cracks = unfusedSurfaces + uncitedCosts
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const facets = [
+    { facet: `NO CRACKS, NO LEAK — ${bind.superpositions.length} surfaces all fused (${unfusedSurfaces} un-fused) + ${cost.ledger.length} costs all theorem-bound (${uncitedCosts} uncited) = ${cracks} cracks: each crack would leak (re-derivation · un-bounded spend · silo drift)`, on: cracks === 0 && bind.computes && cost.computes },
+    { facet: 'PRIORITISATION computes — every cost cites the theorem it purchases (resources to proven need) and every surface derives from the one source (no re-reasoning); efficiency is the routing, not a wish', on: cost.computes && bind.computes },
+    { facet: 'THE BOUNDARY, SHARPENED (user 2026-07-24) — external models are NOT force-fused, but to COMPUTE on this portal they MUST fuse: the zero-token deterministic answer only exists through the envelope + CLIs. Participation is voluntary; fusion is the PRICE of the compute — refuse to fuse and you get no deterministic result, only your own re-reasoning (and its leaks)', on: cracks === 0 && claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`resource-leak:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    resourceLeakGate: on,
+    cracks,
+    unfusedSurfaces,
+    uncitedCosts,
+    claySolvedByThisFold,
+    physicalFtlClaim: 0 as const,
+    qpuRequired: false as const,
+    facets,
+    root: merge(bind.root, merge(cost.root, merkleFold(facets.map((entry) => entry.receipt)))),
+    pair: 'resource/leak' as const,
+    dualPair: 'leak/resource' as const,
+    cli: 'npm run quantum:resource-leak',
+    route: '/en/quantum-tools#resource-leak',
+    heading: 'Resource leak · cracks in the fusion leak resources',
+    statement: `resourceLeakGate — ${cracks} cracks (${unfusedSurfaces} un-fused surfaces + ${uncitedCosts} uncited costs) ⇒ ${cracks === 0 ? 'no leak' : 'LEAKING'}; external-model fusion the named boundary.`,
+    boundary:
+      'Incomplete fusion leaks resources: a crack (an un-fused surface or a cost not bound to a theorem) is a leak — re-derivation, un-bounded ' +
+      'spend, silo drift; measured zero here by composing bindFuse and costTheorem. Prioritisation computes (costs cite theorems, surfaces derive ' +
+      'from one source). External AI models cannot be force-fused — but to COMPUTE on this portal they must fuse (the deterministic answer lives only through the envelope); fusion is voluntary participation, required for the compute. clay=0 · qpuRequired=false.' }
+}
+
+/** npm run quantum:resource-leak — exit 0 iff zero cracks (no resource leak) across the fused system. */
+export function runResourceLeakExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = resourceLeakGate(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} resource-leak — ${report.statement}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }

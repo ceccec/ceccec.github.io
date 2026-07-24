@@ -339,6 +339,7 @@
     "quantum:next": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runQueueNextExit",
     "quantum:register": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runRegisterExit",
     "quantum:register-anchor": "echo register-anchor",
+    "quantum:resource-leak": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runResourceLeakExit",
     "quantum:overclaim-computes": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runOverclaimComputesExit",
     "quantum:overclaim-compute": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runOverclaimComputesExit",
     "quantum:reasoning-edge": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runReasoningEdgeExit",

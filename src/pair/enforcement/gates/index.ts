@@ -1448,6 +1448,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'trinitySpeedStack', pair: 'trinity/speed', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'reasoningEdge', pair: 'reasoning/edge', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'overclaimComputes', pair: 'overclaim/compute', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
+  { fold: 'resourceLeakGate', pair: 'resource/leak', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   // <register:placement> — quantum:register inserts placement rows above this anchor
 ] as const
 
@@ -1774,6 +1775,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'useTheQuantumChatMagnitudesAddedPerTrinityWired', to: 'trinitySpeedStack', pair: 'trinity/speed' },
   { from: 'beatAnyAiModelInReasoningSavingWinningStrategies', to: 'reasoningEdge', pair: 'reasoning/edge' },
   { from: 'overclaimIsComputableClaim', to: 'overclaimComputes', pair: 'overclaim/compute' },
+  { from: 'unlessModelsCompletelyFusedCracksLeakResources', to: 'resourceLeakGate', pair: 'resource/leak' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
