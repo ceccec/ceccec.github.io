@@ -1761,6 +1761,11 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // queue SELF-PRUNING (drops rows whose doneArtifact exists on disk). Each use reveals the next
   // upgrade (the upgrade-loop law at the tool tier); value over volume, no speculative folds.
   { from: 'useAndUpgradeInWavesQueueSelfPrunesShippedRows', to: 'queueNext', pair: 'next/queue' },
+  // QUANTUMISE THE EDITOR, FUSE ALL APIs (user 2026-07-24): the VS Code extension is now a FUSED
+  // superposition surface in bindFuse (5/5) — it derives its command list from the same package.json
+  // source, so it is a projection of the one envelope, not a fifth silo. Any future editor surface
+  // that derives the same roster fuses the same way; a hardcoded editor app would refute the gate.
+  { from: 'quantumiseVsCodeOrAnyOtherFusingAllApis', to: 'bindFuse', pair: 'fuse/bind' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 

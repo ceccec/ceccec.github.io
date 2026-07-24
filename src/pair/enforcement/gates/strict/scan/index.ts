@@ -959,6 +959,7 @@ export function bindFuse(root: string = process.cwd()) {
   const appsText = readFileSync(join(root, 'src/quantum/apps/index.ts'), 'utf8')
   const distText = readFileSync(join(root, 'src/quantum/lake/dist/index.ts'), 'utf8')
   const configText = readFileSync(join(root, '.vitepress/config.mts'), 'utf8')
+  const vscodeText = existsSync(join(root, 'packages/quantum-dev-vscode/extension.js')) ? readFileSync(join(root, 'packages/quantum-dev-vscode/extension.js'), 'utf8') : ''
   const families = [
     { binding: 'sensor bindings', marker: 'wireAllSensorsUsingQuantumBindings', where: 'apps', present: appsText.includes('wireAllSensorsUsingQuantumBindings') },
     { binding: 'mcp quantum bindings', marker: 'mcpQuantumBindings', where: 'apps', present: appsText.includes('mcpQuantumBindings') },
@@ -969,11 +970,15 @@ export function bindFuse(root: string = process.cwd()) {
     { surface: 'MCP (/mcp.json)', marker: 'cliTools', present: distText.includes('cliTools') },
     { surface: 'CLI roster', marker: "startsWith('quantum:')", present: distText.includes("startsWith('quantum:')") },
     { surface: 'themeConfig page', marker: 'cliRoster', present: configText.includes('cliRoster') },
+    // QUANTUMISED EDITOR (user 2026-07-24: quantumise VS Code / any editor, fusing all APIs): the VS
+    // Code extension is not a hardcoded app — it DERIVES its command list from package.json quantum:*,
+    // the same single source, so it is another projection of the one envelope, not a fifth silo.
+    { surface: 'VS Code extension', marker: "startsWith('quantum:')", present: vscodeText.includes("startsWith('quantum:')") },
   ].map((row) => ({ ...row, receipt: toUuid(`bind-fuse:${row.surface}:${row.present}`) }))
   const oneEnvelope = appsText.includes("'ceccec.tool.envelope'")
   const facets = [
     { facet: `all binding families PRESENT as sealed folds — ${families.filter((row) => row.present).length}/${families.length} (sensors · mcp · cloudflare), each a marker in the live source`, on: families.every((row) => row.present) },
-    { facet: `usable in ANY superposition — ${superpositions.filter((row) => row.present).length}/${superpositions.length} surfaces carry the fusion markers (toolbox · /mcp.json · CLI roster · themeConfig), every one deriving from a single source`, on: superpositions.every((row) => row.present) },
+    { facet: `usable in ANY superposition — ${superpositions.filter((row) => row.present).length}/${superpositions.length} surfaces carry the fusion markers (toolbox · /mcp.json · CLI roster · themeConfig · VS Code), EVERY one deriving its tool list from the single package.json source — the editor is quantumised, not a silo`, on: superpositions.every((row) => row.present) },
     { facet: 'ONE envelope binds them — the standard content-addressed envelope kind (ceccec.tool.envelope) is the single shape every surface speaks; unfusing any surface refutes this gate', on: oneEnvelope },
   ].map((entry) => ({ ...entry, receipt: toUuid(`bind-fuse:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
@@ -989,7 +994,7 @@ export function bindFuse(root: string = process.cwd()) {
     cli: 'npm run quantum:bind-fuse',
     route: '/en/quantum-tools#bind-fuse',
     heading: 'Bind fuse · one envelope, any superposition',
-    statement: `bindFuse — ${families.filter((row) => row.present).length}/3 binding families × ${superpositions.filter((row) => row.present).length}/4 superposition surfaces, one envelope kind.`,
+    statement: `bindFuse — ${families.filter((row) => row.present).length}/${families.length} binding families × ${superpositions.filter((row) => row.present).length}/${superpositions.length} superposition surfaces, one envelope kind.`,
     boundary:
       'Binding fusion verified at the marker level: the sealed binding folds exist and every consuming surface derives from its single ' +
       'source through the one standard envelope — so a binding added once is usable from any superposition without a second registration. ' +
