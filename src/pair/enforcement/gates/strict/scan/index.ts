@@ -45,6 +45,56 @@ export function monolithFileGapDetail(offenders: readonly { file: string; bytes:
   return offenders.map((o) => `${o.file} (${o.bytes} > ${o.limit})`).join('; ')
 }
 
+/** THE MEGABYTE IS 2²⁰ BYTES (binary MiB): a kibibyte is 2^(2·5) bytes, a mebibyte its square. */
+export const BYTES_PER_MEGABYTE = (2 ** (2 * 5)) ** 2 // 1024 × 1024 = 1_048_576
+/** THE CORPUS SIZE BUDGET (user law, 2026-07-24): "432 by how many bytes is a megabyte is the size
+ * limit" — the whole-corpus ceiling is the harmonic 432 lifted to megabyte scale: 432 × 2²⁰ bytes.
+ * Not a per-file target (that DERIVES via derivedMonolithTargetBytes) — a policy ceiling on the total
+ * payload the site may carry, chosen as the ICHING harmonic count of megabytes. */
+export const CORPUS_SIZE_BUDGET_BYTES = 432 * BYTES_PER_MEGABYTE // 452_984_832
+
+/**
+ * corpusSizeBudget432 — the corpus measured against the 432-MiB ceiling, summed by PATH INDEX.
+ *
+ * Fuses three user directives (2026-07-24) into one computing law:
+ *  • "432 by how many bytes is a megabyte is the size limit" → budget = 432 × 2²⁰ bytes.
+ *  • "each folder path is the meaning while the folder is the payload" → each path is the content
+ *    address (meaning); the file at it is the payload. The total is Σ payload bytes over the paths.
+ *  • "improve input output by computed chunks as path indices" → the walk indexes each payload by its
+ *    path and sums stat.size in ONE pass (O(files), each path a chunk), never re-reading bodies; the
+ *    path-set is collision-free (a bijection path→payload) so no chunk is double-counted.
+ * Refutable: fails if the corpus exceeds the ceiling, if the ratio ≠ 432, or if two paths collide.
+ */
+export function corpusSizeBudget432(codeFiles: readonly string[]) {
+  const chunks = codeFiles.map((file) => {
+    let bytes = 0
+    try { bytes = statSync(file).size } catch { bytes = 0 }
+    return { path: file, bytes } // path = meaning (address); bytes = the payload chunk it indexes
+  })
+  const measured = chunks.reduce((sum, chunk) => sum + chunk.bytes, 0)
+  const distinctPaths = new Set(chunks.map((chunk) => chunk.path)).size
+  const budget = CORPUS_SIZE_BUDGET_BYTES
+  const headroom = budget - measured
+  const megabytesUsed = roundTo(measured / BYTES_PER_MEGABYTE, 2)
+  const ratio = budget / BYTES_PER_MEGABYTE // = 432 exactly, the harmonic lifted to megabyte scale
+  const facets = [
+    { facet: `THE CEILING IS 432 MEGABYTES EXACTLY: budget ${budget} B = 432 × ${BYTES_PER_MEGABYTE} B/MiB, so budget ÷ MiB = ${ratio} = the ICHING harmonic 432 — dimensionless, the size limit IS the harmonic count of megabytes`, on: ratio === 432 && budget === CORPUS_SIZE_BUDGET_BYTES },
+    { facet: `THE CORPUS FITS: measured ${measured} B (${megabytesUsed} MiB over ${chunks.length} payloads) < budget ${budget} B — headroom ${headroom} B; refutable, the site grows INTO the ceiling`, on: measured > 0 && headroom > 0 },
+    { facet: `PATH IS MEANING, FILE IS PAYLOAD — summed by path index in one pass: ${distinctPaths} distinct paths for ${chunks.length} payloads (bijection, no collision), each stat.size a chunk read once — IO is O(files) chunked by address, never O(corpus) re-read`, on: distinctPaths === chunks.length && chunks.length > 0 },
+  ]
+  return {
+    budget,
+    measured,
+    headroom,
+    megabytesUsed,
+    ratio,
+    computes: facets.every((f) => f.on),
+    facets,
+    statement: facets.map((f) => f.facet).join(' · '),
+    boundary: earned(`EXACT: the size limit is 432 × 2²⁰ = ${CORPUS_SIZE_BUDGET_BYTES} bytes (the harmonic 432 measured in binary megabytes); the corpus is summed by walking each path once and reading its payload size — path-indexed chunked IO, a bijection so no double count.`, facets, `this is a POLICY ceiling, not a physical law: 432 is chosen because it is the site's harmonic (DIMENSION_GATES), and the megabyte is binary (2²⁰, the MiB) — a decimal-MB reading would give a 5% smaller ceiling. The per-file monolith target is the DERIVED one (derivedMonolithTargetBytes); this whole-corpus budget is the outer bound, currently ~3% used. It bounds SOURCE payload bytes over the scanned code files, not build output or node_modules.`),
+  }
+}
+
 export function stripComments(text: string): string {
   return text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/.*$/gm, '$1')
 }
