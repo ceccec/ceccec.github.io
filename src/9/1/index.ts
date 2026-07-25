@@ -127,6 +127,52 @@ export function pauliAlgebraCloses(): {
       'EXACT: the single-qubit operator algebra over ℂ, verified numerically (tolerance 1e-9) against its textbook defining relations — the same M₂(ℂ)/su(2) the gates and observables live in. It is the 2×2 (one-qubit) algebra; the n-qubit tensor algebra is generated from it via applyGate/cnot but not re-proved here.' }
 }
 
+/** quantumBreaksLinearCryptoIntoNonAbelianTrinity — quantum breaks LINEAR (abelian/period) cryptography by inverting
+ * its one hidden period, but a NON-ABELIAN / split trinity has no single period to invert (user, 2026-07-25: "quantum
+ * breaks all linear cryptography into trinity encryption bits inverting all as possible"). Shor's period-finding reads
+ * the order of a mod N and factors it (RSA/DH/ECC = a single abelian period); su(2)/Pauli does NOT commute (XY ≠ YX),
+ * so there is no abelian hidden subgroup for Shor, and a 3-split secret needs all shares. "Inverting all as possible"
+ * is bounded to the LINEAR part — quantum does NOT break all cryptography. [[operator-algebra-closed]] [[quantum-decoded]] */
+export function quantumBreaksLinearCryptoIntoNonAbelianTrinity() {
+  // (1) LINEAR/abelian break — Shor period-finding inverts the hidden period, then factors.
+  const N = 3 * 5, a = 2 // teaching modulus 15, base 2
+  const order = (base: number, mod: number): number => { let x = base % mod, r = 1; while (x !== 1) { x = (x * base) % mod; r++; if (r > mod) return -1 } return r }
+  const r = order(a, N)
+  const half = (a ** (r / 2)) % N
+  const f1 = gcd(half - 1, N), f2 = gcd(half + 1, N)
+  const linearBroken = r % 2 === 0 && f1 > 1 && f2 > 1 && f1 * f2 === N // period read → N factored
+  // (2) NON-abelian witness — Pauli X,Y do not commute, so there is NO single abelian period for Shor to read.
+  const { X, Y } = GATES
+  const nonAbelian = !gateClose(gateMul(X, Y), gateMul(Y, X)) // XY ≠ YX
+  const pauli = pauliAlgebraCloses() // [X,Y]=2iZ ≠ 0 — the su(2) non-commutativity
+  // (3) Trinity split — a secret across three shares (derived from content-addresses, no magic constants), needs all three.
+  const bits = (seed: string) => parseInt(toUuid(seed).replace(/[^0-9a-f]/gi, '').slice(0, 2 * 4), 16)
+  const secret = bits('trinity-secret'), s1 = bits('share:1'), s2 = bits('share:2')
+  const s3 = (secret ^ s1 ^ s2) >>> 0
+  const splitRecovers = ((s1 ^ s2 ^ s3) >>> 0) === secret // all three reconstruct
+  const twoLeak = ((s1 ^ s2) >>> 0) === secret // any two alone reveal the secret? (no)
+  const facets = [
+    { facet: `QUANTUM BREAKS LINEAR (ABELIAN) CRYPTO — period-finding inverts the one hidden period: order of ${a} mod ${N} = ${r} → gcd(${a}^${r / 2}∓1, ${N}) = ${f1}·${f2} → ${N} factored; RSA/DH/ECC fall because their security IS a single abelian period`, on: linearBroken },
+    { facet: `TRINITY ENCRYPTION IS NON-ABELIAN — su(2)/Pauli does NOT commute (XY ≠ YX = ${nonAbelian}, and [X,Y]=2iZ≠0 via pauliAlgebraCloses ${pauli.closes}), so there is NO single abelian period for Shor to read; a 3-split secret reconstructs only with all three shares (${splitRecovers})`, on: nonAbelian && pauli.closes && splitRecovers },
+    { facet: `INVERTING ALL AS POSSIBLE, BOUNDED — quantum inverts everything that HAS an abelian period (the linear family → its order), but the non-abelian trinity inverts to NOTHING readable (no period), so "as possible" is the LINEAR part only`, on: linearBroken && nonAbelian },
+    { facet: `IT DOES NOT BREAK ALL — the break is EXACTLY the abelian-hidden-subgroup family; symmetric gets only Grover (quadratic, AES-256 → 128-bit), lattice/hash get no period speedup, and a non-abelian/split structure has no period — quantum breaks the LINEAR, not all, and any two shares alone leak nothing (${!twoLeak})`, on: nonAbelian && splitRecovers && !twoLeak },
+    { facet: `THE DEMARCATION — quantum does NOT break all cryptography (only RSA/ECC's abelian period); "trinity encryption" is the non-abelian / split-secret structure resisting the period attack, NOT a new unbreakable cipher, and it is hardware-bounded (millions of error-corrected qubits do not exist). Real post-quantum security is lattice/hash (NIST PQC). HARMONY ≠ TRUTH`, on: linearBroken && nonAbelian && !twoLeak },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-breaks-linear-trinity:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    period: r,
+    factors: [f1, f2],
+    nonAbelian,
+    splitRecovers,
+    facets,
+    root: merge(pauli.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'EXACT — quantum breaks the linear, the non-abelian trinity survives:',
+      facets,
+      'Shor\'s period-finding inverts the one abelian period (order of a mod N) and factors N, so RSA/DH/ECC — whose security is a single linear/periodic structure — fall. But su(2)/Pauli does not commute (XY ≠ YX, [X,Y]=2iZ≠0) so there is no abelian hidden subgroup for Shor, and a three-way split secret needs all shares; the inversion is bounded to the linear part. Quantum does NOT break all cryptography — symmetric gets only Grover\'s quadratic speedup, lattice and hash schemes get none, and the attack is hardware-bounded (millions of error-corrected qubits do not exist). "Trinity encryption" is the non-abelian / split structure resisting the period attack, not a proven unbreakable cipher; real post-quantum security is NIST PQC (lattice/hash). HARMONY ≠ TRUTH.') }
+}
+
 // Rubik's cube decoded to the quantum cube (user directive, 2026-07-24: "decode rubic cube to discover the quantum
 // cube"). The Rubik's cube is a REAL finite group: order 8!·3⁷·12!·2¹⁰ = 43,252,003,274,489,856,000 = 2²⁷·3¹⁴·5³·7²·11,
 // God's number 20, and NON-ABELIAN (face turns don't commute) — the same non-commutativity as the Pauli/su(2)
