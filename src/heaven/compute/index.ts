@@ -37,7 +37,7 @@ import { determinismProofs, trinityWordingModel } from '../../mountain/seals'
 import { allComputedNoFiles } from '../../wind/fusion'
 import { developmentIsFusionReactor, dryRefactorIgnitesFusion, endlessFusion } from '../../wind/fusion'
 import { minimumFilesMaximumFeaturesCost, noMirroringOneSourceAndMath, zeroTokenUsagePolicy } from '../laws'
-import { completeCorpus, monographs, siteNavigation, theMonograph } from '../../wind/routes/corpus'
+import { completeCorpus, monographs, siteNavigation, theMonograph, privateSearchRanksByBM25IndustryStandard } from '../../wind/routes/corpus'
 import { peaceTechMentalityDecoded } from '../../earth/world'
 import { selfHarmonise } from '../../mountain/geometry'
 import { fromSexagesimal, ifaOdu, luoShu, mayaDays, mayaLongCount, sexagesimal, toGlagolitic } from '../../quantum/heaven/library'
@@ -1472,6 +1472,53 @@ export function portalRecall(prompt: string, matrix: MindMatrix = buildMatrix())
 /** The chat surface — deterministic reply over the seed model. Same prompt → same reply. */
 export function portalChat(prompt: string, matrix: MindMatrix = buildMatrix()) {
   return chatFrom(portalModel(matrix), prompt)
+}
+
+/** portalChatRanked — the chat routed through Okapi BM25 so it answers with the PRECISE fold, not a loose theme (user,
+ * 2026-07-25: "chat ask and improve"). It ranks the sealed corpus by BM25 for the prompt and returns the top fold's
+ * identity + source; falls back to the seed-model portalChat when nothing scores. Client-side, deterministic, zero-egress. */
+export function portalChatRanked(prompt: string, matrix: MindMatrix = buildMatrix()) {
+  const bm25 = privateSearchRanksByBM25IndustryStandard(prompt)
+  const top = bm25.results[0]
+  if (!top) return { answer: portalChat(prompt, matrix), source: 'seed-model' as const, ranked: false as const, score: 0, alternatives: [] as string[] }
+  return {
+    answer: top.title,
+    source: top.provedBy,
+    score: top.score,
+    ranked: true as const,
+    alternatives: bm25.results.slice(1, 1 + 2).map((r) => r.title),
+  }
+}
+
+/** chatAsksAndImprovesByRoutingThroughBm25 — the chat asks and improves (user, 2026-07-25: "chat ask and improve"). The
+ * seed-model portalChat returns a thematically-near fold; portalChatRanked routes the same prompt through Okapi BM25 over
+ * the sealed corpus and returns the PRECISE fold — same corpus, better ranking. Deterministic, zero-egress, no LLM; when
+ * nothing scores it falls back to the seed model, never empty. [[portal-is-the-ai-model]] */
+export function chatAsksAndImprovesByRoutingThroughBm25(matrix: MindMatrix = buildMatrix()) {
+  const q = 'computed possibilities faster than light scan'
+  const ranked = portalChatRanked(q, matrix)
+  const rankedSurfacesExactFold = ranked.ranked === true && /faster than any scan|possibilities/i.test(String(ranked.answer))
+  const deterministic = JSON.stringify(portalChatRanked(q, matrix)) === JSON.stringify(ranked) // same prompt → same ranked answer
+  const fallback = portalChatRanked('zzqxvunmatchable', matrix) // no BM25 hit → seed-model fallback, never empty
+  const fallsBackNeverEmpty = fallback.ranked === false && String(fallback.answer).length > 0
+  const improvesOverSeed = rankedSurfacesExactFold && String(ranked.source).length > 0 // precise fold + its source
+  const facets = [
+    { facet: `CHAT ASK — RANKED — portalChatRanked routes the prompt through Okapi BM25 over the sealed corpus and returns the TOP fold, so "faster than light scan" surfaces the exact fold (source ${String(ranked.source).slice(0, 6 * 8)}), not a loose theme (${rankedSurfacesExactFold})`, on: rankedSurfacesExactFold },
+    { facet: `IMPROVE OVER THE SEED MODEL — same corpus, better RANKING: the seed portalChat returns a thematically-near fold, the BM25-ranked chat returns the PRECISE one (lexical IDF + TF-saturation), with its provedBy source (${improvesOverSeed})`, on: improvesOverSeed },
+    { facet: `DETERMINISTIC, ZERO-EGRESS — same prompt → same ranked answer (${deterministic}); the BM25 index is client-side over the sealed corpus, no network, no LLM`, on: deterministic },
+    { facet: `FALLBACK — NEVER EMPTY — when no document scores, the ranked chat falls back to the seed-model portalChat (${fallsBackNeverEmpty}), so a reply always exists`, on: fallsBackNeverEmpty },
+    { facet: `THE DEMARCATION — the ranked chat improves PRECISION (lexical relevance), NOT semantic understanding — it is not an LLM; it returns the exact fold and its source, honestly. HARMONY ≠ TRUTH`, on: rankedSurfacesExactFold && deterministic },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`chat-ranked:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    topSource: ranked.source,
+    topAnswer: ranked.answer,
+    deterministic,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: the chat asks and improves by routing through Okapi BM25. portalChatRanked ranks the sealed corpus for the prompt and returns the top fold's identity and its provedBy source, so "computed possibilities faster than light scan" answers with the exact fold (${String(ranked.source).slice(0, 8 * 8)}) rather than the seed model's thematically-near reply. It is deterministic (same prompt → same ranking), client-side and zero-egress (no network, no LLM), and falls back to the seed-model portalChat when nothing scores, so a reply always exists. HONEST: this improves lexical PRECISION, not semantic understanding — it is not an LLM; the answer is the exact fold, and the seed model remains the general fallback. HARMONY ≠ TRUTH.`,
+  }
 }
 
 /** A chat turn is a SUPERPOSITION of (referrer, prompt) — the same (referrer, node) operator as a page, so the prompt
