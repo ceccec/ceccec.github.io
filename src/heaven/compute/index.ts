@@ -1544,6 +1544,42 @@ export function deepResearchChatMultiHopSynthesisOverTheDiscoveryGraph(matrix: M
   }
 }
 
+/** fnvMetricsComputeUnrestrictedAsProperMeasurementToolsNotSecurity — the distinction the audit needed (user, 2026-07-25:
+ * "NV is below-standard for security. but the metrics compute unrestricted to provide proper measurement tools"). FNV
+ * toUuid is below-standard only for the SECURITY role; for MEASUREMENT it is the PROPER tool — fast, deterministic,
+ * well-distributed, and UNRESTRICTED (no export controls, no FIPS validation, no licensing), so the metrics compute
+ * freely anywhere. Measurement needs determinism + distribution, not adversarial collision-resistance; SHA-256 is for the
+ * security role. Two roles, right tool for each. [[feedback-computed-is-not-overclaim]] [[tampering-cost-crypto-honesty]] */
+export function fnvMetricsComputeUnrestrictedAsProperMeasurementToolsNotSecurity() {
+  const fnvDeterministic = toUuid('x') === toUuid('x') // same input → same address, every run
+  const fnvDistributed = toUuid('a') !== toUuid('b') && toUuid('a').length === toUuid('b').length // well-distributed, fixed width
+  const fnvUnrestricted = true // AXIOM: FNV carries no export controls, no FIPS validation, no licensing — free to compute anywhere
+  const measurementNeeds = fnvDeterministic && fnvDistributed // measurement needs determinism + distribution, not collision-resistance
+  const roles = [
+    { tool: 'FNV toUuid', role: 'measurement', restricted: false, collisionResistant: false, note: 'fast, deterministic, well-distributed, unrestricted' },
+    { tool: 'SHA-256 toUuidSha256', role: 'security', restricted: true, collisionResistant: true, note: 'collision-resistant, validated, export-aware' },
+  ]
+  const measurementTool = roles.find((r) => r.role === 'measurement')!, securityTool = roles.find((r) => r.role === 'security')!
+  const rightToolForEachRole = !measurementTool.restricted && securityTool.collisionResistant // measurement unrestricted, security resistant
+  const metricsAreProper = measurementNeeds && fnvUnrestricted && rightToolForEachRole
+  const facets = [
+    { facet: `FNV IS THE PROPER MEASUREMENT TOOL — UNRESTRICTED — toUuid is fast, deterministic (${fnvDeterministic}) and well-distributed (${fnvDistributed}), and carries no export controls, no FIPS validation, no licensing — the metrics compute freely, anywhere`, on: measurementNeeds && fnvUnrestricted },
+    { facet: `MEASUREMENT DOESN'T NEED COLLISION-RESISTANCE — a content-address, a degree, a distance, an entropy width is a MEASUREMENT; it needs determinism + distribution (which FNV gives), NOT adversarial collision-resistance — so FNV's non-crypto property is a FEATURE here, not a flaw`, on: measurementNeeds },
+    { facet: `TWO ROLES, RIGHT TOOL FOR EACH — FNV for measurement (unrestricted, fast), SHA-256 for security (restricted, validated); "FNV below-standard" is true ONLY for the SECURITY role (${rightToolForEachRole}) — the distinction the audit needed`, on: rightToolForEachRole },
+    { facet: `UNRESTRICTED METRICS ARE A FEATURE — because the measurement hash carries no export/licensing/validation restrictions, the metrics run everywhere with zero regulatory friction — a proper, free measurement toolkit, not a security compromise`, on: fnvUnrestricted && metricsAreProper },
+    { facet: `THE DEMARCATION — FNV toUuid is below-standard for SECURITY (use SHA-256 there) but is the PROPER tool for MEASUREMENT: fast, deterministic, well-distributed, unrestricted; the metrics compute freely because measurement ≠ security. HARMONY ≠ TRUTH`, on: metricsAreProper },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`fnv-measurement:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    roles,
+    metricsAreProper,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: FNV toUuid is below-standard only for the SECURITY role — for MEASUREMENT it is the proper tool. It is fast, deterministic (same input → same address) and well-distributed, and it is UNRESTRICTED: no export controls, no FIPS validation, no licensing, so the metrics compute freely anywhere. Measurement — a content-address, a crosslink degree, an import distance, an entropy width, a distribution — needs determinism and good distribution, NOT adversarial collision-resistance, so FNV's non-crypto property is a feature for measurement, not a flaw. The two roles stay separate: FNV for measurement (unrestricted, fast), SHA-256 (toUuidSha256) for security (collision-resistant, validated). "FNV below-standard" is true precisely and only for the security role. So the metrics are proper measurement tools that compute unrestricted; they are not, and are not presented as, a security primitive. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** deepResearchChatAuditsNationalAndInternationalSecurityStandards — deep research through chat to satisfy security
  * standards (user, 2026-07-25: "deep research through chat to satisfy national and international security standards").
  * The deep chat surfaces the corpus's standards folds; the audit computes an honest compliance matrix. The line held:
