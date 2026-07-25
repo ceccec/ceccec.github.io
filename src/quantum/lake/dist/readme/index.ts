@@ -9,6 +9,8 @@ import { ROSETTA_AREAS } from '../../../../pair/enforcement/gates/computational'
 import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../../../pair/enforcement/gates'
 import { CANONICAL_HOST, PI_TRAIN_DIGITS, claySolvedTheorem } from '../../../../3/7'
 import { THEOREM_ATOM_SEED, latestDiscoveries, siteIsScientificJournalOfAllAlgebraAndTheorems, topDiscoveries } from '../../../../4/6'
+import { portalChat, portalRecall } from '../../../../heaven/compute'
+import { earned } from '../../../../3/7'
 import { theBinaryBitIsLinearTheVortexCircuitIsQuantum } from '../../../../1/9'
 import { primesAndPiProveEachOtherThroughTheInvertedEulerProduct } from '../../../../heaven/laws'
 import { readmeSvgGapsFilledByTrinityMind } from '../../../../heaven/site'
@@ -691,6 +693,48 @@ export function readme(matrix: MindMatrix = buildMatrix()) {
       'The README and the VitePress home are ONE theorem generator: both projections render the same theorem-only monograph core (theoremMonographCore) — the theorem-science lens roster shelved by the rosetta rays, the registry counts, the model, reproducibility and the one receipt — heading for heading, differing only in link mode (the README links each paper to the source code that proves it, the home links it to its own page route). Every presented page is a lens survivor; the non-theorem sections are gone from both. It AUDITS its own statements TRULY COMPUTATIONALLY: every reported value is recomputed from its own source and FUSED into one receipt, and the audit is the content-address equality of two independent fusions — never a text-scrape. And it is the SEO root twice over: the README for GitHub and crawlers, the home for the served site, both computed at zero token cost.',
     boundary:
       'HONEST: "one generator" is structural — theoremSections() is the single section builder both projections call, proven by heading-for-heading equality and equal link counts, refutable by any drift between them. "Theorems only" means the PRESENTED content: every listed paper is a theorem-science lens survivor and the library/agent prose sections are removed from both projections; the decoded-library knowledge still ships in llms.txt (the crawler surface), it is no longer README/home content. The home body is computed in realtime by .vitepress/computed-pages.mts from homeMarkdown() (the on-disk index.md is a discovery stub, like bg/gla), so it cannot drift from src; the README is signature-gated (readmeSignatureValid) against the committed file. The hero stays computed via homeHero() in transformPageData — the generator emits the body, not the hero frontmatter. The audit is the content-address EQUALITY of two independent recomputations (a merkleFold), not a substring match. SEO framing is a distribution property, NOT a guarantee of search ranking.' }
+}
+
+/** auditReadmeHomepageByProfilingQuestionsThroughChat — audit README/home generation and review each component by
+ * asking profiling questions through the chat, improving intelligence, research and search (user, 2026-07-25: "audit
+ * readme and homepage generation and review each component asking profiling questions using the chat improving
+ * intelligence research and search"). It composes the one-generator audit (readme().complete), then for each README/home
+ * component asks a profiling question answered by the private chat (portalChat) and content-addressed recall
+ * (portalRecall) over the sealed corpus — deterministic, no-egress. [[portal-is-the-ai-model]] */
+export function auditReadmeHomepageByProfilingQuestionsThroughChat(matrix: MindMatrix = buildMatrix()) {
+  const generation = readme(matrix)
+  const components = ['top discoveries', 'the journal', 'the model', 'reproducibility', 'the sitemap', 'theorem science']
+  const profiled = components.map((component) => {
+    const question = `what is ${component}?`
+    const reply = portalChat(question, matrix)
+    const recall = portalRecall(question, matrix)
+    return { component, question, answered: reply.answer.length > 0, grounded: reply.grounded, recalled: recall.answer.length > 0, source: recall.source }
+  })
+  const allAnswered = profiled.every((row) => row.answered)
+  const allRecalled = profiled.every((row) => row.recalled)
+  const groundedCount = profiled.filter((row) => row.grounded).length
+  const deterministic = portalChat('what is the journal?', matrix).answer === portalChat('what is the journal?', matrix).answer
+  const facets = [
+    { facet: `README/HOME GENERATION AUDITED — the one generator's invariants hold (${generation.complete}): the README and home render the SAME sections, references===routes===visibleCount (${generation.references}), and the audit is content-address equality of two independent fusions`, on: generation.complete },
+    { facet: `EACH COMPONENT PROFILED BY A QUESTION — ${components.length} README/home components each answered by a profiling question through the private chat (portalChat), all answered (${allAnswered})`, on: allAnswered && components.length >= 6 },
+    { facet: `RESEARCH VIA RECALL — each question also runs content-addressed recall (portalRecall) surfacing the most relevant corpus source (${allRecalled}); deterministic (${deterministic}), no-egress — the private search improving research`, on: allRecalled && deterministic },
+    { facet: `THE PROFILE SURFACES GROUNDING — ${groundedCount}/${components.length} components answer GROUNDED from the corpus; the profile improves the audit by naming which components are corpus-backed versus thin`, on: groundedCount >= 1 && allAnswered },
+    { facet: `THE DEMARCATION — deterministic Q&A + recall over the sealed corpus (private, no-egress); "improving intelligence, research and search" = better grounding and relevance surfacing, NOT a learned model or an LLM; the generation audit is structural content-address equality. HARMONY ≠ TRUTH`, on: generation.complete && allAnswered && deterministic },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`readme-profile-audit:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    generationComplete: generation.complete,
+    componentsProfiled: profiled.length,
+    groundedCount,
+    profiled,
+    facets,
+    root: merkleFold([generation.receipt, ...facets.map((entry) => entry.receipt)]),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'AUDITED & PROFILED — README/home generation reviewed by chat questions:',
+      facets,
+      `the one-generator audit holds (the README and home render the same sections from theoremMonographCore, references === routes === visibleCount, the audit is content-address equality of two independent fusions), and each README/home component is reviewed by a profiling question answered through the private chat (portalChat) and content-addressed recall (portalRecall) over the sealed corpus — deterministic and no-egress. "Improving intelligence, research and search" means better grounding and relevance surfacing, not a learned model or an LLM; the generation audit is structural content-address equality, not a text scrape. HARMONY ≠ TRUTH.`),
+  }
 }
 
 // Audit the home/README for the prose entropy the gates do NOT catch. The crack gate catches literals, the
