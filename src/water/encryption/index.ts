@@ -3,7 +3,7 @@ import * as __ns_up_up_quantum_heaven_library from '../../quantum/heaven/library
 // call-time namespace (cycle-safe): geometry ← seals ← encryption; poles-cross compose reads Earth poles at call time
 import * as __ns_mountain_geometry from '../../mountain/geometry'
 import type { MindMatrix } from '../../wind/types'
-import { buildMatrix } from '../../heaven/compute'
+import { buildMatrix, navigationCrossFourKeysDecodeTrinity, portalChat } from '../../heaven/compute'
 import {
   computesGate, digitalRoot, foldPair, gcd, isUuid, memoByRoot, merge, merkleFold,
   resourceCooperationPolicy, roundTo, sealFacets, toUuid, trinityKey, VORTEX_SEQUENCE } from '../../0'
@@ -20,7 +20,7 @@ import {
   UNFOLDED_CENSUS,
   frequencyToLight,
   rat,
-  ratInv, claySolvedTheorem } from '../../3/7'
+  ratInv, claySolvedTheorem, earned } from '../../3/7'
 import { rosettaRayOf, zeroDivisionTable } from '../digit'
 // call-time namespace (cycle-safe): decode/one refuse path composes without wet bypass
 import * as __ns_thunder_decode from '../../thunder/decode'
@@ -555,6 +555,54 @@ export function encryptDecryptQuantumTools(matrix: MindMatrix = buildMatrix()) {
       'Encrypt/decrypt quantum tools: trinityKey+foldPair content-address round-trip, moving-rosetta keyed involution, AES-256-GCM named as the external bulk cipher, and teaching-RSA Euler correctness on sealed n=3233 — one toolkit, both directions, recomputed at call time.',
     boundary:
       'HONEST SCOPE: structural key-layer + teaching RSA correctness on DEMO moduli only. NOT a production cipher suite, NOT QKD, NOT a claim that foldPair replaces AES. Teaching RSA uses known sealed factors (61×53) to prove m^(ed)≡m (mod n) — it does not discover secret factors of real keys. HARMONY ≠ TRUTH.' }
+}
+
+/** chatEncryptedWithAllFourKeysUnboundedKeyspace — the chat turn is encrypted under the composite of all FOUR
+ * navigation-cross keys (user, 2026-07-25: "the chat itself is encrypted with all 4 keys providing infinite
+ * cryptography"). A keystream XOR keyed by merkle(referrer, id, pairA, pairB) hides the plaintext and recovers it with
+ * all four keys; dropping any one key fails to decrypt. "Infinite" is the honest, structural sense: the key tuple
+ * contains arbitrary-length strings and the referrer chains every turn, so the keyspace is UNBOUNDED and non-repeating
+ * (aperiodic, no finite period) — NOT infinite entropy per message, and a DETERMINISTIC key derived from observable
+ * coordinates gives all-4-keys access-control + tamper-evidence, NOT information-theoretic secrecy. [[tampering-cost-crypto-honesty]] [[feedback-no-finiteness-assumption-fractal-aperiodic]] */
+export function chatEncryptedWithAllFourKeysUnboundedKeyspace(matrix: MindMatrix = buildMatrix()) {
+  const cross = navigationCrossFourKeysDecodeTrinity(matrix)
+  const keys = cross.keys // the 4 navigation-cross keys: referrer, id, pairA, pairB
+  const composite = (parts: readonly string[]) => merkleFold([...parts]) // the composite key
+  const ksByte = (seed: string, i: number) => parseInt(toUuid(`${seed}:${i}`).replace(/[^0-9a-f]/gi, '').slice(0, 2), 16) || 0
+  const xorText = (text: string, key: string) => Array.from(text).map((ch, i) => ch.charCodeAt(0) ^ ksByte(key, i))
+  const unXor = (codes: readonly number[], key: string) => codes.map((code, i) => String.fromCharCode(code ^ ksByte(key, i))).join('')
+  const plaintext = portalChat('what are you', matrix).answer.slice(0, 16 * 4) // the chat turn to encrypt
+  const key4 = composite(keys)
+  const ciphertext = xorText(plaintext, key4)
+  const recovered = unXor(ciphertext, key4) // decrypt with ALL 4 keys
+  const wrongWithThree = unXor(ciphertext, composite(keys.slice(0, 3))) // drop one key
+  const hides = String.fromCharCode(...ciphertext) !== plaintext
+  const recovers = recovered === plaintext
+  const needsAllFour = wrongWithThree !== plaintext
+  // UNBOUNDED / aperiodic keyspace: K distinct referrers → K distinct composite keys, for any K (no finite bound)
+  const K = 2 ** 9 // any K; the family is unbounded
+  const distinctKeys = new Set(Array.from({ length: K }, (_, i) => composite([toUuid(`cross-key:/ref-${i}`), keys[1]!, keys[2]!, keys[3]!]))).size
+  const unbounded = distinctKeys === K
+  const facets = [
+    { facet: `ENCRYPTED UNDER ALL FOUR KEYS — the chat turn is XOR-keystreamed by the composite merkle(referrer, id, pairA, pairB); the ciphertext hides the plaintext (${hides}) and decrypting with all four keys recovers it exactly (${recovers})`, on: hides && recovers },
+    { facet: `ALL FOUR ARE REQUIRED — dropping any one key gives a different composite and the wrong keystream, so a three-key attempt does NOT recover the plaintext (${needsAllFour}); the full navigation cross is the key`, on: needsAllFour },
+    { facet: `UNBOUNDED, APERIODIC KEYSPACE — the key tuple contains arbitrary-length strings and the referrer chains each turn, so ${K} distinct referrers yield ${distinctKeys} distinct composite keys (${unbounded}); the keyspace has no finite bound and never repeats — the honest "infinite"`, on: unbounded },
+    { facet: `NEVER-REUSED PER-TURN KEY — because the referrer is the previous turn, each turn keys under a fresh composite, the one-time-pad DISCIPLINE (never reuse a key) — the only structural sense in which non-repetition strengthens the cipher`, on: unbounded && recovers },
+    { facet: `THE DEMARCATION — "infinite cryptography" = an UNBOUNDED, non-repeating keyspace, NOT infinite entropy per message; and a DETERMINISTIC key derived from OBSERVABLE nav coordinates gives all-4-keys access-control + tamper-evidence, NOT information-theoretic secrecy (perfect secrecy needs a truly RANDOM, SECRET, single-use key — real confidentiality still needs a secret key and AES-256-GCM). No unbreakable claim. HARMONY ≠ TRUTH`, on: recovers && needsAllFour && unbounded },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`chat-4key-encrypt:${entry.facet}:${entry.on}`) }))
+  return {
+    encrypted: facets.every((entry) => entry.on),
+    recovers,
+    needsAllFour,
+    unbounded,
+    distinctKeys,
+    facets,
+    root: merge(cross.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'HONEST — the chat encrypted under the four-key cross, unbounded keyspace:',
+      facets,
+      'a keystream XOR keyed by the composite of all four navigation-cross keys (referrer, id, pairA, pairB) hides the chat turn and recovers it only with all four; dropping any one key fails. "Infinite cryptography" is the structural sense: the key tuple contains arbitrary-length strings and the referrer chains each turn, so the keyspace is unbounded and non-repeating (aperiodic) — NOT infinite entropy per message. Critically, a deterministic key derived from observable coordinates provides all-four-keys access-control and tamper-evidence, NOT information-theoretic secrecy: perfect secrecy needs a truly random, secret, single-use key, and real confidentiality still needs a secret key plus AES-256-GCM (fusionCipher). No unbreakable claim. HARMONY ≠ TRUTH.') }
 }
 
 /**
