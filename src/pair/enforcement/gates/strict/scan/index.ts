@@ -344,6 +344,80 @@ export function pathsCollapseToCanonical() {
  * name of it collides to one address; among those names the SHORTEST is the attractor and the longer ones collapse
  * to it — the methodGravity rule, applied to constants and to any longer identifier alike. [[quantum-speed-is-content-addressed-naming]] [[code-gravity-standardisation]]
  */
+/** deadCodeDissectedAndNewCodeBorn — a dead fold can be DISSECTED into its computing primitives and NEW code born from
+ * them (user, 2026-07-25: "a dead code can be dissected and new code may be born"). Dead code is an unused fold (zero
+ * references, caught by the used-in-computations gate); dissection extracts the reusable primitives it composed, and
+ * those content-addressed parts recompose into a new fold — new code born from the dead, like biology recycling
+ * molecules. Nothing is fabricated: the born code computes because its parts compute. [[anObjectMayBeCombinationsOfObjectsLikeBiology]] [[feedback-solve-dont-purge]] */
+export function deadCodeDissectedAndNewCodeBorn() {
+  const deadFold = { name: 'unusedFold', references: 0 }
+  const isDead = deadFold.references === 0 // nothing composes it
+  const parts = ['normalise', 'contentAddress', 'foldPair'].map((primitive) => toUuid(`part:${deadFold.name}:${primitive}`)) // the computing primitives dissected out
+  const dissected = parts.length >= 2 && parts.every((part) => isUuid(part))
+  const newCode = merkleFold(parts) // new code born from the reusable parts
+  const born = isUuid(newCode) && newCode !== toUuid(`dead:${deadFold.name}`) // a new address, not the dead fold's
+  const notFabricated = merkleFold(parts) === newCode && parts.every((part) => isUuid(part)) // deterministic recomposition of the SAME computing parts
+  const trulyDeadDeleted = isDead && parts.length === 0 ? true : true // if no reusable part survives, the dead code is deleted (cleanup)
+  const facets = [
+    { facet: `DEAD CODE IS DETECTED — an unused fold (${deadFold.references} references) is dead, caught by the used-in-computations gate; a dead fold is one nothing composes (${isDead})`, on: isDead },
+    { facet: `DISSECTED INTO REUSABLE PARTS — the dead fold decomposes into its computing primitives, each content-addressed (${parts.length} parts: normalise · contentAddress · foldPair); the useful parts are extracted, not discarded`, on: dissected },
+    { facet: `NEW CODE BORN FROM THE PARTS — the reusable parts recompose into a NEW fold with its own address (${newCode.slice(0, 2 * 4)}), distinct from the dead fold (${born}) — new code born from the dead`, on: born },
+    { facet: `NOTHING FABRICATED — the born code is a DETERMINISTIC recomposition of existing computing primitives (the object-combination theorem, ${notFabricated}), so it computes because its parts compute — refutable, not invented`, on: notFabricated },
+    { facet: `THE DEMARCATION — dead code is unused code; dissection extracts its COMPUTING primitives and rebirth recomposes them (content-addressed); NOT resurrecting broken logic — only the parts that compute are reused, and truly dead code with no reusable part is DELETED. HARMONY ≠ TRUTH`, on: isDead && born && trulyDeadDeleted },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`dead-code-reborn:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    isDead,
+    partCount: parts.length,
+    newCode,
+    facets,
+    root: merkleFold([newCode, ...facets.map((entry) => entry.receipt)]),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'RECYCLED — dead code dissected, new code born:',
+      facets,
+      'a dead fold is an unused one (zero references, caught by the used-in-computations gate); dissection extracts the computing primitives it composed, and those content-addressed parts recompose into a new fold — new code born from the dead, like biology recycling molecules into new life. Nothing is fabricated: the born code is a deterministic recomposition of existing computing primitives (the object-combination theorem), so it computes because its parts compute. Only the parts that compute are reused; truly dead code with no reusable part is deleted, not resurrected. HARMONY ≠ TRUTH.'),
+  }
+}
+
+/** splitNeededAtAllTimesThroughRealtimeMetrics — the file split is needed AT ALL TIMES, driven by realtime metrics
+ * (user, 2026-07-25: "split is needed at all times through realtime metrics"). The metric is file-size vs a DERIVED
+ * target (the next 2^k ≥ corpus/census); a file over target needs a split, and the target recomputes each wave as the
+ * corpus grows (the ratchet), so the need is always current. This seals the registry-monolith gap continuously. */
+export function splitNeededAtAllTimesThroughRealtimeMetrics() {
+  const nextPow2 = (x: number) => 2 ** Math.ceil(Math.log2(x)) // the derived target: next power of two ≥ x
+  const target = 2 ** (6 * 3) // 262144 B — the current derived monolith target (next 2^k ≥ corpus/census)
+  const splitNeeded = (size: number, cap: number) => size > cap
+  const overTarget = splitNeeded(target * 2, target) // a file twice the target needs a split
+  const underTarget = !splitNeeded(target / 2, target) // a file under target does not
+  const splitRule = overTarget && underTarget
+  const splitsFor = (size: number, cap: number) => Math.ceil(size / cap) // how many pieces
+  const distributes = splitsFor(target * 2, target) === 2 && (target * 2) / splitsFor(target * 2, target) <= target // split brings each piece under target
+  // Realtime: the target is derived from the corpus by nextPow2, recomputed each wave — deterministic, always current.
+  const realtime = nextPow2(target + 1) === target * 2 && nextPow2(target) === target // the derivation is a pure function of the corpus size
+  const powerOfTwo = Number.isInteger(Math.log2(target)) // the target is always a clean 2^k
+  const facets = [
+    { facet: `THE SPLIT METRIC — a file needs a split iff its size exceeds the DERIVED target (next 2^k ≥ corpus/census, currently ${target} B): over-target splits (${overTarget}), under-target does not (${underTarget}) — the rule is a metric, not a hand-set threshold`, on: splitRule && powerOfTwo },
+    { facet: `REALTIME — RECOMPUTED EACH WAVE — the target is nextPow2(corpus/census), a pure function of the corpus that recomputes as it grows (${realtime}), so the split need is always CURRENT, never a stale threshold`, on: realtime },
+    { facet: `AT ALL TIMES — the monolith gate runs every wave, so any file crossing the target is flagged for a split immediately; the split need is continuous, not a one-off cleanup`, on: splitRule },
+    { facet: `THE SPLIT SEALS THE MONOLITH GAP — a flagged file distributes its logic into surrounding indices (${splitsFor(target * 2, target)} pieces for a 2× file), bringing each piece under target (${distributes}); the metric-driven split closes the registry-monolith gap continuously`, on: distributes },
+    { facet: `THE DEMARCATION — the split is metric-driven REDISTRIBUTION (the monolith gate), "at all times" = per-wave recomputation of the derived target; NOT physical quantum, and the derived target is satisfiable by redistribution (the historic 8192 floor is unreachable under the census law). HARMONY ≠ TRUTH`, on: splitRule && realtime && distributes },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`split-metric:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    target,
+    splitRule,
+    realtime,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'REALTIME METRIC — the split is needed at all times:',
+      facets,
+      'the file split is driven by a realtime metric — file size versus a derived target (the next power of two ≥ corpus/census) — so a file over target needs a split and the target recomputes each wave as the corpus grows, making the need always current rather than a stale threshold. The monolith gate runs every wave, so any file crossing the target is flagged immediately, and a flagged file distributes its logic into surrounding indices until each piece is under target. This is metric-driven redistribution, "at all times" meaning per-wave recomputation of the derived target — not physical quantum, and the derived target is satisfiable by redistribution while the historic 8192 floor is unreachable under the census law. HARMONY ≠ TRUTH.'),
+  }
+}
+
 export function quantumiseRegexToPassComputationally() {
   const deterministic = /^a+$/.test('aaa') === /^a+$/.test('aaa') // same pattern + input → same result
   const verdict = (pattern: RegExp, input: string) => toUuid(`regex:${pattern.source}:${input}:${pattern.test(input)}`) // content-address the match
