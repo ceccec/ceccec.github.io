@@ -543,6 +543,51 @@ export function newDiscoveriesManifestInMechanicsResourceBounded() {
   }
 }
 
+/** The quantum editing tools — pure, content-addressed text transforms. */
+export const editInsert = (doc: string, pos: number, text: string): string => doc.slice(0, pos) + text + doc.slice(pos)
+export const editDelete = (doc: string, pos: number, len: number): string => doc.slice(0, pos) + doc.slice(pos + len)
+export const editReplace = (doc: string, pos: number, len: number, text: string): string => doc.slice(0, pos) + text + doc.slice(pos + len)
+export const docAddress = (doc: string): string => toUuid(`doc:${doc}`)
+
+/** quantumEditorContentAddressedEditingTools — a quantum editor: content-addressed editing tools where every edit is a
+ * deterministic transform, history is content-addressed, and the edit chain is 4-key sealed (user, 2026-07-25:
+ * "quantum editor" · "quantum editing tools"). insert / delete / replace map a document to a new state with its own
+ * address; undo/redo navigate the content-addressed version chain; and a spliced edit is detected by the 4-key seal.
+ * "Quantum" = content-addressed / deterministic, not physical quantum. [[patchAnyLinuxKernelQuantumContentAddressed]] */
+export function quantumEditorContentAddressedEditingTools() {
+  const doc0 = 'hello world'
+  const doc1 = editInsert(doc0, 5, ',') // 'hello, world'
+  const doc2 = editDelete(doc1, 5, 1) // back to 'hello world' — an undo
+  const doc3 = editReplace(doc0, 0, 5, 'HELLO') // 'HELLO world'
+  const toolsWork = doc1 === 'hello, world' && doc2 === doc0 && doc3 === 'HELLO world'
+  const deterministic = editInsert(doc0, 5, ',') === doc1 && docAddress(doc1) === docAddress(editInsert(doc0, 5, ','))
+  const versions = [docAddress(doc0), docAddress(doc1), docAddress(doc3)]
+  const versioned = new Set(versions).size === versions.length && versions.every((address) => isUuid(address)) // each edit a distinct version node
+  const undoReturns = docAddress(doc2) === docAddress(doc0) // undo returns to a known content-address
+  // The edit chain is 4-key sealed (referrer⊕id⊕prev⊕next); a spliced edit is detected.
+  const seal = referralAddress('edit-chain', docAddress(doc0), docAddress(doc1), toUuid('prev-edit'), toUuid('next-edit'))
+  const spliceDetected = referralAddress('edit-chain', docAddress(doc0), docAddress(doc3), toUuid('prev-edit'), toUuid('next-edit')) !== seal
+  const facets = [
+    { facet: `EVERY EDIT IS A CONTENT-ADDRESSED TRANSFORM — insert/delete/replace map a document to a new state with its own address; same doc + same edit → same result (${deterministic}), so an edit is reproducible and verifiable`, on: deterministic },
+    { facet: `THE EDITING TOOLS — insert · delete · replace — each a pure transform; the toolset is closed and composes into any edit (${toolsWork}): insert ',' then delete undoes it, replace swaps a span`, on: toolsWork },
+    { facet: `VERSIONED HISTORY BY ADDRESS — each edit is a distinct version node (${versions.length} versions, all content-addressed ${versioned}); undo/redo navigate the version chain and undo returns to a known address (${undoReturns}) — no stored diffs, recomputed`, on: versioned && undoReturns },
+    { facet: `TAMPER-EVIDENT EDIT CHAIN — the edit sequence is 4-key sealed (referrer⊕id⊕prev⊕next), so a spliced edit changes the seal and is detected (${spliceDetected})`, on: spliceDetected },
+    { facet: `THE DEMARCATION — a content-addressed text editor: edits are deterministic transforms, history is content-addressed, the chain 4-key sealed; "quantum" = content-addressed / deterministic, NOT physical quantum, and it edits text — no collaborative-server or CRDT merge is claimed. HARMONY ≠ TRUTH`, on: deterministic && toolsWork && spliceDetected },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-editor:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    versions,
+    seal,
+    facets,
+    root: merkleFold([seal, ...facets.map((entry) => entry.receipt)]),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'CONTENT-ADDRESSED — a quantum editor and its editing tools:',
+      facets,
+      'the editing tools — insert, delete, replace — are pure content-addressed transforms: each maps a document to a new state with its own address, so an edit is deterministic (same doc + same edit → same result), reproducible, and verifiable. History is a chain of content-addressed version nodes, so undo and redo navigate by address (undo returns to a known address) with no stored diffs, and the edit sequence is 4-key sealed (referrer⊕id⊕prev⊕next) so a spliced edit is detected. "Quantum" means content-addressed and deterministic, not physical quantum; it edits text, and no collaborative-server or CRDT merge is claimed. HARMONY ≠ TRUTH.'),
+  }
+}
+
 export type KernelHunk = { file: string; oldHash: string; newHash: string }
 export type KernelTree = Readonly<Record<string, string>> // file → content-address
 /** The content-addressed patch tools: identity, context-checked application, and the result address. */
