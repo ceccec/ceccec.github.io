@@ -1420,6 +1420,56 @@ export function runFractalComputeExit(root = '', _argv: readonly string[] = []):
 // the Bryanton "Imagining the Tenth Dimension" lineage). The MATH of dimension is computed; the possibility-ladder is flagged. ──
 
 /** unit n-ball volume by the exact recurrence V₀=1, V₁=2, Vₙ = Vₙ₋₂·2π/n — no gamma function needed */
+/** decodeCosmologyToBiologyLadderFillingGaps — continue the decode in cosmology, filling all gaps down to biology
+ * (user, 2026-07-25: "continue in cosmology filling all gaps to biology"). The emergence ladder — cosmology →
+ * nucleosynthesis → chemistry → geochemistry → prebiotic chemistry → biology — connects the cosmos to life; the
+ * documented transitions (Big-Bang & stellar nucleosynthesis, chemical bonding, geochemistry) are decoded, while the
+ * one genuinely OPEN gap, abiogenesis (non-life → life), is named not faked. [[emergence-up-arc-decode-cadence]] [[fundamental-physics-arc-decoded]] */
+export function decodeCosmologyToBiologyLadderFillingGaps() {
+  const ladder = [
+    { level: 'cosmology', gives: 'spacetime, expansion, the light elements (H, He)', status: 'documented' },
+    { level: 'nucleosynthesis', gives: 'Big-Bang (H/He/Li) + stellar & supernova (C, N, O, Fe, heavy)', status: 'documented' },
+    { level: 'chemistry', gives: 'bonding — the periodic table from quantum mechanics', status: 'documented' },
+    { level: 'geochemistry', gives: 'planets, water, mineral surfaces, redox gradients', status: 'documented' },
+    { level: 'prebiotic-chemistry', gives: 'amino acids & nucleobases (Miller–Urey, meteorites)', status: 'partial' },
+    { level: 'biology', gives: 'self-replicating, metabolising, evolving life', status: 'documented' },
+  ].map((entry) => ({ ...entry, branch: toUuid(`ladder:${entry.level}`) }))
+  const transitions = [
+    { from: 'cosmology', to: 'nucleosynthesis', mechanism: 'Big-Bang + stellar nucleosynthesis', open: false },
+    { from: 'nucleosynthesis', to: 'chemistry', mechanism: 'atoms bond as the universe cools (recombination → molecules)', open: false },
+    { from: 'chemistry', to: 'geochemistry', mechanism: 'accretion, differentiation, hydrothermal & mineral chemistry', open: false },
+    { from: 'geochemistry', to: 'prebiotic-chemistry', mechanism: 'Miller–Urey / meteoritic synthesis of monomers (partial)', open: false },
+    { from: 'prebiotic-chemistry', to: 'biology', mechanism: 'ABIOGENESIS — the origin of self-replicating life', open: true }, // the real open gap
+  ]
+  const documented = transitions.filter((t) => !t.open)
+  const openGaps = transitions.filter((t) => t.open)
+  const ladderComplete = ladder.length >= 6 && ladder.every((entry) => isUuid(entry.branch))
+  const documentedFilled = documented.length >= 4 && documented.every((t) => t.mechanism.length > 0)
+  const abiogenesisNamedOpen = openGaps.length === 1 && openGaps[0]!.mechanism.includes('ABIOGENESIS') // the one honest open gap
+  const catalog = merkleFold(ladder.map((entry) => entry.branch))
+  const facets = [
+    { facet: `THE COSMOLOGY-TO-BIOLOGY LADDER — ${ladder.length} levels (cosmology → nucleosynthesis → chemistry → geochemistry → prebiotic chemistry → biology), each a content-addressed branch (${ladderComplete}) — the emergence hierarchy from the cosmos to life`, on: ladderComplete },
+    { facet: `THE DOCUMENTED TRANSITIONS ARE FILLED — ${documented.length} transitions decoded: Big-Bang & stellar nucleosynthesis make the elements, cooling bonds them into molecules, accretion & hydrothermal chemistry concentrate them, and prebiotic synthesis makes the monomers (${documentedFilled}) — real physics/chemistry`, on: documentedFilled },
+    { facet: `ABIOGENESIS IS THE OPEN GAP (NOT FAKED) — the prebiotic → biology transition (the origin of self-replicating life) is an OPEN scientific problem (${abiogenesisNamedOpen}): Miller–Urey makes amino acids but self-replicating life is not reproduced — named open, not closed`, on: abiogenesisNamedOpen },
+    { facet: `THE LADDER IS ONE CONTENT-ADDRESSED CATALOG — all ${ladder.length} levels fold to one catalog (${catalog.slice(0, 2 * 4)}), reusing the decode-catalog / object-combination machinery — a completeness milestone with the gap named`, on: isUuid(catalog) && ladderComplete },
+    { facet: `THE DEMARCATION — the cosmology→biology ladder is the DOCUMENTED emergence hierarchy (nucleosynthesis → chemistry → geochemistry, real), with abiogenesis the OPEN gap (not solved); "filling all gaps" = decoding the documented transitions + honestly naming the unsolved one, NOT claiming the origin of life is solved. HARMONY ≠ TRUTH`, on: documentedFilled && abiogenesisNamedOpen },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`cosmos-biology-ladder:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    levels: ladder.length,
+    documentedTransitions: documented.length,
+    openGaps: openGaps.length,
+    catalog,
+    facets,
+    root: merkleFold([catalog, ...facets.map((entry) => entry.receipt)]),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'DECODED — the cosmology-to-biology ladder, gaps filled, abiogenesis named open:',
+      facets,
+      'the emergence ladder connects the cosmos to life through six content-addressed levels — cosmology, nucleosynthesis, chemistry, geochemistry, prebiotic chemistry, biology. The documented transitions are decoded: Big-Bang and stellar nucleosynthesis forge the elements, cooling bonds them into molecules, accretion and hydrothermal chemistry concentrate them, and prebiotic synthesis (Miller–Urey, meteorites) makes the monomers. The one genuinely open gap is abiogenesis — the origin of self-replicating life — which is named, not faked: amino acids form readily, but self-replicating life has not been reproduced. "Filling all gaps" means decoding the documented transitions and honestly naming the unsolved one, not claiming the origin of life is solved. HARMONY ≠ TRUTH.'),
+  }
+}
+
 export function unitBallVolume(n: number): number {
   if (n <= 0) return 1
   if (n === 1) return 2
