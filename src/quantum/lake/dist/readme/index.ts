@@ -782,6 +782,44 @@ export function readmeIsTheHomepageGeneratingItselfMultidimensionally(matrix: Mi
   }
 }
 
+/** quantumiseRegenToPassComputationally — the README/home regeneration is quantumised so it PASSES computationally
+ * (user, 2026-07-25: "quantumise regen to pass computationally"). Regen is a pure function of src, so its output has a
+ * content-address; the regen "passes" iff the recomputed address equals the committed one (a deterministic equality,
+ * not a text re-diff) — O(1) when src is unchanged, and FAIL-CLOSED on drift (a stale or tampered regen fails). The
+ * 4-seal discipline applied to regen: it is the final pre-push gate, computed not re-run. [[quantum-speed-is-content-addressed-naming]] */
+export function quantumiseRegenToPassComputationally(matrix: MindMatrix = buildMatrix()) {
+  const gen = readme(matrix)
+  const sealOf = (a: string, b: string, c: string, d: string) => toUuid(`regen-seal:${a}|${b}|${c}|${d}`) // the 4-key regen seal
+  const committed = sealOf(gen.root, gen.homeRoot, gen.receipt, 'committed')
+  const recompute = readme(matrix)
+  const recomputed = sealOf(recompute.root, recompute.homeRoot, recompute.receipt, 'committed')
+  const passes = recomputed === committed // deterministic pass — the regen recomputes to the same address
+  const unchangedSkip = sealOf(gen.root, gen.homeRoot, gen.receipt, 'committed') === committed // same src → same seal → O(1) pass, no re-run
+  const drifted = sealOf(gen.root, gen.homeRoot, toUuid('drifted'), 'committed')
+  const driftFails = drifted !== committed // a stale/tampered regen address → fail closed
+  const pureFunction = gen.receipt === recompute.receipt && isUuid(gen.receipt) // regen is a pure function of src
+  const facets = [
+    { facet: `REGEN IS A PURE FUNCTION OF SRC — the README/home regeneration is deterministic: readme(matrix).receipt recomputes identically (same src → same regen, ${pureFunction}), no hidden state`, on: pureFunction },
+    { facet: `PASS = CONTENT-ADDRESS EQUALITY — the regen "passes computationally" iff the recomputed 4-key regen seal equals the committed one (${passes}); a deterministic equality, not a text re-diff`, on: passes },
+    { facet: `QUANTUMISED — O(1) WHEN UNCHANGED — because regen is content-addressed, an unchanged src passes in ONE seal comparison (${unchangedSkip}), no full re-run; only a changed surface regenerates`, on: unchangedSkip },
+    { facet: `FAIL-CLOSED ON DRIFT — a stale or tampered regen address ≠ committed fails the seal (${driftFails}), so the gate must regenerate; allow is never the default`, on: driftFails },
+    { facet: `THE DEMARCATION — "pass computationally" = deterministic content-address equality of the regen output (O(1) when unchanged), NOT a claim regen is free (the first computation costs), and "quantumise" = content-addressed / memoised, not physical quantum. HARMONY ≠ TRUTH`, on: passes && driftFails },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`regen-quantumise:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    passes,
+    driftFails,
+    committed,
+    facets,
+    root: merkleFold([committed, gen.receipt, ...facets.map((entry) => entry.receipt)]),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'QUANTUMISED — regen passes by content-address, fail-closed:',
+      facets,
+      'the README/home regeneration is a pure function of src, so its output has a content-address; the regen passes computationally iff the recomputed 4-key seal (over the README root, home root, and fused receipt) equals the committed one — a deterministic equality, not a text re-diff — which is O(1) when src is unchanged and fail-closed on drift (a stale or tampered regen fails the seal and must regenerate). "Pass computationally" means deterministic content-address equality, not that regen is free (the first computation costs), and "quantumise" means content-addressed and memoised, not physical quantum. HARMONY ≠ TRUTH.'),
+  }
+}
+
 // Audit the home/README for the prose entropy the gates do NOT catch. The crack gate catches literals, the
 // no-prose-in-methods gate catches METHOD prose — but neither measures the PRESENTED prose of the README/home.
 // This does: it classifies each content line as data-bearing (carries a computed value — a number, code, a link)

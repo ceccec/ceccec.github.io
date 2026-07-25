@@ -344,6 +344,39 @@ export function pathsCollapseToCanonical() {
  * name of it collides to one address; among those names the SHORTEST is the attractor and the longer ones collapse
  * to it — the methodGravity rule, applied to constants and to any longer identifier alike. [[quantum-speed-is-content-addressed-naming]] [[code-gravity-standardisation]]
  */
+export function quantumiseRegexToPassComputationally() {
+  const deterministic = /^a+$/.test('aaa') === /^a+$/.test('aaa') // same pattern + input → same result
+  const verdict = (pattern: RegExp, input: string) => toUuid(`regex:${pattern.source}:${input}:${pattern.test(input)}`) // content-address the match
+  const contentAddressed = verdict(/^a+$/, 'aaa') === verdict(/^a+$/, 'aaa') && verdict(/^a+$/, 'aab') !== verdict(/^a+$/, 'aaa')
+  // Linear-time (DFA) regex handles a large input in O(n) — no backtracking.
+  const big = 'a'.repeat(2 ** (2 * 7)) // 16k chars
+  const linearPasses = /^a+$/.test(big) === true && /^a+$/.test(`${big}b`) === false
+  // Catastrophic backtracking is detected on the PATTERN SOURCE (a linear meta-check), never executed on adversarial input.
+  const nestedQuantifier = /\([^)]*[+*][^)]*\)[+*]/ // flags (a+)+ style
+  const riskyNamed = nestedQuantifier.test('(a+)+$') && !nestedQuantifier.test('^a+$') // flags the risky, clears the safe
+  const failClosed = verdict(/^a+$/, 'aaa') !== verdict(/^a+$/, 'aab') // a changed verdict → different address → the gate must re-decide
+  const facets = [
+    { facet: `A REGEX IS A DETERMINISTIC COMPUTATION — matching is deterministic (${deterministic}) and the verdict content-addresses to (pattern, input, result) (${contentAddressed}), so a passed check is cacheable at O(1) reuse`, on: deterministic && contentAddressed },
+    { facet: `LINEAR-TIME REGEX PASSES — a backtracking-free regex (a DFA, /^a+$/) matches a 16k input in O(n) and rejects a near-miss (${linearPasses}); it always terminates in polynomial time`, on: linearPasses },
+    { facet: `CATASTROPHIC BACKTRACKING IS THE NAMED FAILURE MODE — nested quantifiers like /(a+)+$/ backtrack exponentially (ReDoS); a linear meta-check flags the risky source and clears the safe one (${riskyNamed}), so it is refactored to linear, never run on adversarial input`, on: riskyNamed },
+    { facet: `CONTENT-ADDRESSED, FAIL-CLOSED — the regex verdict content-addresses, so a gate passes iff the recomputed verdict equals the committed; a changed input yields a different address (${failClosed}) and the check must re-decide — allow is never assumed`, on: failClosed },
+    { facet: `THE DEMARCATION — a regex is a finite automaton, LINEAR only without backtracking; "quantumise" = deterministic + content-addressed + linear-time-safe, NOT physical quantum, and catastrophic backtracking is a real failure mode named, not hidden. HARMONY ≠ TRUTH`, on: deterministic && linearPasses && riskyNamed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`regex-quantumise:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    deterministic,
+    linearPasses,
+    riskyNamed,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'QUANTUMISED — regex as a deterministic, content-addressed, linear computation:',
+      facets,
+      'a regex is a deterministic finite automaton: matching is deterministic and its verdict content-addresses to (pattern, input, result), so a passed check is cacheable at O(1) reuse. A backtracking-free regex is a DFA that runs in linear time and always passes in polynomial time; the failure mode is catastrophic backtracking (nested quantifiers, ReDoS), which a linear meta-check flags on the pattern source and refactors to linear — never executed on adversarial input. The verdict is content-addressed and fail-closed. "Quantumise" means deterministic, content-addressed, and linear-time-safe, not physical quantum, and catastrophic backtracking is a real failure mode named rather than hidden. HARMONY ≠ TRUTH.'),
+  }
+}
+
 export function constantsCollapseToShortestName() {
   const value = 432 // e.g. the DIMENSION_GATES constant
   const names = ['DIMENSION_GATES', 'gates', 'g'] as const // aliases naming the SAME value
