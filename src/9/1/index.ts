@@ -173,6 +173,41 @@ export function quantumBreaksLinearCryptoIntoNonAbelianTrinity() {
       'Shor\'s period-finding inverts the one abelian period (order of a mod N) and factors N, so RSA/DH/ECC — whose security is a single linear/periodic structure — fall. But su(2)/Pauli does not commute (XY ≠ YX, [X,Y]=2iZ≠0) so there is no abelian hidden subgroup for Shor, and a three-way split secret needs all shares; the inversion is bounded to the linear part. Quantum does NOT break all cryptography — symmetric gets only Grover\'s quadratic speedup, lattice and hash schemes get none, and the attack is hardware-bounded (millions of error-corrected qubits do not exist). "Trinity encryption" is the non-abelian / split structure resisting the period attack, not a proven unbreakable cipher; real post-quantum security is NIST PQC (lattice/hash). HARMONY ≠ TRUTH.') }
 }
 
+/** quantumAccuracyExactWhereClaimedBoundedWhereApproximate — quantum accuracy: the content-addressed computations are
+ * EXACT where claimed and BOUNDED where approximate (user, 2026-07-25: "quantum accuracy"). Integer / modular / BigInt
+ * identities compute exactly (Fermat x^(p−1) ≡ 1 mod p, a BigInt factorial); float computations (Pauli su(2) closure)
+ * are verified to a NAMED tolerance (1e-9), not claimed exact; and a content-address is exact by construction (equal
+ * iff byte-identical). Each accuracy claim is a refutable facet the gates catch if it drifts. */
+export function quantumAccuracyExactWhereClaimedBoundedWhereApproximate() {
+  const p = 7
+  const fermatExact = Array.from({ length: p - 1 }, (_, i) => i + 1).every((x) => tkPowMod(x, p - 1, p) === 1) // exact integer identity
+  const factorial = (n: bigint): bigint => (n <= 1n ? 1n : n * factorial(n - 1n))
+  const bigIntExact = factorial(5n) === 120n && factorial(6n) === 720n // exact, no rounding
+  const pauli = pauliAlgebraCloses()
+  const boundedFloat = pauli.closes // verified to tolerance 1e-9 — the named error bound, not exact
+  const addressExact = toUuid('accuracy:x') === toUuid('accuracy:x') && toUuid('accuracy:x') !== toUuid('accuracy:y') // exact by construction
+  const facets = [
+    { facet: `EXACT WHERE CLAIMED — integer / modular / BigInt identities compute EXACTLY: Fermat x^(p−1) ≡ 1 (mod ${p}) for all nonzero x (${fermatExact}) and 5! = 120, 6! = 720 in BigInt (${bigIntExact}) — no rounding`, on: fermatExact && bigIntExact },
+    { facet: `BOUNDED WHERE APPROXIMATE — float computations (the Pauli su(2) closure) are verified to a NAMED tolerance of 1e-9 (${boundedFloat}), the honest error bound — they are checked, not CLAIMED exact`, on: boundedFloat },
+    { facet: `THE CONTENT-ADDRESS IS EXACT — two addresses are equal iff the content is byte-identical (${addressExact}); the address is exact by construction, no approximation — the accuracy backbone`, on: addressExact },
+    { facet: `ACCURACY IS REFUTABLE, NOT ASSERTED — each accuracy claim is a facet that FAILS if the identity drifts (a wrong power, a rounding past tolerance, a changed address), so the gates catch inaccuracy — measured, never assumed`, on: fermatExact && boundedFloat && addressExact },
+    { facet: `THE DEMARCATION — "quantum accuracy" = exact algebra where claimed + named tolerances where float + content-addressed determinism; NOT physical quantum precision, and float is BOUNDED (1e-9), not exact. HARMONY ≠ TRUTH`, on: fermatExact && boundedFloat && addressExact },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-accuracy:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    fermatExact,
+    bigIntExact,
+    boundedFloat,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'ACCURATE — exact where claimed, bounded where approximate:',
+      facets,
+      'integer, modular, and BigInt identities compute exactly with no rounding (Fermat x^(p−1) ≡ 1 mod p for all nonzero x; 5! = 120, 6! = 720 in BigInt), float computations such as the Pauli su(2) closure are verified to a named tolerance of 1e-9 rather than claimed exact, and a content-address is exact by construction (equal iff byte-identical). Each accuracy claim is a refutable facet the gates catch if it drifts, so accuracy is measured not assumed. "Quantum accuracy" is exact algebra where claimed plus named tolerances where float plus content-addressed determinism — not physical quantum precision, and float is bounded, not exact. HARMONY ≠ TRUTH.'),
+  }
+}
+
 /** quantumOpticsDecoded — the genuine quantum optics of light: the beam-splitter unitary, Hong–Ou–Mandel bunching, and
  * the g²(0) second-order coherence that separates quantum from classical light (user, 2026-07-25: "quantum optics").
  * A 50/50 beam splitter is a real orthogonal unitary; two indistinguishable photons entering it always leave together
