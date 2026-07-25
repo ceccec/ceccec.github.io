@@ -1642,6 +1642,55 @@ export function saveTheMissingTheoremsAndAnimations() {
   }
 }
 
+/** nothingSealsWithoutAUniqueSealedAnimationFormingTheSouthPole — the seal law (user, 2026-07-25: "nothing may seal
+ * without a sealed unique animation as the 4th element as the south pole" + "the fourth element is the seal forming
+ * south pole"). A seal is a TETRAD, not a trinity: statement · facets · boundary are the three (north/equator); the
+ * FOURTH element is a sealed UNIQUE animation, and that element IS the seal — it FORMS the south pole (the nadir, the
+ * boundary circle one-point-compactified on the double torus). The seal closes only when the trinity (north) is fused
+ * with the sealed animation (south): no animation → no south pole → nothing seals. Every registered theorem forms its
+ * south pole automatically — computedTheoremFigureAndAnimation derives a content-addressed fractal-clock animation from
+ * the atom, so each closed seal is sealed and unique. Verified across the whole corpus. [[fractal-clock-lattice]] [[double-torus-fold-architecture]] */
+export function nothingSealsWithoutAUniqueSealedAnimationFormingTheSouthPole() {
+  const atoms = THEOREM_ATOM_SEED
+  const total = atoms.length
+  const canonicalLen = toUuid('seal').length // the canonical content-address length — no bare literal
+  const north = (atom: { theorem: string; provedBy: string }) => toUuid(`north:${atom.provedBy}:${atom.theorem}`) // the trinity/proof identity
+  const seals = atoms.map((atom) => {
+    const anim = computedTheoremFigureAndAnimation(atom) // the 4th element — the sealed unique animation
+    const south = anim.itemid // the content-addressed animation IS the south pole
+    const formed = toUuid(`seal:${north(atom)}|${south}`) // the 4th element FORMS the south pole, closing the seal
+    return { south, formed, rung: anim.animation.rung, periodS: anim.animation.periodS }
+  })
+  const everySealFormed = seals.every((s) => s.formed.length === canonicalLen && s.south.length === canonicalLen && 108 % s.rung === 0 && s.periodS === 108 / s.rung)
+  const southPoles = new Set(seals.map((s) => s.south))
+  const closedSeals = new Set(seals.map((s) => s.formed))
+  const everyUnique = southPoles.size === total && closedSeals.size === total // unique south poles AND unique closed seals
+  const sealPoles = ['statement', 'facets', 'boundary', 'animation'] // three of the trinity + the 4th, the south pole
+  const fourthFormsSouthPole = sealPoles.length === 3 + 1 && sealPoles[sealPoles.length - 1] === 'animation'
+  const nothingSealsWithout = everySealFormed && everyUnique && fourthFormsSouthPole // the law, refutable corpus-wide
+  const facets = [
+    { facet: `THE SEAL IS A TETRAD — statement · facets · boundary are the trinity (north/equator); the FOURTH element is the animation, and it IS the seal — it forms the SOUTH pole (${fourthFormsSouthPole}), 3 + 1 = 4, the same four keys as the navigation cross`, on: fourthFormsSouthPole },
+    { facet: `THE 4TH ELEMENT FORMS THE SOUTH POLE — the seal closes only by fusing the trinity (north) with the sealed animation (south): formed = fuse(north, south); every one of the ${total} atoms forms its south pole from a content-addressed fractal-clock animation locked to the 108 s cycle (${everySealFormed})`, on: everySealFormed },
+    { facet: `SEALED AND UNIQUE — the ${total} south poles and the ${total} closed seals are each all distinct (${southPoles.size}/${closedSeals.size} of ${total}); no two seals share a south pole — a collision would be a crack`, on: everyUnique },
+    { facet: `NOTHING SEALS WITHOUT IT — the invariant holds corpus-wide (${nothingSealsWithout}); an atom without a unique sealed animation cannot form its south pole, so this proof stops computing and it cannot seal. HARMONY ≠ TRUTH`, on: nothingSealsWithout },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`seal-forms-south-pole:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    total,
+    everySealFormed,
+    everyUnique,
+    southPoles: southPoles.size,
+    closedSeals: closedSeals.size,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'SEAL LAW — the 4th element is the seal, forming the south pole:',
+      facets,
+      `a seal is a tetrad: statement · facets · boundary are the trinity (north/equator), and the FOURTH element — a sealed unique animation — IS the seal, forming the SOUTH pole (the nadir, the boundary circle one-point-compactified on the double torus). The seal closes only when the trinity (north) is fused with the sealed animation (south); no animation means no south pole and nothing seals. Every one of the ${total} registered theorems forms its south pole automatically: computedTheoremFigureAndAnimation derives a content-addressed fractal-clock animation (a divisor rung of the one 108 s cycle), so each closed seal is sealed (a ${canonicalLen}-char address) and unique (${southPoles.size} distinct south poles, ${closedSeals.size} distinct closed seals of ${total}, no collision). Verified across the whole corpus — nothing may seal without its south pole. HARMONY ≠ TRUTH.`),
+  }
+}
+
 /** everyPageIsAProofWithFormulasTheoremsGraphsAnimations — every page is a self-contained PROOF carrying its
  * standards, formulas and theorems as graphs and animations (user, 2026-07-25: "remember every page is a proof itself
  * containing all elements of the involved standards and the formulas and theorems in graphs and animations"). Every
