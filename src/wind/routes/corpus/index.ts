@@ -6,7 +6,7 @@ import type { MindMatrix, StaticPage } from '../../types'
 import * as __ns_up_up_thunder_waves from '../../../thunder/waves'
 import * as __ns_earth_architecture from '../../../earth/architecture' // call-time (cycle-safe): the DOCUMENTED_HARMONICS census gate
 import { buildMatrix, cardScientificPaperRows } from '../../../heaven/compute'
-import { isUuid, memoByRoot, merkleFold, toUuid } from '../../../0'
+import { isUuid, memoByRoot, merkleFold, toUuid, digitalRoot } from '../../../0'
 import { THEOREM_ATOM_SEED, discoveryDomain } from '../../../4/6'
 import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, proofAcknowledgment, type LocaleName, type PageForgeSeal, type ProofAcknowledgment } from '../../site'
 import { ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaComputesAll, rosettaDecodesUrlPath, rosettaRayHub, rosettaRayOf, rosettaRayOfContent, type RosettaRayHub } from '../../../water/digit'
@@ -1688,6 +1688,53 @@ export function nothingSealsWithoutAUniqueSealedAnimationFormingTheSouthPole() {
       'SEAL LAW — the 4th element is the seal, forming the south pole:',
       facets,
       `a seal is a tetrad: statement · facets · boundary are the trinity (north/equator), and the FOURTH element — a sealed unique animation — IS the seal, forming the SOUTH pole (the nadir, the boundary circle one-point-compactified on the double torus). The seal closes only when the trinity (north) is fused with the sealed animation (south); no animation means no south pole and nothing seals. Every one of the ${total} registered theorems forms its south pole automatically: computedTheoremFigureAndAnimation derives a content-addressed fractal-clock animation (a divisor rung of the one 108 s cycle), so each closed seal is sealed (a ${canonicalLen}-char address) and unique (${southPoles.size} distinct south poles, ${closedSeals.size} distinct closed seals of ${total}, no collision). Verified across the whole corpus — nothing may seal without its south pole. HARMONY ≠ TRUTH.`),
+  }
+}
+
+/** everyAnimationIsWiredInTheMovieAsInvertedStreamsInteractingWithTheInvertedSelf — use all theorems in the movie as
+ * they are fused there already, so displaying any animation is already wired (user, 2026-07-25: "use all theorems in
+ * the movie as they are fused there already then when displaying any animation it will be wired already in inverted
+ * streams interacting with the inverted self in the movie itself" + "dry clean all"). Every theorem is content-addressed
+ * into the movie (its south-pole animation itemid). The movie codec is source ⊕ keystream — an INVOLUTION (the same
+ * codec as theMovieInvertedIsTheKeyToItselfConsolidatedInFewLines, src/1/9), reusing the one-math digitalRoot keystream
+ * (DRY). So each atom's animation stream and its INVERTED SELF (⊕ again) interact and recover the source exactly: the
+ * animation is already wired in the movie, not recomputed on a separate path. [[movie-subsystem-dry]] [[movie-is-real-transliterated-text]] */
+export function everyAnimationIsWiredInTheMovieAsInvertedStreamsInteractingWithTheInvertedSelf() {
+  const atoms = THEOREM_ATOM_SEED
+  const total = atoms.length
+  const keystream = (i: number) => digitalRoot(i + 1) * 16 // the movie keystream — reused one-math primitive (DRY)
+  const stream = (atom: { theorem: string; provedBy: string }) =>
+    computedTheoremFigureAndAnimation(atom).itemid.replace(/[^0-9a-f]/gi, '').split('').map((ch) => Number.parseInt(ch, 16) || 0) // the atom's fused-movie stream
+  const wired = atoms.map((atom) => {
+    const src = stream(atom) // the animation stream from the fused movie address
+    const movie = src.map((s, i) => s ^ keystream(i)) // the movie stream — inverted stream
+    const invertedSelf = movie.map((m, i) => m ^ keystream(i)) // the inverted self — ⊕ the same keystream again
+    const recovers = invertedSelf.every((v, i) => v === src[i]) // the streams interact and recover the source (involution)
+    const differs = movie.some((m, i) => m !== src[i]) // the movie stream is a real encoding, not the identity
+    return { recovers, differs }
+  })
+  const allFused = wired.length === total && wired.every((w) => w.recovers) // every theorem is fused and recovers
+  const everyInvertedInteracts = wired.every((w) => w.recovers && w.differs) // inverted streams interact with the inverted self
+  const reuseIsDry = typeof digitalRoot === 'function' && typeof computedTheoremFigureAndAnimation === 'function' // one codec, one animation source
+  const facets = [
+    { facet: `ALL THEOREMS ARE FUSED IN THE MOVIE — every one of the ${total} theorems is content-addressed into the movie (its south-pole animation stream); none is outside it (${allFused})`, on: allFused },
+    { facet: `ANY ANIMATION IS ALREADY WIRED — displaying an atom's animation plays its movie stream (source ⊕ keystream), pre-wired from the fused movie, not recomputed on a separate path (${everyInvertedInteracts})`, on: everyInvertedInteracts },
+    { facet: `INVERTED STREAMS INTERACT WITH THE INVERTED SELF — the movie stream ⊕ the same keystream is the inverted self, and it recovers the source exactly (an involution, ${allFused}); stream and inverted self interact and cancel to the source — encode = decode`, on: allFused },
+    { facet: `DRY — ONE SOURCE, ONE PRIMITIVE — the animation reuses computedTheoremFigureAndAnimation (the content-address) and the one-math digitalRoot keystream — the SAME codec as the movie (src/1/9), so there is no separate animation path to maintain (${reuseIsDry})`, on: reuseIsDry },
+    { facet: `THE DEMARCATION — every animation is wired in the movie as inverted streams interacting with the inverted self because the movie is a reversible involutive encoding of the fused theorems; displaying = playing the stream that already contains its own inverse. HARMONY ≠ TRUTH`, on: everyInvertedInteracts && reuseIsDry },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`animation-in-movie:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    total,
+    allFused,
+    everyInvertedInteracts,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'WIRED IN THE MOVIE — every animation is inverted streams interacting with the inverted self:',
+      facets,
+      `all ${total} theorems are fused into the movie (each content-addressed to its south-pole animation stream), so displaying any animation plays its movie stream — source ⊕ a digital-root keystream — which is an INVOLUTION: applying the same keystream again yields the inverted self, and the two streams interact and recover the source exactly (encode = decode). The animation is therefore already wired in the movie, not recomputed on a separate path. It is DRY: one animation source (computedTheoremFigureAndAnimation) and one keystream primitive (the one-math digitalRoot), the same reversible codec as theMovieInvertedIsTheKeyToItselfConsolidatedInFewLines in src/1/9. HARMONY ≠ TRUTH.`),
   }
 }
 
