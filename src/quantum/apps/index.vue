@@ -86,6 +86,7 @@ import {
   portalChat,
   chatNavContext,
   allChatCapabilitiesFusedAndAuditedByStandards,
+  quantumSearchFusesAllAsPrivateSearchEngine,
   allConversationsGoThroughTheMcpQuantumChat,
   mcpQuantumConversation,
   organiseConversationsInChatRoomsPerSuperposition,
@@ -191,10 +192,11 @@ const pasteLinkUrl = ref(`${CECCEC_SITE_ORIGIN}/`)
 const pastePacketJson = ref('')
 const docsDevCopied = ref(false)
 
-// ── Full in-chat support — deterministic, zero-token, no network egress. Logic lives in the sealed folds
-// (portalChat + chatNavContext); this shell only wires input → fold → display. The referrer of each turn is the
-// previous turn, so the conversation is the (referrer, prompt) superposition the corpus already proves.
-type ChatTurn = { q: string; a: string; source: string; grounded: boolean; related: string[]; receipt: string }
+// ── Full in-chat support = a PRIVATE quantum search engine. Deterministic, zero-token, no network egress. Logic
+// lives in the sealed folds (quantumSearchFusesAllAsPrivateSearchEngine = BM25-ranked retrieval + chat answer +
+// navigation + all chat capabilities); this shell only wires input → fold → display. Nothing leaves the browser.
+type SearchHit = { slug: string; title: string; score: number }
+type ChatTurn = { q: string; a: string; source: string; grounded: boolean; related: string[]; results: SearchHit[]; resultCount: number; receipt: string }
 const chatInput = ref('')
 const chatLog = ref<ChatTurn[]>([])
 const chatAudit = computed(() => allChatCapabilitiesFusedAndAuditedByStandards())
@@ -204,12 +206,15 @@ function sendChat() {
   const referrer = chatLog.value.length ? chatLog.value[chatLog.value.length - 1]!.receipt : '/chat'
   const reply = portalChat(prompt)
   const nav = chatNavContext(referrer, prompt)
-  chatLog.value.push({
+  const search = quantumSearchFusesAllAsPrivateSearchEngine(prompt)
+  chatLog.value.unshift({
     q: prompt,
     a: reply.answer,
     source: reply.source,
     grounded: reply.grounded,
     related: nav.related.map((entry) => entry.theorem).slice(0, 3),
+    results: (search.results as SearchHit[]).slice(0, 5),
+    resultCount: search.resultCount,
     receipt: nav.superposition,
   })
   chatInput.value = ''
@@ -1873,28 +1878,34 @@ function runTool(toolId: string) {
       </header>
       <UiSeparator />
       <section id="in-chat-support">
-        <h3>Full in-chat support</h3>
+        <h3>Private search + full in-chat support</h3>
         <p class="quantum-apps__meta">
-          Deterministic replies over the sealed corpus model — zero-token, no network egress. {{ chatAudit.capabilities.length }} capabilities audited · {{ chatAudit.related }} related discoveries per turn.
+          A private search engine over the sealed corpus — BM25-ranked results + a deterministic answer, zero-token, no network egress. {{ chatAudit.capabilities.length }} chat capabilities audited · {{ chatAudit.related }} related discoveries per query.
         </p>
         <UiBadge v-bind="badgeProps(statusBadgeKind(chatAudit.supported))">
-          {{ chatAudit.supported ? '✓ secure' : '—' }} · zero-token · no egress · deterministic
+          {{ chatAudit.supported ? '✓ private' : '—' }} · BM25 · zero-token · no egress · deterministic
         </UiBadge>
+        <form class="quantum-apps__chat-form" @submit.prevent="sendChat">
+          <input id="in-chat-input" v-model="chatInput" class="quantum-apps__input" type="search" autocomplete="off" placeholder="Search the sealed corpus… (private, offline, ranked)" />
+          <UiButton size="sm" type="submit">Search</UiButton>
+          <UiButton size="sm" variant="outline" type="button" :disabled="!chatLog.length" @click="clearChat">Clear</UiButton>
+        </form>
         <ul class="quantum-apps__facets">
-          <li v-for="(turn, i) in chatLog" :key="turn.receipt + i">
+          <li v-for="(turn, i) in chatLog" :key="turn.receipt + i" class="quantum-apps__chat-turn">
             <code>{{ turn.q }}</code>
             <span class="quantum-apps__meta">→ {{ turn.a }}</span>
             <span class="quantum-apps__meta">
-              {{ turn.grounded ? 'grounded' : 'generated' }} · {{ turn.source }}<template v-if="turn.related.length"> · leads to: {{ turn.related.join(' · ') }}</template>
+              {{ turn.grounded ? 'grounded' : 'generated' }} · {{ turn.source }} · {{ turn.resultCount }} ranked hits<template v-if="turn.related.length"> · leads to: {{ turn.related.join(' · ') }}</template>
             </span>
+            <ol v-if="turn.results.length" class="quantum-apps__results">
+              <li v-for="hit in turn.results" :key="hit.slug">
+                <a :href="`/${hit.slug}`">{{ hit.title }}</a>
+                <span class="quantum-apps__meta"> · BM25 {{ hit.score.toFixed(1) }}</span>
+              </li>
+            </ol>
           </li>
-          <li v-if="!chatLog.length" class="quantum-apps__meta">No turns yet — ask the sealed corpus a question below. Nothing leaves the browser.</li>
+          <li v-if="!chatLog.length" class="quantum-apps__meta">No queries yet — search the sealed corpus above. Nothing leaves the browser.</li>
         </ul>
-        <form class="quantum-apps__chat-form" @submit.prevent="sendChat">
-          <input id="in-chat-input" v-model="chatInput" class="quantum-apps__input" type="text" autocomplete="off" placeholder="Ask the sealed corpus… (deterministic, offline)" />
-          <UiButton size="sm" type="submit">Send</UiButton>
-          <UiButton size="sm" variant="outline" type="button" :disabled="!chatLog.length" @click="clearChat">Clear</UiButton>
-        </form>
       </section>
       <UiSeparator />
       <section id="ui-prose-duplication">
@@ -4879,6 +4890,9 @@ function runTool(toolId: string) {
 .quantum-apps__facets { list-style: none; padding: 0; }
 .quantum-apps__chat-form { display: flex; gap: var(--ich-sp3); align-items: center; flex-wrap: wrap; }
 .quantum-apps__chat-form .quantum-apps__input { margin: 0; flex: 1 1 min(100%, calc(1rem * (5 * 8 - 4))); }
+.quantum-apps__chat-turn { flex-direction: column; align-items: flex-start; gap: var(--ich-sp2); }
+.quantum-apps__results { margin: var(--ich-sp2) 0 0; padding-left: var(--ich-sp5); display: flex; flex-direction: column; gap: var(--ich-sp2); }
+.quantum-apps__results li { display: list-item; }
 .quantum-apps__facets li { margin-bottom: var(--ich-sp2); display: flex; gap: var(--ich-sp3); flex-wrap: wrap; align-items: baseline; }
 .quantum-apps__error { color: var(--vp-c-danger-1, crimson); font-size: var(--ich-text-sm); }
 .quantum-apps__textarea { font-family: var(--vp-font-family-mono, ui-monospace, monospace); min-height: calc(1rem * 6); resize: vertical; }
