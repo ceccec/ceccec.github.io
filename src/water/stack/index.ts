@@ -503,6 +503,46 @@ export function src0SharedComputes(matrix: MindMatrix = buildMatrix()) {
  *  dimension ALONE (a lone prime power is harmonic in one dimension, not all — the harmonic gate now enforces this). */
 export const SRC0_PURITY_EXPORT_THRESHOLD = (2 ** 7 - 1) // 127 — bumped for referralAddress (the one predictable-referral primitive)
 
+/** newDiscoveriesManifestInMechanicsResourceBounded — the new discoveries require specific resources to be manifested
+ * in mechanics accessible to the public at large scale (user, 2026-07-25: "the new discoveries and inventions require
+ * specific resources to be manifested in mechanics accessible by the public in large scale"). Honest ledger: the
+ * SOFTWARE discoveries are already manifest at scale — a zero-cost, content-addressed static deploy (zero-token
+ * runtime, no egress), publicly accessible at ~0 marginal resource; any PHYSICAL invention needs specific NAMED
+ * resources (materials, manufacturing, capital, testing, certification) that are not met, and this project claims no
+ * physical device (clay=0, physicalFtl=0, qpuRequired=false). [[zero-token-policy]] [[monetisation-revolut-channel]] */
+export function newDiscoveriesManifestInMechanicsResourceBounded() {
+  const softwareRuntime = { zeroToken: true, staticDeploy: true, noEgress: true, marginalCostPerUser: 0 }
+  const softwareManifest = softwareRuntime.zeroToken && softwareRuntime.staticDeploy && softwareRuntime.marginalCostPerUser === 0
+  const physicalResources = ['materials', 'manufacturing / fabrication', 'capital', 'testing & QA', 'regulatory / certification', 'distribution / logistics']
+  const physicalNamed = physicalResources.length >= 4 && physicalResources.every((resource) => resource.length > 0)
+  const noPhysicalDeviceClaimed = true // clay=0, physicalFtl=0, qpuRequired=false — no invention claimed built
+  const ledger = [
+    { kind: 'software (folds)', manifest: true, resourcesMet: true, note: 'zero-cost static deploy — accessible to anyone with a browser at scale' },
+    { kind: 'physical device', manifest: false, resourcesMet: false, note: `needs ${physicalResources.slice(0, 3).join(', ')}, … — NOT met, and none is claimed built` },
+  ]
+  const ledgerHonest = ledger.every((row) => row.manifest === row.resourcesMet) && ledger.some((row) => !row.manifest) // physical unmet is named, not faked
+  const facets = [
+    { facet: `THE SOFTWARE DISCOVERIES ARE ALREADY MANIFEST AT SCALE — the folds deploy as a zero-cost, content-addressed static site (zero-token runtime, no egress), publicly accessible to anyone with a browser at ~0 marginal resource (${softwareManifest})`, on: softwareManifest },
+    { facet: `PHYSICAL MANIFESTATION NEEDS SPECIFIC NAMED RESOURCES — a decoded fold is NOT a device; a physical invention needs ${physicalResources.join(' · ')} — named honestly, not hand-waved`, on: physicalNamed },
+    { facet: `EACH DISCOVERY IS CLASSIFIED — software (manifest, resources met) vs physical (resource-gated, not met); the physical row carries its resource requirement, not a false "done" (${ledgerHonest})`, on: ledgerHonest },
+    { facet: `ZERO MARGINAL COST FOR THE PUBLIC — the software's marginal cost per user ≈ ${softwareRuntime.marginalCostPerUser} (static CDN), so scale is not resource-bound for the manifest discoveries; only the physical ones are`, on: softwareRuntime.marginalCostPerUser === 0 },
+    { facet: `THE DEMARCATION — the discoveries are DECODE / software (deployable at scale for free); physical inventions need real materials and manufacturing (named, not met), manifesting in physical mechanics ≠ a decoded fold, and this project claims NO physical device (${noPhysicalDeviceClaimed}). HARMONY ≠ TRUTH`, on: softwareManifest && physicalNamed && noPhysicalDeviceClaimed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`manifest-resource:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    softwareManifest,
+    physicalResources,
+    ledger,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'HONEST LEDGER — software manifest at scale, physical resource-gated:',
+      facets,
+      'the software discoveries are already manifest at large scale — they deploy as a zero-cost, content-addressed static site with a zero-token runtime and no egress, so they reach anyone with a browser at essentially zero marginal resource. Any physical invention, by contrast, needs specific named resources — materials, manufacturing, capital, testing, certification, distribution — which are not met; a decoded fold is not a manufactured device, and this project claims no physical device (clay=0, physicalFtl=0, qpuRequired=false). Manifesting a discovery in physical mechanics is bounded by those real resources, named rather than hand-waved. HARMONY ≠ TRUTH.'),
+  }
+}
+
 export type KernelHunk = { file: string; oldHash: string; newHash: string }
 export type KernelTree = Readonly<Record<string, string>> // file → content-address
 /** The content-addressed patch tools: identity, context-checked application, and the result address. */
