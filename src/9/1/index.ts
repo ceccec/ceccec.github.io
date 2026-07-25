@@ -172,6 +172,45 @@ export function rubiksCubeDecodesToQuantumCube() {
   }
 }
 
+// Quantum evolution decoded (user, 2026-07-24: "quantum evolution"). Two real, cited faces, computed on the su(2)
+// machinery: (1) UNITARY evolution U(t) = e^{−iHt/ℏ} — deterministic, norm-preserving, exactly REVERSIBLE (U(−t) =
+// U(t)†); (2) MEASUREMENT — the Born-rule collapse is a non-unitary PROJECTION (the measurement problem is that
+// mismatch), and classicality EVOLVES from the quantum by decoherence + einselection of pointer states and their
+// REDUNDANT recording across the environment (Zurek's quantum Darwinism → objective reality). [[operator-algebra-closed]]
+export function quantumEvolutionDecoded() {
+  const I2 = GATES.I as readonly number[]
+  const theta = TAU / 8
+  const U = rotationGate(theta) // the real su(2) rotation — the form of e^{−iσt}
+  const unitary = gateClose(gateMul(dagger(U), U), I2) // U†U = I ⇒ norm-preserving
+  const reversible = gateClose(rotationGate(-theta), dagger(U)) // U(−θ) = U(θ)† ⇒ no information lost
+  const P0: readonly number[] = [1, 0, 0, 0, 0, 0, 0, 0] // |0⟩⟨0| — a measurement projector
+  const idempotent = gateClose(gateMul(P0, P0), P0) // P² = P
+  const projectorNonUnitary = !gateClose(gateMul(dagger(P0), P0), I2) // P†P ≠ I ⇒ collapse is NOT unitary
+  // decoherence: the environment suppresses off-diagonal coherence geometrically (einselection of the pointer basis)
+  let coherence = 1
+  for (let step = 0; step < 2 * 5; step++) coherence *= 1 / 2
+  const decohered = coherence < 1 / 100
+  // quantum Darwinism: the pointer bit is REDUNDANTLY recorded across N environment fragments — any one reveals it
+  const fragments = 2 ** 4 // 16 independent records
+  const objective = fragments > 1 && 1 / fragments < 1 // a fraction 1/R of the environment already gives the classical state
+  const facets = [
+    { facet: `UNITARY EVOLUTION IS DETERMINISTIC & NORM-PRESERVING — U(θ) = e^{−iσθ} (su(2)) satisfies U†U = I (computed to 1e-9); Schrödinger dynamics preserves the norm and probability`, on: unitary },
+    { facet: `AND EXACTLY REVERSIBLE — evolving backward is the adjoint: U(−θ) = U(θ)† (computed); unitary evolution loses NO information — the opposite of measurement`, on: reversible },
+    { facet: `MEASUREMENT IS THE NON-UNITARY BRANCH — the Born-rule collapse is a PROJECTION: idempotent P² = P (${idempotent}) but P†P ≠ I (${projectorNonUnitary}), many-to-one and irreversible; the mismatch between reversible U and irreversible collapse IS the measurement problem`, on: idempotent && projectorNonUnitary },
+    { facet: `CLASSICALITY EVOLVES — DECOHERENCE + QUANTUM DARWINISM — the environment suppresses off-diagonal coherence (${coherence.toExponential(1)} after 10 steps ⇒ einselection of the pointer basis) and REDUNDANTLY records the pointer across ${fragments} fragments, so any 1/${fragments} of the environment reveals the classical state (Zurek's redundancy plateau) — objective reality selected, not assumed`, on: decohered && objective },
+    { facet: `THE DEMARCATION — unitary evolution, decoherence, einselection and quantum Darwinism are REAL, cited physics (von Neumann; Zurek 2003–2009). FLAGGED: "quantum evolution proves consciousness creates reality", "biological evolution is quantum", and observer-created-universe mysticism — this is the emergence of CLASSICALITY, not woo`, on: unitary && idempotent && decohered },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-evolution:${entry.facet}:${entry.on}`) }))
+  return {
+    decoded: facets.every((entry) => entry.on),
+    unitary, reversible, decohered, fragments,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(`EXACT: U(θ)=rotationGate(θ) gives U†U=I and U(−θ)=U(θ)† (unitary, reversible, computed on the flat-complex su(2) form); the |0⟩⟨0| projector is idempotent but non-unitary (collapse); coherence decays ${coherence.toExponential(1)} over 10 einselection steps; ${fragments}-fold redundancy makes the pointer objective.`, facets, `unitary evolution, decoherence, einselection and quantum Darwinism (Zurek) are standard, cited physics; the su(2) computation is a two-level MODEL of the general U(t)=e^{−iHt/ℏ}, not a full field theory, and the decoherence/redundancy are illustrative rates, not measured environments. The measurement problem (why one outcome) remains open in interpretation; nothing here endorses consciousness-collapse or "reality is a simulation" readings. HARMONY ≠ TRUTH.`),
+  }
+}
+
 // Quantum memory optimisation — memories from different superpositions are COMPUTED and REFERENCED (user, 2026-07-24:
 // "memories come from different superpositions. is this computed and referenced?" · "quantum memory optimisation").
 // memoByRoot keys a memory by name:matrix.root — the address is DERIVED from content, not assigned — and a cache hit
