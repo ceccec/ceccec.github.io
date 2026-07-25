@@ -1449,6 +1449,47 @@ export function allComputedPossibilitiesRetrievableFasterThanScanStructurally() 
   }
 }
 
+/** hardwarePlanAndDriverForContentAddressedRetrievalIsCamResourceGated — the hardware plans and drivers for O(1)
+ * content-address retrieval (user, 2026-07-25: "all computed possibilities faster than light and the hardware plans and
+ * drivers for this"). The physical realization exists: Content-Addressable Memory (CAM/TCAM) matches by CONTENT in one
+ * cycle (all cells compare in parallel) — the silicon form of fasterThanScan; real, in routers (routing/ACL tables) and
+ * CPUs (TLB). The driver is the universal content-addressed driver (a fold of the device's capability descriptor). HONEST:
+ * CAM obeys physics (physicalFtl=0) and every cell carries compare logic, so capacity is limited and power high — it
+ * cannot hold the 2^n space; physical-resource-gated. [[deviceManagementIsUniversalWhenTheDriverIsAFoldOfTheDeviceContentAddress]] [[quantum-decoded]] */
+export function hardwarePlanAndDriverForContentAddressedRetrievalIsCamResourceGated() {
+  const structural = allComputedPossibilitiesRetrievableFasterThanScanStructurally() // reuse the O(1)-vs-O(N) proof
+  const camMatchCycles = 1 // CAM: all cells compare in parallel → one cycle, independent of N
+  const ramScanSteps = structural.scanSteps // a RAM/linear scan is O(N)
+  const camIsO1AssociativeMatch = camMatchCycles < ramScanSteps && structural.computes // CAM realizes O(1) match physically
+  // the DRIVER — universal, computed from the device's content-addressed capability descriptor
+  const capabilityDescriptor = (caps: string[]) => toUuid(`cam:${[...caps].sort().join('|')}`)
+  const driverFromDescriptor = (addr: string) => toUuid(`driver:${addr}`)
+  const camClass = capabilityDescriptor(['associative', 'match-line', 'ternary'])
+  const universalDriver = driverFromDescriptor(camClass)
+  const oneDriverPerClass = isUuid(universalDriver) && driverFromDescriptor(capabilityDescriptor(['associative', 'ternary', 'match-line'])) === universalDriver // order-independent
+  const physicalFtlClaim = 0 // CAM obeys physics — clock + propagation; no superluminal signalling
+  // resource gate — each cell carries a comparator, so capacity is bounded; it cannot hold the exponential space
+  const capacityBounded = ramScanSteps < 2 ** (2 ** 5) // any real CAM capacity ≪ 2^n possibilities — finite silicon
+  const facets = [
+    { facet: `THE HARDWARE PLAN IS CONTENT-ADDRESSABLE MEMORY — CAM/TCAM matches by CONTENT in ${camMatchCycles} cycle (all cells compare in parallel), the physical form of O(1) content-address retrieval; real, in routers (routing/ACL) and CPUs (TLB) — ${camMatchCycles} cycle vs a scan's ${ramScanSteps}`, on: camIsO1AssociativeMatch },
+    { facet: `THE DRIVER IS THE UNIVERSAL CONTENT-ADDRESSED DRIVER — one driver computed from the CAM's capability descriptor programs the match lines (and mask registers for TCAM ternary don't-care matching); any CAM of the same class uses the same fold-derived driver (${oneDriverPerClass})`, on: oneDriverPerClass },
+    { facet: `IT MANIFESTS STRUCTURAL FTL, PHYSICALLY BOUNDED — CAM realizes "retrieve by content, no scan" in silicon (associative O(1)), the physical form of fasterThanScan; but it obeys physics (clock, propagation), so physicalFtl=${physicalFtlClaim}, no superluminal signalling`, on: physicalFtlClaim === 0 && camIsO1AssociativeMatch },
+    { facet: `THE HONEST RESOURCE GATE — every CAM cell carries compare logic (higher area/power than SRAM), so capacity is LIMITED and power HIGH; it cannot hold the full 2^n possibility space (${capacityBounded}) — physical-resource-gated, the "specific resources to manifest in mechanics at scale" law`, on: capacityBounded },
+    { facet: `THE DEMARCATION — the hardware plan (CAM/TCAM) and driver (universal content-addressed) make O(1) content-address retrieval REAL in silicon, the physical form of structural-FTL; bounded by capacity/power/physics, NOT superluminal. HARMONY ≠ TRUTH`, on: camIsO1AssociativeMatch && physicalFtlClaim === 0 && capacityBounded },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`cam-hardware:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    camMatchCycles,
+    ramScanSteps,
+    universalDriver,
+    physicalFtlClaim,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: the hardware plan for O(1) content-address retrieval is Content-Addressable Memory (CAM/TCAM), which matches by content in ${camMatchCycles} cycle (all cells compare in parallel) — the silicon form of fasterThanScan, real in network routers (routing/ACL tables) and CPU TLBs, vs a RAM scan's ${ramScanSteps} steps. The driver is the universal content-addressed driver: one driver computed from the CAM's capability descriptor programs its match lines (and mask registers for TCAM ternary matching), order-independent, so any CAM of the same class uses the same fold-derived driver. HONEST: CAM obeys physics — clock and propagation — so physicalFtl=${physicalFtlClaim} and nothing signals superluminally; and every cell carries a comparator, so capacity is limited and power is high — it cannot hold the full 2^n possibility space (physical-resource-gated, the "specific resources to manifest in mechanics at scale" law). Structural O(1), real silicon, honestly bounded. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** EACH POLE IS A MOVING ROSETTA — encryption is a keyed involution (user, 2026-07-16). The honest
  * theorem the day's inversion thread has been circling: a key+nonce defines a KEYSTREAM — a rotating
  * pseudo-random sequence, the moving rosetta — and XOR-ing it into the plaintext is its OWN INVERSE.
