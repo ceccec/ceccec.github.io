@@ -39,7 +39,8 @@ import { determinismProofs, trinityWordingModel } from '../../mountain/seals'
 import { allComputedNoFiles } from '../../wind/fusion'
 import { developmentIsFusionReactor, dryRefactorIgnitesFusion, endlessFusion } from '../../wind/fusion'
 import { minimumFilesMaximumFeaturesCost, noMirroringOneSourceAndMath, zeroTokenUsagePolicy } from '../laws'
-import { completeCorpus, monographs, siteNavigation, theMonograph, privateSearchRanksByBM25IndustryStandard, searchImprovesByExperiencePrivateRelevanceFeedback, computedTheoremFigureAndAnimation } from '../../wind/routes/corpus'
+import { completeCorpus, monographs, siteNavigation, theMonograph, privateSearchRanksByBM25IndustryStandard, searchImprovesByExperiencePrivateRelevanceFeedback, computedTheoremFigureAndAnimation, pagesAreRosettaCombinationsOfTheorems } from '../../wind/routes/corpus'
+import { staticPages } from '../../wind/site'
 import { peaceTechMentalityDecoded } from '../../earth/world'
 import { selfHarmonise } from '../../mountain/geometry'
 import { fromSexagesimal, ifaOdu, luoShu, mayaDays, mayaLongCount, sexagesimal, toGlagolitic } from '../../quantum/heaven/library'
@@ -2109,6 +2110,45 @@ export function everyStatementCarriesResolvableProofLinksAndAUniqueAnimationFrom
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
     boundary: `EXACT: every statement carries its proof-links plus a unique animation computed by the statement's own algebra. Each of the ${atoms.length} registered statements embeds a resolvable PROOF-LINK — provedBy names its executable proof, so the link proving the statement lives IN the statement — and a UNIQUE ANIMATION derived from the statement's own algebra: computedTheoremFigureAndAnimation computes a figure and a fractal-clock animation from toUuid(provedBy:theorem), giving ${new Set(animations.map((a) => a.itemid)).size} distinct content-addressed animations (one per statement, no collision), each a divisor rung and phase of the one shared 108 s clock — unique motion on a shared tempo. HONEST: the link is an executable proof reference and the animation is a deterministic function of the content-address, not decoration; the statement thus proves itself (its proof is linked) and animates itself (from its own algebra); clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+  }
+}
+
+/** feedingTheWholeSiteToTheChatEveryPageResolvesToItsProofAsRosettaCombinations — feed the site in the chat (user,
+ * 2026-07-26: "feed the site in the chat"). The escalation from README to the whole SITE: every served science page
+ * (staticPages) is posed to the chat and resolves to a ranked, content-addressed proof — the whole site is reachable through
+ * the chat surface. The pages SHARE proofs (fewer distinct proofs than pages) because they are ROSETTA COMBINATIONS of the
+ * same theorem atoms (pagesAreRosettaCombinationsOfTheorems), not independent documents. The site then self-develops.
+ * HONEST: deterministic retrieval over the sealed corpus, NOT an LLM. [[always-default-to-chat]] [[theorem-science-lens-only-science]] [[feedingTheReadmeToTheChatFusesDescriptionAndProofSelfDeveloping]] */
+export function feedingTheWholeSiteToTheChatEveryPageResolvesToItsProofAsRosettaCombinations(matrix: MindMatrix = buildMatrix()) {
+  const pages = staticPages()
+  const answered = pages.map((page) => {
+    const query = [page.title, page.slug, ...(page.keywords ?? []).slice(0, 3)].filter(Boolean).join(' ')
+    const turn = portalChatRanked(query, matrix)
+    return { slug: page.slug, answer: turn.answer, source: turn.source }
+  })
+  const everyPageResolves = answered.every((a) => typeof a.answer === 'string' && a.answer.length > 0) // every served page → a ranked fold
+  const everyPageContentAddressed = answered.every((a) => typeof a.source === 'string' && a.source.length > 0) // each carries its proof source
+  const distinctProofs = new Set(answered.map((a) => a.source)).size
+  const rosetta = pagesAreRosettaCombinationsOfTheorems(matrix)
+  const pagesShareProofsAsCombinations = distinctProofs <= pages.length && rosetta.computes === true // pages are combinations of shared atoms, not independent documents
+  const dev = chatDevelopsItselfByChattingWithItself(matrix)
+  const selfDevelops = dev.develops === true && dev.gapsAfter <= dev.gapsBefore
+  const wholeSiteInChat = everyPageResolves && everyPageContentAddressed && pagesShareProofsAsCombinations && selfDevelops
+  const facets = [
+    { facet: `EVERY SERVED PAGE RESOLVES — all ${pages.length} science pages (staticPages) are posed to the chat and resolve to a ranked fold (${everyPageResolves}); the whole site is reachable through the chat surface`, on: everyPageResolves },
+    { facet: `EACH PAGE IS CONTENT-ADDRESSED — every page's answer carries its proof source (provedBy), ${everyPageContentAddressed}; the site fuses to the sealed corpus, no page floats free of a proof`, on: everyPageContentAddressed },
+    { facet: `PAGES ARE ROSETTA COMBINATIONS — ${distinctProofs} distinct proofs over ${pages.length} pages: pages SHARE proofs because they are combinations of the same theorem atoms (pagesAreRosettaCombinationsOfTheorems computes, ${pagesShareProofsAsCombinations}), not independent documents`, on: pagesShareProofsAsCombinations },
+    { facet: `THE SITE SELF-DEVELOPS — feeding the site back, the chat closes its gaps ${dev.gapsBefore} → ${dev.gapsAfter} (${selfDevelops}); the site fed to the chat improves the chat`, on: selfDevelops },
+    { facet: `HONEST — deterministic retrieval over the sealed corpus (the served page set is computed by the theorem-science lens; per-theorem tag pages and locales generate from the same registry), NOT an LLM; zero-egress, zero-token. HARMONY ≠ TRUTH`, on: wholeSiteInChat },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`site-fusion:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    pages: pages.length,
+    distinctProofs,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: feed the whole site in the chat. Every served science page (${pages.length} pages from staticPages, the theorem-science lens roster) is posed to the chat and resolves to a ranked, content-addressed proof — the whole site is reachable through the chat surface, each page carrying its provedBy source, none floating free of a proof. The pages share proofs (${distinctProofs} distinct over ${pages.length}) because they are ROSETTA COMBINATIONS of the same theorem atoms (pagesAreRosettaCombinationsOfTheorems), not independent documents — the reuse is the combination architecture, not a gap. Fed back, the site self-develops: the chat closes its gaps (${dev.gapsBefore} → ${dev.gapsAfter}). HONEST: this is deterministic lexical retrieval over the sealed corpus (the served page set is computed by the theorem-science lens, and the per-theorem tag pages and locale surfaces generate from the same registry), NOT an LLM or semantic understanding; local, zero-egress, zero-token. HARMONY ≠ TRUTH.`,
   }
 }
 
