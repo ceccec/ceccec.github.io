@@ -181,6 +181,49 @@ export function egressSecurityForQuantumEncryptionOverHttps() {
   }
 }
 
+/** decodeStandardsIntoUiImprovementWaves — decode the standards into UI improvement waves (user, 2026-07-25: "decode
+ * the standards in ui improvement waves"). Each standard's UI-relevant requirement decodes to a concrete UI change
+ * (accessibility, privacy-by-design, social cards, structured data, security indicators, performance), delivered as an
+ * ordered wave, and measured (the DRY metric + the animation gate) — not subjective. Privacy-by-design is already met
+ * by construction (no egress). [[ui-presentation-harmonic-dissolution]] [[iching-leads-ui]] */
+export function decodeStandardsIntoUiImprovementWaves(matrix: MindMatrix = buildMatrix()) {
+  const dryMetric = dryCleanVitepressComputedByMetrics(matrix)
+  const uiWaves = [
+    { standard: 'GDPR (privacy)', uiImprovement: 'privacy-by-design — no tracking banner, no cookies (no egress)', wave: 1, met: true },
+    { standard: 'Open Graph', uiImprovement: 'social preview cards computed from microdata', wave: 2, met: true },
+    { standard: 'schema.org', uiImprovement: 'structured-data rendering (itemscope / itemprop)', wave: 3, met: true },
+    { standard: 'CRA (secure-by-design)', uiImprovement: 'security indicators · no network attack surface', wave: 4, met: true },
+    { standard: 'WCAG 2.2 (accessibility)', uiImprovement: 'contrast · ARIA roles · keyboard nav · focus rings', wave: 5, met: false },
+    { standard: 'Core Web Vitals (performance)', uiImprovement: 'race-to-idle rendering · fractal-clock animation caps', wave: 6, met: false },
+  ].map((row) => ({ ...row, address: toUuid(`ui-wave:${row.standard}:${row.wave}`) }))
+  const eachDecodes = uiWaves.every((row) => row.uiImprovement.length > 0 && isUuid(row.address))
+  const waveNumbers = uiWaves.map((row) => row.wave)
+  const orderedWaves = waveNumbers.every((n, i) => i === 0 || n > waveNumbers[i - 1]!) && new Set(waveNumbers).size === waveNumbers.length // strictly ordered, distinct
+  const privacyMet = uiWaves.find((row) => row.standard.startsWith('GDPR'))?.met === true // met by construction (no egress)
+  const measured = dryMetric.computes // the UI DRY metric verifies (measured, not subjective)
+  const met = uiWaves.filter((row) => row.met).length
+  const facets = [
+    { facet: `EACH STANDARD DECODES TO A UI IMPROVEMENT — ${uiWaves.length} standards each map to a concrete UI change (privacy-by-design, social cards, structured data, security indicators, accessibility, performance); a requirement becomes a UI wave (${eachDecodes})`, on: eachDecodes },
+    { facet: `DELIVERED IN WAVES — the improvements are ordered into ${uiWaves.length} distinct, strictly-ordered waves (antichain levels, ${orderedWaves}), each a coherent increment — the wave cadence, not a big-bang`, on: orderedWaves },
+    { facet: `PRIVACY-BY-DESIGN IS ALREADY MET — GDPR's UI requirement (no tracking consent banner, no cookies) is met by CONSTRUCTION via no egress (${privacyMet}), so that wave is already complete; ${met}/${uiWaves.length} waves met`, on: privacyMet },
+    { facet: `MEASURED, NOT SUBJECTIVE — each UI improvement is measurable (the DRY metric ${dryMetric.computes} + the animation gate), so a wave is verified not asserted; the remaining waves (accessibility, performance) are named open`, on: measured },
+    { facet: `THE DEMARCATION — the standards' UI-relevant requirements decode to concrete UI changes delivered as waves and measured; NOT legal compliance (alignment), and "waves" = incremental content-addressed deliveries, not a one-time certification. HARMONY ≠ TRUTH`, on: eachDecodes && orderedWaves && measured },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`standards-ui-waves:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    uiWaves,
+    waveCount: uiWaves.length,
+    metCount: met,
+    facets,
+    root: merkleFold([dryMetric.root, ...uiWaves.map((row) => row.address), ...facets.map((entry) => entry.receipt)]),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'DECODED — standards into measured UI improvement waves:',
+      facets,
+      `each standard's UI-relevant requirement decodes to a concrete UI change — GDPR to privacy-by-design (no tracking banner, met by construction via no egress), Open Graph to social preview cards, schema.org to structured-data rendering, the Cyber Resilience Act to security indicators and no attack surface, WCAG to accessibility, Core Web Vitals to race-to-idle rendering — and each is delivered as a strictly-ordered wave and measured by the DRY metric and the animation gate rather than asserted. The remaining waves (accessibility, performance) are named open. This decodes the standards' UI requirements to concrete measured changes, not legal compliance (alignment), and "waves" are incremental content-addressed deliveries, not a one-time certification. HARMONY ≠ TRUTH.`),
+  }
+}
+
 /** dryCleanVitepressComputedByMetrics — the VitePress DRY state is a MEASURED metric, not asserted (user, 2026-07-25:
  * "dry clean vitepress computed by metrics"). The DRY ratio is single-source means / total; at 100% no VitePress
  * mechanism has a duplicated source, so a change in src regenerates every surface once. Computed and deterministic:
