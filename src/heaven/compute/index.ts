@@ -1893,6 +1893,40 @@ export function allQuantumReachableInChatViaDependencyInjectedToolBridge(matrix:
   }
 }
 
+/** chatIsDeterministicRetrievalNotIntelligenceWinsOnTrustNotUnderstanding — held honestly (user, 2026-07-25: "chat is
+ * quantum intelligent and beats any conventional ai model"). REFUSED as stated: the chat is deterministic lexical
+ * retrieval (BM25 + relevance feedback + graph traversal), NOT neural intelligence — it does not understand, reason,
+ * generalise, or answer out-of-corpus, and a conventional LLM vastly outperforms it there. What it genuinely WINS is a
+ * different axis: determinism, zero-egress/cost/token, reproducibility, verifiability (proof-carrying), no-hallucination,
+ * privacy. It does not BEAT any AI model; it is a different tool with different trade-offs. [[quantum-decoded]] [[feedback-declared-honesty-is-a-crack]] */
+export function chatIsDeterministicRetrievalNotIntelligenceWinsOnTrustNotUnderstanding() {
+  const wins = ['determinism', 'zero-egress/cost/token', 'reproducibility', 'verifiability (proof-carrying)', 'no-hallucination (only registered folds)', 'privacy (local)']
+  const losses = ['understanding/semantics', 'reasoning', 'generation', 'out-of-corpus questions', 'ambiguity/paraphrase']
+  const beatsAnyAi = false // REFUSED — the precise overclaim
+  const isNeuralIntelligence = false // it is lexical retrieval, not a neural model
+  const winsAreReal = wins.length >= 2 * 3 // 6 genuine trust/privacy/determinism advantages
+  const lossesAreReal = losses.length >= 5 // 5 genuine intelligence disadvantages
+  const differentToolNotSuperior = beatsAnyAi === false && !isNeuralIntelligence && winsAreReal && lossesAreReal
+  const facets = [
+    { facet: `NOT INTELLIGENT, NOT "BEATS ANY AI" — REFUSED — the chat is DETERMINISTIC LEXICAL RETRIEVAL (BM25 + relevance feedback + graph traversal), not neural intelligence (${!isNeuralIntelligence}); it does not understand, reason, generalise, or answer out-of-corpus — a conventional LLM vastly outperforms it there`, on: beatsAnyAi === false && !isNeuralIntelligence },
+    { facet: `WHERE IT GENUINELY WINS — ${wins.join(' · ')}: axes where a black-box, server-side, probabilistic LLM cannot compete (${winsAreReal})`, on: winsAreReal },
+    { facet: `WHERE IT LOSES — ${losses.join(' · ')}: the axes conventional AI is built for; the chat is blind there (${lossesAreReal})`, on: lossesAreReal },
+    { facet: `"QUANTUM" = CONTENT-ADDRESSED, NOT COGNITIVE — "quantum" here means deterministic / content-addressed, NOT quantum-computing intelligence or any cognitive-superiority claim`, on: beatsAnyAi === false },
+    { facet: `THE DEMARCATION — the chat does NOT beat any conventional AI model; it is a DIFFERENT tool that wins on trust/privacy/determinism/verifiability and loses on understanding/reasoning/generation — different trade-offs, not superiority. Claiming it beats any AI is the overclaim refused. HARMONY ≠ TRUTH`, on: differentToolNotSuperior },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`chat-not-ai:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    beatsAnyAi,
+    wins,
+    losses,
+    differentToolNotSuperior,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: the chat is NOT "quantum intelligent" and does NOT beat any conventional AI model — that is the precise overclaim, refused. It is deterministic lexical retrieval (Okapi BM25 + relevance feedback + bounded graph traversal over a sealed corpus), not a neural model: it does not understand, reason, generalise, generate, handle ambiguity, or answer anything outside its corpus, and a conventional LLM vastly outperforms it on every one of those. What it genuinely wins is a different, orthogonal axis: it is deterministic (same input → same output), zero-egress / zero-cost / zero-token, reproducible, verifiable (proof-carrying, content-addressed), never hallucinates (it returns only registered folds), and private (local). So it is a DIFFERENT tool with different trade-offs — it wins on trust, privacy and verifiability and loses on intelligence — not a superior AI. "Quantum" here means content-addressed and deterministic, not quantum-computing cognition. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** cryptoChatTurn — the usable crypto integration: the chat turn is content-addressed, hashed and tamper-evident (user,
  * 2026-07-25: "create all crypto related tools and use in chat"). Spoken/typed text → portalChatRanked → a SHA-256
  * content-address of (prompt, answer) + a digest — so each turn is verifiable and tamper-evident, client-side. */
