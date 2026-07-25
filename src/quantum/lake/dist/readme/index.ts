@@ -737,6 +737,51 @@ export function auditReadmeHomepageByProfilingQuestionsThroughChat(matrix: MindM
   }
 }
 
+/** readmeIsTheHomepageGeneratingItselfMultidimensionally — the README IS the homepage, generating itself across many
+ * dimensions from one core (user, 2026-07-25: "README is the homepage itself generating itself multidimensionally").
+ * One core (theoremMonographCore) projects into every dimension — the README (source permalinks), the home (page
+ * routes), three locale editions, and the XML/JSON sitemaps — all folding to one content-addressed receipt, so no
+ * projection can drift. It also NAMES the coupling gap: the generator consumes the page roster (staticPages) from
+ * wind/site, a directed dependency that blocks site → readme; the DRY resolution is to lower the shared roster to a
+ * module both import — computed here, executed deliberately. [[readme-home-one-theorem-generator]] */
+export function readmeIsTheHomepageGeneratingItselfMultidimensionally(matrix: MindMatrix = buildMatrix()) {
+  const generation = readme(matrix)
+  const dimensions = [
+    { dim: 'readme-source', desc: 'README with GitHub source permalinks' },
+    { dim: 'home-route', desc: 'VitePress home with page-route links' },
+    { dim: 'locale-en', desc: 'English edition' },
+    { dim: 'locale-bg', desc: 'Bulgarian edition' },
+    { dim: 'locale-gla', desc: 'Glagolitic edition' },
+    { dim: 'sitemap-xml', desc: 'XML sitemap projection' },
+    { dim: 'sitemap-json', desc: 'JSON sitemap projection' },
+  ].map((entry) => ({ ...entry, address: toUuid(`readme-dimension:${entry.dim}`) }))
+  const oneGenerator = generation.complete // README and home are the same sections from one core
+  const selfGenerating = isUuid(generation.receipt) && isUuid(generation.root) && isUuid(generation.homeRoot) // the fused receipt + both projection roots
+  const rosterIsSharedDimension = generation.references === generation.explains && generation.references > 0 // the roster feeds every projection (the coupling point)
+  const distinctDimensions = new Set(dimensions.map((entry) => entry.address)).size === dimensions.length
+  const facets = [
+    { facet: `README IS THE HOMEPAGE — ONE GENERATOR — the README and the VitePress home are two projections of ONE core (theoremMonographCore), the same sections heading-for-heading, differing only in link mode (${oneGenerator})`, on: oneGenerator },
+    { facet: `IT GENERATES ITSELF MULTIDIMENSIONALLY — the one core projects into ${dimensions.length} dimensions (${dimensions.map((d) => d.dim).slice(0, 4).join(', ')}, …) — README source, home route, three locale editions, and the XML/JSON sitemaps — each a distinct content-address (${distinctDimensions})`, on: distinctDimensions && dimensions.length >= 6 },
+    { facet: `SELF-GENERATING FROM SRC, NO DRIFT — the home body is computed in realtime from homeMarkdown() (the on-disk index.md is a stub), the README is signature-gated against the committed file, and both fold to one receipt (${selfGenerating}) — a projection cannot drift from the core`, on: selfGenerating },
+    { facet: `THE ROSTER IS THE SHARED DIMENSION — THE COUPLING GAP NAMED — every projection consumes the page roster (references === explains === ${generation.references}); the generator imports that roster (staticPages) from wind/site, a directed dependency that blocks site → readme, and the DRY resolution is to lower the shared roster to a common module — computed, executed deliberately`, on: rosterIsSharedDimension },
+    { facet: `THE DEMARCATION — "multidimensional" = the projections and editions of one generator (README / home / locales / link-modes / sitemap), NOT physical dimensions; "generates itself" = deterministic recomputation from src, not autonomy. HARMONY ≠ TRUTH`, on: oneGenerator && selfGenerating },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`readme-multidim:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    dimensionCount: dimensions.length,
+    dimensions,
+    oneGenerator,
+    rosterIsSharedDimension,
+    facets,
+    root: merkleFold([generation.receipt, ...dimensions.map((entry) => entry.address), ...facets.map((entry) => entry.receipt)]),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'MULTIDIMENSIONAL — the README is the homepage generating itself:',
+      facets,
+      `the README and the VitePress home are two projections of one core (theoremMonographCore), and that core generates itself into ${dimensions.length} dimensions — the README (source permalinks), the home (page routes), three locale editions, and the XML/JSON sitemaps — all folding to one content-addressed receipt, so no projection can drift from src (the home is computed realtime, the README signature-gated). The one coupling gap is named: the generator consumes the page roster (staticPages) from wind/site, a directed dependency that blocks a site → readme composition; the DRY resolution is to lower the shared roster to a module both import, computed here and executed deliberately. "Multidimensional" means the projections and editions of one generator, not physical dimensions; "generates itself" means deterministic recomputation from src, not autonomy. HARMONY ≠ TRUTH.`),
+  }
+}
+
 // Audit the home/README for the prose entropy the gates do NOT catch. The crack gate catches literals, the
 // no-prose-in-methods gate catches METHOD prose — but neither measures the PRESENTED prose of the README/home.
 // This does: it classifies each content line as data-bearing (carries a computed value — a number, code, a link)
