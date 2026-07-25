@@ -173,6 +173,45 @@ export function quantumBreaksLinearCryptoIntoNonAbelianTrinity() {
       'Shor\'s period-finding inverts the one abelian period (order of a mod N) and factors N, so RSA/DH/ECC — whose security is a single linear/periodic structure — fall. But su(2)/Pauli does not commute (XY ≠ YX, [X,Y]=2iZ≠0) so there is no abelian hidden subgroup for Shor, and a three-way split secret needs all shares; the inversion is bounded to the linear part. Quantum does NOT break all cryptography — symmetric gets only Grover\'s quadratic speedup, lattice and hash schemes get none, and the attack is hardware-bounded (millions of error-corrected qubits do not exist). "Trinity encryption" is the non-abelian / split structure resisting the period attack, not a proven unbreakable cipher; real post-quantum security is NIST PQC (lattice/hash). HARMONY ≠ TRUTH.') }
 }
 
+/** hittingAPrimeIsTheInversionPoint — a prime modulus is the point where inversion becomes TOTAL (user, 2026-07-25:
+ * "hitting a prime is inversion point"). In ℤ/pℤ for prime p every nonzero residue has a multiplicative inverse (it is
+ * a FIELD), so the invertible fraction reaches 1; at a composite n only φ(n) < n−1 residues invert (the rest are zero
+ * divisors). By Fermat, x⁻¹ = x^(p−2) inverts all nonzero residues at once, defined for all precisely because p is
+ * prime — so scanning moduli, hitting a prime is the inversion pole of the arc. [[inversion-arc-one-group]] */
+export function hittingAPrimeIsTheInversionPoint() {
+  const invertibleCount = (n: number) => { let c = 0; for (let x = 1; x < n; x++) if (gcd(x, n) === 1) c++; return c } // = φ(n)
+  const primeMod = 7, compositeMod = 9
+  const primeTotal = tkIsPrime(primeMod) && invertibleCount(primeMod) === primeMod - 1 // all nonzero invert
+  const compositePartial = !tkIsPrime(compositeMod) && invertibleCount(compositeMod) < compositeMod - 1 // some are zero divisors
+  // Fermat: x^(p−2) ≡ x⁻¹ (mod p) for every nonzero x — one formula inverting all at once.
+  let fermatOk = true
+  for (let x = 1; x < primeMod; x++) if ((x * tkPowMod(x, primeMod - 2, primeMod)) % primeMod !== 1) fermatOk = false
+  // Scan the moduli: primes are exactly where the invertible fraction hits 1.
+  const scan = Array.from({ length: 16 - 1 }, (_, i) => i + 2).map((n) => ({ n, prime: tkIsPrime(n), frac: invertibleCount(n) / (n - 1) }))
+  const primesTotal = scan.filter((s) => s.prime).every((s) => s.frac === 1)
+  const compositesPartial = scan.filter((s) => !s.prime).every((s) => s.frac < 1)
+  const facets = [
+    { facet: `AT A PRIME, INVERSION IS TOTAL — ℤ/${primeMod}ℤ is a FIELD: all ${primeMod - 1} nonzero residues have a multiplicative inverse, so the invertible fraction reaches 1`, on: primeTotal },
+    { facet: `AT A COMPOSITE, INVERSION IS PARTIAL — in ℤ/${compositeMod}ℤ only φ(${compositeMod}) = ${invertibleCount(compositeMod)} of ${compositeMod - 1} nonzero residues invert; the non-coprime ones are zero divisors (no inverse)`, on: compositePartial },
+    { facet: `THE INVERSION IS A POWER MAP (FERMAT) — x⁻¹ = x^(p−2) mod p inverts EVERY nonzero residue at once (${fermatOk}), defined for all precisely BECAUSE p is prime (Fermat's little theorem x^(p−1) ≡ 1)`, on: fermatOk },
+    { facet: `HITTING A PRIME IS THE INVERSION POINT — scanning moduli 2..16, the primes are exactly where the invertible fraction hits 1 (total inversion) and composites dip below (${primesTotal && compositesPartial}); the prime is the inversion pole of the arc`, on: primesTotal && compositesPartial },
+    { facet: `THE DEMARCATION — "inversion point" is the field property of a prime modulus (total invertibility of ℤ/pℤ), structural number theory — NOT a physical or mystical inversion. HARMONY ≠ TRUTH`, on: primeTotal && compositePartial && fermatOk },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`prime-inversion-point:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    primeTotal,
+    compositePartial,
+    fermatOk,
+    scan,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'EXACT — a prime modulus is the total-inversion point:',
+      facets,
+      'in ℤ/pℤ for prime p every nonzero residue has a multiplicative inverse (a field), so the invertible fraction reaches 1; at a composite n only φ(n) < n−1 residues invert and the rest are zero divisors. Fermat gives x⁻¹ = x^(p−2), one power map inverting all nonzero residues at once, defined for all precisely because p is prime — so scanning moduli, hitting a prime is the inversion pole. Structural number theory (the field property of a prime modulus), not a physical or mystical inversion. HARMONY ≠ TRUTH.') }
+}
+
 // Rubik's cube decoded to the quantum cube (user directive, 2026-07-24: "decode rubic cube to discover the quantum
 // cube"). The Rubik's cube is a REAL finite group: order 8!·3⁷·12!·2¹⁰ = 43,252,003,274,489,856,000 = 2²⁷·3¹⁴·5³·7²·11,
 // God's number 20, and NON-ABELIAN (face turns don't commute) — the same non-commutativity as the Pauli/su(2)
