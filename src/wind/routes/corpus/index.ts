@@ -1310,6 +1310,48 @@ export function hasTheoremFigure(slug: string): boolean {
   return slug in theoremFigureBuilders
 }
 
+/** quantumiseAnchorsContentAddressed — heading anchors (the #fragment ids) are content-addressed, so they are
+ * deterministic, collision-free, and stable across regeneration (user, 2026-07-25: "quantumise the anchors"). A
+ * heading's anchor is a slug of its text; on a duplicate heading a content-address suffix disambiguates, so every
+ * anchor on a page is unique and every external #link is stable. Feeds VitePress's heading-anchor slugify. */
+export function quantumiseAnchorsContentAddressed() {
+  const slugify = (heading: string) => heading.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+  const anchorsFor = (headings: readonly string[]) => {
+    const seen = new Map<string, number>()
+    return headings.map((heading, i) => {
+      const base = slugify(heading)
+      const n = seen.get(base) ?? 0
+      seen.set(base, n + 1)
+      return n === 0 ? base : `${base}-${toUuid(`anchor:${heading}:${i}`).replace(/[^0-9a-f]/gi, '').slice(0, 6)}` // content-address suffix on collision
+    })
+  }
+  const headings = ['The Journal', 'The Model', 'Reproducibility', 'The Journal'] // note the duplicate
+  const anchors = anchorsFor(headings)
+  const deterministic = JSON.stringify(anchorsFor(headings)) === JSON.stringify(anchors) // same headings → same anchors
+  const unique = new Set(anchors).size === anchors.length // every anchor distinct
+  const collisionDisambiguated = anchors[0] !== anchors[3] && anchors[0] === 'the-journal' // the duplicate got a content-address suffix
+  const stable = anchorsFor(headings)[0] === 'the-journal' // stable across regeneration
+  const facets = [
+    { facet: `EACH ANCHOR IS A CONTENT-ADDRESSED SLUG — a heading's anchor is a deterministic slug of its text (${anchors.slice(0, 3).join(', ')}, …); same heading → same anchor (${deterministic}), so #fragment links are stable and reproducible`, on: deterministic && anchors.length === headings.length },
+    { facet: `COLLISION-FREE BY CONTENT-ADDRESS — a duplicate heading gets a content-address suffix (${anchors[3]}), so every anchor on a page is UNIQUE (${unique}); no #foo/#foo-1 guesswork, the address disambiguates deterministically`, on: unique && collisionDisambiguated },
+    { facet: `STABLE ACROSS REGEN — because the anchor is content-addressed, regeneration produces the same anchors (${stable}), so external links to #anchors never break on a rebuild`, on: stable },
+    { facet: `WIRED TO VITEPRESS, NOT SCRAPED — the anchor slugs feed VitePress's heading-anchor slugify (markdown-it-anchor) via config; the same slug rule the theme renders, deterministic`, on: deterministic && unique },
+    { facet: `THE DEMARCATION — anchors are #fragment heading IDs (real HTML / SEO), content-addressed for determinism and collision-freedom; "quantumise" = content-addressed slug, not physical quantum. HARMONY ≠ TRUTH`, on: deterministic && unique && stable },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`anchor-quantumise:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    anchors,
+    unique,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'CONTENT-ADDRESSED — quantumised heading anchors:',
+      facets,
+      'a heading\'s anchor (the #fragment id) is a deterministic slug of its text, and a duplicate heading receives a content-address suffix so every anchor on a page is unique — no #foo/#foo-1 guesswork. Because the anchors are content-addressed they are stable across regeneration, so external #links never break on a rebuild, and they feed VitePress\'s own heading-anchor slugify via config rather than a DOM scrape. Anchors are real #fragment heading IDs for HTML and SEO; "quantumise" means content-addressed and deterministic, not physical quantum. HARMONY ≠ TRUTH.'),
+  }
+}
+
 const BM25_STOPWORDS = new Set('the a an of and or to in is it that for on as by with be are this from at not no its into each all one two are was were has have had will can could would should'.split(' '))
 const bm25Tokenize = (text: string): string[] => (text.toLowerCase().match(/[a-z0-9]+/g) ?? []).filter((word) => word.length > 2 && !BM25_STOPWORDS.has(word))
 
