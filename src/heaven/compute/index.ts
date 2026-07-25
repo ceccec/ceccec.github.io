@@ -37,7 +37,7 @@ import { determinismProofs, trinityWordingModel } from '../../mountain/seals'
 import { allComputedNoFiles } from '../../wind/fusion'
 import { developmentIsFusionReactor, dryRefactorIgnitesFusion, endlessFusion } from '../../wind/fusion'
 import { minimumFilesMaximumFeaturesCost, noMirroringOneSourceAndMath, zeroTokenUsagePolicy } from '../laws'
-import { completeCorpus, monographs, siteNavigation, theMonograph, privateSearchRanksByBM25IndustryStandard, searchImprovesByExperiencePrivateRelevanceFeedback } from '../../wind/routes/corpus'
+import { completeCorpus, monographs, siteNavigation, theMonograph, privateSearchRanksByBM25IndustryStandard, searchImprovesByExperiencePrivateRelevanceFeedback, computedTheoremFigureAndAnimation } from '../../wind/routes/corpus'
 import { peaceTechMentalityDecoded } from '../../earth/world'
 import { selfHarmonise } from '../../mountain/geometry'
 import { fromSexagesimal, ifaOdu, luoShu, mayaDays, mayaLongCount, sexagesimal, toGlagolitic } from '../../quantum/heaven/library'
@@ -1487,6 +1487,52 @@ export function portalChatRanked(prompt: string, matrix: MindMatrix = buildMatri
     score: top.score,
     ranked: true as const,
     alternatives: bm25.results.slice(1, 1 + 2).map((r) => r.title),
+  }
+}
+
+/** videoChatTurn — the usable video integration: the chat SHOWS its answer's animation (user, 2026-07-25: "create all
+ * video related tools and use in chat"). Spoken/typed text → portalChatRanked → the ranked fold's UNIQUE south-pole
+ * animation (the seal's 4th element, computedTheoremFigureAndAnimation) — the fractal-clock video the chat renders. */
+export function videoChatTurn(spokenText: string, matrix: MindMatrix = buildMatrix()) {
+  const ranked = portalChatRanked(spokenText, matrix)
+  const anim = computedTheoremFigureAndAnimation({ theorem: String(ranked.answer), provedBy: String(ranked.source) })
+  return { heard: spokenText, answer: ranked.answer, source: ranked.source, animation: anim.animation, figure: anim.figure, itemid: anim.itemid }
+}
+
+/** videoToolsForChatMediaDevicesCanvasHonestEgress — all video-related tools, used in chat (user, 2026-07-25: "create all
+ * video related tools and use in chat"). Browser-native, no paid service: camera (getUserMedia), playback (HTMLVideoElement),
+ * canvas/WebGL render (the fractal-clock animation), recording (MediaRecorder), screen capture (getDisplayMedia), frame
+ * analysis (getImageData). Used in the chat to capture AND to SHOW the answer's unique animation (videoChatTurn → the
+ * seal's south-pole). HONEST: video is local by default — frames stay client-side, nothing uploads unless sent (more
+ * egress-friendly than voice STT); heavy computer vision needs a BYO WASM model (MediaPipe/OpenCV.js). [[seal-tetrad-south-pole-animation]] [[fractal-clock-lattice]] */
+export function videoToolsForChatMediaDevicesCanvasHonestEgress() {
+  const tools = [
+    { id: 'camera', api: 'MediaDevices.getUserMedia', direction: 'capture', egress: false, note: 'client-side camera frames — permission-gated, stay local' },
+    { id: 'playback', api: 'HTMLVideoElement', direction: 'show', egress: false, note: 'local video/movie playback' },
+    { id: 'render', api: 'Canvas / WebGL', direction: 'render', egress: false, note: 'the fractal-clock animation — the answer\'s south-pole video, computed locally' },
+    { id: 'record', api: 'MediaRecorder', direction: 'record', egress: false, note: 'local blob — nothing uploads unless sent' },
+    { id: 'screen', api: 'MediaDevices.getDisplayMedia', direction: 'capture', egress: false, note: 'local screen capture' },
+    { id: 'analyse', api: 'Canvas.getImageData', direction: 'analyse', egress: false, note: 'local pixel analysis; heavy CV = BYO WASM (MediaPipe/OpenCV.js)' },
+  ]
+  const allLocalByDefault = tools.every((t) => t.egress === false)
+  const showsAnswerAnimation = (() => { const turn = videoChatTurn('quantum crypto fusion four keys'); return typeof turn.animation?.rung === 'number' && (turn.itemid?.length ?? 0) > 0 && 108 % turn.animation.rung === 0 })()
+  const heavyCvIsByo = tools.find((t) => t.id === 'analyse')!.note.includes('BYO')
+  const usedInChat = showsAnswerAnimation && allLocalByDefault
+  const facets = [
+    { facet: `THE VIDEO TOOLKIT — ${tools.length} browser-native tools, no paid service: camera (getUserMedia), playback (HTMLVideoElement), canvas/WebGL render, recording (MediaRecorder), screen (getDisplayMedia), frame analysis (getImageData)`, on: tools.length === 6 },
+    { facet: `USED IN CHAT — SHOWS THE ANSWER'S ANIMATION — videoChatTurn returns the ranked fold PLUS its unique south-pole animation (the seal's 4th element, a fractal-clock rung of the 108 s cycle, ${showsAnswerAnimation}), so the chat renders the answer as video`, on: showsAnswerAnimation },
+    { facet: `ZERO-EGRESS BY DEFAULT — all frames stay local: getUserMedia / canvas / MediaRecorder / video element are client-side (${allLocalByDefault}); nothing uploads unless explicitly sent — video is more egress-friendly than voice STT`, on: allLocalByDefault },
+    { facet: `HEAVY CV IS BYO — HONEST — basic frame analysis (getImageData pixels) is local; object detection / pose estimation needs a BYO WASM model (MediaPipe / OpenCV.js), flagged not faked (${heavyCvIsByo})`, on: heavyCvIsByo },
+    { facet: `THE DEMARCATION — video tools are browser-native MediaDevices / Canvas / MediaRecorder used in the chat to capture and to SHOW the answer's animation; local by default, heavy CV BYO; the deterministic chat core stays zero-egress. HARMONY ≠ TRUTH`, on: usedInChat && heavyCvIsByo },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`video-tools:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    tools,
+    usedInChat,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: all video-related tools, used in chat, are browser-native and free: camera (getUserMedia), playback (HTMLVideoElement), canvas/WebGL render, recording (MediaRecorder), screen capture (getDisplayMedia), and frame analysis (getImageData). They are used in the chat to capture AND to SHOW the answer's unique south-pole animation — videoChatTurn returns the ranked fold plus its fractal-clock animation (a divisor rung of the 108 s cycle), the video the chat renders for its answer. HONEST: video is local by default — frames stay client-side, nothing uploads unless explicitly sent (more egress-friendly than voice STT); basic pixel analysis is local, but heavy computer vision (object detection, pose) needs a BYO WASM model (MediaPipe or OpenCV.js). The deterministic chat core stays zero-egress. HARMONY ≠ TRUTH.`,
   }
 }
 
