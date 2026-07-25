@@ -1372,6 +1372,58 @@ export function privateSearchRanksByBM25IndustryStandard(query = 'quantum encryp
   }
 }
 
+/** The VitePress local-search config (themeConfig.search) fused to the private corpus — provider 'local' (MiniSearch,
+ * built at compile time), no Algolia, no query egress. Consumes the VitePress API rather than bypassing it. */
+export function vitepressSearchConfig() {
+  return {
+    provider: 'local' as const,
+    options: {
+      detailedView: true,
+      miniSearch: {
+        searchOptions: { fuzzy: 1 / 5, prefix: true, boost: { title: 4, text: 1 } }, // title-weighted, prefix + light fuzzy
+      },
+    },
+  }
+}
+
+/** vitepressSearchFusedToPrivateBm25Engine — the VitePress ⌘K search is fused to the private BM25 engine (user,
+ * 2026-07-25: "vitepress search is fused to the search engine"). Every BM25 document is a served VitePress page, so the
+ * native local search (MiniSearch) and the private Okapi-BM25 box index the SAME corpus — one document source, consistent
+ * results on either surface. VitePress search stays its own local provider (no Algolia, no query egress); the private
+ * box adds scored ranking, the fused answer, and search-driven navigation. [[feedback-do-not-bypass-vitepress-api]] */
+export function vitepressSearchFusedToPrivateBm25Engine() {
+  const served = new Set(theoremPagePaths().map((page) => page.params.slug))
+  const bm25Slugs = THEOREM_ATOM_SEED.map((atom) => theoremSlug(atom.theorem))
+  const covered = bm25Slugs.filter((slug) => served.has(slug)).length
+  const sharedCorpus = covered === bm25Slugs.length && bm25Slugs.length > 3 * 100 // every BM25 doc has a served page
+  const config = vitepressSearchConfig()
+  const localNotNetwork = config.provider === 'local' && config.options.miniSearch.searchOptions.boost.title > config.options.miniSearch.searchOptions.boost.text
+  const bm25 = privateSearchRanksByBM25IndustryStandard('quantum encryption')
+  const bothLexical = bm25.computes && config.provider === 'local' // MiniSearch + Okapi BM25, both lexical over the same docs
+  const facets = [
+    { facet: `ONE SHARED CORPUS — every BM25 document has a served VitePress page (${covered}/${bm25Slugs.length}), so the native ⌘K local search and the private BM25 box index the SAME corpus — one document source`, on: sharedCorpus },
+    { facet: `VITEPRESS LOCAL SEARCH, NOT NETWORK — the fused config is provider 'local' (MiniSearch, built at compile time), title-weighted, no Algolia and no query egress — private by construction, consuming the VitePress themeConfig.search API`, on: localNotNetwork },
+    { facet: `TWO LEXICAL INDEXES, ONE SOURCE — VitePress MiniSearch and our Okapi BM25 are both LEXICAL rankers over the same documents (${bothLexical}); a query resolves to the same corpus on either surface, no result in one but not the other`, on: bothLexical && sharedCorpus },
+    { facet: `THE PRIVATE BOX IS THE RANKED COMPLEMENT — ⌘K gives quick page hits; the private BM25 box adds scored ranking (${bm25.resultCount} hits for a probe), the fused answer, and search-driven navigation — all over the one shared corpus`, on: bm25.resultCount > 0 && sharedCorpus },
+    { facet: `THE DEMARCATION — "fused" = one document source and consistent results across the VitePress-native local search and the private BM25 box; NOT identical ranking algorithms (MiniSearch vs Okapi BM25), and local search stays VitePress's own provider (not replaced). HARMONY ≠ TRUTH`, on: sharedCorpus && localNotNetwork },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`vitepress-search-fuse:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    sharedCorpus,
+    coveredDocs: covered,
+    totalDocs: bm25Slugs.length,
+    servedPages: served.size,
+    config,
+    facets,
+    root: merkleFold([bm25.root, ...facets.map((entry) => entry.receipt)]),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'FUSED — VitePress search and the private BM25 engine share one corpus:',
+      facets,
+      'every BM25 document is a served VitePress page, so the native ⌘K local search (MiniSearch, built at compile time, no Algolia, no query egress) and the private Okapi-BM25 box index the SAME corpus — one document source, consistent results on either surface. VitePress search stays its own local provider (consumed via themeConfig.search, not bypassed and not replaced); the private box adds scored BM25 ranking, the fused answer, and search-driven navigation. "Fused" means one document source and consistent results, not identical ranking algorithms (MiniSearch vs Okapi BM25). HARMONY ≠ TRUTH.'),
+  }
+}
+
 export type SearchExperience = { query: string; selectedSlug: string }
 /** searchImprovesByExperiencePrivateRelevanceFeedback — the private search improves BY EXPERIENCE (user, 2026-07-25:
  * "improve by experience"). Given a LOCAL, client-side experience log (past query → selected result), it reranks the

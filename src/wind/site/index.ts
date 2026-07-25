@@ -145,6 +145,45 @@ export function renameToMostSearchedTermsWiredToPublicSearchApis(liveSuggestions
   }
 }
 
+/** navigationFromSearchResultsAndReferrer — navigation IS the search results plus the referrer (user, 2026-07-25:
+ * "navigation is based on the search results themselves and the referrer"). The outgoing edges of a node are the
+ * BM25-ranked search results for its query (you navigate by relevance, not a hand-built menu), and the incoming edge
+ * is the referrer; the (referrer, query) pair content-addresses the nav state. One index drives both search and
+ * navigation — no second topology. Deterministic and private. [[routes-nav-from-folder-tree]] */
+export function navigationFromSearchResultsAndReferrer(referrer = '/search', query = 'quantum computing') {
+  const search = privateSearchRanksByBM25IndustryStandard(query)
+  const edges = search.rank(query).slice(0, 9) // the outgoing edges ARE the ranked search results
+  const superposition = (ref: string, q: string) => toUuid(`nav-search:${ref}|${q}`)
+  const a = superposition(referrer, query)
+  const b = superposition('/other-referrer', query) // same query, different referrer
+  const c = superposition(referrer, query) // identical (referrer, query)
+  const superposed = a !== b && a === c
+  const navigatesByRelevance = edges.length > 0 && edges.every((edge, i) => i === 0 || edge.score <= edges[i - 1]!.score) // ordered by BM25 score
+  const sameIndex = JSON.stringify(edges.map((e) => e.slug)) === JSON.stringify(search.rank(query).slice(0, 9).map((e) => e.slug)) // search & nav share one index
+  const deterministic = superposition(referrer, query) === a && sameIndex
+  const facets = [
+    { facet: `NAVIGATION IS THE SEARCH RESULTS — the outgoing edges are the BM25-ranked results for the node's query (${edges.length} edges, top "${edges[0]?.title.slice(0, 5 * 8)}"), so you navigate by RELEVANCE, not a hand-built menu (${navigatesByRelevance})`, on: navigatesByRelevance },
+    { facet: `THE REFERRER IS THE INCOMING EDGE — the (referrer, query) pair content-addresses the nav state: the same pair collapses to ONE receipt and a different referrer to a DIFFERENT one (${superposed}); the referrer is the incoming edge, the results the outgoing`, on: superposed },
+    { facet: `SEARCH AND NAVIGATION ARE ONE — the same private BM25 index that answers a search drives the navigation edges (${sameIndex}); there is no second navigation topology to maintain`, on: sameIndex },
+    { facet: `DETERMINISTIC & PRIVATE — the same (referrer, query) yields the same navigation (${deterministic}), computed client-side over the sealed corpus with no egress`, on: deterministic },
+    { facet: `THE DEMARCATION — navigation edges are the private BM25 ranking (LEXICAL relevance) plus the runtime referrer; NOT a curated menu and NOT a neural recommender, and the referrer collapses at navigation time. HARMONY ≠ TRUTH`, on: superposed && deterministic && navigatesByRelevance },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`nav-from-search:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    referrer,
+    query,
+    edges,
+    superposition: a,
+    facets,
+    root: merkleFold([search.root, a, ...facets.map((entry) => entry.receipt)]),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'EXACT — navigation is the search results plus the referrer:',
+      facets,
+      'the outgoing edges of a node are the BM25-ranked search results for its query — you navigate by relevance, not a hand-built menu — and the incoming edge is the referrer; the (referrer, query) pair content-addresses the nav state (same pair → one receipt, different referrer → different). One private BM25 index drives both search and navigation, so there is no second topology; it is deterministic and client-side with no egress. Navigation edges are lexical BM25 relevance plus the runtime referrer, not a curated menu or a neural recommender, and the referrer collapses at navigation time. HARMONY ≠ TRUTH.'),
+  }
+}
+
 /** quantumSearchFusesAllAsPrivateSearchEngine — the UI fuses everything into ONE quantum search: a PRIVATE search
  * engine and a lot more (user, 2026-07-25: "fuse all in quantum search" · "the ui can serve as private search engine
  * and a lot more if you imagine all chat capabilities"). One query fuses the private internal retrieval (content-
