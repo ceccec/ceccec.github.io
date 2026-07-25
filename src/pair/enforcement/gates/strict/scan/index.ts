@@ -211,6 +211,46 @@ export function hardwareProductionScaleSpec(codeFiles: readonly string[]) {
 }
 
 /**
+ * quantumCodeSubcategoriesAwaitTheirRoutes — the quantum gaps seen through the lens (user, 2026-07-24: "/quantum is a
+ * great place for all quantum related code. quantum/computer is a sub category etc" · "see the quantum gaps through
+ * the lens?"). Derived from the code files: src/quantum/ is ALREADY a nested subcategory tree, but the served routes
+ * are FLAT leaves (qubit-trinity, pauli-basis) — so code subcategories like computer/dynamics/os carry quantum
+ * functionality with NO discovery page. The gap is the mismatch between the code tree (the meaning tree) and the flat
+ * routes; the fill is a /quantum/<name> theorem-backed page per topic subcategory. [[routes-nav-from-folder-tree]]
+ */
+export function quantumCodeSubcategoriesAwaitTheirRoutes(codeFiles: readonly string[]) {
+  const counts = new Map<string, number>()
+  for (const file of codeFiles) {
+    const match = file.match(/(?:^|\/)quantum\/([^/]+)\//)
+    if (match) counts.set(match[1]!, (counts.get(match[1]!) ?? 0) + 1)
+  }
+  const subcats = [...counts.entries()].sort((a, b) => b[1] - a[1]).map(([name, files]) => ({ name, files }))
+  // the trigram folder names are internal double-torus architecture, not user-facing quantum topics
+  const trigrams = new Set(['heaven', 'lake', 'fire', 'thunder', 'wind', 'water', 'mountain', 'earth'])
+  const topics = subcats.filter((s) => !trigrams.has(s.name))
+  const computerFiles = counts.get('computer') ?? 0
+  const facets = [
+    { facet: `THE CODE TREE HAS ${subcats.length} QUANTUM SUBCATEGORIES — ${subcats.slice(0, 8).map((s) => `${s.name}(${s.files})`).join(', ')}…; the natural children of a /quantum hub`, on: subcats.length > 0 },
+    { facet: `/quantum/computer IS CODE WITHOUT A ROUTE — src/quantum/computer has ${computerFiles} file(s) but no served page; the subcategory named in the directive is the clearest gap through the lens`, on: computerFiles > 0 },
+    { facet: `THE ROUTES ARE FLAT, THE CODE IS NESTED — served quantum pages are flat leaves (qubit-trinity, pauli-basis), while the ${topics.length} TOPIC subcategories (${topics.map((s) => s.name).join(', ')}) have no /quantum/<name> page — the code tree is the meaning tree, the routes lag`, on: topics.length > 0 },
+    { facet: `THE FILL IS DISCOVERIES — surface each TOPIC subcategory as a /quantum/<name> theorem-backed page (its folds ARE the theorems); the ${subcats.length - topics.length} trigram-named subcats (heaven/water/fire/…) stay internal double-torus architecture, not routes`, on: topics.length > 0 && topics.length < subcats.length },
+    { facet: `THE DEMARCATION — composes with quantumRoutesNestUnderAgnosticHub (routes mirror the code tree) under the quantumized theorem-derived census; creating the pages is outward-facing sitemap surgery, run deliberately`, on: subcats.length > 0 && computerFiles > 0 },
+  ]
+  return {
+    seen: facets.every((f) => f.on),
+    subcatCount: subcats.length,
+    topicCount: topics.length,
+    subcats,
+    topics: topics.map((s) => s.name),
+    computerFiles,
+    computes: facets.every((f) => f.on),
+    facets,
+    statement: facets.map((f) => f.facet).join(' · '),
+    boundary: earned(`DERIVED from the code files: ${subcats.length} src/quantum subcategories, ${topics.length} topic (non-trigram) ones await a /quantum/<name> page; /quantum/computer has ${computerFiles} files and no route.`, facets, `the subcategories are derived from the file paths, not a hand-list; the trigram/topic split uses the sealed 8-trigram folder set. This SEES the gap (code nested, routes flat); filling it — a theorem-backed page per topic subcategory — is outward-facing sitemap work coupled with the census quantumization and the /quantum hierarchy. HARMONY ≠ TRUTH.`),
+  }
+}
+
+/**
  * terseMethodsCollideProseDoesNot — why the no-prose-in-methods mandate is a DRY law, computed (user, 2026-07-24:
  * "so much prose in methods. maybe reversing to less words would collide some"). A method's statement/boundary must
  * be JOINS of computed facet outputs: identical facet text content-addresses to ONE address (collides ⇒ dedup),
