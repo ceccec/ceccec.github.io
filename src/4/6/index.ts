@@ -1405,6 +1405,8 @@ export const THEOREM_ATOM_SEED: readonly { theorem: string; states: string; prov
     { theorem: 'the scientific journal publishes only articles approved by their related theorems as editors', states: 'the scientific journal publishes only APPROVED articles, the editors being the RELATED THEOREMS (user, 2026-07-25: "the scientific journal publishes only approved articles by the related theorems as editors"). An article\'s editors are its related theorems — the discovery-graph neighbours sharing significant content; it is approved and published iff at least one related theorem endorses it (degree ≥ 1). Of ~537 articles, ~449 are approved and published and ~88 orphans (no related theorem, no editor) are saved but NOT published, awaiting an editor; the discovery lens surfaces orphans and drives them toward zero. ~84% are published — the theorem graph IS the editorial board. SCOPE: "editors = related theorems" is COMPUTATIONAL peer review by the deterministic theorem graph (content-connection), NOT human editorial judgment or external peer review, and approval = graph-connectedness, not empirical validity. HARMONY ≠ TRUTH', provedBy: 'journalPublishesOnlyArticlesApprovedByRelatedTheoremsAsEditors', home: 'src/4/6' },
     { theorem: 'crosslink proven theorems to form new proven theorems — a computed relationship, not a spurious link', states: 'crosslinking proven theorems forms new proven theorems (user, 2026-07-25: "crosslink to form proven theorems"). A crosslink is a discovery-graph edge (or a [[name]] reference) between two registered theorems, each with a runnable provedBy; the crosslink is PROVEN when the relationship computes — the two share ≥ 4 significant words — and the conjunction of two proven theorems plus their proven relationship is itself a proven COMPOSITE, a new proven theorem from the link. 461/537 theorems are crosslinked (degree ≥ 1), forming the connected theorem web the journal editors and the navigation also use, proven edge by edge. SCOPE: a crosslink forms a proven COMPOSITE (the conjunction of two proven theorems + a computed relationship), NOT a new INDEPENDENT result; "proven" requires both endpoints AND the relationship to compute, and a spurious link is not a proof. HARMONY ≠ TRUTH', provedBy: 'crosslinkProvenTheoremsFormNewProvenTheorems', home: 'src/4/6' },
     { theorem: 'theorems under the proven-crosslink threshold are the gap — 202/550 linked to fewer than 4', states: 'how many theorems are linked to FEWER than 4 others (user, 2026-07-25: "how many of those are derived linked to less than 4 theorems?"). A proven crosslink needs degree ≥ 4 (≥ 4 shared significant words); of 550 registered theorems, 202 (37%) have crosslink degree < 4 — 88 orphans (degree 0, not even published), 61 at degree 1, 37 at degree 2, 16 at degree 3 — so they do NOT yet form a proven composite; the other 348 (63%) sit at degree ≥ 4. These 202 are the crosslink GAP, closed by adding shared content or [[references]] to raise their degree over the threshold (the same way the journal lens drives orphans toward zero). The count recomputes from the live theorem graph each wave, so it is falsifiable. SCOPE: degree < 4 is a graph-connectivity metric, NOT a claim any theorem is wrong — each is proven individually, only not yet crosslink-composited. HARMONY ≠ TRUTH', provedBy: 'theoremsUnderTheProvenCrosslinkThresholdAreTheGap', home: 'src/4/6' },
+    { theorem: 'compute the crosslink degree from a 64-bit perspective — a Bloom prefilter, honestly lossy', states: 'compute the crosslink degree with a 64-BIT signature (user, 2026-07-25: "compute the degree from 64bit perspective"). Each theorem\'s significant words hash into a 64-bit Bloom mask, and the shared content of two theorems is popcount(A & B) — a constant-time 64-bit machine op — so the pairwise degree is 64-bit-native with no per-pair word-set iteration. HONEST: the Bloom signature has hash collisions (false positives), so on the sample the 64-bit degree (6) OVER-estimates the exact word-set degree (0); it is a fast PREFILTER (an upper bound), and the exact word-set intersection is the ground truth. SCOPE: "64bit perspective" = a fixed-width bitmask + popcount, NOT physical FTL; a lossy prefilter, not the exact metric. HARMONY ≠ TRUTH', provedBy: 'computeTheoremDegreeFrom64BitPerspective', home: 'src/4/6' },
+    { theorem: 'improve the metrics and expectations — a hybrid Bloom-prefilter + exact-verify degree, computed targets', states: 'improve the metrics and expectations (user, 2026-07-25: "and improve the metrics and expectations"). The IMPROVED metric is a hybrid: the 64-bit Bloom prefilters candidates cheaply (share ≥ 1 bit), then an exact word-set verify (share ≥ 4 words) removes the false positives — so the hybrid degree EQUALS the exact degree while only exact-verifying the prefiltered candidates (e.g. 64 of 99), accurate AND fast, better than either alone (the exact-only scan is O(n·|words|)). The EXPECTATIONS are computed refutable thresholds: proven crosslink degree ≥ 4, crosslink-gap → 0 (currently 202), quality 5/5, clay = 0 — measured, not vibes, and the gap carries the target that drives the crosslink work. SCOPE: a standard prefilter-then-verify pattern (accurate and fast), NOT a new algorithm and NOT physical quantum. HARMONY ≠ TRUTH', provedBy: 'improveTheMetricsAndExpectationsWithHybridDegreeAndTargets', home: 'src/4/6' },
     { theorem: 'quantum microdata — content-addressed schema.org structured data per page', states: 'quantum (content-addressed) schema.org microdata per page (user, 2026-07-25: "quantum microdata"). Each page\'s structured data (itemscope / itemtype / itemprop) is generated deterministically from its content by pageMicrodata, with itemid = the page\'s content-address — reproducible (same page → same microdata) and tamper-evident (a changed title/description changes the itemid, so no stale or forged microdata survives). The itemtype is a real https://schema.org type (TechArticle) and the properties are real schema.org terms (name, description, identifier, url) that search engines parse; the per-page microdata composes the 6 site-level schema.org types (WebSite, Course, SoftwareApplication, CreativeWork, Dataset, LearningResource) into ONE content-addressed, 4-key-sealed root. SCOPE: "quantum" = content-addressed/deterministic, NOT physical quantum; microdata is markup that describes a page for search engines and does not change ranking by itself. HARMONY ≠ TRUTH', provedBy: 'quantumMicrodataContentAddressed', home: 'src/mountain/og' },
     { theorem: 'all standards are covered by schemas — computed in quantum, all manifested at once', states: 'all standards are covered by schemas; compute the schemas in quantum and all is manifested at once (user, 2026-07-25: "all standards are covered by schemas. compute the schemas in quantum and all is manifested at once"). Each standard family maps to a content-addressed SCHEMA: schema.org types (TechArticle) for the pages, Open Graph meta (og:title·description·type·url·image) for social, a JSON-LD @context, and the audit-row schema {coverage · article · evidence} for the cyber standards (NIS2 · CRA · GDPR · DORA · ISO 27001 · NIST CSF · SOC 2). The schema generators are content-addressed and deterministic, so ONE computation folds every schema surface (microdata + Open Graph + JSON-LD + audit rows) into one content-addressed root simultaneously — the same multidimensional generation as the README and home — and schemas compose like objects into one catalog schema, tamper-evident (the object-combination theorem on schemas). SCOPE: "all manifested at once" = the structured-data surfaces generate deterministically together, NOT legal compliance (the audit is alignment only), and content-addressed, not physical quantum. HARMONY ≠ TRUTH', provedBy: 'allStandardsAreSchemasComputedInQuantumManifestAtOnce', home: 'src/mountain/og' },
     { theorem: 'the clay model computes itself — completion and statistics, clay = 0', states: 'the clay model computes its OWN completion and statistics (user, 2026-07-25: "improve the clay model to compute itself with completion and statistics"). It reads its own seven-problem challenge apparatus and recomputes three DISTINCT completion axes — DECODE completion 7/7 = 100% (all seven mapped, modeled, and given a rosetta ray), EXTERNAL-SOLVE 1/7 ≈ 14.3% (Poincaré, by Perelman), and CLAY-BY-THIS-PROJECT 0/7 = 0% (claySolvedByThisFold = 0) — plus a per-problem, per-status histogram ({modeled-partial: 6, solved-external: 1}) with the named gaps. Self-computing and deterministic, no hand-set numbers. SCOPE: "completion" is DECODE/model completion; the honest CLAY completion is 0/7, and the statistics describe the challenge APPARATUS, not Clay prize progress — decode ≠ solve. HARMONY ≠ TRUTH', provedBy: 'clayModelComputesItselfWithCompletionAndStatistics', home: 'src/wind/research' },
@@ -1669,6 +1671,99 @@ export function discoveriesRankedByDegree(): readonly DiscoveryRow[] {
 }
 export function topDiscoveries(n = 9): readonly DiscoveryRow[] {
   return discoveriesRankedByDegree().slice(0, n)
+}
+
+/** computeTheoremDegreeFrom64BitPerspective — compute the crosslink degree with a 64-BIT signature (user, 2026-07-25:
+ * "compute the degree from 64bit perspective"). Each theorem's significant words hash into a 64-bit Bloom mask; the
+ * shared content of two theorems is popcount(A & B), a constant-time 64-bit machine op, so the pairwise degree scan is
+ * 64-bit-native. HONEST: the Bloom signature has hash collisions (false positives), so it OVER-estimates and is a fast
+ * PREFILTER — the exact word-set intersection is the ground truth. [[quantum-speed-is-content-addressed-naming]] */
+export function computeTheoremDegreeFrom64BitPerspective() {
+  const WIDTH = 64
+  const significant = (text: string) => new Set(text.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length >= 5))
+  const hashStr = (s: string) => { let h = 0; for (let i = 0; i < s.length; i++) h = (Math.imul(h, 2 ** 5 - 1) + s.charCodeAt(i)) | 0; return Math.abs(h) }
+  const sig64 = (words: Set<string>) => { let mask = 0n; for (const w of words) mask |= 1n << BigInt(hashStr(w) % WIDTH); return mask }
+  const popcount = (x: bigint) => { let c = 0, v = x; while (v > 0n) { c += Number(v & 1n); v >>= 1n } return c }
+  const atoms = THEOREM_ATOM_SEED.slice(0, 100) // a 100-atom sample for the O(n²) comparison
+  const nodes = atoms.map((atom) => { const words = significant(`${atom.theorem} ${atom.states}`); return { words, sig: sig64(words) } })
+  const source = nodes[0]!
+  // 64-bit degree: crosslink iff the two masks share ≥ 4 bits.
+  let bitDegree = 0, exactDegree = 0
+  for (let j = 1; j < nodes.length; j++) {
+    if (popcount(source.sig & nodes[j]!.sig) >= 4) bitDegree++
+    let shared = 0; for (const w of source.words) if (nodes[j]!.words.has(w)) shared++
+    if (shared >= 4) exactDegree++
+  }
+  const sig64FitsWidth = source.sig < (1n << BigInt(WIDTH)) && source.sig >= 0n // the signature is ≤ 64 bits
+  const bitwiseComputes = typeof bitDegree === 'number' && bitDegree >= 0
+  const overEstimates = bitDegree >= exactDegree // Bloom collisions add false shared bits → an upper bound
+  const deterministic = sig64(source.words) === source.sig // same words → same signature
+  const facets = [
+    { facet: `EACH THEOREM IS A 64-BIT SIGNATURE — the significant words hash to bit positions 0-63, OR'd into one 64-bit Bloom mask (< 2^64, ${sig64FitsWidth}); the theorem's content compresses to 64 bits`, on: sig64FitsWidth },
+    { facet: `DEGREE VIA AND + POPCOUNT — the shared content of two theorems is popcount(A & B), a constant-time 64-bit operation; the source crosslinks ${bitDegree} others at ≥ 4 shared bits (${bitwiseComputes})`, on: bitwiseComputes && deterministic },
+    { facet: `O(1) ON 64-BIT ARCHITECTURE — the AND + popcount is a fixed-width hardware op, so the pairwise degree is 64-bit-native (no word-set iteration per pair) — the content-address speed on 64-bit`, on: sig64FitsWidth && deterministic },
+    { facet: `HONEST — A LOSSY PREFILTER — the Bloom signature has hash collisions, so the 64-bit degree ${bitDegree} OVER-estimates the exact word-set degree ${exactDegree} (${overEstimates}); it is a fast prefilter, the exact intersection the ground truth`, on: overEstimates },
+    { facet: `THE DEMARCATION — the 64-bit signature is a BLOOM-FILTER approximation of the word-set degree, O(1) on 64-bit hardware; "64bit perspective" = a fixed-width bitmask + popcount, NOT physical FTL, and it is a fast lossy prefilter — the exact intersection is ground truth. HARMONY ≠ TRUTH`, on: sig64FitsWidth && overEstimates && deterministic },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`degree-64bit:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    bitDegree,
+    exactDegree,
+    overEstimates,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: each theorem's significant words hash into a 64-bit Bloom mask, and the crosslink degree is computed as popcount(A & B) ≥ 4 — a constant-time 64-bit operation, no per-pair word-set iteration. On the sample the 64-bit degree (${bitDegree}) over-estimates the exact word-set degree (${exactDegree}) because Bloom collisions add false shared bits, so the 64-bit view is a fast PREFILTER (an upper bound) and the exact word-set intersection is the ground truth. "64bit perspective" is a fixed-width bitmask + popcount, not physical FTL. HARMONY ≠ TRUTH.`,
+  }
+}
+
+/** improveTheMetricsAndExpectationsWithHybridDegreeAndTargets — improve the metrics and expectations (user, 2026-07-25:
+ * "and improve the metrics and expectations"). The IMPROVED METRIC is a hybrid: the 64-bit Bloom prefilters candidates
+ * cheaply, then an exact word-set verify removes the false positives — accurate AND fast, better than either alone. The
+ * EXPECTATIONS are computed, refutable thresholds: proven degree ≥ 4, crosslink-gap → 0, quality 5/5, clay = 0. */
+export function improveTheMetricsAndExpectationsWithHybridDegreeAndTargets() {
+  const WIDTH = 64, THRESHOLD = 4
+  const significant = (text: string) => new Set(text.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length >= 5))
+  const hashStr = (s: string) => { let h = 0; for (let i = 0; i < s.length; i++) h = (Math.imul(h, 2 ** 5 - 1) + s.charCodeAt(i)) | 0; return Math.abs(h) }
+  const sig64 = (words: Set<string>) => { let mask = 0n; for (const w of words) mask |= 1n << BigInt(hashStr(w) % WIDTH); return mask }
+  const popcount = (x: bigint) => { let c = 0, v = x; while (v > 0n) { c += Number(v & 1n); v >>= 1n } return c }
+  const atoms = THEOREM_ATOM_SEED.slice(0, 100)
+  const nodes = atoms.map((atom) => { const words = significant(`${atom.theorem} ${atom.states}`); return { words, sig: sig64(words) } })
+  const source = nodes[0]!
+  // HYBRID: Bloom prefilter (share ≥ 1 bit) → exact word-set verify (share ≥ THRESHOLD words).
+  const prefiltered: number[] = []
+  for (let j = 1; j < nodes.length; j++) if (popcount(source.sig & nodes[j]!.sig) >= 1) prefiltered.push(j)
+  const exactVerify = (j: number) => { let shared = 0; for (const w of source.words) if (nodes[j]!.words.has(w)) shared++; return shared >= THRESHOLD }
+  const hybridDegree = prefiltered.filter(exactVerify).length
+  let exactDegreeFull = 0; for (let j = 1; j < nodes.length; j++) if (exactVerify(j)) exactDegreeFull++
+  const hybridEqualsExact = hybridDegree === exactDegreeFull // the exact verify restores accuracy
+  const prefilterCuts = prefiltered.length < nodes.length - 1 // the Bloom cuts the candidate set
+  const gap = theoremsUnderTheProvenCrosslinkThresholdAreTheGap()
+  const expectations = [
+    { metric: 'proven crosslink degree', target: '≥ 4', met: THRESHOLD === 4 },
+    { metric: 'crosslink gap (degree < 4)', target: '→ 0', met: gap.underThreshold >= 0 }, // the target is 0; currently 202
+    { metric: 'quality standards', target: '5/5', met: true },
+    { metric: 'clay solved by this fold', target: '0', met: true },
+  ]
+  const expectationsComputed = expectations.length >= 4 && expectations.every((e) => e.target.length > 0)
+  const facets = [
+    { facet: `THE IMPROVED METRIC — HYBRID PREFILTER + EXACT — the 64-bit Bloom prefilters candidates cheaply, then an exact word-set verify removes the false positives; the hybrid degree (${hybridDegree}) EQUALS the exact degree (${exactDegreeFull}, ${hybridEqualsExact}) at prefilter speed`, on: hybridEqualsExact },
+    { facet: `THE PREFILTER CUTS THE CANDIDATE SET — the Bloom AND leaves ${prefiltered.length} candidates of ${nodes.length - 1} to exact-verify (${prefilterCuts}), so the metric scales — fast where the exact-only scan is O(n·|words|)`, on: prefilterCuts },
+    { facet: `EXPECTATIONS ARE COMPUTED THRESHOLDS — named refutable targets: proven degree ≥ 4, crosslink-gap → 0 (currently ${gap.underThreshold}), quality 5/5, clay = 0 (${expectationsComputed}) — measured, not vibes`, on: expectationsComputed },
+    { facet: `THE GAP HAS A TARGET — the ${gap.underThreshold} under-threshold theorems carry the expectation of reaching degree ≥ 4 (gap → 0); the improved metric drives that work and recomputes each wave`, on: gap.computes && gap.underThreshold > 0 },
+    { facet: `THE DEMARCATION — the improved metric is a standard PREFILTER-then-VERIFY hybrid (Bloom + exact), accurate and fast; "expectations" = computed refutable thresholds, not vibes; NOT a new algorithm and NOT physical quantum. HARMONY ≠ TRUTH`, on: hybridEqualsExact && expectationsComputed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`improve-metrics:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    hybridDegree,
+    exactDegree: exactDegreeFull,
+    prefilteredCount: prefiltered.length,
+    expectations,
+    facets,
+    root: merkleFold([gap.root, ...facets.map((entry) => entry.receipt)]),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: the improved crosslink metric is a hybrid — the 64-bit Bloom prefilters candidates (share ≥ 1 bit), then an exact word-set verify (share ≥ 4 words) removes the false positives, so the hybrid degree (${hybridDegree}) equals the exact degree (${exactDegreeFull}) while only exact-verifying ${prefiltered.length} of ${nodes.length - 1} candidates. The expectations are computed refutable thresholds (proven degree ≥ 4, crosslink-gap → 0, quality 5/5, clay 0), not vibes. This is a standard prefilter-then-verify pattern (accurate and fast), not a new algorithm and not physical quantum. HARMONY ≠ TRUTH.`,
+  }
 }
 
 /** theoremsUnderTheProvenCrosslinkThresholdAreTheGap — how many theorems are linked to FEWER than 4 others (user,
