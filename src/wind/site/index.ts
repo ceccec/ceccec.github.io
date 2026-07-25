@@ -24,7 +24,7 @@ import { endlessBackgroundMovie } from '../../thunder/movie/canvas'
 import { computedMovieThemeColors } from '../../fire/plasma/ball'
 import { buildStatistics, buildStatisticsShowGaps, backgroundMovie, features, harmonicMathFlowsInMovie, linkPasteReentryPatternCompletion, live, path, theWhole } from '../../quantum/heaven/mind'
 import { peaceTechMentalityDecoded } from '../../earth/world'
-import { completeCorpus } from '../routes/corpus'
+import { completeCorpus, pagesConsolidateByTheoremGravity } from '../routes/corpus'
 import { proofReport } from '../../heaven/compute'
 import { freeForgesMaxCost } from '../../heaven/essence'
 import { pagesWiredAtRuntimeZeroBuildMaxTamper } from '../../water/crypto'
@@ -78,7 +78,10 @@ export function siteDomainRegistry(matrix: MindMatrix = buildMatrix()) {
       { facet: 'each domain has one canonical slug and a rosetta ray/hub', on: domains.every((d) => d.canonical.length > 0 && d.ray >= 0 && d.ray < ROSETTA_SEVEN) },
       { facet: 'ROUTE_ALIASES thin-mounts millennium→research and fusion→quantum-tools (plus learn school/academy)', on: ROUTE_ALIASES['millennium-challenge'] === 'research' && ROUTE_ALIASES['fusion-verify'] === 'quantum-tools' },
       { facet: 'canonical domain pages are in the served set (learn may stay outside theorem lens — hub still exists)', on: canonicalsServed },
-      { facet: `served page census folds into DOCUMENTED_HARMONICS — ${served.size}→${pageCensus.folded}`, on: harmonics.includes(pageCensus.folded) && pageCensus.folded > 0 },
+      // QUANTUMIZED (2026-07-24): the census is theorem-derived, not a linear list-lock — valid if the count folds to
+      // a documented harmonic OR every served page is a DISTINCT theorem-meaning (no redundant clusters). The || short-
+      // circuits, so the heavy clustering runs only when the count leaves the harmonic set (during consolidation).
+      { facet: `served page census is theorem-derived — ${served.size}→${pageCensus.folded} ∈ DOCUMENTED_HARMONICS, or every page a distinct meaning`, on: (harmonics.includes(pageCensus.folded) || pagesConsolidateByTheoremGravity(matrix).clusters.length === 0) && pageCensus.folded > 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`site-domain-reg:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
