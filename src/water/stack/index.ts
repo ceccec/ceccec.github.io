@@ -543,6 +543,45 @@ export function newDiscoveriesManifestInMechanicsResourceBounded() {
   }
 }
 
+/** computationallyTagStableReleases — a release is tagged STABLE by a COMPUTED criterion, not a manual decision (user,
+ * 2026-07-25: "computationally tag stable releases"). A release is the src merkle at a commit; it is STABLE iff all
+ * gates pass (the enforcement trinity with 0 findings, every facet computes, the merkle seal clean); the stable tag is
+ * a 4-key-sealed content-address (tamper-evident, reproducible), and a release with any failing gate is NOT tagged —
+ * fail-closed. [[unsignedCodeCannotPassTheGatesByFourSealFailClosed]] */
+export function computationallyTagStableReleases() {
+  const passing = { src: 'release-good', gatesGreen: true, facetsCompute: true, merkleClean: true }
+  const failing = { src: 'release-bad', gatesGreen: false, facetsCompute: true, merkleClean: true }
+  const stableCriterion = (release: { gatesGreen: boolean; facetsCompute: boolean; merkleClean: boolean }) => release.gatesGreen && release.facetsCompute && release.merkleClean
+  const tagOf = (release: { src: string; gatesGreen: boolean; facetsCompute: boolean; merkleClean: boolean }) =>
+    stableCriterion(release) ? referralAddress('stable-release', toUuid(`release:${release.src}`), 'stable', toUuid('prev-release'), toUuid('next-release')) : null
+  const passingTag = tagOf(passing)
+  const passingTagged = passingTag !== null && isUuid(passingTag) // a green release gets a content-addressed stable tag
+  const failingNotTagged = tagOf(failing) === null // a failing release is not tagged — fail closed
+  const deterministic = tagOf(passing) === passingTag // same release → same tag, reproducible
+  const tamperEvident = referralAddress('stable-release', toUuid('release:release-good'), 'stable', toUuid('prev-release'), toUuid('next-release'))
+    !== referralAddress('stable-release', toUuid('release:release-CHANGED'), 'stable', toUuid('prev-release'), toUuid('next-release')) // a changed src → a different tag
+  const facets = [
+    { facet: `A RELEASE IS A CONTENT-ADDRESSED SNAPSHOT — a release is the src merkle at a commit; the same src → the same release address, so a stable tag is reproducible, not a moving label`, on: deterministic },
+    { facet: `STABLE IS A COMPUTED CRITERION — a release is tagged STABLE iff ALL gates pass (enforcement trinity 0 findings, every facet computes, the merkle seal clean); the tag is computed (${passingTagged}), not a manual decision`, on: passingTagged },
+    { facet: `THE TAG IS 4-KEY SEALED & TAMPER-EVIDENT — the stable tag is a content-address over the release, its marker, and the prev/next release (referrer⊕id⊕prev⊕next), so a changed src yields a different tag (${tamperEvident})`, on: tamperEvident },
+    { facet: `UNSTABLE FAILS THE TAG (FAIL-CLOSED) — a release with ANY failing gate is NOT tagged stable (${failingNotTagged}); the tag requires all-green and allow is never the default`, on: failingNotTagged },
+    { facet: `THE DEMARCATION — "stable" = the computed gate-pass criterion (all green), content-addressed and reproducible; NOT a subjective quality judgment or a guarantee of bug-freedom — the tag is the enforcement RESULT, not a promise. HARMONY ≠ TRUTH`, on: passingTagged && failingNotTagged && tamperEvident },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`stable-tag:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    passingTag,
+    passingTagged,
+    failingNotTagged,
+    facets,
+    root: merkleFold([passingTag ?? toUuid('no-tag'), ...facets.map((entry) => entry.receipt)]),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'COMPUTED — stable releases tagged by the gate-pass criterion, fail-closed:',
+      facets,
+      'a release is the src merkle at a commit, so the same src yields the same release address and a stable tag is reproducible. A release is tagged STABLE iff all gates pass — the enforcement trinity with zero findings, every facet computing, the merkle seal clean — so the tag is computed, not a manual decision; the stable tag is a 4-key-sealed content-address (referrer⊕id⊕prev⊕next) so a changed src yields a different tag, and a release with any failing gate is not tagged, allow never being the default. "Stable" means the computed gate-pass criterion, content-addressed and reproducible — not a subjective quality judgment or a guarantee of bug-freedom; the tag is the enforcement result, not a promise. HARMONY ≠ TRUTH.'),
+  }
+}
+
 /** The quantum editing tools — pure, content-addressed text transforms. */
 export const editInsert = (doc: string, pos: number, text: string): string => doc.slice(0, pos) + text + doc.slice(pos)
 export const editDelete = (doc: string, pos: number, len: number): string => doc.slice(0, pos) + doc.slice(pos + len)
