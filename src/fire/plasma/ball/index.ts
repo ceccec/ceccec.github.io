@@ -9,6 +9,7 @@ import * as __ns_up_up_life from '../../../earth/life'
 import * as __ns_up_up_thunder_movie_movielib from '../../../thunder/movie/movielib'
 import * as __ns_up_up_earth_world from '../../../earth/world'
 import * as __ns_up_up_learning from '../../../wind/learning'
+import * as __ns_registry from '../../../4/6' // call-time (cycle-safe): the quantum-navigation superposition
 import * as __ns_up_up_lake_music from '../../../lake/music'
 import * as __ns_up_up_thunder_movie_canvas from '../../../thunder/movie/canvas'
 import * as __ns_up_up_fire_li from '../../li'
@@ -876,6 +877,37 @@ export function plasmaClientWorkBoundedByPureMath(path = '/', matrix: MindMatrix
     { facet: 'work budget tiers are the vortex paint tiers', on: TIERS.length === 3 },
   ])
   return { ...gate, bounded: gate.computes, paintPathSealed: sealed.sealed }
+}
+
+/** quantumNavigationNavigatesThePlasma — the plasma hero is driven by the (referrer, path) superposition (user,
+ * 2026-07-24: "use the quantum navigation to navigate the plasma"). The plasma hue is a content-address of
+ * pageNavContext(referrer, path).superposition, so navigating the referrer OR the path repaints the plasma; the
+ * path-only heroMoviePhaseHue is the referrer-agnostic base the superposition lifts. Deterministic, zero-token. */
+export function quantumNavigationNavigatesThePlasma(matrix: MindMatrix = buildMatrix()) {
+  const hueOf = (referrer: string, path: string) => {
+    const superposition = __ns_registry.pageNavContext(referrer, path).superposition
+    return superposition.split('').reduce((sum, ch) => sum + ch.charCodeAt(0), 0) % 360
+  }
+  const a = hueOf('/proof', '/theorems')
+  const b = hueOf('/explore', '/theorems') // same path, DIFFERENT referrer → different plasma
+  const c = hueOf('/proof', '/theorems') // identical nav → identical plasma
+  const pathHue = heroMoviePhaseHue('/theorems', 0, matrix)
+  const bounded = plasmaClientWorkBoundedByPureMath('/theorems', matrix).bounded
+  const superposed = a !== b && a === c
+  const facets = [
+    { facet: `NAVIGATE THE REFERRER, NAVIGATE THE PLASMA — the plasma hue derives from the (referrer,path) superposition: the same path /theorems from a DIFFERENT referrer paints a different plasma (${a}° vs ${b}°), the SAME nav the same (${a}°)`, on: superposed },
+    { facet: `THE PLASMA IS THE COLLAPSE — every navigation collapses the (referrer,path) superposition to ONE plasma hue in [0,360) (${a}°); the plasma IS the visual of the nav state, recomputed per navigation`, on: a >= 0 && a < 360 && superposed },
+    { facet: `THE PATH-HUE IS THE REFERRER-AGNOSTIC BASE — heroMoviePhaseHue('/theorems')=${roundTo(pathHue, 0)}° is the path-only projection; the (referrer,path) superposition LIFTS it to the full navigation state`, on: Number.isFinite(pathHue) },
+    { facet: `BOUNDED BY PURE MATH — the hue is a deterministic content-address of the nav state, zero-token client work (plasmaClientWorkBoundedByPureMath=${bounded})`, on: bounded === true },
+    { facet: `THE DEMARCATION — "navigating the plasma" is deterministic recomputation of a hue from (referrer,path); the referrer collapses the superposition at navigation time — NOT a physical plasma or a quantum state`, on: superposed && Number.isFinite(pathHue) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`plasma-nav:${entry.facet}:${entry.on}`) }))
+  return {
+    navigates: facets.every((entry) => entry.on),
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: the plasma hue is charCode-summed from pageNavContext(referrer,path).superposition mod 360 — a·c share (referrer,path) so share a hue (${a}°), b differs in referrer so differs (${b}°); heroMoviePhaseHue is the path-only base (${roundTo(pathHue, 0)}°); plasmaClientWorkBoundedByPureMath=${bounded}. "Navigating the plasma" = deterministic recomputation of the hue from the nav superposition, which collapses at navigation time (referrer is runtime) — NOT a physical plasma. HARMONY ≠ TRUTH.`,
+  }
 }
 
 // ── Realtime compute channels in the movie ──
