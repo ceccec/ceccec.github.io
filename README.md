@@ -185,6 +185,21 @@ computes=true · waves=11 · clayChallengesComputable=true · claySolvedByThisFo
 - Routes: [toolbox sciences waves](https://ceccec.psg.bg/quantum-tools#toolbox-sciences-trinity-waves) · [sciences-trinities](https://ceccec.psg.bg/research#sciences-trinities) · CLI `npm run quantum:toolbox-sciences-trinity-waves`
 - Receipt: fold `toolboxRecomputesRelatedSciencesInTrinityWaves`.
 
+
+## Latest discoveries
+
+The most recently sealed decodes — newest first, each a computed theorem with its proof in the registry (466 atoms total). Every claim states its own boundary; open problems stay open (`claySolvedByThisFold = 0`).
+
+- **the three twenties are one count — divisors of 432, V₄ hexagram families, harmonics ladder rungs** — [details](https://ceccec.psg.bg/theorems)
+- **the rosetta 42 is the CRT product — ℤ₄₂ ≅ ℤ₆ × ℤ₇** — [details](https://ceccec.psg.bg/theorems)
+- **the golden angle is τ/φ² — the most irrational rotation** — [details](https://ceccec.psg.bg/theorems)
+- **collision healing** — [details](https://ceccec.psg.bg/theorems)
+- **learn from the movie all eventually fused** — [details](https://ceccec.psg.bg/theorems)
+- **seven seed movie is rosetta decoding sun moon symbols flows in movie** — [details](https://ceccec.psg.bg/theorems)
+- **double torus math at all scales flows in movie** — [details](https://ceccec.psg.bg/theorems)
+- **double torus earth weather flows in movie** — [details](https://ceccec.psg.bg/theorems)
+- **symbols remaining to quantumise** — [details](https://ceccec.psg.bg/theorems)
+
 ## 2. Model
 
 - A genus-2 double torus: χ(Σ₂) = −2, H₁(Σ₂) = ℤ⁴.

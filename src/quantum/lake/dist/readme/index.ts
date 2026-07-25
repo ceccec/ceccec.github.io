@@ -8,6 +8,7 @@
 import { ROSETTA_AREAS } from '../../../../pair/enforcement/gates/computational'
 import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../../../pair/enforcement/gates'
 import { CANONICAL_HOST, PI_TRAIN_DIGITS, claySolvedTheorem } from '../../../../3/7'
+import { THEOREM_ATOM_SEED } from '../../../../4/6'
 import { theBinaryBitIsLinearTheVortexCircuitIsQuantum } from '../../../../1/9'
 import { primesAndPiProveEachOtherThroughTheInvertedEulerProduct } from '../../../../heaven/laws'
 import { readmeSvgGapsFilledByTrinityMind } from '../../../../heaven/site'
@@ -490,6 +491,13 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     ...earthPolesPyramidMarkdownSection(buildMatrix(), linkBase),
     ...clayChallengesComputableMarkdownSection(buildMatrix(), linkBase),
     ...toolboxSciencesTrinityWavesMarkdownSection(buildMatrix(), linkBase),
+    '',
+    '## Latest discoveries',
+    '',
+    `The most recently sealed decodes — newest first, each a computed theorem with its proof in the registry (${THEOREM_ATOM_SEED.length} atoms total). Every claim states its own boundary; open problems stay open (\`claySolvedByThisFold = 0\`).`,
+    '',
+    ...THEOREM_ATOM_SEED.slice(-9).reverse().map((entry) => `- **${entry.theorem}** — [details](${linkBase}/theorems)`),
+    '',
     '## 2. Model',
     '',
     '- A genus-2 double torus: χ(Σ₂) = −2, H₁(Σ₂) = ℤ⁴.',
