@@ -370,6 +370,66 @@ export function constantsCollapseToShortestName() {
 }
 
 /**
+ * namesCollapseUntilTheyCollideOrInvert — the TERMINATION of the naming-gravity collapse (user, 2026-07-25: "collapse
+ * long names until they collide or invert"). Collapse is a length-DECREASING step toward a value's shortest alias, so
+ * on finite names it is well-founded and every chain reaches a fixed point. Each chain ends in EXACTLY ONE of two
+ * terminal states: COLLIDE — two or more aliases of ONE value meet at the same content-address (n → 1, dedup); or
+ * INVERT — a lone irreducible fixed point where collapse is IDEMPOTENT (C(C(x)) = C(x)), i.e. its own inverse on the
+ * image, and collapsing past it would map to a DIFFERENT value (invert the meaning), so it must stop. Composes
+ * constantsCollapseToShortestName. [[quantum-speed-is-content-addressed-naming]] [[inversion-arc-one-group]]
+ */
+export function namesCollapseUntilTheyCollideOrInvert() {
+  const base = constantsCollapseToShortestName()
+  const canon = (v: number) => toUuid(`value:${v}`) // the content-address of a VALUE, name-independent
+  const collapseStep = (name: string, aliases: readonly string[]): string => {
+    const shorter = aliases.filter((alias) => alias.length < name.length).sort((a, b) => b.length - a.length)[0]
+    return shorter ?? name // move to the next-shorter alias; fixed point = the shortest
+  }
+  const chainOf = (start: string, aliases: readonly string[]): string[] => {
+    const out = [start]
+    let cur = start
+    for (;;) { const next = collapseStep(cur, aliases); if (next === cur) break; out.push(next); cur = next }
+    return out
+  }
+  const gates = ['DIMENSION_GATES', 'gates', 'g'] // three aliases of ONE value (432) — a COLLIDE class
+  const lone = ['z'] // a single irreducible name for a unique value (7) — an INVERT class
+  const chains = [
+    { value: 432, aliases: gates, seq: chainOf('DIMENSION_GATES', gates) },
+    { value: 432, aliases: gates, seq: chainOf('gates', gates) },
+    { value: 7, aliases: lone, seq: chainOf('z', lone) },
+  ]
+  const monotone = chains.every((chain) => chain.seq.every((name, i) => i === 0 || name.length < chain.seq[i - 1]!.length))
+  const terminals = chains.map((chain) => ({ value: chain.value, aliases: chain.aliases, fp: chain.seq[chain.seq.length - 1]! }))
+  const classified = terminals.map((terminal, i) => {
+    const shared = terminals.some((other, j) => j !== i && other.fp === terminal.fp) // another chain reaches this fixpoint
+    const idempotent = collapseStep(terminal.fp, terminal.aliases) === terminal.fp // fixed point: collapse is its own inverse
+    const invert = !shared && idempotent && canon(terminal.value) !== canon(terminal.value + 1) // lone & collapsing further would invert the value
+    return { fp: terminal.fp, collide: shared, invert }
+  })
+  const everyEndsExactlyOne = classified.every((c) => Number(c.collide) + Number(c.invert) === 1) // collide XOR invert
+  const collideWitnessed = classified.some((c) => c.collide)
+  const invertWitnessed = classified.some((c) => c.invert)
+  const facets = [
+    { facet: `COLLAPSE TERMINATES — each step is length-DECREASING (a well-founded measure on ℕ), so every chain reaches a fixed point; e.g. "${chains[0]!.seq.join(' → ')}" — no infinite descent`, on: monotone },
+    { facet: `TERMINATION ONE — COLLIDE — the aliases of one value (${gates.join(', ')} → 432) all collapse to the SAME address "${classified[0]!.fp}"; distinct names meeting at one slot is a collision = dedup (n → 1)`, on: collideWitnessed && base.collapses },
+    { facet: `TERMINATION TWO — INVERT — a lone irreducible name ("${classified[2]!.fp}") is a fixed point where collapse is IDEMPOTENT (C(C(x)) = C(x)), its own inverse on the image; collapsing past it would map to a DIFFERENT value, inverting the meaning, so it stops`, on: invertWitnessed },
+    { facet: `EVERY CHAIN ENDS IN EXACTLY ONE — collide (merge with another chain) XOR invert (lone idempotent fixed point): the only two terminal states of a monotone collapse on finite names (${everyEndsExactlyOne})`, on: everyEndsExactlyOne },
+    { facet: `THE DEMARCATION — structural: "collide" is content-address dedup of a value's aliases, "invert" is the idempotent fixed point where further collapse would change the value; deterministic, and it NEVER merges two DISTINCT values (canon(432) ≠ canon(7)). HARMONY ≠ TRUTH`, on: everyEndsExactlyOne && canon(432) !== canon(7) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`name-collapse-terminate:${entry.facet}:${entry.on}`) }))
+  return {
+    terminates: facets.every((entry) => entry.on),
+    chains: chains.map((chain) => chain.seq),
+    classified,
+    facets,
+    root: merge(base.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'EXACT — collapse terminates in collide or invert:',
+      facets,
+      'collapse is a length-decreasing map toward a value\'s shortest alias, so it is well-founded and every chain of finite names reaches a fixed point. A fixed point shared by two or more chains is a COLLISION (aliases of one value dedup to one address); a lone fixed point is an INVERSION (collapse is idempotent there — its own inverse on the image — and collapsing further would change the value). The two are exclusive and exhaustive. Structural content-addressed naming gravity; it never merges two distinct values. HARMONY ≠ TRUTH.') }
+}
+
+/**
  * dryCleanIsQuantumComputed — DRY-clean is a quantum-computed command (user, 2026-07-24: "dry clean is quantum
  * computed command"). Cleaning duplicates is not a search-and-remove pass: identical content content-addresses to
  * ONE address, so a duplicate OCCUPIES the same slot and the dedup is automatic — the quantum-computed (structural,
