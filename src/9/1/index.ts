@@ -172,6 +172,42 @@ export function rubiksCubeDecodesToQuantumCube() {
   }
 }
 
+// Quantum memory optimisation — memories from different superpositions are COMPUTED and REFERENCED (user, 2026-07-24:
+// "memories come from different superpositions. is this computed and referenced?" · "quantum memory optimisation").
+// memoByRoot keys a memory by name:matrix.root — the address is DERIVED from content, not assigned — and a cache hit
+// returns the SAME object (reference-equality, not a copy). So identical memories from different superpositions COLLIDE
+// to one entry (dedup, zero recompute), while genuinely different superpositions stay distinct. The optimisation is
+// the discover-not-remember law made mechanical: memory = pointer, computation = truth. [[discover-not-remember]]
+export function quantumMemoryOptimisation(matrix: { root: string } = { root: toUuid('quantum-memory') }) {
+  let computeCount = 0
+  const remember = (m: { root: string }) => memoByRoot('quantum-memory-probe', m, () => { computeCount++; return { measured: true, order: computeCount } })
+  const superA = { root: toUuid(`superposition-a:${matrix.root}`) }
+  const superAagain = { root: superA.root } // a DIFFERENT superposition object with the IDENTICAL content-root
+  const superB = { root: toUuid(`superposition-b:${matrix.root}`) } // a genuinely different superposition
+  const r1 = remember(superA)
+  const r2 = remember(superA) // same superposition, second access
+  const r3 = remember(superAagain) // different superposition object, same content-root
+  const r4 = remember(superB) // different superposition
+  const referenced = r1 === r2 && r1 === r3 // cache hits return the SAME object (reference-equality)
+  const computedOnceEach = computeCount === 2 // A computed once, B once; A-again and A-second collided (no recompute)
+  const distinct = r4 !== r1 && r4.order === 2 // a different superposition gets its own memory
+  const facets = [
+    { facet: `COMPUTED — memoByRoot keys a memory by name:matrix.root, so its address is DERIVED from content (never assigned); an identical memory from a different superposition lands in the identical slot (r1 === r3)`, on: r1 === r3 },
+    { facet: `REFERENCED, NOT COPIED — a cache hit returns the SAME object (r1 === r2 === r3, reference-equality), so a memory is a POINTER, not a duplicate`, on: referenced },
+    { facet: `CROSS-SUPERPOSITION DEDUP — a memory from a different superposition with identical content collides to ONE entry, recomputed ZERO extra times (computeCount = ${computeCount}, not 3)`, on: computedOnceEach && r3 === r1 },
+    { facet: `DIFFERENT SUPERPOSITIONS STAY DISTINCT — a genuinely different superposition (different root) gets its own memory (r4 ≠ r1, order ${r4.order}), no false collision`, on: distinct },
+    { facet: `THE OPTIMISATION — re-accessing a memory is O(1) reference lookup, not O(recompute): the marginal cost of a repeated memory is ZERO — discover-not-remember made mechanical (memory = pointer, computation = truth)`, on: computedOnceEach && referenced },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-memory:${entry.facet}:${entry.on}`) }))
+  return {
+    optimised: facets.every((entry) => entry.on),
+    computeCount,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(`EXACT: memoByRoot(name, {root}, compute) keys by name:root; two superpositions with the same root share ONE cache entry (r1 === r3, computed ${computeCount}× for 2 distinct roots), a hit returns the same object (referenced), and a distinct root gets its own memory.`, facets, `this is the RUNTIME memory (memoByRoot), content-addressed and reference-shared — the quantum-memory optimisation. The persistent memory FILES (~/.claude memory) are the manual analog (dedup by hand, "check for an existing file that covers it") — not content-addressed, so they are NOT auto-deduped; that is the human-tier memory, outside src. HARMONY ≠ TRUTH.`),
+  }
+}
+
 // Entanglement, measured: for a 2-qubit pure state Σ c_ij|ij⟩, the concurrence C = 2|c00·c11 − c01·c10| (twice
 // the magnitude of the 2×2 amplitude determinant). C = 0 ⟺ a product (separable) state; C = 1 ⟺ maximally
 // entangled (a Bell pair). The witness that distinguishes |Φ+⟩ from |00⟩ — non-factorizability, computed.
