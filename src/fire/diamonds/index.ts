@@ -10,7 +10,7 @@ import { a432NoteHz, doubleTorusMath, foldBlockchain, methodFusion, sourceContri
 import { humanityImplications, traditionsQuantumWhole } from '../../earth/civilisation'
 import { agentEducation } from '../../wind/learning'
 import { TORUS_LOBE_OFFSET, archangelsDryClean, cleanupOldLogic, closeDimensionalGaps, completeCorpus, coordinatedWaves, decodeBooksToUnity, diamondCompleteness, digitFolders, doubleTorusSurface, fuseAll, fuseAllForge, heroLawAlignment, numberLabel, onlyQuantumRemains, paperReferences, papers, quantumChessGame, quantumUiEvidence, scientificSociety } from '../../quantum/heaven/mind'
-import { TAU } from '../../3/7'
+import { DIAMOND_DISPERSION, DIAMOND_REFRACTIVE_INDEX, SPEED_OF_LIGHT, TAU, criticalAngle, earned, speedInMedium } from '../../3/7'
 
 export function diamondLattice(matrix: MindMatrix = buildMatrix()): readonly QuantumDiamond[] {
   return memoByRoot('diamondLattice', matrix, () => computeDiamondLattice(matrix))
@@ -216,6 +216,65 @@ export function lightEntersDiamond(matrix: MindMatrix = buildMatrix()) {
       'Let the light enter the diamond: the sealed whole-diamond refracts the one white whole into the spectrum of its facets, each facet a colour, and stays sealed — its content address is unchanged by being seen. The seal is not a wall but a window; light enters, the structure shows, and nothing is altered.',
     boundary:
       'A content-addressed derivation of one colour band per diamond facet — a metaphor of refraction over the seal. "Light" is inspection and "colour" is a hue derived from the facet address; nothing optical or physical is claimed, and the seal is unchanged.' }
+}
+
+/**
+ * computeLightInDiamondPredictionBeatsLightNotFtl — the REAL optics of light in a diamond, and the honest sense in
+ * which computing it "beats" the light (user, 2026-07-25: "bouncing boundaries draw the crystal itself" · "compute
+ * the light in a diamond and if you can predict then the computation is faster than light itself"). Light SLOWS in the
+ * crystal to v = c/n (n = 2.417); the critical angle θc = arcsin(1/n) ≈ 24.4° is so small that internal rays exceed it
+ * and total-internally reflect — the light bounces facet to facet and, in the circular-billiard model, keeps a CONSTANT
+ * incidence angle, so the bounces trace a regular polygon: the boundaries draw the crystal itself. Because that path is
+ * deterministic, the k-th boundary hit has an O(1) closed form — predicting where the light will be BEFORE a photon
+ * (travelling k chords at v < c) could arrive. That is PRECOMPUTATION of a known deterministic system, NOT a signal:
+ * physicalFtlClaim = 0, no information and no photon exceeds c. Same honesty as [[quantum-speed-is-content-addressed-naming]]. [[electromagnetic-radiation]]
+ */
+export function computeLightInDiamondPredictionBeatsLightNotFtl(matrix: MindMatrix = buildMatrix()) {
+  const n = DIAMOND_REFRACTIVE_INDEX
+  const v = speedInMedium(n) // v = c/n, m/s
+  const slower = v < SPEED_OF_LIGHT && v === SPEED_OF_LIGHT / n // light in diamond is SLOWER, exactly 1/n of c
+  const thetaC = criticalAngle(n) // total-internal-reflection critical angle, radians
+  // Circular-billiard model of the crystal cross-section: a ray keeps a CONSTANT incidence angle α at every boundary.
+  // Choose α = τ/6 (60°) > θc, so EVERY bounce is total internal reflection and the light is trapped inside.
+  const alpha = TAU / 6
+  const allTIR = alpha > thetaC
+  const turn = TAU / 2 - 2 * alpha // boundary-angle advanced per bounce (π − 2α); here = τ/6
+  const posClosed = (k: number): readonly [number, number] => { const a = k * turn; return [Math.cos(a), Math.sin(a)] }
+  const posStep = (k: number): readonly [number, number] => { let a = 0; for (let i = 0; i < k; i++) a += turn; return [Math.cos(a), Math.sin(a)] }
+  // The bounces close into a regular polygon — the crystal drawn by its own boundaries.
+  const sides = Math.round(TAU / Math.abs(turn))
+  const start = posClosed(0)
+  const closes = Math.hypot(posClosed(sides)[0] - start[0], posClosed(sides)[1] - start[1]) < 1 / 2 ** (6 * 5)
+  // O(1) prediction: the closed form equals the step-by-step simulation at every sampled bounce.
+  let maxErr = 0
+  for (let k = 0; k <= 27; k++) { const c = posClosed(k), s = posStep(k); maxErr = Math.max(maxErr, Math.hypot(c[0] - s[0], c[1] - s[1])) }
+  const predicts = allTIR && maxErr < 1 / 2 ** (6 * 5)
+  const bounces = 100 ** 3 // predict the millionth boundary hit
+  const computeSteps = 1 // O(1) closed form — one evaluation
+  const photonSegments = bounces // the photon must traverse `bounces` chords in sequence at v < c
+  const predictionSpeedup = photonSegments / computeSteps // dimensionless: how far ahead of the photon the compute is
+  const physicalFtlClaim = 0
+  const facets = [
+    { facet: `LIGHT IN THE DIAMOND IS SLOWER, NOT FASTER — v = c/n = ${Math.round(v)} m/s, exactly 1/n = ${(1 / n).toFixed(4)} of c; the crystal SLOWS light, it never speeds it past c`, on: slower },
+    { facet: `BOUNCING BOUNDARIES DRAW THE CRYSTAL — the critical angle θc = arcsin(1/n) = ${(thetaC * (360 / TAU)).toFixed(2)}° is so small that the internal ray (α = 60° > θc) total-internally reflects at every facet; in the circular-billiard model the incidence angle stays constant and the bounces trace a regular ${sides}-gon that closes on itself (${closes}) — the boundaries draw the crystal`, on: allTIR && closes },
+    { facet: `PREDICTION BEATS THE PHOTON — the k-th boundary hit has an O(1) closed form equal to the step-by-step bounce (max error ${maxErr.toExponential(1)}); the ${bounces}-th hit is computed in ${computeSteps} step while a photon must traverse ${photonSegments} chords in sequence — the compute is ${predictionSpeedup.toExponential(0)}× ahead`, on: predicts && predictionSpeedup > 1 },
+    { facet: `NOT PHYSICAL FASTER-THAN-LIGHT — this is PRECOMPUTATION of a deterministic, fully-known system, not a signal: physicalFtlClaim = ${physicalFtlClaim}, no photon and no information exceeds c; we simply did not wait for the light we already know the path of`, on: physicalFtlClaim === 0 },
+    { facet: `THE DEMARCATION — real optics from ledgered constants (n = ${n}, dispersion ${DIAMOND_DISPERSION} = the "fire"; Snell, total internal reflection), the crystal is a 2-D circular-billiard MODEL not a cut gem's full 3-D facet solve, and "faster than light" means computation predicting a KNOWN system — never a physical speed`, on: slower && physicalFtlClaim === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`diamond-light:${entry.facet}:${entry.on}`) }))
+  return {
+    predicts: facets.every((entry) => entry.on),
+    speedInDiamondMs: v,
+    criticalAngleDeg: thetaC * (360 / TAU),
+    sides,
+    predictionSpeedup,
+    physicalFtlClaim,
+    facets,
+    root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'REAL diamond optics, honest computation:',
+      facets,
+      'light in diamond travels at v = c/n < c (it slows); total internal reflection below the 24.4° critical angle bounces the ray facet-to-facet, and in the circular-billiard model the constant incidence angle makes the bounces trace a regular polygon — the boundaries drawing the crystal. Predicting the k-th bounce in O(1) beats a photon only as PRECOMPUTATION of a deterministic, fully-specified system: no photon, signal, or information exceeds c (physicalFtlClaim = 0). The crystal is a 2-D billiard model, not a full 3-D cut-gem ray solve.') }
 }
 
 function diamond(

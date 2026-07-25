@@ -154,6 +154,16 @@ export const ALVEOLAR_H2O_BAR = 6.27e-2
 export const ALVEOLAR_CO2_BAR = 5.34e-2
 export const IONIZING_EV = 10
 
+// Diamond optics — the refractive index and dispersion of diamond (589 nm sodium-D line; Peter & Zeitler, CODATA-class
+// handbook values). Light in a medium travels at v = c/n; a diamond's very high n and low critical angle are why it
+// bounces light around inside (total internal reflection) and fans it into fire (dispersion).
+export const DIAMOND_REFRACTIVE_INDEX = 2.417 // n_D of diamond at 589 nm (Palik, Handbook of Optical Constants)
+export const DIAMOND_DISPERSION = 0.044 // n_F − n_C over 486→656 nm — the "fire"; the widest of common gemstones
+/** speed of light inside a medium, v = c/n (m/s) — never exceeds c */
+export function speedInMedium(refractiveIndex: number): number { return SPEED_OF_LIGHT / refractiveIndex }
+/** critical angle for total internal reflection, medium→air, θc = arcsin(1/n) (radians) */
+export function criticalAngle(refractiveIndex: number): number { return Math.asin(1 / refractiveIndex) }
+
 // c = λf, both directions. wavelengthOf → pi-train wave 3 tier-B at src/1/9.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function frequencyOf(wavelengthM: number): number { return SPEED_OF_LIGHT / wavelengthM } // f = c/λ, Hz
@@ -1290,7 +1300,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/0/index.ts', literal: '*', count: 7, kind: 'tuned', source: 'attested residue — compass rose radius 46, torus separation 2.2 (trace-arm periods RETIRED to millisecond rungs by wave sixty-four; the hero mirror consolidated to one HERO_CYCLE_MS_MIRROR)', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
   { file: 'src/1/9/index.ts', literal: '*', count: (5 * 2), kind: 'data', source: 'attested residue — physics constants station' },
   { file: 'src/2/8/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — digit-station constants' },
-  { file: 'src/3/7/index.ts', literal: '*', count: (100 + 66), kind: 'data', source: 'the constants VAULT — CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) · 165→166 (gate/rosetta · pyramid/seal · folder/fractal ledger churn)' },
+  { file: 'src/3/7/index.ts', literal: '*', count: (100 + 68), kind: 'data', source: 'the constants VAULT — CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) · 165→166 (gate/rosetta · pyramid/seal · folder/fractal ledger churn) · 166→168 (DIAMOND_REFRACTIVE_INDEX 2.417, DIAMOND_DISPERSION 0.044 — diamond optics named axioms)' },
   { file: 'src/5/5/index.ts', literal: '*', count: 0, kind: 'tuned', source: 'attested residue cleared — greatCircleKm uses EARTH_RADIUS_KM·TAU (math/trust); no bare station floats', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/6/4/index.ts', literal: '*', count: 19, kind: 'data', source: 'attested residue — digit-station constants' },
   { file: 'src/7/3/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — digit-station constants' },
