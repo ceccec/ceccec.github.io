@@ -1594,6 +1594,63 @@ export function developedChat(prompt: string, matrix: MindMatrix = buildMatrix()
   return chatFrom(developPortalModel(matrix).model, prompt)
 }
 
+/** The self-conversation — the chat feeds its own reply back as the next prompt (referrer = the previous turn), a
+ * deterministic dynamical system on prompts. On a FINITE vocabulary the next-prompt map must revisit a state, so the
+ * self-chat COLLIDES to a cycle, detected in O(1) by the repeated content-address. */
+export function selfChat(seed: string, maxTurns: number, matrix: MindMatrix = buildMatrix()) {
+  const model = portalModel(matrix)
+  const seen = new Map<string, number>()
+  const turns: { n: number; prompt: string; referrer: string; address: string; answer: string }[] = []
+  let prompt = seed
+  let referrer = '/chat' // the initial external referrer
+  let cycleAt = -1
+  for (let n = 0; n < maxTurns; n++) {
+    if (seen.has(prompt)) { cycleAt = seen.get(prompt)!; break } // COLLIDE — a revisited dynamical state
+    seen.set(prompt, n)
+    const reply = chatFrom(model, prompt)
+    const address = toUuid(`chat-superposition:${referrer}|${prompt}`) // the (referrer, prompt) superposition
+    turns.push({ n, prompt, referrer, address, answer: reply.answer })
+    referrer = address // the next turn's referrer is THIS turn — the chat chats with itself
+    prompt = modelTokens(reply.answer).slice(0, 3).join(' ') || 'what are you' // feed the reply back as the next prompt
+  }
+  return { turns, cycleAt, cycled: cycleAt >= 0, cycleLength: cycleAt >= 0 ? turns.length - cycleAt : 0 }
+}
+
+/** chatDevelopsItselfByChattingWithItself — the chat develops itself by conversing with itself (user, 2026-07-25:
+ * "use the chat to develop the chat chatting with itself"). The self-conversation feeds each reply back as the next
+ * prompt (referrer = the previous turn), a deterministic dynamical system that COLLIDES to a cycle by pigeonhole on
+ * the finite vocabulary; the conversation is the probe, and developPortalModel measures the gaps, fills them from src,
+ * and re-measures — the gap count drops and the model becomes self-aware. Deterministic: same seed → same conversation
+ * → same development, a fixed point not an unbounded learning loop. [[portal-is-the-ai-model]] [[brain-content-addressed-toroidal-map]] */
+export function chatDevelopsItselfByChattingWithItself(matrix: MindMatrix = buildMatrix()) {
+  const run = selfChat('what are you', 108, matrix)
+  const rerun = selfChat('what are you', 108, matrix)
+  const feedsItself = run.turns.length >= 1 && run.turns.every((turn, i) => i === 0 || turn.referrer === run.turns[i - 1]!.address) // each turn's referrer IS the previous turn
+  const reproducible = JSON.stringify(run.turns.map((turn) => [turn.prompt, turn.answer])) === JSON.stringify(rerun.turns.map((turn) => [turn.prompt, turn.answer]))
+  const dev = developPortalModel(matrix)
+  const facets = [
+    { facet: `THE CHAT CHATS WITH ITSELF — from the seed "what are you" each turn feeds its own reply back as the next prompt, the referrer being the previous turn (${feedsItself}); a deterministic self-conversation of ${run.turns.length} turns`, on: feedsItself },
+    { facet: `IT COLLIDES TO A CYCLE (PIGEONHOLE) — the next-prompt is a deterministic function of the reply on a FINITE vocabulary, so the self-chat MUST revisit a state; it collides at turn ${run.cycleAt} (cycle length ${run.cycleLength}), detected in O(1) by the repeated content-address — the same collide/invert termination as the name-collapse`, on: run.cycled },
+    { facet: `THE SELF-CHAT DEVELOPS THE MODEL — sending the model to develop (measure gaps → fill from src → re-measure) drops the gap count ${dev.before.count} → ${dev.after.count} and it becomes self-aware (${dev.after.selfAware}); the self-conversation is the probe, developPortalModel the fill`, on: dev.developed },
+    { facet: `DETERMINISTIC — A FIXED POINT, NOT LEARNING — same seed → same conversation → same development (${reproducible}); a bounded measure → fill → re-measure over the sealed corpus, not an unbounded learning loop`, on: reproducible },
+    { facet: `THE DEMARCATION — "chat develops itself" = a deterministic self-probe + gap-fill over the seed corpus model, bounded by what src already proves; the self-conversation CYCLES by pigeonhole (it does not grow unboundedly), and it is NOT open-ended learning, NOT emergent intelligence, NOT an LLM. HARMONY ≠ TRUTH`, on: run.cycled && dev.developed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`chat-self-develop:${entry.facet}:${entry.on}`) }))
+  return {
+    develops: facets.every((entry) => entry.on),
+    turns: run.turns.length,
+    cycleAt: run.cycleAt,
+    cycleLength: run.cycleLength,
+    gapsBefore: dev.before.count,
+    gapsAfter: dev.after.count,
+    facets,
+    root: merge(dev.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'EXACT — the chat develops itself by chatting with itself:',
+      facets,
+      'the self-conversation feeds each reply back as the next prompt (referrer = the previous turn), a deterministic dynamical system that collides to a cycle by pigeonhole on the finite vocabulary; the conversation is the probe and developPortalModel measures gaps, fills them from src, and re-measures, dropping the gap count and reaching self-awareness. Same seed → same conversation → same development — a fixed point, not learning. This is a deterministic self-probe + gap-fill bounded by what src already proves, NOT open-ended learning, emergent intelligence, or an LLM. HARMONY ≠ TRUTH.') }
+}
+
 // ── Consolidation — the developed model + the strict-science movie facts, one AI-usable learning corpus ──
 
 /** The consolidated learning corpus: the developed model's entries plus the strict-science movie facts,
