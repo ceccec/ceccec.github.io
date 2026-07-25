@@ -11,8 +11,6 @@ import { componentPages } from '../../../quantum/heaven/mind'
 export { ROUTE_ALIASES } from '../../site'
 
 export { vitepressAutomountPaths } from '../../../pair/enforcement/gates/computational'
-/** @deprecated — rosetta corpus walk replaces automount enumeration */
-export { vitepressAutomountPaths as monographCatchAllPaths }
 
 /** Inflection rule: a pattern match → replacement for custom constant naming. */
 export type InflectionRule = { pattern: RegExp; replacement: string }

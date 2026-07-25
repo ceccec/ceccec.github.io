@@ -161,9 +161,6 @@ export function quantumMathDesignsTheUi(at = 0, matrix: MindMatrix = buildMatrix
   })
 }
 
-/** @deprecated alias — superseded by quantumMathDesignsTheUi. */
-export const quantumMindDesignsTheUi = quantumMathDesignsTheUi
-
 export type QuantumOsDriverRow = { readonly id: string; readonly label: string; readonly tier: string; readonly receipt: string }
 export type QuantumOsShellState = {
   readonly at: number

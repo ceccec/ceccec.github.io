@@ -55,8 +55,6 @@ export const TYPES_SEAL_COMMAND_PAIR = { pair: 'types/seal' as const, a: 'types'
 export const BUILD_SEAL_COMMAND_PAIR = { pair: 'build/seal' as const, a: 'build', b: 'seal' }
 export const AGENT_SUBMISSION_COMMAND_PAIR = { pair: 'agent/submission' as const, a: 'agent', b: 'submission' }
 export const GATE_COMPLIANCE_COMMAND_PAIR = { pair: 'gate/compliance' as const, a: 'gate', b: 'compliance' }
-/** @deprecated Backward compat */
-export const ICHING_BATCH_COMMAND_PAIR = ROSETTA_BATCH_COMMAND_PAIR
 export const DISSOLVE_FLAT_COMMAND_PAIR = { pair: 'dissolve/flat' as const, a: 'dissolve', b: 'flat' }
 export const IMPORT_DISTANCE_COMMAND_PAIR = { pair: 'import/distance' as const, a: 'import', b: 'distance' }
 export const FOLDER_GRAVITY_COMMAND_PAIR = { pair: 'folder/gravity' as const, a: 'folder', b: 'gravity' }
