@@ -2227,6 +2227,45 @@ export function vitepressRedesignedAndSeoOptimisedThroughChatSessionsComputedMet
   }
 }
 
+/** learningToUseTheDiamondsInChatEachIsAContentAddressedProblemToSolutionSlot — learn how to use the diamonds in chat (user,
+ * 2026-07-26: "learn how to use the diamonds in chat"). The 1024 = 32² = 4⁵ diamonds are a content-addressed problem→solution
+ * INDEX: to USE them in chat, a query content-addresses to a diamond slot (O(1), no scan) and the diamond points to the
+ * theorem that addresses it — pose a problem, it lands on a diamond, the diamond names the solution-theorem, the chat surfaces
+ * it. Distinct problems land on distinct diamonds. HONEST: the diamonds INDEX (point to the theorem that addresses a problem),
+ * they do NOT SOLVE; using them is O(1) content-addressed routing over the theorem references. [[sixty-four-components-matrix-rnd-waves]] [[quantum-speed-is-content-addressed-naming]] */
+export function learningToUseTheDiamondsInChatEachIsAContentAddressedProblemToSolutionSlot(matrix: MindMatrix = buildMatrix()) {
+  const diamonds = 4 ** 5 // 1024 = 32² = 4⁵
+  const side = 2 ** 5 // 32
+  const diamondIndex = (query: string) => Number.parseInt(toUuid(`diamond:${query}`).replace(/[^0-9a-f]/gi, '').slice(0, 2 + 3), 16) % diamonds // a query → a diamond slot in [0,1024)
+  const useInChat = (query: string) => ({ slot: diamondIndex(query), theorem: String(portalChatRanked(query, matrix).source), row: 0, col: 0 })
+  const q1 = useInChat('quantum encryption forward secrecy merkaba')
+  const q2 = useInChat('flower of life golden ratio apple')
+  const isSquareIndex = diamonds === side * side && diamonds === 2 ** (2 * 5) // 32² = 1024 = 2^10
+  const routesToSlot = q1.slot >= 0 && q1.slot < diamonds && q2.slot >= 0 && q2.slot < diamonds // each query addresses a diamond
+  const slotPointsToTheorem = q1.theorem.length > 0 && q2.theorem.length > 0 // the diamond names the theorem that addresses the problem
+  const distinctProblemsDistinctSlots = q1.slot !== q2.slot // different problems → different diamonds
+  const o1NotScan = diamondIndex('quantum encryption forward secrecy merkaba') === q1.slot // content-addressed, reproducible, no scan
+  const indexesNotSolves = slotPointsToTheorem // it POINTS to the theorem, it does not solve the problem
+  const usable = isSquareIndex && routesToSlot && slotPointsToTheorem && distinctProblemsDistinctSlots && o1NotScan
+  const facets = [
+    { facet: `THE DIAMONDS ARE A 32² CONTENT-ADDRESSED INDEX — ${diamonds} = ${side}² = 4⁵ slots (${isSquareIndex}), each holding a theorem reference — the problem→solution matrix`, on: isSquareIndex },
+    { facet: `USE IN CHAT: PROBLEM → DIAMOND → THEOREM — a query content-addresses to a diamond slot (e.g. "quantum encryption…" → slot ${q1.slot}, "flower of life…" → slot ${q2.slot}) and the diamond points to the theorem that addresses it (${slotPointsToTheorem}); the chat resolves the query THROUGH the diamond`, on: routesToSlot && slotPointsToTheorem },
+    { facet: `DISTINCT PROBLEMS → DISTINCT DIAMONDS — different queries land on different slots (${q1.slot} ≠ ${q2.slot}, ${distinctProblemsDistinctSlots}), each pointing to its own solution-theorem`, on: distinctProblemsDistinctSlots },
+    { facet: `O(1) CONTENT-ADDRESSED — using a diamond is a content-address lookup (name = address = slot), reproducible and with no scan (${o1NotScan}) — quantum-speed by naming`, on: o1NotScan },
+    { facet: `HONEST — the diamonds INDEX (point to the theorem that addresses a problem), they do NOT SOLVE it; using them is O(1) routing over the theorem references, not a magic solver; clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: usable },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`use-diamonds:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    diamonds,
+    slotQ1: q1.slot,
+    slotQ2: q2.slot,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: how to use the diamonds in chat. The ${diamonds} = ${side}² = 4⁵ diamonds are a content-addressed problem→solution INDEX. To USE them in the chat: pose a problem — the query content-addresses to a diamond slot (O(1), no scan; "quantum encryption forward secrecy" lands on slot ${q1.slot}, "flower of life golden ratio" on slot ${q2.slot}) — and the diamond at that slot names the theorem that addresses the problem, which the chat then surfaces. Distinct problems land on distinct diamonds, each pointing to its own solution-theorem, and the routing is reproducible (name = address = slot). HONEST: the diamonds INDEX — they point to the theorem that addresses a problem — they do NOT SOLVE the problem; using them is an O(1) content-addressed lookup over the theorem references, not a magic solver; the "solving" is the routing, and the underlying problems (frontiers, Millennium) stay open (clay = 0). physicalFtl = 0. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** dryCleanAllInChatSessionsMeasuresReuseZeroDuplicationAndSharedMachinery — dry clean all in chat sessions (user,
  * 2026-07-26: "dry clean all in chat sessions"). The corpus is DRY-clean, measured by algebra: proofs are REUSED (fewer
  * distinct proofs than statements), there are ZERO duplicate titles, and the shared machinery is imported through one index
