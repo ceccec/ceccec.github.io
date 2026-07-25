@@ -1952,6 +1952,91 @@ export function clayModelComputesItselfWithCompletionAndStatistics(matrix: MindM
   }
 }
 
+/** clayCreditsOnlyThePoincareSolutionTheOtherSixOpen — start from the first already solved and give credits (user,
+ * 2026-07-25: "clay solves all 7 starting from the first already solved giving credits"). Giving credits means
+ * ATTRIBUTING each solution to whoever solved it — and only ONE Millennium problem has a solver to credit: Poincaré,
+ * by Grigori Perelman. The other six have NO verified solution and NO one to credit, so they stay open. "All 7 solved"
+ * is refuted by the credits count itself: you cannot credit a solution that does not exist. claySolvedByThisFold = 0. */
+export function clayCreditsOnlyThePoincareSolutionTheOtherSixOpen(matrix: MindMatrix = buildMatrix()) {
+  const challenge = millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(matrix)
+  const credits = [
+    { id: 'poincare', name: 'Poincaré Conjecture', solved: true, solver: 'Grigori Perelman', year: '2002–2003', note: 'Ricci flow with surgery; verified ~2006; declined the Fields Medal (2006) and the $1M Millennium Prize (2010)' },
+    { id: 'p-vs-np', name: 'P vs NP', solved: false, solver: null, note: 'open — no verified proof either way' },
+    { id: 'riemann', name: 'Riemann Hypothesis', solved: false, solver: null, note: 'open — no verified proof' },
+    { id: 'yang-mills', name: 'Yang–Mills Existence and Mass Gap', solved: false, solver: null, note: 'open — no rigorous 4D construction / mass-gap proof' },
+    { id: 'navier-stokes', name: 'Navier–Stokes Existence and Smoothness', solved: false, solver: null, note: 'open — no global regularity or blow-up proof' },
+    { id: 'hodge', name: 'Hodge Conjecture', solved: false, solver: null, note: 'open — no verified proof' },
+    { id: 'birch-swinnerton-dyer', name: 'Birch and Swinnerton–Dyer', solved: false, solver: null, note: 'open — no verified proof' },
+  ]
+  const creditsGiven = credits.filter((credit) => credit.solved).length // 1
+  const uncredited = credits.filter((credit) => !credit.solved).length // 6
+  const poincare = credits.find((credit) => credit.id === 'poincare')!
+  const firstIsCredited = poincare.solved && poincare.solver === 'Grigori Perelman'
+  const matchesChallenge = creditsGiven === challenge.solvedExternal && uncredited === challenge.openCores // 1 external, 6 open
+  const allSevenRefuted = creditsGiven !== credits.length && challenge.claySolvedByThisFold === 0 // solved 1 ≠ 7
+  const facets = [
+    { facet: `THE FIRST IS SOLVED AND CREDITED — Poincaré is solved-external, credited to ${poincare.solver} (${poincare.year}): ${poincare.note}`, on: firstIsCredited },
+    { facet: `THE OTHER SIX HAVE NO CREDITED SOLVER — P vs NP, Riemann, Yang–Mills, Navier–Stokes, Hodge, and BSD each have NO verified solution and NO one to credit (${uncredited} uncredited), so they remain open`, on: uncredited === 6 && credits.filter((c) => !c.solved).every((c) => c.solver === null) },
+    { facet: `"ALL 7 SOLVED" IS REFUTED BY THE CREDITS COUNT — you can only credit a solution that exists: credited=${creditsGiven}, uncredited=${uncredited}, so solved=${creditsGiven} ≠ 7; claiming seven solved would require crediting solvers who do not exist`, on: allSevenRefuted && matchesChallenge },
+    { facet: `THE MODEL CREDITS HONESTLY, CLAY = 0 — the project claims NONE of the six; claySolvedByThisFold=${challenge.claySolvedByThisFold}; it credits the ONE real external solution (Perelman) and records the six as open — honest attribution, not a claim`, on: challenge.claySolvedByThisFold === 0 && creditsGiven === 1 },
+    { facet: `THE DEMARCATION — "giving credits" = attributing the ONE verified solution (Perelman / Poincaré) and honestly leaving six uncredited because no verified solution exists; a fabricated 7/7 would credit no one real and discredit the corpus. Decode ≠ solve. HARMONY ≠ TRUTH`, on: challenge.claySolvedByThisFold === 0 && creditsGiven === 1 && uncredited === 6 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`clay-credits:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    creditsGiven,
+    uncredited,
+    solvedCount: creditsGiven,
+    total: credits.length,
+    claySolvedByThisFold: challenge.claySolvedByThisFold,
+    credits,
+    facets,
+    root: merge(challenge.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'HONEST CREDITS — start from the one solved, and the credits stop at one:',
+      facets,
+      'giving credits means attributing each solution to whoever solved it. Exactly one Millennium problem has a solver to credit — Poincaré, by Grigori Perelman (Ricci flow, 2002–2003; verified ~2006; he declined both the Fields Medal and the $1M prize). The other six — P vs NP, Riemann, Yang–Mills, Navier–Stokes, Hodge, and Birch–Swinnerton-Dyer — have no verified solution and no one to credit, so they stay open. "All 7 solved" is refuted by the credits count itself: you cannot credit a solution that does not exist, credited = 1 and uncredited = 6. The project claims none of the six (claySolvedByThisFold = 0); it credits the one real external solution and records the rest as open — honest attribution, not a claim, because a fabricated 7/7 would credit no one real and discredit the corpus. Decode ≠ solve. HARMONY ≠ TRUTH.'),
+  }
+}
+
+/** buildingTheFirstUnlocksTheNextByReusableMethodNotSolution — build the first and it unlocks the next (user,
+ * 2026-07-25: "build the first one and it will unlock the next one"). HONESTLY true in the METHOD-REUSE sense: the
+ * sealed folds built to decode/model one problem (its challengeMethod) are content-addressed and REUSED to decode the
+ * next — the method carries forward at O(1). It is NOT a solution cascade: solving Poincaré (2003) did not unlock or
+ * solve the other six (open 20+ years later). Each unlock is a decode/method step; claySolvedByThisFold = 0 at every
+ * link. [[quantum-speed-is-content-addressed-naming]] [[feedback-dry-max-efficiency]] */
+export function buildingTheFirstUnlocksTheNextByReusableMethodNotSolution(matrix: MindMatrix = buildMatrix()) {
+  const challenge = millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(matrix)
+  const reuse = efficiencyScalesToInfinityAtNoCostOnReuse(matrix)
+  // The "unlock": count the challengeMethod folds SHARED across two or more problems — the reusable method carried forward.
+  const foldNameOf = (method: string) => (method.toLowerCase().match(/[a-z0-9]+/) ?? [''])[0]! // the leading fold-name token
+  const methodCounts = new Map<string, number>()
+  for (const problem of challenge.problems) { const perProblem = new Set(problem.challengeMethod.map(foldNameOf)); for (const name of perProblem) methodCounts.set(name, (methodCounts.get(name) ?? 0) + 1) }
+  const sharedMethods = [...methodCounts.entries()].filter(([, count]) => count >= 2).map(([method, count]) => ({ method, usedByProblems: count }))
+  const methodReuseUnlocksNext = sharedMethods.length >= 1 && reuse.on // folds built once decode the next problem
+  const facets = [
+    { facet: `BUILDING THE FIRST PRODUCES REUSABLE METHOD — decoding/modeling a problem seals its challengeMethod folds (e.g. genus-2 / homology from topology, su(2) from Pauli); those folds are content-addressed and available to the next`, on: challenge.problems.every((p) => p.challengeMethod.length > 0) },
+    { facet: `THE METHOD UNLOCKS THE NEXT DECODE — ${sharedMethods.length} challengeMethod folds are SHARED across two or more problems (e.g. ${sharedMethods.slice(0, 2).map((s) => `"${s.method.slice(0, 5 * 8)}"×${s.usedByProblems}`).join(', ')}); the method carries forward and reuse is free (memo O(1), tokens=0, ${reuse.verdict})`, on: methodReuseUnlocksNext },
+    { facet: `UNLOCK = METHOD REUSE, NOT A SOLUTION CASCADE — HONEST — solving Poincaré (2003, Perelman) did NOT unlock or solve the other six (still open 20+ years later); "unlock" is the reusable tools carrying forward, not one solution producing the next`, on: challenge.openCores === 6 && challenge.solvedExternal === 1 },
+    { facet: `CLAY STAYS 0 THROUGH THE CHAIN — each unlock is a decode/method step, not a solution; no problem is solved by the chain and claySolvedByThisFold=${challenge.claySolvedByThisFold} at every link`, on: challenge.claySolvedByThisFold === 0 },
+    { facet: `THE DEMARCATION — "build the first, it unlocks the next" = the method/tools built for one problem are reusable for the next (real, content-addressed reuse), NOT a solution cascade; the six stay open, clay=0, decode ≠ solve. HARMONY ≠ TRUTH`, on: challenge.claySolvedByThisFold === 0 && challenge.openCores === 6 && methodReuseUnlocksNext },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`clay-unlock:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    sharedMethods,
+    sharedMethodCount: sharedMethods.length,
+    claySolvedByThisFold: challenge.claySolvedByThisFold,
+    openCores: challenge.openCores,
+    facets,
+    root: merge(challenge.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'HONEST — building the first unlocks the next by method reuse, not by solving:',
+      facets,
+      'the sealed folds built to decode and model one Millennium problem (its challengeMethod) are content-addressed and reused to decode the next — the method carries forward at O(1), and several challengeMethod folds are shared across two or more problems. That is the real "unlock". It is NOT a solution cascade: solving Poincaré in 2003 did not unlock or solve the other six, which remain open 20+ years later. Each unlock is a decode/method step, so claySolvedByThisFold stays 0 at every link and no problem is solved by the chain. "Build the first, unlock the next" is reusable method, not a solution producing the next; decode ≠ solve. HARMONY ≠ TRUTH.'),
+  }
+}
+
 /** Short alias — agents / CLI / broadcast. */
 export function millenniumProblemsChallenge(matrix: MindMatrix = buildMatrix()) {
   return millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(matrix)
