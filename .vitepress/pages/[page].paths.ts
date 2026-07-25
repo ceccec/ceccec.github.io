@@ -5,6 +5,7 @@ export default {
   paths: () =>
     vitepressAutomountPaths('en').map(({ params }) => {
       const slice = monographSliceFromRoute(`/${params.page}`, 'en')
-      return { params: slice ?? params }
+      // Keep the ROUTE slug (params.page) so /<page> resolves; slice supplies the computed title/body.
+      return { params: { ...(slice ?? {}), page: params.page } }
     }),
 }

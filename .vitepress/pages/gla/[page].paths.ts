@@ -4,7 +4,8 @@ import { monographSliceFromRoute, vitepressAutomountPaths } from '../../../src/w
 export default {
   paths: () =>
     vitepressAutomountPaths('gla').map(({ params }) => {
-      const slice = monographSliceFromRoute(`/${params.page}`, 'gla')
-      return { params: slice ?? params }
+      const slice = monographSliceFromRoute(`/gla/${params.page}`, 'gla')
+      // Keep the ROUTE slug (params.page) so /gla/<page> resolves; slice supplies the locally-translated title/body.
+      return { params: { ...(slice ?? {}), page: params.page } }
     }),
 }

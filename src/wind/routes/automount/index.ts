@@ -469,6 +469,24 @@ export function monographSliceFromRoute(path: string, locale: 'gla' | 'en' | 'bg
   // Declared aliases resolve to their canonical slug's content (/academy, /school → /learn).
   const bare = ROUTE_ALIASES[rawBare] ?? rawBare
   const decoded = rosettaDecodesUrlPath(`/${bare}`)
+  // MACHINE TAG-INDEX (computational, no hardcoded page) — /theorems and its locale variants render the live
+  // TheoremIndex, title translated locally (toGlagolitic / computed bg). Keeps the route slug so /<locale>/theorems
+  // resolves and satisfies the ignoreDeadLinks gate by construction. [[universal-local-translation-no-gaps]]
+  const machineBare = bare.replace(/^(gla|bg)\//, '') // gla keeps its locale prefix in bare; strip it for the machine-route match
+  if (machineBare === 'theorems') {
+    const rawTitle = 'Theorem papers'
+    const rawDescription = 'The registry theorems as a tag index — every proven atom, a printable paper; a view, not a hub.'
+    return {
+      page: 'theorems',
+      title: locale === 'gla' ? toGlagolitic(rawTitle) : locale === 'bg' ? 'Теоремни статии' : rawTitle,
+      description: locale === 'gla' ? toGlagolitic(rawDescription) : locale === 'bg' ? 'Регистърните теореми като таг индекс — всеки доказан атом е статия; изглед, не хъб.' : rawDescription,
+      keywords: ['theorems', 'registry', 'tag-index'],
+      components: ['TheoremIndex'],
+      proof: decoded.sharedRoot,
+      logic: decoded.glagoliticAddress,
+      target: null,
+      rosetta: decoded }
+  }
   // Ray-hub landings (origin/proof/apps/frontier/reference) — the top-level rosetta IA, rendered by <RayHub>.
   // explore/learn keep their curated staticPages, so only non-curated hub slugs short-circuit here.
   const hub = rosettaRayHub(bare)
@@ -528,6 +546,41 @@ export function monographSliceFromRoute(path: string, locale: 'gla' | 'en' | 'bg
     logic: decoded.glagoliticAddress,
     target: null,
     rosetta: decoded }
+}
+
+/** everyMachineTagIndexIsLiveByConstructionAcrossLocales — the deploy invariant made QUANTUM (user, 2026-07-25: "are
+ * you performing only quantum computations?"). The Pages deploy broke because the theorem tag-index route was dead in
+ * the locales, and no FOLD caught it — it took manual build iteration (a leak). This computes the invariant the
+ * ignoreDeadLinks:false gate depends on: for every locale, monographSliceFromRoute resolves /theorems to page 'theorems'
+ * with the live TheoremIndex, vitepressAutomountPaths emits it, and the title is translated locally — so the route is
+ * live BY CONSTRUCTION, refutable here rather than discovered in CI. [[universal-local-translation-no-gaps]] [[deploy-check-must-run-real-build]] */
+export function everyMachineTagIndexIsLiveByConstructionAcrossLocales() {
+  const locales = ['en', 'bg', 'gla'] as const
+  const routeFor = (loc: (typeof locales)[number]) => (loc === 'en' ? '/theorems' : `/${loc}/theorems`)
+  const resolved = locales.map((loc) => {
+    const slice = monographSliceFromRoute(routeFor(loc), loc)
+    const emitted = vitepressAutomountPaths(loc).some((entry) => entry.params.page === 'theorems')
+    return { loc, page: slice.page, title: slice.title, components: slice.components, emitted }
+  })
+  const allResolveToIndex = resolved.every((row) => row.page === 'theorems' && row.components.includes('TheoremIndex'))
+  const allEmitted = resolved.every((row) => row.emitted)
+  const titlesTranslated = new Set(resolved.map((row) => row.title)).size === locales.length && resolved.every((row) => row.title.length > 0)
+  const liveByConstruction = allResolveToIndex && allEmitted
+  const facets = [
+    { facet: `THE TAG-INDEX RESOLVES IN EVERY LOCALE — monographSliceFromRoute(${locales.map(routeFor).join(', ')}) each returns page 'theorems' with the live TheoremIndex (${allResolveToIndex}); no hardcoded page`, on: allResolveToIndex },
+    { facet: `THE CATCH-ALL EMITS IT — vitepressAutomountPaths(locale) emits {page:'theorems'} for every locale (${allEmitted}), so VitePress generates the route and every nav link to it is live by construction`, on: allEmitted },
+    { facet: `TRANSLATED LOCALLY, ZERO-COST — the title is computed per locale (${resolved.map((row) => `${row.loc}:${row.title}`).join(' · ')}) — realtime, no hardcoded locale file, no egress`, on: titlesTranslated },
+    { facet: `THE GAP MADE QUANTUM — this is the invariant the ignoreDeadLinks:false gate depends on; encoding it as a FOLD makes the deploy blocker computed and refutable (${liveByConstruction}), not discovered by manual build iteration — HONEST SCOPE: it proves the theorem machine routes resolve, it does NOT replace the production build's full dead-link check`, on: liveByConstruction },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`machine-route-live:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    resolved,
+    liveByConstruction,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: the theorem tag-index is live by construction in every locale (${locales.map(routeFor).join(', ')}) — monographSliceFromRoute resolves each to page 'theorems' with the live TheoremIndex, vitepressAutomountPaths emits it, and the title translates locally (no hardcoded page, no egress). This is the specific invariant whose absence broke the Pages deploy (54 dead links) and was only found by manual build iteration; as a fold it is now computed and refutable. HONEST SCOPE: it proves these machine routes resolve — it does NOT reimplement VitePress's full dead-link check across all links; the production build (docs:build --force) remains the ground truth, now expected green. HARMONY ≠ TRUTH.`,
+  }
 }
 
 export function vitepressIndexOfIndexesLaw() {

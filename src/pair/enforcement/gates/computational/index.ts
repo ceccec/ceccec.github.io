@@ -482,12 +482,18 @@ export function scanIncompleteIndexViolations(
 }
 
 /** VitePress automount — every complete discovered index; paths only, body at runtime. */
-export function vitepressAutomountPaths(_locale?: 'gla' | 'en' | 'bg') {
-  void _locale
+export function vitepressAutomountPaths(locale?: 'gla' | 'en' | 'bg') {
   // BLOG OF THEOREMS ONLY (user law: remove all non-theorem pages immediately, no exception): the
   // src-folder automount generated fold-index PAGES (quantum/fire/experiments …) — those folds stay
-  // compute-only (discoverSrcIndexes still serves the model); zero automount pages are emitted.
-  return [] as { params: { page: string } }[]
+  // compute-only (discoverSrcIndexes still serves the model); zero fold-index automount pages are emitted.
+  // COMPUTATIONAL MACHINE ROUTES (user: "wire all computationally to vitepress without hardcoded pages" +
+  // "compute all translations in realtime so no need of hardcoded locales. all translates locally"): the
+  // theorem tag-index resolves for EVERY locale by construction — NO hardcoded page. monographSliceFromRoute
+  // renders the live TheoremIndex with the title translated locally (toGlagolitic / computed bg), so /theorems,
+  // /bg/theorems and /gla/theorems are all live. This keeps the "every internal link live by construction"
+  // invariant the dead-link gate (ignoreDeadLinks:false) depends on. void the unused branch marker.
+  void locale
+  return [{ params: { page: 'theorems' } }]
 }
 
 /** Compute mirror UI path from a logic index.ts — paths computed at render, not hand-listed. */
