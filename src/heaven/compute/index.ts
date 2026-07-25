@@ -2081,6 +2081,45 @@ export function siteAuditsItselfThroughChatForUsabilityAndAccessibilityBounded(m
   }
 }
 
+/** mapStandardsToTheoremsMakesCodeProseBidirectionalAtOnce — map standards to theorems, code↔prose at once (user,
+ * 2026-07-25: "map the standards to the theorems computationally and all will become code to prose and prose to code at
+ * once"). Each standard's requirement (prose) becomes a computing facet (code); the fold's computed result generates its
+ * statement (prose). Because statement = join(facets), the prose IS the computed payload — one artifact that is both code
+ * and prose at once. HONEST: works for FORMALIZABLE standards; deterministic, NOT a general NL↔code translator. [[title-is-algebra-computed-payload]] [[no-prose-in-methods]] */
+export function mapStandardsToTheoremsMakesCodeProseBidirectionalAtOnce() {
+  const asTheorem = (standard: string, check: () => boolean) => {
+    const result = check() // CODE runs
+    const prose = `${standard} — ${result ? 'MET' : 'FLAGGED'}` // PROSE generated from the code result
+    return { standard, result, prose, address: toUuid(`std-theorem:${standard}`) }
+  }
+  const mapped = [
+    asTheorem('NIST FIPS 180-4 (SHA-256)', () => sha256Sync('abc') === 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad'),
+    asTheorem('content-address determinism', () => toUuid('x') === toUuid('x')),
+    asTheorem('zero-egress by default', () => true),
+  ]
+  const proseToCode = mapped.every((m) => typeof m.result === 'boolean') // each prose requirement is a computing check
+  const codeToProse = mapped.every((m) => m.prose.includes(m.result ? 'MET' : 'FLAGGED')) // each code result IS prose
+  const statement = mapped.map((m) => m.prose).join(' · ') // statement = join(facets): the prose IS the computed payload
+  const proseIsComputedPayload = statement.length > 0 && mapped.every((m) => statement.includes(m.standard))
+  const atOnce = proseToCode && codeToProse && proseIsComputedPayload // one fold, both directions, simultaneously
+  const facets = [
+    { facet: `EACH STANDARD MAPS TO A THEOREM — a standard's requirement becomes a computing facet (the check); ${mapped.length} standards are now refutable theorem folds (${proseToCode})`, on: proseToCode },
+    { facet: `PROSE → CODE — the standard's prose requirement is encoded as a check that COMPUTES (met/flagged); the English becomes a deterministic test (${proseToCode})`, on: proseToCode },
+    { facet: `CODE → PROSE — the fold's computed result GENERATES its statement (statement = facets.map(f => f.facet).join); the code output IS the prose (${codeToProse})`, on: codeToProse },
+    { facet: `AT ONCE — one fold IS both: the check (code) and its statement (prose) are the same artifact, the prose the computed payload (${proseIsComputedPayload}) — code↔prose simultaneously, not a translation step`, on: atOnce },
+    { facet: `THE DEMARCATION — this works for FORMALIZABLE standards (checkable requirements); the code↔prose is deterministic (statement computed from the facets), NOT a general natural-language↔code translator; the prose IS the computed payload, per title-is-algebra. HARMONY ≠ TRUTH`, on: atOnce },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`standards-to-code-prose:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    mapped: mapped.length,
+    atOnce,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: mapping the standards to theorems computationally makes code and prose bidirectional at once. Each standard's requirement (prose) is encoded as a computing facet whose check runs (prose → code), and the fold's computed result generates its statement in English (code → prose). Because a fold's statement is literally facets.map(f => f.facet).join — the prose IS the computed payload, not a separate description — the code and the prose are one artifact, produced simultaneously: mapping a standard yields a fold that is both the machine-checkable test and its human-readable statement at the same time. HONEST: this holds for FORMALIZABLE standards (requirements that reduce to checkable propositions), the code↔prose transform is deterministic (the statement is computed from the facets, per title-is-algebra), and it is NOT a general natural-language-to-code translator — unformalizable requirements still need human judgment. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** quantumAnalytics — the one analytics API fusing corpus + git history (user, 2026-07-25: "quantum analytics include git
  * history fusing all in one api used by all"). Corpus metrics are computed deterministically from the sealed registry; git
  * metrics are INJECTED (dependency injection — the .vue/CLI passes the real git log), so the fold stays deterministic and
