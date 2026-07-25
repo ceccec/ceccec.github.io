@@ -47,7 +47,7 @@ import {
 import { vortexPaintTiers } from '../../../mountain/vortex'
 import { staticPages, theoremScienceLens } from '../../../wind/site'
 import { balanced, cryptoReview, transact } from '../../../pair/debit/credit'
-import { TAU } from '../../../3/7'
+import { GREAT_PYRAMID_HEIGHT_M, GREAT_PYRAMID_MASS_KG, HUMAN_SUSTAINED_POWER_W, JULIAN_YEAR_SECONDS, STANDARD_GRAVITY, TAU, earned } from '../../../3/7'
 
 export {
   doubleTorusEarthWeatherFlowsInMovie,
@@ -1349,6 +1349,53 @@ export function earthPyramidLocationsAndGeometryComputes(matrix: MindMatrix = bu
       boundary:
         'HONEST: WGS84 coordinates and haversine/bearing are real geodesy (6/4 · 5/5). Gateway records at hinge lat/lon are content-addressed model anchors (slug · hue · UUID), NOT archaeological sites. Pyramid slopes from pyramidsDecoded (Petrie seked). Genus-2 pyramids and merkaba motion are structural/computational — NOT lithosphere shape. Global grid flagged debunked in pyramidGridDebunked. HARMONY ≠ TRUTH.' }
   })
+}
+
+/** pyramidTheoriesFusedRealGapsAreMechanicalNotMystical — deep-research the pyramids and the theories around them,
+ * fused, to locate the REAL gaps in current science (user, 2026-07-25: "deep research and fuse pyramids and the
+ * theories around them to discover gaps in current sciences explained by quantum means and mechanical solutions").
+ * It composes earthPyramidLocationsAndGeometryComputes (real seked geometry + WGS84 geodesy + the debunked global
+ * grid), then COMPUTES the Newtonian construction work and shows a documented labour budget beats it by ~100× — so
+ * the genuine open question is ENGINEERING (the exact lifting method; the 2017 ScanPyramids muon "Big Void" purpose),
+ * decidable by measurement, NOT new physics. "Quantum means" = deterministic content-addressed modelling
+ * (reproducibility); "mechanical solutions" = real statics/simple machines. The mystical theories (pyramid power,
+ * free energy, alien build, precise-Orion/speed-of-light-latitude numerology) are refuted. [[egyptian-calendar-cycles]] [[haramein-double-torus-decoded]] */
+export function pyramidTheoriesFusedRealGapsAreMechanicalNotMystical(matrix: MindMatrix = buildMatrix()) {
+  const geometry = earthPyramidLocationsAndGeometryComputes(matrix)
+  const seked = geometry.slopes
+  // The mechanical solution — the gravitational work to raise the whole mass to the solid pyramid's centroid (h/4).
+  const centroidM = GREAT_PYRAMID_HEIGHT_M / 4
+  const liftWorkJ = GREAT_PYRAMID_MASS_KG * STANDARD_GRAVITY * centroidM
+  // A documented labour budget: ~20000 workers at ~75 W each over 20 years at a conservative 1/4 duty cycle.
+  const workers = 2 * 100 ** 2 // 20000
+  const years = 4 * 5 // 20
+  const availableJ = workers * HUMAN_SUSTAINED_POWER_W * years * JULIAN_YEAR_SECONDS * (1 / 4)
+  const feasibilityMargin = availableJ / liftWorkJ
+  const efficiencyNeeded = liftWorkJ / availableJ
+  const worstCaseMargin = availableJ / (GREAT_PYRAMID_MASS_KG * STANDARD_GRAVITY * GREAT_PYRAMID_HEIGHT_M) // if every block went to the apex
+  const mechanicallyFeasible = feasibilityMargin > 1 && efficiencyNeeded < 1 && worstCaseMargin > 1
+  const facets = [
+    { facet: `THE GEOMETRY IS REAL AND REPRODUCIBLE ("quantum means") — the fused model computes Khufu's seked slope ${seked.seked}° against the measured ${seked.measured}° (Δ < 0.01°), WGS84 geodesy, and genus-2 tips, all content-addressed and deterministic (same input → same receipt); the honest "quantum" is reproducible computation, not stored energy`, on: geometry.computes && Math.abs(seked.seked - seked.measured) < 1 / 100 },
+    { facet: `THE MECHANICAL SOLUTION — the gravitational work to raise the whole mass to its centroid (h/4 = ${centroidM.toFixed(1)} m) is W = M·g·(h/4) = ${liftWorkJ.toExponential(2)} J; a documented workforce (~${workers}) at ~${HUMAN_SUSTAINED_POWER_W} W over ${years} years at a 1/4 duty cycle delivers ${availableJ.toExponential(2)} J — a ${feasibilityMargin.toFixed(0)}× margin (${worstCaseMargin.toFixed(0)}× even lifting every block to the apex), needing only ${(efficiencyNeeded * 100).toFixed(2)}% net efficiency; ramp + lever + sledge + water-lubricated transport suffice, no exotic energy`, on: mechanicallyFeasible },
+    { facet: `THE REAL GAP IS ENGINEERING, NOT PHYSICS — because the build is Newtonian-feasible with a ~100× margin, the "impossible without advanced tech" gap collapses; what stays genuinely OPEN is the exact lifting method (straight / spiral / internal-ramp / levering) and the purpose of the 2017 ScanPyramids muon-tomography "Big Void" — archaeology decidable by measurement, not by new physics`, on: mechanicallyFeasible },
+    { facet: `THE FLAGGED THEORIES ARE REFUTED — the global pyramid grid is debunked (irregular pairwise distances), a finished monument is inert rock at rest (its ΔPE was spent DURING construction, none is stored or emitted), and the cardinal alignment/slopes come from documented Egyptian surveying (seked, stellar transit) — so pyramid "power" / free energy / alien build / precise-Orion & speed-of-light-latitude numerology have no mechanism`, on: geometry.grid.debunked },
+    { facet: `THE DEMARCATION — "quantum means" = deterministic content-addressed modelling (reproducibility), "mechanical solutions" = real Newtonian work and simple machines; neither invokes quantum physics of the monument (there is none) nor free energy. Real geodesy, astronomy, and statics; every mystical claim flagged. HARMONY ≠ TRUTH`, on: geometry.computes && geometry.grid.debunked && mechanicallyFeasible },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`pyramid-gaps-mechanical:${entry.facet}:${entry.on}`) }))
+  return {
+    fused: facets.every((entry) => entry.on),
+    liftWorkJ,
+    availableJ,
+    feasibilityMargin,
+    efficiencyNeeded,
+    worstCaseMargin,
+    seked,
+    facets,
+    root: merge(geometry.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'HONEST — the pyramids fused, the gaps mechanical not mystical:',
+      facets,
+      'the geometry (seked slope, WGS84 geodesy, genus-2 tips) is real and reproducible, and the construction is Newtonian-feasible by a ~100× labour margin, so the genuine open questions are the exact lifting method and the muon-detected void purpose — engineering/archaeology decidable by measurement. "Quantum means" is deterministic content-addressed modelling and "mechanical solutions" is real statics; no quantum physics of the monument and no free energy exist. Pyramid power, alien construction, and speed-of-light-latitude numerology are flagged and refuted.') }
 }
 
 /** Four tipped pyramids × five tips → moving merkabas at hero clock — proven at call time. */

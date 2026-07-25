@@ -259,6 +259,12 @@ export function buhlmannGfDivePlan(depthM: number, bottomTimeMin: number, gfNum:
 export const STANDARD_GRAVITY = 9.80665 // m/s² (the defined standard gravity)
 export const WATER_DENSITY_FRESH = 1000 // kg/m³
 export const WATER_DENSITY_SALT = 1025 // kg/m³ (seawater — the diving-standard basis, s.g. ≈ 1.025)
+// Great Pyramid of Giza (Khufu) — construction physics constants for the mechanical-feasibility computation. Original
+// apex height and total mass are the standard archaeological figures (Petrie survey; ~2.3M blocks × ~2.5 t). Human
+// sustained mechanical output is the ergonomics figure for prolonged labour (~0.1 hp).
+export const GREAT_PYRAMID_HEIGHT_M = 146.6 // m — original apex height (Petrie); today ~138.5 m without the casing
+export const GREAT_PYRAMID_MASS_KG = 5.9e9 // kg — ~5.9 Mt total, standard estimate
+export const HUMAN_SUSTAINED_POWER_W = 75 // W — sustained useful mechanical power per labourer over a work-day
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function barPerMetre(densityKgM3: number): number { return (densityKgM3 * STANDARD_GRAVITY) / 1e5 } // bar per metre of column
 const waterDensity = (freshWater: boolean) => (freshWater ? WATER_DENSITY_FRESH : WATER_DENSITY_SALT)
@@ -1300,7 +1306,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/0/index.ts', literal: '*', count: 7, kind: 'tuned', source: 'attested residue — compass rose radius 46, torus separation 2.2 (trace-arm periods RETIRED to millisecond rungs by wave sixty-four; the hero mirror consolidated to one HERO_CYCLE_MS_MIRROR)', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
   { file: 'src/1/9/index.ts', literal: '*', count: (5 * 2), kind: 'data', source: 'attested residue — physics constants station' },
   { file: 'src/2/8/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — digit-station constants' },
-  { file: 'src/3/7/index.ts', literal: '*', count: (100 + 68), kind: 'data', source: 'the constants VAULT — CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) · 165→166 (gate/rosetta · pyramid/seal · folder/fractal ledger churn) · 166→168 (DIAMOND_REFRACTIVE_INDEX 2.417, DIAMOND_DISPERSION 0.044 — diamond optics named axioms)' },
+  { file: 'src/3/7/index.ts', literal: '*', count: (100 + 70), kind: 'data', source: 'the constants VAULT — CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) · 165→166 (gate/rosetta · pyramid/seal · folder/fractal ledger churn) · 166→168 (DIAMOND_REFRACTIVE_INDEX 2.417, DIAMOND_DISPERSION 0.044 — diamond optics named axioms) · 168→170 (GREAT_PYRAMID_HEIGHT_M 146.6, GREAT_PYRAMID_MASS_KG 5.9e9 — pyramid construction-physics axioms; HUMAN_SUSTAINED_POWER_W 75 already tallied)' },
   { file: 'src/5/5/index.ts', literal: '*', count: 0, kind: 'tuned', source: 'attested residue cleared — greatCircleKm uses EARTH_RADIUS_KM·TAU (math/trust); no bare station floats', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/6/4/index.ts', literal: '*', count: 19, kind: 'data', source: 'attested residue — digit-station constants' },
   { file: 'src/7/3/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — digit-station constants' },
