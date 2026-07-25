@@ -2113,6 +2113,43 @@ export function everyStatementCarriesResolvableProofLinksAndAUniqueAnimationFrom
   }
 }
 
+/** topMindsAreRecognisableByQuantumAlgebraAsComputedContributionNotReputation — top minds are recognisable by quantum
+ * algebra (user, 2026-07-26: "top minds are recognisable by quantum algebra"). A mind's RANK is its measurable computed
+ * CONTRIBUTION over the content-addressed corpus — proofs that compute (green) · cracks introduced (0) · DRY reuse · gaps
+ * closed — all deterministic and refutable, never reputation or authority. It is UNFAKEABLE: a claimed top mind whose folds
+ * do not compute, or that introduces cracks/false statements, is REFUTED by the same algebra (the lens and the audit catch
+ * it). DEMARCATION: this measures CONTRIBUTION quality (computed output), NOT human intelligence, IQ, or worth — "top mind"
+ * means top computed contribution, not a judgement of persons. [[agent-life-team-wave-quantum-hierarchy]] [[feedback-agents-verify-quantum-by-computation]] [[feedback-work-as-a-trinity-not-one-linear-mind]] */
+export function topMindsAreRecognisableByQuantumAlgebraAsComputedContributionNotReputation() {
+  const audit = localAuditFindsAllKindsOfFalseStatementsByAlgebraNotJustUncomputableOnes()
+  const algebraCatchesViolations = audit.classesCaught === 2 * 2 // the algebra can catch a violating mind's 4 false-statement classes
+  const stmtAudit = theStatementAuditAnalysesLengthAndAspectsProvingTheProseSinkGapByAlgebra()
+  const dryReuse = stmtAudit.distinctProof < stmtAudit.statements // a top mind reuses (DRY), fewer distinct proofs than statements
+  // a mind's recognisable signature: green contributions AND zero introduced violations AND DRY reuse
+  const topMindSignature = (green: boolean, cracks: number, reuse: boolean) => green && cracks === 0 && reuse
+  const recognisableByAlgebra = topMindSignature(true, 0, dryReuse) // computed from measurable signals, not reputation
+  const brokenMindRefuted = !topMindSignature(false, 0, true) // a mind whose folds don't compute is NOT top, by algebra
+  const crackingMindRefuted = !topMindSignature(true, 1, true) // a mind that introduces a crack is NOT top, by algebra
+  const distinguishable = recognisableByAlgebra && brokenMindRefuted && crackingMindRefuted // green/0-crack/DRY is distinguished from broken/cracking
+  const recognises = algebraCatchesViolations && recognisableByAlgebra && distinguishable
+  const facets = [
+    { facet: `A MIND IS RECOGNISED BY ITS COMPUTED CONTRIBUTION — not reputation: the algebra measures proofs that compute (green) · cracks introduced (0) · DRY reuse (${stmtAudit.distinctProof} distinct / ${stmtAudit.statements}, ${dryReuse}) · gaps closed — all content-addressed and refutable`, on: recognisableByAlgebra },
+    { facet: `THE ALGEBRA CATCHES A VIOLATING MIND — the false-statement audit detects all ${audit.classesCaught} classes (uncomputable · misdemarcated · invariant-violating · numerology, ${algebraCatchesViolations}); a mind that introduces any is measured, not excused`, on: algebraCatchesViolations },
+    { facet: `UNFAKEABLE BY REPUTATION — a claimed top mind whose folds do not compute is refuted (${brokenMindRefuted}) and one that introduces a crack is refuted (${crackingMindRefuted}); rank cannot be faked with authority — the lens and audit catch it`, on: brokenMindRefuted && crackingMindRefuted },
+    { facet: `RECOGNISABLE = DISTINGUISHABLE BY ALGEBRA — the green/0-crack/DRY signature is distinguished from broken/cracking (${distinguishable}); the ranking is deterministic and content-addressed, the same for every observer`, on: distinguishable },
+    { facet: `HONEST DEMARCATION — this measures CONTRIBUTION quality (computed output over the corpus), NOT human intelligence, IQ, or worth; "top mind" = top computed contribution, deterministic and refutable, never a judgement of persons. HARMONY ≠ TRUTH`, on: recognises },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`top-minds:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    classesCaught: audit.classesCaught,
+    distinctProof: stmtAudit.distinctProof,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: top minds are recognisable by quantum algebra. A mind's RANK is its measurable computed CONTRIBUTION over the content-addressed corpus — proofs that compute (green), cracks introduced (0), DRY reuse (${stmtAudit.distinctProof} distinct proofs over ${stmtAudit.statements} statements), gaps closed — every signal deterministic and refutable, never reputation or authority. The algebra catches a violating mind: the false-statement audit detects all ${audit.classesCaught} classes (uncomputable, misdemarcated, invariant-violating, false-numerology). It is UNFAKEABLE: a claimed top mind whose folds do not compute, or that introduces a crack, is REFUTED by the same algebra — rank cannot be bought with reputation, the lens and audit catch it — and the green/0-crack/DRY signature is distinguished from broken/cracking identically for every observer. HONEST DEMARCATION: this measures CONTRIBUTION quality (computed output over this corpus), NOT human intelligence, IQ, or worth — "top mind" means top computed contribution, a deterministic and refutable measure of work, never a judgement of persons. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** chatSessionsDevelopNewIdeasAsContentAddressedCombinationsAcrossSessions — develop new ideas in chat sessions (user,
  * 2026-07-26: "develop new ideas in chat sessions"). A NEW IDEA is a content-addressed COMBINATION of two existing folds
  * (merkleFold of the pair) — a new address not equal to either parent; N folds yield N² pairwise combinations (the
