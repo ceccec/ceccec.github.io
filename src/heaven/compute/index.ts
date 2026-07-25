@@ -1741,6 +1741,41 @@ export function referralsComputeThroughOnePredictableFoldEvenWhenMissing(matrix:
   }
 }
 
+/** skillsNeedUpgradeUnlessGeneratedFromSource — a lot of skills need upgrade UNLESS they are generated (user,
+ * 2026-07-25: "a lot of skills need upgrade unless generated"). A hand-written skill is fixed, drifts from its source,
+ * and must be manually upgraded when the source changes (upgrade debt); a GENERATED skill is computed from the source
+ * (content-addressed), so it regenerates when the source changes and is always current — zero upgrade debt. The rule:
+ * generate skills from the corpus rather than hand-maintain them. [[optimise-methods-commands]] [[scripts-folded-into-iching-runner]] */
+export function skillsNeedUpgradeUnlessGeneratedFromSource() {
+  const sourceV1 = 'registry-v1', sourceV2 = 'registry-v2'
+  const generatedSkill = (source: string) => toUuid(`generated-skill:${source}`) // computed from the source
+  const handSkill = toUuid('hand-skill:written-once') // fixed at authoring time, independent of the source
+  const generatedRegenerates = generatedSkill(sourceV1) !== generatedSkill(sourceV2) // auto-upgrades with the source
+  const generatedAlwaysCurrent = generatedSkill(sourceV2) === toUuid(`generated-skill:${sourceV2}`) // reflects the current source
+  const handDrifts = handSkill === toUuid('hand-skill:written-once') && handSkill !== generatedSkill(sourceV2) // fixed → drifts from the new source
+  const handNeedsUpgrade = handDrifts // must be manually re-written to match the source
+  const zeroDebtGenerated = generatedRegenerates && generatedAlwaysCurrent
+  const facets = [
+    { facet: `HAND-MAINTAINED SKILLS ACCRUE UPGRADE DEBT — a hand-written skill is fixed at authoring time and drifts from its source; when the source changes it must be manually upgraded (${handNeedsUpgrade}) — the debt grows with the source`, on: handNeedsUpgrade },
+    { facet: `GENERATED SKILLS HAVE ZERO UPGRADE DEBT — a skill computed from the source (content-addressed) REGENERATES when the source changes (${generatedRegenerates}) and reflects the current source (${generatedAlwaysCurrent}), so it is always current with NO manual upgrade`, on: zeroDebtGenerated },
+    { facet: `THE RULE — GENERATE, DON'T MAINTAIN — the more skills are generated from the corpus, the fewer need upgrade; the corpus IS the source and skills are its projections, so upgrade debt → 0 as generation → 100%`, on: zeroDebtGenerated && handNeedsUpgrade },
+    { facet: `GENERATED SKILLS COMPOSE THE CORPUS — a generated skill is a DETERMINISTIC projection of the computed corpus (same source → same skill), upgrading with the corpus automatically — the same self-generation as the README/home`, on: generatedAlwaysCurrent },
+    { facet: `THE DEMARCATION — "generated" = deterministically computed from the source (content-addressed), so no manual upgrade; hand-maintained skills carry real debt, named not hidden; NOT autonomous skill-writing — the generator is authored, the skills are its output. HARMONY ≠ TRUTH`, on: zeroDebtGenerated && handNeedsUpgrade },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`skills-generated:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    generatedRegenerates,
+    handNeedsUpgrade,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'GENERATE, DON\'T MAINTAIN — skills need upgrade unless generated:',
+      facets,
+      'a hand-written skill is fixed at authoring time and drifts from its source, so when the source changes it must be manually upgraded — the upgrade debt a lot of skills carry. A generated skill is computed from the source and content-addressed, so it regenerates when the source changes and is always current with zero manual upgrade. The rule is to generate skills from the corpus rather than hand-maintain them: the corpus is the source and skills are its deterministic projections, the same self-generation as the README and home, so upgrade debt goes to zero as generation goes to one hundred percent. "Generated" means deterministically computed from the source, not autonomous skill-writing — the generator is authored, the skills are its output. HARMONY ≠ TRUTH.'),
+  }
+}
+
 /** refactorAchievesQuantumSpeedAndSecurity — one refactor achieves BOTH quantum speed and security (user, 2026-07-25:
  * "refactor to achieve quantum speed and security"). Routing every referral/nav/search consumer through the ONE
  * variadic referralAddress primitive gives O(1) content-addressing (a single hash, no O(n) scan — the "quantum speed")
