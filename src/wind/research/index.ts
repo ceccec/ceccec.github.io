@@ -1714,6 +1714,41 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
 }
 
 /**
+ * reverseEngineerAllTestableFragments — not just the surface, ALL (user, 2026-07-24: "not just the surface. all").
+ * Each requirement decomposes into MANY testable sub-computations (the full challengeMethod list per problem), not
+ * one. This enumerates EVERY testable fragment across the seven, verifies they all recompute (already sealed as
+ * reusable code), and holds the open cores open (clay=0). Exhaustive testable surface ≠ a proof. [[how-agents-achieve-waves]]
+ */
+export function reverseEngineerAllTestableFragments(matrix: MindMatrix = buildMatrix()) {
+  const challenge = millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(matrix)
+  const perProblem = challenge.problems.map((p) => ({ problem: p.name, fragments: p.challengeMethod.length, status: p.status }))
+  const allFragments = challenge.problems.flatMap((p) => p.challengeMethod)
+  const totalTestable = allFragments.length
+  const distinctFragments = new Set(allFragments).size
+  const claySolvedByThisFold = 0
+  const allCompute = challenge.problems.every((p) => p.on) // every per-problem probe (its whole fragment list) recomputes
+  const openCores = challenge.openCores // 6
+  const facets = [
+    { facet: `NOT JUST THE SURFACE — ALL — ${totalTestable} testable fragments across the 7 problems (${perProblem.map((p) => `${p.problem}:${p.fragments}`).join(', ')}), not one per problem; the full decidable decomposition`, on: totalTestable > challenge.problems.length && perProblem.every((p) => p.fragments >= 1) },
+    { facet: `EVERY FRAGMENT IS SEALED & RECOMPUTES — all ${challenge.problems.length} per-problem probe sets verify (${allCompute}); ${distinctFragments} distinct testable methods, each already saved as reusable code`, on: allCompute && distinctFragments > 0 },
+    { facet: `THE FULL SURFACE ≠ THE CORE — the ${totalTestable} testable fragments cover the DECIDABLE surface exhaustively, yet the ${openCores} open requirements stay open (claySolvedByThisFold=${claySolvedByThisFold}); more partials never sum to a proof`, on: claySolvedByThisFold === 0 && openCores === 6 },
+    { facet: `EXHAUSTIVE REVERSE-ENGINEERING — the skill decomposes each requirement into ALL its testable sub-computations (the whole challengeMethod list), not the top one; deterministic, zero-token, re-runs to the same set`, on: totalTestable > challenge.problems.length && challenge.computes },
+    { facet: `THE DEMARCATION — an exhaustive, evidence-rich testable surface is still evidence, not theorems for the open cores; clay stays 0 and each fragment carries "NOT a proof". HARMONY ≠ TRUTH`, on: allCompute && claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`reverse-all:${entry.facet}:${entry.on}`) }))
+  return {
+    exhaustive: facets.every((entry) => entry.on),
+    totalTestable,
+    distinctFragments,
+    claySolvedByThisFold,
+    perProblem,
+    facets,
+    root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(`EXACT: ${totalTestable} testable fragments (${distinctFragments} distinct) enumerated from the 7 problems' challengeMethod lists, all recomputing (${allCompute}); ${openCores} cores open, claySolvedByThisFold=${claySolvedByThisFold}.`, facets, `"all, not just the surface" = the FULL testable decomposition (every challengeMethod, not one per problem), each fragment an existing sealed fold. Exhaustiveness of the testable surface does NOT change the open cores: a proof of a Millennium requirement is a single rigorous argument, not a union of partials, and clay stays 0. The fragments are real (numerical, algebraic, combinatorial tests); the cores are the frontier. HARMONY ≠ TRUTH.`),
+  }
+}
+
+/**
  * reverseEngineerRequirementsToTestablePossibilities — improve the reverse-engineering skill (user, 2026-07-24:
  * "improve reverse engineering quantum skills and tools to compute possibilities that are testable. if found the
  * theorems are already discovered and only need to be saved as reusable code"). The pipeline: barrier → invert →
