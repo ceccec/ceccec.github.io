@@ -7,6 +7,7 @@ import {
   runPqcStandardsToolInBrowser,
   runQuantumStandardsAuditInBrowser,
   runIsoPqcRequirementsGapFillInBrowser,
+  globalCyberStandardsAuditEveryAspect,
 } from './index.ts'
 import UiCard from '../../../.vitepress/theme/components/ui/Card.vue'
 import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.vue'
@@ -24,6 +25,7 @@ const result = shallowRef<ReturnType<typeof runEncryptionToolInBrowser> | null>(
 const pqcResult = shallowRef<ReturnType<typeof runPqcStandardsToolInBrowser> | null>(null)
 const auditResult = shallowRef<ReturnType<typeof runQuantumStandardsAuditInBrowser> | null>(null)
 const isoGapResult = shallowRef<ReturnType<typeof runIsoPqcRequirementsGapFillInBrowser> | null>(null)
+const euAudit = shallowRef(globalCyberStandardsAuditEveryAspect())
 
 function selectModulus(n: number) {
   selectedModulus.value = n
@@ -37,6 +39,7 @@ function runTool() {
     pqcResult.value = runPqcStandardsToolInBrowser(familyPrefer.value)
     auditResult.value = runQuantumStandardsAuditInBrowser()
     isoGapResult.value = runIsoPqcRequirementsGapFillInBrowser()
+    euAudit.value = globalCyberStandardsAuditEveryAspect()
     panel.value = encryptionPanelComputes()
     momentProve.value = agentAssumeNothingMathProvesInTheMoment()
   } catch (err) {
@@ -391,6 +394,42 @@ runTool()
           </li>
         </ul>
         <p v-if="auditResult" class="encryption-tools__boundary">{{ auditResult.boundary }}</p>
+      </section>
+      <UiSeparator />
+      <section id="eu-cyber-audit" aria-label="Global cyber standards audit — every aspect">
+        <h3>Cyber standards audit — every aspect (EU + beyond)</h3>
+        <p class="encryption-tools__lede">
+          Latest standards worldwide ({{ euAudit.standards.join(' · ') }}), aspect by aspect, each mapped to a computed test backed by a latest discovery. Alignment / self-assessment — NOT legal compliance, a conformity assessment, or certification in any framework. Gaps named, not faked closed.
+        </p>
+        <UiBadge :variant="euAudit.computes ? 'default' : 'outline'">
+          {{ euAudit.count }} aspects · covered {{ euAudit.coveredCount }} · partial {{ euAudit.partialCount }} · gap {{ euAudit.gapCount }}
+        </UiBadge>
+        <UiBadge variant="outline">clay={{ euAudit.claySolvedByThisFold }} · certified={{ euAudit.certified }}</UiBadge>
+        <table class="encryption-tools__table">
+          <thead>
+            <tr><th>Coverage</th><th>Standard</th><th>Article / ref</th><th>Aspect</th><th>Evidence (latest discovery)</th></tr>
+          </thead>
+          <tbody>
+            <tr v-for="row in euAudit.rows" :key="row.id">
+              <td>
+                <UiBadge :variant="row.coverage === 'covered' && row.on ? 'default' : 'outline'">
+                  {{ row.coverage }}{{ row.coverage === 'gap' ? '' : (row.on ? ' ✓' : ' —') }}
+                </UiBadge>
+              </td>
+              <td><strong>{{ row.standard }}</strong></td>
+              <td><code>{{ row.ref }}</code></td>
+              <td>{{ row.aspect }}</td>
+              <td class="encryption-tools__meta">{{ row.evidence }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <ul class="encryption-tools__list">
+          <li v-for="facet in euAudit.facets" :key="facet.receipt">
+            <UiBadge :variant="facet.on ? 'default' : 'outline'">{{ facet.on ? '✓' : '—' }}</UiBadge>
+            <span>{{ facet.facet }}</span>
+          </li>
+        </ul>
+        <p class="encryption-tools__boundary">{{ euAudit.boundary }}</p>
       </section>
     </UiCardContent>
   </UiCard>
