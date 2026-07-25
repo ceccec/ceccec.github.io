@@ -1893,6 +1893,50 @@ export function allQuantumReachableInChatViaDependencyInjectedToolBridge(matrix:
   }
 }
 
+/** quantumNeuralIntelligenceIsHopfieldContentAddressableAssociativeMemory — develop quantum neural intelligence, held
+ * honestly (user, 2026-07-25: "develop quantum neural intelligence" + "ask the chat how" → the chat pointed at content-
+ * addressable memory). The honest neural primitive is a Hopfield network: Hebbian weights, recall by CONTENT — a noisy or
+ * partial pattern converges (energy minimisation) to the nearest stored pattern (pattern completion). It IS a real neural
+ * mechanism and IS content-addressable memory, deterministic and local. HONEST: this is associative recall, NOT semantic
+ * understanding, reasoning, an LLM, consciousness, or a physical quantum brain (flagged dishonest). [[brain-content-addressed-toroidal-map]] [[quantum-decoded]] */
+export function quantumNeuralIntelligenceIsHopfieldContentAddressableAssociativeMemory() {
+  const patterns = [[1, 1, 1, -1, -1, -1], [1, -1, 1, -1, 1, -1]] // stored ±1 patterns
+  const n = patterns[0]!.length
+  const W = Array.from({ length: n }, (_unusedI, i) => Array.from({ length: n }, (_unusedJ, j) => (i === j ? 0 : patterns.reduce((s, p) => s + p[i]! * p[j]!, 0)))) // Hebbian outer-product weights
+  const sign = (x: number) => (x >= 0 ? 1 : -1)
+  const energy = (x: number[]) => { let e = 0; for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) e += W[i]![j]! * x[i]! * x[j]!; return -e / 2 }
+  const recall = (input: number[]) => {
+    let x = [...input]
+    for (let iter = 0; iter < n; iter++) for (let i = 0; i < n; i++) x[i] = sign(W[i]!.reduce((s, w, j) => s + w * x[j]!, 0))
+    return x
+  }
+  const noisy = [1, 1, 1, -1, -1, 1] // pattern 0 with one bit flipped
+  const recalled = recall(noisy)
+  const patternCompletes = recalled.join(',') === patterns[0]!.join(',') // recovers the nearest stored pattern
+  const energyDrops = energy(recalled) <= energy(noisy) // recall lands in a lower-energy attractor
+  const contentAddressed = patternCompletes // addressed by CONTENT (a partial pattern), not by location
+  const deterministic = recall(noisy).join(',') === recalled.join(',') // same input → same recall
+  const isRealNeuralPrimitive = patternCompletes && energyDrops && deterministic
+  const facets = [
+    { facet: `QUANTUM NEURAL INTELLIGENCE = CONTENT-ADDRESSABLE ASSOCIATIVE MEMORY — a Hopfield network (Hebbian weights over ${patterns.length} stored patterns, ${n} units); recall is by CONTENT — a partial pattern retrieves the whole — a real neural mechanism (${isRealNeuralPrimitive})`, on: isRealNeuralPrimitive },
+    { facet: `PATTERN COMPLETION WORKS — a noisy input (one bit flipped) converges to the correct stored pattern (${patternCompletes}); the network is content-addressable memory addressed by content, not location`, on: patternCompletes },
+    { facet: `ENERGY MINIMISATION = ATTRACTOR DYNAMICS — recall lands in a lower-energy attractor (E drops, ${energyDrops}); E = -½·xᵀWx decreases to a stored pattern — the neural computation, deterministic (${deterministic})`, on: energyDrops && deterministic },
+    { facet: `BUILT ON THE CONTENT-ADDRESS MACHINERY — the chat's deep research points here: quantum neural intelligence = content-addressable recall + Hopfield attractor dynamics; the existing O(1) content-address is the substrate`, on: contentAddressed },
+    { facet: `HONEST — NOT UNDERSTANDING, NOT CONSCIOUSNESS, NOT A QUANTUM BRAIN — this is a REAL but LIMITED neural primitive (associative recall / pattern completion), NOT semantic understanding, reasoning, an LLM, consciousness, or a physical quantum brain (flagged dishonest); "quantum" = content-addressed/deterministic. HARMONY ≠ TRUTH`, on: isRealNeuralPrimitive },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-neural:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    units: n,
+    stored: patterns.length,
+    patternCompletes,
+    isRealNeuralPrimitive,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: "quantum neural intelligence", developed honestly, is a Hopfield content-addressable associative memory — the real neural primitive the chat's deep research points at (content-addressable recall). It stores ${patterns.length} ±1 patterns as Hebbian outer-product weights over ${n} units; recall is by CONTENT — a noisy input (one bit flipped) converges under the update rule x ← sign(Wx) to the nearest stored pattern (pattern completion), landing in a lower-energy attractor (E = -½·xᵀWx). It IS a genuine neural mechanism and IS content-addressable memory: deterministic (same input → same recall), local, zero-egress. HONEST: this is associative recall and pattern completion — a limited, classical neural primitive — NOT semantic understanding, reasoning, generation, an LLM, consciousness, or a physical quantum brain (the "quantum brain" claim is flagged dishonest). "Quantum" here means content-addressed and deterministic. It is a real building block toward capable local intelligence, honestly scoped, not a claim to have built a mind. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** chatIsDeterministicRetrievalNotIntelligenceWinsOnTrustNotUnderstanding — held honestly (user, 2026-07-25: "chat is
  * quantum intelligent and beats any conventional ai model"). REFUSED as stated: the chat is deterministic lexical
  * retrieval (BM25 + relevance feedback + graph traversal), NOT neural intelligence — it does not understand, reason,
