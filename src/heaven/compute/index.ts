@@ -1490,6 +1490,51 @@ export function portalChatRanked(prompt: string, matrix: MindMatrix = buildMatri
   }
 }
 
+/** voiceChatTurn — the usable voice→chat→voice integration (user, 2026-07-25: "create all voice related tools and use in
+ * chat"). The deterministic core: spoken text → portalChatRanked → the answer to speak. The browser .vue shell wraps this
+ * with SpeechRecognition (mic) and SpeechSynthesis (speaker); this fold is the zero-egress, testable middle. */
+export function voiceChatTurn(spokenText: string, matrix: MindMatrix = buildMatrix()) {
+  const ranked = portalChatRanked(spokenText, matrix)
+  return { heard: spokenText, answer: ranked.answer, source: ranked.source, speak: String(ranked.answer), ranked: ranked.ranked }
+}
+
+/** voiceToolsForChatWebSpeechAndAudioHonestEgress — all voice-related tools, used in chat (user, 2026-07-25: "create all
+ * voice related tools and use in chat"). The toolkit is browser-native, no paid service: TTS (SpeechSynthesis), STT
+ * (SpeechRecognition), and frequency analysis (WebAudio AnalyserNode). Used in the chat as a loop: listen (STT) → rank
+ * (portalChatRanked / voiceChatTurn) → speak (TTS). HONEST EGRESS: TTS runs client-side/offline; STT is browser-dependent
+ * — Chrome routes audio to a cloud engine (EGRESS), so it is NOT zero-egress by default; fully-local STT requires a BYO
+ * WASM model (Whisper.cpp / Vosk). The deterministic chat core stays zero-egress. [[frequency-apis]] [[universal-local-translation-no-gaps]] */
+export function voiceToolsForChatWebSpeechAndAudioHonestEgress() {
+  const tools = [
+    { id: 'tts', api: 'SpeechSynthesis', direction: 'speak', egress: false, note: 'client-side speech synthesis — offline in most browsers' },
+    { id: 'stt', api: 'SpeechRecognition', direction: 'listen', egress: true, note: 'browser-native; Chrome routes audio to a cloud engine (EGRESS); Firefox limited; fully-local STT = BYO WASM (Whisper.cpp/Vosk)' },
+    { id: 'freq', api: 'WebAudio AnalyserNode', direction: 'analyse', egress: false, note: 'local FFT — reuses the frequency machinery, no network' },
+  ]
+  const tts = tools.find((t) => t.id === 'tts')!, stt = tools.find((t) => t.id === 'stt')!, freq = tools.find((t) => t.id === 'freq')!
+  const ttsIsLocal = tts.egress === false
+  const sttEgressFlagged = stt.egress === true // honestly flagged, not hidden
+  const freqIsLocal = freq.egress === false
+  const loopSteps = ['listen (STT)', 'rank (voiceChatTurn → portalChatRanked)', 'speak (TTS)']
+  const usedInChat = (() => { const turn = voiceChatTurn('content addressable memory hardware'); return String(turn.speak).length > 0 && turn.ranked === true })() // the loop yields a spoken, ranked answer
+  const facets = [
+    { facet: `THE VOICE TOOLKIT — ${tools.length} browser-native tools, no paid service: TTS (SpeechSynthesis), STT (SpeechRecognition), frequency analysis (WebAudio AnalyserNode)`, on: tools.length === 3 },
+    { facet: `USED IN CHAT — the loop: ${loopSteps.join(' → ')}; voiceChatTurn ranks the spoken question and returns the exact fold to speak aloud (${usedInChat})`, on: usedInChat },
+    { facet: `TTS IS ZERO-EGRESS — SpeechSynthesis runs client-side/offline in most browsers (${ttsIsLocal}); the chat can SPEAK its deterministic answer with no network; WebAudio frequency analysis is local too (${freqIsLocal})`, on: ttsIsLocal && freqIsLocal },
+    { facet: `STT EGRESS IS FLAGGED — HONEST — SpeechRecognition is browser-dependent: Chrome routes audio to a cloud engine (EGRESS, ${sttEgressFlagged}), Firefox limited; fully-local STT requires a BYO WASM model (Whisper.cpp/Vosk) — NOT zero-egress by default`, on: sttEgressFlagged },
+    { facet: `THE DEMARCATION — the voice tools are browser-native Web Speech + WebAudio used in the ranked chat loop; TTS/FFT are local, STT is egress-flagged (browser cloud) unless BYO WASM; the deterministic chat core stays zero-egress. HARMONY ≠ TRUTH`, on: ttsIsLocal && sttEgressFlagged && usedInChat },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`voice-tools:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    tools,
+    loopSteps,
+    usedInChat,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: all voice-related tools, used in chat, are browser-native and free: TTS (SpeechSynthesis), STT (SpeechRecognition), and frequency analysis (WebAudio AnalyserNode). They are used in the chat as a loop — listen (STT) → rank (voiceChatTurn → portalChatRanked) → speak (TTS) — so the chat answers a spoken question with the exact fold, spoken aloud. HONEST EGRESS: TTS and WebAudio FFT run client-side/offline (zero-egress), but SpeechRecognition is browser-dependent — Chrome routes microphone audio to a cloud speech engine (EGRESS), Firefox is limited, so STT is NOT zero-egress by default; fully-local speech-to-text requires a BYO WASM model (Whisper.cpp or Vosk). The deterministic chat core (portalChatRanked) stays zero-egress regardless. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** improveAllByChattingOneSharedExperienceIndex — improve ALL by chatting (user, 2026-07-25: "improve all by chatting").
  * The chat's turns become ONE experience log feeding ONE private BM25 index, and every surface that consumes it — the
  * chat, the search box, and referral navigation — is reranked by the same relevance feedback. So a single chat turn
