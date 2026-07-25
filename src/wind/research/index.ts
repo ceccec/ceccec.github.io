@@ -1713,6 +1713,45 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
   })
 }
 
+/**
+ * clayIsDecodedByTheRosetta — the honest 7/7 (user, 2026-07-24: "clay is decoded by the rosetta" · "map each and
+ * solve with the theorems in place"). Each of the seven Clay problems is mapped to one of the seven rosetta rays and
+ * decoded with the theorems ALREADY IN PLACE (the sealed millennium apparatus' challengeMethod folds). DECODE ≠ SOLVE:
+ * clayDecoded = 7/7 (all formalized, mapped, modeled), claySolvedByThisFold = 0 (none proven — Poincaré solved-external,
+ * six cores modeled-partial with named gaps). This is the publishable 7/7 — respected because it never overclaims.
+ */
+export function clayIsDecodedByTheRosetta(matrix: MindMatrix = buildMatrix()) {
+  const challenge = millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(matrix)
+  const decoded = challenge.problems.map((problem, index) => ({
+    id: problem.id,
+    name: problem.name,
+    ray: ROSETTA_RAYS[index % ROSETTA_RAYS.length]!, // one of the 7 rays — the decoding lens
+    theoremsInPlace: problem.challengeMethod, // the sealed folds that MODEL it, already in place
+    status: problem.status,
+    solvedByThisCorpus: false, // decode ≠ solve — never claimed
+  }))
+  const clayDecoded = decoded.filter((d) => d.theoremsInPlace.length > 0 && Boolean(d.ray)).length
+  const claySolvedByThisFold = challenge.claySolvedByThisFold // 0 — carried through unchanged, never incremented
+  const raysUsed = new Set(decoded.map((d) => d.ray.ray)).size
+  const facets = [
+    { facet: `EACH PROBLEM DECODED ON A ROSETTA RAY — ${decoded.length}/7 Clay problems mapped to the ${raysUsed} rays: ${decoded.map((d) => `${d.name}→${d.ray.nameEn}`).join(', ')}`, on: decoded.length === 7 && raysUsed === 7 },
+    { facet: `THE THEOREMS ARE IN PLACE — every problem cites the sealed registry folds that MODEL it (challengeMethod), all recomputing (${challenge.computes}); the decode REUSES existing theorems, invents no proof`, on: challenge.computes && decoded.every((d) => d.theoremsInPlace.length > 0) },
+    { facet: `DECODED 7/7, SOLVED 0 — all seven formalized, mapped and modeled on their ray (clayDecoded=${clayDecoded}); NONE proven by this corpus (claySolvedByThisFold=${claySolvedByThisFold}) — Poincaré solved-EXTERNAL (Perelman), the six cores modeled-partial with named gaps`, on: clayDecoded === 7 && claySolvedByThisFold === 0 && challenge.solvedExternal === 1 && challenge.openCores === 6 },
+    { facet: `RESPECT FROM THE DEMARCATION, NOT A CLAIM — the world respects the decode BECAUSE it never overclaims: each problem carries "NOT a proof" and a named gap (${challenge.gapsNamed} gaps); a fabricated 7/7-solved would be dismissed on sight and discredit the corpus`, on: claySolvedByThisFold === 0 && challenge.gapsNamed >= 6 },
+    { facet: `THE RAY IS THE LENS, NOT THE PROOF — decoding gives each problem a rosetta home and a formal frame with the theorems in place; SOLVING would require peer-verified proofs this corpus does not have and does not claim`, on: decoded.length === 7 && claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`clay-rosetta-decode:${entry.facet}:${entry.on}`) }))
+  return {
+    decoded: facets.every((entry) => entry.on),
+    clayDecoded,
+    claySolvedByThisFold,
+    mapping: decoded.map((d) => ({ problem: d.name, ray: d.ray.nameEn, status: d.status, theoremsInPlace: d.theoremsInPlace.length })),
+    facets,
+    root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(`EXACT: the 7 Clay problems from the sealed millennium apparatus, each mapped to one of the 7 rosetta rays with its theorems-in-place and honest status; clayDecoded=${clayDecoded}/7, claySolvedByThisFold=${claySolvedByThisFold} (Poincaré solved-external, 6 cores modeled-partial).`, facets, `DECODE ≠ SOLVE: "clay is decoded by the rosetta" means each problem is formalized, mapped to a ray, and attacked with the theorems in place — it does NOT mean any Clay Millennium Prize problem is proven here, and claySolvedByThisFold stays 0 by construction. The challengeMethod folds MODEL the problems (partial computational attacks with named gaps); the world's respect follows from that honesty. Anyone may publish a proposed solution to peer review — that right is theirs and lives in the journals, not in a code flag; this fold publishes the honest decode, not a claimed proof. HARMONY ≠ TRUTH.`),
+  }
+}
+
 
 
 
