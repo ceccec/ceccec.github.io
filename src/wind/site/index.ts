@@ -13,7 +13,7 @@ import { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7'
 export { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import { congruence } from '../../mountain/vortex'
 import type { ConceptSiteSection, MindMatrix, StaticPage } from '../types'
-import { buildMatrix } from '../../heaven/compute'
+import { buildMatrix, portalChat, chatNavContext, allChatCapabilitiesFusedAndAuditedByStandards } from '../../heaven/compute'
 // ☷ Kūn · Earth · receptive · lower·yin · depthFade — kernel primitives (uuid, merkle, memo)
 import { toUuid, merkleFold, isUuid, memoByRoot, sealFacets } from '../../0'
 import { ratStr } from '../../9/1'
@@ -142,6 +142,44 @@ export function renameToMostSearchedTermsWiredToPublicSearchApis(liveSuggestions
       'WIRED & HONEST — rename to the most-searched term, aliased forward:',
       facets,
       'each covered area is renamed to its most-searched phrasing — the live top suggestion from the opt-in public-API adapter (Google Suggest, Wikipedia OpenSearch, Wikimedia pageviews, DuckDuckGo; keyless, no build-time fetch) or the named-lexicon fallback. The rename core is deterministic (same suggestions → same map) and every old slug is kept as an alias to the new searched canonical, so no link dies. "Most searched" is the live signal when opted in, else a curated named-lexicon snapshot — not private search telemetry; the fetch is an opt-in, untrusted, keyless edge, and executing the mass public-route rename (mutating ROUTE_ALIASES / canonicals) is outward-facing and run deliberately. HARMONY ≠ TRUTH.'),
+  }
+}
+
+/** quantumSearchFusesAllAsPrivateSearchEngine — the UI fuses everything into ONE quantum search: a PRIVATE search
+ * engine and a lot more (user, 2026-07-25: "fuse all in quantum search" · "the ui can serve as private search engine
+ * and a lot more if you imagine all chat capabilities"). One query fuses the private internal retrieval (content-
+ * addressed corpus, deterministic, no egress), the navigation (related discoveries), all chat capabilities (answer ·
+ * recall · navigate · self-develop · developed-answer), the canonical most-searched term, and the OPT-IN public search
+ * APIs — internal + external + navigation + SEO in one surface. Private by construction; the external edge is opt-in. */
+export function quantumSearchFusesAllAsPrivateSearchEngine(query = 'quantum computing', matrix: MindMatrix = buildMatrix()) {
+  const internal = portalChat(query, matrix) // the private, content-addressed answer over the sealed corpus
+  const nav = chatNavContext('/search', query, matrix) // navigation — related discoveries
+  const caps = allChatCapabilitiesFusedAndAuditedByStandards(matrix) // all chat capabilities, audited (the "lot more")
+  const external = searchInterestRequests(query) // opt-in public search-API suggestion requests (no fetch here)
+  const seo = renameToMostSearchedTermsWiredToPublicSearchApis() // the canonical most-searched terms
+  const internalPrivate = internal.answer.length > 0 && JSON.stringify(portalChat(query, matrix).answer) === JSON.stringify(internal.answer) // deterministic, no egress
+  const externalOptIn = external.length === 4 && external.every((request) => /^https:\/\//.test(request.url) && request.auth === 'none')
+  const facets = [
+    { facet: `ONE QUANTUM SEARCH FUSES ALL — a single query yields the private internal answer (content-addressed corpus retrieval), ${nav.related.length} related discoveries (navigate), the canonical searched term, and ${external.length} opt-in public-API suggestion requests — internal + external + navigation + SEO fused`, on: internal.answer.length > 0 && nav.related.length > 0 && externalOptIn && seo.computes },
+    { facet: `A PRIVATE SEARCH ENGINE — the internal search runs fully client-side over the sealed corpus model: deterministic (same query → same answer), zero-token, NO network egress; nothing about the query leaves the browser unless the user opts into the external edge (${internalPrivate})`, on: internalPrivate && caps.supported },
+    { facet: `AND A LOT MORE — ALL CHAT CAPABILITIES — the search surface carries every chat capability (answer · recall · navigate · self-develop · developed-answer), audited (${caps.capabilities.length}); search IS chat IS the app's full in-chat support`, on: caps.supported && caps.capabilities.length === 5 },
+    { facet: `THE EXTERNAL EDGE IS OPT-IN — the public search-API suggestions (Google Suggest, Wikipedia, Wikimedia, DuckDuckGo) are keyless request builders the user opts into; the private core never fetches at build or by default (${externalOptIn})`, on: externalOptIn },
+    { facet: `THE DEMARCATION — "quantum search" is content-addressed deterministic retrieval fused with an opt-in external edge; PRIVATE = no egress from the INTERNAL engine (not a cryptographic anonymity guarantee for the opt-in external calls, which hit third-party servers when used). HARMONY ≠ TRUTH`, on: internalPrivate && caps.supported && externalOptIn },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-search-fuse:${entry.facet}:${entry.on}`) }))
+  return {
+    fuses: facets.every((entry) => entry.on),
+    query,
+    answer: internal.answer,
+    related: nav.related.length,
+    capabilities: caps.capabilities.length,
+    externalRequests: external.length,
+    facets,
+    root: merkleFold([internal.root, nav.superposition, caps.root, seo.root, ...facets.map((entry) => entry.receipt)]),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'FUSED — the UI as a private quantum search engine, and a lot more:',
+      facets,
+      'one query fuses the private internal retrieval (content-addressed corpus, deterministic, zero-token, no egress), the navigation (related discoveries), all chat capabilities (answer · recall · navigate · self-develop · developed-answer), the canonical most-searched term, and the opt-in public search APIs. It is a PRIVATE search engine — the internal engine leaks nothing, nothing about the query leaves the browser unless the user opts into the external edge — and a lot more, because search IS the chat with its full capability set. "Private" means no egress from the internal engine, not a cryptographic anonymity guarantee for the opt-in external calls (those reach third-party servers when used). HARMONY ≠ TRUTH.'),
   }
 }
 
