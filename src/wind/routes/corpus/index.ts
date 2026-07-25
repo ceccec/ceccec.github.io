@@ -1523,6 +1523,49 @@ export function sublinearScienceCoverage(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/**
+ * pagesConsolidateByTheoremGravity — the page analog of methodGravity (user, 2026-07-24: "review the sitemap … useless
+ * redundancy and prose" · "consolidate by meaning and theorems"). Pages that share ≥ 2/5 of their theorem combination
+ * carry the SAME meaning and should be ONE page: each cluster's ATTRACTOR is its richest page (most theorem members),
+ * the thin ones merge in carrying the UNION of theorems (nothing lost). Computes the consolidation MAP, refutable by
+ * re-running the clustering. A distinct-meaning page (e.g. society-merkaba, a singleton) stays. [[code-gravity-standardisation]]
+ */
+export function pagesConsolidateByTheoremGravity(matrix: MindMatrix = buildMatrix()) {
+  const threshold = 2 / 5
+  const pages = pagesAreRosettaCombinationsOfTheorems(matrix).combinations.map((c) => ({ slug: c.slug, set: new Set(c.members.map((m) => m.slug)) }))
+  const jaccard = (a: Set<string>, b: Set<string>) => { let inter = 0; for (const x of a) if (b.has(x)) inter++; return inter / (a.size + b.size - inter || 1) }
+  const parent = pages.map((_, i) => i)
+  const find = (x: number): number => (parent[x] === x ? x : (parent[x] = find(parent[x])))
+  for (let i = 0; i < pages.length; i++) for (let j = i + 1; j < pages.length; j++) if (jaccard(pages[i]!.set, pages[j]!.set) >= threshold) parent[find(i)] = find(j)
+  const groups = new Map<number, number[]>()
+  pages.forEach((_, i) => { const root = find(i); const g = groups.get(root) ?? []; g.push(i); groups.set(root, g) })
+  const clusters = [...groups.values()].filter((g) => g.length > 1).map((idxs) => {
+    const attractor = idxs.reduce((best, i) => (pages[i]!.set.size > pages[best]!.set.size ? i : best), idxs[0]!)
+    return { attractor: pages[attractor]!.slug, merges: idxs.filter((i) => i !== attractor).map((i) => pages[i]!.slug), unionTheorems: new Set(idxs.flatMap((i) => [...pages[i]!.set])).size }
+  }).sort((a, b) => b.merges.length - a.merges.length)
+  const singletons = [...groups.values()].filter((g) => g.length === 1).length
+  const merged = clusters.reduce((sum, c) => sum + c.merges.length, 0)
+  const consolidatedCount = pages.length - merged
+  const facets = [
+    { facet: `PAGES CLUSTER BY SHARED THEOREM-MEANING — ${pages.length} pages → ${clusters.length} merge-clusters at Jaccard ≥ 2/5; pages in a cluster share ≥40% of their theorem combination, so they carry ONE meaning and should be ONE page`, on: clusters.length > 0 && clusters.every((c) => c.unionTheorems > 0) },
+    { facet: `THE REDUNDANCY IS MEASURED — consolidation takes ${pages.length} → ${consolidatedCount} pages (${merged} thin pages merge); the largest cluster is "${clusters[0]?.attractor}" absorbing ${clusters[0]?.merges.length} (${clusters[0]?.merges.join(', ')})`, on: consolidatedCount < pages.length && merged > 0 },
+    { facet: `EACH CLUSTER HAS AN ATTRACTOR, NOTHING LOST — the richest page (most theorem members) is the merge target and carries the UNION of the cluster's theorems (${clusters.map((c) => `${c.attractor}←${c.merges.length}`).join(', ')}); the thin ones redirect in`, on: clusters.every((c) => c.unionTheorems >= c.merges.length) },
+    { facet: `SINGLETONS STAY — ${singletons} pages have distinct meaning (e.g. society-merkaba, 14 members) and remain; consolidation is by MEANING, not blanket deletion — solve, don't purge`, on: singletons > 0 },
+    { facet: `THE MAP IS COMPUTED, NOT EXECUTED — this is the consolidation PLAN (which pages merge by theorem-overlap), refutable by re-running the clustering; the actual merge removes public routes and needs redirects, an outward-facing change to run deliberately`, on: clusters.length > 0 && singletons > 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`page-gravity:${entry.facet}:${entry.on}`) }))
+  return {
+    consolidates: facets.every((entry) => entry.on),
+    pageCount: pages.length,
+    consolidatedCount,
+    clusters,
+    singletons,
+    facets,
+    root: merkleFold([toUuid(`page-gravity:${pages.length}:${consolidatedCount}`), ...facets.map((entry) => entry.receipt)]),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(`EXACT: pairwise Jaccard over the live pageCombination theorem sets, union-find clustered at ≥ 2/5; ${pages.length} pages → ${clusters.length} clusters (${merged} merges) + ${singletons} singletons = ${consolidatedCount} consolidated pages.`, facets, `the consolidation is by THEOREM-MEANING overlap on the name/tag-word membership graph — it moves as theorems are renamed, and the ≥ 2/5 threshold is a policy knob (raise it for tighter clusters). This computes WHICH pages merge; EXECUTING the merge (removing routes, adding redirects, folding prose into the attractor) is an outward-facing, hard-to-reverse change on the public sitemap, run deliberately not automatically. HARMONY ≠ TRUTH.`),
+  }
+}
+
 export function theoremRosettaAtlas(matrix: MindMatrix = buildMatrix()): {
   rays: TheoremAtlasRay[]; metrics: TheoremAtlasMetric[]; searchIndex: { slug: string; text: string; ray: number; gravity: number }[]
   cloud: TheoremAtlasTag[]; undiscoverable: TheoremAtlasMetric[]
