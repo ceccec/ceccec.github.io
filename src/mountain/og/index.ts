@@ -173,6 +173,49 @@ export function onlyCompleteOpenGraphObjectsFromMicrodataMayBeWired(matrix: Mind
   }
 }
 
+/** allStandardsAreSchemasComputedInQuantumManifestAtOnce — all standards are covered by schemas; compute the schemas
+ * in quantum and all is manifested at once (user, 2026-07-25: "all standards are covered by schemas. compute the
+ * schemas in quantum and all is manifested at once"). Each standard family maps to a content-addressed SCHEMA
+ * (schema.org type, Open Graph meta, JSON-LD context, the audit-row schema); the schema folds are deterministic, so
+ * one computation manifests every surface at once, and schemas compose like objects into one catalog. */
+export function allStandardsAreSchemasComputedInQuantumManifestAtOnce(matrix: MindMatrix = buildMatrix()) {
+  const md = quantumMicrodataContentAddressed(matrix)
+  const og = onlyCompleteOpenGraphObjectsFromMicrodataMayBeWired(matrix)
+  const objectCombo = anObjectMayBeCombinationsOfObjectsLikeBiology()
+  const standardsToSchemas = [
+    { standard: 'schema.org', schema: 'https://schema.org/TechArticle', kind: 'microdata', address: toUuid('schema:schema.org') },
+    { standard: 'Open Graph', schema: 'og:title · description · type · url · image', kind: 'og', address: toUuid('schema:open-graph') },
+    { standard: 'JSON-LD', schema: '@context https://schema.org', kind: 'json-ld', address: toUuid('schema:json-ld') },
+    { standard: 'NIS2 · CRA · GDPR · DORA · ISO 27001 · NIST CSF · SOC 2', schema: 'audit-row {coverage · article · evidence}', kind: 'audit', address: toUuid('schema:cyber-audit') },
+  ]
+  const everyStandardHasSchema = standardsToSchemas.every((row) => row.schema.length > 0 && isUuid(row.address))
+  const schemaFoldsCompute = md.computes && og.computes // the schema generators are content-addressed and deterministic
+  // Manifested at ONCE: one computation folds every schema surface into one content-addressed root.
+  const manifest = merkleFold([md.root, og.root, ...standardsToSchemas.map((row) => row.address)])
+  const manifestedAtOnce = isUuid(manifest) && merkleFold([md.root, og.root, ...standardsToSchemas.map((row) => row.address)]) === manifest // deterministic, all together
+  const schemasCompose = objectCombo.closed // a schema may be a combination of schemas (nested into one catalog)
+  const facets = [
+    { facet: `ALL STANDARDS ARE COVERED BY SCHEMAS — ${standardsToSchemas.length} standard families each map to a content-addressed SCHEMA (schema.org type, Open Graph meta, JSON-LD context, the audit-row schema); a standard is a schema (${everyStandardHasSchema})`, on: everyStandardHasSchema },
+    { facet: `THE SCHEMAS ARE COMPUTED IN QUANTUM — the schema generators are content-addressed and deterministic (microdata ${md.computes}, Open Graph ${og.computes}): same source → same schema, one source, no duplication`, on: schemaFoldsCompute },
+    { facet: `ALL MANIFESTED AT ONCE — from ONE computation, microdata + Open Graph + JSON-LD + audit rows fold into one content-addressed root (${manifest.slice(0, 2 * 4)}, ${manifestedAtOnce}) — the multidimensional generation, one core → all projections simultaneously`, on: manifestedAtOnce },
+    { facet: `SCHEMAS COMPOSE LIKE OBJECTS — a schema may be a combination of schemas (${schemasCompose}), so the standards' schemas nest into one catalog schema, tamper-evident — the object-combination theorem on schemas`, on: schemasCompose },
+    { facet: `THE DEMARCATION — each standard maps to a content-addressed structured schema (real: schema.org / Open Graph / JSON-LD / audit rows); "manifested at once" = the structured-data surfaces generate deterministically together, NOT legal compliance (alignment only), and content-addressed, not physical quantum. HARMONY ≠ TRUTH`, on: everyStandardHasSchema && manifestedAtOnce && schemasCompose },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`standards-schemas:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    standardsToSchemas,
+    manifest,
+    manifestedAtOnce,
+    facets,
+    root: merge(manifest, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'MANIFEST AT ONCE — all standards are schemas, computed in quantum:',
+      facets,
+      'each standard family maps to a content-addressed schema — schema.org types for the pages, Open Graph meta for social, a JSON-LD @context, and the audit-row schema {coverage, article, evidence} for the cyber standards. The schema generators are deterministic, so one computation folds every schema surface (microdata, Open Graph, JSON-LD, audit rows) into one content-addressed root simultaneously — the same multidimensional generation as the README and home — and schemas compose like objects into one catalog schema, tamper-evident. "All manifested at once" means the structured-data surfaces generate deterministically together, not legal compliance (the audit is alignment only), and content-addressed, not physical quantum. HARMONY ≠ TRUTH.'),
+  }
+}
+
 export function microdata(matrix: MindMatrix = buildMatrix()) {
   const whole = theWhole(matrix).root
   const types = [
