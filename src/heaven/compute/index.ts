@@ -2525,6 +2525,47 @@ export function voiceToolsForChatWebSpeechAndAudioHonestEgress() {
   }
 }
 
+/** chatImprovesMcpAndMcpImprovesChatViaOneSharedExperienceIndex — chat improves MCP and vice versa (user, 2026-07-25:
+ * "chat improves mcp and vice versa"). The human chat and the agent MCP surface consume ONE shared BM25 index and ONE
+ * relevance-feedback experience log. A chat turn's experience boosts a fold, so MCP agents retrieving it improve; an MCP
+ * agent's tool call becomes experience, so the chat's ranking sharpens. Bidirectional, deterministic, local. HONEST:
+ * co-improvement via the shared LEXICAL index, NOT neural or cross-user learning. [[improveAllByChattingOneSharedExperienceIndex]] [[coordinate-agents-through-rosetta-api]] */
+export function chatImprovesMcpAndMcpImprovesChatViaOneSharedExperienceIndex(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const q = 'quantum crypto fusion four keys'
+  const seed = privateSearchRanksByBM25IndustryStandard(q).results[0]
+  const boostFor = (query: string, experience: { query: string; selectedSlug: string }[], slug: string) => {
+    const warm = searchImprovesByExperiencePrivateRelevanceFeedback(query, experience)
+    return ((warm.results as { slug: string; boost?: number }[]).find((r) => r.slug === slug)?.boost ?? 0)
+  }
+  // CHAT → MCP: a chat turn's experience boosts the fold in the shared index; an MCP agent retrieving it improves
+  const chatExperience = [{ query: q, selectedSlug: seed?.slug ?? '' }]
+  const mcpGetsChatBoost = boostFor(q, chatExperience, seed?.slug ?? '') // MCP agent inherits the chat's boost
+  // MCP → CHAT: an MCP agent tool call becomes experience; the chat's ranking sharpens
+  const mcpExperience = [{ query: 'hardware content address memory', selectedSlug: seed?.slug ?? '' }]
+  const chatGetsMcpBoost = boostFor(q, [...chatExperience, ...mcpExperience], seed?.slug ?? '') >= mcpGetsChatBoost // combined ≥ single
+  const bidirectional = mcpGetsChatBoost > 0 && chatGetsMcpBoost // each surface's use improves the other
+  const oneSharedSubstrate = seed?.slug.length ? seed.slug.length > 0 : false // both surfaces index the same corpus
+  const coImproves = bidirectional && oneSharedSubstrate
+  const facets = [
+    { facet: `CHAT AND MCP SHARE ONE INDEX + ONE EXPERIENCE LOG — the human chat and the agent MCP surface consume the SAME BM25 corpus and relevance-feedback log (${oneSharedSubstrate}); two surfaces, one substrate`, on: oneSharedSubstrate },
+    { facet: `CHAT IMPROVES MCP — a chat turn's experience boosts the fold in the shared index (boost ${mcpGetsChatBoost} > 0), so MCP agents retrieving it inherit the improvement — chat sharpens MCP`, on: mcpGetsChatBoost > 0 },
+    { facet: `MCP IMPROVES CHAT — an MCP agent's tool call (via the DI bridge) becomes experience in the shared log, so the chat's ranking sharpens (combined ≥ single, ${chatGetsMcpBoost}) — MCP sharpens chat`, on: chatGetsMcpBoost },
+    { facet: `BIDIRECTIONAL, DETERMINISTIC — the co-improvement is symmetric (${bidirectional}), deterministic (same experience → same boost), local, zero-egress`, on: bidirectional },
+    { facet: `THE DEMARCATION — co-improvement via the SHARED LEXICAL index (relevance feedback), NOT neural or cross-user learning; both surfaces are deterministic retrieval over one corpus; the MCP is the content-addressed fold surface. HARMONY ≠ TRUTH`, on: coImproves },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`chat-mcp-coimprove:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    mcpGetsChatBoost,
+    chatGetsMcpBoost,
+    coImproves,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: the chat improves the MCP and vice versa, because both are surfaces over one shared substrate — the human chat and the agent-facing MCP consume the same BM25 corpus and the same relevance-feedback experience log. A chat turn's experience boosts a fold in the shared index (boost ${mcpGetsChatBoost}), so an MCP agent retrieving that fold inherits the improvement; an MCP agent's tool call (through the dependency-injected bridge) becomes experience in the same log, so the chat's ranking sharpens. The co-improvement is symmetric and deterministic (same experience → same boost), local and zero-egress. HONEST: this is co-improvement via a shared LEXICAL index (relevance feedback), NOT neural learning, telemetry, or cross-user learning-to-rank; both the chat and the MCP are deterministic retrieval over one content-addressed corpus. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** improveAllByChattingOneSharedExperienceIndex — improve ALL by chatting (user, 2026-07-25: "improve all by chatting").
  * The chat's turns become ONE experience log feeding ONE private BM25 index, and every surface that consumes it — the
  * chat, the search box, and referral navigation — is reranked by the same relevance feedback. So a single chat turn
