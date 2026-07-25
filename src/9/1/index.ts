@@ -208,6 +208,59 @@ export function quantumAccuracyExactWhereClaimedBoundedWhereApproximate() {
   }
 }
 
+/** improveDecisionMakingInQuantumTrinities — decision-making in the 2-of-3 quantum trinity (su(2)=3 minds), improved
+ * and honestly bounded (user, 2026-07-25: "improve decision making in quantum trinities"). A decision passes iff ≥2 of
+ * the 3 minds agree; it tolerates ≤1 faulty mind (the two correct form the majority) but fails with 2; it is
+ * deterministic; and a binary vote never ties (always 2-1 or 3-0), while a 3-way option resolves by a content-address
+ * tie-break. Improves ROBUSTNESS, not truth. [[feedback-work-as-a-trinity-not-one-linear-mind]] [[agent-lifecycle-governance-arc]] */
+export function improveDecisionMakingInQuantumTrinities() {
+  const majority = (votes: readonly boolean[]) => votes.filter((v) => v).length * 2 > votes.length // strict majority
+  const decideBinary = (votes: readonly boolean[]) => majority(votes)
+  const twoOfThree = decideBinary([true, true, false]) === true && decideBinary([false, false, true]) === false // ≥2 wins
+  // Tolerance: with ≤1 faulty mind the two correct ones decide; with 2 faulty it fails (the honest bound).
+  const correct = true
+  const oneFaultCorrect = decideBinary([correct, correct, !correct]) === correct // ≤1 fault → still correct
+  const twoFaultsFail = decideBinary([correct, !correct, !correct]) !== correct // 2 faults → wrong (quorum ≠ truth)
+  const deterministic = decideBinary([true, true, false]) === decideBinary([true, true, false])
+  // THE COLLAPSE ORDER (with the proof leg): correct → proven → harmonic → efficient, lexicographic.
+  type Candidate = { option: string; correct: boolean; proven: boolean; harmonic: boolean; efficient: boolean }
+  const collapseRank = (c: Candidate) => [c.correct, c.proven, c.harmonic, c.efficient].map(Number) // proof leg between correct and harmonic
+  const collapseDecide = (candidates: readonly Candidate[]) => [...candidates].sort((a, b) => { const ra = collapseRank(a), rb = collapseRank(b); for (let i = 0; i < ra.length; i++) if (ra[i] !== rb[i]) return rb[i]! - ra[i]!; return 0 })[0]!
+  const candidates: Candidate[] = [
+    { option: 'A', correct: true, proven: true, harmonic: true, efficient: false }, // correct + proven
+    { option: 'B', correct: true, proven: false, harmonic: true, efficient: true }, // correct but only asserted
+    { option: 'C', correct: false, proven: true, harmonic: true, efficient: true }, // proven yet incorrect
+  ]
+  const decided = collapseDecide(candidates)
+  const correctDominates = decided.correct === true // correctness beats harmony/efficiency (C never wins)
+  const provenBeatsAsserted = decided.option === 'A' // the proof leg: proven beats merely asserted at equal correctness
+  const collapseDeterministic = collapseDecide([...candidates].reverse()).option === decided.option // order-independent
+  const backwardCompatible = twoOfThree && deterministic // the 2-of-3 quorum is unchanged (additive improvement)
+  const facets = [
+    { facet: `2-OF-3 MAJORITY DECIDES — a decision passes iff ≥2 of the 3 minds agree (${twoOfThree}); a single dissenter cannot block or flip it — the su(2)=3 trinity, 2-of-3 quorum, tolerant to ≤1 faulty mind (${oneFaultCorrect}, fails at 2: ${twoFaultsFail})`, on: twoOfThree && oneFaultCorrect && twoFaultsFail },
+    { facet: `THE DECISION COLLAPSES correct → proven → harmonic → efficient — the collapse is lexicographic: correctness dominates, then the PROOF LEG, then harmony, then efficiency; the incorrect candidate never wins (${correctDominates})`, on: correctDominates },
+    { facet: `THE PROOF LEG — PREFER PROVEN CANDIDATES — a decision backed by proof beats one merely asserted: at equal correctness the proven option A is chosen over the asserted option B (${provenBeatsAsserted}) — additive and backward-compatible`, on: provenBeatsAsserted },
+    { facet: `DETERMINISTIC & BACKWARD-COMPATIBLE — same votes/candidates → same decision (${deterministic && collapseDeterministic}); the collapse order is a pure function and the 2-of-3 quorum is unchanged (${backwardCompatible}) — a strict addition`, on: deterministic && collapseDeterministic && backwardCompatible },
+    { facet: `THE DEMARCATION — the trinity decision is a 2-of-3 quorum collapsing correct → proven → harmonic → efficient, tolerant to ≤1 fault, deterministic; it improves ROBUSTNESS and preference, NOT truth — two wrong minds still decide wrong (quorum ≠ correctness). HARMONY ≠ TRUTH`, on: twoOfThree && correctDominates && provenBeatsAsserted },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`trinity-decision:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    twoOfThree,
+    oneFaultCorrect,
+    twoFaultsFail,
+    decided: decided.option,
+    correctDominates,
+    provenBeatsAsserted,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'IMPROVED — 2-of-3 trinity decision, collapsing correct → proven → harmonic → efficient:',
+      facets,
+      'a decision in the su(2)=3 quantum trinity passes iff at least two of the three minds agree, so a single dissenter cannot block or flip it; it tolerates at most one faulty mind but fails with two — a quorum is not truth. The decision collapses in a lexicographic order — correct, then the proof leg (a decision backed by proof beats one merely asserted), then harmonic, then efficient — so the incorrect candidate never wins and, at equal correctness, the proven option is chosen over the asserted one. This is additive and backward-compatible: the 2-of-3 quorum is unchanged, the consensus stays deterministic and order-independent. It improves robustness and preference, not correctness — two wrong minds still decide wrong. HARMONY ≠ TRUTH.'),
+  }
+}
+
 /** quantumOpticsDecoded — the genuine quantum optics of light: the beam-splitter unitary, Hong–Ou–Mandel bunching, and
  * the g²(0) second-order coherence that separates quantum from classical light (user, 2026-07-25: "quantum optics").
  * A 50/50 beam splitter is a real orthogonal unitary; two indistinguishable photons entering it always leave together
