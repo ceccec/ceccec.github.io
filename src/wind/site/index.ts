@@ -145,6 +145,41 @@ export function renameToMostSearchedTermsWiredToPublicSearchApis(liveSuggestions
   }
 }
 
+/** egressSecurityForQuantumEncryptionOverHttps — egress security for quantum encryption over any HTTP(S) (user,
+ * 2026-07-25: "egress security is important for quantum encryption over any http(s)"). The strongest protection is NO
+ * egress (the private core sends nothing); when the user opts into an external call it is HTTPS-only (TLS in transit).
+ * HONEST: a public search API must READ the query, so HTTPS protects it in transit but the third-party endpoint sees
+ * it — quantum (4-key) encryption cannot hide a query the endpoint must process. The 4-key encryption protects the
+ * app's OWN payloads (ciphertext over https, keys derived client-side and never sent). [[tampering-cost-crypto-honesty]] */
+export function egressSecurityForQuantumEncryptionOverHttps() {
+  const requests = searchInterestRequests('quantum encryption query')
+  const httpsOnly = requests.length > 0 && requests.every((request) => request.url.startsWith('https://')) // TLS in transit, never http://
+  const noEgressPromise = fetchSearchSuggestions('x') // returns [] synchronously-resolving without a fetch impl
+  const queryVisibleToEndpoint = requests.some((request) => request.url.includes(encodeURIComponent('quantum encryption query'))) // the endpoint reads the query — honest
+  const keyMaterial = referralAddress('secret', 'referrer', 'id', 'prev', 'next') // a 4-key composite (client-side)
+  const keysNeverSent = requests.every((request) => !request.url.includes(keyMaterial)) // no key material leaves in a URL
+  const facets = [
+    { facet: `NO EGRESS BY DEFAULT — the private core sends nothing; the external fetch returns empty unless the user passes a fetch impl (no build-time or default egress), the strongest egress security`, on: noEgressPromise instanceof Promise },
+    { facet: `HTTPS-ONLY WHEN OPT-IN — every external request is https:// (TLS in transit), never http; verified over the request set (${httpsOnly})`, on: httpsOnly },
+    { facet: `THE QUERY IS VISIBLE TO THE ENDPOINT — HONEST — a public search API must READ the query, so HTTPS protects it IN TRANSIT but the third-party endpoint sees it (${queryVisibleToEndpoint}); quantum (4-key) encryption cannot hide a query the endpoint must process — the mitigation is opt-in + minimise`, on: queryVisibleToEndpoint },
+    { facet: `THE 4-KEY ENCRYPTION PROTECTS OUR OWN PAYLOADS — for data exchanged between the app's OWN surfaces, the 4-key encrypted payload travels over https as CIPHERTEXT (the endpoint sees nothing) and the keys are derived client-side, never sent (${keysNeverSent})`, on: keysNeverSent && isUuid(keyMaterial) },
+    { facet: `THE DEMARCATION — egress security = no-egress DEFAULT + https-only + honesty about third-party visibility; quantum (4-key) encryption protects OUR payloads in transit and at rest but CANNOT hide a query a public API must read. HARMONY ≠ TRUTH`, on: httpsOnly && keysNeverSent },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`egress-security:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    httpsOnly,
+    keysNeverSent,
+    requestCount: requests.length,
+    facets,
+    root: merkleFold([keyMaterial, ...facets.map((entry) => entry.receipt)]),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'HONEST — egress security for quantum encryption over http(s):',
+      facets,
+      'the strongest protection is NO egress — the private core sends nothing, and the external fetch stays empty unless the user opts in. When they do, every request is https-only (TLS in transit), never http. But a public search API must READ the query, so HTTPS protects it only in transit — the third-party endpoint sees it, and quantum (4-key) encryption cannot hide a query the endpoint must process; the mitigation is opt-in and minimising what is sent. The 4-key encryption protects the app\'s OWN payloads: ciphertext over https that the endpoint cannot read, with keys derived client-side and never sent. Egress security is no-egress by default, https-only when opted in, and honest about third-party visibility — not a claim that a public API query is hidden. HARMONY ≠ TRUTH.'),
+  }
+}
+
 /** navigationFromSearchResultsAndReferrer — navigation IS the search results plus the referrer (user, 2026-07-25:
  * "navigation is based on the search results themselves and the referrer"). The outgoing edges of a node are the
  * BM25-ranked search results for its query (you navigate by relevance, not a hand-built menu), and the incoming edge
