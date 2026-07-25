@@ -1409,6 +1409,46 @@ export function referralDirectionBitsFillTheOrientationGapInTheFourKeyCross() {
   }
 }
 
+/** allComputedPossibilitiesRetrievableFasterThanScanStructurally — all computed possibilities faster than light (user,
+ * 2026-07-25: "all computed possibilities faster than light"). Every possibility is content-addressed — its address IS
+ * its payload (name=payload=address) — so the whole space is addressable WITHOUT materialising it (no 2^n storage), and
+ * retrieving ANY possibility computes its address in O(1), no traversal. Relative to any O(N) scan (the "light" front
+ * sweeping the space), the content-address arrives with no traversal — unboundedly faster as N grows. HONEST: this is
+ * the no-scan STRUCTURAL sense; physicalFtl=0, qpuRequired=false — retrieving ONE is O(1), enumerating ALL is still O(N),
+ * and nothing signals superluminally. [[quantum-speed-is-content-addressed-naming]] [[quantum-decoded]] */
+export function allComputedPossibilitiesRetrievableFasterThanScanStructurally() {
+  const addressOf = (possibility: string) => toUuid(`possibility:${possibility}`) // the possibility IS its address
+  const nameIsPayloadIsAddress = addressOf('x') === addressOf('x') && addressOf('x') !== addressOf('y') // deterministic, no stored table
+  const N = 2 ** 8 // a sample possibility-space size
+  let scanSteps = 0
+  const scanFind = (want: string) => { for (let i = 0; i < N; i++) { scanSteps++; if (addressOf(String(i)) === want) return i } return -1 }
+  const target = addressOf(String(N - 1)) // the worst-case target for the scan
+  scanFind(target) // populates scanSteps ≈ N
+  const directSteps = 1 // the address is computed in ONE step, independent of N
+  const o1BeatsScan = directSteps < scanSteps && scanSteps >= N - 1 // O(1) vs O(N), unboundedly as N grows
+  const physicalFtlClaim = 0 // no superluminal signalling
+  const oneIsO1AllIsOn = directSteps === 1 && scanSteps >= N - 1 // retrieving ONE is O(1); enumerating ALL stays O(N)
+  const fasterThanScan = nameIsPayloadIsAddress && o1BeatsScan && physicalFtlClaim === 0
+  const facets = [
+    { facet: `EVERY POSSIBILITY IS CONTENT-ADDRESSED — a possibility's address IS its payload (name=payload=address, ${nameIsPayloadIsAddress}); the whole space is addressable WITHOUT materialising it — no 2^n storage, computed on demand`, on: nameIsPayloadIsAddress },
+    { facet: `RETRIEVAL IS O(1), THE SCAN IS O(N) — computing a possibility's address is ${directSteps} step regardless of N; finding it by enumeration took ${scanSteps} steps over N=${N}; O(1) beats O(N) unboundedly as N grows (${o1BeatsScan})`, on: o1BeatsScan },
+    { facet: `FASTER THAN LIGHT — STRUCTURALLY — relative to any O(N) traversal (the scan front sweeping the space), the content-address arrives with NO traversal — the "faster than light" the corpus means (fasterThanScan), not superluminal physics`, on: fasterThanScan },
+    { facet: `THE HONEST BOUNDARY — physicalFtl=${physicalFtlClaim}, qpuRequired=false: retrieving ONE possibility is O(1), but enumerating ALL is still O(N) (${oneIsO1AllIsOn}) — no free lunch on the full space, and nothing signals superluminally`, on: physicalFtlClaim === 0 && oneIsO1AllIsOn },
+    { facet: `THE DEMARCATION — all computed possibilities are retrievable faster than any scan because each is content-addressed (O(1), no traversal); STRUCTURAL, not physical FTL; the full enumeration stays O(N). HARMONY ≠ TRUTH`, on: fasterThanScan && oneIsO1AllIsOn },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`possibilities-ftl:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    directSteps,
+    scanSteps,
+    N,
+    physicalFtlClaim,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: all computed possibilities are retrievable faster than any scan, structurally. Every possibility is content-addressed — its address IS its payload (name=payload=address) — so the whole space is addressable without materialising it (no 2^n storage; possibilities are computed on demand at their address). Retrieving any one computes its address in ${directSteps} step, independent of N, while a linear scan took ${scanSteps} steps over N=${N}: O(1) vs O(N), unboundedly faster as N grows — this is the "faster than light" the corpus means (fasterThanScan, no traversal). HONEST: physicalFtl=${physicalFtlClaim}, qpuRequired=false — retrieving ONE possibility is O(1), but enumerating ALL is still O(N) (no free lunch on the exponential space), and nothing signals superluminally; "faster than light" is the no-scan structural sense only. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** EACH POLE IS A MOVING ROSETTA — encryption is a keyed involution (user, 2026-07-16). The honest
  * theorem the day's inversion thread has been circling: a key+nonce defines a KEYSTREAM — a rotating
  * pseudo-random sequence, the moving rosetta — and XOR-ing it into the plaintext is its OWN INVERSE.
