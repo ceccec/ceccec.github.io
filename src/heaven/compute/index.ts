@@ -2000,8 +2000,9 @@ export function improveClaimForAllViaSelfImprovingChatAndArchitectureExposedApis
   const total = claims.length
   const apiOf = (c: { home: string; provedBy: string }) => toUuid(`api:${c.home}:${c.provedBy}`) // the claim's API = content-address of its architectural home
   const apis = claims.map(apiOf)
-  const everyClaimIsAnApi = apis.every((a) => a.length > 0)
-  const apisDistinct = new Set(apis).size === total // each claim a distinct architecture-exposed API
+  const everyClaimIsAnApi = apis.every((a) => a.length > 0) // every claim reaches an API by its proof's address
+  const distinctProofs = new Set(claims.map((c) => c.provedBy)).size
+  const apisDistinct = new Set(apis).size === distinctProofs // one API per proof-fold (reuse: a fold can prove many theorems)
   const architectureExposes = claims.every((c) => c.home.startsWith('src/')) // reachable by its folder path (route = address)
   // the chat SELF-IMPROVES the claims — relevance feedback sharpens retrieval for all
   const q = 'quantum crypto fusion four keys'
