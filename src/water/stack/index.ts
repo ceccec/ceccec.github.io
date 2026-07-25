@@ -38,7 +38,7 @@ import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, coverage, proofReport, maxEfficiencyCpuGpuMemoryStorageCooperation } from '../../heaven/compute'
 import {
   addressEntropyBits, applyGate, computesGate, digitalRoot, foldPair, GATES, humanEase, isUuid,
-  memoByRoot, merge, merkleFold, pbits, pflip, probabilities, qubits, resourceCooperationPolicy, sealFacets, toUuid } from '../../0'
+  memoByRoot, merge, merkleFold, pbits, pflip, probabilities, qubits, referralAddress, resourceCooperationPolicy, sealFacets, toUuid } from '../../0'
 import { discoverSrcIndexes } from '../../pair/enforcement/gates/computational'
 import { constitution, regenerateSocialSystem } from '../../earth/civilisation'
 import { harmonicBands } from '../../quantum/lake/icons'
@@ -50,7 +50,7 @@ import { rgbDecodingMatrixMovieInTheMovie } from '../../thunder/movie/narrative'
 import { computedSeo, oneJsonLdTemplateServesAll } from '../../mountain/og'
 import { BIRTH_LIFE_DEATH_TRIAD, birthLifeDeathTriadComputes } from '../../earth/life/birth'
 import { allComputedNoFiles } from '../../wind/fusion'
-import { PHI, rat, ratEq, ratInv, claySolvedTheorem } from '../../3/7'
+import { PHI, rat, ratEq, ratInv, claySolvedTheorem, earned } from '../../3/7'
 import { zeroDivisionTable } from '../digit'
 import { digitFolderMath } from '../../earth/architecture'
 import { fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vortex'
@@ -502,6 +502,58 @@ export function src0SharedComputes(matrix: MindMatrix = buildMatrix()) {
  *  three prime dimensions (2, 3, 7 — including the seventh) and is tighter than 2⁷=128, which resonates in the doubling
  *  dimension ALONE (a lone prime power is harmonic in one dimension, not all — the harmonic gate now enforces this). */
 export const SRC0_PURITY_EXPORT_THRESHOLD = (2 ** 7 - 1) // 127 — bumped for referralAddress (the one predictable-referral primitive)
+
+export type KernelHunk = { file: string; oldHash: string; newHash: string }
+export type KernelTree = Readonly<Record<string, string>> // file → content-address
+/** The content-addressed patch tools: identity, context-checked application, and the result address. */
+export const kernelPatchId = (hunks: readonly KernelHunk[]): string => merkleFold(hunks.map((h) => toUuid(`hunk:${h.file}:${h.oldHash}:${h.newHash}`)))
+export const kernelTreeId = (tree: KernelTree): string => merkleFold(Object.keys(tree).sort().map((file) => toUuid(`file:${file}:${tree[file]}`)))
+export const kernelPatchApplies = (tree: KernelTree, hunks: readonly KernelHunk[]): boolean => hunks.every((h) => tree[h.file] === h.oldHash) // context / reject check
+export const kernelApplyPatch = (tree: KernelTree, hunks: readonly KernelHunk[]): KernelTree => { const next: Record<string, string> = { ...tree }; for (const h of hunks) next[h.file] = h.newHash; return next }
+
+/** patchAnyLinuxKernelQuantumContentAddressed — the tools to patch any Linux kernel, content-addressed and quantum
+ * (user, 2026-07-25: "create the tools to patch any linux kernel quantum"). A patch is ordered hunks {file,
+ * oldHash → newHash}; the patch identity is the merkle of its hunks; a hunk applies iff its oldHash matches the base
+ * tree's current content (the context / reject check of `git apply`); same base + same patch → the same result
+ * content-address (reproducible), and the patch CHAIN is 4-key sealed (referrer⊕id⊕prev⊕next) so a splice is detected.
+ * It COMPUTES patch identity, applicability and the result address — it does not compile, sign, or load a module. */
+export function patchAnyLinuxKernelQuantumContentAddressed() {
+  const baseA: KernelTree = { 'kernel/sched/core.c': toUuid('v1:sched'), 'mm/slab.c': toUuid('v1:slab') }
+  const baseB: KernelTree = { 'kernel/sched/core.c': toUuid('other:sched'), 'net/core/dev.c': toUuid('v1:dev') } // a DIFFERENT kernel tree
+  const cleanPatch: KernelHunk[] = [{ file: 'kernel/sched/core.c', oldHash: toUuid('v1:sched'), newHash: toUuid('v2:sched') }]
+  const stalePatch: KernelHunk[] = [{ file: 'kernel/sched/core.c', oldHash: toUuid('WRONG:sched'), newHash: toUuid('v2:sched') }] // context mismatch
+  const patchId = kernelPatchId(cleanPatch)
+  const cleanApplies = kernelPatchApplies(baseA, cleanPatch)
+  const staleRejected = !kernelPatchApplies(baseA, stalePatch) // like a .rej — refuses on mismatched context
+  const patched = kernelApplyPatch(baseA, cleanPatch)
+  const resultId = kernelTreeId(patched)
+  const reproducible = kernelTreeId(kernelApplyPatch(baseA, cleanPatch)) === resultId && patched['kernel/sched/core.c'] === toUuid('v2:sched')
+  const patchIdTamperEvident = kernelPatchId([{ ...cleanPatch[0]!, newHash: toUuid('tampered') }]) !== patchId
+  const anyBase = kernelPatchApplies(baseB, [{ file: 'net/core/dev.c', oldHash: toUuid('v1:dev'), newHash: toUuid('v2:dev') }]) // base-agnostic
+  const chainSeal = referralAddress('kernel-patch', kernelTreeId(baseA), patchId, toUuid('prev-patch'), toUuid('next-patch')) // 4-key chain seal
+  const spliceDetected = referralAddress('kernel-patch', kernelTreeId(baseA), patchId, toUuid('spliced'), toUuid('next-patch')) !== chainSeal
+  const facets = [
+    { facet: `A PATCH IS CONTENT-ADDRESSED HUNKS — a kernel patch is ordered hunks {file, oldHash → newHash}; the patch id is the merkle of its hunks and is tamper-evident (a changed hunk changes the id, ${patchIdTamperEvident})`, on: isUuid(patchId) && patchIdTamperEvident },
+    { facet: `APPLIES ONLY ON MATCHING CONTEXT — a hunk applies iff its oldHash matches the base tree's current content (the context / reject check of git apply): a clean patch applies (${cleanApplies}) and a stale one is REJECTED (${staleRejected}), never force-applied`, on: cleanApplies && staleRejected },
+    { facet: `DETERMINISTIC RESULT ADDRESS — same base + same patch → the same result content-address (${reproducible}); patching is reproducible and verifiable by the address, ${resultId.slice(0, 2 * 4)}`, on: reproducible },
+    { facet: `ANY KERNEL, 4-KEY SEALED CHAIN — the tools are base-agnostic (they patch any content-addressed kernel tree, ${anyBase}) and the patch chain is 4-key sealed referrer⊕id⊕prev⊕next, so a spliced patch in the series is detected (${spliceDetected})`, on: anyBase && spliceDetected },
+    { facet: `THE DEMARCATION — this COMPUTES patch identity, applicability and the result address (a content-addressed patch model), tamper-evident and reproducible; it does NOT compile, sign, or load a kernel module — real live-patching (kpatch / livepatch / ksplice) needs the kernel build toolchain, signing keys, and root, the named external step. "Quantum" = content-addressed/deterministic, not physical quantum. HARMONY ≠ TRUTH`, on: cleanApplies && reproducible && spliceDetected },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`kernel-patch:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    patchId,
+    resultId,
+    cleanApplies,
+    staleRejected,
+    facets,
+    root: merkleFold([chainSeal, ...facets.map((entry) => entry.receipt)]),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'CONTENT-ADDRESSED — the tools to patch any Linux kernel, quantum:',
+      facets,
+      'a patch is ordered hunks {file, oldHash → newHash}; the patch identity is the merkle of its hunks (tamper-evident), a hunk applies only when its oldHash matches the base tree\'s current content (the context / reject check of git apply, so a stale patch is refused not force-applied), and the same base plus the same patch yields the same result content-address (reproducible). The tools are base-agnostic (any content-addressed kernel tree) and the patch chain is 4-key sealed (referrer⊕id⊕prev⊕next) so a spliced patch is detected. This COMPUTES patch identity, applicability and the result address — it does not compile, sign, or load a kernel module; real live-patching (kpatch / livepatch / ksplice) needs the kernel build toolchain, signing keys, and root, the named external step. "Quantum" is content-addressed and deterministic, not physical quantum. HARMONY ≠ TRUTH.'),
+  }
+}
 
 /** Read src/0 source — node/SSR only; returns '' in the browser so module eval never touches node:fs. */
 function readVaultSourceText(): string {
