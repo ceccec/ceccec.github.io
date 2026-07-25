@@ -4,11 +4,11 @@ import type { ConceptCommandName, MindMatrix } from '../../wind/types'
 import type { JsonLdPageIdentity } from '../../heaven/balance'
 import { buildMatrix, entropy } from '../../heaven/compute'
 import { animatedHeroes, heroSvgFromUuid, holographic, oneHolographicTemplate, stillSvg } from '../../wind/ui'
-import { foldPair, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid } from '../../0'
+import { foldPair, isUuid, memoByRoot, merge, merkleFold, referralAddress, sealFacets, toUuid } from '../../0'
 import { commandsRegistry, executeConceptCommand } from '../../thunder/commands'
 import { allComputed, allComputedNoFiles, allComputedQuantumMathAnalog } from '../../wind/fusion'
 import { everyPageGraphOfGraphsFractal, heroPreviewForRoute, monographs, ogBuildsNavigation, rosettaComputesNavigationAndContent, theoremPageRows } from '../../wind/routes/corpus'
-import { TAU, CANONICAL_HOST, FOLDED_CENSUS, ROSETTA_RAY_HUBS, UNFOLDED_CENSUS, claySolvedTheorem } from '../../3/7'
+import { TAU, CANONICAL_HOST, FOLDED_CENSUS, ROSETTA_RAY_HUBS, UNFOLDED_CENSUS, claySolvedTheorem, earned } from '../../3/7'
 import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 import { rosettaRayOf } from '../../water/digit'
 import { harmonicBands, openGraph, typographySeo } from '../../quantum/lake/icons'
@@ -33,6 +33,57 @@ import { autotranslations, computedSlugsFoldTheGraph, configsUseMatrixComputatio
 // each descriptor carrying the whole root (holographic — each part contains the
 // whole) and a content-addressed itemid. Every page and component draws its
 // structured data from this same fold instead of scattering bespoke meta.
+export type MicrodataPage = { slug: string; title: string; description: string; identifier: string }
+/** Generate a page's schema.org microdata (itemscope / itemtype / itemprop) deterministically from its content — the
+ * itemid is the page's content-address, so the structured data is reproducible and tamper-evident. */
+export function pageMicrodata(page: MicrodataPage, itemtype = 'https://schema.org/TechArticle') {
+  const itemid = toUuid(`microdata-page:${itemtype}:${page.slug}:${page.title}:${page.description}:${page.identifier}`) // content-addressed identity
+  const props = [
+    { itemprop: 'name', content: page.title },
+    { itemprop: 'description', content: page.description },
+    { itemprop: 'identifier', content: page.identifier },
+    { itemprop: 'url', content: `${CANONICAL_HOST}/${page.slug}` },
+  ]
+  return { itemscope: true, itemtype, itemid, props }
+}
+
+/** quantumMicrodataContentAddressed — quantum (content-addressed) schema.org microdata per page (user, 2026-07-25:
+ * "quantum microdata"). Each page's structured data (itemscope / itemtype / itemprop) is generated deterministically
+ * from its content, with itemid = the page's content-address — reproducible and tamper-evident (a changed page changes
+ * the itemid). Composes the site-level microdata types; the whole structured-data surface is one content-addressed root.
+ * "Quantum" = content-addressed/deterministic, not physical quantum; it is search-engine markup that describes a page. */
+export function quantumMicrodataContentAddressed(matrix: MindMatrix = buildMatrix()) {
+  const site = microdata(matrix)
+  const page: MicrodataPage = { slug: 'tsirelson-bound', title: 'Tsirelson bound', description: 'the quantum CHSH maximum 2√2', identifier: 'chsh' }
+  const md = pageMicrodata(page)
+  const reproducible = pageMicrodata(page).itemid === md.itemid // same page → same microdata
+  const tamperEvident = pageMicrodata({ ...page, description: page.description + ' (edited)' }).itemid !== md.itemid // a changed page → different itemid
+  const validSchema = md.itemtype.startsWith('https://schema.org/') && md.props.every((prop) => prop.itemprop.length > 0 && prop.content.length > 0)
+  const hasCoreProps = ['name', 'description', 'identifier', 'url'].every((name) => md.props.some((prop) => prop.itemprop === name))
+  const composesSite = site.reusable && site.count >= (2 * 3) && site.types.every((entry) => entry.itemtype.startsWith('https://schema.org/'))
+  const chainSeal = referralAddress('microdata', md.itemid, site.root, toUuid('prev-md'), toUuid('next-md')) // 4-key sealed structured-data chain
+  const facets = [
+    { facet: `QUANTUM MICRODATA — CONTENT-ADDRESSED — each page's schema.org microdata (itemscope · itemtype "${md.itemtype}" · ${md.props.length} itemprops) is generated deterministically from its content, itemid = its content-address, so it is reproducible (${reproducible})`, on: reproducible && validSchema },
+    { facet: `TAMPER-EVIDENT STRUCTURED DATA — a changed page (title/description) changes the itemid (${tamperEvident}), so the structured data is BOUND to the content — no stale or forged microdata survives`, on: tamperEvident },
+    { facet: `VALID SCHEMA.ORG — the itemtype is https://schema.org/… and the properties are real schema.org terms (name, description, identifier, url = ${hasCoreProps}) that search engines parse`, on: validSchema && hasCoreProps },
+    { facet: `COMPOSES THE SITE MICRODATA — the ${site.count} site-level schema.org types (WebSite, Course, SoftwareApplication, CreativeWork, Dataset, LearningResource) and the per-page microdata share ONE content-addressed root, 4-key sealed`, on: composesSite && isUuid(chainSeal) },
+    { facet: `THE DEMARCATION — schema.org microdata is structured-data MARKUP for search engines, generated deterministically ("quantum" = content-addressed, NOT physical quantum); it describes the page and does not change ranking by itself. HARMONY ≠ TRUTH`, on: reproducible && validSchema && composesSite },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-microdata:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    itemid: md.itemid,
+    props: md.props.length,
+    siteTypes: site.count,
+    facets,
+    root: merge(site.root, merkleFold([chainSeal, ...facets.map((entry) => entry.receipt)])),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'CONTENT-ADDRESSED — quantum schema.org microdata per page:',
+      facets,
+      'each page\'s structured data (itemscope / itemtype / itemprop) is generated deterministically from its content, with itemid = the page\'s content-address, so it is reproducible and tamper-evident (a changed page changes the itemid, no stale or forged microdata survives). The itemtype is a real https://schema.org type and the properties are real schema.org terms (name, description, identifier, url) that search engines parse; the per-page microdata composes the site-level schema.org types into one content-addressed, 4-key-sealed root. "Quantum" is content-addressed and deterministic, not physical quantum; microdata is markup that describes a page for search engines and does not change ranking by itself. HARMONY ≠ TRUTH.'),
+  }
+}
+
 export function microdata(matrix: MindMatrix = buildMatrix()) {
   const whole = theWhole(matrix).root
   const types = [
