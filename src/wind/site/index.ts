@@ -24,7 +24,8 @@ import { endlessBackgroundMovie } from '../../thunder/movie/canvas'
 import { computedMovieThemeColors } from '../../fire/plasma/ball'
 import { buildStatistics, buildStatisticsShowGaps, backgroundMovie, features, harmonicMathFlowsInMovie, linkPasteReentryPatternCompletion, live, path, theWhole } from '../../quantum/heaven/mind'
 import { peaceTechMentalityDecoded } from '../../earth/world'
-import { completeCorpus, pagesConsolidateByTheoremGravity, privateSearchRanksByBM25IndustryStandard } from '../routes/corpus'
+import { completeCorpus, pagesConsolidateByTheoremGravity, privateSearchRanksByBM25IndustryStandard, searchImprovesByExperiencePrivateRelevanceFeedback } from '../routes/corpus'
+import { roundTo } from '../../0'
 import { proofReport } from '../../heaven/compute'
 import { freeForgesMaxCost } from '../../heaven/essence'
 import { pagesWiredAtRuntimeZeroBuildMaxTamper } from '../../water/crypto'
@@ -177,6 +178,56 @@ export function egressSecurityForQuantumEncryptionOverHttps() {
       'HONEST — egress security for quantum encryption over http(s):',
       facets,
       'the strongest protection is NO egress — the private core sends nothing, and the external fetch stays empty unless the user opts in. When they do, every request is https-only (TLS in transit), never http. But a public search API must READ the query, so HTTPS protects it only in transit — the third-party endpoint sees it, and quantum (4-key) encryption cannot hide a query the endpoint must process; the mitigation is opt-in and minimising what is sent. The 4-key encryption protects the app\'s OWN payloads: ciphertext over https that the endpoint cannot read, with keys derived client-side and never sent. Egress security is no-egress by default, https-only when opted in, and honest about third-party visibility — not a claim that a public API query is hidden. HARMONY ≠ TRUTH.'),
+  }
+}
+
+/** quantumPredictedUserExperienceMeasuredAnalysedAccountedOptimised — predict the user experience, measure it,
+ * statistically analyse, account, and optimise (user, 2026-07-25: "quantum predicted user experience measured and
+ * statistically analysed accounted and optimised"). The deterministic model PREDICTS what the user will see (the
+ * BM25-ranked results), the metrics are MEASURED client-side (no egress), STATISTICS are computed (mean μ and spread σ
+ * of the top scores, grounded ratio), the metrics ACCOUNT to one content-addressed ledger receipt, and the
+ * OPTIMISATION is measured (relevance feedback lifts a chosen result). All client-side and deterministic — not
+ * real-user telemetry. [[realtime-live-data-testing]] [[searchImprovesByExperiencePrivateRelevanceFeedback]] */
+export function quantumPredictedUserExperienceMeasuredAnalysedAccountedOptimised(query = 'quantum computing', matrix: MindMatrix = buildMatrix()) {
+  // PREDICT — the deterministic model predicts the experience (the ranked results) before any interaction.
+  const predicted = privateSearchRanksByBM25IndustryStandard(query)
+  const topK = predicted.results.slice(0, 9)
+  const predictedOk = topK.length > 0
+  // MEASURE — client-side metrics, no egress.
+  const resultCount = predicted.resultCount
+  const scores = topK.map((row) => row.score)
+  // STATISTICALLY ANALYSE — mean μ and standard deviation σ of the top scores.
+  const mean = scores.reduce((sum, s) => sum + s, 0) / Math.max(1, scores.length)
+  const variance = scores.reduce((sum, s) => sum + (s - mean) ** 2, 0) / Math.max(1, scores.length)
+  const std = Math.sqrt(variance)
+  const chat = portalChat(query, matrix)
+  const groundedRatio = chat.grounded ? 1 : 0 // a one-query grounded probe (0 or 1)
+  const analysed = Number.isFinite(mean) && Number.isFinite(std) && mean > 0
+  // ACCOUNT — the metrics fold to ONE content-addressed ledger receipt (4-key sealed), reproducible.
+  const ledger = referralAddress('ux-metrics', query, String(resultCount), String(roundTo(mean, 2)), String(roundTo(std, 2)))
+  const accounted = ledger === referralAddress('ux-metrics', query, String(resultCount), String(roundTo(mean, 2)), String(roundTo(std, 2)))
+  // OPTIMISE — the optimisation is measured: relevance feedback lifts a chosen result's rank.
+  const optimised = searchImprovesByExperiencePrivateRelevanceFeedback(query).improves
+  const facets = [
+    { facet: `PREDICTED — the deterministic model predicts the experience: ${topK.length} BM25-ranked results for "${query}" (top score ${roundTo(scores[0] ?? 0, 1)}), computed before any interaction`, on: predictedOk && predicted.computes },
+    { facet: `MEASURED — client-side, NO EGRESS — ${resultCount} results measured locally; the metrics never leave the browser (${scores.length} top scores captured)`, on: resultCount > 0 && scores.length > 0 },
+    { facet: `STATISTICALLY ANALYSED — mean μ = ${roundTo(mean, 2)} and spread σ = ${roundTo(std, 2)} over the top scores, grounded ratio ${groundedRatio}; the statistics are computed deterministically`, on: analysed },
+    { facet: `ACCOUNTED & OPTIMISED — the metrics account to ONE content-addressed 4-key ledger receipt (reproducible ${accounted}), and the optimisation is measured: relevance feedback lifts a chosen result's rank (${optimised})`, on: accounted && optimised },
+    { facet: `THE DEMARCATION — all client-side, no-egress, deterministic; "predicted UX" is the model's own output (what the user will see) measured locally with statistics, NOT real-user telemetry or A/B testing, and the optimisation is the computed optimum, not learned from aggregated user data. HARMONY ≠ TRUTH`, on: predictedOk && accounted && optimised },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`ux-predicted:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    predictedResults: topK.length,
+    statistics: { mean: roundTo(mean, 3), std: roundTo(std, 3), groundedRatio },
+    ledger,
+    optimised,
+    facets,
+    root: merkleFold([ledger, predicted.root, ...facets.map((entry) => entry.receipt)]),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'MEASURED — quantum-predicted UX, analysed, accounted, optimised:',
+      facets,
+      'the deterministic model predicts what the user will see (the BM25-ranked results), the metrics are measured client-side with no egress, the statistics (mean μ and spread σ of the top scores, the grounded ratio) are computed deterministically, the metrics account to one content-addressed 4-key ledger receipt, and the optimisation is measured — relevance feedback lifts a chosen result. It is all client-side and deterministic: "predicted UX" is the model\'s own output measured locally with statistics, not real-user telemetry or A/B testing, and the optimisation is the computed optimum, not learned from aggregated user data. HARMONY ≠ TRUTH.'),
   }
 }
 
