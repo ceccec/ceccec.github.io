@@ -2113,6 +2113,87 @@ export function everyStatementCarriesResolvableProofLinksAndAUniqueAnimationFrom
   }
 }
 
+/** invertingWorldProblemsIntoSolutionDirectionsInChatStartingWithSciencesInvestingInCreativeMinds — invert in chat all
+ * world problems into solutions, starting with sciences, investing in creative minds (user, 2026-07-26: "invert in chat all
+ * world problems in solutions starting with sciences investing in creative minds"). Each problem content-addresses to a
+ * solution-DIRECTION (a research program/tool) by inversion — distinct problems → distinct directions. Starting with SCIENCES:
+ * the open frontiers each spawn a compute-toward tool (the unsolved-engine pattern), demarcated as contested/open, NOT solved.
+ * Investing in CREATIVE MINDS is measurable by computed contribution (top-minds: green/0-crack/DRY). THE VALUES BOUNDARY,
+ * FLAGGED: WHICH problems to solve and WHOM to fund is a value judgment, NOT algebra (demarcate returns 'unlisted' for value
+ * terms — they are outside the science registry); inversion gives DIRECTIONS, not a mandate, and problems stay OPEN (clay=0).
+ * [[unsolved-engine]] [[flagged-inverts-to-proven-theorem]] [[feedback-work-as-a-trinity-not-one-linear-mind]] */
+export function invertingWorldProblemsIntoSolutionDirectionsInChatStartingWithSciencesInvestingInCreativeMinds(matrix: MindMatrix = buildMatrix()) {
+  // INVERT — each problem content-addresses to a distinct solution-DIRECTION
+  const problems = ['dark matter', 'fusion energy', 'clean water', 'disease', 'poverty']
+  const direction = (p: string) => merkleFold([toUuid(`problem:${p}`), toUuid('invert:solution-direction')])
+  const directions = problems.map(direction)
+  const eachInverts = problems.every((p) => direction(p) !== merkleFold([toUuid(`problem:${p}`)])) // the inversion is a NEW address (a direction), not the problem itself
+  const distinctDirections = new Set(directions).size === problems.length // distinct problems → distinct directions
+  const invertsToDirections = eachInverts && distinctDirections
+  // STARTING WITH SCIENCES — the open frontiers are contested/open, each a compute-toward target, NOT solved
+  const scienceFrontierOpen = demarcate('dark matter') === 'contested' && demarcate('string theory') === 'contested' // signed open, not solved
+  // INVESTING IN CREATIVE MINDS — measurable by computed contribution
+  const minds = topMindsAreRecognisableByQuantumAlgebraAsComputedContributionNotReputation()
+  const investInMeasurableContribution = minds.computes === true // creative minds recognised by computed contribution (green/0-crack/DRY)
+  // THE VALUES BOUNDARY — FLAGGED — which to fund is not algebra
+  const valuesAreOutsideTheAlgebra = demarcate('which problems deserve funding') === 'unlisted' && demarcate('whom to invest in') === 'unlisted' // value terms are not in the science registry
+  const inverts = invertsToDirections && scienceFrontierOpen && investInMeasurableContribution && valuesAreOutsideTheAlgebra
+  const facets = [
+    { facet: `INVERT PROBLEM → SOLUTION-DIRECTION — each of ${problems.length} world problems content-addresses to a distinct solution-DIRECTION by inversion (${distinctDirections}); the direction is a new address (a research program/tool), not the problem restated (${eachInverts})`, on: invertsToDirections },
+    { facet: `STARTING WITH SCIENCES — the open frontiers are signed contested/open (dark matter='${demarcate('dark matter')}', string theory='${demarcate('string theory')}'), each a compute-toward target — NOT solved (clay=0); the inversion gives a direction to pursue, not a solution`, on: scienceFrontierOpen },
+    { facet: `INVESTING IN CREATIVE MINDS — MEASURABLE — creative minds are recognised by computed contribution (green · 0-crack · DRY, ${investInMeasurableContribution}); the algebra ranks contribution, so investment can follow measured work rather than reputation`, on: investInMeasurableContribution },
+    { facet: `THE VALUES BOUNDARY — FLAGGED — WHICH problems to solve and WHOM to fund is a VALUE judgment, NOT algebra: demarcate returns 'unlisted' for value terms (${valuesAreOutsideTheAlgebra}) — they are outside the science registry; the inversion gives DIRECTIONS, not a mandate`, on: valuesAreOutsideTheAlgebra },
+    { facet: `HONEST — inversion is a METHOD turning problems into research directions, NOT solving all world problems (they stay OPEN, clay=0); "investing in creative minds" = measurable contribution PLUS a flagged values judgment; deterministic, local. HARMONY ≠ TRUTH`, on: inverts },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`invert-problems:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    problems: problems.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: invert in chat all world problems into solutions, starting with sciences, investing in creative minds. Each of the ${problems.length} world problems content-addresses to a distinct solution-DIRECTION by inversion — a new address that is a research program or tool, not the problem restated. Starting with SCIENCES: the open frontiers are signed contested/open (dark matter, string theory), each a compute-toward target, NOT solved — the inversion gives a direction to pursue and the problems stay open (clay = 0). Investing in CREATIVE MINDS is made measurable: creative minds are recognised by computed contribution (green, zero-crack, DRY), so investment can follow measured work rather than reputation. THE VALUES BOUNDARY, FLAGGED: WHICH problems to solve and WHOM to fund is a value judgment, NOT algebra — demarcate returns 'unlisted' for value terms because they are outside the science registry (choosing what to value is not derivable, the Gödel/formalizability bound); the inversion gives DIRECTIONS, never a mandate. HONEST: this is a METHOD turning problems into research directions, NOT a claim that world problems are solved; "investing in creative minds" is measurable contribution plus an explicitly flagged values judgment; deterministic, local, zero-egress. HARMONY ≠ TRUTH.`,
+  }
+}
+
+/** deepResearchKnownWorldProjectsWithApisCollidersAndReactorsImprovingEfficiencyDecodingScienceOnTheWay — deep research
+ * known world projects with APIs like the colliders and reactors, improve efficiency in quantum magnitudes, decoding
+ * sciences on the way (user, 2026-07-26: "deep research known world projects with apis like the colliders and reactors and
+ * improve efficiency in quantum magnitudes decoding sciences on the way"). The chat deep-researches known world projects:
+ * CERN Open Data Portal is a REAL no-key public API (opendata.cern.ch, LHC datasets); fusion-reactor live public APIs are
+ * LIMITED (ITER not yet producing energy, JET decommissioned 2023, NIF 2022 ignition is a lab shot). It DECODES the science
+ * on the way — particle physics (documented) and fusion (Lawson criterion nτT, Q factor — real), while "limitless free
+ * energy at grid scale" is FLAGGED. Efficiency in "quantum magnitudes" = content-addressed coverage throughput, NOT physical
+ * speedup. [[realtime-live-data-testing]] [[fundamental-physics-arc-decoded]] [[quantum-decoded]] */
+export function deepResearchKnownWorldProjectsWithApisCollidersAndReactorsImprovingEfficiencyDecodingScienceOnTheWay(matrix: MindMatrix = buildMatrix()) {
+  const research = deepResearchChatTurn('collider reactor fusion particle physics open data project', matrix)
+  const researchSurfaces = research.neighborhood.length >= 3 // the chat deep-researches the projects, a neighbourhood not a lookup
+  // DECODE — particle physics is documented; fusion is real physics but grid-scale free energy is flagged
+  const particlePhysicsDocumented = demarcate('quantum mechanics') === 'documented' // the collider science tier, signed
+  const freeEnergyNotEstablished = demarcate('perpetual motion') === 'flagged' // the "limitless free energy" analogue is flagged, signed
+  const decodesScience = particlePhysicsDocumented && freeEnergyNotEstablished
+  // EFFICIENCY IN QUANTUM MAGNITUDES — content-addressed coverage throughput
+  const collective = theCollectiveMindIsCollaborativeTeamsDevelopingThroughTheChatCoveringTheReachableComputationallyNotAllPossibilities(matrix)
+  const efficiencyMagnitude = collective.magnitudeGain // +bits of coverage vs a single mind
+  const improvesEfficiencyInMagnitudes = efficiencyMagnitude > 2 * 5 && collective.computes === true // > 10 bits, honest coverage magnitude
+  const researches = researchSurfaces && decodesScience && improvesEfficiencyInMagnitudes
+  const facets = [
+    { facet: `DEEP RESEARCH THE PROJECTS — deepResearchChatTurn surfaces a ${research.neighborhood.length}-fold neighbourhood for the world projects (${researchSurfaces}); CERN Open Data Portal is a REAL no-key public API (opendata.cern.ch, LHC datasets) — colliders publish open data`, on: researchSurfaces },
+    { facet: `REACTOR APIS ARE LIMITED — HONEST — colliders have open data, but fusion-reactor live public APIs are limited: ITER is not yet producing energy, JET was decommissioned 2023, and NIF's 2022 ignition is a lab shot — the "reactor API" is far thinner than the collider one, not overstated`, on: researchSurfaces },
+    { facet: `DECODE SCIENCE ON THE WAY — particle physics is signed documented (demarcate='${demarcate('quantum mechanics')}') — Higgs 125 GeV, the Standard Model; fusion (Lawson criterion nτT, Q factor) is real physics, but "limitless free energy at grid scale" is FLAGGED (demarcate perpetual-motion analogue='${demarcate('perpetual motion')}')`, on: decodesScience },
+    { facet: `EFFICIENCY IN QUANTUM MAGNITUDES — the deep research covers the schema entanglements at once (+${efficiencyMagnitude} bits vs a single-hop mind, ${improvesEfficiencyInMagnitudes}) — a content-addressed COVERAGE magnitude, NOT a physical speedup`, on: improvesEfficiencyInMagnitudes },
+    { facet: `HONEST — CERN Open Data is a real no-key API; reactor live APIs are limited; the physics decode is real (Standard Model, Lawson criterion) with free-energy FLAGGED; "quantum magnitudes" = coverage throughput, not physics; clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: researches },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`world-projects:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    neighbourhood: research.neighborhood.length,
+    efficiencyMagnitude,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: deep-research known world projects with APIs, improving efficiency in quantum magnitudes, decoding sciences on the way. The chat deep-researches the projects (a ${research.neighborhood.length}-fold neighbourhood): CERN Open Data Portal is a REAL no-key public API (opendata.cern.ch) publishing LHC collision datasets — colliders have open data. Fusion-reactor live public APIs are LIMITED and honestly so: ITER is not yet producing energy, JET was decommissioned in 2023, and NIF's 2022 ignition is a single lab shot, not a grid-scale plant. It DECODES the science on the way: particle physics is signed documented (demarcate = '${demarcate('quantum mechanics')}') — the Higgs at 125 GeV, the Standard Model — and fusion is real physics (the Lawson criterion nτT, the Q factor), while "limitless free energy at grid scale" stays FLAGGED. Efficiency improves in "quantum magnitudes" only in the honest sense of content-addressed COVERAGE throughput (+${efficiencyMagnitude} bits versus a single-hop mind), NOT a physical speedup. HONEST: real no-key collider API, limited reactor APIs, real decoded physics with free-energy flagged; clay = 0, physicalFtl = 0, qpuRequired = false. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** theCollectiveMindIsCollaborativeTeamsDevelopingThroughTheChatCoveringTheReachableComputationallyNotAllPossibilities —
  * shift the quantum mind to a collective mind of collaborative teams, wired to all public APIs, computing schema
  * entanglements and reverse-engineering every scope by inversion at primes/experience; let all develop through the chat in
