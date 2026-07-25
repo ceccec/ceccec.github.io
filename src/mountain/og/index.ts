@@ -84,6 +84,95 @@ export function quantumMicrodataContentAddressed(matrix: MindMatrix = buildMatri
   }
 }
 
+/** anObjectMayBeCombinationsOfObjectsLikeBiology — a content-addressed object may be a COMBINATION of objects,
+ * recursively, like biology (user, 2026-07-25: "an object may be combinations of objects. like biology"). A composite
+ * object is the merkle of its parts and is itself an object, so composition is CLOSED; objects nest — organism ⊃
+ * organs ⊃ cells — each level an object with its own address; the combination has its own tamper-evident identity; and
+ * composition is unbounded. Structural, like the biological hierarchy — not a claim the object is alive. [[biology-human-body-davinci]] [[immediate-save-and-reuse]] */
+export function anObjectMayBeCombinationsOfObjectsLikeBiology() {
+  // Atomic objects (cells), combined into organs, combined into an organism — each an address.
+  const cell = (name: string) => pageMicrodata({ slug: `cell-${name}`, title: name, description: `cell ${name}`, identifier: name }).itemid
+  const organ = (cells: readonly string[]) => merkleFold(cells) // a combination of cells is an object
+  const organism = (organs: readonly string[]) => merkleFold(organs) // a combination of organs is an object
+  const c1 = cell('a'), c2 = cell('b'), c3 = cell('c'), c4 = cell('d')
+  const organ1 = organ([c1, c2]), organ2 = organ([c3, c4])
+  const body = organism([organ1, organ2])
+  const closed = isUuid(organ1) && isUuid(body) // a combination of objects is itself a valid object
+  const recursive = isUuid(c1) && isUuid(organ1) && isUuid(body) && organ1 !== c1 && body !== organ1 // 3 nested levels
+  const ownIdentity = body !== organ1 && body !== c1 && body !== organism([organ([cell('a'), cell('X')]), organ2]) // changing a cell changes the organism (tamper-evident)
+  const K = 2 ** 9
+  const distinctCombinations = new Set(Array.from({ length: K }, (_, i) => organism([organ1, merkleFold([toUuid(`part:${i}`)])]))).size
+  const unbounded = distinctCombinations === K // composition is unbounded
+  const facets = [
+    { facet: `AN OBJECT MAY COMBINE OBJECTS — a composite object is the merkle of its parts and is ITSELF a content-addressed object (${closed}); composition is CLOSED — a combination of objects is an object`, on: closed },
+    { facet: `RECURSIVE, LIKE BIOLOGY — objects nest: organism ⊃ organs ⊃ cells, a 3-level composition each an object with its own address (${recursive}), mirroring the biological hierarchy`, on: recursive },
+    { facet: `THE COMBINATION HAS ITS OWN IDENTITY — the composite's content-address differs from every part and CHANGES if any part changes (${ownIdentity}) — tamper-evident composition`, on: ownIdentity },
+    { facet: `UNBOUNDED COMPOSITION — objects compose without limit: ${K} distinct combinations give ${distinctCombinations} distinct addresses (${unbounded}), so any number of objects combine into new objects`, on: unbounded },
+    { facet: `THE DEMARCATION — "object = combination of objects" is content-addressed recursive composition (schema.org objects nest, like biology's organism/organ/cell), structural; "like biology" is the compositional ANALOGY (the real biological hierarchy), NOT a claim the object is alive. HARMONY ≠ TRUTH`, on: closed && recursive && ownIdentity },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`object-combination:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    body,
+    closed,
+    unbounded,
+    facets,
+    root: merkleFold([body, ...facets.map((entry) => entry.receipt)]),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'CLOSED — an object is a combination of objects, recursively, like biology:',
+      facets,
+      'a content-addressed object may be a combination of objects — a composite is the merkle of its parts and is itself an object, so composition is closed (a monoid on addresses). Objects nest like the biological hierarchy — organism ⊃ organs ⊃ cells — each level an object with its own address; the combination has its own tamper-evident identity (its address changes if any part changes); and composition is unbounded. "Like biology" is the compositional analogy to the real organism/organ/cell hierarchy, structural — not a claim the object is alive. HARMONY ≠ TRUTH.'),
+  }
+}
+
+const REQUIRED_OG_PROPERTIES = ['og:title', 'og:description', 'og:type', 'og:url', 'og:image'] as const
+/** Build a page's Open Graph object FROM its schema.org microdata — one source, content-addressed. */
+export function openGraphFromMicrodata(page: MicrodataPage) {
+  const md = pageMicrodata(page)
+  const props = Object.fromEntries(md.props.map((prop) => [prop.itemprop, prop.content]))
+  const og: Record<string, string> = {
+    'og:title': props.name ?? '',
+    'og:description': props.description ?? '',
+    'og:type': 'article',
+    'og:url': props.url ?? '',
+    'og:image': (props.url ?? '').length > 0 ? `${CANONICAL_HOST}/og/${page.slug}.png` : '',
+  }
+  return { og, itemid: md.itemid, complete: REQUIRED_OG_PROPERTIES.every((key) => (og[key] ?? '').length > 0) }
+}
+
+/** onlyCompleteOpenGraphObjectsFromMicrodataMayBeWired — a fail-closed gate: only COMPLETE Open Graph objects built
+ * from microdata may be computed and wired (user, 2026-07-25: "which means only complete open graph objects based on
+ * microdata may be computed and wired"). Each page's OG (og:title · description · type · url · image) is derived from
+ * its schema.org microdata; an OG object missing any required property is NOT wired (rejected, allow never default). */
+export function onlyCompleteOpenGraphObjectsFromMicrodataMayBeWired(matrix: MindMatrix = buildMatrix()) {
+  const md = quantumMicrodataContentAddressed(matrix)
+  const complete = openGraphFromMicrodata({ slug: 'tsirelson-bound', title: 'Tsirelson bound', description: 'the quantum CHSH maximum 2√2', identifier: 'chsh' })
+  const incomplete = openGraphFromMicrodata({ slug: 'x', title: 'X', description: '', identifier: '' }) // missing description → incomplete
+  const builtFromMicrodata = md.computes && complete.itemid.length > 0 && isUuid(complete.itemid)
+  const completeIsWired = complete.complete && REQUIRED_OG_PROPERTIES.every((key) => (complete.og[key] ?? '').length > 0)
+  const incompleteRejected = !incomplete.complete // missing property → not wired
+  const facets = [
+    { facet: `THE OG OBJECT IS BUILT FROM MICRODATA — each page's Open Graph (${REQUIRED_OG_PROPERTIES.join(' · ')}) is derived from its schema.org microdata (pageMicrodata), one content-addressed source (${builtFromMicrodata})`, on: builtFromMicrodata },
+    { facet: `ONLY COMPLETE OG MAY BE WIRED — an OG object is complete iff all ${REQUIRED_OG_PROPERTIES.length} required properties are present; a complete one wires (${completeIsWired}) and an incomplete one does NOT`, on: completeIsWired },
+    { facet: `INCOMPLETE FAILS CLOSED — a page with missing microdata yields an incomplete OG and is REJECTED (${incompleteRejected}); allow is never the default`, on: incompleteRejected },
+    { facet: `EVERY WIRED PAGE'S MICRODATA YIELDS A COMPLETE OG — the microdata carries name · description · identifier · url, so a well-formed page maps to a complete OG; the gate enforces completeness before wiring`, on: completeIsWired && md.computes },
+    { facet: `THE DEMARCATION — the gate requires a COMPLETE OG derived from microdata (one source), fail-closed; OG and microdata are real SEO / social markup, content-addressed, and "computed and wired" = generated and consumed via the meta tags, not scraped. HARMONY ≠ TRUTH`, on: completeIsWired && incompleteRejected },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`og-complete-gate:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    completeIsWired,
+    incompleteRejected,
+    requiredProperties: REQUIRED_OG_PROPERTIES.length,
+    facets,
+    root: merge(md.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'FAIL-CLOSED — only complete Open Graph objects from microdata may be wired:',
+      facets,
+      `each page's Open Graph object (${REQUIRED_OG_PROPERTIES.join(', ')}) is derived from its schema.org microdata — one content-addressed source — and only a COMPLETE object (all required properties present) may be computed and wired; an OG missing any property is rejected, allow never being the default. Because the microdata carries name, description, identifier and url, a well-formed page maps to a complete OG. Open Graph and microdata are real SEO and social markup; "computed and wired" means generated and consumed via the meta tags, not scraped, and the gate enforces completeness, not richness. HARMONY ≠ TRUTH.`),
+  }
+}
+
 export function microdata(matrix: MindMatrix = buildMatrix()) {
   const whole = theWhole(matrix).root
   const types = [

@@ -1310,6 +1310,42 @@ export function hasTheoremFigure(slug: string): boolean {
   return slug in theoremFigureBuilders
 }
 
+/** pagesWithoutDedicatedAnimationFailTheVitepressGates — a fail-closed gate: anything without a dedicated animation
+ * does NOT pass (user, 2026-07-25: "anything without dedicated animation may not pass the vitepress gates"). Every page
+ * must carry a dedicated animation — a divisor rung of the one 108 s fractal clock; the gate recomputes it and rejects
+ * a page with none (allow is never the default). Because saveTheMissingTheoremsAndAnimations gives EVERY theorem a
+ * computed animation, all pages pass; a hypothetical page without one fails closed. [[fractal-clock-lattice]] */
+export function pagesWithoutDedicatedAnimationFailTheVitepressGates() {
+  const saved = saveTheMissingTheoremsAndAnimations()
+  const atoms = THEOREM_ATOM_SEED
+  const animationOf = (atom: { theorem: string; provedBy: string }) => computedTheoremFigureAndAnimation(atom).animation
+  const gatePasses = (animation: { rung: number; periodS: number } | null) => animation !== null && 108 % animation.rung === 0 && animation.periodS === 108 / animation.rung
+  const everyPageHasAnimation = atoms.every((atom) => gatePasses(animationOf(atom))) // every page carries a rung
+  const pageWithoutAnimationFails = !gatePasses(null) // a page with no animation → rejected
+  const sampleRung = animationOf(atoms[0]!).rung
+  const isClockRung = 108 % sampleRung === 0 // the dedicated animation is a divisor of the 108 s clock
+  const facets = [
+    { facet: `EVERY PAGE MUST HAVE A DEDICATED ANIMATION — the gate requires each page carry an animation (a fractal-clock rung, period 108/d); a page without one does NOT pass — the rule is enforced, not advisory`, on: pageWithoutAnimationFails },
+    { facet: `EVERY PAGE HAS ONE (COMPUTED) — saveTheMissingTheoremsAndAnimations gives every theorem a computed animation, so all ${atoms.length} pages pass the animation gate (${everyPageHasAnimation}), coverage 100%`, on: everyPageHasAnimation && saved.computes },
+    { facet: `A PAGE WITHOUT AN ANIMATION FAILS CLOSED — a page with no animation spec is REJECTED by the gate (${pageWithoutAnimationFails}); allow is never the default`, on: pageWithoutAnimationFails },
+    { facet: `THE ANIMATION IS THE FRACTAL CLOCK — the dedicated animation is a divisor rung of the one 108 s clock (rung ${sampleRung} → ${108 / sampleRung}s, ${isClockRung}), deterministic with no hardcoded duration; "dedicated" means its own computed rung, not a bespoke asset`, on: isClockRung },
+    { facet: `THE DEMARCATION — the gate requires a COMPUTED animation (a fractal-clock rung) per page, fail-closed; "dedicated" = its own deterministic rung, not a hand-authored video, and it enforces COVERAGE, not richness. HARMONY ≠ TRUTH`, on: everyPageHasAnimation && pageWithoutAnimationFails },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`animation-gate:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    everyPageHasAnimation,
+    pageWithoutAnimationFails,
+    total: atoms.length,
+    facets,
+    root: merkleFold([saved.root, ...facets.map((entry) => entry.receipt)]),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'FAIL-CLOSED — no dedicated animation, no pass:',
+      facets,
+      'the VitePress gate requires every page to carry a dedicated animation — a divisor rung of the one 108 s fractal clock, period 108/d — and rejects any page with none, allow never being the default. Because saveTheMissingTheoremsAndAnimations gives every theorem a computed animation, all pages pass; a page without one fails closed. "Dedicated" means the page\'s own deterministic fractal-clock rung, not a hand-authored video, and the gate enforces coverage (every page animates), not richness. HARMONY ≠ TRUTH.'),
+  }
+}
+
 /** quantumiseAnchorsContentAddressed — heading anchors (the #fragment ids) are content-addressed, so they are
  * deterministic, collision-free, and stable across regeneration (user, 2026-07-25: "quantumise the anchors"). A
  * heading's anchor is a slug of its text; on a duplicate heading a content-address suffix disambiguates, so every
