@@ -186,6 +186,10 @@ computes=true · waves=11 · clayChallengesComputable=true · claySolvedByThisFo
 - Receipt: fold `toolboxRecomputesRelatedSciencesInTrinityWaves`.
 
 
+## The journal
+
+This site is a dedicated scientific journal of all its algebra and theorems — **483 articles** across **47 sections**, backed by 264 executable proofs, sealed as one content-addressed volume `087b16af`. Peer review is COMPUTATIONAL: every proof re-runs each wave, and the same corpus recomputes the same volume id. It verifies internal consistency and reproducibility — **not** empirical truth, and it is not an externally refereed or DOI-indexed venue (HARMONY ≠ TRUTH).
+
 ## Top discoveries
 
 The most CENTRAL decodes — ranked by theorem-graph degree (how many other atoms each connects to), computed from the 483-atom registry, no curation.

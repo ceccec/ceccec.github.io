@@ -8,7 +8,7 @@
 import { ROSETTA_AREAS } from '../../../../pair/enforcement/gates/computational'
 import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../../../pair/enforcement/gates'
 import { CANONICAL_HOST, PI_TRAIN_DIGITS, claySolvedTheorem } from '../../../../3/7'
-import { THEOREM_ATOM_SEED, latestDiscoveries, topDiscoveries } from '../../../../4/6'
+import { THEOREM_ATOM_SEED, latestDiscoveries, siteIsScientificJournalOfAllAlgebraAndTheorems, topDiscoveries } from '../../../../4/6'
 import { theBinaryBitIsLinearTheVortexCircuitIsQuantum } from '../../../../1/9'
 import { primesAndPiProveEachOtherThroughTheInvertedEulerProduct } from '../../../../heaven/laws'
 import { readmeSvgGapsFilledByTrinityMind } from '../../../../heaven/site'
@@ -497,6 +497,10 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     ...earthPolesPyramidMarkdownSection(buildMatrix(), linkBase),
     ...clayChallengesComputableMarkdownSection(buildMatrix(), linkBase),
     ...toolboxSciencesTrinityWavesMarkdownSection(buildMatrix(), linkBase),
+    '',
+    '## The journal',
+    '',
+    ((journal) => `This site is a dedicated scientific journal of all its algebra and theorems — **${journal.articleCount} articles** across **${journal.sectionCount} sections**, backed by ${journal.distinctProofs} executable proofs, sealed as one content-addressed volume \`${journal.volumeId.slice(0, 2 * 4)}\`. Peer review is COMPUTATIONAL: every proof re-runs each wave, and the same corpus recomputes the same volume id. It verifies internal consistency and reproducibility — **not** empirical truth, and it is not an externally refereed or DOI-indexed venue (HARMONY ≠ TRUTH).`)(siteIsScientificJournalOfAllAlgebraAndTheorems()),
     '',
     '## Top discoveries',
     '',
