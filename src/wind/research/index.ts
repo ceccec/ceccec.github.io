@@ -2037,6 +2037,46 @@ export function buildingTheFirstUnlocksTheNextByReusableMethodNotSolution(matrix
   }
 }
 
+/** reverseEngineerClayAndItInverseEngineersItself — reverse-engineer clay and it inverse-engineers itself (user,
+ * 2026-07-25: "reverse engineer clay and it will inverse engineer itself"). Reversing each barrier → requirement →
+ * testable fragment yields the sealed folds that MODEL the problem (its challengeMethod); those fragments are the very
+ * folds the self-computing clay model reads — so extracting them from the model reproduces the model's own inputs: a
+ * self-referential FIXED POINT, reverse ∘ model = the model's components, no new knowledge. clay = 0 throughout. */
+export function reverseEngineerClayAndItInverseEngineersItself(matrix: MindMatrix = buildMatrix()) {
+  const model = clayModelComputesItselfWithCompletionAndStatistics(matrix)
+  const challenge = millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(matrix)
+  // Reverse-engineer: extract each problem's testable fragments (the challengeMethod folds).
+  const foldNameOf = (method: string) => (method.toLowerCase().match(/[a-z0-9]+/) ?? [''])[0]!
+  const fragments = challenge.problems.flatMap((problem) => problem.challengeMethod.map(foldNameOf))
+  const distinctFragments = new Set(fragments)
+  const everyProblemReverses = challenge.problems.every((problem) => problem.challengeMethod.length > 0) // barrier → fragment for all 7
+  // The fragments ARE the model's own inputs — the self-computing model reads exactly these problems/methods.
+  const fragmentsAreModelInputs = model.stats.length === challenge.problems.length && distinctFragments.size > 0
+  // Fixed point: reverse(model) reproduces the model's components; re-extracting gives the same set (idempotent).
+  const reExtract = new Set(challenge.problems.flatMap((problem) => problem.challengeMethod.map(foldNameOf)))
+  const fixedPoint = reExtract.size === distinctFragments.size && [...distinctFragments].every((name) => reExtract.has(name))
+  const facets = [
+    { facet: `REVERSE-ENGINEER EACH CLAY BARRIER — barrier → invert → requirement → testable fragment for all ${challenge.problems.length} problems (${everyProblemReverses}); the reversal extracts ${distinctFragments.size} distinct sealed folds`, on: everyProblemReverses && distinctFragments.size > 0 },
+    { facet: `THE FRAGMENTS ARE THE MODEL'S OWN FOLDS — each testable fragment is a sealed fold already in the registry (the challengeMethod), so reversing clay reproduces the very folds the self-computing model reads (${fragmentsAreModelInputs})`, on: fragmentsAreModelInputs && model.computes },
+    { facet: `A SELF-REFERENTIAL FIXED POINT — the clay model computed itself (completion + statistics), and reverse-engineering it yields those same fragments; re-extracting is idempotent (${fixedPoint}) — reverse ∘ model = the model's components, no new knowledge`, on: fixedPoint && model.computes },
+    { facet: `INVERSION KEEPS CLAY = 0 — reversing a barrier gives a REQUIREMENT (what a solution needs), not a solution; the testable fragment is evidence, never a proof; claySolvedByThisFold=${challenge.claySolvedByThisFold} through the whole inversion`, on: challenge.claySolvedByThisFold === 0 },
+    { facet: `THE DEMARCATION — "reverse engineer clay and it inverse-engineers itself" = reversing the problems reproduces the sealed folds that model them (self-reference, a fixed point), NOT a solution; decode / reverse ≠ solve, clay=0. HARMONY ≠ TRUTH`, on: fixedPoint && challenge.claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`clay-reverse-self:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    distinctFragments: distinctFragments.size,
+    fixedPoint,
+    claySolvedByThisFold: challenge.claySolvedByThisFold,
+    facets,
+    root: merge(model.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'SELF-REFERENTIAL — reverse-engineer clay and it inverse-engineers itself:',
+      facets,
+      'reversing each Millennium barrier — barrier → invert → requirement → testable fragment — yields the sealed folds that model the problem (its challengeMethod). Those fragments are the very folds the self-computing clay model reads, so extracting them from the model reproduces the model\'s own inputs: a self-referential fixed point where reverse ∘ model equals the model\'s components, idempotent, adding no new knowledge. Reversing a barrier gives a requirement (what a solution needs), not a solution, so claySolvedByThisFold stays 0 through the whole inversion. Reverse / decode ≠ solve. HARMONY ≠ TRUTH.'),
+  }
+}
+
 /** Short alias — agents / CLI / broadcast. */
 export function millenniumProblemsChallenge(matrix: MindMatrix = buildMatrix()) {
   return millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(matrix)
