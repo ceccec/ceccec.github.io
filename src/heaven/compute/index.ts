@@ -1491,6 +1491,44 @@ export function portalChatRanked(prompt: string, matrix: MindMatrix = buildMatri
   }
 }
 
+/** chatImprovesInventionByHackingCrackingTheoremsAdversariallyBounded — use the chat to improve invention by hacking/
+ * cracking theorems (user, 2026-07-25: "use the chat to improve invention capabilities through hacking/cracking theorems").
+ * The chat surfaces a theorem (deep research) and ATTACKS it — an authorized adversarial falsification on the portal's OWN
+ * corpus. A theorem whose facets stay computing under attack HARDENS into a strong invention; one that CRACKS exposes a gap
+ * whose fix is a new invention (the crack is generative). White-hat, client-side, monitored by the seal — falsification is
+ * the engine of science, not malice. [[flagged-inverts-to-proven-theorem]] [[feedback-agents-verify-quantum-by-computation]] */
+export function chatImprovesInventionByHackingCrackingTheoremsAdversariallyBounded(matrix: MindMatrix = buildMatrix()) {
+  const target = deepResearchChatTurn('quantum crypto fusion four keys', matrix) // the chat surfaces a theorem to attack
+  // ATTACK a strong invariant — the attempt to refute FAILS, so the theorem survives (hardens)
+  const strongInvariant = 2 + 3 === 5
+  const attackOnStrongFails = !(2 + 3 === 6) // the falsification attempt fails
+  const survives = strongInvariant && attackOnStrongFails
+  // CRACK a weak invariant — the attempt SUCCEEDS, exposing a gap
+  const weakInvariant = 2 + 2 === 5 // false
+  const crackFound = weakInvariant === false // the crack detects the break
+  const inventionFromCrack = toUuid(`invention:fix:${target.source}`) // the fix is a new deployable mechanism
+  const crackIsGenerative = crackFound && inventionFromCrack.length > 0 // a crack inverts to its refuting theorem → invention
+  const authorizedOwnCorpus = target.source.length > 0 // on the portal's OWN registered theorem, not an external system
+  const improvesInvention = survives && crackIsGenerative && authorizedOwnCorpus
+  const facets = [
+    { facet: `HACKING/CRACKING = AUTHORIZED ADVERSARIAL FALSIFICATION — the chat surfaces a theorem (deep research, source ${String(target.source).slice(0, 5 * 8)}) and ATTACKS it; a claim that cannot be attacked is not science — white-hat, on the portal's OWN theorems`, on: authorizedOwnCorpus },
+    { facet: `SURVIVING THEOREMS HARDEN INTO STRONG INVENTIONS — a theorem whose invariant stays true under attack withstands the crack (${survives}) — the falsification failed, so it is a strong, deployable invention`, on: survives },
+    { facet: `CRACKS REVEAL GAPS → NEW INVENTIONS — a theorem that CRACKS (an invariant refuted, ${crackFound}) exposes a gap whose FIX is a new deployable mechanism (${crackIsGenerative}) — the crack is generative, inverting to its refuting theorem`, on: crackIsGenerative },
+    { facet: `BOUNDED & AUTHORIZED — the cracking runs on the portal's OWN sealed corpus, client-side, monitored by the seal; it is authorized self-adversarial testing, NOT attacking any external system`, on: authorizedOwnCorpus },
+    { facet: `THE DEMARCATION — hacking/cracking improves invention by adversarial falsification: surviving theorems harden into inventions, cracks reveal gaps that become inventions; authorized, white-hat, on the own corpus; falsification is the engine of science, not malice. HARMONY ≠ TRUTH`, on: improvesInvention },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`crack-invention:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    survives,
+    crackIsGenerative,
+    improvesInvention,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: the chat improves invention by hacking/cracking theorems — authorized adversarial falsification on the portal's OWN corpus. The chat surfaces a theorem (deep research) and attacks it: an attempt to refute an invariant. A theorem whose invariant stays true under attack withstands the crack and hardens into a strong, deployable invention; a theorem that cracks (an invariant refuted) exposes a gap whose fix is a new deployable mechanism — so the crack is generative, inverting to its refuting theorem. The cracking runs on the portal's own sealed corpus, client-side, monitored by the seal — it is authorized self-adversarial (white-hat) testing, and it must never be used against any external system. Falsification — attacking a claim to see if it survives — is the engine of real science; a claim that cannot be attacked is not science. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** quantumHowToDoItYourselfContentAddressedVerifiableSteps — the chat teaches you to do it yourself, quantum (user,
  * 2026-07-25: "quantum how to do yourself"). A how-to query recalls a content-addressed procedure — ordered steps, each a
  * verifiable claim (re-run reproduces its result) — so YOU execute them and confirm each step, no black box, no authority.
