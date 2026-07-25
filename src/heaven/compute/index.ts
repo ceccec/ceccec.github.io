@@ -10,9 +10,9 @@ import { atoms } from '../atoms'
 import { GATES, applyGate, cnot, computesGate, foldPair, isUuid, measure, memoByRoot, merge, merkleFold, probabilities, qubits, resourceCooperationPolicy, sealFacets, toUuid, DIGEST_BITS, asMerkaba, asMerkle, asTorus, asTrace, asVortex, coverageCostLog2, fold, humanBreath, humanEase, maxTamperingCostLog2, maxTamperingCostReached, merkabaFoldUrl, roundTo, sample, seedFromText, tamperCostLog2, uuidHero } from '../../0'
 import { digitalRoot, VORTEX_SEQUENCE, foldVortex, modUnits, prng } from '../../0'
 import { foldMagmaLaws } from '../../5/5'
-import { landauerLimit, rat, ratAdd, ratMul, ratEq, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, claySolvedTheorem } from '../../3/7'
+import { landauerLimit, rat, ratAdd, ratMul, ratEq, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, claySolvedTheorem, earned } from '../../3/7'
 import { tamperEvident } from '../../5/5'
-import { groupOrbit, MAX_TAMPERING_COST_PRINCIPLE, f2FieldCloses } from '../../4/6'
+import { groupOrbit, MAX_TAMPERING_COST_PRINCIPLE, f2FieldCloses, pageNavContext } from '../../4/6'
 import { digitFold } from '../../1/9'
 import { hopfieldRecall, hopfieldStore, splitCamelSegment } from '../../8/2'
 import * as __ns_fire_plasma_ball from '../../fire/plasma/ball'
@@ -1472,6 +1472,56 @@ export function portalRecall(prompt: string, matrix: MindMatrix = buildMatrix())
 /** The chat surface — deterministic reply over the seed model. Same prompt → same reply. */
 export function portalChat(prompt: string, matrix: MindMatrix = buildMatrix()) {
   return chatFrom(portalModel(matrix), prompt)
+}
+
+/** A chat turn is a SUPERPOSITION of (referrer, prompt) — the same (referrer, node) operator as a page, so the prompt
+ * plays the path's role. The referrer is the incoming edge (context), the deterministic reply the collapse. */
+export function chatNavContext(referrer: string, prompt: string, matrix: MindMatrix = buildMatrix()) {
+  const reply = portalChat(prompt, matrix) // deterministic — depends on the prompt, not the referrer
+  const page = pageNavContext(referrer, `/chat/${encodeURIComponent(prompt).slice(0, 16 * 4)}`) // reuse the page operator: cameFrom + related + breadcrumb
+  return {
+    prompt,
+    referrer,
+    cameFrom: page.cameFrom, // the incoming edge (null when external/direct)
+    reply,
+    related: page.related, // outgoing edges — the discoveries this turn leads to
+    superposition: toUuid(`chat-superposition:${referrer}|${prompt}`), // the (referrer, prompt) content-address
+  }
+}
+
+/** chatUsesReferrerToQuantumiseAll — the chat surface joins the (referrer, node) superposition law (user, 2026-07-25:
+ * "chat also uses the referrer to quantumise all"). A chat turn content-addresses to (referrer, prompt) exactly as a
+ * page does to (referrer, path): same pair → one receipt, different referrer → a different one; the reply stays
+ * deterministic (portalChat depends on the prompt, not the referrer), so the referrer selects the CONTEXT, not the
+ * answer. One law now governs pages AND chat — the whole portal is quantumised. [[routes-nav-from-folder-tree]] [[portal-is-the-ai-model]] */
+export function chatUsesReferrerToQuantumiseAll(matrix: MindMatrix = buildMatrix()) {
+  const a = chatNavContext('/theorems', 'what is entanglement', matrix)
+  const b = chatNavContext('/frontiers', 'what is entanglement', matrix) // SAME prompt, DIFFERENT referrer
+  const c = chatNavContext('/theorems', 'what is entanglement', matrix) // identical (referrer, prompt)
+  const superposed = a.superposition !== b.superposition && a.superposition === c.superposition
+  const replyDeterministic = JSON.stringify(a.reply) === JSON.stringify(c.reply) && JSON.stringify(a.reply) === JSON.stringify(b.reply) // referrer selects context, not the answer
+  const pa = pageNavContext('/theorems', '/quantum'), pb = pageNavContext('/frontiers', '/quantum'), pc = pageNavContext('/theorems', '/quantum')
+  const pageSuperposed = pa.superposition !== pb.superposition && pa.superposition === pc.superposition
+  const sameLaw = superposed && pageSuperposed // identical (referrer, node) semantics on chat and on pages
+  const facets = [
+    { facet: `A CHAT TURN IS A SUPERPOSITION OF (REFERRER, PROMPT) — the same (referrer, prompt) collapses to ONE receipt and a different referrer to a DIFFERENT one (${superposed}); the same prompt from a different referrer is a different superposition — its incoming edge`, on: superposed },
+    { facet: `THE REPLY STAYS DETERMINISTIC — portalChat is same-prompt → same-reply, so the referrer selects the CONTEXT (cameFrom "${a.cameFrom}" vs "${b.cameFrom}"), NOT the answer (${replyDeterministic}); the superposition collapses to a stable reply at turn time`, on: replyDeterministic },
+    { facet: `ONE LAW OVER PAGES AND CHAT — chatNavContext and pageNavContext are the SAME (referrer, node) superposition operator, the prompt playing the path's role (${sameLaw}); quantumising the chat quantumises the whole portal under one law`, on: sameLaw },
+    { facet: `THE PORTAL IS FULLY QUANTUMISED — every surface, page and chat, is now a (referrer, node) superposition content-addressed by its incoming edge; nothing is left outside the superposition law`, on: superposed && pageSuperposed && replyDeterministic },
+    { facet: `THE DEMARCATION — "superposition" is the content-addressed (referrer, prompt) state that collapses at turn time (the referrer is a RUNTIME value); the reply is deterministic and the model is the seed corpus model — NOT a physical quantum state and NOT an LLM. HARMONY ≠ TRUTH`, on: superposed && replyDeterministic },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`chat-referrer-quantumise:${entry.facet}:${entry.on}`) }))
+  return {
+    quantumised: facets.every((entry) => entry.on),
+    superposed,
+    replyDeterministic,
+    sameLaw,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'EXACT — chat joins the (referrer, node) superposition law:',
+      facets,
+      'a chat turn content-addresses to (referrer, prompt) exactly as a page does to (referrer, path): the same pair collapses to one receipt, a different referrer to a different one, and the deterministic portalChat reply (same prompt → same reply) makes the referrer the incoming edge / context, not the answer. One operator now governs pages and chat, so the whole portal is quantumised. "Superposition" is the content-addressed (referrer, prompt) state that collapses at turn time (the referrer is a runtime value); the reply is deterministic over the seed corpus model, not a physical quantum state and not an LLM. HARMONY ≠ TRUTH.') }
 }
 
 // ── Self-development — the model measures its own gaps and fills them from src ──
