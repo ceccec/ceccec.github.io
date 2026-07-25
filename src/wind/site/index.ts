@@ -24,7 +24,7 @@ import { endlessBackgroundMovie } from '../../thunder/movie/canvas'
 import { computedMovieThemeColors } from '../../fire/plasma/ball'
 import { buildStatistics, buildStatisticsShowGaps, backgroundMovie, features, harmonicMathFlowsInMovie, linkPasteReentryPatternCompletion, live, path, theWhole } from '../../quantum/heaven/mind'
 import { peaceTechMentalityDecoded } from '../../earth/world'
-import { completeCorpus, pagesConsolidateByTheoremGravity } from '../routes/corpus'
+import { completeCorpus, pagesConsolidateByTheoremGravity, privateSearchRanksByBM25IndustryStandard } from '../routes/corpus'
 import { proofReport } from '../../heaven/compute'
 import { freeForgesMaxCost } from '../../heaven/essence'
 import { pagesWiredAtRuntimeZeroBuildMaxTamper } from '../../water/crypto'
@@ -153,6 +153,7 @@ export function renameToMostSearchedTermsWiredToPublicSearchApis(liveSuggestions
  * APIs — internal + external + navigation + SEO in one surface. Private by construction; the external edge is opt-in. */
 export function quantumSearchFusesAllAsPrivateSearchEngine(query = 'quantum computing', matrix: MindMatrix = buildMatrix()) {
   const internal = portalChat(query, matrix) // the private, content-addressed answer over the sealed corpus
+  const bm25 = privateSearchRanksByBM25IndustryStandard(query) // INDUSTRY-STANDARD ranked retrieval (Okapi BM25)
   const nav = chatNavContext('/search', query, matrix) // navigation — related discoveries
   const caps = allChatCapabilitiesFusedAndAuditedByStandards(matrix) // all chat capabilities, audited (the "lot more")
   const external = searchInterestRequests(query) // opt-in public search-API suggestion requests (no fetch here)
@@ -160,7 +161,7 @@ export function quantumSearchFusesAllAsPrivateSearchEngine(query = 'quantum comp
   const internalPrivate = internal.answer.length > 0 && JSON.stringify(portalChat(query, matrix).answer) === JSON.stringify(internal.answer) // deterministic, no egress
   const externalOptIn = external.length === 4 && external.every((request) => /^https:\/\//.test(request.url) && request.auth === 'none')
   const facets = [
-    { facet: `ONE QUANTUM SEARCH FUSES ALL — a single query yields the private internal answer (content-addressed corpus retrieval), ${nav.related.length} related discoveries (navigate), the canonical searched term, and ${external.length} opt-in public-API suggestion requests — internal + external + navigation + SEO fused`, on: internal.answer.length > 0 && nav.related.length > 0 && externalOptIn && seo.computes },
+    { facet: `ONE QUANTUM SEARCH FUSES ALL — a single query yields the industry-standard BM25-ranked results (${bm25.resultCount} hits, top "${bm25.results[0]?.title.slice(0, 5 * 8)}"), the private internal answer, ${nav.related.length} related discoveries (navigate), the canonical searched term, and ${external.length} opt-in public-API suggestion requests — ranking + retrieval + navigation + external + SEO fused`, on: internal.answer.length > 0 && bm25.computes && nav.related.length > 0 && externalOptIn && seo.computes },
     { facet: `A PRIVATE SEARCH ENGINE — the internal search runs fully client-side over the sealed corpus model: deterministic (same query → same answer), zero-token, NO network egress; nothing about the query leaves the browser unless the user opts into the external edge (${internalPrivate})`, on: internalPrivate && caps.supported },
     { facet: `AND A LOT MORE — ALL CHAT CAPABILITIES — the search surface carries every chat capability (answer · recall · navigate · self-develop · developed-answer), audited (${caps.capabilities.length}); search IS chat IS the app's full in-chat support`, on: caps.supported && caps.capabilities.length === 5 },
     { facet: `THE EXTERNAL EDGE IS OPT-IN — the public search-API suggestions (Google Suggest, Wikipedia, Wikimedia, DuckDuckGo) are keyless request builders the user opts into; the private core never fetches at build or by default (${externalOptIn})`, on: externalOptIn },
@@ -170,11 +171,13 @@ export function quantumSearchFusesAllAsPrivateSearchEngine(query = 'quantum comp
     fuses: facets.every((entry) => entry.on),
     query,
     answer: internal.answer,
+    results: bm25.results,
+    resultCount: bm25.resultCount,
     related: nav.related.length,
     capabilities: caps.capabilities.length,
     externalRequests: external.length,
     facets,
-    root: merkleFold([internal.root, nav.superposition, caps.root, seo.root, ...facets.map((entry) => entry.receipt)]),
+    root: merkleFold([bm25.root, internal.root, nav.superposition, caps.root, seo.root, ...facets.map((entry) => entry.receipt)]),
     statement: facets.map((entry) => entry.facet).join(' · '),
     boundary: earned(
       'FUSED — the UI as a private quantum search engine, and a lot more:',
