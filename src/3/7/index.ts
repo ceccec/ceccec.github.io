@@ -1324,7 +1324,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/fire/physics/index.ts', literal: '*', count: 10, kind: 'data', source: 'attested residue — EM band frequencies and SAR-context data (main-merge ratchet)' },
   { file: 'src/heaven/balance/index.ts', literal: '*', count: 3, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/heaven/compute/computer/index.ts', literal: '*', count: 1, kind: 'data', source: 'attested residue — computer-model constants' },
-  { file: 'src/heaven/compute/index.ts', literal: '*', count: 6, kind: 'data', source: 'attested residue — compute-model constants' },
+  { file: 'src/heaven/compute/index.ts', literal: '*', count: 7, kind: 'data', source: 'attested residue — compute-model constants' },
   { file: 'src/heaven/core/index.ts', literal: '*', count: 28, kind: 'data', source: 'visible-spectrum band edges 380–780 nm (Bruton wavelength→RGB algorithm) + structural binding counts' },
   { file: 'src/heaven/essence/index.ts', literal: '*', count: 3, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/heaven/laws/index.ts', literal: '*', count: 3, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
