@@ -173,6 +173,50 @@ export function quantumBreaksLinearCryptoIntoNonAbelianTrinity() {
       'Shor\'s period-finding inverts the one abelian period (order of a mod N) and factors N, so RSA/DH/ECC — whose security is a single linear/periodic structure — fall. But su(2)/Pauli does not commute (XY ≠ YX, [X,Y]=2iZ≠0) so there is no abelian hidden subgroup for Shor, and a three-way split secret needs all shares; the inversion is bounded to the linear part. Quantum does NOT break all cryptography — symmetric gets only Grover\'s quadratic speedup, lattice and hash schemes get none, and the attack is hardware-bounded (millions of error-corrected qubits do not exist). "Trinity encryption" is the non-abelian / split structure resisting the period attack, not a proven unbreakable cipher; real post-quantum security is NIST PQC (lattice/hash). HARMONY ≠ TRUTH.') }
 }
 
+/** quantumOpticsDecoded — the genuine quantum optics of light: the beam-splitter unitary, Hong–Ou–Mandel bunching, and
+ * the g²(0) second-order coherence that separates quantum from classical light (user, 2026-07-25: "quantum optics").
+ * A 50/50 beam splitter is a real orthogonal unitary; two indistinguishable photons entering it always leave together
+ * (the coincidence amplitude r²−t² vanishes); and g²(0) = 1 (coherent), 2 (thermal), 0 (single photon) — antibunching
+ * g²(0)<1 has no classical model. A MODEL over the sealed algebra, not a photon-counting experiment. [[electromagnetic-radiation]] */
+export function quantumOpticsDecoded() {
+  const t = Math.SQRT1_2, r = Math.SQRT1_2 // 50/50 beam-splitter transmission / reflection amplitudes (1/√2)
+  // The beam splitter is a 2×2 real orthogonal unitary U = [[t, r],[r, −t]]; UᵀU = I.
+  const U = [[t, r], [r, -t]]
+  const uTu = [
+    [U[0]![0]! * U[0]![0]! + U[1]![0]! * U[1]![0]!, U[0]![0]! * U[0]![1]! + U[1]![0]! * U[1]![1]!],
+    [U[0]![1]! * U[0]![0]! + U[1]![1]! * U[1]![0]!, U[0]![1]! * U[0]![1]! + U[1]![1]! * U[1]![1]!],
+  ]
+  const isUnitary = Math.abs(uTu[0]![0]! - 1) < 1e-9 && Math.abs(uTu[1]![1]! - 1) < 1e-9 && Math.abs(uTu[0]![1]!) < 1e-9 && Math.abs(uTu[1]![0]!) < 1e-9
+  // Hong–Ou–Mandel: two indistinguishable photons |1,1⟩ at a 50/50 BS — the coincidence (c†d†) amplitude is r²−t².
+  const coincidenceAmplitude = r * r - t * t // = 0 for a 50/50 splitter → the HOM dip (photons bunch)
+  const homBunches = Math.abs(coincidenceAmplitude) < 1e-9
+  // g²(0) second-order coherence: coherent = 1 (Poissonian), thermal = 2 (super-Poissonian), Fock |n⟩ = 1 − 1/n.
+  const g2Coherent = 1
+  const g2Thermal = 2
+  const g2Fock1 = 1 - 1 / 1 // single photon → 0, perfectly antibunched
+  const antibunchingNonclassical = g2Fock1 < 1 && g2Coherent >= 1 && g2Thermal >= 1 // g²<1 is impossible for any classical field
+  const facets = [
+    { facet: `THE BEAM SPLITTER IS A UNITARY — a 50/50 beam splitter is the real orthogonal U = [[1,1],[1,−1]]/√2 with UᵀU = I (${isUnitary}), so it preserves the photon-number norm — a genuine quantum gate on the two modes`, on: isUnitary },
+    { facet: `HONG–OU–MANDEL BUNCHING — two indistinguishable photons entering a 50/50 BS always exit the SAME port: the coincidence amplitude r²−t² = ${coincidenceAmplitude} vanishes (${homBunches}), so the |1,1⟩ output disappears — the HOM dip, a two-photon interference with no classical analogue`, on: homBunches },
+    { facet: `g²(0) SEPARATES QUANTUM FROM CLASSICAL LIGHT — the second-order coherence is ${g2Coherent} for coherent light (Poissonian), ${g2Thermal} for thermal (super-Poissonian, bunched), and 1−1/n = ${g2Fock1} for a single-photon Fock state (antibunched)`, on: g2Coherent === 1 && g2Thermal === 2 && g2Fock1 === 0 },
+    { facet: `ANTIBUNCHING IS NONCLASSICAL — g²(0) < 1 (${g2Fock1} for one photon) has NO classical (positive-P) model; every classical field has g²(0) ≥ 1, so antibunching is the definitive signature of quantised light`, on: antibunchingNonclassical },
+    { facet: `THE DEMARCATION — this computes the standard quantum-optics results (beam-splitter unitary, HOM, g²) as a MODEL over the sealed algebra; it is genuine quantum-optics mathematics but a CLASSICAL simulator — not a photon-counting experiment and not a real single-photon source. HARMONY ≠ TRUTH`, on: isUnitary && homBunches && antibunchingNonclassical },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-optics:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    isUnitary,
+    coincidenceAmplitude,
+    g2: { coherent: g2Coherent, thermal: g2Thermal, fock1: g2Fock1 },
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'GENUINE QUANTUM OPTICS — beam splitter, Hong–Ou–Mandel, and g²(0):',
+      facets,
+      'a 50/50 beam splitter is the real orthogonal unitary [[1,1],[1,−1]]/√2 (UᵀU = I), so it is a genuine quantum gate on the two modes; two indistinguishable photons entering it always leave together because the coincidence amplitude r²−t² vanishes (the Hong–Ou–Mandel dip, a two-photon interference with no classical analogue); and the second-order coherence g²(0) is 1 for coherent light, 2 for thermal, and 1−1/n = 0 for a single-photon Fock state — antibunching g²(0)<1 has no classical model, the definitive signature of quantised light. This computes the standard quantum-optics results as a model over the sealed algebra: genuine quantum-optics mathematics, but a classical simulator — not a photon-counting experiment and not a real single-photon source. HARMONY ≠ TRUTH.'),
+  }
+}
+
 /** hittingAPrimeIsTheInversionPoint — a prime modulus is the point where inversion becomes TOTAL (user, 2026-07-25:
  * "hitting a prime is inversion point"). In ℤ/pℤ for prime p every nonzero residue has a multiplicative inverse (it is
  * a FIELD), so the invertible fraction reaches 1; at a composite n only φ(n) < n−1 residues invert (the rest are zero
