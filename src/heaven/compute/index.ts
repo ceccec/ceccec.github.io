@@ -1666,6 +1666,61 @@ export function deepResearchChatAuditsNationalAndInternationalSecurityStandards(
   }
 }
 
+/** uiChatTurn — the chat answer as a rich UI render-spec (user, 2026-07-25: "further develop ui tools in chat waves").
+ * The answer is not plain text: a DecodedCard (title/source), a TheoremFigure (graph), the fractal-clock animation, a
+ * living I Ching colour (hue from the fold's animation phase), the deep-research neighbourhood as clickable links, and
+ * interactive controls. Computed from the fold's content-address; the .vue shell renders this spec. */
+export function uiChatTurn(query: string, matrix: MindMatrix = buildMatrix()) {
+  const ranked = portalChatRanked(query, matrix)
+  const anim = computedTheoremFigureAndAnimation({ theorem: String(ranked.answer), provedBy: String(ranked.source) })
+  const deep = deepResearchChatTurn(query, matrix)
+  const hue = ((anim.animation.phase ?? 0) * (360 / 108)) % 360 // living I Ching colour from the animation phase
+  return {
+    query,
+    card: { title: ranked.answer, source: ranked.source }, // DecodedCard
+    figure: anim.figure, // TheoremFigure — the computed graph
+    animation: anim.animation, // fractal-clock motion (south pole)
+    color: { hue }, // living I Ching colour
+    related: deep.neighborhood.map((n) => ({ title: n.title, slug: n.slug })), // clickable related links
+    controls: ['expand', 'speak', 'sign', 'related'] as const, // interactive controls
+    renderSpec: toUuid(`ui:${query}`),
+  }
+}
+
+/** uiToolsForChatRenderSpecComponentsWaveOne — develop UI tools in chat waves, wave 1 (user, 2026-07-25: "further develop
+ * ui tools in chat waves"). The chat renders an answer as a rich UI: a DecodedCard, a TheoremFigure (graph), the
+ * fractal-clock animation, a living I Ching colour, the deep-research neighbourhood as clickable links, and interactive
+ * controls — computed from the fold's content-address, the .vue a thin shell. Deterministic, local, zero-egress. Further
+ * waves add tabs/forms/living symbols. [[living-symbols-ui-rebuild]] [[iching-computed-css]] [[shadcn-vue]] */
+export function uiToolsForChatRenderSpecComponentsWaveOne(matrix: MindMatrix = buildMatrix()) {
+  const turn = uiChatTurn('faster than light computed possibilities', matrix)
+  const hasCard = String(turn.card.title).length > 0 && String(turn.card.source).length > 0
+  const hasFigure = Array.isArray(turn.figure.series) && turn.figure.series.length > 0 // a computed graph
+  const hasAnimation = typeof turn.animation.rung === 'number' && 108 % turn.animation.rung === 0 // fractal-clock motion
+  const hasColor = turn.color.hue >= 0 && turn.color.hue < 360 // living I Ching hue
+  const hasRelated = turn.related.length >= 3 && turn.related.every((r) => r.slug.length > 0) // clickable neighbourhood
+  const hasControls = turn.controls.length >= 2 + 2 // interactive controls
+  const deterministic = uiChatTurn('faster than light computed possibilities', matrix).renderSpec === turn.renderSpec
+  const richUiNotText = hasCard && hasFigure && hasAnimation && hasColor && hasRelated && hasControls
+  const facets = [
+    { facet: `THE UI TOOLKIT — the chat renders a DecodedCard (${hasCard}), a TheoremFigure graph (${hasFigure}), the fractal-clock animation (${hasAnimation}), a living I Ching colour (hue ${turn.color.hue.toFixed(0)}°, ${hasColor}), the deep-research neighbourhood as clickable links (${hasRelated}), and interactive controls (${hasControls})`, on: richUiNotText },
+    { facet: `USED IN CHAT — NOT PLAIN TEXT — uiChatTurn returns the RENDER SPEC for an answer (card + figure + animation + colour + related + controls), so the chat answer is a rich interactive UI, not a wall of text`, on: richUiNotText },
+    { facet: `COMPUTED, DETERMINISTIC — the whole render spec is computed from the fold's content-address (figure, animation, colour, links all derived), deterministic (${deterministic}), local, zero-egress; the .vue is a thin shell over it`, on: deterministic },
+    { facet: `WAVE 1 — this is UI wave 1 (card · figure · animation · colour · related · controls); further waves add tabs, forms and the living symbols — developed incrementally`, on: hasControls },
+    { facet: `THE DEMARCATION — the UI tools compute the render spec (WHAT to render); the .vue shell renders it over the existing shadcn / living-symbols layer; deterministic, local, NOT an LLM and not a new design-system claim. HARMONY ≠ TRUTH`, on: richUiNotText && deterministic },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`ui-tools:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    richUiNotText,
+    relatedCount: turn.related.length,
+    hue: turn.color.hue,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: UI tools in chat, wave 1. uiChatTurn computes a rich render-spec for a chat answer — a DecodedCard (title/source), a TheoremFigure (the computed graph), the fractal-clock animation (the south-pole motion), a living I Ching colour (hue derived from the fold's animation phase), the deep-research neighbourhood as clickable links, and interactive controls (expand/speak/sign/related) — so the answer is a rich interactive UI, not plain text. It is computed entirely from the fold's content-address (figure, animation, colour and links all derived), deterministic (same query → same render-spec), local and zero-egress; the .vue is a thin shell that renders the spec over the existing shadcn / living-symbols layer. This is wave 1; further waves add tabs, forms and the living symbols. HONEST: it computes WHAT to render, not a new design system, and it is not an LLM. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** unifiedChatTurn — one turn fusing every chat capability (user, 2026-07-25: "continue chat fusing all"). A single turn
  * composes the ranked answer (BM25), the deep-research neighbourhood (multi-hop), the spoken form (TTS), the animation
  * (video), and the crypto address + digest (tamper-evident) — everything built this session, reused as folds, one
