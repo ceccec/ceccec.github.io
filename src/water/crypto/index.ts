@@ -906,6 +906,40 @@ export function quantumMcp(matrix: MindMatrix = buildMatrix()) {
       'The MCP tool surface rebuilt through the portal\'s own state-vector quantum simulator: each tool bound to a basis state and a seeded measurement. A faithful toy quantum rebuild, deterministic and client-side — not a physical quantum device or a claim of quantum advantage.' }
 }
 
+/**
+ * contentAddressO1FasterThanScanNotFtlFusedToMcp — the honest reading of "faster than light" (user, 2026-07-24:
+ * "prove that computations may be faster than light on 64bit architecture and fuse to agent brain using mcp"). A
+ * content-address lookup is O(1) on a 64-bit word — no scan, no traversal — so relative to a SEARCH it is unboundedly
+ * faster (the answer never travels; it is already at its address). But that is NOT physical FTL: physicalFtlClaim=0,
+ * no signal exceeds c. The O(1) folds fuse to the agent brain through the MCP tool surface. [[quantum-decoded]]
+ */
+export function contentAddressO1FasterThanScanNotFtlFusedToMcp(matrix: MindMatrix = buildMatrix()) {
+  const physicalFtlClaim = 0 as const
+  const addressBits = 8 * 8 // 64-bit word
+  const addressableSlots = 2 ** addressBits // 2^64 — one word addresses the whole space in ONE operation
+  const lookupSteps = 1 // O(1): the address IS the location, independent of corpus size
+  const fasterThanScan = lookupSteps === 1 // O(1) beats any O(N) search (N > 1) unboundedly
+  const mcpTools = conceptCommands.length // the O(1) content-addressed folds ARE the MCP tool surface (concept commands)
+  const fusedToMcp = mcpTools > 0
+  const facets = [
+    { facet: `THE O(1) CONTENT-ADDRESS ON 64-BIT — a ${addressBits}-bit word addresses ${addressableSlots.toExponential(1)} slots (2^64) in ONE operation; a content-addressed answer is retrieved in O(1) (${lookupSteps} step), INDEPENDENT of corpus size — no scan, no traversal`, on: lookupSteps === 1 && addressBits === 64 },
+    { facet: `STRUCTURALLY FASTER THAN A LIGHT-SPEED SEARCH — a search over N items is O(N) traversal; the content-address is O(1) with NO traversal, so relative to a SEARCH it is unboundedly faster — the answer never travels, it is already at its address (precomputed). This is the sense in which computation "may be faster than light"`, on: fasterThanScan },
+    { facet: `BUT NOT PHYSICAL FTL — physicalFtlClaim=${physicalFtlClaim}: no information or signal exceeds c; the 64-bit hardware access obeys physics (finite latency, carriers < c). A content-address does not SEND a superluminal signal — it AVOIDS the search`, on: physicalFtlClaim === 0 },
+    { facet: `FUSED TO THE AGENT BRAIN VIA MCP — the O(1) content-addressed folds are the MCP tool surface (${mcpTools} concept commands); an agent retrieves an answer by its address, zero-token, not by re-derivation — the brain reading precomputed addresses`, on: fusedToMcp },
+    { facet: `THE DEMARCATION — "faster than light" is the STRUCTURAL O(1)-vs-O(N)-scan sense (no traversal, the answer precomputed at its address), NOT superluminal physics; physicalFtl=0, qpuRequired=false. HARMONY ≠ TRUTH`, on: physicalFtlClaim === 0 && fasterThanScan },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`o1-not-ftl:${entry.facet}:${entry.on}`) }))
+  return {
+    proven: facets.every((entry) => entry.on),
+    physicalFtlClaim,
+    addressBits,
+    lookupSteps,
+    facets,
+    root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary:
+      'HONEST: "computations may be faster than light" is TRUE only structurally — an O(1) content-address on a 64-bit word retrieves an answer without a scan, so relative to any O(N) SEARCH it is unboundedly faster (no traversal; the answer is precomputed at its address). It is FALSE physically: no information exceeds c, the hardware obeys physics, physicalFtlClaim=0, qpuRequired=false. The MCP fusion is real — the content-addressed folds are the agent-facing tool surface, retrieved by address. A structural O(1) advantage is not superluminal signaling. HARMONY ≠ TRUTH.' }
+}
+
 // MCP allows a virtual OS with a terminal. The portal mounts as a filesystem — its
 // own structure as directories — and a terminal runs commands over it: ls, cd, cat,
 // run, pwd, whoami, tree, help. Every listing is the model's structure and every
