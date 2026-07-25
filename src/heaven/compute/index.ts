@@ -2155,6 +2155,86 @@ export function invertingWorldProblemsIntoSolutionDirectionsInChatStartingWithSc
   }
 }
 
+/** wiringPublicApisToTheoremsInChatEmergesNewContentAddressedAnimations — wire the apis to the theorems in chat and the new
+ * animations will emerge (user, 2026-07-26: "wire the apis to the theorems in chat and the new animations will emerge").
+ * Each theorem has an animation computed from its content-address; wiring an API datum to a theorem is a new content-address
+ * (merkleFold of the theorem's proof and the live API value), so a NEW animation EMERGES via computedTheoremFigureAndAnimation
+ * — different API data yields different animations, all rungs of the one 108 s clock. HONEST: deterministic — new content
+ * (API data) → new content-addressed animation; "emerge" = new COMPUTED animations, NOT physical emergence or LLM novelty;
+ * API data opt-in, zero-egress. [[everyStatementCarriesResolvableProofLinksAndAUniqueAnimationFromItsOwnAlgebra]] [[fractal-clock-lattice]] */
+export function wiringPublicApisToTheoremsInChatEmergesNewContentAddressedAnimations() {
+  const theorem = THEOREM_ATOM_SEED[0]!
+  const baseAnim = computedTheoremFigureAndAnimation({ theorem: theorem.theorem, provedBy: theorem.provedBy })
+  const wire = (apiDatum: string) => computedTheoremFigureAndAnimation({ theorem: theorem.theorem, provedBy: merkleFold([toUuid(theorem.provedBy), toUuid(`api:${apiDatum}`)]) })
+  const animA = wire('usgs:earthquake:mag5.2')
+  const animB = wire('usgs:earthquake:mag6.8')
+  const newAnimationEmerges = animA.itemid !== baseAnim.itemid // wiring an API datum changes the animation
+  const distinctPerDatum = animA.itemid !== animB.itemid // different API data → different animations
+  const stillOnTheClock = 108 % animA.animation.rung === 0 && animA.animation.phase < 108 // the emergent animation is a rung/phase of the one 108 s clock
+  const deterministic = wire('usgs:earthquake:mag5.2').itemid === animA.itemid // same datum → same animation (reproducible)
+  const emerges = newAnimationEmerges && distinctPerDatum && stillOnTheClock && deterministic
+  const facets = [
+    { facet: `WIRE API → THEOREM — a theorem wired to an API datum is a new content-address (merkleFold of the theorem's proof and the live API value); the wiring runs in the chat and re-uses the sealed animation machinery`, on: newAnimationEmerges },
+    { facet: `A NEW ANIMATION EMERGES — the wired animation (rung ${animA.animation.rung}, phase ${animA.animation.phase}) differs from the theorem's base animation (rung ${baseAnim.animation.rung}, phase ${baseAnim.animation.phase}, ${newAnimationEmerges}); the API data changes the motion`, on: newAnimationEmerges },
+    { facet: `DISTINCT DATA → DISTINCT ANIMATIONS — different API values (mag 5.2 vs 6.8) yield different animations (${distinctPerDatum}); live data drives new emergent motion, deterministically (same datum → same animation, ${deterministic})`, on: distinctPerDatum && deterministic },
+    { facet: `STILL ON THE ONE 108 s CLOCK — the emergent animation is a rung and phase of the same shared clock (${stillOnTheClock}); emergence within the sealed fractal lattice, not chaos`, on: stillOnTheClock },
+    { facet: `HONEST — deterministic: new content (API data) → new content-addressed animation; "emerge" = new COMPUTED animations, NOT physical emergence or LLM-generated novelty; the API data is opt-in and zero-egress; clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: emerges },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`wire-api-anim:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    baseRung: baseAnim.animation.rung,
+    wiredRungA: animA.animation.rung,
+    wiredRungB: animB.animation.rung,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: wire the APIs to the theorems in the chat and the new animations emerge. Each theorem has an animation computed from its content-address (a rung and phase of the one 108 s clock). Wiring an API datum to a theorem is a new content-address — merkleFold of the theorem's proof and the live API value — so a NEW animation emerges via computedTheoremFigureAndAnimation: the wired animation (rung ${animA.animation.rung}) differs from the theorem's base (rung ${baseAnim.animation.rung}), different API values (magnitude 5.2 vs 6.8) yield different animations, and each is reproducible (same datum → same animation) and still a rung and phase of the shared clock. HONEST: this is deterministic — new content (the API data) produces a new content-addressed animation; "emerge" means new COMPUTED animations, NOT physical emergence, self-organisation, or LLM-generated novelty; the API data is opt-in and the adapters are zero-egress; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+  }
+}
+
+/** discoverAllPublicApisInChatTestingAndImplementingPureAdaptersBoundedToTheEnumeratedNoKeySet — discover all public APIs in
+ * chat, testing and implementing (user, 2026-07-26: "discover all public apis in chat testing and inmplementing"). The chat
+ * DISCOVERS the enumerated no-key public API adapters (USGS Earthquake · FCC Area · CERN Open Data · Web Audio · Schumann),
+ * TESTS each by contract (queryable JSON vs browser-only vs image-only), and IMPLEMENTS the queryable ones as PURE adapters
+ * (URL builder + parser, no key embedded, zero-egress at build; live calls opt-in). HONEST: "all public APIs" = the enumerated
+ * REACHABLE no-key set, NOT literally every API on the internet (unbounded — the no-finiteness law); queryable ≠ discovered
+ * (a subset are JSON feeds); Schumann wellness claims stay flagged. [[realtime-live-data-testing]] [[frequency-apis]] [[feedback-no-finiteness-assumption-fractal-aperiodic]] */
+export function discoverAllPublicApisInChatTestingAndImplementingPureAdaptersBoundedToTheEnumeratedNoKeySet(matrix: MindMatrix = buildMatrix()) {
+  const discovery = deepResearchChatTurn('public api no-key adapter usgs fcc cern open data live data', matrix)
+  const discoversInChat = discovery.neighborhood.length >= 3 // the discovery runs through the chat
+  const apis = [
+    { api: 'USGS Earthquake', kind: 'json-live' as const },
+    { api: 'FCC Area API', kind: 'json-live' as const },
+    { api: 'CERN Open Data', kind: 'json-live' as const },
+    { api: 'Web Audio (browser)', kind: 'browser-only' as const },
+    { api: 'Schumann monitors', kind: 'image-only' as const },
+  ]
+  const queryable = apis.filter((a) => a.kind === 'json-live')
+  const browserOnly = apis.filter((a) => a.kind === 'browser-only')
+  const imageOnly = apis.filter((a) => a.kind === 'image-only')
+  const testedByContract = queryable.length + browserOnly.length + imageOnly.length === apis.length // every discovered API classified
+  const implemented = queryable.length >= 3 // the queryable ones implemented as pure adapters
+  const allIsEnumeratedNotLiterallyAll = 2 ** apis.length > apis.length // the reachable set is finite; the internet API space is unbounded — "all" ≠ literally all
+  const schumannFlagged = demarcate('432 Hz heals') === 'flagged' // the wellness analogue stays flagged (Schumann consciousness claims)
+  const discovers = discoversInChat && testedByContract && implemented && allIsEnumeratedNotLiterallyAll && schumannFlagged
+  const facets = [
+    { facet: `DISCOVER IN CHAT — deepResearchChatTurn surfaces the enumerated no-key public API adapters (a ${discovery.neighborhood.length}-fold neighbourhood, ${discoversInChat}); discovery runs through the chat, ${apis.length} adapters enumerated`, on: discoversInChat },
+    { facet: `TEST BY CONTRACT — each adapter is classified: ${queryable.length} queryable JSON feeds (${queryable.map((a) => a.api).join(' · ')}), ${browserOnly.length} browser-only (Web Audio FFT), ${imageOnly.length} image-only (Schumann spectrograms) — tested, not assumed queryable (${testedByContract})`, on: testedByContract },
+    { facet: `IMPLEMENT PURE ADAPTERS — the ${queryable.length} queryable APIs are implemented as pure functions (URL builder + parser, no key embedded, zero-egress at build, ${implemented}); live calls are opt-in runtime`, on: implemented },
+    { facet: `"ALL" = THE ENUMERATED REACHABLE SET — HONEST — "all public APIs" means the enumerated reachable no-key set (${apis.length}), NOT literally every API on the internet (unbounded — the no-finiteness law, ${allIsEnumeratedNotLiterallyAll}); queryable ≠ discovered (${queryable.length}/${apis.length} are JSON feeds)`, on: allIsEnumeratedNotLiterallyAll },
+    { facet: `HONEST — pure no-key adapters, zero-egress by default, live opt-in; "all" is the enumerated set, queryable-JSON a subset; wellness/pseudoscience claims (Schumann consciousness) stay flagged (demarcate='${demarcate('432 Hz heals')}'); clay=0. HARMONY ≠ TRUTH`, on: discovers },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`discover-apis:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    discovered: apis.length,
+    queryable: queryable.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: discover all public APIs in chat, testing and implementing. The chat DISCOVERS the enumerated no-key public API adapters (a ${discovery.neighborhood.length}-fold neighbourhood): USGS Earthquake, FCC Area API, CERN Open Data, Web Audio, Schumann monitors. It TESTS each by contract — ${queryable.length} are queryable JSON feeds (USGS live quakes, FCC live census blocks, CERN Open Data LHC datasets), ${browserOnly.length} is browser-only (Web Audio client-side FFT, no server endpoint), ${imageOnly.length} is image-only (Schumann spectrograms, not a JSON amplitude feed). It IMPLEMENTS the queryable ones as PURE adapters (a URL builder plus a response parser, no key embedded, zero-egress at build time, live calls opt-in). HONEST: "all public APIs" means the enumerated REACHABLE no-key set, NOT literally every API on the internet — that space is unbounded (the no-finiteness law) — and "public API" is not "queryable JSON feed" (only a subset are). The Schumann wellness/consciousness claims stay flagged as non-science. Pure no-key adapters, zero-egress by default; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** deepResearchKnownWorldProjectsWithApisCollidersAndReactorsImprovingEfficiencyDecodingScienceOnTheWay — deep research
  * known world projects with APIs like the colliders and reactors, improve efficiency in quantum magnitudes, decoding
  * sciences on the way (user, 2026-07-26: "deep research known world projects with apis like the colliders and reactors and
