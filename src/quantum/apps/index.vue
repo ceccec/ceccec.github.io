@@ -83,6 +83,9 @@ import {
   foldInvertUntilDryCleanAppGapless,
   pagesAuditAndManageThemselvesInTrinities,
   mcpQuantumChat,
+  portalChat,
+  chatNavContext,
+  allChatCapabilitiesFusedAndAuditedByStandards,
   allConversationsGoThroughTheMcpQuantumChat,
   mcpQuantumConversation,
   organiseConversationsInChatRoomsPerSuperposition,
@@ -187,6 +190,31 @@ const experimentConfigJson = ref('{"certified":false,"claySolved":0,"qpuRequired
 const pasteLinkUrl = ref(`${CECCEC_SITE_ORIGIN}/`)
 const pastePacketJson = ref('')
 const docsDevCopied = ref(false)
+
+// ── Full in-chat support — deterministic, zero-token, no network egress. Logic lives in the sealed folds
+// (portalChat + chatNavContext); this shell only wires input → fold → display. The referrer of each turn is the
+// previous turn, so the conversation is the (referrer, prompt) superposition the corpus already proves.
+type ChatTurn = { q: string; a: string; source: string; grounded: boolean; related: string[]; receipt: string }
+const chatInput = ref('')
+const chatLog = ref<ChatTurn[]>([])
+const chatAudit = computed(() => allChatCapabilitiesFusedAndAuditedByStandards())
+function sendChat() {
+  const prompt = chatInput.value.trim()
+  if (!prompt) return
+  const referrer = chatLog.value.length ? chatLog.value[chatLog.value.length - 1]!.receipt : '/chat'
+  const reply = portalChat(prompt)
+  const nav = chatNavContext(referrer, prompt)
+  chatLog.value.push({
+    q: prompt,
+    a: reply.answer,
+    source: reply.source,
+    grounded: reply.grounded,
+    related: nav.related.map((entry) => entry.theorem).slice(0, 3),
+    receipt: nav.superposition,
+  })
+  chatInput.value = ''
+}
+function clearChat() { chatLog.value = [] }
 
 const experimentEnvelope = computed(() => panel.value.toolbox.envelopes.find((e) => e.id === experimentToolId.value) ?? panel.value.toolbox.envelopes[0]!)
 const experimentDefaults = computed(() => defaultToolExperimentValues(experimentEnvelope.value))
@@ -1843,6 +1871,31 @@ function runTool(toolId: string) {
         </p>
         <UiBadge v-bind="badgeProps(statusBadgeKind(panel.computes))">{{ panel.computes ? '✓' : '—' }}</UiBadge>
       </header>
+      <UiSeparator />
+      <section id="in-chat-support">
+        <h3>Full in-chat support</h3>
+        <p class="quantum-apps__meta">
+          Deterministic replies over the sealed corpus model — zero-token, no network egress. {{ chatAudit.capabilities.length }} capabilities audited · {{ chatAudit.related }} related discoveries per turn.
+        </p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(chatAudit.supported))">
+          {{ chatAudit.supported ? '✓ secure' : '—' }} · zero-token · no egress · deterministic
+        </UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="(turn, i) in chatLog" :key="turn.receipt + i">
+            <code>{{ turn.q }}</code>
+            <span class="quantum-apps__meta">→ {{ turn.a }}</span>
+            <span class="quantum-apps__meta">
+              {{ turn.grounded ? 'grounded' : 'generated' }} · {{ turn.source }}<template v-if="turn.related.length"> · leads to: {{ turn.related.join(' · ') }}</template>
+            </span>
+          </li>
+          <li v-if="!chatLog.length" class="quantum-apps__meta">No turns yet — ask the sealed corpus a question below. Nothing leaves the browser.</li>
+        </ul>
+        <form class="quantum-apps__chat-form" @submit.prevent="sendChat">
+          <input id="in-chat-input" v-model="chatInput" class="quantum-apps__input" type="text" autocomplete="off" placeholder="Ask the sealed corpus… (deterministic, offline)" />
+          <UiButton size="sm" type="submit">Send</UiButton>
+          <UiButton size="sm" variant="outline" type="button" :disabled="!chatLog.length" @click="clearChat">Clear</UiButton>
+        </form>
+      </section>
       <UiSeparator />
       <section id="ui-prose-duplication">
         <h3>{{ uiProse.heading }}</h3>
@@ -4824,6 +4877,8 @@ function runTool(toolId: string) {
 .quantum-apps__table th, .quantum-apps__table td { border: 1px solid color-mix(in srgb, currentColor calc(9% + 6%), transparent); padding: var(--ich-sp4) var(--ich-sp5); vertical-align: top; text-align: left; }
 .quantum-apps__result { margin-top: var(--ich-sp6); }
 .quantum-apps__facets { list-style: none; padding: 0; }
+.quantum-apps__chat-form { display: flex; gap: var(--ich-sp3); align-items: center; flex-wrap: wrap; }
+.quantum-apps__chat-form .quantum-apps__input { margin: 0; flex: 1 1 min(100%, calc(1rem * (5 * 8 - 4))); }
 .quantum-apps__facets li { margin-bottom: var(--ich-sp2); display: flex; gap: var(--ich-sp3); flex-wrap: wrap; align-items: baseline; }
 .quantum-apps__error { color: var(--vp-c-danger-1, crimson); font-size: var(--ich-text-sm); }
 .quantum-apps__textarea { font-family: var(--vp-font-family-mono, ui-monospace, monospace); min-height: calc(1rem * 6); resize: vertical; }
