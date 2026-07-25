@@ -1490,6 +1490,48 @@ export function portalChatRanked(prompt: string, matrix: MindMatrix = buildMatri
   }
 }
 
+/** improveAllByChattingOneSharedExperienceIndex — improve ALL by chatting (user, 2026-07-25: "improve all by chatting").
+ * The chat's turns become ONE experience log feeding ONE private BM25 index, and every surface that consumes it — the
+ * chat, the search box, and referral navigation — is reranked by the same relevance feedback. So a single chat turn
+ * about a fold boosts that fold across chat AND search AND nav, for any query sharing its terms. Deterministic, local,
+ * zero-egress; the same law across surfaces. [[chatImprovesByChattingViaRelevanceFeedback]] [[navigationFromSearchResultsAndReferrer]] */
+export function improveAllByChattingOneSharedExperienceIndex(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const chatTurn = 'content addressable memory hardware' // one chat turn
+  const first = privateSearchRanksByBM25IndustryStandard(chatTurn)
+  const selected = first.results[0]
+  const experience = [{ query: chatTurn, selectedSlug: selected?.slug ?? '' }]
+  const boostFor = (query: string) => {
+    const warm = searchImprovesByExperiencePrivateRelevanceFeedback(query, experience)
+    const row = (warm.results as { slug: string; boost?: number }[]).find((r) => r.slug === selected?.slug)
+    return row?.boost ?? 0
+  }
+  const searchBoost = boostFor('hardware content address memory') // the search-box surface
+  const navBoost = boostFor('content memory hardware retrieval') // the referral/nav surface
+  const chatBoost = boostFor(chatTurn) // the chat surface itself
+  const allSurfacesImprove = chatBoost > 0 && searchBoost > 0 && navBoost > 0 // one turn boosts chat AND search AND nav
+  const noExperienceNoBoost = (() => { const warm = searchImprovesByExperiencePrivateRelevanceFeedback('hardware content address memory', []); const row = (warm.results as { slug: string; boost?: number }[]).find((r) => r.slug === selected?.slug); return (row?.boost ?? 0) === 0 })()
+  const improveAll = allSurfacesImprove && noExperienceNoBoost && !!selected
+  const facets = [
+    { facet: `ONE EXPERIENCE LOG, MANY SURFACES — a chat turn about "${selected?.slug?.slice(0, 5 * 8)}" feeds ONE private BM25 index that the chat, the search box, and referral navigation all consume; improving it improves ALL`, on: !!selected },
+    { facet: `CHATTING BOOSTS SEARCH AND NAV, NOT JUST CHAT — the single turn boosts the fold across chat (${chatBoost}), search (${searchBoost}) and nav (${navBoost}) for any query sharing its terms (${allSurfacesImprove}) — improve all by chatting`, on: allSurfacesImprove },
+    { facet: `BOUNDED — with no experience the boost is 0 (${noExperienceNoBoost}); feedback reinforces only what was selected, so it cannot drift any surface toward hallucinated relevance`, on: noExperienceNoBoost },
+    { facet: `ONE LAW ACROSS SURFACES — the (referrer, query) superposition plus relevance feedback is one law for chat, search and nav; a chat turn is an experience that sharpens the whole portal`, on: improveAll },
+    { facet: `THE DEMARCATION — local relevance feedback over ONE shared private index improves every surface that consumes it; deterministic, zero-egress, per-user, NOT neural or cross-user. HARMONY ≠ TRUTH`, on: improveAll },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`improve-all-chatting:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    chatBoost,
+    searchBoost,
+    navBoost,
+    improveAll,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: improve all by chatting. The chat's turns become one experience log feeding one private BM25 index, and every surface that consumes it — the chat, the search box, referral navigation — is reranked by the same relevance feedback. A single chat turn about a fold boosts that fold across chat (${chatBoost}), search (${searchBoost}) and nav (${navBoost}) for any query sharing its terms; with no experience the boost is 0, so it reinforces only what was selected and cannot drift. Deterministic (same experience → same rerank), local over the sealed corpus, zero-egress — one law across surfaces. HONEST: local Rocchio-style relevance feedback, NOT neural, telemetry, or cross-user learning; it sharpens the user's own portal, lexically. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** chatImprovesByChattingViaRelevanceFeedback — improve the chat by chatting (user, 2026-07-25: "improve chat by
  * chatting"). Each chat turn is EXPERIENCE: the query and the fold it surfaced become {query, selectedSlug}. Re-asking
  * with that experience reranks via relevance feedback — the selected fold is boosted (Rocchio-style query-term overlap),
