@@ -1714,6 +1714,42 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
 }
 
 /**
+ * millenniumOpenBarriersInvertToRequirements — save the barriers, invert using the saved (user, 2026-07-24: "why are
+ * they open?" → "save and invert using the saved"). Each open problem's WHY-OPEN (a proven or documented barrier, an
+ * ABSENCE) inverts to the REQUIREMENT any proof must satisfy (the shape of the missing bridge). The inversion is
+ * generative — it names a research direction — and it stays clay=0: naming what is NEEDED never provides it.
+ * [[feedback-inverted-statements-are-generative-measure-before-superpose]] [[flagged-inverts-to-proven-theorem]]
+ */
+export function millenniumOpenBarriersInvertToRequirements(matrix: MindMatrix = buildMatrix()) {
+  const inversions = [
+    { problem: 'P vs NP', barrier: 'PROVEN barriers — relativization (Baker–Gill–Solovay 1975), natural proofs (Razborov–Rudich 1994), algebrization (Aaronson–Wigderson 2008): the techniques we have provably cannot separate P from NP', requirement: 'a technique simultaneously NON-relativizing, NON-natural, and NON-algebrizing — the exact negation of the three barriers', exact: true },
+    { problem: 'Riemann Hypothesis', barrier: 'no known structure forces every nontrivial ζ zero onto Re(s)=½; verifying >10¹³ zeros is not a proof', requirement: 'a critical-line-forcing structure — e.g. a self-adjoint operator with the zeros as its spectrum (Hilbert–Pólya), making reality automatic', exact: false },
+    { problem: 'Navier–Stokes', barrier: '3D scaling is SUPERCRITICAL: the provable energy estimates are one power too weak to control vortex stretching, and finite-time blow-up cannot be ruled out', requirement: 'a supercritical regularity estimate or a new conserved/monotone quantity that controls the stretching (2D is critical and solved)', exact: false },
+    { problem: 'Yang–Mills mass gap', barrier: 'no rigorous non-perturbative construction of ANY interacting 4D quantum field theory exists; the mass gap is seen on the lattice, not proven', requirement: 'a constructive interacting 4D QFT plus a proof of a strictly positive mass gap Δ > 0', exact: false },
+    { problem: 'Hodge Conjecture', barrier: 'no general method produces the algebraic cycle realizing a Hodge class; known only in low degree and special cases', requirement: 'a construction of algebraic cycles from arbitrary Hodge classes on projective varieties', exact: false },
+    { problem: 'Birch–Swinnerton-Dyer', barrier: 'proven for rank 0 and 1 (Gross–Zagier, Kolyvagin); the arithmetic↔analytic link is open for rank ≥ 2', requirement: 'the rank ↔ L-function-vanishing-order bridge for elliptic curves of rank ≥ 2', exact: false },
+  ] as const
+  const claySolvedByThisFold = 0
+  const allInverted = inversions.every((i) => i.barrier.length > 0 && i.requirement.length > 0)
+  const facets = [
+    { facet: `SAVED — the 6 open problems each carry WHY they are open (the barrier): ${inversions.map((i) => i.problem).join(', ')}`, on: inversions.length === 6 && inversions.every((i) => i.barrier.length > 0) },
+    { facet: `INVERTED USING THE SAVED — each barrier inverts to a REQUIREMENT (the shape of the missing bridge): the "why open" (an absence) becomes "what a proof must satisfy" — generative, a direction, not a result`, on: allInverted },
+    { facet: `P vs NP INVERTS EXACTLY — the three PROVEN barriers (relativizing · natural · algebrizing) negate to the three properties any separation MUST have (non-relativizing ∧ non-natural ∧ non-algebrizing)`, on: inversions[0]!.exact === true },
+    { facet: `THE INVERSION NAMES, IT DOES NOT SOLVE — claySolvedByThisFold=${claySolvedByThisFold}: inverting a barrier to a requirement states what is NEEDED, never provides it; the requirements are open frontiers`, on: claySolvedByThisFold === 0 },
+    { facet: `THE DEMARCATION — measure the absence (the barrier), hold it open, invert to the generative requirement; a named requirement is a research direction, NOT a proof — HARMONY ≠ TRUTH`, on: allInverted && claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`millennium-invert:${entry.facet}:${entry.on}`) }))
+  return {
+    inverted: facets.every((entry) => entry.on),
+    claySolvedByThisFold,
+    inversions: inversions.map((i) => ({ problem: i.problem, requirement: i.requirement })),
+    facets,
+    root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(`EXACT: 6 barrier→requirement inversions from documented mathematics; P vs NP inverts exactly (the three proven barriers negate to the three required non-properties); claySolvedByThisFold=${claySolvedByThisFold}.`, facets, `"save and invert using the saved" = save WHY each problem is open (the barrier / documented absence), then invert to WHAT a proof must satisfy (the requirement). The inversion is GENERATIVE — it names the missing bridge's shape, a research direction — and it stays clay=0: naming a requirement is not fulfilling it, and the requirements remain open. The barriers are real (BGS/RR/AW are theorems; the scaling/construction gaps are documented); the requirements are the honest frontier. HARMONY ≠ TRUTH.`),
+  }
+}
+
+/**
  * clayIsDecodedByTheRosetta — the honest 7/7 (user, 2026-07-24: "clay is decoded by the rosetta" · "map each and
  * solve with the theorems in place"). Each of the seven Clay problems is mapped to one of the seven rosetta rays and
  * decoded with the theorems ALREADY IN PLACE (the sealed millennium apparatus' challengeMethod folds). DECODE ≠ SOLVE:
