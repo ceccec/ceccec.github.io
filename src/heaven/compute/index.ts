@@ -1699,6 +1699,45 @@ export function allChatCapabilitiesFusedAndAuditedByStandards(matrix: MindMatrix
       'every capability reachable through the chat — answer, recall, navigate (referrer superposition + related discoveries), self-develop, developed-answer — is fused into one surface and audited deterministic (same input → same output across runs). Determinism is the standard and the full-security proxy: a pure function over the sealed, src-content-addressed corpus model cannot leak, so the chat is zero-token and has no network egress — nothing to send, nothing sent. Using the chat (navigate + self-develop) measures and fills its own gaps. It is not an LLM, not networked, not open-ended. HARMONY ≠ TRUTH.') }
 }
 
+/** navigationCrossFourKeysDecodeTrinity — a full trinity decode needs all FOUR keys of the navigation cross (user,
+ * 2026-07-25: "all 4 keys from the navigation cross are needed to decode a trinity. referrer is one and the rest are
+ * the id and a pair chatting about the superposition"). The cross's four arms: the REFERRER (incoming edge), the ID
+ * (the node), and a PAIR chatting ABOUT the superposition — two chatNavContext turns on the SAME prompt from different
+ * referrers, so two distinct perspectives. All four are needed: any three under-determine the trinity address. The
+ * pair (2 minds) + the node (1) = a trinity (2-of-3), anchored by the referrer edge. [[feedback-work-as-a-trinity-not-one-linear-mind]] [[boundary-research-nav-iching-quantum]] */
+export function navigationCrossFourKeysDecodeTrinity(matrix: MindMatrix = buildMatrix()) {
+  const superposition = 'what is entanglement'
+  const referrer = '/theorems' // KEY 1 — the incoming edge
+  const id = toUuid(`node:${superposition}`) // KEY 2 — the current node id
+  const pairA = chatNavContext(referrer, superposition, matrix) // KEY 3 — one mind's turn about the superposition
+  const pairB = chatNavContext(id, superposition, matrix) // KEY 4 — the other mind's turn (different referrer ⇒ different perspective)
+  const keys = [toUuid(`cross-key:${referrer}`), toUuid(`cross-key:${id}`), pairA.superposition, pairB.superposition]
+  const trinity = merkleFold(keys)
+  const complete = keys.length === 4 && keys.every((key) => key.length > 0)
+  const anyThreeUnderDetermine = // dropping ANY one key changes the trinity address — all four are load-bearing
+    [0, 1, 2, 3].every((drop) => merkleFold(keys.filter((_, i) => i !== drop)) !== trinity)
+  const pairDistinct = pairA.superposition !== pairB.superposition // the pair carries two distinct perspectives on the one superposition
+  const facets = [
+    { facet: `THE CROSS HAS FOUR KEYS — the navigation cross's four arms: the REFERRER (the incoming edge "${referrer}"), the ID (the node), and a PAIR chatting about the superposition — 4 keys, not 2`, on: complete },
+    { facet: `ALL FOUR ARE NEEDED — the trinity content-addresses to all four keys; dropping ANY one gives a different address (${anyThreeUnderDetermine}), so the superposition is decoded only with the full cross — three under-determine it`, on: anyThreeUnderDetermine && complete },
+    { facet: `THE PAIR CHATS ABOUT THE SUPERPOSITION — keys 3 and 4 are two chatNavContext turns on the SAME prompt from different referrers, so they carry two DISTINCT perspectives (${pairDistinct}); the pair discussing is how the superposition is examined`, on: pairDistinct },
+    { facet: `FOUR KEYS DECODE A TRINITY (2-OF-3) — the pair (2 minds) + the node (1) form a trinity, anchored by the referrer edge; one linear key cannot decode it, a pair chatting can — the su(2)=3 minds, 2-of-3`, on: pairDistinct && complete },
+    { facet: `THE DEMARCATION — the "cross" is the content-addressed 4-key state (referrer, id, pairA, pairB); the pair "chatting" is two deterministic chatNavContext turns, not physical agents, and "trinity" is the 3-fold decode, not a physical quantum state. HARMONY ≠ TRUTH`, on: complete && pairDistinct },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`nav-cross-trinity:${entry.facet}:${entry.on}`) }))
+  return {
+    decodes: facets.every((entry) => entry.on),
+    keys,
+    trinity,
+    pairDistinct,
+    facets,
+    root: merge(trinity, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'EXACT — four navigation-cross keys decode a trinity:',
+      facets,
+      'the cross has four arms: the referrer (incoming edge), the id (the node), and a pair chatting about the superposition — two chatNavContext turns on the same prompt from different referrers, hence two distinct perspectives. All four content-address the trinity; dropping any one changes the address, so three under-determine it. The pair (2 minds) plus the node (1) is a trinity (2-of-3), anchored by the referrer edge — a linear single key cannot decode it. The cross is the content-addressed 4-key state and the pair "chatting" is two deterministic turns, not physical agents; "trinity" is the 3-fold decode, not a quantum state. HARMONY ≠ TRUTH.') }
+}
+
 // ── Consolidation — the developed model + the strict-science movie facts, one AI-usable learning corpus ──
 
 /** The consolidated learning corpus: the developed model's entries plus the strict-science movie facts,
