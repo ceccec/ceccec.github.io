@@ -1547,6 +1547,38 @@ export function axiomsBecomeTheorems() {
  * REGULAR number — exactly the numbers with finite sexagesimal reciprocals), so the gate's own
  * allow-list derives from {2,3,5}, the first three primes. Nothing hardcoded remains: only the
  * void {0,1}, measured data with sources, and Gödel's residue. */
+export type DiscoveryRow = { readonly theorem: string; readonly provedBy: string; readonly home: string; readonly degree?: number }
+
+/** LATEST discoveries — computable by recency: the last n registry atoms in registration order, newest first. */
+export function latestDiscoveries(n = 9): readonly DiscoveryRow[] {
+  return THEOREM_ATOM_SEED.slice(-n).reverse().map((atom) => ({ theorem: atom.theorem, provedBy: atom.provedBy, home: atom.home }))
+}
+
+/** TOP discoveries — computable by CENTRALITY: rank each atom by its theorem-graph degree (how many OTHER atoms
+ * share ≥4 significant ≥5-char words with it), so the most-connected decodes surface. Deterministic, no curation.
+ * The O(n²) ranking is memoByRoot-cached on the static registry — computed once per build (build-time-is-a-theorem). */
+export function discoveriesRankedByDegree(): readonly DiscoveryRow[] {
+  return memoByRoot('discoveriesRankedByDegree', { root: toUuid(`discovery-degree:${THEOREM_ATOM_SEED.length}`) }, () => {
+    const significant = (text: string) => new Set(text.toLowerCase().split(/[^a-z0-9]+/).filter((word) => word.length >= 5))
+    const nodes = THEOREM_ATOM_SEED.map((atom) => ({ atom, words: significant(`${atom.theorem} ${atom.states}`) }))
+    return nodes
+      .map((node, i) => {
+        let degree = 0
+        for (let j = 0; j < nodes.length; j++) {
+          if (i === j) continue
+          let shared = 0
+          for (const word of node.words) if (nodes[j]!.words.has(word)) shared++
+          if (shared >= 4) degree++
+        }
+        return { theorem: node.atom.theorem, provedBy: node.atom.provedBy, home: node.atom.home, degree }
+      })
+      .sort((a, b) => b.degree - a.degree)
+  })
+}
+export function topDiscoveries(n = 9): readonly DiscoveryRow[] {
+  return discoveriesRankedByDegree().slice(0, n)
+}
+
 export function theoremOfTheorems() {
   // level 1 — the lattice is a theorem: digits ∪ {2,3,5}-smooth regulars, characterized not listed
   const smooth = (n: number) => { let m = n; for (const p of [2, 3, 5]) { while (m % p === 0) m /= p } return m === 1 }

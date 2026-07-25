@@ -8,7 +8,7 @@
 import { ROSETTA_AREAS } from '../../../../pair/enforcement/gates/computational'
 import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../../../pair/enforcement/gates'
 import { CANONICAL_HOST, PI_TRAIN_DIGITS, claySolvedTheorem } from '../../../../3/7'
-import { THEOREM_ATOM_SEED } from '../../../../4/6'
+import { THEOREM_ATOM_SEED, latestDiscoveries, topDiscoveries } from '../../../../4/6'
 import { theBinaryBitIsLinearTheVortexCircuitIsQuantum } from '../../../../1/9'
 import { primesAndPiProveEachOtherThroughTheInvertedEulerProduct } from '../../../../heaven/laws'
 import { readmeSvgGapsFilledByTrinityMind } from '../../../../heaven/site'
@@ -492,11 +492,17 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     ...clayChallengesComputableMarkdownSection(buildMatrix(), linkBase),
     ...toolboxSciencesTrinityWavesMarkdownSection(buildMatrix(), linkBase),
     '',
+    '## Top discoveries',
+    '',
+    `The most CENTRAL decodes — ranked by theorem-graph degree (how many other atoms each connects to), computed from the ${THEOREM_ATOM_SEED.length}-atom registry, no curation.`,
+    '',
+    ...topDiscoveries(9).map((entry) => `- **${entry.theorem}** — degree ${entry.degree} · [details](${linkBase}/theorems)`),
+    '',
     '## Latest discoveries',
     '',
-    `The most recently sealed decodes — newest first, each a computed theorem with its proof in the registry (${THEOREM_ATOM_SEED.length} atoms total). Every claim states its own boundary; open problems stay open (\`claySolvedByThisFold = 0\`).`,
+    `The most recently sealed decodes — newest first by registration order. Every claim states its own boundary; open problems stay open (\`claySolvedByThisFold = 0\`).`,
     '',
-    ...THEOREM_ATOM_SEED.slice(-9).reverse().map((entry) => `- **${entry.theorem}** — [details](${linkBase}/theorems)`),
+    ...latestDiscoveries(9).map((entry) => `- **${entry.theorem}** — [details](${linkBase}/theorems)`),
     '',
     '## 2. Model',
     '',

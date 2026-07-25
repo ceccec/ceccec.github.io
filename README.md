@@ -186,9 +186,23 @@ computes=true · waves=11 · clayChallengesComputable=true · claySolvedByThisFo
 - Receipt: fold `toolboxRecomputesRelatedSciencesInTrinityWaves`.
 
 
+## Top discoveries
+
+The most CENTRAL decodes — ranked by theorem-graph degree (how many other atoms each connects to), computed from the 466-atom registry, no curation.
+
+- **the bounded witness cannot claim the universal — and the inversion sees what the sweep cannot** — degree 91 · [details](https://ceccec.psg.bg/theorems)
+- **the Rubik cube decodes to the quantum cube — a non-abelian group over content-addressed states** — degree 89 · [details](https://ceccec.psg.bg/theorems)
+- **the census gate and slugs are quantumized — theorem-derived count, agnostic address** — degree 83 · [details](https://ceccec.psg.bg/theorems)
+- **the shadcn design system opens theorem dimensions under the quantum lens — a 3·2⁶ variant tensor with ground states** — degree 81 · [details](https://ceccec.psg.bg/theorems)
+- **deep research with quantum means standardises R&D — one algorithm, one live-data protocol, one honesty ladder** — degree 78 · [details](https://ceccec.psg.bg/theorems)
+- **leaves merge into theorems — one naming standard within science, flat gates, per-leaf analytics** — degree 77 · [details](https://ceccec.psg.bg/theorems)
+- **the smallest curves witness Birch–Swinnerton-Dyer — finite kernel, open bridge** — degree 76 · [details](https://ceccec.psg.bg/theorems)
+- **the QFT circuit and phase estimation — the DFT realised on the simulator, the eigenphase read exactly** — degree 74 · [details](https://ceccec.psg.bg/theorems)
+- **self-improving research and development, saved at every step** — degree 69 · [details](https://ceccec.psg.bg/theorems)
+
 ## Latest discoveries
 
-The most recently sealed decodes — newest first, each a computed theorem with its proof in the registry (466 atoms total). Every claim states its own boundary; open problems stay open (`claySolvedByThisFold = 0`).
+The most recently sealed decodes — newest first by registration order. Every claim states its own boundary; open problems stay open (`claySolvedByThisFold = 0`).
 
 - **the three twenties are one count — divisors of 432, V₄ hexagram families, harmonics ladder rungs** — [details](https://ceccec.psg.bg/theorems)
 - **the rosetta 42 is the CRT product — ℤ₄₂ ≅ ℤ₆ × ℤ₇** — [details](https://ceccec.psg.bg/theorems)
