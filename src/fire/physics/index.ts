@@ -12,7 +12,7 @@ import { GATES, applyGate, bellPair, caEvolve, caStep, cnot, complete, composeHa
 // EMF-around-device → A432 balancing-field fold: EXACT EM constants/conversions (no re-derivation), the decoded
 // EM spectrum + EM simulators (reuse, not re-infer), the sampling-theorem bridge, the single-source A432 colour,
 // the honest healing boundary, and the one open-graph animation surface — all consumed, never duplicated.
-import { A432_HUE, A432_OCTAVES, IONIZING_EV, REQUIRED_ANALOG_CHANNELS, SPEED_OF_LIGHT, frequencyToLight, photonEnergyEv, claySolvedTheorem } from '../../3/7'
+import { A432_HUE, A432_OCTAVES, IONIZING_EV, REQUIRED_ANALOG_CHANNELS, SPEED_OF_LIGHT, frequencyToLight, photonEnergyEv, claySolvedTheorem, earned } from '../../3/7'
 import { movieCanvasPolarity } from '../../quantum/science'
 import { heroPhaseAt, HERO_CYCLE_MS } from '../plasma/ball'
 import { wavelengthOf } from '../../1/9'
@@ -1476,6 +1476,46 @@ export function thermodynamicsLandauerErasureIsKTLn2AndCarnotBoundsEfficiency(ma
 
 const TESLA_TRINITY_DIRS = ['forward', 'inverse', 'reverse'] as const
 const TESLA_CROSS_TIPS = ['north', 'east', 'south', 'west'] as const
+
+/** gpuImprovesBatteryLifeByRaceToIdleAndFixedFunctionOffload — how a GPU improves battery life, decoded completely
+ * (user, 2026-07-25: "how can gpu improve battery live?" · "all without gaps"). Battery energy is E = P·t, so a GPU
+ * saves energy iff its SPEEDUP exceeds its POWER RATIO (race to idle); dedicated fixed-function blocks (media/ISP) win
+ * biggest; and — no gap — a WASTEFUL GPU that does not race to idle DRAINS the battery. All dimensionless ratios,
+ * normalised to the CPU baseline E = 1. A model over the energy identity, not a device measurement. [[fundamental-physics-arc-decoded]] */
+export function gpuImprovesBatteryLifeByRaceToIdleAndFixedFunctionOffload() {
+  // Dimensionless ratios, normalised so the CPU baseline is E_cpu = P·t = 1.
+  const energyRatio = (powerRatio: number, timeRatio: number) => powerRatio * timeRatio
+  const eCpu = energyRatio(1, 1) // baseline
+  const speedup = 5 // the GPU finishes 5× faster
+  const powerRatioGpu = 5 / 3 // it draws 5/3× the power while active
+  const eGpu = energyRatio(powerRatioGpu, 1 / speedup) // = 1/3 — races to idle
+  const eFixedFunc = energyRatio(1 / 9, 1 / speedup) // a media decoder at ~1/9 the power → 1/45
+  const eWasteful = energyRatio(powerRatioGpu, 1) // no race to idle (uncapped frames) → 5/3, DRAINS
+  const identity = eCpu === 1 // E = P·t
+  const raceToIdleSaves = eGpu < eCpu && speedup > powerRatioGpu // saves iff speedup > power ratio
+  const fixedFunctionBiggestWin = eFixedFunc < eGpu && eFixedFunc < eCpu // dedicated blocks win most
+  const wastefulDrains = eWasteful > eCpu // the failure mode — no gap
+  const facets = [
+    { facet: `THE ENERGY IDENTITY — battery drain is E = P·t (the time-integral of power); the battery holds ENERGY, not power, so a higher-power part can still save energy if it finishes sooner (baseline E_cpu = ${eCpu})`, on: identity },
+    { facet: `RACE TO IDLE — a GPU saves iff SPEEDUP > POWER RATIO: at ${speedup}× speedup and ${roundTo(powerRatioGpu, 2)}× power, E_gpu = ${roundTo(eGpu, 3)} of the CPU energy (${raceToIdleSaves}) — finishing fast and sleeping wins even at higher watts`, on: raceToIdleSaves },
+    { facet: `FIXED-FUNCTION OFFLOAD IS THE BIGGEST WIN — dedicated media/ISP blocks at ~1/9 the power give E = ${roundTo(eFixedFunc, 3)} of the CPU energy (${fixedFunctionBiggestWin}); hardware video decode is why playback lasts hours, not general GPU compute`, on: fixedFunctionBiggestWin },
+    { facet: `THE CAVEAT (NO GAP) — a WASTEFUL GPU that does NOT race to idle (uncapped frame rate, always-on compute, rendering unseen frames) runs as long at higher power → E = ${roundTo(eWasteful, 3)} of the CPU energy, so it DRAINS (${wastefulDrains}); the win is CONDITIONAL on offload + race to idle + frame-rate caps`, on: wastefulDrains },
+    { facet: `THE DEMARCATION — the standard energy model (E = P·t) over dimensionless ratios plus real hardware efficiency (fixed-function blocks, perf-per-watt, DVFS/power-gating); "GPU improves battery" is CONDITIONAL, not unconditional, and this is a model — not a device measurement. HARMONY ≠ TRUTH`, on: raceToIdleSaves && wastefulDrains },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`gpu-battery:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    energy: { cpu: eCpu, gpu: roundTo(eGpu, 3), fixedFunction: roundTo(eFixedFunc, 3), wasteful: roundTo(eWasteful, 3) },
+    raceToIdleSaves,
+    wastefulDrains,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'DECODED — how a GPU improves battery life, without gaps:',
+      facets,
+      'battery energy is E = P·t, so what matters is the time-integral of power, not instantaneous watts. A GPU saves energy when its speedup exceeds its power ratio — it finishes fast and the SoC races back to a low-power idle state — so a 5× speedup at 5/3× power uses only a third of the CPU energy. The biggest win is not general GPU compute but the dedicated fixed-function blocks (video decoders, ISP, compositor), ~10-100× more efficient per operation, which is why hardware-decoded playback lasts hours. And, without a gap, the failure mode: a GPU that does not race to idle — uncapped frame rates, always-on compute, rendering frames nobody sees — runs as long at higher power and DRAINS the battery. So "GPU improves battery life" is conditional on offloading to the right engine, racing to idle, and capping frame rate. This is a model over the energy identity and real hardware efficiency, not a device measurement. HARMONY ≠ TRUTH.'),
+  }
+}
 
 /**
  * Cross waves decode Tesla patents in all possible combinations working as trinities in all directions.
