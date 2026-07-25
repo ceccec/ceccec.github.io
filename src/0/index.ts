@@ -60,11 +60,13 @@ export function toUuid(seed: string): string {
 }
 
 /** referralAddress — the ONE deterministic path every referrer-consumer routes through, so referrals are PREDICTABLE
- * and zero-stored. A page, a chat turn, a search node — each addresses to (kind, referrer, node) by the same rule:
- * `${kind}:${referrer}|${node}`. Same (kind, referrer, node) → same address, always; no referrer is ever stored, it is
- * recomputed. Consumers pass their own kind so existing content-addresses are unchanged (pure DRY, no drift). */
-export function referralAddress(kind: string, referrer: string, node: string): string {
-  return toUuid(`${kind}:${referrer}|${node}`)
+ * and zero-stored. VARIADIC in the keys: a 2-key hop `(referrer, node)` addresses to `${kind}:${referrer}|${node}` (a
+ * linear seam — binds only the endpoints), while a full 4-key tamper-evident surface `(referrer, id, prev, next)`
+ * folds all four, so changing prev OR next changes the address and no navigation step can be spliced in or out
+ * undetected. Same (kind, ...keys) → same address, always; no key is ever stored, it is recomputed. Existing 2-key
+ * addresses are unchanged (join('|') of two keys is the old `${referrer}|${node}`), so this is pure DRY, no drift. */
+export function referralAddress(kind: string, ...keys: string[]): string {
+  return toUuid(`${kind}:${keys.join('|')}`)
 }
 
 // The fold cascade — the rest of the primitive kernel, dissolved out of the monolith (wave 2). Every one

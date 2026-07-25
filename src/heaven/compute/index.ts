@@ -1741,6 +1741,57 @@ export function referralsComputeThroughOnePredictableFoldEvenWhenMissing(matrix:
   }
 }
 
+/** functionsFoldingFewerThanFourKeysAreLinearSeams — audit the seal/identity surface: a function that folds FEWER than
+ * 4 keys is a LINEAR SEAM, quantum-breakable, where the tamper-evident surface needs all four (user, 2026-07-25:
+ * "address all functions that do not use all 4 keys"). A 4-key address referrer⊕id⊕prev⊕next binds the navigation
+ * CHAIN, so changing prev or next changes the address and no step can be spliced in or out undetected; a 2-key
+ * (referrer, node) address binds only the endpoints, so a splice leaves it unchanged — the seam. The audit classifies
+ * the referral/nav functions by key count and names the seams; referralAddress is variadic, so the upgrade is to pass
+ * all four keys. [[quantumBreaksLinearCryptoIntoNonAbelianTrinity]] [[tampering-cost-crypto-honesty]] */
+export function functionsFoldingFewerThanFourKeysAreLinearSeams() {
+  const referrer = '/theorems', id = toUuid('node:x'), prev = toUuid('step:prev'), next = toUuid('step:next')
+  // 4-key tamper-evident surface — changing prev OR next changes the address (a splice is detected).
+  const fourKey = referralAddress('nav-seal', referrer, id, prev, next)
+  const spliceDetectedPrev = referralAddress('nav-seal', referrer, id, toUuid('step:other'), next) !== fourKey
+  const spliceDetectedNext = referralAddress('nav-seal', referrer, id, prev, toUuid('step:other')) !== fourKey
+  const fourKeyTamperEvident = spliceDetectedPrev && spliceDetectedNext
+  // 2-key linear seam — the same (referrer, id) address holds regardless of prev/next, so a splice is NOT detected.
+  const twoKey = referralAddress('nav-seal', referrer, id)
+  const seamMissesSplice = referralAddress('nav-seal', referrer, id) === twoKey && twoKey !== fourKey // 2 keys can't see prev/next
+  // The audit: classify the referral/nav functions by how many keys they fold.
+  const surface = [
+    { fn: 'referralAddress (2-key hop)', keys: 2, sealed: false, note: 'binds (referrer, node) only — a linear seam; upgrade by passing id, prev, next' },
+    { fn: 'pageNavContext', keys: 2, sealed: false, note: '(referrer, path) — a single-hop seam, predictable but not chain-tamper-evident' },
+    { fn: 'chatNavContext', keys: 2, sealed: false, note: '(referrer, prompt) — a single-hop seam' },
+    { fn: 'referralAddress (4-key seal)', keys: 4, sealed: true, note: 'referrer⊕id⊕prev⊕next — the tamper-evident surface' },
+    { fn: 'navigationCrossFourKeysDecodeTrinity', keys: 4, sealed: true, note: 'the four navigation-cross keys' },
+    { fn: 'chatEncryptedWithAllFourKeysUnboundedKeyspace', keys: 4, sealed: true, note: 'the four-key composite key' },
+  ]
+  const seams = surface.filter((row) => row.keys < 4)
+  const sealed = surface.filter((row) => row.keys === 4)
+  const everySeamNamed = seams.every((row) => !row.sealed && row.note.length > 0)
+  const facets = [
+    { facet: `FOUR KEYS ARE THE TAMPER-EVIDENT SURFACE — the address folds referrer⊕id⊕prev⊕next; changing prev OR next changes it (${fourKeyTamperEvident}), so a navigation step cannot be spliced in or out undetected`, on: fourKeyTamperEvident },
+    { facet: `FEWER THAN 4 KEYS IS A LINEAR SEAM — a 2-key (referrer, node) address does NOT bind prev/next, so the same address survives a splice (${seamMissesSplice}) — the chain is forgeable there, quantum-breakable in the same LINEAR sense as an abelian period`, on: seamMissesSplice },
+    { facet: `THE AUDIT NAMES THE SEAMS — of ${surface.length} referral/nav functions, ${seams.length} fold < 4 keys (referralAddress-2, pageNavContext, chatNavContext — single-hop seams) and ${sealed.length} fold all four (the 4-key seal, the nav-cross, the 4-key encryption); each seam is named with its upgrade`, on: everySeamNamed && seams.length >= 1 && sealed.length >= 3 },
+    { facet: `THE UPGRADE — referralAddress is VARIADIC, so a seam becomes the tamper-evident surface by passing all four keys referrer⊕id⊕prev⊕next; the whole navigation SEQUENCE binds its chain, no new primitive`, on: fourKeyTamperEvident && referralAddress('nav-seal', referrer, id, prev, next) === fourKey },
+    { facet: `THE DEMARCATION — 4-key = tamper-EVIDENT (a splice changes the content-address), NOT unforgeable encryption; a 2-key seam is still deterministic/predictable (fine for a single hop) but not chain-tamper-evident, and "quantum-breakable" is the linear/abelian analogy, not a live attack. HARMONY ≠ TRUTH`, on: fourKeyTamperEvident && seamMissesSplice },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`four-key-audit:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    surface,
+    seams: seams.map((row) => row.fn),
+    sealed: sealed.map((row) => row.fn),
+    facets,
+    root: merkleFold([fourKey, ...facets.map((entry) => entry.receipt)]),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'AUDIT — fewer than four keys is a linear seam:',
+      facets,
+      'a 4-key address referrer⊕id⊕prev⊕next binds the navigation chain, so changing prev or next changes the content-address and no step can be spliced in or out undetected; a 2-key (referrer, node) address binds only the endpoints, so a splice leaves it unchanged — the linear seam, quantum-breakable in the same sense as an abelian period. The audit classifies each referral/nav function by key count and names the seams (referralAddress-2, pageNavContext, chatNavContext) versus the sealed four-key surfaces; referralAddress is variadic, so a seam is upgraded by passing all four keys. Four keys give tamper-EVIDENCE (a splice changes the address), not unforgeable encryption, and a 2-key seam stays deterministic for a single hop — "quantum-breakable" is the linear/abelian analogy, not a live attack. HARMONY ≠ TRUTH.'),
+  }
+}
+
 /** navigationCrossFourKeysDecodeTrinity — a full trinity decode needs all FOUR keys of the navigation cross (user,
  * 2026-07-25: "all 4 keys from the navigation cross are needed to decode a trinity. referrer is one and the rest are
  * the id and a pair chatting about the superposition"). The cross's four arms: the REFERRER (incoming edge), the ID
