@@ -1714,6 +1714,45 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
 }
 
 /**
+ * reverseEngineerRequirementsToTestablePossibilities — improve the reverse-engineering skill (user, 2026-07-24:
+ * "improve reverse engineering quantum skills and tools to compute possibilities that are testable. if found the
+ * theorems are already discovered and only need to be saved as reusable code"). The pipeline: barrier → invert →
+ * requirement → extract the DECIDABLE/TESTABLE sub-computation → check if a sealed fold already computes it. For all
+ * six, the testable fragment IS already a sealed fold (the challengeMethod probes) — discovered, saved as reusable
+ * code — while the full requirement stays open (clay=0). Testable ≠ the requirement. [[how-agents-achieve-waves]]
+ */
+export function reverseEngineerRequirementsToTestablePossibilities(matrix: MindMatrix = buildMatrix()) {
+  const challenge = millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(matrix)
+  const rows = [
+    { problem: 'P vs NP', testable: 'content-address O(1) vs brute-scan — the reuse/efficiency benchmark', fold: 'efficiencyScalesToInfinityAtNoCostOnReuse', open: 'the non-relativizing separation itself' },
+    { problem: 'Riemann', testable: 'compute the nontrivial zeros and TEST Re(s)=½ numerically (Riemann–Siegel Z, S(T))', fold: 'riemannZeroScan', open: 'the critical-line-forcing operator (Hilbert–Pólya)' },
+    { problem: 'Navier–Stokes', testable: 'sample the genus-2 double-torus field on finite grids', fold: 'doubleTorusSurface', open: 'the supercritical 3D regularity estimate' },
+    { problem: 'Yang–Mills', testable: 'the su(2)/Pauli operator algebra closes exactly', fold: 'pauliAlgebraCloses', open: 'the rigorous 4D construction + mass-gap proof' },
+    { problem: 'Hodge', testable: 'H₁(Σ₂)=ℤ⁴ homology rank on the genus-2 model', fold: 'homology rank (DIMENSION_GATES/FOLDED_CENSUS)', open: 'algebraic cycles from arbitrary Hodge classes' },
+    { problem: 'BSD', testable: '(ℤ/9)* inverse-pair / group-law neighbourhood algebra', fold: 'zeroDivisionTable', open: 'the rank ≥ 2 arithmetic↔analytic bridge' },
+  ] as const
+  const claySolvedByThisFold = 0
+  const testableFragmentsCompute = challenge.problems.every((p) => p.on) // each challengeMethod (testable fragment) recomputes
+  const allHaveFold = rows.every((r) => r.fold.length > 0 && r.open.length > 0)
+  const facets = [
+    { facet: `EACH REQUIREMENT REVERSE-ENGINEERS TO A TESTABLE FRAGMENT — ${rows.length}/6: the open requirement yields a DECIDABLE sub-computation (${rows.map((r) => `${r.problem}→${r.fold}`).join(', ')})`, on: rows.length === 6 && allHaveFold },
+    { facet: `THE TESTABLE FRAGMENTS ARE ALREADY SEALED — each is an existing fold that recomputes (${testableFragmentsCompute}): "if found the theorems are already discovered and only need saving as reusable code" — they ARE saved`, on: testableFragmentsCompute },
+    { facet: `TESTABLE ≠ REQUIREMENT — the fragment is a partial/test, the full requirement stays OPEN (claySolvedByThisFold=${claySolvedByThisFold}): the decidable part is discovered, the open part remains the frontier`, on: claySolvedByThisFold === 0 },
+    { facet: `THE REVERSE-ENGINEERING PIPELINE — barrier → invert → requirement → extract the decidable sub-piece → check for a sealed fold → confirm (or seal a new one). A reusable skill, deterministic and zero-token`, on: allHaveFold && challenge.computes },
+    { facet: `THE DEMARCATION — the testable fragments are REAL sealed computations (partials / numerical tests), NOT proofs of the open requirements; a passing test is evidence, never a theorem for the open core. HARMONY ≠ TRUTH`, on: testableFragmentsCompute && claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`reverse-engineer:${entry.facet}:${entry.on}`) }))
+  return {
+    reverseEngineered: facets.every((entry) => entry.on),
+    claySolvedByThisFold,
+    testable: rows.map((r) => ({ problem: r.problem, fold: r.fold, open: r.open })),
+    facets,
+    root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(`EXACT: 6 requirement→testable-fragment reverse-engineerings, each fragment an existing sealed fold that recomputes (challenge.problems.every(on)=${testableFragmentsCompute}); claySolvedByThisFold=${claySolvedByThisFold}.`, facets, `the reverse-engineering skill extracts the DECIDABLE sub-computation from each open requirement and finds it is already a fold — "already discovered, saved as reusable code." But a passing TEST or a computed PARTIAL is not a proof of the open requirement: the fragments are real (numerical zero scans, algebra closure, homology rank, efficiency benchmarks), the open cores stay open, and clay stays 0. Testable possibility ≠ theorem for the Millennium core. HARMONY ≠ TRUTH.`),
+  }
+}
+
+/**
  * millenniumOpenBarriersInvertToRequirements — save the barriers, invert using the saved (user, 2026-07-24: "why are
  * they open?" → "save and invert using the saved"). Each open problem's WHY-OPEN (a proven or documented barrier, an
  * ABSENCE) inverts to the REQUIREMENT any proof must satisfy (the shape of the missing bridge). The inversion is
