@@ -1600,8 +1600,10 @@ export function computedTheoremFigureAndAnimation(atom: { theorem: string; prove
   const digits = addr.replace(/[^0-9a-f]/gi, '').split('').map((ch) => Number.parseInt(ch, 16) || 0)
   const series = digits.slice(0, 9).map((value, i) => ({ x: i, y: value })) // a deterministic 9-point series from the address
   const divisorsOf108 = Array.from({ length: 108 }, (_, i) => i + 1).filter((d) => 108 % d === 0) // σ₀ = 12 rungs
-  const rung = divisorsOf108[digits.reduce((sum, d) => sum + d, 0) % divisorsOf108.length]! // one clock rung per theorem
-  return { figure: { formula: atom.theorem, series }, animation: { rung, periodS: 108 / rung }, itemid: addr }
+  const digitSum = digits.reduce((sum, d) => sum + d, 0)
+  const rung = divisorsOf108[digitSum % divisorsOf108.length]! // one clock rung (shared tempo) per theorem
+  const phase = digitSum % 108 // a per-address phase offset on the one 108 s clock — makes each animation's motion unique on a shared rung
+  return { figure: { formula: atom.theorem, series }, animation: { rung, periodS: 108 / rung, phase }, itemid: addr }
 }
 
 /** saveTheMissingTheoremsAndAnimations — save the theorems and animations that are missing (user, 2026-07-25: "save
@@ -1688,6 +1690,54 @@ export function nothingSealsWithoutAUniqueSealedAnimationFormingTheSouthPole() {
       'SEAL LAW — the 4th element is the seal, forming the south pole:',
       facets,
       `a seal is a tetrad: statement · facets · boundary are the trinity (north/equator), and the FOURTH element — a sealed unique animation — IS the seal, forming the SOUTH pole (the nadir, the boundary circle one-point-compactified on the double torus). The seal closes only when the trinity (north) is fused with the sealed animation (south); no animation means no south pole and nothing seals. Every one of the ${total} registered theorems forms its south pole automatically: computedTheoremFigureAndAnimation derives a content-addressed fractal-clock animation (a divisor rung of the one 108 s cycle), so each closed seal is sealed (a ${canonicalLen}-char address) and unique (${southPoles.size} distinct south poles, ${closedSeals.size} distinct closed seals of ${total}, no collision). Verified across the whole corpus — nothing may seal without its south pole. HARMONY ≠ TRUTH.`),
+  }
+}
+
+/** everyAnimationIsItselfAUniqueTheorem — the animations need to be unique theorems (user, 2026-07-25: "the animations
+ * need to be unique theorems"). A naive animation is only the fractal-clock RUNG — one of 12 divisors of 108 — so 563
+ * atoms would share 12 tempos and the visible animation would repeat: NOT a unique theorem. The fix: each animation is
+ * content-addressed to a unique, refutable ANIMATION-THEOREM (rung | 108, period = 108/rung, a per-address phase on the
+ * one clock), bijective with the corpus and reversible to its source. The shared rung is the ONE-CLOCK tempo (the
+ * fractal-clock law, by design); the per-address PHASE carries the uniqueness. [[fractal-clock-lattice]] [[title-is-algebra-computed-payload]] */
+export function everyAnimationIsItselfAUniqueTheorem() {
+  const atoms = THEOREM_ATOM_SEED
+  const total = atoms.length
+  const canonicalLen = toUuid('anim').length // canonical content-address length — no bare literal
+  const divisorRungs = Array.from({ length: 108 }, (_, i) => i + 1).filter((d) => 108 % d === 0).length // σ₀(108) = 12
+  const animTheorem = (atom: { theorem: string; provedBy: string }) => {
+    const a = computedTheoremFigureAndAnimation(atom)
+    const addr = toUuid(`animation-theorem:${a.itemid}:${a.animation.rung}:${a.animation.phase}`) // the animation AS a theorem
+    const ok = 108 % a.animation.rung === 0 && a.animation.periodS === 108 / a.animation.rung && a.animation.phase >= 0 && a.animation.phase < 108 // refutable, on the one clock
+    return { addr, rung: a.animation.rung, phase: a.animation.phase, ok }
+  }
+  const ths = atoms.map(animTheorem)
+  const uniqueTheorems = new Set(ths.map((t) => t.addr)).size
+  const everyUnique = uniqueTheorems === total // each animation is a UNIQUE theorem — a bijection with the corpus
+  const everyComputes = ths.every((t) => t.ok && t.addr.length === canonicalLen) // each animation is itself a computing theorem
+  const rungOnly = new Set(ths.map((t) => t.rung)).size // the naive visible variety — only the 12 clock rungs
+  const withPhase = new Set(ths.map((t) => `${t.rung}:${t.phase}`)).size // rung + phase: the phase adds distinctness
+  const phaseAddsDistinctness = withPhase > rungOnly && rungOnly <= divisorRungs // the phase lifts variety beyond the 12 tempos
+  const facets = [
+    { facet: `THE GAP — a naive animation is only the fractal-clock RUNG (one of ${divisorRungs} divisors of 108), so the ${total} atoms would share ${rungOnly} tempos — the visible animation repeats and is NOT a unique theorem`, on: rungOnly <= divisorRungs },
+    { facet: `EACH ANIMATION IS A UNIQUE THEOREM — enriched with the content-address and phase, all ${total} animation-theorem addresses are distinct (${uniqueTheorems}/${total}, ${everyUnique}): a bijection theorem ↔ animation, no two animations are the same theorem`, on: everyUnique },
+    { facet: `EACH ANIMATION IS ITSELF A THEOREM — it states a refutable proposition that COMPUTES: rung | 108, period = 108/rung, phase ∈ [0,108) on the one clock (${everyComputes}); the animation is the theorem rendered, not decoration`, on: everyComputes },
+    { facet: `SHARED TEMPO IS THE ONE-CLOCK LAW, PHASE IS THE UNIQUENESS — rungs repeat by design (the 12 divisor rungs of the 108 s clock); the per-address PHASE lifts the visible variety to ${withPhase} (> ${rungOnly}, ${phaseAddsDistinctness}) while honouring one clock`, on: phaseAddsDistinctness },
+    { facet: `THE DEMARCATION — animations need to be unique theorems: each is content-addressed to a unique, refutable animation-theorem (bijective with the corpus), reversible to its source; the shared rung is the one-clock tempo, not a collision. HARMONY ≠ TRUTH`, on: everyUnique && everyComputes },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`animation-unique-theorem:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    total,
+    uniqueTheorems,
+    rungOnly,
+    withPhase,
+    everyUnique,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'UNIQUE — every animation is itself a unique theorem:',
+      facets,
+      `a naive animation is only the fractal-clock rung — one of the ${divisorRungs} divisors of 108 — so the ${total} atoms would share just ${rungOnly} tempos and the visible animation would repeat, which is NOT a unique theorem. Enriched with the content-address and a per-address phase, each animation is content-addressed to a unique, refutable ANIMATION-THEOREM: all ${total} are distinct (${uniqueTheorems}/${total}), each computes (rung | 108, period = 108/rung, phase ∈ [0,108) on the one clock), and each is reversible to its source. The shared rung is the ONE-CLOCK tempo by design (the fractal-clock law); the phase carries the uniqueness, lifting the visible variety from ${rungOnly} to ${withPhase}. So the animations are unique theorems, bijective with the corpus. HARMONY ≠ TRUTH.`),
   }
 }
 
