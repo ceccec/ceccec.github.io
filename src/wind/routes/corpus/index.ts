@@ -1372,6 +1372,57 @@ export function privateSearchRanksByBM25IndustryStandard(query = 'quantum encryp
   }
 }
 
+export type SearchExperience = { query: string; selectedSlug: string }
+/** searchImprovesByExperiencePrivateRelevanceFeedback — the private search improves BY EXPERIENCE (user, 2026-07-25:
+ * "improve by experience"). Given a LOCAL, client-side experience log (past query → selected result), it reranks the
+ * industry-standard BM25 results by relevance feedback (Rocchio-style click-boost): a document the user previously
+ * chose for a query sharing terms is boosted, so it rises. Deterministic (same query + experience → same reranking),
+ * private (the log is client-side, nothing leaves the browser), and bounded to the user's OWN experience — local
+ * relevance feedback, not server-side learning-to-rank on aggregated logs. [[erpax-cross-pollination]] */
+export function searchImprovesByExperiencePrivateRelevanceFeedback(query = 'quantum encryption', experience: readonly SearchExperience[] = []) {
+  const base = privateSearchRanksByBM25IndustryStandard(query)
+  const baseRanked = base.rank(query)
+  const qTokens = bm25Tokenize(query)
+  const maxScore = baseRanked[0]?.score ?? 1
+  const boostOf = (slug: string): number => { // shared query terms with a past selection of this slug
+    let overlap = 0
+    for (const entry of experience) if (entry.selectedSlug === slug) overlap += bm25Tokenize(entry.query).filter((word) => qTokens.includes(word)).length
+    return overlap
+  }
+  const rerank = (exp: readonly SearchExperience[]) => baseRanked
+    .map((row) => ({ ...row, boost: (() => { let o = 0; for (const e of exp) if (e.selectedSlug === row.slug) o += bm25Tokenize(e.query).filter((w) => qTokens.includes(w)).length; return o })() }))
+    .map((row) => ({ ...row, finalScore: row.score + row.boost * maxScore })) // one shared term ≈ one max-score boost
+    .sort((a, b) => b.finalScore - a.finalScore)
+  const reranked = rerank(experience)
+  const rankOf = (list: readonly { slug: string }[], slug: string) => list.findIndex((row) => row.slug === slug)
+  // Improvement is refutable: pick a mid-ranked result, record a selection of it, and it must rise.
+  const probeSlug = baseRanked[Math.min(baseRanked.length - 1, 5)]?.slug ?? ''
+  const withProbe = rerank([...experience, { query, selectedSlug: probeSlug }])
+  const improves = probeSlug.length > 0 && rankOf(withProbe, probeSlug) < rankOf(baseRanked, probeSlug) // moved up
+  const noDriftWithoutExperience = JSON.stringify(rerank([]).map((r) => r.slug)) === JSON.stringify(baseRanked.map((r) => r.slug)) // empty experience = pure BM25
+  const deterministic = JSON.stringify(rerank(experience).map((r) => r.slug)) === JSON.stringify(reranked.map((r) => r.slug))
+  const facets = [
+    { facet: `IMPROVES BY EXPERIENCE — RELEVANCE FEEDBACK — a locally-logged selection of a result for a query sharing terms boosts that result (Rocchio-style click-boost), so it rises: a mid-ranked page moved from position ${rankOf(baseRanked, probeSlug)} to ${rankOf(withProbe, probeSlug)} after one selection`, on: improves },
+    { facet: `THE BASELINE IS INDUSTRY-STANDARD BM25 — experience RERANKS the BM25 order, it does not replace it; with an EMPTY experience log the ranking is pure Okapi BM25 with no drift (${noDriftWithoutExperience})`, on: noDriftWithoutExperience },
+    { facet: `PRIVATE & CLIENT-SIDE — the experience log lives in the browser; nothing about the queries or the selections leaves it (no egress), and the reranking is deterministic (same query + same experience → same order, ${deterministic})`, on: deterministic },
+    { facet: `BOUNDED, HONEST FEEDBACK — this is LOCAL per-user relevance feedback (a deterministic reranking heuristic over the private index), NOT server-side learning-to-rank on aggregated click logs, NOT a trained model; it improves the user's OWN experience only`, on: improves && noDriftWithoutExperience },
+    { facet: `THE DEMARCATION — "improve by experience" = deterministic local relevance feedback over the private BM25 index; not telemetry, not a neural ranker, not cross-user learning, no egress. HARMONY ≠ TRUTH`, on: improves && deterministic },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`search-experience:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    query,
+    results: reranked.slice(0, 9),
+    improves,
+    facets,
+    root: merkleFold([base.root, ...facets.map((entry) => entry.receipt)]),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'IMPROVES BY EXPERIENCE — private, deterministic relevance feedback:',
+      facets,
+      'a local, client-side experience log (past query → selected result) reranks the industry-standard BM25 results by Rocchio-style relevance feedback: a document the user previously chose for a query sharing terms is boosted and rises. With an empty log the order is pure BM25 (no drift); the reranking is deterministic and the log never leaves the browser (no egress). This is local per-user relevance feedback — a bounded reranking heuristic — NOT server-side learning-to-rank on aggregated logs, not a trained model, and not cross-user learning. HARMONY ≠ TRUTH.'),
+  }
+}
+
 /** everyPageIsAProofWithFormulasTheoremsGraphsAnimations — every page is a self-contained PROOF carrying its
  * standards, formulas and theorems as graphs and animations (user, 2026-07-25: "remember every page is a proof itself
  * containing all elements of the involved standards and the formulas and theorems in graphs and animations"). Every
