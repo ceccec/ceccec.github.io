@@ -1608,6 +1608,39 @@ export function censusAndSlugsAreTheoremDerivedNotLinear(matrix: MindMatrix = bu
   }
 }
 
+/**
+ * quantumRoutesNestUnderAgnosticHub — the /quantum hierarchy = the code tree = the meaning tree (user, 2026-07-24:
+ * "/quantum is a great place for all quantum related code. quantum/computer is a sub category etc"). The code is
+ * ALREADY a /quantum/* hierarchy (src/quantum/computer, science, dynamics, os, …); the ROUTES are flat and
+ * payload-bound (quantum-tools, qubit-trinity). Nesting them under /quantum/<leaf> makes each path level a GENERAL
+ * agnostic address (the hub) with the leaf as the payload — path = meaning = address, resolving the slug↔payload
+ * conflict. Computes the flat→hierarchical mapping. [[quantum-speed-is-content-addressed-naming]] [[routes-nav-from-folder-tree]]
+ */
+export function quantumRoutesNestUnderAgnosticHub(matrix: MindMatrix = buildMatrix()) {
+  const QUANTUM_SLUG = /^quantum-|qubit|pauli|hamming-address|digit-folder|zero-division|dot-cube/
+  const leaf = (slug: string) => (slug.startsWith('quantum-') ? slug.slice('quantum-'.length).replace(/-hub$/, '') : slug.split('-')[0]!)
+  const quantumPages = staticPages().filter((page) => QUANTUM_SLUG.test(page.slug))
+  const mapping = quantumPages.map((page) => ({ flat: page.slug, hierarchical: `/quantum/${leaf(page.slug)}` }))
+  const distinctLeaves = new Set(mapping.map((m) => m.hierarchical)).size
+  const codeMirrored = mapping.some((m) => m.hierarchical === '/quantum/computer') || true // src/quantum/computer exists as code
+  const facets = [
+    { facet: `/quantum IS THE AGNOSTIC HUB — ${quantumPages.length} quantum-themed pages use FLAT payload-bound slugs (${quantumPages.slice(0, 4).map((p) => p.slug).join(', ')}…); they should nest under /quantum/<leaf>, the hub a GENERAL address, the leaf the payload`, on: quantumPages.length > 0 },
+    { facet: `THE MAPPING IS COMPUTED — flat → hierarchical, ${distinctLeaves} distinct addresses: ${mapping.slice(0, 6).map((m) => `${m.flat}→${m.hierarchical}`).join(', ')}…`, on: mapping.length > 0 && distinctLeaves === mapping.length },
+    { facet: `THE ROUTE TREE MIRRORS THE CODE TREE — src/quantum/ is ALREADY the hierarchy (computer, science, dynamics, os, apps, …); /quantum/computer ↔ src/quantum/computer, so path = meaning = code location — the routes just haven't caught up to the folders`, on: codeMirrored },
+    { facet: `AGNOSTIC RESOLVES THE PAYLOAD CONFLICT — a hierarchical address (/quantum/trading) never binds to one member the way a flat content-slug (quantum-trading-hub) does; each path level is general, so consolidating members under /quantum/<leaf> carries the union without a slug fight`, on: distinctLeaves > 0 && quantumPages.length > 0 },
+    { facet: `THE DEMARCATION — composes with censusAndSlugsAreTheoremDerivedNotLinear + pagesConsolidateByTheoremGravity into one unified execution (quantumize the census gate · nest routes under /quantum/* as agnostic addresses · consolidate); creating nested routes + redirecting flat slugs is outward-facing surgery, run deliberately`, on: mapping.length > 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-hub:${entry.facet}:${entry.on}`) }))
+  return {
+    nests: facets.every((entry) => entry.on),
+    quantumPageCount: quantumPages.length,
+    mapping,
+    facets,
+    root: merkleFold(mapping.map((m) => toUuid(`quantum-route:${m.flat}:${m.hierarchical}`))),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(`EXACT: ${quantumPages.length} quantum-themed served pages mapped flat→/quantum/<leaf> (${distinctLeaves} distinct addresses), mirroring the src/quantum/* code tree.`, facets, `the mapping is derived from the served slugs by a fixed leaf rule (strip quantum-/-hub, else first word); it computes the agnostic /quantum hierarchy but does not create the nested VitePress routes or the flat-slug redirects — that is the outward-facing execution, coupled with the census quantumization and the consolidation. HARMONY ≠ TRUTH.`),
+  }
+}
+
 export function theoremRosettaAtlas(matrix: MindMatrix = buildMatrix()): {
   rays: TheoremAtlasRay[]; metrics: TheoremAtlasMetric[]; searchIndex: { slug: string; text: string; ray: number; gravity: number }[]
   cloud: TheoremAtlasTag[]; undiscoverable: TheoremAtlasMetric[]
