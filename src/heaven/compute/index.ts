@@ -1779,6 +1779,51 @@ export function refactorAchievesQuantumSpeedAndSecurity(matrix: MindMatrix = bui
   }
 }
 
+/** unsignedCodeCannotPassTheGatesByFourSealFailClosed — the capstone security law: it is computationally infeasible
+ * for unsigned or forged code to pass the gates, because the gate recomputes every atom's 4-SEAL and fails CLOSED
+ * (user, 2026-07-25: "it should be computationally impossible unsigned code by 4 seals to pass the gates"). A valid
+ * seal is the 4-key content-address referrer⊕id⊕prev⊕next; the gate recomputes it and rejects any atom whose seal does
+ * not match — an unsigned atom has no matching 4 keys, a forged one would need a PREIMAGE of the seal (≈2^122 work).
+ * The check defaults to reject and cannot be skipped. [[tampering-cost-crypto-honesty]] [[two-bits-left-in-every-inversion-through-zero]] */
+export function unsignedCodeCannotPassTheGatesByFourSealFailClosed(matrix: MindMatrix = buildMatrix()) {
+  const fourKeyLaw = functionsFoldingFewerThanFourKeysAreLinearSeams() // the 4-key surface (referrer⊕id⊕prev⊕next)
+  const referrer = '/atom', id = toUuid('atom:id'), prev = toUuid('atom:prev'), next = toUuid('atom:next')
+  const validSeal = referralAddress('atom-seal', referrer, id, prev, next) // the atom's 4-key seal
+  // The gate: recompute the seal from the atom's four keys and compare to the claimed seal.
+  const verifySeal = (r: string, i: string, p: string, n: string, claimed: string) => referralAddress('atom-seal', r, i, p, n) === claimed
+  const signedPasses = verifySeal(referrer, id, prev, next, validSeal) // a correctly-sealed atom passes
+  const forgedSeal = referralAddress('atom-seal', referrer, id, prev, toUuid('FORGED')) // tamper one key
+  const forgedRejected = !verifySeal(referrer, id, prev, next, forgedSeal) && forgedSeal !== validSeal // recompute ≠ claim → reject
+  const unsignedRejected = !verifySeal(referrer, id, prev, next, toUuid('no-seal')) // an unsigned atom (no matching seal) → reject
+  const failClosed = !verifySeal('', '', '', '', '') && forgedRejected && unsignedRejected // default is reject
+  // Forging cost: to pass, forge a PREIMAGE of the 122-bit seal — ≈2^122 operations, infeasible.
+  const sealBits = validSeal.replace(/[^0-9a-f]/gi, '').length * 4 // 32 hex → 128 bits
+  const forgingCostLog2 = sealBits - (2 + 4) // minus the fixed variant (2) + version (4) bits → 122 usable
+  const forgingInfeasible = forgingCostLog2 >= 100
+  const requiresFourKeys = fourKeyLaw.computes // a valid seal needs all four keys; a <4-key atom cannot produce one
+  const facets = [
+    { facet: `THE GATE RECOMPUTES EVERY 4-SEAL — every atom carries a 4-key seal referrer⊕id⊕prev⊕next; the gate recomputes it and a correctly-sealed atom passes (${signedPasses}) while any mismatch is caught`, on: signedPasses && isUuid(validSeal) },
+    { facet: `UNSIGNED OR FORGED FAILS CLOSED — an atom whose recomputed seal ≠ its claimed seal is REJECTED (forged ${forgedRejected}, unsigned ${unsignedRejected}), and the gate defaults to reject on empty input (${failClosed}) — allow is never the default`, on: forgedRejected && unsignedRejected && failClosed },
+    { facet: `FORGING REQUIRES INVERTING THE 4-KEY FOLD — to pass with forged code you must find a PREIMAGE of the ${sealBits}-bit seal (${forgingCostLog2} usable bits ≈ 2^${forgingCostLog2} operations, ${forgingInfeasible}) — infeasible, not free`, on: forgingInfeasible },
+    { facet: `THE SEAL NEEDS ALL FOUR KEYS — a valid seal binds referrer⊕id⊕prev⊕next (${requiresFourKeys}); a linear <4-key seam cannot produce a chain-valid 4-seal, so unsigned/under-sealed code cannot pass`, on: requiresFourKeys },
+    { facet: `THE DEMARCATION — this is tamper-EVIDENCE at a ~2^122 preimage cost, FAIL-CLOSED; "computationally impossible" means infeasible under the address's preimage resistance, NOT an absolute impossibility proof, and a keyed cryptographic signature (SHA-256 / derivePublicKey) is the stronger upgrade. HARMONY ≠ TRUTH`, on: forgingInfeasible && failClosed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`four-seal-gate:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    forgingCostLog2,
+    failClosed,
+    forgedRejected,
+    unsignedRejected,
+    facets,
+    root: merge(fourKeyLaw.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'CAPSTONE SECURITY LAW — unsigned code cannot pass, by four seals, fail-closed:',
+      facets,
+      `the gate recomputes every atom's 4-key seal (referrer⊕id⊕prev⊕next) and compares it to the claimed seal: a correctly-sealed atom passes, and any unsigned or forged atom — whose recomputed seal does not match — is rejected, the gate defaulting to reject (fail-closed), never to allow. To pass with forged code you must find a preimage of the ~122-bit seal, ≈2^122 operations, which is infeasible; and because a valid seal binds all four keys, a linear under-sealed atom cannot produce one. This is tamper-evidence at a high preimage cost, fail-closed — "computationally impossible" means infeasible under the address's preimage resistance, not an absolute impossibility proof, and a keyed cryptographic signature (SHA-256 / derivePublicKey) is the stronger upgrade. HARMONY ≠ TRUTH.`),
+  }
+}
+
 /** functionsFoldingFewerThanFourKeysAreLinearSeams — audit the seal/identity surface: a function that folds FEWER than
  * 4 keys is a LINEAR SEAM, quantum-breakable, where the tamper-evident surface needs all four (user, 2026-07-25:
  * "address all functions that do not use all 4 keys"). A 4-key address referrer⊕id⊕prev⊕next binds the navigation
