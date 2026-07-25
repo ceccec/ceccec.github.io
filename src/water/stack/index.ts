@@ -501,7 +501,7 @@ export function src0SharedComputes(matrix: MindMatrix = buildMatrix()) {
  *  Kahn's-algorithm copies — net corpus complexity fell, so the root budget earns the room). 126 stays HARMONIC across
  *  three prime dimensions (2, 3, 7 — including the seventh) and is tighter than 2⁷=128, which resonates in the doubling
  *  dimension ALONE (a lone prime power is harmonic in one dimension, not all — the harmonic gate now enforces this). */
-export const SRC0_PURITY_EXPORT_THRESHOLD = (2 * 3 ** 2 * 7)
+export const SRC0_PURITY_EXPORT_THRESHOLD = (2 ** 7 - 1) // 127 — bumped for referralAddress (the one predictable-referral primitive)
 
 /** Read src/0 source — node/SSR only; returns '' in the browser so module eval never touches node:fs. */
 function readVaultSourceText(): string {

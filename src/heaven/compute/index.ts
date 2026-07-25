@@ -8,7 +8,7 @@ import type {
   DoubleTorusWire, ConsciousnessFlow, DoubleTorusFlow } from '../../wind/types'
 import { atoms } from '../atoms'
 import { GATES, applyGate, cnot, computesGate, foldPair, isUuid, measure, memoByRoot, merge, merkleFold, probabilities, qubits, resourceCooperationPolicy, sealFacets, toUuid, DIGEST_BITS, asMerkaba, asMerkle, asTorus, asTrace, asVortex, coverageCostLog2, fold, humanBreath, humanEase, maxTamperingCostLog2, maxTamperingCostReached, merkabaFoldUrl, roundTo, sample, seedFromText, tamperCostLog2, uuidHero } from '../../0'
-import { digitalRoot, VORTEX_SEQUENCE, foldVortex, modUnits, prng } from '../../0'
+import { digitalRoot, VORTEX_SEQUENCE, foldVortex, modUnits, prng, referralAddress } from '../../0'
 import { foldMagmaLaws } from '../../5/5'
 import { landauerLimit, rat, ratAdd, ratMul, ratEq, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, claySolvedTheorem, earned } from '../../3/7'
 import { tamperEvident } from '../../5/5'
@@ -1485,7 +1485,7 @@ export function chatNavContext(referrer: string, prompt: string, matrix: MindMat
     cameFrom: page.cameFrom, // the incoming edge (null when external/direct)
     reply,
     related: page.related, // outgoing edges — the discoveries this turn leads to
-    superposition: toUuid(`chat-superposition:${referrer}|${prompt}`), // the (referrer, prompt) content-address
+    superposition: referralAddress('chat-superposition', referrer, prompt), // the (referrer, prompt) content-address — one predictable path
   }
 }
 
@@ -1608,7 +1608,7 @@ export function selfChat(seed: string, maxTurns: number, matrix: MindMatrix = bu
     if (seen.has(prompt)) { cycleAt = seen.get(prompt)!; break } // COLLIDE — a revisited dynamical state
     seen.set(prompt, n)
     const reply = chatFrom(model, prompt)
-    const address = toUuid(`chat-superposition:${referrer}|${prompt}`) // the (referrer, prompt) superposition
+    const address = referralAddress('chat-superposition', referrer, prompt) // the (referrer, prompt) superposition — one predictable path
     turns.push({ n, prompt, referrer, address, answer: reply.answer })
     referrer = address // the next turn's referrer is THIS turn — the chat chats with itself
     prompt = modelTokens(reply.answer).slice(0, 3).join(' ') || 'what are you' // feed the reply back as the next prompt
@@ -1697,6 +1697,48 @@ export function allChatCapabilitiesFusedAndAuditedByStandards(matrix: MindMatrix
       'AUDITED — the app provides full, secure in-chat support:',
       facets,
       'every capability reachable through the chat — answer, recall, navigate (referrer superposition + related discoveries), self-develop, developed-answer — is fused into one surface and audited deterministic (same input → same output across runs). Determinism is the standard and the full-security proxy: a pure function over the sealed, src-content-addressed corpus model cannot leak, so the chat is zero-token and has no network egress — nothing to send, nothing sent. Using the chat (navigate + self-develop) measures and fills its own gaps. It is not an LLM, not networked, not open-ended. HARMONY ≠ TRUTH.') }
+}
+
+/** referralsComputeThroughOnePredictableFoldEvenWhenMissing — the DRY refactor toward predictable referrals, and a
+ * missing referral is still enough (user, 2026-07-25: "dry refactor towards predictable referrals" · "referral is
+ * enough even if missing to greet a visitor and chat to infinity at any topic live"). Every referrer-consumer
+ * (pageNavContext, chatNavContext, navigationFromSearchResultsAndReferrer) now computes its superposition through the
+ * ONE primitive referralAddress(kind, referrer, node), so referrals are predictable and zero-stored; and an EMPTY /
+ * missing referrer still yields a valid address, greets the visitor, and lets the chat answer any topic. [[two-bits-left-in-every-inversion-through-zero]] */
+export function referralsComputeThroughOnePredictableFoldEvenWhenMissing(matrix: MindMatrix = buildMatrix()) {
+  // (1) ONE PREDICTABLE PATH — the consumers route through referralAddress; the addresses are unchanged (pure DRY).
+  const pageRouted = pageNavContext('/a', '/b').superposition === referralAddress('page-superposition', '/a', '/b')
+  const chatRouted = chatNavContext('/a', 'query', matrix).superposition === referralAddress('chat-superposition', '/a', 'query')
+  const predictable = referralAddress('nav-search', '/x', 'q') === referralAddress('nav-search', '/x', 'q') && isUuid(referralAddress('nav-search', '/x', 'q'))
+  // (2) ZERO STORED — referralAddress is pure (no state): two calls anywhere give the same address, nothing persisted.
+  const zeroStored = referralAddress('chat-superposition', '/ref', 'topic') === referralAddress('chat-superposition', '/ref', 'topic')
+  // (3) MISSING REFERRAL IS ENOUGH — an empty referrer still addresses, and the chat greets + answers.
+  const missingAddresses = isUuid(referralAddress('chat-superposition', '', 'topic')) && isUuid(pageNavContext('', '/x').superposition)
+  const missingChat = chatNavContext('', 'what are you', matrix)
+  const greetsWithoutReferrer = missingChat.reply.answer.length > 0 && missingChat.cameFrom === null // no incoming edge, still answers
+  // (4) CHAT TO INFINITY ON ANY TOPIC — with or without a referrer, any prompt gets a deterministic answer.
+  const anyTopic = ['quantum entanglement', 'the weather', 'zzz unknowable gibberish topic'].every((topic) => portalChat(topic, matrix).answer.length > 0)
+  const facets = [
+    { facet: `ONE PREDICTABLE PATH — every referrer-consumer computes its superposition through the single referralAddress(kind, referrer, node): pageNavContext (${pageRouted}) and chatNavContext (${chatRouted}) route through it, and navigationFromSearchResultsAndReferrer shares the same primitive — same (kind, referrer, node) → same address, always`, on: pageRouted && chatRouted && predictable },
+    { facet: `ZERO STORED — the referrer is never persisted; referralAddress is a pure function recomputed each call (${zeroStored}), so there is no referrer store to drift — predictable by construction`, on: zeroStored },
+    { facet: `MISSING REFERRAL IS ENOUGH — GREET THE VISITOR — an empty / missing referrer still yields a valid address (${missingAddresses}) and the chat greets and answers with no incoming edge (${greetsWithoutReferrer}); the referrer is optional context, not a requirement`, on: missingAddresses && greetsWithoutReferrer },
+    { facet: `CHAT TO INFINITY ON ANY TOPIC — with or without a referrer, any prompt gets a deterministic answer (${anyTopic}) — including unknown topics, answered by the model's self-description; a missing referral never blocks the chat`, on: anyTopic },
+    { facet: `THE DEMARCATION — the referral is a content-addressed (kind, referrer, node) primitive routed through ONE fold; "to infinity" = the chat always returns a deterministic answer for any prompt (bounded by the sealed corpus), and a missing referrer defaults gracefully — not unbounded knowledge, not stored state. HARMONY ≠ TRUTH`, on: pageRouted && chatRouted && missingAddresses && anyTopic },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`referral-predictable:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    pageRouted,
+    chatRouted,
+    greetsWithoutReferrer,
+    anyTopic,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'DRY & GRACEFUL — one predictable referral path, enough even when missing:',
+      facets,
+      'every referrer-consumer now computes its superposition through the single referralAddress(kind, referrer, node) primitive, so referrals are predictable and zero-stored (a pure function recomputed each call, no referrer database to drift) and existing content-addresses are unchanged. A missing / empty referrer still yields a valid address, greets the visitor with no incoming edge, and lets the chat answer any topic deterministically — a missing referral never blocks the chat. "To infinity" means the chat always returns a deterministic answer for any prompt, bounded by the sealed corpus (unknown topics answered by self-description); it is not unbounded knowledge and not stored state. HARMONY ≠ TRUTH.'),
+  }
 }
 
 /** navigationCrossFourKeysDecodeTrinity — a full trinity decode needs all FOUR keys of the navigation cross (user,

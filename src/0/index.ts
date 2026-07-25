@@ -59,6 +59,14 @@ export function toUuid(seed: string): string {
   return uuid
 }
 
+/** referralAddress — the ONE deterministic path every referrer-consumer routes through, so referrals are PREDICTABLE
+ * and zero-stored. A page, a chat turn, a search node — each addresses to (kind, referrer, node) by the same rule:
+ * `${kind}:${referrer}|${node}`. Same (kind, referrer, node) → same address, always; no referrer is ever stored, it is
+ * recomputed. Consumers pass their own kind so existing content-addresses are unchanged (pure DRY, no drift). */
+export function referralAddress(kind: string, referrer: string, node: string): string {
+  return toUuid(`${kind}:${referrer}|${node}`)
+}
+
 // The fold cascade — the rest of the primitive kernel, dissolved out of the monolith (wave 2). Every one
 // routes through toUuid above, so it belongs in the same dependency-free station. merge folds two
 // addresses into one — the atom of every fold.

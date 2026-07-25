@@ -15,7 +15,7 @@ import { congruence } from '../../mountain/vortex'
 import type { ConceptSiteSection, MindMatrix, StaticPage } from '../types'
 import { buildMatrix, portalChat, chatNavContext, allChatCapabilitiesFusedAndAuditedByStandards } from '../../heaven/compute'
 // ☷ Kūn · Earth · receptive · lower·yin · depthFade — kernel primitives (uuid, merkle, memo)
-import { toUuid, merkleFold, isUuid, memoByRoot, sealFacets } from '../../0'
+import { toUuid, merkleFold, isUuid, memoByRoot, sealFacets, referralAddress } from '../../0'
 import { ratStr } from '../../9/1'
 import { livingTorus } from '../../fire/diamonds'
 import { oneOpenGraphAll } from '../../fire/li'
@@ -153,7 +153,7 @@ export function renameToMostSearchedTermsWiredToPublicSearchApis(liveSuggestions
 export function navigationFromSearchResultsAndReferrer(referrer = '/search', query = 'quantum computing') {
   const search = privateSearchRanksByBM25IndustryStandard(query)
   const edges = search.rank(query).slice(0, 9) // the outgoing edges ARE the ranked search results
-  const superposition = (ref: string, q: string) => toUuid(`nav-search:${ref}|${q}`)
+  const superposition = (ref: string, q: string) => referralAddress('nav-search', ref, q)
   const a = superposition(referrer, query)
   const b = superposition('/other-referrer', query) // same query, different referrer
   const c = superposition(referrer, query) // identical (referrer, query)
