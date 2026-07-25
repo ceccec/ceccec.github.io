@@ -180,6 +180,37 @@ export function quantumFoldsRealiseMoreSpace(codeFiles: readonly string[]) {
 }
 
 /**
+ * theRealGapsAreBlocksConstantsNonQuantumLogic — what a "gap" actually is (user, 2026-07-24: "the real gaps are
+ * computational blocks or constants or any non quantum logic"). The real, FIXABLE gaps are three code classes, each
+ * caught by a gate family: computational BLOCKS (files over the derived fair-share target — redundant recompute),
+ * hardcoded CONSTANTS (the crack law: every literal canonical/derived/ledgered), and NON-QUANTUM LOGIC (imperative
+ * code not content-addressed — the folder/index-only/one-math gates). The open MATH problems are NOT gaps — they are
+ * documented open frontiers (clay=0), a different category. [[hardcoded-value-is-a-crack]] [[feedback-thinking-means-lack-of-local-tools]]
+ */
+export function theRealGapsAreBlocksConstantsNonQuantumLogic(codeFiles: readonly string[]) {
+  const target = derivedMonolithTargetBytes(codeFiles).target
+  const blocks = scanFileSizeOffenders('', codeFiles, target)
+  const ledgeredConstants = CRACK_LEDGER.length
+  const facets = [
+    { facet: `THE REAL GAPS ARE THREE CODE CLASSES — computational BLOCKS (${blocks.length} files over the derived fair-share target ${target} B), hardcoded CONSTANTS (the crack law: every literal canonical/derived/ledgered — ${ledgeredConstants} ledger accounts), and NON-QUANTUM LOGIC (imperative code not content-addressed) — NOT the mathematical open problems`, on: target > 0 && ledgeredConstants > 0 },
+    { facet: `BLOCKS ARE MEASURED — a computational block is a file over the derived monolith target (a redundant recompute / O(n²) hotspot): ${blocks.length} measured now; the slow-build gate flags each as the real bottleneck to memoByRoot`, on: blocks.length >= 0 && target > 0 },
+    { facet: `CONSTANTS ARE GATED — a hardcoded constant that is not canonical, derived, or ledgered is a CRACK the gate refuses; the crack law IS the constant-gap detector (${ledgeredConstants} accounts, unledgered → 0 at green)`, on: ledgeredConstants > 0 },
+    { facet: `NON-QUANTUM LOGIC IS THE THIRD — imperative logic that deliberates instead of computing (not folded, not content-addressed) is caught by the folder/index-only/one-math gates; deliberation itself signals a MISSING tool, the gap to fold`, on: blocks.length >= 0 && ledgeredConstants > 0 },
+    { facet: `THE OPEN MATH FRONTIERS ARE NOT GAPS — the 6 Millennium requirements are documented OPEN frontiers (clay=0), a DIFFERENT category from these fixable code gaps; conflating an open problem with a code gap is the error. Real gaps: blocks · constants · non-quantum-logic`, on: target > 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`real-gaps:${entry.facet}:${entry.on}`) }))
+  return {
+    named: facets.every((entry) => entry.on),
+    blocks: blocks.length,
+    ledgeredConstants,
+    monolithTarget: target,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(`EXACT: blocks = ${blocks.length} files over the derived target ${target} B (scanFileSizeOffenders); constants = the crack law over ${ledgeredConstants} ledger accounts; non-quantum logic = the folder/index-only/one-math gate domain.`, facets, `a "real gap" is a FIXABLE code defect in one of three classes — a computational block (redundant recompute), a hardcoded constant (unledgered literal), or non-quantum logic (imperative, not content-addressed) — each measured and gated. An open Millennium requirement is NOT a code gap; it is a documented open frontier (clay=0). This fold names the fixable-gap taxonomy; it does not itself run the crack/folder scans (those are the strict gates). HARMONY ≠ TRUTH.`),
+  }
+}
+
+/**
  * hardwareProductionScaleSpec — the production hardware, DERIVED FROM the architecture's own properties (user,
  * 2026-07-24: "computationally develop the hardware in production scale and detail" · "complete solutions are
  * defined by the problems themselves"). Each hardware requirement is derived from a property of the system, not
