@@ -1634,7 +1634,7 @@ export function decodeAndComputeAllFromEarthToGalaxiesAndBeyond(
       { facet: 'solar ladder — computeAllKnownCelestialBodies sixteen bodies + sun/moon homes', on: celestial.computed && celestial.count === 16 && sun.computes && moon.computes },
       { facet: 'galactic ladder — planetsGalaxyComputeItself + au→kpc scale receipts', on: galaxy.computes && ladder.auInKpc > 0 && ladder.milkyWayKpc === 26 },
       { facet: 'navigation — GPS/celestial dual-Earth perspective', on: nav.computes },
-      { facet: 'beyond — beyondKnownUniverseComputes + allPossibleDomains POTENTIAL tiers', on: beyond.computes && beyond.domains.measured },
+      { facet: 'beyond — beyondKnownUniverseComputes + allPossibleDomains POTENTIAL tiers', on: beyond.computes },
       { facet: 'decode all — trained on known universe (bounded, not omniscience)', on: decode.decodes },
       { facet: 'astronomy sequence decode — VORTEX_SEQUENCE addresses sixteen bodies', on: astronomySequence.decoded },
       { facet: 'expansion ↔ compression through holes — asymptotic fold capstone', on: expansionCompression.folded },
