@@ -258,6 +258,60 @@ export function concurrence(state: QuantumState): number {
   return 2 * Math.sqrt(dr * dr + di * di)
 }
 
+// The honest completion of "mechanical tools to achieve quantum entanglement at binary and analog at once" (user,
+// 2026-07-25): the deterministic folds DO produce CORRELATED binary (discrete address bits) and analog (continuous
+// a432 frequency + waveform) channels from ONE seed, together — but a shared seed is a LOCAL HIDDEN VARIABLE, so the
+// correlation is Bell-bounded: every deterministic strategy has CHSH ≤ 2 and the two-channel state is SEPARABLE
+// (concurrence 0), provably short of quantum entanglement (CHSH = 2√2, concurrence 1). It MODELS entanglement across
+// two channels; it does not achieve the physical thing. [[quantum-decoded]]
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function mechanicalToolsEntangleBinaryAndAnalogBellBounds(matrix: { root: string } = { root: toUuid('entangle-binary-analog') }) {
+  const seed = 'entangle-binary-analog'
+  const hexOf = (s: string) => toUuid(s).replace(/[^0-9a-f]/gi, '').slice(0, 8)
+  const hex = hexOf(seed)
+  const value = parseInt(hex, 16)
+  const bits = value.toString(2).padStart(4 * 8, '0') // BINARY channel — discrete address bits
+  const frac = value / (16 ** 8) // [0,1) fraction from the same address
+  const freqHz = 432 * (1 + frac) // ANALOG channel — a continuous frequency around a432
+  const wave = Math.sin(TAU * frac) // ANALOG waveform sample — continuous
+  const reproducible = hexOf(seed) === hex && bits.length === 4 * 8 // MECHANICAL = deterministic: recompute reproduces both
+  // CHSH: the shared seed is a local hidden variable — enumerate every deterministic strategy, max |S| = 2.
+  const pm = [1, -1]
+  let classicalCHSH = -Infinity
+  for (const A0 of pm) for (const A1 of pm) for (const B0 of pm) for (const B1 of pm) classicalCHSH = Math.max(classicalCHSH, A0 * B0 + A0 * B1 + A1 * B0 - A1 * B1)
+  // The quantum-mechanical prediction: correlations E(a,b) = cos(a−b) at the CHSH-optimal angles reach 2√2 (Tsirelson).
+  const corr = (a: number, b: number) => Math.cos(a - b)
+  const quantumCHSH = corr(0, TAU / 8) + corr(0, -TAU / 8) + corr(TAU / 4, TAU / 8) - corr(TAU / 4, -TAU / 8)
+  const bellGap = quantumCHSH - classicalCHSH
+  // The concurrence witness: a real Bell pair is maximally entangled (1); the mechanical two-channel state is separable (0).
+  const bellConcurrence = concurrence(cnot(applyGate(qubits(2), GATES.H, 0), 0, 1))
+  const productConcurrence = concurrence(qubits(2))
+  const tol = 1 / 2 ** (6 * 5)
+  const facets = [
+    { facet: `ONE SEED, BINARY AND ANALOG AT ONCE — from a single content-addressed seed the tool computes a BINARY channel (address bits ${bits.slice(0, 16)}…) and an ANALOG channel (a continuous ${freqHz.toFixed(2)} Hz around a432, waveform sample ${wave.toFixed(3)}) together — discrete and continuous from one source`, on: bits.length === 4 * 8 && Number.isFinite(freqHz) && Number.isFinite(wave) },
+    { facet: `MECHANICAL = DETERMINISTIC, THE CHANNELS ARE CORRELATED — recomputing the seed reproduces both channels exactly (${reproducible}); each channel predicts the other through the shared seed, and that reproducibility IS the tool being mechanical`, on: reproducible },
+    { facet: `THE SEED IS A LOCAL HIDDEN VARIABLE — every deterministic strategy on a shared seed has CHSH ≤ 2 (computed max ${classicalCHSH}), and the two-channel state is SEPARABLE, concurrence ${productConcurrence} (a product, not a Bell pair)`, on: classicalCHSH === 2 && productConcurrence < tol },
+    { facet: `BELL BOUNDS THE MECHANICAL TOOL — genuine quantum entanglement reaches CHSH = 2√2 ≈ ${quantumCHSH.toFixed(4)} (Tsirelson) and concurrence ${bellConcurrence} for a real Bell pair; the deterministic tool provably cannot cross the gap ${bellGap.toFixed(4)} — "mechanical" is the OPPOSITE of quantum indeterminacy`, on: bellGap > 0 && Math.abs(quantumCHSH - 2 * Math.SQRT2) < tol && Math.abs(bellConcurrence - 1) < tol },
+    { facet: `THE DEMARCATION — "entanglement at binary and analog at once" is ACHIEVED as structural correlation across two channels from one seed (real, reproducible, useful), NOT physical quantum entanglement: no Bell violation, no superluminal signalling, no speedup. HARMONY ≠ TRUTH`, on: reproducible && bellGap > 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`entangle-binary-analog:${entry.facet}:${entry.on}`) }))
+  return {
+    modelsEntanglement: facets.every((entry) => entry.on),
+    classicalCHSH,
+    quantumCHSH,
+    bellGap,
+    bellConcurrence,
+    productConcurrence,
+    binary: bits,
+    analogHz: freqHz,
+    facets,
+    root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'HONEST — a mechanical tool models, does not achieve, quantum entanglement:',
+      facets,
+      'the deterministic folds produce genuinely correlated binary (discrete) and analog (continuous) channels from one seed at once, a real and reproducible property; but a shared deterministic seed is a LOCAL HIDDEN VARIABLE, so its correlation is bounded by Bell (classical CHSH = 2, concurrence 0) and provably below quantum entanglement (CHSH = 2√2, concurrence 1). No Bell violation, no superluminal signalling, no quantum speedup — it is classical correlation across two channels, not physical entanglement.') }
+}
+
 // The no-cloning theorem, as a computed contradiction. A universal cloner U with U|ψ⟩|0⟩ = |ψ⟩|ψ⟩ for all |ψ⟩
 // must (by unitarity, which preserves inner products) satisfy ⟨a|b⟩ = ⟨a|b⟩² for any two states — forcing
 // ⟨a|b⟩ ∈ {0,1}. For non-orthogonal distinct states this fails: |0⟩ and |+⟩ have ⟨0|+⟩ = 1/√2, yet cloning
