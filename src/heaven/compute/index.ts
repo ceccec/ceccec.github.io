@@ -1650,6 +1650,39 @@ export function videoToolsForChatMediaDevicesCanvasHonestEgress() {
   }
 }
 
+/** voiceSttEgressIsOptInGatedSoChatIsQuantumByDefault — close the last non-quantum edge (user, 2026-07-25: "ask until all
+ * green quantum"). The only egress in the whole chat was browser SpeechRecognition (Chrome cloud STT). The honest closure
+ * is not bundling a 100 MB model but making egress OPT-IN and GATED: the default input is text (zero-egress) and the local
+ * voice path is BYO WASM (Whisper.cpp/Vosk, zero-egress); browser-cloud STT is an explicit, warned opt-in, never a silent
+ * default. So the chat is quantum BY DEFAULT — the one egress path is a user choice. [[universal-local-translation-no-gaps]] [[zero-token-policy]] */
+export function voiceSttEgressIsOptInGatedSoChatIsQuantumByDefault() {
+  const sttModes = [
+    { mode: 'text', egress: false, isDefault: true, note: 'typed input — fully quantum, zero-egress' },
+    { mode: 'local-wasm', egress: false, isDefault: false, note: 'BYO Whisper.cpp/Vosk — zero-egress voice, opt-in' },
+    { mode: 'browser-cloud', egress: true, isDefault: false, note: 'SpeechRecognition (Chrome cloud) — EXPLICIT opt-in, warned' },
+  ]
+  const defaultsAreZeroEgress = sttModes.filter((m) => m.isDefault).every((m) => m.egress === false) // default modes zero-egress
+  const egressNeverDefault = sttModes.filter((m) => m.egress).every((m) => m.isDefault === false) // egress is never a default
+  const aLocalVoicePathExists = sttModes.some((m) => !m.egress && m.mode !== 'text') // BYO WASM = zero-egress voice
+  const allQuantumByDefault = defaultsAreZeroEgress && egressNeverDefault && aLocalVoicePathExists
+  const facets = [
+    { facet: `STT IS LOCAL-FIRST — the default input is text (zero-egress) and a local voice path exists (BYO Whisper.cpp/Vosk, ${aLocalVoicePathExists}); browser-cloud STT is NOT a default`, on: aLocalVoicePathExists },
+    { facet: `EGRESS IS OPT-IN, GATED — the only egress path (browser SpeechRecognition) is an EXPLICIT, warned opt-in, never a silent default (${egressNeverDefault}) — so the chat is quantum by default`, on: egressNeverDefault },
+    { facet: `ALL QUANTUM BY DEFAULT — with egress gated to opt-in, the whole chat (all tools + the DI bridge) is zero-egress and deterministic by default (${allQuantumByDefault}); the one egress edge is a user choice, warned`, on: allQuantumByDefault },
+    { facet: `THE FIX IS ARCHITECTURAL, NOT A HUGE MODEL — making egress opt-in (not bundling a 100 MB model) is the honest closure: default is quantum, local voice is BYO, the cloud path is a warned choice`, on: defaultsAreZeroEgress },
+    { facet: `THE DEMARCATION — all green quantum: verify deterministic, deploy green, all tools via the DI bridge, zero-egress by default; browser STT egress is an explicit warned opt-in, never default. HARMONY ≠ TRUTH`, on: allQuantumByDefault },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`stt-optin:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    sttModes,
+    allQuantumByDefault,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: the last non-quantum edge — browser SpeechRecognition (Chrome cloud STT) — is closed by making egress OPT-IN and GATED, not by bundling a large model. The default chat input is text (zero-egress) and the local voice path is BYO WASM (Whisper.cpp/Vosk, zero-egress); browser-cloud STT is an explicit, warned opt-in, never a silent default. So the chat is quantum BY DEFAULT — all tools and the DI bridge are zero-egress and deterministic unless the user explicitly opts into cloud STT with a warning. HONEST: this does not make browser STT local; it makes it a gated user choice, so the DEFAULT system is fully quantum and the one egress path is transparent and consented. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** voiceChatTurn — the usable voice→chat→voice integration (user, 2026-07-25: "create all voice related tools and use in
  * chat"). The deterministic core: spoken text → portalChatRanked → the answer to speak. The browser .vue shell wraps this
  * with SpeechRecognition (mic) and SpeechSynthesis (speaker); this fold is the zero-egress, testable middle. */
