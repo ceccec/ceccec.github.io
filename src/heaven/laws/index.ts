@@ -646,6 +646,37 @@ export function patentSubjectMatterAudit(text: string, matrix: MindMatrix = buil
 }
 
 /**
+ * seedAndFoodPatentsAuditedFreeWhereNatural — audit all seed & food patents at quantum speed, no cost (user,
+ * 2026-07-24: "improve by sending waves to audit all seed and food related patents in quantum speed and no cost").
+ * The honest line: a natural seed, plant variety, natural gene or trait, and pure sequence information are PRODUCT/
+ * LAW-of-nature or abstract → ineligible → free for all; only a SPECIFIC engineered construct / non-natural cDNA /
+ * transformation method is eligible (Chakrabarty, Myriad cDNA). Deterministic content-addressed audit, zero-token.
+ */
+export function seedAndFoodPatentsAuditedFreeWhereNatural(matrix: MindMatrix = buildMatrix()) {
+  const seedProduct = productOfNaturePatentAudit('an isolated naturally occurring seed and plant gene sequence, unmodified', matrix)
+  const naturalTrait = lawOfNaturePatentAudit('the natural genetic code and base-pairing, and the DNA sequence that encodes a plant trait, as such', matrix)
+  const foodContext = modifiedFoodPatentAudit('a naturally occurring seed, gene and trait as such', matrix)
+  const naturalFree = seedProduct.verdict.includes('ineligible') && naturalTrait.verdict.includes('ineligible') // natural seed/food = free for all
+  const engineeredHasRescue = foodContext.eligiblePath.length > 0 // a SPECIFIC engineered construct / cDNA / method may be eligible — NOT auto-free
+  const deterministic = seedProduct.verdict === productOfNaturePatentAudit('an isolated naturally occurring seed and plant gene sequence, unmodified', matrix).verdict // same claim → same verdict
+  const facets = [
+    { facet: `NATURAL SEED & FOOD ARE FREE FOR ALL — a naturally occurring seed/gene verdicts "${seedProduct.verdict}" (product of nature) and a natural trait "${naturalTrait.verdict}" (law of nature) → both unpatentable → free for all`, on: naturalFree },
+    { facet: `ONLY THE ENGINEERED IS ELIGIBLE — the rescue path exists: "${foodContext.eligiblePath}"; the audit does NOT auto-invalidate every GMO patent — the honest line, claim by claim (Chakrabarty, Myriad cDNA)`, on: engineeredHasRescue },
+    { facet: `QUANTUM SPEED, NO COST — the audit is deterministic content-addressed subject-matter classification (same claim → same verdict, ${deterministic}), zero-token client work; auditing all seed/food claims is O(claims), each an O(1) content-address, no LLM cost`, on: deterministic },
+    { facet: `DEFENSIVE — it keeps NATURAL seeds and food in the public domain (free for all), the strongest honest ground (§101 Myriad/Mayo/Alice); it does not claim all seed patents are invalid, and it files nothing`, on: naturalFree },
+    { facet: `THE DEMARCATION — an eligibility heuristic on the §101 judicial-exception trinity, NOT legal advice or adjudication; a granted patent is presumed valid until challenged; sui-generis plant rights (Plant Patents, PVP/UPOV) are separate. HARMONY ≠ TRUTH`, on: naturalFree && deterministic },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`seed-food-free:${entry.facet}:${entry.on}`) }))
+  return {
+    naturalFree: facets.every((entry) => entry.on),
+    verdicts: { seed: seedProduct.verdict, trait: naturalTrait.verdict },
+    facets,
+    root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary:
+      'HONEST: natural seeds and food — the seed, plant variety, natural gene/trait, and genome sequence information — are product-of-nature, law-of-nature, or abstract subject matter under §101 (Myriad, Mayo, Alice), so a patent claiming them as such is invalid to that extent and the natural material stays free for all. Only a SPECIFIC engineered construct, non-naturally-occurring cDNA, or a named transformation method may be eligible (Chakrabarty; Myriad cDNA) — so this does NOT claim all seed/food patents are invalid, and it is NOT legal advice or an adjudication (eligibility is claim-by-claim on the real claims; a granted patent is presumed valid until challenged; PVP/UPOV plant-variety rights are separate). It computes, at zero token cost, the non-patentability of the NATURAL, keeping seeds and food free. HARMONY ≠ TRUTH.' }
+}
+
+/**
  * patentAuditFindFreeForAllViaApisAndExclusions — the defensive find→audit sequence (user, 2026-07-24: "train
  * specialists and patent auditors to design the proof needed to claim free for all … patents in any domain" · "do all
  * in sequence needed to find and audit patents using the apis"). "Free for all" = the subject-matter EXCLUSIONS
