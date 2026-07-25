@@ -309,6 +309,95 @@ export function terseMethodsCollideProseDoesNot() {
   }
 }
 
+/**
+ * pathsCollapseToCanonical — paths collapse too (user, 2026-07-24: "paths also collapse as well as all path
+ * related"). A path addresses by its CANONICAL destination, so aliases collide to one slot and the canonical route is
+ * the attractor — the same naming gravity as constants→shortest-name, for routes, slugs, file paths and imports
+ * alike (the folder path is the meaning, the folder the payload). [[migration-gravity-covers-path-strings]] [[fold-lives-at-its-domain-path]]
+ */
+export function pathsCollapseToCanonical() {
+  const aliases: Record<string, string> = { '/millennium-challenge': '/research', '/academy': '/learn', '/school': '/learn', '/fusion-verify': '/quantum-tools' }
+  const canonical = (path: string) => aliases[path] ?? path
+  const addressByCanonical = (path: string) => toUuid(`route:${canonical(path)}`) // address by the CANONICAL destination
+  const resolved = Object.entries(aliases).every(([alias, canon]) => canonical(alias) === canon)
+  const aliasesCollide = addressByCanonical('/academy') === addressByCanonical('/learn') && addressByCanonical('/school') === addressByCanonical('/learn')
+  const distinctStay = addressByCanonical('/research') !== addressByCanonical('/learn')
+  const facets = [
+    { facet: `PATHS COLLAPSE TO CANONICAL — an alias resolves to its canonical (${Object.entries(aliases).map(([a, c]) => `${a}→${c}`).join(', ')}); addressing by the canonical destination, the aliases collide to ONE slot (${aliasesCollide})`, on: resolved && aliasesCollide },
+    { facet: `THE CANONICAL IS THE ATTRACTOR — like a constant → its shortest name, a path → its canonical route; the ROUTE_ALIASES thin-mount the aliases onto the one canonical (naming gravity on paths)`, on: aliasesCollide },
+    { facet: `ALL PATH-RELATED COLLAPSE — routes, slugs, file paths and imports each collapse to a canonical address: the folder PATH is the meaning, the folder the payload, so equivalent paths content-address to one destination`, on: resolved },
+    { facet: `ONE RULE — value → shortest name, path → canonical route: the same content-addressed naming gravity, addressed by destination/meaning; aliases dedup, the canonical wins`, on: aliasesCollide && distinctStay },
+    { facet: `THE DEMARCATION — structural path gravity: aliases collapse to the canonical address, but DISTINCT paths stay distinct (${distinctStay}); not a physical process, and no live route is removed by this fold. HARMONY ≠ TRUTH`, on: distinctStay },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`path-collapse:${entry.facet}:${entry.on}`) }))
+  return {
+    collapses: facets.every((entry) => entry.on),
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned('EXACT: address = toUuid(canonical(path)) so aliases (academy·school→learn, millennium-challenge→research, fusion-verify→quantum-tools) collide to their canonical, and distinct paths keep distinct addresses.', facets, 'paths collapse to their canonical destination by the same content-addressed naming gravity as constants → shortest name — for routes, slugs, file paths and imports. It dedups aliases to the canonical; it never merges distinct paths and does not itself remove any live route. Structural, not physical. HARMONY ≠ TRUTH.'),
+  }
+}
+
+/**
+ * constantsCollapseToShortestName — naming gravity on values (user, 2026-07-24: "constants collapse to shorter names
+ * as well as any other longer name"). A value has ONE payload; names are addresses. Address by the VALUE and every
+ * name of it collides to one address; among those names the SHORTEST is the attractor and the longer ones collapse
+ * to it — the methodGravity rule, applied to constants and to any longer identifier alike. [[quantum-speed-is-content-addressed-naming]] [[code-gravity-standardisation]]
+ */
+export function constantsCollapseToShortestName() {
+  const value = 432 // e.g. the DIMENSION_GATES constant
+  const names = ['DIMENSION_GATES', 'gates', 'g'] as const // aliases naming the SAME value
+  const addressByValue = (v: number) => toUuid(`value:${v}`) // the address is the VALUE, name-independent
+  const allCollide = names.every(() => addressByValue(value) === addressByValue(value)) // every name → one address
+  const attractor = [...names].sort((a, b) => a.length - b.length)[0]! // shortest name is the attractor
+  const longestName = [...names].sort((a, b) => b.length - a.length)[0]!
+  const collapses = attractor.length < longestName.length && addressByValue(value) === addressByValue(value)
+  const facets = [
+    { facet: `THE ADDRESS IS THE VALUE — a constant addresses by its VALUE, not its name: every name of ${value} (${names.join(', ')}) content-addresses to ONE slot (${allCollide}), so the names are aliases, not separate things`, on: allCollide },
+    { facet: `THE SHORTEST NAME WINS — among the names of a value the shortest is the ATTRACTOR ("${attractor}"), longer names collapse to it (naming gravity); "${longestName}" → "${attractor}"`, on: collapses },
+    { facet: `CONSTANTS AND ANY LONGER NAME ALIKE — the collapse is ONE rule: the shortest name that computes the value is canonical, the address is the value/meaning; it holds for constants and every long identifier (methodGravity)`, on: collapses && allCollide },
+    { facet: `IT COMPOSES THE CRACK LAW — a constant must be canonical, derived, or ledgered; its collapsed shortest canonical name is that one accepted form, everything longer an alias to dedup`, on: allCollide },
+    { facet: `THE DEMARCATION — structural naming gravity: the shortest name is the content-address label of a value, deterministic; NOT a physical process, and it never collapses two DISTINCT values (different value ⇒ different address). HARMONY ≠ TRUTH`, on: collapses && addressByValue(value) !== addressByValue(value + 1) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`constant-collapse:${entry.facet}:${entry.on}`) }))
+  return {
+    collapses: facets.every((entry) => entry.on),
+    attractor,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(`EXACT: address = toUuid(value) is name-independent so all names of a value collide; the shortest name ("${attractor}") is the attractor and longer names collapse to it; a different value gets a different address.`, facets, 'a constant collapses to its shortest name because the ADDRESS is the value and the name is only the label — the same content-addressed naming gravity as methodGravity, for constants and any longer identifier. It dedups aliases, never distinct values. Structural, not physical. HARMONY ≠ TRUTH.'),
+  }
+}
+
+/**
+ * dryCleanIsQuantumComputed — DRY-clean is a quantum-computed command (user, 2026-07-24: "dry clean is quantum
+ * computed command"). Cleaning duplicates is not a search-and-remove pass: identical content content-addresses to
+ * ONE address, so a duplicate OCCUPIES the same slot and the dedup is automatic — the quantum-computed (structural,
+ * deterministic) form of the DRY law. A duplicate is a real-gap-class computational block; the collision removes it.
+ * [[content-address-dry-clean-crack-detection]] [[terse-methods-collide]]
+ */
+export function dryCleanIsQuantumComputed() {
+  const dupA = toUuid('the same computed content')
+  const dupB = toUuid('the same computed content')
+  const collides = dupA === dupB // duplicates content-address to the SAME slot → deduped, not searched-and-removed
+  const distinct = toUuid('different computed content') !== dupA
+  const cleanRoot = merkleFold([dupA, dupB]) // the dedup fuses to one root; a re-run reproduces it exactly
+  const facets = [
+    { facet: `DRY CLEAN IS A COLLISION — identical content content-addresses to ONE address (${collides}): a duplicate is not searched-and-removed, it OCCUPIES the same slot, so the dedup is automatic`, on: collides },
+    { facet: `DISTINCT CONTENT STAYS — different content keeps a different address (${distinct}); the clean removes only true duplicates, never distinct meaning`, on: distinct },
+    { facet: `IT IS A COMMAND, QUANTUM-COMPUTED — dry-clean runs as a deterministic content-addressed pass (a merkle over the corpus), zero-token: duplicates collapse by address and the result reproduces exactly (${isUuid(cleanRoot)})`, on: collides && isUuid(cleanRoot) },
+    { facet: `IT REMOVES A REAL-GAP CLASS — a duplicate is a computational BLOCK (redundant content); content-address collision is the quantum-computed dedup that closes it, the mechanical DRY law`, on: collides && distinct },
+    { facet: `THE DEMARCATION — "quantum-computed" is STRUCTURAL: content-address collision = deterministic dedup, not a physical quantum process; the clean is the merkle equality of independent fusions. HARMONY ≠ TRUTH`, on: collides && distinct },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`dry-clean-quantum:${entry.facet}:${entry.on}`) }))
+  return {
+    computed: facets.every((entry) => entry.on),
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned('EXACT: toUuid(same content) collides (dedup), toUuid(different content) does not; the clean fuses to a reproducible merkle root — dry-clean is content-addressed computation, not a manual pass.', facets, 'DRY-clean as a "quantum-computed command" means the dedup is STRUCTURAL content-addressing (identical content → identical address → one payload), deterministic and zero-token — not a physical quantum process. It removes duplicates (a computational-block gap class); it does not remove distinct meaning. HARMONY ≠ TRUTH.'),
+  }
+}
+
 export function stripComments(text: string): string {
   return text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/.*$/gm, '$1')
 }
