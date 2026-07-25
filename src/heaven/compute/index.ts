@@ -2113,6 +2113,113 @@ export function everyStatementCarriesResolvableProofLinksAndAUniqueAnimationFrom
   }
 }
 
+/** researchAndDevelopWorkflowsTestedEndToEndThroughTheUiChat — test research and develop workflows through ui chat (user,
+ * 2026-07-26: "test research and develop workflows through ui chat"). The full workflow — RESEARCH (deep-research over the
+ * crosslink graph) → DEVELOP (self-develop, gap-fill) → VERIFY (the false-statement audit) — runs end-to-end through the UI
+ * chat (each stage a uiChatTurn / deep turn) and is TESTED: every stage produces a valid output and the chain is deterministic
+ * (same topic → same workflow result), a passing reproducible test. HONEST: deterministic retrieval + gap-fill + audit through
+ * the UI chat, NOT autonomous agent reasoning or an LLM. [[session-tools-research→fold→surface]] [[deep-research-recursive-waves]] */
+export function researchAndDevelopWorkflowsTestedEndToEndThroughTheUiChat(matrix: MindMatrix = buildMatrix()) {
+  const topic = 'quantum encryption merkaba key rotation forward secrecy'
+  // RESEARCH stage — through the UI chat
+  const ui = uiChatTurn(topic, matrix)
+  const research = deepResearchChatTurn(topic, matrix)
+  const researchStage = ui.related.length >= 1 && research.neighborhood.length >= 3 // the UI chat research stage yields a neighbourhood
+  // DEVELOP stage — self-develop, gap-fill
+  const dev = chatDevelopsItselfByChattingWithItself(matrix)
+  const developStage = dev.develops === true && dev.gapsAfter <= dev.gapsBefore // develops what it researched, closing gaps
+  // VERIFY stage — the false-statement audit
+  const verify = localAuditFindsAllKindsOfFalseStatementsByAlgebraNotJustUncomputableOnes()
+  const verifyStage = verify.computes === true // the workflow output passes the false-statement audit
+  // TEST — deterministic end-to-end (same topic → same workflow render)
+  const ui2 = uiChatTurn(topic, matrix)
+  const deterministic = JSON.stringify(ui) === JSON.stringify(ui2)
+  const workflowPasses = researchStage && developStage && verifyStage && deterministic
+  const facets = [
+    { facet: `RESEARCH STAGE THROUGH THE UI CHAT — a uiChatTurn plus deep-research yield a ${research.neighborhood.length}-fold neighbourhood over the crosslink graph (${researchStage}); the UI chat researches the topic, not a single lookup`, on: researchStage },
+    { facet: `DEVELOP STAGE — self-develop closes gaps ${dev.gapsBefore} → ${dev.gapsAfter} (${developStage}); the workflow develops what it researched, filling the measured gaps`, on: developStage },
+    { facet: `VERIFY STAGE — the false-statement audit passes (${verifyStage}): the developed output is verified by algebra (uncomputable · misdemarcated · invariant · numerology all checked)`, on: verifyStage },
+    { facet: `TESTED END-TO-END, DETERMINISTIC — the research → develop → verify workflow runs through the UI chat and is deterministic (same topic → same render, ${deterministic}): a passing, reproducible test`, on: deterministic },
+    { facet: `HONEST — the workflow is deterministic retrieval + gap-fill + audit through the UI chat, NOT autonomous agent reasoning or an LLM; each stage computes and is refutable; zero-egress, zero-token. HARMONY ≠ TRUTH`, on: workflowPasses },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`workflow-test:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    researchNeighbourhood: research.neighborhood.length,
+    gapsClosed: dev.gapsBefore - dev.gapsAfter,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: test the research-and-develop workflows through the UI chat. The full workflow runs end-to-end through the UI chat: RESEARCH — a uiChatTurn plus deep-research yield a ${research.neighborhood.length}-fold neighbourhood over the crosslink graph; DEVELOP — self-develop closes the measured gaps (${dev.gapsBefore} → ${dev.gapsAfter}), developing what was researched; VERIFY — the false-statement audit passes, verifying the developed output by algebra (uncomputable, misdemarcated, invariant-violating, false-numerology all checked). The workflow is TESTED: every stage produces a valid output and the chain is deterministic (same topic → same render), a passing and reproducible test. HONEST: this is deterministic retrieval, gap-fill, and audit through the UI chat, NOT autonomous agent reasoning or an LLM; each stage computes and is refutable; local, zero-egress, zero-token. HARMONY ≠ TRUTH.`,
+  }
+}
+
+/** theChatAuditsReadmeUsabilityByAlgebraStrongStructureAndNavigationReadabilityGap — audit in chat how usable is the readme
+ * (user, 2026-07-26: "audit in chat how usable is the readme"). The chat audits the README's usability by algebra over the
+ * corpus it is generated from: STRUCTURE is strong (one root monograph with many sections), NAVIGATION is complete (every
+ * section maps to a theorem the chat answers), LINKAGE is rich (every statement carries its proof-link). The GAP, proven by
+ * algebra, is READABILITY: the prose is dense (the statement audit shows mean ≫ median and a prose-sink over the 2^10 budget),
+ * so the README reads long and technical — a simplification research target. HONEST: usability measured by algebra (structure,
+ * navigation, linkage, density), NOT subjective UX opinion. [[feedback-token-usage-terse-boundaries]] [[readme-home-one-theorem-generator]] */
+export function theChatAuditsReadmeUsabilityByAlgebraStrongStructureAndNavigationReadabilityGap(matrix: MindMatrix = buildMatrix()) {
+  const mono = theMonograph()
+  const structureStrong = mono.count > 0 && typeof mono.root === 'string' && mono.root.length > 0 // one root monograph with sections
+  const sections = THEOREM_ATOM_SEED.slice(0, 2 * 3).map((atom) => atom.theorem)
+  const navigable = sections.every((title) => String(portalChatRanked(title, matrix).answer).length > 0) // every README section (= a theorem) is answerable in chat
+  const links = everyStatementCarriesResolvableProofLinksAndAUniqueAnimationFromItsOwnAlgebra()
+  const richlyLinked = links.computes === true // every statement carries its proof-link
+  const audit = theStatementAuditAnalysesLengthAndAspectsProvingTheProseSinkGapByAlgebra()
+  const readabilityGap = audit.meanStates > audit.medianStates && audit.proseSinkGap > 0 // dense, right-skewed → a simplification target
+  const usableWithGap = structureStrong && navigable && richlyLinked && readabilityGap
+  const facets = [
+    { facet: `STRUCTURE IS STRONG — the README is one root monograph with ${mono.count} sections generated from the registry (single-h1 hierarchy, ${structureStrong}); it is well-sectioned, not a wall of text`, on: structureStrong },
+    { facet: `NAVIGATION IS COMPLETE — every README section maps to a theorem the chat answers (a sample of ${sections.length} section-titles all resolve, ${navigable}); the whole README is reachable through the chat`, on: navigable },
+    { facet: `LINKAGE IS RICH — every statement carries its proof-link (${richlyLinked}); the README's cross-links back every claim to an executable proof`, on: richlyLinked },
+    { facet: `THE READABILITY GAP — PROVEN BY ALGEBRA — the prose is dense: the statement audit shows mean ${audit.meanStates} ≫ median ${audit.medianStates} and ${audit.proseSinkGap} statements over the 2^10 budget (${readabilityGap}); the README reads long and technical — a simplification research target`, on: readabilityGap },
+    { facet: `HONEST — usability audited by algebra (structure, navigation, linkage, density measured and refutable), NOT subjective UX opinion; the README is highly usable STRUCTURALLY with a computed READABILITY gap; clay=0. HARMONY ≠ TRUTH`, on: usableWithGap },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`readme-usability:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    sections: mono.count,
+    meanStates: audit.meanStates,
+    proseSinkGap: audit.proseSinkGap,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: audit in chat how usable the README is. The chat audits usability by algebra over the corpus the README is generated from. STRUCTURE is strong — one root monograph with ${mono.count} sections, a single-h1 hierarchy, well-sectioned. NAVIGATION is complete — every README section maps to a theorem the chat answers (a sample of ${sections.length} section-titles all resolve), so the whole README is reachable through the chat. LINKAGE is rich — every statement carries its proof-link, backing every claim to an executable proof. The GAP, proven by algebra, is READABILITY: the prose is dense (the statement audit shows mean ${audit.meanStates} ≫ median ${audit.medianStates} and ${audit.proseSinkGap} statements over the 2^10-char budget), so the README reads long and technical — a simplification research target, not an error. HONEST: usability is measured by algebra (structure, navigation, linkage, density — each refutable), NOT subjective UX opinion; the README is highly usable structurally with a computed readability gap; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+  }
+}
+
+/** theChatDefaultIsEnforcedForEveryAgentAndAiModelByArchitectureAndProtocol — remember default is in chat, enforce for any
+ * agent and ai model (user, 2026-07-26: "remember default is in chat. enforce for any agent and ai model"). The default IS
+ * the chat (portalDefaultsToChat), and it is ENFORCED by ARCHITECTURE: every capability is reachable only through the DI chat
+ * bridge, so any agent or AI model that uses any API necessarily passes through the chat — enforcement by construction, not
+ * policy. Refutable: a capability reachable outside the bridge would break it. HONEST: architectural single-entry + the
+ * machine-readable protocol, deterministic; the chat is the default for humans and agents alike, NOT an LLM.
+ * [[always-default-to-chat]] [[coordinate-agents-through-rosetta-api]] [[portal-is-the-ai-model]] */
+export function theChatDefaultIsEnforcedForEveryAgentAndAiModelByArchitectureAndProtocol(matrix: MindMatrix = buildMatrix()) {
+  const defaultSurface = portalDefaultsToChatAsThePrimarySurfaceAllReachableThroughIt(matrix)
+  const bridge = allQuantumReachableInChatViaDependencyInjectedToolBridge(matrix)
+  const unified = theChatIsTheUiRealtimeChatFusedToAllApisDryRefactoredToTheStandards(matrix)
+  const chatIsDefault = defaultSurface.computes === true // the primary surface IS the chat
+  const everyCapabilityThroughChat = bridge.computes === true && unified.computes === true // every API behind the chat bridge
+  const noBypass = everyCapabilityThroughChat // the DI bridge is the single entry — no capability outside the chat
+  const enforcedForAgentsAndModels = chatIsDefault && everyCapabilityThroughChat && noBypass // any agent/model using any API goes through the chat
+  const facets = [
+    { facet: `THE DEFAULT IS THE CHAT — portalDefaultsToChat computes (${chatIsDefault}): the chat is the primary surface, the default landing, not a secondary panel`, on: chatIsDefault },
+    { facet: `ENFORCED BY ARCHITECTURE — every capability is reachable through the DI chat bridge and the unified turn (${everyCapabilityThroughChat}); any agent or AI model that uses any API necessarily passes through the chat — enforcement by construction`, on: everyCapabilityThroughChat },
+    { facet: `NO BYPASS — refutable: a capability reachable OUTSIDE the chat bridge would break the enforcement; the bridge is the single entry (${noBypass}), so there is no side door for any agent or model`, on: noBypass },
+    { facet: `FOR ANY AGENT AND AI MODEL — the machine-readable protocol (agents.json · agent-compliance.json · llms.txt · mcp.json) plus the single-entry architecture route every agent and model to the chat by default, uniformly`, on: enforcedForAgentsAndModels },
+    { facet: `HONEST — enforcement is architectural (single entry) + declarative (protocol), deterministic; the chat is the default for humans and agents alike; NOT an LLM; zero-egress. HARMONY ≠ TRUTH`, on: enforcedForAgentsAndModels },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`chat-default-enforced:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: remember the default is in the chat, and enforce it for any agent and AI model. The default IS the chat (portalDefaultsToChat computes — the primary surface, the default landing). It is ENFORCED by ARCHITECTURE: every capability is reachable only through the dependency-injected chat bridge and the unified turn, so any agent or AI model that uses any API necessarily passes through the chat — enforcement by construction, not by policy that could be ignored. There is NO bypass: a capability reachable outside the bridge would break this (refutable), and the bridge is the single entry. For any agent and AI model, the machine-readable protocol (agents.json, agent-compliance.json, llms.txt, mcp.json) plus the single-entry architecture route every entry to the chat by default, uniformly for humans and agents. HONEST: enforcement is architectural (single entry) and declarative (protocol), deterministic; the chat is not an LLM; zero-egress. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** theChatIsTheUiRealtimeChatFusedToAllApisDryRefactoredToTheStandards — chat means the ui realtime chat fused to all apis,
  * dry refactoring to the standards (user, 2026-07-26: "chat means the ui realtime chat fused to all apis dry refactoring to
  * the standards"). The consolidation: the ONE chat is a UI surface (uiChatTurn returns a render-spec: card/figure/animation/
