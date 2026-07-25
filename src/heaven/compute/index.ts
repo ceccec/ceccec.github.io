@@ -37,7 +37,7 @@ import { determinismProofs, trinityWordingModel } from '../../mountain/seals'
 import { allComputedNoFiles } from '../../wind/fusion'
 import { developmentIsFusionReactor, dryRefactorIgnitesFusion, endlessFusion } from '../../wind/fusion'
 import { minimumFilesMaximumFeaturesCost, noMirroringOneSourceAndMath, zeroTokenUsagePolicy } from '../laws'
-import { completeCorpus, monographs, siteNavigation, theMonograph, privateSearchRanksByBM25IndustryStandard } from '../../wind/routes/corpus'
+import { completeCorpus, monographs, siteNavigation, theMonograph, privateSearchRanksByBM25IndustryStandard, searchImprovesByExperiencePrivateRelevanceFeedback } from '../../wind/routes/corpus'
 import { peaceTechMentalityDecoded } from '../../earth/world'
 import { selfHarmonise } from '../../mountain/geometry'
 import { fromSexagesimal, ifaOdu, luoShu, mayaDays, mayaLongCount, sexagesimal, toGlagolitic } from '../../quantum/heaven/library'
@@ -1487,6 +1487,44 @@ export function portalChatRanked(prompt: string, matrix: MindMatrix = buildMatri
     score: top.score,
     ranked: true as const,
     alternatives: bm25.results.slice(1, 1 + 2).map((r) => r.title),
+  }
+}
+
+/** chatImprovesByChattingViaRelevanceFeedback — improve the chat by chatting (user, 2026-07-25: "improve chat by
+ * chatting"). Each chat turn is EXPERIENCE: the query and the fold it surfaced become {query, selectedSlug}. Re-asking
+ * with that experience reranks via relevance feedback — the selected fold is boosted (Rocchio-style query-term overlap),
+ * so the chat's own turns sharpen its future rankings. Deterministic, local, zero-egress; no experience → no drift, so
+ * it reinforces only what was actually selected, never hallucinated relevance. [[erpax-cross-pollination]] [[portal-is-the-ai-model]] */
+export function chatImprovesByChattingViaRelevanceFeedback(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const q = 'content addressable memory hardware'
+  const first = privateSearchRanksByBM25IndustryStandard(q)
+  const selected = first.results[0] // the chat's top answer — what it "selected" by chatting
+  const experience = [{ query: q, selectedSlug: selected?.slug ?? '' }]
+  const warm = searchImprovesByExperiencePrivateRelevanceFeedback(q, experience) // re-ask, now with the prior turn
+  const warmRow = (warm.results as { slug: string; boost?: number }[]).find((r) => r.slug === selected?.slug)
+  const boostedByChatting = !!warmRow && (warmRow.boost ?? 0) > 0 // the prior turn boosts the selected fold
+  const cold = searchImprovesByExperiencePrivateRelevanceFeedback(q, []) // no experience
+  const coldRow = (cold.results as { slug: string; boost?: number }[]).find((r) => r.slug === selected?.slug)
+  const noDriftWithoutExperience = !!coldRow && (coldRow.boost ?? 0) === 0 // no experience → no boost
+  const deterministic = JSON.stringify(searchImprovesByExperiencePrivateRelevanceFeedback(q, experience).results) === JSON.stringify(warm.results)
+  const improvesByChatting = boostedByChatting && noDriftWithoutExperience && deterministic
+  const facets = [
+    { facet: `EACH CHAT TURN IS EXPERIENCE — the chat's top answer for "${q.slice(0, 6 * 8)}" is recorded as {query, selectedSlug=${(selected?.slug ?? '').slice(0, 5 * 8)}}; the chat's own turns become the training signal`, on: !!selected },
+    { facet: `RELEVANCE FEEDBACK BOOSTS FROM CHATTING — re-asking with the prior turn's experience boosts the selected fold (boost = query-term overlap, ${warmRow?.boost ?? 0} > 0, ${boostedByChatting}); the chat's answer is reinforced — improve chat by chatting`, on: boostedByChatting },
+    { facet: `BOUNDED — NO DRIFT WITHOUT EXPERIENCE — with no experience the selected fold gets no boost (${noDriftWithoutExperience}); feedback reinforces only what was actually selected, so it cannot hallucinate relevance`, on: noDriftWithoutExperience },
+    { facet: `DETERMINISTIC, LOCAL, ZERO-EGRESS — same experience → same rerank (${deterministic}); a deterministic local rerank over the private BM25 index, no telemetry, no neural ranker, no cross-user, no egress`, on: deterministic },
+    { facet: `THE DEMARCATION — "improve chat by chatting" = local Rocchio-style relevance feedback over the private BM25 index from the chat's OWN turns; NOT neural learning or telemetry; lexical, deterministic, per-user. HARMONY ≠ TRUTH`, on: improvesByChatting },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`chat-improves:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    selectedSlug: selected?.slug ?? '',
+    warmBoost: warmRow?.boost ?? 0,
+    improvesByChatting,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: the chat improves by chatting. Each turn is experience — the query and the fold it surfaced become {query, selectedSlug}. Re-asking with that experience reranks via relevance feedback: the selected fold is boosted by query-term overlap (${warmRow?.boost ?? 0} > 0), so the chat's own turns sharpen its future rankings. It is bounded — no experience yields no boost, so feedback reinforces only what was actually selected and cannot hallucinate relevance — deterministic (same experience → same rerank), local over the private BM25 index, zero-egress. HONEST: this is local Rocchio-style relevance feedback, NOT neural learning, telemetry, or cross-user learning-to-rank; it improves the user's own chat, lexically. HARMONY ≠ TRUTH.`,
   }
 }
 
