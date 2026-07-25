@@ -7,7 +7,7 @@ import * as __ns_up_up_thunder_waves from '../../../thunder/waves'
 import * as __ns_earth_architecture from '../../../earth/architecture' // call-time (cycle-safe): the DOCUMENTED_HARMONICS census gate
 import { buildMatrix, cardScientificPaperRows } from '../../../heaven/compute'
 import { isUuid, memoByRoot, merkleFold, toUuid } from '../../../0'
-import { THEOREM_ATOM_SEED } from '../../../4/6'
+import { THEOREM_ATOM_SEED, discoveryDomain } from '../../../4/6'
 import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, proofAcknowledgment, type LocaleName, type PageForgeSeal, type ProofAcknowledgment } from '../../site'
 import { ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaComputesAll, rosettaDecodesUrlPath, rosettaRayHub, rosettaRayOf, rosettaRayOfContent, type RosettaRayHub } from '../../../water/digit'
 import { conceptCommands } from '../../../heaven/atoms'
@@ -1072,11 +1072,8 @@ export function theoremSlug(theorem: string): string {
 /** The domain tag of a proving home: the terminal named folder (music, crypto, decode…) or, for a pure
  * digit station, the station itself (9/1, 4/6). Derived from the home path — refutable: move the fold to
  * another home and the tag changes. */
-export function theoremDomainTag(home: string): string {
-  const rel = home.replace(/^src\//, '')
-  const last = rel.split('/').pop() || rel
-  return /^\d+$/.test(last) ? rel : last
-}
+/** The domain tag of a home path — the canonical lives in src/4/6 (discoveryDomain); this is the DRY alias. */
+export const theoremDomainTag = discoveryDomain
 
 /** Computed tags for a theorem paper — three axes, each a projection of a real field, none hand-authored:
  * the domain (home), the proof class (finite-complete / bounded-witness), and the method lean
