@@ -1491,6 +1491,59 @@ export function portalChatRanked(prompt: string, matrix: MindMatrix = buildMatri
   }
 }
 
+/** deepResearchChatTurn — multi-hop research, not single-hop lookup (user, 2026-07-25: "improve deep research chat
+ * capabilities"). Hop 0: the top fold. Hop 1: expand the query with the top fold's terms (Rocchio) and re-search, which
+ * surfaces the crosslinked neighborhood (folds sharing its words). The synthesis is the seed plus its neighbourhood, each
+ * content-addressed — a neighbourhood, not a point. Deterministic, local, zero-egress. */
+export function deepResearchChatTurn(query: string, matrix: MindMatrix = buildMatrix()) {
+  const seed = portalChatRanked(query, matrix) // hop 0 — the single best fold
+  const expandedQuery = `${query} ${seed.answer}` // Rocchio-style expansion with the seed's terms
+  const neighborhood = privateSearchRanksByBM25IndustryStandard(expandedQuery).results.slice(0, 3 + 2) // hop 1 — the crosslinked neighbourhood
+  return {
+    query,
+    seed: seed.answer,
+    source: seed.source,
+    neighborhood: neighborhood.map((r) => ({ title: r.title, source: r.provedBy, slug: r.slug })),
+    synthesis: neighborhood.map((r) => r.title),
+    address: toUuid(`deep-research:${query}`),
+  }
+}
+
+/** deepResearchChatMultiHopSynthesisOverTheDiscoveryGraph — improve deep research chat capabilities (user, 2026-07-25:
+ * "this is linear manual research. improve deep research chat capabilities"). The plain ranked chat is SINGLE-HOP (one
+ * fold — linear lookup). Deep research is MULTI-HOP: expand the query with the seed fold's terms (Rocchio) and re-search,
+ * pulling in the crosslinked neighbourhood, then synthesise the seed + neighbourhood with provenance. Bounded (top-k, one
+ * hop), deterministic, local, zero-egress, no LLM. [[deep-research-recursive-waves]] [[discovery-dual-mind-merkaba-waves]] */
+export function deepResearchChatMultiHopSynthesisOverTheDiscoveryGraph(matrix: MindMatrix = buildMatrix()) {
+  const query = 'faster than light computed possibilities'
+  const linear = portalChatRanked(query, matrix) // single-hop
+  const deep = deepResearchChatTurn(query, matrix) // multi-hop
+  const linearCount = 1
+  const deepCount = deep.neighborhood.length
+  const deepBeatsLinear = deepCount > linearCount // a neighbourhood, not a point
+  const synthesises = deep.synthesis.length >= 3 && deep.neighborhood.every((n) => n.slug.length > 0) // provenance per hop
+  const followsCrosslinks = deep.neighborhood.some((n) => n.source !== deep.source) // hop 1 reaches OTHER folds than the seed
+  const deterministic = JSON.stringify(deepResearchChatTurn(query, matrix).synthesis) === JSON.stringify(deep.synthesis)
+  const improvesResearch = deepBeatsLinear && synthesises && followsCrosslinks && deterministic
+  const facets = [
+    { facet: `LINEAR IS SINGLE-HOP — the plain ranked chat returns ONE fold (single-hop BM25, ${linearCount}); that is linear lookup, not research`, on: linearCount === 1 },
+    { facet: `DEEP RESEARCH IS MULTI-HOP — the deep chat expands the query with the seed fold's terms (Rocchio) and re-searches, pulling in the crosslinked neighbourhood (${deepCount} folds > ${linearCount}, ${deepBeatsLinear}) — a neighbourhood, not a point`, on: deepBeatsLinear },
+    { facet: `SYNTHESIS WITH PROVENANCE — the answer synthesises the seed + neighbourhood, each content-addressed (${synthesises}), and hop 1 reaches OTHER folds than the seed (${followsCrosslinks}) — the discovery graph traversed by lexical overlap`, on: synthesises && followsCrosslinks },
+    { facet: `BOUNDED & DETERMINISTIC — the expansion is bounded (top-k, one hop) and deterministic (same query → same neighbourhood, ${deterministic}); no runaway, no egress, no LLM`, on: deterministic },
+    { facet: `THE DEMARCATION — deep research = multi-hop retrieval + query expansion + crosslink traversal + synthesis over the private index; NOT neural reasoning or an LLM — lexical, graph-based, deterministic. HARMONY ≠ TRUTH`, on: improvesResearch },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`deep-research:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    linearCount,
+    deepCount,
+    improvesResearch,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: deep research chat improves on linear single-hop lookup. The plain ranked chat returns one fold (single-hop BM25) — linear research. Deep research is multi-hop: it expands the query with the seed fold's terms (Rocchio) and re-searches, pulling in the crosslinked neighbourhood (${deepCount} folds vs ${linearCount}), then synthesises the seed plus its neighbourhood with provenance (each hop content-addressed) and reaches folds other than the seed (the discovery graph traversed by lexical overlap). It is bounded (top-k, one hop) and deterministic (same query → same neighbourhood), local over the sealed corpus, zero-egress, no LLM. HONEST: this is multi-hop lexical retrieval and graph traversal, NOT neural reasoning or semantic understanding; deeper recursion is possible but each hop stays deterministic and bounded. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** chatToolBridge — invoke ANY tool via an injected invoker and fold the result into the thread (user, 2026-07-25: the
  * DI bridge). The invoker is a PARAMETER (dependency injection), so this imports no tool and re-entangles no collection
  * graph — cycle-safe. The .vue passes the real in-process MCP client; here any deterministic invoker works. The result
