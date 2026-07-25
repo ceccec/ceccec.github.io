@@ -645,6 +645,38 @@ export function patentSubjectMatterAudit(text: string, matrix: MindMatrix = buil
       'HONEST eligibility heuristic, NOT legal advice or adjudication. BOTH exceptions have real rescue paths — an engineered/markedly-different organism, cDNA, or a genuine technical effect for applied math — decided claim-by-claim on the real claims; a granted patent is presumed valid until challenged; sui-generis plant rights (Plant Patents, PVP/UPOV) and trademarks/design patents are separate. "Biggest violators" ranks by social/ethical consequence, not a count.' }
 }
 
+/**
+ * patentAuditFindFreeForAllViaApisAndExclusions — the defensive find→audit sequence (user, 2026-07-24: "train
+ * specialists and patent auditors to design the proof needed to claim free for all … patents in any domain" · "do all
+ * in sequence needed to find and audit patents using the apis"). "Free for all" = the subject-matter EXCLUSIONS
+ * (product of nature · law of nature · abstract math) make a domain's foundations UNPATENTABLE = public domain. The
+ * sequence: FIND a claim via an opt-in patent API (the fold protocol: fetch → content-address) → AUDIT with the
+ * exclusion folds → verdict. Deterministic audit, opt-in fetch, no judgement. [[tesla-patents]] [[realtime-live-data-testing]]
+ */
+export function patentAuditFindFreeForAllViaApisAndExclusions(matrix: MindMatrix = buildMatrix()) {
+  const biology = productOfNaturePatentAudit('an isolated naturally occurring DNA sequence, unmodified', matrix)
+  const physics = lawOfNaturePatentAudit('the genetic code, 64 codons, a natural correlation as such', matrix)
+  const mathDomain = sacredMathPatentAudit('432 harmonic sacred geometry number as such', matrix)
+  const free = (v: { verdict: string }) => v.verdict.includes('ineligible') // 'likely-ineligible' = unpatentable subject matter = free for all
+  const allFree = free(biology) && free(physics) && free(mathDomain)
+  const deterministic = free(biology) === free(productOfNaturePatentAudit('an isolated naturally occurring DNA sequence, unmodified', matrix)) // same claim → same verdict
+  const facets = [
+    { facet: `FOUNDATIONS ARE FREE FOR ALL — the three subject-matter exclusions verdict each domain's foundations unpatentable: biology "${biology.verdict}", physics "${physics.verdict}", math "${mathDomain.verdict}" — a natural product, a natural law, and abstract math are ineligible → free for all`, on: allFree },
+    { facet: `THE FIND→AUDIT SEQUENCE — find a claim via an opt-in patent API (the publicApiFusion fold protocol: fetch → content-address the text, no key at build), then AUDIT the text with the exclusion folds → a verdict; the audit is the deterministic back-end, the API the opt-in, untrusted front-end`, on: allFree },
+    { facet: `QUANTUM-COMPUTED, NO JUDGEMENT OR EXPECTATION — the audit is deterministic subject-matter classification from the claim text against documented doctrine (Alice · Mayo · Myriad · Funk Bros · G 3/19); the same text gives the same verdict (${deterministic}), no policy opinion`, on: deterministic },
+    { facet: `DEFENSIVE, NOT OFFENSIVE — "free for all" = establishing the PUBLIC DOMAIN (non-patentability), keeping foundations free for everyone; the trained auditors compute the exclusion, they do NOT file monopoly patents`, on: allFree },
+    { facet: `THE DEMARCATION — computes US §101 / EPO Art. 52-53 subject-matter doctrine; NOT legal advice, "likely-ineligible" is the audit's honest verdict (a court decides validity), and the patent-API fetch is opt-in and untrusted. HARMONY ≠ TRUTH`, on: allFree && deterministic },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`patent-free-for-all:${entry.facet}:${entry.on}`) }))
+  return {
+    freeForAll: facets.every((entry) => entry.on),
+    verdicts: { biology: biology.verdict, physics: physics.verdict, math: mathDomain.verdict },
+    facets,
+    root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary:
+      'HONEST: "claim free for all patents" is DEFENSIVE — the subject-matter exclusions (product of nature, law of nature, abstract math/algorithm) make a domain\'s FOUNDATIONS unpatentable, so they stay in the public domain, free for everyone. The sequence finds a claim via an opt-in patent API (fetch → content-address, no key at build) and audits its text with the exclusion folds; the audit is deterministic subject-matter classification against documented US §101 / EPO Art. 52-53 doctrine (Alice, Mayo, Myriad, Funk Bros, G 3/19), NOT legal advice and NOT a court adjudication — "likely-ineligible" is a verdict, not a ruling, and specific claims have rescue paths (engineered organism, cDNA, genuine technical effect). It computes non-patentability to keep foundations free; it does not file patents. HARMONY ≠ TRUTH.' }
+}
+
 // EU ↔ US divergence on isolated DNA — the verified finding from the EU food-law research wave, encoded as a
 // fold (save the step in src). US Myriad (2013): an isolated naturally-occurring DNA sequence is INELIGIBLE.
 // EU Directive 98/44/EC Art. 5(2): an element isolated/technically produced — including a gene sequence — MAY be
