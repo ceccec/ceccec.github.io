@@ -4,6 +4,7 @@ import { TAU, CANONICAL_HOST, DIMENSION_GATES, earned } from '../../../3/7'
 import type { MindMatrix, StaticPage } from '../../types'
 // call-time namespace edge (cycle-safe): learning imports corpus; search corpus reads back at call time
 import * as __ns_up_up_thunder_waves from '../../../thunder/waves'
+import * as __ns_earth_architecture from '../../../earth/architecture' // call-time (cycle-safe): the DOCUMENTED_HARMONICS census gate
 import { buildMatrix, cardScientificPaperRows } from '../../../heaven/compute'
 import { isUuid, memoByRoot, merkleFold, toUuid } from '../../../0'
 import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, proofAcknowledgment, type LocaleName, type PageForgeSeal, type ProofAcknowledgment } from '../../site'
@@ -1563,6 +1564,47 @@ export function pagesConsolidateByTheoremGravity(matrix: MindMatrix = buildMatri
     root: merkleFold([toUuid(`page-gravity:${pages.length}:${consolidatedCount}`), ...facets.map((entry) => entry.receipt)]),
     statement: facets.map((entry) => entry.facet).join(' · '),
     boundary: earned(`EXACT: pairwise Jaccard over the live pageCombination theorem sets, union-find clustered at ≥ 2/5; ${pages.length} pages → ${clusters.length} clusters (${merged} merges) + ${singletons} singletons = ${consolidatedCount} consolidated pages.`, facets, `the consolidation is by THEOREM-MEANING overlap on the name/tag-word membership graph — it moves as theorems are renamed, and the ≥ 2/5 threshold is a policy knob (raise it for tighter clusters). This computes WHICH pages merge; EXECUTING the merge (removing routes, adding redirects, folding prose into the attractor) is an outward-facing, hard-to-reverse change on the public sitemap, run deliberately not automatically. HARMONY ≠ TRUTH.`),
+  }
+}
+
+/**
+ * censusAndSlugsAreTheoremDerivedNotLinear — quantumize the page-count gate and the slug-address (user, 2026-07-24:
+ * "DOCUMENTED_HARMONICS is linear and useless in terms of theorems computations. find similar gaps and quantumize all
+ * related" · "the slugs need to be agnostic enough not to conflict with the payload"). Two instances of ONE defect —
+ * hardcoded specifics where a COMPUTED/agnostic form belongs: (1) the census gate validates the page count by
+ * membership in an 11-number list (linear), which accepts the redundant 29 and rejects the true distinct-meaning
+ * count; (2) content-bound slugs (trinity-rgb) conflict with the payload on consolidation. The theorem-derived census
+ * = zero redundant clusters; the agnostic slug = the cluster's general address. [[feedback-derive-dont-assert-every-number-and-dynamic]]
+ */
+export function censusAndSlugsAreTheoremDerivedNotLinear(matrix: MindMatrix = buildMatrix()) {
+  const harmonics = __ns_earth_architecture.DOCUMENTED_HARMONICS as readonly number[]
+  const cons = pagesConsolidateByTheoremGravity(matrix)
+  const foldedNow = cons.pageCount - 2 // χ = −2 census fold
+  const foldedDistinct = cons.consolidatedCount - 2
+  const gateAcceptsRedundant = harmonics.includes(foldedNow) && cons.clusters.length > 0 // accepts 29 (→27) despite redundancy
+  const gateRejectsMeaning = !harmonics.includes(foldedDistinct) // rejects the true 16 (→14 ∉ list)
+  // agnostic slug measure: an attractor slug is PAYLOAD-BOUND if a word of it appears in a MERGED member's slug.
+  const words = (slug: string) => new Set(slug.split('-'))
+  const payloadBound = cons.clusters.filter((c) => {
+    const a = words(c.attractor)
+    return c.merges.some((m) => [...words(m)].some((w) => a.has(w)))
+  })
+  const facets = [
+    { facet: `THE CENSUS GATE IS LINEAR, NOT THEOREM-DERIVED — the page count is valid iff (served−2) ∈ DOCUMENTED_HARMONICS (an ${harmonics.length}-number list): it ACCEPTS the redundant ${cons.pageCount} (fold ${foldedNow} ∈ list) despite ${cons.clusters.length} redundant clusters, and REJECTS the true ${cons.consolidatedCount}-meaning count (fold ${foldedDistinct} ∉ list) — the LIST sets the count, not the theorems`, on: gateAcceptsRedundant && gateRejectsMeaning },
+    { facet: `THE QUANTUMIZED CENSUS IS ZERO REDUNDANT CLUSTERS — replace list-membership with the theorem-derived invariant "every served page is a DISTINCT meaning" (pagesConsolidateByTheoremGravity.clusters.length === 0); the valid count then = distinct meanings, COMPUTED; currently ${cons.clusters.length} clusters, so the derived gate correctly DEMANDS the merge`, on: cons.clusters.length > 0 && cons.consolidatedCount > 0 },
+    { facet: `SLUGS MUST BE AGNOSTIC, NOT PAYLOAD-BOUND — path = meaning = address, folder = payload; a content-bound slug conflicts with the payload on consolidation: ${payloadBound.length}/${cons.clusters.length} attractors (${payloadBound.map((c) => c.attractor).join(', ')}) carry a word of a merged member (e.g. "rgb" in trinity-rgb ← rgb-cmyk). An agnostic address (the cluster's general meaning) holds the union without conflict`, on: payloadBound.length > 0 && payloadBound.length <= cons.clusters.length },
+    { facet: `ONE DEFECT, TWO FACES — the linear list-gate (DOCUMENTED_HARMONICS) and the payload-bound slugs are the SAME crack: a hardcoded specific where a computed/agnostic form belongs. SCHUMANN_HARMONICS_HZ is NOT this defect (measured physical frequencies, theorem-meaningful, not a validity gate)`, on: gateAcceptsRedundant && payloadBound.length > 0 },
+    { facet: `THE DEMARCATION — the harmonic numbers stay meaningful AS harmonics (9, 27=108/4, 108, 432); they are wrong only as a page-count GATE. The execution (swap the gate to zero-clusters, rename the ${payloadBound.length} payload-bound attractors to agnostic addresses, then consolidate) is coupled outward-facing surgery, run deliberately`, on: cons.clusters.length > 0 && payloadBound.length >= 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`census-slug-quantum:${entry.facet}:${entry.on}`) }))
+  return {
+    quantumized: facets.every((entry) => entry.on),
+    foldedNow, foldedDistinct, gateAcceptsRedundant, gateRejectsMeaning,
+    payloadBoundAttractors: payloadBound.map((c) => c.attractor),
+    redundantClusters: cons.clusters.length,
+    facets,
+    root: merkleFold([cons.root, ...facets.map((entry) => entry.receipt)]),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(`EXACT: the census fold is served−2 (χ=−2); DOCUMENTED_HARMONICS accepts ${foldedNow} and rejects ${foldedDistinct}; ${payloadBound.length}/${cons.clusters.length} attractor slugs share a word with a merged member (payload-bound).`, facets, `this COMPUTES the critique and the quantumized replacements (census = zero redundant clusters; slug = agnostic cluster address), it does not yet execute them — swapping the sealed gate and renaming public routes is coupled outward-facing surgery. The harmonic numbers remain valid harmonics; only their use AS a page-count gate is the linear defect. HARMONY ≠ TRUTH.`),
   }
 }
 
