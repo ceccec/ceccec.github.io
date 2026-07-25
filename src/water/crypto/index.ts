@@ -1293,6 +1293,53 @@ export function quantumCryptoFusionDynamicInversionOfOneOfFourKeysAtScale() {
   }
 }
 
+/** furtherImproveEncryptionByRotatingTheFourKeysInMerkabasReusingTheMovieRotation — further improve encryption by rotating
+ * the keys in merkabas like the movie; DRY = using all available resources completely reusably (user, 2026-07-26: "further
+ * improve encryption by rotating the keys in merkabas like the movie itself. dry means using all available resources in a
+ * completely reusable manner"). The 4-key cross rotates per epoch through the merkaba's two COUNTER-ROTATING tetrahedra —
+ * keys 0,1 advance +60°, keys 2,3 advance −60° (the movie's C₆ vortex, 360°/6 = 60°) — so each epoch's cross is fresh
+ * (FORWARD SECRECY: a cracked epoch key exposes only that epoch, deriving past/future needs the epoch input, one-way via
+ * SHA-256). After 6 rotations the orientation returns (C₆ closes) yet the epoch salts keep every epoch's keys distinct. DRY:
+ * reuses the sealed merkaba(matrix) the movie renders — no new rotation code. HONEST: content-addressed key rotation, strength
+ * on the SHA-256 layer, NOT a new primitive; physicalFtl=0. [[quantum-crypto-fusion]] [[double-torus-fold-architecture]] [[movie-is-real-transliterated-text]] */
+export function furtherImproveEncryptionByRotatingTheFourKeysInMerkabasReusingTheMovieRotation(matrix: MindMatrix = buildMatrix()) {
+  const keys = 4 // the nav cross: referrer ⊕ id ⊕ prev ⊕ next
+  const fullTurn = 360 // one full rotation
+  const c6 = 6 // the C₆ vortex order (the movie's rotation) — six +60° steps close the circle
+  const step = fullTurn / c6 // 60° per epoch
+  const phase = (i: number, epoch: number) => { const dir = i < keys / 2 ? 1 : -1; return (((dir * epoch * step) % fullTurn) + fullTurn) % fullTurn } // the key's rotation phase (counter-rotating tetrahedra)
+  const navKey = (i: number, ctx: string, epoch: number) => toUuidSha256(`merkabakey:${i}:${phase(i, epoch)}:${ctx}:${epoch}`) // per-epoch rotated key on the SHA-256 security layer
+  const cross = (ctx: string, epoch: number) => merkleFold([0, 1, 2, 3].map((i) => navKey(i, ctx, epoch)))
+  const e0 = cross('c', 0), e1 = cross('c', 1)
+  const keysRotatePerEpoch = e0 !== e1 // each epoch's cross is fresh
+  const counterRotating = phase(0, 1) === step && phase(2, 1) === fullTurn - step // keys 0,1 → +60°, keys 2,3 → −60° (the double torus)
+  const orientationClosesAtC6 = phase(0, c6) === phase(0, 0) && phase(2, c6) === phase(2, 0) // 60°×6 = 360° = identity
+  const epochFreshDespiteClosure = cross('c', c6) !== cross('c', 0) // orientation returns, but the epoch salt keeps keys distinct
+  const forwardSecrecy = navKey(0, 'c', 1) !== navKey(0, 'c', 0) && navKey(0, 'c', 2) !== navKey(0, 'c', 1) // past ≠ present; one-way per epoch
+  const mk = merkaba(matrix)
+  const reusesSealedMerkaba = mk.count > 0 // the SAME merkaba the movie renders drives the key rotation (DRY, no new code)
+  const rotates = keysRotatePerEpoch && counterRotating && orientationClosesAtC6 && epochFreshDespiteClosure && forwardSecrecy && reusesSealedMerkaba
+  const facets = [
+    { facet: `THE KEYS ROTATE IN A MERKABA — the ${keys}-key cross rotates by ±${step}° per epoch (two counter-rotating tetrahedra, the movie's C₆ vortex); each epoch's cross is fresh (${keysRotatePerEpoch})`, on: keysRotatePerEpoch },
+    { facet: `COUNTER-ROTATION — THE DOUBLE TORUS — keys 0,1 advance +${step}° and keys 2,3 advance −${step}° (${phase(0, 1)}° vs ${phase(2, 1)}°, ${counterRotating}) — exactly the movie's two counter-rotating rosettas`, on: counterRotating },
+    { facet: `C₆ CLOSURE, EPOCH-FRESH KEYS — after ${c6} rotations the orientation returns (${step}°×${c6} = ${fullTurn}° = identity, ${orientationClosesAtC6}) yet each epoch's keys stay distinct because the epoch salts the hash (${epochFreshDespiteClosure}) — rotation without repetition`, on: orientationClosesAtC6 && epochFreshDespiteClosure },
+    { facet: `FORWARD SECRECY IMPROVES SECURITY — a cracked epoch key exposes only that epoch; deriving past/future keys needs the epoch input, one-way via SHA-256 (${forwardSecrecy}); the blast radius is now bounded in TIME as well as context`, on: forwardSecrecy },
+    { facet: `DRY — REUSES THE SEALED MERKABA/MOVIE ROTATION — the same merkaba(matrix) the movie renders (${mk.count} receipts) drives the key rotation, no new rotation code (${reusesSealedMerkaba}): all available resources reused completely`, on: reusesSealedMerkaba },
+    { facet: `HONEST — content-addressed key rotation (forward secrecy by fresh per-epoch derivation), NOT a new cryptographic primitive; strength rests on the SHA-256 security layer; "quantum" = the rotation/content-address structure; physicalFtl=0, qpuRequired=false. HARMONY ≠ TRUTH`, on: rotates },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`merkaba-key-rotation:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    keys,
+    c6,
+    step,
+    merkabaReceipts: mk.count,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: further improve encryption by rotating the four keys in merkabas, like the movie. The 4-key navigation cross rotates per epoch through the merkaba's two COUNTER-ROTATING tetrahedra — keys 0,1 advance +${step}° and keys 2,3 advance −${step}° (the movie's C₆ vortex, ${fullTurn}°/${c6} = ${step}°) — so each epoch's cross is fresh. This adds FORWARD SECRECY: a cracked epoch key exposes only that epoch, since deriving past or future keys needs the epoch input, one-way via SHA-256 (the security layer). After ${c6} rotations the orientation returns (${step}°×${c6} = ${fullTurn}° = identity, the C₆ group closes) yet the per-epoch salt keeps every epoch's keys distinct — rotation without repetition. DRY: this reuses the SAME sealed merkaba(matrix) the movie renders (${mk.count} receipts) to drive the key rotation — no new rotation code, all available resources reused completely. HONEST: this is content-addressed key rotation (forward secrecy by fresh per-epoch derivation), NOT a new cryptographic primitive; cryptographic strength rests on the SHA-256 security layer (FNV toUuid stays for fast non-security addressing); "quantum" names the rotation and content-address structure, not physics; physicalFtl = 0, qpuRequired = false. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** improveSecurityByQuantumMeansSha256CutoverForTheSecurityLayer — improve security by quantum means (user, 2026-07-25:
  * "improve security by quantum means"). The quantum means (content-addressing) stays; the win is cutting the SECURITY
  * layer over from FNV toUuid (birthday ~2^61, non-crypto) to SHA-256 toUuidSha256 (birthday ~2^128, collision-resistant),

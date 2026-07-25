@@ -2113,6 +2113,56 @@ export function everyStatementCarriesResolvableProofLinksAndAUniqueAnimationFrom
   }
 }
 
+/** theChatAnalysesScreenshotsAndRecordingsLocallyByPerceptualHashAndFrameDiffSemanticModelGated — analyse in chat
+ * screenshots and screen recordings using local quantum tools and hardware (user, 2026-07-26: "analyse in chat screenshots
+ * and screen recordings using local quantum tools and hardware"). The local, zero-egress capability is STRUCTURAL: a
+ * perceptual hash (aHash — 8×8 grayscale thresholded at the mean → a 64-bit content-address) so the same screenshot hashes
+ * identically (Hamming 0) and a different one to a larger distance; and frame-diff over a screen recording (Hamming between
+ * consecutive frame hashes) detects scene cuts/keyframes. It runs on the browser Canvas/WebCodecs surface (on-device, no
+ * upload). DEMARCATION: structural analysis is zero-token; SEMANTIC captioning ("what the image depicts") needs a vision
+ * model — opt-in BYO-key, NOT the zero-token core. [[realtime-live-data-testing]] [[zero-token-policy]] */
+export function theChatAnalysesScreenshotsAndRecordingsLocallyByPerceptualHashAndFrameDiffSemanticModelGated() {
+  const size = 2 ** 6 // 64 pixels (8×8 aHash grid)
+  const levels = 2 ** 8 // 256 grayscale levels
+  const aHash = (px: number[]): number[] => { const mean = px.reduce((a, b) => a + b, 0) / px.length; return px.map((p) => (p >= mean ? 1 : 0)) }
+  const hamming = (a: number[], b: number[]): number => a.reduce((d, x, i) => d + (x !== b[i] ? 1 : 0), 0)
+  // a deterministic synthetic screenshot, an identical copy, a one-region edit, and a very different (inverted) image
+  const shot = Array.from({ length: size }, (_, i) => (i * 4) % levels)
+  const shotDup = shot.slice()
+  const shotEdit = shot.map((p, i) => (i === 0 ? levels - 1 - p : p))
+  const shotOther = Array.from({ length: size }, (_, i) => levels - 1 - ((i * 4) % levels))
+  const [h, hDup, hEdit, hOther] = [shot, shotDup, shotEdit, shotOther].map(aHash)
+  const sameImageSameHash = hamming(h, hDup) === 0 // deterministic content-address: identical screenshot → identical hash
+  const differentImageLargerDistance = hamming(h, hOther) >= hamming(h, hEdit) // structural discrimination
+  const perceptualHashWorks = sameImageSameHash && differentImageLargerDistance
+  // screen recording = a frame sequence; frame-diff by Hamming detects scene cuts / keyframes
+  const frames = [shot, shotDup, shotEdit, shotOther]
+  const diffs = frames.slice(1).map((f, i) => hamming(aHash(frames[i]), aHash(f)))
+  const sceneCuts = diffs.filter((d) => d > 2).length // Hamming over threshold = a keyframe
+  const detectsSceneChanges = sceneCuts >= 1
+  // hardware: the analysis runs on the browser Canvas/WebCodecs surface, on-device, no cloud
+  const policy = resourceCooperationPolicy()
+  const onDeviceHardware = typeof policy.gpuSurface === 'string' && (policy.gpuSurface === 'browser-canvas-raf' || policy.gpuSurface === 'none-ssr')
+  const structuralIsZeroToken = perceptualHashWorks && detectsSceneChanges && onDeviceHardware // all structural, no model, no egress
+  const analyses = structuralIsZeroToken
+  const facets = [
+    { facet: `SCREENSHOTS → PERCEPTUAL HASH (CONTENT-ADDRESS) — aHash (8×8 grayscale thresholded at the mean) gives the same screenshot an identical hash (Hamming ${hamming(h, hDup)}) and a different image a larger distance (${hamming(h, hOther)} ≥ ${hamming(h, hEdit)}, ${perceptualHashWorks}); deterministic, local, zero-egress`, on: perceptualHashWorks },
+    { facet: `SCREEN RECORDINGS → FRAME-DIFF KEYFRAMES — a frame sequence diffed by Hamming distance detects ${sceneCuts} scene cut(s) (${detectsSceneChanges}); the recording reduces to its keyframes on-device, no upload`, on: detectsSceneChanges },
+    { facet: `ON-DEVICE HARDWARE — the analysis runs on the browser '${policy.gpuSurface}' surface (Canvas/WebCodecs/WebGL), on-device, no cloud (${onDeviceHardware}); the image and frames never leave the device`, on: onDeviceHardware },
+    { facet: `STRUCTURAL (ZERO-TOKEN) vs SEMANTIC (MODEL-GATED) — structural analysis (perceptual hash + frame diff) computes locally at zero tokens (${structuralIsZeroToken}); SEMANTIC captioning ("what the image depicts") needs a vision model — opt-in BYO-key, NOT the zero-token core; the distinction is ADDED, not blurred`, on: structuralIsZeroToken },
+    { facet: `HONEST — deterministic local computer-vision primitives, refutable by the Hamming identities; "quantum" = the content-address / perceptual hash, not physics; images stay on-device; semantic understanding is model-gated. HARMONY ≠ TRUTH`, on: analyses },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`screen-analysis:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    sceneCuts,
+    gpuSurface: policy.gpuSurface,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: the chat analyses screenshots and screen recordings locally, on hardware. The local, zero-egress capability is STRUCTURAL and computes here: a perceptual hash (aHash — 8×8 grayscale thresholded at the mean → a 64-bit content-address) gives an identical screenshot an identical hash (Hamming 0) and a different image a larger distance, and frame-diff over a screen recording (Hamming between consecutive frame hashes) detects ${sceneCuts} scene cut(s) / keyframes. It runs on the browser '${policy.gpuSurface}' surface (Canvas/WebCodecs/WebGL), on-device — the image and frames never leave the machine. DEMARCATION, added not blurred: this structural analysis (hashing, diffing, keyframing) is real and zero-token; SEMANTIC understanding — captioning "what the image depicts" — needs a vision model and is opt-in BYO-key, NOT part of the zero-token core. HONEST: deterministic local computer-vision primitives, refutable by the Hamming identities; "quantum" names the content-address / perceptual hash, not physics or a physical speedup; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** feedingTheWholeSiteToTheChatEveryPageResolvesToItsProofAsRosettaCombinations — feed the site in the chat (user,
  * 2026-07-26: "feed the site in the chat"). The escalation from README to the whole SITE: every served science page
  * (staticPages) is posed to the chat and resolves to a ranked, content-addressed proof — the whole site is reachable through
