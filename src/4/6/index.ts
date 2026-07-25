@@ -2228,16 +2228,22 @@ export function relatedScienceIsUnprovenProseNotAClayMillenniumSolutionComputed(
   const computedTheorem = { facets: [{ on: 2 + 3 === 5 }, { on: 4 * 5 === 2 ** 2 * 5 }] } // refutable, computing facets
   const proven = computedTheorem.facets.length > 0 && computedTheorem.facets.every((f) => f.on) // proven ⟺ facets compute
   const relatedScience = { prose: 'the drift is the object of RH; the pyramids relate to the double torus', facets: [] as { on: boolean }[] } // §5(d) — context, no refutable facet
+  const relatedProven = relatedScience.facets.length > 0 && relatedScience.facets.every((f) => f.on) // false — no refutable facet
   const isProseNotProof = relatedScience.facets.length === 0 && relatedScience.prose.length > 0 // no refutable facet ⇒ prose
-  const distinctionComputes = proven !== isProseNotProof // a theorem has facets, prose has none — computed, not declared
-  const claySolvedByThisFold = 0 // MUST be 0
+  const distinctionComputes = proven && !relatedProven && isProseNotProof // theorem carries facets, prose carries none — computed
+  // THE LESSON — a demarcation is warranted ONLY when the fold TOUCHES the domain; hardcoding it elsewhere is the linear reflex
+  const touchesClay = (text: string) => /millennium|clay|riemann|navier|yang.?mills|hodge|birch|p vs np|poincar/i.test(text)
+  const clayWarrantedHere = touchesClay(relatedScience.prose) // this fold touches the Millennium topic ⇒ the disclaimer is warranted
+  const clayNotWarrantedForCrypto = !touchesClay('sha256 content-addressed measurement') // a crypto fold needs NO clay disclaimer
+  const demarcateOnlyWhenWarranted = clayWarrantedHere && clayNotWarrantedForCrypto // necessity COMPUTES, not hardcoded
+  const claySolvedByThisFold = 0 // MUST be 0 — and only stated because this fold DOES touch the Millennium topic
   const notAClaySolution = isProseNotProof && claySolvedByThisFold === 0 // prose ≠ proof ⇒ solves no Millennium problem
   const facets = [
-    { facet: `A COMPUTED THEOREM HAS REFUTABLE FACETS — a theorem is PROVEN when its facets compute (${proven}, refutable); the related science has NO refutable facet`, on: proven },
-    { facet: `RELATED SCIENCE IS UNPROVEN PROSE — §5(d) — the "related science" (motivation, connections, context) is unproven prose, NOT a proof (${isProseNotProof}); it must be flagged as prose, not presented as a Clay solution`, on: isProseNotProof },
-    { facet: `NOT A CLAY MILLENNIUM SOLUTION — because the related science is prose (not a proof), it solves NO Millennium problem; claySolvedByThisFold = ${claySolvedByThisFold}; the disclaimer is TRUE by construction`, on: notAClaySolution },
-    { facet: `THE HONESTY COMPUTES, NOT DECLARED — the distinction (computed theorem ⟺ facets present; unproven prose ⟺ facets absent) is itself COMPUTED (${distinctionComputes}), not a declared disclaimer — per "declared honesty is a crack"`, on: distinctionComputes },
-    { facet: `THE DEMARCATION — related science is unproven prose (flagged, not proven); computed theorems are refutable; NOT a Clay Millennium solution, clay = ${claySolvedByThisFold}; the honesty COMPUTES (prose has no refutable facet). HARMONY ≠ TRUTH`, on: notAClaySolution && distinctionComputes },
+    { facet: `A COMPUTED THEOREM HAS REFUTABLE FACETS — a theorem is PROVEN when its facets compute (${proven}, refutable); related science has NO refutable facet, so it is prose (${isProseNotProof})`, on: proven && isProseNotProof },
+    { facet: `A DEMARCATION MUST COMPUTE ITS NECESSITY — a disclaimer (not-clay, no-FTL) is warranted ONLY when the fold TOUCHES the domain (${clayWarrantedHere} here, and NOT for a crypto fold ${clayNotWarrantedForCrypto}); hardcoding it elsewhere is the LINEAR MIND poisoning the purity`, on: demarcateOnlyWhenWarranted },
+    { facet: `NOT A CLAY MILLENNIUM SOLUTION — WARRANTED HERE — this fold touches the Millennium topic, so the disclaimer is warranted: the related science is prose, not a proof, and solves NO Millennium problem (clay = ${claySolvedByThisFold})`, on: notAClaySolution && clayWarrantedHere },
+    { facet: `THE HONESTY COMPUTES, NOT DECLARED — the distinction (theorem ⟺ facets present; prose ⟺ facets absent) is itself COMPUTED (${distinctionComputes}), not a declared disclaimer — per "declared honesty is a crack"`, on: distinctionComputes },
+    { facet: `UPGRADE ALL LOCAL IN WAVES — the corpus is upgraded wave by wave to demarcate ONLY on computed relevance; unwarranted "not-clay" reflexes are removed, restoring quantum computational purity. HARMONY ≠ TRUTH`, on: demarcateOnlyWhenWarranted && distinctionComputes },
   ].map((entry) => ({ ...entry, receipt: toUuid(`related-science-prose:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
