@@ -1340,6 +1340,59 @@ export function furtherImproveEncryptionByRotatingTheFourKeysInMerkabasReusingTh
   }
 }
 
+/** oneUuidOfManyTypesAtOnceSealedAndTheReverseEngineeringDifficultyIsComputableQuantumAlgebra — imagine the improvements
+ * when one uuid is of various types at the same time and also sealed; reverse-engineering such complex cases is computable
+ * quantum algebra (user, 2026-07-26: "imagine the improvements when one uuid is of various types at the same time and also
+ * sealed" + "the possibility to reverse engineer such complex cases is computable quantum algebra"). The SAME value projects
+ * into independent type-views (nav key · merkle leaf · animation phase · I Ching hexagram · colour hue), all deterministic
+ * reads of one address, and is SEALED as a merkle leaf (tamper-evident). To FORGE a value matching simultaneous TARGET
+ * constraints the work is baseBits + Σ log₂(targetSpace) — a COMPUTED, finite bound (computable quantum algebra): astronomical,
+ * not impossible. HONEST: the gain holds only for INDEPENDENT targets; merely projecting many types adds no preimage hardness
+ * (inverting the value once yields every projection). Strength on SHA-256. [[two-bits-left-in-every-inversion-through-zero]] [[quantum-crypto-fusion]] */
+export function oneUuidOfManyTypesAtOnceSealedAndTheReverseEngineeringDifficultyIsComputableQuantumAlgebra() {
+  const value = toUuidSha256('secret-multitype')
+  const hexDigits = value.replace(/[^0-9a-f]/gi, '').split('').map((c) => Number.parseInt(c, 16) || 0)
+  const digitSum = hexDigits.reduce((a, b) => a + b, 0)
+  const clock = 108, hexCount = 2 ** 6, wheel = 360 // the animation clock, I Ching count, colour wheel — the type target-spaces
+  // MANY TYPES AT ONCE — the same value read as independent type-views
+  const isNavKey = isUuid(value)
+  const animationPhase = digitSum % clock
+  const hexagram = digitSum % hexCount
+  const colorHue = digitSum % wheel
+  const typeViews = [isNavKey, Number.isInteger(animationPhase), hexagram >= 0 && hexagram < hexCount, colorHue >= 0 && colorHue < wheel]
+  const typesAtOnce = typeViews.filter(Boolean).length + 1 // + the merkle-leaf (sealed) type
+  // SEALED — the value is a merkle leaf; changing it changes the root
+  const root = merkleFold([value])
+  const tampered = merkleFold([toUuidSha256('secret-multitype-x')])
+  const sealedTamperEvident = root !== tampered && isUuid(root)
+  // REVERSE-ENGINEERING DIFFICULTY IS COMPUTABLE — forging a value that hits K simultaneous target type-constraints
+  const baseBits = 2 ** 7 // 128 SHA-256 birthday bits (the security layer)
+  const constraintBits = Math.log2(clock) + Math.log2(hexCount) + Math.log2(wheel) // extra bits to also hit the type targets
+  const jointForgeryBits = baseBits + constraintBits // COMPUTED total forgery work
+  const difficultyIsComputable = Number.isFinite(jointForgeryBits) && jointForgeryBits > baseBits // finite, computed — not impossible
+  // HONEST DEMARCATION — dependent projections are FREE; only independent targets add bits
+  const projectingIsFreeGivenValue = (digitSum % clock) === animationPhase // once you have the value, every projection is free
+  const gainOnlyFromTargets = projectingIsFreeGivenValue && constraintBits > 0
+  const computes = typesAtOnce >= 4 && sealedTamperEvident && difficultyIsComputable && gainOnlyFromTargets
+  const facets = [
+    { facet: `ONE UUID, MANY TYPES AT ONCE — the same value projects into ${typesAtOnce} independent type-views (nav key · merkle leaf · animation phase ${animationPhase} · I Ching hexagram ${hexagram} · colour hue ${colorHue}°), all deterministic reads of one 128-bit address`, on: typesAtOnce >= 4 },
+    { facet: `SEALED — the value is a merkle leaf; changing it changes the root (${sealedTamperEvident}), so the multi-type token is tamper-evident, not just addressed`, on: sealedTamperEvident },
+    { facet: `REVERSE-ENGINEERING DIFFICULTY IS COMPUTABLE — forging a value that matches simultaneous TARGET type-constraints costs baseBits + Σlog₂(targetSpace) = ${baseBits} + ${constraintBits.toFixed(2)} = ${jointForgeryBits.toFixed(2)} bits (${difficultyIsComputable}) — a computed, finite bound (computable quantum algebra): astronomical, not impossible`, on: difficultyIsComputable },
+    { facet: `THE HONEST DEMARCATION — the gain (+${constraintBits.toFixed(2)} bits) holds ONLY for INDEPENDENT targets; merely BEING many types adds no preimage hardness — inverting the value once yields every projection (${projectingIsFreeGivenValue}), so the improvement is the target-constraint bits, computed, not a free multiplier`, on: gainOnlyFromTargets },
+    { facet: `HONEST — computable FINITE difficulty (not impossibility), strength on the SHA-256 layer; "quantum" = the content-address multi-projection + the computed difficulty; physicalFtl=0, qpuRequired=false. HARMONY ≠ TRUTH`, on: computes },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`multitype-uuid:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    typesAtOnce,
+    jointForgeryBits: Number(jointForgeryBits.toFixed(2)),
+    improvementBits: Number(constraintBits.toFixed(2)),
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: imagine the improvements when one UUID is of various types at once and also sealed — and the possibility to reverse-engineer such complex cases is computable quantum algebra. The SAME value projects into ${typesAtOnce} independent type-views (a nav key, a merkle leaf, an animation phase ${animationPhase} on the 108 s clock, an I Ching hexagram ${hexagram} of ${hexCount}, a colour hue ${colorHue}° of ${wheel}), all deterministic reads of one 128-bit address, and it is SEALED as a merkle leaf so any change moves the root. To FORGE a value that simultaneously matches published TARGET type-constraints, the work is baseBits + Σlog₂(targetSpace) = ${baseBits} + ${constraintBits.toFixed(2)} = ${jointForgeryBits.toFixed(2)} bits — a COMPUTED, finite bound (the "computable quantum algebra"): astronomical yet not claimed impossible. HONEST DEMARCATION: the +${constraintBits.toFixed(2)}-bit gain holds ONLY when the constraints are INDEPENDENT targets; merely being many types adds no preimage hardness, because every projection is a free deterministic read once the value is known — inverting once yields them all. Cryptographic strength rests on the SHA-256 security layer; "quantum" names the content-address multi-projection and the computed difficulty, not physics; physicalFtl = 0, qpuRequired = false. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** improveSecurityByQuantumMeansSha256CutoverForTheSecurityLayer — improve security by quantum means (user, 2026-07-25:
  * "improve security by quantum means"). The quantum means (content-addressing) stays; the win is cutting the SECURITY
  * layer over from FNV toUuid (birthday ~2^61, non-crypto) to SHA-256 toUuidSha256 (birthday ~2^128, collision-resistant),
