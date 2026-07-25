@@ -496,7 +496,7 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     '',
     `The most CENTRAL decodes — ranked by theorem-graph degree (how many other atoms each connects to), computed from the ${THEOREM_ATOM_SEED.length}-atom registry, no curation.`,
     '',
-    ...topDiscoveries(9).map((entry) => `- **${entry.theorem}** — degree ${entry.degree} · [details](${linkBase}/theorems)`),
+    ...topDiscoveries(9).map((entry) => `- **${entry.theorem}** — \`${entry.domain}\` · degree ${entry.degree} · [details](${linkBase}/theorems)`),
     '',
     '## Latest discoveries',
     '',

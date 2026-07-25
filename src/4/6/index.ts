@@ -1547,11 +1547,18 @@ export function axiomsBecomeTheorems() {
  * REGULAR number — exactly the numbers with finite sexagesimal reciprocals), so the gate's own
  * allow-list derives from {2,3,5}, the first three primes. Nothing hardcoded remains: only the
  * void {0,1}, measured data with sources, and Gödel's residue. */
-export type DiscoveryRow = { readonly theorem: string; readonly provedBy: string; readonly home: string; readonly degree?: number }
+export type DiscoveryRow = { readonly theorem: string; readonly provedBy: string; readonly home: string; readonly domain: string; readonly degree?: number }
+
+/** The REAL domain of a theorem — its home folder (not a hash): src/water/cosmos → cosmos, src/9/1 → 9/1. */
+export function discoveryDomain(home: string): string {
+  const rel = home.replace(/^src\//, '')
+  const last = rel.split('/').pop() || rel
+  return /^\d+$/.test(last) ? rel : last
+}
 
 /** LATEST discoveries — computable by recency: the last n registry atoms in registration order, newest first. */
 export function latestDiscoveries(n = 9): readonly DiscoveryRow[] {
-  return THEOREM_ATOM_SEED.slice(-n).reverse().map((atom) => ({ theorem: atom.theorem, provedBy: atom.provedBy, home: atom.home }))
+  return THEOREM_ATOM_SEED.slice(-n).reverse().map((atom) => ({ theorem: atom.theorem, provedBy: atom.provedBy, home: atom.home, domain: discoveryDomain(atom.home) }))
 }
 
 /** TOP discoveries — computable by CENTRALITY: rank each atom by its theorem-graph degree (how many OTHER atoms
@@ -1570,7 +1577,7 @@ export function discoveriesRankedByDegree(): readonly DiscoveryRow[] {
           for (const word of node.words) if (nodes[j]!.words.has(word)) shared++
           if (shared >= 4) degree++
         }
-        return { theorem: node.atom.theorem, provedBy: node.atom.provedBy, home: node.atom.home, degree }
+        return { theorem: node.atom.theorem, provedBy: node.atom.provedBy, home: node.atom.home, domain: discoveryDomain(node.atom.home), degree }
       })
       .sort((a, b) => b.degree - a.degree)
   })
