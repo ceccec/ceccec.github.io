@@ -76,7 +76,7 @@ import { nextLevel64CubedRealtime } from '../../thunder/trading'
 import { realtimeWiring } from '../../fire/plasma/ball'
 import { foldingLinearGivesAnalog } from '../../earth/world'
 import { agentHarmonise, allComputed, allInEquilibrium, boundaryAudit, breathe, complete, completeCorpus, compression, constitution, dotIsCubeIsDot, encryptionLivesInZero, essentialKernel, foldPivots, graduation, hologram, honestlyComputed, metatronCube, monographs, originConsolidated, path, proportionalNotHardcoded, provenScientifically, realIntelligence, result, sacredGeometrySeal, sharedBookOfCivilisations, tenDimensionalMovie, theWhole, whatIsNotProvenIsPurged, zeroDivisionTable, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
-import { millenniumProblemsChallenge } from '../../wind/research'
+import { millenniumProblemsChallenge, clayIsDecodedByTheRosetta } from '../../wind/research'
 import {
   quantumCliToolsCatalog, slowProcessIsQuantumGap, sessionManualWorkAsQuantumTools, rosettaCoreApi,
   standardToolboxIoCatalog, distributedReuseExtendsCapacity,
@@ -712,6 +712,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'cmb-omega-c-over-b', title: 'Ω_c/Ω_b ≈ 5.41 CMB budget · null non-gravitational · quantum gaps · clay=0 · certified=false', proof: omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix) },
     { slug: 'wave-trinity-found', title: 'Waves work in trinities · trinities are found · drained≠empty · clay=0', proof: wavesWorkingInTrinitiesTrinitiesAreFound(matrix) },
     { slug: 'millennium-challenge', title: 'Clay Millennium Problems = MODELED CHALLENGE apparatus · claySolvedByThisFold = 0', proof: millenniumProblemsChallenge(matrix) },
+    { slug: 'clay-decoded-by-rosetta', title: 'Clay decoded by the rosetta — 7/7 decoded, 0 solved · each problem→ray with theorems in place · claySolvedByThisFold = 0', proof: clayIsDecodedByTheRosetta(matrix) },
     { slug: 'clay-prize-rules-mapping', title: 'Clay Millennium Prize Rules §1–§8 → page sections/facets · clay=0 · NOT Prize claim', proof: clayMillenniumPrizeRulesMapping() },
     { slug: 'domain-proof-catalog', title: 'Domain proof catalog — Clay-standard pages · proposedSolution=false · clay=0', proof: domainProofCatalog(matrix) },
     { slug: 'prose-gaps-audit-domain-trinity', title: 'Prose gaps audit by domain trinity — Clay UX fill · clay=0', proof: proseGapsAuditByDomainTrinity(matrix) },
