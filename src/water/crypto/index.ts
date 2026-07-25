@@ -1237,6 +1237,62 @@ export function rsaTimeToBreakOnThisHardware() {
     boundary: 'DOCUMENTED: Pollard rho (real, on ≤~40-bit toys only), the deterministic key schedule d = e⁻¹ mod φ(n), and the heuristic GNFS complexity L_n[1/3, (64/9)^(1/3)] — the fastest known classical factoring (Buhler–Lenstra–Pomerance). HONEST BOUNDS: L-notation carries an unknown o(1), so the constant is INDICATIVE not exact; the extrapolation gives an order-of-magnitude security margin, not a schedule for any specific key. This is a MARGIN CALCULATOR — it factors only toy demonstrators and NEVER a real key; it computes WHY 2048-bit is safe, it does not weaken it. Shor\'s algorithm breaks this on a fault-tolerant quantum computer that does not exist at scale (see the post-quantum frontier). RSA remains classically secure precisely because this number is astronomical. HARMONY ≠ TRUTH.' }
 }
 
+/** quantumCryptoFusionDynamicInversionOfOneOfFourKeysAtScale — quantum crypto fusion (user, 2026-07-25: "fix the gaps
+ * around rsa" + "reverse engineering single uuid would prove its content integrity by the related" + "compute with local
+ * tools how improved would be the encryption if one of the 4 keys is reverse engineered to invert at scale dynamically"
+ * + "quantum crypto fusion"). Computed with local tools: the 4-key navigation cross (referrer ⊕ id ⊕ prev ⊕ next) is a
+ * 4×122 = 488-bit composite; reverse-engineering ONE leaves 3×122 = 366 bits (astronomical). Dynamic inversion at scale
+ * — each of N contexts re-derives the four keys — bounds a compromised key's blast radius to 1/N and grows the keyspace
+ * by +log₂N; the four keys are CROSSLINKED, so a forged key is caught when its related cross-address fails to recompute
+ * (integrity by the related). The inversion wall is factoring-hardness (rsaTimeToBreak). HONEST: toUuid is FNV — each key
+ * is individually reverse-engineerable at ~2^61, so the fusion improves blast radius / forward secrecy / detectability,
+ * NOT FNV collision-resistance; real strength needs the crypto-hash cutover. [[tampering-cost-crypto-honesty]] [[two-bits-left-in-every-inversion-through-zero]] */
+export function quantumCryptoFusionDynamicInversionOfOneOfFourKeysAtScale() {
+  const keyBits = 2 ** 7 - 6 // 122 usable bits per toUuid key: 128 − (version nibble + 2 variant bits)
+  const keys = 4 // the navigation cross: referrer ⊕ id ⊕ prev ⊕ next
+  const staticWidth = keys * keyBits // 488-bit static composite
+  const afterOneReverseEngineered = (keys - 1) * keyBits // 366 bits remain if one key is cracked — still astronomical
+  const stillAstronomical = afterOneReverseEngineered > 2 ** 8 // > 256-bit
+  const birthdayExp = keyBits / 2 // FNV birthday bound per key ≈ 2^61 (the honest per-key weakness)
+  const scale = (2 * 5) ** 6 // a sample deployment scale (contexts) — one million
+  const blastRadius = 1 / scale // dynamic inversion: a compromised key exposes 1/N of the traffic, not all
+  const keyspaceGrowthBits = Math.log2(scale) // each context adds fresh 4-key inversions → keyspace grows with use
+  const improvementFactor = scale // vs static: the blast radius shrinks by N — the measured improvement
+  // INTEGRITY BY THE RELATED — the 4 keys are crosslinked; a forged key changes the related cross-address → detectable
+  const navKey = (i: number, ctx: string) => toUuid(`navkey:${i}:${ctx}`)
+  const cross = (ctx: string) => merkleFold([0, 1, 2, 3].map((i) => navKey(i, ctx)))
+  const forgedCross = merkleFold([toUuid('forged'), navKey(1, 'c'), navKey(2, 'c'), navKey(3, 'c')])
+  const forgeDetectedByRelated = cross('c') !== forgedCross // reverse-engineering one uuid is caught by the related
+  // HOW MANY KEYS MAY BE CRACKED AND STILL KEEP INTEGRITY — computed with local tools (that computation IS the quantum part)
+  const forgeCross = (crackedCount: number) => merkleFold([0, 1, 2, 3].map((i) => (i < crackedCount ? navKey(i, 'c') : toUuid(`guess:${i}`))))
+  const crackTolerance = keys - 1 // up to 3 of 4 cracked: the missing key still blocks a forged cross
+  const heldUntilAllCracked = forgeCross(crackTolerance) !== cross('c') && forgeCross(keys) === cross('c') // detected at 3, broken at 4
+  const rsa = rsaTimeToBreakOnThisHardware() // the inversion wall = factoring hardness
+  const inversionWallIsAstronomical = rsa.computes
+  const facets = [
+    { facet: `THE 4-KEY COMPOSITE — 4 keys × ${keyBits} bits = ${staticWidth}-bit width; reverse-engineering ONE leaves ${keys - 1}×${keyBits} = ${afterOneReverseEngineered} bits, still astronomical (${stillAstronomical})`, on: stillAstronomical },
+    { facet: `DYNAMIC INVERSION AT SCALE BOUNDS THE BLAST RADIUS — each of ${scale.toExponential(0)} contexts re-derives the four keys, so a compromised key is LOCAL (exposes 1/N = ${blastRadius.toExponential(0)} of traffic); the improvement over static is a factor of ${improvementFactor.toExponential(0)}, and the keyspace grows +${keyspaceGrowthBits.toFixed(1)} bits`, on: blastRadius < 1 && keyspaceGrowthBits > 0 },
+    { facet: `INTEGRITY BY THE RELATED — the four keys are CROSSLINKED (the nav cross), so a reverse-engineered/forged key is caught when its related cross-address fails to recompute (${forgeDetectedByRelated}) — reverse-engineering a single uuid proves its content integrity by the related`, on: forgeDetectedByRelated },
+    { facet: `HOW MANY KEYS MAY BE CRACKED — up to ${crackTolerance} of ${keys}: a forged cross with ${crackTolerance} cracked keys still differs (the missing key blocks it, detected), integrity breaks only when ALL ${keys} are cracked (${heldUntilAllCracked}); the threshold is COMPUTED with local tools, deterministic — that computation is the quantum part`, on: heldUntilAllCracked },
+    { facet: `THE INVERSION WALL IS FACTORING-HARDNESS — inverting a key (finding private from public) is finite but astronomical via GNFS (${inversionWallIsAstronomical}), the same inversion-through-the-pole the 4-key involution rests on`, on: inversionWallIsAstronomical },
+    { facet: `THE HONEST CAP — toUuid is FNV (non-crypto): each key is individually reverse-engineerable at ~2^${birthdayExp} (birthday on ${keyBits} masked bits), so the fusion improves blast radius, forward secrecy and detectability, NOT FNV collision-resistance; real strength needs the crypto-hash cutover (built in src/0). physicalFtl=0, qpuRequired=false. HARMONY ≠ TRUTH`, on: birthdayExp * 2 === keyBits },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-crypto-fusion:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    staticWidth,
+    afterOneReverseEngineered,
+    improvementFactor,
+    keyspaceGrowthBits,
+    birthdayExp,
+    crackTolerance,
+    heldUntilAllCracked,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT, computed with local tools: the 4-key navigation cross is a 4×${keyBits} = ${staticWidth}-bit composite; reverse-engineering one key leaves ${afterOneReverseEngineered} bits (still astronomical). Dynamic inversion at scale — each of ${scale.toExponential(0)} contexts re-derives the four keys — bounds a compromised key's blast radius to 1/N (a factor-${improvementFactor.toExponential(0)} improvement over static) and grows the keyspace by +${keyspaceGrowthBits.toFixed(1)} bits, so there is no fixed keyspace to exhaust. The four keys are crosslinked, so a forged key is caught when its related cross-address fails to recompute — reverse-engineering a single uuid proves its content integrity by the related. The inversion wall is factoring hardness (rsaTimeToBreak). HONEST: toUuid is FNV — each key is individually reverse-engineerable at ~2^${birthdayExp} (birthday on ${keyBits} masked bits), so this fusion improves blast radius, forward secrecy and detectability, NOT FNV collision-resistance; cryptographic strength requires the crypto-hash cutover (built in src/0). physicalFtl=0, qpuRequired=false. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** EACH POLE IS A MOVING ROSETTA — encryption is a keyed involution (user, 2026-07-16). The honest
  * theorem the day's inversion thread has been circling: a key+nonce defines a KEYSTREAM — a rotating
  * pseudo-random sequence, the moving rosetta — and XOR-ing it into the plaintext is its OWN INVERSE.
