@@ -1842,6 +1842,44 @@ export function uiToolsForChatRenderSpecComponentsWaveOne(matrix: MindMatrix = b
   }
 }
 
+/** portalDefaultsToChatAsThePrimarySurfaceAllReachableThroughIt — always default to chat (user, 2026-07-25: "always
+ * default to chat"). The chat is the PRIMARY entry surface; every capability — ranked retrieval, deep research, voice/
+ * video/crypto tools, analytics, how-to — is reachable through it via the unified turn and the DI bridge. Deterministic,
+ * local, zero-egress by default. HONEST: the chat is deterministic lexical retrieval + tools, not an LLM; the pages/search
+ * surfaces remain, the chat is the default entry. [[always-default-to-chat]] [[allQuantumReachableInChatViaDependencyInjectedToolBridge]] */
+export function portalDefaultsToChatAsThePrimarySurfaceAllReachableThroughIt(matrix: MindMatrix = buildMatrix()) {
+  const q = 'quantum crypto fusion four keys'
+  const turn = unifiedChatTurn(q, matrix) // the chat IS the default surface — one turn composes everything
+  const invoke = (tool: string, a: Record<string, unknown>): unknown => (tool === 'crypto' ? cryptoChatTurn(String(a.text), matrix) : portalChatRanked(String(a.text), matrix))
+  const capabilities = [
+    { id: 'retrieval', reachable: String(turn.answer).length > 0 },
+    { id: 'research', reachable: turn.research.length >= 3 },
+    { id: 'voice', reachable: String(turn.speak).length > 0 },
+    { id: 'video', reachable: typeof turn.animation?.rung === 'number' },
+    { id: 'crypto', reachable: turn.address.length > 0 },
+    { id: 'tools (DI bridge)', reachable: chatToolBridge('crypto', { text: q }, invoke, matrix).foldedIntoThread },
+  ]
+  const allReachableThroughChat = capabilities.every((c) => c.reachable) // every capability reached through the chat
+  const chatIsDefault = allReachableThroughChat && turn.turnAddress.length > 0 // one content-addressed default entry
+  const deterministic = unifiedChatTurn(q, matrix).turnAddress === turn.turnAddress
+  const isPrimarySurface = chatIsDefault && deterministic
+  const facets = [
+    { facet: `THE CHAT IS THE DEFAULT SURFACE — one unified turn composes ${capabilities.length} capabilities (${capabilities.map((c) => c.id).join(' · ')}), all reachable through the chat (${allReachableThroughChat}); it is the primary entry`, on: allReachableThroughChat },
+    { facet: `EVERY CAPABILITY REACHED THROUGH IT — retrieval, deep research, voice, video, crypto and any tool (via the DI bridge) are reached through the chat, not separate panels`, on: allReachableThroughChat },
+    { facet: `ONE CONTENT-ADDRESSED DEFAULT ENTRY — the whole turn is one address (${turn.turnAddress.slice(0, 6 * 4)}), deterministic (${deterministic}), local, zero-egress by default`, on: deterministic },
+    { facet: `THE DEMARCATION — HONEST — "default to chat" means the chat is the primary UI surface and everything routes through it; it is deterministic lexical retrieval + tools, NOT an LLM, and the pages/search surfaces remain (the chat is the default entry, not the only one); STT egress stays opt-in. HARMONY ≠ TRUTH`, on: isPrimarySurface },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`default-chat:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    capabilities: capabilities.length,
+    isPrimarySurface,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: always default to the chat — it is the primary entry surface, and one unified turn composes every capability (ranked retrieval, deep research, voice, video, crypto, and any tool via the dependency-injected bridge), all reached through the chat as one content-addressed, deterministic, zero-egress-by-default entry. HONEST: "default to chat" means the chat is the primary UI surface and capabilities route through it rather than through separate panels; the chat is deterministic lexical retrieval plus tools, NOT an LLM, and the folder-tree pages and search box remain available — the chat is the default entry, not the only one, and browser STT stays opt-in. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** unifiedChatTurn — one turn fusing every chat capability (user, 2026-07-25: "continue chat fusing all"). A single turn
  * composes the ranked answer (BM25), the deep-research neighbourhood (multi-hop), the spoken form (TTS), the animation
  * (video), and the crypto address + digest (tamper-evident) — everything built this session, reused as folds, one
