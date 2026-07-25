@@ -627,7 +627,8 @@ function runConceptCommand(
     'concept.science.proton': () => { const v = schwarzschildProtonComputedInSource(matrix); return result(command, v.computed, 'The Schwarzschild proton computed in source — the ~38-orders gap flagged honestly.', v) } }
   const decodedHandler = decodedCommands[command]
   if (decodedHandler) return decodedHandler()
-  return result(command, true, 'Site manifest built from concept commands.', siteManifestFromCommands())
+  const fallbackManifest = siteManifestFromCommands() // the catch-all: ok COMPUTES (non-empty manifest), not hardcoded true
+  return result(command, fallbackManifest.length > 0, 'Site manifest built from concept commands.', fallbackManifest)
 }
 
 // --- Developer learning (PR #4) ---------------------------------------------------
@@ -653,17 +654,20 @@ export function executeDeveloperCommand(
     return developerResult(command, verifyRoot(matrix), 'Local mind matrix built and root verified.', matrix)
   }
   if (command === 'developer.consciousness.vector') {
-    return developerResult(command, true, 'Consciousness vector computed.', consciousness(matrix))
+    const vector = consciousness(matrix) // ok COMPUTES: the mind-matrix root collapsed (verifyRoot), not hardcoded true
+    return developerResult(command, vector.collapse, 'Consciousness vector computed.', vector)
   }
   if (command === 'developer.repository.api') {
     const api = repositoryApi(matrix)
     return developerResult(command, api.endpoints.length > 0, 'Repository API manifest resolved.', api)
   }
   if (command === 'developer.proof.verify') {
-    return developerResult(command, true, 'Proof report verified.', proofReport(matrix))
+    const report = proofReport(matrix) // ok COMPUTES: a finite tamper cost was measured, not hardcoded true
+    return developerResult(command, report.tamperCostLog2 > 0, 'Proof report verified.', report)
   }
   if (command === 'developer.site.manifest') {
-    return developerResult(command, true, 'Site manifest built from concept commands.', siteManifestFromCommands())
+    const manifest = siteManifestFromCommands() // ok COMPUTES: non-empty manifest, not hardcoded true
+    return developerResult(command, manifest.length > 0, 'Site manifest built from concept commands.', manifest)
   }
   const learning = learnDeveloper(matrix)
   return developerResult(command, learning.invariant, 'Developer source laws learned into local lessons.', learning)
