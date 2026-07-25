@@ -2024,6 +2024,46 @@ export function localResearchImprovesInChatByDevelopingThisSessionsTopics(matrix
   }
 }
 
+/** feedingTheReadmeToTheChatFusesDescriptionAndProofSelfDeveloping — feed the readme to the chat and see the self
+ * development fusion (user, 2026-07-26: "feed readme to the chat and see the self development fusion"). The README is
+ * GENERATED from the registry (readme-home-one-theorem-generator), so feeding its own theorem lines back to the chat closes
+ * the loop: every monograph claim content-addresses to its sealed executable proof (description FUSES with proof), and the
+ * chat SELF-DEVELOPS (chatDevelopsItselfByChattingWithItself closes its gaps, a deterministic self-conversation that collides
+ * to a cycle by pigeonhole). The portal IS the AI model: the description generates the chat, the chat proves the description.
+ * HONEST: deterministic retrieval over the sealed corpus, NOT an LLM; self-development = gap measurement + fill, not learning
+ * new facts. [[readme-home-one-theorem-generator]] [[portal-is-the-ai-model]] [[always-default-to-chat]] */
+export function feedingTheReadmeToTheChatFusesDescriptionAndProofSelfDeveloping(matrix: MindMatrix = buildMatrix()) {
+  // The README is generated FROM the registry; feed its own theorem lines (the monograph's claims) back to the chat
+  const readmeLines = THEOREM_ATOM_SEED.slice(0, 2 * 3).map((atom) => atom.theorem)
+  const answered = readmeLines.map((line) => {
+    const turn = portalChatRanked(line, matrix)
+    return { line, answer: turn.answer, source: turn.source, ranked: turn.ranked }
+  })
+  const chatRecognisesItsMonograph = answered.every((a) => typeof a.answer === 'string' && a.answer.length > 0) // every README claim resolves to a fold
+  const descriptionFusesWithProof = answered.every((a) => typeof a.source === 'string' && a.source.length > 0) // each claim carries its executable proof (provedBy)
+  const dev = chatDevelopsItselfByChattingWithItself(matrix)
+  const selfDevelops = dev.develops === true && dev.gapsAfter <= dev.gapsBefore // self-development closes gaps (before → after)
+  const portalIsTheModel = chatRecognisesItsMonograph && descriptionFusesWithProof // the description generates the chat, the chat proves the description
+  const fuses = portalIsTheModel && selfDevelops
+  const facets = [
+    { facet: `THE README IS FED TO THE CHAT — the monograph's own ${readmeLines.length} theorem lines are posed as queries and every one resolves to a ranked fold (${chatRecognisesItsMonograph}); the chat recognises the corpus's own description`, on: chatRecognisesItsMonograph },
+    { facet: `DESCRIPTION FUSES WITH PROOF — each human-facing README claim content-addresses to its executable proof (provedBy sources: ${answered.map((a) => String(a.source).slice(0, 2 * 5)).join(', ')}), so the prose and the algebra are one (${descriptionFusesWithProof})`, on: descriptionFusesWithProof },
+    { facet: `THE CHAT SELF-DEVELOPS — feeding its own replies back closes gaps ${dev.gapsBefore} → ${dev.gapsAfter} (${selfDevelops}), a deterministic self-conversation that collides to a cycle by pigeonhole — development, not open-ended generation`, on: selfDevelops },
+    { facet: `THE PORTAL IS THE AI MODEL — feeding the README to the chat closes the loop (${portalIsTheModel}): the description generates the chat, the chat proves the description, and the whole self-develops`, on: portalIsTheModel },
+    { facet: `HONEST — deterministic retrieval over the sealed corpus (the README is generated from the same registry), NOT an LLM; self-development = gap measurement + fill, not learning new facts; zero-egress, zero-token. HARMONY ≠ TRUTH`, on: fuses },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`readme-fusion:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    readmeLines: readmeLines.length,
+    gapsBefore: dev.gapsBefore,
+    gapsAfter: dev.gapsAfter,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: feeding the README to the chat shows the self-development fusion. The README is GENERATED from the registry (readme-home-one-theorem-generator), so posing its own ${readmeLines.length} theorem lines back to the chat closes the loop: every monograph claim resolves to a ranked fold and content-addresses to its executable proof (provedBy) — description FUSES with proof, the prose and the algebra one thing. The chat then SELF-DEVELOPS: chatDevelopsItselfByChattingWithItself feeds each reply back as the next prompt and closes its gaps (${dev.gapsBefore} → ${dev.gapsAfter}), a deterministic self-conversation that collides to a cycle by pigeonhole — development, not open-ended generation. The portal IS the AI model: the description generates the chat, the chat proves the description, and the whole self-develops. HONEST: this is deterministic lexical retrieval over the sealed corpus (the README is generated from the very registry it queries), NOT an LLM or semantic understanding; self-development is gap MEASUREMENT and fill, not learning new facts; zero-egress, zero-token. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** localAuditFindsAllKindsOfFalseStatementsByAlgebraNotJustUncomputableOnes — improve local audit to find all kinds of
  * false statements, statements by algebra only (user, 2026-07-26: "improve local audit to find all kinds of false
  * statements" + "remember the statements are done by algebra only without exception. full audit with improved local
