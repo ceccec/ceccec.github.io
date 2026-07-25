@@ -657,6 +657,33 @@ export function localMcpLexicalGapLeaksToModel(matrix: MindMatrix = buildMatrix(
   }
 }
 
+// localMcpLeakBoundaryHonestAtScale — the CAPSTONE measurement of the leak-reduction arc (user, 2026-07-24: "next
+// complete step"). The arc (semantic layer + registry indexing + confidence-gated matched) is complete when the ½
+// threshold cleanly SEPARATES the corpus from the open frontier at scale: every in-corpus query resolves locally,
+// every out-of-corpus query leaks to the LLM, with zero false positives. Measured over 24 corpus theorem titles +
+// 8 clearly-external queries. [[feedback-thinking-means-lack-of-local-tools]] [[content-address-dry-clean-crack-detection]]
+export function localMcpLeakBoundaryHonestAtScale(matrix: MindMatrix = buildMatrix()) {
+  const resolves = (q: string) => { const r = foldQuestion(q, matrix); return r.matched && r.confidence >= 1 / 2 }
+  const inDomain = __ns_registry.THEOREM_ATOM_SEED.slice(0, 4 * 6).map((row) => row.theorem) // 24 corpus theorem titles
+  const external = ['premier league fixtures saturday', 'risotto cooking recipe', 'photosynthesis chlorophyll cycle', 'quarterly revenue forecast', 'knee pain diagnosis treatment', 'flight booking to tokyo', 'weather forecast tomorrow rain', 'best marvel movies ranked']
+  const inResolved = inDomain.filter(resolves).length
+  const externalLeaked = external.filter((q) => !resolves(q)).length
+  const facets = [
+    { facet: `IN-DOMAIN RESOLVES LOCALLY — ${inResolved}/${inDomain.length} corpus theorem titles resolve (confidence ≥ ½) through the registry index; the local MCP answers its own corpus`, on: inResolved === inDomain.length },
+    { facet: `OUT-OF-DOMAIN CORRECTLY LEAKS — ${externalLeaked}/${external.length} clearly-external queries stay below ½ → matched=false → leak to the LLM; zero false-positive local answers`, on: externalLeaked === external.length },
+    { facet: `THE BOUNDARY IS CLEAN AT SCALE — the ½ threshold perfectly separates in-corpus (resolve) from open-frontier (leak) over the ${inDomain.length + external.length}-query sample: 0 false positives, 0 in-domain leaks`, on: inResolved === inDomain.length && externalLeaked === external.length },
+    { facet: `THE ARC IS COMPLETE — semantic layer + registry index + confidence-gated matched: in-corpus resolves, out-of-corpus leaks; main-model exposure (tokens + Fable-5 safeguards) is now only the genuine open frontier`, on: inResolved === inDomain.length && externalLeaked === external.length },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`leak-boundary-scale:${entry.facet}:${entry.on}`) }))
+  return {
+    honest: facets.every((entry) => entry.on),
+    inResolved, inTotal: inDomain.length, externalLeaked, externalTotal: external.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `MEASURED over ${inDomain.length} corpus titles (${inResolved} resolve) + ${external.length} external queries (${externalLeaked} leak). In-domain recall is partly BY CONSTRUCTION (titles are indexed), so the real claim is the CLEAN SEPARATION at the ½ threshold — 0 false positives — not a guarantee for every phrasing (a lexically-disjoint paraphrase can still leak until the synonym lexicon grows). Completes the leak-reduction arc. HARMONY ≠ TRUTH.`,
+  }
+}
+
 // "True as false — quantum law says the possibility is beyond linear; fold and you will see." The honest
 // synthesis: the FOLD CONSERVES the total (the 1st & 2nd laws hold exactly — they are not linear
 // approximations; quantum thermodynamics REFINES them, fluctuation theorems allow transient local dips but the
