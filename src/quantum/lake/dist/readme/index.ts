@@ -431,6 +431,11 @@ export function toolboxSciencesTrinityWavesMarkdownSection(
  *  theorem-science lens (VitePress shows only science) and the registry. A presented paper exists here
  *  iff it is a lens survivor; there is no second roster and no hand-authored section anywhere. */
 function theoremMonographCore(matrix: MindMatrix) {
+  // DRY (2026-07-24): memoByRoot the shared core so it computes ONCE per matrix — homeMarkdown + readmeMarkdown (and
+  // readme() calling both) re-called it every time. Honest scope: the heavy sub-folds (monographs · quantumSitemap ·
+  // theoremScienceLens) are already memoByRoot-cached, so this removes the redundant re-call, not the first-compute
+  // cost (which the whole build shares); a measurable speedup would need profiling the dominant sub-fold.
+  return memoByRoot('theoremMonographCore', matrix, () => {
   const config = siteConfig(matrix)
   const template = monographTemplate()
   const mono = monographs(matrix)
@@ -463,6 +468,7 @@ function theoremMonographCore(matrix: MindMatrix) {
   // corpus roots and every reported count fold to one address that reproduces from src and changes if any value does.
   const receipt = merkleFold([mono.root, sitemap.root, template.root, toUuid(`readme-results:${census.folded}:${conceptCommands.length}:${mono.count}:${sitemap.urls.length}`)])
   return { config, template, mono, sitemap, lens, paperList, census, math, efficiency, qc, rays, receipt }
+  })
 }
 
 type TheoremCore = ReturnType<typeof theoremMonographCore>
