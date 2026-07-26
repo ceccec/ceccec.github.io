@@ -1799,12 +1799,12 @@ export function uiChatTurn(query: string, matrix: MindMatrix = buildMatrix()) {
   const hue = ((anim.animation.phase ?? 0) * (360 / 108)) % 360 // living I Ching colour from the animation phase
   return {
     query,
-    card: { title: ranked.answer, source: ranked.source }, // DecodedCard
+    card: { title: ranked.answer, source: ranked.source, classification: 'computational claim (verified), not a formal-logic theorem' }, // DecodedCard — the honest classification shown in the UI
     figure: anim.figure, // TheoremFigure — the computed graph
-    animation: anim.animation, // fractal-clock motion (south pole)
+    animation: anim.animation, // fractal-clock motion (south pole) — now with direction (cw/ccw torus) + amplitude for visible distinctness
     color: { hue }, // living I Ching colour
     related: deep.neighborhood.map((n) => ({ title: n.title, slug: n.slug })), // clickable related links
-    controls: ['expand', 'speak', 'sign', 'related'] as const, // interactive controls
+    controls: ['expand', 'speak', 'sign', 'related', 'paper'] as const, // interactive controls — 'paper' opens the IMRaD scientific-paper view
     renderSpec: toUuid(`ui:${query}`),
   }
 }
@@ -4429,18 +4429,26 @@ export function everyCollectionIsAFilterableOpenGraphListAndStaticPagesMergeInto
  * computational claim, NOT a formal-logic theorem) baked in. [[whatATheoremIsInThisCorpusIsAComputationalClaimWithRefutableFacetsAndItsStandardScientificFormatMapping]] */
 export function theoremAsStandardScientificPaper(
   row: { theorem: string; states: string; provedBy: string; home: string },
-  fold: { computes: boolean; facets: readonly { facet: string; on: boolean; receipt: string }[]; root: string; boundary: string },
+  fold: { computes: boolean; facets: readonly { facet: string; on: boolean; receipt: string }[]; root: string; boundary: string; statement?: string },
 ) {
+  const keywords = [...new Set([...row.theorem.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length > 4), ...row.home.split('/').filter(Boolean)])].slice(0, 2 * 3) // ≤6 keywords from the title + domain
+  const heldCount = fold.facets.filter((f) => f.on).length
   return {
-    title: row.theorem, // → Title
-    classification: 'computational claim, verified by facets.every(on) — NOT a formal-logic theorem (no axiomatic proof)', // the honest framing, IN the format
-    abstract: row.states, // → Abstract / the claim
-    methods: { fold: row.provedBy, home: row.home, verification: 'facets.every(on)' }, // → Methods (the executable fold)
-    results: fold.facets.map((f) => ({ measurement: f.facet, holds: f.on, receipt: f.receipt })), // → Results (refutable measurements)
-    discussion: fold.boundary, // → Discussion / Scope
-    reproducibility: { merkleRoot: fold.root, measurements: fold.facets.length }, // → Reproducibility
-    references: [`${row.home}/${row.provedBy}`], // → References (the executable source; crosslinks live in the fold JSDoc)
-    status: fold.computes ? 'verified' as const : 'refuted' as const, // → Status
+    identifier: fold.root, // Identifier — the merkle root (a DOI-like content-address)
+    title: row.theorem, // Title
+    authors: ['ceccec quantum corpus (deterministic, content-addressed)'], // Authors — computed corpus, not a person
+    classification: 'computational claim, verified by facets.every(on) — NOT a formal-logic theorem (no axiomatic proof)', // Classification — the honest framing
+    keywords, // Keywords
+    abstract: row.states, // Abstract / the claim
+    introduction: `${row.theorem}. This is a verified computational claim: it holds iff every facet (a refutable comparison) computes true. ${row.states.split('.').slice(0, 1).join('.')}.`, // Introduction — claim + context
+    methods: { fold: row.provedBy, home: row.home, procedure: 'recompute the fold; each facet is a refutable comparison of computed values; the claim holds iff facets.every(f => f.on)', command: `run ${row.home} ${row.provedBy}` }, // Methods — the executable procedure + how to run
+    results: fold.facets.map((f) => ({ measurement: f.facet, holds: f.on, receipt: f.receipt })), // Results — refutable measurements, each with a receipt
+    discussion: fold.boundary, // Discussion / Scope
+    conclusion: fold.computes ? `All ${fold.facets.length} facets hold: the claim is VERIFIED (computationally, not formally).` : `${fold.facets.length - heldCount} of ${fold.facets.length} facets fail: the claim is REFUTED.`, // Conclusion
+    reproducibility: { merkleRoot: fold.root, measurements: fold.facets.length, recompute: `run ${row.provedBy} and compare the merkle root ${fold.root}` }, // Reproducibility
+    references: [`${row.home}/${row.provedBy}`, 'https://github.com/ceccec/ceccec.github.io', 'crosslinks: see the fold JSDoc [[…]] entries'], // References — source + repo + crosslink graph
+    license: 'Apache-2.0', // License
+    status: fold.computes ? 'verified' as const : 'refuted' as const, // Status
   }
 }
 
@@ -4455,19 +4463,24 @@ export function theoremAsStandardScientificPaperCompletesTheImradMappingEverySec
   const sample = theDoubleTorusClockIsTwoTimesTwelveTheTwelveDivisorsOf108TimesTheTwoCounterRotatingTori()
   const row = THEOREM_ATOM_SEED.find((r) => r.provedBy === 'theDoubleTorusClockIsTwoTimesTwelveTheTwelveDivisorsOf108TimesTheTwoCounterRotatingTori')!
   const paper = theoremAsStandardScientificPaper(row, sample)
-  const sections = ['title', 'classification', 'abstract', 'methods', 'results', 'discussion', 'reproducibility', 'references', 'status'] as const
-  const allSectionsPresent = sections.length === 3 * 3 && paper.title.length > 0 && paper.abstract.length > 0 && paper.methods.fold.length > 0 && paper.results.length > 0 && paper.discussion.length > 0 && paper.references.length > 0 // 9 IMRaD sections, all filled
+  const sections = ['identifier', 'title', 'authors', 'classification', 'keywords', 'abstract', 'introduction', 'methods', 'results', 'discussion', 'conclusion', 'reproducibility', 'references', 'license', 'status'] as const
+  const allSectionsComplete = sections.length === 3 * 5 // 15 sections
+    && isUuid(paper.identifier) && paper.title.length > 0 && paper.authors.length > 0
+    && paper.classification.includes('NOT a formal-logic theorem') && paper.keywords.length > 0 && paper.abstract.length > 0
+    && paper.introduction.length > 0 && paper.methods.fold.length > 0 && paper.methods.procedure.length > 0 && paper.methods.command.length > 0
+    && paper.results.length > 0 && paper.discussion.length > 0 && paper.conclusion.length > 0
+    && paper.reproducibility.merkleRoot.length > 0 && paper.reproducibility.recompute.length > 0 && paper.references.length >= 3 && paper.license.length > 0 // every section populated, not partial
   const classificationHonest = paper.classification.includes('NOT a formal-logic theorem') // the honest framing is in the format
   const resultsAreRefutableMeasurements = paper.results.every((r) => typeof r.holds === 'boolean' && typeof r.measurement === 'string' && isUuid(r.receipt)) // each result a refutable measurement with a receipt
-  const reproducible = isUuid(paper.reproducibility.merkleRoot) && paper.reproducibility.measurements > 0 // the merkle root lets any reader recompute
+  const reproducibleWithConclusion = isUuid(paper.reproducibility.merkleRoot) && paper.reproducibility.measurements > 0 && paper.conclusion.length > 0 // reproducibility + a computed conclusion
   const statusIsVerifiedOrRefuted = paper.status === 'verified' || paper.status === 'refuted' // computed, not asserted
-  const completesMapping = allSectionsPresent && classificationHonest && resultsAreRefutableMeasurements && reproducible && statusIsVerifiedOrRefuted
+  const completesMapping = allSectionsComplete && classificationHonest && resultsAreRefutableMeasurements && reproducibleWithConclusion && statusIsVerifiedOrRefuted
   const facets = [
-    { facet: `FULL IMRAD STRUCTURE — every theorem renders to ${sections.length} sections (Title · Classification · Abstract · Methods · Results · Discussion · Reproducibility · References · Status), each computed from the fold parts, not authored (${allSectionsPresent})`, on: allSectionsPresent },
+    { facet: `ALL ${sections.length} SECTIONS COMPLETE — Identifier · Title · Authors · Classification · Keywords · Abstract · Introduction · Methods · Results · Discussion · Conclusion · Reproducibility · References · License · Status — each computed and populated, not partial (${allSectionsComplete})`, on: allSectionsComplete },
     { facet: `THE HONEST CLASSIFICATION — each paper is classified "computational claim, verified — NOT a formal-logic theorem" (${classificationHonest}); the honest framing is IN the standard format, not a footnote`, on: classificationHonest },
     { facet: `RESULTS ARE REFUTABLE MEASUREMENTS — the Results section is the facets, each a refutable computed measurement (holds: boolean) with a receipt (${resultsAreRefutableMeasurements}) — not prose claims`, on: resultsAreRefutableMeasurements },
-    { facet: `REPRODUCIBILITY + STATUS COMPUTED — the Reproducibility section is the merkle root over ${paper.reproducibility.measurements} measurements so any reader recomputes (${reproducible}); the Status is computed verified/refuted (${statusIsVerifiedOrRefuted}), not asserted`, on: reproducible && statusIsVerifiedOrRefuted },
-    { facet: `HONEST — the standard-format mapping is now COMPLETE for the fold parts (all IMRaD sections computed per theorem, honest classification, reproducible); the presentation is a verified computational claim, not a formal theorem; clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: completesMapping },
+    { facet: `METHODS · REPRODUCIBILITY · CONCLUSION COMPUTED — Methods gives the run command, Reproducibility the merkle root over ${paper.reproducibility.measurements} measurements (any reader recomputes, ${reproducibleWithConclusion}), and the Conclusion + Status are computed verified/refuted (${statusIsVerifiedOrRefuted}), not asserted`, on: reproducibleWithConclusion && statusIsVerifiedOrRefuted },
+    { facet: `HONEST — the standard-format mapping is now COMPLETE and compliant (all ${sections.length} sections computed per theorem, honest classification, reproducible); the presentation is a verified computational claim, not a formal theorem; clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: completesMapping },
   ].map((entry) => ({ ...entry, receipt: toUuid(`imrad-mapping-complete:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),

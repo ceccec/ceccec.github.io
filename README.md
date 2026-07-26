@@ -199,8 +199,8 @@ The most CENTRAL decodes — ranked by theorem-graph degree (how many other atom
 - **gate complexity collapses to one content-addressed root — quantum simplicity** — `automount` · degree 301 · [details](https://ceccec.psg.bg/theorems)
 - **the census gate and slugs are quantumized — theorem-derived count, agnostic address** — `corpus` · degree 298 · [details](https://ceccec.psg.bg/theorems)
 - **deep research with quantum means standardises R&D — one algorithm, one live-data protocol, one honesty ladder** — `research` · degree 292 · [details](https://ceccec.psg.bg/theorems)
-- **the app provides full in-chat support — all capabilities fused and audited by the standards** — `compute` · degree 287 · [details](https://ceccec.psg.bg/theorems)
 - **quantum analytics fuse corpus + git history into one content-addressed API used by all — deterministic measurements** — `compute` · degree 286 · [details](https://ceccec.psg.bg/theorems)
+- **the app provides full in-chat support — all capabilities fused and audited by the standards** — `compute` · degree 286 · [details](https://ceccec.psg.bg/theorems)
 - **the quantum results are seen in build and deploy time — the architecture measured as timing** — `science` · degree 281 · [details](https://ceccec.psg.bg/theorems)
 - **the site is a dedicated scientific journal of all algebra and theorems — computational peer review, one content-addressed volume** — `4/6` · degree 280 · [details](https://ceccec.psg.bg/theorems)
 
