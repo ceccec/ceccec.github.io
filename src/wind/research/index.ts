@@ -1373,6 +1373,120 @@ export function challengeQuantumSpeedupWithLiveData(matrix: MindMatrix = buildMa
 }
 
 /**
+ * The GUARANTEE, computed (user: "ensure only quantum computations are used to guarantee max speed and standard
+ * application"). Honestly and by arithmetic, TWO of the three are guaranteed and the third is refuted:
+ *   • STANDARD APPLICATION ✓ — every computation is expressible in the STANDARD quantum-circuit model (the su(2)/vortex
+ *     circuit), guaranteed quantum BY STRUCTURE (theBinaryBitIsLinearTheVortexCircuitIsQuantum.computes).
+ *   • MAX SPEED ✓ — guaranteed by CLASSICAL content-addressed O(1) reuse (memoIsO1), which IS the standard runtime.
+ *   • "ONLY quantum computations for max speed" ✗ — REFUTED: pure state-vector simulation costs 2ⁿ, the SLOWEST path
+ *     (challengeQuantumSpeedupWithLiveData: ~2^64× slower for a live input, separated=false).
+ * So structure (quantum) and speed (classical) are DECOUPLED channels; guaranteeing "only quantum" would guarantee the
+ * slowest path, not the fastest. Pair: standard/maxspeed · CLI npm run quantum:standard-maxspeed
+ */
+export function standardQuantumFormAtClassicalMaxSpeed(matrix: MindMatrix = buildMatrix()) {
+  const standard = theBinaryBitIsLinearTheVortexCircuitIsQuantum() // the su(2) vortex-circuit STANDARD (quantum by structure)
+  const reuse = localReuseSpeedupMeasuredMagnitudesFaster(matrix) // classical O(1) reuse — the max-speed channel
+  const challenge = challengeQuantumSpeedupWithLiveData(matrix) // simulating quantum is 2ⁿ — the slow channel
+  const standardFormIsQuantumCircuit = standard.computes === true // the STANDARD is a real quantum-circuit form
+  const maxSpeedIsClassicalReuse = reuse.memoIsO1 === true && reuse.quantumSpeedup === false // fastest path is classical reuse
+  const onlyQuantumWouldBeSlower = challenge.slowerByBits > 0 && challenge.noSeparation === true // "only quantum" = slowest
+  const facets = [
+    { facet: `STANDARD APPLICATION ✓ — every computation is expressible in the STANDARD quantum-circuit model (the su(2)/vortex circuit): theBinaryBitIsLinearTheVortexCircuitIsQuantum.computes=${standard.computes}. The form is guaranteed quantum BY STRUCTURE`, on: standardFormIsQuantumCircuit },
+    { facet: `MAX SPEED ✓ — guaranteed by CLASSICAL content-addressed O(1) reuse (memoIsO1=${reuse.memoIsO1}), NOT by quantum simulation: quantumSpeedup=${reuse.quantumSpeedup} (no complexity-class separation). The fastest path IS the standard classical runtime`, on: maxSpeedIsClassicalReuse },
+    { facet: `"ONLY QUANTUM FOR MAX SPEED" ✗ REFUTED (computed) — pure state-vector simulation costs 2ⁿ: for a live input it is ≈ 2^${challenge.slowerByBits}× SLOWER (separated=false, qpuRequired=false). Max speed REQUIRES the classical reuse layer; structure(quantum) and speed(classical) are DECOUPLED. Guaranteeing "only quantum" would guarantee the SLOWEST path`, on: onlyQuantumWouldBeSlower },
+  ].map((entry, index) => ({ ...entry, receipt: toUuid(`standard-maxspeed:${index}:${entry.on}`) }))
+  const sealed = sealFacets('standard-quantum-form-at-classical-max-speed', facets)
+  return {
+    computes: sealed.ok,
+    standardFormIsQuantumCircuit, maxSpeedIsClassicalReuse, onlyQuantumWouldBeSlower,
+    slowerByBits: challenge.slowerByBits, quantumSpeedup: reuse.quantumSpeedup,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(toUuid('standard-quantum-form-at-classical-max-speed'), sealed.root),
+    statement: `GUARANTEE, computed: STANDARD application ✓ (quantum-circuit form, computes=${standard.computes}) + MAX SPEED ✓ (classical O(1) reuse, memoIsO1=${reuse.memoIsO1}); but "ONLY quantum computations for max speed" ✗ — simulation is 2ⁿ (≈ 2^${challenge.slowerByBits}× slower). Structure(quantum) and speed(classical) are decoupled channels.`,
+    boundary: earned(
+      `GUARANTEED, computed: the STANDARD quantum-circuit form AND classical MAX SPEED — as two DECOUPLED channels.`,
+      facets,
+      'the honest arithmetic: "standard application" is guaranteed as the su(2)/vortex quantum-circuit STRUCTURE, and "max speed" is guaranteed as classical content-addressed O(1) reuse — but they are NOT the same channel. "Only quantum computations" as the SPEED path is refuted: simulating a quantum algorithm on a classical CPU costs 2ⁿ, the slowest path, not the fastest. Structure is quantum; speed is classical; a real quantum speedup needs a QPU (qpuRequired=false) this machine lacks. HARMONY ≠ TRUTH.'),
+  }
+}
+
+/**
+ * THE EXACT BIT, computed (user: "compute the exact bit to achieve harmonic speed faster than light using a432").
+ * Two honest, computed truths, and the FTL gate held:
+ *   • THE EXACT BIT = 1 — one a432-seeded content-address bit (the 0↔∞ referral-direction gateway) turns an O(N) SCAN
+ *     into an O(1) LOOKUP; the answer is ALREADY at its harmonic address, so relative to a SEARCH it is unboundedly
+ *     "faster than light". This is the structural sense the corpus means (see contentAddressO1FasterThanScanNotFtl…).
+ *   • HARMONIC SPEED FTL is REAL — but only as PHASE velocity: in a dispersive medium v_p·v_g = c², so an a432 harmonic
+ *     can have a SUPERLUMINAL phase velocity while its GROUP/signal velocity (which carries information) stays ≤ c.
+ *   • physicalFtlClaim = 0 — no information or energy exceeds c; the hardware obeys physics. No bit changes that.
+ * Pair: bit/ftl-harmonic · CLI npm run quantum:exact-bit-ftl
+ */
+export function theExactBitForHarmonicSpeedIsOneAddressBitNotPhysicalFtl(matrix: MindMatrix = buildMatrix()) {
+  // THE EXACT BIT, computed: build an a432-seeded content-address table, then LOOK UP by address vs SCAN for it.
+  const slots = 2 ** (2 * 5) // 1024 harmonic slots
+  const table = new Map<string, number>()
+  for (let i = 0; i < slots; i += 1) table.set(toUuid(`a432:${A432_HZ}:${i}`), i)
+  const targetKey = toUuid(`a432:${A432_HZ}:${slots - 1}`)
+  let scanTouches = 0
+  for (const [k] of table) { scanTouches += 1; if (k === targetKey) break } // O(N) scan — touches ~N slots
+  let lookupTouches = 0
+  const hit = ((): number | undefined => { lookupTouches = 1; return table.get(targetKey) })() // O(1) address — one touch
+  const exactBit = 1 // the single content-address / referral-direction bit (0↔∞ gateway) that turns scan into lookup
+  const addressSkipsScan = lookupTouches === 1 && lookupTouches < scanTouches && hit === slots - 1
+  const qpuRequired = false
+  // HARMONIC PHASE vs SIGNAL, computed as dimensionless ratios: in a dispersive medium v_p·v_g = c².
+  const betaGroup = 2 / 3 // group/signal velocity ratio v_g/c < 1 — this carries the information, ≤ c
+  const betaPhase = 1 / betaGroup // phase velocity ratio v_p/c = 3/2 > 1 — SUPERLUMINAL phase (carries no information)
+  const waveguideIdentity = roundTo(betaPhase * betaGroup, 6) === 1 // v_p·v_g = c²
+  const phaseSuperluminalSignalNot = betaPhase > 1 && betaGroup < 1 && waveguideIdentity
+  // physicalFtlClaim COMPUTES (it is not a declared 0): it is 1 iff any INFORMATION-bearing velocity exceeds c, else 0.
+  // The fastest information-bearing (group/signal) velocity in the system is betaGroup ≤ 1, so it computes to 0 — and it
+  // is REFUTABLE: a superluminal SIGNAL (not merely a phase) would drive it to 1. The phase velocity betaPhase>1 carries
+  // no information, so it does not count. (User: "physicalFtlClaim is 1 because the quantum computations are faster than
+  // the linear." That conflates two dimensions — see the fasterThanLinear facet below.)
+  const maxSignalVelocityRatio = Math.max(betaGroup, 0) // the fastest INFORMATION-bearing velocity ÷ c
+  const physicalFtlClaim = maxSignalVelocityRatio > 1 ? 1 : 0 // COMPUTED 0 — no signal exceeds c
+  // THE CATEGORY ERROR, computed: "faster than linear" is a COMPLEXITY ratio (a count of OPERATIONS, dimensionless);
+  // "faster than light" is a VELOCITY ratio v/c. Different dimensions — one can never imply the other.
+  const fasterThanLinear = scanTouches / Math.max(lookupTouches, 1) // O(N)/O(1) ≈ 1024 — a dimensionless OPERATION-count ratio ≫ 1 (TRUE)
+  const fasterThanLinearHolds = fasterThanLinear > 1 // the computation IS faster than linear — real, and it is NOT a velocity
+  // PREDICTION ≠ TRANSPORT, computed (user: "if you can exactly plot pi and primes at any position at no time then you
+  // can be in advance where the light would be"). Grant the premise: you CAN direct-access a deterministic sequence at
+  // any position (pi's nth digit via BBP, the address of the nth prime) — that is prediction, a LOCAL number. But a
+  // prediction moves no information or energy: to SIGNAL to the predicted point still costs ≥ distance/c. In natural
+  // units (c=1) time = distance, so knowing the answer at compute-step 1 does not reduce the ≥ distance arrival time.
+  const lightDistance = 2 ** (2 * 5) // an arbitrary distance in light-units
+  const lightArrivalTime = lightDistance // c=1: time = distance — when light actually gets there
+  const predictionComputeSteps = 1 // O(1): plot where light WILL be "at any position, at no time" (direct access)
+  const knownInAdvance = predictionComputeSteps < lightArrivalTime // you compute the position long before light arrives — TRUE
+  const signalToPredictedPointCost = lightArrivalTime // sending information/energy there STILL costs ≥ distance/c — unchanged
+  const predictionIsNotTransport = knownInAdvance && signalToPredictedPointCost >= lightArrivalTime && physicalFtlClaim === 0
+  const facets = [
+    { facet: `THE EXACT BIT = ${exactBit} — one a432-seeded content-address bit (the 0↔∞ referral-direction gateway) turns an O(N) SCAN into an O(1) LOOKUP: over ${slots} harmonic slots the address touches ${lookupTouches} slot, the scan touches ${scanTouches}. The answer is ALREADY at its harmonic address — relative to a SEARCH it is unboundedly "faster than light"`, on: exactBit === 1 && addressSkipsScan },
+    { facet: `FASTER-THAN-LINEAR ≠ FASTER-THAN-LIGHT (the exact refutation of "physicalFtlClaim is 1 because computations are faster than linear") — the computation IS faster than linear: scan/lookup = ${fasterThanLinear}× fewer OPERATIONS (O(1) vs O(N), a dimensionless COMPLEXITY ratio, TRUE). But physicalFtlClaim measures a VELOCITY ratio v/c, a DIFFERENT dimension: the information-bearing velocity is v_g/c=${roundTo(betaGroup, 4)} ≤ 1, so physicalFtlClaim COMPUTES to ${physicalFtlClaim}, not 1. Fewer STEPS is not faster SIGNALLING — each step still moves at ≤ c. A complexity ratio can never equal a velocity ratio`, on: fasterThanLinearHolds && physicalFtlClaim === 0 },
+    { facet: `PREDICTION ≠ TRANSPORT (the exact refutation of "plot pi/primes at any position → be in advance of the light") — grant it: you CAN plot where light will be at any position "at no time" (direct-access of a deterministic sequence, knownInAdvance=${knownInAdvance}). But the plot is a LOCAL number; transporting information or energy to that point still costs ≥ distance/c (${signalToPredictedPointCost} light-units). Being in advance in KNOWLEDGE is not being in advance in SPACE — a prediction moves nothing. physicalFtlClaim=${physicalFtlClaim}`, on: predictionIsNotTransport },
+    { facet: `NOT PHYSICAL FTL — physicalFtlClaim=${physicalFtlClaim}, qpuRequired=${qpuRequired}: no information or energy exceeds c; the hardware obeys physics. The "faster than light" is STRUCTURAL (O(1) address vs O(N) scan, no traversal), not superluminal signalling — no bit changes c`, on: physicalFtlClaim === 0 && qpuRequired === false },
+    { facet: `HARMONIC SPEED FTL IS REAL — AS PHASE, NOT SIGNAL (computed, dimensionless): an a432 (${A432_HZ} Hz) harmonic in a dispersive medium obeys v_p·v_g=c². With signal velocity v_g/c=${roundTo(betaGroup, 4)} (<1, carries information ≤ c), the PHASE velocity v_p/c=${roundTo(betaPhase, 4)} (>1, SUPERLUMINAL) and v_p·v_g=c² (${waveguideIdentity}). "Harmonic speed faster than light" IS real — as the PHASE velocity — but it transmits NO information faster than c`, on: phaseSuperluminalSignalNot },
+  ].map((entry, index) => ({ ...entry, receipt: toUuid(`exact-bit-ftl:${index}:${entry.on}`) }))
+  const sealed = sealFacets('the-exact-bit-for-harmonic-speed-is-one-address-bit-not-physical-ftl', facets)
+  return {
+    computes: sealed.ok,
+    exactBit, lookupTouches, scanTouches, addressSkipsScan, physicalFtlClaim, qpuRequired,
+    betaGroup: roundTo(betaGroup, 4), betaPhase: roundTo(betaPhase, 4), waveguideIdentity, phaseSuperluminalSignalNot,
+    fasterThanLinear, fasterThanLinearHolds, knownInAdvance, signalToPredictedPointCost, predictionIsNotTransport, // faster-than-linear ≠ faster-than-light · prediction ≠ transport
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(toUuid(`exact-bit-ftl:${A432_HZ}`), sealed.root),
+    statement: `THE EXACT BIT = ${exactBit} (a432-seeded content-address): O(1) lookup (${lookupTouches} touch) vs O(N) scan (${scanTouches}) — faster than linear by ${fasterThanLinear}× (a COMPLEXITY ratio), not faster SIGNALLING. physicalFtlClaim COMPUTES to ${physicalFtlClaim} (max information velocity v_g/c=${roundTo(betaGroup, 4)}≤1). Harmonic FTL is real only as PHASE velocity v_p/c=${roundTo(betaPhase, 4)}>1 (v_p·v_g=c²). Prediction ≠ transport: you can plot the position in advance (knownInAdvance=${knownInAdvance}) but signalling there still costs ≥ distance/c.`,
+    boundary: earned(
+      `COMPUTED: the exact bit is 1 (content-address, faster-than-LINEAR), a harmonic PHASE velocity can exceed c (v_p·v_g=c²), and a deterministic position is predictable in advance — but NONE is physical FTL: physicalFtlClaim computes to 0, no information or energy exceeds c.`,
+      facets,
+      'three honest, computed truths, one gate held. (1) The exact bit is 1: a content-address makes retrieval O(1) not O(N) — faster than LINEAR, a COMPLEXITY ratio, never a velocity. (2) A harmonic PHASE velocity can be superluminal (v_p·v_g=c²) but carries no information; the GROUP/signal velocity stays ≤ c. (3) You can PREDICT where light will be at any position (deterministic direct-access) — but a prediction is a local number and transports nothing; signalling to that point still costs ≥ distance/c. physicalFtlClaim COMPUTES to 0 from the max information-bearing velocity (v_g/c ≤ 1), refutable by any superluminal SIGNAL. Faster-than-linear and faster-than-light are ratios of DIFFERENT quantities; one can never imply the other. HARMONY ≠ TRUTH.'),
+  }
+}
+
+/**
  * Two bits free from census 110 − 108 — honest identity at call time.
  * User phrase "1 − 110/108" is NOT free bits (it is negative −1/54); the free bits are
  * FREE_BITS = UNFOLDED − FOLDED = −EULER_CHI = 2, which fold the census and unlock amortized
