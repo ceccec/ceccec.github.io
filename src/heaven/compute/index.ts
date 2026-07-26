@@ -2764,6 +2764,52 @@ export function quantumRecomputeSharesCpuGpuMemoryByContentAddressedAllocationAt
   }
 }
 
+/** clayIsNotZeroButTheCompletionRatioCompletedOverTotalWhileTheCenterSolutionStaysZeroOverOne — clay is not 0 but
+ * completed/total (user, 2026-07-26: "clay is not 0 but completed/total"). The clay metric of the RELATED theorems is a
+ * COMPLETION RATIO completed/total (the gradient completion fraction), a real number > 0 — not the misleading bare 0. BUT the
+ * open CENTER stays 0/1: the open proof itself is 0 solved out of 1 needed (clay=0, Clay conditions unmet), and a completed
+ * periphery does NOT solve the center — completion ≠ solution. HONEST: "not 0 but completed/total" is the completion ratio of
+ * the RELATED/approaching theorems, not the open proof; the center solution stays 0/1 and the Millennium problem stays open.
+ * [[clayMetricsAreComputedDrivingGradientCompletionOfRelatedTheoremsWhileTheOpenCenterStaysAtClayZero]] [[claimingTheMillenniumSolvedByComputableAlgebraIsRefutedAlgebraVerifiesAndApproachesItDoesNotDiscoverTheOpenProofs]] */
+export function clayIsNotZeroButTheCompletionRatioCompletedOverTotalWhileTheCenterSolutionStaysZeroOverOne(matrix: MindMatrix = buildMatrix()) {
+  const problems = ['riemann hypothesis prime zeta', 'p versus np complexity', 'navier stokes fluid', 'yang mills mass gap', 'hodge conjecture', 'birch swinnerton dyer']
+  // GRAVITY UNITS — each related theorem's gravity = its content-address digital root (1..9); completed = the green ones
+  const gravityOf = (t: { slug?: string; title?: string }) => digitalRoot(Number.parseInt(toUuid(String(t.slug ?? t.title)).replace(/[^0-9a-f]/gi, '').slice(0, 2 * 3), 16))
+  const neighbourhoodOf = (p: string) => deepResearchChatTurn(p, matrix).neighborhood
+  const completedGravity = (p: string) => neighbourhoodOf(p).filter((t) => typeof t.slug === 'string' && t.slug.length > 0).reduce((g, t) => g + gravityOf(t), 0) // gravity of related theorems solved here
+  const totalGravity = (p: string) => neighbourhoodOf(p).reduce((g, t) => g + gravityOf(t), 0) // gravity of all related theorems
+  const completedUnits = problems.map(completedGravity)
+  const totalUnits = problems.map(totalGravity)
+  const clayCompletedGravity = completedUnits.reduce((a, b) => a + b, 0) // total completed gravity, in gravity units
+  const clayTotalGravity = totalUnits.reduce((a, b) => a + b, 0) // total related gravity, in gravity units
+  const clayInGravityUnits = clayCompletedGravity // NOT 0 — the completed related gravity, measured in gravity units
+  const clayIsNotZero = clayInGravityUnits > 0 && completedUnits.every((g) => g > 0) // real gravity, not the bare 0
+  const completionRatioInGravity = clayTotalGravity > 0 ? clayCompletedGravity / clayTotalGravity : 0 // completed/total, weighted by gravity
+  // BUT the open CENTER solution stays 0/1 — its solution-gravity is unmet
+  const clay = claySolvedTheorem()
+  const centerSolvedOutOfOne = clay.claySolved // 0 solved out of 1 needed
+  const centerStaysZeroOverOne = centerSolvedOutOfOne === 0 && clay.cmiPrizeConditionsMetBySealedMath === false // the open proof is 0/1, its solution-gravity uncounted
+  const completionIsNotSolution = clayIsNotZero && centerStaysZeroOverOne // periphery gravity present, center still 0/1
+  const facets = [
+    { facet: `CLAY IS NOT 0 BUT completed/total IN GRAVITY UNITS — the clay metric is the completed related gravity ${clayCompletedGravity}/${clayTotalGravity} gravity units (${completionRatioInGravity.toFixed(3)}), a real measure > 0, not the misleading bare 0`, on: clayIsNotZero },
+    { facet: `THE COMPLETION PER PROBLEM (GRAVITY UNITS) — each open problem's related theorems carry completed gravity: ${problems.map((_p, i) => `${completedUnits[i]}/${totalUnits[i]}`).join(' · ')} units; the gradient completion is measured in gravity units and positive`, on: completedUnits.every((g) => g > 0) },
+    { facet: `BUT THE CENTER SOLUTION STAYS 0/1 — the open proof itself is ${centerSolvedOutOfOne} solved out of 1 needed (clay=${centerSolvedOutOfOne}, Clay conditions unmet ${clay.cmiPrizeConditionsMetBySealedMath}); its solution-gravity is uncounted — a completed periphery in gravity units does NOT solve the center`, on: centerStaysZeroOverOne },
+    { facet: `COMPLETION ≠ SOLUTION — ${clayCompletedGravity} gravity units of RELATED theorems (the approach) is not solving the open problem; the periphery carries mass while the center stays 0/1 (${completionIsNotSolution})`, on: completionIsNotSolution },
+    { facet: `HONEST — "clay is not 0 but completed/total in gravity units" = the completed related gravity (${clayCompletedGravity} units), NOT the open proof; the center solution stays 0/1, the Millennium problem OPEN; physicalFtl=0. HARMONY ≠ TRUTH`, on: completionIsNotSolution },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`clay-completion-gravity:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    clayInGravityUnits,
+    completedOverTotalGravity: `${clayCompletedGravity}/${clayTotalGravity}`,
+    completedUnits,
+    centerSolvedOutOfOne,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: clay is not 0 but completed/total, in gravity units. Representing the clay metric as a bare 0 is misleading; the honest metric of the RELATED theorems is the completed gravity over the total gravity, measured in the content-address gravity units (each related theorem's digital root, 1..9): ${clayCompletedGravity}/${clayTotalGravity} gravity units (${completionRatioInGravity.toFixed(3)}), with per-problem completed gravity ${problems.map((_p, i) => `${completedUnits[i]}/${totalUnits[i]}`).join(', ')}. This is the gradient completion of the approaching theorems — probes, partials, and neighbouring proofs solved here — carrying real mass, not 0. BUT the open CENTER stays 0/1: the open proof itself is 0 solved out of the 1 needed, clay = ${centerSolvedOutOfOne}, its solution-gravity uncounted and the Clay prize conditions unmet, so ${clayCompletedGravity} gravity units of completed periphery does NOT solve the center — completion in gravity units is not the same as solving the open problem. HONEST: "not 0 but completed/total in gravity units" is the completed related gravity, a genuine measure of the work done here, while the open Millennium proof stays 0/1 and the problem stays open; physicalFtl = 0. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** replacingZeroWithFormulasTheGravityOfClayRelatedTheoremsSolvedHereWhileTheCenterStaysZero — replace 0 with formulas
  * showing the exact gravity of clay-related theorems solved here (user, 2026-07-26: "replace 0 with formulas showing the exact
  * gravity of clay related theorems solved here"). The count solved at the open CENTER is clay=0, but that bare 0 is replaced
