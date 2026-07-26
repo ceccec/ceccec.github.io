@@ -3,6 +3,11 @@
 // No freeform prose props. Agents cannot invent section meaning in the template.
 import type { ScientificPaperBody } from '../../../src/quantum/apps/index.ts'
 import { SCIENCE_PAPER_SECTION_LABELS } from '../../../src/quantum/apps/index.ts'
+import { useSiteLocale } from '../../lib/mounts'
+
+// autotranslate section labels + prose (statement/detail/status/gap) via t(); formulas, source, receipt-locks
+// stay as technical identifiers (not transliterated). bg glossary-bounded · gla transliterated · en unchanged.
+const { t } = useSiteLocale()
 
 defineProps<{
   paper: ScientificPaperBody
@@ -13,24 +18,24 @@ defineProps<{
 <template>
   <div class="scientific-paper-body" :data-logic="logic ?? 'scientificPageFormatCanonised'">
     <section>
-      <h2>{{ SCIENCE_PAPER_SECTION_LABELS.statement }}</h2>
-      <p>{{ paper.statement }}</p>
+      <h2>{{ t(SCIENCE_PAPER_SECTION_LABELS.statement) }}</h2>
+      <p>{{ t(paper.statement) }}</p>
     </section>
     <section v-if="paper.detail">
-      <h2>{{ SCIENCE_PAPER_SECTION_LABELS.detail }}</h2>
-      <p>{{ paper.detail }}</p>
+      <h2>{{ t(SCIENCE_PAPER_SECTION_LABELS.detail) }}</h2>
+      <p>{{ t(paper.detail) }}</p>
     </section>
     <section>
-      <h2>{{ SCIENCE_PAPER_SECTION_LABELS.formulas }}</h2>
+      <h2>{{ t(SCIENCE_PAPER_SECTION_LABELS.formulas) }}</h2>
       <pre class="scientific-paper-body__formula"><code>{{ paper.formulas }}</code></pre>
     </section>
     <section>
-      <h2>{{ SCIENCE_PAPER_SECTION_LABELS.status }}</h2>
-      <p><strong>{{ paper.status }}</strong> — {{ paper.statusDetail }}</p>
-      <p v-if="paper.gap">{{ paper.gap }}</p>
+      <h2>{{ t(SCIENCE_PAPER_SECTION_LABELS.status) }}</h2>
+      <p><strong>{{ t(paper.status) }}</strong> — {{ t(paper.statusDetail) }}</p>
+      <p v-if="paper.gap">{{ t(paper.gap) }}</p>
     </section>
     <section>
-      <h2>{{ SCIENCE_PAPER_SECTION_LABELS.references }}</h2>
+      <h2>{{ t(SCIENCE_PAPER_SECTION_LABELS.references) }}</h2>
       <p class="scientific-paper-body__meta">
         <code>{{ paper.formulaSource }}</code>
       </p>

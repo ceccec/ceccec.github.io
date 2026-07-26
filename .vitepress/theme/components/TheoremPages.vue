@@ -13,7 +13,11 @@ import ProofAnimation from './ProofAnimation.vue'
 import TheoremFigure from './TheoremFigure.vue'
 import PageComputedGaps from './PageComputedGaps.vue'
 import { theoremFigure } from '../../../src/wind/routes/corpus/index.ts'
+import { useSiteLocale } from '../../lib/mounts'
 
+// autotranslate headings + paper prose via t(); formulas, code, receipts stay technical. bg glossary-bounded ·
+// gla transliterated · en unchanged. Locale from VitePress-native useSiteLocale (useData/route).
+const { t } = useSiteLocale()
 const route = useRoute()
 const slugFromRoute = computed(() => {
   const match = route.path.replace(/\/(en|bg)\//, '/').match(/\/theorems\/([a-z0-9-]+)/)
@@ -59,55 +63,55 @@ const figureOf = (row: TheoremPageRow) => theoremFigure(row.slug)
         </figcaption>
       </figure>
 
-      <h1 class="theorem-paper__title">{{ row.theorem }}</h1>
+      <h1 class="theorem-paper__title">{{ t(row.theorem) }}</h1>
       <p class="theorem-paper__byline">{{ row.provedBy }} · {{ row.home }} · {{ row.proofClass }}</p>
       <p class="theorem-paper__tags" aria-label="tags">
-        <a v-for="t in row.tags" :key="t" class="theorem-paper__tag" :href="tagHref(t)">{{ t }}</a>
+        <a v-for="tag in row.tags" :key="tag" class="theorem-paper__tag" :href="tagHref(tag)">{{ t(tag) }}</a>
       </p>
 
       <section class="theorem-paper__abstract">
-        <h2>Abstract</h2>
-        <p>{{ row.proof }}</p>
+        <h2>{{ t('Abstract') }}</h2>
+        <p>{{ t(row.proof) }}</p>
       </section>
 
       <section v-if="figureOf(row)" class="theorem-paper__figure-block">
-        <h2>Figure — the proof, computed and plotted</h2>
+        <h2>{{ t('Figure — the proof, computed and plotted') }}</h2>
         <TheoremFigure :figure="figureOf(row)!" />
       </section>
 
       <section>
-        <h2>1 · Classification</h2>
-        <p>{{ row.classification }}</p>
+        <h2>1 · {{ t('Classification') }}</h2>
+        <p>{{ t(row.classification) }}</p>
       </section>
 
       <section>
-        <h2>2 · Provenance</h2>
-        <p>{{ row.provenance }}</p>
+        <h2>2 · {{ t('Provenance') }}</h2>
+        <p>{{ t(row.provenance) }}</p>
       </section>
 
       <section class="theorem-paper__ack">
-        <h2>Acknowledgment</h2>
-        <p>{{ row.acknowledgment.line }}</p>
+        <h2>{{ t('Acknowledgment') }}</h2>
+        <p>{{ t(row.acknowledgment.line) }}</p>
         <dl class="theorem-paper__ack-grid">
-          <dt>Prior art</dt><dd>{{ row.acknowledgment.priorArt }}</dd>
-          <dt>Novelty</dt><dd>{{ row.acknowledgment.novelToHumanity ? 'a first proof, claimed only with a complete computation' : 'not new to humanity — a re-derivation (humanityNovel = false)' }}</dd>
-          <dt>Contribution</dt><dd>{{ row.acknowledgment.contribution }}</dd>
+          <dt>{{ t('Prior art') }}</dt><dd>{{ t(row.acknowledgment.priorArt) }}</dd>
+          <dt>{{ t('Novelty') }}</dt><dd>{{ t(row.acknowledgment.novelToHumanity ? 'a first proof, claimed only with a complete computation' : 'not new to humanity — a re-derivation (humanityNovel = false)') }}</dd>
+          <dt>{{ t('Contribution') }}</dt><dd>{{ t(row.acknowledgment.contribution) }}</dd>
         </dl>
       </section>
 
       <section>
-        <h2>3 · Reproducibility</h2>
-        <p>{{ row.reproducibility }}</p>
+        <h2>3 · {{ t('Reproducibility') }}</h2>
+        <p>{{ t(row.reproducibility) }}</p>
       </section>
 
       <section class="theorem-paper__formulas">
-        <h2>4 · Formulas</h2>
+        <h2>4 · {{ t('Formulas') }}</h2>
         <pre class="theorem-paper__formula"><code>{{ row.formulas.join('\n') }}</code></pre>
         <p class="theorem-paper__source-home"><code>{{ row.formulaSource }}</code></p>
       </section>
 
       <section v-if="sourceOf(row)" class="theorem-paper__source">
-        <h2>5 · Code</h2>
+        <h2>5 · {{ t('Code') }}</h2>
         <p class="theorem-paper__source-home">
           <code>{{ row.provedBy }}</code> · <code>{{ sourceOf(row)!.home }}/index.ts</code>
         </p>
@@ -115,8 +119,8 @@ const figureOf = (row: TheoremPageRow) => theoremFigure(row.slug)
       </section>
 
       <footer class="theorem-paper__cite">
-        <h2>Cite as</h2>
-        <p>{{ row.citation }}</p>
+        <h2>{{ t('Cite as') }}</h2>
+        <p>{{ t(row.citation) }}</p>
       </footer>
 
       <PageComputedGaps page-kind="theorem" />
