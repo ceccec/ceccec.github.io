@@ -2357,6 +2357,11 @@ export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildM
       // theorem is part of a Clay problem, and what it claims, lives in the theorem itself (its statement + its gap).
       demarcation: demarcate(p.name),
       gap: (p as { gap?: string }).gap ?? '', // the named open step stated in the theorem itself
+      // FULL TRANSPARENCY (user: "let anyone see the exact formulas how the solutions were computed") — the exact
+      // computational methods and the honest boundary are exposed verbatim, so anyone can read HOW each modeled
+      // challenge was computed and see for themselves that it is a computation, not a §5(a) proof.
+      methodList: p.challengeMethod as readonly string[],
+      boundary: (p as { boundary?: string }).boundary ?? '',
       openForPrize: p.status !== 'solved-external',
       receipt: p.receipt }))
     const allComputable = paths.every((p) => p.computablePath)
