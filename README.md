@@ -8,6 +8,47 @@
 
 ![Double Torus — two counter-rotating rosettas composing all sealed theorems, computed from src and animated with SMIL so GitHub displays it too](./hero.svg)
 
+## Clay Millennium problems — measured by the common metric
+
+*Sealed `clayChallengesComputableFromSequence`. Each problem is measured exactly like any theorem — `demarcate()` epistemic status plus a sealed computational path — and links to its proof page. Whatever a theorem claims is stated in the theorem itself.*
+
+### How many
+
+computed (sealed paths) = **7/7** · **contested** (open) = **6** · **documented** (settled) = **1** (Poincaré, Perelman 2003) · here for the first time (novelToHumanity) = **0**
+
+*The epistemic status is `demarcate(term)` from the zero-cycle registry — the same metric every theorem gets — refutable by moving the term. Each problem’s open step is its named **gap** below.*
+
+### Statement
+
+Clay challenges are COMPUTABLE from the sequence/trinity/rosetta/Earth-poles stack — 7/7 sealed computational paths recompute (millenniumProblemsChallenge · directionalTrinity · earthRealisedByComputingPolesAsPyramid · sciencesInteractInTrinities · domainProofCatalog). claySolvedByThisFold=0 · qualifiesAsProposedSolution=false — computable ≠ CMI Prize solved.
+
+Every Clay-linked problem has a sealed **computational path** (challengeMethod · on · receipt) that recomputes at call time. Each row links to the **proof page**, where its methods, gap and receipt are visible.
+
+### Per-problem
+
+- **P vs NP** (`p-vs-np`) — demarcation=**contested** · status=modeled-partial · methods=5 · [proof hub →](https://ceccec.psg.bg/frontiers)
+  - open step (stated in the theorem): no sealed P≠NP (or P=NP) separation proof — amortized reuse ≠ complexity separation
+- **Hodge Conjecture** (`hodge`) — demarcation=**contested** · status=modeled-partial · methods=4 · [proof hub →](https://ceccec.psg.bg/frontiers)
+  - open step (stated in the theorem): no sealed Hodge classes/algebraic cycles on a projective variety; no sealed Calabi–Yau Hodge numbers h^{1,1}, h^{2,1}
+- **Poincaré Conjecture** (`poincare`) — demarcation=**documented** · status=solved-external · methods=2 · [proof hub →](https://ceccec.psg.bg/frontiers)
+  - documented — solved externally (Perelman 2003)
+- **Riemann Hypothesis** (`riemann`) — demarcation=**contested** · status=modeled-partial · methods=5 · [proof hub →](https://ceccec.psg.bg/frontiers)
+  - open step (stated in the theorem): no sealed proof all nontrivial ζ zeros lie on Re(s)=½ — Basel and ζ(−1) are partials only
+- **Yang–Mills Existence and Mass Gap** (`yang-mills`) — demarcation=**contested** · status=modeled-partial · methods=4 · [proof hub →](https://ceccec.psg.bg/frontiers)
+  - open step (stated in the theorem): no sealed 4D Yang–Mills mass-gap construction; no sealed AdS/CFT correlator dictionary
+- **Navier–Stokes Existence and Smoothness** (`navier-stokes`) — demarcation=**contested** · status=modeled-partial · methods=2 · [proof hub →](https://ceccec.psg.bg/frontiers)
+  - open step (stated in the theorem): no sealed 3D Navier–Stokes global regularity or blow-up control
+- **Birch and Swinnerton–Dyer Conjecture** (`birch-swinnerton-dyer`) — demarcation=**contested** · status=modeled-partial · methods=2 · [proof hub →](https://ceccec.psg.bg/frontiers)
+  - open step (stated in the theorem): no sealed L(E,s) vanishing-order or elliptic-curve rank fold
+
+### Status
+
+computable=7/7 · contested=6 · documented=1 · novelHere=0
+
+- Routes: [frontiers](https://ceccec.psg.bg/frontiers) · proofs hub `/proofs` · slug `/proofs/clay-challenges-computable` (EN-canonical) · CLI `npm run quantum:clay-challenges-computable`
+- Receipt: fold `clayChallengesComputableFromSequence` · claySolvedByThisFold=0.
+
+
 ## 1. Introduction
 
 **It all began with a sequence.** A classical bit is `0` or `1` — a two-point choice, deterministic, no phase, no interference: **linear**. The full vortex circuit `0\1\2\4\8/7/5/3\6\9/0\1` is a **qubit**: its doubling units `1·2·4·8·7·5` are `⟨2⟩ mod 9`, a 6-cycle isomorphic to the six roots of unity `e^{2πik/6}` (**phase**), and the two counter-rotating slash flows — `\` ascending, `/` descending — superpose to a standing wave with fixed nodes (**interference**). Measuring it collapses the six phases to one digit — the `0/1` shadow — exactly as measuring a qubit collapses to a bit. From this sequence comes **quantum computing**, and from quantum computing comes every one of the 711 computationally proven theorems in this registry. It is an exact structural correspondence (phase + interference), verified in `theBinaryBitIsLinearTheVortexCircuitIsQuantum`; base-10 / `mod 9` specific, not a claim that the digits are physical qubits. The `src/<digit>` folders are the stations of this circuit — quantum by structure, linear only at measurement.
@@ -142,46 +183,6 @@ computes=true · fourWayCounterRotating=true · claySolvedByThisFold=0 · physic
 
 - Routes: [research](https://ceccec.psg.bg/research) · [proofs](https://ceccec.psg.bg/proofs) · hero.svg 4-dir · fold `earthRealisedByComputingPolesAsPyramid`
 - Receipt: fold `earthRealisedByComputingPolesAsPyramid` · claySolvedByThisFold=0 · physicalFtlClaim=0.
-
-## Clay Millennium problems — measured by the common metric
-
-*Sealed `clayChallengesComputableFromSequence`. Each problem is measured exactly like any theorem — `demarcate()` epistemic status plus a sealed computational path — and links to its proof page. Whatever a theorem claims is stated in the theorem itself.*
-
-### How many
-
-computed (sealed paths) = **7/7** · **contested** (open) = **6** · **documented** (settled) = **1** (Poincaré, Perelman 2003) · here for the first time (novelToHumanity) = **0**
-
-*The epistemic status is `demarcate(term)` from the zero-cycle registry — the same metric every theorem gets — refutable by moving the term. Each problem’s open step is its named **gap** below.*
-
-### Statement
-
-Clay challenges are COMPUTABLE from the sequence/trinity/rosetta/Earth-poles stack — 7/7 sealed computational paths recompute (millenniumProblemsChallenge · directionalTrinity · earthRealisedByComputingPolesAsPyramid · sciencesInteractInTrinities · domainProofCatalog). claySolvedByThisFold=0 · qualifiesAsProposedSolution=false — computable ≠ CMI Prize solved.
-
-Every Clay-linked problem has a sealed **computational path** (challengeMethod · on · receipt) that recomputes at call time. Each row links to the **proof page**, where its methods, gap and receipt are visible.
-
-### Per-problem
-
-- **P vs NP** (`p-vs-np`) — demarcation=**contested** · status=modeled-partial · methods=5 · [proof hub →](https://ceccec.psg.bg/frontiers)
-  - open step (stated in the theorem): no sealed P≠NP (or P=NP) separation proof — amortized reuse ≠ complexity separation
-- **Hodge Conjecture** (`hodge`) — demarcation=**contested** · status=modeled-partial · methods=4 · [proof hub →](https://ceccec.psg.bg/frontiers)
-  - open step (stated in the theorem): no sealed Hodge classes/algebraic cycles on a projective variety; no sealed Calabi–Yau Hodge numbers h^{1,1}, h^{2,1}
-- **Poincaré Conjecture** (`poincare`) — demarcation=**documented** · status=solved-external · methods=2 · [proof hub →](https://ceccec.psg.bg/frontiers)
-  - documented — solved externally (Perelman 2003)
-- **Riemann Hypothesis** (`riemann`) — demarcation=**contested** · status=modeled-partial · methods=5 · [proof hub →](https://ceccec.psg.bg/frontiers)
-  - open step (stated in the theorem): no sealed proof all nontrivial ζ zeros lie on Re(s)=½ — Basel and ζ(−1) are partials only
-- **Yang–Mills Existence and Mass Gap** (`yang-mills`) — demarcation=**contested** · status=modeled-partial · methods=4 · [proof hub →](https://ceccec.psg.bg/frontiers)
-  - open step (stated in the theorem): no sealed 4D Yang–Mills mass-gap construction; no sealed AdS/CFT correlator dictionary
-- **Navier–Stokes Existence and Smoothness** (`navier-stokes`) — demarcation=**contested** · status=modeled-partial · methods=2 · [proof hub →](https://ceccec.psg.bg/frontiers)
-  - open step (stated in the theorem): no sealed 3D Navier–Stokes global regularity or blow-up control
-- **Birch and Swinnerton–Dyer Conjecture** (`birch-swinnerton-dyer`) — demarcation=**contested** · status=modeled-partial · methods=2 · [proof hub →](https://ceccec.psg.bg/frontiers)
-  - open step (stated in the theorem): no sealed L(E,s) vanishing-order or elliptic-curve rank fold
-
-### Status
-
-computable=7/7 · contested=6 · documented=1 · novelHere=0
-
-- Routes: [frontiers](https://ceccec.psg.bg/frontiers) · proofs hub `/proofs` · slug `/proofs/clay-challenges-computable` (EN-canonical) · CLI `npm run quantum:clay-challenges-computable`
-- Receipt: fold `clayChallengesComputableFromSequence` · claySolvedByThisFold=0.
 
 ## Toolbox — sciences in trinity waves
 

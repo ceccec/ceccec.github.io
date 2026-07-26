@@ -493,6 +493,10 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
   const { lens, census, paperList, math, efficiency, sitemap, mono, template } = core
   const { labels } = math
   return [
+    // Millennium challenges placed DIRECTLY BELOW THE HERO (user): the headline computed result is the first
+    // section a visitor sees. Shared by home + README (sameSections gate keeps both identical).
+    ...clayChallengesComputableMarkdownSection(buildMatrix(), linkBase),
+    '',
     '## 1. Introduction',
     '',
     '**It all began with a sequence.** A classical bit is `0` or `1` — a two-point choice, deterministic, no phase, no interference: **linear**. The full vortex circuit `0\\1\\2\\4\\8/7/5/3\\6\\9/0\\1` is a **qubit**: its doubling units `1·2·4·8·7·5` are `⟨2⟩ mod 9`, a 6-cycle isomorphic to the six roots of unity `e^{2πik/6}` (**phase**), and the two counter-rotating slash flows — `\\` ascending, `/` descending — superpose to a standing wave with fixed nodes (**interference**). Measuring it collapses the six phases to one digit — the `0/1` shadow — exactly as measuring a qubit collapses to a bit. From this sequence comes **quantum computing**, and from quantum computing comes every one of the '
@@ -507,7 +511,6 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     ...anglePolarityReadmeHomeMarkdownSection(buildMatrix(), linkBase),
     ...twoBitsFreeSocietySupportMarkdownSection(buildMatrix(), linkBase),
     ...earthPolesPyramidMarkdownSection(buildMatrix(), linkBase),
-    ...clayChallengesComputableMarkdownSection(buildMatrix(), linkBase),
     ...toolboxSciencesTrinityWavesMarkdownSection(buildMatrix(), linkBase),
     '',
     '## The journal',
