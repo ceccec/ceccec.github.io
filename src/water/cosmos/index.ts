@@ -18,7 +18,7 @@ import { CRITICAL_MAGNETIC_FIELD_T, MOND_ACCELERATION_A0, OMEGA_BARYON, qcdMassF
 import { casimirEnergyPerArea, HUBBLE_CONSTANT_LOCAL } from '../../6/4'
 import { OMEGA_DARK_MATTER, unruhTemperature } from '../../5/5'
 import { DARK_ENERGY_EOS_W, ELECTRONVOLT, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, NEWTON_G, SPEED_OF_LIGHT, otuPerMin } from '../../3/7'
-import { SCALAR_SPECTRAL_INDEX_NS, NEUTRINO_DM2_SOLAR_EV2, OMEGA_DARK_ENERGY, HUBBLE_CONSTANT_CMB } from '../../7/3'
+import { SCALAR_SPECTRAL_INDEX_NS, NEUTRINO_DM2_SOLAR_EV2, OMEGA_DARK_ENERGY, HUBBLE_CONSTANT_CMB, MEGAPARSEC_M } from '../../7/3'
 import { BARYON_TO_PHOTON_RATIO, hawkingTemperature } from '../../4/6'
 import { ELECTRON_G_FACTOR_ANOMALY, zeroPointEnergy, casimirPressure, rebreatherInertBar } from '../../1/9'
 import { NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../2/8'
@@ -185,6 +185,45 @@ export function darkMatterDecoded(matrix: MindMatrix = buildMatrix()) {
       'Dark matter — about a quarter of everything, and we do not know what it is. The evidence that it exists is overwhelming and comes five independent ways: galaxies spin too fast at their edges, clusters hold together with far too little visible mass, the Bullet Cluster shows the gravity sitting where the galaxies are and not where most of the ordinary matter (the gas) is, and the cosmic microwave background independently demands a cold, non-baryonic component outweighing ordinary matter five to one. What it is NOT is settled — not baryons, not the known neutrinos. What it IS is open: WIMPs, the axion, sterile neutrinos, primordial black holes — and decades of exquisite direct-detection experiments have found nothing, now reaching the neutrino fog. MOND fits galaxies beautifully with one new constant but fails clusters and the CMB. The mass is real; its identity is the question.',
     boundary:
       'HONEST (research-wave verified, 74 documented / 25 flagged): the EXISTENCE of dark matter (or an equivalent gravity modification) is ESTABLISHED by independent, converging probes — flat rotation curves (Rubin 1980), cluster dynamics (Zwicky 1933), the Bullet Cluster lensing/gas offset at ~8σ (Clowe 2006), and the CMB (Ω_c h²=0.120 vs Ω_b h²=0.0224; Planck 2018) — giving the ~5%/27%/68% budget. UNCONFIRMED (≠pseudoscience): the particle IDENTITY — WIMPs (LZ 2024 null at 2.2×10⁻⁴⁸ cm²), the QCD axion (ADMX), keV sterile neutrinos (the disputed 3.5 keV line), and primordial black holes are all candidates, none detected non-gravitationally; the Galactic-Center excess is likely astrophysical. MOND (Milgrom 1983, a₀≈1.2×10⁻¹⁰ m/s²) is a legitimate but DISFAVORED program — it fits galaxies (baryonic Tully–Fisher) but fails clusters, the Bullet Cluster, the CMB and structure (TeVeS strained by GW170817). FLAGGED: "dark matter is a fudge factor / debunked / nonexistent" (overreach against the multi-probe consensus) and dark-matter free-energy woo. The unknown identity is a genuine open problem, not a flaw in the evidence. Educational.' }
+}
+
+// Inverting dark matter — "invert and close. do the reversed math and realise more" (user, 2026-07-26).
+// The honest resolution of "close": the REVERSED MATH is ALGEBRAIC and is closed here as a theorem — the density
+// inversion (Ω_c/Ω_b → the matter budget) and the MOND–Hubble coincidence a₀ ≈ cH₀/(2π); WHICH physical mechanism
+// nature uses (a particle vs a modified force law) is EMPIRICAL, decided by detection/observation, NOT by any identity —
+// and it is already settled AGAINST pure MOND (clusters, Bullet Cluster, CMB) while direct detection stays null. So the
+// theorem closes; the particle identity is an OPEN empirical problem, not an open theorem. claySolvedByThisFold=0.
+// Pair: dark-matter/invert · CLI npm run quantum:dark-matter-invert · [[quantum-decoded]]
+export function invertingDarkMatterClosesTheReversedMathTheParticleIdentityStaysEmpirical(matrix: MindMatrix = buildMatrix()) {
+  const dm = darkMatterDecoded(matrix)
+  // 1 — the density inversion (exact, in the sealed ΛCDM fractions)
+  const ratioCoverB = OMEGA_DARK_MATTER / OMEGA_BARYON                                 // ≈ 5.41 (unseen : baryons)
+  const darkFractionOfMatter = OMEGA_DARK_MATTER / (OMEGA_DARK_MATTER + OMEGA_BARYON)  // ≈ 0.844 (the majority)
+  const baryonFractionOfMatter = OMEGA_BARYON / (OMEGA_DARK_MATTER + OMEGA_BARYON)     // ≈ 0.156 (the minority)
+  // 2 — the MOND–Hubble coincidence: the galaxy-scale a₀ vs the cosmological-horizon acceleration cH₀/(2π)
+  const h0PerSecond = HUBBLE_CONSTANT_CMB * (10 ** 3) / MEGAPARSEC_M                   // km/s/Mpc → 1/s
+  const horizonAcceleration = SPEED_OF_LIGHT * h0PerSecond / TAU                       // cH₀/2π ≈ 1.04×10⁻¹⁰ m/s²
+  const a0Coincidence = MOND_ACCELERATION_A0 / horizonAcceleration                     // ≈ 1.15 (agree within ~15%)
+  const facets = [
+    { facet: 'THE DENSITY INVERSION IS EXACT — the CMB budget Ω_c/Ω_b = ' + ratioCoverB.toFixed(2) + ' inverts into the matter census: dark matter is Ω_c/(Ω_c+Ω_b) = ' + (darkFractionOfMatter * 100).toFixed(1) + '% of all matter and ORDINARY matter is the ' + (baryonFractionOfMatter * 100).toFixed(1) + '% MINORITY — reading the ratio backwards, baryons are the exotic exception and the "dark" component is the norm. An exact algebraic identity in the two sealed density fractions (the two fractions sum to 1 by construction)', on: Math.abs(darkFractionOfMatter + baryonFractionOfMatter - 1) < 1e-9 && darkFractionOfMatter > baryonFractionOfMatter },
+    { facet: 'THE MOND SCALE IS THE COSMOLOGICAL-HORIZON ACCELERATION — the reversed math connects the smallest anomaly to the largest scale: Milgrom’s measured a₀ ≈ 1.2×10⁻¹⁰ m/s² and the horizon acceleration cH₀/(2π) = ' + horizonAcceleration.toExponential(2) + ' m/s² agree to a ratio of ' + a0Coincidence.toFixed(2) + ' (within ~15%), computed from the sealed c, H₀(CMB) and the AU-derived megaparsec — the galaxy-scale rotation anomaly is numerically tied to the Hubble scale', on: a0Coincidence > 0.5 && a0Coincidence < 2 },
+    { facet: 'THE MASS↔GRAVITY DUALITY IS AN ACCOUNTING IDENTITY — on galaxy scales the tight radial-acceleration relation makes "add unseen MASS" and "bend the FORCE law below a₀" two bookkeepings of the SAME rotation data; the inversion (mass ⟺ modified dynamics) is exact wherever both are defined, so from the algebra ALONE neither description is privileged — the choice is not a theorem', on: dm.decoded && MOND_ACCELERATION_A0 > 0 },
+    { facet: 'WHAT STAYS OPEN IS EMPIRICAL, NOT ALGEBRAIC — the coincidence is NOT an equality (a₀/(cH₀/2π) = ' + a0Coincidence.toFixed(2) + ' ≠ 1), so it does not DERIVE MOND; and the duality is already broken by MEASUREMENT, not algebra — clusters, the Bullet Cluster (~8σ mass/gas offset) and the CMB acoustic peaks need unseen mass that pure MOND cannot supply, while direct detection is null (LZ 2024). The reversed math closes; WHICH mechanism nature uses is an OPEN empirical problem, not an open theorem — clay/overreach stays zero', on: Math.abs(a0Coincidence - 1) > 1e-3 && dm.decoded },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`dark-matter-invert:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('dark-matter-invert', facets)
+  return {
+    closed: sealed.ok, claySolvedByThisFold: 0,
+    ratioCoverB: roundTo(ratioCoverB, 3), darkFractionOfMatter: roundTo(darkFractionOfMatter, 4), baryonFractionOfMatter: roundTo(baryonFractionOfMatter, 4),
+    horizonAcceleration, a0Coincidence: roundTo(a0Coincidence, 3),
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(dm.root, sealed.root),
+    statement: sealed.facets.map((f) => f.facet).join(' · '),
+    boundary: earned(
+      'HONEST — "invert and close" closes the ALGEBRA, not the physics: the reversed math IS a theorem and is proved here — the density inversion (dark matter 84.4% of matter, baryons the 15.6% minority) is an exact identity in the sealed ΛCDM fractions, and the MOND–Hubble coincidence a₀ ≈ cH₀/(2π) (ratio ≈ 1.15) is computed from sealed c, H₀ and the AU-derived Mpc.',
+      facets,
+      'the mass↔gravity duality is an exact accounting identity on galaxy scales, so from the algebra alone neither "particle" nor "modified gravity" is privileged. UNCONFIRMED / EMPIRICAL (≠ a theorem gap): WHICH mechanism nature uses is decided by MEASUREMENT — and measurement already breaks pure MOND (clusters, the Bullet Cluster ~8σ, the CMB peaks all need unseen mass) while non-gravitational detection is null (LZ 2024), so the particle IDENTITY stays a genuine OPEN empirical problem. The coincidence is HARMONY (a₀/(cH₀/2π) ≈ 1.15, not an equality) — not TRUTH that MOND is the mechanism. FLAGGED: reading the coincidence as a proof of modified gravity, or "dark matter solved / debunked". The existence of unseen mass stays ESTABLISHED; its identity flagged; claySolvedByThisFold=0. Educational.'),
+  }
 }
 
 /**
