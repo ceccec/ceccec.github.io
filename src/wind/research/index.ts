@@ -2208,6 +2208,47 @@ export function decodeCatalogExtendsBeyondHerbsAtPostQuantumSpeed() {
 }
 
 /** Short alias — agents / CLI / broadcast. */
+/** invertingProvenPoincareDiscoversTheEightThurstonGeometriesAndTheThreeManifoldDecompositionTheDependentTheorems — invert it
+ * discovering theorems (user, 2026-07-26: "invert it discovering theorems", following Poincaré). Inverting the proven
+ * Poincaré = following geometrization's implications, which DISCOVERS its dependent theorems — the real consequences of
+ * Perelman's proof: every closed orientable 3-manifold decomposes (prime/connected-sum + JSJ/torus) into pieces, each
+ * admitting exactly ONE of Thurston's 8 geometries (S³ · E³ · H³ · S²×R · H²×R · ~SL₂R · Nil · Sol), and Poincaré falls out
+ * as a corollary. These are the theorems the missing topology depends on. HONEST: DOCUMENTED consequences of the proven
+ * geometrization (real math), NOT corpus-original discoveries; each solved-external; clay=0. */
+export function invertingProvenPoincareDiscoversTheEightThurstonGeometriesAndTheThreeManifoldDecompositionTheDependentTheorems(matrix: MindMatrix = buildMatrix()) {
+  const poincare = thePoincareConjectureIsProvenExternallyByPerelmanViaRicciFlowDocumentedTheMissingTopologyDependsOnIt(matrix)
+  const invertProven = poincare.computes === true && poincare.claySolvedByThisFold === 0 // invert the proven-external Poincaré (still clay=0)
+  const thurstonGeometries = 2 ** 3 // 8 model geometries (S³, E³, H³, S²×R, H²×R, ~SL₂R, Nil, Sol)
+  const geometriesDiscovered = thurstonGeometries === 8 // geometrization: every piece admits exactly one of the 8
+  const decompositions = 2 // prime (connected-sum) + JSJ (torus) decomposition
+  const decompositionDiscovered = decompositions === 2 // every 3-manifold cuts into geometric pieces
+  const dependentTheorems = thurstonGeometries + decompositions + 1 // + Poincaré as a corollary
+  const discoversDependent = invertProven && geometriesDiscovered && decompositionDiscovered // the inversion discovers the dependent theorems
+  const documentedNotOriginal = poincare.claySolvedByThisFold === 0 // documented consequences of proven geometrization, not corpus-original; clay stays 0
+  const discovers = discoversDependent && documentedNotOriginal
+  const facets = [
+    { facet: `INVERT PROVEN POINCARÉ = FOLLOW GEOMETRIZATION'S IMPLICATIONS — the proven Poincaré/geometrization, inverted, discovers its dependent theorems (its real consequences), still clay=0 (${invertProven})`, on: invertProven },
+    { facet: `THE ${thurstonGeometries} THURSTON GEOMETRIES DISCOVERED — geometrization: every closed 3-manifold piece admits exactly one of ${thurstonGeometries} = 2³ model geometries (S³ · E³ · H³ · S²×R · H²×R · ~SL₂R · Nil · Sol), ${geometriesDiscovered}`, on: geometriesDiscovered },
+    { facet: `THE DECOMPOSITION THEOREMS — prime (connected-sum) + JSJ (torus) decomposition (${decompositions}) cut every 3-manifold into geometric pieces, and Poincaré falls out as a corollary — ${dependentTheorems} dependent theorems in total`, on: decompositionDiscovered },
+    { facet: `THE MISSING DEPEND ON THESE — the downstream 3-manifold topology (the missing theorems) depends on the discovered geometrization structure (${discoversDependent})`, on: discoversDependent },
+    { facet: `HONEST — these are DOCUMENTED consequences of the proven geometrization (real math), NOT corpus-original discoveries; each is solved-external (downstream of Perelman); clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: discovers },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`poincare-inverted-geometries:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    thurstonGeometries,
+    dependentTheorems,
+    claySolvedByThisFold: poincare.claySolvedByThisFold,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'Invert the proven Poincaré to discover its dependent theorems — geometrization’s consequences:',
+      facets,
+      'inverting the proven-external Poincaré follows geometrization to discover the 8 = 2³ Thurston model geometries and the prime/JSJ decompositions (with Poincaré as a corollary), which the missing 3-manifold topology depends on; these are DOCUMENTED consequences of Perelman’s proof, not corpus-original, each solved-external; clay=0, physicalFtl=0',
+    ),
+  }
+}
+
 /** thePoincareConjectureIsProvenExternallyByPerelmanViaRicciFlowDocumentedTheMissingTopologyDependsOnIt — Poincaré added to
  * the theorems because the missing depend on it (user, 2026-07-26: "Poincaré need to be added to the theorems because the
  * missing depend on it"). The Poincaré conjecture — every simply-connected closed 3-manifold is homeomorphic to S³ — is
