@@ -1621,12 +1621,28 @@ export function deepResearchChatTurn(query: string, matrix: MindMatrix = buildMa
   const seed = portalChatRanked(query, matrix) // hop 0 — the single best fold
   const expandedQuery = `${query} ${seed.answer}` // Rocchio-style expansion with the seed's terms
   const neighborhood = privateSearchRanksByBM25IndustryStandard(expandedQuery).results.slice(0, 3 + 2) // hop 1 — the crosslinked neighbourhood
+  // SYNTHESIS (deep research improved itself, 2026-07-26: "let deep research improve itself first"): NOT an echo of the
+  // neighbourhood titles — the EMERGENT THEME. The seed + every neighbour vote their content words; the terms carried by
+  // MORE THAN ONE fold are what the crosslinked neighbourhood is collectively ABOUT, ranked by that vote. That is a real
+  // synthesis (the shared thread), deterministic and local. Query terms are excluded (the answer, not the question).
+  const stop = new Set(['the', 'and', 'that', 'this', 'with', 'from', 'for', 'are', 'not', 'a432', 'proof', 'theorem', ...query.toLowerCase().split(/[^a-z0-9]+/)])
+  const vote = new Map<string, number>()
+  const seedText = typeof seed.answer === 'string' ? seed.answer : String((seed.answer as { answer?: string }).answer ?? '')
+  for (const text of [seedText, ...neighborhood.map((r) => r.title)]) {
+    for (const term of new Set(text.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length >= 4 && !stop.has(w)))) {
+      vote.set(term, (vote.get(term) ?? 0) + 1)
+    }
+  }
+  const ranked = [...vote.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+  const shared = ranked.filter(([, n]) => n >= 2).map(([term]) => term) // the emergent theme — terms ≥2 folds agree on
+  const synthesis = (shared.length >= 3 ? shared : [...shared, ...ranked.filter(([, n]) => n < 2).map(([t]) => t)]).slice(0, 3 + 2)
   return {
     query,
     seed: seed.answer,
     source: seed.source,
     neighborhood: neighborhood.map((r) => ({ title: r.title, source: r.provedBy, slug: r.slug })),
-    synthesis: neighborhood.map((r) => r.title),
+    synthesis, // the emergent theme (shared terms), not a title echo
+    sharedThemeSize: shared.length, // how many terms ≥2 folds actually agree on — the strength of the synthesis
     address: toUuid(`deep-research:${query}`),
   }
 }
