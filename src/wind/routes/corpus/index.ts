@@ -1051,10 +1051,18 @@ export function theoremFormulaCodeDual(row: {
   readonly provedBy: string
   readonly home: string
   readonly proofClass: string
+  // The theorem's OWN algebraic statement — the identity/conjecture it is ABOUT (RH: Re(s)=½ · BSD: ord L(E,s)=rank …).
+  // Optional and filled per-theorem (incrementally, "improving all on the way"): when present it is shown FIRST as the
+  // real identity, above the generic proof-path form; when absent the theorem's headline + proof text carry the content.
+  readonly algebraicStatement?: string
 }): { readonly formulas: readonly string[]; readonly formulaSource: string; readonly pair: 'formula/code' } {
   const codePath = `${row.home}/index.ts`
+  const identity = typeof row.algebraicStatement === 'string' && row.algebraicStatement.length > 0
+    ? [`identity: ${row.algebraicStatement}`]
+    : []
   return {
     formulas: [
+      ...identity,
       `${row.provedBy}(matrix) → { computes, facets[], root }`,
       `∀ facet ∈ facets: facet.on  (${row.proofClass})`,
       `foldPair(toUuid("thm:${row.slug}"), toUuid("code:${row.provedBy}")).merged`,
@@ -1114,7 +1122,9 @@ function computeTheoremPageRows(matrix: MindMatrix): TheoremPageRow[] {
       const prov = provBy.get(atom.theorem)
       const leansCited = prov?.leansCited ?? /\bcited\b/i.test(atom.proof)
       const formulaCode = theoremFormulaCodeDual({
-        slug, theorem: atom.theorem, provedBy: wave.provedBy, home: atom.home, proofClass: atom.proofClass })
+        slug, theorem: atom.theorem, provedBy: wave.provedBy, home: atom.home, proofClass: atom.proofClass,
+        // incremental-fill hook: any registry atom that supplies its real identity surfaces it uniformly, all theorems
+        algebraicStatement: (atom as { algebraicStatement?: string }).algebraicStatement })
       return {
         slug, theorem: atom.theorem, proof: atom.proof, proofClass: atom.proofClass, provedBy: wave.provedBy, home: atom.home, spec: specBy.get(atom.theorem),
         humanityNovel: prov?.humanityNovel ?? false,
