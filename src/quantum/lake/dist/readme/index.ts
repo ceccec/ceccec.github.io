@@ -388,6 +388,11 @@ export function clayChallengesComputableMarkdownSection(
     // CANONICAL PROOF FORM (user): the proof-path FORMULAS — the same theoremFormulaCodeDual the theorem pages and the
     // registry render, so frontend and backend are one representation (methods are secondary, on the theorem page).
     `  - **canonical proof form**: ${p.formula.map((fm) => '`' + fm + '`').join(' · ')}`,
+    // THE FACETS, AS THE FOLD ARGUES THEM (user: "why does the page not look like the report?") — each fᵢ is the real
+    // identity the fold decides, with its live verdict; the gap algebra states the quantifier shape + cited barriers.
+    // Rendered only when the sealed row supplies them (incremental fill, same law as algebraicStatement).
+    ...p.facetAlgebra.map((fa) => `  - ${fa.on ? '✓' : '✗'} \`${fa.f}\``),
+    ...p.gapAlgebra.map((g) => `  - gap algebra: \`${g}\``),
     p.gap
       ? `  - open step (computed gap, refutable): ${mdSafeText(p.gap)}`
       : '  - documented — solved externally (Perelman 2003)',

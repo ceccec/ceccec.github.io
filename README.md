@@ -60,6 +60,14 @@ Each problem below shows its **statement (algebraic)** — the precise mathemati
 - **P vs NP** (`p-vs-np`) — demarcation=**contested** · status=modeled-partial · methods=5 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - **statement (algebraic)**: P = NP ? — is every problem whose solution is verifiable in polynomial time also solvable in polynomial time, where P = ⋃ₖ TIME(nᵏ) and NP = ⋃ₖ NTIME(nᵏ). Conjectured: P ≠ NP.
   - **canonical proof form**: `theorem  ⟺  f₁ ∧ f₂ ∧ … ∧ fₙ` · `each fᵢ:  a closed-form identity, decided by exact arithmetic` · `proof by exhaustion:  domain finite, every case decided (not sampled)  ⊢  theorem  ∎`
+  - ✓ `f₁ NP-verify — ∀cl∈φ ∃lit∈cl: sign(lit)=a(|lit|) ⊢ φ(a)=1 · cost O(|φ|) poly — membership half only`
+  - ✓ `f₂ reuse≠search — scan n=108 → hits 0 · content-address 1 → hit · ratio n/1 — presupposes witness w already in hand`
+  - ✓ `f₃ amortize — lim(m→∞) c₀/(m+1) = 0 · TIME(n^k) is worst-case fresh-instance ⊢ reuse ∉ separation`
+  - ✓ `f₄ involution — foldPair∘foldPair = id on merged root · structural symmetry, not one-way-function cryptanalysis`
+  - gap algebra: `P≠NP ⟺ ∃L∈NP ∀k ∀M∈TIME(n^k): L(M)≠L — a ∀ over an infinite machine domain ⊢ proof-by-exhaustion structurally unavailable`
+  - gap algebra: `barriers (cited): ∃A,B: P^A=NP^A ∧ P^B≠NP^B (Baker–Gill–Solovay 1975) · natural proofs ⊥ strong PRGs (Razborov–Rudich 1994) · algebrization (Aaronson–Wigderson 2008)`
+  - gap algebra: `closure asymmetry: P=NP is ∃ (one poly SAT algorithm seals) · P≠NP is ∀ (super-poly lower bound over every machine)`
+  - gap algebra: `search half: witness space 2^p(n) — O(1) lookup presupposes exactly what the search must produce`
   - open step (computed gap, refutable): no sealed P≠NP (or P=NP) separation proof — amortized reuse ≠ complexity separation
   - boundary: MODELED CHALLENGE / partial computational attack: SAT verifies in poly (NP membership); content-address O(1) vs brute scan; efficiencyScalesToInfinityAtNoCostOnReuse — amortized reuse (memo hit → marginal cost 0; answers÷tokens unbounded at tokens=0) while quantumAdvantageBenchmark stays !separated. NOT a P≠NP (or P=NP) proof. NOT physical QM speedup / infinite FLOPS. Encrypt round-trip is structural foldPair, not cryptanalysis of one-way functions.
 - **Hodge Conjecture** (`hodge`) — demarcation=**contested** · status=modeled-partial · methods=4 · [proof hub →](https://ceccec.psg.bg/frontiers)

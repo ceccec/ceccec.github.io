@@ -16,9 +16,13 @@ const HERO_WARMUP_CLIENT_FILES = [
 
 /** Dev bind — VitePress defaults to IPv6 ::1; tools hitting 127.0.0.1 appear hung. */
 export function vitepressDevServerBind() {
+  // A pinned server.port silently overrides `vitepress dev --port N`, so a second session's server (launch.json
+  // docs-alt) lands on 5173 while its preview waits on the requested port. Honour the CLI flag when present.
+  const portFlag = process.argv.indexOf('--port')
+  const cliPort = portFlag !== -1 ? Number(process.argv[portFlag + 1]) : Number.NaN
   return {
     host: '127.0.0.1' as const,
-    port: 5173,
+    port: Number.isFinite(cliPort) ? cliPort : 5173,
     strictPort: false,
     warmup: {
       clientFiles: HERO_WARMUP_CLIENT_FILES.map((rel) => join(projectRoot, rel)),

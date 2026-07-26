@@ -1168,6 +1168,13 @@ export type MillenniumProblemChallenge = {
   // the frontend shows each problem's real formula, not the generic proof-path template. This is what the conjecture
   // ASSERTS; whether this corpus proves it is answered separately by status + gap (it does not — claySolvedByThisFold=0).
   algebraicStatement?: string
+  // PER-FACET ALGEBRA (incremental fill, same law as algebraicStatement): each fᵢ of the challenge conjunction as its
+  // real closed-form identity, PAIRED with the live boolean that decides it — a join of computed outputs, never prose
+  // without a backing facet. This is what lets a page render the proof the way the fold actually argues it.
+  facetAlgebra?: readonly { readonly f: string; readonly on: boolean }[]
+  // GAP ALGEBRA (documented, cited): the quantifier shape of the open step plus the sealed external barrier theorems —
+  // why these methods cannot close it. Citations of the literature, not claims; the gap stays open (claySolved=0).
+  gapAlgebra?: readonly string[]
 }
 
 /**
@@ -1874,7 +1881,21 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
           'MODELED CHALLENGE / partial computational attack: SAT verifies in poly (NP membership); content-address O(1) vs brute scan; efficiencyScalesToInfinityAtNoCostOnReuse — amortized reuse (memo hit → marginal cost 0; answers÷tokens unbounded at tokens=0) while quantumAdvantageBenchmark stays !separated. NOT a P≠NP (or P=NP) proof. NOT physical QM speedup / infinite FLOPS. Encrypt round-trip is structural foldPair, not cryptanalysis of one-way functions.',
         status: 'modeled-partial',
         gap: 'no sealed P≠NP (or P=NP) separation proof — amortized reuse ≠ complexity separation',
-        algebraicStatement: 'P = NP ? — is every problem whose solution is verifiable in polynomial time also solvable in polynomial time, where P = ⋃ₖ TIME(nᵏ) and NP = ⋃ₖ NTIME(nᵏ). Conjectured: P ≠ NP.' },
+        algebraicStatement: 'P = NP ? — is every problem whose solution is verifiable in polynomial time also solvable in polynomial time, where P = ⋃ₖ TIME(nᵏ) and NP = ⋃ₖ NTIME(nᵏ). Conjectured: P ≠ NP.',
+        // Each fᵢ is the identity the fold ACTUALLY decides, paired with the live boolean computed above — the page
+        // renders the proof as the fold argues it, and every line is refutable by flipping its boolean.
+        facetAlgebra: [
+          { f: 'f₁ NP-verify — ∀cl∈φ ∃lit∈cl: sign(lit)=a(|lit|) ⊢ φ(a)=1 · cost O(|φ|) poly — membership half only', on: npVerifiesInPoly },
+          { f: `f₂ reuse≠search — scan n=${bruteN} → hits 0 · content-address 1 → hit · ratio n/1 — presupposes witness w already in hand`, on: contentAddressHit && bruteHits === 0 },
+          { f: 'f₃ amortize — lim(m→∞) c₀/(m+1) = 0 · TIME(n^k) is worst-case fresh-instance ⊢ reuse ∉ separation', on: infinityReuse.on },
+          { f: 'f₄ involution — foldPair∘foldPair = id on merged root · structural symmetry, not one-way-function cryptanalysis', on: encRoundTrip },
+        ],
+        gapAlgebra: [
+          'P≠NP ⟺ ∃L∈NP ∀k ∀M∈TIME(n^k): L(M)≠L — a ∀ over an infinite machine domain ⊢ proof-by-exhaustion structurally unavailable',
+          'barriers (cited): ∃A,B: P^A=NP^A ∧ P^B≠NP^B (Baker–Gill–Solovay 1975) · natural proofs ⊥ strong PRGs (Razborov–Rudich 1994) · algebrization (Aaronson–Wigderson 2008)',
+          'closure asymmetry: P=NP is ∃ (one poly SAT algorithm seals) · P≠NP is ∀ (super-poly lower bound over every machine)',
+          'search half: witness space 2^p(n) — O(1) lookup presupposes exactly what the search must produce',
+        ] },
       {
         id: 'hodge',
         name: 'Hodge Conjecture',
@@ -2700,6 +2721,10 @@ export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildM
       // frontend and backend") — the exact FORMULAS, computed by the SAME theoremFormulaCodeDual the theorem pages and
       // the registry use, so frontend and backend show one canonical representation. Methods kept as secondary data.
       formula: theoremFormulaCodeDual({ slug: theoremSlug(p.name), theorem: p.name, provedBy: 'clayChallengesComputableFromSequence', home: 'src/wind/research', proofClass: 'finite-complete' }).formulas,
+      // PER-FACET + GAP ALGEBRA — the fᵢ identities the fold actually decides (paired with their live booleans) and
+      // the quantifier/barrier algebra of the open step; incremental fill, projected untouched from the sealed row.
+      facetAlgebra: p.facetAlgebra ?? [],
+      gapAlgebra: p.gapAlgebra ?? [],
       methodList: p.challengeMethod as readonly string[],
       boundary: (p as { boundary?: string }).boundary ?? '',
       openForPrize: p.status !== 'solved-external',
