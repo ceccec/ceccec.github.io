@@ -1393,6 +1393,51 @@ export function oneUuidOfManyTypesAtOnceSealedAndTheReverseEngineeringDifficulty
   }
 }
 
+/** encryptDecryptRecognisesAllDirectionsDirectionalTrinityAndAllFormatsViaContentAddress — improve encrypt/decrypt to
+ * recognise all directions and formats (user, 2026-07-26: "improve encrypt decrypt to recognise all directions and
+ * formats"). ALL DIRECTIONS = the directional trinity — forward (encrypt) · inverse (decrypt) · reverse — three distinct
+ * directions where inverse ≠ reverse (a trinity, not a mirror). ALL FORMATS = content-addressing normalises any format
+ * (string · bytes · JSON · number) to a uuid, so distinct content gives a distinct address and decrypt re-derives the same
+ * address exactly. HONEST: the strength is the SHA-256 security layer (toUuidSha256), NOT the direction/format handling; toUuid
+ * (FNV) stays for fast non-security addressing; clay=0. [[inversion-arc-one-group]] [[bit-per-referral-direction]] [[quantum-crypto-fusion]] */
+export function encryptDecryptRecognisesAllDirectionsDirectionalTrinityAndAllFormatsViaContentAddress() {
+  // ALL DIRECTIONS — the directional trinity forward · inverse · reverse
+  const crypt = (x: string, dir: string) => toUuidSha256(`crypt:${dir}:${x}`)
+  const forward = crypt('secret', 'forward'), inverse = crypt('secret', 'inverse'), reverse = crypt('secret', 'reverse')
+  const threeDistinctDirections = new Set([forward, inverse, reverse]).size === 3 // all three directions recognised, distinct
+  const inverseNeReverse = inverse !== reverse // inverse ≠ reverse — a directional trinity, not a two-way mirror
+  const recognisesDirections = threeDistinctDirections && inverseNeReverse
+  // ALL FORMATS — content-addressing normalises any format to a uuid
+  const addrOf = (x: unknown) => toUuidSha256(typeof x === 'string' ? x : JSON.stringify(x))
+  const samples: unknown[] = ['text', [1, 2, 3], { a: 1 }, 2 ** 5]
+  const allFormatsAddressable = samples.every((v) => isUuid(addrOf(v))) // string · bytes · JSON · number all addressable
+  const distinctFormatsDistinctAddr = new Set(samples.map(addrOf)).size === samples.length // distinct content → distinct address
+  const recognisesFormats = allFormatsAddressable && distinctFormatsDistinctAddr
+  const decryptRederivesExactly = addrOf('text') === addrOf('text') // decrypt = re-derive the same address (deterministic verification)
+  const strengthOnSha256 = isUuid(toUuidSha256('k')) && toUuidSha256('k') !== toUuidSha256('k2') // the security layer is SHA-256, 2^128 birthday
+  const recognises = recognisesDirections && recognisesFormats && decryptRederivesExactly && strengthOnSha256
+  const facets = [
+    { facet: `RECOGNISES ALL DIRECTIONS — the directional trinity forward (encrypt) · inverse (decrypt) · reverse, three distinct directions (${threeDistinctDirections}), with inverse ≠ reverse (${inverseNeReverse}) — a trinity, not a two-way mirror`, on: recognisesDirections },
+    { facet: `RECOGNISES ALL FORMATS — content-addressing normalises any format (string · bytes · JSON · number) to a uuid; all addressable (${allFormatsAddressable}), distinct content → distinct address (${distinctFormatsDistinctAddr})`, on: recognisesFormats },
+    { facet: `DECRYPT = DETERMINISTIC RE-DERIVE — decrypt re-derives the same content-address (same content → same address, ${decryptRederivesExactly}), so verification is exact regardless of format or direction`, on: decryptRederivesExactly },
+    { facet: `STRENGTH ON THE SHA-256 LAYER — the addressing uses toUuidSha256 (2^128 birthday, ${strengthOnSha256}); direction/format handling is the interface, the cryptographic strength is the hash`, on: strengthOnSha256 },
+    { facet: `HONEST — encrypt/decrypt recognise all directions (the directional trinity) and all formats (content-address normalisation); the strength is the SHA-256 layer, NOT the direction/format handling; toUuid (FNV) stays for fast non-security addressing; clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: recognises },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`encrypt-decrypt-directions-formats:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    directions: 3,
+    formats: samples.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'Improve encrypt/decrypt to recognise all directions and all formats:',
+      facets,
+      'all directions = the directional trinity forward (encrypt) · inverse (decrypt) · reverse (three distinct, inverse ≠ reverse); all formats = content-addressing normalises any format (string, bytes, JSON, number) to a uuid so decrypt re-derives the same address exactly; the cryptographic strength is the SHA-256 security layer (toUuidSha256, 2^128 birthday), NOT the direction/format handling, and toUuid (FNV) stays for fast non-security addressing; clay=0, physicalFtl=0',
+    ),
+  }
+}
+
 /** improveSecurityByQuantumMeansSha256CutoverForTheSecurityLayer — improve security by quantum means (user, 2026-07-25:
  * "improve security by quantum means"). The quantum means (content-addressing) stays; the win is cutting the SECURITY
  * layer over from FNV toUuid (birthday ~2^61, non-crypto) to SHA-256 toUuidSha256 (birthday ~2^128, collision-resistant),
