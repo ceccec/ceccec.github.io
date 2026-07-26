@@ -47,9 +47,30 @@ export function componentDisplayName(locale: LocaleName, name: string): string {
   return displayText(locale, name.replace(/([a-z0-9])([A-Z])/g, '$1 $2'))
 }
 
+// Client-locale fallback (user-chosen direction): CANONICAL routes (/theorems/* · /proofs/* · /papers/* · /model/* —
+// no locale prefix) render EN by route for SSR/crawlers, then adopt the viewer's SAVED locale (localStorage
+// 'dt-locale' · en/bg/cu, the same key the config redirect uses) after hydration. Module-level so the first mounted
+// component initializes it once and every consumer recomputes reactively; SSR (no window) stays route-derived.
+const savedLocaleRef = ref<LocaleName | null>(null)
+let savedLocaleInit = false
+function initSavedLocale(): void {
+  if (savedLocaleInit || typeof window === 'undefined') return
+  savedLocaleInit = true
+  try {
+    const s = localStorage.getItem('dt-locale')
+    savedLocaleRef.value = s === 'bg' ? 'bg' : s === 'cu' ? 'gla' : null
+  } catch { /* private mode / storage blocked — stay route-derived */ }
+}
+
 export function useSiteLocale() {
   const route = useRoute()
-  const locale = computed(() => localeFromRoute(route.path))
+  onMounted(initSavedLocale)
+  // explicit locale prefix (/bg · /gla) is authoritative; a canonical (route-derived 'en') page adopts the viewer's
+  // saved locale after hydration, so /theorems/<slug> etc. autotranslate for a bg/gla visitor without per-locale SSG.
+  const locale = computed<LocaleName>(() => {
+    const routeLocale = localeFromRoute(route.path)
+    return routeLocale !== 'en' ? routeLocale : (savedLocaleRef.value ?? 'en')
+  })
   const pick = (en: string, bg: string) => pickLocale(locale.value, en, bg)
   const t = (text?: string) => (text ? displayText(locale.value, text) : text)
   const localize = (path: string) => localePath(path, locale.value)
