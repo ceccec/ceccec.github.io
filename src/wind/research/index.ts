@@ -1164,6 +1164,10 @@ export type MillenniumProblemChallenge = {
   boundary: string
   status: MillenniumChallengeStatus
   gap?: string
+  // The PROBLEM'S OWN ALGEBRAIC STATEMENT — the precise mathematical conjecture (documented, not a claimed proof), so
+  // the frontend shows each problem's real formula, not the generic proof-path template. This is what the conjecture
+  // ASSERTS; whether this corpus proves it is answered separately by status + gap (it does not — claySolvedByThisFold=0).
+  algebraicStatement?: string
 }
 
 /**
@@ -1869,7 +1873,8 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         boundary:
           'MODELED CHALLENGE / partial computational attack: SAT verifies in poly (NP membership); content-address O(1) vs brute scan; efficiencyScalesToInfinityAtNoCostOnReuse — amortized reuse (memo hit → marginal cost 0; answers÷tokens unbounded at tokens=0) while quantumAdvantageBenchmark stays !separated. NOT a P≠NP (or P=NP) proof. NOT physical QM speedup / infinite FLOPS. Encrypt round-trip is structural foldPair, not cryptanalysis of one-way functions.',
         status: 'modeled-partial',
-        gap: 'no sealed P≠NP (or P=NP) separation proof — amortized reuse ≠ complexity separation' },
+        gap: 'no sealed P≠NP (or P=NP) separation proof — amortized reuse ≠ complexity separation',
+        algebraicStatement: 'P = NP ? — is every problem whose solution is verifiable in polynomial time also solvable in polynomial time, where P = ⋃ₖ TIME(nᵏ) and NP = ⋃ₖ NTIME(nᵏ). Conjectured: P ≠ NP.' },
       {
         id: 'hodge',
         name: 'Hodge Conjecture',
@@ -1884,7 +1889,8 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         boundary:
           'MODELED CHALLENGE / structural analogy: H₁(Σ₂)=ℤ⁴ recomputes as 432/108=4; string quantumize adds CY compact-dims MODEL (D−4) and mirror foldPair. NOT a proof that Hodge classes equal algebraic cycles on projective varieties. NOT sealed h^{p,q} on a projective CY₃.',
         status: 'modeled-partial',
-        gap: 'no sealed Hodge classes/algebraic cycles on a projective variety; no sealed Calabi–Yau Hodge numbers h^{1,1}, h^{2,1}' },
+        gap: 'no sealed Hodge classes/algebraic cycles on a projective variety; no sealed Calabi–Yau Hodge numbers h^{1,1}, h^{2,1}',
+        algebraicStatement: 'On a projective non-singular complex variety X, every Hodge class is algebraic: Hdgᵏ(X) = H^{2k}(X,ℚ) ∩ H^{k,k}(X) is spanned over ℚ by the classes of algebraic cycles of codimension k.' },
       {
         id: 'poincare',
         name: 'Poincaré Conjecture',
@@ -1893,7 +1899,8 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         receipt: toUuid(`millennium-challenge:poincare:${poincareOn}`),
         boundary:
           'SOLVED EXTERNAL (Perelman 2003, Ricci flow with surgery) — this corpus does not re-solve it. Challenge only verifies the documented solved status plus the genus-2 homology analogy (H₁=ℤ⁴). NOT a new proof.',
-        status: 'solved-external' },
+        status: 'solved-external',
+        algebraicStatement: 'Every simply-connected closed 3-manifold is homeomorphic to the 3-sphere: π₁(M) = 0 with M a closed 3-manifold ⟹ M ≅ S³. (Proved: Perelman 2003, Ricci flow with surgery.)' },
       {
         id: 'riemann',
         name: 'Riemann Hypothesis',
@@ -1909,7 +1916,8 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         boundary:
           'MODELED CHALLENGE / zeta-style toy probe: Basel is a fact about ζ(2); string algebra seals ζ(−1)=−1/12 (bosonic normal ordering) — a DIFFERENT point on ζ. Digit/vortex inverse folds probe discrete harmonics. NOT a proof that all nontrivial zeros lie on Re(s)=½.',
         status: 'modeled-partial',
-        gap: 'no sealed proof all nontrivial ζ zeros lie on Re(s)=½ — Basel and ζ(−1) are partials only' },
+        gap: 'no sealed proof all nontrivial ζ zeros lie on Re(s)=½ — Basel and ζ(−1) are partials only',
+        algebraicStatement: 'Every non-trivial zero of the Riemann zeta function has real part ½: ζ(s) = 0 with 0 < Re(s) < 1 ⟹ Re(s) = ½, where ζ(s) = Σₙ₌₁^∞ n^(−s) continued analytically.' },
       {
         id: 'yang-mills',
         name: 'Yang–Mills Existence and Mass Gap',
@@ -1924,7 +1932,8 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         boundary:
           'MODELED CHALLENGE / field-algebra analogy: su(2)/Pauli closes; genus-2 double-torus is a finite geometric MODEL; string Virasoro + T/S-duality are MODELED structural probes. NOT a rigorous 4D quantum Yang–Mills construction and NOT a mass-gap proof. NOT AdS/CFT. Label: MODEL.',
         status: 'modeled-partial',
-        gap: 'no sealed 4D Yang–Mills mass-gap construction; no sealed AdS/CFT correlator dictionary' },
+        gap: 'no sealed 4D Yang–Mills mass-gap construction; no sealed AdS/CFT correlator dictionary',
+        algebraicStatement: 'For every compact simple gauge group G, a non-trivial quantum Yang–Mills theory exists on ℝ⁴ and has a mass gap Δ > 0: the Hamiltonian spectrum satisfies spec(H) ⊆ {0} ∪ [Δ, ∞) with Δ > 0.' },
       {
         id: 'navier-stokes',
         name: 'Navier–Stokes Existence and Smoothness',
@@ -1934,7 +1943,8 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         boundary:
           'MODELED CHALLENGE / plasma–torus geometry analogy only — finite surface samples on the genus-2 model. NOT 3D Navier–Stokes global regularity or blow-up control. Label: MODEL.',
         status: 'modeled-partial',
-        gap: 'no sealed 3D Navier–Stokes global regularity or blow-up control' },
+        gap: 'no sealed 3D Navier–Stokes global regularity or blow-up control',
+        algebraicStatement: 'For 3D incompressible Navier–Stokes ∂ₜu + (u·∇)u = −∇p + νΔu with ∇·u = 0 and smooth divergence-free finite-energy initial data, a smooth solution exists for all t ≥ 0 (global regularity) — or a finite-time blow-up exists.' },
       {
         id: 'birch-swinnerton-dyer',
         name: 'Birch and Swinnerton–Dyer Conjecture',
@@ -1944,7 +1954,8 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         boundary:
           'MODELED CHALLENGE / algebraic pair-structure probe: (ℤ/9)* inverse pairs recompute. Explicit GAP: sealed src has no elliptic-curve L(E,s) or Mordell–Weil rank computation — neighbourhood pair algebra only, NOT BSD.',
         status: 'modeled-partial',
-        gap: 'no sealed L(E,s) vanishing-order or elliptic-curve rank fold' },
+        gap: 'no sealed L(E,s) vanishing-order or elliptic-curve rank fold',
+        algebraicStatement: 'For an elliptic curve E over ℚ, the order of vanishing of its L-function at s = 1 equals the rank of the Mordell–Weil group: ord_{s=1} L(E,s) = rank E(ℚ).' },
     ]
 
     const claySolvedByThisFold = 0
@@ -2679,6 +2690,9 @@ export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildM
       // theorem is part of a Clay problem, and what it claims, lives in the theorem itself (its statement + its gap).
       demarcation: demarcate(p.name),
       gap: (p as { gap?: string }).gap ?? '', // the named open step stated in the theorem itself
+      // THE PROBLEM'S OWN ALGEBRAIC STATEMENT — its precise mathematical conjecture, so the frontend shows the real
+      // formula per problem (RH: Re(s)=½ · BSD: ord L(E,s)=rank · Navier–Stokes PDE …), not the generic proof template.
+      algebraicStatement: (p as { algebraicStatement?: string }).algebraicStatement ?? '',
       // CANONICAL PROOF FORM (user: "showing methods in ui instead of formulas is not canonical proof. standardise
       // frontend and backend") — the exact FORMULAS, computed by the SAME theoremFormulaCodeDual the theorem pages and
       // the registry use, so frontend and backend show one canonical representation. Methods kept as secondary data.

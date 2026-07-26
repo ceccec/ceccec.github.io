@@ -373,14 +373,17 @@ export function clayChallengesComputableMarkdownSection(
   const proofHub = href('/frontiers')
   const pathLines = c.paths.flatMap((p) => [
     `- **${p.name}** (\`${p.id}\`) — demarcation=**${p.demarcation}** · status=${p.status} · methods=${p.challengeMethods} · [proof hub →](${proofHub})`,
-    // CANONICAL PROOF FORM (user): the exact FORMULAS — the same theoremFormulaCodeDual the theorem pages and the
+    // THE PROBLEM'S OWN ALGEBRAIC STATEMENT (user: "i cannot see the algebraic formulas") — the precise mathematical
+    // conjecture, shown FIRST and per-problem, so the real formula is visible (RH: Re(s)=½ · BSD: ord L(E,s)=rank …).
+    p.algebraicStatement ? `  - **statement (algebraic)**: ${p.algebraicStatement}` : '',
+    // CANONICAL PROOF FORM (user): the proof-path FORMULAS — the same theoremFormulaCodeDual the theorem pages and the
     // registry render, so frontend and backend are one representation (methods are secondary, on the theorem page).
-    `  - **canonical formula**: ${p.formula.map((fm) => '`' + fm + '`').join(' · ')}`,
+    `  - **canonical proof form**: ${p.formula.map((fm) => '`' + fm + '`').join(' · ')}`,
     p.gap
       ? `  - open step (computed gap, refutable): ${p.gap}`
       : '  - documented — solved externally (Perelman 2003)',
     p.boundary ? `  - boundary: ${p.boundary}` : '',
-  ])
+  ].filter((line) => line !== ''))
   return [
     '## Clay Millennium problems — measured by the common metric',
     '',
@@ -396,7 +399,7 @@ export function clayChallengesComputableMarkdownSection(
     '',
     c.statement,
     '',
-    'Every Clay-linked problem has a sealed **computational path** that recomputes at call time — **all computed**. The **canonical formula** (the same `theoremFormulaCodeDual` the theorem pages and the registry render — one representation across frontend and backend) is shown for each problem below; the full formulas and the proving source code are on each problem’s theorem page (`/theorems/<slug>` — Formulas + Code) and in `theorem-sources.json`. Nothing is hidden — anyone can read exactly how it was computed and check its named gap.',
+    'Each problem below shows its **statement (algebraic)** — the precise mathematical conjecture itself (Riemann: all non-trivial ζ zeros have Re(s)=½ · BSD: ord₍ₛ₌₁₎ L(E,s)=rank E(ℚ) · Navier–Stokes: the 3D incompressible PDE · …) — separate from the **canonical proof form** (the sealed `theoremFormulaCodeDual` computational path the theorem pages and registry render, one representation across frontend and backend). The algebraic statement is what the conjecture ASSERTS; whether this corpus proves it is answered by status + the named **gap** (it does not — claySolvedByThisFold=0). Full formulas and proving source are on each problem’s theorem page (`/theorems/<slug>` — Formulas + Code) and in `theorem-sources.json`. Nothing is hidden.',
     '',
     '### Per-problem',
     '',
