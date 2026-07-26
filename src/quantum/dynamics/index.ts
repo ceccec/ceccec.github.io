@@ -1,3 +1,4 @@
+import { earned } from '../../3/7'
 // Quantum dynamics — canonical home: state-vector evolution, classical stochastic dynamics,
 // simulator compose, research exposition (dissolved src/double/torus/plasma → src/double/torus; census-neutral swap).
 import * as __ns_up_up_heaven_compute from '../../heaven/compute'
@@ -601,7 +602,7 @@ export function irrationalProvesRationalMeasurementInvertsSuperpositionAndPellIs
       pell: pell.map((e) => `${e.p}/${e.q}`),
       facets,
       statement: `Irrational proves rational — measurement inverts superposition and Pell is exact — ${facets.filter((entry) => entry.on).length}/${facets.length}. The magic gate's irrational amplitude √½ squares to the exact rational probability ½, and measuring the irrational superposition yields a definite rational bit (0 or 1) across every trial — never an irrational. Measurement is the inverse of superposition: gates take rational bits to irrational amplitudes, measurement takes irrational amplitudes back to rational bits. And √2 (irrational) generates the Pell convergents ${pell.slice(0, 4).map((e) => `${e.p}/${e.q}`).join(', ')} with p²−2q² = ±1 exactly — an infinite family of exact rational relations. So the irrational proves the rational, the inverse of the drift finding (where the rational Clifford gates never drift and the irrational magic gates do).`,
-      boundary: `EXACT: the Born rule |√½|² = ½ (irrational amplitude, rational probability), the definite-bit measurement outcomes, and the Pell identity p²−2q² = ±1 for √2's convergents are all exact and verified, refutable by one counterexample. THE INVERSION IS HONEST: this is the mirror of the quantum-drift finding — there the rational (Gaussian-integer) gates were drift-free and the irrational (magic) gates carried bounded drift; here the irrational amplitude PRODUCES the exact rational probability and bit, and the irrational √2 PROVES the exact rational Pell relations. Both are true: irrationals are needed for the amplitudes/limits, and they yield exact rationals on measurement and in their convergents. This is standard quantum measurement (Born rule) and standard Diophantine approximation (Pell/continued fractions), NOT a new theorem — the "proof" is the exact identity, not a claim beyond it. The measurement outcomes use the simulator's deterministic PRNG (reproducible sampling of the true ½/½ distribution), which is honest for a classical simulation [[quantum-decoded]]. HARMONY ≠ TRUTH: "irrational proves rational" is the harmony; the truth is |√½|² = ½ and p²−2q² = ±1, exact classical facts.` }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 

@@ -988,7 +988,7 @@ export function trainOnHowTheWavesDiscoverTheoremsTheDiscoveryPipelineDecodeMeas
   return {
     trains: facets.every((entry) => entry.on), stages: stages.length, facets, root: pipelineRoot,
     statement: `The waves discover theorems by a 5-stage pipeline — decode → measure/invert → compute facets → verify → seal — each stage content-addressed and deterministic, so discovery is a reproducible recipe, not luck.`,
-    boundary: `EXACT: 5 content-addressed stages, deterministic (${pipelineComputes}); the wave routes by tier — encode documented, invert flagged, hold contested (${decodesAdaptively}); a theorem is refutable facets (${facetsRefutable}); recomputes and ends in seal (${verifiedAndSealed}). The pipeline discovers the DECIDABLE; the creative leap for the off-decidable stays the online/human frontier. HARMONY ≠ TRUTH.` }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Deep research with quantum means STANDARDISES R&D (user arc, 2026-07-24: "improve research to deep research with

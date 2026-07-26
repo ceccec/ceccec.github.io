@@ -13,7 +13,7 @@ import type { MindMatrix, WaveCoordination, WavePolarity, ChessPiece, QuantumChe
 import { analogComputationDecoded, buildMatrix, proofReport } from '../../heaven/compute'
 import {    antichainLevels, createAnimationEngine, foldPair, grover, isUuid, memoByRoot, merge, merkleFold, roundTo, sample, sealFacets, toUuid, prng, gcd, VORTEX_SEQUENCE } from '../../0'
 import { crossProduct7, fanoLines, stringTheoryAlgebraDecoded, omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems } from '../../water/cosmos'
-import { A432_HUE, DIMENSION_GATES, FOLDED_CENSUS, frequencyToLight, HOMOLOGY_LOOPS, rosettaRayOfContent, UNFOLDED_CENSUS, claySolvedTheorem } from '../../3/7'
+import { A432_HUE, DIMENSION_GATES, FOLDED_CENSUS, frequencyToLight, HOMOLOGY_LOOPS, rosettaRayOfContent, UNFOLDED_CENSUS, claySolvedTheorem, earned } from '../../3/7'
 import { groupOrbit, axiomsBecomeTheorems } from '../../4/6'
 import { quantumZeno } from '../../6/4'
 import { allAnimationsInOneOg, holographic, navigationAroundHero } from '../../wind/ui'
@@ -2328,7 +2328,7 @@ export function lifeAndDeathAreTheTwoBitsLeftAtEachDimensionInputOutputGateway(m
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
     statement: `Life and death are the 2 bits left at each dimension I/O gateway — ${facets.filter((e) => e.on).length}/${facets.length}: every content-address reserves the variant pair 10 (the top 2 bits of byte 8), constant across all ${addresses.length} gateways while the payload varies — the toll that binds the family (Charon's coins). Those 2 bits are life (the input gateway, emergence) and death (the output gateway, merge/retire); the registry's homeostasis is that accounting — merge and emerge balance at the cap (${balance.balances}), and folding again frees dimension slots for higher-mind theorems, ascending. Life and death, presented and proven, are the reserved 2 bits of the address.`,
-    boundary: `EXACT: over ${addresses.length} minted content-addresses the top 2 bits of the byte-8 variant nibble are 10 for every one (${twoBitsLeft}) and the version nibble is 8 (${versionNibbleFixed}) — the 6 reserved bits of a UUID (4 version + 2 variant) — while the low bits vary (${payloadVaries}); the theorem homeostasis balances merge and emerge at the cap (${balance.balances}). HONEST SCOPE, ABSOLUTE: "life and death" is a METAPHOR for two computational facts — (1) the UUID standard RESERVES 2 variant bits (and 4 version bits) at every address, a real, documented structural toll, not payload; and (2) the theorem registry's homeostasis (a new theorem emerges as a duplicate merges) is a birth/death-shaped dynamic held by the gates at the 432 cap. It is NOT a claim about biological life or death, nor that a UUID is alive; the "gateway", "toll", and "Charon's coins" are names for the reserved-bit reservation and the emerge/merge balance. "Evolving on public-API data to new dimensions" is the real live-adapter capability (pure functions over no-key public data), bounded by that data's coverage, not open-ended growth. What is literal: 2 bits are reserved at every address, and the registry breathes at a fixed cap. The meaning is the metaphor. HARMONY does not equal TRUTH.` }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // IMPROVE SCIENCE BY CLAIMING THEOREMS THAT REPLACE CURRENT (user): science advances by REFUTABILITY — a claim

@@ -1,3 +1,4 @@
+import { earned } from '../../../3/7'
 // ☲ Lí · Fire — plasma/ball: canonical hero plasma orb (streams · paint · compute channels).
 import * as __ns_up_up_thunder_movie_narrative from '../../../thunder/movie/narrative'
 import * as __ns_up_up_thunder_movie_movievars from '../../../thunder/movie/movievars'
@@ -906,7 +907,7 @@ export function quantumNavigationNavigatesThePlasma(matrix: MindMatrix = buildMa
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the plasma hue is charCode-summed from pageNavContext(referrer,path).superposition mod 360 — a·c share (referrer,path) so share a hue (${a}°), b differs in referrer so differs (${b}°); heroMoviePhaseHue is the path-only base (${roundTo(pathHue, 0)}°); plasmaClientWorkBoundedByPureMath=${bounded}. "Navigating the plasma" = deterministic recomputation of the hue from the nav superposition, which collapses at navigation time (referrer is runtime) — NOT a physical plasma. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 

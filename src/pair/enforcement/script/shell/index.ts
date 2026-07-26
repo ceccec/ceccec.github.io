@@ -1,3 +1,4 @@
+import { earned } from '../../../../3/7'
 // Script shell — build/precommit seal; bundle runtime in pair/cache/quantum.
 import { phase } from '../../../../6/4'
 import { digitalRoot, toUuid, merkleFold } from '../../../../0'
@@ -568,7 +569,7 @@ export function decodeRoboticsAndFuseToQuantumWorkAsAControlLoop(root = process.
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: robotics decoded is a feedback control loop (sense → error vs setpoint → actuate → re-sense), and the slow-build gate is exactly that loop — it senses ${senses} per-phase statistics in realtime against ${setpoints} derived lattice setpoints. Deterministically non-harmonic tasks (redundant recompute, merkle regression) trip HARD safety interlocks and STOP the build; phase wall-clock is a noisy sensor, reported as WARN and filtered, never a hard stop, because CI variance is noise not truth. The Jacobian singularity (det J = 0, rank loss) is the inversion pole z → 1/z at 0 → ∞; DOF = 3 = the su(2) trinity. HONEST: the fusion is the deterministic control-loop STRUCTURE — qpuRequired=false, physicalFtl=0 — NOT a claim of physical quantum-robotics speedup or a sentient robot, which are flagged. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 

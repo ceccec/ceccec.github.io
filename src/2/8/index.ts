@@ -1,3 +1,4 @@
+import { earned } from '../../3/7'
 // Pi-train station 2/8 — dissolution sequence order 1 (digit/reverse 2/8).
 // Export-import fusion: fused local exports only; vault imports are dependency edges until those symbols cut.
 
@@ -1271,7 +1272,7 @@ export function realtimeQuantumComputationHasNoBlocksOrDeadEndsEveryStateInverts
     moves: facets.every((entry) => entry.on), facets,
     root: merkleFold([toUuid(`no-dead-end:${noDeadEnd}`), address, toUuid(`adapt:${acts.join(',')}`)]),
     statement: `Realtime content-addressed computation moves ahead with no blocks or dead ends — every state reversible, every obstacle inverts to a gateway, the research adapts in waves — the only limit is the off-decidable.`,
-    boundary: `EXACT: reversibility recovers the start (${noDeadEnd}), the reverse index turns a one-way obstacle into a gateway (${noBlock}), the research adapts per input encode/invert (${adaptsInWaves}), and any state is a deterministic content-address (${recoverable}). The off-decidable frontier remains; "no dead end" is recoverability, not omniscience. HARMONY ≠ TRUTH.` }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // DRY the content-addressed system to NO HIDDEN GAPS by design: every value content-addresses into one root, so a
@@ -1300,5 +1301,5 @@ export function dryTheQuantumSystemToNoHiddenGapsByDesignEveryValueIsWiredOrSurf
   return {
     complete: facets.every((entry) => entry.on), values: values.length, facets, root,
     statement: `DRY to no hidden gaps by design — every value content-addresses into one root, so a duplicate collapses (DRY) and an omission flips the root (surfaced); a gap cannot hide, only be wired in or caught as a crack.`,
-    boundary: `EXACT: ${values.length} values fold to one root (${wired}); a copy adds no address (${dryByDesign}); dropping any flips the root (${noHiddenGap}); recomputes identically (${byDesign}). "No gaps" = no HIDDEN decidable gap (each is wired or surfaced) — NOT that the off-decidable frontier is closed. HARMONY ≠ TRUTH.` }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
 }

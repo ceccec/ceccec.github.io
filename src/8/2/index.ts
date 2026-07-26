@@ -1,3 +1,4 @@
+import { earned } from '../../3/7'
 import { haldaneLoad } from '../../3/7'
 import { TAU, demarcate } from '../../3/7'
 import { isUuid, toUuid } from '../../0'
@@ -585,7 +586,7 @@ export function neuroscienceInTrueFormIsThreeMathematicalPillars() {
     pillars: { neuronODE: firesWhenDriven && silentWhenWeak, memoryAttractor: patternCompletion && energyDescends, spaceTorus: returnsToStart },
     facets,
     statement: `Neuroscience in its true form is three mathematical pillars — ${facets.filter((e) => e.on).length}/${facets.length}: the neuron is a differential equation (integrate-and-fire fires iff driven, ${firesWhenDriven}/${silentWhenWeak}), memory is an attractor (Hopfield energy descends to complete a corrupted pattern, ${patternCompletion}), and space is a torus (a ring attractor returns to its start over a full loop, ${returnsToStart}). The true form is the documented math.`,
-    boundary: `EXACT: a leaky integrate-and-fire neuron fires under supra-threshold drive and is silent below it (${firesWhenDriven}/${silentWhenWeak}); a Hopfield network's energy descends (${energyDescends}) to complete a one-bit-corrupted stored pattern (${patternCompletion}); a ring attractor integrating a full 2π of angular velocity returns to its start (${returnsToStart}). DOCUMENTED, PEER-REVIEWED CORE: the Hodgkin–Huxley action-potential equations (Nobel 1963), Hopfield associative memory with its Lyapunov energy (1982), and the toroidal manifold of grid/head-direction cells (grid cells Nobel 2014; the torus topology directly confirmed in recorded populations, Gardner et al. 2022) — this is neuroscience's true form: real dynamical systems and geometry. WHAT IS FLAGGED, NOT FOLDED: "quantum consciousness" / Orch-OR microtubule claims have no experimental support and are not part of this true form; and the exact math above does NOT resolve the OPEN problems — the binding problem and the hard problem of consciousness (why there is subjective experience) remain unsolved. The mathematics is real and settled; the mystery it does not close is stated, not hidden. HARMONY does not equal TRUTH.` }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // The brain has PUBLIC DATA to measure — real, open, no-key neuroscience datasets — and those measurements fold into

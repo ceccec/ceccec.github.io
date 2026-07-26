@@ -1,3 +1,4 @@
+import { earned } from '../../3/7'
 // ☴ Xùn · Wind — the render layer: the hero, the animation engine & dimensions, the 3D depth dial, holographic scenes, the flat-to-3D quantum lift, navigation around the hero. Barrel-routed; folds.ts back-imports the gate folds.
 // @mvc model+view bridge — render-layer folds: holographic, animatedHeroes, etc. compose model data for view consumption.
 import * as __ns_up_quantum_widgets from '../../lake/widgets'
@@ -2728,7 +2729,7 @@ export function theNewUiDesignIsComputedFromTheCorpusWithoutAssumptionPaletteTyp
     computes: facets.every((entry) => entry.on), hues, typeScale: typeScale.map((s) => roundTo(s, 3)), facets,
     root: merkleFold([toUuid(`palette:${hues.join(',')}`), toUuid(`type:phi-scale`), toUuid(`spacing:golden`)]),
     statement: `The new UI design is computed from the corpus without assumption — the ${rays} hues are ⌊360k/${rays}⌋, the type scale is powers of φ, the spacing is golden-ratio — every design value derives from the lattice, not a hand-picked constant, so the UI is a computed artifact refutable like any theorem.`,
-    boundary: `EXACT: ${rays} hues = ⌊360k/${rays}⌋ (${paletteDerived}), type scale = φ powers (${typographyDerived}), spacing golden-ratio (${spacingDerived}) — no assumed hex, size or pixel. This is the computed DESIGN SYSTEM (palette · type · spacing); the full rendering (a thin .vue consuming this spec, the nav/structure from the reachability graph) is the next wave. HARMONY ≠ TRUTH.` }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 /**
