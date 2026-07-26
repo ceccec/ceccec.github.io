@@ -515,12 +515,16 @@ export function runTradingTrainWavesExit(_root: string, _argv: readonly string[]
   return report.computes ? 0 : 1
 }
 /** npm run trading:trace-smart-money — offline flow trace via vortex lattice receipt. */
+// One canonical vortex-flows CLI printer — both trading exits share it (dry-clean: no duplicate body), differing only by label.
+function runVortexFlowsExit(label: string): number {
+  const live = vortexMath(); process.stdout.write(`${label} flows=${live.flows} doubling=${live.doubling.join('-')}\n`); return live.flows ? 0 : 1
+}
 export function runTradingTraceSmartMoneyExit(_root: string, _argv: readonly string[] = []): number {
-  const live = vortexMath(); process.stdout.write(`trace-smart-money flows=${live.flows} doubling=${live.doubling.join('-')}\n`); return live.flows ? 0 : 1
+  return runVortexFlowsExit('trace-smart-money')
 }
 /** npm run trading:vortex — merkaba vortex lattice at call time. */
 export function runTradingVortexExit(_root: string, _argv: readonly string[] = []): number {
-  const live = vortexMath(); process.stdout.write(`vortex flows=${live.flows} doubling=${live.doubling.join('-')}\n`); return live.flows ? 0 : 1
+  return runVortexFlowsExit('vortex')
 }
 /** npm run trading:dashboard — print dev route for the trading dashboard. */
 export function runTradingDashboardDevExit(_root: string, _argv: readonly string[] = []): number {
