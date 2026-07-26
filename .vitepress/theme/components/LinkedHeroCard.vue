@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { withBase } from 'vitepress'
 import { heroPreviewForRoute } from '../../../src/wind/routes/corpus/index.ts'
 import { useSiteLocale } from '../../lib/mounts'
 import UiCardShell from './UiCardShell.vue'
@@ -9,6 +10,8 @@ const props = defineProps<{
   title?: string
   glyph?: string
   hue?: number
+  /** target is EN-canonical (not localized) — e.g. /theorems/* · /proofs/* pages that exist only at the root. */
+  canonical?: boolean
 }>()
 
 const { t, localize, scriptGlyph } = useSiteLocale()
@@ -16,7 +19,8 @@ const { t, localize, scriptGlyph } = useSiteLocale()
 // Hero is the abstract: preview seed + destination movieRoute drive CardBackgroundMovie —
 // full intensity so animation *forms* the card body (not a whisper chrome inset).
 const preview = computed(() => heroPreviewForRoute(props.route, props.title))
-const href = computed(() => localize(props.route))
+// canonical targets route through withBase only (no locale prefix); everything else localizes as before.
+const href = computed(() => (props.canonical ? withBase(props.route) : localize(props.route)))
 const seedParts = computed(() => [props.route, preview.value.title] as const)
 const displayTitle = computed(() => t(props.title) ?? preview.value.title)
 </script>

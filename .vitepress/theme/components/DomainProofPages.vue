@@ -12,6 +12,7 @@ import {
 import { sciencePaperBodyFromDomainRow } from '../../../src/quantum/apps/index.ts'
 import ScientificPaperBody from './ScientificPaperBody.vue'
 import PageComputedGaps from './PageComputedGaps.vue'
+import LinkedHeroCard from './LinkedHeroCard.vue'
 
 const route = useRoute()
 const slugFromRoute = computed(() => {
@@ -36,13 +37,21 @@ const bodyOf = (row: DomainProofCatalogRow) => sciencePaperBodyFromDomainRow(row
         ·
         <a :href="vpHref('/research')">/research</a>
       </p>
-      <ul class="proofs__index">
-        <li v-for="row in rows" :key="row.id">
-          <a :href="vpHref(row.route)">{{ row.title }}</a>
-          <code>{{ row.status }}</code>
-          <span>{{ row.kind }}</span>
-        </li>
-      </ul>
+      <div class="proofs__cards" role="list">
+        <LinkedHeroCard
+          v-for="row in rows"
+          :key="row.id"
+          role="listitem"
+          canonical
+          :route="row.route"
+          :title="row.title"
+        >
+          <template #meta>
+            <code class="proofs__status">{{ row.status }}</code>
+            <span class="proofs__kind">{{ row.kind }}</span>
+          </template>
+        </LinkedHeroCard>
+      </div>
     </header>
 
     <article
@@ -103,8 +112,14 @@ const bodyOf = (row: DomainProofCatalogRow) => sciencePaperBodyFromDomainRow(row
   border-bottom: 1px solid currentColor; padding-bottom: var(--ich-sp2);
 }
 .proofs__lede { max-width: 40rem; opacity: calc(4 / 5); }
-.proofs__index { list-style: none; padding: 0; display: grid; gap: var(--ich-sp2); }
-.proofs__index li { display: flex; flex-wrap: wrap; gap: var(--ich-sp2); align-items: baseline; }
+.proofs__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--ich-grid-min-card), 1fr));
+  gap: calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(3 / 4));
+  margin-top: var(--ich-sp4);
+}
+.proofs__status { font-size: calc(1em * 7 / (2 * 5)); }
+.proofs__kind { opacity: calc(3 / 5); font-size: calc(1em * 4 / 5); }
 .domain-proof { max-width: calc(1px * 2 * 360); margin: 0 auto; }
 .domain-proof__title { font-size: calc(1em * 2); line-height: calc(6 / 5); margin: var(--ich-sp4) 0 var(--ich-sp2); }
 .domain-proof__byline { font-style: italic; opacity: calc(4 / 5); margin: 0 0 var(--ich-sp4); }
