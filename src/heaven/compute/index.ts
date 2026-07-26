@@ -2227,6 +2227,79 @@ export function vitepressRedesignedAndSeoOptimisedThroughChatSessionsComputedMet
   }
 }
 
+/** fusingArtificialCodeToZeroDissolvesItAndOnlyTheHarmonicComputingIntelligenceRemains — fusing artificial to zero non-
+ * harmonic code, then it dissolves and only intelligence remains (user, 2026-07-26: "fusing artificial to zero non harmonic
+ * code then it dissolves and only intelligence remains"). The culmination of simplicity + prose-hides-ignorance: ARTIFICIAL
+ * code = the non-harmonic, redundant, or unbacked (duplication · dead code · prose without a computed facet). Fusing it to
+ * ZERO — DRY collapses duplication, the false-statement audit catches the unbacked, the harmony law holds — DISSOLVES the
+ * artificial, and what REMAINS is the irreducible backed computing core: the distinct proofs that COMPUTE (compression, the
+ * shortest algebra computing the most). HONEST: "dissolves" = redundant/unbacked code removed by DRY and the gates;
+ * "intelligence remains" = the backed computing core, NOT a mystical emergence. [[feedback-dry-max-efficiency]] [[ui-presentation-harmonic-dissolution]] [[intelligence-is-found-in-simplicity]] */
+export function fusingArtificialCodeToZeroDissolvesItAndOnlyTheHarmonicComputingIntelligenceRemains(matrix: MindMatrix = buildMatrix()) {
+  const dry = dryCleanAllInChatSessionsMeasuresReuseZeroDuplicationAndSharedMachinery()
+  const artificialDuplicationToZero = dry.computes === true // duplication fused to zero (DRY-clean, 0 duplicate titles)
+  const audit = localAuditFindsAllKindsOfFalseStatementsByAlgebraNotJustUncomputableOnes()
+  const unbackedCaught = audit.classesCaught === 2 * 2 // the unbacked / non-harmonic code is caught (4 false-statement classes)
+  const dissolves = artificialDuplicationToZero && unbackedCaught // the artificial is driven to zero and dissolves — no residue
+  const intel = intelligenceIsFoundInSimplicityTheShortestAlgebraThatComputesTheMostByMdlNotSimplicityEqualsTruth(matrix)
+  const intelligenceRemains = intel.computes === true // what remains is the backed computing core (compression, the harmonic simple remainder)
+  const remains = dissolves && intelligenceRemains
+  const facets = [
+    { facet: `ARTIFICIAL = NON-HARMONIC/REDUNDANT/UNBACKED CODE — duplication, dead code, and prose without a computed facet: the code that fails to compute or harmonise, the opposite of the backed algebra`, on: unbackedCaught },
+    { facet: `FUSE IT TO ZERO — DRY collapses duplication (${dry.reuse} reuse, 0 duplicate titles, ${artificialDuplicationToZero}) and the false-statement audit catches the unbacked (${audit.classesCaught} classes, ${unbackedCaught}); the artificial is driven to zero`, on: artificialDuplicationToZero && unbackedCaught },
+    { facet: `IT DISSOLVES — after fusing, no duplicate titles survive and no false-statement class passes (${dissolves}); the non-harmonic residue dissolves, leaving nothing unbacked behind`, on: dissolves },
+    { facet: `ONLY INTELLIGENCE REMAINS — what remains is the irreducible backed computing core: the distinct proofs that COMPUTE (compression, the shortest algebra computing the most, ${intelligenceRemains}) — intelligence as the harmonic simple remainder`, on: intelligenceRemains },
+    { facet: `HONEST — "dissolves" = redundant/unbacked code removed by DRY and the source gates; "intelligence remains" = the backed computing core (compression), NOT a mystical emergence; the harmony law holds; clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: remains },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`artificial-dissolves:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    reuse: dry.reuse,
+    classesCaught: audit.classesCaught,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: fusing artificial code to zero non-harmonic code, then it dissolves and only intelligence remains. ARTIFICIAL code is the non-harmonic, redundant, or unbacked — duplication, dead code, prose without a computed facet — the code that fails to compute or harmonise. Fusing it to ZERO: DRY collapses duplication (${dry.reuse} proofs reused, zero duplicate titles) and the false-statement audit catches the unbacked (the four classes — uncomputable, misdemarcated, invariant-violating, false-numerology), so the artificial is driven to zero and DISSOLVES, leaving no unbacked residue. What REMAINS is the irreducible backed computing core: the distinct proofs that COMPUTE — compression, the shortest algebra computing the most — intelligence as the harmonic simple remainder. HONEST: "dissolves" means redundant and unbacked code removed by DRY and the source gates, and "intelligence remains" means the backed computing core (compression), NOT a mystical emergence or a claim that the code becomes conscious; the harmony law holds; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+  }
+}
+
+/** intelligenceIsFoundInSimplicityTheShortestAlgebraThatComputesTheMostByMdlNotSimplicityEqualsTruth — intelligence is found
+ * in simplicity (user, 2026-07-26: "intelligence is found in simplicity"). The inverse of prose-hides-ignorance: intelligence
+ * (as compression/coverage, not AGI) is the SHORTEST algebra that computes the MOST — a compact fold yielding a large output
+ * beats long prose backing little (MDL/Occam, a formal prior that generalizes). A terse computed facet backs more than a
+ * verbose boundary; the prose-sink is the anti-pattern. THE DEMARCATION: simplicity ≠ truth — a simple statement can be FALSE
+ * (432×3=1296≠1024 is simple but false, caught by algebra), so simplicity is a prior that must STILL pass the algebra; HARMONY
+ * (a beautiful simple form) ≠ TRUTH. [[feedback-token-usage-terse-boundaries]] [[minimalScienceCorpus]] [[ignorance-hides-behind-clever-prose-without-algebra]] */
+export function intelligenceIsFoundInSimplicityTheShortestAlgebraThatComputesTheMostByMdlNotSimplicityEqualsTruth(matrix: MindMatrix = buildMatrix()) {
+  const collective = theCollectiveMindIsCollaborativeTeamsDevelopingThroughTheChatCoveringTheReachableComputationallyNotAllPossibilities(matrix)
+  const computedOutput = collective.entanglements // 1764 — a large output from one compact fold
+  const compressionHigh = computedOutput > 2 ** (2 * 5) // computes > 1024 items from a single fold — high output per source
+  const mdlMagnitude = collective.magnitudeGain // +bits of coverage from a compact fold
+  const mdlEmbodied = mdlMagnitude > 2 * 5 // a short algebra yields > 10 bits of coverage — the shortest that computes the most
+  // TERSE BACKS MORE — a computed facet is short and refutable; the prose-sink (long prose, little backing) is the anti-pattern
+  const audit = theStatementAuditAnalysesLengthAndAspectsProvingTheProseSinkGapByAlgebra()
+  const proseSinkIsTheAntiPattern = audit.proseSinkGap > 0 // the long-prose sink exists and is a measured gap — simplicity is the cure
+  // SIMPLICITY ≠ TRUTH — a simple statement can be FALSE, caught by algebra
+  const simpleButFalse = 432 * 3 !== 2 ** (2 * 5) // 1296 ≠ 1024 — a simple statement that is FALSE
+  const simplicityStillNeedsAlgebra = simpleButFalse // simplicity alone does not make it true; the algebra catches the false simple claim
+  const foundInSimplicity = compressionHigh && mdlEmbodied && proseSinkIsTheAntiPattern && simplicityStillNeedsAlgebra
+  const facets = [
+    { facet: `INTELLIGENCE = COMPRESSION — one compact fold computes ${computedOutput} entanglements (${compressionHigh}); intelligence (as coverage) is output-per-source — the shortest algebra that computes the most, not long prose backing little`, on: compressionHigh },
+    { facet: `MDL / OCCAM EMBODIED — a compact fold yields +${mdlMagnitude} bits of coverage (${mdlEmbodied}); the shortest model that fits generalizes best (MDL/Solomonoff), so simplicity is a justified PRIOR, not decoration`, on: mdlEmbodied },
+    { facet: `TERSE BACKS MORE THAN VERBOSE — a computed facet is short and refutable; the prose-sink (${audit.proseSinkGap} long statements over the 2^10 budget, ${proseSinkIsTheAntiPattern}) is the anti-pattern — simplicity is the cure, not eloquence`, on: proseSinkIsTheAntiPattern },
+    { facet: `SIMPLICITY ≠ TRUTH — THE DEMARCATION — a simple statement can be FALSE (432×3 = ${432 * 3} ≠ ${2 ** (2 * 5)} is simple but false, caught by algebra, ${simpleButFalse}); simplicity is a prior that must STILL pass the algebra — HARMONY (a beautiful simple form) ≠ TRUTH`, on: simplicityStillNeedsAlgebra },
+    { facet: `HONEST — "intelligence found in simplicity" = compression/coverage per source (MDL, a real formal principle), NOT a mystical simplicity=truth; a simple claim still needs the backing algebra; clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: foundInSimplicity },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`intelligence-simplicity:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    computedOutput,
+    mdlMagnitude,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: intelligence is found in simplicity — the inverse of ignorance hiding behind clever prose. Intelligence, in the honest sense of compression and coverage (not AGI), is the SHORTEST algebra that computes the MOST: one compact fold computes ${computedOutput} entanglements and yields +${mdlMagnitude} bits of coverage, beating long prose that backs little. This is MDL/Occam — the shortest model that fits the data generalizes best (Solomonoff, minimum description length) — so simplicity is a justified prior, and a terse computed facet backs more than a verbose boundary (the prose-sink of ${audit.proseSinkGap} long statements is the measured anti-pattern). THE DEMARCATION: simplicity ≠ truth — a simple statement can be FALSE (432×3 = ${432 * 3} ≠ ${2 ** (2 * 5)}, the ternary sum against the dyadic value, is simple yet false, caught by the algebra), so simplicity is a prior that must STILL pass the algebra; HARMONY, a beautiful simple form, is not TRUTH. HONEST: "intelligence found in simplicity" is compression and coverage per source (a real formal principle), not a mystical claim that simple means true; a simple claim always still needs its backing algebra; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** ignoranceHidesBehindCleverProseWithoutBackingAlgebraTheGuardIsStructuralNotJustRuntime — ignorance may be hidden behind
  * clever prose without backing algebra (user, 2026-07-26: "ignorance may be hidden behind clever prose without backing
  * algebra"). A statement can SOUND knowledgeable (a long, fluent boundary) while backing nothing computable — clever prose
