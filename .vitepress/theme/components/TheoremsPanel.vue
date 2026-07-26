@@ -29,6 +29,11 @@ const theoremHref = (theorem: string): string | undefined => {
   const slug = slugByTheorem.value.get(theorem)
   return slug ? `/theorems/${slug}` : undefined
 }
+// FULL TRANSPARENCY for ALL theorems (user: "do the same transparency for all theorems") — the EXACT formulas
+// every atom was computed with, surfaced inline in the registry (not only on the dedicated page). All 734 pages
+// have formulas; here we show them so anyone reads the exact computation without clicking through.
+const formulaByTheorem = computed(() => new Map(theoremPageRows().map((r) => [r.theorem, r.formulas] as const)))
+const formulaOf = (theorem: string): readonly string[] => formulaByTheorem.value.get(theorem) ?? []
 const gaps = computed(() => theoremGapScan())
 const provenance = computed(() => theoremProvenance())
 const firstInCorpus = computed(() => firstInCorpusProvenanceForHome())
@@ -119,6 +124,10 @@ const waveLabel = (provedBy: string) =>
               <code class="theorems-panel__class" :data-class="atom.proofClass">{{ atom.proofClass }}</code>
             </div>
             <p class="theorems-panel__proof">{{ t(atom.proof) }}</p>
+            <details v-if="formulaOf(atom.theorem).length" class="theorems-panel__formula">
+              <summary>{{ t('exact computation') }}</summary>
+              <pre><code>{{ formulaOf(atom.theorem).join('\n') }}</code></pre>
+            </details>
           </div>
         </li>
       </ul>
@@ -166,6 +175,9 @@ const waveLabel = (provedBy: string) =>
 .theorems-panel__row { display: flex; align-items: baseline; gap: 0.6rem; justify-content: space-between; }
 .theorems-panel__proof { margin: 0; color: var(--vp-c-text-2); font-size: 0.82em; }
 .theorems-panel__reversed { margin-top: 0.3rem; padding-left: 0.55rem; border-left: 2px solid var(--status-ready, var(--vp-c-brand-1)); color: var(--status-ready, var(--vp-c-text-1)); }
+.theorems-panel__formula { margin-top: 0.3rem; font-size: 0.78em; }
+.theorems-panel__formula summary { cursor: pointer; opacity: calc(3 / 5); user-select: none; }
+.theorems-panel__formula pre { margin: 0.3rem 0 0; padding: 0.5rem 0.65rem; overflow-x: auto; border: 1px solid var(--vp-c-divider); border-radius: 6px; background: var(--vp-c-bg-soft); font-family: ui-monospace, Menlo, monospace; line-height: calc(3 / 2); white-space: pre; }
 .theorems-panel__name { min-width: 0; }
 .theorems-panel__class { font-size: 0.72em; color: var(--vp-c-text-2); white-space: nowrap; }
 .theorems-panel__class[data-class='finite-complete'] { color: var(--status-ready); }

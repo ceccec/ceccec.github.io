@@ -22,17 +22,17 @@ computed (sealed paths) = **7/7** · **contested** (open) = **6** · **documente
 
 Clay challenges are COMPUTABLE from the sequence/trinity/rosetta/Earth-poles stack — 7/7 sealed computational paths recompute (millenniumProblemsChallenge · directionalTrinity · earthRealisedByComputingPolesAsPyramid · sciencesInteractInTrinities · domainProofCatalog). claySolvedByThisFold=0 · qualifiesAsProposedSolution=false — computable ≠ CMI Prize solved.
 
-Every Clay-linked problem has a sealed **computational path** (challengeMethod · on · receipt) that recomputes at call time. **The exact computation is shown for each problem below** — anyone can read HOW it was computed and see for themselves that it is a *computation*, not a §5(a) proof (its named gap says why). The full algebraic formulas and the proving source code are on each problem’s theorem page (`/theorems/<slug>` — Formulas + Code sections) and in `theorem-sources.json`; nothing is hidden.
+Every Clay-linked problem has a sealed **computational path** (challengeMethod · on · receipt) that recomputes at call time — **all computed**. The exact computation is shown for each problem below; the full algebraic formulas and the proving source code are on each problem’s theorem page (`/theorems/<slug>` — Formulas + Code) and in `theorem-sources.json`. Nothing is hidden — anyone can read exactly how it was computed and check its named gap.
 
 ### Per-problem
 
 - **P vs NP** (`p-vs-np`) — demarcation=**contested** · status=modeled-partial · methods=5 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - **exact computation**: `np-certificate-verifies-in-poly` · `content-addressed-lookup-vs-brute-scan` · `efficiency()` · `efficiencyScalesToInfinityAtNoCostOnReuse (memo O(1) · tokens=0 · !separated)` · `trinityKey+foldPair encrypt↔decrypt structural (cites encryptDecryptQuantumTools / demoRsaReverseSync)`
-  - **open step** (why it is NOT a §5(a) proof): no sealed P≠NP (or P=NP) separation proof — amortized reuse ≠ complexity separation
+  - open step (computed gap, refutable): no sealed P≠NP (or P=NP) separation proof — amortized reuse ≠ complexity separation
   - boundary: MODELED CHALLENGE / partial computational attack: SAT verifies in poly (NP membership); content-address O(1) vs brute scan; efficiencyScalesToInfinityAtNoCostOnReuse — amortized reuse (memo hit → marginal cost 0; answers÷tokens unbounded at tokens=0) while quantumAdvantageBenchmark stays !separated. NOT a P≠NP (or P=NP) proof. NOT physical QM speedup / infinite FLOPS. Encrypt round-trip is structural foldPair, not cryptanalysis of one-way functions.
 - **Hodge Conjecture** (`hodge`) — demarcation=**contested** · status=modeled-partial · methods=4 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - **exact computation**: `DIMENSION_GATES/FOLDED_CENSUS → H₁ rank 4` · `genus-2 homology structural analogy` · `stringTheoryQuantumizedOnA432RosettaMerkleSubstrate · Calabi–Yau compactDims MODEL` · `mirror symmetry as foldPair involution MODEL (NOT CY Hodge numbers)`
-  - **open step** (why it is NOT a §5(a) proof): no sealed Hodge classes/algebraic cycles on a projective variety; no sealed Calabi–Yau Hodge numbers h^{1,1}, h^{2,1}
+  - open step (computed gap, refutable): no sealed Hodge classes/algebraic cycles on a projective variety; no sealed Calabi–Yau Hodge numbers h^{1,1}, h^{2,1}
   - boundary: MODELED CHALLENGE / structural analogy: H₁(Σ₂)=ℤ⁴ recomputes as 432/108=4; string quantumize adds CY compact-dims MODEL (D−4) and mirror foldPair. NOT a proof that Hodge classes equal algebraic cycles on projective varieties. NOT sealed h^{p,q} on a projective CY₃.
 - **Poincaré Conjecture** (`poincare`) — demarcation=**documented** · status=solved-external · methods=2 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - **exact computation**: `theSevenMillenniumProblemsDefinedFormallyUnclaimed` · `homology rank 4 structural analogy`
@@ -40,19 +40,19 @@ Every Clay-linked problem has a sealed **computational path** (challengeMethod �
   - boundary: SOLVED EXTERNAL (Perelman 2003, Ricci flow with surgery) — this corpus does not re-solve it. Challenge only verifies the documented solved status plus the genus-2 homology analogy (H₁=ℤ⁴). NOT a new proof.
 - **Riemann Hypothesis** (`riemann`) — demarcation=**contested** · status=modeled-partial · methods=5 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - **exact computation**: `Basel Σ1/n² → ζ(2)=π²/6` · `zeroDivisionTable (inverse not reverse)` · `fThetaPhiXyzDigitNIsTheInversePair` · `VORTEX_SEQUENCE digitalRoot probe` · `stringTheoryAlgebraDecoded · ζ(−1)=−1/12 exact (NOT the critical-line hypothesis)`
-  - **open step** (why it is NOT a §5(a) proof): no sealed proof all nontrivial ζ zeros lie on Re(s)=½ — Basel and ζ(−1) are partials only
+  - open step (computed gap, refutable): no sealed proof all nontrivial ζ zeros lie on Re(s)=½ — Basel and ζ(−1) are partials only
   - boundary: MODELED CHALLENGE / zeta-style toy probe: Basel is a fact about ζ(2); string algebra seals ζ(−1)=−1/12 (bosonic normal ordering) — a DIFFERENT point on ζ. Digit/vortex inverse folds probe discrete harmonics. NOT a proof that all nontrivial zeros lie on Re(s)=½.
 - **Yang–Mills Existence and Mass Gap** (`yang-mills`) — demarcation=**contested** · status=modeled-partial · methods=4 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - **exact computation**: `pauliAlgebraCloses (su(2))` · `doubleTorusSurface field MODEL` · `stringTheoryAlgebraDecoded · Virasoro central term forced` · `stringTheoryQuantumized · T-duality / S-dual foldPair MODELED probes`
-  - **open step** (why it is NOT a §5(a) proof): no sealed 4D Yang–Mills mass-gap construction; no sealed AdS/CFT correlator dictionary
+  - open step (computed gap, refutable): no sealed 4D Yang–Mills mass-gap construction; no sealed AdS/CFT correlator dictionary
   - boundary: MODELED CHALLENGE / field-algebra analogy: su(2)/Pauli closes; genus-2 double-torus is a finite geometric MODEL; string Virasoro + T/S-duality are MODELED structural probes. NOT a rigorous 4D quantum Yang–Mills construction and NOT a mass-gap proof. NOT AdS/CFT. Label: MODEL.
 - **Navier–Stokes Existence and Smoothness** (`navier-stokes`) — demarcation=**contested** · status=modeled-partial · methods=2 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - **exact computation**: `doubleTorusSurface / counter-oriented lobes MODEL` · `frontier verified-partials fold`
-  - **open step** (why it is NOT a §5(a) proof): no sealed 3D Navier–Stokes global regularity or blow-up control
+  - open step (computed gap, refutable): no sealed 3D Navier–Stokes global regularity or blow-up control
   - boundary: MODELED CHALLENGE / plasma–torus geometry analogy only — finite surface samples on the genus-2 model. NOT 3D Navier–Stokes global regularity or blow-up control. Label: MODEL.
 - **Birch and Swinnerton–Dyer Conjecture** (`birch-swinnerton-dyer`) — demarcation=**contested** · status=modeled-partial · methods=2 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - **exact computation**: `zeroDivisionTable inverse pairs (2,5)/(4,7)` · `group-law neighbourhood via pair closure`
-  - **open step** (why it is NOT a §5(a) proof): no sealed L(E,s) vanishing-order or elliptic-curve rank fold
+  - open step (computed gap, refutable): no sealed L(E,s) vanishing-order or elliptic-curve rank fold
   - boundary: MODELED CHALLENGE / algebraic pair-structure probe: (ℤ/9)* inverse pairs recompute. Explicit GAP: sealed src has no elliptic-curve L(E,s) or Mordell–Weil rank computation — neighbourhood pair algebra only, NOT BSD.
 
 ### Status

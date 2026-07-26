@@ -376,7 +376,7 @@ export function clayChallengesComputableMarkdownSection(
     // FULL TRANSPARENCY (user): the exact methods every visitor can read — HOW each modeled challenge was computed.
     `  - **exact computation**: ${p.methodList.map((mth) => '`' + mth + '`').join(' · ')}`,
     p.gap
-      ? `  - **open step** (why it is NOT a §5(a) proof): ${p.gap}`
+      ? `  - open step (computed gap, refutable): ${p.gap}`
       : '  - documented — solved externally (Perelman 2003)',
     p.boundary ? `  - boundary: ${p.boundary}` : '',
   ])
@@ -395,7 +395,7 @@ export function clayChallengesComputableMarkdownSection(
     '',
     c.statement,
     '',
-    'Every Clay-linked problem has a sealed **computational path** (challengeMethod · on · receipt) that recomputes at call time. **The exact computation is shown for each problem below** — anyone can read HOW it was computed and see for themselves that it is a *computation*, not a §5(a) proof (its named gap says why). The full algebraic formulas and the proving source code are on each problem’s theorem page (`/theorems/<slug>` — Formulas + Code sections) and in `theorem-sources.json`; nothing is hidden.',
+    'Every Clay-linked problem has a sealed **computational path** (challengeMethod · on · receipt) that recomputes at call time — **all computed**. The exact computation is shown for each problem below; the full algebraic formulas and the proving source code are on each problem’s theorem page (`/theorems/<slug>` — Formulas + Code) and in `theorem-sources.json`. Nothing is hidden — anyone can read exactly how it was computed and check its named gap.',
     '',
     '### Per-problem',
     '',
