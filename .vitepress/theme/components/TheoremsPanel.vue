@@ -132,9 +132,10 @@ const waveLabel = (provedBy: string) =>
         <div class="theorems-panel__body">
           <div class="theorems-panel__row">
             <span class="theorems-panel__name">{{ f.frontier }}</span>
-            <code class="theorems-panel__class" data-class="open">OPEN</code>
+            <code class="theorems-panel__class" data-class="open" :title="`demarcate(term) — signed by the zero-cycle registry`">{{ f.demarcation }}</code>
           </div>
           <p class="theorems-panel__proof">{{ f.computed }}</p>
+          <p v-if="f.reversed" class="theorems-panel__proof theorems-panel__reversed">{{ f.reversed }}</p>
         </div>
       </li>
     </ul>
@@ -160,6 +161,7 @@ const waveLabel = (provedBy: string) =>
 .theorems-panel__body { min-width: 0; flex: 1; }
 .theorems-panel__row { display: flex; align-items: baseline; gap: 0.6rem; justify-content: space-between; }
 .theorems-panel__proof { margin: 0; color: var(--vp-c-text-2); font-size: 0.82em; }
+.theorems-panel__reversed { margin-top: 0.3rem; padding-left: 0.55rem; border-left: 2px solid var(--status-ready, var(--vp-c-brand-1)); color: var(--status-ready, var(--vp-c-text-1)); }
 .theorems-panel__name { min-width: 0; }
 .theorems-panel__class { font-size: 0.72em; color: var(--vp-c-text-2); white-space: nowrap; }
 .theorems-panel__class[data-class='finite-complete'] { color: var(--status-ready); }
