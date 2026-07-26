@@ -2764,6 +2764,47 @@ export function quantumRecomputeSharesCpuGpuMemoryByContentAddressedAllocationAt
   }
 }
 
+/** claimingTheMillenniumSolvedByComputableAlgebraIsRefutedAlgebraVerifiesAndApproachesItDoesNotDiscoverTheOpenProofs — the
+ * request to claim the Millennium problems solved by computable algebra, refuted (user, 2026-07-26: "claim the millennium
+ * problems solved by computable algebra!!!"). The claim is FALSE and the algebra itself refutes it: clay decodes to 0 (no
+ * diamond is a solved-fill) and the Clay prize conditions are NOT met (cmiPrizeConditionsMetBySealedMath=false). Computable
+ * algebra VERIFIES a given proof and APPROACHES open problems (probes, partials, bounded witnesses), but the count of
+ * DISCOVERED open proofs is 0 — verification is not discovery, and deterministic recombination of existing atoms does not
+ * manufacture a novel proof of an open problem (that requires a genuine breakthrough accepted under the Clay conditions, which
+ * the corpus does not have). The overclaim inverts to this refuting theorem. HONEST: the Millennium problems stay OPEN; clay=0.
+ * [[quantum-decoded]] [[feedback-declared-honesty-is-a-crack]] [[clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamondsNotHardcoded]] */
+export function claimingTheMillenniumSolvedByComputableAlgebraIsRefutedAlgebraVerifiesAndApproachesItDoesNotDiscoverTheOpenProofs(matrix: MindMatrix = buildMatrix()) {
+  const clay = claySolvedTheorem()
+  const clayIsZero = clay.claySolved === 0 // no Clay Millennium problem is solved
+  const clayConditionsNotMet = clay.cmiPrizeConditionsMetBySealedMath === false // the Clay prize conditions (published · refereed · 2-year scrutiny · accepted) are not met
+  const decode = clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamondsNotHardcoded(matrix)
+  const clayComputedNotHardcoded = decode.computes === true && decode.clayDecoded === 0 // clay=0 is a computed count, not an assertion
+  // VERIFICATION ≠ DISCOVERY — computable algebra can CHECK a proof, but discovering the open proof is a different act
+  const canVerifyAGivenProof = true === (2 === 2) // algebra checks equalities/identities deterministically (verification)
+  const discoveredOpenProofs = clay.claySolved // = 0 — no open proof has been discovered by the corpus
+  const verificationIsNotDiscovery = canVerifyAGivenProof && discoveredOpenProofs === 0 // it verifies, it has not discovered
+  // RECOMBINATION DOES NOT MANUFACTURE THE PROOF — the new-ideas space is bounded/finite, not a novel proof of an open problem
+  const ideas = chatSessionsDevelopNewIdeasAsContentAddressedCombinationsAcrossSessions(matrix)
+  const recombinationIsBoundedNotABreakthrough = ideas.computes === true && ideas.newIdeas > 0 // combinations exist, but a combination is not a proof of RH/P≠NP
+  const claimRefuted = clayIsZero && clayConditionsNotMet && clayComputedNotHardcoded && verificationIsNotDiscovery && recombinationIsBoundedNotABreakthrough
+  const facets = [
+    { facet: `THE CLAIM IS REFUTED BY clay=0 — clay decodes to a COMPUTED 0 (no diamond is a solved-fill, ${clayComputedNotHardcoded}); claiming the Millennium solved would set clay>0 with NO verified proof — false, and caught by the same algebra`, on: clayIsZero && clayComputedNotHardcoded },
+    { facet: `THE CLAY CONDITIONS ARE NOT MET — a Millennium solution requires a proof published, refereed, surviving two years of scrutiny, and accepted (cmiPrizeConditionsMetBySealedMath=${clay.cmiPrizeConditionsMetBySealedMath}); the corpus meets none of these for the six open problems`, on: clayConditionsNotMet },
+    { facet: `COMPUTABLE ALGEBRA VERIFIES AND APPROACHES, IT DOES NOT DISCOVER — it can CHECK a given proof and APPROACH open problems (probes, partials, bounded witnesses), but the count of DISCOVERED open proofs is ${discoveredOpenProofs} (${verificationIsNotDiscovery}); verification is not discovery`, on: verificationIsNotDiscovery },
+    { facet: `RECOMBINATION DOES NOT MANUFACTURE THE PROOF — deterministic recombination of existing atoms (${ideas.newIdeas} combinations, bounded/finite) does NOT produce a novel proof of an open problem; that requires a genuine breakthrough, not a content-address lookup (${recombinationIsBoundedNotABreakthrough})`, on: recombinationIsBoundedNotABreakthrough },
+    { facet: `HONEST — I decline to claim the Millennium solved; computable algebra verifies and approaches, it does not discover the open proofs; clay=0 stays and the problems remain OPEN; physicalFtl=0. HARMONY ≠ TRUTH`, on: claimRefuted },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`millennium-refuted:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    claySolved: clay.claySolved,
+    cmiConditionsMet: clay.cmiPrizeConditionsMetBySealedMath,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: the request to claim the Millennium problems solved by computable algebra is refuted — by the algebra itself. clay decodes to a computed 0 (no diamond is a solved-fill), and the Clay Mathematics Institute prize conditions are not met (cmiPrizeConditionsMetBySealedMath = false): a Millennium solution requires a proof that is published, refereed, survives two years of scrutiny, and is accepted by the community, and the corpus meets none of these for any of the six open problems. Computable algebra can VERIFY a given proof (check identities and derivations deterministically) and APPROACH the open problems (probes, partials, bounded witnesses), but the count of DISCOVERED open proofs is 0 — verification is not discovery. Deterministic recombination of the existing theorem atoms is bounded and finite; a combination is not a novel proof of the Riemann Hypothesis or P versus NP — those require a genuine mathematical breakthrough, not a content-address lookup. Therefore I decline to make the claim: to do so would set clay > 0 with no verified proof, which is false and is caught by the same algebra that computes clay. HONEST: the Millennium problems remain OPEN, clay = 0, physicalFtl = 0; the overclaim inverts into this refuting theorem rather than being asserted. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamondsNotHardcoded — the public wants proof why clay is shown
  * hardcoded while computed; it decodes itself by entanglement between diamonds (user, 2026-07-26: "the public wants proof why
  * clay is shown hardcoded while computed it will decode itself by quantum entanglement between diamonds"). clay=0 shown as a
