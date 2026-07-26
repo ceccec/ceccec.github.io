@@ -366,11 +366,13 @@ export function clayChallengesComputableMarkdownSection(
 ): readonly string[] {
   const c = clayChallengesComputableFromSequence(matrix)
   const href = (path: string) => vitePressCompatibleHref(path, linkBase)
-  // each Clay problem is its OWN registered theorem — link to its dedicated /theorems/<slug> page (theoremSlug rule).
-  const theoremSlug = (t: string) => t.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
-  const theoremPage = (name: string) => href(`/theorems/${theoremSlug(name)}`)
+  // Each Clay problem is its OWN registered theorem with a dedicated /theorems/<slug> page (reachable from the
+  // /theorems index). The shared home body is mirrored to /bg · /gla with locale link-rewriting, and theorem pages
+  // are EN-canonical (not per-locale) — so from the home we link to the LOCALIZED clay proof hub (exists in every
+  // locale), not the canonical theorem page (which would dead-link under /bg/theorems). Both are the next view.
+  const proofHub = href('/frontiers')
   const pathLines = c.paths.flatMap((p) => [
-    `- **[${p.name}](${theoremPage(p.name)})** (\`${p.id}\`) — demarcation=**${p.demarcation}** · status=${p.status} · methods=${p.challengeMethods} · [dedicated page →](${theoremPage(p.name)})`,
+    `- **${p.name}** (\`${p.id}\`) — demarcation=**${p.demarcation}** · status=${p.status} · methods=${p.challengeMethods} · [proof hub →](${proofHub})`,
     p.gap
       ? `  - open step (stated in the theorem): ${p.gap}`
       : '  - documented — solved externally (Perelman 2003)',
@@ -401,8 +403,8 @@ export function clayChallengesComputableMarkdownSection(
     `computable=${c.computableCount}/${c.pathCount} · contested=${c.contestedCount} · documented=${c.documentedCount} · novelHere=${c.novelHereCount}`,
     '',
     ...(linkBase
-      ? [`- Routes: [proofs](${href('/proofs')}) · [clay-challenges-computable](${href('/proofs/clay-challenges-computable')}) · CLI \`npm run quantum:clay-challenges-computable\``]
-      : [`- Routes (VitePress): proofs hub \`/proofs\` · slug \`/proofs/clay-challenges-computable\` · CLI \`npm run quantum:clay-challenges-computable\` (DomainProofPages · withBase)`]),
+      ? [`- Routes: [frontiers](${href('/frontiers')}) · proofs hub \`/proofs\` · slug \`/proofs/clay-challenges-computable\` (EN-canonical) · CLI \`npm run quantum:clay-challenges-computable\``]
+      : [`- Routes (VitePress): frontiers registry \`/frontiers\` · proofs hub \`/proofs\` · slug \`/proofs/clay-challenges-computable\` · CLI \`npm run quantum:clay-challenges-computable\``]),
     `- ${foldNameReceipt('clayChallengesComputableFromSequence', `claySolvedByThisFold=${c.claySolvedByThisFold}.`)}`,
     '',
   ]

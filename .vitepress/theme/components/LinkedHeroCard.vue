@@ -38,6 +38,7 @@ const displayTitle = computed(() => t(props.title) ?? preview.value.title)
     >
       <span v-if="scriptGlyph(glyph)" class="linked-hero-card__glyph" aria-hidden="true">{{ glyph }}</span>
       <span class="linked-hero-card__title">{{ displayTitle }}</span>
+      <span v-if="$slots.meta" class="linked-hero-card__meta"><slot name="meta" /></span>
     </UiCardShell>
   </a>
 </template>
@@ -108,5 +109,16 @@ export default { name: 'LinkedHeroCard' }
   font-size: var(--ich-em-card-title);
   line-height: var(--ich-lh-card-title);
   text-shadow: var(--vp-hero-text-shadow);
+}
+
+/* Optional meta row — collections pass ordinal/prover/tags into the standard animated card. */
+.linked-hero-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(1 / 2));
+  margin-top: calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(1 / 2));
+  font-size: calc(1em * 4 / 5);
+  opacity: calc(4 / 5);
 }
 </style>

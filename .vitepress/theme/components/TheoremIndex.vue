@@ -5,8 +5,8 @@
 // (wind/routes/corpus, a pure projection of the sealed registry) — nothing is authored or sorted here.
 // Tags are the three computed axes: domain (home), class (proof class), lean (self-contained / cited).
 import { computed, ref } from 'vue'
-import { withBase } from 'vitepress'
-import { theoremTagIndex, theoremPapersLatestFirst, type TheoremTagGroup, type TheoremPageRow } from '../../../src/wind/routes/corpus/index.ts'
+import { theoremTagIndex, theoremPapersLatestFirst, type TheoremTagGroup } from '../../../src/wind/routes/corpus/index.ts'
+import LinkedHeroCard from './LinkedHeroCard.vue'
 
 const groups = computed<TheoremTagGroup[]>(() => theoremTagIndex())
 const total = computed(() => theoremPapersLatestFirst().length)
@@ -20,7 +20,6 @@ const shown = computed<TheoremTagGroup[]>(() =>
 const chipsByAxis = computed(() =>
   axisOrder.map((axis) => ({ axis, tags: groups.value.filter((g) => g.axis === axis) })))
 
-const paperHref = (row: TheoremPageRow) => withBase(`/theorems/${row.slug}`)
 </script>
 
 <template>
@@ -55,19 +54,24 @@ const paperHref = (row: TheoremPageRow) => withBase(`/theorems/${row.slug}`)
         <span class="thm-group__axis">{{ axisLabel[g.axis] }}</span>
         <span class="thm-group__n">{{ g.count }} papers · newest first</span>
       </h2>
-      <ol class="thm-list">
-        <li v-for="row in g.papers" :key="row.slug" class="thm-item">
-          <a class="thm-item__title" :href="paperHref(row)">{{ row.theorem }}</a>
-          <span class="thm-item__meta">
+      <div class="thm-cards" role="list">
+        <LinkedHeroCard
+          v-for="row in g.papers"
+          :key="row.slug"
+          role="listitem"
+          :route="`/theorems/${row.slug}`"
+          :title="row.theorem"
+        >
+          <template #meta>
             <span class="thm-item__ord">#{{ row.ordinal }}</span>
             <code class="thm-item__by">{{ row.provedBy }}</code>
             <span class="thm-item__home">{{ row.home }}</span>
-          </span>
-          <span class="thm-item__tags">
-            <span v-for="t in row.tags" :key="t" class="thm-tag" :class="{ 'thm-tag--cur': t === g.tag }">{{ t }}</span>
-          </span>
-        </li>
-      </ol>
+            <span class="thm-item__tags">
+              <span v-for="t in row.tags" :key="t" class="thm-tag" :class="{ 'thm-tag--cur': t === g.tag }">{{ t }}</span>
+            </span>
+          </template>
+        </LinkedHeroCard>
+      </div>
     </section>
   </div>
 </template>
@@ -108,13 +112,11 @@ const paperHref = (row: TheoremPageRow) => withBase(`/theorems/${row.slug}`)
 .thm-group__axis { font-size: calc(1em * 4 / 5); text-transform: uppercase; letter-spacing: calc(1em / 27); opacity: calc(3 / 5); }
 .thm-group__n { margin-left: auto; font-size: calc(1em * 4 / 5); opacity: calc(3 / 5); font-variant-numeric: tabular-nums; }
 
-.thm-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--ich-sp3); }
-.thm-item {
-  display: grid; gap: calc(1px * 4);
-  padding-bottom: var(--ich-sp3); border-bottom: 1px solid var(--vp-c-divider); }
-.thm-item__title { font-size: calc(1em * (5 + 6) / (2 * 5)); font-weight: calc(6 * 100); text-decoration: none; }
-.thm-item__title:hover { text-decoration: underline; }
-.thm-item__meta { display: flex; flex-wrap: wrap; gap: var(--ich-sp3); font-size: calc(1em * 4 / 5); opacity: calc(4 / 5); align-items: center; }
+.thm-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--ich-grid-min-card), 1fr));
+  gap: calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(3 / 4));
+}
 .thm-item__ord { font-variant-numeric: tabular-nums; opacity: calc(3 / 5); }
 .thm-item__by { font-size: calc(1em * 9 / (2 * 5)); }
 .thm-item__tags { display: flex; flex-wrap: wrap; gap: calc(1px * 5); }

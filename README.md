@@ -161,26 +161,26 @@ Every Clay-linked problem has a sealed **computational path** (challengeMethod �
 
 ### Per-problem
 
-- **[P vs NP](https://ceccec.psg.bg/theorems/p-vs-np)** (`p-vs-np`) — demarcation=**contested** · status=modeled-partial · methods=5 · [dedicated page →](https://ceccec.psg.bg/theorems/p-vs-np)
+- **P vs NP** (`p-vs-np`) — demarcation=**contested** · status=modeled-partial · methods=5 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - open step (stated in the theorem): no sealed P≠NP (or P=NP) separation proof — amortized reuse ≠ complexity separation
-- **[Hodge Conjecture](https://ceccec.psg.bg/theorems/hodge-conjecture)** (`hodge`) — demarcation=**contested** · status=modeled-partial · methods=4 · [dedicated page →](https://ceccec.psg.bg/theorems/hodge-conjecture)
+- **Hodge Conjecture** (`hodge`) — demarcation=**contested** · status=modeled-partial · methods=4 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - open step (stated in the theorem): no sealed Hodge classes/algebraic cycles on a projective variety; no sealed Calabi–Yau Hodge numbers h^{1,1}, h^{2,1}
-- **[Poincaré Conjecture](https://ceccec.psg.bg/theorems/poincare-conjecture)** (`poincare`) — demarcation=**documented** · status=solved-external · methods=2 · [dedicated page →](https://ceccec.psg.bg/theorems/poincare-conjecture)
+- **Poincaré Conjecture** (`poincare`) — demarcation=**documented** · status=solved-external · methods=2 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - documented — solved externally (Perelman 2003)
-- **[Riemann Hypothesis](https://ceccec.psg.bg/theorems/riemann-hypothesis)** (`riemann`) — demarcation=**contested** · status=modeled-partial · methods=5 · [dedicated page →](https://ceccec.psg.bg/theorems/riemann-hypothesis)
+- **Riemann Hypothesis** (`riemann`) — demarcation=**contested** · status=modeled-partial · methods=5 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - open step (stated in the theorem): no sealed proof all nontrivial ζ zeros lie on Re(s)=½ — Basel and ζ(−1) are partials only
-- **[Yang–Mills Existence and Mass Gap](https://ceccec.psg.bg/theorems/yang-mills-existence-and-mass-gap)** (`yang-mills`) — demarcation=**contested** · status=modeled-partial · methods=4 · [dedicated page →](https://ceccec.psg.bg/theorems/yang-mills-existence-and-mass-gap)
+- **Yang–Mills Existence and Mass Gap** (`yang-mills`) — demarcation=**contested** · status=modeled-partial · methods=4 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - open step (stated in the theorem): no sealed 4D Yang–Mills mass-gap construction; no sealed AdS/CFT correlator dictionary
-- **[Navier–Stokes Existence and Smoothness](https://ceccec.psg.bg/theorems/navier-stokes-existence-and-smoothness)** (`navier-stokes`) — demarcation=**contested** · status=modeled-partial · methods=2 · [dedicated page →](https://ceccec.psg.bg/theorems/navier-stokes-existence-and-smoothness)
+- **Navier–Stokes Existence and Smoothness** (`navier-stokes`) — demarcation=**contested** · status=modeled-partial · methods=2 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - open step (stated in the theorem): no sealed 3D Navier–Stokes global regularity or blow-up control
-- **[Birch and Swinnerton–Dyer Conjecture](https://ceccec.psg.bg/theorems/birch-and-swinnerton-dyer-conjecture)** (`birch-swinnerton-dyer`) — demarcation=**contested** · status=modeled-partial · methods=2 · [dedicated page →](https://ceccec.psg.bg/theorems/birch-and-swinnerton-dyer-conjecture)
+- **Birch and Swinnerton–Dyer Conjecture** (`birch-swinnerton-dyer`) — demarcation=**contested** · status=modeled-partial · methods=2 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - open step (stated in the theorem): no sealed L(E,s) vanishing-order or elliptic-curve rank fold
 
 ### Status
 
 computable=7/7 · contested=6 · documented=1 · novelHere=0
 
-- Routes: [proofs](https://ceccec.psg.bg/proofs) · [clay-challenges-computable](https://ceccec.psg.bg/proofs/clay-challenges-computable) · CLI `npm run quantum:clay-challenges-computable`
+- Routes: [frontiers](https://ceccec.psg.bg/frontiers) · proofs hub `/proofs` · slug `/proofs/clay-challenges-computable` (EN-canonical) · CLI `npm run quantum:clay-challenges-computable`
 - Receipt: fold `clayChallengesComputableFromSequence` · claySolvedByThisFold=0.
 
 ## Toolbox — sciences in trinity waves
