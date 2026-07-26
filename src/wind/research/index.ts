@@ -2345,14 +2345,17 @@ export function reverseEngineerClayAndItInverseEngineersItself(matrix: MindMatri
     { facet: `INVERSION KEEPS CLAY = 0 — reversing a barrier gives a REQUIREMENT (what a solution needs), not a solution; the testable fragment is evidence, never a proof; claySolvedByThisFold=${challenge.claySolvedByThisFold} through the whole inversion`, on: challenge.claySolvedByThisFold === 0 },
     { facet: `THE DEMARCATION — "reverse engineer clay and it inverse-engineers itself" = reversing the problems reproduces the sealed folds that model them (self-reference, a fixed point), NOT a solution; decode / reverse ≠ solve, clay=0. HARMONY ≠ TRUTH`, on: fixedPoint && challenge.claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`clay-reverse-self:${entry.facet}:${entry.on}`) }))
+  // PLAIN CODE, NOT A THEOREM (user: "only algebraic theorems are accepted!!! send each the same verified way"): the
+  // self-referential fixed point is a PROCESS property of the corpus's own clay model, not an algebraic identity about a
+  // math object — de-registered from the theorem registry, returns { idempotent, … } code the clay layer may call.
   return {
-    computes: facets.every((entry) => entry.on),
+    idempotent: facets.every((entry) => entry.on),
     distinctFragments: distinctFragments.size,
     fixedPoint,
     claySolvedByThisFold: challenge.claySolvedByThisFold,
-    facets,
+    processChecks: facets,
     root: merge(model.root, merkleFold(facets.map((entry) => entry.receipt))),
-    statement: facets.map((entry) => entry.facet).join(' · '),
+    reason: facets.map((entry) => entry.facet).join(' · '),
     boundary: earned(
       'SELF-REFERENTIAL — reverse-engineer clay and it inverse-engineers itself:',
       facets,
