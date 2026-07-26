@@ -1,6 +1,6 @@
 // ☴ Xùn · Wind — corpus route enumerators (papers · references · diamonds · REST).
 // Rosetta census dissolve: papers + rest sub-barrels merged here (one routes/corpus home).
-import { TAU, CANONICAL_HOST, DIMENSION_GATES, earned } from '../../../3/7'
+import { TAU, CANONICAL_HOST, DIMENSION_GATES, earned, titleCarriesAlgebra } from '../../../3/7'
 import type { MindMatrix, StaticPage } from '../../types'
 // call-time namespace edge (cycle-safe): learning imports corpus; search corpus reads back at call time
 import * as __ns_up_up_thunder_waves from '../../../thunder/waves'
@@ -1055,11 +1055,18 @@ export function theoremFormulaCodeDual(row: {
   // Optional and filled per-theorem (incrementally, "improving all on the way"): when present it is shown FIRST as the
   // real identity, above the generic proof-path form; when absent the theorem's headline + proof text carry the content.
   readonly algebraicStatement?: string
+  // The theorem's proof/statement text — mined for its algebra-bearing clauses so the UI shows real formulas, not names.
+  readonly proof?: string
 }): { readonly formulas: readonly string[]; readonly formulaSource: string; readonly pair: 'formula/code' } {
   const codePath = `${row.home}/index.ts`
-  const identity = typeof row.algebraicStatement === 'string' && row.algebraicStatement.length > 0
-    ? [`identity: ${row.algebraicStatement}`]
-    : []
+  // ALGEBRA FIRST (user: "make sure algebra formulas are visible in ui instead of the method names"): lead with the
+  // theorem's OWN algebra — its explicit statement, and its headline when that carries an identity (an =, an inequality,
+  // super/subscripts, a digit-identity). These are CURATED strings (not mined prose, which would read as wet prose in the
+  // formula box), so the identity sits above the proof-path form. The method/fold path stays as the verification dual.
+  const identity = [...new Set([
+    ...(typeof row.algebraicStatement === 'string' && row.algebraicStatement.length > 0 ? [`identity: ${row.algebraicStatement}`] : []),
+    ...(titleCarriesAlgebra(row.theorem) ? [`identity: ${row.theorem}`] : []),
+  ])]
   return {
     formulas: [
       ...identity,
@@ -1124,7 +1131,7 @@ function computeTheoremPageRows(matrix: MindMatrix): TheoremPageRow[] {
       const formulaCode = theoremFormulaCodeDual({
         slug, theorem: atom.theorem, provedBy: wave.provedBy, home: atom.home, proofClass: atom.proofClass,
         // incremental-fill hook: any registry atom that supplies its real identity surfaces it uniformly, all theorems
-        algebraicStatement: (atom as { algebraicStatement?: string }).algebraicStatement })
+        algebraicStatement: (atom as { algebraicStatement?: string }).algebraicStatement, proof: atom.proof })
       return {
         slug, theorem: atom.theorem, proof: atom.proof, proofClass: atom.proofClass, provedBy: wave.provedBy, home: atom.home, spec: specBy.get(atom.theorem),
         humanityNovel: prov?.humanityNovel ?? false,
@@ -1147,7 +1154,7 @@ function computeTheoremPageRows(matrix: MindMatrix): TheoremPageRow[] {
       const slug = row.slug
       const leansCited = false
       const formulaCode = theoremFormulaCodeDual({
-        slug, theorem: row.theorem, provedBy: row.provedBy, home: row.home, proofClass: row.proofClass })
+        slug, theorem: row.theorem, provedBy: row.provedBy, home: row.home, proofClass: row.proofClass, proof: row.proof })
       return {
         slug,
         theorem: row.theorem,
