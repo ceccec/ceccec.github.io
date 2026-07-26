@@ -26,7 +26,9 @@ import {
   clayChallengesComputableFromSequence,
   toolboxRecomputesRelatedSciencesInTrinityWaves,
   twoBitsFreeFromCensus110Minus108,
-  societySupportsProjectViaTwoBitsFreeKnowledge } from '../../../../wind/research'
+  societySupportsProjectViaTwoBitsFreeKnowledge,
+  domainProofPagePaths } from '../../../../wind/research'
+import { theoremPagePaths } from '../../../../wind/routes/corpus'
 import { counterRotatingRosettaQuantumWaves, anglePolarityReadmeHomeMarkdownSection } from '../../../apps'
 import {
   buildMatrix,
@@ -449,6 +451,26 @@ export function toolboxSciencesTrinityWavesMarkdownSection(
 /** THE ONE THEOREM CORE — both projections read every value from here, computed once per call from the
  *  theorem-science lens (VitePress shows only science) and the registry. A presented paper exists here
  *  iff it is a lens survivor; there is no second roster and no hand-authored section anywhere. */
+/** The ONE canonical served-route source — every COMPLETE, SSG-enumerated, non-duplicate page family the
+ *  site actually serves. The human sitemap (README/home §4) AND the crawler sitemap (`sitemapUrlBlocks`, which
+ *  imports these same generators and asserts the same total via `enumeratedPageRoutes`) render from THIS, so
+ *  the two can never drift. Families: the monograph landing/index pages (`quantumSitemap`), the theorem papers
+ *  (`/theorems`), and the domain proofs (`/proofs`). Deliberately EXCLUDED — verified, not assumed: the model
+ *  cards (`cardPagePaths` = 0, an empty family) and the `papers/[id]` catch-all (0 SSG — the empty shells were
+ *  purged; the 432 placements resolve on demand and would DUPLICATE the theorem papers). Their INDEX routes are
+ *  monographs already carried in the pages family, so nothing served is lost. */
+export function servedRouteFamilies(matrix: MindMatrix = buildMatrix()) {
+  const monographs = quantumSitemap(matrix).urls.length
+  const theorems = theoremPagePaths(matrix).length
+  const proofs = domainProofPagePaths(matrix).length
+  const families = [
+    { family: 'monographs', label: 'monograph landing + index pages', index: '/', count: monographs, enumerated: true },
+    { family: 'theorems', label: 'theorem papers', index: '/theorems', count: theorems, enumerated: false },
+    { family: 'proofs', label: 'domain proofs (Millennium + science)', index: '/proofs', count: proofs, enumerated: false },
+  ] as const
+  return { families, total: monographs + theorems + proofs }
+}
+
 function theoremMonographCore(matrix: MindMatrix) {
   // DRY (2026-07-24): memoByRoot the shared core so it computes ONCE per matrix — homeMarkdown + readmeMarkdown (and
   // readme() calling both) re-called it every time. Honest scope: the heavy sub-folds (monographs · quantumSitemap ·
@@ -459,6 +481,7 @@ function theoremMonographCore(matrix: MindMatrix) {
   const template = monographTemplate()
   const mono = monographs(matrix)
   const sitemap = quantumSitemap(matrix)
+  const servedRoutes = servedRouteFamilies(matrix)
   const lens = theoremScienceLens(matrix)
   const paperList = staticPages().map(monographAsScientificPaper)
   const census = foldedCensus(paperList.length)
@@ -486,7 +509,7 @@ function theoremMonographCore(matrix: MindMatrix) {
   // The monograph's own Receipt — the template's 11th section ("the content address is the receipt"). The
   // corpus roots and every reported count fold to one address that reproduces from src and changes if any value does.
   const receipt = merkleFold([mono.root, sitemap.root, template.root, toUuid(`readme-results:${census.folded}:${conceptCommands.length}:${mono.count}:${sitemap.urls.length}`)])
-  return { config, template, mono, sitemap, lens, paperList, census, math, efficiency, qc, rays, receipt }
+  return { config, template, mono, sitemap, servedRoutes, lens, paperList, census, math, efficiency, qc, rays, receipt }
   })
 }
 
@@ -497,7 +520,7 @@ type RayPaper = TheoremCore['rays'][number]['papers'][number]
  *  per-paper trailing link (README → `[source](github permalink)`, home → `[page](/slug)`) and the sitemap
  *  link base (README → absolute canonical URLs for GitHub/crawlers, home → site-internal paths). */
 function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => string, linkBase = ''): string[] {
-  const { lens, census, paperList, math, efficiency, sitemap, mono, template } = core
+  const { lens, census, paperList, math, efficiency, sitemap, servedRoutes, mono, template } = core
   const { labels } = math
   return [
     // SCIENTIFIC-PAPER ORDER (user: "restructure readme and homepage"): §1 Introduction → §2 Model → §3 Results (the
@@ -574,8 +597,17 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     '',
     '## 4. Sitemap',
     '',
-    `The quantum sitemap, wired from the same generator: ${sitemap.urls.length} routes — the home and every served science page — each in three locale editions (en · bg · cu), placed on the double torus and content-addressed; the XML and JSON sitemaps are generated from this one fold (\`quantumSitemap\`).`,
+    `The complete served surface, wired from ONE source (\`servedRouteFamilies\`) so the human sitemap here and the crawler \`sitemap.xml\` count the same pages: **${servedRoutes.total} pages** across ${servedRoutes.families.length} families — ${servedRoutes.families.map((f) => `${f.count} ${f.family}`).join(' · ')}. Only COMPLETE, non-duplicate families are listed: the empty model cards (0) and the compute-only \`papers/[id]\` catch-all (0 SSG — the placements resolve on demand and duplicate the theorem papers) are excluded; their index routes are monographs below.`,
     '',
+    ...servedRoutes.families.map((f) =>
+      f.enumerated
+        ? `- **${f.count} ${f.label}** (\`${f.index}\`) — each in three locale editions (en · bg · cu), placed on the double torus and content-addressed:`
+        // Index route named as code, not a markdown link: /proofs has no bg/gla locale variant, so a
+        // locale-rewritten link would 404; every page in these families is enumerated in the one sitemap.xml.
+        : `- **${f.count} ${f.label}** — index \`${f.index}\`; every page enumerated in the one \`sitemap.xml\`.`),
+    '',
+    // The monograph landing pages stay enumerated — they are the human-navigable roster (the theorem/proof
+    // families are thousands of pages, listed once in the machine sitemap, reached through their index above).
     ...sitemap.urls.map((url) => `- \`${url.route}\` — [en](${linkBase}${url.en}) · [bg](${linkBase}${url.bg}) · [cu](${linkBase}${url.gla})`),
     '',
     `- Sitemap root: \`${sitemap.root}\``,

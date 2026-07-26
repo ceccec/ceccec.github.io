@@ -59,6 +59,7 @@ import { STATIC_PAGE_SEED } from '../../../8/2'
 import { SOURCE_REPO } from '../../../3/7'
 import { observingMovieRevealsQuantumModel } from '../../science'
 import { theoremPagePaths, theoremPageRows } from '../../../wind/routes/corpus'
+import { domainProofPagePaths } from '../../../wind/research'
 import { honestRevolutionReceipt, quantumFusionJson } from '../../../wind/fusion'
 import { honestRevolutionFpgaHonesty } from '../../../heaven/compute/computer'
 import { revolutionaryEfficiencyNotPhysics } from '../../../thunder/verify'
@@ -422,8 +423,7 @@ export function agentComplianceJson(matrix: MindMatrix = buildMatrix()) {
 export function computedDistFiles(siteUrl: string, matrix: MindMatrix = buildMatrix(), now = new Date().toISOString()): readonly DistFile[] {
   const site = siteUrl.replace(/\/$/, '')
   return [
-    { path: 'sitemap.xml', content: sitemapXml(site, matrix, now), mime: 'application/xml' },
-    ...sitemapChildren(site, matrix, now), // Google large-sitemap: the index's chunked children
+    { path: 'sitemap.xml', content: sitemapXml(site, matrix, now), mime: 'application/xml' }, // ONE sitemap, every served page
     { path: 'sitemap.json', content: JSON.stringify(sitemapJson(site, matrix, now), null, 2), mime: 'application/json' },
     { path: 'robots.txt', content: robotsTxt(site), mime: 'text/plain' },
     { path: 'digit-index.json', content: JSON.stringify(digitIndexJson(matrix, now), null, 2), mime: 'application/json' },
@@ -553,19 +553,25 @@ function monographPageUrls(matrix: MindMatrix = buildMatrix()) {
   })
 }
 
-// ── GOOGLE LARGE-SITEMAP GUIDELINES: a sitemap INDEX (sitemap.xml) referencing chunked child
-// sitemaps, each ≤ 50,000 URLs and ≤ 50 MB (the sitemaps.org caps Google enforces). The pages and
-// the 432 theorem papers are separate children, and the theorem child auto-splits at the cap — so
-// the registry can grow past 50k without ever truncating. Blog of theorems only: no fold/corpus links.
-const SITEMAP_URL_CAP = 50000
-function sitemapUrlset(blocks: readonly string[]): string {
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${blocks.join("\n")}\n</urlset>\n`
+// ── ONE SITEMAP (user: "use only one sitemap"): a single sitemap.xml urlset listing every served page —
+// the monograph landing/index pages (× 3 locales), the domain proofs, and the theorem papers. The whole
+// served surface (~855 URLs) sits far under the 50,000-URL / 50 MB sitemaps.org caps Google enforces, so
+// no sitemap index and no child files are needed. Blog of theorems only: no fold/corpus links.
+function sitemapUrlset(blocks: readonly string[], root = ''): string {
+  const comment = root ? `<!-- quantum sitemap root: ${root} — one urlset, every served page -->\n` : ''
+  return `<?xml version="1.0" encoding="UTF-8"?>\n${comment}<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${blocks.join("\n")}\n</urlset>\n`
 }
 function sitemapUrlBlocks(siteUrl: string, matrix: MindMatrix, now: string) {
   const quantum = quantumSitemap(matrix)
   const alt = (a: readonly { hreflang: string; href: string }[]) => a.map((x) => `    <xhtml:link rel="alternate" hreflang="${x.hreflang}" href="${absCross(siteUrl, x.href)}" />`).join("\n")
   const block = (loc: string, priority: number, alternates: readonly { hreflang: string; href: string }[]) => ["  <url>", `    <loc>${absCross(siteUrl, loc)}</loc>`, `    <lastmod>${now}</lastmod>`, "    <changefreq>weekly</changefreq>", `    <priority>${Number(priority.toFixed(4))}</priority>`, alt(alternates), "  </url>"].join("\n")
-  const pages = quantum.urls.flatMap((url) => [block(url.gla, url.priority, url.alternates), block(url.en, url.priority, url.alternates), block(url.bg, url.priority * (4 / 5), url.alternates)])
+  const monographBlocks = quantum.urls.flatMap((url) => [block(url.gla, url.priority, url.alternates), block(url.en, url.priority, url.alternates), block(url.bg, url.priority * (4 / 5), url.alternates)])
+  // The domain proofs (30 complete Millennium/science monographs, distinct slugs — no theorem-slug overlap)
+  // are served by /proofs/[slug] yet were absent from the crawl surface; they belong in the pages child, one
+  // canonical en URL each (like the theorem papers). Empty families (model = 0) and compute-only catch-alls
+  // (papers/[id] resolve on demand and duplicate the theorem papers) are correctly NOT enumerated here.
+  const proofs = domainProofPagePaths(matrix).map((p) => block(`/proofs/${p.params.slug}`, 3 / 5, [{ hreflang: "en", href: absCross(siteUrl, `/proofs/${p.params.slug}`) }]))
+  const pages = [...monographBlocks, ...proofs]
   const priorities = theoremSitemapPriorities(matrix)
   const theorems = theoremPagePaths(matrix).map((p) => block(`/theorems/${p.params.slug}`, priorities.get(p.params.slug) ?? (3 / 5), [{ hreflang: "en", href: absCross(siteUrl, `/theorems/${p.params.slug}`) }]))
   return { pages, theorems, root: quantum.root }
@@ -598,19 +604,18 @@ export function theoremSitemapPriorities(matrix: MindMatrix = buildMatrix()): Ma
   return out
 }
 
-/** The child sitemaps — pages + the theorem papers auto-chunked at the 50k cap (Google large-sitemap). */
-export function sitemapChildren(siteUrl: string, matrix: MindMatrix = buildMatrix(), now = new Date().toISOString()): readonly DistFile[] {
-  const { pages, theorems } = sitemapUrlBlocks(siteUrl, matrix, now)
-  const files: DistFile[] = [{ path: "sitemap-pages.xml", content: sitemapUrlset(pages), mime: "application/xml" }]
-  const chunks = Math.max(1, Math.ceil(theorems.length / SITEMAP_URL_CAP))
-  for (let i = 0; i < chunks; i += 1) files.push({ path: `sitemap-theorems-${i + 1}.xml`, content: sitemapUrlset(theorems.slice(i * SITEMAP_URL_CAP, (i + 1) * SITEMAP_URL_CAP)), mime: "application/xml" })
-  return files
+/** Every sitemap <url> block — the one served surface (monograph pages × 3 locales + domain proofs + theorem
+ *  papers), from the one source. Kept well under the 50k sitemaps.org cap (currently ~855), so it fits in ONE
+ *  file — no index, no children (user: "use only one sitemap"). If the registry ever approached the cap this is
+ *  the single place to reintroduce chunking. */
+function sitemapAllBlocks(siteUrl: string, matrix: MindMatrix, now: string): { blocks: readonly string[]; root: string } {
+  const { pages, theorems, root } = sitemapUrlBlocks(siteUrl, matrix, now)
+  return { blocks: [...pages, ...theorems], root }
 }
-/** sitemap.xml IS the index (Google reads it, follows to the children) — never truncates. */
+/** sitemap.xml — ONE urlset listing every served page (Google reads it directly). One sitemap, one source. */
 export function sitemapXml(siteUrl: string, matrix: MindMatrix = buildMatrix(), now = new Date().toISOString()) {
-  const { root } = sitemapUrlBlocks(siteUrl, matrix, now)
-  const children = sitemapChildren(siteUrl, matrix, now).map((f) => ["  <sitemap>", `    <loc>${absCross(siteUrl, `/${f.path}`)}</loc>`, `    <lastmod>${now}</lastmod>`, "  </sitemap>"].join("\n"))
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<!-- quantum sitemap root: ${root} — Google sitemap index -->\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${children.join("\n")}\n</sitemapindex>\n`
+  const { blocks, root } = sitemapAllBlocks(siteUrl, matrix, now)
+  return sitemapUrlset(blocks, root)
 }
 
 export function sitemapJson(siteUrl: string, matrix: MindMatrix = buildMatrix(), now = new Date().toISOString()) {
@@ -625,9 +630,8 @@ export function sitemapJson(siteUrl: string, matrix: MindMatrix = buildMatrix(),
 // policies the lens already enforces (no doorway pages, no irrelevant keywords — only science serves).
 export function googleSearchEssentials(matrix: MindMatrix = buildMatrix(), siteUrl = canonicalUrl('/').replace(/\/$/, '')) {
   const robots = robotsTxt(siteUrl)
-  const xml = sitemapXml(siteUrl, matrix, new Date(0).toISOString()) // the sitemap INDEX (Google large-sitemap)
-  const childSitemaps = sitemapChildren(siteUrl, matrix, new Date(0).toISOString())
-  const urlXml = childSitemaps.map((f) => f.content).join('') // the url-bearing children the index points to
+  const xml = sitemapXml(siteUrl, matrix, new Date(0).toISOString()) // ONE urlset, every served page
+  const urlXml = xml // the single sitemap IS the url-bearing document
   const locs = [...urlXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]!)
   const seo = seoOptimised(matrix)
   const lens = theoremScienceLens(matrix)
@@ -637,7 +641,7 @@ export function googleSearchEssentials(matrix: MindMatrix = buildMatrix(), siteU
   const facets = [
     { facet: `CRAWLABLE — robots.txt allows all agents and declares the sitemap (${siteUrl}/sitemap.xml); no path Google needs is blocked`, on: robots.includes('User-agent: *') && robots.includes('Allow: /') && robots.includes('Sitemap: ') && !robots.includes('Disallow: /') },
     { facet: `INDEXABLE — the robots meta is index,follow with large previews (${config.robots}); every page carries an absolute https canonical on the one host`, on: config.robots.startsWith('index,follow') && canonicalUrl('/').startsWith('https://') },
-    { facet: `SITEMAP WITHIN PROTOCOL — ${locs.length} url entries (< ${sitemapLimit}), every <loc> absolute on ${siteUrl}, lastmod + hreflang alternates per url`, on: locs.length > 0 && locs.length < sitemapLimit && locs.every((loc) => loc.startsWith(siteUrl)) && urlXml.includes('<lastmod>') && urlXml.includes('hreflang="x-default"') && xml.includes('<sitemapindex') && [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].every((m) => m[1]!.endsWith('.xml')) },
+    { facet: `ONE SITEMAP WITHIN PROTOCOL — a single urlset of ${locs.length} url entries (< ${sitemapLimit}), every <loc> absolute on ${siteUrl}, lastmod + hreflang alternates per url — no sitemap index, no children`, on: locs.length > 0 && locs.length < sitemapLimit && locs.every((loc) => loc.startsWith(siteUrl)) && urlXml.includes('<lastmod>') && urlXml.includes('hreflang="x-default"') && xml.includes('<urlset') && !xml.includes('<sitemapindex') && locs.every((loc) => !loc.endsWith('.xml')) },
     { facet: `LOCALISED CORRECTLY — per-page hreflang with x-default = the English edition and absolute JSON-LD/og URLs (the seoOptimised audit, ${seo.facets.filter((entry) => entry.on).length}/${seo.facets.length})`, on: seo.optimised },
     { facet: `STRUCTURED DATA PER GUIDELINES — schema.org JSON-LD on every page (WebPage/TechArticle + breadcrumb + WebSite graph), the registry as ScholarlyArticle ItemList, all visible-content-backed (no markup for content the page does not show)`, on: seo.optimised && lens.computes },
     { facet: `HONEST CONTENT, NO DOORWAYS — only science serves (${lens.visibleCount} pages + ${lens.theoremCount} theorems; ${lens.hidden.length} removed with no route), every page a titled, described, keyworded scientific paper (${paper.count} papers) — the spam policies (doorway, scaled, keyword-stuffed content) are structurally excluded`, on: lens.computes && paper.papers },
@@ -663,7 +667,7 @@ export const dual = 'src/pair/cache/quantum'
 // live at dev time. The same files are written to disk at build by the enforcement cross wave; here the
 // dev server serves them recomputed-per-request from the model (zero build). One folder, one index, its
 // own VitePress plugin — the dist half of the dist⇄quantum pair, gathered by srcFolderPlugins.
-const COMPUTED_PREFIXES = ['/sitemap.xml', '/sitemap-', '/sitemap.json', '/robots.txt', '/digit-index.json', '/mcp.json', '/skills.json', '/workflows.json', '/agents.json', '/quantum-fusion.json', '/agent-compliance.json', '/llms.txt', '/print.css', '/api/'] as const
+const COMPUTED_PREFIXES = ['/sitemap.xml', '/sitemap.json', '/robots.txt', '/digit-index.json', '/mcp.json', '/skills.json', '/workflows.json', '/agents.json', '/quantum-fusion.json', '/agent-compliance.json', '/llms.txt', '/print.css', '/api/'] as const
 export function vitePlugin(siteUrl: string): Plugin {
   return {
     name: 'double-torus:dist',
