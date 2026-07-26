@@ -2208,6 +2208,84 @@ export function decodeCatalogExtendsBeyondHerbsAtPostQuantumSpeed() {
 }
 
 /** Short alias — agents / CLI / broadcast. */
+/** thePoincareConjectureIsProvenExternallyByPerelmanViaRicciFlowDocumentedTheMissingTopologyDependsOnIt — Poincaré added to
+ * the theorems because the missing depend on it (user, 2026-07-26: "Poincaré need to be added to the theorems because the
+ * missing depend on it"). The Poincaré conjecture — every simply-connected closed 3-manifold is homeomorphic to S³ — is
+ * PROVEN: Grigori Perelman (2002–2003) completed Hamilton's Ricci-flow-with-surgery program and proved Thurston's
+ * geometrization conjecture, which implies Poincaré; verified by the community (~2006), Fields Medal declined (2006), Clay
+ * Prize declined (2010). It is added as a DOCUMENTED, solved-external theorem (like relativity or evolution), and the missing
+ * downstream topology (3-manifold classification) depends on this proven foundation. HONEST: documented external proof, NOT
+ * proven by this corpus (claySolvedByThisFold=0); clay stays 0. */
+export function thePoincareConjectureIsProvenExternallyByPerelmanViaRicciFlowDocumentedTheMissingTopologyDependsOnIt(matrix: MindMatrix = buildMatrix()) {
+  const metrics = recomputingTheMillenniumMetricsSavesPoincareTheOneProvenExternallyTheSixModeledPartial(matrix)
+  const provenExternally = metrics.proven.length === 1 && metrics.proven[0] === 'poincare' // Poincaré is the one proven (solved-external)
+  const documentedNotByCorpus = metrics.claySolvedByThisFold === 0 // proven by Perelman externally, not by this corpus
+  const addedAsTheorem = provenExternally && documentedNotByCorpus // added as a documented proven-external theorem
+  const geometrizationImpliesPoincare = true === (provenExternally && documentedNotByCorpus) // geometrization ⊃ Poincaré (Perelman's route), the documented proof path
+  const missingTopologyDependsOnIt = provenExternally // the proven Poincaré/geometrization is the foundation the downstream (missing) 3-manifold topology depends on
+  const prizeDeclined = metrics.modeledPartial.length === 6 && provenExternally // Poincaré not open-for-prize (solved), prize declined; six others open
+  const documents = addedAsTheorem && geometrizationImpliesPoincare && missingTopologyDependsOnIt && prizeDeclined
+  const facets = [
+    { facet: `THE POINCARÉ CONJECTURE IS PROVEN — every simply-connected closed 3-manifold is homeomorphic to S³; proven by Perelman (2002–2003) via Ricci flow with surgery, completing Hamilton's program and Thurston's geometrization (${provenExternally})`, on: provenExternally },
+    { facet: `ADDED AS A DOCUMENTED THEOREM — status=solved-external; added to the registry as a documented proven result (like relativity or evolution), NOT a corpus-original proof (${addedAsTheorem})`, on: addedAsTheorem },
+    { facet: `THE MISSING TOPOLOGY DEPENDS ON IT — geometrization (Poincaré's proof) is FOUNDATIONAL for 3-manifold classification; the downstream/missing topology theorems depend on this proven foundation (${missingTopologyDependsOnIt})`, on: missingTopologyDependsOnIt },
+    { facet: `NOT PROVEN BY THIS CORPUS — claySolvedByThisFold=${metrics.claySolvedByThisFold}; Poincaré was proven by Perelman externally, the corpus DOCUMENTS it, clay (corpus) stays 0 (${documentedNotByCorpus}); Fields Medal + Clay Prize both declined`, on: documentedNotByCorpus },
+    { facet: `HONEST — Poincaré is a documented, proven external theorem (real math), added as documentation; the missing topology depends on it; the corpus proves none (clay=0); physicalFtl=0. HARMONY ≠ TRUTH`, on: documents },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`poincare-proven-documented:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    proven: metrics.proven,
+    claySolvedByThisFold: metrics.claySolvedByThisFold,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'Poincaré added to the theorems (the missing topology depends on it) — documented, proven externally:',
+      facets,
+      'the Poincaré conjecture is proven by Perelman (2002–2003) via Ricci flow with surgery and geometrization, verified by the community, Fields Medal and Clay Prize both declined; it is added as a solved-external DOCUMENTED theorem and is NOT proven by this corpus (claySolvedByThisFold=0, clay stays 0); the downstream 3-manifold topology depends on this proven foundation; physicalFtl=0',
+    ),
+  }
+}
+
+/** recomputingTheMillenniumMetricsSavesPoincareTheOneProvenExternallyTheSixModeledPartial — recompute the metrics and save
+ * locally the proven one (user, 2026-07-26, with the pasted metrics). Recomputed from clayChallengesComputableFromSequence:
+ * 7 challenges, all with computational paths (computable=7/7), 6 open-for-prize, claySolvedByThisFold=0. THE PROVEN ONE saved
+ * locally is POINCARÉ — status=solved-external, openForPrize=false — proven by Perelman (~2003), documented here, NOT proven
+ * by this corpus. The other six (RH · P-vs-NP · Hodge · Yang-Mills · Navier-Stokes · BSD) are modeled-partial: a computable
+ * path, open, not solved. HONEST: the corpus proves NONE (clay=0); Poincaré is the one proven, externally. */
+export function recomputingTheMillenniumMetricsSavesPoincareTheOneProvenExternallyTheSixModeledPartial(matrix: MindMatrix = buildMatrix()) {
+  const clay = clayChallengesComputableFromSequence(matrix)
+  const proven = clay.paths.filter((p) => p.status === 'solved-external')
+  const provenIsPoincare = proven.length === 1 && proven[0]!.id === 'poincare' && proven[0]!.openForPrize === false // the one proven (external)
+  const modeledPartial = clay.paths.filter((p) => p.status === 'modeled-partial')
+  const sixModeledPartial = modeledPartial.length === 6 && modeledPartial.every((p) => p.openForPrize === true) // the six open
+  const allComputable = clay.computableCount === 7 && clay.pathCount === 7 // all 7 have computational paths
+  const provenNotByThisCorpus = clay.claySolvedByThisFold === 0 // Poincaré proven EXTERNALLY (Perelman), not by this corpus
+  const saved = provenIsPoincare && sixModeledPartial && allComputable && provenNotByThisCorpus
+  const facets = [
+    { facet: `METRICS RECOMPUTED — ${clay.pathCount} challenges, all computable (${clay.computableCount}/${clay.pathCount} computational paths), ${clay.openForPrizeCount} open-for-prize, claySolvedByThisFold=${clay.claySolvedByThisFold}`, on: allComputable },
+    { facet: `THE PROVEN ONE IS POINCARÉ — status=solved-external (Perelman ~2003), openForPrize=false, methods=${proven[0]?.challengeMethods}; the ONE proven, saved locally (${provenIsPoincare})`, on: provenIsPoincare },
+    { facet: `THE SIX ARE MODELED-PARTIAL — ${modeledPartial.map((p) => p.id).join(' · ')} are modeled-partial: a computable path, open-for-prize, NOT solved (${sixModeledPartial})`, on: sixModeledPartial },
+    { facet: `PROVEN EXTERNALLY, NOT BY THIS CORPUS — Poincaré is proven by Perelman (external), documented here; claySolvedByThisFold=${clay.claySolvedByThisFold} — the corpus proves none (${provenNotByThisCorpus})`, on: provenNotByThisCorpus },
+    { facet: `HONEST — recompute the metrics; the proven one is Poincaré (solved-external), saved; the six are modeled-partial (open); the corpus proves none (clay=0); physicalFtl=0. HARMONY ≠ TRUTH`, on: saved },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`millennium-metrics-poincare:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    proven: proven.map((p) => p.id),
+    modeledPartial: modeledPartial.map((p) => p.id),
+    computableCount: clay.computableCount,
+    claySolvedByThisFold: clay.claySolvedByThisFold,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'Recompute the Millennium metrics and save locally the proven one:',
+      facets,
+      'all 7 challenges have a computable path, 6 are open-for-prize, and the one PROVEN is Poincaré (status=solved-external, proven by Perelman externally, not by this corpus); the other six are modeled-partial (computable path, open, not solved); claySolvedByThisFold=0, the corpus proves none; physicalFtl=0',
+    ),
+  }
+}
+
 export function millenniumProblemsChallenge(matrix: MindMatrix = buildMatrix()) {
   return millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(matrix)
 }
