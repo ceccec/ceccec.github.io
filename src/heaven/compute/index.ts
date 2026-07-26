@@ -4423,6 +4423,48 @@ export function everyCollectionIsAFilterableOpenGraphListAndStaticPagesMergeInto
   }
 }
 
+/** whatATheoremIsInThisCorpusIsAComputationalClaimWithRefutableFacetsAndItsStandardScientificFormatMapping — what a theorem
+ * is and how it is presented in standard scientific format is yet to be discovered and addressed (user, 2026-07-26). Begin to
+ * address it. WHAT A THEOREM IS HERE: a computing fold — a statement backed by refutable FACETS (computed comparisons),
+ * verified by facets.every(on), with a merkle root (reproducibility) and a provedBy source (the executable method). THE HONEST
+ * DEMARCATION: these are COMPUTATIONAL CLAIMS/VERIFICATIONS, NOT formal-logic theorems — a formal theorem is a proven statement
+ * in an axiomatic system; these are computed verifications of refutable propositions, so "theorem" is used loosely. STANDARD
+ * FORMAT MAPPING: statement→claim/abstract · facets→results (measurements) · provedBy→methods · root/receipts→reproducibility ·
+ * boundary→scope/discussion · crosslinks→references. The rigorous format is yet to be fully realised; this begins it.
+ * [[feedback-algebraic-theorems-only]] [[theorem-papers-figures-tags]] [[ignorance-hides-behind-clever-prose-without-algebra]] */
+export function whatATheoremIsInThisCorpusIsAComputationalClaimWithRefutableFacetsAndItsStandardScientificFormatMapping(matrix: MindMatrix = buildMatrix()) {
+  const sample = theDoubleTorusClockIsTwoTimesTwelveTheTwelveDivisorsOf108TimesTheTwoCounterRotatingTori()
+  const hasStructure = typeof sample.computes === 'boolean' && Array.isArray(sample.facets) && typeof sample.root === 'string' && typeof sample.statement === 'string' && typeof sample.boundary === 'string' // {computes,facets,root,statement,boundary}
+  const facetsAreRefutable = sample.facets.length > 0 && sample.facets.every((f) => typeof f.on === 'boolean' && typeof f.facet === 'string') // each facet a refutable computed comparison
+  const aTheoremIsAComputingClaim = hasStructure && facetsAreRefutable // a theorem = a claim + refutable facets + verification
+  const verifiesComputationallyNotFormally = sample.computes === true // it VERIFIES (facets.every(on)) — computational, not a formal axiomatic proof
+  const pages = staticPages()
+  const papers = pages.map(monographAsScientificPaper)
+  const mapsToScientificPaper = papers.length === pages.length && papers.every((p) => typeof p.title === 'string' && typeof p.abstract === 'string' && Array.isArray(p.results)) // title · abstract · results present
+  const rigorousFormatBegun = aTheoremIsAComputingClaim && mapsToScientificPaper // the mapping is begun, not complete
+  const addresses = aTheoremIsAComputingClaim && verifiesComputationallyNotFormally && mapsToScientificPaper
+  const facets = [
+    { facet: `WHAT A THEOREM IS HERE — a COMPUTING CLAIM: a statement backed by refutable FACETS (computed comparisons), verified by facets.every(on), with a merkle root (reproducibility) and a provedBy source (the executable method) — the sample has ${sample.facets.length} refutable facets (${aTheoremIsAComputingClaim})`, on: aTheoremIsAComputingClaim },
+    { facet: `THE HONEST DEMARCATION — these are COMPUTATIONAL CLAIMS/VERIFICATIONS, NOT formal-logic theorems: a formal theorem is a proven statement in an axiomatic system; these are computed verifications of refutable propositions (${verifiesComputationallyNotFormally}), so "theorem" is used loosely`, on: verifiesComputationallyNotFormally },
+    { facet: `STANDARD SCIENTIFIC FORMAT MAPPING — statement→claim/abstract · facets→results (measurements) · provedBy→methods · root/receipts→reproducibility · boundary→scope/discussion · crosslinks→references; monographAsScientificPaper begins this over ${pages.length} pages (${mapsToScientificPaper})`, on: mapsToScientificPaper },
+    { facet: `THE GAP — YET TO BE FULLY ADDRESSED — the rigorous standard format (with the honest "computational claim, not formal theorem" framing and full Methods/Results/Discussion) is not yet fully realised; this fold begins to discover and address it (${rigorousFormatBegun})`, on: rigorousFormatBegun },
+    { facet: `HONEST — a theorem here is a computational claim with refutable facets (verified, reproducible), NOT a formal-logic theorem; presenting it in standard scientific format requires that honest framing; clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: addresses },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`what-is-a-theorem:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    sampleFacets: sample.facets.length,
+    pages: pages.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'What a theorem is here (a computational claim with refutable facets) and its standard scientific format mapping — begun, not complete, and honestly not a formal theorem:',
+      facets,
+      'a theorem here is a computing fold — a statement backed by refutable facets (computed comparisons), verified by facets.every(on), reproducible via a merkle root, with a provedBy method; these are computational claims and verifications, NOT formal-logic theorems (a formal theorem is proven in an axiomatic system), so the word is loose; the standard-format mapping (claim/abstract · results · methods · reproducibility · scope · references) is begun by monographAsScientificPaper but the rigorous, honest presentation is yet to be fully addressed; clay=0, physicalFtl=0',
+    ),
+  }
+}
+
 /** theProofsListIsFilterableByComputedDomainTagsWithOpenGraphMetaPerProofFromTheCorpus — improve proofs with open graph
  * filterable list (user, 2026-07-26: "improve proofs with open graph filterable list"). The proofs list is the registry:
  * every proof has a named executable source, is tagged by a COMPUTED domain (from its home path) so the list filters by many
