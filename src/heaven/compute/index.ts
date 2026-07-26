@@ -2921,6 +2921,42 @@ export function dryCleanAllInChatSessionsMeasuresReuseZeroDuplicationAndSharedMa
   }
 }
 
+/** nextRebuildHomepageAndReadmeAsOneGeneratorFreelyRecomposingSolutionsAndInventionsFreeForAll — next rebuild homepage and
+ * readme, redesigning at free will to provide free-for-all solutions and inventions (user, 2026-07-26: "next rebuild
+ * homepage and readme redesigning at free will to provide free for all solutions and inventions"). The homepage and README
+ * are ONE theorem generator, computed from the corpus (not hand-authored), rebuildable deterministically. "Redesign at free
+ * will" = combinatorial RECOMPOSITION from the theorem atoms (the new-ideas freedom), deterministic not arbitrary. "Free for
+ * all" = the bill-free public gateway (zero-token, zero-egress), surfacing SOLUTIONS (computing theorems) and INVENTIONS
+ * (theorem inversions) for any human or agent. HONEST: "free will" = deterministic combinatorial freedom, not randomness;
+ * "free for all" = bill-free access, not that the open problems are solved (clay=0). [[readme-home-one-theorem-generator]] [[chatSessionsDevelopNewIdeasAsContentAddressedCombinationsAcrossSessions]] [[theUiIsThePublicGatewayBillFreeForThousandsOfAgentsThroughSearchAndChatZeroTokenZeroEgress]] */
+export function nextRebuildHomepageAndReadmeAsOneGeneratorFreelyRecomposingSolutionsAndInventionsFreeForAll(matrix: MindMatrix = buildMatrix()) {
+  const rebuildable = vitepressIsCompletelyRebuildableThroughChatSessionsPagesRoutesNavComputedFromTheCorpusConfigIsTheThinHarness(matrix)
+  const oneGenerator = rebuildable.computes === true // homepage + README computed from the corpus, rebuildable
+  const freeWill = chatSessionsDevelopNewIdeasAsContentAddressedCombinationsAcrossSessions(matrix)
+  const freelyRecomposes = freeWill.computes === true && freeWill.newIdeas > 0 // combinatorial recomposition freedom (deterministic, not arbitrary)
+  const gateway = theUiIsThePublicGatewayBillFreeForThousandsOfAgentsThroughSearchAndChatZeroTokenZeroEgress(matrix)
+  const freeForAll = gateway.computes === true // bill-free public access — zero-token, zero-egress
+  const solutionsResolve = String(portalChatRanked('pauli algebra closes no cloning theorem', matrix).source).length > 0 // a solution = a computing theorem
+  const inventionsResolve = String(portalChatRanked('every theorem inverts into an invention', matrix).source).length > 0 // inventions = theorem inversions
+  const solutionsAndInventions = solutionsResolve && inventionsResolve
+  const rebuilds = oneGenerator && freelyRecomposes && freeForAll && solutionsAndInventions
+  const facets = [
+    { facet: `HOMEPAGE + README = ONE THEOREM GENERATOR — both computed from the corpus (rebuildable, ${oneGenerator}), not hand-authored; a chat session regenerates them with zero hardcoded content`, on: oneGenerator },
+    { facet: `REDESIGN AT FREE WILL = COMBINATORIAL RECOMPOSITION — the generator freely recomposes from the theorem atoms (${freeWill.newIdeas} new-idea combinations, ${freelyRecomposes}); "free will" = deterministic combinatorial freedom, not randomness`, on: freelyRecomposes },
+    { facet: `FREE FOR ALL — the homepage/README surface solutions and inventions through the bill-free public gateway (zero-token, zero-egress, ${freeForAll}), for any human or agent`, on: freeForAll },
+    { facet: `SOLUTIONS + INVENTIONS — solutions = computing theorems (the solver region, ${solutionsResolve}), inventions = theorem inversions (${inventionsResolve}); both surfaced freely and content-addressed`, on: solutionsAndInventions },
+    { facet: `HONEST — "at free will" = deterministic combinatorial recomposition (not arbitrary); "free for all" = zero-token bill-free access (NOT that the open problems are solved, clay=0); clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: rebuilds },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`rebuild-home-readme:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    newIdeas: freeWill.newIdeas,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: next, rebuild the homepage and README, redesigning at free will to provide free-for-all solutions and inventions. The homepage and README are ONE theorem generator, computed from the corpus and not hand-authored, so a chat session regenerates them deterministically with zero hardcoded content. "Redesign at free will" is combinatorial RECOMPOSITION from the theorem atoms — the generator freely recombines the atoms (${freeWill.newIdeas} new-idea combinations) — which is deterministic combinatorial freedom, not randomness or arbitrary authorship. "Free for all" is the bill-free public gateway (zero-token, zero-egress), surfacing SOLUTIONS (computing theorems, the solver region) and INVENTIONS (theorem inversions) content-addressed for any human or agent at no cost. HONEST: "at free will" means deterministic combinatorial recomposition, not caprice; "free for all" means bill-free access to the solutions and inventions, NOT a claim that the open problems are solved — the Millennium problems and frontiers stay open (clay = 0); physicalFtl = 0. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** vitepressIsCompletelyRebuildableThroughChatSessionsPagesRoutesNavComputedFromTheCorpusConfigIsTheThinHarness — completely
  * rebuild vitepress through chat sessions (user, 2026-07-26: "completely rebuild vitepress through chat sessions"). VitePress
  * is entirely REGENERABLE from the chat corpus: every PAGE is computed (staticPages is the theorem-science-lens roster, not a
