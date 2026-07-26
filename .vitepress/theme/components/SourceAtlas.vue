@@ -4,6 +4,9 @@
 // each row linking to the exact source file. Registered beside TheoremPages (outside the 64 census).
 import { ref, onMounted } from 'vue'
 import { githubPermalink } from '../../../src/wind/site/index'
+import { useSiteLocale } from '../../lib/mounts'
+
+const { t } = useSiteLocale()
 
 type Atlas = { count: number; sciences: Record<string, number>; modules: { path: string; science: string }[] }
 const atlas = ref<Atlas | null>(null)
@@ -16,11 +19,11 @@ const groups = (a: Atlas) => Object.keys(a.sciences).sort().map((science) => ({ 
 
 <template>
   <div class="source-atlas" data-logic="src/pair/enforcement/gates/computational/index.ts">
-    <p v-if="failed">The atlas artifact is generated at deploy time — open <a href="/source-atlas.json">source-atlas.json</a>.</p>
+    <p v-if="failed">{{ t('The atlas artifact is generated at deploy time — open') }} <a href="/source-atlas.json">source-atlas.json</a>.</p>
     <template v-else-if="atlas">
-      <p class="source-atlas__census" role="status">{{ atlas.count }} sealed indexes · {{ Object.keys(atlas.sciences).length }} groups — recomputed every cross wave.</p>
+      <p class="source-atlas__census" role="status">{{ atlas.count }} {{ t('sealed indexes') }} · {{ Object.keys(atlas.sciences).length }} {{ t('groups — recomputed every cross wave.') }}</p>
       <section v-for="group in groups(atlas)" :key="group.science">
-        <h3 :id="`atlas-${group.science}`">{{ group.science }} <small>{{ group.modules.length }}</small></h3>
+        <h3 :id="`atlas-${group.science}`">{{ t(group.science) }} <small>{{ group.modules.length }}</small></h3>
         <ul>
           <li v-for="m in group.modules" :key="m.path">
             <a :href="githubPermalink(m.path)" rel="noopener">{{ m.path }}</a>

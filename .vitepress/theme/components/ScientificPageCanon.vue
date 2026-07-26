@@ -6,6 +6,9 @@ import { SCIENCE_PAGE_CANON_SLOTS } from '../../../src/quantum/apps/index.ts'
 import ScientificPaperBody from './ScientificPaperBody.vue'
 import PageComputedGaps from './PageComputedGaps.vue'
 import UiBadge from './ui/Badge.vue'
+import { useSiteLocale } from '../../lib/mounts'
+
+const { t } = useSiteLocale()
 
 defineProps<{
   meaning: ScientificPageMeaning
@@ -21,8 +24,8 @@ defineProps<{
     :data-fold="meaning.fold"
   >
     <header class="scientific-page-canon__head">
-      <h1>{{ meaning.title }}</h1>
-      <p class="scientific-page-canon__theorem">{{ meaning.theorem }}</p>
+      <h1>{{ t(meaning.title) }}</h1>
+      <p class="scientific-page-canon__theorem">{{ t(meaning.theorem) }}</p>
       <p class="scientific-page-canon__fold"><code>{{ meaning.fold }}</code></p>
     </header>
 
@@ -32,14 +35,14 @@ defineProps<{
         :key="f.facet"
         :variant="f.on ? 'default' : 'outline'"
       >
-        {{ f.on ? '✓' : '—' }} {{ f.facet }}
+        {{ f.on ? '✓' : '—' }} {{ t(f.facet) }}
       </UiBadge>
     </div>
 
     <dl v-if="meaning.terminology.length" class="scientific-page-canon__terms" aria-label="terminology">
-      <template v-for="t in meaning.terminology" :key="t.term">
-        <dt>{{ t.term }}</dt>
-        <dd>{{ t.value }} <span>{{ t.unit }}</span></dd>
+      <template v-for="term in meaning.terminology" :key="term.term">
+        <dt>{{ t(term.term) }}</dt>
+        <dd>{{ term.value }} <span>{{ term.unit }}</span></dd>
       </template>
     </dl>
 

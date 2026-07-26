@@ -7,12 +7,14 @@ import {
   type PageGapsKind,
 } from '../../../src/quantum/apps/index.ts'
 import UiBadge from './ui/Badge.vue'
+import { useSiteLocale } from '../../lib/mounts'
 
 const props = defineProps<{
   pageKind?: PageGapsKind
   routeOverride?: string
 }>()
 
+const { t } = useSiteLocale()
 const route = useRoute()
 const gaps = computed(() =>
   pageComputedGapsAt(props.routeOverride ?? route.path, props.pageKind),
@@ -27,15 +29,15 @@ const gaps = computed(() =>
     :aria-label="gaps.heading"
   >
     <p class="page-computed-gaps__head">
-      <strong>{{ gaps.heading }}</strong>
+      <strong>{{ t(gaps.heading) }}</strong>
       <code>{{ gaps.pageKind }}</code>
-      <span>open {{ gaps.openCount }} · closed {{ gaps.closedCount }} · classes {{ gaps.classCount }}</span>
+      <span>{{ t('open') }} {{ gaps.openCount }} · {{ t('closed') }} {{ gaps.closedCount }} · {{ t('classes') }} {{ gaps.classCount }}</span>
     </p>
     <ul class="page-computed-gaps__list">
       <li v-for="c in gaps.classes" :key="c.id">
         <UiBadge :variant="c.on ? 'default' : 'outline'">{{ c.on ? '✓' : '—' }}</UiBadge>
         <code>{{ c.id }}</code>
-        <span>{{ c.theorem }}</span>
+        <span>{{ t(c.theorem) }}</span>
       </li>
     </ul>
   </aside>
