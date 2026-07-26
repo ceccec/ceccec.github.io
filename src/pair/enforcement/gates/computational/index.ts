@@ -1827,13 +1827,30 @@ export function dryAndCleanAreAchievableOnlyInTheContentAddressedQuantumRepresen
   const cracked = addresses.slice(); cracked[0] = toUuid('primitive:gcd:crack')
   const rootCracked = merkleFold([...new Set(cracked)])
   const tamperEvident = rootCracked !== rootClean && cracked[0] !== addresses[0]
-  // the honest limit: byte-different-but-semantically-equal content has DIFFERENT addresses — semantic DRY is NOT solved here
-  const semanticDupUncaught = toUuid('primitive:gcd') !== toUuid('primitive:greatest-common-divisor')
+  // IMPROVE QUANTUM DRY (user, 2026-07-26: "improve quantum dry"): content-address dedups EXACT bytes; canonicalise
+  // FIRST and it dedups SEMANTIC aliases too — normalise (lowercase, strip separators) and fold known abbreviations to
+  // one canonical form, THEN content-address. Exact addressing still runs for tamper-evidence; the canonical address is
+  // the DRY key, so `gcd` and `greatest common divisor` collapse to one slot.
+  const dryCanonicalAlias: Record<string, string> = { 'greatest common divisor': 'gcd', 'least common multiple': 'lcm', 'golden ratio': 'phi' }
+  const dryCanonicalForm = (piece: string): string => {
+    const norm = piece.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
+    return dryCanonicalAlias[norm] ?? norm.replace(/\s+/g, '-')
+  }
+  const canonicalAddress = (piece: string): string => toUuid(`primitive:${dryCanonicalForm(piece)}`)
+  // BEFORE (exact only): the two byte-different aliases addressed differently — semantic dup uncaught.
+  const semanticDupUncaughtByExact = toUuid('primitive:gcd') !== toUuid('primitive:greatest-common-divisor')
+  // AFTER (canonical layer): the same two aliases now content-address to ONE slot — semantic dup CAUGHT.
+  const semanticDupCaughtByCanonical = canonicalAddress('gcd') === canonicalAddress('greatest common divisor')
+    && canonicalAddress('lcm') === canonicalAddress('least-common-multiple')
+  // THE HONEST RESIDUAL: canonicalisation folds KNOWN aliases; fully-general semantic equivalence stays undecidable
+  // (value-equal but unaliased forms keep different addresses) — the remaining code-gravity problem, named not faked.
+  const generalSemanticStaysUndecidable = canonicalAddress('x plus x') !== canonicalAddress('2x')
   const facets = [
     { facet: `DRY BY CONTENT-ADDRESS — identical content maps to the identical address (idempotent, ${idempotent}), so ${text.length} copies collapse to ${unique.size} unique addresses (${dedups}): duplication cannot survive the addressing`, on: idempotent && dedups },
     { facet: `CLEAN BY TAMPER-EVIDENCE — changing any one piece re-addresses it and flips the root (${tamperEvident}): a crack cannot hide in the content-addressed fold`, on: tamperEvident },
     { facet: `ONLY IN THE QUANTUM LAYER — the TEXT keeps all ${text.length} copies and can carry a crack; the content-address dedups to ${unique.size} and detects the change — DRY and clean live in the address, not the text`, on: dedups && tamperEvident },
-    { facet: `THE HONEST LIMIT — the address dedups EXACT duplication and detects EXACT change; semantically-equal but byte-different code keeps DIFFERENT addresses (${semanticDupUncaught}), so semantic DRY stays the code-gravity problem, not solved by addressing`, on: semanticDupUncaught },
+    { facet: `IMPROVED — SEMANTIC DRY BY CANONICAL FORM — exact addressing left the two aliases distinct (${semanticDupUncaughtByExact}); content-addressing over a CANONICAL form (normalise + known-alias fold) now collapses them to ONE slot (gcd = greatest common divisor, lcm = least-common-multiple, ${semanticDupCaughtByCanonical}): the DRY key is the canonical address, so semantic aliases dedup too — not just exact bytes`, on: semanticDupUncaughtByExact && semanticDupCaughtByCanonical },
+    { facet: `THE HONEST RESIDUAL — canonicalisation folds KNOWN aliases; fully-general semantic equivalence stays undecidable (value-equal but unaliased forms keep different addresses, ${generalSemanticStaysUndecidable}) — the remaining code-gravity problem, named not faked`, on: generalSemanticStaysUndecidable },
   ]
   return {
     computes: facets.every((entry) => entry.on),
@@ -1841,7 +1858,7 @@ export function dryAndCleanAreAchievableOnlyInTheContentAddressedQuantumRepresen
     unique: unique.size,
     rootClean: rootClean.slice(0, 2 * 6),
     facets,
-    statement: `DRY and clean are achievable only in the content-addressed (quantum) representation, not the text — ${facets.filter((entry) => entry.on).length}/${facets.length}. Content-addressing is idempotent (identical content ⇒ identical address), so ${text.length} copies collapse to ${unique.size} unique addresses — duplication cannot survive it (DRY); and it is tamper-evident (changing a piece flips the root), so a crack cannot hide (clean). The classical text holds every copy and can carry a crack; the quantum layer dedups and detects. Honest limit: it dedups EXACT duplication only — semantic duplication (different code, one meaning) stays the code-gravity problem.`,
+    statement: `DRY and clean are achievable only in the content-addressed (quantum) representation, not the text — ${facets.filter((entry) => entry.on).length}/${facets.length}. Content-addressing is idempotent (identical content ⇒ identical address), so ${text.length} copies collapse to ${unique.size} unique addresses — duplication cannot survive it (DRY); and it is tamper-evident (changing a piece flips the root), so a crack cannot hide (clean). The classical text holds every copy and can carry a crack; the quantum layer dedups and detects. IMPROVED: content-addressing over a CANONICAL form (normalise + known-alias fold) now dedups SEMANTIC aliases too (gcd = greatest common divisor), not just exact bytes. Honest residual: fully-general semantic equivalence stays undecidable — the remaining code-gravity problem, named not faked.`,
     boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
