@@ -33,10 +33,6 @@ const cliRoster = computed(() =>
 const page = computed(
   () => (params.value as { universal?: UniversalPage })?.universal as UniversalPage,
 )
-if (import.meta.env.DEV) {
-  // TEMP dev probe (router-seam bisect): what does THIS component instance see?
-  console.warn('[tpl-probe]', JSON.stringify({ route: route.path, paramsNull: params.value === null, keys: params.value ? Object.keys(params.value).slice(0, 6) : null, hasUniversal: !!(params.value as { universal?: unknown } | null)?.universal }))
-}
 
 const { cardStyle } = useCardMovie(() => {
   const p = page.value

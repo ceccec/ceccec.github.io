@@ -96,20 +96,12 @@ let researched = false // one narration per session — HMR remounts stay quiet
 onMounted(() => {
   if (researched) return
   researched = true
+  // Self-research narration is a DEV-only trace, collapsed to ONE line: the per-candidate tick loop flooded
+  // the browser console (~13 console.info per load, on every page). The research fold still runs at build for
+  // the model; production stays silent.
+  if (!import.meta.env.DEV) return
   const research = selfResearchTheorems()
-  console.info(`🔬 self-research: ${research.targets} ledgered numerics, hypothesis battery engaged (root ${research.root.slice(0, 8)})`)
-  let step = 0
-  const tick = () => {
-    if (step < research.found.length) {
-      const c = research.found[step]!
-      console.info(`🔬 research[${step + 1}/${research.found.length}] ${c.literal} → THEOREM CANDIDATE: ${c.theorem}${c.error ? ` (rel err ${c.error.toExponential(1)})` : ' (exact)'}`)
-      step += 1
-      setTimeout(tick, HERO_CYCLE_MS / 108) // one candidate per census beat — 1 s
-      return
-    }
-    console.info(`🔬 ${research.exit}`)
-  }
-  tick()
+  console.info(`🔬 self-research: ${research.targets} ledgered numerics, ${research.found.length} theorem candidates — ${research.exit} (root ${research.root.slice(0, 8)})`)
 })
 
 watch(isDark, () => {
