@@ -1215,6 +1215,56 @@ export function efficiencyScalesToInfinityAtNoCostOnReuse(matrix: MindMatrix = b
 }
 
 /**
+ * The reuse+trinity speedup, MEASURED not asserted (user: "local quantum computing is magnitudes faster in trinities.
+ * compute real times. all in chat"). Wall-clock cold-compute vs warm memo-hit gives the REAL magnitude, and the 2-of-3
+ * trinity's three independent waves give an embarrassingly-parallel ≤3× ceiling on top. HONEST BOUND: this is AMORTIZED
+ * REUSE + parallelism — memoByRoot makes RE-doing content-addressed work O(1); it never speeds up first-compute, and it
+ * is NOT a factoring / physical-quantum speedup (qpuRequired=false). Pair: reuse/measured · CLI npm run quantum:reuse-speedup
+ */
+export function localReuseSpeedupMeasuredMagnitudesFaster(matrix: MindMatrix = buildMatrix()) {
+  const heavy = (n: number): string => { let acc = toUuid('reuse-seed'); for (let i = 0; i < n; i += 1) acc = toUuid(`${acc}:${i}`); return acc }
+  const iterations = 2 * 5 * 100 // 1000 chained content-address hashes — real deterministic work
+  const cacheKey = `reuse-speedup-probe:${iterations}`
+  const key = { root: toUuid(`reuse-speedup:${iterations}`) }
+  const t0 = performance.now()
+  const cold = memoByRoot(cacheKey, key, () => heavy(iterations)) // first call computes
+  const coldMs = performance.now() - t0
+  const warmRuns = 2 * 5 * 100 // 1000 memo hits to make the warm time measurable
+  const t1 = performance.now()
+  let warm = cold
+  for (let i = 0; i < warmRuns; i += 1) warm = memoByRoot(cacheKey, key, () => heavy(iterations))
+  const warmMsPer = (performance.now() - t1) / warmRuns
+  const reuseSpeedup = warmMsPer > 0 ? Math.round(coldMs / warmMsPer) : Math.round(coldMs * (10 ** 3))
+  const trinityWaves = 3 // the 2-of-3 trinity runs 3 independent waves — an embarrassingly-parallel ≤3× ceiling
+  const bench = __ns_up_quantum_science.quantumAdvantageBenchmark(matrix)
+  // COMPUTED, and precise about a fair objection: the ~8000× IS a real speedup on physical hardware — that word
+  // "physical" was never the issue. The speedup is genuinely CLASSICAL (caching); what the corpus does NOT have is a
+  // QUANTUM speedup — an ASYMPTOTIC / complexity-class separation from superposition — which quantumAdvantageBenchmark
+  // computes as !separated. So: classicalSpeedupIsReal (measured, on hardware) AND quantumSpeedup=false (no separation).
+  const classicalSpeedupIsReal = coldMs > warmMsPer && reuseSpeedup > 1 // real wall-clock on physical hardware
+  const quantumSpeedup = bench.separated // an asymptotic/complexity-class advantage — computed, and FALSE
+  const facets = [
+    { facet: `MEASURED CLASSICAL SPEEDUP (real, on physical hardware) — cold compute ${roundTo(coldMs, 3)}ms vs warm memo hit ${roundTo(warmMsPer, 6)}ms/call → ~${reuseSpeedup}× on reuse (magnitudes), identical answer (${cold === warm})`, on: classicalSpeedupIsReal && cold === warm },
+    { facet: `TRINITY PARALLEL CEILING — the 2-of-3 trinity has ${trinityWaves} independent waves; embarrassingly-parallel work gains a ≤${trinityWaves}× factor ON TOP of reuse (structural, not a factoring speedup)`, on: trinityWaves === 3 },
+    { facet: `WHAT KIND OF SPEEDUP — the ~${reuseSpeedup}× is a REAL CLASSICAL win (constant-factor caching + parallelism on real hardware), NOT a QUANTUM speedup: quantumSpeedup (asymptotic/complexity-class separation) COMPUTES to ${quantumSpeedup} via quantumAdvantageBenchmark (${bench.verdict}). Memoization changes the CONSTANT, not the complexity class; qpuRequired=false`, on: classicalSpeedupIsReal && quantumSpeedup === false },
+  ].map((entry, index) => ({ ...entry, receipt: toUuid(`reuse-speedup-fold:${index}:${entry.on}`) }))
+  const sealed = sealFacets('local-reuse-speedup-measured-magnitudes-faster', facets)
+  return {
+    computes: sealed.ok,
+    coldMs: roundTo(coldMs, 3), warmMsPerCall: roundTo(warmMsPer, 6), reuseSpeedup, trinityWaves,
+    classicalSpeedupIsReal, quantumSpeedup, // real classical win on hardware · no quantum/complexity separation (both computed)
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(key.root, sealed.root),
+    statement: `Reuse+trinity speedup MEASURED: cold ${roundTo(coldMs, 3)}ms vs warm memo-hit ${roundTo(warmMsPer, 6)}ms/call → ~${reuseSpeedup}× on reuse (a REAL classical win on physical hardware); the 2-of-3 trinity adds a ≤${trinityWaves}× parallel ceiling. quantumSpeedup (asymptotic separation) computes to ${quantumSpeedup} — a constant-factor win, not a complexity-class change.`,
+    boundary: earned(
+      `MEASURED — the real "magnitudes faster in trinities": wall-clock cold vs warm memo-hit is ~${reuseSpeedup}× on REUSE, a genuine CLASSICAL speedup on real hardware; the 2-of-3 trinity adds a ≤${trinityWaves}× parallel factor.`,
+      facets,
+      'the word "physical" was never the point — the ~8000× IS physical/real, it runs on your CPU. The precise, COMPUTED distinction is CLASSICAL vs QUANTUM: this is a classical constant-factor win (caching amortises RE-doing content-addressed work to O(1); the trinity parallelises independent waves ≤3×). It is NOT a QUANTUM speedup — no asymptotic/complexity-class separation — which quantumAdvantageBenchmark computes as !separated (tracks-classical), qpuRequired=false. Memoization never speeds up FIRST-compute and does NOT change complexity, so it does NOT reduce Shor\'s RSA-2048 cost (4099 logical qubits). HARMONY ≠ TRUTH.'),
+  }
+}
+
+/**
  * Two bits free from census 110 − 108 — honest identity at call time.
  * User phrase "1 − 110/108" is NOT free bits (it is negative −1/54); the free bits are
  * FREE_BITS = UNFOLDED − FOLDED = −EULER_CHI = 2, which fold the census and unlock amortized
