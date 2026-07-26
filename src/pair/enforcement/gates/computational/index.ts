@@ -1333,31 +1333,56 @@ export function foldingEntropy(root: string): {
 /** Theorem sources (user law 2026-07-16: every card page exposes the source code of how all is
  * achieved). For each registry atom, the provedBy function's text is brace-matched out of its home
  * module and emitted as theorem-sources.json — the paper page shows the actual proof machine. */
-export function theoremSourcesJson(root: string): string {
+export function theoremSourcesJson(root: string, atoms: readonly { provedBy: string; home: string }[] = THEOREM_ATOM_SEED): string {
   const sources: Record<string, { home: string; code: string }> = {}
-  for (const atom of THEOREM_ATOM_SEED) {
-    if (sources[atom.provedBy]) continue
-    const file = join(root, atom.home, 'index.ts')
-    if (!existsSync(file)) continue
-    const text = readFileSync(file, 'utf8')
-    const head = text.match(new RegExp(`(?:^|\\n)((?:/\\*\\*[\\s\\S]*?\\*/\\n)?export (?:async )?function ${atom.provedBy}\\b)`))
-    let code = ''
+  // Extract one fold's exact source from a file: brace-match an `export function`, else the `export const` block.
+  const extractFrom = (text: string, name: string): string => {
+    const head = text.match(new RegExp(`(?:^|\\n)((?:/\\*\\*[\\s\\S]*?\\*/\\n)?export (?:async )?function ${name}\\b)`))
     if (head) {
       const start = text.indexOf(head[1]!, head.index!)
-      const open = text.indexOf('{', start + head[1]!.length - 1)
       let depth = 0
       for (let i = text.indexOf('{', start); i < text.length; i += 1) {
         if (text[i] === '{') depth += 1
-        if (text[i] === '}') { depth -= 1; if (depth === 0) { code = text.slice(start, i + 1); break } }
+        if (text[i] === '}') { depth -= 1; if (depth === 0) return text.slice(start, i + 1) }
       }
-      void open
-    } else {
-      const arrow = text.match(new RegExp(`(?:^|\\n)(export const ${atom.provedBy}\\b[\\s\\S]*?\\n)(?=export |$)`))
-      code = arrow ? arrow[1]!.trimEnd() : ''
+      return ''
+    }
+    const arrow = text.match(new RegExp(`(?:^|\\n)(export const ${name}\\b[\\s\\S]*?\\n)(?=export |$)`))
+    return arrow ? arrow[1]!.trimEnd() : ''
+  }
+  // Fallback index: provedBy → file, scanned ONCE across all src/**/index.ts. Some atoms carry a wrong or malformed
+  // `home` (e.g. "heaven/compute algebraOfCeccec", or a folder that isn't the fold's real definition site), so the
+  // home lookup alone leaves them sourceless. Scanning the tree finds the definition regardless of bad home data.
+  let fileIndex: Map<string, string> | null = null
+  const buildIndex = (): Map<string, string> => {
+    const idx = new Map<string, string>()
+    const walk = (dir: string): void => {
+      for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        const p = join(dir, entry.name)
+        if (entry.isDirectory()) walk(p)
+        else if (entry.name === 'index.ts') {
+          const t = readFileSync(p, 'utf8')
+          for (const mt of t.matchAll(/(?:^|\n)export (?:async )?(?:function|const) (\w+)\b/g)) if (!idx.has(mt[1]!)) idx.set(mt[1]!, p)
+        }
+      }
+    }
+    walk(join(root, 'src'))
+    return idx
+  }
+  for (const atom of atoms) {
+    if (sources[atom.provedBy]) continue
+    const homeDir = atom.home.split(/\s+/)[0]! // tolerate "path provedBy" homes — take the path token
+    const dir = homeDir.startsWith('src/') ? homeDir : `src/${homeDir}`
+    const file = join(root, dir, 'index.ts')
+    let code = existsSync(file) ? extractFrom(readFileSync(file, 'utf8'), atom.provedBy) : ''
+    if (!code) { // home missing/wrong — locate the real definition site across the tree
+      fileIndex ??= buildIndex()
+      const found = fileIndex.get(atom.provedBy)
+      if (found) code = extractFrom(readFileSync(found, 'utf8'), atom.provedBy)
     }
     if (code) sources[atom.provedBy] = { home: atom.home, code }
   }
-  return JSON.stringify({ generator: 'brace-matched from the sealed homes each cross wave — the paper shows the proof machine itself', count: Object.keys(sources).length, sources }, null, 1)
+  return JSON.stringify({ generator: 'brace-matched from the sealed homes each cross wave (with a full-src fallback for atoms with malformed homes) — the paper shows the proof machine itself', count: Object.keys(sources).length, sources }, null, 1)
 }
 
 /** The prose-token monitor (user law 2026-07-16: monitor token usage coming from prose instead of

@@ -17,6 +17,7 @@ import { collectEnforcementFacts, readFact, stripComments, monolithFileGapDetail
 import { buildMatrix } from '../../../../heaven/compute'
 import { modelSeal } from '../../../../heaven/balance'
 import { computedDistFiles, readmeMarkdown } from '../../../../quantum/lake/dist'
+import { theoremPageRows } from '../../../../wind/routes/corpus'
 import { agentGateComplianceChecklist, agentSubmissionProtocol } from '../../ops'
 import { merkleFold, toUuid } from '../../../../0'
 import { buildForceFlag, canRespawnTrinity, docsBuildVerboseFlag, logDocsBuildPhase, slowBuildIsQuantumGapGate, writeSealedMerkle } from '../../script/shell'
@@ -69,8 +70,10 @@ export function materializeCross(root: string): { count: number } {
     writeFileSync(target, file.content)
   }
   writeFileSync(join(outDir, 'source-atlas.json'), JSON.stringify(sourceAtlasJson(root), null, 2))
-  // every card page exposes the proof machine itself (user law) — brace-matched each cross wave
-  writeFileSync(join(outDir, 'theorem-sources.json'), theoremSourcesJson(root))
+  // every card page exposes the proof machine itself (user law) — brace-matched each cross wave. Iterate the FULL
+  // page set (theoremPageRows, all provedBy+home), not just THEOREM_ATOM_SEED, so EVERY theorem page carries its
+  // exact proving source (closes the 23 pages whose provedBy is registered outside the seed).
+  writeFileSync(join(outDir, 'theorem-sources.json'), theoremSourcesJson(root, theoremPageRows().map((r) => ({ provedBy: r.provedBy, home: r.home }))))
   writeFileSync(join(root, 'README.md'), readmeMarkdown())
   return { count: files.length + 2 }
 }
