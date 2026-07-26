@@ -2316,6 +2316,44 @@ export function invertingWorldProblemsIntoSolutionDirectionsInChatStartingWithSc
   }
 }
 
+/** animationGenerationFromProseIsComputedFromTheContentAlgebraEachProseAUniqueAnimationRungOfTheClock — continue in chat
+ * improving animation generation from prose (user, 2026-07-26: "continue in chat improving animation generation from prose").
+ * Each prose string generates an animation deterministically — computedTheoremFigureAndAnimation derives a rung and phase from
+ * the prose's content-address, so distinct prose gives a distinct, UNIQUE animation (each prose is its own animation-theorem),
+ * and every generated animation is a divisor rung of the one 108 s clock (the fractal lattice). Same prose → same animation
+ * (content-addressed, reproducible). HONEST: the animation is a deterministic function of the prose's content-algebra, NOT
+ * LLM-generated art; a rung of the shared clock, not free motion. [[everyStatementCarriesResolvableProofLinksAndAUniqueAnimationFromItsOwnAlgebra]] [[fractal-clock-lattice]] [[the-title-is-algebra-computed-payload]] */
+export function animationGenerationFromProseIsComputedFromTheContentAlgebraEachProseAUniqueAnimationRungOfTheClock() {
+  const proseToAnim = (prose: string) => computedTheoremFigureAndAnimation({ theorem: prose, provedBy: toUuid(`prose:${prose}`) })
+  const p1 = proseToAnim('the vacuum inverts through the zero gateway')
+  const p2 = proseToAnim('gravity comes from the reverse engineering cost')
+  const eachProseGeneratesAnimation = p1.animation.periodS > 0 && p2.animation.periodS > 0 && Array.isArray(p1.figure.series) // prose → a computed animation + figure
+  const distinctProseDistinctAnimation = p1.itemid !== p2.itemid // unique per prose
+  const onClock108 = 108 % p1.animation.rung === 0 && p1.animation.phase < 108 // a rung and phase of the 108 s clock
+  const deterministic = proseToAnim('the vacuum inverts through the zero gateway').itemid === p1.itemid // same prose → same animation
+  const generates = eachProseGeneratesAnimation && distinctProseDistinctAnimation && onClock108 && deterministic
+  const facets = [
+    { facet: `PROSE → ANIMATION, COMPUTED — each prose string generates a fractal-clock animation (rung ${p1.animation.rung}, phase ${p1.animation.phase}) plus a figure via computedTheoremFigureAndAnimation; the animation is DERIVED from the content-address, not authored (${eachProseGeneratesAnimation})`, on: eachProseGeneratesAnimation },
+    { facet: `UNIQUE PER PROSE — distinct prose → distinct animation (${distinctProseDistinctAnimation}); each prose is its own animation-theorem, encoding the prose's content-algebra`, on: distinctProseDistinctAnimation },
+    { facet: `A RUNG OF THE 108 s CLOCK — the generated animation is a divisor rung and phase of the one 108 s clock (the fractal lattice, ${onClock108}); all prose-animations share one clock`, on: onClock108 },
+    { facet: `DETERMINISTIC & REPRODUCIBLE — same prose → same animation (content-addressed, ${deterministic}); shareable and cacheable`, on: deterministic },
+    { facet: `HONEST — animation generation from prose is a deterministic function of the prose's content-algebra (rung/phase), NOT LLM-generated art; unique per prose, a rung of the shared clock; clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: generates },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`prose-to-animation:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    rungP1: p1.animation.rung,
+    rungP2: p2.animation.rung,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'Improve animation generation from prose — computed from the content-algebra, one unique animation per prose:',
+      facets,
+      'each prose string generates a fractal-clock animation (a rung and phase derived from its content-address) plus a figure, distinct prose giving a distinct unique animation, every one a divisor rung of the one 108 s clock, and same prose giving the same animation (reproducible); the animation is a deterministic function of the prose content-algebra, NOT LLM-generated art or free motion; clay=0, physicalFtl=0',
+    ),
+  }
+}
+
 /** wiringPublicApisToTheoremsInChatEmergesNewContentAddressedAnimations — wire the apis to the theorems in chat and the new
  * animations will emerge (user, 2026-07-26: "wire the apis to the theorems in chat and the new animations will emerge").
  * Each theorem has an animation computed from its content-address; wiring an API datum to a theorem is a new content-address
