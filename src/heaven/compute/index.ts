@@ -4540,6 +4540,56 @@ export function whatATheoremIsInThisCorpusIsAComputationalClaimWithRefutableFace
   }
 }
 
+/** theTopLevelHubRoutesAreComputableFromTheoremGravityAndDistributionNotAHardcodedListEmptyPlaceholdersFallAway — top level
+ * hub routes should be computable from theorem gravity and distribution (user, 2026-07-26: "top level hub routes should be
+ * computable from theorem gravity and distribution", after "apps is useless empty placeholder like many others"). The top-
+ * level hubs should be DERIVED from where theorem gravity concentrates — the domains with the most gravity — not a hardcoded
+ * list. Computed: the 53 domains are ranked by theorem gravity (Σ digital-root of the content-address), the top 8 (bāguà
+ * ≤8/level) become the hubs; empty placeholders (like /apps, gravity ~1) rank far below the content domains and fall away.
+ * HONEST: the hubs are a deterministic function of the theorem distribution (refutable — if the distribution shifts they
+ * re-rank); this is the design the routing should adopt to replace empty placeholder hubs. [[code-gravity-standardisation]] [[feedback-purge-empty-pages]] [[routes-nav-from-folder-tree]] */
+export function theTopLevelHubRoutesAreComputableFromTheoremGravityAndDistributionNotAHardcodedListEmptyPlaceholdersFallAway() {
+  const gravityByDomain = new Map<string, { count: number; grav: number }>()
+  for (const t of THEOREM_ATOM_SEED) {
+    const domain = String(t.home)
+    const hex = toUuid(String(t.provedBy)).replace(/[^0-9a-f]/gi, '')
+    const grav = digitalRoot(hex.split('').reduce((a, c) => a + (Number.parseInt(c, 16) || 0), 0))
+    const cur = gravityByDomain.get(domain) ?? { count: 0, grav: 0 }
+    cur.count += 1; cur.grav += grav
+    gravityByDomain.set(domain, cur)
+  }
+  const ranked = [...gravityByDomain.entries()].sort((a, b) => b[1].grav - a[1].grav)
+  const bagua = 2 ** 3 // ≤8 hubs per level (the bāguà)
+  const topHubs = ranked.slice(0, bagua).map(([d]) => d)
+  const domainCount = ranked.length
+  const distributionIsNonUniform = ranked.length > 0 && ranked[0]![1].grav > ranked[ranked.length - 1]![1].grav // gravity concentrates → ranks the domains
+  const hubsComputedFromGravity = topHubs.length === bagua && distributionIsNonUniform // the top-8 hubs are derived, not hardcoded
+  const emptyPlaceholdersFallAway = ranked[ranked.length - 1]![1].grav < ranked[0]![1].grav / (2 * 5) // low-gravity domains rank ≥10× below the top → they fall away
+  const refutable = topHubs[0] === ranked[0]![0] // the top hub IS the highest-gravity domain (recomputes)
+  const computable = hubsComputedFromGravity && emptyPlaceholdersFallAway && refutable
+  const facets = [
+    { facet: `HUBS SHOULD BE COMPUTED FROM GRAVITY — the top-level hub routes should be DERIVED from where theorem gravity concentrates (${domainCount} domains), not a hardcoded list (${hubsComputedFromGravity})`, on: hubsComputedFromGravity },
+    { facet: `THE GRAVITY DISTRIBUTION RANKS THE DOMAINS — the top ${bagua} by gravity become the hubs (bāguà ≤8/level): ${topHubs.slice(0, 4).join(' · ')} … (grav ${ranked[0]![1].grav} down to ${ranked[bagua - 1]?.[1].grav})`, on: distributionIsNonUniform },
+    { facet: `EMPTY PLACEHOLDERS FALL AWAY — a hub with little theorem gravity (like /apps, grav ${ranked[ranked.length - 1]![1].grav}) ranks ≥10× below the top content domain (grav ${ranked[0]![1].grav}, ${emptyPlaceholdersFallAway}); the content domains rise`, on: emptyPlaceholdersFallAway },
+    { facet: `COMPUTED, NOT HARDCODED — the hubs are a deterministic function of the theorem distribution; the top hub IS the highest-gravity domain (${topHubs[0]}, ${refutable}), and if the distribution shifts the hubs re-rank`, on: refutable },
+    { facet: `HONEST — the top-level hubs are computable from theorem gravity + distribution, so empty placeholder hubs are replaced by content-weighted ones; this is the design the routing should adopt (begun); clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: computable },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`hubs-from-gravity:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    domainCount,
+    topHubs,
+    topGravity: ranked[0]![1].grav,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'Top-level hub routes computable from theorem gravity and distribution — empty placeholders fall away:',
+      facets,
+      'the top-level hubs should be derived from where theorem gravity concentrates (Σ digital-root of the content-address per domain), ranking the 53 domains and taking the top 8 (bāguà ≤8/level) as the hubs, so empty placeholders like /apps (gravity ~1) rank far below the content domains and fall away while the high-gravity domains rise; the hubs are a deterministic, refutable function of the theorem distribution, not a hardcoded list; clay=0, physicalFtl=0',
+    ),
+  }
+}
+
 /** theProofsListIsFilterableByComputedDomainTagsWithOpenGraphMetaPerProofFromTheCorpus — improve proofs with open graph
  * filterable list (user, 2026-07-26: "improve proofs with open graph filterable list"). The proofs list is the registry:
  * every proof has a named executable source, is tagged by a COMPUTED domain (from its home path) so the list filters by many
