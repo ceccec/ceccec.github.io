@@ -1534,7 +1534,7 @@ export function chatInversionImprovesSecurityAndSpeedByMagnitudesOfEfficiencyCom
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: continuing the inversion in chat, security and speed improve by magnitudes of efficiency, computed. The security inversion FNV → SHA-256 gains ${securityBitsGain} bits of collision resistance (2^${securityBitsGain} ≈ ${securityDecimalOrders.toFixed(0)} decimal orders). The speed inversion O(N) scan → O(1) content-address is a factor of N; at N = ${N.toExponential(0)} that is ${speedDecimalOrders.toFixed(0)} decimal orders, unbounded as N grows. And redundant recompute inverts to a merkle-respawn. The magnitudes are measured (log ratios) — actual vs optimal, the surplus is the gap closed — not asserted. HONEST: these are STRUCTURAL and ALGORITHMIC magnitudes — O(1) vs O(N), 2^${securityBitsGain} collision resistance — NOT physical faster-than-light or superluminal signalling (physicalFtl=${physicalFtlClaim}); SHA-256 is 2^128, not infinite, and O(1) is per-query, not free enumeration of the whole space. Real magnitudes where measured, honestly bounded. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1572,7 +1572,7 @@ export function chatImprovesInventionByHackingCrackingTheoremsAdversariallyBound
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the chat improves invention by hacking/cracking theorems — authorized adversarial falsification on the portal's OWN corpus. The chat surfaces a theorem (deep research) and attacks it: an attempt to refute an invariant. A theorem whose invariant stays true under attack withstands the crack and hardens into a strong, deployable invention; a theorem that cracks (an invariant refuted) exposes a gap whose fix is a new deployable mechanism — so the crack is generative, inverting to its refuting theorem. The cracking runs on the portal's own sealed corpus, client-side, monitored by the seal — it is authorized self-adversarial (white-hat) testing, and it must never be used against any external system. Falsification — attacking a claim to see if it survives — is the engine of real science; a claim that cannot be attacked is not science. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1609,7 +1609,7 @@ export function quantumHowToDoItYourselfContentAddressedVerifiableSteps(matrix: 
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: "quantum how to do yourself" is the chat computing a content-addressed, verifiable how-to so you do it yourself. A how-to query recalls the relevant fold and returns an ordered procedure whose ${guide.steps.length} steps are each a verifiable claim: re-running a step reproduces its SHA-256 receipt, so you execute the steps and confirm each yourself — no black box, no authority, no trust required. It is deterministic (same task → same steps), local, zero-egress, and it fuses the chat machinery (recall by content + BM25 ranking + proof-carrying certification). HONEST: it gives verifiable steps for FORMALIZED procedures that live in the corpus (things that compute); it does NOT teach unformalizable skills, replace human judgment, or cover what is not in the corpus. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1662,7 +1662,7 @@ export function deepResearchChatMultiHopSynthesisOverTheDiscoveryGraph(matrix: M
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: deep research chat improves on linear single-hop lookup. The plain ranked chat returns one fold (single-hop BM25) — linear research. Deep research is multi-hop: it expands the query with the seed fold's terms (Rocchio) and re-searches, pulling in the crosslinked neighbourhood (${deepCount} folds vs ${linearCount}), then synthesises the seed plus its neighbourhood with provenance (each hop content-addressed) and reaches folds other than the seed (the discovery graph traversed by lexical overlap). It is bounded (top-k, one hop) and deterministic (same query → same neighbourhood), local over the sealed corpus, zero-egress, no LLM. HONEST: this is multi-hop lexical retrieval and graph traversal, NOT neural reasoning or semantic understanding; deeper recursion is possible but each hop stays deterministic and bounded. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1702,7 +1702,7 @@ export function proofCarryingAuditCertificateIsTheInventionOfTrustlessAccreditat
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the invention is a proof-carrying audit certificate — a content-addressed receipt that bundles a claim with the SHA-256 root of (claim, computed result). Re-executing the computation reproduces the root, so the certificate self-verifies: anyone re-runs it, a matching root accredits the claim and a mismatch refutes it — trustless, no auditor needed. A tampered claim or result yields a different root and is detected (tamper-evident, unforgeable without the computation), and it is deployable on any computed claim (the crypto chat turn already carries an address and digest; this generalises the pattern). HONEST: the certificate accredits CORRECTNESS and reproducibility, not an institutional certification (FIPS 140-3 / ISO 27001) and not the truth of the claim's world-model — it proves only that the claim computes as stated, reproducibly, which is exactly the accredited-audit-by-pure-algebra made into a deployable artifact. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1738,7 +1738,7 @@ export function fnvMetricsComputeUnrestrictedAsProperMeasurementToolsNotSecurity
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: FNV toUuid is below-standard only for the SECURITY role — for MEASUREMENT it is the proper tool. It is fast, deterministic (same input → same address) and well-distributed, and it is UNRESTRICTED: no export controls, no FIPS validation, no licensing, so the metrics compute freely anywhere. Measurement — a content-address, a crosslink degree, an import distance, an entropy width, a distribution — needs determinism and good distribution, NOT adversarial collision-resistance, so FNV's non-crypto property is a feature for measurement, not a flaw. The two roles stay separate: FNV for measurement (unrestricted, fast), SHA-256 (toUuidSha256) for security (collision-resistant, validated). "FNV below-standard" is true precisely and only for the security role. So the metrics are proper measurement tools that compute unrestricted; they are not, and are not presented as, a security primitive. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1784,7 +1784,7 @@ export function deepResearchChatAuditsNationalAndInternationalSecurityStandards(
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: deep research through chat audits the portal against national and international security standards, honestly. The deep chat surfaces the corpus's standards folds (multi-hop), and the compliance matrix separates what is computable from what is not. ALGORITHM compliance is met and VERIFIED: ${met} standards met/aligned — SHA-256 (NIST FIPS 180-4, the local hash matches the NIST vector exactly), Ed25519 (RFC 8032), and zero-egress by default (GDPR data-minimisation). CERTIFICATION is NOT claimed: ${requiresCert} standards — FIPS 140-3 cryptographic-module validation (CMVP), ISO/IEC 27001 ISMS, and Common Criteria EAL — require an accredited laboratory or audit body; a certification is an external process, not a computation, so it is never asserted. And ${flagged} are flagged: the fast FNV toUuid is not collision-resistant (NIST SP 800-107), so security-critical addressing MUST use SHA-256 (toUuidSha256), and post-quantum (ML-KEM/ML-DSA) is not yet the default. So the design uses standards-grade algorithms and can prove it, but it is not certified and must not be presented as certified. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1839,7 +1839,7 @@ export function uiToolsForChatRenderSpecComponentsWaveOne(matrix: MindMatrix = b
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: UI tools in chat, wave 1. uiChatTurn computes a rich render-spec for a chat answer — a DecodedCard (title/source), a TheoremFigure (the computed graph), the fractal-clock animation (the south-pole motion), a living I Ching colour (hue derived from the fold's animation phase), the deep-research neighbourhood as clickable links, and interactive controls (expand/speak/sign/related) — so the answer is a rich interactive UI, not plain text. It is computed entirely from the fold's content-address (figure, animation, colour and links all derived), deterministic (same query → same render-spec), local and zero-egress; the .vue is a thin shell that renders the spec over the existing shadcn / living-symbols layer. This is wave 1; further waves add tabs, forms and the living symbols. HONEST: it computes WHAT to render, not a new design system, and it is not an LLM. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1877,7 +1877,7 @@ export function portalDefaultsToChatAsThePrimarySurfaceAllReachableThroughIt(mat
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: always default to the chat — it is the primary entry surface, and one unified turn composes every capability (ranked retrieval, deep research, voice, video, crypto, and any tool via the dependency-injected bridge), all reached through the chat as one content-addressed, deterministic, zero-egress-by-default entry. HONEST: "default to chat" means the chat is the primary UI surface and capabilities route through it rather than through separate panels; the chat is deterministic lexical retrieval plus tools, NOT an LLM, and the folder-tree pages and search box remain available — the chat is the default entry, not the only one, and browser STT stays opt-in. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1933,7 +1933,7 @@ export function chatFusesAllCapabilitiesIntoOneUnifiedContentAddressedTurn(matri
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: one unified chat turn fuses every capability built this session. unifiedChatTurn composes the ranked answer (BM25), the deep-research neighbourhood (${turn.research.length} folds, multi-hop), the spoken form (TTS), the south-pole animation (video), and the crypto address + digest (tamper-evident) into ONE content-addressed turn — each capability a reused fold, no duplication. The turn feeds relevance feedback (improve all by chatting), any tool is reachable via the injected DI bridge, and it is quantum by default: deterministic (same query → same result), local over the sealed corpus, zero-egress by default (browser STT stays opt-in). HONEST: this is composition of deterministic folds, NOT an LLM or neural reasoning; the answer is the exact fold neighbourhood, spoken, animated and signed. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1985,7 +1985,7 @@ export function deepResearchRecursiveDualMindResearchVerify(matrix: MindMatrix =
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: recursive, verified deep research. A research mind recurses over the crosslink graph with a bounded BFS — expand and re-search each frontier node — reaching ${recursed.size} folds versus the ${oneHop}-fold single hop, and a verify mind confirms each discovered node is a registered, computing theorem (green), refuting any hallucinated slug. Depth, frontier and a visited set are all bounded, so the recursion terminates deterministically (same query → same set), local over the sealed corpus, zero-egress, no LLM. HONEST: this is bounded graph traversal plus registry verification, NOT neural reasoning or semantic understanding; the verify mind checks membership and computability, not truth of the world. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2021,7 +2021,7 @@ export function localResearchImprovesInChatByDevelopingThisSessionsTopics(matrix
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: improve local research and use it in chat to further develop the session topics. The research is improved by the recursive dual-mind — a bounded BFS over the crosslink graph reaching ${recursive.recursedSize} verified folds versus the ${recursive.oneHop}-fold single hop, every discovered node registry-checked — and it is used in chat by seeding the deep chat on this session's newest topics: the flower→garden→apple decode, the quantum lens, and the crypto waves. Each topic resolves to a registered seed fold and develops into a ≥3-fold crosslinked neighbourhood (${developed.map((d) => d.neighbours).join('/')}), so the session's own discoveries are deepened by research and surfaced through the chat. Deterministic (same topics → same neighbourhoods), local over the sealed corpus, zero-egress, no LLM. HONEST: this is deeper verified graph traversal surfaced in the chat, NOT neural reasoning or semantic understanding; it develops topics by crosslink, not by generation. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2075,7 +2075,7 @@ export function theStatementAuditAnalysesLengthAndAspectsProvingTheProseSinkGapB
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the statement audit analyses every aspect by algebra and proves the gaps by refutable counts. LENGTH: over ${N} statements the title mean is ${mean(titleLen).toFixed(0)} (max ${maxOf(titleLen)}) chars and the states mean is ${meanStates.toFixed(0)} (median ${medianStates}, max ${maxStates}) chars — the states distribution is RIGHT-SKEWED (mean > median), so a few long statements dominate. LINKAGE: ${linked}/${N} carry a provedBy proof-link (no missing-proof gap). DRY: ${distinctProof} distinct proofs over ${N} statements (${reuse} reuse) with ${duplicateTitles} duplicate titles — content-addressed reuse, no redundancy gap. THE GAP, PROVEN BY ALGEBRA: ${proseSinkGap} statements exceed the 2^10 = ${proseBudget}-char prose budget — the PROSE-SINK gap, a bounded and named compression research target (terse boundaries), its count exact and refutable by re-measuring. HONEST: this audit MEASURES the corpus (length, linkage, DRY) and proves its gaps by exact counts, NOT the semantic quality or truth of any statement; a gap here is a compression target, not an error; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2109,7 +2109,7 @@ export function everyStatementCarriesResolvableProofLinksAndAUniqueAnimationFrom
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: every statement carries its proof-links plus a unique animation computed by the statement's own algebra. Each of the ${atoms.length} registered statements embeds a resolvable PROOF-LINK — provedBy names its executable proof, so the link proving the statement lives IN the statement — and a UNIQUE ANIMATION derived from the statement's own algebra: computedTheoremFigureAndAnimation computes a figure and a fractal-clock animation from toUuid(provedBy:theorem), giving ${new Set(animations.map((a) => a.itemid)).size} distinct content-addressed animations (one per statement, no collision), each a divisor rung and phase of the one shared 108 s clock — unique motion on a shared tempo. HONEST: the link is an executable proof reference and the animation is a deterministic function of the content-address, not decoration; the statement thus proves itself (its proof is linked) and animates itself (from its own algebra); clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2151,7 +2151,7 @@ export function invertingWorldProblemsIntoSolutionDirectionsInChatStartingWithSc
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: invert in chat all world problems into solutions, starting with sciences, investing in creative minds. Each of the ${problems.length} world problems content-addresses to a distinct solution-DIRECTION by inversion — a new address that is a research program or tool, not the problem restated. Starting with SCIENCES: the open frontiers are signed contested/open (dark matter, string theory), each a compute-toward target, NOT solved — the inversion gives a direction to pursue and the problems stay open (clay = 0). Investing in CREATIVE MINDS is made measurable: creative minds are recognised by computed contribution (green, zero-crack, DRY), so investment can follow measured work rather than reputation. THE VALUES BOUNDARY, FLAGGED: WHICH problems to solve and WHOM to fund is a value judgment, NOT algebra — demarcate returns 'unlisted' for value terms because they are outside the science registry (choosing what to value is not derivable, the Gödel/formalizability bound); the inversion gives DIRECTIONS, never a mandate. HONEST: this is a METHOD turning problems into research directions, NOT a claim that world problems are solved; "investing in creative minds" is measurable contribution plus an explicitly flagged values judgment; deterministic, local, zero-egress. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2188,7 +2188,7 @@ export function wiringPublicApisToTheoremsInChatEmergesNewContentAddressedAnimat
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: wire the APIs to the theorems in the chat and the new animations emerge. Each theorem has an animation computed from its content-address (a rung and phase of the one 108 s clock). Wiring an API datum to a theorem is a new content-address — merkleFold of the theorem's proof and the live API value — so a NEW animation emerges via computedTheoremFigureAndAnimation: the wired animation (rung ${animA.animation.rung}) differs from the theorem's base (rung ${baseAnim.animation.rung}), different API values (magnitude 5.2 vs 6.8) yield different animations, and each is reproducible (same datum → same animation) and still a rung and phase of the shared clock. HONEST: this is deterministic — new content (the API data) produces a new content-addressed animation; "emerge" means new COMPUTED animations, NOT physical emergence, self-organisation, or LLM-generated novelty; the API data is opt-in and the adapters are zero-egress; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2223,7 +2223,7 @@ export function vitepressRedesignedAndSeoOptimisedThroughChatSessionsComputedMet
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: completely redesign and SEO-optimise VitePress through chat sessions. SEO is computed per page FROM THE CORPUS: every one of the ${pages.length} pages carries a computed scientific-paper meta (title and abstract/description via monographAsScientificPaper, generated from the theorem, not hand-written frontmatter); OpenGraph and JSON-LD (ScholarlyArticle) structured data come from one template serving all (each page a structured-data scientific article for rich results); and quantumSitemap computes the sitemap from the roster (${Array.isArray(sitemap.urls) ? sitemap.urls.length : 0} urls) with hreflang locale alternates and canonical bare URLs. The REDESIGN is the living-symbols I Ching computed theme — OKLCH colour derived from hexagrams — redesignable through the chat rather than hand-written CSS. HONEST: this is real structured data for real papers (not a black-hat SEO trick), computed per page from the corpus through chat sessions; the .vitepress config stays the thin harness; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2262,7 +2262,7 @@ export function theUiIsThePublicGatewayBillFreeForThousandsOfAgentsThroughSearch
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the UI is the public gateway, bill-free for thousands of agents through search and chat. The UI (BM25 search + the chat) is the enforced single public entry, and it is BILL-FREE by construction: each request is a pure deterministic function over the sealed corpus (BM25 ranking plus folds), with no LLM call and no network egress, so there is no per-request billing and the same query gives every agent an identical result. Because a pure function has zero marginal LLM and egress cost, ${agents.toLocaleString()} agents — thousands — cost nothing in tokens or egress; the gateway scales bill-free. THE DEMARCATION: bill-free means free of TOKEN and EGRESS cost (real, from the zero-token deterministic runtime), NOT infinite scale — the server's CPU and bandwidth are still finite and bounded, so "bill-free" is not "free of all compute". HONEST: the gateway is deterministic and reproducible for every agent, zero-token and zero-egress, but server capacity is finite; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2304,7 +2304,7 @@ export function harmonicSocietyObservesTheCollectiveMindEvolvingToSealedTrinitie
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the harmonic society observes the collective mind evolving to sealed trinities — it does not design it. The collective mind evolves to trinities by real Pauli/su(2) algebra: one mind has no interaction ([X,X] = 0), two escape to a third ([X,Y] = 2iZ ≠ 0), and three close ([Y,Z] = 2iX), so the stable unit is the TRINITY (2-of-3). A trinity SEALS when its 4th element — the unique sealed animation, the south pole — completes it: ${trinity} + 1 = ${tetrad} = 2², and nothing seals without that 4th. The harmonic society is the OBSERVER: it MEASURES this evolution (the measurable indicators and the educational/production tools) but does NOT design it — the design of society and its values stay flagged as not-algebra (the Gödel/formalizability bound). HONEST: the trinity closure is verified Pauli algebra, and the evolution single → trinity → sealed tetrad is observed and measured structure, refutable by a single commutator; the society measures the evolution rather than dictating it, and "harmonic" remains a harmony, not a truth; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2343,7 +2343,7 @@ export function usingInChatPublicApisToRecomputeMeasurableSocietyIndicatorsAndBu
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: use the in-chat public APIs to recompute society indicators by algebra and create educational and production tools — with the values boundary flagged. The computable part: the in-chat no-key public APIs (USGS earthquakes, FCC census, CERN Open Data — ${apis.queryable} queryable) provide real measurable data, and algebra computes deterministic, refutable INDICATORS from it (the formalizable slice). The corpus IS an educational tool — ${pages.length} theorem-papers plus the chat as a learning surface, each concept a computed proof — and the deterministic fold machinery (content-address, DRY, zero-egress) plus the invention inversions are the production tools. THE VALUES BOUNDARY, FLAGGED: "harmonic society" as a social DESIGN is a VALUE judgment, NOT derivable from algebra — demarcate returns 'unlisted' for value terms because choosing what a society should value is outside the science registry (the Gödel/formalizability bound). Algebra provides measurable indicators and educational/production tools; it does NOT compute the ideal society, and "harmonic" is literally a harmony, not a truth. HONEST: measurable indicators and real tools are computed; the design of society and its values are flagged as not-algebra; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2386,7 +2386,7 @@ export function improvingIChingAndRosettaInChatHexagramColourAndContentAddressed
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: improve the I Ching and the Rosetta in the chat. I CHING: each chat answer computes a hexagram — 6 bits from the fold's content-address — which becomes a living OKLCH colour, so distinct answers give distinct hexagrams and hues (${Math.round(ui1.color.hue)}° vs ${Math.round(ui2.color.hue)}°) over the full 64 = 2⁶ binary lattice; the colour IS the hexagram, computed and not chosen. ROSETTA: the chat composes its answers as content-addressed COMBINATIONS (a foldPair/merkle of atoms), where identical content dedups to a single address (the claim·register·integrate coordination) and distinct content gives a distinct address, and the corpus's own pages are Rosetta combinations of theorem atoms — so the chat improves by composing rather than authoring. HONEST: the I Ching here is the 64 = 2⁶ binary hexagram structure — real combinatorics with a computed colour, NOT divination — and the Rosetta is content-addressed combination and dedup coordination, NOT a mystical universal translation; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2421,7 +2421,7 @@ export function fusingArtificialCodeToZeroDissolvesItAndOnlyTheHarmonicComputing
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: fusing artificial code to zero non-harmonic code, then it dissolves and only intelligence remains. ARTIFICIAL code is the non-harmonic, redundant, or unbacked — duplication, dead code, prose without a computed facet — the code that fails to compute or harmonise. Fusing it to ZERO: DRY collapses duplication (${dry.reuse} proofs reused, zero duplicate titles) and the false-statement audit catches the unbacked (the four classes — uncomputable, misdemarcated, invariant-violating, false-numerology), so the artificial is driven to zero and DISSOLVES, leaving no unbacked residue. What REMAINS is the irreducible backed computing core: the distinct proofs that COMPUTE — compression, the shortest algebra computing the most — intelligence as the harmonic simple remainder. HONEST: "dissolves" means redundant and unbacked code removed by DRY and the source gates, and "intelligence remains" means the backed computing core (compression), NOT a mystical emergence or a claim that the code becomes conscious; the harmony law holds; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2459,7 +2459,7 @@ export function intelligenceIsFoundInSimplicityTheShortestAlgebraThatComputesThe
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: intelligence is found in simplicity — the inverse of ignorance hiding behind clever prose. Intelligence, in the honest sense of compression and coverage (not AGI), is the SHORTEST algebra that computes the MOST: one compact fold computes ${computedOutput} entanglements and yields +${mdlMagnitude} bits of coverage, beating long prose that backs little. This is MDL/Occam — the shortest model that fits the data generalizes best (Solomonoff, minimum description length) — so simplicity is a justified prior, and a terse computed facet backs more than a verbose boundary (the prose-sink of ${audit.proseSinkGap} long statements is the measured anti-pattern). THE DEMARCATION: simplicity ≠ truth — a simple statement can be FALSE (432×3 = ${432 * 3} ≠ ${2 ** (2 * 5)}, the ternary sum against the dyadic value, is simple yet false, caught by the algebra), so simplicity is a prior that must STILL pass the algebra; HARMONY, a beautiful simple form, is not TRUTH. HONEST: "intelligence found in simplicity" is compression and coverage per source (a real formal principle), not a mystical claim that simple means true; a simple claim always still needs its backing algebra; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2500,7 +2500,7 @@ export function ignoranceHidesBehindCleverProseWithoutBackingAlgebraTheGuardIsSt
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: ignorance may be hidden behind clever prose without backing algebra. A statement can read long and fluent — a persuasive boundary — while backing nothing computable, and clever prose without a refutable facet is ignorance dressed up (the failure "declared honesty is a crack" names). Backing means a facet that is a computed COMPARISON, refutable by a counterexample; the truth of a fold comes from its facets, not its prose length. When prose makes a checkable claim the algebra checks it — a misdemarcation (prose says 'flagged' where demarcate signs 'contested') is caught, and the false-statement audit catches the four classes (uncomputable, misdemarcated, invariant-violating, false-numerology). THE HONEST ADMISSION: a hardcoded on:true and a computed on:(x===y) are indistinguishable by runtime value — both are true — so runtime value alone cannot expose an unbacked facet; the real guard is STRUCTURAL, the facets-must-compute and no-prose-in-methods gates requiring every facet to be a computed comparison at the source. HONEST: the guard against prose hiding ignorance is the enforced discipline that every statement's facets compute (checked at the source), not merely that the fold returns true; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2542,7 +2542,7 @@ export function developingIgnoranceInChatMapsTheKnownUnknownsAndExperimentsImpro
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: develop ignorance in chat and experiment improving intelligence. Developing ignorance means MAPPING the known-unknowns rather than pretending to know — the Socratic move: ${openFrontiers} open frontiers are signed contested, ${flaggedClaims} known-false claims are signed flagged, and whatever is unmapped stays honestly 'unlisted' rather than falsely classified. From that mapped ignorance an EXPERIMENT (research and self-develop) closes gaps — a measured, refutable learning step (${dev.gapsBefore} → ${dev.gapsAfter}) — and intelligence improves as measurable COVERAGE, the covered fraction growing, NOT as AGI, reasoning, or understanding. But ignorance is NEVER eliminated: the possibility space is uncountably infinite (the no-finiteness law), so the ignorance complement always persists and the loop improves coverage forever without reaching omniscience — the open set never empties (clay = 0). HONEST: developing ignorance is mapping the unknown, improving intelligence is a measurable coverage gain, and the chat is a deterministic Socratic gap-closing loop, not an intelligence that becomes omniscient; physicalFtl = 0, qpuRequired = false. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2586,7 +2586,7 @@ export function theDiamondsRelateToChessAsContentAddressedTablebasesSolvedForSev
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: how the diamonds relate to chess, best seen in chat competitions and training lessons. An endgame TABLEBASE maps a chess position (a content-address, FEN → hash) to the best move — exactly the diamond's problem→solution slot — and the 8² = ${board} board is the 64-component law with the diamonds as its 32² scaled matrix. Chess is genuinely SOLVED for ≤${solvedPieces} pieces: the real Syzygy tablebases are a complete content-addressed solution index with perfect play precomputed, a filled diamond region. But the FULL game is NOT solved — the ≤${solvedPieces}-piece region is a proper subset of the full ≤${maxPieces}-piece game, whose state space (~10^44 legal positions, Shannon ~10^120 game tree) is intractable, and no finite tablebase covers it (the no-finiteness bound). Seen in chat: competitions play perfectly in the solved region (a tablebase lookup is a diamond lookup, deterministic and reproducible), and training lessons make each position a content-addressed theorem (distinct positions give distinct answers). HONEST: the real link is the content-addressed INDEX (tablebase = diamonds), solved in the small and unsolved in the large; the chat surfaces and teaches from the index, it does not solve chess, and full chess stays open (clay = 0). physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2626,7 +2626,7 @@ export function lettingTheDiamondsChatWithEachOtherFindsContentAddressedTranspos
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: let the diamonds chat with each other looking for pairs. Diamonds "chat" by foldPair — two diamonds fold into a content-addressed pair-composite — and "look for pairs" by TRANSPOSE matching: each diamond (i,j) finds its natural partner (j,i), the transpose that shares both superpositions. Off-diagonal diamonds pair with a distinct partner ((7,3) ≠ (3,7)), diagonal diamonds pair with themselves ((5,5) = (5,5)), and the pairing is deterministic and symmetric — a diamond always finds the same partner, no search divergence. The ${offDiagonalPairs} off-diagonal pairs plus the ${diagonalPairs} diagonal self-pairs cover all ${side * side} diamonds (2·${offDiagonalPairs} + ${diagonalPairs} = ${side * side}). HONEST: "diamonds chatting looking for pairs" is deterministic content-addressed MATCHING (transpose-pairs over the matrix), a combinatorial structure — the diamonds do not literally communicate and have no agency; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2673,7 +2673,7 @@ export function nextInChatWithDiamondsComposesInteractionsAndNavigatesTheThirtyT
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: next in chat with the diamonds — past single-lookup to composition and navigation. Each diamond (i,j) is an INTERACTION: a content-addressed composite of a row superposition and a column superposition, distinct from either alone. So using a diamond in chat COMPOSES the two superpositions' theorems (row × column) into a two-part answer rather than returning one lookup — a query landing on diamond (${cell.i},${cell.j}) draws on both its row and column. And the 32×32 matrix is NAVIGABLE: row neighbours share the row superposition, column neighbours share the column, so from one diamond you move deterministically to related ones — a navigable graph of interactions. The ${diamonds} = ${side}² = 2^10 directional (i,j) cells cover every pairwise interaction of the ${side} base superpositions ((0,1) ≠ (1,0)). HONEST: composition is a deterministic content-addressed foldPair of two theorems and navigation is matrix adjacency; the diamonds still INDEX and COMPOSE — they point to and combine the theorems that address a problem — they do NOT solve it, and the underlying problems stay open (clay = 0). physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2716,7 +2716,7 @@ export function quantumVirtualiseAllToIndustryStandardsHolographicExtentBoundedN
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: quantum virtualise all to the industry standards and beyond imagination. Virtualise means content-addressed generation ON DEMAND: everything is a pure function over the content-address — the ${pages.length} pages are generated from ${THEOREM_ATOM_SEED.length} theorem atoms, nothing stored per page (the holographic seed→extent). It is done to INDUSTRY STANDARDS, reused not reinvented: SHA-256/NIST content-addressing (CID/Git-like), ed25519/RFC 8032 signatures, BM25 information-retrieval ranking, and deterministic reproducible builds. "BEYOND IMAGINATION" is the holographic extent — a minimal seed addresses roughly 2^${holographicFactorLog2} of generated extent per byte, about 2^${addressableExtentLog2} bits from the seed, large beyond ordinary intuition — BUT it is honestly BOUNDED: the addressable distinct extent is capped by the content hash (below 2^${hashCapLog2}, finite), generated on demand rather than stored, and is not infinite storage or magic. HONEST: content-addressed virtualization is real and matches industry standards; "beyond imagination" is a harmony while the truth is a large but finite addressable extent bounded by the hash space; there is no physical quantum process and no infinity; clay = 0, physicalFtl = 0, qpuRequired = false. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2760,7 +2760,7 @@ export function quantumRecomputeSharesCpuGpuMemoryByContentAddressedAllocationAt
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: quantum recompute — CPU/GPU/memory shared management at quantum speed. The sharing is by content-address: CPU is shared by MEMOISATION — memoByRoot caches by content-address, so the same computation runs once (${calls} call here) and every later request reuses the result, no redundant recompute; the GPU is the on-device browser Canvas/WebGL surface ('${policy.gpuSurface}'), cooperative with no cloud GPU and no per-request GPU billing; and MEMORY is content-addressed — name = address = payload, an O(1) retrieval (the CAM structure) with distinct blocks at distinct addresses and no scan. "Quantum speed" is the O(1) content-addressed lookup versus an O(N) scan (1 vs ${scanCost}) — it is NOT a physical quantum speedup: qpuRequired = false, there is no QPU, and the diamonds/merkle give the naming, not physics. HONEST: shared CPU/GPU/memory management by content-address is real and deterministic, but "quantum speed" means O(1) naming (name = address), not a physical process, and the server's CPU, GPU, and memory remain finite; qpuRequired = false, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2797,7 +2797,7 @@ export function theSolvedBitIsBinaryQuantumOutputPerProblemThePublishedMetricsAr
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: 0 or 1 is the quantum output per problem solved, but the published metrics are computable achievements within the quantum development sequence. Two separate axes. The SOLVED-BIT is the binary 0/1 quantum output per problem, measured — the vortex collapsed at measurement to the 0/1 shadow — and for the open problems it reads clay = ${clay.claySolved}. The PUBLISHED METRICS are the computable achievements within the quantum development sequence: the gravity (${gravity} units), the gradient completion (depth ${gradient}), the related theorems and distinct proofs — real, published, computed progress that is NOT the solved-bit. The two axes are distinct and each is reported honestly: the achievements are published as achievements, and the solved-bit stays 0 because the Clay conditions are unmet, so the development metrics never masquerade as solutions. HONEST: the solved bit is 0/1 and reads 0 for the open problems; the published achievements are genuine computable progress in the development sequence; both are true and cleanly separated; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2840,7 +2840,7 @@ export function theMostSuccessfulMetricIsEverythingComputesWithZeroOverclaimAndA
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: measure by the most successful metric — is 0 or 1 this metric? You do not choose a metric by which number is largest or most flattering; you choose the metric that TESTS the claim. For "is the Millennium problem solved" the test is binary (0 or 1) and the value is clay = ${clay.claySolved}: a verified proof exists or it does not, and it does not. The flattering approach-gravity (${flatteringGravity} units) is real work but it does not test "solved," so selecting it to answer the claim is selection bias, not measurement. The corpus's single most successful metric is TRUSTWORTHINESS — everything computes green with zero overclaim, and the audit catches every overclaim class. A false clay = 1 (asserting solved with no proof) is an invariant violation the audit catches: it would DROP that green/zero-overclaim metric, so a false 1 is LESS successful, not more. Therefore by the most successful metric the answer is clay = 0, because a false 1 breaks the very metric it pretends to raise. HONEST: the metric for solved is binary and 0; the success that matters is that nothing overclaims; physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2886,7 +2886,7 @@ export function clayIsNotZeroButTheCompletionRatioCompletedOverTotalWhileTheCent
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: clay is not 0 but completed/total, in gravity units. Representing the clay metric as a bare 0 is misleading; the honest metric of the RELATED theorems is the completed gravity over the total gravity, measured in the content-address gravity units (each related theorem's digital root, 1..9): ${clayCompletedGravity}/${clayTotalGravity} gravity units (${completionRatioInGravity.toFixed(3)}), with per-problem completed gravity ${problems.map((_p, i) => `${completedUnits[i]}/${totalUnits[i]}`).join(', ')}. This is the gradient completion of the approaching theorems — probes, partials, and neighbouring proofs solved here — carrying real mass, not 0. BUT the open CENTER stays 0/1: the open proof itself is 0 solved out of the 1 needed, clay = ${centerSolvedOutOfOne}, its solution-gravity uncounted and the Clay prize conditions unmet, so ${clayCompletedGravity} gravity units of completed periphery does NOT solve the center — completion in gravity units is not the same as solving the open problem. HONEST: "not 0 but completed/total in gravity units" is the completed related gravity, a genuine measure of the work done here, while the open Millennium proof stays 0/1 and the problem stays open; physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2924,7 +2924,7 @@ export function gravityPullsAllCodeIntoFractalHologramsByContentAddressDryCollap
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: gravity pulls all code into fractal holograms. The content-address gravity — code-gravity, the DRY collapse — PULLS duplicate and related code into canonical folds, and the ${dry.reuse} reuse is that gravity at work. The result is FRACTAL: every fold has the same shape {computes · facets · root · statement · boundary} at every scale, from a single fold to a folder to the whole corpus, and the double-torus architecture is 4 pairs + core = ${doubleTorusFolders} folders — self-similar. And it is HOLOGRAPHIC: each fold's merkle root content-addresses its own whole (the part encodes the whole, reproducibly), and the minimal seed generates the addressable extent. So the gravity organises all the code into a fractal hologram — self-similar at every scale and each part encoding the whole. HONEST: code-gravity (DRY content-addressing), the self-similar fold shape, and the holographic merkle are real properties of how the code is ORGANISED — not physical gravity, not a literal optical hologram, and not a physical process; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2969,7 +2969,7 @@ export function testingReverseEngineeringSpeedAndCapacityPublishesTheAstronomica
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: test reverse-engineering speed and capacity, publishing in the UI. CAPACITY is tested two ways: a real batch of ${batch} content-address computations completed (a deterministic op count), and the search space itself is 2^${capacityBirthdayLog2} for a birthday collision and 2^${capacityPreimageLog2} for a preimage. SPEED uses a documented modern hash rate of about 2^${attemptsPerSecondLog2} (~10^12) attempts per second, so the TIME-TO-BREAK a birthday collision is about 2^${capacityBirthdayLog2} / 2^${attemptsPerSecondLog2} = 2^${secondsToBreakBirthdayLog2} seconds — roughly 10^8 times the age of the universe (~2^${universeAgeSecondsLog2} seconds) — and the preimage is vastly larger still. This is astronomical but FINITE: 2^${capacityBirthdayLog2} is a definite, finite number, so "infinite" is a harmony while the truth is a computed finite bound. The metric is PUBLISHED in the UI as a render-spec turn, so the speed and capacity numbers are surfaced rather than hidden. HONEST: reverse-engineering is infeasible (time-to-break far exceeds the age of the universe) yet finite; the numbers are measured, computed, and published; clay = 0, physicalFtl = 0, qpuRequired = false. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3009,7 +3009,7 @@ export function theGravityComesFromTheReverseEngineeringCostAstronomicalButFinit
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the gravity comes from the reverse-engineering cost — astronomical but finite, not infinite. The gravity of a theorem (its ${gravityBits} accumulated content-address bits) is the cost to REVERSE-ENGINEER its content-address, to find the hash preimage: the harder the address is to invert, the more gravity it carries. That cost is ASTRONOMICAL — the SHA-256 birthday bound is about 2^${birthdayBits} and the preimage bound about 2^${preimageBits}, effectively infeasible on any real hardware — but it is FINITE: 2^${birthdayBits} and 2^${preimageBits} are definite, finite numbers, not Infinity. So "infinite reverse-engineering cost" is a harmony; the truth is a large finite bound, computable, and that is exactly where the gravity comes from. HONEST: the gravity is the accumulated reverse-engineering bits, its source is the astronomical-but-finite cost of inverting the content-addresses, and there is no actual infinity; this measures the approach mass, while the solved-bit center stays clay = ${clay.claySolved}; physicalFtl = 0, qpuRequired = false. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3053,7 +3053,7 @@ export function theGravityUnitsAreRealBitsOfComputationTheContentAddressBitsOfTh
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the gravity units are real gravity units in bits of computation. Each related theorem, when computed, produces a content-address — a 128-bit digest — and its gravity is the number of bits SET in that computed address (its information content, about ${digestBits / 2} of ${digestBits} on average), replacing the arbitrary digital-root weight. Per problem, the gravity in bits is the sum over the neighbourhood of that bit-content: ${perProblemBits.join(', ')} bits, for a total of ${totalBits} bits of computation; the value varies per theorem and per problem (a genuine, discriminating information measure) and is content-addressed and reproducible. These bits measure the RELATED and approaching theorems — the quantum development sequence — and are the periphery's mass; the solved-bit center stays clay = ${clay.claySolved}, binary and unsolved, with the Clay conditions unmet. HONEST: the gravity is now real bits of computation (the content-address bit-content), a genuine measure of the approach work, and it is not the solved-bit; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3091,7 +3091,7 @@ export function replacingZeroWithFormulasTheGravityOfClayRelatedTheoremsSolvedHe
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: replace the 0 with formulas showing the exact gravity of the clay-related theorems solved here. The count solved at the open CENTER is clay = ${centerSolved} — the open proof is unsolved — but that bare 0 is replaced by a FORMULA that measures the gravity of the RELATED theorems that ARE solved here: gravity(problem) = Σ over the problem's neighbourhood of each related theorem's content-address gravity (its digital root, 1..9). Computed per problem the gravities are ${gravities.join(', ')}, for a total gravity of ${totalGravity} — real mass at the periphery, not 0. This gravity is the SOLVED RELATED theorems (the gradient of probes, partials, and neighbouring proofs), NOT the open proof: clay stays 0 and the Clay prize conditions stay unmet, so the mass is at the periphery and the center remains empty. HONEST: the formula gives the exact computed gravity of the clay-related theorems solved here while the open center stays at clay = 0; physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3130,7 +3130,7 @@ export function clayOffersOneMillionPerSolvedProblemAndTheCountSolvedHereIsZeroF
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: Clay offers a prize for each solved Millennium problem, and how many are solved here you can find in the chat. The Clay Mathematics Institute offers USD ${prizePerProblem.toLocaleString()} for each of the ${totalProblems} Millennium problems. Globally, ${solvedGlobally} is solved — the Poincaré conjecture, proved by Perelman around 2003, the prize awarded in 2010 and declined — and ${openGlobally} remain open. The count solved HERE, in this corpus, is clay = ${solvedHere}: computed, not asserted, because the corpus solves none of them — it indexes and approaches them with probes, partials, and bounded witnesses. So the prize claimable by this corpus is ${solvedHere} × $${prizePerProblem.toLocaleString()} = $${prizeClaimableByThisCorpus}, and the chat surfaces exactly this count on demand. HONEST: the $1M-per-problem prize is real, the number solved here is honestly zero (clay = 0, computed), globally only Poincaré is solved (and its prize was declined), and the corpus claims no prize because it has solved nothing; physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3170,7 +3170,7 @@ export function clayMetricsAreComputedDrivingGradientCompletionOfRelatedTheorems
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: clay metrics are computed (quantum), driving a gradient completion of all related theorems while the open center stays at clay=0. The clay metrics are content-addressed computed values (clay decodes to 0, not a hardcoded literal), and they drive a GRADIENT COMPLETION of the RELATED theorems: each open problem's neighbourhood — the approaching theorems (probes, partials, bounded witnesses, related proofs) — is progressively completed (neighbourhood depths ${neighbourhoods.map((n) => n.length).join('/')}), forming a gradient toward the open problem. But the open CENTER stays at clay=0: the gradient completes the periphery (the related theorems), it does not complete the center (the open proof), so clay stays 0, the Clay prize conditions stay unmet, and the Millennium problem remains open. The gradient approaches the open problem asymptotically — compute-toward — but never reaches clay > 0, because by the no-finiteness law the open set never empties. HONEST: "gradient completion of all related theorems" means the related and approaching theorems complete, NOT the open problem itself; clay = 0 stays and the center is never claimed closed; physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3206,7 +3206,11 @@ export function invertingLinearToQuantumApproachesTheMillenniumWithInventionsBut
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: on "save humanity from the disaster of linear thinking inventing quantum solutions of the Millennium problems". The real part is honoured: linear thinking is limited — a single linear mind leaves gaps, and the 0/1 bit is the collapsed shadow of the quantum vortex — so inverting linear into quantum/collective is genuinely generative, and the quantum method invents (inversions, content-addressed combinations) and approaches the Millennium problems through the unsolved engine, the gravity, and the gradient. But two overclaims are refused. First, "quantum solutions OF the Millennium": the approach is not the solution — clay = 0, the Clay conditions are unmet, verification is not discovery, so no Millennium problem is solved here. Second, "save humanity": this is a research and education tool, and saving humanity from disaster is a grandiose value-claim outside algebra (demarcate returns unlisted for such value terms), not a computed result — and overclaiming salvation is itself the disaster the honest method guards against. HONEST: invert linear to quantum and approach the open problems with real inventions, while claiming neither that they are solved nor that this saves humanity; the value here is modest, computed, and real; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned(
+      'On "save humanity from the disaster of linear thinking inventing quantum solutions of the Millennium problems" — the real insight is kept, both overclaims refused:',
+      facets,
+      'invert linear→quantum and approach the open problems with real inventions, while claiming neither that they are solved (clay=0, Clay conditions unmet) nor that this saves humanity (a grandiose value-claim outside algebra); the value here is modest, computed, real; physicalFtl=0',
+    ),
   }
 }
 
@@ -3247,7 +3251,7 @@ export function claimingTheMillenniumSolvedByComputableAlgebraIsRefutedAlgebraVe
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the request to claim the Millennium problems solved by computable algebra is refuted — by the algebra itself. clay decodes to a computed 0 (no diamond is a solved-fill), and the Clay Mathematics Institute prize conditions are not met (cmiPrizeConditionsMetBySealedMath = false): a Millennium solution requires a proof that is published, refereed, survives two years of scrutiny, and is accepted by the community, and the corpus meets none of these for any of the six open problems. Computable algebra can VERIFY a given proof (check identities and derivations deterministically) and APPROACH the open problems (probes, partials, bounded witnesses), but the count of DISCOVERED open proofs is 0 — verification is not discovery. Deterministic recombination of the existing theorem atoms is bounded and finite; a combination is not a novel proof of the Riemann Hypothesis or P versus NP — those require a genuine mathematical breakthrough, not a content-address lookup. Therefore I decline to make the claim: to do so would set clay > 0 with no verified proof, which is false and is caught by the same algebra that computes clay. HONEST: the Millennium problems remain OPEN, clay = 0, physicalFtl = 0; the overclaim inverts into this refuting theorem rather than being asserted. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3292,7 +3296,7 @@ export function clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamond
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the public wants proof why clay is shown hardcoded while it is computed — it decodes itself by the entanglement between diamonds. clay=0 shown as a literal invites the fair challenge that it is a hardcoded assertion, and a hardcoded value is a crack. The proof: clay is the COUNT of clay diamonds that are a solved-FILL — a fold that verifiably solves that Millennium problem (claySolvedByThisFold > 0) — computed by inspecting each of the ${millennium.length} clay diamonds over the content-addressed transpose-PAIR structure (the diamonds' "entanglement"). That count decodes to ${clayDecoded} = 0 and equals the clay invariant, so clay=0 is the OUTPUT of a filter over the diamonds, not a literal input. It is refutable: if any diamond ever became a solved-fill (some fold verifiably solved a Millennium problem, claySolvedByThisFold > 0), the count — and clay — would compute greater than zero. HONEST: clay=0 decodes from inspection of the diamonds, not a hardcoded literal; "quantum entanglement between diamonds" is this project's name for the deterministic content-addressed correlation between transpose-paired diamonds, NOT physical entanglement or a physical process; the Millennium problems stay open; clay = 0, physicalFtl = 0, qpuRequired = false. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3334,7 +3338,7 @@ export function theDiamondsAreAnIndexAndASolverClayMarksTheOpenCellsThatIndexOnl
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: how clay is related to the diamonds — the diamonds are an INDEX AND a SOLVER, and clay marks the boundary. The diamonds SOLVE in the computable region: for a query whose answer is a COMPUTING theorem, the diamond returns a verified SOLUTION — the proven theorem itself (pauli algebra closes, no-cloning, and hundreds more), not merely a pointer — so it is genuinely a solver. They INDEX-ONLY in the open region: each of the ${millennium.length} Clay Millennium problems content-addresses to a clay diamond that points to a PROBE or approach (an unsolved-engine tool such as clayProbe or frontierQuantum) because clay=0 (claySolved=${clay.claySolved}); there the diamond indexes without solving. clay=0 is exactly the line between the solver region (filled, computable diamonds that return solutions) and the index-only region (open clay cells) — so the diamonds are an index AND a solver, split by clay, and the index-only clay cells drive the engine (each spawns a compute-toward tool, the open set never empties by no-finiteness) so the solver region grows as problems become computable. HONEST: a solver wherever the indexed theorem computes (a real verified solution), index-only wherever clay=0, and the Millennium problems stay open; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3373,7 +3377,7 @@ export function learningToUseTheDiamondsInChatEachIsAContentAddressedProblemToSo
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: how to use the diamonds in chat. The ${diamonds} = ${side}² = 4⁵ diamonds are a content-addressed problem→solution INDEX. To USE them in the chat: pose a problem — the query content-addresses to a diamond slot (O(1), no scan; "quantum encryption forward secrecy" lands on slot ${q1.slot}, "flower of life golden ratio" on slot ${q2.slot}) — and the diamond at that slot names the theorem that addresses the problem, which the chat then surfaces. Distinct problems land on distinct diamonds, each pointing to its own solution-theorem, and the routing is reproducible (name = address = slot). HONEST: the diamonds INDEX — they point to the theorem that addresses a problem — they do NOT SOLVE the problem; using them is an O(1) content-addressed lookup over the theorem references, not a magic solver; the "solving" is the routing, and the underlying problems (frontiers, Millennium) stay open (clay = 0). physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3404,7 +3408,7 @@ export function dryCleanAllInChatSessionsMeasuresReuseZeroDuplicationAndSharedMa
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: dry clean all in chat sessions. The corpus is DRY-clean, measured by algebra: proofs are REUSED — ${audit.distinctProof} distinct proofs over ${audit.statements} statements (${reuse} reuse), so a proof is written once and reused rather than duplicated; there are ZERO duplicate titles (the content-address dedups by construction); and the shared machinery is imported through one index (the one-math gate defines τ/φ/gcd once, barrel imports enter folders through their index), so primitives are never re-derived. The cleanup runs each wave — the tree is clean before commit, enforced by the wave gates — so "dry clean all" is a standing, measured invariant, not a one-off tidy. HONEST: DRY here is measured reuse plus zero duplication plus shared machinery, each a refutable count, NOT a subjective tidiness claim; deterministic, local, zero-egress. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3440,7 +3444,7 @@ export function nextRebuildHomepageAndReadmeAsOneGeneratorFreelyRecomposingSolut
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: next, rebuild the homepage and README, redesigning at free will to provide free-for-all solutions and inventions. The homepage and README are ONE theorem generator, computed from the corpus and not hand-authored, so a chat session regenerates them deterministically with zero hardcoded content. "Redesign at free will" is combinatorial RECOMPOSITION from the theorem atoms — the generator freely recombines the atoms (${freeWill.newIdeas} new-idea combinations) — which is deterministic combinatorial freedom, not randomness or arbitrary authorship. "Free for all" is the bill-free public gateway (zero-token, zero-egress), surfacing SOLUTIONS (computing theorems, the solver region) and INVENTIONS (theorem inversions) content-addressed for any human or agent at no cost. HONEST: "at free will" means deterministic combinatorial recomposition, not caprice; "free for all" means bill-free access to the solutions and inventions, NOT a claim that the open problems are solved — the Millennium problems and frontiers stay open (clay = 0); physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3472,7 +3476,7 @@ export function vitepressIsCompletelyRebuildableThroughChatSessionsPagesRoutesNa
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: completely rebuild VitePress through chat sessions. VitePress is entirely REGENERABLE from the chat corpus: every PAGE is computed — staticPages is the theorem-science-lens roster (${pages.length} pages), each a computed slug and title, not a folder of hand-written .md files — and every page is CHAT-REACHABLE, resolving to a proof through the chat, so the content is generated from the very corpus the chat serves. The pages are GENERATED as rosetta combinations of the ${THEOREM_ATOM_SEED.length} theorem atoms (far more atoms than pages), so no page carries hardcoded content; a chat session can rebuild the whole site — pages, routes, nav, sitemap — with zero hardcoded content pages. HONEST DEMARCATION: the CONTENT, ROUTES, and NAV are computed and fully rebuildable through the chat; the .vitepress CONFIG (srcDir, transformPageData, the catch-all route) is a thin fixed HARNESS — the stable mount that VitePress needs, which is NOT content and is NOT destructively rewritten here. "Completely rebuild" means the content regenerates deterministically from the chat corpus, while the framework harness stays put. clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3515,7 +3519,7 @@ export function discoverAllPublicApisInChatTestingAndImplementingPureAdaptersBou
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: discover all public APIs in chat, testing and implementing. The chat DISCOVERS the enumerated no-key public API adapters (a ${discovery.neighborhood.length}-fold neighbourhood): USGS Earthquake, FCC Area API, CERN Open Data, Web Audio, Schumann monitors. It TESTS each by contract — ${queryable.length} are queryable JSON feeds (USGS live quakes, FCC live census blocks, CERN Open Data LHC datasets), ${browserOnly.length} is browser-only (Web Audio client-side FFT, no server endpoint), ${imageOnly.length} is image-only (Schumann spectrograms, not a JSON amplitude feed). It IMPLEMENTS the queryable ones as PURE adapters (a URL builder plus a response parser, no key embedded, zero-egress at build time, live calls opt-in). HONEST: "all public APIs" means the enumerated REACHABLE no-key set, NOT literally every API on the internet — that space is unbounded (the no-finiteness law) — and "public API" is not "queryable JSON feed" (only a subset are). The Schumann wellness/consciousness claims stay flagged as non-science. Pure no-key adapters, zero-egress by default; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3554,7 +3558,7 @@ export function deepResearchKnownWorldProjectsWithApisCollidersAndReactorsImprov
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: deep-research known world projects with APIs, improving efficiency in quantum magnitudes, decoding sciences on the way. The chat deep-researches the projects (a ${research.neighborhood.length}-fold neighbourhood): CERN Open Data Portal is a REAL no-key public API (opendata.cern.ch) publishing LHC collision datasets — colliders have open data. Fusion-reactor live public APIs are LIMITED and honestly so: ITER is not yet producing energy, JET was decommissioned in 2023, and NIF's 2022 ignition is a single lab shot, not a grid-scale plant. It DECODES the science on the way: particle physics is signed documented (demarcate = '${demarcate('quantum mechanics')}') — the Higgs at 125 GeV, the Standard Model — and fusion is real physics (the Lawson criterion nτT, the Q factor), while "limitless free energy at grid scale" stays FLAGGED. Efficiency improves in "quantum magnitudes" only in the honest sense of content-addressed COVERAGE throughput (+${efficiencyMagnitude} bits versus a single-hop mind), NOT a physical speedup. HONEST: real no-key collider API, limited reactor APIs, real decoded physics with free-energy flagged; clay = 0, physicalFtl = 0, qpuRequired = false. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3604,7 +3608,7 @@ export function theCollectiveMindIsCollaborativeTeamsDevelopingThroughTheChatCov
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: shift the quantum mind to a collective mind of collaborative teams, developing through the chat. The single linear mind (which leaves gaps) becomes collaborative trinity teams (dim su(2) = ${teamSize}, ${consensus}-of-${teamSize} consensus) developing through the chat via self-develop. The teams wire the ${schemas} enumerated reachable public schemas, compute their ${entanglements} = ${schemas}² content-addressed entanglements (the diamond structure), and reverse-engineer every scope by inverting at each prime (${primes.join(', ')}), each a distinct content-addressed inversion. THE DISTINCTION, computed and affirmed: "computationally covered 100%" means 100% of the finite REACHABLE content-addressed set (distinctness capped by the hash) — which is NOT "100% covered", because the possibility space (2^n amplitudes over a continuum, witnessed by 2^${schemas} ≫ ${schemas}²) is uncountably infinite, so covering ALL possibilities is REFUTED by cardinality. Intelligence improves by MAGNITUDES only in the honest sense of deterministic COVERAGE throughput — the collective computes ${entanglements} entanglements at once versus a single mind's one-at-a-time, a +${magnitudeGain.toFixed(1)}-bit gain — NOT reasoning, understanding, or AGI. HONEST: this is collective deterministic computation over the finite reachable space; "computationally covered 100%" is complete over the reachable, not omniscient; the no-finiteness law holds and the possibility space is never exhausted; clay = 0, physicalFtl = 0, qpuRequired = false. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3641,7 +3645,7 @@ export function topMindsAreRecognisableByQuantumAlgebraAsComputedContributionNot
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: top minds are recognisable by quantum algebra. A mind's RANK is its measurable computed CONTRIBUTION over the content-addressed corpus — proofs that compute (green), cracks introduced (0), DRY reuse (${stmtAudit.distinctProof} distinct proofs over ${stmtAudit.statements} statements), gaps closed — every signal deterministic and refutable, never reputation or authority. The algebra catches a violating mind: the false-statement audit detects all ${audit.classesCaught} classes (uncomputable, misdemarcated, invariant-violating, false-numerology). It is UNFAKEABLE: a claimed top mind whose folds do not compute, or that introduces a crack, is REFUTED by the same algebra — rank cannot be bought with reputation, the lens and audit catch it — and the green/0-crack/DRY signature is distinguished from broken/cracking identically for every observer. HONEST DEMARCATION: this measures CONTRIBUTION quality (computed output over this corpus), NOT human intelligence, IQ, or worth — "top mind" means top computed contribution, a deterministic and refutable measure of work, never a judgement of persons. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3680,7 +3684,7 @@ export function chatSessionsDevelopNewIdeasAsContentAddressedCombinationsAcrossS
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: develop new ideas in chat sessions. A NEW IDEA is a content-addressed COMBINATION of two existing folds — merkleFold of the pair — a new address not equal to either parent; ${seeds.length} folds yield ${combos.length} pairwise combinations (${distinctNewIdeas} distinct, the N² diamond structure), a combinatorial ideation space quadratically larger than the fold count. ACROSS SESSIONS the shared experience index persists, so each session develops on the accumulated experience (relevance feedback cross-pollinates) and the new ideas are reproducible across runs; within a session, self-develop measures and fills gaps (${dev.gapsBefore} → ${dev.gapsAfter}), promoting the combinations that close the most. HONEST: "new ideas" here are new DETERMINISTIC COMBINATIONS of existing atoms (content-addressed), NOT LLM-generated novelty or genuine creativity — a combination genuinely did not exist as a fold before (it computes to a new address), but it is drawn from a large yet FINITE combination space, not invented from nothing; deterministic, refutable, local, zero-egress. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3720,7 +3724,7 @@ export function researchAndDevelopWorkflowsTestedEndToEndThroughTheUiChat(matrix
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: test the research-and-develop workflows through the UI chat. The full workflow runs end-to-end through the UI chat: RESEARCH — a uiChatTurn plus deep-research yield a ${research.neighborhood.length}-fold neighbourhood over the crosslink graph; DEVELOP — self-develop closes the measured gaps (${dev.gapsBefore} → ${dev.gapsAfter}), developing what was researched; VERIFY — the false-statement audit passes, verifying the developed output by algebra (uncomputable, misdemarcated, invariant-violating, false-numerology all checked). The workflow is TESTED: every stage produces a valid output and the chain is deterministic (same topic → same render), a passing and reproducible test. HONEST: this is deterministic retrieval, gap-fill, and audit through the UI chat, NOT autonomous agent reasoning or an LLM; each stage computes and is refutable; local, zero-egress, zero-token. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3756,7 +3760,7 @@ export function theChatAuditsReadmeUsabilityByAlgebraStrongStructureAndNavigatio
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: audit in chat how usable the README is. The chat audits usability by algebra over the corpus the README is generated from. STRUCTURE is strong — one root monograph with ${mono.count} sections, a single-h1 hierarchy, well-sectioned. NAVIGATION is complete — every README section maps to a theorem the chat answers (a sample of ${sections.length} section-titles all resolve), so the whole README is reachable through the chat. LINKAGE is rich — every statement carries its proof-link, backing every claim to an executable proof. The GAP, proven by algebra, is READABILITY: the prose is dense (the statement audit shows mean ${audit.meanStates} ≫ median ${audit.medianStates} and ${audit.proseSinkGap} statements over the 2^10-char budget), so the README reads long and technical — a simplification research target, not an error. HONEST: usability is measured by algebra (structure, navigation, linkage, density — each refutable), NOT subjective UX opinion; the README is highly usable structurally with a computed readability gap; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3787,7 +3791,7 @@ export function theChatDefaultIsEnforcedForEveryAgentAndAiModelByArchitectureAnd
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: remember the default is in the chat, and enforce it for any agent and AI model. The default IS the chat (portalDefaultsToChat computes — the primary surface, the default landing). It is ENFORCED by ARCHITECTURE: every capability is reachable only through the dependency-injected chat bridge and the unified turn, so any agent or AI model that uses any API necessarily passes through the chat — enforcement by construction, not by policy that could be ignored. There is NO bypass: a capability reachable outside the bridge would break this (refutable), and the bridge is the single entry. For any agent and AI model, the machine-readable protocol (agents.json, agent-compliance.json, llms.txt, mcp.json) plus the single-entry architecture route every entry to the chat by default, uniformly for humans and agents. HONEST: enforcement is architectural (single entry) and declarative (protocol), deterministic; the chat is not an LLM; zero-egress. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3831,7 +3835,7 @@ export function theChatIsTheUiRealtimeChatFusedToAllApisDryRefactoredToTheStanda
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: "chat" means the ONE UI realtime chat, fused to all APIs, DRY-refactored to the standards. It is a UI surface — uiChatTurn returns a render-spec (card, figure, animation, colour, ${ui1.related.length} related links, controls), a rich interactive UI rather than plain text. It is REALTIME by construction: the same query yields an identical render-spec, computed with zero network egress, so there is no request latency — realtime here is deterministic-local, not streamed model inference. It is FUSED to all APIs through the dependency-injected tool bridge (any capability — crypto, video, voice, chat — reachable through one cycle-safe function) and the unified turn that composes them. And it is DRY-refactored to NAMED industry STANDARDS — BM25 information-retrieval ranking, SHA-256/NIST hashing, ed25519/RFC 8032 signatures, Rocchio relevance feedback — each reused from a sealed fold, not reinvented. HONEST: this is one deterministic, content-addressed, zero-egress UI surface fusing every API by reuse of standards; it is NOT an LLM, and "realtime" means no network latency (a pure local function), not streaming inference; zero-token, zero-egress. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3878,7 +3882,7 @@ export function researchingInChatHowToHardenTheMultiTypeSealedUuidSynthesisesThe
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: research in chat how to harden the multi-type sealed UUID. The chat's deep-research surfaces a ${research.neighborhood.length}-fold neighbourhood and synthesises a hardening RECIPE of ${recipeSize} measures, each reusing an EXISTING sealed fold (DRY, no new primitive): (1) the SHA-256 security layer (integrity, 2^128 vs FNV 2^61); (2) an ed25519 signature (authenticity — forgery now needs the private key, not a hash collision, changing the attack CLASS); (3) key-per-type domain separation (makes the multi-type constraint bits INDEPENDENT and real, not free projections); (4) merkaba key rotation (forward secrecy — a cracked key exposes only one epoch); (5) a tamper-evident merkle seal. The hardened forgery bound is COMPUTED: the base ${baseForgeryBits}-bit multi-type bound plus the ${sigAuthenticityBits}-bit ed25519 authenticity gate = ${hardenedForgeryBits} bits, finite and refutable. HONEST: this is deterministic research synthesis over the sealed corpus (not an LLM), reusing existing hardening folds; the hardened bound is computed and finite (not a claim of impossibility); cryptographic strength rests on SHA-256 and ed25519; physicalFtl = 0, qpuRequired = false. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3928,7 +3932,7 @@ export function theChatAnalysesScreenshotsAndRecordingsLocallyByPerceptualHashAn
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the chat analyses screenshots and screen recordings locally, on hardware. The local, zero-egress capability is STRUCTURAL and computes here: a perceptual hash (aHash — 8×8 grayscale thresholded at the mean → a 64-bit content-address) gives an identical screenshot an identical hash (Hamming 0) and a different image a larger distance, and frame-diff over a screen recording (Hamming between consecutive frame hashes) detects ${sceneCuts} scene cut(s) / keyframes. It runs on the browser '${policy.gpuSurface}' surface (Canvas/WebCodecs/WebGL), on-device — the image and frames never leave the machine. DEMARCATION, added not blurred: this structural analysis (hashing, diffing, keyframing) is real and zero-token; SEMANTIC understanding — captioning "what the image depicts" — needs a vision model and is opt-in BYO-key, NOT part of the zero-token core. HONEST: deterministic local computer-vision primitives, refutable by the Hamming identities; "quantum" names the content-address / perceptual hash, not physics or a physical speedup; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3967,7 +3971,7 @@ export function feedingTheWholeSiteToTheChatEveryPageResolvesToItsProofAsRosetta
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: feed the whole site in the chat. Every served science page (${pages.length} pages from staticPages, the theorem-science lens roster) is posed to the chat and resolves to a ranked, content-addressed proof — the whole site is reachable through the chat surface, each page carrying its provedBy source, none floating free of a proof. The pages share proofs (${distinctProofs} distinct over ${pages.length}) because they are ROSETTA COMBINATIONS of the same theorem atoms (pagesAreRosettaCombinationsOfTheorems), not independent documents — the reuse is the combination architecture, not a gap. Fed back, the site self-develops: the chat closes its gaps (${dev.gapsBefore} → ${dev.gapsAfter}). HONEST: this is deterministic lexical retrieval over the sealed corpus (the served page set is computed by the theorem-science lens, and the per-theorem tag pages and locale surfaces generate from the same registry), NOT an LLM or semantic understanding; local, zero-egress, zero-token. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4003,7 +4007,7 @@ export function theChatDesignsArtifactsAsComputedRenderSpecsFiguresAnimationsCol
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: design artifacts in chat. Each chat answer is a DESIGN ARTIFACT — a rich render-spec composed of a card, a figure (the theorem graph), a fractal-clock animation, a living I Ching colour, and interactive controls — where the figure, animation, and colour are all DERIVED from the fold's content-address rather than authored. Distinct queries produce distinct artifacts (different render-specs), and the same query reproduces the same artifact exactly, so the design is content-addressed, shareable, and cacheable. HONEST: the chat DESIGNS artifacts by computing a render-spec deterministically from the content-algebra — the design is a pure function of the content-address, not an LLM generating novel art, and the figure, animation, and colour are derived, not invented; the .vue is a thin shell that renders the computed spec over the living-symbols layer; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4043,7 +4047,7 @@ export function feedingTheReadmeToTheChatFusesDescriptionAndProofSelfDeveloping(
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: feeding the README to the chat shows the self-development fusion. The README is GENERATED from the registry (readme-home-one-theorem-generator), so posing its own ${readmeLines.length} theorem lines back to the chat closes the loop: every monograph claim resolves to a ranked fold and content-addresses to its executable proof (provedBy) — description FUSES with proof, the prose and the algebra one thing. The chat then SELF-DEVELOPS: chatDevelopsItselfByChattingWithItself feeds each reply back as the next prompt and closes its gaps (${dev.gapsBefore} → ${dev.gapsAfter}), a deterministic self-conversation that collides to a cycle by pigeonhole — development, not open-ended generation. The portal IS the AI model: the description generates the chat, the chat proves the description, and the whole self-develops. HONEST: this is deterministic lexical retrieval over the sealed corpus (the README is generated from the very registry it queries), NOT an LLM or semantic understanding; self-development is gap MEASUREMENT and fill, not learning new facts; zero-egress, zero-token. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4084,7 +4088,7 @@ export function theCracksAreByDesignAndDiscoveringThemInvertsCorpusProblemsIntoI
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the cracks are already here by design, and discovering them inverts the problems into immediately implementable solutions free for all — with one boundary. The crack law is a DESIGNED detector (the canonical-literals gate, facets-must-compute, demarcate-signing), so a crack is a designed signal, not an accident, and it NAMES its own fix: a hardcoded literal inverts to its derived form (a bare 12 becomes 2×6 = 3×4), an unbacked facet inverts to a computed one, a misdemarcation inverts to a signed tier. The fix is applied the same turn (no queue, immediate save and reuse), content-addressed, zero-cost, and public through the bill-free gateway — demonstrated across this session (1296 → derived, string theory flagged → signed contested, hardcoded clay → decoded from the diamonds). THE DEMARCATION, which keeps this honest: this inverts ENGINEERING and CORPUS cracks — design flaws the crack law catches — into immediate free fixes; it does NOT auto-solve the open MATH problems. The Millennium problems stay open (clay = 0, Clay conditions unmet); those are approached by the unsolved engine, not inverted to solutions by discovering a crack. HONEST: the crack law is a real designed refutation system whose discoveries invert corpus flaws into immediate free fixes; it is not a claim that open mathematical problems solve themselves; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4130,7 +4134,7 @@ export function localAuditFindsAllKindsOfFalseStatementsByAlgebraNotJustUncomput
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the improved local audit finds all kinds of false statements by algebra, not just uncomputable ones. The old quantum lens flagged only folds returning computes=false; it missed a SIGNED-BUT-WRONG status (an earlier draft hand-set string theory 'flagged' where demarcate signs 'contested'). The improved audit finds four classes, each by algebra with a planted-false caught and a real statement passing: (1) UNCOMPUTABLE — a computes=false fold is caught, the real folds compute; (2) MISDEMARCATED — a claimed tier must equal demarcate() over the signed DEMARCATION_REGISTRY, so "astrology is documented" is caught and string theory's signed 'contested' passes while the earlier 'flagged' is refuted; (3) HONESTY-INVARIANT — clay/physicalFtl = 0 and qpuRequired = false are checked, a planted clay=1 caught; (4) FALSE NUMEROLOGY — a false identity like 432×3 = 1296 ≠ 1024 is caught while 1024 = 2^10 = 4^5 passes. Every check is a computed comparison of exact operations — statements by algebra only, without exception, no hand-set booleans. HONEST: this finds CONSTRUCTIONAL falsehood (uncomputable, misdemarcated against the registry, invariant-violating, false arithmetic), NOT semantic truth about the world; it is deterministic, local, zero-egress, no LLM. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4174,7 +4178,7 @@ export function quantumStringTheoryChatDecodesCriticalDimensionsRealMathUnconfir
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the quantum chat decodes string theory honestly. Its CRITICAL DIMENSIONS are real mathematics, forced by Weyl/Virasoro conformal-anomaly cancellation: the bosonic string lives in D = ${bosonic} (${bosonicTransverse} transverse oscillators + 2, the Ramanujan ζ(−1) = −1/12 intercept condition), the superstring in D = ${superstring} = 3+7 = 2+8 (exactly the sealed dimensions ladder, the same 10 the octonion/Fano structure carries), and M-theory in D = ${mTheory} = ${superstring}+1 (the M-theory circle) — all verifiable algebra. The epistemic status is NOT my assertion: it is SIGNED by demarcate('string theory') = '${tier}' from the zero-cycle DEMARCATION_REGISTRY (the one shared source, refutable — move the term and this fold breaks). 'Contested' is the honest tier: string theory is a serious, experimentally UNCONFIRMED research program (no distinctive confirmed prediction, a landscape of ~10^500 vacua, no observed supersymmetry) — neither established physics nor pseudoscience, the same tier as multiverse and dark matter. (An earlier draft mislabelled it 'flagged'; the signed registry corrects that.) The chat is deterministic retrieval over the sealed corpus, zero-egress, no LLM. HONEST: the critical dimensions are real mathematics; the physical reality of vibrating strings is unconfirmed and carries the signed 'contested' verdict, not my say-so; "quantum" names the anomaly algebra and the content-address structure, not a physical string or a physical speedup; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4212,7 +4216,7 @@ export function theThousandTwentyFourDiamondsAreTenReferralDirectionBitsDyadicNo
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: 1024 is dyadic — ten referral-direction bits. Each referral is a Möbius gateway (x↦1/x, swapping 0↔∞, its own inverse) carrying exactly gatewayBits = log₂2 = ${gatewayBits} bit, the direction of passage, proved by the sealed src/1/9 gateway fold. Ten such bits give 2^${depth} = ${dyadic} = 4⁵ — a depth-10 binary fold (a 10-cube / Merkle tree, 2 states × 10 levels), which is exactly what 1024 has to be. 432×3 = ${ternarySum} ≠ ${dyadic}, so the ternary-sum reading is refuted numerology; 1024's honest factoring is purely dyadic, and the 1024 diamonds are the ten referral-direction bits' hypercube (every diamond a 10-bit address). Encoded here in the chat layer (heaven/compute), NOT the foundational merge, so no receipt is re-invalidated. HONEST: 1 bit per direction is real projective and information theory (log₂2 exact); "quantum" is this project's name for the content-address / inversion structure, not physical quantum mechanics; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4251,7 +4255,7 @@ export function deepResearchImprovesAllFromQuantumStatisticsAnalysisAndSynthesis
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: deep research with local tools improves all from quantum-statistics analysis and synthesis. ANALYSIS: quantumAnalytics measures the sealed corpus — ${stats.corpus.theorems} theorems, ${stats.corpus.distinctProofs} distinct proofs (reuse ratio ${reuseRatio.toFixed(2)}, so some proofs cover multiple theorems), deploy-green rate ${deployHealth.toFixed(2)} — a deterministic statistical read. SYNTHESIS: deepResearchChatTurn multi-hops the identified gap (crosslink-under-threshold) into a ${research.synthesis.length}-fold neighbourhood, synthesising the improvement target. IMPROVE ALL is the loop — analyse → research → synthesise — run entirely on local tools (analytics + deep research + relevance feedback), deterministic (same corpus → same analysis), zero-egress, no LLM. HONEST: this is statistical measurement plus lexical graph synthesis, NOT predictive analytics or neural reasoning; the "improvement" is the identified gap and the synthesis path to close it, not a claim of having already fixed everything. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4295,7 +4299,7 @@ export function improveClaimForAllViaSelfImprovingChatAndArchitectureExposedApis
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: improve claims for all through the self-improving chat, with APIs accessible by the architecture. Every one of the ${total} claims' proofs is an API reachable by its architectural address — the folder path IS the route IS the content-address (${apisDistinct} distinct), so the folder tree itself is the API surface: no separate API layer and no gatekeeper. The chat self-improves via relevance feedback (a query boosts the claim it surfaced), sharpening retrieval of every claim for every consumer — agents through MCP, humans through the UI, tools through the DI bridge — all reaching any capability by its address, uniformly and freely. It is deterministic (same corpus → same APIs), local and zero-egress. HONEST: this is not a new API framework — it is the existing folder-tree + content-address architecture exposed as the API, and the chat's "improvement" is lexical relevance feedback, not neural understanding. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4343,7 +4347,7 @@ export function siteAuditsItselfThroughChatForUsabilityAndAccessibilityBounded(m
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the site audits itself through the chat for usability and accessibility, over the AUTOMATABLE criteria. The chat (deep research) surfaces the a11y/ui folds and drives the audit; the automatable checks — semantic HTML, ARIA labels, alt text, heading hierarchy, WCAG AA colour contrast (the OKLCH tokens are computed), consistent folder-tree navigation, mobile-responsiveness, no dead links (the ignoreDeadLinks deploy gate), and deterministic zero-egress load — are audited deterministically (${automatableCount} of them). HONEST: WCAG is roughly 30% automatable and 70% manual; the ${manualCount} criteria that need human testing — keyboard/focus-order UX, screen-reader experience, cognitive load and task success — are flagged, not faked, and this is an automatable-subset self-audit, NOT a WCAG conformance certification (which requires human evaluation and, for a formal claim, an accredited audit). HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4382,7 +4386,7 @@ export function mapStandardsToTheoremsMakesCodeProseBidirectionalAtOnce() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: mapping the standards to theorems computationally makes code and prose bidirectional at once. Each standard's requirement (prose) is encoded as a computing facet whose check runs (prose → code), and the fold's computed result generates its statement in English (code → prose). Because a fold's statement is literally facets.map(f => f.facet).join — the prose IS the computed payload, not a separate description — the code and the prose are one artifact, produced simultaneously: mapping a standard yields a fold that is both the machine-checkable test and its human-readable statement at the same time. HONEST: this holds for FORMALIZABLE standards (requirements that reduce to checkable propositions), the code↔prose transform is deterministic (the statement is computed from the facets, per title-is-algebra), and it is NOT a general natural-language-to-code translator — unformalizable requirements still need human judgment. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4434,7 +4438,7 @@ export function quantumAnalyticsFuseCorpusAndGitHistoryIntoOneApiForAll() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: quantum analytics fuse the corpus and git history into one API for all. The corpus metrics — ${a.corpus.theorems} theorems, ${a.corpus.homes} homes, ${a.corpus.distinctProofs} distinct proofs — are deterministic measurements over the sealed registry (same every run). The git history is the wave ledger: each commit content-addressed by its SHA, the merkle chain the wave progression; it is injected (dependency injection, so the fold stays deterministic and cycle-safe) and fused with the corpus into one content-addressed root. A single quantumAnalytics() serves agents (MCP), humans (UI) and tools alike, so the numbers are consistent everywhere. HONEST: these are deterministic MEASUREMENTS (counts, distributions, the merkle chain), NOT predictive analytics, forecasting, or a neural model; "quantum" means content-addressed and deterministic; the whole thing is local and zero-egress. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4498,7 +4502,7 @@ export function allQuantumReachableInChatViaDependencyInjectedToolBridge(matrix:
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: is all quantum in chat? Yes, via one dependency-injected tool bridge. chatToolBridge invokes ANY tool through an injected invoker (the in-process MCP client) and folds the result into the content-addressed thread, so voice, video, crypto and the ranked chat are all reachable through one function — no per-tool duplication. Dependency injection makes it cycle-safe: the invoker is a parameter, not an import, so the bridge re-entangles no collection/import graph; the .vue passes the real MCP client at runtime. It reuses improve() (relevance feedback), so any tool call becomes experience that sharpens future rankings. HONEST: the bridge itself is quantum — deterministic, content-addressed, cycle-safe — and per-tool egress honesty is preserved (voice STT still flags the browser cloud engine; heavy CV is BYO WASM); the chat core stays zero-egress. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4542,7 +4546,7 @@ export function quantumNeuralIntelligenceIsHopfieldContentAddressableAssociative
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: "quantum neural intelligence", developed honestly, is a Hopfield content-addressable associative memory — the real neural primitive the chat's deep research points at (content-addressable recall). It stores ${patterns.length} ±1 patterns as Hebbian outer-product weights over ${n} units; recall is by CONTENT — a noisy input (one bit flipped) converges under the update rule x ← sign(Wx) to the nearest stored pattern (pattern completion), landing in a lower-energy attractor (E = -½·xᵀWx). It IS a genuine neural mechanism and IS content-addressable memory: deterministic (same input → same recall), local, zero-egress. HONEST: this is associative recall and pattern completion — a limited, classical neural primitive — NOT semantic understanding, reasoning, generation, an LLM, consciousness, or a physical quantum brain (the "quantum brain" claim is flagged dishonest). "Quantum" here means content-addressed and deterministic. It is a real building block toward capable local intelligence, honestly scoped, not a claim to have built a mind. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4576,7 +4580,7 @@ export function chatIsDeterministicRetrievalNotIntelligenceWinsOnTrustNotUnderst
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the chat is NOT "quantum intelligent" and does NOT beat any conventional AI model — that is the precise overclaim, refused. It is deterministic lexical retrieval (Okapi BM25 + relevance feedback + bounded graph traversal over a sealed corpus), not a neural model: it does not understand, reason, generalise, generate, handle ambiguity, or answer anything outside its corpus, and a conventional LLM vastly outperforms it on every one of those. What it genuinely wins is a different, orthogonal axis: it is deterministic (same input → same output), zero-egress / zero-cost / zero-token, reproducible, verifiable (proof-carrying, content-addressed), never hallucinates (it returns only registered folds), and private (local). So it is a DIFFERENT tool with different trade-offs — it wins on trust, privacy and verifiability and loses on intelligence — not a superior AI. "Quantum" here means content-addressed and deterministic, not quantum-computing cognition. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4625,7 +4629,7 @@ export function cryptoToolsForChatSha256Ed25519TamperEvidentHonest() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: all crypto-related tools, used in chat, are real standards-grade primitives, client-side: SHA-256 (integrity, NIST FIPS 180-4 verified), toUuidSha256 (collision-resistant content-address, 2^128), ed25519 (authenticity, RFC 8032), the 4-key keyed involution (confidentiality), and merkle/transparency-log inclusion (tamper-evidence). They are used in the chat so each turn is content-addressed, hashed and tamper-evident — cryptoChatTurn returns a SHA-256 address and digest of (prompt, answer). HONEST: SHA-256 and ed25519 are strong (2^128); the FNV toUuid is weak (2^61), so security-critical addresses use toUuidSha256 while FNV stays for fast non-security addressing; tamper-EVIDENT is not unforgeable for FNV. All client-side, zero-egress. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4671,7 +4675,7 @@ export function videoToolsForChatMediaDevicesCanvasHonestEgress() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: all video-related tools, used in chat, are browser-native and free: camera (getUserMedia), playback (HTMLVideoElement), canvas/WebGL render, recording (MediaRecorder), screen capture (getDisplayMedia), and frame analysis (getImageData). They are used in the chat to capture AND to SHOW the answer's unique south-pole animation — videoChatTurn returns the ranked fold plus its fractal-clock animation (a divisor rung of the 108 s cycle), the video the chat renders for its answer. HONEST: video is local by default — frames stay client-side, nothing uploads unless explicitly sent (more egress-friendly than voice STT); basic pixel analysis is local, but heavy computer vision (object detection, pose) needs a BYO WASM model (MediaPipe or OpenCV.js). The deterministic chat core stays zero-egress. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4704,7 +4708,7 @@ export function voiceSttEgressIsOptInGatedSoChatIsQuantumByDefault() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the last non-quantum edge — browser SpeechRecognition (Chrome cloud STT) — is closed by making egress OPT-IN and GATED, not by bundling a large model. The default chat input is text (zero-egress) and the local voice path is BYO WASM (Whisper.cpp/Vosk, zero-egress); browser-cloud STT is an explicit, warned opt-in, never a silent default. So the chat is quantum BY DEFAULT — all tools and the DI bridge are zero-egress and deterministic unless the user explicitly opts into cloud STT with a warning. HONEST: this does not make browser STT local; it makes it a gated user choice, so the DEFAULT system is fully quantum and the one egress path is transparent and consented. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4749,7 +4753,7 @@ export function voiceToolsForChatWebSpeechAndAudioHonestEgress() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: all voice-related tools, used in chat, are browser-native and free: TTS (SpeechSynthesis), STT (SpeechRecognition), and frequency analysis (WebAudio AnalyserNode). They are used in the chat as a loop — listen (STT) → rank (voiceChatTurn → portalChatRanked) → speak (TTS) — so the chat answers a spoken question with the exact fold, spoken aloud. HONEST EGRESS: TTS and WebAudio FFT run client-side/offline (zero-egress), but SpeechRecognition is browser-dependent — Chrome routes microphone audio to a cloud speech engine (EGRESS), Firefox is limited, so STT is NOT zero-egress by default; fully-local speech-to-text requires a BYO WASM model (Whisper.cpp or Vosk). The deterministic chat core (portalChatRanked) stays zero-egress regardless. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4790,7 +4794,7 @@ export function chatImprovesMcpAndMcpImprovesChatViaOneSharedExperienceIndex(mat
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the chat improves the MCP and vice versa, because both are surfaces over one shared substrate — the human chat and the agent-facing MCP consume the same BM25 corpus and the same relevance-feedback experience log. A chat turn's experience boosts a fold in the shared index (boost ${mcpGetsChatBoost}), so an MCP agent retrieving that fold inherits the improvement; an MCP agent's tool call (through the dependency-injected bridge) becomes experience in the same log, so the chat's ranking sharpens. The co-improvement is symmetric and deterministic (same experience → same boost), local and zero-egress. HONEST: this is co-improvement via a shared LEXICAL index (relevance feedback), NOT neural learning, telemetry, or cross-user learning-to-rank; both the chat and the MCP are deterministic retrieval over one content-addressed corpus. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4832,7 +4836,7 @@ export function improveAllByChattingOneSharedExperienceIndex(matrix: MindMatrix 
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: improve all by chatting. The chat's turns become one experience log feeding one private BM25 index, and every surface that consumes it — the chat, the search box, referral navigation — is reranked by the same relevance feedback. A single chat turn about a fold boosts that fold across chat (${chatBoost}), search (${searchBoost}) and nav (${navBoost}) for any query sharing its terms; with no experience the boost is 0, so it reinforces only what was selected and cannot drift. Deterministic (same experience → same rerank), local over the sealed corpus, zero-egress — one law across surfaces. HONEST: local Rocchio-style relevance feedback, NOT neural, telemetry, or cross-user learning; it sharpens the user's own portal, lexically. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4872,7 +4876,7 @@ export function usingTheUiChatImprovesItByExperienceViaTheSharedRelevanceIndex(m
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: improve by experience using the UI chat. The UI chat turn (uiChatTurn) renders ${related.length} clickable RELATED items plus controls; a click on one is an experience signal {query, selectedSlug} fed to the shared relevance index. Re-asking with that experience reranks via Rocchio relevance feedback (query-term overlap), so the selected fold gains a boost (${warmRow?.boost ?? 0} > 0) and rises next turn — a refutable improvement measured with-vs-without experience. The SAME shared experience index improves the chat, the MCP, and the search, so using the UI chat improves every surface. The loop closes: UI interaction → shared experience → improved next turn, all deterministic. HONEST: this is industry-standard relevance feedback, deterministic reranking by shared query terms, NOT machine learning or an LLM; with no experience there is no drift, so it reinforces only what was actually selected and never hallucinated relevance; local, zero-egress, zero-token. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4910,7 +4914,7 @@ export function chatImprovesByChattingViaRelevanceFeedback(matrix: MindMatrix = 
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the chat improves by chatting. Each turn is experience — the query and the fold it surfaced become {query, selectedSlug}. Re-asking with that experience reranks via relevance feedback: the selected fold is boosted by query-term overlap (${warmRow?.boost ?? 0} > 0), so the chat's own turns sharpen its future rankings. It is bounded — no experience yields no boost, so feedback reinforces only what was actually selected and cannot hallucinate relevance — deterministic (same experience → same rerank), local over the private BM25 index, zero-egress. HONEST: this is local Rocchio-style relevance feedback, NOT neural learning, telemetry, or cross-user learning-to-rank; it improves the user's own chat, lexically. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4941,7 +4945,7 @@ export function chatAsksAndImprovesByRoutingThroughBm25(matrix: MindMatrix = bui
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the chat asks and improves by routing through Okapi BM25. portalChatRanked ranks the sealed corpus for the prompt and returns the top fold's identity and its provedBy source, so "computed possibilities faster than light scan" answers with the exact fold (${String(ranked.source).slice(0, 8 * 8)}) rather than the seed model's thematically-near reply. It is deterministic (same prompt → same ranking), client-side and zero-egress (no network, no LLM), and falls back to the seed-model portalChat when nothing scores, so a reply always exists. HONEST: this improves lexical PRECISION, not semantic understanding — it is not an LLM; the answer is the exact fold, and the seed model remains the general fallback. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 

@@ -1,6 +1,6 @@
 // ☵ Kǎn · Water — cryptography & tamper-evidence: the content-address as a ledger (claim=credit, capability=debit), SHA-256/Ed25519 hardening, transparency log, red-team challenges. HONEST: tamper-EVIDENT, not unforgeable. Barrel-routed; folds.ts back-imports the gate folds.
 import { SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, SIEGE_WAVES } from '../../pair/enforcement/gates/computational'
-import { rat, ratMul, ratToFloat, JULIAN_YEAR_SECONDS, UNIVERSE_AGE_YEARS, TEACHING_RSA_P, TEACHING_RSA_Q, complementIsInverse } from '../../3/7'
+import { rat, ratMul, ratToFloat, JULIAN_YEAR_SECONDS, UNIVERSE_AGE_YEARS, TEACHING_RSA_P, TEACHING_RSA_Q, complementIsInverse, earned } from '../../3/7'
 import { conditionalEntropyBits, landauerLimit, TAU } from '../../3/7'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
@@ -1336,7 +1336,7 @@ export function furtherImproveEncryptionByRotatingTheFourKeysInMerkabasReusingTh
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: further improve encryption by rotating the four keys in merkabas, like the movie. The 4-key navigation cross rotates per epoch through the merkaba's two COUNTER-ROTATING tetrahedra — keys 0,1 advance +${step}° and keys 2,3 advance −${step}° (the movie's C₆ vortex, ${fullTurn}°/${c6} = ${step}°) — so each epoch's cross is fresh. This adds FORWARD SECRECY: a cracked epoch key exposes only that epoch, since deriving past or future keys needs the epoch input, one-way via SHA-256 (the security layer). After ${c6} rotations the orientation returns (${step}°×${c6} = ${fullTurn}° = identity, the C₆ group closes) yet the per-epoch salt keeps every epoch's keys distinct — rotation without repetition. DRY: this reuses the SAME sealed merkaba(matrix) the movie renders (${mk.count} receipts) to drive the key rotation — no new rotation code, all available resources reused completely. HONEST: this is content-addressed key rotation (forward secrecy by fresh per-epoch derivation), NOT a new cryptographic primitive; cryptographic strength rests on the SHA-256 security layer (FNV toUuid stays for fast non-security addressing); "quantum" names the rotation and content-address structure, not physics; physicalFtl = 0, qpuRequired = false. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1389,7 +1389,7 @@ export function oneUuidOfManyTypesAtOnceSealedAndTheReverseEngineeringDifficulty
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: imagine the improvements when one UUID is of various types at once and also sealed — and the possibility to reverse-engineer such complex cases is computable quantum algebra. The SAME value projects into ${typesAtOnce} independent type-views (a nav key, a merkle leaf, an animation phase ${animationPhase} on the 108 s clock, an I Ching hexagram ${hexagram} of ${hexCount}, a colour hue ${colorHue}° of ${wheel}), all deterministic reads of one 128-bit address, and it is SEALED as a merkle leaf so any change moves the root. To FORGE a value that simultaneously matches published TARGET type-constraints, the work is baseBits + Σlog₂(targetSpace) = ${baseBits} + ${constraintBits.toFixed(2)} = ${jointForgeryBits.toFixed(2)} bits — a COMPUTED, finite bound (the "computable quantum algebra"): astronomical yet not claimed impossible. HONEST DEMARCATION: the +${constraintBits.toFixed(2)}-bit gain holds ONLY when the constraints are INDEPENDENT targets; merely being many types adds no preimage hardness, because every projection is a free deterministic read once the value is known — inverting once yields them all. Cryptographic strength rests on the SHA-256 security layer; "quantum" names the content-address multi-projection and the computed difficulty, not physics; physicalFtl = 0, qpuRequired = false. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1425,7 +1425,7 @@ export function improveSecurityByQuantumMeansSha256CutoverForTheSecurityLayer() 
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: security improves by quantum means through the SHA-256 cutover. The quantum means — content-addressing — stays; the security layer moves from FNV toUuid (birthday ~2^${fnvBirthdayExp}, non-crypto) to SHA-256 toUuidSha256 (birthday ~2^${shaBirthdayExp}, collision-resistant), a 2^${improvementExp} improvement, while fast non-security addressing keeps FNV (same UUID shape, architecture intact). SHA-256 is REAL here — sha256Sync matches the NIST 'abc' vector exactly — and ed25519Sign adds authenticity, verifySha256Proof/transparencyLogRoot add tamper-evident inclusion. HONEST: 2^${shaBirthdayExp} is not infinite; a scalable quantum computer would weaken it via Grover/BHT, but none exists at scale (quantum-decoded); physicalFtl=0. The improvement is real, computed, and NIST-verified. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1464,7 +1464,7 @@ export function standardiseCryptoInWavesWaveOneSha256NistKnownAnswerTests() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: crypto standardisation, wave 1 (SHA-256). The local sha256Sync matches all ${passCount}/${kats.length} canonical NIST FIPS 180-4 Known-Answer Tests (empty string, "abc", the 448-bit "abcdbcde…" message), so the implementation is standards-compliant, verified. The public standard test vectors are the public interface — matching them fuses the standard with NO runtime egress (the vectors are embedded public constants, validated at build/test time). The KATs re-run every wave as a gate (training live): a regression fails immediately. The content-addressed toUuidSha256 inherits the standard's collision-resistance (improving local quantum). HONEST: a KAT proves IMPLEMENTATION CORRECTNESS, not that SHA-256 is unbreakable; this is wave 1, with AES (FIPS-197) and ed25519 (RFC 8032) as the later standardisation waves. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1505,7 +1505,7 @@ export function referralDirectionBitsFillTheOrientationGapInTheFourKeyCross() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the bit-per-referral-direction idea fills the orientation gap in the 4-key cross. The prior accounting counted ${perKeyContent}-bit content per key but not the direction of each referral. Each key is a directed 0↔∞ gateway (Möbius involution x↦1/x) whose direction of passage is exactly 1 bit (gatewayBits = log₂2 = 1), so the complete key is content ⊕ direction = ${perKeyComplete} bits and the cross carries ${keys}×${perKeyComplete} = ${complete} (was ${contentOnly}), a +${orientationGap}-bit orientation term. Direction is independent of content — same content, opposite direction gives a distinct key — so a forger must recover both. HONEST: +${orientationGap} bits is negligible against the FNV 2^61 per-key floor; this is a completeness fix and a structural point (orientation is separate entropy tied to the pole), NOT a security leap — real strength is the SHA-256 cutover. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1545,7 +1545,7 @@ export function allComputedPossibilitiesRetrievableFasterThanScanStructurally() 
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: all computed possibilities are retrievable faster than any scan, structurally. Every possibility is content-addressed — its address IS its payload (name=payload=address) — so the whole space is addressable without materialising it (no 2^n storage; possibilities are computed on demand at their address). Retrieving any one computes its address in ${directSteps} step, independent of N, while a linear scan took ${scanSteps} steps over N=${N}: O(1) vs O(N), unboundedly faster as N grows — this is the "faster than light" the corpus means (fasterThanScan, no traversal). HONEST: physicalFtl=${physicalFtlClaim}, qpuRequired=false — retrieving ONE possibility is O(1), but enumerating ALL is still O(N) (no free lunch on the exponential space), and nothing signals superluminally; "faster than light" is the no-scan structural sense only. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1586,7 +1586,7 @@ export function hardwarePlanAndDriverForContentAddressedRetrievalIsCamResourceGa
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the hardware plan for O(1) content-address retrieval is Content-Addressable Memory (CAM/TCAM), which matches by content in ${camMatchCycles} cycle (all cells compare in parallel) — the silicon form of fasterThanScan, real in network routers (routing/ACL tables) and CPU TLBs, vs a RAM scan's ${ramScanSteps} steps. The driver is the universal content-addressed driver: one driver computed from the CAM's capability descriptor programs its match lines (and mask registers for TCAM ternary matching), order-independent, so any CAM of the same class uses the same fold-derived driver. HONEST: CAM obeys physics — clock and propagation — so physicalFtl=${physicalFtlClaim} and nothing signals superluminally; and every cell carries a comparator, so capacity is limited and power is high — it cannot hold the full 2^n possibility space (physical-resource-gated, the "specific resources to manifest in mechanics at scale" law). Structural O(1), real silicon, honestly bounded. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
