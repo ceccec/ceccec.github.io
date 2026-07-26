@@ -1999,30 +1999,44 @@ export function pqcAlgorithmFamilySelector(
         { paramSet: 'SLH-DSA-SHA2-128s', nistCategory: 1, publicKeyBytes: 32, outputBytes: 7856, outputKind: 'signature', source: 'FIPS 205' },
         { paramSet: 'SLH-DSA-SHA2-192s', nistCategory: 3, publicKeyBytes: 48, outputBytes: 16224, outputKind: 'signature', source: 'FIPS 205' },
         { paramSet: 'SLH-DSA-SHA2-256s', nistCategory: 5, publicKeyBytes: 64, outputBytes: 29792, outputKind: 'signature', source: 'FIPS 205' },
+      ],
+      // ISO diversity (published Classic McEliece round-4 / FrodoKEM sizes). Code-based McEliece: TINY ciphertext,
+      // HUGE public key (~0.5–1.4 MB) — its defining tradeoff; FrodoKEM: unstructured-LWE, pk≈ct in the 9–22 KB range.
+      'classic-mceliece': [
+        { paramSet: 'mceliece460896', nistCategory: 3, publicKeyBytes: 524160, outputBytes: 156, outputKind: 'ciphertext', source: 'ISO/IEC 18033-2 Amd 2 / NIST r4' },
+        { paramSet: 'mceliece6688128', nistCategory: 5, publicKeyBytes: 1044992, outputBytes: 208, outputKind: 'ciphertext', source: 'ISO/IEC 18033-2 Amd 2 / NIST r4' },
+        { paramSet: 'mceliece6960119', nistCategory: 5, publicKeyBytes: 1047319, outputBytes: 194, outputKind: 'ciphertext', source: 'ISO/IEC 18033-2 Amd 2 / NIST r4' },
+        { paramSet: 'mceliece8192128', nistCategory: 5, publicKeyBytes: 1357824, outputBytes: 208, outputKind: 'ciphertext', source: 'ISO/IEC 18033-2 Amd 2 / NIST r4' },
+      ],
+      'frodo-kem': [
+        { paramSet: 'FrodoKEM-640', nistCategory: 1, publicKeyBytes: 9616, outputBytes: 9720, outputKind: 'ciphertext', source: 'ISO/IEC 18033-2 Amd 2 / FrodoKEM' },
+        { paramSet: 'FrodoKEM-976', nistCategory: 3, publicKeyBytes: 15632, outputBytes: 15744, outputKind: 'ciphertext', source: 'ISO/IEC 18033-2 Amd 2 / FrodoKEM' },
+        { paramSet: 'FrodoKEM-1344', nistCategory: 5, publicKeyBytes: 21520, outputBytes: 21632, outputKind: 'ciphertext', source: 'ISO/IEC 18033-2 Amd 2 / FrodoKEM' },
       ] }
     const families = [
       { id: 'ml-kem', family: 'lattice-KEM', name: 'ML-KEM', standards: ['FIPS 203', 'ISO/IEC 18033-2 Amd 2:2026'], params: paramSets['ml-kem']!, role: 'key encapsulation', note: 'Primary KEM — Kyber lineage; shared secret 32 B' },
       { id: 'ml-dsa', family: 'lattice-sig', name: 'ML-DSA', standards: ['FIPS 204'], params: paramSets['ml-dsa']!, role: 'digital signatures', note: 'Primary signature — Dilithium lineage' },
       { id: 'slh-dsa', family: 'hash-sig', name: 'SLH-DSA', standards: ['FIPS 205'], params: paramSets['slh-dsa']!, role: 'digital signatures (stateless hash)', note: 'Conservative backup — SPHINCS+ lineage; small-signature (s) SHA2 variants' },
-      { id: 'classic-mceliece', family: 'code-KEM', name: 'Classic McEliece', standards: ['ISO/IEC 18033-2 Amd 2:2026'], params: [], role: 'key encapsulation (code-based)', note: 'ISO diversity — NIST did not standardize; very large public keys (~0.26–1.36 MB), see ISO 18033-2 Amd 2' },
-      { id: 'frodo-kem', family: 'lattice-KEM-unstructured', name: 'FrodoKEM', standards: ['ISO/IEC 18033-2 Amd 2:2026'], params: [], role: 'key encapsulation (unstructured LWE)', note: 'ISO hedge against structure-specific lattice attacks; keys larger than ML-KEM' },
+      { id: 'classic-mceliece', family: 'code-KEM', name: 'Classic McEliece', standards: ['ISO/IEC 18033-2 Amd 2:2026'], params: paramSets['classic-mceliece']!, role: 'key encapsulation (code-based)', note: 'ISO diversity — NIST did not standardize; HUGE public keys, TINY ciphertext (its tradeoff)' },
+      { id: 'frodo-kem', family: 'lattice-KEM-unstructured', name: 'FrodoKEM', standards: ['ISO/IEC 18033-2 Amd 2:2026'], params: paramSets['frodo-kem']!, role: 'key encapsulation (unstructured LWE)', note: 'ISO hedge against structure-specific lattice attacks; pk≈ct, larger than ML-KEM' },
     ].map((row) => ({ ...row, receipt: toUuid(`pqc-family:${row.id}:${row.params.map((p) => p.paramSet).join('/') || row.name}`) }))
     const selected =
       prefer === 'hash' ? families.find((f) => f.id === 'slh-dsa')!
         : prefer === 'code' ? families.find((f) => f.id === 'classic-mceliece')!
           : families.find((f) => f.id === 'ml-kem')!
-    // refutable completeness: within each NIST-standardized family, public-key size is STRICTLY MONOTONE in the
-    // security category — a real property of the sourced FIPS sizes (edit any number wrong and this flips).
-    const nistFamilies = families.filter((f) => f.params.length > 0)
-    const pkMonotone = nistFamilies.every((f) => f.params.every((p, i) => i === 0 || (p.nistCategory > f.params[i - 1]!.nistCategory && p.publicKeyBytes > f.params[i - 1]!.publicKeyBytes)))
-    const everyParamSourced = nistFamilies.every((f) => f.params.every((p) => /^FIPS 20[345]$/.test(p.source) && p.publicKeyBytes > 0 && p.outputBytes > 0))
+    // refutable completeness: within EVERY family, public-key size is STRICTLY INCREASING across the ordered param
+    // sets and the NIST security category is NON-DECREASING — a real property of the sourced sizes (McEliece has
+    // several cat-5 variants, so pk-order is the strict axis; edit any number out of order and this flips).
+    const pricedFamilies = families.filter((f) => f.params.length > 0)
+    const pkMonotone = pricedFamilies.every((f) => f.params.every((p, i) => i === 0 || (p.publicKeyBytes > f.params[i - 1]!.publicKeyBytes && p.nistCategory >= f.params[i - 1]!.nistCategory)))
+    const everyParamSourced = pricedFamilies.every((f) => f.params.every((p) => /FIPS 20[345]|ISO\/IEC 18033/.test(p.source) && p.publicKeyBytes > 0 && p.outputBytes > 0 && p.nistCategory >= 1))
     const facets = [
-      { facet: `family catalog — ${families.length} PQC families; ${nistFamilies.length} NIST families carry STANDARDIZED parameter sets (sizes + categories), not labels`, on: families.length === 5 && nistFamilies.length === 3 },
+      { facet: `family catalog — ALL ${families.length} PQC families (NIST + ISO) carry STANDARDIZED parameter sets (sizes + categories), not labels`, on: families.length === 5 && pricedFamilies.length === 5 },
       { facet: 'ML-KEM appears under both NIST FIPS 203 and ISO Amd 2:2026', on: families.some((f) => f.id === 'ml-kem' && f.standards.length === 2) },
-      { facet: 'ISO-only diversity present (Classic McEliece · FrodoKEM), params noted qualitatively (not asserted)', on: families.some((f) => f.id === 'classic-mceliece' && f.params.length === 0) && families.some((f) => f.id === 'frodo-kem') },
-      { facet: `PARAMETERS COMPLETED & SOURCED — every FIPS 203/204/205 param set has a byte-accurate public-key + ${'{ciphertext|signature}'} size, all sourced (${everyParamSourced})`, on: everyParamSourced },
-      { facet: 'REFUTABLE — public-key size is strictly monotone in NIST security category within each family (a property of the real sizes)', on: pkMonotone },
-      { facet: `selector prefer=${prefer} → ${selected.name} (standardized params; no keygen — Web Crypto lacks PQC)`, on: selected.params.length >= 3 || selected.id === 'classic-mceliece' },
+      { facet: 'ISO diversity now PARAMETERIZED — Classic McEliece (huge pk, tiny ct) and FrodoKEM (unstructured LWE) sourced from ISO/IEC 18033-2 Amd 2', on: families.some((f) => f.id === 'classic-mceliece' && f.params.length === 4) && families.some((f) => f.id === 'frodo-kem' && f.params.length === 3) },
+      { facet: `PARAMETERS COMPLETE & SOURCED — every param set across all 5 families has a byte public-key + ${'{ciphertext|signature}'} size, all source-tagged FIPS/ISO (${everyParamSourced})`, on: everyParamSourced },
+      { facet: 'REFUTABLE — public-key size strictly increasing + NIST category non-decreasing within every family (a property of the real sizes; McEliece’s tiny ct vs huge pk is the code-based tradeoff)', on: pkMonotone },
+      { facet: `selector prefer=${prefer} → ${selected.name} (standardized params; no keygen — Web Crypto lacks PQC)`, on: selected.params.length >= 3 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`pqc-selector:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('pqc-algorithm-family-selector', facets)
     return {
@@ -2034,8 +2048,8 @@ export function pqcAlgorithmFamilySelector(
       everyParamSourced,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold(families.map((f) => f.receipt))),
-      statement: 'PQC algorithm family selector: ML-KEM / ML-DSA / SLH-DSA (NIST) plus ISO Amd 2:2026 Classic McEliece & FrodoKEM — the three NIST families now carry byte-accurate STANDARDIZED parameter sets (public-key + ciphertext/signature sizes, NIST category) sourced from FIPS 203/204/205.',
-      boundary: 'STANDARDIZED PARAMETER SETS (sourced from FIPS 203/204/205) — sizes + NIST categories, the deployment-decision data. Still does NOT generate keys, encapsulate secrets, or sign: Web Crypto exposes no PQC primitive and hand-rolled lattice crypto is unsafe, so keygen is correctly out of scope. Not FIPS/ISO validated. ISO-diversity families (McEliece/Frodo) noted qualitatively, exact bytes not asserted. HARMONY ≠ TRUTH.' }
+      statement: 'PQC algorithm family selector: ALL 5 families now carry byte STANDARDIZED parameter sets (public-key + ciphertext/signature sizes, NIST category) — ML-KEM / ML-DSA / SLH-DSA sourced from NIST FIPS 203/204/205, Classic McEliece & FrodoKEM from ISO/IEC 18033-2 Amd 2.',
+      boundary: 'STANDARDIZED PARAMETER SETS across all 5 families — NIST FIPS 203/204/205 + ISO/IEC 18033-2 Amd 2 (Classic McEliece round-4 sizes, FrodoKEM); sizes + NIST categories are the deployment-decision data, each source-tagged. Still does NOT generate keys, encapsulate secrets, or sign: Web Crypto exposes no PQC primitive and hand-rolled lattice/code crypto is unsafe, so keygen is correctly out of scope. Not FIPS/ISO validated. The ISO byte sizes are the published parameters (verify against the ISO 18033-2 Amd 2 text before deployment use). HARMONY ≠ TRUTH.' }
   })
 }
 
