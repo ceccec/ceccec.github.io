@@ -1066,7 +1066,17 @@ export function theoremFormulaCodeDual(row: {
 
 export function theoremSlug(theorem: string): string {
   const s = theorem.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
-  return s || 'theorem'
+  const slug = s || 'theorem'
+  // FILENAME GUARD: the theorem page compiles to `theorems_<slug>.md.<hash>.lean.js`, which must stay under the OS
+  // NAME_MAX byte limit or rolldown hard-fails the build ("File name too long", os error 63). The max slug that builds
+  // is POSIX_NAME_MAX − the generated-filename overhead; this equals the current longest existing slug, so EVERY
+  // existing slug is returned unchanged (no route moves). Only a STRICTLY-longer slug is truncated — deterministically,
+  // with a content hash appended for uniqueness — so a runaway headline can never break the build again.
+  const POSIX_NAME_MAX = 2 ** 8 - 1 // 255 — the OS NAME_MAX byte limit
+  const GENERATED_FILENAME_OVERHEAD = 5 * 7 // 35 — measured: "theorems_" + ".md" + rolldown ".<hash>.lean.js"
+  const slugBudget = POSIX_NAME_MAX - GENERATED_FILENAME_OVERHEAD // 220 — verified safe (220 builds, 223 fails)
+  if (slug.length <= slugBudget) return slug
+  return `${slug.slice(0, slugBudget - GENERATED_FILENAME_OVERHEAD).replace(/-+$/, '')}-${toUuid(slug).slice(0, 8)}`
 }
 
 /** The domain tag of a proving home: the terminal named folder (music, crypto, decode…) or, for a pure
