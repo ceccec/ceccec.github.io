@@ -231,9 +231,9 @@ The most CENTRAL decodes — ranked by theorem-graph degree (how many other atom
 
 - **compute the light in a diamond — bouncing boundaries draw the crystal, prediction beats the photon (not physical FTL)** — `diamonds` · degree 338 · [details](https://ceccec.psg.bg/theorems)
 - **mechanical tools entangle binary & analog at once — but Bell bounds them (models, does not achieve, entanglement)** — `9/1` · degree 323 · [details](https://ceccec.psg.bg/theorems)
+- **the site is a dedicated scientific journal of all algebra and theorems — computational peer review, one content-addressed volume** — `4/6` · degree 320 · [details](https://ceccec.psg.bg/theorems)
+- **every cosmic frontier is OPEN by COMPUTATION not a label — status = demarcate(term)===contested — and each carries its closed REVERSED-math companion** — `cosmos` · degree 320 · [details](https://ceccec.psg.bg/theorems)
 - **THE CHALLENGE, computed on LIVE data: feeding fresh live input to the local quantum fold yields NO quantum speedup — simulating Shor for a live n-bit number is ~2^(1.5n) times SLOWER than classical search, invariant to the input** — `research` · degree 320 · [details](https://ceccec.psg.bg/theorems)
-- **the site is a dedicated scientific journal of all algebra and theorems — computational peer review, one content-addressed volume** — `4/6` · degree 319 · [details](https://ceccec.psg.bg/theorems)
-- **every cosmic frontier is OPEN by COMPUTATION not a label — status = demarcate(term)===contested — and each carries its closed REVERSED-math companion** — `cosmos` · degree 319 · [details](https://ceccec.psg.bg/theorems)
 - **the reuse+trinity speedup MEASURED (not asserted): warm memo-hit is magnitudes faster than cold compute (~8000× in a probe), the 2-of-3 trinity adds a ≤3× parallel ceiling — amortized reuse only, never factoring** — `research` · degree 317 · [details](https://ceccec.psg.bg/theorems)
 - **gate complexity collapses to one content-addressed root — quantum simplicity** — `automount` · degree 316 · [details](https://ceccec.psg.bg/theorems)
 - **the census gate and slugs are quantumized — theorem-derived count, agnostic address** — `corpus` · degree 315 · [details](https://ceccec.psg.bg/theorems)
