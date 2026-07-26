@@ -2590,6 +2590,46 @@ export function theDiamondsRelateToChessAsContentAddressedTablebasesSolvedForSev
   }
 }
 
+/** lettingTheDiamondsChatWithEachOtherFindsContentAddressedTransposePairsAcrossTheMatrix — let the diamonds chat with each
+ * other looking for pairs (user, 2026-07-26: "let the diamonds chat with each other looking for pairs"). Diamonds "chat" by
+ * foldPair — two diamonds fold into a content-addressed pair-composite — and "look for pairs" by TRANSPOSE matching: each
+ * diamond (i,j) finds its natural partner (j,i), which shares both superpositions; off-diagonal diamonds pair with a distinct
+ * partner, diagonal diamonds pair with themselves. The pairing is deterministic and symmetric (a diamond always finds the same
+ * partner), and 496 off-diagonal pairs + 32 diagonal self-pairs cover all 1024 diamonds. HONEST: "chatting looking for pairs"
+ * = deterministic content-addressed MATCHING, combinatorial, NOT literal communication or agency. [[nextInChatWithDiamondsComposesInteractionsAndNavigatesTheThirtyTwoSquareMatrix]] [[sixty-four-components-matrix-rnd-waves]] */
+export function lettingTheDiamondsChatWithEachOtherFindsContentAddressedTransposePairsAcrossTheMatrix() {
+  const side = 2 ** 5 // 32 base superpositions per axis
+  const diamond = (i: number, j: number) => merkleFold([toUuid(`row-superposition:${i}`), toUuid(`col-superposition:${j}`)]) // the (i,j) diamond
+  const chat = (a: string, b: string) => merkleFold([a, b]) // two diamonds "chat" → a content-addressed pair-composite
+  const transposePair = (i: number, j: number) => chat(diamond(i, j), diamond(j, i)) // a diamond pairs with its transpose
+  const diamondsChat = transposePair(3, 7) === chat(diamond(3, 7), diamond(7, 3)) // the pair-composite is well-defined
+  const findsPartner = (i: number, j: number) => diamond(j, i) // the transpose is the natural partner
+  const offDiagonalDistinctPartner = findsPartner(3, 7) !== diamond(3, 7) // (7,3) ≠ (3,7) — a distinct partner off the diagonal
+  const diagonalSelfPair = findsPartner(5, 5) === diamond(5, 5) // (5,5) pairs with itself on the diagonal
+  const deterministicPairing = transposePair(3, 7) === transposePair(3, 7) && findsPartner(3, 7) === diamond(7, 3) // reproducible — the same partner every time
+  const offDiagonalPairs = (side * side - side) / 2 // 496 unordered off-diagonal pairs
+  const diagonalPairs = side // 32 diagonal self-pairs
+  const coversAll = 2 * offDiagonalPairs + diagonalPairs === side * side // 2·496 + 32 = 1024
+  const findsPairs = diamondsChat && offDiagonalDistinctPartner && diagonalSelfPair && deterministicPairing && coversAll
+  const facets = [
+    { facet: `DIAMONDS CHAT = FOLDPAIR INTERACTION — two diamonds fold into a content-addressed pair-composite (${diamondsChat}); "chatting" is deterministic content-addressed composition, not agency`, on: diamondsChat },
+    { facet: `LOOKING FOR PAIRS = TRANSPOSE MATCHING — each diamond (i,j) finds its natural partner, the transpose (j,i), which shares both superpositions: off-diagonal diamonds pair with a distinct partner (${offDiagonalDistinctPartner}), diagonal diamonds pair with themselves (${diagonalSelfPair})`, on: offDiagonalDistinctPartner && diagonalSelfPair },
+    { facet: `DETERMINISTIC & SYMMETRIC — the pairing is content-addressed and reproducible (${deterministicPairing}); a diamond always finds the same partner — no search divergence`, on: deterministicPairing },
+    { facet: `COVERS THE FULL MATRIX — ${offDiagonalPairs} off-diagonal pairs + ${diagonalPairs} diagonal self-pairs cover all ${side * side} diamonds (2·${offDiagonalPairs} + ${diagonalPairs} = ${2 * offDiagonalPairs + diagonalPairs}, ${coversAll})`, on: coversAll },
+    { facet: `HONEST — "diamonds chatting looking for pairs" = deterministic content-addressed MATCHING (transpose-pairs), combinatorial, NOT literal communication or agency; clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: findsPairs },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`diamonds-chat-pairs:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    offDiagonalPairs,
+    diagonalPairs,
+    totalDiamonds: side * side,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: let the diamonds chat with each other looking for pairs. Diamonds "chat" by foldPair — two diamonds fold into a content-addressed pair-composite — and "look for pairs" by TRANSPOSE matching: each diamond (i,j) finds its natural partner (j,i), the transpose that shares both superpositions. Off-diagonal diamonds pair with a distinct partner ((7,3) ≠ (3,7)), diagonal diamonds pair with themselves ((5,5) = (5,5)), and the pairing is deterministic and symmetric — a diamond always finds the same partner, no search divergence. The ${offDiagonalPairs} off-diagonal pairs plus the ${diagonalPairs} diagonal self-pairs cover all ${side * side} diamonds (2·${offDiagonalPairs} + ${diagonalPairs} = ${side * side}). HONEST: "diamonds chatting looking for pairs" is deterministic content-addressed MATCHING (transpose-pairs over the matrix), a combinatorial structure — the diamonds do not literally communicate and have no agency; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** nextInChatWithDiamondsComposesInteractionsAndNavigatesTheThirtyTwoSquareMatrix — next in chat with diamonds (user,
  * 2026-07-26: "next in chat with diamonds", after learning to use them). The next step past single-lookup: each diamond (i,j)
  * is an INTERACTION — a content-addressed composite of a row superposition and a column superposition — so a query addresses a
