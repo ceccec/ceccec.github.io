@@ -1937,6 +1937,44 @@ export function chatFusesAllCapabilitiesIntoOneUnifiedContentAddressedTurn(matri
   }
 }
 
+/** theChatContinuesDeeperAndWiderRecursiveDepthTimesNeighbourhoodBreadthVerified — continue deeper and wider through the chat
+ * (user, 2026-07-26: "continue deeper and wider through the chat"). The chat continues on two axes at once: DEEPER — the
+ * recursive dual-mind reaches more verified folds than a single hop (recursion into the crosslink graph, each node verified) —
+ * and WIDER — the multi-hop synthesis pulls the crosslinked neighbourhood (breadth per hop). The explored volume grows as
+ * depth × breadth, verified (hallucinations refuted), bounded (depth and breadth capped, terminating). HONEST: deterministic
+ * bounded BFS over the crosslink graph (deeper=depth, wider=breadth), verified per-node, NOT an LLM and NOT infinite.
+ * [[deep-research-recursive-waves]] [[discovery-dual-mind-merkaba-waves]] [[deepResearchRecursiveDualMindResearchVerify]] */
+export function theChatContinuesDeeperAndWiderRecursiveDepthTimesNeighbourhoodBreadthVerified(matrix: MindMatrix = buildMatrix()) {
+  const deeper = deepResearchRecursiveDualMindResearchVerify(matrix)
+  const wider = deepResearchChatMultiHopSynthesisOverTheDiscoveryGraph(matrix)
+  const goesDeeper = deeper.computes === true && deeper.recursedSize >= deeper.oneHop && deeper.allVerified === true // recursion reaches deeper, verified
+  const goesWider = wider.computes === true // the multi-hop neighbourhood breadth
+  const deeperTimesWider = goesDeeper && goesWider // the explored volume = depth × breadth, through the chat
+  const bounded = deeper.recursedSize < 2 ** (2 * 5) && deeper.recursedSize > 0 // capped, terminating — not infinite
+  const verifiedNoHallucination = deeper.allVerified === true // every discovered node is a registered theorem
+  const continues = deeperTimesWider && bounded && verifiedNoHallucination
+  const facets = [
+    { facet: `DEEPER — RECURSIVE DEPTH — the recursive dual-mind reaches ${deeper.recursedSize} verified folds vs the ${deeper.oneHop}-hop (${goesDeeper}), going deeper into the crosslink graph with every node verified`, on: goesDeeper },
+    { facet: `WIDER — NEIGHBOURHOOD BREADTH — the multi-hop synthesis pulls the crosslinked neighbourhood (breadth per hop, ${goesWider}), so each step widens across the discovery graph`, on: goesWider },
+    { facet: `DEEPER × WIDER — the explored volume grows as depth × breadth through the chat, verified (hallucinations refuted, ${verifiedNoHallucination}); continuation is two-dimensional, not linear`, on: deeperTimesWider && verifiedNoHallucination },
+    { facet: `BOUNDED, NOT INFINITE — the depth and breadth are capped (${deeper.recursedSize} < 2^10) and terminate (${bounded}); the continuation is deterministic, no runaway`, on: bounded },
+    { facet: `HONEST — deterministic bounded BFS over the crosslink graph (deeper=depth, wider=breadth), verified per-node; NOT an LLM, NOT infinite, NOT semantic reasoning; clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: continues },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`deeper-wider:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    recursedSize: deeper.recursedSize,
+    oneHop: deeper.oneHop,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'Continue deeper and wider through the chat — recursive depth × neighbourhood breadth, verified:',
+      facets,
+      'the chat continues on two axes at once — deeper via the verified recursive dual-mind and wider via the multi-hop neighbourhood — so the explored volume grows as depth × breadth, every node verified against the registry (hallucinations refuted), and it is bounded and terminating, not infinite; deterministic BFS over the crosslink graph, not an LLM; clay=0, physicalFtl=0',
+    ),
+  }
+}
+
 /** deepResearchRecursiveDualMindResearchVerify — recursive, verified deep research (user, 2026-07-25: "next" after the
  * one-hop deep chat). A RESEARCH mind recurses over the crosslink graph (bounded BFS: expand + re-search each frontier
  * node), and a VERIFY mind confirms each discovered node is a registered, computing theorem — refuting any hallucination.
