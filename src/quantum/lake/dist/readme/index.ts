@@ -614,9 +614,24 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
   ]
 }
 
+/** Top nav for the paper — anchor links to the numbered sections + References + Receipt, DERIVED from the section
+ *  headings the same generator emits (no drift). README renders it as a markdown TOC; the home shares the links.
+ *  Slug mode differs by renderer: GitHub keeps digit-leading anchors (`#1-introduction`); VitePress prefixes a `_`
+ *  for HTML-id validity (`#_1-introduction`) — so each projection passes its own mode. */
+function paperTopNav(sections: readonly string[], mode: 'github' | 'vitepress' = 'github'): string {
+  const strip = (h: string) => h.replace(/^##\s+/, '')
+  const anchor = (h: string) => {
+    const slug = strip(h).toLowerCase().replace(/[^\w]+/g, '-').replace(/^-+|-+$/g, '')
+    return mode === 'vitepress' && /^\d/.test(slug) ? `_${slug}` : slug
+  }
+  const nav = sections.filter((line) => /^## (\d+\.|References|Receipt)/.test(line))
+  return `**Sections.** ${nav.map((h) => `[${strip(h)}](#${anchor(h)})`).join(' · ')}`
+}
+
 export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
   const core = theoremMonographCore(matrix)
   const { config, template } = core
+  const sections = theoremSections(core, (entry) => `[source](${githubPermalink(entry.source)})`, CANONICAL_HOST)
   return [
     `# ${config.title} — the root monograph`,
     '',
@@ -628,7 +643,9 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
     '',
     '![Double Torus — two counter-rotating rosettas composing all sealed theorems, computed from src and animated with SMIL so GitHub displays it too](./hero.svg)',
     '',
-    ...theoremSections(core, (entry) => `[source](${githubPermalink(entry.source)})`, CANONICAL_HOST),
+    paperTopNav(sections),
+    '',
+    ...sections,
     '',
   ].join('\n')
 }
@@ -640,6 +657,7 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
 export function homeMarkdown(matrix: MindMatrix = buildMatrix()) {
   const core = theoremMonographCore(matrix)
   const { config } = core
+  const sections = theoremSections(core, (entry) => `[page](/${entry.slug})`)
   return [
     '---',
     `description: ${JSON.stringify(config.description)}`,
@@ -650,7 +668,9 @@ export function homeMarkdown(matrix: MindMatrix = buildMatrix()) {
     '<!-- COMPUTED PAGE — the home body is homeMarkdown() (src/quantum/lake/dist/readme), the same theorem-only generator that writes README.md; the bg/gla homes transform this output. Do not author here. -->',
     '',
     // Abstract is rendered once by the PaperFrame shell from frontmatter.description (deduped — no markdown blockquote here).
-    ...theoremSections(core, (entry) => `[page](/${entry.slug})`),
+    paperTopNav(sections, 'vitepress'),
+    '',
+    ...sections,
     '',
   ].join('\n')
 }

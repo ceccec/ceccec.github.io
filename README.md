@@ -8,6 +8,8 @@
 
 ![Double Torus — two counter-rotating rosettas composing all sealed theorems, computed from src and animated with SMIL so GitHub displays it too](./hero.svg)
 
+**Sections.** [1. Introduction](#1-introduction) · [2. Model](#2-model) · [3. Results](#3-results) · [4. Sitemap](#4-sitemap) · [5. Reproducibility](#5-reproducibility) · [6. Limitations](#6-limitations) · [References](#references) · [Receipt](#receipt)
+
 ## 1. Introduction
 
 **It all began with a sequence.** A classical bit is `0` or `1` — a two-point choice, deterministic, no phase, no interference: **linear**. The full vortex circuit `0\1\2\4\8/7/5/3\6\9/0\1` is a **qubit**: its doubling units `1·2·4·8·7·5` are `⟨2⟩ mod 9`, a 6-cycle isomorphic to the six roots of unity `e^{2πik/6}` (**phase**), and the two counter-rotating slash flows — `\` ascending, `/` descending — superpose to a standing wave with fixed nodes (**interference**). Measuring it collapses the six phases to one digit — the `0/1` shadow — exactly as measuring a qubit collapses to a bit. From this sequence comes **quantum computing**, and from quantum computing comes every one of the 712 computationally proven theorems in this registry. It is an exact structural correspondence (phase + interference), verified in `theBinaryBitIsLinearTheVortexCircuitIsQuantum`; base-10 / `mod 9` specific, not a claim that the digits are physical qubits. The `src/<digit>` folders are the stations of this circuit — quantum by structure, linear only at measurement.
