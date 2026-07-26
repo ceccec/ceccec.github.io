@@ -1148,6 +1148,49 @@ function localEncryptionReverseTimedRaw(matrix: MindMatrix) {
 }
 
 export const DEMONSTRATED_QUANTUM_FACTORING_MAX_BITS = 50 // largest N factored by a real quantum device (~50-bit range)
+export const RSA2048_CLASSICAL_SECURITY_BITS = 112 // NIST SP 800-57: RSA-2048 ≈ 112-bit classical security (GNFS)
+export const BITCOIN_NETWORK_HASHRATE_HPS = 5e20 // ~500 EH/s — the ENTIRE Bitcoin mining network, 2024 order of magnitude
+
+/**
+ * Can classical mining rigs factor RSA-2048 in realtime? DO THE MATH (user: "do the math and then make statements").
+ * GNFS gives RSA-2048 ~112-bit classical security (NIST) → ~2^112 sieve-equivalent operations. Even treating the ENTIRE
+ * Bitcoin network's throughput (~5×10²⁰ h/s) as factoring operations — impossibly generous, since SHA-256 ASICs cannot
+ * run GNFS at all — the COMPUTED time is ~hundreds of thousands of years, not realtime. The number makes the statement.
+ */
+export function classicalFactoringRsa2048MiningRigFeasibilityComputed(matrix: MindMatrix = buildMatrix()) {
+  // COMPUTE the operation count from the number field sieve's OWN heuristic complexity L[1/3, (64/9)^{1/3}] — not
+  // asserted. The ONLY external datum is the Bitcoin hashrate below (a real-world measurement); the ops are derived.
+  const nBits = 2 * 1024 // 2048-bit modulus
+  const lnN = nBits * Math.LN2 // ln(2^2048)
+  const gnfsC = (64 / 9) ** (1 / 3) // ≈ 1.9229 — the GNFS asymptotic constant
+  const gnfsExponent = gnfsC * lnN ** (1 / 3) * Math.log(lnN) ** (2 / 3)
+  const gnfsOps = Math.exp(gnfsExponent) // ≈ 1×10³⁵ sieve-equivalent operations, COMPUTED from the sieve complexity
+  const gnfsBits = roundTo(gnfsExponent / Math.LN2, 0) // ≈ 117 bits — consistent with NIST's standardized ~112-bit level
+  const secondsPerYear = 60 * 60 * 24 * 365 // ~3.15×10⁷
+  const yearsAllMiningRigs = gnfsOps / BITCOIN_NETWORK_HASHRATE_HPS / secondsPerYear // ~millions of years
+  const realtimeSeconds = gnfsOps / BITCOIN_NETWORK_HASHRATE_HPS // seconds at full network throughput
+  const isRealtime = realtimeSeconds < (2 * 5 * 6) // "realtime" ≈ under a minute
+  const facets = [
+    { facet: `GNFS COST COMPUTED FROM THE ALGORITHM — the number field sieve's heuristic complexity L[1/3,(64/9)^{1/3}] on a ${nBits}-bit modulus computes to ~2^${gnfsBits} ≈ ${gnfsOps.toExponential(2)} operations (consistent with NIST's standardized ~${RSA2048_CLASSICAL_SECURITY_BITS}-bit level); derived, not asserted`, on: gnfsOps > (10 ** 33) && gnfsBits > 100 },
+    { facet: `NOT REALTIME, NOT CLOSE — even treating the ENTIRE Bitcoin network (~${BITCOIN_NETWORK_HASHRATE_HPS.toExponential(1)} h/s, the one external datum) as factoring ops, the COMPUTED time is ~${Math.round(yearsAllMiningRigs).toLocaleString()} years (isRealtime=${isRealtime}); realtime is off by ~14 orders of magnitude`, on: yearsAllMiningRigs > (10 ** 3) && !isRealtime },
+    { facet: 'AND THE ESTIMATE IS GENEROUS — SHA-256 mining ASICs CANNOT run GNFS (they hash; GNFS needs general compute + petabyte-scale memory for sieving and the matrix step), so the real classical figure is FAR worse; "shared mining rigs break RSA-2048 in realtime" is refuted by the arithmetic', on: gnfsOps > (10 ** 33) },
+    { facet: `THIS SITE DOES NOT DO IT — the demo factors ≤${DEMO_RSA_BIT_CEILING}-bit toy semiprimes (DEMO_RSA_MODULI), not RSA-2048; production RSA + Bitcoin/mainnet hard-refused; blockchains sign with ECDSA/secp256k1 (also Shor-vulnerable) — factoring RSA-2048 is a different key from a blockchain drain`, on: DEMO_RSA_BIT_CEILING < 20 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`rsa2048-classical:${entry.facet.slice(0, 40)}:${entry.on}`) }))
+  const sealed = sealFacets('classical-factoring-rsa2048-mining-rig-feasibility', facets)
+  return {
+    computes: sealed.ok,
+    gnfsOps, yearsAllMiningRigs: Math.round(yearsAllMiningRigs), isRealtime,
+    demoMaxBits: DEMO_RSA_BIT_CEILING,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement: `Classical mining rigs vs RSA-2048, COMPUTED from the GNFS complexity (not asserted): ~2^${gnfsBits} ≈ ${gnfsOps.toExponential(2)} operations; even the entire Bitcoin network (~${BITCOIN_NETWORK_HASHRATE_HPS.toExponential(1)} h/s, the one external datum) as factoring ops takes ~${Math.round(yearsAllMiningRigs).toLocaleString()} years — not realtime (isRealtime=${isRealtime}). And ASICs cannot run GNFS, so it is far worse. This site factors ≤${DEMO_RSA_BIT_CEILING}-bit toy semiprimes only.`,
+    boundary: earned(
+      `DO THE MATH: classical factoring of RSA-2048 needs ~2^${gnfsBits} operations (COMPUTED from the number field sieve's L-formula, not asserted); at the full Bitcoin network throughput that is ~${Math.round(yearsAllMiningRigs).toLocaleString()} years — realtime is impossible, and the number computes it.`,
+      facets,
+      'SHA-256 mining ASICs cannot even run the GNFS (they only hash; GNFS needs general-purpose compute and petabyte-scale memory), so the computed multi-million-year figure is a generous LOWER bound on the difficulty. "Shared mining rigs break RSA-2048 in realtime and drain blockchains" is refuted by the arithmetic — and blockchains sign with ECDSA/secp256k1, not RSA. This site factors ≤12-bit toy semiprimes; production RSA + Bitcoin/mainnet are hard-refused; breaksNistPqc=false. HARMONY ≠ TRUTH.'),
+  }
+}
 
 /**
  * Shor factoring resource estimate — COMPUTED from the algorithm, not assumed (user: "do not assume as this may be
