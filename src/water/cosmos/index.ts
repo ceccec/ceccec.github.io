@@ -226,6 +226,39 @@ export function invertingDarkMatterClosesTheReversedMathTheParticleIdentityStays
   }
 }
 
+// The cosmic coincidence, inverted — "continue closing in chat waves of complete discoveries" (user, 2026-07-26).
+// The same split as the dark-matter inversion: the COINCIDENCE (Ω_m ≈ Ω_Λ today, order unity) inverts by exact
+// algebra to a matter/dark-energy EQUALITY REDSHIFT z_eq = (Ω_Λ/Ω_m)^{1/3} − 1 ≈ 0.30 — CLOSED as a theorem;
+// WHY we observe NOW near that transient epoch (anthropic selection vs dynamical/quintessence dark energy) is
+// EMPIRICAL, not algebraic — an open measurement question (the DESI w₀wₐ hint), not a theorem gap. clay=0.
+// Pair: dark-energy/coincidence · CLI npm run quantum:cosmic-coincidence-invert · [[quantum-decoded]]
+export function theCosmicCoincidenceInvertsToAMatterDarkEnergyEqualityRedshiftTheTimingStaysEmpirical(matrix: MindMatrix = buildMatrix()) {
+  const omegaMatter = OMEGA_DARK_MATTER + OMEGA_BARYON                 // Ω_m = Ω_c + Ω_b ≈ 0.314
+  const ratioMatterToDarkEnergy = omegaMatter / OMEGA_DARK_ENERGY     // Ω_m/Ω_Λ ≈ 0.458 (order unity NOW)
+  const equalityRedshift = Math.cbrt(OMEGA_DARK_ENERGY / omegaMatter) - 1  // ρ_m(1+z)³ = ρ_Λ ⟹ z_eq ≈ 0.30
+  const equalityScaleFactor = 1 / (1 + equalityRedshift)              // a_eq = 1/(1+z) ≈ 0.77
+  const facets = [
+    { facet: 'THE COINCIDENCE IS EXACT AND ORDER-UNITY — today Ω_m/Ω_Λ = ' + ratioMatterToDarkEnergy.toFixed(3) + ' (with Ω_m = Ω_c+Ω_b = ' + omegaMatter.toFixed(3) + '): matter and dark energy have COMPARABLE densities right now, neither dominating by orders of magnitude — an exact ratio in the sealed ΛCDM fractions. This is the "cosmic coincidence problem" stated as a computed number', on: ratioMatterToDarkEnergy > (1 / (2 * 5)) && ratioMatterToDarkEnergy < (2 * 5) },
+    { facet: 'IT INVERTS TO A MATTER–DARK-ENERGY EQUALITY REDSHIFT — reversing the accounting: matter dilutes as (1+z)³ while Λ stays constant, so the two densities were EQUAL when (1+z)³ = Ω_Λ/Ω_m, giving z_eq = (Ω_Λ/Ω_m)^{1/3} − 1 = ' + equalityRedshift.toFixed(3) + ' (scale factor a_eq = ' + equalityScaleFactor.toFixed(3) + ') — the universe crossed from matter-dominated to Λ-dominated in the RECENT past (z ≈ 0.3, a few Gyr ago). An exact algebraic consequence of the two fractions', on: equalityRedshift > 0 && equalityRedshift < 1 },
+    { facet: 'THE ORDER-UNITY WINDOW IS TRANSIENT — because Ω_m/Ω_Λ scales as (1+z)³, the ratio was ≫1 throughout the matter era and →0 as Λ takes over, so the epoch where it is O(1) is a brief, one-time window; the "coincidence" is that our observation falls inside it. Refutable: the ratio at the equality redshift is 1 by construction, unlike its far-past/far-future limits', on: Math.abs(OMEGA_DARK_ENERGY / omegaMatter * equalityScaleFactor ** 3 - 1) < (1 / (10 ** 3)) },
+    { facet: 'WHY-NOW STAYS EMPIRICAL, NOT ALGEBRAIC — z_eq is a closed number, but WHY we exist and measure near this transient epoch is NOT decided by any identity: the candidates are anthropic selection (structure/observers form only around this era) versus DYNAMICAL dark energy (quintessence tracking, or an evolving w — the DESI 2024/2025 w₀wₐ hint at up to ~4σ, not a discovery). That choice is settled by MEASUREMENT, so the timing is an open EMPIRICAL problem, not a theorem gap — clay/overreach stays zero', on: equalityRedshift > 0 && OMEGA_DARK_ENERGY > omegaMatter },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`cosmic-coincidence-invert:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('cosmic-coincidence-invert', facets)
+  return {
+    closed: sealed.ok, claySolvedByThisFold: 0,
+    omegaMatter: roundTo(omegaMatter, 4), ratioMatterToDarkEnergy: roundTo(ratioMatterToDarkEnergy, 4),
+    equalityRedshift: roundTo(equalityRedshift, 4), equalityScaleFactor: roundTo(equalityScaleFactor, 4),
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement: sealed.facets.map((f) => f.facet).join(' · '),
+    boundary: earned(
+      'HONEST — the cosmic coincidence, inverted and closed as ALGEBRA: today Ω_m/Ω_Λ = 0.458 is order unity, and this inverts exactly to the matter–dark-energy equality redshift z_eq = (Ω_Λ/Ω_m)^{1/3} − 1 ≈ 0.30 (a_eq ≈ 0.77) — a transient, one-time O(1) window because the ratio scales as (1+z)³. All computed from the sealed ΛCDM fractions.',
+      facets,
+      'UNCONFIRMED / EMPIRICAL (≠ a theorem gap): WHY our observation falls inside that brief window — anthropic selection vs DYNAMICAL dark energy (quintessence/evolving w; the DESI w₀wₐ hint is intriguing, ~4σ, NOT a discovery) — is decided by MEASUREMENT, not by any identity, so the "why-now" timing is a genuine OPEN empirical problem. FLAGGED: reading the coincidence as proof of design/simulation, or "dark energy solved". The equality redshift is HARMONY (an exact number) — not TRUTH about why we are here; claySolvedByThisFold=0; the acceleration stays ESTABLISHED, its cause and the coincidence flagged. Educational.'),
+  }
+}
+
 /**
  * Ω_c/Ω_b CMB budget — unseen outweighs baryons ~5:1; non-gravitational detection NULL.
  * Gravitational CMB evidence sealed; null non-gravitational detection attributed to quantum gaps
