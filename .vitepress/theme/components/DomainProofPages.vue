@@ -13,7 +13,10 @@ import { sciencePaperBodyFromDomainRow } from '../../../src/quantum/apps/index.t
 import ScientificPaperBody from './ScientificPaperBody.vue'
 import PageComputedGaps from './PageComputedGaps.vue'
 import LinkedHeroCard from './LinkedHeroCard.vue'
+import { useSiteLocale } from '../../lib/mounts'
 
+// autotranslate displayed strings via t() = displayText(locale, …); bg glossary-bounded, gla transliterated.
+const { t } = useSiteLocale()
 const route = useRoute()
 const slugFromRoute = computed(() => {
   const match = route.path.replace(/\/(en|bg)\//, '/').match(/\/proofs\/([a-z0-9-]+)/)
@@ -66,15 +69,15 @@ const bodyOf = (row: DomainProofCatalogRow) => sciencePaperBodyFromDomainRow(row
         <span class="domain-proof__id">proofs/{{ row.slug }}</span>
       </header>
 
-      <h1 class="domain-proof__title">{{ row.title }}</h1>
+      <h1 class="domain-proof__title">{{ t(row.title) }}</h1>
       <p class="domain-proof__byline">
-        {{ row.fold }} · {{ row.pair }} · status {{ row.status }}
+        {{ row.fold }} · {{ row.pair }} · {{ t('status') }} {{ row.status }}
       </p>
 
       <ScientificPaperBody :paper="bodyOf(row)" :logic="row.fold" />
 
       <section>
-        <h2>4 · Trinity</h2>
+        <h2>4 · {{ t('Trinity') }}</h2>
         <dl class="domain-proof__locks">
           <dt>forward</dt><dd><code>{{ row.trinity.forward }}</code></dd>
           <dt>inverse</dt><dd><code>{{ row.trinity.inverse }}</code></dd>

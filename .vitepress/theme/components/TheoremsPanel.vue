@@ -14,8 +14,12 @@ import {
 import { slowProcessIsQuantumGap } from '../../../src/quantum/apps'
 import { cosmosFrontiersDecoded } from '../../../src/water/cosmos'
 import { theoremPageRows } from '../../../src/wind/routes/corpus/index.ts'
+import { useSiteLocale } from '../../lib/mounts'
 import ProofAnimation from './ProofAnimation.vue'
 
+// autotranslate: displayed strings route through t() = displayText(locale, …) — bg (bulgarianFromEnglish,
+// glossary-bounded) · gla (Glagolitic transliteration) · en unchanged. Locale from the VitePress-native useData.
+const { t } = useSiteLocale()
 const nav = computed(() => theoremNavigation())
 // every atom has a dedicated /theorems/<slug> page — map theorem→slug (collision-safe, from theoremPageRows) so the
 // ANIMATED wave-atom card is also a LINK (fixes "cards with animations have no links"). Only atoms with a real page
@@ -42,7 +46,7 @@ const waveLabel = (provedBy: string) =>
 <template>
   <section class="theorems-panel">
     <header class="theorems-panel__head">
-      <h2 id="theorems">⊢ {{ nav.atomCount }} proven theorems</h2>
+      <h2 id="theorems">⊢ {{ nav.atomCount }} {{ t('proven theorems') }}</h2>
       <p class="theorems-panel__counts">
         <span>{{ nav.waveCount }} proving folds</span>
         <span>·</span>
@@ -110,11 +114,11 @@ const waveLabel = (provedBy: string) =>
           <ClientOnly><ProofAnimation v-if="anims.get(atom.theorem)" :spec="anims.get(atom.theorem)!" /></ClientOnly>
           <div class="theorems-panel__body">
             <div class="theorems-panel__row">
-              <a v-if="theoremHref(atom.theorem)" class="theorems-panel__name" :href="theoremHref(atom.theorem)">{{ atom.theorem }}</a>
-              <span v-else class="theorems-panel__name">{{ atom.theorem }}</span>
+              <a v-if="theoremHref(atom.theorem)" class="theorems-panel__name" :href="theoremHref(atom.theorem)">{{ t(atom.theorem) }}</a>
+              <span v-else class="theorems-panel__name">{{ t(atom.theorem) }}</span>
               <code class="theorems-panel__class" :data-class="atom.proofClass">{{ atom.proofClass }}</code>
             </div>
-            <p class="theorems-panel__proof">{{ atom.proof }}</p>
+            <p class="theorems-panel__proof">{{ t(atom.proof) }}</p>
           </div>
         </li>
       </ul>
@@ -125,17 +129,17 @@ const waveLabel = (provedBy: string) =>
     </p>
 
     <header class="theorems-panel__head">
-      <h2 id="open-frontiers">Open frontiers</h2>
+      <h2 id="open-frontiers">{{ t('Open frontiers') }}</h2>
     </header>
     <ul class="theorems-panel__frontiers">
       <li v-for="f in frontiers.frontiers" :key="f.frontier">
         <div class="theorems-panel__body">
           <div class="theorems-panel__row">
-            <span class="theorems-panel__name">{{ f.frontier }}</span>
+            <span class="theorems-panel__name">{{ t(f.frontier) }}</span>
             <code class="theorems-panel__class" data-class="open" :title="`demarcate(term) — signed by the zero-cycle registry`">{{ f.demarcation }}</code>
           </div>
-          <p class="theorems-panel__proof">{{ f.computed }}</p>
-          <p v-if="f.reversed" class="theorems-panel__proof theorems-panel__reversed">{{ f.reversed }}</p>
+          <p class="theorems-panel__proof">{{ t(f.computed) }}</p>
+          <p v-if="f.reversed" class="theorems-panel__proof theorems-panel__reversed">{{ t(f.reversed) }}</p>
         </div>
       </li>
     </ul>

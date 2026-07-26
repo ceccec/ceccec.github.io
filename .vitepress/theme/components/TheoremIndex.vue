@@ -6,8 +6,12 @@
 // Tags are the three computed axes: domain (home), class (proof class), lean (self-contained / cited).
 import { computed, ref } from 'vue'
 import { theoremTagIndex, theoremPapersLatestFirst, type TheoremTagGroup } from '../../../src/wind/routes/corpus/index.ts'
+import { useSiteLocale } from '../../lib/mounts'
 import LinkedHeroCard from './LinkedHeroCard.vue'
 
+// autotranslate: every displayed string routes through t() = displayText(locale, text) — bg via bulgarianFromEnglish
+// (glossary-bounded), gla via Glagolitic transliteration, en unchanged. VitePress locale from useSiteLocale (useData).
+const { t } = useSiteLocale()
 const groups = computed<TheoremTagGroup[]>(() => theoremTagIndex())
 const total = computed(() => theoremPapersLatestFirst().length)
 const axisOrder: TheoremTagGroup['axis'][] = ['domain', 'class', 'lean']
@@ -25,21 +29,21 @@ const chipsByAxis = computed(() =>
 <template>
   <div class="thm-index" data-logic="src/wind/routes/corpus/index.ts">
     <header class="thm-index__head">
-      <p class="thm-index__mast">view of the theorem registry</p>
-      <h1>Tag index</h1>
+      <p class="thm-index__mast">{{ t('view of the theorem registry') }}</p>
+      <h1>{{ t('Tag index') }}</h1>
       <p class="thm-index__lede">
-        {{ total }} proven theorems by tag — newest first. Not a second hub:
-        the registry lives at <a href="/frontiers">/frontiers</a>;
-        Clay domain proofs at <a href="/proofs">/proofs</a>.
+        {{ total }} {{ t('proven theorems by tag — newest first. Not a second hub: the registry lives at') }}
+        <a href="/frontiers">/frontiers</a>;
+        {{ t('Clay domain proofs at') }} <a href="/proofs">/proofs</a>.
       </p>
     </header>
 
     <nav class="thm-index__filters" aria-label="Filter theorems by tag">
       <button class="thm-chip" :class="{ 'thm-chip--on': selected === null }" @click="selected = null">
-        all <span class="thm-chip__n">{{ total }}</span>
+        {{ t('all') }} <span class="thm-chip__n">{{ total }}</span>
       </button>
       <div v-for="row in chipsByAxis" :key="row.axis" class="thm-index__axis">
-        <span class="thm-index__axis-label">{{ axisLabel[row.axis] }}</span>
+        <span class="thm-index__axis-label">{{ t(axisLabel[row.axis]) }}</span>
         <button v-for="g in row.tags" :key="g.tag" class="thm-chip" :data-axis="g.axis"
           :class="{ 'thm-chip--on': selected === g.tag }"
           @click="selected = selected === g.tag ? null : g.tag">
@@ -50,9 +54,9 @@ const chipsByAxis = computed(() =>
 
     <section v-for="g in shown" :key="g.tag" class="thm-group" :id="`tag-${g.tag.replace('/', '-')}`">
       <h2 class="thm-group__head">
-        <span class="thm-group__tag" :data-axis="g.axis">{{ g.tag }}</span>
-        <span class="thm-group__axis">{{ axisLabel[g.axis] }}</span>
-        <span class="thm-group__n">{{ g.count }} papers · newest first</span>
+        <span class="thm-group__tag" :data-axis="g.axis">{{ t(g.tag) }}</span>
+        <span class="thm-group__axis">{{ t(axisLabel[g.axis]) }}</span>
+        <span class="thm-group__n">{{ g.count }} {{ t('papers · newest first') }}</span>
       </h2>
       <div class="thm-cards" role="list">
         <LinkedHeroCard
@@ -67,7 +71,7 @@ const chipsByAxis = computed(() =>
             <code class="thm-item__by">{{ row.provedBy }}</code>
             <span class="thm-item__home">{{ row.home }}</span>
             <span class="thm-item__tags">
-              <span v-for="t in row.tags" :key="t" class="thm-tag" :class="{ 'thm-tag--cur': t === g.tag }">{{ t }}</span>
+              <span v-for="tag in row.tags" :key="tag" class="thm-tag" :class="{ 'thm-tag--cur': tag === g.tag }">{{ t(tag) }}</span>
             </span>
           </template>
         </LinkedHeroCard>
