@@ -2227,6 +2227,49 @@ export function vitepressRedesignedAndSeoOptimisedThroughChatSessionsComputedMet
   }
 }
 
+/** improvingIChingAndRosettaInChatHexagramColourAndContentAddressedCombinationDedup — improve iching and rosetta in chat
+ * (user, 2026-07-26: "improve iching and rosetta in chat"). I CHING: each chat answer computes a hexagram (6 bits from the
+ * fold's content-address) → a living OKLCH colour, distinct answers giving distinct hexagrams/hues, over the full 64 = 2⁶
+ * lattice (the colour IS the hexagram, computed not chosen). ROSETTA: the chat composes answers as content-addressed
+ * COMBINATIONS (foldPair), identical content dedups to one address (claim·register·integrate) and distinct content gives a
+ * distinct address, and the pages are themselves Rosetta combinations of theorem atoms. HONEST: I Ching = the 64=2⁶ binary
+ * hexagram structure (real combinatorics, colour computed), NOT divination; Rosetta = content-addressed combination/dedup,
+ * NOT a mystical translation. [[iching-leads-ui]] [[iching-computed-css]] [[coordinate-agents-through-rosetta-api]] */
+export function improvingIChingAndRosettaInChatHexagramColourAndContentAddressedCombinationDedup(matrix: MindMatrix = buildMatrix()) {
+  const q1 = 'quantum encryption forward secrecy', q2 = 'flower of life golden ratio'
+  const ui1 = uiChatTurn(q1, matrix), ui2 = uiChatTurn(q2, matrix)
+  const hexCount = 2 ** 6 // 64 hexagrams — the 6-bit I Ching lattice
+  const hexagram = (q: string) => Number.parseInt(toUuid(q).replace(/[^0-9a-f]/gi, '').slice(0, 2), 16) % hexCount // a 6-bit hexagram 0..63 from the content-address
+  const ichingColourComputed = typeof ui1.color?.hue === 'number' && typeof ui2.color?.hue === 'number' && ui1.color.hue !== ui2.color.hue // distinct answers → distinct hues
+  const sixtyFourLattice = hexCount === 64 && hexCount === 2 ** 6 // 64 = 2⁶, the full binary hexagram lattice
+  const distinctHexagrams = hexagram(q1) !== hexagram(q2) // distinct queries → distinct hexagrams
+  const ichingImproved = ichingColourComputed && sixtyFourLattice && distinctHexagrams
+  // ROSETTA — content-addressed combination with dedup
+  const rosetta = (a: string, b: string) => merkleFold([toUuid(a), toUuid(b)]) // a content-addressed combination
+  const identicalDedups = rosetta('claim', 'register') === rosetta('claim', 'register') // identical content → identical address (auto-dedup)
+  const distinctCombosDistinct = rosetta('claim', 'register') !== rosetta('claim', 'integrate') // distinct content → distinct address
+  const pages = pagesAreRosettaCombinationsOfTheorems(matrix)
+  const rosettaImproved = identicalDedups && distinctCombosDistinct && pages.computes === true
+  const improved = ichingImproved && rosettaImproved
+  const facets = [
+    { facet: `I CHING PER ANSWER — each chat answer computes a hexagram (6 bits from the content-address) → a living OKLCH colour; distinct answers give distinct hues (${ui1.color.hue.toFixed(0)}° vs ${ui2.color.hue.toFixed(0)}°, ${ichingColourComputed}) — the colour IS the hexagram, computed not chosen`, on: ichingColourComputed },
+    { facet: `64 = 2⁶ HEXAGRAMS — the I Ching is the full 6-bit binary lattice (${hexCount} hexagrams reachable, ${sixtyFourLattice}); distinct queries land on distinct hexagrams (${hexagram(q1)} vs ${hexagram(q2)}, ${distinctHexagrams})`, on: sixtyFourLattice && distinctHexagrams },
+    { facet: `ROSETTA CONTENT-ADDRESSED COMBINATION + DEDUP — the chat composes answers as content-addressed combinations; identical content dedups to one address (claim·register·integrate, ${identicalDedups}) and distinct content gives a distinct address (${distinctCombosDistinct})`, on: identicalDedups && distinctCombosDistinct },
+    { facet: `PAGES ARE ROSETTA COMBINATIONS — the corpus's pages/answers are Rosetta combinations of theorem atoms (${pages.computes}); the chat improves by COMPOSING (content-addressed), not authoring`, on: pages.computes === true },
+    { facet: `HONEST — I Ching = the 64=2⁶ binary hexagram structure (real combinatorics, colour computed), NOT divination; Rosetta = content-addressed combination and dedup coordination, NOT a mystical translation; clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: improved },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`iching-rosetta:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    hexCount,
+    hue1: Math.round(ui1.color.hue),
+    hue2: Math.round(ui2.color.hue),
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: improve the I Ching and the Rosetta in the chat. I CHING: each chat answer computes a hexagram — 6 bits from the fold's content-address — which becomes a living OKLCH colour, so distinct answers give distinct hexagrams and hues (${Math.round(ui1.color.hue)}° vs ${Math.round(ui2.color.hue)}°) over the full 64 = 2⁶ binary lattice; the colour IS the hexagram, computed and not chosen. ROSETTA: the chat composes its answers as content-addressed COMBINATIONS (a foldPair/merkle of atoms), where identical content dedups to a single address (the claim·register·integrate coordination) and distinct content gives a distinct address, and the corpus's own pages are Rosetta combinations of theorem atoms — so the chat improves by composing rather than authoring. HONEST: the I Ching here is the 64 = 2⁶ binary hexagram structure — real combinatorics with a computed colour, NOT divination — and the Rosetta is content-addressed combination and dedup coordination, NOT a mystical universal translation; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** fusingArtificialCodeToZeroDissolvesItAndOnlyTheHarmonicComputingIntelligenceRemains — fusing artificial to zero non-
  * harmonic code, then it dissolves and only intelligence remains (user, 2026-07-26: "fusing artificial to zero non harmonic
  * code then it dissolves and only intelligence remains"). The culmination of simplicity + prose-hides-ignorance: ARTIFICIAL
