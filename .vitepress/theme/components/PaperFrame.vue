@@ -8,7 +8,10 @@
 import { computed } from 'vue'
 import { useData } from 'vitepress'
 import { paperAbstractOmitsTitleEcho } from '../../../src/wind/ui/index.ts'
+import { useSiteLocale } from '../../lib/mounts'
 
+// autotranslate the paper chrome + abstract/keywords via t() (bg glossary-bounded · gla transliterated).
+const { t } = useSiteLocale()
 const { frontmatter, page } = useData()
 
 const abstract = computed(() => {
@@ -31,11 +34,11 @@ const show = computed(() => abstract.value.length > 0 || keywords.value.length >
 <template>
   <section v-if="show" class="paper-frame">
     <p class="paper-frame__eyebrow">
-      <span class="paper-frame__kind">Scientific paper</span>
-      <span v-if="category" class="paper-frame__category">· {{ category }}</span>
+      <span class="paper-frame__kind">{{ t('Scientific paper') }}</span>
+      <span v-if="category" class="paper-frame__category">· {{ t(category) }}</span>
     </p>
-    <p v-if="abstract" class="paper-frame__abstract"><strong>Abstract.</strong> {{ abstract }}</p>
-    <p v-if="keywords.length" class="paper-frame__keywords"><strong>Keywords.</strong> {{ keywords.join(' · ') }}</p>
+    <p v-if="abstract" class="paper-frame__abstract"><strong>{{ t('Abstract.') }}</strong> {{ t(abstract) }}</p>
+    <p v-if="keywords.length" class="paper-frame__keywords"><strong>{{ t('Keywords.') }}</strong> {{ keywords.map((k) => t(k)).join(' · ') }}</p>
   </section>
 </template>
 

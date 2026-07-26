@@ -8,12 +8,15 @@ import { useRoute } from 'vitepress'
 import { cardPage, cardPages, discoveryPage, discoveryPages, type CardPage } from '../../../src/heaven/compute/index.ts'
 import { humanBreath } from '../../../src/0'
 import { subscribeHeroClock } from '../../lib/hero-movie-paint'
+import { useSiteLocale } from '../../lib/mounts'
 import UiCard from './ui/Card.vue'
 import UiCardContent from './ui/CardContent.vue'
 import UiBadge from './ui/Badge.vue'
 import UiAlert from './ui/Alert.vue'
 
 const route = useRoute()
+// autotranslate card content + labels via t() (bg glossary-bounded · gla transliterated · en unchanged).
+const { t } = useSiteLocale()
 // A dedicated page picks its slug from the route (/…/model/<slug>); otherwise the whole computed gallery.
 const slugFromRoute = computed(() => {
   const match = route.path.replace(/\/(en|bg)\//, '/').match(/\/model\/([a-z0-9-]+)/)
@@ -91,30 +94,30 @@ function speak(page: CardPage) {
           <div class="model-card__body">
             <header class="model-card__head">
               <UiBadge variant="outline">{{ page.source }}</UiBadge>
-              <h2>{{ page.title }}</h2>
-              <p class="model-card__q">{{ page.question }}</p>
+              <h2>{{ t(page.title) }}</h2>
+              <p class="model-card__q">{{ t(page.question) }}</p>
             </header>
 
-            <p class="model-card__research">{{ page.research }}</p>
+            <p class="model-card__research">{{ t(page.research) }}</p>
 
             <div class="model-card__facets">
               <UiBadge v-for="facet in page.facets" :key="facet.facet" :variant="facet.on ? 'default' : 'outline'">
-                {{ facet.on ? '✓' : '—' }} {{ facet.facet }}
+                {{ facet.on ? '✓' : '—' }} {{ t(facet.facet) }}
               </UiBadge>
             </div>
 
             <div class="model-card__actions">
               <button v-if="ttsAvailable" type="button" class="model-card__speak" @click="speak(page)">
-                {{ speaking === page.slug ? 'Stop' : 'Speak' }}
+                {{ speaking === page.slug ? t('Stop') : t('Speak') }}
               </button>
               <a class="model-card__paper" :href="page.paperRoute">{{ page.paperRoute }}</a>
               <UiBadge :variant="page.verified ? 'default' : 'outline'">
-                wave · {{ page.verified ? 'verified ✓' : 'open —' }}
+                {{ t('wave') }} · {{ page.verified ? t('verified ✓') : t('open —') }}
               </UiBadge>
             </div>
 
-            <UiAlert title="Boundary">
-              <p>{{ page.boundary }}</p>
+            <UiAlert :title="t('Boundary')">
+              <p>{{ t(page.boundary) }}</p>
             </UiAlert>
           </div>
         </div>
