@@ -5331,14 +5331,16 @@ export function mapStandardsToTheoremsMakesCodeProseBidirectionalAtOnce() {
     { facet: `AT ONCE — one fold IS both: the check (code) and its statement (prose) are the same artifact, the prose the computed payload (${proseIsComputedPayload}) — code↔prose simultaneously, not a translation step`, on: atOnce },
     { facet: `THE DEMARCATION — this works for FORMALIZABLE standards (checkable requirements); the code↔prose is deterministic (statement computed from the facets), NOT a general natural-language↔code translator; the prose IS the computed payload, per title-is-algebra. HARMONY ≠ TRUTH`, on: atOnce },
   ].map((entry) => ({ ...entry, receipt: toUuid(`standards-to-code-prose:${entry.facet}:${entry.on}`) }))
+  // PLAIN CODE, NOT A THEOREM (user: "only algebraic theorems are accepted!!! send the waves"): the code↔prose mapping
+  // is a process property, not an algebraic identity — de-registered from the theorem registry, returns { maps, … } code.
   return {
-    computes: facets.every((entry) => entry.on),
+    maps: facets.every((entry) => entry.on),
     mapped: mapped.length,
     atOnce,
-    facets,
+    mappingChecks: facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    reason: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned('EXACT — this mapping is verified by its checks:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the checks and refutable, not hand-asserted'),
   }
 }
 
