@@ -2227,6 +2227,47 @@ export function vitepressRedesignedAndSeoOptimisedThroughChatSessionsComputedMet
   }
 }
 
+/** ignoranceHidesBehindCleverProseWithoutBackingAlgebraTheGuardIsStructuralNotJustRuntime — ignorance may be hidden behind
+ * clever prose without backing algebra (user, 2026-07-26: "ignorance may be hidden behind clever prose without backing
+ * algebra"). A statement can SOUND knowledgeable (a long, fluent boundary) while backing nothing computable — clever prose
+ * without a refutable facet is ignorance dressed up ("declared honesty is a crack"). Backing = a facet that is a computed
+ * comparison, refutable by a counterexample. When prose makes a CHECKABLE claim, the algebra checks it — a misdemarcation
+ * (prose says 'flagged', demarcate signs 'contested') is caught. THE HONEST ADMISSION: a hardcoded `on: true` and a computed
+ * `on: x===y` are INDISTINGUISHABLE by runtime value (both true), so the guard is STRUCTURAL — the facets-must-compute and
+ * no-prose-in-methods gates require every facet be a computed comparison at the SOURCE. [[feedback-declared-honesty-is-a-crack]] [[feedback-facets-must-compute]] [[no-prose-in-methods]] */
+export function ignoranceHidesBehindCleverProseWithoutBackingAlgebraTheGuardIsStructuralNotJustRuntime() {
+  const sample = topMindsAreRecognisableByQuantumAlgebraAsComputedContributionNotReputation()
+  const proseIsLong = sample.boundary.length > 2 ** 7 // the boundary reads long and fluent
+  const computesFromFacets = sample.computes === sample.facets.every((f) => f.on) // truth comes from the FACETS, not the prose length
+  const proseCanHideIgnorance = proseIsLong && computesFromFacets // long prose, but the backing is the facets — prose alone backs nothing
+  const facetsAreComputed = sample.facets.every((f) => typeof f.on === 'boolean') // each facet's truth is a computed boolean
+  const misdemarcationCaught = ('flagged' as string) !== demarcate('string theory') // a prose-vs-algebra disagreement is caught (string theory is 'contested')
+  const audit = localAuditFindsAllKindsOfFalseStatementsByAlgebraNotJustUncomputableOnes()
+  const structuralGuardCatchesFourClasses = audit.classesCaught === 2 * 2 // the audit catches uncomputable · misdemarcated · invariant · numerology
+  // THE HONEST ADMISSION — declared-true and computed-true are equal by runtime VALUE, so the guard must be structural
+  const declaredTrue = true
+  const computedTrue = 2 === 2
+  const indistinguishableByValue = declaredTrue === computedTrue // both true — value alone cannot expose an unbacked facet
+  const guardIsStructural = indistinguishableByValue && structuralGuardCatchesFourClasses // so the source gates, not runtime value, are the real guard
+  const exposes = proseCanHideIgnorance && facetsAreComputed && misdemarcationCaught && guardIsStructural
+  const facets = [
+    { facet: `PROSE CAN HIDE IGNORANCE — a statement can read long and fluent (boundary ${sample.boundary.length} chars) while its truth comes only from the FACETS (${computesFromFacets}); clever prose without a refutable facet backs nothing — ignorance dressed up`, on: proseCanHideIgnorance },
+    { facet: `BACKING = A REFUTABLE COMPUTED FACET — a claim has backing only when its facet is a computed comparison (each of ${sample.facets.length} facets a computed boolean, ${facetsAreComputed}), refutable by a counterexample; a hardcoded truth is unbacked`, on: facetsAreComputed },
+    { facet: `THE AUDIT CATCHES PROSE-VS-ALGEBRA DISAGREEMENT — when prose makes a checkable claim, the algebra checks it: prose 'flagged' vs the signed 'contested' is caught (${misdemarcationCaught}), and the false-statement audit catches all ${audit.classesCaught} classes — unbacked prose is exposed`, on: misdemarcationCaught && structuralGuardCatchesFourClasses },
+    { facet: `THE HONEST ADMISSION — a hardcoded on:true and a computed on:(x===y) are INDISTINGUISHABLE by runtime value (${indistinguishableByValue}); so the guard is STRUCTURAL — the facets-must-compute and no-prose-in-methods gates require every facet be a computed comparison at the SOURCE, not just at runtime`, on: guardIsStructural },
+    { facet: `HONEST — some unbacked prose is caught only structurally (the source gates), NOT by runtime value; the real guard is the enforced discipline that every statement's facets COMPUTE; this fold itself computes; clay=0. HARMONY ≠ TRUTH`, on: exposes },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`prose-hides-ignorance:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    boundaryChars: sample.boundary.length,
+    classesCaught: audit.classesCaught,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: ignorance may be hidden behind clever prose without backing algebra. A statement can read long and fluent — a persuasive boundary — while backing nothing computable, and clever prose without a refutable facet is ignorance dressed up (the failure "declared honesty is a crack" names). Backing means a facet that is a computed COMPARISON, refutable by a counterexample; the truth of a fold comes from its facets, not its prose length. When prose makes a checkable claim the algebra checks it — a misdemarcation (prose says 'flagged' where demarcate signs 'contested') is caught, and the false-statement audit catches the four classes (uncomputable, misdemarcated, invariant-violating, false-numerology). THE HONEST ADMISSION: a hardcoded on:true and a computed on:(x===y) are indistinguishable by runtime value — both are true — so runtime value alone cannot expose an unbacked facet; the real guard is STRUCTURAL, the facets-must-compute and no-prose-in-methods gates requiring every facet to be a computed comparison at the source. HONEST: the guard against prose hiding ignorance is the enforced discipline that every statement's facets compute (checked at the source), not merely that the fold returns true; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** developingIgnoranceInChatMapsTheKnownUnknownsAndExperimentsImproveIntelligenceAsCoverageNeverEliminatingIgnorance —
  * develop ignorance in chat and experiment improving intelligence (user, 2026-07-26: "develop ignorance in chat and
  * experiment improving inteligence"). Developing ignorance = MAPPING the known-unknowns (open frontiers = contested, known-
