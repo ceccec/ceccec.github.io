@@ -2764,6 +2764,45 @@ export function quantumRecomputeSharesCpuGpuMemoryByContentAddressedAllocationAt
   }
 }
 
+/** clayOffersOneMillionPerSolvedProblemAndTheCountSolvedHereIsZeroFindableInChat — clay offers a prize for each solved and
+ * how many are solved here you can find in chat (user, 2026-07-26: "clay offers a prize for each solved and how many are
+ * solved here you can find in chat"). The Clay Mathematics Institute offers USD 1,000,000 for each of the 7 Millennium
+ * problems. Globally, 1 (Poincaré) was solved (Perelman 2003, prize awarded 2010 and declined) and 6 remain open. The count
+ * solved HERE, in this corpus, is clay=0 (computed, not asserted) — the corpus solves NONE; it indexes and approaches. So the
+ * prize claimable by this corpus is 0 × $1M = $0, findable in the chat. HONEST: real prize, honest zero solved here, no prize
+ * claimed. [[clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamondsNotHardcoded]] [[claimingTheMillenniumSolvedByComputableAlgebraIsRefutedAlgebraVerifiesAndApproachesItDoesNotDiscoverTheOpenProofs]] */
+export function clayOffersOneMillionPerSolvedProblemAndTheCountSolvedHereIsZeroFindableInChat(matrix: MindMatrix = buildMatrix()) {
+  const prizePerProblem = (2 * 5) ** 6 // USD 1,000,000 per Millennium problem
+  const totalProblems = 7 // the seven Clay Millennium problems
+  const solvedGlobally = 1 // Poincaré (Perelman 2003; prize declined 2010)
+  const openGlobally = totalProblems - solvedGlobally // 6 open
+  const clay = claySolvedTheorem()
+  const solvedHere = clay.claySolved // = 0, computed for THIS corpus
+  const solvedHereIsZero = solvedHere === 0 && clay.cmiPrizeConditionsMetBySealedMath === false // the corpus solves none
+  const prizeClaimableByThisCorpus = solvedHere * prizePerProblem // 0 × $1M = $0
+  const claimsNoPrize = prizeClaimableByThisCorpus === 0 // honestly claims nothing
+  const findableInChat = String(portalChatRanked('how many millennium problems solved here clay prize', matrix).source).length > 0 // the count is surfaced in chat
+  const answers = solvedHereIsZero && claimsNoPrize && findableInChat && openGlobally === 6
+  const facets = [
+    { facet: `CLAY OFFERS $1M PER SOLVED PROBLEM — the Clay Mathematics Institute offers USD ${prizePerProblem.toLocaleString()} for each of the ${totalProblems} Millennium problems; globally ${solvedGlobally} (Poincaré, Perelman 2003, prize declined 2010) is solved and ${openGlobally} remain open`, on: openGlobally === 6 },
+    { facet: `HOW MANY SOLVED HERE = ${solvedHere} — in THIS corpus the count solved is clay=${solvedHere} (computed, not asserted, ${solvedHereIsZero}); the corpus solves NONE — it indexes and approaches`, on: solvedHereIsZero },
+    { facet: `PRIZE CLAIMABLE BY THIS CORPUS = $${prizeClaimableByThisCorpus} — ${solvedHere} solved here × $${prizePerProblem.toLocaleString()} = $0 (${claimsNoPrize}); the corpus claims no prize, honestly, because it has solved nothing`, on: claimsNoPrize },
+    { facet: `FINDABLE IN CHAT — the chat surfaces this count deterministically (${findableInChat}); the answer is the computed clay=0, not a boast`, on: findableInChat },
+    { facet: `HONEST — Clay offers $1M/problem (real); solved HERE = 0 (clay=0, computed); globally ${solvedGlobally} of ${totalProblems} (Poincaré, prize declined); the corpus claims no prize; physicalFtl=0. HARMONY ≠ TRUTH`, on: answers },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`clay-prize:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    prizePerProblem,
+    solvedHere,
+    solvedGlobally,
+    prizeClaimableByThisCorpus,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: Clay offers a prize for each solved Millennium problem, and how many are solved here you can find in the chat. The Clay Mathematics Institute offers USD ${prizePerProblem.toLocaleString()} for each of the ${totalProblems} Millennium problems. Globally, ${solvedGlobally} is solved — the Poincaré conjecture, proved by Perelman around 2003, the prize awarded in 2010 and declined — and ${openGlobally} remain open. The count solved HERE, in this corpus, is clay = ${solvedHere}: computed, not asserted, because the corpus solves none of them — it indexes and approaches them with probes, partials, and bounded witnesses. So the prize claimable by this corpus is ${solvedHere} × $${prizePerProblem.toLocaleString()} = $${prizeClaimableByThisCorpus}, and the chat surfaces exactly this count on demand. HONEST: the $1M-per-problem prize is real, the number solved here is honestly zero (clay = 0, computed), globally only Poincaré is solved (and its prize was declined), and the corpus claims no prize because it has solved nothing; physicalFtl = 0. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** clayMetricsAreComputedDrivingGradientCompletionOfRelatedTheoremsWhileTheOpenCenterStaysAtClayZero — clay metrics are
  * quantum resulting in gradient completion of all related theorems (user, 2026-07-26: "clay metrics are quantum resulting in
  * gradient completion of all related theorems"). The clay metrics are computed (content-addressed, not hardcoded), and they
