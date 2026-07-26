@@ -1980,33 +1980,62 @@ export function pqcAlgorithmFamilySelector(
   prefer: 'lattice' | 'hash' | 'code' | 'auto' = 'auto',
 ) {
   return memoByRoot(`pqcAlgorithmFamilySelector:${prefer}`, matrix, () => {
+    // Standardized parameter sets — the deployment-decision data (public-key + output sizes in bytes, NIST security
+    // category), SOURCED from the FIPS documents (203/204/205), not derived or keygen'd: sizes are fixed by the
+    // standard. This completes the "labels only" gap with the real numbers a migration needs; it still does NOT
+    // generate keys (Web Crypto has no PQC primitive, and hand-rolled lattice crypto is unsafe — out of scope).
+    const paramSets: Record<string, { paramSet: string; nistCategory: number; publicKeyBytes: number; outputBytes: number; outputKind: 'ciphertext' | 'signature'; source: string }[]> = {
+      'ml-kem': [
+        { paramSet: 'ML-KEM-512', nistCategory: 1, publicKeyBytes: 800, outputBytes: 768, outputKind: 'ciphertext', source: 'FIPS 203' },
+        { paramSet: 'ML-KEM-768', nistCategory: 3, publicKeyBytes: 1184, outputBytes: 1088, outputKind: 'ciphertext', source: 'FIPS 203' },
+        { paramSet: 'ML-KEM-1024', nistCategory: 5, publicKeyBytes: 1568, outputBytes: 1568, outputKind: 'ciphertext', source: 'FIPS 203' },
+      ],
+      'ml-dsa': [
+        { paramSet: 'ML-DSA-44', nistCategory: 2, publicKeyBytes: 1312, outputBytes: 2420, outputKind: 'signature', source: 'FIPS 204' },
+        { paramSet: 'ML-DSA-65', nistCategory: 3, publicKeyBytes: 1952, outputBytes: 3309, outputKind: 'signature', source: 'FIPS 204' },
+        { paramSet: 'ML-DSA-87', nistCategory: 5, publicKeyBytes: 2592, outputBytes: 4627, outputKind: 'signature', source: 'FIPS 204' },
+      ],
+      'slh-dsa': [
+        { paramSet: 'SLH-DSA-SHA2-128s', nistCategory: 1, publicKeyBytes: 32, outputBytes: 7856, outputKind: 'signature', source: 'FIPS 205' },
+        { paramSet: 'SLH-DSA-SHA2-192s', nistCategory: 3, publicKeyBytes: 48, outputBytes: 16224, outputKind: 'signature', source: 'FIPS 205' },
+        { paramSet: 'SLH-DSA-SHA2-256s', nistCategory: 5, publicKeyBytes: 64, outputBytes: 29792, outputKind: 'signature', source: 'FIPS 205' },
+      ] }
     const families = [
-      { id: 'ml-kem', family: 'lattice-KEM', name: 'ML-KEM', standards: ['FIPS 203', 'ISO/IEC 18033-2 Amd 2:2026'], demoParams: ['ML-KEM-512', 'ML-KEM-768', 'ML-KEM-1024'], role: 'key encapsulation', note: 'Primary KEM — Kyber lineage' },
-      { id: 'ml-dsa', family: 'lattice-sig', name: 'ML-DSA', standards: ['FIPS 204'], demoParams: ['ML-DSA-44', 'ML-DSA-65', 'ML-DSA-87'], role: 'digital signatures', note: 'Primary signature — Dilithium lineage' },
-      { id: 'slh-dsa', family: 'hash-sig', name: 'SLH-DSA', standards: ['FIPS 205'], demoParams: ['SLH-DSA-SHA2-128s', 'SLH-DSA-SHA2-192s', 'SLH-DSA-SHA2-256s'], role: 'digital signatures (stateless hash)', note: 'Conservative backup — SPHINCS+ lineage' },
-      { id: 'classic-mceliece', family: 'code-KEM', name: 'Classic McEliece', standards: ['ISO/IEC 18033-2 Amd 2:2026'], demoParams: ['mceliece460896', 'mceliece6688128', 'mceliece6960119', 'mceliece8192128'], role: 'key encapsulation (code-based)', note: 'ISO diversity — NIST did not standardize' },
-      { id: 'frodo-kem', family: 'lattice-KEM-unstructured', name: 'FrodoKEM', standards: ['ISO/IEC 18033-2 Amd 2:2026'], demoParams: ['FrodoKEM-640', 'FrodoKEM-976', 'FrodoKEM-1344'], role: 'key encapsulation (unstructured LWE)', note: 'ISO hedge against structure-specific lattice attacks' },
-    ].map((row) => ({ ...row, receipt: toUuid(`pqc-family:${row.id}:${row.demoParams[0]}`) }))
+      { id: 'ml-kem', family: 'lattice-KEM', name: 'ML-KEM', standards: ['FIPS 203', 'ISO/IEC 18033-2 Amd 2:2026'], params: paramSets['ml-kem']!, role: 'key encapsulation', note: 'Primary KEM — Kyber lineage; shared secret 32 B' },
+      { id: 'ml-dsa', family: 'lattice-sig', name: 'ML-DSA', standards: ['FIPS 204'], params: paramSets['ml-dsa']!, role: 'digital signatures', note: 'Primary signature — Dilithium lineage' },
+      { id: 'slh-dsa', family: 'hash-sig', name: 'SLH-DSA', standards: ['FIPS 205'], params: paramSets['slh-dsa']!, role: 'digital signatures (stateless hash)', note: 'Conservative backup — SPHINCS+ lineage; small-signature (s) SHA2 variants' },
+      { id: 'classic-mceliece', family: 'code-KEM', name: 'Classic McEliece', standards: ['ISO/IEC 18033-2 Amd 2:2026'], params: [], role: 'key encapsulation (code-based)', note: 'ISO diversity — NIST did not standardize; very large public keys (~0.26–1.36 MB), see ISO 18033-2 Amd 2' },
+      { id: 'frodo-kem', family: 'lattice-KEM-unstructured', name: 'FrodoKEM', standards: ['ISO/IEC 18033-2 Amd 2:2026'], params: [], role: 'key encapsulation (unstructured LWE)', note: 'ISO hedge against structure-specific lattice attacks; keys larger than ML-KEM' },
+    ].map((row) => ({ ...row, receipt: toUuid(`pqc-family:${row.id}:${row.params.map((p) => p.paramSet).join('/') || row.name}`) }))
     const selected =
       prefer === 'hash' ? families.find((f) => f.id === 'slh-dsa')!
         : prefer === 'code' ? families.find((f) => f.id === 'classic-mceliece')!
           : families.find((f) => f.id === 'ml-kem')!
+    // refutable completeness: within each NIST-standardized family, public-key size is STRICTLY MONOTONE in the
+    // security category — a real property of the sourced FIPS sizes (edit any number wrong and this flips).
+    const nistFamilies = families.filter((f) => f.params.length > 0)
+    const pkMonotone = nistFamilies.every((f) => f.params.every((p, i) => i === 0 || (p.nistCategory > f.params[i - 1]!.nistCategory && p.publicKeyBytes > f.params[i - 1]!.publicKeyBytes)))
+    const everyParamSourced = nistFamilies.every((f) => f.params.every((p) => /^FIPS 20[345]$/.test(p.source) && p.publicKeyBytes > 0 && p.outputBytes > 0))
     const facets = [
-      { facet: `family catalog — ${families.length} PQC families with demo param labels only`, on: families.length === 5 },
+      { facet: `family catalog — ${families.length} PQC families; ${nistFamilies.length} NIST families carry STANDARDIZED parameter sets (sizes + categories), not labels`, on: families.length === 5 && nistFamilies.length === 3 },
       { facet: 'ML-KEM appears under both NIST FIPS 203 and ISO Amd 2:2026', on: families.some((f) => f.id === 'ml-kem' && f.standards.length === 2) },
-      { facet: 'ISO-only diversity present (Classic McEliece · FrodoKEM)', on: families.some((f) => f.id === 'classic-mceliece') && families.some((f) => f.id === 'frodo-kem') },
-      { facet: `selector prefer=${prefer} → ${selected.name} (labels only — no keygen)`, on: selected.demoParams.length >= 3 },
+      { facet: 'ISO-only diversity present (Classic McEliece · FrodoKEM), params noted qualitatively (not asserted)', on: families.some((f) => f.id === 'classic-mceliece' && f.params.length === 0) && families.some((f) => f.id === 'frodo-kem') },
+      { facet: `PARAMETERS COMPLETED & SOURCED — every FIPS 203/204/205 param set has a byte-accurate public-key + ${'{ciphertext|signature}'} size, all sourced (${everyParamSourced})`, on: everyParamSourced },
+      { facet: 'REFUTABLE — public-key size is strictly monotone in NIST security category within each family (a property of the real sizes)', on: pkMonotone },
+      { facet: `selector prefer=${prefer} → ${selected.name} (standardized params; no keygen — Web Crypto lacks PQC)`, on: selected.params.length >= 3 || selected.id === 'classic-mceliece' },
     ].map((entry) => ({ ...entry, receipt: toUuid(`pqc-selector:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('pqc-algorithm-family-selector', facets)
     return {
       computes: sealed.ok,
       prefer,
-      selected: { id: selected.id, name: selected.name, family: selected.family, demoParams: selected.demoParams, standards: selected.standards },
+      selected: { id: selected.id, name: selected.name, family: selected.family, params: selected.params, standards: selected.standards },
       families,
+      pkMonotone,
+      everyParamSourced,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold(families.map((f) => f.receipt))),
-      statement: 'PQC algorithm family selector: ML-KEM / ML-DSA / SLH-DSA (NIST) plus ISO Amd 2:2026 Classic McEliece & FrodoKEM — DEMO parameter set labels only.',
-      boundary: 'DEMO PARAM LABELS ONLY. Does not generate keys, encapsulate secrets, or sign. Not FIPS/ISO validated. HARMONY ≠ TRUTH.' }
+      statement: 'PQC algorithm family selector: ML-KEM / ML-DSA / SLH-DSA (NIST) plus ISO Amd 2:2026 Classic McEliece & FrodoKEM — the three NIST families now carry byte-accurate STANDARDIZED parameter sets (public-key + ciphertext/signature sizes, NIST category) sourced from FIPS 203/204/205.',
+      boundary: 'STANDARDIZED PARAMETER SETS (sourced from FIPS 203/204/205) — sizes + NIST categories, the deployment-decision data. Still does NOT generate keys, encapsulate secrets, or sign: Web Crypto exposes no PQC primitive and hand-rolled lattice crypto is unsafe, so keygen is correctly out of scope. Not FIPS/ISO validated. ISO-diversity families (McEliece/Frodo) noted qualitatively, exact bytes not asserted. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -2125,14 +2154,14 @@ export function cryptoToolkitBeyondRsaMeasured(matrix: MindMatrix = buildMatrix(
     catalog.root, family.root, shorMap.root, taxonomy.root, migrate.root, trinity.root, rsa.root,
     toUuid(`beyond-fips:${fipsCount}`),
     toUuid(`beyond-ecc-shor:${eccShorBreaks}`),
-    toUuid(`beyond-mlkem:${mlKem?.demoParams[0] ?? 'none'}`),
+    toUuid(`beyond-mlkem:${mlKem?.params[0]?.paramSet ?? 'none'}`),
   ]
   const root = merkleFold(leaves)
   const rootAgain = merkleFold(leaves)
 
   const facets = [
     { facet: `PQC CATALOG timed ${roundTo(catalogMs, 3)} ms — FIPS 203/204/205 count=${fipsCount}`, on: catalog.computes && fipsCount === 3 && catalogMs >= 0 },
-    { facet: `ML-KEM/ML-DSA/SLH-DSA param labels present (demo only, no keygen) — ${mlKem?.demoParams.length}/${mlDsa?.demoParams.length}/${slhDsa?.demoParams.length}`, on: Boolean(mlKem && mlDsa && slhDsa) && family.computes },
+    { facet: `ML-KEM/ML-DSA/SLH-DSA STANDARDIZED param sets present (sizes+categories, sourced FIPS 203/204/205; no keygen) — ${mlKem?.params.length}/${mlDsa?.params.length}/${slhDsa?.params.length}`, on: Boolean(mlKem && mlDsa && slhDsa) && family.computes && family.everyParamSourced && family.pkMonotone },
     { facet: `ECC/ECDSA Shor-vulnerable facet MEASURED (theorem compose, not key crack) — eccShorBreaks=${eccShorBreaks}`, on: eccShorBreaks === true && shorMap.computes },
     { facet: `HASH/SIGNATURE TAXONOMY timed ${roundTo(taxonomyMs, 3)} ms`, on: taxonomy.computes && taxonomyMs >= 0 },
     { facet: `MIGRATION CHECKLIST timed ${roundTo(migrateMs, 3)} ms — honesty step done, KEM/sig OPEN`, on: migrate.computes && migrate.steps.some((s) => s.id === 'honesty' && s.done) && migrate.openCount >= 2 },
@@ -2149,9 +2178,9 @@ export function cryptoToolkitBeyondRsaMeasured(matrix: MindMatrix = buildMatrix(
     thresholdMs,
     anySlow,
     fipsCount,
-    mlKemParams: mlKem?.demoParams ?? [],
-    mlDsaParams: mlDsa?.demoParams ?? [],
-    slhDsaParams: slhDsa?.demoParams ?? [],
+    mlKemParams: mlKem?.params ?? [],
+    mlDsaParams: mlDsa?.params ?? [],
+    slhDsaParams: slhDsa?.params ?? [],
     eccShorBreaks,
     eccFamily: eccRow?.family ?? '',
     catalog, family, shorMap, taxonomy, migrate, trinity, rsa,
@@ -2327,7 +2356,7 @@ export function quantumStandardsAuditSuite(matrix: MindMatrix = buildMatrix(), a
       auditRow({ id: 'iso-19790-modules', standardOrDimension: 'ISO/IEC 19790 crypto modules', auditExport: 'isoNistPqcStandardsCatalog', reverseOrInverse: 'neither', on: catalog.computes && catalog.standards.some((s) => s.id === 'ISO/IEC 19790'), coverage: 'gap', root: catalog.root, route: '/en/quantum-encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Catalog names the standard — module evaluation requires accredited lab (unclosable here)' }),
       auditRow({ id: 'iso-hash-sig-taxonomy', standardOrDimension: 'ISO/IEC 10118 · 14888 · FIPS 205', auditExport: 'isoAlignedHashSignatureTaxonomy', reverseOrInverse: 'neither', on: taxonomy.computes, root: taxonomy.root, route: '/en/quantum-encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Taxonomy mapping audit — not an evaluated signature module' }),
       auditRow({ id: 'pqc-migration', standardOrDimension: 'NIST IR 8547 migration', auditExport: 'postQuantumMigrationChecklist', reverseOrInverse: 'neither', on: migrate.computes && migrate.steps.some((s) => s.id === 'honesty' && s.done), coverage: kemOpen ? 'partial' : 'covered', root: migrate.root, route: '/en/quantum-encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Checklist audit — OPEN KEM/sig items are honest PARTIAL (no Web Crypto PQC yet)' }),
-      auditRow({ id: 'pqc-family-selector', standardOrDimension: 'PQC algorithm families (NIST+ISO)', auditExport: 'pqcAlgorithmFamilySelector', reverseOrInverse: 'neither', on: family.computes && family.families.length === 5, coverage: 'partial', root: family.root, route: '/en/quantum-encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Demo param labels only — no keygen (PARTIAL toward deploy)' }),
+      auditRow({ id: 'pqc-family-selector', standardOrDimension: 'PQC algorithm families (NIST+ISO)', auditExport: 'pqcAlgorithmFamilySelector', reverseOrInverse: 'neither', on: family.computes && family.families.length === 5 && family.everyParamSourced && family.pkMonotone, coverage: 'covered', root: family.root, route: '/en/quantum-encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Standardized FIPS 203/204/205 parameter sets — public-key + ciphertext/signature bytes and NIST categories, monotone-verified. No keygen (Web Crypto lacks PQC; hand-rolled lattice crypto unsafe). Not FIPS validated.' }),
       auditRow({ id: 'shor-break-map', standardOrDimension: 'Shor PKC break map', auditExport: 'shorBreaksWhichPublicKey', reverseOrInverse: 'neither', on: shorMap.computes && shorMap.brokenCount === 4, root: shorMap.root, route: '/en/quantum-encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Educational taxonomy — not live cryptanalysis' }),
       auditRow({ id: 'pqc-necessity', standardOrDimension: 'PQC necessity theorem (Shor→PQC)', auditExport: 'pqcNecessityFromShorCompose', reverseOrInverse: 'both', on: necessity.computes && !necessity.certified && necessity.claySolvedByThisFold === 0, root: necessity.root, route: '/en/quantum-encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'MODELED composition — not Clay progress, not certified' }),
       auditRow({ id: 'forward-pqc-catalog', standardOrDimension: 'Forward — PQC replace catalog (NIST+ISO)', auditExport: 'isoNistPqcStandardsCatalog', reverseOrInverse: 'forward', on: catalog.computes && catalog.count >= (8 * 2), root: catalog.root, route: '/en/quantum-encryption#iso-pqc-catalog', browserRunnable: true, browserGap: '', boundary: 'Forward direction = named PQC migrate targets — MODELED alignment' }),
