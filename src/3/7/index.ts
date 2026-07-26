@@ -1532,6 +1532,8 @@ export const DEMARCATION_REGISTRY = {
     'abiogenesis', 'RNA world as history', 'metabolism-first', 'extended evolutionary synthesis', 'neutral theory',
     'hard problem', 'theories of consciousness', 'IIT', 'GWT', 'GNWT', 'panpsychism', 'Orch-OR',
     'string theory', 'multiverse', 'QM interpretations', 'dark matter', 'MOND', 'panspermia', 'pliska rosette',
+    'hubble tension', 'cosmological constant problem', 'nature of dark energy', 'baryogenesis', 'leptogenesis',
+    'neutrino mass ordering', 'quantum gravity',
   ],
   flagged: [
     'creationism', 'intelligent design', 'young-earth creationism', 'social darwinism', 'eugenics', 'orthogenesis',
