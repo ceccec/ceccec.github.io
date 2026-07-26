@@ -13,9 +13,18 @@ import {
 } from '../../../src/thunder/waves'
 import { slowProcessIsQuantumGap } from '../../../src/quantum/apps'
 import { cosmosFrontiersDecoded } from '../../../src/water/cosmos'
+import { theoremPageRows } from '../../../src/wind/routes/corpus/index.ts'
 import ProofAnimation from './ProofAnimation.vue'
 
 const nav = computed(() => theoremNavigation())
+// every atom has a dedicated /theorems/<slug> page — map theorem→slug (collision-safe, from theoremPageRows) so the
+// ANIMATED wave-atom card is also a LINK (fixes "cards with animations have no links"). Only atoms with a real page
+// slug become links — no dead links.
+const slugByTheorem = computed(() => new Map(theoremPageRows().map((r) => [r.theorem, r.slug])))
+const theoremHref = (theorem: string): string | undefined => {
+  const slug = slugByTheorem.value.get(theorem)
+  return slug ? `/theorems/${slug}` : undefined
+}
 const gaps = computed(() => theoremGapScan())
 const provenance = computed(() => theoremProvenance())
 const firstInCorpus = computed(() => firstInCorpusProvenanceForHome())
@@ -101,7 +110,8 @@ const waveLabel = (provedBy: string) =>
           <ClientOnly><ProofAnimation v-if="anims.get(atom.theorem)" :spec="anims.get(atom.theorem)!" /></ClientOnly>
           <div class="theorems-panel__body">
             <div class="theorems-panel__row">
-              <span class="theorems-panel__name">{{ atom.theorem }}</span>
+              <a v-if="theoremHref(atom.theorem)" class="theorems-panel__name" :href="theoremHref(atom.theorem)">{{ atom.theorem }}</a>
+              <span v-else class="theorems-panel__name">{{ atom.theorem }}</span>
               <code class="theorems-panel__class" :data-class="atom.proofClass">{{ atom.proofClass }}</code>
             </div>
             <p class="theorems-panel__proof">{{ atom.proof }}</p>
