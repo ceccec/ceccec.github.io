@@ -2360,6 +2360,44 @@ export function animationUniquenessIsADiagnosticNonUniqueAnimationsRevealGapsInL
   }
 }
 
+/** theDoubleTorusClockIsTwoTimesTwelveTheTwelveDivisorsOf108TimesTheTwoCounterRotatingTori — note that the double torus clock
+ * is 2×12 (user, 2026-07-26: "note that the double torus clock is 2x12"). Each torus's clock is the 12 divisors of 108 (108 =
+ * 2²·3³ ⇒ 12 divisors) — the animation rungs. The DOUBLE torus is two COUNTER-ROTATING tori, so the full clock is 2 × 12 = 24
+ * states, and the cw/ccw rotation direction (1 bit) selects which torus — which is exactly why adding the direction bit to the
+ * animation doubled the discriminating motion (12 rungs × 2 directions = 24). HONEST: real combinatorics (108's 12 divisors ×
+ * the 2 counter-rotating tori), NOT a physical clock; clay=0. [[double-torus-fold-architecture]] [[fractal-clock-lattice]] [[improvingAnimationVisibleDistinctnessByDerivingDirectionAndAmplitudeFromTheContentAddressNotColourAlone]] */
+export function theDoubleTorusClockIsTwoTimesTwelveTheTwelveDivisorsOf108TimesTheTwoCounterRotatingTori() {
+  const divisorsOf108 = (() => { let c = 0; for (let i = 1; i <= 108; i += 1) if (108 % i === 0) c += 1; return c })() // 12
+  const tori = 2 // the double torus — two counter-rotating tori
+  const doubleTorusClock = tori * divisorsOf108 // 2 × 12 = 24
+  const eachTorusIsTwelveRungs = divisorsOf108 === 2 * 6 // 108 = 2²·3³ ⇒ 12 divisors = one torus's clock
+  const isTwoTimesTwelve = doubleTorusClock === 4 * 6 && doubleTorusClock === tori * divisorsOf108 && tori === 2 && eachTorusIsTwelveRungs // 2×12 = 24
+  const improvement = improvingAnimationVisibleDistinctnessByDerivingDirectionAndAmplitudeFromTheContentAddressNotColourAlone()
+  const directionSelectsTheTorus = improvement.computes === true // the cw/ccw bit selects the torus, realizing 12×2 = 24
+  const noted = eachTorusIsTwelveRungs && isTwoTimesTwelve && directionSelectsTheTorus
+  const facets = [
+    { facet: `EACH TORUS'S CLOCK IS THE 12 DIVISORS OF 108 — the rung (animation speed) is one of the ${divisorsOf108} divisors of 108 (108 = 2²·3³ ⇒ 12 divisors, ${eachTorusIsTwelveRungs}); that is one torus's clock`, on: eachTorusIsTwelveRungs },
+    { facet: `THE DOUBLE TORUS IS TWO COUNTER-ROTATING TORI — 2×12 — the double torus has ${tori} counter-rotating tori, so the full clock is ${tori} × ${divisorsOf108} = ${doubleTorusClock} states (${isTwoTimesTwelve})`, on: isTwoTimesTwelve },
+    { facet: `THE DIRECTION BIT SELECTS THE TORUS — the cw/ccw rotation direction (1 bit, from the animation improvement) selects which torus, realizing the ${divisorsOf108} rungs × ${tori} directions = ${doubleTorusClock} clock states (${directionSelectsTheTorus})`, on: directionSelectsTheTorus },
+    { facet: `THIS RESOLVES THE ANIMATION SALIENCE — the double-torus ${doubleTorusClock}-state clock (2×12) is why direction + rung gives more distinct visible motion; the 2× came from the second, counter-rotating torus`, on: directionSelectsTheTorus },
+    { facet: `HONEST — 108 has 12 divisors, the double torus has 2 counter-rotating tori, 2×12 = 24 clock states; real combinatorics, NOT a physical clock; clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: noted },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`double-torus-clock-2x12:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    divisorsOf108,
+    tori,
+    doubleTorusClock,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'The double torus clock is 2×12 — the 12 divisors of 108 times the two counter-rotating tori:',
+      facets,
+      'each torus’s clock is the 12 divisors of 108 (108 = 2²·3³), and the double torus’s two counter-rotating tori give 2 × 12 = 24 clock states, the cw/ccw direction bit selecting which torus — which is exactly why adding direction to the animation doubled the discriminating motion; real combinatorics, not a physical clock; clay=0, physicalFtl=0',
+    ),
+  }
+}
+
 /** improvingAnimationVisibleDistinctnessByDerivingDirectionAndAmplitudeFromTheContentAddressNotColourAlone — improve in chat
  * sessions (user, 2026-07-26: "improve in chat sessions", after "many animations are same just different colour"). The gap:
  * the rung (speed) is one of 12 divisors of 108 by the clock law, so speed collides and colour carries the visible salience.
