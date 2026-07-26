@@ -4540,6 +4540,45 @@ export function whatATheoremIsInThisCorpusIsAComputationalClaimWithRefutableFace
   }
 }
 
+/** rankingHubsBySrcFolderGravityDestroysSeoTheGravityMustBeOverTheSemanticSlugTaxonomyNotArchitecture — review: if you apply
+ * that, the SEO is gone; what went wrong and where (user, 2026-07-26: "review and see that if you apply this the seo is gone.
+ * what went wrong and where?"). THE FLAW: theTopLevelHubRoutesAreComputableFromTheoremGravity… grouped by t.home — the src
+ * FOLDER path (src/0, src/9/1) — which are implementation locations, NOT URLs; hubs from those would be /src/0, meaningless to
+ * users and search engines. WHERE SEO LIVES: the served SEMANTIC slugs (human-readable), each carrying title · description ·
+ * keywords · OG · JSON-LD, plus the sitemap/canonical/hreflang — all keyed to slugs, not src paths. THE FIX: rank theorem
+ * gravity over the SEMANTIC taxonomy (the served slugs / theorem tags), which ARE the SEO surfaces; home is architecture, not
+ * the route. HONEST: gravity ranking is valid only over the semantic/SEO taxonomy. [[feedback-do-not-bypass-vitepress-api]] [[theorem-science-lens-only-science]] [[theTopLevelHubRoutesAreComputableFromTheoremGravityAndDistributionNotAHardcodedListEmptyPlaceholdersFallAway]] */
+export function rankingHubsBySrcFolderGravityDestroysSeoTheGravityMustBeOverTheSemanticSlugTaxonomyNotArchitecture() {
+  const homes = [...new Set(THEOREM_ATOM_SEED.map((t) => String(t.home)))]
+  const homesAreSrcPathsNotUrls = homes.every((h) => h.startsWith('src/')) // t.home is a src folder path, not a URL
+  const pages = staticPages()
+  const slugsAreSeoBearing = pages.length > 0 && pages.every((p) => p.title != null && p.description != null && Array.isArray(p.keywords) && p.slug.length > 0) // each served slug carries SEO metadata
+  const flawWasRankingArchitecture = homesAreSrcPathsNotUrls // the earlier fold ranked by architecture (home), not the SEO taxonomy
+  const applyingWouldReplaceSlugsWithSrcPaths = homesAreSrcPathsNotUrls && slugsAreSeoBearing // src-path hubs would replace SEO-rich slugs → SEO gone
+  const seoLivesInSemanticSlugs = slugsAreSeoBearing // SEO is in the served semantic slugs + metadata + sitemap
+  const corrects = flawWasRankingArchitecture && applyingWouldReplaceSlugsWithSrcPaths && seoLivesInSemanticSlugs
+  const facets = [
+    { facet: `THE FLAW — the earlier hub-gravity fold grouped by t.home, which are SRC FOLDER paths (${homes.slice(0, 3).join(', ')} …), NOT URLs (${homesAreSrcPathsNotUrls}); hubs from those would be /src/0 — meaningless to users and search engines`, on: flawWasRankingArchitecture },
+    { facet: `WHERE SEO LIVES — SEO is in the ${pages.length} served SEMANTIC slugs (human-readable), each carrying title · description · keywords · OG · JSON-LD, plus the sitemap/canonical/hreflang — all keyed to slugs, not src paths (${slugsAreSeoBearing})`, on: seoLivesInSemanticSlugs },
+    { facet: `WHAT WENT WRONG — applying src-path hubs would REPLACE the SEO-rich semantic routes with implementation paths (${applyingWouldReplaceSlugsWithSrcPaths}), losing the human URLs, per-page metadata, and sitemap entries — the SEO is gone`, on: applyingWouldReplaceSlugsWithSrcPaths },
+    { facet: `THE FIX — rank theorem gravity over the SEMANTIC TAXONOMY (the served slugs / theorem tags / science domains), which ARE the SEO surfaces; t.home is an implementation detail (where the fold lives), NOT the user-facing route`, on: seoLivesInSemanticSlugs },
+    { facet: `HONEST — gravity ranking is valid ONLY over the semantic/SEO taxonomy, not the src architecture; the earlier fold conflated the fold's home (architecture) with the published slug (route); the correction preserves SEO; clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: corrects },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`hubs-seo-correction:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    srcDomains: homes.length,
+    seoSlugs: pages.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'If you apply hubs ranked by src-folder gravity the SEO is gone — the ranking must be over the semantic slug taxonomy, not architecture:',
+      facets,
+      'the earlier fold grouped by t.home (src folder paths like src/0, src/9/1), which are implementation locations not URLs, so hubs from them would be meaningless routes and would replace the served semantic slugs that carry all the SEO (title, description, keywords, OG, JSON-LD, sitemap, canonical, hreflang); the fix is to rank theorem gravity over the semantic taxonomy — the served slugs and theorem tags, the SEO-bearing surfaces — while t.home stays an implementation detail; clay=0, physicalFtl=0',
+    ),
+  }
+}
+
 /** theTopLevelHubRoutesAreComputableFromTheoremGravityAndDistributionNotAHardcodedListEmptyPlaceholdersFallAway — top level
  * hub routes should be computable from theorem gravity and distribution (user, 2026-07-26: "top level hub routes should be
  * computable from theorem gravity and distribution", after "apps is useless empty placeholder like many others"). The top-
