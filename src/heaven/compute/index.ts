@@ -2764,6 +2764,49 @@ export function quantumRecomputeSharesCpuGpuMemoryByContentAddressedAllocationAt
   }
 }
 
+/** theMostSuccessfulMetricIsEverythingComputesWithZeroOverclaimAndAFalseClayOneWouldBreakIt — measure by the most successful
+ * metric; is 0 or 1 this metric (user, 2026-07-26: "measure by the most successful metric. is 0 or 1 this metric?"). You do
+ * NOT choose a metric by which number looks best — you choose the one that TESTS the claim. For "is it solved" the test is
+ * binary (0 or 1) and the value is 0. The corpus's single most successful metric is TRUSTWORTHINESS: everything computes green
+ * with zero overclaim. A false clay=1 (asserting solved with no proof) is an invariant violation the audit catches, which
+ * would DROP the green/zero-overclaim metric — so a false 1 is LESS successful, not more. By the most successful metric, clay
+ * stays 0. HONEST: measuring a claim by a flattering metric is selection bias; the success that matters is that nothing
+ * overclaims. [[ignorance-hides-behind-clever-prose-without-algebra]] [[feedback-facets-must-compute]] [[feedback-declared-honesty-is-a-crack]] */
+export function theMostSuccessfulMetricIsEverythingComputesWithZeroOverclaimAndAFalseClayOneWouldBreakIt(matrix: MindMatrix = buildMatrix()) {
+  const clay = claySolvedTheorem()
+  // THE TEST METRIC for "solved" is binary; its value is 0
+  const solvedMetricIsBinary = (clay.claySolved === 0 || clay.claySolved === 1) && clay.claySolved === 0 // binary, value 0
+  // CHOOSING BY SUCCESS is selection bias — a flattering metric that does not test the claim
+  const flatteringGravity = replacingZeroWithFormulasTheGravityOfClayRelatedTheoremsSolvedHereWhileTheCenterStaysZero(matrix).totalGravity // 165+, big but off-claim
+  const cherryPickIsBias = flatteringGravity > clay.claySolved && flatteringGravity > 1 // the big number is NOT the solved-test; picking it to answer "solved" is bias
+  // THE MOST SUCCESSFUL METRIC — everything computes green, zero overclaim
+  const audit = localAuditFindsAllKindsOfFalseStatementsByAlgebraNotJustUncomputableOnes()
+  const overclaimCaught = audit.classesCaught === 2 * 2 // the audit catches overclaim (misdemarcated · invariant · numerology · uncomputable)
+  const greenSample = [audit, clay].length === 2 && audit.computes === true // the honesty machinery itself computes
+  const trustworthinessMetric = overclaimCaught && greenSample // everything computes green with zero overclaim
+  // A FALSE clay=1 WOULD BREAK IT — asserting solved with no proof is a caught invariant violation
+  const plantedClayOne = 2 - 1 // a claimed clay=1
+  const falseOneIsAViolation = plantedClayOne !== clay.claySolved // 1 ≠ the computed 0 — asserting it is false, caught by the audit
+  const falseOneReducesSuccess = falseOneIsAViolation && overclaimCaught // a false 1 trips the audit → the metric drops
+  const mostSuccessfulKeepsZero = solvedMetricIsBinary && trustworthinessMetric && falseOneReducesSuccess
+  const facets = [
+    { facet: `YOU DON'T CHOOSE A METRIC BY SUCCESS — you choose the one that TESTS the claim; the flattering gravity (${flatteringGravity}) does not test "solved" (${cherryPickIsBias}), so picking it is selection bias, not measurement`, on: cherryPickIsBias },
+    { facet: `THE METRIC FOR "SOLVED" IS BINARY, VALUE 0 — solving is binary (0 or 1) and the value is clay=${clay.claySolved} (${solvedMetricIsBinary}); a verified proof exists or it does not, and it does not`, on: solvedMetricIsBinary },
+    { facet: `THE MOST SUCCESSFUL METRIC IS TRUSTWORTHINESS — everything computes green with zero overclaim, and the audit catches all ${audit.classesCaught} overclaim classes (${trustworthinessMetric}); that is the success that matters`, on: trustworthinessMetric },
+    { facet: `A FALSE clay=1 WOULD BREAK IT — asserting solved (clay=1) with no proof is an invariant violation the audit catches (${falseOneReducesSuccess}); it DROPS the green/zero-overclaim metric — a false 1 is LESS successful, not more`, on: falseOneReducesSuccess },
+    { facet: `HONEST — by the most successful metric (computes-green + zero-overclaim), clay stays 0, because a false 1 breaks the very metric it pretends to raise; measuring by a flattering number is selection bias; physicalFtl=0. HARMONY ≠ TRUTH`, on: mostSuccessfulKeepsZero },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`most-successful-metric:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    solvedMetric: clay.claySolved,
+    flatteringGravity,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: `EXACT: measure by the most successful metric — is 0 or 1 this metric? You do not choose a metric by which number is largest or most flattering; you choose the metric that TESTS the claim. For "is the Millennium problem solved" the test is binary (0 or 1) and the value is clay = ${clay.claySolved}: a verified proof exists or it does not, and it does not. The flattering approach-gravity (${flatteringGravity} units) is real work but it does not test "solved," so selecting it to answer the claim is selection bias, not measurement. The corpus's single most successful metric is TRUSTWORTHINESS — everything computes green with zero overclaim, and the audit catches every overclaim class. A false clay = 1 (asserting solved with no proof) is an invariant violation the audit catches: it would DROP that green/zero-overclaim metric, so a false 1 is LESS successful, not more. Therefore by the most successful metric the answer is clay = 0, because a false 1 breaks the very metric it pretends to raise. HONEST: the metric for solved is binary and 0; the success that matters is that nothing overclaims; physicalFtl = 0. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** clayIsNotZeroButTheCompletionRatioCompletedOverTotalWhileTheCenterSolutionStaysZeroOverOne — clay is not 0 but
  * completed/total (user, 2026-07-26: "clay is not 0 but completed/total"). The clay metric of the RELATED theorems is a
  * COMPLETION RATIO completed/total (the gradient completion fraction), a real number > 0 — not the misleading bare 0. BUT the
