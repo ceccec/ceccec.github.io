@@ -4,7 +4,7 @@
 
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, circulateDoubleTorus, doubleTorusWire } from '../../heaven/compute'
-import { computesGate, memoByRoot, merge, merkleFold, toUuid, isUuid, sealFacets, foldPair, qubits, applyGate, probabilities, measure, GATES } from '../../0'
+import { computesGate, memoByRoot, merge, merkleFold, toUuid, isUuid, sealFacets, foldPair, qubits, applyGate, probabilities, measure, GATES, doubleTorusSurface, roundTo } from '../../0'
 import {
   completeDoubleTorus,
   doubleTorusFold,
@@ -124,11 +124,26 @@ export function doubleTorusTopologyComputes(matrix: MindMatrix = buildMatrix()) 
     const complete = completeDoubleTorus(matrix)
     const iching = startIChingDoubleTorus(matrix)
     const merkabaGate = merkabaComputes(matrix)
+    // INVERT ∘ REFLECT IS AN ISOMETRY (user, 2026-07-26: "invert double torus and its reflection is isometry"):
+    // reflection x↦−x on the genus-2 surface is (θ,lobe)↦(π−θ,−lobe); inversion y↦−y is θ↦−θ. Each preserves the ℝ³
+    // distance, so their composition (θ↦θ−π with a lobe flip — a π-rotation about z) preserves it too — verified over
+    // sampled surface points, distances agreeing to 6 decimals. Refutable: perturb the map and the error jumps.
+    const dist = (a: { x: number; y: number; z: number }, b: { x: number; y: number; z: number }) => Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z)
+    const invertReflect = (th: number, ph: number, d: number, L: number) => doubleTorusSurface(th - TAU / 2, ph, d, -L)
+    const samples = Array.from({ length: 2 ** 3 }, (_, i) => ({ th: (i * TAU) / 9, ph: (i * TAU) / (2 * 8), d: i % 3, L: i % 2 ? 1 : -1 }))
+    let maxIsometryError = 0
+    for (const a of samples) for (const b of samples) {
+      maxIsometryError = Math.max(maxIsometryError, Math.abs(
+        dist(doubleTorusSurface(a.th, a.ph, a.d, a.L), doubleTorusSurface(b.th, b.ph, b.d, b.L)) -
+        dist(invertReflect(a.th, a.ph, a.d, a.L), invertReflect(b.th, b.ph, b.d, b.L))))
+    }
+    const invertReflectIsIsometry = roundTo(maxIsometryError, 2 * 3) === 0 // ℝ³ distances preserved to 6 decimals
     const { computes, facets } = computesGate('double-torus-topology-computes', [
       { facet: 'quantum double torus is the machine', on: torus.is },
       { facet: 'complete double torus fold', on: complete.complete },
       { facet: 'I Ching double torus started', on: iching.started },
       { facet: 'merkabas counted in the double torus', on: merkabaGate.counted.counted },
+      { facet: `invert∘reflect is an isometry — reflection x↦−x (θ↦π−θ, lobe flip) and inversion y↦−y (θ↦−θ) each preserve ℝ³ distance, so their composition (a π-rotation about z) does too (${invertReflectIsIsometry})`, on: invertReflectIsIsometry },
     ])
     return {
       computes,
