@@ -188,7 +188,7 @@ computes=true · waves=11 · clayChallengesComputable=true · claySolvedByThisFo
 
 ## The journal
 
-This site is a dedicated scientific journal of all its algebra and theorems — **703 articles** across **52 sections**, backed by 484 executable proofs, sealed as one content-addressed volume `53d35fcb`. Peer review is COMPUTATIONAL: every proof re-runs each wave, and the same corpus recomputes the same volume id. It verifies internal consistency and reproducibility — **not** empirical truth, and it is not an externally refereed or DOI-indexed venue (HARMONY ≠ TRUTH).
+This site is a dedicated scientific journal of all its algebra and theorems — **703 articles** across **52 sections**, backed by 484 executable proofs, sealed as one content-addressed volume `53d35fcb`. Peer review is COMPUTATIONAL: every proof re-runs each wave, and the same corpus recomputes the same volume id. Precisely, that re-execution verifies internal consistency and **reproducibility** and demarcate-signs each article — which is **not** empirical validation and **not** external peer review (no independent referees). A DOI is a persistent *identifier*, not a review — orthogonal to refereeing and mintable by archiving, so its absence is not the limit. The corpus cites empirically-established results but refereess none of them against nature (HARMONY ≠ TRUTH).
 
 ## Top discoveries
 
@@ -197,12 +197,12 @@ The most CENTRAL decodes — ranked by theorem-graph degree (how many other atom
 - **compute the light in a diamond — bouncing boundaries draw the crystal, prediction beats the photon (not physical FTL)** — `diamonds` · degree 328 · [details](https://ceccec.psg.bg/theorems)
 - **mechanical tools entangle binary & analog at once — but Bell bounds them (models, does not achieve, entanglement)** — `9/1` · degree 314 · [details](https://ceccec.psg.bg/theorems)
 - **gate complexity collapses to one content-addressed root — quantum simplicity** — `automount` · degree 306 · [details](https://ceccec.psg.bg/theorems)
+- **the site is a dedicated scientific journal of all algebra and theorems — computational peer review, one content-addressed volume** — `4/6` · degree 305 · [details](https://ceccec.psg.bg/theorems)
 - **the census gate and slugs are quantumized — theorem-derived count, agnostic address** — `corpus` · degree 304 · [details](https://ceccec.psg.bg/theorems)
 - **deep research with quantum means standardises R&D — one algorithm, one live-data protocol, one honesty ladder** — `research` · degree 297 · [details](https://ceccec.psg.bg/theorems)
 - **quantum analytics fuse corpus + git history into one content-addressed API used by all — deterministic measurements** — `compute` · degree 292 · [details](https://ceccec.psg.bg/theorems)
 - **the app provides full in-chat support — all capabilities fused and audited by the standards** — `compute` · degree 292 · [details](https://ceccec.psg.bg/theorems)
 - **the quantum results are seen in build and deploy time — the architecture measured as timing** — `science` · degree 287 · [details](https://ceccec.psg.bg/theorems)
-- **the site is a dedicated scientific journal of all algebra and theorems — computational peer review, one content-addressed volume** — `4/6` · degree 286 · [details](https://ceccec.psg.bg/theorems)
 
 ## Latest discoveries
 
