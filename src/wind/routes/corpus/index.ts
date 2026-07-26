@@ -1601,9 +1601,14 @@ export function computedTheoremFigureAndAnimation(atom: { theorem: string; prove
   const series = digits.slice(0, 9).map((value, i) => ({ x: i, y: value })) // a deterministic 9-point series from the address
   const divisorsOf108 = Array.from({ length: 108 }, (_, i) => i + 1).filter((d) => 108 % d === 0) // σ₀ = 12 rungs
   const digitSum = digits.reduce((sum, d) => sum + d, 0)
-  const rung = divisorsOf108[digitSum % divisorsOf108.length]! // one clock rung (shared tempo) per theorem
+  const rung = divisorsOf108[digitSum % divisorsOf108.length]! // one clock rung (shared tempo) per theorem — one of the 12 divisors of 108 (one torus)
   const phase = digitSum % 108 // a per-address phase offset on the one 108 s clock — makes each animation's motion unique on a shared rung
-  return { figure: { formula: atom.theorem, series }, animation: { rung, periodS: 108 / rung, phase }, itemid: addr }
+  const half = Math.floor(digits.length / 2)
+  const sumHead = digits.slice(0, half).reduce((s, d) => s + d, 0) // an INDEPENDENT slice of the address (not the full digitSum) so the channel is orthogonal to phase
+  const sumTail = digits.slice(half).reduce((s, d) => s + d, 0)
+  const direction = sumHead % 2 === 0 ? 'cw' : 'ccw' as const // 1 bit from the head half — the counter-rotating torus selector; the double-torus clock is 2×12 = 24 (rung × direction)
+  const amplitude = 1 + (sumTail % 9) // 1..9 from the tail half — a visible amplitude scale orthogonal to speed/phase, so motion is distinct beyond colour
+  return { figure: { formula: atom.theorem, series }, animation: { rung, periodS: 108 / rung, phase, direction, amplitude }, itemid: addr }
 }
 
 /** saveTheMissingTheoremsAndAnimations — save the theorems and animations that are missing (user, 2026-07-25: "save
