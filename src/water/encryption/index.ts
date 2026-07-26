@@ -1147,6 +1147,71 @@ function localEncryptionReverseTimedRaw(matrix: MindMatrix) {
     boundary: 'TOY WALL-CLOCK ONLY — DEMO_RSA_MODULI. Production RSA refused. Bitcoin/mainnet refused. NOT AES wire reverse time. NOT an SLA. HARMONY ≠ TRUTH.' }
 }
 
+export const DEMONSTRATED_QUANTUM_FACTORING_MAX_BITS = 50 // largest N factored by a real quantum device (~50-bit range)
+
+/**
+ * Shor factoring resource estimate — COMPUTED from the algorithm, not assumed (user: "do not assume as this may be
+ * misleading for the public. compute real times"). The LOGICAL qubit width is the deterministic Beauregard circuit
+ * formula 2n+3 (→ 4099 for RSA-2048). The gate count scales as ~n³ modular-exponentiation Toffolis. PHYSICAL qubits
+ * and runtime are computed as FUNCTIONS of NAMED surface-code hardware assumptions (physical-per-logical, cycle time)
+ * — a range, never one number — because those depend on the error-correction code and a machine that does not exist.
+ */
+export function shorFactoringResourceEstimate(
+  nBits: number,
+  hw: { physicalPerLogical?: number; cycleTimeUs?: number } = {},
+): { nBits: number; logicalQubits: number; toffoliGates: number; physicalQubits: number; runtimeDays: number; physicalPerLogical: number } {
+  const physicalPerLogical = hw.physicalPerLogical ?? 1000 // surface-code overhead at ~code-distance 25 (published range 1000–2000)
+  const cycleTimeUs = hw.cycleTimeUs ?? 1 // logical-cycle time, microseconds (superconducting assumption)
+  const logicalQubits = 2 * nBits + 3 // Beauregard circuit width — DETERMINISTIC, 4099 for n=2048
+  const toffoliGates = Math.round((2 * 16) * nBits ** 3) // ~n³ modular-exponentiation Toffoli scaling (order estimate)
+  const physicalQubits = logicalQubits * physicalPerLogical // computed from the named overhead
+  const runtimeDays = roundTo((toffoliGates * (cycleTimeUs / (10 ** 6))) / (60 * 60 * 24), 1) // gates × cycle / seconds-per-day
+  return { nBits, logicalQubits, toffoliGates, physicalQubits, runtimeDays, physicalPerLogical }
+}
+
+/**
+ * What the encryption system IS and IS NOT — the full truth, both directions (user: "it is more, not just a demo,
+ * and all need to know" · "fix all prose misleading that this is demo only"). It IS more than a throwaway toy — a
+ * real deterministic content-addressed framework + a complete PQC standards audit + local proofs; it IS NOT a break
+ * of deployed RSA — the demonstrated reversal is ≤12-bit toy semiprimes, and RSA-2048 is astronomically out of reach.
+ * Both sides compute; neither misleads. Pair: rsa/honest · CLI npm run quantum:encryption-is-and-isnot
+ */
+export function whatTheEncryptionSystemIsAndIsNot(matrix: MindMatrix = buildMatrix()) {
+  const family = pqcAlgorithmFamilySelector(matrix)
+  const demoMaxBits = DEMO_RSA_BIT_CEILING // ~12, derived from the sealed teaching modulus
+  // COMPUTED resource estimates (not assumed) — deterministic logical width + a computed range over named hardware.
+  const demoEst = shorFactoringResourceEstimate(demoMaxBits)
+  const rsa = shorFactoringResourceEstimate(2048) // optimistic (1000/logical, 1µs)
+  const rsaConservative = shorFactoringResourceEstimate(2048, { physicalPerLogical: 2000, cycleTimeUs: 10 })
+  const isMore = [
+    { facet: 'IT IS MORE — a real, general, DETERMINISTIC content-addressed encryption FRAMEWORK (foldPair · trinityKey), not a throwaway toy; the same algebra encrypts, decrypts and content-addresses', on: DEMO_RSA_MODULI.length >= 3 && demoMaxBits > 0 },
+    { facet: `IT IS MORE — a COMPLETE PQC standards audit: all ${family.families.length} NIST+ISO families with byte-accurate FIPS 203/204/205 + ISO 18033-2 parameter sets, sourced and monotone-verified (everyParamSourced=${family.everyParamSourced})`, on: family.computes && family.everyParamSourced && family.families.length === 5 },
+    { facet: 'IT IS MORE — local, computed security proofs and timings that recompute at call time (deterministic, zero-token), not a slide deck', on: family.computes },
+  ]
+  const isNot = [
+    { facet: `IT IS NOT a break of deployed RSA — the demonstrated reversal is ≤${demoMaxBits}-bit TOY semiprimes (Shor width ${demoEst.logicalQubits} logical qubits); real quantum devices have factored only ~${DEMONSTRATED_QUANTUM_FACTORING_MAX_BITS}-bit numbers`, on: demoMaxBits < 20 && demoEst.logicalQubits < 50 },
+    { facet: `IT IS NOT close — RSA-2048 COMPUTED from Shor (not assumed): ${rsa.logicalQubits} LOGICAL qubits (=2·2048+3, deterministic), and error-corrected ~${(rsa.physicalQubits / (10 ** 6)).toFixed(1)}–${(rsaConservative.physicalQubits / (10 ** 6)).toFixed(1)}M PHYSICAL qubits over ~${rsa.runtimeDays}–${rsaConservative.runtimeDays} days depending on surface-code assumptions — a machine that does not exist`, on: rsa.logicalQubits === 4099 && rsa.physicalQubits > (10 ** 6) },
+    { facet: 'IT IS NOT production crypto — breaksNistPqc=false, production RSA and Bitcoin/mainnet hard-refused, NOT FIPS/ISO validated; the framework is real, the cryptanalytic reach is toy-bounded', on: demoMaxBits < 20 },
+  ]
+  const facets = [...isMore, ...isNot].map((entry) => ({ ...entry, receipt: toUuid(`encryption-is-isnot:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('what-the-encryption-system-is-and-is-not', facets)
+  return {
+    computes: sealed.ok,
+    isMoreCount: isMore.length, isNotCount: isNot.length,
+    demoMaxBits, demoLogicalQubits: demoEst.logicalQubits,
+    rsa2048LogicalQubits: rsa.logicalQubits, rsa2048PhysicalQubitsRange: [rsa.physicalQubits, rsaConservative.physicalQubits] as const, rsa2048RuntimeDaysRange: [rsa.runtimeDays, rsaConservative.runtimeDays] as const,
+    breaksNistPqc: false as const,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement: `The encryption system, both directions: it IS more than a toy — a deterministic content-addressed framework + a complete ${family.families.length}-family PQC standards audit + local proofs; it IS NOT a break of deployed RSA — demonstrated reversal ≤${demoMaxBits}-bit (${demoEst.logicalQubits} logical qubits), while RSA-2048 COMPUTES to ${rsa.logicalQubits} logical / ~${(rsa.physicalQubits / (10 ** 6)).toFixed(1)}–${(rsaConservative.physicalQubits / (10 ** 6)).toFixed(1)}M physical qubits over ~${rsa.runtimeDays}–${rsaConservative.runtimeDays} days. All need to know both.`,
+    boundary: earned(
+      `HONEST — BOTH directions, no reader misled either way: it IS a real deterministic encryption framework + a complete ${family.families.length}-family sourced PQC standards audit (more than a demo), AND its cryptanalytic reach is ≤${demoMaxBits}-bit toy RSA (${demoEst.logicalQubits} logical qubits).`,
+      facets,
+      'RSA-2048 is COMPUTED from Shor, not assumed: the logical width is the deterministic 2n+3 = 4099 qubits; the physical-qubit count and runtime are computed FUNCTIONS of named surface-code assumptions (physical-per-logical, cycle time), giving a RANGE (~4–8M physical qubits, ~3–32 days) — different studies name different assumptions (up to ~104 days), which is exactly why a single figure would mislead. Either way it is millions of error-corrected qubits on a fault-tolerant machine that does not exist. breaksNistPqc=false; production RSA + Bitcoin/mainnet hard-refused. Claiming it reverses real RSA would be a false cryptographic claim on a public page. HARMONY ≠ TRUTH.'),
+  }
+}
+
 /** npm run quantum:local-reverse-timed */
 export function runLocalEncryptionReverseTimedExit(_root: string, _argv: readonly string[] = []): number {
   const report = localEncryptionReverseTimed()
