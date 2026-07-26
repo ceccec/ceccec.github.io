@@ -2358,10 +2358,18 @@ export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildM
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const qualifiesAsProposedSolution = false as const
     const clayChallengesComputable = allComputable && mill.computes && mill.claySolvedByThisFold === 0
+    // WHY computable ≠ claimed-solved (answers "they all compute; why not claimed?"): a computational path verifies a
+    // FINITE / structural fragment (challengeMethod), but each prize claim is UNIVERSAL (all zeros / all instances / all
+    // varieties). Universal ⊄ finite by the no-finiteness law, so every modeled-partial core carries a NAMED gap, and
+    // openForPrize = (status !== 'solved-external') COMPUTES "unsolved". Refutable: bridge a gap → its status changes.
+    const modeledPartial = mill.problems.filter((p) => p.status === 'modeled-partial')
+    const everyOpenCoreHasNamedGap = modeledPartial.every((p) => typeof p.gap === 'string' && p.gap.length > 0)
+    const sixOpenForPrize = paths.filter((p) => p.status === 'modeled-partial' && p.openForPrize).length === 6
     const facets = [
       { facet: `all ${paths.length} Clay-linked challenges have sealed computational paths (challengeMethod · on · receipt)`, on: allComputable && paths.length === 7 },
       { facet: 'millenniumProblemsChallenge computes · MODELED CHALLENGE apparatus', on: mill.computes },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold} — computable ≠ CMI prize solved`, on: claySolvedByThisFold === 0 && mill.claySolvedByThisFold === 0 },
+      { facet: `WHY COMPUTABLE ≠ CLAIMED SOLVED — a computational path verifies a FINITE/structural fragment (challengeMethod), but each prize claim is UNIVERSAL (all zeros / all instances / all varieties); universal ⊄ finite by no-finiteness, so all ${modeledPartial.length} open cores carry a NAMED gap (${everyOpenCoreHasNamedGap}) and openForPrize=(status≠solved-external) computes "unsolved" for the six (${sixOpenForPrize}). computable=true is CLAIMED; solved is withheld and refutable — bridge a gap and its status changes`, on: everyOpenCoreHasNamedGap && sixOpenForPrize && claySolvedByThisFold === 0 },
       { facet: 'qualifiesAsProposedSolution=false · Prize Rules §5 not met', on: qualifiesAsProposedSolution === false && catalog.claySolvedByThisFold === 0 },
       { facet: 'sequence spine — VORTEX_SEQUENCE digitalRoot probe feeds RH/P-vs-NP methods', on: sequenceOk },
       { facet: 'directional trinity forward·inverse·reverse computes (all computational directions)', on: dir.computes },
