@@ -63,10 +63,10 @@ Each problem below shows its **statement (algebraic)** — the precise mathemati
   - open step (computed gap, refutable): no sealed P≠NP (or P=NP) separation proof — amortized reuse ≠ complexity separation
   - boundary: MODELED CHALLENGE / partial computational attack: SAT verifies in poly (NP membership); content-address O(1) vs brute scan; efficiencyScalesToInfinityAtNoCostOnReuse — amortized reuse (memo hit → marginal cost 0; answers÷tokens unbounded at tokens=0) while quantumAdvantageBenchmark stays !separated. NOT a P≠NP (or P=NP) proof. NOT physical QM speedup / infinite FLOPS. Encrypt round-trip is structural foldPair, not cryptanalysis of one-way functions.
 - **Hodge Conjecture** (`hodge`) — demarcation=**contested** · status=modeled-partial · methods=4 · [proof hub →](https://ceccec.psg.bg/frontiers)
-  - **statement (algebraic)**: On a projective non-singular complex variety X, every Hodge class is algebraic: Hdgᵏ(X) = H^{2k}(X,ℚ) ∩ H^{k,k}(X) is spanned over ℚ by the classes of algebraic cycles of codimension k.
+  - **statement (algebraic)**: On a projective non-singular complex variety X, every Hodge class is algebraic: Hdgᵏ(X) = H^&#123;2k&#125;(X,ℚ) ∩ H^&#123;k,k&#125;(X) is spanned over ℚ by the classes of algebraic cycles of codimension k.
   - **canonical proof form**: `theorem  ⟺  f₁ ∧ f₂ ∧ … ∧ fₙ` · `each fᵢ:  a closed-form identity, decided by exact arithmetic` · `proof by exhaustion:  domain finite, every case decided (not sampled)  ⊢  theorem  ∎`
-  - open step (computed gap, refutable): no sealed Hodge classes/algebraic cycles on a projective variety; no sealed Calabi–Yau Hodge numbers h^{1,1}, h^{2,1}
-  - boundary: MODELED CHALLENGE / structural analogy: H₁(Σ₂)=ℤ⁴ recomputes as 432/108=4; string quantumize adds CY compact-dims MODEL (D−4) and mirror foldPair. NOT a proof that Hodge classes equal algebraic cycles on projective varieties. NOT sealed h^{p,q} on a projective CY₃.
+  - open step (computed gap, refutable): no sealed Hodge classes/algebraic cycles on a projective variety; no sealed Calabi–Yau Hodge numbers h^&#123;1,1&#125;, h^&#123;2,1&#125;
+  - boundary: MODELED CHALLENGE / structural analogy: H₁(Σ₂)=ℤ⁴ recomputes as 432/108=4; string quantumize adds CY compact-dims MODEL (D−4) and mirror foldPair. NOT a proof that Hodge classes equal algebraic cycles on projective varieties. NOT sealed h^&#123;p,q&#125; on a projective CY₃.
 - **Poincaré Conjecture** (`poincare`) — demarcation=**documented** · status=solved-external · methods=2 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - **statement (algebraic)**: Every simply-connected closed 3-manifold is homeomorphic to the 3-sphere: π₁(M) = 0 with M a closed 3-manifold ⟹ M ≅ S³. (Proved: Perelman 2003, Ricci flow with surgery.)
   - **canonical proof form**: `theorem  ⟺  f₁ ∧ f₂ ∧ … ∧ fₙ` · `each fᵢ:  a closed-form identity, decided by exact arithmetic` · `proof by exhaustion:  domain finite, every case decided (not sampled)  ⊢  theorem  ∎`
@@ -78,7 +78,7 @@ Each problem below shows its **statement (algebraic)** — the precise mathemati
   - open step (computed gap, refutable): no sealed proof all nontrivial ζ zeros lie on Re(s)=½ — Basel and ζ(−1) are partials only
   - boundary: MODELED CHALLENGE / zeta-style toy probe: Basel is a fact about ζ(2); string algebra seals ζ(−1)=−1/12 (bosonic normal ordering) — a DIFFERENT point on ζ. Digit/vortex inverse folds probe discrete harmonics. NOT a proof that all nontrivial zeros lie on Re(s)=½.
 - **Yang–Mills Existence and Mass Gap** (`yang-mills`) — demarcation=**contested** · status=modeled-partial · methods=4 · [proof hub →](https://ceccec.psg.bg/frontiers)
-  - **statement (algebraic)**: For every compact simple gauge group G, a non-trivial quantum Yang–Mills theory exists on ℝ⁴ and has a mass gap Δ > 0: the Hamiltonian spectrum satisfies spec(H) ⊆ {0} ∪ [Δ, ∞) with Δ > 0.
+  - **statement (algebraic)**: For every compact simple gauge group G, a non-trivial quantum Yang–Mills theory exists on ℝ⁴ and has a mass gap Δ > 0: the Hamiltonian spectrum satisfies spec(H) ⊆ &#123;0&#125; ∪ [Δ, ∞) with Δ > 0.
   - **canonical proof form**: `theorem  ⟺  f₁ ∧ f₂ ∧ … ∧ fₙ` · `each fᵢ:  a closed-form identity, decided by exact arithmetic` · `proof by exhaustion:  domain finite, every case decided (not sampled)  ⊢  theorem  ∎`
   - open step (computed gap, refutable): no sealed 4D Yang–Mills mass-gap construction; no sealed AdS/CFT correlator dictionary
   - boundary: MODELED CHALLENGE / field-algebra analogy: su(2)/Pauli closes; genus-2 double-torus is a finite geometric MODEL; string Virasoro + T/S-duality are MODELED structural probes. NOT a rigorous 4D quantum Yang–Mills construction and NOT a mass-gap proof. NOT AdS/CFT. Label: MODEL.
@@ -88,7 +88,7 @@ Each problem below shows its **statement (algebraic)** — the precise mathemati
   - open step (computed gap, refutable): no sealed 3D Navier–Stokes global regularity or blow-up control
   - boundary: MODELED CHALLENGE / plasma–torus geometry analogy only — finite surface samples on the genus-2 model. NOT 3D Navier–Stokes global regularity or blow-up control. Label: MODEL.
 - **Birch and Swinnerton–Dyer Conjecture** (`birch-swinnerton-dyer`) — demarcation=**contested** · status=modeled-partial · methods=2 · [proof hub →](https://ceccec.psg.bg/frontiers)
-  - **statement (algebraic)**: For an elliptic curve E over ℚ, the order of vanishing of its L-function at s = 1 equals the rank of the Mordell–Weil group: ord_{s=1} L(E,s) = rank E(ℚ).
+  - **statement (algebraic)**: For an elliptic curve E over ℚ, the order of vanishing of its L-function at s = 1 equals the rank of the Mordell–Weil group: ord_&#123;s=1&#125; L(E,s) = rank E(ℚ).
   - **canonical proof form**: `theorem  ⟺  f₁ ∧ f₂ ∧ … ∧ fₙ` · `each fᵢ:  a closed-form identity, decided by exact arithmetic` · `proof by exhaustion:  domain finite, every case decided (not sampled)  ⊢  theorem  ∎`
   - open step (computed gap, refutable): no sealed L(E,s) vanishing-order or elliptic-curve rank fold
   - boundary: MODELED CHALLENGE / algebraic pair-structure probe: (ℤ/9)* inverse pairs recompute. Explicit GAP: sealed src has no elliptic-curve L(E,s) or Mordell–Weil rank computation — neighbourhood pair algebra only, NOT BSD.

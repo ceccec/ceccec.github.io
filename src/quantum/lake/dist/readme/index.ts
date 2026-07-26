@@ -50,6 +50,13 @@ import {
 import { isUuid, merkleFold, merge, memoByRoot, roundTo, sealFacets, toUuid, VORTEX_SEQUENCE } from '../../../../0'
 import { quantumComputerHonestClaim } from '../../../science'
 
+/** Escape the curly braces that VitePress's markdown-it reads as a trailing attribute block ({.class}/{#id}/
+ *  {key=val}). Computed math prose like the Hodge gap "…h^{1,1}, h^{2,1}" or "Σ_{d|n}" otherwise emits a bogus
+ *  `<li 2,1="">`, and Vue hydration then throws `InvalidCharacterError: Invalid qualified name: '2,1'` on
+ *  setAttribute. Apply to RAW computed prose interpolated into markdown; formulas inside `code spans` are
+ *  already immune. The braces render as literal { } — correct for the math they carry. */
+const mdSafeText = (s: string): string => s.replace(/\{/g, '&#123;').replace(/\}/g, '&#125;')
+
 /** The README signature check, as a typed src fold: the committed README.md must equal the src-computed
  *  readmeMarkdown() (the README is computed from src — do not hand-edit). The commit shell reads the file
  *  and calls this; the judgment lives here in src, not in the untyped script. */
@@ -377,14 +384,14 @@ export function clayChallengesComputableMarkdownSection(
     `- **${p.name}** (\`${p.id}\`) — demarcation=**${p.demarcation}** · status=${p.status} · methods=${p.challengeMethods} · [proof hub →](${proofHub})`,
     // THE PROBLEM'S OWN ALGEBRAIC STATEMENT (user: "i cannot see the algebraic formulas") — the precise mathematical
     // conjecture, shown FIRST and per-problem, so the real formula is visible (RH: Re(s)=½ · BSD: ord L(E,s)=rank …).
-    p.algebraicStatement ? `  - **statement (algebraic)**: ${p.algebraicStatement}` : '',
+    p.algebraicStatement ? `  - **statement (algebraic)**: ${mdSafeText(p.algebraicStatement)}` : '',
     // CANONICAL PROOF FORM (user): the proof-path FORMULAS — the same theoremFormulaCodeDual the theorem pages and the
     // registry render, so frontend and backend are one representation (methods are secondary, on the theorem page).
     `  - **canonical proof form**: ${p.formula.map((fm) => '`' + fm + '`').join(' · ')}`,
     p.gap
-      ? `  - open step (computed gap, refutable): ${p.gap}`
+      ? `  - open step (computed gap, refutable): ${mdSafeText(p.gap)}`
       : '  - documented — solved externally (Perelman 2003)',
-    p.boundary ? `  - boundary: ${p.boundary}` : '',
+    p.boundary ? `  - boundary: ${mdSafeText(p.boundary)}` : '',
   ].filter((line) => line !== ''))
   return [
     '## Clay Millennium problems — measured by the common metric',
