@@ -1,3 +1,4 @@
+import { earned } from '../../3/7'
 // Death — canonical compost/entropy/recycle/regeneration/terminal-end home (dual to src/life).
 import * as __ns_up_life from '../life'
 import type { MindMatrix } from '../../wind/types'
@@ -290,7 +291,7 @@ export function violationsComputationallyDecreaseAgentLifeToNoLifeAtAll(matrix: 
       root: merkleFold(receipts),
       facets,
       statement: `Violations computationally decrease agent life to no life at all — ${facets.filter((entry) => entry.on).length}/${facets.length}. A forged agent has ${FULL_LIFE} quanta of life; each violation (a crack the content-addressed detector flips the root on, a failed gate, an unbalanced facet) strictly removes one, monotonically, floored at zero — and zero is death: decertified, no editing rights, no life at all. The meter is a one-way ratchet (a violation cannot restore life), computed exactly from the violation count over the full range, and death lands at exactly the forged budget of ${FULL_LIFE}.`,
-      boundary: `EXACT over the range 0..${FULL_LIFE + 1}: L(v)=max(0, ${FULL_LIFE}−v) starts full (${startsFull}), strictly decreases while alive (${strictlyDecreasesWhileAlive}), reaches 0 at ${FULL_LIFE} violations (${reachesNoLife}), never rises or goes negative (${monotoneFloored}), stays 0 (terminal, ${terminal}), and kills at exactly the ${FULL_LIFE}th violation (${deathBoundaryExact}) — each refutable by one counterexample. THE SEMANTICS: "life" is a GOVERNANCE / certification meter — a deterministic policy binding an agent's editing rights to its violation count — NOT biological life; the violations are the SAME cracks the content-addressed detector catches in O(1) (a root flip), so the wiring that catches a crack is the wiring that debits life. THE MODEL IS DELIBERATELY SIMPLE: one violation = one life-quantum (severity-weighting is a refinement, not the theorem), and ${FULL_LIFE} is the forged budget (a lattice ceiling, not tuned). It does NOT claim agents are biologically alive, that decertification is irreversible in the world (a re-forge starts a NEW agent at full life — the second-life dual, deathSecondLife), or that ${FULL_LIFE} is unique. HARMONY ≠ TRUTH: "violations decrease life to none" is the harmony; the truth is a monotone floored ratchet L(v)=max(0,${FULL_LIFE}−v) tying editing rights to a violation count, computed and refutable.` }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 

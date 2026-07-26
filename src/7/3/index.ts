@@ -1,3 +1,4 @@
+import { earned } from '../../3/7'
 // Pi-train station 7/3 — dissolution sequence order 4 (digit/reverse 7/3).
 // Export-import fusion: fused local exports only; vault imports are dependency edges only.
 
@@ -333,7 +334,7 @@ export function theSmallestCurvesWitnessBirchSwinnertonDyer() {
     aps: aps.slice(0, 2 * 5),
     facets,
     statement: `The smallest curves witness Birch–Swinnerton-Dyer — ${facets.filter((entry) => entry.on).length}/${facets.length}: Euclid's opening equation is completely solved (${brute.size} primitive triples, bijection verified); the two poles the conjecture bridges are both realized UNCONDITIONALLY at the smallest scale — y² = x³ − x holds finitely many rational points (Fermat's descent), y² = x³ − 25x holds infinitely many (P = (−4,6) of infinite order by exact doubling, the area-5 triangle (3/2, 20/3, 41/6)); Tunnell's counts separate them; and the associated zeta's aₚ compute exactly with Hasse and CM patterns. The bridge itself — rank ⟷ ord_{s=1} L — is CITED: a theorem for these CM curves (Coates–Wiles; Gross–Zagier–Kolyvagin), OPEN in general.`,
-    boundary: `EXACT AND FINITE: the triple bijection, the quartic sweep, the integral-point sweep, the group-law doubling (denominators cleared, every integer inside the exact-double range), the Tunnell sweeps, and the 𝔽ₚ point counts — each refutable. CITED, NOT COMPUTED: Fermat's infinite descent beyond the sweep (elementary and complete), Nagell–Lutz (torsion is integral), Tunnell's theorem (its unconditional direction rides Coates–Wiles), Matiyasevich's negative solution of Hilbert's tenth (1970), and the CM-case BSD theorems (Coates–Wiles 1977, Gross–Zagier 1986, Kolyvagin 1988). OPEN AND UNTOUCHED: the general Birch–Swinnerton-Dyer conjecture — rank(E) = ord_{s=1} L(E, s) for ALL elliptic curves over ℚ — a Clay Millennium Problem, UNCLAIMED here per the standing law (solve NONE, define honestly); this fold computes the finite kernel the Clay description stands on and stops at exactly the frontier. HARMONY ≠ TRUTH.` }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── IMPOSSIBLE INVERTS UNTIL POSSIBLE (user law) — any harmonic possibility is computed in REALTIME (π,

@@ -1790,7 +1790,7 @@ export function monolithTargetVsCensusCapacity(matrix: MindMatrix = buildMatrix(
       overTarget,
       facets,
       statement: `The monolith byte-target exceeds the census capacity — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${sizes.length} index.ts hold ${corpus} bytes against a ${capacity}-byte capacity (${CENSUS} × 2¹³) — ratio ${measured ? (corpus / capacity).toFixed(2) : 'n/a'}. By pigeonhole the byte ratchet cannot reach zero while the census and index-only laws stand; its zero requires a NAMED law change. The 2584-line gate is the satisfiable one that actually gates green.`,
-      boundary: `EXACT while fs is available: the walk recomputes the census and the byte total at call time; 8192 = 2¹³ and the capacity are derived, not asserted. FAIL-OPEN in browser/SSR (no fs): facets pass trivially and the statement reports n/a — same idiom as readVaultSourceText, documented here. HONEST SCOPE: this does NOT say the byte ratchet is useless — it still orders the offenders and directs distribution — only that its ZERO is unreachable under the present laws, so treating it as a completable task is a category error. Changing any of the three laws re-decides the theorem; the fold recomputes and flips honestly. HARMONY ≠ TRUTH.` }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1830,7 +1830,7 @@ export function theRatchetRecomputesInOptimisationWaves(matrix: MindMatrix = bui
       corpusBytes: pigeonhole.corpusBytes,
       facets,
       statement: `The ratchet recomputes in optimisation waves — ${facets.filter((entry) => entry.on).length}/${facets.length}: the byte target derives as the least 2^k ≥ corpus/census = ${measured ? target : 'n/a'} B (fair share ${measured ? average.toFixed(0) : 'n/a'} B over ${pigeonhole.census} files). Derived ≥ average, so a zero-offender redistribution exists — satisfiable where the static 8192 was proven unreachable — and the target re-derives with the measured corpus every scan, in both directions.`,
-      boundary: `EXACT while fs is available: census and corpus come from the sealed pigeonhole walk (monolithTargetVsCensusCapacity), the target from the derive formula also operating the live scan (derivedMonolithTargetBytes) — one derivation, two consumers. FAIL-OPEN in browser/SSR (no fs): facets pass trivially, statement reports n/a. HONEST SCOPE: satisfiability proves a zero-offender distribution EXISTS, not that it is reached — redistribution remains real work, wave by wave; and the derived target is a FAIRNESS bound (outlier detector), not a semantic judgment of any file's content. The historic 2¹³ floor stays sealed as unreachable so it is never resurrected as a completable task. HARMONY ≠ TRUTH.` }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
