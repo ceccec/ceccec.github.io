@@ -26,7 +26,7 @@ import {
   A432_HUE, A432_OCTAVES, AUTHOR_HANDLE, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS,
   ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, TAU, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG,
   WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG,
-  fibonacci, earned, rat, ratMul, ratInv, ratEq, ratToFloat, claySolvedTheorem,
+  fibonacci, earned, rat, ratMul, ratInv, ratEq, ratToFloat, claySolvedTheorem, demarcate,
   SPEED_OF_LIGHT, NEWTON_G, SCHUMANN_FUNDAMENTAL_HZ, bekensteinBoundBits, schwarzschildRadius,
   theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
 import { researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause } from '../../earth/iching'
@@ -2352,30 +2352,31 @@ export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildM
       status: p.status,
       challengeMethods: p.challengeMethod.length,
       computablePath: p.on && p.challengeMethod.length > 0 && isUuid(p.receipt),
-      // solvedLocally = the local model/challenge computes and seals (a sealed computational path exists) — the LOCAL
-      // sense of "solved" the user named; distinct from solvedForPrize (the universal CMI proof), which stays 0 here.
-      solvedLocally: p.on && p.challengeMethod.length > 0 && isUuid(p.receipt),
-      solvedForPrize: false as const, // NEVER by this corpus — claySolvedByThisFold=0, Prize Rules §5 not met
-      gap: (p as { gap?: string }).gap ?? '', // the named unbridged universal step ('' for solved-external)
+      // COMMON metric — the SAME demarcate() epistemic status every theorem gets (contested=open · documented=settled),
+      // SIGNED by the zero-cycle DEMARCATION_REGISTRY, refutable by moving the term. No bespoke clay metric: whether a
+      // theorem is part of a Clay problem, and what it claims, lives in the theorem itself (its statement + its gap).
+      demarcation: demarcate(p.name),
+      gap: (p as { gap?: string }).gap ?? '', // the named open step stated in the theorem itself
       openForPrize: p.status !== 'solved-external',
       receipt: p.receipt }))
     const allComputable = paths.every((p) => p.computablePath)
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0 // internal gated honesty floor, not a surfaced metric
     const qualifiesAsProposedSolution = false as const
     const clayChallengesComputable = allComputable && mill.computes && mill.claySolvedByThisFold === 0
-    // WHY computable ≠ claimed-solved (answers "they all compute; why not claimed?"): a computational path verifies a
-    // FINITE / structural fragment (challengeMethod), but each prize claim is UNIVERSAL (all zeros / all instances / all
-    // varieties). Universal ⊄ finite by the no-finiteness law, so every modeled-partial core carries a NAMED gap, and
-    // openForPrize = (status !== 'solved-external') COMPUTES "unsolved". Refutable: bridge a gap → its status changes.
+    // The COMMON metric measures every Clay problem exactly like any theorem: demarcate() signs its epistemic status —
+    // contested (open) or documented (settled) — refutable by moving the term. What each theorem CLAIMS, and the open
+    // step it still needs, is stated in the theorem itself (its statement + its named gap); no bespoke clay counter.
     const modeledPartial = mill.problems.filter((p) => p.status === 'modeled-partial')
     const everyOpenCoreHasNamedGap = modeledPartial.every((p) => typeof p.gap === 'string' && p.gap.length > 0)
-    const sixOpenForPrize = paths.filter((p) => p.status === 'modeled-partial' && p.openForPrize).length === 6
+    const contestedCount = paths.filter((p) => p.demarcation === 'contested').length // open cores (6)
+    const documentedCount = paths.filter((p) => p.demarcation === 'documented').length // settled (Poincaré, 1)
+    const everyOpenCoreDemarcatedContested = paths.filter((p) => p.status === 'modeled-partial').every((p) => p.demarcation === 'contested')
     const facets = [
-      { facet: `all ${paths.length} Clay-linked challenges have sealed computational paths (challengeMethod · on · receipt)`, on: allComputable && paths.length === 7 },
+      { facet: `all ${paths.length} Clay-linked theorems compute (challengeMethod · on · receipt) and are measured by the COMMON metric`, on: allComputable && paths.length === 7 },
       { facet: 'millenniumProblemsChallenge computes · MODELED CHALLENGE apparatus', on: mill.computes },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold} — computable ≠ CMI prize solved`, on: claySolvedByThisFold === 0 && mill.claySolvedByThisFold === 0 },
-      { facet: `WHY COMPUTABLE ≠ CLAIMED SOLVED — a computational path verifies a FINITE/structural fragment (challengeMethod), but each prize claim is UNIVERSAL (all zeros / all instances / all varieties); universal ⊄ finite by no-finiteness, so all ${modeledPartial.length} open cores carry a NAMED gap (${everyOpenCoreHasNamedGap}) and openForPrize=(status≠solved-external) computes "unsolved" for the six (${sixOpenForPrize}). computable=true is CLAIMED; solved is withheld and refutable — bridge a gap and its status changes`, on: everyOpenCoreHasNamedGap && sixOpenForPrize && claySolvedByThisFold === 0 },
-      { facet: 'qualifiesAsProposedSolution=false · Prize Rules §5 not met', on: qualifiesAsProposedSolution === false && catalog.claySolvedByThisFold === 0 },
+      { facet: `COMMON EPISTEMIC METRIC — each Clay problem is signed by demarcate() like any theorem: ${contestedCount} contested (open) + ${documentedCount} documented (Poincaré, settled) = ${paths.length}; refutable by moving the term`, on: everyOpenCoreDemarcatedContested && contestedCount === 6 && documentedCount === 1 },
+      { facet: `EACH THEOREM STATES ITS OWN CLAIM — every open core carries a NAMED gap in the theorem itself (${everyOpenCoreHasNamedGap}), the open step its statement still needs; no bespoke clay metric, the claim lives in the theorem`, on: everyOpenCoreHasNamedGap },
+      { facet: `honesty floor holds internally — claySolvedByThisFold=${claySolvedByThisFold} · qualifiesAsProposedSolution=${qualifiesAsProposedSolution} · Prize Rules §5 not met`, on: qualifiesAsProposedSolution === false && catalog.claySolvedByThisFold === 0 && claySolvedByThisFold === 0 },
       { facet: 'sequence spine — VORTEX_SEQUENCE digitalRoot probe feeds RH/P-vs-NP methods', on: sequenceOk },
       { facet: 'directional trinity forward·inverse·reverse computes (all computational directions)', on: dir.computes },
       { facet: 'Earth poles-as-pyramid recomputes (genus-2 · N·E·S·W tips)', on: earth.computes && earth.fourWayCounterRotating },
@@ -2394,8 +2395,8 @@ export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildM
       pathCount: paths.length,
       computableCount: paths.filter((p) => p.computablePath).length,
       openForPrizeCount: paths.filter((p) => p.openForPrize).length,
-      solvedLocallyCount: paths.filter((p) => p.solvedLocally).length, // local models that seal (7/7)
-      solvedForPrizeHereCount: paths.filter((p) => p.solvedForPrize).length, // CMI-prize solutions claimed here — 0 (clay=0)
+      contestedCount, // COMMON metric: Clay problems demarcate()'d contested (open) — 6
+      documentedCount, // COMMON metric: demarcate()'d documented (settled — Poincaré) — 1
       solvedExternalCount: paths.filter((p) => p.status === 'solved-external').length, // proven elsewhere (Poincaré) — 1
       novelHereCount: 0 as const, // solved-here-for-the-first-time (novelToHumanity) — 0; the computed answer, not a judgement
       facets: sealed.facets,

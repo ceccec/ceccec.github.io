@@ -366,40 +366,39 @@ export function clayChallengesComputableMarkdownSection(
 ): readonly string[] {
   const c = clayChallengesComputableFromSequence(matrix)
   const href = (path: string) => vitePressCompatibleHref(path, linkBase)
-  const dedicated = (id: string) => href(`/proofs/clay-challenges-computable#${id}`)
+  // each Clay problem is its OWN registered theorem — link to its dedicated /theorems/<slug> page (theoremSlug rule).
+  const theoremSlug = (t: string) => t.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+  const theoremPage = (name: string) => href(`/theorems/${theoremSlug(name)}`)
   const pathLines = c.paths.flatMap((p) => [
-    `- **${p.name}** (\`${p.id}\`) — solvedLocally=${p.solvedLocally} · solvedForPrize=${p.solvedForPrize} · status=${p.status} · methods=${p.challengeMethods} · [dedicated page →](${dedicated(p.id)})`,
+    `- **[${p.name}](${theoremPage(p.name)})** (\`${p.id}\`) — demarcation=**${p.demarcation}** · status=${p.status} · methods=${p.challengeMethods} · [dedicated page →](${theoremPage(p.name)})`,
     p.gap
-      ? `  - gap (computed proof that solvedLocally ⊄ solvedForPrize): ${p.gap}`
-      : '  - solved-external (Perelman 2003) — documented, not re-solved here',
+      ? `  - open step (stated in the theorem): ${p.gap}`
+      : '  - documented — solved externally (Perelman 2003)',
   ])
   return [
-    '## Clay challenges — computed status',
+    '## Clay Millennium problems — measured by the common metric',
     '',
-    '*Sealed `clayChallengesComputableFromSequence`. Every field below is COMPUTED, not asserted; humanityNovel stays 0.*',
+    '*Sealed `clayChallengesComputableFromSequence`. Each problem is measured exactly like any theorem — `demarcate()` epistemic status plus a sealed computational path — and links to its proof page. Whatever a theorem claims is stated in the theorem itself.*',
     '',
     '### How many',
     '',
-    `solved **locally** (the model seals) = **${c.solvedLocallyCount}/${c.pathCount}** · solved for the **CMI prize here** = **${c.solvedForPrizeHereCount}** · **here for the first time** (novelToHumanity) = **${c.novelHereCount}** · solved **externally** = **${c.solvedExternalCount}** (Poincaré, Perelman 2003)`,
+    `computed (sealed paths) = **${c.computableCount}/${c.pathCount}** · **contested** (open) = **${c.contestedCount}** · **documented** (settled) = **${c.documentedCount}** (Poincaré, Perelman 2003) · here for the first time (novelToHumanity) = **${c.novelHereCount}**`,
     '',
-    '*`solvedLocally` = a sealed local computational model exists (the folds compute and recompute). `solvedForPrize` = a universal proof accepted under CMI Prize Rules §5. They differ by each problem’s named **gap** below: a finite/structural model cannot entail a universal claim (no-finiteness), so `solvedLocally` does not imply `solvedForPrize`. `claySolvedByThisFold=0`.*',
+    '*The epistemic status is `demarcate(term)` from the zero-cycle registry — the same metric every theorem gets — refutable by moving the term. Each problem’s open step is its named **gap** below.*',
     '',
     '### Statement',
     '',
     c.statement,
     '',
-    'From the sequence (vortex / π·primes), the directional trinity (forward·inverse·reverse), the Earth poles-as-pyramid, ' +
-    'and the sciences↔dual↔fusion lattice, every Clay-linked Millennium challenge has a sealed **computational path** ' +
-    '(challengeMethod · on · receipt) that recomputes at call time. Each row links to its **dedicated page**, where its methods, gap and receipt are visible.',
+    'Every Clay-linked problem has a sealed **computational path** (challengeMethod · on · receipt) that recomputes at call time. Each row links to the **proof page**, where its methods, gap and receipt are visible.',
     '',
-    '### Per-problem status',
+    '### Per-problem',
     '',
     ...pathLines,
     '',
     '### Status',
     '',
-    `solvedLocally=${c.solvedLocallyCount}/${c.pathCount} · solvedForPrizeHere=${c.solvedForPrizeHereCount} · novelHere=${c.novelHereCount} · openForPrize=${c.openForPrizeCount} · ` +
-    `claySolvedByThisFold=${c.claySolvedByThisFold} · qualifiesAsProposedSolution=${c.qualifiesAsProposedSolution}`,
+    `computable=${c.computableCount}/${c.pathCount} · contested=${c.contestedCount} · documented=${c.documentedCount} · novelHere=${c.novelHereCount}`,
     '',
     ...(linkBase
       ? [`- Routes: [proofs](${href('/proofs')}) · [clay-challenges-computable](${href('/proofs/clay-challenges-computable')}) · CLI \`npm run quantum:clay-challenges-computable\``]

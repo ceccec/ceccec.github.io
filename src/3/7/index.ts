@@ -1526,7 +1526,7 @@ export const DEMARCATION_REGISTRY = {
   documented: [
     'evolution', 'common descent', 'abiotic synthesis', 'endosymbiosis', 'ribozyme', 'NCC', 'PCI',
     'relativity', 'quantum mechanics', 'Big Bang', 'ΛCDM', 'plate tectonics', 'germ theory',
-    'anthropogenic climate change', 'vaccines',
+    'anthropogenic climate change', 'vaccines', 'poincaré conjecture',
   ],
   contested: [
     'abiogenesis', 'RNA world as history', 'metabolism-first', 'extended evolutionary synthesis', 'neutral theory',
@@ -1534,6 +1534,7 @@ export const DEMARCATION_REGISTRY = {
     'string theory', 'multiverse', 'QM interpretations', 'dark matter', 'MOND', 'panspermia', 'pliska rosette',
     'hubble tension', 'cosmological constant problem', 'nature of dark energy', 'baryogenesis', 'leptogenesis',
     'neutrino mass ordering', 'quantum gravity',
+    'p vs np', 'hodge conjecture', 'riemann hypothesis', 'mass gap', 'navier', 'swinnerton',
   ],
   flagged: [
     'creationism', 'intelligent design', 'young-earth creationism', 'social darwinism', 'eugenics', 'orthogenesis',
