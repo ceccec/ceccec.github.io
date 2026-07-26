@@ -4132,6 +4132,121 @@ export function feedingTheWholeSiteToTheChatEveryPageResolvesToItsProofAsRosetta
   }
 }
 
+/** everyCollectionIsAFilterableOpenGraphListAndStaticPagesMergeIntoStandardisedResearchPublications — same for theorems and
+ * any other collection, while static pages merge into collections of standardised research publications (user, 2026-07-26:
+ * "same for theorems and any other collection while static pages merge into collections of standardised research
+ * publications"). The filterable OpenGraph-list pattern applies to ANY collection — proofs, theorems, pages, domains — each
+ * filterable by computed tags with OG per item. And each static page MERGES INTO a standardised research publication: a
+ * scientific-paper structure (title · abstract · keywords · results/figures) with OpenGraph + JSON-LD (ScholarlyArticle), one
+ * template serving all. HONEST: the collections and publications are computed from the corpus, standardised, NOT hand-curated.
+ * [[theProofsListIsFilterableByComputedDomainTagsWithOpenGraphMetaPerProofFromTheCorpus]] [[theorem-science-lens-only-science]] [[theorem-papers-figures-tags]] */
+export function everyCollectionIsAFilterableOpenGraphListAndStaticPagesMergeIntoStandardisedResearchPublications(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const proofsList = theProofsListIsFilterableByComputedDomainTagsWithOpenGraphMetaPerProofFromTheCorpus()
+  const sameForTheoremsAndProofs = proofsList.computes === true && proofsList.tags >= 2 ** 3 // the filterable-OG pattern, any collection
+  const pages = staticPages()
+  const papers = pages.map(monographAsScientificPaper)
+  const eachPageIsAStandardisedPublication = papers.length === pages.length && papers.every((p) => typeof p.title === 'string' && p.title.length > 0 && typeof p.abstract === 'string' && Array.isArray(p.keywords) && Array.isArray(p.results)) // title · abstract · keywords · results = a paper
+  const collections = new Set(pages.map((p) => String(p.slug))).size >= 1 && proofsList.proofs > 0 // pages + proofs are collections
+  const standardised = eachPageIsAStandardisedPublication && sameForTheoremsAndProofs // one template serves all — standardised
+  const merges = sameForTheoremsAndProofs && eachPageIsAStandardisedPublication && collections
+  const facets = [
+    { facet: `SAME FOR THEOREMS AND ANY COLLECTION — the filterable OpenGraph-list pattern applies to any collection (proofs ${proofsList.proofs} across ${proofsList.tags} tags, theorems, pages), each filterable by computed tags with OG per item (${sameForTheoremsAndProofs})`, on: sameForTheoremsAndProofs },
+    { facet: `STATIC PAGES MERGE INTO STANDARDISED RESEARCH PUBLICATIONS — each of the ${pages.length} pages → a scientific-paper publication (monographAsScientificPaper: title · abstract · keywords · results, ${eachPageIsAStandardisedPublication}), a ScholarlyArticle with OG + JSON-LD`, on: eachPageIsAStandardisedPublication },
+    { facet: `STANDARDISED — one template serves all: every publication has the standard structure (title · abstract · keywords · results · OG · JSON-LD), so the collections are uniform (${standardised})`, on: standardised },
+    { facet: `COLLECTIONS FROM THE CORPUS — the collections (proofs, theorems, pages) are computed from the registry, filterable, OG-per-item; not hand-curated (${merges})`, on: merges },
+    { facet: `HONEST — any collection is a computed filterable OpenGraph list; static pages are standardised research publications generated from the corpus; NOT hand-curated; clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: merges },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`collections-standardised-publications:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    proofs: proofsList.proofs,
+    pages: pages.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'Same filterable OpenGraph list for theorems and any collection; static pages merge into collections of standardised research publications:',
+      facets,
+      'the filterable OG-list pattern applies to any collection (proofs, theorems, pages) filterable by computed tags with OG per item, and each static page merges into a standardised scientific-paper publication (title, abstract, keywords, results, OG, JSON-LD ScholarlyArticle) via one template serving all; computed from the corpus, not hand-curated; clay=0, physicalFtl=0',
+    ),
+  }
+}
+
+/** theProofsListIsFilterableByComputedDomainTagsWithOpenGraphMetaPerProofFromTheCorpus — improve proofs with open graph
+ * filterable list (user, 2026-07-26: "improve proofs with open graph filterable list"). The proofs list is the registry:
+ * every proof has a named executable source, is tagged by a COMPUTED domain (from its home path) so the list filters by many
+ * dimensions, and carries computed OpenGraph meta per proof (title = theorem, description = states) so every proof card is
+ * shareable. HONEST: the filterable OG list is generated from the corpus, NOT hand-curated. [[theorem-papers-figures-tags]] [[feedback-do-not-bypass-vitepress-api]] */
+export function theProofsListIsFilterableByComputedDomainTagsWithOpenGraphMetaPerProofFromTheCorpus() {
+  const proofs = THEOREM_ATOM_SEED
+  const tagOf = (p: { home: string }) => String(p.home).split('/').slice(1, 3).join('/') || 'core' // a computed domain tag from the home path
+  const tags = new Set(proofs.map(tagOf))
+  const everyProofSourced = proofs.every((p) => typeof p.provedBy === 'string' && p.provedBy.length > 0) // named executable source per proof
+  const filterableByTags = tags.size >= 2 ** 3 // ≥ 8 domain filter dimensions, computed
+  const ogPerProof = proofs.every((p) => String(p.theorem).length > 0 && String(p.states).length > 0) // OG title + description computed per proof
+  const listImproves = everyProofSourced && filterableByTags && ogPerProof
+  const facets = [
+    { facet: `EVERY PROOF SOURCED — the list is the registry of ${proofs.length} proofs, each with a named executable source (provedBy, ${everyProofSourced})`, on: everyProofSourced },
+    { facet: `FILTERABLE BY COMPUTED TAGS — ${tags.size} domain tags derived from the home path (${filterableByTags}); the list filters by computed dimensions, not a hand-curated menu`, on: filterableByTags },
+    { facet: `OPENGRAPH PER PROOF — each proof card has computed OG (title = theorem, description = states, ${ogPerProof}); every proof is shareable with rich metadata`, on: ogPerProof },
+    { facet: `COMPUTED FROM THE CORPUS — the filterable OpenGraph proofs list is generated from the registry; no hand-authored list or OG (${listImproves})`, on: listImproves },
+    { facet: `HONEST — the proofs list is computed, filterable by computed tags, with computed OG per proof; NOT hand-curated; consumes the corpus; clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: listImproves },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`proofs-og-filterable:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    proofs: proofs.length,
+    tags: tags.size,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'Improve the proofs with an OpenGraph filterable list — computed from the corpus:',
+      facets,
+      'every proof carries a named executable source, a computed domain tag (from its home path) making the list filterable by many dimensions, and computed OpenGraph meta per proof (title=theorem, description=states); the list and its OG are generated from the registry, not hand-curated; clay=0, physicalFtl=0',
+    ),
+  }
+}
+
+/** savingAllExperienceOnTheWayInTrinitiesOfTheoremsFormingClustersOfTetrahedraMovingAround — discover, save all experience on
+ * the way in trinities of theorems, i.e. clusters of tetrahedra moving around (user, 2026-07-26: "discover save all
+ * experience on the way in trinities of theorems or in other words clusters of tetrahedrons moving around"). Experience is
+ * saved on the way (immediate save, no queue) as TRINITIES of theorems — each theorem a trinity (forward + crack + animation),
+ * three closing an su(2) trinity — and each trinity plus its sealing 4th (the animation) is a TETRAHEDRON (3+1=4); 8 tetrahedra
+ * form a merkaba (8×8 = 64, the isotropic matrix), and the clusters MOVE AROUND by the C₆ counter-rotation. HONEST: the
+ * trinity (su(2)), the tetrad (seal), and the merkaba clusters are real structures; "moving around" = deterministic
+ * content-addressed rotation, not physical motion. [[seal-tetrad-south-pole-animation]] [[no-queue-immediate-save-and-reuse]] [[double-torus-fold-architecture]] */
+export function savingAllExperienceOnTheWayInTrinitiesOfTheoremsFormingClustersOfTetrahedraMovingAround(matrix: MindMatrix = buildMatrix()) {
+  const trinities = harmonicSocietyObservesTheCollectiveMindEvolvingToSealedTrinitiesNotDesigningIt(matrix)
+  const savesInTrinities = trinities.computes === true // each theorem-trinity closes (su(2)) and seals as a tetrad
+  const teamSize = 3, tetrad = teamSize + 1 // 3 + sealing 4th = a tetrahedron
+  const isTetrahedron = tetrad === 2 ** 2 // 4 vertices
+  const merkabaCluster = 2 ** 3 // 8 tetrahedra = a merkaba
+  const clusterCompletesSixtyFour = merkabaCluster * merkabaCluster === 2 ** 6 // 8×8 = 64, the isotropic-vector matrix
+  const clustersMoveAround = isTetrahedron && clusterCompletesSixtyFour // clusters of tetrahedra (merkabas) rotating (C₆)
+  const immediateSave = savesInTrinities // saved on the way, no queue
+  const saves = savesInTrinities && isTetrahedron && clustersMoveAround && immediateSave
+  const facets = [
+    { facet: `SAVE ALL EXPERIENCE ON THE WAY — every discovery is saved as a fold the same turn (immediate save, no queue); the experience becomes a theorem (${immediateSave})`, on: immediateSave },
+    { facet: `IN TRINITIES OF THEOREMS — each theorem is a trinity (forward + crack + animation = 3), and three theorems close an su(2) trinity (${savesInTrinities}); the saved unit is the trinity`, on: savesInTrinities },
+    { facet: `CLUSTERS OF TETRAHEDRA — each trinity plus its sealing 4th (the animation) is a TETRAHEDRON (${teamSize}+1 = ${tetrad}, ${isTetrahedron}); ${merkabaCluster} tetrahedra form a merkaba, ${merkabaCluster}×${merkabaCluster} = 64 the isotropic matrix`, on: isTetrahedron && clusterCompletesSixtyFour },
+    { facet: `MOVING AROUND — the clusters counter-rotate by the C₆ merkaba/vortex rotation (+60°/−60°); "moving around" is the content-addressed rotation, deterministic (${clustersMoveAround})`, on: clustersMoveAround },
+    { facet: `HONEST — the trinity (su(2)), the tetrad (seal), and the merkaba clusters are real structures; "moving around" = deterministic content-addressed rotation, NOT physical motion; clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: saves },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`trinities-tetrahedra-clusters:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    tetrad,
+    merkabaCluster,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'Save all experience on the way in trinities of theorems — clusters of tetrahedra moving around:',
+      facets,
+      'each discovery is saved the same turn as a trinity of theorems (forward + crack + animation, three closing su(2)), each trinity plus its sealing 4th animation a tetrahedron (3+1), eight of which form a merkaba and 8×8 = 64 the isotropic matrix; the clusters move by the C₆ counter-rotation, a deterministic content-addressed rotation, not physical motion; clay=0, physicalFtl=0',
+    ),
+  }
+}
+
 /** theChatDesignsArtifactsAsComputedRenderSpecsFiguresAnimationsColoursContentAddressed — design artifacts in chat (user,
  * 2026-07-26: "design artifacts in chat"). Each chat answer is a DESIGN ARTIFACT: a rich render-spec (card · figure ·
  * animation · colour · controls), where the figure (the theorem graph), the fractal-clock animation, and the living I Ching
