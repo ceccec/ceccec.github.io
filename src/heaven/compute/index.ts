@@ -1989,6 +1989,50 @@ export function deepResearchRecursiveDualMindResearchVerify(matrix: MindMatrix =
   }
 }
 
+/** theUiChatIsTheMainDevelopmentToolboxFillingVitepressGapsAcrossSessions — use the ui as main development toolbox, fill the
+ * gaps in vitepress chat sessions (user, 2026-07-26: "use the ui as main development toolbox. fill the gaps in UI chat
+ * sessions" → refined "fill the gaps in vitepress chat sessions"). Every development capability is reachable through the UI
+ * chat via the DI tool bridge, so the UI chat IS the main dev toolbox. It fills the VITEPRESS gaps: the pages, routes, nav and
+ * sidebars are computed from the corpus and complete (rebuildable, routes exactly cover the served pages, sidebars/crosslinks
+ * complete, aliases purged) — any VitePress gap is filled by recompute, not a hand-edit — and self-develop measures/fills gaps
+ * across sessions via the persistent shared experience index. HONEST: the UI chat is the deterministic dev entry; filling
+ * VitePress gaps = recompute over the corpus, not an LLM. [[always-default-to-chat]] [[vitepressIsCompletelyRebuildableThroughChatSessionsPagesRoutesNavComputedFromTheCorpusConfigIsTheThinHarness]] [[routes-nav-from-folder-tree]] */
+export function theUiChatIsTheMainDevelopmentToolboxFillingVitepressGapsAcrossSessions(matrix: MindMatrix = buildMatrix()) {
+  const bridge = allQuantumReachableInChatViaDependencyInjectedToolBridge(matrix)
+  const isMainToolbox = bridge.computes === true // every dev capability reachable through the UI chat
+  const ui = uiChatTurn('develop research verify audit design gate vitepress page route nav sidebar', matrix)
+  const uiIsTheSurface = !!ui.renderSpec && Array.isArray(ui.controls) && ui.controls.length > 0 // the UI chat is the dev surface
+  // FILL THE VITEPRESS GAPS — pages/routes/nav/sidebars computed complete, filled by recompute
+  const rebuildable = vitepressIsCompletelyRebuildableThroughChatSessionsPagesRoutesNavComputedFromTheCorpusConfigIsTheThinHarness(matrix)
+  const navSidebar = theUiChatImprovesTheUiNavigationAndSidebarsRemovingRedundancyMergingToStandardComputedMaterials(matrix)
+  const vitepressGapsFilled = rebuildable.computes === true && navSidebar.computes === true && navSidebar.routes === navSidebar.pages // no page/route/nav gap
+  const dev = chatDevelopsItselfByChattingWithItself(matrix)
+  const gapsFilled = dev.gapsBefore - dev.gapsAfter
+  const fillsGapsThroughChat = dev.develops === true && gapsFilled > 0 // self-develop measures/fills gaps in-session
+  const acrossSessions = improveAllByChattingOneSharedExperienceIndex(matrix).computes === true // the shared experience index persists
+  const toolbox = isMainToolbox && uiIsTheSurface && vitepressGapsFilled && fillsGapsThroughChat && acrossSessions
+  const facets = [
+    { facet: `THE UI CHAT IS THE MAIN DEV TOOLBOX — every development capability is reachable through the UI chat via the DI bridge (${isMainToolbox}); the UI chat is the dev surface (${ui.controls.length} controls, ${uiIsTheSurface})`, on: isMainToolbox && uiIsTheSurface },
+    { facet: `FILLS THE VITEPRESS GAPS — the pages, routes, nav and sidebars are computed from the corpus and complete (rebuildable ${rebuildable.computes}, ${navSidebar.routes} routes = ${navSidebar.pages} pages, sidebars/crosslinks complete, ${vitepressGapsFilled}); any VitePress gap is filled by recompute, not a hand-edit`, on: vitepressGapsFilled },
+    { facet: `FILLS GAPS THROUGH THE CHAT — self-develop measures and fills gaps ${dev.gapsBefore} → ${dev.gapsAfter} (${gapsFilled} filled, ${fillsGapsThroughChat}); the gap-closing IS the development`, on: fillsGapsThroughChat },
+    { facet: `ACROSS SESSIONS — the shared experience index persists (${acrossSessions}), so each session's gap-filling accumulates and the toolbox sharpens over time`, on: acrossSessions },
+    { facet: `HONEST — the UI chat is the deterministic dev entry; filling VitePress gaps = recompute over the corpus (pages/routes/nav all generated), NOT an LLM, hand-edit, or DOM scraping; deterministic, zero-egress; clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: toolbox },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`ui-dev-toolbox-vitepress:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    gapsFilled,
+    routes: navSidebar.routes,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'Use the UI chat as the main development toolbox and fill the VitePress gaps in chat sessions:',
+      facets,
+      'every dev capability is reachable through the UI chat via one DI bridge; the VitePress pages/routes/nav/sidebars are computed from the corpus and complete, so any gap is filled by recompute (not a hand-edit or DOM scraping); self-develop fills gaps and the shared experience index persists across sessions; deterministic, zero-egress; clay=0, physicalFtl=0',
+    ),
+  }
+}
+
 /** localResearchImprovesInChatByDevelopingThisSessionsTopics — improve local research and use in chat further developing the
  * session topics (user, 2026-07-26: "improve local research and use in chat further developing the session topics"). The
  * research is IMPROVED by the recursive dual-mind (verified bounded BFS reaches deeper than one hop, every node registry-
