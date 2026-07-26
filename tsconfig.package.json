@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "packages/kernel",
+    "rootDir": "src/0",
+    "module": "esnext",
+    "target": "es2022",
+    "moduleResolution": "bundler",
+    "skipLibCheck": true,
+    "strict": false,
+    "types": []
+  },
+  "files": [
+    "src/0/index.ts"
+  ]
+}

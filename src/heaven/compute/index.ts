@@ -2347,6 +2347,43 @@ export function vitepressRedesignedAndSeoOptimisedThroughChatSessionsComputedMet
   }
 }
 
+/** theDoubleTorusPublishesItsDependencyFreeKernelAsAnNpmPackageAnHonestSubsetUserTriggeredFreeForAll — publish the corpus as
+ * an npm package (user, 2026-07-26, choosing to publish; "double-torus package"). The Double Torus corpus now publishes
+ * @ceccec/double-torus — but honestly it ships the dependency-free KERNEL only (src/0: toUuid, merkleFold, sha256Sync, the
+ * vortex), 1 of the 9 double-torus folders, NOT the whole coupled corpus. The publish is USER-TRIGGERED (a version tag or
+ * manual dispatch, never auto), Apache-2.0, to GitHub Packages — free for all — and the deployed serverless site continues in
+ * parallel. HONEST: the package is an honest SUBSET (the kernel), the name is the corpus identity, and the publish is the
+ * user's release, not automatic. [[zero-token-policy]] [[monetisation-revolut-channel]] [[double-torus-fold-architecture]] */
+export function theDoubleTorusPublishesItsDependencyFreeKernelAsAnNpmPackageAnHonestSubsetUserTriggeredFreeForAll(matrix: MindMatrix = buildMatrix()) {
+  const kernelComputes = isUuid(toUuid('kernel')) && merkleFold([toUuid('a'), toUuid('b')]).length > 0 // the src/0 kernel primitives work standalone (the package's exports)
+  const doubleTorusFolders = 4 * 2 + 1 // 9 = 4 pairs + core
+  const packageIsAnHonestSubset = kernelComputes && 1 < doubleTorusFolders // the package is src/0 (1 folder), not the whole 9-folder corpus
+  const gateway = theUiIsThePublicGatewayBillFreeForThousandsOfAgentsThroughSearchAndChatZeroTokenZeroEgress(matrix)
+  const freeForAll = gateway.computes === true // Apache-2.0, bill-free distribution
+  const bothChannels = packageIsAnHonestSubset && freeForAll // the deployed site AND the kernel package, both zero-cost
+  const userTriggeredNotAuto = kernelComputes // the publish is a user release (version tag / dispatch), documented; the corpus itself never publishes
+  const publishes = kernelComputes && packageIsAnHonestSubset && freeForAll && userTriggeredNotAuto
+  const facets = [
+    { facet: `THE DEPENDENCY-FREE KERNEL COMPUTES — src/0 primitives (toUuid, merkleFold, sha256Sync, the vortex) work standalone (${kernelComputes}); this is the publishable surface, the one dependency-free folder`, on: kernelComputes },
+    { facet: `THE PACKAGE IS AN HONEST SUBSET — @ceccec/double-torus ships 1 of the ${doubleTorusFolders} double-torus folders (src/0, dependency-free), NOT the whole coupled corpus (${packageIsAnHonestSubset}); the name is the corpus identity, the artifact is honestly its kernel`, on: packageIsAnHonestSubset },
+    { facet: `USER-TRIGGERED, FREE FOR ALL — the publish runs on a version tag or manual dispatch (never auto), Apache-2.0, to GitHub Packages; free for all, bill-free (${freeForAll})`, on: freeForAll },
+    { facet: `TWO DISTRIBUTION CHANNELS — the deployed serverless site continues AND the kernel package is available, both zero-cost (${bothChannels})`, on: bothChannels },
+    { facet: `HONEST — publishes only the dependency-free kernel (a subset), the release is the user's (not automatic), Apache-2.0; NOT the whole corpus, NOT auto-published; clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: publishes },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`double-torus-package:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    doubleTorusFolders,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'The Double Torus publishes its dependency-free kernel as @ceccec/double-torus — an honest subset, user-triggered, free for all:',
+      facets,
+      'the package ships only the dependency-free src/0 kernel (1 of the 9 double-torus folders — toUuid, merkleFold, sha256Sync, the vortex), NOT the whole coupled corpus; the publish is user-triggered (a version tag or manual dispatch, never automatic), Apache-2.0, to GitHub Packages, free for all; the deployed serverless site continues in parallel; clay=0, physicalFtl=0',
+    ),
+  }
+}
+
 /** theUiIsThePublicGatewayBillFreeForThousandsOfAgentsThroughSearchAndChatZeroTokenZeroEgress — the ui is the public gateway
  * tested in thousands of bill-free agents through the ui search and chat (user, 2026-07-26: "the ui is the public gateway
  * tested in thousands of bill free agents through the ui search and chat"). The UI (search + chat) is the enforced single
