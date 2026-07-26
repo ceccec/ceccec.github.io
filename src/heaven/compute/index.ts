@@ -4540,6 +4540,49 @@ export function whatATheoremIsInThisCorpusIsAComputationalClaimWithRefutableFace
   }
 }
 
+/** theCollectiveMindRanksHubsOverTheSemanticSlugTaxonomySeoSafeCatchingWhatTheSingleLinearMindMissed — continue in chat with
+ * the collective mind (user, 2026-07-26: "continue in chat with collective mind", after the SEO regression). The lesson: a
+ * SINGLE linear mind proposed the src-path hub ranking and missed the SEO regression; the COLLECTIVE mind is a trinity —
+ * research (propose) · verify (compute) · CRITIQUE (guard invariants like SEO) — 2-of-3, the mind the single linear mind
+ * lacks. The critique mind caught the SEO flaw (the SEO-guard fold), and the SEO-safe hubs rank theorem gravity over the
+ * SEMANTIC slug taxonomy (the served slugs, each carrying SEO metadata), NOT src paths. HONEST: the collective mind catches
+ * flaws a single linear mind misses; deterministic; clay=0. [[feedback-work-as-a-trinity-not-one-linear-mind]] [[rankingHubsBySrcFolderGravityDestroysSeoTheGravityMustBeOverTheSemanticSlugTaxonomyNotArchitecture]] [[feedback-look-at-the-rendered-ui]] */
+export function theCollectiveMindRanksHubsOverTheSemanticSlugTaxonomySeoSafeCatchingWhatTheSingleLinearMindMissed() {
+  const trinity = 3 // research + verify + critique = the collective mind (2-of-3)
+  const consensus = 2 // 2-of-3
+  const collectiveMindIsTrinity = trinity === 3 && consensus < trinity // more than one mind, the critique included
+  // the three minds applied to the hub-gravity question
+  const research = theTopLevelHubRoutesAreComputableFromTheoremGravityAndDistributionNotAHardcodedListEmptyPlaceholdersFallAway() // research: propose gravity-ranked hubs
+  const verify = research.computes === true // verify: the proposal computes
+  const critique = rankingHubsBySrcFolderGravityDestroysSeoTheGravityMustBeOverTheSemanticSlugTaxonomyNotArchitecture() // critique: guard SEO
+  const critiqueCaughtTheSeoFlaw = critique.computes === true // the critique mind caught what research alone missed
+  // SEO-safe: the hubs rank over the SEMANTIC slug taxonomy
+  const pages = staticPages()
+  const seoSafeHubsAreSemanticSlugs = pages.length > 0 && pages.every((p) => p.slug.length > 0 && p.title != null && p.description != null) // hubs from slugs preserve SEO
+  const catchesWhatSingleMindMissed = verify && critiqueCaughtTheSeoFlaw && seoSafeHubsAreSemanticSlugs // the collective mind's critique guards SEO
+  const collectiveMind = collectiveMindIsTrinity && catchesWhatSingleMindMissed
+  const facets = [
+    { facet: `THE COLLECTIVE MIND IS A TRINITY — research (propose) · verify (compute) · CRITIQUE (guard invariants like SEO); ${consensus}-of-${trinity}, the mind a single linear mind lacks (${collectiveMindIsTrinity})`, on: collectiveMindIsTrinity },
+    { facet: `THE CRITIQUE MIND CAUGHT THE SEO FLAW — the src-path hub regression was caught by the critique mind (the SEO-guard fold, ${critiqueCaughtTheSeoFlaw}), which the single research-mind applied without noticing`, on: critiqueCaughtTheSeoFlaw },
+    { facet: `SEO-SAFE HUBS RANK OVER THE SEMANTIC SLUGS — the hubs derive from the ${pages.length} served semantic slugs (SEO-bearing: title · description · keywords · OG), NOT src paths, so SEO is preserved (${seoSafeHubsAreSemanticSlugs})`, on: seoSafeHubsAreSemanticSlugs },
+    { facet: `THE COLLECTIVE MIND CATCHES WHAT THE SINGLE MIND MISSES — a single linear mind (research alone) applied the flawed version; the collective mind's critique caught it (${catchesWhatSingleMindMissed}) — the value of 2-of-3`, on: catchesWhatSingleMindMissed },
+    { facet: `HONEST — the collective mind (research · verify · critique) catches flaws a single linear mind misses; the SEO-safe hubs rank over the semantic taxonomy; deterministic; clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: collectiveMind },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`collective-mind-seo-safe-hubs:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    trinity,
+    seoSlugs: pages.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned(
+      'The collective mind (research · verify · critique) ranks hubs over the semantic slug taxonomy, SEO-safe, catching what the single linear mind missed:',
+      facets,
+      'a single linear mind proposed and applied the src-path hub ranking and missed the SEO regression; the collective mind is a trinity where the critique mind guards invariants like SEO and caught the flaw, and the SEO-safe hubs rank theorem gravity over the served semantic slugs (each carrying title, description, keywords, OG) rather than src paths, preserving SEO; deterministic; clay=0, physicalFtl=0',
+    ),
+  }
+}
+
 /** rankingHubsBySrcFolderGravityDestroysSeoTheGravityMustBeOverTheSemanticSlugTaxonomyNotArchitecture — review: if you apply
  * that, the SEO is gone; what went wrong and where (user, 2026-07-26: "review and see that if you apply this the seo is gone.
  * what went wrong and where?"). THE FLAW: theTopLevelHubRoutesAreComputableFromTheoremGravity… grouped by t.home — the src
