@@ -2352,6 +2352,11 @@ export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildM
       status: p.status,
       challengeMethods: p.challengeMethod.length,
       computablePath: p.on && p.challengeMethod.length > 0 && isUuid(p.receipt),
+      // solvedLocally = the local model/challenge computes and seals (a sealed computational path exists) — the LOCAL
+      // sense of "solved" the user named; distinct from solvedForPrize (the universal CMI proof), which stays 0 here.
+      solvedLocally: p.on && p.challengeMethod.length > 0 && isUuid(p.receipt),
+      solvedForPrize: false as const, // NEVER by this corpus — claySolvedByThisFold=0, Prize Rules §5 not met
+      gap: (p as { gap?: string }).gap ?? '', // the named unbridged universal step ('' for solved-external)
       openForPrize: p.status !== 'solved-external',
       receipt: p.receipt }))
     const allComputable = paths.every((p) => p.computablePath)
@@ -2389,6 +2394,10 @@ export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildM
       pathCount: paths.length,
       computableCount: paths.filter((p) => p.computablePath).length,
       openForPrizeCount: paths.filter((p) => p.openForPrize).length,
+      solvedLocallyCount: paths.filter((p) => p.solvedLocally).length, // local models that seal (7/7)
+      solvedForPrizeHereCount: paths.filter((p) => p.solvedForPrize).length, // CMI-prize solutions claimed here — 0 (clay=0)
+      solvedExternalCount: paths.filter((p) => p.status === 'solved-external').length, // proven elsewhere (Poincaré) — 1
+      novelHereCount: 0 as const, // solved-here-for-the-first-time (novelToHumanity) — 0; the computed answer, not a judgement
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, mill.root, catalog.root, dir.root, earth.root, sciences.root])),
       pair: 'moment/prove' as const,

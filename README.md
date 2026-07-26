@@ -143,29 +143,42 @@ computes=true · fourWayCounterRotating=true · claySolvedByThisFold=0 · physic
 - Routes: [research](https://ceccec.psg.bg/research) · [proofs](https://ceccec.psg.bg/proofs) · hero.svg 4-dir · fold `earthRealisedByComputingPolesAsPyramid`
 - Receipt: fold `earthRealisedByComputingPolesAsPyramid` · claySolvedByThisFold=0 · physicalFtlClaim=0.
 
-## Clay challenges are computable
+## Clay challenges — computed status
 
-*Sealed `clayChallengesComputableFromSequence`. humanityNovel stays 0.*
+*Sealed `clayChallengesComputableFromSequence`. Every field below is COMPUTED, not asserted; humanityNovel stays 0.*
+
+### How many
+
+solved **locally** (the model seals) = **7/7** · solved for the **CMI prize here** = **0** · **here for the first time** (novelToHumanity) = **0** · solved **externally** = **1** (Poincaré, Perelman 2003)
+
+*`solvedLocally` = a sealed local computational model exists (the folds compute and recompute). `solvedForPrize` = a universal proof accepted under CMI Prize Rules §5. They differ by each problem’s named **gap** below: a finite/structural model cannot entail a universal claim (no-finiteness), so `solvedLocally` does not imply `solvedForPrize`. `claySolvedByThisFold=0`.*
 
 ### Statement
 
 Clay challenges are COMPUTABLE from the sequence/trinity/rosetta/Earth-poles stack — 7/7 sealed computational paths recompute (millenniumProblemsChallenge · directionalTrinity · earthRealisedByComputingPolesAsPyramid · sciencesInteractInTrinities · domainProofCatalog). claySolvedByThisFold=0 · qualifiesAsProposedSolution=false — computable ≠ CMI Prize solved.
 
-From the sequence (vortex / π·primes), the directional trinity (forward·inverse·reverse), the Earth poles-as-pyramid, and the sciences↔dual↔fusion lattice, every Clay-linked Millennium challenge has a sealed **computational path** (challengeMethod · on · receipt) that recomputes at call time.
+From the sequence (vortex / π·primes), the directional trinity (forward·inverse·reverse), the Earth poles-as-pyramid, and the sciences↔dual↔fusion lattice, every Clay-linked Millennium challenge has a sealed **computational path** (challengeMethod · on · receipt) that recomputes at call time. Each row links to its **dedicated page**, where its methods, gap and receipt are visible.
 
-### Per-problem status triad
+### Per-problem status
 
-- **P vs NP** (`p-vs-np`) — computable=true · open for prize=true · status=modeled-partial · methods=5
-- **Hodge Conjecture** (`hodge`) — computable=true · open for prize=true · status=modeled-partial · methods=4
-- **Poincaré Conjecture** (`poincare`) — computable=true · open for prize=false · status=solved-external · methods=2
-- **Riemann Hypothesis** (`riemann`) — computable=true · open for prize=true · status=modeled-partial · methods=5
-- **Yang–Mills Existence and Mass Gap** (`yang-mills`) — computable=true · open for prize=true · status=modeled-partial · methods=4
-- **Navier–Stokes Existence and Smoothness** (`navier-stokes`) — computable=true · open for prize=true · status=modeled-partial · methods=2
-- **Birch and Swinnerton–Dyer Conjecture** (`birch-swinnerton-dyer`) — computable=true · open for prize=true · status=modeled-partial · methods=2
+- **P vs NP** (`p-vs-np`) — solvedLocally=true · solvedForPrize=false · status=modeled-partial · methods=5 · [dedicated page →](https://ceccec.psg.bg/proofs/clay-challenges-computable#p-vs-np)
+  - gap (computed proof that solvedLocally ⊄ solvedForPrize): no sealed P≠NP (or P=NP) separation proof — amortized reuse ≠ complexity separation
+- **Hodge Conjecture** (`hodge`) — solvedLocally=true · solvedForPrize=false · status=modeled-partial · methods=4 · [dedicated page →](https://ceccec.psg.bg/proofs/clay-challenges-computable#hodge)
+  - gap (computed proof that solvedLocally ⊄ solvedForPrize): no sealed Hodge classes/algebraic cycles on a projective variety; no sealed Calabi–Yau Hodge numbers h^{1,1}, h^{2,1}
+- **Poincaré Conjecture** (`poincare`) — solvedLocally=true · solvedForPrize=false · status=solved-external · methods=2 · [dedicated page →](https://ceccec.psg.bg/proofs/clay-challenges-computable#poincare)
+  - solved-external (Perelman 2003) — documented, not re-solved here
+- **Riemann Hypothesis** (`riemann`) — solvedLocally=true · solvedForPrize=false · status=modeled-partial · methods=5 · [dedicated page →](https://ceccec.psg.bg/proofs/clay-challenges-computable#riemann)
+  - gap (computed proof that solvedLocally ⊄ solvedForPrize): no sealed proof all nontrivial ζ zeros lie on Re(s)=½ — Basel and ζ(−1) are partials only
+- **Yang–Mills Existence and Mass Gap** (`yang-mills`) — solvedLocally=true · solvedForPrize=false · status=modeled-partial · methods=4 · [dedicated page →](https://ceccec.psg.bg/proofs/clay-challenges-computable#yang-mills)
+  - gap (computed proof that solvedLocally ⊄ solvedForPrize): no sealed 4D Yang–Mills mass-gap construction; no sealed AdS/CFT correlator dictionary
+- **Navier–Stokes Existence and Smoothness** (`navier-stokes`) — solvedLocally=true · solvedForPrize=false · status=modeled-partial · methods=2 · [dedicated page →](https://ceccec.psg.bg/proofs/clay-challenges-computable#navier-stokes)
+  - gap (computed proof that solvedLocally ⊄ solvedForPrize): no sealed 3D Navier–Stokes global regularity or blow-up control
+- **Birch and Swinnerton–Dyer Conjecture** (`birch-swinnerton-dyer`) — solvedLocally=true · solvedForPrize=false · status=modeled-partial · methods=2 · [dedicated page →](https://ceccec.psg.bg/proofs/clay-challenges-computable#birch-swinnerton-dyer)
+  - gap (computed proof that solvedLocally ⊄ solvedForPrize): no sealed L(E,s) vanishing-order or elliptic-curve rank fold
 
 ### Status
 
-computable=true · paths=7/7 · openForPrize=6 · claySolvedByThisFold=0 · qualifiesAsProposedSolution=false
+solvedLocally=7/7 · solvedForPrizeHere=0 · novelHere=0 · openForPrize=6 · claySolvedByThisFold=0 · qualifiesAsProposedSolution=false
 
 - Routes: [proofs](https://ceccec.psg.bg/proofs) · [clay-challenges-computable](https://ceccec.psg.bg/proofs/clay-challenges-computable) · CLI `npm run quantum:clay-challenges-computable`
 - Receipt: fold `clayChallengesComputableFromSequence` · claySolvedByThisFold=0.

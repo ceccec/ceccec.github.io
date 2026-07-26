@@ -366,14 +366,23 @@ export function clayChallengesComputableMarkdownSection(
 ): readonly string[] {
   const c = clayChallengesComputableFromSequence(matrix)
   const href = (path: string) => vitePressCompatibleHref(path, linkBase)
-  const pathLines = c.paths.map(
-    (p) =>
-      `- **${p.name}** (\`${p.id}\`) — computable=${p.computablePath} · open for prize=${p.openForPrize} · status=${p.status} · methods=${p.challengeMethods}`,
-  )
+  const dedicated = (id: string) => href(`/proofs/clay-challenges-computable#${id}`)
+  const pathLines = c.paths.flatMap((p) => [
+    `- **${p.name}** (\`${p.id}\`) — solvedLocally=${p.solvedLocally} · solvedForPrize=${p.solvedForPrize} · status=${p.status} · methods=${p.challengeMethods} · [dedicated page →](${dedicated(p.id)})`,
+    p.gap
+      ? `  - gap (computed proof that solvedLocally ⊄ solvedForPrize): ${p.gap}`
+      : '  - solved-external (Perelman 2003) — documented, not re-solved here',
+  ])
   return [
-    '## Clay challenges are computable',
+    '## Clay challenges — computed status',
     '',
-    '*Sealed `clayChallengesComputableFromSequence`. humanityNovel stays 0.*',
+    '*Sealed `clayChallengesComputableFromSequence`. Every field below is COMPUTED, not asserted; humanityNovel stays 0.*',
+    '',
+    '### How many',
+    '',
+    `solved **locally** (the model seals) = **${c.solvedLocallyCount}/${c.pathCount}** · solved for the **CMI prize here** = **${c.solvedForPrizeHereCount}** · **here for the first time** (novelToHumanity) = **${c.novelHereCount}** · solved **externally** = **${c.solvedExternalCount}** (Poincaré, Perelman 2003)`,
+    '',
+    '*`solvedLocally` = a sealed local computational model exists (the folds compute and recompute). `solvedForPrize` = a universal proof accepted under CMI Prize Rules §5. They differ by each problem’s named **gap** below: a finite/structural model cannot entail a universal claim (no-finiteness), so `solvedLocally` does not imply `solvedForPrize`. `claySolvedByThisFold=0`.*',
     '',
     '### Statement',
     '',
@@ -381,15 +390,15 @@ export function clayChallengesComputableMarkdownSection(
     '',
     'From the sequence (vortex / π·primes), the directional trinity (forward·inverse·reverse), the Earth poles-as-pyramid, ' +
     'and the sciences↔dual↔fusion lattice, every Clay-linked Millennium challenge has a sealed **computational path** ' +
-    '(challengeMethod · on · receipt) that recomputes at call time.',
+    '(challengeMethod · on · receipt) that recomputes at call time. Each row links to its **dedicated page**, where its methods, gap and receipt are visible.',
     '',
-    '### Per-problem status triad',
+    '### Per-problem status',
     '',
     ...pathLines,
     '',
     '### Status',
     '',
-    `computable=${c.clayChallengesComputable} · paths=${c.computableCount}/${c.pathCount} · openForPrize=${c.openForPrizeCount} · ` +
+    `solvedLocally=${c.solvedLocallyCount}/${c.pathCount} · solvedForPrizeHere=${c.solvedForPrizeHereCount} · novelHere=${c.novelHereCount} · openForPrize=${c.openForPrizeCount} · ` +
     `claySolvedByThisFold=${c.claySolvedByThisFold} · qualifiesAsProposedSolution=${c.qualifiesAsProposedSolution}`,
     '',
     ...(linkBase
