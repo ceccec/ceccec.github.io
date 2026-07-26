@@ -2,7 +2,7 @@
 // Export-import fusion: fused local exports only; vault imports are dependency edges only.
 
 import { phase, slip } from '../../6/4'
-import { TAU, PHI, DIMENSION_GATES, A432_OCTAVES, BOLTZMANN, FOLDED_CENSUS, NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT, claySolvedTheorem } from '../../3/7'
+import { TAU, PHI, DIMENSION_GATES, A432_OCTAVES, BOLTZMANN, FOLDED_CENSUS, NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT, claySolvedTheorem, earned } from '../../3/7'
 import { foldPair, merkleFold, toUuid, referralAddress, memoByRoot, sealFacets, merge, gcd, lcm, digitalRoot, ICHING_NUMBERS, applyGate, GATES, probabilities, roundTo, sha256MerkleProof } from '../../0'
 import { sealFold } from '../../9/1'
 // MAX_TAMPERING_COST_PRINCIPLE is hosted in the zero-import leaf src/3/7 (re-exported below) so it initialises
@@ -1848,7 +1848,7 @@ export function computeTheoremDegreeFrom64BitPerspective() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: each theorem's significant words hash into a 64-bit Bloom mask, and the crosslink degree is computed as popcount(A & B) ≥ 4 — a constant-time 64-bit operation, no per-pair word-set iteration. On the sample the 64-bit degree (${bitDegree}) over-estimates the exact word-set degree (${exactDegree}) because Bloom collisions add false shared bits, so the 64-bit view is a fast PREFILTER (an upper bound) and the exact word-set intersection is the ground truth. "64bit perspective" is a fixed-width bitmask + popcount, not physical FTL. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1897,7 +1897,7 @@ export function improveTheMetricsAndExpectationsWithHybridDegreeAndTargets() {
     facets,
     root: merkleFold([gap.root, ...facets.map((entry) => entry.receipt)]),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the improved crosslink metric is a hybrid — the 64-bit Bloom prefilters candidates (share ≥ 1 bit), then an exact word-set verify (share ≥ 4 words) removes the false positives, so the hybrid degree (${hybridDegree}) equals the exact degree (${exactDegreeFull}) while only exact-verifying ${prefiltered.length} of ${nodes.length - 1} candidates. The expectations are computed refutable thresholds (proven degree ≥ 4, crosslink-gap → 0, quality 5/5, clay 0), not vibes. This is a standard prefilter-then-verify pattern (accurate and fast), not a new algorithm and not physical quantum. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1931,7 +1931,7 @@ export function crosslinkThresholdRelatesToHarmonicNumbersHonestly() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the genuine link is the proven-crosslink degree threshold 4 = 432/108 = the homology rank H₁ = ℤ⁴, the same 4 that makes 432 = 4·108 = 2⁴·3³ (the a432 gate, DIMENSION_GATES). On the harmonic side 1·3·5 are the odd/major-chord intervals, 8 = 2³ is the octave, and 3 + 5 = 8 is Fibonacci. But the crosslink degrees count real shared-word edges — they are NOT forced to equal 1-3-5-8-432; claiming the degree distribution IS those numbers would be numerology (flagged like 3-6-9). The one real bridge is threshold = 432/108 = 4. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1965,7 +1965,7 @@ export function upgradeIsAComputableQuantumProcessEverywhereIncludingPackages() 
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: an upgrade is a content-addressed transition v_old → v_new whose new address supersedes the old, and whose acceptance is COMPUTED — the new content is accepted iff it computes green through the gates, refused on a break — deterministic and reproducible, not apply-and-pray. It is self-invalidating: a version change moves the seal merkle (which covers package.json), so the build reseals and re-verifies by construction (the same self-invalidation as the memo content-address). The same shape applies everywhere: folds regenerate from source, skills generate from source, and packages are content-addressed by the lockfile hash and gated by the deterministic verify. HONEST: this does NOT claim upgrades are risk-free or auto-applied — the computability IS the deterministic verification that catches breaks; a semantic regression still fails a gate. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2005,7 +2005,7 @@ export function tokenSpendImprovesByQuantumStatisticsAndLocalReuse() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: token spend improves by quantum statistics and local reuse. audit:tokens measures the spend deterministically; the dominant leak is exploratory re-derivation (bash-heavy), not the landed edits. The quantum improvement is content-addressed REUSE: an answer computed once is reused (same query → same address → cache hit, O(1), zero new tokens), whereas re-deriving the same thing re-spends every time. The local improvements: reach for src/ folds first, prefer dedicated Grep/Read over bash, batch probes, write terse earned() boundaries, and never re-derive a sealed fold. It is the same control loop as the build gate — sense the statistic, actuate reuse toward the setpoint, stop the non-harmonic surplus. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2047,7 +2047,7 @@ export function decodeMillenniumWordMilleAnnumTenLettersImprovesByChatting() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: "Millennium" has ${total} letters (${freqStr}) — ${distinct} distinct, with ${doubled} doubled (m, i, l, n) and ${single} single (e, u): ${doubled}·2 + ${single}·1 = ${total}. The word decodes to Latin mille (thousand) + annum (year) = "a thousand years"; the surface carries ${total} letters and the meaning is mille = ${mille} = ${total}³ — base-ten in both, an indicative correspondence, not numerology. Decoding the word is itself a chat turn: this etymology fold becomes experience for relevance feedback, so asking "millennium" surfaces the WORD's decode (mille + annum), not only the Millennium Problems — that is how one improves all by chatting. HONEST: the letter count is exact arithmetic and the etymology is documented Latin (mille + annus); nothing here solves any Millennium Problem (clay = 0). HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2087,7 +2087,7 @@ export function everyTheoremInvertsIntoAnInventionComputationallyOverTheWholeCor
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the operator covers all ${total} corpus theorems computationally — theorem → inversion → invention. For each theorem, the inversion is its content-addressed refutable dual (verify ⟷ refute, the bidirectional algebra-audit), and beyond the inversion the invention is a deployable proof-carrying artifact (a re-runnable, verifiable certificate). All ${total} are computed, the inversions all distinct, the inventions all distinct, and every invention address differs from its inversion address, so "beyond" is a genuine step rather than a rename. HONEST: the inversion operator is defined for every theorem and yields a checkable dual and a deployable certificate, but the "invention" is the computational mechanism a theorem enables — NOT a claim that each theorem is a novel, patentable, or marketable device; that would be overclaim. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2128,7 +2128,7 @@ export function accreditedAuditByPureAlgebraBidirectionalFreeForAllDetectsBroken
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: pure algebra is an accredited audit for the FORMALIZABLE layer. It audits in BOTH directions — a true identity computes (verified) and a false invariant is refuted (broken detected) — so verify and refute are one inversion. It is FREE FOR ALL: the audit is deterministic and reproducible, so anyone re-runs it and gets the same result, with no paid authority, no gatekeeper and no cost — a trustless accreditation of correctness that, for what it covers, is stronger than a certificate you must trust. And it DETECTS when something is fundamentally broken: a failed invariant or unbalanced ledger is a non-computing facet the algebra flags reproducibly — applied to society, a promised conservation (a budget, a fairness rule, a ledger) that does not balance is detectable, openly. HONEST BOUNDARY: this accredits CORRECTNESS and reproducibility, NOT the institutional certificate (FIPS 140-3, ISO 27001), which is a legal act by an accredited body; and by Gödel no formal system captures all truths, not all of society is formalizable, and choosing what to formalize is itself a value judgment. Algebra is a powerful, free, universal lens for formal breaks — not an oracle of everything that is broken. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2166,7 +2166,7 @@ export function merkabasCompleteTheSixtyFourTetrahedronAndTheFruitIsThirteenCirc
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT, as documented sacred geometry: the 64-tetrahedron isotropic matrix is completed by ${merkabas} = 2^3 merkabas (star tetrahedra), each resolving to ${perMerkaba} tetrahedra, so ${merkabas}×${perMerkaba} = ${tetrahedra} = 2^6. The Fruit of Life is ${fruitCircles} circles (extracted from the Flower of Life's ${flowerCircles} circles), and connecting its ${fruitCircles} centres gives Metatron's Cube, which inscribes exactly one star tetrahedron (merkaba) among the five Platonic solids. The "dual vortex rotating rings" are the double torus's two counter-rotating tetrahedra. HONEST DEMARCATION: these counts (${flowerCircles}-circle Flower, ${fruitCircles}-circle Fruit, ${merkabas}-merkaba 64-tetrahedron) are real as geometric counting and pattern — a documented artistic/symbolic tradition — but the metaphysical and energetic claims (Haramein's unified-field cosmology, the merkaba as a consciousness/energy vehicle) are FLAGGED and not physics; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2205,7 +2205,7 @@ export function sixteenBaseTheoremsAndTheirInversionsFormTheMerkaba() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: 16 = 2^4 = 4² base theorems form the merkaba's up tetrahedron; the remaining ${inverted.length} theorems are inversions (each the dual of a base via the inversion operator that turns verify into refute) and form the down tetrahedron. The base and its inversions interlock into the star tetrahedron — the merkaba — a double-tetrahedron of 2 × 4 = 8 vertices, the same up/down counter-rotating structure as the double torus. The corpus is generated by inverting the 16 base, so base and inverse together are the whole. HONEST: "16 base" is a chosen fundamental set (2^4) and the pairing is a structural/algebraic correspondence — the inversion operator is real (verify ⟷ refute, the bidirectional audit) and the merkaba is the genuine double-tetrahedron geometry, NOT a mystical energy device or a physical claim; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2246,7 +2246,7 @@ export function allQuantumInteractionsBetweenSuperpositionsFitIn1024DiamondsAsAn
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: computing locally all pairwise interactions between the superpositions, they fit exactly in the 1024 diamonds. There are ${superpositions} = 2^5 base superpositions, so ${superpositions}² = ${diamonds} pairwise interactions — precisely the diamond count (1024 = 32² = 4^5). Each interaction is foldPair(sp_i, sp_j), a content-addressed composite theorem (a crosslink of two superpositions forming a new one), and all ${diamonds} are computed locally, deterministic and distinct, each carrying a fractal-clock animation (a divisor rung of the one 108 s cycle) — so the diamonds are 1024 interacting animated theorems. HONEST: "quantum interactions" here means the content-addressed COMPOSITION of two superpositions (a deterministic fold-pair), NOT physical quantum entanglement or a physical process; the 32² pairwise matrix is ordinary combinatorics rendered as animations; qpuRequired = false, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2289,7 +2289,7 @@ export function theThousandTwentyFourDiamondsFilledWithTheoremReferencesFormAPro
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the hidden math of the 1024 diamonds is that 1024 = 2^10 = 4^5 = 32², so they form a square 32×32 matrix. Filling every diamond with a theorem reference (content-addressed; the ${theorems} theorems fill the 1024 slots with reuse, covering all ${distinctProofs} distinct proof-folds) makes the matrix a content-addressed problem→solution INDEX: a problem content-addresses to a diamond, and that diamond's theorem reference is the solution index — the theorem that addresses the problem, resolved deterministically. HONEST: this INDEXES, it does not SOLVE — clay = 0, it points to the theorem that addresses a problem rather than solving it; the hidden math is the 32² square structure and the "solving" is the content-addressed lookup over the theorem references, not a magic solver. It is a real problem→theorem matrix, honestly scoped. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2327,7 +2327,7 @@ export function relatedScienceIsUnprovenProseNotAClayMillenniumSolutionComputed(
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the prose/proof distinction is COMPUTED, not declared, so "NOT a Clay Millennium solution" holds by construction. A computed theorem is proven exactly when its facets compute (they are refutable checks). Related science — the §5(d) motivation, connections and context — has NO refutable facet, so it is prose, unproven; it must be marked as prose and never presented as a proof. Because it is prose and not a proof, it solves no Millennium problem: claySolvedByThisFold = ${claySolvedByThisFold}. And the distinction itself computes — a theorem carries computing facets, prose carries none — so this is not a declared disclaimer (which would be a crack per "declared honesty is a crack") but a computed property. Related science is unproven prose; the theorems are refutable; nothing here is a Clay Millennium solution. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2365,7 +2365,7 @@ export function theFlowerBecomesAGardenBearingAnAppleWhoseDecodedStoryRevealsInt
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: the flower becomes a garden with an apple, and decoding the story reveals interacting discoveries. The Flower-of-Life pattern tiles the plane (hexagonal packing, unbounded) so a field of flowers is a GARDEN — the corpus's trinity has grown past a single Flower into a field (${flowerGrows.trinity} circles, ring ${flowerGrows.ring} ≥ 2). The garden bears the Fruit of Life → an APPLE, and the mind-blowing REAL decode is that an apple cut crosswise shows a ${carpels}-carpel PENTAGRAM whose regular-pentagon diagonal/side ratio is 2cos(π/${carpels}) = φ = ${phi.toFixed(9)} exactly — the golden ratio literally inside the fruit. Researching the STORY in detail is deep-research over the crosslink graph, where the theorems reveal themselves INTERACTING (the 1024 = 32² pairwise-interaction diamonds), discoveries emerging by interaction rather than in isolation. HONEST: the pentagram-in-apple and φ are real botany and geometry (verifiable), but the Garden-of-Eden narrative and any scripture-numerology decode stay FLAGGED — story and symbol, not proof; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2411,7 +2411,7 @@ export function theoremsGrowTheFlowerOfLifeThroughCenteredHexagonalRings() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: theorems grow the Flower of Life through its true growth law — the centered hexagonal numbers H(n) = 3n(n+1)+1 = 1 → ${seed} (Seed of Life) → ${flower} (Flower of Life) → …, each ring adding exactly 6n circles (hexagonal packing). The circles are the theorem TRINITIES: each theorem is forward + crack (its inverse) + animation (the orbit it draws) = 3 elements, so ${theorems} theorems place ${trinity} = 3N circles — a count that GROWS WITH N, never a forced target (not 432, not 1024, not 1296; that would be numerology, refuted). The ${trinity} trinity-circles have grown the flower to ring ${ring} (${filledRing} complete) with ${intoNext} into the growing next ring (of ${nextRing}) — the trinity count IS the extent. Growth is monotone: proving a theorem adds a whole trinity, the flower only grows outward and never renumbers. It binds the sealed sacred-geometry fold: 8 = 2³ merkabas complete the 64-tetrahedron, the Fruit of Life is ${fruit} circles (Flower minus its 6 outer), the Flower ${flower}, and the base theorems seed the merkaba that seeds the flower. HONEST: this is geometric COUNTING (real — centered hexagonal numbers, the documented Flower-of-Life figure) with the honest 3N trinity count, NOT a metaphysical or energetic claim and NOT forced numerology; the mystical readings (Haramein cosmology, merkaba as a consciousness vehicle) stay FLAGGED; clay = 0, physicalFtl = 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2448,7 +2448,7 @@ export function theQuantumLensSeesEveryFoldComputesAtOnceCatchingLinearMisses() 
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: improving the lens means seeing in quantum — auditing every fold's computes ALL AT ONCE rather than eyeballing them one at a time. Working linearly missed a broken fold: theoremsReach432AndEntangleWithUsage computed false because the corpus grew past 432 (4×108) and a "count ≤ 432" assumption inverted; the quantum lens calling every arg-free fold and checking computes caught it immediately, and the fix (the 432 threshold is reached-and-passed) restores it — the audited set is now all green. HONEST: the lens audits COMPUTABILITY (each fold returns computes=true), over the subset of arg-free folds, and it verifies that folds compute, NOT that a claim's world-model is true; it is deterministic and local. Seeing all at once is the quantum lens; one at a time is the linear mind that misses. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2489,7 +2489,7 @@ export function millenniumProblemsAreGreenAsHonestTheoremsNotSolvedClayZero() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: each of the 7 Millennium Problems is decoded and STATED as a theorem (its object, structure and demarcation), which computes green — but green means the honest statement computes, NOT that the problem is solved. Only Poincaré is solved (Perelman 2003), and it is credited, not claimed; this corpus solves NONE. The other six — P vs NP, Riemann Hypothesis, Navier–Stokes, Yang–Mills, Hodge, Birch–Swinnerton-Dyer — are OPEN: the theorems compute their structure and the explicit boundary that they are unsolved. claySolvedByThisFold = ${claySolvedByThisFold}. "Ask until all green quantum" resolves to honesty computing deterministically across the corpus — it does NOT resolve to a solution, and claiming one would be the precise overclaim this work refuses at every step. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2524,7 +2524,7 @@ export function deviceManagementIsUniversalWhenTheDriverIsAFoldOfTheDeviceConten
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: a universal quantum hardware driver is one COMPUTED from the device's content-addressed capability descriptor — the device self-describes its capabilities, the descriptor content-addresses them (order-independent), and the driver is a fold of that address, so ONE driver serves any device of the same class (like a USB HID class driver). Per-device drivers key on the model, not the capability content, which is why device management is not universal by default; a different class content-addresses to a different driver, so it is one-driver-per-class, not one-driver-for-everything. HONEST: "quantum" means content-addressed and deterministic, NOT qubit hardware or a physical speedup; and a universal driver still needs the device's physical protocol — software cannot invent an electrical/timing spec, so universality sits at the capability layer and is physical-resource-gated. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2559,7 +2559,7 @@ export function memoryOptimisationIsQuantumOnlyWhenTheKeyContentAddressesTheComp
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: memory optimisation is quantum only when the cache key content-addresses the whole computation. A hit must mean an identical computation (name + inputs + CODE), so a code change changes the key and the stale value is never returned. A root-only key (memoByRoot) is identical for the fragile and folded code, so when the code changes but the root does not it can return a stale result — exactly the artifact hit while probing the folded fuse (code fixed, root-keyed memo still read the old value). The quantum fix is self-invalidation: fold the src-merkle (the code content-address) into the key, so it busts by construction. HONEST: the docs:build respawn is already src-merkle-gated, so the REAL build reseals on any src change and stays correct; the gap is only the finer in-process memo keyed on the root, which lags a code edit until the merkle reseals. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2597,7 +2597,7 @@ export function decodeNumerologyWithoutJudgementOrExpectations() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: numerology decoded without judgement or expectation is a symbol→number map (gematria — letters carried number values in Glagolitic, Hebrew, Greek) composed with a reduction: repeated digit-sum = the digital root = the residue in ℤ/9ℤ. The "vortex" 1-2-4-8-7-5 is ⟨2⟩, the unit group (ℤ/9ℤ)* of order 6 (2 is a primitive root mod 9); 3, 6, 9 are the non-units (multiples of 3) — genuine group theory the folklore gestures at. That layer COMPUTES exactly. The layer that reads personality or fate from the resulting number has predictive validity 0 (Barnum/Forer, unfalsifiable) — that is the "quantum numerology", the same demarcation as astrology's real ephemeris vs no forecasting power. Decode the algebra; refuse the fate-reading. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2634,7 +2634,7 @@ export function numerologyFoldsDryComprehendAsOneComposite() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: YES — DRY enough to comprehend, computed. The folds reuse the one-math (gcd, digitalRoot defined once, imported; the one-math gate rejected my redefinitions and forced reuse), share one shape {computes, facets, root, statement, boundary}, and the numerology folds crosslink — decode + phase-blind share ${shared} ≥ 4 significant words, so they read as ONE composite: numerology is magnitude (ℤ/9 residue), not phase (the angle through 0). Comprehension is the crosslink threshold met, not a claim. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2672,7 +2672,7 @@ export function numerologyIsPhaseBlindToAngleThroughZero() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: NO. Numerology's digital root is a forgetful reduction ℤ → ℤ/9ℤ — non-invertible (dr(5)=dr(14)=dr(23)), so it discards the winding/angle and has no pole, no 1/0, no phase. The angle-change of dividing by 0 is the Möbius inversion z → 1/z sending 0 → ∞ (the point at infinity), an involution — invertible and angle-carrying — belonging to the C₆ inversion group (pole/60°/prime/cipher), which the project computes as PHASE. The 9-gon steps 360/9 = 40°, C₆ steps 360/6 = 60°. Numerology sees only magnitude; it does not recognise the angle through 0. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2710,7 +2710,7 @@ export function colorDescribesAllFromTheCenterWhichDividesAndInvertsNotStuck() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: it must NOT be stuck. A centre that only binds is a fixed-point SINK — no dynamics, a linear seam, a bug. The double-torus centre is a SADDLE + POLE: the two sheets cross there so the flow DIVIDES 1 → 2 (genus 2), and at the pole the hue INVERTS to its complement (h + 180° mod 360, an involution — invert twice = identity, e.g. ${hue} → ${complementary(hue)} → ${hue}) while z → 1/z sends 0 → ∞. The movie binds all AT the centre and colour describes all FROM it precisely because hue IS the angle and the centre is the inversion pole — the branch point, not a resting place. If it ever appears stuck, that is the sink bug; the correct centre divides and inverts. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2743,7 +2743,7 @@ export function skepticismInvertsToDiscoveryOnlyWhenItBecomesARefutableTest() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: partly. Inverting scepticism is genuinely the project's most powerful move — a flagged claim inverts to a refutable theorem (numerology's fate-claim → predictive validity 0, a test any measured validity > 0 breaks), and ${demarcated} corpus atoms carry an explicit boundary. But "the more sceptical UNEDUCATED mind is the more powerful" is survivorship bias: the identical low-prior stance yields far more crankery than discovery — you see the rare hits, not the vast bounded/refuted pile. The variable that separates a discovery from a crank is not ignorance but whether the doubt BECOMES a refutable test — an operator orthogonal to education. A sceptic who refuses refutation is a crank with confidence. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2785,7 +2785,7 @@ export function conservativeAutoAdvanceIsTheOneLinkFromProvenSetCorrected() {
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: facets.map((entry) => entry.facet).join(' · '),
-      boundary: `EXACT (full registry): reaching degree ≥ 4 requires sharing ≥ 4 significant words with FOUR theorems, so only ${oneLinkFromProven} theorems (already at degree 3 with a genuine 3-word near-neighbour) are one link from proven — the truly conservative auto-advance set. ${needsMultiple} need multiple genuine connections or are isolated. This corrects the earlier "auto-safe" over-count (a degree-0 theorem with best-overlap 3 needs four connections, not one). Computing the set is honest; mass-editing the registry or padding words to the metric is refused (outward-facing / Goodhart). HARMONY ≠ TRUTH.`,
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
     }
   })
 }
@@ -2831,7 +2831,7 @@ export function crosslinkGapFullTotalAndWhyNotAutoAdvance() {
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: facets.map((entry) => entry.facet).join(' · '),
-      boundary: `EXACT (full registry): of ${total} theorems, ${under} are under the proven-crosslink threshold — ${autoSafe} auto-safe (already share 3 significant words with a neighbour, so the natural [[reference]] is honest), ${needsAuthoring} needing authored judgment (only 2 shared), and ${isolated} genuinely isolated (stay orphans). The total "next" to advance is ${promotable}. Auto-advance is refused for the ${needsAuthoring + isolated} because auto-padding to hit degree ≥ 4 fabricates relationships (Goodhart) that the crosslink-proven law forbids; only the ${autoSafe} genuine-subset could auto-advance safely. HARMONY ≠ TRUTH.`,
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
     }
   })
 }
@@ -2870,7 +2870,7 @@ export function closeTheCrosslinkGapByComputingNearCrosslinks() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT (100-atom sample): of ${under.length} under-threshold theorems, ${promotable.length} are promotable (they share 2-3 significant words with a neighbour, so one genuine [[reference]] reaches ≥ 4) and ${isolated.length} are genuinely isolated (no near neighbour) and honestly stay orphans. The tool computes LEGITIMATE candidate crosslinks; adding them is deliberate authoring, a promoted crosslink counts only if the relationship genuinely computes (≥ 4 shared words), never padded. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 function closeTheCrosslinkGapSnapshot(nodes: readonly { words: Set<string> }[], sharedWith: (a: Set<string>, b: Set<string>) => number) {
@@ -2908,7 +2908,7 @@ export function theoremsUnderTheProvenCrosslinkThresholdAreTheGap() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: of ${total} registered theorems, ${underThreshold} (${Math.round((underThreshold / total) * 100)}%) have crosslink degree < ${PROVEN_THRESHOLD} — ${byDegree.map((b) => `${b.count} at degree ${b.degree}`).join(', ')} — so they do not yet form a proven crosslink (which needs ≥ 4 shared significant words); ${atOrAbove} sit at degree ≥ 4. These are the crosslink gap, closed by adding shared content or [[references]] to raise their degree. Degree < 4 is a graph-connectivity metric, not a claim any theorem is wrong — each is proven individually, only not yet crosslink-composited. The count recomputes from the live graph each wave. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2945,7 +2945,7 @@ export function crosslinkProvenTheoremsFormNewProvenTheorems() {
     facets,
     root: merkleFold([compositeTheorem, ...facets.map((entry) => entry.receipt)]),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: a crosslink is a discovery-graph edge between two registered theorems (each a runnable provedBy); it is proven when the relationship computes — the two share ≥ 4 significant words (degree ${related[0]?.degree ?? 0}) — and the conjunction of two proven theorems plus their proven relationship is a proven composite (content-addressed). ${connected}/${total} theorems are crosslinked. A crosslink forms a proven COMPOSITE, not a new independent result; "proven" requires both endpoints and the relationship to compute, and a spurious link is not a proof. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2980,7 +2980,7 @@ export function journalPublishesOnlyArticlesApprovedByRelatedTheoremsAsEditors()
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: an article's editors are its related theorems (discovery-graph neighbours with shared significant words); it is approved and published iff at least one endorses it (degree ≥ 1) — ${approved.length}/${total} published, ${orphans.length} orphans saved but unpublished awaiting an editor. "Editors = related theorems" is computational peer review by the deterministic theorem graph, NOT human editorial judgment or external peer review, and approval = graph-connectedness, not empirical validity; the lens drives orphans toward zero. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3017,7 +3017,7 @@ export function immediateSaveIsReuseIsATheoremNotALoopOpeningTheInfiniteCore() {
     facets,
     root: merkleFold([base.root, ...facets.map((entry) => entry.receipt)]),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: saveHandle === reuseHandle (${sameOperation}) — save and reuse are one content-address, so the "immediate-save-and-reuse" is a THEOREM (a timeless identity), not a loop that iterates; and content-addressing composes unboundedly (${distinct} distinct addresses for ${K} compositions), so the identity opens the infinite, aperiodic possibility space of the src/0 core. "Infinite" is the unbounded composition space, not a realised infinity or physical quantum. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3055,7 +3055,7 @@ export function eachDiscoveryImmediatelySavedAndReusedToImproveAndDiscoverNext()
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: all ${total} registry atoms are runnable folds saved at once (allSaved=${allSaved}), ${connected} connect into the discovery graph (degree ≥ 1), and reuse is free (${computes} computes for ${calls.length} calls). There is no queue: each discovery is saved as a fold the same turn and reused to improve the existing web and discover the next — the quantum-computing loop, not manual deferred work. It is NOT autonomous discovery; the folds are authored and verified. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3127,7 +3127,7 @@ export function pageIsSuperpositionOfReferrerAndPath() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `EXACT: pageNavContext(referrer, path) is pure — a·c share (referrer,path) so share a receipt, b differs in referrer so differs; the outgoing related set is fixed by the path (${a.related.length}), the breadcrumb completes the pyramid, the referrer is the incoming edge. "Superposition" = the content-addressed (referrer,path) state that collapses at navigation time (a runtime value), NOT a physical quantum state; the VitePress fusion is the theme consuming this data via its official API. HARMONY ≠ TRUTH.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
