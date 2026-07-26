@@ -760,6 +760,12 @@ export function readme(matrix: MindMatrix = buildMatrix()) {
     { facet: 'harmonic counts proven by math — every displayed ratio recomputes with explicit arithmetic at call time (harmonicCountsProvenByMath)', on: math.proven && math.count > 0 },
     { facet: 'every-bit efficiency proven by math — tokens=0, memo O(1) recomputed at call time (everyBitMostEfficientAlgorithmProvenByMath)', on: efficiency.proven && efficiency.count > 0 },
     { facet: 'SEO is cost-free advertisement — the README is the indexed root monograph and the home is its served twin: complete, canonically referenced, computed at zero token cost, so organic reach costs nothing', on: sourceLinks === lens.visibleCount && md.length > 0 },
+    // GATES the markdown-attr-brace crash CLASS, not just the one fix: VitePress markdown reads a trailing {…}
+    // as an attribute block, so a computed line ending in a math brace — a Hodge number h^{2,1}, a set {1,2,3} —
+    // emits <li 2,1=""> and Vue hydration throws InvalidCharacterError. mdSafeText escapes { } in raw computed
+    // prose; this facet REFUTES any regression — no generated line may end in a literal `}` (escaped braces end
+    // in `;`, code spans in `` ` ``, so only an unescaped trailing brace flips it false and fails the build).
+    { facet: 'no trailing attr-brace — no generated markdown line ends in a literal } (else VitePress reads the trailing {…} as an attribute and Vue hydration crashes: InvalidCharacterError on <li 2,1="">)', on: [md, home].every((doc) => doc.split('\n').every((line) => !line.replace(/\s+$/, '').endsWith('}'))) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`readme:${entry.facet}:${entry.on}`) }))
   return {
     complete: facets.every((entry) => entry.on),
