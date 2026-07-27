@@ -6781,9 +6781,12 @@ export function allChatCapabilitiesFusedAndAuditedByStandards(matrix: MindMatrix
     { name: 'perplexity-lane', out: () => chatThroughPerplexity(prompt, null, undefined, matrix).request.body },
     { name: 'freeai-lane', out: () => chatThroughFreeAi(prompt, null, undefined, matrix).request.body },
     { name: 'collective-ai-mind', out: () => collectiveAiMind(prompt, {}, matrix).collective.address },
+    // The browser quantum computer: the classical state-vector simulator runs canonical circuits deterministically (Born
+    // rule) — content-addressed, zero-token, on-device; reachable through the chat like any other capability.
+    { name: 'quantum-computer', out: () => quantumCircuitSimulatorInChat(matrix).root },
     { name: 'researcher-waves', out: () => wavesOfLocalResearchersChatAboutAlgebra(matrix).computes },
   ]
-  const laneNames = ['answer', 'recall', 'navigate', 'self-develop', 'developed-answer', 'mathoverflow-lane', 'stackoverflow-lane', 'perplexity-lane', 'freeai-lane', 'collective-ai-mind', 'researcher-waves']
+  const laneNames = ['answer', 'recall', 'navigate', 'self-develop', 'developed-answer', 'mathoverflow-lane', 'stackoverflow-lane', 'perplexity-lane', 'freeai-lane', 'collective-ai-mind', 'quantum-computer', 'researcher-waves']
   const fusesAll = laneNames.every((name) => capabilities.some((cap) => cap.name === name)) // refutable: drop a capability ⟹ fails (no bare count)
   // AUDIT each against the standards: DETERMINISM (same in → same out, twice) is the zero-token / no-egress / full-security proxy
   const audited = capabilities.map((cap) => {
@@ -6796,7 +6799,7 @@ export function allChatCapabilitiesFusedAndAuditedByStandards(matrix: MindMatrix
   const leadsOn = nav.related.length > 0 // navigate leads on — related discoveries
   const dev = chatDevelopsItselfByChattingWithItself(matrix)
   const facets = [
-    { facet: `FULL IN-CHAT SUPPORT — the app fuses ${audited.length} capabilities into one chat surface: answer, recall, navigate (referrer superposition + ${nav.related.length} related discoveries), self-develop, developed-answer, the live lanes (mathoverflow + stackoverflow no-key query URLs, perplexity keyed + pollinations no-key AI POST envelopes — all fetched at the edge, opt-in), collective-ai-mind (2-of-N consensus fusing the untrusted models with the corpus anchor), researcher-waves (the trinity dialogue) — everything the corpus can do, reachable through the chat`, on: fusesAll && leadsOn },
+    { facet: `FULL IN-CHAT SUPPORT — the app fuses ${audited.length} capabilities into one chat surface: answer, recall, navigate (referrer superposition + ${nav.related.length} related discoveries), self-develop, developed-answer, the live lanes (mathoverflow + stackoverflow no-key query URLs, perplexity keyed + pollinations no-key AI POST envelopes — all fetched at the edge, opt-in), collective-ai-mind (2-of-N consensus fusing the untrusted models with the corpus anchor), quantum-computer (the classical state-vector simulator, run on-device by the Born rule), researcher-waves (the trinity dialogue) — everything the corpus can do, reachable through the chat`, on: fusesAll && leadsOn },
     { facet: `AUDITED DETERMINISTIC — every capability returns the SAME output for the same input across runs (${allDeterministic}); determinism is the standard AND the full-security proxy: a pure function over the sealed model cannot leak, because no external state changes its output`, on: allDeterministic },
     { facet: `ZERO-TOKEN, NO EGRESS — the chat runs over the corpus model content-addressed from src statements (${modelFromSrc}); no LLM call, no network — full security by construction: nothing to send, nothing sent`, on: allDeterministic && modelFromSrc },
     { facet: `USING THE CHAT IMPROVES THE CHAT — navigate leads to ${nav.related.length} related discoveries and self-develop drops the gaps ${dev.gapsBefore} → ${dev.gapsAfter}; the chat's own use measures and fills its gaps`, on: leadsOn && dev.develops },
