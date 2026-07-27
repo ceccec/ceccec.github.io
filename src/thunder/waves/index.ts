@@ -1008,9 +1008,11 @@ export function theoremNavigation(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('theoremNavigation', matrix, () => {
     const registry = theoremAtoms(matrix)
     const classOf = new Map(CANDIDATE_THEOREMS.map((entry) => [entry.theorem, entry.class]))
-    const byWave = new Map<string, { theorem: string; proof: string; proofClass: string; home: string }[]>()
+    const byWave = new Map<string, { theorem: string; proof: string; proofClass: string; home: string; algebraicStatement?: string }[]>()
     for (const entry of registry.theorems) {
-      const atom = { theorem: entry.theorem, proof: entry.states, proofClass: classOf.get(entry.theorem) ?? 'finite-complete', home: entry.home }
+      // Thread the atom's own algebraic identity through (when a THEOREM_ATOM_SEED row carries one) so the
+      // theorem page renders it in the Theorem line, not just the plain title — the same field the Clay rows use.
+      const atom = { theorem: entry.theorem, proof: entry.states, proofClass: classOf.get(entry.theorem) ?? 'finite-complete', home: entry.home, algebraicStatement: (entry as { algebraicStatement?: string }).algebraicStatement }
       byWave.set(entry.provedBy, [...(byWave.get(entry.provedBy) ?? []), atom])
     }
     const waves = [...byWave.entries()].map(([provedBy, atoms]) => ({ provedBy, count: atoms.length, atoms }))
