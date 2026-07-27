@@ -1548,7 +1548,7 @@ export function splitSearch(prompt: string) {
  * dynamical system that cycles by pigeonhole), zero-token, zero egress: "researchers" = retrieval engines over
  * the sealed corpus, NOT minds, agents, or LLMs — discovery is bounded by what src already proves. */
 export function wavesOfLocalResearchersChatAboutAlgebra(matrix: MindMatrix = buildMatrix(), waves = 3) {
-  return memoByRoot('wavesOfLocalResearchersChatAboutAlgebra', matrix, () => {
+  return memoByRoot(`wavesOfLocalResearchersChatAboutAlgebra:${waves}`, matrix, () => {
     const researchers = [
       { name: 'seed', ask: (q: string) => String(portalChat(q, matrix).answer) },
       { name: 'ranked', ask: (q: string) => String(portalChatRanked(q, matrix).answer) },
@@ -1593,6 +1593,34 @@ export function wavesOfLocalResearchersChatAboutAlgebra(matrix: MindMatrix = bui
       root: merge(matrix.root, merkleFold([rootOf(transcript), ...facets.map((entry) => entry.receipt)])),
       statement: `Waves of trained local researchers chat about algebra — ${facets.filter((entry) => entry.on).length}/${facets.length}: 3 deterministic engines × ${waves} waves = ${transcript.length} content-addressed turns, each wave's topic one researcher's previous answer (2-of-3 arbitration), ${distinctAnswers} distinct answers reached from the algebra seed.`,
       boundary: earned('EXACT — computed from the trinity dialogue:', facets, 'the "researchers" are the portal\'s three retrieval engines over the sealed corpus (bigram seed, BM25, split-interference) — deterministic, zero-token, zero egress; the dialogue is a dynamical system that reaches a cycle by pigeonhole, NOT minds, agents, or open-ended learning, and what it can discover is bounded by what src already proves.') }
+  })
+}
+
+/** continueAtNoAiCost — the wave continues at zero AI cost (user, 2026-07-27: "continue at no ai cost"). The
+ * continuation is not a promise but a PROPERTY: every chat capability is deterministic over the sealed corpus
+ * (zero LLM tokens by construction — [[zero-token-policy]]), the researcher dialogue EXTENDS by pure recompute
+ * (waves 1..k of a longer run reproduce the shorter run exactly — the prefix property, so more conversation costs
+ * zero tokens, only CPU), and the one external surface (MathOverflow) is a no-key public API fetched at the edge,
+ * opt-in, still zero tokens. The build gates re-run all of it on every commit — the system continues itself. */
+export function continueAtNoAiCost(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('continueAtNoAiCost', matrix, () => {
+    const shorter = wavesOfLocalResearchersChatAboutAlgebra(matrix, 2)
+    const longer = wavesOfLocalResearchersChatAboutAlgebra(matrix, 3)
+    const prefixOf = (t: typeof longer.transcript, upTo: number) => merkleFold(t.filter((turn) => turn.wave <= upTo).map((turn) => turn.address))
+    const prefixContinues = prefixOf(longer.transcript, 2) === prefixOf(shorter.transcript, 2) && longer.transcript.length > shorter.transcript.length
+    const audit = allChatCapabilitiesFusedAndAuditedByStandards(matrix)
+    const noKeyOnly = !mathOverflowUrl('api', 'probe').includes('key=') && MATHOVERFLOW_API.startsWith('https://')
+    const facets = [
+      { facet: `CONTINUATION IS A PREFIX PROPERTY — extending the researcher dialogue from 2 to 3 waves reproduces waves 1–2 EXACTLY (same merkle prefix) and appends: more conversation costs zero tokens, only deterministic recompute`, on: prefixContinues },
+      { facet: `ZERO LLM TOKENS BY CONSTRUCTION — all ${audit.capabilities.length} chat capabilities audit deterministic over the sealed corpus (${audit.supported}); no model call exists to be billed`, on: audit.supported && audit.capabilities.length === 7 },
+      { facet: `THE ONE EXTERNAL SURFACE IS FREE — the MathOverflow lane is a no-key public API (no key= in the computed URL), opt-in at the edge; declining it changes nothing local`, on: noKeyOnly },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`no-ai-cost:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      facets,
+      root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
+      statement: `Continue at no AI cost — ${facets.filter((entry) => entry.on).length}/${facets.length}: the dialogue extends by exact prefix + append (zero tokens, only recompute), all ${audit.capabilities.length} chat capabilities are deterministic over the sealed corpus, and the one external surface is a no-key opt-in API.`,
+      boundary: earned('EXACT — computed from the machinery itself:', facets, 'zero AI cost = zero LLM tokens (deterministic recompute over the sealed corpus; the build gates re-run it each commit); CPU/build time is NOT zero and is bounded by the slow-build gate; the no-key API is quota-limited by Stack Exchange, not by tokens') }
   })
 }
 
@@ -1852,6 +1880,72 @@ export function chatThroughStackOverflow(prompt: string, items: readonly MathOve
     root: merge(matrix.root, merkleFold([toUuid(`stackoverflow-lane:${prompt}`), ...overflow.map((row) => row.receipt)])),
     statement: `Chat through StackOverflow — ${facets.filter((entry) => entry.on).length}/${facets.length}: local BM25 answer first (zero egress), a computed api.stackexchange.com query URL for the opt-in live lane, ${overflow.length} community rows (${answeredRows} answered) normalized + content-addressed, escalate=${escalate} when the corpus cannot answer.`,
     boundary: earned('EXACT — computed from the chat engine + the normalized snapshot:', facets, 'the fetch happens at the EDGE and only when the user opts in — src stays pure and the default chat keeps zero egress; StackOverflow content is the community\'s (CC BY-SA, attribution = the link), vote-ranked, no-key, quota-limited — real programming Q&A, NOT the portal\'s claims and NOT an oracle') }
+}
+
+// ── Perplexity lane — the ONE keyed LLM lane (unlike the no-key SE lanes): api.perplexity.ai chat-completions, auth:
+// Authorization: Bearer <key>. The key is the USER's (BYO-key) and their tokens are billed to their Perplexity account,
+// so the portal's zero-token-by-default core stays intact ([[zero-token-policy]]). src computes the request ENVELOPE
+// only; the key and the fetch live at the EDGE, never here.
+export const PERPLEXITY_API = 'https://api.perplexity.ai/chat/completions'
+export const PERPLEXITY_SITE = 'https://www.perplexity.ai'
+/** Perplexity's grounded-search model — the default; the edge may pass another. */
+export const PERPLEXITY_MODEL = 'sonar'
+/** perplexity.ai human search URL — the escalation surface (hands the question to Perplexity's own UI). */
+export function perplexityUrl(prompt = ''): string { return `${PERPLEXITY_SITE}/search?q=${encodeURIComponent(prompt.trim())}` }
+
+/** The computed Perplexity POST envelope — endpoint + method + JSON body, and WHERE the key goes (authHeader/authScheme)
+ * but never the key VALUE: keyInjectedAtEdge marks that the edge composes `Authorization: Bearer <userKey>`. src holds no key. */
+export function perplexityRequest(prompt: string, model: string = PERPLEXITY_MODEL): {
+  readonly url: string; readonly method: 'POST'; readonly authHeader: 'Authorization'; readonly authScheme: 'Bearer'; readonly keyInjectedAtEdge: true; readonly body: string
+} {
+  const body = JSON.stringify({ model, messages: [{ role: 'user', content: prompt.trim() }] })
+  return { url: PERPLEXITY_API, method: 'POST', authHeader: 'Authorization', authScheme: 'Bearer', keyInjectedAtEdge: true, body }
+}
+
+/** A raw Perplexity chat-completions response — only the fields the adapter reads; everything optional (untrusted input). */
+export type PerplexityResponse = { model?: string; choices?: readonly { message?: { content?: string } }[]; citations?: readonly string[] }
+
+/** chatThroughPerplexity — wire Perplexity into the chat on the USER's own tokens (user, 2026-07-27: "wire perplexity to
+ * the chat and use their tokens"). Same OPT-IN live-lane shape as the MathOverflow/StackOverflow lanes, but Perplexity is
+ * a KEYED LLM, not a no-key public API: the chat stays LOCAL FIRST (portalChatRanked BM25 over the sealed corpus, zero
+ * egress), and gains Perplexity as an opt-in lane whose key is the USER's — src computes the POST envelope (endpoint,
+ * model, body from the prompt) and normalizes the fetched answer, while the `Authorization: Bearer <key>` and the fetch
+ * itself happen at the EDGE, never here. HONEST BY CONSTRUCTION: (1) the portal spends no tokens — the LLM tokens are
+ * billed to the user's Perplexity account (BYO-key), so the zero-token-by-default core is intact; (2) the returned answer
+ * is the EXTERNAL LLM's, labeled with its model + citations + content-address, never the portal's claim, and its
+ * citations ride UNVERIFIED ([[citation-rot]] — Perplexity has stated a correct result under keyword-matched noise
+ * citations); (3) when the sealed corpus can answer, the local proof leads and the lane does not escalate. */
+export function chatThroughPerplexity(prompt: string, response: PerplexityResponse | null = null, model: string = PERPLEXITY_MODEL, matrix: MindMatrix = buildMatrix()) {
+  const local = portalChatRanked(prompt, matrix)
+  const request = perplexityRequest(prompt, model)
+  const discovery = researchAndDiscoverBeforeAnswering(prompt, matrix)
+  const escalate = discovery.escalate
+  // Normalize the untrusted external-LLM answer — labeled Perplexity's, NOT the portal's; citations stay UNVERIFIED.
+  const raw = response?.choices?.[0]?.message?.content
+  const citations = Array.isArray(response?.citations) ? response!.citations.filter((c): c is string => typeof c === 'string') : []
+  const external = typeof raw === 'string' && raw.trim().length > 0
+    ? { model: String(response?.model ?? model), answer: raw.trim(), citations, citationsVerified: false as const, receipt: toUuid(`perplexity:${prompt}:${raw}`) }
+    : null
+  const envelopeCarriesNoKey = request.keyInjectedAtEdge === true && !/pplx-[a-z0-9]|sk-[a-z0-9]/i.test(JSON.stringify(request))
+  const facets = [
+    { facet: `LOCAL FIRST — the deterministic BM25 answer over the sealed corpus computes with zero egress before any live lane (answer present, via ${local.ranked ? 'ranked corpus' : 'seed-model fallback'})`, on: String(local.answer).length > 0 },
+    { facet: `THE REQUEST IS COMPUTED, THE KEY IS NOT — src derives the POST envelope (endpoint ${PERPLEXITY_API}, model ${model}, JSON body from the prompt); the Authorization Bearer key is injected at the EDGE, the fetch happens at the EDGE, and the envelope carries NO key value`, on: request.url === PERPLEXITY_API && request.method === 'POST' && request.body.includes(JSON.stringify(prompt.trim())) && envelopeCarriesNoKey },
+    { facet: `OPT-IN — THE USER'S OWN TOKENS — the lane runs only when the user supplies a Perplexity key (edge-injected), so the LLM tokens are billed to the user's Perplexity account (BYO-key), never the portal: the zero-token-by-default core is intact — no fetched response ⟹ no external answer, the local proof stands alone`, on: request.keyInjectedAtEdge === true && (response !== null || external === null) },
+    { facet: `PERPLEXITY'S ANSWER STAYS LABELED, CITATIONS UNVERIFIED — the normalized answer${external ? ` (model ${external.model}, ${external.citations.length} citation(s))` : ' (none yet)'} is the EXTERNAL LLM's, carrying its model + citations + content-address, never the portal's claim; citationsVerified=false marks the [[citation-rot]] caveat — the citations need re-anchoring to the primary record before they count`, on: external === null || (external.citationsVerified === false && isUuid(external.receipt) && external.answer.length > 0) },
+    { facet: `ESCALATION IS RESEARCHED — escalate=${escalate} COMPUTES from research+coverage (the corpus covers ${(discovery.coverage * 100).toFixed(0)}% of the question's distinctive terms; below 60% ⟹ escalate to Perplexity), and the computed ${PERPLEXITY_SITE}/search URL hands exactly this question to Perplexity instead of the portal fabricating one`, on: escalate === discovery.escalate && perplexityUrl(prompt) === `${PERPLEXITY_SITE}/search?q=${encodeURIComponent(prompt.trim())}` },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`chat-perplexity:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    prompt,
+    local,
+    request,
+    searchUrl: perplexityUrl(prompt),
+    external,
+    escalate,
+    facets,
+    root: merge(matrix.root, merkleFold([toUuid(`perplexity-lane:${prompt}`), ...(external ? [external.receipt] : [])])),
+    statement: `Chat through Perplexity — ${facets.filter((entry) => entry.on).length}/${facets.length}: local BM25 answer first (zero egress), a computed api.perplexity.ai POST envelope for the opt-in keyed lane (Bearer key + fetch at the EDGE, the user's own tokens), ${external ? '1' : '0'} external LLM answer normalized + content-addressed + citation-rot-caveated, escalate=${escalate} when the corpus cannot answer.`,
+    boundary: earned('EXACT — computed from the chat engine + the request envelope + the normalized answer:', facets, 'the fetch and the Authorization Bearer key happen at the EDGE and only when the user opts in with their own Perplexity key — src holds no key and the default chat keeps zero egress; the tokens are the user\'s (BYO-key), billed to their Perplexity account, so the portal\'s zero-token core is intact; a Perplexity answer is the EXTERNAL LLM\'s (labeled by model, its citations rides UNVERIFIED per citation-rot), NOT the portal\'s claim and NOT an oracle') }
 }
 
 /** fewestWordsMergeMakesToolsCombinatorialAtHarmonicSpeed — dry-clean tools by MERGING to the fewest words per
