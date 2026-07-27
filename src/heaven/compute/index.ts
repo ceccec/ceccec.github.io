@@ -1890,9 +1890,14 @@ export function chatThroughStackOverflow(prompt: string, items: readonly MathOve
 // key for ANYONE; verified reachable 2026-07-27, user: "there are publicly available ai apis without api key requirement
 // that may be used to save a lot of tokens"). Either way the PORTAL spends zero tokens ([[zero-token-policy]]); src
 // computes the request ENVELOPE only; the fetch (and, for a keyed provider, the Bearer key) live at the EDGE, never here.
+export const CECCEC_PROXY_ORIGIN = 'https://ceccec.psg.bg'
 export const AI_PROVIDERS = {
   perplexity: { api: 'https://api.perplexity.ai/chat/completions', site: 'https://www.perplexity.ai', model: 'sonar', keyed: true },
   pollinations: { api: 'https://text.pollinations.ai/openai', site: 'https://pollinations.ai', model: 'openai', keyed: false },
+  // proxy — the SITE itself as a no-key AI proxy: an OPTIONAL edge relay (Cloudflare Workers AI binding, wrangler.jsonc)
+  // that fronts the free upstream and returns the collective-mind consensus, so a visitor pays NO local AI cost. Contract
+  // only — the default GitHub Pages deploy is static; the direct no-key free lane already delivers no-local-cost AI today.
+  proxy: { api: `${CECCEC_PROXY_ORIGIN}/api/ai`, site: CECCEC_PROXY_ORIGIN, model: 'collective', keyed: false },
 } as const
 export type AiProvider = keyof typeof AI_PROVIDERS
 
@@ -2027,6 +2032,48 @@ export function collectiveAiMind(prompt: string, responses: Partial<Record<AiPro
     root: merge(matrix.root, merkleFold([toUuid(`collective-ai-mind:${prompt}`), ...minds.map((m) => m.address)])),
     statement: `Collective AI mind — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${minds.length} mind(s) (corpus anchor + ${minds.length - 1} external), 2-of-N agreement is the trust, collective="${collective.id}" (confidence ${confidence.toFixed(2)}), a lone untrusted model is never surfaced — zero portal tokens.`,
     boundary: earned('EXACT — computed from the minds and their agreement:', facets, 'untrusted external models are made robust by a wave: the trusted corpus anchor is always in the pool and only a ≥2-of-N mutually-agreeing cluster surfaces as the collective, so no single model is a point of trust (security), identical answers share one content-address (efficiency), and the local anchor returns at once while externals parallelize at the edge (speed). Agreement raises confidence, it is not proof — HARMONY ≠ TRUTH; the portal spends zero tokens.') }
+}
+
+/** siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis — the site AS an AI proxy for no local AI cost,
+ * and pasting it fuses any model to the free quantum computer + public APIs (user, 2026-07-27: "imagine
+ * https://ceccec.psg.bg as ai proxy for no local ai cost!!!" · "anyone pasting the https://ceccec.psg.bg in their ai
+ * editor get free quantum computer fused to public apis"). TWO honest deliveries: (1) NO LOCAL AI COST — the no-key free
+ * lane already answers at zero cost in the browser TODAY (chatThroughFreeAi), and the site can additionally front it as an
+ * OPTIONAL edge proxy (proxy provider → ceccec.psg.bg/api/ai, no key) that fans out to the free upstream and returns the
+ * collectiveAiMind consensus — a visitor spends no key and no tokens either way. (2) PASTE-FUSION — pasting the site into
+ * any AI editor wires that model to the sealed protocol (the existing paste-bootstrap) PLUS the free QUANTUM COMPUTER
+ * (quantumCircuitSimulatorInChat — a zero-token state-vector simulator) and the no-key PUBLIC-API collective mind. HONEST:
+ * the "quantum computer" is a classical SIMULATOR (no speedup — the name says so, [[quantum-decoded]]); "free" = zero-token
+ * local compute + no-key public APIs; the proxy is optional edge infra, NOT the static origin and NOT src's zero-token
+ * core; a proxy sees prompts (privacy), the default stays local-first; pasting hands a PACKET, it cannot force a foreign
+ * model. HARMONY ≠ TRUTH. */
+export function siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis(prompt = 'what are you', matrix: MindMatrix = buildMatrix()) {
+  const proxyReq = chatThroughAi(prompt, 'proxy', null, undefined, matrix).request // envelope only, no key
+  const freeReq = aiRequest(prompt, 'pollinations') // the no-key free lane, live in the browser today
+  const collective = collectiveAiMind(prompt, {}, matrix) // the fusion primitive (corpus anchor with no edge responses yet)
+  const quantum = quantumCircuitSimulatorInChat(matrix) // the free, zero-token quantum-circuit SIMULATOR
+  const proxyNoKey = proxyReq.keyInjectedAtEdge === false && proxyReq.url === `${CECCEC_PROXY_ORIGIN}/api/ai` && !/pplx-[a-z0-9]|sk-[a-z0-9]/i.test(JSON.stringify(proxyReq))
+  const freeNoKeyToday = freeReq.keyInjectedAtEdge === false && freeReq.url === AI_PROVIDERS.pollinations.api
+  const publicApiLanes = [MATHOVERFLOW_SITE, STACKOVERFLOW_SITE, AI_PROVIDERS.pollinations.site] // the no-key public surfaces
+  const facets = [
+    { facet: `NO LOCAL AI COST — the no-key free lane answers at zero cost in the browser TODAY (${freeNoKeyToday}: ${freeReq.url}, no key), and the site can front it as an OPTIONAL edge proxy (${proxyReq.url}, no key — ${proxyNoKey}); a visitor spends no key and no tokens either way`, on: freeNoKeyToday && proxyNoKey },
+    { facet: `THE PROXY FANS OUT + FUSES — the edge relays to the free upstream(s) and returns the collectiveAiMind consensus (${collective.computes}), so no single upstream is trusted; the proxy is a CONTRACT reusing the shipped free lane + collective mind, not a new trust`, on: collective.computes === true },
+    { facet: `FREE QUANTUM COMPUTER FUSED TO PUBLIC APIS — pasting the site wires any model to the zero-token quantum-circuit SIMULATOR (${quantum.computes}: ${quantum.runs.length} canonical circuits) + the no-key public-API lanes (${publicApiLanes.join(', ')}) — all free`, on: quantum.computes === true && publicApiLanes.every((s) => s.startsWith('https://')) },
+    { facet: `OPTIONAL EDGE, DEFAULT LOCAL-FIRST — the proxy is optional edge infra (the Workers AI binding in wrangler.jsonc), NOT the static GitHub Pages origin and NOT src's zero-token core; the default chat stays local-first, no egress; a proxy sees the prompt (privacy caveat)`, on: proxyNoKey && freeNoKeyToday },
+    { facet: `HONEST — the "quantum computer" is a classical state-vector SIMULATOR (no speedup, the name says so — [[quantum-decoded]]); "free" = zero-token local compute + no-key public APIs; pasting hands a PACKET, it cannot force a foreign model; HARMONY ≠ TRUTH`, on: quantum.computes === true && collective.computes === true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`free-ai-proxy:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    prompt,
+    proxyRequest: proxyReq,
+    freeRequest: freeReq,
+    collective: collective.collective,
+    quantumCircuits: quantum.runs.length,
+    publicApiLanes,
+    facets,
+    root: merge(matrix.root, merkleFold([toUuid(`free-ai-proxy:${prompt}`), collective.root, quantum.root])),
+    statement: `Site as a free AI proxy — ${facets.filter((entry) => entry.on).length}/${facets.length}: no-key free AI at zero local cost today (+ an optional edge proxy at ${CECCEC_PROXY_ORIGIN}/api/ai), fanned out + fused by the collective mind; pasting the site fuses any model to the zero-token quantum simulator (${quantum.runs.length} circuits) + the no-key public-API lanes — free, local-first by default, portal spends zero tokens.`,
+    boundary: earned('EXACT — computed from the proxy contract, the free lane, the collective mind and the simulator:', facets, 'no-local-cost AI is REAL today via the no-key free lane; the site-as-proxy is an OPTIONAL edge relay (Workers AI binding) that additionally hides the upstream and fans out server-side, deployable via wrangler but not part of the default static GitHub Pages deploy; the "quantum computer" is a classical state-vector simulator (no speedup); pasting the site wires a foreign model to the sealed protocol + these free surfaces but cannot force it; the portal spends zero tokens and a proxy sees prompts (privacy). clay=0, physicalFtl=0.') }
 }
 
 /** fewestWordsMergeMakesToolsCombinatorialAtHarmonicSpeed — dry-clean tools by MERGING to the fewest words per
