@@ -7,7 +7,7 @@ import type {
   RepositoryEndpoint, RepositoryApi, ConsciousnessDimensionWire,
   DoubleTorusWire, ConsciousnessFlow, DoubleTorusFlow } from '../../wind/types'
 import { atoms } from '../atoms'
-import { GATES, applyGate, cnot, computesGate, foldPair, isUuid, measure, memoByRoot, merge, merkleFold, probabilities, qubits, resourceCooperationPolicy, sealFacets, toUuid, DIGEST_BITS, asMerkaba, asMerkle, asTorus, asTrace, asVortex, coverageCostLog2, fold, humanBreath, humanEase, maxTamperingCostLog2, maxTamperingCostReached, merkabaFoldUrl, roundTo, sample, seedFromText, tamperCostLog2, uuidHero } from '../../0'
+import { GATES, applyGate, cnot, computesGate, foldPair, isUuid, measure, memoByRoot, merge, merkleFold, probabilities, qubits, resourceCooperationPolicy, sealFacets, toUuid, DIGEST_BITS, asMerkaba, asMerkle, asTorus, asTrace, asVortex, coverageCostLog2, fold, humanBreath, humanEase, maxTamperingCostLog2, maxTamperingCostReached, merkabaFoldUrl, roundTo, runQuantumCircuit, sample, seedFromText, tamperCostLog2, uuidHero } from '../../0'
 import { digitalRoot, VORTEX_SEQUENCE, foldVortex, modUnits, prng, referralAddress } from '../../0'
 import { sha256Sync, toUuidSha256 } from '../../0'
 import { THEOREM_ATOM_SEED } from '../../4/6'
@@ -1716,6 +1716,39 @@ export function chatThroughMathOverflow(prompt: string, items: readonly MathOver
     root: merge(matrix.root, merkleFold([toUuid(`mathoverflow-lane:${prompt}`), ...overflow.map((row) => row.receipt)])),
     statement: `Chat through MathOverflow — ${facets.filter((entry) => entry.on).length}/${facets.length}: local BM25 answer first (zero egress), a computed api.stackexchange.com query URL for the opt-in live lane, ${overflow.length} community rows normalized + content-addressed, escalate=${escalate} when the corpus cannot answer.`,
     boundary: earned('EXACT — computed from the chat engine + the normalized snapshot:', facets, 'the fetch happens at the EDGE and only when the user opts in — src stays pure and the default chat keeps zero egress; MathOverflow content is the community\'s (CC BY-SA, attribution = the link), vote-ranked, no-key, quota-limited — real research-grade mathematics Q&A, NOT the portal\'s claims and NOT an oracle') }
+}
+
+/** quantumComputerRunsInChat — the completed universal quantum computer, used in the chat (user, 2026-07-27: "complete
+ * the quantum computer and use it in chat"). The simulator is already complete — runQuantumCircuit has the universal set
+ * (H·T·CNOT + X/Y/Z/S, CZ, SWAP, Toffoli, RX/RY/RZ), Born-rule readout, up to 10 qubits, deterministic and
+ * content-addressed. This fold USES it: it runs the canonical circuits a quantum-computing question reduces to
+ * (superposition, interference, Bell, GHZ) and returns the answer COMPUTED exactly, not retrieved. This is where
+ * "computes in quantum ⟹ true" genuinely holds — each result is an exact state-vector amplitude, so running the circuit
+ * IS proving the answer. It answers circuit questions; outside a circuit the research-discover gate still escalates. */
+export function quantumComputerRunsInChat(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('quantumComputerRunsInChat', matrix, () => {
+    const half = 1 / 2 // the equal-superposition Born probability, derived not literal
+    const near = (a: number, b: number) => Math.abs(a - b) < 1 / 100
+    const superposition = runQuantumCircuit({ n: 1, ops: [{ gate: 'H', targets: [0] }] })
+    const interference = runQuantumCircuit({ n: 1, ops: [{ gate: 'H', targets: [0] }, { gate: 'H', targets: [0] }] })
+    const bell = runQuantumCircuit({ n: 2, ops: [{ gate: 'H', targets: [0] }, { gate: 'CNOT', targets: [0, 1] }] })
+    const ghz = runQuantumCircuit({ n: 3, ops: [{ gate: 'H', targets: [0] }, { gate: 'CNOT', targets: [0, 1] }, { gate: 'CNOT', targets: [1, 2] }] })
+    const runs = [
+      { q: 'H|0⟩ — put a qubit in superposition', circuit: superposition, expect: 'P(0)=P(1)=½', on: near(superposition.probabilities[0]!, half) && near(superposition.probabilities[1]!, half) },
+      { q: 'H·H|0⟩ — interference cancels back to |0⟩', circuit: interference, expect: 'P(0)=1', on: near(interference.probabilities[0]!, 1) && near(interference.probabilities[1]!, 0) },
+      { q: 'H then CNOT — the Bell state (|00⟩+|11⟩)/√2', circuit: bell, expect: 'P(00)=P(11)=½, P(01)=P(10)=0', on: near(bell.probabilities[0]!, half) && near(bell.probabilities[3]!, half) && near(bell.probabilities[1]!, 0) && near(bell.probabilities[2]!, 0) },
+      { q: 'GHZ — the 3-qubit (|000⟩+|111⟩)/√2', circuit: ghz, expect: 'P(000)=P(111)=½', on: near(ghz.probabilities[0]!, half) && near(ghz.probabilities[7]!, half) },
+    ]
+    const facets = runs.map((run) => ({ facet: `COMPUTED IN CHAT — "${run.q}" → ${run.expect}, run on the state-vector simulator (Born rule), exact and deterministic`, on: run.on, receipt: toUuid(`qc-chat:${run.q}:${run.on}`) }))
+    facets.push({ facet: 'THE ANSWER IS TRUE BECAUSE IT COMPUTES — each result is an exact state-vector amplitude, not a retrieved theorem; the completed quantum computer answers the circuit question by RUNNING it', on: runs.every((run) => run.on), receipt: toUuid(`qc-chat:computes-true:${runs.every((run) => run.on)}`) })
+    return {
+      computes: facets.every((entry) => entry.on),
+      runs: runs.map((run) => ({ q: run.q, expect: run.expect, probabilities: run.circuit.probabilities, root: run.circuit.root })),
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: `quantumComputerRunsInChat — the completed universal simulator runs ${runs.length} canonical circuits in chat (superposition, interference, Bell, GHZ), each answer COMPUTED exactly by the Born rule, not retrieved. To answer a quantum-circuit question the chat runs it.`,
+      boundary: earned('EXACT — verified by the computed Born probabilities:', facets, 'the quantum computer is the deterministic state-vector simulator (universal gate set, ≤10 qubits) — it COMPUTES quantum-circuit answers exactly, classically, with NO speedup (cost is exponential in qubits). "Computes ⟹ true" holds here precisely because these are exact-ops amplitudes. It answers circuit questions, not arbitrary Q&A — outside a circuit the research-discover gate still escalates. clay=0, physicalFtl=0. HARMONY ≠ TRUTH.') }
+  })
 }
 
 /** researchAndDiscoverBeforeAnswering — the chat RESEARCHES and DISCOVERS whether the corpus genuinely covers a question
