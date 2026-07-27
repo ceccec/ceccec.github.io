@@ -7,7 +7,7 @@ import {  isUuid, merge, merkleFold, toUuid } from '../../../0'
 import { discoverSrcIndexes, enforcementScanRoot, vitepressAutomountPaths } from '../../../pair/enforcement/gates/computational'
 import { toGlagolitic } from '../../../quantum/heaven/library'
 import { rosettaDecodesUrlPath, ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaRayHub, rosettaRayOf, rosettaRayOfContent } from '../../../water/digit'
-import { staticPages, ROUTE_ALIASES } from '../../site'
+import { staticPages, ROUTE_ALIASES, SITE_DOMAIN_SEED } from '../../site'
 import { componentPages } from '../../../quantum/heaven/mind'
 export { ROUTE_ALIASES } from '../../site'
 
@@ -439,6 +439,84 @@ export function indexOfIndexes(projectRoot = enforcementScanRoot()) {
 /** Declared route aliases — old/duplicate slugs that render a canonical page's content. The learning portal
  * unified the School age-ladder and the Academy tracks into one /learn surface, so /academy and /school are
  * kept as aliases (old URLs still resolve, canonical points at /learn) rather than separate pages. */
+/** The 'quantum' brand token is the metaphor (decoded-quantum fold: no speedup, no compute advantage) — a word that
+ *  content-addresses to a PREFIX, never to meaning, so it drops out of a slug's canonical decode. A NAMED axiom, not a
+ *  bare inline string. Adding a token here (e.g. a future retired brand) auto-extends the computed resolver. */
+export const OVERCLAIM_METAPHOR_TOKENS = ['quantum'] as const
+
+/** quantumiseSlugTokens — split a slug into its word/digit tokens and drop the overclaim metaphor token(s): the UNIFORM
+ *  quantumisation of words AND digits (user: "improve quantumisation of words and digits"). Every '-'-separated token is
+ *  content-addressable — a metaphor word ('quantum') addresses to a prefix and drops out; a meaning word ('encryption')
+ *  or a DIGIT token ('64', 'a432') is preserved unchanged. Returns the decoded token-join. This is the pure decode STEP;
+ *  decodeRequestToCanonical layers the served-page check on top. */
+export function quantumiseSlugTokens(slug: string): string {
+  const isMetaphor = (token: string) => (OVERCLAIM_METAPHOR_TOKENS as readonly string[]).includes(token)
+  return slug.split('-').filter((token) => !isMetaphor(token)).join('-')
+}
+
+/** decodeRequestToCanonical — the catch-all COMPUTES where to send an incoming request (user: "make catch all route to
+ *  compute where to send the decoded request"). It QUANTUMISES the slug (quantumiseSlugTokens) and if the remaining
+ *  content-addressed tokens name a served page, THAT is the canonical (so quantum-<x> → <x> needs NO table entry —
+ *  instant at scale). Order: (1) a served slug is its own canonical (identity — a served brand slug like quantum-tools is
+ *  NEVER stripped); (2) the quantumised decode; (3) an irreducible SEMANTIC alias (academy→learn, not string-derivable)
+ *  from the seed; (4) the raw slug (→ 404). One computed decode dissolves the per-route dictionary; it never touches a
+ *  fold-home, so 432 holds. Pair: routes/mount · routes/decode. */
+export function decodeRequestToCanonical(rawBare: string): string {
+  const served = new Set(staticPages().map((page) => page.slug))
+  if (served.has(rawBare)) return rawBare
+  const decoded = quantumiseSlugTokens(rawBare)
+  if (decoded && decoded !== rawBare && served.has(decoded)) return decoded
+  return ROUTE_ALIASES[rawBare] ?? rawBare
+}
+
+/** catchAllComputesDecodedDestination — PROOF the catch-all computes each request's destination by DECODING, tested with
+ *  crafted URL requests (user: "use the chat to test computing using crafted url requests"). Runs crafted slugs through
+ *  decodeRequestToCanonical and asserts each lands at its computed canonical: the overclaim prefix is stripped by
+ *  computation (quantum-encryption → encryption, no table entry), a served brand slug is preserved (quantum-tools stays —
+ *  tools is not served, so no false strip), an identity slug is unchanged, a semantic alias resolves via the seed, an
+ *  unknown slug passes through untouched (→ 404), and a digit-bearing served slug is stable under decode (word+digit
+ *  quantumisation). The refutable form of "route is the free coordinate — computed, not tabled". */
+export function catchAllComputesDecodedDestination() {
+  const servedSet = new Set(staticPages().map((page) => page.slug))
+  // (A) crafted URL requests through the full resolver — where does each land?
+  const urlTrials = [
+    { url: '/en/quantum-encryption', expect: 'encryption', why: 'overclaim prefix stripped by computation → served word' },
+    { url: '/en/encryption', expect: 'encryption', why: 'served slug is its own canonical (identity)' },
+    { url: '/bg/quantum-tools', expect: 'quantum-tools', why: 'served brand slug preserved — tools is not served, no false strip' },
+    { url: '/academy', expect: ROUTE_ALIASES['academy'] ?? 'academy', why: 'irreducible semantic alias resolves via the seed' },
+    { url: '/en/no-such-page-zz', expect: 'no-such-page-zz', why: 'unknown slug passes through untouched (→ 404)' },
+  ].map((trial) => {
+    const bare = trial.url.replace(/^\/(en|bg)(?=\/)/, '').replace(/^\//, '')
+    const got = decodeRequestToCanonical(bare)
+    return { kind: 'url' as const, id: trial.url, expect: trial.expect, got, why: trial.why, on: got === trial.expect }
+  })
+  // (B) word+digit quantumisation on the pure decode step — DIGIT tokens survive uniformly with words (no served digit
+  // slug exists to route through, so the step is proven directly): metaphor dropped, digit/word token preserved.
+  const tokenTrials = [
+    { in: 'quantum-encryption', expect: 'encryption', why: 'metaphor word dropped, meaning word preserved' },
+    { in: 'quantum-64', expect: '64', why: 'metaphor word dropped, DIGIT token preserved' },
+    { in: 'quantum-a432', expect: 'a432', why: 'metaphor word dropped, alphanumeric DIGIT token preserved' },
+    { in: 'encryption', expect: 'encryption', why: 'a pure meaning word is its own quantumisation (identity)' },
+    { in: 'quantum-trading-hub', expect: 'trading-hub', why: 'multi-word slug: metaphor dropped, both meaning words kept in order' },
+  ].map((trial) => {
+    const got = quantumiseSlugTokens(trial.in)
+    return { kind: 'token' as const, id: trial.in, expect: trial.expect, got, why: trial.why, on: got === trial.expect }
+  })
+  const trials = [...urlTrials, ...tokenTrials]
+  const facets = trials.map((trial) => ({
+    facet: `${trial.kind === 'url' ? trial.id : `quantumise("${trial.id}")`} → ${trial.got} (${trial.why})`,
+    on: trial.on,
+    receipt: toUuid(`catchall-decode:${trial.kind}:${trial.id}:${trial.got}:${trial.on}`) }))
+  return {
+    computed: facets.every((entry) => entry.on) && servedSet.has('encryption'),
+    trials,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `catchAllComputesDecodedDestination — ${facets.filter((facet) => facet.on).length}/${facets.length} crafted requests land at their computed canonical (${urlTrials.length} URL routes + ${tokenTrials.length} word/digit quantumisations); the destination is DECODED, not looked up in a per-route table.`,
+    boundary:
+      'The overclaim prefix "quantum" is dropped by computation because it content-addresses to a metaphor, not meaning (decoded-quantum fold); a served slug is ALWAYS its own canonical, so brand slugs that are themselves served (quantum-tools) are never falsely stripped. Only aliases not string-derivable (academy→learn) remain a small named seed. This is the FREE route coordinate — it never touches a fold-home, so the 432-dimension seal holds (proven: the code-move breaks gate 5, the route decode does not).' }
+}
+
 export function catchAllRoutePaths(_locale: 'gla' | 'en' | 'bg') {
   void _locale
   const automountSlugs = new Set(vitepressAutomountPaths().map((e) => e.params.page))
@@ -460,13 +538,16 @@ export function catchAllRoutePaths(_locale: 'gla' | 'en' | 'bg') {
   // Declared aliases mount only when their canonical slug is itself served — /academy and /school pointed
   // at the learn portal, which is outside the theorem-science lens, so they mount nothing now.
   for (const [alias, canonical] of Object.entries(ROUTE_ALIASES)) if (staticPages().some((page) => page.slug === canonical)) add(alias)
+  // Declared domain aliases (the real old public URLs, e.g. quantum-encryption) emit a stub too — decodeRequestToCanonical
+  // redirects them by computation, so the shared old URL never dead-links even with NO ROUTE_ALIASES entry.
+  for (const domain of SITE_DOMAIN_SEED) for (const alias of domain.aliases) if (staticPages().some((page) => page.slug === domain.canonical)) add(alias)
   return paths
 }
 
 export function monographSliceFromRoute(path: string, locale: 'gla' | 'en' | 'bg' = 'gla') {
   const { path: rawBare } = parseHarmonicRequest(path)
-  // Declared aliases resolve to their canonical slug's content (/academy, /school → /learn).
-  const bare = ROUTE_ALIASES[rawBare] ?? rawBare
+  // The catch-all COMPUTES the canonical: quantumised decode (quantum-<x> → <x>) then the semantic-alias seed.
+  const bare = decodeRequestToCanonical(rawBare)
   const decoded = rosettaDecodesUrlPath(`/${bare}`)
   // MACHINE TAG-INDEX (computational, no hardcoded page) — /theorems and its locale variants render the live
   // TheoremIndex, title translated locally (toGlagolitic / computed bg). Keeps the route slug so /<locale>/theorems

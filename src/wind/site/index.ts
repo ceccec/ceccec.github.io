@@ -46,13 +46,15 @@ export const SITE_DOMAIN_SEED = [
 export type SiteDomainId = (typeof SITE_DOMAIN_SEED)[number]['id']
 
 /** Catch-all thin mounts only — nav-hidden tool leaves stay as seed pages (genus-2 fold ∈ DOCUMENTED_HARMONICS) but omit from dropdowns. */
+// SEMANTIC aliases only — slugs whose canonical is NOT string-derivable (academy→learn, millennium-challenge→research).
+// The overclaim-prefix aliases (quantum-<x> → <x>) are NO LONGER listed here: the catch-all COMPUTES them by decoding
+// the slug (decodeRequestToCanonical), so a new overclaim rename needs zero table entries — instant at scale.
 export const ROUTE_ALIASES: Record<string, string> = {
   academy: 'learn',
   school: 'learn',
   'learn-developer': 'learn',
   'millennium-challenge': 'research',
-  'fusion-verify': 'quantum-tools',
-  'quantum-encryption': 'encryption' }
+  'fusion-verify': 'quantum-tools' }
 
 // ── SEO: rename to match the most-searched term per covered area, wired to PUBLIC search APIs ─────────────────
 // The most-searched phrasing per area. This is the DETERMINISTIC FALLBACK / named lexicon (a snapshot of common search
