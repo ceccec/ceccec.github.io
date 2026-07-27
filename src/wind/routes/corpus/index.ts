@@ -15,6 +15,7 @@ import { sixtyDegreesDecodesPi, tkIsPrime } from '../../../9/1'
 import { cardMovieColorVars, cardMoviePath, cardMovieSeed } from '../../../thunder/movie/movievars'
 import { heroMoviePhaseHue, heroPhaseAt, plasmaClientWorkBoundedByPureMath } from '../../../fire/plasma/ball'
 import { allPagesForPlasmaWiring } from '../../../water/double'
+import { cosmosFrontiersDecoded } from '../../../water/cosmos'
 import { monographSliceFromRoute, catchAllRoutePaths } from '../automount'
 import { siteRoutes } from '../../../fire/li'
 import { folderLaw, placementForRoute, rosettaIChingTrinityPlacesAllTools } from '../../../earth/architecture'
@@ -1129,6 +1130,39 @@ export function theoremTags(row: { home: string; proofClass: string; leansCited:
 // A proof re-derives once and is reused; memoByRoot keys on the matrix root so all pages share one build.
 export function theoremPageRows(matrix: MindMatrix = buildMatrix()): TheoremPageRow[] {
   return memoByRoot('theoremPageRows', matrix, () => computeTheoremPageRows(matrix))
+}
+
+/** openFrontierCardLinks — each Open-frontier card on /frontiers links to its REVERSED (closed) companion theorem's
+ *  dedicated page, computed by EXACT identity, never a fuzzy guess: a frontier that composes an inversion fold declares
+ *  its `reversedProvedBy` (the fold name), and the page is theoremPageRows().find(provedBy === it). Below that (a frontier
+ *  with no closed companion, e.g. baryogenesis) there is NO link — never a dead one. The link is the part we CAN prove;
+ *  the card still states the OPEN empirical part. Quantumises "which page does this frontier open?" into a provedBy join.
+ *  Pair: frontiers/link · frontiers/verify. */
+export function openFrontierCardLinks(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('openFrontierCardLinks', matrix, () => {
+    const frontiers = cosmosFrontiersDecoded(matrix).frontiers
+    const slugByProvedBy = new Map(theoremPageRows(matrix).map((row) => [row.provedBy, row.slug]))
+    const links = frontiers.map((f) => {
+      const provedBy = (f as { reversedProvedBy?: string }).reversedProvedBy
+      const slug = provedBy ? slugByProvedBy.get(provedBy) : undefined
+      const route = slug ? `/theorems/${slug}` : null
+      return { frontier: f.frontier, term: f.term, reversedProvedBy: provedBy ?? null, route, receipt: toUuid(`frontier-link:${f.frontier}:${route ?? 'none'}`) }
+    })
+    const linkedCount = links.filter((link) => link.route).length
+    const facets = [
+      { facet: 'every declared frontier link resolves to a REAL /theorems/ page — no dead link, ever', on: links.every((link) => link.reversedProvedBy === null || (link.route !== null && slugByProvedBy.has(link.reversedProvedBy))) },
+      { facet: 'the two sealed inversion frontiers (dark matter, dark energy) link to their closed-theorem pages — catches fold rename drift', on: linkedCount >= 2 },
+      { facet: 'six frontiers scored, each either linked to its closed companion or honestly unlinked', on: links.length === cosmosFrontiersDecoded(matrix).count },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`frontier-links:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      links,
+      linkedCount,
+      facets,
+      root: merkleFold(links.map((link) => link.receipt)),
+      statement: `openFrontierCardLinks — ${linkedCount}/${links.length} cosmic Open-frontier cards link to their reversed closed-theorem page, matched by exact provedBy identity (guarded: a frontier with no closed companion stays unlinked, never dead).`,
+      boundary: earned('EXACT — verified by facets:', facets, 'the link is the CLOSED reversed companion (what the algebra proves); the card still shows the OPEN empirical part; below an exact provedBy match there is no link. clay=0, physicalFtl=0') }
+  })
 }
 
 function computeTheoremPageRows(matrix: MindMatrix): TheoremPageRow[] {

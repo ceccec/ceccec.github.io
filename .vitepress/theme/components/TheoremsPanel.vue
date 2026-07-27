@@ -13,7 +13,7 @@ import {
 } from '../../../src/thunder/waves'
 import { slowProcessIsQuantumGap } from '../../../src/quantum/apps'
 import { cosmosFrontiersDecoded } from '../../../src/water/cosmos'
-import { theoremPageRows } from '../../../src/wind/routes/corpus/index.ts'
+import { theoremPageRows, openFrontierCardLinks } from '../../../src/wind/routes/corpus/index.ts'
 import { useSiteLocale } from '../../lib/mounts'
 import ProofAnimation from './ProofAnimation.vue'
 
@@ -39,6 +39,8 @@ const provenance = computed(() => theoremProvenance())
 const firstInCorpus = computed(() => firstInCorpusProvenanceForHome())
 const slowGaps = computed(() => slowProcessIsQuantumGap())
 const frontiers = computed(() => cosmosFrontiersDecoded())
+// each Open-frontier card links to its reversed CLOSED-theorem page (computed, provedBy-exact; null = no dead link)
+const frontierRoute = computed(() => new Map(openFrontierCardLinks().links.map((link) => [link.frontier, link.route])))
 const anims = computed(() => new Map(proofAnimations().specs.map((spec) => [spec.theorem, spec])))
 const waveLabel = (provedBy: string) =>
   provedBy
@@ -144,7 +146,8 @@ const waveLabel = (provedBy: string) =>
       <li v-for="f in frontiers.frontiers" :key="f.frontier">
         <div class="theorems-panel__body">
           <div class="theorems-panel__row">
-            <span class="theorems-panel__name">{{ t(f.frontier) }}</span>
+            <a v-if="frontierRoute.get(f.frontier)" class="theorems-panel__name" :href="frontierRoute.get(f.frontier)!">{{ t(f.frontier) }}</a>
+            <span v-else class="theorems-panel__name">{{ t(f.frontier) }}</span>
             <code class="theorems-panel__class" data-class="open" :title="`demarcate(term) — signed by the zero-cycle registry`">{{ f.demarcation }}</code>
           </div>
           <p class="theorems-panel__proof">{{ t(f.computed) }}</p>
