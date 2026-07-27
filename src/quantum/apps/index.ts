@@ -61,6 +61,8 @@ import {
 } from '../../fire/physics'
 import { agentSubmissionProtocol, CURSOR_AGENT_SKILL_IDS, cursorAgentToolsSaved, MISSION_COMMANDS, QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../pair/enforcement/gates'
+// The computed queue — 'next in chat': typing "next" in the chat answers with queueNext's derived total order.
+export { queueNext } from '../../pair/enforcement/gates'
 export {
   commandsAuditedForBestPlaceThenFullDryClean,
   runCmdPlaceExit,

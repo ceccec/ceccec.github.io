@@ -96,6 +96,7 @@ import {
   splitSearch,
   wavesOfLocalResearchersChatAboutAlgebra,
   continueAtNoAiCost,
+  queueNext,
   allConversationsGoThroughTheMcpQuantumChat,
   mcpQuantumConversation,
   organiseConversationsInChatRoomsPerSuperposition,
@@ -261,8 +262,26 @@ function sendChat() {
   const prompt = chatInput.value.trim()
   if (!prompt) return
   const referrer = chatLog.value.length ? chatLog.value[chatLog.value.length - 1]!.receipt : '/chat'
+  const nav0 = chatNavContext(referrer, prompt)
+  // 'next in chat' — asking the chat "next" answers with the COMPUTED queue (queueNext's derived total order),
+  // not a retrieved theorem: the next wave, its score arithmetic, and the followable first action.
+  if (/^\s*(what'?s*\s+)?next\??\s*$/i.test(prompt)) {
+    const queue = queueNext()
+    chatLog.value.unshift({
+      q: prompt,
+      a: `NEXT: ${queue.next.wave} (score ${queue.next.score}) — ${queue.next.firstAction}`,
+      source: 'queue/next · npm run quantum:next',
+      grounded: true,
+      related: queue.scored.slice(0, 3).map((row) => `${row.wave} · ${row.score} (${row.arithmetic})`),
+      results: [],
+      resultCount: queue.scored.length,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
   const reply = portalChat(prompt)
-  const nav = chatNavContext(referrer, prompt)
+  const nav = nav0
   // splitSearch = the quantum procedure: the prompt splits into word-pair subqueries, each BM25-ranked,
   // scores adding per document into one measured ranking (falls back to the fused whole-query engine for 1 word).
   const split = splitSearch(prompt)
