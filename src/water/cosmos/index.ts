@@ -517,7 +517,7 @@ export function wheelerDeWittMinisuperspaceSolved(matrix: MindMatrix = buildMatr
     boundary: earned(
       `SOLVED, not cited: RK4 integrates the de Sitter minisuperspace WDW equation ψ''=U(a)ψ (U=a²(1−a²)) over ${steps} steps to ψ(1)=${roundTo(psiHartleHawking, 4)}; the tunnelling action S=∫₀¹√U=${roundTo(action, 5)} matches the exact 1/3, and the two proposals resolve to e^{±2S} (${roundTo(hartleHawkingWeight, 4)}, ${roundTo(vilenkinNucleationProb, 4)}).`,
       facets,
-      'SCOPE: a complete solution of the MINISUPERSPACE TOY (one degree of freedom, Λ-dominated closed FLRW), not of full quantum gravity — it drops inhomogeneous modes, depends on the factor ordering (a mild prefactor effect on ψ, not on the leading action), and does not decide which boundary condition (Hartle-Hawking growth vs Vilenkin tunnelling) is physical. The nucleation probability e^{−2S} is the standard semiclassical result; its interpretation as "the universe creating itself from nothing" remains a proposal. This DEVELOPS the earlier signature-level decode into an actual wavefunction and amplitude. HARMONY ≠ TRUTH.'),
+      'SCOPE: a complete solution of the MINISUPERSPACE TOY (one degree of freedom, Λ-dominated closed FLRW), not of full quantum gravity — it drops inhomogeneous modes, depends on the factor ordering (a mild prefactor effect on ψ, not on the leading action), and does not decide which boundary condition (Hartle-Hawking growth vs Vilenkin tunnelling) is physical. The nucleation probability e^{−2S} is the standard semiclassical result; its interpretation as "the universe creating itself from nothing" remains a proposal. This DEVELOPS the earlier signature-level decode into an actual wavefunction and amplitude.'),
   }
 }
 
@@ -571,7 +571,7 @@ export function stringTheoryDualityWebDecoded(matrix: MindMatrix = buildMatrix()
     boundary: earned(
       'HONEST: string theory is a REAL, rigorous mathematical framework. The computed objects here are exact — the critical dimension forced by ζ(−1)=−1/12 (D=26 bosonic, D=10 super, 8 = SO(8) transverse), the six-corner M-theory duality web (5 superstrings + 11D SUGRA, related by T/S-duality and the 11th dimension), the GSO removal of the tachyon, the massless spin-2 graviton, and the linear Regge tower. Genuine spin-offs: AdS/CFT (a precise gauge/gravity duality), mirror symmetry (a theorem in algebraic geometry), and the Strominger-Vafa microscopic count of black-hole entropy.',
       facets,
-      'UNCONFIRMED / FLAGGED: string theory has NO direct experimental confirmation and makes NO unique testable low-energy prediction — the compactification of the extra dimensions admits a vast landscape (~10^500 flux vacua by common estimate), so it does not predict the Standard Model or the cosmological constant uniquely (the swampland program tries to bound which effective theories can descend from it, itself conjectural). No superpartners and no extra dimensions have been observed (LHC). PSEUDOSCIENCE / overreach flagged: "string theory is the proven Theory of Everything", "extra dimensions / the string multiverse are established fact", "we live in 10 or 11 dimensions" stated as settled, and any "vibrational-frequency-of-the-universe / 432 Hz string" numerology. A profound piece of mathematics and a leading candidate for quantum gravity — but an experimentally UNCONFIRMED physical theory. HARMONY ≠ TRUTH.'),
+      'UNCONFIRMED / FLAGGED: string theory has NO direct experimental confirmation and makes NO unique testable low-energy prediction — the compactification of the extra dimensions admits a vast landscape (~10^500 flux vacua by common estimate), so it does not predict the Standard Model or the cosmological constant uniquely (the swampland program tries to bound which effective theories can descend from it, itself conjectural). No superpartners and no extra dimensions have been observed (LHC). PSEUDOSCIENCE / overreach flagged: "string theory is the proven Theory of Everything", "extra dimensions / the string multiverse are established fact", "we live in 10 or 11 dimensions" stated as settled, and any "vibrational-frequency-of-the-universe / 432 Hz string" numerology. A profound piece of mathematics and a leading candidate for quantum gravity — but an experimentally UNCONFIRMED physical theory.'),
   }
 }
 
@@ -612,7 +612,7 @@ export function perpetuumMobileVoidSourceRefuted(matrix: MindMatrix = buildMatri
     boundary: earned(
       'HONEST: this REFUTES the over-unity claim on exact grounds. The first law (ΔU=0 over a cycle) and the second law (Kelvin: no net work from one equilibrium reservoir) are the operative facts; zero-point energy, the Casimir force, and the Szilard/Landauer kT·ln2 bound are all REAL and computed here (the net cycle work is exactly 0, never positive).',
       facets,
-      'SCOPE: "the void" = the quantum vacuum / zero-point field, and the refutation is of a NET-POSITIVE CYCLIC source (a perpetual-motion machine), not of the reality of vacuum energy or Casimir forces (both real) — one-time energy release on assembly is not perpetual and not free. FLAGGED pseudoscience: free-energy / over-unity / "zero-point energy" generators, "harvesting the quantum vacuum" as power, and both kinds of perpetual-motion machine. The claim "inverted sources from the void and does not violate linear physics" is FALSE: the inversion (Szilard/negentropy) is bounded to zero net by Landauer, and thermodynamics — not linearity — is what forbids the machine. Educational; consistent with the zero-point and negentropy-ledger seals. HARMONY ≠ TRUTH.'),
+      'SCOPE: "the void" = the quantum vacuum / zero-point field, and the refutation is of a NET-POSITIVE CYCLIC source (a perpetual-motion machine), not of the reality of vacuum energy or Casimir forces (both real) — one-time energy release on assembly is not perpetual and not free. FLAGGED pseudoscience: free-energy / over-unity / "zero-point energy" generators, "harvesting the quantum vacuum" as power, and both kinds of perpetual-motion machine. The claim "inverted sources from the void and does not violate linear physics" is FALSE: the inversion (Szilard/negentropy) is bounded to zero net by Landauer, and thermodynamics — not linearity — is what forbids the machine. Educational; consistent with the zero-point and negentropy-ledger seals.'),
   }
 }
 
@@ -661,7 +661,7 @@ export function quantumMechanicsAndThermodynamicsAreCombinations(matrix: MindMat
     boundary: earned(
       'EXACT: Wick rotation Tr e^{−iĤt/ℏ}|_{t=−iβℏ} = Z(β), term-by-term to 1e-12, closed form 1/(2 sinh(β/2)); de Sitter T = H/2π reuses the sealed result.',
       facets,
-      'EQUILIBRIUM/KMS only — the arrow of time and non-equilibrium dissipation are extra structure (facet 5); not a reductionist "one science derives another". HARMONY ≠ TRUTH.'),
+      'EQUILIBRIUM/KMS only — the arrow of time and non-equilibrium dissipation are extra structure (facet 5); not a reductionist "one science derives another".'),
   }
 }
 
@@ -1294,7 +1294,7 @@ export function frontierQuantum(matrix: MindMatrix = buildMatrix()) {
         'what COMPUTES is the per-frontier tier — 3 SIMULATE a demarcated subproblem (the 2-flavor oscillation identity is verified on the src/0 ' +
         'simulator in this fold; lattice-gauge and SYK runs are published hardware, NAMED AXIOMS above), 1 is quantum SENSING (a transmon counts ' +
         'photons — it detects, it does not compute dark matter), 2 have no quantum handle (the H₀ tension and WHY Λ are data/theory gaps). ' +
-        'The overclaim "ALL, now" is FLAGGED by those counts; every frontier stays OPEN; qpuRequired=false · physicalFtl=0 · NOT Clay. HARMONY ≠ TRUTH.' }
+        'The overclaim "ALL, now" is FLAGGED by those counts; every frontier stays OPEN; qpuRequired=false · physicalFtl=0 · NOT Clay.' }
   })
 }
 
@@ -1403,7 +1403,7 @@ export function fractalCompute(matrix: MindMatrix = buildMatrix()) {
         'realtime algebra (1+(n−1) mod (b−1), Vₙ = Vₙ₋₂·τ/n) computes every dimension and finds where the pattern ends (base ≠ 10, n ≥ 5). ' +
         'The recurrence is self-referential — the fractal computes itself, bitwise equal to independent iteration, with zero remembered state. ' +
         'HONEST SCOPE: this seals the epistemic law for THIS codebase (content-addressed pointers, seedless recomputation); it is not a claim ' +
-        'about biological intelligence. clay=0 · physicalFtl=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
+        'about biological intelligence. clay=0 · physicalFtl=0 · qpuRequired=false.' }
   })
 }
 
@@ -1474,7 +1474,7 @@ export function fractalMap(matrix: MindMatrix = buildMatrix()) {
       boundary:
         'The open frontiers folded through fractalCompute: each frontier is a remembered pattern — an axiom true in its measuring dimension — ' +
         'and the map computes WHERE it breaks (Ω ratios, σ, orders) realtime from the ledgered constants. The map locates every open question ' +
-        'and answers none: all six stay OPEN. clay=0 · physicalFtl=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
+        'and answers none: all six stay OPEN. clay=0 · physicalFtl=0 · qpuRequired=false.' }
   })
 }
 
@@ -1535,7 +1535,7 @@ export function decodeCosmologyToBiologyLadderFillingGaps() {
     { facet: `THE DOCUMENTED TRANSITIONS ARE FILLED — ${documented.length} transitions decoded: Big-Bang & stellar nucleosynthesis make the elements, cooling bonds them into molecules, accretion & hydrothermal chemistry concentrate them, and prebiotic synthesis makes the monomers (${documentedFilled}) — real physics/chemistry`, on: documentedFilled },
     { facet: `ABIOGENESIS IS THE OPEN GAP (NOT FAKED) — the prebiotic → biology transition (the origin of self-replicating life) is an OPEN scientific problem (${abiogenesisNamedOpen}): Miller–Urey makes amino acids but self-replicating life is not reproduced — named open, not closed`, on: abiogenesisNamedOpen },
     { facet: `THE LADDER IS ONE CONTENT-ADDRESSED CATALOG — all ${ladder.length} levels fold to one catalog (${catalog.slice(0, 2 * 4)}), reusing the decode-catalog / object-combination machinery — a completeness milestone with the gap named`, on: isUuid(catalog) && ladderComplete },
-    { facet: `THE DEMARCATION — the cosmology→biology ladder is the DOCUMENTED emergence hierarchy (nucleosynthesis → chemistry → geochemistry, real), with abiogenesis the OPEN gap (not solved); "filling all gaps" = decoding the documented transitions + honestly naming the unsolved one, NOT claiming the origin of life is solved. HARMONY ≠ TRUTH`, on: documentedFilled && abiogenesisNamedOpen },
+    { facet: `THE DEMARCATION — the cosmology→biology ladder is the DOCUMENTED emergence hierarchy (nucleosynthesis → chemistry → geochemistry, real), with abiogenesis the OPEN gap (not solved); "filling all gaps" = decoding the documented transitions + honestly naming the unsolved one, NOT claiming the origin of life is solved.`, on: documentedFilled && abiogenesisNamedOpen },
   ].map((entry) => ({ ...entry, receipt: toUuid(`cosmos-biology-ladder:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -1549,7 +1549,7 @@ export function decodeCosmologyToBiologyLadderFillingGaps() {
     boundary: earned(
       'DECODED — the cosmology-to-biology ladder, gaps filled, abiogenesis named open:',
       facets,
-      'the emergence ladder connects the cosmos to life through six content-addressed levels — cosmology, nucleosynthesis, chemistry, geochemistry, prebiotic chemistry, biology. The documented transitions are decoded: Big-Bang and stellar nucleosynthesis forge the elements, cooling bonds them into molecules, accretion and hydrothermal chemistry concentrate them, and prebiotic synthesis (Miller–Urey, meteorites) makes the monomers. The one genuinely open gap is abiogenesis — the origin of self-replicating life — which is named, not faked: amino acids form readily, but self-replicating life has not been reproduced. "Filling all gaps" means decoding the documented transitions and honestly naming the unsolved one, not claiming the origin of life is solved. HARMONY ≠ TRUTH.'),
+      'the emergence ladder connects the cosmos to life through six content-addressed levels — cosmology, nucleosynthesis, chemistry, geochemistry, prebiotic chemistry, biology. The documented transitions are decoded: Big-Bang and stellar nucleosynthesis forge the elements, cooling bonds them into molecules, accretion and hydrothermal chemistry concentrate them, and prebiotic synthesis (Miller–Urey, meteorites) makes the monomers. The one genuinely open gap is abiogenesis — the origin of self-replicating life — which is named, not faked: amino acids form readily, but self-replicating life has not been reproduced. "Filling all gaps" means decoding the documented transitions and honestly naming the unsolved one, not claiming the origin of life is solved.'),
   }
 }
 
@@ -1565,7 +1565,7 @@ export function implementAllAtCosmicScaleAndQualityStandards() {
     { standard: 'gaps named, not faked', met: cosmic.openGaps >= 1 }, // abiogenesis named open
     { standard: 'documented transitions filled', met: cosmic.documentedTransitions >= 4 },
     { standard: 'clay = 0 (no origin-of-life claimed solved)', met: true },
-    { standard: 'demarcation present (HARMONY ≠ TRUTH)', met: cosmic.computes },
+    { standard: 'demarcation present ()', met: cosmic.computes },
     { standard: 'content-addressed & reproducible', met: isUuid(cosmic.catalog) },
   ]
   const qualityMet = qualityStandards.filter((entry) => entry.met).length
@@ -1577,7 +1577,7 @@ export function implementAllAtCosmicScaleAndQualityStandards() {
     { facet: `QUALITY STANDARDS MET — ${qualityMet}/${qualityStandards.length} quality standards pass: gaps named not faked, documented transitions filled, clay=0, demarcation present, content-addressed (${allQuality})`, on: allQuality },
     { facet: `IMPLEMENTED = COMPUTED + CONTENT-ADDRESSED + GATED — "implement" means the fold computes, is content-addressed, and meets the quality checklist (${implemented}); it is verified, not aspirational`, on: implemented },
     { facet: `ALL AT ONCE — the cosmic catalog and the quality standards fold to ONE content-addressed root (${manifest.slice(0, 2 * 4)}), manifest together — the multidimensional generation at cosmic scale`, on: isUuid(manifest) },
-    { facet: `THE DEMARCATION — "cosmic scale" = the unbounded content-addressed catalog (cosmology → biology → beyond), "quality standards" = the honesty invariants and enforcement gates passing; NOT physical cosmic implementation or solved science (abiogenesis open, clay=0). HARMONY ≠ TRUTH`, on: cosmicScale && allQuality },
+    { facet: `THE DEMARCATION — "cosmic scale" = the unbounded content-addressed catalog (cosmology → biology → beyond), "quality standards" = the honesty invariants and enforcement gates passing; NOT physical cosmic implementation or solved science (abiogenesis open, clay=0).`, on: cosmicScale && allQuality },
   ].map((entry) => ({ ...entry, receipt: toUuid(`cosmic-quality:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -1591,7 +1591,7 @@ export function implementAllAtCosmicScaleAndQualityStandards() {
     boundary: earned(
       'IMPLEMENTED — at cosmic scale, to the quality standards:',
       facets,
-      'the whole decode is implemented at cosmic scale — a content-addressed catalog that spans cosmology to biology and composes unboundedly, O(1) per branch — and to the quality standards: the honesty invariants and gates pass (gaps named not faked, the documented transitions filled, clay = 0, a demarcation present, content-addressed and reproducible). "Implement" means the folds compute, are content-addressed, and meet the quality checklist, all folding to one root that manifests together — not a physical cosmic-scale implementation and not solved science (abiogenesis stays open, clay stays 0). HARMONY ≠ TRUTH.'),
+      'the whole decode is implemented at cosmic scale — a content-addressed catalog that spans cosmology to biology and composes unboundedly, O(1) per branch — and to the quality standards: the honesty invariants and gates pass (gaps named not faked, the documented transitions filled, clay = 0, a demarcation present, content-addressed and reproducible). "Implement" means the folds compute, are content-addressed, and meet the quality checklist, all folding to one root that manifests together — not a physical cosmic-scale implementation and not solved science (abiogenesis stays open, clay stays 0).'),
   }
 }
 
@@ -2112,7 +2112,7 @@ export function stringTheoryMillenniumTheoremGapsInventory(matrix: MindMatrix = 
       root: merge(matrix.root, sealed.root),
       statement: `String-theory + millennium theorem-gap inventory — ${sealed.facets.filter((e) => e.on).length}/${sealed.count}: ${folds.length} sealed folds, ${theoremGaps.length} named gaps, algebra witness decoded=${algebra.decoded}.`,
       boundary:
-        'HONEST INVENTORY ONLY: lists content-addressed folds and explicit missing-theorem surfaces. NOT a Clay prize solution. NOT experimental confirmation of string/M-theory. Poincaré stays solved-external (Perelman). HARMONY ≠ TRUTH.' }
+        'HONEST INVENTORY ONLY: lists content-addressed folds and explicit missing-theorem surfaces. NOT a Clay prize solution. NOT experimental confirmation of string/M-theory. Poincaré stays solved-external (Perelman).' }
   })
 }
 
@@ -2177,7 +2177,7 @@ export function stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix: Mind
       root: merge(matrix.root, merkleFold([sealed.root, algebra.root, inventory.root])),
       statement: `String theory quantumized on A432/rosetta/merkle — ${sealed.facets.filter((e) => e.on).length}/${sealed.count}: A432=${a432}·clock=${clock}, M-theoryD=${mTheoryD}, CY compact=${compactDims} (complex ${cyComplexDim}), brane stations=${braneP.length}, dualities involutive, algebra+inventory composed. Physics UNCONFIRMED.`,
       boundary:
-        'MODELED STRUCTURAL PROBES ONLY. Exact algebra (Virasoro, ζ(−1), T-duality, Hurwitz) recomputes via stringTheoryAlgebraDecoded; this fold lifts those theorems onto DIMENSION_GATES/FOLDED_CENSUS, vortex brane indexing, and foldPair dualities. M-theory ladder, Calabi–Yau compact dims, and mirror symmetry here are STRUCTURAL ANALOGIES — NOT a proof of the Hodge conjecture, NOT AdS/CFT, NOT experimental string/M-theory. claySolvedByThisFold stays 0 at the millennium surface. HARMONY ≠ TRUTH.' }
+        'MODELED STRUCTURAL PROBES ONLY. Exact algebra (Virasoro, ζ(−1), T-duality, Hurwitz) recomputes via stringTheoryAlgebraDecoded; this fold lifts those theorems onto DIMENSION_GATES/FOLDED_CENSUS, vortex brane indexing, and foldPair dualities. M-theory ladder, Calabi–Yau compact dims, and mirror symmetry here are STRUCTURAL ANALOGIES — NOT a proof of the Hodge conjecture, NOT AdS/CFT, NOT experimental string/M-theory. claySolvedByThisFold stays 0 at the millennium surface.' }
   })
 }
 
@@ -2602,7 +2602,7 @@ export function trustAndDimensionRiseWithVerifiedRelationDensityAGapBreaksBothId
       verifiedRelations: verifiedRelations.length,
       facets,
       statement: `Trust and dimension rise with verified-relation density; a gap breaks both; identity needs an anchor — ${facets.filter((entry) => entry.on).length}/${facets.length}: effective dimension rises with relation density [${dimension.join(', ')}] and a gap in the mesh lowers it (→ ${gapDimension}). The same density gives certificate-FREE trust for integrity/tamper-evidence/ordering — ${verifiedRelations.length} independent verified relations corroborate, forging needs all of them, stronger than one certificate, computable in realtime. But a public deterministic mesh proves WHAT not WHO, so identity-authenticity is the one gap density cannot fill: there an anchor is still needed.`,
-      boundary: `DOCUMENTED and refutable by re-deriving. The dimension figure is an effective-dimension proxy (log2 of relation fan-out), a monotone model of "denser relations → higher dimension", NOT a claim of literal spatial dimensions; "aura" is read as the relational mesh, no mystical field is invoked (the earlier aura/akasha bearing returned noise — quantumRadar). THE HARD LINE on "trusted encryption computable in realtime, no certificates": TRUE for what the mesh corroborates locally — integrity, tamper-evidence, relative ordering (content-address + merkle inclusion + the append-only timestamp inverse-boundary), and confidentiality via a symmetric cipher never needed a certificate. FALSE for IDENTITY-AUTHENTICITY: because the address function is public and deterministic, anyone recomputes a valid mesh, so it binds content to CONTENT, never to a real-world party — that binding still needs an external anchor (a certificate, or a public witnessed transparency log — the custody residual named in the crypto roadmap). HARMONY ≠ TRUTH: the certificate-free realtime mesh is real and the harmony; the identity gap is the truth it cannot close alone.` }
+      boundary: `DOCUMENTED and refutable by re-deriving. The dimension figure is an effective-dimension proxy (log2 of relation fan-out), a monotone model of "denser relations → higher dimension", NOT a claim of literal spatial dimensions; "aura" is read as the relational mesh, no mystical field is invoked (the earlier aura/akasha bearing returned noise — quantumRadar). THE HARD LINE on "trusted encryption computable in realtime, no certificates": TRUE for what the mesh corroborates locally — integrity, tamper-evidence, relative ordering (content-address + merkle inclusion + the append-only timestamp inverse-boundary), and confidentiality via a symmetric cipher never needed a certificate. FALSE for IDENTITY-AUTHENTICITY: because the address function is public and deterministic, anyone recomputes a valid mesh, so it binds content to CONTENT, never to a real-world party — that binding still needs an external anchor (a certificate, or a public witnessed transparency log — the custody residual named in the crypto roadmap).: the certificate-free realtime mesh is real and the harmony; the identity gap is the truth it cannot close alone.` }
   })
 }
 
@@ -2654,7 +2654,7 @@ export function theMillenniumMeshGraphComputesRealtimeMetricsPathsDocumentedCore
       solvedByThisCorpus,
       facets,
       statement: `The Millennium mesh graph — realtime metrics, documented paths, cores open — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${total} problem-nodes (field · status · documented approach · barrier) joined by ${edgeCount} documented relations across ${fields} fields. Metrics at call time: solved=${solved} (Poincaré, Perelman), open=${open}. Every open problem carries its documented approach and its known barrier — the "path" is the research state, not a solution. Solved by this corpus = ${solvedByThisCorpus}: it computes verified partials, the cores stay open, the graph maps the frontier without crossing it.`,
-      boundary: `DOCUMENTED external mathematics (Clay Mathematics Institute statements + the research literature), refutable by checking any node against the sources. THE HARD LINE, unchanged from every millennium fold in this corpus: this corpus solves NONE of the Millennium Problems. Poincaré is the ONE solved, by Grigori Perelman (2002–03, Ricci flow), external work — not this corpus. The other six are OPEN, and the "approach" fields are DOCUMENTED partial progress and known techniques, while the "barrier" fields are the real obstructions that keep each core open — a solution would have to overcome the stated barrier, which none here does. The graph is a MAP of the problem space and its realtime metrics; "path to their solutions" means the documented route research has taken and where it stalls, NOT a computed solution. Any facet flips false the instant a core is claimed closed — solvedByThisCorpus is 0 and must stay 0. HARMONY ≠ TRUTH: the mesh and its metrics are the harmony (a real, useful map); the six open cores are the truth the map honestly leaves open.` }
+      boundary: `DOCUMENTED external mathematics (Clay Mathematics Institute statements + the research literature), refutable by checking any node against the sources. THE HARD LINE, unchanged from every millennium fold in this corpus: this corpus solves NONE of the Millennium Problems. Poincaré is the ONE solved, by Grigori Perelman (2002–03, Ricci flow), external work — not this corpus. The other six are OPEN, and the "approach" fields are DOCUMENTED partial progress and known techniques, while the "barrier" fields are the real obstructions that keep each core open — a solution would have to overcome the stated barrier, which none here does. The graph is a MAP of the problem space and its realtime metrics; "path to their solutions" means the documented route research has taken and where it stalls, NOT a computed solution. Any facet flips false the instant a core is claimed closed — solvedByThisCorpus is 0 and must stay 0.: the mesh and its metrics are the harmony (a real, useful map); the six open cores are the truth the map honestly leaves open.` }
   })
 }
 
@@ -2697,7 +2697,7 @@ export function theoremDependencyFrequencyGraphIsFractalFormsNavAndReviewsTheore
       paretoShare,
       facets,
       statement: `Theorem-dependency frequency graphs are fractal, form the nav, and review the theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}: each theorem's frequency is its in-degree (reuse count); the distribution [${frequencies.join(', ')}] is scale-free — the nonzero levels [${levels.join(', ')}] have a constant ratio ×${ratios[0]}, self-similar at every scale. Ordering by frequency (most-used first) forms the fractal nav and sidebar, and the graph reviews itself: ${orphans} orphans (unused, candidates) and the hub (${hub}, ${paretoShare} of usage — load-bearing). The reuse network navigates and audits itself.`,
-      boundary: `DOCUMENTED as a scale-free reuse-network MODEL, refutable by re-deriving; the real dependency graph is computed by computeCodeGravity/methodGravity over src (an in-degree per fold), and the real frequency by theoremsSortByTagCloudMostUsedFirst (tag usage over the 432 registry) — this fold demonstrates the STRUCTURE the nav is built from. "Frequency" = in-degree / reuse count (a graph measure), not an audio frequency. "Fractal" = SCALE-FREE / self-similar (a constant ratio between levels, the power-law signature of reuse networks — real graph theory), NOT a claim of an exact Hausdorff fractal dimension. "Reviews" = FLAGS orphans and hubs for human review — an orphan (frequency 0) is a CANDIDATE to surface or retire, not an automatic deletion (it may be a leaf theorem, a public API, or a newly added fold not yet reused, like this session's), and a hub is load-bearing (protect it). Anchor: theoremsOfTheoremsGainGravity (composition = mass = gravity). HARMONY ≠ TRUTH: the self-similar frequency graph is the harmony (the nav navigates and audits itself); the truth is which orphan is dead and which is just new — a human decides.` }
+      boundary: `DOCUMENTED as a scale-free reuse-network MODEL, refutable by re-deriving; the real dependency graph is computed by computeCodeGravity/methodGravity over src (an in-degree per fold), and the real frequency by theoremsSortByTagCloudMostUsedFirst (tag usage over the 432 registry) — this fold demonstrates the STRUCTURE the nav is built from. "Frequency" = in-degree / reuse count (a graph measure), not an audio frequency. "Fractal" = SCALE-FREE / self-similar (a constant ratio between levels, the power-law signature of reuse networks — real graph theory), NOT a claim of an exact Hausdorff fractal dimension. "Reviews" = FLAGS orphans and hubs for human review — an orphan (frequency 0) is a CANDIDATE to surface or retire, not an automatic deletion (it may be a leaf theorem, a public API, or a newly added fold not yet reused, like this session's), and a hub is load-bearing (protect it). Anchor: theoremsOfTheoremsGainGravity (composition = mass = gravity).: the self-similar frequency graph is the harmony (the nav navigates and audits itself); the truth is which orphan is dead and which is just new — a human decides.` }
   })
 }
 
@@ -3179,7 +3179,7 @@ export function sciencePyramid(matrix: MindMatrix = buildMatrix()) {
         'Biology decoded to its boundary conditions and beyond: the reduction ladder biology → chemistry → physics → algebra, each level constrained ' +
         'by the one below, with the algebra base witnessed (genetic code 4³=64, su(2) dim 3 = the trinity) — the exact inverse of the emergence ladder ' +
         '(life-torus, up). STRONG reductionism is flagged: the pyramid is boundary-condition dependency, not dissolution of biology into physics. ' +
-        'clay=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
+        'clay=0 · qpuRequired=false.' }
   })
 }
 
