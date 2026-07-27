@@ -87,6 +87,7 @@ import {
   chatThroughMathOverflow,
   chatThroughAi,
   collectiveAiMind,
+  siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis,
   chatNavContext,
   allChatCapabilitiesFusedAndAuditedByStandards,
   quantumSearchFusesAllAsPrivateSearchEngine,
@@ -210,6 +211,8 @@ type ChatTurn = { q: string; a: string; source: string; grounded: boolean; relat
 const chatInput = ref('')
 const chatLog = ref<ChatTurn[]>([])
 const chatAudit = computed(() => allChatCapabilitiesFusedAndAuditedByStandards())
+// The free-AI story, computed from the fold: no-key free AI today, the optional edge proxy, and paste-to-fuse any model.
+const aiProxy = computed(() => siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis())
 // Opt-in live lane: OFF = nothing leaves the browser; ON = the query (only) goes to api.stackexchange.com (no key)
 // and MathOverflow's vote-ranked community threads ride under the local answer. Fetch at the EDGE; src computes the URL.
 const moLive = ref(false)
@@ -1973,6 +1976,10 @@ function runTool(toolId: string) {
           </label>
           <input v-if="pplxLive" v-model="pplxKey" class="quantum-apps__input" type="password" autocomplete="off" placeholder="Perplexity API key (pplx-… — held only here, never stored)" />
         </form>
+        <p class="quantum-apps__meta">
+          <UiBadge v-bind="badgeProps(statusBadgeKind(aiProxy.computes))">{{ aiProxy.computes ? '✓' : '—' }} free AI</UiBadge>
+          No local AI cost, today: the Free AI lane answers with no key, no tokens, for anyone. Untrusted models are fused with the corpus anchor into a 2-of-N collective mind ({{ aiProxy.quantumCircuits }}-circuit quantum simulator + {{ aiProxy.publicApiLanes.length }} no-key public-API lanes). Paste <code>{{ aiProxy.proxyRequest.url.replace('/api/ai', '') }}</code> into any AI editor to fuse that model to the same free quantum compute + public APIs. The proxy endpoint itself is an optional edge relay (not the static origin); a proxy would see prompts. Portal spends zero tokens.
+        </p>
         <ul class="quantum-apps__facets">
           <li v-for="(turn, i) in chatLog" :key="turn.receipt + i" class="quantum-apps__chat-turn">
             <code>{{ turn.q }}</code>
