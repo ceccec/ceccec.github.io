@@ -4,7 +4,7 @@ import { earned } from '../../../3/7'
 // Zeitwerk loader port (Ruby zeitwerk gem convention) — folded here to avoid extra census shell.
 import { SCHEMA_TWO_LEVEL_MODEL, SRC_SCIENCE_MODEL_ACTION_SCHEMA, indexRegistryFromLogicRel } from '../../../pair/enforcement/gates/computational'
 import {  isUuid, merge, merkleFold, toUuid } from '../../../0'
-import { discoverSrcIndexes, vitepressAutomountPaths } from '../../../pair/enforcement/gates/computational'
+import { discoverSrcIndexes, enforcementScanRoot, vitepressAutomountPaths } from '../../../pair/enforcement/gates/computational'
 import { toGlagolitic } from '../../../quantum/heaven/library'
 import { rosettaDecodesUrlPath, ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaRayHub, rosettaRayOf, rosettaRayOfContent } from '../../../water/digit'
 import { staticPages, ROUTE_ALIASES } from '../../site'
@@ -432,7 +432,7 @@ function parseHarmonicRequest(path: string) {
   return { locale, segments: stripped.split('/').filter(Boolean), path: stripped }
 }
 
-export function indexOfIndexes(projectRoot = process.cwd()) {
+export function indexOfIndexes(projectRoot = enforcementScanRoot()) {
   return discoverSrcIndexes(projectRoot)
 }
 

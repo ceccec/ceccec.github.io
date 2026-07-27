@@ -1,4 +1,5 @@
 import { earned } from '../../3/7'
+import { enforcementScanRoot } from '../../pair/enforcement/gates/computational'
 // ☶ Gèn · Mountain — the gate principles: gates behave as MCP, every diamond is a gate, gates heal spotted compromise, gates move all to place, gates so tight even they cannot pass entropy. Barrel-routed; folds.ts back-imports the gate folds.
 import { bekensteinBoundBits, landauerLimit } from '../../3/7'
 import type { MindMatrix } from '../../wind/types'
@@ -428,7 +429,7 @@ function theQuantumMeshSeesTypeGapsRaw(matrix: MindMatrix) {
       const fs = typeof getBuiltin === 'function' ? getBuiltin('node:fs') as { readdirSync(p: string, o: unknown): { name: string; isDirectory(): boolean }[]; readFileSync(p: string, e: string): string } | undefined : undefined
       const path = typeof getBuiltin === 'function' ? getBuiltin('node:path') as { join(...p: string[]): string; relative(a: string, b: string): string } | undefined : undefined
       if (!fs || !path || typeof process.cwd !== 'function') return null
-      const root = process.cwd()
+      const root = enforcementScanRoot()
       const out: { rel: string; hard: number; soft: number }[] = []
       const walk = (dir: string): void => {
         for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {

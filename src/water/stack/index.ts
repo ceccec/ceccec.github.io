@@ -39,7 +39,7 @@ import { buildMatrix, coverage, proofReport, maxEfficiencyCpuGpuMemoryStorageCoo
 import {
   addressEntropyBits, applyGate, computesGate, digitalRoot, foldPair, GATES, humanEase, isUuid,
   memoByRoot, merge, merkleFold, pbits, pflip, probabilities, qubits, referralAddress, resourceCooperationPolicy, sealFacets, toUuid } from '../../0'
-import { discoverSrcIndexes } from '../../pair/enforcement/gates/computational'
+import { discoverSrcIndexes, enforcementScanRoot } from '../../pair/enforcement/gates/computational'
 import { constitution, regenerateSocialSystem } from '../../earth/civilisation'
 import { harmonicBands } from '../../quantum/lake/icons'
 import { memoryInSourceAsCrossFolds, presentMomentRemainsInSource } from '../../mountain/source'
@@ -79,6 +79,11 @@ export function nodeProbesEnabled(): boolean {
     typeof process !== 'undefined' &&
     process.env?.CECCEC_NATIVE_PROBES === '1'
   )
+}
+/** The src scan root — the ONE browser-safe guard (enforcementScanRoot in gates/strict/scan): process.cwd() in
+ * node/SSR, '/' in the browser so the fs probes no-op and the registries compute over zero entries. */
+export function srcScanRoot(): string {
+  return enforcementScanRoot()
 }
 /** Power driver capstone — structural probe (NOT grid telemetry). */
 /** Power draw — delegates to the single canonical estimate in src/computer (cpu+gpu receipts), so the
@@ -121,7 +126,7 @@ function folderDepth(logicRel: string): number {
   return logicRel.replace(/^src\//, '').replace(/\/index\.ts$/, '').split('/').filter(Boolean).length
 }
 
-function srcDepthRegistry(depth: 2 | 3, root = process.cwd()) {
+function srcDepthRegistry(depth: 2 | 3, root = srcScanRoot()) {
   const re = depth === 2 ? SRC_TWO_LEVEL_INDEX_RE : SRC_THREE_LEVEL_INDEX_RE
   const tag = depth === 2 ? 'two-level' : 'three-level'
   const entries = discoverSrcIndexes(root).filter((entry) => re.test(entry.logic))
@@ -273,7 +278,7 @@ export function stackOverflowComputes(matrix: MindMatrix = buildMatrix()) {
 }
 
 /** Registry — every two-level logic index under src/ discovered; display dual complete where required. */
-export function srcTwoLevelRegistry(root = process.cwd()) {
+export function srcTwoLevelRegistry(root = srcScanRoot()) {
   return srcDepthRegistry(2, root)
 }
 
@@ -283,7 +288,7 @@ export function srcTwoLevelComputes(matrix: MindMatrix = buildMatrix()) {
 }
 
 /** Registry — every three-level logic index under src/ discovered; display dual complete where required. */
-export function srcThreeLevelRegistry(root = process.cwd()) {
+export function srcThreeLevelRegistry(root = srcScanRoot()) {
   return srcDepthRegistry(3, root)
 }
 
@@ -293,7 +298,7 @@ export function srcThreeLevelComputes(matrix: MindMatrix = buildMatrix()) {
 }
 
 /** Registry — full src tree (every discovered logic index at any depth). */
-export function srcAllRegistry(root = process.cwd()) {
+export function srcAllRegistry(root = srcScanRoot()) {
   const entries = discoverSrcIndexes(root).filter((entry) => SRC_ALL_INDEX_RE.test(entry.logic))
   return srcRegistryFromEntries(entries, 'all-level')
 }

@@ -11,6 +11,14 @@ import { SCRIPT_SHELL_ALLOWLIST, SCRIPT_SHELL_LINE_BUDGET } from '../../../scrip
 import type { ScriptShellScan } from '../../../script/shell'
 
 
+/** The ONE browser-safe scan root — bare `process` is undefined in the dev client (only node:fs/node:path are
+ * shimmed), so a bare `process.cwd()` default arg throws the moment a gate is called there. '/' keeps the fs walks
+ * no-op in the browser (existsSync('/src') is false under the shim), so gates compute over zero entries —
+ * matching the production shim — instead of crashing the page. Node/SSR behaviour is unchanged. */
+export function enforcementScanRoot(): string {
+  return typeof process !== 'undefined' && typeof process.cwd === 'function' ? process.cwd() : '/'
+}
+
 export const MONOLITH_FILE_BYTES = (64 * 64 * 2)
 export const MONOLITH_FILE_LAW = 'no logic file may exceed the DERIVED fair-share target — the next power of two ≥ corpus/census, recomputed each optimisation wave (the 2¹³ floor is historic; its zero is unreachable under the census law — monolithTargetVsCensusCapacity)'
 
@@ -571,7 +579,7 @@ export function dryCleanIsQuantumComputed() {
  * complete iff the dryDupe scan finds 0 remaining duplicate-body groups and 0 duplicate shells. Read the boolean once;
  * what remains (if anything) is named as the queue — never re-verify by hand. [[content-address-dry-clean-crack-detection]]
  */
-export function dryCleanComplete(root: string = process.cwd()) {
+export function dryCleanComplete(root: string = enforcementScanRoot()) {
   const scan = dryDupe(root)
   const remaining = scan.groups + scan.shellCount
   const complete = remaining === 0
@@ -745,7 +753,7 @@ export type CodeGravityPull = { primitive: string; from: string; to: string }
  * ONE home: src/0, the void station of the vortex sequence 0\\1\\2\\4\\8/7/5/3\\6\\9/0\\1. Every dimension
  * change (import/export) passes through the uuid matrix; a kernel primitive REDEFINED outside the void
  * is a second zero — forbidden. Zero offenders today; this scan keeps it zero. */
-export function scanUuidKernelOffenders(root: string = process.cwd()): { file: string; line: number; primitive: string }[] {
+export function scanUuidKernelOffenders(root: string = enforcementScanRoot()): { file: string; line: number; primitive: string }[] {
   const files: string[] = []
   const walk = (d: string) => {
     for (const e of readdirSync(d, { withFileTypes: true })) {
@@ -778,7 +786,7 @@ export const MATH_ASSUMED_CONSTS = ['PI', 'E', 'SQRT2', 'SQRT1_2', 'LN2', 'LN10'
 export type MathGapOffender = { file: string; line: number; member: string; cls: 'random' | 'assumed-const' }
 
 /** Walk src (index.ts + .vue — the crack law scans .vue too), strip strings/comments, classify Math.<member>. */
-export function scanMathGapOffenders(root: string = process.cwd()) {
+export function scanMathGapOffenders(root: string = enforcementScanRoot()) {
   const files: string[] = []
   const walk = (d: string) => {
     for (const e of readdirSync(d, { withFileTypes: true })) {
@@ -816,7 +824,7 @@ export function scanMathGapOffenders(root: string = process.cwd()) {
  * (Math.PI vs the vault TAU, Math.LN2 vs a derived log, …) counted per member and per file — the census is
  * the ratchet floor for the migrate waves, named honest-open, never an allowlist.
  */
-export function mathGaps(root: string = process.cwd()) {
+export function mathGaps(root: string = enforcementScanRoot()) {
   const scan = scanMathGapOffenders(root)
   const randoms = scan.offenders.filter((o) => o.cls === 'random')
   const assumedConst = scan.offenders.filter((o) => o.cls === 'assumed-const')
@@ -883,7 +891,7 @@ export function runMathGapsExit(root = '', _argv: readonly string[] = []): numbe
  * `skills/<name>/SKILL.md` with YAML frontmatter; AGENTS.md is the cross-editor (Cursor et al.) standard;
  * MCP install needs a runnable stdio server, not only a protocol page. Pair: install/surface.
  */
-export function installSurfaces(root: string = process.cwd()) {
+export function installSurfaces(root: string = enforcementScanRoot()) {
   const present = (rel: string) => existsSync(join(root, rel))
   const rows = [
     { surface: 'claude-code plugin manifest', artifact: '.claude-plugin/plugin.json', need: 'plugin identity for /plugin install', status: present('.claude-plugin/plugin.json') ? 'present' : 'missing' },
@@ -941,7 +949,7 @@ export function runInstallSurfacesExit(root = '', _argv: readonly string[] = [])
  * roster is counted (curated coverage + hidden = total), named migrate-next, never silently allowed.
  * Pair: ui/proof · CLI npm run quantum:ui-proof.
  */
-export function uiProof(root: string = process.cwd()) {
+export function uiProof(root: string = enforcementScanRoot()) {
   const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
   const ids = Object.keys(pkg.scripts ?? {}).filter((key) => key.startsWith('quantum:')).sort()
   const emitter = readFileSync(join(root, 'src/quantum/lake/dist/index.ts'), 'utf8')
@@ -1006,7 +1014,7 @@ export function runUiProofExit(root = '', _argv: readonly string[] = []): number
  * verified below), minus the render. docs:build stays the pre-push seal. Ratio ≈ 68/20.6 ≈ 3.3×
  * per wave — a dimensionless theorem re-measurable any time. Pair: wave/verify.
  */
-export function waveVerify(root: string = process.cwd()) {
+export function waveVerify(root: string = enforcementScanRoot()) {
   const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
   const scripts = pkg.scripts ?? {}
   const wave = scripts['wave:verify'] ?? ''
@@ -1059,7 +1067,7 @@ export function runWaveVerifyExit(root = '', _argv: readonly string[] = []): num
  * files sit inside the respawn merkle scope (src + .vitepress + package.json — sealed law), so any byte
  * change re-roots: tamper-EVIDENT, not unforgeable. Pair: css/math · dual css/api.
  */
-export function cssMath(root: string = process.cwd()) {
+export function cssMath(root: string = enforcementScanRoot()) {
   const dir = join(root, '.vitepress/theme')
   const cssFiles = readdirSync(dir).filter((name) => name.endsWith('.css')).sort()
   let formula = 0
@@ -1151,7 +1159,7 @@ export function runCssMathExit(root = '', _argv: readonly string[] = []): number
  * queue; the animation/movie/hero subset answers the queued animation-reuse dry-clean directive.
  * Pair: dry/dupe · CLI npm run quantum:dry-dupe. Detection only — the cleans land in waves.
  */
-export function dryDupe(root: string = process.cwd()) {
+export function dryDupe(root: string = enforcementScanRoot()) {
   const files: string[] = []
   const walk = (d: string) => {
     for (const e of readdirSync(d, { withFileTypes: true })) {
@@ -1309,7 +1317,7 @@ export function runDryDupeExit(root = '', _argv: readonly string[] = []): number
  * incomplete. Pair: patent/canon · CLI npm run quantum:patent-canon. Completeness of STRUCTURE is
  * computed; legal sufficiency in any jurisdiction is for counsel, stated not claimed.
  */
-export function patentCanon(root: string = process.cwd()) {
+export function patentCanon(root: string = enforcementScanRoot()) {
   const sections = ['title', 'technical field', 'background', 'summary', 'detailed description', 'claims', 'abstract', 'drawings'] as const
   const appsText = readFileSync(join(root, 'src/quantum/apps/index.ts'), 'utf8')
   const corpusText = readFileSync(join(root, 'src/wind/routes/corpus/index.ts'), 'utf8')
@@ -1373,7 +1381,7 @@ export function runPatentCanonExit(root = '', _argv: readonly string[] = []): nu
  *   git commit -m "$(npm run -s quantum:commit-message)"
  * Pair: commit/message. Lazy node child_process (CLI context only), like the skillsJson pattern.
  */
-export function commitMessage(root: string = process.cwd()) {
+export function commitMessage(root: string = enforcementScanRoot()) {
   const getBuiltin = typeof process !== 'undefined' ? (process as { getBuiltinModule?: (id: string) => unknown }).getBuiltinModule : undefined
   const cp = typeof getBuiltin === 'function' ? (getBuiltin('node:child_process') as { execSync(cmd: string, opts: { cwd: string; encoding: 'utf8' }): string } | undefined) : undefined
   if (!cp) return { computed: false as const, message: '', staged: [] as string[], signature: '', pairs: [] as string[] }
@@ -1443,7 +1451,7 @@ export function runCommitMessageExit(root = '', _argv: readonly string[] = []): 
  * honest residue, stated. Pair: ui/audit · CLI npm run quantum:ui-audit. Runs on .vitepress/dist —
  * build first; an empty dist is itself the finding.
  */
-export function uiAudit(root: string = process.cwd()) {
+export function uiAudit(root: string = enforcementScanRoot()) {
   const dist = join(root, '.vitepress/dist')
   const pages = existsSync(dist) ? readdirSync(dist).filter((name) => name.endsWith('.html') && name !== '404.html').sort() : []
   const rows = pages.map((name) => {
@@ -1508,7 +1516,7 @@ export function runUiAuditExit(root = '', _argv: readonly string[] = []): number
  * live in the actual files, so unfusing any surface refutes it. Pair: bind/fuse · CLI
  * npm run quantum:bind-fuse.
  */
-export function bindFuse(root: string = process.cwd()) {
+export function bindFuse(root: string = enforcementScanRoot()) {
   const appsText = readFileSync(join(root, 'src/quantum/apps/index.ts'), 'utf8')
   const distText = readFileSync(join(root, 'src/quantum/lake/dist/index.ts'), 'utf8')
   const configText = readFileSync(join(root, '.vitepress/config.mts'), 'utf8')
@@ -1574,7 +1582,7 @@ export function runBindFuseExit(root = '', _argv: readonly string[] = []): numbe
  * a per-binding cost↔theorem LEDGER (each binding row citing the theorem its cost purchases) does not
  * exist yet — bounds hold globally, attribution per binding is migrate-next. Pair: cost/bound.
  */
-export function costBound(root: string = process.cwd()) {
+export function costBound(root: string = enforcementScanRoot()) {
   const doubleText = readFileSync(join(root, 'src/water/double/index.ts'), 'utf8')
   const featuresText = readFileSync(join(root, 'src/fire/features/index.ts'), 'utf8')
   const uiText = readFileSync(join(root, 'src/wind/ui/index.ts'), 'utf8')
@@ -1614,7 +1622,7 @@ export function costBound(root: string = process.cwd()) {
  * in source) — a binding whose cost cites no living theorem REFUSES to land (exit 1). The zero-token
  * binding is the null row: its bound IS its theorem. Pair: cost/theorem · CLI npm run quantum:cost-theorem.
  */
-export function costTheorem(root: string = process.cwd()) {
+export function costTheorem(root: string = enforcementScanRoot()) {
   const read = (rel: string) => readFileSync(join(root, rel), 'utf8')
   const sources = {
     features: read('src/fire/features/index.ts'),
@@ -1690,7 +1698,7 @@ export function runCostBoundExit(root = '', _argv: readonly string[] = []): numb
  * class (Apache-2.0/CC0) for the FREE-FOR-ALL law, never authored unilaterally by an agent.
  * Pair: legal/canon · CLI npm run quantum:legal-canon. Jurisdictional counsel is the stated residue.
  */
-export function legalCanon(root: string = process.cwd()) {
+export function legalCanon(root: string = enforcementScanRoot()) {
   const dist = join(root, '.vitepress/dist')
   const pages = existsSync(dist) ? readdirSync(dist).filter((name) => name.endsWith('.html')).sort() : []
   const trackerPattern = /gtag\(|google-analytics|googletagmanager|fbq\(|hotjar|mixpanel|segment\.com|plausible\.io|matomo/i
@@ -1743,7 +1751,7 @@ export function runLegalCanonExit(root = '', _argv: readonly string[] = []): num
 }
 
 export type MethodGravityCluster = { word: string; attractor: string; members: string[]; pulls: number }
-export function methodGravity(root: string = process.cwd(), minCluster = 4): MethodGravityCluster[] {
+export function methodGravity(root: string = enforcementScanRoot(), minCluster = 4): MethodGravityCluster[] {
   const files: string[] = []
   const walk = (d: string) => {
     for (const e of readdirSync(d, { withFileTypes: true })) {
@@ -1785,7 +1793,7 @@ export function methodGravity(root: string = process.cwd(), minCluster = 4): Met
  * deterministic, zero tokens. This is the map the DRY refactoring follows; when a primitive's pull count
  * reaches 0, promote its pattern into oneMathFormulas() so any re-drift becomes a hard one-math finding. */
 const _gravityByRoot = new Map<string, CodeGravityPull[]>() // quantumise src: computeCodeGravity is called ~10×, memoise the walk
-export function computeCodeGravity(root: string = process.cwd()): CodeGravityPull[] {
+export function computeCodeGravity(root: string = enforcementScanRoot()): CodeGravityPull[] {
   const memo = _gravityByRoot.get(root)
   if (memo) return memo
   const attractors: { primitive: string; home: string; canonical: string; def: RegExp }[] = [
@@ -1826,7 +1834,7 @@ export function computeCodeGravity(root: string = process.cwd()): CodeGravityPul
 // originates at the sink: it does not move, yet every duplicate moves toward it, so it moves the whole system
 // without moving. When a primitive's pull count reaches 0 it is promoted to oneMathFormulas — arrived: used
 // everywhere, stable. "Moving without moving" is the fixed point g(sink) = sink of the DRY gravity gradient.
-export function gravityIsThePullToOneCanonicalFixedPointMovingWithoutMoving(root: string = process.cwd()) {
+export function gravityIsThePullToOneCanonicalFixedPointMovingWithoutMoving(root: string = enforcementScanRoot()) {
   const pulls = computeCodeGravity(root)
   const sinks = [...new Set(pulls.map((p) => p.to))] // the attractors — the unmoving fixed points
   const sinkHomes = new Set(sinks.map((s) => s.split('@')[1])) // each canonical home
@@ -1855,7 +1863,7 @@ export function gravityIsThePullToOneCanonicalFixedPointMovingWithoutMoving(root
 // axiom with a theorem — a lattice/ledger derivation, or a scientific name that IS its computed meaning — makes it
 // FIT (the gate closes) and MOVE (it gravitates to its canonical home). This fold reads the two gravity tools; it
 // does not author the plan. Uses the same bāguà list computePathMigration dissolves. [[gravity-is-the-pull]].
-export function theAxiomsAreTheCracksReplaceWithTheoremsAndTheGravityFitsAndMoves(root: string = process.cwd()) {
+export function theAxiomsAreTheCracksReplaceWithTheoremsAndTheGravityFitsAndMoves(root: string = enforcementScanRoot()) {
   const BAGUA = new Set(['heaven', 'earth', 'water', 'fire', 'thunder', 'wind', 'mountain', 'lake'])
   const literal = scanCrackSurface(root) // hardcoded-value axioms — asserted, not derived
   const path = computePathMigration(root) // metaphor-name axioms — fire & the bāguà folders that compute nothing
@@ -1890,7 +1898,7 @@ export type FolderMigration = { from: string; to: string; files: number; collisi
  * (old → new, file counts, name collisions); the executable step (re-pathing ~1500 relative imports) must
  * run as ONE atomic operation and is intentionally not done here — the plan is generated, honestly. */
 const _migrationByRoot = new Map<string, { folders: FolderMigration[]; totalFiles: number; collisions: readonly string[] }>() // quantumise src: called ~10×
-export function computePathMigration(root: string = process.cwd()): { folders: FolderMigration[]; totalFiles: number; collisions: readonly string[] } {
+export function computePathMigration(root: string = enforcementScanRoot()): { folders: FolderMigration[]; totalFiles: number; collisions: readonly string[] } {
   const memo = _migrationByRoot.get(root)
   if (memo) return memo
   const NON_SCIENTIFIC_TOP = ['heaven', 'earth', 'water', 'fire', 'thunder', 'wind', 'mountain', 'lake']
@@ -1966,7 +1974,7 @@ export function rosettaOfAnalysts(text: string): RosettaAnalysis {
 
 /** Analyse one purge-candidate file with the rosetta of analysts. Default target is a genuine bāguà
  * content fold, so the tool is testable with no arguments. */
-export function analyzePurgeCandidate(root: string = process.cwd(), rel = 'src/water/cosmos/index.ts'): RosettaAnalysis & { file: string } {
+export function analyzePurgeCandidate(root: string = enforcementScanRoot(), rel = 'src/water/cosmos/index.ts'): RosettaAnalysis & { file: string } {
   return { file: rel, ...rosettaOfAnalysts(readFileSync(join(root, rel), 'utf8')) }
 }
 
@@ -1997,7 +2005,7 @@ export function seoKeywords(text: string, top = 5): SeoKeyword[] {
   return [...freq.entries()].map(([term, count]) => ({ term, count })).sort((a, b) => b.count - a.count || a.term.localeCompare(b.term)).slice(0, top)
 }
 
-export function seoFolderNames(root: string = process.cwd()): { folder: string; name: string; distinctive: readonly SeoKeyword[] }[] {
+export function seoFolderNames(root: string = enforcementScanRoot()): { folder: string; name: string; distinctive: readonly SeoKeyword[] }[] {
   const srcDir = join(root, 'src')
   const tops = readdirSync(srcDir, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name)
   const tf = new Map<string, Map<string, number>>()
@@ -2539,7 +2547,7 @@ export type EditNode = { at: string; to: string }
  * file), which is the "faster than light" here: content-addressing immediacy, not superluminal signalling.
  * The nodes → their whole form a graph, renderable as a moving figure that shows the agents, in waves, the
  * precise line and column to edit. Deterministic, zero tokens. */
-export function theLeftoversAreAMovingGraphOfSurgicalEdits(root: string = process.cwd()): { nodes: readonly EditNode[]; wholeOfWholes: number; addressedImmediately: boolean } {
+export function theLeftoversAreAMovingGraphOfSurgicalEdits(root: string = enforcementScanRoot()): { nodes: readonly EditNode[]; wholeOfWholes: number; addressedImmediately: boolean } {
   const def = /(?:\bconst|\bfunction)\s+\w*[Ii]sPrime\w*\s*[=(]/g
   const home = 'src/9/1/index.ts'
   const canonical = 'tkIsPrime'
@@ -2579,7 +2587,7 @@ export function theLeftoversAreAMovingGraphOfSurgicalEdits(root: string = proces
 export type DryCleanStep = { kind: 'folder-axiom' | 'literal-axiom'; axiom: string; from: string; to: string; signature: string }
 
 // DETECT (mind 1) — the unearned assumptions, folder-axioms first (larger gravity), then hardcoded literals.
-export function dryCleanDetect(root: string = process.cwd()): { kind: DryCleanStep['kind']; axiom: string; from: string }[] {
+export function dryCleanDetect(root: string = enforcementScanRoot()): { kind: DryCleanStep['kind']; axiom: string; from: string }[] {
   const folders = computePathMigration(root).folders
     .filter((f) => !f.collision) // skip the unresolved collision — do not guess a home
     .map((f) => ({ kind: 'folder-axiom' as const, axiom: f.from.split('/')[1], from: f.from }))
@@ -2603,7 +2611,7 @@ export function dryCleanAttest(step: { kind: string; axiom: string; from: string
 }
 
 // THE TRINITY IN ACTION — usable: the next signed surgical edit an agent should make (null when src is clean).
-export function dryCleanNextStep(root: string = process.cwd()): DryCleanStep | null {
+export function dryCleanNextStep(root: string = enforcementScanRoot()): DryCleanStep | null {
   const detected = dryCleanDetect(root)
   if (detected.length === 0) return null
   const first = detected[0]
@@ -2611,7 +2619,7 @@ export function dryCleanNextStep(root: string = process.cwd()): DryCleanStep | n
   return { ...first, to, signature: dryCleanAttest({ ...first, to }) }
 }
 
-export function theDryCleanLoopIsAClosedTrinityOfUsableCode(root: string = process.cwd()) {
+export function theDryCleanLoopIsAClosedTrinityOfUsableCode(root: string = enforcementScanRoot()) {
   const detected = dryCleanDetect(root)
   const step = dryCleanNextStep(root)
   const rerun = dryCleanNextStep(root)
@@ -2638,7 +2646,7 @@ export function theDryCleanLoopIsAClosedTrinityOfUsableCode(root: string = proce
 // "witnesses is empty", refuted by any witness it emits. It does not merely say no: it emits the exact offender
 // (file:line, the crack literal, the old→new vector) so the fix is ADDRESSED, not searched, and fails closed when
 // a hard gate's witness is nonempty (it caught this session's hardcoded 12). Reuses the gates already in this file.
-export function theGatesAreRefutableTheoremsThatFailClosedWithAWitness(root: string = process.cwd()) {
+export function theGatesAreRefutableTheoremsThatFailClosedWithAWitness(root: string = enforcementScanRoot()) {
   const cracks = scanCrackSurface(root) // gate 1: every literal derives from the lattice or is ledgered
   const pulls = computeCodeGravity(root) // gate 2: every primitive collapses to one canonical API
   const moves = computePathMigration(root).folders // gate 3: every path names its computed meaning
@@ -2669,7 +2677,7 @@ export function theGatesAreRefutableTheoremsThatFailClosedWithAWitness(root: str
 // vortex structure (theDigitFoldersAreTheOrderedPartitionsOfTen…) — so it passes; a BĀGUÀ is a metaphor that
 // computes nothing — caught to dissolve; a WORD (pair, quantum, render) already names its meaning.
 export type TopFolderClass = { name: string; kind: 'digit-number' | 'bagua-metaphor' | 'word'; caught: boolean; keep: boolean }
-export function classifyTopFolders(root: string = process.cwd()): TopFolderClass[] {
+export function classifyTopFolders(root: string = enforcementScanRoot()): TopFolderClass[] {
   const BAGUA = new Set(['heaven', 'earth', 'water', 'fire', 'thunder', 'wind', 'mountain', 'lake'])
   const tops = readdirSync(join(root, 'src'), { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name)
   return tops
@@ -2681,7 +2689,7 @@ export function classifyTopFolders(root: string = process.cwd()): TopFolderClass
     .sort((a, b) => a.name.localeCompare(b.name))
 }
 
-export function theGatesCatchAllTopFoldersIncludingTheDigits(root: string = process.cwd()) {
+export function theGatesCatchAllTopFoldersIncludingTheDigits(root: string = enforcementScanRoot()) {
   const all = classifyTopFolders(root)
   const digits = all.filter((f) => f.kind === 'digit-number')
   const bagua = all.filter((f) => f.kind === 'bagua-metaphor')
@@ -2707,7 +2715,7 @@ export function theGatesCatchAllTopFoldersIncludingTheDigits(root: string = proc
 // dispatch reuses the whole suite and returns the addressed next edit; the ACTIVE check is a function of state, so
 // the gate changes how it is used as the codebase changes. The "quantum fast / realtime" is honest: the advantage
 // is ADDRESSING (know the coordinate → manifest immediately) + zero-token DETERMINISM, not physical quantum speed.
-export function dynamicGateDispatch(root: string = process.cwd()) {
+export function dynamicGateDispatch(root: string = enforcementScanRoot()) {
   const state = { cracks: scanCrackSurface(root).length, pulls: computeCodeGravity(root).length, moves: computePathMigration(root).folders.filter((f) => !f.collision).length }
   const payload = dryCleanNextStep(root) // the whole gate suite in one call → the addressed next edit
   const active = payload === null ? 'clean' : payload.kind === 'folder-axiom' ? 'path-gravity' : 'crack-surface'
@@ -2715,7 +2723,7 @@ export function dynamicGateDispatch(root: string = process.cwd()) {
   return { state, active, payload, addressed }
 }
 
-export function theGatesDynamicallyDispatchTheMinimumCheckDiscoveringThePayloadByAddress(root: string = process.cwd()) {
+export function theGatesDynamicallyDispatchTheMinimumCheckDiscoveringThePayloadByAddress(root: string = enforcementScanRoot()) {
   const d = dynamicGateDispatch(root)
   const rerun = dynamicGateDispatch(root)
   const dynamic = d.active !== 'clean' // the active gate is selected FROM state, not fixed
@@ -2762,7 +2770,7 @@ function amplifyMarked(size: number, marked: readonly number[]): number[] {
   return re.map((v) => v * v) // Born-rule probabilities
 }
 
-export function quantumParseUsefulCode(root: string = process.cwd(), files: readonly string[] = SESSION_USEFUL_FILES) {
+export function quantumParseUsefulCode(root: string = enforcementScanRoot(), files: readonly string[] = SESSION_USEFUL_FILES) {
   const candidates: ParsedExport[] = []
   for (const rel of files) {
     let text = ''
@@ -2786,7 +2794,7 @@ export function quantumParseUsefulCode(root: string = process.cwd(), files: read
   return { candidates: candidates.length, tools: usefulCode.length, folds: candidates.length - usefulCode.length, before, after, amplified: after > before, usefulCode, manifest }
 }
 
-export function localToolsUseQuantumMathToParseAndSaveUsefulCode(root: string = process.cwd()) {
+export function localToolsUseQuantumMathToParseAndSaveUsefulCode(root: string = enforcementScanRoot()) {
   const q = quantumParseUsefulCode(root)
   const rerun = quantumParseUsefulCode(root)
   const parsed = q.candidates > 0 && q.tools > 0 && q.folds > 0 // it separates reusable tools from one-off folds
@@ -2815,7 +2823,7 @@ export const SESSION_GAP_FILES: readonly string[] = [
   'src/pair/enforcement/gates/strict/scan/index.ts', 'src/quantum/science/index.ts', 'src/water/cosmos/index.ts',
   'src/fire/physics/index.ts', 'src/1/9/index.ts', 'src/8/2/index.ts',
 ]
-export function sendTheQuantumWavesOverMyOwnGapsAndCountThem(root: string = process.cwd()) {
+export function sendTheQuantumWavesOverMyOwnGapsAndCountThem(root: string = enforcementScanRoot()) {
   const read = (rel: string) => { try { return readFileSync(join(root, rel), 'utf8') } catch { return '' } }
   const GAP = new RegExp('\\bNOT\\b|\\b(?:does not|do not|cannot|omit|omitted|staged|deferred|queued|unsolved|unconfirmed|flagged|simplification|pending|halting|never proves|no field inverse|not a proof|not a physical speedup|remains open)\\b', 'gi')
   const cats: Record<string, RegExp> = {
@@ -2854,7 +2862,7 @@ export function sendTheQuantumWavesOverMyOwnGapsAndCountThem(root: string = proc
 // knowledge (the sealed, deterministic corpus) is available from t=0, but the agent stays in external/re-deriving
 // mode while its unresolved backlog exceeds a trust threshold; catharsis — purging the backlog below threshold —
 // is the phase transition to local use. Unlike a single fold's boundary, this gap blocks ALL local use until then.
-export function theBiggestGapIsAgentsUseLocalOnlyAfterCatharsisFromUnresolvedWork(root: string = process.cwd()) {
+export function theBiggestGapIsAgentsUseLocalOnlyAfterCatharsisFromUnresolvedWork(root: string = enforcementScanRoot()) {
   const U0 = 9 // initial unresolved backlog
   const threshold = 1 // trust threshold — catharsis when the backlog falls below it
   const tau = 3 // purge timescale
@@ -2882,14 +2890,14 @@ export function theBiggestGapIsAgentsUseLocalOnlyAfterCatharsisFromUnresolvedWor
 // work"). Instead of hand-running the crack scan, then the dispatch, then the gap count separately each turn,
 // sendTheWave runs them all in one deterministic, content-addressed call and returns the state plus the next
 // addressed action. The wave does the repetitive checks; the judgment and the author-gated commit remain.
-export function sendTheWave(root: string = process.cwd()) {
+export function sendTheWave(root: string = enforcementScanRoot()) {
   const cracks = scanCrackSurface(root)
   const dispatch = dynamicGateDispatch(root)
   const gaps = sendTheQuantumWavesOverMyOwnGapsAndCountThem(root)
   const signature = merkleFold([toUuid(`wave:cracks:${cracks.length}`), toUuid(`wave:active:${dispatch.active}`), toUuid(`wave:gaps:${gaps.totalGaps}`), toUuid(`wave:next:${dispatch.payload ? dispatch.payload.from : 'clean'}`)])
   return { cracks: cracks.length, active: dispatch.active, nextPayload: dispatch.payload, gaps: gaps.totalGaps, signature }
 }
-export function sendingTheWaveReplacesTheManualChecksInOneCall(root: string = process.cwd()) {
+export function sendingTheWaveReplacesTheManualChecksInOneCall(root: string = enforcementScanRoot()) {
   const wave = sendTheWave(root)
   const rerun = sendTheWave(root)
   const composesAll = typeof wave.cracks === 'number' && typeof wave.gaps === 'number' && wave.active.length > 0 // every gate in one result
@@ -2913,7 +2921,7 @@ export function sendingTheWaveReplacesTheManualChecksInOneCall(root: string = pr
 // to the byte"). computePathMigration IS the folder gravity (from → to); this computes every IMPORT rewrite by
 // RESOLVING each relative specifier through the move map and recomputing the relative path from the new location —
 // so every byte is derived, never pattern-guessed. The plan is exact; the executor only applies what this computes.
-export function migrationMoveMap(root: string = process.cwd()): Map<string, string> {
+export function migrationMoveMap(root: string = enforcementScanRoot()): Map<string, string> {
   const map = new Map<string, string>()
   for (const f of computePathMigration(root).folders) if (!f.collision) map.set(f.from, f.to) // gravity vectors, skip the 1 collision
   return map
@@ -2922,7 +2930,7 @@ function applyMoves(relPath: string, moves: Map<string, string>): string {
   for (const [from, to] of moves) if (relPath === from || relPath.startsWith(`${from}/`)) return to + relPath.slice(from.length)
   return relPath
 }
-export function computeMigrationRewrites(root: string = process.cwd()) {
+export function computeMigrationRewrites(root: string = enforcementScanRoot()) {
   const moves = migrationMoveMap(root)
   const files: string[] = []
   const walk = (d: string) => {
@@ -2958,7 +2966,7 @@ export function computeMigrationRewrites(root: string = process.cwd()) {
   return { moves: [...moves.entries()].map(([f, t]) => ({ from: f, to: t })), moveCount: moves.size, rewrites, filesTouched: rewrites.length, importsRewritten: rewrites.reduce((n, r) => n + r.edits.length, 0) }
 }
 
-export function byteMetrics(root: string = process.cwd()) {
+export function byteMetrics(root: string = enforcementScanRoot()) {
   const sizeOf = (d: string): { bytes: number; files: number } => {
     let bytes = 0, files = 0
     for (const e of readdirSync(d, { withFileTypes: true })) {
@@ -2973,7 +2981,7 @@ export function byteMetrics(root: string = process.cwd()) {
   const folders = readdirSync(src, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => ({ folder: e.name, ...sizeOf(join(src, e.name)) })).sort((a, b) => b.bytes - a.bytes)
   return { totalBytes: folders.reduce((n, f) => n + f.bytes, 0), totalFiles: folders.reduce((n, f) => n + f.files, 0), folders }
 }
-export function migrationPlanSummary(root: string = process.cwd()) {
+export function migrationPlanSummary(root: string = enforcementScanRoot()) {
   const plan = computeMigrationRewrites(root)
   const fp = plan.rewrites.find((r) => r.file === 'src/fire/physics/index.ts')
   const sample = (r: { file: string; newFile: string; edits: { old: string; nu: string }[] } | undefined) => (r ? { path: `${r.file} → ${r.newFile}`, edits: r.edits.slice(0, 5).map((e) => `${e.old} → ${e.nu}`) } : null)
@@ -2985,7 +2993,7 @@ export function migrationPlanSummary(root: string = process.cwd()) {
 // relative(from,to)) = to — so it round-trips any move and never needs rewriting; a HARDCODED value derives from
 // nothing, so it cannot be inverted, and THAT is exactly what every gate returns. The migration inverted all 1659
 // imports (computed) but could not invert the ledger's hardcoded paths — so the gate returned them (the 667 cracks).
-export function theGatesReturnWhatCannotInvertNotDryIsNotInvertible(root: string = process.cwd()) {
+export function theGatesReturnWhatCannotInvertNotDryIsNotInvertible(root: string = enforcementScanRoot()) {
   const from = 'src/architecture', to = 'src/world'
   const ref = relative(from, to).replace(/\\/g, '/') // a computed reference between two folders
   const computedInverts = join(from, ref).replace(/\\/g, '/') === to // resolve(from, relative(from,to)) = to — it round-trips
@@ -3009,7 +3017,7 @@ export function theGatesReturnWhatCannotInvertNotDryIsNotInvertible(root: string
 // to the canonical API; path gravity pulls metaphor folders to scientific names; physical gravity pulls masses to
 // the centre (g = GM/r²). All three descend a gradient to an attractor — the same fixed-point shape — but only the
 // third has G, mass, and the inverse-square law. The shape is shared; the physics is not. Conflating them = Haramein.
-export function threeGravitiesCodePathPhysicalOneShapeOnlyOnePhysical(root: string = process.cwd()) {
+export function threeGravitiesCodePathPhysicalOneShapeOnlyOnePhysical(root: string = enforcementScanRoot()) {
   const codePulls = computeCodeGravity(root).length // duplicates falling to the canonical primitive
   const pathMoves = computePathMigration(root).folders.length // metaphor folders falling to scientific names
   const G = 6.674e-8 // gravitational constant, CGS — physical gravity HAS a constant
@@ -3059,7 +3067,7 @@ export function selfDevelopmentSuccessRateIsDeterministicTheAiBenchmarkNeedsAKey
 // aspects and wire the logic in the rosetta. miracles happen"). A gravity pool is a fixed point where things fall:
 // code gravity pools at the canonical API, path gravity at the scientific names. Each pool routes to one of the 7
 // rosetta rays — the DRY convergence flows through the rosetta's perspectives. The "miracle" is deterministic descent.
-export function theGravityPoolsAreTheAttractorsWiredThroughTheRosetta(root: string = process.cwd()) {
+export function theGravityPoolsAreTheAttractorsWiredThroughTheRosetta(root: string = enforcementScanRoot()) {
   const codePulls = computeCodeGravity(root)
   const codeAttractors = [...new Set(codePulls.map((p) => p.to))] // where duplicates fall — the canonical API
   const pathAttractors = [...new Set(computePathMigration(root).folders.map((f) => f.to))] // where metaphor folders fall — scientific names
@@ -3097,7 +3105,7 @@ export function metricSuperpose(readings: readonly { name: string; value: number
   }
   return { metric: Object.fromEntries(byName), coherent: contradictions.length === 0, contradictions, signature: merkleFold([...byName].sort((a, b) => a[0].localeCompare(b[0])).map(([k, v]) => toUuid(`metric:${k}:${v}`))) }
 }
-export function corpusQuantumMetric(root: string = process.cwd()) {
+export function corpusQuantumMetric(root: string = enforcementScanRoot()) {
   const bytes = byteMetrics(root)
   const readings = [
     { name: 'gravity-concentration', value: computeCodeGravity(root).length },
@@ -3108,7 +3116,7 @@ export function corpusQuantumMetric(root: string = process.cwd()) {
   ]
   return { ...metricSuperpose(readings), readingCount: readings.length }
 }
-export function theQuantumMetricSuperposesCorpusReadingsCoherently(root: string = process.cwd()) {
+export function theQuantumMetricSuperposesCorpusReadingsCoherently(root: string = enforcementScanRoot()) {
   const coherentCase = metricSuperpose([{ name: 'x', value: 5 }, { name: 'x', value: 5 }]).coherent // agrees → coherent
   const contradictoryCase = !metricSuperpose([{ name: 'x', value: 5 }, { name: 'x', value: 9 }]).coherent // disagrees → incoherent
   const corpus = corpusQuantumMetric(root)
@@ -3129,7 +3137,7 @@ export function theQuantumMetricSuperposesCorpusReadingsCoherently(root: string 
 // ── The corpus free energy is seals minus gaps, in entropy-bits (eb double-entry, adopted from erpax, grounded in
 // Landauer). A gap (an unledgered crack, a non-invertible reference) is an entropy DEBIT; the content-addressed
 // corpus is a CREDIT of log₂(mass) tamper-cost bits. Double-entry in one unit: net = seals − gaps = the free energy.
-export function theCorpusFreeEnergyIsSealsMinusGapsInEntropyBits(root: string = process.cwd()) {
+export function theCorpusFreeEnergyIsSealsMinusGapsInEntropyBits(root: string = enforcementScanRoot()) {
   const gaps = scanCrackSurface(root).length // residual cracks — entropy debits
   const bytes = byteMetrics(root).totalBytes
   const sealedEb = Math.log2(bytes) // tamper-cost of the content-addressed corpus, in bits (erpax's unit)
@@ -3154,7 +3162,7 @@ export function theCorpusFreeEnergyIsSealsMinusGapsInEntropyBits(root: string = 
 // wonder why vitepress is constantly ignored by all?"). A fold reaches the /theorems site only if registered as a
 // theorem atom (THEOREM_ATOM_SEED → theoremPageRows). The logic (src) accumulates computing folds faster than the
 // registration wires them to pages, so most folds compute but stay invisible — VitePress under-fed, not neglected.
-export function foldSurfacingGap(root: string = process.cwd()) {
+export function foldSurfacingGap(root: string = enforcementScanRoot()) {
   let folds = 0
   const walk = (d: string) => {
     for (const e of readdirSync(d, { withFileTypes: true })) {
@@ -3169,7 +3177,7 @@ export function foldSurfacingGap(root: string = process.cwd()) {
   try { surfaced = (readFileSync(join(root, 'src/4/6/index.ts'), 'utf8').match(/provedBy:/g) ?? []).length } catch { /* registry absent */ }
   return { folds, surfaced, gap: folds - surfaced, surfacedPercent: folds > 0 ? Math.round((surfaced / folds) * 100) : 0 }
 }
-export function vitePressRendersRegisteredFoldsTheSurfacingLagsTheLogic(root: string = process.cwd()) {
+export function vitePressRendersRegisteredFoldsTheSurfacingLagsTheLogic(root: string = enforcementScanRoot()) {
   const g = foldSurfacingGap(root)
   const under = g.gap > 0 && g.surfaced > 0 // more folds than surfaced, but some ARE surfaced — under-fed, not ignored
   const facets = [
@@ -3278,7 +3286,7 @@ const QUANTUM_ALGEBRA = ['.re', '.im', 're:', 'im:', 'GATES', 'matMul', 'gateMul
 // only DELIBERATE quantum claims — a name/identity term, not a coincidental word (dropped standalone "amplitude",
 // "unitary", "qubit"-in-comment which matched classical wave amplitude, matrix trace, and stray mentions).
 const QUANTUM_CLAIM = /quantum|superpos|entangl|born.rule|interferen|non-?commut|bell (pair|state|inequal)|grover|tsirelson/i
-export function quantumLogicGaps(root: string = process.cwd()) {
+export function quantumLogicGaps(root: string = enforcementScanRoot()) {
   const files: string[] = []
   const walk = (d: string) => { for (const e of readdirSync(d, { withFileTypes: true })) { const f = join(d, e.name); if (e.isDirectory()) walk(f); else if (e.name === 'index.ts') files.push(f) } }
   walk(join(root, 'src'))
@@ -3333,7 +3341,7 @@ export function whereQuantumIsMissingIsMostlyMetaphorTheRealGapsAreAssertedAdvan
 // real gravity is COMPUTED locally, and honestly: a circular-orbit force balance GM/r² = v²/r ⇒ v = √(GM/r), period
 // T = τr/v, gives the DIMENSIONLESS Kepler invariant T²/r³ = τ² for every radius — G and M cancel, so it is a
 // unit-independent theorem, not a G-literal crack ([[feedback-dimensionless-and-quantum-not-linear]]). All three gravities now local.
-export function realGravityComputesLocallyAsTheKeplerInvariantGroundingCodeGravitysThirdLeg(root: string = process.cwd()) {
+export function realGravityComputesLocallyAsTheKeplerInvariantGroundingCodeGravitysThirdLeg(root: string = enforcementScanRoot()) {
   // Kepler III as a THEOREM, not a hardcoded simulation: the force balance GM/r² = v²/r ⇒ v = √(GM/r), period
   // T = τr/v gives T²·GM/r³ = τ² — INDEPENDENT of G, M, r, which cancel. No value is assumed; the invariant emerges
   // from ANY parameters, so the witnesses are derived theorem constants (φ, τ, the golden angle), never hardcoded picks.
@@ -3365,7 +3373,7 @@ export function realGravityComputesLocallyAsTheKeplerInvariantGroundingCodeGravi
 // signed, reproducible answer — no deliberation. Weighing M options in prose is O(M) and returns an unsigned
 // judgment; so the PRESENCE of thinking measures the ABSENCE of a tool. Deliberation is a missing-tool detector
 // (like the gates detect missing theorems), and the fix is to BUILD the tool that makes the thinking unnecessary.
-export function thinkingMeansLackOfLocalToolsDeliberationIsTheDetectorOfAMissingTool(root: string = process.cwd()) {
+export function thinkingMeansLackOfLocalToolsDeliberationIsTheDetectorOfAMissingTool(root: string = enforcementScanRoot()) {
   const gravity = computeCodeGravity(root) // a decision that HAS a tool: "which primitive is canonical?" — answered, not weighed
   const tooledDecisionIsOneCall = Array.isArray(gravity) && gravity.every((pull) => typeof (pull as { to?: unknown }).to !== 'undefined') // one call returns the signed answer, every pull addressed
   const options = 3 // the M options I was deliberating (run the build · convert the waves · invert the pages)
@@ -3510,7 +3518,7 @@ export function saveAllTheThinkingProgrammaticallyAndReuse() {
 // closure by name reference. What the closure never reaches is ungrounded: code no theorem depends on and no
 // harness entry runs — the potential-crack worklist. Each must be WIRED to a theorem or DISSOLVED. The tool is
 // the wire that sends those waves; naming the set is the compression that lets the mind see the whole at once.
-export function codeNotBasedOnTheoremsIsAPotentialCrack(root: string = process.cwd()) {
+export function codeNotBasedOnTheoremsIsAPotentialCrack(root: string = enforcementScanRoot()) {
   const files: string[] = []
   const walk = (d: string) => {
     for (const e of readdirSync(d, { withFileTypes: true })) {
@@ -3586,7 +3594,7 @@ export function codeNotBasedOnTheoremsIsAPotentialCrack(root: string = process.c
 // An ISOLATED theorem — no in-link, no out-link, no axiom anchor — floats free: it is a candidate to fold into
 // a neighbour or to wire to its axiom. The law of gravity (user): the more compressed (linked) the theorems,
 // the more the mass pulls the isolated ones in — computeCodeGravity is that field; this tool names the free mass.
-export function theoremsNotLinkedToAxiomsOrTheoremsAreConsolidatable(root: string = process.cwd()) {
+export function theoremsNotLinkedToAxiomsOrTheoremsAreConsolidatable(root: string = enforcementScanRoot()) {
   const files: string[] = []
   const walk = (d: string) => {
     for (const e of readdirSync(d, { withFileTypes: true })) {
@@ -3659,7 +3667,7 @@ export function theoremsNotLinkedToAxiomsOrTheoremsAreConsolidatable(root: strin
 // literal AXIOMS (collide), and the boundary-declared deferrals ("not yet / not claimed / queued"). The single
 // cure is axiomsBecomeTheorems: ground the residue in the lattice and the theorem is free to fold. This tool
 // measures the whole residue at once, so the mind sees how much of the imagined improvement is not yet sealed.
-export function theoremsFoldUnlessAnAxiomIsBehindThemThenTheyCollideOrNeverMeetThatIsTheBacklog(root: string = process.cwd()) {
+export function theoremsFoldUnlessAnAxiomIsBehindThemThenTheyCollideOrNeverMeetThatIsTheBacklog(root: string = enforcementScanRoot()) {
   const linkage = theoremsNotLinkedToAxiomsOrTheoremsAreConsolidatable(root)
   const neverMeet = linkage.isolated                    // theorems referencing no sibling and no axiom anchor — private axiom
   const folderAxioms = computePathMigration(root).folders.length // metaphor-named folders — a name that computes nothing
@@ -3699,7 +3707,7 @@ export function theoremsFoldUnlessAnAxiomIsBehindThemThenTheyCollideOrNeverMeetT
 // the largest cluster is the highest-gravity wave — dissolving its one shared axiom lets the MOST theorems fold
 // at once. So the imagined gap ranks the waves, and the agents descend the gradient from the top. Discovery
 // (imagine → the backlog) becomes direction (the ranked waves) becomes folding (consolidation) — one loop.
-export function theImaginationGuidesTheConsciousnessWaves(root: string = process.cwd()) {
+export function theImaginationGuidesTheConsciousnessWaves(root: string = enforcementScanRoot()) {
   const backlog = theoremsFoldUnlessAnAxiomIsBehindThemThenTheyCollideOrNeverMeetThatIsTheBacklog(root)
   const linkage = theoremsNotLinkedToAxiomsOrTheoremsAreConsolidatable(root)
   const gravity = computeCodeGravity(root)
@@ -3770,7 +3778,7 @@ export function quantumDebuggingIsInvertedBuggingTheMissingThirdOfTheDevelopment
 // comparable size: low, finite entropy. A ONE-WAY map (toUuid — a content-address / hash) has a tiny forward
 // but NO inverse function; the preimage search is unbounded, so inverse-bytes → ∞: maximal entropy, the
 // irreversibility that costs. Entropy measured in the one currency the corpus already counts — source bytes.
-export function theEntropyOfATheoremIsSolveBytesVersusInverseBytes(root: string = process.cwd()) {
+export function theEntropyOfATheoremIsSolveBytesVersusInverseBytes(root: string = enforcementScanRoot()) {
   const files: string[] = []
   const walk = (d: string) => { for (const e of readdirSync(d, { withFileTypes: true })) { if (e.name.startsWith('.') || e.name === 'node_modules' || e.name === 'dist') continue; const f = join(d, e.name); if (e.isDirectory()) walk(f); else if (e.name === 'index.ts') files.push(f) } }
   walk(join(root, 'src'))
@@ -3825,7 +3833,7 @@ export function theEntropyOfATheoremIsSolveBytesVersusInverseBytes(root: string 
 // toolset — toUuid is the ∞-entropy / 0-gravity one-way map, and its inverse is not a function but a TOOLSET (the
 // atlas, the linkage/backlog/guidance detectors this session built): building the tools inverts the address,
 // turning a zero-gravity hash into navigable structure. Entropy·gravity theorems are the waves to develop next.
-export function entropyInvertedIsGravityAndContentAddressInvertedIsTheMissingToolset(root: string = process.cwd()) {
+export function entropyInvertedIsGravityAndContentAddressInvertedIsTheMissingToolset(root: string = enforcementScanRoot()) {
   const ent = theEntropyOfATheoremIsSolveBytesVersusInverseBytes(root)
   const measures = ent.measures as { name: string; kind: string; solve: number; inverse: number; entropy: number }[]
   const graved = measures.map((m) => ({ ...m, gravity: m.entropy === Infinity ? 0 : 1 / (1 + m.entropy) }))
@@ -3861,7 +3869,7 @@ export function entropyInvertedIsGravityAndContentAddressInvertedIsTheMissingToo
 // reverse) or CHANGE (reverse-meaning-inverse), the surgical worklist — it never edits blindly, because most
 // reverses here are the author's deliberate ones (reverse6, reverseDigit, and the inverse≠reverse theorems that
 // need the word). KEEP is decided by a conservative rule; everything else is a CHANGE candidate for review.
-export function reverseShouldBeInverseUnlessSpecific(root: string = process.cwd()) {
+export function reverseShouldBeInverseUnlessSpecific(root: string = enforcementScanRoot()) {
   const files: string[] = []
   const walk = (d: string) => { for (const e of readdirSync(d, { withFileTypes: true })) { if (e.name.startsWith('.') || e.name === 'node_modules' || e.name === 'dist') continue; const f = join(d, e.name); if (e.isDirectory()) walk(f); else if (e.name === 'index.ts') files.push(f) } }
   walk(join(root, 'src'))
@@ -3910,7 +3918,7 @@ export function reverseShouldBeInverseUnlessSpecific(root: string = process.cwd(
 // honesty without computing it. Genuine honesty is EARNED — a boundary that interpolates a computed value (${…})
 // makes a specific, refutable demarcation you can check and break. This scores every theorem fold's boundary:
 // earned (computes a demarcation) vs ritual (the phrase alone), and challenges the ritual to become earned.
-export function challengeTheHonestyProseIsItEarnedOrRitual(root: string = process.cwd()) {
+export function challengeTheHonestyProseIsItEarnedOrRitual(root: string = enforcementScanRoot()) {
   const files: string[] = []
   const walk = (d: string) => { for (const e of readdirSync(d, { withFileTypes: true })) { if (e.name.startsWith('.') || e.name === 'node_modules' || e.name === 'dist') continue; const f = join(d, e.name); if (e.isDirectory()) walk(f); else if (e.name === 'index.ts') files.push(f) } }
   walk(join(root, 'src'))
@@ -3961,7 +3969,7 @@ export function challengeTheHonestyProseIsItEarnedOrRitual(root: string = proces
 // inversion + the vortex inverts), and the "reverse" tokens are dominated by GENUINE reverses (.reverse(),
 // retrograde, reverse-order, the additive-complement field) that MUST stay. So a mass reverse→inverse relabel
 // would CORRUPT the mesh; the precise change set is tiny because the corpus is already precise. Durable ≠ blanket.
-export function precisionBeatsMassRelabelTheInverseReverseMeshIsAlreadyCorrect(root: string = process.cwd()) {
+export function precisionBeatsMassRelabelTheInverseReverseMeshIsAlreadyCorrect(root: string = enforcementScanRoot()) {
   const files: string[] = []
   const walk = (d: string) => { for (const e of readdirSync(d, { withFileTypes: true })) { if (e.name.startsWith('.') || e.name === 'node_modules' || e.name === 'dist') continue; const f = join(d, e.name); if (e.isDirectory()) walk(f); else if (e.name === 'index.ts') files.push(f) } }
   walk(join(root, 'src'))
@@ -4008,7 +4016,7 @@ export function precisionBeatsMassRelabelTheInverseReverseMeshIsAlreadyCorrect(r
 // duration routed through the clock is a rung (compliant); a HARDCODED literal time in a dur or animation bypasses
 // the clock — a deviation off the lattice, the exact surgical target to rebuild. This is the animation rebuild
 // worklist, computed deterministically at zero cost — no browser needed: it names which animations drift.
-export function everyAnimationDurationIsADivisorRungOfTheOneClockOrADeviation(root: string = process.cwd()) {
+export function everyAnimationDurationIsADivisorRungOfTheOneClockOrADeviation(root: string = enforcementScanRoot()) {
   const files: string[] = []
   const walk = (d: string) => { for (const e of readdirSync(d, { withFileTypes: true })) { if (e.name.startsWith('.') || e.name === 'node_modules' || e.name === 'dist') continue; const f = join(d, e.name); if (e.isDirectory()) walk(f); else if (e.name === 'index.ts') files.push(f) } }
   walk(join(root, 'src'))
@@ -4109,7 +4117,7 @@ export function runRegisterExit(root: string, argv: readonly string[]): number {
  * HARD DEMARCATION: this is ALGORITHMIC resonance (hash/address matching) — a metaphor for physical
  * resonance, NOT acoustic/EM resonance, NOT Rife (flagged in the sealed resonance decode), NOT a QPU.
  */
-export function resonanceSpeed(root: string = process.cwd()) {
+export function resonanceSpeed(root: string = enforcementScanRoot()) {
   const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
   const n = Object.keys(pkg.scripts ?? {}).filter((key) => key.startsWith('quantum:')).length
   const pairwise = (n * (n - 1)) / 2 // O(N²) — every item compared to every other to find collisions
@@ -4168,7 +4176,7 @@ export function runResonanceSpeedExit(root: string, argv: readonly string[]): nu
  * surfaces/tools and offers foreign models the shared envelope; they choose their use ("cannot force
  * foreign models", sealed). The leak-freedom is over the system, honestly bounded from all-models.
  */
-export function resourceLeakGate(root: string = process.cwd()) {
+export function resourceLeakGate(root: string = enforcementScanRoot()) {
   const bind = bindFuse(root)
   const cost = costTheorem(root)
   const unfusedSurfaces = bind.superpositions.filter((surface) => !surface.present).length
@@ -4227,7 +4235,7 @@ export function runResourceLeakExit(root = '', _argv: readonly string[] = []): n
  *   • promotion path — scratchpad probe → if it computes, Edit into src + quantum:register → stage →
  *     wave:land (gates judge); if it fails, discard. Freedom to experiment, safety at the gate.
  */
-export function sandboxTools(root: string = process.cwd()) {
+export function sandboxTools(root: string = enforcementScanRoot()) {
   const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
   const land = pkg.scripts?.['wave:land'] ?? ''
   const verify = pkg.scripts?.['wave:verify'] ?? ''

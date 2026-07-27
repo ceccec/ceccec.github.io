@@ -5,7 +5,7 @@ import * as __ns_up_up_up_mountain_geometry from '../../../mountain/geometry'
 import * as __ns_up_up_up_quantum_lake_dist_generators from '../../../quantum/lake/dist/generators'
 import * as __ns_up_gates_computational from '../gates/computational'
 import * as __ns_up_up_up_heaven_atoms from '../../../heaven/atoms'
-import { DIMENSION_GATES, FOLDED_CENSUS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, UNFOLDED_CENSUS } from '../gates/computational'
+import { DIMENSION_GATES, FOLDED_CENSUS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, UNFOLDED_CENSUS, enforcementScanRoot } from '../gates/computational'
 import { readdirSync, readFileSync, rmSync, existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 import { join, dirname, resolve, relative } from 'node:path'
@@ -783,7 +783,7 @@ export type EducationalGap = {
 }
 
 /** API gaps with educational impact — iching/rosetta taxonomy, barrels, and runner mounts. */
-export function educationalGapsFromIncompleteApis(root = process.cwd()): readonly EducationalGap[] {
+export function educationalGapsFromIncompleteApis(root = enforcementScanRoot()): readonly EducationalGap[] {
   const taxonomyIcons = __ns_up_up_up_fire_li.taxonomyIcons
   const areaPairs = __ns_up_up_up_mountain_geometry.areaPairs
   const generatorsAreIChing = __ns_up_up_up_quantum_lake_dist_generators.generatorsAreIChing
@@ -834,12 +834,12 @@ export function educationalGapsFromIncompleteApis(root = process.cwd()): readonl
 }
 
 /** Verify one educational gap closed by gapId — pure recomputation at call time. */
-export function closeEducationalGap(gapId: string, root = process.cwd()): boolean {
+export function closeEducationalGap(gapId: string, root = enforcementScanRoot()): boolean {
   return educationalGapsFromIncompleteApis(root).find((gap) => gap.gapId === gapId)?.closed ?? false
 }
 
 /** Machine-readable offender pipeline for CI/automation builders. */
-export function offenderAutomationSpec(root = process.cwd()) {
+export function offenderAutomationSpec(root = enforcementScanRoot()) {
   const facts = collectEnforcementFacts(root)
   const importDist = importPathShowsDistanceInMigrationMatrix(root, facts)
   const pipelines = [
@@ -920,7 +920,7 @@ export function runTeamCooperateVerifyGuardedExit(_root: string, _argv: readonly
 // — identifies the rosetta's OPERATION with toUuid, present in more files than any other core primitive. So the
 // rosetta, as the content-addressing it is, is used most, has the most gravity, and computes first: the dependency
 // every fold shelves through. First only when named as what it is — the one word, rosetta.
-export function theRosettaTheoremIsFirstByComputationBecauseItIsUsedMost(root: string = process.cwd()) {
+export function theRosettaTheoremIsFirstByComputationBecauseItIsUsedMost(root: string = enforcementScanRoot()) {
   const files: string[] = []
   const walk = (d: string) => { for (const e of readdirSync(d, { withFileTypes: true })) { if (e.name.startsWith('.') || e.name === 'node_modules' || e.name === 'dist') continue; const f = join(d, e.name); if (e.isDirectory()) walk(f); else if (e.name === 'index.ts') files.push(f) } }
   walk(join(root, 'src'))

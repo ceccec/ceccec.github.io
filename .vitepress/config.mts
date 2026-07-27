@@ -131,6 +131,7 @@ export function indexRegistryFromLogicRel(logicRel, mindMount = 'src/quantum/hea
 }
 export function discoverSrcIndexes() { return []; }
 export function vitepressAutomountPaths() { return []; }
+export function enforcementScanRoot() { return '/'; }
 `
 }
 
@@ -230,6 +231,7 @@ export function scanCrackSurface() { return [] }
 export function stripComments(text) { return text }
 export const ONE_MATH_LAW = 'one math — every derived constant/primitive is defined once at its home and imported everywhere else'
 export function scanOneMathOffenders() { return [] }
+export function enforcementScanRoot() { return '/' }
 // PURE string helpers deduped to this leaf (dry/dupe spin 1) — real bodies, client-safe:
 export function relativeImportSpecs(text) {
   return [

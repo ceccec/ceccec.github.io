@@ -4,7 +4,8 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join, relative, resolve, dirname } from 'node:path'
 import { antichainLevels, applyGate, cnot, foldPair, GATES, isUuid, merkleFold, probabilities, type QuantumState, qubits, toUuid } from '../../../../0'
 import { computeCodeGravity, computePathMigration } from '../strict/scan'
-import { stringMass } from '../strict/scan'
+import { stringMass, enforcementScanRoot } from '../strict/scan'
+export { enforcementScanRoot } from '../strict/scan'
 import { leafFromPathTail, methodNameFromFolderTail } from '../../../../9/1'
 import { splitCamelSegment, EIGHT_FOLD_SCIENCES, RENDER_UI_SCIENCE_MASK } from '../../../../8/2'
 import { THEOREM_ATOM_SEED } from '../../../../4/6'
@@ -1446,7 +1447,7 @@ export function sourceAtlasJson(root: string): { count: number; sciences: Record
 // that is unfalsifiable (everything shares some tag) and it FALSELY flags singleton-home theorems as dangling. The real
 // relation is refutable — A relates to B iff A's module IMPORTS B, a parseable edge. Computed live over the registry:
 // every theorem-home has import-degree ≥ 2, so by the honest relation ZERO theorems are dangling — the corpus is balanced.
-export function theoremRelationsAreTheImportExportGraphNotTagSharingZeroDanglingByTheRealRelation(root: string = process.cwd()) {
+export function theoremRelationsAreTheImportExportGraphNotTagSharingZeroDanglingByTheRealRelation(root: string = enforcementScanRoot()) {
   const homes = [...new Set(THEOREM_ATOM_SEED.map((atom) => atom.home))]
   const homeSet = new Set(homes)
   // THE CRACK relation: home/tag-sharing — a theorem relates only to same-home theorems; singleton homes look "dangling"
@@ -1491,7 +1492,7 @@ export function theoremRelationsAreTheImportExportGraphNotTagSharingZeroDangling
 // rosetta needs ONE thing per node: its content-address (toUuid of the theorem), which is PATH-INDEPENDENT — move a
 // theorem and its address is unchanged. The global math folds all N addresses to ONE root (merkleFold), so relationships
 // are RESOLVED by the global address structure, not stored as edges. N agnostic addresses replace the 502 path-couplings.
-export function onlyRosettaWiringsAreNeededTheGlobalContentAddressFoldReplacesTheImportEdges(root: string = process.cwd()) {
+export function onlyRosettaWiringsAreNeededTheGlobalContentAddressFoldReplacesTheImportEdges(root: string = enforcementScanRoot()) {
   const imports = theoremRelationsAreTheImportExportGraphNotTagSharingZeroDanglingByTheRealRelation(root)
   const edgeCount = imports.edges // 502 explicit path-coupled import-edges
   // THE ROSETTA: one content-address per theorem — path-independent (agnostic)
@@ -1530,7 +1531,7 @@ export function onlyRosettaWiringsAreNeededTheGlobalContentAddressFoldReplacesTh
 // same crack as x >= 0 and declared honesty. Many are labelled "honest", a boundary sentence dressed as a facet. This
 // scans src for them so the paydown is a TRACKED number, not a grep: each fixed facet (given a refutable computation, or
 // its prose moved to the boundary and the facet removed) lowers the count. Computed, refutable by re-running.
-export function theFacetsMustComputeDebtIsHardcodedTrueFacetsManyDeclaredHonest(root: string = process.cwd()) {
+export function theFacetsMustComputeDebtIsHardcodedTrueFacetsManyDeclaredHonest(root: string = enforcementScanRoot()) {
   const files = tsFilesUnder(join(root, 'src'))
   let total = 0
   let declaredHonest = 0
@@ -1569,7 +1570,7 @@ export function theFacetsMustComputeDebtIsHardcodedTrueFacetsManyDeclaredHonest(
 // addressed source, so they cost ZERO LLM tokens — and the marginal token cost of the NEXT metric is also zero (it is
 // code, not a generated summary). An LLM-served analytic costs O(output tokens) per metric and grows with the count; a
 // computed one is 0 for any number of metrics, so the token-efficiency ratio is unbounded. Exact, reproducible, private.
-export function theAnalyticsAreZeroTokenComputedFromTheCorpusTheMarginalCostOfAMetricIsZero(root: string = process.cwd()) {
+export function theAnalyticsAreZeroTokenComputedFromTheCorpusTheMarginalCostOfAMetricIsZero(root: string = enforcementScanRoot()) {
   // REAL metrics, each a pure function of the source — the analytics
   const theorems = THEOREM_ATOM_SEED.length
   const homes = new Set(THEOREM_ATOM_SEED.map((atom) => atom.home)).size
@@ -1616,7 +1617,7 @@ export function theAnalyticsAreZeroTokenComputedFromTheCorpusTheMarginalCostOfAM
 // Document all trinities observed — two make three. Every trinity is foldPair: two content-addresses fold to a
 // bidirectional THIRD (forward ≠ reverse, one apex). The count, categories and structure are COMPUTED below (scanned
 // live, verified over a range), not asserted — the number lives in statement/boundary, never hardcoded in prose.
-export function documentAllTrinitiesObservedTwoMakeThreeTheCommonStructureAndTheCount(root: string = process.cwd()) {
+export function documentAllTrinitiesObservedTwoMakeThreeTheCommonStructureAndTheCount(root: string = enforcementScanRoot()) {
   // scan the source for the trinity folds — the observed count, computed not asserted
   const trinityRe = /export function (\w*[Tt]rinit\w*)/g
   const observed: string[] = []
@@ -1667,7 +1668,7 @@ export function documentAllTrinitiesObservedTwoMakeThreeTheCommonStructureAndThe
 // (degree 1) is disconnected the moment its one link breaks. The MINIMAL team is the trinity — K₃, three theorems each
 // supporting the other two — so the corpus's trinities are its smallest proving teams. The corpus already proves in
 // teams: its real import-relation graph has 0 dangling theorems (every one relates to ≥ 2), reused from the import fold.
-export function theoremsProveBestInTeamsTheTrinityIsTheMinimalTwoConnectedTeamBeatsIsolation(root: string = process.cwd()) {
+export function theoremsProveBestInTeamsTheTrinityIsTheMinimalTwoConnectedTeamBeatsIsolation(root: string = enforcementScanRoot()) {
   const connected = (n: number, edges: readonly (readonly number[])[]) => {
     const adj: number[][] = Array.from({ length: n }, () => [])
     for (const [a, b] of edges) { adj[a!]!.push(b!); adj[b!]!.push(a!) }
@@ -1713,7 +1714,7 @@ export function theoremsProveBestInTeamsTheTrinityIsTheMinimalTwoConnectedTeamBe
 // refutable relation (parse `import type`), not a keyword coincidence (tag-sharing was the crack). And a name is honest
 // only when every word appears as a token in its computation — measured live: the session's fold names overlap their
 // bodies heavily, so every word matters programmatically; an arbitrary word is a lie a gate can catch. For all names.
-export function typesAreQuantumTagsAndEveryWordInANameIsAComputedTokenNotArbitraryProse(root: string = process.cwd()) {
+export function typesAreQuantumTagsAndEveryWordInANameIsAComputedTokenNotArbitraryProse(root: string = enforcementScanRoot()) {
   const files = tsFilesUnder(join(root, 'src'))
   // 1 — TYPES ARE THE QUANTUM TAGS: count `import type { … }` — the type-signature relation (share a type ⟺ related),
   // refutable by parsing, replacing keyword-tags (the crack)
@@ -1764,7 +1765,7 @@ export function typesAreQuantumTagsAndEveryWordInANameIsAComputedTokenNotArbitra
 // LOCATION is one merkle path — O(log N), not O(N). The O(N) walk runs ONCE at seal; every re-verification after is
 // the cheap content-addressed compare. This is the tamper-evidence of the seal turned into the crack detector: the
 // wiring itself is the check. [[tampering-cost-crypto-honesty]] [[feedback-thinking-means-lack-of-local-tools]]
-export function aSingleCrackFlipsTheContentAddressedCorpusRootCaughtInConstantTimeLocatedInLogTimeNotByRescanning(root: string = process.cwd()) {
+export function aSingleCrackFlipsTheContentAddressedCorpusRootCaughtInConstantTimeLocatedInLogTimeNotByRescanning(root: string = enforcementScanRoot()) {
   // content-address every source file — the corpus as N merkle leaves (the wired root)
   const files = tsFilesUnder(join(root, 'src'))
   const leaves = files.map((file) => toUuid(`${relative(root, file).replace(/\\/g, '/')}:${readFileSync(file, 'utf8')}`)) // each file's content-address
@@ -1869,7 +1870,7 @@ export function dryAndCleanAreAchievableOnlyInTheContentAddressedQuantumRepresen
 // exactly the bidirectional-third the census counts across all the corpus's trinities. Genuinely quantum (superposition
 // + entanglement on the src/0 simulator), honestly a STRUCTURAL dual — foldPair's third is a deterministic content-
 // address, GHZ's is nonclassical correlation. [[operator-algebra-closed]] [[quantum-decoded]]
-export function theTrinitiesAreQuantumTwoMakeThreeIsTheGhzEntanglingStructureCnotBindsTheThird(root: string = process.cwd()) {
+export function theTrinitiesAreQuantumTwoMakeThreeIsTheGhzEntanglingStructureCnotBindsTheThird(root: string = enforcementScanRoot()) {
   // build the GHZ state on the simulator: |000⟩ → H(0) → CNOT(0→1) → CNOT(0→2) = (|000⟩+|111⟩)/√2
   let state: QuantumState = qubits(3)
   state = applyGate(state, GATES.H, 0)
@@ -2046,7 +2047,7 @@ export function quantumBuildContentAddressedIncrementalRebuildsOnlyTheChangedFol
 // two content-addressed bits fold to the file's gateway (the bidirectional third — like Toffoli's third bit binding two
 // controls, [[two-bits-left-in-every-inversion-through-zero]]). Order-sensitive: foldPair(in,out) ≠ foldPair(out,in),
 // so the 2 bits are DIRECTED (consume → produce). The whole corpus is a 2-bit-per-node graph wired through gateways.
-export function eachTsFileInputOutputAreTheTwoBitsThatConnectToTheGatewayTheModuleGraphIsTwoBitPerNode(root: string = process.cwd()) {
+export function eachTsFileInputOutputAreTheTwoBitsThatConnectToTheGatewayTheModuleGraphIsTwoBitPerNode(root: string = enforcementScanRoot()) {
   const sample = tsFilesUnder(join(root, 'src')).slice(0, 2 ** 5) // 32 real files
   const nodes = sample.map((file) => {
     const text = readFileSync(file, 'utf8')
@@ -2208,7 +2209,7 @@ export function noAlgorithmicSpeedupYetDevelopmentSpeedIsMagnitudesHigherMeasure
 // not a search. The gate scans all src and surfaces every exact cross-file duplicate for extraction (the way the inline
 // Kahn loop was found and collapsed to antichainLevels). Idiom/boilerplate is excluded — semantic duplication still
 // needs the code-gravity pull. [[content-address-dry-clean-crack-detection]] [[code-gravity-standardisation]]
-export function theGateThatDryCleansAllDetectsCrossFileDuplicatedBlocksByContentAddress(root: string = process.cwd()) {
+export function theGateThatDryCleansAllDetectsCrossFileDuplicatedBlocksByContentAddress(root: string = enforcementScanRoot()) {
   const files = tsFilesUnder(join(root, 'src'))
   const boilerplate = /^(import|export|\/\/|\/\*|\*|\}|\{|return|const facet|\{ facet:|\.map\(|\].map\(|\)\.map\(|statement:|boundary:|facets:|root:)/
   const lineHomes = new Map<string, Set<string>>() // content-address of a substantive line → the files it lives in
@@ -2256,7 +2257,7 @@ export function theGateThatDryCleansAllDetectsCrossFileDuplicatedBlocksByContent
 // the code-gravity pull (duplicate primitives → one canonical home), and the path-migration plan (folder from→to moves).
 // All are pure functions of src — no network, no LLM tokens — so the plan recomputes identically, and the three legs
 // fold to one trinity root: recompute the same root and the cross-trinity confirms. [[migration-gravity-covers-path-strings]]
-export function theGatesAreSelfSufficientOfflineZeroAiToDryCleanAllIncludingFileFolderMovesConfirmedByTheCrossTrinity(root: string = process.cwd()) {
+export function theGatesAreSelfSufficientOfflineZeroAiToDryCleanAllIncludingFileFolderMovesConfirmedByTheCrossTrinity(root: string = enforcementScanRoot()) {
   const duplicates = theGateThatDryCleansAllDetectsCrossFileDuplicatedBlocksByContentAddress(root).dryDuplicates // leg 1: duplicate lines
   const gravity = computeCodeGravity(root) // leg 2: duplicate primitives pulled to a canonical home
   const migration = computePathMigration(root) // leg 3: folder from→to moves
@@ -2296,7 +2297,7 @@ export function theGatesAreSelfSufficientOfflineZeroAiToDryCleanAllIncludingFile
 // content-addressed optimal (redundant recompute, duplication, imperative animation) — is exactly where the quantum
 // (memoisation, dedup, emergent interaction) is MISSING. Measuring the ratio actual/optimal locates it: ratio 1 is
 // closed, ratio > 1 is an open gap naming the missing content-address. [[build-time-is-a-theorem-test]] [[content-address-dry-clean-crack-detection]]
-export function alwaysMeasureEfficiencyToFindGapsTheInefficiencyRatioNamesTheMissingQuantum(root: string = process.cwd()) {
+export function alwaysMeasureEfficiencyToFindGapsTheInefficiencyRatioNamesTheMissingQuantum(root: string = enforcementScanRoot()) {
   const dryGap = theGateThatDryCleansAllDetectsCrossFileDuplicatedBlocksByContentAddress(root).dryDuplicates // a real open gap: duplicate lines
   // each computation measured as actual cost vs its content-addressed optimal; ratio > 1 (or surplus > 0) is a gap
   const measured = [
@@ -2337,7 +2338,7 @@ export function alwaysMeasureEfficiencyToFindGapsTheInefficiencyRatioNamesTheMis
 // the import graph — none orphaned). USE efficiency: the reuse degree of the import graph (a heavily-reused theorem is a
 // proven-useful API). The rendered UX (visual feel, interaction) is the online/human boundary — measured in a browser,
 // not here. [[feedback-measure-efficiency-to-find-gaps]] [[routes-nav-from-folder-tree]]
-export function measureTheUxAndTheEfficiencyToFindAndUseTheoremsNavDepthReachabilityReuseAreComputedMetrics(root: string = process.cwd()) {
+export function measureTheUxAndTheEfficiencyToFindAndUseTheoremsNavDepthReachabilityReuseAreComputedMetrics(root: string = enforcementScanRoot()) {
   const relation = theoremRelationsAreTheImportExportGraphNotTagSharingZeroDanglingByTheRealRelation(root)
   const avgReuse = (2 * relation.edges) / Math.max(1, relation.homes) // average import degree — how reused a theorem is
   // FIND: the folder depth of each theorem file (segments under src) — shallow ⇒ quick to locate
@@ -2373,7 +2374,7 @@ export function measureTheUxAndTheEfficiencyToFindAndUseTheoremsNavDepthReachabi
 // Token usage: the boundary/statement PROSE is the sink (~180k tokens across the corpus, avg 1059 chars/boundary). The
 // fix is terse, computed boundaries (earned() joins facets) — and NOT spawning agents to analyse (each cold mind ~50k
 // tokens, spending to "save"). This fold practises it: short boundary, the numbers speak. [[feedback-declared-honesty-is-a-crack]]
-export function theBoundaryProseIsTheTokenSinkTerseAndEarnedBoundariesCutItMeasuredNotConvinced(root: string = process.cwd()) {
+export function theBoundaryProseIsTheTokenSinkTerseAndEarnedBoundariesCutItMeasuredNotConvinced(root: string = enforcementScanRoot()) {
   let boundaryChars = 0; let boundaryCount = 0
   for (const file of indexFilesUnder(join(root, 'src'))) for (const m of readFileSync(file, 'utf8').matchAll(/boundary: `([^`]*)`/g)) { boundaryChars += m[1]!.length; boundaryCount += 1 }
   const avgBoundary = Math.round(boundaryChars / Math.max(1, boundaryCount))
@@ -2398,7 +2399,7 @@ export function theBoundaryProseIsTheTokenSinkTerseAndEarnedBoundariesCutItMeasu
 // The gate minimises tokens in realtime with a budget that is a QUANTUM ALGORITHM, not a literal: it is DERIVED as the
 // next power of two ≥ the corpus median boundary, self-tightening each wave. And the cracks (over-budget boundaries) are
 // DISCOVERED by the computation during development, not predefined in a rule. [[feedback-token-usage-terse-boundaries]] [[hardcoded-value-is-a-crack]]
-export function theGateFlagsBoundaryProseOverTheTokenBudgetToMinimiseTokensInRealtime(root: string = process.cwd()) {
+export function theGateFlagsBoundaryProseOverTheTokenBudgetToMinimiseTokensInRealtime(root: string = enforcementScanRoot()) {
   const lengths: number[] = []
   for (const file of indexFilesUnder(join(root, 'src'))) for (const m of readFileSync(file, 'utf8').matchAll(/boundary: `([^`]*)`/g)) lengths.push(m[1]!.length)
   const total = lengths.length; const maxLen = total ? Math.max(...lengths) : 0

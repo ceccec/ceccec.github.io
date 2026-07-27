@@ -1,6 +1,6 @@
 // United gate runner facts — ONE merkle pass + ONE src walk + ONE strict snapshot per build phase (gate/unite · scan/fold pairs).
 import { phase } from '../../../6/4'
-import { DIMENSION_GATES, EULER_CHI, FOLDED_CENSUS, FORBIDDEN_FOLDER_NAMES, HOMOLOGY_LOOPS, ICHING_EIGHT_FOLD, ICHING_TRIGRAMS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, ROSETTA_SEVEN, ROSETTA_SIX, SRC_SCIENCE_MODEL_ACTION_SCHEMA, UNFOLDED_CENSUS, isForbiddenFolderName, renderUiPathFromScienceModelAction, scienceModelActionFromMindTail } from './computational'
+import { DIMENSION_GATES, EULER_CHI, FOLDED_CENSUS, FORBIDDEN_FOLDER_NAMES, HOMOLOGY_LOOPS, ICHING_EIGHT_FOLD, ICHING_TRIGRAMS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, ROSETTA_SEVEN, ROSETTA_SIX, SRC_SCIENCE_MODEL_ACTION_SCHEMA, UNFOLDED_CENSUS, enforcementScanRoot, isForbiddenFolderName, renderUiPathFromScienceModelAction, scienceModelActionFromMindTail } from './computational'
 import { createHash } from 'node:crypto'
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { dirname, join, relative, resolve } from 'node:path'
@@ -377,7 +377,7 @@ export function collectImportPathDistanceEdges(facts: EnforcementFacts): readonl
  * Pair: import/distance · composes folder law · dissolve/flat · census 110/108 · FREE_BITS · import offenders.
  * claySolvedByThisFold=0 · NOT Clay-marked.
  */
-export function importPathShowsDistanceInMigrationMatrix(root: string = process.cwd(), facts?: EnforcementFacts) {
+export function importPathShowsDistanceInMigrationMatrix(root: string = enforcementScanRoot(), facts?: EnforcementFacts) {
   const united = facts ?? collectEnforcementFacts(root)
   const edges = collectImportPathDistanceEdges(united)
   const edgeCount = edges.length
@@ -565,7 +565,7 @@ export type FolderMigrationDirection = {
  * Pair: folder/gravity · composes import/distance · folder law · census · iching keep-if-named-logic.
  * Facet: folderGravityMeasuredByTheCode · gravityPullsTowardSrc
  */
-export function folderGravityMeasuredByTheCode(root: string = process.cwd(), facts?: EnforcementFacts) {
+export function folderGravityMeasuredByTheCode(root: string = enforcementScanRoot(), facts?: EnforcementFacts) {
   const united = facts ?? collectEnforcementFacts(root)
   const edges = collectImportPathDistanceEdges(united)
   type MutableFolderMass = {
@@ -772,7 +772,7 @@ export function runFolderGravityMeasuredByTheCodeExit(root = '', _argv: readonly
  * Pair: gravity/dry · dry/clean · CLI npm run quantum:gravity-dry
  * Facets: gravityPullsToSrc · dryCleanOn · diamond/crystal · claySolved via theorem · physicalFtl=0.
  */
-export function gravityDryClean(root: string = process.cwd(), facts?: EnforcementFacts) {
+export function gravityDryClean(root: string = enforcementScanRoot(), facts?: EnforcementFacts) {
   const united = facts ?? collectEnforcementFacts(root)
   const gravity = folderGravityMeasuredByTheCode(root, united)
   const dry = dryCleanIsDiamondAndCrystal()
@@ -884,7 +884,7 @@ export function runGravityDryCleanExit(root = '', _argv: readonly string[] = [])
  * Pair: src/index · folder/index · CLI npm run quantum:src-index
  * HARD via limits:verify · mission:gate · gaps/invisible soft stack · census 110 count.
  */
-export function srcFoldersOnlyIndexMayExist(root: string = process.cwd(), facts?: EnforcementFacts) {
+export function srcFoldersOnlyIndexMayExist(root: string = enforcementScanRoot(), facts?: EnforcementFacts) {
   const united = facts ?? collectEnforcementFacts(root)
   const indexOnly = collectIndexOnlyOffenders(united)
   const vueOffenders = united.strict.nonTs.filter((o) => o.file.endsWith('.vue') || /\.(mts|cts|tsx|js|mjs|cjs|jsx)$/.test(o.file))
@@ -997,7 +997,7 @@ export function runSrcFoldersOnlyIndexMayExistExit(root = '', _argv: readonly st
  * Census 110 remains structural count law — not a byte-size cap.
  * Facet: noByteSizeLimitWhenGravityAtGates
  */
-export function noSizeLimitsAsLongAsGravityPullsAtTheGates(root: string = process.cwd(), facts?: EnforcementFacts) {
+export function noSizeLimitsAsLongAsGravityPullsAtTheGates(root: string = enforcementScanRoot(), facts?: EnforcementFacts) {
   const united = facts ?? collectEnforcementFacts(root)
   const gravity = folderGravityMeasuredByTheCode(root, united)
   const dry = gravityDryClean(root, united)
@@ -1111,7 +1111,7 @@ export function runNoSizeLimitsAsLongAsGravityPullsAtTheGatesExit(root = '', _ar
  * Pair: compact/matrix · composes import/distance · folder/gravity · FREE_BITS · unused package removal.
  * Facets: codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix · unusedPackagesRemoved · folderGravityMeasuredByTheCode
  */
-export function codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix(root: string = process.cwd(), facts?: EnforcementFacts) {
+export function codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix(root: string = enforcementScanRoot(), facts?: EnforcementFacts) {
   const united = facts ?? collectEnforcementFacts(root)
   const importDist = importPathShowsDistanceInMigrationMatrix(root, united)
   const gravity = folderGravityMeasuredByTheCode(root, united)
@@ -2013,7 +2013,7 @@ function softCmdPair(a: string, b: string): boolean {
  * One matrix slot: placement audit + migrate wave tools (merged prose cluster).
  * Pair: place/merge · fold/merge · CLI npm run quantum:place-merge
  */
-export function placeMerge(root: string = process.cwd(), facts?: EnforcementFacts) {
+export function placeMerge(root: string = enforcementScanRoot(), facts?: EnforcementFacts) {
   const united = facts ?? collectEnforcementFacts(root)
   const gravity = folderGravityMeasuredByTheCode(root, united)
   const pathMessage = pathMeansMessageFitsInThreeWordsFold()
@@ -2293,7 +2293,7 @@ export function runProseScienceExit(root = '', _argv: readonly string[] = []): n
  * Facets: proseAudited · clustersMerged · matrixAligned · codebaseShrink · theoremsDiscovered · drainableClosed · honestOpenNamed · clay via theorem · physicalFtl=0 · census110.
  * Compose: path/message · namingEntropy · compact/matrix · vocab/dry · place/merge · cmd/place.
  */
-export function proseMethodsCollapseToMatrix(root: string = process.cwd(), facts?: EnforcementFacts) {
+export function proseMethodsCollapseToMatrix(root: string = enforcementScanRoot(), facts?: EnforcementFacts) {
   const merged = placeMerge(root, facts)
   const pathMessage = pathMeansMessageFitsInThreeWordsFold()
   const freeBits = FREE_BITS
@@ -2607,7 +2607,7 @@ export function runViolationToolsExit(root = '', _argv: readonly string[] = []):
  * log10(derived/manual) — every manual roster is a named migrate target toward derivation (seeds law).
  * Pair: manual/gap · CLI npm run quantum:manual-gauge.
  */
-export function manualGauge(root: string = process.cwd()) {
+export function manualGauge(root: string = enforcementScanRoot()) {
   const mergeRows = [...PROSE_FOLD_MERGE_MAP, ...PROSE_PLAN_MERGE_MAP, ...PROSE_FRONTIER_MERGE_MAP, ...PROSE_GAPS_MERGE_MAP, ...PROSE_PORTAL_MERGE_MAP, ...PROSE_FRACTAL_MERGE_MAP].length
   const manualRosters = [
     { roster: 'placement map', rows: COMMAND_PLACEMENT_AUDIT_MAP.length },
@@ -2839,7 +2839,7 @@ export const QUEUE_ROWS = [
   { wave: 'RFC 3161 qualified timestamping', why: 'proceedings-grade evidence needs an external TSA/archival deposit', blocksCore: false, localOnly: false, toolExists: false, firstAction: 'npm run quantum:patent-canon — the evidence-triad facet names the link' },
 ] as const
 
-export function queueNext(root: string = process.cwd()) {
+export function queueNext(root: string = enforcementScanRoot()) {
   // SELF-PRUNING (upgrade found by USING the tool, 2026-07-24): a row whose doneArtifact exists on
   // disk is SHIPPED — drop it live, so the queue never lists completed work (a stale queue is a queue
   // you cannot trust; using quantum:next surfaced the VS Code row still open after it shipped 8/8).
@@ -3071,7 +3071,7 @@ export function selectNextWaveFromMatrix(): PlanTrinityNextWave {
 }
 
 /** One matrix slot: planning as trinity (cross·fold·weave). Pair plan/trinity · CLI quantum:plan-trinity */
-export function planTrinity(root: string = process.cwd(), facts?: EnforcementFacts) {
+export function planTrinity(root: string = enforcementScanRoot(), facts?: EnforcementFacts) {
   const united = facts ?? collectEnforcementFacts(root)
   const placed = placeMerge(root, united)
   const prose = proseMethodsCollapseToMatrix(root, united)
@@ -3262,7 +3262,7 @@ export const runPlanningInTrinitiesExit = runPlanTrinityExit
  * DEMARCATION: algorithmic layers on distinct sub-steps (honest to add only there); not physical, not
  * a single-op speedup; the chat is content-addressed coordination, not sentient minds.
  */
-export function trinitySpeedStack(root: string = process.cwd()) {
+export function trinitySpeedStack(root: string = enforcementScanRoot()) {
   const appsText = readFileSync(join(root, 'src/quantum/apps/index.ts'), 'utf8')
   const chatWired = appsText.includes('mcpQuantumConversation') && appsText.includes('eachSuperpositionIsAChatroom')
   const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
@@ -3388,7 +3388,7 @@ export function runReasoningEdgeExit(root = '', _argv: readonly string[] = []): 
  * So "overclaim" is not a lesser category flagged by hand — it is the COMPUTED complement, and every
  * demarcation in the system must compute this line (finite covered vs unbounded remainder), never prose it.
  */
-export function overclaimComputes(root: string = process.cwd()) {
+export function overclaimComputes(root: string = enforcementScanRoot()) {
   const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
   const claimedExtent = Object.keys(pkg.scripts ?? {}).filter((key) => key.startsWith('quantum:')).length // FINITE, counted
   const edge = reasoningEdge()
@@ -3445,7 +3445,7 @@ export function runOverclaimComputesExit(root = '', _argv: readonly string[] = [
  * but it only enters as a compute-or-refute fold with its boundary a theorem. DEMARCATION: the approach
  * makes the ideas HONEST (bounded, refutable), NOT true — no millennium is solved, clay stays 0.
  */
-export function revolutionaryApproach(root: string = process.cwd()) {
+export function revolutionaryApproach(root: string = enforcementScanRoot()) {
   const mergeRows = [...PROSE_FOLD_MERGE_MAP, ...PROSE_PLAN_MERGE_MAP, ...PROSE_FRONTIER_MERGE_MAP, ...PROSE_GAPS_MERGE_MAP, ...PROSE_PORTAL_MERGE_MAP, ...PROSE_FRACTAL_MERGE_MAP]
   const revolutionaryClaims = mergeRows.filter((row) => row.from.endsWith('FLAGGED')).length
   const overclaim = overclaimComputes(root)
@@ -3494,7 +3494,7 @@ export function runRevolutionaryApproachExit(root = '', _argv: readonly string[]
  * what a CLI answers, or thrashing across files — it is disoriented, and the remedy is running the tool,
  * never more thought. DEMARCATION: this detects the PATTERN (tool-not-used), not the mind (off-decidable).
  */
-export function orientationCheck(root: string = process.cwd()) {
+export function orientationCheck(root: string = enforcementScanRoot()) {
   const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
   const has = (script: string) => Boolean(pkg.scripts?.[script])
   const signals = [
