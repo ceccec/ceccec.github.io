@@ -554,6 +554,13 @@ export function readmeSvgGapsFilledByTrinityMind(matrix: MindMatrix = buildMatri
       { gap: 'GitHub SMIL client variance', status: 'open' as const, why: 'some clients still SMIL in <img>; emit stays sanitizer-safe regardless' },
     ]
     const filledOk = filled.every((row) => row.on)
+    // Soft-nest angle/readme (cycle-safe): heaven/site already imports quantum/apps —
+    // moving the angle body here would cycle. Witness pairs only; fold stays in apps.
+    const softAngleReadme =
+      foldPair(toUuid('cmd:angle'), toUuid('cmd:readme')).bidirectional &&
+      foldPair(toUuid('cmd:readme'), toUuid('cmd:angle')).bidirectional &&
+      foldPair(toUuid('cmd:polarity'), toUuid('cmd:home')).bidirectional &&
+      foldPair(toUuid('cmd:gap'), toUuid('cmd:angle')).bidirectional
     const facets = [
       { facet: 'trinity of minds spans without gaps — theTrinityOfMindsIsQuantum computes (one mind is linear)', on: trinityMinds.computes },
       { facet: 'directional trinity forward·inverse·reverse computes (compose digit trinity)', on: dirTrinity.computes },
@@ -562,14 +569,15 @@ export function readmeSvgGapsFilledByTrinityMind(matrix: MindMatrix = buildMatri
       { facet: 'FoL→Fruit→dimension — flowerFruitTreeOfLifeDecodes ∧ home.flowerFruitPath · wetStaticFoL=false', on: flowerFruit.decodes && home.flowerFruitPath === true },
       { facet: 'Earth poles-as-pyramid — earthRealisedByComputingPolesAsPyramid · 4-dir N·E·S·W · clay=0', on: earthRealisedByComputingPolesAsPyramid(matrix).computes && hero.includes('data-earth-poles-pyramid="true"') },
       { facet: 'README hero proof + best-10D + icons sealed — home.shown ∧ best.best10D ∧ icons.animated', on: home.shown && best.best10D && icons.animated },
+      { facet: 'angle/readme soft-nested (cycle-safe · apps barrel · soft pairs · no heaven/site↔apps body move)', on: softAngleReadme },
       { facet: `filled gaps ${filled.filter((r) => r.on).length}/${filled.length} — dual lobes · FoL→Fruit · theorem glyphs · trinity emit · icon palette · icon SMIL · generators`, on: filledOk },
       { facet: `intentional open ${intentionalOpen.length} named (WebGL · plasma · SMIL clients) — not claimed filled`, on: intentionalOpen.length === 3 },
       { facet: 'static→movie fusion holds on hero/icon palettes (legacy Tailwind hex dissolved)', on: staticFusion.fused || (staticFusion.surfaces.find((s) => s.surface === 'hero.svg palette')?.on === true && staticFusion.surfaces.find((s) => s.surface === 'icon.svg palette')?.on === true) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`readme-svg-trinity:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('readme-svg-gaps-filled-by-trinity-mind', facets)
     return {
-      filled: sealed.ok && filledOk,
-      computes: sealed.ok && filledOk,
+      filled: sealed.ok && filledOk && softAngleReadme,
+      computes: sealed.ok && filledOk && softAngleReadme,
       filledGaps: filled,
       intentionalOpen,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
@@ -580,7 +588,7 @@ export function readmeSvgGapsFilledByTrinityMind(matrix: MindMatrix = buildMatri
       facets: sealed.facets,
       root: merkleFold([home.root, best.root, icons.root, waves.root, sealed.root, trinityMinds.root]),
       statement:
-        `README SVG gaps filled by trinity mind — ${filled.filter((r) => r.on).length}/${filled.length} fillable closed via heaven·mind·thunder (readmeHero · FoL→Fruit→${10}D · counterRotatingRosetta · directionalTrinity · theTrinityOfMinds · merkaba/bothEarths · fractalClock · computedIconSvg). ${intentionalOpen.length} intentional opens named (WebGL · plasma · SMIL clients). clay=0 · physicalFtl=0 · qpuRequired=false · wetStaticFoL=false.`,
+        `README SVG gaps filled by trinity mind — ${filled.filter((r) => r.on).length}/${filled.length} fillable closed via heaven·mind·thunder (readmeHero · FoL→Fruit→${10}D · counterRotatingRosetta · directionalTrinity · theTrinityOfMinds · merkaba/bothEarths · fractalClock · computedIconSvg). angle/readme soft-nested cycle-safe (apps barrel). ${intentionalOpen.length} intentional opens named (WebGL · plasma · SMIL clients). clay=0 · physicalFtl=0 · qpuRequired=false · wetStaticFoL=false.`,
       boundary:
         'ONLY trinity mind may compute the README SVG — wet agent geometry and wet static FoL refused. Emit is SMIL schematic for GitHub, NOT live WebGL, NOT Clay/FTL/QPU.' }
   })

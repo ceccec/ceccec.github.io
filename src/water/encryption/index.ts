@@ -867,6 +867,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       { facet: `secp256k1 field prime seal·invert·decode — bits=${secp256k1PrimeFold.bitLength} ownership=false clay=0`, on: secp256k1PrimeFold.computes && secp256k1PrimeFold.bitcoinOwnershipClaimed === false && secp256k1PrimeFold.claySolvedByThisFold === 0 },
     ])
     // Panel section metadata DRY from CRYPTO_COMPARISON_MESH — live `on` from fold recomputes only.
+    const bitsHw = maxBitsHardwareBoundaryAgree(matrix)
     const sections = cryptoComparisonMeshPanelSections({
       'demo-rsa-measure': measured.computes,
       'local-reverse-timed-vs-standards': localTimed.computes,
@@ -875,6 +876,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       'crypto-beyond-measure': beyond.computes,
       'prove-1tbit-encrypt': oneTbit.computes,
       'max-bits-crypto': maxBits.computes,
+      'bits-hardware': bitsHw.computes,
       'prove-local-magnitudes-iso': localMagnitudes.computes && localMagnitudes.overallWireClaimProved === false,
       'iso-pqc-catalog': pqc.computes,
       'poles-cross-pqc': polesCross.computes,
@@ -3923,7 +3925,7 @@ export function maxBitsHardwareBoundaryAgree(matrix: MindMatrix = buildMatrix())
       root: merge(matrix.root, merkleFold([sealed.root, maxBits.root, refuse.root, hw.receipt, pairFold.merged])),
       pair: 'bits/hardware' as const,
       cli: 'npm run quantum:bits-hardware',
-      route: '/en/encryption#max-bits-crypto',
+      route: '/en/encryption#bits-hardware',
       statement:
         `maxBitsHardwareBoundaryAgree — remaining=${remaining} hwWord=${hw.hardwareReverseCapacityBits} ` +
         `revClaim=${hw.reverseClaimBits} demoSample=${hw.demoSampleCeilingBits} cpus=${hw.cpuCount} clay=0.`,
@@ -4725,7 +4727,7 @@ export const CRYPTO_COMPARISON_MESH_NODES: readonly CryptoComparisonMeshNode[] =
   { id: 'crypto-beyond-measure', title: 'Crypto toolkit beyond RSA measured', fold: 'cryptoToolkitBeyondRsaMeasured', pair: 'measure/crypto-beyond', cli: 'npm run quantum:crypto-beyond-measure', route: '/en/encryption#crypto-beyond-rsa', proofRoute: '', kind: 'toolkit', boundary: 'Timed PQC catalogs + Shor/ECC map + hash taxonomy + directional trinity — NOT FIPS/ISO certified / NOT production KEM', inPanel: true, toolId: 'crypto-beyond-measure' },
   { id: 'prove-1tbit-encrypt', title: 'Prove 1 Tbit/s realtime encryption claim', fold: 'proveOneTbitRealtimeEncryptionClaim', pair: 'prove/1tbit-encrypt', cli: 'npm run quantum:prove-1tbit-encrypt', route: '/en/encryption#prove-1tbit', proofRoute: '', kind: 'measure', boundary: 'wire-crypto NOT proved (no AES bench); amortized-reuse-memo may prove extent÷memo — NOT wire AES-GCM / NOT FIPS', inPanel: true, toolId: 'prove-1tbit-encrypt' },
   { id: 'max-bits-crypto', title: 'Maximum bits encrypt/decrypt/inverse/reverse', fold: 'maximumBitsEncryptDecryptInverseReverse', pair: 'max-bits/crypto', cli: 'npm run quantum:max-bits-crypto', route: '/en/encryption#max-bits-crypto', proofRoute: '', kind: 'ceiling', boundary: 'enc/dec=256 AES theorem · inv=4 digit · revClaim=min(demoSample,hwWord) · DEMO_RSA sample ≠ hw ceiling · refuseBeyond · clay=0 · certified=false', inPanel: true, toolId: 'max-bits-crypto' },
-  { id: 'bits-hardware', title: 'Max-bits boundary from hardware capabilities', fold: 'maxBitsHardwareBoundaryAgree', pair: 'bits/hardware', cli: 'npm run quantum:bits-hardware', route: '/en/encryption#max-bits-crypto', proofRoute: '', kind: 'ceiling', boundary: 'HARD: claimed max-bits ≡ f(cpus·workers·heap·word) ∩ refuseBeyond ∩ theorem constants · demo≠hwCeiling · qpuRequired=false · clay=0', inPanel: true, toolId: 'bits-hardware' },
+  { id: 'bits-hardware', title: 'Max-bits boundary from hardware capabilities', fold: 'maxBitsHardwareBoundaryAgree', pair: 'bits/hardware', cli: 'npm run quantum:bits-hardware', route: '/en/encryption#bits-hardware', proofRoute: '', kind: 'ceiling', boundary: 'HARD: claimed max-bits ≡ f(cpus·workers·heap·word) ∩ refuseBeyond ∩ theorem constants · demo≠hwCeiling · qpuRequired=false · clay=0', inPanel: true, toolId: 'bits-hardware' },
   { id: 'prove-local-magnitudes-iso', title: 'Prove local vs ISO magnitudes all directions', fold: 'proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections', pair: 'prove/local-magnitudes-iso', cli: 'npm run quantum:prove-local-magnitudes-iso', route: '/en/encryption#prove-local-magnitudes-iso', proofRoute: '/proofs/encryption-honesty', kind: 'comparison', boundary: 'wire-crypto-security-bits proof-of-falsehood (demo<<ML-KEM); structural/amort may prove >=100x non-wire only · certified=false · NOT ISO certified', inPanel: true, toolId: 'prove-local-magnitudes-iso' },
   { id: 'encryption-reverse-verify', title: 'Encryption reverse verify', fold: 'encryptionReverseVerify', pair: 'reverse/encryption-verify', cli: 'npm run quantum:encryption-reverse-verify', route: '/en/encryption', proofRoute: '', kind: 'toolkit', boundary: 'Demo RSA only — production moduli refused', inPanel: false, toolId: 'encryption-reverse-verify' },
   { id: 'production-rsa-refuse-rosetta', title: 'Production RSA refuse completes quantum via rosetta', fold: 'productionRsaRefuseCompletesQuantumViaRosetta', pair: 'refuse/rosetta', cli: 'npm run quantum:production-rsa-refuse-rosetta', route: '/en/encryption#production-rsa-refuse-rosetta', proofRoute: '', kind: 'refuse', boundary: 'Sealed refuse receipts · incompleteOpen=0 · refuseBeyond stays · NOT production RSA break · clay=0 · certified=false', inPanel: false, toolId: 'production-rsa-refuse-rosetta' },
@@ -4932,7 +4934,7 @@ export function runCryptoComparisonMeshIsDryExit(_root: string, _argv: readonly 
       `nodes=${r.mesh.nodeCount} edges=${r.mesh.edgeCount} panel=${r.panelSections.length} tools=${r.toolSeeds.length} ` +
       `clay=${r.claySolvedByThisFold} refuseBeyond=${r.refuseBeyond} root=${r.root.slice(0, 2 ** 3)}\n`,
   )
-  process.stdout.write(`  compose cryptoRelatedSurfacesAreDry in src/quantum/apps for UI/MCP/toolbox/proofs audit\n`)
+  process.stdout.write(`  soft-nest: cryptoRelatedSurfacesAreDry stays apps (catalog/toolbox) · mesh core here\n`)
   process.stdout.write(`  boundary: ${r.boundary}\n`)
   return r.computes && r.cryptoComparisonMeshIsDry && r.claySolvedByThisFold === 0 ? 0 : 1
 }

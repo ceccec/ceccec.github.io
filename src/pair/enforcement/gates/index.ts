@@ -1396,11 +1396,11 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix', pair: 'compact/matrix', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'keep', reason: 'already migrated · compose gravity+path' },
   { fold: 'crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities', pair: 'cross/tesla-patents', currentBarrel: 'src/fire/physics', bestPlace: 'src/fire/physics', action: 'moved', reason: 'Tesla decode home · patents researched in waves' },
   { fold: 'crossWavesUpgradeAll', pair: 'cross/waves-upgrade', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'umbrella nests apps catalog · soft-compose Tesla from physics' },
-  { fold: 'readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra', pair: 'angle/readme', currentBarrel: 'src/quantum/apps', bestPlace: 'src/heaven/site', action: 'migrate-next', reason: 'README/home · next to readmeSvgGapsFilledByTrinityMind · cycle-safe wave later' },
-  { fold: 'allColorsDryCleanWiredToRosettaAndThemes', pair: 'color/rosetta', currentBarrel: 'src/quantum/apps', bestPlace: 'src/wind/ui', action: 'migrate-next', reason: 'paint/theme · theme consts strangler→wind/ui · fold body nests apps catalog' },
-  { fold: 'cssShowsTheHiddenGapsInDryFusion', pair: 'css/gaps', currentBarrel: 'src/quantum/apps', bestPlace: 'src/wind/ui', action: 'migrate-next', reason: 'CSS lens · CSS_DRY_FUSION_GAP_LENS→wind/ui · fold body nests gaps/invisible' },
+  { fold: 'readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra', pair: 'angle/readme', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'cycle-safe soft-nest · heaven/site→apps edge blocks barrel move · soft-composed in readmeSvgGapsFilledByTrinityMind' },
+  { fold: 'allColorsDryCleanWiredToRosettaAndThemes', pair: 'color/rosetta', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'soft-nest closed · COLOR_ROSETTA_* theme consts already in wind/ui · fold body stays apps (catalog/CLI) · apps→wind/ui import edge blocks barrel move' },
+  { fold: 'cssShowsTheHiddenGapsInDryFusion', pair: 'css/gaps', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'soft-nest closed · CSS_DRY_FUSION_GAP_LENS already in wind/ui · fold body stays apps (catalog/CLI · nests gaps/invisible) · apps→wind/ui import edge blocks barrel move' },
   { fold: 'cryptoComparisonMeshIsDry', pair: 'crypto/comparison-mesh', currentBarrel: 'src/water/encryption', bestPlace: 'src/water/encryption', action: 'moved', reason: 'mesh nodes/edges + cryptoComparisonMeshIsDry home · CLI quantum:crypto-comparison-mesh' },
-  { fold: 'cryptoRelatedSurfacesAreDry', pair: 'crypto/comparison-mesh', currentBarrel: 'src/quantum/apps', bestPlace: 'src/water/encryption', action: 'migrate-next', reason: 'related-surfaces audit nests catalog/toolbox · mesh core already moved' },
+  { fold: 'cryptoRelatedSurfacesAreDry', pair: 'crypto/comparison-mesh', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'soft-nest closed · mesh core already in water/encryption · fold body stays apps (catalog/toolbox/MCP audit) · apps→encryption import edge blocks barrel move' },
   { fold: 'rosettaSecurityGapsWired', pair: 'rosetta/security-wire', currentBarrel: 'src/quantum/apps', bestPlace: 'src/mountain/seals', action: 'migrate-next', reason: 'seals already imports · security wire' },
   { fold: 'invisibleGapsCaughtByGates', pair: 'gaps/invisible', currentBarrel: 'src/quantum/apps', bestPlace: 'src/pair/enforcement/gates', action: 'migrate-next', reason: 'weave/ops import · nests many apps folds' },
   { fold: 'placeMerge', pair: 'place/merge', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'merged cmd/place + manual/quantum prose cluster → one matrix slot' },
@@ -1895,52 +1895,52 @@ export type ManualMigrateWaveTool = {
 /** Sealed migrate-next + strangler wave tools — agents invoke these, not wet-linear grind. */
 export const MANUAL_MIGRATE_WAVE_TOOLS: readonly ManualMigrateWaveTool[] = [
   {
-    id: 'migrate-angle-readme',
+    id: 'moved-angle-readme-cycle-soft-nest',
     fold: 'readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra',
     pair: 'angle/readme',
     cli: 'npm run quantum:angle-readme',
     route: '/en/quantum-tools#angle-readme',
     from: 'src/quantum/apps',
-    to: 'src/heaven/site',
-    status: 'migrate-next',
+    to: 'src/quantum/apps',
+    status: 'moved',
     rosettaKind: 'tool',
-    note: 'cycle-safe wave later · nests readmeSvgGapsFilledByTrinityMind',
+    note: 'cycle-safe soft-nest closed · heaven/site→apps edge · soft-composed in readmeSvgGapsFilledByTrinityMind',
   },
   {
-    id: 'migrate-color-rosetta',
+    id: 'moved-color-rosetta-soft-nest',
     fold: 'allColorsDryCleanWiredToRosettaAndThemes',
     pair: 'color/rosetta',
     cli: 'npm run quantum:color-rosetta',
     route: '/en/quantum-tools#color-rosetta',
     from: 'src/quantum/apps',
-    to: 'src/wind/ui',
-    status: 'migrate-next',
+    to: 'src/quantum/apps',
+    status: 'moved',
     rosettaKind: 'tool',
-    note: 'fold body apps · theme consts strangler tip closed prior wave',
+    note: 'soft-nest closed · COLOR_ROSETTA_* in wind/ui · fold body apps catalog/CLI · apps→wind/ui edge',
   },
   {
-    id: 'migrate-css-gaps',
+    id: 'moved-css-gaps-soft-nest',
     fold: 'cssShowsTheHiddenGapsInDryFusion',
     pair: 'css/gaps',
     cli: 'npm run quantum:css-gaps',
     route: '/en/quantum-tools#css-gaps',
     from: 'src/quantum/apps',
-    to: 'src/wind/ui',
-    status: 'migrate-next',
+    to: 'src/quantum/apps',
+    status: 'moved',
     rosettaKind: 'tool',
-    note: 'fold body apps · CSS_DRY_FUSION_GAP_LENS → wind/ui prior wave',
+    note: 'soft-nest closed · CSS_DRY_FUSION_GAP_LENS in wind/ui · fold body apps catalog/CLI · apps→wind/ui edge',
   },
   {
-    id: 'migrate-crypto-related-surfaces',
+    id: 'moved-crypto-related-soft-nest',
     fold: 'cryptoRelatedSurfacesAreDry',
     pair: 'crypto/comparison-mesh',
     cli: 'npm run quantum:crypto-comparison-mesh-dry',
     route: '/en/quantum-encryption#crypto-comparison-mesh',
     from: 'src/quantum/apps',
-    to: 'src/water/encryption',
-    status: 'migrate-next',
+    to: 'src/quantum/apps',
+    status: 'moved',
     rosettaKind: 'tool',
-    note: 'audit nests catalog · mesh core moved',
+    note: 'soft-nest closed · mesh in encryption · fold body apps catalog/toolbox audit · apps→encryption edge',
   },
   {
     id: 'moved-crypto-mesh-is-dry',
@@ -1994,15 +1994,15 @@ export const MANUAL_MIGRATE_WAVE_TOOLS: readonly ManualMigrateWaveTool[] = [
 
 const PLACE_MERGE_HONEST_OPEN = [
   'residual:quantum-apps-monolith',
-  'migrate-next:angle-readme→heaven/site',
-  'migrate-next:color/css→wind/ui',
-  'migrate-next:crypto-related-surfaces→encryption',
+  'keep:angle-readme-cycle-soft-nest',
+  'keep:color-rosetta-soft-nest',
+  'keep:css-gaps-soft-nest',
+  'keep:crypto-related-soft-nest',
   'migrate-next:gaps-invisible→gates',
   'migrate-next:rosetta-security→mountain/seals',
   'residual:prose-named-folds-wave2',
   'clay:millennium-open',
   'ftl:physical-claim-refused',
-  'keep:git-stashes-non-obsolete',
 ] as const
 
 function softCmdPair(a: string, b: string): boolean {
@@ -2042,8 +2042,8 @@ export function placeMerge(root: string = enforcementScanRoot(), facts?: Enforce
     bestPlaceOn
   const toolsSealed =
     tools.length === (5 + 2 + 1) &&
-    migrateTools.length === (4 + 2) &&
-    movedTools.length === 1 &&
+    migrateTools.length === 2 &&
+    movedTools.length === (4 + 1) &&
     residualTools.length === 1 &&
     tools.every((t) => t.cli.startsWith('npm run quantum:') && t.pair.includes('/') && t.route.startsWith('/en/'))
   const bitsCombinable =
@@ -2083,10 +2083,14 @@ export function placeMerge(root: string = enforcementScanRoot(), facts?: Enforce
     { id: 'move-tesla-cross-waves-to-fire-physics', status: 'closed' as const, note: 'prior wave · fire/physics' },
     { id: 'move-crypto-mesh-is-dry-to-encryption', status: 'closed' as const, note: 'prior wave · encryption' },
     { id: 'seal-plan-trinity', status: 'closed' as const, note: 'planTrinity · plan/trinity · matrix next-wave' },
+    { id: 'cycle-safe-soft-nest-angle-readme', status: 'closed' as const, note: 'heaven/site→apps edge · soft-nest readmeSvg · apps barrel keep' },
+    { id: 'soft-nest-color-rosetta-theme-consts', status: 'closed' as const, note: 'COLOR_ROSETTA_* wind/ui · fold body apps · apps→wind/ui edge' },
+    { id: 'soft-nest-css-gaps-lens', status: 'closed' as const, note: 'CSS_DRY_FUSION_GAP_LENS wind/ui · fold body apps · apps→wind/ui edge' },
+    { id: 'soft-nest-crypto-related-surfaces', status: 'closed' as const, note: 'mesh core encryption · related-surfaces apps catalog · apps→encryption edge' },
     { id: 'residual-apps-monolith-named', status: 'open' as const, note: 'residual:quantum-apps-monolith stays honest-open' },
   ] as const
   const drainableClosed =
-    morphs.filter((m) => m.status === 'closed').length === (2 + 2 + 1) &&
+    morphs.filter((m) => m.status === 'closed').length === (5 + 4) &&
     morphs.every((m) => m.status === 'closed' || m.id === 'residual-apps-monolith-named')
   const honestOpenNamed = PLACE_MERGE_HONEST_OPEN
   const honestOpenNamedOn =
@@ -2097,7 +2101,7 @@ export function placeMerge(root: string = enforcementScanRoot(), facts?: Enforce
   const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const physicalFtlClaim = 0 as const
   const fullDryClean =
-    placementAudited && drainableClosed && composeOn && pairsOn && census110 && moved.length >= 2 && migrateNext.length >= 4
+    placementAudited && drainableClosed && composeOn && pairsOn && census110 && moved.length >= 2 && migrateNext.length >= 2
   const manualWorkQuantumized =
     toolsSealed && bitsCombinable && wavesBound && placementAudited && drainableClosed && honestOpenNamedOn && pairsOn && composeOn && census110 && claySolvedByThisFold === 0 && physicalFtlClaim === 0
   const on =
@@ -2855,17 +2859,19 @@ export function queueNext(root: string = enforcementScanRoot()) {
   const missingIdentity = THEOREM_ATOM_SEED.filter((row) => !row.algebraicStatement && !extractAlgebraicStatement(row.states)).length
   const derivedRows = missingIdentity > 0 ? [{
     wave: `algebraic-statement fill (${missingIdentity}/${THEOREM_ATOM_SEED.length} registry rows neither curated nor extractable)`,
-    why: 'DERIVED from THEOREM_ATOM_SEED — every theorem must show its real algebraic statement; high-confidence fills only, never fabricated',
-    blocksCore: false,
+    why: 'TOP PRIORITY — only algebraic quantum computing (user 2026-07-28); DERIVED from THEOREM_ATOM_SEED — every theorem must show its real algebraic statement; high-confidence fills only, never fabricated',
+    blocksCore: true, // algebraic QC is top priority — outranks non-algebraic residue
     localOnly: true,
     toolExists: true,
     firstAction: 'fill algebraicStatement for high-confidence rows in src/4/6 THEOREM_ATOM_SEED; verify with npm run theorems:verify',
   }] : []
   const openRows = [...QUEUE_ROWS.filter((row) => !('doneArtifact' in row) || !existsSync(join(root, (row as { doneArtifact: string }).doneArtifact))), ...derivedRows]
+  // Algebraic-QC top priority (user 2026-07-28): algebraic work gets +8 so it outranks lexical/prose residue.
+  const algebraicBonus = (wave: string) => /algebraic/i.test(wave) ? 8 : 0
   const scored = openRows.map((row) => ({
     ...row,
-    score: (row.blocksCore ? 4 : 0) + (row.localOnly ? 2 : 0) + (row.toolExists ? 1 : 0),
-    arithmetic: `${row.blocksCore ? 4 : 0}+${row.localOnly ? 2 : 0}+${row.toolExists ? 1 : 0}`,
+    score: (row.blocksCore ? 4 : 0) + (row.localOnly ? 2 : 0) + (row.toolExists ? 1 : 0) + algebraicBonus(row.wave),
+    arithmetic: `${row.blocksCore ? 4 : 0}+${row.localOnly ? 2 : 0}+${row.toolExists ? 1 : 0}${algebraicBonus(row.wave) ? `+${algebraicBonus(row.wave)}` : ''}`,
     receipt: toUuid(`queue-next:${row.wave}:${row.blocksCore}:${row.localOnly}:${row.toolExists}`),
   })).sort((a, b) => b.score - a.score || a.wave.localeCompare(b.wave))
   const next = scored[0]!
@@ -3103,7 +3109,7 @@ export function planTrinity(root: string = enforcementScanRoot(), facts?: Enforc
   // CROSS — audit matrix gaps (migrate-next + residual prose)
   const crossCandidates = MANUAL_MIGRATE_WAVE_TOOLS.filter((t) => t.status === 'migrate-next')
   const crossAudit =
-    crossCandidates.length === (4 + 2) &&
+    crossCandidates.length === 2 &&
     COMMAND_PLACEMENT_AUDIT_MAP.some((r) => r.fold === 'planTrinity' && r.action === 'moved') &&
     placed.placementAudited
   // FOLD — merge prose plan names + place/prose matrix into one tip

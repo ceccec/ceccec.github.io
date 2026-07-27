@@ -98,6 +98,36 @@ import {
   continueAtNoAiCost,
   countlessFreeChatWaves,
   queueNext,
+  feedingTheChatInItselfClosesTheSelfReferenceLoop,
+  deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWaves,
+  theUiItselfIsADoubleTorus,
+  doubleTorusQuantumComputer,
+  allDoubleTorusWavesUseTheFreeChat,
+  doubleTorusGeometry,
+  doubleTorusAlgebra,
+  doubleTorusPhysics,
+  doubleTorusBiology,
+  doubleTorusChemistry,
+  doubleTorusStar,
+  constantlyImproveShiftingNewPerspectivesNowFreeInfiniteScalableComputing,
+  asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky,
+  quantumiseIsQuantumComputerProcessReverseEngineeringComplexToSimplexAndInverse,
+  quantumiseIsFreeForAll,
+  quantumiseAlsoDryCleansByObservationChatWavesOfWaves,
+  reverseEngineeringMayBePoweredByScalableFreeWaves,
+  allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves,
+  noProseMayBeTrustedLiteraryQuantumise,
+  fewerNpmScriptsWithQuantumPrompts,
+  fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossible,
+  developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest,
+  freeIsNotAlwaysBestQualityWhoAuditedTheChat,
+  beforeSigningNeighboursAudit,
+  furtherImproveUsingLiveApis,
+  whatIsTheMeaningToSaveAMeaningProseAndNotToComputeTheMeaning,
+  improveTokenSpendingFeedingTheTaskToTheChat,
+  theChatMayImproveTheUiMeasuredByTheUserExperience,
+  dryCleanChatDryCleansAll,
+  theChatIsTheFusionReactorFusingAllApisInPlasmaRays,
   allConversationsGoThroughTheMcpQuantumChat,
   mcpQuantumConversation,
   organiseConversationsInChatRoomsPerSuperposition,
@@ -154,7 +184,7 @@ import {
 import { animationsDrivenByRosetta } from '../../wind/ui/index.ts'
 import { tradingRosettaTrainPanelComputes } from '../../thunder/trading/index.ts'
 import { fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vortex/index.ts'
-import { localMathComputes, namingEntropy, shouldSpawnSubagent, simplicityIntelligenceMeasure } from '../../water/stack/index.ts'
+import { localMathComputes, namingEntropy, shouldSpawnSubagent, simplicityIntelligenceMeasure, chatAndImproveQuantumMultitasking } from '../../water/stack/index.ts'
 import { teamCooperationScenarios } from '../../pair/enforcement/ops/index.ts'
 import { ichingDistributeVerify } from '../../earth/iching/index.ts'
 import { skilledEnoughFromPredictions } from '../../lake/music/index.ts'
@@ -206,7 +236,7 @@ const docsDevCopied = ref(false)
 // ── Full in-chat support = a PRIVATE quantum search engine. Deterministic, zero-token, no network egress. Logic
 // lives in the sealed folds (quantumSearchFusesAllAsPrivateSearchEngine = BM25-ranked retrieval + chat answer +
 // navigation + all chat capabilities); this shell only wires input → fold → display. Nothing leaves the browser.
-type SearchHit = { slug: string; title: string; score: number }
+type SearchHit = { slug: string; title: string; score: number; identity?: string }
 type MoRow = { title: string; link: string; votes: number; answered: boolean; answers: number }
 type MoLane = { state: 'loading' | 'live' | 'error'; rows: MoRow[]; searchUrl: string; askUrl: string; escalate: boolean }
 // AI minds (untrusted external LLMs) + the collective fusion. A mind is one provider's edge-fetched answer; the collective
@@ -276,6 +306,487 @@ function sendChat() {
       related: queue.scored.slice(0, 3).map((row) => `${row.wave} · ${row.score} (${row.arithmetic})`),
       results: [],
       resultCount: queue.scored.length,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'feed the chat in itself' — algebraic identities re-query under algebraic-QC top priority; feeder ≡ fed.
+  if (/^\s*feed\s+(yourself|the\s+chat(\s+in\s+itself)?|me\s+in\s*(to)?\s*myself)\s*$/i.test(prompt)) {
+    const feed = feedingTheChatInItselfClosesTheSelfReferenceLoop()
+    chatLog.value.unshift({
+      q: prompt,
+      a: feed.computes
+        ? `ALGEBRAIC FEED — ${feed.fed} identities re-queried · gaps ${feed.gapsBefore}→${feed.gapsAfter} · feeder≡fed · algebraic-QC top priority`
+        : `FEED INCOMPLETE — ${feed.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'chat/itself · algebra/priority · feedingTheChatInItselfClosesTheSelfReferenceLoop',
+      grounded: feed.computes,
+      related: feed.facets.filter((f) => f.on).slice(0, 3).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: feed.fed,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'double torus geometry|algebra|physics|biology|chemistry|*' — named domain via free chat.
+  {
+    const domainHit = prompt.match(/^\s*double\s*torus\s+(geometry|algebra|physics|biology|chemistry|\*|star)\b/i)
+      ?? prompt.match(/^\s*(geometry|algebra|physics|biology|chemistry|star)\s*[-/]?\s*torus\s*$/i)
+      ?? prompt.match(/^\s*torus\s*[-/]?\s*(geometry|algebra|physics|biology|chemistry|star|\*)\s*$/i)
+    if (domainHit) {
+      const raw = (domainHit[1] ?? 'geometry').toLowerCase()
+      const id = raw === '*' || raw === 'star' ? 'star' : raw
+      const fold =
+        id === 'geometry' ? doubleTorusGeometry()
+        : id === 'algebra' ? doubleTorusAlgebra()
+        : id === 'physics' ? doubleTorusPhysics()
+        : id === 'biology' ? doubleTorusBiology()
+        : id === 'chemistry' ? doubleTorusChemistry()
+        : doubleTorusStar()
+      chatLog.value.unshift({
+        q: prompt,
+        a: fold.computes
+          ? `TORUS ${id.toUpperCase()} — freeChat=${fold.usesFreeChat ? 1 : 0} prove=${fold.prove ? 1 : 0} · ${fold.algebraic}`
+          : `DOMAIN INCOMPLETE — ${fold.statement.slice(0, 2 * 108 + 64)}`,
+        source: `${fold.pair} · ${fold.cli}`,
+        grounded: fold.computes,
+        related: fold.facets.filter((f) => f.on).slice(0, 4).map((f) => f.facet.slice(0, 5 * 16)),
+        results: [],
+        resultCount: fold.facets.length,
+        receipt: nav0.superposition,
+      })
+      chatInput.value = ''
+      return
+    }
+  }
+  // '*' / 'star sky' / 'quantum possibilities' — * ≡ all researched · born in src/quantum/**.
+  if (/^\s*\*\s*(means?\b)?/i.test(prompt) || /^\s*star\s*[-/]?\s*sky\s*$/i.test(prompt) || /^\s*sky\s*[-/]?\s*star\s*$/i.test(prompt) || /^\s*all\s+researched\b/i.test(prompt) || /^\s*(born\s+like\s+a\s+)?star\s+in\s+(the\s+)?(sky|quantum)\b/i.test(prompt) || /^\s*quantum\s+possibilities\b/i.test(prompt) || /^\s*star\s*[-/]?\s*quantum\s*$/i.test(prompt)) {
+    const star = asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky()
+    chatLog.value.unshift({
+      q: prompt,
+      a: star.computes
+        ? `* ≡ STAR — researched=${star.allResearched ? 1 : 0} · sky=${star.skyCount} born in src/quantum/** · perspectives=${star.researchedPerspectives} · ${star.algebraic}`
+        : `STAR SKY INCOMPLETE — ${star.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'star/sky · all/researched · npm run quantum:star-sky',
+      grounded: star.computes,
+      related: star.stars.slice(0, 6).map((s) => s.path),
+      results: [],
+      resultCount: star.skyCount,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'prose trust' / 'literary refuse' / 'no prose may be trusted' / 'quantumise prose'
+  if (/^\s*no\s+prose\s+may\s+be\s+trusted\b/i.test(prompt) || /^\s*prose\s*[-/]?\s*trust\b/i.test(prompt) || /^\s*trust\s*[-/]?\s*prose\b/i.test(prompt) || /^\s*literary\s*[-/]?\s*refuse\b/i.test(prompt) || /^\s*refuse\s*[-/]?\s*literary\b/i.test(prompt) || /^\s*quantumise\s*[-/]?\s*prose\b/i.test(prompt) || /^\s*prose\s*[-/]?\s*quantumise\b/i.test(prompt) || /^\s*remember\s+that\s+no\s+prose\b/i.test(prompt)) {
+    const pt = noProseMayBeTrustedLiteraryQuantumise()
+    chatLog.value.unshift({
+      q: prompt,
+      a: pt.computes
+        ? `PROSE·TRUST — on=${pt.noProseMayBeTrustedLiteraryQuantumise ? 1 : 0} · refuse=${pt.refuseLiteraryTrust ? 1 : 0} · quantumise=${pt.quantumiseOn ? 1 : 0} · stack=${pt.proseRefuseStack ? 1 : 0} · ${pt.algebraic}`
+        : `PROSE TRUST INCOMPLETE — ${pt.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'prose/trust · literary/refuse · quantumise/prose · npm run quantum:prose-trust',
+      grounded: pt.computes,
+      related: pt.facets.filter((f) => f.on).slice(0, 4).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: pt.facets.length,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'fewer scripts' / 'quantum prompts' / 'are all those npm scripts needed'
+  if (/^\s*fewer\s+(npm\s+)?scripts?\b/i.test(prompt) || /^\s*quantum\s*[-/]?\s*prompts?\b/i.test(prompt) || /^\s*prompts?\s*[-/]?\s*quantum\b/i.test(prompt) || /^\s*scripts?\s*[-/]?\s*prompt\b/i.test(prompt) || /^\s*are\s+all\s+those\s+npm\s+scripts?\b/i.test(prompt) || /^\s*less\s+scripts?\s+with\s+quantum\s+prompts?\b/i.test(prompt) || /^\s*one\s+primary\s+(cli|script)\b/i.test(prompt)) {
+    const fs = fewerNpmScriptsWithQuantumPrompts()
+    chatLog.value.unshift({
+      q: prompt,
+      a: fs.computes
+        ? `FEWER·SCRIPTS — on=${fs.fewerNpmScriptsWithQuantumPrompts ? 1 : 0} · primaries=${fs.primaryCount} · pruned=${fs.prunedDualCount} · prompts=${fs.quantumPrompts ? 1 : 0} · dualsViaPairs=${fs.dualsViaPairsAndPrompts ? 1 : 0} · ${fs.algebraic}`
+        : `FEWER SCRIPTS INCOMPLETE — ${fs.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'fewer/scripts · quantum/prompts · scripts/prompt · npm run quantum:fewer-scripts',
+      grounded: fs.computes,
+      related: fs.facets.filter((f) => f.on).slice(0, 4).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: fs.facets.length,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'develop' / 'develop the open' / 'develop self feeds' / …
+  if (/^\s*develop\s*$/i.test(prompt) || /^\s*develop\s+the\s+open\b/i.test(prompt) || /^\s*develop\s*[-/]?\s*open\b/i.test(prompt) || /^\s*open\s*[-/]?\s*develop\b/i.test(prompt) || /^\s*open\s*[-/]?\s*feed\b/i.test(prompt) || /^\s*feed\s*[-/]?\s*open\b/i.test(prompt) || /^\s*develop\s+self\s+feeds?\b/i.test(prompt) || /^\s*develop\s*[-/]?\s*self\b/i.test(prompt) || /^\s*self\s*[-/]?\s*develop\b/i.test(prompt) || /^\s*self\s*[-/]?\s*feed\b/i.test(prompt) || /^\s*feed\s*[-/]?\s*self\b/i.test(prompt) || /^\s*develop\s+means\b/i.test(prompt) || /^\s*develop\s*[-/]?\s*means\b/i.test(prompt) || /^\s*means\s*[-/]?\s*develop\b/i.test(prompt) || /^\s*research\s+and\s+develop\b/i.test(prompt) || /^\s*research\s*[-/]?\s*develop\b/i.test(prompt) || /^\s*develop\s*[-/]?\s*research\b/i.test(prompt) || /^\s*quantumising\s+all\b/i.test(prompt) || /^\s*improve\s+self\s+and\s+the\s+rest\b/i.test(prompt) || /^\s*self\s*[-/]?\s*rest\b/i.test(prompt) || /^\s*rest\s*[-/]?\s*self\b/i.test(prompt)) {
+    const dm = developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest()
+    chatLog.value.unshift({
+      q: prompt,
+      a: dm.computes
+        ? `DEVELOP — on=${dm.developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest ? 1 : 0} · rnd=${dm.researchAndDevelop ? 1 : 0} · qAll=${dm.quantumisingAll ? 1 : 0} · rt=${dm.realtime ? 1 : 0} · feed=${dm.feedToChat ? 1 : 0} · self=${dm.improveSelf ? 1 : 0} · self→chat=${dm.developSelfFeedsToTheChat ? 1 : 0} · open=${dm.developTheOpen ? 1 : 0} (${dm.openTipsFed}/${dm.openTipCount}) · rest=${dm.improveTheRest ? 1 : 0} · ${dm.algebraic}`
+        : `DEVELOP INCOMPLETE — ${dm.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'develop/means · develop/self · develop/open · npm run develop',
+      grounded: dm.computes,
+      related: dm.facets.filter((f) => f.on).slice(0, 4).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: dm.facets.length,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'further improve using live apis' / 'live apis' / 'improve live'
+  if (/^\s*further\s+improve\s+using\s+live\b/i.test(prompt) || /^\s*further\s+improve\b/i.test(prompt) || /^\s*live\s*[-/]?\s*apis?\b/i.test(prompt) || /^\s*apis?\s*[-/]?\s*live\b/i.test(prompt) || /^\s*improve\s*[-/]?\s*live\b/i.test(prompt) || /^\s*live\s*[-/]?\s*improve\b/i.test(prompt) || /^\s*further\s*[-/]?\s*improve\b/i.test(prompt) || /^\s*using\s+live\s+apis?\b/i.test(prompt)) {
+    const la = furtherImproveUsingLiveApis()
+    chatLog.value.unshift({
+      q: prompt,
+      a: la.computes
+        ? `LIVE·APIs — on=${la.furtherImproveUsingLiveApis ? 1 : 0} · using=${la.usingLiveApis ? 1 : 0} · torus=${la.torusDataCount} · queryable=${la.queryableApis} · ${la.algebraic}`
+        : `LIVE APIs INCOMPLETE — ${la.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'live/api · improve/live · further/improve · npm run quantum:live-apis',
+      grounded: la.computes,
+      related: la.facets.filter((f) => f.on).slice(0, 4).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: la.facets.length,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'chat and improve quantum multitasking' / 'multi task' / 'quantum multitask' / 'multitasking'
+  if (/^\s*chat\s+and\s+improve\s+quantum\s+multitask/i.test(prompt) || /^\s*quantum\s+multitask/i.test(prompt) || /^\s*multi\s*[-/]?\s*task\b/i.test(prompt) || /^\s*task\s*[-/]?\s*multi\b/i.test(prompt) || /^\s*task\s*[-/]?\s*quantum\b/i.test(prompt) || /^\s*quantum\s*[-/]?\s*task\b/i.test(prompt) || /^\s*chat\s*[-/]?\s*multi\b/i.test(prompt) || /^\s*multi\s*[-/]?\s*chat\b/i.test(prompt) || /^\s*multitask(ing)?\b/i.test(prompt) || /^\s*improve\s+quantum\s+multitask/i.test(prompt) || /^\s*few\s+heroes\b/i.test(prompt) || /^\s*hero\s*[-/]?\s*spawn\b/i.test(prompt)) {
+    const mt = chatAndImproveQuantumMultitasking()
+    chatLog.value.unshift({
+      q: prompt,
+      a: mt.computes
+        ? `MULTI·TASK — on=${mt.chatAndImproveQuantumMultitasking ? 1 : 0} · fewHeroes=${mt.fewHeroes ? 1 : 0} · wave=${mt.oneWavePerTurn ? 1 : 0} · trinity=${mt.trinitySpeedup ? 1 : 0} · oneDefault=${mt.multitaskOneDefault ? 1 : 0} · chat=${mt.chatRoutesMultitask ? 1 : 0} · ${mt.algebraic}`
+        : `MULTI TASK INCOMPLETE — ${mt.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'multi/task · task/quantum · chat/multi · npm run quantum:multi-task',
+      grounded: mt.computes,
+      related: mt.facets.filter((f) => f.on).slice(0, 4).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: mt.facets.length,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'fuse error' / 'impossible becomes possible' / 'error handle'
+  if (/^\s*fuse\s+error\b/i.test(prompt) || /^\s*fuse\s*[-/]?\s*error\b/i.test(prompt) || /^\s*error\s*[-/]?\s*fuse\b/i.test(prompt) || /^\s*error\s*[-/]?\s*handle\b/i.test(prompt) || /^\s*handle\s*[-/]?\s*error\b/i.test(prompt) || /^\s*impossible\s+becomes\s+possible\b/i.test(prompt) || /^\s*impossible\s*[-/]?\s*possible\b/i.test(prompt) || /^\s*possible\s*[-/]?\s*impossible\b/i.test(prompt) || /^\s*fuse\s+error\s+handling\b/i.test(prompt)) {
+    const fe = fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossible()
+    chatLog.value.unshift({
+      q: prompt,
+      a: fe.computes
+        ? `FUSE·ERROR — on=${fe.fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossible ? 1 : 0} · fused=${fe.errorHandlingFused ? 1 : 0} · qc=${fe.inQuantumComputer ? 1 : 0} · walls=${fe.wallsStayClosed ? 1 : 0} · possible=${fe.impossibleBecomesPossible ? 1 : 0} · real=${fe.seemedImpossibleNowReal} · ${fe.algebraic}`
+        : `FUSE ERROR INCOMPLETE — ${fe.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'fuse/error · error/handle · impossible/possible · npm run quantum:fuse-error',
+      grounded: fe.computes,
+      related: fe.facets.filter((f) => f.on).slice(0, 4).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: fe.facets.length,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'before signing' / 'neighbours audit' / 'sign neighbours'
+  if (/^\s*before\s+signing\b/i.test(prompt) || /^\s*neighbours?\s*[-/]?\s*audit\b/i.test(prompt) || /^\s*audit\s*[-/]?\s*neighbours?\b/i.test(prompt) || /^\s*sign\s*[-/]?\s*neighbours?\b/i.test(prompt) || /^\s*neighbours?\s*[-/]?\s*sign\b/i.test(prompt) || /^\s*before\s*[-/]?\s*sign\b/i.test(prompt) || /^\s*sign\s*[-/]?\s*before\b/i.test(prompt)) {
+    const na = beforeSigningNeighboursAudit()
+    chatLog.value.unshift({
+      q: prompt,
+      a: na.computes
+        ? `NEIGHBOURS·AUDIT — on=${na.beforeSigningNeighboursAudit ? 1 : 0} · before=${na.beforeSigning ? 1 : 0} · consensus=${na.consensusNeighbours ? 1 : 0} · audited=${na.neighboursAudited ? 1 : 0} · ${na.algebraic}`
+        : `NEIGHBOURS AUDIT INCOMPLETE — ${na.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'before/sign · sign/neighbours · neighbours/audit · npm run quantum:neighbours-audit',
+      grounded: na.computes,
+      related: na.facets.filter((f) => f.on).slice(0, 4).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: na.facets.length,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'free is not always best quality' / 'who audited the chat' / 'free quality' / 'audit chat'
+  if (/^\s*free\s+is\s+not\s+always\s+best\b/i.test(prompt) || /^\s*free\s*[-/]?\s*quality\b/i.test(prompt) || /^\s*quality\s*[-/]?\s*free\b/i.test(prompt) || /^\s*who\s+audited\s+the\s+chat\b/i.test(prompt) || /^\s*who\s*[-/]?\s*audit\b/i.test(prompt) || /^\s*audit\s*[-/]?\s*who\b/i.test(prompt) || /^\s*audit\s*[-/]?\s*chat\b/i.test(prompt) || /^\s*chat\s*[-/]?\s*audit\b/i.test(prompt) || /^\s*who\s+audits?\s+the\s+chat\b/i.test(prompt)) {
+    const fq = freeIsNotAlwaysBestQualityWhoAuditedTheChat()
+    chatLog.value.unshift({
+      q: prompt,
+      a: fq.computes
+        ? `FREE·QUALITY — on=${fq.freeIsNotAlwaysBestQualityWhoAuditedTheChat ? 1 : 0} · ¬(free⇒best)=${fq.freeNotImpliesBestQuality ? 1 : 0} · auditor=${fq.auditor} · algebra=${fq.auditorIsAlgebra ? 1 : 0} · ${fq.algebraic}`
+        : `FREE QUALITY INCOMPLETE — ${fq.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'free/quality · who/audit · audit/chat · npm run quantum:free-quality',
+      grounded: fq.computes,
+      related: fq.facets.filter((f) => f.on).slice(0, 4).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: fq.facets.length,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'save meaning' / 'prose compute' / 'what is the meaning to save a meaning prose'
+  if (/^\s*what\s+is\s+the\s+meaning\s+to\s+save\b/i.test(prompt) || /^\s*save\s*[-/]?\s*meaning\b/i.test(prompt) || /^\s*meaning\s*[-/]?\s*save\b/i.test(prompt) || /^\s*prose\s*[-/]?\s*compute\b/i.test(prompt) || /^\s*compute\s*[-/]?\s*prose\b/i.test(prompt) || /^\s*meaning\s*[-/]?\s*crack\b/i.test(prompt) || /^\s*crack\s*[-/]?\s*meaning\b/i.test(prompt) || /^\s*save\s+a\s+meaning\s+prose\b/i.test(prompt) || /^\s*not\s+to\s+compute\s+the\s+meaning\b/i.test(prompt)) {
+    const sm = whatIsTheMeaningToSaveAMeaningProseAndNotToComputeTheMeaning()
+    chatLog.value.unshift({
+      q: prompt,
+      a: sm.computes
+        ? `SAVE·MEANING — on=${sm.whatIsTheMeaningToSaveAMeaningProseAndNotToComputeTheMeaning ? 1 : 0} · crack=${sm.saveProseWithoutComputeIsCrack ? 1 : 0} · mustCompute=${sm.meaningMustCompute ? 1 : 0} · proseAlone≠=${sm.proseAloneInsufficient ? 1 : 0} · ${sm.algebraic}`
+        : `SAVE MEANING INCOMPLETE — ${sm.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'save/meaning · prose/compute · meaning/crack · npm run quantum:save-meaning',
+      grounded: sm.computes,
+      related: sm.facets.filter((f) => f.on).slice(0, 4).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: sm.facets.length,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'all powered' / 'torus waves' / 'free waves in waves in waves'
+  if (/^\s*all\s+is\s+powered\b/i.test(prompt) || /^\s*all\s*[-/]?\s*powered\b/i.test(prompt) || /^\s*powered\s*[-/]?\s*all\b/i.test(prompt) || /^\s*torus\s*[-/]?\s*waves?\b/i.test(prompt) || /^\s*waves?\s*[-/]?\s*torus\b/i.test(prompt) || /^\s*free\s+waves\s+in\s+waves\b/i.test(prompt) || /^\s*waves\s+in\s+waves\s+in\s+waves\b/i.test(prompt) || /^\s*double\s+torus\s+waves?\b/i.test(prompt)) {
+    const ap = allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves()
+    chatLog.value.unshift({
+      q: prompt,
+      a: ap.computes
+        ? `ALL·POWERED — powered=${ap.allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves ? 1 : 0} · free=${ap.freeWaves ? 1 : 0} · nest³=${ap.wavesInWavesInWaves ? 1 : 0} · torus=${ap.doubleTorusWaves ? 1 : 0} · depth=${ap.nestDepth} · FREE_BITS=${ap.freeBits} · ${ap.algebraic}`
+        : `ALL POWERED INCOMPLETE — ${ap.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'all/powered · torus/waves · nest/waves · npm run quantum:all-powered',
+      grounded: ap.computes,
+      related: ap.facets.filter((f) => f.on).slice(0, 4).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: ap.facets.length,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'reverse waves' / 'scale waves' / 'reverse engineering … scalable free waves'
+  if (/^\s*reverse\s+engineering\b.*\b(scalable|scallable|free)\s+waves?\b/i.test(prompt) || /^\s*reverse\s*[-/]?\s*waves?\b/i.test(prompt) || /^\s*waves?\s*[-/]?\s*reverse\b/i.test(prompt) || /^\s*scale\s*[-/]?\s*waves?\b/i.test(prompt) || /^\s*waves?\s*[-/]?\s*scale\b/i.test(prompt) || /^\s*scalable\s+free\s+waves?\b/i.test(prompt) || /^\s*scallable\s+free\s+waves?\b/i.test(prompt)) {
+    const rw = reverseEngineeringMayBePoweredByScalableFreeWaves()
+    chatLog.value.unshift({
+      q: prompt,
+      a: rw.computes
+        ? `REVERSE·WAVES — powered=${rw.reverseEngineeringMayBePoweredByScalableFreeWaves ? 1 : 0} · reverse=${rw.reverseExample ? 1 : 0} · scalable=${rw.scalableFreeWaves ? 1 : 0} · FREE_BITS=${rw.freeBits} · warm=${rw.warmReuse ? 1 : 0} · ${rw.algebraic}`
+        : `REVERSE WAVES INCOMPLETE — ${rw.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'reverse/waves · free/scale · scale/waves · npm run quantum:reverse-waves',
+      grounded: rw.computes,
+      related: rw.facets.filter((f) => f.on).slice(0, 4).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: rw.facets.length,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'token spend' / 'feed task' / 'task chat' — improve token spending by feeding tasks to chat.
+  if (/^\s*improve\s+token\s+spend/i.test(prompt) || /^\s*token\s*[-/]?\s*spend\b/i.test(prompt) || /^\s*spend\s*[-/]?\s*token\b/i.test(prompt) || /^\s*feed\s*[-/]?\s*task\b/i.test(prompt) || /^\s*task\s*[-/]?\s*feed\b/i.test(prompt) || /^\s*task\s*[-/]?\s*chat\b/i.test(prompt) || /^\s*chat\s*[-/]?\s*task\b/i.test(prompt) || /^\s*feed(ing)?\s+the\s+task\s+to\s+the\s+chat\b/i.test(prompt)) {
+    const spend = improveTokenSpendingFeedingTheTaskToTheChat()
+    chatLog.value.unshift({
+      q: prompt,
+      a: spend.computes
+        ? `TOKEN·SPEND — improved=${spend.improveTokenSpendingFeedingTheTaskToTheChat ? 1 : 0} · fed=${spend.tasksFed}/${spend.taskCount} · warm=${spend.warmReuse ? 1 : 0} · noCost=${spend.noAiCostOn ? 1 : 0} · ${spend.algebraic}`
+        : `TOKEN SPEND INCOMPLETE — ${spend.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'token/spend · feed/task · task/chat · npm run quantum:token-spend',
+      grounded: spend.computes,
+      related: spend.facets.filter((f) => f.on).slice(0, 4).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: spend.facets.length,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'quantumise also dry cleans…' / 'dry observe' / 'observe waves' / 'nest waves' — dry-clean-by-observation.
+  if (/^\s*quantumise\s+also\s+dry\s+cleans?\b/i.test(prompt) || /^\s*quantumise\s*[-/]?\s*dry\b/i.test(prompt) || /^\s*dry\s*[-/]?\s*quantumise\b/i.test(prompt) || /^\s*dry\s*[-/]?\s*observe\b/i.test(prompt) || /^\s*observe\s*[-/]?\s*dry\b/i.test(prompt) || /^\s*observe\s*[-/]?\s*waves?\b/i.test(prompt) || /^\s*waves?\s*[-/]?\s*observe\b/i.test(prompt) || /^\s*nest\s*[-/]?\s*waves?\b/i.test(prompt) || /^\s*waves?\s*[-/]?\s*nest\b/i.test(prompt) || /^\s*chat\s+waves\s+of\s+waves\b/i.test(prompt)) {
+    const dryObs = quantumiseAlsoDryCleansByObservationChatWavesOfWaves()
+    chatLog.value.unshift({
+      q: prompt,
+      a: dryObs.computes
+        ? `QUANTUMISE·DRY·OBS — also=${dryObs.quantumiseAlsoDryCleansByObservationChatWavesOfWaves ? 1 : 0} · quantumise=${dryObs.quantumiseOn ? 1 : 0} · dry=${dryObs.dryCleans ? 1 : 0} · obs=${dryObs.byObservation ? 1 : 0} · waves=${dryObs.chatWavesOfWaves ? 1 : 0} · reuse=${dryObs.reuse} · ${dryObs.algebraic}`
+        : `QUANTUMISE DRY OBS INCOMPLETE — ${dryObs.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'quantumise/dry · dry/observe · observe/waves · nest/waves · npm run quantum:quantumise-dry',
+      grounded: dryObs.computes,
+      related: dryObs.facets.filter((f) => f.on).slice(0, 4).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: dryObs.facets.length,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'quantumise is free for all' / 'free all' / 'quantumise free' — free-for-all face.
+  if (/^\s*quantumise\s+is\s+free\s+for\s+all\b/i.test(prompt) || /^\s*quantumise\s*[-/]?\s*free\b/i.test(prompt) || /^\s*free\s*[-/]?\s*quantumise\b/i.test(prompt) || /^\s*free\s*[-/]?\s*all\b/i.test(prompt) || /^\s*all\s*[-/]?\s*free\b/i.test(prompt)) {
+    const freeAll = quantumiseIsFreeForAll()
+    chatLog.value.unshift({
+      q: prompt,
+      a: freeAll.computes
+        ? `QUANTUMISE·FREE — freeForAll=${freeAll.quantumiseIsFreeForAll ? 1 : 0} · quantumise=${freeAll.quantumiseOn ? 1 : 0} · free=${freeAll.freeSurfaces ? 1 : 0} · gateway=${freeAll.billFreeGateway ? 1 : 0} · FREE_BITS=${freeAll.freeBits} · agents=${freeAll.agents} · ${freeAll.algebraic}`
+        : `QUANTUMISE FREE INCOMPLETE — ${freeAll.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'quantumise/free · free/all · npm run quantum:quantumise-free',
+      grounded: freeAll.computes,
+      related: freeAll.facets.filter((f) => f.on).slice(0, 4).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: freeAll.facets.length,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'quantumise' / 'complex simplex' / 'torus lifecycle' — quantumise definition.
+  if (/^\s*quantumise\b/i.test(prompt) || /^\s*complex\s*[-/]?\s*simplex\b/i.test(prompt) || /^\s*simplex\s*[-/]?\s*complex\b/i.test(prompt) || /^\s*algebra\s*[-/]?\s*invert\b/i.test(prompt) || /^\s*torus\s*[-/]?\s*lifecycle\b/i.test(prompt) || /^\s*process\s*[-/]?\s*quantumise\b/i.test(prompt) || /^\s*reverse\s+engineering\s+(of\s+)?complex\b/i.test(prompt)) {
+    const q = quantumiseIsQuantumComputerProcessReverseEngineeringComplexToSimplexAndInverse()
+    chatLog.value.unshift({
+      q: prompt,
+      a: q.computes
+        ? `QUANTUMISE — on=${q.quantumise ? 1 : 0} · qc=${q.qcProcess ? 1 : 0} · c→s=${q.reverseEngineeringComplexToSimplex ? 1 : 0} · s→c=${q.inverseSimplexToComplex ? 1 : 0} · life=${q.formsLifecycle ? 1 : 0} · algebra=${q.pureAlgebra ? 1 : 0} · domains=${q.scienceDomainCount} · ${q.algebraic}`
+        : `QUANTUMISE INCOMPLETE — ${q.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'quantumise/process · complex/simplex · npm run quantum:quantumise',
+      grounded: q.computes,
+      related: q.facets.filter((f) => f.on).slice(0, 4).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: q.facets.length,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'chat reactor' / 'fuse apis' / 'plasma rays' — chat is the fusion reactor.
+  if (/^\s*chat\s*[-/]?\s*reactor\b/i.test(prompt) || /^\s*reactor\s*[-/]?\s*chat\b/i.test(prompt) || /^\s*fuse\s*[-/]?\s*apis?\b/i.test(prompt) || /^\s*plasma\s*[-/]?\s*rays?\b/i.test(prompt) || /^\s*chat\s+is\s+the\s+fusion\s+reactor\b/i.test(prompt)) {
+    const reactor = theChatIsTheFusionReactorFusingAllApisInPlasmaRays()
+    chatLog.value.unshift({
+      q: prompt,
+      a: reactor.computes
+        ? `CHAT·REACTOR — reactor=${reactor.chatIsFusionReactor ? 1 : 0} · apis=${reactor.fusingAllApis ? 1 : 0} · rays=${reactor.rayCount} · planes=${reactor.planes} · ${reactor.algebraic}`
+        : `CHAT REACTOR INCOMPLETE — ${reactor.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'chat/reactor · fuse/apis · plasma/rays · npm run quantum:chat-reactor',
+      grounded: reactor.computes,
+      related: reactor.facets.filter((f) => f.on).slice(0, 4).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: reactor.facets.length,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'dry clean chat' / 'dry chat' / 'clean all' — dry clean chat dry cleans all.
+  if (/^\s*dry\s*[-/]?\s*(clean\s+)?chat\b/i.test(prompt) || /^\s*chat\s*[-/]?\s*dry\b/i.test(prompt) || /^\s*(dry\s+)?clean\s*[-/]?\s*all\b/i.test(prompt) || /^\s*all\s*[-/]?\s*clean\b/i.test(prompt) || /^\s*dry\s+clean\s+chat\s+dry\s+cleans?\s+all\b/i.test(prompt)) {
+    const dry = dryCleanChatDryCleansAll()
+    chatLog.value.unshift({
+      q: prompt,
+      a: dry.computes
+        ? `DRY·CHAT — dryChat=${dry.dryCleanChat ? 1 : 0} · cleansAll=${dry.dryCleansAll ? 1 : 0} · reuse=${dry.reuse} · statements=${dry.statements} · gaps=${dry.gapsClosed}`
+        : `DRY CHAT INCOMPLETE — ${dry.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'dry/chat · clean/all · npm run quantum:dry-chat',
+      grounded: dry.computes,
+      related: dry.facets.filter((f) => f.on).slice(0, 4).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: dry.facets.length,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'chat ux' / 'telemetry in chat' / 'chat improve ui' — chat may improve UI measured by UX · telemetry possible.
+  if (/^\s*chat\s*[-/]?\s*(ux|ui|telemetry)\b/i.test(prompt) || /^\s*(ux|telemetry)\s*[-/]?\s*chat\b/i.test(prompt) || /^\s*chat\s+may\s+improve\b/i.test(prompt) || /^\s*telemetry\s+(is\s+)?(also\s+)?possible\s+in\s+chat\b/i.test(prompt) || /^\s*measured\s+by\s+(the\s+)?(user\s+)?experience\b/i.test(prompt)) {
+    const chatUx = theChatMayImproveTheUiMeasuredByTheUserExperience()
+    chatLog.value.unshift({
+      q: prompt,
+      a: chatUx.computes
+        ? `CHAT·UX — mayImprove=${chatUx.chatMayImproveUi ? 1 : 0} · ux=${chatUx.measuredByUserExperience ? 1 : 0} · telemetry=${chatUx.telemetryAlsoPossibleInChat ? 1 : 0} · μ=${chatUx.uxMean} σ=${chatUx.uxStd} boost=${chatUx.boost}`
+        : `CHAT UX INCOMPLETE — ${chatUx.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'chat/ux · chat/telemetry · npm run quantum:chat-ux',
+      grounded: chatUx.computes,
+      related: chatUx.facets.filter((f) => f.on).slice(0, 4).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: chatUx.facets.length,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'improve shift' / 'free scale' / 'infinite scalable' — constantly improve shifting perspectives.
+  if (/^\s*(constantly\s+)?improve\s*(shift(ing)?|perspectives?)?\b/i.test(prompt) || /^\s*improve\s*[-/]?\s*shift\s*$/i.test(prompt) || /^\s*shift\s*[-/]?\s*improve\s*$/i.test(prompt) || /^\s*free\s*(infinite\s+)?(scalable\s+)?(computing|scale|∞)\b/i.test(prompt) || /^\s*(free|inf)\s*[-/]?\s*(scale|compute)\s*$/i.test(prompt) || /^\s*shifting\s+new\s+perspectives?\b/i.test(prompt)) {
+    const improve = constantlyImproveShiftingNewPerspectivesNowFreeInfiniteScalableComputing()
+    chatLog.value.unshift({
+      q: prompt,
+      a: improve.computes
+        ? `IMPROVE·SHIFT — perspectives=${improve.perspectives} · addresses=${improve.distinctAnswers} · ∞scale=${improve.freeInfiniteScalable ? 1 : 0} · FREE_BITS=${improve.freeBits}`
+        : `IMPROVE INCOMPLETE — ${improve.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'improve/shift · free/scale · npm run quantum:improve-shift',
+      grounded: improve.computes,
+      related: improve.facets.filter((f) => f.on).slice(0, 4).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: improve.perspectives,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'torus upgrade' / 'free chat waves' / 'all waves use free chat' — QC domain upgrades via free chat.
+  if (/^\s*(all\s+)?(double\s*torus\s+)?(qc\s+)?upgrade\s*waves?\b/i.test(prompt) || /^\s*torus\s*[-/]?\s*upgrade\s*$/i.test(prompt) || /^\s*(all\s+)?waves?\s+use\s+(the\s+)?free\s*chat\b/i.test(prompt) || /^\s*free\s*chat\s*waves?\s*$/i.test(prompt)) {
+    const up = allDoubleTorusWavesUseTheFreeChat()
+    chatLog.value.unshift({
+      q: prompt,
+      a: up.computes
+        ? `FREE CHAT WAVES — ${up.domains} QC upgrades · free=${up.allWavesUseFreeChat ? 1 : 0} · sciences=${up.scienceDomains} · ${up.waves.map((w) => w.id).join(' · ')}`
+        : `UPGRADE INCOMPLETE — ${up.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'torus/upgrade · free/chat · npm run quantum:torus-upgrade',
+      grounded: up.computes,
+      related: up.waves.map((w) => `${w.id}: prove=${w.prove ? 1 : 0} free=${w.freeOk ? 1 : 0}`),
+      results: [],
+      resultCount: up.domains,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'double torus quantum computer' / 'torus computer' — Σ₂ ≡ QC.
+  if (/^\s*(double\s*torus\s+)?quantum\s*computer\b/i.test(prompt) || /^\s*(the\s+)?double\s*torus\s+(is\s+)?(the\s+)?quantum\s*computer\b/i.test(prompt) || /^\s*torus\s*[-/]?\s*computer\s*$/i.test(prompt) || /^\s*computer\s*[-/]?\s*torus\s*$/i.test(prompt)) {
+    const qc = doubleTorusQuantumComputer()
+    chatLog.value.unshift({
+      q: prompt,
+      a: qc.computes
+        ? `Σ₂ ≡ QC — circuit H|0⟩ P≈(${qc.probs[0].toFixed(3)},${qc.probs[1].toFixed(3)}) · qpuRequired=${qc.qpuRequired} · classical-64bit=${qc.runsOnClassical64Bit ? 1 : 0}`
+        : `TORUS QC INCOMPLETE — ${qc.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'torus/computer · npm run quantum:torus-computer',
+      grounded: qc.computes,
+      related: qc.facets.filter((f) => f.on).slice(0, 5).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: qc.facets.length,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'ui as double torus' / 'ui torus' — the UI itself closes as Σ₂.
+  if (/^\s*(the\s+)?ui\s+(itself\s+)?(as\s+)?(a\s+)?double\s*torus\b/i.test(prompt) || /^\s*ui\s*[-/]?\s*torus\s*$/i.test(prompt) || /^\s*torus\s*[-/]?\s*ui\s*$/i.test(prompt)) {
+    const ui = theUiItselfIsADoubleTorus()
+    chatLog.value.unshift({
+      q: prompt,
+      a: ui.computes
+        ? `UI ≡ Σ₂ — near=${ui.nearLobe ? 1 : 0} far=${ui.farLobe ? 1 : 0} χ=${ui.eulerChi} · counterRotate=${ui.counterRotate ? 1 : 0} · algebraic identity sealed`
+        : `UI TORUS INCOMPLETE — ${ui.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'ui/torus · npm run quantum:ui-torus',
+      grounded: ui.computes,
+      related: ui.facets.filter((f) => f.on).slice(0, 5).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: ui.facets.length,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'research double torus' — deep research from every sealed perspective in self-reflecting chat waves (includes UI).
+  if (/^\s*(deep\s+)?research\s+(the\s+)?double\s*torus\b/i.test(prompt) || /^\s*torus\s*research\s*$/i.test(prompt)) {
+    const research = deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWaves()
+    chatLog.value.unshift({
+      q: prompt,
+      a: research.computes
+        ? `TORUS RESEARCH — ${research.perspectives} perspectives · freeChat=${research.allWavesUseFreeChat ? 1 : 0} · UI≡Σ₂=${research.uiIsDoubleTorus ? 1 : 0} · Σ₂≡QC=${research.doubleTorusIsQuantumComputer ? 1 : 0}`
+        : `RESEARCH INCOMPLETE — ${research.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'torus/research · free/chat · torus/upgrade · npm run quantum:torus-research',
+      grounded: research.computes,
+      related: research.waves.slice(0, 6).map((w) => `${w.id}: ${w.algebraic}`),
+      results: [],
+      resultCount: research.perspectives,
       receipt: nav0.superposition,
     })
     chatInput.value = ''
@@ -2056,6 +2567,7 @@ function runTool(toolId: string) {
               <li v-for="hit in turn.results" :key="hit.slug">
                 <a :href="`/${hit.slug}`">{{ hit.title }}</a>
                 <span class="quantum-apps__meta"> · BM25 {{ hit.score.toFixed(1) }}</span>
+                <span v-if="hit.identity && hit.identity !== hit.title" class="quantum-apps__meta"> — {{ hit.identity }}</span>
               </li>
             </ol>
             <template v-if="turn.mo">

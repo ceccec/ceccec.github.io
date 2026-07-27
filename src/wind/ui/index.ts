@@ -2753,8 +2753,8 @@ export function paperAbstractOmitsTitleEcho(title: string, description: string):
 }
 
 /**
- * Color/rosetta · css/gaps strangler tip — theme morphs + token ids + CSS lens live in wind/ui
- * (paint home). Fold bodies remain apps until catalog/gaps cycle-safe. Placed via manual/quantum.
+ * Color/rosetta + css/gaps soft-nest closed — theme morphs · token ids · CSS lens in wind/ui.
+ * Fold bodies stay apps (catalog/CLI · apps→wind/ui edge). place/merge keep:* -soft-nest.
  */
 export const COLOR_ROSETTA_THEME_MORPHS = [
   { before: 'bare-hex-css', after: 'iching-tokens-a432-hsl', status: 'removed' as const },

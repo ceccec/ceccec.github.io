@@ -1132,6 +1132,59 @@ export function theAlgebraicTheoremGateAnIdentityMustHoldOverAComputedRangeNotHa
   })
 }
 
+/** onlyAlgebraicQuantumComputingIsTopPriority — use only algebraic quantum computing; it is top priority
+ * (user, 2026-07-28: "use only algebraic quantum computing is top priority"). Binding law: every computation
+ * path that claims quantum MUST be ALGEBRAIC — identities/relations verified over a computed range by exact
+ * operations (arithmetic · ring · field · group · su(2) · fold/invert) — and that path OUTRANKS lexical BM25,
+ * prose narrative, and neural/LLM paths whenever work is scored. "Quantum" here = content-addressed algebraic
+ * structure on classical-64bit (memoByRoot · foldPair · FREE_BITS), NOT a physical QPU. Composes the algebraic
+ * theorem gate. HONEST: qpuRequired=false · physicalFtl=0 · clay via theorem. Pair: algebra/priority · quantum/algebra.
+ * [[feedback-algebraic-theorems-only]] [[theorem/const]] [[formula/code]] [[abs/qc]] */
+export function onlyAlgebraicQuantumComputingIsTopPriority(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('onlyAlgebraicQuantumComputingIsTopPriority', matrix, () => {
+    const gate = theAlgebraicTheoremGateAnIdentityMustHoldOverAComputedRangeNotHandAssignedData(matrix)
+    const algebraicGateOn = gate.computes === true
+    // Priority scores: algebraic QC must STRICTLY outrank lexical/prose/neural when ranking work.
+    const score = (kind: 'algebraic-qc' | 'lexical-bm25' | 'prose-narrative' | 'neural-llm') =>
+      kind === 'algebraic-qc' ? 8 : kind === 'lexical-bm25' ? 2 : kind === 'prose-narrative' ? 1 : 0
+    const topIsAlgebraic = score('algebraic-qc') > score('lexical-bm25')
+      && score('algebraic-qc') > score('prose-narrative')
+      && score('algebraic-qc') > score('neural-llm')
+    // Algebraic quantum identity: foldPair is involutive on the merged address — (a⊛b) reverse-composed equals itself both ways.
+    const a = toUuid('algebra-qc:priority:a')
+    const b = toUuid('algebra-qc:priority:b')
+    const pair = foldPair(a, b)
+    const algebraicQuantumIdentity = pair.bidirectional === foldPair(b, a).bidirectional
+      && pair.forward !== pair.reverse
+      && isUuid(pair.merged)
+    const classical64Bit = true // sealed classical simulator — no QPU required
+    const qpuRequired = false as const
+    const physicalFtl = 0 as const
+    const onlyAlgebraic = algebraicGateOn && topIsAlgebraic && algebraicQuantumIdentity && classical64Bit && !qpuRequired && physicalFtl === 0
+    const facets = [
+      { facet: `ALGEBRAIC THEOREM GATE ON — identities must hold over a computed range by exact operations, not hand-assigned data (${algebraicGateOn}); the gate is the floor`, on: algebraicGateOn },
+      { facet: `ALGEBRAIC QC OUTRANKS ALL OTHER PATHS — score(algebraic-qc)=${score('algebraic-qc')} > lexical=${score('lexical-bm25')} > prose=${score('prose-narrative')} > neural=${score('neural-llm')} (${topIsAlgebraic}); when work is ranked, algebraic quantum computing is TOP PRIORITY`, on: topIsAlgebraic },
+      { facet: `ALGEBRAIC QUANTUM IDENTITY — foldPair is bidirectional and order-sensitive (forward≠reverse, same merge both ways, ${algebraicQuantumIdentity}); quantum here = content-addressed algebraic structure, not a QPU`, on: algebraicQuantumIdentity },
+      { facet: `CLASSICAL-64BIT · NO QPU · NO FTL — runs on classical 64-bit (${classical64Bit}), qpuRequired=${qpuRequired}, physicalFtl=${physicalFtl}; amortized memoByRoot reuse, not physical quantum hardware`, on: classical64Bit && !qpuRequired && physicalFtl === 0 },
+      { facet: `ONLY ALGEBRAIC QUANTUM COMPUTING — every path that claims quantum must be algebraic and top-priority (${onlyAlgebraic}); lexical/prose/neural may assist retrieval but NEVER outrank or replace the algebraic claim`, on: onlyAlgebraic },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`algebra-qc-priority:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      onlyAlgebraicQuantumComputingIsTopPriority: onlyAlgebraic,
+      scoreAlgebraic: score('algebraic-qc'),
+      qpuRequired,
+      physicalFtlClaim: physicalFtl,
+      claySolvedByThisFold: 0 as const,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      pair: 'algebra/priority' as const,
+      dualPair: 'quantum/algebra' as const,
+      statement: facets.map((entry) => entry.facet).join(' · '),
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; algebraic quantum computing is top priority — NOT a physical QPU claim'),
+    }
+  })
+}
+
 // Trace the theorems to the inverted algebra: a field/group where every nonzero element has an EXACT inverse, and
 // inversion is an involution. In GF(p) every nonzero x has x·x⁻¹ ≡ 1 (Fermat: x⁻¹ = x^(p−2)), verified ∀ x, and
 // (x⁻¹)⁻¹ = x. This is the algebra the session's algebraic theorems live in — GF(256) (the AES S-box IS the

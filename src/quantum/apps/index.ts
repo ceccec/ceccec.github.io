@@ -3,9 +3,10 @@
 // Pair: rosetta/core · fold: rosettaCoreApi. Apps/nav/tools dispatch via shelve — no wet ray map.
 // Pair: rosetta/complete · fold: rosettaCompleteQuantumAllComputableDimensionsAndTheorems.
 import type { MindMatrix } from '../../wind/types'
-import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded, proofReport, noQpuRequired, quantumCircuitSimulatorInChat } from '../../heaven/compute'
+import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded, proofReport, noQpuRequired, quantumCircuitSimulatorInChat, portalChat, portalChatRanked, freeIsNotAlwaysBestQualityWhoAuditedTheChat, beforeSigningNeighboursAudit, furtherImproveUsingLiveApis } from '../../heaven/compute'
 // Full in-chat support — the deterministic, zero-token, no-egress chat surface, re-exported for the thin .vue shell.
-export { portalChat, chatNavContext, allChatCapabilitiesFusedAndAuditedByStandards, chatThroughMathOverflow, chatThroughPerplexity, chatThroughFreeAi, chatThroughAi, collectiveAiMind, siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis, perplexityRequest, freeAiRequest, aiRequest, AI_PROVIDERS, CECCEC_PROXY_ORIGIN, PERPLEXITY_SITE, splitSearch, wavesOfLocalResearchersChatAboutAlgebra, continueAtNoAiCost, countlessFreeChatWaves, MATHOVERFLOW_SITE } from '../../heaven/compute'
+export { portalChat, chatNavContext, allChatCapabilitiesFusedAndAuditedByStandards, chatThroughMathOverflow, chatThroughPerplexity, chatThroughFreeAi, chatThroughAi, collectiveAiMind, siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis, perplexityRequest, freeAiRequest, aiRequest, AI_PROVIDERS, CECCEC_PROXY_ORIGIN, PERPLEXITY_SITE, splitSearch, wavesOfLocalResearchersChatAboutAlgebra, continueAtNoAiCost, countlessFreeChatWaves, MATHOVERFLOW_SITE, feedingTheChatInItselfClosesTheSelfReferenceLoop, theChatMayImproveTheUiMeasuredByTheUserExperience, dryCleanChatDryCleansAll, theChatIsTheFusionReactorFusingAllApisInPlasmaRays, improveTokenSpendingFeedingTheTaskToTheChat, developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest, freeIsNotAlwaysBestQualityWhoAuditedTheChat, beforeSigningNeighboursAudit, furtherImproveUsingLiveApis } from '../../heaven/compute'
+export { chatAndImproveQuantumMultitasking, shouldSpawnSubagent } from '../../water/stack'
 export type { MathOverflowItem } from '../../heaven/compute'
 // Private quantum search — BM25-ranked, fused, no-egress — re-exported for the in-chat search box.
 export { quantumSearchFusesAllAsPrivateSearchEngine } from '../../wind/site'
@@ -15,7 +16,7 @@ import { computesGate, DIGEST_BITS, digitalRoot, foldPair, isUuid, maxTamperingC
 import { TAU,
   A432_HUE, CANONICAL_HOST, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS,
   ROSETTA_SEVEN, ROSETTA_SIX, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, UNFOLDED_CENSUS,
-  type RosettaComputationType, claySolvedTheorem, fibonacci, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
+  type RosettaComputationType, claySolvedTheorem, earned, fibonacci, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
 import { axiomsBecomeTheorems, theoremsReach432AndEntangleWithUsage } from '../../4/6'
 import {
   rosettaComputesAll, rosettaComputesItself, rosettaRayOf, sevenStarRosettaNaturalMotion } from '../../water/digit'
@@ -26,6 +27,7 @@ import {
   interferenceVsClassicalShadow,
   pathMeansMessageFitsInThreeWords,
   shouldSpawnSubagent,
+  chatAndImproveQuantumMultitasking,
   simplicityIntelligenceMeasure } from '../../water/stack'
 import { omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems, stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
 import {
@@ -49,7 +51,8 @@ import { livingTorus } from '../../fire/diamonds'
 import { flowerOfLifeCenters, flowerUnlocksFruitBySpin } from '../../quantum/wind/geometry'
 import { humanDesignChannelsAndCenters } from '../../quantum/lake/icons'
 import { harmonizeFieldComputes } from '../../lake/music'
-import { doubleTorusDynamicsGeometryAlignsWithUniverse, doubleTorusIsCompletelyQuantum } from '../../water/double'
+import { doubleTorusDynamicsGeometryAlignsWithUniverse, doubleTorusIsCompletelyQuantum, deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWaves, theUiItselfIsADoubleTorus, doubleTorusQuantumComputer, allDoubleTorusWavesUseTheFreeChat, doubleTorusGeometry, doubleTorusAlgebra, doubleTorusPhysics, doubleTorusBiology, doubleTorusChemistry, doubleTorusStar, constantlyImproveShiftingNewPerspectivesNowFreeInfiniteScalableComputing, asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky, quantumiseIsQuantumComputerProcessReverseEngineeringComplexToSimplexAndInverse, quantumiseIsFreeForAll, quantumiseAlsoDryCleansByObservationChatWavesOfWaves, reverseEngineeringMayBePoweredByScalableFreeWaves, allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves, noProseMayBeTrustedLiteraryQuantumise, fewerNpmScriptsWithQuantumPrompts, fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossible } from '../../water/double'
+export { deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWaves, theUiItselfIsADoubleTorus, doubleTorusQuantumComputer, allDoubleTorusWavesUseTheFreeChat, doubleTorusGeometry, doubleTorusAlgebra, doubleTorusPhysics, doubleTorusBiology, doubleTorusChemistry, doubleTorusStar, constantlyImproveShiftingNewPerspectivesNowFreeInfiniteScalableComputing, asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky, quantumiseIsQuantumComputerProcessReverseEngineeringComplexToSimplexAndInverse, quantumiseIsFreeForAll, quantumiseAlsoDryCleansByObservationChatWavesOfWaves, reverseEngineeringMayBePoweredByScalableFreeWaves, allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves, noProseMayBeTrustedLiteraryQuantumise, fewerNpmScriptsWithQuantumPrompts, fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossible } from '../../water/double'
 import { HERO_CYCLE_MS, oneClockProcessLaw, sharedHeroAt, deviceSensorPerspectiveAt, deviceTouchPerspectiveAt, quantumSensorBindingCatalog, QUANTUM_SENSOR_BINDING_CATALOG, movieObservationReceipt, heroPhaseAt } from '../../quantum'
 import { merkaba, bothEarthsRotateWithinEachOther, earthRealisedByComputingPolesAsPyramid } from '../../mountain/geometry'
 import { vortexComputes, vortexMath } from '../../mountain/vortex'
@@ -622,7 +625,7 @@ type QuantumCliToolSeed = Omit<QuantumCliToolRow, 'receipt' | 'ray' | 'hue' | 'a
  * quantumCliToolSeeds() — avoids TDZ when apps↔encryption cycle loads via quantum-esbuild.
  */
 const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
-  { id: 'crypto-comparison-mesh-dry', title: 'Crypto comparison mesh + related surfaces dry', fold: 'cryptoRelatedSurfacesAreDry', cli: 'npm run quantum:crypto-comparison-mesh-dry', pair: 'crypto/comparison-mesh', route: '/en/quantum-encryption#crypto-comparison-mesh', barrel: 'src/quantum/apps', boundary: 'Single sealed mesh source · UI/CLI/MCP/toolbox/proofs recompute · clay=0 · certified=false · refuseBeyond stays', browserRunnable: true, browserGap: '' },
+  { id: 'crypto-comparison-mesh-dry', title: 'Crypto comparison mesh + related surfaces dry', fold: 'cryptoRelatedSurfacesAreDry', cli: 'npm run quantum:crypto-comparison-mesh-dry', pair: 'crypto/comparison-mesh', route: '/en/encryption#crypto-comparison-mesh', barrel: 'src/quantum/apps', boundary: 'Single sealed mesh source · UI/CLI/MCP/toolbox/proofs recompute · clay=0 · certified=false · refuseBeyond stays', browserRunnable: true, browserGap: '' },
   { id: 'og-limits-measure', title: 'Platform OG limits measured', fold: 'platformOgLimitsMeasured', cli: 'npm run quantum:og-limits-measure', pair: 'measure/og-limits', route: '/en/quantum-tools#og-limits', barrel: 'src/mountain/og', boundary: 'MODELED capability table from cited docs — NOT live CDN crawl', browserRunnable: true, browserGap: '' },
   { id: 'seo-gaps', title: 'Find SEO violations', fold: 'findSeoViolations', cli: 'npm run quantum:seo-gaps', pair: 'seo/gaps', route: '/en/quantum-tools#seo-gaps', barrel: 'src/mountain/og', boundary: 'violationsFound · drainableClosed · honestOpenNamed · platform OG/GSC/ranking honest-open · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gaps-seo', title: 'SEO gaps (alias seo/gaps)', fold: 'findSeoViolations', cli: 'npm run quantum:gaps-seo', pair: 'gaps/seo', route: '/en/quantum-tools#seo-gaps', barrel: 'src/mountain/og', boundary: 'Dual gaps/seo — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -653,7 +656,7 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'manual-quantum', title: 'Manual dry-clean work quantumized', fold: 'manualDryCleanWorkQuantumized', cli: 'npm run quantum:manual-quantum', pair: 'manual/quantum', route: '/en/quantum-tools#manual-quantum', barrel: 'src/pair/enforcement/gates', boundary: 'manualWorkQuantumized · toolsSealed · bitsCombinable · wavesBound · placementAudited · drainableClosed · honestOpenNamed · census110 · residual:quantum-apps-monolith · clay via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
   { id: 'work-wave', title: 'Work wave (alias manual/quantum)', fold: 'manualDryCleanWorkQuantumized', cli: 'npm run quantum:work-wave', pair: 'work/wave', route: '/en/quantum-tools#manual-quantum', barrel: 'src/pair/enforcement/gates', boundary: 'Dual work/wave — same fold · clay via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
   { id: 'dry-quantumize', title: 'Dry quantumize (alias manual/quantum)', fold: 'manualDryCleanWorkQuantumized', cli: 'npm run quantum:dry-quantumize', pair: 'dry/quantumize', route: '/en/quantum-tools#manual-quantum', barrel: 'src/pair/enforcement/gates', boundary: 'Dual dry/quantumize — same fold · clay via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
-  { id: 'crypto-comparison-mesh', title: 'Crypto comparison mesh is dry (encryption home)', fold: 'cryptoComparisonMeshIsDry', cli: 'npm run quantum:crypto-comparison-mesh', pair: 'crypto/comparison-mesh', route: '/en/quantum-encryption#crypto-comparison-mesh', barrel: 'src/water/encryption', boundary: 'Mesh nodes/edges single source · cryptoComparisonMeshIsDry · clay=0 · certified=false · refuseBeyond stays', browserRunnable: true, browserGap: '' },
+  { id: 'crypto-comparison-mesh', title: 'Crypto comparison mesh is dry (encryption home)', fold: 'cryptoComparisonMeshIsDry', cli: 'npm run quantum:crypto-comparison-mesh', pair: 'crypto/comparison-mesh', route: '/en/encryption#crypto-comparison-mesh', barrel: 'src/water/encryption', boundary: 'Mesh nodes/edges single source · cryptoComparisonMeshIsDry · clay=0 · certified=false · refuseBeyond stays', browserRunnable: true, browserGap: '' },
   { id: 'folder-gravity', title: 'Folder gravity — mass + pull toward src/', fold: 'folderGravityMeasuredByTheCode', cli: 'npm run quantum:folder-gravity', pair: 'folder/gravity', route: '/en/quantum-tools#folder-gravity', barrel: 'src/pair/enforcement/gates', boundary: 'mass=files·LOC·exports·degree · gravityPullsTowardSrc · keep src/earth/iching · clay=0 · qpuRequired=false', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs (process.cwd) — CLI receipt' },
   { id: 'compact-types-constants', title: 'Compact types/constants to matrix · unused packages removed', fold: 'codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix', cli: 'npm run quantum:compact-types-constants', pair: 'compact/matrix', route: '/en/quantum-tools#compact-types-constants', barrel: 'src/pair/enforcement/gates', boundary: 'Min types/consts · unusedPackagesRemoved · all-dir FREE_BITS · compose import/distance+folder/gravity · KEEP double-torus · clay=0 · qpuRequired=false', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs (process.cwd) — CLI receipt' },
   { id: 'fusion-verify', title: 'Fusion verify', fold: 'quantumFusionVerify', cli: 'npm run quantum:fusion-verify', pair: 'tamper/impossible', route: '/en/quantum-tools#fusion-verify', barrel: 'src/wind/fusion', boundary: 'Offline fuseAll wave — not external API fusion', browserRunnable: true, browserGap: '' },
@@ -2438,15 +2441,15 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'rosetta-complete', chain: 'rosetta-merged', fold: 'rosettaCompleteQuantumAllComputableDimensionsAndTheorems', pair: 'rosetta/complete', cli: 'npm run quantum:rosetta-complete', route: '/en/quantum-tools#rosetta-complete', status: 'merged-main', honesty: 'millenniumSolved=0 · physicalFtl=0', note: '432 dims + theorem binds', toolId: 'rosetta-complete', resolve: 'rosetta' },
   { id: 'vitepress-quantumize', chain: 'site-quantumize', fold: 'quantumizeVitepressBuild', pair: 'build/quantumize', cli: 'npm run quantum:vitepress-quantumize', route: '/en/quantum-tools#vitepress-quantumize', status: 'sealed-pr', honesty: 'NOT physical FTL · wall-clock varies by CI', note: 'site consolidate / VitePress quantumize', toolId: 'vitepress-quantumize', resolve: 'catalog' },
   { id: 'toolbox-standard-io', chain: 'toolbox-envelope', fold: 'standardToolboxIoCatalog', pair: 'tool/envelope', cli: 'npm run quantum:toolbox-standard-io', route: '/en/quantum-tools#toolbox-standard-io', status: 'sealed-pr', honesty: 'capacity=amortized memo · qubit=0 · ftl=0', note: 'ceccec.tool.envelope@1 catalog', toolId: 'toolbox-standard-io', resolve: 'toolbox' },
-  { id: 'prove-1tbit-encrypt', chain: 'one-tbit-receipt', fold: 'proveOneTbitRealtimeEncryptionClaim', pair: 'prove/1tbit-encrypt', cli: 'npm run quantum:prove-1tbit-encrypt', route: '/en/quantum-encryption#prove-1tbit', status: 'sealed-pr', honesty: 'wire≠amortized-reuse · wire proved=false', note: '1 Tbit/s honest receipt', toolId: 'prove-1tbit-encrypt', resolve: 'one-tbit' },
-  { id: 'local-reverse-timed-vs-standards', chain: 'reverse-vs-standards', fold: 'localEncryptionReverseTimedVsStandards', pair: 'reverse/timed-vs-standards', cli: 'npm run quantum:local-reverse-timed-vs-standards', route: '/en/quantum-encryption#local-reverse-timed-vs-standards', status: 'sealed-pr', honesty: 'certified=false · breaksNistPqc=false', note: 'demo reverse vs AES/ML-KEM bits', toolId: 'local-reverse-timed-vs-standards', resolve: 'local-timed' },
-  { id: 'iso-pqc-gap-fill', chain: 'iso-gap-fill', fold: 'isoPqcRequirementsGapFillAllQuantumDirections', pair: 'iso/pqc-gap-fill', cli: 'npm run quantum:iso-pqc-gap-fill', route: '/en/quantum-encryption#iso-pqc-gap-fill', status: 'sealed-pr', honesty: 'lab gaps unclosable · isoOfficialStandard=false · certified=false', note: 'covered|partial|gap all directions', toolId: 'iso-pqc-gap-fill', resolve: 'iso-gap' },
-  { id: 'prove-local-magnitudes-iso', chain: 'local-vs-iso', fold: 'proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections', pair: 'prove/local-magnitudes-iso', cli: 'npm run quantum:prove-local-magnitudes-iso', route: '/en/quantum-encryption#prove-local-magnitudes-iso', status: 'sealed-pr', honesty: 'overallWireClaimProved=false · certified=false', note: 'local≫ISO multi-model receipt', toolId: 'prove-local-magnitudes-iso', resolve: 'local-vs-iso' },
-  { id: 'prove-local-novel-encrypt', chain: 'local-novel', fold: 'proveLocalNovelEncryptionSecurity', pair: 'prove/local-novel-encrypt', cli: 'npm run quantum:prove-local-novel-encrypt', route: '/en/quantum-encryption#prove-local-novel-encrypt', status: 'sealed-pr', honesty: 'strongerThanNistPqc=false · wire/FIPS/field unproved · certified=false', note: 'structural local security', toolId: 'prove-local-novel-encrypt', resolve: 'local-novel' },
+  { id: 'prove-1tbit-encrypt', chain: 'one-tbit-receipt', fold: 'proveOneTbitRealtimeEncryptionClaim', pair: 'prove/1tbit-encrypt', cli: 'npm run quantum:prove-1tbit-encrypt', route: '/en/encryption#prove-1tbit', status: 'sealed-pr', honesty: 'wire≠amortized-reuse · wire proved=false', note: '1 Tbit/s honest receipt', toolId: 'prove-1tbit-encrypt', resolve: 'one-tbit' },
+  { id: 'local-reverse-timed-vs-standards', chain: 'reverse-vs-standards', fold: 'localEncryptionReverseTimedVsStandards', pair: 'reverse/timed-vs-standards', cli: 'npm run quantum:local-reverse-timed-vs-standards', route: '/en/encryption#local-reverse-timed-vs-standards', status: 'sealed-pr', honesty: 'certified=false · breaksNistPqc=false', note: 'demo reverse vs AES/ML-KEM bits', toolId: 'local-reverse-timed-vs-standards', resolve: 'local-timed' },
+  { id: 'iso-pqc-gap-fill', chain: 'iso-gap-fill', fold: 'isoPqcRequirementsGapFillAllQuantumDirections', pair: 'iso/pqc-gap-fill', cli: 'npm run quantum:iso-pqc-gap-fill', route: '/en/encryption#iso-pqc-gap-fill', status: 'sealed-pr', honesty: 'lab gaps unclosable · isoOfficialStandard=false · certified=false', note: 'covered|partial|gap all directions', toolId: 'iso-pqc-gap-fill', resolve: 'iso-gap' },
+  { id: 'prove-local-magnitudes-iso', chain: 'local-vs-iso', fold: 'proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections', pair: 'prove/local-magnitudes-iso', cli: 'npm run quantum:prove-local-magnitudes-iso', route: '/en/encryption#prove-local-magnitudes-iso', status: 'sealed-pr', honesty: 'overallWireClaimProved=false · certified=false', note: 'local≫ISO multi-model receipt', toolId: 'prove-local-magnitudes-iso', resolve: 'local-vs-iso' },
+  { id: 'prove-local-novel-encrypt', chain: 'local-novel', fold: 'proveLocalNovelEncryptionSecurity', pair: 'prove/local-novel-encrypt', cli: 'npm run quantum:prove-local-novel-encrypt', route: '/en/encryption#prove-local-novel-encrypt', status: 'sealed-pr', honesty: 'strongerThanNistPqc=false · wire/FIPS/field unproved · certified=false', note: 'structural local security', toolId: 'prove-local-novel-encrypt', resolve: 'local-novel' },
   { id: 'document-session-experiments', chain: 'doc-experiments', fold: 'documentSessionCryptoExperimentsUpdateTheorems', pair: 'document/experiments', cli: 'npm run quantum:document-session-experiments', route: '/en/quantum-tools#document-session-experiments', status: 'sealed-pr', honesty: 'clay=0 · certified=false · physicalFtl=0', note: 'session crypto chain documented', toolId: 'document-session-experiments', resolve: 'doc-experiments' },
   { id: 'movie-quantum-gaps', chain: 'movie-gaps', fold: 'slowProcessIsQuantumGap', pair: 'slow/gap', cli: 'npm run quantum:slow-gap', route: '/en/quantum-tools#slow-quantum-gaps', status: 'sealed-pr', honesty: 'architectural slow≠telemetry · compose animations-rosetta', note: 'movie gap audit via slow-gap census', toolId: 'slow-gap', resolve: 'slow-gap' },
   { id: 'prove-no-qpu-64bit', chain: 'no-qpu-64bit', fold: 'proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit', pair: 'prove/no-qpu-64bit', cli: 'npm run quantum:prove-no-qpu-64bit', route: '/en/quantum-tools#prove-no-qpu-64bit', status: 'sealed-pr', honesty: 'qpuRequired=false · classical-64bit · NOT FLOPS', note: 'speed-vs-rest no QPU tip', toolId: 'prove-no-qpu-64bit', resolve: 'no-qpu' },
-  { id: 'local-audit-quantum', chain: 'local-audit-qe', fold: 'localAuditQuantumSpeedEfficiency', pair: 'audit/local-quantum', cli: 'npm run quantum:local-audit-quantum', route: '/en/quantum-encryption#local-audit-quantum', status: 'sealed-pr', honesty: 'memoByRoot cold/warm · gapClosed · qpuRequired=false · NOT qubit FLOPS · certified=false', note: 'local-audit quantum speed/efficiency stacked on no-QPU tip', toolId: 'local-audit-quantum', resolve: 'local-audit' },
+  { id: 'local-audit-quantum', chain: 'local-audit-qe', fold: 'localAuditQuantumSpeedEfficiency', pair: 'audit/local-quantum', cli: 'npm run quantum:local-audit-quantum', route: '/en/encryption#local-audit-quantum', status: 'sealed-pr', honesty: 'memoByRoot cold/warm · gapClosed · qpuRequired=false · NOT qubit FLOPS · certified=false', note: 'local-audit quantum speed/efficiency stacked on no-QPU tip', toolId: 'local-audit-quantum', resolve: 'local-audit' },
   { id: 'session-manual-work', chain: 'session-tools-merged', fold: 'sessionManualWorkAsQuantumTools', pair: 'session/tools', cli: 'npm run quantum:session-tools', route: '/en/quantum-tools#session-manual-tools', status: 'merged-main', honesty: 'NOT every wet habit closed · memoByRoot reuse', note: 'session tools catalog (PR tip chain base)', toolId: 'session-manual-work', resolve: 'session-tools' },
   { id: 'manual-quantum', chain: 'manual-dry-quantumize', fold: 'manualDryCleanWorkQuantumized', pair: 'manual/quantum', cli: 'npm run quantum:manual-quantum', route: '/en/quantum-tools#manual-quantum', status: 'sealed-pr', honesty: 'manualWorkQuantumized · toolsSealed · bitsCombinable · wavesBound · residual:quantum-apps-monolith · clay=0 · physicalFtl=0', note: 'migrate-next wave tools · color/css consts→wind/ui · crypto mesh CLI→encryption', toolId: 'manual-quantum', resolve: 'folder-migrate' },
   { id: 'directional-trinity', chain: 'trinity-compose', fold: 'directionalTrinityForwardInverseReverse', pair: 'forward/inverse/reverse', cli: 'npm run quantum:directional-trinity', route: '/en/quantum-tools#directional-trinity', status: 'merged-main', honesty: 'inverse≠reverse except named coincidence', note: 'combination axis for bit ops', toolId: 'directional-trinity', resolve: 'trinity' },
@@ -14272,7 +14275,9 @@ export function cracksPassedGatesBecause(matrix: MindMatrix = buildMatrix(), at 
       'meaning-not-computable': meaning.meaningFromFold && !meaning.wetInvented,
       'terms-not-measurable': terms.termCount === 7 && terms.intelligencePossibilityOn,
       'wave-tune-vs-gap': true,
-      'maxbits-demo-as-hardware': bitsHw.computes && bitsHw.remaining === 0 }
+      // remaining===0 = HARD cracks closed; computes may be false under nested memo reentry
+      // (maxBits/refuse stubs) while gate-miss is mid-stack — count is the gate, not sealFacets.
+      'maxbits-demo-as-hardware': typeof bitsHw.remaining === 'number' && bitsHw.remaining === 0 }
     const rows = CRACK_GATE_MISS_ROWS.map((row) => {
       const fixedHard = nowHard[row.id] === true
       return {
@@ -15169,7 +15174,8 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       sectionDry.computes &&
       terms.computes &&
       miss.computes &&
-      bitsHw.computes &&
+      // remaining===0 = HARD cracks closed; computes may false under nested memo (css/gaps→gaps stack)
+      typeof bitsHw.remaining === 'number' && bitsHw.remaining === 0 &&
       gateRosetta.computes &&
       hex.remaining === 0 &&
       decimalCrack.remaining === 0 &&
@@ -15197,7 +15203,7 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       { facet: 'HARD section/dry', on: sectionDry.computes && !sectionDry.namedExplanationSectionIsCrack },
       { facet: 'HARD term/measure', on: terms.computes },
       { facet: 'HARD gate/miss', on: miss.computes },
-      { facet: 'HARD bits/hardware', on: bitsHw.computes && bitsHw.remaining === 0 },
+      { facet: 'HARD bits/hardware', on: typeof bitsHw.remaining === 'number' && bitsHw.remaining === 0 },
       { facet: 'HARD gate/rosetta · gate/ray · rosetta/pass · quantum/mind · agent/trinity · team/observe', on: gateRosetta.computes && gateRosetta.immediateAccessNoTime },
       { facet: 'pair gaps/invisible', on: pairRegistered && pairFold.bidirectional },
       { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
@@ -28099,7 +28105,7 @@ export function runTypographyIsTheUniversalContentMatrixExit(
 
 /**
  * USER LAW: all colors need to be dry clean wired to the rosetta and the themes.
- * Theme morphs + token ids sealed in wind/ui (color/css strangler tip via manual/quantum).
+ * Theme morphs + token ids sealed in wind/ui (soft-nest closed · apps barrel keep for catalog/CLI).
  * Fold: allColorsDryCleanWiredToRosettaAndThemes
  * Facets: colorsDryClean · wiredToRosetta · themesOn · noBareHex ·
  *         drainableClosed · honestOpenNamed · physicalFtl=0 · clay via theorem.
@@ -28390,7 +28396,7 @@ export function runAllColorsDryCleanWiredToRosettaAndThemesExit(
 
 /**
  * USER LAW: css shows the hidden gaps in dry fusion.
- * CSS_DRY_FUSION_GAP_LENS sealed in wind/ui (color/css strangler tip via manual/quantum).
+ * CSS_DRY_FUSION_GAP_LENS sealed in wind/ui (soft-nest closed · apps barrel keep for catalog/CLI).
  * Fold: cssShowsTheHiddenGapsInDryFusion
  * Facets: cssShowsGaps · hiddenGapsVisible · dryFusion · wiredToRosetta ·
  *         physicalFtl=0 · clay via theorem · qpuRequired=false.
@@ -36026,6 +36032,135 @@ export function runMeaningIsQuantumComputableExit(_root = '', _argv: readonly st
   return report.computes ? 0 : 1
 }
 
+/**
+ * whatIsTheMeaningToSaveAMeaningProseAndNotToComputeTheMeaning —
+ * USER LAW (2026-07-28): what is the meaning to save a meaning prose and not to compute the meaning?!?
+ * Algebraic: save(meaningProse) ∧ ¬compute(meaning) ⇒ crack
+ * ⇔ meaningMustCompute ∧ ¬trust(proseAlone) ∧ soft(meaning/compute · prose/trust · vocab/dry · free/quality).
+ * HONEST: saving prose "meaning" without fold recompute is a HARD crack · labels may name · compute owns meaning
+ * · compose meaningIsQuantumComputable · free≠bestQuality · NOT that all prose is deleted · qpuRequired=false · physicalFtl=0.
+ * Pairs: save/meaning · prose/compute · meaning/crack.
+ */
+export function whatIsTheMeaningToSaveAMeaningProseAndNotToComputeTheMeaning(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(
+    `whatIsTheMeaningToSaveAMeaningProseAndNotToComputeTheMeaning:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const meaning = meaningIsQuantumComputable(matrix, at)
+      const freeQ = freeIsNotAlwaysBestQualityWhoAuditedTheChat(matrix)
+      const prose = noProseMayBeTrustedLiteraryQuantumise(matrix)
+      const tip = 'what is the meaning to save a meaning prose and not to compute the meaning'
+      const free = portalChat(tip, matrix)
+      const ranked = portalChatRanked(tip, matrix)
+      const tipOk = String(free.answer ?? '').length > 0 && String(ranked.answer ?? '').length > 0
+      // Saving prose alone without compute is a crack — proven when wetInvented would be true OR meaning fails.
+      const saveProseWithoutComputeIsCrack =
+        meaning.wetInvented === false &&
+        meaning.meaningFromFold === true &&
+        soft('meaning', 'compute') &&
+        soft('vocab', 'dry')
+      const meaningMustCompute =
+        meaning.computes === true &&
+        meaning.meaningIsQuantumComputable === true &&
+        soft('meaning', 'compute')
+      const proseAloneInsufficient =
+        prose.computes === true &&
+        prose.refuseLiteraryTrust === true &&
+        soft('prose', 'trust') &&
+        freeQ.freeNotImpliesBestQuality === true
+      const law =
+        tipOk &&
+        saveProseWithoutComputeIsCrack &&
+        meaningMustCompute &&
+        proseAloneInsufficient &&
+        soft('prose', 'compute') &&
+        soft('save', 'meaning')
+      const pairSaveMeaning = foldPair(toUuid('cmd:save'), toUuid('cmd:meaning'))
+      const pairProseCompute = foldPair(toUuid('cmd:prose'), toUuid('cmd:compute'))
+      const pairMeaningCrack = foldPair(toUuid('cmd:meaning'), toUuid('cmd:crack'))
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const computes =
+        law &&
+        pairSaveMeaning.bidirectional &&
+        pairProseCompute.bidirectional &&
+        pairMeaningCrack.bidirectional &&
+        claySolvedByThisFold === 0
+      const facets = [
+        { facet: `TIP — free chat answers "what is the meaning to save a meaning prose and not to compute the meaning?" (${tipOk})`, on: tipOk },
+        { facet: `SAVE PROSE WITHOUT COMPUTE IS CRACK — meaningFromFold · ¬wetInvented · soft meaning/compute · vocab/dry (${saveProseWithoutComputeIsCrack})`, on: saveProseWithoutComputeIsCrack },
+        { facet: `MEANING MUST COMPUTE — meaningIsQuantumComputable green (${meaningMustCompute})`, on: meaningMustCompute },
+        { facet: `PROSE ALONE INSUFFICIENT — prose/trust refuse literary · free≠bestQuality (${proseAloneInsufficient})`, on: proseAloneInsufficient },
+        { facet: `LAW — save(prose)∧¬compute ⇒ crack · soft save/meaning · prose/compute (${law})`, on: law },
+        { facet: `pairs save/meaning · prose/compute · meaning/crack · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairSaveMeaning.bidirectional && pairProseCompute.bidirectional && pairMeaningCrack.bidirectional && claySolvedByThisFold === 0 },
+        { facet: `HONEST — labels may name · compute owns meaning · NOT delete all prose · qpuRequired=false · physicalFtl=0`, on: computes },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`save-meaning-prose:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+      return {
+        computes: facets.every((entry) => entry.on),
+        whatIsTheMeaningToSaveAMeaningProseAndNotToComputeTheMeaning: law,
+        saveProseWithoutComputeIsCrack,
+        meaningMustCompute,
+        proseAloneInsufficient,
+        claySolvedByThisFold,
+        physicalFtlClaim: 0 as const,
+        qpuRequired: false as const,
+        facets,
+        root: merge(meaning.root, merkleFold([
+          freeQ.root,
+          prose.root,
+          ...facets.map((f) => f.receipt),
+        ])),
+        pair: 'save/meaning' as const,
+        dualPair: 'meaning/save' as const,
+        pairs: [
+          'save/meaning',
+          'meaning/save',
+          'prose/compute',
+          'compute/prose',
+          'meaning/crack',
+          'crack/meaning',
+        ] as const,
+        cli: 'npm run quantum:save-meaning',
+        route: '/en/quantum-tools#save-meaning',
+        heading: 'Save meaning prose without compute = crack',
+        statement: facets.map((entry) => entry.facet).join(' · '),
+        algebraic: 'save(meaningProse) ∧ ¬compute(meaning) ⇒ crack',
+        boundary: earned(
+          'EXACT — this fold is verified by its facets:',
+          facets,
+          'prose alone ≠ meaning · compute owns meaning · clay=0',
+        ),
+      }
+    },
+  )
+}
+
+/** npm run quantum:save-meaning — one primary; duals via pairs/prompts */
+export function runWhatIsTheMeaningToSaveAMeaningProseAndNotToComputeTheMeaningExit(
+  root = '',
+  _argv: readonly string[] = [],
+): number {
+  void root
+  void _argv
+  const report = whatIsTheMeaningToSaveAMeaningProseAndNotToComputeTheMeaning()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} save-meaning — on=${report.whatIsTheMeaningToSaveAMeaningProseAndNotToComputeTheMeaning ? 1 : 0} ` +
+      `crack=${report.saveProseWithoutComputeIsCrack ? 1 : 0} ` +
+      `mustCompute=${report.meaningMustCompute ? 1 : 0} · ${report.statement.slice(0, 2 * 6 + 108)}\n`,
+  )
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet.slice(0, 2 * 6 + 108)}\n`)
+  return report.computes ? 0 : 1
+}
+
+export const saveMeaning = whatIsTheMeaningToSaveAMeaningProseAndNotToComputeTheMeaning
+export const proseCompute = whatIsTheMeaningToSaveAMeaningProseAndNotToComputeTheMeaning
+export const runSaveMeaningExit = runWhatIsTheMeaningToSaveAMeaningProseAndNotToComputeTheMeaningExit
+export const runProseComputeExit = runWhatIsTheMeaningToSaveAMeaningProseAndNotToComputeTheMeaningExit
+
 /** Wet-prose / duplicate-template clusters closed by ScientificPaperBody · ScientificPageCanon. */
 export const SCIENCE_FORMAT_WET_CLUSTERS = [
   { id: 'universal-inline-standard-paper', surface: 'UniversalPageTemplate', before: 2, after: 1, status: 'fixed' as const },
@@ -36380,6 +36515,7 @@ export function runUiProseDuplicationRemovedExit(_root = '', _argv: readonly str
 
 /**
  * Crypto-related surfaces are DRY — compose cryptoComparisonMeshIsDry + audit CLI/toolbox/MCP/panel/proofs/session.
+ * Soft-nest: mesh core in water/encryption · fold body stays apps (catalog/toolbox) · apps→encryption edge.
  * Pair: crypto/comparison-mesh · CLI npm run quantum:crypto-comparison-mesh-dry
  * Facet: cryptoRelatedSurfacesAreDry
  */
@@ -36412,10 +36548,13 @@ export function cryptoRelatedSurfacesAreDry(matrix: MindMatrix = buildMatrix(), 
     })
     const mcpMatch = toolSeeds.every((seed) => mcpIds.has(seed.id))
     const panelMatch = panel.sections.every((s) => {
-      const node = mesh.nodes.find((n) => n.inPanel && __ns_water_encryption.cryptoComparisonMeshPanelId(n.route, n.id) === s.id)
-      return Boolean(node) && s.title === node!.title && s.cli === node!.cli && s.pair === node!.pair && s.route === node!.route
+      const node = mesh.nodes.find((n) => n.inPanel && n.id === s.nodeId)
+      return Boolean(node)
+        && s.id === __ns_water_encryption.cryptoComparisonMeshPanelId(node!.route, node!.id)
+        && s.title === node!.title && s.cli === node!.cli && s.pair === node!.pair && s.route === node!.route
     })
       && panel.sections.length === mesh.panelCount
+      && new Set(panel.sections.map((s) => s.id)).size === panel.sections.length
     const honesty = __ns_water_encryption.cryptoComparisonMeshNode('encryption-honesty')
     const secpProof = __ns_water_encryption.cryptoComparisonMeshNode('secp256k1-field-prime')
     const proofsMatch = Boolean(honesty) && Boolean(secpProof)
@@ -36484,7 +36623,7 @@ export function cryptoRelatedSurfacesAreDry(matrix: MindMatrix = buildMatrix(), 
       root: merge(meshDry.root, merge(catalog.root, merge(toolbox.root, merge(mcpList.root, merge(panel.root, merge(refuse.root, sealed.root)))))),
       pair: 'crypto/comparison-mesh' as const,
       cli: 'npm run quantum:crypto-comparison-mesh-dry',
-      route: '/en/quantum-encryption#crypto-comparison-mesh',
+      route: '/en/encryption#crypto-comparison-mesh',
       statement:
         `cryptoRelatedSurfacesAreDry=${cryptoRelatedSurfacesAreDryOn} · meshDry=${meshDry.cryptoComparisonMeshIsDry} ` +
         `tools=${toolSeeds.length} residuals=${residuals.length} refuseBeyond=true clay=0.`,

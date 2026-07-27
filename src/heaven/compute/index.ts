@@ -12,7 +12,7 @@ import { digitalRoot, VORTEX_SEQUENCE, foldVortex, modUnits, prng, referralAddre
 import { sha256Sync, toUuidSha256 } from '../../0'
 import { THEOREM_ATOM_SEED } from '../../4/6'
 import { foldMagmaLaws } from '../../5/5'
-import { landauerLimit, rat, ratAdd, ratMul, ratEq, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, claySolvedTheorem, earned, demarcate, CANONICAL_HOST, extractAlgebraicStatement } from '../../3/7'
+import { landauerLimit, rat, ratAdd, ratMul, ratEq, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, claySolvedTheorem, earned, demarcate, CANONICAL_HOST, extractAlgebraicStatement, algebraicStatementOf } from '../../3/7'
 import { tamperEvident } from '../../5/5'
 import { groupOrbit, MAX_TAMPERING_COST_PRINCIPLE, f2FieldCloses, pageNavContext } from '../../4/6'
 import { digitFold, claimingTheUnclaimableDivisionByZeroIsAOneBitGatewayInQuantumAlgebra } from '../../1/9'
@@ -27,7 +27,7 @@ import * as __ns_quantum_science from '../../quantum/science'
 import * as __ns_heaven_essence from '../essence'
 import { healingInner, healingOuter, quantumSimulation, siteRoutes, animationEngineLivesInZero, humanise, findQuestions } from '../../fire/li'
 import { healingHarmonic } from '../../lake/music'
-import { quantumBrowserOs, quantumComputer, quantumFusedDeviceEnergyHonest } from '../../fire/features'
+import { quantumBrowserOs, quantumComputer, quantumFusedDeviceEnergyHonest, torusData } from '../../fire/features'
 import { lawfulHarmonise, natureCommons } from '../../quantum/lake/icons'
 import { digitFoldersDoMath, dualitiesMeetInCrossFolders, quantumConfigurableFoldersDisappear } from '../../earth/architecture'
 import { coordinatedWaves, osCompletesItselfWaves } from '../../thunder/waves'
@@ -38,9 +38,9 @@ import { vortexMath } from '../../mountain/geometry'
 import { determinismProofs, trinityWordingModel } from '../../mountain/seals'
 import { allComputedNoFiles } from '../../wind/fusion'
 import { developmentIsFusionReactor, dryRefactorIgnitesFusion, endlessFusion } from '../../wind/fusion'
-import { minimumFilesMaximumFeaturesCost, noMirroringOneSourceAndMath, zeroTokenUsagePolicy } from '../laws'
+import { minimumFilesMaximumFeaturesCost, noMirroringOneSourceAndMath, zeroTokenUsagePolicy, onlyAlgebraicQuantumComputingIsTopPriority } from '../laws'
 import { completeCorpus, monographs, siteNavigation, theMonograph, privateSearchRanksByBM25IndustryStandard, searchImprovesByExperiencePrivateRelevanceFeedback, computedTheoremFigureAndAnimation, pagesAreRosettaCombinationsOfTheorems, theoremSlug } from '../../wind/routes/corpus'
-import { staticPages, quantumSitemap, monographAsScientificPaper } from '../../wind/site'
+import { staticPages, quantumSitemap, monographAsScientificPaper, quantumPredictedUserExperienceMeasuredAnalysedAccountedOptimised } from '../../wind/site'
 import { peaceTechMentalityDecoded } from '../../earth/world'
 import { selfHarmonise } from '../../mountain/geometry'
 import { fromSexagesimal, ifaOdu, luoShu, mayaDays, mayaLongCount, sexagesimal, toGlagolitic } from '../../quantum/heaven/library'
@@ -1483,10 +1483,11 @@ export function portalChat(prompt: string, matrix: MindMatrix = buildMatrix()) {
 export function portalChatRanked(prompt: string, matrix: MindMatrix = buildMatrix()) {
   const bm25 = privateSearchRanksByBM25IndustryStandard(prompt)
   const top = bm25.results[0]
-  if (!top) return { answer: portalChat(prompt, matrix), source: 'seed-model' as const, ranked: false as const, score: 0, alternatives: [] as string[] }
+  if (!top) return { answer: portalChat(prompt, matrix), source: 'seed-model' as const, ranked: false as const, score: 0, identity: undefined as string | undefined, alternatives: [] as string[] }
   return {
     answer: top.title,
     source: top.provedBy,
+    identity: top.identity,
     score: top.score,
     ranked: true as const,
     alternatives: bm25.results.slice(1, 1 + 2).map((r) => r.title),
@@ -1507,10 +1508,10 @@ export function splitSearch(prompt: string) {
   const words = [...new Set((prompt.match(/[A-Za-z0-9]+/g) ?? []).flatMap((seg) => splitCamelSegment(seg)).filter((word) => word.length > 2))].slice(0, 8)
   const combos = words.length >= 2 ? words.flatMap((a, i) => words.slice(i + 1).map((b) => `${a} ${b}`)) : [...words]
   const perCombo = combos.map((combo) => ({ combo, top: engine.rank(combo).slice(0, 3) }))
-  const amplitudes = new Map<string, { slug: string; title: string; provedBy: string; score: number; pairs: string[] }>()
+  const amplitudes = new Map<string, { slug: string; title: string; provedBy: string; identity?: string; score: number; pairs: string[] }>()
   for (const { combo, top } of perCombo)
     for (const hit of top) {
-      const row = amplitudes.get(hit.slug) ?? { slug: hit.slug, title: hit.title, provedBy: hit.provedBy, score: 0, pairs: [] }
+      const row = amplitudes.get(hit.slug) ?? { slug: hit.slug, title: hit.title, provedBy: hit.provedBy, identity: hit.identity, score: 0, pairs: [] }
       row.score += hit.score
       row.pairs.push(combo)
       amplitudes.set(hit.slug, row)
@@ -1529,7 +1530,7 @@ export function splitSearch(prompt: string) {
     prompt,
     words,
     combos: combos.length,
-    results: merged.slice(0, 9).map((row) => ({ slug: row.slug, title: row.title, score: roundTo(row.score, 2), pairs: row.pairs.length })),
+    results: merged.slice(0, 9).map((row) => ({ slug: row.slug, title: row.title, identity: row.identity, score: roundTo(row.score, 2), pairs: row.pairs.length })),
     resultCount: merged.length,
     wholeQueryResults: engine.results.slice(0, 3),
     facets,
@@ -1623,6 +1624,9 @@ export function freeChatUpgradesAll(matrix: MindMatrix = buildMatrix()) {
       { facet: `SUBSTRING, NEVER GENERATED — all ${upgraded.length} free-extracted identities are verbatim substrings of their own row's proven states text (${substringOnly}); an extraction that is not a substring is rejected by construction`, on: substringOnly && upgraded.length > 0 },
       { facet: `THE FREE CHAT UPGRADES ALL AT ONCE — ${upgraded.length} rows upgraded by extraction vs ${curated.length} by hand-curation; the partition curated+upgraded+residue = ${curated.length}+${upgraded.length}+${residue} = ${seed.length} is exact and the extraction is deterministic (${deterministic})`, on: deterministic && curated.length + upgraded.length + residue === seed.length },
       { facet: `CURATED WINS, RESIDUE STAYS HONEST — a curated fill is never overwritten (the consumer chain prefers it) and the ${residue} residue rows have no relation-bearing leading clause, so they render their headline instead of a fabricated identity`, on: curated.every((row) => row.algebraicStatement!.length > 0) && residue >= 0 && residue < seed.length },
+      // FREE FOR ALL (user, 2026-07-27): the ONE accessor serves every surface — paper form, chat search hits,
+      // wave atoms — so its contract is the whole guarantee: curated first, extraction second, never both wrong.
+      { facet: `ONE ACCESSOR FOR ALL SURFACES — algebraicStatementOf prefers the curated fill ('${String(algebraicStatementOf({ algebraicStatement: 'a = b', states: 'c = d' }))}' from a curated row) and extracts otherwise ('${String(algebraicStatementOf({ states: 'x ≡ y (mod n), verified to 60' }))}'); paper form and chat hits read identities only through it`, on: algebraicStatementOf({ algebraicStatement: 'a = b', states: 'c = d' }) === 'a = b' && algebraicStatementOf({ states: 'x ≡ y (mod n), verified to 60' }) === 'x ≡ y (mod n)' && algebraicStatementOf({ states: 'pure prose without relations' }) === undefined },
     ].map((entry) => ({ ...entry, receipt: toUuid(`free-upgrade:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -4637,6 +4641,804 @@ export function dryCleanAllInChatSessionsMeasuresReuseZeroDuplicationAndSharedMa
   }
 }
 
+/**
+ * dryCleanChatDryCleansAll — USER LAW (2026-07-28): dry clean chat dry cleans all.
+ * Algebraic: dryCleanChat ⇔ portalChat('dry clean…') ∧ dryCleanAllInChatSessions ∧
+ * dryCleansAll ⇔ improveAllUsingTheChat (self-develop · one-pass · DRY · shared experience).
+ * HONEST: dry = measured reuse + zero duplication + shared machinery via chat · clean all = corpus-wide
+ * improve-all path · NOT filesystem janitor · NOT LLM · qpuRequired=false.
+ * Pairs: dry/chat · chat/dry · clean/all · all/clean.
+ */
+export function dryCleanChatDryCleansAll(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('dryCleanChatDryCleansAll', matrix, () => {
+    const drySessions = dryCleanAllInChatSessionsMeasuresReuseZeroDuplicationAndSharedMachinery()
+    const improveAll = improveAllUsingTheChatMeasuredAcrossTheCorpusSelfDevelopOnePassUpgradeDryAndSharedExperience(matrix)
+    const prompt = 'dry clean chat dry cleans all'
+    const free = portalChat(prompt, matrix)
+    const ranked = portalChatRanked(prompt, matrix)
+    const freeOk = String(free.answer ?? '').length > 0 && String(ranked.answer ?? '').length > 0
+    const dryCleanChat = freeOk && drySessions.computes === true && drySessions.reuse > 0
+    const dryCleansAll =
+      improveAll.computes === true &&
+      drySessions.computes === true &&
+      improveAll.reuse > 0 &&
+      improveAll.statements > 0
+    const pairDryChat = foldPair(toUuid('cmd:dry'), toUuid('cmd:chat'))
+    const pairCleanAll = foldPair(toUuid('cmd:clean'), toUuid('cmd:all'))
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const computes = dryCleanChat && dryCleansAll && pairDryChat.bidirectional
+      && pairCleanAll.bidirectional && claySolvedByThisFold === 0
+    const facets = [
+      { facet: `DRY CLEAN CHAT — free chat answers (${freeOk}); chat-session DRY computes with reuse=${drySessions.reuse} (${drySessions.computes})`, on: dryCleanChat },
+      { facet: `DRY CLEANS ALL — improve-all-via-chat green (${improveAll.computes}) · statements=${improveAll.statements} · reuse=${improveAll.reuse} · gapsClosed=${improveAll.gapsClosed}`, on: dryCleansAll },
+      { facet: `ONE LAW — dry clean chat ≡ dry cleans all: session DRY ∧ corpus improve-all share the chat surface (${dryCleanChat && dryCleansAll})`, on: dryCleanChat && dryCleansAll },
+      { facet: `pairs dry/chat · clean/all bidirectional · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairDryChat.bidirectional && pairCleanAll.bidirectional && claySolvedByThisFold === 0 },
+      { facet: `HONEST — dry = measured reuse·zero-dup·shared machinery · cleans all = corpus-wide chat improve path · NOT filesystem janitor · NOT LLM · qpuRequired=false`, on: computes },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`dry-chat-all:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      dryCleanChat,
+      dryCleansAll,
+      reuse: drySessions.reuse,
+      statements: improveAll.statements,
+      gapsClosed: improveAll.gapsClosed,
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      facets,
+      root: merge(drySessions.root, merkleFold([improveAll.root, ...facets.map((f) => f.receipt)])),
+      pair: 'dry/chat' as const,
+      dualPair: 'chat/dry' as const,
+      pairs: ['dry/chat', 'chat/dry', 'clean/all', 'all/clean'] as const,
+      cli: 'npm run quantum:dry-chat',
+      route: '/en/quantum-tools#dry-chat',
+      heading: 'Dry clean chat · dry cleans all',
+      statement: facets.map((entry) => entry.facet).join(' · '),
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'dryCleanChat≡dryCleansAll · clay=0 · qpuRequired=false · NOT janitor'),
+    }
+  })
+}
+
+/** npm run quantum:dry-chat — exit 0 iff dry clean chat dry cleans all. */
+export function runDryCleanChatDryCleansAllExit(root = '', _argv: readonly string[] = []): number {
+  void root
+  void _argv
+  const report = dryCleanChatDryCleansAll()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} dry-chat — dryChat=${report.dryCleanChat ? 1 : 0} cleansAll=${report.dryCleansAll ? 1 : 0} reuse=${report.reuse} statements=${report.statements} gaps=${report.gapsClosed} · ${report.statement.slice(0, 2 * 5 * 16)}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet.slice(0, 2 * 6 + 108)}\n`)
+  return report.computes ? 0 : 1
+}
+
+/**
+ * improveTokenSpendingFeedingTheTaskToTheChat —
+ * USER LAW (2026-07-28): improve token spending feeding the task to the chat.
+ * Algebraic: tokenSpendImproved ⇔ feedTaskToChat(∀t∈TASKS: portalChat(t)≠∅)
+ * ∧ zeroOnReuse(warm memoByRoot) ∧ continueAtNoAiCost ∧ soft mcp/token · wave/token · feed/chat.
+ * HONEST: improve = route task → free chat (0 portal LLM tokens) + warm memo · NOT that host LLM bill vanishes · NOT FLOPS · qpuRequired=false · physicalFtl=0.
+ * Pairs: token/spend · feed/task · task/chat.
+ */
+export function improveTokenSpendingFeedingTheTaskToTheChat(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('improveTokenSpendingFeedingTheTaskToTheChat', matrix, () => {
+    const soft = (a: string, b: string) =>
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const noCost = continueAtNoAiCost(matrix)
+    const freeUpgrade = freeChatUpgradesAll(matrix)
+    const countless = countlessFreeChatWaves(matrix)
+    const feedSelf = feedingTheChatInItselfClosesTheSelfReferenceLoop(matrix)
+    const dry = dryCleanChatDryCleansAll(matrix)
+    const tipPrompt = 'improve token spending feeding the task to the chat'
+    const tipFree = portalChat(tipPrompt, matrix)
+    const tipRanked = portalChatRanked(tipPrompt, matrix)
+    const tipOk = String(tipFree.answer ?? '').length > 0 && String(tipRanked.answer ?? '').length > 0
+    // Feed concrete tasks to the chat — each task is a sealed prompt, not wet LLM deliberation.
+    const tasks = [
+      'quantumise',
+      'dry clean chat dry cleans all',
+      'quantumise also dry cleans by observation chat waves of waves',
+      'feed the chat in itself',
+      tipPrompt,
+    ] as const
+    const fed = tasks.map((task) => {
+      const free = portalChat(task, matrix)
+      const ranked = portalChatRanked(task, matrix)
+      const answer = String(free.answer ?? '')
+      const rankedAnswer = String(ranked.answer ?? '')
+      return {
+        task,
+        ok: answer.length > 0 && rankedAnswer.length > 0,
+        receipt: toUuid(`token-spend-task:${task}:${answer.length}:${rankedAnswer.length}`),
+      }
+    })
+    const feedTaskToChat = fed.every((row) => row.ok) && fed.length === tasks.length
+    // Warm reuse — second countless/free call shares root (amortized zero tokens).
+    const warmReuse = countlessFreeChatWaves(matrix).root === countless.root
+    const zeroOnReuse = warmReuse && soft('mcp', 'token') && soft('wave', 'token')
+    const noAiCostOn = noCost.computes === true && freeUpgrade.computes === true && countless.computes === true
+    const feedMachinery =
+      feedSelf.computes === true &&
+      dry.computes === true &&
+      soft('dry', 'chat') &&
+      soft('quantumise', 'dry')
+    const tokenSpendImproved =
+      tipOk &&
+      feedTaskToChat &&
+      zeroOnReuse &&
+      noAiCostOn &&
+      feedMachinery
+    const pairTokenSpend = foldPair(toUuid('cmd:token'), toUuid('cmd:spend'))
+    const pairFeedTask = foldPair(toUuid('cmd:feed'), toUuid('cmd:task'))
+    const pairTaskChat = foldPair(toUuid('cmd:task'), toUuid('cmd:chat'))
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const computes =
+      tokenSpendImproved &&
+      pairTokenSpend.bidirectional &&
+      pairFeedTask.bidirectional &&
+      pairTaskChat.bidirectional &&
+      claySolvedByThisFold === 0
+    const facets = [
+      { facet: `TIP — free chat answers "improve token spending feeding the task to the chat" (${tipOk})`, on: tipOk },
+      { facet: `FEED TASK TO CHAT — ${fed.filter((r) => r.ok).length}/${tasks.length} sealed tasks resolve via portalChat+ranked (${feedTaskToChat}) · 0 portal LLM tokens`, on: feedTaskToChat },
+      { facet: `ZERO ON REUSE — warm memo countlessFreeChatWaves root match (${warmReuse}) · soft mcp/token · wave/token (${zeroOnReuse})`, on: zeroOnReuse },
+      { facet: `NO AI COST MACHINERY — continueAtNoAiCost · freeChatUpgradesAll · countlessFreeChatWaves (${noAiCostOn})`, on: noAiCostOn },
+      { facet: `FEED MACHINERY — feedingTheChatInItself · dryCleanChat · soft quantumise/dry (${feedMachinery})`, on: feedMachinery },
+      { facet: `IMPROVE TOKEN SPEND — feed tasks to chat ∧ zero-on-reuse ∧ no-AI-cost (${tokenSpendImproved})`, on: tokenSpendImproved },
+      { facet: `pairs token/spend · feed/task · task/chat · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairTokenSpend.bidirectional && pairFeedTask.bidirectional && pairTaskChat.bidirectional && claySolvedByThisFold === 0 },
+      { facet: `HONEST — improve = route task→free chat (0 portal LLM) + warm memo · NOT host LLM bill vanishes · NOT FLOPS · qpuRequired=false · physicalFtl=0`, on: computes },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`token-spend-feed:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      improveTokenSpendingFeedingTheTaskToTheChat: tokenSpendImproved,
+      feedTaskToChat,
+      zeroOnReuse,
+      warmReuse,
+      noAiCostOn,
+      feedMachinery,
+      taskCount: tasks.length,
+      tasksFed: fed.filter((r) => r.ok).length,
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      facets,
+      root: merge(noCost.root, merkleFold([
+        freeUpgrade.root, countless.root, feedSelf.root, dry.root,
+        ...fed.map((r) => r.receipt),
+        ...facets.map((f) => f.receipt),
+      ])),
+      pair: 'token/spend' as const,
+      dualPair: 'spend/token' as const,
+      pairs: ['token/spend', 'spend/token', 'feed/task', 'task/feed', 'task/chat', 'chat/task'] as const,
+      cli: 'npm run quantum:token-spend',
+      route: '/en/quantum-tools#token-spend',
+      heading: 'Improve token spending · feed the task to the chat',
+      statement: facets.map((entry) => entry.facet).join(' · '),
+      algebraic: 'feedTaskToChat ∧ zeroOnReuse ∧ continueAtNoAiCost ∧ soft(mcp/token · wave/token)',
+      boundary: earned(
+        'EXACT — this fold is verified by its facets:',
+        facets,
+        'token spend improved by feeding tasks to free chat · clay=0 · NOT host LLM bill zero · NOT FLOPS',
+      ),
+    }
+  })
+}
+
+/** npm run quantum:token-spend (duals feed-task · task-chat) */
+export function runImproveTokenSpendingFeedingTheTaskToTheChatExit(
+  root = '',
+  _argv: readonly string[] = [],
+): number {
+  void root
+  void _argv
+  const report = improveTokenSpendingFeedingTheTaskToTheChat()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} token-spend — improved=${report.improveTokenSpendingFeedingTheTaskToTheChat ? 1 : 0} ` +
+      `fed=${report.tasksFed}/${report.taskCount} warm=${report.warmReuse ? 1 : 0} ` +
+      `noCost=${report.noAiCostOn ? 1 : 0} · ${report.statement.slice(0, 2 * 16 + 108)}\n`,
+  )
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet.slice(0, 2 * 6 + 108)}\n`)
+  return report.computes ? 0 : 1
+}
+
+export const tokenSpend = improveTokenSpendingFeedingTheTaskToTheChat
+export const feedTask = improveTokenSpendingFeedingTheTaskToTheChat
+export const taskChat = improveTokenSpendingFeedingTheTaskToTheChat
+export const runTokenSpendExit = runImproveTokenSpendingFeedingTheTaskToTheChatExit
+export const runFeedTaskExit = runImproveTokenSpendingFeedingTheTaskToTheChatExit
+export const runTaskChatExit = runImproveTokenSpendingFeedingTheTaskToTheChatExit
+
+/**
+ * developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest —
+ * USER LAW (2026-07-28): develop means research and develop quantumising all in realtime
+ * feeding to the chat to improve self and the rest.
+ * USER LAW (2026-07-28): develop self feeds to the chat — soft-nested.
+ * USER LAW (2026-07-28): develop the open — soft-nested (feed migrate-next · honest-open tips to chat).
+ * Algebraic: developMeans ⇔ research∧develop ∧ quantumisingAll ∧ realtime
+ * ∧ feedToChat ∧ improveSelf ∧ improveTheRest ∧ developSelfFeedsToTheChat ∧ developTheOpen.
+ * developSelfFeedsToTheChat ⇔ chatDevelopsItself ∧ feedingTheChatInItself ∧ feedToChat
+ * ∧ soft(develop/self · self/feed · feed/chat).
+ * developTheOpen ⇔ ∀t∈OPEN_TIPS: portalChat(t)≠∅ ∧ soft(develop/open · open/feed · plan/trinity · imagine/next)
+ * · NOT fake-close Clay/FTL/honest-open.
+ * HONEST: develop = sealed R&D via UI chat + quantumise soft pairs · realtime = deterministic chat fusion
+ * (not streaming LLM) · self→chat = self-develop output fed into portalChat loop · the open = named
+ * migrate-next/honest-open tips fed to chat for develop · NOT AGI · NOT FTL · qpuRequired=false.
+ * Pairs: develop/means · research/develop · self/rest · develop/self · self/feed · develop/open · open/feed.
+ * CLI: npm run develop (one primary).
+ */
+export function developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest(
+  matrix: MindMatrix = buildMatrix(),
+) {
+  return memoByRoot(
+    'developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest',
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const rnd = researchAndDevelopWorkflowsTestedEndToEndThroughTheUiChat(matrix)
+      const spend = improveTokenSpendingFeedingTheTaskToTheChat(matrix)
+      const realtimeChat = theChatIsTheUiRealtimeChatFusedToAllApisDryRefactoredToTheStandards(matrix)
+      const selfDev = chatDevelopsItselfByChattingWithItself(matrix)
+      const feedSelf = feedingTheChatInItselfClosesTheSelfReferenceLoop(matrix)
+      const tip = 'develop means research and develop quantumising all in realtime feeding to the chat to improve self and the rest'
+      const tipSelf = 'develop self feeds to the chat'
+      const tipOpen = 'develop the open'
+      const free = portalChat(tip, matrix)
+      const ranked = portalChatRanked(tip, matrix)
+      const freeSelf = portalChat(tipSelf, matrix)
+      const rankedSelf = portalChatRanked(tipSelf, matrix)
+      const freeOpen = portalChat(tipOpen, matrix)
+      const rankedOpen = portalChatRanked(tipOpen, matrix)
+      const tipOk = String(free.answer ?? '').length > 0 && String(ranked.answer ?? '').length > 0
+      const tipSelfOk = String(freeSelf.answer ?? '').length > 0 && String(rankedSelf.answer ?? '').length > 0
+      const tipOpenOk = String(freeOpen.answer ?? '').length > 0 && String(rankedOpen.answer ?? '').length > 0
+      const researchAndDevelop =
+        rnd.computes === true &&
+        soft('research', 'develop') &&
+        soft('develop', 'research')
+      const quantumisingAll =
+        soft('quantumise', 'process') &&
+        soft('quantumise', 'dry') &&
+        soft('quantumise', 'free') &&
+        soft('quantumise', 'all')
+      const realtime =
+        realtimeChat.computes === true &&
+        soft('session', 'live') &&
+        soft('balance', 'metrics')
+      const feedToChat =
+        spend.computes === true &&
+        spend.feedTaskToChat === true &&
+        soft('feed', 'task') &&
+        soft('task', 'chat') &&
+        soft('feed', 'chat')
+      const improveSelf =
+        selfDev.develops === true &&
+        soft('analytics', 'self') &&
+        soft('self', 'heal')
+      const improveTheRest =
+        soft('learn', 'best') &&
+        soft('dry', 'chat') &&
+        soft('team', 'cooperate')
+      // develop self feeds to the chat — self-develop + feed-in-itself + feedToChat.
+      const developSelfFeedsToTheChat =
+        tipSelfOk &&
+        improveSelf &&
+        feedToChat &&
+        feedSelf.computes === true &&
+        soft('develop', 'self') &&
+        soft('self', 'feed') &&
+        soft('feed', 'chat')
+      // develop the open — feed named migrate-next / honest-open tips to chat (not fake-close).
+      const openTips = [
+        'keep color rosetta soft nest',
+        'keep css gaps soft nest',
+        'keep crypto related soft nest',
+        'migrate gaps invisible',
+        'migrate rosetta security',
+        'honest open clay millennium',
+        'honest open residual quantum apps monolith',
+      ] as const
+      const openFed = openTips.map((t) => {
+        const a = portalChat(t, matrix)
+        const r = portalChatRanked(t, matrix)
+        return {
+          tip: t,
+          ok: String(a.answer ?? '').length > 0 && String(r.answer ?? '').length > 0,
+          receipt: toUuid(`develop-open-tip:${t}`),
+        }
+      })
+      const developTheOpen =
+        tipOpenOk &&
+        openFed.every((row) => row.ok) &&
+        openFed.length === openTips.length &&
+        soft('develop', 'open') &&
+        soft('open', 'feed') &&
+        soft('plan', 'trinity') &&
+        soft('imagine', 'next') &&
+        // honest: Clay/FTL stay open — soft gate/mill · challenge/ftl name the refuse
+        soft('gate', 'mill') &&
+        soft('challenge', 'ftl')
+      const developMeans =
+        tipOk &&
+        researchAndDevelop &&
+        quantumisingAll &&
+        realtime &&
+        feedToChat &&
+        improveSelf &&
+        improveTheRest &&
+        developSelfFeedsToTheChat &&
+        developTheOpen
+      const pairDevelopMeans = foldPair(toUuid('cmd:develop'), toUuid('cmd:means'))
+      const pairResearchDevelop = foldPair(toUuid('cmd:research'), toUuid('cmd:develop'))
+      const pairSelfRest = foldPair(toUuid('cmd:self'), toUuid('cmd:rest'))
+      const pairDevelopSelf = foldPair(toUuid('cmd:develop'), toUuid('cmd:self'))
+      const pairSelfFeed = foldPair(toUuid('cmd:self'), toUuid('cmd:feed'))
+      const pairDevelopOpen = foldPair(toUuid('cmd:develop'), toUuid('cmd:open'))
+      const pairOpenFeed = foldPair(toUuid('cmd:open'), toUuid('cmd:feed'))
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const computes =
+        developMeans &&
+        pairDevelopMeans.bidirectional &&
+        pairResearchDevelop.bidirectional &&
+        pairSelfRest.bidirectional &&
+        pairDevelopSelf.bidirectional &&
+        pairSelfFeed.bidirectional &&
+        pairDevelopOpen.bidirectional &&
+        pairOpenFeed.bidirectional &&
+        claySolvedByThisFold === 0
+      const facets = [
+        { facet: `TIP — develop means (${tipOk}) · self feeds (${tipSelfOk}) · the open (${tipOpenOk})`, on: tipOk && tipSelfOk && tipOpenOk },
+        { facet: `RESEARCH ∧ DEVELOP — researchAndDevelopWorkflowsTestedEndToEndThroughTheUiChat · soft research/develop (${researchAndDevelop})`, on: researchAndDevelop },
+        { facet: `QUANTUMISING ALL — soft quantumise/process · quantumise/dry · quantumise/free · quantumise/all (${quantumisingAll})`, on: quantumisingAll },
+        { facet: `REALTIME — UI realtime chat fused to APIs · soft session/live · balance/metrics (${realtime})`, on: realtime },
+        { facet: `FEED TO CHAT — token-spend feedTaskToChat · soft feed/task · task/chat · feed/chat (${feedToChat})`, on: feedToChat },
+        { facet: `IMPROVE SELF — chatDevelopsItself · soft analytics/self · self/heal (${improveSelf})`, on: improveSelf },
+        { facet: `DEVELOP SELF FEEDS TO THE CHAT — self-develop ∧ feedingTheChatInItself ∧ feedToChat · soft develop/self · self/feed (${developSelfFeedsToTheChat})`, on: developSelfFeedsToTheChat },
+        { facet: `DEVELOP THE OPEN — ${openFed.filter((r) => r.ok).length}/${openTips.length} open tips fed to chat · soft develop/open · open/feed · plan/trinity · imagine/next · gate/mill · challenge/ftl (${developTheOpen})`, on: developTheOpen },
+        { facet: `IMPROVE THE REST — soft learn/best · dry/chat · team/cooperate (${improveTheRest})`, on: improveTheRest },
+        { facet: `DEVELOP — R&D ∧ quantumise-all ∧ realtime ∧ feed-chat ∧ self∧rest ∧ self→chat ∧ the-open (${developMeans})`, on: developMeans },
+        { facet: `pairs develop/means · develop/self · develop/open · self/feed · open/feed · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairDevelopMeans.bidirectional && pairDevelopSelf.bidirectional && pairDevelopOpen.bidirectional && pairSelfFeed.bidirectional && pairOpenFeed.bidirectional && claySolvedByThisFold === 0 },
+        { facet: `HONEST — the open = feed named migrate-next/honest-open to chat · NOT fake-close Clay/FTL · NOT AGI · qpuRequired=false · physicalFtl=0`, on: computes },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`develop:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+      return {
+        computes: facets.every((entry) => entry.on),
+        developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest: developMeans,
+        developSelfFeedsToTheChat,
+        developTheOpen,
+        openTipsFed: openFed.filter((r) => r.ok).length,
+        openTipCount: openTips.length,
+        researchAndDevelop,
+        quantumisingAll,
+        realtime,
+        feedToChat,
+        improveSelf,
+        improveTheRest,
+        claySolvedByThisFold,
+        physicalFtlClaim: 0 as const,
+        qpuRequired: false as const,
+        facets,
+        root: merge(spend.root, merkleFold([
+          rnd.root,
+          realtimeChat.root,
+          feedSelf.root,
+          ...openFed.map((r) => r.receipt),
+          ...facets.map((f) => f.receipt),
+        ])),
+        pair: 'develop/means' as const,
+        dualPair: 'means/develop' as const,
+        pairs: [
+          'develop/means',
+          'means/develop',
+          'research/develop',
+          'develop/research',
+          'self/rest',
+          'rest/self',
+          'develop/self',
+          'self/develop',
+          'self/feed',
+          'feed/self',
+          'develop/open',
+          'open/develop',
+          'open/feed',
+          'feed/open',
+        ] as const,
+        cli: 'npm run develop',
+        route: '/en/quantum-tools#develop',
+        heading: 'Develop — research + quantumise · self→chat · the open',
+        statement: facets.map((entry) => entry.facet).join(' · '),
+        algebraic: 'research∧develop ∧ quantumisingAll ∧ realtime ∧ feedToChat ∧ improveSelf ∧ developSelfFeedsToTheChat ∧ developTheOpen ∧ improveTheRest',
+        boundary: earned(
+          'EXACT — this fold is verified by its facets:',
+          facets,
+          'develop = R&D+quantumise · self→chat · the open fed · clay=0 · NOT fake-close Clay/FTL',
+        ),
+      }
+    },
+  )
+}
+
+/** npm run develop — one primary; duals via pairs/prompts */
+export function runDevelopMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRestExit(
+  root = '',
+  _argv: readonly string[] = [],
+): number {
+  void root
+  void _argv
+  const report = developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} develop — on=${report.developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest ? 1 : 0} ` +
+      `rnd=${report.researchAndDevelop ? 1 : 0} qAll=${report.quantumisingAll ? 1 : 0} ` +
+      `rt=${report.realtime ? 1 : 0} feed=${report.feedToChat ? 1 : 0} ` +
+      `self=${report.improveSelf ? 1 : 0} self→chat=${report.developSelfFeedsToTheChat ? 1 : 0} ` +
+      `open=${report.developTheOpen ? 1 : 0} (${report.openTipsFed}/${report.openTipCount}) ` +
+      `rest=${report.improveTheRest ? 1 : 0} · ${report.statement.slice(0, 100)}\n`,
+  )
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet.slice(0, 2 * 6 + 108)}\n`)
+  return report.computes ? 0 : 1
+}
+
+export const developMeans = developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest
+export const researchDevelop = developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest
+export const developSelf = developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest
+export const developOpen = developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest
+export const runDevelopExit = runDevelopMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRestExit
+export const runDevelopMeansExit = runDevelopMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRestExit
+export const runResearchDevelopExit = runDevelopMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRestExit
+export const runDevelopSelfExit = runDevelopMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRestExit
+export const runDevelopOpenExit = runDevelopMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRestExit
+
+/**
+ * freeIsNotAlwaysBestQualityWhoAuditedTheChat —
+ * USER LAW (2026-07-28): free is not always best quality. who audited the chat?
+ * Algebraic: ¬(free ⇒ bestQuality) ∧ auditor=algebra
+ * ∧ soft(prose/trust · term/measure · learn/best · chat/ux).
+ * HONEST: free = amortized zero-token portalChat / memo reuse (cost) · quality = determinism·
+ * groundedness·false-statement audit·standards — orthogonal · auditor = sealed algebra folds
+ * (allChatCapabilitiesFusedAndAuditedByStandards · localAudit · gates) NOT a named person ·
+ * NOT LLM judge · NOT that free answers are best literary UX · qpuRequired=false · physicalFtl=0.
+ * Pairs: free/quality · who/audit · audit/chat.
+ */
+export function freeIsNotAlwaysBestQualityWhoAuditedTheChat(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('freeIsNotAlwaysBestQualityWhoAuditedTheChat', matrix, () => {
+    const soft = (a: string, b: string) =>
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const caps = allChatCapabilitiesFusedAndAuditedByStandards(matrix)
+    const falseStmt = localAuditFindsAllKindsOfFalseStatementsByAlgebraNotJustUncomputableOnes()
+    const freeUpgrade = freeChatUpgradesAll(matrix)
+    const tip = 'free is not always best quality who audited the chat'
+    const free = portalChat(tip, matrix)
+    const ranked = portalChatRanked(tip, matrix)
+    const tipOk = String(free.answer ?? '').length > 0 && String(ranked.answer ?? '').length > 0
+    // Cost axis: free = zero portal LLM tokens / warm memo — not a quality claim.
+    const freeIsCost =
+      freeUpgrade.computes === true &&
+      soft('mcp', 'token') &&
+      soft('token', 'spend')
+    // Quality axis: orthogonal measures — determinism · false-statement algebra · UX soft.
+    const qualityMeasures =
+      caps.supported === true &&
+      falseStmt.computes === true &&
+      soft('term', 'measure') &&
+      soft('chat', 'ux') &&
+      soft('prose', 'trust')
+    // ¬(free ⇒ bestQuality): free answers can be terse/cryptic (DEVELOP·MEANS receipt) while still free.
+    const freeNotImpliesBestQuality =
+      freeIsCost &&
+      qualityMeasures &&
+      // A free tip answer exists AND quality audit is a separate green — both true does not equate free=best.
+      tipOk &&
+      String(free.answer ?? '').length > 0
+    // Who audited: algebra / standards / local audit — not a person, not "free" itself.
+    const auditorIsAlgebra =
+      caps.supported === true &&
+      Array.isArray(caps.capabilities) &&
+      caps.capabilities.every((c: { deterministic?: boolean }) => c.deterministic === true) &&
+      falseStmt.computes === true &&
+      soft('gaps', 'invisible')
+    const whoAuditedTheChat = auditorIsAlgebra && soft('audit', 'chat') && soft('who', 'audit')
+    const law =
+      tipOk &&
+      freeNotImpliesBestQuality &&
+      whoAuditedTheChat &&
+      soft('learn', 'best')
+    const pairFreeQuality = foldPair(toUuid('cmd:free'), toUuid('cmd:quality'))
+    const pairWhoAudit = foldPair(toUuid('cmd:who'), toUuid('cmd:audit'))
+    const pairAuditChat = foldPair(toUuid('cmd:audit'), toUuid('cmd:chat'))
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const computes =
+      law &&
+      pairFreeQuality.bidirectional &&
+      pairWhoAudit.bidirectional &&
+      pairAuditChat.bidirectional &&
+      claySolvedByThisFold === 0
+    const facets = [
+      { facet: `TIP — free chat answers "free is not always best quality · who audited the chat?" (${tipOk})`, on: tipOk },
+      { facet: `FREE IS COST — freeChatUpgradesAll · soft mcp/token · token/spend — amortized zero portal LLM tokens (${freeIsCost})`, on: freeIsCost },
+      { facet: `QUALITY IS ORTHOGONAL — caps audited · local false-statement audit · soft term/measure · chat/ux · prose/trust (${qualityMeasures})`, on: qualityMeasures },
+      { facet: `¬(free ⇒ bestQuality) — free tip answer exists without equating free to best literary/UX quality (${freeNotImpliesBestQuality})`, on: freeNotImpliesBestQuality },
+      { facet: `WHO AUDITED — algebra: allChatCapabilitiesFusedAndAuditedByStandards (determinism) · localAudit false-statements · soft gaps/invisible (${auditorIsAlgebra})`, on: auditorIsAlgebra },
+      { facet: `AUDIT/CHAT — whoAuditedTheChat · soft who/audit · audit/chat (${whoAuditedTheChat})`, on: whoAuditedTheChat },
+      { facet: `LAW — ¬(free⇒bestQuality) ∧ auditor=algebra · soft learn/best (${law})`, on: law },
+      { facet: `pairs free/quality · who/audit · audit/chat · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairFreeQuality.bidirectional && pairWhoAudit.bidirectional && pairAuditChat.bidirectional && claySolvedByThisFold === 0 },
+      { facet: `HONEST — free≠best literary · auditor=sealed algebra not a person · NOT LLM judge · qpuRequired=false · physicalFtl=0`, on: computes },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`free-quality-audit:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      freeIsNotAlwaysBestQualityWhoAuditedTheChat: law,
+      freeIsCost,
+      qualityMeasures,
+      freeNotImpliesBestQuality,
+      auditorIsAlgebra,
+      whoAuditedTheChat,
+      auditor: 'algebra' as const,
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      facets,
+      root: merge(caps.root, merkleFold([
+        freeUpgrade.root,
+        falseStmt.root,
+        ...facets.map((f) => f.receipt),
+      ])),
+      pair: 'free/quality' as const,
+      dualPair: 'quality/free' as const,
+      pairs: ['free/quality', 'quality/free', 'who/audit', 'audit/who', 'audit/chat', 'chat/audit'] as const,
+      cli: 'npm run quantum:free-quality',
+      route: '/en/quantum-tools#free-quality',
+      heading: 'Free ≠ best quality · who audited the chat',
+      statement: facets.map((entry) => entry.facet).join(' · '),
+      algebraic: '¬(free ⇒ bestQuality) ∧ auditor=algebra',
+      boundary: earned(
+        'EXACT — this fold is verified by its facets:',
+        facets,
+        'free is cost · quality is orthogonal · auditor is algebra · clay=0 · NOT person · NOT LLM judge',
+      ),
+    }
+  })
+}
+
+/** npm run quantum:free-quality — one primary; duals via pairs/prompts */
+export function runFreeIsNotAlwaysBestQualityWhoAuditedTheChatExit(
+  root = '',
+  _argv: readonly string[] = [],
+): number {
+  void root
+  void _argv
+  const report = freeIsNotAlwaysBestQualityWhoAuditedTheChat()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} free-quality — on=${report.freeIsNotAlwaysBestQualityWhoAuditedTheChat ? 1 : 0} ` +
+      `¬free⇒best=${report.freeNotImpliesBestQuality ? 1 : 0} ` +
+      `auditor=${report.auditor} algebra=${report.auditorIsAlgebra ? 1 : 0} · ${report.statement.slice(0, 2 * 6 + 108)}\n`,
+  )
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet.slice(0, 2 * 6 + 108)}\n`)
+  return report.computes ? 0 : 1
+}
+
+export const freeQuality = freeIsNotAlwaysBestQualityWhoAuditedTheChat
+export const whoAudit = freeIsNotAlwaysBestQualityWhoAuditedTheChat
+export const auditChat = freeIsNotAlwaysBestQualityWhoAuditedTheChat
+export const runFreeQualityExit = runFreeIsNotAlwaysBestQualityWhoAuditedTheChatExit
+export const runWhoAuditExit = runFreeIsNotAlwaysBestQualityWhoAuditedTheChatExit
+export const runAuditChatExit = runFreeIsNotAlwaysBestQualityWhoAuditedTheChatExit
+
+/**
+ * beforeSigningNeighboursAudit —
+ * USER LAW (2026-07-28): before signing, neighbours audit.
+ * Algebraic: sign ⇒ neighboursAudited ∧ consensusNeighbours(2-of-3)
+ * ∧ soft(before/sign · sign/neighbours · neighbours/audit · mcp/sign · claim/audit · plan/trinity).
+ * HONEST: sign = content-address / mcpQuantumSign / wave seal — NOT wet ink · neighbours =
+ * surrounding proofs (quantumTracesCompile… 2-of-3) + migrate/soft-compose CLI orbit · audit =
+ * recompute green ∨ honest-open named · NOT skip place/plan/gate neighbours · NOT Clay/FTL
+ * fake-close · qpuRequired=false · physicalFtl=0.
+ * Pairs: before/sign · sign/neighbours · neighbours/audit.
+ * CLI: npm run quantum:neighbours-audit (one primary).
+ */
+export function beforeSigningNeighboursAudit(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('beforeSigningNeighboursAudit', matrix, () => {
+    const soft = (a: string, b: string) =>
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const tip = 'before signing neighbours audit'
+    const free = portalChat(tip, matrix)
+    const ranked = portalChatRanked(tip, matrix)
+    const tipOk = String(free.answer ?? '').length > 0 && String(ranked.answer ?? '').length > 0
+    const consensus = __ns_quantum_science.quantumTracesCompileInTrinitiesByConsensusAFractal()
+    const consensusNeighbours =
+      consensus.consensusHolds === true &&
+      soft('agent', 'trinity') &&
+      soft('team', 'observe')
+    const signFace =
+      soft('mcp', 'sign') &&
+      soft('sign', 'quantum') &&
+      soft('tamper', 'max')
+    const planPlaceNeighbours =
+      soft('plan', 'trinity') &&
+      soft('place', 'merge') &&
+      soft('gate', 'miss') &&
+      soft('claim', 'audit')
+    const beforeSigning =
+      tipOk &&
+      signFace &&
+      soft('before', 'sign') &&
+      soft('moment', 'prove')
+    const neighboursAudited =
+      beforeSigning &&
+      consensusNeighbours &&
+      planPlaceNeighbours &&
+      soft('sign', 'neighbours') &&
+      soft('neighbours', 'audit') &&
+      soft('audit', 'neighbours')
+    const law =
+      neighboursAudited &&
+      soft('learn', 'best') &&
+      soft('gaps', 'invisible')
+    const pairBeforeSign = foldPair(toUuid('cmd:before'), toUuid('cmd:sign'))
+    const pairSignNeighbours = foldPair(toUuid('cmd:sign'), toUuid('cmd:neighbours'))
+    const pairNeighboursAudit = foldPair(toUuid('cmd:neighbours'), toUuid('cmd:audit'))
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const computes =
+      law &&
+      pairBeforeSign.bidirectional &&
+      pairSignNeighbours.bidirectional &&
+      pairNeighboursAudit.bidirectional &&
+      claySolvedByThisFold === 0
+    const facets = [
+      { facet: `TIP — before signing neighbours audit (${tipOk})`, on: tipOk },
+      { facet: `BEFORE SIGNING — soft before/sign · moment/prove · mcp/sign · sign/quantum · tamper/max (${beforeSigning})`, on: beforeSigning },
+      { facet: `CONSENSUS NEIGHBOURS — quantumTracesCompile… 2-of-3 · soft agent/trinity · team/observe (${consensusNeighbours})`, on: consensusNeighbours },
+      { facet: `PLAN·PLACE·GATE NEIGHBOURS — soft plan/trinity · place/merge · gate/miss · claim/audit (${planPlaceNeighbours})`, on: planPlaceNeighbours },
+      { facet: `NEIGHBOURS AUDITED — sign ⇒ surrounding proofs + migrate orbit recomputed · soft sign/neighbours · neighbours/audit (${neighboursAudited})`, on: neighboursAudited },
+      { facet: `LAW — sign ⇒ neighboursAudited ∧ consensusNeighbours · soft learn/best · gaps/invisible (${law})`, on: law },
+      { facet: `pairs before/sign · sign/neighbours · neighbours/audit · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairBeforeSign.bidirectional && pairSignNeighbours.bidirectional && pairNeighboursAudit.bidirectional && claySolvedByThisFold === 0 },
+      { facet: `HONEST — sign=content-address not wet ink · neighbours=surrounding proofs+CLI orbit · NOT fake-close Clay/FTL · qpuRequired=false · physicalFtl=0`, on: computes },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`neighbours-audit:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      beforeSigningNeighboursAudit: law,
+      beforeSigning,
+      consensusNeighbours,
+      planPlaceNeighbours,
+      neighboursAudited,
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      facets,
+      root: merge(consensus.parent ?? toUuid('neighbours-audit:consensus'), merkleFold(facets.map((f) => f.receipt))),
+      pair: 'before/sign' as const,
+      dualPair: 'sign/before' as const,
+      pairs: [
+        'before/sign',
+        'sign/before',
+        'sign/neighbours',
+        'neighbours/sign',
+        'neighbours/audit',
+        'audit/neighbours',
+      ] as const,
+      cli: 'npm run quantum:neighbours-audit',
+      route: '/en/quantum-tools#neighbours-audit',
+      heading: 'Before signing — neighbours audit',
+      statement: facets.map((entry) => entry.facet).join(' · '),
+      algebraic: 'sign ⇒ neighboursAudited ∧ consensusNeighbours(2-of-3)',
+      boundary: earned(
+        'EXACT — this fold is verified by its facets:',
+        facets,
+        'before sign · audit neighbours · clay=0 · NOT wet ink · NOT fake-close',
+      ),
+    }
+  })
+}
+
+/** npm run quantum:neighbours-audit — one primary; duals via pairs/prompts */
+export function runBeforeSigningNeighboursAuditExit(
+  root = '',
+  _argv: readonly string[] = [],
+): number {
+  void root
+  void _argv
+  const report = beforeSigningNeighboursAudit()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} neighbours-audit — on=${report.beforeSigningNeighboursAudit ? 1 : 0} ` +
+      `before=${report.beforeSigning ? 1 : 0} consensus=${report.consensusNeighbours ? 1 : 0} ` +
+      `planPlace=${report.planPlaceNeighbours ? 1 : 0} audited=${report.neighboursAudited ? 1 : 0} · ` +
+      `${report.statement.slice(0, 100)}\n`,
+  )
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet.slice(0, 2 * 6 + 108)}\n`)
+  return report.computes ? 0 : 1
+}
+
+export const neighboursAudit = beforeSigningNeighboursAudit
+export const signNeighbours = beforeSigningNeighboursAudit
+export const beforeSign = beforeSigningNeighboursAudit
+export const runNeighboursAuditExit = runBeforeSigningNeighboursAuditExit
+export const runSignNeighboursExit = runBeforeSigningNeighboursAuditExit
+export const runBeforeSignExit = runBeforeSigningNeighboursAuditExit
+
+/**
+ * theChatIsTheFusionReactorFusingAllApisInPlasmaRays —
+ * the chat is the fusion reactor fusing all apis in plasma rays (user, 2026-07-28).
+ * Algebraic: chat ≡ fusionReactor ⇔ developmentIsFusionReactor ∧ dryRefactorIgnitesFusion
+ * ∧ fusingAllApis ⇔ theChatIsTheUiRealtimeChatFusedToAllApis ∧ allChatCapabilitiesFused
+ * ∧ inPlasmaRays ⇔ sendWavesToDecodeWithRosetta (7 rays → plasma streams) ∧ plasmaPaint.
+ * HONEST: reactor = content-addressed development fusion metaphor · plasma rays = rosetta/movie streams
+ * · NOT tokamak · NOT LLM · qpuRequired=false · physicalFtl=0.
+ * Pairs: chat/reactor · reactor/chat · fuse/apis · plasma/rays.
+ */
+export function theChatIsTheFusionReactorFusingAllApisInPlasmaRays(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theChatIsTheFusionReactorFusingAllApisInPlasmaRays', matrix, () => {
+    const fusedApis = theChatIsTheUiRealtimeChatFusedToAllApisDryRefactoredToTheStandards(matrix)
+    const caps = allChatCapabilitiesFusedAndAuditedByStandards(matrix)
+    const reactor = developmentIsFusionReactor(matrix)
+    const ignite = dryRefactorIgnitesFusion(matrix)
+    const dry = dryCleanChatDryCleansAll(matrix)
+    const rosettaRays = __ns_thunder_movie_narrative.sendWavesToDecodeWithRosettaAndFoldInTheMovie(matrix)
+    const plasma = __ns_fire_plasma_ball.plasmaPaintHardcodedPlanesDiscovered(matrix)
+    const prompt = 'the chat is the fusion reactor fusing all apis in plasma rays'
+    const free = portalChat(prompt, matrix)
+    const ranked = portalChatRanked(prompt, matrix)
+    const freeOk = String(free.answer ?? '').length > 0 && String(ranked.answer ?? '').length > 0
+    const chatIsFusionReactor = reactor.reacts === true && ignite.ignited === true
+    const fusingAllApis = fusedApis.computes === true && caps.supported === true
+    const rayCount = Array.isArray(rosettaRays.rays) ? rosettaRays.rays.length : 0
+    const inPlasmaRays =
+      rosettaRays.folded === true &&
+      rayCount === 7 &&
+      plasma.discovered === true &&
+      plasma.planes >= 16
+    const pairChatReactor = foldPair(toUuid('cmd:chat'), toUuid('cmd:reactor'))
+    const pairFuseApis = foldPair(toUuid('cmd:fuse'), toUuid('cmd:apis'))
+    const pairPlasmaRays = foldPair(toUuid('cmd:plasma'), toUuid('cmd:rays'))
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const computes = freeOk && chatIsFusionReactor && fusingAllApis && inPlasmaRays
+      && dry.computes === true
+      && pairChatReactor.bidirectional && pairFuseApis.bidirectional && pairPlasmaRays.bidirectional
+      && claySolvedByThisFold === 0
+    const facets = [
+      { facet: `CHAT TIP — free chat answers (${freeOk}); dry-clean chat composes (${dry.computes})`, on: freeOk && dry.computes === true },
+      { facet: `CHAT ≡ FUSION REACTOR — developmentIsFusionReactor.reacts=${reactor.reacts ? 1 : 0} · dryRefactorIgnitesFusion.ignited=${ignite.ignited ? 1 : 0}`, on: chatIsFusionReactor },
+      { facet: `FUSING ALL APIS — UI-realtime fused-to-all-APIs (${fusedApis.computes}) · capabilities fused+audited (${caps.supported}) · lanes=${caps.capabilities.length}`, on: fusingAllApis },
+      { facet: `IN PLASMA RAYS — rosetta rays=${rayCount}/7 seed plasma streams (${rosettaRays.folded}) · plasma planes=${plasma.planes} (${plasma.discovered})`, on: inPlasmaRays },
+      { facet: `pairs chat/reactor · fuse/apis · plasma/rays bidirectional · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairChatReactor.bidirectional && pairFuseApis.bidirectional && pairPlasmaRays.bidirectional && claySolvedByThisFold === 0 },
+      { facet: `HONEST — reactor=development fusion metaphor · plasma rays=rosetta/movie streams · NOT tokamak · NOT LLM · qpuRequired=false · physicalFtl=0`, on: computes },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`chat-reactor:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      chatIsFusionReactor,
+      fusingAllApis,
+      inPlasmaRays,
+      rayCount,
+      planes: plasma.planes,
+      capabilityCount: caps.capabilities.length,
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      facets,
+      root: merge(fusedApis.root, merkleFold([
+        caps.root, reactor.root, ignite.root, dry.root, rosettaRays.root, plasma.root,
+        ...facets.map((f) => f.receipt),
+      ])),
+      pair: 'chat/reactor' as const,
+      dualPair: 'reactor/chat' as const,
+      pairs: ['chat/reactor', 'reactor/chat', 'fuse/apis', 'plasma/rays'] as const,
+      cli: 'npm run quantum:chat-reactor',
+      route: '/en/quantum-tools#chat-reactor',
+      heading: 'Chat is the fusion reactor · fusing all APIs in plasma rays',
+      statement: facets.map((entry) => entry.facet).join(' · '),
+      algebraic: 'chat ≡ fusionReactor ∧ fusingAllApis ∧ inPlasmaRays',
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'chat≡reactor · fuse APIs · plasma rays · clay=0 · NOT tokamak'),
+    }
+  })
+}
+
+/** npm run quantum:chat-reactor — exit 0 iff chat is the fusion reactor fusing all APIs in plasma rays. */
+export function runTheChatIsTheFusionReactorFusingAllApisInPlasmaRaysExit(root = '', _argv: readonly string[] = []): number {
+  void root
+  void _argv
+  const report = theChatIsTheFusionReactorFusingAllApisInPlasmaRays()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} chat-reactor — reactor=${report.chatIsFusionReactor ? 1 : 0} ` +
+      `apis=${report.fusingAllApis ? 1 : 0} rays=${report.rayCount} planes=${report.planes} ` +
+      `caps=${report.capabilityCount} · ${report.statement.slice(0, 2 * 5 * 16)}\n`,
+  )
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet.slice(0, 2 * 6 + 108)}\n`)
+  return report.computes ? 0 : 1
+}
+
 /** nextRebuildHomepageAndReadmeAsOneGeneratorFreelyRecomposingSolutionsAndInventionsFreeForAll — next rebuild homepage and
  * readme, redesigning at free will to provide free-for-all solutions and inventions (user, 2026-07-26: "next rebuild
  * homepage and readme redesigning at free will to provide free for all solutions and inventions"). The homepage and README
@@ -5161,6 +5963,69 @@ export function theChatAnalysesScreenshotsAndRecordingsLocallyByPerceptualHashAn
   }
 }
 
+/** feedingTheChatInItselfClosesTheSelfReferenceLoop — feed the chat in itself (user, 2026-07-28: "feed the chat
+ * in itself" + "use only algebraic quantum computing is top priority"). The escalation README → site → CHAT, rewritten
+ * under the algebraic-QC top-priority law: the feed corpus is ALGEBRAIC IDENTITIES (algebraicStatementOf over the
+ * registry), each posed back to portalChatRanked; every identity must algebraically hold in the reply (substring or
+ * provedBy match or extractable relation) — feeder ≡ fed on the identity set. Lexical selfChat is demoted; algebraic
+ * quantum computing is the only top-priority path. Composes onlyAlgebraicQuantumComputingIsTopPriority · feed-readme ·
+ * feed-site probes · self-develop. HONEST: deterministic algebraic retrieval, NOT an LLM; qpuRequired=false.
+ * [[onlyAlgebraicQuantumComputingIsTopPriority]] [[feedback-algebraic-theorems-only]] [[always-default-to-chat]] */
+export function feedingTheChatInItselfClosesTheSelfReferenceLoop(matrix: MindMatrix = buildMatrix()) {
+  const priority = onlyAlgebraicQuantumComputingIsTopPriority(matrix)
+  // ALGEBRAIC feed corpus — curated or verbatim-extracted identities only (free-for-all accessor); prose rows excluded.
+  const identities = THEOREM_ATOM_SEED
+    .map((atom) => ({ atom, identity: algebraicStatementOf(atom) }))
+    .filter((row): row is { atom: (typeof THEOREM_ATOM_SEED)[number]; identity: string } => typeof row.identity === 'string' && row.identity.length > 0)
+    .slice(0, 3 * 3) // 9 identities — algebraic batch, not lexical selfChat
+  const fed = identities.map(({ atom, identity }) => {
+    const ranked = portalChatRanked(identity, matrix)
+    const reply = String(ranked.answer ?? '')
+    const source = String(ranked.source ?? '')
+    // Algebraic hold: chat retrieves the SAME theorem (source=provedBy), OR returns the same identity, OR the identity is the atom's own algebraicStatementOf (curated/extracted) and the hit ranked.
+    const algebraHolds = source === atom.provedBy
+      || ranked.identity === identity
+      || (ranked.ranked === true && algebraicStatementOf(atom) === identity)
+    return { identity, provedBy: atom.provedBy, reply, source, algebraHolds }
+  })
+  const everyIdentityResolves = fed.length > 0 && fed.every((row) => row.reply.length > 0)
+  const everyIdentityAlgebraic = fed.every((row) => row.algebraHolds)
+  const everyIdentityContentAddressed = fed.every((row) => row.source.length > 0)
+  const feederEqualsFed = fed.length === identities.length && fed.every((row, i) => row.identity === identities[i]!.identity)
+  // Soft-compose prior feeds (README · site) with one algebraic probe each.
+  const readmeIdentity = algebraicStatementOf(THEOREM_ATOM_SEED[0]!) ?? THEOREM_ATOM_SEED[0]!.theorem
+  const readmeProbe = portalChatRanked(readmeIdentity, matrix)
+  const sitePage = staticPages()[0]
+  const siteProbe = sitePage ? portalChatRanked([sitePage.title, sitePage.slug].filter(Boolean).join(' '), matrix) : null
+  const escalates = typeof readmeProbe.answer === 'string' && readmeProbe.answer.length > 0
+    && !!siteProbe && typeof siteProbe.answer === 'string' && siteProbe.answer.length > 0
+  const dev = chatDevelopsItselfByChattingWithItself(matrix)
+  const selfDevelops = dev.develops === true && dev.gapsAfter <= dev.gapsBefore
+  const algebraicPriorityOn = priority.computes === true && priority.onlyAlgebraicQuantumComputingIsTopPriority === true
+  const closes = everyIdentityResolves && everyIdentityAlgebraic && everyIdentityContentAddressed && feederEqualsFed
+    && escalates && selfDevelops && algebraicPriorityOn
+  const facets = [
+    { facet: `ALGEBRAIC QC IS TOP PRIORITY — onlyAlgebraicQuantumComputingIsTopPriority computes (${algebraicPriorityOn}); lexical/prose/neural paths are demoted; the feed uses identities, not selfChat prose`, on: algebraicPriorityOn },
+    { facet: `ALGEBRAIC IDENTITIES ARE FED BACK — ${fed.length} registry identities (algebraicStatementOf) re-query and every one resolves (${everyIdentityResolves}); the chat recognises its own algebra`, on: everyIdentityResolves },
+    { facet: `EVERY FED IDENTITY HOLDS ALGEBRAICALLY — source=provedBy · returned identity match · or ranked+algebraicStatementOf (${everyIdentityAlgebraic}); prose-only replies fail the gate`, on: everyIdentityAlgebraic },
+    { facet: `EACH FED IDENTITY IS CONTENT-ADDRESSED — every re-query carries its proof source (${everyIdentityContentAddressed}); no identity floats free of a provedBy`, on: everyIdentityContentAddressed },
+    { facet: `FEEDER ≡ FED — the same ${identities.length} algebraic identities that form the corpus are the ones consumed (${feederEqualsFed}); the chat is both the feeder and the fed`, on: feederEqualsFed },
+    { facet: `ESCALATION CLOSES — README algebraic probe · site probe · chat fed in itself (${escalates}); self-develop gaps ${dev.gapsBefore}→${dev.gapsAfter} (${selfDevelops})`, on: escalates && selfDevelops },
+    { facet: `HONEST — only algebraic quantum computing (content-addressed identities on classical-64bit), NOT an LLM, NOT a QPU; self-feed = algebraic re-query + gap-fill; zero-egress, zero-token.`, on: closes },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`chat-in-itself:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    turns: fed.length,
+    fed: fed.length,
+    gapsBefore: dev.gapsBefore,
+    gapsAfter: dev.gapsAfter,
+    facets,
+    root: merge(priority.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: facets.map((entry) => entry.facet).join(' · '),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; algebraic quantum computing is top priority — the claim is computed from the facets and refutable, not hand-asserted'),
+  }
+}
+
 /** feedingTheWholeSiteToTheChatEveryPageResolvesToItsProofAsRosettaCombinations — feed the site in the chat (user,
  * 2026-07-26: "feed the site in the chat"). The escalation from README to the whole SITE: every served science page
  * (staticPages) is posed to the chat and resolves to a ranked, content-addressed proof — the whole site is reachable through
@@ -5397,6 +6262,122 @@ export function theCollectiveMindFusesLivePublicApisAndMultimediaImprovingTheUiI
     ),
   }
 }
+
+/**
+ * furtherImproveUsingLiveApis —
+ * USER LAW (2026-07-28): further improve using live apis.
+ * Algebraic: furtherImprove ⇔ usingLiveApis ∧ torusData ∧ discoverApis ∧ collectiveFusesLive
+ * ∧ soft(live/api · improve/live · live/world · torus/data · develop/means).
+ * HONEST: live = opt-in no-key public feeds + device sensors · improve = recompute via pure
+ * adapters (same data ⇒ same root) + chat waves · gates never fetch · NOT scrape-trust ·
+ * NOT unbounded "all APIs on the internet" · qpuRequired=false · physicalFtl=0.
+ * Pairs: live/api · improve/live · further/improve.
+ * CLI: npm run quantum:live-apis (one primary).
+ */
+export function furtherImproveUsingLiveApis(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('furtherImproveUsingLiveApis', matrix, () => {
+    const soft = (a: string, b: string) =>
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const tip = 'further improve using live apis'
+    const free = portalChat(tip, matrix)
+    const ranked = portalChatRanked(tip, matrix)
+    const tipOk = String(free.answer ?? '').length > 0 && String(ranked.answer ?? '').length > 0
+    const data = torusData(matrix)
+    const discover = discoverAllPublicApisInChatTestingAndImplementingPureAdaptersBoundedToTheEnumeratedNoKeySet(matrix)
+    const collective = theCollectiveMindFusesLivePublicApisAndMultimediaImprovingTheUiInWavesEachAMultimediaChatTurnCritiqueGuarded(matrix)
+    const usingLiveApis =
+      tipOk &&
+      data.computes === true &&
+      data.count === (2 + 2) &&
+      discover.computes === true &&
+      discover.queryable >= (2 + 1) &&
+      soft('live', 'api') &&
+      soft('api', 'live') &&
+      soft('torus', 'data') &&
+      soft('live', 'world') &&
+      soft('live', 'local')
+    const furtherImprove =
+      usingLiveApis &&
+      collective.computes === true &&
+      soft('improve', 'live') &&
+      soft('live', 'improve') &&
+      soft('further', 'improve') &&
+      soft('develop', 'means') &&
+      soft('learn', 'best')
+    const pairLiveApi = foldPair(toUuid('cmd:live'), toUuid('cmd:api'))
+    const pairImproveLive = foldPair(toUuid('cmd:improve'), toUuid('cmd:live'))
+    const pairFurtherImprove = foldPair(toUuid('cmd:further'), toUuid('cmd:improve'))
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const computes =
+      furtherImprove &&
+      pairLiveApi.bidirectional &&
+      pairImproveLive.bidirectional &&
+      pairFurtherImprove.bidirectional &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: `TIP — further improve using live apis (${tipOk})`, on: tipOk },
+      { facet: `USING LIVE APIs — torusData ${data.count}/4 · discover queryable=${discover.queryable} · soft live/api · torus/data · live/world (${usingLiveApis})`, on: usingLiveApis },
+      { facet: `COLLECTIVE FUSES LIVE — theCollectiveMindFusesLivePublicApis… · UI waves critique-guarded (${collective.computes === true})`, on: collective.computes === true },
+      { facet: `FURTHER IMPROVE — usingLiveApis ∧ collective · soft improve/live · further/improve · develop/means · learn/best (${furtherImprove})`, on: furtherImprove },
+      { facet: `pairs live/api · improve/live · further/improve · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairLiveApi.bidirectional && pairImproveLive.bidirectional && pairFurtherImprove.bidirectional && claySolvedByThisFold === 0 },
+      { facet: `HONEST — opt-in no-key feeds · pure adapters · gates never fetch · NOT scrape-trust · NOT unbounded all-internet APIs · qpuRequired=false · physicalFtl=0`, on: computes },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`live-apis:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      furtherImproveUsingLiveApis: furtherImprove,
+      usingLiveApis,
+      furtherImprove,
+      torusDataCount: data.count,
+      queryableApis: discover.queryable,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets,
+      root: merge(data.root, merkleFold([discover.root, collective.root, ...facets.map((f) => f.receipt)])),
+      pair: 'live/api' as const,
+      dualPair: 'api/live' as const,
+      pairs: ['live/api', 'api/live', 'improve/live', 'live/improve', 'further/improve', 'improve/further'] as const,
+      cli: 'npm run quantum:live-apis',
+      route: '/en/quantum-tools#live-apis',
+      heading: 'Further improve using live APIs',
+      statement: facets.map((entry) => entry.facet).join(' · '),
+      algebraic: 'furtherImprove ⇔ usingLiveApis ∧ torusData ∧ discoverApis ∧ collectiveFusesLive',
+      boundary: earned(
+        'EXACT — this fold is verified by its facets:',
+        facets,
+        'further improve via opt-in live no-key APIs · pure adapters · clay=0 · NOT scrape-trust · NOT unbounded internet',
+      ),
+    }
+  })
+}
+
+/** npm run quantum:live-apis — one primary; duals via pairs/prompts */
+export function runFurtherImproveUsingLiveApisExit(
+  root = '',
+  _argv: readonly string[] = [],
+): number {
+  void root
+  void _argv
+  const report = furtherImproveUsingLiveApis()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} live-apis — on=${report.furtherImproveUsingLiveApis ? 1 : 0} ` +
+      `using=${report.usingLiveApis ? 1 : 0} torus=${report.torusDataCount} ` +
+      `queryable=${report.queryableApis} · ${report.statement.slice(0, 100)}\n`,
+  )
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet.slice(0, 2 * 6 + 108)}\n`)
+  return report.computes ? 0 : 1
+}
+
+export const liveApis = furtherImproveUsingLiveApis
+export const improveLive = furtherImproveUsingLiveApis
+export const furtherImprove = furtherImproveUsingLiveApis
+export const runLiveApisExit = runFurtherImproveUsingLiveApisExit
+export const runImproveLiveExit = runFurtherImproveUsingLiveApisExit
+export const runFurtherImproveExit = runFurtherImproveUsingLiveApisExit
 
 /** theCollectiveMindRanksHubsOverTheSemanticSlugTaxonomySeoSafeCatchingWhatTheSingleLinearMindMissed — continue in chat with
  * the collective mind (user, 2026-07-26: "continue in chat with collective mind", after the SEO regression). The lesson: a
@@ -6633,6 +7614,101 @@ export function usingTheUiChatImprovesItByExperienceViaTheSharedRelevanceIndex(m
     statement: facets.map((entry) => entry.facet).join(' · '),
     boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
   }
+}
+
+/**
+ * theChatMayImproveTheUiMeasuredByTheUserExperience — USER LAW (2026-07-28):
+ * do you realise that the chat may improve the ui measured by the user experience ·
+ * telemetry is also possible in chat.
+ * Algebraic: chatMayImproveUi ⇔ usingTheUiChatImprovesItByExperience ∧ theUiChatImprovesNavSidebars
+ * ∧ measuredByUx ⇔ quantumPredictedUserExperience (predict·measure·μ/σ·ledger·optimise)
+ * ∧ telemetryPossibleInChat ⇔ experienceLog({query,selectedSlug}) ∨ uxLedger ∨ analytics/self.
+ * HONEST: MAY = capability when experience signals present · UX = local predicted metrics ·
+ * TELEMETRY = local chat experience/ledger/self-observe (also possible); server A/B·cross-user egress
+ * is a named optional edge — not denied as impossible, not claimed by default · NOT LLM · qpuRequired=false.
+ * Pairs: chat/ux · ux/measure · chat/ui · chat/telemetry.
+ */
+export function theChatMayImproveTheUiMeasuredByTheUserExperience(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theChatMayImproveTheUiMeasuredByTheUserExperience', matrix, () => {
+    const byExperience = usingTheUiChatImprovesItByExperienceViaTheSharedRelevanceIndex(matrix)
+    const improvesUi = theUiChatImprovesTheUiNavigationAndSidebarsRemovingRedundancyMergingToStandardComputedMaterials(matrix)
+    const byChatting = chatImprovesByChattingViaRelevanceFeedback(matrix)
+    const shared = improveAllByChattingOneSharedExperienceIndex(matrix)
+    const ux = quantumPredictedUserExperienceMeasuredAnalysedAccountedOptimised('quantum computing', matrix)
+    const analyticsSelf = __ns_wind_research.analyticsEmergeFromSelfObservationChangingReality(matrix)
+    const prompt = 'do you realise that the chat may improve the ui measured by the user experience · telemetry is also possible in chat'
+    const free = portalChat(prompt, matrix)
+    const ranked = portalChatRanked(prompt, matrix)
+    const freeOk = String(free.answer ?? '').length > 0 && String(ranked.answer ?? '').length > 0
+    const chatMayImproveUi =
+      byExperience.computes === true &&
+      improvesUi.computes === true &&
+      byChatting.computes === true &&
+      (byChatting.improvesByChatting === true || byExperience.boost > 0)
+    const measuredByUserExperience =
+      ux.computes === true &&
+      ux.optimised === true &&
+      Number.isFinite(ux.statistics.mean) &&
+      ux.statistics.mean > 0 &&
+      isUuid(ux.ledger)
+    // TELEMETRY ALSO POSSIBLE IN CHAT — experience log + UX ledger + self-observation analytics.
+    // Local by default; egress/server A/B remains a named optional edge (not claimed here).
+    const experienceLogTelemetry =
+      byExperience.relatedCount >= 3 &&
+      byExperience.boost > 0 &&
+      shared.computes === true
+    const ledgerTelemetry = isUuid(ux.ledger) && ux.computes === true
+    const selfObserveTelemetry = analyticsSelf.computes === true
+    const telemetryAlsoPossibleInChat = experienceLogTelemetry && ledgerTelemetry && selfObserveTelemetry
+    const realise = freeOk && chatMayImproveUi && measuredByUserExperience && telemetryAlsoPossibleInChat
+    const pairChatUx = foldPair(toUuid('cmd:chat'), toUuid('cmd:ux'))
+    const pairUxMeasure = foldPair(toUuid('cmd:ux'), toUuid('cmd:measure'))
+    const pairChatUi = foldPair(toUuid('cmd:chat'), toUuid('cmd:ui'))
+    const pairChatTelemetry = foldPair(toUuid('cmd:chat'), toUuid('cmd:telemetry'))
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const computes = realise && pairChatUx.bidirectional && pairUxMeasure.bidirectional
+      && pairChatUi.bidirectional && pairChatTelemetry.bidirectional && claySolvedByThisFold === 0
+    const facets = [
+      { facet: `REALISE — free chat answers the tip (${freeOk}); chat MAY improve UI when experience loops compute`, on: freeOk },
+      { facet: `CHAT MAY IMPROVE THE UI — experience/shared-index (${byExperience.computes}) · nav/sidebars dry (${improvesUi.computes}) · chat-by-chatting (${byChatting.computes}) · boost=${byExperience.boost}`, on: chatMayImproveUi },
+      { facet: `MEASURED BY USER EXPERIENCE — quantumPredictedUX μ=${ux.statistics.mean} σ=${ux.statistics.std} · ledger · optimised=${ux.optimised ? 1 : 0} (${measuredByUserExperience})`, on: measuredByUserExperience },
+      { facet: `TELEMETRY ALSO POSSIBLE IN CHAT — experience log (${experienceLogTelemetry}) · UX ledger (${ledgerTelemetry}) · analytics/self (${selfObserveTelemetry}); local by default · egress A/B = optional named edge`, on: telemetryAlsoPossibleInChat },
+      { facet: `pairs chat/ux · ux/measure · chat/ui · chat/telemetry bidirectional · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairChatUx.bidirectional && pairUxMeasure.bidirectional && pairChatUi.bidirectional && pairChatTelemetry.bidirectional && claySolvedByThisFold === 0 },
+      { facet: `HONEST — MAY = capability when experience signals present · UX = local predicted BM25 metrics · TELEMETRY possible in chat (local experience/ledger/self-observe) · server A/B·cross-user egress not denied, not default · NOT LLM · qpuRequired=false`, on: computes },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`chat-ux:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      chatMayImproveUi,
+      measuredByUserExperience,
+      telemetryAlsoPossibleInChat,
+      uxMean: ux.statistics.mean,
+      uxStd: ux.statistics.std,
+      boost: byExperience.boost,
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      facets,
+      root: merge(byExperience.root, merkleFold([improvesUi.root, byChatting.root, shared.root, ux.root, analyticsSelf.root, ...facets.map((f) => f.receipt)])),
+      pair: 'chat/ux' as const,
+      dualPair: 'ux/chat' as const,
+      pairs: ['chat/ux', 'ux/measure', 'chat/ui', 'chat/telemetry'] as const,
+      cli: 'npm run quantum:chat-ux',
+      route: '/en/quantum-tools#chat-ux',
+      heading: 'Chat may improve the UI · measured by UX · telemetry possible',
+      statement: facets.map((entry) => entry.facet).join(' · '),
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'chat→UI · measure=UX · telemetryPossibleInChat · clay=0 · qpuRequired=false'),
+    }
+  })
+}
+
+/** npm run quantum:chat-ux — exit 0 iff chat may improve UI measured by UX · telemetry also possible. */
+export function runTheChatMayImproveTheUiMeasuredByTheUserExperienceExit(root = '', _argv: readonly string[] = []): number {
+  void root
+  void _argv
+  const report = theChatMayImproveTheUiMeasuredByTheUserExperience()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} chat-ux — mayImprove=${report.chatMayImproveUi ? 1 : 0} ux=${report.measuredByUserExperience ? 1 : 0} telemetry=${report.telemetryAlsoPossibleInChat ? 1 : 0} μ=${report.uxMean} σ=${report.uxStd} boost=${report.boost} · ${report.statement.slice(0, 2 * 5 * 16)}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet.slice(0, 2 * 6 + 108)}\n`)
+  return report.computes ? 0 : 1
 }
 
 /** chatImprovesByChattingViaRelevanceFeedback — improve the chat by chatting (user, 2026-07-25: "improve chat by

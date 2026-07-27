@@ -1009,6 +1009,13 @@ const STATEMENT_RELATION = /[=≡≤≥≠⇔⇒∈∉⊂⊆∼≅≈↦]|\bmod\
  * never generated. Conservative by construction: only the first clause qualifies, only when it asserts a
  * relation, with trailing verification-bound qualifiers trimmed; anything else returns undefined so a
  * prose-only row stays honestly un-upgraded. Curated fills always win over extraction. */
+/** The ONE identity accessor — free for all surfaces (user, 2026-07-27: "free for all"): curated fill first,
+ * verbatim extraction second, undefined when neither exists. Every consumer (paper form, chat hits, wave atoms)
+ * reads identities through this chain, so an upgrade to the extractor upgrades all surfaces at once. */
+export function algebraicStatementOf(row: { algebraicStatement?: string; states?: string; proof?: string }): string | undefined {
+  if (typeof row.algebraicStatement === 'string' && row.algebraicStatement.length > 0) return row.algebraicStatement
+  return extractAlgebraicStatement(row.states ?? row.proof ?? '')
+}
 export function extractAlgebraicStatement(states: string): string | undefined {
   const first = (states.split(/\s+—\s+|(?<=[a-z)0-9][.;])\s+/u)[0] ?? '').trim()
   if (!STATEMENT_RELATION.test(first)) return undefined

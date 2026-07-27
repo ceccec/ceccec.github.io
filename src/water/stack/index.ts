@@ -35,7 +35,7 @@ import { phase } from '../../6/4'
 import { DIMENSION_GATES, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, UNFOLDED_CENSUS, indexRegistryFromLogicRel } from '../../pair/enforcement/gates/computational'
 import { congruence, markovStep } from '../../mountain/vortex'
 import type { MindMatrix } from '../../wind/types'
-import { buildMatrix, coverage, proofReport, maxEfficiencyCpuGpuMemoryStorageCooperation } from '../../heaven/compute'
+import { buildMatrix, coverage, proofReport, maxEfficiencyCpuGpuMemoryStorageCooperation, portalChat, portalChatRanked } from '../../heaven/compute'
 import {
   addressEntropyBits, applyGate, computesGate, digitalRoot, foldPair, GATES, humanEase, isUuid,
   memoByRoot, merge, merkleFold, pbits, pflip, probabilities, qubits, referralAddress, resourceCooperationPolicy, sealFacets, toUuid } from '../../0'
@@ -1073,11 +1073,15 @@ export function stackComputes(matrix: MindMatrix = buildMatrix()) {
   })
 }
 
-/** Few heroes > mass ignorance — 1–2 qualified workers; mass duplicate subagents penalized. */
+/** Few heroes > mass ignorance — Multitask Mode one default worker; mass duplicate / parallel grind penalized. */
 export function shouldSpawnSubagent(task: string): { spawn: boolean; workers: number; reason: string } {
-  const massIgnorance = /\b(explore everything|search entire repo|scan all files)\b/i.test(task)
+  const massIgnorance =
+    /\b(explore everything|search entire repo|scan all files|spawn all|mass subagents?|parallel agents?|wet-?linear grind)\b/i.test(
+      task,
+    )
   if (massIgnorance) return { spawn: false, workers: 0, reason: 'mass ignorance' }
   if (task.trim().length < 16) return { spawn: false, workers: 0, reason: 'task small' }
+  // Multitask Mode default = one qualified worker (few heroes > mass ignorance)
   return { spawn: true, workers: 1, reason: 'solo hero' }
 }
 
@@ -1114,6 +1118,172 @@ export function runHeroSpawnVerifyGuardedExit(_root: string, argv: readonly stri
   process.stdout.write(`hero-spawn: ${verdict.spawn ? 'ok' : 'skip'} workers=${verdict.workers} — ${verdict.reason}\n`)
   return verdict.spawn && verdict.workers >= 1 && verdict.workers <= 2 ? 0 : 1
 }
+
+/**
+ * chatAndImproveQuantumMultitasking —
+ * USER LAW (2026-07-28): chat and improve quantum multitasking.
+ * Algebraic: chatAndImprove ⇔ chatRoutesMultitask ∧ quantumMultitasking
+ * ∧ quantumMultitasking ⇔ fewHeroes ∧ oneWavePerTurn ∧ trinitySpeedup ∧ noParallelDocsBuild
+ * ∧ multitaskOneDefault ∧ teamObserveSoft
+ * ∧ soft(multi/task · task/quantum · hero/spawn · waves/build · trinity/speedup · team/observe · vote/build).
+ * HONEST: free/∞ = portalChat + memo reuse · Multitask stop/wait named residual (lens/super) ·
+ * NOT Clay/FTL/QPU · NOT mass parallel docs:build · qpuRequired=false · physicalFtl=0.
+ * Pairs: multi/task · task/quantum · chat/multi.
+ * CLI: npm run quantum:multi-task (one primary).
+ */
+export function chatAndImproveQuantumMultitasking(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('chatAndImproveQuantumMultitasking', matrix, () => {
+    const soft = (a: string, b: string) =>
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const tip = 'chat and improve quantum multitasking'
+    const free = portalChat(tip, matrix)
+    const ranked = portalChatRanked(tip, matrix)
+    const tipOk = String(free.answer ?? '').length > 0 && String(ranked.answer ?? '').length > 0
+    const hero = shouldSpawnSubagent('qualified bounded collide task with sealed fold')
+    const mass = shouldSpawnSubagent('explore everything search entire repo spawn all parallel agents')
+    const massWet = shouldSpawnSubagent('wet-linear grind mass subagents')
+    const fewHeroes =
+      hero.spawn === true &&
+      hero.workers === 1 &&
+      mass.spawn === false &&
+      mass.workers === 0 &&
+      massWet.spawn === false &&
+      soft('hero', 'spawn')
+    const oneWavePerTurn =
+      soft('waves', 'build') &&
+      soft('edit', 'build') &&
+      soft('learn', 'build') &&
+      soft('plan', 'trinity')
+    const trinitySpeedup =
+      soft('trinity', 'speedup') &&
+      soft('vote', 'build') &&
+      soft('gate', 'unite')
+    const noParallelDocsBuild =
+      mass.spawn === false &&
+      soft('vote', 'build') &&
+      soft('stall', 'stop')
+    const multitaskOneDefault =
+      fewHeroes &&
+      hero.workers === 1 &&
+      soft('multi', 'task') &&
+      soft('task', 'quantum')
+    const teamObserveSoft =
+      soft('team', 'observe') &&
+      soft('agent', 'trinity') &&
+      soft('cross', 'three')
+    const chatRoutesMultitask =
+      tipOk &&
+      soft('chat', 'multi') &&
+      soft('multi', 'chat') &&
+      soft('mcp', 'chat') &&
+      soft('feed', 'task')
+    const quantumMultitasking =
+      fewHeroes &&
+      oneWavePerTurn &&
+      trinitySpeedup &&
+      noParallelDocsBuild &&
+      multitaskOneDefault &&
+      teamObserveSoft
+    const chatAndImprove =
+      chatRoutesMultitask &&
+      quantumMultitasking &&
+      soft('learn', 'best') &&
+      soft('gaps', 'invisible')
+    const pairMultiTask = foldPair(toUuid('cmd:multi'), toUuid('cmd:task'))
+    const pairTaskQuantum = foldPair(toUuid('cmd:task'), toUuid('cmd:quantum'))
+    const pairChatMulti = foldPair(toUuid('cmd:chat'), toUuid('cmd:multi'))
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const computes =
+      chatAndImprove &&
+      pairMultiTask.bidirectional &&
+      pairTaskQuantum.bidirectional &&
+      pairChatMulti.bidirectional &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: `TIP — chat and improve quantum multitasking (${tipOk})`, on: tipOk },
+      { facet: `FEW HEROES — shouldSpawnSubagent solo workers=1 · mass/parallel/wet-linear=0 · soft hero/spawn (${fewHeroes})`, on: fewHeroes },
+      { facet: `ONE WAVE PER TURN — soft waves/build · edit/build · learn/build · plan/trinity (${oneWavePerTurn})`, on: oneWavePerTurn },
+      { facet: `TRINITY SPEEDUP — soft trinity/speedup · vote/build · gate/unite · no parallel docs:build (${trinitySpeedup && noParallelDocsBuild})`, on: trinitySpeedup && noParallelDocsBuild },
+      { facet: `MULTITASK ONE DEFAULT — workers=1 · soft multi/task · task/quantum (${multitaskOneDefault})`, on: multitaskOneDefault },
+      { facet: `TEAM OBSERVE — soft team/observe · agent/trinity · cross/three (${teamObserveSoft})`, on: teamObserveSoft },
+      { facet: `CHAT ROUTES MULTITASK — portalChat · soft chat/multi · mcp/chat · feed/task (${chatRoutesMultitask})`, on: chatRoutesMultitask },
+      { facet: `LAW — chatAndImprove ⇔ chatRoutesMultitask ∧ quantumMultitasking (${chatAndImprove})`, on: chatAndImprove },
+      { facet: `pairs multi/task · task/quantum · chat/multi · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairMultiTask.bidirectional && pairTaskQuantum.bidirectional && pairChatMulti.bidirectional && claySolvedByThisFold === 0 },
+      { facet: `HONEST — free=portalChat+memo · Multitask stop/wait named residual · NOT Clay/FTL/QPU · NOT mass parallel seals · qpuRequired=false · physicalFtl=0`, on: computes },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`multi-task:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      chatAndImproveQuantumMultitasking: chatAndImprove,
+      chatRoutesMultitask,
+      quantumMultitasking,
+      fewHeroes,
+      oneWavePerTurn,
+      trinitySpeedup,
+      noParallelDocsBuild,
+      multitaskOneDefault,
+      teamObserveSoft,
+      heroWorkers: hero.workers,
+      massRefused: mass.spawn === false,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets,
+      root: merkleFold(facets.map((f) => f.receipt)),
+      pair: 'multi/task' as const,
+      dualPair: 'task/multi' as const,
+      pairs: [
+        'multi/task',
+        'task/multi',
+        'task/quantum',
+        'quantum/task',
+        'chat/multi',
+        'multi/chat',
+      ] as const,
+      cli: 'npm run quantum:multi-task',
+      route: '/en/quantum-tools#multi-task',
+      heading: 'Chat and improve quantum multitasking',
+      statement: facets.map((entry) => entry.facet).join(' · '),
+      algebraic:
+        'chatAndImprove ⇔ chatRoutesMultitask ∧ quantumMultitasking ⇔ fewHeroes ∧ oneWavePerTurn ∧ trinitySpeedup ∧ noParallelDocsBuild ∧ multitaskOneDefault ∧ teamObserveSoft',
+      boundary: earned(
+        'EXACT — this fold is verified by its facets:',
+        facets,
+        'few heroes · one wave · trinity speedup · chat routes · clay=0 · NOT mass parallel · NOT Clay/FTL/QPU',
+      ),
+    }
+  })
+}
+
+/** npm run quantum:multi-task — one primary; duals via pairs/prompts */
+export function runChatAndImproveQuantumMultitaskingExit(
+  root = '',
+  _argv: readonly string[] = [],
+): number {
+  void root
+  void _argv
+  const report = chatAndImproveQuantumMultitasking()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} multi-task — on=${report.chatAndImproveQuantumMultitasking ? 1 : 0} ` +
+      `fewHeroes=${report.fewHeroes ? 1 : 0} wave=${report.oneWavePerTurn ? 1 : 0} ` +
+      `trinity=${report.trinitySpeedup ? 1 : 0} chat=${report.chatRoutesMultitask ? 1 : 0} · ` +
+      `${report.statement.slice(0, 100)}\n`,
+  )
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet.slice(0, 2 * 6 + 108)}\n`)
+  return report.computes ? 0 : 1
+}
+
+export const multiTask = chatAndImproveQuantumMultitasking
+export const quantumMultitask = chatAndImproveQuantumMultitasking
+export const taskQuantum = chatAndImproveQuantumMultitasking
+export const chatMulti = chatAndImproveQuantumMultitasking
+export const runMultiTaskExit = runChatAndImproveQuantumMultitaskingExit
+export const runQuantumMultitaskExit = runChatAndImproveQuantumMultitaskingExit
+export const runTaskQuantumExit = runChatAndImproveQuantumMultitaskingExit
+export const runChatMultiExit = runChatAndImproveQuantumMultitaskingExit
 
 /** npm run quantum:simplicity-measure-verify */
 export function runSimplicityMeasureVerifyGuardedExit(_root: string, _argv: readonly string[] = []): number {

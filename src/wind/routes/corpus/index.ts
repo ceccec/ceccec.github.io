@@ -1,6 +1,6 @@
 // ☴ Xùn · Wind — corpus route enumerators (papers · references · diamonds · REST).
 // Rosetta census dissolve: papers + rest sub-barrels merged here (one routes/corpus home).
-import { TAU, CANONICAL_HOST, DIMENSION_GATES, earned, titleCarriesAlgebra, extractAlgebraicStatement } from '../../../3/7'
+import { TAU, CANONICAL_HOST, DIMENSION_GATES, earned, titleCarriesAlgebra, algebraicStatementOf } from '../../../3/7'
 import type { MindMatrix, StaticPage } from '../../types'
 // call-time namespace edge (cycle-safe): learning imports corpus; search corpus reads back at call time
 import * as __ns_up_up_thunder_waves from '../../../thunder/waves'
@@ -1070,11 +1070,9 @@ export function theoremFormulaCodeDual(row: {
   // case decided — a real proof, cf. four-colour, earns ∎); `bounded-witness` is a witness over a stated finite
   // RANGE (evidence, NOT a ∀-proof). An unproven challenge (Clay: no `proof`) states its Theorem and marks the
   // Proof OPEN — the honest paper form for a conjecture. The fold that machine-checks it stays in `formulaSource`.
-  // FREE UPGRADE CHAIN (user: "let free chat upgrade all"): curated identity → extracted identity (a verbatim
-  // SUBSTRING of the row's own proof text, never generated — extractAlgebraicStatement) → algebra-bearing title.
-  const identity = typeof row.algebraicStatement === 'string' && row.algebraicStatement.length > 0
-    ? row.algebraicStatement
-    : (extractAlgebraicStatement(row.proof ?? '') ?? (titleCarriesAlgebra(row.theorem) ? row.theorem : ''))
+  // FREE UPGRADE CHAIN (user: "let free chat upgrade all" · "free for all"): the ONE accessor — curated identity
+  // → extracted identity (a verbatim SUBSTRING of the row's own proof text, never generated) → algebra-bearing title.
+  const identity = algebraicStatementOf(row) ?? (titleCarriesAlgebra(row.theorem) ? row.theorem : '')
   const statement = identity && identity !== row.theorem ? `${row.theorem} — ${identity}` : row.theorem
   const closing = row.proofClass === 'finite-complete'
     ? 'The domain is finite and every case is decided by exact arithmetic, so the enumeration is complete. ∎'
@@ -1520,7 +1518,12 @@ const bm25Tokenize = (text: string): string[] => (text.toLowerCase().match(/[a-z
  * frequency saturation and document-length normalization. Fully client-side over the sealed corpus: deterministic,
  * zero-token, no egress — a private BM25 index. Lexical relevance, not neural/semantic ranking. [[portal-is-the-ai-model]] */
 export function privateSearchRanksByBM25IndustryStandard(query = 'quantum encryption post quantum cryptography') {
-  const docs = THEOREM_ATOM_SEED.map((atom) => ({ slug: theoremSlug(atom.theorem), title: atom.theorem, provedBy: atom.provedBy, tokens: bm25Tokenize(`${atom.theorem} ${atom.states}`) }))
+  // Every hit carries its identity through the ONE accessor (user: "free for all") — curated or verbatim-extracted.
+  // Algebraic-QC top priority (user 2026-07-28): identity tokens join the BM25 doc so algebraic queries retrieve the right fold.
+  const docs = THEOREM_ATOM_SEED.map((atom) => {
+    const identity = algebraicStatementOf(atom)
+    return { slug: theoremSlug(atom.theorem), title: atom.theorem, provedBy: atom.provedBy, identity, tokens: bm25Tokenize(`${atom.theorem} ${atom.states}${identity ? ` ${identity}` : ''}`) }
+  })
   const N = docs.length
   const avgdl = docs.reduce((sum, doc) => sum + doc.tokens.length, 0) / N
   const df = new Map<string, number>()
@@ -1535,7 +1538,7 @@ export function privateSearchRanksByBM25IndustryStandard(query = 'quantum encryp
     for (const q of qTokens) { const f = tf.get(q) ?? 0; if (f > 0) s += idf(q) * bm25Tf(f, doc.tokens.length) }
     return s
   }
-  const rank = (q: string) => { const qTokens = bm25Tokenize(q); return docs.map((doc) => ({ slug: doc.slug, title: doc.title, provedBy: doc.provedBy, score: scoreOf(doc, qTokens) })).filter((row) => row.score > 0).sort((a, b) => b.score - a.score) }
+  const rank = (q: string) => { const qTokens = bm25Tokenize(q); return docs.map((doc) => ({ slug: doc.slug, title: doc.title, provedBy: doc.provedBy, identity: doc.identity, score: scoreOf(doc, qTokens) })).filter((row) => row.score > 0).sort((a, b) => b.score - a.score) }
   const ranked = rank(query)
   const top = ranked[0]
   const qTokens = bm25Tokenize(query)
