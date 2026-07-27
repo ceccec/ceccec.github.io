@@ -2088,12 +2088,12 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
  */
 export function invertAgainTheThirdPerspective(matrix: MindMatrix = buildMatrix()) {
   const trinity = [
-    { problem: 'P vs NP', barrier: 'proof techniques provably too weak (relativization·natural·algebrization)', requirement: 'a non-relativizing, non-natural, non-algebrizing technique', consequence: 'the shape of the computational universe is decided — either every NP problem is tractable (P=NP: optimization/learning transformed, most cryptography falls) or hardness is provable (P≠NP: cryptography rests on a theorem)' },
-    { problem: 'Riemann', barrier: 'nothing forces the zeros onto Re(s)=½', requirement: 'a self-adjoint operator with the zeros as spectrum (Hilbert–Pólya)', consequence: 'the prime-counting error sharpens to O(√x·log²x) — primes become maximally regular, and thousands of theorems proved "assuming RH" become unconditional' },
-    { problem: 'Navier–Stokes', barrier: 'supercritical scaling; blow-up cannot be ruled out', requirement: 'a supercritical regularity estimate', consequence: '3D fluid flow is settled — either globally smooth (turbulence is deterministic-predictable in principle) or blow-up is characterized (the singularity mechanism named)' },
-    { problem: 'Yang–Mills', barrier: 'no rigorous interacting 4D QFT exists', requirement: 'a constructive 4D QFT + a mass-gap proof', consequence: 'quark confinement and the hadron mass spectrum follow from first principles — the Standard Model’s strong sector becomes rigorous mathematics' },
-    { problem: 'Hodge', barrier: 'no way to produce the algebraic cycle', requirement: 'a construction of cycles from Hodge classes', consequence: 'the dictionary between topology/analysis and algebraic geometry completes — motives and periods become computable across all projective varieties' },
-    { problem: 'BSD', barrier: 'open for rank ≥ 2', requirement: 'the rank ↔ L-vanishing-order bridge for rank ≥ 2', consequence: 'rational points on every elliptic curve become effectively computable — the arithmetic of curves is decidable' },
+    { problem: CLAY_PROBLEMS.pvnp.name, barrier: 'proof techniques provably too weak (relativization·natural·algebrization)', requirement: 'a non-relativizing, non-natural, non-algebrizing technique', consequence: 'the shape of the computational universe is decided — either every NP problem is tractable (P=NP: optimization/learning transformed, most cryptography falls) or hardness is provable (P≠NP: cryptography rests on a theorem)' },
+    { problem: CLAY_PROBLEMS.riemann.name, barrier: 'nothing forces the zeros onto Re(s)=½', requirement: 'a self-adjoint operator with the zeros as spectrum (Hilbert–Pólya)', consequence: 'the prime-counting error sharpens to O(√x·log²x) — primes become maximally regular, and thousands of theorems proved "assuming RH" become unconditional' },
+    { problem: CLAY_PROBLEMS.navierStokes.name, barrier: 'supercritical scaling; blow-up cannot be ruled out', requirement: 'a supercritical regularity estimate', consequence: '3D fluid flow is settled — either globally smooth (turbulence is deterministic-predictable in principle) or blow-up is characterized (the singularity mechanism named)' },
+    { problem: CLAY_PROBLEMS.yangMills.name, barrier: 'no rigorous interacting 4D QFT exists', requirement: 'a constructive 4D QFT + a mass-gap proof', consequence: 'quark confinement and the hadron mass spectrum follow from first principles — the Standard Model’s strong sector becomes rigorous mathematics' },
+    { problem: CLAY_PROBLEMS.hodge.name, barrier: 'no way to produce the algebraic cycle', requirement: 'a construction of cycles from Hodge classes', consequence: 'the dictionary between topology/analysis and algebraic geometry completes — motives and periods become computable across all projective varieties' },
+    { problem: CLAY_PROBLEMS.bsd.name, barrier: 'open for rank ≥ 2', requirement: 'the rank ↔ L-vanishing-order bridge for rank ≥ 2', consequence: 'rational points on every elliptic curve become effectively computable — the arithmetic of curves is decidable' },
   ] as const
   // COMPUTED (not the literal 0): scan the trinity's own Clay-problem text — it names the problems but states only
   // barriers/requirements (open-markers), so claySolvedByFormulas returns 0, refutably (a solution claim would flip it).
@@ -2163,12 +2163,12 @@ export function reverseEngineerAllTestableFragments(matrix: MindMatrix = buildMa
 export function reverseEngineerRequirementsToTestablePossibilities(matrix: MindMatrix = buildMatrix()) {
   const challenge = millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(matrix)
   const rows = [
-    { problem: 'P vs NP', testable: 'content-address O(1) vs brute-scan — the reuse/efficiency benchmark', fold: 'efficiencyScalesToInfinityAtNoCostOnReuse', open: 'the non-relativizing separation itself' },
-    { problem: 'Riemann', testable: 'compute the nontrivial zeros and TEST Re(s)=½ numerically (Riemann–Siegel Z, S(T))', fold: 'riemannZeroScan', open: 'the critical-line-forcing operator (Hilbert–Pólya)' },
-    { problem: 'Navier–Stokes', testable: 'sample the genus-2 double-torus field on finite grids', fold: 'doubleTorusSurface', open: 'the supercritical 3D regularity estimate' },
-    { problem: 'Yang–Mills', testable: 'the su(2)/Pauli operator algebra closes exactly', fold: 'pauliAlgebraCloses', open: 'the rigorous 4D construction + mass-gap proof' },
-    { problem: 'Hodge', testable: 'H₁(Σ₂)=ℤ⁴ homology rank on the genus-2 model', fold: 'homology rank (DIMENSION_GATES/FOLDED_CENSUS)', open: 'algebraic cycles from arbitrary Hodge classes' },
-    { problem: 'BSD', testable: '(ℤ/9)* inverse-pair / group-law neighbourhood algebra', fold: 'zeroDivisionTable', open: 'the rank ≥ 2 arithmetic↔analytic bridge' },
+    { problem: CLAY_PROBLEMS.pvnp.name, testable: 'content-address O(1) vs brute-scan — the reuse/efficiency benchmark', fold: 'efficiencyScalesToInfinityAtNoCostOnReuse', open: 'the non-relativizing separation itself' },
+    { problem: CLAY_PROBLEMS.riemann.name, testable: 'compute the nontrivial zeros and TEST Re(s)=½ numerically (Riemann–Siegel Z, S(T))', fold: 'riemannZeroScan', open: 'the critical-line-forcing operator (Hilbert–Pólya)' },
+    { problem: CLAY_PROBLEMS.navierStokes.name, testable: 'sample the genus-2 double-torus field on finite grids', fold: 'doubleTorusSurface', open: 'the supercritical 3D regularity estimate' },
+    { problem: CLAY_PROBLEMS.yangMills.name, testable: 'the su(2)/Pauli operator algebra closes exactly', fold: 'pauliAlgebraCloses', open: 'the rigorous 4D construction + mass-gap proof' },
+    { problem: CLAY_PROBLEMS.hodge.name, testable: 'H₁(Σ₂)=ℤ⁴ homology rank on the genus-2 model', fold: 'homology rank (DIMENSION_GATES/FOLDED_CENSUS)', open: 'algebraic cycles from arbitrary Hodge classes' },
+    { problem: CLAY_PROBLEMS.bsd.name, testable: '(ℤ/9)* inverse-pair / group-law neighbourhood algebra', fold: 'zeroDivisionTable', open: 'the rank ≥ 2 arithmetic↔analytic bridge' },
   ] as const
   const claySolvedByThisFold = challenge.claySolvedByThisFold // reuse the apparatus's COMPUTED value, not a fresh literal
   const testableFragmentsCompute = challenge.problems.every((p) => p.on) // each challengeMethod (testable fragment) recomputes
