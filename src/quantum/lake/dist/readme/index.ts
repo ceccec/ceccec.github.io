@@ -531,7 +531,7 @@ type RayPaper = TheoremCore['rays'][number]['papers'][number]
 /** The theorem-only sections BOTH projections render, heading for heading; the mode differences are the
  *  per-paper trailing link (README → `[source](github permalink)`, home → `[page](/slug)`) and the sitemap
  *  link base (README → absolute canonical URLs for GitHub/crawlers, home → site-internal paths). */
-function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => string, linkBase = ''): string[] {
+function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => string, matrix: MindMatrix, linkBase = ''): string[] {
   const { lens, census, paperList, math, efficiency, sitemap, servedRoutes, mono, template } = core
   const { labels } = math
   return [
@@ -572,15 +572,15 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     `- **${efficiency.count} efficiency proofs** — everyBitMostEfficientAlgorithmProvenByMath() at call time (proven: ${efficiency.proven})`,
     '',
     // The Clay Millennium challenges — the headline computed result, now a Results FINDING (not pre-Introduction).
-    ...clayChallengesComputableMarkdownSection(buildMatrix(), linkBase),
+    ...clayChallengesComputableMarkdownSection(matrix, linkBase),
     '',
     // The sealed discoveries — the detailed Results findings behind the summary above (Sequence → π/primes → trinity/
     // rosetta/FoL → 64-bit quantum reuse → serverless — Clay-standard, sealed only).
-    ...sequenceDiscoveryMarkdownSection(buildMatrix(), linkBase),
-    ...anglePolarityReadmeHomeMarkdownSection(buildMatrix(), linkBase),
-    ...twoBitsFreeSocietySupportMarkdownSection(buildMatrix(), linkBase),
-    ...earthPolesPyramidMarkdownSection(buildMatrix(), linkBase),
-    ...toolboxSciencesTrinityWavesMarkdownSection(buildMatrix(), linkBase),
+    ...sequenceDiscoveryMarkdownSection(matrix, linkBase),
+    ...anglePolarityReadmeHomeMarkdownSection(matrix, linkBase),
+    ...twoBitsFreeSocietySupportMarkdownSection(matrix, linkBase),
+    ...earthPolesPyramidMarkdownSection(matrix, linkBase),
+    ...toolboxSciencesTrinityWavesMarkdownSection(matrix, linkBase),
     '',
     '## Top discoveries',
     '',
@@ -675,7 +675,7 @@ function paperTopNav(sections: readonly string[], mode: 'github' | 'vitepress' =
 export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
   const core = theoremMonographCore(matrix)
   const { config, template } = core
-  const sections = theoremSections(core, (entry) => `[source](${githubPermalink(entry.source)})`, CANONICAL_HOST)
+  const sections = theoremSections(core, (entry) => `[source](${githubPermalink(entry.source)})`, matrix, CANONICAL_HOST)
   return [
     `# ${config.title} — the root monograph`,
     '',
@@ -701,7 +701,7 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
 export function homeMarkdown(matrix: MindMatrix = buildMatrix()) {
   const core = theoremMonographCore(matrix)
   const { config } = core
-  const sections = theoremSections(core, (entry) => `[page](/${entry.slug})`)
+  const sections = theoremSections(core, (entry) => `[page](/${entry.slug})`, matrix)
   return [
     '---',
     `description: ${JSON.stringify(config.description)}`,
