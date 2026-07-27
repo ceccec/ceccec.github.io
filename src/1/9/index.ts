@@ -9,7 +9,7 @@ import {   toUuid, merkleFold, digitalRoot, gcd, isUuid, roundTo, topologicalOrd
 import { piHexDigitAt, nthPrimeAt, primeCountUpTo } from '../../7/3'
 import { PROTON_GYROMAGNETIC } from '../../6/4'
 import { TAU, PHI } from '../../3/7'
-import { earned } from '../../3/7'
+import { earned, landauerLimit } from '../../3/7'
 
 export const digit = 1
 export const role = 'circuit' as const
@@ -40,6 +40,52 @@ export function rnot(bits: number, target: number): number {
 /** Reversible Toffoli — universal for classical reversible computation. */
 export function rtoffoli(bits: number, control1: number, control2: number, target: number): number {
   return (bits & (1 << control1)) !== 0 && (bits & (1 << control2)) !== 0 ? bits ^ (1 << target) : bits
+}
+
+/** reversibleComputationDecoded — classical reversible computation, proven on the portal's OWN gates (the topic
+ *  the double torus is built on: every projection invertible). A gate is REVERSIBLE iff it is a BIJECTION of its
+ *  state space — no input is lost, so the computation can be run backwards. `rnot` and `rtoffoli` are INVOLUTIONS
+ *  (g∘g = id), hence self-inverse bijections, hence reversible; Toffoli is universal for reversible classical logic
+ *  (Toffoli 1980). The COST link (Landauer 1961 · Bennett 1973): irreversible AND is MANY-TO-ONE — it discards a
+ *  bit — so it must dissipate ≥ kT·ln2 per erased bit; a reversible gate erases nothing and evades that floor.
+ *  HONEST: Landauer's kT·ln2 is the IDEAL LOWER bound — real devices dissipate MORE, the 2nd law is not violated,
+ *  and reversibility buys NO free energy: it only makes the erasure cost avoidable in principle. Cited results
+ *  (Toffoli/Landauer/Bennett), not re-proved. [[negentropy-ledger-arc]] holds the 2nd-law/Landauer line. */
+export function reversibleComputationDecoded() {
+  const N = 2 ** 3 // the 3-bit state space {0..7}: two inputs + one ancilla/target
+  const states = Array.from({ length: N }, (_unused, i) => i)
+  // rnot flips one bit by XOR; XOR twice = identity ⇒ an involution on every bit position
+  const rnotInvolution = states.every((b) => [0, 1, 2].every((t) => rnot(rnot(b, t), t) === b))
+  // rtoffoli flips the target iff both controls are set; doing it twice restores the input ⇒ self-inverse
+  const rtoffoliInvolution = states.every((b) => rtoffoli(rtoffoli(b, 0, 1, 2), 0, 1, 2) === b)
+  // involution ⇒ BIJECTION: b ↦ rtoffoli(b,0,1,2) permutes all N states (image covers the whole space)
+  const rtoffoliBijective = new Set(states.map((b) => rtoffoli(b, 0, 1, 2))).size === N
+  // irreversible AND is MANY-TO-ONE: three of the four input pairs map to 0 ⇒ a bit is erased ⇒ not injective
+  const andPreimageOfZero = [[0, 0], [0, 1], [1, 0], [1, 1]].filter(([a, c]) => (a & c) === 0).length
+  const andManyToOne = andPreimageOfZero === 2 + 1
+  const landauerJ = landauerLimit(3 * 100) // kT·ln2 at 300 K — the floor the erased bit pays
+  const floorPositive = landauerJ > 0
+  // Toffoli computes the SAME AND reversibly, into the ancilla, KEEPING the inputs (Bennett): (a,b,0) ↦ (a,b,a∧b)
+  const toffoliComputesAndReversibly = states.every((b) => {
+    const a1 = (b >> 0) & 1, a2 = (b >> 1) & 1
+    if (((b >> 2) & 1) !== 0) return true // only the ancilla-zero rows carry a clean AND
+    const out = rtoffoli(b, 0, 1, 2)
+    return ((out >> 0) & 1) === a1 && ((out >> 1) & 1) === a2 && ((out >> 2) & 1) === (a1 & a2)
+  })
+  const facets = [
+    { facet: 'rnot is an involution — ∀b∀t: rnot(rnot(b,t),t) = b (XOR twice = id), so NOT is its own inverse — reversible', on: rnotInvolution },
+    { facet: 'rtoffoli is an involution — rtoffoli(rtoffoli(b,…),…) = b (CCNOT is self-inverse) — reversible', on: rtoffoliInvolution },
+    { facet: `involution ⇒ BIJECTION — b ↦ rtoffoli(b,0,1,2) permutes all ${N} states (|image| = ${N}); no information is lost`, on: rtoffoliBijective },
+    { facet: `irreversible AND is MANY-TO-ONE — |AND⁻¹(0)| = ${andPreimageOfZero} > 1: a bit is erased, so by Landauer it dissipates ≥ kT·ln2 = ${landauerJ.toExponential(2)} J at 300 K`, on: andManyToOne && floorPositive },
+    { facet: 'reversible EVADES the floor (Bennett) — Toffoli writes AND into an ancilla, (a,b,0) ↦ (a,b,a∧b), keeping the inputs; nothing erased, no kT·ln2 owed', on: toffoliComputesAndReversibly },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`reversible-computation:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    landauerJ,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `Reversible computation, decoded on the portal's own gates — ${facets.filter((entry) => entry.on).length}/${facets.length}: a gate is reversible IFF it is a bijection of its state space; rnot and rtoffoli are involutions (g∘g = id), hence self-inverse bijections, hence reversible, and Toffoli is universal for reversible classical logic. The cost link: irreversible AND is many-to-one (|AND⁻¹(0)| = ${andPreimageOfZero}), so by Landauer it must dissipate ≥ kT·ln2 (${landauerJ.toExponential(2)} J at 300 K) per erased bit, while Toffoli computes the same AND into an ancilla with the inputs kept — nothing erased, the floor evaded (Bennett).`,
+    boundary: earned('EXACT — finite computation over the 3-bit state space plus the Landauer formula:', facets, 'clay=0, physicalFtl=0. HONEST SCOPE: Landauer\'s kT·ln2 is the IDEAL LOWER bound on the erasure cost — physical devices dissipate MORE, the 2nd law is NOT violated, and reversibility buys NO free energy: it only makes the erasure cost avoidable in principle. Toffoli 1980 (universality), Landauer 1961, Bennett 1973 are cited results, not re-proved here. HARMONY ≠ TRUTH') }
 }
 
 /** CODATA experimental electron anomalous moment a_e = (g−2)/2. */
