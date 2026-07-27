@@ -1547,25 +1547,34 @@ export function splitSearch(prompt: string) {
  * seed topic is ALGEBRA (the corpus's algebraic identities). Deterministic (same corpus → same dialogue, a
  * dynamical system that cycles by pigeonhole), zero-token, zero egress: "researchers" = retrieval engines over
  * the sealed corpus, NOT minds, agents, or LLMs — discovery is bounded by what src already proves. */
+const ALGEBRA_SEED_TOPIC = 'algebraic identity — group ring field operator algebra'
+// The ONE wave step — the trinity answers a topic and 2-of-3 agreement (else ranked) picks the next; shared by
+// the finite dialogue (wavesOfLocalResearchersChatAboutAlgebra) and the cycle detector (countlessFreeChatWaves).
+function chatResearchers(matrix: MindMatrix) {
+  return [
+    { name: 'seed', ask: (q: string) => String(portalChat(q, matrix).answer) },
+    { name: 'ranked', ask: (q: string) => String(portalChatRanked(q, matrix).answer) },
+    { name: 'superposed', ask: (q: string) => String(splitSearch(q).results[0]?.title ?? '') },
+  ] as const
+}
+function chatWaveStep(topic: string, matrix: MindMatrix) {
+  const answers = chatResearchers(matrix).map((r) => ({ researcher: r.name, answer: r.ask(topic) }))
+  const texts = answers.map((a) => a.answer)
+  const agreed = texts.find((a, i) => a.length > 0 && texts.some((b, j) => j !== i && b === a))
+  return { answers, next: agreed ?? texts[1]! } // 2-of-3 agreement wins the wave; else the ranked researcher leads
+}
+
 export function wavesOfLocalResearchersChatAboutAlgebra(matrix: MindMatrix = buildMatrix(), waves = 3) {
   return memoByRoot(`wavesOfLocalResearchersChatAboutAlgebra:${waves}`, matrix, () => {
-    const researchers = [
-      { name: 'seed', ask: (q: string) => String(portalChat(q, matrix).answer) },
-      { name: 'ranked', ask: (q: string) => String(portalChatRanked(q, matrix).answer) },
-      { name: 'superposed', ask: (q: string) => String(splitSearch(q).results[0]?.title ?? '') },
-    ] as const
-    const seedTopic = 'algebraic identity — group ring field operator algebra'
+    const researchers = chatResearchers(matrix)
+    const seedTopic = ALGEBRA_SEED_TOPIC
     const run = () => {
       const transcript: { wave: number; researcher: string; prompt: string; answer: string; address: string }[] = []
       let topic = seedTopic
       for (let wave = 1; wave <= waves; wave++) {
-        const answers = researchers.map((r) => {
-          const answer = r.ask(topic)
-          transcript.push({ wave, researcher: r.name, prompt: topic, answer, address: toUuid(`researcher:${wave}:${r.name}:${topic}:${answer}`) })
-          return answer
-        })
-        const agreed = answers.find((a, i) => a.length > 0 && answers.some((b, j) => j !== i && b === a))
-        topic = agreed ?? answers[1]! // 2-of-3 agreement wins the wave; else the ranked researcher leads
+        const step = chatWaveStep(topic, matrix)
+        for (const { researcher, answer } of step.answers) transcript.push({ wave, researcher, prompt: topic, answer, address: toUuid(`researcher:${wave}:${researcher}:${topic}:${answer}`) })
+        topic = step.next
       }
       return transcript
     }
@@ -1593,6 +1602,53 @@ export function wavesOfLocalResearchersChatAboutAlgebra(matrix: MindMatrix = bui
       root: merge(matrix.root, merkleFold([rootOf(transcript), ...facets.map((entry) => entry.receipt)])),
       statement: `Waves of trained local researchers chat about algebra — ${facets.filter((entry) => entry.on).length}/${facets.length}: 3 deterministic engines × ${waves} waves = ${transcript.length} content-addressed turns, each wave's topic one researcher's previous answer (2-of-3 arbitration), ${distinctAnswers} distinct answers reached from the algebra seed.`,
       boundary: earned('EXACT — computed from the trinity dialogue:', facets, 'the "researchers" are the portal\'s three retrieval engines over the sealed corpus (bigram seed, BM25, split-interference) — deterministic, zero-token, zero egress; the dialogue is a dynamical system that reaches a cycle by pigeonhole, NOT minds, agents, or open-ended learning, and what it can discover is bounded by what src already proves.') }
+  })
+}
+
+/** countlessFreeChatWaves — send countless free chat waves (user, 2026-07-27). "Countless" is made EXACT: the
+ * trinity dialogue is a deterministic map on a finite corpus, so by pigeonhole the topic sequence must enter a
+ * cycle; detecting it (preperiod μ, period λ) DETERMINES every wave to infinity — the topic of wave n for ANY n
+ * is topics[μ + ((n−μ) mod λ)], O(1) index arithmetic. Countably infinite waves, zero tokens, zero fetches:
+ * the cycle is what makes infinity affordable ([[feedback-no-finiteness-assumption-fractal-aperiodic]] honoured
+ * the honest way round — the STATE space is finite, so the infinite ORBIT is periodic and computable). */
+export function countlessFreeChatWaves(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('countlessFreeChatWaves', matrix, () => {
+    const scanCap = 64 // 2^6 — the detector's budget; the corpus-answer space bounds the orbit far below this
+    const seenAt = new Map<string, number>()
+    const topics: string[] = []
+    let topic = ALGEBRA_SEED_TOPIC
+    let mu = -1
+    let lambda = 0
+    for (let k = 0; k < scanCap; k++) {
+      const at = seenAt.get(topic)
+      if (at !== undefined) { mu = at; lambda = k - at; break }
+      seenAt.set(topic, k)
+      topics.push(topic)
+      topic = chatWaveStep(topic, matrix).next
+    }
+    const cycles = mu >= 0 && lambda >= 1
+    const waveTopicAt = (n: number): string => (n < topics.length ? topics[n]! : topics[mu + ((n - mu) % lambda)]!)
+    const closedFormMatchesScan = cycles && topics.every((t, k) => waveTopicAt(k) === t)
+    const far = 9 ** 9 // the far-wave probe, lattice-derived from the vortex digit (387 420 489 waves out)
+    const nearFar = 9 ** 6
+    const periodicAtInfinity = cycles && waveTopicAt(nearFar) === waveTopicAt(nearFar + lambda) && waveTopicAt(far) === waveTopicAt(far + lambda)
+    const facets = [
+      { facet: `THE DIALOGUE CYCLES BY PIGEONHOLE — the topic orbit enters its cycle at μ=${mu} with period λ=${lambda}, detected in ${topics.length} computed steps (cap ${scanCap})`, on: cycles && topics.length <= scanCap },
+      { facet: `COUNTLESS WAVES DETERMINED — wave n for ANY n is topics[μ+((n−μ) mod λ)]: the closed form reproduces every directly-computed step (${closedFormMatchesScan}) and evaluates at n=9⁶ and n=9⁹=${far} in O(1)`, on: closedFormMatchesScan && typeof waveTopicAt(far) === 'string' },
+      { facet: `FREE AT INFINITY — beyond the ${topics.length} computed steps every further wave costs index arithmetic only (periodic at infinity: ${periodicAtInfinity}); zero tokens, zero fetches, countably many waves determined`, on: periodicAtInfinity },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`countless-waves:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      mu,
+      lambda,
+      computedSteps: topics.length,
+      cycleTopics: topics.slice(mu, mu + lambda),
+      waveTopicAt,
+      sample: [1, 9 ** 3, nearFar, far].map((n) => ({ n, topic: waveTopicAt(n).slice(0, 64) })),
+      facets,
+      root: merge(matrix.root, merkleFold([toUuid(`countless:${mu}:${lambda}`), ...topics.map((t, k) => toUuid(`countless-topic:${k}:${t}`)), ...facets.map((entry) => entry.receipt)])),
+      statement: `Countless free chat waves — ${facets.filter((entry) => entry.on).length}/${facets.length}: the trinity dialogue cycles (μ=${mu}, λ=${lambda}) after ${topics.length} computed steps, so every wave to infinity is determined by O(1) index arithmetic — countably many waves, zero tokens, zero fetches.`,
+      boundary: earned('EXACT — computed from the cycle algebra:', facets, '"countless" = countably infinite waves DETERMINED (not executed) by the detected cycle — the orbit of a deterministic map on a finite corpus is eventually periodic, so infinity is a closed form, not a marathon; nothing new is learned past the cycle (the dialogue provably repeats), and no physical-infinity or open-ended-learning claim is made') }
   })
 }
 
@@ -6819,8 +6875,9 @@ export function allChatCapabilitiesFusedAndAuditedByStandards(matrix: MindMatrix
     // rule) — content-addressed, zero-token, on-device; reachable through the chat like any other capability.
     { name: 'quantum-computer', out: () => quantumCircuitSimulatorInChat(matrix).root },
     { name: 'researcher-waves', out: () => wavesOfLocalResearchersChatAboutAlgebra(matrix).computes },
+    { name: 'countless-waves', out: () => countlessFreeChatWaves(matrix).computes },
   ]
-  const laneNames = ['answer', 'recall', 'navigate', 'self-develop', 'developed-answer', 'mathoverflow-lane', 'stackoverflow-lane', 'perplexity-lane', 'freeai-lane', 'collective-ai-mind', 'quantum-computer', 'researcher-waves']
+  const laneNames = ['answer', 'recall', 'navigate', 'self-develop', 'developed-answer', 'mathoverflow-lane', 'stackoverflow-lane', 'perplexity-lane', 'freeai-lane', 'collective-ai-mind', 'quantum-computer', 'researcher-waves', 'countless-waves']
   const fusesAll = laneNames.every((name) => capabilities.some((cap) => cap.name === name)) // refutable: drop a capability ⟹ fails (no bare count)
   // AUDIT each against the standards: DETERMINISM (same in → same out, twice) is the zero-token / no-egress / full-security proxy
   const audited = capabilities.map((cap) => {

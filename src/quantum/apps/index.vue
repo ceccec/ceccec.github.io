@@ -96,6 +96,7 @@ import {
   splitSearch,
   wavesOfLocalResearchersChatAboutAlgebra,
   continueAtNoAiCost,
+  countlessFreeChatWaves,
   queueNext,
   allConversationsGoThroughTheMcpQuantumChat,
   mcpQuantumConversation,
@@ -356,6 +357,9 @@ const researcherWaveCount = ref(3)
 const RESEARCHER_WAVES_CAP = 9
 const researcherDialogue = computed(() => wavesOfLocalResearchersChatAboutAlgebra(undefined, researcherWaveCount.value))
 const noAiCost = computed(() => continueAtNoAiCost())
+// Countless: the dialogue's cycle (μ, λ) determines EVERY wave to infinity in O(1) — the cap above bounds
+// only what is rendered, never what is determined.
+const countless = computed(() => countlessFreeChatWaves())
 function continueResearcherWaves() { if (researcherWaveCount.value < RESEARCHER_WAVES_CAP) researcherWaveCount.value++ }
 
 const experimentEnvelope = computed(() => panel.value.toolbox.envelopes.find((e) => e.id === experimentToolId.value) ?? panel.value.toolbox.envelopes[0]!)
@@ -2102,6 +2106,9 @@ function runTool(toolId: string) {
         <UiButton size="sm" type="button" :disabled="researcherWaveCount >= RESEARCHER_WAVES_CAP" @click="continueResearcherWaves">
           Continue in chat (+1 wave, no AI cost{{ researcherWaveCount >= RESEARCHER_WAVES_CAP ? ' — cap reached' : '' }})
         </UiButton>
+        <p class="quantum-apps__meta">
+          ∞ countless free waves: the dialogue cycles (μ={{ countless.mu }}, λ={{ countless.lambda }}) after {{ countless.computedSteps }} computed steps, so EVERY wave to infinity is determined by O(1) index arithmetic — e.g. wave {{ countless.sample[countless.sample.length - 1]?.n.toLocaleString() }} = “{{ countless.sample[countless.sample.length - 1]?.topic }}”. The cap above bounds only what renders, never what is determined.
+        </p>
       </section>
       <UiSeparator />
       <section id="quantum-computer">
