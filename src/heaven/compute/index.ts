@@ -1640,19 +1640,28 @@ export function allOpenQuestionsAnsweredByTheChatApi(matrix: MindMatrix = buildM
 // ── MathOverflow lane — the ONE no-key public API for research-grade mathematics Q&A (ledgered endpoints, like
 // coinbase/usgs/open-meteo in realtimeSources): Stack Exchange API v2.3, key: none, quota-limited, CC BY-SA content.
 export const MATHOVERFLOW_SITE = 'https://mathoverflow.net'
+export const STACKOVERFLOW_SITE = 'https://stackoverflow.com'
 export const MATHOVERFLOW_API = 'https://api.stackexchange.com/2.3/search/advanced'
 export const MATHOVERFLOW_ASK_URL = `${MATHOVERFLOW_SITE}/questions/ask`
+/** The Stack Exchange sites the chat lanes reach — one shared v2.3 API, the site is just a parameter. */
+export const STACK_EXCHANGE_SITES = { mathoverflow: MATHOVERFLOW_SITE, stackoverflow: STACKOVERFLOW_SITE } as const
+export type StackExchangeSite = keyof typeof STACK_EXCHANGE_SITES
 
-/** ONE combinatorial URL primitive — the three URL tools merged to the fewest words, kinds composing on one axis
- * (user, 2026-07-27: "dry clean all tools merging to less words possible per functions then the functions will be
- * combinatorial by quantum architecture"): api = the edge-fetch query (COMPUTED here, fetched at the EDGE — src
- * never fetches), search/ask = the human escalation surfaces on mathoverflow.net. */
-export function mathOverflowUrl(kind: 'api' | 'search' | 'ask', prompt = ''): string {
+/** ONE combinatorial URL primitive — the three URL kinds × the SE sites compose on TWO orthogonal axes (user,
+ * 2026-07-27: "dry clean all tools merging to less words possible" · "have their answers"). api = the edge-fetch query
+ * (COMPUTED here, fetched at the EDGE — src never fetches), search/ask = the human escalation surfaces on the site.
+ * The site axis (mathoverflow · stackoverflow) is a parameter, not a duplicated function. */
+export function stackExchangeUrl(site: StackExchangeSite, kind: 'api' | 'search' | 'ask', prompt = ''): string {
   const q = encodeURIComponent(prompt.trim())
-  if (kind === 'api') return `${MATHOVERFLOW_API}?order=desc&sort=relevance&q=${q}&site=mathoverflow&pagesize=${2 * 2 + 1}`
-  if (kind === 'search') return `${MATHOVERFLOW_SITE}/search?q=${q}`
-  return MATHOVERFLOW_ASK_URL
+  const siteUrl = STACK_EXCHANGE_SITES[site]
+  if (kind === 'api') return `${MATHOVERFLOW_API}?order=desc&sort=relevance&q=${q}&site=${site}&pagesize=${2 * 2 + 1}`
+  if (kind === 'search') return `${siteUrl}/search?q=${q}`
+  return `${siteUrl}/questions/ask`
 }
+/** mathoverflow.net lane URL — the site axis fixed to mathoverflow (thin wrapper over stackExchangeUrl). */
+export function mathOverflowUrl(kind: 'api' | 'search' | 'ask', prompt = ''): string { return stackExchangeUrl('mathoverflow', kind, prompt) }
+/** stackoverflow.com lane URL — the site axis fixed to stackoverflow. */
+export function stackOverflowUrl(kind: 'api' | 'search' | 'ask', prompt = ''): string { return stackExchangeUrl('stackoverflow', kind, prompt) }
 
 /** A raw Stack Exchange API question item — only the fields the adapter reads; everything optional (untrusted input). */
 export type MathOverflowItem = { question_id?: number; title?: string; link?: string; score?: number; is_answered?: boolean; answer_count?: number; tags?: readonly string[] }
@@ -1702,6 +1711,51 @@ export function chatThroughMathOverflow(prompt: string, items: readonly MathOver
     root: merge(matrix.root, merkleFold([toUuid(`mathoverflow-lane:${prompt}`), ...overflow.map((row) => row.receipt)])),
     statement: `Chat through MathOverflow — ${facets.filter((entry) => entry.on).length}/${facets.length}: local BM25 answer first (zero egress), a computed api.stackexchange.com query URL for the opt-in live lane, ${overflow.length} community rows normalized + content-addressed, escalate=${escalate} when the corpus cannot answer.`,
     boundary: earned('EXACT — computed from the chat engine + the normalized snapshot:', facets, 'the fetch happens at the EDGE and only when the user opts in — src stays pure and the default chat keeps zero egress; MathOverflow content is the community\'s (CC BY-SA, attribution = the link), vote-ranked, no-key, quota-limited — real research-grade mathematics Q&A, NOT the portal\'s claims and NOT an oracle') }
+}
+
+/** chatThroughStackOverflow — the chat answers programming questions through stackoverflow.com (user, 2026-07-27:
+ * "improve in chat so https://stackoverflow.com/questions have their answers"). Same lane as MathOverflow, site axis
+ * fixed to stackoverflow: the chat stays LOCAL FIRST (portalChatRanked BM25 over the sealed corpus, zero egress), and
+ * gains stackoverflow.com as an OPT-IN live lane — src computes the api.stackexchange.com query URL and normalizes a
+ * fetched snapshot into vote-ranked, content-addressed community rows; the fetch happens at the EDGE, never here. A
+ * community answer is the COMMUNITY's (CC BY-SA, attribution = the link), ranked by ITS votes; when the sealed corpus
+ * cannot answer (ranked=false) the lane ESCALATES — the computed search/ask URLs hand exactly that question to
+ * stackoverflow.com instead of fabricating an answer. So SO questions get their answers, honestly attributed. */
+export function chatThroughStackOverflow(prompt: string, items: readonly MathOverflowItem[] = [], matrix: MindMatrix = buildMatrix()) {
+  const local = portalChatRanked(prompt, matrix)
+  const url = stackOverflowUrl('api', prompt)
+  const overflow = items
+    .filter((raw) => typeof raw.title === 'string' && typeof raw.link === 'string' && raw.link.startsWith(`${STACKOVERFLOW_SITE}/`))
+    .map((raw) => ({
+      title: decodeSeEntities(String(raw.title)),
+      link: String(raw.link),
+      votes: Number(raw.score ?? 0),
+      answered: raw.is_answered === true,
+      answers: Number(raw.answer_count ?? 0),
+      tags: [...(raw.tags ?? [])].slice(0, 3),
+      receipt: toUuid(`stackoverflow:${raw.question_id}:${raw.link}:${raw.score}`) }))
+  const escalate = !local.ranked // the sealed corpus cannot answer → hand the question to the community
+  const answeredRows = overflow.filter((row) => row.answered).length
+  const facets = [
+    { facet: `LOCAL FIRST — the deterministic BM25 answer over the sealed corpus computes with zero egress before any live lane (answer present, via ${local.ranked ? 'ranked corpus' : 'seed-model fallback'})`, on: String(local.answer).length > 0 },
+    { facet: `THE QUERY URL IS COMPUTED — src derives the api.stackexchange.com search URL from the prompt (https, site=stackoverflow, prompt encoded); the EDGE fetches it, src never fetches`, on: url.startsWith(`${MATHOVERFLOW_API}?`) && url.includes('site=stackoverflow') && url.includes(encodeURIComponent(prompt.trim())) },
+    { facet: `QUESTIONS GET THEIR ANSWERS, LABELED — ${overflow.length} rows each link into ${STACKOVERFLOW_SITE}, ${answeredRows} carry an accepted answer, and each keeps votes + answered flag + content-address, so a community answer is the COMMUNITY's (ranked by ITS votes), never the portal's claim`, on: overflow.every((row) => row.link.startsWith(`${STACKOVERFLOW_SITE}/`) && isUuid(row.receipt)) },
+    { facet: `ESCALATION IS HONEST — escalate=${escalate} COMPUTES as ranked=false, and the computed search/ask URLs hand exactly this question to stackoverflow.com instead of fabricating an answer`, on: escalate === !local.ranked && stackOverflowUrl('search', prompt) === `${STACKOVERFLOW_SITE}/search?q=${encodeURIComponent(prompt.trim())}` },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`chat-stackoverflow:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    prompt,
+    local,
+    url,
+    searchUrl: stackOverflowUrl('search', prompt),
+    askUrl: stackOverflowUrl('ask'),
+    overflow,
+    answeredRows,
+    escalate,
+    facets,
+    root: merge(matrix.root, merkleFold([toUuid(`stackoverflow-lane:${prompt}`), ...overflow.map((row) => row.receipt)])),
+    statement: `Chat through StackOverflow — ${facets.filter((entry) => entry.on).length}/${facets.length}: local BM25 answer first (zero egress), a computed api.stackexchange.com query URL for the opt-in live lane, ${overflow.length} community rows (${answeredRows} answered) normalized + content-addressed, escalate=${escalate} when the corpus cannot answer.`,
+    boundary: earned('EXACT — computed from the chat engine + the normalized snapshot:', facets, 'the fetch happens at the EDGE and only when the user opts in — src stays pure and the default chat keeps zero egress; StackOverflow content is the community\'s (CC BY-SA, attribution = the link), vote-ranked, no-key, quota-limited — real programming Q&A, NOT the portal\'s claims and NOT an oracle') }
 }
 
 /** fewestWordsMergeMakesToolsCombinatorialAtHarmonicSpeed — dry-clean tools by MERGING to the fewest words per
