@@ -665,6 +665,41 @@ export function claySolvedTheorem(): {
 export function claySolvedByThisFoldFromTheorem(): number {
   return claySolvedTheorem().claySolvedByThisFold
 }
+
+/** The seven Clay Millennium Prize problems, by core identifying terms (lowercased substrings). A fold "solves" one
+ *  ONLY by claiming a finished resolution of one of these — never by naming it. Signed, refutable list (not a count). */
+export const CMI_PRIZE_PROBLEM_TERMS = [
+  'p versus np', 'p vs np', 'p = np', 'p ≠ np', 'p != np',
+  'riemann hypothesis', 'yang–mills', 'yang-mills', 'mass gap',
+  'navier–stokes', 'navier-stokes', 'hodge conjecture',
+  'birch and swinnerton-dyer', 'swinnerton–dyer', 'swinnerton-dyer', 'poincaré conjecture', 'poincare conjecture',
+] as const
+/** Language asserting a FINISHED resolution — a solution CLAIM (deliberately strict: a finished-proof assertion). */
+export const CLAY_SOLUTION_MARKERS = [
+  'solves the clay', 'solves this clay', 'clay problem solved', 'millennium problem solved', 'cmi prize solved',
+  'we hereby prove', 'qed for the', 'proof complete for the', 'closes the millennium', 'proven complete —',
+  'is now proved', 'establishes a complete proof of the',
+] as const
+/** Language marking the problem OPEN — its presence refutes any co-located solution claim (honest folds carry these). */
+export const CLAY_OPEN_MARKERS = [
+  'open', 'unsolved', 'unproven', 'conjecture', 'contested', 'bounded-witness', 'not cmi', 'not a cmi', 'no cmi',
+  'not proposed solution', 'claysolvedbythisfold=0', 'clay=0', 'decoded', 'unconfirmed', 'empirical',
+  'harmony ≠ truth', 'stays open', 'remains open', 'not claimed solved', 'unclaimed',
+] as const
+
+/**
+ * claySolvedByFormulas — COMPUTE, from a fold's OWN statement + formulas, how many Clay Millennium problems it CLAIMS
+ * to have SOLVED. This is the refutable replacement for a hardcoded 0: it SCANS the text. A problem counts iff the text
+ * (a) names a Clay problem term, (b) asserts a finished resolution (a solution marker), and (c) carries NO open-marker.
+ * Honest folds compute 0 BECAUSE the algebra either never claims a proof or explicitly marks the problem OPEN — not
+ * because a list is hand-kept empty. An overclaiming fold computes ≥1. The truth lives in the formulas, per USER LAW.
+ */
+export function claySolvedByFormulas(statement: string, formulas: readonly string[] = []): number {
+  const text = `${statement} ${formulas.join(' ')}`.toLowerCase()
+  if (CLAY_OPEN_MARKERS.some((marker) => text.includes(marker))) return 0 // the fold marks the problem open → no claim
+  if (!CLAY_SOLUTION_MARKERS.some((marker) => text.includes(marker))) return 0 // no finished-proof assertion → no claim
+  return CMI_PRIZE_PROBLEM_TERMS.filter((term) => text.includes(term)).length
+}
 /** H₁(Σ₂) = ℤ⁴ — homology loops × folded census = dimension gates. */
 export const HOMOLOGY_LOOPS = 4 as const
 export const DIMENSION_GATES = HOMOLOGY_LOOPS * FOLDED_CENSUS

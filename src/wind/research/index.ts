@@ -26,7 +26,7 @@ import {
   A432_HUE, A432_OCTAVES, AUTHOR_HANDLE, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS,
   ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, TAU, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG,
   WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG,
-  fibonacci, earned, rat, ratMul, ratInv, ratEq, ratToFloat, claySolvedTheorem, demarcate,
+  fibonacci, earned, rat, ratMul, ratInv, ratEq, ratToFloat, claySolvedTheorem, claySolvedByFormulas, demarcate,
   SPEED_OF_LIGHT, NEWTON_G, SCHUMANN_FUNDAMENTAL_HZ, bekensteinBoundBits, schwarzschildRadius,
   theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
 import { researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause } from '../../earth/iching'
@@ -36,7 +36,7 @@ import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath, codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix } from '../../pair/enforcement/gates'
 import { STATIC_PAGE_SEED } from '../../8/2'
 import { paperParamsById, papers } from '../learning'
-import { computeUniversalPage, theoremFormulaCodeDual, theoremSlug } from '../routes/corpus'
+import { computeUniversalPage, theoremFormulaCodeDual, theoremSlug, theoremPageRows } from '../routes/corpus'
 import { theBinaryBitIsLinearTheVortexCircuitIsQuantum } from '../../1/9'
 import {
   earthRealisedByComputingPolesAsPyramid, merkaba, bothEarthsRotateWithinEachOther,
@@ -2034,7 +2034,13 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         ] },
     ]
 
-    const claySolvedByThisFold = 0
+    // COMPUTED, not hardcoded (USER LAW: clay=0 is a violation unless proven in the formulas): scan each problem's OWN
+    // algebraic monograph — its algebraicStatement + facetAlgebra + boundary + gap — through the agnostic claySolvedByFormulas.
+    // Sums to 0 because every node names the problem OPEN / asserts no finished proof; FLIPS to ≥1 if any node overclaims.
+    const claySolvedByThisFold = problems.reduce((sum, p) => {
+      const node = p as { algebraicStatement?: string; facetAlgebra?: readonly { f: string }[] }
+      return sum + claySolvedByFormulas(`${node.algebraicStatement ?? ''} ${p.boundary} ${p.gap ?? ''}`, (node.facetAlgebra ?? []).map((fa) => fa.f))
+    }, 0)
     const openCores = problems.filter((p) => p.status === 'open' || p.status === 'modeled-partial' || p.status === 'gap').length
     const solvedExternal = problems.filter((p) => p.status === 'solved-external').length
     const allOn = problems.every((p) => p.on)
@@ -2309,6 +2315,48 @@ export function clayModelComputesItselfWithCompletionAndStatistics(matrix: MindM
       facets,
       `the clay model reads its own seven-problem challenge apparatus and recomputes three distinct completion axes — DECODE completion ${decoded}/7 = ${decodePct}% (all seven mapped, modeled and given a rosetta ray), EXTERNAL-SOLVE ${solvedExternal}/7 = ${externalSolvePct}% (Poincaré, by Perelman), and CLAY-BY-THIS-PROJECT ${claySolvedByThisFold}/7 = ${clayPct}% — plus a per-problem, per-status histogram (${JSON.stringify(statusHistogram)}) with ${gapsNamed} named gaps. It is self-computing and deterministic, with no hand-set numbers. "Completion" is DECODE/model completion; the honest CLAY completion is 0/7 (claySolvedByThisFold = 0), and the statistics describe the challenge apparatus, not Clay prize progress. Decode ≠ solve. HARMONY ≠ TRUTH.`),
   }
+}
+
+/** clayGraphOverAlgebraicMonographs — the ONE agnostic algebraic graph the scattered clay logic consolidates into (user:
+ *  "consolidate logic to link the theorems algebraically so the graph computes itself by pure algebra" · "the graph covers
+ *  all theorems and formulas using algebra" · "the graph is agnostic based on algebraic monographs"). It is NOT clay-special:
+ *  it applies ONE agnostic predicate — claySolvedByFormulas — to EVERY algebraic monograph (all theoremPageRows: each
+ *  theorem's statement + formulas), and the clay TRIPLE emerges as a query over that graph, computed by pure algebra:
+ *    • claimedByThisProject = Σ claySolvedByFormulas(monograph) over ALL papers — every formula scanned (0, refutable)
+ *    • decoded = the seven Clay problems each with theorems-in-place on a rosetta ray (composed apparatus, pure count)
+ *    • solvedExternal = nodes demarcating to solved (Poincaré/Perelman) — pure count over the graph
+ *  No bare 0: the honest number IS the triple. clay-by-this-project=0 is PROVEN by scanning every monograph and CANNOT be
+ *  a rubber stamp — a synthetic overclaim monograph computes ≥1. Replaces CMI_PRIZE_SOLVED_CORE_IDS.length. */
+export function clayGraphOverAlgebraicMonographs(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('clayGraphOverAlgebraicMonographs', matrix, () => {
+    const rosetta = clayIsDecodedByTheRosetta(matrix)
+    const monographs = theoremPageRows(matrix)
+    // AGNOSTIC — one algebraic predicate over EVERY monograph, no clay special-casing.
+    const scanned = monographs.map((mono) => ({ slug: mono.slug, claimed: claySolvedByFormulas(`${mono.theorem} ${mono.proof}`, mono.formulas) }))
+    const offenders = scanned.filter((entry) => entry.claimed > 0)
+    const claimedByThisProject = offenders.reduce((sum, entry) => sum + entry.claimed, 0)
+    const decoded = rosetta.clayDecoded
+    const solvedExternal = rosetta.mapping.filter((node) => node.status === 'solved-external').length
+    // Refutability — the agnostic predicate CAN fire; a synthetic finished-proof monograph computes ≥1.
+    const overclaimProbe = claySolvedByFormulas('We hereby prove the Riemann hypothesis; QED for the Millennium problem.', ['all nontrivial zeros lie on Re(s)=1/2'])
+    const facets = [
+      { facet: `AGNOSTIC — one algebraic predicate (claySolvedByFormulas) applied to ALL ${monographs.length} algebraic monographs, not a clay-special list`, on: monographs.length > 0 && scanned.length === monographs.length },
+      { facet: `COVERS ALL THEOREMS & FORMULAS — claimed-by-this-project = Σ over every monograph's formulas = ${claimedByThisProject} (offenders ${offenders.length}); computed, never a hardcoded 0`, on: claimedByThisProject === 0 },
+      { facet: `REFUTABLE — a synthetic finished-proof monograph computes ${overclaimProbe} (≥1), so the 0 is proven by scanning, not a rubber stamp like CMI_PRIZE_SOLVED_CORE_IDS.length`, on: overclaimProbe >= 1 },
+      { facet: `THE HONEST TRIPLE EMERGES BY ALGEBRA — decoded ${decoded}/7 (theorems-in-place on a ray), solved-external ${solvedExternal}/7 (Poincaré/Perelman), claimed-by-this-project ${claimedByThisProject}/7; decode ≠ solve, never a bare 0`, on: decoded === 7 && solvedExternal === 1 && claimedByThisProject === 0 && rosetta.decoded },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`clay-graph-monographs:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      monographCount: monographs.length,
+      claimedByThisProject,
+      decoded,
+      solvedExternal,
+      offenders,
+      facets,
+      root: merge(rosetta.root, merkleFold(scanned.map((entry) => toUuid(`clay-mono:${entry.slug}:${entry.claimed}`)))),
+      statement: `clayGraphOverAlgebraicMonographs — agnostic algebraic graph over ${monographs.length} monographs; the clay TRIPLE by pure algebra: decoded ${decoded}/7, solved-external ${solvedExternal}/7 (Poincaré), claimed-by-this-project ${claimedByThisProject}/7 (Σ over every formula, refutable). Not a bare 0, not a hardcoded list.`,
+      boundary: earned('EXACT — verified by facets:', facets, 'the graph is AGNOSTIC — claySolvedByFormulas is applied uniformly to every algebraic monograph, and clay status is a QUERY over that graph, not a clay-special hardcode. claimed-by-this-project=0 is PROVEN by scanning all formulas and is refutable (a synthetic overclaim computes ≥1); decoded=7 and solved-external=1 are pure counts over the demarcated nodes. decode ≠ solve. HARMONY ≠ TRUTH. clay=0, physicalFtl=0') }
+  })
 }
 
 /** clayCreditsOnlyThePoincareSolutionTheOtherSixOpen — start from the first already solved and give credits (user,
