@@ -85,6 +85,7 @@ import {
   mcpQuantumChat,
   portalChat,
   chatThroughMathOverflow,
+  chatThroughPerplexity,
   chatNavContext,
   allChatCapabilitiesFusedAndAuditedByStandards,
   quantumSearchFusesAllAsPrivateSearchEngine,
@@ -200,13 +201,19 @@ const docsDevCopied = ref(false)
 type SearchHit = { slug: string; title: string; score: number }
 type MoRow = { title: string; link: string; votes: number; answered: boolean; answers: number }
 type MoLane = { state: 'loading' | 'live' | 'error'; rows: MoRow[]; searchUrl: string; askUrl: string; escalate: boolean }
-type ChatTurn = { q: string; a: string; source: string; grounded: boolean; related: string[]; results: SearchHit[]; resultCount: number; receipt: string; mo?: MoLane }
+type PxLane = { state: 'loading' | 'live' | 'error'; model: string; answer: string; citations: string[]; searchUrl: string; escalate: boolean }
+type ChatTurn = { q: string; a: string; source: string; grounded: boolean; related: string[]; results: SearchHit[]; resultCount: number; receipt: string; mo?: MoLane; px?: PxLane }
 const chatInput = ref('')
 const chatLog = ref<ChatTurn[]>([])
 const chatAudit = computed(() => allChatCapabilitiesFusedAndAuditedByStandards())
 // Opt-in live lane: OFF = nothing leaves the browser; ON = the query (only) goes to api.stackexchange.com (no key)
 // and MathOverflow's vote-ranked community threads ride under the local answer. Fetch at the EDGE; src computes the URL.
 const moLive = ref(false)
+// Opt-in Perplexity lane: BYO-key — the key lives ONLY in this browser (never persisted, never sent to src), and the
+// tokens are the user's own (billed to their Perplexity account). src computes the POST envelope; the EDGE (here)
+// composes `Authorization: Bearer <key>` and fetches. OFF or empty key = nothing leaves the browser.
+const pplxLive = ref(false)
+const pplxKey = ref('')
 function sendChat() {
   const prompt = chatInput.value.trim()
   if (!prompt) return
@@ -229,6 +236,10 @@ function sendChat() {
   }
   const lane = moLive.value ? chatThroughMathOverflow(prompt) : null // pure: computed URL + escalation, before any fetch
   if (lane) turn.mo = { state: 'loading', rows: [], searchUrl: lane.searchUrl, askUrl: lane.askUrl, escalate: lane.escalate }
+  // Perplexity: opt-in AND a key present. src computes the envelope + escalation here (pure); the fetch is below.
+  const key = pplxKey.value.trim()
+  const px = pplxLive.value && key ? chatThroughPerplexity(prompt) : null
+  if (px) turn.px = { state: 'loading', model: '', answer: '', citations: [], searchUrl: px.searchUrl, escalate: px.escalate }
   chatLog.value.unshift(turn)
   const live = chatLog.value[0]! // the reactive proxy — mutations from the fetch callbacks must go through it
   if (lane && live.mo) {
@@ -239,6 +250,19 @@ function sendChat() {
         if (live.mo) { live.mo.rows = snapshot.overflow.map((row) => ({ title: row.title, link: row.link, votes: row.votes, answered: row.answered, answers: row.answers })); live.mo.state = 'live' }
       })
       .catch(() => { if (live.mo) live.mo.state = 'error' })
+  }
+  if (px && live.px) {
+    // The EDGE composes the Authorization header from the user's key (never in src); src gave us url/method/body only.
+    fetch(px.request.url, { method: px.request.method, headers: { 'Content-Type': 'application/json', Authorization: `${px.request.authScheme} ${key}` }, body: px.request.body })
+      .then((res) => (res.ok ? res.json() : Promise.reject(new Error(String(res.status)))))
+      .then((body: Parameters<typeof chatThroughPerplexity>[1]) => {
+        const snapshot = chatThroughPerplexity(prompt, body)
+        if (live.px) {
+          if (snapshot.external) { live.px.model = snapshot.external.model; live.px.answer = snapshot.external.answer; live.px.citations = [...snapshot.external.citations]; live.px.state = 'live' }
+          else live.px.state = 'error'
+        }
+      })
+      .catch(() => { if (live.px) live.px.state = 'error' })
   }
   chatInput.value = ''
 }
@@ -1903,7 +1927,7 @@ function runTool(toolId: string) {
       <section id="in-chat-support">
         <h3>Private search + full in-chat support</h3>
         <p class="quantum-apps__meta">
-          A private search engine over the sealed corpus — BM25-ranked results + a deterministic answer, zero-token, no network egress by default. {{ chatAudit.capabilities.length }} chat capabilities audited · {{ chatAudit.related }} related discoveries per query. Opt-in live lane: MathOverflow (api.stackexchange.com, no key) — vote-ranked community threads ride under the local answer, and an unanswerable question escalates to mathoverflow.net.
+          A private search engine over the sealed corpus — BM25-ranked results + a deterministic answer, zero-token, no network egress by default. {{ chatAudit.capabilities.length }} chat capabilities audited · {{ chatAudit.related }} related discoveries per query. Opt-in live lanes: MathOverflow (api.stackexchange.com, no key) — vote-ranked community threads ride under the local answer, escalating to mathoverflow.net; and Perplexity (api.perplexity.ai, BYO-key) — an external LLM answering on your own tokens, the key held only in this browser, its citations labeled unverified. The local answer always leads.
         </p>
         <UiBadge v-bind="badgeProps(statusBadgeKind(chatAudit.supported))">
           {{ chatAudit.supported ? '✓ private' : '—' }} · BM25 · zero-token · no egress · deterministic
@@ -1915,6 +1939,10 @@ function runTool(toolId: string) {
           <label class="quantum-apps__meta quantum-apps__chat-mo-toggle">
             <input v-model="moLive" type="checkbox" /> + MathOverflow (live — sends the query to api.stackexchange.com)
           </label>
+          <label class="quantum-apps__meta quantum-apps__chat-mo-toggle">
+            <input v-model="pplxLive" type="checkbox" /> + Perplexity (BYO-key — your tokens; the key stays in this browser)
+          </label>
+          <input v-if="pplxLive" v-model="pplxKey" class="quantum-apps__input" type="password" autocomplete="off" placeholder="Perplexity API key (pplx-… — held only here, never stored)" />
         </form>
         <ul class="quantum-apps__facets">
           <li v-for="(turn, i) in chatLog" :key="turn.receipt + i" class="quantum-apps__chat-turn">
@@ -1943,8 +1971,24 @@ function runTool(toolId: string) {
                 The sealed corpus cannot rank this — escalate: <a :href="turn.mo.searchUrl" rel="noopener" target="_blank">search MathOverflow</a> · <a :href="turn.mo.askUrl" rel="noopener" target="_blank">ask it there</a> (community answers are the community's, CC BY-SA).
               </span>
             </template>
+            <template v-if="turn.px">
+              <span v-if="turn.px.state === 'loading'" class="quantum-apps__meta">Perplexity — asking on your key…</span>
+              <span v-else-if="turn.px.state === 'error'" class="quantum-apps__meta">Perplexity — unreachable (offline, bad key, or quota); the local answer above stands alone.</span>
+              <template v-else-if="turn.px.state === 'live'">
+                <span class="quantum-apps__meta">↳ Perplexity ({{ turn.px.model }}) — external LLM, your tokens: {{ turn.px.answer }}</span>
+                <ol v-if="turn.px.citations.length" class="quantum-apps__results">
+                  <li v-for="(cite, ci) in turn.px.citations" :key="cite + ci">
+                    <a :href="cite" rel="noopener" target="_blank">{{ cite }}</a>
+                  </li>
+                </ol>
+                <span class="quantum-apps__meta">Perplexity's answer is the external LLM's, not the portal's claim — its citations are UNVERIFIED (re-anchor to the primary record before trusting them).</span>
+              </template>
+              <span v-if="turn.px.state !== 'loading' && turn.px.escalate" class="quantum-apps__meta">
+                The sealed corpus cannot rank this — <a :href="turn.px.searchUrl" rel="noopener" target="_blank">open it in Perplexity</a>.
+              </span>
+            </template>
           </li>
-          <li v-if="!chatLog.length" class="quantum-apps__meta">No queries yet — search the sealed corpus above. Nothing leaves the browser unless you enable the MathOverflow lane.</li>
+          <li v-if="!chatLog.length" class="quantum-apps__meta">No queries yet — search the sealed corpus above. Nothing leaves the browser unless you enable the MathOverflow or Perplexity lane (Perplexity needs your own key — your tokens).</li>
         </ul>
       </section>
       <UiSeparator />
