@@ -472,7 +472,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
       keywords: ['rosetta', 'glagolitic', 'coprime', 'digit folders', 'seven star', 'motion', 'proof'],
       components: ['DigitMotion'] },
     {
-      slug: 'quantum-encryption',
+      slug: 'encryption',
       title: {
         en: 'Encrypt ↔ decrypt = foldPair recompute; demo RSA reverse ≤12-bit toys only',
         bg: 'Encrypt ↔ decrypt = foldPair преизчисление; demo RSA reverse само ≤12-битови играчки' },

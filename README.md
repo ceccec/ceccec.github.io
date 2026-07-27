@@ -404,7 +404,7 @@ The complete served surface, wired from ONE source (`servedRouteFamilies`) so th
 - `/digit-folders` — [en](https://ceccec.psg.bg/digit-folders) · [bg](https://ceccec.psg.bg/bg/digit-folders) · [cu](https://ceccec.psg.bg/gla/digit-folders)
 - `/dot-cube` — [en](https://ceccec.psg.bg/dot-cube) · [bg](https://ceccec.psg.bg/bg/dot-cube) · [cu](https://ceccec.psg.bg/gla/dot-cube)
 - `/seven-star-rosetta` — [en](https://ceccec.psg.bg/seven-star-rosetta) · [bg](https://ceccec.psg.bg/bg/seven-star-rosetta) · [cu](https://ceccec.psg.bg/gla/seven-star-rosetta)
-- `/quantum-encryption` — [en](https://ceccec.psg.bg/quantum-encryption) · [bg](https://ceccec.psg.bg/bg/quantum-encryption) · [cu](https://ceccec.psg.bg/gla/quantum-encryption)
+- `/encryption` — [en](https://ceccec.psg.bg/encryption) · [bg](https://ceccec.psg.bg/bg/encryption) · [cu](https://ceccec.psg.bg/gla/encryption)
 - `/quantum-tools` — [en](https://ceccec.psg.bg/quantum-tools) · [bg](https://ceccec.psg.bg/bg/quantum-tools) · [cu](https://ceccec.psg.bg/gla/quantum-tools)
 - `/quantum-trading-hub` — [en](https://ceccec.psg.bg/quantum-trading-hub) · [bg](https://ceccec.psg.bg/bg/quantum-trading-hub) · [cu](https://ceccec.psg.bg/gla/quantum-trading-hub)
 - `/research` — [en](https://ceccec.psg.bg/research) · [bg](https://ceccec.psg.bg/bg/research) · [cu](https://ceccec.psg.bg/gla/research)
@@ -413,7 +413,7 @@ The complete served surface, wired from ONE source (`servedRouteFamilies`) so th
 - `/offender-spec` — [en](https://ceccec.psg.bg/offender-spec) · [bg](https://ceccec.psg.bg/bg/offender-spec) · [cu](https://ceccec.psg.bg/gla/offender-spec)
 - `/hero-spawn-verify` — [en](https://ceccec.psg.bg/hero-spawn-verify) · [bg](https://ceccec.psg.bg/bg/hero-spawn-verify) · [cu](https://ceccec.psg.bg/gla/hero-spawn-verify)
 
-- Sitemap root: `7d435f60-f3ff-8b43-81ec-6113e0453f4b`
+- Sitemap root: `89064b79-9cfa-8013-830d-b2c523e21d48`
 
 ## The journal
 
@@ -427,7 +427,7 @@ npm run check:types  # the src/ core type-checks clean against tsconfig.json (ts
 npm run docs:build   # build, then seal: enforcement trinity (cross · fold · weave)
 ```
 
-The seal recomputes from src: forging one reported value means re-deriving the whole content-addressed structure to a different receipt (`d11b6efb`), so the address is the proof, not a signature over prose. The proof reproduces: clone the link and the whole structure recomputes.
+The seal recomputes from src: forging one reported value means re-deriving the whole content-addressed structure to a different receipt (`3bc67985`), so the address is the proof, not a signature over prose. The proof reproduces: clone the link and the whole structure recomputes.
 
 ## 6. Limitations
 
@@ -437,7 +437,7 @@ The seal recomputes from src: forging one reported value means re-deriving the w
 
 ## References
 
-- The model: `src/quantum/heaven/mind`. The sitemap root: `7d435f60-f3ff-8b43-81ec-6113e0453f4b`. The monograph-index root: `c689ddf8-4931-8a38-acd2-cbadbe0e4362`.
+- The model: `src/quantum/heaven/mind`. The sitemap root: `89064b79-9cfa-8013-830d-b2c523e21d48`. The monograph-index root: `c689ddf8-4931-8a38-acd2-cbadbe0e4362`.
 - Template root (the receipt of this monograph form): `c27823b4-9f2d-8a37-8e3e-b2748445e0a4`.
 
 ## Receipt

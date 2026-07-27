@@ -37,7 +37,7 @@ import { LOCALE_LINK, localePath, localeFromRoute, bulgarianFromEnglish, type Lo
 export const SITE_DOMAIN_SEED = [
   { id: 'tools', labelEn: 'Quantum tools', labelBg: 'Квантови инструменти', ray: 4, hub: 'apps', canonical: 'quantum-tools', aliases: ['efficiency-vote', 'offender-spec', 'hero-spawn-verify', 'name-entropy-verify', 'fusion-verify'] as const },
   { id: 'trading', labelEn: 'Trading', labelBg: 'Търговия', ray: 4, hub: 'apps', canonical: 'quantum-trading-hub', aliases: [] as const },
-  { id: 'encryption', labelEn: 'Encryption', labelBg: 'Криптиране', ray: 5, hub: 'frontier', canonical: 'quantum-encryption', aliases: [] as const },
+  { id: 'encryption', labelEn: 'Encryption', labelBg: 'Криптиране', ray: 5, hub: 'frontier', canonical: 'encryption', aliases: ['quantum-encryption'] as const },
   { id: 'theorems', labelEn: 'Theorem registry', labelBg: 'Теоремен регистър', ray: 5, hub: 'frontier', canonical: 'frontiers', aliases: [] as const },
   { id: 'research', labelEn: 'Research', labelBg: 'Изследвания', ray: 2, hub: 'explore', canonical: 'research', aliases: ['millennium-challenge'] as const },
   { id: 'learn', labelEn: 'Learn', labelBg: 'Обучение', ray: 3, hub: 'learn', canonical: 'learn', aliases: ['learn-developer', 'academy', 'school'] as const },
@@ -51,14 +51,15 @@ export const ROUTE_ALIASES: Record<string, string> = {
   school: 'learn',
   'learn-developer': 'learn',
   'millennium-challenge': 'research',
-  'fusion-verify': 'quantum-tools' }
+  'fusion-verify': 'quantum-tools',
+  'quantum-encryption': 'encryption' }
 
 // ── SEO: rename to match the most-searched term per covered area, wired to PUBLIC search APIs ─────────────────
 // The most-searched phrasing per area. This is the DETERMINISTIC FALLBACK / named lexicon (a snapshot of common search
 // intent); the live signal comes from the opt-in public-API adapter below. current = our slug, searched = the term.
 const SEO_LEXICON: readonly { area: string; current: string; searched: string }[] = [
   { area: 'quantum tools', current: 'quantum-tools', searched: 'quantum-computing' },
-  { area: 'encryption', current: 'quantum-encryption', searched: 'post-quantum-cryptography' },
+  { area: 'encryption', current: 'encryption', searched: 'post-quantum-cryptography' },
   { area: 'trading', current: 'quantum-trading-hub', searched: 'algorithmic-trading' },
   { area: 'physics frontiers', current: 'frontiers', searched: 'unsolved-problems-in-physics' },
   { area: 'cyber standards', current: 'eu-cyber-audit', searched: 'nis2-compliance' },
@@ -601,7 +602,7 @@ export const CONTENT_FOLDER_WAVE_SEED = [
   { id: 'model', path: '.vitepress/pages/model', role: 'model cards', kind: 'corpus' as const, emitter: 'ModelCardPages', domainId: null },
   { id: 'domain-tools', path: '/quantum-tools', role: 'tools canonical', kind: 'domain' as const, emitter: 'siteDomainRegistry', domainId: 'tools' as SiteDomainId },
   { id: 'domain-trading', path: '/quantum-trading-hub', role: 'trading canonical', kind: 'domain' as const, emitter: 'siteDomainRegistry', domainId: 'trading' as SiteDomainId },
-  { id: 'domain-encryption', path: '/quantum-encryption', role: 'encryption canonical', kind: 'domain' as const, emitter: 'siteDomainRegistry', domainId: 'encryption' as SiteDomainId },
+  { id: 'domain-encryption', path: '/encryption', role: 'encryption canonical', kind: 'domain' as const, emitter: 'siteDomainRegistry', domainId: 'encryption' as SiteDomainId },
   { id: 'domain-theorems', path: '/frontiers', role: 'theorem registry canonical', kind: 'domain' as const, emitter: 'siteDomainRegistry', domainId: 'theorems' as SiteDomainId },
   { id: 'domain-research', path: '/research', role: 'research canonical', kind: 'domain' as const, emitter: 'siteDomainRegistry', domainId: 'research' as SiteDomainId },
   { id: 'domain-learn', path: '/learn', role: 'learn canonical', kind: 'domain' as const, emitter: 'siteDomainRegistry', domainId: 'learn' as SiteDomainId },
