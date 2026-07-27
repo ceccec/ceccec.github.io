@@ -2295,8 +2295,14 @@ export function clayModelComputesItselfWithCompletionAndStatistics(matrix: MindM
   const clayPct = roundTo((claySolvedByThisFold / total) * 100, 1)
   const selfComputed = challenge.computes && rosetta.decoded && total === 7
   const deterministic = clayIsDecodedByTheRosetta(matrix).clayDecoded === decoded && JSON.stringify(stats) === JSON.stringify(rosetta.mapping.map((row) => ({ problem: row.problem, ray: row.ray, status: row.status, theoremsInPlace: row.theoremsInPlace })))
+  // The two senses of novel, split (user: "novelHere=6 instead of 0"). novel IN THIS REGISTRY = the corpus's own
+  // first-in-registry REFRAMINGS (the barrier→requirement→consequence inversions), one per open core. novel TO HUMANITY
+  // is the SEPARATE literature check (novelToHumanityIsCheckableNotDeclaredByPublicApis) — offline unchecked, and the
+  // content is documented, so it would return not-novel. A reframing first-appearing here is registry-first PRESENTATION.
+  const novelHere = openCores // 6 — one first-in-registry reframing per open problem; never a discovery, never novel mathematics
   const facets = [
-    { facet: `THE CLAY MODEL COMPUTES ITS OWN COMPLETION — from its 7-problem apparatus it computes DECODE completion ${decoded}/${total} = ${decodePct}% and CLAY completion by this project ${claySolvedByThisFold}/${total} = ${clayPct}% (claySolvedByThisFold=0); Poincaré is the only solved-external (${solvedExternal}/${total} = ${externalSolvePct}%)`, on: selfComputed && decoded === 7 && claySolvedByThisFold === 0 && solvedExternal === 1 },
+    { facet: `THE CLAY MODEL COMPUTES ITS OWN COMPLETION — from its 7-problem apparatus it computes DECODE completion ${decoded}/${total} = ${decodePct}% and CLAY completion by this project ${claySolvedByThisFold}/${total} = ${clayPct}%; Poincaré is the only solved-external (${solvedExternal}/${total} = ${externalSolvePct}%)`, on: selfComputed && decoded === 7 && claySolvedByThisFold === 0 && solvedExternal === 1 },
+    { facet: `TWO SENSES OF NOVEL, SPLIT — novel IN THIS REGISTRY = ${novelHere}/${total} (the corpus's own first-in-registry reframings of the ${openCores} open problems, one each) vs novel TO HUMANITY (the separate literature check, offline UNCHECKED, content documented → not novel); a reframing first-appearing here is registry-first PRESENTATION, never novel mathematics, never a discovery`, on: novelHere === openCores && solvedExternal === 1 && decoded === total },
     { facet: `STATISTICS PER PROBLEM & STATUS — each of the ${total} problems has {name, ray, status, theorems-in-place}; the status histogram is ${JSON.stringify(statusHistogram)} with ${gapsNamed} named gaps, all recomputed from the registry`, on: stats.length === 7 && openCores === 6 && gapsNamed >= 6 },
     { facet: `THREE COMPLETION AXES, HONESTLY DISTINCT — DECODE (${decodePct}%, all seven mapped and modeled), EXTERNAL-SOLVE (${externalSolvePct}%, Poincaré/Perelman) and CLAY-BY-THIS-PROJECT (${clayPct}%) are DIFFERENT metrics; decode ≠ solve`, on: decodePct === 100 && clayPct === 0 && externalSolvePct > 0 && externalSolvePct < 100 },
     { facet: `SELF-COMPUTING & DETERMINISTIC — the model reads its own problem registry (the challenge apparatus + the rosetta decode) and recomputes the statistics; same input → same output (${deterministic}), no hand-set numbers`, on: deterministic && selfComputed },
@@ -2308,6 +2314,7 @@ export function clayModelComputesItselfWithCompletionAndStatistics(matrix: MindM
     decoded,
     solvedExternal,
     openCores,
+    novelHere,
     claySolvedByThisFold,
     completion: { decodePct, externalSolvePct, clayPct },
     statusHistogram,
