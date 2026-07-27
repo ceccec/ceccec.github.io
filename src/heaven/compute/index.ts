@@ -1713,6 +1713,52 @@ export function chatThroughMathOverflow(prompt: string, items: readonly MathOver
     boundary: earned('EXACT — computed from the chat engine + the normalized snapshot:', facets, 'the fetch happens at the EDGE and only when the user opts in — src stays pure and the default chat keeps zero egress; MathOverflow content is the community\'s (CC BY-SA, attribution = the link), vote-ranked, no-key, quota-limited — real research-grade mathematics Q&A, NOT the portal\'s claims and NOT an oracle') }
 }
 
+/** researchAndDiscoverBeforeAnswering — the chat RESEARCHES and DISCOVERS whether the corpus genuinely covers a question
+ * before it answers (user, 2026-07-27: "research and discover before answering" · "start answering real questions"). The
+ * naive path answered on ANY lexical overlap (portalChatRanked.ranked = top.score>0), so an out-of-domain question
+ * retrieved a corpus doc that shared ONE word and passed it off as an answer. This fold RESEARCHES first
+ * (deepResearchChatTurn — the multi-hop crosslinked neighbourhood) then DISCOVERS coverage: the fraction of the
+ * question's DISTINCTIVE terms (len≥4, non-stopword) that actually appear in the researched neighbourhood. It answers
+ * ONLY when coverage clears half AND there is a ranked hit; below that it ESCALATES honestly ("the corpus does not
+ * know") instead of returning noise. Deterministic, zero-egress — the honest gate before any answer or live lane. */
+export function researchAndDiscoverBeforeAnswering(prompt: string, matrix: MindMatrix = buildMatrix()) {
+  const seed = portalChatRanked(prompt, matrix)
+  const research = deepResearchChatTurn(prompt, matrix)
+  const stop = new Set(['the', 'and', 'that', 'this', 'with', 'from', 'for', 'are', 'not', 'how', 'what', 'when', 'why', 'does', 'using', 'use', 'before', 'after', 'into', 'over', 'your', 'you', 'inside', 'some', 'appears'])
+  const questionTerms = [...new Set(prompt.toLowerCase().split(/[^a-z0-9]+/).filter((word) => word.length >= 4 && !stop.has(word)))]
+  const seedText = typeof seed.answer === 'string' ? seed.answer : String((seed.answer as { answer?: string }).answer ?? '')
+  // Coverage over the top result's FULL text (theorem + states), not just terse titles — else a genuine in-domain hit
+  // (whose title is short) under-scores and false-escalates. The neighbourhood titles add the crosslinked context.
+  const topAtom = THEOREM_ATOM_SEED.find((atom) => atom.provedBy === seed.source)
+  const topFull = topAtom ? `${topAtom.theorem} ${topAtom.states}` : seedText
+  const researched = `${topFull} ${research.neighborhood.map((neighbour) => neighbour.title).join(' ')}`.toLowerCase()
+  const coveredTerms = questionTerms.filter((term) => researched.includes(term))
+  const coverage = questionTerms.length ? coveredTerms.length / questionTerms.length : 0
+  const COVERAGE_MIN = 1 / 2 // at least half the question's DISTINCTIVE terms must live in the researched neighbourhood
+  const genuinelyCovers = seed.ranked && coverage >= COVERAGE_MIN
+  const escalate = !genuinelyCovers
+  const facets = [
+    { facet: `RESEARCH FIRST — the answer path runs deepResearchChatTurn (a ${research.neighborhood.length}-fold multi-hop neighbourhood) before deciding, not a single top-1 hit`, on: research.neighborhood.length > 0 },
+    { facet: `DISCOVER COVERAGE — ${coveredTerms.length}/${questionTerms.length} of the question's DISTINCTIVE terms appear in the researched neighbourhood (coverage ${(coverage * 100).toFixed(0)}%); measured over distinctive words, so one shared common word cannot pass as an answer`, on: questionTerms.length > 0 },
+    { facet: `ANSWER ONLY IF GENUINELY COVERED — genuinelyCovers=${genuinelyCovers} needs coverage ≥ 50% AND a ranked hit; otherwise escalate=${escalate} hands the question off instead of returning lexical noise`, on: escalate === !genuinelyCovers && genuinelyCovers === (seed.ranked && coverage >= COVERAGE_MIN) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`research-discover:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    prompt,
+    coverage,
+    coveredTerms,
+    questionTerms,
+    ranked: seed.ranked,
+    genuinelyCovers,
+    escalate,
+    answer: genuinelyCovers ? seed.answer : null,
+    researchTheme: research.synthesis,
+    facets,
+    root: merge(matrix.root, toUuid(`research-discover:${prompt}:${genuinelyCovers}`)),
+    statement: `researchAndDiscoverBeforeAnswering — coverage ${(coverage * 100).toFixed(0)}% (${coveredTerms.length}/${questionTerms.length} distinctive terms), genuinelyCovers=${genuinelyCovers}, escalate=${escalate}. Research (multi-hop) then discover (coverage) before answering.`,
+    boundary: earned('EXACT — computed from the research neighbourhood + coverage:', facets, 'the honest gate before any answer: research the multi-hop neighbourhood, discover whether the question\'s distinctive terms are genuinely covered, and answer only if they are — otherwise escalate. Deterministic BM25 over the sealed corpus, zero-egress; it does not fabricate an answer for a question the corpus does not cover. HARMONY ≠ TRUTH.') }
+}
+
 /** chatThroughStackOverflow — the chat answers programming questions through stackoverflow.com (user, 2026-07-27:
  * "improve in chat so https://stackoverflow.com/questions have their answers"). Same lane as MathOverflow, site axis
  * fixed to stackoverflow: the chat stays LOCAL FIRST (portalChatRanked BM25 over the sealed corpus, zero egress), and
@@ -1734,13 +1780,17 @@ export function chatThroughStackOverflow(prompt: string, items: readonly MathOve
       answers: Number(raw.answer_count ?? 0),
       tags: [...(raw.tags ?? [])].slice(0, 3),
       receipt: toUuid(`stackoverflow:${raw.question_id}:${raw.link}:${raw.score}`) }))
-  const escalate = !local.ranked // the sealed corpus cannot answer → hand the question to the community
+  // ESCALATE by RESEARCH + DISCOVERY, not the too-loose ranked>0: research the multi-hop neighbourhood and escalate
+  // unless the question's DISTINCTIVE terms are genuinely covered — so an out-of-domain question is handed off, never
+  // answered with a doc that merely shares one common word.
+  const discovery = researchAndDiscoverBeforeAnswering(prompt, matrix)
+  const escalate = discovery.escalate
   const answeredRows = overflow.filter((row) => row.answered).length
   const facets = [
     { facet: `LOCAL FIRST — the deterministic BM25 answer over the sealed corpus computes with zero egress before any live lane (answer present, via ${local.ranked ? 'ranked corpus' : 'seed-model fallback'})`, on: String(local.answer).length > 0 },
     { facet: `THE QUERY URL IS COMPUTED — src derives the api.stackexchange.com search URL from the prompt (https, site=stackoverflow, prompt encoded); the EDGE fetches it, src never fetches`, on: url.startsWith(`${MATHOVERFLOW_API}?`) && url.includes('site=stackoverflow') && url.includes(encodeURIComponent(prompt.trim())) },
     { facet: `QUESTIONS GET THEIR ANSWERS, LABELED — ${overflow.length} rows each link into ${STACKOVERFLOW_SITE}, ${answeredRows} carry an accepted answer, and each keeps votes + answered flag + content-address, so a community answer is the COMMUNITY's (ranked by ITS votes), never the portal's claim`, on: overflow.every((row) => row.link.startsWith(`${STACKOVERFLOW_SITE}/`) && isUuid(row.receipt)) },
-    { facet: `ESCALATION IS HONEST — escalate=${escalate} COMPUTES as ranked=false, and the computed search/ask URLs hand exactly this question to stackoverflow.com instead of fabricating an answer`, on: escalate === !local.ranked && stackOverflowUrl('search', prompt) === `${STACKOVERFLOW_SITE}/search?q=${encodeURIComponent(prompt.trim())}` },
+    { facet: `ESCALATION IS RESEARCHED — escalate=${escalate} COMPUTES from research+coverage (the corpus covers ${(discovery.coverage * 100).toFixed(0)}% of the question's distinctive terms; below 50% ⟹ escalate), and the computed search/ask URLs hand exactly this question to stackoverflow.com instead of returning a lexical-noise answer`, on: escalate === discovery.escalate && stackOverflowUrl('search', prompt) === `${STACKOVERFLOW_SITE}/search?q=${encodeURIComponent(prompt.trim())}` },
   ].map((entry) => ({ ...entry, receipt: toUuid(`chat-stackoverflow:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
