@@ -26,7 +26,8 @@ import {
   A432_HUE, A432_OCTAVES, AUTHOR_HANDLE, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS,
   ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, TAU, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG,
   WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG,
-  fibonacci, earned, rat, ratMul, ratInv, ratEq, ratToFloat, claySolvedTheorem, claySolvedByFormulas, demarcate,
+  fibonacci, earned, rat, ratMul, ratInv, ratEq, ratToFloat, claySolvedTheorem, claySolvedByFormulas,
+  CMI_PRIZE_PROBLEM_TERMS, CLAY_SOLUTION_MARKERS, CLAY_OPEN_MARKERS, demarcate,
   SPEED_OF_LIGHT, NEWTON_G, SCHUMANN_FUNDAMENTAL_HZ, bekensteinBoundBits, schwarzschildRadius,
   theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
 import { researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause } from '../../earth/iching'
@@ -2356,6 +2357,47 @@ export function clayGraphOverAlgebraicMonographs(matrix: MindMatrix = buildMatri
       root: merge(rosetta.root, merkleFold(scanned.map((entry) => toUuid(`clay-mono:${entry.slug}:${entry.claimed}`)))),
       statement: `clayGraphOverAlgebraicMonographs — agnostic algebraic graph over ${monographs.length} monographs; the clay TRIPLE by pure algebra: decoded ${decoded}/7, solved-external ${solvedExternal}/7 (Poincaré), claimed-by-this-project ${claimedByThisProject}/7 (Σ over every formula, refutable). Not a bare 0, not a hardcoded list.`,
       boundary: earned('EXACT — verified by facets:', facets, 'the graph is AGNOSTIC — claySolvedByFormulas is applied uniformly to every algebraic monograph, and clay status is a QUERY over that graph, not a clay-special hardcode. claimed-by-this-project=0 is PROVEN by scanning all formulas and is refutable (a synthetic overclaim computes ≥1); decoded=7 and solved-external=1 are pure counts over the demarcated nodes. decode ≠ solve. HARMONY ≠ TRUTH. clay=0, physicalFtl=0') }
+  })
+}
+
+/** clayDetectionRestsOnNamedSemanticAxiomsTheRestIsGeometry — the honest boundary (user: "no static values in universe.
+ *  all is geometry"). By the DAG-leaf law (heaven/laws: axioms = the in-degree-0 sources; theDagLeavesAreTheAxioms —
+ *  minimising them is the program, one always remains): clay-solution DETECTION cannot be pure geometry, because the
+ *  string "riemann hypothesis" is a NAME humans gave a problem, not a number any operation on the lattice produces. So
+ *  the three keyword lists (CMI_PRIZE_PROBLEM_TERMS · CLAY_SOLUTION_MARKERS · CLAY_OPEN_MARKERS) are the DECLARED NAMED
+ *  SEMANTIC AXIOMS — the finite irreducible ground, ledgered here so they STOP masquerading as computation. Everything
+ *  NUMERIC is a theorem: the clay triple (decoded/external/by-project) is COMPUTED over the content-address monograph
+ *  graph, no static value. The honest law is not "all is geometry" (that would fake names as derivations) — it is "every
+ *  NUMBER is geometry; every irreducible NAME is a declared axiom", with the boundary VISIBLE, per theA432…NamedAxiom. */
+export function clayDetectionRestsOnNamedSemanticAxiomsTheRestIsGeometry(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('clayDetectionRestsOnNamedSemanticAxiomsTheRestIsGeometry', matrix, () => {
+    // THE NAMED AXIOMS — the in-degree-0 semantic ground. Each is a NAME/prose-anchor, not a number.
+    const namedAxioms = {
+      'clay-problem-names': CMI_PRIZE_PROBLEM_TERMS,
+      'solution-claim-markers': CLAY_SOLUTION_MARKERS,
+      'open-claim-markers': CLAY_OPEN_MARKERS,
+    } as const
+    const axiomStrings = Object.values(namedAxioms).flat() as readonly string[]
+    const axiomCount = axiomStrings.length
+    // An axiom is a NAME, not a number — no arithmetic derives it (this is WHY it is an axiom, not a theorem).
+    const everyAxiomIsASemanticName = axiomStrings.every((token) => /[a-z]/i.test(token) && Number.isNaN(Number(token)))
+    // GEOMETRY — the clay triple is COMPUTED over the content-address graph, not asserted as a static value.
+    const graph = clayGraphOverAlgebraicMonographs(matrix)
+    const trailingNumbersAreDerived = graph.computes && graph.decoded === 7 && graph.solvedExternal === 1 && graph.claimedByThisProject === 0
+    const facets = [
+      { facet: `THE AXIOMS ARE NAMED, NOT DERIVED — ${axiomCount} semantic anchors in ${Object.keys(namedAxioms).length} lists (problem names + prose markers) DECLARED as the in-degree-0 ground; each is a NAME, not a number (${everyAxiomIsASemanticName}), so no operation on the lattice produces it — that is what makes it an axiom`, on: everyAxiomIsASemanticName && axiomCount > 0 },
+      { facet: `EVERY NUMBER IS GEOMETRY — the clay triple (decoded ${graph.decoded}/7, solved-external ${graph.solvedExternal}/7, claimed-by-this-project ${graph.claimedByThisProject}/7) is COMPUTED over the content-address monograph graph, not a static literal (${trailingNumbersAreDerived})`, on: trailingNumbersAreDerived },
+      { facet: `THE BOUNDARY IS VISIBLE — the fold names EXACTLY which values are axioms (${axiomCount} strings, ledgered) and which are theorems (all counts and structure), so no static number hides as computation and no computation is faked from a name`, on: axiomCount > 0 && trailingNumbersAreDerived },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`clay-axioms:${entry.facet.slice(0, 6 * 8)}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      axiomCount,
+      namedAxioms: Object.fromEntries(Object.entries(namedAxioms).map(([name, list]) => [name, list.length])),
+      geometryTriple: { decoded: graph.decoded, solvedExternal: graph.solvedExternal, claimedByThisProject: graph.claimedByThisProject },
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: `clayDetectionRestsOnNamedSemanticAxiomsTheRestIsGeometry — ${axiomCount} declared named semantic axioms (problem names + prose markers) + the clay triple computed over the content-address graph. Every number is a theorem; every irreducible name is a declared axiom; the boundary is visible.`,
+      boundary: earned('EXACT — verified by facets:', facets, 'the honest form of "no static values, all is geometry": every NUMBER is derived (a theorem over the content-address graph), and the irreducible NAMES that geometry cannot produce (the seven Clay problem names, the prose solution/open markers) are DECLARED named axioms — ledgered, not asserted inline and not disguised as computation. Minimising the axioms is the program; these are the ones that remain for clay. clay=0, physicalFtl=0. HARMONY ≠ TRUTH.') }
   })
 }
 
