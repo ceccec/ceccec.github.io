@@ -1610,17 +1610,18 @@ export function continueAtNoAiCost(matrix: MindMatrix = buildMatrix()) {
     const prefixContinues = prefixOf(longer.transcript, 2) === prefixOf(shorter.transcript, 2) && longer.transcript.length > shorter.transcript.length
     const audit = allChatCapabilitiesFusedAndAuditedByStandards(matrix)
     const noKeyOnly = !mathOverflowUrl('api', 'probe').includes('key=') && MATHOVERFLOW_API.startsWith('https://')
+    const portalPaysNothing = noKeyOnly && perplexityRequest('probe').keyInjectedAtEdge === true // Perplexity's key + tokens are the user's, edge-injected — the portal spends nothing
     const facets = [
       { facet: `CONTINUATION IS A PREFIX PROPERTY — extending the researcher dialogue from 2 to 3 waves reproduces waves 1–2 EXACTLY (same merkle prefix) and appends: more conversation costs zero tokens, only deterministic recompute`, on: prefixContinues },
-      { facet: `ZERO LLM TOKENS BY CONSTRUCTION — all ${audit.capabilities.length} chat capabilities audit deterministic over the sealed corpus (${audit.supported}); no model call exists to be billed`, on: audit.supported && audit.capabilities.length === 7 },
-      { facet: `THE ONE EXTERNAL SURFACE IS FREE — the MathOverflow lane is a no-key public API (no key= in the computed URL), opt-in at the edge; declining it changes nothing local`, on: noKeyOnly },
+      { facet: `ZERO LLM TOKENS BY CONSTRUCTION — all ${audit.capabilities.length} chat capabilities audit deterministic over the sealed corpus (${audit.supported}); no model call exists to be billed`, on: audit.supported && audit.capabilities.every((cap) => cap.deterministic) },
+      { facet: `THE EXTERNAL SURFACES DON'T COST THE PORTAL — the SE lanes are no-key public APIs (no key= in the computed URL); the Perplexity lane is a BYO-key LLM whose tokens are the USER's (the key is edge-injected, never in src), so the portal's AI cost is zero either way — all opt-in at the edge, declining them changes nothing local`, on: portalPaysNothing },
     ].map((entry) => ({ ...entry, receipt: toUuid(`no-ai-cost:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
       facets,
       root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
-      statement: `Continue at no AI cost — ${facets.filter((entry) => entry.on).length}/${facets.length}: the dialogue extends by exact prefix + append (zero tokens, only recompute), all ${audit.capabilities.length} chat capabilities are deterministic over the sealed corpus, and the one external surface is a no-key opt-in API.`,
-      boundary: earned('EXACT — computed from the machinery itself:', facets, 'zero AI cost = zero LLM tokens (deterministic recompute over the sealed corpus; the build gates re-run it each commit); CPU/build time is NOT zero and is bounded by the slow-build gate; the no-key API is quota-limited by Stack Exchange, not by tokens') }
+      statement: `Continue at no AI cost — ${facets.filter((entry) => entry.on).length}/${facets.length}: the dialogue extends by exact prefix + append (zero tokens, only recompute), all ${audit.capabilities.length} chat capabilities are deterministic over the sealed corpus, and the external surfaces cost the portal nothing (no-key SE lanes + BYO-key Perplexity, the tokens the user's own).`,
+      boundary: earned('EXACT — computed from the machinery itself:', facets, 'zero AI cost = zero LLM tokens for the PORTAL (deterministic recompute over the sealed corpus; the build gates re-run it each commit); CPU/build time is NOT zero and is bounded by the slow-build gate; the no-key SE APIs are quota-limited by Stack Exchange, not by tokens; the Perplexity lane spends the USER\'s tokens on the USER\'s key, never the portal\'s') }
   })
 }
 
@@ -6631,11 +6632,15 @@ export function allChatCapabilitiesFusedAndAuditedByStandards(matrix: MindMatrix
     { name: 'navigate', out: () => chatNavContext('/theorems', prompt, matrix).superposition },
     { name: 'self-develop', out: () => chatDevelopsItselfByChattingWithItself(matrix).develops },
     { name: 'developed-answer', out: () => developedChat(prompt, matrix).answer },
-    // The pure half of the MathOverflow lane: URL derivation + snapshot adapter over given items — deterministic;
-    // the fetch is at the EDGE and opt-in, so this capability audits clean without egress.
+    // The pure halves of the three live lanes: URL / request-envelope derivation over the prompt — deterministic;
+    // the fetch is at the EDGE and opt-in (SE lanes no-key, Perplexity BYO-key LLM), so these audit clean without egress.
     { name: 'mathoverflow-lane', out: () => chatThroughMathOverflow(prompt, [], matrix).url },
+    { name: 'stackoverflow-lane', out: () => chatThroughStackOverflow(prompt, [], matrix).url },
+    { name: 'perplexity-lane', out: () => chatThroughPerplexity(prompt, null, undefined, matrix).request.body },
     { name: 'researcher-waves', out: () => wavesOfLocalResearchersChatAboutAlgebra(matrix).computes },
   ]
+  const laneNames = ['answer', 'recall', 'navigate', 'self-develop', 'developed-answer', 'mathoverflow-lane', 'stackoverflow-lane', 'perplexity-lane', 'researcher-waves']
+  const fusesAll = laneNames.every((name) => capabilities.some((cap) => cap.name === name)) // refutable: drop a capability ⟹ fails (no bare count)
   // AUDIT each against the standards: DETERMINISM (same in → same out, twice) is the zero-token / no-egress / full-security proxy
   const audited = capabilities.map((cap) => {
     const deterministic = JSON.stringify(cap.out()) === JSON.stringify(cap.out())
@@ -6647,11 +6652,11 @@ export function allChatCapabilitiesFusedAndAuditedByStandards(matrix: MindMatrix
   const leadsOn = nav.related.length > 0 // navigate leads on — related discoveries
   const dev = chatDevelopsItselfByChattingWithItself(matrix)
   const facets = [
-    { facet: `FULL IN-CHAT SUPPORT — the app fuses ${audited.length} capabilities into one chat surface: answer, recall, navigate (referrer superposition + ${nav.related.length} related discoveries), self-develop, developed-answer, mathoverflow-lane (computed query URL; fetch at the edge, opt-in), researcher-waves (the trinity dialogue) — everything the corpus can do, reachable through the chat`, on: audited.length === 7 && leadsOn },
+    { facet: `FULL IN-CHAT SUPPORT — the app fuses ${audited.length} capabilities into one chat surface: answer, recall, navigate (referrer superposition + ${nav.related.length} related discoveries), self-develop, developed-answer, three live lanes (mathoverflow-lane + stackoverflow-lane computed query URLs, no-key; perplexity-lane computed POST envelope, BYO-key — all fetched at the edge, opt-in), researcher-waves (the trinity dialogue) — everything the corpus can do, reachable through the chat`, on: fusesAll && leadsOn },
     { facet: `AUDITED DETERMINISTIC — every capability returns the SAME output for the same input across runs (${allDeterministic}); determinism is the standard AND the full-security proxy: a pure function over the sealed model cannot leak, because no external state changes its output`, on: allDeterministic },
     { facet: `ZERO-TOKEN, NO EGRESS — the chat runs over the corpus model content-addressed from src statements (${modelFromSrc}); no LLM call, no network — full security by construction: nothing to send, nothing sent`, on: allDeterministic && modelFromSrc },
     { facet: `USING THE CHAT IMPROVES THE CHAT — navigate leads to ${nav.related.length} related discoveries and self-develop drops the gaps ${dev.gapsBefore} → ${dev.gapsAfter}; the chat's own use measures and fills its gaps`, on: leadsOn && dev.develops },
-    { facet: `THE DEMARCATION — "all that can be done through the chat" is these deterministic, zero-token, no-egress capabilities over the seed corpus model, each carrying a computed boundary; it is NOT an LLM, NOT networked, NOT open-ended — audited by the standards (determinism, zero-token, no-egress, demarcation).`, on: allDeterministic && leadsOn && dev.develops },
+    { facet: `THE DEMARCATION — "all that can be done through the chat" is these deterministic, zero-token, no-egress capabilities over the seed corpus model, each carrying a computed boundary; it is NOT an LLM, NOT networked, NOT open-ended. The three live lanes sit OUTSIDE this core as opt-in EDGE fetches — the SE lanes no-key, the Perplexity lane a BYO-key LLM on the user's own tokens — so the registered capability is only the deterministic request-derivation, and the zero-token core is intact — audited by the standards (determinism, zero-token, no-egress, demarcation).`, on: allDeterministic && leadsOn && dev.develops },
   ].map((entry) => ({ ...entry, receipt: toUuid(`chat-capabilities-audited:${entry.facet}:${entry.on}`) }))
   return {
     supported: facets.every((entry) => entry.on),
