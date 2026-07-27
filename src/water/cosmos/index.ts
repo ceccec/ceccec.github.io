@@ -14,7 +14,7 @@ import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
 import { memoByRoot, toUuid, merge, merkleFold, sealFacets, roundTo, prng, isUuid, gcd, phaseDrift, foldPair, digitalRoot, VORTEX_SEQUENCE, qubits, applyGate, probabilities, measure, GATES } from '../../0'
 import { MAJOR_MOONS } from '../../3/7'
-import { CRITICAL_MAGNETIC_FIELD_T, MOND_ACCELERATION_A0, OMEGA_BARYON, qcdMassFractionOfProton, ratStr, rotationGate, phaseGate } from '../../9/1'
+import { CRITICAL_MAGNETIC_FIELD_T, MOND_ACCELERATION_A0, OMEGA_BARYON, qcdMassFractionOfProton, ratStr, rotationGate, phaseGate, tkIsPrime } from '../../9/1'
 import { casimirEnergyPerArea, HUBBLE_CONSTANT_LOCAL } from '../../6/4'
 import { OMEGA_DARK_MATTER, unruhTemperature } from '../../5/5'
 import { DARK_ENERGY_EOS_W, ELECTRONVOLT, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, NEWTON_G, SPEED_OF_LIGHT, otuPerMin } from '../../3/7'
@@ -3002,9 +3002,8 @@ export function theFirmwareUpgradeMakesDigitalAnalogTheApparatusSimulatesMillenn
 export function piAndPrimesProveTheProvableTheUnprovableIsRecognisedByNearInfiniteNegativeKnowledgeNotMadeProvable(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('piAndPrimesProveTheProvableTheUnprovableIsRecognisedByNearInfiniteNegativeKnowledgeNotMadeProvable', matrix, () => {
     // 1 — π AND PRIMES prove the provable: the Euler product over primes approaches ζ(2)=π²/6 (the ζ–prime link)
-    const isPrime = (n: number) => { for (let d = 2; d * d <= n; d += 1) if (n % d === 0) return false; return n > 1 }
     const primes: number[] = []
-    for (let n = 2; primes.length < 6; n += 1) if (isPrime(n)) primes.push(n) // first 6 primes, computed
+    for (let n = 2; primes.length < 6; n += 1) if (tkIsPrime(n)) primes.push(n) // first 6 primes, computed
     const eulerPartial = roundTo(primes.reduce((acc, p) => acc * (p * p) / (p * p - 1), 1), 5) // → ζ(2)
     const zeta2 = ((TAU / 2) ** 2) / 6
     const piPrimesProve = eulerPartial < zeta2 && zeta2 - eulerPartial < 1 / (2 * 5) // approaches ζ(2)=π²/6

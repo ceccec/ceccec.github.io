@@ -1,7 +1,7 @@
 import { earned } from '../../3/7'
 // ☰ Qián · Heaven — the laws: heal/create/thrive by default, save-every-step mandatory, the zero-token policy, one-word-naming gravity, no hardcoded config, minimum files maximum features, any force fights itself. Barrel-routed; folds.ts back-imports the gate folds.
 import { TAU } from '../../3/7'
-import { noCloningWitness } from '../../9/1'
+import { noCloningWitness, tkIsPrime } from '../../9/1'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, isPerfectlySelfModeling } from '../compute'
 import { selfHealing } from '../../mountain/geometry'
@@ -1137,9 +1137,7 @@ export function theAlgebraicTheoremGateAnIdentityMustHoldOverAComputedRangeNotHa
 // (x⁻¹)⁻¹ = x. This is the algebra the session's algebraic theorems live in — GF(256) (the AES S-box IS the
 // multiplicative inverse), ℤ[√2] units (Pell), ℚ (the 1/x operator). Grounded in exact inversion, the rest computes.
 export function theTheoremsTraceToTheInvertedAlgebraEveryNonzeroHasAnExactInverse(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('theTheoremsTraceToTheInvertedAlgebraEveryNonzeroHasAnExactInverse', matrix, () => {
-    const isPrime = (n: number) => { for (let d = 2; d * d <= n; d += 1) if (n % d === 0) return false; return n > 1 }
-    let p = 2; for (let n = 2, c = 0; c < 6; n += 1) if (isPrime(n)) { p = n; c += 1 } // the 6th prime = 13, computed
+  return memoByRoot('theTheoremsTraceToTheInvertedAlgebraEveryNonzeroHasAnExactInverse', matrix, () => {    let p = 2; for (let n = 2, c = 0; c < 6; n += 1) if (tkIsPrime(n)) { p = n; c += 1 } // the 6th prime = 13, computed
     const modpow = (base: bigint, exp: bigint, m: bigint) => { let r = 1n; base %= m; while (exp > 0n) { if (exp & 1n) r = r * base % m; base = base * base % m; exp >>= 1n } return r }
     const inv = (x: number) => Number(modpow(BigInt(x), BigInt(p - 2), BigInt(p))) // Fermat inverse x^(p−2) mod p
     // 1 — the INVERTED ALGEBRA: every nonzero x in GF(p) has an EXACT multiplicative inverse (x·x⁻¹ ≡ 1)

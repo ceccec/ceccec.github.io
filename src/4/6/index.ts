@@ -4,7 +4,7 @@
 import { phase, slip } from '../../6/4'
 import { TAU, PHI, DIMENSION_GATES, A432_OCTAVES, BOLTZMANN, FOLDED_CENSUS, NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT, claySolvedTheorem, earned } from '../../3/7'
 import { foldPair, merkleFold, toUuid, referralAddress, memoByRoot, sealFacets, merge, gcd, lcm, digitalRoot, ICHING_NUMBERS, applyGate, GATES, probabilities, roundTo, sha256MerkleProof } from '../../0'
-import { sealFold } from '../../9/1'
+import { sealFold, tkIsPrime } from '../../9/1'
 // MAX_TAMPERING_COST_PRINCIPLE is hosted in the zero-import leaf src/3/7 (re-exported below) so it initialises
 // before any cyclic consumer barrel runs — removing the SSR-bundle TDZ; the public path src/4/6 is unchanged.
 export { MAX_TAMPERING_COST_PRINCIPLE } from '../../3/7'
@@ -223,13 +223,11 @@ export function discoveredTheoremsWaveFiftyFour(matrix: { root: string } = { roo
     const divisors = (n: number) => { const d: number[] = []; for (let i = 1; i <= n; i += 1) if (n % i === 0) d.push(i); return d }
     const primeExps = (n: number) => { const e: Record<number, number> = {}; let m = n; for (let p = 2; p * p <= m; p += 1) while (m % p === 0) { e[p] = (e[p] || 0) + 1; m /= p } if (m > 1) e[m] = (e[m] || 0) + 1; return e }
     const mu = (n: number) => { if (n === 1) return 1; const e = primeExps(n); let sq = false, c = 0; for (const p in e) { if (e[p]! > 1) sq = true; c += 1 } return sq ? 0 : ((c % 2) ? -1 : 1) }
-    const isPrime = (p: number) => { if (p < 2) return false; for (let d = 2; d * d <= p; d += 1) if (p % d === 0) return false; return true }
-
     // W1 · EULER'S φ IS MULTIPLICATIVE — φ(mn) = φ(m)φ(n) for gcd(m,n)=1, and φ(p^k) = p^k − p^{k−1} on
     // prime powers; verified over every coprime pair m,n ≤ 100 and every prime power p^k ≤ 10000.
     let phiMultiplicative = true
     for (let m = 1; m <= lim; m += 1) for (let n = 1; n <= lim; n += 1) if (gcd(m, n) === 1 && phi(m * n) !== phi(m) * phi(n)) phiMultiplicative = false
-    for (let p = 2; p <= 4 * 5; p += 1) { if (!isPrime(p)) continue; for (let k = 1; p ** k <= lim * lim; k += 1) if (phi(p ** k) !== p ** k - p ** (k - 1)) phiMultiplicative = false }
+    for (let p = 2; p <= 4 * 5; p += 1) { if (!tkIsPrime(p)) continue; for (let k = 1; p ** k <= lim * lim; k += 1) if (phi(p ** k) !== p ** k - p ** (k - 1)) phiMultiplicative = false }
 
     // W2 · GAUSS'S DIVISOR SUM — Σ_{d|n} φ(d) = n: the totients of the divisors partition the n residues
     // by their gcd with n; verified for every n ≤ 100 (the identity that inverts to give φ from μ in W4).
@@ -267,25 +265,23 @@ export function discoveredTheoremsWaveFiftyFive(matrix: { root: string } = { roo
   return sealFold('discoveredTheoremsWaveFiftyFive', 'discovered-theorems-fifty-five', matrix, () => {
     const bound = 100 * 100
     const sigma = (n: number) => { let s = 0; for (let d = 1; d * d <= n; d += 1) if (n % d === 0) { s += d; if (d !== n / d) s += n / d } return s }
-    const isPrime = (p: number) => { if (p < 2) return false; for (let d = 2; d * d <= p; d += 1) if (p % d === 0) return false; return true }
-
     // W1 · σ IS MULTIPLICATIVE, COMPOUNDING on wave 54 — σ(mn) = σ(m)σ(n) for gcd(m,n)=1 with σ(p^k) =
     // (p^{k+1}−1)/(p−1) on prime powers; verified over every coprime pair m,n ≤ 100 and every prime
     // power p^k ≤ 10000 (the same multiplicative structure the totient obeys, now for the divisor sum).
     let sigmaMultiplicative = true
     for (let m = 1; m <= 100; m += 1) for (let n = 1; n <= 100; n += 1) if (gcd(m, n) === 1 && sigma(m * n) !== sigma(m) * sigma(n)) sigmaMultiplicative = false
-    for (let p = 2; p <= 4 * 5; p += 1) { if (!isPrime(p)) continue; for (let k = 1; p ** k <= bound; k += 1) if (sigma(p ** k) !== (p ** (k + 1) - 1) / (p - 1)) sigmaMultiplicative = false }
+    for (let p = 2; p <= 4 * 5; p += 1) { if (!tkIsPrime(p)) continue; for (let k = 1; p ** k <= bound; k += 1) if (sigma(p ** k) !== (p ** (k + 1) - 1) / (p - 1)) sigmaMultiplicative = false }
 
     // W2 · EUCLID'S CONSTRUCTION — if 2^p−1 is a Mersenne prime then N = 2^{p−1}(2^p−1) is PERFECT
     // (σ(N) = 2N): σ(2^{p−1}) = 2^p−1 times σ(prime) = 2^p gives 2N; verified for p = 2,3,5,7 → 6,28,496,8128.
     let euclidPerfect = true
-    for (const p of [2, 3, 5, 7]) { const mp = 2 ** p - 1; if (!isPrime(mp)) continue; const nPerf = 2 ** (p - 1) * mp; if (sigma(nPerf) !== 2 * nPerf) euclidPerfect = false }
+    for (const p of [2, 3, 5, 7]) { const mp = 2 ** p - 1; if (!tkIsPrime(mp)) continue; const nPerf = 2 ** (p - 1) * mp; if (sigma(nPerf) !== 2 * nPerf) euclidPerfect = false }
 
     // W3 · EULER'S CONVERSE, COMPOUNDING on σ-multiplicativity (W1) + Euclid (W2) — EVERY even perfect
     // number has Euclid's form 2^{p−1}(2^p−1) with 2^p−1 prime; verified by brute σ that the even perfect
     // numbers ≤ 10000 are EXACTLY {6,28,496,8128}, each of Euclid form (the Euclid–Euler classification).
     const perfects: number[] = []; for (let n = 2; n <= bound; n += 2) if (sigma(n) === 2 * n) perfects.push(n)
-    const euclidForm = (nP: number) => { for (let p = 2; 2 ** p <= 2 * nP; p += 1) { const mp = 2 ** p - 1; if (isPrime(mp) && 2 ** (p - 1) * mp === nP) return true } return false }
+    const euclidForm = (nP: number) => { for (let p = 2; 2 ** p <= 2 * nP; p += 1) { const mp = 2 ** p - 1; if (tkIsPrime(mp) && 2 ** (p - 1) * mp === nP) return true } return false }
     const eulerConverse = perfects.join(',') === '6,28,496,8128' && perfects.every(euclidForm)
 
     // W4 · EVERY EVEN PERFECT NUMBER IS TRIANGULAR — 2^{p−1}(2^p−1) = T_{2^p−1} = m(m+1)/2 with m = 2^p−1;
@@ -314,8 +310,6 @@ export function discoveredTheoremsWaveFiftySix(matrix: { root: string } = { root
     const phi = (n: number) => { let c = 0; for (let k = 1; k <= n; k += 1) if (gcd(k, n) === 1) c += 1; return c }
     const modpow = (a: number, e: number, n: number) => { let r = 1; a %= n; while (e > 0) { if (e & 1) r = (r * a) % n; a = (a * a) % n; e = Math.floor(e / 2) } return r }
     const ord = (a: number, n: number) => { let x = a % n, k = 1; while (x !== 1) { x = (x * a) % n; k += 1; if (k > n) return -1 } return k }
-    const isPrime = (p: number) => { if (p < 2) return false; for (let d = 2; d * d <= p; d += 1) if (p % d === 0) return false; return true }
-
     // W1 · EULER'S THEOREM, COMPOUNDING on wave 54's φ — a^φ(n) ≡ 1 (mod n) for gcd(a,n)=1: the unit
     // group (ℤ/nℤ)* has order φ(n), so every element's order divides it (Lagrange); this GENERALIZES
     // Fermat's little theorem (n prime ⇒ φ(n)=n−1). Verified for every coprime a and every n ≤ 100.
@@ -332,7 +326,7 @@ export function discoveredTheoremsWaveFiftySix(matrix: { root: string } = { root
     // order p−1, and exactly φ(p−1) of them; verified for every prime p ≤ 100 (the count matches φ(p−1),
     // and is positive — the existence of a generator of the multiplicative group of a prime field).
     let primitiveRootModP = true
-    for (let p = 2; p <= lim; p += 1) { if (!isPrime(p)) continue; let cnt = 0; for (let a = 1; a < p; a += 1) if (ord(a, p) === p - 1) cnt += 1; if (cnt !== phi(p - 1) || cnt === 0) primitiveRootModP = false }
+    for (let p = 2; p <= lim; p += 1) { if (!tkIsPrime(p)) continue; let cnt = 0; for (let a = 1; a < p; a += 1) if (ord(a, p) === p - 1) cnt += 1; if (cnt !== phi(p - 1) || cnt === 0) primitiveRootModP = false }
 
     // W4 · the PRIMITIVE-ROOT CLASSIFICATION — (ℤ/nℤ)* is cyclic (has a primitive root) IFF n ∈
     // {1, 2, 4, p^k, 2p^k} for an odd prime p; verified for every n ≤ 100 by comparing the true max order
@@ -361,7 +355,6 @@ export function discoveredTheoremsWaveFiftySeven(matrix: { root: string } = { ro
   return sealFold('discoveredTheoremsWaveFiftySeven', 'discovered-theorems-fifty-seven', matrix, () => {
     const lim = 100
     const B = 2 * 5
-    const isPrime = (p: number) => { if (p < 2) return false; for (let d = 2; d * d <= p; d += 1) if (p % d === 0) return false; return true }
     const phi = (n: number) => { let c = 0; for (let k = 1; k <= n; k += 1) if (gcd(k, n) === 1) c += 1; return c }
     const ord = (a: number, n: number) => { let x = a % n, k = 1; while (x !== 1) { x = (x * a) % n; k += 1; if (k > n) return -1 } return k }
 
@@ -369,26 +362,26 @@ export function discoveredTheoremsWaveFiftySeven(matrix: { root: string } = { ro
     // (mod M_p) where s₀ = 4, s_{k+1} = s_k²−2; verified for p = 3,5,7,11,13 against actual primality of M_p
     // (M = 7,31,127 prime, 2047 = 23·89 composite, 8191 prime) — the test that finds the Mersenne primes.
     let lucasLehmer = true
-    for (let p = 3; p <= 16; p += 1) { if (!isPrime(p)) continue; const M = 2 ** p - 1; let s = 4; for (let i = 0; i < p - 2; i += 1) s = ((s * s - 2) % M + M) % M; if ((s === 0) !== isPrime(M)) lucasLehmer = false }
+    for (let p = 3; p <= 16; p += 1) { if (!tkIsPrime(p)) continue; const M = 2 ** p - 1; let s = 4; for (let i = 0; i < p - 2; i += 1) s = ((s * s - 2) % M + M) % M; if ((s === 0) !== tkIsPrime(M)) lucasLehmer = false }
 
     // W2 · the ORDER-(n−1) PRIMALITY TEST, COMPOUNDING on wave 56 — an element of order exactly n−1 exists
     // in (ℤ/nℤ)* IFF n is prime (only then is the cyclic group's order φ(n) = n−1); verified for every
     // n ≤ 100 (a primitive root of the full residue system exists exactly when the modulus is prime).
     let orderPrimality = true
-    for (let n = 2; n <= lim; n += 1) { let has = false; for (let a = 1; a < n; a += 1) if (gcd(a, n) === 1 && ord(a, n) === n - 1) { has = true; break } if (has !== isPrime(n)) orderPrimality = false }
+    for (let n = 2; n <= lim; n += 1) { let has = false; for (let a = 1; a < n; a += 1) if (gcd(a, n) === 1 && ord(a, n) === n - 1) { has = true; break } if (has !== tkIsPrime(n)) orderPrimality = false }
 
     // W3 · the CYCLIC ORDER DISTRIBUTION, COMPOUNDING on wave 56 + 54 — in (ℤ/pℤ)*, for each divisor d of
     // p−1 there are EXACTLY φ(d) elements of order d (so Σ_{d|p−1} φ(d) = p−1, the divisor sum of wave 54);
     // verified for every prime p ≤ 100 (the fine structure of the cyclic multiplicative group).
     let cyclicDistribution = true
-    for (let p = 3; p <= lim; p += 1) { if (!isPrime(p)) continue; const cnt: Record<number, number> = {}; for (let a = 1; a < p; a += 1) { const o = ord(a, p); cnt[o] = (cnt[o] || 0) + 1 } for (let d = 1; d < p; d += 1) if ((p - 1) % d === 0 && (cnt[d] || 0) !== phi(d)) cyclicDistribution = false }
+    for (let p = 3; p <= lim; p += 1) { if (!tkIsPrime(p)) continue; const cnt: Record<number, number> = {}; for (let a = 1; a < p; a += 1) { const o = ord(a, p); cnt[o] = (cnt[o] || 0) + 1 } for (let d = 1; d < p; d += 1) if ((p - 1) % d === 0 && (cnt[d] || 0) !== phi(d)) cyclicDistribution = false }
 
     // W4 · MIDY'S THEOREM — for a prime p ∉ {2,5} whose reciprocal 1/p has EVEN period 2k, the two halves
     // of the repeating block sum to Bᵏ−1 (all nines): 1/7 = 0.142857…, 142+857 = 999; verified in exact
     // BigInt for every applicable prime p ≤ 100 (a consequence of ord_p(B) being the period, wave 56).
     let midy = true
     for (let p = 3; p <= lim; p += 1) {
-      if (!isPrime(p) || p === 5 || gcd(p, B) !== 1) continue
+      if (!tkIsPrime(p) || p === 5 || gcd(p, B) !== 1) continue
       const period = ord(B, p); if (period % 2 !== 0) continue
       const digits: number[] = []; let r = 1
       for (let i = 0; i < period; i += 1) { r *= B; digits.push(Math.floor(r / p)); r %= p }
@@ -417,7 +410,6 @@ export function discoveredTheoremsWaveFiftyEight(matrix: { root: string } = { ro
     type GI = [number, number]
     const norm = (z: GI) => z[0] * z[0] + z[1] * z[1]
     const mul = (z: GI, w: GI): GI => [z[0] * w[0] - z[1] * w[1], z[0] * w[1] + z[1] * w[0]]
-    const isPrime = (p: number) => { if (p < 2) return false; for (let d = 2; d * d <= p; d += 1) if (p % d === 0) return false; return true }
     const R = 5
     const grid: GI[] = []; for (let a = -R; a <= R; a += 1) for (let b = -R; b <= R; b += 1) grid.push([a, b])
 
@@ -444,7 +436,7 @@ export function discoveredTheoremsWaveFiftyEight(matrix: { root: string } = { ro
     // factor-search against the norm criterion for every z (N > 1) on the grid — the p ≡ 3 primes stay inert.
     const divides = (u: GI, z: GI) => { const nu = norm(u); const re = z[0] * u[0] + z[1] * u[1], im = z[1] * u[0] - z[0] * u[1]; return re % nu === 0 && im % nu === 0 }
     const irreducible = (z: GI) => { const n = norm(z); if (n <= 1) return false; for (const u of grid) { const nu = norm(u); if (nu <= 1 || nu >= n) continue; if (n % nu === 0 && divides(u, z)) return false } return true }
-    const normPredicts = (z: GI) => { const n = norm(z); if (isPrime(n)) return true; const s = Math.round(Math.sqrt(n)); return s * s === n && isPrime(s) && s % 4 === 3 && (z[0] === 0 || z[1] === 0) }
+    const normPredicts = (z: GI) => { const n = norm(z); if (tkIsPrime(n)) return true; const s = Math.round(Math.sqrt(n)); return s * s === n && tkIsPrime(s) && s % 4 === 3 && (z[0] === 0 || z[1] === 0) }
     let irreducibleByNorm = true
     for (const z of grid) { if (norm(z) <= 1) continue; if (irreducible(z) !== normPredicts(z)) irreducibleByNorm = false }
 
@@ -469,7 +461,6 @@ export function discoveredTheoremsWaveFiftyNine(matrix: { root: string } = { roo
     const norm = (z: EI) => z[0] * z[0] - z[0] * z[1] + z[1] * z[1]
     const mul = (z: EI, w: EI): EI => [z[0] * w[0] - z[1] * w[1], z[0] * w[1] + z[1] * w[0] - z[1] * w[1]]
     const sub = (z: EI, w: EI): EI => [z[0] - w[0], z[1] - w[1]]
-    const isPrime = (p: number) => { if (p < 2) return false; for (let d = 2; d * d <= p; d += 1) if (p % d === 0) return false; return true }
     const R = 5
     const grid: EI[] = []; for (let a = -R; a <= R; a += 1) for (let b = -R; b <= R; b += 1) grid.push([a, b])
 
@@ -494,7 +485,7 @@ export function discoveredTheoremsWaveFiftyNine(matrix: { root: string } = { roo
     // iff p ≡ 1 (mod 3) or p = 3 (which ramifies); p ≡ 2 (mod 3) stays inert; verified for every prime
     // p ≤ 200 by brute representation search vs the mod-3 criterion (the Eisenstein analogue of wave 50).
     let splitsMod3 = true
-    for (let p = 2; p <= 2 * 100; p += 1) { if (!isPrime(p)) continue; let rep = false; for (let a = 0; a <= 4 * 5 && !rep; a += 1) for (let b = 0; b <= 4 * 5; b += 1) if (a * a - a * b + b * b === p) { rep = true; break } if (rep !== (p % 3 === 1 || p === 3)) splitsMod3 = false }
+    for (let p = 2; p <= 2 * 100; p += 1) { if (!tkIsPrime(p)) continue; let rep = false; for (let a = 0; a <= 4 * 5 && !rep; a += 1) for (let b = 0; b <= 4 * 5; b += 1) if (a * a - a * b + b * b === p) { rep = true; break } if (rep !== (p % 3 === 1 || p === 3)) splitsMod3 = false }
 
     return {
       facets: [

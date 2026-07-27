@@ -4,6 +4,7 @@ import { earned } from '../../3/7'
 
 import { MOON_ORBIT_INCLINATION_DEG } from '../../8/2'
 import { gcd, merkleFold, toUuid } from '../../0'
+import { tkIsPrime } from '../../9/1'
 import { TAU, rat, ratAdd, ratDiv, ratEq, ratMul, ratSub } from '../../3/7'
 
 /** Planck 2018 primordial spectral index n_s. */
@@ -66,14 +67,12 @@ export function primeCollapsesTheAxis() {
     let x = a % n
     while (x !== 1) { x = (x * a) % n; k += 1; if (k > n) return 0 }
     return k
-  }
-  const isPrime = (n: number) => n > 1 && Array.from({ length: n }, (_, i) => i).every((d) => d < 2 || d * d > n || n % d !== 0)
-  // 1 — the axis is empty exactly at a prime: the field property
+  }  // 1 — the axis is empty exactly at a prime: the field property
   // sweep a RANGE, never a cherry-picked list — and never type a prime you can generate
   const moduli = Array.from({ length: 4 * 4 }, (_, i) => i + 5)
-  const axisEmptyIffPrime = moduli.every((n) => (nonUnitsOf(n).length === 0) === isPrime(n))
+  const axisEmptyIffPrime = moduli.every((n) => (nonUnitsOf(n).length === 0) === tkIsPrime(n))
   // 2 — at a prime, ZERO is the only non-invertible: the whole obstruction is division by zero
-  const zeroIsTheOnlyFailure = moduli.filter(isPrime).every((p) => unitsOf(p).length === p - 1 && nonUnitsOf(p).length === 0)
+  const zeroIsTheOnlyFailure = moduli.filter(tkIsPrime).every((p) => unitsOf(p).length === p - 1 && nonUnitsOf(p).length === 0)
   // 3 — the composite keeps its axis: mod 9 the zero divisors {3,6} are exactly the circuit's axis
   const nineAxis = nonUnitsOf(9)
   const compositeKeepsAxis = nineAxis.join() === [3, 6].join()
@@ -81,7 +80,7 @@ export function primeCollapsesTheAxis() {
   const cyclesAt = (p: number) => (p - 1) / orderOf(2, p)
   const sevenSplits = orderOf(2, 7) === 3 && cyclesAt(7) === 2
   // 5 — one cycle ⟺ 2 is a primitive root; the density is Artin's OPEN constant
-  const primes = Array.from({ length: 100 }, (_, i) => i).filter(isPrime) // the sieve, not a typed table
+  const primes = Array.from({ length: 100 }, (_, i) => i).filter(tkIsPrime) // the sieve, not a typed table
   const singleCycle = primes.filter((p) => orderOf(2, p) === p - 1)
   const oneCycleIffPrimitiveRoot = primes.every((p) => (cyclesAt(p) === 1) === (orderOf(2, p) === p - 1))
   // 6 — the station proves its own address
