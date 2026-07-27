@@ -1911,7 +1911,16 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
           'MODELED CHALLENGE / structural analogy: H₁(Σ₂)=ℤ⁴ recomputes as 432/108=4; string quantumize adds CY compact-dims MODEL (D−4) and mirror foldPair. NOT a proof that Hodge classes equal algebraic cycles on projective varieties. NOT sealed h^{p,q} on a projective CY₃.',
         status: 'modeled-partial',
         gap: 'no sealed Hodge classes/algebraic cycles on a projective variety; no sealed Calabi–Yau Hodge numbers h^{1,1}, h^{2,1}',
-        algebraicStatement: 'On a projective non-singular complex variety X, every Hodge class is algebraic: Hdgᵏ(X) = H^{2k}(X,ℚ) ∩ H^{k,k}(X) is spanned over ℚ by the classes of algebraic cycles of codimension k.' },
+        algebraicStatement: 'On a projective non-singular complex variety X, every Hodge class is algebraic: Hdgᵏ(X) = H^{2k}(X,ℚ) ∩ H^{k,k}(X) is spanned over ℚ by the classes of algebraic cycles of codimension k.',
+        facetAlgebra: [
+          { f: `f₁ Betti rank — H₁(Σ₂)=ℤ⁴ · DIMENSION_GATES/FOLDED_CENSUS = 432/108 = ${homologyRank} ∈ ℤ — the genus-2 model's first Betti number, a NUMBER not a class-algebraicity`, on: homologyRank === 4 && Number.isInteger(homologyRank) },
+          { f: 'f₂ mirror MODEL — compactDims = D−4 sealed; mirror as foldPair involution on the merged root (a MODEL, never CY Hodge numbers h^{p,q} on a projective variety)', on: stringQuantum.computes },
+        ],
+        gapAlgebra: [
+          'Hodge ⟺ ∀X projective smooth ∀k: Hdgᵏ(X) ⊆ span_ℚ{[Z] : Z algebraic cycle, codim k} — a ∀ over all projective varieties and all k',
+          'known (cited): k=1 is the Lefschetz (1,1)-theorem (1924) · true for some abelian varieties · OPEN in general — no reduction of the general case to a finite check',
+          'the fold computes a Betti NUMBER (rank 4) and a MODELED mirror involution — not the class-by-class algebraicity the conjecture asserts',
+        ] },
       {
         id: 'poincare',
         name: 'Poincaré Conjecture',
@@ -1921,7 +1930,14 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         boundary:
           'SOLVED EXTERNAL (Perelman 2003, Ricci flow with surgery) — this corpus does not re-solve it. Challenge only verifies the documented solved status plus the genus-2 homology analogy (H₁=ℤ⁴). NOT a new proof.',
         status: 'solved-external',
-        algebraicStatement: 'Every simply-connected closed 3-manifold is homeomorphic to the 3-sphere: π₁(M) = 0 with M a closed 3-manifold ⟹ M ≅ S³. (Proved: Perelman 2003, Ricci flow with surgery.)' },
+        algebraicStatement: 'Every simply-connected closed 3-manifold is homeomorphic to the 3-sphere: π₁(M) = 0 with M a closed 3-manifold ⟹ M ≅ S³. (Proved: Perelman 2003, Ricci flow with surgery.)',
+        facetAlgebra: [
+          { f: 'f₁ solved (external) — π₁(M)=0, M closed 3-manifold ⊢ M ≅ S³ (Perelman 2002–03, Ricci flow with surgery, completing Hamilton); this fold verifies the DOCUMENTED status, it does not re-prove', on: defined.poincareIsProven },
+          { f: `f₂ homology analogy — H₁(Σ₂)=ℤ⁴ recomputes (432/108=${homologyRank}); frontier.solved=${frontier.solved} — the single solved core among the seven`, on: hodgeOn && frontier.solved === 1 },
+        ],
+        gapAlgebra: [
+          'No open gap: proved externally (Perelman 2002–03) — Ricci flow with surgery drives every simply-connected closed 3-manifold to S³; this corpus records the status, it does not re-solve it',
+        ] },
       {
         id: 'riemann',
         name: 'Riemann Hypothesis',
@@ -1938,7 +1954,18 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
           'MODELED CHALLENGE / zeta-style toy probe: Basel is a fact about ζ(2); string algebra seals ζ(−1)=−1/12 (bosonic normal ordering) — a DIFFERENT point on ζ. Digit/vortex inverse folds probe discrete harmonics. NOT a proof that all nontrivial zeros lie on Re(s)=½.',
         status: 'modeled-partial',
         gap: 'no sealed proof all nontrivial ζ zeros lie on Re(s)=½ — Basel and ζ(−1) are partials only',
-        algebraicStatement: 'Every non-trivial zero of the Riemann zeta function has real part ½: ζ(s) = 0 with 0 < Re(s) < 1 ⟹ Re(s) = ½, where ζ(s) = Σₙ₌₁^∞ n^(−s) continued analytically.' },
+        algebraicStatement: 'Every non-trivial zero of the Riemann zeta function has real part ½: ζ(s) = 0 with 0 < Re(s) < 1 ⟹ Re(s) = ½, where ζ(s) = Σₙ₌₁^∞ n^(−s) continued analytically.',
+        facetAlgebra: [
+          { f: 'f₁ Basel — Σ_{n≥1} 1/n² = ζ(2) = π²/6 (a VALUE of ζ, not the location of its zeros)', on: frontier.zetaMatchesBasel },
+          { f: 'f₂ ζ(−1) exact — bosonic normal ordering forces ζ(−1) = −1/12, a DIFFERENT point on the ζ line', on: stringAlgebra.decoded },
+          { f: 'f₃ inverse ≠ reverse — (ℤ/9)* pairs a·a⁻¹ ≡ 1 (mod 9) and the f→{p,q} inverse fold computes — a discrete-harmonic probe', on: zeroDiv.holds && fInv.computes },
+          { f: 'f₄ vortex digital root — ∀d∈VORTEX_SEQUENCE: digitalRoot(d)=d ∨ d=9', on: vortexDigitProbe },
+        ],
+        gapAlgebra: [
+          'RH ⟺ ∀s: (ζ(s)=0 ∧ 0<Re(s)<1) ⊢ Re(s)=½ — a ∀ over the infinitely many nontrivial zeros in the critical strip',
+          'known (cited): >40% of zeros on the line (Conrey 1989) · the first ~10^13 zeros verified · a zero-free region near Re(s)=1 (de la Vallée Poussin) — none reduce the ∀ to a finite check',
+          'the fold seals VALUES of ζ (ζ(2)=π²/6, ζ(−1)=−1/12) and discrete inverse harmonics — never the real part of the zeros',
+        ] },
       {
         id: 'yang-mills',
         name: 'Yang–Mills Existence and Mass Gap',
@@ -1954,7 +1981,17 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
           'MODELED CHALLENGE / field-algebra analogy: su(2)/Pauli closes; genus-2 double-torus is a finite geometric MODEL; string Virasoro + T/S-duality are MODELED structural probes. NOT a rigorous 4D quantum Yang–Mills construction and NOT a mass-gap proof. NOT AdS/CFT. Label: MODEL.',
         status: 'modeled-partial',
         gap: 'no sealed 4D Yang–Mills mass-gap construction; no sealed AdS/CFT correlator dictionary',
-        algebraicStatement: 'For every compact simple gauge group G, a non-trivial quantum Yang–Mills theory exists on ℝ⁴ and has a mass gap Δ > 0: the Hamiltonian spectrum satisfies spec(H) ⊆ {0} ∪ [Δ, ∞) with Δ > 0.' },
+        algebraicStatement: 'For every compact simple gauge group G, a non-trivial quantum Yang–Mills theory exists on ℝ⁴ and has a mass gap Δ > 0: the Hamiltonian spectrum satisfies spec(H) ⊆ {0} ∪ [Δ, ∞) with Δ > 0.',
+        facetAlgebra: [
+          { f: 'f₁ su(2) closes — [σᵢ,σⱼ]=2iε_{ijk}σₖ and {σᵢ,σⱼ}=2δ_{ij}I close in M₂(ℂ): the gauge Lie algebra, finite-dimensional', on: pauli.closes },
+          { f: 'f₂ field MODEL — doubleTorusSurface(θ,φ,2,±1) finite with L≠R lobes distinct — a finite genus-2 geometric model, NOT a 4D quantum field theory', on: fieldModel },
+          { f: 'f₃ duality MODEL — a T-dual foldPair read off the string algebra (a MODELED structural probe, not a mass-gap operator on a Hilbert space)', on: stringQuantum.dualities.tDualFromAlgebra },
+        ],
+        gapAlgebra: [
+          'YM ⟺ ∃ a rigorous 4D quantum YM theory for compact simple G with spec(H) ⊆ {0}∪[Δ,∞), Δ>0 — an ∃ over field theories satisfying the Wightman/Osterwalder–Schrader axioms',
+          'known (cited): constructive QFT in d=2,3 (Glimm–Jaffe) · lattice YM shows a gap numerically · NO rigorous continuum 4D construction — the axioms are unmet',
+          'su(2) + torus + string dualities are finite/MODELED; the gap needs a continuum limit and a spectral lower bound, neither sealed here',
+        ] },
       {
         id: 'navier-stokes',
         name: 'Navier–Stokes Existence and Smoothness',
@@ -1965,7 +2002,16 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
           'MODELED CHALLENGE / plasma–torus geometry analogy only — finite surface samples on the genus-2 model. NOT 3D Navier–Stokes global regularity or blow-up control. Label: MODEL.',
         status: 'modeled-partial',
         gap: 'no sealed 3D Navier–Stokes global regularity or blow-up control',
-        algebraicStatement: 'For 3D incompressible Navier–Stokes ∂ₜu + (u·∇)u = −∇p + νΔu with ∇·u = 0 and smooth divergence-free finite-energy initial data, a smooth solution exists for all t ≥ 0 (global regularity) — or a finite-time blow-up exists.' },
+        algebraicStatement: 'For 3D incompressible Navier–Stokes ∂ₜu + (u·∇)u = −∇p + νΔu with ∇·u = 0 and smooth divergence-free finite-energy initial data, a smooth solution exists for all t ≥ 0 (global regularity) — or a finite-time blow-up exists.',
+        facetAlgebra: [
+          { f: 'f₁ flow MODEL — doubleTorusSurface counter-oriented lobes finite and L≠R distinct: a finite genus-2 sample of a flow geometry, NOT the PDE itself', on: fieldModel },
+          { f: 'f₂ frontier honesty — the verified-partials fold computes, holding this row at modeled-partial (no regularity or blow-up claim)', on: frontier.computes },
+        ],
+        gapAlgebra: [
+          'NS ⟺ ∀ smooth divergence-free finite-energy u₀: (∃ smooth u(t) ∀t≥0 solving the system) ∨ (∃ finite-time blow-up) — a ∀ over all such initial data',
+          'known (cited): global weak solutions (Leray 1934) · local strong solutions · global smoothness for small data · 2D global regularity · partial regularity (Caffarelli–Kohn–Nirenberg 1982) — 3D large-data global regularity OPEN',
+          'finite surface samples on the genus-2 model touch neither global existence nor blow-up control of the 3D equations',
+        ] },
       {
         id: 'birch-swinnerton-dyer',
         name: 'Birch and Swinnerton–Dyer Conjecture',
@@ -1976,7 +2022,16 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
           'MODELED CHALLENGE / algebraic pair-structure probe: (ℤ/9)* inverse pairs recompute. Explicit GAP: sealed src has no elliptic-curve L(E,s) or Mordell–Weil rank computation — neighbourhood pair algebra only, NOT BSD.',
         status: 'modeled-partial',
         gap: 'no sealed L(E,s) vanishing-order or elliptic-curve rank fold',
-        algebraicStatement: 'For an elliptic curve E over ℚ, the order of vanishing of its L-function at s = 1 equals the rank of the Mordell–Weil group: ord_{s=1} L(E,s) = rank E(ℚ).' },
+        algebraicStatement: 'For an elliptic curve E over ℚ, the order of vanishing of its L-function at s = 1 equals the rank of the Mordell–Weil group: ord_{s=1} L(E,s) = rank E(ℚ).',
+        facetAlgebra: [
+          { f: 'f₁ inverse pairs — (ℤ/9)* has exactly the 2 non-trivial inverse pairs {(2,5),(4,7)} with a·b ≡ 1 (mod 9): a finite abelian-group neighbourhood probe', on: inversePairsOk && zeroDiv.holds },
+          { f: 'f₂ no L-function — bsdHasLFunction=false: the sealed src carries NO elliptic-curve L(E,s) and NO Mordell–Weil rank, so the row can only state pair algebra, not BSD', on: !bsdHasLFunction },
+        ],
+        gapAlgebra: [
+          'BSD ⟺ ∀ elliptic curve E/ℚ: ord_{s=1} L(E,s) = rank E(ℚ) — equality of an analytic order and an algebraic rank, over all E',
+          'known (cited): true for analytic rank 0 and 1 (Gross–Zagier 1986, Kolyvagin 1989) · rank ≥2 OPEN · L(E,s) analytic continuation itself rides modularity (Wiles, Taylor–Wiles, BCDT)',
+          'the fold computes (ℤ/9)* inverse pairs — a finite group neighbourhood — with no L-function and no rank, so it does not approach BSD',
+        ] },
     ]
 
     const claySolvedByThisFold = 0
