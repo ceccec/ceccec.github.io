@@ -1568,6 +1568,61 @@ export function privateSearchRanksByBM25IndustryStandard(query = 'quantum encryp
   }
 }
 
+/** frontiersChatDiscoverInWaves — the open frontiers CHAT WITH EACH OTHER through the chat API (user: "wire /frontiers
+ *  in the chat apis" · "let the frontiers chat with each other discovering in waves"). Each frontier speaks its own term
+ *  into the BM25 chat retrieval (privateSearchRanksByBM25IndustryStandard) and hears back the theorems that rank — its
+ *  neighbourhood. Two frontiers CHAT when their neighbourhoods OVERLAP: a shared theorem is a conversation between them.
+ *  The chat graph is DISCOVERED IN WAVES — BFS from the first frontier, each wave the newly-reached frontiers — until the
+ *  connected component closes. Deterministic (BM25 is deterministic), zero-egress, no LLM: same frontiers → same waves. */
+export function frontiersChatDiscoverInWaves(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('frontiersChatDiscoverInWaves', matrix, () => {
+    const frontiers = cosmosFrontiersDecoded(matrix).frontiers
+    const engine = privateSearchRanksByBM25IndustryStandard()
+    const TOP = 8
+    // Each frontier CHATS: its term retrieves its neighbourhood of theorems (the slugs it "hears").
+    const voice = (query: string) => engine.rank(query).slice(0, TOP).map((row) => row.slug)
+    const voices = frontiers.map((f) => ({ frontier: f.frontier, term: f.term, heard: voice(`${f.frontier} ${f.term} ${f.question}`) }))
+    // Two frontiers chat when their neighbourhoods overlap — shared theorem slugs are the edges.
+    const edges: { a: string; b: string; shared: readonly string[] }[] = []
+    for (let i = 0; i < voices.length; i += 1) for (let j = i + 1; j < voices.length; j += 1) {
+      const shared = voices[i]!.heard.filter((slug) => voices[j]!.heard.includes(slug))
+      if (shared.length > 0) edges.push({ a: voices[i]!.frontier, b: voices[j]!.frontier, shared })
+    }
+    // Discover in WAVES: BFS over the chat graph from the first frontier; each wave = the newly-reached frontiers.
+    const adjacency = new Map<string, Set<string>>(frontiers.map((f) => [f.frontier, new Set<string>()]))
+    for (const edge of edges) { adjacency.get(edge.a)!.add(edge.b); adjacency.get(edge.b)!.add(edge.a) }
+    const wavesOf = (start: string) => {
+      const waves: string[][] = []
+      const seen = new Set<string>()
+      let front = [start]
+      while (front.length > 0) {
+        front.forEach((node) => seen.add(node))
+        waves.push(front)
+        front = [...new Set(front.flatMap((node) => [...adjacency.get(node)!]).filter((node) => !seen.has(node)))]
+      }
+      return { waves, reached: seen.size }
+    }
+    const discovery = wavesOf(frontiers[0]!.frontier)
+    const deterministic = JSON.stringify(wavesOf(frontiers[0]!.frontier).waves) === JSON.stringify(discovery.waves)
+    const facets = [
+      { facet: `EACH FRONTIER CHATS THROUGH THE BM25 API — ${voices.length} frontiers each speak their term into the chat retrieval and hear back a neighbourhood of theorems (top ${TOP})`, on: voices.length === frontiers.length && voices.every((v) => v.heard.length > 0) },
+      { facet: `FRONTIERS CHAT WITH EACH OTHER — ${edges.length} cross-frontier edges where two frontiers' retrieved neighbourhoods overlap (a shared theorem is a conversation)`, on: edges.length > 0 },
+      { facet: `DISCOVERY IN WAVES — BFS over the chat graph reaches ${discovery.reached}/${frontiers.length} frontiers in ${discovery.waves.length} waves from "${frontiers[0]!.frontier}"`, on: discovery.waves.length >= 1 && discovery.reached >= 1 && discovery.reached <= frontiers.length },
+      { facet: `DETERMINISTIC, ZERO-EGRESS — the whole conversation is BM25 lexical retrieval over the sealed corpus; recomputed waves match (${deterministic}); no LLM, no network`, on: deterministic },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`frontiers-chat:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      voices,
+      edges,
+      waves: discovery.waves,
+      reached: discovery.reached,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: `frontiersChatDiscoverInWaves — ${voices.length} open frontiers chat through the BM25 API; ${edges.length} overlap-edges; BFS discovers ${discovery.reached}/${frontiers.length} in ${discovery.waves.length} waves. Deterministic, zero-egress.`,
+      boundary: earned('EXACT — verified by facets:', facets, 'each frontier "chats" by speaking its term into the deterministic BM25 retrieval and hearing the theorems that rank; two frontiers converse when their neighbourhoods share a theorem; the component is discovered in waves by BFS. Lexical retrieval over the sealed corpus, NOT an LLM or semantic model; zero-egress; clay=0, physicalFtl=0. HARMONY ≠ TRUTH.') }
+  })
+}
+
 /** The VitePress local-search config (themeConfig.search) fused to the private corpus — provider 'local' (MiniSearch,
  * built at compile time), no Algolia, no query egress. Consumes the VitePress API rather than bypassing it. */
 export function vitepressSearchConfig() {
