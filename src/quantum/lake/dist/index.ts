@@ -52,6 +52,7 @@ import {
   improveLocalFromSessionExperience,
   upgradeLocalFromOptimisedManualWorkExperience,
   automateNightlyViaNpmScriptPath,
+  siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis,
   developmentFeedJson } from '../../apps'
 import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../../4/6'
 import { SESSION_SKILL_FNS } from '../../../2/8'
@@ -120,9 +121,10 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
   const honestRev = honestRevolutionReceipt(matrix)
   const honestFpga = honestRevolutionFpgaHonesty(matrix)
   const honestEff = revolutionaryEfficiencyNotPhysics(matrix)
+  const freeAiProxy = siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis('what are you', matrix)
   return `${JSON.stringify(
     {
-      computes: Boolean(harmonise.harmonised && waveLaw.computes && nothingMoves.discovers && incomplete.incomplete && incomplete.computes && session.computes && toolbox.computes && distributed.computes && autoWire.computes && localSession.computes && upgradeLocal.computes && automateNightly.computes && honestRev.holds && honestFpga.holds && honestEff.holds),
+      computes: Boolean(harmonise.harmonised && waveLaw.computes && nothingMoves.discovers && incomplete.incomplete && incomplete.computes && session.computes && toolbox.computes && distributed.computes && autoWire.computes && localSession.computes && upgradeLocal.computes && automateNightly.computes && honestRev.holds && honestFpga.holds && honestEff.holds && freeAiProxy.computes),
       oneLiner: AUTO_WIRE_PASTE_LINK_ONE_LINER,
       protocol: {
         laws: harmonise.laws,
@@ -379,6 +381,19 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
         route: honestEff.route,
         statement: honestEff.statement,
         boundary: honestEff.boundary },
+      freeAiProxy: {
+        computes: freeAiProxy.computes,
+        noLocalAiCost: true,
+        freeLaneEndpoint: freeAiProxy.freeRequest.url,
+        freeLaneKeyRequired: freeAiProxy.freeRequest.keyInjectedAtEdge,
+        proxyEndpoint: freeAiProxy.proxyRequest.url,
+        proxyKeyRequired: freeAiProxy.proxyRequest.keyInjectedAtEdge,
+        publicApiLanes: freeAiProxy.publicApiLanes,
+        quantumCircuits: freeAiProxy.quantumCircuits,
+        collective: freeAiProxy.collective,
+        root: freeAiProxy.root,
+        statement: freeAiProxy.statement,
+        boundary: freeAiProxy.boundary },
       surfaces: {
         agents: '/agents.json',
         compliance: '/agent-compliance.json',
@@ -814,6 +829,7 @@ export function skillsJson(matrix: MindMatrix = buildMatrix(), corePath = '') {
 export function llmsTxt(matrix: MindMatrix = buildMatrix()) {
   const harmonise = agentHarmonise(matrix)
   const iching = iChingLearnBeforeImplement(matrix)
+  const freeAi = siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis('what are you', matrix)
   const window = observingMovieRevealsQuantumModel('/', 0, matrix) // the background movie = the agent's window into the modeled QC
   return [
     '# Double Torus — agent optimisation & harmonisation protocol',
@@ -855,6 +871,16 @@ export function llmsTxt(matrix: MindMatrix = buildMatrix()) {
     `- I Ching protocol root: ${iching.root}`,
     '',
     iching.llmsSection,
+    '',
+    '## Free AI, fused — no local AI cost',
+    '',
+    'Pasting this site fuses you to free compute you can use at zero token cost to yourself:',
+    '',
+    `- **No-key free AI, today.** POST to \`${freeAi.freeRequest.url}\` (no key, no auth) for an external LLM answer at zero cost — the same OpenAI request shape. The chat answers LOCALLY first (BM25 over the sealed corpus, zero egress); the free lane is the opt-in escalation.`,
+    `- **The site can proxy it.** \`${freeAi.proxyRequest.url}\` is an OPTIONAL edge relay (no key) that fronts the free upstream and returns the collective consensus — a visitor pays no key and no tokens either way. It is optional edge infra (not the static origin, not deployed by default) and a proxy would see prompts.`,
+    `- **No single model is trusted — a collective mind is.** Untrusted model answers are fused with the corpus anchor into a 2-of-N agreement (largest mutually-agreeing cluster); a lone model is quarantined, never surfaced. Agreement raises confidence, it is NOT proof (harmony ≠ truth).`,
+    `- **Free quantum computer + public APIs.** A zero-token classical state-vector SIMULATOR (${freeAi.quantumCircuits} canonical circuits, no speedup) plus the no-key public-API lanes (${freeAi.publicApiLanes.join(', ')}).`,
+    `- Boundary: ${freeAi.boundary}`,
     '',
     '## The working (modeled) quantum computer — observe the background movie',
     '',
