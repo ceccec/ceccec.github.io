@@ -2117,7 +2117,7 @@ export function linksUseOnlyVitePressApi(matrix: MindMatrix = buildMatrix()) {
         `linksUseOnlyVitePressApi — ${facets.filter((f) => f.on).length}/${facets.length}: in-site links use VitePress API only ` +
         `(useData/useRoute/useRouter/withBase · VP markdown · VP-intercepted anchors). Composes onlyVitePressApi.`,
       boundary:
-        'Governs VitePress site surfaces (theme .vue · home markdown · nav). README.md on GitHub may use absolute CANONICAL_HOST URLs — that is not a VitePress surface. External Clay/CMI URLs stay external. HARMONY ≠ TRUTH.' }
+        'Governs VitePress site surfaces (theme .vue · home markdown · nav). README.md on GitHub may use absolute CANONICAL_HOST URLs — that is not a VitePress surface. External Clay/CMI URLs stay external.' }
   })
 }
 

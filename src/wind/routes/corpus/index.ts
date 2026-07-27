@@ -1414,7 +1414,7 @@ export function sessionGapsFilledAndSealedByTools() {
     { facet: `SEALED BY REGISTERED TOOLS — ${sealed.length} gaps are sealed by a registered fold that exists in the ${THEOREM_ATOM_SEED.length}-atom registry (visual channel, OG, unsigned code, DRY duplicate); the sealing tool is real, not asserted`, on: sealedByRegisteredTools },
     { facet: `FAIL-CLOSED SEALS — the visual, OG, and unsigned-code gates REJECT the gap condition (fail closed, e.g. no-animation fails ${animationGate.pageWithoutAnimationFails}), so a reopened gap is caught at the gate`, on: failClosedSeals },
     { facet: `OPEN GAPS NAMED WITH RESOLUTION — the readme↔site roster coupling and the registry monolith are named OPEN with a computed resolution (lower the roster / redistribute), deliberate not faked closed (${openNamedWithResolution})`, on: openNamedWithResolution },
-    { facet: `THE DEMARCATION — sealing tools (fail-closed gates) for the resolvable gaps + honest naming of the deliberate-resolution ones; NOT claiming every gap is closed — the coupling and monolith stay open with named resolutions. HARMONY ≠ TRUTH`, on: sealedByRegisteredTools && openNamedWithResolution },
+    { facet: `THE DEMARCATION — sealing tools (fail-closed gates) for the resolvable gaps + honest naming of the deliberate-resolution ones; NOT claiming every gap is closed — the coupling and monolith stay open with named resolutions.`, on: sealedByRegisteredTools && openNamedWithResolution },
   ].map((entry) => ({ ...entry, receipt: toUuid(`session-gaps:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -1427,7 +1427,7 @@ export function sessionGapsFilledAndSealedByTools() {
     boundary: earned(
       'CONSOLIDATED — session gaps filled and sealed by registered tools:',
       facets,
-      `the session's named gaps are checked against the registry: ${sealed.length} are sealed by a registered fold (the visual channel by saveTheMissingTheoremsAndAnimations and the fail-closed animation gate, incomplete Open Graph by its completeness gate, unsigned code by the four-seal gate, and the DRY duplicate by aliasing to one canonical), and the fail-closed gates reject the gap condition so a reopened gap is caught. The remaining ${open.length} — the readme↔site roster coupling and the registry monolith size — are named OPEN with a computed resolution (lower the shared roster, redistribute the monolith), deliberate and not faked closed. Filling the gaps means sealing tools for the resolvable ones plus honest naming of the deliberate-resolution ones, not claiming every gap is closed. HARMONY ≠ TRUTH.`),
+      `the session's named gaps are checked against the registry: ${sealed.length} are sealed by a registered fold (the visual channel by saveTheMissingTheoremsAndAnimations and the fail-closed animation gate, incomplete Open Graph by its completeness gate, unsigned code by the four-seal gate, and the DRY duplicate by aliasing to one canonical), and the fail-closed gates reject the gap condition so a reopened gap is caught. The remaining ${open.length} — the readme↔site roster coupling and the registry monolith size — are named OPEN with a computed resolution (lower the shared roster, redistribute the monolith), deliberate and not faked closed. Filling the gaps means sealing tools for the resolvable ones plus honest naming of the deliberate-resolution ones, not claiming every gap is closed.`),
   }
 }
 
@@ -1450,7 +1450,7 @@ export function pagesWithoutDedicatedAnimationFailTheVitepressGates() {
     { facet: `EVERY PAGE HAS ONE (COMPUTED) — saveTheMissingTheoremsAndAnimations gives every theorem a computed animation, so all ${atoms.length} pages pass the animation gate (${everyPageHasAnimation}), coverage 100%`, on: everyPageHasAnimation && saved.computes },
     { facet: `A PAGE WITHOUT AN ANIMATION FAILS CLOSED — a page with no animation spec is REJECTED by the gate (${pageWithoutAnimationFails}); allow is never the default`, on: pageWithoutAnimationFails },
     { facet: `THE ANIMATION IS THE FRACTAL CLOCK — the dedicated animation is a divisor rung of the one 108 s clock (rung ${sampleRung} → ${108 / sampleRung}s, ${isClockRung}), deterministic with no hardcoded duration; "dedicated" means its own computed rung, not a bespoke asset`, on: isClockRung },
-    { facet: `THE DEMARCATION — the gate requires a COMPUTED animation (a fractal-clock rung) per page, fail-closed; "dedicated" = its own deterministic rung, not a hand-authored video, and it enforces COVERAGE, not richness. HARMONY ≠ TRUTH`, on: everyPageHasAnimation && pageWithoutAnimationFails },
+    { facet: `THE DEMARCATION — the gate requires a COMPUTED animation (a fractal-clock rung) per page, fail-closed; "dedicated" = its own deterministic rung, not a hand-authored video, and it enforces COVERAGE, not richness.`, on: everyPageHasAnimation && pageWithoutAnimationFails },
   ].map((entry) => ({ ...entry, receipt: toUuid(`animation-gate:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -1463,7 +1463,7 @@ export function pagesWithoutDedicatedAnimationFailTheVitepressGates() {
     boundary: earned(
       'FAIL-CLOSED — no dedicated animation, no pass:',
       facets,
-      'the VitePress gate requires every page to carry a dedicated animation — a divisor rung of the one 108 s fractal clock, period 108/d — and rejects any page with none, allow never being the default. Because saveTheMissingTheoremsAndAnimations gives every theorem a computed animation, all pages pass; a page without one fails closed. "Dedicated" means the page\'s own deterministic fractal-clock rung, not a hand-authored video, and the gate enforces coverage (every page animates), not richness. HARMONY ≠ TRUTH.'),
+      'the VitePress gate requires every page to carry a dedicated animation — a divisor rung of the one 108 s fractal clock, period 108/d — and rejects any page with none, allow never being the default. Because saveTheMissingTheoremsAndAnimations gives every theorem a computed animation, all pages pass; a page without one fails closed. "Dedicated" means the page\'s own deterministic fractal-clock rung, not a hand-authored video, and the gate enforces coverage (every page animates), not richness.'),
   }
 }
 
@@ -1493,7 +1493,7 @@ export function quantumiseAnchorsContentAddressed() {
     { facet: `COLLISION-FREE BY CONTENT-ADDRESS — a duplicate heading gets a content-address suffix (${anchors[3]}), so every anchor on a page is UNIQUE (${unique}); no #foo/#foo-1 guesswork, the address disambiguates deterministically`, on: unique && collisionDisambiguated },
     { facet: `STABLE ACROSS REGEN — because the anchor is content-addressed, regeneration produces the same anchors (${stable}), so external links to #anchors never break on a rebuild`, on: stable },
     { facet: `WIRED TO VITEPRESS, NOT SCRAPED — the anchor slugs feed VitePress's heading-anchor slugify (markdown-it-anchor) via config; the same slug rule the theme renders, deterministic`, on: deterministic && unique },
-    { facet: `THE DEMARCATION — anchors are #fragment heading IDs (real HTML / SEO), content-addressed for determinism and collision-freedom; "quantumise" = content-addressed slug, not physical quantum. HARMONY ≠ TRUTH`, on: deterministic && unique && stable },
+    { facet: `THE DEMARCATION — anchors are #fragment heading IDs (real HTML / SEO), content-addressed for determinism and collision-freedom; "quantumise" = content-addressed slug, not physical quantum.`, on: deterministic && unique && stable },
   ].map((entry) => ({ ...entry, receipt: toUuid(`anchor-quantumise:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -1505,7 +1505,7 @@ export function quantumiseAnchorsContentAddressed() {
     boundary: earned(
       'CONTENT-ADDRESSED — quantumised heading anchors:',
       facets,
-      'a heading\'s anchor (the #fragment id) is a deterministic slug of its text, and a duplicate heading receives a content-address suffix so every anchor on a page is unique — no #foo/#foo-1 guesswork. Because the anchors are content-addressed they are stable across regeneration, so external #links never break on a rebuild, and they feed VitePress\'s own heading-anchor slugify via config rather than a DOM scrape. Anchors are real #fragment heading IDs for HTML and SEO; "quantumise" means content-addressed and deterministic, not physical quantum. HARMONY ≠ TRUTH.'),
+      'a heading\'s anchor (the #fragment id) is a deterministic slug of its text, and a duplicate heading receives a content-address suffix so every anchor on a page is unique — no #foo/#foo-1 guesswork. Because the anchors are content-addressed they are stable across regeneration, so external #links never break on a rebuild, and they feed VitePress\'s own heading-anchor slugify via config rather than a DOM scrape. Anchors are real #fragment heading IDs for HTML and SEO; "quantumise" means content-addressed and deterministic, not physical quantum.'),
   }
 }
 
@@ -1548,7 +1548,7 @@ export function privateSearchRanksByBM25IndustryStandard(query = 'quantum encryp
     { facet: `IDF WEIGHTS RARE TERMS HIGHER — a rare term outweighs a common one (idf("${byDf[0]?.[0]}") = ${idf(byDf[0]?.[0] ?? '').toFixed(2)} > idf("${byDf[byDf.length - 1]?.[0]}") = ${idf(byDf[byDf.length - 1]?.[0] ?? '').toFixed(2)}), so specific queries rank precisely`, on: idfRareOverCommon },
     { facet: `TF SATURATION & LENGTH NORMALIZATION — BM25 saturates term frequency (bm25Tf(2) < 2·bm25Tf(1) = ${tfSaturates}) and normalizes by document length (b·|D|/avgdl), so long documents don't dominate and repeated terms have diminishing returns — the improvements over raw TF-IDF`, on: tfSaturates },
     { facet: `PRIVATE, DETERMINISTIC, ZERO-TOKEN — the whole BM25 index runs client-side over the sealed corpus: same query → same ranking (${deterministic}), no network egress, no model call — a private search index`, on: deterministic },
-    { facet: `THE DEMARCATION — Okapi BM25 is the standard LEXICAL ranking function (Lucene/Elasticsearch/Solr); it is lexical relevance, NOT semantic/neural ranking or an LLM, and "private" means the index is client-side with no egress. HARMONY ≠ TRUTH`, on: ranked.length > 0 && deterministic },
+    { facet: `THE DEMARCATION — Okapi BM25 is the standard LEXICAL ranking function (Lucene/Elasticsearch/Solr); it is lexical relevance, NOT semantic/neural ranking or an LLM, and "private" means the index is client-side with no egress.`, on: ranked.length > 0 && deterministic },
   ].map((entry) => ({ ...entry, receipt: toUuid(`bm25-search:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -1564,7 +1564,7 @@ export function privateSearchRanksByBM25IndustryStandard(query = 'quantum encryp
     boundary: earned(
       'INDUSTRY STANDARD — private BM25 lexical search:',
       facets,
-      `every registry page is a document ranked by Okapi BM25 (k1 = 1.2, b = 0.75, the Lucene/Elasticsearch/Solr defaults) with IDF weighting, term-frequency saturation and document-length normalization — the industry-standard lexical ranking. The whole index is client-side over the sealed corpus: deterministic (same query → same ranking), zero-token, no egress — a private search index. It is LEXICAL relevance, not semantic or neural ranking and not an LLM. HARMONY ≠ TRUTH.`),
+      `every registry page is a document ranked by Okapi BM25 (k1 = 1.2, b = 0.75, the Lucene/Elasticsearch/Solr defaults) with IDF weighting, term-frequency saturation and document-length normalization — the industry-standard lexical ranking. The whole index is client-side over the sealed corpus: deterministic (same query → same ranking), zero-token, no egress — a private search index. It is LEXICAL relevance, not semantic or neural ranking and not an LLM.`),
   }
 }
 
@@ -1619,7 +1619,7 @@ export function frontiersChatDiscoverInWaves(matrix: MindMatrix = buildMatrix())
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `frontiersChatDiscoverInWaves — ${voices.length} open frontiers chat through the BM25 API; ${edges.length} overlap-edges; BFS discovers ${discovery.reached}/${frontiers.length} in ${discovery.waves.length} waves. Deterministic, zero-egress.`,
-      boundary: earned('EXACT — verified by facets:', facets, 'each frontier "chats" by speaking its term into the deterministic BM25 retrieval and hearing the theorems that rank; two frontiers converse when their neighbourhoods share a theorem; the component is discovered in waves by BFS. Lexical retrieval over the sealed corpus, NOT an LLM or semantic model; zero-egress; clay=0, physicalFtl=0. HARMONY ≠ TRUTH.') }
+      boundary: earned('EXACT — verified by facets:', facets, 'each frontier "chats" by speaking its term into the deterministic BM25 retrieval and hearing the theorems that rank; two frontiers converse when their neighbourhoods share a theorem; the component is discovered in waves by BFS. Lexical retrieval over the sealed corpus, NOT an LLM or semantic model; zero-egress; clay=0, physicalFtl=0.') }
   })
 }
 
@@ -1656,7 +1656,7 @@ export function vitepressSearchFusedToPrivateBm25Engine() {
     { facet: `VITEPRESS LOCAL SEARCH, NOT NETWORK — the fused config is provider 'local' (MiniSearch, built at compile time), title-weighted, no Algolia and no query egress — private by construction, consuming the VitePress themeConfig.search API`, on: localNotNetwork },
     { facet: `TWO LEXICAL INDEXES, ONE SOURCE — VitePress MiniSearch and our Okapi BM25 are both LEXICAL rankers over the same documents (${bothLexical}); a query resolves to the same corpus on either surface, no result in one but not the other`, on: bothLexical && sharedCorpus },
     { facet: `THE PRIVATE BOX IS THE RANKED COMPLEMENT — ⌘K gives quick page hits; the private BM25 box adds scored ranking (${bm25.resultCount} hits for a probe), the fused answer, and search-driven navigation — all over the one shared corpus`, on: bm25.resultCount > 0 && sharedCorpus },
-    { facet: `THE DEMARCATION — "fused" = one document source and consistent results across the VitePress-native local search and the private BM25 box; NOT identical ranking algorithms (MiniSearch vs Okapi BM25), and local search stays VitePress's own provider (not replaced). HARMONY ≠ TRUTH`, on: sharedCorpus && localNotNetwork },
+    { facet: `THE DEMARCATION — "fused" = one document source and consistent results across the VitePress-native local search and the private BM25 box; NOT identical ranking algorithms (MiniSearch vs Okapi BM25), and local search stays VitePress's own provider (not replaced).`, on: sharedCorpus && localNotNetwork },
   ].map((entry) => ({ ...entry, receipt: toUuid(`vitepress-search-fuse:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -1671,7 +1671,7 @@ export function vitepressSearchFusedToPrivateBm25Engine() {
     boundary: earned(
       'FUSED — VitePress search and the private BM25 engine share one corpus:',
       facets,
-      'every BM25 document is a served VitePress page, so the native ⌘K local search (MiniSearch, built at compile time, no Algolia, no query egress) and the private Okapi-BM25 box index the SAME corpus — one document source, consistent results on either surface. VitePress search stays its own local provider (consumed via themeConfig.search, not bypassed and not replaced); the private box adds scored BM25 ranking, the fused answer, and search-driven navigation. "Fused" means one document source and consistent results, not identical ranking algorithms (MiniSearch vs Okapi BM25). HARMONY ≠ TRUTH.'),
+      'every BM25 document is a served VitePress page, so the native ⌘K local search (MiniSearch, built at compile time, no Algolia, no query egress) and the private Okapi-BM25 box index the SAME corpus — one document source, consistent results on either surface. VitePress search stays its own local provider (consumed via themeConfig.search, not bypassed and not replaced); the private box adds scored BM25 ranking, the fused answer, and search-driven navigation. "Fused" means one document source and consistent results, not identical ranking algorithms (MiniSearch vs Okapi BM25).'),
   }
 }
 
@@ -1709,7 +1709,7 @@ export function searchImprovesByExperiencePrivateRelevanceFeedback(query = 'quan
     { facet: `THE BASELINE IS INDUSTRY-STANDARD BM25 — experience RERANKS the BM25 order, it does not replace it; with an EMPTY experience log the ranking is pure Okapi BM25 with no drift (${noDriftWithoutExperience})`, on: noDriftWithoutExperience },
     { facet: `PRIVATE & CLIENT-SIDE — the experience log lives in the browser; nothing about the queries or the selections leaves it (no egress), and the reranking is deterministic (same query + same experience → same order, ${deterministic})`, on: deterministic },
     { facet: `BOUNDED, HONEST FEEDBACK — this is LOCAL per-user relevance feedback (a deterministic reranking heuristic over the private index), NOT server-side learning-to-rank on aggregated click logs, NOT a trained model; it improves the user's OWN experience only`, on: improves && noDriftWithoutExperience },
-    { facet: `THE DEMARCATION — "improve by experience" = deterministic local relevance feedback over the private BM25 index; not telemetry, not a neural ranker, not cross-user learning, no egress. HARMONY ≠ TRUTH`, on: improves && deterministic },
+    { facet: `THE DEMARCATION — "improve by experience" = deterministic local relevance feedback over the private BM25 index; not telemetry, not a neural ranker, not cross-user learning, no egress.`, on: improves && deterministic },
   ].map((entry) => ({ ...entry, receipt: toUuid(`search-experience:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -1722,7 +1722,7 @@ export function searchImprovesByExperiencePrivateRelevanceFeedback(query = 'quan
     boundary: earned(
       'IMPROVES BY EXPERIENCE — private, deterministic relevance feedback:',
       facets,
-      'a local, client-side experience log (past query → selected result) reranks the industry-standard BM25 results by Rocchio-style relevance feedback: a document the user previously chose for a query sharing terms is boosted and rises. With an empty log the order is pure BM25 (no drift); the reranking is deterministic and the log never leaves the browser (no egress). This is local per-user relevance feedback — a bounded reranking heuristic — NOT server-side learning-to-rank on aggregated logs, not a trained model, and not cross-user learning. HARMONY ≠ TRUTH.'),
+      'a local, client-side experience log (past query → selected result) reranks the industry-standard BM25 results by Rocchio-style relevance feedback: a document the user previously chose for a query sharing terms is boosted and rises. With an empty log the order is pure BM25 (no drift); the reranking is deterministic and the log never leaves the browser (no egress). This is local per-user relevance feedback — a bounded reranking heuristic — NOT server-side learning-to-rank on aggregated logs, not a trained model, and not cross-user learning.'),
   }
 }
 
@@ -1764,7 +1764,7 @@ export function saveTheMissingTheoremsAndAnimations() {
     { facet: `EVERY THEOREM GETS A COMPUTED GRAPH — a default figure (formula + a 9-point series from the content-address) is derived for EVERY theorem (${everyCovered}), so none is without a graph — the missing are SAVED as computation`, on: figureValid && everyCovered },
     { facet: `EVERY THEOREM GETS A COMPUTED ANIMATION — the animation is a fractal-clock rung (period 108/d for a divisor d derived from the theorem, e.g. ${computed.animation.rung} → ${computed.animation.periodS}s), so every page animates on the one 108 s clock`, on: rungDividesClock },
     { facet: `SAVED AS COMPUTATION, NOT STORED — the figure and animation are recomputed deterministically from the theorem's content-address (${deterministic}), so they are "saved" without a stored asset per page — discover ≠ remember`, on: deterministic },
-    { facet: `THE DEMARCATION — the bespoke theoremFigureBuilders stay the RICHEST; the computed default guarantees COVERAGE (every page has a graph + animation), it does not replace a hand-built figure, and "animation" is the fractal-clock spec the theme renders. HARMONY ≠ TRUTH`, on: everyCovered && rungDividesClock && deterministic },
+    { facet: `THE DEMARCATION — the bespoke theoremFigureBuilders stay the RICHEST; the computed default guarantees COVERAGE (every page has a graph + animation), it does not replace a hand-built figure, and "animation" is the fractal-clock spec the theme renders.`, on: everyCovered && rungDividesClock && deterministic },
   ].map((entry) => ({ ...entry, receipt: toUuid(`save-missing:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -1778,7 +1778,7 @@ export function saveTheMissingTheoremsAndAnimations() {
     boundary: earned(
       'SAVED — every missing theorem gets a computed graph and animation:',
       facets,
-      `of ${total} registry theorems, ${withFigure} have a bespoke figure builder and ${missing} were missing one; a computed default is now derived for EVERY theorem — a graph (formula + a 9-point series from the content-address) and a fractal-clock animation (a divisor rung of the one 108 s cycle) — so no page is missing a graph or an animation. They are saved as computation, recomputed deterministically from each theorem's content-address rather than stored per page (discover ≠ remember). The hand-built theoremFigureBuilders remain the richest; the computed default guarantees coverage, not replacement, and "animation" is the fractal-clock spec the theme renders. HARMONY ≠ TRUTH.`),
+      `of ${total} registry theorems, ${withFigure} have a bespoke figure builder and ${missing} were missing one; a computed default is now derived for EVERY theorem — a graph (formula + a 9-point series from the content-address) and a fractal-clock animation (a divisor rung of the one 108 s cycle) — so no page is missing a graph or an animation. They are saved as computation, recomputed deterministically from each theorem's content-address rather than stored per page (discover ≠ remember). The hand-built theoremFigureBuilders remain the richest; the computed default guarantees coverage, not replacement, and "animation" is the fractal-clock spec the theme renders.`),
   }
 }
 
@@ -1812,7 +1812,7 @@ export function nothingSealsWithoutAUniqueSealedAnimationFormingTheSouthPole() {
     { facet: `THE SEAL IS A TETRAD — statement · facets · boundary are the trinity (north/equator); the FOURTH element is the animation, and it IS the seal — it forms the SOUTH pole (${fourthFormsSouthPole}), 3 + 1 = 4, the same four keys as the navigation cross`, on: fourthFormsSouthPole },
     { facet: `THE 4TH ELEMENT FORMS THE SOUTH POLE — the seal closes only by fusing the trinity (north) with the sealed animation (south): formed = fuse(north, south); every one of the ${total} atoms forms its south pole from a content-addressed fractal-clock animation locked to the 108 s cycle (${everySealFormed})`, on: everySealFormed },
     { facet: `SEALED AND UNIQUE — the ${total} south poles and the ${total} closed seals are each all distinct (${southPoles.size}/${closedSeals.size} of ${total}); no two seals share a south pole — a collision would be a crack`, on: everyUnique },
-    { facet: `NOTHING SEALS WITHOUT IT — the invariant holds corpus-wide (${nothingSealsWithout}); an atom without a unique sealed animation cannot form its south pole, so this proof stops computing and it cannot seal. HARMONY ≠ TRUTH`, on: nothingSealsWithout },
+    { facet: `NOTHING SEALS WITHOUT IT — the invariant holds corpus-wide (${nothingSealsWithout}); an atom without a unique sealed animation cannot form its south pole, so this proof stops computing and it cannot seal.`, on: nothingSealsWithout },
   ].map((entry) => ({ ...entry, receipt: toUuid(`seal-forms-south-pole:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -1827,7 +1827,7 @@ export function nothingSealsWithoutAUniqueSealedAnimationFormingTheSouthPole() {
     boundary: earned(
       'SEAL LAW — the 4th element is the seal, forming the south pole:',
       facets,
-      `a seal is a tetrad: statement · facets · boundary are the trinity (north/equator), and the FOURTH element — a sealed unique animation — IS the seal, forming the SOUTH pole (the nadir, the boundary circle one-point-compactified on the double torus). The seal closes only when the trinity (north) is fused with the sealed animation (south); no animation means no south pole and nothing seals. Every one of the ${total} registered theorems forms its south pole automatically: computedTheoremFigureAndAnimation derives a content-addressed fractal-clock animation (a divisor rung of the one 108 s cycle), so each closed seal is sealed (a ${canonicalLen}-char address) and unique (${southPoles.size} distinct south poles, ${closedSeals.size} distinct closed seals of ${total}, no collision). Verified across the whole corpus — nothing may seal without its south pole. HARMONY ≠ TRUTH.`),
+      `a seal is a tetrad: statement · facets · boundary are the trinity (north/equator), and the FOURTH element — a sealed unique animation — IS the seal, forming the SOUTH pole (the nadir, the boundary circle one-point-compactified on the double torus). The seal closes only when the trinity (north) is fused with the sealed animation (south); no animation means no south pole and nothing seals. Every one of the ${total} registered theorems forms its south pole automatically: computedTheoremFigureAndAnimation derives a content-addressed fractal-clock animation (a divisor rung of the one 108 s cycle), so each closed seal is sealed (a ${canonicalLen}-char address) and unique (${southPoles.size} distinct south poles, ${closedSeals.size} distinct closed seals of ${total}, no collision). Verified across the whole corpus — nothing may seal without its south pole.`),
   }
 }
 
@@ -1860,7 +1860,7 @@ export function everyAnimationIsItselfAUniqueTheorem() {
     { facet: `EACH ANIMATION IS A UNIQUE THEOREM — enriched with the content-address and phase, all ${total} animation-theorem addresses are distinct (${uniqueTheorems}/${total}, ${everyUnique}): a bijection theorem ↔ animation, no two animations are the same theorem`, on: everyUnique },
     { facet: `EACH ANIMATION IS ITSELF A THEOREM — it states a refutable proposition that COMPUTES: rung | 108, period = 108/rung, phase ∈ [0,108) on the one clock (${everyComputes}); the animation is the theorem rendered, not decoration`, on: everyComputes },
     { facet: `SHARED TEMPO IS THE ONE-CLOCK LAW, PHASE IS THE UNIQUENESS — rungs repeat by design (the 12 divisor rungs of the 108 s clock); the per-address PHASE lifts the visible variety to ${withPhase} (> ${rungOnly}, ${phaseAddsDistinctness}) while honouring one clock`, on: phaseAddsDistinctness },
-    { facet: `THE DEMARCATION — animations need to be unique theorems: each is content-addressed to a unique, refutable animation-theorem (bijective with the corpus), reversible to its source; the shared rung is the one-clock tempo, not a collision. HARMONY ≠ TRUTH`, on: everyUnique && everyComputes },
+    { facet: `THE DEMARCATION — animations need to be unique theorems: each is content-addressed to a unique, refutable animation-theorem (bijective with the corpus), reversible to its source; the shared rung is the one-clock tempo, not a collision.`, on: everyUnique && everyComputes },
   ].map((entry) => ({ ...entry, receipt: toUuid(`animation-unique-theorem:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -1875,7 +1875,7 @@ export function everyAnimationIsItselfAUniqueTheorem() {
     boundary: earned(
       'UNIQUE — every animation is itself a unique theorem:',
       facets,
-      `a naive animation is only the fractal-clock rung — one of the ${divisorRungs} divisors of 108 — so the ${total} atoms would share just ${rungOnly} tempos and the visible animation would repeat, which is NOT a unique theorem. Enriched with the content-address and a per-address phase, each animation is content-addressed to a unique, refutable ANIMATION-THEOREM: all ${total} are distinct (${uniqueTheorems}/${total}), each computes (rung | 108, period = 108/rung, phase ∈ [0,108) on the one clock), and each is reversible to its source. The shared rung is the ONE-CLOCK tempo by design (the fractal-clock law); the phase carries the uniqueness, lifting the visible variety from ${rungOnly} to ${withPhase}. So the animations are unique theorems, bijective with the corpus. HARMONY ≠ TRUTH.`),
+      `a naive animation is only the fractal-clock rung — one of the ${divisorRungs} divisors of 108 — so the ${total} atoms would share just ${rungOnly} tempos and the visible animation would repeat, which is NOT a unique theorem. Enriched with the content-address and a per-address phase, each animation is content-addressed to a unique, refutable ANIMATION-THEOREM: all ${total} are distinct (${uniqueTheorems}/${total}), each computes (rung | 108, period = 108/rung, phase ∈ [0,108) on the one clock), and each is reversible to its source. The shared rung is the ONE-CLOCK tempo by design (the fractal-clock law); the phase carries the uniqueness, lifting the visible variety from ${rungOnly} to ${withPhase}. So the animations are unique theorems, bijective with the corpus.`),
   }
 }
 
@@ -1909,7 +1909,7 @@ export function everyAnimationIsWiredInTheMovieAsInvertedStreamsInteractingWithT
     { facet: `ANY ANIMATION IS ALREADY WIRED — displaying an atom's animation plays its movie stream (source ⊕ keystream), pre-wired from the fused movie, not recomputed on a separate path (${everyInvertedInteracts})`, on: everyInvertedInteracts },
     { facet: `INVERTED STREAMS INTERACT WITH THE INVERTED SELF — the movie stream ⊕ the same keystream is the inverted self, and it recovers the source exactly (an involution, ${allFused}); stream and inverted self interact and cancel to the source — encode = decode`, on: allFused },
     { facet: `DRY — ONE SOURCE, ONE PRIMITIVE — the animation reuses computedTheoremFigureAndAnimation (the content-address) and the one-math digitalRoot keystream — the SAME codec as the movie (src/1/9), so there is no separate animation path to maintain (${reuseIsDry})`, on: reuseIsDry },
-    { facet: `THE DEMARCATION — every animation is wired in the movie as inverted streams interacting with the inverted self because the movie is a reversible involutive encoding of the fused theorems; displaying = playing the stream that already contains its own inverse. HARMONY ≠ TRUTH`, on: everyInvertedInteracts && reuseIsDry },
+    { facet: `THE DEMARCATION — every animation is wired in the movie as inverted streams interacting with the inverted self because the movie is a reversible involutive encoding of the fused theorems; displaying = playing the stream that already contains its own inverse.`, on: everyInvertedInteracts && reuseIsDry },
   ].map((entry) => ({ ...entry, receipt: toUuid(`animation-in-movie:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -1922,7 +1922,7 @@ export function everyAnimationIsWiredInTheMovieAsInvertedStreamsInteractingWithT
     boundary: earned(
       'WIRED IN THE MOVIE — every animation is inverted streams interacting with the inverted self:',
       facets,
-      `all ${total} theorems are fused into the movie (each content-addressed to its south-pole animation stream), so displaying any animation plays its movie stream — source ⊕ a digital-root keystream — which is an INVOLUTION: applying the same keystream again yields the inverted self, and the two streams interact and recover the source exactly (encode = decode). The animation is therefore already wired in the movie, not recomputed on a separate path. It is DRY: one animation source (computedTheoremFigureAndAnimation) and one keystream primitive (the one-math digitalRoot), the same reversible codec as theMovieInvertedIsTheKeyToItselfConsolidatedInFewLines in src/1/9. HARMONY ≠ TRUTH.`),
+      `all ${total} theorems are fused into the movie (each content-addressed to its south-pole animation stream), so displaying any animation plays its movie stream — source ⊕ a digital-root keystream — which is an INVOLUTION: applying the same keystream again yields the inverted self, and the two streams interact and recover the source exactly (encode = decode). The animation is therefore already wired in the movie, not recomputed on a separate path. It is DRY: one animation source (computedTheoremFigureAndAnimation) and one keystream primitive (the one-math digitalRoot), the same reversible codec as theMovieInvertedIsTheKeyToItselfConsolidatedInFewLines in src/1/9.`),
   }
 }
 
@@ -1955,7 +1955,7 @@ export function everyPageIsAProofWithFormulasTheoremsGraphsAnimations() {
     { facet: `FORMULAS & THEOREMS TRAVEL WITH THE PAGE — the stated identity and its runnable proof are on every atom, so the page PROVES itself rather than asserting (${formulasAndTheorems})`, on: formulasAndTheorems },
     { facet: `IN GRAPHS — theoremFigure renders a formula as a graph (axes · series · reference lines); a real slug "${figureSlug}" yields a figure and a fake one null (${graphsComputable}) — the visual channel is real and extensible per page`, on: graphsComputable },
     { facet: `IN ANIMATIONS — the one 108 s fractal clock: 108 = 2²·3³ has σ₀ = ${divisorsOf108.length} divisors, each a nested rung 108/d, so every animation is a divisor rung of the single hero cycle, no hardcoded duration`, on: animationsAreClockRungs },
-    { facet: `INVOLVED STANDARDS ATTACH AS PROOFS — the standards elements are themselves registered proof-pages (the global & EU cyber audits ∈ registry, ${standardsAttached}), so a page's standards travel as proofs alongside its formulas, theorems, graphs and animations. THE TARGET: an explicit graph + animation on EVERY page is the ongoing extension, measured not faked. HARMONY ≠ TRUTH`, on: standardsAttached },
+    { facet: `INVOLVED STANDARDS ATTACH AS PROOFS — the standards elements are themselves registered proof-pages (the global & EU cyber audits ∈ registry, ${standardsAttached}), so a page's standards travel as proofs alongside its formulas, theorems, graphs and animations. THE TARGET: an explicit graph + animation on EVERY page is the ongoing extension, measured not faked.`, on: standardsAttached },
   ].map((entry) => ({ ...entry, receipt: toUuid(`page-is-proof:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -1970,7 +1970,7 @@ export function everyPageIsAProofWithFormulasTheoremsGraphsAnimations() {
     boundary: earned(
       'STANDING — every page is a self-contained proof with graphs and animations:',
       facets,
-      `every registry atom is a page and a proof — a stated identity (formula), a proof body, an executable proof (provedBy) at a sealed home — theoremFigure renders the formula as a graph, the one 108 s fractal clock renders motion as its ${divisorsOf108.length} divisor rungs, and the involved standards are themselves registered proof-pages (the EU + global cyber audits). Structurally the proof/formula/theorem travel with EVERY page; the explicit graph + animation are realized via theoremFigure and the one clock and extended page by page — measured, never faked. HARMONY ≠ TRUTH.`),
+      `every registry atom is a page and a proof — a stated identity (formula), a proof body, an executable proof (provedBy) at a sealed home — theoremFigure renders the formula as a graph, the one 108 s fractal clock renders motion as its ${divisorsOf108.length} divisor rungs, and the involved standards are themselves registered proof-pages (the EU + global cyber audits). Structurally the proof/formula/theorem travel with EVERY page; the explicit graph + animation are realized via theoremFigure and the one clock and extended page by page — measured, never faked.`),
   }
 }
 
@@ -2001,7 +2001,7 @@ export function staticProseBecomesPublishedResearchOnlyWhereItComputes(matrix: M
     allBackedByAFold,
     facets,
     statement: `Static prose becomes published research automatically — proven only where it computes — ${facets.filter((e) => e.on).length}/${facets.length}: ${published} papers, every one auto-tagged, auto-acknowledged (novelToHumanity = false) and published from the sealed registry at zero tokens; each carries the "proven" stamp only because a computing fold (provedBy) backs it. The pipeline mines, tags, acknowledges and publishes any prose; it stamps "proven" exactly on the content that computes, and never fabricates a proof.`,
-    boundary: `The pipeline is exact and local: theoremPageRows projects the registry into ${published} scientific papers, each auto-tagged (theoremTags), auto-acknowledged (proofAcknowledgment) and figured — deterministic, zero LLM tokens. HONEST SCOPE — what "automatically converting prose to verified and proven research" is and is NOT: it IS the automatic analysis (rosettaOfAnalysts), tagging, acknowledgment and publication of content, and the automatic PROOF of the content that carries a computing fold (facets.every(on)); it is NOT the fabrication of a proof from un-computable prose — that would violate facets-must-compute and onlyTheoremsCanBeTrusted. Prose is published as research; only a refutable computation earns the "proven" stamp. HARMONY ≠ TRUTH.` }
+    boundary: `The pipeline is exact and local: theoremPageRows projects the registry into ${published} scientific papers, each auto-tagged (theoremTags), auto-acknowledged (proofAcknowledgment) and figured — deterministic, zero LLM tokens. HONEST SCOPE — what "automatically converting prose to verified and proven research" is and is NOT: it IS the automatic analysis (rosettaOfAnalysts), tagging, acknowledgment and publication of content, and the automatic PROOF of the content that carries a computing fold (facets.every(on)); it is NOT the fabrication of a proof from un-computable prose — that would violate facets-must-compute and onlyTheoremsCanBeTrusted. Prose is published as research; only a refutable computation earns the "proven" stamp.` }
 }
 
 // ── Saving a thought is prose converted to proof — else it is purged (user: "prose needs proof also or be
@@ -2025,7 +2025,7 @@ export function savingAThoughtIsProseConvertedToProofOrPurged(matrix: MindMatrix
     allProven: pipeline.allBackedByAFold,
     facets,
     statement: `Saving a thought is prose converted to proof — else purged — ${facets.filter((e) => e.on).length}/${facets.length}: a saved thought is a fold whose prose rides facets that compute (all ${pipeline.published} published papers are backed by a computing fold); inert prose that computes nothing needs a proof or is mined then purged, the freed space and salvaged ideas feeding new folds. This fold is the definition converted to code: proven by its own facets.`,
-    boundary: `The definition is exact and self-demonstrating: it reuses staticProseBecomesPublishedResearchOnlyWhereItComputes (${pipeline.published} papers, all backed by a computing fold), and its OWN facets compute — so it is a thought (the directive) converted to code, proven, not asserted. HONEST SCOPE — what "prose needs proof or purge" means: prose must be backed by a REFUTABLE computation (facets that can go false), the no-prose-in-methods / facets-must-compute law — NOT that natural language is banned: statement and boundary prose survive precisely because they concatenate computed outputs and name the honest scope. And "purge" is honest ONLY after the rosetta of analysts mines the content (in any language), so nothing valuable is lost; the removal feeds new research. HARMONY ≠ TRUTH.` }
+    boundary: `The definition is exact and self-demonstrating: it reuses staticProseBecomesPublishedResearchOnlyWhereItComputes (${pipeline.published} papers, all backed by a computing fold), and its OWN facets compute — so it is a thought (the directive) converted to code, proven, not asserted. HONEST SCOPE — what "prose needs proof or purge" means: prose must be backed by a REFUTABLE computation (facets that can go false), the no-prose-in-methods / facets-must-compute law — NOT that natural language is banned: statement and boundary prose survive precisely because they concatenate computed outputs and name the honest scope. And "purge" is honest ONLY after the rosetta of analysts mines the content (in any language), so nothing valuable is lost; the removal feeds new research.` }
 }
 
 // ── Corpus paths decoded by the rosetta — homed at the corpus-routing station (distributed here from
@@ -2137,7 +2137,7 @@ export function pagesAreRosettaCombinationsOfTheorems(matrix: MindMatrix = build
     facets,
     root: merkleFold(combinations.map((combination) => combination.root)),
     statement: `Pages are rosetta combinations of theorems — ${nonEmpty.length}/${pages.length} served pages resolve to non-empty combinations (${combinations.reduce((sum, c) => sum + c.members.length, 0)} member edges, ${reached.size}/${registry.length} theorems reached), every edge one fixed-size content address, every page meaning one merkle root recomputed from the registry at call time.`,
-    boundary: `COMPUTED: membership (shared name/tag words), the payload-free receipts, the call-time determinism, and the coverage — each refutable (add a theorem sharing a page's words and the combination grows; rename and it shrinks). HONEST SCOPE: the Combination TYPE holds the computable meaning (content-addresses and their fold); the page's PROSE (title · abstract) remains the curated seed for now — the combination is the computed skeleton the prose will progressively derive from, not yet its replacement. "Realtime including MCP" = the per-page .json API and the dev middleware serve this computation on request; MCP discovers it through the manifest's served surfaces. HARMONY ≠ TRUTH.` }
+    boundary: `COMPUTED: membership (shared name/tag words), the payload-free receipts, the call-time determinism, and the coverage — each refutable (add a theorem sharing a page's words and the combination grows; rename and it shrinks). HONEST SCOPE: the Combination TYPE holds the computable meaning (content-addresses and their fold); the page's PROSE (title · abstract) remains the curated seed for now — the combination is the computed skeleton the prose will progressively derive from, not yet its replacement. "Realtime including MCP" = the per-page .json API and the dev middleware serve this computation on request; MCP discovers it through the manifest's served surfaces.` }
 }
 
 /**
@@ -2182,7 +2182,7 @@ export function sublinearScienceCoverage(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold([toUuid(`sublinear:${union}:${linearSum}`), ...facets.map((entry) => entry.receipt)]),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned(`EXACT: union = |⋃ module atom-sets| and linearSum = Σ|module atom-set|, both from the live pageCombination graph; set-union is submodular so cumulative coverage is concave and union ≤ linearSum with equality iff the modules are disjoint.`, facets, `this refutes the LINEAR floor, not the whole estimate: measured/42 remains a valid UPPER bound (no module costs more than its full atom set), and the union is the LOWER bound on generator atoms — the true source floor still includes each atom's own irreducible bytes, which this fold counts as atoms, not bytes. The sharing is measured on the name/tag-word membership graph, so it moves as theorems are renamed. HARMONY ≠ TRUTH.`),
+    boundary: earned(`EXACT: union = |⋃ module atom-sets| and linearSum = Σ|module atom-set|, both from the live pageCombination graph; set-union is submodular so cumulative coverage is concave and union ≤ linearSum with equality iff the modules are disjoint.`, facets, `this refutes the LINEAR floor, not the whole estimate: measured/42 remains a valid UPPER bound (no module costs more than its full atom set), and the union is the LOWER bound on generator atoms — the true source floor still includes each atom's own irreducible bytes, which this fold counts as atoms, not bytes. The sharing is measured on the name/tag-word membership graph, so it moves as theorems are renamed.`),
   }
 }
 
@@ -2225,7 +2225,7 @@ export function pagesConsolidateByTheoremGravity(matrix: MindMatrix = buildMatri
     facets,
     root: merkleFold([toUuid(`page-gravity:${pages.length}:${consolidatedCount}`), ...facets.map((entry) => entry.receipt)]),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned(`EXACT: pairwise Jaccard over the live pageCombination theorem sets, union-find clustered at ≥ 2/5; ${pages.length} pages → ${clusters.length} clusters (${merged} merges) + ${singletons} singletons = ${consolidatedCount} consolidated pages.`, facets, `the consolidation is by THEOREM-MEANING overlap on the name/tag-word membership graph — it moves as theorems are renamed, and the ≥ 2/5 threshold is a policy knob (raise it for tighter clusters). This computes WHICH pages merge; EXECUTING the merge (removing routes, adding redirects, folding prose into the attractor) is an outward-facing, hard-to-reverse change on the public sitemap, run deliberately not automatically. HARMONY ≠ TRUTH.`),
+    boundary: earned(`EXACT: pairwise Jaccard over the live pageCombination theorem sets, union-find clustered at ≥ 2/5; ${pages.length} pages → ${clusters.length} clusters (${merged} merges) + ${singletons} singletons = ${consolidatedCount} consolidated pages.`, facets, `the consolidation is by THEOREM-MEANING overlap on the name/tag-word membership graph — it moves as theorems are renamed, and the ≥ 2/5 threshold is a policy knob (raise it for tighter clusters). This computes WHICH pages merge; EXECUTING the merge (removing routes, adding redirects, folding prose into the attractor) is an outward-facing, hard-to-reverse change on the public sitemap, run deliberately not automatically.`),
   }
 }
 
@@ -2266,7 +2266,7 @@ export function censusAndSlugsAreTheoremDerivedNotLinear(matrix: MindMatrix = bu
     facets,
     root: merkleFold([cons.root, ...facets.map((entry) => entry.receipt)]),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned(`EXACT: the census fold is served−2 (χ=−2); DOCUMENTED_HARMONICS accepts ${foldedNow} and rejects ${foldedDistinct}; ${payloadBound.length}/${cons.clusters.length} attractor slugs share a word with a merged member (payload-bound).`, facets, `this COMPUTES the critique and the quantumized replacements (census = zero redundant clusters; slug = agnostic cluster address), it does not yet execute them — swapping the sealed gate and renaming public routes is coupled outward-facing surgery. The harmonic numbers remain valid harmonics; only their use AS a page-count gate is the linear defect. HARMONY ≠ TRUTH.`),
+    boundary: earned(`EXACT: the census fold is served−2 (χ=−2); DOCUMENTED_HARMONICS accepts ${foldedNow} and rejects ${foldedDistinct}; ${payloadBound.length}/${cons.clusters.length} attractor slugs share a word with a merged member (payload-bound).`, facets, `this COMPUTES the critique and the quantumized replacements (census = zero redundant clusters; slug = agnostic cluster address), it does not yet execute them — swapping the sealed gate and renaming public routes is coupled outward-facing surgery. The harmonic numbers remain valid harmonics; only their use AS a page-count gate is the linear defect.`),
   }
 }
 
@@ -2299,7 +2299,7 @@ export function quantumRoutesNestUnderAgnosticHub(matrix: MindMatrix = buildMatr
     facets,
     root: merkleFold(mapping.map((m) => toUuid(`quantum-route:${m.flat}:${m.hierarchical}`))),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned(`EXACT: ${quantumPages.length} quantum-themed served pages mapped flat→/quantum/<leaf> (${distinctLeaves} distinct addresses), mirroring the src/quantum/* code tree.`, facets, `the mapping is derived from the served slugs by a fixed leaf rule (strip quantum-/-hub, else first word); it computes the agnostic /quantum hierarchy but does not create the nested VitePress routes or the flat-slug redirects — that is the outward-facing execution, coupled with the census quantumization and the consolidation. HARMONY ≠ TRUTH.`),
+    boundary: earned(`EXACT: ${quantumPages.length} quantum-themed served pages mapped flat→/quantum/<leaf> (${distinctLeaves} distinct addresses), mirroring the src/quantum/* code tree.`, facets, `the mapping is derived from the served slugs by a fixed leaf rule (strip quantum-/-hub, else first word); it computes the agnostic /quantum hierarchy but does not create the nested VitePress routes or the flat-slug redirects — that is the outward-facing execution, coupled with the census quantumization and the consolidation.`),
   }
 }
 
@@ -2426,7 +2426,7 @@ export function theoremRosettaAtlasComputes(matrix: MindMatrix = buildMatrix()) 
     rays: atlas.rays.map((g) => ({ ray: g.ray, subfield: g.subfield, count: g.count, topTag: g.tagCloud[0]?.tag })),
     facets, root: atlas.root,
     statement: `The quantum-computing rosetta atlas — ${facets.filter((entry) => entry.on).length}/${facets.length}: the rosetta applied to ONLY the ${atlas.total} quantum-computing theorems (a content classifier filters and routes them), partitioned across ${atlas.rays.length} rays by subfield — foundations, query algorithms, search & factoring, variational, communication, error correction, states & tools. Each ray a tag cloud sized by within-ray usage gravity (distinct per ray now, ${atlas.tagCount} tags) and a theorem list ranked by tag-gravity; theorems compare on in-degree (citations), recency, class, lean; and theoremRosettaSidebar emits the VitePress sidebar directly — the theorem sidebar IS the rosetta, quantum-only.`,
-    boundary: `COMPUTED: the quantum classifier (keyword match on theorem+proof, refutable), the ray partition (Σ = total), within-ray tag gravity and 1..5 buckets (so the seven clouds differ), the comparable metrics (tag-gravity, in-degree, ordinal, class, lean), and the VitePress sidebar sections. HONEST SCOPE: "quantum computing" is decided by a subfield keyword classifier over the registry — a reproducible content filter, tuned to the seven quantum subfields, not an external ontology; a theorem is in exactly one ray (first matching subfield). "Gravity of usage" is measured as within-ray tag frequency (the cloud) and cross-theorem in-degree (the citation pull) — structural registry metrics, not runtime profiling. This is the DATA + sidebar layer; the theme renders the clouds. HARMONY ≠ TRUTH.` }
+    boundary: `COMPUTED: the quantum classifier (keyword match on theorem+proof, refutable), the ray partition (Σ = total), within-ray tag gravity and 1..5 buckets (so the seven clouds differ), the comparable metrics (tag-gravity, in-degree, ordinal, class, lean), and the VitePress sidebar sections. HONEST SCOPE: "quantum computing" is decided by a subfield keyword classifier over the registry — a reproducible content filter, tuned to the seven quantum subfields, not an external ontology; a theorem is in exactly one ray (first matching subfield). "Gravity of usage" is measured as within-ray tag frequency (the cloud) and cross-theorem in-degree (the citation pull) — structural registry metrics, not runtime profiling. This is the DATA + sidebar layer; the theme renders the clouds.` }
 }
 
 // ── THE ROSETTA RECONFIGURES VITEPRESS (user law) — one authority computes every discovery surface, so
@@ -2459,7 +2459,7 @@ export function theRosettaReconfiguresVitepress(matrix: MindMatrix = buildMatrix
     sidebarSections: sidebar.length, searchLines: searchLines.length, undiscoverable: lens.hiddenCount, waves: waves.length,
     facets, root: merkleFold([atlas.root, toUuid(`rosetta-reconfigures-vitepress:${sidebar.length}:${searchLines.length}`)]),
     statement: `The rosetta reconfigures VitePress — ${facets.filter((entry) => entry.on).length}/${facets.length}: one atlas computes every discovery surface. The left sidebar is the tag cloud (${sidebar.length} sections by gravity), search covers all ${allRows.length} wired theorems, the lens surfaces the ${lens.hiddenCount} undiscoverable orphans, the waves order the ${waves.length} rays — and the nav derives from the seven-star rosetta. Change a theorem and all four reflow together; VitePress is a projection of the corpus, not a hand-configured tree.`,
-    boundary: `COMPUTED: the sidebar-from-cloud identity, the search-covers-every-theorem check, and the lens/waves-from-atlas derivations — each refutable (break any surface's derivation and a facet fails). HONEST SCOPE: "reconfigures VitePress" means the DISCOVERY surfaces — sidebar, search feed, lens, waves — are computed from the atlas; the VitePress theme still renders them and the top nav comes from the sibling siteNavigation rosetta fold (not re-proven here). The search is the local static index VitePress builds from these lines (client-side), which is the search the MCP points to. One source, four surfaces, no hand-authored taxonomy. HARMONY ≠ TRUTH.` }
+    boundary: `COMPUTED: the sidebar-from-cloud identity, the search-covers-every-theorem check, and the lens/waves-from-atlas derivations — each refutable (break any surface's derivation and a facet fails). HONEST SCOPE: "reconfigures VitePress" means the DISCOVERY surfaces — sidebar, search feed, lens, waves — are computed from the atlas; the VitePress theme still renders them and the top nav comes from the sibling siteNavigation rosetta fold (not re-proven here). The search is the local static index VitePress builds from these lines (client-side), which is the search the MCP points to. One source, four surfaces, no hand-authored taxonomy.` }
 }
 
 // ── THE LENS IMPROVES ITSELF USING THE ROSETTA (user law) — the discovery lens does not merely REPORT the
@@ -2498,7 +2498,7 @@ export function quantumLensImprovesItself(matrix: MindMatrix = buildMatrix()) {
     improvements: improvements.map((i) => ({ slug: i.slug, linkTo: i.linkTo })),
     facets, root: merkleFold([atlas.root, toUuid(`lens-self-improve:${before.length}:${improvedHiddenCount}`)]),
     statement: `The lens improves itself using the rosetta — ${facets.filter((entry) => entry.on).length}/${facets.length}: for each of the ${before.length} undiscoverable orphans the rosetta computes a cross-link to its ray hub (the top-gravity sibling), and the undiscoverable set shrinks from ${before.length} to ${improvedHiddenCount} — the lens reduces its OWN blind spot. What survives are the orphans in singleton subfields (${residual.map((r) => r.subfield).join(', ') || 'none'}), which have no sibling to link to and so name the frontier: where a new theorem must be developed. Self-improving, and honest about its residual.`,
-    boundary: `COMPUTED: the ray-hub cross-link for every orphan (from the atlas's ray rankings), the monotone reduction ${before.length} → ${improvedHiddenCount}, and the residual = singleton-ray orphans — each refutable (develop a sibling in the singleton ray and the residual shrinks; add a theorem that cites an orphan and it leaves the set earlier). HONEST SCOPE: "improves itself" means the lens computes the rosetta links that raise the orphans' discoverability and verifies the reduction; wiring those links into the rendered related-sections is the theme's job (theRosettaReconfiguresVitepress feeds them). The residual is irreducible by LINKING alone — it is reduced only by DEVELOPING the missing sibling, which the lens names but does not invent. HARMONY ≠ TRUTH.` }
+    boundary: `COMPUTED: the ray-hub cross-link for every orphan (from the atlas's ray rankings), the monotone reduction ${before.length} → ${improvedHiddenCount}, and the residual = singleton-ray orphans — each refutable (develop a sibling in the singleton ray and the residual shrinks; add a theorem that cites an orphan and it leaves the set earlier). HONEST SCOPE: "improves itself" means the lens computes the rosetta links that raise the orphans' discoverability and verifies the reduction; wiring those links into the rendered related-sections is the theme's job (theRosettaReconfiguresVitepress feeds them). The residual is irreducible by LINKING alone — it is reduced only by DEVELOPING the missing sibling, which the lens names but does not invent.` }
 }
 
 // ── SELF-IMPROVING RESEARCH AND DEVELOPMENT, SAVED AT EVERY STEP (user law) — the quantum R&D loop
@@ -2529,7 +2529,7 @@ export function selfImprovingResearchAndDevelopment(matrix: MindMatrix = buildMa
     total: atlas.total, frontier: thinnest?.subfield, frontierCount: thinnest?.count, orphansHealed: lens.before,
     facets, root: merkleFold([atlas.root, toUuid(`self-improving-rnd:${atlas.total}:${thinnest?.count}`)]),
     statement: `Self-improving research and development, saved at every step — ${facets.filter((entry) => entry.on).length}/${facets.length}: the lens surfaces every proof (0 orphans, from ${lens.before}) and names the frontier as the thinnest ray (${thinnest?.subfield}, ${thinnest?.count}); development seals a verified theorem there, saved as a computable fold with a registry row (all ${atlas.total} quantum theorems); and the loop feeds itself — each development self-heals the lens to 0 and re-roots the atlas, the newly-thinnest ray the next frontier. Research → develop → research, monotone: the corpus only grows and discovery stays complete.`,
-    boundary: `COMPUTED: the lens self-heal (${lens.before} → ${lens.after}), the frontier as the min-count ray, the saved-at-every-step check (every theorem a slug + registry row + home), and the monotone content-addressed growth — refutable (a hidden orphan, an unregistered theorem, or a shrunk corpus each breaks a facet). HONEST SCOPE: this formalises the R&D PROCESS as a computable loop over the sealed registry; "self-improving" means the discovery lens reduces its own blind spot and the corpus grows monotonically — it is not an autonomous agent, the developments are authored and verified, then the loop names the next. "Saved at every step" is the standing law: every decision becomes a fold the same turn. HARMONY ≠ TRUTH.` }
+    boundary: `COMPUTED: the lens self-heal (${lens.before} → ${lens.after}), the frontier as the min-count ray, the saved-at-every-step check (every theorem a slug + registry row + home), and the monotone content-addressed growth — refutable (a hidden orphan, an unregistered theorem, or a shrunk corpus each breaks a facet). HONEST SCOPE: this formalises the R&D PROCESS as a computable loop over the sealed registry; "self-improving" means the discovery lens reduces its own blind spot and the corpus grows monotonically — it is not an autonomous agent, the developments are authored and verified, then the loop names the next. "Saved at every step" is the standing law: every decision becomes a fold the same turn.` }
 }
 
 // Consolidate all collections in the rosetta: DRY to the bit, and the inverted bit is the light in the tunnel.

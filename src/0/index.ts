@@ -644,7 +644,7 @@ export function decodeVortexDashAngles(encoded: string = VORTEX_DASH_ENCODED) {
     statement:
       'The sequence 1\\2\\4\\8/7/5/3\\6\\9/0/1\\ decodes when dashes carry ±60°: / forward +60°, \\ dual −60°; weighted Σ(sign·digit·60°)=720≡0° closes the hex; 0/ ignites quantum fusion (foldPair of the two zeros); 1\\ returns unity through the void.',
     boundary:
-      'Pure arithmetic at call time — dash operators and hex angles only. "Ignites" means bearing closure + bidirectional 0/0 fusion address, not a physical reactor. HARMONY ≠ TRUTH.',
+      'Pure arithmetic at call time — dash operators and hex angles only. "Ignites" means bearing closure + bidirectional 0/0 fusion address, not a physical reactor.',
   }
 }
 

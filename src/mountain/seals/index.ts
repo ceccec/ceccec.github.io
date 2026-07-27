@@ -860,7 +860,7 @@ export function theTheoremsFoldToFiveRootsOfGreaterSignificance(matrix: MindMatr
     computes: facets.every((entry) => entry.on), roots: THEOREM_ROOTS.map((entry) => entry.root), folded, of: theorems.length, facets,
     root: merkleFold(THEOREM_ROOTS.map((entry) => toUuid(`root:${entry.root}`))),
     statement: `Examine all theorems: they fold. The ${theorems.length} corpus theorems compact onto ${THEOREM_ROOTS.length} roots — trinity (3 spans), content-address (name=payload), agnostic completeness, honest demarcation, waves — a ≈${compaction}:1 compaction. The roots are not summaries but GENERATORS: each produces many theorems, so the few carry greater significance than the many, and they are exactly the agent protocol's quantum laws.`,
-    boundary: `Root membership is by slug-stem (heuristic, first-match) — it shows the theorems CLUSTER onto a few generators, not a unique factorisation (a theorem can touch two roots; the dominant one is taken). ${theorems.length - folded} unmatched are the honest residue. The compaction is real (few < many, all roots used); the "greater significance" is that the roots generate, which the corpus demonstrates but this fold does not re-derive each theorem from its root. HARMONY ≠ TRUTH.` }
+    boundary: `Root membership is by slug-stem (heuristic, first-match) — it shows the theorems CLUSTER onto a few generators, not a unique factorisation (a theorem can touch two roots; the dominant one is taken). ${theorems.length - folded} unmatched are the honest residue. The compaction is real (few < many, all roots used); the "greater significance" is that the roots generate, which the corpus demonstrates but this fold does not re-derive each theorem from its root.` }
 }
 
 // The corpus title gate (improve-local from the alignment wave): run the algebra predicate over EVERY proof
@@ -976,7 +976,7 @@ export function foldsLiveAtTheirDomainHome(
     statement:
       'A fold lives at its exact domain path (src/quantum/<domain>/index.ts), never appended to a foreign barrel. Each declared fold must be defined only in its home folder index; defining it elsewhere re-bloats the monolith and blocks the commit and the deploy. One registry, read by both the commit shell and the weave, so the placement law never drifts.',
     boundary:
-      'Enforces WHERE a fold is defined, not whether its content is correct — a placement law, not a proof. HARMONY ≠ TRUTH.' }
+      'Enforces WHERE a fold is defined, not whether its content is correct — a placement law, not a proof.' }
 }
 
 /** @rosetta ✦₀ · Mountain · stillness — the tools-saved-in-src-first law, enforced at commit.

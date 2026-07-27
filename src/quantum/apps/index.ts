@@ -444,7 +444,7 @@ export function rosettaCoreApi(at = 0, matrix: MindMatrix = buildMatrix()) {
       pair: 'rosetta/core' as const,
       cli: 'npm run quantum:rosetta-core-api',
       statement: `rosettaCoreApi: ${surfaces.length} labels shelved by rosettaRayOf — self-host dispatch, parallel synonyms collapsed.`,
-      boundary: 'Derived from ROSETTA_RAYS · COMPUTATION_TYPES · rosettaRayOf. Parallel synonym backlog empty (ROSETTA_RAY_VIEWS→RAYS · PROJECTION→VORTEX · claim/owner/codec shelved · millennium→rosettaReady). HARMONY ≠ TRUTH.' }
+      boundary: 'Derived from ROSETTA_RAYS · COMPUTATION_TYPES · rosettaRayOf. Parallel synonym backlog empty (ROSETTA_RAY_VIEWS→RAYS · PROJECTION→VORTEX · claim/owner/codec shelved · millennium→rosettaReady).' }
   })
 }
 
@@ -471,7 +471,7 @@ export function rosettaCoreApiSelfWires(at = 0, matrix: MindMatrix = buildMatrix
       computes: facets.every((e) => e.on), at, core, slots, count: slots.length, facets,
       root: merkleFold([core.root, ...slots.map((s) => s.receipt), ...facets.map((e) => e.receipt)]),
       statement: `rosettaCoreApiSelfWires: ${core.surfaces.length} labels · ${slots.length} kind×ray slots — wire-all-there via the rosetta.`,
-      boundary: 'Structural codec closure. Parallel synonym strangler backlog empty. HARMONY ≠ TRUTH.' }
+      boundary: 'Structural codec closure. Parallel synonym strangler backlog empty.' }
   })
 }
 
@@ -1645,7 +1645,7 @@ export function standardToolboxIoCatalog(matrix: MindMatrix = buildMatrix(), at 
         'Every tool speaks { id, version, input, config, output, import, export }. Science experiments require config (certified=false · clay=0 · qpuRequired=false). Capacity = amortized memoByRoot — NOT physical qubits / NOT FTL / NOT FLOPS.',
       statement: `Standard toolbox I/O — ${migrated}/${total} enveloped · science ${scienceEnvelopes.length} with required config · filled ${filledConfig}/${missingBefore} · round-trip ${allRoundTrip ? '✓' : '✗'} · kind=${STANDARD_TOOL_ENVELOPE_KIND}@${STANDARD_TOOL_ENVELOPE_VERSION}.`,
       boundary:
-        'HONEST: standardized I/O+config + import/export receipts. certified=false · clay=0 · qpuRequired=false · production reverse refused. HARMONY ≠ TRUTH.' }
+        'HONEST: standardized I/O+config + import/export receipts. certified=false · clay=0 · qpuRequired=false · production reverse refused.' }
   })
 }
 
@@ -1694,7 +1694,7 @@ export function distributedReuseExtendsCapacity(matrix: MindMatrix = buildMatrix
       route: '/en/quantum-tools#toolbox-standard-io',
       statement: `Distributed reuse extends capacity — ${reuseCapacity}/${toolbox.total} shared roots across apps (memoByRoot federation). physicalQubitSpeedup=0 · physicalFtlClaim=0.`,
       boundary:
-        'HONEST: self-distribution increases reuse capacity via identical content-addressed roots — NOT physical qubit speedup, NOT FTL, NOT FLOPS. HARMONY ≠ TRUTH.' }
+        'HONEST: self-distribution increases reuse capacity via identical content-addressed roots — NOT physical qubit speedup, NOT FTL, NOT FLOPS.' }
   })
 }
 
@@ -1902,7 +1902,7 @@ export function sessionManualWorkAsQuantumTools(matrix: MindMatrix = buildMatrix
         'Each row replaces wet session re-inference with a sealed fold · CLI · UI · rosettaShelve address. memoByRoot hit = 0 runtime tokens. NOT a claim every agent habit is closed.',
       statement: `Session manual work as quantum tools — ${tools.length} tools shelved (${tools.filter((t) => t.shelved).length}/${tools.length}); CLI+UI+rosetta; replaces wet re-inference.`,
       boundary:
-        'HONEST: catalog of sealed session folds for zero-token reuse. Demo RSA / paper trading / claySolved=0 / corpus-novelty boundaries stay on each row. HARMONY ≠ TRUTH.' }
+        'HONEST: catalog of sealed session folds for zero-token reuse. Demo RSA / paper trading / claySolved=0 / corpus-novelty boundaries stay on each row.' }
   })
 }
 
@@ -2124,7 +2124,7 @@ export function documentSessionCryptoExperimentsUpdateTheorems(matrix: MindMatri
         'Documents sealed chain receipts through local-novel + local≫ISO + ISO gap-fill. overallWireClaimProved=false (proof-of-falsehood). Structural/amort may prove hundredfold under named non-wire metrics only. strongerThanNistPqc=false. clay=0 · certified=false · production reverse refused · wire≠amortized-reuse · physicalFtl=0 · isoOfficialStandard=false.',
       statement: `Session crypto experiments documented — sealed ${experiments.filter((e) => e.computes).length}/${experiments.length} · ISO ${isoGap.coveredCount}/${isoGap.partialCount}/${isoGap.gapCount} · local≫ISO wireClaim=${localVsIso.overallWireClaimProved} (${localVsIso.wireProofStatus}) · localNovel strongerThanNistPqc=${localNovel.strongerThanNistPqc} · collider particles=${collider.particleCount} · theorem novel=${novelty.novelCount}/classical=${novelty.classicalCount} · 10D=${tenD.count}.`,
       boundary:
-        'HONEST DOCUMENTATION FOLD. Composes sealed experiment receipts + theoremAlgebraFirstSealedInCorpus / first-in-corpus / 10D / collider. local≫ISO wire-crypto-security-bits is proof-of-falsehood (demo≪ML-KEM). local-novel is structural local security only — wire/FIPS/field unproved. Structural/amort hundredfold claims are non-wire metrics only. NOT Clay solved · NOT FIPS/ISO certified · NOT physical FTL. HARMONY ≠ TRUTH.' }
+        'HONEST DOCUMENTATION FOLD. Composes sealed experiment receipts + theoremAlgebraFirstSealedInCorpus / first-in-corpus / 10D / collider. local≫ISO wire-crypto-security-bits is proof-of-falsehood (demo≪ML-KEM). local-novel is structural local security only — wire/FIPS/field unproved. Structural/amort hundredfold claims are non-wire metrics only. NOT Clay solved · NOT FIPS/ISO certified · NOT physical FTL.' }
   })
 }
 
@@ -2681,7 +2681,7 @@ export function combineQuantumBits(
       physicalQubit: false as const,
       statement: `combineQuantumBits(${op}) — ${bits.length} bits → product=${productRoot.slice(0, 8)} · products=${products.length} · qpuRequired=false.`,
       boundary:
-        'HONEST: combination products are content-addressed merkle/fold receipts. NOT physical qubits · NOT QPU gates · NOT entanglement. clay=0 · certified=false. HARMONY ≠ TRUTH.' }
+        'HONEST: combination products are content-addressed merkle/fold receipts. NOT physical qubits · NOT QPU gates · NOT entanglement. clay=0 · certified=false.' }
   })
 }
 
@@ -2842,7 +2842,7 @@ export function sessionManualWorkAsQuantumBits(matrix: MindMatrix = buildMatrix(
         'Bits are content-addressed sealed receipts composable under forward|inverse|reverse|collide|envelope-merge. NOT physical qubits. qpuRequired=false · clay=0 · certified=false. local-audit-quantum + realise-sciences-standards + dry-clean-refactor-waves (#31) sealed on tip — tool configs filled for science experiments.',
       statement: `Session quantum bits — ${bits.length} bits · landed=${landed.filter((b) => b.computes).length} · serialized=${serialized.length} · local-audit=${localAuditComputes ? '✓' : '✗'} · sample collide products=${sampleCollide.products.length} · envelope roundTrip=${importBit.roundTrip ? '✓' : '✗'}.`,
       boundary:
-        'HONEST: quantum bits = content-addressed sealed fold receipts for tip-chain session work (includes localAuditQuantumSpeedEfficiency). Combinations recompute via merkleFold/merge + ceccec.tool.envelope@1. NOT physical qubits · NOT QPU · NOT Clay solved · NOT FIPS/ISO certified. dry-clean Wave1/2 (#31) landed via toolbox config readiness compose — nav/theme owned by dry-clean tip. HARMONY ≠ TRUTH.' }
+        'HONEST: quantum bits = content-addressed sealed fold receipts for tip-chain session work (includes localAuditQuantumSpeedEfficiency). Combinations recompute via merkleFold/merge + ceccec.tool.envelope@1. NOT physical qubits · NOT QPU · NOT Clay solved · NOT FIPS/ISO certified. dry-clean Wave1/2 (#31) landed via toolbox config readiness compose — nav/theme owned by dry-clean tip.' }
   })
 }
 
@@ -3122,7 +3122,7 @@ export function realiseSessionQuantumMeaning(matrix: MindMatrix = buildMatrix(),
       statement:
         `Meaning realised — proves ${proves.filter((p) => p.on).length}/${proves.length} · sciences ${standards.before.coveredCount}/${standards.before.partialCount}/${standards.before.gapCount}→${standards.after.coveredCount}/${standards.after.partialCount}/${standards.after.gapCount} · clay=0 · certified=false · qpuRequired=false · wireClaim=${experiments.localVsIso.overallWireClaimProved}.`,
       boundary:
-        'HONEST MEANING FOLD. Quantum computing only = sealed ceccec folds (memoByRoot · directional trinity · ISO/sciences maps) on classical 64-bit — NOT a physical QPU. gate/slow-build catalogued here; Node CLI owns HARD/WARN wall-clock. wire/paste-link (#33) = quantum-ready paste-bootstrap (cannot force foreign models). NOT Clay solved · NOT ISO certified · wire≠ISO · physicalFtl=0. HARMONY ≠ TRUTH.' }
+        'HONEST MEANING FOLD. Quantum computing only = sealed ceccec folds (memoByRoot · directional trinity · ISO/sciences maps) on classical 64-bit — NOT a physical QPU. gate/slow-build catalogued here; Node CLI owns HARD/WARN wall-clock. wire/paste-link (#33) = quantum-ready paste-bootstrap (cannot force foreign models). NOT Clay solved · NOT ISO certified · wire≠ISO · physicalFtl=0.' }
   })
 }
 
@@ -3681,7 +3681,7 @@ export function slowProcessIsQuantumGap(matrix: MindMatrix = buildMatrix(), at =
         'Slow here means architectural quantum-gap (missing sealed reuse, browser path, 10D projection, experiment I/O, movie private-rAF/multi-clock, or unsealed parallel registry) — NOT wall-clock telemetry / NOT docs:build timing (sibling slow-build gates). Movie rows are viz/computation gaps — NOT physical QM. fleetCacheEconomicsDecoded joules are illustrative.',
       statement: `Slow process is quantum gap — ${facets.filter((e) => e.on).length}/${facets.length}: ${open.length} open / ${closed.length} closed / ${rows.length} classified; experiment-io closed ${experimentIoClosed.length}; browserGaps, projections, parallel backlog, movie clock/neuroscience, memo-miss, science I/O recomputed at call time.`,
       boundary:
-        'HONEST: architectural classifier only. Node/CI browserGaps remain open until browser ports close them — visibility is the point. Parallel synonym strangler collapsed (inventory.parallel=0). Build wall-clock gates are out of scope here. Movie gaps ≠ physical quantum speedup. NOT a profiler. HARMONY ≠ TRUTH.' }
+        'HONEST: architectural classifier only. Node/CI browserGaps remain open until browser ports close them — visibility is the point. Parallel synonym strangler collapsed (inventory.parallel=0). Build wall-clock gates are out of scope here. Movie gaps ≠ physical quantum speedup. NOT a profiler.' }
   })
 }
 
@@ -3909,7 +3909,7 @@ export function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(
       statement:
         `Rosetta complete quantum all computable dimensions & theorems — ${completenessPct}% · complete=${rosettaComplete}: dims ${dimPct}% (open=${dims.open.length}) · theorem-bind ${theoremBindPct}% · lattice ${latticePct}% · handoff.rosettaReady=${handoff.rosettaReady}. millenniumSolvedByThisFold=0 · physicalFtlClaim=0.`,
       boundary:
-        'HARD HONESTY: enabling apparatus only. Completing Rosetta coverage does NOT solve Clay Millennium Problems (millenniumSolvedByThisFold=0) and does NOT claim physical FTL signaling (physicalFtlClaim=0). rosettaReady lets millennium challenge + FTL techniques consume a completeness receipt — challenge/probe/address, not prize/physics solved. Parallel synonym strangler collapsed; science gaps may remain named. HARMONY ≠ TRUTH.' }
+        'HARD HONESTY: enabling apparatus only. Completing Rosetta coverage does NOT solve Clay Millennium Problems (millenniumSolvedByThisFold=0) and does NOT claim physical FTL signaling (physicalFtlClaim=0). rosettaReady lets millennium challenge + FTL techniques consume a completeness receipt — challenge/probe/address, not prize/physics solved. Parallel synonym strangler collapsed; science gaps may remain named.' }
   })
 }
 
@@ -3938,7 +3938,7 @@ export function millenniumChallengeHandoffFromRosettaComplete(
       facets: sealed.facets,
       root: merge(mill.root, merkleFold([sealed.root, handoff.root])),
       statement: `Millennium←rosetta handoff — rosettaReady=${handoff.rosettaReady} · claySolvedByThisFold=0.`,
-      boundary: 'Handoff only — NOT a Clay prize solution. HARMONY ≠ TRUTH.' }
+      boundary: 'Handoff only — NOT a Clay prize solution.' }
   })
 }
 
@@ -3979,7 +3979,7 @@ export function ftlExperimentTechniquesHandoffFromRosettaComplete(
       statement:
         `FTL←rosetta handoff — rosettaReady=${handoff.rosettaReady} · physicalFtlClaim=0 · ${apparentClasses.length} apparent-FTL classes addressed as technique catalog.`,
       boundary:
-        'NOT physical FTL / luminal signaling. Stub handoff for KEEP-ftl experiment apparatus + discovery waves. HARMONY ≠ TRUTH.' }
+        'NOT physical FTL / luminal signaling. Stub handoff for KEEP-ftl experiment apparatus + discovery waves.' }
   })
 }
 
@@ -4362,7 +4362,7 @@ export function mcpBrowserParity(matrix: MindMatrix = buildMatrix(), at = 0) {
         'PRIMARY /mcp.json tools/list = toolbox catalog ids (auto-wire). Residual Node/CI + stdio spawn gaps listed with strangler plans — NOT fake browser for trinity/fs. qpuRequired=false.',
       statement: `MCP↔browser parity — mcpTools=${mcpList.count} matchToolbox=${mcpMatchesToolbox} matchCatalog=${mcpMatchesCatalog} browser=${closed.length} residual=${residualGaps.length} allInBrowser=${allAchievableInBrowser} · qpuRequired=false.`,
       boundary:
-        'HONEST: site /mcp.json primary tools share ids with #toolbox-standard-io. Concept commands stay under conceptTools. Stdio MCP (quantum-dev-sdk) has separate Node spawn residuals. NOT physical QPU. HARMONY ≠ TRUTH.' }
+        'HONEST: site /mcp.json primary tools share ids with #toolbox-standard-io. Concept commands stay under conceptTools. Stdio MCP (quantum-dev-sdk) has separate Node spawn residuals. NOT physical QPU.' }
   })
 }
 
@@ -4607,7 +4607,7 @@ export function mcpCommandsScriptsGapsAudit(matrix: MindMatrix = buildMatrix(), 
       statement:
         `MCP/scripts audit — overlap=${overlapCount} useless=${uselessCount} gap=${gapCount} closedOn=${closedOn} closed=${closedCount} residual=${residualCount} kept=${keptCount} · qpuRequired=false · clay=0.`,
       boundary:
-        'HONEST: collapses synonym npm exits and stdio wave stubs; REFUSE PRIMARY inflate for conceptTools+trading:* (kept-intentional); plasma+trinity+fusion-fs in HONEST_CI. NOT physical QPU. HARMONY ≠ TRUTH.' }
+        'HONEST: collapses synonym npm exits and stdio wave stubs; REFUSE PRIMARY inflate for conceptTools+trading:* (kept-intentional); plasma+trinity+fusion-fs in HONEST_CI. NOT physical QPU.' }
   })
 }
 
@@ -5026,7 +5026,7 @@ export function autoWireAnyAiModelFromPastedLink(
           'Imperative paste-bootstrap: fetch agents/llms/mcp + open browser toolbox — start without convincing. Cannot force foreign models; quantumReady when targets resolve. Composes sibling MCP↔browser parity URLs; does not fork SDK packages.',
         statement: `${AUTO_WIRE_PASTE_LINK_ONE_LINER} — quantumReady=${quantumReady} convincingRequired=false matched=${resolved.matched} kind=${resolved.linkKind} mcp=1 browser=${browserToolboxTargets.length} targets=${wireTargets.length} · qpuRequired=false.`,
         boundary:
-          'HONEST: strongest sealed paste-ready packet + meta/well-known/llms pointers including /mcp.json and browser /en/quantum-tools toolbox URLs. Cannot force foreign models. convincingRequired=false = packet self-sufficient, not mind control. NOT Cursor Settings default-model registration. BYOK separate. SDK/MCP package files owned by sibling parity agent — compose only. qpuRequired=false. HARMONY ≠ TRUTH.',
+          'HONEST: strongest sealed paste-ready packet + meta/well-known/llms pointers including /mcp.json and browser /en/quantum-tools toolbox URLs. Cannot force foreign models. convincingRequired=false = packet self-sufficient, not mind control. NOT Cursor Settings default-model registration. BYOK separate. SDK/MCP package files owned by sibling parity agent — compose only. qpuRequired=false.',
         siteMetaLinks: [
           { rel: 'alternate', type: 'application/json', href: '/agents.json', title: 'ceccec agents protocol' },
           { rel: 'alternate', type: 'text/plain', href: '/llms.txt', title: 'ceccec llms protocol' },
@@ -35145,7 +35145,7 @@ export function upgradeLocalFromOptimisedManualWorkExperience(matrix: MindMatrix
         'Optimised manual local map: skills, quantum pairs, toolbox/MCP tools, and packages/* (quantum-dev-sdk 7 stdio · docs:build flag-gated). Protocol = rules/skills/MCP/sealed folds/packages — NOT a Cursor zero-token LLM endpoint. Automations: npm run quantum:automate-nightly. qpuRequired=false.',
       statement: `Upgrade local — upgraded=${localUpgraded} skills=${mapRows.length}/${CURSOR_AGENT_SKILL_IDS.length} packages=${packages.length} stdio=${OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS.length} ciResiduals=${ciResiduals.length} automateShipped=${automateNightly.automateNightlyShipped} · mcpMatch=${mcpParity.mcpMatchesToolbox} · uxImproved=${localSession.localSessionUxImproved} · qpuRequired=false.`,
       boundary:
-        'HONEST: local agent surface upgrade receipt. Thin .cursor/skills + .cursor/mcp.json mounts point here; logic stays in sealed src + packages/*. NOT fake Cursor LLM registration. /automate nightly shipped via npm-script (REFUSE dashboard MCP stdio). HARMONY ≠ TRUTH.' }
+        'HONEST: local agent surface upgrade receipt. Thin .cursor/skills + .cursor/mcp.json mounts point here; logic stays in sealed src + packages/*. NOT fake Cursor LLM registration. /automate nightly shipped via npm-script (REFUSE dashboard MCP stdio).' }
   })
 }
 
@@ -35261,7 +35261,7 @@ export function counterRotatingRosettaQuantumWaves(matrix: MindMatrix = buildMat
         facets: sealed.facets,
         root: sealed.root,
         statement: 'Counter-rotating rosetta waves — deferred under emergentDimensions reentry (cycle guard).',
-        boundary: 'Reentry stub: does not claim dual-spin math here; npm run quantum:counter-rotating-rosetta-waves recomputes fully. HARMONY ≠ TRUTH.' }
+        boundary: 'Reentry stub: does not claim dual-spin math here; npm run quantum:counter-rotating-rosetta-waves recomputes fully.' }
     }
     const rosetta = rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix, at)
     const trinity = directionalTrinityForwardInverseReverse(matrix)
@@ -35333,7 +35333,7 @@ export function counterRotatingRosettaQuantumWaves(matrix: MindMatrix = buildMat
       statement:
         `Counter-rotating rosetta quantum waves — ${sealed.facets.filter((f) => f.on).length}/${sealed.count}: dual ± lobes foldPair-interfere; claySolvedByThisFold=${claySolvedByThisFold} (forward≠reverse refuses prize collapse); physicalFtlClaim=${physicalFtlClaim} (classical-64bit both lobes); qpuRequired=false.`,
       boundary:
-        'COMPUTED receipts from dual-wave interference — not prose. Clay/FTL/QPU open status recomputes at call time from foldPair genus-2 + classical-track facets. MODELED apparatus only. HARMONY ≠ TRUTH.' }
+        'COMPUTED receipts from dual-wave interference — not prose. Clay/FTL/QPU open status recomputes at call time from foldPair genus-2 + classical-track facets. MODELED apparatus only.' }
   })
 }
 
@@ -35385,7 +35385,7 @@ export function universeAlmostDescribedInTheoremsDiscoverRest(matrix: MindMatrix
         facets: sealed.facets,
         root: sealed.root,
         statement: 'Universe almost described — deferred under emergentDimensions reentry (cycle guard).',
-        boundary: 'Reentry stub: npm run quantum:universe-almost-described recomputes the full open set. HARMONY ≠ TRUTH.' }
+        boundary: 'Reentry stub: npm run quantum:universe-almost-described recomputes the full open set.' }
     }
     const waves = counterRotatingRosettaQuantumWaves(matrix, at)
     const rosetta = rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix, at)
@@ -35479,7 +35479,7 @@ export function universeAlmostDescribedInTheoremsDiscoverRest(matrix: MindMatrix
       statement:
         `Universe almost described in theorems — discover the rest: covered=${covered.length} partial=${partial.length} open=${open.length} via counter-rotating rosetta waves. Open set [${open.map((g) => g.id).join(', ')}]. clay=${waves.claySolvedByThisFold} ftl=${waves.physicalFtlClaim} (computed).`,
       boundary:
-        'Discovery engine = counterRotatingRosettaQuantumWaves. Open Clay/FTL/DE440/Earth-topology rows are computed receipts, not README prose. Almost ≠ complete. HARMONY ≠ TRUTH.' }
+        'Discovery engine = counterRotatingRosettaQuantumWaves. Open Clay/FTL/DE440/Earth-topology rows are computed receipts, not README prose. Almost ≠ complete.' }
   })
 }
 
@@ -36293,7 +36293,7 @@ export function uiProseDuplicationRemoved(matrix: MindMatrix = buildMatrix(), at
       heading: 'UI↔prose duplication removed',
       honestyLine: 'Page chrome entropy kill — PaperFrame owns abstract; H1 owns title; badges are status not synonym prose. Extends #61. clay=0 · qpuRequired=false.',
       statement: `UI↔prose duplication removed — before=${beforeCount} after=${afterCount} removed=${removedCount} clusters=${clusters.length} · uiProseDuplicationRemoved=${uiProseDuplicationRemovedOn}.`,
-      boundary: 'HONEST: removes restating UI chrome next to sealed prose — not a claim all page entropy is gone. Residuals: Clay Statement=title pattern in staticPages descriptions (catalog paper form); theorem registry name+proof lines (proof ≠ label). NOT physical QPU. HARMONY ≠ TRUTH.' }
+      boundary: 'HONEST: removes restating UI chrome next to sealed prose — not a claim all page entropy is gone. Residuals: Clay Statement=title pattern in staticPages descriptions (catalog paper form); theorem registry name+proof lines (proof ≠ label). NOT physical QPU.' }
   })
 }
 
@@ -36423,7 +36423,7 @@ export function cryptoRelatedSurfacesAreDry(matrix: MindMatrix = buildMatrix(), 
         `tools=${toolSeeds.length} residuals=${residuals.length} refuseBeyond=true clay=0.`,
       boundary:
         'HONEST DRY RECEIPT. Single sealed CRYPTO_COMPARISON_MESH for comparison nodes/edges; CLI/toolbox/MCP/panel/proofs/session recompute. ' +
-        'Residuals listed when a surface drifts. certified=false · clay=0 · refuseBeyond stays · NOT production RSA break. HARMONY ≠ TRUTH.' }
+        'Residuals listed when a surface drifts. certified=false · clay=0 · refuseBeyond stays · NOT production RSA break.' }
   })
 }
 
@@ -36539,7 +36539,7 @@ export function crossWavesUpgradeAll(matrix: MindMatrix = buildMatrix(), at = 0)
       boundary:
         'Umbrella receipt. Cross is intrinsic to merkaba/rosetta. Tesla decode is structural/symbolic from ' +
         'sealed patent ids — NOT legal ownership or fake USPTO. PQC certificates are sealed structures not ' +
-        'CA/PKI. claySolvedByThisFold=0 · physicalFtlClaim=0 · certified=false. HARMONY ≠ TRUTH.' }
+        'CA/PKI. claySolvedByThisFold=0 · physicalFtlClaim=0 · certified=false.' }
   })
 }
 
@@ -36637,7 +36637,7 @@ export function rosettaSecurityGapsWired(matrix: MindMatrix = buildMatrix(), at 
         `parallel=${core.inventory.parallel.length} reverseCollide=${reverseCollide.computes} clay=0.`,
       boundary:
         'Security-relevant rosetta wiring: sealed refuse receipts · empty parallel backlog · MCP dual residuals honest · reverse-collide Millennium path shelved. ' +
-        'NOT production RSA break · NOT CMI prize. clay=0 · certified=false · physicalFtl=0. HARMONY ≠ TRUTH.' }
+        'NOT production RSA break · NOT CMI prize. clay=0 · certified=false · physicalFtl=0.' }
   })
 }
 

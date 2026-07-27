@@ -653,7 +653,7 @@ export function localMcpLexicalGapLeaksToModel(matrix: MindMatrix = buildMatrix(
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `MEASURED with foldQuestion: two deterministic fixes shipped — the semantic layer (0.38 → ${roundTo(ask(semanticIndexed).confidence, 2)}) and indexing the theorem registry (0.33 → ${roundTo(ask(registryAnswer).confidence, 2)}); in-corpus stays local, out-of-corpus stays below ½ and correctly leaks. Both closable gaps CLOSED; only the open frontier leaks. Refines analogNoGapsNoLeak. HARMONY ≠ TRUTH.`,
+    boundary: `MEASURED with foldQuestion: two deterministic fixes shipped — the semantic layer (0.38 → ${roundTo(ask(semanticIndexed).confidence, 2)}) and indexing the theorem registry (0.33 → ${roundTo(ask(registryAnswer).confidence, 2)}); in-corpus stays local, out-of-corpus stays below ½ and correctly leaks. Both closable gaps CLOSED; only the open frontier leaks. Refines analogNoGapsNoLeak.`,
   }
 }
 
@@ -680,7 +680,7 @@ export function localMcpLeakBoundaryHonestAtScale(matrix: MindMatrix = buildMatr
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: `MEASURED over ${inDomain.length} corpus titles (${inResolved} resolve) + ${external.length} external queries (${externalLeaked} leak). In-domain recall is partly BY CONSTRUCTION (titles are indexed), so the real claim is the CLEAN SEPARATION at the ½ threshold — 0 false positives — not a guarantee for every phrasing (a lexically-disjoint paraphrase can still leak until the synonym lexicon grows). Completes the leak-reduction arc. HARMONY ≠ TRUTH.`,
+    boundary: `MEASURED over ${inDomain.length} corpus titles (${inResolved} resolve) + ${external.length} external queries (${externalLeaked} leak). In-domain recall is partly BY CONSTRUCTION (titles are indexed), so the real claim is the CLEAN SEPARATION at the ½ threshold — 0 false positives — not a guarantee for every phrasing (a lexically-disjoint paraphrase can still leak until the synonym lexicon grows). Completes the leak-reduction arc.`,
   }
 }
 
@@ -866,6 +866,6 @@ export function allAuditsCoveredByProof(matrix: MindMatrix = buildMatrix()) {
     statement:
       'All audits covered by proof: a single sealed test exercises every component built this session — the manipulation cross-audit and its Bulgarian layer, the checkable-claim worklist, the sacred-math / product-of-nature / law-of-nature §101 trinity (ranked, products of nature first), the genetic-code demarcation, the EU↔US jurisdiction divergence, the EPC audit, and the modified-food audit — each with a curated input and its expected verdict. When every facet is on, the whole machinery is sealed; if a regression flips any verdict, a facet goes false and the seal breaks.',
     boundary:
-      'HONEST: a SEALED TEST over a small curated input set — it proves the components behave as designed on THESE cases and that a regression would break the seal, NOT that the heuristics are accurate in general (HARMONY ≠ TRUTH; ~54% human deception ceiling; the patent audits are eligibility heuristics, not legal advice). It is the wiring-and-self-consistency proof, the way detectorPassesFalsePositiveTest seals the false-positive threshold.' }
+      'HONEST: a SEALED TEST over a small curated input set — it proves the components behave as designed on THESE cases and that a regression would break the seal, NOT that the heuristics are accurate in general (; ~54% human deception ceiling; the patent audits are eligibility heuristics, not legal advice). It is the wiring-and-self-consistency proof, the way detectorPassesFalsePositiveTest seals the false-positive threshold.' }
 }
 

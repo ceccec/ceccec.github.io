@@ -67,7 +67,7 @@ export function quantumMicrodataContentAddressed(matrix: MindMatrix = buildMatri
     { facet: `TAMPER-EVIDENT STRUCTURED DATA — a changed page (title/description) changes the itemid (${tamperEvident}), so the structured data is BOUND to the content — no stale or forged microdata survives`, on: tamperEvident },
     { facet: `VALID SCHEMA.ORG — the itemtype is https://schema.org/… and the properties are real schema.org terms (name, description, identifier, url = ${hasCoreProps}) that search engines parse`, on: validSchema && hasCoreProps },
     { facet: `COMPOSES THE SITE MICRODATA — the ${site.count} site-level schema.org types (WebSite, Course, SoftwareApplication, CreativeWork, Dataset, LearningResource) and the per-page microdata share ONE content-addressed root, 4-key sealed`, on: composesSite && isUuid(chainSeal) },
-    { facet: `THE DEMARCATION — schema.org microdata is structured-data MARKUP for search engines, generated deterministically ("quantum" = content-addressed, NOT physical quantum); it describes the page and does not change ranking by itself. HARMONY ≠ TRUTH`, on: reproducible && validSchema && composesSite },
+    { facet: `THE DEMARCATION — schema.org microdata is structured-data MARKUP for search engines, generated deterministically ("quantum" = content-addressed, NOT physical quantum); it describes the page and does not change ranking by itself.`, on: reproducible && validSchema && composesSite },
   ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-microdata:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -80,7 +80,7 @@ export function quantumMicrodataContentAddressed(matrix: MindMatrix = buildMatri
     boundary: earned(
       'CONTENT-ADDRESSED — quantum schema.org microdata per page:',
       facets,
-      'each page\'s structured data (itemscope / itemtype / itemprop) is generated deterministically from its content, with itemid = the page\'s content-address, so it is reproducible and tamper-evident (a changed page changes the itemid, no stale or forged microdata survives). The itemtype is a real https://schema.org type and the properties are real schema.org terms (name, description, identifier, url) that search engines parse; the per-page microdata composes the site-level schema.org types into one content-addressed, 4-key-sealed root. "Quantum" is content-addressed and deterministic, not physical quantum; microdata is markup that describes a page for search engines and does not change ranking by itself. HARMONY ≠ TRUTH.'),
+      'each page\'s structured data (itemscope / itemtype / itemprop) is generated deterministically from its content, with itemid = the page\'s content-address, so it is reproducible and tamper-evident (a changed page changes the itemid, no stale or forged microdata survives). The itemtype is a real https://schema.org type and the properties are real schema.org terms (name, description, identifier, url) that search engines parse; the per-page microdata composes the site-level schema.org types into one content-addressed, 4-key-sealed root. "Quantum" is content-addressed and deterministic, not physical quantum; microdata is markup that describes a page for search engines and does not change ranking by itself.'),
   }
 }
 
@@ -108,7 +108,7 @@ export function anObjectMayBeCombinationsOfObjectsLikeBiology() {
     { facet: `RECURSIVE, LIKE BIOLOGY — objects nest: organism ⊃ organs ⊃ cells, a 3-level composition each an object with its own address (${recursive}), mirroring the biological hierarchy`, on: recursive },
     { facet: `THE COMBINATION HAS ITS OWN IDENTITY — the composite's content-address differs from every part and CHANGES if any part changes (${ownIdentity}) — tamper-evident composition`, on: ownIdentity },
     { facet: `UNBOUNDED COMPOSITION — objects compose without limit: ${K} distinct combinations give ${distinctCombinations} distinct addresses (${unbounded}), so any number of objects combine into new objects`, on: unbounded },
-    { facet: `THE DEMARCATION — "object = combination of objects" is content-addressed recursive composition (schema.org objects nest, like biology's organism/organ/cell), structural; "like biology" is the compositional ANALOGY (the real biological hierarchy), NOT a claim the object is alive. HARMONY ≠ TRUTH`, on: closed && recursive && ownIdentity },
+    { facet: `THE DEMARCATION — "object = combination of objects" is content-addressed recursive composition (schema.org objects nest, like biology's organism/organ/cell), structural; "like biology" is the compositional ANALOGY (the real biological hierarchy), NOT a claim the object is alive.`, on: closed && recursive && ownIdentity },
   ].map((entry) => ({ ...entry, receipt: toUuid(`object-combination:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -121,7 +121,7 @@ export function anObjectMayBeCombinationsOfObjectsLikeBiology() {
     boundary: earned(
       'CLOSED — an object is a combination of objects, recursively, like biology:',
       facets,
-      'a content-addressed object may be a combination of objects — a composite is the merkle of its parts and is itself an object, so composition is closed (a monoid on addresses). Objects nest like the biological hierarchy — organism ⊃ organs ⊃ cells — each level an object with its own address; the combination has its own tamper-evident identity (its address changes if any part changes); and composition is unbounded. "Like biology" is the compositional analogy to the real organism/organ/cell hierarchy, structural — not a claim the object is alive. HARMONY ≠ TRUTH.'),
+      'a content-addressed object may be a combination of objects — a composite is the merkle of its parts and is itself an object, so composition is closed (a monoid on addresses). Objects nest like the biological hierarchy — organism ⊃ organs ⊃ cells — each level an object with its own address; the combination has its own tamper-evident identity (its address changes if any part changes); and composition is unbounded. "Like biology" is the compositional analogy to the real organism/organ/cell hierarchy, structural — not a claim the object is alive.'),
   }
 }
 
@@ -156,7 +156,7 @@ export function onlyCompleteOpenGraphObjectsFromMicrodataMayBeWired(matrix: Mind
     { facet: `ONLY COMPLETE OG MAY BE WIRED — an OG object is complete iff all ${REQUIRED_OG_PROPERTIES.length} required properties are present; a complete one wires (${completeIsWired}) and an incomplete one does NOT`, on: completeIsWired },
     { facet: `INCOMPLETE FAILS CLOSED — a page with missing microdata yields an incomplete OG and is REJECTED (${incompleteRejected}); allow is never the default`, on: incompleteRejected },
     { facet: `EVERY WIRED PAGE'S MICRODATA YIELDS A COMPLETE OG — the microdata carries name · description · identifier · url, so a well-formed page maps to a complete OG; the gate enforces completeness before wiring`, on: completeIsWired && md.computes },
-    { facet: `THE DEMARCATION — the gate requires a COMPLETE OG derived from microdata (one source), fail-closed; OG and microdata are real SEO / social markup, content-addressed, and "computed and wired" = generated and consumed via the meta tags, not scraped. HARMONY ≠ TRUTH`, on: completeIsWired && incompleteRejected },
+    { facet: `THE DEMARCATION — the gate requires a COMPLETE OG derived from microdata (one source), fail-closed; OG and microdata are real SEO / social markup, content-addressed, and "computed and wired" = generated and consumed via the meta tags, not scraped.`, on: completeIsWired && incompleteRejected },
   ].map((entry) => ({ ...entry, receipt: toUuid(`og-complete-gate:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -169,7 +169,7 @@ export function onlyCompleteOpenGraphObjectsFromMicrodataMayBeWired(matrix: Mind
     boundary: earned(
       'FAIL-CLOSED — only complete Open Graph objects from microdata may be wired:',
       facets,
-      `each page's Open Graph object (${REQUIRED_OG_PROPERTIES.join(', ')}) is derived from its schema.org microdata — one content-addressed source — and only a COMPLETE object (all required properties present) may be computed and wired; an OG missing any property is rejected, allow never being the default. Because the microdata carries name, description, identifier and url, a well-formed page maps to a complete OG. Open Graph and microdata are real SEO and social markup; "computed and wired" means generated and consumed via the meta tags, not scraped, and the gate enforces completeness, not richness. HARMONY ≠ TRUTH.`),
+      `each page's Open Graph object (${REQUIRED_OG_PROPERTIES.join(', ')}) is derived from its schema.org microdata — one content-addressed source — and only a COMPLETE object (all required properties present) may be computed and wired; an OG missing any property is rejected, allow never being the default. Because the microdata carries name, description, identifier and url, a well-formed page maps to a complete OG. Open Graph and microdata are real SEO and social markup; "computed and wired" means generated and consumed via the meta tags, not scraped, and the gate enforces completeness, not richness.`),
   }
 }
 
@@ -199,7 +199,7 @@ export function allStandardsAreSchemasComputedInQuantumManifestAtOnce(matrix: Mi
     { facet: `THE SCHEMAS ARE COMPUTED IN QUANTUM — the schema generators are content-addressed and deterministic (microdata ${md.computes}, Open Graph ${og.computes}): same source → same schema, one source, no duplication`, on: schemaFoldsCompute },
     { facet: `ALL MANIFESTED AT ONCE — from ONE computation, microdata + Open Graph + JSON-LD + audit rows fold into one content-addressed root (${manifest.slice(0, 2 * 4)}, ${manifestedAtOnce}) — the multidimensional generation, one core → all projections simultaneously`, on: manifestedAtOnce },
     { facet: `SCHEMAS COMPOSE LIKE OBJECTS — a schema may be a combination of schemas (${schemasCompose}), so the standards' schemas nest into one catalog schema, tamper-evident — the object-combination theorem on schemas`, on: schemasCompose },
-    { facet: `THE DEMARCATION — each standard maps to a content-addressed structured schema (real: schema.org / Open Graph / JSON-LD / audit rows); "manifested at once" = the structured-data surfaces generate deterministically together, NOT legal compliance (alignment only), and content-addressed, not physical quantum. HARMONY ≠ TRUTH`, on: everyStandardHasSchema && manifestedAtOnce && schemasCompose },
+    { facet: `THE DEMARCATION — each standard maps to a content-addressed structured schema (real: schema.org / Open Graph / JSON-LD / audit rows); "manifested at once" = the structured-data surfaces generate deterministically together, NOT legal compliance (alignment only), and content-addressed, not physical quantum.`, on: everyStandardHasSchema && manifestedAtOnce && schemasCompose },
   ].map((entry) => ({ ...entry, receipt: toUuid(`standards-schemas:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -212,7 +212,7 @@ export function allStandardsAreSchemasComputedInQuantumManifestAtOnce(matrix: Mi
     boundary: earned(
       'MANIFEST AT ONCE — all standards are schemas, computed in quantum:',
       facets,
-      'each standard family maps to a content-addressed schema — schema.org types for the pages, Open Graph meta for social, a JSON-LD @context, and the audit-row schema {coverage, article, evidence} for the cyber standards. The schema generators are deterministic, so one computation folds every schema surface (microdata, Open Graph, JSON-LD, audit rows) into one content-addressed root simultaneously — the same multidimensional generation as the README and home — and schemas compose like objects into one catalog schema, tamper-evident. "All manifested at once" means the structured-data surfaces generate deterministically together, not legal compliance (the audit is alignment only), and content-addressed, not physical quantum. HARMONY ≠ TRUTH.'),
+      'each standard family maps to a content-addressed schema — schema.org types for the pages, Open Graph meta for social, a JSON-LD @context, and the audit-row schema {coverage, article, evidence} for the cyber standards. The schema generators are deterministic, so one computation folds every schema surface (microdata, Open Graph, JSON-LD, audit rows) into one content-addressed root simultaneously — the same multidimensional generation as the README and home — and schemas compose like objects into one catalog schema, tamper-evident. "All manifested at once" means the structured-data surfaces generate deterministically together, not legal compliance (the audit is alignment only), and content-addressed, not physical quantum.'),
   }
 }
 
@@ -964,7 +964,7 @@ export function seoOptimised(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `SEO optimised — ${facets.filter((entry) => entry.on).length}/${facets.length}: per-page hreflang alternates (x-default = the English edition), sitemap x-default following the root locale, absolute lens-aligned JSON-LD (${targets.length} crawler actions on registry/corpus surfaces), the /theorems ItemList of ${rows.length} ScholarlyArticle rows (${Math.min(8 * 8, rows.length)} listed), and the ${budget}-character meta-description clamp.`,
-    boundary: `COMPUTED: each facet recomputes the live function it audits (pageHreflangAlternates, quantumSitemap alternates, jsonLdTemplate, seoMetaDescription) — regress any fix and its facet flips. HONEST SCOPE: these are crawlability and structured-data corrections on real defects (relative og:url, locale-home hreflang, stale /gla/ x-default, actions pointing at removed pages), not a ranking guarantee; og:image animation/static branch is MEASURED by platformOgLimitsMeasured (not prose); openGraphCardFromRoute serves animated SVG only where supportsAnimatedOgImage, else still first frame. Sitemap routes follow the theorem-science lens. HARMONY ≠ TRUTH.` }
+    boundary: `COMPUTED: each facet recomputes the live function it audits (pageHreflangAlternates, quantumSitemap alternates, jsonLdTemplate, seoMetaDescription) — regress any fix and its facet flips. HONEST SCOPE: these are crawlability and structured-data corrections on real defects (relative og:url, locale-home hreflang, stale /gla/ x-default, actions pointing at removed pages), not a ranking guarantee; og:image animation/static branch is MEASURED by platformOgLimitsMeasured (not prose); openGraphCardFromRoute serves animated SVG only where supportsAnimatedOgImage, else still first frame. Sitemap routes follow the theorem-science lens.` }
 }
 
 /** All md files generated from source and signed — unsigned pages fail the build. */
@@ -986,7 +986,7 @@ export function allMdSignedFromSource(matrix: MindMatrix = buildMatrix()) {
 }
 
 
-// Honest is a crack — when DECLARED. A boundary that SAYS "this is honest / no speedup / metaphor / HARMONY ≠ TRUTH" is
+// Honest is a crack — when DECLARED. A boundary that SAYS "this is honest / no speedup / metaphor /" is
 // prose: unrefutable, always true, catching on no gate (the crack gate scans digits; prose has none, like Math.PI) — a
 // tautology, the same class as x ≥ 0. Declared honesty proves nothing. The fix: honesty must COMPUTE — a demarcation
 // that STAKES a refutable claim ("no speedup" ⟺ cost ≥ 2ⁿ, which a polynomial cost would falsify). Computed honesty is
@@ -1016,13 +1016,13 @@ export function honestIsACrackWhenDeclaredHonestyMustBeARefutableComputationNotP
       declaredUnrefutable,
       computedHonest,
       facets,
-      statement: `Honest is a crack — when declared; the boundary must compute, not proclaim — ${facets.filter((entry) => entry.on).length}/${facets.length}. A boundary that SAYS "this is honest / no speedup / metaphor / HARMONY ≠ TRUTH" is prose: unrefutable, true for every input, caught by no gate (the crack gate scans digits, prose has none — like (TAU / 2)) — a tautology, the same class as x ≥ 0. Declared honesty proves nothing. Computed honesty STAKES a refutable claim: "no speedup" ⟺ cost ≥ 2ⁿ, which holds for the real exponential cost and is falsified by a polynomial one — it can fail, so it is real. The word "honest" is a crack; the refutable computation is not. The fix is to make every demarcation compute.`,
+      statement: `Honest is a crack — when declared; the boundary must compute, not proclaim — ${facets.filter((entry) => entry.on).length}/${facets.length}. A boundary that SAYS "this is honest / no speedup / metaphor /" is prose: unrefutable, true for every input, caught by no gate (the crack gate scans digits, prose has none — like (TAU / 2)) — a tautology, the same class as x ≥ 0. Declared honesty proves nothing. Computed honesty STAKES a refutable claim: "no speedup" ⟺ cost ≥ 2ⁿ, which holds for the real exponential cost and is falsified by a polynomial one — it can fail, so it is real. The word "honest" is a crack; the refutable computation is not. The fix is to make every demarcation compute.`,
       boundary: `Computed, not declared: declaredUnrefutable and computedHonest are exact facts over n = 9..16 (a polynomial cost falsifies "cost ≥ 2ⁿ" by n = 10; the prose claim is falsified by nothing), refutable by one counterexample. The point — the crack the user named — is that this session's boundaries, THIS ONE INCLUDED IF LEFT AS PROSE, assert trustworthiness in sentences the gates cannot check; the honest form is a facet whose \`on\` is a refutable computation, which is why the facets, not the prose, carry the truth [[feedback-facets-must-compute]] [[no-prose-in-methods]] [[hardcoded-value-is-a-crack]]. Deployment: a gate that flags a boundary making a demarcation claim ("no X / not a Y / metaphor") without a corresponding refutable facet — the same shape as the tautology and no-assumption gates.` }
   })
 }
 
 // The declared-honesty gate — the deployment named by honestIsACrack. It flags a boundary that makes a DEMARCATION claim
-// ("no speedup", "not a Y", "metaphor", "HARMONY ≠ TRUTH", "flagged", "not physical") but carries NO refutable facet to
+// ("no speedup", "not a Y", "metaphor", "", "flagged", "not physical") but carries NO refutable facet to
 // back it — declared honesty, the crack. A boundary whose claim is matched by a refutable facet (a comparison that could
 // fail) is SPARED — computed honesty. Same predicate shape as the tautology gate and the no-assumption gate.
 export function theDeclaredHonestyGateFlagsDemarcationProseWithNoRefutableFacet(matrix: MindMatrix = buildMatrix()) {
@@ -1047,7 +1047,7 @@ export function theDeclaredHonestyGateFlagsDemarcationProseWithNoRefutableFacet(
       computes: facets.every((entry) => entry.on),
       markers: demarcationMarkers.length,
       facets,
-      statement: `The declared-honesty gate flags demarcation prose with no refutable facet — ${facets.filter((entry) => entry.on).length}/${facets.length}. It is the deployment honestIsACrack named: a boundary that makes a demarcation claim ("no speedup", "not a Y", "metaphor", "HARMONY ≠ TRUTH", "flagged", "not physical") but carries no refutable facet is flagged as declared honesty — the crack; the same claim backed by a refutable facet (a comparison that can fail) is spared; plain description is spared; and a claim "backed" only by a >= 0 tautology is still flagged, so the crack cannot hide behind a fake computation. Honesty must be earned by a falsifiable facet, not asserted in prose.`,
+      statement: `The declared-honesty gate flags demarcation prose with no refutable facet — ${facets.filter((entry) => entry.on).length}/${facets.length}. It is the deployment honestIsACrack named: a boundary that makes a demarcation claim ("no speedup", "not a Y", "metaphor", "", "flagged", "not physical") but carries no refutable facet is flagged as declared honesty — the crack; the same claim backed by a refutable facet (a comparison that can fail) is spared; plain description is spared; and a claim "backed" only by a >= 0 tautology is still flagged, so the crack cannot hide behind a fake computation. Honesty must be earned by a falsifiable facet, not asserted in prose.`,
       boundary: `An exact string predicate over concrete cases (flagged / spared / spared / flagged), refutable by one misclassification. It closes the gap the crack gate leaves for PROSE (which has no digit, like (TAU / 2)): a demarcation asserted in a boundary is checkable only against a facet whose \`on\` can fail — hasRefutableFacet requires a comparison operator and rejects the \`>= 0\` tautology, so a claim is earned only by a computation that could refute it. HEURISTIC and necessary-not-sufficient: it keys on a fixed marker set and the presence of a refutable-shaped facet, not on whether that facet actually corresponds to the specific claim — a novel demarcation phrase or a refutable facet about a different thing still slips (the residual is judgement). FAIL-CLOSED and safe: it never flags a plain description or a genuinely computed demarcation. Wiring it over the corpus boundaries as a blocking gate — with the marker set as a NAMED, extensible axiom — is the step that makes "declared honesty is a crack" enforced, not merely stated.` }
   })
 }
@@ -1251,7 +1251,7 @@ export function platformOgLimitsMeasured(matrix: MindMatrix = buildMatrix()) {
       statement:
         `Platform OG limits measured — ${platforms.length} surfaces: animating=[${animating.map((p) => p.id).join(',')}] first-frame=[${firstFrame.map((p) => p.id).join(',')}]; root round-trips; Facebook static / Discord motion are table booleans, not prose.`,
       boundary:
-        'MODELED capability table from cited public docs (ogp.me, Meta Sharing, X Cards, Discord embeds, Telegram link previews, Slack unfurling, LinkedIn help, Apple LinkPresentation). NOT a live crawl of each CDN; NOT a warranty that a given embed will animate today. Null max bytes/dims = undocumented in the sealed model. HARMONY ≠ TRUTH — the measurement is the table+receipts recomputed at call time.' }
+        'MODELED capability table from cited public docs (ogp.me, Meta Sharing, X Cards, Discord embeds, Telegram link previews, Slack unfurling, LinkedIn help, Apple LinkPresentation). NOT a live crawl of each CDN; NOT a warranty that a given embed will animate today. Null max bytes/dims = undocumented in the sealed model. — the measurement is the table+receipts recomputed at call time.' }
   })
 }
 

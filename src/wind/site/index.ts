@@ -131,7 +131,7 @@ export function renameToMostSearchedTermsWiredToPublicSearchApis(liveSuggestions
     { facet: `USE TO IMPROVE — RANK & RENAME — each covered area maps to its most-searched term (live top suggestion when opted in, else the named lexicon); ${needed.length} of ${rows.length} areas need a rename (current slug ≠ searched slug)`, on: rows.length >= 8 && needed.length >= 1 && rows.every((row) => seoSlug(row.searched) === row.searched) },
     { facet: `ALIAS-SAFE, NO DEAD LINKS — each rename keeps the OLD slug as an alias → the new searched canonical (the ROUTE_ALIASES mechanism alias→canonical), so every existing URL still resolves (${aliasSafe})`, on: aliasSafe },
     { facet: `DETERMINISTIC CORE, OPT-IN FETCH — the rename CORE is a pure function of the provided suggestions (same input → same map), and the fetch adapter returns live data ONLY when a fetch impl is passed; the build stays zero-token and offline`, on: urlsValid && aliasSafe },
-    { facet: `THE DEMARCATION — "most searched" is the live public-API signal when opted in, else a NAMED-LEXICON snapshot (not private telemetry); the search-interest fetch is an OPT-IN, untrusted, keyless edge; renames alias forward (reversible) and mass public-route execution is run deliberately. HARMONY ≠ TRUTH`, on: urlsValid && aliasSafe },
+    { facet: `THE DEMARCATION — "most searched" is the live public-API signal when opted in, else a NAMED-LEXICON snapshot (not private telemetry); the search-interest fetch is an OPT-IN, untrusted, keyless edge; renames alias forward (reversible) and mass public-route execution is run deliberately.`, on: urlsValid && aliasSafe },
   ].map((entry) => ({ ...entry, receipt: toUuid(`seo-rename-fold:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -145,7 +145,7 @@ export function renameToMostSearchedTermsWiredToPublicSearchApis(liveSuggestions
     boundary: earned(
       'WIRED & HONEST — rename to the most-searched term, aliased forward:',
       facets,
-      'each covered area is renamed to its most-searched phrasing — the live top suggestion from the opt-in public-API adapter (Google Suggest, Wikipedia OpenSearch, Wikimedia pageviews, DuckDuckGo; keyless, no build-time fetch) or the named-lexicon fallback. The rename core is deterministic (same suggestions → same map) and every old slug is kept as an alias to the new searched canonical, so no link dies. "Most searched" is the live signal when opted in, else a curated named-lexicon snapshot — not private search telemetry; the fetch is an opt-in, untrusted, keyless edge, and executing the mass public-route rename (mutating ROUTE_ALIASES / canonicals) is outward-facing and run deliberately. HARMONY ≠ TRUTH.'),
+      'each covered area is renamed to its most-searched phrasing — the live top suggestion from the opt-in public-API adapter (Google Suggest, Wikipedia OpenSearch, Wikimedia pageviews, DuckDuckGo; keyless, no build-time fetch) or the named-lexicon fallback. The rename core is deterministic (same suggestions → same map) and every old slug is kept as an alias to the new searched canonical, so no link dies. "Most searched" is the live signal when opted in, else a curated named-lexicon snapshot — not private search telemetry; the fetch is an opt-in, untrusted, keyless edge, and executing the mass public-route rename (mutating ROUTE_ALIASES / canonicals) is outward-facing and run deliberately.'),
   }
 }
 
@@ -167,7 +167,7 @@ export function egressSecurityForQuantumEncryptionOverHttps() {
     { facet: `HTTPS-ONLY WHEN OPT-IN — every external request is https:// (TLS in transit), never http; verified over the request set (${httpsOnly})`, on: httpsOnly },
     { facet: `THE QUERY IS VISIBLE TO THE ENDPOINT — HONEST — a public search API must READ the query, so HTTPS protects it IN TRANSIT but the third-party endpoint sees it (${queryVisibleToEndpoint}); quantum (4-key) encryption cannot hide a query the endpoint must process — the mitigation is opt-in + minimise`, on: queryVisibleToEndpoint },
     { facet: `THE 4-KEY ENCRYPTION PROTECTS OUR OWN PAYLOADS — for data exchanged between the app's OWN surfaces, the 4-key encrypted payload travels over https as CIPHERTEXT (the endpoint sees nothing) and the keys are derived client-side, never sent (${keysNeverSent})`, on: keysNeverSent && isUuid(keyMaterial) },
-    { facet: `THE DEMARCATION — egress security = no-egress DEFAULT + https-only + honesty about third-party visibility; quantum (4-key) encryption protects OUR payloads in transit and at rest but CANNOT hide a query a public API must read. HARMONY ≠ TRUTH`, on: httpsOnly && keysNeverSent },
+    { facet: `THE DEMARCATION — egress security = no-egress DEFAULT + https-only + honesty about third-party visibility; quantum (4-key) encryption protects OUR payloads in transit and at rest but CANNOT hide a query a public API must read.`, on: httpsOnly && keysNeverSent },
   ].map((entry) => ({ ...entry, receipt: toUuid(`egress-security:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -180,7 +180,7 @@ export function egressSecurityForQuantumEncryptionOverHttps() {
     boundary: earned(
       'HONEST — egress security for quantum encryption over http(s):',
       facets,
-      'the strongest protection is NO egress — the private core sends nothing, and the external fetch stays empty unless the user opts in. When they do, every request is https-only (TLS in transit), never http. But a public search API must READ the query, so HTTPS protects it only in transit — the third-party endpoint sees it, and quantum (4-key) encryption cannot hide a query the endpoint must process; the mitigation is opt-in and minimising what is sent. The 4-key encryption protects the app\'s OWN payloads: ciphertext over https that the endpoint cannot read, with keys derived client-side and never sent. Egress security is no-egress by default, https-only when opted in, and honest about third-party visibility — not a claim that a public API query is hidden. HARMONY ≠ TRUTH.'),
+      'the strongest protection is NO egress — the private core sends nothing, and the external fetch stays empty unless the user opts in. When they do, every request is https-only (TLS in transit), never http. But a public search API must READ the query, so HTTPS protects it only in transit — the third-party endpoint sees it, and quantum (4-key) encryption cannot hide a query the endpoint must process; the mitigation is opt-in and minimising what is sent. The 4-key encryption protects the app\'s OWN payloads: ciphertext over https that the endpoint cannot read, with keys derived client-side and never sent. Egress security is no-egress by default, https-only when opted in, and honest about third-party visibility — not a claim that a public API query is hidden.'),
   }
 }
 
@@ -210,7 +210,7 @@ export function decodeStandardsIntoUiImprovementWaves(matrix: MindMatrix = build
     { facet: `DELIVERED IN WAVES — the improvements are ordered into ${uiWaves.length} distinct, strictly-ordered waves (antichain levels, ${orderedWaves}), each a coherent increment — the wave cadence, not a big-bang`, on: orderedWaves },
     { facet: `PRIVACY-BY-DESIGN IS ALREADY MET — GDPR's UI requirement (no tracking consent banner, no cookies) is met by CONSTRUCTION via no egress (${privacyMet}), so that wave is already complete; ${met}/${uiWaves.length} waves met`, on: privacyMet },
     { facet: `MEASURED, NOT SUBJECTIVE — each UI improvement is measurable (the DRY metric ${dryMetric.computes} + the animation gate), so a wave is verified not asserted; the remaining waves (accessibility, performance) are named open`, on: measured },
-    { facet: `THE DEMARCATION — the standards' UI-relevant requirements decode to concrete UI changes delivered as waves and measured; NOT legal compliance (alignment), and "waves" = incremental content-addressed deliveries, not a one-time certification. HARMONY ≠ TRUTH`, on: eachDecodes && orderedWaves && measured },
+    { facet: `THE DEMARCATION — the standards' UI-relevant requirements decode to concrete UI changes delivered as waves and measured; NOT legal compliance (alignment), and "waves" = incremental content-addressed deliveries, not a one-time certification.`, on: eachDecodes && orderedWaves && measured },
   ].map((entry) => ({ ...entry, receipt: toUuid(`standards-ui-waves:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -223,7 +223,7 @@ export function decodeStandardsIntoUiImprovementWaves(matrix: MindMatrix = build
     boundary: earned(
       'DECODED — standards into measured UI improvement waves:',
       facets,
-      `each standard's UI-relevant requirement decodes to a concrete UI change — GDPR to privacy-by-design (no tracking banner, met by construction via no egress), Open Graph to social preview cards, schema.org to structured-data rendering, the Cyber Resilience Act to security indicators and no attack surface, WCAG to accessibility, Core Web Vitals to race-to-idle rendering — and each is delivered as a strictly-ordered wave and measured by the DRY metric and the animation gate rather than asserted. The remaining waves (accessibility, performance) are named open. This decodes the standards' UI requirements to concrete measured changes, not legal compliance (alignment), and "waves" are incremental content-addressed deliveries, not a one-time certification. HARMONY ≠ TRUTH.`),
+      `each standard's UI-relevant requirement decodes to a concrete UI change — GDPR to privacy-by-design (no tracking banner, met by construction via no egress), Open Graph to social preview cards, schema.org to structured-data rendering, the Cyber Resilience Act to security indicators and no attack surface, WCAG to accessibility, Core Web Vitals to race-to-idle rendering — and each is delivered as a strictly-ordered wave and measured by the DRY metric and the animation gate rather than asserted. The remaining waves (accessibility, performance) are named open. This decodes the standards' UI requirements to concrete measured changes, not legal compliance (alignment), and "waves" are incremental content-addressed deliveries, not a one-time certification.`),
   }
 }
 
@@ -244,7 +244,7 @@ export function dryCleanVitepressComputedByMetrics(matrix: MindMatrix = buildMat
     { facet: `100% METRIC — NO DUPLICATED CONFIG — the metric is ${metricClean ? '1' : dryRatio}: every VitePress mechanism has ONE source, so there is no duplicated nav / routes / SEO / search config to drift`, on: metricClean },
     { facet: `COMPUTED, NOT MANUAL — the DRY metric recomputes deterministically from the source folds (${deterministic}); a regression (a duplicated source) drops the metric below 1 and is caught`, on: deterministic },
     { facet: `THE VITEPRESS SURFACE IS METRIC-CLEAN AND GATED — the 100% DRY metric joins the animation gate (every page animates, ${animationGate.computes}); the surface is measured clean AND fail-closed gated`, on: metricClean && animationGate.computes },
-    { facet: `THE DEMARCATION — "computed by metrics" = the DRY state is a measured ratio (single-source / total), deterministic, not a hand-set flag; VitePress-native mechanisms only. HARMONY ≠ TRUTH`, on: metricClean && deterministic },
+    { facet: `THE DEMARCATION — "computed by metrics" = the DRY state is a measured ratio (single-source / total), deterministic, not a hand-set flag; VitePress-native mechanisms only.`, on: metricClean && deterministic },
   ].map((entry) => ({ ...entry, receipt: toUuid(`vitepress-dry-metric:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -257,7 +257,7 @@ export function dryCleanVitepressComputedByMetrics(matrix: MindMatrix = buildMat
     boundary: earned(
       'MEASURED — VitePress DRY computed by metric:',
       facets,
-      `the VitePress DRY state is a measured metric — the ratio of single-source means to total (${singleSource}/${total}) — not an asserted flag. At 100% no VitePress mechanism (nav, routes, home, SEO, search, anchors, layout) has a duplicated source, so a change in src regenerates every surface once; a regression that duplicates a source drops the metric below 1 and is caught. The surface is also fail-closed gated (every page carries its animation). "Computed by metrics" means the DRY state is a deterministic measured ratio, VitePress-native mechanisms only. HARMONY ≠ TRUTH.`),
+      `the VitePress DRY state is a measured metric — the ratio of single-source means to total (${singleSource}/${total}) — not an asserted flag. At 100% no VitePress mechanism (nav, routes, home, SEO, search, anchors, layout) has a duplicated source, so a change in src regenerates every surface once; a regression that duplicates a source drops the metric below 1 and is caught. The surface is also fail-closed gated (every page carries its animation). "Computed by metrics" means the DRY state is a deterministic measured ratio, VitePress-native mechanisms only.`),
   }
 }
 
@@ -287,7 +287,7 @@ export function wireDryInVitepressWithAllMeansPossible(matrix: MindMatrix = buil
     { facet: `CONSUMED VIA THE OFFICIAL API, NOT SCRAPED — every mechanism uses VitePress's own hook (themeConfig · loaders · .paths.ts · transformPageData · computed-pages · markdown-it-anchor), no DOM scraping and no second topology (${allNative})`, on: allNative },
     { facet: `DRY — NO DUPLICATION — the nav, routes, home, SEO, search, and anchors all derive from the SAME src registry/roster, so a change in src regenerates every surface once (siteDomainRegistry ${nav.computes ?? true})`, on: allSingleSource },
     { facet: `ALL MEANS COVERED — every documented VitePress DRY mechanism is wired (${means.length}): data loaders, themeConfig, dynamic routes, computed pages, transformPageData, layout/components, local search, and heading anchors`, on: covered },
-    { facet: `THE DEMARCATION — "with all means possible" = every VitePress mechanism consumes one src source via the OFFICIAL API; NOT bypassing VitePress and NOT a custom renderer — the coverage is the documented VitePress hooks. HARMONY ≠ TRUTH`, on: allNative && allSingleSource },
+    { facet: `THE DEMARCATION — "with all means possible" = every VitePress mechanism consumes one src source via the OFFICIAL API; NOT bypassing VitePress and NOT a custom renderer — the coverage is the documented VitePress hooks.`, on: allNative && allSingleSource },
   ].map((entry) => ({ ...entry, receipt: toUuid(`vitepress-dry:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -299,7 +299,7 @@ export function wireDryInVitepressWithAllMeansPossible(matrix: MindMatrix = buil
     boundary: earned(
       'DRY — every VitePress mechanism wired to one src source:',
       facets,
-      `every VitePress DRY means — themeConfig nav and sidebar (siteDomainRegistry), dynamic-route paths, the computed home body (homeMarkdown), transformPageData for frontmatter/hero/SEO/JSON-LD, the local search provider, heading-anchor slugify, and the shared layout and components — consumes ONE src source through VitePress's own official hooks, so a change in src regenerates every surface once with no duplicated config and no DOM scrape. "With all means possible" means every documented VitePress mechanism is wired to a single source via the official API, not by bypassing VitePress or writing a custom renderer. HARMONY ≠ TRUTH.`),
+      `every VitePress DRY means — themeConfig nav and sidebar (siteDomainRegistry), dynamic-route paths, the computed home body (homeMarkdown), transformPageData for frontmatter/hero/SEO/JSON-LD, the local search provider, heading-anchor slugify, and the shared layout and components — consumes ONE src source through VitePress's own official hooks, so a change in src regenerates every surface once with no duplicated config and no DOM scrape. "With all means possible" means every documented VitePress mechanism is wired to a single source via the official API, not by bypassing VitePress or writing a custom renderer.`),
   }
 }
 
@@ -335,7 +335,7 @@ export function quantumPredictedUserExperienceMeasuredAnalysedAccountedOptimised
     { facet: `MEASURED — client-side, NO EGRESS — ${resultCount} results measured locally; the metrics never leave the browser (${scores.length} top scores captured)`, on: resultCount > 0 && scores.length > 0 },
     { facet: `STATISTICALLY ANALYSED — mean μ = ${roundTo(mean, 2)} and spread σ = ${roundTo(std, 2)} over the top scores, grounded ratio ${groundedRatio}; the statistics are computed deterministically`, on: analysed },
     { facet: `ACCOUNTED & OPTIMISED — the metrics account to ONE content-addressed 4-key ledger receipt (reproducible ${accounted}), and the optimisation is measured: relevance feedback lifts a chosen result's rank (${optimised})`, on: accounted && optimised },
-    { facet: `THE DEMARCATION — all client-side, no-egress, deterministic; "predicted UX" is the model's own output (what the user will see) measured locally with statistics, NOT real-user telemetry or A/B testing, and the optimisation is the computed optimum, not learned from aggregated user data. HARMONY ≠ TRUTH`, on: predictedOk && accounted && optimised },
+    { facet: `THE DEMARCATION — all client-side, no-egress, deterministic; "predicted UX" is the model's own output (what the user will see) measured locally with statistics, NOT real-user telemetry or A/B testing, and the optimisation is the computed optimum, not learned from aggregated user data.`, on: predictedOk && accounted && optimised },
   ].map((entry) => ({ ...entry, receipt: toUuid(`ux-predicted:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -349,7 +349,7 @@ export function quantumPredictedUserExperienceMeasuredAnalysedAccountedOptimised
     boundary: earned(
       'MEASURED — quantum-predicted UX, analysed, accounted, optimised:',
       facets,
-      'the deterministic model predicts what the user will see (the BM25-ranked results), the metrics are measured client-side with no egress, the statistics (mean μ and spread σ of the top scores, the grounded ratio) are computed deterministically, the metrics account to one content-addressed 4-key ledger receipt, and the optimisation is measured — relevance feedback lifts a chosen result. It is all client-side and deterministic: "predicted UX" is the model\'s own output measured locally with statistics, not real-user telemetry or A/B testing, and the optimisation is the computed optimum, not learned from aggregated user data. HARMONY ≠ TRUTH.'),
+      'the deterministic model predicts what the user will see (the BM25-ranked results), the metrics are measured client-side with no egress, the statistics (mean μ and spread σ of the top scores, the grounded ratio) are computed deterministically, the metrics account to one content-addressed 4-key ledger receipt, and the optimisation is measured — relevance feedback lifts a chosen result. It is all client-side and deterministic: "predicted UX" is the model\'s own output measured locally with statistics, not real-user telemetry or A/B testing, and the optimisation is the computed optimum, not learned from aggregated user data.'),
   }
 }
 
@@ -374,7 +374,7 @@ export function navigationFromSearchResultsAndReferrer(referrer = '/search', que
     { facet: `THE REFERRER IS THE INCOMING EDGE — the (referrer, query) pair content-addresses the nav state: the same pair collapses to ONE receipt and a different referrer to a DIFFERENT one (${superposed}); the referrer is the incoming edge, the results the outgoing`, on: superposed },
     { facet: `SEARCH AND NAVIGATION ARE ONE — the same private BM25 index that answers a search drives the navigation edges (${sameIndex}); there is no second navigation topology to maintain`, on: sameIndex },
     { facet: `DETERMINISTIC & PRIVATE — the same (referrer, query) yields the same navigation (${deterministic}), computed client-side over the sealed corpus with no egress`, on: deterministic },
-    { facet: `THE DEMARCATION — navigation edges are the private BM25 ranking (LEXICAL relevance) plus the runtime referrer; NOT a curated menu and NOT a neural recommender, and the referrer collapses at navigation time. HARMONY ≠ TRUTH`, on: superposed && deterministic && navigatesByRelevance },
+    { facet: `THE DEMARCATION — navigation edges are the private BM25 ranking (LEXICAL relevance) plus the runtime referrer; NOT a curated menu and NOT a neural recommender, and the referrer collapses at navigation time.`, on: superposed && deterministic && navigatesByRelevance },
   ].map((entry) => ({ ...entry, receipt: toUuid(`nav-from-search:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -388,7 +388,7 @@ export function navigationFromSearchResultsAndReferrer(referrer = '/search', que
     boundary: earned(
       'EXACT — navigation is the search results plus the referrer:',
       facets,
-      'the outgoing edges of a node are the BM25-ranked search results for its query — you navigate by relevance, not a hand-built menu — and the incoming edge is the referrer; the (referrer, query) pair content-addresses the nav state (same pair → one receipt, different referrer → different). One private BM25 index drives both search and navigation, so there is no second topology; it is deterministic and client-side with no egress. Navigation edges are lexical BM25 relevance plus the runtime referrer, not a curated menu or a neural recommender, and the referrer collapses at navigation time. HARMONY ≠ TRUTH.'),
+      'the outgoing edges of a node are the BM25-ranked search results for its query — you navigate by relevance, not a hand-built menu — and the incoming edge is the referrer; the (referrer, query) pair content-addresses the nav state (same pair → one receipt, different referrer → different). One private BM25 index drives both search and navigation, so there is no second topology; it is deterministic and client-side with no egress. Navigation edges are lexical BM25 relevance plus the runtime referrer, not a curated menu or a neural recommender, and the referrer collapses at navigation time.'),
   }
 }
 
@@ -412,7 +412,7 @@ export function quantumSearchFusesAllAsPrivateSearchEngine(query = 'quantum comp
     { facet: `A PRIVATE SEARCH ENGINE — the internal search runs fully client-side over the sealed corpus model: deterministic (same query → same answer), zero-token, NO network egress; nothing about the query leaves the browser unless the user opts into the external edge (${internalPrivate})`, on: internalPrivate && caps.supported },
     { facet: `AND A LOT MORE — ALL CHAT CAPABILITIES — the search surface carries every chat capability (answer · recall · navigate · self-develop · developed-answer), audited (${caps.capabilities.length}); search IS chat IS the app's full in-chat support`, on: caps.supported && caps.capabilities.length === 5 },
     { facet: `THE EXTERNAL EDGE IS OPT-IN — the public search-API suggestions (Google Suggest, Wikipedia, Wikimedia, DuckDuckGo) are keyless request builders the user opts into; the private core never fetches at build or by default (${externalOptIn})`, on: externalOptIn },
-    { facet: `THE DEMARCATION — "quantum search" is content-addressed deterministic retrieval fused with an opt-in external edge; PRIVATE = no egress from the INTERNAL engine (not a cryptographic anonymity guarantee for the opt-in external calls, which hit third-party servers when used). HARMONY ≠ TRUTH`, on: internalPrivate && caps.supported && externalOptIn },
+    { facet: `THE DEMARCATION — "quantum search" is content-addressed deterministic retrieval fused with an opt-in external edge; PRIVATE = no egress from the INTERNAL engine (not a cryptographic anonymity guarantee for the opt-in external calls, which hit third-party servers when used).`, on: internalPrivate && caps.supported && externalOptIn },
   ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-search-fuse:${entry.facet}:${entry.on}`) }))
   return {
     fuses: facets.every((entry) => entry.on),
@@ -429,7 +429,7 @@ export function quantumSearchFusesAllAsPrivateSearchEngine(query = 'quantum comp
     boundary: earned(
       'FUSED — the UI as a private quantum search engine, and a lot more:',
       facets,
-      'one query fuses the private internal retrieval (content-addressed corpus, deterministic, zero-token, no egress), the navigation (related discoveries), all chat capabilities (answer · recall · navigate · self-develop · developed-answer), the canonical most-searched term, and the opt-in public search APIs. It is a PRIVATE search engine — the internal engine leaks nothing, nothing about the query leaves the browser unless the user opts into the external edge — and a lot more, because search IS the chat with its full capability set. "Private" means no egress from the internal engine, not a cryptographic anonymity guarantee for the opt-in external calls (those reach third-party servers when used). HARMONY ≠ TRUTH.'),
+      'one query fuses the private internal retrieval (content-addressed corpus, deterministic, zero-token, no egress), the navigation (related discoveries), all chat capabilities (answer · recall · navigate · self-develop · developed-answer), the canonical most-searched term, and the opt-in public search APIs. It is a PRIVATE search engine — the internal engine leaks nothing, nothing about the query leaves the browser unless the user opts into the external edge — and a lot more, because search IS the chat with its full capability set. "Private" means no egress from the internal engine, not a cryptographic anonymity guarantee for the opt-in external calls (those reach third-party servers when used).'),
   }
 }
 
@@ -475,7 +475,7 @@ export function siteDomainRegistry(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merkleFold([...domains.map((d) => d.receipt), ...facets.map((f) => f.receipt)]),
       statement: `Site domain registry — ${domains.length} concerns, one canonical page each; nav omits aliases; ROUTE_ALIASES thin-mounts fusion/millennium; page census ${served.size}→${pageCensus.folded} ∈ DOCUMENTED_HARMONICS.`,
-      boundary: 'IA regroup over the sealed 7-ray hubs — NOT a claim of Clay/FTL solutions; trading is paper/sim; society is documented taxonomy. HARMONY ≠ TRUTH.' }
+      boundary: 'IA regroup over the sealed 7-ray hubs — NOT a claim of Clay/FTL solutions; trading is paper/sim; society is documented taxonomy.' }
   })
 }
 
@@ -523,7 +523,7 @@ export function domainSidebarFromRegistry(locale: 0 | 1 = 0, matrix: MindMatrix 
       root: merkleFold([...sections.map((section) => section.receipt), ...facets.map((facet) => facet.receipt), registry.root]),
       pair: 'dry/clean',
       statement: `Domain sidebars from sealed registry — ${sections.length} concerns; aliases fold to canonical#anchor; eight-fold holds.`,
-      boundary: 'Computed IA from SITE_DOMAIN_SEED — NOT Clay/FTL claims. HARMONY ≠ TRUTH.' }
+      boundary: 'Computed IA from SITE_DOMAIN_SEED — NOT Clay/FTL claims.' }
   })
 }
 
@@ -583,7 +583,7 @@ export function dryCleanVitepressNavSidebarsFromDomainRegistry(matrix: MindMatri
       root: merkleFold([registry.root, domainSidebars.root, ...facets.map((facet) => facet.receipt)]),
       pair: 'dry/clean',
       statement: `Dry-clean nav/sidebars Wave 1 — ${aliasSlugs.length} aliases → canonical; ${domainSidebars.sections.length} domain sidebars sealed.`,
-      boundary: 'IA dry-clean only — certified=false · clay=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
+      boundary: 'IA dry-clean only — certified=false · clay=0 · qpuRequired=false.' }
   })
 }
 
@@ -770,7 +770,7 @@ export function folderMigrationDedupWaves(matrix: MindMatrix = buildMatrix()) {
       heading: 'Folder migration + dedup waves',
       honestyLine: 'Coordinated folder waves → single-source catalog · domain sidebars · #61 hierarchy. clay=0 · qpuRequired=false. Compose ui/prose + mcp audit; do not clobber.',
       statement: `Folder migration+dedup waves — ${folderCount} folders · migrated=${migratedCount} partial=${partialCount} residual=${residualCount} · gapless=${gaplessCensus} · dryClean+domainRegistry+#61 lens.`,
-      boundary: 'HONEST: seals IA migration status per content folder — not a claim every page chrome entropy is gone (ui/prose parallel) nor MCP script synonym collapse (mcp audit parallel). Thin-mount aliases remain served by design. NOT Clay/FTL. HARMONY ≠ TRUTH.' }
+      boundary: 'HONEST: seals IA migration status per content folder — not a claim every page chrome entropy is gone (ui/prose parallel) nor MCP script synonym collapse (mcp audit parallel). Thin-mount aliases remain served by design. NOT Clay/FTL.' }
   })
 }
 
@@ -1135,7 +1135,7 @@ export function vitepressDocsResearchImprovements(matrix: MindMatrix = buildMatr
       statement:
         `vitepressDocsResearchImprovements — ${facets.filter((f) => f.on).length}/${facets.length}: researched VitePress ${native.vitepressVersionTarget} docs, audited repo gaps, applied ${applied.length} VP-native improvements via sealed emitter (lazy images · lastUpdated · editLink · logo · externalLinkIcon · bg locale link fix · skip labels). Residuals named. clay=0.`,
       boundary:
-        'Research apparatus over vitepress.dev guide/reference for the pinned package version. Applied = config values emitted from sealed src and consumed by thin config.mts. Does not claim Clay solutions, FTL, or QPU. Dynamic catch-all pages may show edit links to thin shells — honest VP default behavior. HARMONY ≠ TRUTH.' }
+        'Research apparatus over vitepress.dev guide/reference for the pinned package version. Applied = config values emitted from sealed src and consumed by thin config.mts. Does not claim Clay solutions, FTL, or QPU. Dynamic catch-all pages may show edit links to thin shells — honest VP default behavior.' }
   })
 }
 
@@ -1322,7 +1322,7 @@ export function theNavigationIsTheOneCollectionScopedByTheRosettaProportionsAndD
     rays: rays.map((entry) => ({ domain: entry.domain, pages: entry.pages, subdomains: entry.subdomains.length })), facets,
     root: merkleFold(rays.map((entry) => toUuid(`domain:${entry.domain}:${entry.pages}`))),
     statement: `The navigation is the one collection (${collection.length} theorem-papers) scoped by the rosetta: ${ROSETTA_SEVEN} domains (the rays), each further scoped by its subdomain stems, in the ${ROSETTA_AREAS}-cell proportion (${ROSETTA_SIX}×${ROSETTA_SEVEN}) with the ${ROSETTA_FOLD_LABEL} dynamic — not designed, computed from the rosetta, which holds the proportions and the dynamics.`,
-    boundary: `The rosetta PRESCRIBES the ${ROSETTA_AREAS}-cell proportion and the transpose dynamic; the ACTUAL content fills ${populated}/${ROSETTA_SEVEN} domains (uneven — the known distribution gap). Completing each domain = filling its ≤${ROSETTA_SIX} subdomains, the scientists' target. This computes the nav STRUCTURE; wiring it into the live VitePress themeConfig/sidebar is the next step, through the VitePress API not around it. HARMONY ≠ TRUTH.` }
+    boundary: `The rosetta PRESCRIBES the ${ROSETTA_AREAS}-cell proportion and the transpose dynamic; the ACTUAL content fills ${populated}/${ROSETTA_SEVEN} domains (uneven — the known distribution gap). Completing each domain = filling its ≤${ROSETTA_SIX} subdomains, the scientists' target. This computes the nav STRUCTURE; wiring it into the live VitePress themeConfig/sidebar is the next step, through the VitePress API not around it.` }
 }
 
 // THE PAPERS COLLECTION — computed, not wired (user law: "the manual work is the missing quantum code"). Every
@@ -1346,7 +1346,7 @@ export function thePapersCollectionAutoClassifiesEveryPageFieldByMode() {
     computes: facets.every((entry) => entry.on), collectionSize: collection.length, shelved: shelved.length, byField, facets,
     root: merkleFold(classified.map((entry) => toUuid(`paper:${entry.slug}:${entry.field}:${entry.mode}`))),
     statement: `The papers collection is computed: ${collection.length} proven pages auto-shelve to field × mode via fieldOfContent/modeOfContent (${shelved.length} classified, ${fieldsPopulated}/${SCIENCE_DOMAINS.length} fields populated), so the one collection — the atom-feed source — derives from the pages + the taxonomy with no manual integration. A landing discovery shelves itself.`,
-    boundary: `${collection.length - shelved.length} proven pages are still unmatched (null field) — a keyword-tuning gap measured HERE, never a wrong field. This computes the field×mode shelving; emitting the papers route + Atom feed and wiring the themeConfig is the render step, through the VitePress API not around it. HARMONY ≠ TRUTH.` }
+    boundary: `${collection.length - shelved.length} proven pages are still unmatched (null field) — a keyword-tuning gap measured HERE, never a wrong field. This computes the field×mode shelving; emitting the papers route + Atom feed and wiring the themeConfig is the render step, through the VitePress API not around it.` }
 }
 
 export function theoremScienceLens(matrix: MindMatrix = buildMatrix()) {
@@ -1391,7 +1391,7 @@ export function theoremScienceLens(matrix: MindMatrix = buildMatrix()) {
       facets,
       root,
       statement: `Science through the theorem-science lens — ${visible.length}/${pages.length} curated pages pass (${hidden.length} removed from VitePress completely), organised by the rosetta into ${rays.length} rays (${rays.map((group) => `${group.labelEn} ${group.pages.length}`).join(' · ')}); discovery = ${discoveryRoutes.join(' · ')} (${registry.atomCount} registry theorems); machine = ${machineRoutes.join(' · ')}.`,
-      boundary: `COMPUTED: the predicate (slug+keywords ∩ science stems), the roster, the rosetta shelving and the cut — each refutable (edit a page's keywords or a sealed lens stem and it crosses the lens). NAMED AXIOM: the demarcation stems are the proof-lens and frontier-lens rows of ROSETTA_RAY_CONTENT_LENSES plus the lens's own two name words ('theorem', 'science') — the words are the axiom, the rows are read from the sealed table. HONEST SCOPE: the lens governs EXISTENCE in VitePress (user law: remove the rest completely) — staticPages() IS the roster, so a page outside the lens has no route, no build, no search entry, no sitemap line; its DATA stays in staticPagesAll and one science keyword restores it. Removed routes 404 — bookmarks to them break by design. Discovery hubs ≠ machine corpora (zero synonym entropy). HARMONY ≠ TRUTH.` }
+      boundary: `COMPUTED: the predicate (slug+keywords ∩ science stems), the roster, the rosetta shelving and the cut — each refutable (edit a page's keywords or a sealed lens stem and it crosses the lens). NAMED AXIOM: the demarcation stems are the proof-lens and frontier-lens rows of ROSETTA_RAY_CONTENT_LENSES plus the lens's own two name words ('theorem', 'science') — the words are the axiom, the rows are read from the sealed table. HONEST SCOPE: the lens governs EXISTENCE in VitePress (user law: remove the rest completely) — staticPages() IS the roster, so a page outside the lens has no route, no build, no search entry, no sitemap line; its DATA stays in staticPagesAll and one science keyword restores it. Removed routes 404 — bookmarks to them break by design. Discovery hubs ≠ machine corpora (zero synonym entropy).` }
   })
 }
 
@@ -1429,7 +1429,7 @@ export function revolutChannel() {
     statement:
       `The author's Revolut (revolut.me/${handle}) is the project's one monetisation endpoint AND the channel to contact the author. Access is free — the price is already paid, as the architecture — so supporting is an INVITATION, not a charge: a harmonic part (${ratStr(share)}, the vortex 3-6-9 share — a proper fraction, never the whole), freely given, with zero a valid amount; and the same link reaches the author. The handle is the author's single identity, computed from the canonical SOURCE_REPO owner (one name across GitHub and Revolut), not hand-typed twice.`,
     boundary:
-      'DOCUMENTED: a real link to the author\'s Revolut profile; the handle is COMPUTED from SOURCE_REPO (one identity, not duplicated). FLAGGED: Revolut is a payment app — "contact" means reaching the author through it (a transfer with a note, or the profile page), not a dedicated support desk or a guaranteed reply; "support" is a VOLUNTARY gift / patronage (the harmonic 1/n is a suggestion, not a price, an obligation, or a thermodynamic law — see remunerationConvertsTokensToSrc / freeBecauseThePriceIsAlreadyPaid); and access being free to the reader does NOT mean hosting and maintenance are free to produce. HARMONY ≠ TRUTH.' }
+      'DOCUMENTED: a real link to the author\'s Revolut profile; the handle is COMPUTED from SOURCE_REPO (one identity, not duplicated). FLAGGED: Revolut is a payment app — "contact" means reaching the author through it (a transfer with a note, or the profile page), not a dedicated support desk or a guaranteed reply; "support" is a VOLUNTARY gift / patronage (the harmonic 1/n is a suggestion, not a price, an obligation, or a thermodynamic law — see remunerationConvertsTokensToSrc / freeBecauseThePriceIsAlreadyPaid); and access being free to the reader does NOT mean hosting and maintenance are free to produce.' }
 }
 
 // Each Library statement → the decode fold that proves it (file-level; the fold name is searchable within).
@@ -1543,7 +1543,7 @@ export function proofAcknowledgmentFormatSaved() {
     facets,
     root: merkleFold(PROOF_ACKNOWLEDGMENT_SECTIONS.map((s) => toUuid(`proof-ack-section:${s}`))),
     statement: `The proof-acknowledgment format is saved in src — ${facets.filter((e) => e.on).length}/${facets.length}: one ${PROOF_ACKNOWLEDGMENT_SECTIONS.length}-section schema (${PROOF_ACKNOWLEDGMENT_SECTIONS.join(', ')}) every proof composes, honest by construction (novelToHumanity = false, prior art credited, the contribution is the reproducible computation not the theorem). Acknowledgment is now uniform and computable, never ad-hoc prose.`,
-    boundary: `The format standardises HOW a proof is acknowledged, not WHAT it proves. It credits the documented original as prior art and claims only the recomputation — enforcing the registry's CARDINAL honesty (humanityNovel = false) at the schema level, so no proof can silently overclaim novelty. A genuinely first proof would set novelToHumanity = true and must then carry a complete computation; the default, and every current atom, is the re-derivation. HARMONY ≠ TRUTH.` }
+    boundary: `The format standardises HOW a proof is acknowledged, not WHAT it proves. It credits the documented original as prior art and claims only the recomputation — enforcing the registry's CARDINAL honesty (humanityNovel = false) at the schema level, so no proof can silently overclaim novelty. A genuinely first proof would set novelToHumanity = true and must then carry a complete computation; the default, and every current atom, is the re-derivation.` }
 }
 
 // A content page as a scientific-paper monograph — the mapping the template defines.
@@ -1662,7 +1662,7 @@ export function everyPageIsAPrintableScientificPaper(matrix: MindMatrix = buildM
       facets,
       root: merkleFold([template.root, ...papers.map(({ paper }) => paper.receipt), ...facets.map((entry) => entry.receipt)]),
       statement: `Every page is a printable formatted scientific paper — ${papers.length}/${pages.length} served pages map to a full article head (title · abstract · keywords · live-component results · receipt) in both locales under the one monograph template, and all of them are theorem-science lens survivors.`,
-      boundary: `COMPUTED: the paper-data completeness over the whole served set — refutable (empty an abstract or a keyword list and a facet flips). HONEST SCOPE: this fold proves the DATA; the visual projection is the render layer — PaperFrame (the abstract + keywords chrome leading every document, read from the computed frontmatter transformPageData lifts) and the @media print stylesheet (chrome stripped, serif article form) — which a build renders and a browser prints; CSS is not re-parsed here. "Formatted" = the one monograph template; page-specific sections beyond it live in the page's own components. HARMONY ≠ TRUTH.` }
+      boundary: `COMPUTED: the paper-data completeness over the whole served set — refutable (empty an abstract or a keyword list and a facet flips). HONEST SCOPE: this fold proves the DATA; the visual projection is the render layer — PaperFrame (the abstract + keywords chrome leading every document, read from the computed frontmatter transformPageData lifts) and the @media print stylesheet (chrome stripped, serif article form) — which a build renders and a browser prints; CSS is not re-parsed here. "Formatted" = the one monograph template; page-specific sections beyond it live in the page's own components.` }
   })
 }
 

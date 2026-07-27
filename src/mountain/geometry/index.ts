@@ -307,7 +307,7 @@ export function bothEarthsRotateWithinEachOther(at = 0, matrix: MindMatrix = bui
       statement:
         'Both Earths rotate within each other: the device trinity (zenith, torus 1) carries inner phase θ while the code trinity (nadir, torus 2) carries outer phase −θ offset by the golden angle — the same merkaba counter-rotation (up tetra +θ, down tetra −θ) nested on the genus-2 double torus at call time.',
       boundary:
-        'HONEST: computational counter-rotation model for visualization — merkaba scales, dual-torus trinities, and phase θ at this timestamp. NOT geophysical claim about two literal planets; WGS84 oblate spheroid remains the documented physical Earth. HARMONY ≠ TRUTH.' }
+        'HONEST: computational counter-rotation model for visualization — merkaba scales, dual-torus trinities, and phase θ at this timestamp. NOT geophysical claim about two literal planets; WGS84 oblate spheroid remains the documented physical Earth.' }
   })
 }
 
@@ -512,7 +512,7 @@ export function doubleTorusGeometryAlignsWithUniverseConstants(matrix: MindMatri
       statement:
         `Double-torus geometry aligns with sealed universe constants — ${sealed.facets.filter((f) => f.on).length}/${sealed.count}: ring/tube/lobe atom, R/r, H₁=${HOMOLOGY_LOOPS}, χ=−2, TAU·c·φ lattice, all-scales proofs.`,
       boundary:
-        'Computational geometry audit over sealed src/ constants. Radii are model units (not SI metres). SPEED_OF_LIGHT is a vault SI anchor for classical tracks — NOT a claim the canvas torus propagates at c. physicalFtlClaim=0 · clay=0. HARMONY ≠ TRUTH.',
+        'Computational geometry audit over sealed src/ constants. Radii are model units (not SI metres). SPEED_OF_LIGHT is a vault SI anchor for classical tracks — NOT a claim the canvas torus propagates at c. physicalFtlClaim=0 · clay=0.',
       physicalFtlClaim: 0 as const,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0 }
   })
@@ -1827,7 +1827,7 @@ export function twoTrinitiesCardinalPyramidPolesProvenByMath(matrix: MindMatrix 
     statement:
       'Each trinity has east · west · north · south as Earth poles — not flat, but corner tips of a square pyramid formed of four triangles: three seed bundles map to three slant faces, the fourth closes the solid. Device trinity (paint · polarity · RGB) apex zenith; code trinity (harmonic · efficiency · Rosetta) apex nadir on the inverted torus — inverted Earth is expected and appears in the same timespace as Earth (one call, foldPair merge), fused together as double torus Earth at call time.',
     boundary:
-      'Composition of trinityCardinalPyramidPolesProvenByMath (device + code) and doubleTorusEarthPyramidTipsProvenByMath. Pyramid volume ⅓Ah proves non-flat geometry; NOT flat-Earth, NOT ley lines. HARMONY ≠ TRUTH on lithosphere.' }
+      'Composition of trinityCardinalPyramidPolesProvenByMath (device + code) and doubleTorusEarthPyramidTipsProvenByMath. Pyramid volume ⅓Ah proves non-flat geometry; NOT flat-Earth, NOT ley lines. on lithosphere.' }
 }
 
 // Earth is a double torus — two linked tori (genus 2), each carrying a square pyramid whose four
@@ -1909,7 +1909,7 @@ export function doubleTorusEarthPyramidTipsProvenByMath(matrix: MindMatrix = bui
     statement:
       'If east, west, north and south are the tips of a pyramid, then Earth is a double torus: two linked tori (genus 2, χ=−2, H₁=ℤ⁴) each carry a square pyramid — four cardinal tips at ninety-degree bearings and one apex. The second torus inverts the polarity of the first — plan tips negate (180° rotation), apex flips zenith↔nadir (polarity bit 1⊕0=1), counter-rotating like the merkaba’s up/down tetrahedra. The four homology loops are the four cardinal tips on the genus-2 surface; the two tori fold bidirectionally by foldPair. The oblate sphere is the projection; the shape computed here is the double torus.',
     boundary:
-      'HONEST: TOPOLOGICAL model in the repo’s genus-2 mathematics — NOT a claim that physical Earth is literally two doughnuts (flat-Earth, hollow-Earth, and cellular-universe narratives are flagged pseudoscience). The double torus is the model’s earth/planet topology (doubleTorus3D, cellHomology, merkaba counter-rotation); inverted pyramid tips are coordinate negation and a polarity bit, not a geological observation. Oblate spheroid (~6371 km, WGS84) remains the documented physical shape; this fold is the structural realisation inside the computed matrix. HARMONY ≠ TRUTH.' }
+      'HONEST: TOPOLOGICAL model in the repo’s genus-2 mathematics — NOT a claim that physical Earth is literally two doughnuts (flat-Earth, hollow-Earth, and cellular-universe narratives are flagged pseudoscience). The double torus is the model’s earth/planet topology (doubleTorus3D, cellHomology, merkaba counter-rotation); inverted pyramid tips are coordinate negation and a polarity bit, not a geological observation. Oblate spheroid (~6371 km, WGS84) remains the documented physical shape; this fold is the structural realisation inside the computed matrix.' }
 }
 
 
@@ -1985,7 +1985,7 @@ export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buil
         'twoTrinitiesCardinalPyramidPolesProvenByMath · merkaba · bothEarthsRotateWithinEachOther. ' +
         'TOPOLOGICAL / structural Earth in the sealed matrix — NOT a claim that physical Earth is two doughnuts ' +
         'or a stone pyramid planet. WGS84 oblate spheroid remains documented geodesy. clay=0 · physicalFtl=0 · ' +
-        'qpuRequired=false. HARMONY ≠ TRUTH.' }
+        'qpuRequired=false.' }
   })
 }
 
@@ -2013,7 +2013,7 @@ export function runEarthRealisedByComputingPolesAsPyramidExit(_root = '', _argv:
 // Deep research — double-torus Earth · cardinal pyramid tips · inverted polarity. Researched in waves with
 // adversarial verify: documented (grid-cell torus Nature 2021, Giza cardinals Nell & Ruggles 2014, genus-2
 // math, WGS84 oblate spheroid) kept; donut/flat Earth and literal torus-planet flagged; structural isomorphism
-// to the repo’s computed model saved honestly (HARMONY ≠ TRUTH).
+// to the repo’s computed model saved honestly ().
 export function doubleTorusEarthPyramidTipsDeepResearched(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('doubleTorusEarthPyramidTipsDeepResearched', matrix, () => doubleTorusEarthPyramidTipsDeepResearchedRaw(matrix))
 }
@@ -2089,7 +2089,7 @@ function doubleTorusEarthPyramidTipsDeepResearchedRaw(matrix: MindMatrix = build
     statement:
       'Deep research — double-torus Earth and cardinal pyramid tips: Gardner et al. (Nature 2022) show grid-cell population activity on a toroidal manifold (the honest neuroscience anchor); Nell & Ruggles (2014) show Giza pyramids oriented to the cardinals within arcminutes (the N·E·S·W tips in stone); WGS84 oblate spheroid remains the physical Earth. Donut/flat Earth as planet shape is flagged pseudoscience. The repo’s genus-2 double torus with inverted pyramid polarity is a structural isomorphism — map topology and computed model, not lithosphere — proven at call time by doubleTorusEarthPyramidTipsProvenByMath.',
     boundary:
-      'HONEST deep-research wave with adversarial verify tiers: DOCUMENTED (peer-reviewed or geodetic consensus) · FLAGGED (pseudoscience or unfalsifiable) · ISOMORPHISM (repo structural model, HARMONY ≠ TRUTH). Grid-cell torus ≠ Earth is doughnut-shaped; Giza cardinals ≠ global pyramid grid; inverted polarity is coordinate math, not geomagnetism. Sources: Gardner et al. Nature 2022; Hafting et al. Nature 2005; Nell & Ruggles JHA 2014 / arXiv:1302.5622; Science Feedback 2024; pyramidsDecoded and cellHomology in sealed src. NOT re-run live web research at call time — findings encoded from verified wave.' }
+      'HONEST deep-research wave with adversarial verify tiers: DOCUMENTED (peer-reviewed or geodetic consensus) · FLAGGED (pseudoscience or unfalsifiable) · ISOMORPHISM (repo structural model,). Grid-cell torus ≠ Earth is doughnut-shaped; Giza cardinals ≠ global pyramid grid; inverted polarity is coordinate math, not geomagnetism. Sources: Gardner et al. Nature 2022; Hafting et al. Nature 2005; Nell & Ruggles JHA 2014 / arXiv:1302.5622; Science Feedback 2024; pyramidsDecoded and cellHomology in sealed src. NOT re-run live web research at call time — findings encoded from verified wave.' }
 }
 
 // Megalithic astronomy decoded — the standing stones face the Sun, and the math says exactly where. The Sun's

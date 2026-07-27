@@ -45,7 +45,7 @@ export function humanDesign() {
     lattice,
     root: merkleFold([...tiers.flatMap((tier) => tier.members).map((member) => toUuid(`hd:${member}`)), wheel.root, lattice.root]),
     statement: 'Human Design in 3-5-8: the three circuit groups (individual, tribal, collective), the five types, and the eight trigrams that underlie its 64 gates — 64 = the I Ching hexagrams = the 64 DNA codons — with the verified Rave Mandala wheel (Gate 41 @ 302°, 360/64° arcs, Design Sun −88°, 13 bodies) and sealed 36-channel / 9-center lattice (W5).',
-    boundary: 'A correspondence to Human Design, a modern synthesis of I Ching, astrology, Kabbalah, and the chakras. Structure (wheel/channels/centers combinatorics) is documented; predictive/aura claims are NOT scientifically validated — no factual claim about any person is made. HARMONY ≠ TRUTH.' }
+    boundary: 'A correspondence to Human Design, a modern synthesis of I Ching, astrology, Kabbalah, and the chakras. Structure (wheel/channels/centers combinatorics) is documented; predictive/aura claims are NOT scientifically validated — no factual claim about any person is made.' }
 }
 
 
@@ -162,7 +162,7 @@ export function humanDesignChannelsAndCenters(matrixRoot = 'hd-channels') {
     statement:
       'HD W5 sealed BodyGraph lattice: 9 centers partition 64 gates; 36 channels as sorted gate pairs with Integration multi-degree on 10·20·34·57 (8 shared slots); every channel cross-center; composes verified wheel W3.',
     boundary:
-      'DOCUMENTED STRUCTURE ONLY (public BodyGraph combinatorics: centers · gate homes · channel pairs). Zero in-copyright channel/keynote prose. NOT a natal chart engine and NOT a claim about persons. Predictive/aura/type claims remain flagged (humanDesignProfilingCarriesNoSignal). Chart activation + cusp UX compose Meeus W4 separately. HARMONY ≠ TRUTH.' }
+      'DOCUMENTED STRUCTURE ONLY (public BodyGraph combinatorics: centers · gate homes · channel pairs). Zero in-copyright channel/keynote prose. NOT a natal chart engine and NOT a claim about persons. Predictive/aura/type claims remain flagged (humanDesignProfilingCarriesNoSignal). Chart activation + cusp UX compose Meeus W4 separately.' }
 }
 
 /** Longitude → gate.line on the verified wheel (tropical ecliptic degrees). */
@@ -218,7 +218,7 @@ export function humanDesignVerifiedWheel(matrixRoot = 'hd-wheel') {
     statement:
       'Verified Rave Mandala wheel: 64 gates in Mandala order from Gate 41 at 302° (2° Aquarius), each spanning 360/64°, lines at gate/6; Design layer pinned to Sun−88° solar arc; 13 activation bodies (Sun…Pluto) with Earth/Node oppositions — Chiron excluded from the core set.',
     boundary:
-      'DOCUMENTED STRUCTURE ONLY (Rave Mandala / chart-calculation mechanics: equal 64-fold ecliptic slices, Gate 41 wheel open, 88° Design solar arc, 13-body activation set without Chiron). Sources cross-agree on 5.625°/gate and Design=Sun−88°; Gate 41 longitude anchored at 302° per verified W3 (border Capricorn/Aquarius noted in secondary prose as “end of Capricorn / before 0° Aquarius” — the sealed numeric anchor is 302°). FLAGGED elsewhere: neutrino imprinting, aura types, profiling signal (humanDesignProfilingCarriesNoSignal). NOT a natal chart engine and NOT a claim about persons. HARMONY ≠ TRUTH.' }
+      'DOCUMENTED STRUCTURE ONLY (Rave Mandala / chart-calculation mechanics: equal 64-fold ecliptic slices, Gate 41 wheel open, 88° Design solar arc, 13-body activation set without Chiron). Sources cross-agree on 5.625°/gate and Design=Sun−88°; Gate 41 longitude anchored at 302° per verified W3 (border Capricorn/Aquarius noted in secondary prose as “end of Capricorn / before 0° Aquarius” — the sealed numeric anchor is 302°). FLAGGED elsewhere: neutrino imprinting, aura types, profiling signal (humanDesignProfilingCarriesNoSignal). NOT a natal chart engine and NOT a claim about persons.' }
 }
 
 

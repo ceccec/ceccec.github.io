@@ -634,7 +634,7 @@ export function getTradingCurriculum(matrix: MindMatrix = buildMatrix()) {
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, ...rows.map((r) => r.receipt)])),
       statement: `Trading curriculum: ${rows.length} strategies shelved on rosetta rays · skills=${skills.count} · sources=${sources.length}.`,
-      boundary: 'Educational curriculum over sealed synthetic backtests. NOT investment advice. Paper/sim only. HARMONY ≠ TRUTH.' }
+      boundary: 'Educational curriculum over sealed synthetic backtests. NOT investment advice. Paper/sim only.' }
   })
 }
 
@@ -673,7 +673,7 @@ export function validateQuantumTraderTrain(matrix: MindMatrix = buildMatrix()) {
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, ...runs.map((r) => r.receipt)])),
       statement: `validateQuantumTraderTrain: ${runs.length} strategies on a432 path (${prices.length} bars) — receipts content-addressed.`,
-      boundary: 'Synthetic a432 path ≠ live market history. Backtest ≠ live. NOT alpha. Paper/sim only. HARMONY ≠ TRUTH.' }
+      boundary: 'Synthetic a432 path ≠ live market history. Backtest ≠ live. NOT alpha. Paper/sim only.' }
   })
 }
 
@@ -710,7 +710,7 @@ export function liveWinTrainingGate(matrix: MindMatrix = buildMatrix()) {
       statement: trainedEnough
         ? 'liveWinTrainingGate: momentum beats buy-and-hold on sealed synthetic path — trainedEnough (paper/sim).'
         : 'liveWinTrainingGate: momentum does not beat buy-and-hold at this call — not trainedEnough.',
-      boundary: 'NAME HONESTY: "live-win" = strategy vs benchmark on synthetic path, NOT live brokerage P&L. Paper/sim only. HARMONY ≠ TRUTH.' }
+      boundary: 'NAME HONESTY: "live-win" = strategy vs benchmark on synthetic path, NOT live brokerage P&L. Paper/sim only.' }
   })
 }
 
@@ -777,7 +777,7 @@ export function rankWinningStrategies(matrix: MindMatrix = buildMatrix(), at = 0
       pair: 'cycle/winning',
       route: '/en/quantum-trading-hub',
       statement: `rankWinningStrategies: top=${ranked[0]!.strategy} ray=${ranked[0]!.ray} — PnL+harmonic via rosettaShelve.`,
-      boundary: 'Ranking over sealed synthetic backtests. Harmonic score is structural (vortex·ray), NOT a market oracle. NOT live money. HARMONY ≠ TRUTH.' }
+      boundary: 'Ranking over sealed synthetic backtests. Harmonic score is structural (vortex·ray), NOT a market oracle. NOT live money.' }
   })
 }
 
@@ -851,7 +851,7 @@ export function historicalTrainWavesViaRosetta(matrix: MindMatrix = buildMatrix(
       statement:
         `historicalTrainWavesViaRosetta: ${rayRuns.length} rays · short/long harmonic windows · top=${top.strategy}@ray${top.ray} — offline a432 proxy.`,
       boundary:
-        'Historical = sealed synthetic a432 + harmonic windows, NOT downloaded exchange ticks. Paper/sim. Backtest≠live. HARMONY ≠ TRUTH.' }
+        'Historical = sealed synthetic a432 + harmonic windows, NOT downloaded exchange ticks. Paper/sim. Backtest≠live.' }
   })
 }
 
@@ -908,7 +908,7 @@ export function tradingTrainHonestyGate(matrix: MindMatrix = buildMatrix()) {
       root: merge(matrix.root, sealed.root),
       statement: 'Trading train honesty: paper/sim only — no live money claims; synthetic paths and public-feed catalogues stay labeled.',
       boundary:
-        'HARD: train/rank/win-gate are offline synthetic or paper. Live feeds (if any) are opt-in at the edge and never claimed as sealed alpha. NOT financial advice. HARMONY ≠ TRUTH.' }
+        'HARD: train/rank/win-gate are offline synthetic or paper. Live feeds (if any) are opt-in at the edge and never claimed as sealed alpha. NOT financial advice.' }
   })
 }
 

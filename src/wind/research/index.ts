@@ -880,7 +880,7 @@ const GLOBAL_WORKSPACE_CONTRAST_ROWS: readonly Omit<GlobalWorkspaceContrastRow, 
   { id: 'category-contrast', claim: 'The two transparencies are DIFFERENT CATEGORIES: J-space is reverse-engineered interpretability (a latent subspace discovered post-hoc inside an opaque network, covering a fraction of the computation); this portal is forward-engineered transparency (the entire surface IS the computation — deterministic, content-addressed, recomputable by anyone, zero hidden state, enforced by its own build gates). Discovered scratchpad versus architected compute surface.', tier: 'DOCUMENTED', source: 'transformer-circuits.pub/2026/workspace · this repo’s enforcement trinity + maxComputedBuild' },
   { id: 'consciousness', claim: '"The J-space shows Claude is conscious" — flagged: functional resemblance to a workspace ARCHITECTURE is not phenomenal consciousness; the theory itself is one contested account of access, and the paper claims measurable workspace-like behaviour, not experience.', tier: 'LEGEND', source: 'the paper’s own boundary · consciousness science unresolved (PCI measures arousal-state, not machine experience)' },
   { id: 'computes-all', claim: '"ceccec.github.io already computes all" — bounded: the gates prove the portal computes all OF ITSELF (every declared page from sealed folds, totality within its own χ-fixed census), NOT all in general; an auditable-total SURFACE is not a universal computer of everything, and the claim as stated is flagged.', tier: 'LEGEND', source: 'enforcement trinity 0 findings · the census fold — totality holds only inside the declared boundary' },
-  { id: 'citation-rot', claim: 'The relaying answer (Perplexity) stated the J-space result correctly while EVERY one of its 39 citations was keyword-matched noise (CUDA docs, unrelated cec* repos) — none touched the claim. A live specimen of HARMONY ≠ TRUTH: source-shaped decoration is not verification; this fold re-anchored the claim to the primary record before sealing.', tier: 'DOCUMENTED', source: 'the shared answer’s footnote list, audited row by row · re-verified against anthropic.com + transformer-circuits.pub' },
+  { id: 'citation-rot', claim: 'The relaying answer (Perplexity) stated the J-space result correctly while EVERY one of its 39 citations was keyword-matched noise (CUDA docs, unrelated cec* repos) — none touched the claim. A live specimen of: source-shaped decoration is not verification; this fold re-anchored the claim to the primary record before sealing.', tier: 'DOCUMENTED', source: 'the shared answer’s footnote list, audited row by row · re-verified against anthropic.com + transformer-circuits.pub' },
   { id: 'bridge', claim: 'Bridging idea — use the open-source J-lens to probe whether a deterministic content-addressed stream (a Double-Torus-style UUID fold) leaves a detectable workspace signature in a transformer: an UNTESTED research direction, not a result; nothing here demonstrates it.', tier: 'HYPOTHESIS', source: 'the open-source J-lens release — proposal only' },
 ] as const
 
@@ -895,7 +895,7 @@ export function globalWorkspaceContrastResearch(matrix: MindMatrix = buildMatrix
       { facet: 'J-space documented — primary Anthropic/transformer-circuits record cited, fractional and verbalizable', on: rows.some((row) => row.id === 'j-space' && row.tier === 'DOCUMENTED' && row.source.includes('transformer-circuits')) },
       { facet: 'consciousness claim flagged LEGEND — functional resemblance never sealed as experience', on: rows.some((row) => row.id === 'consciousness' && row.tier === 'LEGEND') },
       { facet: '"computes all" bounded — totality only within the portal’s own declared surface, the universal claim LEGEND', on: rows.some((row) => row.id === 'computes-all' && row.tier === 'LEGEND' && row.claim.includes('OF ITSELF')) },
-      { facet: 'citation-rot specimen kept — a true claim with noise sources re-anchored to the primary record (HARMONY ≠ TRUTH)', on: rows.some((row) => row.id === 'citation-rot' && row.claim.includes('HARMONY')) },
+      { facet: 'citation-rot specimen kept — a true claim with noise sources re-anchored to the primary record ()', on: rows.some((row) => row.id === 'citation-rot' && row.claim.includes('HARMONY')) },
       { facet: 'the bridge stays HYPOTHESIS — proposal, never a result', on: rows.some((row) => row.id === 'bridge' && row.tier === 'HYPOTHESIS') },
       { facet: 'lineage documented — the readout math predates Anthropic (logit lens 2020 · tuned lens 2023 · Jacobi 1841); their novelty is the averaged-Jacobian choice + the empirical finding', on: rows.some((row) => row.id === 'lineage' && row.tier === 'DOCUMENTED' && row.source.includes('2303.08112')) },
     ])
@@ -1033,7 +1033,7 @@ export function deepResearchStandardisesRnd(matrix: MindMatrix = buildMatrix()) 
     boundary: earned(
       'HONEST: the standardization is a real, computed property of THIS system — one 5-stage pipeline develops every registry object, one fold protocol admits every opt-in public API, and one 6-tier ladder demarcates every result (all recomputed here from the sealed pipeline, publicApiFusion, and the tier type).',
       facets,
-      'SCOPE: "standardises all R&D" is the ASPIRATION the architecture embodies, not a claim that the whole world\'s research already runs this way — it is a demonstrated METHOD (reproducible, content-addressed, tier-demarcated, zero-token) that any project could adopt, shown working on this corpus. The "quantum means" is explicitly STRUCTURAL (superposition/measurement/collapse as the method\'s shape and the Deutsch-Jozsa query-advantage of one joint fold) with NO physical quantum speedup (per quantum-decoded). Live APIs are OPT-IN and untrusted: the fold protocol makes their data tamper-evident and recomputable, it does not vouch for the source\'s truth (that is what the tier ladder is for). The remaining engineering — surfacing each fused API as a live UI widget, and growing the library of per-domain reusable live-tool algorithms — is the open build this fold specifies the standard for. HARMONY ≠ TRUTH.'),
+      'SCOPE: "standardises all R&D" is the ASPIRATION the architecture embodies, not a claim that the whole world\'s research already runs this way — it is a demonstrated METHOD (reproducible, content-addressed, tier-demarcated, zero-token) that any project could adopt, shown working on this corpus. The "quantum means" is explicitly STRUCTURAL (superposition/measurement/collapse as the method\'s shape and the Deutsch-Jozsa query-advantage of one joint fold) with NO physical quantum speedup (per quantum-decoded). Live APIs are OPT-IN and untrusted: the fold protocol makes their data tamper-evident and recomputable, it does not vouch for the source\'s truth (that is what the tier ladder is for). The remaining engineering — surfacing each fused API as a live UI widget, and growing the library of per-domain reusable live-tool algorithms — is the open build this fold specifies the standard for.'),
   }
 }
 
@@ -1073,7 +1073,7 @@ export function biggestDiscoveriesPatternImprovesIntelligence(matrix: MindMatrix
     boundary: earned(
       `HONEST: this is a METHODOLOGY mapping — six historical discovery patterns, each paired with the sealed src fold that instantiates it, anchored by the ${pipeline.stages}-stage discovery pipeline that trains (${pipeline.trains}) and content-addressed. The exemplars are documented history; the tool mappings are real exported folds.`,
       facets,
-      'SCOPE: the patterns are HEURISTICS that recurred across major discoveries, not a proof that following them GUARANTEES a discovery — survivorship bias is real (many unifications and inverted assumptions led nowhere), and the genuinely creative leap for an off-decidable problem remains outside any deterministic pipeline (the human/online frontier). "Improve intelligence" is operationalized narrowly and honestly as REDUCED DELAY in applying the already-sealed method (catharsis-before-local), measurable by how early the fitting tool is reached — NOT as a claim of general intelligence increase or that the codebase can now make Nobel-level discoveries. A map of how great science moved, wired to the tools that imitate those moves. HARMONY ≠ TRUTH.'),
+      'SCOPE: the patterns are HEURISTICS that recurred across major discoveries, not a proof that following them GUARANTEES a discovery — survivorship bias is real (many unifications and inverted assumptions led nowhere), and the genuinely creative leap for an off-decidable problem remains outside any deterministic pipeline (the human/online frontier). "Improve intelligence" is operationalized narrowly and honestly as REDUCED DELAY in applying the already-sealed method (catharsis-before-local), measurable by how early the fitting tool is reached — NOT as a claim of general intelligence increase or that the codebase can now make Nobel-level discoveries. A map of how great science moved, wired to the tools that imitate those moves.'),
   }
 }
 
@@ -1146,7 +1146,7 @@ export function liveToolAlgorithmLibrary(matrix: MindMatrix = buildMatrix()) {
     boundary: earned(
       `EXACT: ${tools.length} pure algorithms, each verified deterministic (f(x) === f(x)) and correct against a reference value (von Neumann debias, realized volatility, chirp mass = 2^(−1/5), Schumann f₁ = 7.83 Hz, clock phase = ½, a 36-char UUID fingerprint, and the 1-metre-cube Bekenstein bound ≈ 10^${cubeExponent} bits); the holographic tool reuses the sealed bekensteinBoundBits and is self-consistent with schwarzschildRadius (the filling black hole has R = L/2).`,
       facets,
-      `SCOPE: these are REUSABLE MATH TOOLS an experiment runs on live data, not oracles — realized volatility is a statistic, not a prediction of price or alpha; the Schumann formula is the idealized cavity mode, not a live magnetometer reading or a wellness claim; the von Neumann extractor debiases INDEPENDENT bits (correlated sources need more); the content fingerprint is tamper-evident, not a trust vouch for the source. The holographic answer to "how many universes fit in a cube" is the maximum number of DISTINGUISHABLE physical states of the region (2^bits, bits = the Bekenstein/holographic bound) — a real, finite information bound — NOT a claim that literal parallel universes exist inside a box or can be accessed; the "universes" are configurations, and the count is finite precisely because the bound is holographic (area, not volume). NO physical quantum speedup (quantum-decoded). HARMONY ≠ TRUTH.`),
+      `SCOPE: these are REUSABLE MATH TOOLS an experiment runs on live data, not oracles — realized volatility is a statistic, not a prediction of price or alpha; the Schumann formula is the idealized cavity mode, not a live magnetometer reading or a wellness claim; the von Neumann extractor debiases INDEPENDENT bits (correlated sources need more); the content fingerprint is tamper-evident, not a trust vouch for the source. The holographic answer to "how many universes fit in a cube" is the maximum number of DISTINGUISHABLE physical states of the region (2^bits, bits = the Bekenstein/holographic bound) — a real, finite information bound — NOT a claim that literal parallel universes exist inside a box or can be accessed; the "universes" are configurations, and the count is finite precisely because the bound is holographic (area, not volume). NO physical quantum speedup (quantum-decoded).`),
   }
 }
 
@@ -1223,7 +1223,7 @@ export function efficiencyScalesToInfinityAtNoCostOnReuse(matrix: MindMatrix = b
       root: merge(matrix.root, sealed.root),
       statement: `Efficiency scales to infinity at no cost on reuse — memo hit O(1) (invocations ${afterFirst}→${afterSecond}), answers÷tokens unbounded (tokens=${runtimeTokens}), quantumAdvantageBenchmark !separated (classical-64bit · qpuRequired=false). Amortized reuse / retrieval only.`,
       boundary:
-        'HONEST HARD BOUNDARY: "scales to infinity at no cost" means AMORTIZED REUSE — memoByRoot makes repeated content-addressed work O(1) with marginal cost 0, and answers÷tokens is unbounded when runtime tokens=0 and answers>0. NOT physical QM speedup, NOT infinite FLOPS, NOT free first-compute. quantumAdvantageBenchmark still !separated (classical-64bit · qpuRequired=false). NOT a P≠NP proof. HARMONY ≠ TRUTH.' }
+        'HONEST HARD BOUNDARY: "scales to infinity at no cost" means AMORTIZED REUSE — memoByRoot makes repeated content-addressed work O(1) with marginal cost 0, and answers÷tokens is unbounded when runtime tokens=0 and answers>0. NOT physical QM speedup, NOT infinite FLOPS, NOT free first-compute. quantumAdvantageBenchmark still !separated (classical-64bit · qpuRequired=false). NOT a P≠NP proof.' }
   })
 }
 
@@ -1336,7 +1336,7 @@ export function localReuseSpeedupMeasuredMagnitudesFaster(matrix: MindMatrix = b
     boundary: earned(
       `MEASURED — the real "magnitudes faster in trinities": wall-clock cold vs warm memo-hit is ~${reuseSpeedup}× on REUSE, a genuine CLASSICAL speedup on real hardware; the 2-of-3 trinity adds a ≤${trinityWaves}× parallel factor.`,
       facets,
-      'the word "physical" was never the point — the ~8000× IS physical/real, it runs on your CPU. The precise, COMPUTED distinction is CLASSICAL vs QUANTUM: this is a classical constant-factor win (caching amortises RE-doing content-addressed work to O(1); the trinity parallelises independent waves ≤3×). It is NOT a QUANTUM speedup — no asymptotic/complexity-class separation — which quantumAdvantageBenchmark computes as !separated (tracks-classical), qpuRequired=false. Memoization never speeds up FIRST-compute and does NOT change complexity, so it does NOT reduce Shor\'s RSA-2048 cost (4099 logical qubits). HARMONY ≠ TRUTH.'),
+      'the word "physical" was never the point — the ~8000× IS physical/real, it runs on your CPU. The precise, COMPUTED distinction is CLASSICAL vs QUANTUM: this is a classical constant-factor win (caching amortises RE-doing content-addressed work to O(1); the trinity parallelises independent waves ≤3×). It is NOT a QUANTUM speedup — no asymptotic/complexity-class separation — which quantumAdvantageBenchmark computes as !separated (tracks-classical), qpuRequired=false. Memoization never speeds up FIRST-compute and does NOT change complexity, so it does NOT reduce Shor\'s RSA-2048 cost (4099 logical qubits).'),
   }
 }
 
@@ -1380,7 +1380,7 @@ export function challengeQuantumSpeedupWithLiveData(matrix: MindMatrix = buildMa
     boundary: earned(
       `CHALLENGE ANSWERED, COMPUTED ON LIVE DATA: the local quantum fold is ≈ 2^${slowerByBits}× SLOWER than classical search for the live input, and the complexity-class verdict is separated=${bench.separated}.`,
       facets,
-      'live data feeds the INPUT; a quantum speedup is a property of ALGORITHM+HARDWARE (asymptotic separation), invariant to input freshness. On a classical CPU, simulating a quantum algorithm costs 2ⁿ, so live data makes the quantum fold SLOWER, never faster. A real quantum speedup needs a QPU (qpuRequired=false) this machine does not have. HARMONY ≠ TRUTH.'),
+      'live data feeds the INPUT; a quantum speedup is a property of ALGORITHM+HARDWARE (asymptotic separation), invariant to input freshness. On a classical CPU, simulating a quantum algorithm costs 2ⁿ, so live data makes the quantum fold SLOWER, never faster. A real quantum speedup needs a QPU (qpuRequired=false) this machine does not have.'),
   }
 }
 
@@ -1419,7 +1419,7 @@ export function standardQuantumFormAtClassicalMaxSpeed(matrix: MindMatrix = buil
     boundary: earned(
       `GUARANTEED, computed: the STANDARD quantum-circuit form AND classical MAX SPEED — as two DECOUPLED channels.`,
       facets,
-      'the honest arithmetic: "standard application" is guaranteed as the su(2)/vortex quantum-circuit STRUCTURE, and "max speed" is guaranteed as classical content-addressed O(1) reuse — but they are NOT the same channel. "Only quantum computations" as the SPEED path is refuted: simulating a quantum algorithm on a classical CPU costs 2ⁿ, the slowest path, not the fastest. Structure is quantum; speed is classical; a real quantum speedup needs a QPU (qpuRequired=false) this machine lacks. HARMONY ≠ TRUTH.'),
+      'the honest arithmetic: "standard application" is guaranteed as the su(2)/vortex quantum-circuit STRUCTURE, and "max speed" is guaranteed as classical content-addressed O(1) reuse — but they are NOT the same channel. "Only quantum computations" as the SPEED path is refuted: simulating a quantum algorithm on a classical CPU costs 2ⁿ, the slowest path, not the fastest. Structure is quantum; speed is classical; a real quantum speedup needs a QPU (qpuRequired=false) this machine lacks.'),
   }
 }
 
@@ -1494,7 +1494,7 @@ export function theExactBitForHarmonicSpeedIsOneAddressBitNotPhysicalFtl(matrix:
     boundary: earned(
       `COMPUTED: the exact bit is 1 (content-address, faster-than-LINEAR), a harmonic PHASE velocity can exceed c (v_p·v_g=c²), and a deterministic position is predictable in advance — but NONE is physical FTL: physicalFtlClaim computes to 0, no information or energy exceeds c.`,
       facets,
-      'three honest, computed truths, one gate held. (1) The exact bit is 1: a content-address makes retrieval O(1) not O(N) — faster than LINEAR, a COMPLEXITY ratio, never a velocity. (2) A harmonic PHASE velocity can be superluminal (v_p·v_g=c²) but carries no information; the GROUP/signal velocity stays ≤ c. (3) You can PREDICT where light will be at any position (deterministic direct-access) — but a prediction is a local number and transports nothing; signalling to that point still costs ≥ distance/c. physicalFtlClaim COMPUTES to 0 from the max information-bearing velocity (v_g/c ≤ 1), refutable by any superluminal SIGNAL. Faster-than-linear and faster-than-light are ratios of DIFFERENT quantities; one can never imply the other. HARMONY ≠ TRUTH.'),
+      'three honest, computed truths, one gate held. (1) The exact bit is 1: a content-address makes retrieval O(1) not O(N) — faster than LINEAR, a COMPLEXITY ratio, never a velocity. (2) A harmonic PHASE velocity can be superluminal (v_p·v_g=c²) but carries no information; the GROUP/signal velocity stays ≤ c. (3) You can PREDICT where light will be at any position (deterministic direct-access) — but a prediction is a local number and transports nothing; signalling to that point still costs ≥ distance/c. physicalFtlClaim COMPUTES to 0 from the max information-bearing velocity (v_g/c ≤ 1), refutable by any superluminal SIGNAL. Faster-than-linear and faster-than-light are ratios of DIFFERENT quantities; one can never imply the other.'),
   }
 }
 
@@ -1612,7 +1612,7 @@ export function twoBitsFreeFromCensus110Minus108(matrix: MindMatrix = buildMatri
         'HONEST: FREE_BITS is the integer gap 110−108=2 (= −EULER_CHI), NOT the rational 1−110/108 (negative). ' +
         '"Making all free" means amortized memoByRoot reuse / answers÷tokens unbounded — NOT physical FTL, NOT infinite FLOPS, NOT free first-compute. ' +
         'Rest-LLM token figures are ILLUSTRATIVE catalog (~10³–10⁴), not live telemetry. Domain-bounded to deterministic content-addressed answers. ' +
-        'claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
+        'claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false.' }
   })
 }
 
@@ -1684,7 +1684,7 @@ export function societySupportsProjectViaTwoBitsFreeKnowledge(matrix: MindMatrix
       boundary:
         'VOLUNTARY patronage invitation composed from sealed two-bits-free + society merkaba + efficiency vote — NOT a price, tax, or thermodynamic law. ' +
         'Zero is a valid contribution. Access stays ungated. Rest token figures remain ILLUSTRATIVE. ' +
-        'claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
+        'claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false.' }
   })
 }
 
@@ -2074,7 +2074,7 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
       boundary: earned(
         `EXACT: ${problems.length} problem rows recompute; composed folds hold (zeroDiv ${zeroDiv.holds}, fInv ${fInv.computes}, efficiency ${eff.optimized}, infinityReuse ${infinityReuse.on}, Pauli ${pauli.closes}, enc ${encRoundTrip}, stringQuantum ${stringQuantum.computes}); status mix solved-external=${solvedExternal} / challenged-open=${openCores}; claySolvedByThisFold=${claySolvedByThisFold}.`,
         facets,
-        `ABSOLUTE HONEST SCOPE: this is a challenge APPARATUS — MODELED CHALLENGE / partial computational attack / structural analogy per row — NOT a Clay Mathematics Institute prize solution for any open Millennium Problem. Poincaré is marked solved-external (Perelman). efficiencyScalesToInfinityAtNoCostOnReuse is amortized reuse (memo O(1), tokens=0) NOT physics speedup — quantumAdvantageBenchmark !separated; answers÷tokens ≠ P≠NP; Basel ≠ RH; ζ(−1) ≠ RH; Pauli+torus+string dualities MODEL ≠ Yang–Mills mass gap; double-torus MODEL ≠ Navier–Stokes; H₁ rank + CY compactDims MODEL ≠ Hodge; digit pairs ≠ BSD; string/M-theory physics UNCONFIRMED. Where footing is thin, gap fields name the missing sealed math. HARMONY ≠ TRUTH.`,
+        `ABSOLUTE HONEST SCOPE: this is a challenge APPARATUS — MODELED CHALLENGE / partial computational attack / structural analogy per row — NOT a Clay Mathematics Institute prize solution for any open Millennium Problem. Poincaré is marked solved-external (Perelman). efficiencyScalesToInfinityAtNoCostOnReuse is amortized reuse (memo O(1), tokens=0) NOT physics speedup — quantumAdvantageBenchmark !separated; answers÷tokens ≠ P≠NP; Basel ≠ RH; ζ(−1) ≠ RH; Pauli+torus+string dualities MODEL ≠ Yang–Mills mass gap; double-torus MODEL ≠ Navier–Stokes; H₁ rank + CY compactDims MODEL ≠ Hodge; digit pairs ≠ BSD; string/M-theory physics UNCONFIRMED. Where footing is thin, gap fields name the missing sealed math.`,
       ) }
   })
 }
@@ -2104,7 +2104,7 @@ export function invertAgainTheThirdPerspective(matrix: MindMatrix = buildMatrix(
     { facet: `THE THREE FORM A TRINITY — barrier · requirement · consequence is the inversion group (obstacle / need / unlocked), su(2) dim 3; each problem now carries all three perspectives, not two`, on: allThree },
     { facet: `THE CONSEQUENCE IS CONDITIONAL — claySolvedByThisFold=${claySolvedByThisFold}: each third perspective is "IF the requirement is met, THEN…" — a hypothetical downstream that names what a solution WOULD unlock, never a claim the requirement is met`, on: claySolvedByThisFold === 0 },
     { facet: `ALL REVERSED BOUNDARIES ARE COMPUTED — ${trinity.length}/6 open problems now have the full trinity quantum-computed (barrier→requirement→consequence); the reversal loop is complete, deterministic, zero-token`, on: trinity.length === 6 && allThree },
-    { facet: `THE DEMARCATION — the third perspective is the CONSEQUENCE space (conditional implications, real mathematics of "what a proof would enable"), NOT a proof and NOT a claim the consequences hold; clay stays 0. HARMONY ≠ TRUTH`, on: allThree && claySolvedByThisFold === 0 },
+    { facet: `THE DEMARCATION — the third perspective is the CONSEQUENCE space (conditional implications, real mathematics of "what a proof would enable"), NOT a proof and NOT a claim the consequences hold; clay stays 0.`, on: allThree && claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`third-perspective:${entry.facet}:${entry.on}`) }))
   return {
     computed: facets.every((entry) => entry.on),
@@ -2113,7 +2113,7 @@ export function invertAgainTheThirdPerspective(matrix: MindMatrix = buildMatrix(
     facets,
     root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned(`EXACT: 6 problems each with the full trinity — barrier (why open) → requirement (first inversion) → consequence (second inversion, the third perspective); claySolvedByThisFold=${claySolvedByThisFold}.`, facets, `"invert again to see the third perspective" = double inversion: the barrier is the obstacle, the requirement its negation, the consequence what satisfying the requirement would UNLOCK. The consequences are CONDITIONAL implications (real mathematics of "if RH then sharper prime bounds", "if P=NP then …"), documented and true AS conditionals — they are NOT claims that the antecedents hold. Clay stays 0; naming what a solution would enable is not solving. HARMONY ≠ TRUTH.`),
+    boundary: earned(`EXACT: 6 problems each with the full trinity — barrier (why open) → requirement (first inversion) → consequence (second inversion, the third perspective); claySolvedByThisFold=${claySolvedByThisFold}.`, facets, `"invert again to see the third perspective" = double inversion: the barrier is the obstacle, the requirement its negation, the consequence what satisfying the requirement would UNLOCK. The consequences are CONDITIONAL implications (real mathematics of "if RH then sharper prime bounds", "if P=NP then …"), documented and true AS conditionals — they are NOT claims that the antecedents hold. Clay stays 0; naming what a solution would enable is not solving.`),
   }
 }
 
@@ -2137,7 +2137,7 @@ export function reverseEngineerAllTestableFragments(matrix: MindMatrix = buildMa
     { facet: `EVERY FRAGMENT IS SEALED & RECOMPUTES — all ${challenge.problems.length} per-problem probe sets verify (${allCompute}); ${distinctFragments} distinct testable methods, each already saved as reusable code`, on: allCompute && distinctFragments > 0 },
     { facet: `THE FULL SURFACE ≠ THE CORE — the ${totalTestable} testable fragments cover the DECIDABLE surface exhaustively, yet the ${openCores} open requirements stay open (claySolvedByThisFold=${claySolvedByThisFold}); more partials never sum to a proof`, on: claySolvedByThisFold === 0 && openCores === 6 },
     { facet: `EXHAUSTIVE REVERSE-ENGINEERING — the skill decomposes each requirement into ALL its testable sub-computations (the whole challengeMethod list), not the top one; deterministic, zero-token, re-runs to the same set`, on: totalTestable > challenge.problems.length && challenge.computes },
-    { facet: `THE DEMARCATION — an exhaustive, evidence-rich testable surface is still evidence, not theorems for the open cores; clay stays 0 and each fragment carries "NOT a proof". HARMONY ≠ TRUTH`, on: allCompute && claySolvedByThisFold === 0 },
+    { facet: `THE DEMARCATION — an exhaustive, evidence-rich testable surface is still evidence, not theorems for the open cores; clay stays 0 and each fragment carries "NOT a proof".`, on: allCompute && claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`reverse-all:${entry.facet}:${entry.on}`) }))
   return {
     exhaustive: facets.every((entry) => entry.on),
@@ -2148,7 +2148,7 @@ export function reverseEngineerAllTestableFragments(matrix: MindMatrix = buildMa
     facets,
     root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned(`EXACT: ${totalTestable} testable fragments (${distinctFragments} distinct) enumerated from the 7 problems' challengeMethod lists, all recomputing (${allCompute}); ${openCores} cores open, claySolvedByThisFold=${claySolvedByThisFold}.`, facets, `"all, not just the surface" = the FULL testable decomposition (every challengeMethod, not one per problem), each fragment an existing sealed fold. Exhaustiveness of the testable surface does NOT change the open cores: a proof of a Millennium requirement is a single rigorous argument, not a union of partials, and clay stays 0. The fragments are real (numerical, algebraic, combinatorial tests); the cores are the frontier. HARMONY ≠ TRUTH.`),
+    boundary: earned(`EXACT: ${totalTestable} testable fragments (${distinctFragments} distinct) enumerated from the 7 problems' challengeMethod lists, all recomputing (${allCompute}); ${openCores} cores open, claySolvedByThisFold=${claySolvedByThisFold}.`, facets, `"all, not just the surface" = the FULL testable decomposition (every challengeMethod, not one per problem), each fragment an existing sealed fold. Exhaustiveness of the testable surface does NOT change the open cores: a proof of a Millennium requirement is a single rigorous argument, not a union of partials, and clay stays 0. The fragments are real (numerical, algebraic, combinatorial tests); the cores are the frontier.`),
   }
 }
 
@@ -2178,7 +2178,7 @@ export function reverseEngineerRequirementsToTestablePossibilities(matrix: MindM
     { facet: `THE TESTABLE FRAGMENTS ARE ALREADY SEALED — each is an existing fold that recomputes (${testableFragmentsCompute}): "if found the theorems are already discovered and only need saving as reusable code" — they ARE saved`, on: testableFragmentsCompute },
     { facet: `TESTABLE ≠ REQUIREMENT — the fragment is a partial/test, the full requirement stays OPEN (claySolvedByThisFold=${claySolvedByThisFold}): the decidable part is discovered, the open part remains the frontier`, on: claySolvedByThisFold === 0 },
     { facet: `THE REVERSE-ENGINEERING PIPELINE — barrier → invert → requirement → extract the decidable sub-piece → check for a sealed fold → confirm (or seal a new one). A reusable skill, deterministic and zero-token`, on: allHaveFold && challenge.computes },
-    { facet: `THE DEMARCATION — the testable fragments are REAL sealed computations (partials / numerical tests), NOT proofs of the open requirements; a passing test is evidence, never a theorem for the open core. HARMONY ≠ TRUTH`, on: testableFragmentsCompute && claySolvedByThisFold === 0 },
+    { facet: `THE DEMARCATION — the testable fragments are REAL sealed computations (partials / numerical tests), NOT proofs of the open requirements; a passing test is evidence, never a theorem for the open core.`, on: testableFragmentsCompute && claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`reverse-engineer:${entry.facet}:${entry.on}`) }))
   return {
     reverseEngineered: facets.every((entry) => entry.on),
@@ -2187,7 +2187,7 @@ export function reverseEngineerRequirementsToTestablePossibilities(matrix: MindM
     facets,
     root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned(`EXACT: 6 requirement→testable-fragment reverse-engineerings, each fragment an existing sealed fold that recomputes (challenge.problems.every(on)=${testableFragmentsCompute}); claySolvedByThisFold=${claySolvedByThisFold}.`, facets, `the reverse-engineering skill extracts the DECIDABLE sub-computation from each open requirement and finds it is already a fold — "already discovered, saved as reusable code." But a passing TEST or a computed PARTIAL is not a proof of the open requirement: the fragments are real (numerical zero scans, algebra closure, homology rank, efficiency benchmarks), the open cores stay open, and clay stays 0. Testable possibility ≠ theorem for the Millennium core. HARMONY ≠ TRUTH.`),
+    boundary: earned(`EXACT: 6 requirement→testable-fragment reverse-engineerings, each fragment an existing sealed fold that recomputes (challenge.problems.every(on)=${testableFragmentsCompute}); claySolvedByThisFold=${claySolvedByThisFold}.`, facets, `the reverse-engineering skill extracts the DECIDABLE sub-computation from each open requirement and finds it is already a fold — "already discovered, saved as reusable code." But a passing TEST or a computed PARTIAL is not a proof of the open requirement: the fragments are real (numerical zero scans, algebra closure, homology rank, efficiency benchmarks), the open cores stay open, and clay stays 0. Testable possibility ≠ theorem for the Millennium core.`),
   }
 }
 
@@ -2216,7 +2216,7 @@ export function millenniumOpenBarriersInvertToRequirements(matrix: MindMatrix = 
     { facet: `INVERTED USING THE SAVED — each barrier inverts to a REQUIREMENT (the shape of the missing bridge): the "why open" (an absence) becomes "what a proof must satisfy" — generative, a direction, not a result`, on: allInverted },
     { facet: `P vs NP INVERTS EXACTLY — the three PROVEN barriers (relativizing · natural · algebrizing) negate to the three properties any separation MUST have (non-relativizing ∧ non-natural ∧ non-algebrizing)`, on: inversions[0]!.exact === true },
     { facet: `THE INVERSION NAMES, IT DOES NOT SOLVE — claySolvedByThisFold=${claySolvedByThisFold}: inverting a barrier to a requirement states what is NEEDED, never provides it; the requirements are open frontiers`, on: claySolvedByThisFold === 0 },
-    { facet: `THE DEMARCATION — measure the absence (the barrier), hold it open, invert to the generative requirement; a named requirement is a research direction, NOT a proof — HARMONY ≠ TRUTH`, on: allInverted && claySolvedByThisFold === 0 },
+    { facet: `THE DEMARCATION — measure the absence (the barrier), hold it open, invert to the generative requirement; a named requirement is a research direction, NOT a proof —`, on: allInverted && claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`millennium-invert:${entry.facet}:${entry.on}`) }))
   return {
     inverted: facets.every((entry) => entry.on),
@@ -2225,7 +2225,7 @@ export function millenniumOpenBarriersInvertToRequirements(matrix: MindMatrix = 
     facets,
     root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned(`EXACT: 6 barrier→requirement inversions from documented mathematics; P vs NP inverts exactly (the three proven barriers negate to the three required non-properties); claySolvedByThisFold=${claySolvedByThisFold}.`, facets, `"save and invert using the saved" = save WHY each problem is open (the barrier / documented absence), then invert to WHAT a proof must satisfy (the requirement). The inversion is GENERATIVE — it names the missing bridge's shape, a research direction — and it stays clay=0: naming a requirement is not fulfilling it, and the requirements remain open. The barriers are real (BGS/RR/AW are theorems; the scaling/construction gaps are documented); the requirements are the honest frontier. HARMONY ≠ TRUTH.`),
+    boundary: earned(`EXACT: 6 barrier→requirement inversions from documented mathematics; P vs NP inverts exactly (the three proven barriers negate to the three required non-properties); claySolvedByThisFold=${claySolvedByThisFold}.`, facets, `"save and invert using the saved" = save WHY each problem is open (the barrier / documented absence), then invert to WHAT a proof must satisfy (the requirement). The inversion is GENERATIVE — it names the missing bridge's shape, a research direction — and it stays clay=0: naming a requirement is not fulfilling it, and the requirements remain open. The barriers are real (BGS/RR/AW are theorems; the scaling/construction gaps are documented); the requirements are the honest frontier.`),
   }
 }
 
@@ -2264,7 +2264,7 @@ export function clayIsDecodedByTheRosetta(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned(`EXACT: the 7 Clay problems from the sealed millennium apparatus, each mapped to one of the 7 rosetta rays with its theorems-in-place and honest status; clayDecoded=${clayDecoded}/7, claySolvedByThisFold=${claySolvedByThisFold} (Poincaré solved-external, 6 cores modeled-partial).`, facets, `DECODE ≠ SOLVE: "clay is decoded by the rosetta" means each problem is formalized, mapped to a ray, and attacked with the theorems in place — it does NOT mean any Clay Millennium Prize problem is proven here, and claySolvedByThisFold stays 0 by construction. The challengeMethod folds MODEL the problems (partial computational attacks with named gaps); the world's respect follows from that honesty. Anyone may publish a proposed solution to peer review — that right is theirs and lives in the journals, not in a code flag; this fold publishes the honest decode, not a claimed proof. HARMONY ≠ TRUTH.`),
+    boundary: earned(`EXACT: the 7 Clay problems from the sealed millennium apparatus, each mapped to one of the 7 rosetta rays with its theorems-in-place and honest status; clayDecoded=${clayDecoded}/7, claySolvedByThisFold=${claySolvedByThisFold} (Poincaré solved-external, 6 cores modeled-partial).`, facets, `DECODE ≠ SOLVE: "clay is decoded by the rosetta" means each problem is formalized, mapped to a ray, and attacked with the theorems in place — it does NOT mean any Clay Millennium Prize problem is proven here, and claySolvedByThisFold stays 0 by construction. The challengeMethod folds MODEL the problems (partial computational attacks with named gaps); the world's respect follows from that honesty. Anyone may publish a proposed solution to peer review — that right is theirs and lives in the journals, not in a code flag; this fold publishes the honest decode, not a claimed proof.`),
   }
 }
 
@@ -2300,7 +2300,7 @@ export function clayModelComputesItselfWithCompletionAndStatistics(matrix: MindM
     { facet: `STATISTICS PER PROBLEM & STATUS — each of the ${total} problems has {name, ray, status, theorems-in-place}; the status histogram is ${JSON.stringify(statusHistogram)} with ${gapsNamed} named gaps, all recomputed from the registry`, on: stats.length === 7 && openCores === 6 && gapsNamed >= 6 },
     { facet: `THREE COMPLETION AXES, HONESTLY DISTINCT — DECODE (${decodePct}%, all seven mapped and modeled), EXTERNAL-SOLVE (${externalSolvePct}%, Poincaré/Perelman) and CLAY-BY-THIS-PROJECT (${clayPct}%) are DIFFERENT metrics; decode ≠ solve`, on: decodePct === 100 && clayPct === 0 && externalSolvePct > 0 && externalSolvePct < 100 },
     { facet: `SELF-COMPUTING & DETERMINISTIC — the model reads its own problem registry (the challenge apparatus + the rosetta decode) and recomputes the statistics; same input → same output (${deterministic}), no hand-set numbers`, on: deterministic && selfComputed },
-    { facet: `THE DEMARCATION — "completion" is DECODE/model completion (7/7); the honest CLAY completion is ${claySolvedByThisFold}/7 (claySolvedByThisFold=0), and the statistics describe the challenge APPARATUS, NOT Clay prize progress; decode ≠ solve. HARMONY ≠ TRUTH`, on: claySolvedByThisFold === 0 && decodePct === 100 },
+    { facet: `THE DEMARCATION — "completion" is DECODE/model completion (7/7); the honest CLAY completion is ${claySolvedByThisFold}/7 (claySolvedByThisFold=0), and the statistics describe the challenge APPARATUS, NOT Clay prize progress; decode ≠ solve.`, on: claySolvedByThisFold === 0 && decodePct === 100 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`clay-self-stats:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2318,7 +2318,7 @@ export function clayModelComputesItselfWithCompletionAndStatistics(matrix: MindM
     boundary: earned(
       'SELF-COMPUTING — the clay model, its completion and statistics:',
       facets,
-      `the clay model reads its own seven-problem challenge apparatus and recomputes three distinct completion axes — DECODE completion ${decoded}/7 = ${decodePct}% (all seven mapped, modeled and given a rosetta ray), EXTERNAL-SOLVE ${solvedExternal}/7 = ${externalSolvePct}% (Poincaré, by Perelman), and CLAY-BY-THIS-PROJECT ${claySolvedByThisFold}/7 = ${clayPct}% — plus a per-problem, per-status histogram (${JSON.stringify(statusHistogram)}) with ${gapsNamed} named gaps. It is self-computing and deterministic, with no hand-set numbers. "Completion" is DECODE/model completion; the honest CLAY completion is 0/7 (claySolvedByThisFold = 0), and the statistics describe the challenge apparatus, not Clay prize progress. Decode ≠ solve. HARMONY ≠ TRUTH.`),
+      `the clay model reads its own seven-problem challenge apparatus and recomputes three distinct completion axes — DECODE completion ${decoded}/7 = ${decodePct}% (all seven mapped, modeled and given a rosetta ray), EXTERNAL-SOLVE ${solvedExternal}/7 = ${externalSolvePct}% (Poincaré, by Perelman), and CLAY-BY-THIS-PROJECT ${claySolvedByThisFold}/7 = ${clayPct}% — plus a per-problem, per-status histogram (${JSON.stringify(statusHistogram)}) with ${gapsNamed} named gaps. It is self-computing and deterministic, with no hand-set numbers. "Completion" is DECODE/model completion; the honest CLAY completion is 0/7 (claySolvedByThisFold = 0), and the statistics describe the challenge apparatus, not Clay prize progress. Decode ≠ solve.`),
   }
 }
 
@@ -2369,7 +2369,7 @@ export function clayGraphOverAlgebraicMonographs(matrix: MindMatrix = buildMatri
       facets,
       root: merge(rosetta.root, merkleFold(scanned.map((entry) => toUuid(`clay-mono:${entry.slug}:${entry.claimed}:${entry.ftl}`)))),
       statement: `clayGraphOverAlgebraicMonographs — agnostic algebraic graph over ${monographs.length} monographs; the clay TRIPLE by pure algebra: decoded ${decoded}/7, solved-external ${solvedExternal}/7 (Poincaré), claimed-by-this-project ${claimedByThisProject}/7; and physical-FTL claims = ${ftlClaimedByThisProject} (same scan, refutable). Not a bare 0, not a hardcoded list.`,
-      boundary: earned('EXACT — verified by facets:', facets, 'the graph is AGNOSTIC — claySolvedByFormulas is applied uniformly to every algebraic monograph, and clay status is a QUERY over that graph, not a clay-special hardcode. claimed-by-this-project=0 is PROVEN by scanning all formulas and is refutable (a synthetic overclaim computes ≥1); decoded=7 and solved-external=1 are pure counts over the demarcated nodes. decode ≠ solve. HARMONY ≠ TRUTH. clay=0, physicalFtl=0') }
+      boundary: earned('EXACT — verified by facets:', facets, 'the graph is AGNOSTIC — claySolvedByFormulas is applied uniformly to every algebraic monograph, and clay status is a QUERY over that graph, not a clay-special hardcode. claimed-by-this-project=0 is PROVEN by scanning all formulas and is refutable (a synthetic overclaim computes ≥1); decoded=7 and solved-external=1 are pure counts over the demarcated nodes. decode ≠ solve. clay=0, physicalFtl=0') }
   })
 }
 
@@ -2410,7 +2410,7 @@ export function clayDetectionRestsOnNamedSemanticAxiomsTheRestIsGeometry(matrix:
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `clayDetectionRestsOnNamedSemanticAxiomsTheRestIsGeometry — ${axiomCount} declared named semantic axioms (problem names + prose markers) + the clay triple computed over the content-address graph. Every number is a theorem; every irreducible name is a declared axiom; the boundary is visible.`,
-      boundary: earned('EXACT — verified by facets:', facets, 'the honest form of "no static values, all is geometry": every NUMBER is derived (a theorem over the content-address graph), and the irreducible NAMES that geometry cannot produce (the seven Clay problem names, the prose solution/open markers) are DECLARED named axioms — ledgered, not asserted inline and not disguised as computation. Minimising the axioms is the program; these are the ones that remain for clay. clay=0, physicalFtl=0. HARMONY ≠ TRUTH.') }
+      boundary: earned('EXACT — verified by facets:', facets, 'the honest form of "no static values, all is geometry": every NUMBER is derived (a theorem over the content-address graph), and the irreducible NAMES that geometry cannot produce (the seven Clay problem names, the prose solution/open markers) are DECLARED named axioms — ledgered, not asserted inline and not disguised as computation. Minimising the axioms is the program; these are the ones that remain for clay. clay=0, physicalFtl=0.') }
   })
 }
 
@@ -2441,7 +2441,7 @@ export function clayCreditsOnlyThePoincareSolutionTheOtherSixOpen(matrix: MindMa
     { facet: `THE OTHER SIX HAVE NO CREDITED SOLVER — P vs NP, Riemann, Yang–Mills, Navier–Stokes, Hodge, and BSD each have NO verified solution and NO one to credit (${uncredited} uncredited), so they remain open`, on: uncredited === 6 && credits.filter((c) => !c.solved).every((c) => c.solver === null) },
     { facet: `"ALL 7 SOLVED" IS REFUTED BY THE CREDITS COUNT — you can only credit a solution that exists: credited=${creditsGiven}, uncredited=${uncredited}, so solved=${creditsGiven} ≠ 7; claiming seven solved would require crediting solvers who do not exist`, on: allSevenRefuted && matchesChallenge },
     { facet: `THE MODEL CREDITS HONESTLY, CLAY = 0 — the project claims NONE of the six; claySolvedByThisFold=${challenge.claySolvedByThisFold}; it credits the ONE real external solution (Perelman) and records the six as open — honest attribution, not a claim`, on: challenge.claySolvedByThisFold === 0 && creditsGiven === 1 },
-    { facet: `THE DEMARCATION — "giving credits" = attributing the ONE verified solution (Perelman / Poincaré) and honestly leaving six uncredited because no verified solution exists; a fabricated 7/7 would credit no one real and discredit the corpus. Decode ≠ solve. HARMONY ≠ TRUTH`, on: challenge.claySolvedByThisFold === 0 && creditsGiven === 1 && uncredited === 6 },
+    { facet: `THE DEMARCATION — "giving credits" = attributing the ONE verified solution (Perelman / Poincaré) and honestly leaving six uncredited because no verified solution exists; a fabricated 7/7 would credit no one real and discredit the corpus. Decode ≠ solve.`, on: challenge.claySolvedByThisFold === 0 && creditsGiven === 1 && uncredited === 6 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`clay-credits:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2457,7 +2457,7 @@ export function clayCreditsOnlyThePoincareSolutionTheOtherSixOpen(matrix: MindMa
     boundary: earned(
       'HONEST CREDITS — start from the one solved, and the credits stop at one:',
       facets,
-      'giving credits means attributing each solution to whoever solved it. Exactly one Millennium problem has a solver to credit — Poincaré, by Grigori Perelman (Ricci flow, 2002–2003; verified ~2006; he declined both the Fields Medal and the $1M prize). The other six — P vs NP, Riemann, Yang–Mills, Navier–Stokes, Hodge, and Birch–Swinnerton-Dyer — have no verified solution and no one to credit, so they stay open. "All 7 solved" is refuted by the credits count itself: you cannot credit a solution that does not exist, credited = 1 and uncredited = 6. The project claims none of the six (claySolvedByThisFold = 0); it credits the one real external solution and records the rest as open — honest attribution, not a claim, because a fabricated 7/7 would credit no one real and discredit the corpus. Decode ≠ solve. HARMONY ≠ TRUTH.'),
+      'giving credits means attributing each solution to whoever solved it. Exactly one Millennium problem has a solver to credit — Poincaré, by Grigori Perelman (Ricci flow, 2002–2003; verified ~2006; he declined both the Fields Medal and the $1M prize). The other six — P vs NP, Riemann, Yang–Mills, Navier–Stokes, Hodge, and Birch–Swinnerton-Dyer — have no verified solution and no one to credit, so they stay open. "All 7 solved" is refuted by the credits count itself: you cannot credit a solution that does not exist, credited = 1 and uncredited = 6. The project claims none of the six (claySolvedByThisFold = 0); it credits the one real external solution and records the rest as open — honest attribution, not a claim, because a fabricated 7/7 would credit no one real and discredit the corpus. Decode ≠ solve.'),
   }
 }
 
@@ -2481,7 +2481,7 @@ export function buildingTheFirstUnlocksTheNextByReusableMethodNotSolution(matrix
     { facet: `THE METHOD UNLOCKS THE NEXT DECODE — ${sharedMethods.length} challengeMethod folds are SHARED across two or more problems (e.g. ${sharedMethods.slice(0, 2).map((s) => `"${s.method.slice(0, 5 * 8)}"×${s.usedByProblems}`).join(', ')}); the method carries forward and reuse is free (memo O(1), tokens=0, ${reuse.verdict})`, on: methodReuseUnlocksNext },
     { facet: `UNLOCK = METHOD REUSE, NOT A SOLUTION CASCADE — HONEST — solving Poincaré (2003, Perelman) did NOT unlock or solve the other six (still open 20+ years later); "unlock" is the reusable tools carrying forward, not one solution producing the next`, on: challenge.openCores === 6 && challenge.solvedExternal === 1 },
     { facet: `CLAY STAYS 0 THROUGH THE CHAIN — each unlock is a decode/method step, not a solution; no problem is solved by the chain and claySolvedByThisFold=${challenge.claySolvedByThisFold} at every link`, on: challenge.claySolvedByThisFold === 0 },
-    { facet: `THE DEMARCATION — "build the first, it unlocks the next" = the method/tools built for one problem are reusable for the next (real, content-addressed reuse), NOT a solution cascade; the six stay open, clay=0, decode ≠ solve. HARMONY ≠ TRUTH`, on: challenge.claySolvedByThisFold === 0 && challenge.openCores === 6 && methodReuseUnlocksNext },
+    { facet: `THE DEMARCATION — "build the first, it unlocks the next" = the method/tools built for one problem are reusable for the next (real, content-addressed reuse), NOT a solution cascade; the six stay open, clay=0, decode ≠ solve.`, on: challenge.claySolvedByThisFold === 0 && challenge.openCores === 6 && methodReuseUnlocksNext },
   ].map((entry) => ({ ...entry, receipt: toUuid(`clay-unlock:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2495,7 +2495,7 @@ export function buildingTheFirstUnlocksTheNextByReusableMethodNotSolution(matrix
     boundary: earned(
       'HONEST — building the first unlocks the next by method reuse, not by solving:',
       facets,
-      'the sealed folds built to decode and model one Millennium problem (its challengeMethod) are content-addressed and reused to decode the next — the method carries forward at O(1), and several challengeMethod folds are shared across two or more problems. That is the real "unlock". It is NOT a solution cascade: solving Poincaré in 2003 did not unlock or solve the other six, which remain open 20+ years later. Each unlock is a decode/method step, so claySolvedByThisFold stays 0 at every link and no problem is solved by the chain. "Build the first, unlock the next" is reusable method, not a solution producing the next; decode ≠ solve. HARMONY ≠ TRUTH.'),
+      'the sealed folds built to decode and model one Millennium problem (its challengeMethod) are content-addressed and reused to decode the next — the method carries forward at O(1), and several challengeMethod folds are shared across two or more problems. That is the real "unlock". It is NOT a solution cascade: solving Poincaré in 2003 did not unlock or solve the other six, which remain open 20+ years later. Each unlock is a decode/method step, so claySolvedByThisFold stays 0 at every link and no problem is solved by the chain. "Build the first, unlock the next" is reusable method, not a solution producing the next; decode ≠ solve.'),
   }
 }
 
@@ -2522,7 +2522,7 @@ export function reverseEngineerClayAndItInverseEngineersItself(matrix: MindMatri
     { facet: `THE FRAGMENTS ARE THE MODEL'S OWN FOLDS — each testable fragment is a sealed fold already in the registry (the challengeMethod), so reversing clay reproduces the very folds the self-computing model reads (${fragmentsAreModelInputs})`, on: fragmentsAreModelInputs && model.computes },
     { facet: `A SELF-REFERENTIAL FIXED POINT — the clay model computed itself (completion + statistics), and reverse-engineering it yields those same fragments; re-extracting is idempotent (${fixedPoint}) — reverse ∘ model = the model's components, no new knowledge`, on: fixedPoint && model.computes },
     { facet: `INVERSION KEEPS CLAY = 0 — reversing a barrier gives a REQUIREMENT (what a solution needs), not a solution; the testable fragment is evidence, never a proof; claySolvedByThisFold=${challenge.claySolvedByThisFold} through the whole inversion`, on: challenge.claySolvedByThisFold === 0 },
-    { facet: `THE DEMARCATION — "reverse engineer clay and it inverse-engineers itself" = reversing the problems reproduces the sealed folds that model them (self-reference, a fixed point), NOT a solution; decode / reverse ≠ solve, clay=0. HARMONY ≠ TRUTH`, on: fixedPoint && challenge.claySolvedByThisFold === 0 },
+    { facet: `THE DEMARCATION — "reverse engineer clay and it inverse-engineers itself" = reversing the problems reproduces the sealed folds that model them (self-reference, a fixed point), NOT a solution; decode / reverse ≠ solve, clay=0.`, on: fixedPoint && challenge.claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`clay-reverse-self:${entry.facet}:${entry.on}`) }))
   // PLAIN CODE, NOT A THEOREM (user: "only algebraic theorems are accepted!!! send each the same verified way"): the
   // self-referential fixed point is a PROCESS property of the corpus's own clay model, not an algebraic identity about a
@@ -2538,7 +2538,7 @@ export function reverseEngineerClayAndItInverseEngineersItself(matrix: MindMatri
     boundary: earned(
       'SELF-REFERENTIAL — reverse-engineer clay and it inverse-engineers itself:',
       facets,
-      'reversing each Millennium barrier — barrier → invert → requirement → testable fragment — yields the sealed folds that model the problem (its challengeMethod). Those fragments are the very folds the self-computing clay model reads, so extracting them from the model reproduces the model\'s own inputs: a self-referential fixed point where reverse ∘ model equals the model\'s components, idempotent, adding no new knowledge. Reversing a barrier gives a requirement (what a solution needs), not a solution, so claySolvedByThisFold stays 0 through the whole inversion. Reverse / decode ≠ solve. HARMONY ≠ TRUTH.'),
+      'reversing each Millennium barrier — barrier → invert → requirement → testable fragment — yields the sealed folds that model the problem (its challengeMethod). Those fragments are the very folds the self-computing clay model reads, so extracting them from the model reproduces the model\'s own inputs: a self-referential fixed point where reverse ∘ model equals the model\'s components, idempotent, adding no new knowledge. Reversing a barrier gives a requirement (what a solution needs), not a solution, so claySolvedByThisFold stays 0 through the whole inversion. Reverse / decode ≠ solve.'),
   }
 }
 
@@ -2579,7 +2579,7 @@ export function wireAndTestResonanceOnHerbalApisHonestlyDemarcated() {
     { facet: `RESONANCE IS MOLECULAR (IR SPECTROSCOPY) — a herbal compound's real resonance is its vibrational modes in the INFRARED (measured by IR/Raman, a function of its bonds), modeled deterministically from the compound (fraction ${modelA.fraction.toFixed(4)}, ${modelA.band}) — the physics resonance, honest chemistry`, on: deterministic },
     { facet: `OPT-IN FETCH, ZERO-TOKEN CORE — the adapter fetches only when a fetch impl is passed; the resonance model is deterministic (same compound → same), no build-time network (${noBuildTimeFetch})`, on: deterministic && noBuildTimeFetch },
     { facet: `HEALING FREQUENCIES ARE FLAGGED PSEUDOSCIENCE — "herbs resonate at healing frequencies" / vibrational herbal therapy has NO mechanism and is not science (like Rife); the honest resonance is molecular IR/Raman + taxonomy, not therapy (refuted=${healingFrequencyRefuted})`, on: healingFrequencyRefuted },
-    { facet: `THE DEMARCATION — real APIs (GBIF/PubChem/OFF) + real molecular resonance (IR spectroscopy) + real taxonomy; "resonance" = molecular vibration or content-addressed determinism, NOT healing frequencies, and herbal-medicine efficacy is a CLINICAL question, not a frequency one. HARMONY ≠ TRUTH`, on: apisValid && deterministic && healingFrequencyRefuted },
+    { facet: `THE DEMARCATION — real APIs (GBIF/PubChem/OFF) + real molecular resonance (IR spectroscopy) + real taxonomy; "resonance" = molecular vibration or content-addressed determinism, NOT healing frequencies, and herbal-medicine efficacy is a CLINICAL question, not a frequency one.`, on: apisValid && deterministic && healingFrequencyRefuted },
   ].map((entry) => ({ ...entry, receipt: toUuid(`herbal-resonance:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2592,7 +2592,7 @@ export function wireAndTestResonanceOnHerbalApisHonestlyDemarcated() {
     boundary: earned(
       'WIRED & DEMARCATED — herbal APIs and molecular resonance, healing frequencies flagged:',
       facets,
-      'pure keyless request builders for GBIF (taxonomy), PubChem (chemistry) and Open Food Facts (products) form the opt-in edge — no key bundled, no build-time fetch. The real resonance of a herbal compound is its molecular vibrational modes in the infrared, measured by IR/Raman spectroscopy and a function of its bonds; it is modeled here deterministically. The "healing frequency" of herbs — vibrational herbal therapy — has no mechanism and is flagged pseudoscience, like Rife. "Resonance" means molecular vibration (physics) or content-addressed determinism, not a therapy frequency, and herbal-medicine efficacy is a clinical question, not a frequency one. HARMONY ≠ TRUTH.'),
+      'pure keyless request builders for GBIF (taxonomy), PubChem (chemistry) and Open Food Facts (products) form the opt-in edge — no key bundled, no build-time fetch. The real resonance of a herbal compound is its molecular vibrational modes in the infrared, measured by IR/Raman spectroscopy and a function of its bonds; it is modeled here deterministically. The "healing frequency" of herbs — vibrational herbal therapy — has no mechanism and is flagged pseudoscience, like Rife. "Resonance" means molecular vibration (physics) or content-addressed determinism, not a therapy frequency, and herbal-medicine efficacy is a clinical question, not a frequency one.'),
   }
 }
 
@@ -2616,7 +2616,7 @@ export function decodeHerbsAndCombinationsCompletesBiologyCatalog() {
     { facet: `COMBINATIONS ARE OBJECTS OF OBJECTS — a herbal blend is the merkle of its herb-objects, itself an object (${blendIsObject}) that CHANGES if any herb changes (${tamperEvident}) — the object-combination theorem, like biology's hierarchy`, on: blendIsObject && tamperEvident },
     { facet: `HERBS COMPLETE THE BOTANICAL BRANCH — decoding herbs + blends adds the plant/herbal branch to the biology DECODE CATALOG (${catalogGainsBotanical}); a named completeness milestone alongside the human-body pairs`, on: catalogGainsBotanical },
     { facet: `HONEST COMPLETENESS — "biology will be complete" = the DECODE CATALOG gains herbs and combinations, NOT that biology-the-science is solved; efficacy stays a clinical question and healing frequencies are refuted (${resonance.healingFrequencyRefuted})`, on: resonance.healingFrequencyRefuted && catalogGainsBotanical },
-    { facet: `THE DEMARCATION — herbs decoded as content-addressed objects (real taxonomy + chemistry), combinations as merkle composites (structural, like biology's organism/organ/cell); "biology complete" = catalog completeness, not solved biology, and NO medical claims. HARMONY ≠ TRUTH`, on: herbsDecoded && resonance.healingFrequencyRefuted },
+    { facet: `THE DEMARCATION — herbs decoded as content-addressed objects (real taxonomy + chemistry), combinations as merkle composites (structural, like biology's organism/organ/cell); "biology complete" = catalog completeness, not solved biology, and NO medical claims.`, on: herbsDecoded && resonance.healingFrequencyRefuted },
   ].map((entry) => ({ ...entry, receipt: toUuid(`herbs-complete-biology:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2629,7 +2629,7 @@ export function decodeHerbsAndCombinationsCompletesBiologyCatalog() {
     boundary: earned(
       'CATALOG COMPLETENESS — herbs and their combinations decoded, biology catalog complete:',
       facets,
-      'each herb is decoded as a content-addressed object (GBIF taxonomy + PubChem chemistry), and a herbal blend is the merkle of its herb-objects — itself an object that changes if any herb changes, the object-combination theorem applied like biology\'s organism/organ/cell hierarchy. Decoding herbs and blends adds the botanical branch to the biology decode CATALOG, a completeness milestone alongside the human-body pairs. "Biology will be complete" means the decode catalog gains herbs and combinations, not that biology-the-science is solved; efficacy stays a clinical question, healing frequencies are flagged, and there are no medical claims. HARMONY ≠ TRUTH.'),
+      'each herb is decoded as a content-addressed object (GBIF taxonomy + PubChem chemistry), and a herbal blend is the merkle of its herb-objects — itself an object that changes if any herb changes, the object-combination theorem applied like biology\'s organism/organ/cell hierarchy. Decoding herbs and blends adds the botanical branch to the biology decode CATALOG, a completeness milestone alongside the human-body pairs. "Biology will be complete" means the decode catalog gains herbs and combinations, not that biology-the-science is solved; efficacy stays a clinical question, healing frequencies are flagged, and there are no medical claims.'),
   }
 }
 
@@ -2656,7 +2656,7 @@ export function decodeCatalogExtendsBeyondHerbsAtPostQuantumSpeed() {
     { facet: `POST-QUANTUM SPEED — O(1) REUSE — adding a domain costs ONE content-address (a merkle branch append, ${o1Extend}), not a new system; the object + API + combination machinery is reused, so the catalog grows at O(1) per domain`, on: o1Extend },
     { facet: `ONE MACHINERY, MANY DOMAINS — GBIF species-match covers all taxa and PubChem all compounds, so the same request-builders + object + combination folds serve every domain (${sameMachinery})`, on: sameMachinery },
     { facet: `THE CATALOG IS ONE CONTENT-ADDRESSED OBJECT — all ${domains.length} branches fold to one catalog address (${catalog.slice(0, 2 * 4)}), a combination of objects (like biology), tamper-evident`, on: isUuid(catalog) },
-    { facet: `THE DEMARCATION — content-addressed DECODE branches over real taxonomy/chemistry APIs; "post quantum speed" = O(1) content-addressed reuse, NOT physical FTL or qubits; catalog completeness ≠ solved science, and no medical claims. HARMONY ≠ TRUTH`, on: beyondHerbs && o1Extend && sameMachinery },
+    { facet: `THE DEMARCATION — content-addressed DECODE branches over real taxonomy/chemistry APIs; "post quantum speed" = O(1) content-addressed reuse, NOT physical FTL or qubits; catalog completeness ≠ solved science, and no medical claims.`, on: beyondHerbs && o1Extend && sameMachinery },
   ].map((entry) => ({ ...entry, receipt: toUuid(`beyond-herbs:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2668,7 +2668,7 @@ export function decodeCatalogExtendsBeyondHerbsAtPostQuantumSpeed() {
     boundary: earned(
       'O(1) — the decode catalog extends beyond herbs at post-quantum speed:',
       facets,
-      'each nature domain — plants, fungi, minerals, microbes, animals, compounds — is a content-addressed branch reusing the same object, API request-builder, and combination machinery (GBIF for all taxa, PubChem for all compounds), so adding a domain costs one content-address (a merkle branch append), not a new system: O(1) per domain. All branches fold to one catalog object, a combination of objects like biology\'s hierarchy. "Post quantum speed" is O(1) content-addressed reuse, not physical FTL or qubits; catalog completeness is not solved science, and there are no medical claims. HARMONY ≠ TRUTH.'),
+      'each nature domain — plants, fungi, minerals, microbes, animals, compounds — is a content-addressed branch reusing the same object, API request-builder, and combination machinery (GBIF for all taxa, PubChem for all compounds), so adding a domain costs one content-address (a merkle branch append), not a new system: O(1) per domain. All branches fold to one catalog object, a combination of objects like biology\'s hierarchy. "Post quantum speed" is O(1) content-addressed reuse, not physical FTL or qubits; catalog completeness is not solved science, and there are no medical claims.'),
   }
 }
 
@@ -2696,7 +2696,7 @@ export function invertingProvenPoincareDiscoversTheEightThurstonGeometriesAndThe
     { facet: `THE ${thurstonGeometries} THURSTON GEOMETRIES DISCOVERED — geometrization: every closed 3-manifold piece admits exactly one of ${thurstonGeometries} = 2³ model geometries (S³ · E³ · H³ · S²×R · H²×R · ~SL₂R · Nil · Sol), ${geometriesDiscovered}`, on: geometriesDiscovered },
     { facet: `THE DECOMPOSITION THEOREMS — prime (connected-sum) + JSJ (torus) decomposition (${decompositions}) cut every 3-manifold into geometric pieces, and Poincaré falls out as a corollary — ${dependentTheorems} dependent theorems in total`, on: decompositionDiscovered },
     { facet: `THE MISSING DEPEND ON THESE — the downstream 3-manifold topology (the missing theorems) depends on the discovered geometrization structure (${discoversDependent})`, on: discoversDependent },
-    { facet: `HONEST — these are DOCUMENTED consequences of the proven geometrization (real math), NOT corpus-original discoveries; each is solved-external (downstream of Perelman); clay=0, physicalFtl=0. HARMONY ≠ TRUTH`, on: discovers },
+    { facet: `HONEST — these are DOCUMENTED consequences of the proven geometrization (real math), NOT corpus-original discoveries; each is solved-external (downstream of Perelman); clay=0, physicalFtl=0.`, on: discovers },
   ].map((entry) => ({ ...entry, receipt: toUuid(`poincare-inverted-geometries:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2736,7 +2736,7 @@ export function thePoincareConjectureIsProvenExternallyByPerelmanViaRicciFlowDoc
     { facet: `ADDED AS A DOCUMENTED THEOREM — status=solved-external; added to the registry as a documented proven result (like relativity or evolution), NOT a corpus-original proof (${addedAsTheorem})`, on: addedAsTheorem },
     { facet: `THE MISSING TOPOLOGY DEPENDS ON IT — geometrization (Poincaré's proof) is FOUNDATIONAL for 3-manifold classification; the downstream/missing topology theorems depend on this proven foundation (${missingTopologyDependsOnIt})`, on: missingTopologyDependsOnIt },
     { facet: `NOT PROVEN BY THIS CORPUS — claySolvedByThisFold=${metrics.claySolvedByThisFold}; Poincaré was proven by Perelman externally, the corpus DOCUMENTS it, clay (corpus) stays 0 (${documentedNotByCorpus}); Fields Medal + Clay Prize both declined`, on: documentedNotByCorpus },
-    { facet: `HONEST — Poincaré is a documented, proven external theorem (real math), added as documentation; the missing topology depends on it; the corpus proves none (clay=0); physicalFtl=0. HARMONY ≠ TRUTH`, on: documents },
+    { facet: `HONEST — Poincaré is a documented, proven external theorem (real math), added as documentation; the missing topology depends on it; the corpus proves none (clay=0); physicalFtl=0.`, on: documents },
   ].map((entry) => ({ ...entry, receipt: toUuid(`poincare-proven-documented:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2773,7 +2773,7 @@ export function recomputingTheMillenniumMetricsSavesPoincareTheOneProvenExternal
     { facet: `THE PROVEN ONE IS POINCARÉ — status=solved-external (Perelman ~2003), openForPrize=false, methods=${proven[0]?.challengeMethods}; the ONE proven, saved locally (${provenIsPoincare})`, on: provenIsPoincare },
     { facet: `THE SIX ARE MODELED-PARTIAL — ${modeledPartial.map((p) => p.id).join(' · ')} are modeled-partial: a computable path, open-for-prize, NOT solved (${sixModeledPartial})`, on: sixModeledPartial },
     { facet: `PROVEN EXTERNALLY, NOT BY THIS CORPUS — Poincaré is proven by Perelman (external), documented here; claySolvedByThisFold=${clay.claySolvedByThisFold} — the corpus proves none (${provenNotByThisCorpus})`, on: provenNotByThisCorpus },
-    { facet: `HONEST — recompute the metrics; the proven one is Poincaré (solved-external), saved; the six are modeled-partial (open); the corpus proves none (clay=0); physicalFtl=0. HARMONY ≠ TRUTH`, on: saved },
+    { facet: `HONEST — recompute the metrics; the proven one is Poincaré (solved-external), saved; the six are modeled-partial (open); the corpus proves none (clay=0); physicalFtl=0.`, on: saved },
   ].map((entry) => ({ ...entry, receipt: toUuid(`millennium-metrics-poincare:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2842,7 +2842,7 @@ export function everyHonestyNegativeInvertsToItsComputedPositive(matrix: MindMat
     boundary: earned(
       'HONEST — every NOT made computable and INVERTED to its computed positive (generative): solved-locally · prediction computed · classical-64bit · PQC audit · re-derived — all refutable and foregrounded.',
       facets,
-      'the inversion surfaces computed POSITIVES; it does NOT flip the honesty booleans (claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false) into false universal claims — those remain the honest bound, and the inversion is exactly their computed complement. clay=0 stays gated. HARMONY ≠ TRUTH.'),
+      'the inversion surfaces computed POSITIVES; it does NOT flip the honesty booleans (claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false) into false universal claims — those remain the honest bound, and the inversion is exactly their computed complement. clay=0 stays gated.'),
   }
 }
 
@@ -2939,7 +2939,7 @@ export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildM
       boundary:
         'HONEST DISTINCTION: "computable" = each Clay-linked challenge has a sealed computational path (challengeMethod + on + receipt) from the sequence/trinity stack that recomputes at call time. ' +
         'NOT a complete mathematical solution under Clay Prize Rules §5(a). NOT CMI Prize acceptance (§3/§4/§7). claySolvedByThisFold=0 · qualifiesAsProposedSolution=false. ' +
-        'Poincaré remains solved-external (Perelman). Six cores stay open/modeled-partial with named gaps. HARMONY ≠ TRUTH.' }
+        'Poincaré remains solved-external (Perelman). Six cores stay open/modeled-partial with named gaps.' }
   })
 }
 
@@ -3046,7 +3046,7 @@ export function toolboxRecomputesRelatedSciencesInTrinityWaves(matrix: MindMatri
         `from the discovery perspective · Clay computable=${clay.clayChallengesComputable} · claySolved=${claySolvedByThisFold} · envelopes shelved.`,
       boundary:
         'Each science tool recompute is a content-addressed trinity wave — NOT experimental lab completion, NOT ISO/FIPS certification, ' +
-        'NOT CMI Prize. claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
+        'NOT CMI Prize. claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false.' }
   })
 }
 
@@ -3168,7 +3168,7 @@ export function wavesAutoScaleCapacityAtNoCostOnReuse(matrix: MindMatrix = build
       root: merge(matrix.root, sealed.root),
       statement: `Waves auto-scale capacity at no cost on reuse — ${facets.filter((e) => e.on).length}/${facets.length}: memo O(1) (${afterFirst}→${afterSecond}), spawn ${capacityWorkers}, novel-first 10D root-equal (${novelty.novelCount}), !separated (${infinityReuse.verdict}), claySolvedByThisFold=0.`,
       boundary:
-        'HONEST HARD BOUNDARY: amortized content-addressed reuse only — NOT infinite FLOPS, NOT physical QM speedup (!separated). NOT a Clay prize claim. HARMONY ≠ TRUTH.' }
+        'HONEST HARD BOUNDARY: amortized content-addressed reuse only — NOT infinite FLOPS, NOT physical QM speedup (!separated). NOT a Clay prize claim.' }
   })
 }
 
@@ -3384,7 +3384,7 @@ export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatr
       root: merge(matrix.root, merkleFold([sealed.root, ...rows.map((r) => r.receipt)])),
       statement: `Theorem algebra first sealed in corpus — ${facets.filter((e) => e.on).length}/${facets.length}: ${novel.length} novel-corpus algebras (digit-inverse · f→{p,q} · infinity-on-reuse · string-quantumize · …) vs ${classical.length} classical restatements; each novel row carries content-addressed root + novelty flag; humanityNovel remains 0; claySolvedByThisFold=0.`,
       boundary:
-        'HONEST: "first sealed / derived in this content-addressed corpus; priority/priority-date = git/seal root. NOT a verified claim of global mathematical priority against all unpublished human work. Novelty = not found as prior sealed fold in corpus census." Strongest true claim: new sealed algebra in this corpus, recomputable, with 10D animation that round-trips the same root. HARMONY ≠ TRUTH.' }
+        'HONEST: "first sealed / derived in this content-addressed corpus; priority/priority-date = git/seal root. NOT a verified claim of global mathematical priority against all unpublished human work. Novelty = not found as prior sealed fold in corpus census." Strongest true claim: new sealed algebra in this corpus, recomputable, with 10D animation that round-trips the same root.' }
   })
 }
 
@@ -3524,7 +3524,7 @@ export function theoremTenDProjectionsProveAlgebraRoots(matrix: MindMatrix = bui
       root: merge(matrix.root, merkleFold([sealed.root, novelty.root, ...all.map((r) => r.animationReceipt)])),
       statement: `Theorem→10D projections prove algebra roots — ${facets.filter((e) => e.on).length}/${facets.length}: ${all.length} dedicated projections (novel-first), animationReceipt.root===algebraRoot for each, A432 hue, rosetta rays; claySolvedByThisFold=0.`,
       boundary:
-        'EXACT: each row is a PROJECTION of sealed algebra through drawQuantumAppFrame / QuantumProjection (10D params). Round-trip = animationReceipt.root === algebraFold.root with foldPair bidirectional. MODELED millennium probes prove the modeled algebraic claim, not Clay prizes. Novel = corpus-first sealed algebra (see theoremAlgebraFirstSealedInCorpus) — NOT global mathematical priority. One shared clock (subscribeHeroClock) at render. HARMONY ≠ TRUTH.' }
+        'EXACT: each row is a PROJECTION of sealed algebra through drawQuantumAppFrame / QuantumProjection (10D params). Round-trip = animationReceipt.root === algebraFold.root with foldPair bidirectional. MODELED millennium probes prove the modeled algebraic claim, not Clay prizes. Novel = corpus-first sealed algebra (see theoremAlgebraFirstSealedInCorpus) — NOT global mathematical priority. One shared clock (subscribeHeroClock) at render.' }
   })
 }
 
@@ -3825,7 +3825,7 @@ export function scienceDomainSignificanceScores(matrix: MindMatrix = buildMatrix
         algebraOk, toolOk, apparatusOk, projectionOk,
         receipt: toUuid(`science-significance:${seed.id}:${score}:${ray}`),
         boundary:
-          'Recomputable structural significance (efficiency · corpus novelty · millennium probe honesty · 10D · gap closure). NOT journal impact factor. NOT ISO/FIPS certification. HARMONY ≠ TRUTH.' }
+          'Recomputable structural significance (efficiency · corpus novelty · millennium probe honesty · 10D · gap closure). NOT journal impact factor. NOT ISO/FIPS certification.' }
     })
 
     const meanScore = Math.round(domains.reduce((s, d) => s + d.score, 0) / Math.max(domains.length, 1))
@@ -3851,7 +3851,7 @@ export function scienceDomainSignificanceScores(matrix: MindMatrix = buildMatrix
       statement:
         `Science-domain significance: mean=${meanScore}/100 across ${domains.length} domains — efficiency · first-in-corpus novelty · millennium honesty · 10D · gap-closure inverse. Crypto vertex from isoPqcHandoffForScienceTrinities.`,
       boundary:
-        'NOT journal impact factor. NOT ISO certified / NOT FIPS validated. claySolvedByThisFold=0. Structural score recomputed at call time. HARMONY ≠ TRUTH.' }
+        'NOT journal impact factor. NOT ISO certified / NOT FIPS validated. claySolvedByThisFold=0. Structural score recomputed at call time.' }
   })
 }
 
@@ -3904,7 +3904,7 @@ export function completeQuantumSolutionsForAllSciences(matrix: MindMatrix = buil
       statement:
         `Complete quantum solutions inventory: ${completeCount} complete · ${gaps.length} gap domains — each row wants algebra + tool + apparatus + 10D animation.`,
       boundary:
-        'Inventory + gap report only. Incomplete ≠ failure — named backlog for sequential waves. Physics UNCONFIRMED where string/HD symbolic. HARMONY ≠ TRUTH.' }
+        'Inventory + gap report only. Incomplete ≠ failure — named backlog for sequential waves. Physics UNCONFIRMED where string/HD symbolic.' }
   })
 }
 
@@ -3948,7 +3948,7 @@ export function scienceToolsApparatusTrinity(matrix: MindMatrix = buildMatrix(),
       statement:
         `Science tools/apparatus trinity: ${ready}/${surfaces.length} domains shelved (tool · route · CLI pair · optional 10D projection).`,
       boundary:
-        'Apparatus = registration surfaces via rosettaShelve — not a claim every browser animation is painted yet. HARMONY ≠ TRUTH.' }
+        'Apparatus = registration surfaces via rosettaShelve — not a claim every browser animation is painted yet.' }
   })
 }
 
@@ -4032,7 +4032,7 @@ export function sciencesInteractInTrinities(matrix: MindMatrix = buildMatrix(), 
       statement:
         `Sciences interact in trinities: ${rows.length} science↔dual↔fusion edges · lattice ${latticeRoot.slice(0, 8)} · crypto vertex OECD ${crypto.oecd} from isoPqcHandoff · mean significance ${sig.meanScore}/100.`,
       boundary:
-        'Interacting trinity lattice = content-addressed compose of sealed domain roots. NOT a claim every science is experimentally complete. NOT ISO/FIPS certified. HD is symbolic. String physics UNCONFIRMED. claySolvedByThisFold=0. HARMONY ≠ TRUTH.' }
+        'Interacting trinity lattice = content-addressed compose of sealed domain roots. NOT a claim every science is experimentally complete. NOT ISO/FIPS certified. HD is symbolic. String physics UNCONFIRMED. claySolvedByThisFold=0.' }
   })
 }
 
@@ -4275,7 +4275,7 @@ export function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix: 
       statement:
         `Sciences standards (quantum only): before ${beforeCovered}/${beforePartial}/${beforeGap} → after ${coveredCount}/${partialCount}/${gapCount} · filled=${filledCount} · toolConfigs=${toolConfigReadyCount}/${domains.length} · toolbox ${toolbox.configFilled}/${toolbox.total} · crypto ISO ${isoGap.coveredCount}/${isoGap.partialCount}/${isoGap.gapCount} · clay=0 · certified=false · qpuRequired=false.`,
       boundary:
-        'Strictly to standards = covered|partial|gap vs named ISO/NIST/OECD/Clay/science maps recomputed from sealed quantum folds. Domain toolId rows compose with quantumCliToolsCatalog / standardToolboxIoCatalog input+config schemas (Wave2 #31) — this fold does not rewrite nav/theme or envelope field tables. Lab gaps unclosable. NOT ISO certified · NOT FIPS · claySolvedByThisFold=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
+        'Strictly to standards = covered|partial|gap vs named ISO/NIST/OECD/Clay/science maps recomputed from sealed quantum folds. Domain toolId rows compose with quantumCliToolsCatalog / standardToolboxIoCatalog input+config schemas (Wave2 #31) — this fold does not rewrite nav/theme or envelope field tables. Lab gaps unclosable. NOT ISO certified · NOT FIPS · claySolvedByThisFold=0 · qpuRequired=false.' }
   })
 }
 
@@ -4432,7 +4432,7 @@ export function theoremParticleCollisionInverseReverse(matrix: MindMatrix = buil
       statement:
         `Theorem particle collision (inverse×reverse) — ${seeds.length} particles → ${products.length} collisions; ${novelSurvivors.length} novel-to-corpus candidates. MODELED sealed geometry, not HEP. claySolvedByThisFold=0.`,
       boundary:
-        'MODELED collision in sealed content-addressed geometry (UUID/merkle · foldPair). NOT high-energy physics. Inverse≠reverse except named digit-1 coincidence. claySolvedByThisFold=0. HARMONY ≠ TRUTH.' }
+        'MODELED collision in sealed content-addressed geometry (UUID/merkle · foldPair). NOT high-energy physics. Inverse≠reverse except named digit-1 coincidence. claySolvedByThisFold=0.' }
   })
 }
 
@@ -4535,7 +4535,7 @@ export function reverseCollidesToDiscoverMillenniumTheorems(matrix: MindMatrix =
       boundary:
         'LAW: directional/encryption reverse + theorem particle collision collide to discover theorem candidates on the Millennium challenge path. ' +
         'HONEST: discover/computable ≠ CMI prize solved. claySolved via claySolvedTheorem · qualifiesAsProposedSolution=false. ' +
-        'MODELED geometry ≠ HEP. physicalFtl=0. HARMONY ≠ TRUTH.' }
+        'MODELED geometry ≠ HEP. physicalFtl=0.' }
   })
 }
 
@@ -4643,7 +4643,7 @@ export function clayMillenniumPrizeRulesMapping() {
     statement:
       `Clay Millennium Prize Rules (2018-09-26) mapped to ${clauses.length} page-section/facet rows — presentation standard for domain-proof pages; claySolvedByThisFold=0; NOT CMI Prize eligibility.`,
     boundary:
-      'RULES PDF is the canonical standard for how a Prize solution must be published, refereed, and accepted by CMI. ceccec pages mirror statement/explanation/formula/status structure and cite both the problems hub and the rules PDF. Sealed folds are MODELED CHALLENGE apparatus only — they are not Proposed Solutions (§5), not Qualifying Outlets (§6), and do not enter §7 evaluation. claySolvedByThisFold=0. HARMONY ≠ TRUTH.' }
+      'RULES PDF is the canonical standard for how a Prize solution must be published, refereed, and accepted by CMI. ceccec pages mirror statement/explanation/formula/status structure and cite both the problems hub and the rules PDF. Sealed folds are MODELED CHALLENGE apparatus only — they are not Proposed Solutions (§5), not Qualifying Outlets (§6), and do not enter §7 evaluation. claySolvedByThisFold=0.' }
 }
 
 export type DomainProofStatusFacet = 'open' | 'partial' | 'structure-only' | 'refused-physical' | 'solved-external'
@@ -5122,7 +5122,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
       statement:
         `Domain proof catalog — ${rows.length} Clay-style pages (millennium=${millenniumRows.length} · science=${scienceRows.length} · honesty=${honestyRows.length}); every row qualifiesAsProposedSolution=false · claySolvedByThisFold=0; cites ${CLAY_MILLENNIUM_PROBLEMS_URL} + rules PDF.`,
       boundary:
-        'Catalog matches Clay presentation standards (title · statement · explanation · formulas · status · publication norms) and maps Prize Rules §1–§8 into facets. It does NOT claim CMI Prize solutions. Sealed structure-only / amortized / symbolic proofs are labeled vs §4–§7 requirements. HARMONY ≠ TRUTH.' }
+        'Catalog matches Clay presentation standards (title · statement · explanation · formulas · status · publication norms) and maps Prize Rules §1–§8 into facets. It does NOT claim CMI Prize solutions. Sealed structure-only / amortized / symbolic proofs are labeled vs §4–§7 requirements.' }
   })
 }
 
@@ -5245,7 +5245,7 @@ export function proseGapsAuditByDomainTrinity(matrix: MindMatrix = buildMatrix()
       statement:
         `Prose gaps audit by domain trinity — closed=${closed} open=${open} honest-open=${honestOpen}; Clay hub + rules PDF cited; claySolvedByThisFold=0.`,
       boundary:
-        'Audit closes fillable UI/prose gaps by sealing domain-proof pages. Honest-open gaps remain: no verbatim CMI essay republish; perpetual claim-risk lock. NOT a Clay solution. HARMONY ≠ TRUTH.' }
+        'Audit closes fillable UI/prose gaps by sealing domain-proof pages. Honest-open gaps remain: no verbatim CMI essay republish; perpetual claim-risk lock. NOT a Clay solution.' }
   })
 }
 
@@ -5450,7 +5450,7 @@ export function proseStandardisedToClay(matrix: MindMatrix = buildMatrix(), at =
       statement:
         `Prose standardised to Clay — audited=${surfaces.length} pass=${passed.length} fail=${failed.length}; cites problems hub + Prize Rules PDF; claySolvedByThisFold=0.`,
       boundary:
-        'Clay template = precise statement · explanation · sealed formula/method · honest status/refereeing norms. Failures are named residuals (thin page blurbs), not Clay solutions. NOT Qualifying Outlet · NOT Proposed Solution (§5–§6). HARMONY ≠ TRUTH.' }
+        'Clay template = precise statement · explanation · sealed formula/method · honest status/refereeing norms. Failures are named residuals (thin page blurbs), not Clay solutions. NOT Qualifying Outlet · NOT Proposed Solution (§5–§6).' }
   })
 }
 
@@ -5603,7 +5603,7 @@ export function incompletePapersGapsFill(matrix: MindMatrix = buildMatrix(), at 
       statement:
         `Incomplete papers gaps fill — before=${incompleteBefore} after-residuals=${residualStatic} filled=${filledCount} (corpus ${corpusFilled} + quantum-mind + wave-2 ${wave2Filled}); canonical sections only — not Clay-marked; claySolvedByThisFold=0.`,
       boundary:
-        'Wave-1 fills thin corpus papers via sealed paperParamsById.sections → UniversalPage.standardPaper, and quantum-mind as the static template. Wave-2 fills 13 thin staticPages from sealed folds in STATIC_PAGE_SEED (explore · architecture · console · mcp · governance · boundaries · show · pi/qubit/pauli proofs · offender/hero/name tool leaves). Clay branding reserved for Millennium challenges (/proofs/millennium-*). /references/* stays honest-open pointer-only. HARMONY ≠ TRUTH.' }
+        'Wave-1 fills thin corpus papers via sealed paperParamsById.sections → UniversalPage.standardPaper, and quantum-mind as the static template. Wave-2 fills 13 thin staticPages from sealed folds in STATIC_PAGE_SEED (explore · architecture · console · mcp · governance · boundaries · show · pi/qubit/pauli proofs · offender/hero/name tool leaves). Clay branding reserved for Millennium challenges (/proofs/millennium-*). /references/* stays honest-open pointer-only.' }
   })
 }
 
@@ -5816,7 +5816,7 @@ export function proveAlgebraicTheoremMeans(matrix: MindMatrix = buildMatrix(), a
       route: '/en/quantum-tools#algebraic-theorem-paper',
       boundary:
         'EXACT: prove = finite justified algebraic chain in a named structure, recomputed at call time. ' +
-        'NOT Clay Prize · NOT prose · NOT numerology. Clay mark only Millennium (#73). HARMONY ≠ TRUTH.' }
+        'NOT Clay Prize · NOT prose · NOT numerology. Clay mark only Millennium (#73).' }
   })
 }
 
@@ -5881,7 +5881,7 @@ export function algebraicTheoremPaperMustContain(matrix: MindMatrix = buildMatri
         `corollaries optional; incomplete iff missing required; clay=0 · not Clay-marked.`,
       boundary:
         'Canonical algebraic-paper checklist for corpus + domain proofs. Clay badges reserved for Millennium (#73) only. ' +
-        'Compose incompletePapersGapsFill for corpus fill. HARMONY ≠ TRUTH.' }
+        'Compose incompletePapersGapsFill for corpus fill.' }
   })
 }
 
@@ -5976,7 +5976,7 @@ export function algebraicTheoremPaperComplete(
       statement:
         `algebraicTheoremPaperComplete(${paperId}) — kind=${kind} complete=${scored.complete} missing=${scored.missing.length} clay=0.`,
       boundary:
-        'Machine-checkable completeness vs ALGEBRAIC_PAPER_REQUIRED_SECTIONS. Incomplete ⇒ missing required section. NOT Clay Prize. HARMONY ≠ TRUTH.' }
+        'Machine-checkable completeness vs ALGEBRAIC_PAPER_REQUIRED_SECTIONS. Incomplete ⇒ missing required section. NOT Clay Prize.' }
   })
 }
 
@@ -6233,7 +6233,7 @@ export function fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix: MindMatrix =
         `Fixed limits of theorem-related tools are theorems — ${theorems.filter((t) => t.holds).length}/${theorems.length} hold: ` +
         'census 110/108/FREE_BITS=2/432 · papers 432 · paper sections 9 · digest 64 · demo RSA ceiling · AES-256 · inverse 4 · heap 2048 · F(18)=2584 · CLI/pairs catalogs; clay=0.',
       boundary:
-        'Each limit is an identity over sealed constants (proof-from-sealed-constants). NOT Clay Prize · NOT physical FTL. HARMONY ≠ TRUTH.' }
+        'Each limit is an identity over sealed constants (proof-from-sealed-constants). NOT Clay Prize · NOT physical FTL.' }
   })
 }
 
@@ -6525,7 +6525,7 @@ export function autodiscoverWhatIsToBeComputedOrDecoded(matrix: MindMatrix = bui
         `Autodiscover compute|decode — items=${items.length} computeOpen=${computeOpen} decodeDrainable=${decodeDrainable} ` +
         `decodeOpen=${decodeOpen} available=${availableTools} drained=${backlogDrained} oneCommandDecode=${oneDecodeComputable}; clay=0.`,
       boundary:
-        'Machine gapless inventory at call time from sealed folds. Drainable = open|partial only; honest-open = intentional receipts (Clay/FTL/DE440/earth · string · /references/* · MCP CI). Available ≠ done. NOT Clay Prize. HARMONY ≠ TRUTH.' }
+        'Machine gapless inventory at call time from sealed folds. Drainable = open|partial only; honest-open = intentional receipts (Clay/FTL/DE440/earth · string · /references/* · MCP CI). Available ≠ done. NOT Clay Prize.' }
   })
 }
 
@@ -6656,7 +6656,7 @@ export function theoremGapsFilledInWaves(matrix: MindMatrix = buildMatrix(), at 
         `driven by autodiscovery (computeOpen=${auto.computeOpen} decodeOpen=${auto.decodeOpen}); fixed-limits theorems=${limits.count}; clay=0.`,
       boundary:
         'Wave fill from autodiscoverWhatIsToBeComputedOrDecoded theorem-surface compute items + sealed checklist synthesis. ' +
-        'Does not invent Clay solutions. Residual thin staticPages remain named via incompletePapersGapsFill. HARMONY ≠ TRUTH.' }
+        'Does not invent Clay solutions. Residual thin staticPages remain named via incompletePapersGapsFill.' }
   })
 }
 

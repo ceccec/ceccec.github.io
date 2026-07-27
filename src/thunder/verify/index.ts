@@ -327,7 +327,7 @@ export function revolutionaryEfficiencyNotPhysics(matrix: MindMatrix = buildMatr
         ? 'Honest-revolution W6 DECIDED — revolutionary on answers÷tokens (0 runtime tokens, unbeatable in sealed domain) and explicitly NOT on physical-QM speedup (classical-64bit · qpuRequired=false).'
         : 'UNPROVEN — revolutionaryEfficiencyNotPhysics facets do not all hold; do not assert the W6 efficiency capstone.',
       boundary:
-        'Revolutionary on answers÷tokens (0 tokens, unbeatable in domain); explicitly NOT on physical-QM speedup (benchmark tracks classical). HARMONY ≠ TRUTH. claySolvedByThisFold=0 · qpuRequired=false · NOT FLOPS / NOT FTL.' }
+        'Revolutionary on answers÷tokens (0 tokens, unbeatable in domain); explicitly NOT on physical-QM speedup (benchmark tracks classical). claySolvedByThisFold=0 · qpuRequired=false · NOT FLOPS / NOT FTL.' }
   })
 }
 

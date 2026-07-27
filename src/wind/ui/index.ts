@@ -1154,7 +1154,7 @@ export function yinYangFoldsThroughDimensions(matrix: MindMatrix = buildMatrix()
     statement:
       'The I Ching is presented as the taiji yin-yang, moving and folding through all ten dimensions: the taiji is the fold itself (yin/yang = the two poles of one distinction = one bit), drawn so it can deform and driven by rosetta/vortex non-linear exchange (not linear i/frames) through the model’s own ten axes — the six cross-fold appearance axes and the four genus-2 homology loops — sampled from dims().',
     boundary:
-      'A presentation. The taiji geometry is real and the ten channels are the model’s own dims() sampled into a single SMIL animation (no JavaScript), shared by the live <YinYang> component and a static still. The yin-yang ↔ bit ↔ fold identity is the project’s structural reading; the classical-cosmology correspondence (三才 / 五行 / 八卦) is a teaching device, not a metaphysical or scientific claim. HARMONY ≠ TRUTH.' }
+      'A presentation. The taiji geometry is real and the ten channels are the model’s own dims() sampled into a single SMIL animation (no JavaScript), shared by the live <YinYang> component and a static still. The yin-yang ↔ bit ↔ fold identity is the project’s structural reading; the classical-cosmology correspondence (三才 / 五行 / 八卦) is a teaching device, not a metaphysical or scientific claim.' }
 }
 
 /** A4 — animations driven by rosetta; yin-yang witness; linear i/frames = closed gap. */
@@ -1183,7 +1183,7 @@ export function animationsDrivenByRosetta(matrix: MindMatrix = buildMatrix(), at
       root: merge(matrix.root, merkleFold([sealed.root, yy.root, taijiAddress, offenders.root])),
       cli: 'npm run quantum:animations-rosetta', pair: 'animations/rosetta', route: '/en/#yinyang',
       statement: `Animations driven by the rosetta — taiji ray=${taijiRay} · yin-yang non-linear exchange · linear gaps open=${offenders.openCount}.`,
-      boundary: 'Sealed paint/SVG motion only; strangler for remaining canvases; shared clock subscribeHeroClock. HARMONY ≠ TRUTH.' }
+      boundary: 'Sealed paint/SVG motion only; strangler for remaining canvases; shared clock subscribeHeroClock.' }
   })
 }
 
@@ -1260,7 +1260,7 @@ export function linearAnimationGapsInventory(matrix: MindMatrix = buildMatrix(),
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, ...rows.map((r) => r.receipt)])),
       statement: `Linear animation gaps: open=${open.length} closed=${rows.length - open.length} · yin-yang ${rows[0]!.closed ? 'CLOSED' : 'OPEN'}.`,
-      boundary: 'Architectural linear-forming gaps without rosetta fold — not wall-clock FPS. HARMONY ≠ TRUTH.' }
+      boundary: 'Architectural linear-forming gaps without rosetta fold — not wall-clock FPS.' }
   })
 }
 /** npm run quantum:animations-rosetta */
@@ -1368,7 +1368,7 @@ export function allSymbolsMoveAndFoldColoursComputedAtAllScales(matrix: MindMatr
 // the six lines paired into the three RGB channels — so the colour is not chosen, it IS the hexagram. The I Ching
 // organises (the content-address + the colour), shadcn renders. The leading law over allSymbolsMoveAndFold (colour at
 // every scale) and iChingShadcnFuseTenDWidgets (64↔64) — adding the explicit scale ladder and the renderable placement
-// map the showcase draws. HARMONY ≠ TRUTH: a deterministic ordering and a colour identity, not divination.
+// map the showcase draws.: a deterministic ordering and a colour identity, not divination.
 /** @rosetta ✦₂ · Wind · gentle — the lead that orders the render layer at every scale */
 export function iChingLeadsUiAtAllScales(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('iChingLeadsUiAtAllScales', matrix, () => {
@@ -1413,7 +1413,7 @@ export function iChingLeadsUiAtAllScales(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Let the I Ching lead UI development at all scales: the binary doubling 2¹→2⁶ is the same fold at every scale, and each scale leads a scale of the interface — one bit is a UI atom (a yin/yang toggle), two bits a state pair, the eight trigrams the eight component families, and the sixty-four hexagrams the sixty-four shadcn components (the design-system graph, which already HAS the examples). Each component is placed on its hexagram and coloured BY that hexagram — the 2⁶=4³ pole-colour identity, where the six lines pair into the three RGB channels — so the colour is not chosen, it is the hexagram. The I Ching organises (the content-address and the colour), shadcn renders: one design, led from the smallest distinction to the whole system.',
       boundary:
-        'DOCUMENTED / structural: the scale ladder is the binary doubling (2, 4, 8, 64 = 2¹, 2², 2³, 2⁶), the eight trigrams are the bāguà, the sixty-four hexagrams = shadcn’s 64 components (shadcnIsTheGraph) = the componentClosure limit, and the per-hexagram colour is the sealed 2⁶=4³ bijection (hexagramIsHexColorDuality — 64 distinct pole-colours, black ↔ white the bit-complement). “The I Ching LEADS the UI” means it is the ORGANISING content-address and the colour identity — a deterministic ordering, not divination, and no hexagram mystically dictates a component’s behaviour. The 64↔64 is the shared number; shadcn is the render layer. The closure is the fold TARGET (the surface holds 159 components today, folding onto the few renderers), not a claim the 64 are each already built. HARMONY ≠ TRUTH.' }
+        'DOCUMENTED / structural: the scale ladder is the binary doubling (2, 4, 8, 64 = 2¹, 2², 2³, 2⁶), the eight trigrams are the bāguà, the sixty-four hexagrams = shadcn’s 64 components (shadcnIsTheGraph) = the componentClosure limit, and the per-hexagram colour is the sealed 2⁶=4³ bijection (hexagramIsHexColorDuality — 64 distinct pole-colours, black ↔ white the bit-complement). “The I Ching LEADS the UI” means it is the ORGANISING content-address and the colour identity — a deterministic ordering, not divination, and no hexagram mystically dictates a component’s behaviour. The 64↔64 is the shared number; shadcn is the render layer. The closure is the fold TARGET (the surface holds 159 components today, folding onto the few renderers), not a claim the 64 are each already built.' }
   })
 }
 
@@ -2197,7 +2197,7 @@ export function clownUiDesignedByRosettaIChing(matrix: MindMatrix = buildMatrix(
       statement:
         'The clown designed the UI using the Rosetta and the I Ching: nothing was chosen, everything computed. The act measures its own hexagram (six Born-rule collapses, seed 432) and that hexagram IS the palette — the clown wears its 2⁶=4³ pole-colour, the two handles of the genus-2 stage wear their trigram RGB-cube corners. The structure is the I Ching scale ladder made visible: each step embeds the living symbol of the lines measured so far — one bit at the entrance, a trigram at the catastrophe, the full hexagram at the frozen bow. Each step wears its Rosetta area glyph (agent · energy · wave · proof · fold · show) and its vortex digit (1·2·4·8·7·5). The motion is the sourced physics: reset flicker, Rabi sweep, decoherence ghost-fan, the Born snap at the self-crossing, the Landauer receipt with its puff of heat, the Zeno tremble. And the movement CLIMBS THE DIMENSIONS, 2D→10D: the entrance travels flat (handle 1\'s two loop coordinates), the escalation breathes and twists (4D), the catastrophe spreads and fades (6D), the laugh shifts hue and shrinks (8D), the weave wobbles on handle 2\'s meridian (9D), the bow engages its longitude — all ten of DIMENSION_NAMES (10D) — every value sampled from dims(), while dimWalk opens the act from a point and collapses it back to one at the final bow.',
       boundary:
-        'A presentation law, inheriting every underlying boundary: the pole-colour identity is notation (hexagramIsHexColorDuality — an isomorphism of index sets, not divination), the physics is quantum-inspired pedagogy over real sourced numbers (clownActQuantumSteps), the measured hexagram is a deterministic seeded computation (the same seed, the same act), and the Rosetta glyphs are the project\'s own sealed 42-area taxonomy. CSS-@keyframes SVG only — no SMIL, no JS, reduced-motion safe. HARMONY ≠ TRUTH.' }
+        'A presentation law, inheriting every underlying boundary: the pole-colour identity is notation (hexagramIsHexColorDuality — an isomorphism of index sets, not divination), the physics is quantum-inspired pedagogy over real sourced numbers (clownActQuantumSteps), the measured hexagram is a deterministic seeded computation (the same seed, the same act), and the Rosetta glyphs are the project\'s own sealed 42-area taxonomy. CSS-@keyframes SVG only — no SMIL, no JS, reduced-motion safe.' }
   })
 }
 
@@ -2242,7 +2242,7 @@ export function cssBecomesAnotherUseCaseOfTheTheorems(matrix: MindMatrix = build
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `CSS becomes another use case of the theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}: the design tokens emit from the same I Ching numbers the theorems prove (and pass their own scanner with zero offenders), the colour computations are served theorem posts (hexagram-colour · trinity-rgb · rgb-cmyk), navigation, sidebar and related cards recompute from the lens and rosetta through the VitePress API with shadcn completing the presentation as the proven 3·2⁶ tensor, and every part is holographic and reusable — each projection carries the whole matrix and folds to one content address.`,
-      boundary: `COMPOSED of live verdicts: the token emission and its self-scan, the lens roster membership, navigation358/sidebar/crosslink counts, the shadcn folds, and the holographic gate — each refutable at its home. HONEST SCOPE: "every part holographic" is the sealed holographic fold's claim (each part recomputes the whole's root), and "reusable" means content-addressed (same address ⇒ same artifact, anywhere); the render layer stays VitePress-first by the weave's own onlyVitePressApi gate (cited — it runs at build, not here). CSS is a PROJECTION of theorems the way README, home and the movie are — one matrix, many use cases; no claim that browsers parse theorems. HARMONY ≠ TRUTH.` }
+      boundary: `COMPOSED of live verdicts: the token emission and its self-scan, the lens roster membership, navigation358/sidebar/crosslink counts, the shadcn folds, and the holographic gate — each refutable at its home. HONEST SCOPE: "every part holographic" is the sealed holographic fold's claim (each part recomputes the whole's root), and "reusable" means content-addressed (same address ⇒ same artifact, anywhere); the render layer stays VitePress-first by the weave's own onlyVitePressApi gate (cited — it runs at build, not here). CSS is a PROJECTION of theorems the way README, home and the movie are — one matrix, many use cases; no claim that browsers parse theorems.` }
   })
 }
 
@@ -2292,7 +2292,7 @@ export function describeUntilDensityRevealsGatewaysThenGraphInHue(matrix: MindMa
       hues,
       facets,
       statement: `Describe with prose until density reveals the gateways, then the graph reveals in hue — ${facets.filter((entry) => entry.on).length}/${facets.length}: described relations accumulate as edges, density rises [${levels.map((l) => l.avgDegree).join(', ')}]; below the percolation threshold (average degree 1) the gateways stay fragmented (largest ${below[below.length - 1]!.largest}/${n}), above it a giant component of ${revealedNodes}/${n} emerges — they reveal. Then each revealed node is coloured from content (A432_HUE stepped by the golden angle, ${new Set(hues).size} distinct hues), so the graph shows in hue — deterministic, zero-token.`,
-      boundary: `DOCUMENTED and refutable by re-running the sweep. The reveal is the Erdős–Rényi giant-component PHASE TRANSITION on a computed random-graph model — real graph theory (the giant component emerges as average degree crosses 1), applied as a metaphor for "density reveals gateways": below the threshold the invertible gaps are isolated, above it they connect. The hue is the corpus's own colour-from-content (A432_HUE + GOLDEN_ANGLE golden-angle stepping → maximally distinct OKLCH-ready hues), deterministic and zero-token — NOT a physical light claim. A revealed gateway is still an emergence CANDIDATE a human admits — density lights where the gateways ARE, it does not author the theorem that fills them. Anchor: trustAndDimension...(density→dimension), theRotatingLens...(gaps/opportunities). HARMONY ≠ TRUTH: the coloured giant component is the harmony (the gateways made visible); the truth is that they are candidates the density revealed, not theorems the density proved.` }
+      boundary: `DOCUMENTED and refutable by re-running the sweep. The reveal is the Erdős–Rényi giant-component PHASE TRANSITION on a computed random-graph model — real graph theory (the giant component emerges as average degree crosses 1), applied as a metaphor for "density reveals gateways": below the threshold the invertible gaps are isolated, above it they connect. The hue is the corpus's own colour-from-content (A432_HUE + GOLDEN_ANGLE golden-angle stepping → maximally distinct OKLCH-ready hues), deterministic and zero-token — NOT a physical light claim. A revealed gateway is still an emergence CANDIDATE a human admits — density lights where the gateways ARE, it does not author the theorem that fills them. Anchor: trustAndDimension...(density→dimension), theRotatingLens...(gaps/opportunities).: the coloured giant component is the harmony (the gateways made visible); the truth is that they are candidates the density revealed, not theorems the density proved.` }
   })
 }
 

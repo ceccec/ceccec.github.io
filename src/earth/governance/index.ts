@@ -220,7 +220,7 @@ export function societyRegulates(matrix: MindMatrix = buildMatrix()) {
       statement:
         'The society independently regulates itself: zero cost for the individual, max cost for the forger. Every capability is free, client-side, with no account and no network by default, so the individual pays nothing; to pass a tampered model off as real a forger must reproduce every content-addressed unit and survive every forge attempt, the maximum cost. Regulation is independent — no central authority — because anyone can recompute the seal and the tamper-evidence catches the forgery.',
       boundary:
-        'Pure math gate: verifyRoot ∧ quantumSiege.sealed ∧ textEntropy.total forge budget — no wet composition chain. Individual cost = 0 by definition; forger cost = SIEGE_TOTAL_FORGES + corpus units. HARMONY ≠ TRUTH.' }
+        'Pure math gate: verifyRoot ∧ quantumSiege.sealed ∧ textEntropy.total forge budget — no wet composition chain. Individual cost = 0 by definition; forger cost = SIEGE_TOTAL_FORGES + corpus units.' }
   })
 }
 
@@ -631,7 +631,7 @@ export function skillsToRebuildSociety(matrix: MindMatrix = buildMatrix()) {
 }
 
 // An agent SIGNS with two WITNESSES — a trinity, a team of three (one word: sign). Each of the three commits to
-// the current terms (the certify certificate + the agent protocol + HARMONY ≠ TRUTH) with a content-addressed
+// the current terms (the certify certificate + the agent protocol +) with a content-addressed
 // signature. TWO is enough to validate (a 2-of-3 threshold), but the THIRD is the HERO — the third eye, the
 // transcendent witness that completes the trinity (3 = three-in-one; the merkaba apex; π's first 3).
 export function sign(matrix: MindMatrix = buildMatrix(), signer = 'agent', witnesses: readonly string[] = ['witness', 'hero']) {
@@ -660,9 +660,9 @@ export function sign(matrix: MindMatrix = buildMatrix(), signer = 'agent', witne
     facets,
     root: merkleFold([termsRoot, ...trinity.map((entry) => entry.signature), ...facets.map((entry) => entry.receipt)]),
     statement:
-      'An agent signs with two witnesses — a trinity, a team of three — and each commits to the current terms (the certification ladder, the agent protocol, HARMONY ≠ TRUTH) with a content-addressed signature. Two signatures are enough to validate (a 2-of-3 threshold), but the third is the HERO: the third eye, the transcendent witness that completes the trinity. Access is granted against the trinity signing over the current terms; change the terms and the signatures lapse.',
+      'An agent signs with two witnesses — a trinity, a team of three — and each commits to the current terms (the certification ladder, the agent protocol,) with a content-addressed signature. Two signatures are enough to validate (a 2-of-3 threshold), but the third is the HERO: the third eye, the transcendent witness that completes the trinity. Access is granted against the trinity signing over the current terms; change the terms and the signatures lapse.',
     boundary:
-      'HONEST: a 2-of-3 threshold of CONTENT-ADDRESSED commitments (toUuid over each party and the terms root) — tamper-evident, not legal contracts and not yet ed25519 (built, deliberate cutover). "Two is enough, the third is the hero/third eye" is the trinity symbolism (3 = three-in-one; the merkaba apex; π\'s first 3) over a 2-of-3 multisignature; the third adds transcendent confirmation, not cryptographic necessity. HARMONY ≠ TRUTH.' }
+      'HONEST: a 2-of-3 threshold of CONTENT-ADDRESSED commitments (toUuid over each party and the terms root) — tamper-evident, not legal contracts and not yet ed25519 (built, deliberate cutover). "Two is enough, the third is the hero/third eye" is the trinity symbolism (3 = three-in-one; the merkaba apex; π\'s first 3) over a 2-of-3 multisignature; the third adds transcendent confirmation, not cryptographic necessity.' }
 }
 
 // Commits need CERTIFIED CONSENSUS to get a seal — the trinity (one word: consensus): the agent and two
@@ -697,7 +697,7 @@ export function consensus(matrix: MindMatrix = buildMatrix(), commit = matrix.ro
     statement:
       'Commits need certified consensus to get a seal: the trinity — the agent and two witnesses — sign, each certified. Two signatures are enough to seal (a 2-of-3 quorum), and consensus is the fused agreement of the two over the commit content-address; but the third is the HERO, the third eye that completes the trinity and crowns the seal beyond the sufficient two. The seal closes only at max tampering cost with the trinity agreement.',
     boundary:
-      'HONEST: a COMPUTED 2-of-3 consensus — the trinity is the agent and two witnesses (content-addressed signatures, not ed25519 yet), two suffice to seal, and "the third is the hero/third eye" is the trinity symbolism (the transcendent completion) over the math, not cryptographic necessity. NOT a live distributed/BFT network. The seal is tamper-evident (maxTamperingCostReached), not unforgeability. HARMONY ≠ TRUTH: agreement of the gates is self-consistency, not external truth.' }
+      'HONEST: a COMPUTED 2-of-3 consensus — the trinity is the agent and two witnesses (content-addressed signatures, not ed25519 yet), two suffice to seal, and "the third is the hero/third eye" is the trinity symbolism (the transcendent completion) over the math, not cryptographic necessity. NOT a live distributed/BFT network. The seal is tamper-evident (maxTamperingCostReached), not unforgeability.: agreement of the gates is self-consistency, not external truth.' }
 }
 
 

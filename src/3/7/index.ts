@@ -594,7 +594,7 @@ export function theClassifierComputesFieldByModeSoIntegrationIsNotManual() {
     computes: facets.every((entry) => entry.on), facets,
     root: merkleFold(SCIENCE_FIELD_LENSES.map((lens) => toUuid(`field-lens:${lens.field}:${lens.stems.length}`))),
     statement: `The classifier is the missing quantum code: fieldOfContent shelves any page to one of the ${SCIENCE_FIELD_LENSES.length} science fields (or null if flagged — the only-proven gate computed via demarcate), and modeOfContent gives the orthogonal engagement mode. Integration is now a deterministic function — a landing discovery auto-shelves, no manual wiring wave.`,
-    boundary: `Stem lenses are heuristic (substring match, subject-first two-pass like rosettaRayOfContent) — they DECIDE a field, they do not prove the science (the fold does). Unmatched proven pages return null (a keyword-tuning gap, measured downstream), never a wrong field. HARMONY ≠ TRUTH.` }
+    boundary: `Stem lenses are heuristic (substring match, subject-first two-pass like rosettaRayOfContent) — they DECIDE a field, they do not prove the science (the fold does). Unmatched proven pages return null (a keyword-tuning gap, measured downstream), never a wrong field.` }
 }
 
 /** The domains are science-aligned: 7 real fields (anchored to external standards) × 6 engagement modes = 42,
@@ -615,7 +615,7 @@ export function theDomainsAreScienceAlignedSevenFieldsBySixModesAnchoredToExtern
     computes: facets.every((entry) => entry.on), fields: SCIENCE_DOMAINS.map((domain) => domain.field), modes: [...ENGAGEMENT_MODES], facets,
     root: merkleFold(SCIENCE_DOMAINS.map((domain) => toUuid(`field:${domain.field}:${domain.oecd}:${domain.standard}`))),
     statement: `The domains are science-aligned: ${SCIENCE_DOMAINS.length} real fields (Mathematics · Physics · Computer & Information Sciences · Life Sciences · Earth & Space · Humanities · Social Sciences), each anchored to an external standard, on the SUBJECT axis; the ${ENGAGEMENT_MODES.length} engagement modes (${ENGAGEMENT_MODES.join(' · ')}) are the orthogonal MODE axis. 7 × 6 = ${ROSETTA_AREAS} preserves the rosetta proportion while resolving the ray-conflation. Only documented / honestly-refuted content enters a field; flagged never becomes one.`,
-    boundary: `The taxonomy was computed by an outside professional scientist against OECD FOS / arXiv / MSC / PACS. HONEST: a clean 7 is proportion-driven — Earth & Space and Social Sciences are thin (5 strong fields + a cross-cutting method, Philosophy of Science / demarcation, is the science-native reading). Kept at 7 to hold the 42; the thinness is labelled, not hidden. HARMONY ≠ TRUTH.` }
+    boundary: `The taxonomy was computed by an outside professional scientist against OECD FOS / arXiv / MSC / PACS. HONEST: a clean 7 is proportion-driven — Earth & Space and Social Sciences are thin (5 strong fields + a cross-cutting method, Philosophy of Science / demarcation, is the science-native reading). Kept at 7 to hold the 42; the thinness is labelled, not hidden.` }
 }
 
 /** Gapless Fibonacci census — 55 + 34 + 21 = 110 unfolded index.ts under src/. */
@@ -1066,7 +1066,7 @@ export function theToolboxIsAgnosticArchitectureThatAllowsAnyDiscovery() {
     computes: facets.every((entry) => entry.on), open: allowsDiscovery, facets,
     root: opened.root,
     statement: `The toolbox is a complete agnostic architecture: a discovery is any { name, holds() }, and the toolbox verifies + content-addresses whatever conforms, knowing nothing about the field. It is OPEN — a novel identity plugs in with no schema change (a fresh address, O(1)), so it allows discoveries in ANY domain — and it discriminates (a false claim is rejected). It allows every possibility because it commits to none.`,
-    boundary: `The toolbox decides only what a discovery's own holds() decides — it verifies the identity CARRIES a computable, refutable witness, not that the witness is scientifically meaningful (that is the scientist's demarcation). The builder tools above (bijection, complement, partition, Euler, cyclic-units, algebra-title) are conveniences the architecture does not privilege. HARMONY ≠ TRUTH.` }
+    boundary: `The toolbox decides only what a discovery's own holds() decides — it verifies the identity CARRIES a computable, refutable witness, not that the witness is scientifically meaningful (that is the scientist's demarcation). The builder tools above (bijection, complement, partition, Euler, cyclic-units, algebra-title) are conveniences the architecture does not privilege.` }
 }
 
 export function rosettaRayOfContent(slug: string, keywords: readonly string[]): number {

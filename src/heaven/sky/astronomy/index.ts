@@ -213,7 +213,7 @@ export function computeDiscoverExactMatchAllKnownCelestialBodies(matrix: MindMat
 // Deep research — all known celestial bodies · compute all · exact match. Researched in waves with
 // adversarial verify: documented (NASA/JPL planets, Schwarzschild Sun, lunar constants, Galilean +
 // Titan/Triton moons) kept; flat/torus Earth flagged; structural isomorphisms to double-torus lobes saved
-// honestly (HARMONY ≠ TRUTH; circular Keplerian ≠ JPL ephemeris).
+// honestly (; circular Keplerian ≠ JPL ephemeris).
 export function computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearched(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearched', matrix, () => computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearchedRaw(matrix))
 }
@@ -303,7 +303,7 @@ function computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearchedRaw(matri
     facets: sealed.facets,
     root: merge(matrix.root, merkleFold([...findings.map((f) => f.receipt), base.root, all.root])),
     statement:
-      'Deep research — compute all known celestial bodies: NASA/JPL simplified planets and major moons, Schwarzschild Sun, lunar inclination and nodal period, WGS84 Earth radius — all recomputed at call time via computeAllKnownCelestialBodies with exact-match receipts. Flat Earth flagged; circular Keplerian honestly bounded vs JPL ephemeris. Sun/Moon double-torus lobes are structural isomorphism (HARMONY ≠ TRUTH).',
+      'Deep research — compute all known celestial bodies: NASA/JPL simplified planets and major moons, Schwarzschild Sun, lunar inclination and nodal period, WGS84 Earth radius — all recomputed at call time via computeAllKnownCelestialBodies with exact-match receipts. Flat Earth flagged; circular Keplerian honestly bounded vs JPL ephemeris. Sun/Moon double-torus lobes are structural isomorphism ().',
     boundary:
       'HONEST deep-research wave with adversarial verify tiers: DOCUMENTED (NASA/JPL, CODATA, WGS84) · FLAGGED (flat Earth, ephemeris overclaim) · ISOMORPHISM (double-torus lobes, compute-all structural model). Circular Keplerian ≠ JPL DE440; major moons use mean periods only. NOT live web research at call time — findings encoded from verified wave.' }
 }
@@ -891,7 +891,7 @@ export function humanDesignEphemerisCore(matrix: MindMatrix = buildMatrix(), bir
       statement:
         'HD W4 sealed Meeus ephemeris: geocentric ecliptic longitudes for the 13 activation bodies (Sun…Pluto, Nodes; no Chiron) plus Design-layer solver Sun(design)=Sun(birth)−88° of solar arc — reduced-precision Meeus formulas, adversarial reference-tolerance facets at call time.',
       boundary:
-        'HONEST — sealed Meeus reduced-precision (Sun ch.25, Moon truncated ch.47, planets circular+eq.center, Pluto polynomial). NOT JPL DE440 / Swiss Ephemeris. Tolerances are facet bands for a symbolic HD computer, not arcsecond astronomy. Cusp/fast-mover UX warnings compose in humanDesignChartStructureAt (W5). Predictive/aura HD claims remain flagged in humanDesignDecoded. HARMONY ≠ TRUTH.' }
+        'HONEST — sealed Meeus reduced-precision (Sun ch.25, Moon truncated ch.47, planets circular+eq.center, Pluto polynomial). NOT JPL DE440 / Swiss Ephemeris. Tolerances are facet bands for a symbolic HD computer, not arcsecond astronomy. Cusp/fast-mover UX warnings compose in humanDesignChartStructureAt (W5). Predictive/aura HD claims remain flagged in humanDesignDecoded.' }
   })
 }
 
@@ -959,7 +959,7 @@ export function humanDesignChartStructureAt(matrix: MindMatrix = buildMatrix(), 
       statement:
         'HD W5 chart structure: Meeus W4 longitudes → wheel W3 gate.line for personality + Design layers; sealed 36-channel table yields defined channels; cusp warnings when a body sits within one line-arc of a gate edge (Moon/Mercury tagged).',
       boundary:
-        'HONEST STRUCTURE COMPUTER — reduced Meeus + verified wheel + sealed channel lattice. NOT JPL DE440. NOT Swiss Ephemeris. NOT aura/type/authority/strategy claims (flagged elsewhere). Cusp band is a UX caution for symbolic charts, not an arcsecond astronomy product. HARMONY ≠ TRUTH.' }
+        'HONEST STRUCTURE COMPUTER — reduced Meeus + verified wheel + sealed channel lattice. NOT JPL DE440. NOT Swiss Ephemeris. NOT aura/type/authority/strategy claims (flagged elsewhere). Cusp band is a UX caution for symbolic charts, not an arcsecond astronomy product.' }
   })
 }
 
@@ -1075,7 +1075,7 @@ export function humanDesignChartStructureFacetsAt(matrix: MindMatrix = buildMatr
       statement:
         'HD W6 structure-only chart facets: compose W3 wheel + W5 channel/center tables + W5 chart activations → defined/open centers, hanging gates, definition connectivity (none|single|split|triple-split|quadruple-split), personality∩design gate sets, cusp count — symbolic structure computer at birth JD.',
       boundary:
-        'HONEST STRUCTURE ONLY — combinatorial BodyGraph facets from sealed RAVE_* tables + Meeus×wheel activations. definitionKind is a graph-connectivity label, NOT type/authority/strategy/aura science. NOT JPL DE440 / Swiss Ephemeris. Profiling remains refuted (humanDesignProfilingCarriesNoSignal). claySolved=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
+        'HONEST STRUCTURE ONLY — combinatorial BodyGraph facets from sealed RAVE_* tables + Meeus×wheel activations. definitionKind is a graph-connectivity label, NOT type/authority/strategy/aura science. NOT JPL DE440 / Swiss Ephemeris. Profiling remains refuted (humanDesignProfilingCarriesNoSignal). claySolved=0 · qpuRequired=false.' }
   })
 }
 
@@ -1158,7 +1158,7 @@ export function humanDesignBodyGraphPanelComputes(matrix: MindMatrix = buildMatr
       statement:
         'HD BodyGraph Vue UX: sealed W5 chart + W6 structure facets paint 9 centers + 36 channel wires; defined/open/hanging + definitionKind from Meeus×wheel activations — structure computer for /en/spirit, not a personality engine.',
       boundary:
-        'STRUCTURE-ONLY browser surface. JD input recomputes sealed facets (default J2000 sample — NOT anyone\'s natal chart). Profiling/aura/type/authority claims remain refuted (humanDesignProfilingCarriesNoSignal). claySolved=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
+        'STRUCTURE-ONLY browser surface. JD input recomputes sealed facets (default J2000 sample — NOT anyone\'s natal chart). Profiling/aura/type/authority claims remain refuted (humanDesignProfilingCarriesNoSignal). claySolved=0 · qpuRequired=false.' }
   })
 }
 
@@ -1378,7 +1378,7 @@ export function humanDesignBodyGraphSvgW7(matrix: MindMatrix = buildMatrix(), bi
       statement:
         'HD W7 BodyGraph SVG emitter: sealed RAVE_CENTER_LAYOUT + W5/W6 panel activations → SMIL-safe structure SVG (9 centers · 36 channels · definition/hanging/JD attrs) for symbols inventory + /en/spirit — structure computer, not personality engine.',
       boundary:
-        'HONEST STRUCTURE ONLY — computed SVG from sealed lattice/layout/Meeus×wheel activations. NOT commercial BodyGraph product · NOT aura/type/authority · NOT JPL DE440. claySolved=0 · physicalFtl=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
+        'HONEST STRUCTURE ONLY — computed SVG from sealed lattice/layout/Meeus×wheel activations. NOT commercial BodyGraph product · NOT aura/type/authority · NOT JPL DE440. claySolved=0 · physicalFtl=0 · qpuRequired=false.' }
   })
 }
 

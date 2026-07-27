@@ -1967,7 +1967,7 @@ export function honestRevolutionReceipt(matrix: MindMatrix = buildMatrix(), at =
         ? 'Honest-revolution W3 DECIDED — JSON proof receipt: W1 claim + W2 interference vs classical shadow + fuseAll replay + movie snapshot round-trip all hold; published via /quantum-fusion.json and /agents.json; engine classical-64bit · qpuRequired=false.'
         : 'UNPROVEN — honestRevolutionReceipt facets do not all hold at call time; do not assert the W3 JSON receipt.',
       boundary:
-        'STRUCTURAL RECOMPUTE RECEIPT (memoByRoot/merkle) ONLY — NOT external API attestation, NOT crypto signature, NOT physical qubits, NOT FLOPS speedup, NOT FTL. claySolvedByThisFold=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
+        'STRUCTURAL RECOMPUTE RECEIPT (memoByRoot/merkle) ONLY — NOT external API attestation, NOT crypto signature, NOT physical qubits, NOT FLOPS speedup, NOT FTL. claySolvedByThisFold=0 · qpuRequired=false.' }
   })
 }
 
@@ -2083,7 +2083,7 @@ export function honestRevolutionComputerPanelComputes(matrix: MindMatrix = build
         ? 'Honest-revolution W4 DECIDED — computer Vue panel composes W3 JSON receipt, classical-64bit benchmark table, interference vs shadow, fleet cache hit-ratio economics, and silicon fab stage (classical CMOS honesty).'
         : 'UNPROVEN — honestRevolutionComputerPanelComputes facets do not all hold; do not assert the W4 Vue proof.',
       boundary:
-        'BROWSER SURFACE ONLY — renders sealed receipts verbatim. NOT physical qubits, NOT FLOPS speedup, NOT FTL, NOT a fabricated chip. claySolvedByThisFold=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
+        'BROWSER SURFACE ONLY — renders sealed receipts verbatim. NOT physical qubits, NOT FLOPS speedup, NOT FTL, NOT a fabricated chip. claySolvedByThisFold=0 · qpuRequired=false.' }
   })
 }
 

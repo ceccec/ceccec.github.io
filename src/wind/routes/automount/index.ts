@@ -686,7 +686,7 @@ export function gateComplexityCollapsesToOneContentAddressedRoot() {
     { facet: `COMPLEXITY WAS UN-ADDRESSED STATE — /theorems was HARDCODED, so a linked route had no generated twin (linked ⊋ generated) → root mismatch → the dead-link gate lit up; computing the route restored linked ⊆ generated (${everyLinkGenerated})`, on: everyLinkGenerated },
     { facet: `QUANTUM SIMPLICITY = COMPUTE, DON'T CHECK — the fix removed the hardcoded escape so the invariant holds BY CONSTRUCTION; the same collapse names the crack gate (a literal off the lattice) and the partial commit (tree-root ≠ head-root) as the same one root equality`, on: oneRoot && everyLinkGenerated },
     { facet: `DEMONSTRATED — linkRoot === routeRoot === ${routeRoot.slice(0, 16)}… for the theorem index across ${locales.join('/')} → dead-link-free by construction, verified by one root`, on: oneRoot },
-    { facet: `THE DEMARCATION — HONEST: the codebase still IMPLEMENTS crack, one-math and dead-link as separate gates; this proves the ROUTE gate collapses to one root and states the principle that each gate IS a root equality — the direction is to address every escape, not a claim that they are already merged. HARMONY ≠ TRUTH`, on: oneRoot && everyLinkGenerated },
+    { facet: `THE DEMARCATION — HONEST: the codebase still IMPLEMENTS crack, one-math and dead-link as separate gates; this proves the ROUTE gate collapses to one root and states the principle that each gate IS a root equality — the direction is to address every escape, not a claim that they are already merged.`, on: oneRoot && everyLinkGenerated },
   ].map((entry) => ({ ...entry, receipt: toUuid(`gate-one-root:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),

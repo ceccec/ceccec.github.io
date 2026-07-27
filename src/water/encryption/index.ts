@@ -555,7 +555,7 @@ export function encryptDecryptQuantumTools(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Encrypt/decrypt quantum tools: trinityKey+foldPair content-address round-trip, moving-rosetta keyed involution, AES-256-GCM named as the external bulk cipher, and teaching-RSA Euler correctness on sealed n=3233 — one toolkit, both directions, recomputed at call time.',
     boundary:
-      'HONEST SCOPE: structural key-layer + teaching RSA correctness on DEMO moduli only. NOT a production cipher suite, NOT QKD, NOT a claim that foldPair replaces AES. Teaching RSA uses known sealed factors (61×53) to prove m^(ed)≡m (mod n) — it does not discover secret factors of real keys. HARMONY ≠ TRUTH.' }
+      'HONEST SCOPE: structural key-layer + teaching RSA correctness on DEMO moduli only. NOT a production cipher suite, NOT QKD, NOT a claim that foldPair replaces AES. Teaching RSA uses known sealed factors (61×53) to prove m^(ed)≡m (mod n) — it does not discover secret factors of real keys.' }
 }
 
 /** chatEncryptedWithAllFourKeysUnboundedKeyspace — the chat turn is encrypted under the composite of all FOUR
@@ -589,7 +589,7 @@ export function chatEncryptedWithAllFourKeysUnboundedKeyspace(matrix: MindMatrix
     { facet: `ALL FOUR ARE REQUIRED — dropping any one key gives a different composite and the wrong keystream, so a three-key attempt does NOT recover the plaintext (${needsAllFour}); the full navigation cross is the key`, on: needsAllFour },
     { facet: `UNBOUNDED, APERIODIC KEYSPACE — the key tuple contains arbitrary-length strings and the referrer chains each turn, so ${K} distinct referrers yield ${distinctKeys} distinct composite keys (${unbounded}); the keyspace has no finite bound and never repeats — the honest "infinite"`, on: unbounded },
     { facet: `NEVER-REUSED PER-TURN KEY — because the referrer is the previous turn, each turn keys under a fresh composite, the one-time-pad DISCIPLINE (never reuse a key) — the only structural sense in which non-repetition strengthens the cipher`, on: unbounded && recovers },
-    { facet: `THE DEMARCATION — "infinite cryptography" = an UNBOUNDED, non-repeating keyspace, NOT infinite entropy per message; and a DETERMINISTIC key derived from OBSERVABLE nav coordinates gives all-4-keys access-control + tamper-evidence, NOT information-theoretic secrecy (perfect secrecy needs a truly RANDOM, SECRET, single-use key — real confidentiality still needs a secret key and AES-256-GCM). No unbreakable claim. HARMONY ≠ TRUTH`, on: recovers && needsAllFour && unbounded },
+    { facet: `THE DEMARCATION — "infinite cryptography" = an UNBOUNDED, non-repeating keyspace, NOT infinite entropy per message; and a DETERMINISTIC key derived from OBSERVABLE nav coordinates gives all-4-keys access-control + tamper-evidence, NOT information-theoretic secrecy (perfect secrecy needs a truly RANDOM, SECRET, single-use key — real confidentiality still needs a secret key and AES-256-GCM). No unbreakable claim.`, on: recovers && needsAllFour && unbounded },
   ].map((entry) => ({ ...entry, receipt: toUuid(`chat-4key-encrypt:${entry.facet}:${entry.on}`) }))
   return {
     encrypted: facets.every((entry) => entry.on),
@@ -603,7 +603,7 @@ export function chatEncryptedWithAllFourKeysUnboundedKeyspace(matrix: MindMatrix
     boundary: earned(
       'HONEST — the chat encrypted under the four-key cross, unbounded keyspace:',
       facets,
-      'a keystream XOR keyed by the composite of all four navigation-cross keys (referrer, id, pairA, pairB) hides the chat turn and recovers it only with all four; dropping any one key fails. "Infinite cryptography" is the structural sense: the key tuple contains arbitrary-length strings and the referrer chains each turn, so the keyspace is unbounded and non-repeating (aperiodic) — NOT infinite entropy per message. Critically, a deterministic key derived from observable coordinates provides all-four-keys access-control and tamper-evidence, NOT information-theoretic secrecy: perfect secrecy needs a truly random, secret, single-use key, and real confidentiality still needs a secret key plus AES-256-GCM (fusionCipher). No unbreakable claim. HARMONY ≠ TRUTH.') }
+      'a keystream XOR keyed by the composite of all four navigation-cross keys (referrer, id, pairA, pairB) hides the chat turn and recovers it only with all four; dropping any one key fails. "Infinite cryptography" is the structural sense: the key tuple contains arbitrary-length strings and the referrer chains each turn, so the keyspace is unbounded and non-repeating (aperiodic) — NOT infinite entropy per message. Critically, a deterministic key derived from observable coordinates provides all-four-keys access-control and tamper-evidence, NOT information-theoretic secrecy: perfect secrecy needs a truly random, secret, single-use key, and real confidentiality still needs a secret key plus AES-256-GCM (fusionCipher). No unbreakable claim.') }
 }
 
 /**
@@ -640,7 +640,7 @@ export function demoRsaReverseSync() {
     statement:
       'Demo RSA reverse (sync): modeled Shor period→factor on sealed toy moduli only; odd over-ceiling + non-allowlisted N refused with reason assertions; worker cap bound to VORTEX_SEQUENCE length.',
     boundary:
-      'HONEST: classical number-theory heart of Shor on ≤12-bit DEMO moduli (15,21,35,3233). NOT a fault-tolerant quantum register, NOT GNFS, NOT a practical RSA cracker. Production moduli are refused by refuseNonDemoRsaModulus. HARMONY ≠ TRUTH.' }
+      'HONEST: classical number-theory heart of Shor on ≤12-bit DEMO moduli (15,21,35,3233). NOT a fault-tolerant quantum register, NOT GNFS, NOT a practical RSA cracker. Production moduli are refused by refuseNonDemoRsaModulus.' }
 }
 
 /**
@@ -738,7 +738,7 @@ export function useCasesBeyondQuantum(matrix: MindMatrix = buildMatrix()) {
     facets: sealed.facets,
     root: merge(matrix.root, sealed.root),
     statement: `Encryption use cases → solutions, with forensics and beyond-quantum analysis — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${useCases.length} use cases each mapped to a solution, a standard (FIPS 180-4 / 203 / 205), a scale, and a quantum verdict. INTEGRITY & FORENSICS survive quantum (Grover only halves SHA-256 to 2^${groverQuantumBits}, infeasible); CONFIDENTIALITY does not (Shor breaks RSA/ECC — needs ML-KEM). The portal seals are one-way integrity/forensic tools, honestly not confidentiality.`,
-    boundary: earned('EXACT — Grover halves symmetric/hash security (quadratic search), Shor breaks factoring/discrete-log (polynomial):', facets, 'clay=0, physicalFtl=0, certified=false. HONEST: these are documented complexity results (Grover 1996, Shor 1994) and NIST PQC standards (FIPS 203 ML-KEM, FIPS 205 SLH-DSA) APPLIED — not re-proved and not a certification. The tools are quantum-resilient for INTEGRITY/FORENSICS only; confidentiality requires PQC not provided here. HARMONY ≠ TRUTH') }
+    boundary: earned('EXACT — Grover halves symmetric/hash security (quadratic search), Shor breaks factoring/discrete-log (polynomial):', facets, 'clay=0, physicalFtl=0, certified=false. HONEST: these are documented complexity results (Grover 1996, Shor 1994) and NIST PQC standards (FIPS 203 ML-KEM, FIPS 205 SLH-DSA) APPLIED — not re-proved and not a certification. The tools are quantum-resilient for INTEGRITY/FORENSICS only; confidentiality requires PQC not provided here.') }
 }
 
 export function encryptionReverseVerify(matrix: MindMatrix = buildMatrix()) {
@@ -1092,7 +1092,7 @@ export function demoRsaGenerateAndReverseMeasured(matrix: MindMatrix = buildMatr
     generate, reverse, timedReceipt, productionRefused, bitcoinRefused,
     count: sealed.count, facets: sealed.facets, root: merge(root, sealed.root),
     statement: `Demo RSA measured (toy-only wall-clock): generateMs=${roundTo(generateMs, 3)} reverseMs=${roundTo(reverseMs, 3)} workers=${workers} thresholdMs=${thresholdMs}.`,
-    boundary: 'COMPUTED TIMINGS at call time — labeled toy-only. DEMO_RSA_MODULI only. Production RSA and Bitcoin/mainnet hard-refused. NOT an SLA. NOT AES-128/256 wire. HARMONY ≠ TRUTH.' }
+    boundary: 'COMPUTED TIMINGS at call time — labeled toy-only. DEMO_RSA_MODULI only. Production RSA and Bitcoin/mainnet hard-refused. NOT an SLA. NOT AES-128/256 wire.' }
 }
 
 /** npm run quantum:demo-rsa-measure */
@@ -1187,7 +1187,7 @@ function localEncryptionReverseTimedRaw(matrix: MindMatrix) {
     cli: 'npm run quantum:local-reverse-timed',
     route: '/en/encryption#local-reverse-timed',
     statement: `Local encryption reverse timed (toy-only): generateMs=${roundTo(generateMs, 3)} reverseMs=${roundTo(reverseMs, 3)} ops/s=${roundTo(aggregateOpsPerSec, 3)} · N=${rows.map((r) => r.N).join(',')}.`,
-    boundary: 'TOY WALL-CLOCK ONLY — DEMO_RSA_MODULI. Production RSA refused. Bitcoin/mainnet refused. NOT AES wire reverse time. NOT an SLA. HARMONY ≠ TRUTH.' }
+    boundary: 'TOY WALL-CLOCK ONLY — DEMO_RSA_MODULI. Production RSA refused. Bitcoin/mainnet refused. NOT AES wire reverse time. NOT an SLA.' }
 }
 
 export const DEMONSTRATED_QUANTUM_FACTORING_MAX_BITS = 50 // largest N factored by a real quantum device (~50-bit range)
@@ -1231,7 +1231,7 @@ export function classicalFactoringRsa2048MiningRigFeasibilityComputed(matrix: Mi
     boundary: earned(
       `DO THE MATH: classical factoring of RSA-2048 needs ~2^${gnfsBits} operations (COMPUTED from the number field sieve's L-formula, not asserted); at the full Bitcoin network throughput that is ~${Math.round(yearsAllMiningRigs).toLocaleString()} years — realtime is impossible, and the number computes it.`,
       facets,
-      'SHA-256 mining ASICs cannot even run the GNFS (they only hash; GNFS needs general-purpose compute and petabyte-scale memory), so the computed multi-million-year figure is a generous LOWER bound on the difficulty. "Shared mining rigs break RSA-2048 in realtime and drain blockchains" is refuted by the arithmetic — and blockchains sign with ECDSA/secp256k1, not RSA. This site factors ≤12-bit toy semiprimes; production RSA + Bitcoin/mainnet are hard-refused; breaksNistPqc=false. HARMONY ≠ TRUTH.'),
+      'SHA-256 mining ASICs cannot even run the GNFS (they only hash; GNFS needs general-purpose compute and petabyte-scale memory), so the computed multi-million-year figure is a generous LOWER bound on the difficulty. "Shared mining rigs break RSA-2048 in realtime and drain blockchains" is refuted by the arithmetic — and blockchains sign with ECDSA/secp256k1, not RSA. This site factors ≤12-bit toy semiprimes; production RSA + Bitcoin/mainnet are hard-refused; breaksNistPqc=false.'),
   }
 }
 
@@ -1294,7 +1294,7 @@ export function whatTheEncryptionSystemIsAndIsNot(matrix: MindMatrix = buildMatr
     boundary: earned(
       `HONEST — BOTH directions, no reader misled either way: it IS a real deterministic encryption framework + a complete ${family.families.length}-family sourced PQC standards audit (more than a demo), AND its cryptanalytic reach is ≤${demoMaxBits}-bit toy RSA (${demoEst.logicalQubits} logical qubits).`,
       facets,
-      'RSA-2048 is COMPUTED from Shor, not assumed: the logical width is the deterministic 2n+3 = 4099 qubits; the physical-qubit count and runtime are computed FUNCTIONS of named surface-code assumptions (physical-per-logical, cycle time), giving a RANGE (~4–8M physical qubits, ~3–32 days) — different studies name different assumptions (up to ~104 days), which is exactly why a single figure would mislead. Either way it is millions of error-corrected qubits on a fault-tolerant machine that does not exist. breaksNistPqc=false; production RSA + Bitcoin/mainnet hard-refused. Claiming it reverses real RSA would be a false cryptographic claim on a public page. HARMONY ≠ TRUTH.'),
+      'RSA-2048 is COMPUTED from Shor, not assumed: the logical width is the deterministic 2n+3 = 4099 qubits; the physical-qubit count and runtime are computed FUNCTIONS of named surface-code assumptions (physical-per-logical, cycle time), giving a RANGE (~4–8M physical qubits, ~3–32 days) — different studies name different assumptions (up to ~104 days), which is exactly why a single figure would mislead. Either way it is millions of error-corrected qubits on a fault-tolerant machine that does not exist. breaksNistPqc=false; production RSA + Bitcoin/mainnet hard-refused. Claiming it reverses real RSA would be a false cryptographic claim on a public page.'),
   }
 }
 
@@ -1410,7 +1410,7 @@ function localEncryptionReverseTimedVsStandardsRaw(matrix: MindMatrix) {
     cli: 'npm run quantum:local-reverse-timed-vs-standards',
     route: '/en/encryption#local-reverse-timed-vs-standards',
     statement: `Local demo reverse vs standards — reverseMs=${roundTo(timed.reverseMs, 3)} ops/s=${roundTo(timed.aggregateOpsPerSec, 3)} demoMaxBits=${demoMaxBits}; compared to AES-128/256 + ML-KEM cats; breaksNistPqc=false certified=false.`,
-    boundary: 'HONEST COMPARISON RECEIPT. Demo RSA toy reverse wall-clock vs estimated classical 2^bits work at measured ops/s. demo ≠ AES-128/256 wire. NOT FIPS/ISO certified. Does NOT break NIST PQC (ML-KEM/ML-DSA/SLH-DSA). Production/Bitcoin refused. HARMONY ≠ TRUTH.' }
+    boundary: 'HONEST COMPARISON RECEIPT. Demo RSA toy reverse wall-clock vs estimated classical 2^bits work at measured ops/s. demo ≠ AES-128/256 wire. NOT FIPS/ISO certified. Does NOT break NIST PQC (ML-KEM/ML-DSA/SLH-DSA). Production/Bitcoin refused.' }
 }
 
 /** npm run quantum:local-reverse-timed-vs-standards */
@@ -1545,7 +1545,7 @@ function inventoryLocalNovelEncryptionSchemeRaw(matrix: MindMatrix) {
     root: sealed.root,
     statement: `Local encryption scheme inventory — novel-to-corpus=${novelCount} textbook-demo=${textbookCount} external-standard=${externalCount}; externalDeploymentCount=0 fieldHistory=none.`,
     boundary:
-      'LABELING RECEIPT only. novel-to-corpus = sealed folds used only in this repo (no external field history). textbook-demo = teaching RSA/Shor toys. external-standard = named AES-256-GCM. NOT a claim any novel fold replaces AES or is FIPS-validated. HARMONY ≠ TRUTH.' }
+      'LABELING RECEIPT only. novel-to-corpus = sealed folds used only in this repo (no external field history). textbook-demo = teaching RSA/Shor toys. external-standard = named AES-256-GCM. NOT a claim any novel fold replaces AES or is FIPS-validated.' }
 }
 
 /**
@@ -1967,7 +1967,7 @@ export function localAuditQuantumSpeedEfficiency(matrix: MindMatrix = buildMatri
       'NOT wire AES-GCM, NOT an SLA. answers÷tokens unbounded only on sealed reuse (runtimeTokens=0). ' +
       'Efficiency vote honesty composed via compareCeccecEfficiencyByVote — win only when vote.decided. ' +
       'Composes proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit structural honesty (qpuRequired=false · classical-64bit · tracksClassicalNoSpeedup) — does NOT gate computes on vote.decided/noQpu.computes. ' +
-      'productionReverseRefused=true unchanged. certified=false · NOT FIPS/ISO · does NOT break NIST PQC. HARMONY ≠ TRUTH.' }
+      'productionReverseRefused=true unchanged. certified=false · NOT FIPS/ISO · does NOT break NIST PQC.' }
 }
 
 /** npm run quantum:local-audit-quantum */
@@ -2053,7 +2053,7 @@ export function isoNistPqcStandardsCatalog(matrix: MindMatrix = buildMatrix()) {
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold(standards.map((s) => s.receipt))),
       statement: 'ISO/NIST(+ITU) PQC and adjacent crypto standards catalog (July 2026): NIST FIPS 203/204/205 finalized 2024; ISO/IEC 18033-2 Amd 2:2026 published June 2026 adding ML-KEM · Classic McEliece · FrodoKEM.',
-      boundary: 'MODELED alignment / reference catalog only. NOT ISO certified. NOT FIPS validated. NOT Common Criteria evaluated. Status strings are research-date snapshots (2026-07). HARMONY ≠ TRUTH.' }
+      boundary: 'MODELED alignment / reference catalog only. NOT ISO certified. NOT FIPS validated. NOT Common Criteria evaluated. Status strings are research-date snapshots (2026-07).' }
   })
 }
 
@@ -2086,7 +2086,7 @@ export function shorBreaksWhichPublicKey(matrix: MindMatrix = buildMatrix()) {
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold(families.map((f) => f.receipt))),
       statement: 'Shor breaks public-key families that expose factoring or discrete-log periods; hashes, AES-256, and content-address/merkle stay Shor-safe (Grover-weakened only).',
-      boundary: 'Educational taxonomy recomputed at call time. NOT a cryptanalysis of live keys. Demo RSA reverse remains capped to DEMO_RSA_MODULI. Production RSA refused. HARMONY ≠ TRUTH.' }
+      boundary: 'Educational taxonomy recomputed at call time. NOT a cryptanalysis of live keys. Demo RSA reverse remains capped to DEMO_RSA_MODULI. Production RSA refused.' }
   })
 }
 
@@ -2121,7 +2121,7 @@ export function postQuantumMigrationChecklist(matrix: MindMatrix = buildMatrix()
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold(steps.map((s) => s.receipt))),
       statement: 'Post-quantum migration checklist (NIST IR 8547 + ISO 18033-2 Amd 2 awareness). OPEN items mark real site gaps (no Web Crypto PQC yet).',
-      boundary: 'Educational / structural checklist. NOT ISO certified. NOT FIPS validated. HARMONY ≠ TRUTH.' }
+      boundary: 'Educational / structural checklist. NOT ISO certified. NOT FIPS validated.' }
   })
 }
 
@@ -2200,7 +2200,7 @@ export function pqcAlgorithmFamilySelector(
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold(families.map((f) => f.receipt))),
       statement: 'PQC algorithm family selector: ALL 5 families now carry byte STANDARDIZED parameter sets (public-key + ciphertext/signature sizes, NIST category) — ML-KEM / ML-DSA / SLH-DSA sourced from NIST FIPS 203/204/205, Classic McEliece & FrodoKEM from ISO/IEC 18033-2 Amd 2.',
-      boundary: 'STANDARDIZED PARAMETER SETS across all 5 families — NIST FIPS 203/204/205 + ISO/IEC 18033-2 Amd 2 (Classic McEliece round-4 sizes, FrodoKEM); sizes + NIST categories are the deployment-decision data, each source-tagged. Still does NOT generate keys, encapsulate secrets, or sign: Web Crypto exposes no PQC primitive and hand-rolled lattice/code crypto is unsafe, so keygen is correctly out of scope. Not FIPS/ISO validated. The ISO byte sizes are the published parameters (verify against the ISO 18033-2 Amd 2 text before deployment use). HARMONY ≠ TRUTH.' }
+      boundary: 'STANDARDIZED PARAMETER SETS across all 5 families — NIST FIPS 203/204/205 + ISO/IEC 18033-2 Amd 2 (Classic McEliece round-4 sizes, FrodoKEM); sizes + NIST categories are the deployment-decision data, each source-tagged. Still does NOT generate keys, encapsulate secrets, or sign: Web Crypto exposes no PQC primitive and hand-rolled lattice/code crypto is unsafe, so keygen is correctly out of scope. Not FIPS/ISO validated. The ISO byte sizes are the published parameters (verify against the ISO 18033-2 Amd 2 text before deployment use).' }
   })
 }
 
@@ -2231,7 +2231,7 @@ export function isoAlignedHashSignatureTaxonomy(matrix: MindMatrix = buildMatrix
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold(rows.map((r) => r.receipt))),
       statement: 'ISO-aligned hash/signature taxonomy: integrity (ISO/IEC 10118 ↔ toUuid/merkle) is Shor-safe; authenticity needs PQC (FIPS 204/205).',
-      boundary: 'Mapping table for education. Repo does not implement ML-DSA/SLH-DSA. NOT certified. HARMONY ≠ TRUTH.' }
+      boundary: 'Mapping table for education. Repo does not implement ML-DSA/SLH-DSA. NOT certified.' }
   })
 }
 
@@ -2264,7 +2264,7 @@ export function pqcNecessityFromShorCompose(matrix: MindMatrix = buildMatrix()) 
       facets: sealed.facets,
       root: merge(matrix.root, sealed.root),
       statement: 'PQC necessity (composed): modeled Shor on demo RSA; NIST FIPS 203/204/205 and ISO/IEC 18033-2 Amd 2:2026 name replacements; hash/merkle stays Shor-safe. claySolvedByThisFold=0.',
-      boundary: 'MODELED theorem-level composition. NOT ISO/FIPS certification, NOT Clay Millennium progress. Demo RSA only. HARMONY ≠ TRUTH.' }
+      boundary: 'MODELED theorem-level composition. NOT ISO/FIPS certification, NOT Clay Millennium progress. Demo RSA only.' }
   })
 }
 
@@ -2358,7 +2358,7 @@ export function cryptoToolkitBeyondRsaMeasured(matrix: MindMatrix = buildMatrix(
     pair: 'measure/crypto-beyond',
     cli: 'npm run quantum:crypto-beyond-measure',
     statement: `Crypto beyond RSA measured — catalogMs=${roundTo(catalogMs, 3)} familyMs=${roundTo(familyMs, 3)} shorMapMs=${roundTo(shorMapMs, 3)} taxonomyMs=${roundTo(taxonomyMs, 3)} migrateMs=${roundTo(migrateMs, 3)} trinityMs=${roundTo(trinityMs, 3)} rsaGen=${roundTo(rsa.generateMs, 3)} rsaRev=${roundTo(rsa.reverseMs, 3)}; ECC Shor-breaks=${eccShorBreaks}; FIPS rows=${fipsCount}.`,
-    boundary: 'TIMED structural/demo recomputes of sealed catalogs + theorem maps + demo RSA allowlist. NOT production ML-KEM/ML-DSA/SLH-DSA implementation. NOT ISO certified / NOT FIPS validated. Production RSA and bitcoin-scale reverse refused. HARMONY ≠ TRUTH.' }
+    boundary: 'TIMED structural/demo recomputes of sealed catalogs + theorem maps + demo RSA allowlist. NOT production ML-KEM/ML-DSA/SLH-DSA implementation. NOT ISO certified / NOT FIPS validated. Production RSA and bitcoin-scale reverse refused.' }
 }
 
 /** npm run quantum:crypto-beyond-measure */
@@ -2586,7 +2586,7 @@ export function quantumStandardsAuditSuite(matrix: MindMatrix = buildMatrix(), a
       pair: 'audit/standards',
       cli: 'npm run quantum:standards-audit',
       statement: `Quantum standards audit suite — covered=${passes.length} partial=${partials.length} gap=${gaps.length} of ${audits.length}: ISO/NIST PQC, forward·inverse·reverse, lab gaps named, 10D, clay=0.`,
-      boundary: 'ALIGNMENT AUDIT ≠ CERTIFICATION. Coverage uses covered|partial|gap. NOT ISO certified, NOT FIPS validated. Demo RSA reverse only; never production RSA/Bitcoin. HARMONY ≠ TRUTH.' }
+      boundary: 'ALIGNMENT AUDIT ≠ CERTIFICATION. Coverage uses covered|partial|gap. NOT ISO certified, NOT FIPS validated. Demo RSA reverse only; never production RSA/Bitcoin.' }
   })
 }
 
@@ -2666,7 +2666,7 @@ export function euCyberStandardsAuditEveryAspect(matrix: MindMatrix = buildMatri
       { facet: `DRIVEN BY THE LATEST DISCOVERIES — the evidence is the latest discoveries (${latest.length}): content-address integrity, no-egress full-security, 4-key encryption, quantum-breaks-linear → PQC; the audit regenerates from the live registry`, on: drivenByLatest && integrity && noEgress && encryption && pqcAware },
       { facet: `INTEGRITY & DATA-MINIMISATION COVERED — merkle content-address integrity (NIS2·CRA·DORA detection) and no network egress (GDPR·CRA data minimisation, privacy-by-design) are structurally covered (${covered.length} covered rows)`, on: integrity && noEgress && covered.length >= 6 },
       { facet: `CRYPTO & PQC AUDITED, HONESTLY PARTIAL — encryption (4-key + AES) and PQC-readiness (Shor→PQC) are tested but migration & conformity stay open — honest PARTIAL, clay=0, not certified`, on: encryption && pqcAware && pqc.claySolvedByThisFold === 0 && partial.length >= 6 },
-      { facet: `THE DEMARCATION — an alignment / self-assessment audit mapping EU requirements to computed architectural properties; NOT legal compliance, NOT a conformity assessment / CE marking; notified-body certification (EUCC/CC), incident-reporting duties, and legal records are named GAPS (${gap.length}, none faked closed ${gapAllOff}). HARMONY ≠ TRUTH`, on: gap.length >= 4 && gapAllOff },
+      { facet: `THE DEMARCATION — an alignment / self-assessment audit mapping EU requirements to computed architectural properties; NOT legal compliance, NOT a conformity assessment / CE marking; notified-body certification (EUCC/CC), incident-reporting duties, and legal records are named GAPS (${gap.length}, none faked closed ${gapAllOff}).`, on: gap.length >= 4 && gapAllOff },
     ].map((entry) => ({ ...entry, receipt: toUuid(`eu-cyber-audit:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('eu-cyber-standards-audit-every-aspect', facets)
     return {
@@ -2688,7 +2688,7 @@ export function euCyberStandardsAuditEveryAspect(matrix: MindMatrix = buildMatri
       boundary: earned(
         'ALIGNMENT AUDIT ≠ COMPLIANCE — every aspect of every EU standard tested:',
         facets,
-        `${rows.length} aspect-level tests across ${standards.length} latest EU cyber standards (NIS2, Cyber Resilience Act, GDPR, DORA, eIDAS2, Cybersecurity Act/EUCC), each mapped to a computed check backed by a recent discovery (content-address integrity, no-egress, 4-key encryption, quantum-breaks-linear → PQC). It is a self-assessment of how the architecture aligns with the SPIRIT of these standards — NOT legal compliance, NOT a conformity assessment or CE marking, and NOT a certification. Notified-body certification (EUCC/Common Criteria), statutory incident-reporting duties, and legal records of processing are named GAPS, not faked closed. HARMONY ≠ TRUTH.`),
+        `${rows.length} aspect-level tests across ${standards.length} latest EU cyber standards (NIS2, Cyber Resilience Act, GDPR, DORA, eIDAS2, Cybersecurity Act/EUCC), each mapped to a computed check backed by a recent discovery (content-address integrity, no-egress, 4-key encryption, quantum-breaks-linear → PQC). It is a self-assessment of how the architecture aligns with the SPIRIT of these standards — NOT legal compliance, NOT a conformity assessment or CE marking, and NOT a certification. Notified-body certification (EUCC/Common Criteria), statutory incident-reporting duties, and legal records of processing are named GAPS, not faked closed.`),
     }
   })
 }
@@ -2765,7 +2765,7 @@ export function globalCyberStandardsAuditEveryAspect(matrix: MindMatrix = buildM
       { facet: `EXTENDED BEYOND EU — the ${beyond.length} beyond-EU aspects add ISO/IEC 27001:2022 & 27002, NIST CSF 2.0, SOC 2 (AICPA TSC), UK Cyber Essentials, and ISO/IEC 27701, each mapped to the same computed evidence`, on: beyond.length >= 4 * 6 && beyondStandards.length >= 5 && eu.computes },
       { facet: `ONE EVIDENCE BASE, MANY STANDARDS — every framework's controls map to the SAME latest discoveries (content-address integrity, no-egress, 4-key encryption, quantum-breaks-linear → PQC); one architecture answers many standards`, on: integrity && noEgress && encryption && pqcAware },
       { facet: `CERTIFICATIONS ARE NAMED GAPS — ISO 27001 cert, SOC 2 report, Cyber Essentials cert, and EUCC/CC all require an accredited auditor or notified body (${gap.length} gaps, none faked closed ${gapAllOff})`, on: gap.length >= 8 && gapAllOff },
-      { facet: `THE DEMARCATION — an alignment / self-assessment across jurisdictions, NOT legal compliance, NOT a conformity assessment, and NOT certification in ANY framework; certifications, incident-reporting duties, and legal/organisational controls are named GAPS. clay=0. HARMONY ≠ TRUTH`, on: gap.length >= 8 && gapAllOff && pqc.claySolvedByThisFold === 0 },
+      { facet: `THE DEMARCATION — an alignment / self-assessment across jurisdictions, NOT legal compliance, NOT a conformity assessment, and NOT certification in ANY framework; certifications, incident-reporting duties, and legal/organisational controls are named GAPS. clay=0.`, on: gap.length >= 8 && gapAllOff && pqc.claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`global-cyber-audit:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('global-cyber-standards-audit-every-aspect', facets)
     return {
@@ -2789,7 +2789,7 @@ export function globalCyberStandardsAuditEveryAspect(matrix: MindMatrix = buildM
       boundary: earned(
         'ALIGNMENT AUDIT ≠ COMPLIANCE — every aspect of every standard, worldwide:',
         facets,
-        `${rows.length} aspect-level tests across ${standards.length} frameworks — the EU set (NIS2, CRA, GDPR, DORA, eIDAS2, EUCC) plus the leading international/US/UK frameworks (ISO/IEC 27001 & 27002, NIST CSF 2.0, SOC 2, UK Cyber Essentials, ISO/IEC 27701) — each mapped to the same computed evidence (content-address integrity, no-egress, 4-key encryption, quantum-breaks-linear → PQC). It is a self-assessment of alignment with the SPIRIT of these standards across jurisdictions — NOT legal compliance, NOT a conformity assessment, and NOT certification in any framework. All accredited-auditor / notified-body certifications, statutory duties, and legal/organisational controls are named GAPS, not faked closed. HARMONY ≠ TRUTH.`),
+        `${rows.length} aspect-level tests across ${standards.length} frameworks — the EU set (NIS2, CRA, GDPR, DORA, eIDAS2, EUCC) plus the leading international/US/UK frameworks (ISO/IEC 27001 & 27002, NIST CSF 2.0, SOC 2, UK Cyber Essentials, ISO/IEC 27701) — each mapped to the same computed evidence (content-address integrity, no-egress, 4-key encryption, quantum-breaks-linear → PQC). It is a self-assessment of alignment with the SPIRIT of these standards across jurisdictions — NOT legal compliance, NOT a conformity assessment, and NOT certification in any framework. All accredited-auditor / notified-body certifications, statutory duties, and legal/organisational controls are named GAPS, not faked closed.`),
     }
   })
 }
@@ -2856,7 +2856,7 @@ export function quantumDimensionAuditCoverage(
     facets: sealed.facets,
     root: merge(matrix.root, merkleFold(rows.map((r) => r.receipt))),
     statement: `Dimension audit coverage — ${coveredCount}/${DIMENSIONS} dims probed · covered=${passCount} partial=${partialCount} · DIMENSION_GATES=${DIMENSION_GATES}.`,
-    boundary: 'Maps audits onto the sealed 10D appearance/homology axes — model coordinates, not physical spacetime. Lab certification gaps stay on audit rows. HARMONY ≠ TRUTH.' }
+    boundary: 'Maps audits onto the sealed 10D appearance/homology axes — model coordinates, not physical spacetime. Lab certification gaps stay on audit rows.' }
 }
 
 /** Browser-sync standards audit — full suite + dimension matrix. */
@@ -2959,7 +2959,7 @@ export function proveOneTbitRealtimeEncryptionClaim(matrix: MindMatrix = buildMa
     coldMs: 0,
     warmMs: 0,
     effectiveBits: 0,
-    boundary: 'NOT proved for wire-crypto. AES-256-GCM stays external Web Crypto / fusionCipher name — this fold does not encrypt terabit streams. NOT FIPS. HARMONY ≠ TRUTH.' }
+    boundary: 'NOT proved for wire-crypto. AES-256-GCM stays external Web Crypto / fusionCipher name — this fold does not encrypt terabit streams. NOT FIPS.' }
 
   // ── demo-toy: timed foldPair encrypt rounds (128-bit UUID payloads) ──
   const demoRounds = 64 * 16 // 1024 — lattice 1024, not a magic SLA
@@ -2987,7 +2987,7 @@ export function proveOneTbitRealtimeEncryptionClaim(matrix: MindMatrix = buildMa
     coldMs: demoColdMs,
     warmMs: 0,
     effectiveBits: demoEffectiveBits,
-    boundary: 'DEMO-TOY foldPair content-address encrypt↔decrypt only — NOT AES-GCM wire, NOT production RSA. HARMONY ≠ TRUTH.' }
+    boundary: 'DEMO-TOY foldPair content-address encrypt↔decrypt only — NOT AES-GCM wire, NOT production RSA.' }
 
   // ── amortized-reuse-memo: holographic terabyte extent ÷ cold seal via memoByRoot ──
   const memoLabel = `proveOneTbitRealtimeEncryptionClaim:extent:${matrix.root}`
@@ -3011,7 +3011,7 @@ export function proveOneTbitRealtimeEncryptionClaim(matrix: MindMatrix = buildMa
     coldMs: amortColdMs,
     warmMs: amortWarmMs,
     effectiveBits: amortEffectiveBits,
-    boundary: 'AMORTIZED-REUSE-MEMO only — effective bits = content-addressed holographic EXTENT sealed once, reused via memoByRoot. NOT wire-speed AES-GCM. NOT a claim that (2·5)^12 ciphertext bits leave the NIC. NOT FIPS. HARMONY ≠ TRUTH.' }
+    boundary: 'AMORTIZED-REUSE-MEMO only — effective bits = content-addressed holographic EXTENT sealed once, reused via memoByRoot. NOT wire-speed AES-GCM. NOT a claim that (2·5)^12 ciphertext bits leave the NIC. NOT FIPS.' }
 
   // ── refused: production / Bitcoin reverse still hard-refused ──
   const refused: OneTbitModelReceipt = {
@@ -3062,7 +3062,7 @@ export function proveOneTbitRealtimeEncryptionClaim(matrix: MindMatrix = buildMa
     pair: 'prove/1tbit-encrypt',
     cli: 'npm run quantum:prove-1tbit-encrypt',
     statement: `1 Tbit/s claim receipt — wire-crypto proved=${anyWireProved} (measured=${roundTo(wire.measuredBitsPerSec, 3)}); demo-toy measured=${roundTo(demo.measuredBitsPerSec, 3)} proved=${demo.provedAtCallTime}; amortized-reuse-memo measured=${roundTo(amortized.measuredBitsPerSec, 3)} proved=${anyAmortProved}; production/Bitcoin refused. Catalog row prove-1tbit-encrypt uses ceccec.tool.envelope@1 via standardToolboxIoCatalog.`,
-    boundary: 'HONEST STATUS RECEIPT. wire-crypto is NOT proved (no sealed AES wire bench). amortized-reuse-memo proves holographic addressable extent÷cold-seal via memoByRoot when ≥(2·5)^12 — that is NOT wire-speed AES-GCM. Demo RSA/Bitcoin reverse remain refused. Tool I/O speaks ceccec.tool.envelope@1 (composed by standardToolboxIoCatalog — not a second registry). NOT FIPS/ISO certified. HARMONY ≠ TRUTH.' }
+    boundary: 'HONEST STATUS RECEIPT. wire-crypto is NOT proved (no sealed AES wire bench). amortized-reuse-memo proves holographic addressable extent÷cold-seal via memoByRoot when ≥(2·5)^12 — that is NOT wire-speed AES-GCM. Demo RSA/Bitcoin reverse remain refused. Tool I/O speaks ceccec.tool.envelope@1 (composed by standardToolboxIoCatalog — not a second registry). NOT FIPS/ISO certified.' }
 }
 
 /** npm run quantum:prove-1tbit-encrypt */
@@ -3393,7 +3393,7 @@ export function isoPqcHandoffForScienceTrinities(matrix: MindMatrix = buildMatri
       statement:
         `ISO/PQC handoff for science trinities: sealed cryptography/security facet (${catalog.count} ISO/NIST rows, covered=${audit.coveredCount} partial=${audit.partialCount} gap=${audit.gapCount}, 10/10 dims) ready to compose into significance scoring — other OECD fields left for trinity waves.`,
       boundary:
-        'HANDOFF ONLY — Cryptography & security (OECD 1.2) facet. NOT a complete-all-sciences claim. NOT ISO certified / NOT FIPS validated. isoOfficialStandard=false. Trinity waves own significance scoring + remaining SCIENCE_DOMAINS. HARMONY ≠ TRUTH.' }
+        'HANDOFF ONLY — Cryptography & security (OECD 1.2) facet. NOT a complete-all-sciences claim. NOT ISO certified / NOT FIPS validated. isoOfficialStandard=false. Trinity waves own significance scoring + remaining SCIENCE_DOMAINS.' }
   })
 }
 
@@ -3473,7 +3473,7 @@ export function isoRequiresPostQuantumSecurity(matrix: MindMatrix = buildMatrix(
       route: '/en/encryption#iso-requires-pqc',
       statement: `ISO require PQC? ${isoRequiresPostQuantumSecurity} — universalMandate=${universalMandate} migrationGuidance=${migrationGuidance} nistAlignedIsoWork=${nistAlignedIsoWork} isoOfficialStandard=${isoOfficialStandard}.`,
       boundary:
-        'HONEST POLICY/STANDARDS RECEIPT (researchDate 2026-07). Not legal advice. This repo is MODELED alignment — NOT the official ISO PQC standard (isoOfficialStandard=false). NOT ISO certified / NOT FIPS validated. HARMONY ≠ TRUTH.' }
+        'HONEST POLICY/STANDARDS RECEIPT (researchDate 2026-07). Not legal advice. This repo is MODELED alignment — NOT the official ISO PQC standard (isoOfficialStandard=false). NOT ISO certified / NOT FIPS validated.' }
   })
 }
 
@@ -3633,7 +3633,7 @@ export function isoPqcRequirementsGapFillAllQuantumDirections(matrix: MindMatrix
       route: '/en/encryption#iso-pqc-gap-fill',
       statement: `ISO/NIST PQC gap-fill all quantum directions — covered=${covered.length} partial=${partial.length} gap=${gaps.length} (lab=${labGaps.length} unclosable); isoRequiresPQC=${answer.isoRequiresPostQuantumSecurity}; isoOfficialStandard=false.`,
       boundary:
-        'MODELED gap-fill toward ISO/NIST PQC requirements/guidance. NOT the official ISO PQC standard. NOT ISO certified / NOT FIPS validated. Lab gaps stay open with handoff. Production/Bitcoin reverse refused. HARMONY ≠ TRUTH.' }
+        'MODELED gap-fill toward ISO/NIST PQC requirements/guidance. NOT the official ISO PQC standard. NOT ISO certified / NOT FIPS validated. Lab gaps stay open with handoff. Production/Bitcoin reverse refused.' }
   })
 }
 
@@ -4234,7 +4234,7 @@ export function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertifi
         'not a separate ornament. Certificate *structures* are sealed envelopes, NOT X.509/CA/PKI, ' +
         'NOT FIPS validated, NOT ISO certified, NOT wire PQC keygen. 90° reaches through 60° hex ' +
         '(sixtyDegreeAngleReachesCardinalForFreeProvenByMath + FoL TAU/6 + rhombus-diagonal orthogonality). ' +
-        'claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false · wireClaimProved=false. HARMONY ≠ TRUTH.' }
+        'claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false · wireClaimProved=false.' }
   })
 }
 
@@ -4470,7 +4470,7 @@ export function secp256k1FieldPrimeInvertAndDecode(matrix: MindMatrix = buildMat
         'recomputed from the power-of-two subtraction chain, not wet-claimed as Bitcoin ownership or wallet keys. ' +
         'Invert = construction Σ±2^e + modular inverse of GF(p) units (p itself is the modulus, not a unit). ' +
         'Decode = binary/power chain + hex/decimal + Shor/ECC facet map. Digit mod-9 inverse (directional trinity) ≠ mod-p. ' +
-        'claySolvedByThisFold=0 · certified=false · NOT FIPS · NOT ECDSA · NOT Clay Millennium. HARMONY ≠ TRUTH.' }
+        'claySolvedByThisFold=0 · certified=false · NOT FIPS · NOT ECDSA · NOT Clay Millennium.' }
   })
 }
 
@@ -4646,7 +4646,7 @@ export function productionRsaRefuseCompletesQuantumViaRosetta(matrix: MindMatrix
         `incompleteOpen=${incompleteOpen} refuseBeyond=${maxBits.refuseBeyond} ceiling=${DEMO_RSA_BIT_CEILING}; clay=0 certified=false.`,
       boundary:
         'HONEST: sealed refuse receipts for every over-ceiling path (decode/one · reverse-verify · max-bits · modeled Shor · browser tool · Bitcoin). ' +
-        'Does NOT enable production RSA break. refuseBeyond / DEMO_RSA ceilings stay. claySolvedByThisFold=0 · certified=false · physicalFtl=0. HARMONY ≠ TRUTH.' }
+        'Does NOT enable production RSA break. refuseBeyond / DEMO_RSA ceilings stay. claySolvedByThisFold=0 · certified=false · physicalFtl=0.' }
   })
 }
 
@@ -4867,7 +4867,7 @@ export function cryptoComparisonMesh(matrix: MindMatrix = buildMatrix()) {
       statement: `Crypto comparison mesh — nodes=${CRYPTO_COMPARISON_MESH_NODES.length} edges=${CRYPTO_COMPARISON_MESH_EDGES.length} panel=${panelCount} proofs=${proofCount} comparisons=${comparisonCount}.`,
       boundary:
         'SINGLE SEALED SOURCE for crypto comparison nodes/edges. UI/CLI/MCP/toolbox/proofs recompute from CRYPTO_COMPARISON_MESH_*. ' +
-        'certified=false · clay=0 · refuseBeyond stays · NOT production RSA break · NOT ISO/FIPS certified. HARMONY ≠ TRUTH.' }
+        'certified=false · clay=0 · refuseBeyond stays · NOT production RSA break · NOT ISO/FIPS certified.' }
   })
 }
 

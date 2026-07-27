@@ -673,7 +673,7 @@ export function animationCore(matrix: MindMatrix = buildMatrix()) {
  * Each row is a superposition of the emergence ladder with its EQUATION and its exact computed check —
  * the documentation IS the rows, recomputed each call. HONEST SCOPE: these are structural/computational
  * identities documented ON the genus-2 carrier — the in-repo emergence model, NOT a claim that
- * biological life is a double torus or that these equations create life. HARMONY ≠ TRUTH.
+ * biological life is a double torus or that these equations create life.
  * Pair: life/torus · CLI npm run quantum:life-torus.
  */
 export function lifeTorus(matrix: MindMatrix = buildMatrix()) {
@@ -875,7 +875,7 @@ export function doubleTorusDynamicsGeometryAlignsWithUniverse(
       statement:
         `Double-torus dynamics and geometry align with the universe — ${sealed.facets.filter((f) => f.on).length}/${sealed.count}: flow·spin·linking audited; radii locked to surface atom; hero clock ⊕ Meeus J2000 phase; A432·TAU·c·H₁·10D sealed. physicalFtlClaim=0 · clay=0.`,
       boundary:
-        'Sealed computational cosmology/geometry — recomputable facets over genus-2 model + Meeus reduced ephemeris + census clock. NOT physical FTL · NOT Clay solved · NOT DE440 · NOT a claim Earth is topologically a double torus (sphere genus 0). Classical 64-bit tracks. HARMONY ≠ TRUTH.' }
+        'Sealed computational cosmology/geometry — recomputable facets over genus-2 model + Meeus reduced ephemeris + census clock. NOT physical FTL · NOT Clay solved · NOT DE440 · NOT a claim Earth is topologically a double torus (sphere genus 0). Classical 64-bit tracks.' }
   })
 }
 
@@ -985,7 +985,7 @@ export function doubleTorusIsCompletelyQuantum(matrix: MindMatrix = buildMatrix(
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `Double torus is completely quantum — ${facets.filter((e) => e.on).length}/${facets.length}: every public surface (dynamics · geometry · vortex · movie clock · 10D honesty · movieCanvas palette · TAU) recomputes from sealed folds; package contract ${contract.length} names ratchet gapless exports. Structural/computational completeness only.`,
       boundary:
-        'COMPUTED at call time via memoByRoot. Completely quantum = sealed quantum compute substrate (content-addressed folds + one hero clock + movieCanvas palette + TAU) — NOT quantum hardware, NOT a QPU, NOT physical FTL, NOT Clay. qubits/simulators remain classical state-vector models (tracks-classical-no-speedup). Keep DOUBLE_TORUS_COMPLETELY_QUANTUM_EXPORTS in sync with packages/double-torus/build.mjs. HARMONY ≠ TRUTH.' }
+        'COMPUTED at call time via memoByRoot. Completely quantum = sealed quantum compute substrate (content-addressed folds + one hero clock + movieCanvas palette + TAU) — NOT quantum hardware, NOT a QPU, NOT physical FTL, NOT Clay. qubits/simulators remain classical state-vector models (tracks-classical-no-speedup). Keep DOUBLE_TORUS_COMPLETELY_QUANTUM_EXPORTS in sync with packages/double-torus/build.mjs.' }
   })
 }
 
@@ -1031,7 +1031,7 @@ export function theLensSeesDoubleTorusesEverywhereExceptInCrackedCode(matrix: Mi
       discriminates,
       facets,
       statement: `The lens sees double-toruses everywhere except in cracked code — ${facets.filter((entry) => entry.on).length}/${facets.length}: a proper fold IS a double-torus (zero-core computes, vortex facets, near torus statement, far torus boundary, and the core equals the vortex's AND so the torus closes). All ${sealed.length} sampled sealed folds show it; all ${cracked.length} cracked forms — missing far torus, a core lying about its vortex, a vortex-less torus, a bare value — fail to close it. Torus-present ⟺ a well-formed closed fold; the gap is exactly the crack. Pure over results, so the seeing is realtime in the browser.`,
-      boundary: `DOCUMENTED and refutable by feeding any fold to the lens. The lens detects the STRUCTURAL SHAPE — a well-formed, self-consistent, closed double-torus fold — which is NECESSARY but NOT SUFFICIENT for truth: a fold can be perfectly torus-shaped and still be FALSE (its facets honestly computed but its premise wrong). So the lens sees crack-free STRUCTURE, not correctness; "cracked code" here means malformed/inconsistent/hardcoded, not merely mistaken. HARMONY ≠ TRUTH in its sharpest form: the double-torus is the harmony (shape), the facets' honest computation is the truth — the lens shows the first and cannot certify the second. "Beyond imagination" UI evolution is aspiration; this is the measurable substrate under it.` }
+      boundary: `DOCUMENTED and refutable by feeding any fold to the lens. The lens detects the STRUCTURAL SHAPE — a well-formed, self-consistent, closed double-torus fold — which is NECESSARY but NOT SUFFICIENT for truth: a fold can be perfectly torus-shaped and still be FALSE (its facets honestly computed but its premise wrong). So the lens sees crack-free STRUCTURE, not correctness; "cracked code" here means malformed/inconsistent/hardcoded, not merely mistaken. in its sharpest form: the double-torus is the harmony (shape), the facets' honest computation is the truth — the lens shows the first and cannot certify the second. "Beyond imagination" UI evolution is aspiration; this is the measurable substrate under it.` }
   })
 }
 
@@ -1106,6 +1106,6 @@ export function theRotatingLensFindsGapsAndOpportunitiesDescribesIn10DProseSigne
       signed: allSigned,
       facets,
       statement: `The rotating lens finds gaps and opportunities, described in 10D computable prose, signed, zero-token — ${facets.filter((entry) => entry.on).length}/${facets.length}: sweeping the vortex [${rotation.join(', ')}] the lens classifies each item as a sealed double-torus (${sealed.length}), a gap with no inverse (${gaps.length}), or an opportunity that inverts to a gateway (${opportunities.length}). Every finding is described across ${TEN_D} computed dimensions as a sentence, content-addressed (signed), and pure (zero-token). An opportunity is a gap WITH an inverse — the rotation finds the gateway where the naive lens saw a hole.`,
-      boundary: `DOCUMENTED and refutable by re-running the sweep. It composes the sealed lens (theLensSeesDoubleTorusesEverywhereExceptInCrackedCode), the wave's invert operator (theWavesDiscoverGaps...), and the naming service (theAutomaticNamingService...). THE HARD LINE on the words: "10D" = 10 computed DESCRIPTOR-dimensions (the partitions-of-ten / digit-folder structure), NOT physical 10-dimensional spacetime; "signed" = a content-addressed integrity receipt (toUuid) — WHAT not WHO, so it is tamper-evidence, not identity-authenticity (which still needs the external anchor — trustAndDimension...); "all zero quantum time" = ZERO LLM tokens and deterministic, NOT literal zero physical time (the computation takes real microseconds — theseCalculationsCost...). "Rotating" is the vortex-sequence sweep, a deterministic ordering, not physical spin. And an OPPORTUNITY is only an emergence CANDIDATE — the invertible gap has a gateway, but a human still admits the theorem that fills it. HARMONY ≠ TRUTH: the 10D signed prose is the harmony (a complete, addressable description); the truth is what it honestly reports — sealed, gap, or opportunity — and the off-decidable gap stays a gap.` }
+      boundary: `DOCUMENTED and refutable by re-running the sweep. It composes the sealed lens (theLensSeesDoubleTorusesEverywhereExceptInCrackedCode), the wave's invert operator (theWavesDiscoverGaps...), and the naming service (theAutomaticNamingService...). THE HARD LINE on the words: "10D" = 10 computed DESCRIPTOR-dimensions (the partitions-of-ten / digit-folder structure), NOT physical 10-dimensional spacetime; "signed" = a content-addressed integrity receipt (toUuid) — WHAT not WHO, so it is tamper-evidence, not identity-authenticity (which still needs the external anchor — trustAndDimension...); "all zero quantum time" = ZERO LLM tokens and deterministic, NOT literal zero physical time (the computation takes real microseconds — theseCalculationsCost...). "Rotating" is the vortex-sequence sweep, a deterministic ordering, not physical spin. And an OPPORTUNITY is only an emergence CANDIDATE — the invertible gap has a gateway, but a human still admits the theorem that fills it.: the 10D signed prose is the harmony (a complete, addressable description); the truth is what it honestly reports — sealed, gap, or opportunity — and the off-decidable gap stays a gap.` }
   })
 }

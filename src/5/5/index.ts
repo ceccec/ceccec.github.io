@@ -122,5 +122,5 @@ export function voidFoldFixedPoint() {
     halvingDigit,
     facets,
     statement: `The fold at the void — ${facets.filter((entry) => entry.on).length}/${facets.length}: mirror('5/0') = '0\\5' so the notation closes to 5/5 = 1; the station mirror and the void-reflection each fix exactly 5; and 2·5 ≡ 1 (mod 9) makes 5 the halving digit — the unique point where inversion, reflection and the pi-train agree.`,
-    boundary: 'Every facet is finite arithmetic or a string computation run here; the poetry (self-verification at the self-paired station) is checked as a fact about this module\'s own exports, not asserted. The mod-9 fixed point of x↦1−x is 5 because 2 is invertible there — in ℤ/2ℤ-like rings the mirror can fix nothing or everything; the theorem is about THIS ring. HARMONY ≠ TRUTH.' }
+    boundary: 'Every facet is finite arithmetic or a string computation run here; the poetry (self-verification at the self-paired station) is checked as a fact about this module\'s own exports, not asserted. The mod-9 fixed point of x↦1−x is 5 because 2 is invertible there — in ℤ/2ℤ-like rings the mirror can fix nothing or everything; the theorem is about THIS ring.' }
 }

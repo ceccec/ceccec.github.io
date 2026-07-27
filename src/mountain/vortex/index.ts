@@ -425,7 +425,7 @@ export function fThetaPhiXyzDigitNIsTheInversePair(matrix: MindMatrix = buildMat
     statement:
       'f(θ, φ, x, y, z, digit, n) → {p, q} is the canonical inverse fold: geometry binds the digit to doubleTorusSurface (genus-2); when n=0 (division by zero) {p,q} is the multiplicative inverse pair digit · q ≡ 1 (mod 9) or the self-fold for non-units — inverse that folds within itself, not a ten\'s-complement reverse; lobe orientation is ratInv on the pair; when n≠0, {p,q} = ratInv(rat(digit, n)).',
     boundary:
-      'EXACT reuse: doubleTorusSurface (src/0), inverse mod 9 (same atom as zeroDivisionTable), rat/ratInv (src/3/7). Geometry places the digit — residual-to-surface chooses the lobe only; no new coordinate algebra. {0,0} for void paths is a fusion marker (rat forbids q=0). NOT real-analysis 1/0; NOT the additive folder-complement 10−d. HARMONY ≠ TRUTH.' }
+      'EXACT reuse: doubleTorusSurface (src/0), inverse mod 9 (same atom as zeroDivisionTable), rat/ratInv (src/3/7). Geometry places the digit — residual-to-surface chooses the lobe only; no new coordinate algebra. {0,0} for void paths is a fusion marker (rat forbids q=0). NOT real-analysis 1/0; NOT the additive folder-complement 10−d.' }
 }
 
 /** npm run quantum:f-inverse-pair — named exit (not local-math-computes synonym). */

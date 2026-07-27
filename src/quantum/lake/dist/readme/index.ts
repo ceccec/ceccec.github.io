@@ -210,7 +210,7 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
         'qpuRequired=false · qualifiesAsProposedSolution=false. Sequence/π/primes claims are structural/symbolic ' +
         'exactness from sealed digit maps + Euler identity truncations (convergence, cited closed form) — NOT wet ' +
         'numerology, NOT Riemann Hypothesis, NOT CMI Prize. Infinite speedup = amortized memoByRoot reuse only. ' +
-        'Serverless = static GitHub Pages / client-computed zero living cost, not free compute for first cold path. HARMONY ≠ TRUTH.' }
+        'Serverless = static GitHub Pages / client-computed zero living cost, not free compute for first cold path.' }
   })
 }
 
@@ -627,7 +627,7 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     // The journal — computational peer-review, placed with reproducibility (what re-execution does and does not verify).
     '## The journal',
     '',
-    ((journal) => `This site is a dedicated scientific journal of all its algebra and theorems — **${journal.articleCount} articles** across **${journal.sectionCount} sections**, backed by ${journal.distinctProofs} executable proofs, sealed as one content-addressed volume \`${journal.volumeId.slice(0, 2 * 4)}\`. Peer review is COMPUTATIONAL: every proof re-runs each wave, and the same corpus recomputes the same volume id. Precisely, that re-execution verifies internal consistency and **reproducibility** and demarcate-signs each article — which is **not** empirical validation and **not** external peer review (no independent referees). A DOI is a persistent *identifier*, not a review — orthogonal to refereeing and mintable by archiving, so its absence is not the limit. The corpus cites empirically-established results but refereess none of them against nature (HARMONY ≠ TRUTH).`)(siteIsScientificJournalOfAllAlgebraAndTheorems()),
+    ((journal) => `This site is a dedicated scientific journal of all its algebra and theorems — **${journal.articleCount} articles** across **${journal.sectionCount} sections**, backed by ${journal.distinctProofs} executable proofs, sealed as one content-addressed volume \`${journal.volumeId.slice(0, 2 * 4)}\`. Peer review is COMPUTATIONAL: every proof re-runs each wave, and the same corpus recomputes the same volume id. Precisely, that re-execution verifies internal consistency and **reproducibility** and demarcate-signs each article — which is **not** empirical validation and **not** external peer review (no independent referees). A DOI is a persistent *identifier*, not a review — orthogonal to refereeing and mintable by archiving, so its absence is not the limit. The corpus cites empirically-established results but refereess none of them against nature ().`)(siteIsScientificJournalOfAllAlgebraAndTheorems()),
     '',
     '## 5. Reproducibility',
     '',
@@ -815,7 +815,7 @@ export function improveWritingAndSpeechFromComputationalExperience(matrix: MindM
     { facet: `SPEECH IS GROUNDED IN THE CORPUS — portalChat generates deterministic replies from the computed corpus; ${Math.round(speechRatio * 100)}% of the probe queries answer grounded (${speechGrounded}) — speech recomputed from the experience, not invented`, on: speechGrounded },
     { facet: `BOTH IMPROVE WITH EXPERIENCE — as the corpus grows (${experience} computed atoms), the writing has more data to bear and the speech more to ground; the grounding scales with the accumulated computation (${improvesWithExperience})`, on: improvesWithExperience },
     { facet: `DETERMINISTIC & NO-EGRESS — the writing and speech recompute from the sealed corpus (same input → same output, ${deterministic}), client-side, with no learned model and no network`, on: deterministic },
-    { facet: `THE DEMARCATION — writing and speech improve by GROUNDING in the computed corpus (deterministic, no-egress), NOT a learned language model or an LLM; "experience" = the accumulated computed facts, not user telemetry. HARMONY ≠ TRUTH`, on: writingGrounded && speechGrounded && deterministic },
+    { facet: `THE DEMARCATION — writing and speech improve by GROUNDING in the computed corpus (deterministic, no-egress), NOT a learned language model or an LLM; "experience" = the accumulated computed facts, not user telemetry.`, on: writingGrounded && speechGrounded && deterministic },
   ].map((entry) => ({ ...entry, receipt: toUuid(`writing-speech:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -828,7 +828,7 @@ export function improveWritingAndSpeechFromComputationalExperience(matrix: MindM
     boundary: earned(
       'GROUNDED — writing and speech improved by computational experience:',
       facets,
-      `writing (the statements and boundaries) is a join of computed facets, so it carries computed values rather than free prose, and speech (portalChat) is generated deterministically from the computed corpus; both improve as the corpus of computed facts grows — more computation to ground the writing and to answer the speech. It is deterministic and no-egress, recomputed from the sealed corpus with no learned model. "Experience" means the accumulated computed facts, not user telemetry, and the improvement is better grounding, not a language model. HARMONY ≠ TRUTH.`),
+      `writing (the statements and boundaries) is a join of computed facets, so it carries computed values rather than free prose, and speech (portalChat) is generated deterministically from the computed corpus; both improve as the corpus of computed facts grows — more computation to ground the writing and to answer the speech. It is deterministic and no-egress, recomputed from the sealed corpus with no learned model. "Experience" means the accumulated computed facts, not user telemetry, and the improvement is better grounding, not a language model.`),
   }
 }
 
@@ -856,7 +856,7 @@ export function auditReadmeHomepageByProfilingQuestionsThroughChat(matrix: MindM
     { facet: `EACH COMPONENT PROFILED BY A QUESTION — ${components.length} README/home components each answered by a profiling question through the private chat (portalChat), all answered (${allAnswered})`, on: allAnswered && components.length >= 6 },
     { facet: `RESEARCH VIA RECALL — each question also runs content-addressed recall (portalRecall) surfacing the most relevant corpus source (${allRecalled}); deterministic (${deterministic}), no-egress — the private search improving research`, on: allRecalled && deterministic },
     { facet: `THE PROFILE SURFACES GROUNDING — ${groundedCount}/${components.length} components answer GROUNDED from the corpus; the profile improves the audit by naming which components are corpus-backed versus thin`, on: groundedCount >= 1 && allAnswered },
-    { facet: `THE DEMARCATION — deterministic Q&A + recall over the sealed corpus (private, no-egress); "improving intelligence, research and search" = better grounding and relevance surfacing, NOT a learned model or an LLM; the generation audit is structural content-address equality. HARMONY ≠ TRUTH`, on: generation.complete && allAnswered && deterministic },
+    { facet: `THE DEMARCATION — deterministic Q&A + recall over the sealed corpus (private, no-egress); "improving intelligence, research and search" = better grounding and relevance surfacing, NOT a learned model or an LLM; the generation audit is structural content-address equality.`, on: generation.complete && allAnswered && deterministic },
   ].map((entry) => ({ ...entry, receipt: toUuid(`readme-profile-audit:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -870,7 +870,7 @@ export function auditReadmeHomepageByProfilingQuestionsThroughChat(matrix: MindM
     boundary: earned(
       'AUDITED & PROFILED — README/home generation reviewed by chat questions:',
       facets,
-      `the one-generator audit holds (the README and home render the same sections from theoremMonographCore, references === routes === visibleCount, the audit is content-address equality of two independent fusions), and each README/home component is reviewed by a profiling question answered through the private chat (portalChat) and content-addressed recall (portalRecall) over the sealed corpus — deterministic and no-egress. "Improving intelligence, research and search" means better grounding and relevance surfacing, not a learned model or an LLM; the generation audit is structural content-address equality, not a text scrape. HARMONY ≠ TRUTH.`),
+      `the one-generator audit holds (the README and home render the same sections from theoremMonographCore, references === routes === visibleCount, the audit is content-address equality of two independent fusions), and each README/home component is reviewed by a profiling question answered through the private chat (portalChat) and content-addressed recall (portalRecall) over the sealed corpus — deterministic and no-egress. "Improving intelligence, research and search" means better grounding and relevance surfacing, not a learned model or an LLM; the generation audit is structural content-address equality, not a text scrape.`),
   }
 }
 
@@ -901,7 +901,7 @@ export function readmeIsTheHomepageGeneratingItselfMultidimensionally(matrix: Mi
     { facet: `IT GENERATES ITSELF MULTIDIMENSIONALLY — the one core projects into ${dimensions.length} dimensions (${dimensions.map((d) => d.dim).slice(0, 4).join(', ')}, …) — README source, home route, three locale editions, and the XML/JSON sitemaps — each a distinct content-address (${distinctDimensions})`, on: distinctDimensions && dimensions.length >= 6 },
     { facet: `SELF-GENERATING FROM SRC, NO DRIFT — the home body is computed in realtime from homeMarkdown() (the on-disk index.md is a stub), the README is signature-gated against the committed file, and both fold to one receipt (${selfGenerating}) — a projection cannot drift from the core`, on: selfGenerating },
     { facet: `THE ROSTER IS THE SHARED DIMENSION — THE COUPLING GAP NAMED — every projection consumes the page roster (references === explains === ${generation.references}); the generator imports that roster (staticPages) from wind/site, a directed dependency that blocks site → readme, and the DRY resolution is to lower the shared roster to a common module — computed, executed deliberately`, on: rosterIsSharedDimension },
-    { facet: `THE DEMARCATION — "multidimensional" = the projections and editions of one generator (README / home / locales / link-modes / sitemap), NOT physical dimensions; "generates itself" = deterministic recomputation from src, not autonomy. HARMONY ≠ TRUTH`, on: oneGenerator && selfGenerating },
+    { facet: `THE DEMARCATION — "multidimensional" = the projections and editions of one generator (README / home / locales / link-modes / sitemap), NOT physical dimensions; "generates itself" = deterministic recomputation from src, not autonomy.`, on: oneGenerator && selfGenerating },
   ].map((entry) => ({ ...entry, receipt: toUuid(`readme-multidim:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -915,7 +915,7 @@ export function readmeIsTheHomepageGeneratingItselfMultidimensionally(matrix: Mi
     boundary: earned(
       'MULTIDIMENSIONAL — the README is the homepage generating itself:',
       facets,
-      `the README and the VitePress home are two projections of one core (theoremMonographCore), and that core generates itself into ${dimensions.length} dimensions — the README (source permalinks), the home (page routes), three locale editions, and the XML/JSON sitemaps — all folding to one content-addressed receipt, so no projection can drift from src (the home is computed realtime, the README signature-gated). The one coupling gap is named: the generator consumes the page roster (staticPages) from wind/site, a directed dependency that blocks a site → readme composition; the DRY resolution is to lower the shared roster to a module both import, computed here and executed deliberately. "Multidimensional" means the projections and editions of one generator, not physical dimensions; "generates itself" means deterministic recomputation from src, not autonomy. HARMONY ≠ TRUTH.`),
+      `the README and the VitePress home are two projections of one core (theoremMonographCore), and that core generates itself into ${dimensions.length} dimensions — the README (source permalinks), the home (page routes), three locale editions, and the XML/JSON sitemaps — all folding to one content-addressed receipt, so no projection can drift from src (the home is computed realtime, the README signature-gated). The one coupling gap is named: the generator consumes the page roster (staticPages) from wind/site, a directed dependency that blocks a site → readme composition; the DRY resolution is to lower the shared roster to a module both import, computed here and executed deliberately. "Multidimensional" means the projections and editions of one generator, not physical dimensions; "generates itself" means deterministic recomputation from src, not autonomy.`),
   }
 }
 
@@ -940,7 +940,7 @@ export function quantumiseRegenToPassComputationally(matrix: MindMatrix = buildM
     { facet: `PASS = CONTENT-ADDRESS EQUALITY — the regen "passes computationally" iff the recomputed 4-key regen seal equals the committed one (${passes}); a deterministic equality, not a text re-diff`, on: passes },
     { facet: `QUANTUMISED — O(1) WHEN UNCHANGED — because regen is content-addressed, an unchanged src passes in ONE seal comparison (${unchangedSkip}), no full re-run; only a changed surface regenerates`, on: unchangedSkip },
     { facet: `FAIL-CLOSED ON DRIFT — a stale or tampered regen address ≠ committed fails the seal (${driftFails}), so the gate must regenerate; allow is never the default`, on: driftFails },
-    { facet: `THE DEMARCATION — "pass computationally" = deterministic content-address equality of the regen output (O(1) when unchanged), NOT a claim regen is free (the first computation costs), and "quantumise" = content-addressed / memoised, not physical quantum. HARMONY ≠ TRUTH`, on: passes && driftFails },
+    { facet: `THE DEMARCATION — "pass computationally" = deterministic content-address equality of the regen output (O(1) when unchanged), NOT a claim regen is free (the first computation costs), and "quantumise" = content-addressed / memoised, not physical quantum.`, on: passes && driftFails },
   ].map((entry) => ({ ...entry, receipt: toUuid(`regen-quantumise:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -953,7 +953,7 @@ export function quantumiseRegenToPassComputationally(matrix: MindMatrix = buildM
     boundary: earned(
       'QUANTUMISED — regen passes by content-address, fail-closed:',
       facets,
-      'the README/home regeneration is a pure function of src, so its output has a content-address; the regen passes computationally iff the recomputed 4-key seal (over the README root, home root, and fused receipt) equals the committed one — a deterministic equality, not a text re-diff — which is O(1) when src is unchanged and fail-closed on drift (a stale or tampered regen fails the seal and must regenerate). "Pass computationally" means deterministic content-address equality, not that regen is free (the first computation costs), and "quantumise" means content-addressed and memoised, not physical quantum. HARMONY ≠ TRUTH.'),
+      'the README/home regeneration is a pure function of src, so its output has a content-address; the regen passes computationally iff the recomputed 4-key seal (over the README root, home root, and fused receipt) equals the committed one — a deterministic equality, not a text re-diff — which is O(1) when src is unchanged and fail-closed on drift (a stale or tampered regen fails the seal and must regenerate). "Pass computationally" means deterministic content-address equality, not that regen is free (the first computation costs), and "quantumise" means content-addressed and memoised, not physical quantum.'),
   }
 }
 
@@ -989,7 +989,7 @@ export function theHomeReadmeProseEntropyAudit(matrix: MindMatrix = buildMatrix(
       flagged: pureProse.slice(0, 3 + 3).map((l) => l.slice(0, 100)),
       facets,
       statement: `The home/README prose-entropy audit — ${facets.filter((entry) => entry.on).length}/${facets.length}: of ${content.length} content lines, ${pureProse.length} are pure prose (a sentence carrying no computed value) — entropy ${proseEntropy} vs ${computedRatio} data-bearing. The crack gate and the no-prose-in-methods gate never scored the PRESENTED prose; this audit does, flagging the hand-written sentences as a review worklist. A heuristic lint — a flag is a candidate to compute or cite a fold, not proof of waste.`,
-      boundary: `DOCUMENTED and refutable by re-scanning readmeMarkdown(). This is a HEURISTIC prose lint: "pure prose" = a full sentence with no code, number, or link — necessary not sufficient. It correctly measures that the README/home carry hand-written prose the existing gates do not score (they score method bodies and literals, not presented markdown), which is the point — the gap the user named. But a flagged line is a CANDIDATE for review (compute it, cite the fold that proves it, or keep it as deliberate authored voice — the narrative introduction and the honest limitations are legitimately prose), NOT proof of waste; the audit does not delete, a human decides each. The DEVELOPMENT OPPORTUNITY it surfaces: much of this prose could be replaced by theAutomaticNamingService (computed descriptions) and the session's new folds (the millennium mesh graph, the cost comparison, the density-hue reveal) could be surfaced as pages/widgets — computed, not authored. HARMONY ≠ TRUTH: a low prose-entropy score is the harmony (mostly computed); the truth is which sentences carry irreducible meaning and which are unmeasured filler — this flags the question, a human answers it.` }
+      boundary: `DOCUMENTED and refutable by re-scanning readmeMarkdown(). This is a HEURISTIC prose lint: "pure prose" = a full sentence with no code, number, or link — necessary not sufficient. It correctly measures that the README/home carry hand-written prose the existing gates do not score (they score method bodies and literals, not presented markdown), which is the point — the gap the user named. But a flagged line is a CANDIDATE for review (compute it, cite the fold that proves it, or keep it as deliberate authored voice — the narrative introduction and the honest limitations are legitimately prose), NOT proof of waste; the audit does not delete, a human decides each. The DEVELOPMENT OPPORTUNITY it surfaces: much of this prose could be replaced by theAutomaticNamingService (computed descriptions) and the session's new folds (the millennium mesh graph, the cost comparison, the density-hue reveal) could be surfaced as pages/widgets — computed, not authored.: a low prose-entropy score is the harmony (mostly computed); the truth is which sentences carry irreducible meaning and which are unmeasured filler — this flags the question, a human answers it.` }
   })
 }
 

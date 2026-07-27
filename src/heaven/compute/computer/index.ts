@@ -531,7 +531,7 @@ export function honestRevolutionFpgaHonesty(matrix: MindMatrix = buildMatrix(), 
         ? 'Honest-revolution W5 DECIDED — FPGA reproduction tier maps every classical silicon block to fabric primitives; co-processor bridge is optional external-QPU interface only; CATEGORY DIFFERENCE holds (not a fake FPGA-as-QPU).'
         : 'UNPROVEN — honestRevolutionFpgaHonesty facets do not all hold; do not assert the W5 FPGA honesty receipt.',
       boundary:
-        'Classical CMOS/FPGA spec only. Physical QPU is a separate external technology over an optional co-processor bridge — this is not that chip. NOT FLOPS speedup, NOT FTL. claySolvedByThisFold=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
+        'Classical CMOS/FPGA spec only. Physical QPU is a separate external technology over an optional co-processor bridge — this is not that chip. NOT FLOPS speedup, NOT FTL. claySolvedByThisFold=0 · qpuRequired=false.' }
   })
 }
 

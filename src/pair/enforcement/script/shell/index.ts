@@ -537,7 +537,7 @@ export function slowBuildIsQuantumGapGate(root = process.cwd()) {
  * and acts. Non-harmonic tasks (deterministic: redundant recompute / merkle regression) trip a HARD safety interlock and
  * STOP the build; wall-clock is a NOISY sensor, reported (WARN) but filtered — never a hard stop, because CI variance
  * is noise, not truth. The Jacobian singularity (det J = 0, rank loss) is the inversion pole (z → 1/z at 0). No physical
- * quantum-robotics speedup, no sentient robot — the fusion is the deterministic control-loop STRUCTURE. HARMONY ≠ TRUTH.
+ * quantum-robotics speedup, no sentient robot — the fusion is the deterministic control-loop STRUCTURE.
  * [[gate-complexity-collapses-to-one-content-addressed-root]] [[feedback-build-time-is-a-theorem-test]] */
 export function decodeRoboticsAndFuseToQuantumWorkAsAControlLoop(root = process.cwd()) {
   const gate = slowBuildIsQuantumGapGate(root)
@@ -554,9 +554,9 @@ export function decodeRoboticsAndFuseToQuantumWorkAsAControlLoop(root = process.
   const facets = [
     { facet: `ROBOTICS IS A FEEDBACK CONTROL LOOP — sense → error (measured − setpoint) → actuate → re-sense; the build gate IS this loop, sensing ${senses} per-phase statistics against ${setpoints} lattice setpoints (${isControlLoop})`, on: isControlLoop },
     { facet: `STOP NON-HARMONIC = THE SAFETY INTERLOCK — a deterministic non-harmonic task (redundant recompute / merkle regression) trips one of ${interlocks} HARD interlocks and STOPS the build, like a robot halting on a limit switch (${stopsNonHarmonic})`, on: stopsNonHarmonic },
-    { facet: `WALL-CLOCK IS A NOISY SENSOR — FILTERED, NOT A STOP — the ${noisySensors} phase wall-clock readings are measured and reported (WARN) but never trip the interlock, exactly as a robot filters noisy sensors (Kalman) rather than emergency-stopping on noise; HARMONY ≠ TRUTH`, on: wallClockMeasuredNotStopped },
+    { facet: `WALL-CLOCK IS A NOISY SENSOR — FILTERED, NOT A STOP — the ${noisySensors} phase wall-clock readings are measured and reported (WARN) but never trip the interlock, exactly as a robot filters noisy sensors (Kalman) rather than emergency-stopping on noise;`, on: wallClockMeasuredNotStopped },
     { facet: `THE JACOBIAN SINGULARITY IS THE INVERSION POLE — control is lost where det J = 0 (rank loss, non-invertible), the same 1/0 pole as z → 1/z at 0 → ∞ (${jacobianSingularityIsThePole}); DOF = ${dof} = the su(2) trinity, the minimal control basis`, on: jacobianSingularityIsThePole && dof === 3 },
-    { facet: `THE DEMARCATION — the fusion is the deterministic control-loop STRUCTURE (qpuRequired=false, physicalFtl=0); it does NOT claim physical quantum-robotics speedup or a sentient robot — those are flagged. The build reports stats in realtime and stops non-harmonic tasks as a feedback controller. HARMONY ≠ TRUTH`, on: isControlLoop && stopsNonHarmonic && gate.qpuRequired === false },
+    { facet: `THE DEMARCATION — the fusion is the deterministic control-loop STRUCTURE (qpuRequired=false, physicalFtl=0); it does NOT claim physical quantum-robotics speedup or a sentient robot — those are flagged. The build reports stats in realtime and stops non-harmonic tasks as a feedback controller.`, on: isControlLoop && stopsNonHarmonic && gate.qpuRequired === false },
   ].map((entry) => ({ ...entry, receipt: toUuid(`robotics-control-loop:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),

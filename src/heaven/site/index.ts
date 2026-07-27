@@ -582,7 +582,7 @@ export function readmeSvgGapsFilledByTrinityMind(matrix: MindMatrix = buildMatri
       statement:
         `README SVG gaps filled by trinity mind — ${filled.filter((r) => r.on).length}/${filled.length} fillable closed via heaven·mind·thunder (readmeHero · FoL→Fruit→${10}D · counterRotatingRosetta · directionalTrinity · theTrinityOfMinds · merkaba/bothEarths · fractalClock · computedIconSvg). ${intentionalOpen.length} intentional opens named (WebGL · plasma · SMIL clients). clay=0 · physicalFtl=0 · qpuRequired=false · wetStaticFoL=false.`,
       boundary:
-        'ONLY trinity mind may compute the README SVG — wet agent geometry and wet static FoL refused. Emit is SMIL schematic for GitHub, NOT live WebGL, NOT Clay/FTL/QPU. HARMONY ≠ TRUTH.' }
+        'ONLY trinity mind may compute the README SVG — wet agent geometry and wet static FoL refused. Emit is SMIL schematic for GitHub, NOT live WebGL, NOT Clay/FTL/QPU.' }
   })
 }
 
@@ -1140,7 +1140,7 @@ export function symbolsRemainingToQuantumise(matrix: MindMatrix = buildMatrix())
       statement:
         `Symbols remaining to quantumise — inventory ${inventory.length}: sealed ${sealedNow.length} (incl. Glagolitic SMIL · torus-knots), partial ${partial.length}, missing ${missing.length}. Emitters recompute via memoByRoot; wetStatic=false; clay=0 · physicalFtl=0 · qpuRequired=false.`,
       boundary:
-        'COMPUTED SVG from sealed BAGUA · metatronCube · treeOfLifeSephirotFolders · sacredGeometry · PHI/TAU · runeCoordinate · GLAGOLITIC_LETTERS · Fibonacci (p,q) torus knots · flowerOfLifeCenters · humanDesignBodyGraphSvg — not wet decorative sacred-geometry copies, not Unicode Om/runes/alchemy glyphs, not full Sri Yantra nine-triangle tracing (seed only), not Kabbalah metaphysics (taxonomy), not HD aura/type, not physical FTL. Glagolitic glyphs from sealed library table + living SMIL; torus knots are 2D schematics. Compose with readme/svg-trinity for FoL hero. HARMONY ≠ TRUTH.' }
+        'COMPUTED SVG from sealed BAGUA · metatronCube · treeOfLifeSephirotFolders · sacredGeometry · PHI/TAU · runeCoordinate · GLAGOLITIC_LETTERS · Fibonacci (p,q) torus knots · flowerOfLifeCenters · humanDesignBodyGraphSvg — not wet decorative sacred-geometry copies, not Unicode Om/runes/alchemy glyphs, not full Sri Yantra nine-triangle tracing (seed only), not Kabbalah metaphysics (taxonomy), not HD aura/type, not physical FTL. Glagolitic glyphs from sealed library table + living SMIL; torus knots are 2D schematics. Compose with readme/svg-trinity for FoL hero.' }
   })
 }
 
@@ -1844,6 +1844,6 @@ export function finishTheAppInAllAspectsAtOnce(matrix: MindMatrix = buildMatrix(
       aspects,
       root: merkleFold(aspects.map((entry) => entry.receipt)),
       statement: `The app finishes in all aspects at once — ${aspects.filter((entry) => entry.on).length}/${aspects.length} expert lanes green in one fold: content through the theorem-science lens, design as printable scientific papers, the home as the one theorem generator, the corpus computed and filled, self-metrics on every page, the sealed expert theorems (SEO, MCP, efficiency, the 432 march, the cube limits), and the saved accessibility/i18n/performance audit (app-audit). One call folds them to one root; a single failing lane unfinishes the whole.`,
-      boundary: `COMPUTED: each lane is its own live fold's verdict or a registry-row presence check, folded at call time — refutable lane by lane. HONEST SCOPE: "finished" means every MEASURED aspect passes its computed gate today — the app remains living (the registry marches to 432, audits keep measuring, and the audit's residual findings — the model-page h1 gap, the shared-payload weight beyond the hash-map extraction — are the audit tool's open counts, tracked not hidden). Expert judgment beyond what these gates measure (visual taste, real assistive-tech testing) is NOT claimed. HARMONY ≠ TRUTH.` }
+      boundary: `COMPUTED: each lane is its own live fold's verdict or a registry-row presence check, folded at call time — refutable lane by lane. HONEST SCOPE: "finished" means every MEASURED aspect passes its computed gate today — the app remains living (the registry marches to 432, audits keep measuring, and the audit's residual findings — the model-page h1 gap, the shared-payload weight beyond the hash-map extraction — are the audit tool's open counts, tracked not hidden). Expert judgment beyond what these gates measure (visual taste, real assistive-tech testing) is NOT claimed.` }
   })
 }

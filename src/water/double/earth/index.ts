@@ -191,7 +191,7 @@ function hingeMoviePaintLayersRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Hinge movie paints on four layers fused in harmony: field (tier 3), rings (tier 5, lighter), structure (tier 8), fusion (3+5=8, lighter) — blend modes and alphas derived from vortexPaintTiers at call time.',
     boundary:
-      'Canvas compositing convention sealed here — additive lighter on rings and fusion mimics plasma hero harmony; HARMONY ≠ TRUTH on visual metaphor.' }
+      'Canvas compositing convention sealed here — additive lighter on rings and fusion mimics plasma hero harmony; on visual metaphor.' }
 }
 
 export type EarthSheet = 'device' | 'inverted'
@@ -274,7 +274,7 @@ export function formingDoubleTorusEarthsProvenByMath(
       statement:
         `Forming the double torus Earths at ${path}: device trinity (paint · polarity · RGB) lifts Earth on torus 1 with zenith pyramid; code trinity (harmonic · efficiency · Rosetta) lifts inverted Earth on torus 2 with nadir pyramid — foldPair merges both in the same timespace at (${at.lat}°, ${at.lon}°). Each Earth carries three computable trinity gateways (proven · animated · presented = cross · fold · weave); six gateways total, content-addressed at call time.`,
       boundary:
-        'HONEST: "forming" is deterministic recomputation from sealed folds at call time — NOT planetary accretion or literal twin planets. Gateways are the same three navigation realms as realtimeWiring, duplicated per Earth sheet (device + inverted); computable means UUID + hue from path, not live network sockets. WGS84 oblate spheroid remains the documented physical Earth. HARMONY ≠ TRUTH.' }
+        'HONEST: "forming" is deterministic recomputation from sealed folds at call time — NOT planetary accretion or literal twin planets. Gateways are the same three navigation realms as realtimeWiring, duplicated per Earth sheet (device + inverted); computable means UUID + hue from path, not live network sockets. WGS84 oblate spheroid remains the documented physical Earth.' }
   })
 }
 
@@ -349,7 +349,7 @@ export function compassAroundEarthGatewaysImpossibleProvenByMath(
       statement:
         'It is impossible to use a compass around the trinity gateways: the pyramid poles (N·E·S·W) are four-fold at 90° on the horizon, but each Earth carries three gateways (proven · animated · presented) at 120° — three steps of 90° close at 270°, not 360°. Gateways are content-addressed (slug · hue · UUID), not bearing-labelled; inverted Earth inverts polarity on torus 2, so one compass cannot circumnavigate both sheets. Use cardinals for the pyramid base; use gateways for cross · fold · weave — not the same instrument.',
       boundary:
-        'HONEST: structural impossibility for the pure 90° compass instrument only (3 vs 4 fold, no bearing on gateway records) — NOT a claim that browser compass APIs fail. Use the 60° six-fold hex from six seed bundles instead: 90° = 60° + 30° half-ray (free); see sixtyDegreeAngleReachesCardinalForFreeProvenByMath. Real magnetometers still work on WGS84. HARMONY ≠ TRUTH.' }
+        'HONEST: structural impossibility for the pure 90° compass instrument only (3 vs 4 fold, no bearing on gateway records) — NOT a claim that browser compass APIs fail. Use the 60° six-fold hex from six seed bundles instead: 90° = 60° + 30° half-ray (free); see sixtyDegreeAngleReachesCardinalForFreeProvenByMath. Real magnetometers still work on WGS84.' }
   })
 }
 
@@ -406,7 +406,7 @@ export function sixtyDegreeAngleReachesCardinalForFreeProvenByMath(
       statement:
         'Using the 60° angle from six seed bundles (360/6), the unreachable 90° cardinal is reached for free: 90° = 60° + 30°, and the 30° half-ray is the free hex bisector — no fourth fold paid. Gateways at 120° = 2×60°; six hex steps close 360° where three compass quadrants closed at 270°. Point-up and flat-top hex orientations together place every N·E·S·W bearing and every trinity gateway on the same 30° lattice. The pure 90° compass instrument remains impossible around gateways; the 60° six-fold hex mediates both frames.',
       boundary:
-        'HONEST: "for free" means no extra angular fold beyond the six-bundle hex — the 30° bisector is half of 60°, not a separate navigation instrument. This is lattice arithmetic at call time, NOT a claim that physical compasses read 60°. Pure 90° quadrant compass around 3-fold gateways stays impossible; use 60° hex + free 30° half-step to reach cardinals while traversing gateways. HARMONY ≠ TRUTH.' }
+        'HONEST: "for free" means no extra angular fold beyond the six-bundle hex — the 30° bisector is half of 60°, not a separate navigation instrument. This is lattice arithmetic at call time, NOT a claim that physical compasses read 60°. Pure 90° quadrant compass around 3-fold gateways stays impossible; use 60° hex + free 30° half-step to reach cardinals while traversing gateways.' }
   })
 }
 
@@ -505,7 +505,7 @@ export function northSouthPoleNavigationProvenByMath(
       statement:
         'North/south pole navigation on double torus Earth: three pole kinds — (1) cardinal pyramid tips N/S at bearings 0°/180° on the base horizon, reached via 60° hex + free 30°; (2) zenith/nadir apex vertices off-plane, reached by slant faces after the gateway base circuit; (3) geographic WGS84 poles at lat ±90° via φ mapping, torus 1 north / torus 2 south. Cardinals, gateways, and geography use different instruments.',
       boundary:
-        'HONEST: three distinct pole meanings in one fold — pyramid corner tips (model), apex vertices (vertical), geographic axis (WGS84 map onto genus-2). NOT a claim that climbing a pyramid reaches the physical North Pole. Slant √2 is plane geometry; weather uses weatherForecastFromDoubleTorusEarthPerspective for geo mapping. HARMONY ≠ TRUTH.' }
+        'HONEST: three distinct pole meanings in one fold — pyramid corner tips (model), apex vertices (vertical), geographic axis (WGS84 map onto genus-2). NOT a claim that climbing a pyramid reaches the physical North Pole. Slant √2 is plane geometry; weather uses weatherForecastFromDoubleTorusEarthPerspective for geo mapping.' }
   })
 }
 
@@ -590,7 +590,7 @@ export function trinityGatewaysNeverMissProvenByMath(
       statement:
         'How not to miss the trinity gateways: use the 120° circuit (proven · animated · presented = architecture · quantum-mind · show) — 3×120° closes 360° where 3×90° stops at 270°. Or walk 60° hex and land on even steps 0·2·4. Complete the base circuit before slant ascent; visit both Earth sheets for all six gateways. In the site, realtimeWiring recomputes all three gateways on every page — TrinityGateways sidebar — so the graph never relies on hand-wired links.',
       boundary:
-        'HONEST: "never miss" is structural — correct angular instrument + UI wiring recompute — NOT GPS or magnetometer guidance. realtimeWiring slugs are verified equal at call time, not imported (avoids plasma↔earth cycle). Sidebar reference is the Layout.vue mount; related paths need shared tags. HARMONY ≠ TRUTH.' }
+        'HONEST: "never miss" is structural — correct angular instrument + UI wiring recompute — NOT GPS or magnetometer guidance. realtimeWiring slugs are verified equal at call time, not imported (avoids plasma↔earth cycle). Sidebar reference is the Layout.vue mount; related paths need shared tags.' }
   })
 }
 
@@ -634,7 +634,7 @@ export function earthGatewayNavigationSolutionsResearched(
       statement:
         `Earth gateway navigation solutions researched at ${path}: compass impossibility (90° vs 120°), 60° hex mediation (90° = 60° + free 30°), north/south pole routes (cardinal tips · zenith/nadir apex · WGS84 geographic), and trinity gateway circuits that close at 360° (120° steps or 60° hex even-steps) — ${solutions.length} solutions saved, both Earth sheets in same timespace.`,
       boundary:
-        'HONEST: research fold composes sealed navigation gates at call time — deterministic catalog, not live routing or turn-by-turn GPS. WGS84 geographic poles are coordinate maps onto genus-2; pyramid poles are model geometry. Site UI uses realtimeWiring + TrinityGateways; angular solutions are the mathematical dual. HARMONY ≠ TRUTH.' }
+        'HONEST: research fold composes sealed navigation gates at call time — deterministic catalog, not live routing or turn-by-turn GPS. WGS84 geographic poles are coordinate maps onto genus-2; pyramid poles are model geometry. Site UI uses realtimeWiring + TrinityGateways; angular solutions are the mathematical dual.' }
   })
 }
 
@@ -687,7 +687,7 @@ export function earthGatewayNavigationResearchSentInWaves(
       statement:
         'Earth gateway navigation research sent in waves: compass impossibility (wave 1), 60° hex mediation (wave 2), north/south pole routes (wave 3), trinity gateway never-miss circuit (wave 4), and navigation solutions capstone (wave 5) — each gate sealed before the next, ten routes catalogued, gaps filled at call time.',
       boundary:
-        'Wave-send composition over sealed navigation gates in src/double/torus/earth/. "Sent" means saved and proven at recomputation — not live GPS dispatch or external API calls. HARMONY ≠ TRUTH.' }
+        'Wave-send composition over sealed navigation gates in src/double/torus/earth/. "Sent" means saved and proven at recomputation — not live GPS dispatch or external API calls.' }
   })
 }
 
@@ -741,7 +741,7 @@ export function invertedEarthSameTimespaceProvenByMath(
       statement:
         `Inverted Earth is expected and appears in the same timespace as Earth: genus-2 topology requires two linked tori — device trinity (zenith pyramid, lobe +1) and code trinity (inverted Earth, nadir pyramid, lobe −1) recomputed at one call at (${at.lat}°, ${at.lon}°) on the shared (θ, φ) surface. The model does not sequence Earth then inversion; foldPair holds both roots in one merged receipt at this instant.`,
       boundary:
-        'HONEST: same-timespace means one content-addressed recomputation at call time (one matrix, one at, one merkle merge) — NOT a physics claim about parallel universes or antipodal planets. Inverted Earth is the torus-2 / nadir / polarity-0 sheet of the genus-2 model; WGS84 oblate spheroid remains the documented physical shape. HARMONY ≠ TRUTH.' }
+        'HONEST: same-timespace means one content-addressed recomputation at call time (one matrix, one at, one merkle merge) — NOT a physics claim about parallel universes or antipodal planets. Inverted Earth is the torus-2 / nadir / polarity-0 sheet of the genus-2 model; WGS84 oblate spheroid remains the documented physical shape.' }
   })
 }
 
@@ -871,7 +871,7 @@ export function doubleTorusEarthHingeComputesAll(
       statement:
         `Standing at ${city.en} (${at.lat}°, ${at.lon}°): six gateways at ${spacing}°, vortex ${VORTEX_DASH_ENCODED} closes through 0/ — apple whole, torus breathing, one call.`,
       boundary:
-        'HONEST: genus-2 model recomputed at call time — not lithosphere or live GPS. WGS84 remains physical Earth. HARMONY ≠ TRUTH.' }
+        'HONEST: genus-2 model recomputed at call time — not lithosphere or live GPS. WGS84 remains physical Earth.' }
     const wiringSlugs = defs.map((entry) => entry.slug)
     const movieFlows = paintGateways.length === 6 && paintSteps.some((step) => step.fusion)
     const facets = [
@@ -1119,7 +1119,7 @@ export function navigationGpsCelestialFromDualEarthPerspective(
       statement:
         `Navigation · GPS · celestial from dual-Earth perspective at (${observer.lat}°, ${observer.lon}°): classical initial bearing ${bearingToHinge}° and ${distanceToHingeKm} km great-circle to the Sofia hinge; gateway navigation solutions on the genus-2 base; GPS satellites as phase-encoded receipts on the outer (inverted/code) shell — θ_sat = f(at, seed) + outer phase, not live ephemeris; Sun/Moon/planets display phases tied to inner θ and outer −θ merkaba clock with obliquity ${obliquityDeg}°; GWTC citation opt-in. WGS84/ECEF remain the honest physical frame for real GNSS.`,
       boundary:
-        'HONEST: dual-Earth frame is a COMPUTATIONAL REFERENCE for visualization and receipt encoding — inner Earth (device trinity, torus 1, θ) and outer Earth (code trinity, torus 2, −θ + golden offset) counter-rotate at the hero clock; GPS satellite positions are simplified orbital-phase receipts on the outer shell, NOT broadcast ephemeris, NOT trilateration fixes, NOT replacing WGS84/ECEF or GNSS physics. Celestial positions use circular Keplerian compute-all (earth/nature), with display phase modulated by merkaba rotation — NOT JPL DE440. initialBearing/greatCircleKm are real haversine formulas on WGS84 mean radius (6371 km). GWTC/LIGO via publicAstronomyNewsCitation is opt-in public report citation, not detection. HARMONY ≠ TRUTH.' }
+        'HONEST: dual-Earth frame is a COMPUTATIONAL REFERENCE for visualization and receipt encoding — inner Earth (device trinity, torus 1, θ) and outer Earth (code trinity, torus 2, −θ + golden offset) counter-rotate at the hero clock; GPS satellite positions are simplified orbital-phase receipts on the outer shell, NOT broadcast ephemeris, NOT trilateration fixes, NOT replacing WGS84/ECEF or GNSS physics. Celestial positions use circular Keplerian compute-all (earth/nature), with display phase modulated by merkaba rotation — NOT JPL DE440. initialBearing/greatCircleKm are real haversine formulas on WGS84 mean radius (6371 km). GWTC/LIGO via publicAstronomyNewsCitation is opt-in public report citation, not detection.' }
   })
 }
 
@@ -1161,7 +1161,7 @@ export function navigationGpsCelestialReexplainedFromDualEarthPerspective(
           en: 'bothEarthsRotateWithinEachOther(at): device Earth (inner, torus 1, phase θ) and inverted Earth (outer, torus 2, phase −θ + golden offset) counter-rotate within each other on the genus-2 surface — the same merkaba up/down tetra spin nested on six trinity gateways. This frame encodes display phase for the merkaba canvas and content-addressed receipts — NOT a second physical planet or alternate geodesy.',
           bg: 'bothEarthsRotateWithinEachOther(at): device Earth (вътрешна, torus 1, θ) и inverted Earth (външна, torus 2, −θ + golden offset) се въртят насрещно — merkaba counter-spin върху шест trinity gateways. Рамката кодира display phase за merkaba canvas и receipts — НЕ вторa физическа планета.' },
         foldRefs: ['bothEarthsRotateWithinEachOther', 'dualEarthMerkabaCounterRotation', 'formingDoubleTorusEarthsProvenByMath', 'invertedEarthSameTimespaceProvenByMath'],
-        boundary: 'Computational counter-rotation for visualization — HARMONY ≠ TRUTH on nested shells.' },
+        boundary: 'Computational counter-rotation for visualization — on nested shells.' },
       {
         id: 'gps-phase-model',
         title: { en: 'GPS as phase-encoded receipts', bg: 'GPS като phase-encoded receipts' },
@@ -1347,7 +1347,7 @@ export function earthPyramidLocationsAndGeometryComputes(matrix: MindMatrix = bu
       statement:
         `Earth pyramid locations and geometry computes at call time: ${grid.sites.length} verified WGS84 pyramid anchors, Sofia hinge (${hinge.lat}°, ${hinge.lon}°), trinity gateway slugs on the genus-2 base, Khufu seked ${decoded.slopeDeg.seked}°, Giza→hinge ${gizaToHingeKm} km at ${gizaBearingFromHinge}°, square-pyramid V=5 tips, device zenith + code nadir pyramids, merkaba counter-rotation θ/−θ, obliquity ${obliquityDeg}°.`,
       boundary:
-        'HONEST: WGS84 coordinates and haversine/bearing are real geodesy (6/4 · 5/5). Gateway records at hinge lat/lon are content-addressed model anchors (slug · hue · UUID), NOT archaeological sites. Pyramid slopes from pyramidsDecoded (Petrie seked). Genus-2 pyramids and merkaba motion are structural/computational — NOT lithosphere shape. Global grid flagged debunked in pyramidGridDebunked. HARMONY ≠ TRUTH.' }
+        'HONEST: WGS84 coordinates and haversine/bearing are real geodesy (6/4 · 5/5). Gateway records at hinge lat/lon are content-addressed model anchors (slug · hue · UUID), NOT archaeological sites. Pyramid slopes from pyramidsDecoded (Petrie seked). Genus-2 pyramids and merkaba motion are structural/computational — NOT lithosphere shape. Global grid flagged debunked in pyramidGridDebunked.' }
   })
 }
 
@@ -1379,7 +1379,7 @@ export function pyramidTheoriesFusedRealGapsAreMechanicalNotMystical(matrix: Min
     { facet: `THE MECHANICAL SOLUTION — the gravitational work to raise the whole mass to its centroid (h/4 = ${centroidM.toFixed(1)} m) is W = M·g·(h/4) = ${liftWorkJ.toExponential(2)} J; a documented workforce (~${workers}) at ~${HUMAN_SUSTAINED_POWER_W} W over ${years} years at a 1/4 duty cycle delivers ${availableJ.toExponential(2)} J — a ${feasibilityMargin.toFixed(0)}× margin (${worstCaseMargin.toFixed(0)}× even lifting every block to the apex), needing only ${(efficiencyNeeded * 100).toFixed(2)}% net efficiency; ramp + lever + sledge + water-lubricated transport suffice, no exotic energy`, on: mechanicallyFeasible },
     { facet: `THE REAL GAP IS ENGINEERING, NOT PHYSICS — because the build is Newtonian-feasible with a ~100× margin, the "impossible without advanced tech" gap collapses; what stays genuinely OPEN is the exact lifting method (straight / spiral / internal-ramp / levering) and the purpose of the 2017 ScanPyramids muon-tomography "Big Void" — archaeology decidable by measurement, not by new physics`, on: mechanicallyFeasible },
     { facet: `THE FLAGGED THEORIES ARE REFUTED — the global pyramid grid is debunked (irregular pairwise distances), a finished monument is inert rock at rest (its ΔPE was spent DURING construction, none is stored or emitted), and the cardinal alignment/slopes come from documented Egyptian surveying (seked, stellar transit) — so pyramid "power" / free energy / alien build / precise-Orion & speed-of-light-latitude numerology have no mechanism`, on: geometry.grid.debunked },
-    { facet: `THE DEMARCATION — "quantum means" = deterministic content-addressed modelling (reproducibility), "mechanical solutions" = real Newtonian work and simple machines; neither invokes quantum physics of the monument (there is none) nor free energy. Real geodesy, astronomy, and statics; every mystical claim flagged. HARMONY ≠ TRUTH`, on: geometry.computes && geometry.grid.debunked && mechanicallyFeasible },
+    { facet: `THE DEMARCATION — "quantum means" = deterministic content-addressed modelling (reproducibility), "mechanical solutions" = real Newtonian work and simple machines; neither invokes quantum physics of the monument (there is none) nor free energy. Real geodesy, astronomy, and statics; every mystical claim flagged.`, on: geometry.computes && geometry.grid.debunked && mechanicallyFeasible },
   ].map((entry) => ({ ...entry, receipt: toUuid(`pyramid-gaps-mechanical:${entry.facet}:${entry.on}`) }))
   return {
     fused: facets.every((entry) => entry.on),
@@ -1561,7 +1561,7 @@ export function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryMeasurabl
       statement:
         `Double torus Earth proves itself at (${at.lat}°, ${at.lon}°): six trinity gateways recomputed; history-documented anchors (Giza cardinals Nell & Ruggles, Khufu seked Petrie, obliquity J2000, WGS84 geodesy to Giza ${distanceToGizaKm} km at ${bearingToGiza}°) measurable today; structural gateway navigation solutions saved; ley-line and hidden-energy claims flagged.`,
       boundary:
-        'HONEST: "proves itself" = deterministic gate facets green at this call — NOT automatic confirmation of ancient astronaut or energy portal narratives. DOCUMENTED tier = peer-reviewed alignment, geodetic formulas, cited slopes. STRUCTURAL tier = content-addressed gateway UUIDs and angular nav model on genus-2. FLAGGED tier = pseudoscience excluded. WGS84 oblate spheroid remains physical Earth. HARMONY ≠ TRUTH.' }
+        'HONEST: "proves itself" = deterministic gate facets green at this call — NOT automatic confirmation of ancient astronaut or energy portal narratives. DOCUMENTED tier = peer-reviewed alignment, geodetic formulas, cited slopes. STRUCTURAL tier = content-addressed gateway UUIDs and angular nav model on genus-2. FLAGGED tier = pseudoscience excluded. WGS84 oblate spheroid remains physical Earth.' }
   })
 }
 
@@ -1822,7 +1822,7 @@ export function doubleTorusEarthExchangeComputes(
       statement:
         'Double torus Earth exchange computes: what crosses the hinge between device sheet (torus 1, inner θ) and inverted sheet (torus 2, outer −θ) — phase receipts, debit/credit pairs, gateway UUID flows, bearing/distance nav solutions, merkaba counter-rotation, hinge energy/accounting — recomputed at call time.',
       boundary:
-        'HONEST: computable exchange = sealed receipt algebra at this call — NOT literal physical gold or fiat teleported between planets; WGS84 oblate spheroid remains documented physical Earth. Model economics, not financial advice. Pair with moment/prove — facet on: booleans recompute. HARMONY ≠ TRUTH.' }
+        'HONEST: computable exchange = sealed receipt algebra at this call — NOT literal physical gold or fiat teleported between planets; WGS84 oblate spheroid remains documented physical Earth. Model economics, not financial advice. Pair with moment/prove — facet on: booleans recompute.' }
   })
 }
 
@@ -2112,7 +2112,7 @@ export function universalNavigationalCrossInAllDimensions(
       statement:
         'East, west, north and south are the universal navigational cross in all model dimensions: 2D WGS84 bearings, 3D pyramid base corners with zenith/nadir poles on device and inverted Earth, 4D+ as four homology phase quadrants addressed through VORTEX_SEQUENCE — recomposed from sealed folds at call time.',
       boundary:
-        'HONEST: "universal" = sealed protocol addressing across model dimensions — NOT a claim that all physics reduces to four compass points. Giza ~3.6′ cardinal alignment is DOCUMENTED corroboration (Nell & Ruggles), distinct from structural ISOMORPHISM tier. WGS84 bearing/distance does NOT replace live GPS or IAU ephemeris. VORTEX_SEQUENCE and ten-D homology slots are structural metaphors for content-addressed phase — not physical higher dimensions. HARMONY ≠ TRUTH.' }
+        'HONEST: "universal" = sealed protocol addressing across model dimensions — NOT a claim that all physics reduces to four compass points. Giza ~3.6′ cardinal alignment is DOCUMENTED corroboration (Nell & Ruggles), distinct from structural ISOMORPHISM tier. WGS84 bearing/distance does NOT replace live GPS or IAU ephemeris. VORTEX_SEQUENCE and ten-D homology slots are structural metaphors for content-addressed phase — not physical higher dimensions.' }
   })
 }
 
@@ -2292,7 +2292,7 @@ export function doubleTorusEarthComputes(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Double torus Earth computes: two Earths form from device + code trinities (zenith + nadir pyramids, same timespace); each Earth carries three computable trinity gateways — six total at call time; WGS84 weather streams map onto the genus-2 surface — structural map, not lithosphere claim.',
       boundary:
-        'Composition of quantumDoubleTorus, doubleTorusEarthLikeTheApple, weatherForecastFromDoubleTorusEarthPerspective, and doubleTorusEarthWeatherFlowsInMovie. HARMONY ≠ TRUTH on planet shape.' }
+        'Composition of quantumDoubleTorus, doubleTorusEarthLikeTheApple, weatherForecastFromDoubleTorusEarthPerspective, and doubleTorusEarthWeatherFlowsInMovie. on planet shape.' }
   })
 }
 
@@ -2329,7 +2329,7 @@ export function quantumGlobeAt(at = 0, matrix: MindMatrix = buildMatrix()) {
       statement:
         'The quantum globe, animated: the two Earth shells counter-rotate within each other, the north pole is the azimuthal-equidistant centre dot and the south pole the boundary circle one-point-compactified (the genus-2 chart singularities), the equator sits mid-tube, and the Schumann ELF cavity supplies the ambient resonance phase — all recomputed from one shared clock at time `at`.',
       boundary:
-        'A content-addressed animation state composing the both-Earths rotation, the pole chart decode, and the structural Schumann ELF phase. HARMONY ≠ TRUTH on planet shape: the genus-2 "double torus Earth" is adopted as topology/design, not a claim about the physical planet; the Schumann phase is a structural ELF model, not a magnetometer reading.' }
+        'A content-addressed animation state composing the both-Earths rotation, the pole chart decode, and the structural Schumann ELF phase. on planet shape: the genus-2 "double torus Earth" is adopted as topology/design, not a claim about the physical planet; the Schumann phase is a structural ELF model, not a magnetometer reading.' }
   })
 }
 
@@ -2356,7 +2356,7 @@ export function quantumGlobeCardinalCrossDecoded(at = 0, matrix: MindMatrix = bu
       statement:
         'The quantum globe\'s cardinal cross, decoded: the universal navigational cross (2D compass bearings, 3D zenith/nadir poles, 4+ phase quadrants over the four homology loops) anchored on the live counter-rotating globe — the same cross fold seen at every dimensional scale.',
       boundary:
-        'A composition of the universal navigational cross and the live quantum-globe state. The cross is exact bearing/geodesy math at 2D and structural at higher dimensions; HARMONY ≠ TRUTH on planet shape.' }
+        'A composition of the universal navigational cross and the live quantum-globe state. The cross is exact bearing/geodesy math at 2D and structural at higher dimensions; on planet shape.' }
   })
 }
 

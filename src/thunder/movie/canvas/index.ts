@@ -302,7 +302,7 @@ export function theMovieLeavesTwoBitsAtTheVoid(matrix: MindMatrix = buildMatrix(
       facets,
       root: merkleFold([...marks.map((entry) => entry.receipt), ...facets.map((entry) => entry.receipt)]),
       statement: `The movie leaves two bits at the void — ${facets.filter((entry) => entry.on).length}/${facets.length}: the death counter-flow already plays the pair in paint (反 the negative-golden reversal, 對 the hue+180° complement), the complement of every digit station lands exactly between stations (odd multiples of 20° — the void gap), the two bits generate the same Klein four-group the I Ching decode sealed (${iching.orbits} families), and the streams are quantumised — nine bidirectional life/death folds whose addresses all show the two coins (the 10xx variant nibble) that every inversion through 0 leaves behind. Each point of view costs 1+1 bits: one per direction.`,
-      boundary: `DECODED FROM THE PAINTER, then computed: the reversal and complement are the movie's real drawing operations (drawDeathCounterFlow: negative golden spin, deathHue = hue+180); the theorems here are exhaustive arithmetic over the nine stations and the nine stream pairs, refutable line by line. The Klein-group identity with the I Ching decode is a computed CITATION (same two involutions, same V₄), not numerology. "Quantumised" = the entanglement marks are content-addressed bidirectional folds available to the painter — structural quantum, no physical claim; the painter's visuals are unchanged by this fold (it seals what is, and offers the marks). HARMONY ≠ TRUTH.` }
+      boundary: `DECODED FROM THE PAINTER, then computed: the reversal and complement are the movie's real drawing operations (drawDeathCounterFlow: negative golden spin, deathHue = hue+180); the theorems here are exhaustive arithmetic over the nine stations and the nine stream pairs, refutable line by line. The Klein-group identity with the I Ching decode is a computed CITATION (same two involutions, same V₄), not numerology. "Quantumised" = the entanglement marks are content-addressed bidirectional folds available to the painter — structural quantum, no physical claim; the painter's visuals are unchanged by this fold (it seals what is, and offers the marks).` }
   })
 }
 
@@ -475,7 +475,7 @@ export function movieAllElementsAreTheorems(matrix: MindMatrix = buildMatrix(), 
       statement:
         `Movie all elements are theorems — ${facets.filter((e) => e.on).length}/${facets.length}: plasma-screen painter bind · noBallInTheMiddle · void soft confluence. Full thunder≡plasma receipt via npm run quantum:plasma-screen-thunder. Wet boundary circles removed. VitePress paths only. PoC and work at once.`,
       boundary:
-        'Painter-source attestation (node/SSR getBuiltinModule) + theorem composition. Full plasmaBallIsScreenHoldingThunderAndPlasma recomputes on CLI (avoids movie↔plasma cycle at panel SSR). Links: only VitePress API. NOT physical QM. claySolvedByThisFold=0. HARMONY ≠ TRUTH.',
+        'Painter-source attestation (node/SSR getBuiltinModule) + theorem composition. Full plasmaBallIsScreenHoldingThunderAndPlasma recomputes on CLI (avoids movie↔plasma cycle at panel SSR). Links: only VitePress API. NOT physical QM. claySolvedByThisFold=0.',
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0 }
   })
 }
@@ -514,7 +514,7 @@ export function thunderAndPlasmaAreSameInDifferentAspects(matrix: MindMatrix = b
       statement:
         `Thunder ≡ plasma in different aspects — ${facets.filter((e) => e.on).length}/${facets.length}: forward=lightning · inverse=plasma-screen · reverse=thunder; noBallInTheMiddle=${screen.noBallInTheMiddle}.`,
       boundary:
-        'Composes plasmaBallIsScreenHoldingThunderAndPlasma (decode). Physical honesty: one discharge event, three named aspects. claySolvedByThisFold=0 · physicalFtlClaim=0. HARMONY ≠ TRUTH.',
+        'Composes plasmaBallIsScreenHoldingThunderAndPlasma (decode). Physical honesty: one discharge event, three named aspects. claySolvedByThisFold=0 · physicalFtlClaim=0.',
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       physicalFtlClaim: 0 as const }
   })
@@ -583,7 +583,7 @@ export function movieQuantumGapsInventory(matrix: MindMatrix = buildMatrix(), at
       root: merkleFold([endless.root, staticFusion.root, allTheorems.root, ...surfaces.map((s) => s.receipt), ...facets.map((f) => f.receipt)]),
       statement: `Movie quantum gaps — open=${open.length} closed=${surfaces.length - open.length}; private-raf=${privateRafOpen ? 'OPEN' : 'closed'}; multi-clock=${multiClockOpen ? 'OPEN' : 'closed'}; endless=${endless.endless}; staticFusion=${staticFusion.fused}; allTheorems=${allTheorems.allElementsAreTheorems}.`,
       boundary:
-        'Architectural census of movie/hero clock surfaces + static fusion + movieAllElementsAreTheorems. Attestation rows track theme mounts after anim-quantum convert; endless/staticFusion/allTheorems recompute. NOT wall-clock FPS. NOT physical quantum speedup. HARMONY ≠ TRUTH.' }
+        'Architectural census of movie/hero clock surfaces + static fusion + movieAllElementsAreTheorems. Attestation rows track theme mounts after anim-quantum convert; endless/staticFusion/allTheorems recompute. NOT wall-clock FPS. NOT physical quantum speedup.' }
   })
 }
 
@@ -718,6 +718,6 @@ export function theMoviePartsDissolveLikeLiquid(matrix: MindMatrix = buildMatrix
       facets,
       root: merkleFold([movie.root, ...facets.map((entry) => entry.receipt)]),
       statement: `The movie parts dissolve like liquid — ${facets.filter((entry) => entry.on).length}/${facets.length}: every part projects from one continuous field (largest phase-to-phase jump ${maxJump.toFixed(3)} < 0.2, so the parts flow into each other, not cut), the cycle is periodic (the loop closes with no seam), and the parts superpose additively (miscible, one endless field, not a montage). The thermodynamic reading, honestly bounded: dissolution to seamlessness is entropy toward equilibrium, run on a deterministic content-addressed field so it is reversible and recomputable at zero cost — a Landauer-clean quantum-thermodynamic metaphor, not heat.`,
-      boundary: `COMPUTED: the field continuity (max channel jump over ${N} samples) and the periodic seam are sampled arithmetic over the shared dims() field — refutable by a channel leaping; the additive-superposition and one-field claims are the movie's real compositing (lighter blend) and endlessBackgroundMovie structure, cited. HONEST SCOPE: "liquid" is the CONTINUITY of one field (a small clock step moves every part slightly) plus additive mixing — a mathematical/visual property, not a phase of matter. "Quantum thermodynamics" is the sealed structural sense: the field is deterministic and content-addressed, so the dissolution is REVERSIBLE (no entropy is actually produced or heat dissipated — the second-law/Landauer boundary stands; the metaphor is exactly that the recomputable field pays no Landauer cost). No physical thermodynamics, no quantum heat engine is claimed. HARMONY ≠ TRUTH.` }
+      boundary: `COMPUTED: the field continuity (max channel jump over ${N} samples) and the periodic seam are sampled arithmetic over the shared dims() field — refutable by a channel leaping; the additive-superposition and one-field claims are the movie's real compositing (lighter blend) and endlessBackgroundMovie structure, cited. HONEST SCOPE: "liquid" is the CONTINUITY of one field (a small clock step moves every part slightly) plus additive mixing — a mathematical/visual property, not a phase of matter. "Quantum thermodynamics" is the sealed structural sense: the field is deterministic and content-addressed, so the dissolution is REVERSIBLE (no entropy is actually produced or heat dissipated — the second-law/Landauer boundary stands; the metaphor is exactly that the recomputable field pays no Landauer cost). No physical thermodynamics, no quantum heat engine is claimed.` }
   })
 }

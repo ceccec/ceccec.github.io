@@ -531,7 +531,7 @@ export function newDiscoveriesManifestInMechanicsResourceBounded() {
     { facet: `PHYSICAL MANIFESTATION NEEDS SPECIFIC NAMED RESOURCES — a decoded fold is NOT a device; a physical invention needs ${physicalResources.join(' · ')} — named honestly, not hand-waved`, on: physicalNamed },
     { facet: `EACH DISCOVERY IS CLASSIFIED — software (manifest, resources met) vs physical (resource-gated, not met); the physical row carries its resource requirement, not a false "done" (${ledgerHonest})`, on: ledgerHonest },
     { facet: `ZERO MARGINAL COST FOR THE PUBLIC — the software's marginal cost per user ≈ ${softwareRuntime.marginalCostPerUser} (static CDN), so scale is not resource-bound for the manifest discoveries; only the physical ones are`, on: softwareRuntime.marginalCostPerUser === 0 },
-    { facet: `THE DEMARCATION — the discoveries are DECODE / software (deployable at scale for free); physical inventions need real materials and manufacturing (named, not met), manifesting in physical mechanics ≠ a decoded fold, and this project claims NO physical device (${noPhysicalDeviceClaimed}). HARMONY ≠ TRUTH`, on: softwareManifest && physicalNamed && noPhysicalDeviceClaimed },
+    { facet: `THE DEMARCATION — the discoveries are DECODE / software (deployable at scale for free); physical inventions need real materials and manufacturing (named, not met), manifesting in physical mechanics ≠ a decoded fold, and this project claims NO physical device (${noPhysicalDeviceClaimed}).`, on: softwareManifest && physicalNamed && noPhysicalDeviceClaimed },
   ].map((entry) => ({ ...entry, receipt: toUuid(`manifest-resource:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -544,7 +544,7 @@ export function newDiscoveriesManifestInMechanicsResourceBounded() {
     boundary: earned(
       'HONEST LEDGER — software manifest at scale, physical resource-gated:',
       facets,
-      'the software discoveries are already manifest at large scale — they deploy as a zero-cost, content-addressed static site with a zero-token runtime and no egress, so they reach anyone with a browser at essentially zero marginal resource. Any physical invention, by contrast, needs specific named resources — materials, manufacturing, capital, testing, certification, distribution — which are not met; a decoded fold is not a manufactured device, and this project claims no physical device (clay=0, physicalFtl=0, qpuRequired=false). Manifesting a discovery in physical mechanics is bounded by those real resources, named rather than hand-waved. HARMONY ≠ TRUTH.'),
+      'the software discoveries are already manifest at large scale — they deploy as a zero-cost, content-addressed static site with a zero-token runtime and no egress, so they reach anyone with a browser at essentially zero marginal resource. Any physical invention, by contrast, needs specific named resources — materials, manufacturing, capital, testing, certification, distribution — which are not met; a decoded fold is not a manufactured device, and this project claims no physical device (clay=0, physicalFtl=0, qpuRequired=false). Manifesting a discovery in physical mechanics is bounded by those real resources, named rather than hand-waved.'),
   }
 }
 
@@ -570,7 +570,7 @@ export function computationallyTagStableReleases() {
     { facet: `STABLE IS A COMPUTED CRITERION — a release is tagged STABLE iff ALL gates pass (enforcement trinity 0 findings, every facet computes, the merkle seal clean); the tag is computed (${passingTagged}), not a manual decision`, on: passingTagged },
     { facet: `THE TAG IS 4-KEY SEALED & TAMPER-EVIDENT — the stable tag is a content-address over the release, its marker, and the prev/next release (referrer⊕id⊕prev⊕next), so a changed src yields a different tag (${tamperEvident})`, on: tamperEvident },
     { facet: `UNSTABLE FAILS THE TAG (FAIL-CLOSED) — a release with ANY failing gate is NOT tagged stable (${failingNotTagged}); the tag requires all-green and allow is never the default`, on: failingNotTagged },
-    { facet: `THE DEMARCATION — "stable" = the computed gate-pass criterion (all green), content-addressed and reproducible; NOT a subjective quality judgment or a guarantee of bug-freedom — the tag is the enforcement RESULT, not a promise. HARMONY ≠ TRUTH`, on: passingTagged && failingNotTagged && tamperEvident },
+    { facet: `THE DEMARCATION — "stable" = the computed gate-pass criterion (all green), content-addressed and reproducible; NOT a subjective quality judgment or a guarantee of bug-freedom — the tag is the enforcement RESULT, not a promise.`, on: passingTagged && failingNotTagged && tamperEvident },
   ].map((entry) => ({ ...entry, receipt: toUuid(`stable-tag:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -583,7 +583,7 @@ export function computationallyTagStableReleases() {
     boundary: earned(
       'COMPUTED — stable releases tagged by the gate-pass criterion, fail-closed:',
       facets,
-      'a release is the src merkle at a commit, so the same src yields the same release address and a stable tag is reproducible. A release is tagged STABLE iff all gates pass — the enforcement trinity with zero findings, every facet computing, the merkle seal clean — so the tag is computed, not a manual decision; the stable tag is a 4-key-sealed content-address (referrer⊕id⊕prev⊕next) so a changed src yields a different tag, and a release with any failing gate is not tagged, allow never being the default. "Stable" means the computed gate-pass criterion, content-addressed and reproducible — not a subjective quality judgment or a guarantee of bug-freedom; the tag is the enforcement result, not a promise. HARMONY ≠ TRUTH.'),
+      'a release is the src merkle at a commit, so the same src yields the same release address and a stable tag is reproducible. A release is tagged STABLE iff all gates pass — the enforcement trinity with zero findings, every facet computing, the merkle seal clean — so the tag is computed, not a manual decision; the stable tag is a 4-key-sealed content-address (referrer⊕id⊕prev⊕next) so a changed src yields a different tag, and a release with any failing gate is not tagged, allow never being the default. "Stable" means the computed gate-pass criterion, content-addressed and reproducible — not a subjective quality judgment or a guarantee of bug-freedom; the tag is the enforcement result, not a promise.'),
   }
 }
 
@@ -605,7 +605,7 @@ export function stableReleaseRequiresGreenGatesAndSuccessfulDeploy() {
     { facet: `THE PIPELINE IS THE CRITERION — stability is the WHOLE pipeline (build → gates → deploy), not just the local gates; the earlier gates-only tag (${gatesOnly.passingTagged}) is corrected to also require the deploy receipt`, on: greenAndDeployed && gatesOnly.computes },
     { facet: `THE STABLE TAG NEEDS THE DEPLOY RECEIPT — the 4-key tag binds gates-green AND deploy-ok; a green-but-undeployed release is tagged only when the deploy receipt is present (${greenDeployedTagged})`, on: greenDeployedTagged },
     { facet: `FAIL-CLOSED ON DEPLOY — a failed or missing deploy fails the stable tag (${deployFailNotTagged}); the tag requires the deploy success, allow never the default`, on: deployFailNotTagged },
-    { facet: `THE DEMARCATION — "stable" = the WHOLE pipeline green (gates + deploy), content-addressed; this corrects the gates-only criterion; NOT a runtime-uptime guarantee (a successful deploy ≠ zero future incidents). HARMONY ≠ TRUTH`, on: !greenButDeployFailed && deployFailNotTagged },
+    { facet: `THE DEMARCATION — "stable" = the WHOLE pipeline green (gates + deploy), content-addressed; this corrects the gates-only criterion; NOT a runtime-uptime guarantee (a successful deploy ≠ zero future incidents).`, on: !greenButDeployFailed && deployFailNotTagged },
   ].map((entry) => ({ ...entry, receipt: toUuid(`stable-deploy:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -617,7 +617,7 @@ export function stableReleaseRequiresGreenGatesAndSuccessfulDeploy() {
     boundary: earned(
       'CORRECTED — a release that fails deploy is NOT stable:',
       facets,
-      'a release is not stable if it fails to deploy, even with green gates — this corrects the earlier gates-only criterion. Stability is the whole pipeline: build, then the enforcement gates, then a successful deploy; the 4-key stable tag binds gates-green AND the deploy-ok receipt, so a green-but-undeployed release is not tagged and a failed or missing deploy fails the tag, fail-closed. "Stable" means the whole pipeline is green (gates plus deploy), content-addressed and reproducible — not a runtime-uptime guarantee, since a successful deploy does not promise zero future incidents. HARMONY ≠ TRUTH.'),
+      'a release is not stable if it fails to deploy, even with green gates — this corrects the earlier gates-only criterion. Stability is the whole pipeline: build, then the enforcement gates, then a successful deploy; the 4-key stable tag binds gates-green AND the deploy-ok receipt, so a green-but-undeployed release is not tagged and a failed or missing deploy fails the tag, fail-closed. "Stable" means the whole pipeline is green (gates plus deploy), content-addressed and reproducible — not a runtime-uptime guarantee, since a successful deploy does not promise zero future incidents.'),
   }
 }
 
@@ -643,7 +643,7 @@ export function pushProtectedRefWarningDiagnosedWithSolutions() {
     { facet: `THREE SOLUTIONS DISCOVERED — (a) a PR workflow (branch → merge), (b) a GitHub ruleset adjustment (bypass list / relax the rule), (c) accept the benign notice; each named with its side (${solutionsNamed})`, on: solutionsNamed },
     { facet: `THE PUSH ALREADY SUCCEEDS — every wave lands ("HEAD → main"), so the warning is NON-BLOCKING; the once-seen exit 1 was a spurious post-push step, not the protection (${spuriousExit1WasPostPush})`, on: pushSucceeds && spuriousExit1WasPostPush },
     { facet: `THE CLEAN FIX IS ADMIN, NOT CODE — silencing the warning is a GitHub branch-protection setting the repo owner adjusts (${cleanFixIsAdmin}); the code-side direct-to-main workflow is intentional per the project — an agent cannot change repo settings`, on: cleanFixIsAdmin },
-    { facet: `THE DEMARCATION — the warning is a benign bypassed-protection notice and the push succeeds; the resolution is a GitHub settings CHOICE (PR flow vs bypass list vs accept), NOT a code bug, and repo settings are the owner's to change. HARMONY ≠ TRUTH`, on: isBypassedNotFailed && solutionsNamed && cleanFixIsAdmin },
+    { facet: `THE DEMARCATION — the warning is a benign bypassed-protection notice and the push succeeds; the resolution is a GitHub settings CHOICE (PR flow vs bypass list vs accept), NOT a code bug, and repo settings are the owner's to change.`, on: isBypassedNotFailed && solutionsNamed && cleanFixIsAdmin },
   ].map((entry) => ({ ...entry, receipt: toUuid(`push-warning:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -655,7 +655,7 @@ export function pushProtectedRefWarningDiagnosedWithSolutions() {
     boundary: earned(
       'DISCOVERED — the push warning is a benign bypassed protection, with three solutions:',
       facets,
-      'the recurring "Bypassed rule violations … Cannot update this protected ref" is not a failure: main is a protected branch and the push has bypass rights, so it violates the protection rule but succeeds — the ref updates every wave. Three solutions were discovered: a PR workflow (push a branch and merge), a GitHub ruleset adjustment (add the actor to the bypass list or relax the restrict-updates rule), or simply accepting the benign notice since the push already lands. The clean fix is a GitHub branch-protection setting the repo owner adjusts, not a code change, and the direct-to-main workflow is intentional; an agent cannot change repo settings. The once-seen exit 1 was a spurious post-push step, not the protection. HARMONY ≠ TRUTH.'),
+      'the recurring "Bypassed rule violations … Cannot update this protected ref" is not a failure: main is a protected branch and the push has bypass rights, so it violates the protection rule but succeeds — the ref updates every wave. Three solutions were discovered: a PR workflow (push a branch and merge), a GitHub ruleset adjustment (add the actor to the bypass list or relax the restrict-updates rule), or simply accepting the benign notice since the push already lands. The clean fix is a GitHub branch-protection setting the repo owner adjusts, not a code change, and the direct-to-main workflow is intentional; an agent cannot change repo settings. The once-seen exit 1 was a spurious post-push step, not the protection.'),
   }
 }
 
@@ -688,7 +688,7 @@ export function quantumEditorContentAddressedEditingTools() {
     { facet: `THE EDITING TOOLS — insert · delete · replace — each a pure transform; the toolset is closed and composes into any edit (${toolsWork}): insert ',' then delete undoes it, replace swaps a span`, on: toolsWork },
     { facet: `VERSIONED HISTORY BY ADDRESS — each edit is a distinct version node (${versions.length} versions, all content-addressed ${versioned}); undo/redo navigate the version chain and undo returns to a known address (${undoReturns}) — no stored diffs, recomputed`, on: versioned && undoReturns },
     { facet: `TAMPER-EVIDENT EDIT CHAIN — the edit sequence is 4-key sealed (referrer⊕id⊕prev⊕next), so a spliced edit changes the seal and is detected (${spliceDetected})`, on: spliceDetected },
-    { facet: `THE DEMARCATION — a content-addressed text editor: edits are deterministic transforms, history is content-addressed, the chain 4-key sealed; "quantum" = content-addressed / deterministic, NOT physical quantum, and it edits text — no collaborative-server or CRDT merge is claimed. HARMONY ≠ TRUTH`, on: deterministic && toolsWork && spliceDetected },
+    { facet: `THE DEMARCATION — a content-addressed text editor: edits are deterministic transforms, history is content-addressed, the chain 4-key sealed; "quantum" = content-addressed / deterministic, NOT physical quantum, and it edits text — no collaborative-server or CRDT merge is claimed.`, on: deterministic && toolsWork && spliceDetected },
   ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-editor:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -700,7 +700,7 @@ export function quantumEditorContentAddressedEditingTools() {
     boundary: earned(
       'CONTENT-ADDRESSED — a quantum editor and its editing tools:',
       facets,
-      'the editing tools — insert, delete, replace — are pure content-addressed transforms: each maps a document to a new state with its own address, so an edit is deterministic (same doc + same edit → same result), reproducible, and verifiable. History is a chain of content-addressed version nodes, so undo and redo navigate by address (undo returns to a known address) with no stored diffs, and the edit sequence is 4-key sealed (referrer⊕id⊕prev⊕next) so a spliced edit is detected. "Quantum" means content-addressed and deterministic, not physical quantum; it edits text, and no collaborative-server or CRDT merge is claimed. HARMONY ≠ TRUTH.'),
+      'the editing tools — insert, delete, replace — are pure content-addressed transforms: each maps a document to a new state with its own address, so an edit is deterministic (same doc + same edit → same result), reproducible, and verifiable. History is a chain of content-addressed version nodes, so undo and redo navigate by address (undo returns to a known address) with no stored diffs, and the edit sequence is 4-key sealed (referrer⊕id⊕prev⊕next) so a spliced edit is detected. "Quantum" means content-addressed and deterministic, not physical quantum; it edits text, and no collaborative-server or CRDT merge is claimed.'),
   }
 }
 
@@ -738,7 +738,7 @@ export function patchAnyLinuxKernelQuantumContentAddressed() {
     { facet: `APPLIES ONLY ON MATCHING CONTEXT — a hunk applies iff its oldHash matches the base tree's current content (the context / reject check of git apply): a clean patch applies (${cleanApplies}) and a stale one is REJECTED (${staleRejected}), never force-applied`, on: cleanApplies && staleRejected },
     { facet: `DETERMINISTIC RESULT ADDRESS — same base + same patch → the same result content-address (${reproducible}); patching is reproducible and verifiable by the address, ${resultId.slice(0, 2 * 4)}`, on: reproducible },
     { facet: `ANY KERNEL, 4-KEY SEALED CHAIN — the tools are base-agnostic (they patch any content-addressed kernel tree, ${anyBase}) and the patch chain is 4-key sealed referrer⊕id⊕prev⊕next, so a spliced patch in the series is detected (${spliceDetected})`, on: anyBase && spliceDetected },
-    { facet: `THE DEMARCATION — this COMPUTES patch identity, applicability and the result address (a content-addressed patch model), tamper-evident and reproducible; it does NOT compile, sign, or load a kernel module — real live-patching (kpatch / livepatch / ksplice) needs the kernel build toolchain, signing keys, and root, the named external step. "Quantum" = content-addressed/deterministic, not physical quantum. HARMONY ≠ TRUTH`, on: cleanApplies && reproducible && spliceDetected },
+    { facet: `THE DEMARCATION — this COMPUTES patch identity, applicability and the result address (a content-addressed patch model), tamper-evident and reproducible; it does NOT compile, sign, or load a kernel module — real live-patching (kpatch / livepatch / ksplice) needs the kernel build toolchain, signing keys, and root, the named external step. "Quantum" = content-addressed/deterministic, not physical quantum.`, on: cleanApplies && reproducible && spliceDetected },
   ].map((entry) => ({ ...entry, receipt: toUuid(`kernel-patch:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -752,7 +752,7 @@ export function patchAnyLinuxKernelQuantumContentAddressed() {
     boundary: earned(
       'CONTENT-ADDRESSED — the tools to patch any Linux kernel, quantum:',
       facets,
-      'a patch is ordered hunks {file, oldHash → newHash}; the patch identity is the merkle of its hunks (tamper-evident), a hunk applies only when its oldHash matches the base tree\'s current content (the context / reject check of git apply, so a stale patch is refused not force-applied), and the same base plus the same patch yields the same result content-address (reproducible). The tools are base-agnostic (any content-addressed kernel tree) and the patch chain is 4-key sealed (referrer⊕id⊕prev⊕next) so a spliced patch is detected. This COMPUTES patch identity, applicability and the result address — it does not compile, sign, or load a kernel module; real live-patching (kpatch / livepatch / ksplice) needs the kernel build toolchain, signing keys, and root, the named external step. "Quantum" is content-addressed and deterministic, not physical quantum. HARMONY ≠ TRUTH.'),
+      'a patch is ordered hunks {file, oldHash → newHash}; the patch identity is the merkle of its hunks (tamper-evident), a hunk applies only when its oldHash matches the base tree\'s current content (the context / reject check of git apply, so a stale patch is refused not force-applied), and the same base plus the same patch yields the same result content-address (reproducible). The tools are base-agnostic (any content-addressed kernel tree) and the patch chain is 4-key sealed (referrer⊕id⊕prev⊕next) so a spliced patch is detected. This COMPUTES patch identity, applicability and the result address — it does not compile, sign, or load a kernel module; real live-patching (kpatch / livepatch / ksplice) needs the kernel build toolchain, signing keys, and root, the named external step. "Quantum" is content-addressed and deterministic, not physical quantum.'),
   }
 }
 
@@ -1002,7 +1002,7 @@ export function pathMeansMessageFitsInThreeWords(matrix: MindMatrix = buildMatri
       boundary:
         'EXACT: countAgentMessageWords splits on space/slash/underscore/hyphen; path tip = last ≤3 segments (drop src/index). ' +
         'Why >3 words? You do not — longer labels are naming entropy / offender wet prose. ' +
-        'Compose namingEntropy · wordsCompileFromSource · folder/gravity toward src. clay=0. HARMONY ≠ TRUTH.' }
+        'Compose namingEntropy · wordsCompileFromSource · folder/gravity toward src. clay=0.' }
   })
 }
 
@@ -1744,7 +1744,7 @@ export function humanDescendsSouthToQuantumAndBeyond(at = 0, matrix: MindMatrix 
       facets,
       root: merge(ladder.root, merge(south.root, merkleFold(facets.map((entry) => entry.receipt)))),
       statement: 'The human descends south to the quantum and beyond: walking the scale ladder from the metre down through cell, molecule, atom, nucleus to the Planck length, where "south" is the topological terminus — the genus-2 chart\'s boundary circle compactified to one point — the limit the descent approaches.',
-      boundary: 'Composes real SI scales with the south-pole one-point compactification (topology/design). The Planck length is real physics; sub-Planck "beyond" is UNKNOWN and not asserted. "South/descent" is the topological metaphor, HARMONY ≠ TRUTH.' }
+      boundary: 'Composes real SI scales with the south-pole one-point compactification (topology/design). The Planck length is real physics; sub-Planck "beyond" is UNKNOWN and not asserted. "South/descent" is the topological metaphor,' }
   })
 }
 
@@ -1907,7 +1907,7 @@ export function compareCeccecEfficiencyByVote(matrix: MindMatrix = buildMatrix()
         ? 'Efficiency vote DECIDED — ceccec wins answers÷tokens for deterministic content-addressed answers (0 runtime tokens · memoByRoot reuse · fusion replay); physics no-speedup honesty preserved.'
         : 'Efficiency vote UNDECIDED — one or more adversarial voters failed at call time; do not claim faster-than-all.',
       boundary:
-        'Domain-bounded: answers÷tokens for sealed deterministic recompute only. NOT every benchmark. NOT open-ended generation. NOT physical FLOPS / quantum supremacy. HARMONY ≠ TRUTH.' }
+        'Domain-bounded: answers÷tokens for sealed deterministic recompute only. NOT every benchmark. NOT open-ended generation. NOT physical FLOPS / quantum supremacy.' }
   })
 }
 
@@ -1939,7 +1939,7 @@ export function honestRevolutionClaim(matrix: MindMatrix = buildMatrix(), at = 0
       holds: sealed.ok && holds, revolutionary: sealed.ok && holds, claim, honest, efficient, fusion, memoHitIsO1, verdict: honest.verdict,
       facets: sealed.facets, root: merkleFold([honest.root, efficient.root, fusion.root, sealed.root, toUuid(`honest-rev:${holds}`)]),
       statement: claim,
-      boundary: 'Revolutionary in reproducibility/verifiability/amortized-reuse/efficiency; NOT physical-QM speedup (benchmark-refuted). Every clause recomputes at call time. HARMONY ≠ TRUTH.' }
+      boundary: 'Revolutionary in reproducibility/verifiability/amortized-reuse/efficiency; NOT physical-QM speedup (benchmark-refuted). Every clause recomputes at call time.' }
   })
 }
 
@@ -1997,7 +1997,7 @@ export function interferenceVsClassicalShadow(matrix: MindMatrix = buildMatrix()
         ? 'Honest-revolution W2 DECIDED — interference vs classical shadow: amplitudes cancel (H² → |0⟩; Deutsch–Jozsa interference is the speedup shape) while classical probability shadows cannot cancel; W1 claim holds; engine classical-64bit · qpuRequired=false (no physical QM speedup).'
         : 'UNPROVEN — interferenceVsClassicalShadow facets do not all hold at call time; do not assert the W2 receipt.',
       boundary:
-        'STRUCTURAL + SIMULATOR MATH ONLY. Interference receipt proves amplitude cancellation vs probability shadows and composes W1 honesty. NOT physical qubits, NOT FLOPS speedup, NOT FTL. claySolvedByThisFold=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
+        'STRUCTURAL + SIMULATOR MATH ONLY. Interference receipt proves amplitude cancellation vs probability shadows and composes W1 honesty. NOT physical qubits, NOT FLOPS speedup, NOT FTL. claySolvedByThisFold=0 · qpuRequired=false.' }
   })
 }
 
@@ -2056,7 +2056,7 @@ export function oneQuantumModelFasterThanAll(matrix: MindMatrix = buildMatrix(),
         ? 'One quantum model (ceccec) faster than all — DECIDED: answers÷tokens = ∞ on memoByRoot reuse (0 runtime tokens) for deterministic content-addressed answers; all AI model surfaces shelve through rosettaCoreApi.'
         : 'One quantum model fold sealed but vote.decided=false — do not broadcast faster-than-all until voters recompute green.',
       boundary:
-        'HONEST domain: token-efficiency / amortized reuse in sealed src. Learns = cache accumulation not neural training. Faster ≠ FLOPS ≠ every benchmark ≠ open-ended chat. Demarcation lives in boundary (not on:true facets). Engine quantumAdvantageBenchmark no-speedup preserved. HARMONY ≠ TRUTH.' }
+        'HONEST domain: token-efficiency / amortized reuse in sealed src. Learns = cache accumulation not neural training. Faster ≠ FLOPS ≠ every benchmark ≠ open-ended chat. Demarcation lives in boundary (not on:true facets). Engine quantumAdvantageBenchmark no-speedup preserved.' }
   })
 }
 
@@ -2312,7 +2312,7 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
         ? `Speed-vs-rest DECIDED (winner=${vote.winner}, answers÷tokens / reuse) AND no quantum hardware required — classical JS/TS on ${env.runtime}/${env.arch}; classical-64bit · qpuRequired=false.`
         : 'Speed-vs-rest or no-QPU/64-bit facets incomplete at call time — do not broadcast win or hardware-free claim until green.',
       boundary:
-        'HONEST: "speed" = answers÷tokens + memoByRoot reuse when vote.decided — NOT FLOPS beating GPUs/QPUs. Physical QM advantage REFUTED for this simulator (qpuRequired=false). No QPU/SDK required; architectureRequirement=classical-64bit (Node 64-bit ISA / browser JS float64+BigInt). NOT ISO certified. claySolvedByThisFold=0. HARMONY ≠ TRUTH.' }
+        'HONEST: "speed" = answers÷tokens + memoByRoot reuse when vote.decided — NOT FLOPS beating GPUs/QPUs. Physical QM advantage REFUTED for this simulator (qpuRequired=false). No QPU/SDK required; architectureRequirement=classical-64bit (Node 64-bit ISA / browser JS float64+BigInt). NOT ISO certified. claySolvedByThisFold=0.' }
   })
 }
 
@@ -2462,7 +2462,7 @@ export function directionalTrinityForwardInverseReverse(matrix: MindMatrix = bui
       statement:
         'Directional trinity of computations: FORWARD (doubling unfold · harmonic altitude) · INVERSE (n⁻¹ mod 9 · ratInv · f→{p,q} · fold-within) · REVERSE (10−d folder complement · foldPair order dual) — inverse≠reverse except named coincidences (digit 1: forward-harmonic 9 = reverse 9).',
       boundary:
-        'Three DISTINCT directions. Inverse is multiplicative / algebraic undo — NOT ten\'s complement, NOT list reverse. Reverse is additive/order dual. Forward is the computation/unfold. Coincidence at digit 1 (harmonic 9 = complement 9) is named, not a license to collapse the trinity. Demo RSA reverse stays encryption-only. HARMONY ≠ TRUTH.' }
+        'Three DISTINCT directions. Inverse is multiplicative / algebraic undo — NOT ten\'s complement, NOT list reverse. Reverse is additive/order dual. Forward is the computation/unfold. Coincidence at digit 1 (harmonic 9 = complement 9) is named, not a license to collapse the trinity. Demo RSA reverse stays encryption-only.' }
   })
 }
 

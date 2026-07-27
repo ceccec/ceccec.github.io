@@ -86,6 +86,6 @@ export function moonComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       statement:
         'Moon computes: canonical lunar home — sealed Moon from computeAllKnownCelestialBodies, synodic display phase, tidal-lock metaphor (outer reflector lobe), merkaba night-side outer shell, and navigationGpsCelestial Moon anchor — composed at call time from single-source orbital params.',
       boundary:
-        'HONEST — synodic phase is hero-clock mapped display math, not JPL DE440 lunar ephemeris. Tidal lock is structural isomorphism (HARMONY ≠ TRUTH). Gateway nav Moon phase is merkaba canvas reference — not live GNSS or planetarium fix.' }
+        'HONEST — synodic phase is hero-clock mapped display math, not JPL DE440 lunar ephemeris. Tidal lock is structural isomorphism (). Gateway nav Moon phase is merkaba canvas reference — not live GNSS or planetarium fix.' }
   })
 }

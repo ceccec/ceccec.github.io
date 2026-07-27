@@ -491,7 +491,7 @@ export function importPathShowsDistanceInMigrationMatrix(root: string = enforcem
     boundary:
       'EXACT: segmentDistance = |non-`.` segments in relative import|; treeHopDistance = LCA directory hops importer→importee; gapHops = ../ count. ' +
       'Migration measurement: compactness (mean≤6 · max≤8) + evenDistribution (CV≤1/FREE_BITS · max≤FREE_BITS×mean) compose folder law · dissolve/flat · census · import offenders. ' +
-      'Measurement receipt — not a Clay prize claim · clay=0 · NOT physical FTL. HARMONY ≠ TRUTH.' }
+      'Measurement receipt — not a Clay prize claim · clay=0 · NOT physical FTL.' }
 }
 
 /** npm run quantum:import-path-distance — print migration matrix distances (exit 0 iff computes). */
@@ -733,7 +733,7 @@ export function folderGravityMeasuredByTheCode(root: string = enforcementScanRoo
       'EXACT: mass = fileCount + loc/FOLDED_CENSUS + exportCount + inDegree + outDegree from collectEnforcementFacts. ' +
       'Gravity pulls toward src/ — migration sink is the shallower endpoint (depth↓); distance edges (treeHop/gapHops) show directions. ' +
       'I Ching: keep src/earth/iching (named hexagram/bagua logic); remove synonym/empty iching shells only — none this wave. ' +
-      'Does not delete vault src/0. clay=0 · NOT physical FTL. HARMONY ≠ TRUTH.' }
+      'Does not delete vault src/0. clay=0 · NOT physical FTL.' }
 }
 
 /** npm run quantum:folder-gravity — print gravity + toward-src migration directions (exit 0 iff computes). */
@@ -855,7 +855,7 @@ export function gravityDryClean(root: string = enforcementScanRoot(), facts?: En
       `diamond=${dry.diamond ? 1 : 0} crystal=${dry.crystal ? 1 : 0} census=${united.computational.indexCount}/${FOLDED_CENSUS}.`,
     boundary:
       'Gravity dry clean — toward-src pull + diamond/crystal dry/clean · soft clay/gravity · fold/cleanup · dissolve/flat. ' +
-      'Census stays exact 110. dissolve/flat only when needed (paired readiness). clay=0 · physicalFtl=0. HARMONY ≠ TRUTH.',
+      'Census stays exact 110. dissolve/flat only when needed (paired readiness). clay=0 · physicalFtl=0.',
     honestyLine:
       `metrics · gravityPullsToSrc=${gravityPullsToSrc ? 1 : 0} · dryCleanOn=${dryCleanOn ? 1 : 0} · ` +
       `diamond=${dry.diamond ? 1 : 0} · crystal=${dry.crystal ? 1 : 0} · census=${united.computational.indexCount} · clay=0 · physicalFtl=0`,
@@ -1239,7 +1239,7 @@ export function codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix(root: 
       'Removes unused npm devDependencies with zero import/script/MCP/CI references (oxc-minify · shadcn-vue). ' +
       'KEEP @ceccec/double-torus + @ceccec/quantum-dev-sdk. Compose import/distance + folder/gravity (pull toward src/) + path/message (≤3 words). ' +
       'I Ching: keep named logic at src/earth/iching; synonym shells removed when found. ' +
-      'Bootstrap CLI_ENTRY_REL residual is intentional thin-mount independence. clay=0 · NOT physical FTL. HARMONY ≠ TRUTH.' }
+      'Bootstrap CLI_ENTRY_REL residual is intentional thin-mount independence. clay=0 · NOT physical FTL.' }
 }
 
 /** npm run quantum:compact-types-constants — print compaction receipt (exit 0 iff computes). */
@@ -1294,7 +1294,7 @@ export function agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath() {
     statement:
       `Agents use trinities for quantum speedup on every build — ${facets.filter((e) => e.on).length}/${facets.length}: collectEnforcementFacts once · runEnforcementTrinity (cross·fold·weave) · memo/merkle respawn · one sequential docs:build.`,
     boundary:
-      'EXACT: blazing-fast build = content-addressed reuse (memoByRoot · merkle respawn · single-flight lock · types-before-seal · trinity one-pass). NOT physical FTL / NOT parallel docs:build. Pair trinity/speedup composes gate/unite + vote/build. HARMONY ≠ TRUTH.' }
+      'EXACT: blazing-fast build = content-addressed reuse (memoByRoot · merkle respawn · single-flight lock · types-before-seal · trinity one-pass). NOT physical FTL / NOT parallel docs:build. Pair trinity/speedup composes gate/unite + vote/build.' }
 }
 
 export function runTrinitySpeedupExit(_root = '', _argv: readonly string[] = []): number {
@@ -1602,7 +1602,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // DOUBLE TORUS' — claySolvedTheorem() computes claySolvedByThisFold=0 in every fold; no Clay
   // problem is solved in this codebase, and the genus-2 topology is an ADOPTED architecture
   // (χ = 2−2g exact), not a consequence of Millennium solutions. The millennium slot stays
-  // UNCLAIMED: probes and partials, never solutions. HARMONY ≠ TRUTH.
+  // UNCLAIMED: probes and partials, never solutions.
   { from: 'millenniumSolutionsSolvedFormedTheDoubleTorusFLAGGED', to: 'millenniumProblemsChallenge', pair: 'mill/torus' },
   { from: 'theGitMessagesAreComputedAndSigned', to: 'commitMessage', pair: 'commit/message' },
   // MANDATORY: no manual prose in git messages — every commit message is the computed output of
@@ -2187,7 +2187,7 @@ export function placeMerge(root: string = enforcementScanRoot(), facts?: Enforce
       `clustersMerged=${clustersMerged ? 1 : 0} drainableClosed=${drainableClosed ? 1 : 0} honestOpen=${honestOpenNamed.length}.`,
     boundary:
       'Merged prose instruction folds commandsAudited… + manualDryClean… into one matrix slot placeMerge. ' +
-      'Aliases preserve CLI. residual:prose-named-folds-wave2 named. NOT physical FTL · NOT Clay · KEEP stashes. HARMONY ≠ TRUTH.',
+      'Aliases preserve CLI. residual:prose-named-folds-wave2 named. NOT physical FTL · NOT Clay · KEEP stashes.',
   }
 }
 
@@ -2438,7 +2438,7 @@ export function proseMethodsCollapseToMatrix(root: string = enforcementScanRoot(
       `theorems=${theoremsDiscovered.length} residual=${PROSE_NAMED_RESIDUAL_FOLDS.length}.`,
     boundary:
       'Proves prose instruction folds collapse to matrix duals. This wave merges place/manual cluster only — ' +
-      'remaining prose-named folds listed residual:prose-named-folds-wave2. NOT Clay · NOT AGI · NOT FTL · KEEP stashes. HARMONY ≠ TRUTH.',
+      'remaining prose-named folds listed residual:prose-named-folds-wave2. NOT Clay · NOT AGI · NOT FTL · KEEP stashes.',
   }
 }
 
@@ -2527,7 +2527,7 @@ export function autosaveMatrix() {
     boundary:
       'Manual work autosaves in the matrix: every prose-merge target (placeMerge · planTrinity · frontierQuantum · autosaveMatrix) must hold a ' +
       'COMMAND_PLACEMENT_AUDIT_MAP row — the fold recomputes the join and FAILS on any directive worked but not saved. It cannot observe work that ' +
-      'never entered a merge map; that stays the honest limit. NOT Clay · NOT FTL. HARMONY ≠ TRUTH.' }
+      'never entered a merge map; that stays the honest limit. NOT Clay · NOT FTL.' }
 }
 
 /**
@@ -3332,7 +3332,7 @@ export function runTrinitySpeedExit(root = '', _argv: readonly string[] = []): n
  * lying reader · TDZ-in-cycle · interpreter splice · quantum perjury) each converted to a catching
  * gate, replayable at zero tokens. WHAT IS FLAGGED: "beat ANY model on ANY task" is NOT guaranteed —
  * the edge is BOUNDED to tool-covered tasks; open-ended reasoning stays a genuine contest, and a model
- * with a better tool wins there. HARMONY ≠ TRUTH.
+ * with a better tool wins there.
  */
 export function reasoningEdge() {
   const violations = violationTools()
@@ -3363,7 +3363,7 @@ export function reasoningEdge() {
     boundary:
       'The winning strategy computed and bounded: where a sealed tool covers a task, deterministic computation (zero tokens, exit-code proof) ' +
       'beats reasoning — and the 9 reasoning failure-modes are saved as gates, replayable and shared. The overclaim (beat any model on any ' +
-      'task) is flagged: the edge is only over tool-covered tasks; open reasoning stays a genuine contest. clay=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
+      'task) is flagged: the edge is only over tool-covered tasks; open reasoning stays a genuine contest. clay=0 · qpuRequired=false.' }
 }
 
 /** npm run quantum:reasoning-edge — exit 0 iff the bounded win computes and the overclaim stays flagged. */
@@ -3474,7 +3474,7 @@ export function revolutionaryApproach(root: string = enforcementScanRoot()) {
     boundary:
       'Revolutionary ideas require a revolutionary approach: the portal holds grand claims (millennium · beat-any-AI · all-quantum) not as prose ' +
       'but as compute-or-refute folds, each boundary a theorem (overclaimComputes cardinality). The approach is what makes revolutionary-and-honest ' +
-      'possible — it makes the ideas refutable, not true. No millennium solved; clay=0. HARMONY ≠ TRUTH.' }
+      'possible — it makes the ideas refutable, not true. No millennium solved; clay=0.' }
 }
 
 /** npm run quantum:revolution-approach — exit 0 iff revolutionary claims are held by computed boundaries. */

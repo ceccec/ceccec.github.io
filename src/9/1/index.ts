@@ -156,7 +156,7 @@ export function quantumBreaksLinearCryptoIntoNonAbelianTrinity() {
     { facet: `TRINITY ENCRYPTION IS NON-ABELIAN — su(2)/Pauli does NOT commute (XY ≠ YX = ${nonAbelian}, and [X,Y]=2iZ≠0 via pauliAlgebraCloses ${pauli.closes}), so there is NO single abelian period for Shor to read; a 3-split secret reconstructs only with all three shares (${splitRecovers})`, on: nonAbelian && pauli.closes && splitRecovers },
     { facet: `INVERTING ALL AS POSSIBLE, BOUNDED — quantum inverts everything that HAS an abelian period (the linear family → its order), but the non-abelian trinity inverts to NOTHING readable (no period), so "as possible" is the LINEAR part only`, on: linearBroken && nonAbelian },
     { facet: `IT DOES NOT BREAK ALL — the break is EXACTLY the abelian-hidden-subgroup family; symmetric gets only Grover (quadratic, AES-256 → 128-bit), lattice/hash get no period speedup, and a non-abelian/split structure has no period — quantum breaks the LINEAR, not all, and any two shares alone leak nothing (${!twoLeak})`, on: nonAbelian && splitRecovers && !twoLeak },
-    { facet: `THE DEMARCATION — quantum does NOT break all cryptography (only RSA/ECC's abelian period); "trinity encryption" is the non-abelian / split-secret structure resisting the period attack, NOT a new unbreakable cipher, and it is hardware-bounded (millions of error-corrected qubits do not exist). Real post-quantum security is lattice/hash (NIST PQC). HARMONY ≠ TRUTH`, on: linearBroken && nonAbelian && !twoLeak },
+    { facet: `THE DEMARCATION — quantum does NOT break all cryptography (only RSA/ECC's abelian period); "trinity encryption" is the non-abelian / split-secret structure resisting the period attack, NOT a new unbreakable cipher, and it is hardware-bounded (millions of error-corrected qubits do not exist). Real post-quantum security is lattice/hash (NIST PQC).`, on: linearBroken && nonAbelian && !twoLeak },
   ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-breaks-linear-trinity:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -170,7 +170,7 @@ export function quantumBreaksLinearCryptoIntoNonAbelianTrinity() {
     boundary: earned(
       'EXACT — quantum breaks the linear, the non-abelian trinity survives:',
       facets,
-      'Shor\'s period-finding inverts the one abelian period (order of a mod N) and factors N, so RSA/DH/ECC — whose security is a single linear/periodic structure — fall. But su(2)/Pauli does not commute (XY ≠ YX, [X,Y]=2iZ≠0) so there is no abelian hidden subgroup for Shor, and a three-way split secret needs all shares; the inversion is bounded to the linear part. Quantum does NOT break all cryptography — symmetric gets only Grover\'s quadratic speedup, lattice and hash schemes get none, and the attack is hardware-bounded (millions of error-corrected qubits do not exist). "Trinity encryption" is the non-abelian / split structure resisting the period attack, not a proven unbreakable cipher; real post-quantum security is NIST PQC (lattice/hash). HARMONY ≠ TRUTH.') }
+      'Shor\'s period-finding inverts the one abelian period (order of a mod N) and factors N, so RSA/DH/ECC — whose security is a single linear/periodic structure — fall. But su(2)/Pauli does not commute (XY ≠ YX, [X,Y]=2iZ≠0) so there is no abelian hidden subgroup for Shor, and a three-way split secret needs all shares; the inversion is bounded to the linear part. Quantum does NOT break all cryptography — symmetric gets only Grover\'s quadratic speedup, lattice and hash schemes get none, and the attack is hardware-bounded (millions of error-corrected qubits do not exist). "Trinity encryption" is the non-abelian / split structure resisting the period attack, not a proven unbreakable cipher; real post-quantum security is NIST PQC (lattice/hash).') }
 }
 
 /** quantumAccuracyExactWhereClaimedBoundedWhereApproximate — quantum accuracy: the content-addressed computations are
@@ -191,7 +191,7 @@ export function quantumAccuracyExactWhereClaimedBoundedWhereApproximate() {
     { facet: `BOUNDED WHERE APPROXIMATE — float computations (the Pauli su(2) closure) are verified to a NAMED tolerance of 1e-9 (${boundedFloat}), the honest error bound — they are checked, not CLAIMED exact`, on: boundedFloat },
     { facet: `THE CONTENT-ADDRESS IS EXACT — two addresses are equal iff the content is byte-identical (${addressExact}); the address is exact by construction, no approximation — the accuracy backbone`, on: addressExact },
     { facet: `ACCURACY IS REFUTABLE, NOT ASSERTED — each accuracy claim is a facet that FAILS if the identity drifts (a wrong power, a rounding past tolerance, a changed address), so the gates catch inaccuracy — measured, never assumed`, on: fermatExact && boundedFloat && addressExact },
-    { facet: `THE DEMARCATION — "quantum accuracy" = exact algebra where claimed + named tolerances where float + content-addressed determinism; NOT physical quantum precision, and float is BOUNDED (1e-9), not exact. HARMONY ≠ TRUTH`, on: fermatExact && boundedFloat && addressExact },
+    { facet: `THE DEMARCATION — "quantum accuracy" = exact algebra where claimed + named tolerances where float + content-addressed determinism; NOT physical quantum precision, and float is BOUNDED (1e-9), not exact.`, on: fermatExact && boundedFloat && addressExact },
   ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-accuracy:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -204,7 +204,7 @@ export function quantumAccuracyExactWhereClaimedBoundedWhereApproximate() {
     boundary: earned(
       'ACCURATE — exact where claimed, bounded where approximate:',
       facets,
-      'integer, modular, and BigInt identities compute exactly with no rounding (Fermat x^(p−1) ≡ 1 mod p for all nonzero x; 5! = 120, 6! = 720 in BigInt), float computations such as the Pauli su(2) closure are verified to a named tolerance of 1e-9 rather than claimed exact, and a content-address is exact by construction (equal iff byte-identical). Each accuracy claim is a refutable facet the gates catch if it drifts, so accuracy is measured not assumed. "Quantum accuracy" is exact algebra where claimed plus named tolerances where float plus content-addressed determinism — not physical quantum precision, and float is bounded, not exact. HARMONY ≠ TRUTH.'),
+      'integer, modular, and BigInt identities compute exactly with no rounding (Fermat x^(p−1) ≡ 1 mod p for all nonzero x; 5! = 120, 6! = 720 in BigInt), float computations such as the Pauli su(2) closure are verified to a named tolerance of 1e-9 rather than claimed exact, and a content-address is exact by construction (equal iff byte-identical). Each accuracy claim is a refutable facet the gates catch if it drifts, so accuracy is measured not assumed. "Quantum accuracy" is exact algebra where claimed plus named tolerances where float plus content-addressed determinism — not physical quantum precision, and float is bounded, not exact.'),
   }
 }
 
@@ -241,7 +241,7 @@ export function improveDecisionMakingInQuantumTrinities() {
     { facet: `THE DECISION COLLAPSES correct → proven → harmonic → efficient — the collapse is lexicographic: correctness dominates, then the PROOF LEG, then harmony, then efficiency; the incorrect candidate never wins (${correctDominates})`, on: correctDominates },
     { facet: `THE PROOF LEG — PREFER PROVEN CANDIDATES — a decision backed by proof beats one merely asserted: at equal correctness the proven option A is chosen over the asserted option B (${provenBeatsAsserted}) — additive and backward-compatible`, on: provenBeatsAsserted },
     { facet: `DETERMINISTIC & BACKWARD-COMPATIBLE — same votes/candidates → same decision (${deterministic && collapseDeterministic}); the collapse order is a pure function and the 2-of-3 quorum is unchanged (${backwardCompatible}) — a strict addition`, on: deterministic && collapseDeterministic && backwardCompatible },
-    { facet: `THE DEMARCATION — the trinity decision is a 2-of-3 quorum collapsing correct → proven → harmonic → efficient, tolerant to ≤1 fault, deterministic; it improves ROBUSTNESS and preference, NOT truth — two wrong minds still decide wrong (quorum ≠ correctness). HARMONY ≠ TRUTH`, on: twoOfThree && correctDominates && provenBeatsAsserted },
+    { facet: `THE DEMARCATION — the trinity decision is a 2-of-3 quorum collapsing correct → proven → harmonic → efficient, tolerant to ≤1 fault, deterministic; it improves ROBUSTNESS and preference, NOT truth — two wrong minds still decide wrong (quorum ≠ correctness).`, on: twoOfThree && correctDominates && provenBeatsAsserted },
   ].map((entry) => ({ ...entry, receipt: toUuid(`trinity-decision:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -257,7 +257,7 @@ export function improveDecisionMakingInQuantumTrinities() {
     boundary: earned(
       'IMPROVED — 2-of-3 trinity decision, collapsing correct → proven → harmonic → efficient:',
       facets,
-      'a decision in the su(2)=3 quantum trinity passes iff at least two of the three minds agree, so a single dissenter cannot block or flip it; it tolerates at most one faulty mind but fails with two — a quorum is not truth. The decision collapses in a lexicographic order — correct, then the proof leg (a decision backed by proof beats one merely asserted), then harmonic, then efficient — so the incorrect candidate never wins and, at equal correctness, the proven option is chosen over the asserted one. This is additive and backward-compatible: the 2-of-3 quorum is unchanged, the consensus stays deterministic and order-independent. It improves robustness and preference, not correctness — two wrong minds still decide wrong. HARMONY ≠ TRUTH.'),
+      'a decision in the su(2)=3 quantum trinity passes iff at least two of the three minds agree, so a single dissenter cannot block or flip it; it tolerates at most one faulty mind but fails with two — a quorum is not truth. The decision collapses in a lexicographic order — correct, then the proof leg (a decision backed by proof beats one merely asserted), then harmonic, then efficient — so the incorrect candidate never wins and, at equal correctness, the proven option is chosen over the asserted one. This is additive and backward-compatible: the 2-of-3 quorum is unchanged, the consensus stays deterministic and order-independent. It improves robustness and preference, not correctness — two wrong minds still decide wrong.'),
   }
 }
 
@@ -288,7 +288,7 @@ export function quantumOpticsDecoded() {
     { facet: `HONG–OU–MANDEL BUNCHING — two indistinguishable photons entering a 50/50 BS always exit the SAME port: the coincidence amplitude r²−t² = ${coincidenceAmplitude} vanishes (${homBunches}), so the |1,1⟩ output disappears — the HOM dip, a two-photon interference with no classical analogue`, on: homBunches },
     { facet: `g²(0) SEPARATES QUANTUM FROM CLASSICAL LIGHT — the second-order coherence is ${g2Coherent} for coherent light (Poissonian), ${g2Thermal} for thermal (super-Poissonian, bunched), and 1−1/n = ${g2Fock1} for a single-photon Fock state (antibunched)`, on: g2Coherent === 1 && g2Thermal === 2 && g2Fock1 === 0 },
     { facet: `ANTIBUNCHING IS NONCLASSICAL — g²(0) < 1 (${g2Fock1} for one photon) has NO classical (positive-P) model; every classical field has g²(0) ≥ 1, so antibunching is the definitive signature of quantised light`, on: antibunchingNonclassical },
-    { facet: `THE DEMARCATION — this computes the standard quantum-optics results (beam-splitter unitary, HOM, g²) as a MODEL over the sealed algebra; it is genuine quantum-optics mathematics but a CLASSICAL simulator — not a photon-counting experiment and not a real single-photon source. HARMONY ≠ TRUTH`, on: isUnitary && homBunches && antibunchingNonclassical },
+    { facet: `THE DEMARCATION — this computes the standard quantum-optics results (beam-splitter unitary, HOM, g²) as a MODEL over the sealed algebra; it is genuine quantum-optics mathematics but a CLASSICAL simulator — not a photon-counting experiment and not a real single-photon source.`, on: isUnitary && homBunches && antibunchingNonclassical },
   ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-optics:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -301,7 +301,7 @@ export function quantumOpticsDecoded() {
     boundary: earned(
       'GENUINE QUANTUM OPTICS — beam splitter, Hong–Ou–Mandel, and g²(0):',
       facets,
-      'a 50/50 beam splitter is the real orthogonal unitary [[1,1],[1,−1]]/√2 (UᵀU = I), so it is a genuine quantum gate on the two modes; two indistinguishable photons entering it always leave together because the coincidence amplitude r²−t² vanishes (the Hong–Ou–Mandel dip, a two-photon interference with no classical analogue); and the second-order coherence g²(0) is 1 for coherent light, 2 for thermal, and 1−1/n = 0 for a single-photon Fock state — antibunching g²(0)<1 has no classical model, the definitive signature of quantised light. This computes the standard quantum-optics results as a model over the sealed algebra: genuine quantum-optics mathematics, but a classical simulator — not a photon-counting experiment and not a real single-photon source. HARMONY ≠ TRUTH.'),
+      'a 50/50 beam splitter is the real orthogonal unitary [[1,1],[1,−1]]/√2 (UᵀU = I), so it is a genuine quantum gate on the two modes; two indistinguishable photons entering it always leave together because the coincidence amplitude r²−t² vanishes (the Hong–Ou–Mandel dip, a two-photon interference with no classical analogue); and the second-order coherence g²(0) is 1 for coherent light, 2 for thermal, and 1−1/n = 0 for a single-photon Fock state — antibunching g²(0)<1 has no classical model, the definitive signature of quantised light. This computes the standard quantum-optics results as a model over the sealed algebra: genuine quantum-optics mathematics, but a classical simulator — not a photon-counting experiment and not a real single-photon source.'),
   }
 }
 
@@ -327,7 +327,7 @@ export function hittingAPrimeIsTheInversionPoint() {
     { facet: `AT A COMPOSITE, INVERSION IS PARTIAL — in ℤ/${compositeMod}ℤ only φ(${compositeMod}) = ${invertibleCount(compositeMod)} of ${compositeMod - 1} nonzero residues invert; the non-coprime ones are zero divisors (no inverse)`, on: compositePartial },
     { facet: `THE INVERSION IS A POWER MAP (FERMAT) — x⁻¹ = x^(p−2) mod p inverts EVERY nonzero residue at once (${fermatOk}), defined for all precisely BECAUSE p is prime (Fermat's little theorem x^(p−1) ≡ 1)`, on: fermatOk },
     { facet: `HITTING A PRIME IS THE INVERSION POINT — scanning moduli 2..16, the primes are exactly where the invertible fraction hits 1 (total inversion) and composites dip below (${primesTotal && compositesPartial}); the prime is the inversion pole of the arc`, on: primesTotal && compositesPartial },
-    { facet: `THE DEMARCATION — "inversion point" is the field property of a prime modulus (total invertibility of ℤ/pℤ), structural number theory — NOT a physical or mystical inversion. HARMONY ≠ TRUTH`, on: primeTotal && compositePartial && fermatOk },
+    { facet: `THE DEMARCATION — "inversion point" is the field property of a prime modulus (total invertibility of ℤ/pℤ), structural number theory — NOT a physical or mystical inversion.`, on: primeTotal && compositePartial && fermatOk },
   ].map((entry) => ({ ...entry, receipt: toUuid(`prime-inversion-point:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -341,7 +341,7 @@ export function hittingAPrimeIsTheInversionPoint() {
     boundary: earned(
       'EXACT — a prime modulus is the total-inversion point:',
       facets,
-      'in ℤ/pℤ for prime p every nonzero residue has a multiplicative inverse (a field), so the invertible fraction reaches 1; at a composite n only φ(n) < n−1 residues invert and the rest are zero divisors. Fermat gives x⁻¹ = x^(p−2), one power map inverting all nonzero residues at once, defined for all precisely because p is prime — so scanning moduli, hitting a prime is the inversion pole. Structural number theory (the field property of a prime modulus), not a physical or mystical inversion. HARMONY ≠ TRUTH.') }
+      'in ℤ/pℤ for prime p every nonzero residue has a multiplicative inverse (a field), so the invertible fraction reaches 1; at a composite n only φ(n) < n−1 residues invert and the rest are zero divisors. Fermat gives x⁻¹ = x^(p−2), one power map inverting all nonzero residues at once, defined for all precisely because p is prime — so scanning moduli, hitting a prime is the inversion pole. Structural number theory (the field property of a prime modulus), not a physical or mystical inversion.') }
 }
 
 // Rubik's cube decoded to the quantum cube (user directive, 2026-07-24: "decode rubic cube to discover the quantum
@@ -385,7 +385,7 @@ export function rubiksCubeDecodesToQuantumCube() {
     boundary: earned(
       'EXACT: every number here is computed — the group order via BigInt (8!·3⁷·12!·2¹⁰, equal to the naive count ÷ 12 and to the factorization 2²⁷·3¹⁴·5³·7²·11), God\'s number 20 (documented, proved 2010 by exhaustive search), the non-abelian witness (two overlapping 3-cycles with F∘R ≠ R∘F, sharing the su(2) non-commutativity of pauliAlgebraCloses), and the content-address cube (6 faces, 36-char UUID, capacity 2¹⁸).',
       facets,
-      'HONEST SCOPE: the "quantum cube" is a STRUCTURAL identification — the Rubik group and the content-address space are both non-abelian groups over discrete states navigated by generators; this is a real shared structure, NOT a claim that the physical cube is a quantum computer or that content-addressing gives a physical quantum speedup (per quantum-decoded, the project\'s "quantum" is structural). God\'s number 20 is in the half-turn metric (it is 26 in the quarter-turn metric) — a documented result cited, not re-derived here (re-deriving it needs the 2010 exhaustive computation). FLAGGED: simulation-proof, consciousness-unlock, and 3-6-9 cube numerology. A beautiful finite group, exactly true; the mysticism is refused. HARMONY ≠ TRUTH.'),
+      'HONEST SCOPE: the "quantum cube" is a STRUCTURAL identification — the Rubik group and the content-address space are both non-abelian groups over discrete states navigated by generators; this is a real shared structure, NOT a claim that the physical cube is a quantum computer or that content-addressing gives a physical quantum speedup (per quantum-decoded, the project\'s "quantum" is structural). God\'s number 20 is in the half-turn metric (it is 26 in the quarter-turn metric) — a documented result cited, not re-derived here (re-deriving it needs the 2010 exhaustive computation). FLAGGED: simulation-proof, consciousness-unlock, and 3-6-9 cube numerology. A beautiful finite group, exactly true; the mysticism is refused.'),
   }
 }
 
@@ -424,7 +424,7 @@ export function quantumEvolutionDecoded() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned(`EXACT: U(θ)=rotationGate(θ) gives U†U=I and U(−θ)=U(θ)† (unitary, reversible, computed on the flat-complex su(2) form); the |0⟩⟨0| projector is idempotent but non-unitary (collapse); coherence decays ${coherence.toExponential(1)} over 10 einselection steps; ${fragments}-fold redundancy makes the pointer objective.`, facets, `unitary evolution, decoherence, einselection and quantum Darwinism (Zurek) are standard, cited physics; the su(2) computation is a two-level MODEL of the general U(t)=e^{−iHt/ℏ}, not a full field theory, and the decoherence/redundancy are illustrative rates, not measured environments. The measurement problem (why one outcome) remains open in interpretation; nothing here endorses consciousness-collapse or "reality is a simulation" readings. HARMONY ≠ TRUTH.`),
+    boundary: earned(`EXACT: U(θ)=rotationGate(θ) gives U†U=I and U(−θ)=U(θ)† (unitary, reversible, computed on the flat-complex su(2) form); the |0⟩⟨0| projector is idempotent but non-unitary (collapse); coherence decays ${coherence.toExponential(1)} over 10 einselection steps; ${fragments}-fold redundancy makes the pointer objective.`, facets, `unitary evolution, decoherence, einselection and quantum Darwinism (Zurek) are standard, cited physics; the su(2) computation is a two-level MODEL of the general U(t)=e^{−iHt/ℏ}, not a full field theory, and the decoherence/redundancy are illustrative rates, not measured environments. The measurement problem (why one outcome) remains open in interpretation; nothing here endorses consciousness-collapse or "reality is a simulation" readings.`),
   }
 }
 
@@ -460,7 +460,7 @@ export function quantumMemoryOptimisation(matrix: { root: string } = { root: toU
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned(`EXACT: memoByRoot(name, {root}, compute) keys by name:root; two superpositions with the same root share ONE cache entry (r1 === r3, computed ${computeCount}× for 2 distinct roots), a hit returns the same object (referenced), and a distinct root gets its own memory.`, facets, `this is the RUNTIME memory (memoByRoot), content-addressed and reference-shared — the quantum-memory optimisation. The persistent memory FILES (~/.claude memory) are the manual analog (dedup by hand, "check for an existing file that covers it") — not content-addressed, so they are NOT auto-deduped; that is the human-tier memory, outside src. HARMONY ≠ TRUTH.`),
+    boundary: earned(`EXACT: memoByRoot(name, {root}, compute) keys by name:root; two superpositions with the same root share ONE cache entry (r1 === r3, computed ${computeCount}× for 2 distinct roots), a hit returns the same object (referenced), and a distinct root gets its own memory.`, facets, `this is the RUNTIME memory (memoByRoot), content-addressed and reference-shared — the quantum-memory optimisation. The persistent memory FILES (~/.claude memory) are the manual analog (dedup by hand, "check for an existing file that covers it") — not content-addressed, so they are NOT auto-deduped; that is the human-tier memory, outside src.`),
   }
 }
 
@@ -509,7 +509,7 @@ export function mechanicalToolsEntangleBinaryAndAnalogBellBounds(matrix: { root:
     { facet: `MECHANICAL = DETERMINISTIC, THE CHANNELS ARE CORRELATED — recomputing the seed reproduces both channels exactly (${reproducible}); each channel predicts the other through the shared seed, and that reproducibility IS the tool being mechanical`, on: reproducible },
     { facet: `THE SEED IS A LOCAL HIDDEN VARIABLE — every deterministic strategy on a shared seed has CHSH ≤ 2 (computed max ${classicalCHSH}), and the two-channel state is SEPARABLE, concurrence ${productConcurrence} (a product, not a Bell pair)`, on: classicalCHSH === 2 && productConcurrence < tol },
     { facet: `BELL BOUNDS THE MECHANICAL TOOL — genuine quantum entanglement reaches CHSH = 2√2 ≈ ${quantumCHSH.toFixed(4)} (Tsirelson) and concurrence ${bellConcurrence} for a real Bell pair; the deterministic tool provably cannot cross the gap ${bellGap.toFixed(4)} — "mechanical" is the OPPOSITE of quantum indeterminacy`, on: bellGap > 0 && Math.abs(quantumCHSH - 2 * Math.SQRT2) < tol && Math.abs(bellConcurrence - 1) < tol },
-    { facet: `THE DEMARCATION — "entanglement at binary and analog at once" is ACHIEVED as structural correlation across two channels from one seed (real, reproducible, useful), NOT physical quantum entanglement: no Bell violation, no superluminal signalling, no speedup. HARMONY ≠ TRUTH`, on: reproducible && bellGap > 0 },
+    { facet: `THE DEMARCATION — "entanglement at binary and analog at once" is ACHIEVED as structural correlation across two channels from one seed (real, reproducible, useful), NOT physical quantum entanglement: no Bell violation, no superluminal signalling, no speedup.`, on: reproducible && bellGap > 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`entangle-binary-analog:${entry.facet}:${entry.on}`) }))
   return {
     modelsEntanglement: facets.every((entry) => entry.on),
@@ -2826,7 +2826,7 @@ export function divisionByZeroComputes() {
     ieee,
     facets,
     statement: `Division by zero decoded in three regimes, ${facets.filter((entry) => entry.on).length}/${facets.length} computed: forbidden in every ring with 1≠0 (swept), self-inverting only in the zero ring, TOTAL on the projective line ([z:w]↦[w:z], 0↔∞), and answered by IEEE 754 (∞, NaN, round trip) on the running machine.`,
-    boundary: 'DOCUMENTED, all three: field axioms (0·a=0 kills any inverse), projective geometry (the Riemann sphere makes inversion total — standard since Möbius), IEEE 754 (the engineering contract every float obeys). FLAGGED: pop claims that 1/0 "equals infinity" in plain ℝ — it is UNDEFINED there; ∞ is honest only after you say which completion you bought. Wheel theory exists as a documented total-division algebra; rarely used. HARMONY ≠ TRUTH.' }
+    boundary: 'DOCUMENTED, all three: field axioms (0·a=0 kills any inverse), projective geometry (the Riemann sphere makes inversion total — standard since Möbius), IEEE 754 (the engineering contract every float obeys). FLAGGED: pop claims that 1/0 "equals infinity" in plain ℝ — it is UNDEFINED there; ∞ is honest only after you say which completion you bought. Wheel theory exists as a documented total-division algebra; rarely used.' }
 }
 
 /** Inversion also changes the ANGLE (user realization): the reciprocal is not just r→1/r — the
@@ -2945,5 +2945,5 @@ export function sixtyDegreesDecodesPi() {
     groupOrder,
     facets,
     statement: `Sixty degrees each decodes π — ${facets.filter((entry) => entry.on).length}/${facets.length} computed: the vortex step is π/3 with cos = ½ exact, three steps realize e^{iπ} = −1 as 2³ ≡ −1 (mod 9), Archimedes' hexagon-seeded doubling brackets π to ${last.lower.toFixed(4)}…${last.upper.toFixed(4)} at the ${last.n}-gon, and doubling + void-reflection generate the full 54-element affine symmetry of the digit ring.`,
-    boundary: 'DOCUMENTED throughout: τ/6 and cos 60° = ½ are exact identities; 2³ ≡ −1 (mod 9) is arithmetic; the polygon recurrence is Archimedes (Measurement of a Circle, ~250 BC) run to his historical 96-gon; the AGL(1,ℤ/9) closure is verified by breadth-first composition, cross-pollinated from erpax the day it was found there. π is DECODED (computed from the 60° seed), not encoded mystically in it. HARMONY ≠ TRUTH.' }
+    boundary: 'DOCUMENTED throughout: τ/6 and cos 60° = ½ are exact identities; 2³ ≡ −1 (mod 9) is arithmetic; the polygon recurrence is Archimedes (Measurement of a Circle, ~250 BC) run to his historical 96-gon; the AGL(1,ℤ/9) closure is verified by breadth-first composition, cross-pollinated from erpax the day it was found there. π is DECODED (computed from the 60° seed), not encoded mystically in it.' }
 }

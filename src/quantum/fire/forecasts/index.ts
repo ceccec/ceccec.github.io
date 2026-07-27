@@ -134,7 +134,7 @@ export function weatherForecastFromDoubleTorusEarthPerspective(
     statement:
       `Weather forecast from the double-torus Earth perspective at (${at.lat}°, ${at.lon}°): classical realtime feeds (Open-Meteo + US NWS) folded with the genus-2 Earth pyramid-tips model — θ from longitude, φ from latitude, torus ${torusIndex} (${northern ? 'northern +' : 'southern −'}lobe, polarity ${polarity}), digit ${digit}, surface (${surface.x.toFixed(2)}, ${surface.y.toFixed(2)}, ${surface.z.toFixed(2)}), nearest cardinal tip ${cardinal.name} (${cardinal.fromBearing}° bearing, ${cardinal.angularDistance}° from tip).`,
     boundary:
-      'HONEST: Open-Meteo and api.weather.gov deliver classical numerical weather prediction on the WGS84 oblate spheroid — NOT on a literal doughnut planet. This fold maps the realtime weather stream onto the repo’s genus-2 double-torus Earth topology (doubleTorusEarthPyramidTipsProvenByMath, doubleTorusSurface): θ=(lon+180)/360·2π, φ=lat/90·π/2, northern hemisphere→torus 1 (+lobe, polarity 1), southern→torus 2 (−lobe, polarity 0), digit=digitalRoot(|round(lat·100)|+|round(lon·100)|), cardinal tip=nearest N/E/S/W from initialBearing(0,0,lat,lon). Grid-cell torus (Gardner et al.) is a neuroscience map topology, not lithosphere. "Quantum computed" remains a research frontier per weatherForecastQuantumComputedRealtime. HARMONY ≠ TRUTH.' }
+      'HONEST: Open-Meteo and api.weather.gov deliver classical numerical weather prediction on the WGS84 oblate spheroid — NOT on a literal doughnut planet. This fold maps the realtime weather stream onto the repo’s genus-2 double-torus Earth topology (doubleTorusEarthPyramidTipsProvenByMath, doubleTorusSurface): θ=(lon+180)/360·2π, φ=lat/90·π/2, northern hemisphere→torus 1 (+lobe, polarity 1), southern→torus 2 (−lobe, polarity 0), digit=digitalRoot(|round(lat·100)|+|round(lon·100)|), cardinal tip=nearest N/E/S/W from initialBearing(0,0,lat,lon). Grid-cell torus (Gardner et al.) is a neuroscience map topology, not lithosphere. "Quantum computed" remains a research frontier per weatherForecastQuantumComputedRealtime.' }
 }
 
 // Double-torus solutions catalog — in forecasts (not topology) to avoid topology↔forecasts Vite HMR cycle.
@@ -175,7 +175,7 @@ function doubleTorusSolutionsProvenByMathRaw(matrix: MindMatrix = buildMatrix())
     statement:
       'Double-torus solutions proven by math: a catalog of seven domains — circulation (circulateDoubleTorus on the uuid-stream), earth-topology (genus-2 Earth + cardinal pyramid tips), weather (NWP feeds mapped onto genus-2 coords), geodynamo (dipole/poles anchor as honest analogy), motif (fringe vs real geometry boundary), compost (regenerative loop metaphor), trading-streams (plasmaWiredUuidStreams on the same genus-2 wire) — each composed from existing folds with facet proofs at call time.',
     boundary:
-      'HONEST: solutions are computed topology + documented analogies — NOT a literal doughnut planet, NOT Earth-grid pseudoscience, NOT live trading alpha. Hub lives in forecasts so topology↔forecasts cycle does not spin Vite HMR. HARMONY ≠ TRUTH.' }
+      'HONEST: solutions are computed topology + documented analogies — NOT a literal doughnut planet, NOT Earth-grid pseudoscience, NOT live trading alpha. Hub lives in forecasts so topology↔forecasts cycle does not spin Vite HMR.' }
 }
 
 export function doubleTorusSolutionsDeepResearched(matrix: MindMatrix = buildMatrix()) {
@@ -218,7 +218,7 @@ function doubleTorusSolutionsDeepResearchedRaw(matrix: MindMatrix = buildMatrix(
     statement:
       'Deep research — double-torus solutions hub: Gardner grid-cell torus, geodynamo dipole, WGS84 vs genus-2, trading circulation fold; donut/flat Earth and Becker–Hagens flagged hold.',
     boundary:
-      'HONEST deep-research wave: DOCUMENTED · FLAGGED · ISOMORPHISM (HARMONY ≠ TRUTH). Hub in forecasts avoids topology↔forecasts HMR cycle.' }
+      'HONEST deep-research wave: DOCUMENTED · FLAGGED · ISOMORPHISM (). Hub in forecasts avoids topology↔forecasts HMR cycle.' }
 }
 
 /** Movie seeds from double-torus Earth weather and solutions — facets and domains become plasma streams. */
