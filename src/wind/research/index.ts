@@ -1867,7 +1867,7 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
 
     const problems: MillenniumProblemChallenge[] = [
       {
-        id: 'p-vs-np',
+        id: CLAY_PROBLEMS.pvnp.id,
         name: CLAY_PROBLEMS.pvnp.name,
         challengeMethod: [
           'np-certificate-verifies-in-poly',
@@ -1898,7 +1898,7 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
           'search half: witness space 2^p(n) — O(1) lookup presupposes exactly what the search must produce',
         ] },
       {
-        id: 'hodge',
+        id: CLAY_PROBLEMS.hodge.id,
         name: CLAY_PROBLEMS.hodge.name,
         challengeMethod: [
           'DIMENSION_GATES/FOLDED_CENSUS → H₁ rank 4',
@@ -1923,7 +1923,7 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
           'the fold computes a Betti NUMBER (rank 4) and a MODELED mirror involution — not the class-by-class algebraicity the conjecture asserts',
         ] },
       {
-        id: 'poincare',
+        id: CLAY_PROBLEMS.poincare.id,
         name: CLAY_PROBLEMS.poincare.name,
         challengeMethod: ['theSevenMillenniumProblemsDefinedFormallyUnclaimed', 'homology rank 4 structural analogy'],
         on: poincareOn,
@@ -1940,7 +1940,7 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
           'No open gap: proved externally (Perelman 2002–03) — Ricci flow with surgery drives every simply-connected closed 3-manifold to S³; this corpus records the status, it does not re-solve it',
         ] },
       {
-        id: 'riemann',
+        id: CLAY_PROBLEMS.riemann.id,
         name: CLAY_PROBLEMS.riemann.name,
         challengeMethod: [
           'Basel Σ1/n² → ζ(2)=π²/6',
@@ -1968,7 +1968,7 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
           'the fold seals VALUES of ζ (ζ(2)=π²/6, ζ(−1)=−1/12) and discrete inverse harmonics — never the real part of the zeros',
         ] },
       {
-        id: 'yang-mills',
+        id: CLAY_PROBLEMS.yangMills.id,
         name: CLAY_PROBLEMS.yangMills.name,
         challengeMethod: [
           'pauliAlgebraCloses (su(2))',
@@ -1994,7 +1994,7 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
           'su(2) + torus + string dualities are finite/MODELED; the gap needs a continuum limit and a spectral lower bound, neither sealed here',
         ] },
       {
-        id: 'navier-stokes',
+        id: CLAY_PROBLEMS.navierStokes.id,
         name: CLAY_PROBLEMS.navierStokes.name,
         challengeMethod: ['doubleTorusSurface / counter-oriented lobes MODEL', 'frontier verified-partials fold'],
         on: nsOn,
@@ -2014,7 +2014,7 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
           'finite surface samples on the genus-2 model touch neither global existence nor blow-up control of the 3D equations',
         ] },
       {
-        id: 'birch-swinnerton-dyer',
+        id: CLAY_PROBLEMS.bsd.id,
         name: CLAY_PROBLEMS.bsd.name,
         challengeMethod: ['zeroDivisionTable inverse pairs (2,5)/(4,7)', 'group-law neighbourhood via pair closure'],
         on: bsdOn,
@@ -2203,15 +2203,17 @@ export function reverseEngineerRequirementsToTestablePossibilities(matrix: MindM
  */
 export type ClayRigorLevel = 'proven-and-used' | 'proven' | 'proven-on-proxy' | 'proven-in-cousin' | 'observed'
 export type ClayProblemId = 'poincare' | 'pvnp' | 'navierStokes' | 'riemann' | 'yangMills' | 'hodge' | 'bsd'
-export const CLAY_PROBLEMS: Record<ClayProblemId, { name: string; rigor: ClayRigorLevel }> = {
-  poincare: { name: 'Poincaré Conjecture', rigor: 'proven-and-used' },
-  pvnp: { name: 'P vs NP', rigor: 'proven' },
-  navierStokes: { name: 'Navier–Stokes Existence and Smoothness', rigor: 'proven-on-proxy' },
-  riemann: { name: 'Riemann Hypothesis', rigor: 'proven-in-cousin' },
-  yangMills: { name: 'Yang–Mills Existence and Mass Gap', rigor: 'observed' },
-  hodge: { name: 'Hodge Conjecture', rigor: 'observed' },
-  bsd: { name: 'Birch and Swinnerton–Dyer Conjecture', rigor: 'observed' },
+export const CLAY_PROBLEMS: Record<ClayProblemId, { id: string; name: string; rigor: ClayRigorLevel }> = {
+  poincare: { id: 'poincare', name: 'Poincaré Conjecture', rigor: 'proven-and-used' },
+  pvnp: { id: 'p-vs-np', name: 'P vs NP', rigor: 'proven' },
+  navierStokes: { id: 'navier-stokes', name: 'Navier–Stokes Existence and Smoothness', rigor: 'proven-on-proxy' },
+  riemann: { id: 'riemann', name: 'Riemann Hypothesis', rigor: 'proven-in-cousin' },
+  yangMills: { id: 'yang-mills', name: 'Yang–Mills Existence and Mass Gap', rigor: 'observed' },
+  hodge: { id: 'hodge', name: 'Hodge Conjecture', rigor: 'observed' },
+  bsd: { id: 'birch-swinnerton-dyer', name: 'Birch and Swinnerton–Dyer Conjecture', rigor: 'observed' },
 }
+/** Canonical registry order — one array both projections (credits · apparatus identity) iterate. */
+export const CLAY_ORDER: readonly ClayProblemId[] = ['poincare', 'pvnp', 'riemann', 'yangMills', 'navierStokes', 'hodge', 'bsd']
 
 /**
  * millenniumOpenBarriersInvertToRequirements — save the barriers, invert using the saved (user, 2026-07-24: "why are
@@ -2540,15 +2542,26 @@ export function novelToHumanityIsCheckableNotDeclaredByPublicApis(matrix: MindMa
  * is refuted by the credits count itself: you cannot credit a solution that does not exist. claySolvedByThisFold = 0. */
 export function clayCreditsOnlyThePoincareSolutionTheOtherSixOpen(matrix: MindMatrix = buildMatrix()) {
   const challenge = millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(matrix)
-  const credits = [
-    { id: 'poincare', name: CLAY_PROBLEMS.poincare.name, solved: true, solver: 'Grigori Perelman', year: '2002–2003', note: 'Ricci flow with surgery; verified ~2006; declined the Fields Medal (2006) and the $1M Millennium Prize (2010)' },
-    { id: 'p-vs-np', name: CLAY_PROBLEMS.pvnp.name, solved: false, solver: null, note: 'open — no verified proof either way' },
-    { id: 'riemann', name: CLAY_PROBLEMS.riemann.name, solved: false, solver: null, note: 'open — no verified proof' },
-    { id: 'yang-mills', name: CLAY_PROBLEMS.yangMills.name, solved: false, solver: null, note: 'open — no rigorous 4D construction / mass-gap proof' },
-    { id: 'navier-stokes', name: CLAY_PROBLEMS.navierStokes.name, solved: false, solver: null, note: 'open — no global regularity or blow-up proof' },
-    { id: 'hodge', name: CLAY_PROBLEMS.hodge.name, solved: false, solver: null, note: 'open — no verified proof' },
-    { id: 'birch-swinnerton-dyer', name: CLAY_PROBLEMS.bsd.name, solved: false, solver: null, note: 'open — no verified proof' },
-  ]
+  // Credits = a PROJECTION of the one CLAY_PROBLEMS registry over CLAY_ORDER: id · name come from the registry,
+  // solved DERIVES from rigor (solved ⟺ rigor==='proven-and-used'), and only the genuinely unique credit facts
+  // (solver · year · note) are listed per problem. One source, mapped — no roster re-enumeration.
+  const CREDIT: Record<ClayProblemId, { solver: string | null; year?: string; note: string }> = {
+    poincare: { solver: 'Grigori Perelman', year: '2002–2003', note: 'Ricci flow with surgery; verified ~2006; declined the Fields Medal (2006) and the $1M Millennium Prize (2010)' },
+    pvnp: { solver: null, note: 'open — no verified proof either way' },
+    riemann: { solver: null, note: 'open — no verified proof' },
+    yangMills: { solver: null, note: 'open — no rigorous 4D construction / mass-gap proof' },
+    navierStokes: { solver: null, note: 'open — no global regularity or blow-up proof' },
+    hodge: { solver: null, note: 'open — no verified proof' },
+    bsd: { solver: null, note: 'open — no verified proof' },
+  }
+  const credits = CLAY_ORDER.map((key) => ({
+    id: CLAY_PROBLEMS[key].id,
+    name: CLAY_PROBLEMS[key].name,
+    solved: CLAY_PROBLEMS[key].rigor === 'proven-and-used',
+    solver: CREDIT[key].solver,
+    year: CREDIT[key].year,
+    note: CREDIT[key].note,
+  }))
   const creditsGiven = credits.filter((credit) => credit.solved).length // 1
   const uncredited = credits.filter((credit) => !credit.solved).length // 6
   const poincare = credits.find((credit) => credit.id === 'poincare')!
