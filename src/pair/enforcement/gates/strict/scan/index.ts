@@ -694,6 +694,9 @@ const oneMathFormulas = (): readonly { name: string; pattern: RegExp; homes: rea
     { name: 'gates-432-inline', pattern: new RegExp(['4', '108'].join('\\s*\\*\\s*') + '|' + ['108', '4'].join('\\s*\\*\\s*')), homes: ['src/3/7/index.ts'] }, // absolutely DRY 432: the harmonic derives ONCE (DIMENSION_GATES = HOMOLOGY_LOOPS × FOLDED_CENSUS); re-deriving 4·108 elsewhere is a second harmonic
     { name: 'gcd-definition', pattern: /(?:\bconst|\bfunction)\s+gcd\s*[=(]/, homes: ['src/0/index.ts'] },
     { name: 'lcm-definition', pattern: /(?:\bconst|\bfunction)\s+lcm\s*[=(]/, homes: ['src/0/index.ts'] },
+    // isPrime reached 0 code-gravity pulls (e226961a) — promoted so any re-drift (a local trial-division
+    // isPrime outside the home) is a hard one-math finding; the canonical tkIsPrime + isPrimeBig live in src/9/1.
+    { name: 'isprime-definition', pattern: /(?:\bconst|\bfunction)\s+\w*[Ii]sPrime\w*\s*[=(]/, homes: ['src/9/1/index.ts'] },
     { name: 'dim-walk-pulse', pattern: new RegExp(`0\\.5\\s*-\\s*0\\.5\\s*\\*\\s*${cos}`), homes: ['src/quantum/mountain/dimensions/index.ts'] },
     { name: 'digital-root-inline', pattern: /%\s*9\s*\|\|\s*9/, homes: ['src/0/index.ts'] },
     { name: 'golden-angle-decimal', pattern: new RegExp(`${goldenDeg}|${goldenRad}`), homes: [] },
