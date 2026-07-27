@@ -9,6 +9,7 @@ import { pathMeansMessageFitsInThreeWords as pathMeansMessageFitsInThreeWordsFol
 import { dryCleanIsDiamondAndCrystal } from '../../../lake/clean'
 import { scanScriptShells, seedMerkleCache, vitepressSourceFiles, type ScriptShellScan } from '../script/shell'
 import { relativeImportSpecs, importGapCount } from './strict/scan'
+import { THEOREM_ATOM_SEED } from '../../../4/6'
 import {
   auditStrictGates,
   strictGatePassed,
@@ -2846,7 +2847,19 @@ export function queueNext(root: string = enforcementScanRoot()) {
   // disk is SHIPPED — drop it live, so the queue never lists completed work (a stale queue is a queue
   // you cannot trust; using quantum:next surfaced the VS Code row still open after it shipped 8/8).
   const shipped = QUEUE_ROWS.filter((row) => 'doneArtifact' in row && existsSync(join(root, (row as { doneArtifact: string }).doneArtifact)))
-  const openRows = QUEUE_ROWS.filter((row) => !('doneArtifact' in row) || !existsSync(join(root, (row as { doneArtifact: string }).doneArtifact)))
+  // ROWS DERIVE FROM THE LEDGER (this fold's own named next, landed 2026-07-27): measured worklists append
+  // derived rows beside the curated residue. First source: registry rows missing their algebraicStatement —
+  // [[every-theorem-shows-its-real-algebraic-statement]] made a queue row by COUNT, not by hand.
+  const missingIdentity = THEOREM_ATOM_SEED.filter((row) => !row.algebraicStatement).length
+  const derivedRows = missingIdentity > 0 ? [{
+    wave: `algebraic-statement fill (${missingIdentity}/${THEOREM_ATOM_SEED.length} registry rows carry no identity field)`,
+    why: 'DERIVED from THEOREM_ATOM_SEED — every theorem must show its real algebraic statement; high-confidence fills only, never fabricated',
+    blocksCore: false,
+    localOnly: true,
+    toolExists: true,
+    firstAction: 'fill algebraicStatement for high-confidence rows in src/4/6 THEOREM_ATOM_SEED; verify with npm run theorems:verify',
+  }] : []
+  const openRows = [...QUEUE_ROWS.filter((row) => !('doneArtifact' in row) || !existsSync(join(root, (row as { doneArtifact: string }).doneArtifact))), ...derivedRows]
   const scored = openRows.map((row) => ({
     ...row,
     score: (row.blocksCore ? 4 : 0) + (row.localOnly ? 2 : 0) + (row.toolExists ? 1 : 0),
@@ -2860,6 +2873,7 @@ export function queueNext(root: string = enforcementScanRoot()) {
     { facet: `the ordering is total and derived — ${scored.length} rows scored by blocks-core(4) + local-only(2) + tool-exists(1), ties broken lexically; same rows, same order, any runner`, on: scored.every((row, i) => i === 0 || scored[i - 1]!.score >= row.score) },
     { facet: 'user input upgrades from cadence to steering — the keystroke that advanced the queue is now a CLI any agent runs; steering (new laws, vetoes) stays human', on: scored.every((row) => row.firstAction.length > 0) && claySolvedByThisFold === 0 },
     { facet: `SELF-PRUNING — ${shipped.length} shipped row(s) dropped live by disk artifact (${shipped.map((row) => row.wave).join(', ') || 'none yet'}); the queue lists only genuinely-open work, never completed`, on: shipped.every((row) => 'doneArtifact' in row) },
+    { facet: `ROWS DERIVE FROM THE LEDGER — ${derivedRows.length} derived row(s) appended from measured sources (registry identity-field gap ${missingIdentity}/${THEOREM_ATOM_SEED.length}); a derived row disappears the moment its count reaches zero, no curation needed`, on: derivedRows.every((row) => row.firstAction.length > 0) && missingIdentity <= THEOREM_ATOM_SEED.length },
     // WHY NOT ALL AT ONCE (user, 2026-07-24) — answered by the sealed algebra: the REACHABLE closure
     // does compute in one batch (the covering-array theorem bounds it at pairwise cost, not the
     // exhaustive product — combo/cover), but each new instrument EXTENDS the space it measures
@@ -2886,8 +2900,9 @@ export function queueNext(root: string = enforcementScanRoot()) {
     heading: 'Queue next · the keystroke retired',
     statement: `queueNext — NEXT: ${next.wave} (score ${next.score}); ${scored.length} rows totally ordered by derived arithmetic.`,
     boundary:
-      'The queue-advance computed: rows scored by a stated arithmetic, the next wave an output with a followable first action. The rows ' +
-      'themselves are still curated (manualGauge counts them) — deriving the ROWS from the honest-open ledger is this fold\'s own next. ' +
+      'The queue-advance computed: rows scored by a stated arithmetic, the next wave an output with a followable first action. Derived rows ' +
+      'now append from the registry ledger (identity-field gap counted, not curated) and vanish when their count reaches zero; the curated ' +
+      'residue is exactly the rows whose state lives OUTSIDE the repo (upstream fixes, external authorities) — those stay human-gauged. ' +
       'Steering remains human. clay=0 · qpuRequired=false.' }
 }
 
