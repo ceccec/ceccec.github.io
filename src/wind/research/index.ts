@@ -2192,7 +2192,7 @@ export function reverseEngineerRequirementsToTestablePossibilities(matrix: MindM
 }
 
 /**
- * CLAY_RIGOR — the SINGLE source of the rigor judgment for each Clay Millennium problem: how strongly is
+ * CLAY_PROBLEMS — the SINGLE registry for each Clay Millennium problem's identity: canonical NAME + rigor. Rigor = how strongly is
  * "the required tool lives beyond the current techniques" established? Five ordered levels — proven-and-used
  * (a solved problem whose tool was imported, Poincaré) → proven (a barrier theorem on the real object, P vs NP)
  * → proven-on-proxy (a barrier theorem on a proxy object, Navier–Stokes/Tao) → proven-in-cousin (the tool is a
@@ -2202,14 +2202,15 @@ export function reverseEngineerRequirementsToTestablePossibilities(matrix: MindM
  * map — rigor has a single home, so the binary and the gradient views can never drift. [[flagged-inverts-to-proven-theorem]]
  */
 export type ClayRigorLevel = 'proven-and-used' | 'proven' | 'proven-on-proxy' | 'proven-in-cousin' | 'observed'
-export const CLAY_RIGOR: Record<'poincare' | 'pvnp' | 'navierStokes' | 'riemann' | 'yangMills' | 'hodge' | 'bsd', ClayRigorLevel> = {
-  poincare: 'proven-and-used',
-  pvnp: 'proven',
-  navierStokes: 'proven-on-proxy',
-  riemann: 'proven-in-cousin',
-  yangMills: 'observed',
-  hodge: 'observed',
-  bsd: 'observed',
+export type ClayProblemId = 'poincare' | 'pvnp' | 'navierStokes' | 'riemann' | 'yangMills' | 'hodge' | 'bsd'
+export const CLAY_PROBLEMS: Record<ClayProblemId, { name: string; rigor: ClayRigorLevel }> = {
+  poincare: { name: 'Poincaré Conjecture', rigor: 'proven-and-used' },
+  pvnp: { name: 'P vs NP', rigor: 'proven' },
+  navierStokes: { name: 'Navier–Stokes', rigor: 'proven-on-proxy' },
+  riemann: { name: 'Riemann Hypothesis', rigor: 'proven-in-cousin' },
+  yangMills: { name: 'Yang–Mills mass gap', rigor: 'observed' },
+  hodge: { name: 'Hodge Conjecture', rigor: 'observed' },
+  bsd: { name: 'Birch–Swinnerton-Dyer', rigor: 'observed' },
 }
 
 /**
@@ -2221,12 +2222,12 @@ export const CLAY_RIGOR: Record<'poincare' | 'pvnp' | 'navierStokes' | 'riemann'
  */
 export function millenniumOpenBarriersInvertToRequirements(matrix: MindMatrix = buildMatrix()) {
   const inversions = [
-    { problem: 'P vs NP', barrier: 'PROVEN barriers — relativization (Baker–Gill–Solovay 1975), natural proofs (Razborov–Rudich 1994), algebrization (Aaronson–Wigderson 2008): the techniques we have provably cannot separate P from NP', requirement: 'a technique simultaneously NON-relativizing, NON-natural, and NON-algebrizing — the exact negation of the three barriers', exact: CLAY_RIGOR.pvnp === 'proven' },
-    { problem: 'Riemann Hypothesis', barrier: 'no known structure forces every nontrivial ζ zero onto Re(s)=½; verifying >10¹³ zeros is not a proof', requirement: 'a critical-line-forcing structure — e.g. a self-adjoint operator with the zeros as its spectrum (Hilbert–Pólya), making reality automatic', exact: CLAY_RIGOR.riemann === 'proven' },
-    { problem: 'Navier–Stokes', barrier: '3D scaling is SUPERCRITICAL: the provable energy estimates are one power too weak to control vortex stretching, and finite-time blow-up cannot be ruled out', requirement: 'a supercritical regularity estimate or a new conserved/monotone quantity that controls the stretching (2D is critical and solved)', exact: CLAY_RIGOR.navierStokes === 'proven' },
-    { problem: 'Yang–Mills mass gap', barrier: 'no rigorous non-perturbative construction of ANY interacting 4D quantum field theory exists; the mass gap is seen on the lattice, not proven', requirement: 'a constructive interacting 4D QFT plus a proof of a strictly positive mass gap Δ > 0', exact: CLAY_RIGOR.yangMills === 'proven' },
-    { problem: 'Hodge Conjecture', barrier: 'no general method produces the algebraic cycle realizing a Hodge class; known only in low degree and special cases', requirement: 'a construction of algebraic cycles from arbitrary Hodge classes on projective varieties', exact: CLAY_RIGOR.hodge === 'proven' },
-    { problem: 'Birch–Swinnerton-Dyer', barrier: 'proven for rank 0 and 1 (Gross–Zagier, Kolyvagin); the arithmetic↔analytic link is open for rank ≥ 2', requirement: 'the rank ↔ L-function-vanishing-order bridge for elliptic curves of rank ≥ 2', exact: CLAY_RIGOR.bsd === 'proven' },
+    { problem: CLAY_PROBLEMS.pvnp.name, barrier: 'PROVEN barriers — relativization (Baker–Gill–Solovay 1975), natural proofs (Razborov–Rudich 1994), algebrization (Aaronson–Wigderson 2008): the techniques we have provably cannot separate P from NP', requirement: 'a technique simultaneously NON-relativizing, NON-natural, and NON-algebrizing — the exact negation of the three barriers', exact: CLAY_PROBLEMS.pvnp.rigor === 'proven' },
+    { problem: CLAY_PROBLEMS.riemann.name, barrier: 'no known structure forces every nontrivial ζ zero onto Re(s)=½; verifying >10¹³ zeros is not a proof', requirement: 'a critical-line-forcing structure — e.g. a self-adjoint operator with the zeros as its spectrum (Hilbert–Pólya), making reality automatic', exact: CLAY_PROBLEMS.riemann.rigor === 'proven' },
+    { problem: CLAY_PROBLEMS.navierStokes.name, barrier: '3D scaling is SUPERCRITICAL: the provable energy estimates are one power too weak to control vortex stretching, and finite-time blow-up cannot be ruled out', requirement: 'a supercritical regularity estimate or a new conserved/monotone quantity that controls the stretching (2D is critical and solved)', exact: CLAY_PROBLEMS.navierStokes.rigor === 'proven' },
+    { problem: CLAY_PROBLEMS.yangMills.name, barrier: 'no rigorous non-perturbative construction of ANY interacting 4D quantum field theory exists; the mass gap is seen on the lattice, not proven', requirement: 'a constructive interacting 4D QFT plus a proof of a strictly positive mass gap Δ > 0', exact: CLAY_PROBLEMS.yangMills.rigor === 'proven' },
+    { problem: CLAY_PROBLEMS.hodge.name, barrier: 'no general method produces the algebraic cycle realizing a Hodge class; known only in low degree and special cases', requirement: 'a construction of algebraic cycles from arbitrary Hodge classes on projective varieties', exact: CLAY_PROBLEMS.hodge.rigor === 'proven' },
+    { problem: CLAY_PROBLEMS.bsd.name, barrier: 'proven for rank 0 and 1 (Gross–Zagier, Kolyvagin); the arithmetic↔analytic link is open for rank ≥ 2', requirement: 'the rank ↔ L-function-vanishing-order bridge for elliptic curves of rank ≥ 2', exact: CLAY_PROBLEMS.bsd.rigor === 'proven' },
   ] as const
   // COMPUTED: scan the inversions' own Clay-problem text — barriers/requirements only (open-markers), no solution claim,
   // so claySolvedByFormulas returns 0, refutably.
@@ -2268,13 +2269,13 @@ export function clayToolFromBeyondLivesInAnExternalStructureNeverThisCorpusAlgeb
   // the required tool lives (always outside this corpus's finite algebra); algebraExcluded flags the one row where the
   // algebra IS named — and named on the EXCLUDED side.
   const rows = [
-    { problem: 'Poincaré', rigor: CLAY_RIGOR.poincare, toolStructure: 'Ricci flow with surgery — geometric analysis/PDE, external to topology (Perelman 2003)', external: true, algebraExcluded: false, solvedExternal: true },
-    { problem: 'P vs NP', rigor: CLAY_RIGOR.pvnp, toolStructure: 'a non-relativizing ∧ non-natural ∧ non-algebrizing technique — the intersection is non-empty (Williams: NEXP⊄ACC⁰) but no member yet reaches NP', external: true, algebraExcluded: true, solvedExternal: false },
-    { problem: 'Navier–Stokes', rigor: CLAY_RIGOR.navierStokes, toolStructure: 'the true nonlinear vortex-stretching structure the averaged equation discards (Tao 2016 blows up a same-energy-same-scaling proxy)', external: true, algebraExcluded: false, solvedExternal: false },
-    { problem: 'Riemann', rigor: CLAY_RIGOR.riemann, toolStructure: 'function-field cohomology transported to ℤ — RH is a THEOREM over 𝔽_q (Deligne 1974); the arithmetic-site bridge is unbuilt', external: true, algebraExcluded: false, solvedExternal: false },
-    { problem: 'Yang–Mills', rigor: CLAY_RIGOR.yangMills, toolStructure: 'a constructive interacting 4D QFT plus a positive-mass-gap proof — no barrier theorem, none found', external: true, algebraExcluded: false, solvedExternal: false },
-    { problem: 'Hodge', rigor: CLAY_RIGOR.hodge, toolStructure: 'a construction of algebraic cycles from arbitrary Hodge classes — no barrier theorem, none found', external: true, algebraExcluded: false, solvedExternal: false },
-    { problem: 'BSD', rigor: CLAY_RIGOR.bsd, toolStructure: 'the rank ↔ L-vanishing-order bridge for rank ≥ 2 — no barrier theorem, none found', external: true, algebraExcluded: false, solvedExternal: false },
+    { problem: CLAY_PROBLEMS.poincare.name, rigor: CLAY_PROBLEMS.poincare.rigor, toolStructure: 'Ricci flow with surgery — geometric analysis/PDE, external to topology (Perelman 2003)', external: true, algebraExcluded: false, solvedExternal: true },
+    { problem: CLAY_PROBLEMS.pvnp.name, rigor: CLAY_PROBLEMS.pvnp.rigor, toolStructure: 'a non-relativizing ∧ non-natural ∧ non-algebrizing technique — the intersection is non-empty (Williams: NEXP⊄ACC⁰) but no member yet reaches NP', external: true, algebraExcluded: true, solvedExternal: false },
+    { problem: CLAY_PROBLEMS.navierStokes.name, rigor: CLAY_PROBLEMS.navierStokes.rigor, toolStructure: 'the true nonlinear vortex-stretching structure the averaged equation discards (Tao 2016 blows up a same-energy-same-scaling proxy)', external: true, algebraExcluded: false, solvedExternal: false },
+    { problem: CLAY_PROBLEMS.riemann.name, rigor: CLAY_PROBLEMS.riemann.rigor, toolStructure: 'function-field cohomology transported to ℤ — RH is a THEOREM over 𝔽_q (Deligne 1974); the arithmetic-site bridge is unbuilt', external: true, algebraExcluded: false, solvedExternal: false },
+    { problem: CLAY_PROBLEMS.yangMills.name, rigor: CLAY_PROBLEMS.yangMills.rigor, toolStructure: 'a constructive interacting 4D QFT plus a positive-mass-gap proof — no barrier theorem, none found', external: true, algebraExcluded: false, solvedExternal: false },
+    { problem: CLAY_PROBLEMS.hodge.name, rigor: CLAY_PROBLEMS.hodge.rigor, toolStructure: 'a construction of algebraic cycles from arbitrary Hodge classes — no barrier theorem, none found', external: true, algebraExcluded: false, solvedExternal: false },
+    { problem: CLAY_PROBLEMS.bsd.name, rigor: CLAY_PROBLEMS.bsd.rigor, toolStructure: 'the rank ↔ L-vanishing-order bridge for rank ≥ 2 — no barrier theorem, none found', external: true, algebraExcluded: false, solvedExternal: false },
   ] as const
   // COMPUTED: scan the rows' own text — barriers/tool-structures only (open-markers), no solution claim → 0, refutably.
   const claySolvedByThisFold = claySolvedByFormulas(JSON.stringify(rows))
