@@ -3456,22 +3456,16 @@ export function theoremFacingCliLabel(fold: string, pair: string): string {
   return `fold=${fold} pair=${pair}`
 }
 
-const FIRST_IN_CORPUS_ONE_LINER: Record<string, string> = {
-  zeroDivisionTable: 'n/0 \\ n⁻¹ mod 9 — inverse, not reverse, on (ℤ/9)*',
-  directionalTrinityForwardInverseReverse: 'forward · inverse · reverse — directional trinity; inverse≠reverse except digit 1 (9≡9)',
-  fThetaPhiXyzDigitNIsTheInversePair: 'f(θ,φ,x,y,z,digit,n)→{p,q} is the inverse fold within itself',
-  efficiencyScalesToInfinityAtNoCostOnReuse: 'memoByRoot hit O(1) · tokens=0 · !separated — amortized reuse only',
-  stringTheoryQuantumizedOnA432RosettaMerkleSubstrate: 'A432/rosetta/merkle substrate probes — physics UNCONFIRMED',
-  wavesAutoScaleCapacityAtNoCostOnReuse: 'wave schedule capacity deepens on content-addressed reuse only' }
-
-/** Site-relative routes (no /en/ prefix — VitePress locale + dead-link gate). Hash stays on-home. */
-const FIRST_IN_CORPUS_ROUTE: Record<string, string> = {
-  zeroDivisionTable: '/quantum-tools',
-  directionalTrinityForwardInverseReverse: '/quantum-tools#directional-trinity',
-  fThetaPhiXyzDigitNIsTheInversePair: '/quantum-tools',
-  efficiencyScalesToInfinityAtNoCostOnReuse: '/efficiency-vote',
-  stringTheoryQuantumizedOnA432RosettaMerkleSubstrate: '/millennium-challenge',
-  wavesAutoScaleCapacityAtNoCostOnReuse: '#first-in-corpus' }
+/** First-in-corpus novel algebra — ONE keyed source per fold: its plain-language one-liner + its site-relative route
+ *  (no /en/ prefix — VitePress locale + dead-link gate; hash stays on-home). Was two parallel Record<string,string> keyed
+ *  identically — merged so a fold can never drift (present in one table, silently missing from the other). */
+const FIRST_IN_CORPUS: Record<string, { oneLiner: string; route: string }> = {
+  zeroDivisionTable: { oneLiner: 'n/0 \\ n⁻¹ mod 9 — inverse, not reverse, on (ℤ/9)*', route: '/quantum-tools' },
+  directionalTrinityForwardInverseReverse: { oneLiner: 'forward · inverse · reverse — directional trinity; inverse≠reverse except digit 1 (9≡9)', route: '/quantum-tools#directional-trinity' },
+  fThetaPhiXyzDigitNIsTheInversePair: { oneLiner: 'f(θ,φ,x,y,z,digit,n)→{p,q} is the inverse fold within itself', route: '/quantum-tools' },
+  efficiencyScalesToInfinityAtNoCostOnReuse: { oneLiner: 'memoByRoot hit O(1) · tokens=0 · !separated — amortized reuse only', route: '/efficiency-vote' },
+  stringTheoryQuantumizedOnA432RosettaMerkleSubstrate: { oneLiner: 'A432/rosetta/merkle substrate probes — physics UNCONFIRMED', route: '/millennium-challenge' },
+  wavesAutoScaleCapacityAtNoCostOnReuse: { oneLiner: 'wave schedule capacity deepens on content-addressed reuse only', route: '#first-in-corpus' } }
 
 /**
  * Home + README projection of first-in-corpus novel algebra — one fold, two surfaces.
@@ -3487,11 +3481,11 @@ export function firstInCorpusProvenanceForHome(matrix: MindMatrix = buildMatrix(
       return {
         theorem: entry.theorem,
         algebraFold: entry.algebraFold,
-        oneLiner: FIRST_IN_CORPUS_ONE_LINER[entry.algebraFold] ?? entry.theorem,
+        oneLiner: FIRST_IN_CORPUS[entry.algebraFold]?.oneLiner ?? entry.theorem,
         rootShort: entry.algebraFold,
         algebraRoot: entry.algebraRoot,
         projection: proj?.projection ?? 'movie-10d',
-        route: FIRST_IN_CORPUS_ROUTE[entry.algebraFold] ?? '/quantum-tools',
+        route: FIRST_IN_CORPUS[entry.algebraFold]?.route ?? '/quantum-tools',
         boundary: entry.boundary,
         rootEqual: proj?.rootEqual ?? false,
         ray: entry.ray,
