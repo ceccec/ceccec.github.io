@@ -12,7 +12,7 @@ import { digitalRoot, VORTEX_SEQUENCE, foldVortex, modUnits, prng, referralAddre
 import { sha256Sync, toUuidSha256 } from '../../0'
 import { THEOREM_ATOM_SEED } from '../../4/6'
 import { foldMagmaLaws } from '../../5/5'
-import { landauerLimit, rat, ratAdd, ratMul, ratEq, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, claySolvedTheorem, earned, demarcate } from '../../3/7'
+import { landauerLimit, rat, ratAdd, ratMul, ratEq, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, claySolvedTheorem, earned, demarcate, CANONICAL_HOST } from '../../3/7'
 import { tamperEvident } from '../../5/5'
 import { groupOrbit, MAX_TAMPERING_COST_PRINCIPLE, f2FieldCloses, pageNavContext } from '../../4/6'
 import { digitFold, claimingTheUnclaimableDivisionByZeroIsAOneBitGatewayInQuantumAlgebra } from '../../1/9'
@@ -39,7 +39,7 @@ import { determinismProofs, trinityWordingModel } from '../../mountain/seals'
 import { allComputedNoFiles } from '../../wind/fusion'
 import { developmentIsFusionReactor, dryRefactorIgnitesFusion, endlessFusion } from '../../wind/fusion'
 import { minimumFilesMaximumFeaturesCost, noMirroringOneSourceAndMath, zeroTokenUsagePolicy } from '../laws'
-import { completeCorpus, monographs, siteNavigation, theMonograph, privateSearchRanksByBM25IndustryStandard, searchImprovesByExperiencePrivateRelevanceFeedback, computedTheoremFigureAndAnimation, pagesAreRosettaCombinationsOfTheorems } from '../../wind/routes/corpus'
+import { completeCorpus, monographs, siteNavigation, theMonograph, privateSearchRanksByBM25IndustryStandard, searchImprovesByExperiencePrivateRelevanceFeedback, computedTheoremFigureAndAnimation, pagesAreRosettaCombinationsOfTheorems, theoremSlug } from '../../wind/routes/corpus'
 import { staticPages, quantumSitemap, monographAsScientificPaper } from '../../wind/site'
 import { peaceTechMentalityDecoded } from '../../earth/world'
 import { selfHarmonise } from '../../mountain/geometry'
@@ -1691,12 +1691,17 @@ export function chatThroughMathOverflow(prompt: string, items: readonly MathOver
       answers: Number(raw.answer_count ?? 0),
       tags: [...(raw.tags ?? [])].slice(0, 3),
       receipt: toUuid(`mathoverflow:${raw.question_id}:${raw.link}:${raw.score}`) }))
-  const escalate = !local.ranked // the sealed corpus really cannot answer → hand the question to the community
+  // ESCALATE by RESEARCH + DISCOVERY (same honest gate as the SO lane): research the multi-hop neighbourhood and
+  // escalate unless the question's DISTINCTIVE terms are genuinely covered — a specialized research question the corpus
+  // does not hold is handed to mathoverflow.net, never answered with a doc that merely shares one common word.
+  const discovery = researchAndDiscoverBeforeAnswering(prompt, matrix)
+  const escalate = discovery.escalate
   const facets = [
     { facet: `LOCAL FIRST — the deterministic BM25 answer over the sealed corpus computes with zero egress before any live lane (answer present, via ${local.ranked ? 'ranked corpus' : 'seed-model fallback'})`, on: String(local.answer).length > 0 },
+    { facet: `AN ANSWER CITES ITS PROOF — when the corpus answers (coverage ${(discovery.coverage * 100).toFixed(0)}%), the citation is ${discovery.proofUrl ?? '(none — escalated)'}; no ceccec.psg.bg/theorems proof URL ⟹ escalate to the community`, on: (discovery.proofUrl === null) === escalate },
     { facet: `THE QUERY URL IS COMPUTED — src derives the api.stackexchange.com search URL from the prompt (https, site=mathoverflow, prompt encoded); the EDGE fetches it, src never fetches`, on: url.startsWith(`${MATHOVERFLOW_API}?`) && url.includes('site=mathoverflow') && url.includes(encodeURIComponent(prompt.trim())) },
     { facet: `COMMUNITY ANSWERS STAY LABELED — ${overflow.length} accepted rows each link into ${MATHOVERFLOW_SITE} and carry votes + answered flag + content-address, so a community answer is the COMMUNITY's, ranked by ITS votes, never the portal's claim`, on: overflow.length === items.filter((raw) => typeof raw.link === 'string' && raw.link.startsWith(`${MATHOVERFLOW_SITE}/`) && typeof raw.title === 'string').length && overflow.every((row) => row.link.startsWith(`${MATHOVERFLOW_SITE}/`) && isUuid(row.receipt)) },
-    { facet: `ESCALATION IS HONEST — escalate=${escalate} COMPUTES as ranked=false, and the computed search/ask URLs hand exactly this question to mathoverflow.net instead of fabricating an answer`, on: escalate === !local.ranked && mathOverflowUrl('search', prompt) === `${MATHOVERFLOW_SITE}/search?q=${encodeURIComponent(prompt.trim())}` },
+    { facet: `ESCALATION IS RESEARCHED — escalate=${escalate} COMPUTES from research+coverage (the corpus covers ${(discovery.coverage * 100).toFixed(0)}% of the question's distinctive terms; below 50% ⟹ escalate), and the computed search/ask URLs hand exactly this question to mathoverflow.net instead of fabricating an answer`, on: escalate === discovery.escalate && mathOverflowUrl('search', prompt) === `${MATHOVERFLOW_SITE}/search?q=${encodeURIComponent(prompt.trim())}` },
   ].map((entry) => ({ ...entry, receipt: toUuid(`chat-mathoverflow:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -1734,13 +1739,19 @@ export function researchAndDiscoverBeforeAnswering(prompt: string, matrix: MindM
   const researched = `${topFull} ${research.neighborhood.map((neighbour) => neighbour.title).join(' ')}`.toLowerCase()
   const coveredTerms = questionTerms.filter((term) => researched.includes(term))
   const coverage = questionTerms.length ? coveredTerms.length / questionTerms.length : 0
-  const COVERAGE_MIN = 1 / 2 // at least half the question's DISTINCTIVE terms must live in the researched neighbourhood
+  const COVERAGE_MIN = 3 / 5 // 60% of the question's distinctive terms — above half so a single shared common word
+  // (an "error" that means HTTP-500 to the asker but Z-error to the corpus) cannot carry an out-of-domain question. This
+  // is a LEXICAL gate, not semantic: it raises the bar honestly, it does not claim to understand meaning.
   const genuinelyCovers = seed.ranked && coverage >= COVERAGE_MIN
   const escalate = !genuinelyCovers
+  // ALWAYS CITE THE PROOF — an answer carries its ceccec.psg.bg/theorems/<slug> URL, the page holding the proof it came
+  // from (user: "always cite the ceccec.psg.bg/* url with the proof"). No citation ⟹ no answer, only escalation.
+  const proofUrl = genuinelyCovers && topAtom ? `${CANONICAL_HOST}/theorems/${theoremSlug(topAtom.theorem)}` : null
   const facets = [
     { facet: `RESEARCH FIRST — the answer path runs deepResearchChatTurn (a ${research.neighborhood.length}-fold multi-hop neighbourhood) before deciding, not a single top-1 hit`, on: research.neighborhood.length > 0 },
     { facet: `DISCOVER COVERAGE — ${coveredTerms.length}/${questionTerms.length} of the question's DISTINCTIVE terms appear in the researched neighbourhood (coverage ${(coverage * 100).toFixed(0)}%); measured over distinctive words, so one shared common word cannot pass as an answer`, on: questionTerms.length > 0 },
     { facet: `ANSWER ONLY IF GENUINELY COVERED — genuinelyCovers=${genuinelyCovers} needs coverage ≥ 50% AND a ranked hit; otherwise escalate=${escalate} hands the question off instead of returning lexical noise`, on: escalate === !genuinelyCovers && genuinelyCovers === (seed.ranked && coverage >= COVERAGE_MIN) },
+    { facet: `EVERY ANSWER CITES ITS PROOF — when it answers, the citation is ${proofUrl ?? '(none — escalated)'}, a ${CANONICAL_HOST}/theorems/<slug> page holding the proof; an answer without a proof URL is not emitted (proofUrl null ⟺ escalate)`, on: (proofUrl === null) === escalate && (proofUrl === null || proofUrl.startsWith(`${CANONICAL_HOST}/theorems/`)) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`research-discover:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -1752,10 +1763,11 @@ export function researchAndDiscoverBeforeAnswering(prompt: string, matrix: MindM
     genuinelyCovers,
     escalate,
     answer: genuinelyCovers ? seed.answer : null,
+    proofUrl,
     researchTheme: research.synthesis,
     facets,
     root: merge(matrix.root, toUuid(`research-discover:${prompt}:${genuinelyCovers}`)),
-    statement: `researchAndDiscoverBeforeAnswering — coverage ${(coverage * 100).toFixed(0)}% (${coveredTerms.length}/${questionTerms.length} distinctive terms), genuinelyCovers=${genuinelyCovers}, escalate=${escalate}. Research (multi-hop) then discover (coverage) before answering.`,
+    statement: `researchAndDiscoverBeforeAnswering — coverage ${(coverage * 100).toFixed(0)}% (${coveredTerms.length}/${questionTerms.length} distinctive terms), genuinelyCovers=${genuinelyCovers}, escalate=${escalate}${proofUrl ? `, cite ${proofUrl}` : ''}. Research (multi-hop), discover (coverage), then answer WITH its proof URL or escalate.`,
     boundary: earned('EXACT — computed from the research neighbourhood + coverage:', facets, 'the honest gate before any answer: research the multi-hop neighbourhood, discover whether the question\'s distinctive terms are genuinely covered, and answer only if they are — otherwise escalate. Deterministic BM25 over the sealed corpus, zero-egress; it does not fabricate an answer for a question the corpus does not cover. HARMONY ≠ TRUTH.') }
 }
 
