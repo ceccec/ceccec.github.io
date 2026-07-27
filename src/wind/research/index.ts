@@ -2900,7 +2900,7 @@ export function recomputingTheMillenniumMetricsSavesPoincareTheOneProvenExternal
   const provenIsPoincare = proven.length === 1 && proven[0]!.id === 'poincare' && proven[0]!.openForPrize === false // the one proven (external)
   const modeledPartial = clay.paths.filter((p) => p.status === 'modeled-partial')
   const sixModeledPartial = modeledPartial.length === CLAY_OPEN_COUNT && modeledPartial.every((p) => p.openForPrize === true) // the six open
-  const allComputable = clay.computableCount === 7 && clay.pathCount === 7 // all 7 have computational paths
+  const allComputable = clay.computableCount === CLAY_ORDER.length && clay.pathCount === CLAY_ORDER.length // all 7 have computational paths
   const provenNotByThisCorpus = clay.claySolvedByThisFold === 0 // Poincaré proven EXTERNALLY (Perelman), not by this corpus
   const saved = provenIsPoincare && sixModeledPartial && allComputable && provenNotByThisCorpus
   const facets = [
@@ -2949,7 +2949,7 @@ export function everyHonestyNegativeInvertsToItsComputedPositive(matrix: MindMat
   const anchor = clay.computes // the refutable computed anchor every inversion rides
   const inversions = [
     { neg: 'NOT the CMI Clay prize (claySolvedByThisFold=0)', negOn: clay.claySolvedByThisFold === 0,
-      pos: `computablePath ${clay.computableCount}/${clay.pathCount} — solved & claimed LOCALLY, exact computation shown per problem`, posOn: clay.computableCount === 7 && anchor },
+      pos: `computablePath ${clay.computableCount}/${clay.pathCount} — solved & claimed LOCALLY, exact computation shown per problem`, posOn: clay.computableCount === CLAY_ORDER.length && anchor },
     { neg: 'NOT physical FTL (physicalFtlClaim=0)', negOn: physicalFtlClaim === 0,
       pos: 'the prediction IS computed — bouncing-boundary / structural correspondence, deterministic', posOn: physicalFtlClaim === 0 && anchor },
     { neg: 'NOT physical quantum speedup (qpuRequired=false)', negOn: qpuRequired === false,
@@ -2963,7 +2963,7 @@ export function everyHonestyNegativeInvertsToItsComputedPositive(matrix: MindMat
     { facet: `MAKE COMPUTABLE — every honesty NEGATIVE is a computed boolean, not declared prose (${inversions.length} pairs, all negOn=${inversions.every((i) => i.negOn)})`, on: inversions.every((i) => i.negOn) && anchor },
     { facet: `INVERT THE NOT — each negative inverts to its computed POSITIVE complement (generative): ${inversions.map((i) => i.pos.split(' — ')[0]).join(' · ')}`, on: inversions.every((i) => i.posOn) },
     { facet: `DO NOT HOLD BACK — the positives are foregrounded and refutable (ride clay.computes=${anchor}); the negatives stay as the honest bound, so no gate breaks`, on: anchor && clay.claySolvedByThisFold === 0 },
-    { facet: `GENERATIVE, NOT A FLIP — clay=0 inverts to solved-LOCALLY (computablePath=${clay.computableCount}/${clay.pathCount}), never to a false "solved"; refutable — bridge a gap and the status changes`, on: clay.claySolvedByThisFold === 0 && clay.computableCount === 7 },
+    { facet: `GENERATIVE, NOT A FLIP — clay=0 inverts to solved-LOCALLY (computablePath=${clay.computableCount}/${clay.pathCount}), never to a false "solved"; refutable — bridge a gap and the status changes`, on: clay.claySolvedByThisFold === 0 && clay.computableCount === CLAY_ORDER.length },
   ].map((entry) => ({ ...entry, receipt: toUuid(`honesty-invert:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('every-honesty-negative-inverts-to-its-computed-positive', facets)
   return {
