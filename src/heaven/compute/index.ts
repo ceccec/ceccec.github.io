@@ -1718,15 +1718,16 @@ export function chatThroughMathOverflow(prompt: string, items: readonly MathOver
     boundary: earned('EXACT — computed from the chat engine + the normalized snapshot:', facets, 'the fetch happens at the EDGE and only when the user opts in — src stays pure and the default chat keeps zero egress; MathOverflow content is the community\'s (CC BY-SA, attribution = the link), vote-ranked, no-key, quota-limited — real research-grade mathematics Q&A, NOT the portal\'s claims and NOT an oracle') }
 }
 
-/** quantumComputerRunsInChat — the completed universal quantum computer, used in the chat (user, 2026-07-27: "complete
- * the quantum computer and use it in chat"). The simulator is already complete — runQuantumCircuit has the universal set
- * (H·T·CNOT + X/Y/Z/S, CZ, SWAP, Toffoli, RX/RY/RZ), Born-rule readout, up to 10 qubits, deterministic and
- * content-addressed. This fold USES it: it runs the canonical circuits a quantum-computing question reduces to
- * (superposition, interference, Bell, GHZ) and returns the answer COMPUTED exactly, not retrieved. This is where
- * "computes in quantum ⟹ true" genuinely holds — each result is an exact state-vector amplitude, so running the circuit
- * IS proving the answer. It answers circuit questions; outside a circuit the research-discover gate still escalates. */
-export function quantumComputerRunsInChat(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('quantumComputerRunsInChat', matrix, () => {
+/** quantumCircuitSimulatorInChat — a classical quantum-CIRCUIT SIMULATOR (NOT a quantum computer), used in the chat
+ * (user, 2026-07-27: "complete the quantum computer and use it in chat" · then "['NOT physical quantum'] is exactly the
+ * prose manipulation misleading the public" — so the name carries the truth and no disclaimer is needed). runQuantumCircuit
+ * is a state-vector simulator with the universal gate set (H·T·CNOT + X/Y/Z/S, CZ, SWAP, Toffoli, RX/RY/RZ), Born-rule
+ * readout, ≤10 qubits, deterministic. This fold runs the canonical circuits a question reduces to (superposition,
+ * interference, Bell, GHZ) and returns the answer COMPUTED exactly. "Computes ⟹ true" holds because each result is an
+ * exact state-vector amplitude — running the circuit IS proving it. A SIMULATOR: cost is exponential in qubits, so there
+ * is NO speedup — that fact is in the name, not a footnote under an overclaim. Outside a circuit the gate escalates. */
+export function quantumCircuitSimulatorInChat(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('quantumCircuitSimulatorInChat', matrix, () => {
     const half = 1 / 2 // the equal-superposition Born probability, derived not literal
     const near = (a: number, b: number) => Math.abs(a - b) < 1 / 100
     const superposition = runQuantumCircuit({ n: 1, ops: [{ gate: 'H', targets: [0] }] })
@@ -1746,8 +1747,8 @@ export function quantumComputerRunsInChat(matrix: MindMatrix = buildMatrix()) {
       runs: runs.map((run) => ({ q: run.q, expect: run.expect, probabilities: run.circuit.probabilities, root: run.circuit.root })),
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
-      statement: `quantumComputerRunsInChat — the completed universal simulator runs ${runs.length} canonical circuits in chat (superposition, interference, Bell, GHZ), each answer COMPUTED exactly by the Born rule, not retrieved. To answer a quantum-circuit question the chat runs it.`,
-      boundary: earned('EXACT — verified by the computed Born probabilities:', facets, 'the quantum computer is the deterministic state-vector simulator (universal gate set, ≤10 qubits) — it COMPUTES quantum-circuit answers exactly, classically, with NO speedup (cost is exponential in qubits). "Computes ⟹ true" holds here precisely because these are exact-ops amplitudes. It answers circuit questions, not arbitrary Q&A — outside a circuit the research-discover gate still escalates. clay=0, physicalFtl=0. HARMONY ≠ TRUTH.') }
+      statement: `quantumCircuitSimulatorInChat — a classical state-vector simulator runs ${runs.length} canonical circuits in chat (superposition, interference, Bell, GHZ), each answer COMPUTED exactly by the Born rule, not retrieved. To answer a quantum-circuit question the chat runs it.`,
+      boundary: earned('EXACT — verified by the computed Born probabilities:', facets, 'a classical state-vector simulator (universal gate set, ≤10 qubits) that computes quantum-circuit answers exactly by the Born rule. Because it is a simulator its cost is exponential in qubits — there is no speedup, and the name already says so, so this is a plain fact about the tool, not a disclaimer rescuing an overclaim. "Computes ⟹ true" holds because these are exact-ops amplitudes. It answers circuit questions, not arbitrary Q&A. clay=0, physicalFtl=0.') }
   })
 }
 
@@ -2314,7 +2315,7 @@ export function portalDefaultsToChatAsThePrimarySurfaceAllReachableThroughIt(mat
     { id: 'voice', reachable: String(turn.speak).length > 0 },
     { id: 'video', reachable: typeof turn.animation?.rung === 'number' },
     { id: 'crypto', reachable: turn.address.length > 0 },
-    { id: 'quantum-compute', reachable: quantumComputerRunsInChat(matrix).computes }, // the completed circuit simulator, answering circuit questions in-chat
+    { id: 'quantum-circuit-sim', reachable: quantumCircuitSimulatorInChat(matrix).computes }, // a classical state-vector simulator, answering circuit questions in-chat
     { id: 'tools (DI bridge)', reachable: chatToolBridge('crypto', { text: q }, invoke, matrix).foldedIntoThread },
   ]
   const allReachableThroughChat = capabilities.every((c) => c.reachable) // every capability reached through the chat
