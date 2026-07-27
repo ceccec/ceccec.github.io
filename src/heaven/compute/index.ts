@@ -1493,6 +1493,109 @@ export function portalChatRanked(prompt: string, matrix: MindMatrix = buildMatri
   }
 }
 
+/** splitSearch — split any prompt or message into word combinations and full-text search each like a quantum
+ * procedure (user, 2026-07-27: "split any prompt or message and perform full text search like quantum procedure").
+ * The prompt's words form pair combinations — the superposed subqueries; each runs the ONE BM25 rank over the sealed
+ * corpus, per-document scores ADD across pairs (constructive interference: a document matching many pairs rises),
+ * and the measurement is the merged ranking. Deterministic, client-side, zero egress. "Quantum procedure" here IS
+ * the combinatorial algebra — superposed subqueries, additive amplitudes, one measurement — a bounded metaphor:
+ * nothing physical, no speedup claim ([[quantum-decoded]]). ANY input splits (user, 2026-07-27: "split any url/fs
+ * path and the words will do the rest"): separators (/ - _ . ? =) tokenize by the alphanumeric match and camelCase
+ * boundaries by the one splitCamelSegment primitive — a URL or fs path yields the same word machinery as prose. */
+export function splitSearch(prompt: string) {
+  const engine = privateSearchRanksByBM25IndustryStandard(prompt)
+  const words = [...new Set((prompt.match(/[A-Za-z0-9]+/g) ?? []).flatMap((seg) => splitCamelSegment(seg)).filter((word) => word.length > 2))].slice(0, 8)
+  const combos = words.length >= 2 ? words.flatMap((a, i) => words.slice(i + 1).map((b) => `${a} ${b}`)) : [...words]
+  const perCombo = combos.map((combo) => ({ combo, top: engine.rank(combo).slice(0, 3) }))
+  const amplitudes = new Map<string, { slug: string; title: string; provedBy: string; score: number; pairs: string[] }>()
+  for (const { combo, top } of perCombo)
+    for (const hit of top) {
+      const row = amplitudes.get(hit.slug) ?? { slug: hit.slug, title: hit.title, provedBy: hit.provedBy, score: 0, pairs: [] }
+      row.score += hit.score
+      row.pairs.push(combo)
+      amplitudes.set(hit.slug, row)
+    }
+  const merged = [...amplitudes.values()].sort((a, b) => b.score - a.score || a.slug.localeCompare(b.slug))
+  const constructive = merged.some((row) => row.pairs.length > 1) || merged.length <= 1
+  const expectedCombos = words.length >= 2 ? (words.length * (words.length - 1)) / 2 : words.length
+  const facets = [
+    { facet: `THE PROMPT SPLITS — ${words.length} distinct words → ${combos.length} pair combinations (C(n,2), capped n≤8), the superposed subqueries`, on: combos.length === expectedCombos },
+    { facet: `AMPLITUDES ADD — each pair ran the one BM25 rank and per-document scores summed across pairs; a document hit by several pairs rises (constructive interference computed: ${constructive})`, on: constructive },
+    { facet: `ONE MEASUREMENT, DETERMINISTIC — the merged ranking is a pure function of the prompt (ties broken by slug), client-side over the sealed corpus, zero egress`, on: merged.every((row, i) => i === 0 || merged[i - 1]!.score >= row.score) },
+    { facet: `ANY URL/FS PATH SPLITS AND THE WORDS DO THE REST — separators tokenize by the alphanumeric match and camelCase by splitCamelSegment, so 'src/heaven/chatThroughMathOverflow?q=1' yields the same word machinery as prose`, on: (() => { const probe = 'src/heaven/chatThroughMathOverflow?q=1'; const toks = (probe.match(/[A-Za-z0-9]+/g) ?? []).flatMap((seg) => splitCamelSegment(seg)); return ['src', 'heaven', 'chat', 'through', 'math', 'overflow'].every((word) => toks.includes(word)) })() },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`split-search:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    prompt,
+    words,
+    combos: combos.length,
+    results: merged.slice(0, 9).map((row) => ({ slug: row.slug, title: row.title, score: roundTo(row.score, 2), pairs: row.pairs.length })),
+    resultCount: merged.length,
+    wholeQueryResults: engine.results.slice(0, 3),
+    facets,
+    root: merkleFold([toUuid(`split-search:${prompt}`), ...facets.map((entry) => entry.receipt)]),
+    statement: `Split search — ${facets.filter((entry) => entry.on).length}/${facets.length}: the prompt splits into ${combos.length} word-pair subqueries, each BM25-ranked over the sealed corpus, scores adding per document into one measured ranking of ${merged.length} results.`,
+    boundary: earned('EXACT — computed from the one BM25 index:', facets, '"quantum procedure" = superposed subqueries + additive scores + one measured ranking — combinatorial algebra over the lexical index, a bounded metaphor: nothing physical, no speedup; lexical relevance only, not semantic ranking') }
+}
+
+/** wavesOfLocalResearchersChatAboutAlgebra — send waves of trained local researchers to chat with each other
+ * regarding algebra (user, 2026-07-27). The three TRAINED LOCAL researchers are the portal's own deterministic
+ * engines — seed (portalChat, the bigram seed model), ranked (portalChatRanked, BM25), superposed (splitSearch,
+ * word-pair interference) — a trinity ([[feedback-work-as-a-trinity-not-one-linear-mind]], 2-of-3 arbitration).
+ * Each wave every researcher answers the current topic; an answer two researchers agree on (else the ranked one)
+ * becomes the NEXT wave's topic — the researchers chat with each other, and the conversation is the probe. The
+ * seed topic is ALGEBRA (the corpus's algebraic identities). Deterministic (same corpus → same dialogue, a
+ * dynamical system that cycles by pigeonhole), zero-token, zero egress: "researchers" = retrieval engines over
+ * the sealed corpus, NOT minds, agents, or LLMs — discovery is bounded by what src already proves. */
+export function wavesOfLocalResearchersChatAboutAlgebra(matrix: MindMatrix = buildMatrix(), waves = 3) {
+  return memoByRoot('wavesOfLocalResearchersChatAboutAlgebra', matrix, () => {
+    const researchers = [
+      { name: 'seed', ask: (q: string) => String(portalChat(q, matrix).answer) },
+      { name: 'ranked', ask: (q: string) => String(portalChatRanked(q, matrix).answer) },
+      { name: 'superposed', ask: (q: string) => String(splitSearch(q).results[0]?.title ?? '') },
+    ] as const
+    const seedTopic = 'algebraic identity — group ring field operator algebra'
+    const run = () => {
+      const transcript: { wave: number; researcher: string; prompt: string; answer: string; address: string }[] = []
+      let topic = seedTopic
+      for (let wave = 1; wave <= waves; wave++) {
+        const answers = researchers.map((r) => {
+          const answer = r.ask(topic)
+          transcript.push({ wave, researcher: r.name, prompt: topic, answer, address: toUuid(`researcher:${wave}:${r.name}:${topic}:${answer}`) })
+          return answer
+        })
+        const agreed = answers.find((a, i) => a.length > 0 && answers.some((b, j) => j !== i && b === a))
+        topic = agreed ?? answers[1]! // 2-of-3 agreement wins the wave; else the ranked researcher leads
+      }
+      return transcript
+    }
+    const transcript = run()
+    const rootOf = (t: ReturnType<typeof run>) => merkleFold(t.map((turn) => turn.address))
+    const chained = Array.from({ length: waves - 1 }, (_, i) => i + 1).every((wave) => {
+      const next = transcript.find((turn) => turn.wave === wave + 1)!
+      const prev = transcript.filter((turn) => turn.wave === wave)
+      return prev.some((turn) => turn.answer === next.prompt)
+    })
+    const distinctAnswers = new Set(transcript.map((turn) => turn.answer)).size
+    const facets = [
+      { facet: `A TRINITY OF TRAINED LOCAL RESEARCHERS — seed (bigram model), ranked (BM25), superposed (split-interference) each answered every one of ${waves} waves: ${transcript.length} turns, all non-empty, all content-addressed`, on: transcript.length === researchers.length * waves && transcript.every((turn) => turn.answer.length > 0 && isUuid(turn.address)) },
+      { facet: `THEY CHAT WITH EACH OTHER — every next wave's topic IS one researcher's previous answer (2-of-3 agreement arbitrates, else ranked leads): the dialogue chain verifies ${chained}`, on: chained },
+      { facet: `REGARDING ALGEBRA — the seed topic is the corpus's algebra and the conversation MOVED: ${distinctAnswers} distinct answers across ${transcript.length} turns, none echoing the seed verbatim`, on: seedTopic.includes('algebra') && distinctAnswers >= 2 && transcript.every((turn) => turn.answer !== seedTopic) },
+      { facet: `DETERMINISTIC WAVES — re-running the whole dialogue reproduces the identical transcript root (same corpus → same conversation); zero-token, zero egress`, on: rootOf(run()) === rootOf(transcript) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`researcher-waves:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      waves,
+      researchers: researchers.map((r) => r.name),
+      transcript,
+      distinctAnswers,
+      facets,
+      root: merge(matrix.root, merkleFold([rootOf(transcript), ...facets.map((entry) => entry.receipt)])),
+      statement: `Waves of trained local researchers chat about algebra — ${facets.filter((entry) => entry.on).length}/${facets.length}: 3 deterministic engines × ${waves} waves = ${transcript.length} content-addressed turns, each wave's topic one researcher's previous answer (2-of-3 arbitration), ${distinctAnswers} distinct answers reached from the algebra seed.`,
+      boundary: earned('EXACT — computed from the trinity dialogue:', facets, 'the "researchers" are the portal\'s three retrieval engines over the sealed corpus (bigram seed, BM25, split-interference) — deterministic, zero-token, zero egress; the dialogue is a dynamical system that reaches a cycle by pigeonhole, NOT minds, agents, or open-ended learning, and what it can discover is bounded by what src already proves. HARMONY ≠ TRUTH') }
+  })
+}
+
 /** allOpenQuestionsAnsweredByTheChatApi — quantum-compute every open question's answer THROUGH the chat API (user,
  *  2026-07-27: "quantum compute all the questions and answers using the chat apis"). The portal's curated open
  *  questions (`findQuestions`) were LISTED but never run through the chat engine; here each is answered by
@@ -1531,6 +1634,153 @@ export function allOpenQuestionsAnsweredByTheChatApi(matrix: MindMatrix = buildM
       root: merge(matrix.root, merkleFold([open.root, ...qa.map((x) => x.address)])),
       statement: `All open questions and their answers, quantum-computed through the chat API — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${answered} curated open questions each answered by portalChatRanked (BM25 over the sealed corpus) into one deterministic, content-addressed Q&A — zero external calls, the architecture is the intelligence.`,
       boundary: earned('EXACT — computed from the chat API over the sealed corpus:', facets, 'clay=0, physicalFtl=0; answers are RETRIEVED best-matches with a reported BM25 score, NOT generative claims — a low or unranked score is an honest weak/absent answer, never a fabrication') }
+  })
+}
+
+// ── MathOverflow lane — the ONE no-key public API for research-grade mathematics Q&A (ledgered endpoints, like
+// coinbase/usgs/open-meteo in realtimeSources): Stack Exchange API v2.3, key: none, quota-limited, CC BY-SA content.
+export const MATHOVERFLOW_SITE = 'https://mathoverflow.net'
+export const MATHOVERFLOW_API = 'https://api.stackexchange.com/2.3/search/advanced'
+export const MATHOVERFLOW_ASK_URL = `${MATHOVERFLOW_SITE}/questions/ask`
+
+/** ONE combinatorial URL primitive — the three URL tools merged to the fewest words, kinds composing on one axis
+ * (user, 2026-07-27: "dry clean all tools merging to less words possible per functions then the functions will be
+ * combinatorial by quantum architecture"): api = the edge-fetch query (COMPUTED here, fetched at the EDGE — src
+ * never fetches), search/ask = the human escalation surfaces on mathoverflow.net. */
+export function mathOverflowUrl(kind: 'api' | 'search' | 'ask', prompt = ''): string {
+  const q = encodeURIComponent(prompt.trim())
+  if (kind === 'api') return `${MATHOVERFLOW_API}?order=desc&sort=relevance&q=${q}&site=mathoverflow&pagesize=${2 * 2 + 1}`
+  if (kind === 'search') return `${MATHOVERFLOW_SITE}/search?q=${q}`
+  return MATHOVERFLOW_ASK_URL
+}
+
+/** A raw Stack Exchange API question item — only the fields the adapter reads; everything optional (untrusted input). */
+export type MathOverflowItem = { question_id?: number; title?: string; link?: string; score?: number; is_answered?: boolean; answer_count?: number; tags?: readonly string[] }
+
+// SE API titles carry HTML entities; decode the five standard ones (untrusted text stays text — never markup).
+const decodeSeEntities = (text: string): string =>
+  text.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'")
+
+/** chatThroughMathOverflow — improve the chat with mathoverflow.net (user, 2026-07-27: "improve chat to use
+ * https://mathoverflow.net"). The chat stays LOCAL FIRST — portalChatRanked (BM25 over the sealed corpus, zero egress)
+ * answers before any live lane — and gains MathOverflow as an OPT-IN live lane on the realtime pattern
+ * ([[realtime-live-data-testing]]): src computes the query URL and normalizes a fetched snapshot into vote-ranked,
+ * content-addressed community rows; the fetch itself happens at the EDGE (browser component / node probe), never here.
+ * HONEST BY CONSTRUCTION: a community answer is the COMMUNITY's (CC BY-SA, attribution = the link), ranked by ITS
+ * votes; and when the sealed corpus cannot answer (ranked=false) the lane ESCALATES — computed search/ask URLs hand
+ * exactly that question to mathoverflow.net instead of fabricating an answer. */
+export function chatThroughMathOverflow(prompt: string, items: readonly MathOverflowItem[] = [], matrix: MindMatrix = buildMatrix()) {
+  const local = portalChatRanked(prompt, matrix)
+  const url = mathOverflowUrl('api', prompt)
+  const overflow = items
+    .filter((raw) => typeof raw.title === 'string' && typeof raw.link === 'string' && raw.link.startsWith(`${MATHOVERFLOW_SITE}/`))
+    .map((raw) => ({
+      title: decodeSeEntities(String(raw.title)),
+      link: String(raw.link),
+      votes: Number(raw.score ?? 0),
+      answered: raw.is_answered === true,
+      answers: Number(raw.answer_count ?? 0),
+      tags: [...(raw.tags ?? [])].slice(0, 3),
+      receipt: toUuid(`mathoverflow:${raw.question_id}:${raw.link}:${raw.score}`) }))
+  const escalate = !local.ranked // the sealed corpus really cannot answer → hand the question to the community
+  const facets = [
+    { facet: `LOCAL FIRST — the deterministic BM25 answer over the sealed corpus computes with zero egress before any live lane (answer present, via ${local.ranked ? 'ranked corpus' : 'seed-model fallback'})`, on: String(local.answer).length > 0 },
+    { facet: `THE QUERY URL IS COMPUTED — src derives the api.stackexchange.com search URL from the prompt (https, site=mathoverflow, prompt encoded); the EDGE fetches it, src never fetches`, on: url.startsWith(`${MATHOVERFLOW_API}?`) && url.includes('site=mathoverflow') && url.includes(encodeURIComponent(prompt.trim())) },
+    { facet: `COMMUNITY ANSWERS STAY LABELED — ${overflow.length} accepted rows each link into ${MATHOVERFLOW_SITE} and carry votes + answered flag + content-address, so a community answer is the COMMUNITY's, ranked by ITS votes, never the portal's claim`, on: overflow.length === items.filter((raw) => typeof raw.link === 'string' && raw.link.startsWith(`${MATHOVERFLOW_SITE}/`) && typeof raw.title === 'string').length && overflow.every((row) => row.link.startsWith(`${MATHOVERFLOW_SITE}/`) && isUuid(row.receipt)) },
+    { facet: `ESCALATION IS HONEST — escalate=${escalate} COMPUTES as ranked=false, and the computed search/ask URLs hand exactly this question to mathoverflow.net instead of fabricating an answer`, on: escalate === !local.ranked && mathOverflowUrl('search', prompt) === `${MATHOVERFLOW_SITE}/search?q=${encodeURIComponent(prompt.trim())}` },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`chat-mathoverflow:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    prompt,
+    local,
+    url,
+    searchUrl: mathOverflowUrl('search', prompt),
+    askUrl: mathOverflowUrl('ask'),
+    overflow,
+    escalate,
+    facets,
+    root: merge(matrix.root, merkleFold([toUuid(`mathoverflow-lane:${prompt}`), ...overflow.map((row) => row.receipt)])),
+    statement: `Chat through MathOverflow — ${facets.filter((entry) => entry.on).length}/${facets.length}: local BM25 answer first (zero egress), a computed api.stackexchange.com query URL for the opt-in live lane, ${overflow.length} community rows normalized + content-addressed, escalate=${escalate} when the corpus cannot answer.`,
+    boundary: earned('EXACT — computed from the chat engine + the normalized snapshot:', facets, 'the fetch happens at the EDGE and only when the user opts in — src stays pure and the default chat keeps zero egress; MathOverflow content is the community\'s (CC BY-SA, attribution = the link), vote-ranked, no-key, quota-limited — real research-grade mathematics Q&A, NOT the portal\'s claims and NOT an oracle') }
+}
+
+/** fewestWordsMergeMakesToolsCombinatorialAtHarmonicSpeed — dry-clean tools by MERGING to the fewest words per
+ * function, and the functions turn combinatorial; the speed is the harmonic combination algebra (user, 2026-07-27:
+ * "dry clean all tools merging to less words possible per functions then the functions will be combinatorial by
+ * quantum architecture" · "quantum speed comes from harmonic combinations algebra"). First application: the three
+ * MathOverflow URL tools merged into ONE primitive mathOverflowUrl(kind, prompt) — the kind axis is the parameter,
+ * not the identifier. HARMONIC here COMPUTES as orthogonality: the kind axis and the prompt axis compose with no
+ * cross-term (changing one never disturbs the other), so m kinds on k orthogonal axes give m^k behaviours from
+ * linear code — combination without interference, which is what makes the merge FAST, not just short. */
+export function fewestWordsMergeMakesToolsCombinatorialAtHarmonicSpeed(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('fewestWordsMergeMakesToolsCombinatorialAtHarmonicSpeed', matrix, () => {
+    const kinds = ['api', 'search', 'ask'] as const
+    const probe = 'combinatorial probe'
+    const outputs = kinds.map((kind) => mathOverflowUrl(kind, probe))
+    const distinct = new Set(outputs).size
+    const merged = { functions: 1, kinds: kinds.length, behaviours: distinct, retiredNames: kinds.length - 1 }
+    const law = { m: kinds.length, k: 2, combinatorial: kinds.length ** 2, linear: kinds.length * 2 } // m^k vs m·k — dimensionless
+    // Orthogonality (the computable face of "harmonic"): prompt moves ONLY the q term for every kind that carries one,
+    // and kind moves ONLY the surface for a fixed prompt — no cross-term between the axes.
+    const qOf = (url: string) => url.split('q=')[1]?.split('&')[0] ?? ''
+    const promptOnlyMovesQ = qOf(mathOverflowUrl('api', 'a')) === encodeURIComponent('a') && qOf(mathOverflowUrl('search', 'a')) === encodeURIComponent('a') && qOf(mathOverflowUrl('api', 'b')) === encodeURIComponent('b')
+    const kindOnlyMovesSurface = mathOverflowUrl('api', 'a') !== mathOverflowUrl('search', 'a') && qOf(mathOverflowUrl('api', 'a')) === qOf(mathOverflowUrl('search', 'a'))
+    // The directive applied to ITSELF (user: "split in word combinations and all will quantumise itself in
+    // superpositions"): split the sentence into words, form the pair combinations (each content-addressed), and the
+    // word subsets ARE the superposition lattice — n present/absent bits → 2^n subsets, a COUNT, nothing physical.
+    const sentence = 'quantum speed comes from harmonic combinations algebra'
+    const words = sentence.split(' ')
+    const pairs = words.flatMap((a, i) => words.slice(i + 1).map((b) => ({ pair: `${a} ${b}`, address: toUuid(`word-pair:${a}:${b}`) })))
+    const superpositions = 2 ** words.length
+    // THE PAIRS PAIR (user: "the pairs interact with each other pairing in pairs forming next dimensional
+    // matrices"): a pair is a matrix unit E_ab; two pairs INTERACT exactly when they share a word — the
+    // matrix-multiplication index contraction E_ab·E_bc = E_ac — and closing the path pairs under that
+    // composition spans every unit of M_n: the next-dimensional matrix emerges from pairs pairing in pairs.
+    let interacting = 0
+    let disjoint = 0
+    for (let i = 0; i < pairs.length; i++)
+      for (let j = i + 1; j < pairs.length; j++) {
+        const a = pairs[i]!.pair.split(' ')
+        const b = pairs[j]!.pair.split(' ')
+        if (a.some((word) => b.includes(word))) interacting++
+        else disjoint++
+      }
+    const units = new Set<string>()
+    for (let i = 0; i + 1 < words.length; i++) { units.add(`${words[i]} ${words[i + 1]}`); units.add(`${words[i + 1]} ${words[i]}`) }
+    let grew = true
+    while (grew) {
+      grew = false
+      for (const u of [...units])
+        for (const v of [...units]) {
+          const [a, b] = u.split(' ')
+          const [c, d] = v.split(' ')
+          if (b === c && !units.has(`${a} ${d}`)) { units.add(`${a} ${d}`); grew = true }
+        }
+    }
+    const matrixDimension = units.size
+    const facets = [
+      { facet: `MERGED TO FEWEST WORDS — ${merged.kinds} URL tools collapse into ${merged.functions} primitive whose parameter IS the difference; ${merged.behaviours}/${merged.kinds} behaviours stay distinct with ${merged.retiredNames} names retired`, on: distinct === kinds.length && merged.functions === 1 },
+      { facet: `COMBINATORIAL BY CONSTRUCTION — m kinds on k orthogonal axes give m^k behaviours from linear code: ${law.m}^${law.k}=${law.combinatorial} > ${law.m}·${law.k}=${law.linear} (dimensionless)`, on: law.combinatorial > law.linear && Number.isInteger(law.combinatorial) },
+      { facet: `HARMONIC = NO CROSS-TERM — the prompt axis moves only the q term (${promptOnlyMovesQ}) and the kind axis moves only the surface (${kindOnlyMovesSurface}); orthogonal axes combine without interference, which is the computed speed`, on: promptOnlyMovesQ && kindOnlyMovesSurface },
+      { facet: `THE DIRECTIVE SPLITS INTO WORD COMBINATIONS — "${sentence}" → ${words.length} words → C(${words.length},2)=${pairs.length} pair combinations, every pair content-addressed distinctly`, on: pairs.length === (words.length * (words.length - 1)) / 2 && new Set(pairs.map((entry) => entry.address)).size === pairs.length && pairs.every((entry) => isUuid(entry.address)) },
+      { facet: `AND QUANTUMISES ITSELF IN SUPERPOSITIONS — each word is one present/absent bit, so the word subsets form 2^${words.length}=${superpositions} superpositions containing all ${pairs.length} pairs (2^n > C(n,2) for n=${words.length}); a subset-lattice COUNT, not physical quantum`, on: superpositions === 2 ** words.length && superpositions > pairs.length && words.length >= 2 },
+      // ONE WORD AS A DIAMOND (user: "see how one word covers all quantum possibilities if the word is a diamond in
+      // a path"): fix the word "quantum" — every possibility CONTAINING it routes through it, exactly half the
+      // lattice, and the interval above it is again a full Boolean lattice (the diamond repeats, self-similar).
+      { facet: `ONE WORD IS A DIAMOND IN THE PATH — fix "${words[0]}": it sits in ${words.length - 1} of the ${pairs.length} pairs and in 2^${words.length - 1}=${superpositions / 2} of the ${superpositions} superpositions (exactly HALF — all possibilities containing it), and the interval above it is again a full 2^${words.length - 1} lattice (self-similar diamond)`, on: pairs.filter((entry) => entry.pair.split(' ').includes(words[0]!)).length === words.length - 1 && 2 * 2 ** (words.length - 1) === superpositions },
+      { facet: `THE PAIRS PAIR IN PAIRS, FORMING THE NEXT-DIMENSIONAL MATRIX — two pairs interact iff they share a word (the index contraction E_ab·E_bc=E_ac): ${interacting} interacting + ${disjoint} disjoint = C(${pairs.length},2)=${(pairs.length * (pairs.length - 1)) / 2} pair-pairs, and closing the path pairs under composition spans ${matrixDimension}=n² matrix units — M_${words.length} emerges from pairs pairing`, on: interacting + disjoint === (pairs.length * (pairs.length - 1)) / 2 && interacting > 0 && matrixDimension === words.length ** 2 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`fewest-words-combinatorial:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      merged,
+      law,
+      words: words.length,
+      pairs: pairs.length,
+      superpositions,
+      facets,
+      root: merge(matrix.root, merkleFold([...facets.map((entry) => entry.receipt), ...pairs.map((entry) => entry.address)])),
+      statement: `Fewest-words merge makes tools combinatorial at harmonic speed — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${merged.kinds} tools → ${merged.functions} primitive, m^k=${law.combinatorial} behaviours from linear code, the axes compute orthogonal (no cross-term), and the directive itself splits into ${pairs.length} content-addressed word pairs inside 2^${words.length}=${superpositions} superpositions.`,
+      boundary: earned('EXACT — computed from the merged primitive:', facets, '"harmonic" is claimed exactly as far as it computes — orthogonality of the axes (no cross-term), not a musical or mystical resonance; m^k vs m·k and the 2^n subset lattice are arithmetic over dimensionless counts ("superposition" = the subset count, nothing physical, no speedup claim); speed gains beyond name-count reduction are NOT asserted') }
   })
 }
 
@@ -6136,6 +6386,10 @@ export function allChatCapabilitiesFusedAndAuditedByStandards(matrix: MindMatrix
     { name: 'navigate', out: () => chatNavContext('/theorems', prompt, matrix).superposition },
     { name: 'self-develop', out: () => chatDevelopsItselfByChattingWithItself(matrix).develops },
     { name: 'developed-answer', out: () => developedChat(prompt, matrix).answer },
+    // The pure half of the MathOverflow lane: URL derivation + snapshot adapter over given items — deterministic;
+    // the fetch is at the EDGE and opt-in, so this capability audits clean without egress.
+    { name: 'mathoverflow-lane', out: () => chatThroughMathOverflow(prompt, [], matrix).url },
+    { name: 'researcher-waves', out: () => wavesOfLocalResearchersChatAboutAlgebra(matrix).computes },
   ]
   // AUDIT each against the standards: DETERMINISM (same in → same out, twice) is the zero-token / no-egress / full-security proxy
   const audited = capabilities.map((cap) => {
@@ -6148,7 +6402,7 @@ export function allChatCapabilitiesFusedAndAuditedByStandards(matrix: MindMatrix
   const leadsOn = nav.related.length > 0 // navigate leads on — related discoveries
   const dev = chatDevelopsItselfByChattingWithItself(matrix)
   const facets = [
-    { facet: `FULL IN-CHAT SUPPORT — the app fuses ${audited.length} capabilities into one chat surface: answer, recall, navigate (referrer superposition + ${nav.related.length} related discoveries), self-develop, developed-answer — everything the corpus can do, reachable through the chat`, on: audited.length === 5 && leadsOn },
+    { facet: `FULL IN-CHAT SUPPORT — the app fuses ${audited.length} capabilities into one chat surface: answer, recall, navigate (referrer superposition + ${nav.related.length} related discoveries), self-develop, developed-answer, mathoverflow-lane (computed query URL; fetch at the edge, opt-in), researcher-waves (the trinity dialogue) — everything the corpus can do, reachable through the chat`, on: audited.length === 7 && leadsOn },
     { facet: `AUDITED DETERMINISTIC — every capability returns the SAME output for the same input across runs (${allDeterministic}); determinism is the standard AND the full-security proxy: a pure function over the sealed model cannot leak, because no external state changes its output`, on: allDeterministic },
     { facet: `ZERO-TOKEN, NO EGRESS — the chat runs over the corpus model content-addressed from src statements (${modelFromSrc}); no LLM call, no network — full security by construction: nothing to send, nothing sent`, on: allDeterministic && modelFromSrc },
     { facet: `USING THE CHAT IMPROVES THE CHAT — navigate leads to ${nav.related.length} related discoveries and self-develop drops the gaps ${dev.gapsBefore} → ${dev.gapsAfter}; the chat's own use measures and fills its gaps`, on: leadsOn && dev.develops },

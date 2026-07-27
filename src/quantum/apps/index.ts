@@ -5,7 +5,8 @@
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded, proofReport } from '../../heaven/compute'
 // Full in-chat support — the deterministic, zero-token, no-egress chat surface, re-exported for the thin .vue shell.
-export { portalChat, chatNavContext, allChatCapabilitiesFusedAndAuditedByStandards } from '../../heaven/compute'
+export { portalChat, chatNavContext, allChatCapabilitiesFusedAndAuditedByStandards, chatThroughMathOverflow, splitSearch, MATHOVERFLOW_SITE } from '../../heaven/compute'
+export type { MathOverflowItem } from '../../heaven/compute'
 // Private quantum search — BM25-ranked, fused, no-egress — re-exported for the in-chat search box.
 export { quantumSearchFusesAllAsPrivateSearchEngine } from '../../wind/site'
 import { emergentDimensions } from '../../heaven/balance'

@@ -84,9 +84,11 @@ import {
   pagesAuditAndManageThemselvesInTrinities,
   mcpQuantumChat,
   portalChat,
+  chatThroughMathOverflow,
   chatNavContext,
   allChatCapabilitiesFusedAndAuditedByStandards,
   quantumSearchFusesAllAsPrivateSearchEngine,
+  splitSearch,
   allConversationsGoThroughTheMcpQuantumChat,
   mcpQuantumConversation,
   organiseConversationsInChatRoomsPerSuperposition,
@@ -196,18 +198,26 @@ const docsDevCopied = ref(false)
 // lives in the sealed folds (quantumSearchFusesAllAsPrivateSearchEngine = BM25-ranked retrieval + chat answer +
 // navigation + all chat capabilities); this shell only wires input → fold → display. Nothing leaves the browser.
 type SearchHit = { slug: string; title: string; score: number }
-type ChatTurn = { q: string; a: string; source: string; grounded: boolean; related: string[]; results: SearchHit[]; resultCount: number; receipt: string }
+type MoRow = { title: string; link: string; votes: number; answered: boolean; answers: number }
+type MoLane = { state: 'loading' | 'live' | 'error'; rows: MoRow[]; searchUrl: string; askUrl: string; escalate: boolean }
+type ChatTurn = { q: string; a: string; source: string; grounded: boolean; related: string[]; results: SearchHit[]; resultCount: number; receipt: string; mo?: MoLane }
 const chatInput = ref('')
 const chatLog = ref<ChatTurn[]>([])
 const chatAudit = computed(() => allChatCapabilitiesFusedAndAuditedByStandards())
+// Opt-in live lane: OFF = nothing leaves the browser; ON = the query (only) goes to api.stackexchange.com (no key)
+// and MathOverflow's vote-ranked community threads ride under the local answer. Fetch at the EDGE; src computes the URL.
+const moLive = ref(false)
 function sendChat() {
   const prompt = chatInput.value.trim()
   if (!prompt) return
   const referrer = chatLog.value.length ? chatLog.value[chatLog.value.length - 1]!.receipt : '/chat'
   const reply = portalChat(prompt)
   const nav = chatNavContext(referrer, prompt)
-  const search = quantumSearchFusesAllAsPrivateSearchEngine(prompt)
-  chatLog.value.unshift({
+  // splitSearch = the quantum procedure: the prompt splits into word-pair subqueries, each BM25-ranked,
+  // scores adding per document into one measured ranking (falls back to the fused whole-query engine for 1 word).
+  const split = splitSearch(prompt)
+  const search = split.combos > 1 ? split : quantumSearchFusesAllAsPrivateSearchEngine(prompt)
+  const turn: ChatTurn = {
     q: prompt,
     a: reply.answer,
     source: reply.source,
@@ -216,7 +226,20 @@ function sendChat() {
     results: (search.results as SearchHit[]).slice(0, 5),
     resultCount: search.resultCount,
     receipt: nav.superposition,
-  })
+  }
+  const lane = moLive.value ? chatThroughMathOverflow(prompt) : null // pure: computed URL + escalation, before any fetch
+  if (lane) turn.mo = { state: 'loading', rows: [], searchUrl: lane.searchUrl, askUrl: lane.askUrl, escalate: lane.escalate }
+  chatLog.value.unshift(turn)
+  const live = chatLog.value[0]! // the reactive proxy — mutations from the fetch callbacks must go through it
+  if (lane && live.mo) {
+    fetch(lane.url)
+      .then((res) => (res.ok ? res.json() : Promise.reject(new Error(String(res.status)))))
+      .then((body: { items?: unknown[] }) => {
+        const snapshot = chatThroughMathOverflow(prompt, (body.items ?? []) as Parameters<typeof chatThroughMathOverflow>[1])
+        if (live.mo) { live.mo.rows = snapshot.overflow.map((row) => ({ title: row.title, link: row.link, votes: row.votes, answered: row.answered, answers: row.answers })); live.mo.state = 'live' }
+      })
+      .catch(() => { if (live.mo) live.mo.state = 'error' })
+  }
   chatInput.value = ''
 }
 function clearChat() { chatLog.value = [] }
@@ -1880,7 +1903,7 @@ function runTool(toolId: string) {
       <section id="in-chat-support">
         <h3>Private search + full in-chat support</h3>
         <p class="quantum-apps__meta">
-          A private search engine over the sealed corpus — BM25-ranked results + a deterministic answer, zero-token, no network egress. {{ chatAudit.capabilities.length }} chat capabilities audited · {{ chatAudit.related }} related discoveries per query.
+          A private search engine over the sealed corpus — BM25-ranked results + a deterministic answer, zero-token, no network egress by default. {{ chatAudit.capabilities.length }} chat capabilities audited · {{ chatAudit.related }} related discoveries per query. Opt-in live lane: MathOverflow (api.stackexchange.com, no key) — vote-ranked community threads ride under the local answer, and an unanswerable question escalates to mathoverflow.net.
         </p>
         <UiBadge v-bind="badgeProps(statusBadgeKind(chatAudit.supported))">
           {{ chatAudit.supported ? '✓ private' : '—' }} · BM25 · zero-token · no egress · deterministic
@@ -1889,6 +1912,9 @@ function runTool(toolId: string) {
           <input id="in-chat-input" v-model="chatInput" class="quantum-apps__input" type="search" autocomplete="off" placeholder="Search the sealed corpus… (private, offline, ranked)" />
           <UiButton size="sm" type="submit">Search</UiButton>
           <UiButton size="sm" variant="outline" type="button" :disabled="!chatLog.length" @click="clearChat">Clear</UiButton>
+          <label class="quantum-apps__meta quantum-apps__chat-mo-toggle">
+            <input v-model="moLive" type="checkbox" /> + MathOverflow (live — sends the query to api.stackexchange.com)
+          </label>
         </form>
         <ul class="quantum-apps__facets">
           <li v-for="(turn, i) in chatLog" :key="turn.receipt + i" class="quantum-apps__chat-turn">
@@ -1903,8 +1929,22 @@ function runTool(toolId: string) {
                 <span class="quantum-apps__meta"> · BM25 {{ hit.score.toFixed(1) }}</span>
               </li>
             </ol>
+            <template v-if="turn.mo">
+              <span v-if="turn.mo.state === 'loading'" class="quantum-apps__meta">MathOverflow — querying…</span>
+              <span v-else-if="turn.mo.state === 'error'" class="quantum-apps__meta">MathOverflow — unreachable (offline or quota); the local answer above stands alone.</span>
+              <ol v-else-if="turn.mo.rows.length" class="quantum-apps__results">
+                <li v-for="row in turn.mo.rows" :key="row.link">
+                  <a :href="row.link" rel="noopener" target="_blank">{{ row.title }}</a>
+                  <span class="quantum-apps__meta"> · MathOverflow · {{ row.votes }} votes · {{ row.answers }} answers{{ row.answered ? ' · ✓ answered' : '' }}</span>
+                </li>
+              </ol>
+              <span v-else-if="turn.mo.state === 'live'" class="quantum-apps__meta">MathOverflow — no matching threads.</span>
+              <span v-if="turn.mo.state !== 'loading' && turn.mo.escalate" class="quantum-apps__meta">
+                The sealed corpus cannot rank this — escalate: <a :href="turn.mo.searchUrl" rel="noopener" target="_blank">search MathOverflow</a> · <a :href="turn.mo.askUrl" rel="noopener" target="_blank">ask it there</a> (community answers are the community's, CC BY-SA).
+              </span>
+            </template>
           </li>
-          <li v-if="!chatLog.length" class="quantum-apps__meta">No queries yet — search the sealed corpus above. Nothing leaves the browser.</li>
+          <li v-if="!chatLog.length" class="quantum-apps__meta">No queries yet — search the sealed corpus above. Nothing leaves the browser unless you enable the MathOverflow lane.</li>
         </ul>
       </section>
       <UiSeparator />
