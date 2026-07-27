@@ -138,7 +138,7 @@ export function auditFold(): { findings: Finding[]; report: string[] } {
       detail: 'tripwire broken — seal passed with a forced false gate' })
   }
   const report = [
-    `Fold wave OK: ${seal.okCount}/${seal.commandTotal} commands; ${seal.dimensions} dimensions emerge within; ${seal.gateCount} gates closed (harmonic 432). Tripwire verified.`,
+    `Fold wave OK: ${seal.okCount}/${seal.commandTotal} commands; ${seal.dimensions} dimensions emerge within; ${seal.gateCount} gates closed = ${seal.structuralGates} structural invariants + ${seal.inclusionGates} corpus-inclusion checks (padded to the harmonic 4×108). Tripwire verified.`,
   ]
   return { findings, report }
 }

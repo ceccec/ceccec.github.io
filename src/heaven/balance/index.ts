@@ -1269,6 +1269,10 @@ export function modelSeal(matrix: MindMatrix = buildMatrix(), opts: { tripwire?:
   const HARMONIC = 108
   const harmonicTarget = Math.max(432, Math.ceil(gateCount / HARMONIC) * HARMONIC)
   const harmonicLeaves = corpus.papers.map((paper) => paper.receipt)
+  // HONEST BREAKDOWN (challenge: "what do those gates do?"): the gates above are the distinct STRUCTURAL invariants;
+  // below, the count is padded up to the harmonic 4×108 with per-paper merkle-inclusion (tamper-evidence) checks so the
+  // total holds at the dimensional target. structuralGates + inclusionGates = gateCount; neither is hidden.
+  const structuralGates = gateCount
   let harmonicGate = 0
   while (gateCount < harmonicTarget) {
     const paper = corpus.papers[harmonicGate % corpus.papers.length]
@@ -1282,6 +1286,8 @@ export function modelSeal(matrix: MindMatrix = buildMatrix(), opts: { tripwire?:
     passed: failures.length === 0,
     failures,
     gateCount,
+    structuralGates,
+    inclusionGates: harmonicGate,
     okCount,
     commandTotal: conceptCommands.length,
     dimensions: dims.count,
