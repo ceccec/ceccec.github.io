@@ -2314,6 +2314,7 @@ export function portalDefaultsToChatAsThePrimarySurfaceAllReachableThroughIt(mat
     { id: 'voice', reachable: String(turn.speak).length > 0 },
     { id: 'video', reachable: typeof turn.animation?.rung === 'number' },
     { id: 'crypto', reachable: turn.address.length > 0 },
+    { id: 'quantum-compute', reachable: quantumComputerRunsInChat(matrix).computes }, // the completed circuit simulator, answering circuit questions in-chat
     { id: 'tools (DI bridge)', reachable: chatToolBridge('crypto', { text: q }, invoke, matrix).foldedIntoThread },
   ]
   const allReachableThroughChat = capabilities.every((c) => c.reachable) // every capability reached through the chat
