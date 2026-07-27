@@ -1001,6 +1001,20 @@ const TITLE_ALGEBRA_MARK = /[=·⁰¹²³⁴⁵⁶⁷⁸⁹⁻⌊⌋]|\b\d+\b|\d
 export function titleCarriesAlgebra(title: string): boolean {
   return TITLE_ALGEBRA_MARK.test(title)
 }
+// The identity RELATION marks — an algebraic statement asserts a relation, not just a quantity.
+const STATEMENT_RELATION = /[=≡≤≥≠⇔⇒∈∉⊂⊆∼≅≈↦]|\bmod\b|\biff\b/u
+/** extractAlgebraicStatement — the FREE upgrade of a theorem's identity line (user, 2026-07-27: "let free chat
+ * upgrade all"): when a registry row carries no curated algebraicStatement, its `states` text usually CONTAINS
+ * the identity verbatim — extract the LEADING algebra-bearing clause, always a SUBSTRING of the proven text,
+ * never generated. Conservative by construction: only the first clause qualifies, only when it asserts a
+ * relation, with trailing verification-bound qualifiers trimmed; anything else returns undefined so a
+ * prose-only row stays honestly un-upgraded. Curated fills always win over extraction. */
+export function extractAlgebraicStatement(states: string): string | undefined {
+  const first = (states.split(/\s+—\s+|(?<=[a-z)0-9][.;])\s+/u)[0] ?? '').trim()
+  if (!STATEMENT_RELATION.test(first)) return undefined
+  const trimmed = first.replace(/[,;]?\s+(for (all|every)|verified|checked|computed|exhausted|witnessed|counted|both directions|holds? (for|on)|tested)\b[\s\S]*$/iu, '').trim()
+  return STATEMENT_RELATION.test(trimmed) && trimmed.length >= 6 && states.includes(trimmed) ? trimmed : undefined
+}
 export function normalizeTitle(title: string): string {
   return title.toLowerCase().replace(/[^a-z0-9]/g, '')
 }

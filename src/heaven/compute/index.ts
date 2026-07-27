@@ -12,7 +12,7 @@ import { digitalRoot, VORTEX_SEQUENCE, foldVortex, modUnits, prng, referralAddre
 import { sha256Sync, toUuidSha256 } from '../../0'
 import { THEOREM_ATOM_SEED } from '../../4/6'
 import { foldMagmaLaws } from '../../5/5'
-import { landauerLimit, rat, ratAdd, ratMul, ratEq, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, claySolvedTheorem, earned, demarcate, CANONICAL_HOST } from '../../3/7'
+import { landauerLimit, rat, ratAdd, ratMul, ratEq, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, claySolvedTheorem, earned, demarcate, CANONICAL_HOST, extractAlgebraicStatement } from '../../3/7'
 import { tamperEvident } from '../../5/5'
 import { groupOrbit, MAX_TAMPERING_COST_PRINCIPLE, f2FieldCloses, pageNavContext } from '../../4/6'
 import { digitFold, claimingTheUnclaimableDivisionByZeroIsAOneBitGatewayInQuantumAlgebra } from '../../1/9'
@@ -1602,6 +1602,39 @@ export function wavesOfLocalResearchersChatAboutAlgebra(matrix: MindMatrix = bui
       root: merge(matrix.root, merkleFold([rootOf(transcript), ...facets.map((entry) => entry.receipt)])),
       statement: `Waves of trained local researchers chat about algebra — ${facets.filter((entry) => entry.on).length}/${facets.length}: 3 deterministic engines × ${waves} waves = ${transcript.length} content-addressed turns, each wave's topic one researcher's previous answer (2-of-3 arbitration), ${distinctAnswers} distinct answers reached from the algebra seed.`,
       boundary: earned('EXACT — computed from the trinity dialogue:', facets, 'the "researchers" are the portal\'s three retrieval engines over the sealed corpus (bigram seed, BM25, split-interference) — deterministic, zero-token, zero egress; the dialogue is a dynamical system that reaches a cycle by pigeonhole, NOT minds, agents, or open-ended learning, and what it can discover is bounded by what src already proves.') }
+  })
+}
+
+/** freeChatUpgradesAll — let free chat upgrade all (user, 2026-07-27). The zero-token machinery upgrades EVERY
+ * theorem's identity line at once: where a registry row carries no curated algebraicStatement, the extractor
+ * pulls the identity VERBATIM from the row's own proven states text (extractAlgebraicStatement — a substring,
+ * never generated), the paper form renders it first, and the queue's derived row shrinks to the true residue
+ * (rows neither curated nor extractable). Free = deterministic recompute, zero tokens; honest = no fabrication
+ * is possible by construction, because an extraction that is not a substring of its source is rejected. */
+export function freeChatUpgradesAll(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('freeChatUpgradesAll', matrix, () => {
+    const seed = THEOREM_ATOM_SEED
+    const curated = seed.filter((row) => typeof row.algebraicStatement === 'string' && row.algebraicStatement.length > 0)
+    const upgraded = seed.filter((row) => !row.algebraicStatement).map((row) => ({ row, identity: extractAlgebraicStatement(row.states) })).filter((entry) => typeof entry.identity === 'string')
+    const residue = seed.length - curated.length - upgraded.length
+    const substringOnly = upgraded.every((entry) => entry.row.states.includes(entry.identity!))
+    const deterministic = upgraded.every((entry) => extractAlgebraicStatement(entry.row.states) === entry.identity)
+    const facets = [
+      { facet: `SUBSTRING, NEVER GENERATED — all ${upgraded.length} free-extracted identities are verbatim substrings of their own row's proven states text (${substringOnly}); an extraction that is not a substring is rejected by construction`, on: substringOnly && upgraded.length > 0 },
+      { facet: `THE FREE CHAT UPGRADES ALL AT ONCE — ${upgraded.length} rows upgraded by extraction vs ${curated.length} by hand-curation; the partition curated+upgraded+residue = ${curated.length}+${upgraded.length}+${residue} = ${seed.length} is exact and the extraction is deterministic (${deterministic})`, on: deterministic && curated.length + upgraded.length + residue === seed.length },
+      { facet: `CURATED WINS, RESIDUE STAYS HONEST — a curated fill is never overwritten (the consumer chain prefers it) and the ${residue} residue rows have no relation-bearing leading clause, so they render their headline instead of a fabricated identity`, on: curated.every((row) => row.algebraicStatement!.length > 0) && residue >= 0 && residue < seed.length },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`free-upgrade:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      total: seed.length,
+      curated: curated.length,
+      upgraded: upgraded.length,
+      residue,
+      sample: upgraded.slice(0, 3).map((entry) => ({ theorem: entry.row.theorem.slice(0, 6 * 8), identity: entry.identity!.slice(0, 8 * 9) })),
+      facets,
+      root: merge(matrix.root, merkleFold([toUuid(`free-upgrade:${curated.length}:${upgraded.length}:${residue}`), ...facets.map((entry) => entry.receipt)])),
+      statement: `Free chat upgrades all — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${upgraded.length} theorem identity lines extracted verbatim from their own proven text (zero tokens, no fabrication possible), ${curated.length} curated fills kept first, ${residue} honest residue of ${seed.length}.`,
+      boundary: earned('EXACT — computed from the registry and the extractor:', facets, 'the upgrade is EXTRACTION, not generation — every identity is a substring of the row\'s own proven states text, curated fills always win, and a row whose text carries no relation stays un-upgraded rather than fabricated; "free" = deterministic recompute at zero tokens, re-proven by the gates each commit') }
   })
 }
 

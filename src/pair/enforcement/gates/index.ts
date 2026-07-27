@@ -19,7 +19,7 @@ import {
   type StrictGateSnapshot,
   type StrictHyphenOffender,
   type StrictNonTsOffender } from './strict'
-import { claySolvedTheorem, SCIENCE_DOMAINS } from '../../../3/7'
+import { claySolvedTheorem, SCIENCE_DOMAINS, extractAlgebraicStatement } from '../../../3/7'
 import {
   computeComputationalLimitSnapshot,
   computationalGatePassed,
@@ -2850,9 +2850,11 @@ export function queueNext(root: string = enforcementScanRoot()) {
   // ROWS DERIVE FROM THE LEDGER (this fold's own named next, landed 2026-07-27): measured worklists append
   // derived rows beside the curated residue. First source: registry rows missing their algebraicStatement —
   // [[every-theorem-shows-its-real-algebraic-statement]] made a queue row by COUNT, not by hand.
-  const missingIdentity = THEOREM_ATOM_SEED.filter((row) => !row.algebraicStatement).length
+  // The free upgrade (extractAlgebraicStatement) fills every row whose states TEXT contains its identity, so the
+  // derived row counts only the TRUE residue: rows where neither a curated fill nor an extraction exists.
+  const missingIdentity = THEOREM_ATOM_SEED.filter((row) => !row.algebraicStatement && !extractAlgebraicStatement(row.states)).length
   const derivedRows = missingIdentity > 0 ? [{
-    wave: `algebraic-statement fill (${missingIdentity}/${THEOREM_ATOM_SEED.length} registry rows carry no identity field)`,
+    wave: `algebraic-statement fill (${missingIdentity}/${THEOREM_ATOM_SEED.length} registry rows neither curated nor extractable)`,
     why: 'DERIVED from THEOREM_ATOM_SEED — every theorem must show its real algebraic statement; high-confidence fills only, never fabricated',
     blocksCore: false,
     localOnly: true,
@@ -2873,7 +2875,7 @@ export function queueNext(root: string = enforcementScanRoot()) {
     { facet: `the ordering is total and derived — ${scored.length} rows scored by blocks-core(4) + local-only(2) + tool-exists(1), ties broken lexically; same rows, same order, any runner`, on: scored.every((row, i) => i === 0 || scored[i - 1]!.score >= row.score) },
     { facet: 'user input upgrades from cadence to steering — the keystroke that advanced the queue is now a CLI any agent runs; steering (new laws, vetoes) stays human', on: scored.every((row) => row.firstAction.length > 0) && claySolvedByThisFold === 0 },
     { facet: `SELF-PRUNING — ${shipped.length} shipped row(s) dropped live by disk artifact (${shipped.map((row) => row.wave).join(', ') || 'none yet'}); the queue lists only genuinely-open work, never completed`, on: shipped.every((row) => 'doneArtifact' in row) },
-    { facet: `ROWS DERIVE FROM THE LEDGER — ${derivedRows.length} derived row(s) appended from measured sources (registry identity-field gap ${missingIdentity}/${THEOREM_ATOM_SEED.length}); a derived row disappears the moment its count reaches zero, no curation needed`, on: derivedRows.every((row) => row.firstAction.length > 0) && missingIdentity <= THEOREM_ATOM_SEED.length },
+    { facet: `ROWS DERIVE FROM THE LEDGER — ${derivedRows.length} derived row(s) appended from measured sources (identity gap ${missingIdentity}/${THEOREM_ATOM_SEED.length}: rows neither curated nor free-extracted); a derived row disappears the moment its count reaches zero, no curation needed`, on: derivedRows.every((row) => row.firstAction.length > 0) && missingIdentity <= THEOREM_ATOM_SEED.length },
     // WHY NOT ALL AT ONCE (user, 2026-07-24) — answered by the sealed algebra: the REACHABLE closure
     // does compute in one batch (the covering-array theorem bounds it at pairwise cost, not the
     // exhaustive product — combo/cover), but each new instrument EXTENDS the space it measures

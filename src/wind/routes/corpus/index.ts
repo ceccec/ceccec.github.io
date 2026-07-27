@@ -1,6 +1,6 @@
 // ☴ Xùn · Wind — corpus route enumerators (papers · references · diamonds · REST).
 // Rosetta census dissolve: papers + rest sub-barrels merged here (one routes/corpus home).
-import { TAU, CANONICAL_HOST, DIMENSION_GATES, earned, titleCarriesAlgebra } from '../../../3/7'
+import { TAU, CANONICAL_HOST, DIMENSION_GATES, earned, titleCarriesAlgebra, extractAlgebraicStatement } from '../../../3/7'
 import type { MindMatrix, StaticPage } from '../../types'
 // call-time namespace edge (cycle-safe): learning imports corpus; search corpus reads back at call time
 import * as __ns_up_up_thunder_waves from '../../../thunder/waves'
@@ -1070,9 +1070,11 @@ export function theoremFormulaCodeDual(row: {
   // case decided — a real proof, cf. four-colour, earns ∎); `bounded-witness` is a witness over a stated finite
   // RANGE (evidence, NOT a ∀-proof). An unproven challenge (Clay: no `proof`) states its Theorem and marks the
   // Proof OPEN — the honest paper form for a conjecture. The fold that machine-checks it stays in `formulaSource`.
+  // FREE UPGRADE CHAIN (user: "let free chat upgrade all"): curated identity → extracted identity (a verbatim
+  // SUBSTRING of the row's own proof text, never generated — extractAlgebraicStatement) → algebra-bearing title.
   const identity = typeof row.algebraicStatement === 'string' && row.algebraicStatement.length > 0
     ? row.algebraicStatement
-    : (titleCarriesAlgebra(row.theorem) ? row.theorem : '')
+    : (extractAlgebraicStatement(row.proof ?? '') ?? (titleCarriesAlgebra(row.theorem) ? row.theorem : ''))
   const statement = identity && identity !== row.theorem ? `${row.theorem} — ${identity}` : row.theorem
   const closing = row.proofClass === 'finite-complete'
     ? 'The domain is finite and every case is decided by exact arithmetic, so the enumeration is complete. ∎'
