@@ -695,10 +695,7 @@ export const CLAY_OPEN_MARKERS = [
  * because a list is hand-kept empty. An overclaiming fold computes ≥1. The truth lives in the formulas, per USER LAW.
  */
 export function claySolvedByFormulas(statement: string, formulas: readonly string[] = []): number {
-  const text = `${statement} ${formulas.join(' ')}`.toLowerCase()
-  if (CLAY_OPEN_MARKERS.some((marker) => text.includes(marker))) return 0 // the fold marks the problem open → no claim
-  if (!CLAY_SOLUTION_MARKERS.some((marker) => text.includes(marker))) return 0 // no finished-proof assertion → no claim
-  return CMI_PRIZE_PROBLEM_TERMS.filter((term) => text.includes(term)).length
+  return overclaimByFormulas('clay', statement, formulas) // axis-fixed wrapper over the one combinatorial predicate
 }
 
 /** Physical faster-than-light / superluminal concepts. A fold "claims FTL" only by asserting it ACHIEVES one — never by
@@ -727,10 +724,27 @@ export const PHYSICAL_FTL_DENIAL_MARKERS = [
  * overclaiming real superluminal signaling computes ≥1. Same shape as claySolvedByFormulas.
  */
 export function physicalFtlByFormulas(statement: string, formulas: readonly string[] = []): number {
+  return overclaimByFormulas('ftl', statement, formulas) // axis-fixed wrapper over the one combinatorial predicate
+}
+
+/** The overclaim axes — each is (terms it NAMES, markers that ASSERT the claim, markers that DENY/OPEN it). Adding an
+ *  axis (a future "unbreakable encryption" claim, say) extends every consumer for free — one primitive, m axes compose. */
+export const OVERCLAIM_AXES = {
+  clay: { terms: CMI_PRIZE_PROBLEM_TERMS, claim: CLAY_SOLUTION_MARKERS, deny: CLAY_OPEN_MARKERS },
+  ftl: { terms: PHYSICAL_FTL_TERMS, claim: PHYSICAL_FTL_CLAIM_MARKERS, deny: PHYSICAL_FTL_DENIAL_MARKERS },
+} as const
+export type OverclaimAxis = keyof typeof OVERCLAIM_AXES
+
+/** overclaimByFormulas — the ONE combinatorial predicate the two detectors merge into (DRY, per fewest-words-combinatorial):
+ *  COMPUTE, from a fold's own statement + formulas, how many claims of `axis` it makes. A term counts iff the text names an
+ *  axis concept, asserts it (a claim-marker), and carries NO deny-marker. Honest folds compute 0; an overclaim computes ≥1.
+ *  claySolvedByFormulas / physicalFtlByFormulas are the axis-fixed wrappers; new overclaim types are one OVERCLAIM_AXES row. */
+export function overclaimByFormulas(axis: OverclaimAxis, statement: string, formulas: readonly string[] = []): number {
+  const spec = OVERCLAIM_AXES[axis]
   const text = `${statement} ${formulas.join(' ')}`.toLowerCase()
-  if (PHYSICAL_FTL_DENIAL_MARKERS.some((marker) => text.includes(marker))) return 0 // the fold denies physical FTL → no claim
-  if (!PHYSICAL_FTL_CLAIM_MARKERS.some((marker) => text.includes(marker))) return 0 // no achievement assertion → no claim
-  return PHYSICAL_FTL_TERMS.filter((term) => text.includes(term)).length
+  if ((spec.deny as readonly string[]).some((marker) => text.includes(marker))) return 0 // the fold denies/opens the claim → none
+  if (!(spec.claim as readonly string[]).some((marker) => text.includes(marker))) return 0 // no assertion of the claim → none
+  return (spec.terms as readonly string[]).filter((term) => text.includes(term)).length
 }
 /** H₁(Σ₂) = ℤ⁴ — homology loops × folded census = dimension gates. */
 export const HOMOLOGY_LOOPS = 4 as const

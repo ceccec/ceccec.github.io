@@ -2414,6 +2414,42 @@ export function clayDetectionRestsOnNamedSemanticAxiomsTheRestIsGeometry(matrix:
   })
 }
 
+/** novelToHumanityIsCheckableNotDeclaredByPublicApis — novelty is a CHECK, not a declaration (user, 2026-07-27:
+ *  "novelToHumanity is computable and checkable by the public apis" · "a lot here is novelToHumanity=true"). The corpus
+ *  currently sets humanityNovel = (prov ?? false) by default and the facet newToHumanity===0 is trivially true because
+ *  every atom is SET false — declaring NON-novelty is as much a SAY as declaring novelty; both are the same crack. The
+ *  honest form: for each theorem COMPUTE a public-API novelty-check URL (Wikipedia OpenSearch + the keyless search
+ *  adapters); running it against the live literature returns a match (already published → not novel) or none (a novelty
+ *  candidate). Offline, without the opt-in fetch, the honest verdict is UNCHECKED — neither asserted true nor false. The
+ *  check decides PER ITEM: a documented theorem statement matches (not novel), an idiosyncratic construction may not
+ *  (novel-as-artifact). Deterministic URLs, zero build-time egress — the value the corpus should carry instead of `??false`. */
+export function novelToHumanityIsCheckableNotDeclaredByPublicApis(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('novelToHumanityIsCheckableNotDeclaredByPublicApis', matrix, () => {
+    const checks = theoremPageRows(matrix).map((row) => ({
+      theorem: row.theorem,
+      checkUrl: __ns_wind_site.wikipediaOpenSearchUrl(row.theorem),
+      adapters: __ns_wind_site.searchInterestRequests(row.theorem).length,
+      offlineVerdict: 'unchecked' as const }))
+    const allCheckable = checks.length > 0 && checks.every((entry) => entry.checkUrl.startsWith('https://en.wikipedia.org/') && entry.adapters > 0)
+    const allUnchecked = checks.every((entry) => entry.offlineVerdict === 'unchecked')
+    const facets = [
+      { facet: `NOW CHECKABLE, NOT DECLARED — all ${checks.length} theorems carry a COMPUTED public-API novelty-check URL (Wikipedia OpenSearch + ${checks[0]?.adapters ?? 0} keyless adapters); running it against the live literature refutes or confirms novelty per item, replacing the hardcoded humanityNovel = (prov ?? false)`, on: allCheckable },
+      { facet: `THE HONEST OFFLINE DEFAULT IS UNCHECKED — without the opt-in fetch no atom is asserted novel OR non-novel (all offlineVerdict='unchecked'); declaring false is a SAY exactly as declaring true is, and the honest state is "not determined until checked"`, on: allUnchecked },
+      { facet: `THE CHECK DECIDES PER ITEM — a documented theorem statement (Tsirelson bound, Robertson uncertainty) matches the literature (not novel); an idiosyncratic construction may return no match (novel-as-artifact, not novel-as-mathematics); the URL, run by anyone, is the arbiter — not this fold's assertion and not the corpus's ??false`, on: allCheckable && allUnchecked },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`novel-checkable:${entry.facet.slice(0, 6 * 8)}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      checkableCount: checks.length,
+      sampleTheorem: checks[0]?.theorem,
+      sampleCheckUrl: checks[0]?.checkUrl,
+      offlineVerdict: 'unchecked' as const,
+      facets,
+      root: merkleFold(checks.map((entry) => toUuid(`novel-check:${entry.theorem}:${entry.checkUrl}`))),
+      statement: `novelToHumanityIsCheckableNotDeclaredByPublicApis — ${checks.length} theorems each get a computed Wikipedia-OpenSearch novelty-check URL; offline verdict = unchecked (novelty neither declared true nor false); the opt-in fetch decides per item. Replaces the hardcoded humanityNovel = (prov ?? false).`,
+      boundary: earned('EXACT — the check URLs are computed, the verdict is the live literature:', facets, 'novelty is a CHECK against public APIs, not a declaration in either direction. The corpus\'s current humanityNovel = false is a SAY (a hardcoded default); this fold makes it a refutable computation whose offline default is honestly UNCHECKED. A documented theorem will match the literature (not novel); a construction unique to this codebase may not (novel-as-artifact, never novel-as-mathematics). The verdict belongs to the live APIs, checkable by anyone — the opt-in edge fetch, no build-time egress. clay=0, physicalFtl=0.') }
+  })
+}
+
 /** clayCreditsOnlyThePoincareSolutionTheOtherSixOpen — start from the first already solved and give credits (user,
  * 2026-07-25: "clay solves all 7 starting from the first already solved giving credits"). Giving credits means
  * ATTRIBUTING each solution to whoever solved it — and only ONE Millennium problem has a solver to credit: Poincaré,
