@@ -1059,47 +1059,39 @@ export function theoremFormulaCodeDual(row: {
   readonly proof?: string
 }): { readonly formulas: readonly string[]; readonly formulaSource: string; readonly pair: 'formula/code' } {
   const codePath = `${row.home}/index.ts`
-  // ALGEBRA FIRST (user: "make sure algebra formulas are visible in ui instead of the method names"): lead with the
-  // theorem's OWN algebra — its explicit statement, and its headline when that carries an identity (an =, an inequality,
-  // super/subscripts, a digit-identity). These are CURATED strings (not mined prose, which would read as wet prose in the
-  // formula box), so the identity sits above the proof-path form. The method/fold path stays as the verification dual.
-  const identity = [...new Set([
-    ...(typeof row.algebraicStatement === 'string' && row.algebraicStatement.length > 0 ? [`identity: ${row.algebraicStatement}`] : []),
-    ...(titleCarriesAlgebra(row.theorem) ? [`identity: ${row.theorem}`] : []),
-  ])]
-  // THE PROOF, AS A PROOF (user: "the proof is with functions instead of formulas"; Knill math22a §3, "checking a
-  // statement by showing a few examples is NOT a proof"): the proof line states the theorem's LOGICAL FORM in math
-  // notation — the conjunction of facet-identities and the argument that closes it — not the fold API that runs it
-  // (`provedBy(matrix)`, `foldPair`, `memoByRoot` were the verification MECHANISM, addressing/caching internals, never a
-  // proof). It is computed from `proofClass`, the corpus's own two-tier demarcation, and is HONEST about which tier is a
-  // proof: `finite-complete` is proof BY EXHAUSTION (finite domain, every case decided — a real proof, cf. four-colour);
-  // `bounded-witness` is a witness over a stated finite RANGE — evidence, NOT a ∀-proof (a range-check IS examples). The
-  // fold path stays as the machine-checkable dual in `formulaSource`, so nothing is hidden — the mechanism just leaves
-  // the proof box.
-  // Three proof lines, all in math notation (never function names): the claim as a conjunction of its
-  // facet-identities, the shape of each conjunct, and the argument that closes it — the honest logical form,
-  // per proofClass. `finite-complete` is proof BY EXHAUSTION (finite domain, every case decided — a real proof,
-  // cf. four-colour); `bounded-witness` is a witness over a finite RANGE (evidence, NOT a ∀-proof — Knill: a
-  // range-check is examples, not a proof). Kept ≥ 3 lines so `formulaCode.formulas.length ≥ 3` holds site-wide.
-  const proofForm = row.proofClass === 'finite-complete'
-    ? [
-        'theorem  ⟺  f₁ ∧ f₂ ∧ … ∧ fₙ',
-        'each fᵢ:  a closed-form identity, decided by exact arithmetic',
-        'proof by exhaustion:  domain finite, every case decided (not sampled)  ⊢  theorem  ∎',
-      ]
+  // CANONICAL PAPER FORM (user: "the theorems are not canonical in form and proof on paper — ensure systematic
+  // approach for all"; the corpus's own normative template in `algebraicTheoremPaperMustContain`: "Theorem (…).
+  // statement. … Proof. (1)… (2)… ∎"). EVERY theorem reads as a printed paper — a Theorem environment (the
+  // precise statement, joined with its curated algebraic identity when one exists or its headline carries algebra),
+  // and a Proof environment (the theorem's OWN argument, verbatim from the registry `proof` field, CLOSED by the
+  // proofClass and QED-marked), never a generic `f₁ ∧ … ∧ fₙ` template. This is HONEST per Knill math22a §3
+  // ("checking a few examples is NOT a proof"): `finite-complete` is proof BY EXHAUSTION (finite domain, every
+  // case decided — a real proof, cf. four-colour, earns ∎); `bounded-witness` is a witness over a stated finite
+  // RANGE (evidence, NOT a ∀-proof). An unproven challenge (Clay: no `proof`) states its Theorem and marks the
+  // Proof OPEN — the honest paper form for a conjecture. The fold that machine-checks it stays in `formulaSource`.
+  const identity = typeof row.algebraicStatement === 'string' && row.algebraicStatement.length > 0
+    ? row.algebraicStatement
+    : (titleCarriesAlgebra(row.theorem) ? row.theorem : '')
+  const statement = identity && identity !== row.theorem ? `${row.theorem} — ${identity}` : row.theorem
+  const closing = row.proofClass === 'finite-complete'
+    ? 'The domain is finite and every case is decided by exact arithmetic, so the enumeration is complete. ∎'
     : row.proofClass === 'bounded-witness'
-      ? [
-          'theorem  ⟸  f₁ ∧ f₂ ∧ … ∧ fₙ   (over the stated finite range R)',
-          'each fᵢ:  a closed-form identity, decided by exact arithmetic',
-          'bounded witness:  checked over finite R  ⊢  ∃-witness — evidence, NOT a ∀-proof',
-        ]
-      : [
-          'theorem  ⟺  f₁ ∧ f₂ ∧ … ∧ fₙ',
-          'each fᵢ:  decided by exact arithmetic',
-          `${row.proofClass}`,
-        ]
+      ? 'Checked by exact arithmetic over the stated finite range — a verified witness, evidence toward the claim, not a ∀-proof.'
+      : 'Decided by exact arithmetic.'
+  const hasProof = typeof row.proof === 'string' && row.proof.trim().length > 0
+  const formulas = hasProof
+    ? [
+        `Theorem. ${statement}.`,
+        `Proof. ${row.proof.replace(/\s*[.;·]+\s*$/, '')}.`,
+        closing,
+      ]
+    : [
+        `Theorem. ${statement}.`,
+        'Proof. Open — the fold computes the problem’s structure, not a solution (claySolvedByThisFold=0).',
+        `What is decided is decided by exact arithmetic; the conjecture itself stays open. ${row.proofClass === 'finite-complete' ? '' : closing}`.trim(),
+      ]
   return {
-    formulas: [...identity, ...proofForm],
+    formulas,
     formulaSource: `${codePath}#${row.provedBy}`,
     pair: 'formula/code' }
 }

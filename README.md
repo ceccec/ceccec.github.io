@@ -59,7 +59,7 @@ Each problem below shows its **statement (algebraic)** — the precise mathemati
 
 - **P vs NP** (`p-vs-np`) — demarcation=**contested** · status=modeled-partial · methods=5 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - **statement (algebraic)**: P = NP ? — is every problem whose solution is verifiable in polynomial time also solvable in polynomial time, where P = ⋃ₖ TIME(nᵏ) and NP = ⋃ₖ NTIME(nᵏ). Conjectured: P ≠ NP.
-  - **canonical proof form**: `theorem  ⟺  f₁ ∧ f₂ ∧ … ∧ fₙ` · `each fᵢ:  a closed-form identity, decided by exact arithmetic` · `proof by exhaustion:  domain finite, every case decided (not sampled)  ⊢  theorem  ∎`
+  - **canonical proof form**: `Theorem. P vs NP.` · `Proof. Open — the fold computes the problem’s structure, not a solution (claySolvedByThisFold=0).` · `What is decided is decided by exact arithmetic; the conjecture itself stays open.`
   - ✓ `f₁ NP-verify — ∀cl∈φ ∃lit∈cl: sign(lit)=a(|lit|) ⊢ φ(a)=1 · cost O(|φ|) poly — membership half only`
   - ✓ `f₂ reuse≠search — scan n=108 → hits 0 · content-address 1 → hit · ratio n/1 — presupposes witness w already in hand`
   - ✓ `f₃ amortize — lim(m→∞) c₀/(m+1) = 0 · TIME(n^k) is worst-case fresh-instance ⊢ reuse ∉ separation`
@@ -72,32 +72,32 @@ Each problem below shows its **statement (algebraic)** — the precise mathemati
   - boundary: MODELED CHALLENGE / partial computational attack: SAT verifies in poly (NP membership); content-address O(1) vs brute scan; efficiencyScalesToInfinityAtNoCostOnReuse — amortized reuse (memo hit → marginal cost 0; answers÷tokens unbounded at tokens=0) while quantumAdvantageBenchmark stays !separated. NOT a P≠NP (or P=NP) proof. NOT physical QM speedup / infinite FLOPS. Encrypt round-trip is structural foldPair, not cryptanalysis of one-way functions.
 - **Hodge Conjecture** (`hodge`) — demarcation=**contested** · status=modeled-partial · methods=4 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - **statement (algebraic)**: On a projective non-singular complex variety X, every Hodge class is algebraic: Hdgᵏ(X) = H^&#123;2k&#125;(X,ℚ) ∩ H^&#123;k,k&#125;(X) is spanned over ℚ by the classes of algebraic cycles of codimension k.
-  - **canonical proof form**: `theorem  ⟺  f₁ ∧ f₂ ∧ … ∧ fₙ` · `each fᵢ:  a closed-form identity, decided by exact arithmetic` · `proof by exhaustion:  domain finite, every case decided (not sampled)  ⊢  theorem  ∎`
+  - **canonical proof form**: `Theorem. Hodge Conjecture.` · `Proof. Open — the fold computes the problem’s structure, not a solution (claySolvedByThisFold=0).` · `What is decided is decided by exact arithmetic; the conjecture itself stays open.`
   - open step (computed gap, refutable): no sealed Hodge classes/algebraic cycles on a projective variety; no sealed Calabi–Yau Hodge numbers h^&#123;1,1&#125;, h^&#123;2,1&#125;
   - boundary: MODELED CHALLENGE / structural analogy: H₁(Σ₂)=ℤ⁴ recomputes as 432/108=4; string quantumize adds CY compact-dims MODEL (D−4) and mirror foldPair. NOT a proof that Hodge classes equal algebraic cycles on projective varieties. NOT sealed h^&#123;p,q&#125; on a projective CY₃.
 - **Poincaré Conjecture** (`poincare`) — demarcation=**documented** · status=solved-external · methods=2 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - **statement (algebraic)**: Every simply-connected closed 3-manifold is homeomorphic to the 3-sphere: π₁(M) = 0 with M a closed 3-manifold ⟹ M ≅ S³. (Proved: Perelman 2003, Ricci flow with surgery.)
-  - **canonical proof form**: `theorem  ⟺  f₁ ∧ f₂ ∧ … ∧ fₙ` · `each fᵢ:  a closed-form identity, decided by exact arithmetic` · `proof by exhaustion:  domain finite, every case decided (not sampled)  ⊢  theorem  ∎`
+  - **canonical proof form**: `Theorem. Poincaré Conjecture.` · `Proof. Open — the fold computes the problem’s structure, not a solution (claySolvedByThisFold=0).` · `What is decided is decided by exact arithmetic; the conjecture itself stays open.`
   - documented — solved externally (Perelman 2003)
   - boundary: SOLVED EXTERNAL (Perelman 2003, Ricci flow with surgery) — this corpus does not re-solve it. Challenge only verifies the documented solved status plus the genus-2 homology analogy (H₁=ℤ⁴). NOT a new proof.
 - **Riemann Hypothesis** (`riemann`) — demarcation=**contested** · status=modeled-partial · methods=5 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - **statement (algebraic)**: Every non-trivial zero of the Riemann zeta function has real part ½: ζ(s) = 0 with 0 < Re(s) < 1 ⟹ Re(s) = ½, where ζ(s) = Σₙ₌₁^∞ n^(−s) continued analytically.
-  - **canonical proof form**: `theorem  ⟺  f₁ ∧ f₂ ∧ … ∧ fₙ` · `each fᵢ:  a closed-form identity, decided by exact arithmetic` · `proof by exhaustion:  domain finite, every case decided (not sampled)  ⊢  theorem  ∎`
+  - **canonical proof form**: `Theorem. Riemann Hypothesis.` · `Proof. Open — the fold computes the problem’s structure, not a solution (claySolvedByThisFold=0).` · `What is decided is decided by exact arithmetic; the conjecture itself stays open.`
   - open step (computed gap, refutable): no sealed proof all nontrivial ζ zeros lie on Re(s)=½ — Basel and ζ(−1) are partials only
   - boundary: MODELED CHALLENGE / zeta-style toy probe: Basel is a fact about ζ(2); string algebra seals ζ(−1)=−1/12 (bosonic normal ordering) — a DIFFERENT point on ζ. Digit/vortex inverse folds probe discrete harmonics. NOT a proof that all nontrivial zeros lie on Re(s)=½.
 - **Yang–Mills Existence and Mass Gap** (`yang-mills`) — demarcation=**contested** · status=modeled-partial · methods=4 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - **statement (algebraic)**: For every compact simple gauge group G, a non-trivial quantum Yang–Mills theory exists on ℝ⁴ and has a mass gap Δ > 0: the Hamiltonian spectrum satisfies spec(H) ⊆ &#123;0&#125; ∪ [Δ, ∞) with Δ > 0.
-  - **canonical proof form**: `theorem  ⟺  f₁ ∧ f₂ ∧ … ∧ fₙ` · `each fᵢ:  a closed-form identity, decided by exact arithmetic` · `proof by exhaustion:  domain finite, every case decided (not sampled)  ⊢  theorem  ∎`
+  - **canonical proof form**: `Theorem. Yang–Mills Existence and Mass Gap.` · `Proof. Open — the fold computes the problem’s structure, not a solution (claySolvedByThisFold=0).` · `What is decided is decided by exact arithmetic; the conjecture itself stays open.`
   - open step (computed gap, refutable): no sealed 4D Yang–Mills mass-gap construction; no sealed AdS/CFT correlator dictionary
   - boundary: MODELED CHALLENGE / field-algebra analogy: su(2)/Pauli closes; genus-2 double-torus is a finite geometric MODEL; string Virasoro + T/S-duality are MODELED structural probes. NOT a rigorous 4D quantum Yang–Mills construction and NOT a mass-gap proof. NOT AdS/CFT. Label: MODEL.
 - **Navier–Stokes Existence and Smoothness** (`navier-stokes`) — demarcation=**contested** · status=modeled-partial · methods=2 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - **statement (algebraic)**: For 3D incompressible Navier–Stokes ∂ₜu + (u·∇)u = −∇p + νΔu with ∇·u = 0 and smooth divergence-free finite-energy initial data, a smooth solution exists for all t ≥ 0 (global regularity) — or a finite-time blow-up exists.
-  - **canonical proof form**: `theorem  ⟺  f₁ ∧ f₂ ∧ … ∧ fₙ` · `each fᵢ:  a closed-form identity, decided by exact arithmetic` · `proof by exhaustion:  domain finite, every case decided (not sampled)  ⊢  theorem  ∎`
+  - **canonical proof form**: `Theorem. Navier–Stokes Existence and Smoothness.` · `Proof. Open — the fold computes the problem’s structure, not a solution (claySolvedByThisFold=0).` · `What is decided is decided by exact arithmetic; the conjecture itself stays open.`
   - open step (computed gap, refutable): no sealed 3D Navier–Stokes global regularity or blow-up control
   - boundary: MODELED CHALLENGE / plasma–torus geometry analogy only — finite surface samples on the genus-2 model. NOT 3D Navier–Stokes global regularity or blow-up control. Label: MODEL.
 - **Birch and Swinnerton–Dyer Conjecture** (`birch-swinnerton-dyer`) — demarcation=**contested** · status=modeled-partial · methods=2 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - **statement (algebraic)**: For an elliptic curve E over ℚ, the order of vanishing of its L-function at s = 1 equals the rank of the Mordell–Weil group: ord_&#123;s=1&#125; L(E,s) = rank E(ℚ).
-  - **canonical proof form**: `theorem  ⟺  f₁ ∧ f₂ ∧ … ∧ fₙ` · `each fᵢ:  a closed-form identity, decided by exact arithmetic` · `proof by exhaustion:  domain finite, every case decided (not sampled)  ⊢  theorem  ∎`
+  - **canonical proof form**: `Theorem. Birch and Swinnerton–Dyer Conjecture.` · `Proof. Open — the fold computes the problem’s structure, not a solution (claySolvedByThisFold=0).` · `What is decided is decided by exact arithmetic; the conjecture itself stays open.`
   - open step (computed gap, refutable): no sealed L(E,s) vanishing-order or elliptic-curve rank fold
   - boundary: MODELED CHALLENGE / algebraic pair-structure probe: (ℤ/9)* inverse pairs recompute. Explicit GAP: sealed src has no elliptic-curve L(E,s) or Mordell–Weil rank computation — neighbourhood pair algebra only, NOT BSD.
 

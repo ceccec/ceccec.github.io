@@ -43,6 +43,13 @@ const sourceOf = (row: TheoremPageRow) => sources.value[row.provedBy]
 const tagHref = (tag: string) => withBase(`/theorems/#tag-${tag.replace('/', '-')}`)
 // the computed graph for this theorem, if src exposes one (else no figure — never invented).
 const figureOf = (row: TheoremPageRow) => theoremFigure(row.slug)
+// Canonical paper form: split the leading "Theorem." / "Proof." label so it typesets bold, like a printed
+// theorem environment. Lines that carry no label (the closing ∎ argument) render whole. Formulas stay
+// technical (untranslated) by the page law.
+const paperLine = (line: string): { label: string; body: string } => {
+  const m = line.match(/^(Theorem|Proof)\.\s*([\s\S]*)$/)
+  return m ? { label: `${m[1]}.`, body: m[2] } : { label: '', body: line }
+}
 </script>
 
 <template>
@@ -69,9 +76,11 @@ const figureOf = (row: TheoremPageRow) => theoremFigure(row.slug)
         <a v-for="tag in row.tags" :key="tag" class="theorem-paper__tag" :href="tagHref(tag)">{{ t(tag) }}</a>
       </p>
 
-      <section class="theorem-paper__abstract">
-        <h2>{{ t('Abstract') }}</h2>
-        <p>{{ t(row.proof) }}</p>
+      <section class="theorem-paper__theorem-env" aria-label="Theorem and proof">
+        <p v-for="(line, i) in row.formulas" :key="i" class="theorem-paper__claim">
+          <strong v-if="paperLine(line).label">{{ paperLine(line).label }}</strong><template v-if="paperLine(line).label"> </template>{{ paperLine(line).label ? paperLine(line).body : line }}
+        </p>
+        <p class="theorem-paper__source-home"><code>{{ row.formulaSource }}</code></p>
       </section>
 
       <section v-if="figureOf(row)" class="theorem-paper__figure-block">
@@ -104,14 +113,8 @@ const figureOf = (row: TheoremPageRow) => theoremFigure(row.slug)
         <p>{{ t(row.reproducibility) }}</p>
       </section>
 
-      <section class="theorem-paper__formulas">
-        <h2>4 · {{ t('Formulas') }}</h2>
-        <pre class="theorem-paper__formula"><code>{{ row.formulas.join('\n') }}</code></pre>
-        <p class="theorem-paper__source-home"><code>{{ row.formulaSource }}</code></p>
-      </section>
-
       <section v-if="sourceOf(row)" class="theorem-paper__source">
-        <h2>5 · {{ t('Code') }}</h2>
+        <h2>4 · {{ t('Code') }}</h2>
         <p class="theorem-paper__source-home">
           <code>{{ row.provedBy }}</code> · <code>{{ sourceOf(row)!.home }}/index.ts</code>
         </p>
@@ -155,11 +158,18 @@ const figureOf = (row: TheoremPageRow) => theoremFigure(row.slug)
 .theorem-paper__ack-grid dt { font-weight: calc(6 * 100); opacity: calc(3 / 5); }
 .theorem-paper__ack-grid dd { margin: 0; text-align: justify; }
 @media print { .theorem-paper__tag { border-color: black; } }
-.theorem-paper__abstract {
+/* The theorem environment — Theorem. / Proof. …∎ set as a printed paper: a ruled block, the Theorem line
+   emphasised, the Proof and its closing argument justified beneath. */
+.theorem-paper__theorem-env {
   border-left: calc(1px * 3) solid currentColor; padding-left: var(--ich-sp4);
   margin: var(--ich-sp4) 0;
 }
-.theorem-paper__abstract p { font-size: calc(1em * 9 / (2 * 5)); }
+.theorem-paper__claim {
+  font-size: calc(1em * 9 / (2 * 5)); text-align: justify; hyphens: auto;
+  margin: 0 0 var(--ich-sp2);
+}
+.theorem-paper__claim:first-child { font-size: calc(1em * 5 / (2 * 2)); }
+.theorem-paper__claim strong { font-variant: small-caps; letter-spacing: calc(1em / 100); }
 .theorem-paper h2 {
   font-size: calc(1em); text-transform: none; letter-spacing: normal;
   margin: var(--ich-sp5) 0 var(--ich-sp2); border: none; padding: 0;
@@ -171,7 +181,6 @@ const figureOf = (row: TheoremPageRow) => theoremFigure(row.slug)
 }
 .theorem-paper__hero { margin-top: var(--ich-sp4); }
 .theorem-paper__source-home { font-size: calc(1em * 4 / 5); opacity: calc(4 / 5); }
-.theorem-paper__formula,
 .theorem-paper__code {
   font-size: calc(1em * 7 / (2 * 5)); line-height: calc(7 / 5); overflow-x: auto;
   border: 1px solid currentColor; border-radius: calc(1px * 4); padding: var(--ich-sp3);
