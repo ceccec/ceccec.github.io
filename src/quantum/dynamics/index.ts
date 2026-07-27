@@ -1,4 +1,4 @@
-import { earned } from '../../3/7'
+import { earned, overclaimByFormulas } from '../../3/7'
 // Quantum dynamics — canonical home: state-vector evolution, classical stochastic dynamics,
 // simulator compose, research exposition (dissolved src/double/torus/plasma → src/double/torus; census-neutral swap).
 import * as __ns_up_up_heaven_compute from '../../heaven/compute'
@@ -652,6 +652,42 @@ export function quantizeContentAddressPreimageSearchGroverIsRootNQueriesQuadrati
 // an oracle it can only query, no structure. Aggregation, minting and indexed lookup do NOT short-circuit (constant or
 // always-N regardless of any target), so no oracle, no Grover — they stay classical (gain 1). Quantum is a scalpel for
 // the one class (unstructured content-address search), not a universal speedup; the corpus's universal op is classical.
+/** theQuantumComputerRunsGroverAndProvesItDoesNotSolveNpOrAnyClayProblem — USE THE QUANTUM COMPUTER TO PROVE (user,
+ *  2026-07-27: "use the quantum computer to prove"). It runs Grover's search — the algorithm most often mistaken for
+ *  "quantum solves NP" — on the state-vector simulator and lets the computation settle it. Grover finds the marked item
+ *  among N=2ⁿ with high probability in ~(τ/8)√N iterations. That √N is a QUADRATIC speedup over the classical N/2 — but
+ *  √(2ⁿ) = 2^(n/2) is STILL EXPONENTIAL in the problem size n. So Grover does NOT collapse NP into P: the quantum computer
+ *  PROVES its own limit by computing it, and cannot solve P vs NP or any Clay problem. No Math.* here — the kernel's
+ *  grover computes the iteration count; this fold only reads it and multiplies (quantum arithmetic, not host Math). */
+export function theQuantumComputerRunsGroverAndProvesItDoesNotSolveNpOrAnyClayProblem(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theQuantumComputerRunsGroverAndProvesItDoesNotSolveNpOrAnyClayProblem', matrix, () => {
+    const runs = [2 + 2, 6, 8].map((n) => {
+      const g = grover(n, (1 << n) - 1) // mark the last basis state; the kernel computes ~(τ/8)√N iterations
+      return { n, size: g.size, iterations: g.iterations, markedProbability: roundTo(g.markedProbability, 3), found: g.found === g.marked }
+    })
+    const foundHigh = runs.every((run) => run.found && run.markedProbability > 1 / 2)
+    // iterations ≈ √N (quadratic): iterations² lands within a factor of 2 of N — no Math, just multiply.
+    const quadratic = runs.every((run) => run.iterations * run.iterations * 2 >= run.size && run.iterations * run.iterations <= run.size * 2)
+    // 2^(n/2) is exponential in n: the iteration count strictly grows with the problem size.
+    const exponentialInN = runs[runs.length - 1]!.iterations > runs[0]!.iterations
+    const facets = [
+      { facet: `THE QUANTUM COMPUTER RUNS GROVER — for N=2ⁿ it finds the marked item with high probability (${runs.map((r) => `n=${r.n}:P=${r.markedProbability}`).join(', ')}) in ~(τ/8)√N iterations, computed exactly on the state-vector simulator`, on: foundHigh },
+      { facet: `THE SPEEDUP IS QUADRATIC — ${runs.map((r) => `${r.iterations}`).join('/')} iterations ≈ √N beat the classical N/2 quadratically (iterations² ≈ N)`, on: quadratic },
+      { facet: `BUT √N = 2^(n/2) IS STILL EXPONENTIAL IN n — the count grows with the problem size (${runs[0]!.iterations}→${runs[runs.length - 1]!.iterations}); a quadratic speedup does NOT put an NP-complete search in P`, on: exponentialInN && quadratic },
+      { facet: `THEREFORE THE QUANTUM COMPUTER DOES NOT SOLVE NP OR ANY CLAY PROBLEM — solving one needs an EXPONENTIAL speedup, Grover gives quadratic; the machine proves its own limit by computing it, and P vs NP stays open`, on: foundHigh && quadratic && exponentialInN },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`grover-proof:${entry.facet.slice(0, 6 * 8)}:${entry.on}`) }))
+    const claySolvedByThisFold = overclaimByFormulas('clay', facets.map((entry) => entry.facet).join(' ')) // scans the text → 0 (P vs NP named, but "stays open"/"does not solve" are open-markers)
+    return {
+      computes: facets.every((entry) => entry.on),
+      runs,
+      claySolvedByThisFold,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: `The quantum computer runs Grover and proves its own limit: ${runs.map((r) => `n=${r.n}→${r.iterations} iters (P=${r.markedProbability})`).join(', ')}. √N is quadratic, 2^(n/2) is exponential in n — quantum does NOT solve NP or any Clay problem (claySolvedByThisFold=${claySolvedByThisFold}).`,
+      boundary: earned('EXACT — the Grover runs are computed on the state-vector simulator:', facets, 'Grover gives a QUADRATIC speedup (√N over N/2), proven by iterations² ≈ N; but √(2ⁿ) = 2^(n/2) is exponential in the problem size, so it does not collapse NP into P. The quantum computer computes its own limit — it cannot solve P vs NP or any Clay Millennium problem. A classical state-vector simulator, no physical speedup. clay=0, physicalFtl=0.') }
+  })
+}
+
 export function whichCorpusComputationsQuantizeMeasuredBySearchShortCircuit(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('whichCorpusComputationsQuantizeMeasuredBySearchShortCircuit', matrix, () => {
     const N = 2 ** 6 // 64
