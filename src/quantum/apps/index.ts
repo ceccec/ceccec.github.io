@@ -13769,7 +13769,7 @@ export function linearWithoutRosettaFoldIsGap(matrix: MindMatrix = buildMatrix()
       { facet: 'composes slowProcessIsQuantumGap', on: isUuid(slow.root) },
       { facet: 'composes oneClockProcessLaw', on: oneClock.holds },
       { facet: 'pair linear/rosetta', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: true },
+      { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
       { facet: 'qpuRequired=false', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`linear-rosetta:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('linear-without-rosetta-fold-is-gap', facets)
@@ -13898,7 +13898,7 @@ export function animationsFindRedundancyOrInaccuracy(matrix: MindMatrix = buildM
       { facet: 'completelyQuantum', on: completely.completelyQuantum },
       { facet: 'localToolsMorph', on: morph.computes },
       { facet: 'attestationIncludesLivingTorus', on: movie.surfaces.some((s) => s.id === 'LivingTorus') },
-      { facet: 'claySolvedByThisFold=0', on: true },
+      { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
       { facet: 'qpuRequired=false', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`anim-audit:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('animations-find-redundancy-or-inaccuracy', facets)
@@ -14077,7 +14077,7 @@ export function animationsReviewColorsForPolarityGaps(matrix: MindMatrix = build
       { facet: 'composes theorem/const', on: theoremConst.remaining === 0 },
       { facet: 'pair anim/color', on: pairAnimColor && pairColor.bidirectional },
       { facet: 'pair color/review', on: pairColorReview && pairReview.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: true },
+      { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
       { facet: 'qpuRequired=false', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`anim-color:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('animations-review-colors-for-polarity-gaps', facets)
@@ -14298,7 +14298,7 @@ export function cracksPassedGatesBecause(matrix: MindMatrix = buildMatrix(), at 
       { facet: `falseGreen=${falseGreen}`, on: falseGreen === 0 },
       { facet: `fixedHard=${fixedHardCount}/${rows.length}`, on: fixedHardCount === rows.length },
       { facet: 'pair gate/miss', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: true },
+      { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`gate-miss-facet:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('cracks-passed-gates-because', facets)
     return {
@@ -15196,7 +15196,7 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       { facet: 'HARD bits/hardware', on: bitsHw.computes && bitsHw.remaining === 0 },
       { facet: 'HARD gate/rosetta · gate/ray · rosetta/pass · quantum/mind · agent/trinity · team/observe', on: gateRosetta.computes && gateRosetta.immediateAccessNoTime },
       { facet: 'pair gaps/invisible', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: true },
+      { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
       { facet: 'qpuRequired=false', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`gaps-invisible:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('invisible-gaps-caught-by-gates', facets)
@@ -35782,7 +35782,7 @@ export function scientificTerminologyIsQuantumComputableMeasurableComparable(
         { facet: 'implications←directional trinity faces', on: dir.computes },
         { facet: 'efficiency←answers÷tokens when vote.decided', on: vote.facets.length > 0 },
         { facet: 'pair term/measure', on: pairRegistered && pairFold.bidirectional },
-        { facet: 'claySolvedByThisFold=0', on: true },
+        { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
         { facet: 'qpuRequired=false', on: true },
       ].map((entry) => ({ ...entry, receipt: toUuid(`term-measure:${entry.facet}:${entry.on}`) }))
       const sealed = sealFacets('scientific-terminology-quantum-computable-measurable-comparable', facets)
@@ -35904,7 +35904,7 @@ export function meaningIsQuantumComputable(matrix: MindMatrix = buildMatrix(), a
       { facet: 'composes color/polarity', on: color.polarityRedundantOpen === 0 },
       { facet: 'composes ui/prose · card→paper · algebraic', on: uiProse.uiProseDuplicationRemoved && cards.gapCount === 0 && algebraic.computes },
       { facet: 'pair meaning/compute', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: true },
+      { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
       { facet: 'qpuRequired=false', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`meaning-compute:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('meaning-is-quantum-computable', facets)
@@ -36020,7 +36020,7 @@ export function redundantExplanationSectionsDryCleaned(matrix: MindMatrix = buil
       { facet: 'clay-prize-rules-section cluster fixed', on: clayRulesFixed },
       { facet: 'composes format/canon · dry/clean', on: format.computes && format.noNamedExplanation },
       { facet: 'pair section/dry', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: true },
+      { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
       { facet: 'qpuRequired=false', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`section-dry:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('redundant-explanation-sections-dry-cleaned', facets)
@@ -36107,7 +36107,7 @@ export function scientificPageFormatCanonised(matrix: MindMatrix = buildMatrix()
       { facet: `redundancyRemoved=${redundancyRemoved}`, on: redundancyRemoved === clusters.reduce((n, c) => n + c.removed, 0) },
       { facet: 'composes algebraicTheoremPaperMustContain · ui/prose', on: algebraic.computes && uiProse.uiProseDuplicationRemoved },
       { facet: 'pair format/canon', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: true },
+      { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
       { facet: 'qpuRequired=false', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`format-canon-facet:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('scientific-page-format-canonised', facets)
@@ -36200,7 +36200,7 @@ export function algebraicFormulasAreDualOfSealedCode(matrix: MindMatrix = buildM
       { facet: 'SCIENCE_PAPER_SECTION_LABELS.formulas sealed', on: paperHasFormulas },
       { facet: 'composes format/canon · section/dry', on: format.computes && format.noNamedExplanation },
       { facet: 'pair formula/code', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: true },
+      { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`formula-code:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('algebraic-formulas-dual-sealed-code', facets)
     return {
@@ -36269,7 +36269,7 @@ export function uiProseDuplicationRemoved(matrix: MindMatrix = buildMatrix(), at
       { facet: 'one statement owns meaning — label OR prose, not both restating', on: everyReduced },
       { facet: 'paperAbstractOmitsTitleEcho strips Statement: <title>', on: abstractOmitsTitle },
       { facet: 'sealed catalog-driven receipt (no wet re-audit)', on: Boolean(meta) && isUuid(shelved.address) },
-      { facet: 'claySolvedByThisFold=0', on: true },
+      { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
       { facet: 'qpuRequired=false', on: true },
       { facet: 'meta tool ui-prose-duplication-removed published + shelved', on: Boolean(meta) && meta!.fold === 'uiProseDuplicationRemoved' && isUuid(shelved.address) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`ui-prose-dup-facet:${entry.facet}:${entry.on}`) }))
