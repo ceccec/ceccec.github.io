@@ -4,7 +4,7 @@
 import { phase } from '../../6/4'
 // call-time namespace edge (cycle-safe): widgets reaches back via the mind barrel; the seed reads at call time
 import * as __ns_up_lake_widgets from '../../lake/widgets'
-import { rat, ratEq, ratAdd, ratMul, ratSub, ratDiv, ratToFloat, cfEval, claySolvedTheorem, demarcate } from '../../3/7'
+import { rat, ratEq, ratAdd, ratMul, ratSub, ratDiv, ratToFloat, cfEval, claySolvedTheorem, claySolvedByFormulas, demarcate } from '../../3/7'
 import { PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, equivalentNarcoticDepthM, gasReserveThirds, haldaneLoad, maxOperatingDepthM, seesawLightMassEv } from '../../3/7'
 import { survive, fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vortex'
 // call-time namespace edge (cycle-safe): cosmos ⇄ digit already meet through heaven/site and earth/architecture
@@ -212,7 +212,7 @@ export function invertingDarkMatterClosesTheReversedMathTheParticleIdentityStays
   ].map((entry) => ({ ...entry, receipt: toUuid(`dark-matter-invert:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('dark-matter-invert', facets)
   return {
-    closed: sealed.ok, claySolvedByThisFold: 0,
+    closed: sealed.ok, claySolvedByThisFold: claySolvedByFormulas(facets.map((entry) => entry.facet).join(' ')),
     ratioCoverB: roundTo(ratioCoverB, 3), darkFractionOfMatter: roundTo(darkFractionOfMatter, 4), baryonFractionOfMatter: roundTo(baryonFractionOfMatter, 4),
     horizonAcceleration, a0Coincidence: roundTo(a0Coincidence, 3),
     count: sealed.count,
@@ -245,7 +245,7 @@ export function theCosmicCoincidenceInvertsToAMatterDarkEnergyEqualityRedshiftTh
   ].map((entry) => ({ ...entry, receipt: toUuid(`cosmic-coincidence-invert:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('cosmic-coincidence-invert', facets)
   return {
-    closed: sealed.ok, claySolvedByThisFold: 0,
+    closed: sealed.ok, claySolvedByThisFold: claySolvedByFormulas(facets.map((entry) => entry.facet).join(' ')),
     omegaMatter: roundTo(omegaMatter, 4), ratioMatterToDarkEnergy: roundTo(ratioMatterToDarkEnergy, 4),
     equalityRedshift: roundTo(equalityRedshift, 4), equalityScaleFactor: roundTo(equalityScaleFactor, 4),
     count: sealed.count,
