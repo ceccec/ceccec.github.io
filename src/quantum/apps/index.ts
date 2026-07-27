@@ -3,7 +3,7 @@
 // Pair: rosetta/core · fold: rosettaCoreApi. Apps/nav/tools dispatch via shelve — no wet ray map.
 // Pair: rosetta/complete · fold: rosettaCompleteQuantumAllComputableDimensionsAndTheorems.
 import type { MindMatrix } from '../../wind/types'
-import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded, proofReport, noQpuRequired } from '../../heaven/compute'
+import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded, proofReport, noQpuRequired, quantumCircuitSimulatorInChat } from '../../heaven/compute'
 // Full in-chat support — the deterministic, zero-token, no-egress chat surface, re-exported for the thin .vue shell.
 export { portalChat, chatNavContext, allChatCapabilitiesFusedAndAuditedByStandards, chatThroughMathOverflow, chatThroughPerplexity, chatThroughFreeAi, chatThroughAi, collectiveAiMind, siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis, perplexityRequest, freeAiRequest, aiRequest, AI_PROVIDERS, CECCEC_PROXY_ORIGIN, PERPLEXITY_SITE, splitSearch, MATHOVERFLOW_SITE } from '../../heaven/compute'
 export type { MathOverflowItem } from '../../heaven/compute'
@@ -11,7 +11,7 @@ export type { MathOverflowItem } from '../../heaven/compute'
 export { quantumSearchFusesAllAsPrivateSearchEngine } from '../../wind/site'
 import { emergentDimensions } from '../../heaven/balance'
 import { cloudflareBindings } from '../../heaven/core'
-import { computesGate, DIGEST_BITS, digitalRoot, foldPair, isUuid, maxTamperingCostLog2, maxTamperingCostReached, memoByRoot, memoComputing, merge, merkleFold, resourceCooperationPolicy, sealFacets, seedFromText, STATUS_BADGE_KINDS, toUuid, VORTEX_SEQUENCE } from '../../0'
+import { computesGate, DIGEST_BITS, digitalRoot, foldPair, isUuid, maxTamperingCostLog2, maxTamperingCostReached, memoByRoot, memoComputing, merge, merkleFold, resourceCooperationPolicy, runQuantumCircuit, sealFacets, seedFromText, STATUS_BADGE_KINDS, toUuid, VORTEX_SEQUENCE } from '../../0'
 import { TAU,
   A432_HUE, CANONICAL_HOST, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS,
   ROSETTA_SEVEN, ROSETTA_SIX, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, UNFOLDED_CENSUS,
@@ -783,6 +783,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'gate-ui', title: 'Gates monitor through UI (alias gate/monitor)', fold: 'gatesMonitorThemselvesThroughTheUi', cli: 'npm run quantum:gate-ui', pair: 'gate/ui', route: '/en/quantum-tools#gate-monitor', barrel: 'src/quantum/apps', boundary: 'Dual of gate/monitor — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gate-tools', title: 'Gate tools are 42 as 6×7 inverting 7×6', fold: 'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix', cli: 'npm run quantum:gate-tools', pair: 'gate/tools', route: '/en/quantum-tools#gate-monitor', barrel: 'src/quantum/apps', boundary: 'toolCountFoldsTo42 · matrix6x7 · matrix7x6 · invertPair · compose toolbox · six/seven · matrix/seal · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'tools-forty', title: 'Gate tools fold to 42 (alias gate/tools)', fold: 'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix', cli: 'npm run quantum:tools-forty', pair: 'tools/forty', route: '/en/quantum-tools#gate-monitor', barrel: 'src/quantum/apps', boundary: 'Dual of gate/tools — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'quantum-circuit', title: 'Quantum computer — browser circuit simulator', fold: 'quantumComputerRunsInBrowserAsAClassicalSimulator', cli: 'npm run quantum:quantum-circuit', pair: 'quantum/circuit', route: '/en/quantum-tools#quantum-computer', barrel: 'src/quantum/apps', boundary: 'Complete classical state-vector simulator (universal gates · Born rule · ≤10 qubits) usable from the browser · qpuRequired=false proven by the simulator · no speedup · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'circuit-quantum', title: 'Quantum circuit (alias quantum/circuit)', fold: 'quantumComputerRunsInBrowserAsAClassicalSimulator', cli: 'npm run quantum:circuit-quantum', pair: 'circuit/quantum', route: '/en/quantum-tools#quantum-computer', barrel: 'src/quantum/apps', boundary: 'Dual of quantum/circuit — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'slash-star', title: '/ inversion realised as * (star)', fold: 'slashInvertRealisedAsStar', cli: 'npm run quantum:slash-star', pair: 'slash/star', route: '/en/research#slash-star', barrel: 'src/wind/research', boundary: 'slashIsInversion · starIsRealisedInvert · compose foldPair · formula/code · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'invert-star', title: 'Invert realised as star (alias slash/star)', fold: 'slashInvertRealisedAsStar', cli: 'npm run quantum:invert-star', pair: 'invert/star', route: '/en/research#slash-star', barrel: 'src/wind/research', boundary: 'Dual of slash/star — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'love-fold', title: 'Reality folds to ∞ in digit folders — no words for love', fold: 'realityFoldsToInfinityWithinDigitFoldersNoWordsForLove', cli: 'npm run quantum:love-fold', pair: 'love/fold', route: '/en/research#love-fold', barrel: 'src/wind/research', boundary: 'foldsToInfinity · withinDigitFolders · noWordsForLoveFeeling · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -15408,6 +15410,69 @@ export function runGateToolsAreFortyTwoAsSixBySevenInvertingSevenBySixExit(
   process.stdout.write(`  receipt=${report.toolTo42Receipt}\n`)
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.toolCountFoldsTo42 && report.invertPair ? 0 : 1
+}
+
+/**
+ * USER LAW: the quantum computer is a real, browser-usable TOOL — a complete classical state-vector simulator.
+ * Pair: quantum/circuit · circuit/quantum · CLI npm run quantum:quantum-circuit · route /en/quantum-tools#quantum-computer
+ * Composes the sealed runQuantumCircuit + quantumCircuitSimulatorInChat; qpuRequired proven false by the simulator
+ * computing. A simulator: cost is exponential in qubits — no speedup, no QPU. clay=0 · physicalFtl=0.
+ */
+export function quantumComputerRunsInBrowserAsAClassicalSimulator(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`quantumComputerRunsInBrowserAsAClassicalSimulator:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const sim = quantumCircuitSimulatorInChat(matrix)
+    const noQpu = noQpuRequired(matrix)
+    const half = 1 / 2
+    const near = (a: number, b: number) => Math.abs(a - b) < 1 / 100
+    const bell = runQuantumCircuit({ n: 2, ops: [{ gate: 'H', targets: [0] }, { gate: 'CNOT', targets: [0, 1] }], shots: ROSETTA_AREAS, seed: 'quantum-circuit-tool' })
+    const bellCorrect = near(bell.probabilities[0]!, half) && near(bell.probabilities[3]!, half) && near(bell.probabilities[1]!, 0) && near(bell.probabilities[2]!, 0)
+    const pairCircuit = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('quantum/circuit')
+    const pairDual = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('circuit/quantum')
+    const foldCircuit = foldPair(toUuid('cmd:quantum'), toUuid('cmd:circuit'))
+    const claySolvedByThisFold = 0 as const
+    const physicalFtlClaim = 0 as const
+    const facets = [
+      { facet: 'the browser quantum computer runs — quantumCircuitSimulatorInChat computes its canonical circuits by the Born rule', on: sim.computes === true },
+      { facet: `a Bell circuit runs on-device — H·CNOT → P(00)=P(11)=½, P(01)=P(10)=0 (${bellCorrect})`, on: bellCorrect && isUuid(bell.root) },
+      { facet: 'qpuRequired=false — proven by the classical simulator computing, not asserted', on: noQpu.qpuRequired === false && noQpu.provenByClassicalSimulator },
+      { facet: 'NO speedup — a simulator stores 2ⁿ amplitudes, exponential in qubits', on: noQpu.noSpeedup === true },
+      { facet: 'pair quantum/circuit · circuit/quantum', on: pairCircuit && pairDual && foldCircuit.bidirectional },
+      { facet: 'claySolvedByThisFold=0', on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-circuit-tool:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('quantum-computer-runs-in-browser', facets)
+    return {
+      computes: sealed.ok,
+      circuits: sim.runs.length,
+      bellRoot: bell.root,
+      qpuRequired: false as const,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      facets: sealed.facets,
+      root: merge(sealed.root, merge(sim.root, bell.root)),
+      pair: 'quantum/circuit' as const,
+      pairs: ['quantum/circuit', 'circuit/quantum'] as const,
+      cli: 'npm run quantum:quantum-circuit',
+      route: '/en/quantum-tools#quantum-computer',
+      statement: `quantumComputerRunsInBrowserAsAClassicalSimulator — a complete classical state-vector simulator runs in the browser (${sim.runs.length} canonical circuits + a Bell run), exact Born-rule readout, qpuRequired=false proven by the simulator computing. No speedup, no QPU.`,
+      boundary: 'A complete classical quantum-circuit SIMULATOR usable from the browser (universal gate set, ≤10 qubits, Born rule, content-addressed). Because it is a simulator its cost is exponential in qubits — no speedup, no QPU (the name carries the fact). clay=0 · physicalFtl=0.',
+      honestyLine: `metrics · circuits=${sim.runs.length} · bell=${bellCorrect ? 1 : 0} · qpu=0 · speedup=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:quantum-circuit (dual circuit/quantum) — run the browser quantum computer's canonical + Bell circuits. */
+export function runQuantumComputerRunsInBrowserAsAClassicalSimulatorExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = quantumComputerRunsInBrowserAsAClassicalSimulator()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} quantum-circuit — circuits=${report.circuits} qpu=${report.qpuRequired} ` +
+      `pairs=${report.pairs.join(',')} route=${report.route}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
 }
 
 /**

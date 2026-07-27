@@ -205,6 +205,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'gate/ui',
   'gate/tools',
   'tools/forty',
+  'quantum/circuit',
+  'circuit/quantum',
   'self/fusion',
   'fusion/self',
   'fusion/ui',

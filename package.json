@@ -232,6 +232,8 @@
     "quantum:gate-ui": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runGatesMonitorThemselvesThroughTheUiExit",
     "quantum:gate-tools": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runGateToolsAreFortyTwoAsSixBySevenInvertingSevenBySixExit",
     "quantum:tools-forty": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runGateToolsAreFortyTwoAsSixBySevenInvertingSevenBySixExit",
+    "quantum:quantum-circuit": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runQuantumComputerRunsInBrowserAsAClassicalSimulatorExit",
+    "quantum:circuit-quantum": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runQuantumComputerRunsInBrowserAsAClassicalSimulatorExit",
     "quantum:self-fusion": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runSelfQuantumFusionExit",
     "quantum:fusion-self": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runSelfQuantumFusionExit",
     "quantum:fusion-ui": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runFusionInterfaceExit",
