@@ -85,7 +85,8 @@ import {
   mcpQuantumChat,
   portalChat,
   chatThroughMathOverflow,
-  chatThroughPerplexity,
+  chatThroughAi,
+  collectiveAiMind,
   chatNavContext,
   allChatCapabilitiesFusedAndAuditedByStandards,
   quantumSearchFusesAllAsPrivateSearchEngine,
@@ -201,17 +202,21 @@ const docsDevCopied = ref(false)
 type SearchHit = { slug: string; title: string; score: number }
 type MoRow = { title: string; link: string; votes: number; answered: boolean; answers: number }
 type MoLane = { state: 'loading' | 'live' | 'error'; rows: MoRow[]; searchUrl: string; askUrl: string; escalate: boolean }
-type PxLane = { state: 'loading' | 'live' | 'error'; model: string; answer: string; citations: string[]; searchUrl: string; escalate: boolean }
-type ChatTurn = { q: string; a: string; source: string; grounded: boolean; related: string[]; results: SearchHit[]; resultCount: number; receipt: string; mo?: MoLane; px?: PxLane }
+// AI minds (untrusted external LLMs) + the collective fusion. A mind is one provider's edge-fetched answer; the collective
+// is collectiveAiMind's 2-of-N consensus over the corpus anchor + these minds — no lone model is ever trusted.
+type AiMind = { provider: string; state: 'loading' | 'live' | 'error'; model: string; answer: string; citations: string[] }
+type CollectiveLane = { minds: AiMind[]; total: number; done: number; collectiveId: string; collectiveAnswer: string; consensus: boolean; confidence: number }
+type ChatTurn = { q: string; a: string; source: string; grounded: boolean; related: string[]; results: SearchHit[]; resultCount: number; receipt: string; mo?: MoLane; ai?: CollectiveLane }
 const chatInput = ref('')
 const chatLog = ref<ChatTurn[]>([])
 const chatAudit = computed(() => allChatCapabilitiesFusedAndAuditedByStandards())
 // Opt-in live lane: OFF = nothing leaves the browser; ON = the query (only) goes to api.stackexchange.com (no key)
 // and MathOverflow's vote-ranked community threads ride under the local answer. Fetch at the EDGE; src computes the URL.
 const moLive = ref(false)
-// Opt-in Perplexity lane: BYO-key — the key lives ONLY in this browser (never persisted, never sent to src), and the
-// tokens are the user's own (billed to their Perplexity account). src computes the POST envelope; the EDGE (here)
-// composes `Authorization: Bearer <key>` and fetches. OFF or empty key = nothing leaves the browser.
+// Opt-in AI lanes — untrusted external LLMs fused into a collective mind at the EDGE. Free AI (Pollinations) needs NO key
+// (zero cost to anyone); Perplexity is BYO-key (the user's own tokens, the key held ONLY in this browser, never in src).
+// src computes each POST envelope; the EDGE fetches and (keyed only) injects the Bearer key. All OFF = nothing leaves.
+const freeLive = ref(false)
 const pplxLive = ref(false)
 const pplxKey = ref('')
 function sendChat() {
@@ -236,10 +241,15 @@ function sendChat() {
   }
   const lane = moLive.value ? chatThroughMathOverflow(prompt) : null // pure: computed URL + escalation, before any fetch
   if (lane) turn.mo = { state: 'loading', rows: [], searchUrl: lane.searchUrl, askUrl: lane.askUrl, escalate: lane.escalate }
-  // Perplexity: opt-in AND a key present. src computes the envelope + escalation here (pure); the fetch is below.
+  // AI lanes: which untrusted providers to consult. Free AI needs no key; Perplexity needs the user's key. src computes
+  // each envelope (pure); the edge fetches below and collectiveAiMind fuses the answers with the corpus anchor.
   const key = pplxKey.value.trim()
-  const px = pplxLive.value && key ? chatThroughPerplexity(prompt) : null
-  if (px) turn.px = { state: 'loading', model: '', answer: '', citations: [], searchUrl: px.searchUrl, escalate: px.escalate }
+  const aiProviders: { provider: 'pollinations' | 'perplexity'; key?: string }[] = []
+  if (freeLive.value) aiProviders.push({ provider: 'pollinations' })
+  if (pplxLive.value && key) aiProviders.push({ provider: 'perplexity', key })
+  if (aiProviders.length) {
+    turn.ai = { minds: aiProviders.map((p) => ({ provider: p.provider, state: 'loading', model: '', answer: '', citations: [] })), total: aiProviders.length, done: 0, collectiveId: '', collectiveAnswer: '', consensus: false, confidence: 0 }
+  }
   chatLog.value.unshift(turn)
   const live = chatLog.value[0]! // the reactive proxy — mutations from the fetch callbacks must go through it
   if (lane && live.mo) {
@@ -251,18 +261,34 @@ function sendChat() {
       })
       .catch(() => { if (live.mo) live.mo.state = 'error' })
   }
-  if (px && live.px) {
-    // The EDGE composes the Authorization header from the user's key (never in src); src gave us url/method/body only.
-    fetch(px.request.url, { method: px.request.method, headers: { 'Content-Type': 'application/json', Authorization: `${px.request.authScheme} ${key}` }, body: px.request.body })
-      .then((res) => (res.ok ? res.json() : Promise.reject(new Error(String(res.status)))))
-      .then((body: Parameters<typeof chatThroughPerplexity>[1]) => {
-        const snapshot = chatThroughPerplexity(prompt, body)
-        if (live.px) {
-          if (snapshot.external) { live.px.model = snapshot.external.model; live.px.answer = snapshot.external.answer; live.px.citations = [...snapshot.external.citations]; live.px.state = 'live' }
-          else live.px.state = 'error'
-        }
-      })
-      .catch(() => { if (live.px) live.px.state = 'error' })
+  if (live.ai) {
+    const responses: Partial<Record<'pollinations' | 'perplexity', Parameters<typeof collectiveAiMind>[1][keyof Parameters<typeof collectiveAiMind>[1]]>> = {}
+    aiProviders.forEach((p, i) => {
+      const req = chatThroughAi(prompt, p.provider).request // src: envelope only, no key
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' }
+      if (req.keyInjectedAtEdge && p.key) headers.Authorization = `${req.authScheme} ${p.key}` // edge injects the key, never src
+      fetch(req.url, { method: req.method, headers, body: req.body })
+        .then((res) => (res.ok ? res.json() : Promise.reject(new Error(String(res.status)))))
+        .then((body) => {
+          responses[p.provider] = body
+          const one = chatThroughAi(prompt, p.provider, body)
+          const mind = live.ai!.minds[i]!
+          if (one.external) { mind.model = one.external.model; mind.answer = one.external.answer; mind.citations = [...one.external.citations]; mind.state = 'live' }
+          else mind.state = 'error'
+        })
+        .catch(() => { const mind = live.ai!.minds[i]; if (mind) mind.state = 'error' })
+        .finally(() => {
+          live.ai!.done += 1
+          if (live.ai!.done === live.ai!.total) {
+            // Fuse: the collective is the 2-of-N consensus over the corpus anchor + whichever minds answered.
+            const col = collectiveAiMind(prompt, responses)
+            live.ai!.collectiveId = col.collective.id
+            live.ai!.collectiveAnswer = col.collective.answer
+            live.ai!.consensus = col.consensusReached
+            live.ai!.confidence = col.confidence
+          }
+        })
+    })
   }
   chatInput.value = ''
 }
@@ -1927,7 +1953,7 @@ function runTool(toolId: string) {
       <section id="in-chat-support">
         <h3>Private search + full in-chat support</h3>
         <p class="quantum-apps__meta">
-          A private search engine over the sealed corpus — BM25-ranked results + a deterministic answer, zero-token, no network egress by default. {{ chatAudit.capabilities.length }} chat capabilities audited · {{ chatAudit.related }} related discoveries per query. Opt-in live lanes: MathOverflow (api.stackexchange.com, no key) — vote-ranked community threads ride under the local answer, escalating to mathoverflow.net; and Perplexity (api.perplexity.ai, BYO-key) — an external LLM answering on your own tokens, the key held only in this browser, its citations labeled unverified. The local answer always leads.
+          A private search engine over the sealed corpus — BM25-ranked results + a deterministic answer, zero-token, no network egress by default. {{ chatAudit.capabilities.length }} chat capabilities audited · {{ chatAudit.related }} related discoveries per query. Opt-in live lanes: MathOverflow (api.stackexchange.com, no key), vote-ranked threads under the local answer; and external AI as a collective mind — Free AI (Pollinations, no key, zero cost) and Perplexity (BYO-key, your own tokens). Because no single model can be trusted, the untrusted answers are fused with the corpus anchor into a 2-of-N consensus: a lone model is never surfaced, agreement raises confidence (not proof). The local answer always leads; the portal spends zero tokens.
         </p>
         <UiBadge v-bind="badgeProps(statusBadgeKind(chatAudit.supported))">
           {{ chatAudit.supported ? '✓ private' : '—' }} · BM25 · zero-token · no egress · deterministic
@@ -1938,6 +1964,9 @@ function runTool(toolId: string) {
           <UiButton size="sm" variant="outline" type="button" :disabled="!chatLog.length" @click="clearChat">Clear</UiButton>
           <label class="quantum-apps__meta quantum-apps__chat-mo-toggle">
             <input v-model="moLive" type="checkbox" /> + MathOverflow (live — sends the query to api.stackexchange.com)
+          </label>
+          <label class="quantum-apps__meta quantum-apps__chat-mo-toggle">
+            <input v-model="freeLive" type="checkbox" /> + Free AI (no key — text.pollinations.ai, zero cost)
           </label>
           <label class="quantum-apps__meta quantum-apps__chat-mo-toggle">
             <input v-model="pplxLive" type="checkbox" /> + Perplexity (BYO-key — your tokens; the key stays in this browser)
@@ -1971,24 +2000,23 @@ function runTool(toolId: string) {
                 The sealed corpus cannot rank this — escalate: <a :href="turn.mo.searchUrl" rel="noopener" target="_blank">search MathOverflow</a> · <a :href="turn.mo.askUrl" rel="noopener" target="_blank">ask it there</a> (community answers are the community's, CC BY-SA).
               </span>
             </template>
-            <template v-if="turn.px">
-              <span v-if="turn.px.state === 'loading'" class="quantum-apps__meta">Perplexity — asking on your key…</span>
-              <span v-else-if="turn.px.state === 'error'" class="quantum-apps__meta">Perplexity — unreachable (offline, bad key, or quota); the local answer above stands alone.</span>
-              <template v-else-if="turn.px.state === 'live'">
-                <span class="quantum-apps__meta">↳ Perplexity ({{ turn.px.model }}) — external LLM, your tokens: {{ turn.px.answer }}</span>
-                <ol v-if="turn.px.citations.length" class="quantum-apps__results">
-                  <li v-for="(cite, ci) in turn.px.citations" :key="cite + ci">
-                    <a :href="cite" rel="noopener" target="_blank">{{ cite }}</a>
-                  </li>
-                </ol>
-                <span class="quantum-apps__meta">Perplexity's answer is the external LLM's, not the portal's claim — its citations are UNVERIFIED (re-anchor to the primary record before trusting them).</span>
+            <template v-if="turn.ai">
+              <span class="quantum-apps__meta">Collective AI mind — {{ turn.ai.done }}/{{ turn.ai.total }} untrusted model(s) consulted at the edge; the corpus anchor is always in the pool.</span>
+              <ul class="quantum-apps__results">
+                <li v-for="(mind, mi) in turn.ai.minds" :key="mind.provider + mi">
+                  <span v-if="mind.state === 'loading'" class="quantum-apps__meta">{{ mind.provider }} — asking…</span>
+                  <span v-else-if="mind.state === 'error'" class="quantum-apps__meta">{{ mind.provider }} — unreachable (offline, quota{{ mind.provider === 'perplexity' ? ', or bad key' : '' }}).</span>
+                  <span v-else class="quantum-apps__meta">↳ {{ mind.provider }} ({{ mind.model }}) — untrusted: {{ mind.answer }}</span>
+                </li>
+              </ul>
+              <template v-if="turn.ai.done === turn.ai.total">
+                <span v-if="turn.ai.consensus" class="quantum-apps__meta">✓ Collective (2-of-N consensus, confidence {{ turn.ai.confidence.toFixed(2) }}) — via {{ turn.ai.collectiveId }}: {{ turn.ai.collectiveAnswer }}</span>
+                <span v-else class="quantum-apps__meta">No 2-of-N agreement — the trusted corpus anchor leads (no lone model is surfaced). Local answer above stands.</span>
+                <span class="quantum-apps__meta">Agreement raises confidence, it is not proof (harmony ≠ truth); external answers are unverified.</span>
               </template>
-              <span v-if="turn.px.state !== 'loading' && turn.px.escalate" class="quantum-apps__meta">
-                The sealed corpus cannot rank this — <a :href="turn.px.searchUrl" rel="noopener" target="_blank">open it in Perplexity</a>.
-              </span>
             </template>
           </li>
-          <li v-if="!chatLog.length" class="quantum-apps__meta">No queries yet — search the sealed corpus above. Nothing leaves the browser unless you enable the MathOverflow or Perplexity lane (Perplexity needs your own key — your tokens).</li>
+          <li v-if="!chatLog.length" class="quantum-apps__meta">No queries yet — search the sealed corpus above. Nothing leaves the browser unless you enable a lane. Free AI (Pollinations) needs no key; Perplexity needs your own key. Untrusted model answers surface only through the collective mind's 2-of-N consensus.</li>
         </ul>
       </section>
       <UiSeparator />

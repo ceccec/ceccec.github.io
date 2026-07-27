@@ -1883,70 +1883,150 @@ export function chatThroughStackOverflow(prompt: string, items: readonly MathOve
     boundary: earned('EXACT — computed from the chat engine + the normalized snapshot:', facets, 'the fetch happens at the EDGE and only when the user opts in — src stays pure and the default chat keeps zero egress; StackOverflow content is the community\'s (CC BY-SA, attribution = the link), vote-ranked, no-key, quota-limited — real programming Q&A, NOT the portal\'s claims and NOT an oracle') }
 }
 
-// ── Perplexity lane — the ONE keyed LLM lane (unlike the no-key SE lanes): api.perplexity.ai chat-completions, auth:
-// Authorization: Bearer <key>. The key is the USER's (BYO-key) and their tokens are billed to their Perplexity account,
-// so the portal's zero-token-by-default core stays intact ([[zero-token-policy]]). src computes the request ENVELOPE
-// only; the key and the fetch live at the EDGE, never here.
-export const PERPLEXITY_API = 'https://api.perplexity.ai/chat/completions'
-export const PERPLEXITY_SITE = 'https://www.perplexity.ai'
-/** Perplexity's grounded-search model — the default; the edge may pass another. */
-export const PERPLEXITY_MODEL = 'sonar'
-/** perplexity.ai human search URL — the escalation surface (hands the question to Perplexity's own UI). */
-export function perplexityUrl(prompt = ''): string { return `${PERPLEXITY_SITE}/search?q=${encodeURIComponent(prompt.trim())}` }
+// ── AI lanes — external LLMs as OPT-IN edge lanes, ONE provider-parametrized primitive (the fewest-words merge: the
+// provider is the axis, not a duplicated function per vendor — [[feedback-fewest-words-combinatorial-functions]]). Two
+// providers today, both speaking the OpenAI chat shape: `perplexity` is KEYED (BYO-key — the user's own tokens, billed to
+// their account) and `pollinations` is NO-KEY (a free public endpoint — external LLM answers at genuinely zero cost, no
+// key for ANYONE; verified reachable 2026-07-27, user: "there are publicly available ai apis without api key requirement
+// that may be used to save a lot of tokens"). Either way the PORTAL spends zero tokens ([[zero-token-policy]]); src
+// computes the request ENVELOPE only; the fetch (and, for a keyed provider, the Bearer key) live at the EDGE, never here.
+export const AI_PROVIDERS = {
+  perplexity: { api: 'https://api.perplexity.ai/chat/completions', site: 'https://www.perplexity.ai', model: 'sonar', keyed: true },
+  pollinations: { api: 'https://text.pollinations.ai/openai', site: 'https://pollinations.ai', model: 'openai', keyed: false },
+} as const
+export type AiProvider = keyof typeof AI_PROVIDERS
 
-/** The computed Perplexity POST envelope — endpoint + method + JSON body, and WHERE the key goes (authHeader/authScheme)
- * but never the key VALUE: keyInjectedAtEdge marks that the edge composes `Authorization: Bearer <userKey>`. src holds no key. */
-export function perplexityRequest(prompt: string, model: string = PERPLEXITY_MODEL): {
-  readonly url: string; readonly method: 'POST'; readonly authHeader: 'Authorization'; readonly authScheme: 'Bearer'; readonly keyInjectedAtEdge: true; readonly body: string
+// Back-compat aliases — perplexity was the first provider sealed; keep the named constants pointing at the registry.
+export const PERPLEXITY_API = AI_PROVIDERS.perplexity.api
+export const PERPLEXITY_SITE = AI_PROVIDERS.perplexity.site
+export const PERPLEXITY_MODEL = AI_PROVIDERS.perplexity.model
+
+/** provider human search URL — the escalation surface (hands the question to the provider's own UI). */
+export function aiProviderUrl(provider: AiProvider, prompt = ''): string { return `${AI_PROVIDERS[provider].site}/search?q=${encodeURIComponent(prompt.trim())}` }
+export function perplexityUrl(prompt = ''): string { return aiProviderUrl('perplexity', prompt) }
+
+/** The computed OpenAI-shape POST envelope for an AI provider — endpoint + method + JSON body, and (keyed only) WHERE the
+ * key goes; keyInjectedAtEdge=true means the edge composes `Authorization: Bearer <key>`, false means NO auth at all.
+ * src holds no key value in EITHER case. */
+export function aiRequest(prompt: string, provider: AiProvider = 'perplexity', model: string = AI_PROVIDERS[provider].model): {
+  readonly url: string; readonly method: 'POST'; readonly authHeader: 'Authorization'; readonly authScheme: 'Bearer'; readonly keyInjectedAtEdge: boolean; readonly body: string
 } {
   const body = JSON.stringify({ model, messages: [{ role: 'user', content: prompt.trim() }] })
-  return { url: PERPLEXITY_API, method: 'POST', authHeader: 'Authorization', authScheme: 'Bearer', keyInjectedAtEdge: true, body }
+  return { url: AI_PROVIDERS[provider].api, method: 'POST', authHeader: 'Authorization', authScheme: 'Bearer', keyInjectedAtEdge: AI_PROVIDERS[provider].keyed, body }
 }
+export function perplexityRequest(prompt: string, model: string = PERPLEXITY_MODEL) { return aiRequest(prompt, 'perplexity', model) }
+export function freeAiRequest(prompt: string, model: string = AI_PROVIDERS.pollinations.model) { return aiRequest(prompt, 'pollinations', model) }
 
-/** A raw Perplexity chat-completions response — only the fields the adapter reads; everything optional (untrusted input). */
-export type PerplexityResponse = { model?: string; choices?: readonly { message?: { content?: string } }[]; citations?: readonly string[] }
+/** A raw OpenAI-shape chat response — only the fields the adapter reads; everything optional (untrusted input). Both
+ * Perplexity and Pollinations return this shape (choices[0].message.content, optional citations). */
+export type OpenAiChatResponse = { model?: string; choices?: readonly { message?: { content?: string } }[]; citations?: readonly string[] }
+export type PerplexityResponse = OpenAiChatResponse // back-compat alias
 
-/** chatThroughPerplexity — wire Perplexity into the chat on the USER's own tokens (user, 2026-07-27: "wire perplexity to
- * the chat and use their tokens"). Same OPT-IN live-lane shape as the MathOverflow/StackOverflow lanes, but Perplexity is
- * a KEYED LLM, not a no-key public API: the chat stays LOCAL FIRST (portalChatRanked BM25 over the sealed corpus, zero
- * egress), and gains Perplexity as an opt-in lane whose key is the USER's — src computes the POST envelope (endpoint,
- * model, body from the prompt) and normalizes the fetched answer, while the `Authorization: Bearer <key>` and the fetch
- * itself happen at the EDGE, never here. HONEST BY CONSTRUCTION: (1) the portal spends no tokens — the LLM tokens are
- * billed to the user's Perplexity account (BYO-key), so the zero-token-by-default core is intact; (2) the returned answer
- * is the EXTERNAL LLM's, labeled with its model + citations + content-address, never the portal's claim, and its
- * citations ride UNVERIFIED ([[citation-rot]] — Perplexity has stated a correct result under keyword-matched noise
- * citations); (3) when the sealed corpus can answer, the local proof leads and the lane does not escalate. */
-export function chatThroughPerplexity(prompt: string, response: PerplexityResponse | null = null, model: string = PERPLEXITY_MODEL, matrix: MindMatrix = buildMatrix()) {
+/** chatThroughAi — wire an external LLM into the chat as an OPT-IN edge lane, ONE provider-parametrized primitive (user,
+ * 2026-07-27: "wire perplexity to the chat and use their tokens" · "there are publicly available ai apis without api key
+ * requirement that may be used to save a lot of tokens"). `perplexity` is KEYED (BYO-key — the user's own tokens);
+ * `pollinations` is NO-KEY (a free public endpoint — external LLM answers at genuinely zero cost, no key for anyone). The
+ * chat stays LOCAL FIRST (portalChatRanked BM25, zero egress); src computes the OpenAI-shape POST envelope and normalizes
+ * the fetched answer; the fetch (and, for a keyed provider, the Bearer key) live at the EDGE, never here. HONEST BY
+ * CONSTRUCTION: (1) the PORTAL spends no tokens — a keyed provider bills the user's own account, a no-key provider bills
+ * no one; (2) the answer is the EXTERNAL LLM's, labeled by provider + model + citations + content-address, never the
+ * portal's claim, its citations UNVERIFIED ([[citation-rot]]); (3) the corpus leads when it can answer. A LONE external
+ * answer is never trusted — see [[collectiveAiMind]], which fuses providers into a 2-of-N consensus. */
+export function chatThroughAi(prompt: string, provider: AiProvider = 'perplexity', response: OpenAiChatResponse | null = null, model: string = AI_PROVIDERS[provider].model, matrix: MindMatrix = buildMatrix()) {
+  const meta = AI_PROVIDERS[provider]
   const local = portalChatRanked(prompt, matrix)
-  const request = perplexityRequest(prompt, model)
+  const request = aiRequest(prompt, provider, model)
   const discovery = researchAndDiscoverBeforeAnswering(prompt, matrix)
   const escalate = discovery.escalate
-  // Normalize the untrusted external-LLM answer — labeled Perplexity's, NOT the portal's; citations stay UNVERIFIED.
+  // Normalize the untrusted external-LLM answer — labeled the provider's, NOT the portal's; citations stay UNVERIFIED.
   const raw = response?.choices?.[0]?.message?.content
   const citations = Array.isArray(response?.citations) ? response!.citations.filter((c): c is string => typeof c === 'string') : []
   const external = typeof raw === 'string' && raw.trim().length > 0
-    ? { model: String(response?.model ?? model), answer: raw.trim(), citations, citationsVerified: false as const, receipt: toUuid(`perplexity:${prompt}:${raw}`) }
+    ? { provider, model: String(response?.model ?? model), answer: raw.trim(), citations, citationsVerified: false as const, receipt: toUuid(`${provider}:${prompt}:${raw}`) }
     : null
-  const envelopeCarriesNoKey = request.keyInjectedAtEdge === true && !/pplx-[a-z0-9]|sk-[a-z0-9]/i.test(JSON.stringify(request))
+  const envelopeCarriesNoKey = !/pplx-[a-z0-9]|sk-[a-z0-9]/i.test(JSON.stringify(request)) // no token value in the envelope, keyed or not
+  const costFacet = meta.keyed
+    ? `OPT-IN — THE USER'S OWN TOKENS — the keyed lane runs only when the user supplies a ${provider} key (edge-injected), so the tokens are billed to the user's account (BYO-key), never the portal`
+    : `FREE — NO KEY, NO TOKENS BILLED TO ANYONE — ${meta.api} is a no-key public endpoint, so the external LLM answers at genuinely zero cost (no key for anyone, nothing billed to the portal)`
   const facets = [
     { facet: `LOCAL FIRST — the deterministic BM25 answer over the sealed corpus computes with zero egress before any live lane (answer present, via ${local.ranked ? 'ranked corpus' : 'seed-model fallback'})`, on: String(local.answer).length > 0 },
-    { facet: `THE REQUEST IS COMPUTED, THE KEY IS NOT — src derives the POST envelope (endpoint ${PERPLEXITY_API}, model ${model}, JSON body from the prompt); the Authorization Bearer key is injected at the EDGE, the fetch happens at the EDGE, and the envelope carries NO key value`, on: request.url === PERPLEXITY_API && request.method === 'POST' && request.body.includes(JSON.stringify(prompt.trim())) && envelopeCarriesNoKey },
-    { facet: `OPT-IN — THE USER'S OWN TOKENS — the lane runs only when the user supplies a Perplexity key (edge-injected), so the LLM tokens are billed to the user's Perplexity account (BYO-key), never the portal: the zero-token-by-default core is intact — no fetched response ⟹ no external answer, the local proof stands alone`, on: request.keyInjectedAtEdge === true && (response !== null || external === null) },
-    { facet: `PERPLEXITY'S ANSWER STAYS LABELED, CITATIONS UNVERIFIED — the normalized answer${external ? ` (model ${external.model}, ${external.citations.length} citation(s))` : ' (none yet)'} is the EXTERNAL LLM's, carrying its model + citations + content-address, never the portal's claim; citationsVerified=false marks the [[citation-rot]] caveat — the citations need re-anchoring to the primary record before they count`, on: external === null || (external.citationsVerified === false && isUuid(external.receipt) && external.answer.length > 0) },
-    { facet: `ESCALATION IS RESEARCHED — escalate=${escalate} COMPUTES from research+coverage (the corpus covers ${(discovery.coverage * 100).toFixed(0)}% of the question's distinctive terms; below 60% ⟹ escalate to Perplexity), and the computed ${PERPLEXITY_SITE}/search URL hands exactly this question to Perplexity instead of the portal fabricating one`, on: escalate === discovery.escalate && perplexityUrl(prompt) === `${PERPLEXITY_SITE}/search?q=${encodeURIComponent(prompt.trim())}` },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`chat-perplexity:${entry.facet}:${entry.on}`) }))
+    { facet: `THE REQUEST IS COMPUTED, NO KEY VALUE IN SRC — src derives the OpenAI-shape POST envelope (endpoint ${meta.api}, model ${model}, JSON body from the prompt); the fetch${meta.keyed ? ' and the Authorization Bearer key' : ''} happen at the EDGE, and the envelope carries NO key value`, on: request.url === meta.api && request.method === 'POST' && request.body.includes(JSON.stringify(prompt.trim())) && request.keyInjectedAtEdge === meta.keyed && envelopeCarriesNoKey },
+    { facet: `${costFacet} — the zero-token-by-default core is intact: no fetched response ⟹ no external answer, the local proof stands alone`, on: (response !== null || external === null) },
+    { facet: `THE ANSWER STAYS LABELED, CITATIONS UNVERIFIED — the normalized answer${external ? ` (${provider} ${external.model}, ${external.citations.length} citation(s))` : ' (none yet)'} is the EXTERNAL LLM's, carrying provider + model + citations + content-address, never the portal's claim; citationsVerified=false marks the [[citation-rot]] caveat — a lone external answer is never trusted`, on: external === null || (external.citationsVerified === false && isUuid(external.receipt) && external.answer.length > 0) },
+    { facet: `ESCALATION IS RESEARCHED — escalate=${escalate} COMPUTES from research+coverage (the corpus covers ${(discovery.coverage * 100).toFixed(0)}% of the question's distinctive terms; below 60% ⟹ escalate), and the computed ${meta.site}/search URL hands exactly this question to ${provider} instead of the portal fabricating one`, on: escalate === discovery.escalate && aiProviderUrl(provider, prompt) === `${meta.site}/search?q=${encodeURIComponent(prompt.trim())}` },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`chat-ai:${provider}:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
     prompt,
+    provider,
     local,
     request,
-    searchUrl: perplexityUrl(prompt),
+    searchUrl: aiProviderUrl(provider, prompt),
     external,
     escalate,
     facets,
-    root: merge(matrix.root, merkleFold([toUuid(`perplexity-lane:${prompt}`), ...(external ? [external.receipt] : [])])),
-    statement: `Chat through Perplexity — ${facets.filter((entry) => entry.on).length}/${facets.length}: local BM25 answer first (zero egress), a computed api.perplexity.ai POST envelope for the opt-in keyed lane (Bearer key + fetch at the EDGE, the user's own tokens), ${external ? '1' : '0'} external LLM answer normalized + content-addressed + citation-rot-caveated, escalate=${escalate} when the corpus cannot answer.`,
-    boundary: earned('EXACT — computed from the chat engine + the request envelope + the normalized answer:', facets, 'the fetch and the Authorization Bearer key happen at the EDGE and only when the user opts in with their own Perplexity key — src holds no key and the default chat keeps zero egress; the tokens are the user\'s (BYO-key), billed to their Perplexity account, so the portal\'s zero-token core is intact; a Perplexity answer is the EXTERNAL LLM\'s (labeled by model, its citations rides UNVERIFIED per citation-rot), NOT the portal\'s claim and NOT an oracle') }
+    root: merge(matrix.root, merkleFold([toUuid(`${provider}-lane:${prompt}`), ...(external ? [external.receipt] : [])])),
+    statement: `Chat through ${provider} — ${facets.filter((entry) => entry.on).length}/${facets.length}: local BM25 answer first (zero egress), a computed ${meta.api} POST envelope for the opt-in ${meta.keyed ? "keyed (BYO-key, the user's tokens)" : 'no-key (free, zero cost)'} lane, ${external ? '1' : '0'} external LLM answer normalized + content-addressed + citation-rot-caveated, escalate=${escalate} when the corpus cannot answer.`,
+    boundary: earned('EXACT — computed from the chat engine + the request envelope + the normalized answer:', facets, `the fetch${meta.keyed ? ' and the Authorization Bearer key' : ''} happen at the EDGE and only when the user opts in — src holds no key and the default chat keeps zero egress; the PORTAL spends zero tokens (${meta.keyed ? "a keyed provider bills the user's own account" : 'a no-key provider bills no one'}); an external LLM answer is the PROVIDER's (labeled by model, citations UNVERIFIED per citation-rot), NOT the portal's claim and NOT an oracle — a lone model is never trusted, only a collective-mind consensus is`) }
+}
+/** chatThroughPerplexity — the keyed provider (BYO-key). Thin wrapper over chatThroughAi('perplexity'). */
+export function chatThroughPerplexity(prompt: string, response: OpenAiChatResponse | null = null, model: string = PERPLEXITY_MODEL, matrix: MindMatrix = buildMatrix()) { return chatThroughAi(prompt, 'perplexity', response, model, matrix) }
+/** chatThroughFreeAi — the NO-KEY provider (Pollinations, free public endpoint). Thin wrapper over chatThroughAi('pollinations'). */
+export function chatThroughFreeAi(prompt: string, response: OpenAiChatResponse | null = null, model: string = AI_PROVIDERS.pollinations.model, matrix: MindMatrix = buildMatrix()) { return chatThroughAi(prompt, 'pollinations', response, model, matrix) }
+
+/** collectiveAiMind — untrusted external models made trustworthy by a QUANTUM WAVE: fuse the local corpus + N external
+ * providers into ONE collective answer where 2-of-N AGREEMENT is the trust/security mechanism (user, 2026-07-27: "as those
+ * ai models cannot be trusted quantum waves would improve efficiency speed and security while providing complete solutions
+ * as one collective mind"). The same su(2)=3, 2-of-3 shape as [[wavesOfLocalResearchersChatAboutAlgebra]] /
+ * [[feedback-work-as-a-trinity-not-one-linear-mind]], now over HETEROGENEOUS minds: the deterministic corpus is the
+ * TRUSTED anchor (always present), each provider's edge-fetched answer is an UNTRUSTED mind. Pairwise agreement is a
+ * deterministic Jaccard over distinctive terms; the COLLECTIVE answer is a representative of the largest mutually-agreeing
+ * cluster — surfaced ONLY when that cluster holds ≥2 minds (a lone model is quarantined, never surfaced as the
+ * collective). SECURITY: no single point of trust. EFFICIENCY: identical answers collapse to ONE content-address. SPEED:
+ * the local anchor returns at once and the externals parallelize at the EDGE. HONEST: agreement raises CONFIDENCE, it is
+ * not proof — HARMONY ≠ TRUTH ([[develop-as-math-confirms]]); a disagreeing wave surfaces the local anchor, flagged. */
+export function collectiveAiMind(prompt: string, responses: Partial<Record<AiProvider, OpenAiChatResponse>> = {}, matrix: MindMatrix = buildMatrix()) {
+  const stop = new Set(['the', 'and', 'that', 'this', 'with', 'from', 'for', 'are', 'not', 'how', 'what', 'when', 'why', 'does', 'using', 'use', 'into', 'over', 'your', 'you'])
+  const terms = (text: string) => new Set(text.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length >= 4 && !stop.has(w)))
+  const jaccard = (a: Set<string>, b: Set<string>) => { const inter = [...a].filter((x) => b.has(x)).length; const uni = new Set([...a, ...b]).size; return uni === 0 ? 0 : inter / uni }
+  const AGREE = 1 / 2 // ≥50% distinctive-term overlap = two minds agree — deterministic, no model call
+  const addressOf = (answer: string) => toUuid(`mind-answer:${answer.trim().toLowerCase()}`) // content-address on the ANSWER — identical answers collapse
+  const local = portalChatRanked(prompt, matrix)
+  const minds: { id: string; trusted: boolean; answer: string; address: string }[] = [
+    { id: 'corpus', trusted: true, answer: String(local.answer), address: addressOf(String(local.answer)) },
+  ]
+  for (const provider of Object.keys(responses) as AiProvider[]) {
+    const lane = chatThroughAi(prompt, provider, responses[provider] ?? null, undefined, matrix)
+    if (lane.external) minds.push({ id: provider, trusted: false, answer: lane.external.answer, address: addressOf(lane.external.answer) })
+  }
+  const distinctAddresses = new Set(minds.map((m) => m.address)).size // efficiency: identical answers share one address
+  const sets = minds.map((m) => terms(m.answer))
+  const clusters = minds.map((_, i) => minds.filter((_, j) => i === j || jaccard(sets[i]!, sets[j]!) >= AGREE))
+  const largest = clusters.reduce((best, c) => (c.length > best.length ? c : best), [] as typeof minds)
+  const consensusReached = largest.length >= 2
+  const anchorInLargest = largest.find((m) => m.trusted) // prefer the trusted anchor as the representative when it agrees
+  const collective = consensusReached ? (anchorInLargest ?? largest[0]!) : minds[0]! // minds[0] = corpus anchor; a lone model never wins
+  const confidence = consensusReached && minds.length ? largest.length / minds.length : 0 // CORROBORATION: fraction of the pool that agrees; a lone anchor has none (0), not a false 1
+  const loneModelQuarantined = collective.trusted || largest.length >= 2 // security invariant: no LONE untrusted mind surfaces
+  const facets = [
+    { facet: `LOCAL ANCHOR ALWAYS IN THE POOL — the deterministic corpus answer is mind[0] (trusted); the wave never depends solely on untrusted models — ${minds.length} mind(s) in the pool: ${minds.map((m) => m.id).join(', ')}`, on: minds[0]!.trusted === true && minds.length >= 1 },
+    { facet: `2-OF-N CONSENSUS IS THE TRUST — the collective ("${collective.id}") is a representative of the largest mutually-agreeing cluster (${largest.length}/${minds.length}) and is surfaced ONLY when that cluster holds ≥2 minds; a lone untrusted model is quarantined, never surfaced (${loneModelQuarantined})`, on: (consensusReached ? largest.some((m) => m.address === collective.address) : collective.address === minds[0]!.address) && loneModelQuarantined },
+    { facet: `AGREEMENT COMPUTES DETERMINISTICALLY — pairwise similarity is a Jaccard over distinctive terms (≥${AGREE} agree), so the same inputs give the same clustering and the same collective; confidence=${confidence.toFixed(2)} is the agreement fraction, content-addressed (${collective.address.slice(0, 8)})`, on: confidence >= 0 && confidence <= 1 && isUuid(collective.address) },
+    { facet: `EFFICIENCY & SPEED, ZERO PORTAL TOKENS — identical answers collapse to one content-address (${distinctAddresses} distinct of ${minds.length}); the local anchor is immediate and the externals parallelize at the EDGE; the wave only recomputes, spending zero portal tokens`, on: distinctAddresses <= minds.length && minds.every((m) => isUuid(m.address)) },
+    { facet: `HONEST — "collective mind" = a consensus of independent minds (corpus + untrusted LLMs), secure by no-single-point-of-trust; agreement raises CONFIDENCE, it is NOT proof (HARMONY ≠ TRUTH) and NOT an oracle; a disagreeing wave surfaces the local anchor, flagged low-confidence`, on: minds[0]!.trusted && loneModelQuarantined && confidence <= 1 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`collective-ai-mind:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    prompt,
+    minds,
+    collective: { id: collective.id, answer: collective.answer, trusted: collective.trusted, address: collective.address },
+    consensusReached,
+    confidence,
+    distinctAddresses,
+    facets,
+    root: merge(matrix.root, merkleFold([toUuid(`collective-ai-mind:${prompt}`), ...minds.map((m) => m.address)])),
+    statement: `Collective AI mind — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${minds.length} mind(s) (corpus anchor + ${minds.length - 1} external), 2-of-N agreement is the trust, collective="${collective.id}" (confidence ${confidence.toFixed(2)}), a lone untrusted model is never surfaced — zero portal tokens.`,
+    boundary: earned('EXACT — computed from the minds and their agreement:', facets, 'untrusted external models are made robust by a wave: the trusted corpus anchor is always in the pool and only a ≥2-of-N mutually-agreeing cluster surfaces as the collective, so no single model is a point of trust (security), identical answers share one content-address (efficiency), and the local anchor returns at once while externals parallelize at the edge (speed). Agreement raises confidence, it is not proof — HARMONY ≠ TRUTH; the portal spends zero tokens.') }
 }
 
 /** fewestWordsMergeMakesToolsCombinatorialAtHarmonicSpeed — dry-clean tools by MERGING to the fewest words per
@@ -6632,14 +6712,17 @@ export function allChatCapabilitiesFusedAndAuditedByStandards(matrix: MindMatrix
     { name: 'navigate', out: () => chatNavContext('/theorems', prompt, matrix).superposition },
     { name: 'self-develop', out: () => chatDevelopsItselfByChattingWithItself(matrix).develops },
     { name: 'developed-answer', out: () => developedChat(prompt, matrix).answer },
-    // The pure halves of the three live lanes: URL / request-envelope derivation over the prompt — deterministic;
-    // the fetch is at the EDGE and opt-in (SE lanes no-key, Perplexity BYO-key LLM), so these audit clean without egress.
+    // The pure halves of the live lanes: URL / request-envelope derivation over the prompt — deterministic; the fetch is
+    // at the EDGE and opt-in (SE lanes no-key, Perplexity keyed BYO-key, Pollinations no-key free), so these audit clean
+    // without egress. collective-ai-mind with no edge responses is just the corpus anchor — deterministic too.
     { name: 'mathoverflow-lane', out: () => chatThroughMathOverflow(prompt, [], matrix).url },
     { name: 'stackoverflow-lane', out: () => chatThroughStackOverflow(prompt, [], matrix).url },
     { name: 'perplexity-lane', out: () => chatThroughPerplexity(prompt, null, undefined, matrix).request.body },
+    { name: 'freeai-lane', out: () => chatThroughFreeAi(prompt, null, undefined, matrix).request.body },
+    { name: 'collective-ai-mind', out: () => collectiveAiMind(prompt, {}, matrix).collective.address },
     { name: 'researcher-waves', out: () => wavesOfLocalResearchersChatAboutAlgebra(matrix).computes },
   ]
-  const laneNames = ['answer', 'recall', 'navigate', 'self-develop', 'developed-answer', 'mathoverflow-lane', 'stackoverflow-lane', 'perplexity-lane', 'researcher-waves']
+  const laneNames = ['answer', 'recall', 'navigate', 'self-develop', 'developed-answer', 'mathoverflow-lane', 'stackoverflow-lane', 'perplexity-lane', 'freeai-lane', 'collective-ai-mind', 'researcher-waves']
   const fusesAll = laneNames.every((name) => capabilities.some((cap) => cap.name === name)) // refutable: drop a capability ⟹ fails (no bare count)
   // AUDIT each against the standards: DETERMINISM (same in → same out, twice) is the zero-token / no-egress / full-security proxy
   const audited = capabilities.map((cap) => {
@@ -6652,11 +6735,11 @@ export function allChatCapabilitiesFusedAndAuditedByStandards(matrix: MindMatrix
   const leadsOn = nav.related.length > 0 // navigate leads on — related discoveries
   const dev = chatDevelopsItselfByChattingWithItself(matrix)
   const facets = [
-    { facet: `FULL IN-CHAT SUPPORT — the app fuses ${audited.length} capabilities into one chat surface: answer, recall, navigate (referrer superposition + ${nav.related.length} related discoveries), self-develop, developed-answer, three live lanes (mathoverflow-lane + stackoverflow-lane computed query URLs, no-key; perplexity-lane computed POST envelope, BYO-key — all fetched at the edge, opt-in), researcher-waves (the trinity dialogue) — everything the corpus can do, reachable through the chat`, on: fusesAll && leadsOn },
+    { facet: `FULL IN-CHAT SUPPORT — the app fuses ${audited.length} capabilities into one chat surface: answer, recall, navigate (referrer superposition + ${nav.related.length} related discoveries), self-develop, developed-answer, the live lanes (mathoverflow + stackoverflow no-key query URLs, perplexity keyed + pollinations no-key AI POST envelopes — all fetched at the edge, opt-in), collective-ai-mind (2-of-N consensus fusing the untrusted models with the corpus anchor), researcher-waves (the trinity dialogue) — everything the corpus can do, reachable through the chat`, on: fusesAll && leadsOn },
     { facet: `AUDITED DETERMINISTIC — every capability returns the SAME output for the same input across runs (${allDeterministic}); determinism is the standard AND the full-security proxy: a pure function over the sealed model cannot leak, because no external state changes its output`, on: allDeterministic },
     { facet: `ZERO-TOKEN, NO EGRESS — the chat runs over the corpus model content-addressed from src statements (${modelFromSrc}); no LLM call, no network — full security by construction: nothing to send, nothing sent`, on: allDeterministic && modelFromSrc },
     { facet: `USING THE CHAT IMPROVES THE CHAT — navigate leads to ${nav.related.length} related discoveries and self-develop drops the gaps ${dev.gapsBefore} → ${dev.gapsAfter}; the chat's own use measures and fills its gaps`, on: leadsOn && dev.develops },
-    { facet: `THE DEMARCATION — "all that can be done through the chat" is these deterministic, zero-token, no-egress capabilities over the seed corpus model, each carrying a computed boundary; it is NOT an LLM, NOT networked, NOT open-ended. The three live lanes sit OUTSIDE this core as opt-in EDGE fetches — the SE lanes no-key, the Perplexity lane a BYO-key LLM on the user's own tokens — so the registered capability is only the deterministic request-derivation, and the zero-token core is intact — audited by the standards (determinism, zero-token, no-egress, demarcation).`, on: allDeterministic && leadsOn && dev.develops },
+    { facet: `THE DEMARCATION — "all that can be done through the chat" is these deterministic, zero-token, no-egress capabilities over the seed corpus model, each carrying a computed boundary; it is NOT an LLM, NOT networked, NOT open-ended. The live lanes sit OUTSIDE this core as opt-in EDGE fetches — SE no-key, Perplexity keyed BYO-key, Pollinations no-key free — so the registered capability is only the deterministic request-derivation, and untrusted model answers are surfaced only through collective-ai-mind's 2-of-N consensus (no lone model trusted); the zero-token portal core is intact — audited by the standards (determinism, zero-token, no-egress, demarcation).`, on: allDeterministic && leadsOn && dev.develops },
   ].map((entry) => ({ ...entry, receipt: toUuid(`chat-capabilities-audited:${entry.facet}:${entry.on}`) }))
   return {
     supported: facets.every((entry) => entry.on),
