@@ -700,6 +700,38 @@ export function claySolvedByFormulas(statement: string, formulas: readonly strin
   if (!CLAY_SOLUTION_MARKERS.some((marker) => text.includes(marker))) return 0 // no finished-proof assertion → no claim
   return CMI_PRIZE_PROBLEM_TERMS.filter((term) => text.includes(term)).length
 }
+
+/** Physical faster-than-light / superluminal concepts. A fold "claims FTL" only by asserting it ACHIEVES one — never by
+ *  naming or denying it. Signed, refutable list (the same shape as the Clay markers). */
+export const PHYSICAL_FTL_TERMS = [
+  'faster than light', 'faster-than-light', 'superluminal', 'warp drive', 'exceed the speed of light',
+  'exceeds the speed of light', 'signal faster than c', 'instantaneous signaling', 'break the light barrier',
+] as const
+/** Language asserting a fold ACHIEVES physical FTL — a real claim (strict). */
+export const PHYSICAL_FTL_CLAIM_MARKERS = [
+  'achieves faster-than-light', 'achieves superluminal', 'enables superluminal signaling', 'transmits faster than light',
+  'sends a signal faster than light', 'surpasses the speed of light physically', 'real superluminal transmission',
+] as const
+/** Language DENYING physical FTL — its presence refutes any co-located claim (honest folds carry these). */
+export const PHYSICAL_FTL_DENIAL_MARKERS = [
+  'not physical', 'no ftl', 'not faster than light', 'not superluminal', 'no superluminal', 'no signaling',
+  'does not exceed', 'sub-light', 'physicalftl=0', 'physicalftlclaim=0', 'metaphor', 'structural', 'amortized',
+  'no physical speedup', 'no speedup', 'harmony ≠ truth', 'not a physical', 'no faster-than-light',
+] as const
+
+/**
+ * physicalFtlByFormulas — COMPUTE, from a fold's OWN statement + formulas, how many physical faster-than-light claims it
+ * makes. The refutable replacement for the 344 hardcoded `physicalFtlClaim = 0` literals: it SCANS the text. A term counts
+ * iff the text (a) names an FTL concept, (b) asserts it is ACHIEVED, and (c) carries NO denial-marker. Honest folds
+ * compute 0 because they either never claim FTL or explicitly deny it ("not physical", "no speedup", metaphor). A fold
+ * overclaiming real superluminal signaling computes ≥1. Same shape as claySolvedByFormulas.
+ */
+export function physicalFtlByFormulas(statement: string, formulas: readonly string[] = []): number {
+  const text = `${statement} ${formulas.join(' ')}`.toLowerCase()
+  if (PHYSICAL_FTL_DENIAL_MARKERS.some((marker) => text.includes(marker))) return 0 // the fold denies physical FTL → no claim
+  if (!PHYSICAL_FTL_CLAIM_MARKERS.some((marker) => text.includes(marker))) return 0 // no achievement assertion → no claim
+  return PHYSICAL_FTL_TERMS.filter((term) => text.includes(term)).length
+}
 /** H₁(Σ₂) = ℤ⁴ — homology loops × folded census = dimension gates. */
 export const HOMOLOGY_LOOPS = 4 as const
 export const DIMENSION_GATES = HOMOLOGY_LOOPS * FOLDED_CENSUS

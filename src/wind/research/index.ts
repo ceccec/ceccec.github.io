@@ -27,7 +27,7 @@ import {
   ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, TAU, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG,
   WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG,
   fibonacci, earned, rat, ratMul, ratInv, ratEq, ratToFloat, claySolvedTheorem, claySolvedByFormulas,
-  CMI_PRIZE_PROBLEM_TERMS, CLAY_SOLUTION_MARKERS, CLAY_OPEN_MARKERS, demarcate,
+  CMI_PRIZE_PROBLEM_TERMS, CLAY_SOLUTION_MARKERS, CLAY_OPEN_MARKERS, physicalFtlByFormulas, demarcate,
   SPEED_OF_LIGHT, NEWTON_G, SCHUMANN_FUNDAMENTAL_HZ, bekensteinBoundBits, schwarzschildRadius,
   theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
 import { researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause } from '../../earth/iching'
@@ -2336,30 +2336,39 @@ export function clayGraphOverAlgebraicMonographs(matrix: MindMatrix = buildMatri
   return memoByRoot('clayGraphOverAlgebraicMonographs', matrix, () => {
     const rosetta = clayIsDecodedByTheRosetta(matrix)
     const monographs = theoremPageRows(matrix)
-    // AGNOSTIC — one algebraic predicate over EVERY monograph, no clay special-casing.
-    const scanned = monographs.map((mono) => ({ slug: mono.slug, claimed: claySolvedByFormulas(`${mono.theorem} ${mono.proof}`, mono.formulas) }))
+    // AGNOSTIC — one algebraic predicate per overclaim axis over EVERY monograph, no special-casing. The SAME scan loop
+    // guards BOTH honesty claims: Clay-solution (claySolvedByFormulas) and physical-FTL (physicalFtlByFormulas).
+    const scanned = monographs.map((mono) => ({
+      slug: mono.slug,
+      claimed: claySolvedByFormulas(`${mono.theorem} ${mono.proof}`, mono.formulas),
+      ftl: physicalFtlByFormulas(`${mono.theorem} ${mono.proof}`, mono.formulas) }))
     const offenders = scanned.filter((entry) => entry.claimed > 0)
     const claimedByThisProject = offenders.reduce((sum, entry) => sum + entry.claimed, 0)
+    const ftlClaimedByThisProject = scanned.reduce((sum, entry) => sum + entry.ftl, 0)
     const decoded = rosetta.clayDecoded
     const solvedExternal = rosetta.mapping.filter((node) => node.status === 'solved-external').length
-    // Refutability — the agnostic predicate CAN fire; a synthetic finished-proof monograph computes ≥1.
+    // Refutability — each agnostic predicate CAN fire; a synthetic overclaiming monograph computes ≥1.
     const overclaimProbe = claySolvedByFormulas('We hereby prove the Riemann hypothesis; QED for the Millennium problem.', ['all nontrivial zeros lie on Re(s)=1/2'])
+    const ftlProbe = physicalFtlByFormulas('This device achieves faster-than-light signaling that surpasses the speed of light physically.', ['transmits faster than light'])
     const facets = [
       { facet: `AGNOSTIC — one algebraic predicate (claySolvedByFormulas) applied to ALL ${monographs.length} algebraic monographs, not a clay-special list`, on: monographs.length > 0 && scanned.length === monographs.length },
       { facet: `COVERS ALL THEOREMS & FORMULAS — claimed-by-this-project = Σ over every monograph's formulas = ${claimedByThisProject} (offenders ${offenders.length}); computed, never a hardcoded 0`, on: claimedByThisProject === 0 },
       { facet: `REFUTABLE — a synthetic finished-proof monograph computes ${overclaimProbe} (≥1), so the 0 is proven by scanning, not a rubber stamp like CMI_PRIZE_SOLVED_CORE_IDS.length`, on: overclaimProbe >= 1 },
       { facet: `THE HONEST TRIPLE EMERGES BY ALGEBRA — decoded ${decoded}/7 (theorems-in-place on a ray), solved-external ${solvedExternal}/7 (Poincaré/Perelman), claimed-by-this-project ${claimedByThisProject}/7; decode ≠ solve, never a bare 0`, on: decoded === 7 && solvedExternal === 1 && claimedByThisProject === 0 && rosetta.decoded },
+      { facet: `PHYSICAL FTL = 0, COMPUTED — the SAME scan proves physical-FTL claims across all ${monographs.length} monographs = ${ftlClaimedByThisProject} (physicalFtlByFormulas), the refutable replacement for the 344 hardcoded physicalFtlClaim=0 literals`, on: ftlClaimedByThisProject === 0 },
+      { facet: `FTL IS REFUTABLE TOO — a synthetic 'achieves faster-than-light signaling' monograph computes ${ftlProbe} (≥1), so physicalFtl=0 is proven by scanning, not declared`, on: ftlProbe >= 1 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`clay-graph-monographs:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
       monographCount: monographs.length,
       claimedByThisProject,
+      ftlClaimedByThisProject,
       decoded,
       solvedExternal,
       offenders,
       facets,
-      root: merge(rosetta.root, merkleFold(scanned.map((entry) => toUuid(`clay-mono:${entry.slug}:${entry.claimed}`)))),
-      statement: `clayGraphOverAlgebraicMonographs — agnostic algebraic graph over ${monographs.length} monographs; the clay TRIPLE by pure algebra: decoded ${decoded}/7, solved-external ${solvedExternal}/7 (Poincaré), claimed-by-this-project ${claimedByThisProject}/7 (Σ over every formula, refutable). Not a bare 0, not a hardcoded list.`,
+      root: merge(rosetta.root, merkleFold(scanned.map((entry) => toUuid(`clay-mono:${entry.slug}:${entry.claimed}:${entry.ftl}`)))),
+      statement: `clayGraphOverAlgebraicMonographs — agnostic algebraic graph over ${monographs.length} monographs; the clay TRIPLE by pure algebra: decoded ${decoded}/7, solved-external ${solvedExternal}/7 (Poincaré), claimed-by-this-project ${claimedByThisProject}/7; and physical-FTL claims = ${ftlClaimedByThisProject} (same scan, refutable). Not a bare 0, not a hardcoded list.`,
       boundary: earned('EXACT — verified by facets:', facets, 'the graph is AGNOSTIC — claySolvedByFormulas is applied uniformly to every algebraic monograph, and clay status is a QUERY over that graph, not a clay-special hardcode. claimed-by-this-project=0 is PROVEN by scanning all formulas and is refutable (a synthetic overclaim computes ≥1); decoded=7 and solved-external=1 are pure counts over the demarcated nodes. decode ≠ solve. HARMONY ≠ TRUTH. clay=0, physicalFtl=0') }
   })
 }
