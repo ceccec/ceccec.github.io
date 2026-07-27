@@ -2095,7 +2095,9 @@ export function invertAgainTheThirdPerspective(matrix: MindMatrix = buildMatrix(
     { problem: 'Hodge', barrier: 'no way to produce the algebraic cycle', requirement: 'a construction of cycles from Hodge classes', consequence: 'the dictionary between topology/analysis and algebraic geometry completes — motives and periods become computable across all projective varieties' },
     { problem: 'BSD', barrier: 'open for rank ≥ 2', requirement: 'the rank ↔ L-vanishing-order bridge for rank ≥ 2', consequence: 'rational points on every elliptic curve become effectively computable — the arithmetic of curves is decidable' },
   ] as const
-  const claySolvedByThisFold = 0
+  // COMPUTED (not the literal 0): scan the trinity's own Clay-problem text — it names the problems but states only
+  // barriers/requirements (open-markers), so claySolvedByFormulas returns 0, refutably (a solution claim would flip it).
+  const claySolvedByThisFold = claySolvedByFormulas(JSON.stringify(trinity))
   const allThree = trinity.every((t) => t.barrier.length > 0 && t.requirement.length > 0 && t.consequence.length > 0)
   const facets = [
     { facet: `THE DOUBLE INVERSION REVEALS THE THIRD PERSPECTIVE — barrier (obstacle) → requirement (invert once) → CONSEQUENCE (invert again): the ${trinity.length} consequences were INVISIBLE while looking only at the obstacle and the need`, on: trinity.length === 6 && allThree },
@@ -2127,7 +2129,7 @@ export function reverseEngineerAllTestableFragments(matrix: MindMatrix = buildMa
   const allFragments = challenge.problems.flatMap((p) => p.challengeMethod)
   const totalTestable = allFragments.length
   const distinctFragments = new Set(allFragments).size
-  const claySolvedByThisFold = 0
+  const claySolvedByThisFold = challenge.claySolvedByThisFold // reuse the apparatus's COMPUTED value (scanned from the problem monographs), not a fresh literal
   const allCompute = challenge.problems.every((p) => p.on) // every per-problem probe (its whole fragment list) recomputes
   const openCores = challenge.openCores // 6
   const facets = [
@@ -2168,7 +2170,7 @@ export function reverseEngineerRequirementsToTestablePossibilities(matrix: MindM
     { problem: 'Hodge', testable: 'H₁(Σ₂)=ℤ⁴ homology rank on the genus-2 model', fold: 'homology rank (DIMENSION_GATES/FOLDED_CENSUS)', open: 'algebraic cycles from arbitrary Hodge classes' },
     { problem: 'BSD', testable: '(ℤ/9)* inverse-pair / group-law neighbourhood algebra', fold: 'zeroDivisionTable', open: 'the rank ≥ 2 arithmetic↔analytic bridge' },
   ] as const
-  const claySolvedByThisFold = 0
+  const claySolvedByThisFold = challenge.claySolvedByThisFold // reuse the apparatus's COMPUTED value, not a fresh literal
   const testableFragmentsCompute = challenge.problems.every((p) => p.on) // each challengeMethod (testable fragment) recomputes
   const allHaveFold = rows.every((r) => r.fold.length > 0 && r.open.length > 0)
   const facets = [
@@ -2205,7 +2207,9 @@ export function millenniumOpenBarriersInvertToRequirements(matrix: MindMatrix = 
     { problem: 'Hodge Conjecture', barrier: 'no general method produces the algebraic cycle realizing a Hodge class; known only in low degree and special cases', requirement: 'a construction of algebraic cycles from arbitrary Hodge classes on projective varieties', exact: false },
     { problem: 'Birch–Swinnerton-Dyer', barrier: 'proven for rank 0 and 1 (Gross–Zagier, Kolyvagin); the arithmetic↔analytic link is open for rank ≥ 2', requirement: 'the rank ↔ L-function-vanishing-order bridge for elliptic curves of rank ≥ 2', exact: false },
   ] as const
-  const claySolvedByThisFold = 0
+  // COMPUTED: scan the inversions' own Clay-problem text — barriers/requirements only (open-markers), no solution claim,
+  // so claySolvedByFormulas returns 0, refutably.
+  const claySolvedByThisFold = claySolvedByFormulas(JSON.stringify(inversions))
   const allInverted = inversions.every((i) => i.barrier.length > 0 && i.requirement.length > 0)
   const facets = [
     { facet: `SAVED — the 6 open problems each carry WHY they are open (the barrier): ${inversions.map((i) => i.problem).join(', ')}`, on: inversions.length === 6 && inversions.every((i) => i.barrier.length > 0) },
