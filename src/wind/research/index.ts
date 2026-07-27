@@ -2174,7 +2174,7 @@ export function reverseEngineerRequirementsToTestablePossibilities(matrix: MindM
   const testableFragmentsCompute = challenge.problems.every((p) => p.on) // each challengeMethod (testable fragment) recomputes
   const allHaveFold = rows.every((r) => r.fold.length > 0 && r.open.length > 0)
   const facets = [
-    { facet: `EACH REQUIREMENT REVERSE-ENGINEERS TO A TESTABLE FRAGMENT — ${rows.length}/6: the open requirement yields a DECIDABLE sub-computation (${rows.map((r) => `${r.problem}→${r.fold}`).join(', ')})`, on: rows.length === 6 && allHaveFold },
+    { facet: `EACH REQUIREMENT REVERSE-ENGINEERS TO A TESTABLE FRAGMENT — ${rows.length}/${CLAY_OPEN_COUNT}: the open requirement yields a DECIDABLE sub-computation (${rows.map((r) => `${r.problem}→${r.fold}`).join(', ')})`, on: rows.length === CLAY_OPEN_COUNT && allHaveFold },
     { facet: `THE TESTABLE FRAGMENTS ARE ALREADY SEALED — each is an existing fold that recomputes (${testableFragmentsCompute}): "if found the theorems are already discovered and only need saving as reusable code" — they ARE saved`, on: testableFragmentsCompute },
     { facet: `TESTABLE ≠ REQUIREMENT — the fragment is a partial/test, the full requirement stays OPEN (claySolvedByThisFold=${claySolvedByThisFold}): the decidable part is discovered, the open part remains the frontier`, on: claySolvedByThisFold === 0 },
     { facet: `THE REVERSE-ENGINEERING PIPELINE — barrier → invert → requirement → extract the decidable sub-piece → check for a sealed fold → confirm (or seal a new one). A reusable skill, deterministic and zero-token`, on: allHaveFold && challenge.computes },
@@ -2864,7 +2864,7 @@ export function thePoincareConjectureIsProvenExternallyByPerelmanViaRicciFlowDoc
   const addedAsTheorem = provenExternally && documentedNotByCorpus // added as a documented proven-external theorem
   const geometrizationImpliesPoincare = true === (provenExternally && documentedNotByCorpus) // geometrization ⊃ Poincaré (Perelman's route), the documented proof path
   const missingTopologyDependsOnIt = provenExternally // the proven Poincaré/geometrization is the foundation the downstream (missing) 3-manifold topology depends on
-  const prizeDeclined = metrics.modeledPartial.length === 6 && provenExternally // Poincaré not open-for-prize (solved), prize declined; six others open
+  const prizeDeclined = metrics.modeledPartial.length === CLAY_OPEN_COUNT && provenExternally // Poincaré not open-for-prize (solved), prize declined; six others open
   const documents = addedAsTheorem && geometrizationImpliesPoincare && missingTopologyDependsOnIt && prizeDeclined
   const facets = [
     { facet: `THE POINCARÉ CONJECTURE IS PROVEN — every simply-connected closed 3-manifold is homeomorphic to S³; proven by Perelman (2002–2003) via Ricci flow with surgery, completing Hamilton's program and Thurston's geometrization (${provenExternally})`, on: provenExternally },
@@ -2899,7 +2899,7 @@ export function recomputingTheMillenniumMetricsSavesPoincareTheOneProvenExternal
   const proven = clay.paths.filter((p) => p.status === 'solved-external')
   const provenIsPoincare = proven.length === 1 && proven[0]!.id === 'poincare' && proven[0]!.openForPrize === false // the one proven (external)
   const modeledPartial = clay.paths.filter((p) => p.status === 'modeled-partial')
-  const sixModeledPartial = modeledPartial.length === 6 && modeledPartial.every((p) => p.openForPrize === true) // the six open
+  const sixModeledPartial = modeledPartial.length === CLAY_OPEN_COUNT && modeledPartial.every((p) => p.openForPrize === true) // the six open
   const allComputable = clay.computableCount === 7 && clay.pathCount === 7 // all 7 have computational paths
   const provenNotByThisCorpus = clay.claySolvedByThisFold === 0 // Poincaré proven EXTERNALLY (Perelman), not by this corpus
   const saved = provenIsPoincare && sixModeledPartial && allComputable && provenNotByThisCorpus
@@ -3035,9 +3035,9 @@ export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildM
     const documentedCount = paths.filter((p) => p.demarcation === 'documented').length // settled (Poincaré, 1)
     const everyOpenCoreDemarcatedContested = paths.filter((p) => p.status === 'modeled-partial').every((p) => p.demarcation === 'contested')
     const facets = [
-      { facet: `all ${paths.length} Clay-linked theorems compute (challengeMethod · on · receipt) and are measured by the COMMON metric`, on: allComputable && paths.length === 7 },
+      { facet: `all ${paths.length} Clay-linked theorems compute (challengeMethod · on · receipt) and are measured by the COMMON metric`, on: allComputable && paths.length === CLAY_ORDER.length },
       { facet: 'millenniumProblemsChallenge computes · MODELED CHALLENGE apparatus', on: mill.computes },
-      { facet: `COMMON EPISTEMIC METRIC — each Clay problem is signed by demarcate() like any theorem: ${contestedCount} contested (open) + ${documentedCount} documented (Poincaré, settled) = ${paths.length}; refutable by moving the term`, on: everyOpenCoreDemarcatedContested && contestedCount === 6 && documentedCount === 1 },
+      { facet: `COMMON EPISTEMIC METRIC — each Clay problem is signed by demarcate() like any theorem: ${contestedCount} contested (open) + ${documentedCount} documented (Poincaré, settled) = ${paths.length}; refutable by moving the term`, on: everyOpenCoreDemarcatedContested && contestedCount === CLAY_OPEN_COUNT && documentedCount === CLAY_SOLVED_COUNT },
       { facet: `EACH THEOREM STATES ITS OWN CLAIM — every open core carries a NAMED gap in the theorem itself (${everyOpenCoreHasNamedGap}), the open step its statement still needs; no bespoke clay metric, the claim lives in the theorem`, on: everyOpenCoreHasNamedGap },
       { facet: `honesty floor holds internally — claySolvedByThisFold=${claySolvedByThisFold} · qualifiesAsProposedSolution=${qualifiesAsProposedSolution} · Prize Rules §5 not met`, on: qualifiesAsProposedSolution === false && catalog.claySolvedByThisFold === 0 && claySolvedByThisFold === 0 },
       { facet: 'sequence spine — VORTEX_SEQUENCE digitalRoot probe feeds RH/P-vs-NP methods', on: sequenceOk },
