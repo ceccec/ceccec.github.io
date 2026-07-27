@@ -1868,7 +1868,7 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
     const problems: MillenniumProblemChallenge[] = [
       {
         id: 'p-vs-np',
-        name: 'P vs NP',
+        name: CLAY_PROBLEMS.pvnp.name,
         challengeMethod: [
           'np-certificate-verifies-in-poly',
           'content-addressed-lookup-vs-brute-scan',
@@ -1899,7 +1899,7 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         ] },
       {
         id: 'hodge',
-        name: 'Hodge Conjecture',
+        name: CLAY_PROBLEMS.hodge.name,
         challengeMethod: [
           'DIMENSION_GATES/FOLDED_CENSUS → H₁ rank 4',
           'genus-2 homology structural analogy',
@@ -1924,7 +1924,7 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         ] },
       {
         id: 'poincare',
-        name: 'Poincaré Conjecture',
+        name: CLAY_PROBLEMS.poincare.name,
         challengeMethod: ['theSevenMillenniumProblemsDefinedFormallyUnclaimed', 'homology rank 4 structural analogy'],
         on: poincareOn,
         receipt: toUuid(`millennium-challenge:poincare:${poincareOn}`),
@@ -1941,7 +1941,7 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         ] },
       {
         id: 'riemann',
-        name: 'Riemann Hypothesis',
+        name: CLAY_PROBLEMS.riemann.name,
         challengeMethod: [
           'Basel Σ1/n² → ζ(2)=π²/6',
           'zeroDivisionTable (inverse not reverse)',
@@ -1969,7 +1969,7 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         ] },
       {
         id: 'yang-mills',
-        name: 'Yang–Mills Existence and Mass Gap',
+        name: CLAY_PROBLEMS.yangMills.name,
         challengeMethod: [
           'pauliAlgebraCloses (su(2))',
           'doubleTorusSurface field MODEL',
@@ -1995,7 +1995,7 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         ] },
       {
         id: 'navier-stokes',
-        name: 'Navier–Stokes Existence and Smoothness',
+        name: CLAY_PROBLEMS.navierStokes.name,
         challengeMethod: ['doubleTorusSurface / counter-oriented lobes MODEL', 'frontier verified-partials fold'],
         on: nsOn,
         receipt: toUuid(`millennium-challenge:navier-stokes:${nsOn}`),
@@ -2015,7 +2015,7 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         ] },
       {
         id: 'birch-swinnerton-dyer',
-        name: 'Birch and Swinnerton–Dyer Conjecture',
+        name: CLAY_PROBLEMS.bsd.name,
         challengeMethod: ['zeroDivisionTable inverse pairs (2,5)/(4,7)', 'group-law neighbourhood via pair closure'],
         on: bsdOn,
         receipt: toUuid(`millennium-challenge:bsd:${bsdOn}`),
@@ -2541,13 +2541,13 @@ export function novelToHumanityIsCheckableNotDeclaredByPublicApis(matrix: MindMa
 export function clayCreditsOnlyThePoincareSolutionTheOtherSixOpen(matrix: MindMatrix = buildMatrix()) {
   const challenge = millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(matrix)
   const credits = [
-    { id: 'poincare', name: 'Poincaré Conjecture', solved: true, solver: 'Grigori Perelman', year: '2002–2003', note: 'Ricci flow with surgery; verified ~2006; declined the Fields Medal (2006) and the $1M Millennium Prize (2010)' },
-    { id: 'p-vs-np', name: 'P vs NP', solved: false, solver: null, note: 'open — no verified proof either way' },
-    { id: 'riemann', name: 'Riemann Hypothesis', solved: false, solver: null, note: 'open — no verified proof' },
-    { id: 'yang-mills', name: 'Yang–Mills Existence and Mass Gap', solved: false, solver: null, note: 'open — no rigorous 4D construction / mass-gap proof' },
-    { id: 'navier-stokes', name: 'Navier–Stokes Existence and Smoothness', solved: false, solver: null, note: 'open — no global regularity or blow-up proof' },
-    { id: 'hodge', name: 'Hodge Conjecture', solved: false, solver: null, note: 'open — no verified proof' },
-    { id: 'birch-swinnerton-dyer', name: 'Birch and Swinnerton–Dyer Conjecture', solved: false, solver: null, note: 'open — no verified proof' },
+    { id: 'poincare', name: CLAY_PROBLEMS.poincare.name, solved: true, solver: 'Grigori Perelman', year: '2002–2003', note: 'Ricci flow with surgery; verified ~2006; declined the Fields Medal (2006) and the $1M Millennium Prize (2010)' },
+    { id: 'p-vs-np', name: CLAY_PROBLEMS.pvnp.name, solved: false, solver: null, note: 'open — no verified proof either way' },
+    { id: 'riemann', name: CLAY_PROBLEMS.riemann.name, solved: false, solver: null, note: 'open — no verified proof' },
+    { id: 'yang-mills', name: CLAY_PROBLEMS.yangMills.name, solved: false, solver: null, note: 'open — no rigorous 4D construction / mass-gap proof' },
+    { id: 'navier-stokes', name: CLAY_PROBLEMS.navierStokes.name, solved: false, solver: null, note: 'open — no global regularity or blow-up proof' },
+    { id: 'hodge', name: CLAY_PROBLEMS.hodge.name, solved: false, solver: null, note: 'open — no verified proof' },
+    { id: 'birch-swinnerton-dyer', name: CLAY_PROBLEMS.bsd.name, solved: false, solver: null, note: 'open — no verified proof' },
   ]
   const creditsGiven = credits.filter((credit) => credit.solved).length // 1
   const uncredited = credits.filter((credit) => !credit.solved).length // 6
