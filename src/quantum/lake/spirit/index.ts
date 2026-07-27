@@ -9,20 +9,35 @@ import { toUuid, merkleFold, foldPair, memoByRoot } from '../../../0'
 // ☱ Duì · Lake · joyous · upper·yang · twist — module identity and exports
 export const dual = 'src/water/double'
 
+/** tiers358 — the ONE 3-5-8 tier core (twin-shell parameterization, quantum:dry-dupe worklist): music358,
+ * emf358, computerDesign, chakrasAura shared one body differing only in data — the dataset IS the parameter
+ * ([[feedback-fewest-words-combinatorial-functions]]). `indexed` preserves each caller's original address shape
+ * (`key:index:member` vs `key:member`), so every content-address stays byte-identical to the pre-merge fold. */
+export function tiers358(
+  key: string,
+  indexed: boolean,
+  tiers: readonly { tier: number; name: string; members: readonly string[] }[],
+  statement: string,
+  boundary: string,
+) {
+  return {
+    complete: tiers[0]!.members.length === 3 && tiers[1]!.members.length === 5 && tiers[2]!.members.length === 8,
+    tiers,
+    root: merkleFold(tiers.flatMap((tier) => tier.members).map((member, index) => toUuid(indexed ? `${key}:${index}:${member}` : `${key}:${member}`))),
+    statement,
+    boundary }
+}
+
 // Chakras and aura in 3-5-8 — mapped honestly to the yogic tradition.
 /** @rosetta ✦₄ · Lake · joyous */
 export function chakrasAura() {
-  const tiers = [
+  return tiers358('chakra', false, [
     { tier: 3, name: 'three nadis (channels)', members: ['ida', 'pingala', 'sushumna'] },
     { tier: 5, name: 'five koshas (sheaths)', members: ['annamaya', 'pranamaya', 'manomaya', 'vijnanamaya', 'anandamaya'] },
     { tier: 8, name: 'eight limbs (ashtanga)', members: ['yama', 'niyama', 'asana', 'pranayama', 'pratyahara', 'dharana', 'dhyana', 'samadhi'] },
-  ]
-  return {
-    complete: tiers[0].members.length === 3 && tiers[1].members.length === 5 && tiers[2].members.length === 8,
-    tiers,
-    root: merkleFold(tiers.flatMap((tier) => tier.members).map((member) => toUuid(`chakra:${member}`))),
-    statement: 'Chakras and aura in 3-5-8: the three nadis (ida, pingala, sushumna), the five koshas (the sheaths of the self), and the eight limbs of yoga (ashtanga) — 3, 5, 8 in the yogic tradition.',
-    boundary: 'A correspondence to concepts in the yogic and tantric traditions (nadis, koshas, ashtanga). A spiritual and teaching framework, NOT science: the aura is not a measurable field, and no medical or factual claim is made.' }
+  ],
+  'Chakras and aura in 3-5-8: the three nadis (ida, pingala, sushumna), the five koshas (the sheaths of the self), and the eight limbs of yoga (ashtanga) — 3, 5, 8 in the yogic tradition.',
+  'A correspondence to concepts in the yogic and tantric traditions (nadis, koshas, ashtanga). A spiritual and teaching framework, NOT science: the aura is not a measurable field, and no medical or factual claim is made.')
 }
 
 // Human Design in 3-5-8 — mapped honestly.

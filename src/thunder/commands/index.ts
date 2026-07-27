@@ -636,13 +636,19 @@ function runConceptCommand(
 // concept.* namespace stays canonical; this self-contained surface keeps the
 // /learn-developer page recomputable without a parallel command registry.
 
-function developerResult(command: DeveloperCommandName, ok: boolean, summary: string, data: unknown): DeveloperCommandResult {
+/** The ONE command-result core (twin-shell parameterization, quantum:dry-dupe worklist): developerResult (here)
+ * and result (heaven/balance) shared one body differing only in the uuid PREFIX — the prefix is the parameter. */
+export function commandResult<C extends string>(prefix: string, command: C, ok: boolean, summary: string, data: unknown) {
   return {
     command,
     ok,
-    uuid: toUuid(`developer-result:${command}:${ok}:${JSON.stringify(data)}`),
+    uuid: toUuid(`${prefix}:${command}:${ok}:${JSON.stringify(data)}`),
     summary,
     data }
+}
+
+function developerResult(command: DeveloperCommandName, ok: boolean, summary: string, data: unknown): DeveloperCommandResult {
+  return commandResult('developer-result', command, ok, summary, data)
 }
 
 export function executeDeveloperCommand(

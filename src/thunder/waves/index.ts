@@ -845,31 +845,52 @@ function computeHarmonisedBuildWave(matrix: MindMatrix = buildMatrix()) {
  * systems mathematics. The continuous-time ODE form is the analog presentation; composes analogComputationDecoded
  * (GPAC ≡ computable analysis), so analog control is the SAME computability class — not hypercomputation.
  */
-export function controlDynamicalSystemsDecoded(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('controlDynamicalSystemsDecoded', matrix, () => {
+/** The ONE decoded-wave core (twin-shell parameterization, quantum:dry-dupe worklist): control and signal
+ * shared one memoized body — the dataset, facet rows, and prose are the parameters; receipts keep each
+ * caller's original address keys (`key:` and `key-facet:`) so every content-address stays byte-identical. */
+function decodedWaveFold(
+  matrix: MindMatrix,
+  memoKey: string,
+  key: string,
+  topicRows: readonly { topic: string; fact: string }[],
+  facetRows: (analogDecoded: boolean, topicCount: number) => readonly { facet: string; on: boolean }[],
+  documented: readonly string[],
+  flagged: readonly string[],
+  statement: string,
+  boundary: string,
+) {
+  return memoByRoot(memoKey, matrix, () => {
     const analog = analogComputationDecoded(matrix)
-    const topics = [
-      { topic: 'PID feedback', fact: 'u = Kp·e + Ki·∫e + Kd·ė — proportional/integral/derivative error correction' },
-      { topic: 'state-space', fact: 'ẋ = Ax + Bu, y = Cx + Du — the linear dynamical model' },
-      { topic: 'Lyapunov stability', fact: 'V(x)>0, V̇(x)<0 ⇒ asymptotic stability (no eigenvalue in the right half-plane)' },
-      { topic: 'controllability / observability', fact: 'Kalman rank tests on [B AB … Aⁿ⁻¹B] and the observability dual' },
-    ].map((t) => ({ ...t, receipt: toUuid(`control:${t.topic}:${t.fact}`) }))
-    const facets = [
-      { facet: 'feedback control is exact linear-systems math — PID, state-space, pole placement', on: topics.length === 4 },
-      { facet: 'Lyapunov gives a rigorous stability certificate (energy function decreasing along trajectories)', on: true },
-      { facet: 'controllability/observability decided by exact matrix rank tests (Kalman)', on: true },
-      { facet: 'the continuous-time analog form is the SAME computability class — composes analogComputationDecoded (GPAC ≡ computable analysis)', on: analog.decoded },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`control-facet:${entry.facet}:${entry.on}`) }))
+    const topics = topicRows.map((t) => ({ ...t, receipt: toUuid(`${key}:${t.topic}:${t.fact}`) }))
+    const facets = facetRows(analog.decoded, topics.length).map((entry) => ({ ...entry, receipt: toUuid(`${key}-facet:${entry.facet}:${entry.on}`) }))
     return {
       decoded: facets.every((entry) => entry.on),
       topics,
-      documented: ['Classical/modern control theory: PID, state-space (ẋ=Ax+Bu), Lyapunov stability, Kalman controllability/observability — standard, exact mathematics.', 'Continuous-time ODE control is the analog presentation, bridged to digital by sampling.'],
-      flagged: ['EXACT linear-systems results; nonlinear/robust control adds caveats not asserted here. Analog control is within the standard computability class — not super-Turing.'],
+      documented: [...documented],
+      flagged: [...flagged],
       facets,
       root: merge(analog.root, merkleFold([...topics.map((t) => t.receipt), ...facets.map((entry) => entry.receipt)])),
-      statement: 'Control of dynamical systems, decoded: PID feedback, the state-space model ẋ=Ax+Bu, Lyapunov stability certificates, and the Kalman controllability/observability rank tests are exact linear-systems mathematics. The continuous-time ODE form is the analog presentation, the same computability class as the digital one (composing analogComputationDecoded), bridged to discrete control by sampling.',
-      boundary: 'EXACT classical/modern linear control theory. Honest bound: nonlinear and robust-control subtleties are not covered, and analog continuous-time control stays within the standard computability class (GPAC ≡ computable analysis), never hypercomputation.' }
+      statement,
+      boundary }
   })
+}
+
+export function controlDynamicalSystemsDecoded(matrix: MindMatrix = buildMatrix()) {
+  return decodedWaveFold(matrix, 'controlDynamicalSystemsDecoded', 'control', [
+    { topic: 'PID feedback', fact: 'u = Kp·e + Ki·∫e + Kd·ė — proportional/integral/derivative error correction' },
+    { topic: 'state-space', fact: 'ẋ = Ax + Bu, y = Cx + Du — the linear dynamical model' },
+    { topic: 'Lyapunov stability', fact: 'V(x)>0, V̇(x)<0 ⇒ asymptotic stability (no eigenvalue in the right half-plane)' },
+    { topic: 'controllability / observability', fact: 'Kalman rank tests on [B AB … Aⁿ⁻¹B] and the observability dual' },
+  ], (analogDecoded, topicCount) => [
+    { facet: 'feedback control is exact linear-systems math — PID, state-space, pole placement', on: topicCount === 4 },
+    { facet: 'Lyapunov gives a rigorous stability certificate (energy function decreasing along trajectories)', on: true },
+    { facet: 'controllability/observability decided by exact matrix rank tests (Kalman)', on: true },
+    { facet: 'the continuous-time analog form is the SAME computability class — composes analogComputationDecoded (GPAC ≡ computable analysis)', on: analogDecoded },
+  ],
+  ['Classical/modern control theory: PID, state-space (ẋ=Ax+Bu), Lyapunov stability, Kalman controllability/observability — standard, exact mathematics.', 'Continuous-time ODE control is the analog presentation, bridged to digital by sampling.'],
+  ['EXACT linear-systems results; nonlinear/robust control adds caveats not asserted here. Analog control is within the standard computability class — not super-Turing.'],
+  'Control of dynamical systems, decoded: PID feedback, the state-space model ẋ=Ax+Bu, Lyapunov stability certificates, and the Kalman controllability/observability rank tests are exact linear-systems mathematics. The continuous-time ODE form is the analog presentation, the same computability class as the digital one (composing analogComputationDecoded), bridged to discrete control by sampling.',
+  'EXACT classical/modern linear control theory. Honest bound: nonlinear and robust-control subtleties are not covered, and analog continuous-time control stays within the standard computability class (GPAC ≡ computable analysis), never hypercomputation.')
 }
 
 /**
@@ -879,30 +900,21 @@ export function controlDynamicalSystemsDecoded(matrix: MindMatrix = buildMatrix(
  * fold is the continuous↔discrete seam made precise.
  */
 export function signalProcessingDecoded(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('signalProcessingDecoded', matrix, () => {
-    const analog = analogComputationDecoded(matrix)
-    const topics = [
-      { topic: 'Fourier transform', fact: 'time ↔ frequency: X(f)=∫x(t)e^{−i2πft}dt — exact, invertible' },
-      { topic: 'Laplace / Z transform', fact: 'continuous (s) and discrete (z) system analysis — poles/zeros, transfer functions' },
-      { topic: 'Nyquist–Shannon sampling', fact: 'a bandlimited signal sampled above 2·f_max reconstructs perfectly (sinc interpolation)' },
-      { topic: 'convolution & filters', fact: 'y = x ∗ h — FIR/IIR filters; convolution ↔ multiplication in the frequency domain' },
-    ].map((t) => ({ ...t, receipt: toUuid(`signal:${t.topic}:${t.fact}`) }))
-    const facets = [
-      { facet: 'the Fourier/Laplace/Z transforms are exact, invertible analyses of signals and systems', on: topics.length === 4 },
-      { facet: 'Nyquist–Shannon — bandlimited signals reconstruct perfectly above the Nyquist rate (the A→D bridge made precise)', on: true },
-      { facet: 'convolution is filtering — and equals multiplication in the frequency domain (the convolution theorem)', on: true },
-      { facet: 'analog continuous signals and digital samples are one fold seen two ways — composes analogComputationDecoded', on: analog.decoded },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`signal-facet:${entry.facet}:${entry.on}`) }))
-    return {
-      decoded: facets.every((entry) => entry.on),
-      topics,
-      documented: ['Signal processing fundamentals: Fourier/Laplace/Z transforms, the Nyquist–Shannon sampling theorem, convolution and FIR/IIR filtering — exact mathematics.', 'Sampling is the analog→digital readout; reconstruction below the Nyquist rate is exact for bandlimited signals.'],
-      flagged: ['EXACT for ideal/bandlimited signals; real aliasing, quantisation, and finite-precision effects are honest caveats, not failures of the theory.'],
-      facets,
-      root: merge(analog.root, merkleFold([...topics.map((t) => t.receipt), ...facets.map((entry) => entry.receipt)])),
-      statement: 'Signal processing, decoded: the Fourier, Laplace, and Z transforms analyse signals and systems exactly and invertibly; the Nyquist–Shannon theorem guarantees perfect reconstruction of a bandlimited signal sampled above twice its maximum frequency; and convolution is filtering, equal to multiplication in the frequency domain. Sampling is the analog→digital readout, so this fold is the continuous↔discrete seam made precise — one fold seen two ways.',
-      boundary: 'EXACT signal-processing mathematics for ideal bandlimited signals. Honest bound: real systems incur aliasing, quantisation noise, and finite-precision effects; the analog↔digital bridge is the standard sampling theory, within the usual computability class.' }
-  })
+  return decodedWaveFold(matrix, 'signalProcessingDecoded', 'signal', [
+    { topic: 'Fourier transform', fact: 'time ↔ frequency: X(f)=∫x(t)e^{−i2πft}dt — exact, invertible' },
+    { topic: 'Laplace / Z transform', fact: 'continuous (s) and discrete (z) system analysis — poles/zeros, transfer functions' },
+    { topic: 'Nyquist–Shannon sampling', fact: 'a bandlimited signal sampled above 2·f_max reconstructs perfectly (sinc interpolation)' },
+    { topic: 'convolution & filters', fact: 'y = x ∗ h — FIR/IIR filters; convolution ↔ multiplication in the frequency domain' },
+  ], (analogDecoded, topicCount) => [
+    { facet: 'the Fourier/Laplace/Z transforms are exact, invertible analyses of signals and systems', on: topicCount === 4 },
+    { facet: 'Nyquist–Shannon — bandlimited signals reconstruct perfectly above the Nyquist rate (the A→D bridge made precise)', on: true },
+    { facet: 'convolution is filtering — and equals multiplication in the frequency domain (the convolution theorem)', on: true },
+    { facet: 'analog continuous signals and digital samples are one fold seen two ways — composes analogComputationDecoded', on: analogDecoded },
+  ],
+  ['Signal processing fundamentals: Fourier/Laplace/Z transforms, the Nyquist–Shannon sampling theorem, convolution and FIR/IIR filtering — exact mathematics.', 'Sampling is the analog→digital readout; reconstruction below the Nyquist rate is exact for bandlimited signals.'],
+  ['EXACT for ideal/bandlimited signals; real aliasing, quantisation, and finite-precision effects are honest caveats, not failures of the theory.'],
+  'Signal processing, decoded: the Fourier, Laplace, and Z transforms analyse signals and systems exactly and invertibly; the Nyquist–Shannon theorem guarantees perfect reconstruction of a bandlimited signal sampled above twice its maximum frequency; and convolution is filtering, equal to multiplication in the frequency domain. Sampling is the analog→digital readout, so this fold is the continuous↔discrete seam made precise — one fold seen two ways.',
+  'EXACT signal-processing mathematics for ideal bandlimited signals. Honest bound: real systems incur aliasing, quantisation noise, and finite-precision effects; the analog↔digital bridge is the standard sampling theory, within the usual computability class.')
 }
 
 // quantum chess — dissolved from thunder/waves

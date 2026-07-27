@@ -1009,20 +1009,26 @@ export function toolsSavedInSrcFirst(
  *  /index. Strictly enforced on ALL of src, no exception. The commit/push shell scans src and passes the
  *  offenders in; this fold judges (one src truth). The same law is a HARD weave gate at deploy (folderLaw.
  *  barrelImports.noExtensions), so no commit, push or deploy carries an extensioned import. */
-export function importsAreFoldersOnly(
-  offenders: readonly { file: string; spec: string; reason: string }[] = [],
-  scanned = 0,
-) {
+/** The ONE offender-seal core (twin-shell parameterization, quantum:dry-dupe worklist): importsAreFoldersOnly and
+ * glagoliticLabelsAreComputed shared one body differing only in address key + prose — those are the parameters. */
+function enforcementSeal<O>(key: string, offenders: readonly O[], scanned: number, statement: string, boundary: string) {
   return {
     enforced: offenders.length === 0,
     scanned,
     count: offenders.length,
     offenders: offenders.slice(0, (6 * 2)),
-    root: toUuid(`imports-folders-only:${scanned}:${offenders.length}`),
-    statement:
-      'Imports are folders only, no extensions: a relative import/export specifier names the module by its folder path — never a file extension (.ts/.mts/.cts/.tsx/.js/.mjs/.cjs/.jsx/.vue) and never a trailing /index. Strictly enforced on all of src, no exception; an offender blocks the commit, and the push and the deploy run the same law.',
-    boundary:
-      'Enforces the FORM of the specifier (folder path, no extension or /index), not that the module is correct. The resolver (tsc Bundler, esbuild, vite — whose resolve.extensions carries .vue) finds the file. Scoped to RELATIVE specifiers in src — external/bare packages and non-code assets are not folders and are untouched.' }
+    root: toUuid(`${key}:${scanned}:${offenders.length}`),
+    statement,
+    boundary }
+}
+
+export function importsAreFoldersOnly(
+  offenders: readonly { file: string; spec: string; reason: string }[] = [],
+  scanned = 0,
+) {
+  return enforcementSeal('imports-folders-only', offenders, scanned,
+    'Imports are folders only, no extensions: a relative import/export specifier names the module by its folder path — never a file extension (.ts/.mts/.cts/.tsx/.js/.mjs/.cjs/.jsx/.vue) and never a trailing /index. Strictly enforced on all of src, no exception; an offender blocks the commit, and the push and the deploy run the same law.',
+    'Enforces the FORM of the specifier (folder path, no extension or /index), not that the module is correct. The resolver (tsc Bundler, esbuild, vite — whose resolve.extensions carries .vue) finds the file. Scoped to RELATIVE specifiers in src — external/bare packages and non-code assets are not folders and are untouched.')
 }
 
 /** @rosetta ✦₁ · Fire · clarity — Glagolitic is always COMPUTED, never a hardcoded glyph.
@@ -1034,16 +1040,9 @@ export function glagoliticLabelsAreComputed(
   offenders: readonly { file: string; reason: string }[] = [],
   scanned = 0,
 ) {
-  return {
-    enforced: offenders.length === 0,
-    scanned,
-    count: offenders.length,
-    offenders: offenders.slice(0, (6 * 2)),
-    root: toUuid(`glagolitic-labels-computed:${scanned}:${offenders.length}`),
-    statement:
-      'Glagolitic is always computed, never hardcoded: a label string carries no raw Glagolitic glyph (U+2C00–2C5F) typed by hand — it is produced by toGlagolitic, the single transcoder (src/quantum/heaven/library). Enforced on all of src at commit, and the push and the deploy run the same law; a hand-typed glyph label blocks the commit.',
-    boundary:
-      'Scoped to LABEL literals (`label:`), the position both real violations took (the config locale + SITE_LOCALES). Out of scope, legitimately: the mapping source in library, regex character-class bounds (/[Ⰰ-ⱟ]/), glyphs passed as arguments to a glagolitic* function (test/verify inputs), and example glyphs in documentation/facet prose. It enforces that UI/data labels are computed — not that every glyph in the tree is.' }
+  return enforcementSeal('glagolitic-labels-computed', offenders, scanned,
+    'Glagolitic is always computed, never hardcoded: a label string carries no raw Glagolitic glyph (U+2C00–2C5F) typed by hand — it is produced by toGlagolitic, the single transcoder (src/quantum/heaven/library). Enforced on all of src at commit, and the push and the deploy run the same law; a hand-typed glyph label blocks the commit.',
+    'Scoped to LABEL literals (`label:`), the position both real violations took (the config locale + SITE_LOCALES). Out of scope, legitimately: the mapping source in library, regex character-class bounds (/[Ⰰ-ⱟ]/), glyphs passed as arguments to a glagolitic* function (test/verify inputs), and example glyphs in documentation/facet prose. It enforces that UI/data labels are computed — not that every glyph in the tree is.')
 }
 
 /** @rosetta ✦₁ · Water · the abyss — the unexpected.

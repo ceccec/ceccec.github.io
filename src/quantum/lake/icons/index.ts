@@ -75,17 +75,13 @@ export const AREA_LABELS: Record<string, { en: string; bg: string }> = {
 // (input, output, memory, ALU, control), and the eight bits of a byte.
 /** @rosetta ✦₀ · Mountain · stillness */
 export function computerDesign() {
-  const tiers = [
+  return tiers358('computer358', false, [
     { tier: 3, name: 'three buses', members: ['address', 'data', 'control'] },
     { tier: 5, name: 'five units (von Neumann)', members: ['input', 'output', 'memory', 'ALU', 'control'] },
     { tier: 8, name: 'eight bits (a byte)', members: ['b7', 'b6', 'b5', 'b4', 'b3', 'b2', 'b1', 'b0'] },
-  ]
-  return {
-    complete: tiers[0].members.length === 3 && tiers[1].members.length === 5 && tiers[2].members.length === 8,
-    tiers,
-    root: merkleFold(tiers.flatMap((tier) => tier.members).map((member) => toUuid(`computer358:${member}`))),
-    statement: 'Computer design in 3-5-8: the three buses (address, data, control), the five units of the von Neumann architecture (input, output, memory, ALU, control), and the eight bits of a byte — 3, 5, 8 in the machine.',
-    boundary: 'A correspondence of the 3-5-8 tiers to standard computer architecture. A teaching device; real machines vary (multi-byte words, more buses), this is the classic textbook model.' }
+  ],
+  'Computer design in 3-5-8: the three buses (address, data, control), the five units of the von Neumann architecture (input, output, memory, ALU, control), and the eight bits of a byte — 3, 5, 8 in the machine.',
+  'A correspondence of the 3-5-8 tiers to standard computer architecture. A teaching device; real machines vary (multi-byte words, more buses), this is the classic textbook model.')
 }
 
 // A gapless harmonic distribution is a run of CONSECUTIVE Fibonacci numbers
@@ -181,6 +177,9 @@ export {
   RAVE_MANDALA_GATE_ORDER, RAVE_GATE_ARC_DEG, RAVE_GATE_41_START_DEG, RAVE_DESIGN_SUN_ARC_DEG, RAVE_BODIES_13,
   RAVE_CENTERS_9, RAVE_CENTER_GATES, RAVE_CHANNELS_36, raveCenterOfGate, raveDefinedChannels, raveMandalaGateLineAt,
   yinYang, dimensions, deviceSensors, dualities } from '../spirit'
+// The ONE 3-5-8 tier core — computerDesign (here), chakrasAura (spirit), music358 (fire/li), emf358 (fire/physics) all delegate.
+import { tiers358 } from '../spirit'
+export { tiers358 } from '../spirit'
 export { natureLaw, natureCommons, natureReview, lawfulHarmonise, lawfulImagine, lawfulSucceed, attestation } from '../../../earth/nature'
 export { emfApplications, efficiency, fuseTeslaPatents, patentDiscovery, publicFrequencyApis, herbalApis, frequencyToLight, A432_HUE, GOLDEN_ANGLE, lobeHues, scaleColor, scaleColorAlpha, scaleColorRgba, quantumHueFromHz, quantumScaleHue, oklchToHex, resonanceApplications, resonanceDecoded, rifeFrequenciesDecoded } from '../../science'
 export { plainLanguage, playLearn, analogSpeech, typographySeo, openGraph, charUuids, wordUuids, humanize, multidimensional } from '../voice'

@@ -2834,7 +2834,9 @@ export function runClaimAuditExit(root = '', _argv: readonly string[] = []): num
  */
 export const QUEUE_ROWS = [
   { wave: 'dev dynamic-route params-reactivity (UPSTREAM, dev-only)', why: 'ROOT-CAUSED & CLOSED (2026-07-24): the custom Layout correctly delegates content to VP default Layout; loadPage does not throw; the served module\'s __pageData.params carries the full universal payload — YET in dev useData().params reads NULL in the component (browser-probed), so UniversalPageTemplate renders empty. This is a VitePress-alpha DEV-MODE bug in dynamic-route params reactivity (params not wired to the reactive store in serve), NOT our code — production SSG wires it correctly and all 41 pages render (trinity green). Investigation complete; not our defect', blocksCore: false, localOnly: true, toolExists: true, firstAction: 'WAIT for upstream VP fix or add a dev-only params-injection plugin; NOT worth more tokens — prod is unaffected, the cause is upstream and named' },
-  { wave: 'twin-shell parameterizations', why: 'six intended-dual groups could share one parameterized core each', blocksCore: false, localOnly: true, toolExists: true, firstAction: 'npm run quantum:dry-dupe — the shell list is the worklist' },
+  // twin-shell parameterizations: SHIPPED 2026-07-27 — tiers358 · commandResult · enforcementSeal · decodedWaveFold
+  // cores landed; quantum:dry-dupe measures 5→3 shell groups, the residual 3 being the one-line data-duals
+  // themselves (irreducible: they differ only by the data the core is parameterized over). Roots byte-stable.
   { wave: 'VS Code extension', why: 'the last missing install surface', blocksCore: false, localOnly: true, toolExists: false, firstAction: 'npm run quantum:install-surfaces — scaffold package.json contributes', doneArtifact: 'packages/quantum-dev-vscode/package.json' },
   { wave: 'RFC 3161 qualified timestamping', why: 'proceedings-grade evidence needs an external TSA/archival deposit', blocksCore: false, localOnly: false, toolExists: false, firstAction: 'npm run quantum:patent-canon — the evidence-triad facet names the link' },
 ] as const

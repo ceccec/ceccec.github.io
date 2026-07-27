@@ -6,7 +6,7 @@ import { buildMatrix, coherenceAnomaly, reciprocity, verifyRoot } from '../../he
 import { a432, a432Default, agentObserve, contentAddressingHasRealPrecedent, hammingThreeParityAddressesError, quantumSimulation, teslaPatents } from '../li'
 import { isUuid, memoByRoot, merkleFold, toUuid, roundTo, seedFromText, prng, sincReconstruct, humanBreath, proseToTone, VORTEX_SEQUENCE, toffoli } from '../../0'
 import { geneticCodeIsTheRealFourCubed, sixtyFourThreeQubitPauliBasis, vortexMath, merkaba } from '../../mountain/geometry'
-import { publicFrequencyApis } from '../../quantum/lake/icons'
+import { publicFrequencyApis, tiers358 } from '../../quantum/lake/icons'
 import { a432IsTheBlood, harmonics } from '../../lake/music'
 import { GATES, applyGate, bellPair, caEvolve, caStep, cnot, complete, composeHazard, coordinatedWaves, digitalQuantumProof, fruitOfLifeFusion, grover, harmonyProbability, howAgentsAchievedIt, knowledgeRevealedByMerkabaFold, memoryInSourceAsCrossFolds, merge, pbits, pflip, probabilities, psample, quantumComputer, qubits, rcnot, resonanceCatchGapsViolations, rnot, rtoffoli, sample, strictlyMapSequenceElliottWaves } from '../../quantum/heaven/mind'
 // EMF-around-device → A432 balancing-field fold: EXACT EM constants/conversions (no re-derivation), the decoded
@@ -74,17 +74,13 @@ export function quantumPhysics(matrix: MindMatrix = buildMatrix()) {
 // magnetic field has three axes (x, y, z); the spectrum has five non-ionizing
 // bands; and visible light divides into eight colours.
 export function emf358() {
-  const tiers = [
+  return tiers358('emf358', true, [
     { tier: 3, name: 'magnetic field axes', members: ['x', 'y', 'z'] },
     { tier: 5, name: 'five non-ionizing bands', members: ['radio', 'microwave', 'infrared', 'visible', 'ultraviolet'] },
     { tier: 8, name: 'eight colours of visible light', members: ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'indigo', 'violet'] },
-  ]
-  return {
-    complete: tiers[0].members.length === 3 && tiers[1].members.length === 5 && tiers[2].members.length === 8,
-    tiers,
-    root: merkleFold(tiers.flatMap((tier) => tier.members).map((member, index) => toUuid(`emf358:${index}:${member}`))),
-    statement: 'EMF in 3-5-8: the magnetic field has three axes (x, y, z); the spectrum has five non-ionizing bands (radio, microwave, infrared, visible, ultraviolet); and visible light divides into eight colours (red to violet).',
-    boundary: 'A correspondence of the 3-5-8 tiers to electromagnetism. The band grouping and the eight-colour division are conventional, not exact; a teaching device, not a physics claim.' }
+  ],
+  'EMF in 3-5-8: the magnetic field has three axes (x, y, z); the spectrum has five non-ionizing bands (radio, microwave, infrared, visible, ultraviolet); and visible light divides into eight colours (red to violet).',
+  'A correspondence of the 3-5-8 tiers to electromagnetism. The band grouping and the eight-colour division are conventional, not exact; a teaching device, not a physics claim.')
 }
 
 // Efficiency, standard and deep. The same work is never done twice: command

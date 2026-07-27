@@ -18,7 +18,7 @@ import { atomInclusionProof } from '../../lake/ledger'
 // ☷ Kūn · Earth · receptive · lower·yin · hueShift — vocab primitives: openGraph, harmonicBands, deviceSensors, dualities
 import {
   openGraph, multidimensional, plainLanguage, typographySeo,
-  harmonicBands, deviceSensors, dualities, frequencyToLight, areaLabel, AREA_ICONS } from '../../quantum/lake/icons'
+  harmonicBands, deviceSensors, dualities, frequencyToLight, areaLabel, AREA_ICONS, tiers358 } from '../../quantum/lake/icons'
 // ☷ Kūn · Earth · receptive · lower·yin · spread — ground primitives: toUuid, merkleFold, foldPair, merge, sha256Sync
 import {
   toUuid, merkleFold, isUuid, memoByRoot, fold, asVortex, asTorus, sha256Sync,
@@ -133,17 +133,13 @@ export function autoSpeech(text = '', matrix: MindMatrix = buildMatrix()) {
 // which is off by default and lives only in the browser.
 /** @rosetta ✦₁ · Fire · clarity */
 export function music358() {
-  const tiers = [
+  return tiers358('music358', true, [
     { tier: 3, name: 'the triad', members: ['root', 'third', 'fifth'] },
     { tier: 5, name: 'the pentatonic scale', members: ['1', '2', '3', '5', '6'] },
     { tier: 8, name: 'the octave (diatonic)', members: ['do', 're', 'mi', 'fa', 'sol', 'la', 'ti', 'do'] },
-  ]
-  return {
-    complete: tiers[0].members.length === 3 && tiers[1].members.length === 5 && tiers[2].members.length === 8,
-    tiers,
-    root: merkleFold(tiers.flatMap((tier) => tier.members).map((member, index) => toUuid(`music358:${index}:${member}`))),
-    statement: 'Music in 3-5-8: the triad (root, third, fifth), the pentatonic scale (five notes), and the octave — the diatonic scale of eight. 3, 5, 8 in sound.',
-    boundary: 'A correspondence to standard Western tonal theory (triad, pentatonic, octave). A teaching device; other tunings and traditions differ.' }
+  ],
+  'Music in 3-5-8: the triad (root, third, fifth), the pentatonic scale (five notes), and the octave — the diatonic scale of eight. 3, 5, 8 in sound.',
+  'A correspondence to standard Western tonal theory (triad, pentatonic, octave). A teaching device; other tunings and traditions differ.')
 }
 
 // Geometry in 3-5-8 — the polygons of the Fibonacci tiers: triangle, pentagon,

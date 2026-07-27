@@ -137,7 +137,7 @@ import { allMdSignedFromSource } from '../../mountain/og'
 import { foldProseToSentencesWordsEntangled, foldQuestion, foldRedistributesBeyondLinear } from '../atoms'
 import { aiMoviesDecoded, ancientCivilisationsDecodedWithTheories, decode2020, decodeAllByComputationsTrainedOnKnownUniverse, decodeAncientKnowledgeInReusableCode, decodeBooksToUnity, decodeImplementCalligraphy, decodeSymbols, discoverDecodeAncientKnowledgeFittingPath, geneticLinksChallengeHistoryDecoded, herbalApisDecoded, imagineCrossPathsCodeCodesItself, pathIsMeaningDecodesCoordinates } from '../../thunder/decode'
 import { commandGapsToTrinityEyes, endlessTrinityStreams, enforcementTrinitySpread, signedTrafficTrinityRouting, trinityEncryption, trinityFirstRedesign, trinityGates, trinityOtherSideDoomed, trinityRotationalPlanes, trinityWordingModel } from '../../mountain/seals'
-import { commandsRegistry, commandsSavedInQuantumPairs, enforceAgentsCommandPairs, executeConceptCommand, mcpCodebase, skillsDryRefactorCommands } from '../../thunder/commands'
+import { commandResult, commandsRegistry, commandsSavedInQuantumPairs, enforceAgentsCommandPairs, executeConceptCommand, mcpCodebase, skillsDryRefactorCommands } from '../../thunder/commands'
 import { cardHeroLinkWiresInUi, completeCorpus, contentIsMonographOfMonographs, corpusRestPathRouting, diamondsStaticPagesPurged, eachPageSpeaksContinuesNext, everyGraphAMonographConsolidateExtend, everyPageGraphOfGraphsFractal, harmonisedNavigation, homePageNoDifferent, monographs, navigationIsMovie, ogBuildsNavigation, onlyPageRouteForAll, pageSkills, pageStatusStatistics, proveAllOnHomePage, siteNavigation, theMonograph } from '../../wind/routes/corpus'
 import { merkabaComputes } from '../../mountain/topology'
 import { bothEarthsRotateWithinEachOther } from '../../mountain/geometry'
@@ -326,12 +326,7 @@ export function gapTargets(completeness: DiamondCompletenessReport): readonly { 
 }
 
 export function result(command: ConceptCommandName, ok: boolean, summary: string, data: unknown): ConceptCommandResult {
-  return {
-    command,
-    ok,
-    uuid: toUuid(`command-result:${command}:${ok}:${JSON.stringify(data)}`),
-    summary,
-    data }
+  return commandResult('command-result', command, ok, summary, data)
 }
 
 export type DeveloperCommandName =
