@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, shallowRef, watch } from 'vue'
+import { runQuantumCircuit, type CircuitOp } from '../../0/index.ts'
+import { TAU } from '../../3/7/index.ts'
 import {
   quantumAppsPanelComputes, quantumAppLaunch, slowProcessIsQuantumGap,
   sessionManualWorkAsQuantumTools, rosettaCoreApi,
@@ -213,6 +215,37 @@ const chatLog = ref<ChatTurn[]>([])
 const chatAudit = computed(() => allChatCapabilitiesFusedAndAuditedByStandards())
 // The free-AI story, computed from the fold: no-key free AI today, the optional edge proxy, and paste-to-fuse any model.
 const aiProxy = computed(() => siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis())
+
+// ── Quantum computer (browser) — a complete classical state-vector SIMULATOR driven from the browser. Universal gate set,
+// exact Born-rule readout, ≤10 qubits, deterministic + content-addressed. No speedup (cost is exponential in qubits), no
+// QPU. Everything runs on-device via the sealed runQuantumCircuit fold — zero egress, zero tokens.
+const QC_SINGLE = ['H', 'X', 'Y', 'Z', 'S', 'T'] as const
+const QC_TWO = ['CNOT', 'CZ', 'SWAP'] as const
+const QC_ROT = ['RX', 'RY', 'RZ'] as const
+const qcN = ref(2)
+const qcOps = ref<CircuitOp[]>([{ gate: 'H', targets: [0] }, { gate: 'CNOT', targets: [0, 1] }]) // seeded with the Bell circuit
+const qcTarget = ref(0)
+const qcControl = ref(1)
+const qcControl2 = ref(2)
+const qcTheta = ref(TAU / 4) // π/2 = τ/4 — τ lives at the sealed root, no bare Math.PI outside the kernel
+const qcResult = computed(() => runQuantumCircuit({ n: qcN.value, ops: qcOps.value, shots: 432, seed: 'browser-qc' }))
+const qcTopOutcomes = computed(() => qcResult.value.amplitudes.filter((a) => a.probability > 1e-6).sort((a, b) => b.probability - a.probability).slice(0, 8))
+const qcSampleRows = computed(() => Object.entries(qcResult.value.samples).sort((a, b) => b[1] - a[1]).slice(0, 8))
+function qcAdd(gate: string) {
+  const g = gate.toUpperCase()
+  const t = Math.min(qcTarget.value, qcN.value - 1)
+  if ((QC_TWO as readonly string[]).includes(g)) qcOps.value = [...qcOps.value, { gate: g, targets: [Math.min(qcControl.value, qcN.value - 1), t] }]
+  else if (g === 'TOFFOLI') qcOps.value = [...qcOps.value, { gate: g, targets: [Math.min(qcControl.value, qcN.value - 1), Math.min(qcControl2.value, qcN.value - 1), t] }]
+  else if ((QC_ROT as readonly string[]).includes(g)) qcOps.value = [...qcOps.value, { gate: g, targets: [t], theta: qcTheta.value }]
+  else qcOps.value = [...qcOps.value, { gate: g, targets: [t] }]
+}
+function qcRemove(i: number) { qcOps.value = qcOps.value.filter((_, idx) => idx !== i) }
+function qcClear() { qcOps.value = [] }
+function qcPreset(kind: 'bell' | 'ghz' | 'sup') {
+  if (kind === 'bell') { qcN.value = 2; qcOps.value = [{ gate: 'H', targets: [0] }, { gate: 'CNOT', targets: [0, 1] }] }
+  else if (kind === 'ghz') { qcN.value = 3; qcOps.value = [{ gate: 'H', targets: [0] }, { gate: 'CNOT', targets: [0, 1] }, { gate: 'CNOT', targets: [1, 2] }] }
+  else { qcN.value = 3; qcOps.value = [0, 1, 2].map((q) => ({ gate: 'H', targets: [q] })) }
+}
 // Opt-in live lane: OFF = nothing leaves the browser; ON = the query (only) goes to api.stackexchange.com (no key)
 // and MathOverflow's vote-ranked community threads ride under the local answer. Fetch at the EDGE; src computes the URL.
 const moLive = ref(false)
@@ -2025,6 +2058,51 @@ function runTool(toolId: string) {
           </li>
           <li v-if="!chatLog.length" class="quantum-apps__meta">No queries yet — search the sealed corpus above. Nothing leaves the browser unless you enable a lane. Free AI (Pollinations) needs no key; Perplexity needs your own key. Untrusted model answers surface only through the collective mind's 2-of-N consensus.</li>
         </ul>
+      </section>
+      <UiSeparator />
+      <section id="quantum-computer">
+        <h3>Quantum computer — build &amp; run circuits in the browser</h3>
+        <p class="quantum-apps__meta">
+          A complete classical <strong>state-vector simulator</strong>, on-device: universal gate set (H · X · Y · Z · S · T · CNOT · CZ · SWAP · Toffoli · RX/RY/RZ), exact Born-rule readout, ≤10 qubits, deterministic &amp; content-addressed. It runs the sealed <code>runQuantumCircuit</code> fold — zero egress, zero tokens. It is a simulator: cost is exponential in qubits, so there is <strong>no speedup and no QPU</strong> — the name carries that fact.
+        </p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(qcResult.amplitudes.length > 0))">
+          {{ qcResult.n }} qubit{{ qcResult.n === 1 ? '' : 's' }} · {{ qcOps.length }} gate{{ qcOps.length === 1 ? '' : 's' }} · Born-rule · classical simulator · no QPU
+        </UiBadge>
+        <form class="quantum-apps__chat-form" @submit.prevent>
+          <label class="quantum-apps__meta">qubits
+            <input v-model.number="qcN" type="number" min="1" max="10" class="quantum-apps__input" style="width:4rem" />
+          </label>
+          <label class="quantum-apps__meta">target q<input v-model.number="qcTarget" type="number" min="0" :max="qcN - 1" class="quantum-apps__input" style="width:4rem" /></label>
+          <label class="quantum-apps__meta">control q<input v-model.number="qcControl" type="number" min="0" :max="qcN - 1" class="quantum-apps__input" style="width:4rem" /></label>
+          <label class="quantum-apps__meta">control2 q<input v-model.number="qcControl2" type="number" min="0" :max="qcN - 1" class="quantum-apps__input" style="width:4rem" /></label>
+          <label class="quantum-apps__meta">θ<input v-model.number="qcTheta" type="number" step="0.1" class="quantum-apps__input" style="width:5rem" /></label>
+        </form>
+        <div class="quantum-apps__chat-form">
+          <UiButton v-for="g in QC_SINGLE" :key="g" size="sm" variant="outline" type="button" @click="qcAdd(g)">{{ g }}</UiButton>
+          <UiButton v-for="g in QC_TWO" :key="g" size="sm" variant="outline" type="button" @click="qcAdd(g)">{{ g }}</UiButton>
+          <UiButton size="sm" variant="outline" type="button" @click="qcAdd('TOFFOLI')">TOFFOLI</UiButton>
+          <UiButton v-for="g in QC_ROT" :key="g" size="sm" variant="outline" type="button" @click="qcAdd(g)">{{ g }}(θ)</UiButton>
+          <UiButton size="sm" variant="outline" type="button" @click="qcPreset('bell')">Bell</UiButton>
+          <UiButton size="sm" variant="outline" type="button" @click="qcPreset('ghz')">GHZ</UiButton>
+          <UiButton size="sm" variant="outline" type="button" @click="qcPreset('sup')">Superpose</UiButton>
+          <UiButton size="sm" variant="outline" type="button" :disabled="!qcOps.length" @click="qcClear">Clear</UiButton>
+        </div>
+        <ol class="quantum-apps__results">
+          <li v-for="(op, oi) in qcOps" :key="oi">
+            <code>{{ op.gate }}{{ op.theta !== undefined ? '(' + op.theta.toFixed(2) + ')' : '' }} q[{{ op.targets.join(',') }}]</code>
+            <UiButton size="sm" variant="ghost" type="button" @click="qcRemove(oi)">✕</UiButton>
+          </li>
+          <li v-if="!qcOps.length" class="quantum-apps__meta">Empty circuit — |0…0⟩. Add gates above or load a preset.</li>
+        </ol>
+        <p class="quantum-apps__meta">Measurement outcomes — P = |amplitude|² (Born rule), exact:</p>
+        <ol class="quantum-apps__results">
+          <li v-for="out in qcTopOutcomes" :key="out.basis">
+            <code>|{{ out.basis }}⟩</code>
+            <span class="quantum-apps__meta"> · P = {{ out.probability.toFixed(4) }} · amp {{ out.re.toFixed(3) }}{{ out.im >= 0 ? '+' : '' }}{{ out.im.toFixed(3) }}i</span>
+          </li>
+        </ol>
+        <p class="quantum-apps__meta">432-shot sampled histogram (seeded, deterministic): {{ qcSampleRows.map(([b, c]) => '|' + b + '⟩×' + c).join(' · ') }}</p>
+        <p class="quantum-apps__meta">Circuit content-address: <code>{{ qcResult.root.slice(0, 16) }}</code> — the same circuit recomputes to the same root on any machine.</p>
       </section>
       <UiSeparator />
       <section id="ui-prose-duplication">

@@ -5,7 +5,7 @@ import * as __ns_up_heaven_mind from '../heaven/mind'
 import * as __ns_up_up_thunder_trading from '../../thunder/trading'
 import * as __ns_up_up_heaven_balance from '../../heaven/balance'
 import type { MindMatrix } from '../../wind/types'
-import { buildMatrix } from '../../heaven/compute'
+import { buildMatrix, noQpuRequired } from '../../heaven/compute'
 import { computesGate, memoByRoot, merkleFold, toUuid } from '../../0'
 
 export type QuantumApplicationFacetRow = {
@@ -46,7 +46,7 @@ export function quantumApplicationComputes(matrix: MindMatrix = buildMatrix(), a
       { facet: 'agent mind allComputed', on: __ns_up_heaven_mind.allComputed(matrix).computed },
       { facet: 'tradingSimulationComputes offline', on: tradingSim.computes },
       { facet: 'enforcement pipeline complete', on: pipeline.complete },
-      { facet: 'NOT hardware QC lab', on: true },
+      { facet: 'NOT hardware QC lab', on: noQpuRequired(matrix).provenByClassicalSimulator },
     ])
     return { computes, research, qc, dynamics, trading: tradingSim, facets, root: merkleFold([research.root, qc.root, dynamics.root, tradingSim.root]), statement: 'Quantum application computes: QC apps + mind + trading + enforcement compose.', boundary: research.boundary }
   })

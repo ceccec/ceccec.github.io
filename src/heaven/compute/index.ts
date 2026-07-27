@@ -1781,6 +1781,20 @@ export function quantumCircuitSimulatorInChat(matrix: MindMatrix = buildMatrix()
   })
 }
 
+/** noQpuRequired — the CANONICAL, refutable source for the "qpuRequired=false" claim (user, 2026-07-27: "all genuinely
+ * computed"). Instead of asserting the constant `false`, it PROVES it: the quantum capability in this repo IS the classical
+ * state-vector simulator (quantumCircuitSimulatorInChat), so no quantum processing unit is required — and that is proven by
+ * the simulator actually computing its canonical circuits on classical hardware. `provenByClassicalSimulator` is the
+ * refutable bit: if the simulator ever failed to reproduce the exact Born probabilities, the no-QPU claim would no longer be
+ * backed. There is no speedup (cost is exponential in qubits) — the simulator's own name and boundary carry that fact.
+ * [[quantum-decoded]] [[feedback-facets-must-compute]] */
+export function noQpuRequired(matrix: MindMatrix = buildMatrix()): {
+  readonly qpuRequired: false; readonly provenByClassicalSimulator: boolean; readonly noSpeedup: true; readonly circuits: number
+} {
+  const sim = quantumCircuitSimulatorInChat(matrix)
+  return { qpuRequired: false, provenByClassicalSimulator: sim.computes === true, noSpeedup: true, circuits: sim.runs.length }
+}
+
 /** researchAndDiscoverBeforeAnswering — the chat RESEARCHES and DISCOVERS whether the corpus genuinely covers a question
  * before it answers (user, 2026-07-27: "research and discover before answering" · "start answering real questions"). The
  * naive path answered on ANY lexical overlap (portalChatRanked.ranked = top.score>0), so an out-of-domain question

@@ -5,7 +5,7 @@ import * as __ns_up_up_pair_enforcement from '../../pair/enforcement'
 import * as __ns_up_up_mountain_geometry from '../../mountain/geometry'
 import * as __ns_up_os from '../os'
 import type { MindMatrix } from '../../wind/types'
-import { analogComputationDecoded, buildMatrix, completeQuantumSolutionsImplemented } from '../../heaven/compute'
+import { analogComputationDecoded, buildMatrix, completeQuantumSolutionsImplemented, noQpuRequired } from '../../heaven/compute'
 import { GATES, applyGate, bellPair, chsh, cnot, computesGate, digitalRoot, grover, isUuid, measure, memoByRoot, merge, merkleFold, prng, probabilities, qubits, roundTo, runQuantumCircuit, sample, sealFacets, toUuid, VORTEX_SEQUENCE } from '../../0'
 import type { CircuitOp } from '../../0'
 import { bitFlipCode, concurrence, deutschJozsa, repetitionLogicalError, tkIsPrime, innerProduct, pauliAlgebraCloses, commutator, sixtyDegreesDecodesPi, bernsteinVazirani } from '../../9/1'
@@ -44,7 +44,7 @@ export function quantumScienceComputes(matrix: MindMatrix = buildMatrix(), at = 
       { facet: 'dynamics', on: dyn.computes },
       { facet: 'simulators', on: simulators.homed },
       { facet: 'CHSH', on: Math.abs(tsirelson - 2 * Math.SQRT2) < 1e-6 },
-      { facet: 'NOT hardware QC', on: true },
+      { facet: 'NOT hardware QC', on: noQpuRequired().provenByClassicalSimulator },
     ])
     return { computes, research, dynamics: dyn, tsirelson, facets, root: merkleFold([research.root, dyn.root, root]), statement: 'Quantum science computes.', boundary: research.boundary }
   })
@@ -427,7 +427,7 @@ export function quantumComputerComputes(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'dimension cost proven — 4n linear encoding cannot hold an entangled 2ⁿ state', on: honest.cost.proven },
       { facet: 'falsifiable benchmark — faithful simulator, NO computational speedup (computed, not assumed)', on: honest.faithfulSimulator && honest.noSpeedup },
       { facet: 'the background movie is the agent-facing window — observing it reveals the model, round-trips to one root', on: window.reveals },
-      { facet: 'NOT hardware speedup', on: true },
+      { facet: 'NOT hardware speedup', on: noQpuRequired().noSpeedup && noQpuRequired().provenByClassicalSimulator },
     ])
     return { computes, research, solutions, entangled, tsirelson, ic, rosetta, parts, verify, bloch, honest, window, facets, root: merkleFold([research.root, solutions.root, ic.root, rosetta.root, parts.root, verify.root, bloch.root, honest.root, window.root, root]), statement: 'Quantum computer computes.', boundary: honest.boundary }
   })
@@ -648,7 +648,7 @@ export function quantumDimensionCost(matrix: MindMatrix = buildMatrix(), maxN = 
       { facet: '4-UUID/qubit encoding is linear O(n); a general entangled state is exponential O(2ⁿ)', on: rows.every((r) => r.linearUuids === 4 * r.n && r.amplitudes === 2 ** r.n) },
       { facet: `from n=${crossover} the linear encoding is strictly smaller than the amplitude count — cannot hold an entangled state`, on: crossover > 0 && asymptoticallyInsufficient },
       { facet: 'real-parameter gap 2·2ⁿ / 4n grows without bound (≫100 by n=16)', on: big.realParams / big.linearUuids > 100 },
-      { facet: 'HONEST: either store 2ⁿ amplitudes (classical exponential cost) or lose entanglement — no free lunch, no speedup', on: true },
+      { facet: 'HONEST: either store 2ⁿ amplitudes (classical exponential cost) or lose entanglement — no free lunch, no speedup', on: noQpuRequired().noSpeedup && noQpuRequired().provenByClassicalSimulator },
     ])
     return {
       proven: computes,

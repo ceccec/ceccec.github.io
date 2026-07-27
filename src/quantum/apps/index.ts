@@ -3,7 +3,7 @@
 // Pair: rosetta/core · fold: rosettaCoreApi. Apps/nav/tools dispatch via shelve — no wet ray map.
 // Pair: rosetta/complete · fold: rosettaCompleteQuantumAllComputableDimensionsAndTheorems.
 import type { MindMatrix } from '../../wind/types'
-import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded, proofReport } from '../../heaven/compute'
+import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded, proofReport, noQpuRequired } from '../../heaven/compute'
 // Full in-chat support — the deterministic, zero-token, no-egress chat surface, re-exported for the thin .vue shell.
 export { portalChat, chatNavContext, allChatCapabilitiesFusedAndAuditedByStandards, chatThroughMathOverflow, chatThroughPerplexity, chatThroughFreeAi, chatThroughAi, collectiveAiMind, siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis, perplexityRequest, freeAiRequest, aiRequest, AI_PROVIDERS, CECCEC_PROXY_ORIGIN, PERPLEXITY_SITE, splitSearch, MATHOVERFLOW_SITE } from '../../heaven/compute'
 export type { MathOverflowItem } from '../../heaven/compute'
@@ -6591,7 +6591,7 @@ export function mcpQuantumMath(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'run-the-math soft (digit·analog·mesh·qubit·mill)', on: runTheMathSoft },
       { facet: 'golden/angle τ/φ²', on: golden.computes },
       { facet: 'formula/code dual', on: formula.computes },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
       { facet: 'compose digit/fold · theorem/const · run-the-math · golden/angle · formula/code', on: composeMath },
       { facet: 'pair mcp/math · math/mcp', on: pairM && pairMath && foldM.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
@@ -6717,7 +6717,7 @@ export function mcpQuantumVortex(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: `digit/fold remaining=${digits.remaining}`, on: digitFoldWired },
       { facet: `trading:vortex flows=${live.flows ? 1 : 0} doubling=${live.doubling.join('-')}`, on: tradingVortex },
       { facet: `merkaba counterRotating=${mk.counterRotating ? 1 : 0} vortexComputes`, on: merkabaVortex },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
       { facet: 'compose digit/fold · vortex/merkaba · mountain/vortex · merkaba', on: composeVortex },
       { facet: 'pair mcp/vortex · vortex/mcp', on: pairM && pairV && foldM.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
@@ -6834,7 +6834,7 @@ export function mcpQuantumTorus(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: `doubleTorus completely=${completely.completelyQuantum ? 1 : 0} aligns=${align.aligns ? 1 : 0} geo=${geodesy.computes ? 1 : 0}`, on: doubleTorus },
       { facet: `universe/align flow=${align.dynamics.flow ? 1 : 0} spin=${align.dynamics.spin ? 1 : 0} linking=${align.dynamics.linking ? 1 : 0}`, on: align.aligns },
       { facet: 'geo/torus · geodesyDecodedIsDoubleTorusInverted', on: geodesy.computes && soft('geo', 'torus') },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
       { facet: 'compose geo/torus · universe/align · doubleTorusIsCompletelyQuantum · geo/train', on: composeTorus },
       { facet: 'pair mcp/torus · torus/mcp', on: pairM && pairT && foldM.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
@@ -6955,7 +6955,7 @@ export function mcpQuantumResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'sciencesTrinities', on: sciencesTrinities },
       { facet: `millSession saved=${mill.savedCount}/${mill.sessionTheoremCount}`, on: millSession },
       { facet: 'researchDomain · domainProofCatalog', on: researchDomain },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
       { facet: 'compose journey/theorems · sciences/trinities · mill/session · domain/proof', on: composeResearch },
       { facet: 'pair mcp/research · research/mcp', on: pairM && pairR && foldM.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
@@ -7176,7 +7176,7 @@ export function mcpQuantumCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: `missingCount=${missingCount} present=${presentCount}/${faceCount}`, on: missingCount === 0 },
       { facet: 'recomposes research · torus · named faces', on: recomposes },
       { facet: 'pair mcp/catalog · catalog/mcp · mcp/star · star/mcp', on: pairM && pairC && starPairs },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
       { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
       { facet: 'NOT Clay/FTL fake-close', on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
@@ -7335,7 +7335,7 @@ export function mcpCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: `missingDrainable=${missingDrainable}`, on: missingDrainable === 0 },
       { facet: 'compose mcpQuantumCatalog · mcpBrowserParity · scripts-audit', on: quantum.computes && parity.computes && scripts.computes },
       { facet: 'pair mcp/all · all/mcp (mcp/star kept for quantum)', on: pairAll && has('mcp/star') && has('star/mcp') },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
       { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
       { facet: 'NOT fake browser for trinity/fs · NOT Clay/FTL fake-close', on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && residualsNamedHonest },
@@ -13770,7 +13770,7 @@ export function linearWithoutRosettaFoldIsGap(matrix: MindMatrix = buildMatrix()
       { facet: 'composes oneClockProcessLaw', on: oneClock.holds },
       { facet: 'pair linear/rosetta', on: pairRegistered && pairFold.bidirectional },
       { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
     ].map((entry) => ({ ...entry, receipt: toUuid(`linear-rosetta:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('linear-without-rosetta-fold-is-gap', facets)
     const computes = sealed.ok && linearWithoutRosettaFoldIsGapOn
@@ -13899,7 +13899,7 @@ export function animationsFindRedundancyOrInaccuracy(matrix: MindMatrix = buildM
       { facet: 'localToolsMorph', on: morph.computes },
       { facet: 'attestationIncludesLivingTorus', on: movie.surfaces.some((s) => s.id === 'LivingTorus') },
       { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
     ].map((entry) => ({ ...entry, receipt: toUuid(`anim-audit:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('animations-find-redundancy-or-inaccuracy', facets)
     const computes = sealed.ok && inaccurateCount === 0 && redundantCount === 0 && linearRosetta.remaining === 0
@@ -14078,7 +14078,7 @@ export function animationsReviewColorsForPolarityGaps(matrix: MindMatrix = build
       { facet: 'pair anim/color', on: pairAnimColor && pairColor.bidirectional },
       { facet: 'pair color/review', on: pairColorReview && pairReview.bidirectional },
       { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
     ].map((entry) => ({ ...entry, receipt: toUuid(`anim-color:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('animations-review-colors-for-polarity-gaps', facets)
     const computes = sealed.ok && animationsReviewColorsForPolarityGapsOn
@@ -15197,7 +15197,7 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       { facet: 'HARD gate/rosetta · gate/ray · rosetta/pass · quantum/mind · agent/trinity · team/observe', on: gateRosetta.computes && gateRosetta.immediateAccessNoTime },
       { facet: 'pair gaps/invisible', on: pairRegistered && pairFold.bidirectional },
       { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
     ].map((entry) => ({ ...entry, receipt: toUuid(`gaps-invisible:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('invisible-gaps-caught-by-gates', facets)
     const computes = sealed.ok && invisibleGapsCaughtByGatesOn
@@ -15358,7 +15358,7 @@ export function gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix(
       { facet: 'pair gate/tools · tools/forty', on: pairGate && pairForty },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
       { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
     ].map((entry) => ({ ...entry, receipt: toUuid(`gate-tools:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('gate-tools-are-forty-two-as-six-by-seven-inverting-seven-by-six', facets)
     return {
@@ -15485,7 +15485,7 @@ export function gatesMonitorThemselvesThroughTheUi(
       { facet: 'pair gate/monitor · gate/ui', on: pairMonitor && pairUi },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
       { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
     ].map((entry) => ({ ...entry, receipt: toUuid(`gate-monitor:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('gates-monitor-themselves-through-the-ui', facets)
     return {
@@ -15626,7 +15626,7 @@ export function selfQuantumFusion(
       { facet: 'pair self/fusion · fusion/self · fusion/ui', on: pairSelf && pairFusion && pairUi },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
       { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
     ].map((entry) => ({ ...entry, receipt: toUuid(`self-fusion:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('self-quantum-fusion', facets)
     return {
@@ -15769,7 +15769,7 @@ export function fusionInterface(
       { facet: 'pair fusion/ui · self/fusion', on: pairUi && pairSelf },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
       { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
     ].map((entry) => ({ ...entry, receipt: toUuid(`fusion-ui:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('fusion-interface', facets)
     return {
@@ -15900,7 +15900,7 @@ export function crystalClearMind(
       { facet: 'pair crystal/mind · mind/clear', on: pairCrystal && pairClear },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
       { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
     ].map((entry) => ({ ...entry, receipt: toUuid(`crystal-mind:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('crystal-clear-mind', facets)
     return {
@@ -16041,7 +16041,7 @@ export function thirdMindEye(
       { facet: 'pair third/eye · mind/eye', on: pairThird && pairMindEye },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
       { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
     ].map((entry) => ({ ...entry, receipt: toUuid(`third-eye:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('third-mind-eye', facets)
     return {
@@ -16304,7 +16304,7 @@ export function improveLocalFromSessionExperience(matrix: MindMatrix = buildMatr
       { facet: `sealed-safe localStorage key ${LOCAL_SESSION_EXPERIMENT_STORAGE_KEY}`, on: LOCAL_SESSION_EXPERIMENT_STORAGE_KEY.startsWith('ceccec:') },
       { facet: 'wire target browser-local-session published', on: wireHasLocalHub },
       { facet: 'status badges compose sealed kinds (do not clobber CSS PR)', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
       { facet: 'meta tool improve-local-session published + shelved', on: Boolean(meta) && meta!.fold === 'improveLocalFromSessionExperience' && isUuid(shelved.address) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`improve-local-session:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('improve-local-from-session-experience', facets)
@@ -16644,7 +16644,7 @@ export function automateSelf(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'formula/code dual', on: formulaDual },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
       { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
     ].map((entry) => ({ ...entry, receipt: toUuid(`automate-self:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('automate-self', facets)
     return {
@@ -32944,7 +32944,7 @@ export function mcpQuantumConversation(matrix: MindMatrix = buildMatrix(), at = 
         on: composeStack,
       },
       { facet: 'pair mcp/conversation · conversation/mcp', on: pairM && pairC && foldM.bidirectional },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
       { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-conversation:${entry.facet}:${entry.on}`) }))
@@ -33574,7 +33574,7 @@ export function quantumizeNpm(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'thinMountDual', on: thinMountDual },
       { facet: 'compose vite/mcp · build/quantumize · agent/submission · mcp/dev', on: npmScriptsAreMcpDuals },
       { facet: 'pair npm/quantum · quantum/npm', on: pairN && pairQ && foldN.bidirectional },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
       { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`npm-quantum:${entry.facet}:${entry.on}`) }))
@@ -33710,7 +33710,7 @@ export function sessionMemoryCachesTheoremFormulaWaves(matrix: MindMatrix = buil
         facet: 'pair session/cache · cache/theorem · formula/cache',
         on: pairS && pairC && pairF && foldS.bidirectional,
       },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
       { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`session-cache:${entry.facet}:${entry.on}`) }))
@@ -35121,7 +35121,7 @@ export function upgradeLocalFromOptimisedManualWorkExperience(matrix: MindMatrix
       { facet: 'wire target browser-upgrade-local published', on: wireHasUpgrade },
       { facet: 'automate nightly npm-script path ships (#48)', on: automateNightly.automateNightlyShipped },
       { facet: 'NOT Cursor zero-token LLM endpoint — protocol=rules/skills/MCP/sealed folds/packages', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
       { facet: 'meta tool upgrade-local-skills-commands-tools published + shelved', on: Boolean(meta) && meta!.fold === 'upgradeLocalFromOptimisedManualWorkExperience' && isUuid(shelved.address) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`upgrade-local:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('upgrade-local-from-optimised-manual-work-experience', facets)
@@ -35783,7 +35783,7 @@ export function scientificTerminologyIsQuantumComputableMeasurableComparable(
         { facet: 'efficiency←answers÷tokens when vote.decided', on: vote.facets.length > 0 },
         { facet: 'pair term/measure', on: pairRegistered && pairFold.bidirectional },
         { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
-        { facet: 'qpuRequired=false', on: true },
+        { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
       ].map((entry) => ({ ...entry, receipt: toUuid(`term-measure:${entry.facet}:${entry.on}`) }))
       const sealed = sealFacets('scientific-terminology-quantum-computable-measurable-comparable', facets)
       const computes = sealed.ok && scientificTerminologyOn
@@ -35905,7 +35905,7 @@ export function meaningIsQuantumComputable(matrix: MindMatrix = buildMatrix(), a
       { facet: 'composes ui/prose · card→paper · algebraic', on: uiProse.uiProseDuplicationRemoved && cards.gapCount === 0 && algebraic.computes },
       { facet: 'pair meaning/compute', on: pairRegistered && pairFold.bidirectional },
       { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
     ].map((entry) => ({ ...entry, receipt: toUuid(`meaning-compute:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('meaning-is-quantum-computable', facets)
     const computes = sealed.ok && meaningIsQuantumComputableOn
@@ -36021,7 +36021,7 @@ export function redundantExplanationSectionsDryCleaned(matrix: MindMatrix = buil
       { facet: 'composes format/canon · dry/clean', on: format.computes && format.noNamedExplanation },
       { facet: 'pair section/dry', on: pairRegistered && pairFold.bidirectional },
       { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
     ].map((entry) => ({ ...entry, receipt: toUuid(`section-dry:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('redundant-explanation-sections-dry-cleaned', facets)
     return {
@@ -36108,7 +36108,7 @@ export function scientificPageFormatCanonised(matrix: MindMatrix = buildMatrix()
       { facet: 'composes algebraicTheoremPaperMustContain · ui/prose', on: algebraic.computes && uiProse.uiProseDuplicationRemoved },
       { facet: 'pair format/canon', on: pairRegistered && pairFold.bidirectional },
       { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
     ].map((entry) => ({ ...entry, receipt: toUuid(`format-canon-facet:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('scientific-page-format-canonised', facets)
     return {
@@ -36270,7 +36270,7 @@ export function uiProseDuplicationRemoved(matrix: MindMatrix = buildMatrix(), at
       { facet: 'paperAbstractOmitsTitleEcho strips Statement: <title>', on: abstractOmitsTitle },
       { facet: 'sealed catalog-driven receipt (no wet re-audit)', on: Boolean(meta) && isUuid(shelved.address) },
       { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
       { facet: 'meta tool ui-prose-duplication-removed published + shelved', on: Boolean(meta) && meta!.fold === 'uiProseDuplicationRemoved' && isUuid(shelved.address) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`ui-prose-dup-facet:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('ui-prose-duplication-removed', facets)
