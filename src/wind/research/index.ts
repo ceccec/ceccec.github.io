@@ -10482,6 +10482,10 @@ export function claySolvedIsATheoremNotHardcodedValue(
   return memoByRoot(`claySolvedIsATheoremNotHardcodedValue:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const th = claySolvedTheorem()
+    // The REFUTABLE proof that claySolved=0 — scans all monographs' formulas (not the hardcoded CMI list). A synthetic
+    // Clay overclaim flips graph.claimedByThisProject>0 and reds this gate; that is honesty CAUGHT, not declared.
+    const graph = clayGraphOverAlgebraicMonographs(matrix)
+    const clayProvenByFormulaScan = graph.computes && graph.claimedByThisProject === 0
     const pairFold = foldPair(toUuid('cmd:clay'), toUuid('cmd:solved'))
     const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('clay/solved')
     const pairTheorem = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('theorem/const')
@@ -10509,9 +10513,10 @@ export function claySolvedIsATheoremNotHardcodedValue(
     const found = surfaces.length
     const fixed = surfaces.filter((s) => s.status === 'fixed').length
     const remaining = surfaces.filter((s) => s.status === 'remaining').length
-    const on = remaining === 0 && fixed === found && viaTheorem && formulaDual && pairRegistered
+    const on = remaining === 0 && fixed === found && viaTheorem && formulaDual && pairRegistered && clayProvenByFormulaScan
     const facets = [
       { facet: 'claySolvedIsATheoremNotHardcodedValue', on },
+      { facet: `claySolved=0 CAUGHT BY THE GATE — proven by scanning all ${graph.monographCount} monographs' formulas (clayGraphOverAlgebraicMonographs), REFUTABLE: a synthetic Clay overclaim flips claimedByThisProject>0 and reds this; NOT the hardcoded CMI_PRIZE_SOLVED_CORE_IDS.length`, on: clayProvenByFormulaScan },
       { facet: 'claySolvedTheorem recomputes at call time', on: viaTheorem },
       { facet: `hardcoded literals removed=${literalsRemoved} via theorem`, on: literalsRemoved >= 100 },
       { facet: 'HARD bare claySolved literal = crack', on: viaTheorem && pairDecimal },
