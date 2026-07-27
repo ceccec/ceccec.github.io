@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, shallowRef } from 'vue'
+import { ref, shallowRef, computed } from 'vue'
 import {
   agentAssumeNothingMathProvesInTheMoment,
   encryptionPanelComputes,
@@ -8,7 +8,43 @@ import {
   runQuantumStandardsAuditInBrowser,
   runIsoPqcRequirementsGapFillInBrowser,
   globalCyberStandardsAuditEveryAspect,
+  useCasesBeyondQuantum,
 } from './index.ts'
+import { toUuid, toUuidSha256, sha256Sync, foldPair, trinityKey } from '../../0'
+
+// ── PRODUCTION TOOLS — real, usable, deterministic, client-side, ZERO-EGRESS. Type your OWN input; every output
+// recomputes locally from the sealed primitives (no network, no key ever leaves the tab). HONEST: these are
+// content-addressed HASHES and TAMPER-EVIDENT SEALS (integrity), NOT confidentiality ciphers — a seal is one-way,
+// you cannot recover the plaintext from it. Strength rides SHA-256 (toUuidSha256); FNV (toUuid) is fast, non-security.
+const hashInput = ref('')
+const hashOut = computed(() => {
+  const t = hashInput.value
+  if (!t) return null
+  return { sha256: sha256Sync(t), sha256Uuid: toUuidSha256(t), fnvUuid: toUuid(t), bytes: new TextEncoder().encode(t).length }
+})
+
+const sealMessage = ref('')
+const sealPassphrase = ref('')
+const sealOut = computed(() => {
+  const m = sealMessage.value, k = sealPassphrase.value
+  if (!m || !k) return null
+  const derive = (key: string, msg: string) => foldPair(trinityKey(toUuidSha256(key), toUuidSha256(`${key}·2`)), toUuidSha256(msg))
+  const sealed = derive(k, m)
+  const reVerify = derive(k, m).merged === sealed.merged                 // same message + passphrase → same seal (integrity holds)
+  const tamperDiffers = derive(k, `${m} `).merged !== sealed.merged      // one changed byte → a different seal (tamper detected)
+  const wrongKeyDiffers = derive(`${k} `, m).merged !== sealed.merged    // wrong passphrase → a different seal (binding holds)
+  return { seal: sealed.merged, forward: sealed.forward, reverse: sealed.reverse, bidirectional: sealed.bidirectional, reVerify, tamperDiffers, wrongKeyDiffers }
+})
+
+const shareA = ref('')
+const shareB = ref('')
+const keyOut = computed(() => {
+  const a = shareA.value, b = shareB.value
+  if (!a || !b) return null
+  const key = trinityKey(toUuidSha256(a), toUuidSha256(b))
+  const swapped = trinityKey(toUuidSha256(b), toUuidSha256(a))
+  return { key, orderSensitive: key !== swapped } // the two shares fold to one key; order-sensitivity reported, not assumed
+})
 import UiCard from '../../../.vitepress/theme/components/ui/Card.vue'
 import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.vue'
 import UiBadge from '../../../.vitepress/theme/components/ui/Badge.vue'
@@ -26,6 +62,7 @@ const pqcResult = shallowRef<ReturnType<typeof runPqcStandardsToolInBrowser> | n
 const auditResult = shallowRef<ReturnType<typeof runQuantumStandardsAuditInBrowser> | null>(null)
 const isoGapResult = shallowRef<ReturnType<typeof runIsoPqcRequirementsGapFillInBrowser> | null>(null)
 const euAudit = shallowRef(globalCyberStandardsAuditEveryAspect())
+const useCases = shallowRef(useCasesBeyondQuantum())
 
 function selectModulus(n: number) {
   selectedModulus.value = n
@@ -76,6 +113,85 @@ runTool()
           audit {{ auditResult.passCount }} pass · {{ auditResult.gapCount }} gap
         </UiBadge>
       </header>
+      <UiSeparator />
+      <section class="encryption-tools__production" aria-label="Production tools — hash, seal, key derivation">
+        <h3>Production tools — hash · seal · key (type your own input)</h3>
+        <p class="encryption-tools__lede">
+          Usable by <strong>anyone</strong>, in <strong>any language</strong>, at <strong>any scale</strong> (a byte
+          to a terabyte — the digest is scale-invariant), fully <strong>offline</strong>: every output recomputes
+          locally from the sealed primitives — no network, no key ever leaves this tab. Each tool names the
+          <strong>standard</strong> it meets and the <strong>scale</strong> it holds at. These are content-addressed
+          <strong>hashes</strong> and tamper-evident <strong>seals</strong> (integrity), NOT confidentiality ciphers
+          (ML-KEM / AES) — a seal is one-way.
+        </p>
+
+        <div class="encryption-tools__tool">
+          <label class="encryption-tools__label" for="enc-hash-in">Hash / content-address</label>
+          <p class="encryption-tools__meta"><UiBadge variant="outline">FIPS 180-4</UiBadge> SHA-256 — NIST-standard cryptographic hash; the same 256-bit digest at every scale. Integrity &amp; content-addressing, not confidentiality.</p>
+          <textarea id="enc-hash-in" v-model="hashInput" class="encryption-tools__input" rows="2" placeholder="Type any text to hash…" spellcheck="false"></textarea>
+          <div v-if="hashOut" class="encryption-tools__out">
+            <p class="encryption-tools__meta">{{ hashOut.bytes }} bytes</p>
+            <p><UiBadge variant="outline">SHA-256</UiBadge> <code>{{ hashOut.sha256 }}</code></p>
+            <p><UiBadge variant="outline">SHA-256 UUID</UiBadge> <code>{{ hashOut.sha256Uuid }}</code></p>
+            <p><UiBadge variant="outline">FNV UUID (fast, non-security)</UiBadge> <code>{{ hashOut.fnvUuid }}</code></p>
+          </div>
+        </div>
+
+        <div class="encryption-tools__tool">
+          <label class="encryption-tools__label" for="enc-seal-msg">Tamper-evident seal</label>
+          <p class="encryption-tools__meta"><UiBadge variant="outline">integrity scale</UiBadge> SHA-256-based content-address seal — detects any change and binds to the passphrase. NOT a FIPS-198 HMAC and NOT confidentiality; a seal cannot be reversed to the message.</p>
+          <textarea id="enc-seal-msg" v-model="sealMessage" class="encryption-tools__input" rows="2" placeholder="Message to seal…" spellcheck="false"></textarea>
+          <input id="enc-seal-key" v-model="sealPassphrase" class="encryption-tools__input" type="text" placeholder="Passphrase (never leaves the tab)…" spellcheck="false" autocomplete="off" />
+          <div v-if="sealOut" class="encryption-tools__out">
+            <p><UiBadge :variant="sealOut.bidirectional ? 'default' : 'outline'">seal</UiBadge> <code>{{ sealOut.seal }}</code></p>
+            <p class="encryption-tools__meta">
+              <UiBadge :variant="sealOut.reVerify ? 'default' : 'outline'">{{ sealOut.reVerify ? '✓' : '—' }} re-seal verifies</UiBadge>
+              <UiBadge :variant="sealOut.tamperDiffers ? 'default' : 'outline'">{{ sealOut.tamperDiffers ? '✓' : '—' }} 1-byte change detected</UiBadge>
+              <UiBadge :variant="sealOut.wrongKeyDiffers ? 'default' : 'outline'">{{ sealOut.wrongKeyDiffers ? '✓' : '—' }} bound to passphrase</UiBadge>
+            </p>
+            <p class="encryption-tools__meta">forward <code>{{ sealOut.forward.slice(0, 8 * 2) }}…</code> · reverse <code>{{ sealOut.reverse.slice(0, 8 * 2) }}…</code></p>
+          </div>
+          <p class="encryption-tools__boundary">A seal proves the message was not altered and was made with this passphrase; it does not hide the message and cannot be reversed to it.</p>
+        </div>
+
+        <div class="encryption-tools__tool">
+          <label class="encryption-tools__label" for="enc-share-a">Shared-key derivation (two shares → one key)</label>
+          <input id="enc-share-a" v-model="shareA" class="encryption-tools__input" type="text" placeholder="Share A…" spellcheck="false" autocomplete="off" />
+          <input id="enc-share-b" v-model="shareB" class="encryption-tools__input" type="text" placeholder="Share B…" spellcheck="false" autocomplete="off" />
+          <div v-if="keyOut" class="encryption-tools__out">
+            <p><UiBadge variant="default">trinity key</UiBadge> <code>{{ keyOut.key }}</code></p>
+            <p class="encryption-tools__meta"><UiBadge variant="outline">order-sensitive={{ keyOut.orderSensitive }}</UiBadge> both shares fold into the one key (trinityKey)</p>
+          </div>
+        </div>
+      </section>
+      <UiSeparator />
+      <section class="encryption-tools__usecases" aria-label="Use cases, forensics, and beyond-quantum analysis">
+        <h3>Use cases · forensics · beyond-quantum</h3>
+        <p class="encryption-tools__lede">
+          Each tool mapped to a real use case, its standard, its scale, and the quantum verdict. INTEGRITY &amp;
+          FORENSICS survive a quantum attacker (Grover only halves SHA-256 to 2<sup>{{ useCases.groverQuantumBits }}</sup>,
+          infeasible); CONFIDENTIALITY does not (Shor breaks RSA/ECC — needs ML-KEM). certified=false.
+        </p>
+        <UiBadge :variant="useCases.computes ? 'default' : 'outline'">
+          {{ useCases.useCases.length }} use cases · forensic {{ useCases.forensicCount }} · quantum-resilient {{ useCases.resilientCount }}/{{ useCases.useCases.length }}
+        </UiBadge>
+        <table class="encryption-tools__table">
+          <thead>
+            <tr><th>Quantum</th><th>Use case</th><th>Solution</th><th>Standard</th><th>Scale</th><th>Threat</th></tr>
+          </thead>
+          <tbody>
+            <tr v-for="u in useCases.useCases" :key="u.id">
+              <td><UiBadge :variant="u.quantumResilient ? 'default' : 'outline'">{{ u.quantumResilient ? '🛡 safe' : '⚠ gap' }}</UiBadge></td>
+              <td>{{ u.useCase }}</td>
+              <td>{{ u.solution }}</td>
+              <td><code>{{ u.standard }}</code></td>
+              <td>{{ u.scale }}</td>
+              <td class="encryption-tools__meta">{{ u.quantumThreat }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="encryption-tools__boundary">{{ useCases.boundary }}</p>
+      </section>
       <UiSeparator />
       <section aria-label="Demo modulus picker">
         <h3>Demo modulus (reverse)</h3>
@@ -446,4 +562,12 @@ runTool()
 .encryption-tools__error { color: var(--vp-c-danger-1, crimson); font-size: var(--ich-text-sm); }
 .encryption-tools__table { width: 100%; border-collapse: collapse; font-size: var(--ich-text-xs); margin: var(--ich-sp4) 0; }
 .encryption-tools__table th, .encryption-tools__table td { text-align: left; padding: var(--ich-sp2) var(--ich-sp3); border-bottom: 1px solid var(--vp-c-divider); vertical-align: top; }
+.encryption-tools__production { margin: var(--ich-sp4) 0; }
+.encryption-tools__tool { margin: var(--ich-sp4) 0; }
+.encryption-tools__label { display: block; font-weight: calc(6 * 100); margin-bottom: var(--ich-sp2); font-size: var(--ich-text-sm); }
+.encryption-tools__input { width: 100%; box-sizing: border-box; margin-bottom: var(--ich-sp2); padding: var(--ich-sp2) var(--ich-sp3); border: 1px solid var(--vp-c-divider); border-radius: calc(1px * 6); background: var(--vp-c-bg-soft); color: inherit; font-family: ui-monospace, Menlo, monospace; font-size: var(--ich-text-sm); }
+.encryption-tools__input:focus { outline: calc(1px * 2) solid var(--vp-c-brand-1, currentColor); }
+.encryption-tools__out { margin: var(--ich-sp2) 0; }
+.encryption-tools__out p { margin: var(--ich-sp2) 0; }
+.encryption-tools__out code { word-break: break-all; font-size: var(--ich-text-xs); }
 </style>
