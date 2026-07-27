@@ -76,6 +76,19 @@ const bodyOf = (row: DomainProofCatalogRow) => sciencePaperBodyFromDomainRow(row
 
       <ScientificPaperBody :paper="bodyOf(row)" :logic="row.fold" />
 
+      <section v-if="row.facetAlgebra && row.facetAlgebra.length" class="domain-proof__facets" aria-label="Per-facet algebra">
+        <h2>{{ t('Theorem — the proof, per facet') }}</h2>
+        <ul class="domain-proof__facet-list">
+          <li v-for="(fa, i) in row.facetAlgebra" :key="i">
+            <span :class="fa.on ? 'domain-proof__on' : 'domain-proof__off'">{{ fa.on ? '✓' : '—' }}</span>
+            <code>{{ fa.f }}</code>
+          </li>
+        </ul>
+        <ul v-if="row.gapAlgebra && row.gapAlgebra.length" class="domain-proof__gap-list">
+          <li v-for="(g, i) in row.gapAlgebra" :key="i"><span class="domain-proof__gap-label">{{ t('gap algebra') }}</span> <code>{{ g }}</code></li>
+        </ul>
+      </section>
+
       <section>
         <h2>4 · {{ t('Trinity') }}</h2>
         <dl class="domain-proof__locks">
@@ -131,4 +144,10 @@ const bodyOf = (row: DomainProofCatalogRow) => sciencePaperBodyFromDomainRow(row
 .domain-proof__locks dd { margin: 0; }
 .domain-proof__meta { font-size: calc(1em * 7 / (2 * 5)); opacity: calc(3 / 5); }
 .domain-proof__nav { margin-top: var(--ich-sp6); font-size: calc(1em * 4 / 5); }
+.domain-proof__facet-list, .domain-proof__gap-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--ich-sp2); }
+.domain-proof__gap-list { margin-top: var(--ich-sp3); }
+.domain-proof__facet-list code, .domain-proof__gap-list code { font-size: calc(1em * 7 / (2 * 5)); }
+.domain-proof__on { color: var(--vp-c-brand-1); font-weight: calc(6 * 100); }
+.domain-proof__off { opacity: calc(3 / 5); }
+.domain-proof__gap-label { font-variant: small-caps; opacity: calc(3 / 5); }
 </style>

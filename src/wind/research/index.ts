@@ -4574,6 +4574,10 @@ export type DomainProofCatalogRow = {
   readonly trinity: { readonly forward: string; readonly inverse: string; readonly reverse: string }
   readonly ruleClauses: readonly string[]
   readonly receipt: string
+  // Per-facet algebra + gap algebra, REUSED from the one MillenniumProblemChallenge source (no parallel copy)
+  // so the dedicated /proofs page renders the same Theorem/Proof breakdown as README §3 — one source, no drift.
+  readonly facetAlgebra?: readonly { readonly f: string; readonly on: boolean }[]
+  readonly gapAlgebra?: readonly string[]
 }
 
 /**
@@ -4611,7 +4615,9 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         slug: `millennium-${p.id}`,
         title: p.name,
         kind: 'millennium' as const,
-        officialStatement: `${p.name} — official Clay Millennium Prize Problem (see ${CLAY_MILLENNIUM_PROBLEMS_URL}). Sealed short statement / formula below from theSevenMillenniumProblemsDefinedFormallyUnclaimed; CMI official description remains authoritative.`,
+        officialStatement: p.algebraicStatement
+          ? `${p.name} — ${p.algebraicStatement} (official Clay Millennium Prize Problem; the CMI description at ${CLAY_MILLENNIUM_PROBLEMS_URL} remains authoritative).`
+          : `${p.name} — official Clay Millennium Prize Problem (see ${CLAY_MILLENNIUM_PROBLEMS_URL}).`,
         detailedExplanation:
           `${p.boundary} Challenge methods recomputed at call time: ${p.challengeMethod.join('; ')}. ` +
           `COMPUTABLE from sequence/trinity/rosetta stack (computablePath=${p.on}) — NOT a CMI Prize solution. ` +
@@ -4637,7 +4643,10 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
           inverse: `challenge:${p.id}:inverse`,
           reverse: `challenge:${p.id}:reverse` },
         ruleClauses: [...millenniumRuleFacets],
-        receipt: p.receipt }
+        receipt: p.receipt,
+        // REUSED from the one source (p ∈ mill.problems) — the same per-facet algebra README §3 renders.
+        facetAlgebra: p.facetAlgebra ?? [],
+        gapAlgebra: p.gapAlgebra ?? [] }
     })
 
     const scienceRows: DomainProofCatalogRow[] = SCIENCE_DOMAIN_SEEDS.map((seed) => {
