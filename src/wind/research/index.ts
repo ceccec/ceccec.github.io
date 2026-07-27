@@ -2206,11 +2206,11 @@ export type ClayProblemId = 'poincare' | 'pvnp' | 'navierStokes' | 'riemann' | '
 export const CLAY_PROBLEMS: Record<ClayProblemId, { name: string; rigor: ClayRigorLevel }> = {
   poincare: { name: 'Poincaré Conjecture', rigor: 'proven-and-used' },
   pvnp: { name: 'P vs NP', rigor: 'proven' },
-  navierStokes: { name: 'Navier–Stokes', rigor: 'proven-on-proxy' },
+  navierStokes: { name: 'Navier–Stokes Existence and Smoothness', rigor: 'proven-on-proxy' },
   riemann: { name: 'Riemann Hypothesis', rigor: 'proven-in-cousin' },
-  yangMills: { name: 'Yang–Mills mass gap', rigor: 'observed' },
+  yangMills: { name: 'Yang–Mills Existence and Mass Gap', rigor: 'observed' },
   hodge: { name: 'Hodge Conjecture', rigor: 'observed' },
-  bsd: { name: 'Birch–Swinnerton-Dyer', rigor: 'observed' },
+  bsd: { name: 'Birch and Swinnerton–Dyer Conjecture', rigor: 'observed' },
 }
 
 /**
@@ -2547,7 +2547,7 @@ export function clayCreditsOnlyThePoincareSolutionTheOtherSixOpen(matrix: MindMa
     { id: 'yang-mills', name: 'Yang–Mills Existence and Mass Gap', solved: false, solver: null, note: 'open — no rigorous 4D construction / mass-gap proof' },
     { id: 'navier-stokes', name: 'Navier–Stokes Existence and Smoothness', solved: false, solver: null, note: 'open — no global regularity or blow-up proof' },
     { id: 'hodge', name: 'Hodge Conjecture', solved: false, solver: null, note: 'open — no verified proof' },
-    { id: 'birch-swinnerton-dyer', name: 'Birch and Swinnerton–Dyer', solved: false, solver: null, note: 'open — no verified proof' },
+    { id: 'birch-swinnerton-dyer', name: 'Birch and Swinnerton–Dyer Conjecture', solved: false, solver: null, note: 'open — no verified proof' },
   ]
   const creditsGiven = credits.filter((credit) => credit.solved).length // 1
   const uncredited = credits.filter((credit) => !credit.solved).length // 6
