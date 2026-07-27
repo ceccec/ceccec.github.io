@@ -2046,14 +2046,14 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
     const solvedExternal = problems.filter((p) => p.status === 'solved-external').length
     const allOn = problems.every((p) => p.on)
     const gapsNamed = problems.filter((p) => typeof p.gap === 'string').length
-    const noClayClaim = claySolvedByThisFold === 0 && frontier.open === 6 && defined.solvedByThisFold === 0
+    const noClayClaim = claySolvedByThisFold === 0 && frontier.open === CLAY_OPEN_COUNT && defined.solvedByThisFold === 0
     const stringProbesOk = stringInventory.inventoried && stringQuantum.computes && stringAlgebra.decoded
     const facets = [
-      { facet: `SEVEN CHALLENGES EMITTED — each Clay problem has id · challengeMethod · on · receipt · boundary · status (${problems.length}=7); all recompute on: (${allOn})`, on: problems.length === 7 && allOn },
+      { facet: `SEVEN CHALLENGES EMITTED — each Clay problem has id · challengeMethod · on · receipt · boundary · status (${problems.length}=7); all recompute on: (${allOn})`, on: problems.length === CLAY_ORDER.length && allOn },
       { facet: `NEW FOLDS COMPOSED — zeroDivisionTable.holds (${zeroDiv.holds}), f→{p,q} (${fInv.computes}), efficiency (${eff.optimized}), Pauli (${pauli.closes}), encrypt structural round-trip (${encRoundTrip}), frontier+defined honesty (${frontier.computes && defined.computes})`, on: zeroDiv.holds && fInv.computes && eff.optimized && pauli.closes && encRoundTrip && frontier.computes && defined.computes },
       { facet: `STRING-THEORY PROBES WIRED — inventory (${stringInventory.inventoried}) · quantumize (${stringQuantum.computes}) · algebra (${stringAlgebra.decoded}) as MODELED challenge methods on Hodge/RH/YM`, on: stringProbesOk },
       { facet: `efficiencyScalesToInfinityAtNoCostOnReuse — memo O(1) hit · tokens===0 unbeatable · !separated (${infinityReuse.verdict}) — P vs NP / efficiency spine`, on: infinityReuse.on && !infinityReuse.separated },
-      { facet: `STATUS MIX IS HONEST — solved-external=${solvedExternal} (Poincaré only), modeled-partial/open/gap covering the six cores (${openCores}), named gaps=${gapsNamed} (≥6 cores + string CY/AdS gaps)`, on: solvedExternal === 1 && openCores === 6 && gapsNamed >= 6 },
+      { facet: `STATUS MIX IS HONEST — solved-external=${solvedExternal} (Poincaré only), modeled-partial/open/gap covering the six cores (${openCores}), named gaps=${gapsNamed} (≥6 cores + string CY/AdS gaps)`, on: solvedExternal === CLAY_SOLVED_COUNT && openCores === CLAY_OPEN_COUNT && gapsNamed >= 6 },
       { facet: `EARNED BOUNDARY — claySolvedByThisFold=${claySolvedByThisFold}; MODELED CHALLENGE apparatus only; no Clay prize solution claimed (${noClayClaim})`, on: noClayClaim },
     ].map((entry) => ({ ...entry, receipt: toUuid(`millennium-challenge-apparatus:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('millennium-problems-challenge', facets)
@@ -2100,10 +2100,10 @@ export function invertAgainTheThirdPerspective(matrix: MindMatrix = buildMatrix(
   const claySolvedByThisFold = claySolvedByFormulas(JSON.stringify(trinity))
   const allThree = trinity.every((t) => t.barrier.length > 0 && t.requirement.length > 0 && t.consequence.length > 0)
   const facets = [
-    { facet: `THE DOUBLE INVERSION REVEALS THE THIRD PERSPECTIVE — barrier (obstacle) → requirement (invert once) → CONSEQUENCE (invert again): the ${trinity.length} consequences were INVISIBLE while looking only at the obstacle and the need`, on: trinity.length === 6 && allThree },
+    { facet: `THE DOUBLE INVERSION REVEALS THE THIRD PERSPECTIVE — barrier (obstacle) → requirement (invert once) → CONSEQUENCE (invert again): the ${trinity.length} consequences were INVISIBLE while looking only at the obstacle and the need`, on: trinity.length === CLAY_OPEN_COUNT && allThree },
     { facet: `THE THREE FORM A TRINITY — barrier · requirement · consequence is the inversion group (obstacle / need / unlocked), su(2) dim 3; each problem now carries all three perspectives, not two`, on: allThree },
     { facet: `THE CONSEQUENCE IS CONDITIONAL — claySolvedByThisFold=${claySolvedByThisFold}: each third perspective is "IF the requirement is met, THEN…" — a hypothetical downstream that names what a solution WOULD unlock, never a claim the requirement is met`, on: claySolvedByThisFold === 0 },
-    { facet: `ALL REVERSED BOUNDARIES ARE COMPUTED — ${trinity.length}/6 open problems now have the full trinity quantum-computed (barrier→requirement→consequence); the reversal loop is complete, deterministic, zero-token`, on: trinity.length === 6 && allThree },
+    { facet: `ALL REVERSED BOUNDARIES ARE COMPUTED — ${trinity.length}/6 open problems now have the full trinity quantum-computed (barrier→requirement→consequence); the reversal loop is complete, deterministic, zero-token`, on: trinity.length === CLAY_OPEN_COUNT && allThree },
     { facet: `THE DEMARCATION — the third perspective is the CONSEQUENCE space (conditional implications, real mathematics of "what a proof would enable"), NOT a proof and NOT a claim the consequences hold; clay stays 0.`, on: allThree && claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`third-perspective:${entry.facet}:${entry.on}`) }))
   return {
@@ -2135,7 +2135,7 @@ export function reverseEngineerAllTestableFragments(matrix: MindMatrix = buildMa
   const facets = [
     { facet: `NOT JUST THE SURFACE — ALL — ${totalTestable} testable fragments across the 7 problems (${perProblem.map((p) => `${p.problem}:${p.fragments}`).join(', ')}), not one per problem; the full decidable decomposition`, on: totalTestable > challenge.problems.length && perProblem.every((p) => p.fragments >= 1) },
     { facet: `EVERY FRAGMENT IS SEALED & RECOMPUTES — all ${challenge.problems.length} per-problem probe sets verify (${allCompute}); ${distinctFragments} distinct testable methods, each already saved as reusable code`, on: allCompute && distinctFragments > 0 },
-    { facet: `THE FULL SURFACE ≠ THE CORE — the ${totalTestable} testable fragments cover the DECIDABLE surface exhaustively, yet the ${openCores} open requirements stay open (claySolvedByThisFold=${claySolvedByThisFold}); more partials never sum to a proof`, on: claySolvedByThisFold === 0 && openCores === 6 },
+    { facet: `THE FULL SURFACE ≠ THE CORE — the ${totalTestable} testable fragments cover the DECIDABLE surface exhaustively, yet the ${openCores} open requirements stay open (claySolvedByThisFold=${claySolvedByThisFold}); more partials never sum to a proof`, on: claySolvedByThisFold === 0 && openCores === CLAY_OPEN_COUNT },
     { facet: `EXHAUSTIVE REVERSE-ENGINEERING — the skill decomposes each requirement into ALL its testable sub-computations (the whole challengeMethod list), not the top one; deterministic, zero-token, re-runs to the same set`, on: totalTestable > challenge.problems.length && challenge.computes },
     { facet: `THE DEMARCATION — an exhaustive, evidence-rich testable surface is still evidence, not theorems for the open cores; clay stays 0 and each fragment carries "NOT a proof".`, on: allCompute && claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`reverse-all:${entry.facet}:${entry.on}`) }))
@@ -2206,14 +2206,17 @@ export type ClayProblemId = 'poincare' | 'pvnp' | 'navierStokes' | 'riemann' | '
 export const CLAY_PROBLEMS: Record<ClayProblemId, { id: string; name: string; rigor: ClayRigorLevel }> = {
   poincare: { id: 'poincare', name: 'Poincaré Conjecture', rigor: 'proven-and-used' },
   pvnp: { id: 'p-vs-np', name: 'P vs NP', rigor: 'proven' },
-  navierStokes: { id: 'navier-stokes', name: 'Navier–Stokes Existence and Smoothness', rigor: 'proven-on-proxy' },
   riemann: { id: 'riemann', name: 'Riemann Hypothesis', rigor: 'proven-in-cousin' },
   yangMills: { id: 'yang-mills', name: 'Yang–Mills Existence and Mass Gap', rigor: 'observed' },
+  navierStokes: { id: 'navier-stokes', name: 'Navier–Stokes Existence and Smoothness', rigor: 'proven-on-proxy' },
   hodge: { id: 'hodge', name: 'Hodge Conjecture', rigor: 'observed' },
   bsd: { id: 'birch-swinnerton-dyer', name: 'Birch and Swinnerton–Dyer Conjecture', rigor: 'observed' },
 }
-/** Canonical registry order — one array both projections (credits · apparatus identity) iterate. */
-export const CLAY_ORDER: readonly ClayProblemId[] = ['poincare', 'pvnp', 'riemann', 'yangMills', 'navierStokes', 'hodge', 'bsd']
+/** Order + counts, all DERIVED from the one registry — no hardcoded list, no hardcoded count. A problem is
+ *  SOLVED iff its rigor is 'proven-and-used' (the tool was found and used); everything else is open. */
+export const CLAY_ORDER = Object.keys(CLAY_PROBLEMS) as readonly ClayProblemId[]
+export const CLAY_SOLVED_COUNT = CLAY_ORDER.filter((k) => CLAY_PROBLEMS[k].rigor === 'proven-and-used').length
+export const CLAY_OPEN_COUNT = CLAY_ORDER.length - CLAY_SOLVED_COUNT
 
 /**
  * millenniumOpenBarriersInvertToRequirements — save the barriers, invert using the saved (user, 2026-07-24: "why are
@@ -2236,7 +2239,7 @@ export function millenniumOpenBarriersInvertToRequirements(matrix: MindMatrix = 
   const claySolvedByThisFold = claySolvedByFormulas(JSON.stringify(inversions))
   const allInverted = inversions.every((i) => i.barrier.length > 0 && i.requirement.length > 0)
   const facets = [
-    { facet: `SAVED — the 6 open problems each carry WHY they are open (the barrier): ${inversions.map((i) => i.problem).join(', ')}`, on: inversions.length === 6 && inversions.every((i) => i.barrier.length > 0) },
+    { facet: `SAVED — the 6 open problems each carry WHY they are open (the barrier): ${inversions.map((i) => i.problem).join(', ')}`, on: inversions.length === CLAY_OPEN_COUNT && inversions.every((i) => i.barrier.length > 0) },
     { facet: `INVERTED USING THE SAVED — each barrier inverts to a REQUIREMENT (the shape of the missing bridge): the "why open" (an absence) becomes "what a proof must satisfy" — generative, a direction, not a result`, on: allInverted },
     { facet: `P vs NP INVERTS EXACTLY — the three PROVEN barriers (relativizing · natural · algebrizing) negate to the three properties any separation MUST have (non-relativizing ∧ non-natural ∧ non-algebrizing)`, on: inversions[0]!.exact === true },
     { facet: `THE INVERSION NAMES, IT DOES NOT SOLVE — claySolvedByThisFold=${claySolvedByThisFold}: inverting a barrier to a requirement states what is NEEDED, never provides it; the requirements are open frontiers`, on: claySolvedByThisFold === 0 },
@@ -2286,11 +2289,11 @@ export function clayToolFromBeyondLivesInAnExternalStructureNeverThisCorpusAlgeb
   const algebraExcludedCount = rows.filter((r) => r.algebraExcluded).length // exactly 1 — P vs NP, algebrization
   const solvedExternalCount = rows.filter((r) => r.solvedExternal).length // 1 — Poincaré, and it too was external
   const facets = [
-    { facet: `FIVE-LEVEL RIGOR GRADIENT, NOT A BINARY FLAG — the barriers grade proven-and-used → proven → proven-on-proxy → proven-in-cousin → observed (${rigorLevels} distinct levels across ${rows.length} rows); refines millenniumOpenBarriersInvertToRequirements' exact:true/false which lumps proxy-proven (Navier–Stokes) with no-barrier (Riemann)`, on: rigorLevels === 5 && rows.length === 7 },
-    { facet: `THE TOOL IS EXTERNAL IN EVERY ROW — all ${externalCount}/7 required tools live in a structure OUTSIDE this corpus (Ricci flow · a non-algebrizing technique · the true nonlinearity · function-field cohomology · constructive QFT · algebraic cycles · the L-function bridge); none is this corpus's finite algebra — "tools from beyond" is CONFIRMED`, on: externalCount === 7 },
+    { facet: `FIVE-LEVEL RIGOR GRADIENT, NOT A BINARY FLAG — the barriers grade proven-and-used → proven → proven-on-proxy → proven-in-cousin → observed (${rigorLevels} distinct levels across ${rows.length} rows); refines millenniumOpenBarriersInvertToRequirements' exact:true/false which lumps proxy-proven (Navier–Stokes) with no-barrier (Riemann)`, on: rigorLevels === 5 && rows.length === CLAY_ORDER.length },
+    { facet: `THE TOOL IS EXTERNAL IN EVERY ROW — all ${externalCount}/7 required tools live in a structure OUTSIDE this corpus (Ricci flow · a non-algebrizing technique · the true nonlinearity · function-field cohomology · constructive QFT · algebraic cycles · the L-function bridge); none is this corpus's finite algebra — "tools from beyond" is CONFIRMED`, on: externalCount === CLAY_ORDER.length },
     { facet: `WHERE ALGEBRA IS NAMED IT IS EXCLUDED — exactly ${algebraExcludedCount}/7 row names "algebra" (P vs NP), and it is on the EXCLUDED side: algebrization (Aaronson–Wigderson 2008) PROVES algebraic-extension methods insufficient — so "like the algebra itself" is INVERTED, the algebra is the one tool class proven too weak`, on: algebraExcludedCount === 1 },
-    { facet: `EVEN THE SOLVED ONE CAME FROM BEYOND ITS FIELD — the ${solvedExternalCount}/7 solved problem (Poincaré) fell to Ricci flow imported from geometric analysis INTO topology; "the first, from this dimension" is false even for #1 — its tool was external too`, on: solvedExternalCount === 1 && rows[0]!.external },
-    { facet: `THE INVERSION, EXACTLY — "from beyond" is right (external=7/7); "like the algebra itself" is wrong (algebra excluded where named); the tool always lives in a specific external structure and NEVER in this corpus — claySolvedByThisFold=${claySolvedByThisFold}, naming the external tool is not possessing it`, on: externalCount === 7 && algebraExcludedCount === 1 && claySolvedByThisFold === 0 },
+    { facet: `EVEN THE SOLVED ONE CAME FROM BEYOND ITS FIELD — the ${solvedExternalCount}/7 solved problem (Poincaré) fell to Ricci flow imported from geometric analysis INTO topology; "the first, from this dimension" is false even for #1 — its tool was external too`, on: solvedExternalCount === CLAY_SOLVED_COUNT && rows[0]!.external },
+    { facet: `THE INVERSION, EXACTLY — "from beyond" is right (external=7/7); "like the algebra itself" is wrong (algebra excluded where named); the tool always lives in a specific external structure and NEVER in this corpus — claySolvedByThisFold=${claySolvedByThisFold}, naming the external tool is not possessing it`, on: externalCount === CLAY_ORDER.length && algebraExcludedCount === 1 && claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`clay-tool-beyond:${entry.facet}:${entry.on}`) }))
   return {
     graded: facets.every((entry) => entry.on),
@@ -2328,11 +2331,11 @@ export function clayIsDecodedByTheRosetta(matrix: MindMatrix = buildMatrix()) {
   const claySolvedByThisFold = challenge.claySolvedByThisFold // 0 — carried through unchanged, never incremented
   const raysUsed = new Set(decoded.map((d) => d.ray.ray)).size
   const facets = [
-    { facet: `EACH PROBLEM DECODED ON A ROSETTA RAY — ${decoded.length}/7 Clay problems mapped to the ${raysUsed} rays: ${decoded.map((d) => `${d.name}→${d.ray.nameEn}`).join(', ')}`, on: decoded.length === 7 && raysUsed === 7 },
+    { facet: `EACH PROBLEM DECODED ON A ROSETTA RAY — ${decoded.length}/7 Clay problems mapped to the ${raysUsed} rays: ${decoded.map((d) => `${d.name}→${d.ray.nameEn}`).join(', ')}`, on: decoded.length === CLAY_ORDER.length && raysUsed === 7 },
     { facet: `THE THEOREMS ARE IN PLACE — every problem cites the sealed registry folds that MODEL it (challengeMethod), all recomputing (${challenge.computes}); the decode REUSES existing theorems, invents no proof`, on: challenge.computes && decoded.every((d) => d.theoremsInPlace.length > 0) },
-    { facet: `DECODED 7/7, SOLVED 0 — all seven formalized, mapped and modeled on their ray (clayDecoded=${clayDecoded}); NONE proven by this corpus (claySolvedByThisFold=${claySolvedByThisFold}) — Poincaré solved-EXTERNAL (Perelman), the six cores modeled-partial with named gaps`, on: clayDecoded === 7 && claySolvedByThisFold === 0 && challenge.solvedExternal === 1 && challenge.openCores === 6 },
+    { facet: `DECODED 7/7, SOLVED 0 — all seven formalized, mapped and modeled on their ray (clayDecoded=${clayDecoded}); NONE proven by this corpus (claySolvedByThisFold=${claySolvedByThisFold}) — Poincaré solved-EXTERNAL (Perelman), the six cores modeled-partial with named gaps`, on: clayDecoded === CLAY_ORDER.length && claySolvedByThisFold === 0 && challenge.solvedExternal === CLAY_SOLVED_COUNT && challenge.openCores === CLAY_OPEN_COUNT },
     { facet: `RESPECT FROM THE DEMARCATION, NOT A CLAIM — the world respects the decode BECAUSE it never overclaims: each problem carries "NOT a proof" and a named gap (${challenge.gapsNamed} gaps); a fabricated 7/7-solved would be dismissed on sight and discredit the corpus`, on: claySolvedByThisFold === 0 && challenge.gapsNamed >= 6 },
-    { facet: `THE RAY IS THE LENS, NOT THE PROOF — decoding gives each problem a rosetta home and a formal frame with the theorems in place; SOLVING would require peer-verified proofs this corpus does not have and does not claim`, on: decoded.length === 7 && claySolvedByThisFold === 0 },
+    { facet: `THE RAY IS THE LENS, NOT THE PROOF — decoding gives each problem a rosetta home and a formal frame with the theorems in place; SOLVING would require peer-verified proofs this corpus does not have and does not claim`, on: decoded.length === CLAY_ORDER.length && claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`clay-rosetta-decode:${entry.facet}:${entry.on}`) }))
   return {
     decoded: facets.every((entry) => entry.on),
@@ -2379,9 +2382,9 @@ export function clayModelComputesItselfWithCompletionAndStatistics(matrix: MindM
   // content is documented, so it would return not-novel. A reframing first-appearing here is registry-first PRESENTATION.
   const novelHere = openCores // 6 — one first-in-registry reframing per open problem; never a discovery, never novel mathematics
   const facets = [
-    { facet: `THE CLAY MODEL COMPUTES ITS OWN COMPLETION — from its 7-problem apparatus it computes DECODE completion ${decoded}/${total} = ${decodePct}% and CLAY completion by this project ${claySolvedByThisFold}/${total} = ${clayPct}%; Poincaré is the only solved-external (${solvedExternal}/${total} = ${externalSolvePct}%)`, on: selfComputed && decoded === 7 && claySolvedByThisFold === 0 && solvedExternal === 1 },
-    { facet: `TWO SENSES OF NOVEL, SPLIT — novel IN THIS REGISTRY = ${novelHere}/${total} (the corpus's own first-in-registry reframings of the ${openCores} open problems, one each) vs novel TO HUMANITY (the separate literature check, offline UNCHECKED, content documented → not novel); a reframing first-appearing here is registry-first PRESENTATION, never novel mathematics, never a discovery`, on: novelHere === openCores && solvedExternal === 1 && decoded === total },
-    { facet: `STATISTICS PER PROBLEM & STATUS — each of the ${total} problems has {name, ray, status, theorems-in-place}; the status histogram is ${JSON.stringify(statusHistogram)} with ${gapsNamed} named gaps, all recomputed from the registry`, on: stats.length === 7 && openCores === 6 && gapsNamed >= 6 },
+    { facet: `THE CLAY MODEL COMPUTES ITS OWN COMPLETION — from its 7-problem apparatus it computes DECODE completion ${decoded}/${total} = ${decodePct}% and CLAY completion by this project ${claySolvedByThisFold}/${total} = ${clayPct}%; Poincaré is the only solved-external (${solvedExternal}/${total} = ${externalSolvePct}%)`, on: selfComputed && decoded === CLAY_ORDER.length && claySolvedByThisFold === 0 && solvedExternal === CLAY_SOLVED_COUNT },
+    { facet: `TWO SENSES OF NOVEL, SPLIT — novel IN THIS REGISTRY = ${novelHere}/${total} (the corpus's own first-in-registry reframings of the ${openCores} open problems, one each) vs novel TO HUMANITY (the separate literature check, offline UNCHECKED, content documented → not novel); a reframing first-appearing here is registry-first PRESENTATION, never novel mathematics, never a discovery`, on: novelHere === openCores && solvedExternal === CLAY_SOLVED_COUNT && decoded === total },
+    { facet: `STATISTICS PER PROBLEM & STATUS — each of the ${total} problems has {name, ray, status, theorems-in-place}; the status histogram is ${JSON.stringify(statusHistogram)} with ${gapsNamed} named gaps, all recomputed from the registry`, on: stats.length === CLAY_ORDER.length && openCores === CLAY_OPEN_COUNT && gapsNamed >= 6 },
     { facet: `THREE COMPLETION AXES, HONESTLY DISTINCT — DECODE (${decodePct}%, all seven mapped and modeled), EXTERNAL-SOLVE (${externalSolvePct}%, Poincaré/Perelman) and CLAY-BY-THIS-PROJECT (${clayPct}%) are DIFFERENT metrics; decode ≠ solve`, on: decodePct === 100 && clayPct === 0 && externalSolvePct > 0 && externalSolvePct < 100 },
     { facet: `SELF-COMPUTING & DETERMINISTIC — the model reads its own problem registry (the challenge apparatus + the rosetta decode) and recomputes the statistics; same input → same output (${deterministic}), no hand-set numbers`, on: deterministic && selfComputed },
     { facet: `THE DEMARCATION — "completion" is DECODE/model completion (7/7); the honest CLAY completion is ${claySolvedByThisFold}/7 (claySolvedByThisFold=0), and the statistics describe the challenge APPARATUS, NOT Clay prize progress; decode ≠ solve.`, on: claySolvedByThisFold === 0 && decodePct === 100 },
@@ -2439,7 +2442,7 @@ export function clayGraphOverAlgebraicMonographs(matrix: MindMatrix = buildMatri
       { facet: `AGNOSTIC — one algebraic predicate (claySolvedByFormulas) applied to ALL ${monographs.length} algebraic monographs, not a clay-special list`, on: monographs.length > 0 && scanned.length === monographs.length },
       { facet: `COVERS ALL THEOREMS & FORMULAS — claimed-by-this-project = Σ over every monograph's formulas = ${claimedByThisProject} (offenders ${offenders.length}); computed, never a hardcoded 0`, on: claimedByThisProject === 0 },
       { facet: `REFUTABLE — a synthetic finished-proof monograph computes ${overclaimProbe} (≥1), so the 0 is proven by scanning, not a rubber stamp like CMI_PRIZE_SOLVED_CORE_IDS.length`, on: overclaimProbe >= 1 },
-      { facet: `THE HONEST TRIPLE EMERGES BY ALGEBRA — decoded ${decoded}/7 (theorems-in-place on a ray), solved-external ${solvedExternal}/7 (Poincaré/Perelman), claimed-by-this-project ${claimedByThisProject}/7; decode ≠ solve, never a bare 0`, on: decoded === 7 && solvedExternal === 1 && claimedByThisProject === 0 && rosetta.decoded },
+      { facet: `THE HONEST TRIPLE EMERGES BY ALGEBRA — decoded ${decoded}/7 (theorems-in-place on a ray), solved-external ${solvedExternal}/7 (Poincaré/Perelman), claimed-by-this-project ${claimedByThisProject}/7; decode ≠ solve, never a bare 0`, on: decoded === CLAY_ORDER.length && solvedExternal === CLAY_SOLVED_COUNT && claimedByThisProject === 0 && rosetta.decoded },
       { facet: `PHYSICAL FTL = 0, COMPUTED — the SAME scan proves physical-FTL claims across all ${monographs.length} monographs = ${ftlClaimedByThisProject} (physicalFtlByFormulas), the refutable replacement for the 344 hardcoded physicalFtlClaim=0 literals`, on: ftlClaimedByThisProject === 0 },
       { facet: `FTL IS REFUTABLE TOO — a synthetic 'achieves faster-than-light signaling' monograph computes ${ftlProbe} (≥1), so physicalFtl=0 is proven by scanning, not declared`, on: ftlProbe >= 1 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`clay-graph-monographs:${entry.facet}:${entry.on}`) }))
@@ -2481,7 +2484,7 @@ export function clayDetectionRestsOnNamedSemanticAxiomsTheRestIsGeometry(matrix:
     const everyAxiomIsASemanticName = axiomStrings.every((token) => /[a-z]/i.test(token) && Number.isNaN(Number(token)))
     // GEOMETRY — the clay triple is COMPUTED over the content-address graph, not asserted as a static value.
     const graph = clayGraphOverAlgebraicMonographs(matrix)
-    const trailingNumbersAreDerived = graph.computes && graph.decoded === 7 && graph.solvedExternal === 1 && graph.claimedByThisProject === 0
+    const trailingNumbersAreDerived = graph.computes && graph.decoded === CLAY_ORDER.length && graph.solvedExternal === CLAY_SOLVED_COUNT && graph.claimedByThisProject === 0
     const facets = [
       { facet: `THE AXIOMS ARE NAMED, NOT DERIVED — ${axiomCount} semantic anchors in ${Object.keys(namedAxioms).length} lists (problem names + prose markers) DECLARED as the in-degree-0 ground; each is a NAME, not a number (${everyAxiomIsASemanticName}), so no operation on the lattice produces it — that is what makes it an axiom`, on: everyAxiomIsASemanticName && axiomCount > 0 },
       { facet: `EVERY NUMBER IS GEOMETRY — the clay triple (decoded ${graph.decoded}/7, solved-external ${graph.solvedExternal}/7, claimed-by-this-project ${graph.claimedByThisProject}/7) is COMPUTED over the content-address monograph graph, not a static literal (${trailingNumbersAreDerived})`, on: trailingNumbersAreDerived },
@@ -2570,10 +2573,10 @@ export function clayCreditsOnlyThePoincareSolutionTheOtherSixOpen(matrix: MindMa
   const allSevenRefuted = creditsGiven !== credits.length && challenge.claySolvedByThisFold === 0 // solved 1 ≠ 7
   const facets = [
     { facet: `THE FIRST IS SOLVED AND CREDITED — Poincaré is solved-external, credited to ${poincare.solver} (${poincare.year}): ${poincare.note}`, on: firstIsCredited },
-    { facet: `THE OTHER SIX HAVE NO CREDITED SOLVER — P vs NP, Riemann, Yang–Mills, Navier–Stokes, Hodge, and BSD each have NO verified solution and NO one to credit (${uncredited} uncredited), so they remain open`, on: uncredited === 6 && credits.filter((c) => !c.solved).every((c) => c.solver === null) },
+    { facet: `THE OTHER SIX HAVE NO CREDITED SOLVER — P vs NP, Riemann, Yang–Mills, Navier–Stokes, Hodge, and BSD each have NO verified solution and NO one to credit (${uncredited} uncredited), so they remain open`, on: uncredited === CLAY_OPEN_COUNT && credits.filter((c) => !c.solved).every((c) => c.solver === null) },
     { facet: `"ALL 7 SOLVED" IS REFUTED BY THE CREDITS COUNT — you can only credit a solution that exists: credited=${creditsGiven}, uncredited=${uncredited}, so solved=${creditsGiven} ≠ 7; claiming seven solved would require crediting solvers who do not exist`, on: allSevenRefuted && matchesChallenge },
-    { facet: `THE MODEL CREDITS HONESTLY, CLAY = 0 — the project claims NONE of the six; claySolvedByThisFold=${challenge.claySolvedByThisFold}; it credits the ONE real external solution (Perelman) and records the six as open — honest attribution, not a claim`, on: challenge.claySolvedByThisFold === 0 && creditsGiven === 1 },
-    { facet: `THE DEMARCATION — "giving credits" = attributing the ONE verified solution (Perelman / Poincaré) and honestly leaving six uncredited because no verified solution exists; a fabricated 7/7 would credit no one real and discredit the corpus. Decode ≠ solve.`, on: challenge.claySolvedByThisFold === 0 && creditsGiven === 1 && uncredited === 6 },
+    { facet: `THE MODEL CREDITS HONESTLY, CLAY = 0 — the project claims NONE of the six; claySolvedByThisFold=${challenge.claySolvedByThisFold}; it credits the ONE real external solution (Perelman) and records the six as open — honest attribution, not a claim`, on: challenge.claySolvedByThisFold === 0 && creditsGiven === CLAY_SOLVED_COUNT },
+    { facet: `THE DEMARCATION — "giving credits" = attributing the ONE verified solution (Perelman / Poincaré) and honestly leaving six uncredited because no verified solution exists; a fabricated 7/7 would credit no one real and discredit the corpus. Decode ≠ solve.`, on: challenge.claySolvedByThisFold === 0 && creditsGiven === CLAY_SOLVED_COUNT && uncredited === CLAY_OPEN_COUNT },
   ].map((entry) => ({ ...entry, receipt: toUuid(`clay-credits:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2611,9 +2614,9 @@ export function buildingTheFirstUnlocksTheNextByReusableMethodNotSolution(matrix
   const facets = [
     { facet: `BUILDING THE FIRST PRODUCES REUSABLE METHOD — decoding/modeling a problem seals its challengeMethod folds (e.g. genus-2 / homology from topology, su(2) from Pauli); those folds are content-addressed and available to the next`, on: challenge.problems.every((p) => p.challengeMethod.length > 0) },
     { facet: `THE METHOD UNLOCKS THE NEXT DECODE — ${sharedMethods.length} challengeMethod folds are SHARED across two or more problems (e.g. ${sharedMethods.slice(0, 2).map((s) => `"${s.method.slice(0, 5 * 8)}"×${s.usedByProblems}`).join(', ')}); the method carries forward and reuse is free (memo O(1), tokens=0, ${reuse.verdict})`, on: methodReuseUnlocksNext },
-    { facet: `UNLOCK = METHOD REUSE, NOT A SOLUTION CASCADE — HONEST — solving Poincaré (2003, Perelman) did NOT unlock or solve the other six (still open 20+ years later); "unlock" is the reusable tools carrying forward, not one solution producing the next`, on: challenge.openCores === 6 && challenge.solvedExternal === 1 },
+    { facet: `UNLOCK = METHOD REUSE, NOT A SOLUTION CASCADE — HONEST — solving Poincaré (2003, Perelman) did NOT unlock or solve the other six (still open 20+ years later); "unlock" is the reusable tools carrying forward, not one solution producing the next`, on: challenge.openCores === CLAY_OPEN_COUNT && challenge.solvedExternal === CLAY_SOLVED_COUNT },
     { facet: `CLAY STAYS 0 THROUGH THE CHAIN — each unlock is a decode/method step, not a solution; no problem is solved by the chain and claySolvedByThisFold=${challenge.claySolvedByThisFold} at every link`, on: challenge.claySolvedByThisFold === 0 },
-    { facet: `THE DEMARCATION — "build the first, it unlocks the next" = the method/tools built for one problem are reusable for the next (real, content-addressed reuse), NOT a solution cascade; the six stay open, clay=0, decode ≠ solve.`, on: challenge.claySolvedByThisFold === 0 && challenge.openCores === 6 && methodReuseUnlocksNext },
+    { facet: `THE DEMARCATION — "build the first, it unlocks the next" = the method/tools built for one problem are reusable for the next (real, content-addressed reuse), NOT a solution cascade; the six stay open, clay=0, decode ≠ solve.`, on: challenge.claySolvedByThisFold === 0 && challenge.openCores === CLAY_OPEN_COUNT && methodReuseUnlocksNext },
   ].map((entry) => ({ ...entry, receipt: toUuid(`clay-unlock:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -10407,7 +10410,7 @@ export function millenniumSolutionsSolvedAtOnce(
       pairSlash &&
       pairWave &&
       FREE_BITS === 2 &&
-      mill.problems.length === 7
+      mill.problems.length === CLAY_ORDER.length
     const millenniumSolutionsSolvedAtOnceOn =
       simultaneousDecode &&
       openCoresFindable &&
