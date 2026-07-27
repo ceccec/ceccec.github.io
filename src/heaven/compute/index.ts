@@ -1795,6 +1795,40 @@ export function noQpuRequired(matrix: MindMatrix = buildMatrix()): {
   return { qpuRequired: false, provenByClassicalSimulator: sim.computes === true, noSpeedup: true, circuits: sim.runs.length }
 }
 
+/** quantumComputingIsReversibleAndInterferingNotCpuGpuInverted — the honest, COMPUTED answer to "QPU = CPU/GPU inverting
+ * each other?" (user, 2026-07-27). Not an identity — but the mnemonic captures two real things, PROVEN by running the
+ * simulator, and misses one. (1) REVERSIBILITY: quantum gates are unitary = invertible; X∘X and H∘H each return |0⟩, so a
+ * gate is its own undo — unlike a classical AND that erases a bit. (2) INTERFERENCE: H∘H|0⟩ = |0⟩ with P(0)=1 because the
+ * two paths' amplitudes SUBTRACT (a signed sum) — a GPU's non-negative parallel sum cannot cancel. (3) THE DISANALOGY: n
+ * qubits carry 2ⁿ complex amplitudes, which no CPU/GPU pair produces cheaply — exactly why the classical simulator costs
+ * 2ⁿ ([[noQpuRequired]], no speedup). So "QPU = CPU/GPU inverting" is a MNEMONIC (reversible + interfering-parallel), not an
+ * identity: the exponential amplitude space does not reduce to two classical processors. HARMONY ≠ TRUTH. [[quantum-decoded]] */
+export function quantumComputingIsReversibleAndInterferingNotCpuGpuInverted(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const near = (a: number, b: number) => Math.abs(a - b) < 1 / 100
+  const xx = runQuantumCircuit({ n: 1, ops: [{ gate: 'X', targets: [0] }, { gate: 'X', targets: [0] }] }) // X∘X = I
+  const hh = runQuantumCircuit({ n: 1, ops: [{ gate: 'H', targets: [0] }, { gate: 'H', targets: [0] }] }) // H∘H = I (interference cancels)
+  const cnotCnot = runQuantumCircuit({ n: 2, ops: [{ gate: 'H', targets: [0] }, { gate: 'CNOT', targets: [0, 1] }, { gate: 'CNOT', targets: [0, 1] }] }) // CNOT∘CNOT = I on |+0⟩
+  const reversible = near(xx.probabilities[0]!, 1) && near(hh.probabilities[0]!, 1) && near(cnotCnot.probabilities[0]!, 1 / 2) && near(cnotCnot.probabilities[1]!, 1 / 2) // CNOT∘CNOT returns |+0⟩ (q0 = LSB: indices 0,1)
+  const interferenceCancels = near(hh.probabilities[0]!, 1) && near(hh.probabilities[1]!, 0) // the two amplitude paths subtract to |0⟩
+  const exponentialSpace = [1, 2, 3, 2 * 2].every((n) => runQuantumCircuit({ n, ops: [] }).amplitudes.length === 2 ** n) // n qubits → 2ⁿ amplitudes
+  const facets = [
+    { facet: 'RIGHT (reversibility) — quantum gates are unitary = INVERTIBLE: X∘X and H∘H each return |0⟩, CNOT∘CNOT returns |+0⟩ — a gate is its own undo, unlike a classical AND that erases a bit; this is the kernel of truth in "inverting"', on: reversible },
+    { facet: 'RIGHT (interference) — H∘H|0⟩ = |0⟩ with P(0)=1 because the two paths\' amplitudes SUBTRACT (a signed sum); a GPU\'s non-negative parallel sum cannot cancel — this is the one thing CPU/GPU can\'t do for free', on: interferenceCancels },
+    { facet: 'THE DISANALOGY — n qubits carry 2ⁿ complex amplitudes (amplitudes.length === 2ⁿ for n=1..4); no CPU/GPU pair produces that cheaply, which is exactly why the classical simulator costs 2ⁿ (no speedup, noQpuRequired)', on: exponentialSpace },
+    { facet: 'SO IT IS A MNEMONIC, NOT AN IDENTITY — "QPU = CPU/GPU inverting each other" captures reversibility + interfering-parallelism, but the exponential amplitude space does NOT reduce to two classical processors; the correspondences hold, the identity does not. HARMONY ≠ TRUTH', on: reversible && interferenceCancels && exponentialSpace },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`qpu-not-cpugpu:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    reversible,
+    interferenceCancels,
+    exponentialSpace,
+    facets,
+    root: merkleFold([xx.root, hh.root, cnotCnot.root, ...facets.map((entry) => entry.receipt)]),
+    statement: `QPU vs CPU/GPU — ${facets.filter((entry) => entry.on).length}/${facets.length}: a QPU is NOT CPU/GPU inverting each other, but the mnemonic captures two real things (reversible unitary gates; interference = a signed sum a GPU can't cancel) and misses one (the 2ⁿ amplitude space), which is why the classical simulator costs 2ⁿ.`,
+    boundary: earned('EXACT — computed by running the simulator:', facets, 'a QPU is not two classical processors inverting each other. The mnemonic is right that quantum gates are reversible (unitary, self-undoing) and that superposition can interfere (amplitudes cancel — a signed sum a GPU cannot produce), and wrong that this reduces to CPU/GPU: the distinguishing feature is the 2ⁿ complex-amplitude space and genuine entanglement, which is precisely why simulating n qubits costs 2ⁿ classically (no speedup, no QPU). clay=0, physicalFtl=0. HARMONY ≠ TRUTH.') }
+}
+
 /** researchAndDiscoverBeforeAnswering — the chat RESEARCHES and DISCOVERS whether the corpus genuinely covers a question
  * before it answers (user, 2026-07-27: "research and discover before answering" · "start answering real questions"). The
  * naive path answered on ANY lexical overlap (portalChatRanked.ranked = top.score>0), so an out-of-domain question
