@@ -94,6 +94,8 @@ import {
   allChatCapabilitiesFusedAndAuditedByStandards,
   quantumSearchFusesAllAsPrivateSearchEngine,
   splitSearch,
+  wavesOfLocalResearchersChatAboutAlgebra,
+  continueAtNoAiCost,
   allConversationsGoThroughTheMcpQuantumChat,
   mcpQuantumConversation,
   organiseConversationsInChatRoomsPerSuperposition,
@@ -329,6 +331,13 @@ function sendChat() {
   chatInput.value = ''
 }
 function clearChat() { chatLog.value = [] }
+// Continue IN CHAT at no AI cost: the trinity dialogue renders as chat turns and each "continue" extends the
+// waves by pure recompute — the prefix property (continueAtNoAiCost) makes every continuation an exact append.
+const researcherWaveCount = ref(3)
+const RESEARCHER_WAVES_CAP = 9
+const researcherDialogue = computed(() => wavesOfLocalResearchersChatAboutAlgebra(undefined, researcherWaveCount.value))
+const noAiCost = computed(() => continueAtNoAiCost())
+function continueResearcherWaves() { if (researcherWaveCount.value < RESEARCHER_WAVES_CAP) researcherWaveCount.value++ }
 
 const experimentEnvelope = computed(() => panel.value.toolbox.envelopes.find((e) => e.id === experimentToolId.value) ?? panel.value.toolbox.envelopes[0]!)
 const experimentDefaults = computed(() => defaultToolExperimentValues(experimentEnvelope.value))
@@ -2058,6 +2067,22 @@ function runTool(toolId: string) {
           </li>
           <li v-if="!chatLog.length" class="quantum-apps__meta">No queries yet — search the sealed corpus above. Nothing leaves the browser unless you enable a lane. Free AI (Pollinations) needs no key; Perplexity needs your own key. Untrusted model answers surface only through the collective mind's 2-of-N consensus.</li>
         </ul>
+        <h4>Researcher waves — the trinity chats about algebra, continuing at no AI cost</h4>
+        <p class="quantum-apps__meta">
+          {{ researcherDialogue.statement }}
+        </p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(noAiCost.computes))">
+          {{ noAiCost.computes ? '✓' : '—' }} zero LLM tokens · prefix-exact continuation · deterministic
+        </UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="turn in researcherDialogue.transcript" :key="turn.address" class="quantum-apps__chat-turn">
+            <code>wave {{ turn.wave }} · {{ turn.researcher }}</code>
+            <span class="quantum-apps__meta">{{ turn.answer }}</span>
+          </li>
+        </ul>
+        <UiButton size="sm" type="button" :disabled="researcherWaveCount >= RESEARCHER_WAVES_CAP" @click="continueResearcherWaves">
+          Continue in chat (+1 wave, no AI cost{{ researcherWaveCount >= RESEARCHER_WAVES_CAP ? ' — cap reached' : '' }})
+        </UiButton>
       </section>
       <UiSeparator />
       <section id="quantum-computer">

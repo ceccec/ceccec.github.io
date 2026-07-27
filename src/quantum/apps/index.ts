@@ -5,7 +5,7 @@
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded, proofReport, noQpuRequired, quantumCircuitSimulatorInChat } from '../../heaven/compute'
 // Full in-chat support — the deterministic, zero-token, no-egress chat surface, re-exported for the thin .vue shell.
-export { portalChat, chatNavContext, allChatCapabilitiesFusedAndAuditedByStandards, chatThroughMathOverflow, chatThroughPerplexity, chatThroughFreeAi, chatThroughAi, collectiveAiMind, siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis, perplexityRequest, freeAiRequest, aiRequest, AI_PROVIDERS, CECCEC_PROXY_ORIGIN, PERPLEXITY_SITE, splitSearch, MATHOVERFLOW_SITE } from '../../heaven/compute'
+export { portalChat, chatNavContext, allChatCapabilitiesFusedAndAuditedByStandards, chatThroughMathOverflow, chatThroughPerplexity, chatThroughFreeAi, chatThroughAi, collectiveAiMind, siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis, perplexityRequest, freeAiRequest, aiRequest, AI_PROVIDERS, CECCEC_PROXY_ORIGIN, PERPLEXITY_SITE, splitSearch, wavesOfLocalResearchersChatAboutAlgebra, continueAtNoAiCost, MATHOVERFLOW_SITE } from '../../heaven/compute'
 export type { MathOverflowItem } from '../../heaven/compute'
 // Private quantum search — BM25-ranked, fused, no-egress — re-exported for the in-chat search box.
 export { quantumSearchFusesAllAsPrivateSearchEngine } from '../../wind/site'
