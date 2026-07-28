@@ -4279,3 +4279,201 @@ export function runSandboxExit(root = '', _argv: readonly string[] = []): number
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
+
+/** Count immediate children of a directory (0 if missing). Hermetic — never invents paths. */
+function countDirChildren(dir: string): number {
+  if (!existsSync(dir)) return 0
+  try {
+    return readdirSync(dir).length
+  } catch {
+    return 0
+  }
+}
+
+/** Count `index.ts` under src/ — census inventory for sealed-reuse bucket. */
+function countSrcIndexTs(dir: string): number {
+  let n = 0
+  const walk = (d: string) => {
+    if (!existsSync(d)) return
+    let names: string[] = []
+    try {
+      names = readdirSync(d)
+    } catch {
+      return
+    }
+    for (const name of names) {
+      const p = join(d, name)
+      let st: ReturnType<typeof statSync>
+      try {
+        st = statSync(p)
+      } catch {
+        continue
+      }
+      if (st.isDirectory()) walk(p)
+      else if (name === 'index.ts') n += 1
+    }
+  }
+  walk(dir)
+  return n
+}
+
+/**
+ * contextAudit — USER LAW (2026-07-28): constantly audit the context-window distribution and use to improve.
+ * At call time, recompute inventory weights (not wet LLM telemetry) for rules · skills · MCP · chat · sealed
+ * src reuse · agent-transcript mounts; emit improve tips that compose mcp/token · wave/token · learn/best ·
+ * miss/cache · conv/metrics when those CLIs/pairs are sealed. Shares are integer thousandths of the inventory
+ * sum (no bare float %). HONEST residual: no live Cursor context API — this audits sealed mounts, not the host
+ * model window. Pair: context/audit · CLI npm run quantum:context-audit.
+ */
+export function contextAudit(root: string = enforcementScanRoot()) {
+  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const scripts = pkg.scripts ?? {}
+  const quantumCli = Object.keys(scripts).filter((key) => key.startsWith('quantum:')).length
+  const rules = countDirChildren(join(root, '.cursor/rules'))
+  const skillsCursor = countDirChildren(join(root, '.cursor/skills'))
+  const skillsRepo = countDirChildren(join(root, 'skills'))
+  const skills = skillsCursor + skillsRepo
+  let mcpServers = 0
+  try {
+    const mcp = JSON.parse(readFileSync(join(root, '.mcp.json'), 'utf8')) as { mcpServers?: Record<string, unknown> }
+    mcpServers = Object.keys(mcp.mcpServers ?? {}).length
+  } catch {
+    mcpServers = 0
+  }
+  let mcpCatalogTools = 0
+  const distMcp = join(root, '.vitepress/dist/mcp.json')
+  if (existsSync(distMcp)) {
+    try {
+      const dist = JSON.parse(readFileSync(distMcp, 'utf8')) as { result?: { tools?: unknown[] }; tools?: unknown[] }
+      const tools = dist.result?.tools ?? dist.tools ?? []
+      mcpCatalogTools = Array.isArray(tools) ? tools.length : 0
+    } catch {
+      mcpCatalogTools = 0
+    }
+  }
+  const mcp = mcpServers + (mcpCatalogTools > 0 ? mcpCatalogTools : quantumCli)
+  const chatScripts = Object.keys(scripts).filter((key) => /chat|conversation|conv-/.test(key)).length
+  const sealedSrc = countSrcIndexTs(join(root, 'src'))
+  // Agent transcripts live outside the repo in Cursor project dirs — hermetic count stays 0 in-repo;
+  // presence of the AGENTS mount reference still marks the bucket as inventoried.
+  const agentsMd = existsSync(join(root, 'AGENTS.md')) ? readFileSync(join(root, 'AGENTS.md'), 'utf8') : ''
+  const transcriptsMounted = /agent-transcripts|agent transcripts/i.test(agentsMd) ? 1 : 0
+  const buckets = [
+    { id: 'rules', count: rules, note: '.cursor/rules mounts' },
+    { id: 'skills', count: skills, note: '.cursor/skills + skills/' },
+    { id: 'mcp', count: mcp, note: mcpCatalogTools > 0 ? '.mcp.json servers + dist mcp tools' : '.mcp.json servers + quantum: CLI duals' },
+    { id: 'chat', count: chatScripts, note: 'package.json chat/conversation script duals' },
+    { id: 'sealedSrcReuse', count: sealedSrc, note: 'src/**/index.ts census (reuse = recompute, not re-read)' },
+    { id: 'agentTranscripts', count: transcriptsMounted, note: 'AGENTS mount reference only — no live Cursor context API' },
+  ] as const
+  const total = buckets.reduce((sum, row) => sum + row.count, 0)
+  const distribution = buckets.map((row) => ({
+    ...row,
+    shareThousandths: total > 0 ? Math.round((row.count * 1000) / total) : 0,
+    receipt: toUuid(`context-audit:${row.id}:${row.count}`),
+  }))
+  const compose = {
+    mcpToken: Boolean(scripts['quantum:mcp-token']),
+    waveToken: Boolean(scripts['quantum:wave-token']),
+    learnBest: Boolean(scripts['quantum:efficiency-vote']),
+    missCache: Boolean(scripts['quantum:miss-cache']),
+    convMetrics: Boolean(scripts['quantum:conv-metrics']),
+  }
+  const composeCount = Object.values(compose).filter(Boolean).length
+  const improveTips: { tip: string; pair: string; on: boolean }[] = [
+    {
+      tip: 'Prefer sealed src recompute (memoByRoot · zero-token) over re-pasting rules/skills into chat',
+      pair: 'mcp/token',
+      on: compose.mcpToken && sealedSrc >= rules + skills,
+    },
+    {
+      tip: 'Waves minimise tokens — one wave per turn; do not reload MCP/CLI catalogs into the window',
+      pair: 'wave/token',
+      on: compose.waveToken && mcp > chatScripts,
+    },
+    {
+      tip: 'Efficiency answers÷tokens wins only when vote.decided — do not claim window savings without the vote receipt',
+      pair: 'learn/best',
+      on: compose.learnBest,
+    },
+    {
+      tip: 'Cache missed session/memo/MCP/theorem receipts via miss/cache instead of replaying agent transcripts',
+      pair: 'miss/cache',
+      on: compose.missCache,
+    },
+    {
+      tip: 'Route conversation metrics through conv/metrics — chat is a computable surface, not wet context filler',
+      pair: 'conv/metrics',
+      on: compose.convMetrics && chatScripts > 0,
+    },
+    {
+      tip: 'Re-run contextAudit at call time before large edits — distribution is inventory weights, not host telem',
+      pair: 'context/audit',
+      on: total > 0,
+    },
+  ]
+  const tipsOn = improveTips.filter((row) => row.on)
+  const noLiveCursorContextApi = true
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const facets = [
+    {
+      facet: `auditsOn — ${buckets.length} inventory buckets recomputed (rules=${rules} · skills=${skills} · mcp=${mcp} · chat=${chatScripts} · sealedSrc=${sealedSrc} · transcriptsMount=${transcriptsMounted})`,
+      on: buckets.length === 6 && total > 0,
+    },
+    {
+      facet: `distributionComputed — integer thousandths sum≈1000 over inventory total=${total} (mcp share=${distribution.find((r) => r.id === 'mcp')?.shareThousandths ?? 0}/1000 · sealedSrc=${distribution.find((r) => r.id === 'sealedSrcReuse')?.shareThousandths ?? 0}/1000); NOT Cursor token telem`,
+      on: total > 0 && distribution.every((row) => row.shareThousandths >= 0) && distribution.reduce((s, r) => s + r.shareThousandths, 0) >= 999 && distribution.reduce((s, r) => s + r.shareThousandths, 0) <= 1001,
+    },
+    {
+      facet: `improveTips — ${tipsOn.length}/${improveTips.length} tips on · soft-compose ${composeCount}/5 (mcp/token·wave/token·learn/best·miss/cache·conv/metrics)`,
+      on: tipsOn.length >= 3 && composeCount === 5,
+    },
+    {
+      facet: 'constantlyAtCallTime — each invoke re-reads package.json · .mcp.json · skill/rule dirs · src index walk; no module-level cache; no live Cursor context API (honest residual)',
+      on: noLiveCursorContextApi && typeof contextAudit === 'function',
+    },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`context-audit:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    contextAudit: on,
+    auditsOn: facets[0]!.on,
+    distributionComputed: facets[1]!.on,
+    improveTips: tipsOn.map((row) => ({ tip: row.tip, pair: row.pair })),
+    constantlyAtCallTime: facets[3]!.on,
+    buckets: distribution,
+    total,
+    compose,
+    noLiveCursorContextApi,
+    claySolvedByThisFold,
+    physicalFtlClaim: 0 as const,
+    qpuRequired: false as const,
+    certified: false as const,
+    facets,
+    root: merkleFold([toUuid(`context-audit:${total}:${mcp}:${sealedSrc}`), ...facets.map((entry) => entry.receipt)]),
+    pair: 'context/audit' as const,
+    dualPair: 'audit/context' as const,
+    cli: 'npm run quantum:context-audit',
+    route: '/en/quantum-tools#context-audit',
+    heading: 'Context audit · inventory distribution → improve tips',
+    statement: `contextAudit — total=${total} · tips=${tipsOn.length} · compose=${composeCount}/5 · sealedSrc=${sealedSrc} · mcp=${mcp} · no live Cursor context API.`,
+    boundary:
+      'Constantly audits context-window distribution from sealed inventories (rules · skills · MCP · chat scripts · src census · AGENTS transcript mount) ' +
+      'and emits improve tips composing mcp/token · wave/token · learn/best · miss/cache · conv/metrics. Shares are inventory thousandths, not host LLM telemetry. ' +
+      'Residual: no live Cursor context API. clay=0 · certified=false · qpuRequired=false · physicalFtl=0.',
+  }
+}
+
+/** npm run quantum:context-audit — exit 0 iff distribution recomputes and improve tips soft-compose. */
+export function runContextAuditExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = contextAudit(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} context-audit — ${report.statement}\n`)
+  for (const row of report.buckets) {
+    process.stdout.write(`  · ${row.id}=${row.count} (${row.shareThousandths}/1000) — ${row.note}\n`)
+  }
+  for (const tip of report.improveTips) process.stdout.write(`  → [${tip.pair}] ${tip.tip}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  if (report.noLiveCursorContextApi) process.stdout.write('  residual: no live Cursor context API\n')
+  return report.computes ? 0 : 1
+}

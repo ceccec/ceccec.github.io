@@ -1450,6 +1450,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'researchTags', pair: 'research/tags', currentBarrel: 'src/heaven/laws', bestPlace: 'src/heaven/laws', action: 'moved', reason: 'research by MO unanswered tags — popular-tag receipt + draft→tag inventory + filter URLs; soft answerMo; live poll/quota residual; no post claim' },
   { fold: 'stackExchangeChat', pair: 'se/chat', currentBarrel: 'src/heaven/laws', bestPlace: 'src/heaven/laws', action: 'moved', reason: 'wire chat.stackexchange.com into chat/research as URL handoff + phrase routing; MO rooms sealed; read-only; soft answerMo/geogebraChat/researchTags; one CLI quantum:se-chat' },
   { fold: 'feedMoDraftsToChat', pair: 'mo/chat', currentBarrel: 'src/heaven/laws', bestPlace: 'src/heaven/laws', action: 'moved', reason: 'feed sealed MO drafts → chat handoffs (tags + SE room); compose answerMo·researchTags·se/chat·gates/chat pattern; one CLI quantum:feed-mo; auth residuals honest-open' },
+  { fold: 'contextAudit', pair: 'context/audit', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   // <register:placement> — quantum:register inserts placement rows above this anchor
 ] as const
 
@@ -1857,6 +1858,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // private rAF, an un-memoised per-frame recompute) is the gap the criterion catches; none remain.
   { from: 'theWayTheMovieComputesHasCyclesReplaceableByTheorems', to: 'reactivityMagnitude', pair: 'magnitude/reactivity' },
   { from: 'enforce432TheoremsComputeAllSuperpositionsOrProveWrong', to: 'superpositionCompleteness', pair: 'superposition/complete' },
+  { from: 'constantlyAuditTheContextWindowDistributionAndUseToImprove', to: 'contextAudit', pair: 'context/audit' },
   // <register:merge> — quantum:register inserts merge rows above this anchor
 ] as const
 
