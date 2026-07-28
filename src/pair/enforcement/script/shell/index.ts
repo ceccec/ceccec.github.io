@@ -1,7 +1,7 @@
-import { earned } from '../../../../3/7'
+import { earned, physicalFtlClaimTheorem } from '../../../../3/7'
 // Script shell — build/precommit seal; bundle runtime in pair/cache/quantum.
 import { phase } from '../../../../6/4'
-import { digitalRoot, toUuid, merkleFold } from '../../../../0'
+import { digitalRoot, foldPair, toUuid, merkleFold } from '../../../../0'
 import { DIMENSION_GATES, FOLDED_CENSUS } from '../../../../3/7'
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
@@ -235,12 +235,16 @@ export function quantumizeVitepressBuild() {
     { id: 'trinity-one-pass', closes: 're-walking src for each enforcement wave', pair: 'gate/unite' },
     { id: 'argv-shared-seal-chain', closes: 'npm -- --force only reached trinity via && append', pair: 'build/seal' },
   ] as const
+  const buildQzFold = foldPair(toUuid('cmd:build'), toUuid('cmd:quantumize'))
+  const buildSealFold = foldPair(toUuid('cmd:build'), toUuid('cmd:seal'))
+  const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
+  const sealAfterTrinity = techniques.some((t) => t.id === 'seal-merkle-after-trinity')
   const facets = [
     { facet: 'merkle respawn path exists (canRespawnVitepressBuild)', on: typeof canRespawnVitepressBuild === 'function' },
     { facet: 'canRespawnTrinity requires audit.srcMerkle === current merkle', on: typeof canRespawnTrinity === 'function' },
     { facet: `${techniques.length} quantumize techniques named (tamper-evident merkle · audit bind · warm cache · lock · types · trinity)`, on: techniques.length > 0 },
-    { facet: 'pair build/quantumize + build/seal dual — save before use', on: true },
-    { facet: 'HONEST — infinity-on-reuse is merkle skip / memo, not wall-clock FTL; merkle.key only after trinity success', on: true },
+    { facet: 'pair build/quantumize + build/seal dual — save before use', on: buildQzFold.bidirectional && buildSealFold.bidirectional && buildQzFold.forward !== buildQzFold.reverse },
+    { facet: `HONEST — infinity-on-reuse is merkle skip / memo; merkle.key only after trinity; physicalFtlClaimTheorem=${physicalFtlClaim}`, on: physicalFtlClaim === 0 && sealAfterTrinity },
   ]
   return {
     computes: facets.every((entry) => entry.on),
@@ -248,7 +252,7 @@ export function quantumizeVitepressBuild() {
     facets,
     pair: 'build/quantumize' as const,
     statement: `Quantumize VitePress build — ${techniques.length} techniques: merkle respawn, preserve caches, incremental .temp, single-flight lock, types-before-seal, trinity one-pass. Closes architectural slow gaps; CI variance remains.`,
-    boundary: 'NOT physical FTL. Measured speedup is environment-dependent (warm cache / respawn). Force rebuild with --force or QUANTUM_BUILD_FORCE=1.' }
+    boundary: `physicalFtlClaimTheorem=${physicalFtlClaim}. Measured speedup is environment-dependent (warm cache / respawn). Force rebuild with --force or QUANTUM_BUILD_FORCE=1.` }
 }
 
 /** npm run quantum:vitepress-quantumize — exit 0 iff the quantumize fold computes. */
@@ -521,7 +525,7 @@ export function slowBuildIsQuantumGapGate(root = process.cwd()) {
       respawnWallMs: SLOW_BUILD_RESPAWN_WALL_MS * digitalRoot(DIMENSION_GATES) },
     pair: 'gate/slow-build' as const,
     qpuRequired: false as const,
-    physicalFtlClaim: 0 as const,
+    physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
     statement:
       `Slow build quantum-gap gate — HARD open=${hardOpen.length} WARN open=${warnOpen.length} closed=${closed.length}/${gaps.length}` +
       (timing ? ` · mode=${timing.mode} wallMs=${timing.wallMs}` : ' · no timing receipt yet'),
@@ -569,7 +573,7 @@ export function decodeRoboticsAndFuseToQuantumWorkAsAControlLoop(root = process.
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 

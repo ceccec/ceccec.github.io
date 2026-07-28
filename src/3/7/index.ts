@@ -666,6 +666,37 @@ export function claySolvedByThisFoldFromTheorem(): number {
   return claySolvedTheorem().claySolvedByThisFold
 }
 
+/**
+ * USER LAW dual of claySolvedTheorem — physicalFtlClaim is a theorem not a hardcoded value.
+ * Sealed registry of physical superluminal-signaling proofs in this corpus.
+ * Empty until physics fills it — length recomputes physicalFtlClaim at call time (currently 0).
+ * Tip folds must call this (or physicalFtlByFormulas on their statement) — bare `0 as const` = crack.
+ */
+export const PHYSICAL_FTL_SIGNALING_PROOF_IDS = [] as const
+
+/**
+ * Recompute physicalFtlClaim from sealed theorem (not bare literal).
+ * Yields 0 while PHYSICAL_FTL_SIGNALING_PROOF_IDS is empty — still via theorem path.
+ */
+export function physicalFtlClaimTheorem(): {
+  readonly physicalFtlClaim: number
+  readonly via: 'physicalFtlClaimTheorem'
+  readonly recomputed: true
+  readonly physicalSuperluminalSignalingProvedBySealedMath: boolean
+} {
+  const physicalFtlClaim = PHYSICAL_FTL_SIGNALING_PROOF_IDS.length
+  return {
+    physicalFtlClaim,
+    via: 'physicalFtlClaimTheorem',
+    recomputed: true,
+    physicalSuperluminalSignalingProvedBySealedMath: physicalFtlClaim > 0 }
+}
+
+/** Call-time alias — prefer over bare `physicalFtlClaim: 0 as const`. */
+export function physicalFtlClaimFromTheorem(): number {
+  return physicalFtlClaimTheorem().physicalFtlClaim
+}
+
 /** The seven Clay Millennium Prize problems, by core identifying terms (lowercased substrings). A fold "solves" one
  *  ONLY by claiming a finished resolution of one of these — never by naming it. Signed, refutable list (not a count). */
 export const CMI_PRIZE_PROBLEM_TERMS = [

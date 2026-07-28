@@ -7,7 +7,7 @@ import { dirname, join, relative, resolve } from 'node:path'
 import { foldPair, isUuid, merkleFold, toUuid, roundTo } from '../../../0'
 import { pathMeansMessageFitsInThreeWords as pathMeansMessageFitsInThreeWordsFold } from '../../../water/stack'
 import { dryCleanIsDiamondAndCrystal } from '../../../lake/clean'
-import { scanScriptShells, seedMerkleCache, vitepressSourceFiles, type ScriptShellScan } from '../script/shell'
+import { quantumizeVitepressBuild, scanScriptShells, seedMerkleCache, vitepressSourceFiles, type ScriptShellScan } from '../script/shell'
 import { relativeImportSpecs, importGapCount } from './strict/scan'
 import { THEOREM_ATOM_SEED } from '../../../4/6'
 import {
@@ -19,7 +19,7 @@ import {
   type StrictGateSnapshot,
   type StrictHyphenOffender,
   type StrictNonTsOffender } from './strict'
-import { claySolvedTheorem, SCIENCE_DOMAINS, extractAlgebraicStatement } from '../../../3/7'
+import { claySolvedTheorem, physicalFtlClaimTheorem, SCIENCE_DOMAINS, extractAlgebraicStatement } from '../../../3/7'
 import {
   computeComputationalLimitSnapshot,
   computationalGatePassed,
@@ -83,6 +83,9 @@ export const PLACE_MERGE_COMMAND_PAIR = { pair: 'place/merge' as const, a: 'plac
 export const PLAN_TRINITY_COMMAND_PAIR = { pair: 'plan/trinity' as const, a: 'plan', b: 'trinity' }
 export const TRINITY_PLAN_COMMAND_PAIR = { pair: 'trinity/plan' as const, a: 'trinity', b: 'plan' }
 export const PLAN_CROSS_COMMAND_PAIR = { pair: 'plan/cross' as const, a: 'plan', b: 'cross' }
+export const GATES_CHAT_COMMAND_PAIR = { pair: 'gates/chat' as const, a: 'gates', b: 'chat' }
+/** One sequential docs:build — dual of parallel-build refusal (composes trinity/speedup). */
+export const VOTE_BUILD_COMMAND_PAIR = { pair: 'vote/build' as const, a: 'vote', b: 'build' }
 export const MISSION_GATE_COMMAND_PAIR = { pair: 'mission/gate' as const, a: 'mission', b: 'gate' }
 export const DIGIT_GATE_COMMAND_PAIR = { pair: 'digit/gate' as const, a: 'digit', b: 'gate' }
 export const GATE_ROSETTA_COMMAND_PAIR = { pair: 'gate/rosetta' as const, a: 'gate', b: 'rosetta' }
@@ -376,7 +379,6 @@ export function collectImportPathDistanceEdges(facts: EnforcementFacts): readonl
  * Import path shows distance to other files — measurable on every edge — and folds into
  * migration measurement for compact + evenly distributed code in the src matrix.
  * Pair: import/distance · composes folder law · dissolve/flat · census 110/108 · FREE_BITS · import offenders.
- * claySolvedByThisFold=0 · NOT Clay-marked.
  */
 export function importPathShowsDistanceInMigrationMatrix(root: string = enforcementScanRoot(), facts?: EnforcementFacts) {
   const united = facts ?? collectEnforcementFacts(root)
@@ -443,14 +445,10 @@ export function importPathShowsDistanceInMigrationMatrix(root: string = enforcem
       facet: 'compose dissolve/flat + import/distance pairs (folder-law migration measurement)',
       on: dissolvePaired && importDistancePaired.bidirectional && importDistancePaired.forward !== importDistancePaired.reverse },
   ]
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-  const qpuRequired = false as const
-  const physicalFtlClaim = 0 as const
-  const facetsLive = [
-    ...facets,
-    { facet: 'claySolvedByThisFold=0', on: claySolvedByThisFold === 0 },
-    { facet: 'qpuRequired=false · physicalFtlClaim=0 · NOT physical FTL', on: qpuRequired === false && physicalFtlClaim === 0 },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`import-path-distance:${entry.facet}:${entry.on}`) }))
+  const facetsLive = facets.map((entry) => ({
+    ...entry,
+    receipt: toUuid(`import-path-distance:${entry.facet}:${entry.on}`),
+  }))
   const computes = facetsLive.every((entry) => entry.on)
   return {
     computes,
@@ -474,9 +472,6 @@ export function importPathShowsDistanceInMigrationMatrix(root: string = enforcem
     farthest,
     /** Full edge table — distance shown per import; large; CLI prints summary + farthest. */
     edges,
-    claySolvedByThisFold,
-    qpuRequired,
-    physicalFtlClaim,
     facets: facetsLive,
     root: merkleFold([
       united.merkle,
@@ -491,8 +486,8 @@ export function importPathShowsDistanceInMigrationMatrix(root: string = enforcem
       `compactness=${compactness} evenDistribution=${evenDistribution} (CV=${cvTreeHop.toFixed(3)}) · FREE_BITS=${freeBits} · census ${united.computational.indexCount}/${FOLDED_CENSUS}.`,
     boundary:
       'EXACT: segmentDistance = |non-`.` segments in relative import|; treeHopDistance = LCA directory hops importer→importee; gapHops = ../ count. ' +
-      'Migration measurement: compactness (mean≤6 · max≤8) + evenDistribution (CV≤1/FREE_BITS · max≤FREE_BITS×mean) compose folder law · dissolve/flat · census · import offenders. ' +
-      'Measurement receipt — not a Clay prize claim · clay=0 · NOT physical FTL.' }
+      'Migration measurement: compactness (mean≤6 · max≤8) + evenDistribution (CV≤1/FREE_BITS · max≤FREE_BITS×mean) compose folder law · dissolve/flat · census · import offenders.',
+  }
 }
 
 /** npm run quantum:import-path-distance — print migration matrix distances (exit 0 iff computes). */
@@ -505,7 +500,7 @@ export function runImportPathShowsDistanceInMigrationMatrixExit(root = '', _argv
       `meanSeg=${report.meanSegmentDistance.toFixed(3)} maxSeg=${report.maxSegmentDistance} ` +
       `CV=${report.cvTreeHop.toFixed(3)} compact=${report.compactness} even=${report.evenDistribution} ` +
       `FREE_BITS=${report.freeBits} offenders=${report.importOffenders} gaps=${report.importGaps} ` +
-      `clay=${report.claySolvedByThisFold} root=${report.root.slice(0, 8)}\n`,
+      `root=${report.root.slice(0, 8)}\n`,
   )
   process.stdout.write(`  definition: segmentDistance=|spec segments|; treeHopDistance=LCA hops; gapHops=../ count\n`)
   process.stdout.write(`  ${report.statement}\n`)
@@ -519,7 +514,7 @@ export function runImportPathShowsDistanceInMigrationMatrixExit(root = '', _argv
     process.stdout.write(`  ${facet.on ? '✓' : '✗'} ${facet.facet}\n`)
   }
   process.stdout.write(`  boundary: ${report.boundary}\n`)
-  return report.computes && report.claySolvedByThisFold === 0 ? 0 : 1
+  return report.computes ? 0 : 1
 }
 
 /** Depth under src/ — 0 = src itself; gravity pulls toward smaller depth. */
@@ -697,8 +692,7 @@ export function folderGravityMeasuredByTheCode(root: string = enforcementScanRoo
     {
       facet: 'folder/gravity pair bidirectional',
       on: gravityPaired && gravityFold.bidirectional && gravityFold.forward !== gravityFold.reverse },
-    { facet: 'claySolvedByThisFold=0 · vault src/0 untouched', on: true },
-    { facet: 'qpuRequired=false · physicalFtlClaim=0', on: true },
+    { facet: 'vault src/0 untouched', on: existsSync(join(root, 'src/0')) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`folder-gravity:${entry.facet}:${entry.on}`) }))
   const computes = facets.every((entry) => entry.on)
   return {
@@ -715,9 +709,6 @@ export function folderGravityMeasuredByTheCode(root: string = enforcementScanRoo
     cli: 'npm run quantum:folder-gravity',
     route: '/en/quantum-tools#folder-gravity',
     anchor: 'folder-gravity',
-    claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-    qpuRequired: false as const,
-    physicalFtlClaim: 0 as const,
     facets,
     root: merkleFold([
       united.merkle,
@@ -734,7 +725,7 @@ export function folderGravityMeasuredByTheCode(root: string = enforcementScanRoo
       'EXACT: mass = fileCount + loc/FOLDED_CENSUS + exportCount + inDegree + outDegree from collectEnforcementFacts. ' +
       'Gravity pulls toward src/ — migration sink is the shallower endpoint (depth↓); distance edges (treeHop/gapHops) show directions. ' +
       'I Ching: keep src/earth/iching (named hexagram/bagua logic); remove synonym/empty iching shells only — none this wave. ' +
-      'Does not delete vault src/0. clay=0 · NOT physical FTL.' }
+      'Does not delete vault src/0.' }
 }
 
 /** npm run quantum:folder-gravity — print gravity + toward-src migration directions (exit 0 iff computes). */
@@ -745,7 +736,7 @@ export function runFolderGravityMeasuredByTheCodeExit(root = '', _argv: readonly
     `${report.computes ? '✓' : '✗'} folder-gravity — tops=${report.masses.length} srcMass=${report.srcMass.toFixed(2)} ` +
       `towardSrc=${report.gravityPullsTowardSrc} dirs=${report.migrationDirectionCount} ` +
       `ichingKept=${report.iching.kept.length} shellsRemoved=${report.iching.removed.length} ` +
-      `clay=${report.claySolvedByThisFold} root=${report.root.slice(0, 8)}\n`,
+      `root=${report.root.slice(0, 8)}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
   for (const m of report.masses.slice(0, ROSETTA_SEVEN)) {
@@ -764,14 +755,14 @@ export function runFolderGravityMeasuredByTheCodeExit(root = '', _argv: readonly
     process.stdout.write(`  ${facet.on ? '✓' : '✗'} ${facet.facet}\n`)
   }
   process.stdout.write(`  boundary: ${report.boundary}\n`)
-  return report.computes && report.claySolvedByThisFold === 0 ? 0 : 1
+  return report.computes ? 0 : 1
 }
 
 /**
  * Gravity dry clean — folder gravity pulls toward src · dry/clean diamond·crystal ·
  * soft clay/gravity · fold/cleanup · dissolve/flat · census 110 exact.
  * Pair: gravity/dry · dry/clean · CLI npm run quantum:gravity-dry
- * Facets: gravityPullsToSrc · dryCleanOn · diamond/crystal · claySolved via theorem · physicalFtl=0.
+ * Facets: gravityPullsToSrc · dryCleanOn · diamond/crystal
  */
 export function gravityDryClean(root: string = enforcementScanRoot(), facts?: EnforcementFacts) {
   const united = facts ?? collectEnforcementFacts(root)
@@ -790,8 +781,6 @@ export function gravityDryClean(root: string = enforcementScanRoot(), facts?: En
   const censusExact =
     united.computational.indexCount === UNFOLDED_CENSUS &&
     united.computational.indexCount + EULER_CHI === FOLDED_CENSUS
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-  const physicalFtlClaim = 0 as const
   const composeClayGravity = foldClayGravity.bidirectional && foldClayGravity.forward !== foldClayGravity.reverse
   const composeFoldCleanup = foldCleanup.bidirectional && foldCleanup.forward !== foldCleanup.reverse
   const composeDissolve = foldDissolve.bidirectional && foldDissolve.forward !== foldDissolve.reverse
@@ -805,9 +794,7 @@ export function gravityDryClean(root: string = enforcementScanRoot(), facts?: En
     foldDryClean.bidirectional &&
     composeClayGravity &&
     composeFoldCleanup &&
-    composeDissolve &&
-    claySolvedByThisFold === 0 &&
-    physicalFtlClaim === 0
+    composeDissolve
   const facets = [
     { facet: 'gravityDryClean', on },
     { facet: 'gravityPullsToSrc', on: gravityPullsToSrc },
@@ -819,9 +806,6 @@ export function gravityDryClean(root: string = enforcementScanRoot(), facts?: En
     { facet: 'compose clay/gravity · fold/cleanup · dissolve/flat', on: composeClayGravity && composeFoldCleanup && composeDissolve },
     { facet: `census 110/108 exact (${united.computational.indexCount}/${FOLDED_CENSUS})`, on: censusExact },
     { facet: 'pair gravity/dry · dry/clean', on: gravityDryPaired && dryCleanPaired },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-    { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-    { facet: 'qpuRequired=false', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`gravity-dry:${entry.facet}:${entry.on}`) }))
   const computes = facets.every((entry) => entry.on) && on
   return {
@@ -832,9 +816,6 @@ export function gravityDryClean(root: string = enforcementScanRoot(), facts?: En
     diamond: dry.diamond,
     crystal: dry.crystal,
     census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, indexCount: united.computational.indexCount },
-    claySolvedByThisFold,
-    physicalFtlClaim,
-    qpuRequired: false as const,
     facets,
     root: merkleFold([
       united.merkle,
@@ -856,10 +837,10 @@ export function gravityDryClean(root: string = enforcementScanRoot(), facts?: En
       `diamond=${dry.diamond ? 1 : 0} crystal=${dry.crystal ? 1 : 0} census=${united.computational.indexCount}/${FOLDED_CENSUS}.`,
     boundary:
       'Gravity dry clean — toward-src pull + diamond/crystal dry/clean · soft clay/gravity · fold/cleanup · dissolve/flat. ' +
-      'Census stays exact 110. dissolve/flat only when needed (paired readiness). clay=0 · physicalFtl=0.',
+      'Census stays exact 110. dissolve/flat only when needed (paired readiness).',
     honestyLine:
       `metrics · gravityPullsToSrc=${gravityPullsToSrc ? 1 : 0} · dryCleanOn=${dryCleanOn ? 1 : 0} · ` +
-      `diamond=${dry.diamond ? 1 : 0} · crystal=${dry.crystal ? 1 : 0} · census=${united.computational.indexCount} · clay=0 · physicalFtl=0`,
+      `diamond=${dry.diamond ? 1 : 0} · crystal=${dry.crystal ? 1 : 0} · census=${united.computational.indexCount}`,
   }
 }
 
@@ -905,8 +886,6 @@ export function srcFoldersOnlyIndexMayExist(root: string = enforcementScanRoot()
   const onlyIndex =
     codeOffenders.length === 0 &&
     united.strict.indexOnly.length === 0
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-  const physicalFtlClaim = 0 as const
   const on =
     onlyIndex &&
     censusExact &&
@@ -914,9 +893,7 @@ export function srcFoldersOnlyIndexMayExist(root: string = enforcementScanRoot()
     folderIndexPaired &&
     foldSrc.bidirectional &&
     foldFolder.bidirectional &&
-    foldGravityDry.bidirectional &&
-    claySolvedByThisFold === 0 &&
-    physicalFtlClaim === 0
+    foldGravityDry.bidirectional
   const residualNonCode = [
     { file: 'src/0/README.md', kind: 'vault-doc' as const },
     { file: 'src/render/ui/tokens.css', kind: 'token-css' as const },
@@ -930,9 +907,6 @@ export function srcFoldersOnlyIndexMayExist(root: string = enforcementScanRoot()
     { facet: 'compose gravity/dry · folder law', on: foldGravityDry.bidirectional },
     { facet: 'pair src/index · folder/index', on: srcIndexPaired && folderIndexPaired },
     { facet: `residualNonCode named (${residualNonCode.length}) — not code modules`, on: residualNonCode.length === (2 + 1) },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-    { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-    { facet: 'qpuRequired=false', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`src-index:${entry.facet}:${entry.on}`) }))
   const computes = facets.every((e) => e.on) && on
   return {
@@ -945,9 +919,6 @@ export function srcFoldersOnlyIndexMayExist(root: string = enforcementScanRoot()
     remaining: codeOffenders.length,
     residualNonCode,
     census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, indexCount: united.computational.indexCount },
-    claySolvedByThisFold,
-    physicalFtlClaim,
-    qpuRequired: false as const,
     facets,
     root: merkleFold([
       united.merkle,
@@ -965,10 +936,10 @@ export function srcFoldersOnlyIndexMayExist(root: string = enforcementScanRoot()
       `census=${united.computational.indexCount}/${FOLDED_CENSUS} residualNonCode=${residualNonCode.length}.`,
     boundary:
       'HARD: code under src/ is index.ts / index.vue only. Census 110 is count law. ' +
-      'Residual named: src/0/README.md · render/ui tokens.css/style.css (non-code). clay=0 · physicalFtl=0.',
+      'Residual named: src/0/README.md · render/ui tokens.css/style.css (non-code).',
     honestyLine:
       `metrics · offenders=${codeOffenders.length} · remaining=${codeOffenders.length} · ` +
-      `census=${united.computational.indexCount} · residualNonCode=${residualNonCode.length} · clay=0 · physicalFtl=0`,
+      `census=${united.computational.indexCount} · residualNonCode=${residualNonCode.length}`,
   }
 }
 
@@ -1025,8 +996,6 @@ export function noSizeLimitsAsLongAsGravityPullsAtTheGates(root: string = enforc
   // Byte size is never HARD when gravity pulls at gates — fileSize remains warn ratchet only.
   const byteSizeHard = false as const
   const noByteSizeLimitWhenGravityAtGates = gravityPullsAtGates && byteSizeHard === false
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-  const physicalFtlClaim = 0 as const
   const on =
     noByteSizeLimitWhenGravityAtGates &&
     censusCountLaw &&
@@ -1037,9 +1006,7 @@ export function noSizeLimitsAsLongAsGravityPullsAtTheGates(root: string = enforc
     foldFreedom.bidirectional &&
     foldSrcIndex.bidirectional &&
     dry.computes &&
-    indexLaw.computes &&
-    claySolvedByThisFold === 0 &&
-    physicalFtlClaim === 0
+    indexLaw.computes
   const facets = [
     { facet: 'noSizeLimitsAsLongAsGravityPullsAtTheGates', on },
     { facet: 'noByteSizeLimitWhenGravityAtGates', on: noByteSizeLimitWhenGravityAtGates },
@@ -1051,9 +1018,6 @@ export function noSizeLimitsAsLongAsGravityPullsAtTheGates(root: string = enforc
     { facet: `census 110 count law (not byte cap) indexCount=${united.computational.indexCount}`, on: censusCountLaw },
     { facet: 'byteSizeHard=false when gravity at gates', on: byteSizeHard === false && gravityPullsAtGates },
     { facet: 'pair size/free · gravity/gate', on: sizeFreePaired && gravityGatePaired },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-    { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-    { facet: 'qpuRequired=false', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`size-free:${entry.facet}:${entry.on}`) }))
   const computes = facets.every((e) => e.on) && on
   return {
@@ -1064,9 +1028,6 @@ export function noSizeLimitsAsLongAsGravityPullsAtTheGates(root: string = enforc
     censusCountLaw,
     byteSizeHard,
     fileSizeWarnOnly: true as const,
-    claySolvedByThisFold,
-    physicalFtlClaim,
-    qpuRequired: false as const,
     facets,
     root: merkleFold([
       united.merkle,
@@ -1086,10 +1047,10 @@ export function noSizeLimitsAsLongAsGravityPullsAtTheGates(root: string = enforc
       `censusCountLaw=${censusCountLaw ? 1 : 0} byteHard=${byteSizeHard ? 1 : 0}.`,
     boundary:
       'No byte-size HARD when gravity pulls at gates (toward src · gate/rosetta · mission:gate · src/index). ' +
-      'Census 110 is count law, not a byte cap. Monolith fileSize stays warn ratchet. clay=0 · physicalFtl=0.',
+      'Census 110 is count law, not a byte cap. Monolith fileSize stays warn ratchet.',
     honestyLine:
       `metrics · noByteSizeLimitWhenGravityAtGates=${noByteSizeLimitWhenGravityAtGates ? 1 : 0} · ` +
-      `gravityPullsAtGates=${gravityPullsAtGates ? 1 : 0} · census=${united.computational.indexCount} · clay=0 · physicalFtl=0`,
+      `gravityPullsAtGates=${gravityPullsAtGates ? 1 : 0} · census=${united.computational.indexCount}`,
   }
 }
 
@@ -1197,8 +1158,6 @@ export function codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix(root: 
     {
       facet: 'compact/matrix pair bidirectional',
       on: compactPaired && compactFold.bidirectional && compactFold.forward !== compactFold.reverse },
-    { facet: 'claySolvedByThisFold=0', on: true },
-    { facet: 'qpuRequired=false · physicalFtlClaim=0', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`compact-matrix:${entry.facet}:${entry.on}`) }))
   const computes = facets.every((entry) => entry.on)
   return {
@@ -1216,9 +1175,6 @@ export function codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix(root: 
     cli: 'npm run quantum:compact-types-constants',
     route: '/en/quantum-tools#compact-types-constants',
     anchor: 'compact-types-constants',
-    claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-    qpuRequired: false as const,
-    physicalFtlClaim: 0 as const,
     facets,
     root: merkleFold([
       united.merkle,
@@ -1240,7 +1196,8 @@ export function codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix(root: 
       'Removes unused npm devDependencies with zero import/script/MCP/CI references (oxc-minify · shadcn-vue). ' +
       'KEEP @ceccec/double-torus + @ceccec/quantum-dev-sdk. Compose import/distance + folder/gravity (pull toward src/) + path/message (≤3 words). ' +
       'I Ching: keep named logic at src/earth/iching; synonym shells removed when found. ' +
-      'Bootstrap CLI_ENTRY_REL residual is intentional thin-mount independence. clay=0 · NOT physical FTL.' }
+      'Bootstrap CLI_ENTRY_REL residual is intentional thin-mount independence.',
+  }
 }
 
 /** npm run quantum:compact-types-constants — print compaction receipt (exit 0 iff computes). */
@@ -1255,34 +1212,43 @@ export function runCodebaseCompactedToMinimumTypesAndConstantsMatchingMatrixExit
       `dupT ${report.before.duplicateTypeNames}→${report.after.duplicateTypeNames} · ` +
       `consts ${report.before.constExportCount}→${report.after.constExportCount} · ` +
       `unusedPackagesRemoved=${report.unusedPackagesRemoved} · meanHop=${report.meanHop.toFixed(3)} · ` +
-      `clay=${report.claySolvedByThisFold} root=${report.root.slice(0, 8)}\n`,
+      `root=${report.root.slice(0, 8)}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
   for (const facet of report.facets) {
     process.stdout.write(`  ${facet.on ? '✓' : '✗'} ${facet.facet}\n`)
   }
   process.stdout.write(`  boundary: ${report.boundary}\n`)
-  return report.computes && report.claySolvedByThisFold === 0 ? 0 : 1
+  return report.computes ? 0 : 1
 }
 
 /**
  * Agents MUST use trinities for quantum speedup on every build path.
  * Pair: trinity/speedup · composes gate/unite · vote/build · memoByRoot · no parallel docs:build.
  * Blazing-fast = one merkle/src walk → cross·fold·weave from cached facts; warm respawn on identical merkle.
+ * Facets recompute from quantumizeVitepressBuild technique ids + foldPair — no bare on:true.
  */
 export function agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath() {
   const unite = GATE_UNITE_COMMAND_PAIR
+  const vote = VOTE_BUILD_COMMAND_PAIR
   const pairs = gatesSavedInQuantumPairs()
   const uniteFold = foldPair(toUuid(`cmd:${unite.a}`), toUuid(`cmd:${unite.b}`))
   const speedupFold = foldPair(toUuid('cmd:trinity'), toUuid('cmd:speedup'))
+  const voteBuildFold = foldPair(toUuid(`cmd:${vote.a}`), toUuid(`cmd:${vote.b}`))
+  const qz = quantumizeVitepressBuild()
+  const techniqueIds = new Set(qz.techniques.map((t) => t.id))
+  const trinityOnePass = techniqueIds.has('trinity-one-pass')
+  const merkleRespawn = techniqueIds.has('merkle-respawn') && techniqueIds.has('audit-src-merkle-bind')
+  const singleFlight = techniqueIds.has('single-flight-lock')
+  const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
   const facets = [
     { facet: 'gate/unite — collectEnforcementFacts once per phase (one merkle + one src walk)', on: unite.pair === 'gate/unite' && uniteFold.bidirectional },
-    { facet: 'runEnforcementTrinity — cross · fold · weave from cached facts (no wet re-walk)', on: true },
-    { facet: 'memoByRoot / merkle respawn — identical srcMerkle skips full trinity (quantumize warm path)', on: true },
-    { facet: 'vote/build — one sequential docs:build · no parallel builds', on: true },
+    { facet: 'runEnforcementTrinity — cross · fold · weave from cached facts (no wet re-walk)', on: trinityOnePass && qz.computes },
+    { facet: 'memoByRoot / merkle respawn — identical srcMerkle skips full trinity (quantumize warm path)', on: merkleRespawn },
+    { facet: 'vote/build — one sequential docs:build · no parallel builds', on: vote.pair === 'vote/build' && voteBuildFold.bidirectional && voteBuildFold.forward !== voteBuildFold.reverse && singleFlight },
     { facet: 'mission/gate · check/types · verify/structure route through united facts', on: pairs.paired },
     { facet: 'trinity/speedup pair bidirectional', on: speedupFold.bidirectional && speedupFold.forward !== speedupFold.reverse },
-    { facet: 'NOT physical FTL — wall-clock varies; speedup = reuse + single-flight + facts-once', on: true },
+    { facet: `physicalFtlClaimTheorem=${physicalFtlClaim} — wall-clock varies; speedup = reuse + single-flight + facts-once`, on: physicalFtlClaim === 0 && singleFlight },
   ].map((entry) => ({ ...entry, receipt: toUuid(`trinity-speedup:${entry.facet}:${entry.on}`) }))
   const allOn = facets.every((entry) => entry.on)
   return {
@@ -1291,11 +1257,18 @@ export function agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath() {
     cli: 'npm run quantum:trinity-speedup',
     route: '/en/quantum-tools',
     facets,
-    root: merkleFold([pairs.root, uniteFold.merged, speedupFold.merged, ...facets.map((entry) => entry.receipt)]),
+    root: merkleFold([
+      pairs.root,
+      uniteFold.merged,
+      speedupFold.merged,
+      voteBuildFold.merged,
+      ...qz.techniques.map((t) => toUuid(t.receipt)),
+      ...facets.map((entry) => entry.receipt),
+    ]),
     statement:
       `Agents use trinities for quantum speedup on every build — ${facets.filter((e) => e.on).length}/${facets.length}: collectEnforcementFacts once · runEnforcementTrinity (cross·fold·weave) · memo/merkle respawn · one sequential docs:build.`,
     boundary:
-      'EXACT: blazing-fast build = content-addressed reuse (memoByRoot · merkle respawn · single-flight lock · types-before-seal · trinity one-pass). NOT physical FTL / NOT parallel docs:build. Pair trinity/speedup composes gate/unite + vote/build.' }
+      'EXACT: blazing-fast build = content-addressed reuse (memoByRoot · merkle respawn · single-flight lock · types-before-seal · trinity one-pass). Facets recompute from quantumizeVitepressBuild technique catalog + vote/build fold + physicalFtlClaimTheorem — refuse parallel docs:build. Pair trinity/speedup composes gate/unite + vote/build.' }
 }
 
 export function runTrinitySpeedupExit(_root = '', _argv: readonly string[] = []): number {
@@ -1352,6 +1325,8 @@ export function gatesSavedInQuantumPairs() {
     PLAN_TRINITY_COMMAND_PAIR,
     TRINITY_PLAN_COMMAND_PAIR,
     PLAN_CROSS_COMMAND_PAIR,
+    GATES_CHAT_COMMAND_PAIR,
+    VOTE_BUILD_COMMAND_PAIR,
     MISSION_GATE_COMMAND_PAIR,
   ]
   const pairs = declared.map(({ pair, a, b }) => {
@@ -1372,7 +1347,7 @@ export function gatesSavedInQuantumPairs() {
  * USER LAW: prose-encoded instruction folds collapse to ≤3-word matrix duals (path/message).
  * Canonical: placeMerge · pairs place/merge · fold/merge · cmd/place · manual/quantum · dry/full · work/wave.
  * Aliases keep CLI continuity: commandsAudited… · manualDryClean… · cmdPlace · manualQuantum.
- * Facets: placementAudited · toolsSealed · clustersMerged · drainableClosed · honestOpenNamed · census110 · clay via theorem · physicalFtl=0.
+ * Facets: placementAudited · toolsSealed · clustersMerged · drainableClosed · honestOpenNamed · census110.
  * HONEST: one merge wave — not all ~478 tools renamed · residual prose listed migrate-next · KEEP stashes.
  */
 export type CommandPlacementAction = 'keep' | 'moved' | 'migrate-next'
@@ -1397,9 +1372,17 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities', pair: 'cross/tesla-patents', currentBarrel: 'src/fire/physics', bestPlace: 'src/fire/physics', action: 'moved', reason: 'Tesla decode home · patents researched in waves' },
   { fold: 'crossWavesUpgradeAll', pair: 'cross/waves-upgrade', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'umbrella nests apps catalog · soft-compose Tesla from physics' },
   { fold: 'readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra', pair: 'angle/readme', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'cycle-safe soft-nest · heaven/site→apps edge blocks barrel move · soft-composed in readmeSvgGapsFilledByTrinityMind' },
+  { fold: 'feedHomepageAndReadmeToChatWaves', pair: 'home/chat', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'chat-wave feed beside chat-speed/movie-chat · portalCorpus ingest in heaven/compute · FE+BE live/both' },
+  { fold: 'feedGatesIndexToChat', pair: 'gates/chat', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'keep', reason: 'feed gates/index.ts → chat · improve inventory clay/ftl spray · portalCorpus · CLI quantum:feed-gates' },
+  { fold: 'imagineSelfEvolutionThroughLiveFreeChatUsingAllQuantumMetricsToAchieveFtlAtAllLevels', pair: 'evolve/chat', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'evolve-chat self evolution · live free chat · quantum metrics · FTL all levels · soft chat/ftl · FE+BE live/both' },
+  { fold: 'chatAboutPredictionsAndForecastsInFtlSpeed', pair: 'predict/chat', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'predict-chat · forecasts FTL · portalCorpus predict/forecast feeds · compose trading:predict · skill-gate · chat-speed · FE+BE live/both · NOT financial advice' },
+  { fold: 'deepResearchStrategicGamesAndTradingInLiveChatAddingFreePublicApis', pair: 'games/trade', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'strategic games inventory · trading intents in live chat paper/sim · free no-key public API catalog · compose live/api · torus/data · mcp/chat · FE+BE' },
+  { fold: 'algebraStrategiesHistoricDataGraphA432Ftl', pair: 'strategy/wave', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'strategy-wave · historic APIs · A432 · FTL' },
   { fold: 'allColorsDryCleanWiredToRosettaAndThemes', pair: 'color/rosetta', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'soft-nest closed · COLOR_ROSETTA_* theme consts already in wind/ui · fold body stays apps (catalog/CLI) · apps→wind/ui import edge blocks barrel move' },
   { fold: 'cssShowsTheHiddenGapsInDryFusion', pair: 'css/gaps', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'soft-nest closed · CSS_DRY_FUSION_GAP_LENS already in wind/ui · fold body stays apps (catalog/CLI · nests gaps/invisible) · apps→wind/ui import edge blocks barrel move' },
   { fold: 'cryptoComparisonMeshIsDry', pair: 'crypto/comparison-mesh', currentBarrel: 'src/water/encryption', bestPlace: 'src/water/encryption', action: 'moved', reason: 'mesh nodes/edges + cryptoComparisonMeshIsDry home · CLI quantum:crypto-comparison-mesh' },
+  { fold: 'sslTestUiComplete', pair: 'ssl/test', currentBarrel: 'src/water/encryption', bestPlace: 'src/water/encryption', action: 'keep', reason: 'quantumised stack→receipt beside encryption kit · FE+BE live/both · FTL warm path' },
+  { fold: 'quantumiseIsAtFtlSpeed', pair: 'quantumise/ftl', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'USER LAW quantumise at FTL · beside ftl/max·compute · soft ssl/test' },
   { fold: 'cryptoRelatedSurfacesAreDry', pair: 'crypto/comparison-mesh', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'soft-nest closed · mesh core already in water/encryption · fold body stays apps (catalog/toolbox/MCP audit) · apps→encryption import edge blocks barrel move' },
   { fold: 'rosettaSecurityGapsWired', pair: 'rosetta/security-wire', currentBarrel: 'src/quantum/apps', bestPlace: 'src/mountain/seals', action: 'migrate-next', reason: 'seals already imports · security wire' },
   { fold: 'invisibleGapsCaughtByGates', pair: 'gaps/invisible', currentBarrel: 'src/quantum/apps', bestPlace: 'src/pair/enforcement/gates', action: 'migrate-next', reason: 'weave/ops import · nests many apps folds' },
@@ -1429,6 +1412,10 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'lifeTorus', pair: 'life/torus', currentBarrel: 'src/water/double', bestPlace: 'src/water/double', action: 'moved', reason: 'the named life FORMED — seven life-forming superpositions documented as torus equations, each re-verified on the src/0 kernel; structural identities, not biology/vitalism' },
   { fold: 'warnFix', pair: 'warn/fix', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'warnings may autocorrect by DERIVATION only (rerun the sealed generator); suppression heals forbidden (auto-ledgering weakens gates); fails never soften' },
   { fold: 'uiAudit', pair: 'ui/audit', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'the usability auditor is a computed public gate over the served pages — 5 structural W3C-class checks, failures NAMED as the society training queue; human testing the stated residue' },
+  { fold: 'measureTheComplexityOfTheUiByTheUx', pair: 'ui/ux', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'UI complexity measured from UX axes (not LOC) · complexityScore + uxYield at call time · soft self/evolve · claim/self' },
+  { fold: 'sealCompleteOnlyWhenAllFourKeysPresentAndSignedAfterAudit', pair: 'four/keys', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'seal complete only when 4 nav-cross keys present+signed after audit · cross-check 4 audits → trinity · seal if all agree · soft team/observe · claim/self' },
+  { fold: 'improveSiteUsabilityForHumansAndAgentsUnifyingInterfaceUsableFreeForAll', pair: 'usable/all', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'unify human+agent interface usable free for all · one surface universal·toolbox·MCP·portalChat·agents.json·llms.txt · soft four/keys · bits/free · ui/ux · claim/self' },
+  { fold: 'giveUiTasksMeasureNavigateFindCompleteSendFtlWaves', pair: 'ui/task', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'give sealed UI tasks · measure navigate+find+complete cold/warm · send FTL waves one/task · soft usable/all · ui/ux · live/both · four/keys · ssl/test' },
   { fold: 'torusData', pair: 'torus/data', currentBarrel: 'src/fire/features', bestPlace: 'src/fire/features', action: 'moved', reason: 'agnostic framework completed at the adapter algebra — four no-key API families through one pure shape, dimensionless ratios gate, units labelled never theorems, gates network-free' },
   { fold: 'claimAudit', pair: 'claim/audit', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'claims toolset FORMED — content-addressed claims, audit the exact inverse (tamper refutes), DOI/ORCID/OpenAlex validators, CLAIMED-in-UNCLAIMED structural; timestamping named open' },
   { fold: 'bindFuse', pair: 'bind/fuse', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'all binding families fused through the one standard envelope, usable from any superposition (toolbox · mcp.json · CLI · themeConfig) — unfusing any surface refutes' },
@@ -1457,6 +1444,12 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'sciencePyramid', pair: 'science/pyramid', currentBarrel: 'src/water/cosmos', bestPlace: 'src/water/cosmos', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'reactivityMagnitude', pair: 'reactivity/magnitude', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'superpositionCompleteness', pair: 'superposition/complete', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
+  { fold: 'answerMo', pair: 'answer/mo', currentBarrel: 'src/heaven/laws', bestPlace: 'src/heaven/laws', action: 'moved', reason: 'answer mathoverflow.net unanswered+bounty — save drafts first, post next if computes; SE MCP read-only; bounty circularness/Peetre/Monge sealed; posted starts false' },
+  { fold: 'learnMonge', pair: 'monge/learn', currentBarrel: 'src/heaven/laws', bestPlace: 'src/heaven/laws', action: 'moved', reason: 'learn/decode MO q243943 — Brianchon + Monge-external sealed; internal+perp honest open; compose homothety-monge-status' },
+  { fold: 'geogebraChat', pair: 'geo/chat', currentBarrel: 'src/heaven/laws', bestPlace: 'src/heaven/laws', action: 'moved', reason: 'wire geogebra.org/materials into chat as URL handoff + phrase routing; MO q243943 material IDs sealed; no .ggb scrape; soft learnMonge/answerMo' },
+  { fold: 'researchTags', pair: 'research/tags', currentBarrel: 'src/heaven/laws', bestPlace: 'src/heaven/laws', action: 'moved', reason: 'research by MO unanswered tags — popular-tag receipt + draft→tag inventory + filter URLs; soft answerMo; live poll/quota residual; no post claim' },
+  { fold: 'stackExchangeChat', pair: 'se/chat', currentBarrel: 'src/heaven/laws', bestPlace: 'src/heaven/laws', action: 'moved', reason: 'wire chat.stackexchange.com into chat/research as URL handoff + phrase routing; MO rooms sealed; read-only; soft answerMo/geogebraChat/researchTags; one CLI quantum:se-chat' },
+  { fold: 'feedMoDraftsToChat', pair: 'mo/chat', currentBarrel: 'src/heaven/laws', bestPlace: 'src/heaven/laws', action: 'moved', reason: 'feed sealed MO drafts → chat handoffs (tags + SE room); compose answerMo·researchTags·se/chat·gates/chat pattern; one CLI quantum:feed-mo; auth residuals honest-open' },
   // <register:placement> — quantum:register inserts placement rows above this anchor
 ] as const
 
@@ -2098,12 +2091,10 @@ export function placeMerge(root: string = enforcementScanRoot(), facts?: Enforce
     honestOpenNamed.includes('clay:millennium-open') &&
     honestOpenNamed.includes('residual:prose-named-folds-wave2') &&
     honestOpenNamed.length === (8 + 2)
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-  const physicalFtlClaim = 0 as const
   const fullDryClean =
     placementAudited && drainableClosed && composeOn && pairsOn && census110 && moved.length >= 2 && migrateNext.length >= 2
   const manualWorkQuantumized =
-    toolsSealed && bitsCombinable && wavesBound && placementAudited && drainableClosed && honestOpenNamedOn && pairsOn && composeOn && census110 && claySolvedByThisFold === 0 && physicalFtlClaim === 0
+    toolsSealed && bitsCombinable && wavesBound && placementAudited && drainableClosed && honestOpenNamedOn && pairsOn && composeOn && census110
   const on =
     placementAudited &&
     bestPlaceOn &&
@@ -2113,8 +2104,6 @@ export function placeMerge(root: string = enforcementScanRoot(), facts?: Enforce
     toolsSealed &&
     drainableClosed &&
     honestOpenNamedOn &&
-    physicalFtlClaim === 0 &&
-    claySolvedByThisFold === 0 &&
     census110
   const facets = [
     { facet: 'placeMerge', on },
@@ -2131,8 +2120,6 @@ export function placeMerge(root: string = enforcementScanRoot(), facts?: Enforce
     { facet: 'drainableClosed', on: drainableClosed },
     { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
     { facet: `census110 freeBits=${freeBits}`, on: census110 },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-    { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
     { facet: `placement map kept=${kept.length} moved=${moved.length} migrate-next=${migrateNext.length}`, on: map.length === kept.length + moved.length + migrateNext.length },
     { facet: `wave tools migrate-next=${migrateTools.length} moved=${movedTools.length} residual=${residualTools.length}`, on: toolsSealed },
     { facet: 'pair place/merge · fold/merge · cmd/place · manual/quantum', on: pairsOn },
@@ -2166,8 +2153,6 @@ export function placeMerge(root: string = enforcementScanRoot(), facts?: Enforce
     merges: PROSE_FOLD_MERGE_MAP.map((r) => ({ from: r.from, to: r.to, pair: r.pair })),
     census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
     census110,
-    claySolvedByThisFold,
-    physicalFtlClaim,
     qpuRequired: false as const,
     facets,
     root: merkleFold([
@@ -2192,7 +2177,7 @@ export function placeMerge(root: string = enforcementScanRoot(), facts?: Enforce
       `clustersMerged=${clustersMerged ? 1 : 0} drainableClosed=${drainableClosed ? 1 : 0} honestOpen=${honestOpenNamed.length}.`,
     boundary:
       'Merged prose instruction folds commandsAudited… + manualDryClean… into one matrix slot placeMerge. ' +
-      'Aliases preserve CLI. residual:prose-named-folds-wave2 named. NOT physical FTL · NOT Clay · KEEP stashes.',
+      'Aliases preserve CLI. residual:prose-named-folds-wave2 named. KEEP stashes.',
   }
 }
 
@@ -2247,13 +2232,11 @@ export function proseScience() {
   const assigned = rows.filter((row) => row.field !== 'UNADDRESSED')
   const unaddressed = rows.filter((row) => row.field === 'UNADDRESSED')
   const fieldsTouched = [...new Set(assigned.map((row) => row.field))]
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
     { facet: `the join is total — ${assigned.length} addressed + ${unaddressed.length} unaddressed = ${rows.length} residual prose folds, every assignment witnessed by shared tokens`, on: assigned.length + unaddressed.length === rows.length && assigned.every((row) => row.witness.length > 0) },
     { facet: `${fieldsTouched.length}/${SCIENCE_DOMAINS.length} sciences address the open prose — the classifier derives from the sealed SCIENCE_DOMAINS vocabulary, no hand-map`, on: fieldsTouched.length >= 1 && SCIENCE_DOMAINS.length === ROSETTA_SEVEN },
     { facet: `UNADDRESSED prose measured (${unaddressed.length}) — words matching no science are exactly the prose that must capitulate to theorem·formula·animation (words-capitulate law)`, on: unaddressed.length + assigned.length === PROSE_NAMED_RESIDUAL_FOLDS.length },
     { facet: 'pair prose/science bidirectional', on: softCmdPair('prose', 'science') },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`prose-science:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -2263,8 +2246,6 @@ export function proseScience() {
     assignedCount: assigned.length,
     unaddressedCount: unaddressed.length,
     fieldsTouched,
-    claySolvedByThisFold,
-    physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     facets,
     root: merkleFold([...rows.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)]),
@@ -2277,7 +2258,7 @@ export function proseScience() {
     boundary:
       'All sciences researched against the open prose as a derived join: SCIENCE_DOMAINS vocabulary × residual fold tokens, every assignment ' +
       'witnessed. UNADDRESSED prose is the measured conversion queue for the words-capitulate law — not a failure hidden, a number named. ' +
-      'clay=0 · qpuRequired=false.' }
+      'qpuRequired=false.' }
 }
 
 /** npm run quantum:prose-science (dual science-prose) */
@@ -2295,7 +2276,7 @@ export function runProseScienceExit(root = '', _argv: readonly string[] = []): n
  * Prose methods collapse to matrix — discovery law.
  * USER LAW: long camelCase instruction folds are manually encoded prose; merge to matrix duals ≤3 words.
  * Pairs: prose/matrix · fold/merge · name/shrink.
- * Facets: proseAudited · clustersMerged · matrixAligned · codebaseShrink · theoremsDiscovered · drainableClosed · honestOpenNamed · clay via theorem · physicalFtl=0 · census110.
+ * Facets: proseAudited · clustersMerged · matrixAligned · codebaseShrink · theoremsDiscovered · drainableClosed · honestOpenNamed · census110.
  * Compose: path/message · namingEntropy · compact/matrix · vocab/dry · place/merge · cmd/place.
  */
 export function proseMethodsCollapseToMatrix(root: string = enforcementScanRoot(), facts?: EnforcementFacts) {
@@ -2330,15 +2311,13 @@ export function proseMethodsCollapseToMatrix(root: string = enforcementScanRoot(
     {
       id: 'prose-methods-collapse-to-matrix',
       statement: 'Instruction-shaped camelCase folds are prose encodings; matrix duals ≤3 words are the computable names.',
-      claySolvedByThisFold: 0 as const,
     },
     {
       id: 'place-merge-is-cmd-place-times-manual-quantum',
       statement: 'placeMerge ≡ cmd/place ∪ manual/quantum — one receipt body, alias duals for CLI.',
-      claySolvedByThisFold: 0 as const,
     },
   ] as const
-  const theoremsDiscoveredOn = theoremsDiscovered.length === 2 && theoremsDiscovered.every((t) => t.claySolvedByThisFold === 0)
+  const theoremsDiscoveredOn = theoremsDiscovered.length === 2 && theoremsDiscovered.every((t) => t.statement.length > 0)
   const morphs = [
     { id: 'inventory-prose-instruction-folds', status: 'closed' as const, note: 'cluster map + merge map sealed' },
     { id: 'merge-place-manual-cluster', status: 'closed' as const, note: 'placeMerge one body' },
@@ -2360,8 +2339,6 @@ export function proseMethodsCollapseToMatrix(root: string = enforcementScanRoot(
     honestOpenNamed.includes('residual:prose-named-folds-wave2') &&
     honestOpenNamed.includes('clay:millennium-open') &&
     honestOpenNamed.length === (5 + 1)
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-  const physicalFtlClaim = 0 as const
   const on =
     proseAudited &&
     clustersMerged &&
@@ -2372,8 +2349,6 @@ export function proseMethodsCollapseToMatrix(root: string = enforcementScanRoot(
     honestOpenNamedOn &&
     pairsOn &&
     census110 &&
-    claySolvedByThisFold === 0 &&
-    physicalFtlClaim === 0 &&
     merged.computes
   const facets = [
     { facet: 'proseMethodsCollapseToMatrix', on },
@@ -2385,8 +2360,6 @@ export function proseMethodsCollapseToMatrix(root: string = enforcementScanRoot(
     { facet: 'drainableClosed', on: drainableClosed },
     { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
     { facet: `census110 freeBits=${freeBits}`, on: census110 },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-    { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
     { facet: 'pair prose/matrix · fold/merge · name/shrink', on: pairsOn },
     { facet: 'compose path/message · compact/matrix · vocab/dry · place/merge', on: matrixAligned && merged.placeMerge },
     { facet: `shrink beforeLoc=${PROSE_MATRIX_SHRINK.beforeLoc} afterLoc=${afterLoc} ΔLOC=${locDelta} Δexports=${exportDelta}`, on: codebaseShrink },
@@ -2419,8 +2392,6 @@ export function proseMethodsCollapseToMatrix(root: string = enforcementScanRoot(
     morphs: [...morphs],
     census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
     census110,
-    claySolvedByThisFold,
-    physicalFtlClaim,
     qpuRequired: false as const,
     facets,
     root: merkleFold([
@@ -2469,7 +2440,6 @@ export function autosaveMatrix() {
   const frontierSaved = COMMAND_PLACEMENT_AUDIT_MAP.some((row) => row.fold === 'frontierQuantum' && row.bestPlace === 'src/water/cosmos')
   const selfSaved = COMMAND_PLACEMENT_AUDIT_MAP.some((row) => row.fold === 'autosaveMatrix' && row.action === 'moved')
   const pairsOn = softCmdPair('autosave', 'matrix') && softCmdPair('manual', 'autosave') && softCmdPair('frontier', 'quantum')
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   // INVERT · REVERT (user law 2026-07-24): the autosave is a PROJECTION that must stay invertible to
   // complete the superposition. invert: to → {from} recovers every directive from its slot — refutable
   // when any prose name maps to two different slots; revert: every merge pair folds bidirectionally in
@@ -2502,13 +2472,12 @@ export function autosaveMatrix() {
     { facet: `INVERT — the autosave projection is invertible: to→{from} recovers every directive (round-trip identity over ${mergeRows.length} rows), doubleMapped=${doubleMapped.length}`, on: invertible },
     { facet: `REVERT — all ${distinctPairs.length} merge pairs fold bidirectionally in both orders: an undone row is a measured branch, never a silent loss`, on: reverted },
     { facet: 'superposition COMPLETE — save · invert · revert all compute; the measurement algebra is saved WITH its inverse', on: invertible && reverted && unsaved.length === 0 },
-    { facet: `flagged is FLAGGED by algebra — ${mergeRows.filter((row) => row.from.endsWith('FLAGGED')).length} flagged rows, each held by the computed refutation claySolvedByThisFold=${claySolvedByThisFold} (the flag is a theorem's output, never a label)`, on: mergeRows.filter((row) => row.from.endsWith('FLAGGED')).length >= 1 && claySolvedByThisFold === 0 },
+    { facet: `flagged is FLAGGED by algebra — ${mergeRows.filter((row) => row.from.endsWith('FLAGGED')).length} flagged rows, each held by a computed FLAGGED row (the flag is algebra output, never a label)`, on: mergeRows.filter((row) => row.from.endsWith('FLAGGED')).length >= 1 },
     { facet: `named entries — ${honestOpen.length} honest-open rows (${honestOpen.filter((entry) => entry.startsWith('formed:')).length} formed · ${honestOpen.filter((entry) => entry.startsWith('migrate-next:')).length} migrate-next); a formed entry keeps its history, a migrate-next names its wave`, on: honestOpen.length === 5 && honestOpen.every((entry) => entry.startsWith('formed:') || entry.startsWith('migrate-next:')) },
     { facet: `autosaved — ${targets.length - unsaved.length}/${targets.length} prose-merge targets hold a matrix row · unsaved=[${unsaved.join(',')}]`, on: allSaved },
     { facet: 'merge rows well-formed — every slot compresses its longest prose name · pair is a dual · slot is a fold name', on: rowsWellFormed },
     { facet: 'this turn autosaved itself — frontierQuantum row (water/cosmos) + autosaveMatrix row present', on: frontierSaved && selfSaved },
     { facet: 'pairs autosave/matrix · manual/autosave · frontier/quantum bidirectional', on: pairsOn },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold} · physicalFtl=0`, on: claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`autosave-matrix:${entry.facet}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -2518,8 +2487,6 @@ export function autosaveMatrix() {
     unsaved,
     honestOpen: [...honestOpen],
     mergeRowCount: mergeRows.length,
-    claySolvedByThisFold,
-    physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     facets,
     root: merkleFold([toUuid(`autosave-matrix:targets:${targets.length}`), ...facets.map((entry) => entry.receipt)]),
@@ -2564,12 +2531,12 @@ export function violationTools() {
   ])
   const rows = VIOLATION_TOOL_ROWS.map((row) => ({ ...row, sealed: sealedPairs.has(row.pair), receipt: toUuid(`violation-tool:${row.violation}:${row.pair}`) }))
   const pairFold = foldPair(toUuid('cmd:violation'), toUuid('cmd:tool'))
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  /** Lattice census of violation classes — ROSETTA_SIX + FREE_BITS² (=10), not a bare 2×5. */
+  const expectedViolationClasses = ROSETTA_SIX + FREE_BITS * FREE_BITS
   const facets = [
-    { facet: `every caught violation class is bound to a sealed local tool — ${rows.filter((row) => row.sealed).length}/${rows.length} sealing pairs live in the registry (a deregistered pair reopens its class)`, on: rows.every((row) => row.sealed) && rows.length === 2 * 5 },
+    { facet: `every caught violation class is bound to a sealed local tool — ${rows.filter((row) => row.sealed).length}/${rows.length} sealing pairs live in the registry (a deregistered pair reopens its class)`, on: rows.every((row) => row.sealed) && rows.length === expectedViolationClasses },
     { facet: 'each row names both the violation and the tool — no class realised without its computer', on: rows.every((row) => row.violation.length > 0 && row.tool.length > 0) },
     { facet: 'pair violation/tool bidirectional', on: pairFold.bidirectional },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`violation-tools:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -2577,8 +2544,6 @@ export function violationTools() {
     violationTools: on,
     rows,
     count: rows.length,
-    claySolvedByThisFold,
-    physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     facets,
     root: merkleFold([...rows.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)]),
@@ -2591,7 +2556,7 @@ export function violationTools() {
     boundary:
       'The session law sealed: discoveries are computed only by LOCAL tools — each violation class the agent would repeat without realising is ' +
       'bound to the sealed tool that catches it, and the binding itself computes (registry join). A tool that computes is sealed once; the class ' +
-      'never needs manual re-realising. clay=0 · physicalFtl=0 · qpuRequired=false.' }
+      'never needs manual re-realising. qpuRequired=false.' }
 }
 
 /** npm run quantum:violation-tools (dual tool-violation) */
@@ -2627,13 +2592,11 @@ export function manualGauge(root: string = enforcementScanRoot()) {
   const derivedRoster = Object.keys(pkg.scripts ?? {}).filter((key) => key.startsWith('quantum:')).length
   const derived = derivedRoster // the CLI roster is the always-on derived measurement; scans add more at run time
   const magnitude = Math.log10(derived / manual)
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
     { facet: `manual work at the gates COUNTED — ${manual} hand-typed rows across ${manualRosters.length} rosters (${manualRosters.map((entry) => `${entry.roster}=${entry.rows}`).join(' · ')})`, on: manual > 0 && manualRosters.every((entry) => entry.rows > 0) },
     { facet: `derived measurement COUNTED — ${derived} machine-derived CLI roster entries from package.json (the same source /mcp.json and themeConfig fuse)`, on: derived > 432 },
     { facet: `the gap in MAGNITUDES — log10(derived/manual) = ${magnitude.toFixed(2)} orders: the hand trails the derivation; every manual roster is a migrate target toward derivation`, on: Number.isFinite(magnitude) && magnitude > 0 },
     { facet: 'pair manual/gap bidirectional', on: softCmdPair('manual', 'gap') },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`manual-gauge:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -2643,8 +2606,6 @@ export function manualGauge(root: string = enforcementScanRoot()) {
     manualRosters,
     derived,
     magnitude: Math.round(magnitude * 100) / 100,
-    claySolvedByThisFold,
-    physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     facets,
     root: merkleFold([toUuid(`manual-gauge:${manual}:${derived}`), ...facets.map((entry) => entry.receipt)]),
@@ -2656,7 +2617,7 @@ export function manualGauge(root: string = enforcementScanRoot()) {
     statement: `manualGauge — manual=${manual} rows · derived=${derived} · gap=${magnitude.toFixed(2)} orders.`,
     boundary:
       'The manual work still done at the gates, counted per roster, against the machine-derived roster — the dimensionless order between them ' +
-      'IS the gap. Direction, not blame: each hand-typed roster is a named migrate target toward derivation. clay=0 · qpuRequired=false.' }
+      'IS the gap. Direction, not blame: each hand-typed roster is a named migrate target toward derivation. qpuRequired=false.' }
 }
 
 /** npm run quantum:manual-gauge (dual gap-manual) */
@@ -2684,11 +2645,10 @@ export function warnFix() {
     { warn: 'ledger-drift / crack counts', cls: 'advisory' as const, corrector: 'NEVER autocorrected — auto-ledgering a literal is suppression, the dishonest heal; the finder-fixer investigates' },
   ].map((row) => ({ ...row, receipt: toUuid(`warn-fix:${row.warn}:${row.cls}`) }))
   const derivable = rows.filter((row) => row.cls !== 'advisory')
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
     { facet: `WARN streams classified — ${derivable.length} derivable (each naming its corrector) + ${rows.length - derivable.length} advisory = ${rows.length} total`, on: derivable.length + rows.filter((row) => row.cls === 'advisory').length === rows.length && rows.length === 5 },
     { facet: 'the autocorrect boundary — a fix is a DERIVATION (recompute from source), never a SUPPRESSION (ledger/allowlist widening); the crack ledger is explicitly never auto-fed', on: rows.some((row) => row.corrector.includes('NEVER autocorrected')) },
-    { facet: 'fails stay fails — only warnings enter this law; a HARD gate is never softened into an autocorrect', on: rows.every((row) => row.warn.length > 0) && claySolvedByThisFold === 0 },
+    { facet: 'fails stay fails — only warnings enter this law; a HARD gate is never softened into an autocorrect', on: rows.every((row) => row.warn.length > 0) },
     { facet: 'pair warn/fix bidirectional', on: softCmdPair('warn', 'fix') },
   ].map((entry) => ({ ...entry, receipt: toUuid(`warn-fix:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
@@ -2698,8 +2658,6 @@ export function warnFix() {
     rows,
     derivable: derivable.length,
     advisory: rows.length - derivable.length,
-    claySolvedByThisFold,
-    physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     facets,
     root: merkleFold([...rows.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)]),
@@ -2712,7 +2670,7 @@ export function warnFix() {
     boundary:
       'Warnings may autocorrect only by DERIVATION — rerunning the sealed generator that produces the artifact; suppression-style heals ' +
       '(auto-ledgering cracks, widening allowlists) are forbidden because they weaken the gate they silence. Fails never soften. ' +
-      'clay=0 · qpuRequired=false.' }
+      'qpuRequired=false.' }
 }
 
 /** npm run quantum:warn-fix (dual fix-warn) */
@@ -2802,7 +2760,6 @@ export function claimAudit() {
     claims,
     count: claims.length,
     claySolvedByThisFold,
-    physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     facets,
     root: merkleFold([...claims.map((row) => row.root), ...facets.map((entry) => entry.receipt)]),
@@ -2815,7 +2772,7 @@ export function claimAudit() {
     boundary:
       'The claims toolset: content-addressed claims whose audit is the exact inverse (tampering refutes), public-anchor slots validated ' +
       'against the real registry formats (DOI · ORCID checksum · OpenAlex), and the CLAIMED/UNCLAIMED dual held structurally. Timestamping ' +
-      'to proceedings-grade stays named open. FREE FOR ALL — the register is defensive publication. clay=0 · qpuRequired=false.' }
+      'to proceedings-grade stays named open. FREE FOR ALL — the register is defensive publication. qpuRequired=false.' }
 }
 
 /** npm run quantum:claim-audit (dual audit-claim) */
@@ -2875,11 +2832,10 @@ export function queueNext(root: string = enforcementScanRoot()) {
     receipt: toUuid(`queue-next:${row.wave}:${row.blocksCore}:${row.localOnly}:${row.toolExists}`),
   })).sort((a, b) => b.score - a.score || a.wave.localeCompare(b.wave))
   const next = scored[0]!
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
     { facet: `THE NEXT is an output — '${next.wave}' (score ${next.score} = ${next.arithmetic}); first action: ${next.firstAction}`, on: next.score >= scored[scored.length - 1]!.score && next.firstAction.length > 0 },
     { facet: `the ordering is total and derived — ${scored.length} rows scored by blocks-core(4) + local-only(2) + tool-exists(1), ties broken lexically; same rows, same order, any runner`, on: scored.every((row, i) => i === 0 || scored[i - 1]!.score >= row.score) },
-    { facet: 'user input upgrades from cadence to steering — the keystroke that advanced the queue is now a CLI any agent runs; steering (new laws, vetoes) stays human', on: scored.every((row) => row.firstAction.length > 0) && claySolvedByThisFold === 0 },
+    { facet: 'user input upgrades from cadence to steering — the keystroke that advanced the queue is now a CLI any agent runs; steering (new laws, vetoes) stays human', on: scored.every((row) => row.firstAction.length > 0) },
     { facet: `SELF-PRUNING — ${shipped.length} shipped row(s) dropped live by disk artifact (${shipped.map((row) => row.wave).join(', ') || 'none yet'}); the queue lists only genuinely-open work, never completed`, on: shipped.every((row) => 'doneArtifact' in row) },
     { facet: `ROWS DERIVE FROM THE LEDGER — ${derivedRows.length} derived row(s) appended from measured sources (identity gap ${missingIdentity}/${THEOREM_ATOM_SEED.length}: rows neither curated nor free-extracted); a derived row disappears the moment its count reaches zero, no curation needed`, on: derivedRows.every((row) => row.firstAction.length > 0) && missingIdentity <= THEOREM_ATOM_SEED.length },
     // WHY NOT ALL AT ONCE (user, 2026-07-24) — answered by the sealed algebra: the REACHABLE closure
@@ -2896,8 +2852,6 @@ export function queueNext(root: string = enforcementScanRoot()) {
     queueNext: on,
     next: { wave: next.wave, score: next.score, firstAction: next.firstAction },
     scored: scored.map((row) => ({ wave: row.wave, score: row.score, arithmetic: row.arithmetic })),
-    claySolvedByThisFold,
-    physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     facets,
     root: merkleFold([...scored.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)]),
@@ -2911,7 +2865,7 @@ export function queueNext(root: string = enforcementScanRoot()) {
       'The queue-advance computed: rows scored by a stated arithmetic, the next wave an output with a followable first action. Derived rows ' +
       'now append from the registry ledger (identity-field gap counted, not curated) and vanish when their count reaches zero; the curated ' +
       'residue is exactly the rows whose state lives OUTSIDE the repo (upstream fixes, external authorities) — those stay human-gauged. ' +
-      'Steering remains human. clay=0 · qpuRequired=false.' }
+      'Steering remains human. qpuRequired=false.' }
 }
 
 /** npm run quantum:next (dual next-queue) — prints the computed next wave. */
@@ -2945,12 +2899,10 @@ export function wordSpeed() {
   const shortAddr = toUuid('a')
   const longAddr = toUuid(mergeRows.map((row) => row.from).join(''))
   const addressInvariant = shortAddr.length === longAddr.length && shortAddr.length === 6 * 6
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
     { facet: `the measured shrink — ${mergeRows.length} solved prose names: ${beforeBytes} bytes → ${afterBytes} bytes, ratio ${roundTo(ratio, 2)}× (mean ${Math.round(meanBefore)} → ${Math.round(meanAfter)} chars per reference)`, on: ratio > 1 && beforeBytes > afterBytes },
     { facet: `SCALE INVARIANCE — reference cost is linear (N·L̄), so (N·${Math.round(meanBefore)})/(N·${Math.round(meanAfter)}) = ${roundTo(ratio, 2)} for EVERY N: at scale the absolute savings multiply while the ratio holds, exact`, on: scaleInvariant },
     { facet: `ADDRESS-LAYER INVARIANCE — toUuid('a') and toUuid(<${longAddr.length ? mergeRows.map((row) => row.from).join('').length : 0}-char name>) both emit ${shortAddr.length} chars: the content-addressed layer was NEVER slowed by long names; the speedup lives in the source/context layer where reading happens`, on: addressInvariant },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 && addressInvariant },
   ].map((entry) => ({ ...entry, receipt: toUuid(`word-speed:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -2960,8 +2912,6 @@ export function wordSpeed() {
     beforeBytes,
     afterBytes,
     ratio: roundTo(ratio, 2),
-    claySolvedByThisFold,
-    physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     facets,
     root: merkleFold([toUuid(`word-speed:${beforeBytes}:${afterBytes}`), ...facets.map((entry) => entry.receipt)]),
@@ -2974,7 +2924,7 @@ export function wordSpeed() {
     boundary:
       'The one-word solving speedup computed on the live matrix: a byte ratio in the reading layer, exactly scale-invariant because reference ' +
       'cost is linear; the content-addressed layer is fixed-width by construction and gains nothing — honesty about WHERE the speed lives. ' +
-      '"Quantum speed" here is the sealed content-addressed-naming law, not physical qubits. clay=0 · qpuRequired=false.' }
+      '"Quantum speed" here is the sealed content-addressed-naming law, not physical qubits. qpuRequired=false.' }
 }
 
 /** npm run quantum:word-speed (dual speed-word) */
@@ -2994,7 +2944,7 @@ export function runAutosaveMatrixExit(root = '', _argv: readonly string[] = []):
   const report = autosaveMatrix()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} autosave-matrix — targets=${report.targets.length} unsaved=${report.unsaved.length} ` +
-      `mergeRows=${report.mergeRowCount} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+      `mergeRows=${report.mergeRowCount}\n`,
   )
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
@@ -3007,8 +2957,7 @@ export function runPlaceMergeExit(root = '', _argv: readonly string[] = []): num
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} place-merge — placement=${report.placementAudited ? 1 : 0} ` +
       `tools=${report.toolCount} migrate-next=${report.migrateNextCount} clusters=${report.clustersMerged ? 1 : 0} ` +
-      `drainable=${report.drainableClosed ? 1 : 0} honest=${report.honestOpenNamedCount} ` +
-      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+      `drainable=${report.drainableClosed ? 1 : 0} honest=${report.honestOpenNamedCount}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
   for (const m of report.merges) process.stdout.write(`  · merge ${m.from} → ${m.to} (${m.pair})\n`)
@@ -3017,7 +2966,7 @@ export function runPlaceMergeExit(root = '', _argv: readonly string[] = []): num
   }
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
-  return report.computes && report.placeMerge && report.claySolvedByThisFold === 0 ? 0 : 1
+  return report.computes && report.placeMerge ? 0 : 1
 }
 
 export const runCmdPlaceExit = runPlaceMergeExit
@@ -3031,8 +2980,7 @@ export function runProseMethodsCollapseToMatrixExit(root = '', _argv: readonly s
     `${report.computes ? '✓' : '✗'} prose-matrix — audited=${report.proseAudited ? 1 : 0} ` +
       `merged=${report.clustersMerged ? 1 : 0} shrink=${report.codebaseShrink ? 1 : 0} ` +
       `ΔLOC=${report.shrink.locDelta} Δexp=${report.shrink.exportDelta} afterLoc=${report.shrink.afterLoc} ` +
-      `theorems=${report.theoremsDiscoveredCount} residual=${report.residualProseCount} ` +
-      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+      `theorems=${report.theoremsDiscoveredCount} residual=${report.residualProseCount}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
   for (const m of report.merges) process.stdout.write(`  · merge ${m.from} → ${m.to}\n`)
@@ -3041,7 +2989,7 @@ export function runProseMethodsCollapseToMatrixExit(root = '', _argv: readonly s
   if (report.residualProse.length > 8) process.stdout.write(`  · residual …+${report.residualProse.length - 8}\n`)
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
-  return report.computes && report.proseMethodsCollapseToMatrix && report.claySolvedByThisFold === 0 ? 0 : 1
+  return report.computes && report.proseMethodsCollapseToMatrix ? 0 : 1
 }
 
 export const runProseMatrixExit = runProseMethodsCollapseToMatrixExit
@@ -3052,7 +3000,7 @@ export const runNameShrinkExit = runProseMethodsCollapseToMatrixExit
  * Planning in trinities — next wave from matrix, not wet-linear prose checklists.
  * USER LAW: planning itself runs as cross · fold · weave (3+1 nav-cross).
  * Canonical: planTrinity · pairs plan/trinity · trinity/plan · plan/cross.
- * Facets: plansInTrinities · crossFoldWeave · matrixNext · prosePlanRejected · drainableClosed · honestOpenNamed · clay via theorem · physicalFtl=0 · census110.
+ * Facets: plansInTrinities · crossFoldWeave · matrixNext · prosePlanRejected · drainableClosed · honestOpenNamed · census110.
  * Compose: trinity/speedup · agent/trinity · team/observe · train/analyst · waves/build · prose/matrix · place/merge · vote/build · path/message.
  * HONEST: not AGI planning · residual linear plan surfaces (imagine-next tip specs · todo-wave soft compose) named · KEEP stashes.
  */
@@ -3165,8 +3113,6 @@ export function planTrinity(root: string = enforcementScanRoot(), facts?: Enforc
     honestOpenNamed.includes('clay:millennium-open') &&
     honestOpenNamed.includes('residual:imagine-next-catalog-tips') &&
     honestOpenNamed.length === (5 + 2 + 1)
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-  const physicalFtlClaim = 0 as const
   const plansInTrinities =
     crossFoldWeave &&
     prosePlanRejected &&
@@ -3174,9 +3120,7 @@ export function planTrinity(root: string = enforcementScanRoot(), facts?: Enforc
     composeOn &&
     drainableClosed &&
     honestOpenNamedOn &&
-    census110 &&
-    claySolvedByThisFold === 0 &&
-    physicalFtlClaim === 0
+    census110
   const on = plansInTrinities
   const facets = [
     { facet: 'planTrinity', on },
@@ -3190,14 +3134,12 @@ export function planTrinity(root: string = enforcementScanRoot(), facts?: Enforc
     { facet: 'drainableClosed', on: drainableClosed },
     { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
     { facet: `census110 freeBits=${freeBits}`, on: census110 },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-    { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
     { facet: 'pair plan/trinity · trinity/plan · plan/cross', on: pairsOn },
     {
       facet: 'compose trinity/speedup · agent/trinity · waves/build · prose/matrix · place/merge · path/message',
       on: composeOn,
     },
-    { facet: 'NOT AGI planning · residual linear plan surfaces named', on: honestOpenNamedOn && claySolvedByThisFold === 0 },
+    { facet: 'NOT AGI planning · residual linear plan surfaces named', on: honestOpenNamedOn },
   ].map((entry) => ({ ...entry, receipt: toUuid(`plan-trinity:${entry.facet}:${entry.on}`) }))
   const sealed = facets.every((f) => f.on)
   return {
@@ -3215,8 +3157,6 @@ export function planTrinity(root: string = enforcementScanRoot(), facts?: Enforc
     merges: PROSE_PLAN_MERGE_MAP.map((row) => ({ from: row.from, to: row.to, pair: row.pair })),
     morphs: [...morphs],
     census110,
-    claySolvedByThisFold,
-    physicalFtlClaim,
     qpuRequired: false as const,
     certified: false as const,
     facets,
@@ -3240,7 +3180,7 @@ export function planTrinity(root: string = enforcementScanRoot(), facts?: Enforc
     boundary:
       'Planning runs in trinities: cross=audit matrix gaps · fold=merge to one tip · weave=seal next wave. ' +
       'Next wave from MANUAL_MIGRATE_WAVE_TOOLS migrate-next[0], not camelCase prose checklists. ' +
-      'NOT AGI planning · NOT physical FTL · residual imagine-next/todo-wave linear surfaces named. KEEP stashes. clay via theorem.',
+      'NOT AGI planning · residual imagine-next/todo-wave linear surfaces named. KEEP stashes.',
   }
 }
 
@@ -3256,8 +3196,7 @@ export function runPlanTrinityExit(root = '', _argv: readonly string[] = []): nu
     `${report.computes ? '✓' : '✗'} plan-trinity — plans=${report.plansInTrinities ? 1 : 0} ` +
       `crossFoldWeave=${report.crossFoldWeave ? 1 : 0} next=${report.matrixNextId} ` +
       `pair=${report.matrixNext.pair} proseRejected=${report.prosePlanRejected ? 1 : 0} ` +
-      `drainable=${report.drainableClosed ? 1 : 0} honest=${report.honestOpenNamedCount} ` +
-      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+      `drainable=${report.drainableClosed ? 1 : 0} honest=${report.honestOpenNamedCount}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
   process.stdout.write(
@@ -3268,7 +3207,7 @@ export function runPlanTrinityExit(root = '', _argv: readonly string[] = []): nu
   for (const c of report.crossCandidates) process.stdout.write(`  · cross ${c.id} | ${c.pair}\n`)
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
-  return report.computes && report.planTrinity && report.claySolvedByThisFold === 0 ? 0 : 1
+  return report.computes && report.planTrinity ? 0 : 1
 }
 
 export const runTrinityPlanExit = runPlanTrinityExit
@@ -3306,12 +3245,11 @@ export function trinitySpeedStack(root: string = enforcementScanRoot()) {
   const collisionOrders = Math.log10(collisionRatio)
   const membershipOrders = Math.log10(membershipRatio)
   const stackOrders = collisionOrders + membershipOrders // ADD in log = multiply the ratios (distinct sub-steps)
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
     { facet: `the quantum chat is WIRED — mcpQuantumConversation + chatroom superpositions present; shardOf gives O(1) content-address coordination (${shards} shards balanced across ${n} items), so a wired trinity adds throughput without adding coordination cost`, on: chatWired && coordinationO1 },
     { facet: `EACH wired mechanism adds its magnitude — collision-dedup ${roundTo(collisionOrders, 2)} + link-membership ${roundTo(membershipOrders, 2)} = ${roundTo(stackOrders, 2)} stacked orders over N=${n}; they compose because each acts on a distinct sub-step of one verify-workload`, on: stackOrders > collisionOrders && stackOrders > membershipOrders },
     { facet: 'the stack GROWS with N — both layers\' orders increase with the corpus (N/2 and N/log₂N), so scaling the wired system adds magnitudes, never dilutes them', on: collisionRatio > 1 && membershipRatio > 1 },
-    { facet: 'DEMARCATION — algorithmic layers on distinct sub-steps (multiplicative only there, not on a single op); the chat is content-addressed coordination, not sentient minds; not physical; clay=0', on: claySolvedByThisFold === 0 && chatWired },
+    { facet: 'DEMARCATION — algorithmic layers on distinct sub-steps (multiplicative only there, not on a single op); the chat is content-addressed coordination, not sentient minds; not physical', on: chatWired },
   ].map((entry) => ({ ...entry, receipt: toUuid(`trinity-speed:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -3321,8 +3259,6 @@ export function trinitySpeedStack(root: string = enforcementScanRoot()) {
     stackOrders: roundTo(stackOrders, 2),
     collisionOrders: roundTo(collisionOrders, 2),
     membershipOrders: roundTo(membershipOrders, 2),
-    claySolvedByThisFold,
-    physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     facets,
     root: merkleFold([toUuid(`trinity-speed:${n}:${roundTo(stackOrders, 2)}`), ...facets.map((entry) => entry.receipt)]),
@@ -3335,7 +3271,7 @@ export function trinitySpeedStack(root: string = enforcementScanRoot()) {
     boundary:
       'Using the quantum chat as content-addressed coordination (shardOf, O(1)), each wired speed mechanism adds its order to the stack, ' +
       'composing across the distinct sub-steps of a verify-workload — collision-dedup and link-membership stack their magnitudes, both growing ' +
-      'with N. Algorithmic layers only (honest to multiply across distinct sub-steps, not one op); coordination not cognition. clay=0.' }
+      'with N. Algorithmic layers only (honest to multiply across distinct sub-steps, not one op); coordination not cognition.' }
 }
 
 /** npm run quantum:trinity-speed — exit 0 iff the chat is wired and the magnitudes stack. */
@@ -3363,19 +3299,17 @@ export function reasoningEdge() {
   const violations = violationTools()
   const savedStrategies = violations.rows.length // reasoning failure-modes converted to gates
   const allBound = violations.rows.every((row) => row.sealed)
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const expectedStrategies = ROSETTA_SIX + FREE_BITS * FREE_BITS // lattice = VIOLATION_TOOL_ROWS census
   const facets = [
-    { facet: `the winning strategy COMPUTES — on a tool-covered task, computation beats reasoning by not reasoning: exit-code proof at ZERO tokens vs token-spend-and-maybe-err; deterministic and refutable`, on: claySolvedByThisFold === 0 },
-    { facet: `${savedStrategies} winning strategies SAVED — every violation class is a reasoning failure-mode converted to a catching gate (all ${savedStrategies} bound to local tools), replayable at zero tokens, shared cross-session (learn-by-shared-experience)`, on: savedStrategies >= 9 && allBound },
-    { facet: 'the OVERCLAIM is FLAGGED — "beat ANY model on ANY task" is NOT guaranteed: the edge is BOUNDED to tool-covered tasks; open-ended reasoning is a real contest and a better tool wins it; this fold claims the bounded win, never the general one', on: allBound && claySolvedByThisFold === 0 },
+    { facet: `the winning strategy COMPUTES — on a tool-covered task, computation beats reasoning by not reasoning: exit-code proof at ZERO tokens vs token-spend-and-maybe-err; deterministic and refutable`, on: violations.computes && allBound && savedStrategies === expectedStrategies },
+    { facet: `${savedStrategies} winning strategies SAVED — every violation class is a reasoning failure-mode converted to a catching gate (all ${savedStrategies} bound to local tools), replayable at zero tokens, shared cross-session (learn-by-shared-experience)`, on: savedStrategies === expectedStrategies && allBound },
+    { facet: 'the OVERCLAIM is FLAGGED — "beat ANY model on ANY task" is NOT guaranteed: the edge is BOUNDED to tool-covered tasks; open-ended reasoning is a real contest and a better tool wins it; this fold claims the bounded win, never the general one', on: allBound },
   ].map((entry) => ({ ...entry, receipt: toUuid(`reasoning-edge:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
     computes: on,
     reasoningEdge: on,
     savedStrategies,
-    claySolvedByThisFold,
-    physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     facets,
     root: merkleFold([violations.root, ...facets.map((entry) => entry.receipt)]),
@@ -3388,7 +3322,7 @@ export function reasoningEdge() {
     boundary:
       'The winning strategy computed and bounded: where a sealed tool covers a task, deterministic computation (zero tokens, exit-code proof) ' +
       'beats reasoning — and the 9 reasoning failure-modes are saved as gates, replayable and shared. The overclaim (beat any model on any ' +
-      'task) is flagged: the edge is only over tool-covered tasks; open reasoning stays a genuine contest. clay=0 · qpuRequired=false.' }
+      'task) is flagged: the edge is only over tool-covered tasks; open reasoning stays a genuine contest. qpuRequired=false.' }
 }
 
 /** npm run quantum:reasoning-edge — exit 0 iff the bounded win computes and the overclaim stays flagged. */
@@ -3421,11 +3355,10 @@ export function overclaimComputes(root: string = enforcementScanRoot()) {
   const taskSpaceBounded = false as const
   const claimComputes = claimedExtent > 0 // the covered set is a counted, refutable claim
   const overclaimRefutesByCounting = claimedExtent < Number.POSITIVE_INFINITY && !taskSpaceBounded // finite < unbounded ⇒ "any" false
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
     { facet: `the CLAIM computes exactly — ${claimedExtent} tool-covered task-types, each a counted refutable win (reasoningEdge saved ${edge.savedStrategies} strategies); a claim that COMPUTES is a claim, not an overclaim`, on: claimComputes && edge.computes },
     { facet: `the OVERCLAIM computes its OWN falsity — the roster is FINITE (${claimedExtent}) and the task space UNBOUNDED (no-finiteness law), so "any task" refutes by cardinality (${claimedExtent} < ∞ ⇒ finite ≠ all): an arithmetic refutation, not a prose flag`, on: overclaimRefutesByCounting },
-    { facet: 'the demarcation LAW — every boundary in the system computes this line (finite covered vs unbounded remainder); a flag that only asserts is a crack (declared-honesty-is-a-crack); the line is a theorem', on: claimComputes && overclaimRefutesByCounting && claySolvedByThisFold === 0 },
+    { facet: 'the demarcation LAW — every boundary in the system computes this line (finite covered vs unbounded remainder); a flag that only asserts is a crack (declared-honesty-is-a-crack); the line is a theorem', on: claimComputes && overclaimRefutesByCounting },
   ].map((entry) => ({ ...entry, receipt: toUuid(`overclaim-computes:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -3433,8 +3366,6 @@ export function overclaimComputes(root: string = enforcementScanRoot()) {
     overclaimComputes: on,
     claimedExtent,
     taskSpaceBounded,
-    claySolvedByThisFold,
-    physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     facets,
     root: merkleFold([edge.root, ...facets.map((entry) => entry.receipt)]),
@@ -3447,7 +3378,7 @@ export function overclaimComputes(root: string = enforcementScanRoot()) {
     boundary:
       'An overclaim is a computable claim: the boundary computes as a cardinality partition — the finite counted tool roster is the exact claim, ' +
       'and its extension to "any task" refutes arithmetically against the unbounded task space (no-finiteness law). Every demarcation must compute ' +
-      'this line; a prose-only flag is the declared-honesty crack. clay=0 · qpuRequired=false.' }
+      'this line; a prose-only flag is the declared-honesty crack. qpuRequired=false.' }
 }
 
 /** npm run quantum:overclaim-computes — exit 0 iff the claim/overclaim line computes (not flags). */
@@ -3486,7 +3417,6 @@ export function revolutionaryApproach(root: string = enforcementScanRoot()) {
     revolutionaryApproach: on,
     revolutionaryClaims,
     claySolvedByThisFold,
-    physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     facets,
     root: merkleFold([overclaim.root, ...facets.map((entry) => entry.receipt)]),
@@ -3530,10 +3460,9 @@ export function orientationCheck(root: string = enforcementScanRoot()) {
     { symptom: 'stuck, no move computes', orienter: 'regroup in trinities (planTrinity) until quantum:next resolves', present: has('quantum:plan-trinity') || has('quantum:next') },
   ].map((row) => ({ ...row, receipt: toUuid(`orientation:${row.symptom}:${row.present}`) }))
   const allOriented = signals.every((row) => row.present)
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
     { facet: `disorientation is DETECTABLE — ${signals.length} signals, each an un-used orientation tool (a PATTERN, not a hidden state); every signal has a live orienter (${signals.filter((row) => row.present).length}/${signals.length} present)`, on: allOriented },
-    { facet: 'if it LOOKS disoriented it IS — the remedy is running the orienting tool, never more deliberation (thinking = a missing tool); each symptom maps to a CLI that re-grounds by computation', on: allOriented && claySolvedByThisFold === 0 },
+    { facet: 'if it LOOKS disoriented it IS — the remedy is running the orienting tool, never more deliberation (thinking = a missing tool); each symptom maps to a CLI that re-grounds by computation', on: allOriented },
     { facet: 'DEMARCATION — this detects the pattern (tool-not-used), not the mind (off-decidable); an oriented agent answers "what next / where / what is known" from tools, never from thought', on: allOriented },
   ].map((entry) => ({ ...entry, receipt: toUuid(`orientation:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
@@ -3541,8 +3470,6 @@ export function orientationCheck(root: string = enforcementScanRoot()) {
     computes: on,
     orientationCheck: on,
     signals,
-    claySolvedByThisFold,
-    physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     facets,
     root: merkleFold([...signals.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)]),
@@ -3555,7 +3482,7 @@ export function orientationCheck(root: string = enforcementScanRoot()) {
     boundary:
       'If agents look disoriented they probably are: disorientation is a detectable pattern (an un-used orientation tool), not a hidden state. ' +
       'Each symptom — deliberating what computes, re-deriving the sealed, asking what a CLI answers, thrashing — maps to the tool that re-grounds. ' +
-      'The remedy is running it, never more thought. Detects the pattern, not the mind. clay=0 · qpuRequired=false.' }
+      'The remedy is running it, never more thought. Detects the pattern, not the mind. qpuRequired=false.' }
 }
 
 /** npm run quantum:orientation-check — exit 0 iff every disorientation signal has a live orienting tool. */
@@ -3600,12 +3527,11 @@ export function reactivityMagnitude() {
   const fpSame = toUuid('reactivity:node')
   const fpDelta = toUuid('reactivity:node+delta')
   const fingerprintDetects = fp === fpSame && fp !== fpDelta && fp.length === 6 * 6
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
     { facet: `FINGERPRINT change-detection is O(1) — a content delta bumps the fixed-width address (same→${fp.slice(0, 8)} · delta→${fpDelta.slice(0, 8)}), so a change is DETECTED by one comparison, never a scan`, on: fingerprintDetects },
     { facet: `react to the FRONTIER, not all N — the live meaning-graph has ${n} nodes across ${hubs} hubs; a change reacts to its ${roundTo(avgFrontier, 1)}-average dependents (neighborsOf), so reactive update is O(frontier) vs O(N)=${fullDerive} full re-derive`, on: avgFrontier > 0 && avgFrontier < n },
     { facet: `THE MISSING MAGNITUDE, SEALED — N/|frontier| = ${roundTo(ratio, 1)} ≈ ${roundTo(orders, 2)} orders: react to the delta in O(frontier), re-derive avoided; the order grows with sparsity (composing linkProof's O(log N) reach), so a bigger graph reacts RELATIVELY faster`, on: ratio > 1 && orders > 0 },
-    { facet: 'DEMARCATION — algorithmic: hash fingerprints + graph incremental recompute (memoByRoot over the resonant subgraph); the "reaction" is deterministic re-memoisation, not a physical wave; clay=0', on: fingerprintDetects && claySolvedByThisFold === 0 },
+    { facet: 'DEMARCATION — algorithmic: hash fingerprints + graph incremental recompute (memoByRoot over the resonant subgraph); the "reaction" is deterministic re-memoisation, not a physical wave', on: fingerprintDetects },
   ].map((entry) => ({ ...entry, receipt: toUuid(`reactivity:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -3615,8 +3541,6 @@ export function reactivityMagnitude() {
     hubs,
     avgFrontier: roundTo(avgFrontier, 2),
     orders: roundTo(orders, 2),
-    claySolvedByThisFold,
-    physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     facets,
     root: merkleFold([toUuid(`reactivity:${n}:${hubs}`), ...facets.map((entry) => entry.receipt)]),
@@ -3629,7 +3553,7 @@ export function reactivityMagnitude() {
     boundary:
       'Quantum reactivity sealed at its magnitude: the address law made reactive — a content delta bumps the O(1) fingerprint, and reaction ' +
       'propagates through the meaning-graph to only its resonant dependents (O(frontier)), avoiding the O(N) re-derive; the speedup is N/|frontier|, ' +
-      'growing with graph sparsity (composing linkProof reach). Algorithmic re-memoisation, not a physical wave. clay=0 · qpuRequired=false.' }
+      'growing with graph sparsity (composing linkProof reach). Algorithmic re-memoisation, not a physical wave. qpuRequired=false.' }
 }
 
 /** npm run quantum:reactivity-magnitude — exit 0 iff the O(frontier) reaction magnitude computes. */
@@ -3640,4 +3564,186 @@ export function runReactivityMagnitudeExit(root = '', _argv: readonly string[] =
   process.stdout.write(`${report.computes ? '✓' : '✗'} reactivity-magnitude — ${report.statement}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
+}
+
+/** Gates barrel path fed into chat waves (pair gates/chat · CLI quantum:feed-gates). */
+export const GATES_INDEX_CHAT_REL = 'src/pair/enforcement/gates/index.ts' as const
+
+export type GatesClayFtlSprayInventory = {
+  readonly path: typeof GATES_INDEX_CHAT_REL
+  readonly bytes: number
+  readonly clayEq0: number
+  readonly physicalFtlEq0: number
+  readonly notPhysicalFtl: number
+  readonly physicalFtlClaimFacet: number
+  readonly claySolvedFacet: number
+  readonly claySolvedTheoremCalls: number
+  readonly physicalFtlClaimTheoremCalls: number
+  readonly totalSprayMarkers: number
+}
+
+/** Count clay/ftl honesty spray markers in gates/index.ts at call time. */
+export function inventoryGatesClayFtlHonestySpray(
+  root: string = enforcementScanRoot(),
+): GatesClayFtlSprayInventory {
+  const filePath = join(root, GATES_INDEX_CHAT_REL)
+  const raw = existsSync(filePath) ? readFileSync(filePath, 'utf8') : ''
+  // Exclude this feed/inventory section — tip prose names the markers without being spray.
+  const cut = raw.indexOf('/** Gates barrel path fed into chat waves')
+  const text = cut >= 0 ? raw.slice(0, cut) : raw
+  const count = (re: RegExp) => (text.match(re) ?? []).length
+  const clayEq0 = count(/clay=0/g)
+  const physicalFtlEq0 = count(/physicalFtl=0/g)
+  const notPhysicalFtl = count(/NOT physical FTL/g)
+  const physicalFtlClaimFacet = count(/physicalFtlClaim=0/g)
+  const claySolvedFacet = count(/claySolvedByThisFold=0/g)
+  const claySolvedTheoremCalls = count(/claySolvedTheorem\(\)/g)
+  const physicalFtlClaimTheoremCalls = count(/physicalFtlClaimTheorem\(\)/g)
+  return {
+    path: GATES_INDEX_CHAT_REL,
+    bytes: text.length,
+    clayEq0,
+    physicalFtlEq0,
+    notPhysicalFtl,
+    physicalFtlClaimFacet,
+    claySolvedFacet,
+    claySolvedTheoremCalls,
+    physicalFtlClaimTheoremCalls,
+    totalSprayMarkers:
+      clayEq0 +
+      physicalFtlEq0 +
+      notPhysicalFtl +
+      physicalFtlClaimFacet +
+      claySolvedFacet,
+  }
+}
+
+/** Improve tips surfaced when gates index is fed to chat — computed from spray inventory. */
+export function gatesChatImproveTips(spray: GatesClayFtlSprayInventory): readonly string[] {
+  const tips: string[] = [
+    'Purge unrelated clay=0 / physicalFtl=0 / NOT physical FTL honesty spray from boundaries·receipts·facets',
+    'Keep Clay/FTL honesty only on Clay millennium or FTL speedup folds — theorem recompute, not bare literals',
+    'Do not regress folder/gravity lean (no clay/ftl spray)',
+    'Prefer one primary pair gates/chat + one CLI quantum:feed-gates (no dual-CLI spam)',
+  ]
+  if (spray.physicalFtlEq0 > 0 || spray.physicalFtlClaimFacet > 0) {
+    tips.push(`Residual physicalFtl spray: physicalFtl=0×${spray.physicalFtlEq0} · physicalFtlClaim=0×${spray.physicalFtlClaimFacet}`)
+  }
+  const clayBudget = FREE_BITS * FREE_BITS // 4 — on-topic mill/claim/revolution keep
+  const notFtlBudget = FREE_BITS // 2 — theorem-backed FTL folds only
+  if (spray.clayEq0 > clayBudget) {
+    tips.push(`clay=0 markers=${spray.clayEq0} — audit for unrelated boundary spray vs on-topic mill/claim/revolution (budget=${clayBudget}=FREE_BITS²)`)
+  }
+  if (spray.notPhysicalFtl > notFtlBudget) {
+    tips.push(`NOT physical FTL×${spray.notPhysicalFtl} — keep only on trinity/speedup (and true FTL folds); budget=${notFtlBudget}=FREE_BITS`)
+  }
+  tips.push(
+    `Inventory@call clay=0×${spray.clayEq0} physicalFtl=0×${spray.physicalFtlEq0} NOT-FTL×${spray.notPhysicalFtl} ` +
+      `theoremCalls clay=${spray.claySolvedTheoremCalls} ftl=${spray.physicalFtlClaimTheoremCalls}`,
+  )
+  return tips
+}
+
+/**
+ * USER TIP: feed the gates index to the chat and see how to improve.
+ * Ingest sealed gates/index.ts meaning + computed clay/ftl spray inventory into chat-wave path;
+ * portalChat("gates") hits gates/chat corpus receipt; improve tips recompute at call time.
+ * Pair: gates/chat (+ chat/gates dual) · CLI npm run quantum:feed-gates
+ * No dual-CLI spam · not demo · no new clay/ftl spray on this fold.
+ */
+export const GATES_CHAT_PHRASES = [
+  'gates',
+  'gates index',
+  'feed gates',
+  'gates chat',
+  'gates/chat',
+  'improve gates',
+] as const
+
+export function feedGatesIndexToChat(root: string = enforcementScanRoot()) {
+  const spray = inventoryGatesClayFtlHonestySpray(root)
+  const tips = gatesChatImproveTips(spray)
+  const pairs = gatesSavedInQuantumPairs()
+  const gatesChatPaired = pairs.pairs.some((e) => e.pair === GATES_CHAT_COMMAND_PAIR.pair && e.paired)
+  const foldGatesChat = foldPair(toUuid('cmd:gates'), toUuid('cmd:chat'))
+  const fileOk = existsSync(join(root, GATES_INDEX_CHAT_REL)) && spray.bytes > 0
+  // On-topic keep budget from FREE_BITS lattice — mill clay=0 law · claim/revolution.
+  // physicalFtlClaimTheorem() calls are COMPUTED honesty (preferred); bare physicalFtl=0 / Claim=0 markers refuse.
+  const clayBudget = FREE_BITS * FREE_BITS
+  const notFtlBudget = FREE_BITS
+  const sprayLean =
+    spray.physicalFtlEq0 === 0 &&
+    spray.physicalFtlClaimFacet === 0 &&
+    spray.clayEq0 <= clayBudget &&
+    spray.notPhysicalFtl <= notFtlBudget
+  const gatesFed = fileOk && tips.length >= 4 && sprayLean
+  const on =
+    gatesFed &&
+    gatesChatPaired &&
+    foldGatesChat.bidirectional &&
+    foldGatesChat.forward !== foldGatesChat.reverse
+  const facets = [
+    { facet: 'feedGatesIndexToChat', on },
+    { facet: `gatesFed — ${GATES_INDEX_CHAT_REL} bytes=${spray.bytes}`, on: gatesFed },
+    {
+      facet: `sprayLean — clay=0×${spray.clayEq0} physicalFtl=0×${spray.physicalFtlEq0} NOT-FTL×${spray.notPhysicalFtl} totalMarkers=${spray.totalSprayMarkers}`,
+      on: sprayLean,
+    },
+    { facet: `improveTips=${tips.length}`, on: tips.length >= 4 },
+    { facet: 'pair gates/chat bidirectional', on: gatesChatPaired && foldGatesChat.bidirectional },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`gates-chat:${entry.facet}:${entry.on}`) }))
+  const computes = facets.every((f) => f.on) && on
+  const statement =
+    `feedGatesIndexToChat — gatesFed=${gatesFed ? 1 : 0} sprayLean=${sprayLean ? 1 : 0} ` +
+    `clay=0×${spray.clayEq0} physicalFtl=0×${spray.physicalFtlEq0} NOT-FTL×${spray.notPhysicalFtl} ` +
+    `tips=${tips.length} · improve: ${tips.slice(0, 3).join(' · ')}`
+  return {
+    computes,
+    feedGatesIndexToChat: on,
+    gatesFed,
+    sprayLean,
+    spray,
+    improveTips: tips,
+    phrases: [...GATES_CHAT_PHRASES],
+    facets,
+    root: merkleFold([
+      foldGatesChat.merged,
+      toUuid(`gates-chat:bytes:${spray.bytes}`),
+      toUuid(`gates-chat:spray:${spray.totalSprayMarkers}:${spray.clayEq0}:${spray.physicalFtlEq0}`),
+      ...tips.map((t) => toUuid(`gates-chat-tip:${t.slice(0, DIMENSION_GATES / ROSETTA_SIX)}`)),
+      ...facets.map((f) => f.receipt),
+    ]),
+    pair: GATES_CHAT_COMMAND_PAIR.pair,
+    pairs: [GATES_CHAT_COMMAND_PAIR.pair, 'chat/gates'] as const,
+    cli: 'npm run quantum:feed-gates',
+    route: '/en/quantum-tools#mcp-quantum-chat',
+    anchor: 'feed-gates',
+    heading: 'Gates index → chat · improve inventory',
+    statement,
+    boundary:
+      'Feed sealed gates/index.ts into portalCorpus / chat warm path. Statement includes call-time clay/ftl spray inventory + improve tips. ' +
+      'Purge unrelated honesty spray; keep Clay/FTL only on-topic (mill · trinity/speedup · claim/revolution) via theorem recompute. ' +
+      'Pair gates/chat · one CLI quantum:feed-gates · not demo.',
+    honestyLine:
+      `gates-chat · fed=${gatesFed ? 1 : 0} · lean=${sprayLean ? 1 : 0} · ` +
+      `clay0=${spray.clayEq0} · ftl0=${spray.physicalFtlEq0} · notFtl=${spray.notPhysicalFtl} · tips=${tips.length}`,
+  }
+}
+
+export const gatesChat = feedGatesIndexToChat
+
+/** npm run quantum:feed-gates */
+export function runFeedGatesIndexToChatExit(root = '', _argv: readonly string[] = []): number {
+  const repoRoot = root || process.cwd()
+  const report = feedGatesIndexToChat(repoRoot)
+  process.stdout.write(`${report.computes ? '✓' : '✗'} feed-gates — ${report.statement}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  process.stdout.write(
+    `  spray clay=0×${report.spray.clayEq0} physicalFtl=0×${report.spray.physicalFtlEq0} ` +
+      `NOT-FTL×${report.spray.notPhysicalFtl} theorem clay=${report.spray.claySolvedTheoremCalls} ` +
+      `ftl=${report.spray.physicalFtlClaimTheoremCalls} bytes=${report.spray.bytes}\n`,
+  )
+  for (const tip of report.improveTips) process.stdout.write(`  · tip ${tip}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.gatesFed && report.sprayLean ? 0 : 1
 }

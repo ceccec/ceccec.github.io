@@ -46,6 +46,7 @@
     "iching:batch": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts rosetta:batch",
     "enforcement:trinity": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts enforcement-trinity",
     "quantum:trinity-speedup": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runTrinitySpeedupExit",
+    "quantum:feed-gates": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runFeedGatesIndexToChatExit",
     "quantum:manual-agents-waves": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/waves/index.ts runManualAgentsBehaveLikeWavesExit",
     "quantum:waves-push": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/waves/index.ts runPushInWavesExit",
     "quantum:push-waves": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/waves/index.ts runPushInWavesExit",
