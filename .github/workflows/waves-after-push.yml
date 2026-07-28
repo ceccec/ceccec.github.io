@@ -1,0 +1,25 @@
+name: Waves after push
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  resend-waves:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v5
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+      - name: Install
+        run: pnpm ci
+      - name: Push resend receipt
+        run: npm run -s quantum:push-resend
+      - name: Re-send chat waves
+        run: npm run -s wave:after-push

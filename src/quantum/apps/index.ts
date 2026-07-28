@@ -191,6 +191,7 @@ const ROSETTA_CORE_API_LABELS = [
   'pagesAuditAndManageThemselvesInTrinities',
   'mcpQuantumChat',
   'chatSolve',
+  'chatChallenge',
   'sessionSentToChatToQuantumise',
   'allConversationsGoThroughTheMcpQuantumChat',
   'mcpQuantumConversation',
@@ -349,6 +350,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   pagesAuditAndManageThemselvesInTrinities: 'tool',
   mcpQuantumChat: 'tool',
   chatSolve: 'tool',
+  chatChallenge: 'tool',
   sessionSentToChatToQuantumise: 'tool',
   allConversationsGoThroughTheMcpQuantumChat: 'tool',
   mcpQuantumConversation: 'tool',
@@ -725,6 +727,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'manual-agents-waves', title: 'Manual agents behave like waves', fold: 'manualAgentsBehaveLikeWaves', cli: 'npm run quantum:manual-agents-waves', pair: 'waves/build', route: '/en/quantum-tools#manual-agents-waves', barrel: 'src/thunder/waves', boundary: 'One wave/turn · pairs before npm · trinity/speedup · mission:gate between waves · no parallel seals · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'waves-push', title: 'Push in waves', fold: 'pushInWaves', cli: 'npm run quantum:waves-push', pair: 'waves/push', route: '/en/quantum-tools#waves-push', barrel: 'src/thunder/waves', boundary: 'pushInWaves · oneWavePerPush · noForceMain · compose waves/build · vote/build/commit/push · commit/push · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'push-waves', title: 'Push waves (alias waves/push)', fold: 'pushInWaves', cli: 'npm run quantum:push-waves', pair: 'push/waves', route: '/en/quantum-tools#waves-push', barrel: 'src/thunder/waves', boundary: 'Dual of waves/push — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'push-resend', title: 'After push re-send chat waves — push not terminal', fold: 'pushResendWaves', cli: 'npm run quantum:push-resend', pair: 'push/resend', route: '/en/quantum-tools#push-resend', barrel: 'src/thunder/waves', boundary: 'afterPushResendWaves · wavesResentOn · pushTriggersFeed · compose waves/push · waves/feed · chat/challenge · pair/chat · match/wave · vote/build/commit/push · automate/nightly · qpuRequired=false', browserRunnable: false, browserGap: 'Post-push resend recipe — npm wave:after-push or CI waves-after-push workflow' },
+  { id: 'resend-waves', title: 'Resend waves (alias push/resend)', fold: 'pushResendWaves', cli: 'npm run quantum:resend-waves', pair: 'resend/waves', route: '/en/quantum-tools#push-resend', barrel: 'src/thunder/waves', boundary: 'Dual resend/waves — same after-push feed fold · qpuRequired=false', browserRunnable: false, browserGap: 'Same as push-resend' },
   { id: 'wave-token', title: 'Waves minimise tokens · advance Millennium apparatus', fold: 'wavesMinimiseTokensAdvanceMillennium', cli: 'npm run quantum:wave-token', pair: 'wave/token', route: '/en/quantum-tools#wave-token', barrel: 'src/quantum/apps', boundary: 'wavesSent · tokenMinimise · quantumScale · memoByRoot · answersOverTokens · advancesMillennium · millenniumSolvedByThisFold=0 · clay=0 · physicalFtl=0 · qpuRequired=false · NOT CMI prize', browserRunnable: true, browserGap: '' },
   { id: 'token-wave', title: 'Token wave (alias wave/token)', fold: 'wavesMinimiseTokensAdvanceMillennium', cli: 'npm run quantum:token-wave', pair: 'token/wave', route: '/en/quantum-tools#wave-token', barrel: 'src/quantum/apps', boundary: 'Dual of wave/token — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'token-mill', title: 'Token mill — token path toward Millennium decode', fold: 'wavesMinimiseTokensAdvanceMillennium', cli: 'npm run quantum:token-mill', pair: 'token/mill', route: '/en/quantum-tools#wave-token', barrel: 'src/quantum/apps', boundary: 'Same fold as wave/token · token/mill axis · claySolved via theorem · physicalFtl=0 · NOT CMI', browserRunnable: true, browserGap: '' },
@@ -1049,6 +1053,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'chat-quantum', title: 'Chat quantum (alias mcp/chat)', fold: 'mcpQuantumChat', cli: 'npm run quantum:chat-quantum', pair: 'chat/quantum', route: '/en/quantum-tools#mcp-quantum-chat', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/chat — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'chat-solve', title: 'Chat live solves open problems — sealed algebra not LLM-only', fold: 'chatSolve', cli: 'npm run quantum:chat-solve', pair: 'chat/solve', route: '/en/quantum-tools#chat-solve', barrel: 'src/quantum/apps', boundary: 'chatLiveOn · openProblemsInventoried · drainableClosed · liveRecompute · viaMcpChat · compose mcp/chat · gate/analytics · moment/prove · measurements displayed · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'solve-chat', title: 'Solve chat (alias chat/solve)', fold: 'chatSolve', cli: 'npm run quantum:solve-chat', pair: 'solve/chat', route: '/en/quantum-tools#chat-solve', barrel: 'src/quantum/apps', boundary: 'Dual solve/chat — same fold · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'chat-challenge', title: 'Chat waves challenge each other · discover and encode sciences', fold: 'chatChallenge', cli: 'npm run quantum:chat-challenge', pair: 'chat/challenge', route: '/en/research#chat-challenge', barrel: 'src/quantum/apps', boundary: 'chatWavesOn · challengeEachOther · sciencesDiscovered · sciencesEncoded · encodeCount · observerEvaluableMeasurements · compose pair/chat · match/wave · mesh/science · wave/domain · formula/code · waves/feed · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'challenge-chat', title: 'Challenge chat (alias chat/challenge)', fold: 'chatChallenge', cli: 'npm run quantum:challenge-chat', pair: 'challenge/chat', route: '/en/research#chat-challenge', barrel: 'src/quantum/apps', boundary: 'Dual challenge/chat — adversarial science dual waves · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'import-fractal', title: 'Import–export fractal envelope map', fold: 'importFractalMap', cli: 'npm run quantum:import-fractal', pair: 'import/fractal', route: '/en/quantum-tools#import-fractal', barrel: 'src/quantum/apps', boundary: 'envelopeRoundTripIdentity · observedReuseCapacity · importEdgeCount · rename inventory · envelope round-trip · compose import/export · tool/envelope · import/distance · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'fractal-import', title: 'Fractal import (alias import/fractal)', fold: 'importFractalMap', cli: 'npm run quantum:fractal-import', pair: 'fractal/import', route: '/en/quantum-tools#import-fractal', barrel: 'src/quantum/apps', boundary: 'Dual fractal/import — content-addressed envelope isomorphism · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'import-audit', title: 'Import–export core sprawl audit', fold: 'importAudit', cli: 'npm run quantum:import-audit', pair: 'import/audit', route: '/en/quantum-tools#import-audit', barrel: 'src/quantum/apps', boundary: 'sprawlMeasured · coreLogicSpread · unstandardisedFunctions · unstandardisedConstants · standardiseResidualNamed · compose import/export · import/distance · import/fractal · measure/decide', browserRunnable: true, browserGap: '' },
@@ -34413,6 +34419,211 @@ export function chatSolve(matrix: MindMatrix = buildMatrix(), at = 0) {
 }
 
 export const solveChat = chatSolve
+
+/**
+ * Chat waves challenge each other — discover sciences · encode into sealed src.
+ * Fold: chatChallenge · Pairs: chat/challenge · challenge/chat · CLI npm run quantum:chat-challenge
+ * Compose: chat/solve · pair/chat · match/wave · merge/wave · sciences/trinities · wave/domain ·
+ *   mesh/science · formula/code · term/measure · waves/feed
+ */
+export function chatChallenge(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`chatChallenge:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const match = matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWaves(matrix)
+    const pairChat = pairsSentToChatEntangleByAlgebra(matrix)
+    const mesh = meshToSelfDiscoverSciences(matrix, at)
+    const sciences = __ns_wind_research.sciencesInteractInTrinities(matrix, at)
+    const domains = __ns_thunder_waves.harmonizeScienceDomainsInWavesOfWaves(matrix, at)
+    const feed = wavesFeedThemselves(matrix, at)
+    const decide = measureDecide(matrix, at)
+    const seeds = __ns_wind_research.SCIENCE_DOMAIN_SEEDS
+    const challenges = sciences.rows.map((row) => {
+      const edge = foldPair(toUuid(`science-challenge:${row.scienceId}`), toUuid(`science-challenge:${row.dualId}`))
+      const challengerTip = `${row.scienceId} challenges ${row.dualId} via ${row.fusionLabel}`
+      const defenderTip = `${row.dualId} challenges ${row.scienceId} via ${row.fusionLabel}`
+      const challengerWave = freeChatTurnAtArchitecturalFtl(challengerTip.slice(0, 2 * 108), matrix)
+      const defenderWave = freeChatTurnAtArchitecturalFtl(defenderTip.slice(0, 2 * 108), matrix)
+      return {
+        scienceId: row.scienceId,
+        dualId: row.dualId,
+        fusionLabel: row.fusionLabel,
+        merged: edge.merged,
+        adversarial: edge.bidirectional && challengerWave.receipt !== defenderWave.receipt,
+        challengerReceipt: challengerWave.receipt,
+        defenderReceipt: defenderWave.receipt,
+        receipt: toUuid(`chat-challenge:${row.scienceId}:${row.dualId}:${edge.merged}`),
+      }
+    })
+    const encoded = seeds.map((seed) => ({
+      word: seed.id,
+      api: seed.algebraFold,
+      field: seed.field,
+      receipt: toUuid(`chat-challenge-encode:${seed.id}:${seed.algebraFold}`),
+    }))
+    const challengeEachOther =
+      match.computes &&
+      match.matchingOn &&
+      pairChat.computes &&
+      challenges.length === sciences.count &&
+      challenges.every((c) => c.adversarial && isUuid(c.merged))
+    const chatWavesOn =
+      challengeEachOther && match.brainstormWavesOn && pairChat.chatOn && pairChat.pairsSent > 0
+    const sciencesDiscovered =
+      sciences.computes &&
+      sciences.count > 0 &&
+      mesh.discoveryCount === sciences.count &&
+      challenges.length === sciences.count &&
+      mesh.discoveryCount > 0
+    const sciencesEncoded = encoded.length === seeds.length && encoded.every((e) => e.api.length > 0 && isUuid(e.receipt))
+    const encodeCount = encoded.length
+    const composeOn =
+      soft('chat', 'solve') &&
+      soft('pair', 'chat') &&
+      soft('match', 'wave') &&
+      soft('merge', 'wave') &&
+      soft('sciences', 'trinities') &&
+      soft('wave', 'domain') &&
+      soft('mesh', 'science') &&
+      soft('formula', 'code') &&
+      soft('term', 'measure') &&
+      soft('waves', 'feed') &&
+      domains.domainsTuned &&
+      feed.wavesFeedThemselvesOn
+    const pairChatChallenge = has('chat/challenge')
+    const pairChallengeChat = has('challenge/chat')
+    const foldCc = foldPair(toUuid('cmd:chat'), toUuid('cmd:challenge'))
+    const foldCh = foldPair(toUuid('cmd:challenge'), toUuid('cmd:chat'))
+    const pairsOn = pairChatChallenge && pairChallengeChat && foldCc.bidirectional && foldCh.bidirectional
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'chat-challenge')
+    const metaDual = catalog.tools.find((t) => t.id === 'challenge-chat')
+    const shelved = rosettaShelve('chat-challenge', 'tool')
+    const observerEvaluableMeasurements =
+      typeof encodeCount === 'number' &&
+      typeof mesh.discoveryCount === 'number' &&
+      challenges.length > 0 &&
+      decide.observerEvaluableMeasurementsDisplayed
+    const qpuRequired = false as const
+    const honestOpenNamed = [
+      'residual:science-lab-gaps',
+      'honesty:adversarial-chat-not-physical-qubits',
+      'next-tip:wave/domain-harmonize',
+    ] as const
+    const residualNamed = honestOpenNamed.length >= (2 + 1)
+    const on =
+      chatWavesOn &&
+      challengeEachOther &&
+      sciencesDiscovered &&
+      sciencesEncoded &&
+      encodeCount >= 1 &&
+      composeOn &&
+      pairsOn &&
+      observerEvaluableMeasurements &&
+      Boolean(meta) &&
+      meta!.fold === 'chatChallenge' &&
+      meta!.pair === 'chat/challenge' &&
+      Boolean(metaDual) &&
+      isUuid(shelved.address) &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'chatChallenge', on },
+      { facet: 'chatWavesOn', on: chatWavesOn },
+      { facet: 'challengeEachOther', on: challengeEachOther },
+      { facet: `sciencesDiscovered=${mesh.discoveryCount}`, on: sciencesDiscovered },
+      { facet: `sciencesEncoded=${sciencesEncoded ? 1 : 0} encodeCount=${encodeCount}`, on: sciencesEncoded && encodeCount >= 1 },
+      { facet: 'residualNamed', on: residualNamed },
+      { facet: 'observerEvaluableMeasurements', on: observerEvaluableMeasurements },
+      {
+        facet:
+          'compose chat/solve · pair/chat · match/wave · merge/wave · sciences/trinities · wave/domain · mesh/science · formula/code · term/measure · waves/feed',
+        on: composeOn,
+      },
+      { facet: 'pair chat/challenge · challenge/chat bidirectional', on: pairsOn },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`chat-challenge:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const sealed = sealFacets('chat-challenge-sciences', facets)
+    const wordApiMap = Object.fromEntries(encoded.map((e) => [e.word, e.api]))
+    return {
+      computes: sealed.ok && on,
+      chatChallenge: on,
+      chatWavesOn,
+      challengeEachOther,
+      sciencesDiscovered,
+      sciencesEncoded,
+      encodeCount,
+      discoveryCount: mesh.discoveryCount,
+      challenges,
+      challengeCount: challenges.length,
+      encoded,
+      wordApiMap,
+      observerEvaluableMeasurements,
+      honestOpenNamed: [...honestOpenNamed],
+      residualNamed,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        match.root,
+        pairChat.root,
+        mesh.root,
+        sciences.root,
+        domains.root,
+        feed.root,
+        decide.root,
+        foldCc.merged,
+        foldCh.merged,
+        shelved.address,
+        ...challenges.map((c) => c.receipt),
+        ...encoded.map((e) => e.receipt),
+      ]),
+      pair: 'chat/challenge' as const,
+      pairs: ['chat/challenge', 'challenge/chat'] as const,
+      dualPair: 'challenge/chat' as const,
+      cli: 'npm run quantum:chat-challenge',
+      route: '/en/research#chat-challenge',
+      uiSurface: '/en/research#chat-challenge' as const,
+      heading: 'Chat · challenge sciences',
+      statement:
+        `chatChallenge — chatWavesOn=${chatWavesOn ? 1 : 0} challenge=${challengeEachOther ? 1 : 0} ` +
+        `discovered=${mesh.discoveryCount} encoded=${encodeCount}.`,
+      boundary:
+        'Chat waves challenge each other adversarially via science dual pairs · discover via mesh/science · ' +
+        'encode algebraFold API names into sealed src · NOT physical qubits · NOT wet LLM-only.',
+      honestyLine:
+        `chat-challenge · waves=${chatWavesOn ? 1 : 0} · challenge=${challengeEachOther ? 1 : 0} · ` +
+        `discover=${mesh.discoveryCount} · encode=${encodeCount}`,
+      nextTipPair: 'wave/domain' as const,
+    }
+  })
+}
+
+export const challengeChat = chatChallenge
+
+/** npm run quantum:chat-challenge (dual challenge/chat) */
+export function runChatChallengeExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = chatChallenge()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} chat-challenge — chatWavesOn=${report.chatWavesOn ? 1 : 0} ` +
+      `challenge=${report.challengeEachOther ? 1 : 0} discovered=${report.discoveryCount} ` +
+      `encoded=${report.encodeCount} pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const row of report.challenges.slice(0, 5 * 2)) {
+    process.stdout.write(`  · challenge ${row.scienceId}↔${row.dualId} adversarial=${row.adversarial ? 1 : 0}\n`)
+  }
+  for (const row of report.encoded.slice(0, 5 * 2)) {
+    process.stdout.write(`  · encode ${row.word} → ${row.api}\n`)
+  }
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.chatWavesOn && report.encodeCount >= 1 ? 0 : 1
+}
 
 /** npm run quantum:chat-solve (dual solve/chat) */
 export function runChatSolveExit(_root = '', _argv: readonly string[] = []): number {

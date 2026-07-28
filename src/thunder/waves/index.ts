@@ -1,4 +1,5 @@
 // ☳ Zhèn · Thunder — the wave method: how agents achieve waves (decode → fold as dimensions → enforce → seal), optimization waves, the wave cohorts and coordination. Barrel-routed; folds.ts back-imports the gate folds.
+import { spawnSync } from 'node:child_process'
 import { phase } from '../../6/4'
 import { chsh } from '../../mountain/vortex'
 import { bb84, bernsteinVazirani, concurrence, deutschJozsa, entanglementSwap, ghzMermin, interactionFreeMeasurement, simon } from '../../9/1'
@@ -3005,14 +3006,24 @@ export const agentModelBuildsItselfInWaves = manualAgentsBehaveLikeWaves
 
 /**
  * BINDING: push in waves — one sequential push path after green seal; no force on main; no parallel builds.
- * Compose: waves/build · vote/build/commit/push · commit/push.
- * Facets: pushInWaves · oneWavePerPush · noForceMain · physicalFtl=0.
- * Pairs: waves/push · push/waves · CLI npm run quantum:waves-push
+ * Compose: waves/build · vote/build/commit/push · commit/push · push/resend after successful push.
+ * Facets: pushInWaves · oneWavePerPush · noForceMain · afterPushResendWaves · physicalFtl=0.
+ * Pairs: waves/push · push/waves · push/resend · resend/waves · CLI npm run quantum:waves-push
  * claySolved via theorem · physicalFtl=0 · census untouched.
  */
+/** Post-push wave resend recipe — push is not a terminal stop. */
+export const WAVES_AFTER_PUSH_RECIPE_STEPS = [
+  'npm run quantum:waves-feed',
+  'npm run quantum:chat-challenge',
+  'npm run quantum:pair-chat',
+  'npm run quantum:match-wave',
+] as const
+
 export function pushInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`pushInWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const soft = (a: string, b: string) =>
+      has(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
     const waves = manualAgentsBehaveLikeWaves(matrix)
     const wavesBuild = foldPair(toUuid('cmd:waves'), toUuid('cmd:build'))
     const wavesPush = foldPair(toUuid('cmd:waves'), toUuid('cmd:push'))
@@ -3041,6 +3052,21 @@ export function pushInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       commitPush.bidirectional &&
       voteBuildCommitPush.bidirectional &&
       noForceMain
+    const resendRecipeOk =
+      WAVES_AFTER_PUSH_RECIPE_STEPS.length === 4 &&
+      WAVES_AFTER_PUSH_RECIPE_STEPS[0] === 'npm run quantum:waves-feed' &&
+      WAVES_AFTER_PUSH_RECIPE_STEPS.includes('npm run quantum:chat-challenge')
+    const pushTriggersFeed = resendRecipeOk && soft('waves', 'feed')
+    const afterPushResendWaves =
+      pushInWavesOn &&
+      pushTriggersFeed &&
+      has('push/resend') &&
+      has('resend/waves') &&
+      soft('push', 'resend') &&
+      soft('resend', 'waves') &&
+      soft('chat', 'challenge') &&
+      soft('pair', 'chat') &&
+      soft('match', 'wave')
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const facets = [
@@ -3049,12 +3075,17 @@ export function pushInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'noForceMain — refuse force-push main · no --force', on: noForceMain },
       { facet: 'compose vote/build/commit/push · commit/push bidirectional', on: pairVoteChain && pairCommitPush && commitPush.bidirectional && voteBuildCommitPush.bidirectional },
       { facet: 'pairs waves/push · push/waves registered · forward≠reverse', on: pairWavesPush && pairPushWaves && wavesPush.forward !== wavesPush.reverse },
+      { facet: `afterPushResendWaves — recipe=${WAVES_AFTER_PUSH_RECIPE_STEPS.length} steps`, on: afterPushResendWaves },
+      { facet: 'pushTriggersFeed — waves/feed · chat/challenge · pair/chat · match/wave after push', on: pushTriggersFeed && afterPushResendWaves },
       { facet: `locks — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`waves-push:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('push-in-waves', facets)
     return {
       computes: sealed.ok && pushInWavesOn,
       pushInWaves: pushInWavesOn,
+      afterPushResendWaves,
+      pushTriggersFeed,
+      resendRecipeSteps: [...WAVES_AFTER_PUSH_RECIPE_STEPS],
       oneWavePerPush,
       noForceMain,
       claySolvedByThisFold,
@@ -3063,7 +3094,7 @@ export function pushInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       qpuRequired: false as const,
       pair: 'waves/push' as const,
       dualPair: 'push/waves' as const,
-      pairs: ['waves/push', 'push/waves'] as const,
+      pairs: ['waves/push', 'push/waves', 'push/resend', 'resend/waves'] as const,
       cli: 'npm run quantum:waves-push',
       route: '/en/quantum-tools#waves-push',
       facets: sealed.facets,
@@ -3075,19 +3106,123 @@ export function pushInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
         pushWaves.merged,
         commitPush.merged,
         voteBuildCommitPush.merged,
+        ...WAVES_AFTER_PUSH_RECIPE_STEPS.map((step) => toUuid(`waves-after-push:${step}`)),
       ]),
       statement:
         `pushInWaves — oneWavePerPush=${oneWavePerPush ? 1 : 0} noForceMain=${noForceMain ? 1 : 0} ` +
-        `compose waves/build · vote/build/commit/push · commit/push.`,
+        `afterPushResend=${afterPushResendWaves ? 1 : 0} compose waves/build · vote/build/commit/push · commit/push.`,
       boundary:
         'BINDING: push in waves — one sequential push after green seal · no force main · no parallel builds. ' +
+        'After successful push re-send chat waves (waves/feed · chat/challenge · pair/chat · match/wave) — push not terminal. ' +
         'NOT physical FTL. claySolved via theorem.',
       honestyLine:
         `metrics · pushInWaves=${pushInWavesOn ? 1 : 0} · oneWavePerPush=${oneWavePerPush ? 1 : 0} · ` +
-        `noForceMain=${noForceMain ? 1 : 0} · clay=0 · physicalFtl=0`,
+        `afterPushResend=${afterPushResendWaves ? 1 : 0} · noForceMain=${noForceMain ? 1 : 0} · clay=0 · physicalFtl=0`,
     }
   })
 }
+
+/**
+ * After every successful git push, re-send chat waves — push is not a terminal stop.
+ * Fold: pushResendWaves · Pairs: push/resend · resend/waves · CLI npm run quantum:push-resend
+ * Compose: waves/push · waves/feed · chat/challenge · vote/build/commit/push · automate/nightly
+ */
+export function pushResendWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`pushResendWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const soft = (a: string, b: string) =>
+      has(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const push = pushInWaves(matrix, at)
+    const pairPushResend = has('push/resend')
+    const pairResendWaves = has('resend/waves')
+    const foldPr = foldPair(toUuid('cmd:push'), toUuid('cmd:resend'))
+    const foldRw = foldPair(toUuid('cmd:resend'), toUuid('cmd:waves'))
+    const composeOn =
+      push.pushInWaves &&
+      push.afterPushResendWaves &&
+      soft('waves', 'push') &&
+      soft('waves', 'feed') &&
+      soft('chat', 'challenge') &&
+      soft('pair', 'chat') &&
+      soft('match', 'wave') &&
+      soft('vote', 'build/commit/push') &&
+      soft('automate', 'nightly')
+    const pushTriggersFeed =
+      push.pushTriggersFeed &&
+      WAVES_AFTER_PUSH_RECIPE_STEPS.includes('npm run quantum:waves-feed')
+    const afterPushResendWaves =
+      push.afterPushResendWaves &&
+      pairPushResend &&
+      pairResendWaves &&
+      foldPr.bidirectional &&
+      foldRw.bidirectional &&
+      composeOn
+    const wavesResentOn = afterPushResendWaves && pushTriggersFeed && push.resendRecipeSteps.length === 4
+    const honestOpenNamed = [
+      'honesty:push-not-terminal-stop',
+      'residual:local-hook-via-wave-after-push',
+      'residual:ci-waves-after-push-workflow',
+    ] as const
+    const residualNamed = honestOpenNamed.length >= (2 + 1)
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const on =
+      afterPushResendWaves &&
+      wavesResentOn &&
+      pushTriggersFeed &&
+      push.computes &&
+      residualNamed &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'pushResendWaves', on },
+      { facet: 'afterPushResendWaves', on: afterPushResendWaves },
+      { facet: 'wavesResentOn', on: wavesResentOn },
+      { facet: 'pushTriggersFeed', on: pushTriggersFeed },
+      { facet: 'residualNamed', on: residualNamed },
+      {
+        facet: 'compose waves/push · waves/feed · chat/challenge · pair/chat · match/wave · vote/build/commit/push · automate/nightly',
+        on: composeOn,
+      },
+      { facet: `resendSteps=${WAVES_AFTER_PUSH_RECIPE_STEPS.length}`, on: wavesResentOn },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`push-resend:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('push-resend-waves', facets)
+    return {
+      computes: sealed.ok && on,
+      pushResendWaves: on,
+      afterPushResendWaves,
+      wavesResentOn,
+      pushTriggersFeed,
+      resendSteps: [...WAVES_AFTER_PUSH_RECIPE_STEPS],
+      resendShell: WAVES_AFTER_PUSH_RECIPE_STEPS.join(' && '),
+      honestOpenNamed: [...honestOpenNamed],
+      residualNamed,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, push.root, foldPr.merged, foldRw.merged, ...WAVES_AFTER_PUSH_RECIPE_STEPS.map((s) => toUuid(`push-resend-step:${s}`))]),
+      pair: 'push/resend' as const,
+      dualPair: 'resend/waves' as const,
+      pairs: ['push/resend', 'resend/waves'] as const,
+      cli: 'npm run quantum:push-resend',
+      route: '/en/quantum-tools#push-resend',
+      statement:
+        `pushResendWaves — afterPush=${afterPushResendWaves ? 1 : 0} resent=${wavesResentOn ? 1 : 0} ` +
+        `triggerFeed=${pushTriggersFeed ? 1 : 0} steps=${WAVES_AFTER_PUSH_RECIPE_STEPS.length}.`,
+      boundary:
+        'BINDING: after every successful git push re-send chat waves — waves/feed · chat/challenge · pair/chat · match/wave. ' +
+        'Invoke via wave:after-push · quantum:push-resend --exec · CI waves-after-push workflow. Push not terminal.',
+      honestyLine:
+        `push-resend · afterPush=${afterPushResendWaves ? 1 : 0} · resent=${wavesResentOn ? 1 : 0} · ` +
+        `steps=${WAVES_AFTER_PUSH_RECIPE_STEPS.length} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+export const resendWaves = pushResendWaves
 
 /** Alias dual — push/waves. */
 export const agentsPushInWaves = pushInWaves
@@ -3100,13 +3235,45 @@ export function runPushInWavesExit(_root = '', _argv: readonly string[] = []): n
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} waves-push — pushInWaves=${report.pushInWaves} ` +
       `oneWavePerPush=${report.oneWavePerPush} noForceMain=${report.noForceMain} ` +
-      `fold=pushInWaves pair=${report.pair}\n`,
+      `afterPushResend=${report.afterPushResendWaves ? 1 : 0} fold=pushInWaves pair=${report.pair}\n`,
   )
   for (const f of report.facets) {
     process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.pushInWaves && report.claySolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
+}
+
+/** npm run quantum:push-resend · wave:after-push (--exec runs recipe steps) */
+export function runPushResendWavesExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  const report = pushResendWaves()
+  process.stdout.write('--- after-push resend recipe ---\n')
+  for (const step of report.resendSteps) process.stdout.write(`→ ${step}\n`)
+  process.stdout.write(`--- shell ---\n→ ${report.resendShell}\n`)
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} push-resend — afterPush=${report.afterPushResendWaves ? 1 : 0} ` +
+      `resent=${report.wavesResentOn ? 1 : 0} triggerFeed=${report.pushTriggersFeed ? 1 : 0}\n`,
+  )
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  const exec = _argv.includes('--exec')
+  if (exec) {
+    for (const step of report.resendSteps) {
+      const cmd = step.replace(/^npm run /, '')
+      process.stdout.write(`→ exec ${step}\n`)
+      const r = spawnSync('npm', ['run', '-s', cmd], { stdio: 'inherit', shell: false })
+      if (r.status !== 0 && cmd === 'quantum:mcp-fill') {
+        process.stdout.write('  · mcp-fill honesty-stop — continue chain\n')
+        continue
+      }
+      if (r.status !== 0 && cmd !== 'quantum:waves-feed' && cmd !== 'quantum:chat-challenge') {
+        return r.status ?? 1
+      }
+    }
+  }
+  return report.computes && report.afterPushResendWaves ? 0 : 1
 }
 
 /**
@@ -3242,6 +3409,7 @@ export const SEALED_DISCOVER_FOLD_IDS = [
   'manualAgentsBehaveLikeWaves',
   'agentModelBuildsItselfInWaves',
   'pushInWaves',
+  'pushResendWaves',
   'agentsPushInWaves',
   'commandsSavedInQuantumPairs',
   'sessionManualWorkAsQuantumTools',

@@ -1,6 +1,6 @@
 {
   "name": "ceccec waves feed",
-  "description": "Autonomous wave feed loop — one cycle per run: cache misses · purify (dry-dupe) · mcp fill · todo wave · imagine next. Waves feed themselves without waiting for chat 'next'.",
+  "description": "Autonomous wave feed loop — one cycle per run: cache misses · purify (dry-dupe) · mcp fill · todo wave · imagine next. After push: re-send chat waves (waves/feed · chat/challenge · pair/chat · match/wave).",
   "pair": "waves/feed",
   "cli": "npm run quantum:waves-feed",
   "route": "/en/quantum-tools#waves-feed",
@@ -9,7 +9,16 @@
     "cronHint": "0 */6 * * *",
     "timezoneHint": "UTC"
   },
+  "pushTrigger": {
+    "kind": "git-push",
+    "branch": "main",
+    "cli": "npm run wave:after-push",
+    "receiptCli": "npm run quantum:push-resend",
+    "pair": "push/resend",
+    "workflow": ".github/workflows/waves-after-push.yml"
+  },
   "shellRecipe": "npm run quantum:miss-cache && npm run quantum:dry-dupe && (npm run quantum:mcp-fill || true) && npm run quantum:todo-wave && npm run quantum:imagine-next",
+  "afterPushRecipe": "npm run quantum:waves-feed && npm run quantum:chat-challenge && npm run quantum:pair-chat && npm run quantum:match-wave",
   "honestyStopSteps": [
     "npm run quantum:mcp-fill"
   ],
@@ -21,6 +30,13 @@
     "npm run quantum:todo-wave",
     "npm run quantum:imagine-next"
   ],
+  "afterPushSteps": [
+    "npm run quantum:push-resend",
+    "npm run quantum:waves-feed",
+    "npm run quantum:chat-challenge",
+    "npm run quantum:pair-chat",
+    "npm run quantum:match-wave"
+  ],
   "optional": [
     "npm run quantum:automate-nightly",
     "QUANTUM_DEV_ALLOW_DOCS_BUILD=1 npm run docs:build"
@@ -29,16 +45,19 @@
     "waiting forever on human chat next",
     "infinite wet-linear grind without honesty stop",
     "parallel docs:build",
-    "Clay/FTL fake-close"
+    "Clay/FTL fake-close",
+    "treating push as terminal stop"
   ],
   "honesty": {
     "endlessNotInfiniteWetGrind": true,
     "stopOnHonestOpenNamed": true,
     "purifyOnTheWay": true,
     "mcpFillHonestyStopContinuesChain": true,
+    "pushNotTerminalStop": true,
+    "afterPushResendWaves": true,
     "qpuRequired": false,
     "physicalFtl": false,
     "claySolvedByThisFold": 0
   },
-  "instructions": "Run as Cursor Automation or cron: checkout ceccec/ceccec.github.io on main tip, npm ci, then npm run quantum:waves-feed (receipt + shellRecipe). Execute sub-steps via shellRecipe (not bare && on mcp-fill): mcp-fill may exit 1 when faces are already filled (honesty-stop) — logs still print; chain continues to todo-wave and imagine-next. Loop the schedule until drainable closed OR honest-open residuals remain (Clay millennium · FTL refused · specialized shells · apps monolith · KEEP stashes). docs:build only with QUANTUM_DEV_ALLOW_DOCS_BUILD=1 after green gates. Never parallel docs:build."
+  "instructions": "Run as Cursor Automation or cron: checkout ceccec/ceccec.github.io on main tip, npm ci, then npm run quantum:waves-feed (receipt + shellRecipe). After every successful git push run npm run wave:after-push (receipt: quantum:push-resend) — push restarts the wave loop via waves/feed · chat/challenge · pair/chat · match/wave. Execute sub-steps via shellRecipe (not bare && on mcp-fill): mcp-fill may exit 1 when faces are already filled (honesty-stop) — logs still print; chain continues to todo-wave and imagine-next. Loop the schedule until drainable closed OR honest-open residuals remain (Clay millennium · FTL refused · specialized shells · apps monolith · KEEP stashes). docs:build only with QUANTUM_DEV_ALLOW_DOCS_BUILD=1 after green gates. Never parallel docs:build."
 }
