@@ -9,6 +9,10 @@
     "cronHint": "0 */6 * * *",
     "timezoneHint": "UTC"
   },
+  "shellRecipe": "npm run quantum:miss-cache && npm run quantum:dry-dupe && (npm run quantum:mcp-fill || true) && npm run quantum:todo-wave && npm run quantum:imagine-next",
+  "honestyStopSteps": [
+    "npm run quantum:mcp-fill"
+  ],
   "steps": [
     "npm run quantum:waves-feed",
     "npm run quantum:miss-cache",
@@ -31,9 +35,10 @@
     "endlessNotInfiniteWetGrind": true,
     "stopOnHonestOpenNamed": true,
     "purifyOnTheWay": true,
+    "mcpFillHonestyStopContinuesChain": true,
     "qpuRequired": false,
     "physicalFtl": false,
     "claySolvedByThisFold": 0
   },
-  "instructions": "Run as Cursor Automation or cron: checkout ceccec/ceccec.github.io on main tip, npm ci, then npm run quantum:waves-feed (receipt + queued next tip). Optionally run the sub-steps sequentially in the same job. Loop the schedule until drainable closed OR honest-open residuals remain (Clay millennium · FTL refused · specialized shells · apps monolith · KEEP stashes). docs:build only with QUANTUM_DEV_ALLOW_DOCS_BUILD=1 after green gates. Never parallel docs:build."
+  "instructions": "Run as Cursor Automation or cron: checkout ceccec/ceccec.github.io on main tip, npm ci, then npm run quantum:waves-feed (receipt + shellRecipe). Execute sub-steps via shellRecipe (not bare && on mcp-fill): mcp-fill may exit 1 when faces are already filled (honesty-stop) — logs still print; chain continues to todo-wave and imagine-next. Loop the schedule until drainable closed OR honest-open residuals remain (Clay millennium · FTL refused · specialized shells · apps monolith · KEEP stashes). docs:build only with QUANTUM_DEV_ALLOW_DOCS_BUILD=1 after green gates. Never parallel docs:build."
 }

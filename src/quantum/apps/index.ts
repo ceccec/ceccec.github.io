@@ -18339,6 +18339,15 @@ export const WAVES_FEED_RECIPE_STEPS = [
   'npm run quantum:imagine-next',
 ] as const
 
+/** Steps that may exit 1 on honesty-stop — feed shell continues (receipt still logs). */
+export const WAVES_FEED_HONESTY_STOP_STEPS = ['npm run quantum:mcp-fill'] as const
+
+/** Shell-safe one-cycle chain: honesty-stop steps use `(step || true)` so todo-wave · imagine-next still run. */
+export function wavesFeedRecipeShell(steps: readonly string[] = WAVES_FEED_RECIPE_STEPS): string {
+  const honesty = new Set<string>(WAVES_FEED_HONESTY_STOP_STEPS)
+  return steps.map((step) => (honesty.has(step) ? `(${step} || true)` : step)).join(' && ')
+}
+
 /**
  * Waves feed themselves — autonomous endless improve/discover loop; purify on the way.
  * Fold: wavesFeedThemselves
@@ -18530,6 +18539,8 @@ export function wavesFeedThemselves(matrix: MindMatrix = buildMatrix(), at = 0) 
       noWaitForeverOnChat,
       honestyStopOnOpen,
       recipeSteps: WAVES_FEED_RECIPE_STEPS,
+      honestyStopSteps: [...WAVES_FEED_HONESTY_STOP_STEPS],
+      recipeShell: wavesFeedRecipeShell(),
       nextTip: nextTip
         ? { id: nextTip.id, kind: nextTip.kind, residual: nextTip.residual, gateway: nextTip.gateway }
         : null,
@@ -18557,6 +18568,7 @@ export function wavesFeedThemselves(matrix: MindMatrix = buildMatrix(), at = 0) 
         foldWay.merged,
         shelved.address,
         ...WAVES_FEED_RECIPE_STEPS.map((step) => toUuid(`waves-feed-step:${step}`)),
+        toUuid(`waves-feed-shell:${wavesFeedRecipeShell()}`),
         ...honestOpenNamed.map((id) => toUuid(`waves-feed-honest:${id}`)),
       ]),
       pair: 'waves/feed' as const,
@@ -18595,6 +18607,8 @@ export function runWavesFeedThemselvesExit(_root = '', _argv: readonly string[] 
   const report = wavesFeedThemselves()
   process.stdout.write('--- waves feed recipe (one cycle) ---\n')
   for (const step of report.recipeSteps) process.stdout.write(`→ ${step}\n`)
+  process.stdout.write('--- shell recipe (continue after mcp-fill honesty-stop) ---\n')
+  process.stdout.write(`→ ${report.recipeShell}\n`)
   process.stdout.write('--- stop conditions (honest) ---\n')
   process.stdout.write('→ drainable closed OR honest-open named stop\n')
   process.stdout.write('→ NOT infinite wet grind · NOT Clay fake-close · NOT physical FTL\n')
