@@ -1034,6 +1034,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'api/css',
   'manual/gap',
   'gap/manual',
+  'gate/analytics',
+  'analytics/gate',
   'combo/cover',
   'cover/combo',
   'dry/dupe',

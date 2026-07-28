@@ -427,6 +427,7 @@
     "quantum:wave-verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runWaveVerifyExit",
     "quantum:css-math": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runCssMathExit",
     "quantum:manual-gauge": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runManualGaugeExit",
+    "quantum:gate-analytics": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runGateAnalyticsExit",
     "quantum:combo-cover": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/index.ts runComboCoverExit",
     "quantum:dry-dupe": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runDryDupeExit",
     "quantum:dead-gateway": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/routes/corpus/index.ts runDeadGatewayExit",

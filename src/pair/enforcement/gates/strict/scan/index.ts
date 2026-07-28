@@ -4772,7 +4772,7 @@ export function freeAuditorWavesPerSrcFile(root: string = enforcementScanRoot())
     { facet: `dryAgnosticCode — dry/agnostic · dry/dupe scripts on`, on: dryAgnosticCode },
     { facet: 'computableSeeds — theorem/const · src/0 · seed markers dominate', on: computableSeeds },
     { facet: 'mostEfficientComputingEnvironment — dry agnostic + seeds + FTL/context compose', on: mostEfficientEnvironment },
-    { facet: `entanglementsMonitored — lineCracks=${lineCracks.length} byteCracks=${byteCracks.length} seedSparse=${seedSparse.length} (not invented)`, on: true },
+    { facet: `entanglementsMonitored — lineCracks=${lineCracks.length} byteCracks=${byteCracks.length} seedSparse=${seedSparse.length} (not invented)`, on: filesAudited > 0 },
     { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
     { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`auditor-waves:${entry.facet.slice(0, 72)}:${entry.on}`) }))
@@ -5824,7 +5824,7 @@ export function stallStopFindsHangedProcessesRealtime(
     },
     {
       facet: `hungFound=${hungFound ? 1 : 0} hangs=${hangs.length} (build-lock age=${lockAgeMs} alive=${lockHolderAlive ? 1 : 0})`,
-      on: true, // presence/absence both valid; machinery scans either way
+      on: scanningRealtime && typeof lockAgeMs === 'number',
     },
     {
       facet: `killedSafe — docs:dev protected · killOnlyWith--kill · killed=${killedCount} allowKill=${allowKill ? 1 : 0}`,

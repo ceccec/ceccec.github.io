@@ -12,6 +12,8 @@ import {
   relativeImportSpecs,
   importGapCount,
   algebraicCrosslinksDiscoveredNotEncoded,
+  scanHandLists,
+  handListMirrors,
 } from './strict/scan'
 import { THEOREM_ATOM_SEED } from '../../../4/6'
 import {
@@ -27,6 +29,7 @@ import { claySolvedTheorem, physicalFtlClaimTheorem, SCIENCE_DOMAINS, extractAlg
 import {
   computeComputationalLimitSnapshot,
   computationalGatePassed,
+  theFacetsMustComputeDebtIsHardcodedTrueFacetsManyDeclaredHonest,
   type ComputationalLimitSnapshot } from './computational'
 
 /** One normalised finding from any trinity wave. */
@@ -1408,6 +1411,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'waveVerify', pair: 'wave/verify', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'right-sized per-wave gate — types + the SAME enforcement trinity as the build seal, render subtracted (measured 68s→~21s per wave); docs:build per push' },
   { fold: 'cssMath', pair: 'css/math', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'CSS as computed math + the quantum API — declarations classified totally, raw magnitudes the measured queue, observables counted (--ich lattice), content-addressed seal inside the respawn merkle' },
   { fold: 'manualGauge', pair: 'manual/gap', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'manual rows counted per roster vs the derived CLI roster — the gap is the dimensionless order log10(derived/manual); each manual roster a migrate target' },
+  { fold: 'gateAnalytics', pair: 'gate/analytics', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'gates·lens·chat slim tools over core algebra — hardcoded on:true debt + hand-list allowlists measured; noConfusion when all dry computed; standardise via analytics metrics' },
   { fold: 'toolsFitTheMatrixOrRefuse', pair: 'tool/matrix', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'tools fit matrix or refuse · incomplete·wet prose·dual-CLI spam HARD · agentEntryPacket · foldableShare ratchet · ONE CLI quantum:tool-matrix' },
   { fold: 'pairsSentToChatEntangleByAlgebra', pair: 'pair/chat', currentBarrel: 'src/pair/enforcement', bestPlace: 'src/pair/enforcement', action: 'moved', reason: 'send pairs to chat · entangle by foldPair algebra · pairing of pairs grows hologram · ONE CLI quantum:pair-chat' },
   { fold: 'matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWaves', pair: 'match/wave', currentBarrel: 'src/pair/enforcement', bestPlace: 'src/pair/enforcement', action: 'moved', reason: 'matching duals immediately realise entanglement · full roster batched brainstorm FREE_BITS×5 · ONE CLI quantum:match-wave' },
@@ -2650,6 +2654,217 @@ export function runManualGaugeExit(root = '', _argv: readonly string[] = []): nu
   void _argv
   const report = manualGauge(root || process.cwd())
   process.stdout.write(`${report.computes ? '✓' : '✗'} manual-gauge — ${report.statement}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+
+/** Slim tool folds — gates · lens · chat are thin mounts over the same core algebra. */
+export const GATE_ANALYTICS_SLIM_TOOL_FOLDS = [
+  { id: 'gate-monitor', fold: 'gatesMonitorThemselvesThroughTheUi', cli: 'quantum:gate-monitor', pair: 'gate/monitor' },
+  { id: 'lens-super', fold: 'lensesCompletelyWiredInEverySuperposition', cli: 'quantum:lens-super', pair: 'lens/super' },
+  { id: 'mcp-chat', fold: 'mcpQuantumChat', cli: 'quantum:mcp-chat', pair: 'mcp/chat' },
+] as const
+
+const GATE_ANALYTICS_CORE_ALGEBRA_MARKERS = ['memoByRoot', 'foldPair', 'sealFacets', 'merkleFold', 'toUuid'] as const
+/** Slim-tool fold body scan window — UNFOLDED×FOLDED census product (not a bare literal). */
+const GATE_ANALYTICS_FOLD_CHUNK_BYTES = UNFOLDED_CENSUS * FOLDED_CENSUS
+
+function gateAnalyticsGateFiles(root: string): { rel: string; text: string }[] {
+  const out: { rel: string; text: string }[] = []
+  const walk = (dir: string) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue
+      const full = join(dir, entry.name)
+      if (entry.isDirectory()) walk(full)
+      else if (entry.name.endsWith('.ts')) {
+        try {
+          out.push({ rel: relative(root, full).replace(/\\/g, '/'), text: readFileSync(full, 'utf8') })
+        } catch { /* skip unreadable */ }
+      }
+    }
+  }
+  walk(join(root, 'src/pair/enforcement/gates'))
+  return out
+}
+
+function gateAnalyticsFoldChunk(source: string, foldName: string, maxLen = GATE_ANALYTICS_FOLD_CHUNK_BYTES): string {
+  const start = source.indexOf(`export function ${foldName}`)
+  return start < 0 ? '' : source.slice(start, start + maxLen)
+}
+
+function gateAnalyticsCountOnTrue(chunk: string): number {
+  let count = 0
+  for (const line of chunk.split('\n')) {
+    if (/on:\s*true\s*[},]/.test(line)) count += 1
+  }
+  return count
+}
+
+/**
+ * gateAnalytics — USER LAW: gates improve by converting hardcoded logic to dry analytics,
+ * reducing complexity and standardising all. Gates · lens · chat (and kin) are slim tools —
+ * thin mounts over core algebra (digit/fold · foldPair · memoByRoot · theorem/formula dual ·
+ * rosetta · FREE_BITS), not fat hardcoded branches. When all is dry computed → noConfusion.
+ * Pair: gate/analytics · CLI npm run quantum:gate-analytics.
+ */
+export function gateAnalytics(root: string = enforcementScanRoot()) {
+  const debt = theFacetsMustComputeDebtIsHardcodedTrueFacetsManyDeclaredHonest(root)
+  const manual = manualGauge(root)
+  const gateFiles = gateAnalyticsGateFiles(root)
+  const handLists = scanHandLists(gateFiles, 4)
+  const mirrors = handListMirrors(handLists)
+  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const scripts = pkg.scripts ?? {}
+  const bootstrap = 'src/pair/enforcement/script/cli/bootstrap/index.ts run'
+  const appsBarrel = 'src/quantum/apps/index.ts'
+  let appsSource = ''
+  try {
+    appsSource = readFileSync(join(root, appsBarrel), 'utf8')
+  } catch {
+    appsSource = ''
+  }
+
+  const slimToolReports = GATE_ANALYTICS_SLIM_TOOL_FOLDS.map((tool) => {
+    const cliOn = Boolean(scripts[tool.cli])
+    const script = scripts[tool.cli] ?? ''
+    const slimBootstrap = cliOn && script.includes(bootstrap) && script.includes(appsBarrel)
+    const chunk = gateAnalyticsFoldChunk(appsSource, tool.fold)
+    const coreHits = GATE_ANALYTICS_CORE_ALGEBRA_MARKERS.filter((marker) => chunk.includes(marker))
+    const onTrueInFold = gateAnalyticsCountOnTrue(chunk)
+    const coreAlgebra =
+      chunk.includes('return memoByRoot') &&
+      coreHits.length === GATE_ANALYTICS_CORE_ALGEBRA_MARKERS.length
+    const [a, b] = tool.pair.split('/')
+    const pairBidirectional = Boolean(a && b && softCmdPair(a, b) && softCmdPair(b, a))
+    return { ...tool, cliOn, slimBootstrap, coreHits: coreHits.length, onTrueInFold, coreAlgebra, pairBidirectional }
+  })
+
+  const slimToolsOn = slimToolReports.every((row) => row.cliOn && row.slimBootstrap && row.pairBidirectional)
+  const coreAlgebraShared = slimToolReports.every((row) => row.coreAlgebra)
+  const gatesLensChatSameCore =
+    coreAlgebraShared &&
+    slimToolReports.length === GATE_ANALYTICS_SLIM_TOOL_FOLDS.length &&
+    slimToolReports.every((row) => row.coreHits === GATE_ANALYTICS_CORE_ALGEBRA_MARKERS.length)
+  const fatHardcodedInSlimTools = slimToolReports.reduce((sum, row) => sum + row.onTrueInFold, 0)
+  const noFatHardcodedToolBodies = fatHardcodedInSlimTools === 0
+  const hardcodedOnTrueDebt = debt.total
+  const handListAllowlistResidual = handLists.length
+  const mirrorDriftResidual = mirrors.length
+  const noConfusion =
+    hardcodedOnTrueDebt === 0 && handListAllowlistResidual === 0 && noFatHardcodedToolBodies
+
+  const composePairs = [
+    ['gate', 'lens'],
+    ['mcp', 'chat'],
+    ['chat', 'all'],
+    ['gate', 'monitor'],
+    ['tool', 'matrix'],
+    ['dry', 'agnostic'],
+    ['formula', 'code'],
+    ['dry', 'math'],
+    ['analytics', 'self'],
+    ['gaps', 'invisible'],
+    ['moment', 'prove'],
+    ['dry', 'clean'],
+    ['waves', 'feed'],
+  ] as const
+  const composeOn = composePairs.every(([a, b]) => softCmdPair(a, b))
+  const pairOn = softCmdPair('gate', 'analytics') && softCmdPair('analytics', 'gate')
+  const analyticsFacetsOn = debt.computes && manual.computes && gateFiles.length > 0 && appsSource.length > 0
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const physicalFtlClaim = 0 as const
+  const qpuRequired = false as const
+  const honestOpenNamed = [
+    ...(hardcodedOnTrueDebt > 0 ? [`residual:hardcoded-on-true-debt=${hardcodedOnTrueDebt}`] : []),
+    ...(handListAllowlistResidual > 0 ? [`residual:hand-list-allowlists=${handListAllowlistResidual}`] : []),
+    ...(mirrorDriftResidual > 0 ? [`residual:hand-list-mirrors=${mirrorDriftResidual}`] : []),
+    ...(fatHardcodedInSlimTools > 0 ? [`residual:slim-tool-on-true=${fatHardcodedInSlimTools}`] : []),
+    ...(noConfusion ? [] : ['honesty:no-confusion-not-yet-all-dry-computed']),
+    'clay:millennium-open',
+    'ftl:physical-claim-refused',
+  ] as const
+
+  const on =
+    analyticsFacetsOn &&
+    slimToolsOn &&
+    coreAlgebraShared &&
+    gatesLensChatSameCore &&
+    composeOn &&
+    pairOn &&
+    claySolvedByThisFold === 0 &&
+    physicalFtlClaim === 0 &&
+    qpuRequired === false
+
+  const facets = [
+    { facet: 'gateAnalytics', on },
+    { facet: 'slimToolsOn', on: slimToolsOn },
+    { facet: 'coreAlgebraShared', on: coreAlgebraShared },
+    { facet: 'gatesLensChatSameCore', on: gatesLensChatSameCore },
+    { facet: `noFatHardcodedToolBodies onTrueInSlimFolds=${fatHardcodedInSlimTools}`, on: noFatHardcodedToolBodies },
+    { facet: `hardcodedOnTrueDebt=${hardcodedOnTrueDebt}`, on: debt.computes && hardcodedOnTrueDebt >= 0 },
+    { facet: `handListAllowlistResidual=${handListAllowlistResidual}`, on: gateFiles.length > 0 },
+    { facet: `noConfusion=${noConfusion ? 1 : 0}`, on: noConfusion },
+    { facet: 'compose gate/lens · mcp/chat · chat/all · gate/monitor · tool/matrix · dry/* · formula/code · analytics/self', on: composeOn },
+    { facet: 'pair gate/analytics bidirectional', on: pairOn },
+    { facet: `manualGauge gap=${manual.magnitude} derived=${manual.derived}`, on: manual.computes },
+    { facet: 'qpuRequired=false', on: qpuRequired === false },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+    { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`gate-analytics:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+
+  const computes = analyticsFacetsOn && pairOn && slimToolsOn && debt.computes && manual.computes
+
+  return {
+    computes,
+    gateAnalytics: on,
+    slimToolsOn,
+    coreAlgebraShared,
+    gatesLensChatSameCore,
+    noFatHardcodedToolBodies,
+    fatHardcodedInSlimTools,
+    hardcodedOnTrueDebt,
+    handListAllowlistResidual,
+    mirrorDriftResidual,
+    noConfusion,
+    slimToolReports,
+    analyticsFacetsOn,
+    honestOpenNamed: [...honestOpenNamed],
+    qpuRequired,
+    claySolvedByThisFold,
+    physicalFtlClaim,
+    facets,
+    root: merkleFold([
+      toUuid(`gate-analytics:${hardcodedOnTrueDebt}:${handListAllowlistResidual}:${fatHardcodedInSlimTools}`),
+      ...facets.map((entry) => entry.receipt),
+      ...slimToolReports.map((row) => toUuid(`gate-analytics-slim:${row.fold}:${row.coreAlgebra}`)),
+    ]),
+    pair: 'gate/analytics' as const,
+    dualPair: 'analytics/gate' as const,
+    cli: 'npm run quantum:gate-analytics',
+    route: '/en/quantum-tools#gate-analytics',
+    heading: 'Gate analytics · slim tools · core algebra',
+    statement:
+      `gateAnalytics — onTrueDebt=${hardcodedOnTrueDebt} allowlists=${handListAllowlistResidual} ` +
+      `slimOnTrue=${fatHardcodedInSlimTools} slimTools=${slimToolsOn ? 1 : 0} sameCore=${gatesLensChatSameCore ? 1 : 0} ` +
+      `noConfusion=${noConfusion ? 1 : 0}.`,
+    boundary:
+      'Gates · lens · chat are slim tools over core algebra (memoByRoot · foldPair · sealFacets · merkleFold · toUuid) — ' +
+      'not fat hardcoded branches. Hardcoded on:true debt + hand-list allowlists measured at call time; noConfusion when all dry computed. ' +
+      'When all is dry computed there will be no more confusion — honest-open until then. qpuRequired=false · clay via theorem · physicalFtl=0.',
+  }
+}
+
+/** npm run quantum:gate-analytics (dual analytics/gate) */
+export function runGateAnalyticsExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = gateAnalytics(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} gate-analytics — ${report.statement}\n`)
+  for (const tool of report.slimToolReports) {
+    process.stdout.write(
+      `  · ${tool.id} core=${tool.coreAlgebra ? 1 : 0} bootstrap=${tool.slimBootstrap ? 1 : 0} onTrue=${tool.onTrueInFold}\n`,
+    )
+  }
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
