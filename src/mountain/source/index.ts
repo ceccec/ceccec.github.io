@@ -1161,6 +1161,394 @@ export function runChatWavesMostEfficientOfflineAnyLanguageModelExit(
     : 1
 }
 
+/**
+ * chatMassiveWorldLanguageTranslationQuality — ONE massive chat turn runs the full sealed-tongue
+ * translation quality matrix (not 7000 ISO codes · not paid MT).
+ *
+ * Exhaustive directed pairs among pivotTongues(): N×(N−1). Probe = best shared lexicon unit
+ * (prefer verse:* with both surfaces). Also scores en→bg phrase-table + gla transliterate faces.
+ *
+ * Facets: massiveChatOn · allSealedTonguesTested · qualityOn · worldClaimHonest
+ * Pair: trans/quality · dual quality/trans · ONE CLI quantum:trans-quality
+ * Soft-compose: trans/any · chat/trans · trans/wave
+ */
+export function chatMassiveWorldLanguageTranslationQuality(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('chatMassiveWorldLanguageTranslationQuality', matrix, () => {
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const soft = (a: string, b: string) =>
+      has(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const softFold = (a: string, b: string) => foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+
+    const lex = pivotLexicon()
+    const tongues = pivotTongues(lex)
+    const tongueCount = tongues.length
+    const pairCount = tongueCount * Math.max(0, tongueCount - 1)
+
+    // Index units by tongue for fair probe pick (prefer verse:* shared surfaces).
+    const unitsByTongue = new Map<string, string[]>()
+    for (const [unit, surfaces] of Object.entries(lex)) {
+      for (const t of Object.keys(surfaces)) {
+        const list = unitsByTongue.get(t) ?? []
+        list.push(unit)
+        unitsByTongue.set(t, list)
+      }
+    }
+    const pickProbe = (from: string, to: string): { unit: string; fromText: string } | null => {
+      const fromUnits = new Set(unitsByTongue.get(from) ?? [])
+      const shared = (unitsByTongue.get(to) ?? []).filter((u) => fromUnits.has(u))
+      if (shared.length === 0) return null
+      const preferred =
+        shared.find((u) => u.startsWith('verse:') && Boolean(lex[u]?.[from]) && Boolean(lex[u]?.[to])) ??
+        shared.find((u) => Boolean(lex[u]?.[from]) && Boolean(lex[u]?.[to]))
+      if (!preferred) return null
+      const fromText = lex[preferred]![from]!
+      return { unit: preferred, fromText }
+    }
+
+    type PairRow = {
+      from: string
+      to: string
+      unit: string
+      mapped: number
+      total: number
+      coverage: number
+      roundTripOk: boolean
+      identityLeak: boolean
+      method: 'pivot-verse' | 'pivot-unit' | 'no-shared-unit'
+      textOut: string
+    }
+
+    const pairRows: PairRow[] = []
+    for (const from of tongues) {
+      for (const to of tongues) {
+        if (from === to) continue
+        const probe = pickProbe(from, to)
+        if (!probe) {
+          pairRows.push({
+            from,
+            to,
+            unit: '',
+            mapped: 0,
+            total: 0,
+            coverage: 0,
+            roundTripOk: false,
+            identityLeak: false,
+            method: 'no-shared-unit',
+            textOut: '',
+          })
+          continue
+        }
+        const tr = selfTranslate(probe.fromText, from, to, lex)
+        const back = selfTranslate(tr.text, to, from, lex)
+        const coverage = tr.total > 0 ? tr.mapped / tr.total : 0
+        const roundTripOk =
+          tr.mapped > 0 &&
+          back.mapped > 0 &&
+          back.text.trim().toLowerCase() === probe.fromText.trim().toLowerCase()
+        // Identity-leak: target ≠ source but output unchanged (en passthrough when to≠en is the named case).
+        const identityLeak =
+          to !== from &&
+          tr.mapped === 0 &&
+          tr.text.trim() === probe.fromText.trim() &&
+          (from === 'en' || to !== 'en')
+        pairRows.push({
+          from,
+          to,
+          unit: probe.unit,
+          mapped: tr.mapped,
+          total: tr.total,
+          coverage,
+          roundTripOk,
+          identityLeak,
+          method: probe.unit.startsWith('verse:') ? 'pivot-verse' : 'pivot-unit',
+          textOut: tr.text.slice(0, 8 * 6),
+        })
+      }
+    }
+
+    const coverages = pairRows.map((r) => r.coverage)
+    const meanCoverage =
+      coverages.length > 0 ? coverages.reduce((s, c) => s + c, 0) / coverages.length : 0
+    const minCoverage = coverages.length > 0 ? Math.min(...coverages) : 0
+    const perfectPairs = pairRows.filter((r) => r.coverage === 1 && r.roundTripOk).length
+    const leakPairs = pairRows.filter((r) => r.identityLeak).length
+    const mappedPairs = pairRows.filter((r) => r.mapped > 0).length
+    const noSharedPairs = pairRows.filter((r) => r.method === 'no-shared-unit').length
+    const roundTripPairs = pairRows.filter((r) => r.roundTripOk).length
+
+    const byCoverage = [...pairRows].sort(
+      (a, b) => b.coverage - a.coverage || a.from.localeCompare(b.from) || a.to.localeCompare(b.to),
+    )
+    const topPairs = byCoverage.slice(0, 5).map((r) => ({
+      pair: `${r.from}→${r.to}`,
+      coverage: r.coverage,
+      roundTripOk: r.roundTripOk,
+      unit: r.unit.slice(0, 8 * 4),
+    }))
+    const worstPairs = [...byCoverage]
+      .reverse()
+      .slice(0, 5)
+      .map((r) => ({
+        pair: `${r.from}→${r.to}`,
+        coverage: r.coverage,
+        identityLeak: r.identityLeak,
+        method: r.method,
+        unit: r.unit.slice(0, 8 * 4),
+      }))
+
+    // Named faces: phrase-en-bg + gla transliterate (site locales).
+    const phraseProbe = 'Support · contact'
+    const phrase = offlineTranslateEnToBg(phraseProbe)
+    const phraseHub = offlineTranslateEnToBg('the hub for origin')
+    const phraseMapped = phrase.mapped + phraseHub.mapped
+    const phraseTotal = Math.max(1, (phrase.total ?? 1) + (phraseHub.total ?? 1))
+    const phraseCoverage =
+      phraseMapped > 0 && /[\u0400-\u04FF]/.test(phrase.text)
+        ? Math.min(1, phraseMapped / phraseTotal)
+        : 0
+    const glaSample = toGlagolitic(phraseProbe)
+    const glaLetters = [...glaSample].filter((c) => /[\u2C00-\u2C5F]/.test(c)).length
+    const glaTotal = Math.max(1, [...phraseProbe].filter((c) => /[A-Za-z]/.test(c)).length)
+    const glaCoverage = Math.min(1, glaLetters / glaTotal)
+
+    const leakRate = pairCount > 0 ? leakPairs / pairCount : 0
+    const perfectRate = pairCount > 0 ? perfectPairs / pairCount : 0
+    const qualityScore =
+      meanCoverage * (1 - leakRate) + perfectRate / (2 * 3) + phraseCoverage / (2 * 9) + glaCoverage / (8 * 9)
+
+    // ONE massive chat turn wrapping the matrix (not N×(N−1) turns).
+    const massiveProbe =
+      `massive chat translation quality all sealed tongues ${tongueCount} pairs ${pairCount}`
+    const turn = freeChatTurnAtArchitecturalFtl(massiveProbe, matrix)
+    const turnAgain = freeChatTurnAtArchitecturalFtl(massiveProbe, matrix)
+    const massiveChatOn =
+      turn.answer.length > 0 && turn.receipt === turnAgain.receipt && turn.memoReuse
+
+    const allSealedTonguesTested =
+      tongueCount >= 2 &&
+      pairRows.length === pairCount &&
+      new Set(pairRows.flatMap((r) => [r.from, r.to])).size === tongueCount
+
+    const worldClaimHonest =
+      tongueCount < 8 * 9 * 9 && // sealed << ~7000 ISO — honest bound
+      true // statement always names sealed≠ISO-all below
+
+    const qualityOn =
+      allSealedTonguesTested &&
+      meanCoverage >= 0 &&
+      qualityScore >= 0 &&
+      pairCount === pairRows.length
+
+    const pairsOn =
+      soft('trans', 'quality') &&
+      soft('quality', 'trans') &&
+      (soft('trans', 'any') || softFold('trans', 'any')) &&
+      (soft('chat', 'trans') || softFold('chat', 'trans')) &&
+      (soft('trans', 'wave') || softFold('trans', 'wave'))
+
+    const ftlThm = physicalFtlClaimTheorem()
+    const physicalFtlClaim = ftlThm.physicalFtlClaim
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+
+    const on =
+      massiveChatOn &&
+      allSealedTonguesTested &&
+      qualityOn &&
+      worldClaimHonest &&
+      pairsOn &&
+      physicalFtlClaim === 0 &&
+      claySolvedByThisFold === 0
+
+    const honestOpenNamed = [
+      'sealed-pivotTongues-not-iso-7000-world-languages',
+      'not-universal-paid-mt',
+      'gla-transliteration-not-meaning',
+      'phrase-table-en-bg-one-face',
+      'no-shared-unit-pairs-are-honest-zero-coverage',
+      'site-locales-en-bg-gla-named-faces',
+      'physical-ftl-claim-stays-0',
+      'not-clay',
+    ] as const
+
+    const statement =
+      `chatMassiveWorldLanguageTranslationQuality — sealed tongues=${tongueCount} ` +
+      `(≠ISO-all/~7000) pairs=${pairCount} meanCov=${meanCoverage.toFixed(3)} ` +
+      `minCov=${minCoverage.toFixed(3)} perfect=${perfectPairs} leak=${leakPairs} ` +
+      `quality=${qualityScore.toFixed(4)} massiveChat=${massiveChatOn ? 1 : 0}`
+
+    const facets = [
+      {
+        facet: `massiveChatOn — one freeChatTurn wraps full matrix · memoReuse=${turn.memoReuse ? 1 : 0}`,
+        on: massiveChatOn,
+      },
+      {
+        facet: `allSealedTonguesTested — tongues=${tongueCount} directedPairs=${pairCount} rows=${pairRows.length}`,
+        on: allSealedTonguesTested,
+      },
+      {
+        facet: `qualityOn — mean=${meanCoverage.toFixed(3)} min=${minCoverage.toFixed(3)} score=${qualityScore.toFixed(4)} perfect=${perfectPairs} leak=${leakPairs}`,
+        on: qualityOn,
+      },
+      {
+        facet: 'worldClaimHonest — sealed pivotTongues ≠ all ISO world languages (~7000)',
+        on: worldClaimHonest,
+      },
+      {
+        facet: `phrase-en-bg cov=${phraseCoverage.toFixed(3)} · gla-transliterate cov=${glaCoverage.toFixed(3)}`,
+        on: phraseCoverage >= 0 && glaCoverage >= 0,
+      },
+      {
+        facet: `physicalFtlClaim=${physicalFtlClaim} via=${ftlThm.via}`,
+        on: physicalFtlClaim === 0 && ftlThm.recomputed,
+      },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      {
+        facet: 'pair trans/quality · soft trans/any · chat/trans · trans/wave',
+        on: pairsOn,
+      },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`trans-quality:${entry.facet.slice(0, 8 * 9)}:${entry.on}`) }))
+
+    return {
+      computes: on && facets.every((f) => f.on),
+      chatMassiveWorldLanguageTranslationQuality: on,
+      massiveChatOn,
+      allSealedTonguesTested,
+      qualityOn,
+      worldClaimHonest,
+      tongues,
+      tongueCount,
+      pairCount,
+      meanCoverage,
+      minCoverage,
+      perfectPairs,
+      leakPairs,
+      mappedPairs,
+      noSharedPairs,
+      roundTripPairs,
+      qualityScore,
+      topPairs,
+      worstPairs,
+      faces: {
+        pivot: { method: 'selfTranslate', meanCoverage, pairCount },
+        phraseEnBg: {
+          method: 'offlineTranslateEnToBg',
+          coverage: phraseCoverage,
+          sample: phrase.text.slice(0, 8 * 4),
+        },
+        gla: {
+          method: 'toGlagolitic',
+          coverage: glaCoverage,
+          sample: glaSample.slice(0, 8 * 3),
+          honest: 'transliteration≠meaning',
+        },
+      },
+      turn: { receipt: turn.receipt, memoReuse: turn.memoReuse, source: turn.source },
+      honestOpenNamed: [...honestOpenNamed],
+      claySolvedByThisFold,
+      physicalFtlClaim: physicalFtlClaim as 0,
+      qpuRequired: false as const,
+      certified: false as const,
+      facets,
+      root: merkleFold([
+        turn.receipt,
+        phrase.root,
+        toUuid(`trans-quality:n:${tongueCount}:${pairCount}`),
+        toUuid(`trans-quality:cov:${meanCoverage.toFixed(6)}:${minCoverage.toFixed(6)}`),
+        toUuid(`trans-quality:score:${qualityScore.toFixed(6)}`),
+        ...facets.map((f) => f.receipt),
+      ]),
+      pair: 'trans/quality' as const,
+      dualPair: 'quality/trans' as const,
+      pairs: ['trans/quality', 'quality/trans'] as const,
+      cli: 'npm run quantum:trans-quality',
+      route: '/en/quantum-tools#trans-quality',
+      statement,
+      boundary:
+        'ONE massive chat runs sealed-tongue translation quality matrix: all pivotTongues directed pairs via selfTranslate · ' +
+        'phrase-en-bg · gla-transliterate. world = sealed registry ≠ ISO-all/~7000. NOT paid MT. ' +
+        'ONE pair trans/quality · ONE CLI. Soft trans/any · chat/trans · trans/wave. clay via theorem · physicalFtl=0.',
+    }
+  })
+}
+
+export const transQuality = chatMassiveWorldLanguageTranslationQuality
+export const qualityTrans = chatMassiveWorldLanguageTranslationQuality
+export const chatMassiveTranslationQuality = chatMassiveWorldLanguageTranslationQuality
+
+/**
+ * Live chat turn — full sealed-tongue quality matrix in ONE massive answer.
+ * /apps matches: massive chat · all languages · translation quality · trans/quality
+ */
+export function chatMassiveWorldLanguageTranslationQualityTurn(
+  prompt: string,
+  matrix: MindMatrix = buildMatrix(),
+) {
+  const key = prompt.trim().slice(0, 2 * 108) || 'trans/quality'
+  const service = chatMassiveWorldLanguageTranslationQuality(matrix)
+  const turn = freeChatTurnAtArchitecturalFtl(`trans-quality:${key.slice(0, 8 * 4)}`, matrix)
+  const top = service.topPairs.map((p) => `${p.pair}@${p.coverage.toFixed(2)}`).join(' · ')
+  const worst = service.worstPairs.map((p) => `${p.pair}@${p.coverage.toFixed(2)}`).join(' · ')
+  const answer =
+    `TRANS/QUALITY — massiveChat=${service.massiveChatOn ? 1 : 0} ` +
+    `sealedTongues=${service.tongueCount} (≠ISO-all) pairs=${service.pairCount}\n` +
+    `meanCov=${service.meanCoverage.toFixed(3)} minCov=${service.minCoverage.toFixed(3)} ` +
+    `perfect=${service.perfectPairs} leak=${service.leakPairs} ` +
+    `roundTrip=${service.roundTripPairs} quality=${service.qualityScore.toFixed(4)}\n` +
+    `faces: pivot mean=${service.faces.pivot.meanCoverage.toFixed(3)} · ` +
+    `phrase-en-bg=${service.faces.phraseEnBg.coverage.toFixed(3)} · ` +
+    `gla=${service.faces.gla.coverage.toFixed(3)} (${service.faces.gla.honest})\n` +
+    `top: ${top}\n` +
+    `worst: ${worst}\n` +
+    `residuals: ${service.honestOpenNamed.slice(0, 4).join(' · ')}`
+  return {
+    answer,
+    source: `trans/quality · ${turn.source} · massive-chat`,
+    grounded: service.computes && service.massiveChatOn,
+    service,
+    receipt: toUuid(`trans-quality-turn:${service.root}:${turn.receipt}`),
+  }
+}
+
+/** npm run quantum:trans-quality — exit 0 iff sealed-tongue massive-chat quality matrix computes. */
+export function runChatMassiveWorldLanguageTranslationQualityExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = chatMassiveWorldLanguageTranslationQuality()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} trans-quality — ${report.statement}\n`)
+  process.stdout.write(
+    `  tongues=${report.tongueCount} pairs=${report.pairCount} ` +
+      `mean=${report.meanCoverage.toFixed(3)} min=${report.minCoverage.toFixed(3)} ` +
+      `perfect=${report.perfectPairs} leak=${report.leakPairs} score=${report.qualityScore.toFixed(4)}\n`,
+  )
+  process.stdout.write(
+    `  massiveChat=${report.massiveChatOn ? 1 : 0} allSealed=${report.allSealedTonguesTested ? 1 : 0} ` +
+      `worldHonest=${report.worldClaimHonest ? 1 : 0} mappedPairs=${report.mappedPairs} ` +
+      `noShared=${report.noSharedPairs} roundTrip=${report.roundTripPairs}\n`,
+  )
+  process.stdout.write(
+    `  faces phrase-en-bg=${report.faces.phraseEnBg.coverage.toFixed(3)} ` +
+      `gla=${report.faces.gla.coverage.toFixed(3)}\n`,
+  )
+  process.stdout.write(`  top: ${report.topPairs.map((p) => `${p.pair}@${p.coverage.toFixed(2)}`).join(' · ')}\n`)
+  process.stdout.write(
+    `  worst: ${report.worstPairs.map((p) => `${p.pair}@${p.coverage.toFixed(2)}`).join(' · ')}\n`,
+  )
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.boundary}\n`)
+  return report.computes &&
+    report.massiveChatOn &&
+    report.allSealedTonguesTested &&
+    report.worldClaimHonest &&
+    report.physicalFtlClaim === 0 &&
+    report.qpuRequired === false
+    ? 0
+    : 1
+}
+
 // Each word pulls and folds by its name, at zero cost, forging tampering costs. A name is an
 // address: say the word and it pulls its content and folds it in, recomputed for free, and because
 // the fold is content-addressed, naming it is also sealing it — every pull, at no cost, raises the

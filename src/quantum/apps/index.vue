@@ -147,7 +147,7 @@ import {
   quantumSelfHeal,
   oneQuantumSetOfVitepressComponentsSealedAtGates,
 } from './index.ts'
-import { translationGapsGate, addressAllWarningsAtOnce, chatTranslatesAutonomously, chatTranslateTurn, chatWavesMostEfficientOfflineAnyLanguageModel, chatWavesTransAnyTurn } from '../../mountain/source/index.ts'
+import { translationGapsGate, addressAllWarningsAtOnce, chatTranslatesAutonomously, chatTranslateTurn, chatWavesMostEfficientOfflineAnyLanguageModel, chatWavesTransAnyTurn, chatMassiveWorldLanguageTranslationQualityTurn } from '../../mountain/source/index.ts'
 import {
   completeScientificDomainsStrictlyToStandardsQuantumOnly,
 } from '../../wind/research/index.ts'
@@ -815,6 +815,35 @@ function sendChat() {
       results: [],
       resultCount: free.neighborhoodSize,
       receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'massive chat' / all languages / translation quality / trans/quality — ONE turn full sealed-tongue matrix.
+  if (
+    /^\s*trans\s*[-/]?\s*quality\b/i.test(prompt) ||
+    /^\s*quality\s*[-/]?\s*trans\b/i.test(prompt) ||
+    /^\s*massive\s+chat\b/i.test(prompt) ||
+    /^\s*(all\s+(world\s+)?languages?|translation\s+quality)\b/i.test(prompt) ||
+    /^\s*test\s+translation\s+quality\b/i.test(prompt)
+  ) {
+    const q = chatMassiveWorldLanguageTranslationQualityTurn(prompt)
+    const svc = q.service
+    chatLog.value.unshift({
+      q: prompt,
+      a: q.answer,
+      source: `${q.source} · npm run quantum:trans-quality`,
+      grounded: q.grounded,
+      related: [
+        `tongues=${svc.tongueCount}`,
+        `pairs=${svc.pairCount}`,
+        `mean=${svc.meanCoverage.toFixed(3)}`,
+        `quality=${svc.qualityScore.toFixed(3)}`,
+        ...svc.honestOpenNamed.slice(0, 2),
+      ],
+      results: [],
+      resultCount: svc.pairCount,
+      receipt: q.receipt || nav0.superposition,
     })
     chatInput.value = ''
     return

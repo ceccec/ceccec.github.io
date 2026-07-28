@@ -1465,6 +1465,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'gatesRefuseProseOnly', pair: 'prose/hard', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'HARD gates refuse prose-only · live formula/code dual · proseOnlyRejected · wetProseHard · wired gaps/invisible · ONE CLI quantum:prose-hard' },
   { fold: 'chatTranslatesAutonomously', pair: 'chat/trans', currentBarrel: 'src/mountain/source', bestPlace: 'src/mountain/source', action: 'moved', reason: 'autonomous chat-translate · free chat drives offlineTranslateEnToBg · bg drainable · gla parity honest · ONE CLI quantum:chat-trans · soft translations/verify · trans/wave · warn/all · prose/hard' },
   { fold: 'chatWavesMostEfficientOfflineAnyLanguageModel', pair: 'trans/any', currentBarrel: 'src/mountain/source', bestPlace: 'src/mountain/source', action: 'moved', reason: 'chat waves score offline any↔any · pivot·phrase-en-bg·gla · write/speech directions · ONE CLI quantum:trans-any · soft chat/trans · learn/best · mcp speech/dictation/language' },
+  { fold: 'chatMassiveWorldLanguageTranslationQuality', pair: 'trans/quality', currentBarrel: 'src/mountain/source', bestPlace: 'src/mountain/source', action: 'moved', reason: 'ONE massive chat · all sealed pivotTongues N×(N−1) quality matrix · phrase-en-bg · gla · ≠ISO-all · ONE CLI quantum:trans-quality · soft trans/any · chat/trans · trans/wave' },
   // <register:placement> — quantum:register inserts placement rows above this anchor
 ] as const
 
