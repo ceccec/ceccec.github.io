@@ -1451,6 +1451,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'stackExchangeChat', pair: 'se/chat', currentBarrel: 'src/heaven/laws', bestPlace: 'src/heaven/laws', action: 'moved', reason: 'wire chat.stackexchange.com into chat/research as URL handoff + phrase routing; MO rooms sealed; read-only; soft answerMo/geogebraChat/researchTags; one CLI quantum:se-chat' },
   { fold: 'feedMoDraftsToChat', pair: 'mo/chat', currentBarrel: 'src/heaven/laws', bestPlace: 'src/heaven/laws', action: 'moved', reason: 'feed sealed MO drafts → chat handoffs (tags + SE room); compose answerMo·researchTags·se/chat·gates/chat pattern; one CLI quantum:feed-mo; auth residuals honest-open' },
   { fold: 'contextAudit', pair: 'context/audit', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
+  { fold: 'nonFtlIsCrackInFtlApp', pair: 'ftl/crack', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'USER LAW: non-FTL in FTL app = hull crack · one CLI quantum:ftl-crack' },
   // <register:placement> — quantum:register inserts placement rows above this anchor
 ] as const
 

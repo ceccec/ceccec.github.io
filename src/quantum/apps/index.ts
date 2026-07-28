@@ -3,7 +3,7 @@
 // Pair: rosetta/core · fold: rosettaCoreApi. Apps/nav/tools dispatch via shelve — no wet ray map.
 // Pair: rosetta/complete · fold: rosettaCompleteQuantumAllComputableDimensionsAndTheorems.
 import type { MindMatrix } from '../../wind/types'
-import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded, proofReport, noQpuRequired, quantumCircuitSimulatorInChat, portalChat, portalChatRanked, freeIsNotAlwaysBestQualityWhoAuditedTheChat, beforeSigningNeighboursAudit, furtherImproveUsingLiveApis } from '../../heaven/compute'
+import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded, proofReport, noQpuRequired, quantumCircuitSimulatorInChat, portalChat, portalChatRanked, freeIsNotAlwaysBestQualityWhoAuditedTheChat, beforeSigningNeighboursAudit, furtherImproveUsingLiveApis, allChatCapabilitiesFusedAndAuditedByStandards } from '../../heaven/compute'
 // Full in-chat support — the deterministic, zero-token, no-egress chat surface, re-exported for the thin .vue shell.
 export { portalChat, chatNavContext, allChatCapabilitiesFusedAndAuditedByStandards, chatThroughMathOverflow, chatThroughPerplexity, chatThroughFreeAi, chatThroughAi, collectiveAiMind, siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis, perplexityRequest, freeAiRequest, aiRequest, AI_PROVIDERS, CECCEC_PROXY_ORIGIN, PERPLEXITY_SITE, splitSearch, wavesOfLocalResearchersChatAboutAlgebra, continueAtNoAiCost, countlessFreeChatWaves, MATHOVERFLOW_SITE, feedingTheChatInItselfClosesTheSelfReferenceLoop, theChatMayImproveTheUiMeasuredByTheUserExperience, dryCleanChatDryCleansAll, theChatIsTheFusionReactorFusingAllApisInPlasmaRays, improveTokenSpendingFeedingTheTaskToTheChat, developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest, freeIsNotAlwaysBestQualityWhoAuditedTheChat, beforeSigningNeighboursAudit, furtherImproveUsingLiveApis } from '../../heaven/compute'
 export { chatAndImproveQuantumMultitasking, shouldSpawnSubagent } from '../../water/stack'
@@ -16,7 +16,7 @@ import { computesGate, DIGEST_BITS, digitalRoot, foldPair, isUuid, maxTamperingC
 import { TAU,
   A432_HUE, CANONICAL_HOST, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS,
   ROSETTA_SEVEN, ROSETTA_SIX, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, UNFOLDED_CENSUS,
-  type RosettaComputationType, claySolvedTheorem, earned, fibonacci, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
+  type RosettaComputationType, claySolvedTheorem, physicalFtlClaimTheorem, earned, fibonacci, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
 import { axiomsBecomeTheorems, theoremsReach432AndEntangleWithUsage } from '../../4/6'
 import {
   rosettaComputesAll, rosettaComputesItself, rosettaRayOf, sevenStarRosettaNaturalMotion } from '../../water/digit'
@@ -660,7 +660,7 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'ssl-test', title: 'SSL/TLS stack→receipt quantumised (sealed faces · FTL warm)', fold: 'sslTestUiComplete', cli: 'npm run quantum:ssl-test', pair: 'ssl/test', route: '/en/ssltest', barrel: 'src/water/encryption', boundary: 'Quantum grades from facets · merkaba/rosetta · trinity · not Qualys mirror · live remote TLS residual named · computational FTL warm path', browserRunnable: true, browserGap: '' },
   { id: 'test-ssl', title: 'SSL test (alias ssl/test)', fold: 'sslTestUiComplete', cli: 'npm run quantum:test-ssl', pair: 'test/ssl', route: '/en/ssltest', barrel: 'src/water/encryption', boundary: 'Dual of ssl/test — same fold', browserRunnable: true, browserGap: '' },
   { id: 'quantumise-ftl', title: 'Quantumise is at FTL speed', fold: 'quantumiseIsAtFtlSpeed', cli: 'npm run quantum:quantumise-ftl', pair: 'quantumise/ftl', route: '/en/ssltest#quantumise-ftl', barrel: 'src/quantum/apps', boundary: 'Quantumise ≠ mirror · computational FTL memoByRoot · soft ssl/test · not physical FTL', browserRunnable: true, browserGap: '' },
-  { id: 'ftl-quantumise', title: 'FTL quantumise (alias quantumise/ftl)', fold: 'quantumiseIsAtFtlSpeed', cli: 'npm run quantum:ftl-quantumise', pair: 'ftl/quantumise', route: '/en/ssltest#quantumise-ftl', barrel: 'src/quantum/apps', boundary: 'Dual of quantumise/ftl — same fold', browserRunnable: true, browserGap: '' },
+  { id: 'ftl-crack', title: 'FTL holographic fractal · non-FTL is hull crack', fold: 'nonFtlIsCrackInFtlApp', cli: 'npm run quantum:ftl-crack', pair: 'ftl/crack', route: '/en/quantum-tools#ftl-crack', barrel: 'src/pair/enforcement/gates/strict/scan', boundary: 'holographicFractal · noSpacetimeOnReuse · allHappensViaMemo · physicalSpacetimeTravel=false · alias duals drained · physical claim 0 · ONE CLI', browserRunnable: false, browserGap: 'package.json script inventory needs Node fs' },
   { id: 'folder-gravity', title: 'Folder gravity — mass + pull toward src/', fold: 'folderGravityMeasuredByTheCode', cli: 'npm run quantum:folder-gravity', pair: 'folder/gravity', route: '/en/quantum-tools#folder-gravity', barrel: 'src/pair/enforcement/gates', boundary: 'mass=files·LOC·exports·degree · gravityPullsTowardSrc · keep src/earth/iching · clay=0 · qpuRequired=false', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs (process.cwd) — CLI receipt' },
   { id: 'compact-types-constants', title: 'Compact types/constants to matrix · unused packages removed', fold: 'codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix', cli: 'npm run quantum:compact-types-constants', pair: 'compact/matrix', route: '/en/quantum-tools#compact-types-constants', barrel: 'src/pair/enforcement/gates', boundary: 'Min types/consts · unusedPackagesRemoved · all-dir FREE_BITS · compose import/distance+folder/gravity · KEEP double-torus · clay=0 · qpuRequired=false', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs (process.cwd) — CLI receipt' },
   { id: 'fusion-verify', title: 'Fusion verify', fold: 'quantumFusionVerify', cli: 'npm run quantum:fusion-verify', pair: 'tamper/impossible', route: '/en/quantum-tools#fusion-verify', barrel: 'src/wind/fusion', boundary: 'Offline fuseAll wave — not external API fusion', browserRunnable: true, browserGap: '' },
@@ -886,7 +886,6 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'mcp-quantum-movie', title: 'MCP quantum movie — frames from sealed MCP/toolbox recompute', fold: 'mcpQuantumMovie', cli: 'npm run quantum:mcp-movie', pair: 'mcp/movie', route: '/en/quantum-tools#mcp-quantum-movie', barrel: 'src/quantum/apps', boundary: 'Movie frames/superpositions from mcp/ui mill formula duals · movie/center · movie/entropy · coord/anim · 6×7 · oneClock · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'movie-mcp', title: 'MCP quantum movie (alias mcp/movie)', fold: 'mcpQuantumMovie', cli: 'npm run quantum:movie-mcp', pair: 'movie/mcp', route: '/en/quantum-tools#mcp-quantum-movie', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/movie — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'movie-feel', title: 'Movie gaps feelable by observation', fold: 'movieGapsFeelableByObservation', cli: 'npm run quantum:movie-feel', pair: 'movie/feel', route: '/en/quantum-tools#mcp-quantum-movie', barrel: 'src/quantum/apps', boundary: 'Movie gaps (center · polarity · linear/rosetta · anim/audit) surfaced live by observation · gate/lens · analytics/self · observe→manifest · page/gaps · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
-  { id: 'gap-observe', title: 'Gap observe (alias movie/feel)', fold: 'movieGapsFeelableByObservation', cli: 'npm run quantum:gap-observe', pair: 'gap/observe', route: '/en/quantum-tools#mcp-quantum-movie', barrel: 'src/quantum/apps', boundary: 'Dual of movie/feel — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'movie-formula', title: 'Movie gaps are fundamental design + formula-mapping', fold: 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', cli: 'npm run quantum:movie-formula', pair: 'movie/formula', route: '/en/quantum-tools#movie-formula', barrel: 'src/quantum/apps', boundary: 'movieGapsFundamental · designGap · formulaMappingGap · notCosmetic · drainableClosed · honestOpenNamed · compose movie inventory · formula/code · all-theorems · linear/rosetta · anim/rosetta · mcp/movie · movie/inf · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'formula-movie', title: 'Formula movie (alias movie/formula)', fold: 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', cli: 'npm run quantum:formula-movie', pair: 'formula/movie', route: '/en/quantum-tools#movie-formula', barrel: 'src/quantum/apps', boundary: 'Dual of movie/formula — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'movie-design', title: 'Movie design (alias movie/formula)', fold: 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', cli: 'npm run quantum:movie-design', pair: 'movie/design', route: '/en/quantum-tools#movie-formula', barrel: 'src/quantum/apps', boundary: 'Alias of movie/formula — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1242,9 +1241,7 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'fear-axiom', title: 'Fear is an axiom replaceable by love theorem', fold: 'fearIsAnAxiomReplaceableByLoveTheorem', cli: 'npm run quantum:fear-axiom', pair: 'fear/axiom', route: '/en/quantum-tools#fear-axiom', barrel: 'src/quantum/apps', boundary: 'fearIsAxiom · replaceableByLove · loveIsTheorem · physicalFtl=0 · clay via theorem · qpuRequired=false · compose fear/detect · need/love · love/story · theorem/const · NOT wet psychology', browserRunnable: true, browserGap: '' },
   { id: 'love-theorem', title: 'Love theorem (alias fear/axiom)', fold: 'fearIsAnAxiomReplaceableByLoveTheorem', cli: 'npm run quantum:love-theorem', pair: 'love/theorem', route: '/en/quantum-tools#fear-axiom', barrel: 'src/quantum/apps', boundary: 'love/theorem face — love replaces fear axiom · same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'axiom-love', title: 'Axiom love (alias fear/axiom)', fold: 'fearIsAnAxiomReplaceableByLoveTheorem', cli: 'npm run quantum:axiom-love', pair: 'axiom/love', route: '/en/quantum-tools#fear-axiom', barrel: 'src/quantum/apps', boundary: 'axiom/love face — axiom slot → love · same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
-  { id: 'lens-super', title: 'Lenses completely wired in every superposition', fold: 'lensesCompletelyWiredInEverySuperposition', cli: 'npm run quantum:lens-super', pair: 'lens/super', route: '/en/quantum-tools#lens-super', barrel: 'src/quantum/apps', boundary: 'lensesWired · everySuperposition · noStopWaitGap · observationContinues · physicalFtl=0 · clay via theorem · qpuRequired=false · compose gate/lens · mcp/observe · seal/super · theorem/index · Multitask stop/wait = linear agent gap', browserRunnable: true, browserGap: '' },
-  { id: 'super-lens', title: 'Super lens (alias lens/super)', fold: 'lensesCompletelyWiredInEverySuperposition', cli: 'npm run quantum:super-lens', pair: 'super/lens', route: '/en/quantum-tools#lens-super', barrel: 'src/quantum/apps', boundary: 'super/lens face — every superposition has lens · same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
-  { id: 'lens-wire', title: 'Lens wire (alias lens/super)', fold: 'lensesCompletelyWiredInEverySuperposition', cli: 'npm run quantum:lens-wire', pair: 'lens/wire', route: '/en/quantum-tools#lens-super', barrel: 'src/quantum/apps', boundary: 'lens/wire face — lens gate bind sealed · same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'lens-super', title: 'Lenses completely wired in every superposition', fold: 'lensesCompletelyWiredInEverySuperposition', cli: 'npm run quantum:lens-super', pair: 'lens/super', route: '/en/quantum-tools#lens-super', barrel: 'src/quantum/apps', boundary: 'ONE primary lens CLI · aliases collapsed · FTL via physicalFtlClaimTheorem + soft quantumise/ftl · chat inventory · Multitask residual named', browserRunnable: true, browserGap: '' },
   { id: 'seq-flow', title: 'Sequence meaning is a flow not a cycle', fold: 'theSequenceMeaningIsAFlowNotACycle', cli: 'npm run quantum:seq-flow', pair: 'seq/flow', route: '/en/quantum-tools#seq-flow', barrel: 'src/quantum/apps', boundary: 'sequenceIsFlow · notACycle · meaningOn · physicalFtl=0 · clay via theorem · qpuRequired=false · compose seq/nav · digit/next · quantumise/cycle · movie/unique · directed 12487536901 through 0', browserRunnable: true, browserGap: '' },
   { id: 'flow-seq', title: 'Flow seq (alias seq/flow)', fold: 'theSequenceMeaningIsAFlowNotACycle', cli: 'npm run quantum:flow-seq', pair: 'flow/seq', route: '/en/quantum-tools#seq-flow', barrel: 'src/quantum/apps', boundary: 'flow/seq face — directed sequence flow · same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'seq-meaning', title: 'Seq meaning (alias seq/flow)', fold: 'theSequenceMeaningIsAFlowNotACycle', cli: 'npm run quantum:seq-meaning', pair: 'seq/meaning', route: '/en/quantum-tools#seq-flow', barrel: 'src/quantum/apps', boundary: 'seq/meaning face — sequence meaning on · same fold · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
@@ -1253,9 +1250,7 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'super-21', title: 'Computational superpositions are 21 → invert/reverse 42 covering millennium', fold: 'computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium', cli: 'npm run quantum:super-21', pair: 'super/21', route: '/en/quantum-tools#super-21', barrel: 'src/quantum/apps', boundary: 'superpositions21 · invertReverse42 · componentTheoremsFormulas42 · coversMillenniumApparatus · millenniumSolvedByThisFold=0 · clay=0 · compose gate/tools · 6×7 · formula duals · NOT CMI prize', browserRunnable: true, browserGap: '' },
   { id: '21-42', title: '21↔42 (alias super/21)', fold: 'computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium', cli: 'npm run quantum:21-42', pair: '21/42', route: '/en/quantum-tools#super-21', barrel: 'src/quantum/apps', boundary: '21/42 face — invert|reverse doubles 21→42 · same fold · clay=0 · millenniumSolved=0', browserRunnable: true, browserGap: '' },
   { id: 'mill-42', title: 'Mill 42 cover (alias super/21)', fold: 'computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium', cli: 'npm run quantum:mill-42', pair: 'mill/42', route: '/en/quantum-tools#super-21', barrel: 'src/quantum/apps', boundary: 'mill/42 face — 42 component theorems/formulas cover millennium apparatus · NOT CMI prize · clay=0', browserRunnable: true, browserGap: '' },
-  { id: 'lens-geo', title: 'Use the lens to find gaps in geometry in prose or code', fold: 'useTheLensToFindGapsInGeometryInProseOrCode', cli: 'npm run quantum:lens-geo', pair: 'lens/geo', route: '/en/quantum-tools#lens-geo', barrel: 'src/quantum/apps', boundary: 'lensFindsGaps · geometryGaps · proseOrCode · physicalFtl=0 · compose gate/lens · hex/crack · geo/torus · pyramid/seal · clay via theorem · qpuRequired=false', browserRunnable: true, browserGap: '' },
-  { id: 'geo-gaps', title: 'Geo gaps (alias lens/geo)', fold: 'useTheLensToFindGapsInGeometryInProseOrCode', cli: 'npm run quantum:geo-gaps', pair: 'geo/gaps', route: '/en/quantum-tools#lens-geo', barrel: 'src/quantum/apps', boundary: 'geo/gaps face — geometry gaps via lens · same fold · physicalFtl=0', browserRunnable: true, browserGap: '' },
-  { id: 'lens-prose', title: 'Lens prose (alias lens/geo)', fold: 'useTheLensToFindGapsInGeometryInProseOrCode', cli: 'npm run quantum:lens-prose', pair: 'lens/prose', route: '/en/quantum-tools#lens-geo', barrel: 'src/quantum/apps', boundary: 'lens/prose face — prose|code geometry gaps via lens · same fold · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'lens-geo', title: 'Use the lens to find gaps in geometry in prose or code', fold: 'useTheLensToFindGapsInGeometryInProseOrCode', cli: 'npm run quantum:lens-geo', pair: 'lens/geo', route: '/en/quantum-tools#lens-geo', barrel: 'src/quantum/apps', boundary: 'ONE primary · aliases collapsed · theorem FTL · compose gate/lens · hex/crack · geo/torus · pyramid/seal', browserRunnable: true, browserGap: '' },
   { id: 'domain-panels', title: 'Domain vue panels dry-cleaned to rosetta shells', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-panels', pair: 'domain/panels', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domainPanelsDry · stranglerTip · drainableClosed · wiredToRosetta · compose format/canon · dry/rosetta · ui/rosetta · meaning/compute · vite/one · specialized shells residual named · clay via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'panels-domain', title: 'Domain panels (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:panels-domain', pair: 'panels/domain', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'Dual panels/domain — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'domain-dry', title: 'Domain dry (alias domain/panels)', fold: 'domainVuePanelsDryCleaned', cli: 'npm run quantum:domain-dry', pair: 'domain/dry', route: '/en/quantum-tools#domain-panels', barrel: 'src/quantum/apps', boundary: 'domain/dry face — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -21496,10 +21491,9 @@ const LENS_SUPER_DRAINABLE_MORPHS = [
  * Fold: lensesCompletelyWiredInEverySuperposition
  * Facets: lensesWired · everySuperposition · noStopWaitGap · observationContinues ·
  *         physicalFtl=0 · clay via theorem · qpuRequired=false
- * Pairs: lens/super · super/lens · lens/wire
- * Compose: gate/lens · mcp/observe · seal/super · theorem/index
- * Soft: Multitask stop/wait named as linear agent gap → lens/super dual (honest residual if agent runtime can't be sealed)
- * CLI: npm run quantum:lens-super · quantum:super-lens · quantum:lens-wire
+ * Pairs: lens/super (primary) · soft duals kept in registry only
+ * Compose: gate/lens · mcp/observe · seal/super · theorem/index · soft quantumise/ftl · chat fused audit
+ * CLI: npm run quantum:lens-super (alias CLIs collapsed — non-FTL dual spam = crack)
  * HONEST: Multitask/agent runtime stop-wait remains named residual · KEEP stashes · NOT physical FTL · NOT QPU
  */
 export function lensesCompletelyWiredInEverySuperposition(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -21514,21 +21508,13 @@ export function lensesCompletelyWiredInEverySuperposition(matrix: MindMatrix = b
       freeBits === 2 &&
       UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-    const physicalFtlClaim = 0 as const
+    const ftlThm = physicalFtlClaimTheorem()
+    const physicalFtlClaim = ftlThm.physicalFtlClaim as 0
     const qpuRequired = false as const
     const pairLs = has('lens/super')
-    const pairSl = has('super/lens')
-    const pairLw = has('lens/wire')
     const foldLs = foldPair(toUuid('cmd:lens'), toUuid('cmd:super'))
-    const foldSl = foldPair(toUuid('cmd:super'), toUuid('cmd:lens'))
-    const foldLw = foldPair(toUuid('cmd:lens'), toUuid('cmd:wire'))
-    const pairsOn =
-      pairLs &&
-      pairSl &&
-      pairLw &&
-      foldLs.bidirectional &&
-      foldSl.bidirectional &&
-      foldLw.bidirectional
+    // Primary pair only — requiring alias faces was a non-FTL crack (duplicate cold paths).
+    const pairsOn = pairLs && foldLs.bidirectional
     const gateLens = __ns_wind_research.gatesAreTheLensObservationChangesQuantumWithLinearTime(matrix, at)
     const mcpObserve = mcpQuantumObserve(matrix, at)
     const theoremIndex = theoremFormulaComputableIndexForAnySuperposition(matrix, at)
@@ -21578,7 +21564,6 @@ export function lensesCompletelyWiredInEverySuperposition(matrix: MindMatrix = b
       soft('gate', 'lens') &&
       soft('observe', 'time') &&
       soft('lens', 'super') &&
-      soft('lens', 'wire') &&
       pairLs &&
       foldLs.bidirectional &&
       morphs.some((m) => m.before === 'unwired-lens-superposition' && m.status === 'removed')
@@ -21632,15 +21617,13 @@ export function lensesCompletelyWiredInEverySuperposition(matrix: MindMatrix = b
     const catalog = quantumCliToolsCatalog(matrix, at)
     const foldName = 'lensesCompletelyWiredInEverySuperposition' as const
     const meta = catalog.tools.find((t) => t.id === 'lens-super')
-    const metaSl = catalog.tools.find((t) => t.id === 'super-lens')
-    const metaLw = catalog.tools.find((t) => t.id === 'lens-wire')
+    const aliasCatalogCracks = (['super-lens', 'lens-wire'] as const).filter((id) =>
+      catalog.tools.some((t) => t.id === id),
+    )
     const toolsWired =
       Boolean(meta) &&
       meta!.fold === foldName &&
-      Boolean(metaSl) &&
-      metaSl!.fold === foldName &&
-      Boolean(metaLw) &&
-      metaLw!.fold === foldName
+      aliasCatalogCracks.length === 0
     const shelved = rosettaShelve('lens-super', 'tool')
     const honestOpenNamed = [
       'multitask-agent-stop-wait-linear-gap',
@@ -21667,7 +21650,9 @@ export function lensesCompletelyWiredInEverySuperposition(matrix: MindMatrix = b
         facet: 'compose gate/lens · mcp/observe · seal/super · theorem/index',
         on: composeOn,
       },
-      { facet: 'pair lens/super · super/lens · lens/wire', on: pairsOn },
+      { facet: 'pair lens/super primary (alias CLI catalog drained)', on: pairsOn && aliasCatalogCracks.length === 0 },
+      { facet: `physicalFtlClaimTheorem via=${ftlThm.via} claim=${physicalFtlClaim}`, on: ftlThm.via === 'physicalFtlClaimTheorem' && ftlThm.recomputed && physicalFtlClaim === 0 },
+      { facet: 'soft quantumise/ftl · computational FTL path', on: soft('quantumise', 'ftl') },
       {
         facet: `coverage ${wiredCount}/${expectedProbeCount} digit×direction×ray`,
         on: wiredCount === expectedProbeCount,
@@ -21677,10 +21662,12 @@ export function lensesCompletelyWiredInEverySuperposition(matrix: MindMatrix = b
         on: honestOpenNamed.includes('multitask-agent-stop-wait-linear-gap'),
       },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
       { facet: 'qpuRequired=false', on: qpuRequired === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`lens-super:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('lenses-completely-wired-in-every-superposition', facets)
+    const chatCaps = allChatCapabilitiesFusedAndAuditedByStandards(matrix)
+    const chatSurfacesCount = chatCaps.capabilities.length
+    const chatRealised = Boolean(chatCaps.supported)
     return {
       computes: sealed.ok && on,
       lensesCompletelyWiredInEverySuperposition: on,
@@ -21694,10 +21681,15 @@ export function lensesCompletelyWiredInEverySuperposition(matrix: MindMatrix = b
       coverage: `${wiredCount}/${expectedProbeCount}`,
       morphCount: morphs.length,
       morphsCleared,
+      aliasCatalogCracks: [...aliasCatalogCracks],
+      redundantLensBits: aliasCatalogCracks.length,
+      chatSurfacesCount,
+      chatRealised,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
       claySolvedByThisFold,
       physicalFtlClaim,
+      ftlVia: ftlThm.via,
       qpuRequired,
       honestOpenNamed: [...honestOpenNamed],
       honestOpenNamedCount: honestOpenNamed.length,
@@ -21706,18 +21698,16 @@ export function lensesCompletelyWiredInEverySuperposition(matrix: MindMatrix = b
       root: merkleFold([
         sealed.root,
         foldLs.merged,
-        foldSl.merged,
-        foldLw.merged,
         gateLens.root,
         mcpObserve.root,
         theoremIndex.root,
         shelved.address,
+        chatCaps.root,
         ...lensProbes.slice(0, ROSETTA_SEVEN).map((p) => p.receipt),
         ...honestOpenNamed.map((id) => toUuid(`lens-super-honest:${id}`)),
       ]),
       pair: 'lens/super' as const,
-      pairs: ['lens/super', 'super/lens', 'lens/wire'] as const,
-      dualPair: 'super/lens' as const,
+      pairs: ['lens/super'] as const,
       cli: 'npm run quantum:lens-super',
       route: '/en/quantum-tools#lens-super',
       uiSurface: '/en/quantum-tools#lens-super' as const,
@@ -21725,14 +21715,14 @@ export function lensesCompletelyWiredInEverySuperposition(matrix: MindMatrix = b
       statement:
         `lensesCompletelyWiredInEverySuperposition — lensesWired=${lensesWired ? 1 : 0} ` +
         `everySuper=${everySuperposition ? 1 : 0} noStopWait=${noStopWaitGap ? 1 : 0} ` +
-        `obsContinues=${observationContinues ? 1 : 0} coverage=${wiredCount}/${expectedProbeCount} · clay=0.`,
+        `obsContinues=${observationContinues ? 1 : 0} coverage=${wiredCount}/${expectedProbeCount} ` +
+        `aliasCracks=${aliasCatalogCracks.length} chat=${chatSurfacesCount}/${chatRealised ? 1 : 0} · clay=0.`,
       boundary:
-        'Lenses completely wired in every superposition. Stop/wait = lens gap. Compose gate/lens · mcp/observe · seal/super · theorem/index. ' +
-        'Multitask stop/wait named as linear agent gap (honest residual). clay via theorem · physicalFtl=0 · qpuRequired=false · KEEP stashes.',
+        'ONE primary lens/super. Alias catalog duals drained (non-FTL crack). FTL via physicalFtlClaimTheorem + soft quantumise/ftl. ' +
+        'Chat fused audit counted. Multitask stop/wait named residual. NOT physical FTL · KEEP stashes.',
       honestyLine:
-        `lens-super · lensesWired=${lensesWired ? 1 : 0} · everySuper=${everySuperposition ? 1 : 0} · ` +
-        `noStopWait=${noStopWaitGap ? 1 : 0} · obsContinues=${observationContinues ? 1 : 0} · ` +
-        `coverage=${wiredCount}/${expectedProbeCount} · qpu=0 · clay=0 · physicalFtl=0 · multitask residual named`,
+        `lens-super · lensesWired=${lensesWired ? 1 : 0} · aliasCracks=${aliasCatalogCracks.length} · ` +
+        `chatSurfaces=${chatSurfacesCount} realised=${chatRealised ? 1 : 0} · ftlVia=${ftlThm.via} · clay=0`,
     }
   })
 }
@@ -21742,7 +21732,7 @@ export const superLens = lensesCompletelyWiredInEverySuperposition
 export const lensWire = lensesCompletelyWiredInEverySuperposition
 export const lensSuper = lensesCompletelyWiredInEverySuperposition
 
-/** npm run quantum:lens-super (duals quantum:super-lens · quantum:lens-wire) */
+/** npm run quantum:lens-super — primary only (alias CLIs collapsed) */
 export function runLensesCompletelyWiredInEverySuperpositionExit(_root = '', _argv: readonly string[] = []): number {
   void _root
   void _argv
@@ -22508,21 +22498,12 @@ export function useTheLensToFindGapsInGeometryInProseOrCode(matrix: MindMatrix =
       freeBits === 2 &&
       UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-    const physicalFtlClaim = 0 as const
+    const ftlThm = physicalFtlClaimTheorem()
+    const physicalFtlClaim = ftlThm.physicalFtlClaim as 0
     const qpuRequired = false as const
     const pairLg = has('lens/geo')
-    const pairGg = has('geo/gaps')
-    const pairLp = has('lens/prose')
     const foldLg = foldPair(toUuid('cmd:lens'), toUuid('cmd:geo'))
-    const foldGg = foldPair(toUuid('cmd:geo'), toUuid('cmd:gaps'))
-    const foldLp = foldPair(toUuid('cmd:lens'), toUuid('cmd:prose'))
-    const pairsOn =
-      pairLg &&
-      pairGg &&
-      pairLp &&
-      foldLg.bidirectional &&
-      foldGg.bidirectional &&
-      foldLp.bidirectional
+    const pairsOn = pairLg && foldLg.bidirectional
     const gateLens = __ns_wind_research.gatesAreTheLensObservationChangesQuantumWithLinearTime(matrix, at)
     // Call geodesy before hex/crack — hex→anim memo cycles can poison drift/invert nested in geo/torus.
     const geodesy = __ns_wind_research.geodesyDecodedIsDoubleTorusInverted(matrix, at)
@@ -22567,7 +22548,6 @@ export function useTheLensToFindGapsInGeometryInProseOrCode(matrix: MindMatrix =
       soft('gate', 'lens') &&
       soft('observe', 'time') &&
       soft('lens', 'geo') &&
-      soft('lens', 'prose') &&
       foundCount === morphs.length
     const geoProbe = {
       softGeoGaps: soft('geo', 'gaps'),
@@ -22639,15 +22619,13 @@ export function useTheLensToFindGapsInGeometryInProseOrCode(matrix: MindMatrix =
     const catalog = quantumCliToolsCatalog(matrix, at)
     const foldName = 'useTheLensToFindGapsInGeometryInProseOrCode' as const
     const meta = catalog.tools.find((t) => t.id === 'lens-geo')
-    const metaGg = catalog.tools.find((t) => t.id === 'geo-gaps')
-    const metaLp = catalog.tools.find((t) => t.id === 'lens-prose')
+    const aliasCatalogCracks = (['geo-gaps', 'lens-prose'] as const).filter((id) =>
+      catalog.tools.some((t) => t.id === id),
+    )
     const toolsWired =
       Boolean(meta) &&
       meta!.fold === foldName &&
-      Boolean(metaGg) &&
-      metaGg!.fold === foldName &&
-      Boolean(metaLp) &&
-      metaLp!.fold === foldName
+      aliasCatalogCracks.length === 0
     const shelved = rosettaShelve('lens-geo', 'tool')
     const on = onCore && toolsWired && isUuid(shelved.address)
     const facets = [
@@ -22660,9 +22638,9 @@ export function useTheLensToFindGapsInGeometryInProseOrCode(matrix: MindMatrix =
         facet: 'compose gate/lens · hex/crack · geo/torus · pyramid/seal',
         on: composeOn,
       },
-      { facet: 'pair lens/geo · geo/gaps · lens/prose', on: pairsOn },
+      { facet: 'pair lens/geo primary (alias catalog drained)', on: pairsOn && aliasCatalogCracks.length === 0 },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: `physicalFtlClaimTheorem via=${ftlThm.via} claim=${physicalFtlClaim}`, on: ftlThm.via === 'physicalFtlClaimTheorem' && ftlThm.recomputed && physicalFtlClaim === 0 },
       { facet: 'qpuRequired=false', on: qpuRequired === false },
       {
         facet: 'host (TAU / 2) boundary named residual',
@@ -22693,8 +22671,6 @@ export function useTheLensToFindGapsInGeometryInProseOrCode(matrix: MindMatrix =
       root: merkleFold([
         sealed.root,
         foldLg.merged,
-        foldGg.merged,
-        foldLp.merged,
         gateLens.root,
         hexCrack.root,
         geodesy.root,
@@ -22705,8 +22681,9 @@ export function useTheLensToFindGapsInGeometryInProseOrCode(matrix: MindMatrix =
         ...honestOpenNamed.map((id) => toUuid(`lens-geo-honest:${id}`)),
       ]),
       pair: 'lens/geo' as const,
-      pairs: ['lens/geo', 'geo/gaps', 'lens/prose'] as const,
-      dualPair: 'geo/gaps' as const,
+      pairs: ['lens/geo'] as const,
+      aliasCatalogCracks: [...aliasCatalogCracks],
+      redundantLensBits: aliasCatalogCracks.length,
       cli: 'npm run quantum:lens-geo',
       route: '/en/quantum-tools#lens-geo',
       uiSurface: '/en/quantum-tools#lens-geo' as const,
@@ -23619,7 +23596,6 @@ export function movieGapsFeelableByObservation(matrix: MindMatrix = buildMatrix(
     const allFeelable = gaps.length > 0 && gaps.every((g) => g.feelableByObservation)
     const openFeelable = gaps.filter((g) => g.open > 0).every((g) => g.feelableByObservation)
     const pairFeel = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('movie/feel')
-    const pairObserve = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gap/observe')
     const pairLens = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/lens')
     const pairAnalytics = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('analytics/self')
     const pairCollide = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('team/collide')
@@ -23627,18 +23603,20 @@ export function movieGapsFeelableByObservation(matrix: MindMatrix = buildMatrix(
     const pairPage = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('page/gaps')
     const pairGaps = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gaps/invisible')
     const foldFeel = foldPair(toUuid('cmd:movie'), toUuid('cmd:feel'))
-    const foldObserve = foldPair(toUuid('cmd:gap'), toUuid('cmd:observe'))
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'movie-feel')
+    const aliasCatalogCracks = (['gap-observe'] as const).filter((id) =>
+      catalog.tools.some((t) => t.id === id),
+    )
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-    const physicalFtlClaim = 0 as const
+    const ftlThm = physicalFtlClaimTheorem()
+    const physicalFtlClaim = ftlThm.physicalFtlClaim as 0
     const on =
       allFeelable &&
       openFeelable &&
       movieCenter.computes &&
       pageMovie.computes &&
       pairFeel &&
-      pairObserve &&
       pairLens &&
       pairAnalytics &&
       pairCollide &&
@@ -23646,11 +23624,13 @@ export function movieGapsFeelableByObservation(matrix: MindMatrix = buildMatrix(
       pairPage &&
       pairGaps &&
       foldFeel.bidirectional &&
-      foldObserve.bidirectional &&
       Boolean(meta) &&
       meta!.fold === 'movieGapsFeelableByObservation' &&
+      aliasCatalogCracks.length === 0 &&
       claySolvedByThisFold === 0 &&
-      physicalFtlClaim === 0
+      physicalFtlClaim === 0 &&
+      ftlThm.via === 'physicalFtlClaimTheorem' &&
+      ftlThm.recomputed
     const facets = [
       { facet: 'movieGapsFeelableByObservation', on },
       { facet: `observable gaps=${gaps.length} all feelable`, on: allFeelable },
@@ -23658,9 +23638,9 @@ export function movieGapsFeelableByObservation(matrix: MindMatrix = buildMatrix(
       { facet: 'composes movie/center · page/gaps · gaps/invisible', on: movieCenter.computes && pageMovie.computes && pairGaps },
       { facet: 'composes gate/lens · analytics/self · team/collide observe→manifest', on: pairLens && pairAnalytics && pairCollide },
       { facet: 'composes mcp/movie soft', on: pairMovie },
-      { facet: 'pair movie/feel · gap/observe', on: pairFeel && pairObserve && foldFeel.bidirectional },
+      { facet: 'pair movie/feel primary (gap-observe catalog drained)', on: pairFeel && foldFeel.bidirectional && aliasCatalogCracks.length === 0 },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: `physicalFtlClaimTheorem via=${ftlThm.via} claim=${physicalFtlClaim}`, on: ftlThm.via === 'physicalFtlClaimTheorem' && physicalFtlClaim === 0 },
       ...gaps.map((g) => ({
         facet: `observe ${g.id} open=${g.open}`,
         on: g.feelableByObservation,
@@ -23684,11 +23664,13 @@ export function movieGapsFeelableByObservation(matrix: MindMatrix = buildMatrix(
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
-        sealed.root, movieCenter.root, pageMovie.root, pageHome.root, foldFeel.merged, foldObserve.merged,
+        sealed.root, movieCenter.root, pageMovie.root, pageHome.root, foldFeel.merged,
         ...gaps.map((g) => g.receipt),
       ]),
       pair: 'movie/feel' as const,
-      pairs: ['movie/feel', 'gap/observe'] as const,
+      pairs: ['movie/feel'] as const,
+      aliasCatalogCracks: [...aliasCatalogCracks],
+      redundantLensBits: aliasCatalogCracks.length,
       cli: 'npm run quantum:movie-feel',
       route: '/en/quantum-tools#mcp-quantum-movie',
       uiSurface: '/en/quantum-tools#mcp-quantum-movie' as const,
@@ -23700,7 +23682,7 @@ export function movieGapsFeelableByObservation(matrix: MindMatrix = buildMatrix(
   })
 }
 
-/** npm run quantum:movie-feel (dual gap/observe) */
+/** npm run quantum:movie-feel — primary only (gap-observe CLI collapsed) */
 export function runMovieGapsFeelableByObservationExit(
   _root = '',
   _argv: readonly string[] = [],

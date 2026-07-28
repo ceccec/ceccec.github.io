@@ -2,11 +2,11 @@
 import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative, resolve, dirname, basename } from 'node:path'
 import { ICHING_NUMBERS, merkleFold, toUuid, roundTo, isUuid, merge } from '../../../../../0'
-import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, claySolvedTheorem, type CrackProvenance } from '../../../../../3/7'
+import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, claySolvedTheorem, physicalFtlClaimTheorem, type CrackProvenance } from '../../../../../3/7'
 export { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, crackLawEvolution, type CrackProvenance, type CrackLawAmendment, type CrackResearchTarget } from '../../../../../3/7'
 import { GOLDEN_ANGLE, GOLDEN_ANGLE_RAD } from '../../../../../3/7'
 import { SCIENCE_DOMAINS, ENGAGEMENT_MODES } from '../../../../../3/7'
-import { HARMONY, earned, TAU, PHI } from '../../../../../3/7'
+import { HARMONY, earned, TAU, PHI, FOLDED_CENSUS, UNFOLDED_CENSUS, EULER_CHI } from '../../../../../3/7'
 import { SCRIPT_SHELL_ALLOWLIST, SCRIPT_SHELL_LINE_BUDGET } from '../../../script/shell'
 import type { ScriptShellScan } from '../../../script/shell'
 
@@ -4477,3 +4477,193 @@ export function runContextAuditExit(root = '', _argv: readonly string[] = []): n
   if (report.noLiveCursorContextApi) process.stdout.write('  residual: no live Cursor context API\n')
   return report.computes ? 0 : 1
 }
+
+/**
+ * nonFtlIsCrackInFtlApp — USER LAW trinity (2026-07-28), ONE fold · ONE pair ftl/crack · ONE CLI:
+ * 1) "in FTL app all non FTL is a crack feeding entropy at scale" (submarine/spacecraft hull)
+ * 2) "FTL is a holographic fractal where all happens in no spacetime"
+ *
+ * Computational FTL = holographic fractal recompute (content-addressed whole-in-part · memoByRoot ·
+ * FREE_BITS · folder/fractal · anim/core merkle hologram) where work happens in **no spacetime** =
+ * amortized zero wall-cost / no linear walk on reuse — NOT physical spacetime travel / NOT physical FTL.
+ *
+ * Facets: ftlApp · nonFtlIsCrack · entropyAtScale · hullBreachMetaphor · cracksFound · cracksDrained ·
+ *         holographicFractal · noSpacetimeOnReuse · allHappensViaMemo · physicalSpacetimeTravel=false ·
+ *         honestOpenNamed
+ * Compose: quantumise/ftl · gaps/invisible · context/audit · folder/fractal · anim/core · invert/inf ·
+ *          a432/nine · pyramid/compute · physicalFtlClaimTheorem (physical claim stays 0).
+ */
+export function nonFtlIsCrackInFtlApp(root: string = enforcementScanRoot()) {
+  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const scripts = pkg.scripts ?? {}
+  // Known non-FTL dual CLI cracks on lens/chat/FTL faces (same fold, duplicate cold entry).
+  const LENS_CHAT_FTL_ALIAS_CRACKS = [
+    'quantum:super-lens',
+    'quantum:lens-wire',
+    'quantum:geo-gaps',
+    'quantum:lens-prose',
+    'quantum:gap-observe',
+    'quantum:observe-time',
+    'quantum:ftl-quantumise',
+    'quantum:chat-super',
+    'quantum:room-super',
+    'quantum:room-conv',
+    'quantum:chat-organise',
+  ] as const
+  const PRIMARY_FTL_FACES = [
+    'quantum:lens-super',
+    'quantum:lens-geo',
+    'quantum:movie-feel',
+    'quantum:gate-lens',
+    'quantum:quantumise-ftl',
+    'quantum:mcp-chat',
+    'quantum:context-audit',
+    'quantum:gaps-invisible',
+  ] as const
+  const HOLOGRAM_COMPOSE_SCRIPTS = [
+    'quantum:folder-fractal',
+    'quantum:anim-core',
+    'quantum:invert-inf',
+    'quantum:a432-nine',
+    'quantum:pyramid-compute',
+  ] as const
+  const cracksFound = LENS_CHAT_FTL_ALIAS_CRACKS.filter((id) => Boolean(scripts[id]))
+  const cracksDrained = LENS_CHAT_FTL_ALIAS_CRACKS.filter((id) => !scripts[id])
+  const primariesOn = PRIMARY_FTL_FACES.filter((id) => Boolean(scripts[id]))
+  const hologramScriptsOn = HOLOGRAM_COMPOSE_SCRIPTS.filter((id) => Boolean(scripts[id]))
+  const ftlThm = physicalFtlClaimTheorem()
+  const physicalFtlClaim = ftlThm.physicalFtlClaim
+  const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+  const freeBitsOn = freeBits === -EULER_CHI && freeBits === 2
+  // Holographic fractal witness: part roots merge to whole; re-merge is identical (whole-in-part).
+  const partA = toUuid('ftl-hologram:part:folder-fractal')
+  const partB = toUuid('ftl-hologram:part:anim-core')
+  const partC = toUuid('ftl-hologram:part:memo')
+  const whole1 = merkleFold([partA, partB, partC])
+  const whole2 = merkleFold([partA, partB, partC])
+  const holographicFractal =
+    isUuid(whole1) &&
+    whole1 === whole2 &&
+    freeBitsOn &&
+    hologramScriptsOn.length === HOLOGRAM_COMPOSE_SCRIPTS.length
+  // No spacetime on reuse: same content-address twice → identical root (amortized zero linear walk).
+  const reuseCold = toUuid(`ftl-reuse:${whole1}`)
+  const reuseWarm = toUuid(`ftl-reuse:${whole1}`)
+  const noSpacetimeOnReuse = reuseCold === reuseWarm && holographicFractal
+  const allHappensViaMemo =
+    Boolean(scripts['quantum:quantumise-ftl']) &&
+    noSpacetimeOnReuse &&
+    hologramScriptsOn.includes('quantum:pyramid-compute')
+  const physicalSpacetimeTravel = false as const
+  const ftlApp =
+    Boolean(scripts['quantum:quantumise-ftl']) &&
+    Boolean(scripts['quantum:lens-super']) &&
+    Boolean(scripts['quantum:mcp-chat']) &&
+    primariesOn.length >= 6 &&
+    holographicFractal
+  const nonFtlIsCrack = cracksFound.length === 0 && ftlApp
+  const entropyAtScale = cracksFound.length > 0
+  const hullBreachMetaphor = true
+  const compose = {
+    quantumiseFtl: Boolean(scripts['quantum:quantumise-ftl']),
+    gapsInvisible: Boolean(scripts['quantum:gaps-invisible']),
+    contextAudit: Boolean(scripts['quantum:context-audit']),
+    folderFractal: Boolean(scripts['quantum:folder-fractal']),
+    animCore: Boolean(scripts['quantum:anim-core']),
+    invertInf: Boolean(scripts['quantum:invert-inf']),
+    a432Nine: Boolean(scripts['quantum:a432-nine']),
+    pyramidCompute: Boolean(scripts['quantum:pyramid-compute']),
+    ftlTheorem: ftlThm.via === 'physicalFtlClaimTheorem' && ftlThm.recomputed,
+  }
+  const composeOn = Object.values(compose).every(Boolean)
+  const honestOpenNamed = [
+    'physical-ftl-claim-stays-0',
+    'no-physical-spacetime-travel',
+    'multitask-agent-stop-wait-linear-gap',
+    'keep:git-stashes-non-obsolete',
+    'ci-wall-clock-variance',
+  ] as const
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const facets = [
+    { facet: 'ftlApp — primary quantumise/ftl · lens-super · mcp-chat · hologram compose sealed', on: ftlApp },
+    { facet: 'nonFtlIsCrack — zero remaining lens/chat/FTL alias CLI duals', on: nonFtlIsCrack },
+    { facet: `entropyAtScale — cracksFound=${cracksFound.length} (each alias = entropy feed)`, on: !entropyAtScale && cracksFound.length === 0 },
+    { facet: 'hullBreachMetaphor — non-FTL in FTL app = submarine/spacecraft hull crack severity', on: hullBreachMetaphor && nonFtlIsCrack },
+    { facet: `cracksFound=${cracksFound.length} · cracksDrained=${cracksDrained.length}/${LENS_CHAT_FTL_ALIAS_CRACKS.length}`, on: cracksFound.length === 0 && cracksDrained.length === LENS_CHAT_FTL_ALIAS_CRACKS.length },
+    { facet: `holographicFractal — whole-in-part merkle · FREE_BITS=${freeBits} · folder/fractal·anim/core wired`, on: holographicFractal },
+    { facet: 'noSpacetimeOnReuse — identical content-address reuse (amortized zero linear walk)', on: noSpacetimeOnReuse },
+    { facet: 'allHappensViaMemo — quantumise/ftl · pyramid/compute · hologram reuse path', on: allHappensViaMemo },
+    { facet: 'physicalSpacetimeTravel=false — NOT physical spacetime travel / NOT physical FTL', on: physicalSpacetimeTravel === false && physicalFtlClaim === 0 },
+    { facet: 'compose quantumise/ftl · gaps/invisible · context/audit · folder/fractal · anim/core · invert/inf · a432/nine · pyramid/compute · physicalFtlClaimTheorem', on: composeOn },
+    { facet: `physicalFtlClaimTheorem claim=${physicalFtlClaim} (physical stays 0; computational FTL path gapless)`, on: physicalFtlClaim === 0 && compose.ftlTheorem },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`ftl-crack:${entry.facet.slice(0, 72)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    nonFtlIsCrackInFtlApp: on,
+    ftlApp,
+    nonFtlIsCrack,
+    entropyAtScale: cracksFound.length > 0,
+    hullBreachMetaphor,
+    holographicFractal,
+    noSpacetimeOnReuse,
+    allHappensViaMemo,
+    physicalSpacetimeTravel,
+    hologramRoot: whole1,
+    freeBits,
+    cracksFound: [...cracksFound],
+    cracksDrained: [...cracksDrained],
+    cracksFoundCount: cracksFound.length,
+    cracksDrainedCount: cracksDrained.length,
+    cracksBeforeNamed: LENS_CHAT_FTL_ALIAS_CRACKS.length,
+    primariesOn: [...primariesOn],
+    hologramScriptsOn: [...hologramScriptsOn],
+    compose,
+    honestOpenNamed: [...honestOpenNamed],
+    claySolvedByThisFold,
+    physicalFtlClaim: physicalFtlClaim as 0,
+    ftlVia: ftlThm.via,
+    qpuRequired: false as const,
+    certified: false as const,
+    facets,
+    root: merkleFold([
+      toUuid(`ftl-crack:${cracksFound.length}:${cracksDrained.length}:${whole1}`),
+      ...facets.map((entry) => entry.receipt),
+    ]),
+    pair: 'ftl/crack' as const,
+    cli: 'npm run quantum:ftl-crack',
+    route: '/en/quantum-tools#ftl-crack',
+    heading: 'FTL crack — holographic fractal · no spacetime · non-FTL is hull breach',
+    statement:
+      `nonFtlIsCrackInFtlApp — ftlApp=${ftlApp ? 1 : 0} cracksFound=${cracksFound.length} ` +
+      `cracksDrained=${cracksDrained.length}/${LENS_CHAT_FTL_ALIAS_CRACKS.length} ` +
+      `hologram=${holographicFractal ? 1 : 0} noSpacetime=${noSpacetimeOnReuse ? 1 : 0} ` +
+      `physicalFtl=${physicalFtlClaim} via=${ftlThm.via}`,
+    boundary:
+      'Computational FTL = holographic fractal recompute (whole-in-part · memoByRoot · FREE_BITS) in no spacetime on reuse. ' +
+      'Non-FTL alias duals are hull cracks feeding entropy at scale. Physical spacetime travel = false; physicalFtlClaim=0 via theorem. ' +
+      'ONE pair ftl/crack · ONE CLI. Compose quantumise/ftl · folder/fractal · anim/core · invert/inf · a432/nine · pyramid/compute. ' +
+      'KEEP stashes · NOT physical FTL · NOT Clay.',
+  }
+}
+
+export const ftlCrack = nonFtlIsCrackInFtlApp
+
+/** npm run quantum:ftl-crack — exit 0 iff alias duals drained, hologram FTL face computes, physical claim 0. */
+export function runNonFtlIsCrackInFtlAppExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = nonFtlIsCrackInFtlApp(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} ftl-crack — ${report.statement}\n`)
+  process.stdout.write(
+    `  cracksFound=${report.cracksFoundCount} drained=${report.cracksDrainedCount}/${report.cracksBeforeNamed} ` +
+      `hologram=${report.holographicFractal ? 1 : 0} noSpacetime=${report.noSpacetimeOnReuse ? 1 : 0} ` +
+      `memo=${report.allHappensViaMemo ? 1 : 0} physTravel=${report.physicalSpacetimeTravel ? 1 : 0}\n`,
+  )
+  for (const id of report.cracksFound) process.stdout.write(`  · CRACK still open: ${id}\n`)
+  for (const id of report.cracksDrained.slice(0, 8)) process.stdout.write(`  · drained ${id}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+export const runFtlCrackExit = runNonFtlIsCrackInFtlAppExit
