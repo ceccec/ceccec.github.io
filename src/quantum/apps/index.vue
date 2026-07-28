@@ -89,6 +89,8 @@ import {
   freeChatTurnAtArchitecturalFtl,
   freeChatDrivesArchitecturalFtl,
   deepResearchAtNoCost,
+  standardsChatImprovesToFtl,
+  allFoldsCompactFuseInCoordinatedChatWaves,
   chatThroughMathOverflow,
   chatThroughAi,
   collectiveAiMind,
@@ -812,6 +814,50 @@ function sendChat() {
       related: free.facets.filter((f) => f.on).slice(0, 5).map((f) => f.facet.slice(0, 5 * 16)),
       results: [],
       resultCount: free.neighborhoodSize,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'standards chat' / standards→FTL — nest under fold/fuse · ISO/NIST findable at computational FTL.
+  if (
+    /^\s*standards?\s*(chat|ftl|improve)?\b/i.test(prompt) ||
+    /^\s*(iso|nist|fips)\b.*\b(standard|chat|ftl)\b/i.test(prompt) ||
+    /^\s*chat\s*[-/]?\s*standards?\s*$/i.test(prompt)
+  ) {
+    const std = standardsChatImprovesToFtl()
+    chatLog.value.unshift({
+      q: prompt,
+      a: std.computes
+        ? `STANDARDS/CHAT — standardsOn=${std.standardsOn ? 1 : 0} chatFtl=${std.chatFtl ? 1 : 0} improveToFtl=${std.improveToFtl ? 1 : 0} · ${std.synthesis.join(' · ')} · certified=false`
+        : `STANDARDS/CHAT INCOMPLETE — ${std.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'standards/chat · fold/fuse · npm run quantum:fold-fuse',
+      grounded: std.computes,
+      related: std.facets.filter((f) => f.on).slice(0, 5).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: std.probeCount,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'fold fuse' / coordinated chat waves umbrella.
+  if (
+    /^\s*fold\s*[-/]?\s*fuse\b/i.test(prompt) ||
+    /^\s*fuse\s*[-/]?\s*(fold|waves)\b/i.test(prompt) ||
+    /^\s*coordinated\s+chat\s+waves\b/i.test(prompt)
+  ) {
+    const fuse = allFoldsCompactFuseInCoordinatedChatWaves()
+    chatLog.value.unshift({
+      q: prompt,
+      a: fuse.computes
+        ? `FOLD/FUSE — foldInto=${fuse.foldsFoldIntoEachOther ? 1 : 0} compact=${fuse.compactingOn ? 1 : 0} fuse=${fuse.fusingOn ? 1 : 0} coordChat=${fuse.coordinatedChatWaves ? 1 : 0} · faces=${fuse.faceCount}`
+        : `FOLD/FUSE INCOMPLETE — ${fuse.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'fold/fuse · standards/chat · npm run quantum:fold-fuse',
+      grounded: fuse.computes,
+      related: fuse.facets.filter((f) => f.on).slice(0, 5).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: fuse.faceCount,
       receipt: nav0.superposition,
     })
     chatInput.value = ''

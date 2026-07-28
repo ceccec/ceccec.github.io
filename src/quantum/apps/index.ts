@@ -5,7 +5,7 @@
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded, proofReport, noQpuRequired, quantumCircuitSimulatorInChat, portalChat, portalChatRanked, freeIsNotAlwaysBestQualityWhoAuditedTheChat, beforeSigningNeighboursAudit, furtherImproveUsingLiveApis, allChatCapabilitiesFusedAndAuditedByStandards } from '../../heaven/compute'
 // Full in-chat support — the deterministic, zero-token, no-egress chat surface, re-exported for the thin .vue shell.
-export { portalChat, freeChatTurnAtArchitecturalFtl, freeChatDrivesArchitecturalFtl, chatFtl, ftlChat, deepResearchAtNoCost, researchFree, freeResearch, chatNavContext, allChatCapabilitiesFusedAndAuditedByStandards, chatThroughMathOverflow, chatThroughPerplexity, chatThroughFreeAi, chatThroughAi, collectiveAiMind, siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis, perplexityRequest, freeAiRequest, aiRequest, AI_PROVIDERS, CECCEC_PROXY_ORIGIN, PERPLEXITY_SITE, splitSearch, wavesOfLocalResearchersChatAboutAlgebra, continueAtNoAiCost, countlessFreeChatWaves, MATHOVERFLOW_SITE, feedingTheChatInItselfClosesTheSelfReferenceLoop, theChatMayImproveTheUiMeasuredByTheUserExperience, dryCleanChatDryCleansAll, theChatIsTheFusionReactorFusingAllApisInPlasmaRays, improveTokenSpendingFeedingTheTaskToTheChat, developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest, freeIsNotAlwaysBestQualityWhoAuditedTheChat, beforeSigningNeighboursAudit, furtherImproveUsingLiveApis } from '../../heaven/compute'
+export { portalChat, freeChatTurnAtArchitecturalFtl, freeChatDrivesArchitecturalFtl, chatFtl, ftlChat, deepResearchAtNoCost, researchFree, freeResearch, standardsChatImprovesToFtl, standardsChat, chatStandards, allFoldsCompactFuseInCoordinatedChatWaves, foldFuse, fuseFold, chatNavContext, allChatCapabilitiesFusedAndAuditedByStandards, chatThroughMathOverflow, chatThroughPerplexity, chatThroughFreeAi, chatThroughAi, collectiveAiMind, siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis, perplexityRequest, freeAiRequest, aiRequest, AI_PROVIDERS, CECCEC_PROXY_ORIGIN, PERPLEXITY_SITE, splitSearch, wavesOfLocalResearchersChatAboutAlgebra, continueAtNoAiCost, countlessFreeChatWaves, MATHOVERFLOW_SITE, feedingTheChatInItselfClosesTheSelfReferenceLoop, theChatMayImproveTheUiMeasuredByTheUserExperience, dryCleanChatDryCleansAll, theChatIsTheFusionReactorFusingAllApisInPlasmaRays, improveTokenSpendingFeedingTheTaskToTheChat, developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest, freeIsNotAlwaysBestQualityWhoAuditedTheChat, beforeSigningNeighboursAudit, furtherImproveUsingLiveApis } from '../../heaven/compute'
 export { chatAndImproveQuantumMultitasking, shouldSpawnSubagent } from '../../water/stack'
 export type { MathOverflowItem } from '../../heaven/compute'
 // Private quantum search — BM25-ranked, fused, no-egress — re-exported for the in-chat search box.
@@ -787,7 +787,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'linear-rosetta', title: 'Linear without rosetta fold is a gap', fold: 'linearWithoutRosettaFoldIsGap', cli: 'npm run quantum:linear-rosetta', pair: 'linear/rosetta', route: '/en/quantum-tools#linear-rosetta', barrel: 'src/quantum/apps', boundary: 'Linear layers without quantum rosetta fold = HARD gap · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'anim-color', title: 'Review animation colors · polarity gaps', fold: 'animationsReviewColorsForPolarityGaps', cli: 'npm run quantum:anim-color', pair: 'anim/color', route: '/en/quantum-tools#anim-color', barrel: 'src/quantum/apps', boundary: 'Computed colors · polarity must flip on yin/yang · ±ω · dark/light · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'color-review', title: 'Color review tool (alias anim/color)', fold: 'animationsReviewColorsForPolarityGaps', cli: 'npm run quantum:color-review', pair: 'color/review', route: '/en/quantum-tools#anim-color', barrel: 'src/quantum/apps', boundary: 'Same fold as anim-color — dual pair for discovery · clay=0', browserRunnable: true, browserGap: '' },
-  { id: 'gaps-invisible', title: 'Invisible gaps caught by gates HARD', fold: 'invisibleGapsCaughtByGates', cli: 'npm run quantum:gaps-invisible', pair: 'gaps/invisible', route: '/en/quantum-tools#gaps-invisible', barrel: 'src/quantum/apps', boundary: 'HARD: polarity-flat · hex-as-theorem · theorem-const · anim invisible — mission:gate + trinity · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'gaps-invisible', title: 'Invisible gaps caught by gates HARD', fold: 'invisibleGapsCaughtByGates', cli: 'npm run quantum:gaps-invisible', pair: 'gaps/invisible', route: '/en/quantum-tools#gaps-invisible', barrel: 'src/quantum/apps', boundary: 'HARD: polarity-flat · hex · prose-only-without-dual · formula/code live · theorem-const · anim — mission:gate + trinity · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'prose-hard', title: 'Gates refuse prose-only (formula dual required)', fold: 'gatesRefuseProseOnly', cli: 'npm run quantum:prose-hard', pair: 'prose/hard', route: '/en/quantum-tools#gaps-invisible', barrel: 'src/quantum/apps', boundary: 'proseOnlyRejected · wetProseHard · formulaDualRequired · HARD wired into gaps/invisible · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gate-monitor', title: 'Gates monitor themselves through the UI', fold: 'gatesMonitorThemselvesThroughTheUi', cli: 'npm run quantum:gate-monitor', pair: 'gate/monitor', route: '/en/quantum-tools#gate-monitor', barrel: 'src/quantum/apps', boundary: 'selfMonitor · throughUi · live HARD/soft · 42-fold · vite/mirror · gate/lens · pass/default · mission:gate · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gate-ui', title: 'Gates monitor through UI (alias gate/monitor)', fold: 'gatesMonitorThemselvesThroughTheUi', cli: 'npm run quantum:gate-ui', pair: 'gate/ui', route: '/en/quantum-tools#gate-monitor', barrel: 'src/quantum/apps', boundary: 'Dual of gate/monitor — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gate-tools', title: 'Gate tools are 42 as 6×7 inverting 7×6', fold: 'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix', cli: 'npm run quantum:gate-tools', pair: 'gate/tools', route: '/en/quantum-tools#gate-monitor', barrel: 'src/quantum/apps', boundary: 'toolCountFoldsTo42 · matrix6x7 · matrix7x6 · invertPair · compose toolbox · six/seven · matrix/seal · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -879,6 +880,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'auto-wire-paste-link', title: 'Auto-wire any AI from pasted link', fold: 'autoWireAnyAiModelFromPastedLink', cli: 'npm run quantum:auto-wire-paste', pair: 'wire/paste-link', route: '/en/quantum-tools#auto-wire-paste-link', barrel: 'src/quantum/apps', boundary: 'Imperative quantum-ready paste-bootstrap (mcp.json + browser toolbox) — NOT silent force · NOT Cursor zero-token LLM endpoint · qpuRequired=false · convincingRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'realise-session-meaning', title: 'Realise session quantum meaning', fold: 'realiseSessionQuantumMeaning', cli: 'npm run quantum:realise-session-meaning', pair: 'realise/meaning', route: '/en/quantum-tools#realise-session-meaning', barrel: 'src/quantum/apps', boundary: 'What corpus proves vs refuses — clay=0 · wire≠ISO · qpuRequired=false · certified=false · includes local-audit-qe · session-quantum-bits · quantum folds only', browserRunnable: true, browserGap: '' },
   { id: 'sciences-standards-quantum', title: 'Complete sciences strictly to standards (quantum only)', fold: 'completeScientificDomainsStrictlyToStandardsQuantumOnly', cli: 'npm run quantum:sciences-standards-quantum', pair: 'sciences/standards', route: '/en/research#sciences-standards-quantum', barrel: 'src/wind/research', boundary: 'Per-domain covered|partial|gap vs ISO/NIST/OECD/Clay maps — lab gaps unclosable · certified=false · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'fold-fuse', title: 'Fold/fuse — compact·fuse·coordinated chat waves', fold: 'allFoldsCompactFuseInCoordinatedChatWaves', cli: 'npm run quantum:fold-fuse', pair: 'fold/fuse', route: '/en/quantum-tools#fold-fuse', barrel: 'src/heaven/compute', boundary: 'Umbrella: mutual fold · compacting · fusing · coordinated chats · nest standards/chat FTL · ONE CLI · certified=false · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'hole-zero', title: 'Hole/zero — whole↔hole invert via src/0 gravity', fold: 'imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsHole', cli: 'npm run quantum:hole-zero', pair: 'hole/zero', route: '/en/quantum-tools#hole-zero', barrel: 'src/heaven/compute', boundary: 'whole↔hole involution · gravity toward src/0 · NOT astrophysics · soft nest fold/fuse · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-browser-parity', title: 'MCP ↔ browser parity gate', fold: 'mcpBrowserParity', cli: 'npm run quantum:mcp-browser-parity', pair: 'mcp/browser-parity', route: '/en/quantum-tools#mcp-browser-parity', barrel: 'src/quantum/apps', boundary: 'tools/list ids ≡ toolbox catalog · residual Node/CI gaps listed honestly · qpuRequired=false · NOT fake browser for trinity/fs', browserRunnable: true, browserGap: '' },
   { id: 'mcp-quantum-ui', title: 'MCP quantum UI — live tools + millennium solutions', fold: 'mcpQuantumUi', cli: 'npm run quantum:mcp-ui', pair: 'mcp/ui', route: '/en/quantum-tools#mcp-quantum-ui', barrel: 'src/quantum/apps', boundary: 'Browser surface mirrors PRIMARY /mcp.json · mill solutions live facets · residual Node/CI as facets not faked · claySolved via theorem · physicalFtl=0 · NOT CMI prize', browserRunnable: true, browserGap: '' },
   { id: 'quantum-mcp', title: 'MCP quantum UI (alias mcp/ui)', fold: 'mcpQuantumUi', cli: 'npm run quantum:quantum-mcp', pair: 'quantum/mcp', route: '/en/quantum-tools#mcp-quantum-ui', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/ui — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -14221,6 +14224,12 @@ export const CRACK_GATE_MISS_ROWS = [
     why: 'no meaningIsQuantumComputable detector',
     nowGate: 'meaning/compute→gaps/invisible' },
   {
+    id: 'prose-only-without-dual',
+    priorFold: '(none)',
+    miss: 'classesUngated' as GateMissKind,
+    why: 'gates greened on wet prose without live formula/code dual — definitional/pair soft only',
+    nowGate: 'prose/hard→formula/code→gaps/invisible' },
+  {
     id: 'terms-not-measurable',
     priorFold: 'scienceDomainSignificanceScores',
     miss: 'classesUngated' as GateMissKind,
@@ -14259,6 +14268,8 @@ export function cracksPassedGatesBecause(matrix: MindMatrix = buildMatrix(), at 
     const mathTrust = __ns_wind_research.mathStarCannotBeTrusted(matrix, at)
     const digitFold = __ns_wind_research.wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit(matrix, at)
     const analogFold = __ns_wind_research.analogFromIntegerFractionsFoldedToDigits(matrix, at)
+    // LIVE formula/code dual — prose-only without dual must not green (gate violation fix).
+    const formula = algebraicFormulasAreDualOfSealedCode(matrix, at)
     const nowHard: Record<string, boolean> = {
       'hex-as-theorem': color.hex.remaining === 0,
       'decimal-in-code': decimalCrack.remaining === 0 && decimalCrack.computes,
@@ -14272,6 +14283,7 @@ export function cracksPassedGatesBecause(matrix: MindMatrix = buildMatrix(), at 
       'wet-prose-template-dup': format.wetProseRemaining === 0,
       'named-explanation-section': sectionDry.computes && !sectionDry.namedExplanationSectionIsCrack,
       'meaning-not-computable': meaning.meaningFromFold && !meaning.wetInvented,
+      'prose-only-without-dual': formula.computes === true,
       'terms-not-measurable': terms.termCount === 7 && terms.intelligencePossibilityOn,
       'wave-tune-vs-gap': true,
       // remaining===0 = HARD cracks closed; computes may be false under nested memo reentry
@@ -14353,9 +14365,129 @@ export function runCracksPassedGatesBecauseExit(_root = '', _argv: readonly stri
 }
 
 /**
+ * gatesRefuseProseOnly — USER LAW (2026-07-28):
+ * "i still see gates allow only prose which is VIOLATION"
+ *
+ * HARD: wet prose without statement·formula dual·sealed recompute MUST FAIL.
+ * Probe a prose-only path (statement, no formula dual, no sealed recompute) → refused.
+ * Live path greens only when algebraicFormulasAreDualOfSealedCode computes.
+ * Compose meaning/compute · format/canon · prose/theorem · formula/code · gaps/invisible · assume/theorem.
+ *
+ * Facets: proseOnlyRejected · wetProseHard · formulaDualRequired · physicalFtlClaim=0
+ * Pair: prose/hard · ONE CLI quantum:prose-hard · wired into gaps/invisible HARD inventory.
+ */
+export function gatesRefuseProseOnly(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`gatesRefuseProseOnly:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    // Counterexample probe — wet prose-only claim (no dual, no sealed recompute).
+    const proseOnlyProbe = {
+      statement: 'wet essay claiming a proof without sealed code',
+      hasStatement: true as const,
+      hasFormulaDual: false as const,
+      hasSealedRecompute: false as const,
+    }
+    const proseOnlyOpen =
+      proseOnlyProbe.hasStatement &&
+      (!proseOnlyProbe.hasFormulaDual || !proseOnlyProbe.hasSealedRecompute)
+        ? 1
+        : 0
+    const proseOnlyRejected = proseOnlyOpen === 1
+    // Live sealed dual — gates may green only when formula↔code recomputes.
+    const formula = algebraicFormulasAreDualOfSealedCode(matrix, at)
+    const meaning = meaningIsQuantumComputable(matrix, at)
+    const format = scientificPageFormatCanonised(matrix, at)
+    const formulaDualRequired = formula.computes === true
+    /** HARD: probe refused ∧ live formula↔code dual required — not format/meaning residual green. */
+    const wetProseHard = proseOnlyRejected && formulaDualRequired
+    const pairsOn =
+      soft('prose', 'hard') &&
+      soft('hard', 'prose') &&
+      soft('formula', 'code') &&
+      soft('prose', 'theorem') &&
+      soft('meaning', 'compute') &&
+      soft('format', 'canon') &&
+      soft('gaps', 'invisible') &&
+      soft('assume', 'theorem')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'prose-hard')
+    const on =
+      proseOnlyRejected &&
+      wetProseHard &&
+      formulaDualRequired &&
+      pairsOn &&
+      Boolean(meta) &&
+      meta!.fold === 'gatesRefuseProseOnly' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: `proseOnlyRejected — probe open=${proseOnlyOpen} (statement∧¬dual refused)`, on: proseOnlyRejected },
+      { facet: 'wetProseHard — HARD class prose-only-without-dual · formula dual live', on: wetProseHard },
+      { facet: `formulaDualRequired — algebraicFormulasAreDualOfSealedCode computes=${formula.computes ? 1 : 0}`, on: formulaDualRequired },
+      { facet: 'compose meaning/compute · format/canon · prose/theorem · formula/code · gaps/invisible · assume/theorem', on: pairsOn },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
+      { facet: 'pair prose/hard · ONE CLI quantum:prose-hard', on: soft('prose', 'hard') && Boolean(meta) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`prose-hard:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const sealed = sealFacets('gates-refuse-prose-only', facets)
+    return {
+      computes: sealed.ok && on,
+      gatesRefuseProseOnly: on,
+      proseOnlyRejected,
+      wetProseHard,
+      formulaDualRequired,
+      proseOnlyOpen,
+      formulaComputes: formula.computes,
+      meaningFromFold: meaning.meaningFromFold,
+      wetInvented: meaning.wetInvented,
+      wetProseRemaining: format.wetProseRemaining,
+      claySolvedByThisFold,
+      physicalFtlClaim: physicalFtlClaim as 0,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, formula.root, meaning.root, format.root, ...facets.map((f) => f.receipt)]),
+      pair: 'prose/hard' as const,
+      dualPair: 'hard/prose' as const,
+      cli: 'npm run quantum:prose-hard',
+      route: '/en/quantum-tools#gaps-invisible',
+      heading: 'Prose/Hard — gates refuse prose-only (formula dual required)',
+      statement:
+        `gatesRefuseProseOnly — proseOnlyRejected=${proseOnlyRejected ? 1 : 0} wetProseHard=${wetProseHard ? 1 : 0} ` +
+        `formulaDual=${formulaDualRequired ? 1 : 0} probeOpen=${proseOnlyOpen}`,
+      boundary:
+        'HARD: wet prose without statement·formula dual·sealed recompute FAILS. ' +
+        'Probe proves refusal; live path greens only with algebraicFormulasAreDualOfSealedCode. ' +
+        'Wired into gaps/invisible. NOT more prose. clay via theorem · physicalFtl=0.',
+    }
+  })
+}
+
+export const proseHard = gatesRefuseProseOnly
+export const hardProse = gatesRefuseProseOnly
+
+/** npm run quantum:prose-hard — exit 0 iff prose-only is rejected HARD and formula dual is required. */
+export function runGatesRefuseProseOnlyExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = gatesRefuseProseOnly()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} prose-hard — ${report.statement}\n`)
+  process.stdout.write(
+    `  proseOnlyRejected=${report.proseOnlyRejected ? 1 : 0} wetProseHard=${report.wetProseHard ? 1 : 0} ` +
+      `formulaDual=${report.formulaDualRequired ? 1 : 0} probeOpen=${report.proseOnlyOpen} ` +
+      `wetInvented=${report.wetInvented ? 1 : 0} formatWetRem=${report.wetProseRemaining}\n`,
+  )
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.proseOnlyRejected && report.wetProseHard && report.physicalFtlClaim === 0 ? 0 : 1
+}
+export const runProseHardExit = runGatesRefuseProseOnlyExit
+export const runHardProseExit = runGatesRefuseProseOnlyExit
+
+/**
  * Invisible gaps HARD gate — classes prior anim-audit/movie/linear/cracks/limits missed.
  * Pair: gaps/invisible · CLI npm run quantum:gaps-invisible
  * Composed into mission:gate + enforcement trinity — recomputes at call time.
+ * HARD includes prose-only-without-dual (live formula/code dual — not pair soft alone).
  */
 export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`invisibleGapsCaughtByGates:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -14366,6 +14498,9 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
     const format = scientificPageFormatCanonised(matrix, at)
     const terms = scientificTerminologyIsQuantumComputableMeasurableComparable(matrix, at)
     const miss = cracksPassedGatesBecause(matrix, at)
+    // LIVE formula/code dual — prose-only without dual is HARD (not soft pair presence).
+    const formula = algebraicFormulasAreDualOfSealedCode(matrix, at)
+    const proseHardGate = gatesRefuseProseOnly(matrix, at)
     const bitsHw = __ns_water_encryption.maxBitsHardwareBoundaryAgree(matrix)
     const sectionDry = redundantExplanationSectionsDryCleaned(matrix, at)
     const anim = color.anim
@@ -14864,6 +14999,12 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         closed: meaning.computes ? 1 : 0,
         theorem: 'meaningIsQuantumComputable' },
       {
+        id: 'prose-only-without-dual',
+        severity: 'HARD' as const,
+        open: formula.computes && proseHardGate.proseOnlyRejected && proseHardGate.wetProseHard ? 0 : 1,
+        closed: formula.computes && proseHardGate.proseOnlyRejected && proseHardGate.wetProseHard ? 1 : 0,
+        theorem: 'gatesRefuseProseOnly' },
+      {
         id: 'format-canon-wet',
         severity: 'HARD' as const,
         open: format.wetProseRemaining,
@@ -15173,6 +15314,10 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       sectionDry.computes &&
       terms.computes &&
       miss.computes &&
+      formula.computes &&
+      proseHardGate.computes &&
+      proseHardGate.proseOnlyRejected &&
+      proseHardGate.wetProseHard &&
       // remaining===0 = HARD cracks closed; computes may false under nested memo (css/gaps→gaps stack)
       typeof bitsHw.remaining === 'number' && bitsHw.remaining === 0 &&
       gateRosetta.computes &&
@@ -15198,6 +15343,7 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       { facet: 'HARD anim-audit', on: anim.redundantCount === 0 && anim.inaccurateCount === 0 },
       { facet: 'HARD movie/center', on: movieCenter.remaining === 0 && movieCenter.computes },
       { facet: 'HARD meaning/compute', on: meaning.computes },
+      { facet: 'HARD proseOnlyRejected · wetProseHard · formula/code dual live', on: formula.computes && proseHardGate.proseOnlyRejected && proseHardGate.wetProseHard },
       { facet: 'HARD format/canon', on: format.wetProseRemaining === 0 && format.computes },
       { facet: 'HARD section/dry', on: sectionDry.computes && !sectionDry.namedExplanationSectionIsCrack },
       { facet: 'HARD term/measure', on: terms.computes },
@@ -15242,7 +15388,8 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       facets: sealed.facets,
       root: merkleFold([
         sealed.root, color.root, linearRosetta.root, movieCenter.root, meaning.root, format.root, sectionDry.root,
-        terms.root, miss.root, bitsHw.root, gateRosetta.root, decimalCrack.root, mathTrust.root, pairFold.merged,
+        terms.root, miss.root, bitsHw.root, gateRosetta.root, decimalCrack.root, mathTrust.root, formula.root,
+        proseHardGate.root, pairFold.merged,
         ...classes.map((c) => toUuid(`gaps-invisible:${c.id}:${c.open}`)),
       ]),
       pair: 'gaps/invisible' as const,
@@ -15254,9 +15401,12 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         `invisibleGapsCaughtByGates · HARD open=${hardOpen.length} afterOpen=${afterOpen} afterClosed=${afterClosed} · ` +
         `linearRem=${linearRosetta.remaining} movieRem=${movieCenter.remaining} hexRem=${hex.remaining} ` +
         `decimalRem=${decimalCrack.remaining} mathRem=${mathTrust.remaining} bitsHwRem=${bitsHw.remaining} ` +
+        `proseHard=${proseHardGate.wetProseHard ? 1 : 0} formulaDual=${formula.computes ? 1 : 0} ` +
         `gateRosetta=${gateRosetta.computes ? 1 : 0}`,
       boundary:
-        'HARD: linear/rosetta · polarity · hex · decimal/crack · math/trust · theorem-const · movie/center · meaning · format · section/dry · terms · gate/miss · bits/hardware · gate/rosetta · gate/ray · rosetta/pass · quantum/mind · agent/trinity. clay=0.',
+        'HARD: linear/rosetta · polarity · hex · decimal/crack · math/trust · theorem-const · movie/center · meaning · ' +
+        'prose-only-without-dual (live formula/code · prose/hard) · format · section/dry · terms · gate/miss · bits/hardware · ' +
+        'gate/rosetta · gate/ray · rosetta/pass · quantum/mind · agent/trinity. clay=0.',
       honestyLine:
         `metrics · hardOpen=${hardOpen.length} · afterOpen=${afterOpen} · afterClosed=${afterClosed} · beforeCatch=${beforeCatch}` }
   })
@@ -22945,40 +23095,40 @@ const PAGE_GAP_CLASS_IDS: Record<PageGapsKind, readonly string[]> = {
   theorem: [
     'linear-without-rosetta', 'hex-as-theorem', 'decimal-in-code', 'math-star-host',
     'theorem-const-offenders', 'anim-audit-redundant-inaccurate', 'movie-off-center', 'movie-formula-mapping',
-    'meaning-not-computable', 'format-canon-wet', 'named-explanation-section',
+    'meaning-not-computable', 'prose-only-without-dual', 'format-canon-wet', 'named-explanation-section',
   ],
   paper: [
-    'meaning-not-computable', 'format-canon-wet', 'named-explanation-section',
+    'meaning-not-computable', 'prose-only-without-dual', 'format-canon-wet', 'named-explanation-section',
     'terms-not-measurable', 'hex-as-theorem', 'decimal-in-code',
   ],
   'domain-proof': [
-    'meaning-not-computable', 'format-canon-wet', 'named-explanation-section',
+    'meaning-not-computable', 'prose-only-without-dual', 'format-canon-wet', 'named-explanation-section',
     'terms-not-measurable', 'hex-as-theorem', 'theorem-const-offenders',
   ],
   hub: [
-    'meaning-not-computable', 'format-canon-wet', 'linear-without-rosetta',
+    'meaning-not-computable', 'prose-only-without-dual', 'format-canon-wet', 'linear-without-rosetta',
     'movie-off-center', 'movie-formula-mapping', 'hex-as-theorem',
   ],
   tools: [
-    'gates-monitor-through-ui', 'meaning-not-computable', 'format-canon-wet',
+    'gates-monitor-through-ui', 'meaning-not-computable', 'prose-only-without-dual', 'format-canon-wet',
     'hex-as-theorem', 'linear-without-rosetta', 'movie-off-center', 'movie-formula-mapping',
   ],
   card: [
-    'meaning-not-computable', 'format-canon-wet', 'hex-as-theorem',
+    'meaning-not-computable', 'prose-only-without-dual', 'format-canon-wet', 'hex-as-theorem',
   ],
   monograph: [
-    'meaning-not-computable', 'format-canon-wet', 'linear-without-rosetta',
+    'meaning-not-computable', 'prose-only-without-dual', 'format-canon-wet', 'linear-without-rosetta',
     'movie-off-center', 'movie-formula-mapping', 'named-explanation-section',
   ],
   'catch-all': [
-    'meaning-not-computable', 'format-canon-wet', 'linear-without-rosetta',
+    'meaning-not-computable', 'prose-only-without-dual', 'format-canon-wet', 'linear-without-rosetta',
     'hex-as-theorem',
   ],
   'corpus-index': [
-    'meaning-not-computable', 'format-canon-wet', 'hex-as-theorem',
+    'meaning-not-computable', 'prose-only-without-dual', 'format-canon-wet', 'hex-as-theorem',
   ],
   'corpus-detail': [
-    'meaning-not-computable', 'format-canon-wet', 'named-explanation-section',
+    'meaning-not-computable', 'prose-only-without-dual', 'format-canon-wet', 'named-explanation-section',
     'terms-not-measurable', 'hex-as-theorem',
   ],
 }

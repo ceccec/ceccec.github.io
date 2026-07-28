@@ -905,7 +905,10 @@
     "quantum:stall-stop": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runStallStopFindsHangedProcessesRealtimeExit",
     "quantum:script-fold": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runScriptsFoldTowardFtlExit",
     "quantum:chat-ftl": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/heaven/compute/index.ts runFreeChatDrivesArchitecturalFtlExit",
-    "quantum:research-free": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/heaven/compute/index.ts runDeepResearchAtNoCostExit"
+    "quantum:research-free": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/heaven/compute/index.ts runDeepResearchAtNoCostExit",
+    "quantum:fold-fuse": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/heaven/compute/index.ts runAllFoldsCompactFuseInCoordinatedChatWavesExit",
+    "quantum:hole-zero": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/heaven/compute/index.ts runImagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsHoleExit",
+    "quantum:prose-hard": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runGatesRefuseProseOnlyExit"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

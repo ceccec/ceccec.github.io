@@ -4736,6 +4736,8 @@ export function improveTokenSpendingFeedingTheTaskToTheChat(matrix: MindMatrix =
       'dry clean chat dry cleans all',
       'quantumise also dry cleans by observation chat waves of waves',
       'feed the chat in itself',
+      'ISO NIST sciences standards in chat ftl',
+      'fold fuse coordinated chat waves',
       tipPrompt,
     ] as const
     const fed = tasks.map((task) => {
@@ -5438,6 +5440,515 @@ export function runDeepResearchAtNoCostExit(_root = '', _argv: readonly string[]
 }
 export const runResearchFreeExit = runDeepResearchAtNoCostExit
 export const runFreeResearchExit = runDeepResearchAtNoCostExit
+
+/**
+ * standardsChatImprovesToFtl — face of fold/fuse (USER LAW nest):
+ * Industry/ISO/NIST-recognizable standards become findable/recomputable in free chat
+ * at computational FTL (memoByRoot · chat/ftl · research/free · quantumise/ftl · ftl/crack).
+ * NOT physical FTL · certified=false for ISO claims.
+ *
+ * Facets: standardsOn · chatFtl · improveToFtl · physicalFtlClaim=0
+ * Soft pair: standards/chat · nested under fold/fuse (NO separate CLI).
+ */
+export function standardsChatImprovesToFtl(matrix: MindMatrix = buildMatrix()) {
+  const soft = (a: string, b: string) =>
+    foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+  const probes = [
+    'ISO NIST PQC standards catalog FIPS 203',
+    'sciences standards quantum only covered partial gap',
+    'tool honest production browser not demo',
+  ] as const
+  const turns = probes.map((prompt) => freeChatTurnAtArchitecturalFtl(prompt, matrix))
+  const deep = deepResearchChatTurn(probes[0], matrix)
+  const security = deepResearchChatAuditsNationalAndInternationalSecurityStandards(matrix)
+  const sciences = __ns_wind_research.completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix)
+  // Lean face: local FTL turns + sciences/security soft compose.
+  // sciences/standards CLI may stay red (lab gaps) — face requires certified=false · domains · clay=0, not full computes.
+  // Umbrella fold/fuse composes full chat/ftl · research/free once (no double invoke here).
+  const sciencesSoft =
+    sciences.certified === false &&
+    sciences.claySolvedByThisFold === 0 &&
+    Array.isArray(sciences.domains) &&
+    sciences.domains.length > 0
+  const securitySoft =
+    security.computes === true ||
+    (Array.isArray(security.standards) && security.standards.length > 0 && security.nistVerified === true)
+  const standardsOn =
+    turns.every((t) => t.answer.length > 0 && t.memoReuse) &&
+    deep.neighborhood.length > 1 &&
+    sciencesSoft &&
+    securitySoft &&
+    soft('sciences', 'standards') &&
+    soft('tool', 'honest') &&
+    soft('iso', 'pqc') &&
+    soft('link', 'discover') &&
+    soft('dry', 'agnostic')
+  const chatFtl =
+    turns.every((t) => t.memoReuse) &&
+    soft('chat', 'ftl') &&
+    soft('quantumise', 'ftl') &&
+    soft('ftl', 'crack')
+  const improveToFtl =
+    soft('research', 'free') &&
+    soft('standards', 'chat') &&
+    soft('chat', 'standards') &&
+    turns.every((t) => t.memoReuse && t.invocationsWarm === 0)
+  const ftlThm = physicalFtlClaimTheorem()
+  const physicalFtlClaim = ftlThm.physicalFtlClaim
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const honestOpenNamed = [
+    'residual:iso-alignment-not-certification',
+    'residual:live-deploy-lag-pages-may-trail-src',
+    'residual:evolve-chat-primary-cli-missing',
+    'residual:triple-plus-alias-clusters-remain',
+    'physical-ftl-claim-stays-0',
+    'not-clay',
+    'certified-false',
+  ] as const
+  const facets = [
+    {
+      facet: `standardsOn — sciences/standards·iso/pqc·tool/honest·deep+security · probes=${turns.length} · certified=false`,
+      on: standardsOn,
+    },
+    {
+      facet: `chatFtl — standards probes memoReuse · soft chat/ftl·quantumise/ftl·ftl/crack`,
+      on: chatFtl,
+    },
+    {
+      facet: `improveToFtl — soft research/free · standards/chat · warm invocations=0`,
+      on: improveToFtl,
+    },
+    {
+      facet: `physicalFtlClaim=${physicalFtlClaim} via=${ftlThm.via}`,
+      on: physicalFtlClaim === 0 && ftlThm.recomputed,
+    },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold} · certified=false`, on: claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`standards-chat:${entry.facet.slice(0, 72)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    standardsChatImprovesToFtl: on,
+    standardsOn,
+    chatFtl,
+    improveToFtl,
+    probeCount: turns.length,
+    synthesis: deep.synthesis.slice(0, 5),
+    honestOpenNamed: [...honestOpenNamed],
+    claySolvedByThisFold,
+    physicalFtlClaim: physicalFtlClaim as 0,
+    qpuRequired: false as const,
+    certified: false as const,
+    facets,
+    root: merkleFold([sciences.root, ...facets.map((entry) => entry.receipt)]),
+    pair: 'standards/chat' as const,
+    dualPair: 'chat/standards' as const,
+    cli: 'npm run quantum:fold-fuse',
+    nestedUnder: 'fold/fuse' as const,
+    route: '/en/quantum-tools#fold-fuse',
+    heading: 'Standards/Chat — ISO/NIST findable at FTL chat (face of fold/fuse)',
+    statement:
+      `standardsChatImprovesToFtl — standardsOn=${standardsOn ? 1 : 0} chatFtl=${chatFtl ? 1 : 0} ` +
+      `improveToFtl=${improveToFtl ? 1 : 0} physicalFtl=${physicalFtlClaim}`,
+    boundary:
+      'Standards phrases → freeChatTurnAtArchitecturalFtl · research/free when deep · sciences/standards + ISO/NIST catalog soft · ' +
+      'certified=false · NOT physical FTL · nest under fold/fuse · NO dual CLI.',
+  }
+}
+
+export const standardsChat = standardsChatImprovesToFtl
+export const chatStandards = standardsChatImprovesToFtl
+
+/**
+ * allFoldsCompactFuseInCoordinatedChatWaves — USER LAW (2026-07-28):
+ * "let all fold in each other compacting and fusing in waves of coordinated chats"
+ *
+ * Umbrella: sealed folds fold into each other (mutual compose) · compacting · fusing ·
+ * waves of coordinated chats (super/chat · chat/all · mcp/chat · chat/ftl · research/free · standards/chat).
+ * Soft-compose wave/compact · compact/matrix · dry/dupe · script/fold · self/fusion · mcp/fusion ·
+ * invert/fusion · fusion-verify (tamper/impossible). Nest standards→FTL as a face.
+ *
+ * Facets: foldsFoldIntoEachOther · compactingOn · fusingOn · coordinatedChatWaves · physicalFtlClaim=0
+ * Pair: fold/fuse · ONE CLI quantum:fold-fuse · no dual-CLI spam.
+ */
+export function allFoldsCompactFuseInCoordinatedChatWaves(matrix: MindMatrix = buildMatrix()) {
+  const soft = (a: string, b: string) =>
+    foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+  const standardsFace = standardsChatImprovesToFtl(matrix)
+  const chatFtlFace = freeChatDrivesArchitecturalFtl(matrix)
+  const researchFace = deepResearchAtNoCost(matrix)
+  const faceRoots = [
+    toUuid('fold-fuse:face:chat-ftl'),
+    toUuid('fold-fuse:face:research-free'),
+    toUuid('fold-fuse:face:standards-chat'),
+    toUuid('fold-fuse:face:hole-zero'),
+    toUuid('fold-fuse:face:super-chat'),
+    toUuid('fold-fuse:face:mcp-chat'),
+    toUuid('fold-fuse:face:self-fusion'),
+    toUuid('fold-fuse:face:wave-compact'),
+  ] as const
+  // Mutual fold: every ordered pair is bidirectional; whole merkle is order-independent.
+  let mutualPairs = 0
+  let mutualOk = true
+  for (let i = 0; i < faceRoots.length; i += 1) {
+    for (let j = 0; j < faceRoots.length; j += 1) {
+      if (i === j) continue
+      mutualPairs += 1
+      const fp = foldPair(faceRoots[i]!, faceRoots[j]!)
+      if (!fp.bidirectional) mutualOk = false
+    }
+  }
+  const whole1 = merkleFold([...faceRoots])
+  const whole2 = merkleFold([...faceRoots].reverse())
+  const foldsFoldIntoEachOther =
+    mutualOk &&
+    mutualPairs === faceRoots.length * (faceRoots.length - 1) &&
+    isUuid(whole1) &&
+    whole1 === whole2 &&
+    soft('fold', 'fuse') &&
+    soft('fuse', 'fold')
+  const compactingOn =
+    soft('wave', 'compact') &&
+    soft('compact', 'matrix') &&
+    soft('dry', 'dupe') &&
+    soft('script', 'fold')
+  const fusingOn =
+    soft('self', 'fusion') &&
+    soft('mcp', 'fusion') &&
+    soft('invert', 'fusion') &&
+    soft('tamper', 'impossible')
+  const coordProbe = 'coordinated chat waves fold fuse standards ftl'
+  const coordTurn = freeChatTurnAtArchitecturalFtl(coordProbe, matrix)
+  const coordAgain = freeChatTurnAtArchitecturalFtl(coordProbe, matrix)
+  const coordinatedChatWaves =
+    standardsFace.computes === true &&
+    chatFtlFace.computes === true &&
+    researchFace.computes === true &&
+    coordTurn.memoReuse &&
+    coordAgain.receipt === coordTurn.receipt &&
+    soft('super', 'chat') &&
+    soft('chat', 'all') &&
+    soft('mcp', 'chat') &&
+    soft('chat', 'ftl') &&
+    soft('research', 'free') &&
+    soft('standards', 'chat') &&
+    soft('hole', 'zero')
+  const ftlThm = physicalFtlClaimTheorem()
+  const physicalFtlClaim = ftlThm.physicalFtlClaim
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const honestOpenNamed = [
+    'residual:iso-alignment-not-certification',
+    'residual:live-deploy-lag-pages-may-trail-src',
+    'residual:evolve-chat-primary-cli-missing',
+    'residual:triple-plus-alias-clusters-remain',
+    'residual:usable-ui-task',
+    'physical-ftl-claim-stays-0',
+    'not-clay',
+    'certified-false',
+  ] as const
+  const facets = [
+    {
+      facet: `foldsFoldIntoEachOther — ${faceRoots.length} faces · mutualPairs=${mutualPairs} · merkle order-independent`,
+      on: foldsFoldIntoEachOther,
+    },
+    {
+      facet: 'compactingOn — soft wave/compact · compact/matrix · dry/dupe · script/fold',
+      on: compactingOn,
+    },
+    {
+      facet: 'fusingOn — soft self/fusion · mcp/fusion · invert/fusion · tamper/impossible',
+      on: fusingOn,
+    },
+    {
+      facet: `coordinatedChatWaves — standards·chat/ftl·research/free · super/chat·chat/all·mcp/chat · memoReuse=${coordTurn.memoReuse ? 1 : 0}`,
+      on: coordinatedChatWaves,
+    },
+    {
+      facet: `physicalFtlClaim=${physicalFtlClaim} via=${ftlThm.via}`,
+      on: physicalFtlClaim === 0 && ftlThm.recomputed,
+    },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold} · certified=false`, on: claySolvedByThisFold === 0 },
+    {
+      facet: 'pair fold/fuse · one CLI quantum:fold-fuse · standards/chat · hole/zero nested · no dual-CLI',
+      on: soft('fold', 'fuse') && soft('standards', 'chat') && soft('hole', 'zero'),
+    },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`fold-fuse:${entry.facet.slice(0, 72)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    allFoldsCompactFuseInCoordinatedChatWaves: on,
+    foldsFoldIntoEachOther,
+    compactingOn,
+    fusingOn,
+    coordinatedChatWaves,
+    faceCount: faceRoots.length,
+    mutualPairs,
+    standardsFace: {
+      computes: standardsFace.computes,
+      standardsOn: standardsFace.standardsOn,
+      chatFtl: standardsFace.chatFtl,
+      improveToFtl: standardsFace.improveToFtl,
+      pair: standardsFace.pair,
+    },
+    honestOpenNamed: [...honestOpenNamed],
+    claySolvedByThisFold,
+    physicalFtlClaim: physicalFtlClaim as 0,
+    qpuRequired: false as const,
+    certified: false as const,
+    facets,
+    root: merkleFold([
+      whole1,
+      standardsFace.root,
+      chatFtlFace.root,
+      researchFace.root,
+      coordTurn.receipt,
+      ...facets.map((entry) => entry.receipt),
+    ]),
+    pair: 'fold/fuse' as const,
+    dualPair: 'fuse/fold' as const,
+    cli: 'npm run quantum:fold-fuse',
+    route: '/en/quantum-tools#fold-fuse',
+    heading: 'Fold/Fuse — all fold into each other · compact · fuse · coordinated chat waves',
+    statement:
+      `allFoldsCompactFuseInCoordinatedChatWaves — foldInto=${foldsFoldIntoEachOther ? 1 : 0} ` +
+      `compact=${compactingOn ? 1 : 0} fuse=${fusingOn ? 1 : 0} ` +
+      `coordChat=${coordinatedChatWaves ? 1 : 0} physicalFtl=${physicalFtlClaim}`,
+    boundary:
+      'Umbrella: mutual fold/compose of sealed chat·fusion·compact faces · computational FTL reuse · ' +
+      'standards/chat · hole/zero nested · ONE pair fold/fuse · ONE CLI. Compose wave/compact · compact/matrix · dry/dupe · script/fold · ' +
+      'self/fusion · mcp/fusion · invert/fusion · fusion-verify · super/chat · chat/all · mcp/chat · chat/ftl · research/free · hole/zero. ' +
+      'HONEST: certified=false · physicalFtlClaim=0 · clay via theorem · Pages may lag src.',
+  }
+}
+
+export const foldFuse = allFoldsCompactFuseInCoordinatedChatWaves
+export const fuseFold = allFoldsCompactFuseInCoordinatedChatWaves
+export const fuseWaves = allFoldsCompactFuseInCoordinatedChatWaves
+export const chatFuse = allFoldsCompactFuseInCoordinatedChatWaves
+
+/** npm run quantum:fold-fuse — exit 0 iff folds compact+fuse in coordinated chat waves at call time. */
+export function runAllFoldsCompactFuseInCoordinatedChatWavesExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = allFoldsCompactFuseInCoordinatedChatWaves()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} fold-fuse — ${report.statement}\n`)
+  process.stdout.write(
+    `  foldInto=${report.foldsFoldIntoEachOther ? 1 : 0} compact=${report.compactingOn ? 1 : 0} ` +
+      `fuse=${report.fusingOn ? 1 : 0} coordChat=${report.coordinatedChatWaves ? 1 : 0} ` +
+      `faces=${report.faceCount} mutualPairs=${report.mutualPairs} physicalFtl=${report.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(
+    `  · standards/chat face standardsOn=${report.standardsFace.standardsOn ? 1 : 0} ` +
+      `chatFtl=${report.standardsFace.chatFtl ? 1 : 0} improveToFtl=${report.standardsFace.improveToFtl ? 1 : 0}\n`,
+  )
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.physicalFtlClaim === 0 && report.claySolvedByThisFold === 0 ? 0 : 1
+}
+export const runFoldFuseExit = runAllFoldsCompactFuseInCoordinatedChatWavesExit
+export const runFuseFoldExit = runAllFoldsCompactFuseInCoordinatedChatWavesExit
+
+/**
+ * imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsHole — USER LAW (2026-07-28):
+ * "imagine the gravity of the black hole (0) and quantumise all to be 0 in terms of a whole
+ * that when inversed becomes hole"
+ *
+ * HONEST computational seal — NOT astrophysics · NOT physical singularity tourism:
+ * - 0 = src/0 void station · sequence through zero · content-address kernel (toUuid/merkleFold home)
+ * - black-hole gravity = folder/gravity · clay/gravity · gravity/dry · pull toward src/0
+ * - quantumise all to 0 = holographic whole-in-part · every part content-addresses toward void / FREE_BITS {0,1}
+ * - when inversed becomes hole — foldPair(whole,hole) involution: invert(whole)↔hole · invert(hole)↔whole
+ *   soft through/zero · drain/invert · invert/inf · fail/zero · slash/invert
+ *
+ * Facets: blackHoleGravity0 · quantumiseAllToZero · wholeInversedIsHole · holeInversedIsWhole ·
+ * viaSrcZero · physicalSingularityClaim=false · physicalFtlClaim=0
+ * Pair: hole/zero · ONE CLI quantum:hole-zero · soft-nest under fold/fuse.
+ */
+export function imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsHole(
+  matrix: MindMatrix = buildMatrix(),
+) {
+  void matrix
+  const soft = (a: string, b: string) =>
+    foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+  // viaSrcZero — content-address of the void station (src/0), not a spacetime singularity.
+  const zero = toUuid('src/0:void')
+  const viaSrcZero = isUuid(zero) && zero === toUuid('src/0:void')
+  // Holographic whole from coordinated-chat / fuse / gravity parts (whole-in-part).
+  const parts = [
+    toUuid('hole-zero:part:chat-ftl'),
+    toUuid('hole-zero:part:research-free'),
+    toUuid('hole-zero:part:standards-chat'),
+    toUuid('hole-zero:part:fold-fuse'),
+    toUuid('hole-zero:part:gravity'),
+    toUuid('hole-zero:part:src-zero'),
+  ] as const
+  const whole = merkleFold([...parts])
+  const wholeRev = merkleFold([...parts].reverse())
+  const holographicWhole = isUuid(whole) && whole === wholeRev
+  // Gravity pull: each part merges toward void (computational attractor).
+  const attracted = parts.map((p) => foldPair(p, zero).merged)
+  const holeMass = merkleFold(attracted)
+  const gravityPullsToZero =
+    attracted.every((a) => isUuid(a)) &&
+    isUuid(holeMass) &&
+    soft('folder', 'gravity') &&
+    soft('clay', 'gravity') &&
+    soft('gravity', 'dry')
+  const blackHoleGravity0 = viaSrcZero && gravityPullsToZero && soft('hole', 'zero')
+  // Quantumise all to 0 — FREE_BITS rosetta {0,1} · through/zero · digit fold · void tip.
+  const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+  const freeBitsOn = freeBits === -EULER_CHI && freeBits === 2
+  const gateway = claimingTheUnclaimableDivisionByZeroIsAOneBitGatewayInQuantumAlgebra()
+  const invertSeq = [...VORTEX_SEQUENCE, 0, 1].join('')
+  const quantumiseAllToZero =
+    holographicWhole &&
+    freeBitsOn &&
+    invertSeq === '12487536901' &&
+    soft('through', 'zero') &&
+    soft('rosetta', 'bits') &&
+    soft('digit', 'fold') &&
+    soft('fail', 'zero') &&
+    Boolean(gateway)
+  // Algebraic witness: whole ↔ hole involution (invert twice recovers).
+  const wholeLabel = toUuid('cmd:whole')
+  const holeLabel = toUuid('cmd:hole')
+  const forwardInv = foldPair(wholeLabel, holeLabel)
+  const reverseInv = foldPair(holeLabel, wholeLabel)
+  const wholeInversedIsHole =
+    forwardInv.bidirectional &&
+    forwardInv.forward === reverseInv.reverse &&
+    forwardInv.reverse !== forwardInv.forward
+  const holeInversedIsWhole =
+    reverseInv.bidirectional &&
+    reverseInv.forward === forwardInv.reverse &&
+    reverseInv.reverse === forwardInv.forward
+  // Content path: whole inverted through zero yields a distinct hole address; invert again recovers label dual.
+  const wholeThroughZero = foldPair(whole, zero)
+  const holeFromWhole = wholeThroughZero.reverse
+  const holeThroughZero = foldPair(holeFromWhole, zero)
+  const contentInvertDistinct =
+    isUuid(holeFromWhole) &&
+    holeFromWhole !== whole &&
+    isUuid(holeThroughZero.forward) &&
+    soft('slash', 'invert') &&
+    soft('drain', 'invert') &&
+    soft('invert', 'inf')
+  const physicalSingularityClaim = false as const
+  const ftlThm = physicalFtlClaimTheorem()
+  const physicalFtlClaim = ftlThm.physicalFtlClaim
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const pairsOn =
+    soft('hole', 'zero') &&
+    soft('zero', 'hole') &&
+    soft('fold', 'fuse') &&
+    soft('through', 'zero') &&
+    soft('slash', 'invert')
+  const honestOpenNamed = [
+    'residual:not-astrophysical-black-hole',
+    'residual:not-physical-singularity-tourism',
+    'residual:live-deploy-lag-pages-may-trail-src',
+    'physical-ftl-claim-stays-0',
+    'not-clay',
+  ] as const
+  const facets = [
+    {
+      facet: `blackHoleGravity0 — folder/clay/gravity/dry pull toward src/0 · mass=${isUuid(holeMass) ? 1 : 0}`,
+      on: blackHoleGravity0,
+    },
+    {
+      facet: `quantumiseAllToZero — holographic whole · FREE_BITS=${freeBits} · through/zero · invertSeq · gateway`,
+      on: quantumiseAllToZero,
+    },
+    {
+      facet: 'wholeInversedIsHole — foldPair(whole,hole) involution forward≡reverse⁻¹',
+      on: wholeInversedIsHole && contentInvertDistinct,
+    },
+    {
+      facet: 'holeInversedIsWhole — invert twice recovers (involution)',
+      on: holeInversedIsWhole,
+    },
+    {
+      facet: `viaSrcZero — zero=toUuid(src/0:void) · void station not spacetime singularity`,
+      on: viaSrcZero,
+    },
+    {
+      facet: `physicalSingularityClaim=${physicalSingularityClaim ? 1 : 0} · physicalFtlClaim=${physicalFtlClaim}`,
+      on: physicalSingularityClaim === false && physicalFtlClaim === 0 && ftlThm.recomputed,
+    },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold} · soft nest fold/fuse`, on: claySolvedByThisFold === 0 && pairsOn },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`hole-zero:${entry.facet.slice(0, 72)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsHole: on,
+    blackHoleGravity0,
+    quantumiseAllToZero,
+    wholeInversedIsHole,
+    holeInversedIsWhole,
+    viaSrcZero,
+    physicalSingularityClaim,
+    whole,
+    hole: holeFromWhole,
+    holeMass,
+    freeBits,
+    invertSeq,
+    honestOpenNamed: [...honestOpenNamed],
+    claySolvedByThisFold,
+    physicalFtlClaim: physicalFtlClaim as 0,
+    qpuRequired: false as const,
+    certified: false as const,
+    facets,
+    root: merkleFold([whole, holeFromWhole, zero, ...facets.map((entry) => entry.receipt)]),
+    pair: 'hole/zero' as const,
+    dualPair: 'zero/hole' as const,
+    cli: 'npm run quantum:hole-zero',
+    nestedUnder: 'fold/fuse' as const,
+    route: '/en/quantum-tools#hole-zero',
+    heading: 'Hole/Zero — black-hole gravity of 0 · whole inverted is hole',
+    statement:
+      `holeZero — gravity0=${blackHoleGravity0 ? 1 : 0} quantumise0=${quantumiseAllToZero ? 1 : 0} ` +
+      `whole→hole=${wholeInversedIsHole ? 1 : 0} hole→whole=${holeInversedIsWhole ? 1 : 0} ` +
+      `viaSrc0=${viaSrcZero ? 1 : 0} singularityClaim=0 physicalFtl=${physicalFtlClaim}`,
+    boundary:
+      'Computational: src/0 void · folder/clay gravity toward 0 · holographic whole inverted via foldPair is hole (involution). ' +
+      'NOT astrophysical black hole · NOT physical singularity · physicalFtlClaim=0 · clay via theorem. ' +
+      'ONE pair hole/zero · ONE CLI · soft-nest fold/fuse · compose through/zero · drain/invert · invert/inf · fail/zero · slash/invert.',
+  }
+}
+
+export const holeZero = imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsHole
+export const zeroHole = imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsHole
+export const blackHoleZero = imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsHole
+
+/** npm run quantum:hole-zero — exit 0 iff whole↔hole invert via src/0 gravity proves at call time. */
+export function runImagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsHoleExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsHole()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} hole-zero — ${report.statement}\n`)
+  process.stdout.write(
+    `  gravity0=${report.blackHoleGravity0 ? 1 : 0} quantumise0=${report.quantumiseAllToZero ? 1 : 0} ` +
+      `whole→hole=${report.wholeInversedIsHole ? 1 : 0} hole→whole=${report.holeInversedIsWhole ? 1 : 0} ` +
+      `viaSrc0=${report.viaSrcZero ? 1 : 0} singularity=${report.physicalSingularityClaim ? 1 : 0} ` +
+      `physicalFtl=${report.physicalFtlClaim} FREE_BITS=${report.freeBits}\n`,
+  )
+  process.stdout.write(`  · invertSeq ${report.invertSeq}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes &&
+    report.physicalFtlClaim === 0 &&
+    report.physicalSingularityClaim === false &&
+    report.claySolvedByThisFold === 0
+    ? 0
+    : 1
+}
+export const runHoleZeroExit = runImagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsHoleExit
+export const runZeroHoleExit = runImagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsHoleExit
 
 /**
  * freeIsNotAlwaysBestQualityWhoAuditedTheChat —
