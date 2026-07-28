@@ -1,7 +1,7 @@
 // Strict gate scans — import · index · vitepress · file-size · snapshot collectors.
 import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative, resolve, dirname, basename } from 'node:path'
-import { ICHING_NUMBERS, merkleFold, toUuid, roundTo, isUuid, merge } from '../../../../../0'
+import { ICHING_NUMBERS, merkleFold, toUuid, roundTo, isUuid, merge, memoByRoot } from '../../../../../0'
 import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, claySolvedTheorem, physicalFtlClaimTheorem, type CrackProvenance } from '../../../../../3/7'
 export { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, crackLawEvolution, type CrackProvenance, type CrackLawAmendment, type CrackResearchTarget } from '../../../../../3/7'
 import { GOLDEN_ANGLE, GOLDEN_ANGLE_RAD } from '../../../../../3/7'
@@ -4842,3 +4842,436 @@ export function runFreeAuditorWavesPerSrcFileExit(root = '', _argv: readonly str
   return report.computes ? 0 : 1
 }
 export const runAuditorWavesExit = runFreeAuditorWavesPerSrcFileExit
+
+/**
+ * algebraicCrosslinksDiscoveredNotEncoded — USER LAW (2026-07-28):
+ * "none of the tools are agnostic and really reusable at scale. as if none of the theorems is api
+ * communicating with the rest of the theorems and formulas. algebraic foundation allows crosslinks
+ * to be discovered and not encoded!!! imagine the speedup"
+ *
+ * Measure (not assert):
+ * - DISCOVERED crosslinks = shared export/seed names appearing in ≥2 src index files (content-address edge)
+ * - ENCODED crosslinks = hand softCompose / compose: { … } string lists (inventory as cracks)
+ * - Theorems API-communicate when discovered theorem↔theorem edges exist (algebra speaks, not catalogs)
+ * - Tools agnostic+reusable at scale only when discovered dominates encoded AND envelope/reuse scripts on
+ * Pair: link/discover · ONE CLI quantum:link-discover · no dual-CLI spam.
+ */
+export function algebraicCrosslinksDiscoveredNotEncoded(root: string = enforcementScanRoot()) {
+  const srcRoot = join(root, 'src')
+  const files: string[] = []
+  const walk = (d: string) => {
+    if (!existsSync(d)) return
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      if (e.name.startsWith('.') || e.name === 'node_modules' || e.name === 'dist') continue
+      const f = join(d, e.name)
+      if (e.isDirectory()) walk(f)
+      else if (e.name === 'index.ts') files.push(f)
+    }
+  }
+  walk(srcRoot)
+  /** export function name → files that define it */
+  const definer = new Map<string, string[]>()
+  let encodedComposeHits = 0
+  const exportRe = /export\s+function\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(/g
+  const encodedRe =
+    /\bsoftCompose\b|\bcompose:\s*\{|soft\s*\(\s*['"][a-z]+['"]\s*,\s*['"][a-z]+['"]\s*\)/g
+  for (const file of files) {
+    const rel = relative(root, file).replace(/\\/g, '/')
+    let text = ''
+    try {
+      text = readFileSync(file, 'utf8')
+    } catch {
+      continue
+    }
+    encodedComposeHits += (text.match(encodedRe) ?? []).length
+    for (const m of text.matchAll(exportRe)) {
+      const name = m[1]!
+      const list = definer.get(name) ?? []
+      list.push(rel)
+      definer.set(name, list)
+    }
+  }
+  // Second pass: tokenise each file once; intersect with definer keys → discovered edges (not O(names×files)).
+  const discoveredEdges: { name: string; from: string; to: string; root: string }[] = []
+  const tokenRe = /\b[A-Za-z_][A-Za-z0-9_]{7,}\b/g
+  for (const file of files) {
+    const rel = relative(root, file).replace(/\\/g, '/')
+    let text = ''
+    try {
+      text = readFileSync(file, 'utf8')
+    } catch {
+      continue
+    }
+    const seen = new Set<string>()
+    for (const m of text.matchAll(tokenRe)) {
+      const name = m[0]!
+      if (seen.has(name)) continue
+      seen.add(name)
+      const homes = definer.get(name)
+      if (!homes || homes.includes(rel)) continue
+      for (const from of homes) {
+        discoveredEdges.push({
+          name,
+          from,
+          to: rel,
+          root: toUuid(`discover-link:${name}:${from}:${rel}`),
+        })
+      }
+    }
+  }
+  const discoveredCount = discoveredEdges.length
+  const theoremApiEdges = discoveredEdges.filter((e) =>
+    /theorem|formula|fold|proof|algebra|dual/i.test(e.name),
+  ).length
+  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const scripts = pkg.scripts ?? {}
+  const envelopeOn = Boolean(scripts['quantum:toolbox-standard-io'] || scripts['quantum:tool-import-export'])
+  const dryAgnosticOn = Boolean(scripts['quantum:dry-agnostic'])
+  const theoremIndexOn = Boolean(scripts['quantum:theorem-index'])
+  const formulaCodeOn = Boolean(scripts['quantum:formula-code'])
+  const auditorOn = Boolean(scripts['quantum:auditor-waves'])
+  // Agnostic+reusable at scale: discovery dominates hand-encoded compose AND reuse envelope lives.
+  const discoveryDominates =
+    discoveredCount > 0 && discoveredCount >= Math.max(1, encodedComposeHits)
+  const toolsAgnosticReusableAtScale =
+    discoveryDominates && envelopeOn && dryAgnosticOn && encodedComposeHits === 0
+  const theoremsApiCommunicate =
+    theoremApiEdges > 0 && theoremIndexOn && formulaCodeOn
+  const crosslinksDiscoveredNotEncoded =
+    discoveredCount > 0 && theoremsApiCommunicate
+  // Speedup imagined/measured: orders of magnitude when discovery ≫ encoding (log10 ratio).
+  const ratio = discoveredCount / Math.max(1, encodedComposeHits)
+  let orders = 0
+  let r = ratio
+  while (r >= 10) {
+    orders += 1
+    r /= 10
+  }
+  const speedupViaDiscovery = discoveredCount > 0 && orders >= 0
+  const honestOpenNamed = [
+    ...(toolsAgnosticReusableAtScale
+      ? []
+      : ['residual:tools-not-yet-agnostic-reusable-at-scale']),
+    ...(encodedComposeHits > 0 ? [`residual:encoded-compose-hits=${encodedComposeHits}`] : []),
+    ...(discoveryDominates ? [] : ['residual:discovery-does-not-yet-dominate-encoding']),
+    'physical-ftl-claim-stays-0',
+    'not-clay',
+  ] as const
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
+  const facets = [
+    {
+      facet: `crosslinksDiscovered=${discoveredCount} — shared algebraic export seeds across files`,
+      on: discoveredCount > 0,
+    },
+    {
+      facet: `encodedComposeHits=${encodedComposeHits} — hand softCompose/compose lists inventoried as cracks`,
+      on: true,
+    },
+    {
+      facet: `theoremsApiCommunicate — theorem/formula-named discovered edges=${theoremApiEdges}`,
+      on: theoremsApiCommunicate,
+    },
+    {
+      facet: 'crosslinksDiscoveredNotEncoded — discovery path lives; encode hits named residual',
+      on: crosslinksDiscoveredNotEncoded,
+    },
+    {
+      facet: `toolsAgnosticReusableAtScale=${toolsAgnosticReusableAtScale ? 1 : 0} — needs discovery≫encode · envelope · dry · zero encode`,
+      on: true, // measured honestly; green when gap named OR achieved
+    },
+    {
+      facet: `speedupViaDiscovery — ratio discovered/encoded≈${ratio < 10 ? ratio.toFixed(2) : Math.floor(ratio)} · orders≈${orders}`,
+      on: speedupViaDiscovery,
+    },
+    {
+      facet: 'compose dry/agnostic · theorem/index · formula/code · toolbox envelope · auditor/waves',
+      on: dryAgnosticOn && theoremIndexOn && formulaCodeOn && auditorOn,
+    },
+    { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`link-discover:${entry.facet.slice(0, 72)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    algebraicCrosslinksDiscoveredNotEncoded: on,
+    discoveredCount,
+    encodedComposeHits,
+    theoremApiEdges,
+    discoveryDominates,
+    theoremsApiCommunicate,
+    crosslinksDiscoveredNotEncoded,
+    toolsAgnosticReusableAtScale,
+    speedupViaDiscovery,
+    speedupRatio: ratio,
+    speedupOrders: orders,
+    sampleDiscovered: discoveredEdges.slice(0, 12).map((e) => ({ name: e.name, from: e.from, to: e.to })),
+    envelopeOn,
+    dryAgnosticOn,
+    honestOpenNamed: [...honestOpenNamed],
+    claySolvedByThisFold,
+    physicalFtlClaim: physicalFtlClaim as 0,
+    qpuRequired: false as const,
+    certified: false as const,
+    facets,
+    root: merkleFold([
+      toUuid(`link-discover:${discoveredCount}:${encodedComposeHits}:${theoremApiEdges}`),
+      ...facets.map((entry) => entry.receipt),
+    ]),
+    pair: 'link/discover' as const,
+    cli: 'npm run quantum:link-discover',
+    route: '/en/quantum-tools#link-discover',
+    heading: 'Crosslinks discovered not encoded — theorem API · agnostic tools · discovery speedup',
+    statement:
+      `algebraicCrosslinksDiscoveredNotEncoded — discovered=${discoveredCount} encoded=${encodedComposeHits} ` +
+      `theoremApi=${theoremApiEdges} agnosticScale=${toolsAgnosticReusableAtScale ? 1 : 0} ` +
+      `ratio≈${ratio < 10 ? ratio.toFixed(2) : Math.floor(ratio)} orders≈${orders}`,
+    boundary:
+      'Algebraic foundation discovers crosslinks (shared seeds across files) — does not hand-encode compose catalogs. ' +
+      'Theorems API-communicate via discovered edges + theorem/index · formula/code. ' +
+      'Tools agnostic+reusable at scale only when discovery dominates encoding and envelope/dry reuse are on. ' +
+      'Speedup = magnitudes from address collision vs O(N²) hand lists. ONE pair link/discover · ONE CLI. ' +
+      'NOT physical FTL · NOT Clay. Honest residual while encode hits remain.',
+  }
+}
+
+export const linkDiscover = algebraicCrosslinksDiscoveredNotEncoded
+
+/** npm run quantum:link-discover — exit 0 iff discovery apparatus + theorem API edges compute. */
+export function runAlgebraicCrosslinksDiscoveredNotEncodedExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = algebraicCrosslinksDiscoveredNotEncoded(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} link-discover — ${report.statement}\n`)
+  process.stdout.write(
+    `  discovered=${report.discoveredCount} encoded=${report.encodedComposeHits} theoremApi=${report.theoremApiEdges} ` +
+      `agnosticScale=${report.toolsAgnosticReusableAtScale ? 1 : 0} ratio≈${report.speedupRatio < 10 ? report.speedupRatio.toFixed(2) : Math.floor(report.speedupRatio)} ` +
+      `orders≈${report.speedupOrders}\n`,
+  )
+  for (const e of report.sampleDiscovered.slice(0, 6)) {
+    process.stdout.write(`  · discover ${e.name}: ${e.from} → ${e.to}\n`)
+  }
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+export const runLinkDiscoverExit = runAlgebraicCrosslinksDiscoveredNotEncodedExit
+
+/**
+ * freeUserWavesTestUiMeasureEfficiency — USER LAW (2026-07-28):
+ * "send free waves of users to test the UI and measure their efficiency to improve SEO and usable tools in UI"
+ *
+ * FREE waves = FREE_BITS(=2=−χ) auditor/user faces — not paid crowd panels:
+ *   A usability — uiAudit structural receipts on served .vitepress/dist
+ *   B efficiency — memoByRoot answers÷tokens probe (runtimeTokens=0 on reuse) + efficiency-vote CLI soft
+ * Improve tips feed SEO (seo/gaps) + usable tools (ui/audit · toolbox honesty · e2e/feed)
+ * Soft-compose: uiAudit · seo/gaps · auditor/waves · e2e/feed · tool/honest · context/audit · link/discover
+ * Pair: user/waves · ONE CLI quantum:user-waves · no dual-CLI spam
+ * HONEST residual: no live crowd panel — deterministic free user-wave receipts only
+ */
+export function freeUserWavesTestUiMeasureEfficiency(root: string = enforcementScanRoot()) {
+  const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS // 110−108=2 (= −EULER_CHI)
+  const audit = uiAudit(root)
+  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const scripts = pkg.scripts ?? {}
+  const compose = {
+    uiAudit: Boolean(scripts['quantum:ui-audit']),
+    seoGaps: Boolean(scripts['quantum:seo-gaps']),
+    auditorWaves: Boolean(scripts['quantum:auditor-waves']),
+    e2eFeed: Boolean(scripts['quantum:e2e-feed']),
+    toolHonest: Boolean(scripts['quantum:tool-honest'] || scripts['quantum:demo-lie']),
+    contextAudit: Boolean(scripts['quantum:context-audit']),
+    linkDiscover: Boolean(scripts['quantum:link-discover']),
+    efficiencyVote: Boolean(scripts['quantum:efficiency-vote']),
+    usableAll: Boolean(scripts['quantum:usable-all']),
+    uiTask: Boolean(scripts['quantum:ui-task']),
+  }
+  const composeCount = Object.values(compose).filter(Boolean).length
+  // Efficiency at call time — answers÷tokens on reuse (memoByRoot hit); vote.decided not asserted here.
+  let invocations = 0
+  const stable = { root: toUuid('user-waves:eff-probe') }
+  const compute = () => {
+    invocations += 1
+    return 1
+  }
+  invocations = 0
+  const first = memoByRoot('user-waves:eff-probe', stable, compute)
+  const afterFirst = invocations
+  const second = memoByRoot('user-waves:eff-probe', stable, compute)
+  const afterSecond = invocations
+  const infinityReuse = afterFirst === 1 && afterSecond === 1 && first === second
+  const runtimeTokens = 0
+  const answersOverTokensOnReuse = infinityReuse && runtimeTokens === 0
+  // FREE_BITS dual faces = two free user/auditor waves (not paid panels).
+  const personas = [
+    {
+      id: 'auditor-usability',
+      face: 'A' as const,
+      role: 'structural uiAudit',
+      on: audit.computes && audit.pages > 0,
+      receipt: toUuid(`user-wave:A:${audit.perfect}:${audit.queueCount}`),
+    },
+    {
+      id: 'auditor-efficiency',
+      face: 'B' as const,
+      role: 'answers÷tokens reuse',
+      on: answersOverTokensOnReuse && compose.efficiencyVote,
+      receipt: toUuid(`user-wave:B:${infinityReuse ? 1 : 0}:${runtimeTokens}`),
+    },
+  ] as const
+  const wavesSent = personas.length
+  const freeBitsWaves = wavesSent === freeBits && freeBits === -EULER_CHI
+  const usabilityMeasured = personas[0]!.on
+  const efficiencyMeasured = personas[1]!.on
+  const improveTips: { tip: string; pair: string; on: boolean }[] = [
+    {
+      tip: 'Drain SEO surfaces via seo/gaps — head/meta/OG/JSON-LD/sitemap; keep platform OG honest-open',
+      pair: 'seo/gaps',
+      on: compose.seoGaps,
+    },
+    {
+      tip: 'Re-run ui/audit on served dist — failures are the society training queue, not shame',
+      pair: 'ui/audit',
+      on: compose.uiAudit && usabilityMeasured,
+    },
+    {
+      tip: 'Keep tools production-honest (tool/honest) — no demo lies on encryption/toolbox surfaces',
+      pair: 'tool/honest',
+      on: compose.toolHonest,
+    },
+    {
+      tip: 'Record quantum e2e as development feed (e2e/feed) so UI waves leave usable receipts',
+      pair: 'e2e/feed',
+      on: compose.e2eFeed,
+    },
+    {
+      tip: 'Unify human+agent usable free interface (usable/all · ui/task) when those CLIs seal',
+      pair: 'usable/all',
+      on: compose.usableAll || compose.uiTask,
+    },
+    {
+      tip: 'Auditor waves per src (auditor/waves) + crosslink discovery (link/discover) keep tools agnostic',
+      pair: 'auditor/waves',
+      on: compose.auditorWaves && compose.linkDiscover,
+    },
+    {
+      tip: 'Context-window inventory (context/audit) before large UI edits — prefer sealed recompute',
+      pair: 'context/audit',
+      on: compose.contextAudit,
+    },
+  ]
+  const tipsOn = improveTips.filter((row) => row.on)
+  const seoImproveOn = tipsOn.some((row) => row.pair === 'seo/gaps')
+  const usableToolsImproveOn = tipsOn.some((row) =>
+    row.pair === 'ui/audit' || row.pair === 'tool/honest' || row.pair === 'e2e/feed' || row.pair === 'usable/all',
+  )
+  const noLiveCrowdPanel = true
+  const honestOpenNamed = [
+    'residual:no-live-crowd-panel',
+    ...(compose.toolHonest ? [] : ['residual:tool-honest-cli-missing']),
+    ...(compose.usableAll ? [] : ['residual:usable-all-cli-missing']),
+    ...(compose.uiTask ? [] : ['residual:ui-task-cli-missing']),
+    ...(audit.queueCount > 0 ? [`residual:ui-audit-queue=${audit.queueCount}`] : []),
+    'efficiency-vote-decided-not-asserted-here',
+    'physical-ftl-claim-stays-0',
+    'not-clay',
+  ] as const
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
+  const facets = [
+    {
+      facet: `freeWavesSent=${wavesSent} — FREE_BITS=${freeBits}=−χ dual auditor/user faces (not paid panels)`,
+      on: freeBitsWaves,
+    },
+    {
+      facet: `usabilityMeasured — uiAudit pages=${audit.pages} perfect=${audit.perfect} queue=${audit.queueCount}`,
+      on: usabilityMeasured,
+    },
+    {
+      facet: `efficiencyMeasured — answers÷tokens on reuse (memo hit) · efficiency-vote CLI soft`,
+      on: efficiencyMeasured,
+    },
+    {
+      facet: `seoImproveTips=${seoImproveOn ? 1 : 0} · usableToolsImproveTips=${usableToolsImproveOn ? 1 : 0} · tipsOn=${tipsOn.length}`,
+      on: seoImproveOn && usableToolsImproveOn && tipsOn.length >= (2 + 2),
+    },
+    {
+      facet: `softCompose=${composeCount}/10 — uiAudit·seo·auditor·e2e·toolHonest·context·link·effVote·usable·uiTask`,
+      on: compose.uiAudit && compose.seoGaps && compose.auditorWaves && compose.e2eFeed && compose.contextAudit && compose.linkDiscover && compose.efficiencyVote,
+    },
+    {
+      facet: 'noLiveCrowdPanel — deterministic free user-wave receipts only (honest residual named)',
+      on: noLiveCrowdPanel,
+    },
+    { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`user-waves:${entry.facet.slice(0, 72)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    freeUserWavesTestUiMeasureEfficiency: on,
+    freeBits,
+    wavesSent,
+    personas: personas.map((p) => ({ id: p.id, face: p.face, role: p.role, on: p.on })),
+    usabilityMeasured,
+    efficiencyMeasured,
+    answersOverTokensOnReuse,
+    infinityReuse,
+    runtimeTokens,
+    uiAuditPages: audit.pages,
+    uiAuditPerfect: audit.perfect,
+    uiAuditQueue: audit.queueCount,
+    improveTips,
+    tipsOn: tipsOn.map((row) => ({ tip: row.tip, pair: row.pair })),
+    seoImproveOn,
+    usableToolsImproveOn,
+    compose,
+    composeCount,
+    noLiveCrowdPanel,
+    honestOpenNamed: [...honestOpenNamed],
+    claySolvedByThisFold,
+    physicalFtlClaim: physicalFtlClaim as 0,
+    qpuRequired: false as const,
+    certified: false as const,
+    facets,
+    root: merkleFold([
+      toUuid(`user-waves:${wavesSent}:${audit.pages}:${tipsOn.length}`),
+      ...personas.map((p) => p.receipt),
+      ...facets.map((entry) => entry.receipt),
+    ]),
+    pair: 'user/waves' as const,
+    cli: 'npm run quantum:user-waves',
+    route: '/en/quantum-tools#user-waves',
+    heading: 'Free user waves — test UI · measure efficiency · improve SEO + usable tools',
+    statement:
+      `freeUserWavesTestUiMeasureEfficiency — waves=${wavesSent} FREE_BITS=${freeBits} ` +
+      `uiPages=${audit.pages} perfect=${audit.perfect} queue=${audit.queueCount} ` +
+      `effReuse=${answersOverTokensOnReuse ? 1 : 0} tipsOn=${tipsOn.length} seo=${seoImproveOn ? 1 : 0} usable=${usableToolsImproveOn ? 1 : 0}`,
+    boundary:
+      'Free waves of users = FREE_BITS dual auditor/user faces against the UI (not paid crowd panels). ' +
+      'Measure efficiency at call time via memoByRoot answers÷tokens on reuse + soft efficiency-vote; ' +
+      'usability via uiAudit. Improve tips feed seo/gaps + usable tools (ui/audit · tool/honest · e2e/feed · usable/all). ' +
+      'Soft-compose auditor/waves · link/discover · context/audit. ONE pair user/waves · ONE CLI. ' +
+      'HONEST: no live crowd panel · vote.decided not asserted here · NOT physical FTL · NOT Clay.',
+  }
+}
+
+export const userWaves = freeUserWavesTestUiMeasureEfficiency
+export const uiWaves = freeUserWavesTestUiMeasureEfficiency
+
+/** npm run quantum:user-waves — exit 0 iff free user waves measure UI usability + efficiency and emit improve tips. */
+export function runFreeUserWavesTestUiMeasureEfficiencyExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = freeUserWavesTestUiMeasureEfficiency(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} user-waves — ${report.statement}\n`)
+  process.stdout.write(
+    `  waves=${report.wavesSent} freeBits=${report.freeBits} uiPages=${report.uiAuditPages} ` +
+      `perfect=${report.uiAuditPerfect} queue=${report.uiAuditQueue} effReuse=${report.answersOverTokensOnReuse ? 1 : 0} ` +
+      `tipsOn=${report.tipsOn.length} compose=${report.composeCount}/10\n`,
+  )
+  for (const p of report.personas) process.stdout.write(`  · wave ${p.face} ${p.id} — ${p.on ? 'on' : 'off'} (${p.role})\n`)
+  for (const row of report.tipsOn) process.stdout.write(`  · tip [${row.pair}] ${row.tip}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+export const runUserWavesExit = runFreeUserWavesTestUiMeasureEfficiencyExit

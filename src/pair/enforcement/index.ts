@@ -1090,6 +1090,10 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'crack/ftl',
   'auditor/waves',
   'waves/auditor',
+  'link/discover',
+  'discover/link',
+  'user/waves',
+  'waves/user',
   // <register:pairs> — quantum:register inserts dual pairs above this anchor
 ] as const
 

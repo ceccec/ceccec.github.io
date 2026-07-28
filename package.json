@@ -912,7 +912,9 @@
     "quantum:test-ssl": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runTestSslExit",
     "quantum:quantumise-ftl": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runQuantumiseFtlExit",
     "quantum:ftl-crack": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runNonFtlIsCrackInFtlAppExit",
-    "quantum:auditor-waves": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runFreeAuditorWavesPerSrcFileExit"
+    "quantum:auditor-waves": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runFreeAuditorWavesPerSrcFileExit",
+    "quantum:link-discover": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runAlgebraicCrosslinksDiscoveredNotEncodedExit",
+    "quantum:user-waves": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runFreeUserWavesTestUiMeasureEfficiencyExit"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

@@ -1453,6 +1453,8 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'contextAudit', pair: 'context/audit', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'nonFtlIsCrackInFtlApp', pair: 'ftl/crack', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'USER LAW: non-FTL in FTL app = hull crack · one CLI quantum:ftl-crack' },
   { fold: 'freeAuditorWavesPerSrcFile', pair: 'auditor/waves', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'free auditor waves per src index · adversarial efficiency×seeds · dry agnostic · ONE CLI quantum:auditor-waves' },
+  { fold: 'algebraicCrosslinksDiscoveredNotEncoded', pair: 'link/discover', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'crosslinks discovered not encoded · theorem API · tools agnostic at scale · ONE CLI quantum:link-discover' },
+  { fold: 'freeUserWavesTestUiMeasureEfficiency', pair: 'user/waves', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'free user/auditor waves test UI · measure efficiency · SEO+usable improve tips · ONE CLI quantum:user-waves' },
   // <register:placement> — quantum:register inserts placement rows above this anchor
 ] as const
 
