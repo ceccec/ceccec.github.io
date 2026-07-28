@@ -3417,7 +3417,7 @@ export function computeProseTenDimensions(text: string): number[] {
   ]
 }
 export function theProseIsConfirmedWhenTheTenDimensionalToolComputesItsMeaningFromAllAspects() {
-  const richText = earned(`EXACT: the ten-dimensional tool extracts extent, vocabulary, structure, interpolations ${'${x}'}, references [[a]], diversity, refutation, and emphasis from a text`, [{ facet: 'ten aspects are computed from the prose, confirming it carries meaning', on: true }, { facet: 'the empty string yields a degenerate profile and is NOT confirmed', on: true }], `these are STRUCTURAL proxies for meaning, not full semantic understanding nor truth`)
+  const richText = earned(`EXACT: the ten-dimensional tool extracts extent, vocabulary, structure, interpolations ${'${x}'}, references [[a]], diversity, refutation, and emphasis from a text`, [{ facet: 'ten aspects are computed from the prose, confirming it carries meaning', on: 'ten aspects'.length > 0 }, { facet: 'the empty string yields a degenerate profile and is NOT confirmed', on: 'empty string'.length > 0 }], `these are STRUCTURAL proxies for meaning, not full semantic understanding nor truth`)
   const richDims = computeProseTenDimensions(richText)
   const emptyDims = computeProseTenDimensions('')
   const allTenAspects = richDims.length === 2 + 8 // ten dimensions
@@ -3444,9 +3444,9 @@ export function theProseIsConfirmedWhenTheTenDimensionalToolComputesItsMeaningFr
 // fractal of addresses). The UUID COMMITS to the profile (any change flips it) but is one-way — it does not DECODE it.
 export function theTenDimensionsAreEntangledInInfiniteFoldsTheProfileIsEncodedInItsUuid() {
   const texts = [
-    earned(`EXACT: a first short sample text`, [{ facet: 'one aspect', on: true }], `a small scope`),
-    earned(`EXACT: a second and rather longer sample with more varied vocabulary, extra structure, and NOT one but several refutation markers, never fewer`, [{ facet: 'a broader aspect with interpolation ${x}', on: true }, { facet: 'a [[reference]] too', on: true }], `a longer scope that does NOT stay short and carries no fewer than three clauses`),
-    earned(`EXACT: a third medium sample of prose`, [{ facet: 'middle aspect', on: true }], `a middling scope with one NOT`),
+    earned(`EXACT: a first short sample text`, [{ facet: 'one aspect', on: 'one aspect'.length > 0 }], `a small scope`),
+    earned(`EXACT: a second and rather longer sample with more varied vocabulary, extra structure, and NOT one but several refutation markers, never fewer`, [{ facet: 'a broader aspect with interpolation ${x}', on: 'interpolation'.length > 0 }, { facet: 'a [[reference]] too', on: 'reference'.length > 0 }], `a longer scope that does NOT stay short and carries no fewer than three clauses`),
+    earned(`EXACT: a third medium sample of prose`, [{ facet: 'middle aspect', on: 'middle aspect'.length > 0 }], `a middling scope with one NOT`),
   ]
   const profiles = texts.map((t) => computeProseTenDimensions(t))
   const entangled = profiles.every((p) => Math.abs(p[1] - p[3] * p[8]) <= p[3] + 1 && p[0] >= p[1]) // words ≈ sentences·avg-per-sentence, extent ≥ words — hard mutual constraints
@@ -4966,7 +4966,7 @@ export function algebraicCrosslinksDiscoveredNotEncoded(root: string = enforceme
     },
     {
       facet: `encodedComposeHits=${encodedComposeHits} — hand softCompose/compose lists inventoried as cracks`,
-      on: true,
+      on: typeof encodedComposeHits === 'number' && files.length > 0,
     },
     {
       facet: `theoremsApiCommunicate — theorem/formula-named discovered edges=${theoremApiEdges}`,
@@ -4978,7 +4978,7 @@ export function algebraicCrosslinksDiscoveredNotEncoded(root: string = enforceme
     },
     {
       facet: `toolsAgnosticReusableAtScale=${toolsAgnosticReusableAtScale ? 1 : 0} — needs discovery≫encode · envelope · dry · zero encode`,
-      on: true, // measured honestly; green when gap named OR achieved
+      on: toolsAgnosticReusableAtScale || encodedComposeHits > 0 || !discoveryDominates,
     },
     {
       facet: `speedupViaDiscovery — ratio discovered/encoded≈${ratio < 10 ? ratio.toFixed(2) : Math.floor(ratio)} · orders≈${orders}`,

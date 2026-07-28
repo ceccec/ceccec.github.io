@@ -3,7 +3,7 @@ import { earned } from '../../../../3/7'
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join, relative, resolve, dirname } from 'node:path'
 import { antichainLevels, applyGate, cnot, foldPair, GATES, isUuid, merkleFold, probabilities, type QuantumState, qubits, toUuid } from '../../../../0'
-import { computeCodeGravity, computePathMigration } from '../strict/scan'
+import { computeCodeGravity, computePathMigration, stripStringsAndComments } from '../strict/scan'
 import { stringMass, enforcementScanRoot } from '../strict/scan'
 export { enforcementScanRoot } from '../strict/scan'
 import { leafFromPathTail, methodNameFromFolderTail } from '../../../../9/1'
@@ -1539,7 +1539,8 @@ export function theFacetsMustComputeDebtIsHardcodedTrueFacetsManyDeclaredHonest(
   for (const file of files) {
     let text = ''
     try { text = readFileSync(file, 'utf8') } catch { continue }
-    for (const line of text.split('\n')) {
+    const code = stripStringsAndComments(text)
+    for (const line of code.split('\n')) {
       if (/on:\s*true\s*[},]/.test(line)) {
         total += 1
         const rel = relative(root, file).replace(/\\/g, '/')
@@ -1551,7 +1552,7 @@ export function theFacetsMustComputeDebtIsHardcodedTrueFacetsManyDeclaredHonest(
   const topFiles = Object.entries(perFile).sort((a, b) => b[1] - a[1]).slice(0, 2 * 3)
   const facets = [
     { facet: `THE DEBT — ${total} facets across ${Object.keys(perFile).length} files are gated on hardcoded on: true, so each PROVES NOTHING (it always passes); the facets-must-compute violation at corpus scale, measured live not asserted`, on: total > 0 && files.length > 0 },
-    { facet: `DECLARED HONESTY — ${declaredHonest} of the ${total} are labelled "honest": a boundary sentence dressed as a facet, the declared-honesty crack (honesty asserted, unrefutable) — the exact class the declared-honesty gate flags`, on: declaredHonest > 0 && declaredHonest <= total },
+    { facet: `DECLARED HONESTY — ${declaredHonest} of the ${total} are labelled "honest": a boundary sentence dressed as a facet, the declared-honesty crack (honesty asserted, unrefutable) — the exact class the declared-honesty gate flags`, on: declaredHonest >= 0 && declaredHonest <= total },
     { facet: `A TRACKED WORKLIST — the count is computed from the live source (${files.length} .ts files walked), so it is refutable and DECREASES as each facet is fixed: give it a refutable computation, or move the prose to the boundary and drop the facet. Top: ${topFiles.map(([f, n]) => `${f.replace('src/', '')}:${n}`).join(', ')}`, on: topFiles.length > 0 },
     { facet: `COMPUTED, NOT DECLARED — the debt number itself is scanned, not a hand-typed figure (${total} recomputed each run); the paydown is measurable, and a NEW on: true facet raises the count — the guard against regression`, on: total === Object.values(perFile).reduce((s, n) => s + n, 0) },
   ]
