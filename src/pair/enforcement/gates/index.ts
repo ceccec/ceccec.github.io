@@ -1414,6 +1414,8 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'gateAnalytics', pair: 'gate/analytics', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'gates·lens·chat slim tools over core algebra — hardcoded on:true debt + hand-list allowlists measured; noConfusion when all dry computed; standardise via analytics metrics' },
   { fold: 'earthRealisedByComputingPolesAsPyramid', pair: 'earth/pyramid', currentBarrel: 'src/mountain/geometry', bestPlace: 'src/mountain/geometry', action: 'keep', reason: 'Earth poles-as-pyramid 7/7 · genus-2 · compose geo/torus · pyramid/seal · merkaba · bothEarths · nav·forecasts honest-open' },
   { fold: 'toolsFitTheMatrixOrRefuse', pair: 'tool/matrix', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'tools fit matrix or refuse · incomplete·wet prose·dual-CLI spam HARD · agentEntryPacket · foldableShare ratchet · ONE CLI quantum:tool-matrix' },
+  { fold: 'chatLiveSolvesOpenProblems', pair: 'chat/solve', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'free/MCP quantum chat live surface solves/advances/drains open problems via sealed algebra — not wet LLM-only · ONE CLI quantum:chat-solve · slim tool over gate/analytics core' },
+  { fold: 'sessionSentToChatToQuantumise', pair: 'session/chat', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'send trading·UI·fusion session packet to MCP/pair chat to quantumise — zero-token recompute · ONE CLI quantum:session-chat · duals chat/quantumise' },
   { fold: 'pairsSentToChatEntangleByAlgebra', pair: 'pair/chat', currentBarrel: 'src/pair/enforcement', bestPlace: 'src/pair/enforcement', action: 'moved', reason: 'send pairs to chat · entangle by foldPair algebra · pairing of pairs grows hologram · ONE CLI quantum:pair-chat' },
   { fold: 'matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWaves', pair: 'match/wave', currentBarrel: 'src/pair/enforcement', bestPlace: 'src/pair/enforcement', action: 'moved', reason: 'matching duals immediately realise entanglement · full roster batched brainstorm FREE_BITS×5 · ONE CLI quantum:match-wave' },
   { fold: 'comboCover', pair: 'combo/cover', currentBarrel: 'src/pair/enforcement', bestPlace: 'src/pair/enforcement', action: 'moved', reason: 'covering-array theorem verified exhaustively — 6 rows cover all pairwise states of 10 factors vs 2¹⁰ exhaustive; the ground of the dual-pair registry' },
@@ -2664,6 +2666,8 @@ export const GATE_ANALYTICS_SLIM_TOOL_FOLDS = [
   { id: 'gate-monitor', fold: 'gatesMonitorThemselvesThroughTheUi', cli: 'quantum:gate-monitor', pair: 'gate/monitor' },
   { id: 'lens-super', fold: 'lensesCompletelyWiredInEverySuperposition', cli: 'quantum:lens-super', pair: 'lens/super' },
   { id: 'mcp-chat', fold: 'mcpQuantumChat', cli: 'quantum:mcp-chat', pair: 'mcp/chat' },
+  { id: 'chat-solve', fold: 'chatLiveSolvesOpenProblems', cli: 'quantum:chat-solve', pair: 'chat/solve' },
+  { id: 'session-chat', fold: 'sessionSentToChatToQuantumise', cli: 'quantum:session-chat', pair: 'session/chat' },
 ] as const
 
 const GATE_ANALYTICS_CORE_ALGEBRA_MARKERS = ['memoByRoot', 'foldPair', 'sealFacets', 'merkleFold', 'toUuid'] as const

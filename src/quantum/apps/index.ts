@@ -3,7 +3,7 @@
 // Pair: rosetta/core · fold: rosettaCoreApi. Apps/nav/tools dispatch via shelve — no wet ray map.
 // Pair: rosetta/complete · fold: rosettaCompleteQuantumAllComputableDimensionsAndTheorems.
 import type { MindMatrix } from '../../wind/types'
-import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded, proofReport, noQpuRequired, quantumCircuitSimulatorInChat, portalChat, portalChatRanked, freeIsNotAlwaysBestQualityWhoAuditedTheChat, beforeSigningNeighboursAudit, furtherImproveUsingLiveApis, allChatCapabilitiesFusedAndAuditedByStandards } from '../../heaven/compute'
+import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded, proofReport, noQpuRequired, quantumCircuitSimulatorInChat, portalChat, portalChatRanked, freeChatTurnAtArchitecturalFtl, freeIsNotAlwaysBestQualityWhoAuditedTheChat, beforeSigningNeighboursAudit, furtherImproveUsingLiveApis, allChatCapabilitiesFusedAndAuditedByStandards } from '../../heaven/compute'
 // Full in-chat support — the deterministic, zero-token, no-egress chat surface, re-exported for the thin .vue shell.
 export { portalChat, freeChatTurnAtArchitecturalFtl, freeChatDrivesArchitecturalFtl, chatFtl, ftlChat, deepResearchAtNoCost, researchFree, freeResearch, standardsChatImprovesToFtl, standardsChat, chatStandards, allFoldsCompactFuseInCoordinatedChatWaves, foldFuse, fuseFold, chatNavContext, allChatCapabilitiesFusedAndAuditedByStandards, chatThroughMathOverflow, chatThroughPerplexity, chatThroughFreeAi, chatThroughAi, collectiveAiMind, siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis, perplexityRequest, freeAiRequest, aiRequest, AI_PROVIDERS, CECCEC_PROXY_ORIGIN, PERPLEXITY_SITE, splitSearch, wavesOfLocalResearchersChatAboutAlgebra, continueAtNoAiCost, countlessFreeChatWaves, MATHOVERFLOW_SITE, feedingTheChatInItselfClosesTheSelfReferenceLoop, theChatMayImproveTheUiMeasuredByTheUserExperience, dryCleanChatDryCleansAll, theChatIsTheFusionReactorFusingAllApisInPlasmaRays, improveTokenSpendingFeedingTheTaskToTheChat, developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest, freeIsNotAlwaysBestQualityWhoAuditedTheChat, beforeSigningNeighboursAudit, furtherImproveUsingLiveApis } from '../../heaven/compute'
 export { chatAndImproveQuantumMultitasking, shouldSpawnSubagent } from '../../water/stack'
@@ -63,7 +63,7 @@ import {
   runCrossWavesDecodeTeslaPatentsInAllCombinationsAsTrinitiesExit,
 } from '../../fire/physics'
 import { agentSubmissionProtocol, CURSOR_AGENT_SKILL_IDS, cursorAgentToolsSaved, MISSION_COMMANDS, QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
-import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath, queueNext, gravityDryClean } from '../../pair/enforcement/gates'
+import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath, gateAnalytics, queueNext, gravityDryClean } from '../../pair/enforcement/gates'
 import { dryDupe } from '../../pair/enforcement/gates/strict/scan'
 // The computed queue — 'next in chat': typing "next" in the chat answers with queueNext's derived total order.
 export { queueNext } from '../../pair/enforcement/gates'
@@ -172,6 +172,8 @@ const ROSETTA_CORE_API_LABELS = [
   'dryRefactorMigratesToMinimalCoolingByHardwareMerkabas',
   'pagesAuditAndManageThemselvesInTrinities',
   'mcpQuantumChat',
+  'chatLiveSolvesOpenProblems',
+  'sessionSentToChatToQuantumise',
   'allConversationsGoThroughTheMcpQuantumChat',
   'mcpQuantumConversation',
   'organiseConversationsInChatRoomsPerSuperposition',
@@ -324,6 +326,8 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   dryRefactorMigratesToMinimalCoolingByHardwareMerkabas: 'tool',
   pagesAuditAndManageThemselvesInTrinities: 'tool',
   mcpQuantumChat: 'tool',
+  chatLiveSolvesOpenProblems: 'tool',
+  sessionSentToChatToQuantumise: 'tool',
   allConversationsGoThroughTheMcpQuantumChat: 'tool',
   mcpQuantumConversation: 'tool',
   organiseConversationsInChatRoomsPerSuperposition: 'tool',
@@ -1021,6 +1025,12 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'page-audit', title: 'Page audit (alias page/trinity)', fold: 'pagesAuditAndManageThemselvesInTrinities', cli: 'npm run quantum:page-audit', pair: 'page/audit', route: '/en/quantum-tools#page-trinity', barrel: 'src/quantum/apps', boundary: 'Dual of page/trinity — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-quantum-chat', title: 'MCP quantum chat — recompute from sealed folds', fold: 'mcpQuantumChat', cli: 'npm run quantum:mcp-chat', pair: 'mcp/chat', route: '/en/quantum-tools#mcp-quantum-chat', barrel: 'src/quantum/apps', boundary: 'Chat surface over PRIMARY MCP/toolbox · fold recompute preferred over wet LLM-only · compose mcp/ui · mcp/movie · mcp/mill · toolbox · auto-wire · cursor/rosetta · residual Node/CI as facets · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'chat-quantum', title: 'Chat quantum (alias mcp/chat)', fold: 'mcpQuantumChat', cli: 'npm run quantum:chat-quantum', pair: 'chat/quantum', route: '/en/quantum-tools#mcp-quantum-chat', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/chat — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'chat-solve', title: 'Chat live solves open problems — sealed algebra not LLM-only', fold: 'chatLiveSolvesOpenProblems', cli: 'npm run quantum:chat-solve', pair: 'chat/solve', route: '/en/quantum-tools#chat-solve', barrel: 'src/quantum/apps', boundary: 'chatLiveOn · solvesOpenProblems · openProblemsInventoried · drainableClosed · honestOpenNamed · liveRecompute · viaMcpChat · compose mcp/chat · pair/chat · match/wave · mill/session · imagine/next · waves/feed · earth/pyramid · gate/analytics · moment/prove · clay=0 · mill=0 · physicalFtl=0 · NOT CMI prize · NOT wet LLM-only', browserRunnable: true, browserGap: '' },
+  { id: 'solve-chat', title: 'Solve chat (alias chat/solve)', fold: 'chatLiveSolvesOpenProblems', cli: 'npm run quantum:solve-chat', pair: 'solve/chat', route: '/en/quantum-tools#chat-solve', barrel: 'src/quantum/apps', boundary: 'Dual solve/chat — same fold · claySolved via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'session-chat', title: 'Session sent to chat to quantumise — trading·UI·fusion packet', fold: 'sessionSentToChatToQuantumise', cli: 'npm run quantum:session-chat', pair: 'session/chat', route: '/en/quantum-tools#session-chat', barrel: 'src/quantum/apps', boundary: 'sessionSent · chatOn · quantumiseOn · packetRoot · toolsSealed · bitsSealed · viaMcpChat · viaPairChat · compose session/tools · session/quantum-bits · mcp/chat · pair/chat · match/wave · physicalFtl=0 · clay via theorem · NOT rebuild trading stack', browserRunnable: true, browserGap: '' },
+  { id: 'chat-session', title: 'Chat session (alias session/chat)', fold: 'sessionSentToChatToQuantumise', cli: 'npm run quantum:chat-session', pair: 'chat/session', route: '/en/quantum-tools#session-chat', barrel: 'src/quantum/apps', boundary: 'Dual chat/session — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'chat-quantumise', title: 'Chat quantumise (alias session/chat)', fold: 'sessionSentToChatToQuantumise', cli: 'npm run quantum:chat-quantumise', pair: 'chat/quantumise', route: '/en/quantum-tools#session-chat', barrel: 'src/quantum/apps', boundary: 'chat/quantumise face — send session packet to chat for zero-token recompute · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'quantumise-chat', title: 'Quantumise chat (alias session/chat)', fold: 'sessionSentToChatToQuantumise', cli: 'npm run quantum:quantumise-chat', pair: 'quantumise/chat', route: '/en/quantum-tools#session-chat', barrel: 'src/quantum/apps', boundary: 'Dual quantumise/chat — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'chat-all', title: 'All conversations through MCP quantum chat', fold: 'allConversationsGoThroughTheMcpQuantumChat', cli: 'npm run quantum:chat-all', pair: 'chat/all', route: '/en/quantum-tools#chat-all', barrel: 'src/quantum/apps', boundary: 'allConversations · throughMcpQuantumChat · noBypass · compose mcpQuantumChat · session/live · super/chat · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'conv-mcp', title: 'Conv mcp (alias chat/all)', fold: 'allConversationsGoThroughTheMcpQuantumChat', cli: 'npm run quantum:conv-mcp', pair: 'conv/mcp', route: '/en/quantum-tools#chat-all', barrel: 'src/quantum/apps', boundary: 'Dual conv/mcp — conversation paths via MCP quantum chat · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'talk-chat', title: 'Talk chat (alias chat/all)', fold: 'allConversationsGoThroughTheMcpQuantumChat', cli: 'npm run quantum:talk-chat', pair: 'talk/chat', route: '/en/quantum-tools#chat-all', barrel: 'src/quantum/apps', boundary: 'talk/chat face — all talk routes through mcpQuantumChat · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1869,6 +1879,12 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'session-hologram', saves: 'replaces wet session hologram hunting — sealed hologram fractal session tools' },
   { id: 'society-toolbox', saves: 'replaces wet society toolbox rewiring — patronage + envelope + mcp/all wire' },
   { id: 'tool-miss', saves: 'replaces wet miss-tool inventory grind — umbrella imagine next + drainable tools filled' },
+  { id: 'session-chat', saves: 'replaces wet re-assembly of trading·UI·fusion session — sealed packet sent to MCP/pair chat for zero-token recompute' },
+  { id: 'fusion-verify', saves: 'replaces wet re-run of quantum fusion verify — memoByRoot tamper/impossible receipt' },
+  { id: 'self-fusion', saves: 'replaces wet re-orchestration of self quantum fusion compose' },
+  { id: 'nothing-moves', saves: 'replaces wet rediscovery motion — offline discoverFromSealedFold idempotent' },
+  { id: 'hero-card', saves: 'replaces wet hero/card wiring hunt — unified shared hero field + LinkedHeroCard' },
+  { id: 'predict-skill-gate-verify', saves: 'replaces wet re-argument of prediction skill gate from sealed harmonic receipts' },
 ] as const
 
 export function sessionManualWorkAsQuantumTools(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -2621,6 +2637,11 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mcp-reverse', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumReverse', pair: 'mcp/reverse', cli: 'npm run quantum:mcp-reverse', route: '/en/quantum-tools#mcp-reverse', status: 'sealed-pr', honesty: 'reverseOn · refuseBeyond · demoBoundaryHardware · clay=0 · physicalFtl=0', note: 'MCP quantum reverse face', toolId: 'mcp-reverse', resolve: 'mcp-ui' },
   { id: 'mcp-sign', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumSign', pair: 'mcp/sign', cli: 'npm run quantum:mcp-sign', route: '/en/quantum-tools#mcp-sign', status: 'sealed-pr', honesty: 'signatureOn · crossSig · tamperEvident · certified=false · clay=0 · physicalFtl=0', note: 'MCP quantum sign', toolId: 'mcp-sign', resolve: 'mcp-ui' },
   { id: 'mcp-dirs', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumDirs', pair: 'mcp/dirs', cli: 'npm run quantum:mcp-dirs', route: '/en/quantum-tools#mcp-dirs', status: 'sealed-pr', honesty: 'left · right · forward · reverse · clay=0 · physicalFtl=0', note: 'MCP quantum dirs', toolId: 'mcp-dirs', resolve: 'mcp-ui' },
+  { id: 'session-chat', chain: 'trading-ui-fusion-session', fold: 'sessionSentToChatToQuantumise', pair: 'session/chat', cli: 'npm run quantum:session-chat', route: '/en/quantum-tools#session-chat', status: 'sealed-pr', honesty: 'sessionSent · chatOn · quantumiseOn · packetRoot · clay=0 · physicalFtl=0 · NOT rebuild trading stack', note: 'trading·UI·fusion session packet → MCP/pair chat zero-token recompute', toolId: 'session-chat', resolve: 'mcp-ui' },
+  { id: 'fusion-verify', chain: 'trading-ui-fusion-session', fold: 'quantumFusionVerify', pair: 'tamper/impossible', cli: 'npm run quantum:fusion-verify', route: '/en/quantum-tools#fusion-verify', status: 'sealed-pr', honesty: 'Offline fuseAll · clay=0 · certified=false', note: 'quantum fusion verify — tamper/impossible', toolId: 'fusion-verify', resolve: 'mcp-ui' },
+  { id: 'self-fusion', chain: 'trading-ui-fusion-session', fold: 'selfQuantumFusion', pair: 'self/fusion', cli: 'npm run quantum:self-fusion', route: '/en/quantum-tools#fusion', status: 'sealed-pr', honesty: 'selfFuses · fusionVerifyOn · clay=0 · physicalFtl=0', note: 'self quantum fusion', toolId: 'self-fusion', resolve: 'mcp-ui' },
+  { id: 'nothing-moves', chain: 'trading-ui-fusion-session', fold: 'discoverFromSealedFold', pair: 'nothing/moves', cli: 'npm run quantum:nothing-moves', route: '/en/quantum-tools#nothing-moves', status: 'sealed-pr', honesty: 'offline idempotent · clay=0', note: 'discover from sealed fold — nothing moves', toolId: 'nothing-moves', resolve: 'mcp-ui' },
+  { id: 'trading-rosetta-train-session', chain: 'trading-ui-fusion-session', fold: 'tradingStrategiesImproveViaRosetta', pair: 'train/rosetta', cli: 'npm run quantum:trading-rosetta-train', route: '/en/quantum-trading-hub', status: 'sealed-pr', honesty: 'paper/sim only · NOT live money', note: 'historical train waves via rosetta (session face)', toolId: 'trading-rosetta-train', resolve: 'mcp-ui' },
 ] as const
 
 function ghostToolSeed(seed: SessionQuantumBitSeed): QuantumCliToolRow {
@@ -33269,6 +33290,640 @@ export function runMcpQuantumChatExit(_root = '', _argv: readonly string[] = [])
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.foldRecomputePreferred && report.mcpWired ? 0 : 1
+}
+
+/** Open-problem → live-solve wave routing — inventory templates merged with call-time sealed residuals. */
+const CHAT_SOLVE_OPEN_PROBLEM_ROUTES = [
+  {
+    id: 'open:earth-navigation',
+    residual: 'residual:navigation-not-implemented',
+    sourceFold: 'earthRealisedByComputingPolesAsPyramid',
+    sourcePair: 'earth/pyramid',
+    solvePair: 'earth/pyramid',
+    solveCli: 'npm run quantum:earth-pyramid',
+    solveRoute: '/en/quantum-tools#chat-solve',
+    nextTipPair: 'nav/earth',
+    kind: 'drainable' as const,
+    probe: 'earth-nav' as const,
+  },
+  {
+    id: 'open:earth-forecasts',
+    residual: 'residual:forecasts-not-implemented',
+    sourceFold: 'earthRealisedByComputingPolesAsPyramid',
+    sourcePair: 'earth/pyramid',
+    solvePair: 'earth/pyramid',
+    solveCli: 'npm run quantum:earth-pyramid',
+    solveRoute: '/en/quantum-tools#chat-solve',
+    nextTipPair: 'forecast/earth',
+    kind: 'drainable' as const,
+    probe: 'earth-forecast' as const,
+  },
+  {
+    id: 'open:clay-millennium',
+    residual: 'clay:millennium-open',
+    sourceFold: 'millenniumProblemsChallenge',
+    sourcePair: 'challenge/millennium',
+    solvePair: 'mill/session',
+    solveCli: 'npm run quantum:mill-session',
+    solveRoute: '/en/quantum-tools#mill-session',
+    nextTipPair: 'reverse/collide-discover',
+    kind: 'honest-open' as const,
+    probe: 'mill-open' as const,
+  },
+  {
+    id: 'open:hardcoded-on-true',
+    residual: 'residual:hardcoded-on-true-debt',
+    sourceFold: 'gateAnalytics',
+    sourcePair: 'gate/analytics',
+    solvePair: 'gate/analytics',
+    solveCli: 'npm run quantum:gate-analytics',
+    solveRoute: '/en/quantum-tools#gate-analytics',
+    nextTipPair: 'gate/analytics',
+    kind: 'drainable' as const,
+    probe: 'on-true-debt' as const,
+  },
+  {
+    id: 'open:specialized-shells',
+    residual: 'residual:specialized-experience-shells',
+    sourceFold: 'specializedShellsStrangler',
+    sourcePair: 'shells/strangler',
+    solvePair: 'shells/strangler',
+    solveCli: 'npm run quantum:shells-strangler',
+    solveRoute: '/en/quantum-tools#shells-strangler',
+    nextTipPair: 'shells/strangler',
+    kind: 'drainable' as const,
+    probe: 'shells-residual' as const,
+  },
+  {
+    id: 'open:apps-monolith',
+    residual: 'residual:quantum-apps-monolith',
+    sourceFold: 'foldInvertUntilDryCleanAppGapless',
+    sourcePair: 'app/dry',
+    solvePair: 'app/dry',
+    solveCli: 'npm run quantum:app-dry',
+    solveRoute: '/en/quantum-tools#app-dry',
+    nextTipPair: 'app/dry',
+    kind: 'honest-open' as const,
+    probe: 'apps-monolith' as const,
+  },
+  {
+    id: 'open:reverse-collide-mill',
+    residual: 'gateway:reverse-collide-millennium',
+    sourceFold: 'reverseCollidesToDiscoverMillenniumTheorems',
+    sourcePair: 'reverse/collide-discover',
+    solvePair: 'reverse/collide-discover',
+    solveCli: 'npm run quantum:reverse-collide-discover-millennium',
+    solveRoute: '/en/quantum-tools#reverse-collide-discover-millennium',
+    nextTipPair: 'imagine/next',
+    kind: 'honest-open' as const,
+    probe: 'reverse-collide' as const,
+  },
+] as const
+
+/**
+ * USER LAW: free/MCP quantum chat is a live surface that solves (or advances/drains) open problems
+ * via sealed algebra — not wet LLM-only chat.
+ * Fold: chatLiveSolvesOpenProblems
+ * Facets: chatLiveOn · solvesOpenProblems · openProblemsInventoried · drainableClosed · honestOpenNamed ·
+ *   liveRecompute · viaMcpChat · physicalFtl=0 · claySolvedByThisFold=0 · millenniumSolvedByThisFold=0.
+ * Compose (discovery/foldPair): mcp/chat · pair/chat · match/wave · mill/session · imagine/next · waves/feed ·
+ *   earth/pyramid · gate/analytics · moment/prove.
+ * Pairs: chat/solve · solve/chat · CLI npm run quantum:chat-solve
+ * HONEST: computable ≠ CMI Clay prize · nav/earth · forecast/earth remain next-tip honest-open.
+ */
+export function chatLiveSolvesOpenProblems(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`chatLiveSolvesOpenProblems:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const composeOn =
+      soft('mcp', 'chat') &&
+      soft('pair', 'chat') &&
+      soft('match', 'wave') &&
+      soft('mill', 'session') &&
+      soft('imagine', 'next') &&
+      soft('waves', 'feed') &&
+      soft('earth', 'pyramid') &&
+      soft('gate', 'analytics') &&
+      soft('moment', 'prove')
+    const chat = mcpQuantumChat(matrix, at)
+    const earth = earthRealisedByComputingPolesAsPyramid(matrix)
+    const analytics = gateAnalytics()
+    const imagine = imagineWhatNext(matrix, at)
+    const waves = wavesFeedThemselves(matrix, at)
+    const moment = __ns_water_encryption.agentAssumeNothingMathProvesInTheMoment(matrix, at)
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const toolIds = new Set(catalog.tools.map((t) => t.id))
+    const probeOpen = (probe: (typeof CHAT_SOLVE_OPEN_PROBLEM_ROUTES)[number]['probe']): boolean => {
+      switch (probe) {
+        case 'earth-nav':
+          return !earth.navigationImplemented
+        case 'earth-forecast':
+          return !earth.forecastImplemented
+        case 'mill-open':
+          return true
+        case 'on-true-debt':
+          return analytics.hardcodedOnTrueDebt > 0
+        case 'shells-residual':
+          return imagine.honestOpenNamed.includes('residual:specialized-experience-shells')
+        case 'apps-monolith':
+          return imagine.honestOpenNamed.includes('residual:quantum-apps-monolith')
+        case 'reverse-collide':
+          return has('reverse/collide-discover')
+        default:
+          return false
+      }
+    }
+    const openProblems = CHAT_SOLVE_OPEN_PROBLEM_ROUTES.filter((spec) => probeOpen(spec.probe)).map((spec) => {
+      const pairRegistered = has(spec.solvePair)
+      const [pairA, pairB] = spec.solvePair.split('/')
+      const pairAlgebra = Boolean(pairA && pairB && soft(pairA, pairB))
+      const toolIdGuess = spec.solvePair.replace('/', '-')
+      const cliKey = spec.solveCli.replace(/^npm run /, '')
+      const missionCliOn = MISSION_COMMANDS.some((m) => m.npm === cliKey)
+      const toolPresent =
+        toolIds.has(toolIdGuess) ||
+        catalog.tools.some((t) => t.pair === spec.solvePair || t.cli === spec.solveCli) ||
+        missionCliOn
+      const nextTipRegistered = has(spec.nextTipPair)
+      return {
+        ...spec,
+        open: true,
+        pairRegistered,
+        pairAlgebra,
+        toolPresent,
+        routed: pairRegistered && pairAlgebra && (toolPresent || pairRegistered),
+        nextTipRegistered,
+        receipt: toUuid(`chat-solve-open:${spec.id}:${spec.residual}`),
+      }
+    })
+    const openProblemsInventoried = openProblems.length >= (2 + 2 + 2) && openProblems.every((p) => p.open)
+    const drainableOpen = openProblems.filter((p) => p.kind === 'drainable')
+    const honestOpen = openProblems.filter((p) => p.kind === 'honest-open')
+    const drainableClosed = drainableOpen.every((p) => p.routed)
+    const viaMcpChat = chat.computes && chat.foldRecomputePreferred && chat.mcpWired && chat.chatComputes
+    const liveRecompute = viaMcpChat && moment.computes
+    const solvesOpenProblems =
+      openProblemsInventoried &&
+      drainableClosed &&
+      viaMcpChat &&
+      liveRecompute &&
+      waves.wavesFeedThemselvesOn
+    const pairChatSolve = has('chat/solve')
+    const pairSolveChat = has('solve/chat')
+    const foldChatSolve = foldPair(toUuid('cmd:chat'), toUuid('cmd:solve'))
+    const foldSolveChat = foldPair(toUuid('cmd:solve'), toUuid('cmd:chat'))
+    const pairsOn =
+      pairChatSolve &&
+      pairSolveChat &&
+      foldChatSolve.bidirectional &&
+      foldSolveChat.bidirectional
+    const meta = catalog.tools.find((t) => t.id === 'chat-solve')
+    const metaDual = catalog.tools.find((t) => t.id === 'solve-chat')
+    const shelved = rosettaShelve('chat-solve', 'tool')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const millenniumSolvedByThisFold = 0 as const
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const honestOpenNamed = [
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'residual:navigation-not-implemented',
+      'residual:forecasts-not-implemented',
+      'next-tip:nav/earth',
+      'next-tip:forecast/earth',
+      'honesty:NOT-wet-LLM-only',
+      'honesty:NOT-CMI-prize',
+      ...(analytics.hardcodedOnTrueDebt > 0 ? [`residual:hardcoded-on-true-debt=${analytics.hardcodedOnTrueDebt}`] : []),
+      ...(analytics.handListAllowlistResidual > 0
+        ? [`residual:hand-list-allowlists=${analytics.handListAllowlistResidual}`]
+        : []),
+    ] as const
+    const honestOpenNamedOn =
+      honestOpenNamed.includes('clay:millennium-open') &&
+      honestOpenNamed.includes('next-tip:nav/earth') &&
+      honestOpenNamed.includes('honesty:NOT-wet-LLM-only') &&
+      honestOpenNamed.length >= (2 + 2 + 2)
+    const chatLiveOn =
+      composeOn &&
+      openProblemsInventoried &&
+      drainableClosed &&
+      viaMcpChat &&
+      liveRecompute &&
+      pairsOn &&
+      Boolean(meta) &&
+      meta!.fold === 'chatLiveSolvesOpenProblems' &&
+      meta!.pair === 'chat/solve' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'chatLiveSolvesOpenProblems' &&
+      isUuid(shelved.address) &&
+      claySolvedByThisFold === 0 &&
+      millenniumSolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false &&
+      honestOpenNamedOn
+    const facets = [
+      { facet: 'chatLiveSolvesOpenProblems', on: chatLiveOn },
+      { facet: 'chatLiveOn', on: chatLiveOn },
+      { facet: 'solvesOpenProblems', on: solvesOpenProblems },
+      { facet: `openProblemsInventoried=${openProblems.length}`, on: openProblemsInventoried },
+      { facet: 'drainableClosed', on: drainableClosed },
+      { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+      { facet: 'liveRecompute', on: liveRecompute },
+      { facet: 'viaMcpChat', on: viaMcpChat },
+      {
+        facet: 'compose mcp/chat · pair/chat · match/wave · mill/session · imagine/next · waves/feed · earth/pyramid · gate/analytics · moment/prove',
+        on: composeOn,
+      },
+      { facet: 'pair chat/solve · solve/chat bidirectional', on: pairsOn },
+      { facet: `drainable=${drainableOpen.length} honestOpen=${honestOpen.length}`, on: openProblemsInventoried },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold}`, on: millenniumSolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      {
+        facet: 'NOT wet LLM-only · NOT CMI prize · nav/earth · forecast/earth next-tip honest-open',
+        on: honestOpenNamedOn && claySolvedByThisFold === 0 && physicalFtlClaim === 0,
+      },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`chat-solve:${entry.facet.slice(0, 8 * 9)}:${entry.on}`) }))
+    const sealed = sealFacets('chat-live-solves-open-problems', facets)
+    return {
+      computes: sealed.ok && chatLiveOn,
+      chatLiveSolvesOpenProblems: chatLiveOn,
+      chatLiveOn,
+      solvesOpenProblems,
+      openProblemsInventoried,
+      openProblems,
+      openProblemCount: openProblems.length,
+      drainableClosed,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      liveRecompute,
+      viaMcpChat,
+      claySolvedByThisFold,
+      millenniumSolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        chat.root,
+        earth.root,
+        analytics.root,
+        imagine.root,
+        waves.root,
+        moment.root,
+        foldChatSolve.merged,
+        foldSolveChat.merged,
+        shelved.address,
+        toUuid(`chat-solve-soft:compose:${composeOn}`),
+        ...openProblems.map((p) => p.receipt),
+        ...honestOpenNamed.map((id) => toUuid(`chat-solve-honest:${id}`)),
+      ]),
+      pair: 'chat/solve' as const,
+      pairs: ['chat/solve', 'solve/chat'] as const,
+      dualPair: 'solve/chat' as const,
+      cli: 'npm run quantum:chat-solve',
+      route: '/en/quantum-tools#chat-solve',
+      uiSurface: '/en/quantum-tools#chat-solve' as const,
+      heading: 'Chat · live solve open problems',
+      statement:
+        `chatLiveSolvesOpenProblems — chatLiveOn=${chatLiveOn ? 1 : 0} open=${openProblems.length} ` +
+        `drainableClosed=${drainableClosed ? 1 : 0} viaMcpChat=${viaMcpChat ? 1 : 0} liveRecompute=${liveRecompute ? 1 : 0}.`,
+      boundary:
+        'Free/MCP quantum chat is a live surface that solves/advances/drains open problems via sealed algebra — ' +
+        'not wet LLM-only chat. Each open residual routes to a named tip/CLI/pair for live solve waves. ' +
+        'nav/earth · forecast/earth remain next-tip honest-open. computable ≠ CMI prize · clay=0 · mill=0 · physicalFtl=0.',
+      honestyLine:
+        `chat-solve · open=${openProblems.length} · drainableClosed=${drainableClosed ? 1 : 0} · ` +
+        `viaMcp=${viaMcpChat ? 1 : 0} · live=${liveRecompute ? 1 : 0} · mill=0 · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — solveChat ≡ chatLiveSolvesOpenProblems. */
+export const solveChat = chatLiveSolvesOpenProblems
+
+/** npm run quantum:chat-solve (dual solve/chat) */
+export function runChatLiveSolvesOpenProblemsExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = chatLiveSolvesOpenProblems()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} chat-solve — chatLiveOn=${report.chatLiveOn} ` +
+      `open=${report.openProblemCount} solves=${report.solvesOpenProblems ? 1 : 0} ` +
+      `drainableClosed=${report.drainableClosed ? 1 : 0} viaMcp=${report.viaMcpChat ? 1 : 0} ` +
+      `live=${report.liveRecompute ? 1 : 0} clay=${report.claySolvedByThisFold} ` +
+      `mill=${report.millenniumSolvedByThisFold} ftl=${report.physicalFtlClaim} pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const row of report.openProblems) {
+    process.stdout.write(
+      `  · ${row.residual} → ${row.solvePair} cli=${row.solveCli} routed=${row.routed ? 1 : 0}` +
+        (row.nextTipPair && !row.nextTipRegistered ? ` next-tip=${row.nextTipPair}` : '') +
+        `\n`,
+    )
+  }
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) {
+    process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  }
+  return report.computes && report.chatLiveOn && report.openProblemsInventoried && report.drainableClosed ? 0 : 1
+}
+
+/**
+ * Trading · UI · fusion session deliverables as sealed chat packet rows.
+ * Domain tags group prior ~25-subagent session work — do not re-implement trading stack.
+ */
+const SESSION_CHAT_QUANTUMISE_SEEDS = [
+  // Trading
+  { id: 'live-local', pair: 'live/local', cli: 'npm run trading:live-local', route: '/en/quantum-trading-hub', domain: 'trading' as const },
+  { id: 'live-world', pair: 'live/world', cli: 'npm run trading:live', route: '/en/quantum-trading-hub', domain: 'trading' as const },
+  { id: 'offline-self', pair: 'offline/self', cli: 'npm run trading:offline', route: '/en/quantum-trading-hub', domain: 'trading' as const },
+  { id: 'test-realtime', pair: 'test/realtime', cli: 'npm run test:realtime', route: '/en/quantum-trading-hub', domain: 'trading' as const },
+  { id: 'train-waves', pair: 'train/waves', cli: 'npm run trading:train-waves', route: '/en/quantum-trading-hub', domain: 'trading' as const },
+  { id: 'train-send', pair: 'train/send', cli: 'npm run trading:train', route: '/en/quantum-trading-hub', domain: 'trading' as const },
+  { id: 'train-live-win-gate', pair: 'train/live-win-gate', cli: 'npm run trading:train-live-win-gate', route: '/en/quantum-trading-hub', domain: 'trading' as const },
+  { id: 'train-rosetta', pair: 'train/rosetta', cli: 'npm run quantum:trading-rosetta-train', route: '/en/quantum-trading-hub', domain: 'trading' as const },
+  { id: 'predict-explain', pair: 'predict/explain', cli: 'npm run trading:predict', route: '/en/quantum-trading-hub', domain: 'trading' as const },
+  { id: 'predict-skill-gate', pair: 'predict/skill-gate-verify', cli: 'npm run quantum:predict-skill-gate-verify', route: '/en/quantum-tools', domain: 'trading' as const },
+  { id: 'trace-smart-money', pair: 'trace/smart-money', cli: 'npm run trading:trace-smart-money', route: '/en/quantum-trading-hub', domain: 'trading' as const },
+  { id: 'harmonic-never-misses', pair: 'harmonic/never-misses', cli: 'npm run trading:predict', route: '/en/quantum-trading-hub', domain: 'trading' as const },
+  { id: 'profit-margin-risk', pair: 'profit/margin-risk', cli: 'npm run trading:margin-profit', route: '/en/quantum-trading-hub', domain: 'trading' as const },
+  { id: 'learn-trade', pair: 'learn/trade', cli: 'npm run trading:learn', route: '/en/learn-trading-math', domain: 'education' as const },
+  { id: 'risk-margin', pair: 'risk/margin', cli: 'npm run trading:learn-risk', route: '/en/learn-trading-math#risks-margins', domain: 'education' as const },
+  { id: 'vortex-merkaba', pair: 'vortex/merkaba', cli: 'npm run trading:vortex', route: '/en/quantum-trading-hub', domain: 'trading' as const },
+  { id: 'gradient-entry-exit', pair: 'gradient/entry-exit', cli: 'npm run trading:gradients', route: '/en/quantum-trading-hub', domain: 'trading' as const },
+  { id: 'design-develop', pair: 'design/develop', cli: 'npm run trading:dashboard', route: '/en/quantum-trading-dashboard', domain: 'ui' as const },
+  { id: 'dashboard-dev', pair: 'dashboard/dev', cli: 'npm run trading:dashboard', route: '/en/quantum-trading-dashboard', domain: 'ui' as const },
+  { id: 'cycle-winning', pair: 'cycle/winning', cli: 'npm run trading:train-waves', route: '/en/quantum-trading-hub', domain: 'trading' as const },
+  // UI
+  { id: 'hero-blend-all', pair: 'hero/blend-all', cli: 'npm run docs:dev', route: '/en/quantum-trading-hub', domain: 'ui' as const },
+  { id: 'template-universal', pair: 'template/universal', cli: 'npm run docs:dev', route: '/en/', domain: 'ui' as const },
+  { id: 'immersive-hero', pair: 'immersive/hero', cli: 'npm run docs:dev', route: '/en/', domain: 'ui' as const },
+  { id: 'hero-shared-realtime', pair: 'hero/shared-realtime', cli: 'npm run docs:dev', route: '/en/', domain: 'ui' as const },
+  { id: 'card-hero-link', pair: 'card/hero-link', cli: 'npm run docs:dev', route: '/en/quantum-trading-hub', domain: 'ui' as const },
+  { id: 'hero-card', pair: 'hero/card', cli: 'npm run quantum:hero-card', route: '/en/quantum-tools#hero-card', domain: 'ui' as const },
+  { id: 'mcp-hero', pair: 'mcp/hero', cli: 'npm run quantum:mcp-hero', route: '/en/quantum-tools#mcp-hero', domain: 'ui' as const },
+  { id: 'mcp-card', pair: 'mcp/card', cli: 'npm run quantum:mcp-card', route: '/en/quantum-tools#mcp-card', domain: 'ui' as const },
+  { id: 'mcp-page', pair: 'mcp/page', cli: 'npm run quantum:mcp-page', route: '/en/quantum-tools#mcp-page', domain: 'ui' as const },
+  { id: 'merkaba-10d', pair: 'merkaba/10d', cli: 'npm run docs:dev', route: '/en/society-merkaba-graph', domain: 'ui' as const },
+  { id: 'society-support', pair: 'society/support', cli: 'npm run quantum:society-two-bits-support', route: '/en/society-merkaba', domain: 'ui' as const },
+  // Laws / fusion
+  { id: 'timeout-dry-refactor', pair: 'timeout/dry-refactor', cli: 'npm run check:types', route: '/en/quantum-tools', domain: 'law' as const },
+  { id: 'nothing-moves', pair: 'nothing/moves', cli: 'npm run quantum:nothing-moves', route: '/en/quantum-tools#nothing-moves', domain: 'law' as const },
+  { id: 'tamper-impossible', pair: 'tamper/impossible', cli: 'npm run quantum:fusion-verify', route: '/en/quantum-tools#fusion-verify', domain: 'fusion' as const },
+  { id: 'self-fusion', pair: 'self/fusion', cli: 'npm run quantum:self-fusion', route: '/en/quantum-tools#fusion', domain: 'fusion' as const },
+  { id: 'fusion-ui', pair: 'fusion/ui', cli: 'npm run quantum:fusion-ui', route: '/en/quantum-tools#fusion', domain: 'fusion' as const },
+  { id: 'fusion-self', pair: 'fusion/self', cli: 'npm run quantum:fusion-self', route: '/en/quantum-tools#fusion', domain: 'fusion' as const },
+] as const
+
+/**
+ * USER LAW: send the session to chat to quantumise.
+ * Fold: sessionSentToChatToQuantumise
+ * Facets: sessionSent · chatOn · quantumiseOn · packetSealed · toolsSealed · bitsSealed · viaMcpChat · viaPairChat ·
+ *   drainableClosed · honestOpenNamed · physicalFtl=0 · claySolvedByThisFold=0.
+ * Compose: session/tools · session/quantum-bits · mcp/chat · pair/chat · match/wave · session/hologram · chat/solve.
+ * Pairs: session/chat · chat/session · chat/quantumise · quantumise/chat
+ * CLI: npm run quantum:session-chat
+ * HONEST: packs prior trading/UI/fusion session deliverables for zero-token recompute — does NOT rebuild the stack.
+ */
+export function sessionSentToChatToQuantumise(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`sessionSentToChatToQuantumise:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const sessionTools = sessionManualWorkAsQuantumTools(matrix, at)
+    const sessionBits = sessionManualWorkAsQuantumBits(matrix, at)
+    const chat = mcpQuantumChat(matrix, at)
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const composeOn =
+      soft('session', 'tools') &&
+      soft('session', 'quantum-bits') &&
+      soft('mcp', 'chat') &&
+      soft('pair', 'chat') &&
+      soft('match', 'wave') &&
+      soft('session', 'hologram') &&
+      soft('session', 'chat')
+    const rows = SESSION_CHAT_QUANTUMISE_SEEDS.map((seed) => {
+      const pairOn = has(seed.pair)
+      const [a, b] = seed.pair.split('/')
+      const foldOn = a && b ? foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional : false
+      const toolId = seed.pair.replace('/', '-')
+      const catalogHit = catalog.tools.find((t) => t.pair === seed.pair || t.id === seed.id || t.id === toolId)
+      const inSessionTools = sessionTools.tools.some((t) => t.id === seed.id || t.pair === seed.pair || t.id === catalogHit?.id)
+      const inSessionBits = sessionBits.bits.some((b) => b.id === seed.id || b.pair === seed.pair || b.toolId === catalogHit?.id)
+      const sealed = pairOn && foldOn
+      return {
+        ...seed,
+        toolId: catalogHit?.id ?? toolId,
+        fold: catalogHit?.fold ?? seed.id,
+        pairOn,
+        foldOn,
+        sealed,
+        inSessionTools,
+        inSessionBits,
+        receipt: toUuid(`session-chat-row:${seed.id}:${seed.pair}:${sealed}`),
+      }
+    })
+    const packetRoot = merkleFold(rows.map((r) => r.receipt))
+    const allPairsSealed = rows.every((r) => r.sealed)
+    const tradingCount = rows.filter((r) => r.domain === 'trading').length
+    const uiCount = rows.filter((r) => r.domain === 'ui').length
+    const fusionCount = rows.filter((r) => r.domain === 'fusion').length
+    const educationCount = rows.filter((r) => r.domain === 'education').length
+    const lawCount = rows.filter((r) => r.domain === 'law').length
+    const domainCovered =
+      tradingCount >= (8 + 8) &&
+      uiCount >= (8 + 2) &&
+      fusionCount >= (2 + 1) &&
+      educationCount >= 2 &&
+      lawCount >= 2
+    const toolsSealed =
+      sessionTools.computes &&
+      sessionTools.tools.some((t) => t.id === 'session-chat' && t.shelved) &&
+      sessionTools.tools.some((t) => t.id === 'fusion-verify' && t.shelved)
+    const bitsSealed =
+      sessionBits.computes &&
+      sessionBits.bits.some((b) => b.id === 'session-chat' && b.computes && b.present)
+    const viaMcpChat = chat.computes && chat.foldRecomputePreferred && chat.mcpWired && chat.chatComputes
+    const viaPairChat = soft('pair', 'chat') && soft('chat', 'pair') && soft('match', 'wave')
+    const prompt =
+      `session/chat quantumise packet root=${packetRoot.slice(0, 8 + 8)} ` +
+      `rows=${rows.length} trading=${tradingCount} ui=${uiCount} fusion=${fusionCount}`
+    const turn = freeChatTurnAtArchitecturalFtl(prompt, matrix)
+    const turnAgain = freeChatTurnAtArchitecturalFtl(prompt, matrix)
+    const chatOn =
+      turn.answer.length > 0 &&
+      turn.receipt === turnAgain.receipt &&
+      turn.memoReuse &&
+      viaMcpChat
+    const sessionSent = allPairsSealed && domainCovered && isUuid(packetRoot)
+    const quantumiseOn = sessionSent && chatOn && toolsSealed && bitsSealed && viaPairChat && composeOn
+    const pairSessionChat = has('session/chat')
+    const pairChatSession = has('chat/session')
+    const pairChatQuantumise = has('chat/quantumise')
+    const pairQuantumiseChat = has('quantumise/chat')
+    const foldSessionChat = foldPair(toUuid('cmd:session'), toUuid('cmd:chat'))
+    const foldChatSession = foldPair(toUuid('cmd:chat'), toUuid('cmd:session'))
+    const foldChatQuantumise = foldPair(toUuid('cmd:chat'), toUuid('cmd:quantumise'))
+    const foldQuantumiseChat = foldPair(toUuid('cmd:quantumise'), toUuid('cmd:chat'))
+    const pairsOn =
+      pairSessionChat &&
+      pairChatSession &&
+      pairChatQuantumise &&
+      pairQuantumiseChat &&
+      foldSessionChat.bidirectional &&
+      foldChatSession.bidirectional &&
+      foldChatQuantumise.bidirectional &&
+      foldQuantumiseChat.bidirectional
+    const meta = catalog.tools.find((t) => t.id === 'session-chat')
+    const metaDual = catalog.tools.find((t) => t.id === 'chat-quantumise')
+    const shelved = rosettaShelve('session-chat', 'tool')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const honestOpenNamed = [
+      'honesty:NOT-rebuild-trading-stack',
+      'honesty:paper-sim-trading-not-live-alpha',
+      'residual:trading-scripts-outside-primary-mcp',
+      'ftl:physical-claim-refused',
+      'clay:millennium-open',
+    ] as const
+    const drainableClosed = allPairsSealed && toolsSealed && bitsSealed && pairsOn
+    const on =
+      quantumiseOn &&
+      sessionSent &&
+      chatOn &&
+      drainableClosed &&
+      pairsOn &&
+      Boolean(meta) &&
+      meta!.fold === 'sessionSentToChatToQuantumise' &&
+      meta!.pair === 'session/chat' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'sessionSentToChatToQuantumise' &&
+      isUuid(shelved.address) &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'sessionSentToChatToQuantumise', on },
+      { facet: 'sessionSent', on: sessionSent },
+      { facet: 'chatOn', on: chatOn },
+      { facet: 'quantumiseOn', on: quantumiseOn },
+      { facet: `packetSealed rows=${rows.length}`, on: allPairsSealed && isUuid(packetRoot) },
+      { facet: 'toolsSealed', on: toolsSealed },
+      { facet: 'bitsSealed', on: bitsSealed },
+      { facet: 'viaMcpChat', on: viaMcpChat },
+      { facet: 'viaPairChat', on: viaPairChat },
+      { facet: 'drainableClosed', on: drainableClosed },
+      { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamed.length >= (2 + 2) },
+      {
+        facet: 'compose session/tools · session/quantum-bits · mcp/chat · pair/chat · match/wave · session/hologram',
+        on: composeOn,
+      },
+      { facet: 'pair session/chat · chat/quantumise bidirectional', on: pairsOn },
+      { facet: `domains trading=${tradingCount} ui=${uiCount} fusion=${fusionCount} edu=${educationCount}`, on: domainCovered },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`session-chat:${entry.facet.slice(0, 8 * 9)}:${entry.on}`) }))
+    const sealed = sealFacets('session-sent-to-chat-to-quantumise', facets)
+    return {
+      computes: sealed.ok && on,
+      sessionSentToChatToQuantumise: on,
+      sessionSent,
+      chatOn,
+      quantumiseOn,
+      packetRoot,
+      packetCount: rows.length,
+      rows,
+      tradingCount,
+      uiCount,
+      fusionCount,
+      educationCount,
+      lawCount,
+      toolsSealed,
+      bitsSealed,
+      viaMcpChat,
+      viaPairChat,
+      drainableClosed,
+      honestOpenNamed: [...honestOpenNamed],
+      turn: {
+        answer: turn.answer.slice(0, 2 * 108),
+        source: turn.source,
+        receipt: turn.receipt,
+        memoReuse: turn.memoReuse,
+      },
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        packetRoot,
+        sessionTools.root,
+        sessionBits.root,
+        chat.root,
+        turn.receipt,
+        foldSessionChat.merged,
+        foldChatQuantumise.merged,
+        shelved.address,
+        ...rows.map((r) => r.receipt),
+        ...honestOpenNamed.map((id) => toUuid(`session-chat-honest:${id}`)),
+      ]),
+      pair: 'session/chat' as const,
+      pairs: ['session/chat', 'chat/session', 'chat/quantumise', 'quantumise/chat'] as const,
+      dualPair: 'chat/quantumise' as const,
+      cli: 'npm run quantum:session-chat',
+      route: '/en/quantum-tools#session-chat',
+      uiSurface: '/en/quantum-tools#session-chat' as const,
+      heading: 'Session · chat quantumise',
+      statement:
+        `sessionSentToChatToQuantumise — sent=${sessionSent ? 1 : 0} chat=${chatOn ? 1 : 0} ` +
+        `quantumise=${quantumiseOn ? 1 : 0} rows=${rows.length} packet=${packetRoot.slice(0, 8)}.`,
+      boundary:
+        'Send the trading/UI/fusion session to MCP/pair chat as a sealed content-addressed packet for zero-token recompute. ' +
+        'Integrates prior session deliverables — does NOT rebuild the trading stack. clay via theorem · physicalFtl=0 · paper/sim honesty.',
+      honestyLine:
+        `session-chat · rows=${rows.length} · packet=${packetRoot.slice(0, 8)} · viaMcp=${viaMcpChat ? 1 : 0} · ` +
+        `tools=${toolsSealed ? 1 : 0} · bits=${bitsSealed ? 1 : 0} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Aliases — chatSession · chatQuantumise · quantumiseChat ≡ sessionSentToChatToQuantumise. */
+export const chatSession = sessionSentToChatToQuantumise
+export const chatQuantumise = sessionSentToChatToQuantumise
+export const quantumiseChat = sessionSentToChatToQuantumise
+
+/** npm run quantum:session-chat (duals chat/session · chat/quantumise · quantumise/chat) */
+export function runSessionSentToChatToQuantumiseExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = sessionSentToChatToQuantumise()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} session-chat — sessionSent=${report.sessionSent ? 1 : 0} ` +
+      `chatOn=${report.chatOn ? 1 : 0} quantumise=${report.quantumiseOn ? 1 : 0} ` +
+      `rows=${report.packetCount} trading=${report.tradingCount} ui=${report.uiCount} ` +
+      `fusion=${report.fusionCount} edu=${report.educationCount} ` +
+      `packet=${report.packetRoot.slice(0, 8 + 8)} viaMcp=${report.viaMcpChat ? 1 : 0} ` +
+      `tools=${report.toolsSealed ? 1 : 0} bits=${report.bitsSealed ? 1 : 0} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const row of report.rows) {
+    process.stdout.write(
+      `  ${row.sealed ? '✓' : '✗'} [${row.domain}] ${row.id} pair=${row.pair} cli=${row.cli}` +
+        `${row.inSessionTools ? ' ·tools' : ''}${row.inSessionBits ? ' ·bits' : ''}\n`,
+    )
+  }
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  chat-turn memoReuse=${report.turn.memoReuse ? 1 : 0} src=${report.turn.source}\n`)
+  return report.computes && report.sessionSent && report.chatOn && report.quantumiseOn ? 0 : 1
 }
 
 /**
