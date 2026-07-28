@@ -1492,7 +1492,7 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (toolId === 'earth-poles-pyramid') {
+    } else if (toolId === 'earth-pyramid' || toolId === 'earth-poles-pyramid') {
       const r = earthRealisedByComputingPolesAsPyramid()
       ok = r.computes && r.claySolvedByThisFold === 0
       summary = `fourWay=${r.fourWayCounterRotating} claySolved=${r.claySolvedByThisFold} ftl=${r.physicalFtlClaim}`

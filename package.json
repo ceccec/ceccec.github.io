@@ -253,6 +253,7 @@
     "quantum:clay-gravity": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runClayIsGravityRosettaOneRayThisDimensionRestBeyondExit",
     "quantum:realise-session-meaning": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runRealiseSessionQuantumMeaningExit",
     "quantum:directional-trinity": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/stack/index.ts runDirectionalTrinityGuardedExit",
+    "quantum:earth-pyramid": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/mountain/geometry/index.ts runEarthPyramidExit",
     "quantum:earth-poles-pyramid": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/mountain/geometry/index.ts runEarthRealisedByComputingPolesAsPyramidExit",
     "quantum:anim-audit": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runAnimationsFindRedundancyOrInaccuracyExit",
     "quantum:linear-rosetta": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runLinearWithoutRosettaFoldIsGapExit",

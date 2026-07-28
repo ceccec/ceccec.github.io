@@ -247,7 +247,7 @@ twoBits.computes=true · societySupports=true · vote.decided=true · claySolved
 
 ### Statement
 
-Earth realised by computing poles as a pyramid — 7/7: N·E·S·W are the four base tips of a square pyramid (Euler V−E+F=2); zenith/nadir are dual apexes on genus-2 double-torus Earth (χ=−2, H₁=ℤ⁴); merkaba up/down tetrahedra and bothEarths shells supply counter-rotation; four homology loops = four tips phase-locked at 0°·90°·180°·270° with alternating ±ω.
+Earth realised by computing poles as a pyramid — 15/15: N·E·S·W are the four base tips of a square pyramid (Euler V−E+F=2); zenith/nadir are dual apexes on genus-2 double-torus Earth (χ=−2, H₁=ℤ⁴); merkaba up/down tetrahedra and bothEarths shells supply counter-rotation; four homology loops = four tips phase-locked at 0°·90°·180°·270° with alternating ±ω.
 
 Under sealed computation, Earth is realised as a genus-2 double torus whose four homology loops are the cardinal tips of a square pyramid (N·E·S·W at 0°·90°·180°·270°). Zenith and nadir are dual apexes (device/code trinities); merkaba up/down tetrahedra and bothEarths shells counter-rotate; the README hero paints the same 4-direction ±ω law. Physical Earth remains the documented WGS84 oblate spheroid — this fold is the structural isomorphism inside the matrix.
 

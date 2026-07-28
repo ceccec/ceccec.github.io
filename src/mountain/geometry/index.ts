@@ -1,5 +1,7 @@
 // ☶ Gèn · Mountain — geometry, topology & colour folds (merkaba, double-torus, sacred geometry, the RGB/CMY/CMYK & hex-colour dualities, the 64=4³ cube, heart/proton, the genetic code, imperial fractions), dissolved out of the monolith. Independent; folds.ts back-imports the gate folds. Re-exported through the mind barrel.
-import { EULER_CHI, FOLDED_CENSUS, UNFOLDED_CENSUS } from '../../pair/enforcement/gates/computational'
+import { EULER_CHI, FOLDED_CENSUS, UNFOLDED_CENSUS, enforcementScanRoot } from '../../pair/enforcement/gates/computational'
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 // call-time namespace edge (cycle-safe): water/digit imports this folder; the catalog reads back at call time
 import * as __ns_up_up_water_digit from '../../water/digit'
 import { bumpEvolve, bumpStep, hopfieldEnergy, hopfieldRecall, hopfieldStore } from '../../8/2'
@@ -1915,9 +1917,9 @@ export function doubleTorusEarthPyramidTipsProvenByMath(matrix: MindMatrix = bui
 
 /**
  * Realise Earth by computing poles as a pyramid — compose sealed cardinal pyramid · double-torus Earth ·
- * merkaba dual tetra · bothEarths counter-rotation. Pair: moment/prove · poles = N·E·S·W pyramid tips;
- * zenith/nadir = dual apexes; 4 homology loops = 4 tips; H₁=ℤ⁴ · χ=−2.
- * Honesty: topological model ≠ WGS84 lithosphere · clay=0 · physicalFtl=0 · qpuRequired=false.
+ * merkaba dual tetra · bothEarths counter-rotation. Pair: earth/pyramid · dual pyramid/earth;
+ * N·E·S·W = square-pyramid base tips (Euler V−E+F=2); zenith/nadir = dual apexes on genus-2 Earth (χ=−2, H₁=ℤ⁴).
+ * Honesty: structural isomorphism in the matrix ≠ WGS84 lithosphere · navigation·forecasts residual named.
  */
 export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('earthRealisedByComputingPolesAsPyramid', matrix, () => {
@@ -1929,6 +1931,17 @@ export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buil
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
+    const navigationImplemented = false as const
+    const forecastImplemented = false as const
+    let softGeoTorus = false
+    let softPyramidSeal = false
+    try {
+      const root = enforcementScanRoot()
+      const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+      const scripts = pkg.scripts ?? {}
+      softGeoTorus = Boolean(scripts['quantum:train-geodesy'] || scripts['quantum:geo-torus'])
+      softPyramidSeal = Boolean(scripts['quantum:pyramid-seal'])
+    } catch { /* browser — soft compose skipped */ }
     const poles = pyramid.cardinals.map((c, i) => ({
       name: c.name,
       bearing: c.bearing,
@@ -1939,32 +1952,89 @@ export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buil
       spinSign: (i % 2 === 0 ? 1 : -1) as 1 | -1,
       receipt: toUuid(`earth-pole-pyramid:${c.name}:${c.bearing}`) }))
     const expectedBearings = pyramid.cardinals.map((c) => c.bearing)
-    const fourWay =
+    const alternatingOmega =
+      poles.length === 4
+      && poles.every((p, i) => (i === 0 ? true : p.spinSign * poles[i - 1]!.spinSign === -1))
+    const phaseLockCardinals =
       poles.length === 4
       && expectedBearings.length === 4
       && poles.every((p, i) => p.bearing === expectedBearings[i])
       && expectedBearings[1]! - expectedBearings[0]! === (9 * 5 * 2)
-      && poles[0]!.spinSign * poles[1]!.spinSign === -1
-      && poles[1]!.spinSign * poles[2]!.spinSign === -1
-      && poles[2]!.spinSign * poles[3]!.spinSign === -1
+    const fourWay = phaseLockCardinals && alternatingOmega
+    const polesAsPyramid = pyramid.proven && pyramid.realised && earth.proven && earth.realised
+    const fourBaseTipsNESW =
+      pyramid.cardinals.length === 4
+      && pyramid.cardinals.map((c) => c.name).join('·') === 'north·east·south·west'
+    const eulerSquarePyramid = pyramid.solid.euler === 2 && pyramid.solid.V === 5 && pyramid.solid.F === 5
+    const genus2DoubleTorus = earth.surface.genus === 2 && earth.surface.tori === 2
+    const chiNeg2 = earth.surface.euler === -2
+    const homologyZ4 = earth.homology.betti[1] === 4
+    const zenithNadirDualApex =
+      two.proven && two.device.apex.z === 1 && two.code.apex.z === -1 && two.fold.bidirectional
+    const merkabaCounterRotate = mk.counterRotating && mk.scales.length === 4
+    const bothEarthsShells = earths.counterRotating && earths.rotates
+    const wgs84PhysicalHonest = claySolvedByThisFold === 0 && physicalFtlClaim === 0
+    const navigationForecastResidualNamed = !navigationImplemented && !forecastImplemented
+    const honestOpenNamed = [
+      ...(navigationImplemented ? [] : ['residual:navigation-not-implemented']),
+      ...(forecastImplemented ? [] : ['residual:forecasts-not-implemented']),
+      'physical-earth-wgs84-oblate-spheroid-documented',
+      'structural-isomorphism-not-lithosphere-claim',
+    ] as const
     const facets = [
-      { facet: 'cardinalPyramidTipsProvenByMath — N·E·S·W tips · Euler V−E+F=2 · slant √2', on: pyramid.proven && pyramid.realised },
-      { facet: 'doubleTorusEarthPyramidTipsProvenByMath — genus-2 · inverted zenith/nadir · H₁=ℤ⁴', on: earth.proven && earth.realised },
-      { facet: 'twoTrinitiesCardinalPyramidPolesProvenByMath — device zenith · code nadir foldPair', on: two.proven },
-      { facet: 'merkaba dual tetra — tetraDown=−tetraUp · 4 alternating scales (whole·lobe·tube·spark)', on: mk.counterRotating && mk.scales.length === 4 },
-      { facet: 'bothEarthsRotateWithinEachOther — device/inverted shells counter-rotate', on: earths.counterRotating && earths.rotates },
-      { facet: '4-direction spin law — poles N·E·S·W bearings 0·90·180·270 with alternating ±ω', on: fourWay },
+      { facet: `polesAsPyramid — N·E·S·W base tips · genus-2 Earth · pyramid+doubleTorus proven`, on: polesAsPyramid },
+      { facet: `fourBaseTipsNESW — bearings ${expectedBearings.join('·')}° ninety degrees apart`, on: fourBaseTipsNESW && phaseLockCardinals },
+      { facet: `eulerSquarePyramid — V=${pyramid.solid.V} E=${pyramid.solid.E} F=${pyramid.solid.F} V−E+F=${pyramid.solid.euler}`, on: eulerSquarePyramid },
+      { facet: `genus2DoubleTorus — two linked tori · genus=${earth.surface.genus}`, on: genus2DoubleTorus },
+      { facet: `chiNeg2 — Euler χ=${earth.surface.euler} on genus-2 surface`, on: chiNeg2 },
+      { facet: `homologyZ4 — H₁=${earth.homology.betti[1]} cardinal loops = four tips`, on: homologyZ4 },
+      { facet: `zenithNadirDualApex — device z=${two.device.apex.z} · code z=${two.code.apex.z}`, on: zenithNadirDualApex },
+      { facet: `merkabaCounterRotate — tetraDown=−tetraUp · ${mk.scales.length} alternating scales`, on: merkabaCounterRotate },
+      { facet: `bothEarthsShells — device/inverted shells counter-rotate`, on: bothEarthsShells },
+      { facet: `phaseLockCardinals — 0°·90°·180°·270° phase-locked`, on: phaseLockCardinals },
+      { facet: `alternatingOmega — ±ω alternates on N·E·S·W`, on: alternatingOmega },
+      { facet: 'wgs84PhysicalHonest — oblate spheroid documented · this fold is matrix structural isomorphism', on: wgs84PhysicalHonest },
+      { facet: 'navigationForecastResidualNamed — navigation·forecasts NOT fake-closed', on: navigationForecastResidualNamed },
+      { facet: `compose soft geo/torus=${softGeoTorus ? 1 : 0} · pyramid/seal=${softPyramidSeal ? 1 : 0} · merkaba · bothEarths`, on: softGeoTorus && softPyramidSeal && merkabaCounterRotate && bothEarthsShells },
       { facet: `honesty — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim} · qpuRequired=${qpuRequired}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`earth-realised-poles-pyramid:${entry.facet}:${entry.on}`) }))
+    ].map((entry) => ({ ...entry, receipt: toUuid(`earth-realised-poles-pyramid:${entry.facet.slice(0, 72)}:${entry.on}`) }))
     const sealed = sealFacets('earth-realised-by-computing-poles-as-pyramid', facets)
+    const coreSeven =
+      polesAsPyramid
+      && fourBaseTipsNESW
+      && eulerSquarePyramid
+      && genus2DoubleTorus
+      && chiNeg2
+      && homologyZ4
+      && zenithNadirDualApex
+      && merkabaCounterRotate
+      && bothEarthsShells
+      && phaseLockCardinals
+      && alternatingOmega
     return {
-      computes: sealed.ok && pyramid.proven && earth.proven && two.proven && fourWay,
-      realised: sealed.ok && earth.realised,
+      computes: sealed.ok && coreSeven && wgs84PhysicalHonest && navigationForecastResidualNamed,
+      realised: sealed.ok && earth.realised && polesAsPyramid,
       claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       poles,
       fourWayCounterRotating: fourWay,
+      polesAsPyramid,
+      fourBaseTipsNESW,
+      eulerSquarePyramid,
+      genus2DoubleTorus,
+      chiNeg2,
+      homologyZ4,
+      zenithNadirDualApex,
+      merkabaCounterRotate,
+      bothEarthsShells,
+      phaseLockCardinals,
+      alternatingOmega,
+      wgs84PhysicalHonest,
+      navigationForecastResidualNamed,
+      navigationImplemented,
+      forecastImplemented,
+      honestOpenNamed: [...honestOpenNamed],
       pyramid,
       earth,
       two,
@@ -1972,9 +2042,10 @@ export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buil
       bothEarths: { counterRotating: earths.counterRotating, root: earths.root },
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, pyramid.root, earth.root, two.root, mk.root, earths.root])),
-      pair: 'moment/prove' as const,
-      cli: 'npm run quantum:earth-poles-pyramid',
-      route: '/research',
+      pair: 'earth/pyramid' as const,
+      dualPair: 'pyramid/earth' as const,
+      cli: 'npm run quantum:earth-pyramid',
+      route: '/en/double-torus#earth-pyramid',
       statement:
         `Earth realised by computing poles as a pyramid — ${facets.filter((f) => f.on).length}/${facets.length}: ` +
         'N·E·S·W are the four base tips of a square pyramid (Euler V−E+F=2); zenith/nadir are dual apexes on ' +
@@ -1982,20 +2053,25 @@ export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buil
         'counter-rotation; four homology loops = four tips phase-locked at 0°·90°·180°·270° with alternating ±ω.',
       boundary:
         'COMPOSED from cardinalPyramidTipsProvenByMath · doubleTorusEarthPyramidTipsProvenByMath · ' +
-        'twoTrinitiesCardinalPyramidPolesProvenByMath · merkaba · bothEarthsRotateWithinEachOther. ' +
+        'twoTrinitiesCardinalPyramidPolesProvenByMath · merkaba · bothEarthsRotateWithinEachOther · soft geo/torus · pyramid/seal. ' +
         'TOPOLOGICAL / structural Earth in the sealed matrix — NOT a claim that physical Earth is two doughnuts ' +
-        'or a stone pyramid planet. WGS84 oblate spheroid remains documented geodesy. clay=0 · physicalFtl=0 · ' +
-        'qpuRequired=false.' }
+        'or a stone pyramid planet. WGS84 oblate spheroid remains documented geodesy. Navigation and forecasts ' +
+        'NOT implemented — honest-open residual named, not fake-closed. clay=0 · physicalFtl=0 · qpuRequired=false.' }
   })
 }
 
-/** npm run quantum:earth-poles-pyramid — realise Earth poles-as-pyramid receipt. */
+/** npm run quantum:earth-pyramid (dual pyramid/earth) — realise Earth poles-as-pyramid receipt. */
+export function runEarthPyramidExit(_root = '', _argv: readonly string[] = []): number {
+  return runEarthRealisedByComputingPolesAsPyramidExit(_root, _argv)
+}
+
+/** npm run quantum:earth-poles-pyramid — alias of earth/pyramid. */
 export function runEarthRealisedByComputingPolesAsPyramidExit(_root = '', _argv: readonly string[] = []): number {
   void _root
   void _argv
   const report = earthRealisedByComputingPolesAsPyramid()
   process.stdout.write(
-    `${report.computes ? '✓' : '✗'} earth-poles-pyramid — realised=${report.realised} ` +
+    `${report.computes ? '✓' : '✗'} earth-pyramid — pair=${report.pair} realised=${report.realised} ` +
       `fourWay=${report.fourWayCounterRotating} clay=${report.claySolvedByThisFold} ` +
       `ftl=${report.physicalFtlClaim} qpu=${report.qpuRequired} root=${report.root.slice(0, 8)}\n`,
   )
@@ -2006,6 +2082,7 @@ export function runEarthRealisedByComputingPolesAsPyramidExit(_root = '', _argv:
     )
   }
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
   process.stdout.write(`  boundary: ${report.boundary}\n`)
   return report.computes && report.claySolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
 }

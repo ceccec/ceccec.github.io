@@ -44,6 +44,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'geo/train',
   'train/geodesy',
   'geo/torus',
+  'earth/pyramid',
+  'pyramid/earth',
   'train/live-win-gate',
   'train/waves',
   'cycle/winning',

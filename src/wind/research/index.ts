@@ -3842,8 +3842,8 @@ export const SCIENCE_DOMAIN_SEEDS: readonly ScienceDomainSeed[] = [
     ichingSphere: 3, home: 'src/heaven/sky/astronomy', cryptoVertex: false },
   {
     id: 'earth', field: 'Earth & Environmental Sciences', oecd: '1.5',
-    algebraFold: 'earthRealisedByComputingPolesAsPyramid', toolId: 'earth-poles-pyramid',
-    toolCli: 'npm run quantum:earth-poles-pyramid', apparatusRoute: '/research',
+    algebraFold: 'earthRealisedByComputingPolesAsPyramid', toolId: 'earth-pyramid',
+    toolCli: 'npm run quantum:earth-pyramid', apparatusRoute: '/double-torus#earth-pyramid',
     dualId: 'astronomy', fusionLabel: 'earth↔astro↔physics', projection: 'double-torus',
     ichingSphere: 4, home: 'src/mountain/geometry', cryptoVertex: false },
   {
