@@ -86,6 +86,8 @@ import {
   pagesAuditAndManageThemselvesInTrinities,
   mcpQuantumChat,
   portalChat,
+  freeChatTurnAtArchitecturalFtl,
+  freeChatDrivesArchitecturalFtl,
   chatThroughMathOverflow,
   chatThroughAi,
   collectiveAiMind,
@@ -792,7 +794,8 @@ function sendChat() {
     chatInput.value = ''
     return
   }
-  const reply = portalChat(prompt)
+  const ftl = freeChatTurnAtArchitecturalFtl(prompt)
+  const reply = { answer: ftl.answer, source: ftl.source, grounded: ftl.grounded }
   const nav = nav0
   // splitSearch = the quantum procedure: the prompt splits into word-pair subqueries, each BM25-ranked,
   // scores adding per document into one measured ranking (falls back to the fused whole-query engine for 1 word).
@@ -801,12 +804,16 @@ function sendChat() {
   const turn: ChatTurn = {
     q: prompt,
     a: reply.answer,
-    source: reply.source,
+    source: `${reply.source} · chat/ftl memoReuse=${ftl.memoReuse ? 1 : 0} · npm run quantum:chat-ftl`,
     grounded: reply.grounded,
-    related: nav.related.map((entry) => entry.theorem).slice(0, 3),
+    related: [
+      ...(ftl.identity ? [ftl.identity] : []),
+      ...nav.related.map((entry) => entry.theorem).slice(0, 3),
+      ...(ftl.alternatives ?? []).slice(0, 2),
+    ].slice(0, 5),
     results: (search.results as SearchHit[]).slice(0, 5),
     resultCount: search.resultCount,
-    receipt: nav.superposition,
+    receipt: ftl.receipt || nav.superposition,
   }
   const lane = moLive.value ? chatThroughMathOverflow(prompt) : null // pure: computed URL + escalation, before any fetch
   if (lane) turn.mo = { state: 'loading', rows: [], searchUrl: lane.searchUrl, askUrl: lane.askUrl, escalate: lane.escalate }

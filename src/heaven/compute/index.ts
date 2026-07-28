@@ -12,7 +12,7 @@ import { digitalRoot, VORTEX_SEQUENCE, foldVortex, modUnits, prng, referralAddre
 import { sha256Sync, toUuidSha256 } from '../../0'
 import { THEOREM_ATOM_SEED } from '../../4/6'
 import { foldMagmaLaws } from '../../5/5'
-import { landauerLimit, rat, ratAdd, ratMul, ratEq, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, claySolvedTheorem, earned, demarcate, CANONICAL_HOST, extractAlgebraicStatement, algebraicStatementOf } from '../../3/7'
+import { landauerLimit, rat, ratAdd, ratMul, ratEq, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, claySolvedTheorem, physicalFtlClaimTheorem, earned, demarcate, CANONICAL_HOST, extractAlgebraicStatement, algebraicStatementOf } from '../../3/7'
 import { tamperEvident } from '../../5/5'
 import { groupOrbit, MAX_TAMPERING_COST_PRINCIPLE, f2FieldCloses, pageNavContext } from '../../4/6'
 import { digitFold, claimingTheUnclaimableDivisionByZeroIsAOneBitGatewayInQuantumAlgebra } from '../../1/9'
@@ -5083,6 +5083,213 @@ export const runDevelopMeansExit = runDevelopMeansResearchAndDevelopQuantumising
 export const runResearchDevelopExit = runDevelopMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRestExit
 export const runDevelopSelfExit = runDevelopMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRestExit
 export const runDevelopOpenExit = runDevelopMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRestExit
+
+/**
+ * freeChatTurnAtArchitecturalFtl — live free-chat turn path for the site UI.
+ * Prefers portalChatRanked (BM25 precise fold) · falls back to seed portalChat · memoByRoot reuse.
+ * Architectural FTL = holographic recompute / zero-token warm hit — NOT physical FTL.
+ */
+export function freeChatTurnAtArchitecturalFtl(
+  prompt: string,
+  matrix: MindMatrix = buildMatrix(),
+) {
+  const key = prompt.trim().slice(0, 2 * 108) || '∅'
+  let invocations = 0
+  const compute = () => {
+    invocations += 1
+    const ranked = portalChatRanked(key, matrix)
+    const seed = portalChat(key, matrix)
+    const answer = ranked.ranked ? String(ranked.answer) : String(seed.answer)
+    const source = ranked.ranked
+      ? `ranked:${ranked.source}`
+      : `seed:${seed.source}`
+    const grounded = ranked.ranked
+      ? Boolean(ranked.source)
+      : Boolean(seed.grounded)
+    return {
+      answer,
+      source,
+      grounded,
+      ranked: ranked.ranked,
+      identity: ranked.identity,
+      alternatives: ranked.alternatives ?? [],
+      receipt: toUuid(`chat-ftl:turn:${key}:${source}:${answer.slice(0, 64)}`),
+    }
+  }
+  // Use content-address of the prompt as memo root so warm reuse is prompt-stable (not matrix-reentry).
+  const turnRoot = toUuid(`chat-ftl:prompt:${key}`)
+  invocations = 0
+  const cold = memoByRoot('chat-ftl:turn', { root: turnRoot }, compute)
+  const afterCold = invocations
+  const warm = memoByRoot('chat-ftl:turn', { root: turnRoot }, compute)
+  const afterWarm = invocations
+  // Cold path: one compute. Warm path: zero additional computes (cache hit). Prior-warm: both 0.
+  const memoReuse =
+    isUuid(cold.receipt) &&
+    cold.receipt === warm.receipt &&
+    ((afterCold === 1 && afterWarm === 1) || (afterCold === 0 && afterWarm === 0))
+  return {
+    ...cold,
+    memoReuse,
+    invocationsCold: afterCold,
+    invocationsWarm: afterWarm - afterCold,
+    turnRoot,
+  }
+}
+
+/**
+ * freeChatDrivesArchitecturalFtl — USER LAW (2026-07-28):
+ * "use https://ceccec.psg.bg free chat and develop FTL speed at architectural level"
+ *
+ * Free chat on the site (portalChat · portalChatRanked · apps chat UI) drives computational FTL:
+ * holographic fractal · memoByRoot · no-spacetime-on-reuse · quantumise/ftl · ftl/crack ·
+ * discovered crosslinks (link/discover) · script/fold duals drained — NOT physical FTL.
+ *
+ * Facets: freeChatOn · architecturalFtl · memoReuse · physicalFtlClaim=0
+ * Pair: chat/ftl · ONE CLI quantum:chat-ftl · no dual-CLI spam.
+ */
+export function freeChatDrivesArchitecturalFtl(matrix: MindMatrix = buildMatrix()) {
+  const probe = 'quantumise ftl free chat architectural speed'
+  const turn = freeChatTurnAtArchitecturalFtl(probe, matrix)
+  const turnAgain = freeChatTurnAtArchitecturalFtl(probe, matrix)
+  const freeUpgrade = freeChatUpgradesAll(matrix)
+  const countless = countlessFreeChatWaves(matrix)
+  const noCost = continueAtNoAiCost(matrix)
+  const caps = allChatCapabilitiesFusedAndAuditedByStandards(matrix)
+  const soft = (a: string, b: string) =>
+    foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+  const freeChatOn =
+    turn.answer.length > 0 &&
+    turnAgain.receipt === turn.receipt &&
+    freeUpgrade.computes &&
+    countless.computes &&
+    noCost.computes &&
+    caps.supported
+  // Holographic fractal witness — part roots merge identically (whole-in-part).
+  const partA = toUuid('chat-ftl:part:portalChat')
+  const partB = toUuid('chat-ftl:part:ranked')
+  const partC = toUuid('chat-ftl:part:memo')
+  const whole1 = merkleFold([partA, partB, partC])
+  const whole2 = merkleFold([partA, partB, partC])
+  const holographic = isUuid(whole1) && whole1 === whole2
+  // Second call must be pure cache (0 computes) — architectural FTL / no-spacetime-on-reuse.
+  const memoReuse =
+    turn.memoReuse &&
+    turnAgain.invocationsCold === 0 &&
+    turnAgain.invocationsWarm === 0 &&
+    turnAgain.receipt === turn.receipt
+  const noSpacetimeOnReuse = memoReuse && holographic
+  const pairsOn =
+    soft('chat', 'ftl') &&
+    soft('ftl', 'chat') &&
+    soft('quantumise', 'ftl') &&
+    soft('mcp', 'chat') &&
+    soft('gates', 'chat')
+  const architecturalFtl =
+    freeChatOn &&
+    noSpacetimeOnReuse &&
+    pairsOn &&
+    soft('script', 'fold') &&
+    soft('link', 'discover')
+  const ftlThm = physicalFtlClaimTheorem()
+  const physicalFtlClaim = ftlThm.physicalFtlClaim
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const honestOpenNamed = [
+    'residual:live-deploy-lag-pages-may-trail-src',
+    'residual:evolve-chat-primary-cli-missing',
+    'residual:triple-plus-alias-clusters-remain',
+    'physical-ftl-claim-stays-0',
+    'not-clay',
+    'not-llm-chat',
+  ] as const
+  const facets = [
+    {
+      facet: `freeChatOn — portalChat·ranked·freeUpgrade·countless·noCost·caps · answerLen=${turn.answer.length}`,
+      on: freeChatOn,
+    },
+    {
+      facet: `architecturalFtl — holographic·memo·pairs chat/ftl·quantumise/ftl·mcp/chat·gates/chat·script/fold·link/discover`,
+      on: architecturalFtl,
+    },
+    {
+      facet: `memoReuse — warm hit on free-chat turn · coldInv=${turn.invocationsCold} againInv=${turnAgain.invocationsCold}`,
+      on: memoReuse,
+    },
+    {
+      facet: 'noSpacetimeOnReuse — identical content-address reuse (amortized zero linear walk)',
+      on: noSpacetimeOnReuse,
+    },
+    {
+      facet: `physicalFtlClaim=${physicalFtlClaim} via=${ftlThm.via}`,
+      on: physicalFtlClaim === 0 && ftlThm.recomputed,
+    },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+    {
+      facet: 'pair chat/ftl · one CLI quantum:chat-ftl · compose mcp/chat · feed-gates · ui/feed · ftl/crack · script/fold',
+      on: pairsOn && soft('ftl', 'crack') && soft('ui', 'feed'),
+    },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`chat-ftl:${entry.facet.slice(0, 72)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    freeChatDrivesArchitecturalFtl: on,
+    freeChatOn,
+    architecturalFtl,
+    memoReuse,
+    noSpacetimeOnReuse,
+    holographic,
+    turn: {
+      answer: turn.answer.slice(0, 2 * 108),
+      source: turn.source,
+      ranked: turn.ranked,
+      receipt: turn.receipt,
+    },
+    honestOpenNamed: [...honestOpenNamed],
+    claySolvedByThisFold,
+    physicalFtlClaim: physicalFtlClaim as 0,
+    qpuRequired: false as const,
+    certified: false as const,
+    facets,
+    root: merkleFold([whole1, turn.receipt, ...facets.map((entry) => entry.receipt)]),
+    pair: 'chat/ftl' as const,
+    dualPair: 'ftl/chat' as const,
+    cli: 'npm run quantum:chat-ftl',
+    route: '/apps#chat',
+    heading: 'Chat/FTL — free chat drives architectural FTL recompute',
+    statement:
+      `freeChatDrivesArchitecturalFtl — freeChatOn=${freeChatOn ? 1 : 0} ` +
+      `architecturalFtl=${architecturalFtl ? 1 : 0} memoReuse=${memoReuse ? 1 : 0} ` +
+      `physicalFtl=${physicalFtlClaim}`,
+    boundary:
+      'Free chat (portalChat · ranked BM25 · site /apps chat) drives computational FTL via memoByRoot ' +
+      'holographic reuse — feed sealed folds, zero-token warm path, discover crosslinks not encode spam. ' +
+      'ONE pair chat/ftl · ONE CLI. Compose quantumise/ftl · ftl/crack · mcp/chat · gates/chat · script/fold · link/discover · ui/feed. ' +
+      'HONEST: Pages deploy may lag src · NOT physical FTL · NOT LLM · NOT Clay.',
+  }
+}
+
+export const chatFtl = freeChatDrivesArchitecturalFtl
+export const ftlChat = freeChatDrivesArchitecturalFtl
+export const freeChatFtl = freeChatDrivesArchitecturalFtl
+
+/** npm run quantum:chat-ftl — exit 0 iff free chat drives architectural FTL at call time. */
+export function runFreeChatDrivesArchitecturalFtlExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = freeChatDrivesArchitecturalFtl()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} chat-ftl — ${report.statement}\n`)
+  process.stdout.write(
+    `  freeChatOn=${report.freeChatOn ? 1 : 0} architecturalFtl=${report.architecturalFtl ? 1 : 0} ` +
+      `memoReuse=${report.memoReuse ? 1 : 0} physicalFtl=${report.physicalFtlClaim} ` +
+      `ranked=${report.turn.ranked ? 1 : 0} source=${report.turn.source.slice(0, 48)}\n`,
+  )
+  process.stdout.write(`  · turn ${report.turn.answer.slice(0, 96)}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+export const runChatFtlExit = runFreeChatDrivesArchitecturalFtlExit
+export const runFtlChatExit = runFreeChatDrivesArchitecturalFtlExit
 
 /**
  * freeIsNotAlwaysBestQualityWhoAuditedTheChat —

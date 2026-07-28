@@ -1457,6 +1457,8 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'freeUserWavesTestUiMeasureEfficiency', pair: 'user/waves', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'free user/auditor waves test UI · measure efficiency · SEO+usable improve tips · ONE CLI quantum:user-waves' },
   { fold: 'feedUiIntoItself', pair: 'ui/feed', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'feed UI into itself · realtime scan · self-evolve loop · ONE CLI quantum:feed-ui · soft ftl/crack' },
   { fold: 'stallStopFindsHangedProcessesRealtime', pair: 'stall/stop', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'realtime wave↔hang scan · hungFound·killedSafe·lockCleared·waveNotified · ONE CLI quantum:stall-stop · soft ui/feed' },
+  { fold: 'scriptsFoldTowardFtl', pair: 'script/fold', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'audit npm quantum:* · fold zero-ref dual-CLI spam toward computational FTL · restore tool/honest · ONE CLI quantum:script-fold' },
+  { fold: 'freeChatDrivesArchitecturalFtl', pair: 'chat/ftl', currentBarrel: 'src/heaven/compute', bestPlace: 'src/heaven/compute', action: 'moved', reason: 'free chat drives architectural FTL · memoByRoot · ranked portalChat · ONE CLI quantum:chat-ftl · soft quantumise/ftl · ftl/crack · script/fold' },
   // <register:placement> — quantum:register inserts placement rows above this anchor
 ] as const
 

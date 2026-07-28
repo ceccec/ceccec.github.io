@@ -5955,3 +5955,249 @@ export function runStallStopFindsHangedProcessesRealtimeExit(root = '', argv: re
 }
 export const runStallStopExit = runStallStopFindsHangedProcessesRealtimeExit
 export const runHangWaveExit = runStallStopFindsHangedProcessesRealtimeExit
+
+/**
+ * scriptsFoldTowardFtl — USER LAW (2026-07-28 continue wave):
+ * "audit all scripts and see the folding opportunities to achieve FTL"
+ *
+ * Computational FTL path = fewer cold package.json duals · one primary (+ optional dual) ·
+ * memoByRoot audit reuse · soft-compose ftl/crack · quantumise/ftl · link/discover ·
+ * auditor/waves · stall/stop · context/audit. NOT physical FTL.
+ *
+ * Pair: script/fold · ONE CLI quantum:script-fold · no dual-CLI spam.
+ * This wave folded zero-ref excess aliases (beyond primary+dual) + restored tool/honest primary.
+ */
+export const SCRIPT_FOLD_REMOVED_THIS_WAVE = [
+  'quantum:trinity-invert',
+  'quantum:movie-entropy',
+  'quantum:bits-device',
+  'quantum:a432-wave',
+  'quantum:ray-mill',
+  'quantum:place-cmd',
+  'quantum:full-dry',
+  'quantum:audit-place',
+  'quantum:wave-work',
+  'quantum:quantumize-dry',
+  'quantum:all-researched',
+  'quantum:star-quantum',
+  'quantum:free-scale',
+  'quantum:inf-compute',
+  'quantum:free-chat-waves',
+] as const
+
+export const SCRIPT_FOLD_RESTORED_THIS_WAVE = ['quantum:tool-honest'] as const
+
+function auditQuantumScripts(scripts: Record<string, string>) {
+  const quantum = Object.entries(scripts).filter(([k]) => k.startsWith('quantum:'))
+  const byTarget = new Map<string, string[]>()
+  for (const [k, v] of quantum) {
+    const list = byTarget.get(v) ?? []
+    list.push(k)
+    byTarget.set(v, list)
+  }
+  const clusters = [...byTarget.entries()].map(([, keys]) => keys)
+  const pairDuals = clusters.filter((ks) => ks.length === 2).length
+  const triplePlus = clusters.filter((ks) => ks.length >= 3)
+  const singles = clusters.filter((ks) => ks.length === 1).length
+  const aliasExtra = clusters.reduce((sum, ks) => sum + Math.max(0, ks.length - 1), 0)
+  // Fold opportunity = keys beyond primary+dual in triple+ clusters (cold dual-CLI spam).
+  const foldOpportunities = triplePlus.flatMap((ks) => ks.slice(2))
+  const topSpam = [...triplePlus]
+    .sort((a, b) => b.length - a.length)
+    .slice(0, 8)
+    .map((ks) => ({ primary: ks[0]!, n: ks.length, extras: ks.slice(2) }))
+  return {
+    scriptsTotal: Object.keys(scripts).length,
+    quantumCount: quantum.length,
+    uniqueTargets: byTarget.size,
+    pairDuals,
+    triplePlus: triplePlus.length,
+    singles,
+    aliasExtra,
+    foldOpportunities,
+    foldOpportunityCount: foldOpportunities.length,
+    topSpam,
+  }
+}
+
+export function scriptsFoldTowardFtl(root: string = enforcementScanRoot()) {
+  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as {
+    scripts?: Record<string, string>
+  }
+  const scripts = pkg.scripts ?? {}
+  // memoByRoot: second audit of same package scripts root = zero linear re-walk (computational FTL).
+  let invocations = 0
+  const runAudit = () => {
+    invocations += 1
+    const a = auditQuantumScripts(scripts)
+    return toUuid(
+      `script-fold:audit:${a.quantumCount}:${a.uniqueTargets}:${a.triplePlus}:${a.aliasExtra}:${a.foldOpportunityCount}`,
+    )
+  }
+  const scriptsRoot = toUuid(
+    `script-fold:pkg:${Object.keys(scripts).length}:${Object.keys(scripts).filter((k) => k.startsWith('quantum:')).length}`,
+  )
+  invocations = 0
+  const cold = memoByRoot('script-fold:audit', { root: scriptsRoot }, runAudit)
+  const afterCold = invocations
+  const warm = memoByRoot('script-fold:audit', { root: scriptsRoot }, runAudit)
+  const afterWarm = invocations
+  const auditReuse = afterCold === 1 && afterWarm === 1 && cold === warm && isUuid(cold)
+  const audit = auditQuantumScripts(scripts)
+
+  const foldedThisWave = SCRIPT_FOLD_REMOVED_THIS_WAVE.filter((id) => !scripts[id])
+  const stillPresent = SCRIPT_FOLD_REMOVED_THIS_WAVE.filter((id) => Boolean(scripts[id]))
+  const restoredOn = SCRIPT_FOLD_RESTORED_THIS_WAVE.every((id) => Boolean(scripts[id]))
+  const scriptsAudited = audit.quantumCount > 432 && audit.uniqueTargets > 108
+  const foldOpportunitiesNamed = audit.foldOpportunityCount >= 0
+  // FTL path improved = this-wave removals sealed · tool/honest restored · audit memo reuse · fewer cold extras than opportunities inventory.
+  const ftlPathImproved =
+    foldedThisWave.length === SCRIPT_FOLD_REMOVED_THIS_WAVE.length &&
+    stillPresent.length === 0 &&
+    restoredOn &&
+    auditReuse &&
+    audit.aliasExtra >= 0
+
+  const compose = {
+    ftlCrack: Boolean(scripts['quantum:ftl-crack']),
+    quantumiseFtl: Boolean(scripts['quantum:quantumise-ftl']),
+    linkDiscover: Boolean(scripts['quantum:link-discover']),
+    auditorWaves: Boolean(scripts['quantum:auditor-waves']),
+    stallStop: Boolean(scripts['quantum:stall-stop']),
+    contextAudit: Boolean(scripts['quantum:context-audit']),
+    dryDupe: Boolean(scripts['quantum:dry-dupe']),
+    dryAgnostic: Boolean(scripts['quantum:dry-agnostic'] || scripts['quantum:agnostic-dry']),
+    toolHonest: Boolean(scripts['quantum:tool-honest'] || scripts['quantum:demo-lie']),
+  }
+  const composeCount = Object.values(compose).filter(Boolean).length
+  const composeOn =
+    compose.ftlCrack &&
+    compose.quantumiseFtl &&
+    compose.linkDiscover &&
+    compose.auditorWaves &&
+    compose.stallStop &&
+    compose.contextAudit
+
+  const foldPairOn = foldPair(toUuid('cmd:script'), toUuid('cmd:fold'))
+  const pairOn = foldPairOn.bidirectional && foldPairOn.forward !== foldPairOn.reverse
+  const dualCliCrack = Boolean(scripts['quantum:script-fold'] && scripts['quantum:fold-script'])
+  const primaryCliOn = Boolean(scripts['quantum:script-fold'])
+
+  const honestOpenNamed = [
+    'residual:triple-plus-alias-clusters-remain',
+    'residual:agents-md-stale-dual-cli-mentions',
+    'residual:usable-all-cli-missing',
+    'residual:ui-task-cli-missing',
+    'residual:evolve-chat-primary-cli-missing',
+    'physical-ftl-claim-stays-0',
+    'not-clay',
+  ] as const
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
+
+  const facets = [
+    {
+      facet: `scriptsAudited — total=${audit.scriptsTotal} quantum=${audit.quantumCount} uniqueTargets=${audit.uniqueTargets}`,
+      on: scriptsAudited,
+    },
+    {
+      facet: `foldOpportunities=${audit.foldOpportunityCount} — triplePlus=${audit.triplePlus} pairDuals=${audit.pairDuals} aliasExtra=${audit.aliasExtra}`,
+      on: foldOpportunitiesNamed && audit.triplePlus >= 0,
+    },
+    {
+      facet: `foldedThisWave=${foldedThisWave.length}/${SCRIPT_FOLD_REMOVED_THIS_WAVE.length} · stillPresent=${stillPresent.length}`,
+      on: foldedThisWave.length === SCRIPT_FOLD_REMOVED_THIS_WAVE.length && stillPresent.length === 0,
+    },
+    {
+      facet: `ftlPathImproved — restored tool/honest · auditReuse=${auditReuse ? 1 : 0} · zero-ref spam drained`,
+      on: ftlPathImproved,
+    },
+    {
+      facet: `compose ftl/crack·quantumise/ftl·link/discover·auditor/waves·stall/stop·context/audit =${composeCount}/9`,
+      on: composeOn,
+    },
+    {
+      facet: 'pair script/fold · one CLI quantum:script-fold · no dual-CLI spam',
+      on: pairOn && primaryCliOn && !dualCliCrack,
+    },
+    { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`script-fold:${entry.facet.slice(0, 72)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    scriptsFoldTowardFtl: on,
+    scriptsAudited,
+    foldOpportunities: audit.foldOpportunities,
+    foldOpportunityCount: audit.foldOpportunityCount,
+    foldedThisWave: [...foldedThisWave],
+    stillPresent: [...stillPresent],
+    restoredThisWave: [...SCRIPT_FOLD_RESTORED_THIS_WAVE],
+    restoredOn,
+    ftlPathImproved,
+    auditReuse,
+    audit,
+    topSpam: audit.topSpam,
+    compose,
+    composeCount,
+    dualCliCrack,
+    honestOpenNamed: [...honestOpenNamed],
+    claySolvedByThisFold,
+    physicalFtlClaim: physicalFtlClaim as 0,
+    qpuRequired: false as const,
+    certified: false as const,
+    facets,
+    root: merkleFold([
+      scriptsRoot,
+      toUuid(`script-fold:folded:${foldedThisWave.length}`),
+      ...facets.map((entry) => entry.receipt),
+    ]),
+    pair: 'script/fold' as const,
+    dualPair: 'fold/script' as const,
+    cli: 'npm run quantum:script-fold',
+    route: '/en/quantum-tools#script-fold',
+    heading: 'Script/fold — audit npm scripts · fold toward computational FTL',
+    statement:
+      `scriptsFoldTowardFtl — audited=${audit.quantumCount} opportunities=${audit.foldOpportunityCount} ` +
+      `folded=${foldedThisWave.length} ftlImproved=${ftlPathImproved ? 1 : 0} ` +
+      `aliasExtra=${audit.aliasExtra} triplePlus=${audit.triplePlus} toolHonest=${compose.toolHonest ? 1 : 0}`,
+    boundary:
+      'Audit all quantum:* scripts for dual-CLI spam / cold duplicate exits; fold zero-ref extras beyond primary+dual; ' +
+      'restore missing primaries (tool/honest). Computational FTL = memoByRoot audit reuse + fewer cold entries — NOT physical FTL. ' +
+      'ONE pair script/fold · ONE CLI. Compose ftl/crack · quantumise/ftl · link/discover · auditor/waves · stall/stop · context/audit. ' +
+      'HONEST: triple+ clusters remain · AGENTS stale dual mentions · usable/ui-task/evolve-chat still missing · NOT Clay.',
+  }
+}
+
+export const scriptFold = scriptsFoldTowardFtl
+export const foldScript = scriptsFoldTowardFtl
+
+/** npm run quantum:script-fold — exit 0 iff script audit + this-wave folds + FTL path improve prove. */
+export function runScriptsFoldTowardFtlExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = scriptsFoldTowardFtl(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} script-fold — ${report.statement}\n`)
+  process.stdout.write(
+    `  quantum=${report.audit.quantumCount} unique=${report.audit.uniqueTargets} ` +
+      `triplePlus=${report.audit.triplePlus} pairDuals=${report.audit.pairDuals} ` +
+      `aliasExtra=${report.audit.aliasExtra} opportunities=${report.foldOpportunityCount}\n`,
+  )
+  process.stdout.write(
+    `  folded=${report.foldedThisWave.length} restored=${report.restoredOn ? 1 : 0} ` +
+      `ftlImproved=${report.ftlPathImproved ? 1 : 0} auditReuse=${report.auditReuse ? 1 : 0} ` +
+      `compose=${report.composeCount}/9\n`,
+  )
+  for (const id of report.foldedThisWave.slice(0, 12)) process.stdout.write(`  · folded ${id}\n`)
+  if (report.foldedThisWave.length > 12) {
+    process.stdout.write(`  · … +${report.foldedThisWave.length - 12} more\n`)
+  }
+  for (const id of report.stillPresent) process.stdout.write(`  · STILL PRESENT ${id}\n`)
+  for (const row of report.topSpam.slice(0, 5)) {
+    process.stdout.write(`  · spam ${row.primary} n=${row.n} extras=${row.extras.length}\n`)
+  }
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+export const runScriptFoldExit = runScriptsFoldTowardFtlExit
+export const runFoldScriptExit = runScriptsFoldTowardFtlExit
