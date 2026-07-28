@@ -61,9 +61,10 @@ import {
   dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie,
   dryCleanAllVueComponentsToTheUniversalSet,
   wavesSearchDiscoverCompactingInQuantumFolders,
-  importsExportsMapEachOtherInQuantumFractalsRenamingForHolographicReuse,
-  measureDecideAnyoneDecidesFromMeasurements,
-  auditImportExportCoreLogicSpreadInUnstandardisedPlaces,
+  importFractalMap,
+  measureDecide,
+  importAudit,
+  mergeWave,
   alwaysBalanceUsingRealtimeMetricsAndChat,
   eachSuperpositionIsAChatroom,
   uiComponentsAreAllWiredInTheRosettaInQuantumRealtime,
@@ -1158,9 +1159,10 @@ const dryRosetta = computed(() => dryAllToUnifiedComponentsWiredToRosettaWhichIs
 const vueDryUniversal = computed(() => dryCleanAllVueComponentsToTheUniversalSet())
 const seoGapsReport = computed(() => findSeoViolations())
 const waveCompact = computed(() => wavesSearchDiscoverCompactingInQuantumFolders())
-const importFractalPanel = computed(() => importsExportsMapEachOtherInQuantumFractalsRenamingForHolographicReuse())
-const measureDecidePanel = computed(() => measureDecideAnyoneDecidesFromMeasurements())
-const importAuditPanel = computed(() => auditImportExportCoreLogicSpreadInUnstandardisedPlaces())
+const importFractalPanel = computed(() => importFractalMap())
+const measureDecidePanel = computed(() => measureDecide())
+const importAuditPanel = computed(() => importAudit())
+const mergeWavePanel = computed(() => mergeWave())
 const balanceMetrics = computed(() => alwaysBalanceUsingRealtimeMetricsAndChat())
 const superChat = computed(() => eachSuperpositionIsAChatroom())
 const uiRosetta = computed(() => uiComponentsAreAllWiredInTheRosettaInQuantumRealtime())
@@ -2741,23 +2743,30 @@ function runTool(toolId: string) {
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'import-fractal' || toolId === 'fractal-import') {
-      const r = importsExportsMapEachOtherInQuantumFractalsRenamingForHolographicReuse()
+      const r = importFractalMap()
       ok = r.computes
       summary = `roundTrip=${r.roundTripCount}/${r.roundTripTotal} observedReuse=${r.observedReuseCapacity}/${r.reuseTotal} importEdgeCount=${r.importEdgeCount} renameApplied=${r.renameAppliedCount} renameCandidates=${r.renameCandidatesCount}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'measure-decide' || toolId === 'decide-measure') {
-      const r = measureDecideAnyoneDecidesFromMeasurements()
+      const r = measureDecide()
       ok = r.computes
       summary = `judgmentPatternHitCount=${r.judgmentPatternHitCount} judgmentPatternFileCount=${r.judgmentPatternFileCount} newFoldJudgmentPatternDebt=${r.newFoldJudgmentPatternDebt} gateAnalyticsHardcodedOnCount=${r.gateAnalyticsHardcodedOnCount} observerEvaluableMeasurements=${r.observerEvaluableMeasurements}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'import-audit' || toolId === 'audit-import') {
-      const r = auditImportExportCoreLogicSpreadInUnstandardisedPlaces()
+      const r = importAudit()
       ok = r.computes
       summary = `sprawlMeasured=${r.sprawlMeasured} sprawlFileCount=${r.sprawlFileCount} unstandardisedFunctions=${r.unstandardisedFunctions} unstandardisedConstants=${r.unstandardisedConstants} coreLogicSpread=${r.coreLogicSpread}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'merge-wave' || toolId === 'wave-merge') {
+      const r = mergeWave()
+      ok = r.computes
+      summary = `mergeCount=${r.mergeCount} redundancyPurged=${r.redundancyPurged} tipSurfacesClean=${r.tipSurfacesClean} chatWavesOn=${r.chatWavesOn} dupeGroups=${r.dupeScan.groups}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -5660,6 +5669,26 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'import-audit'" @click="runTool('import-audit')">
           {{ runningId === 'import-audit' ? '…' : 'Run import-audit' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="merge-wave" aria-label="Merge wave name parse">
+        <h3>{{ mergeWavePanel.heading }}</h3>
+        <p class="quantum-apps__meta">{{ mergeWavePanel.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(mergeWavePanel.redundancyPurged))">redundancyPurged={{ mergeWavePanel.redundancyPurged }}</UiBadge>
+        <UiBadge variant="outline">mergeCount={{ mergeWavePanel.mergeCount }} tipSurfacesClean={{ mergeWavePanel.tipSurfacesClean }}</UiBadge>
+        <UiBadge variant="outline">chatWavesOn={{ mergeWavePanel.chatWavesOn }} dupeGroups={{ mergeWavePanel.dupeScan.groups }}</UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in mergeWavePanel.facets" :key="f.facet">
+            <UiBadge :variant="f.on ? 'default' : 'outline'">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            <strong>{{ f.facet }}</strong>
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>merge/wave</code> · <code>wave/merge</code> · CLI <code>npm run quantum:merge-wave</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'merge-wave'" @click="runTool('merge-wave')">
+          {{ runningId === 'merge-wave' ? '…' : 'Run merge-wave' }}
         </UiButton>
       </section>
       <UiSeparator />
