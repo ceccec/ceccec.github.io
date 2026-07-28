@@ -147,7 +147,7 @@ import {
   quantumSelfHeal,
   oneQuantumSetOfVitepressComponentsSealedAtGates,
 } from './index.ts'
-import { translationGapsGate, addressAllWarningsAtOnce } from '../../mountain/source/index.ts'
+import { translationGapsGate, addressAllWarningsAtOnce, chatTranslatesAutonomously, chatTranslateTurn, chatWavesMostEfficientOfflineAnyLanguageModel, chatWavesTransAnyTurn } from '../../mountain/source/index.ts'
 import {
   completeScientificDomainsStrictlyToStandardsQuantumOnly,
 } from '../../wind/research/index.ts'
@@ -815,6 +815,59 @@ function sendChat() {
       results: [],
       resultCount: free.neighborhoodSize,
       receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'trans/any' / any language / offline translate / speech any / write any — most efficient offline model.
+  if (
+    /^\s*trans\s*[-/]?\s*any\b/i.test(prompt) ||
+    /^\s*any\s*[-/]?\s*trans\b/i.test(prompt) ||
+    /^\s*(any\s+language|offline\s+translate|speech\s+any|write\s+any)\b/i.test(prompt)
+  ) {
+    const any = chatWavesTransAnyTurn(prompt)
+    const svc = any.service
+    chatLog.value.unshift({
+      q: prompt,
+      a: any.answer,
+      source: `${any.source} · npm run quantum:trans-any`,
+      grounded: any.grounded,
+      related: [
+        `win=${svc.mostEfficientModel}`,
+        `tongues=${svc.tongueCount}`,
+        `anyToAny=${svc.anyToAnyOn ? 1 : 0}`,
+        ...svc.honestOpenNamed.slice(0, 2),
+      ],
+      results: [],
+      resultCount: svc.efficiencyRank.length,
+      receipt: any.receipt || nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'translate' / 'bulgarian' / chat/trans — autonomous sealed en→bg via offlineTranslateEnToBg (NOT paid MT).
+  if (
+    /^\s*(please\s+)?(translate|bulgarian|bg)\b/i.test(prompt) ||
+    /^\s*chat\s*[-/]?\s*trans\s*$/i.test(prompt) ||
+    /^\s*trans\s*[-/]?\s*chat\s*$/i.test(prompt) ||
+    /^\s*(fill|close)\s+(translation|locale|bg)\s+gaps?\b/i.test(prompt)
+  ) {
+    const tr = chatTranslateTurn(prompt)
+    const svc = tr.service
+    chatLog.value.unshift({
+      q: prompt,
+      a: tr.answer,
+      source: `${tr.source} · npm run quantum:chat-trans`,
+      grounded: tr.grounded,
+      related: [
+        `autonomous=${svc.autonomousOn ? 1 : 0}`,
+        `hard=${svc.diagnosis.hard}`,
+        `phrases=${svc.diagnosis.phrases}`,
+        ...svc.honestOpenNamed.slice(0, 2),
+      ],
+      results: [],
+      resultCount: svc.facets.length,
+      receipt: tr.receipt || nav0.superposition,
     })
     chatInput.value = ''
     return
@@ -2442,6 +2495,20 @@ function runTool(toolId: string) {
       const r = translationGapsGate()
       ok = r.passed
       summary = `hard=${r.hardCount} warn=${r.warnCount} pages=${r.pageCount} phrases=${r.offline.phraseCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'chat-trans' || toolId === 'trans-chat') {
+      const r = chatTranslatesAutonomously()
+      ok = r.computes && r.autonomousOn
+      summary = `autonomous=${r.autonomousOn ? 1 : 0} chatDrives=${r.chatDrivesTranslate ? 1 : 0} bgDrainable=${r.bgGapsDrainableClosed ? 1 : 0} hard=${r.diagnosis.hard} phrases=${r.diagnosis.phrases}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'trans-any' || toolId === 'any-trans') {
+      const r = chatWavesMostEfficientOfflineAnyLanguageModel()
+      ok = r.computes && r.anyToAnyOn
+      summary = `win=${r.mostEfficientModel} tongues=${r.tongueCount} anyToAny=${r.anyToAnyOn ? 1 : 0} write=${r.writingOn ? 1 : 0} speech=${r.speechOn ? 1 : 0}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))

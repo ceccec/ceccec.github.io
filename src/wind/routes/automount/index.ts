@@ -5,8 +5,14 @@ import { earned } from '../../../3/7'
 import { SCHEMA_TWO_LEVEL_MODEL, SRC_SCIENCE_MODEL_ACTION_SCHEMA, indexRegistryFromLogicRel } from '../../../pair/enforcement/gates/computational'
 import {  isUuid, merge, merkleFold, toUuid } from '../../../0'
 import { discoverSrcIndexes, enforcementScanRoot, vitepressAutomountPaths } from '../../../pair/enforcement/gates/computational'
+import { offlineTranslateEnToBg } from '../../../1/9'
 import { toGlagolitic } from '../../../quantum/heaven/library'
 import { rosettaDecodesUrlPath, ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaRayHub, rosettaRayOf, rosettaRayOfContent } from '../../../water/digit'
+
+/** BG chrome via sealed phrase table — gla always covers via toGlagolitic (transliteration ≠ meaning). */
+function bgFromEnglishChrome(text: string): string {
+  return offlineTranslateEnToBg(text).text
+}
 import { staticPages, ROUTE_ALIASES, SITE_DOMAIN_SEED } from '../../site'
 import { componentPages } from '../../../quantum/heaven/mind'
 export { ROUTE_ALIASES } from '../../site'
@@ -573,10 +579,12 @@ export function monographSliceFromRoute(path: string, locale: 'gla' | 'en' | 'bg
   if (hub && !staticPages().some((page) => page.slug === bare)) {
     const rawTitle = `${hub.nameEn} — the ${hub.domain} hub`
     const rawDescription = `${hub.nameEn}: the hub for ${hub.domain} (computation kind "${hub.pageKind}"). The seven hubs are an organizing lens for navigation, not a metaphysical claim.`
+    const bgTitle = `${hub.nameBg} — ${bgFromEnglishChrome(`the ${hub.domain} hub`)}`
+    const bgDescription = `${hub.nameBg}: ${bgFromEnglishChrome(`the hub for ${hub.domain} (computation kind "${hub.pageKind}"). The seven hubs are an organizing lens for navigation, not a metaphysical claim.`)}`
     return {
       page: hub.slug,
-      title: locale === 'gla' ? toGlagolitic(rawTitle) : locale === 'bg' ? hub.nameBg : rawTitle,
-      description: locale === 'gla' ? toGlagolitic(rawDescription) : rawDescription,
+      title: locale === 'gla' ? toGlagolitic(rawTitle) : locale === 'bg' ? bgTitle : rawTitle,
+      description: locale === 'gla' ? toGlagolitic(rawDescription) : locale === 'bg' ? bgDescription : rawDescription,
       keywords: [hub.domain, `ray-${hub.ray}`, hub.pageKind, 'rosetta', 'hub'],
       components: ['RayHub'],
       proof: decoded.sharedRoot,
@@ -606,8 +614,8 @@ export function monographSliceFromRoute(path: string, locale: 'gla' | 'en' | 'bg
     const rawDescription = `${entry.science} · ${entry.model} · ${entry.action}`
     return {
       page: entry.route.replace(/^\//, ''),
-      title: locale === 'gla' ? toGlagolitic(rawTitle) : rawTitle,
-      description: locale === 'gla' ? toGlagolitic(rawDescription) : rawDescription,
+      title: locale === 'gla' ? toGlagolitic(rawTitle) : locale === 'bg' ? bgFromEnglishChrome(rawTitle) : rawTitle,
+      description: locale === 'gla' ? toGlagolitic(rawDescription) : locale === 'bg' ? bgFromEnglishChrome(rawDescription) : rawDescription,
       keywords: [entry.science, entry.model, entry.action],
       components: ['Monograph'],
       proof: toUuid(`index:${entry.logic}`),
@@ -619,7 +627,7 @@ export function monographSliceFromRoute(path: string, locale: 'gla' | 'en' | 'bg
   return {
     page: bare,
     title: locale === 'gla' ? toGlagolitic(rayMeta.nameEn) : locale === 'bg' ? rayMeta.nameBg : rayMeta.nameEn,
-    description: locale === 'gla' ? toGlagolitic(decoded.statement) : decoded.statement,
+    description: locale === 'gla' ? toGlagolitic(decoded.statement) : locale === 'bg' ? bgFromEnglishChrome(decoded.statement) : decoded.statement,
     keywords: [rayMeta.domain, `ray-${decoded.ray}`, decoded.computationType],
     components: ['Monograph'],
     proof: decoded.sharedRoot,

@@ -233,6 +233,20 @@ export const BULGARIAN_PHRASES: readonly (readonly [string, string])[] = [
   ['The vortex: 1-2-4-8-7-5', 'Вихърът: 1-2-4-8-7-5'],
   ['Content-addressing folds 64³ into one dot', 'Адресирането по съдържание сгъва 64³ в една точка'],
   ['Seven Star Rosetta', 'Седемзвездна Розета'],
+  // Automount chrome — drainable bg leaks while gla covers via toGlagolitic (chat/trans · trans/wave)
+  ['the origin hub', 'хъбът произход'],
+  ['the expression hub', 'хъбът израз'],
+  ['the knowledge hub', 'хъбът знание'],
+  ['the nature hub', 'хъбът природа'],
+  ['the computation hub', 'хъбът изчисление'],
+  ['the geometry hub', 'хъбът геометрия'],
+  ['the language hub', 'хъбът език'],
+  ['the hub for', 'хъбът за'],
+  [
+    'The seven hubs are an organizing lens for navigation, not a metaphysical claim.',
+    'Седемте хъба са организираща леща за навигация, не метафизично твърдение.',
+  ],
+  ['computation kind', 'вид изчисление'],
 ]
 
 /** Tri-locale path primitives + the en→bg translator — the ONE copy; wind/site (server) and

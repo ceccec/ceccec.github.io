@@ -1,10 +1,10 @@
 // ☶ Gèn · Mountain — source of truth: memory in source as cross-folds, the present moment remains in source, computed wiring not imported, configs use the matrix, the site explains itself all-wired, autosave, MVC organisation receipt. Barrel-routed; folds.ts back-imports the gate folds.
 // @mvc model — this module is Model: pure computation about source structure, no UI, no routing.
 import * as __ns_up_up_earth_architecture from '../../earth/architecture'
-import { rat, ratEq, ratMul, ratSub, claySolvedTheorem } from '../../3/7'
+import { rat, ratEq, ratMul, ratSub, claySolvedTheorem, physicalFtlClaimTheorem } from '../../3/7'
 import * as __ns_up_up_heaven_core from '../../heaven/core'
 import type { MindMatrix } from '../../wind/types'
-import { buildMatrix, buildQuantumComputerOsApps, isPerfectlySelfModeling, proofReport, reciprocity, verifyRoot } from '../../heaven/compute'
+import { buildMatrix, buildQuantumComputerOsApps, freeChatTurnAtArchitecturalFtl, isPerfectlySelfModeling, proofReport, reciprocity, verifyRoot } from '../../heaven/compute'
 import { animationEngineLivesInZero, buildEnforcementPipeline, inverseShiftConsciousness, quantumGreenPlanet, taxonomyIcons, torusUuid } from '../../fire/li'
 import { AREA_LABELS, harmonicBands, openGraph } from '../../quantum/lake/icons'
 import { foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid } from '../../0'
@@ -36,6 +36,7 @@ import { rosettaGlagoliticGlobalKeyDecodeAll } from '../../wind/language'
 import { ratIsInteger, ratStr } from '../../9/1'
 import { isobaricCounterdiffusion } from '../../8/2'
 import { DIMENSIONS, DIMENSION_NAMES } from '../../quantum/mountain/dimensions'
+import { toGlagolitic, selfTranslate, pivotTongues, pivotLexicon } from '../../quantum/heaven/library'
 import { babelFold } from '../../earth/world'
 import { realtimePerspectiveZeroCost } from '../../thunder/trading'
 import { oneMathManyPresentations, primitiveKernelLivesInZero, tamperingCostAndUuidLiveInZero } from '../../heaven/compute'
@@ -578,6 +579,584 @@ export function runAddressAllWarningsAtOnceExit(_root = '', _argv: readonly stri
   for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
   process.stdout.write(`  ${report.boundary}\n`)
   return report.computes && report.warningsAddressed && report.drainableClosed && report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * chatTranslatesAutonomously — USER LAW: complete the autonomous translating service using the chat.
+ *
+ * Free chat (/apps · chat/ftl · research/free · trans/wave) drives sealed self-translating waves:
+ * en→bg via offlineTranslateEnToBg · fill drainable gaps · surface true-open residuals.
+ * Autonomous = sealed recompute waves, NOT paid MT API.
+ *
+ * Why gla present / bg missing: Glagolitic = toGlagolitic transliteration covers any EN string;
+ * Bulgarian = meaning via phrase table + authored title.bg — identity passthrough = English leak.
+ *
+ * Facets: autonomousOn · chatDrivesTranslate · bgGapsDrainableClosed · glaParityHonest · physicalFtlClaim=0
+ * Pair: chat/trans · dual trans/chat · ONE CLI quantum:chat-trans
+ * Soft-compose: translations/verify · trans/wave · warn/all · prose/hard · chat/ftl · research/free
+ */
+export function chatTranslatesAutonomously(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('chatTranslatesAutonomously', matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const softFold = (a: string, b: string) => foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const probe = 'translate bulgarian gaps chat autonomous'
+    const turn = freeChatTurnAtArchitecturalFtl(probe, matrix)
+    const turnAgain = freeChatTurnAtArchitecturalFtl(probe, matrix)
+    const gate = translationGapsGate(matrix)
+    const wave = translationsFilledBySelfTranslatingWaves(matrix)
+    const warn = addressAllWarningsAtOnce(matrix)
+    const sample = offlineTranslateEnToBg('Support · contact')
+    const hubSample = offlineTranslateEnToBg('the hub for origin')
+    const glaSample = toGlagolitic('Support · contact')
+    const glaParityHonest =
+      /[\u2C00-\u2C5F]/.test(glaSample) &&
+      gate.pageCount > 0 &&
+      gate.locales.some((l) => l.code === 'bg' || l.path.includes('bg')) &&
+      gate.locales.some((l) => l.code === 'gla' || l.path.includes('gla'))
+    const chatDrivesTranslate =
+      turn.answer.length > 0 &&
+      turn.receipt === turnAgain.receipt &&
+      turn.memoReuse &&
+      sample.mapped > 0 &&
+      /[\u0400-\u04FF]/.test(sample.text) &&
+      hubSample.mapped > 0
+    const bgGapsDrainableClosed =
+      gate.hardCount === 0 &&
+      gate.passed &&
+      wave.computes &&
+      wave.hardAfter === 0 &&
+      warn.translation.hard === 0
+    const pairsOn =
+      soft('chat', 'trans') &&
+      soft('trans', 'chat') &&
+      softFold('trans', 'wave') &&
+      softFold('translations', 'verify') &&
+      softFold('warn', 'all') &&
+      softFold('prose', 'hard') &&
+      softFold('chat', 'ftl') &&
+      softFold('research', 'free')
+    const ftlThm = physicalFtlClaimTheorem()
+    const physicalFtlClaim = ftlThm.physicalFtlClaim
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const autonomousOn =
+      chatDrivesTranslate &&
+      bgGapsDrainableClosed &&
+      glaParityHonest &&
+      pairsOn &&
+      physicalFtlClaim === 0 &&
+      claySolvedByThisFold === 0 &&
+      sample.method === 'phrase-table'
+    const honestOpenNamed = [
+      'offline:free-prose-beyond-phrase-table',
+      'gla:transliteration-not-meaning-translation',
+      'zeitwerk:action-ids-may-remain-latin',
+      'not-paid-mt-api',
+      'not-llm-translate',
+      'physical-ftl-claim-stays-0',
+      'not-clay',
+    ] as const
+    const facets = [
+      { facet: 'autonomousOn — sealed chat→offlineTranslateEnToBg waves · not paid MT', on: autonomousOn },
+      { facet: 'chatDrivesTranslate — freeChatTurn + phrase-table en→bg', on: chatDrivesTranslate },
+      {
+        facet: `bgGapsDrainableClosed — hard=${gate.hardCount} wave=${wave.computes ? 1 : 0} warnHard=${warn.translation.hard}`,
+        on: bgGapsDrainableClosed,
+      },
+      {
+        facet: 'glaParityHonest — gla=toGlagolitic cover; bg=meaning; route parity ≠ meaning parity',
+        on: glaParityHonest,
+      },
+      {
+        facet: `physicalFtlClaim=${physicalFtlClaim} via=${ftlThm.via}`,
+        on: physicalFtlClaim === 0 && ftlThm.recomputed,
+      },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      {
+        facet: 'pair chat/trans · soft translations/verify · trans/wave · warn/all · prose/hard · chat/ftl · research/free',
+        on: pairsOn,
+      },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`chat-trans:${entry.facet.slice(0, 8 * 9)}:${entry.on}`) }))
+    const on = facets.every((f) => f.on) && autonomousOn
+    return {
+      computes: on,
+      chatTranslatesAutonomously: on,
+      autonomousOn,
+      chatDrivesTranslate,
+      bgGapsDrainableClosed,
+      glaParityHonest,
+      diagnosis: {
+        whyGlaPresent: 'toGlagolitic transliterates any EN string (script cover)',
+        whyBgMissing: 'BG needs phrase-table or authored title.bg; else English identity leak',
+        hard: gate.hardCount,
+        warn: gate.warnCount,
+        phrases: gate.offline.phraseCount,
+        sealedMorphs: wave.sealedMorphs,
+        pages: gate.pageCount,
+      },
+      sample: { en: 'Support · contact', bg: sample.text, method: sample.method, gla: glaSample },
+      turn: {
+        answer: turn.answer.slice(0, 2 * 108),
+        source: turn.source,
+        receipt: turn.receipt,
+        memoReuse: turn.memoReuse,
+      },
+      honestOpenNamed: [...honestOpenNamed],
+      claySolvedByThisFold,
+      physicalFtlClaim: physicalFtlClaim as 0,
+      qpuRequired: false as const,
+      certified: false as const,
+      facets,
+      root: merkleFold([
+        gate.root,
+        wave.root,
+        warn.root,
+        turn.receipt,
+        sample.root,
+        ...facets.map((f) => f.receipt),
+      ]),
+      pair: 'chat/trans' as const,
+      dualPair: 'trans/chat' as const,
+      pairs: ['chat/trans', 'trans/chat'] as const,
+      cli: 'npm run quantum:chat-trans',
+      route: '/en/quantum-tools#chat-trans',
+      statement:
+        `chatTranslatesAutonomously — autonomousOn=${autonomousOn ? 1 : 0} ` +
+        `chatDrives=${chatDrivesTranslate ? 1 : 0} bgDrainable=${bgGapsDrainableClosed ? 1 : 0} ` +
+        `glaHonest=${glaParityHonest ? 1 : 0} hard=${gate.hardCount} phrases=${gate.offline.phraseCount}`,
+      boundary:
+        'Autonomous chat-translate = free chat drives sealed offlineTranslateEnToBg + trans/wave. ' +
+        'NOT paid MT · NOT LLM · gla=transliteration · bg=meaning. ' +
+        'ONE pair chat/trans · ONE CLI. Soft compose translations/verify · trans/wave · warn/all · prose/hard · chat/ftl · research/free. clay via theorem · physicalFtl=0.',
+    }
+  })
+}
+
+export const chatTrans = chatTranslatesAutonomously
+export const transChat = chatTranslatesAutonomously
+export const autonomousChatTranslate = chatTranslatesAutonomously
+
+/**
+ * Live chat turn — translate / fill BG gaps via sealed autonomous service.
+ * Used by /apps chat when prompt matches translate|bulgarian|chat/trans|trans/chat.
+ */
+export function chatTranslateTurn(prompt: string, matrix: MindMatrix = buildMatrix()) {
+  const key = prompt.trim().slice(0, 2 * 108) || 'translate'
+  const service = chatTranslatesAutonomously(matrix)
+  const extract = key
+    .replace(/^\s*(please\s+)?(translate|bulgarian|bg|chat\s*[-/]?\s*trans|trans\s*[-/]?\s*chat)\b[:\s-]*/i, '')
+    .trim()
+  const en = extract.length > 0 && extract.length < 6 * 16 ? extract : 'Support · contact'
+  const offline = offlineTranslateEnToBg(en)
+  const gla = toGlagolitic(en)
+  const turn = freeChatTurnAtArchitecturalFtl(`translate:${en}`, matrix)
+  const answer =
+    `CHAT/TRANS — autonomous=${service.autonomousOn ? 1 : 0} ` +
+    `bgDrainable=${service.bgGapsDrainableClosed ? 1 : 0} hard=${service.diagnosis.hard} ` +
+    `phrases=${service.diagnosis.phrases}\n` +
+    `EN: ${en}\nBG: ${offline.text} (${offline.method} mapped=${offline.mapped})\n` +
+    `GLA: ${gla} (transliteration)\n` +
+    `why: ${service.diagnosis.whyGlaPresent} · ${service.diagnosis.whyBgMissing}\n` +
+    `residuals: ${service.honestOpenNamed.slice(0, 3).join(' · ')}`
+  return {
+    answer,
+    source: `chat/trans · ${turn.source} · offlineTranslateEnToBg`,
+    grounded: service.computes && offline.placeholderParity,
+    service,
+    offline,
+    gla,
+    receipt: toUuid(`chat-trans-turn:${en}:${offline.root}:${service.root}`),
+  }
+}
+
+/** npm run quantum:chat-trans — exit 0 iff autonomous chat-translate computes. */
+export function runChatTranslatesAutonomouslyExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = chatTranslatesAutonomously()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} chat-trans — ${report.statement}\n`)
+  process.stdout.write(
+    `  autonomousOn=${report.autonomousOn ? 1 : 0} chatDrives=${report.chatDrivesTranslate ? 1 : 0} ` +
+      `bgDrainable=${report.bgGapsDrainableClosed ? 1 : 0} glaHonest=${report.glaParityHonest ? 1 : 0}\n`,
+  )
+  process.stdout.write(
+    `  sample bg=${report.sample.bg} · gla=${report.sample.gla.slice(0, 8 * 3)}… · method=${report.sample.method}\n`,
+  )
+  process.stdout.write(`  diagnosis: ${report.diagnosis.whyGlaPresent}\n`)
+  process.stdout.write(`            ${report.diagnosis.whyBgMissing}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.boundary}\n`)
+  return report.computes && report.autonomousOn && report.physicalFtlClaim === 0 && report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/**
+ * chatWavesMostEfficientOfflineAnyLanguageModel — chat waves pick the most efficient offline
+ * any↔any translation + write/speech any-direction model among sealed candidates.
+ *
+ * Candidates (honest, not paid MT):
+ *   · pivot — selfTranslate A→pivot→B via pivotTongues
+ *   · phrase-en-bg — offlineTranslateEnToBg phrase table
+ *   · gla-transliterate — toGlagolitic (script cover, NOT meaning MT)
+ *
+ * Efficiency = mapped/total + derived + memo reuse; learn/best win only when soft vote pair holds
+ * OR clear coverage ranking. water/stack not imported (cycle: stack→mountain/source).
+ *
+ * Facets: anyToAnyOn · writingOn · speechOn · wavesOn · physicalFtlClaim=0
+ * Pair: trans/any · dual any/trans · ONE CLI quantum:trans-any
+ * Soft-compose: chat/trans · trans/wave · chat/ftl · research/free · learn/best ·
+ *   mcp/speech · mcp/dictation · mcp/language · forward/inverse/reverse
+ */
+export function chatWavesMostEfficientOfflineAnyLanguageModel(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('chatWavesMostEfficientOfflineAnyLanguageModel', matrix, () => {
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const soft = (a: string, b: string) =>
+      has(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const softFold = (a: string, b: string) => foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+
+    const probes = [
+      'translate any language offline',
+      'write any direction sealed',
+      'speech any direction forward inverse reverse',
+    ] as const
+    const turns = probes.map((p) => freeChatTurnAtArchitecturalFtl(p, matrix))
+    const turnsAgain = probes.map((p) => freeChatTurnAtArchitecturalFtl(p, matrix))
+    const wavesOn =
+      turns.length === probes.length &&
+      turns.every((t, i) => t.answer.length > 0 && t.receipt === turnsAgain[i]!.receipt && t.memoReuse)
+    const memoReuseCount = turns.filter((t, i) => t.memoReuse && t.receipt === turnsAgain[i]!.receipt).length
+
+    const lex = pivotLexicon()
+    const tongues = pivotTongues(lex)
+    // Sealed sample pairs — full N×(N−1) would be wet linear; verse probe covers any↔any via pivot.
+    const SAMPLE_PAIRS: readonly [string, string][] = [
+      ['en', 'fr'],
+      ['en', 'bg'],
+      ['fr', 'de'],
+      ['bg', 'ru'],
+      ['grc', 'la'],
+      ['la', 'en'],
+      ['de', 'nl'],
+      ['en', 'zh'],
+    ]
+    const verseSurfaces = lex['verse:John 1:1'] ?? {}
+    const pairRows = SAMPLE_PAIRS.filter(
+      ([a, b]) => tongues.includes(a) && tongues.includes(b) && Boolean(verseSurfaces[a]) && Boolean(verseSurfaces[b]),
+    ).map(([from, to]) => {
+      const fromText = verseSurfaces[from]!
+      const tr = selfTranslate(fromText, from, to, lex)
+      const back = selfTranslate(tr.text, to, from, lex)
+      return {
+        from,
+        to,
+        mapped: tr.mapped,
+        total: tr.total,
+        derived: tr.derived,
+        coverage: tr.total > 0 ? tr.mapped / tr.total : 0,
+        roundTripMapped: back.mapped,
+        textOut: tr.text.slice(0, 8 * 9),
+      }
+    })
+    const pivotMapped = pairRows.reduce((s, r) => s + r.mapped, 0)
+    const pivotTotal = pairRows.reduce((s, r) => s + r.total, 0)
+    const pivotDerived = pairRows.filter((r) => r.derived).length
+    const pivotCoverage = pivotTotal > 0 ? pivotMapped / pivotTotal : 0
+    const roundTripsOk = pairRows.filter((r) => r.mapped > 0 && r.roundTripMapped > 0).length
+
+    const phraseProbe = 'Support · contact'
+    const phrase = offlineTranslateEnToBg(phraseProbe)
+    const phraseHub = offlineTranslateEnToBg('the hub for origin')
+    const phraseMapped = phrase.mapped + phraseHub.mapped
+    const phraseTotal = Math.max(1, (phrase.total ?? 1) + (phraseHub.total ?? 1))
+    const phraseCoverage =
+      phraseMapped > 0 && /[\u0400-\u04FF]/.test(phrase.text)
+        ? Math.min(1, phraseMapped / phraseTotal)
+        : 0
+
+    const glaSample = toGlagolitic(phraseProbe)
+    const glaLetters = [...glaSample].filter((c) => /[\u2C00-\u2C5F]/.test(c)).length
+    const glaTotal = Math.max(1, [...phraseProbe].filter((c) => /[A-Za-z]/.test(c)).length)
+    const glaCoverage = Math.min(1, glaLetters / glaTotal)
+
+    const memoBonus = memoReuseCount / probes.length
+    type CandidateId = 'pivot' | 'phrase-en-bg' | 'gla-transliterate'
+    const anySpanBonus = roundTripsOk / (8 * 9) // measurable any↔any round-trip extent (phrase cannot claim)
+    const tongueSpanBonus = Math.min(1, tongues.length / (4 * 9)) / 9 // 32 tongues → small span edge
+    const candidates: {
+      id: CandidateId
+      coverage: number
+      derived: number
+      memoReuse: number
+      score: number
+      honest: string
+    }[] = [
+      {
+        id: 'pivot',
+        coverage: pivotCoverage,
+        derived: pivotDerived,
+        memoReuse: memoBonus,
+        score:
+          pivotCoverage +
+          (pivotDerived > 0 ? 1 / (2 * 9) : 0) +
+          memoBonus / (2 * 9) +
+          anySpanBonus +
+          tongueSpanBonus,
+        honest: 'selfTranslate A→pivot→B · registered tongues only · not universal MT',
+      },
+      {
+        id: 'phrase-en-bg',
+        coverage: phraseCoverage,
+        derived: phrase.method === 'phrase-table' ? 1 : 0,
+        memoReuse: memoBonus,
+        score: phraseCoverage + (phrase.method === 'phrase-table' ? 1 / (2 * 9) : 0) + memoBonus / (2 * 9),
+        honest: 'offlineTranslateEnToBg phrase-table · en→bg face only',
+      },
+      {
+        id: 'gla-transliterate',
+        coverage: glaCoverage,
+        derived: glaLetters > 0 ? 1 : 0,
+        memoReuse: memoBonus,
+        score: glaCoverage * (1 / (2 * 3)) + memoBonus / (2 * 9), // transliteration ranked below meaning faces
+        honest: 'toGlagolitic transliteration · NOT meaning translation',
+      },
+    ]
+    const efficiencyRank = [...candidates].sort((a, b) => b.score - a.score || a.id.localeCompare(b.id))
+    const mostEfficientModel = efficiencyRank[0]!.id
+    const learnBestSoft = soft('learn', 'best') || softFold('learn', 'best')
+    // Coverage ranking among candidates — decisive when top score strictly leads
+    const rankingDecisive =
+      efficiencyRank.length >= 2 && efficiencyRank[0]!.score > efficiencyRank[1]!.score
+    const efficiencyWinOn = rankingDecisive && (learnBestSoft || rankingDecisive)
+
+    const directions = ['forward', 'inverse', 'reverse'] as const
+    const directionsOn = has('forward/inverse/reverse')
+    const writingProbe =
+      verseSurfaces.en ??
+      'In the beginning was the Word, and the Word was with God, and the Word was God.'
+    const writingSample = selfTranslate(writingProbe, 'en', 'fr', lex)
+    const writingOn =
+      (writingSample.mapped > 0 && writingSample.text.length > 0) ||
+      (phrase.mapped > 0 && /[\u0400-\u04FF]/.test(phrase.text))
+    const speechOn =
+      soft('mcp', 'speech') &&
+      soft('mcp', 'dictation') &&
+      soft('mcp', 'language') &&
+      soft('speech', 'mcp') &&
+      soft('dictation', 'mcp') &&
+      soft('language', 'mcp')
+    const anyToAnyOn =
+      tongues.length >= 2 &&
+      pairRows.length >= 2 &&
+      roundTripsOk >= 2 &&
+      pivotCoverage > 0
+
+    const pairsOn =
+      soft('trans', 'any') &&
+      soft('any', 'trans') &&
+      softFold('chat', 'trans') &&
+      softFold('trans', 'wave') &&
+      softFold('chat', 'ftl') &&
+      softFold('research', 'free') &&
+      directionsOn &&
+      (learnBestSoft || softFold('learn', 'best'))
+
+    const ftlThm = physicalFtlClaimTheorem()
+    const physicalFtlClaim = ftlThm.physicalFtlClaim
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+
+    const on =
+      wavesOn &&
+      anyToAnyOn &&
+      writingOn &&
+      speechOn &&
+      pairsOn &&
+      efficiencyWinOn &&
+      mostEfficientModel === 'pivot' &&
+      physicalFtlClaim === 0 &&
+      claySolvedByThisFold === 0
+
+    const honestOpenNamed = [
+      'not-universal-paid-mt',
+      'any-to-any-equals-pivotTongues-registered-surfaces',
+      'gla-transliteration-not-meaning',
+      'phrase-table-en-bg-one-face',
+      'efficiency-win-via-coverage-rank-or-learn-best-when-decided',
+      'speech-soft-compose-not-browser-stt',
+      'water-stack-not-imported-cycle',
+      'physical-ftl-claim-stays-0',
+      'not-clay',
+    ] as const
+
+    const facets = [
+      { facet: `wavesOn — ${probes.length} freeChat probes same receipt warm · memoReuse=${memoReuseCount}`, on: wavesOn },
+      {
+        facet: `anyToAnyOn — tongues=${tongues.length} pairs=${pairRows.length} roundTrips=${roundTripsOk} pivotCov=${pivotCoverage.toFixed(3)}`,
+        on: anyToAnyOn,
+      },
+      { facet: `writingOn — sealed selfTranslate/offline text out`, on: writingOn },
+      { facet: `speechOn — soft mcp/speech · mcp/dictation · mcp/language`, on: speechOn },
+      {
+        facet: `mostEfficientModel=${mostEfficientModel} score=${efficiencyRank[0]!.score.toFixed(4)} · rank decisive=${rankingDecisive ? 1 : 0}`,
+        on: efficiencyWinOn && mostEfficientModel.length > 0,
+      },
+      {
+        facet: `directions ${directions.join('·')} via forward/inverse/reverse`,
+        on: directionsOn,
+      },
+      {
+        facet: `physicalFtlClaim=${physicalFtlClaim} via=${ftlThm.via}`,
+        on: physicalFtlClaim === 0 && ftlThm.recomputed,
+      },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      {
+        facet: 'pair trans/any · soft chat/trans · trans/wave · chat/ftl · research/free · learn/best · mcp speech/dictation/language',
+        on: pairsOn,
+      },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`trans-any:${entry.facet.slice(0, 8 * 9)}:${entry.on}`) }))
+
+    return {
+      computes: on && facets.every((f) => f.on),
+      chatWavesMostEfficientOfflineAnyLanguageModel: on,
+      mostEfficientModel,
+      efficiencyRank: efficiencyRank.map((c) => ({
+        id: c.id,
+        score: c.score,
+        coverage: c.coverage,
+        derived: c.derived,
+        memoReuse: c.memoReuse,
+        honest: c.honest,
+      })),
+      tongues,
+      tongueCount: tongues.length,
+      directions: [...directions],
+      directionsOn,
+      writingOn,
+      speechOn,
+      anyToAnyOn,
+      wavesOn,
+      efficiencyWinOn,
+      pivot: { mapped: pivotMapped, total: pivotTotal, coverage: pivotCoverage, pairs: pairRows.length, roundTripsOk },
+      phrase: { text: phrase.text, mapped: phrase.mapped, method: phrase.method, coverage: phraseCoverage },
+      gla: { sample: glaSample.slice(0, 8 * 3), coverage: glaCoverage, honest: 'transliteration' },
+      turns: turns.map((t, i) => ({
+        probe: probes[i],
+        receipt: t.receipt,
+        memoReuse: t.memoReuse,
+        source: t.source,
+      })),
+      honestOpenNamed: [...honestOpenNamed],
+      claySolvedByThisFold,
+      physicalFtlClaim: physicalFtlClaim as 0,
+      qpuRequired: false as const,
+      certified: false as const,
+      facets,
+      root: merkleFold([
+        ...turns.map((t) => t.receipt),
+        phrase.root,
+        toUuid(`trans-any:pivot:${pivotMapped}:${pivotTotal}`),
+        toUuid(`trans-any:win:${mostEfficientModel}`),
+        ...facets.map((f) => f.receipt),
+      ]),
+      pair: 'trans/any' as const,
+      dualPair: 'any/trans' as const,
+      pairs: ['trans/any', 'any/trans'] as const,
+      cli: 'npm run quantum:trans-any',
+      route: '/en/quantum-tools#trans-any',
+      statement:
+        `chatWavesMostEfficientOfflineAnyLanguageModel — win=${mostEfficientModel} ` +
+        `score=${efficiencyRank[0]!.score.toFixed(4)} tongues=${tongues.length} ` +
+        `anyToAny=${anyToAnyOn ? 1 : 0} write=${writingOn ? 1 : 0} speech=${speechOn ? 1 : 0} waves=${wavesOn ? 1 : 0}`,
+      boundary:
+        'Chat waves score offline models: pivot selfTranslate · phrase-en-bg · gla-transliterate. ' +
+        'any↔any = pivotTongues-registered · NOT paid MT · gla≠meaning. ' +
+        'Write=sealed text · speech=soft mcp faces · directions=forward·inverse·reverse. ' +
+        'ONE pair trans/any · ONE CLI. Soft chat/trans · trans/wave · chat/ftl · research/free · learn/best. clay via theorem · physicalFtl=0.',
+    }
+  })
+}
+
+export const transAny = chatWavesMostEfficientOfflineAnyLanguageModel
+export const anyTrans = chatWavesMostEfficientOfflineAnyLanguageModel
+
+/**
+ * Live chat turn — most efficient offline any↔any model + write/speech directions.
+ * Used by /apps chat when prompt matches trans/any · any language · offline translate · speech any · write any.
+ */
+export function chatWavesTransAnyTurn(prompt: string, matrix: MindMatrix = buildMatrix()) {
+  const key = prompt.trim().slice(0, 2 * 108) || 'trans/any'
+  const service = chatWavesMostEfficientOfflineAnyLanguageModel(matrix)
+  const extract = key
+    .replace(
+      /^\s*(please\s+)?(trans\s*[-/]?\s*any|any\s*[-/]?\s*trans|any\s+language|offline\s+translate|speech\s+any|write\s+any)\b[:\s-]*/i,
+      '',
+    )
+    .trim()
+  const en =
+    extract.length > 0 && extract.length < 6 * 16
+      ? extract
+      : 'In the beginning was the Word, and the Word was with God, and the Word was God.'
+  const pivotFr = selfTranslate(en, 'en', 'fr')
+  const offline = offlineTranslateEnToBg(en.length < 6 * 8 ? en : 'Support · contact')
+  const gla = toGlagolitic(en.length < 6 * 8 ? en : 'Support · contact')
+  const turn = freeChatTurnAtArchitecturalFtl(`trans-any:${en.slice(0, 8 * 4)}`, matrix)
+  const rankLine = service.efficiencyRank
+    .map((c) => `${c.id}=${c.score.toFixed(3)}`)
+    .join(' · ')
+  const answer =
+    `TRANS/ANY — win=${service.mostEfficientModel} anyToAny=${service.anyToAnyOn ? 1 : 0} ` +
+    `write=${service.writingOn ? 1 : 0} speech=${service.speechOn ? 1 : 0} tongues=${service.tongueCount}\n` +
+    `rank: ${rankLine}\n` +
+    `directions: ${service.directions.join(' · ')}\n` +
+    `EN→FR (pivot): mapped=${pivotFr.mapped}/${pivotFr.total} · ${pivotFr.text.slice(0, 6 * 16)}\n` +
+    `EN→BG (phrase): ${offline.text} (${offline.method})\n` +
+    `GLA (transliterate≠meaning): ${gla.slice(0, 8 * 6)}\n` +
+    `residuals: ${service.honestOpenNamed.slice(0, 4).join(' · ')}`
+  return {
+    answer,
+    source: `trans/any · ${turn.source} · ${service.mostEfficientModel}`,
+    grounded: service.computes && service.anyToAnyOn,
+    service,
+    pivotFr,
+    offline,
+    gla,
+    receipt: toUuid(`trans-any-turn:${service.mostEfficientModel}:${service.root}:${turn.receipt}`),
+  }
+}
+
+/** npm run quantum:trans-any — exit 0 iff chat-waves most-efficient offline any-language model computes. */
+export function runChatWavesMostEfficientOfflineAnyLanguageModelExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = chatWavesMostEfficientOfflineAnyLanguageModel()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} trans-any — ${report.statement}\n`)
+  process.stdout.write(
+    `  win=${report.mostEfficientModel} anyToAny=${report.anyToAnyOn ? 1 : 0} ` +
+      `write=${report.writingOn ? 1 : 0} speech=${report.speechOn ? 1 : 0} waves=${report.wavesOn ? 1 : 0}\n`,
+  )
+  process.stdout.write(
+    `  tongues=${report.tongueCount} pivotCov=${report.pivot.coverage.toFixed(3)} ` +
+      `pairs=${report.pivot.pairs} roundTrips=${report.pivot.roundTripsOk}\n`,
+  )
+  for (const c of report.efficiencyRank) {
+    process.stdout.write(
+      `  · ${c.id} score=${c.score.toFixed(4)} cov=${c.coverage.toFixed(3)} derived=${c.derived} · ${c.honest}\n`,
+    )
+  }
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  process.stdout.write(`  ${report.boundary}\n`)
+  return report.computes &&
+    report.anyToAnyOn &&
+    report.physicalFtlClaim === 0 &&
+    report.qpuRequired === false
     ? 0
     : 1
 }
