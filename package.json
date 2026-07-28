@@ -914,7 +914,8 @@
     "quantum:ftl-crack": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runNonFtlIsCrackInFtlAppExit",
     "quantum:auditor-waves": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runFreeAuditorWavesPerSrcFileExit",
     "quantum:link-discover": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runAlgebraicCrosslinksDiscoveredNotEncodedExit",
-    "quantum:user-waves": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runFreeUserWavesTestUiMeasureEfficiencyExit"
+    "quantum:user-waves": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runFreeUserWavesTestUiMeasureEfficiencyExit",
+    "quantum:feed-ui": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runFeedUiIntoItselfExit"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

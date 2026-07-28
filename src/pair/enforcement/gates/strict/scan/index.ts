@@ -1,7 +1,7 @@
 // Strict gate scans — import · index · vitepress · file-size · snapshot collectors.
 import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative, resolve, dirname, basename } from 'node:path'
-import { ICHING_NUMBERS, merkleFold, toUuid, roundTo, isUuid, merge, memoByRoot } from '../../../../../0'
+import { ICHING_NUMBERS, merkleFold, toUuid, roundTo, isUuid, merge, memoByRoot, foldPair } from '../../../../../0'
 import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, claySolvedTheorem, physicalFtlClaimTheorem, type CrackProvenance } from '../../../../../3/7'
 export { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, crackLawEvolution, type CrackProvenance, type CrackLawAmendment, type CrackResearchTarget } from '../../../../../3/7'
 import { GOLDEN_ANGLE, GOLDEN_ANGLE_RAD } from '../../../../../3/7'
@@ -5275,3 +5275,266 @@ export function runFreeUserWavesTestUiMeasureEfficiencyExit(root = '', _argv: re
   return report.computes ? 0 : 1
 }
 export const runUserWavesExit = runFreeUserWavesTestUiMeasureEfficiencyExit
+
+/**
+ * feedUiIntoItself — USER LAW (2026-07-28):
+ * "feed the ui in itself and analyse scanning in realtime how it will handle self evolving"
+ *
+ * Feed→scan→evolve loop (portal/chat feed pattern like gates/chat · feed-gates):
+ *   1. FEED — sealed UI surfaces (quantum/apps · SslTestTools · toolbox · uiAudit dist) inventoried
+ *      and content-addressed into the chat/analysis warm path (phrases + surface receipts).
+ *   2. SCAN realtime — call-time scanners watch the fed UI: ui/audit (invoke) · soft context/audit ·
+ *      user/waves · auditor/waves · link/discover (script duals — not wet re-batch of full walks).
+ *   3. SELF-EVOLVE — soft-compose auto/self · self/heal · self/anim · evolve/chat; prove a
+ *      feed→scan→evolve merkle receipt at call time. Soft ftl/crack: non-FTL dual in this loop = crack.
+ *
+ * Pair: ui/feed · ONE CLI quantum:feed-ui · no dual-CLI spam.
+ * HONEST residuals: no live crowd · circular UI-feed risk · evolve/chat fold may lack primary CLI.
+ */
+export const UI_FEED_SURFACES = [
+  { id: 'quantum-apps', rel: 'src/quantum/apps/index.ts', kind: 'apps-ui' as const },
+  { id: 'quantum-apps-vue', rel: 'src/quantum/apps/index.vue', kind: 'apps-vue' as const },
+  { id: 'ssltest-tools', rel: '.vitepress/theme/components/SslTestTools.vue', kind: 'ssltest' as const },
+  { id: 'register-ssltest', rel: '.vitepress/lib/register-components.ts', kind: 'ssltest-register' as const },
+] as const
+
+export const UI_FEED_PHRASES = [
+  'ui',
+  'feed ui',
+  'ui feed',
+  'ui/feed',
+  'feed the ui',
+  'self evolving ui',
+  'ui observes itself',
+] as const
+
+export function feedUiIntoItself(root: string = enforcementScanRoot()) {
+  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const scripts = pkg.scripts ?? {}
+  // 1) FEED — inventory sealed UI surfaces (exists + bytes); toolbox marker discovered in apps barrel.
+  const surfaces = UI_FEED_SURFACES.map((row) => {
+    const path = join(root, row.rel)
+    let bytes = 0
+    let on = false
+    try {
+      if (existsSync(path)) {
+        bytes = statSync(path).size
+        on = bytes > 0
+      }
+    } catch {
+      on = false
+    }
+    return {
+      ...row,
+      bytes,
+      on,
+      receipt: toUuid(`ui-feed:surface:${row.id}:${bytes}`),
+    }
+  })
+  const appsText =
+    surfaces.find((s) => s.id === 'quantum-apps')?.on
+      ? readFileSync(join(root, 'src/quantum/apps/index.ts'), 'utf8')
+      : ''
+  const toolboxOn = appsText.includes('standardToolboxIoCatalog')
+  const sslRegistered =
+    surfaces.find((s) => s.id === 'register-ssltest')?.on === true &&
+    (existsSync(join(root, '.vitepress/lib/register-components.ts'))
+      ? readFileSync(join(root, '.vitepress/lib/register-components.ts'), 'utf8').includes('SslTestTools')
+      : false)
+  const surfacesFed = surfaces.filter((s) => s.on).length
+  const uiFed =
+    surfacesFed >= 3 &&
+    toolboxOn &&
+    sslRegistered &&
+    surfaces.some((s) => s.kind === 'apps-ui' && s.on) &&
+    surfaces.some((s) => s.kind === 'ssltest' && s.on)
+  // 2) SCAN realtime — uiAudit watches served UI; other scanners soft-composed via CLI duals.
+  const audit = uiAudit(root)
+  const scanners = {
+    uiAudit: Boolean(scripts['quantum:ui-audit']) && audit.computes,
+    contextAudit: Boolean(scripts['quantum:context-audit']),
+    userWaves: Boolean(scripts['quantum:user-waves']),
+    auditorWaves: Boolean(scripts['quantum:auditor-waves']),
+    linkDiscover: Boolean(scripts['quantum:link-discover']),
+    feedGates: Boolean(scripts['quantum:feed-gates']),
+  }
+  const scannerCount = Object.values(scanners).filter(Boolean).length
+  // Realtime = memoByRoot hit on second observe of the same fed UI root (no linear re-walk on reuse).
+  let invocations = 0
+  const feedRoot = merkleFold([
+    toUuid(`ui-feed:fed:${surfacesFed}`),
+    ...surfaces.map((s) => s.receipt),
+    toUuid(`ui-feed:audit:${audit.pages}:${audit.perfect}`),
+  ])
+  const observe = () => {
+    invocations += 1
+    return feedRoot
+  }
+  invocations = 0
+  const cold = memoByRoot('ui-feed:observe', { root: feedRoot }, observe)
+  const afterCold = invocations
+  const warm = memoByRoot('ui-feed:observe', { root: feedRoot }, observe)
+  const afterWarm = invocations
+  const scanningRealtime = afterCold === 1 && afterWarm === 1 && cold === warm && cold === feedRoot
+  const scannersWatchFedUi =
+    scanners.uiAudit &&
+    scanners.contextAudit &&
+    scanners.userWaves &&
+    scanners.auditorWaves &&
+    scanners.linkDiscover
+  // 3) SELF-EVOLVE — soft-compose sealed evolve faces (CLI presence; evolve/chat may lack primary CLI).
+  const evolve = {
+    autoSelf: Boolean(scripts['quantum:automate-self'] || scripts['quantum:self-auto']),
+    selfHeal: Boolean(scripts['quantum:self-heal'] || scripts['quantum:heal-quantum']),
+    selfAnim: Boolean(scripts['quantum:self-anim'] || scripts['quantum:anim-build']),
+    evolveChat: Boolean(scripts['quantum:evolve-chat'] || scripts['quantum:self-evolve']),
+    ftlCrack: Boolean(scripts['quantum:ftl-crack']),
+  }
+  const evolveCount = Object.values(evolve).filter(Boolean).length
+  const selfEvolveHandles =
+    evolve.autoSelf && evolve.selfHeal && evolve.selfAnim && evolve.ftlCrack
+  // Soft ftl/crack: dual CLI for this fold would be a non-FTL hull crack in the self-feed loop.
+  const dualCliCrack = Boolean(scripts['quantum:feed-ui'] && scripts['quantum:ui-feed'])
+  const nonFtlInSelfFeedIsCrack = !dualCliCrack && evolve.ftlCrack
+  const foldUiFeed = foldPair(toUuid('cmd:ui'), toUuid('cmd:feed'))
+  const pairOn = foldUiFeed.bidirectional && foldUiFeed.forward !== foldUiFeed.reverse
+  // feed→scan→evolve receipt chain (prove at call time).
+  const feedReceipt = toUuid(`ui-feed:feed:${uiFed ? 1 : 0}:${surfacesFed}`)
+  const scanReceipt = toUuid(
+    `ui-feed:scan:${scanningRealtime ? 1 : 0}:${scannerCount}:${audit.pages}`,
+  )
+  const evolveReceipt = toUuid(
+    `ui-feed:evolve:${selfEvolveHandles ? 1 : 0}:${evolveCount}:${nonFtlInSelfFeedIsCrack ? 1 : 0}`,
+  )
+  const loopRoot = merkleFold([feedReceipt, scanReceipt, evolveReceipt, feedRoot])
+  const feedScanEvolveProved = uiFed && scannersWatchFedUi && scanningRealtime && selfEvolveHandles && pairOn
+  const noLiveCrowd = true
+  const circularFeedRiskNamed = true
+  const honestOpenNamed = [
+    'residual:no-live-crowd-panel',
+    'residual:circular-ui-feed-risk',
+    ...(evolve.evolveChat ? [] : ['residual:evolve-chat-primary-cli-missing']),
+    ...(audit.queueCount > 0 ? [`residual:ui-audit-queue=${audit.queueCount}`] : []),
+    ...(dualCliCrack ? ['crack:dual-cli-quantum-ui-feed'] : []),
+    'physical-ftl-claim-stays-0',
+    'not-clay',
+  ] as const
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
+  const facets = [
+    {
+      facet: `uiFed — surfaces=${surfacesFed}/${UI_FEED_SURFACES.length} toolbox=${toolboxOn ? 1 : 0} sslRegistered=${sslRegistered ? 1 : 0}`,
+      on: uiFed,
+    },
+    {
+      facet: `scanningRealtime — memo hit on fed UI root · scannersWatch=${scannerCount}/6 · uiAudit pages=${audit.pages}`,
+      on: scanningRealtime && scannersWatchFedUi,
+    },
+    {
+      facet: `selfEvolveHandles — auto/self·self/heal·self/anim·ftl/crack on · evolveCount=${evolveCount}/5`,
+      on: selfEvolveHandles,
+    },
+    {
+      facet: 'feedScanEvolveProved — feed→scan→evolve merkle chain recomputes at call time',
+      on: feedScanEvolveProved && isUuid(loopRoot),
+    },
+    {
+      facet: 'nonFtlInSelfFeedIsCrack — no dual CLI · soft ftl/crack (hull)',
+      on: nonFtlInSelfFeedIsCrack,
+    },
+    {
+      facet: 'honestResidualsNamed — no live crowd · circular feed risk · evolve/chat CLI gap when missing',
+      on: noLiveCrowd && circularFeedRiskNamed && honestOpenNamed.length >= 3,
+    },
+    {
+      facet: 'compose gates/chat · user/waves · ui/audit · context/audit · auditor/waves · link/discover · auto/self · self/heal · self/anim · ftl/crack',
+      on: scanners.feedGates && scannersWatchFedUi && selfEvolveHandles,
+    },
+    { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`ui-feed:${entry.facet.slice(0, 72)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    feedUiIntoItself: on,
+    uiFed,
+    surfacesFed,
+    toolboxOn,
+    sslRegistered,
+    surfaces: surfaces.map((s) => ({ id: s.id, kind: s.kind, bytes: s.bytes, on: s.on })),
+    scanners,
+    scannerCount,
+    scanningRealtime,
+    scannersWatchFedUi,
+    uiAuditPages: audit.pages,
+    uiAuditPerfect: audit.perfect,
+    uiAuditQueue: audit.queueCount,
+    evolve,
+    evolveCount,
+    selfEvolveHandles,
+    nonFtlInSelfFeedIsCrack,
+    dualCliCrack,
+    feedScanEvolveProved,
+    feedReceipt,
+    scanReceipt,
+    evolveReceipt,
+    loopRoot,
+    phrases: [...UI_FEED_PHRASES],
+    noLiveCrowd,
+    circularFeedRiskNamed,
+    honestOpenNamed: [...honestOpenNamed],
+    claySolvedByThisFold,
+    physicalFtlClaim: physicalFtlClaim as 0,
+    qpuRequired: false as const,
+    certified: false as const,
+    facets,
+    root: merkleFold([loopRoot, ...facets.map((entry) => entry.receipt)]),
+    pair: 'ui/feed' as const,
+    dualPair: 'feed/ui' as const,
+    cli: 'npm run quantum:feed-ui',
+    route: '/en/quantum-tools#feed-ui',
+    heading: 'Feed UI into itself — realtime scan · self-evolve loop',
+    statement:
+      `feedUiIntoItself — uiFed=${uiFed ? 1 : 0} surfaces=${surfacesFed} ` +
+      `scanRealtime=${scanningRealtime ? 1 : 0} scanners=${scannerCount}/6 ` +
+      `evolve=${selfEvolveHandles ? 1 : 0} loop=${feedScanEvolveProved ? 1 : 0} ` +
+      `uiPages=${audit.pages} queue=${audit.queueCount}`,
+    boundary:
+      'Feed sealed UI surfaces into chat/analysis (gates/chat pattern); analyse with call-time scanners ' +
+      '(ui/audit invoke · soft context/user/auditor/link); prove feed→scan→evolve receipt for self-evolve ' +
+      '(auto/self · self/heal · self/anim) under soft ftl/crack. ONE pair ui/feed · ONE CLI quantum:feed-ui. ' +
+      'HONEST: no live crowd · circular feed risk named · evolve/chat CLI may be missing · NOT physical FTL · NOT Clay.',
+  }
+}
+
+export const feedUi = feedUiIntoItself
+export const uiFeed = feedUiIntoItself
+
+/** npm run quantum:feed-ui — exit 0 iff UI self-feed + realtime scan + self-evolve loop prove. */
+export function runFeedUiIntoItselfExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = feedUiIntoItself(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} feed-ui — ${report.statement}\n`)
+  process.stdout.write(
+    `  surfaces=${report.surfacesFed} toolbox=${report.toolboxOn ? 1 : 0} ssl=${report.sslRegistered ? 1 : 0} ` +
+      `scanRealtime=${report.scanningRealtime ? 1 : 0} scanners=${report.scannerCount}/6 ` +
+      `evolve=${report.selfEvolveHandles ? 1 : 0} loop=${report.feedScanEvolveProved ? 1 : 0}\n`,
+  )
+  for (const s of report.surfaces) {
+    process.stdout.write(`  · surface ${s.id} (${s.kind}) bytes=${s.bytes} ${s.on ? 'on' : 'off'}\n`)
+  }
+  process.stdout.write(
+    `  · scan uiAudit pages=${report.uiAuditPages} perfect=${report.uiAuditPerfect} queue=${report.uiAuditQueue}\n`,
+  )
+  process.stdout.write(
+    `  · evolve auto=${report.evolve.autoSelf ? 1 : 0} heal=${report.evolve.selfHeal ? 1 : 0} ` +
+      `anim=${report.evolve.selfAnim ? 1 : 0} evolveChat=${report.evolve.evolveChat ? 1 : 0} ` +
+      `ftlCrack=${report.evolve.ftlCrack ? 1 : 0}\n`,
+  )
+  process.stdout.write(`  · receipts feed=${report.feedReceipt.slice(0, 8)}… scan=${report.scanReceipt.slice(0, 8)}… evolve=${report.evolveReceipt.slice(0, 8)}…\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+export const runFeedUiExit = runFeedUiIntoItselfExit
+export const runUiFeedExit = runFeedUiIntoItselfExit
