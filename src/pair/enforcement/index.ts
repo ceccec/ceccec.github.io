@@ -1955,7 +1955,7 @@ export const runChatPairExit = runPairsSentToChatEntangleByAlgebraExit
  * Match = two-segment duals a/b ↔ b/a both in registry.
  * Immediate = trinity third computed in the same memoByRoot call (no deferred wait).
  * Related = registry pairs sharing a tip with a or b (discovered, not encoded soft lists).
- * Brainstorm = freeChatTurn waves per match · warm memo reuse.
+ * Brainstorm = full roster batched into FREE_BITS×5 trinity waves · merkle root per batch · warm memo reuse.
  *
  * Pair: match/wave · dual wave/match · ONE CLI quantum:match-wave
  * Soft: pair/chat · chat/ftl · waves/build · tool/matrix · folder/fractal
@@ -2027,28 +2027,41 @@ export function matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWa
           return third === m0.third
         })()
 
-      // Brainstorm waves — tip sample of matches (not wet-linear all).
-      const BRAINSTORM_N = 5 * 2 // FREE_BITS×5
-      const sample = matches.slice(0, BRAINSTORM_N)
-      const brainstormTurns = sample.map((m) => {
+      // Fuller roster — batch every match into FREE_BITS×5 trinity waves (not wet-linear per-match chat).
+      const BATCH = 5 * 2 // FREE_BITS×5
+      const batches: MatchRow[][] = []
+      for (let i = 0; i < matches.length; i += BATCH) batches.push(matches.slice(i, i + BATCH))
+      const brainstormTurns = batches.map((batch, bi) => {
+        const batchRoot = merkleFold(batch.map((m) => m.third))
         const tip =
-          `brainstorm solutions ${m.forward}⊗${m.reverse} related ${m.related.slice(0, 5).join(' ')}`
+          `brainstorm batch ${bi} matches ${batch.map((m) => `${m.forward}⊗${m.reverse}`).join(' ')} ` +
+          `related ${batch.flatMap((m) => m.related.slice(0, 2)).slice(0, 5 * 2).join(' ')} ` +
+          `root ${batchRoot.slice(0, 8)}`
         const cold = freeChatTurnAtArchitecturalFtl(tip, matrix)
         const warm = freeChatTurnAtArchitecturalFtl(tip, matrix)
         return {
-          match: `${m.forward}⊗${m.reverse}`,
-          relatedCount: m.related.length,
+          batch: bi,
+          matchCount: batch.length,
+          matches: batch.map((m) => `${m.forward}⊗${m.reverse}`),
+          relatedCount: batch.reduce((s, m) => s + m.related.length, 0),
+          batchRoot,
           answer: cold.answer.slice(0, 2 * 108),
           memoReuse: cold.memoReuse && cold.receipt === warm.receipt,
           receipt: cold.receipt,
         }
       })
+      const rosterCovered = brainstormTurns.reduce((s, t) => s + t.matchCount, 0)
+      const brainstormRosterCoverage =
+        matches.length > 0 ? rosterCovered / matches.length : 0
+      const fullRosterOn =
+        matches.length > 0 && rosterCovered === matches.length && batches.length > 0
       const brainstormWavesOn =
-        sample.length > 0 &&
+        fullRosterOn &&
+        brainstormTurns.length > 0 &&
         brainstormTurns.every((t) => t.answer.length > 0 && t.memoReuse)
       const developRelatedSolutions =
         brainstormWavesOn &&
-        sample.every((m) => m.related.length > 0 || m.forward.length > 0) &&
+        matches.every((m) => m.related.length > 0 || m.forward.length > 0) &&
         brainstormTurns.every((t) => t.relatedCount >= 0)
 
       const softCmd = (a: string, b: string) =>
@@ -2071,6 +2084,7 @@ export function matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWa
         base.computes &&
         matchingOn &&
         immediatelyRealise &&
+        fullRosterOn &&
         brainstormWavesOn &&
         developRelatedSolutions &&
         pairsOn &&
@@ -2078,12 +2092,12 @@ export function matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWa
         claySolvedByThisFold === 0
 
       const honestOpenNamed = [
-        'brainstorm-sample-not-all-matches-linear',
         'related-by-shared-tip-not-semantic-mt',
         'not-physical-qubit-entanglement',
         'physical-ftl-claim-stays-0',
         'not-clay',
         'residual:quantum-apps-monolith',
+        ...(brainstormRosterCoverage < 1 ? ['residual:brainstorm-roster-not-full'] : []),
       ] as const
 
       const facets = [
@@ -2096,7 +2110,11 @@ export function matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWa
           on: immediatelyRealise,
         },
         {
-          facet: `brainstormWavesOn — ${brainstormTurns.length} chat waves memoReuse · related solutions`,
+          facet: `fullRosterOn — ${rosterCovered}/${matches.length} matches in ${batches.length} batches · coverage=${brainstormRosterCoverage.toFixed(3)}`,
+          on: fullRosterOn,
+        },
+        {
+          facet: `brainstormWavesOn — ${brainstormTurns.length} batch chat waves memoReuse · related solutions`,
           on: brainstormWavesOn,
         },
         {
@@ -2126,11 +2144,15 @@ export function matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWa
         matchingOn,
         matchCount: matches.length,
         immediatelyRealise,
+        fullRosterOn,
+        brainstormRosterCoverage,
+        batchCount: batches.length,
         brainstormWavesOn,
         developRelatedSolutions,
-        sampleMatches: sample.map((m) => `${m.forward}⊗${m.reverse}`),
-        brainstormSample: brainstormTurns.map((t) => ({
-          match: t.match,
+        sampleMatches: matches.slice(0, 5 * 2).map((m) => `${m.forward}⊗${m.reverse}`),
+        brainstormSample: brainstormTurns.slice(0, 5 * 2).map((t) => ({
+          batch: t.batch,
+          matchCount: t.matchCount,
           relatedCount: t.relatedCount,
           memoReuse: t.memoReuse,
         })),
@@ -2155,12 +2177,13 @@ export function matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWa
         route: '/en/quantum-tools#match-wave',
         statement:
           `matchingPairsImmediatelyRealise… — matches=${matches.length} ` +
-          `immediate=${immediatelyRealise ? 1 : 0} brainstorm=${brainstormTurns.length} ` +
-          `develop=${developRelatedSolutions ? 1 : 0}`,
+          `immediate=${immediatelyRealise ? 1 : 0} batches=${batches.length} fullRoster=${fullRosterOn ? 1 : 0} ` +
+          `coverage=${brainstormRosterCoverage.toFixed(3)} develop=${developRelatedSolutions ? 1 : 0}`,
         boundary:
           'Matching duals a/b↔b/a immediately realise entanglement via foldPair trinity in one memoByRoot call; ' +
-          'related solutions develop in free-chat brainstorm waves. NOT physical qubits · NOT physical FTL. ' +
-          'ONE pair match/wave · ONE CLI. Soft pair/chat · chat/ftl · waves/build · tool/matrix · folder/fractal. clay via theorem · physicalFtl=0.',
+          'full roster develops in batched free-chat brainstorm waves (FREE_BITS×5 per batch, merkle root per batch). ' +
+          'NOT physical qubits · NOT physical FTL. ONE pair match/wave · ONE CLI. ' +
+          'Soft pair/chat · chat/ftl · waves/build · tool/matrix · folder/fractal. clay via theorem · physicalFtl=0.',
       }
     },
   )
@@ -2181,9 +2204,10 @@ export function matchingPairsImmediatelyRealiseEntanglementTurn(
   )
   const answer =
     `MATCH/WAVE — matches=${service.matchCount} immediate=${service.immediatelyRealise ? 1 : 0} ` +
-    `brainstorm=${service.brainstormSample.length} develop=${service.developRelatedSolutions ? 1 : 0}\n` +
+    `batches=${service.batchCount} fullRoster=${service.fullRosterOn ? 1 : 0} ` +
+    `coverage=${service.brainstormRosterCoverage.toFixed(3)} develop=${service.developRelatedSolutions ? 1 : 0}\n` +
     `sample: ${service.sampleMatches.join(' · ')}\n` +
-    `waves: ${service.brainstormSample.map((b) => `${b.match}(rel=${b.relatedCount})`).join(' · ')}\n` +
+    `waves: ${service.brainstormSample.map((b) => `batch${b.batch}×${b.matchCount}(rel=${b.relatedCount})`).join(' · ')}\n` +
     `chat: ${turn.answer.slice(0, 2 * 108)}\n` +
     `residuals: ${service.honestOpenNamed.slice(0, 3).join(' · ')}`
   return {

@@ -895,7 +895,8 @@ function sendChat() {
       related: [
         `matches=${svc.matchCount}`,
         `immediate=${svc.immediatelyRealise ? 1 : 0}`,
-        `brainstorm=${svc.brainstormSample.length}`,
+        `batches=${svc.batchCount}`,
+        `fullRoster=${svc.fullRosterOn ? 1 : 0}`,
         ...svc.sampleMatches.slice(0, 3),
       ],
       results: [],
