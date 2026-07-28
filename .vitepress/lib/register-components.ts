@@ -81,6 +81,7 @@ const OVERRIDES: Record<string, () => Promise<{ default: Component }>> = {
   Merkaba: () => import('../../src/render/merkaba/index.vue'),
   DoubleTorusExperience: () => import('../theme/components/DoubleTorusExperience.vue'),
   EncryptionTools: () => import('../../src/water/encryption/index.vue'),
+  SslTestTools: () => import('../theme/components/SslTestTools.vue'),
   MillenniumChallenge: () => import('../../src/wind/research/index.vue'),
   ResearchIndex: () => import('../../src/wind/research/index.vue'),
   QuantumTools: () => import('../../src/quantum/apps/index.vue'),
@@ -118,7 +119,7 @@ function browserComponentNames(): readonly string[] {
     'BulgarianHistory', 'BulgarianEthnogenesis', 'SacredGeometry', 'Society', 'PlayLearn', 'Multidimensional',
     'QuantumConsole', 'McpTools', 'YinYang', 'ChakrasAura', 'HumanDesignBodyGraph', 'TaxonomyIcons', 'HarmonicMap', 'TamperingCost',
     'BoundaryAudit', 'A432', 'QuantumCircuit', 'CryptoChallenges', 'BlockchainCompare', 'ElectromagneticRadiation',
-    'EncryptionTools', 'MillenniumChallenge', 'ResearchIndex', 'QuantumTools', 'FusionVerify',
+    'EncryptionTools', 'SslTestTools', 'MillenniumChallenge', 'ResearchIndex', 'QuantumTools', 'FusionVerify',
   ] as const
   return [...new Set([
     ...globals,

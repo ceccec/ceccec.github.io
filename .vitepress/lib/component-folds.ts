@@ -578,9 +578,39 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
       crosslinks: [
         { text: 'Encryption page', link: '/quantum-encryption', kind: 'topic' },
         { text: 'Beyond RSA measured', link: '/quantum-encryption#crypto-beyond-rsa', kind: 'detail' },
-        { text: 'Demo RSA measured', link: '/quantum-encryption#demo-rsa-measure', kind: 'detail' },
+        { text: 'Sealed-catalog reverse measured', link: '/encryption#sealed-catalog-rsa-measure', kind: 'detail' },
         { text: 'Standards audit', link: '/quantum-encryption#quantum-standards-audit', kind: 'detail' },
+        { text: 'ssl/test quantumised', link: '/ssltest', kind: 'detail' },
         { text: 'Quantum tools', link: '/quantum-tools', kind: 'detail' },
+      ],
+      ok: fold.computes,
+    }
+  },
+  SslTestTools: async () => {
+    const { sslTestUiComplete } = await import('../../src/water/encryption/index')
+    const fold = sslTestUiComplete()
+    return {
+      title: 'ssl/test — quantumised stack→receipt',
+      statement: fold.statement,
+      boundary: fold.boundary,
+      facets: [
+        ...fold.facets.map((entry) => ({ facet: entry.facet, on: entry.on })),
+        {
+          facet: `FTL speedup=${fold.speedup.toFixed(3)}× cold=${fold.coldMs.toFixed(3)} warm=${fold.warmMs.toFixed(3)}`,
+          on: fold.quantumiseAtFtlSpeed,
+        },
+        {
+          facet: `qGrade ${fold.quantumGrade.coverage}·d${fold.quantumGrade.digit} merkaba=${fold.quantumGrade.merkabaCross}`,
+          on: fold.quantumGrade.forward && fold.quantumGrade.reverse,
+        },
+      ],
+      crosslinks: [
+        { text: 'ssltest page', link: '/ssltest', kind: 'topic' },
+        { text: 'Encryption kit', link: '/encryption', kind: 'detail' },
+        { text: 'tool/honest', link: '/encryption#tool-honest', kind: 'detail' },
+        { text: 'poles/cross-pqc', link: '/encryption#poles-cross-pqc', kind: 'detail' },
+        { text: 'quantum-tools chat', link: '/quantum-tools', kind: 'detail' },
+        { text: 'research until', link: '/ssltest#research-until', kind: 'detail' },
       ],
       ok: fold.computes,
     }

@@ -102,8 +102,8 @@ runTool()
       <header class="encryption-tools__header">
         <!-- page H1 owns the encryption title — no synonym h2 (uiProseDuplicationRemoved) -->
         <p class="encryption-tools__lede">
-          Browser-sync encrypt ↔ decrypt + modeled Shor on sealed demo RSA + ISO/NIST PQC catalog + standards audit (reverse + inverse · 10D).
-          Alignment only — not ISO certified, not FIPS validated.
+          Browser-sync encrypt ↔ decrypt + modeled Shor on production browser reverse tools (sealed-catalog moduli) + ISO/NIST PQC catalog + standards audit (reverse + inverse · 10D).
+          Alignment only — not ISO certified, not FIPS validated. Production RSA break refused.
         </p>
         <UiBadge :variant="panel.computes ? 'default' : 'outline'">
           {{ panel.computes ? '✓' : '—' }}
@@ -193,11 +193,11 @@ runTool()
         <p class="encryption-tools__boundary">{{ useCases.boundary }}</p>
       </section>
       <UiSeparator />
-      <section aria-label="Demo modulus picker">
-        <h3>Demo modulus (reverse)</h3>
+      <section id="sealed-catalog-rsa-measure" aria-label="Sealed catalog modulus picker — production browser reverse">
+        <h3>Sealed catalog modulus (production browser reverse)</h3>
         <div class="encryption-tools__moduli">
           <UiButton
-            v-for="n in panel.demoModuli"
+            v-for="n in (panel.sealedCatalogModuli ?? panel.demoModuli)"
             :key="n"
             size="sm"
             :variant="selectedModulus === n ? 'default' : 'outline'"
@@ -249,7 +249,7 @@ runTool()
       <section id="local-reverse-timed-vs-standards" aria-label="Local reverse timed versus standards">
         <h3>Local reverse timed vs ISO/NIST standards</h3>
         <p class="encryption-tools__lede">
-          Toy DEMO_RSA_MODULI wall-clock vs estimated classical security work. demo ≠ AES wire · certified=false · does NOT break NIST PQC · reference bounds only (this repo is not the ISO standard).
+          Production browser reverse wall-clock (SEALED_CATALOG_RSA_MODULI) vs estimated classical security work. sealed-catalog ≠ AES wire · certified=false · does NOT break NIST PQC · production RSA break refused · reference bounds only (this repo is not the ISO standard).
         </p>
         <UiBadge :variant="result?.localTimed?.computes ? 'default' : 'outline'">
           rev={{ result?.localTimed?.reverseMs?.toFixed?.(3) ?? panel.localTimed?.reverseMs?.toFixed?.(3) ?? '—' }}ms
@@ -331,7 +331,7 @@ runTool()
         <h3>Local vs ISO magnitudes — multi-model receipt</h3>
         <p class="encryption-tools__lede">
           Forward · inverse · reverse × wire-crypto-security-bits · local-structural-gates · amortized-reuse-memo.
-          Wire claim is proof-of-falsehood (demo bits much less than ML-KEM/AES). Structural/amort may prove &ge;100× under named non-wire metrics only.
+          Wire claim is proof-of-falsehood (sealed-catalog bits much less than ML-KEM/AES). Structural/amort may prove &ge;100× under named non-wire metrics only.
           certified=false · NOT ISO certified · does NOT beat ML-KEM for confidentiality.
         </p>
         <UiBadge :variant="(panel.localMagnitudes?.overallWireClaimProved === false) ? 'default' : 'outline'">
@@ -482,7 +482,7 @@ runTool()
       <section id="quantum-standards-audit" aria-label="Quantum standards audit">
         <h3>Quantum standards audit</h3>
         <p class="encryption-tools__lede">
-          Reverse (demo RSA) + inverse (digit-zero · f→{p,q} · ratInv) + reverse≠inverse · covered|partial|gap · all 10 computable dimensions.
+          Reverse (production browser · sealed-catalog) + inverse (digit-zero · f→{p,q} · ratInv) + reverse≠inverse · covered|partial|gap · all 10 computable dimensions.
         </p>
         <UiBadge v-if="auditResult" :variant="auditResult.ok ? 'default' : 'outline'">
           covered {{ auditResult.coveredCount ?? auditResult.passCount }} · partial {{ auditResult.partialCount ?? 0 }} · gap {{ auditResult.gapCount }} · dims {{ auditResult.dimensions.coveredCount }}/10
@@ -546,6 +546,28 @@ runTool()
           </li>
         </ul>
         <p class="encryption-tools__boundary">{{ euAudit.boundary }}</p>
+      </section>
+      <UiSeparator />
+      <section id="max-bits-crypto" aria-label="Maximum bits encrypt decrypt inverse reverse">
+        <h3>Maximum bits — encrypt / decrypt / inverse / reverse</h3>
+        <p class="encryption-tools__lede">
+          toolSurface=production-browser · moduliClass=sealed-catalog · refuseBeyond for production RSA break claims only.
+        </p>
+        <UiBadge :variant="panel.maxBits?.computes ? 'default' : 'outline'">
+          enc={{ panel.maxBits?.encryptMaxBits ?? '—' }}
+          · dec={{ panel.maxBits?.decryptMaxBits ?? '—' }}
+          · inv={{ panel.maxBits?.inverseMaxBits ?? '—' }}
+          · rev={{ panel.maxBits?.reverseMaxBits ?? '—' }}
+          · refuseBeyond={{ panel.maxBits?.refuseBeyond ?? '—' }}
+        </UiBadge>
+        <p class="encryption-tools__boundary">{{ panel.maxBits?.boundary }}</p>
+      </section>
+      <UiSeparator />
+      <section id="tool-honest" aria-label="Production browser tools are not demos">
+        <h3>tool/honest — production browser tools are not demos</h3>
+        <p class="encryption-tools__lede">
+          Calling runnable browser encrypt/reverse tools “demo” or “toy” misleads the public. Sealed-catalog moduli · refuseBeyond only for over-ceiling / third-party production RSA break claims.
+        </p>
       </section>
     </UiCardContent>
   </UiCard>

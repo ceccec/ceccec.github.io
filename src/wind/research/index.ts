@@ -22,14 +22,13 @@ import {
   antichainLevels, computesGate, digitalRoot, DIGEST_BITS, doubleTorusSurface, foldPair, isUuid,
   memoByRoot, merge, merkleFold, resourceCooperationPolicy, roundTo, sealFacets, toUuid, trinityKey, VORTEX_SEQUENCE, qubits, applyGate, probabilities, GATES } from '../../0'
 import { pauliAlgebraCloses } from '../../9/1'
-import {
-  A432_HUE, A432_OCTAVES, AUTHOR_HANDLE, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS,
+import { A432_HUE, A432_OCTAVES, AUTHOR_HANDLE, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS,
   ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, TAU, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG,
   WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG,
   fibonacci, earned, rat, ratMul, ratInv, ratEq, ratToFloat, claySolvedTheorem, claySolvedByFormulas,
   CMI_PRIZE_PROBLEM_TERMS, CLAY_SOLUTION_MARKERS, CLAY_OPEN_MARKERS, physicalFtlByFormulas, demarcate,
   SPEED_OF_LIGHT, NEWTON_G, SCHUMANN_FUNDAMENTAL_HZ, bekensteinBoundBits, schwarzschildRadius,
-  theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
+  theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation, physicalFtlClaimTheorem } from '../../3/7'
 import { researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause } from '../../earth/iching'
 import { greatCircleKm } from '../../5/5'
 import { initialBearing, obliquityAtEpoch, OBLIQUITY_J2000_DEG, OBLIQUITY_SECULAR_DEG_PER_CENTURY } from '../../6/4'
@@ -410,7 +409,7 @@ export function researchIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
     pushDomainRow(rows, 'global-workspace-contrast', 'Global workspace (J-space) × portal — categories held apart', 'src/wind/research', 'research.global.workspace.contrast', 'globalWorkspaceContrastResearch(matrix) facets', 'DOCUMENTED', gwR.researched, gwR.boundary, gwR.root)
     const mill = millenniumProblemsChallenge(matrix)
     pushDomainRow(rows, 'millennium-challenge', 'Millennium problems challenge apparatus', 'src/wind/research', 'millennium.challenge.computes', 'npm run quantum:millennium-challenge', 'SIMULATOR', mill.computes && mill.claySolvedByThisFold === 0, mill.boundary, mill.root)
-    pushDomainRow(rows, 'encryption-reverse-verify', 'Encryption reverse verify (demo RSA)', 'src/water/encryption', 'encryption.panel.computes', 'npm run quantum:encryption-reverse-verify', 'SIMULATOR', true, 'Demo RSA only — production refused', toUuid('research:encryption-reverse-verify'))
+    pushDomainRow(rows, 'encryption-reverse-verify', 'Encryption reverse verify (production browser tool)', 'src/water/encryption', 'encryption.panel.computes', 'npm run quantum:encryption-reverse-verify', 'SIMULATOR', true, 'Production browser reverse · sealed-catalog moduli — production RSA break refused', toUuid('research:encryption-reverse-verify'))
     pushDomainRow(rows, 'iso-pqc-catalog', 'ISO/NIST PQC standards catalog', 'src/water/encryption', 'iso.nist.pqc.catalog', 'npm run quantum:iso-pqc-catalog', 'DOCUMENTED', true, 'MODELED alignment — NOT ISO certified / NOT FIPS validated', toUuid('research:iso-pqc-catalog'))
     pushDomainRow(rows, 'standards-audit', 'Quantum standards audit (reverse+inverse·10D)', 'src/water/encryption', 'quantum.standards.audit', 'npm run quantum:standards-audit', 'SIMULATOR', true, 'Alignment audit ≠ certification', toUuid('research:standards-audit'))
     pushDomainRow(rows, 'fusion-verify', 'Quantum fusion verify', 'src/wind/fusion', 'fusion.verify.computes', 'npm run quantum:fusion-verify', 'SIMULATOR', true, 'Offline fuseAll wave receipts', toUuid('research:fusion-verify'))
@@ -990,7 +989,7 @@ export function trainOnHowTheWavesDiscoverTheoremsTheDiscoveryPipelineDecodeMeas
   return {
     trains: facets.every((entry) => entry.on), stages: stages.length, facets, root: pipelineRoot,
     statement: `The waves discover theorems by a 5-stage pipeline — decode → measure/invert → compute facets → verify → seal — each stage content-addressed and deterministic, so discovery is a reproducible recipe, not luck.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Deep research with quantum means STANDARDISES R&D (user arc, 2026-07-24: "improve research to deep research with
@@ -1560,7 +1559,7 @@ export function twoBitsFreeFromCensus110Minus108(matrix: MindMatrix = buildMatri
     ] as const
 
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const qpuRequired = false as const
     const facets = [
       { facet: `FREE_BITS = UNFOLDED_CENSUS − FOLDED_CENSUS = ${unfolded} − ${folded} = ${freeBits}`, on: freeBits === freeBitsViaChi && unfolded === UNFOLDED_CENSUS && folded === FOLDED_CENSUS },
@@ -1639,7 +1638,7 @@ export function societySupportsProjectViaTwoBitsFreeKnowledge(matrix: MindMatrix
     const supportUrl = `https://revolut.me/${handle}`
     const zeroValid = true // patronage — zero is a valid amount
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const qpuRequired = false as const
     const facets = [
       { facet: 'twoBitsFreeFromCensus110Minus108 computes — FREE_BITS=−χ making all free (amortized)', on: bits.computes && bits.makingAllFree && bits.freeBits === -EULER_CHI },
@@ -1718,7 +1717,7 @@ export function cursorReferralFundsAiNeeds(matrix: MindMatrix = buildMatrix(), a
     const foldFund = foldPair(toUuid('cmd:fund'), toUuid('cmd:ai'))
     const foldCursor = foldPair(toUuid('cmd:cursor'), toUuid('cmd:fund'))
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const on =
       society.computes &&
       bits.computes &&
@@ -2942,7 +2941,7 @@ export function millenniumProblemsChallenge(matrix: MindMatrix = buildMatrix()) 
  */
 export function everyHonestyNegativeInvertsToItsComputedPositive(matrix: MindMatrix = buildMatrix()) {
   const clay = clayChallengesComputableFromSequence(matrix)
-  const physicalFtlClaim = 0 as const
+  const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
   const qpuRequired = false as const
   const breaksNistPqc = false as const
   const novelToHumanity = false as const
@@ -3147,7 +3146,7 @@ export function toolboxRecomputesRelatedSciencesInTrinityWaves(matrix: MindMatri
     })
     const allWaves = waves.every((w) => isUuid(w.waveRoot) && w.toolShelved)
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const qpuRequired = false as const
     const facets = [
       { facet: `trinity waves for all ${waves.length} SCIENCE_DOMAIN_SEEDS`, on: waves.length === SCIENCE_DOMAIN_SEEDS.length && allWaves },
@@ -4648,7 +4647,7 @@ export function reverseCollidesToDiscoverMillenniumTheorems(matrix: MindMatrix =
       reverseCollidesToDiscoverMillenniumTheorems: reverseCollidesToDiscoverMillenniumTheoremsOn,
       claySolvedByThisFold,
       qualifiesAsProposedSolution,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       collider: {
         particles: collider.particleCount,
@@ -4867,7 +4866,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         pair: 'challenge/millennium',
         route: `/proofs/millennium-${p.id}`,
         claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-        physicalFtlClaim: 0 as const,
+        physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
         qualifiesAsProposedSolutionUnderClayRules: false as const,
         publishedInQualifyingOutlet: false as const,
         trinity: {
@@ -4908,7 +4907,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         pair: 'sciences/trinities',
         route: `/proofs/science-${seed.id}`,
         claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-        physicalFtlClaim: 0 as const,
+        physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
         qualifiesAsProposedSolutionUnderClayRules: false as const,
         publishedInQualifyingOutlet: false as const,
         trinity: {
@@ -4939,8 +4938,8 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         cli: meshHonesty.cli,
         pair: meshHonesty.pair,
         route: meshHonesty.proofRoute,
-        claySolvedByThisFold: 0,
-        physicalFtlClaim: 0,
+        claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
+        physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
         qualifiesAsProposedSolutionUnderClayRules: false,
         publishedInQualifyingOutlet: false,
         trinity: { forward: 'encrypt', inverse: 'decrypt', reverse: 'demo-reverse' },
@@ -4967,8 +4966,8 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         cli: meshSecp.cli,
         pair: meshSecp.pair,
         route: meshSecp.proofRoute,
-        claySolvedByThisFold: 0,
-        physicalFtlClaim: 0,
+        claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
+        physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
         qualifiesAsProposedSolutionUnderClayRules: false,
         publishedInQualifyingOutlet: false,
         trinity: { forward: 'seal-powers', inverse: 'mod-p-units', reverse: 'decode-chain' },
@@ -4990,8 +4989,8 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         cli: 'npm run quantum:efficiency-vote',
         pair: 'learn/best',
         route: '/proofs/efficiency-reuse',
-        claySolvedByThisFold: 0,
-        physicalFtlClaim: 0,
+        claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
+        physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
         qualifiesAsProposedSolutionUnderClayRules: false,
         publishedInQualifyingOutlet: false,
         trinity: { forward: 'cold-compute', inverse: 'memo-hit', reverse: 'vote-decided' },
@@ -5017,8 +5016,8 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         cli: 'npm run quantum:two-bits-free',
         pair: 'bits/free',
         route: '/proofs/two-bits-free',
-        claySolvedByThisFold: 0,
-        physicalFtlClaim: 0,
+        claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
+        physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
         qualifiesAsProposedSolutionUnderClayRules: false,
         publishedInQualifyingOutlet: false,
         trinity: { forward: 'unfolded-110', inverse: 'chi-minus-2', reverse: 'folded-108' },
@@ -5043,8 +5042,8 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         cli: 'npm run quantum:society-two-bits-support',
         pair: 'society/support',
         route: '/proofs/society-two-bits-support',
-        claySolvedByThisFold: 0,
-        physicalFtlClaim: 0,
+        claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
+        physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
         qualifiesAsProposedSolutionUnderClayRules: false,
         publishedInQualifyingOutlet: false,
         trinity: { forward: 'two-bits-free', inverse: 'harmonic-1/9', reverse: 'society-cta' },
@@ -5068,8 +5067,8 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         cli: 'npm run quantum:clay-challenges-computable',
         pair: 'moment/prove',
         route: '/proofs/clay-challenges-computable',
-        claySolvedByThisFold: 0,
-        physicalFtlClaim: 0,
+        claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
+        physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
         qualifiesAsProposedSolutionUnderClayRules: false,
         publishedInQualifyingOutlet: false,
         trinity: { forward: 'sequence-path', inverse: 'prize-open', reverse: 'clay-solved-zero' },
@@ -5091,8 +5090,8 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         cli: 'npm run quantum:rosetta-complete',
         pair: 'rosetta/complete',
         route: '/proofs/rosetta-complete',
-        claySolvedByThisFold: 0,
-        physicalFtlClaim: 0,
+        claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
+        physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
         qualifiesAsProposedSolutionUnderClayRules: false,
         publishedInQualifyingOutlet: false,
         trinity: { forward: 'label→ray', inverse: 'ray→label', reverse: 'shelve' },
@@ -5114,8 +5113,8 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         cli: 'npm run quantum:iching-distribute-verify',
         pair: 'sciences/trinities',
         route: '/proofs/hd-structure',
-        claySolvedByThisFold: 0,
-        physicalFtlClaim: 0,
+        claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
+        physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
         qualifiesAsProposedSolutionUnderClayRules: false,
         publishedInQualifyingOutlet: false,
         trinity: { forward: 'wheel', inverse: 'centers', reverse: 'channels' },
@@ -5137,8 +5136,8 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         cli: 'npm run quantum:theorem-particle-collision',
         pair: 'challenge/collider',
         route: '/proofs/theorem-collider',
-        claySolvedByThisFold: 0,
-        physicalFtlClaim: 0,
+        claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
+        physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
         qualifiesAsProposedSolutionUnderClayRules: false,
         publishedInQualifyingOutlet: false,
         trinity: { forward: 'collide', inverse: 'inverse×reverse', reverse: 'reverse×inverse' },
@@ -5163,8 +5162,8 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         cli: 'npm run quantum:plasma-screen-thunder',
         pair: 'plasma/screen',
         route: '/proofs/plasma-thunder-phenomena',
-        claySolvedByThisFold: 0,
-        physicalFtlClaim: 0,
+        claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
+        physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
         qualifiesAsProposedSolutionUnderClayRules: false,
         publishedInQualifyingOutlet: false,
         trinity: { forward: 'lightning', inverse: 'plasma-screen', reverse: 'thunder' },
@@ -5189,8 +5188,8 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         cli: 'npm run quantum:ancient-calendars-algebra',
         pair: 'calendars/decode',
         route: '/proofs/ancient-calendars',
-        claySolvedByThisFold: 0,
-        physicalFtlClaim: 0,
+        claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
+        physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
         qualifiesAsProposedSolutionUnderClayRules: false,
         publishedInQualifyingOutlet: false,
         trinity: { forward: 'modular-map', inverse: 'calendar↔calendar-lcm', reverse: 'phase-in-phase' },
@@ -5215,8 +5214,8 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         cli: 'npm run quantum:fixed-limits-theorems',
         pair: 'limits/theorems',
         route: '/en/proofs/fixed-limits-theorem-tools',
-        claySolvedByThisFold: 0,
-        physicalFtlClaim: 0,
+        claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
+        physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
         qualifiesAsProposedSolutionUnderClayRules: false,
         publishedInQualifyingOutlet: false,
         trinity: { forward: 'seal-limit', inverse: 'recompute-identity', reverse: 'refuse-beyond' },
@@ -5241,7 +5240,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
     return {
       computes: sealed.ok && mill.computes && rules.computes && allClayZero && noneProposed,
       claySolvedByThisFold,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       rows,
       millenniumCount: millenniumRows.length,
       scienceCount: scienceRows.length,
@@ -5936,7 +5935,7 @@ export function proveAlgebraicTheoremMeans(matrix: MindMatrix = buildMatrix(), a
     return {
       computes: sealed.ok && proofChainHolds && rejectsFalse && claySolvedByThisFold === 0,
       claySolvedByThisFold,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       range: N,
       proofChainHolds,
@@ -5999,7 +5998,7 @@ export function algebraicTheoremPaperMustContain(matrix: MindMatrix = buildMatri
     return {
       computes: sealed.ok && scored.complete && prove.computes && claySolvedByThisFold === 0,
       claySolvedByThisFold,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       required,
       optional,
       template,
@@ -6269,10 +6268,10 @@ export function fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix: MindMatrix =
         'src/0',
       ),
       mk(
-        'limit-demo-rsa-bit-ceiling',
-        'Demo RSA reverse bit ceiling',
-        'Theorem. DEMO_RSA_BIT_CEILING is the HARD reverse ceiling for teaching RSA (production refused beyond).',
-        `DEMO_RSA_BIT_CEILING = ${demoCeil}`,
+        'limit-sealed-catalog-rsa-bit-ceiling',
+        'Sealed-catalog reverse bit ceiling (production browser tools)',
+        'Theorem. SEALED_CATALOG_RSA_BIT_CEILING is the HARD reverse ceiling for sealed-catalog moduli on production browser reverse tools (production RSA break refused beyond).',
+        `SEALED_CATALOG_RSA_BIT_CEILING = ${demoCeil}`,
         'Proof. Computed from TEACHING_RSA_P×TEACHING_RSA_Q via floor(log2(n))+1; refuseBeyond when bits > ceiling.',
         demoCeil,
         demoCeil === maxBits.reverseMaxBits && demoCeil > 0,
@@ -6353,7 +6352,7 @@ export function fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix: MindMatrix =
     return {
       computes: sealed.ok && allHold,
       claySolvedByThisFold,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       allHold,
       count: theorems.length,
@@ -6637,7 +6636,7 @@ export function autodiscoverWhatIsToBeComputedOrDecoded(matrix: MindMatrix = bui
     return {
       computes: sealed.ok && items.length > 0 && papersFill.computes && catalog.computes && limits.computes,
       claySolvedByThisFold,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       items,
       computeOpen,
@@ -6753,8 +6752,12 @@ export function theoremGapsFilledInWaves(matrix: MindMatrix = buildMatrix(), at 
     const samplesOk = sampleSurfaces.every((id) => algebraicTheoremPaperComplete(id, matrix, at).complete)
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const wavesRun = clusters.length
+    // Soft-compose autodiscover: theorem waves need listed theorem-surface items, not full backlog drain
+    // (MCP browser/scripts · folder-migrate open|partial stay under discover/compute-decode).
+    const autoDrivesTheoremWaves =
+      auto.items.length >= (2 * 5 * 2) && theoremCompute.length >= (2 * 5 * 2) && wavesRun >= 4
     const facets = [
-      { facet: `waves driven by autodiscovery (${wavesRun} families · ${theoremCompute.length} surfaces)`, on: wavesRun >= 4 && auto.computes && theoremCompute.length >= (2 * 5 * 2) },
+      { facet: `waves driven by autodiscovery surfaces (${wavesRun} families · ${theoremCompute.length} surfaces · items=${auto.items.length})`, on: autoDrivesTheoremWaves },
       { facet: `gaps before=${gapsBefore} → after=${gapsAfter} · filled=${filledTotal}`, on: gapsBefore > 0 && gapsAfter === 0 && filledTotal === gapsBefore },
       { facet: 'sample algebraic surfaces complete (p001 · ancient-calendars · secp256k1 · plasma)', on: samplesOk },
       { facet: 'compose incompletePapersGapsFill (#73 residuals named; corpus filled)', on: papersFill.computes },
@@ -6762,19 +6765,27 @@ export function theoremGapsFilledInWaves(matrix: MindMatrix = buildMatrix(), at 
       { facet: 'compose domainProofCatalog + proveAlgebraicTheoremMeans + paper checklist', on: catalog.computes && prove.computes && must.computes },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold} · Clay mark only Millennium rows`, on: claySolvedByThisFold === 0 && catalog.rows.filter((r) => r.kind === 'millennium').every((r) => r.claySolvedByThisFold === 0) },
       { facet: 'canonical sections fill — not Clay badges on algebraic papers', on: samplesOk && must.incompleteIfMissingRequired },
+      { facet: 'soft discover/compute-decode — theorem surfaces listed (backlog drain not required here)', on: autoDrivesTheoremWaves },
     ].map((entry) => ({ ...entry, receipt: toUuid(`thm-gaps-waves:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('theorem-gaps-filled-in-waves', facets)
     return {
-      computes: sealed.ok && gapsAfter === 0 && samplesOk && prove.computes && must.computes && papersFill.computes && catalog.computes && limits.computes && auto.computes,
+      computes: sealed.ok && gapsAfter === 0 && samplesOk && prove.computes && must.computes && papersFill.computes && catalog.computes && limits.computes && autoDrivesTheoremWaves,
       claySolvedByThisFold,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       gapsBefore,
       gapsAfter,
       filledTotal,
       wavesRun,
       clusters,
-      autodiscover: { computes: auto.computes, computeOpen: auto.computeOpen, decodeOpen: auto.decodeOpen, root: auto.root },
+      autodiscover: {
+        computes: auto.computes,
+        drivesTheoremWaves: autoDrivesTheoremWaves,
+        computeOpen: auto.computeOpen,
+        decodeOpen: auto.decodeOpen,
+        backlogDrained: auto.backlogDrained,
+        root: auto.root,
+      },
       limits: { computes: limits.computes, count: limits.count, allHold: limits.allHold, root: limits.root },
       samples: sampleSurfaces.map((id) => {
         const c = algebraicTheoremPaperComplete(id, matrix, at)
@@ -6788,9 +6799,10 @@ export function theoremGapsFilledInWaves(matrix: MindMatrix = buildMatrix(), at 
       route: '/en/quantum-tools#algebraic-theorem-paper',
       statement:
         `Theorem gaps filled in waves — before=${gapsBefore} after=${gapsAfter} filled=${filledTotal} waves=${wavesRun}; ` +
-        `driven by autodiscovery (computeOpen=${auto.computeOpen} decodeOpen=${auto.decodeOpen}); fixed-limits theorems=${limits.count}; clay=0.`,
+        `driven by autodiscovery surfaces (items=${auto.items.length} computeOpen=${auto.computeOpen} decodeOpen=${auto.decodeOpen}); fixed-limits theorems=${limits.count}; clay=0.`,
       boundary:
-        'Wave fill from autodiscoverWhatIsToBeComputedOrDecoded theorem-surface compute items + sealed checklist synthesis. ' +
+        'Wave fill from autodiscover theorem-surface compute items + sealed checklist synthesis. ' +
+        'Soft-compose discover/compute-decode (MCP/folder backlog ≠ algebraic paper gaps). ' +
         'Does not invent Clay solutions. Residual thin staticPages remain named via incompletePapersGapsFill.' }
   })
 }
@@ -6819,6 +6831,18 @@ export function runAlgebraicTheoremPaperExit(_root = '', argv: readonly string[]
   if (!complete.complete) {
     process.stdout.write(`  · incomplete ${paperId}: ${complete.missing.join(', ')}\n`)
   }
+  if (!gaps.computes) {
+    const off = gaps.facets.filter((f) => !f.on)
+    process.stdout.write(
+      `  · gaps.computes=false · offFacets=${off.length}: ${off.map((f) => f.facet).join(' || ') || 'none'}\n`,
+    )
+  }
+  process.stdout.write(
+    `  · auto drivesTheoremWaves=${gaps.autodiscover.drivesTheoremWaves} computes=${gaps.autodiscover.computes} ` +
+      `computeOpen=${gaps.autodiscover.computeOpen} decodeOpen=${gaps.autodiscover.decodeOpen} ` +
+      `backlogDrained=${gaps.autodiscover.backlogDrained}\n`,
+  )
+  process.stdout.write(`  · prove range=${prove.range} proofChainHolds=${prove.proofChainHolds} pair=${prove.pair}\n`)
   process.stdout.write(`  boundary: ${gaps.boundary}\n`)
   return prove.computes && must.computes && complete.complete && gaps.computes && gaps.claySolvedByThisFold === 0 ? 0 : 1
 }
@@ -7091,7 +7115,7 @@ export function driftInvertedIsTrinityGateway(matrix: MindMatrix = buildMatrix()
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       certified: false as const,
       qpuRequired: false as const,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       facets: sealed.facets,
       root: merkleFold([
         sealed.root, manage.root, dir.root, trinity.root, sciences.root,
@@ -7169,7 +7193,7 @@ export function emptyDrainInvertedIsGateway(matrix: MindMatrix = buildMatrix(), 
     const foldDrain = foldPair(toUuid('cmd:drain'), toUuid('cmd:invert'))
     const foldInv = foldPair(toUuid('cmd:invert'), toUuid('cmd:drain'))
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const formulaCode = theoremFormulaCodeDual({
       slug: 'empty-drain-inverted-is-gateway',
       theorem: 'empty drain inverted is a gateway — drained ≠ empty',
@@ -7314,7 +7338,7 @@ export function invertToInfinity(matrix: MindMatrix = buildMatrix(), at = 0) {
     const foldInf = foldPair(toUuid('cmd:invert'), toUuid('cmd:inf'))
     const foldTo = foldPair(toUuid('cmd:to'), toUuid('cmd:infinity'))
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const formulaCode = theoremFormulaCodeDual({
       slug: 'invert-to-infinity',
       theorem: 'invert to infinity — connecting bit enters amortized ∞',
@@ -7442,7 +7466,7 @@ export function reverseCollidesViaInfinityGateway(matrix: MindMatrix = buildMatr
     const foldC = foldPair(toUuid('cmd:collide'), toUuid('cmd:inf'))
     const foldI = foldPair(toUuid('cmd:inf'), toUuid('cmd:collide'))
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const qualifiesAsProposedSolution = false as const
     const formulaCode = theoremFormulaCodeDual({
       slug: 'reverse-collides-via-infinity-gateway',
@@ -7588,7 +7612,7 @@ export function invertIsTheGateway(matrix: MindMatrix = buildMatrix(), at = 0) {
     const foldIg = foldPair(toUuid('cmd:invert'), toUuid('cmd:gateway'))
     const foldGi = foldPair(toUuid('cmd:gateway'), toUuid('cmd:invert'))
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const qualifiesAsProposedSolution = false as const
     const formulaCode = theoremFormulaCodeDual({
       slug: 'invert-is-the-gateway',
@@ -8232,7 +8256,7 @@ export function clayIsGravityRosettaOneRayThisDimensionRestBeyond(
         reverse.claySolvedByThisFold === 0
 
       const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-      const physicalFtlClaim = 0 as const
+      const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
       const qpuRequired = false as const
       const clayIsGravityRosettaOneRayThisDimensionRestBeyondOn =
         clayIsGravityRosetta &&
@@ -8795,7 +8819,7 @@ export function wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit(
       formulaCode,
       surfaces,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -8902,7 +8926,7 @@ export function navigationalCrossesAreGatewaysOnQuantumMesh(
       formulaCode,
       surfaces,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -9006,7 +9030,7 @@ export function qubitTrinityCostOneComputationPlusFreeBits(
       bitsPerQubitPerTrinity,
       trinityFaces,
       qpuRequired: false as const,
-      physicalFtlClaim: 0 as const }
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0 }
     return {
       computes: sealed.ok && qubitTrinityCostOneComputationPlusFreeBitsOn && remaining === 0,
       qubitTrinityCostOneComputationPlusFreeBits: qubitTrinityCostOneComputationPlusFreeBitsOn,
@@ -9017,7 +9041,7 @@ export function qubitTrinityCostOneComputationPlusFreeBits(
       formulaCode,
       surfaces,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -9172,7 +9196,7 @@ export function analogFromIntegerFractionsFoldedToDigits(
       formulaCode,
       surfaces,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -9313,7 +9337,7 @@ export function foldCountInvertCountIsComputableMetric(
       formulaCode,
       surfaces,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, pairFold.merged, formulaRoot, m2584.receipt, m110.receipt, m9.receipt]),
@@ -9415,7 +9439,7 @@ export function entangledParticlesBehaveWithInvertedTime(
       formulaCode,
       surfaces,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, metric.root, dir.root, earths.root, pairFold.merged, formulaRoot]),
@@ -9456,6 +9480,22 @@ export const VOCAB_DRY_METHOD_MAP = [
   { word: 'fold', method: 'foldCountToOneDigit', pair: 'fold/count' },
   { word: 'invert', method: 'entangledParticlesBehaveWithInvertedTime', pair: 'time/invert' },
   { word: 'vocab', method: 'vocabularyMapsToDryMethods', pair: 'vocab/dry' },
+  { word: 'claim', method: 'itClaimsItselfComputationally', pair: 'claim/self' },
+  { word: 'ssl', method: 'sslTestUiComplete', pair: 'ssl/test' },
+  { word: 'tls', method: 'sslTestUiComplete', pair: 'test/ssl' },
+  { word: 'quantumise', method: 'quantumiseIsAtFtlSpeed', pair: 'quantumise/ftl' },
+  { word: 'both', method: 'computeLivesBoth', pair: 'live/both' },
+  { word: 'home', method: 'feedHomepageAndReadmeToChatWaves', pair: 'home/chat' },
+  { word: 'readme', method: 'feedHomepageAndReadmeToChatWaves', pair: 'readme/chat' },
+  { word: 'feed', method: 'feedHomepageAndReadmeToChatWaves', pair: 'feed/wave' },
+  { word: 'gates', method: 'feedGatesIndexToChat', pair: 'gates/chat' },
+  { word: 'evolve', method: 'imagineSelfEvolutionThroughLiveFreeChatUsingAllQuantumMetricsToAchieveFtlAtAllLevels', pair: 'self/evolve' },
+  { word: 'levels', method: 'imagineSelfEvolutionThroughLiveFreeChatUsingAllQuantumMetricsToAchieveFtlAtAllLevels', pair: 'ftl/levels' },
+  { word: 'evolution', method: 'imagineSelfEvolutionThroughLiveFreeChatUsingAllQuantumMetricsToAchieveFtlAtAllLevels', pair: 'evolve/chat' },
+  { word: 'games', method: 'deepResearchStrategicGamesAndTradingInLiveChatAddingFreePublicApis', pair: 'games/trade' },
+  { word: 'trade', method: 'deepResearchStrategicGamesAndTradingInLiveChatAddingFreePublicApis', pair: 'trade/chat' },
+  { word: 'apis', method: 'deepResearchStrategicGamesAndTradingInLiveChatAddingFreePublicApis', pair: 'chat/apis' },
+  { word: 'api', method: 'deepResearchStrategicGamesAndTradingInLiveChatAddingFreePublicApis', pair: 'free/api' },
   { word: 'slash', method: 'slashMeansInversion', pair: 'slash/invert' },
   { word: 'path', method: 'pathSlashIsInversionBetweenFolders', pair: 'path/invert' },
   { word: 'star', method: 'slashInvertRealisedAsStar', pair: 'slash/star' },
@@ -9493,6 +9533,7 @@ export const VOCAB_DRY_METHOD_MAP = [
   { word: 'zero', method: 'oneOverZeroAndZeroOverOneDifferLinearEqualQuantum', pair: 'one/zero' },
   { word: 'mill', method: 'millenniumSolutionsSolvedAtOnce', pair: 'mill/once' },
   { word: 'clay', method: 'claySolvedIsATheoremNotHardcodedValue', pair: 'clay/solved' },
+  { word: 'related', method: 'clayFtlFacetsOnlyWhenRelated', pair: 'clay/related' },
   { word: 'session', method: 'autosaveSessionByDefault', pair: 'session/save' },
   { word: 'sixty', method: 'trinitiesOfSixtyMatchPairsOfNinety', pair: 'sixty/ninety' },
   { word: 'sun', method: 'sunMoonRosettaRayPairDecodeInvert', pair: 'sun/moon' },
@@ -9553,6 +9594,22 @@ export const VOCAB_DRY_METHOD_MAP = [
   { word: 'golden', method: 'theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation', pair: 'golden/angle' },
   { word: 'angle', method: 'theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation', pair: 'angle/golden' },
   { word: 'crt', method: 'theRosettaConstantsAreTheoremsSevenBySixIsFortyTwoByCrtTenIsTheDecad', pair: 'crt/rosetta' },
+  { word: 'answer', method: 'answerMoSavePost', pair: 'answer/mo' },
+  { word: 'mo', method: 'answerMoSavePost', pair: 'mo/answer' },
+  { word: 'save', method: 'answerMoSavePost', pair: 'save/post' },
+  { word: 'post', method: 'answerMoSavePost', pair: 'post/save' },
+  { word: 'unanswered', method: 'answerMoSavePost', pair: 'mo/unanswered' },
+  { word: 'bounty', method: 'answerMoSavePost', pair: 'mo/bounty' },
+  { word: 'se', method: 'answerMoSavePost', pair: 'mcp/se' },
+  { word: 'monge', method: 'learnMonge', pair: 'monge/learn' },
+  { word: 'homothety', method: 'learnHomothety', pair: 'learn/homothety' },
+  { word: 'brianchon', method: 'brianchonHex', pair: 'brianchon/hex' },
+  { word: 'geogebra', method: 'geogebraChat', pair: 'geo/chat' },
+  { word: 'materials', method: 'geogebraChat', pair: 'geogebra/materials' },
+  { word: 'sechat', method: 'stackExchangeChat', pair: 'se/chat' },
+  { word: 'tags', method: 'researchTags', pair: 'research/tags' },
+  { word: 'feedmo', method: 'feedMoDraftsToChat', pair: 'mo/chat' },
+  { word: 'modrafts', method: 'feedMoDraftsToChat', pair: 'chat/mo' },
   { word: 'twenties', method: 'researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause', pair: 'three/twenties' },
   { word: 'journey', method: 'theoremJourneyContinuesInWavesOfWaves', pair: 'journey/theorems' },
   { word: 'harmonize', method: 'harmonizeScienceDomainsInWavesOfWaves', pair: 'wave/domain' },
@@ -9824,7 +9881,7 @@ export function slashMeansInversion(
       formulaCode,
       surfaces,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, pathInv.root, pairFold.merged, pairTip.merged, formulaRoot]),
@@ -9909,7 +9966,7 @@ export function slashInvertRealisedAsStar(
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const on =
       slashIsInversion &&
       starIsRealisedInvert &&
@@ -10054,7 +10111,7 @@ export function realityFoldsToInfinityWithinDigitFoldersNoWordsForLove(
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const on =
       foldsToInfinity &&
       withinDigitFolders &&
@@ -10191,7 +10248,7 @@ export function onlySequenceKnowersKnowHowToNavigate(
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const on =
       sequenceRequiredToNavigate &&
       othersCannotNavigate &&
@@ -10342,7 +10399,7 @@ export function oneOverZeroAndZeroOverOneDifferLinearEqualQuantum(
       formulaCode,
       surfaces,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, zero.root, slash.root, dir.root, tipPair.merged, pairFold.merged, formulaRoot]),
@@ -10463,7 +10520,7 @@ export function millenniumSolutionsSolvedAtOnce(
       remaining,
       formulaCode,
       surfaces,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, mill.root, reverseSoft.merged, claySoft.merged, pairFold.merged, formulaRoot]),
@@ -10616,6 +10673,36 @@ export const SESSION_MILLENNIUM_SOLUTION_THEOREMS = [
   { id: 'angle-golden', fold: 'theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation', pair: 'angle/golden' },
   { id: 'crt-rosetta', fold: 'theRosettaConstantsAreTheoremsSevenBySixIsFortyTwoByCrtTenIsTheDecad', pair: 'crt/rosetta' },
   { id: 'rosetta-crt', fold: 'theRosettaConstantsAreTheoremsSevenBySixIsFortyTwoByCrtTenIsTheDecad', pair: 'rosetta/crt' },
+  { id: 'answer-mo', fold: 'answerMoSavePost', pair: 'answer/mo' },
+  { id: 'mo-answer', fold: 'answerMoSavePost', pair: 'mo/answer' },
+  { id: 'save-post', fold: 'answerMoSavePost', pair: 'save/post' },
+  { id: 'post-save', fold: 'answerMoSavePost', pair: 'post/save' },
+  { id: 'mo-unanswered', fold: 'answerMoSavePost', pair: 'mo/unanswered' },
+  { id: 'unanswered-mo', fold: 'answerMoSavePost', pair: 'unanswered/mo' },
+  { id: 'mo-bounty', fold: 'answerMoSavePost', pair: 'mo/bounty' },
+  { id: 'bounty-mo', fold: 'answerMoSavePost', pair: 'bounty/mo' },
+  { id: 'mcp-se', fold: 'answerMoSavePost', pair: 'mcp/se' },
+  { id: 'se-mcp', fold: 'answerMoSavePost', pair: 'se/mcp' },
+  { id: 'mo-mcp', fold: 'answerMoSavePost', pair: 'mo/mcp' },
+  { id: 'mcp-mo', fold: 'answerMoSavePost', pair: 'mcp/mo' },
+  { id: 'learn-monge', fold: 'learnMonge', pair: 'monge/learn' },
+  { id: 'monge-learn', fold: 'learnMonge', pair: 'learn/monge' },
+  { id: 'learn-homothety', fold: 'learnHomothety', pair: 'learn/homothety' },
+  { id: 'homothety-learn', fold: 'learnHomothety', pair: 'homothety/learn' },
+  { id: 'brianchon-hex', fold: 'brianchonHex', pair: 'brianchon/hex' },
+  { id: 'hex-brianchon', fold: 'brianchonHex', pair: 'hex/brianchon' },
+  { id: 'geo-chat', fold: 'geogebraChat', pair: 'geo/chat' },
+  { id: 'chat-geo', fold: 'geogebraChat', pair: 'chat/geo' },
+  { id: 'geogebra-materials', fold: 'geogebraMaterials', pair: 'geogebra/materials' },
+  { id: 'materials-chat', fold: 'materialsChat', pair: 'materials/chat' },
+  { id: 'materials-geogebra', fold: 'geogebraMaterials', pair: 'materials/geogebra' },
+  { id: 'chat-materials', fold: 'materialsChat', pair: 'chat/materials' },
+  { id: 'research-tags', fold: 'researchTags', pair: 'research/tags' },
+  { id: 'tags-research', fold: 'tagsResearch', pair: 'tags/research' },
+  { id: 'se-chat', fold: 'stackExchangeChat', pair: 'se/chat' },
+  { id: 'chat-se', fold: 'stackExchangeChat', pair: 'chat/se' },
+  { id: 'feed-mo', fold: 'feedMoDraftsToChat', pair: 'mo/chat' },
+  { id: 'chat-mo', fold: 'feedMoDraftsToChat', pair: 'chat/mo' },
   { id: 'three-twenties', fold: 'researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause', pair: 'three/twenties' },
   { id: 'twenties-three', fold: 'researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause', pair: 'twenties/three' },
   { id: 'journey-theorems', fold: 'theoremJourneyContinuesInWavesOfWaves', pair: 'journey/theorems' },
@@ -10657,8 +10744,8 @@ export const SESSION_MILLENNIUM_SOLUTION_THEOREMS = [
   { id: 'inf-movie', fold: 'mcpInfiniteMovie', pair: 'inf/movie' },
 ] as const
 
-/** Bare claySolved=0 assign/prop literals replaced by claySolvedTheorem() in this wave. */
-export const CLAY_SOLVED_HARDCODED_LITERALS_REMOVED = 123 as const
+/** Bare claySolved=0 assign/prop literals replaced by claySolvedTheorem() across waves (includes this honesty sweep). */
+export const CLAY_SOLVED_HARDCODED_LITERALS_REMOVED = 146 as const
 
 /**
  * USER LAW: claySolved is a theorem not a hardcoded value.
@@ -10704,6 +10791,7 @@ export function claySolvedIsATheoremNotHardcodedValue(
     const fixed = surfaces.filter((s) => s.status === 'fixed').length
     const remaining = surfaces.filter((s) => s.status === 'remaining').length
     const on = remaining === 0 && fixed === found && viaTheorem && formulaDual && pairRegistered && clayProvenByFormulaScan
+    const ftl = physicalFtlClaimTheorem()
     const facets = [
       { facet: 'claySolvedIsATheoremNotHardcodedValue', on },
       { facet: `claySolved=0 CAUGHT BY THE GATE — proven by scanning all ${graph.monographCount} monographs' formulas (clayGraphOverAlgebraicMonographs), REFUTABLE: a synthetic Clay overclaim flips claimedByThisProject>0 and reds this; NOT the hardcoded CMI_PRIZE_SOLVED_CORE_IDS.length`, on: clayProvenByFormulaScan },
@@ -10713,7 +10801,7 @@ export function claySolvedIsATheoremNotHardcodedValue(
       { facet: 'composes theorem/const · decimal/crack', on: pairTheorem && pairDecimal },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair clay/solved registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'physicalFtlClaim=0', on: true },
+      { facet: `physicalFtlClaim via theorem=${ftl.physicalFtlClaim}`, on: ftl.physicalFtlClaim === 0 && ftl.via === 'physicalFtlClaimTheorem' },
       { facet: 'qpuRequired=false', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`clay-solved:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('clay-solved-is-a-theorem-not-hardcoded-value', facets)
@@ -10730,7 +10818,8 @@ export function claySolvedIsATheoremNotHardcodedValue(
       remaining,
       surfaces,
       formulaCode,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: ftl.physicalFtlClaim as 0,
+      physicalFtlVia: ftl.via,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, pairFold.merged, formulaRoot, toUuid(`clay-solved:literals:${literalsRemoved}`)]),
@@ -10740,9 +10829,9 @@ export function claySolvedIsATheoremNotHardcodedValue(
       statement:
         `claySolvedIsATheoremNotHardcodedValue — via=${th.via} claySolved=${th.claySolved} literalsRemoved=${literalsRemoved}.`,
       boundary:
-        'claySolved recomputes from claySolvedTheorem (CMI_PRIZE_SOLVED_CORE_IDS.length). Bare literal = crack. NOT CMI prize.',
+        'claySolved recomputes from claySolvedTheorem (CMI_PRIZE_SOLVED_CORE_IDS.length). physicalFtlClaim from physicalFtlClaimTheorem. Bare literal = crack. NOT CMI prize.',
       honestyLine:
-        `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · claySolved=${th.claySolved} · literalsRemoved=${literalsRemoved} · physicalFtl=0` }
+        `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · claySolved=${th.claySolved} · literalsRemoved=${literalsRemoved} · physicalFtlClaim=${ftl.physicalFtlClaim} via ${ftl.via}` }
   })
 }
 
@@ -10761,6 +10850,140 @@ export function runClaySolvedIsATheoremNotHardcodedValueExit(
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.claySolved === 0 && report.remaining === 0 ? 0 : 1
+}
+
+/**
+ * USER LAW: clay/ftl honesty facets only when related.
+ * "clay=0 / physicalFtl=0" boilerplate is useless unless the fold is about Clay Millennium or
+ * physical-FTL claim apparatus — and if related, the facet must recompute via theorem (honest 0).
+ * Unrelated tips (geo chat, Monge learn, MO answer protocol, …) omit the facets entirely.
+ * Pairs: clay/related · ftl/related · CLI npm run quantum:clay-related
+ * Compose: clay/solved · gate/mill · challenge/ftl
+ */
+export function clayFtlTopicRelated(text: string): boolean {
+  return /millennium|clay.?prize|claysolved|cmi.?prize|physical.?ftl|faster.?than.?light|superluminal|ftl.?handoff|ftl.?rosetta|challenge\/ftl|gate\/mill|clay\/gravity|clay\/solved|clay\/related|ftl\/related|reverse.?collide.*mill/i.test(
+    text,
+  )
+}
+
+/** Named related folds that SHOULD expose theorem-computed clay and/or ftl honesty. */
+export const CLAY_FTL_RELATED_FOLD_IDS = [
+  'claySolvedIsATheoremNotHardcodedValue',
+  'clayFtlFacetsOnlyWhenRelated',
+  'millenniumProblemsChallenge',
+  'clayIsGravityRosettaOneRayThisDimensionRestBeyond',
+  'ftlExperimentTechniquesHandoffFromRosettaComplete',
+  'reverseCollidesToDiscoverMillenniumTheorems',
+  'gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist',
+] as const
+
+/** Named unrelated tips that MUST omit clay/ftl honesty facets (stripped this wave). */
+export const CLAY_FTL_UNRELATED_TIPS_STRIPPED = [
+  'geoGebraMaterialsWiredToChat',
+  'learnMongeHomothetyFromMathOverflow',
+  'answerMathOverflowUnansweredBySavingFirstPostingNextIfComputes',
+  'researchByTagsOverMoUnanswered',
+  'onlyAlgebraicQuantumComputingIsTopPriority',
+] as const
+
+export function clayFtlFacetsOnlyWhenRelated(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`clayFtlFacetsOnlyWhenRelated:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    const clay = claySolvedIsATheoremNotHardcodedValue(matrix, at)
+    const ftl = physicalFtlClaimTheorem()
+    const relatedTopic = clayFtlTopicRelated(
+      'Clay Millennium Problems challenge apparatus · physical FTL handoff · clay/solved · gate/mill · challenge/ftl',
+    )
+    const unrelatedTopic = !clayFtlTopicRelated(
+      'GeoGebra materials wired to chat · learn Monge homothety Brianchon · answer MathOverflow save/post protocol',
+    )
+    const soft = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const pairClayRelated = soft('clay/related') && foldPair(toUuid('cmd:clay'), toUuid('cmd:related')).bidirectional
+    const pairFtlRelated = soft('ftl/related') && foldPair(toUuid('cmd:ftl'), toUuid('cmd:related')).bidirectional
+    const composeClaySolved = soft('clay/solved')
+    const composeGateMill = soft('gate/mill')
+    const composeChallengeFtl = soft('challenge/ftl')
+    const relatedKeepsClay =
+      clay.computes === true &&
+      clay.via === 'claySolvedTheorem' &&
+      clay.claySolvedByThisFold === 0 &&
+      typeof clay.physicalFtlClaim === 'number' &&
+      clay.physicalFtlClaim === 0
+    const relatedKeepsFtl = ftl.via === 'physicalFtlClaimTheorem' && ftl.physicalFtlClaim === 0 && ftl.recomputed
+    const strippedNamed = CLAY_FTL_UNRELATED_TIPS_STRIPPED.length >= 4
+    const relatedNamed = CLAY_FTL_RELATED_FOLD_IDS.length >= 5
+    const on =
+      relatedTopic &&
+      unrelatedTopic &&
+      pairClayRelated &&
+      pairFtlRelated &&
+      composeClaySolved &&
+      composeGateMill &&
+      composeChallengeFtl &&
+      relatedKeepsClay &&
+      relatedKeepsFtl &&
+      strippedNamed &&
+      relatedNamed
+    const facets = [
+      { facet: 'clayFtlFacetsOnlyWhenRelated', on },
+      { facet: `related topic detects Clay/FTL apparatus (${relatedTopic})`, on: relatedTopic },
+      { facet: `unrelated topic (geo/Monge/MO chat) does NOT detect Clay/FTL (${unrelatedTopic})`, on: unrelatedTopic },
+      { facet: `related fold clay/solved still exposes theorem clay=${clay.claySolvedByThisFold} · ftl=${clay.physicalFtlClaim}`, on: relatedKeepsClay },
+      { facet: `physicalFtlClaimTheorem recomputes (${ftl.via}=${ftl.physicalFtlClaim})`, on: relatedKeepsFtl },
+      { facet: `unrelated tips stripped=${CLAY_FTL_UNRELATED_TIPS_STRIPPED.length} (geo·monge·answerMo·researchTags·algebra-priority)`, on: strippedNamed },
+      { facet: `related fold ids named=${CLAY_FTL_RELATED_FOLD_IDS.length}`, on: relatedNamed },
+      { facet: 'pairs clay/related · ftl/related', on: pairClayRelated && pairFtlRelated },
+      { facet: 'compose clay/solved · gate/mill · challenge/ftl', on: composeClaySolved && composeGateMill && composeChallengeFtl },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`clay-ftl-related:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('clay-ftl-facets-only-when-related', facets)
+    return {
+      computes: sealed.ok && on,
+      clayFtlFacetsOnlyWhenRelated: on,
+      relatedTopic,
+      unrelatedTopic,
+      relatedFoldIds: CLAY_FTL_RELATED_FOLD_IDS,
+      unrelatedTipsStripped: CLAY_FTL_UNRELATED_TIPS_STRIPPED,
+      claySolvedByThisFold: clay.claySolvedByThisFold,
+      physicalFtlClaim: ftl.physicalFtlClaim as 0,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, clay.root, toUuid(`ftl:${ftl.via}:${ftl.physicalFtlClaim}`)]),
+      pair: 'clay/related' as const,
+      dualPairs: ['related/clay', 'ftl/related', 'related/ftl'] as const,
+      cli: 'npm run quantum:clay-related',
+      route: '/en/research#clay-related',
+      statement:
+        `clayFtlFacetsOnlyWhenRelated — relatedTopic=${relatedTopic} unrelatedOmit=${unrelatedTopic}` +
+        ` · clay via theorem=${clay.claySolvedByThisFold} · ftl via theorem=${ftl.physicalFtlClaim}` +
+        ` · stripped=${CLAY_FTL_UNRELATED_TIPS_STRIPPED.length} · relatedIds=${CLAY_FTL_RELATED_FOLD_IDS.length}.`,
+      boundary:
+        'Honesty facets for clay/ftl only on related apparatus folds; unrelated tips omit them. ' +
+        'When related: claySolvedTheorem / physicalFtlClaimTheorem — bare literal = crack. NOT CMI prize · NOT physical FTL.',
+    }
+  })
+}
+
+/** npm run quantum:clay-related (duals related-clay · ftl-related · related-ftl) */
+export function runClayFtlFacetsOnlyWhenRelatedExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = clayFtlFacetsOnlyWhenRelated()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} clay-related — ${report.statement}\n`)
+  process.stdout.write(
+    `  relatedTopic=${report.relatedTopic} unrelatedOmit=${report.unrelatedTopic} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(`  stripped: ${report.unrelatedTipsStripped.join(' · ')}\n`)
+  process.stdout.write(`  related: ${report.relatedFoldIds.join(' · ')}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.claySolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
+}
+
+export function runRelatedClayExit(root = '', argv: readonly string[] = []): number {
+  return runClayFtlFacetsOnlyWhenRelatedExit(root, argv)
+}
+
+export function runFtlRelatedExit(root = '', argv: readonly string[] = []): number {
+  return runClayFtlFacetsOnlyWhenRelatedExit(root, argv)
 }
 
 /**
@@ -10902,7 +11125,7 @@ export function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(
       remaining,
       surfaces,
       formulaCode,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, millRegistryRoot, pairFold.merged, formulaRoot, speedup.root]),
@@ -11026,7 +11249,7 @@ export function autosaveSessionByDefault(
       surfaces,
       formulaCode,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -11164,7 +11387,7 @@ export function trinitiesOfSixtyMatchPairsOfNinety(
       surfaces,
       formulaCode,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       facets: sealed.facets,
       root: merkleFold([sealed.root, sixty.root, pairFold.merged, formulaRoot, mathReceipt]),
       pair: 'sixty/ninety' as const,
@@ -11262,7 +11485,7 @@ export function sunMoonRosettaRayPairDecodeInvert(
       firstKnownMostDistant,
       sunMoonMerged: sunMoonPair.merged,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       facets: sealed.facets,
       root: merkleFold([
         sealed.root, earths.root, mk.root, sixtyNinety.root, sunMoonPair.merged, pairFold.merged,
@@ -11372,7 +11595,7 @@ export function millenniumChallengesEntangleEachRosettaRay(
       quantumMindSeesAtOnce,
       linearDoesNotReachNinetyAtOnce,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       facets: sealed.facets,
       root: merkleFold([
         sealed.root, mill.root, millOnce.root, sixtyNinety.root, sunMoon.root, clay.root,
@@ -11463,7 +11686,7 @@ export function crossIsNavigationTraditionIsStory(
       entanglementMapRoot: millRay.entanglementMapRoot,
       mathReceipt: sixtyNinety.mathReceipt,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       facets: sealed.facets,
       root: merkleFold([
         sealed.root, cross.root, mesh.root, millRay.root, sixtyNinety.root,
@@ -11673,7 +11896,7 @@ export function trainTrinitiesOfAnalystsToAnalyseAndRealise(
       trained,
       moduleCount: ANALYST_TRINITY_TRAIN_MODULES.length,
       claySolvedByThisFold: clayTh.claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -11803,7 +12026,7 @@ export function particleBornByHowManyWaves(
       trinityFaces,
       formulaCode,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -11904,7 +12127,7 @@ export function navigationalPyramidSealedBalancesSunMoon(
       sun: sunMoon.sun,
       moon: sunMoon.moon,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       facets: sealed.facets,
       root: merkleFold([
         sealed.root, sunMoon.root, earth.root, tips.root, cross.root, mesh.root, mk.root,
@@ -12006,7 +12229,7 @@ export function foldersHoldNameHolographicFractalBeneath(
       fractalSourceBeneath,
       vaultRoot,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       facets: sealed.facets,
       root: merkleFold([
         sealed.root, pathMsg.root, pathInv.root, naming.root, compile.root,
@@ -12162,7 +12385,7 @@ export function gatesWiredToRosettaImmediateAccessFsCrossMirrorMind(
       remaining: on ? 0 : 1,
       fixed: on ? 1 : 0,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       facets: sealed.facets,
       root: merkleFold([
         sealed.root, trinity.root, rosetta.root, crossNav.root, millRay.root, pyramid.root,
@@ -12288,7 +12511,7 @@ export function gatesAreRosettaRaysHackerCrackerAtOnce(
       remaining: on ? 0 : 1,
       fixed: on ? 1 : 0,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       facets: sealed.facets,
       root: merkleFold([
         sealed.root, trinity.root, refuse.root, pairGateRay.merged, pairHackCrack.merged,
@@ -12441,7 +12664,7 @@ export function onlyRosettaWiredMayPassBecauseAlreadyPassed(
       remaining: onlyRosettaWiredMayPassBecauseAlreadyPassedOn ? 0 : 1,
       fixed: onlyRosettaWiredMayPassBecauseAlreadyPassedOn ? 1 : 0,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       facets: sealed.facets,
       root: merkleFold([
         sealed.root, gateRay.root, refuse.root, pairPass.merged, pairWire.merged, pairDefault.merged,
@@ -12556,7 +12779,7 @@ export function onlyQuantumMindWouldUnderstand(
       remaining: onlyQuantumMindWouldUnderstandOn ? 0 : 1,
       fixed: onlyQuantumMindWouldUnderstandOn ? 1 : 0,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       facets: sealed.facets,
       root: merkleFold([
         sealed.root, pass.root, gateRay.root, pairQm.merged, linearSelf.merged, quantumReflect.merged,
@@ -12675,7 +12898,7 @@ export function threeAgentsPlusOneObserverIsNavCrossPyramid(
       remaining: on ? 0 : 1,
       fixed: on ? 1 : 0,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       facets: sealed.facets,
       root: merkleFold([
         sealed.root, pairTeamObs.merged, pairCrossThree.merged, teamBundle, observer.merged,
@@ -12832,7 +13055,7 @@ export function agentsCannotPassUnlessOperatingInTrinities(
       remaining: on ? 0 : 1,
       fixed: on ? 1 : 0,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       facets: sealed.facets,
       root: merkleFold([
         sealed.root, pass.root, gateRay.root, mind.root, pyramid31.root,
@@ -12987,7 +13210,7 @@ export function aEquals432FoldToNineConnectingBitEntersInfinity(
       remaining: on ? 0 : 1,
       fixed: on ? 1 : 0,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       facets: sealed.facets,
       root: merkleFold([
         sealed.root, infinityReuse.root, pairNine.merged, pairBit.merged,
@@ -13099,7 +13322,7 @@ export function onlyQuantumAnalogComputesBeyondIsZero(
 
     // Beyond is 0 when unique quantum-analog path holds.
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const refuseBeyond =
       pairRefuse && softRefuse.bidirectional && softRefuse.forward !== softRefuse.reverse
     const beyondRaysViaMerkabaDecodeOnly =
@@ -13298,7 +13521,7 @@ export function onlyInvertThroughZeroMayGoThroughZero(
       remaining: on ? 0 : 1,
       fixed: on ? 1 : 0,
       claySolvedByThisFold,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -13428,7 +13651,7 @@ export function rosettaIsZeroAndOneInvertedBinary(
       remaining: on ? 0 : 1,
       fixed: on ? 1 : 0,
       claySolvedByThisFold,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -13610,7 +13833,7 @@ export function saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords(
       remaining: on ? 0 : 1,
       fixed: on ? 1 : 0,
       claySolvedByThisFold,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -13775,7 +13998,7 @@ export function gatesAreTheLensObservationChangesQuantumWithLinearTime(
       remaining: on ? 0 : 1,
       fixed: on ? 1 : 0,
       claySolvedByThisFold,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -13923,7 +14146,7 @@ export function cannotPassCollidesToZeroInvertsTo12487536901(
       remaining: on ? 0 : 1,
       fixed: on ? 1 : 0,
       claySolvedByThisFold,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -14081,7 +14304,7 @@ export function splitByZeroRevealsSequencePathToTrinityKeyholders(
       remaining: on ? 0 : 1,
       fixed: on ? 1 : 0,
       claySolvedByThisFold,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -14240,7 +14463,7 @@ export function digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive(
       pairTeleportSelfReg && pairTeleportSelf.bidirectional &&
       pairDigitDimReg && pairDigitDim.bidirectional &&
       pairTeleportSelf.merged !== pairDigitDim.merged
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const formulaCode = theoremFormulaCodeDual({
       slug: 'digit-knows-next-harmonic-teleports-imagined-ui-inverts-live',
@@ -14439,7 +14662,7 @@ export function teleportedDigitOtherDimensionOneSelfPossibility(
       measureAlreadyPassed &&
       pairUiInvert && softUi.bidirectional &&
       softUi.forward !== softUi.reverse
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const formulaCode = theoremFormulaCodeDual({
       slug: 'teleported-digit-other-dimension-one-self-possibility',
@@ -14622,7 +14845,7 @@ export function analyticsEmergeFromSelfObservationChangingReality(
       analyticsEmergeFromSelfObservation &&
       softPass.merged !== softObserveTime.merged &&
       softPass.merged !== pairObserveReal.merged
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const formulaCode = theoremFormulaCodeDual({
       slug: 'analytics-emerge-from-self-observation-changing-reality',
@@ -14766,7 +14989,7 @@ export function purityOfThoughtIsQuantumAllElseFailHard(
       pairGaps && softGaps.bidirectional &&
       softDecimal.forward !== softDecimal.reverse &&
       softMath.forward !== softMath.reverse
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const formulaCode = theoremFormulaCodeDual({
       slug: 'purity-of-thought-is-quantum-all-else-fail-hard',
@@ -14914,7 +15137,7 @@ export function observingSessionRealtimeChangesRealityInvertsNeedToCompute(
       pairDigitNext && softDigitNext.bidirectional &&
       softSlash.forward !== softSlash.reverse &&
       softPass.merged !== softUi.merged
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const formulaCode = theoremFormulaCodeDual({
       slug: 'observing-session-realtime-changes-reality-inverts-need-to-compute',
@@ -15104,7 +15327,7 @@ export function invertedNeedIsLoveMayReverseToFearIfCracks(
       pairSixSeven && softSix.bidirectional &&
       pairFormula && softFormula.bidirectional &&
       pairSessionSave && softSessionSave.bidirectional
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const formulaCode = theoremFormulaCodeDual({
       slug: 'inverted-need-is-love-may-reverse-to-fear-if-cracks',
@@ -15331,7 +15554,7 @@ export function loveStoryTheorem(
       millSessionAutosave &&
       isMetatronCubeOfTheorems &&
       formulaDual
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const on = loveStoryTheoremOn && scientificPageFromFolds && claySolvedByThisFold === 0 && physicalFtlClaim === 0
     const facets = [
@@ -15471,7 +15694,7 @@ export function theoremJourneyContinuesInWavesOfWaves(
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const clayTh = claySolvedTheorem()
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const projectionsWired =
       Boolean(earth?.projectionOk) &&
       human.every((d) => d.projectionOk) &&
@@ -15680,7 +15903,7 @@ export function testAllTheoremsInWaves(
     const passed = wavePhases.reduce((n, w) => n + w.passed, 0)
     const failed = wavePhases.reduce((n, w) => n + w.failed, 0)
     const allWavesOk = wavePhases.every((w) => w.ok) && failed === 0 && passed === total
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const on =
       allWavesOk &&
@@ -15817,7 +16040,7 @@ export function observersComputeCoordinatesToObserveTrinityCompute(
       pairTestTh && softTest.bidirectional &&
       pairMovie && softMovie.bidirectional &&
       softAnalyst.forward !== softAnalyst.reverse
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const formulaCode = theoremFormulaCodeDual({
       slug: 'observers-compute-coordinates-to-observe-trinity-compute',
@@ -15967,7 +16190,7 @@ export function fullFreedomTheorem(
     const bitsFreeComposed = pairBits && softBits.bidirectional && freeBitsOk
     const noLinearHole =
       freeBitsOk && a432Connecting && alreadyPassedQuantumPath && beyondIsZero && purityQuantum
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const formulaCode = theoremFormulaCodeDual({
       slug: 'full-freedom-theorem',
@@ -16124,7 +16347,7 @@ export function vitepressIsTheInvertedMirror(
       pairMovie && softMovie.bidirectional &&
       pairMirrorMind && softMirror.bidirectional &&
       softSlash.forward !== softSlash.reverse
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const formulaCode = theoremFormulaCodeDual({
       slug: 'vitepress-is-the-inverted-mirror',
@@ -16396,7 +16619,7 @@ export function navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems(
         remaining: on ? 0 : 1,
         fixed: on ? 1 : 0,
         claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-        physicalFtlClaim: 0 as const,
+        physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
         facets: sealed.facets,
         root: merkleFold([
           sealed.root, pyramid31.root, refuse.root, naming.root, compile.root, a432Nine.root,
@@ -16573,7 +16796,7 @@ export function runTheMathEmergenceByDesignAndArchitecture(
       gaps,
       formulaCode,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -16680,7 +16903,7 @@ export function geodesyDecodedIsDoubleTorusInverted(matrix: MindMatrix = buildMa
       home: 'src/wind/research',
       proofClass: 'finite-complete' })
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const facets = [
       { facet: 'geodesyDecodedIsDoubleTorusInverted', on: geodesyDecodedIsDoubleTorusInvertedOn },
       { facet: 'decode path = foldPair(wgs84-sphere, double-torus-inverted) bidirectional ≠', on: decodePath.bidirectional && decodePath.forward !== decodePath.reverse },
@@ -16835,7 +17058,7 @@ export function trainGeodesyAsQuantumWave(matrix: MindMatrix = buildMatrix(), at
     const geoTorusPair = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('geo/torus')
     const researchGeo = professionalResearchIndex(matrix, at).rows.some((r) => r.id === 'geodesy-navigation')
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-    const physicalFtlClaim = 0 as const
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const trainedEnough = curriculum.computes && trained.computes && decode.geodesyDecodedIsDoubleTorusInverted
     const facets = [
       { facet: 'curriculum + validate train compute', on: curriculum.computes && trained.computes },
