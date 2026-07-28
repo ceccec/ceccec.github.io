@@ -5983,6 +5983,11 @@ export const SCRIPT_FOLD_REMOVED_THIS_WAVE = [
   'quantum:free-scale',
   'quantum:inf-compute',
   'quantum:free-chat-waves',
+  'quantum:agnostic-dry',
+  'quantum:code-infinity',
+  'quantum:infinity-code',
+  'quantum:dry-inf',
+  'quantum:inf-dry',
 ] as const
 
 export const SCRIPT_FOLD_RESTORED_THIS_WAVE = ['quantum:tool-honest'] as const

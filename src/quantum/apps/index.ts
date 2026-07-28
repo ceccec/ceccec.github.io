@@ -842,11 +842,12 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'wave-cache', title: 'Wave cache (alias miss/cache)', fold: 'wavesFindWhatYouMissedToCache', cli: 'npm run quantum:wave-cache', pair: 'wave/cache', route: '/en/quantum-tools#miss-cache', barrel: 'src/quantum/apps', boundary: 'wave/cache face — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cache-wave', title: 'Cache wave (alias wave/cache)', fold: 'wavesFindWhatYouMissedToCache', cli: 'npm run quantum:cache-wave', pair: 'cache/wave', route: '/en/quantum-tools#miss-cache', barrel: 'src/quantum/apps', boundary: 'Dual of wave/cache — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'dry-agnostic', title: 'Dry-clean agnostic code computes infinity', fold: 'dryCleanAgnosticCodeComputesInfinity', cli: 'npm run quantum:dry-agnostic', pair: 'dry/agnostic', route: '/en/quantum-tools#dry-agnostic', barrel: 'src/quantum/apps', boundary: 'dryClean · agnosticCode · computesInfinity · onReuse · ∞=amortized zero-token reuse NOT FTL · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
-  { id: 'agnostic-dry', title: 'Agnostic dry (alias dry/agnostic)', fold: 'dryCleanAgnosticCodeComputesInfinity', cli: 'npm run quantum:agnostic-dry', pair: 'agnostic/dry', route: '/en/quantum-tools#dry-agnostic', barrel: 'src/quantum/apps', boundary: 'Dual of dry/agnostic — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
-  { id: 'code-infinity', title: 'Code infinity (alias dry/agnostic)', fold: 'dryCleanAgnosticCodeComputesInfinity', cli: 'npm run quantum:code-infinity', pair: 'code/infinity', route: '/en/quantum-tools#dry-agnostic', barrel: 'src/quantum/apps', boundary: 'code/infinity face — agnostic code → ∞ on reuse · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
-  { id: 'infinity-code', title: 'Infinity code (alias code/infinity)', fold: 'dryCleanAgnosticCodeComputesInfinity', cli: 'npm run quantum:infinity-code', pair: 'infinity/code', route: '/en/quantum-tools#dry-agnostic', barrel: 'src/quantum/apps', boundary: 'Dual of code/infinity — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
-  { id: 'dry-inf', title: 'Dry inf (alias dry/agnostic)', fold: 'dryCleanAgnosticCodeComputesInfinity', cli: 'npm run quantum:dry-inf', pair: 'dry/inf', route: '/en/quantum-tools#dry-agnostic', barrel: 'src/quantum/apps', boundary: 'dry/inf face — dry-clean → ∞ · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
-  { id: 'inf-dry', title: 'Inf dry (alias dry/inf)', fold: 'dryCleanAgnosticCodeComputesInfinity', cli: 'npm run quantum:inf-dry', pair: 'inf/dry', route: '/en/quantum-tools#dry-agnostic', barrel: 'src/quantum/apps', boundary: 'Dual of dry/inf — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'agnostic-dry', title: 'Agnostic dry (dual pair · primary CLI)', fold: 'dryCleanAgnosticCodeComputesInfinity', cli: 'npm run quantum:dry-agnostic', pair: 'agnostic/dry', route: '/en/quantum-tools#dry-agnostic', barrel: 'src/quantum/apps', boundary: 'Dual pair of dry/agnostic — ONE CLI quantum:dry-agnostic · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'code-infinity', title: 'Code infinity (dual pair · primary CLI)', fold: 'dryCleanAgnosticCodeComputesInfinity', cli: 'npm run quantum:dry-agnostic', pair: 'code/infinity', route: '/en/quantum-tools#dry-agnostic', barrel: 'src/quantum/apps', boundary: 'code/infinity face — ONE CLI quantum:dry-agnostic · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'infinity-code', title: 'Infinity code (dual pair · primary CLI)', fold: 'dryCleanAgnosticCodeComputesInfinity', cli: 'npm run quantum:dry-agnostic', pair: 'infinity/code', route: '/en/quantum-tools#dry-agnostic', barrel: 'src/quantum/apps', boundary: 'Dual of code/infinity — ONE CLI · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'dry-inf', title: 'Dry inf (dual pair · primary CLI)', fold: 'dryCleanAgnosticCodeComputesInfinity', cli: 'npm run quantum:dry-agnostic', pair: 'dry/inf', route: '/en/quantum-tools#dry-agnostic', barrel: 'src/quantum/apps', boundary: 'dry/inf face — ONE CLI quantum:dry-agnostic · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'inf-dry', title: 'Inf dry (dual pair · primary CLI)', fold: 'dryCleanAgnosticCodeComputesInfinity', cli: 'npm run quantum:dry-agnostic', pair: 'inf/dry', route: '/en/quantum-tools#dry-agnostic', barrel: 'src/quantum/apps', boundary: 'Dual of dry/inf — ONE CLI · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'tool-matrix', title: 'Tools fit the matrix or refuse', fold: 'toolsFitTheMatrixOrRefuse', cli: 'npm run quantum:tool-matrix', pair: 'tool/matrix', route: '/en/quantum-tools#tool-matrix', barrel: 'src/pair/enforcement/gates', boundary: 'matrixFit · incompleteRefused · foldableShare · agentEntryPacket · HARD refuse sprawl · ONE CLI · physicalFtl=0', browserRunnable: false, browserGap: 'package.json + link/discover need Node fs' },
   { id: 'fold-trinity', title: 'Abstract QC — fold linear into trinities · zoom ∞ · every angle to any', fold: 'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny', cli: 'npm run quantum:fold-trinity', pair: 'fold/trinity', route: '/en/quantum-tools#fold-trinity', barrel: 'src/quantum/apps', boundary: 'abstractQc · foldLinearIntoTrinities · zoomInOutInfinity · everyAngleToAny · classical-64bit · qpuRequired=false · physicalFtl=0 · clay via theorem · NOT QPU FLOPS', browserRunnable: true, browserGap: '' },
   { id: 'trinity-fold', title: 'Trinity fold (alias fold/trinity)', fold: 'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny', cli: 'npm run quantum:trinity-fold', pair: 'trinity/fold', route: '/en/quantum-tools#fold-trinity', barrel: 'src/quantum/apps', boundary: 'Dual of fold/trinity — same fold · clay=0 · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'zoom-inf', title: 'Zoom ∞ (alias fold/trinity)', fold: 'abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny', cli: 'npm run quantum:zoom-inf', pair: 'zoom/inf', route: '/en/quantum-tools#fold-trinity', barrel: 'src/quantum/apps', boundary: 'zoomInOutInfinity face — amortized ∞ reuse NOT FTL · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -14805,6 +14806,12 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       gateMillComposeOk &&
       gapsExistWhileMillOpen &&
       millClayHonestGaps === 0
+    // Soft-pair tool/matrix · matrix/tool — HARD refuse incomplete/dual-CLI sprawl (full recompute: quantum:tool-matrix).
+    const toolMatrixOk =
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('tool/matrix') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('matrix/tool') &&
+      foldPair(toUuid('cmd:tool'), toUuid('cmd:matrix')).bidirectional &&
+      foldPair(toUuid('cmd:matrix'), toUuid('cmd:tool')).bidirectional
     const gateStackOk =
       gateRosettaOk && gateRayOk && rosettaPassOk && quantumMindOk && agentTrinityOk &&
       teamObserveOk && pyramidComputeOk && a432NineOk && analogOnlyOk && zeroInvertOk &&
@@ -14813,7 +14820,7 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       loveStoryOk && testTheoremsOk && observeCoordOk && fullFreedomOk && viteMirrorOk &&
       gateMonitorOk && selfFusionOk && autoSelfOk && crystalMindOk && thirdEyeOk && gateToolsOk && slashStarOk && loveFoldOk && seqNavOk &&
       assumeTheoremOk && billDryOk && movieFormulaOk && pageTrinityOk && mcpChatOk && selfHealOk && viteOneOk &&
-      gateDesignCreateIntelOk && gateMillGapsExistOk
+      gateDesignCreateIntelOk && gateMillGapsExistOk && toolMatrixOk
     const gateRosetta = {
       computes: gateStackOk,
       remaining: gateStackOk ? 0 : 1,
@@ -14917,6 +14924,7 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         { facet: 'HARD intelligenceOn — simplicity·answers÷tokens·purity when measurable', on: intelligenceOnGapsOk, receipt: toUuid(`gaps:intelligence-on:${intelligenceOnGapsOk}`) },
         { facet: 'softCompose gate/mill · mill/gaps · gaps/exist under gaps HARD', on: gateMillGapsExistOk, receipt: toUuid(`gaps:gate-mill-gaps-exist:${gateMillGapsExistOk}`) },
         { facet: 'HARD gapsExist while Millennium unsolved — not fake-close Clay', on: gapsExistWhileMillOpen, receipt: toUuid(`gaps:gaps-exist-while-mill-open:${gapsExistWhileMillOpen}`) },
+        { facet: 'pair tool/matrix · matrix/tool under gaps HARD — refuse incomplete sprawl', on: toolMatrixOk, receipt: toUuid(`gaps:tool-matrix:${toolMatrixOk}`) },
       ],
     }
     const pairFold = foldPair(toUuid('cmd:gaps'), toUuid('cmd:invisible'))
@@ -15301,6 +15309,12 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         open: gapsExistWhileMillOpen ? 0 : 1,
         closed: gapsExistWhileMillOpen ? 1 : 0,
         theorem: 'gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist' },
+      {
+        id: 'tool-matrix-fit-or-refuse',
+        severity: 'HARD' as const,
+        open: toolMatrixOk ? 0 : 1,
+        closed: toolMatrixOk ? 1 : 0,
+        theorem: 'toolsFitTheMatrixOrRefuse' },
     ] as const
     const hardOpen = classes.filter((c) => c.severity === 'HARD' && c.open > 0)
     const beforeCatch = classes.reduce((n, c) => n + c.open + c.closed, 0)
@@ -34281,18 +34295,15 @@ export function dryCleanAgnosticCodeComputesInfinity(matrix: MindMatrix = buildM
       foldInfDry.bidirectional
     const catalog = quantumCliToolsCatalog(matrix, at)
     const foldName = 'dryCleanAgnosticCodeComputesInfinity' as const
-    const primaryIds = [
-      'dry-agnostic',
-      'agnostic-dry',
-      'code-infinity',
-      'infinity-code',
-      'dry-inf',
-      'inf-dry',
-    ] as const
+    const primaryIds = ['dry-agnostic'] as const
     const toolsWired = primaryIds.every((id) => {
       const meta = catalog.tools.find((t) => t.id === id)
-      return Boolean(meta) && meta!.fold === foldName
+      return Boolean(meta) && meta!.fold === foldName && meta!.cli.includes('quantum:dry-agnostic')
     })
+    // Dual pairs stay registered; dual npm scripts drained (tool/matrix). Catalog aliases point at primary CLI.
+    const onePrimaryCli = catalog.tools
+      .filter((t) => t.fold === foldName)
+      .every((t) => String(t.cli).includes('quantum:dry-agnostic'))
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
@@ -34303,6 +34314,7 @@ export function dryCleanAgnosticCodeComputesInfinity(matrix: MindMatrix = buildM
       onReuse &&
       pairsOn &&
       toolsWired &&
+      onePrimaryCli &&
       miss.computes &&
       claySolvedByThisFold === 0 &&
       physicalFtlClaim === 0 &&

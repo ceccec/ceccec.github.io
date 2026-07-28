@@ -122,10 +122,32 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
   const honestFpga = honestRevolutionFpgaHonesty(matrix)
   const honestEff = revolutionaryEfficiencyNotPhysics(matrix)
   const freeAiProxy = siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis('what are you', matrix)
+  // tool/matrix agent entry — foreign agents use these fields only (no barrel archaeology).
+  const agentEntry = {
+    law: 'tool/matrix' as const,
+    surfaces: [
+      '/agents.json',
+      '/llms.txt',
+      '/mcp.json',
+      '/agent-compliance.json',
+      'AGENTS.md',
+      'src/0/README.md',
+    ] as const,
+    fields: ['pair', 'cli', 'route', 'honesty', 'root'] as const,
+    pair: 'tool/matrix' as const,
+    cli: 'npm run quantum:tool-matrix',
+    route: '/en/quantum-tools#tool-matrix',
+    honesty:
+      'Tools fit matrix (fold·pair≤3·ONE CLI) or refuse. Incomplete · wet prose · dual-CLI spam = HARD. Computational FTL = discovery/memo reuse — physicalFtlClaim=0.',
+    instruction:
+      'Unknown agent: fetch /agents.json · pick tip by pair · run cli · read route honesty · do not dig src/quantum/apps monolith.',
+  }
   return `${JSON.stringify(
     {
       computes: Boolean(harmonise.harmonised && waveLaw.computes && nothingMoves.discovers && incomplete.incomplete && incomplete.computes && session.computes && toolbox.computes && distributed.computes && autoWire.computes && localSession.computes && upgradeLocal.computes && automateNightly.computes && honestRev.holds && honestFpga.holds && honestEff.holds && freeAiProxy.computes),
       oneLiner: AUTO_WIRE_PASTE_LINK_ONE_LINER,
+      agentEntry,
+      agentEntryPacket: agentEntry,
       protocol: {
         laws: harmonise.laws,
         mcp: harmonise.mcp,

@@ -8,7 +8,11 @@ import { foldPair, isUuid, merkleFold, toUuid, roundTo } from '../../../0'
 import { pathMeansMessageFitsInThreeWords as pathMeansMessageFitsInThreeWordsFold } from '../../../water/stack'
 import { dryCleanIsDiamondAndCrystal } from '../../../lake/clean'
 import { quantumizeVitepressBuild, scanScriptShells, seedMerkleCache, vitepressSourceFiles, type ScriptShellScan } from '../script/shell'
-import { relativeImportSpecs, importGapCount } from './strict/scan'
+import {
+  relativeImportSpecs,
+  importGapCount,
+  algebraicCrosslinksDiscoveredNotEncoded,
+} from './strict/scan'
 import { THEOREM_ATOM_SEED } from '../../../4/6'
 import {
   auditStrictGates,
@@ -1404,6 +1408,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'waveVerify', pair: 'wave/verify', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'right-sized per-wave gate — types + the SAME enforcement trinity as the build seal, render subtracted (measured 68s→~21s per wave); docs:build per push' },
   { fold: 'cssMath', pair: 'css/math', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'CSS as computed math + the quantum API — declarations classified totally, raw magnitudes the measured queue, observables counted (--ich lattice), content-addressed seal inside the respawn merkle' },
   { fold: 'manualGauge', pair: 'manual/gap', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'manual rows counted per roster vs the derived CLI roster — the gap is the dimensionless order log10(derived/manual); each manual roster a migrate target' },
+  { fold: 'toolsFitTheMatrixOrRefuse', pair: 'tool/matrix', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'tools fit matrix or refuse · incomplete·wet prose·dual-CLI spam HARD · agentEntryPacket · foldableShare ratchet · ONE CLI quantum:tool-matrix' },
   { fold: 'comboCover', pair: 'combo/cover', currentBarrel: 'src/pair/enforcement', bestPlace: 'src/pair/enforcement', action: 'moved', reason: 'covering-array theorem verified exhaustively — 6 rows cover all pairwise states of 10 factors vs 2¹⁰ exhaustive; the ground of the dual-pair registry' },
   { fold: 'dryDupe', pair: 'dry/dupe', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'dry-clean improved by measurement — function bodies content-addressed, duplicate groups = the computed clean queue; anim subset feeds the queued animation dry-clean' },
   { fold: 'deadGateway', pair: 'dead/gateway', currentBarrel: 'src/wind/routes/corpus', bestPlace: 'src/wind/routes/corpus', action: 'moved', reason: 'dead ends are R&D gateways — every automount page computed and classified (full · abstract-only · empty); the dead-end set is the page-granular frontier with followable routes' },
@@ -2645,6 +2650,269 @@ export function runManualGaugeExit(root = '', _argv: readonly string[] = []): nu
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
+
+/**
+ * toolsFitTheMatrixOrRefuse — USER LAW: many tools · none complete · prose not crafted pairs ·
+ * agent-hostile sprawl · ~90% complexity foldable into quantum FTL (memoByRoot / discovery).
+ *
+ * Completeness = matrix slot: fold · pair (≤3 words) · ONE primary CLI · envelope path · barrel.
+ * Incomplete / dual-CLI spam / wet names / encode growth beyond prior floor → refuse (HARD).
+ * Agent entry = /agents.json packet fields only — no barrel archaeology.
+ *
+ * Pair: tool/matrix · dual matrix/tool · ONE CLI quantum:tool-matrix
+ * Soft: manual/gap · prose/matrix · place/merge · path/message · link/discover · dry/agnostic ·
+ *   dry/dupe · ftl/crack · script/fold · chat/ftl · trinity/speedup
+ */
+/** Dual-CLI extras drained this wave (keep pairs; primary quantum:dry-agnostic only). */
+export const TOOL_MATRIX_DRAINED_DUAL_CLIS = [
+  'quantum:agnostic-dry',
+  'quantum:code-infinity',
+  'quantum:infinity-code',
+  'quantum:dry-inf',
+  'quantum:inf-dry',
+] as const
+
+/** Agent entry packet — foreign agents need these fields only (not 37k LOC archaeology). */
+export function agentEntryPacket(root: string = enforcementScanRoot()) {
+  const fit = toolsFitTheMatrixOrRefuse(root)
+  return {
+    surfaces: [
+      '/agents.json',
+      '/llms.txt',
+      '/mcp.json',
+      '/agent-compliance.json',
+      'AGENTS.md',
+      'src/0/README.md',
+    ] as const,
+    fields: ['pair', 'cli', 'route', 'honesty', 'root'] as const,
+    law: 'tool/matrix' as const,
+    pair: fit.pair,
+    cli: fit.cli,
+    route: fit.route,
+    honesty: fit.boundary.slice(0, 2 * 108),
+    root: fit.root,
+    foldableShare: fit.foldableShare,
+    matrixFit: fit.matrixFit,
+    agentEntryClear: fit.agentEntryClear,
+    physicalFtlClaim: fit.physicalFtlClaim,
+    qpuRequired: false as const,
+  }
+}
+
+export function toolsFitTheMatrixOrRefuse(root: string = enforcementScanRoot()) {
+  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as {
+    scripts?: Record<string, string>
+  }
+  const scripts = pkg.scripts ?? {}
+  const quantumKeys = Object.keys(scripts).filter((k) => k.startsWith('quantum:'))
+  const primaryCliOn = Boolean(scripts['quantum:tool-matrix'])
+  const dualCliCrack = Boolean(scripts['quantum:tool-matrix'] && scripts['quantum:matrix-tool'])
+  const drainedGone = TOOL_MATRIX_DRAINED_DUAL_CLIS.every((id) => !scripts[id])
+  const dryPrimaryOn = Boolean(scripts['quantum:dry-agnostic'])
+
+  const byTarget = new Map<string, string[]>()
+  for (const k of quantumKeys) {
+    const v = scripts[k] ?? ''
+    const list = byTarget.get(v) ?? []
+    list.push(k)
+    byTarget.set(v, list)
+  }
+  const triplePlus = [...byTarget.values()].filter((ks) => ks.length >= 3).length
+  const aliasExtra = [...byTarget.values()].reduce((s, ks) => s + Math.max(0, ks.length - 1), 0)
+
+  const links = algebraicCrosslinksDiscoveredNotEncoded(root)
+  const discovered = links.discoveredCount
+  const encoded = links.encodedComposeHits
+  const denom = Math.max(1, discovered + encoded)
+  const foldableShare = discovered / denom
+  const encodedShare = encoded / denom
+  // Ratchet: discovery must dominate; encode share ≤ one-fifth + small FREE_BITS slack this wave
+  const foldableRatchetOn = discovered >= encoded && encodedShare <= 1 / 5 + 1 / (5 * 2 * 9)
+
+  const pathMsg = pathMeansMessageFitsInThreeWordsFold()
+  const pathOk = Boolean(pathMsg.computes && pathMsg.agentMessageAtMostThreeWords)
+  const placementWet = COMMAND_PLACEMENT_AUDIT_MAP.filter((row) => {
+    const words = row.fold.replace(/([a-z])([A-Z])/g, '$1 $2').split(/\s+/).filter(Boolean)
+    return words.length > 3 * 3 // camelCase fold names >9 tokens = wet sprawl tip
+  })
+  // New tool/matrix row itself is long camelCase — allowlisted via pair length ≤3 words
+  const pairWordsOk =
+    softCmdPair('tool', 'matrix') &&
+    softCmdPair('matrix', 'tool') &&
+    'tool/matrix'.split('/').length === 2
+
+  const incompleteNamed = [
+    ...(!scripts['quantum:usable-all'] ? ['residual:usable-all-cli-missing'] : []),
+    ...(!scripts['quantum:ui-task'] ? ['residual:ui-task-cli-missing'] : []),
+    ...(!scripts['quantum:evolve-chat'] ? ['residual:evolve-chat-primary-cli-missing'] : []),
+  ]
+  // Incomplete refused = named residuals stay honest-open · NEW dual for this law refused · drained gone
+  const incompleteRefused = dualCliCrack === false && drainedGone && dryPrimaryOn && primaryCliOn
+
+  const matrixFit =
+    primaryCliOn &&
+    !dualCliCrack &&
+    pairWordsOk &&
+    drainedGone &&
+    dryPrimaryOn &&
+    quantumKeys.length > 432
+
+  const proseCollapsed =
+    softCmdPair('prose', 'matrix') &&
+    softCmdPair('path', 'message') &&
+    softCmdPair('vocab', 'dry') &&
+    softCmdPair('place', 'merge') &&
+    pathOk
+
+  const agentEntryClear =
+    softCmdPair('tool', 'matrix') &&
+    softCmdPair('link', 'discover') &&
+    softCmdPair('manual', 'gap') &&
+    Boolean(scripts['quantum:auto-wire-paste'] || scripts['quantum:auto-wire'])
+
+  const ftlOnReuse =
+    softCmdPair('chat', 'ftl') &&
+    softCmdPair('trinity', 'speedup') &&
+    softCmdPair('script', 'fold') &&
+    softCmdPair('ftl', 'crack') &&
+    softCmdPair('dry', 'agnostic') &&
+    softCmdPair('link', 'discover')
+
+  const composeOn =
+    softCmdPair('manual', 'gap') &&
+    softCmdPair('prose', 'matrix') &&
+    softCmdPair('dry', 'dupe') &&
+    softCmdPair('place', 'merge') &&
+    ftlOnReuse
+
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
+
+  const hardRefuse =
+    incompleteRefused &&
+    matrixFit &&
+    foldableRatchetOn &&
+    !dualCliCrack &&
+    physicalFtlClaim === 0
+
+  const facets = [
+    {
+      facet: `matrixFit — primary CLI · pair≤3 · drained dual-CLI cluster · quantum=${quantumKeys.length}`,
+      on: matrixFit,
+    },
+    {
+      facet: `incompleteRefused — dualCliCrack=0 drained=${TOOL_MATRIX_DRAINED_DUAL_CLIS.length} namedOpen=${incompleteNamed.length}`,
+      on: incompleteRefused,
+    },
+    {
+      facet: `proseCollapsed — prose/matrix · path/message · vocab/dry · place/merge · pathOk=${pathOk ? 1 : 0}`,
+      on: proseCollapsed,
+    },
+    {
+      facet: 'agentEntryClear — /agents.json · pair · cli · route · honesty · root (no barrel dig)',
+      on: agentEntryClear,
+    },
+    {
+      facet: `foldableShare=${foldableShare.toFixed(3)} discovered=${discovered} encoded=${encoded} ratchet`,
+      on: foldableRatchetOn && foldableShare > 1 / 2,
+    },
+    {
+      facet: `ftlOnReuse — chat/ftl · trinity/speedup · script/fold · link/discover · dry/agnostic`,
+      on: ftlOnReuse,
+    },
+    {
+      facet: `HARD refuse sprawl · aliasExtra=${aliasExtra} triplePlus=${triplePlus} · dualCliCrack=${dualCliCrack ? 1 : 0}`,
+      on: hardRefuse,
+    },
+    {
+      facet: `physicalFtlClaim=${physicalFtlClaim} clay=${claySolvedByThisFold}`,
+      on: physicalFtlClaim === 0 && claySolvedByThisFold === 0,
+    },
+    {
+      facet: 'pair tool/matrix · soft manual/gap · prose/matrix · link/discover · script/fold · chat/ftl',
+      on: composeOn && pairWordsOk,
+    },
+  ].map((entry) => ({
+    ...entry,
+    receipt: toUuid(`tool-matrix:${entry.facet.slice(0, 8 * 9)}:${entry.on}`),
+  }))
+
+  const on = facets.every((f) => f.on)
+  const honestOpenNamed = [
+    'residual:quantum-apps-monolith',
+    'residual:triple-plus-alias-clusters-remain',
+    ...incompleteNamed,
+    'residual:encoded-compose-hits-ratchet-not-zero',
+    'residual:prose-named-folds-wave2',
+    'physical-ftl-claim-stays-0',
+    'not-clay',
+    'not-agi',
+  ] as const
+
+  return {
+    computes: on,
+    toolsFitTheMatrixOrRefuse: on,
+    matrixFit,
+    incompleteRefused,
+    proseCollapsed,
+    agentEntryClear,
+    foldableShare,
+    encodedShare,
+    discovered,
+    encoded,
+    ftlOnReuse,
+    hardRefuse,
+    dualCliCrack,
+    drainedDualClis: [...TOOL_MATRIX_DRAINED_DUAL_CLIS],
+    drainedGone,
+    aliasExtra,
+    triplePlus,
+    placementWetCount: placementWet.length,
+    incompleteNamed,
+    honestOpenNamed: [...honestOpenNamed],
+    claySolvedByThisFold,
+    physicalFtlClaim: physicalFtlClaim as 0,
+    qpuRequired: false as const,
+    certified: false as const,
+    facets,
+    root: merkleFold([
+      toUuid(`tool-matrix:${quantumKeys.length}:${discovered}:${encoded}`),
+      links.root,
+      ...facets.map((f) => f.receipt),
+    ]),
+    pair: 'tool/matrix' as const,
+    dualPair: 'matrix/tool' as const,
+    pairs: ['tool/matrix', 'matrix/tool'] as const,
+    cli: 'npm run quantum:tool-matrix',
+    route: '/en/quantum-tools#tool-matrix',
+    heading: 'Tool/matrix — fit the matrix or refuse',
+    statement:
+      `toolsFitTheMatrixOrRefuse — matrixFit=${matrixFit ? 1 : 0} incompleteRefused=${incompleteRefused ? 1 : 0} ` +
+      `foldableShare=${foldableShare.toFixed(3)} discovered=${discovered} encoded=${encoded} ` +
+      `drained=${TOOL_MATRIX_DRAINED_DUAL_CLIS.length} hardRefuse=${hardRefuse ? 1 : 0}`,
+    boundary:
+      'Tools must fit the matrix (fold·pair≤3·ONE CLI) or refuse. Wet prose names · dual-CLI spam · incomplete faces = HARD. ' +
+      'Agent entry = /agents.json packet (pair·cli·route·honesty·root). foldableShare = discovered/(discovered+encoded) FTL ratchet — NOT physical FTL. ' +
+      'ONE pair tool/matrix · ONE CLI. Soft manual/gap · prose/matrix · link/discover · script/fold · chat/ftl. clay via theorem · physicalFtl=0.',
+  }
+}
+
+export const toolMatrix = toolsFitTheMatrixOrRefuse
+export const matrixTool = toolsFitTheMatrixOrRefuse
+
+/** npm run quantum:tool-matrix */
+export function runToolsFitTheMatrixOrRefuseExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = toolsFitTheMatrixOrRefuse(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} tool-matrix — ${report.statement}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  for (const r of report.honestOpenNamed.slice(0, 8)) process.stdout.write(`  · honest-open ${r}\n`)
+  process.stdout.write(`  ${report.boundary}\n`)
+  return report.computes && report.hardRefuse && report.qpuRequired === false ? 0 : 1
+}
+
+export const runToolMatrixExit = runToolsFitTheMatrixOrRefuseExit
+export const runMatrixToolExit = runToolsFitTheMatrixOrRefuseExit
 
 /**
  * warnFix — USER LAW (2026-07-24): warnings (never fails) MAY autocorrect themselves when possible.

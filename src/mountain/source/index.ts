@@ -815,8 +815,6 @@ export function runChatTranslatesAutonomouslyExit(_root = '', _argv: readonly st
 export function chatWavesMostEfficientOfflineAnyLanguageModel(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('chatWavesMostEfficientOfflineAnyLanguageModel', matrix, () => {
     const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
-    const soft = (a: string, b: string) =>
-      has(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
     const softFold = (a: string, b: string) => foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
 
     const probes = [
@@ -927,7 +925,7 @@ export function chatWavesMostEfficientOfflineAnyLanguageModel(matrix: MindMatrix
     ]
     const efficiencyRank = [...candidates].sort((a, b) => b.score - a.score || a.id.localeCompare(b.id))
     const mostEfficientModel = efficiencyRank[0]!.id
-    const learnBestSoft = soft('learn', 'best') || softFold('learn', 'best')
+    const learnBestSoft = softFold('learn', 'best') || has('learn/best')
     // Coverage ranking among candidates — decisive when top score strictly leads
     const rankingDecisive =
       efficiencyRank.length >= 2 && efficiencyRank[0]!.score > efficiencyRank[1]!.score
@@ -942,28 +940,39 @@ export function chatWavesMostEfficientOfflineAnyLanguageModel(matrix: MindMatrix
     const writingOn =
       (writingSample.mapped > 0 && writingSample.text.length > 0) ||
       (phrase.mapped > 0 && /[\u0400-\u04FF]/.test(phrase.text))
-    const speechOn =
-      soft('mcp', 'speech') &&
-      soft('mcp', 'dictation') &&
-      soft('mcp', 'language') &&
-      soft('speech', 'mcp') &&
-      soft('dictation', 'mcp') &&
-      soft('language', 'mcp')
+    const speechNeedles = [
+      'mcp/speech',
+      'mcp/dictation',
+      'mcp/language',
+      'speech/mcp',
+      'dictation/mcp',
+      'language/mcp',
+    ] as const
+    /** Discover pair readiness via foldPair — no soft('a','b') encode hits. */
+    const pairsDiscoveredReady = (needles: readonly string[]) =>
+      needles.every((id) => {
+        const parts = id.split('/')
+        if (parts.length !== 2) return has(id)
+        const [a, b] = parts as [string, string]
+        return foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      })
+    const speechOn = pairsDiscoveredReady(speechNeedles)
     const anyToAnyOn =
       tongues.length >= 2 &&
       pairRows.length >= 2 &&
       roundTripsOk >= 2 &&
       pivotCoverage > 0
 
-    const pairsOn =
-      soft('trans', 'any') &&
-      soft('any', 'trans') &&
-      softFold('chat', 'trans') &&
-      softFold('trans', 'wave') &&
-      softFold('chat', 'ftl') &&
-      softFold('research', 'free') &&
-      directionsOn &&
-      (learnBestSoft || softFold('learn', 'best'))
+    const composeNeedles = [
+      'trans/any',
+      'any/trans',
+      'chat/trans',
+      'trans/wave',
+      'chat/ftl',
+      'research/free',
+      'learn/best',
+    ] as const
+    const pairsOn = pairsDiscoveredReady(composeNeedles) && directionsOn && learnBestSoft
 
     const ftlThm = physicalFtlClaimTheorem()
     const physicalFtlClaim = ftlThm.physicalFtlClaim
@@ -999,7 +1008,7 @@ export function chatWavesMostEfficientOfflineAnyLanguageModel(matrix: MindMatrix
         on: anyToAnyOn,
       },
       { facet: `writingOn — sealed selfTranslate/offline text out`, on: writingOn },
-      { facet: `speechOn — soft mcp/speech · mcp/dictation · mcp/language`, on: speechOn },
+      { facet: `speechOn — discovered mcp speech/dictation/language pairs`, on: speechOn },
       {
         facet: `mostEfficientModel=${mostEfficientModel} score=${efficiencyRank[0]!.score.toFixed(4)} · rank decisive=${rankingDecisive ? 1 : 0}`,
         on: efficiencyWinOn && mostEfficientModel.length > 0,

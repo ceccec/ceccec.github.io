@@ -288,11 +288,13 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `wave/cache` — wave/cache face of `miss/cache` (`npm run quantum:wave-cache`)
   - `cache/wave` — alias dual of `wave/cache` (`npm run quantum:cache-wave`)
   - `dry/agnostic` — `npm run quantum:dry-agnostic` (`dryCleanAgnosticCodeComputesInfinity()` — dry-clean agnostic code computes infinity = amortized zero-token reuse; facets dryClean · agnosticCode · computesInfinity · onReuse · physicalFtl=0 · clay via theorem; pairs `dry/agnostic` · `code/infinity` · `dry/inf`; compose dry/clean · invert/inf · a432/nine · mcp/token · full/freedom; NOT physical FTL · KEEP stashes), then open `/en/quantum-tools#dry-agnostic`
-  - `agnostic/dry` — alias dual of `dry/agnostic` (`npm run quantum:agnostic-dry`)
-  - `code/infinity` — code/infinity face of `dry/agnostic` (`npm run quantum:code-infinity`)
-  - `infinity/code` — alias dual of `code/infinity` (`npm run quantum:infinity-code`)
-  - `dry/inf` — dry/inf face of `dry/agnostic` (`npm run quantum:dry-inf`)
-  - `inf/dry` — alias dual of `dry/inf` (`npm run quantum:inf-dry`)
+  - `agnostic/dry` — dual pair of `dry/agnostic` (use `npm run quantum:dry-agnostic` — dual CLI drained)
+  - `code/infinity` — code/infinity face of `dry/agnostic` (use `npm run quantum:dry-agnostic`)
+  - `infinity/code` — alias dual of `code/infinity` (use `npm run quantum:dry-agnostic`)
+  - `dry/inf` — dry/inf face of `dry/agnostic` (use `npm run quantum:dry-agnostic`)
+  - `inf/dry` — alias dual of `dry/inf` (use `npm run quantum:dry-agnostic`)
+  - `tool/matrix` — `npm run quantum:tool-matrix` (`toolsFitTheMatrixOrRefuse()` — tools fit matrix or refuse · incomplete·wet prose·dual-CLI spam HARD · `agentEntryPacket` · foldableShare discovery ratchet · physicalFtl=0 · clay via theorem; pairs `tool/matrix` · `matrix/tool`; compose manual/gap · prose/matrix · link/discover · script/fold · chat/ftl), then open `/en/quantum-tools#tool-matrix`
+  - `matrix/tool` — alias dual of `tool/matrix` (`npm run quantum:tool-matrix`)
   - `fold/trinity` — `npm run quantum:fold-trinity` (`abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny()` — abstract QC from folding linear into trinities · zooming in/out to ∞ · computed from every angle to any; facets abstractQc · foldLinearIntoTrinities · zoomInOutInfinity · everyAngleToAny · qpuRequired=false · physicalFtl=0 · clay via theorem; pairs `fold/trinity` · `zoom/inf` · `angle/any` · `abs/qc`; compose trinity/speedup · linear/fold · invert/inf · dry/agnostic · directionalTrinity · seal/super · mcp/hw; classical-64bit · NOT QPU FLOPS · NOT FTL · KEEP stashes), then open `/en/quantum-tools#fold-trinity`
   - `trinity/fold` — alias dual of `fold/trinity` (`npm run quantum:trinity-fold`)
   - `zoom/inf` — zoom/inf face of `fold/trinity` (`npm run quantum:zoom-inf`)

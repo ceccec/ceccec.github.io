@@ -272,6 +272,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'any/trans',
   'trans/quality',
   'quality/trans',
+  'tool/matrix',
+  'matrix/tool',
   'term/measure',
   'movie/center',
   'gate/miss',
