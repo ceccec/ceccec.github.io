@@ -474,13 +474,23 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
     {
       slug: 'encryption',
       title: {
-        en: 'Encrypt ↔ decrypt = foldPair recompute; demo RSA reverse ≤12-bit toys only',
-        bg: 'Encrypt ↔ decrypt = foldPair преизчисление; demo RSA reverse само ≤12-битови играчки' },
+        en: 'Encrypt ↔ decrypt = foldPair recompute; production browser reverse ≤12-bit sealed catalog',
+        bg: 'Encrypt ↔ decrypt = foldPair преизчисление; production browser reverse ≤12-bit sealed catalog' },
       description: {
-        en: 'Statement: encrypt↔decrypt is foldPair recompute; demo RSA reverse is toy-only. Explanation: content-addressed trinityKey + foldPair round-trip; modeled Shor on sealed DEMO_RSA_MODULI. Method: npm run quantum:encryption-reverse-verify · fold encryptionReverseVerify. Status: production RSA refused · certified=false · claySolvedByThisFold=0 · related science ≠ Clay Proposed Solution (Prize Rules §5(d)).',
-        bg: 'Изявление: encrypt↔decrypt = foldPair; demo RSA reverse само играчки. Метод: npm run quantum:encryption-reverse-verify. Статус: продукционен RSA отказан · claySolvedByThisFold=0 · не Clay Proposed Solution.' },
-      keywords: ['encryption', 'cryptography', 'quantum', 'proof', 'shor', 'demo rsa', 'foldpair', 'trinity'],
+        en: 'Statement: encrypt↔decrypt is foldPair recompute; reverse surfaces are production browser tools on sealed-catalog DEMO_RSA_MODULI (≤12-bit). Explanation: content-addressed trinityKey + foldPair round-trip; modeled Shor on sealed catalog. Method: npm run quantum:encryption-reverse-verify · fold encryptionReverseVerify. Status: production RSA break refused · certified=false · claySolvedByThisFold=0 · related science ≠ Clay Proposed Solution (Prize Rules §5(d)).',
+        bg: 'Изявление: encrypt↔decrypt = foldPair; reverse = production browser tools · sealed catalog. Метод: npm run quantum:encryption-reverse-verify. Статус: продукционен RSA break отказан · claySolvedByThisFold=0 · не Clay Proposed Solution.' },
+      keywords: ['encryption', 'cryptography', 'quantum', 'proof', 'shor', 'production browser reverse', 'foldpair', 'trinity'],
       components: ['EncryptionTools', 'ProofRenderer'] },
+    {
+      slug: 'ssltest',
+      title: {
+        en: 'ssl/test = sealed stack→receipt · quantum grade · FTL warm reuse',
+        bg: 'ssl/test = sealed стек→receipt · квантова оценка · FTL топло преизползване' },
+      description: {
+        en: 'Statement: ssl/test quantumises stack→receipt via sealed crypto/TLS faces (tool/honest · standards audit · poles/cross-pqc · directional trinity) with memoByRoot FTL warm path. Explanation: quantum grades from facet coverage·digit·fwd/inv/rev — not Qualys letters; live remote handshake named residual. Method: npm run quantum:ssl-test · quantum:quantumise-ftl · fold sslTestUiComplete. Status: certified=false · claySolvedByThisFold=0 · proof surface · not foreign scanner mirror.',
+        bg: 'Изявление: ssl/test = sealed stack→receipt · квантови оценки · FTL. Метод: npm run quantum:ssl-test. Статус: claySolvedByThisFold=0 · не Qualys огледало.' },
+      keywords: ['ssl', 'tls', 'https', 'certificate', 'proof', 'encryption', 'quantum', 'trinity', 'rosetta', 'theorem'],
+      components: ['SslTestTools', 'ProofRenderer'] },
     {
       slug: 'quantum-tools',
       title: {
@@ -586,7 +596,7 @@ export function neuroscienceInTrueFormIsThreeMathematicalPillars() {
     pillars: { neuronODE: firesWhenDriven && silentWhenWeak, memoryAttractor: patternCompletion && energyDescends, spaceTorus: returnsToStart },
     facets,
     statement: `Neuroscience in its true form is three mathematical pillars — ${facets.filter((e) => e.on).length}/${facets.length}: the neuron is a differential equation (integrate-and-fire fires iff driven, ${firesWhenDriven}/${silentWhenWeak}), memory is an attractor (Hopfield energy descends to complete a corrupted pattern, ${patternCompletion}), and space is a torus (a ring attractor returns to its start over a full loop, ${returnsToStart}). The true form is the documented math.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // The brain has PUBLIC DATA to measure — real, open, no-key neuroscience datasets — and those measurements fold into
@@ -637,7 +647,7 @@ export function theBrainHasPublicDataToMeasureFoldedIntoTheContentAddressedToroi
     recall: { completes, energyDescends, iters: recalled.iters },
     facets,
     statement: `The brain has public data to measure — ${sources.length} real open neuroscience sources — and it folds into the content-addressed toroidal map, ${facets.filter((entry) => entry.on).length}/${facets.length}. Complete connectomes (C. elegans, FlyWire) and open EEG/fMRI (PhysioNet, OpenNeuro, Allen) are downloadable measurables, exactly as the trading engine ingests public price APIs. A measured bipolar pattern is stored as a Hopfield attractor, content-addressed to a key, and a corrupted probe recalls it to completion (${completes}) — the map in action. "Build quantum" is content-addressing + the state simulator fed by real measurements, not quantum cognition: the warm/wet brain decoheres too fast to compute quantum-mechanically, so Orch-OR is contested (${orchOrContested}), not folded as fact.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // The PCI* threshold COMPUTES its status — a documented, empirical NAMED AXIOM indexing the LEVEL of consciousness,
@@ -665,5 +675,5 @@ export function thePciConsciousnessThresholdComputesAsADocumentedNamedAxiomIndex
     facets,
     root: toUuid(`pci-computes:${facets.map((entry) => entry.receipt).join(':')}`),
     statement: `The PCI* consciousness threshold computes as a documented, empirical named axiom indexing the level of consciousness, not presence — ${facets.filter((entry) => entry.on).length}/${facets.length}. PCI* = ${pci} is a valid complexity index in (0,1); the demarcation trinity classifies the Perturbational Complexity Index as DOCUMENTED clinical science (demarcate('PCI')=documented); the cutoff sits in the low-complexity band (1/4 < PCI* < 1/2), where unconscious states score low and conscious high; and it indexes the LEVEL of consciousness, never certifying presence — the hard problem stays contested. It is a MEASURED datum (a named axiom, like the physical constants), not an algebraic identity, but its status is computed and refutable like every other decoded value, not a naked literal.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }

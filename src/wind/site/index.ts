@@ -7,7 +7,7 @@ import { STATIC_PAGE_SEED } from '../../8/2'
 import { phase } from '../../6/4'
 // call-time namespace edge (cycle-safe): learning imports site; the keywords read back at call time
 import * as __ns_up_thunder_waves from '../../thunder/waves'
-import { rat, claySolvedTheorem, earned } from '../../3/7'
+import { rat, claySolvedTheorem, earned, physicalFtlClaimTheorem } from '../../3/7'
 import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, ROSETTA_RAY_CONTENT_LENSES, rosettaRayOfContent, servedRouteFromSlugs, theoremScienceVisible, THEOREM_SCIENCE_NAME_STEMS, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, SCIENCE_DOMAINS, fieldOfContent, modeOfContent } from '../../3/7'
 import { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7'
 export { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
@@ -54,7 +54,9 @@ export const ROUTE_ALIASES: Record<string, string> = {
   school: 'learn',
   'learn-developer': 'learn',
   'millennium-challenge': 'research',
-  'fusion-verify': 'quantum-tools' }
+  'fusion-verify': 'quantum-tools',
+  'ssl-test': 'ssltest',
+  'tls-test': 'ssltest' }
 
 // ── SEO: rename to match the most-searched term per covered area, wired to PUBLIC search APIs ─────────────────
 // The most-searched phrasing per area. This is the DETERMINISTIC FALLBACK / named lexicon (a snapshot of common search
@@ -62,6 +64,7 @@ export const ROUTE_ALIASES: Record<string, string> = {
 const SEO_LEXICON: readonly { area: string; current: string; searched: string }[] = [
   { area: 'quantum tools', current: 'quantum-tools', searched: 'quantum-computing' },
   { area: 'encryption', current: 'encryption', searched: 'post-quantum-cryptography' },
+  { area: 'ssl test', current: 'ssltest', searched: 'ssl-test' },
   { area: 'trading', current: 'quantum-trading-hub', searched: 'algorithmic-trading' },
   { area: 'physics frontiers', current: 'frontiers', searched: 'unsolved-problems-in-physics' },
   { area: 'cyber standards', current: 'eu-cyber-audit', searched: 'nis2-compliance' },
@@ -1127,7 +1130,7 @@ export function vitepressDocsResearchImprovements(matrix: MindMatrix = buildMatr
       residualCount: residuals.length,
       native,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
-      physicalFtlClaim: 0 as const,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       pair: 'docs/improve' as const,
       facets,
@@ -2157,7 +2160,7 @@ export function theNavigationRebuiltByTopCategoriesThreeColumnByImportanceOgInte
       emptiesRemoved,
       facets,
       statement: `The navigation rebuilt — top ${categories.length} categories, three columns by importance, OG interacts in 10D — ${facets.filter((entry) => entry.on).length}/${facets.length}: the top ${categories.length} categories (${categories.map((c) => c.name).join(' · ')}) sorted by frequency each lead with their top theorem, ${emptiesRemoved} empty removed. Three columns: left = collection navigation, main = instance theorems by heading of importance, right = related theorems. Open-graph cards show theorem interaction across the ${D} dimensions (4 homology + 6 cross-fold). Every nav item wired to a theorem; live theme-wiring is the next step.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2201,6 +2204,6 @@ export function rosettaRayDistributionMostPagesClassifyToFewRaysSoHubsAreMissing
       empty: empty.map((d) => d.slug),
       facets,
       statement: `The rosetta-ray distribution is uneven — most pages classify to a few rays, so hub routes are missing — ${facets.filter((entry) => entry.on).length}/${facets.length}. The ${pages.length} pages classify as [${dist.map((d) => `${d.name}:${d.count}`).join(', ')}]; the top ray holds ${Math.round(topShare * 100)}% and ${empty.length} rays are empty. Hub routes exist only for populated rays, so ${empty.map((d) => '/' + d.slug).join(', ')} have no landing page — wiring the full 3-doors × 7-rays nav as-is would emit ${brokenIfWiredAll} broken links. The redesign (rosettaIChingTopNav) is correct as a structure, but blocked upstream at CLASSIFICATION — the same uneven concentration that made the 4-pole regex dump 36/40 into one pole. The fix is to populate the empty rays (content keywords / lens stems) or generate all 7 hub landing pages unconditionally, then wire.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }

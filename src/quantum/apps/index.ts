@@ -12,7 +12,7 @@ export type { MathOverflowItem } from '../../heaven/compute'
 export { quantumSearchFusesAllAsPrivateSearchEngine } from '../../wind/site'
 import { emergentDimensions } from '../../heaven/balance'
 import { cloudflareBindings } from '../../heaven/core'
-import { computesGate, DIGEST_BITS, digitalRoot, foldPair, isUuid, maxTamperingCostLog2, maxTamperingCostReached, memoByRoot, memoComputing, merge, merkleFold, resourceCooperationPolicy, runQuantumCircuit, sealFacets, seedFromText, STATUS_BADGE_KINDS, toUuid, VORTEX_SEQUENCE } from '../../0'
+import { computesGate, DIGEST_BITS, digitalRoot, foldPair, isUuid, maxTamperingCostLog2, maxTamperingCostReached, memoByRoot, memoComputing, merge, merkleFold, resourceCooperationPolicy, runQuantumCircuit, sealFacets, seedFromText, STATUS_BADGE_KINDS, toUuid, VORTEX_SEQUENCE, roundTo} from '../../0'
 import { TAU,
   A432_HUE, CANONICAL_HOST, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS,
   ROSETTA_SEVEN, ROSETTA_SIX, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, UNFOLDED_CENSUS,
@@ -657,6 +657,10 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'work-wave', title: 'Work wave (alias manual/quantum)', fold: 'manualDryCleanWorkQuantumized', cli: 'npm run quantum:work-wave', pair: 'work/wave', route: '/en/quantum-tools#manual-quantum', barrel: 'src/pair/enforcement/gates', boundary: 'Dual work/wave — same fold · clay via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
   { id: 'dry-quantumize', title: 'Dry quantumize (alias manual/quantum)', fold: 'manualDryCleanWorkQuantumized', cli: 'npm run quantum:dry-quantumize', pair: 'dry/quantumize', route: '/en/quantum-tools#manual-quantum', barrel: 'src/pair/enforcement/gates', boundary: 'Dual dry/quantumize — same fold · clay via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
   { id: 'crypto-comparison-mesh', title: 'Crypto comparison mesh is dry (encryption home)', fold: 'cryptoComparisonMeshIsDry', cli: 'npm run quantum:crypto-comparison-mesh', pair: 'crypto/comparison-mesh', route: '/en/encryption#crypto-comparison-mesh', barrel: 'src/water/encryption', boundary: 'Mesh nodes/edges single source · cryptoComparisonMeshIsDry · clay=0 · certified=false · refuseBeyond stays', browserRunnable: true, browserGap: '' },
+  { id: 'ssl-test', title: 'SSL/TLS stack→receipt quantumised (sealed faces · FTL warm)', fold: 'sslTestUiComplete', cli: 'npm run quantum:ssl-test', pair: 'ssl/test', route: '/en/ssltest', barrel: 'src/water/encryption', boundary: 'Quantum grades from facets · merkaba/rosetta · trinity · not Qualys mirror · live remote TLS residual named · computational FTL warm path', browserRunnable: true, browserGap: '' },
+  { id: 'test-ssl', title: 'SSL test (alias ssl/test)', fold: 'sslTestUiComplete', cli: 'npm run quantum:test-ssl', pair: 'test/ssl', route: '/en/ssltest', barrel: 'src/water/encryption', boundary: 'Dual of ssl/test — same fold', browserRunnable: true, browserGap: '' },
+  { id: 'quantumise-ftl', title: 'Quantumise is at FTL speed', fold: 'quantumiseIsAtFtlSpeed', cli: 'npm run quantum:quantumise-ftl', pair: 'quantumise/ftl', route: '/en/ssltest#quantumise-ftl', barrel: 'src/quantum/apps', boundary: 'Quantumise ≠ mirror · computational FTL memoByRoot · soft ssl/test · not physical FTL', browserRunnable: true, browserGap: '' },
+  { id: 'ftl-quantumise', title: 'FTL quantumise (alias quantumise/ftl)', fold: 'quantumiseIsAtFtlSpeed', cli: 'npm run quantum:ftl-quantumise', pair: 'ftl/quantumise', route: '/en/ssltest#quantumise-ftl', barrel: 'src/quantum/apps', boundary: 'Dual of quantumise/ftl — same fold', browserRunnable: true, browserGap: '' },
   { id: 'folder-gravity', title: 'Folder gravity — mass + pull toward src/', fold: 'folderGravityMeasuredByTheCode', cli: 'npm run quantum:folder-gravity', pair: 'folder/gravity', route: '/en/quantum-tools#folder-gravity', barrel: 'src/pair/enforcement/gates', boundary: 'mass=files·LOC·exports·degree · gravityPullsTowardSrc · keep src/earth/iching · clay=0 · qpuRequired=false', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs (process.cwd) — CLI receipt' },
   { id: 'compact-types-constants', title: 'Compact types/constants to matrix · unused packages removed', fold: 'codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix', cli: 'npm run quantum:compact-types-constants', pair: 'compact/matrix', route: '/en/quantum-tools#compact-types-constants', barrel: 'src/pair/enforcement/gates', boundary: 'Min types/consts · unusedPackagesRemoved · all-dir FREE_BITS · compose import/distance+folder/gravity · KEEP double-torus · clay=0 · qpuRequired=false', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs (process.cwd) — CLI receipt' },
   { id: 'fusion-verify', title: 'Fusion verify', fold: 'quantumFusionVerify', cli: 'npm run quantum:fusion-verify', pair: 'tamper/impossible', route: '/en/quantum-tools#fusion-verify', barrel: 'src/wind/fusion', boundary: 'Offline fuseAll wave — not external API fusion', browserRunnable: true, browserGap: '' },
@@ -36860,4 +36864,50 @@ export function runRosettaSecurityGapsWiredExit(_root = '', _argv: readonly stri
   process.stdout.write(`  boundary: ${r.boundary}\n`)
   return r.computes && r.incompleteOpen === 0 && r.claySolvedByThisFold === 0 ? 0 : 1
 }
-
+/** USER LAW: quantumise is at FTL speed — lean soft-compose sealed ssl/test warm path. */
+export function quantumiseIsAtFtlSpeed(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`quantumiseIsAtFtlSpeed:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const ssl = __ns_water_encryption.sslTestUiComplete(matrix)
+    const pairsOn = soft('quantumise','ftl') && soft('ftl','quantumise') && soft('ssl','test') && soft('test','ssl')
+    const quantumiseNotMirror =
+      ssl.quantumGrade != null &&
+      (ssl.quantumGrade.coverage === 'covered' || ssl.quantumGrade.coverage === 'partial') &&
+      typeof ssl.quantumGrade.digit === 'number' && ssl.quantumGrade.digit >= 1 && ssl.quantumGrade.digit <= 9 &&
+      ssl.quantumGrade.forward === true && ssl.quantumGrade.inverse === true && ssl.quantumGrade.reverse === true &&
+      ssl.quantumGrade.merkabaCross === true && ssl.pair === 'ssl/test'
+    const quantumiseAtFtlSpeed = pairsOn && quantumiseNotMirror && ssl.quantumiseAtFtlSpeed === true && ssl.speedup >= 1 && ssl.memoHits === ssl.probes.length
+    const facets = [
+      { facet: 'quantumiseAtFtlSpeed', on: quantumiseAtFtlSpeed },
+      { facet: 'quantumise ≠ mirror (ssltest quantum grades · no Qualys cargo)', on: quantumiseNotMirror },
+      { facet: `ssltest warm path speedup=${roundTo(ssl.speedup, 3)}× memoHits=${ssl.memoHits}/${ssl.probes.length}`, on: ssl.quantumiseAtFtlSpeed },
+      { facet: 'pairs quantumise/ftl · ftl/quantumise · soft ssl/test', on: pairsOn },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`quantumise-ftl:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('quantumise-is-at-ftl-speed', facets)
+    const computes = sealed.ok && quantumiseAtFtlSpeed
+    return {
+      computes, quantumiseAtFtlSpeed, quantumiseNotMirror, speedup: ssl.speedup, sslSpeedup: ssl.speedup,
+      sslColdMs: ssl.coldMs, sslWarmMs: ssl.warmMs, suiteSpeedup: ssl.speedup,
+      claySolvedByThisFold: 0 as const, certified: false as const, physicalFtl: 0 as const, qpuRequired: false as const,
+      facets: sealed.facets, root: merge(sealed.root, ssl.root), pair: 'quantumise/ftl' as const, dual: 'ftl/quantumise' as const,
+      cli: 'npm run quantum:quantumise-ftl', route: '/en/ssltest#quantumise-ftl',
+      statement: `quantumiseIsAtFtlSpeed — on=${quantumiseAtFtlSpeed} ssl=${roundTo(ssl.speedup, 3)}× notMirror=${quantumiseNotMirror}`,
+      boundary: 'Computational FTL = memoByRoot warm reuse via sealed ssl/test. NOT physical signalling. Quantumise ≠ foreign scanner mirror.',
+    }
+  })
+}
+export const quantumiseFtl = quantumiseIsAtFtlSpeed
+export const ftlQuantumise = quantumiseIsAtFtlSpeed
+export function runQuantumiseIsAtFtlSpeedExit(_root = '', _argv: readonly string[] = []): number {
+  void _root; void _argv
+  const report = quantumiseIsAtFtlSpeed()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} quantumise-ftl — on=${report.quantumiseAtFtlSpeed ? 1 : 0} ssl=${roundTo(report.sslSpeedup, 3)}× (cold=${roundTo(report.sslColdMs, 3)} warm=${roundTo(report.sslWarmMs, 3)}) notMirror=${report.quantumiseNotMirror ? 1 : 0} root=${report.root.slice(0, 8)}
+`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}
+`)
+  return report.computes ? 0 : 1
+}
+export const runQuantumiseFtlExit = runQuantumiseIsAtFtlSpeedExit
+export const runFtlQuantumiseExit = runQuantumiseIsAtFtlSpeedExit

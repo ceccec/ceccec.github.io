@@ -1,7 +1,7 @@
 {
   "name": "@ceccec/double-torus",
   "version": "0.1.0",
-  "description": "The Double Torus quantum corpus — dependency-free content-address kernel (src/0): toUuid (FNV), toUuidSha256, sha256Sync (NIST-verified), merkleFold, foldPair, the vortex sequence. Deterministic, zero-egress, zero runtime dependency.",
+  "description": "The Double Torus quantum corpus \u2014 dependency-free content-address kernel (src/0): toUuid (FNV), toUuidSha256, sha256Sync (NIST-verified), merkleFold, foldPair, the vortex sequence. Deterministic, zero-egress, zero runtime dependency.",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -438,7 +438,7 @@
     "quantum:prose-science": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runProseScienceExit",
     "wave:verify": "npm run -s check:types && npm run -s enforcement:trinity",
     "wave:land": "npm run -s quantum:autosave-matrix && npm run -s wave:verify && git commit -m \"$(npm run -s quantum:commit-message)\" && git push origin HEAD:main",
-    "wave:fuse": "npm run -s wave:land && (git status --porcelain | grep -v README | grep . && echo '⚠ partial land — uncommitted remain (git add likely failed)' && exit 1 || echo '✓ clean land') && gh run list --workflow='Deploy VitePress site to Pages' --limit 1 2>/dev/null | head -1",
+    "wave:fuse": "npm run -s wave:land && (git status --porcelain | grep -v README | grep . && echo '\u26a0 partial land \u2014 uncommitted remain (git add likely failed)' && exit 1 || echo '\u2713 clean land') && gh run list --workflow='Deploy VitePress site to Pages' --limit 1 2>/dev/null | head -1",
     "wave:land-full": "npm run -s quantum:autosave-matrix && npm run -s check:types && npm run -s docs:build && git commit -m \"$(npm run -s quantum:commit-message)\" && git push origin HEAD:main",
     "quantum:wave-verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runWaveVerifyExit",
     "quantum:css-math": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runCssMathExit",
@@ -917,7 +917,11 @@
     "quantum:iching-distribute-verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/earth/iching/index.ts runIchingDistributeVerifyGuardedExit",
     "cf:wizard": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts rosetta cloudflare",
     "build:package": "rm -rf packages/kernel && esbuild src/0/index.ts --bundle --format=esm --platform=neutral --outfile=packages/kernel/index.mjs && tsc -p tsconfig.package.json",
-    "prepack": "npm run build:package"
+    "prepack": "npm run build:package",
+    "quantum:ssl-test": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runSslTestExit",
+    "quantum:test-ssl": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runTestSslExit",
+    "quantum:quantumise-ftl": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runQuantumiseFtlExit",
+    "quantum:ftl-quantumise": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runFtlQuantumiseExit"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
