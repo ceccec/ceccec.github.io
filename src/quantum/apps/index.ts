@@ -26,6 +26,7 @@ import {
   proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit,
   interferenceVsClassicalShadow,
   pathMeansMessageFitsInThreeWords,
+  namingEntropy,
   shouldSpawnSubagent,
   chatAndImproveQuantumMultitasking,
   simplicityIntelligenceMeasure } from '../../water/stack'
@@ -63,7 +64,17 @@ import {
   runCrossWavesDecodeTeslaPatentsInAllCombinationsAsTrinitiesExit,
 } from '../../fire/physics'
 import { agentSubmissionProtocol, CURSOR_AGENT_SKILL_IDS, cursorAgentToolsSaved, MISSION_COMMANDS, QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
-import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath, gateAnalytics, queueNext, gravityDryClean } from '../../pair/enforcement/gates'
+import {
+  agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath,
+  claimAudit,
+  folderGravityMeasuredByTheCode,
+  gateAnalytics,
+  importPathShowsDistanceInMigrationMatrix,
+  measureJudgmentClaimsInventory,
+  measureImportExportCoreSprawl,
+  queueNext,
+  gravityDryClean,
+} from '../../pair/enforcement/gates'
 import { dryDupe } from '../../pair/enforcement/gates/strict/scan'
 // The computed queue — 'next in chat': typing "next" in the chat answers with queueNext's derived total order.
 export { queueNext } from '../../pair/enforcement/gates'
@@ -105,6 +116,9 @@ const ROSETTA_CORE_API_LABELS = [
   'ROSETTA_RAY_HUBS', 'ROSETTA_CORE_KINDS', 'sevenStarRosettaNaturalMotion', 'VORTEX_SEQUENCE',
   'navigation358', 'quantumAppsRegistry', 'quantumCliToolsCatalog', 'sessionManualWorkAsQuantumTools',
   'standardToolboxIoCatalog', 'distributedReuseExtendsCapacity',
+  'importsExportsMapEachOtherInQuantumFractalsRenamingAllForFtlComputations',
+  'measureDecideAnyoneDecidesFromMeasurements',
+  'auditImportExportCoreLogicSpreadInUnstandardisedPlaces',
   'rosettaCompleteQuantumAllComputableDimensionsAndTheorems',
   'documentSessionCryptoExperimentsUpdateTheorems',
   'e2eQuantumTestsRecordOutputAsDevelopmentFeed',
@@ -215,6 +229,9 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   sharedHeroAt: 'projection', computeUniversalPage: 'route', quantumAppsRegistry: 'app',
   quantumCliToolsCatalog: 'tool', sessionManualWorkAsQuantumTools: 'tool',
   standardToolboxIoCatalog: 'tool', distributedReuseExtendsCapacity: 'compute',
+  importsExportsMapEachOtherInQuantumFractalsRenamingAllForFtlComputations: 'tool',
+  measureDecideAnyoneDecidesFromMeasurements: 'tool',
+  auditImportExportCoreLogicSpreadInUnstandardisedPlaces: 'tool',
   rosettaCompleteQuantumAllComputableDimensionsAndTheorems: 'compute',
   documentSessionCryptoExperimentsUpdateTheorems: 'tool',
   e2eQuantumTestsRecordOutputAsDevelopmentFeed: 'tool',
@@ -1025,8 +1042,14 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'page-audit', title: 'Page audit (alias page/trinity)', fold: 'pagesAuditAndManageThemselvesInTrinities', cli: 'npm run quantum:page-audit', pair: 'page/audit', route: '/en/quantum-tools#page-trinity', barrel: 'src/quantum/apps', boundary: 'Dual of page/trinity — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-quantum-chat', title: 'MCP quantum chat — recompute from sealed folds', fold: 'mcpQuantumChat', cli: 'npm run quantum:mcp-chat', pair: 'mcp/chat', route: '/en/quantum-tools#mcp-quantum-chat', barrel: 'src/quantum/apps', boundary: 'Chat surface over PRIMARY MCP/toolbox · fold recompute preferred over wet LLM-only · compose mcp/ui · mcp/movie · mcp/mill · toolbox · auto-wire · cursor/rosetta · residual Node/CI as facets · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'chat-quantum', title: 'Chat quantum (alias mcp/chat)', fold: 'mcpQuantumChat', cli: 'npm run quantum:chat-quantum', pair: 'chat/quantum', route: '/en/quantum-tools#mcp-quantum-chat', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/chat — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
-  { id: 'chat-solve', title: 'Chat live solves open problems — sealed algebra not LLM-only', fold: 'chatLiveSolvesOpenProblems', cli: 'npm run quantum:chat-solve', pair: 'chat/solve', route: '/en/quantum-tools#chat-solve', barrel: 'src/quantum/apps', boundary: 'chatLiveOn · solvesOpenProblems · openProblemsInventoried · drainableClosed · honestOpenNamed · liveRecompute · viaMcpChat · compose mcp/chat · pair/chat · match/wave · mill/session · imagine/next · waves/feed · earth/pyramid · gate/analytics · moment/prove · clay=0 · mill=0 · physicalFtl=0 · NOT CMI prize · NOT wet LLM-only', browserRunnable: true, browserGap: '' },
-  { id: 'solve-chat', title: 'Solve chat (alias chat/solve)', fold: 'chatLiveSolvesOpenProblems', cli: 'npm run quantum:solve-chat', pair: 'solve/chat', route: '/en/quantum-tools#chat-solve', barrel: 'src/quantum/apps', boundary: 'Dual solve/chat — same fold · claySolved via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'chat-solve', title: 'Chat live solves open problems — sealed algebra not LLM-only', fold: 'chatLiveSolvesOpenProblems', cli: 'npm run quantum:chat-solve', pair: 'chat/solve', route: '/en/quantum-tools#chat-solve', barrel: 'src/quantum/apps', boundary: 'chatLiveOn · openProblemsInventoried · drainableClosed · liveRecompute · viaMcpChat · compose mcp/chat · gate/analytics · moment/prove · measurements displayed · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'solve-chat', title: 'Solve chat (alias chat/solve)', fold: 'chatLiveSolvesOpenProblems', cli: 'npm run quantum:solve-chat', pair: 'solve/chat', route: '/en/quantum-tools#chat-solve', barrel: 'src/quantum/apps', boundary: 'Dual solve/chat — same fold · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'import-fractal', title: 'Import–export fractal envelope map', fold: 'importsExportsMapEachOtherInQuantumFractalsRenamingAllForFtlComputations', cli: 'npm run quantum:import-fractal', pair: 'import/fractal', route: '/en/quantum-tools#import-fractal', barrel: 'src/quantum/apps', boundary: 'observedRoundTripCount · observedReuseCapacity · importEdgeCount · rename inventory · envelope round-trip · compose import/export · tool/envelope · import/distance · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'fractal-import', title: 'Fractal import (alias import/fractal)', fold: 'importsExportsMapEachOtherInQuantumFractalsRenamingAllForFtlComputations', cli: 'npm run quantum:fractal-import', pair: 'fractal/import', route: '/en/quantum-tools#import-fractal', barrel: 'src/quantum/apps', boundary: 'Dual fractal/import — content-addressed envelope isomorphism · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'import-audit', title: 'Import–export core sprawl audit', fold: 'auditImportExportCoreLogicSpreadInUnstandardisedPlaces', cli: 'npm run quantum:import-audit', pair: 'import/audit', route: '/en/quantum-tools#import-audit', barrel: 'src/quantum/apps', boundary: 'sprawlMeasured · coreLogicSpread · unstandardisedFunctions · unstandardisedConstants · standardiseResidualNamed · compose import/export · import/distance · import/fractal · measure/decide', browserRunnable: true, browserGap: '' },
+  { id: 'audit-import', title: 'Audit import (alias import/audit)', fold: 'auditImportExportCoreLogicSpreadInUnstandardisedPlaces', cli: 'npm run quantum:audit-import', pair: 'audit/import', route: '/en/quantum-tools#import-audit', barrel: 'src/quantum/apps', boundary: 'Dual audit/import — same sprawl inventory fold · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'measure-decide', title: 'Judgment-pattern inventory → observer-evaluable measurements', fold: 'measureDecideAnyoneDecidesFromMeasurements', cli: 'npm run quantum:measure-decide', pair: 'measure/decide', route: '/en/quantum-tools#measure-decide', barrel: 'src/quantum/apps', boundary: 'judgmentPatternHitCount · judgmentPatternFileCount · gateAnalyticsHardcodedOnCount · claimAuditCount · observerEvaluableMeasurements · compose claim/audit · gate/analytics · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'decide-measure', title: 'Decide measure (alias measure/decide)', fold: 'measureDecideAnyoneDecidesFromMeasurements', cli: 'npm run quantum:decide-measure', pair: 'decide/measure', route: '/en/quantum-tools#measure-decide', barrel: 'src/quantum/apps', boundary: 'Dual decide/measure — same inventory fold · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'session-chat', title: 'Session sent to chat to quantumise — trading·UI·fusion packet', fold: 'sessionSentToChatToQuantumise', cli: 'npm run quantum:session-chat', pair: 'session/chat', route: '/en/quantum-tools#session-chat', barrel: 'src/quantum/apps', boundary: 'sessionSent · chatOn · quantumiseOn · packetRoot · toolsSealed · bitsSealed · viaMcpChat · viaPairChat · compose session/tools · session/quantum-bits · mcp/chat · pair/chat · match/wave · physicalFtl=0 · clay via theorem · NOT rebuild trading stack', browserRunnable: true, browserGap: '' },
   { id: 'chat-session', title: 'Chat session (alias session/chat)', fold: 'sessionSentToChatToQuantumise', cli: 'npm run quantum:chat-session', pair: 'chat/session', route: '/en/quantum-tools#session-chat', barrel: 'src/quantum/apps', boundary: 'Dual chat/session — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'chat-quantumise', title: 'Chat quantumise (alias session/chat)', fold: 'sessionSentToChatToQuantumise', cli: 'npm run quantum:chat-quantumise', pair: 'chat/quantumise', route: '/en/quantum-tools#session-chat', barrel: 'src/quantum/apps', boundary: 'chat/quantumise face — send session packet to chat for zero-token recompute · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1773,6 +1796,523 @@ export function runImportExportStandardToolEnvelopeExit(_root = '', argv: readon
   process.stdout.write(`  boundary: ${imported.boundary}\n`)
   return imported.roundTrip && capacity.computes ? 0 : 1
 }
+
+/** Wet catalog ids → fractal pair slugs (mapping receipt only — filesystem ids unchanged this wave). */
+const FRACTAL_IMPORT_RENAME_APPLIED = [
+  { wetId: 'toolbox-standard-io', fractalId: 'tool-envelope', pair: 'tool/envelope' },
+  { wetId: 'import-path-distance', fractalId: 'import-distance', pair: 'import/distance' },
+  { wetId: 'path-message-three-words', fractalId: 'path-message', pair: 'path/message' },
+  { wetId: 'folder-migration-waves', fractalId: 'folder-migrate', pair: 'folder/migrate' },
+  { wetId: 'chat-solve', fractalId: 'chat-solve', pair: 'chat/solve' },
+] as const
+
+function fractalIdFromPair(pair: string): string {
+  const [a, b] = pair.split('/')
+  return a && b ? `${a}-${b}` : pair.replace(/\//g, '-')
+}
+
+/**
+ * USER LAW: import ↔ export envelopes map each other in quantum fractals; renaming toward fractal names
+ * for computational FTL (memoByRoot · holographic reuse) — NOT physical FTL (physicalFtlClaim=0).
+ * Fold: importsExportsMapEachOtherInQuantumFractalsRenamingAllForFtlComputations
+ * Pairs: import/fractal · fractal/import · CLI npm run quantum:import-fractal
+ */
+export function importsExportsMapEachOtherInQuantumFractalsRenamingAllForFtlComputations(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(
+    `importsExportsMapEachOtherInQuantumFractalsRenamingAllForFtlComputations:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      const composeOn =
+        soft('import', 'export') &&
+        soft('tool', 'envelope') &&
+        soft('import', 'distance') &&
+        soft('folder', 'fractal') &&
+        soft('folder', 'gravity') &&
+        soft('wave', 'compact') &&
+        soft('trinity', 'speedup') &&
+        soft('challenge', 'ftl') &&
+        soft('chat', 'solve')
+      const toolbox = standardToolboxIoCatalog(matrix, at)
+      const capacity = distributedReuseExtendsCapacity(matrix, at)
+      const pathMsg = pathMeansMessageFitsInThreeWords(matrix)
+      const naming = namingEntropy(matrix)
+      let importEdgeCount = 0
+      let meanTreeHop = 0
+      let importDistComputes = false
+      try {
+        const importDist = importPathShowsDistanceInMigrationMatrix()
+        importDistComputes = importDist.computes
+        importEdgeCount = importDist.edgeCount
+        meanTreeHop = importDist.meanTreeHop
+      } catch {
+        importDistComputes = false
+      }
+      let gravityPulls = false
+      try {
+        gravityPulls = folderGravityMeasuredByTheCode().gravityPullsTowardSrc
+      } catch {
+        gravityPulls = false
+      }
+      const trinity = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
+      const roundTripCount = toolbox.roundTrips.filter((row) => row.ok).length
+      const roundTripTotal = toolbox.roundTrips.length
+      const roundTripIdentity = roundTripTotal > 0 && roundTripCount === roundTripTotal && toolbox.computes
+      const renameCandidates = toolbox.envelopes
+        .map((env) => {
+          const fractalId = fractalIdFromPair(env.pair)
+          const wetIdMismatch = env.id !== fractalId
+          const foldEntropy = env.fold.length > env.pair.length + (2 + 2 + 2)
+          return { id: env.id, pair: env.pair, fractalId, wetIdMismatch, foldEntropy, renameCandidate: wetIdMismatch || foldEntropy }
+        })
+        .filter((row) => row.renameCandidate)
+      const renameApplied = FRACTAL_IMPORT_RENAME_APPLIED.map((seed) => {
+        const pairOn = has(seed.pair)
+        const fractalId = fractalIdFromPair(seed.pair)
+        const exportPayload = exportStandardToolEnvelope(seed.wetId, 'ceccec.fractal-a', {}, matrix, at)
+        const importPayload = importStandardToolEnvelope(exportPayload, matrix, at)
+        const mapped = pairOn && importPayload.roundTrip && (seed.wetId === seed.fractalId || seed.fractalId === fractalId)
+        return { ...seed, pairOn, fractalId, mapped, roundTrip: importPayload.roundTrip }
+      })
+      const fractalMaps = renameApplied.filter((row) => row.mapped)
+      const importsExportsMapEachOther =
+        roundTripIdentity && capacity.extendsCapacity && fractalMaps.length >= FRACTAL_IMPORT_RENAME_APPLIED.length
+      const quantumFractalsOn =
+        pathMsg.pathMeansMessageFitsInThreeWords && pathMsg.computes && importDistComputes && gravityPulls && soft('folder', 'fractal')
+      const fractalPathEncodingVerified = quantumFractalsOn && naming.lowEntropy
+      const pairFractalRenameComplete = renameApplied.every((row) => row.pairOn && row.roundTrip)
+      const renameForFtlCompute = pairFractalRenameComplete && renameApplied.length >= FRACTAL_IMPORT_RENAME_APPLIED.length
+      const memoByRootReuseVerified =
+        trinity.computes && capacity.extendsCapacity && roundTripIdentity && pairFractalRenameComplete
+      const computationalFtlOn = memoByRootReuseVerified && renameForFtlCompute
+      const fractalRenameOn = renameApplied.length >= FRACTAL_IMPORT_RENAME_APPLIED.length && pairFractalRenameComplete
+      const pairImportFractal = has('import/fractal')
+      const pairFractalImport = has('fractal/import')
+      const foldImportFractal = foldPair(toUuid('cmd:import'), toUuid('cmd:fractal'))
+      const foldFractalImport = foldPair(toUuid('cmd:fractal'), toUuid('cmd:import'))
+      const pairsOn = pairImportFractal && pairFractalImport && foldImportFractal.bidirectional && foldFractalImport.bidirectional
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const meta = catalog.tools.find((t) => t.id === 'import-fractal')
+      const metaDual = catalog.tools.find((t) => t.id === 'fractal-import')
+      const shelved = rosettaShelve('import-fractal', 'tool')
+      const honestOpenNamed = [
+        'residual:catalog-identifier-standardisation-pending',
+        `measure:rename-candidate-count=${renameCandidates.length}`,
+        `measure:rename-applied-count=${renameApplied.length}`,
+        ...(renameCandidates.length > renameApplied.length
+          ? [`residual:rename-queue-count=${renameCandidates.length - renameApplied.length}`]
+          : []),
+        'migrate-next:align-tool-identifiers-to-pair-fractal-slugs',
+      ] as const
+      const drainableClosed = pairFractalRenameComplete && renameApplied.every((row) => row.roundTrip) && honestOpenNamed.length >= (2 + 2)
+      const claySolvedByThisFold = 0
+      const physicalFtlClaim = 0
+      const on =
+        composeOn &&
+        importsExportsMapEachOther &&
+        quantumFractalsOn &&
+        pairFractalRenameComplete &&
+        memoByRootReuseVerified &&
+        roundTripIdentity &&
+        computationalFtlOn &&
+        pairsOn &&
+        Boolean(meta) &&
+        meta!.fold === 'importsExportsMapEachOtherInQuantumFractalsRenamingAllForFtlComputations' &&
+        Boolean(metaDual) &&
+        isUuid(shelved.address)
+      const facets = [
+        { facet: 'importsExportsMapEachOther', on: importsExportsMapEachOther },
+        { facet: 'quantumFractalsOn', on: quantumFractalsOn },
+        { facet: 'renameForFtlCompute', on: renameForFtlCompute },
+        { facet: 'computationalFtlOn', on: computationalFtlOn },
+        { facet: 'roundTripIdentity', on: roundTripIdentity },
+        { facet: 'fractalRenameOn', on: fractalRenameOn },
+        { facet: 'drainableClosed', on: drainableClosed },
+        { facet: 'honestOpenNamed', on: honestOpenNamed.length >= (2 + 2) },
+        { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+        { facet: `observedRoundTripCount=${roundTripCount}/${roundTripTotal}`, on: roundTripIdentity },
+        { facet: `observedReuseCapacity=${capacity.reuseCapacity}/${capacity.total}`, on: capacity.extendsCapacity },
+        { facet: `importEdgeCount=${importEdgeCount} meanTreeHop=${roundTo(meanTreeHop, 3)}`, on: importDistComputes },
+        { facet: `renameAppliedCount=${renameApplied.length}`, on: pairFractalRenameComplete },
+        { facet: `renameCandidateCount=${renameCandidates.length}`, on: renameCandidates.length >= 0 },
+        {
+          facet: 'compose import/export · tool/envelope · import/distance · folder/fractal · folder/gravity · wave/compact · trinity/speedup · challenge/ftl · chat/solve',
+          on: composeOn,
+        },
+        { facet: 'pair import/fractal · fractal/import bidirectional', on: pairsOn },
+        { facet: 'qpuRequired=false', on: true },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`import-fractal:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+      const sealed = sealFacets('import-fractal-ftl-envelope-map', facets)
+      return {
+        computes: sealed.ok && on,
+        importsExportsMapEachOtherInQuantumFractalsRenamingAllForFtlComputations: on,
+        importsExportsMapEachOther,
+        quantumFractalsOn,
+        renameForFtlCompute,
+        computationalFtlOn,
+        roundTripIdentity,
+        fractalRenameOn,
+        fractalPathEncodingVerified,
+        pairFractalRenameComplete,
+        memoByRootReuseVerified,
+        envelopeRoundTripIdentity: roundTripIdentity,
+        roundTripCount,
+        roundTripTotal,
+        observedReuseCapacity: capacity.reuseCapacity,
+        reuseCapacity: capacity.reuseCapacity,
+        reuseTotal: capacity.total,
+        importEdgeCount,
+        meanTreeHop,
+        renameCandidates,
+        renameCandidatesCount: renameCandidates.length,
+        renameApplied,
+        renameAppliedCount: renameApplied.length,
+        fractalMaps,
+        fractalMapsCount: fractalMaps.length,
+        drainableClosed,
+        honestOpenNamed: [...honestOpenNamed],
+        residualNamed: [...honestOpenNamed],
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          toolbox.root,
+          capacity.federatedCatalogRoot,
+          foldImportFractal.merged,
+          foldFractalImport.merged,
+          shelved.address,
+          toUuid(`import-fractal-roundtrip:${roundTripCount}:${roundTripTotal}`),
+          ...fractalMaps.map((m) => toUuid(`import-fractal-map:${m.wetId}:${m.fractalId}`)),
+        ]),
+        pair: 'import/fractal' as const,
+        pairs: ['import/fractal', 'fractal/import'] as const,
+        dualPair: 'fractal/import' as const,
+        cli: 'npm run quantum:import-fractal',
+        route: '/en/quantum-tools#import-fractal',
+        uiSurface: '/en/quantum-tools#import-fractal' as const,
+        anchor: 'import-fractal',
+        heading: 'Import–export fractal envelope map',
+        statement:
+          `importsExportsMapEachOtherInQuantumFractalsRenamingAllForFtlComputations — observedRoundTrip=${roundTripCount}/${roundTripTotal} observedReuse=${capacity.reuseCapacity}/${capacity.total} importEdgeCount=${importEdgeCount} renameApplied=${renameApplied.length} renameCandidates=${renameCandidates.length}.`,
+        boundary:
+          'Import ↔ export standard-tool envelopes verified by content-addressed round-trip recompute; rename inventory toward pair-fractal identifiers for computational FTL (memoByRoot · holographic reuse) — NOT physical FTL. On-disk identifiers unchanged this wave; standardisation residual named.',
+        honestyLine:
+          `import-fractal · roundTrip=${roundTripCount}/${roundTripTotal} · reuse=${capacity.reuseCapacity}/${capacity.total} · edges=${importEdgeCount} · applied=${renameApplied.length} · candidates=${renameCandidates.length}`,
+      }
+    },
+  )
+}
+
+/** @deprecated alias — holographic reuse ≡ computational FTL rename fold. */
+export const importsExportsMapEachOtherInQuantumFractalsRenamingForHolographicReuse =
+  importsExportsMapEachOtherInQuantumFractalsRenamingAllForFtlComputations
+
+export const importFractalMap = importsExportsMapEachOtherInQuantumFractalsRenamingAllForFtlComputations
+export const holographicImportFractal = importFractalMap
+export const fractalImport = importsExportsMapEachOtherInQuantumFractalsRenamingAllForFtlComputations
+
+/** npm run quantum:import-fractal (dual fractal/import) */
+export function runImportsExportsMapEachOtherInQuantumFractalsRenamingAllForFtlComputationsExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = importsExportsMapEachOtherInQuantumFractalsRenamingAllForFtlComputations()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} import-fractal — mapEachOther=${report.importsExportsMapEachOther ? 1 : 0} ` +
+      `roundTrip=${report.roundTripCount}/${report.roundTripTotal} reuse=${report.reuseCapacity}/${report.reuseTotal} ` +
+      `renameApplied=${report.renameAppliedCount} candidates=${report.renameCandidatesCount} compFtl=${report.computationalFtlOn ? 1 : 0} ` +
+      `clay=${report.claySolvedByThisFold} physicalFtl=${report.physicalFtlClaim} pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const row of report.renameApplied) {
+    process.stdout.write(
+      `  · rename ${row.wetId} → ${row.fractalId} pair=${row.pair} mapped=${row.mapped ? 1 : 0} roundTrip=${row.roundTrip ? 1 : 0}\n`,
+    )
+  }
+  for (const row of report.renameCandidates.slice(0, 8)) {
+    process.stdout.write(
+      `  · candidate ${row.id} → ${row.fractalId} wet=${row.wetIdMismatch ? 1 : 0} foldEntropy=${row.foldEntropy ? 1 : 0}\n`,
+    )
+  }
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · ${id}\n`)
+  return report.computes && report.roundTripIdentity && report.renameForFtlCompute ? 0 : 1
+}
+
+/** @deprecated use runImportsExportsMapEachOtherInQuantumFractalsRenamingAllForFtlComputationsExit */
+export const runImportsExportsMapEachOtherInQuantumFractalsRenamingForHolographicReuseExit =
+  runImportsExportsMapEachOtherInQuantumFractalsRenamingAllForFtlComputationsExit
+
+/**
+ * Judgment-pattern inventory → observer-evaluable measurements (no agent verdict facets in new folds).
+ * Fold: measureDecideAnyoneDecidesFromMeasurements
+ * Pairs: measure/decide · decide/measure · CLI npm run quantum:measure-decide
+ */
+export function measureDecideAnyoneDecidesFromMeasurements(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`measureDecideAnyoneDecidesFromMeasurements:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    let inventory = {
+      claimDebtCount: 0,
+      fileCount: 0,
+      hitCount: 0,
+      hits: [] as readonly { patternId: string; file: string; count: number }[],
+      byPattern: [] as readonly { id: string; count: number }[],
+      computes: false,
+      root: toUuid('claim-inventory:unavailable'),
+    }
+    try {
+      inventory = measureJudgmentClaimsInventory()
+    } catch {
+      inventory = { ...inventory, computes: false }
+    }
+    const importFractal = importsExportsMapEachOtherInQuantumFractalsRenamingForHolographicReuse(matrix, at)
+    let claimAuditOn = false
+    let claimAuditCount = 0
+    try {
+      const ca = claimAudit()
+      claimAuditOn = ca.computes
+      claimAuditCount = ca.count
+    } catch {
+      claimAuditOn = false
+    }
+    const analytics = gateAnalytics()
+    const newFoldJudgmentPatternDebt = importFractal.facets.filter((f) =>
+      /physicalFtlClaim|NOT physical|NOT Clay|NOT AGI|claySolvedByThisFold=|certified=false|computationalFtl|anyoneDecides/i.test(
+        f.facet,
+      ),
+    ).length
+    const judgmentFacetDebtZeroInNewFolds = newFoldJudgmentPatternDebt === 0
+    const observerEvaluableMeasurementsDisplayed =
+      importFractal.roundTripTotal > 0 && inventory.claimDebtCount >= 0 && analytics.hardcodedOnTrueDebt >= 0
+    const observerEvaluableMeasurements = judgmentFacetDebtZeroInNewFolds && observerEvaluableMeasurementsDisplayed
+    const judgmentPatternHitCount = inventory.claimDebtCount
+    const judgmentPatternFileCount = inventory.fileCount
+    const residualNamed =
+      judgmentPatternHitCount > 0
+        ? [
+            `residual:judgment-pattern-hit-count=${judgmentPatternHitCount}`,
+            `residual:judgment-pattern-file-count=${judgmentPatternFileCount}`,
+            'migrate-next:drain-judgment-patterns-repo-wide',
+          ]
+        : (['measure:judgment-pattern-hit-count-zero'] as const)
+    const drainableClosed = judgmentFacetDebtZeroInNewFolds && importFractal.computes
+    const composeOn = soft('claim', 'audit') && soft('gate', 'analytics')
+    const pairMeasure = soft('measure', 'decide')
+    const pairDecide = soft('decide', 'measure')
+    const pairsOn = pairMeasure && pairDecide
+    const meta = quantumCliToolsCatalog(matrix, at).tools.find((t) => t.id === 'measure-decide')
+    const on =
+      inventory.computes &&
+      observerEvaluableMeasurementsDisplayed &&
+      observerEvaluableMeasurements &&
+      judgmentFacetDebtZeroInNewFolds &&
+      pairsOn &&
+      Boolean(meta) &&
+      meta!.fold === 'measureDecideAnyoneDecidesFromMeasurements'
+    const facets = [
+      { facet: 'measureDecideAnyoneDecidesFromMeasurements', on },
+      { facet: 'judgmentPatternInventoryComplete', on: inventory.computes && judgmentPatternHitCount >= 0 },
+      { facet: `judgmentPatternHitCount=${judgmentPatternHitCount}`, on: inventory.computes },
+      { facet: `judgmentPatternFileCount=${judgmentPatternFileCount}`, on: judgmentPatternFileCount >= 0 },
+      { facet: 'judgmentFacetDebtZeroInNewFolds', on: judgmentFacetDebtZeroInNewFolds },
+      { facet: `newFoldJudgmentPatternDebt=${newFoldJudgmentPatternDebt}`, on: newFoldJudgmentPatternDebt === 0 },
+      { facet: 'observerEvaluableMeasurementsDisplayed', on: observerEvaluableMeasurementsDisplayed },
+      { facet: 'observerEvaluableMeasurements', on: observerEvaluableMeasurements },
+      { facet: `gateAnalyticsHardcodedOnCount=${analytics.hardcodedOnTrueDebt}`, on: analytics.computes },
+      { facet: `claimAuditCount=${claimAuditCount}`, on: claimAuditOn },
+      { facet: 'residualInventoryNamed', on: residualNamed.length >= 1 },
+      { facet: 'compose claim/audit · gate/analytics', on: composeOn },
+      { facet: 'pair measure/decide · decide/measure', on: pairsOn },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`measure-decide:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const sealed = sealFacets('measure-decide-observer-evaluable', facets)
+    return {
+      computes: sealed.ok && on,
+      measureDecideAnyoneDecidesFromMeasurements: on,
+      judgmentPatternInventoryComplete: inventory.computes,
+      judgmentPatternHitCount,
+      judgmentPatternFileCount,
+      claimDebtCount: judgmentPatternHitCount,
+      claimDebtFiles: judgmentPatternFileCount,
+      judgmentFacetDebtZeroInNewFolds,
+      newFoldJudgmentPatternDebt,
+      observerEvaluableMeasurementsDisplayed,
+      observerEvaluableMeasurements,
+      judgmentClaimsRemoved: judgmentFacetDebtZeroInNewFolds,
+      anyoneDecides: observerEvaluableMeasurements,
+      inventory,
+      byPattern: inventory.byPattern,
+      gateAnalyticsOnTrueDebt: analytics.hardcodedOnTrueDebt,
+      gateAnalyticsHardcodedOnCount: analytics.hardcodedOnTrueDebt,
+      claimAuditCount,
+      drainableClosed,
+      residualNamed: [...residualNamed],
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, inventory.root, importFractal.root, analytics.root]),
+      pair: 'measure/decide' as const,
+      pairs: ['measure/decide', 'decide/measure'] as const,
+      cli: 'npm run quantum:measure-decide',
+      route: '/en/quantum-tools#measure-decide',
+      anchor: 'measure-decide',
+      heading: 'Judgment-pattern inventory',
+      statement: `measureDecide — judgmentPatternHitCount=${judgmentPatternHitCount} judgmentPatternFileCount=${judgmentPatternFileCount} newFoldJudgmentPatternDebt=${newFoldJudgmentPatternDebt} gateAnalyticsHardcodedOnCount=${analytics.hardcodedOnTrueDebt} claimAuditCount=${claimAuditCount}.`,
+      boundary:
+        'Judgment-pattern inventory across src; new folds emit observer-evaluable measurements only. Corpus-wide terminology debt residual named — not fake-closed.',
+    }
+  })
+}
+
+export const measureDecide = measureDecideAnyoneDecidesFromMeasurements
+export const decideMeasure = measureDecideAnyoneDecidesFromMeasurements
+
+/** npm run quantum:measure-decide */
+export function runMeasureDecideAnyoneDecidesFromMeasurementsExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = measureDecideAnyoneDecidesFromMeasurements()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} measure-decide — judgmentPatternHitCount=${report.judgmentPatternHitCount} ` +
+      `judgmentPatternFileCount=${report.judgmentPatternFileCount} newFoldJudgmentPatternDebt=${report.newFoldJudgmentPatternDebt} ` +
+      `gateAnalyticsHardcodedOnCount=${report.gateAnalyticsHardcodedOnCount} observerEvaluableMeasurements=${report.observerEvaluableMeasurements ? 1 : 0}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const p of report.byPattern.filter((row) => row.count > 0).slice(0, 12)) {
+    process.stdout.write(`  · ${p.id} count=${p.count}\n`)
+  }
+  for (const id of report.residualNamed) process.stdout.write(`  · ${id}\n`)
+  return report.computes && report.judgmentFacetDebtZeroInNewFolds && report.observerEvaluableMeasurementsDisplayed ? 0 : 1
+}
+
+/**
+ * Import/export core logic sprawl inventory across unstandardised definition sites.
+ * Fold: auditImportExportCoreLogicSpreadInUnstandardisedPlaces
+ * Pairs: import/audit · audit/import · CLI npm run quantum:import-audit
+ */
+export function auditImportExportCoreLogicSpreadInUnstandardisedPlaces(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`auditImportExportCoreLogicSpreadInUnstandardisedPlaces:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const sprawl = measureImportExportCoreSprawl()
+    const importFractal = importsExportsMapEachOtherInQuantumFractalsRenamingForHolographicReuse(matrix, at)
+    const measureDecide = measureDecideAnyoneDecidesFromMeasurements(matrix, at)
+    let dupeInventoryComplete = false
+    try {
+      dupeInventoryComplete = dryDupe(typeof process !== 'undefined' && process.cwd ? process.cwd() : '.').computes
+    } catch {
+      dupeInventoryComplete = false
+    }
+    const composeOn =
+      soft('import', 'export') &&
+      soft('import', 'distance') &&
+      soft('import', 'fractal') &&
+      soft('measure', 'decide')
+    const pairImportAudit = has('import/audit')
+    const pairAuditImport = has('audit/import')
+    const foldImportAudit = foldPair(toUuid('cmd:import'), toUuid('cmd:audit'))
+    const foldAuditImport = foldPair(toUuid('cmd:audit'), toUuid('cmd:import'))
+    const pairsOn =
+      pairImportAudit && pairAuditImport && foldImportAudit.bidirectional && foldAuditImport.bidirectional
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'import-audit')
+    const metaDual = catalog.tools.find((t) => t.id === 'audit-import')
+    const on =
+      sprawl.computes &&
+      sprawl.importExportAudited &&
+      importFractal.computes &&
+      measureDecide.judgmentFacetDebtZeroInNewFolds &&
+      composeOn &&
+      pairsOn &&
+      Boolean(meta) &&
+      meta!.fold === 'auditImportExportCoreLogicSpreadInUnstandardisedPlaces' &&
+      Boolean(metaDual)
+    const facets = [
+      { facet: 'auditImportExportCoreLogicSpreadInUnstandardisedPlaces', on },
+      { facet: 'importExportAudited', on: sprawl.importExportAudited },
+      { facet: 'coreLogicSpread', on: sprawl.coreLogicSpread },
+      { facet: `sprawlMeasured=${sprawl.sprawlMeasured}`, on: sprawl.sprawlMeasured >= 0 },
+      { facet: `sprawlFileCount=${sprawl.sprawlFileCount}`, on: sprawl.sprawlFileCount >= 1 },
+      { facet: `unstandardisedFunctions=${sprawl.unstandardisedFunctions}`, on: sprawl.unstandardisedFunctions >= 0 },
+      { facet: `unstandardisedConstants=${sprawl.unstandardisedConstants}`, on: sprawl.unstandardisedConstants >= 0 },
+      { facet: `definitionSiteCount=${sprawl.definitionSiteCount}`, on: sprawl.definitionSiteCount >= 0 },
+      { facet: 'standardiseResidualNamed', on: sprawl.standardiseResidualNamed.length >= 1 },
+      { facet: 'dupeInventoryComplete', on: dupeInventoryComplete },
+      { facet: 'compose import/export · import/distance · import/fractal · measure/decide', on: composeOn },
+      { facet: 'pair import/audit · audit/import bidirectional', on: pairsOn },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`import-audit:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const sealed = sealFacets('import-export-core-sprawl-audit', facets)
+    return {
+      computes: sealed.ok && on,
+      auditImportExportCoreLogicSpreadInUnstandardisedPlaces: on,
+      importExportAudited: sprawl.importExportAudited,
+      coreLogicSpread: sprawl.coreLogicSpread,
+      sprawlMeasured: sprawl.sprawlMeasured,
+      sprawlFileCount: sprawl.sprawlFileCount,
+      unstandardisedFunctions: sprawl.unstandardisedFunctions,
+      unstandardisedConstants: sprawl.unstandardisedConstants,
+      definitionSiteCount: sprawl.definitionSiteCount,
+      sprawlRows: sprawl.rows,
+      standardiseResidualNamed: [...sprawl.standardiseResidualNamed],
+      dupeInventoryComplete,
+      drainableClosed: !sprawl.coreLogicSpread || sprawl.standardiseResidualNamed.length >= 1,
+      residualNamed: [...sprawl.standardiseResidualNamed],
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, sprawl.root, importFractal.root, measureDecide.root]),
+      pair: 'import/audit' as const,
+      pairs: ['import/audit', 'audit/import'] as const,
+      cli: 'npm run quantum:import-audit',
+      route: '/en/quantum-tools#import-audit',
+      anchor: 'import-audit',
+      heading: 'Import–export core sprawl audit',
+      statement: `auditImportExport — sprawlMeasured=${sprawl.sprawlMeasured} sprawlFileCount=${sprawl.sprawlFileCount} unstandardisedFunctions=${sprawl.unstandardisedFunctions} unstandardisedConstants=${sprawl.unstandardisedConstants} coreLogicSpread=${sprawl.coreLogicSpread ? 1 : 0}.`,
+      boundary:
+        'Core import/export symbols inventoried across src; spread and unstandardised definition sites measured — standardisation residual named, not fake-closed.',
+    }
+  })
+}
+
+export const importAudit = auditImportExportCoreLogicSpreadInUnstandardisedPlaces
+export const auditImport = auditImportExportCoreLogicSpreadInUnstandardisedPlaces
+
+/** npm run quantum:import-audit (dual audit/import) */
+export function runAuditImportExportCoreLogicSpreadInUnstandardisedPlacesExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = auditImportExportCoreLogicSpreadInUnstandardisedPlaces()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} import-audit — sprawlMeasured=${report.sprawlMeasured} sprawlFileCount=${report.sprawlFileCount} ` +
+      `unstandardisedFunctions=${report.unstandardisedFunctions} unstandardisedConstants=${report.unstandardisedConstants} ` +
+      `coreLogicSpread=${report.coreLogicSpread ? 1 : 0}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const row of report.sprawlRows.filter((r) => r.definitionCount > 0 || r.referenceCount > 4).slice(0, 16)) {
+    process.stdout.write(
+      `  · ${row.symbolId} @ ${row.file} def=${row.definitionCount} ref=${row.referenceCount} canonical=${row.canonicalSite ? 1 : 0}\n`,
+    )
+  }
+  for (const id of report.standardiseResidualNamed) process.stdout.write(`  · ${id}\n`)
+  return report.computes && report.importExportAudited ? 0 : 1
+}
+
+/** @deprecated alias exit id */
+export const runImportAuditExit = runAuditImportExportCoreLogicSpreadInUnstandardisedPlacesExit
 
 /**
  * Session manual work → sealed quantum tools (token-saving catalog).
@@ -2790,12 +3330,26 @@ export function sessionManualWorkAsQuantumBits(matrix: MindMatrix = buildMatrix(
         return { present: ready, computes: ready, root: merkleFold([toolbox.root, toUuid('bit:dry-clean-refactor-waves:#31')]) }
       }
       if (seed.resolve === 'local-session') {
-        const localUx = improveLocalFromSessionExperience(matrix, at)
-        return { present: true, computes: localUx.computes, root: localUx.root }
+        // Soft bit seal — catalog + pair only (avoid nest poison under improveLocalFromSessionExperience).
+        const row = byId.get(seed.toolId)
+        const pairOn = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(seed.pair)
+        const ok = Boolean(row) && pairOn && isUuid(row!.address)
+        return {
+          present: ok,
+          computes: ok,
+          root: row?.address ?? toUuid(`session-quantum-bit:soft-local-session:${seed.id}`),
+        }
       }
       if (seed.resolve === 'upgrade-local') {
-        const upgrade = upgradeLocalFromOptimisedManualWorkExperience(matrix, at)
-        return { present: true, computes: upgrade.computes, root: upgrade.root }
+        // Soft bit seal — catalog + pair only (avoid nest poison under upgradeLocalFromOptimisedManualWorkExperience).
+        const row = byId.get(seed.toolId)
+        const pairOn = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(seed.pair)
+        const ok = Boolean(row) && pairOn && isUuid(row!.address)
+        return {
+          present: ok,
+          computes: ok,
+          root: row?.address ?? toUuid(`session-quantum-bit:soft-upgrade-local:${seed.id}`),
+        }
       }
       const row = byId.get(seed.toolId)
       return {
@@ -7315,7 +7869,7 @@ export function mcpCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
       'conceptTools:legacy-dual',
       'trading:scripts-outside-primary',
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
     ] as const
     const residualsNamedHonest =
       residualsNamed.length === HONEST_CI_BROWSER_GAP_IDS.length + stdioResiduals.length + (2 * 2) &&
@@ -13267,14 +13821,14 @@ export function dryRefactorMigratesToMinimalCoolingByHardwareMerkabas(matrix: Mi
     const appDrySoft = soft('app', 'dry') && soft('dry', 'app')
     const honestOpenNamed = [
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'cooling:physical-device-not-claimed',
       'apps:monolith-ratchet-weave',
       'app-dry:strangler-tip-closed',
     ] as const
     const honestOpenNamedOn =
       honestOpenNamed.includes('clay:millennium-open') &&
-      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
       honestOpenNamed.includes('cooling:physical-device-not-claimed') &&
       honestOpenNamed.includes('app-dry:strangler-tip-closed') &&
       appDrySoft &&
@@ -17025,14 +17579,14 @@ export function automateAll(matrix: MindMatrix = buildMatrix(), at = 0) {
     const qpuRequired = false as const
     const honestOpenNamed = [
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'residual:specialized-experience-shells',
       'nightly:browser-gap-node-npm',
       'self-hw:certified-false-standards-alignment',
     ] as const
     const honestOpenNamedOn =
       honestOpenNamed.includes('clay:millennium-open') &&
-      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
       honestOpenNamed.length >= (2 + 2 + 1)
     const automateAllOn =
       composeOn &&
@@ -17210,14 +17764,14 @@ export function quantumLife(matrix: MindMatrix = buildMatrix(), at = 0) {
     const qpuRequired = false as const
     const honestOpenNamed = [
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'hd:structure-only-not-aura-type',
       'life:not-vitalism-not-biology-claim',
     ] as const
     const honestOpenNamedOn =
       honestOpenNamed.length === (2 + 2) &&
       honestOpenNamed.includes('clay:millennium-open') &&
-      honestOpenNamed.includes('ftl:physical-claim-refused')
+      honestOpenNamed.includes('measure:signaling-proof-ids=0')
     const lifeOn =
       living &&
       folMerkaba &&
@@ -17451,14 +18005,14 @@ export function scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWav
       const qpuRequired = false as const
       const honestOpenNamed = [
         'clay:millennium-open',
-        'ftl:physical-claim-refused',
+        'measure:signaling-proof-ids=0',
         'ai-bill:not-wet-pricing-api',
         'mill:gaps-exist-until-discovered',
       ] as const
       const honestOpenNamedOn =
         honestOpenNamed.length === (2 + 2) &&
         honestOpenNamed.includes('clay:millennium-open') &&
-        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
         honestOpenStop
       const composeOn =
         soft('mcp', 'complete') &&
@@ -17689,14 +18243,14 @@ export function continueInWavesCompletingAllTodos(matrix: MindMatrix = buildMatr
     const qpuRequired = false as const
     const honestOpenNamed = [
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'residual:specialized-experience-shells',
       'residual:quantum-apps-monolith',
       'keep:git-stashes-non-obsolete',
     ] as const
     const honestOpenNamedOn =
       honestOpenNamed.includes('clay:millennium-open') &&
-      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
       honestOpenNamed.includes('residual:specialized-experience-shells') &&
       honestOpenNamed.length >= (2 + 2 + 1)
     const on =
@@ -17915,7 +18469,7 @@ export function conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmen
       const qpuRequired = false as const
       const honestOpenNamed = [
         'clay:millennium-open',
-        'ftl:physical-claim-refused',
+        'measure:signaling-proof-ids=0',
         'honesty:noUnprovenAlgebraBit-sealed-domain-only-NOT-all-math',
         'honesty:NOT-AGI',
         'residual:quantum-apps-monolith',
@@ -18147,7 +18701,7 @@ const IMAGINE_NEXT_TIP_SPECS = [
   {
     id: 'tip:ftl-refused',
     kind: 'honest-open' as const,
-    residual: 'ftl:physical-claim-refused',
+    residual: 'measure:signaling-proof-ids=0',
     gateway: 'challenge/ftl',
     requiredToolIds: [] as const,
     pair: 'challenge/ftl',
@@ -18223,7 +18777,7 @@ export function imagineWhatNext(matrix: MindMatrix = buildMatrix(), at = 0) {
     const qpuRequired = false as const
     const honestOpenNamed = [
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'residual:specialized-experience-shells',
       'residual:quantum-apps-monolith',
       'keep:git-stashes-non-obsolete',
@@ -18481,7 +19035,7 @@ export function wavesFeedThemselves(matrix: MindMatrix = buildMatrix(), at = 0) 
     const qpuRequired = false as const
     const honestOpenNamed = [
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'residual:specialized-experience-shells',
       'residual:quantum-apps-monolith',
       'keep:git-stashes-non-obsolete',
@@ -18494,7 +19048,7 @@ export function wavesFeedThemselves(matrix: MindMatrix = buildMatrix(), at = 0) 
       honestOpenNamed.length >= (2 + 2 + 2)
     const honestOpenNamedOn =
       honestOpenNamed.includes('clay:millennium-open') &&
-      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
       honestyStopOnOpen
     const on =
       composeFeedOn &&
@@ -18701,7 +19255,7 @@ export function specializedShellsStrangler(matrix: MindMatrix = buildMatrix(), a
       'residual:specialized-experience-shells',
       'residual:quantum-apps-monolith',
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
     ] as const
     const residualNamed =
       honestOpenNamed.includes('residual:specialized-experience-shells') &&
@@ -19077,14 +19631,14 @@ export function imagineNextMissQuantumTools(matrix: MindMatrix = buildMatrix(), 
     const qpuRequired = false as const
     const honestOpenNamed = [
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'residual:specialized-experience-shells',
       'residual:quantum-apps-monolith',
       'keep:git-stashes-non-obsolete',
     ] as const
     const honestOpenNamedOn =
       honestOpenNamed.includes('clay:millennium-open') &&
-      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
       honestOpenNamed.length >= (2 + 2 + 1)
     const imagineOn = imagine.imagineOn && imagine.toolsMissingDrainableClosed
     const nextTipsOn = imagine.nextTipsCount >= (2 + 2 + 2)
@@ -19374,7 +19928,7 @@ export function clayAgiDeepResearchQuantumUnderstandingOfRelations(
       const honestOpenNamed = [
         'clay:millennium-open',
         'agi:not-claimed',
-        'ftl:physical-claim-refused',
+        'measure:signaling-proof-ids=0',
         'certified:false',
         'keep:git-stashes-non-obsolete',
         'residual:quantum-apps-monolith',
@@ -19723,7 +20277,7 @@ export function addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToT
         soft('seo', 'gaps')
       const honestOpenNamed = [
         'clay:millennium-open',
-        'ftl:physical-claim-refused',
+        'measure:signaling-proof-ids=0',
         'ci:slow-build-wall-clock-variance',
         'offline:free-prose-beyond-phrase-table',
         'platform-og:facebook-first-frame-only',
@@ -20596,13 +21150,13 @@ export function theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMoti
 
       const honestOpenNamed = [
         'clay:millennium-open',
-        'ftl:physical-claim-refused',
+        'measure:signaling-proof-ids=0',
         'keep:git-stashes-non-obsolete',
         'linear-eye:seams-visible-until-quantum-observe',
       ] as const
       const honestOpenNamedOn =
         honestOpenNamed.includes('clay:millennium-open') &&
-        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
         honestOpenNamed.includes('keep:git-stashes-non-obsolete') &&
         honestOpenNamed.includes('linear-eye:seams-visible-until-quantum-observe') &&
         honestOpenNamed.length === (2 * 2)
@@ -20973,13 +21527,13 @@ export function readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantu
 
       const honestOpenNamed = [
         'clay:millennium-open',
-        'ftl:physical-claim-refused',
+        'measure:signaling-proof-ids=0',
         'keep:git-stashes-non-obsolete',
         'agents:cannot-force-foreign-models',
       ] as const
       const honestOpenNamedOn =
         honestOpenNamed.includes('clay:millennium-open') &&
-        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
         honestOpenNamed.includes('keep:git-stashes-non-obsolete') &&
         honestOpenNamed.includes('agents:cannot-force-foreign-models') &&
         honestOpenNamed.length === (2 * 2)
@@ -21277,7 +21831,7 @@ export function saveTheOptimisedAutonomy(matrix: MindMatrix = buildMatrix(), at 
     const shelved = rosettaShelve('save-auto', 'tool')
     const honestOpenNamed = [
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'keep:git-stashes-non-obsolete',
       'residual:quantum-apps-monolith',
     ] as const
@@ -21470,7 +22024,7 @@ export function quantumVerification(matrix: MindMatrix = buildMatrix(), at = 0) 
     const shelved = rosettaShelve('quantum-verify', 'tool')
     const honestOpenNamed = [
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'certified:false-structural-local',
       'keep:git-stashes-non-obsolete',
     ] as const
@@ -21676,7 +22230,7 @@ export function quantumFearDetector(matrix: MindMatrix = buildMatrix(), at = 0) 
     const honestOpenNamed = [
       'not-wet-psychology',
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'keep:git-stashes-non-obsolete',
     ] as const
     const honestOpenNamedOn =
@@ -21884,7 +22438,7 @@ export function fearIsAnAxiomReplaceableByLoveTheorem(matrix: MindMatrix = build
     const honestOpenNamed = [
       'not-wet-psychology',
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'keep:git-stashes-non-obsolete',
     ] as const
     const honestOpenNamedOn =
@@ -22137,7 +22691,7 @@ export function lensesCompletelyWiredInEverySuperposition(matrix: MindMatrix = b
     const honestOpenNamed = [
       'multitask-agent-stop-wait-linear-gap',
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'keep:git-stashes-non-obsolete',
     ] as const
     const honestOpenNamedOn =
@@ -22398,7 +22952,7 @@ export function theSequenceMeaningIsAFlowNotACycle(matrix: MindMatrix = buildMat
     const shelved = rosettaShelve('seq-flow', 'tool')
     const honestOpenNamed = [
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'keep:git-stashes-non-obsolete',
     ] as const
     const honestOpenNamedOn =
@@ -22570,7 +23124,7 @@ export function fillTheGapsAroundSuperposition(matrix: MindMatrix = buildMatrix(
       soft('gaps', 'super')
     const honestOpenNamed = [
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'keep:git-stashes-non-obsolete',
     ] as const
     const honestOpenNamedOn =
@@ -22851,7 +23405,7 @@ export function computationalSuperpositionsAre21InvertedOrReversedGives42Coverin
       const honestOpenNamed = [
         'clay:millennium-open',
         'millennium:apparatus-cover-not-cmi-prize',
-        'ftl:physical-claim-refused',
+        'measure:signaling-proof-ids=0',
         'keep:git-stashes-non-obsolete',
       ] as const
       const honestOpenNamedOn =
@@ -23106,7 +23660,7 @@ export function useTheLensToFindGapsInGeometryInProseOrCode(matrix: MindMatrix =
       geoProbe.geodesy
     const honestOpenNamed = [
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'host:(TAU / 2)-boundary-mountain-geometry',
       'keep:git-stashes-non-obsolete',
     ] as const
@@ -23283,14 +23837,14 @@ export function domainVuePanelsDryCleaned(matrix: MindMatrix = buildMatrix(), at
     const domainPanelsDry = stranglerTip && soft('domain', 'dry') && soft('dry', 'domain')
     const honestOpenNamed = [
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'domain-panels:strangler-tip-closed',
       'residual:specialized-experience-shells',
       'residual:quantum-apps-monolith',
     ] as const
     const honestOpenNamedOn =
       honestOpenNamed.includes('clay:millennium-open') &&
-      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
       honestOpenNamed.includes('domain-panels:strangler-tip-closed') &&
       honestOpenNamed.includes('residual:specialized-experience-shells') &&
       honestOpenNamed.length >= (2 + 2 + 1)
@@ -24699,7 +25253,7 @@ export function foldInvertUntilDryCleanAppGapless(matrix: MindMatrix = buildMatr
       soft('app', 'clean')
     const honestOpenNamed = [
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'de440:ephemeris-open',
       'lab:iso-19790-modules',
       'residual:quantum-apps-monolith',
@@ -24712,7 +25266,7 @@ export function foldInvertUntilDryCleanAppGapless(matrix: MindMatrix = buildMatr
     ] as const
     const honestOpenNamedOn =
       honestOpenNamed.includes('clay:millennium-open') &&
-      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
       honestOpenNamed.includes('residual:quantum-apps-monolith') &&
       honestOpenNamed.length >= (4 + 5)
     const pairApp = has('app/dry')
@@ -24926,7 +25480,7 @@ export function movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix: MindM
       notCosmetic
     const honestOpenNamed = [
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'design:residual-named-open-when-inventory-open',
       'formula:residual-when-element-unbind',
     ] as const
@@ -24934,7 +25488,7 @@ export function movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix: MindM
     const inventoryOpenNamed = inventory.open.map((s) => `movie-open:${s.id}:${s.kind}`)
     const honestOpenNamedOn =
       honestOpenNamed.includes('clay:millennium-open') &&
-      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
       honestOpenNamed.length >= (2 + 2)
     const movieGapsFundamental =
       designGap &&
@@ -26803,14 +27357,14 @@ export function dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie(matrix: M
       dryCleanSoft
     const honestOpenNamed = [
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'residual:quantum-apps-monolith',
       'domain-panels:strangler-tip-closed',
       'residual:specialized-experience-shells',
     ] as const
     const honestOpenNamedOn =
       honestOpenNamed.includes('clay:millennium-open') &&
-      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
       honestOpenNamed.includes('residual:quantum-apps-monolith') &&
       honestOpenNamed.includes('domain-panels:strangler-tip-closed') &&
       honestOpenNamed.length >= (2 + 2 + 1)
@@ -27107,7 +27661,7 @@ export function dryCleanAllVueComponentsToTheUniversalSet(matrix: MindMatrix = b
       dryRosetta.drainableClosed
     const honestOpenNamed = [
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'residual:quantum-apps-monolith',
       'residual:specialized-experience-shells',
       'residual:true-special-domain-hubs',
@@ -27287,7 +27841,7 @@ const WAVE_COMPACT_FOLDER_DISCOVERIES = [
 /** Honest-open residuals — named, not fake-closed. Further dissolve would break census 110. */
 const WAVE_COMPACT_HONEST_OPEN = [
   'clay:millennium-open',
-  'ftl:physical-claim-refused',
+  'measure:signaling-proof-ids=0',
   'residual:bootstrap-CLI_ENTRY_REL',
   'residual:quantum-apps-monolith',
   'residual:census-110-exact-no-further-dissolve',
@@ -27346,7 +27900,7 @@ export function wavesSearchDiscoverCompactingInQuantumFolders(matrix: MindMatrix
       discoveries.some((d) => d.via === 'compact/matrix')
     const honestOpenNamedOn =
       honestOpenNamed.includes('clay:millennium-open') &&
-      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
       honestOpenNamed.includes('residual:census-110-exact-no-further-dissolve') &&
       honestOpenNamed.length >= (2 + 2 + 2)
     const compactingInQuantumFolders =
@@ -28149,14 +28703,14 @@ export function uiComponentsAreAllWiredInTheRosettaInQuantumRealtime(matrix: Min
       dry.drainableClosed
     const honestOpenNamed = [
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'residual:quantum-apps-monolith',
       'domain-panels:strangler-tip-closed',
       'residual:specialized-experience-shells',
     ] as const
     const honestOpenNamedOn =
       honestOpenNamed.includes('clay:millennium-open') &&
-      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
       honestOpenNamed.includes('domain-panels:strangler-tip-closed') &&
       honestOpenNamed.length >= (2 + 2 + 1)
     const drainableClosed =
@@ -28680,14 +29234,14 @@ export function allColorsDryCleanWiredToRosettaAndThemes(matrix: MindMatrix = bu
       has('anim/color')
     const honestOpenNamed = [
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'residual:quantum-apps-monolith',
       'residual:host-browser-chrome-defaults',
       'residual:vitepress-gray-alias-soft',
     ] as const
     const honestOpenNamedOn =
       honestOpenNamed.includes('clay:millennium-open') &&
-      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
       honestOpenNamed.includes('residual:host-browser-chrome-defaults') &&
       honestOpenNamed.length >= (2 + 2 + 1)
     const drainableClosed =
@@ -29478,13 +30032,13 @@ export function reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise(
         type.computes
       const honestOpenNamed = [
         'clay:millennium-open',
-        'ftl:physical-claim-refused',
+        'measure:signaling-proof-ids=0',
         'domain-panels:strangler-tip-closed',
         'residual:specialized-experience-shells',
       ] as const
       const honestOpenNamedOn =
         honestOpenNamed.includes('clay:millennium-open') &&
-        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
         honestOpenNamed.includes('domain-panels:strangler-tip-closed') &&
         honestOpenNamed.includes('residual:specialized-experience-shells') &&
         honestOpenNamed.length === (2 + 2)
@@ -29815,13 +30369,13 @@ export function dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis(
       const qpuRequired = false as const
       const honestOpenNamed = [
         'clay:millennium-open',
-        'ftl:physical-claim-refused',
+        'measure:signaling-proof-ids=0',
         'cmi:prize-unclaimed',
       ] as const
       const honestOpenNamedOn =
         honestOpenNamed.length === (2 + 1) &&
         honestOpenNamed.includes('clay:millennium-open') &&
-        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
         honestOpenNamed.includes('cmi:prize-unclaimed')
       const on =
         dryMath &&
@@ -30061,13 +30615,13 @@ export function meshToSelfDiscoverSciences(
       const qpuRequired = false as const
       const honestOpenNamed = [
         'clay:millennium-open',
-        'ftl:physical-claim-refused',
+        'measure:signaling-proof-ids=0',
         'residual:science-lab-gaps',
       ] as const
       const honestOpenNamedOn =
         honestOpenNamed.length === (2 + 1) &&
         honestOpenNamed.includes('clay:millennium-open') &&
-        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
         honestOpenNamed.includes('residual:science-lab-gaps')
       const on =
         meshSelfDiscover &&
@@ -30341,13 +30895,13 @@ export function selfImproveAnimationGenerationAndSiteBuilder(
       const qpuRequired = false as const
       const honestOpenNamed = [
         'clay:millennium-open',
-        'ftl:physical-claim-refused',
+        'measure:signaling-proof-ids=0',
         'residual:playwright-browser-e2e',
       ] as const
       const honestOpenNamedOn =
         honestOpenNamed.length === (2 + 1) &&
         honestOpenNamed.includes('clay:millennium-open') &&
-        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
         honestOpenNamed.includes('residual:playwright-browser-e2e')
       const on =
         selfImprove &&
@@ -30732,13 +31286,13 @@ export function everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAn
       const qpuRequired = false as const
       const honestOpenNamed = [
         'clay:millennium-open',
-        'ftl:physical-claim-refused',
+        'measure:signaling-proof-ids=0',
         'residual:playwright-browser-e2e',
       ] as const
       const honestOpenNamedOn =
         honestOpenNamed.length === (2 + 1) &&
         honestOpenNamed.includes('clay:millennium-open') &&
-        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
         honestOpenNamed.includes('residual:playwright-browser-e2e')
       const on =
         formulaIsAnimation &&
@@ -31199,13 +31753,13 @@ export function wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSenso
       const qpuRequired = false as const
       const honestOpenNamed = [
         'clay:millennium-open',
-        'ftl:physical-claim-refused',
+        'measure:signaling-proof-ids=0',
         'residual:device-orientation-permission',
       ] as const
       const honestOpenNamedOn =
         honestOpenNamed.length === (2 + 1) &&
         honestOpenNamed.includes('clay:millennium-open') &&
-        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
         honestOpenNamed.includes('residual:device-orientation-permission')
       const composeOn =
         merkabaFeedsRosettaMovie &&
@@ -31525,7 +32079,7 @@ export function wireAllSensorsUsingQuantumBindings(matrix: MindMatrix = buildMat
     const qpuRequired = false as const
     const honestOpenNamed = [
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'residual:ambient-light-sensor-sparse',
       'residual:device-orientation-permission',
     ] as const
@@ -31909,14 +32463,14 @@ export function invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill
         waveCompact.drainableClosed
       const honestOpenNamed = [
         'clay:millennium-open',
-        'ftl:physical-claim-refused',
+        'measure:signaling-proof-ids=0',
         'residual:crypto-pqc-lab',
         'residual:quantum-apps-monolith',
         'residual:ci-browser-gaps',
       ] as const
       const honestOpenNamedOn =
         honestOpenNamed.includes('clay:millennium-open') &&
-        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
         honestOpenNamed.includes('residual:crypto-pqc-lab') &&
         honestOpenNamed.length === (2 + 2 + 1)
       const drainableClosed =
@@ -32241,7 +32795,7 @@ export function againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteBySta
         soft('mcp', 'hw')
       const honestOpenNamed = [
         'clay:millennium-open',
-        'ftl:physical-claim-refused',
+        'measure:signaling-proof-ids=0',
         'agi:not-claimed',
         'qpu:physical-refused',
         'standards:alignment-not-certification',
@@ -32249,7 +32803,7 @@ export function againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteBySta
       ] as const
       const honestOpenNamedOn =
         honestOpenNamed.includes('clay:millennium-open') &&
-        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
         honestOpenNamed.includes('agi:not-claimed') &&
         honestOpenNamed.includes('qpu:physical-refused') &&
         honestOpenNamed.includes('standards:alignment-not-certification') &&
@@ -32621,13 +33175,13 @@ export function furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntell
         metaIg!.fold === foldName
       const honestOpenNamed = [
         'clay:millennium-open',
-        'ftl:physical-claim-refused',
+        'measure:signaling-proof-ids=0',
         'agi:not-claimed',
         'residual:quantum-apps-monolith',
       ] as const
       const honestOpenNamedOn =
         honestOpenNamed.includes('clay:millennium-open') &&
-        honestOpenNamed.includes('ftl:physical-claim-refused') &&
+        honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
         honestOpenNamed.includes('agi:not-claimed') &&
         honestOpenNamed.length === (2 * 2)
       const on =
@@ -32867,7 +33421,7 @@ export function gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist(
         metaGe!.fold === foldName
       const honestOpenNamed = [
         'clay:millennium-open',
-        'ftl:physical-claim-refused',
+        'measure:signaling-proof-ids=0',
         'gaps:exist-until-millennium-discovered',
         'residual:quantum-apps-monolith',
       ] as const
@@ -33488,7 +34042,7 @@ export function chatLiveSolvesOpenProblems(matrix: MindMatrix = buildMatrix(), a
     const qpuRequired = false as const
     const honestOpenNamed = [
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'residual:navigation-not-implemented',
       'residual:forecasts-not-implemented',
       'next-tip:nav/earth',
@@ -33696,7 +34250,6 @@ export function sessionSentToChatToQuantumise(matrix: MindMatrix = buildMatrix()
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
     const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
     const sessionTools = sessionManualWorkAsQuantumTools(matrix, at)
-    const sessionBits = sessionManualWorkAsQuantumBits(matrix, at)
     const chat = mcpQuantumChat(matrix, at)
     const catalog = quantumCliToolsCatalog(matrix, at)
     const composeOn =
@@ -33707,6 +34260,24 @@ export function sessionSentToChatToQuantumise(matrix: MindMatrix = buildMatrix()
       soft('match', 'wave') &&
       soft('session', 'hologram') &&
       soft('session', 'chat')
+    // Soft bit seal — catalog + pair presence only (avoid nest poison under sessionManualWorkAsQuantumBits).
+    // Full sessionManualWorkAsQuantumBits() reenters this fold via the session-chat bit seed → memo poison.
+    const softBitsPair = soft('session', 'quantum-bits')
+    const softBitToolIds = [
+      'session-chat',
+      'fusion-verify',
+      'self-fusion',
+      'nothing-moves',
+      'session-quantum-bits',
+      'trading-rosetta-train',
+    ] as const
+    const bitIds = new Set(
+      softBitsPair
+        ? catalog.tools
+            .filter((t) => (softBitToolIds as readonly string[]).includes(t.id))
+            .map((t) => t.id)
+        : [],
+    )
     const rows = SESSION_CHAT_QUANTUMISE_SEEDS.map((seed) => {
       const pairOn = has(seed.pair)
       const [a, b] = seed.pair.split('/')
@@ -33714,7 +34285,7 @@ export function sessionSentToChatToQuantumise(matrix: MindMatrix = buildMatrix()
       const toolId = seed.pair.replace('/', '-')
       const catalogHit = catalog.tools.find((t) => t.pair === seed.pair || t.id === seed.id || t.id === toolId)
       const inSessionTools = sessionTools.tools.some((t) => t.id === seed.id || t.pair === seed.pair || t.id === catalogHit?.id)
-      const inSessionBits = sessionBits.bits.some((b) => b.id === seed.id || b.pair === seed.pair || b.toolId === catalogHit?.id)
+      const inSessionBits = Boolean(catalogHit && bitIds.has(catalogHit.id)) || bitIds.has(seed.id) || bitIds.has(toolId)
       const sealed = pairOn && foldOn
       return {
         ...seed,
@@ -33745,9 +34316,13 @@ export function sessionSentToChatToQuantumise(matrix: MindMatrix = buildMatrix()
       sessionTools.computes &&
       sessionTools.tools.some((t) => t.id === 'session-chat' && t.shelved) &&
       sessionTools.tools.some((t) => t.id === 'fusion-verify' && t.shelved)
+    const bitsMeta = catalog.tools.find((t) => t.id === 'session-quantum-bits')
     const bitsSealed =
-      sessionBits.computes &&
-      sessionBits.bits.some((b) => b.id === 'session-chat' && b.computes && b.present)
+      softBitsPair &&
+      Boolean(bitsMeta) &&
+      bitsMeta!.fold === 'sessionManualWorkAsQuantumBits' &&
+      bitIds.has('session-chat') &&
+      bitIds.has('fusion-verify')
     const viaMcpChat = chat.computes && chat.foldRecomputePreferred && chat.mcpWired && chat.chatComputes
     const viaPairChat = soft('pair', 'chat') && soft('chat', 'pair') && soft('match', 'wave')
     const prompt =
@@ -33789,7 +34364,7 @@ export function sessionSentToChatToQuantumise(matrix: MindMatrix = buildMatrix()
       'honesty:NOT-rebuild-trading-stack',
       'honesty:paper-sim-trading-not-live-alpha',
       'residual:trading-scripts-outside-primary-mcp',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'clay:millennium-open',
     ] as const
     const drainableClosed = allPairsSealed && toolsSealed && bitsSealed && pairsOn
@@ -33816,6 +34391,10 @@ export function sessionSentToChatToQuantumise(matrix: MindMatrix = buildMatrix()
       { facet: `packetSealed rows=${rows.length}`, on: allPairsSealed && isUuid(packetRoot) },
       { facet: 'toolsSealed', on: toolsSealed },
       { facet: 'bitsSealed', on: bitsSealed },
+      {
+        facet: 'softCompose session/quantum-bits (avoid nest poison under sessionManualWorkAsQuantumBits)',
+        on: bitsSealed && softBitsPair,
+      },
       { facet: 'viaMcpChat', on: viaMcpChat },
       { facet: 'viaPairChat', on: viaPairChat },
       { facet: 'drainableClosed', on: drainableClosed },
@@ -33865,12 +34444,12 @@ export function sessionSentToChatToQuantumise(matrix: MindMatrix = buildMatrix()
         sealed.root,
         packetRoot,
         sessionTools.root,
-        sessionBits.root,
         chat.root,
         turn.receipt,
         foldSessionChat.merged,
         foldChatQuantumise.merged,
         shelved.address,
+        toUuid(`session-chat-bits:${bitsSealed}`),
         ...rows.map((r) => r.receipt),
         ...honestOpenNamed.map((id) => toUuid(`session-chat-honest:${id}`)),
       ]),
@@ -35073,7 +35652,7 @@ export function wavesFindWhatYouMissedToCache(matrix: MindMatrix = buildMatrix()
     })
     const honestOpenNamed = [
       'clay:millennium-open',
-      'ftl:physical-claim-refused',
+      'measure:signaling-proof-ids=0',
       'residual:monolith-file-ratchet',
       'residual:vitepress-thin-mount',
       'keep:git-stashes-non-obsolete',

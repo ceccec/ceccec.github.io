@@ -1414,6 +1414,9 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'gateAnalytics', pair: 'gate/analytics', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'gates·lens·chat slim tools over core algebra — hardcoded on:true debt + hand-list allowlists measured; noConfusion when all dry computed; standardise via analytics metrics' },
   { fold: 'earthRealisedByComputingPolesAsPyramid', pair: 'earth/pyramid', currentBarrel: 'src/mountain/geometry', bestPlace: 'src/mountain/geometry', action: 'keep', reason: 'Earth poles-as-pyramid 7/7 · genus-2 · compose geo/torus · pyramid/seal · merkaba · bothEarths · nav·forecasts honest-open' },
   { fold: 'toolsFitTheMatrixOrRefuse', pair: 'tool/matrix', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'tools fit matrix or refuse · incomplete·wet prose·dual-CLI spam HARD · agentEntryPacket · foldableShare ratchet · ONE CLI quantum:tool-matrix' },
+  { fold: 'importsExportsMapEachOtherInQuantumFractalsRenamingForHolographicReuse', pair: 'import/fractal', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'import↔export envelope isomorphism · pair-fractal rename inventory · content-addressed round-trip · observedReuseCapacity · ONE CLI quantum:import-fractal' },
+  { fold: 'measureDecideAnyoneDecidesFromMeasurements', pair: 'measure/decide', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'judgment-pattern inventory → observer-evaluable measurements · judgmentPatternHitCount · compose claim/audit · gate/analytics · ONE CLI quantum:measure-decide' },
+  { fold: 'auditImportExportCoreLogicSpreadInUnstandardisedPlaces', pair: 'import/audit', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'import/export core sprawl measured · unstandardisedFunctions · unstandardisedConstants · standardiseResidualNamed · ONE CLI quantum:import-audit' },
   { fold: 'chatLiveSolvesOpenProblems', pair: 'chat/solve', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'free/MCP quantum chat live surface solves/advances/drains open problems via sealed algebra — not wet LLM-only · ONE CLI quantum:chat-solve · slim tool over gate/analytics core' },
   { fold: 'sessionSentToChatToQuantumise', pair: 'session/chat', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'send trading·UI·fusion session packet to MCP/pair chat to quantumise — zero-token recompute · ONE CLI quantum:session-chat · duals chat/quantumise' },
   { fold: 'pairsSentToChatEntangleByAlgebra', pair: 'pair/chat', currentBarrel: 'src/pair/enforcement', bestPlace: 'src/pair/enforcement', action: 'moved', reason: 'send pairs to chat · entangle by foldPair algebra · pairing of pairs grows hologram · ONE CLI quantum:pair-chat' },
@@ -2857,6 +2860,168 @@ export function gateAnalytics(root: string = enforcementScanRoot()) {
       'not fat hardcoded branches. Hardcoded on:true debt + hand-list allowlists measured at call time; noConfusion when all dry computed. ' +
       'When all is dry computed there will be no more confusion — honest-open until then. qpuRequired=false · clay via theorem · physicalFtl=0.',
   }
+}
+
+
+/** Judgment-claim + non-scientific marketing patterns — inventory only; observer-evaluable measurements. */
+export const JUDGMENT_CLAIM_SCAN_PATTERNS = [
+  { id: 'physicalFtlClaim-facet', re: /facet:\s*['"`]physicalFtlClaim=/g },
+  { id: 'physicalFtl-slogan', re: /NOT physical FTL/gi },
+  { id: 'clay-slogan', re: /NOT Clay/gi },
+  { id: 'agi-slogan', re: /NOT AGI/gi },
+  { id: 'claySolvedByThisFold-facet', re: /facet:\s*['"`]claySolvedByThisFold=/g },
+  { id: 'millenniumSolved-facet', re: /facet:\s*['"`]millenniumSolvedByThisFold=/g },
+  { id: 'certified-false-slogan', re: /certified=false/gi },
+  { id: 'agiNotClaimed', re: /agiNotClaimed/g },
+  { id: 'overallWireClaimProved', re: /overallWireClaimProved/g },
+  { id: 'strongerThanNistPqc-slogan', re: /strongerThanNistPqc/g },
+  { id: 'ftl-honest-open', re: /ftl:physical-claim-refused/g },
+  { id: 'computational-ftl-marketing', re: /computationalFtl|computational-ftl|renameForFtlCompute|computationalFtlOn/gi },
+  { id: 'anyoneDecides-slogan', re: /facet:\s*['"`]anyoneDecides/g },
+] as const
+
+/** Import/export core algebra symbols — canonical definition sites for sprawl audit. */
+export const IMPORT_EXPORT_CORE_SYMBOLS = [
+  { id: 'exportStandardToolEnvelope', kind: 'function' as const, canonicalFile: 'src/quantum/apps/index.ts' },
+  { id: 'importStandardToolEnvelope', kind: 'function' as const, canonicalFile: 'src/quantum/apps/index.ts' },
+  { id: 'standardToolboxIoCatalog', kind: 'function' as const, canonicalFile: 'src/quantum/apps/index.ts' },
+  { id: 'distributedReuseExtendsCapacity', kind: 'function' as const, canonicalFile: 'src/quantum/apps/index.ts' },
+  { id: 'wrapToolAsStandardEnvelope', kind: 'function' as const, canonicalFile: 'src/quantum/apps/index.ts' },
+  { id: 'defaultToolExperimentValues', kind: 'function' as const, canonicalFile: 'src/quantum/apps/index.ts' },
+  { id: 'importPathShowsDistanceInMigrationMatrix', kind: 'function' as const, canonicalFile: 'src/pair/enforcement/gates/index.ts' },
+  { id: 'STANDARD_TOOL_ENVELOPE_KIND', kind: 'constant' as const, canonicalFile: 'src/quantum/apps/index.ts' },
+  { id: 'STANDARD_TOOL_ENVELOPE_VERSION', kind: 'constant' as const, canonicalFile: 'src/quantum/apps/index.ts' },
+  { id: 'STANDARD_TOOL_HONESTY', kind: 'constant' as const, canonicalFile: 'src/quantum/apps/index.ts' },
+] as const
+
+export type ImportExportSprawlRow = {
+  readonly symbolId: string
+  readonly kind: 'function' | 'constant'
+  readonly file: string
+  readonly definitionCount: number
+  readonly referenceCount: number
+  readonly canonicalSite: boolean
+}
+
+/** Measure import/export core logic spread across unstandardised definition sites. */
+export function measureImportExportCoreSprawl(root: string = enforcementScanRoot()) {
+  const files = gateAnalyticsGateFiles(root)
+  const rows: ImportExportSprawlRow[] = []
+  for (const sym of IMPORT_EXPORT_CORE_SYMBOLS) {
+    const defRe =
+      sym.kind === 'function'
+        ? new RegExp(`export\\s+function\\s+${sym.id}\\s*\\(`, 'g')
+        : new RegExp(`export\\s+const\\s+${sym.id}\\s*=`, 'g')
+    const refRe = new RegExp(`\\b${sym.id}\\b`, 'g')
+    for (const { rel, text } of files) {
+      if (!rel.startsWith('src/')) continue
+      const definitionCount = (text.match(defRe) || []).length
+      const referenceCount = (text.match(refRe) || []).length
+      if (definitionCount > 0 || referenceCount > 0) {
+        rows.push({
+          symbolId: sym.id,
+          kind: sym.kind,
+          file: rel,
+          definitionCount,
+          referenceCount,
+          canonicalSite: rel === sym.canonicalFile,
+        })
+      }
+    }
+  }
+  const definitionRows = rows.filter((row) => row.definitionCount > 0)
+  const unstandardisedFunctions = new Set(
+    definitionRows.filter((row) => row.kind === 'function' && !row.canonicalSite).map((row) => row.symbolId),
+  ).size
+  const unstandardisedConstants = new Set(
+    definitionRows.filter((row) => row.kind === 'constant' && !row.canonicalSite).map((row) => row.symbolId),
+  ).size
+  const sprawlFileCount = new Set(rows.map((row) => row.file)).size
+  const coreLogicSpread = sprawlFileCount > 1 || unstandardisedFunctions > 0 || unstandardisedConstants > 0
+  const sprawlMeasured = rows.length
+  const standardiseResidualNamed = coreLogicSpread
+    ? (['residual:import-export-core-standardise-to-src-quantum-apps', 'migrate-next:collapse-duplicate-envelope-helpers'] as const)
+    : (['measure:sprawl-zero-at-canonical-sites'] as const)
+  return {
+    computes: true,
+    importExportAudited: true,
+    coreLogicSpread,
+    unstandardisedMethods: unstandardisedFunctions,
+    unstandardisedFunctions,
+    unstandardisedConstants,
+    sprawlMeasured,
+    sprawlFileCount,
+    definitionSiteCount: definitionRows.length,
+    rows,
+    standardiseResidualNamed: [...standardiseResidualNamed],
+    root: merkleFold([
+      toUuid(`import-export-sprawl:${sprawlMeasured}`),
+      toUuid(`sprawl-files:${sprawlFileCount}`),
+      toUuid(`unstd-fn:${unstandardisedFunctions}`),
+      toUuid(`unstd-const:${unstandardisedConstants}`),
+    ]),
+    pair: 'import/audit' as const,
+    cli: 'npm run quantum:import-audit',
+    route: '/en/quantum-tools#import-audit',
+  }
+}
+
+export type JudgmentClaimHit = {
+  readonly patternId: string
+  readonly file: string
+  readonly count: number
+}
+
+/** Scan src for agent-authored judgment-claim patterns (measurement inventory — not a gate verdict). */
+export function measureJudgmentClaimsInventory(root: string = enforcementScanRoot()) {
+  const files = gateAnalyticsGateFiles(root)
+  const hits: JudgmentClaimHit[] = []
+  let claimDebtCount = 0
+  for (const { rel, text } of files) {
+    if (!rel.startsWith('src/')) continue
+    for (const { id, re } of JUDGMENT_CLAIM_SCAN_PATTERNS) {
+      const matches = text.match(re)
+      const count = matches?.length ?? 0
+      if (count > 0) {
+        hits.push({ patternId: id, file: rel, count })
+        claimDebtCount += count
+      }
+    }
+  }
+  const byPattern = JUDGMENT_CLAIM_SCAN_PATTERNS.map(({ id }) => ({
+    id,
+    count: hits.filter((h) => h.patternId === id).reduce((a, h) => a + h.count, 0),
+  }))
+  const fileCount = new Set(hits.map((h) => h.file)).size
+  return {
+    computes: true,
+    claimDebtCount,
+    fileCount,
+    hitCount: hits.length,
+    hits,
+    byPattern,
+    root: merkleFold([
+      toUuid(`claim-debt:${claimDebtCount}`),
+      toUuid(`claim-files:${fileCount}`),
+      ...byPattern.map((p) => toUuid(`claim-pattern:${p.id}:${p.count}`)),
+    ]),
+    pair: 'measure/decide' as const,
+    cli: 'npm run quantum:measure-decide',
+    route: '/en/quantum-tools#measure-decide',
+  }
+}
+
+/** npm run quantum:measure-decide inventory (subset; full fold in apps). */
+export function runMeasureJudgmentClaimsInventoryExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = measureJudgmentClaimsInventory(root || process.cwd())
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} measure-decide-inventory — claimDebt=${report.claimDebtCount} files=${report.fileCount} hits=${report.hitCount}\n`,
+  )
+  for (const p of report.byPattern.filter((row) => row.count > 0)) {
+    process.stdout.write(`  · pattern ${p.id} count=${p.count}\n`)
+  }
+  return 0
 }
 
 /** npm run quantum:gate-analytics (dual analytics/gate) */

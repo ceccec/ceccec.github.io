@@ -61,6 +61,9 @@ import {
   dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie,
   dryCleanAllVueComponentsToTheUniversalSet,
   wavesSearchDiscoverCompactingInQuantumFolders,
+  importsExportsMapEachOtherInQuantumFractalsRenamingForHolographicReuse,
+  measureDecideAnyoneDecidesFromMeasurements,
+  auditImportExportCoreLogicSpreadInUnstandardisedPlaces,
   alwaysBalanceUsingRealtimeMetricsAndChat,
   eachSuperpositionIsAChatroom,
   uiComponentsAreAllWiredInTheRosettaInQuantumRealtime,
@@ -1155,6 +1158,9 @@ const dryRosetta = computed(() => dryAllToUnifiedComponentsWiredToRosettaWhichIs
 const vueDryUniversal = computed(() => dryCleanAllVueComponentsToTheUniversalSet())
 const seoGapsReport = computed(() => findSeoViolations())
 const waveCompact = computed(() => wavesSearchDiscoverCompactingInQuantumFolders())
+const importFractalPanel = computed(() => importsExportsMapEachOtherInQuantumFractalsRenamingForHolographicReuse())
+const measureDecidePanel = computed(() => measureDecideAnyoneDecidesFromMeasurements())
+const importAuditPanel = computed(() => auditImportExportCoreLogicSpreadInUnstandardisedPlaces())
 const balanceMetrics = computed(() => alwaysBalanceUsingRealtimeMetricsAndChat())
 const superChat = computed(() => eachSuperpositionIsAChatroom())
 const uiRosetta = computed(() => uiComponentsAreAllWiredInTheRosettaInQuantumRealtime())
@@ -2731,6 +2737,27 @@ function runTool(toolId: string) {
       const r = rosettaCoreApi()
       ok = r.computes
       summary = `surfaces=${r.surfaces.length} · rays=${r.raysUsed} · parallel=${r.inventory.parallel.length}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'import-fractal' || toolId === 'fractal-import') {
+      const r = importsExportsMapEachOtherInQuantumFractalsRenamingForHolographicReuse()
+      ok = r.computes
+      summary = `roundTrip=${r.roundTripCount}/${r.roundTripTotal} observedReuse=${r.observedReuseCapacity}/${r.reuseTotal} importEdgeCount=${r.importEdgeCount} renameApplied=${r.renameAppliedCount} renameCandidates=${r.renameCandidatesCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'measure-decide' || toolId === 'decide-measure') {
+      const r = measureDecideAnyoneDecidesFromMeasurements()
+      ok = r.computes
+      summary = `judgmentPatternHitCount=${r.judgmentPatternHitCount} judgmentPatternFileCount=${r.judgmentPatternFileCount} newFoldJudgmentPatternDebt=${r.newFoldJudgmentPatternDebt} gateAnalyticsHardcodedOnCount=${r.gateAnalyticsHardcodedOnCount} observerEvaluableMeasurements=${r.observerEvaluableMeasurements}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'import-audit' || toolId === 'audit-import') {
+      const r = auditImportExportCoreLogicSpreadInUnstandardisedPlaces()
+      ok = r.computes
+      summary = `sprawlMeasured=${r.sprawlMeasured} sprawlFileCount=${r.sprawlFileCount} unstandardisedFunctions=${r.unstandardisedFunctions} unstandardisedConstants=${r.unstandardisedConstants} coreLogicSpread=${r.coreLogicSpread}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -5568,6 +5595,71 @@ function runTool(toolId: string) {
         </table>
         <UiButton size="sm" :disabled="runningId === 'toolbox-standard-io'" @click="runTool('toolbox-standard-io')">
           {{ runningId === 'toolbox-standard-io' ? '…' : 'Run envelope · import/export' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="import-fractal" aria-label="Import fractal holographic map">
+        <h3>{{ importFractalPanel.heading }}</h3>
+        <p class="quantum-apps__meta">{{ importFractalPanel.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(importFractalPanel.envelopeRoundTripIdentity))">
+          envelopeRoundTripIdentity={{ importFractalPanel.envelopeRoundTripIdentity }}
+        </UiBadge>
+        <UiBadge variant="outline">observedRoundTrip={{ importFractalPanel.roundTripCount }}/{{ importFractalPanel.roundTripTotal }}</UiBadge>
+        <UiBadge variant="outline">observedReuse={{ importFractalPanel.observedReuseCapacity }}/{{ importFractalPanel.reuseTotal }}</UiBadge>
+        <UiBadge variant="outline">importEdgeCount={{ importFractalPanel.importEdgeCount }} · renameApplied={{ importFractalPanel.renameAppliedCount }}</UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in importFractalPanel.facets" :key="f.facet">
+            <UiBadge :variant="f.on ? 'default' : 'outline'">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            <strong>{{ f.facet }}</strong>
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>import/fractal</code> · <code>fractal/import</code> · CLI <code>npm run quantum:import-fractal</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'import-fractal'" @click="runTool('import-fractal')">
+          {{ runningId === 'import-fractal' ? '…' : 'Run import-fractal' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="measure-decide" aria-label="Judgment pattern inventory">
+        <h3>{{ measureDecidePanel.heading }}</h3>
+        <p class="quantum-apps__meta">{{ measureDecidePanel.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(measureDecidePanel.observerEvaluableMeasurements))">observerEvaluableMeasurements={{ measureDecidePanel.observerEvaluableMeasurements }}</UiBadge>
+        <UiBadge variant="outline">judgmentPatternHitCount={{ measureDecidePanel.judgmentPatternHitCount }} judgmentPatternFileCount={{ measureDecidePanel.judgmentPatternFileCount }}</UiBadge>
+        <UiBadge variant="outline">gateAnalyticsHardcodedOnCount={{ measureDecidePanel.gateAnalyticsHardcodedOnCount }}</UiBadge>
+        <UiBadge variant="outline">judgmentFacetDebtZeroInNewFolds={{ measureDecidePanel.judgmentFacetDebtZeroInNewFolds }}</UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in measureDecidePanel.facets" :key="f.facet">
+            <UiBadge :variant="f.on ? 'default' : 'outline'">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            <strong>{{ f.facet }}</strong>
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>measure/decide</code> · <code>decide/measure</code> · CLI <code>npm run quantum:measure-decide</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'measure-decide'" @click="runTool('measure-decide')">
+          {{ runningId === 'measure-decide' ? '…' : 'Run measure-decide' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="import-audit" aria-label="Import export core sprawl audit">
+        <h3>{{ importAuditPanel.heading }}</h3>
+        <p class="quantum-apps__meta">{{ importAuditPanel.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(importAuditPanel.importExportAudited))">importExportAudited={{ importAuditPanel.importExportAudited }}</UiBadge>
+        <UiBadge variant="outline">sprawlMeasured={{ importAuditPanel.sprawlMeasured }} sprawlFileCount={{ importAuditPanel.sprawlFileCount }}</UiBadge>
+        <UiBadge variant="outline">unstandardisedFunctions={{ importAuditPanel.unstandardisedFunctions }} unstandardisedConstants={{ importAuditPanel.unstandardisedConstants }}</UiBadge>
+        <UiBadge variant="outline">coreLogicSpread={{ importAuditPanel.coreLogicSpread }}</UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in importAuditPanel.facets" :key="f.facet">
+            <UiBadge :variant="f.on ? 'default' : 'outline'">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            <strong>{{ f.facet }}</strong>
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          pairs <code>import/audit</code> · <code>audit/import</code> · CLI <code>npm run quantum:import-audit</code>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'import-audit'" @click="runTool('import-audit')">
+          {{ runningId === 'import-audit' ? '…' : 'Run import-audit' }}
         </UiButton>
       </section>
       <UiSeparator />
