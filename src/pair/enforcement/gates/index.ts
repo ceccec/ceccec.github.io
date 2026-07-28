@@ -116,7 +116,7 @@ export type ImportPathDistanceEdge = {
 export { MONOLITH_FILE_BYTES, MONOLITH_FILE_LAW, scanFileSizeOffenders, monolithFileGapDetail, FOLD_HOMES, foldsLiveAtTheirDomainHome, toolsSavedInSrcFirst, importsAreFoldersOnly, mathIsOneSource, foldersAreOneWordPerLevel, glagoliticLabelsAreComputed, unexpectedSituationsRefactorTools, srcFilesAreIndexOnly, scanOneMathOffenders, ONE_MATH_LAW, type OneMathOffender } from './strict'
 export { scanHandLists, handListMirrors, type HandList, type HandListMirror } from './strict'
 export { scanAppHtml, appAuditSummary, type AppPageAudit } from './strict'
-export { dryDupe } from './strict/scan'
+export { dryDupe, theoremAudit } from './strict/scan'
 export {
   
   FIBONACCI_BANDS,
@@ -1439,6 +1439,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'giveUiTasksMeasureNavigateFindCompleteSendFtlWaves', pair: 'ui/task', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'give sealed UI tasks · measure navigate+find+complete cold/warm · send FTL waves one/task · soft usable/all · ui/ux · live/both · four/keys · ssl/test' },
   { fold: 'torusData', pair: 'torus/data', currentBarrel: 'src/fire/features', bestPlace: 'src/fire/features', action: 'moved', reason: 'agnostic framework completed at the adapter algebra — four no-key API families through one pure shape, dimensionless ratios gate, units labelled never theorems, gates network-free' },
   { fold: 'claimAudit', pair: 'claim/audit', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'claims toolset FORMED — content-addressed claims, audit the exact inverse (tamper refutes), DOI/ORCID/OpenAlex validators, CLAIMED-in-UNCLAIMED structural; timestamping named open' },
+  { fold: 'theoremAudit', pair: 'theorem/audit', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'THEOREM_ATOM_SEED census vs proveAlgebraicTheoremMeans — theoremCount · notTheoremCount · ratio · honest branding; compose algebra/prove · formula/code · prose/theorem' },
   { fold: 'bindFuse', pair: 'bind/fuse', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'all binding families fused through the one standard envelope, usable from any superposition (toolbox · mcp.json · CLI · themeConfig) — unfusing any surface refutes' },
   { fold: 'costBound', pair: 'cost/bound', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'binding costs bounded by four sealed laws (zero-token · Fibonacci client cap · build ratchet · no-key adapters); the ledger gap now CLOSED by costTheorem' },
   { fold: 'costTheorem', pair: 'cost/theorem', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'the cost↔theorem ledger FORMED — six cost-carrying bindings each citing the living theorem their cost purchases (markers verified); uncited costs refuse (exit 1); the zero-token null row bounds the cheapest binding' },

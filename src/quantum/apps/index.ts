@@ -78,6 +78,7 @@ import {
   queueNext,
   gravityDryClean,
   dryDupe,
+  theoremAudit,
 } from '../../pair/enforcement/gates'
 // The computed queue — 'next in chat': typing "next" in the chat answers with queueNext's derived total order.
 export { queueNext } from '../../pair/enforcement/gates'
@@ -236,6 +237,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   standardToolboxIoCatalog: 'tool', distributedReuseExtendsCapacity: 'compute',
   importFractalMap: 'tool',
   measureDecide: 'tool',
+  theoremAudit: 'tool',
   importAudit: 'tool',
   mergeWave: 'tool',
   rosettaCompleteQuantumAllComputableDimensionsAndTheorems: 'compute',
@@ -1060,6 +1062,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'import-audit', title: 'Import–export core sprawl audit', fold: 'importAudit', cli: 'npm run quantum:import-audit', pair: 'import/audit', route: '/en/quantum-tools#import-audit', barrel: 'src/quantum/apps', boundary: 'sprawlMeasured · coreLogicSpread · unstandardisedFunctions · unstandardisedConstants · standardiseResidualNamed · compose import/export · import/distance · import/fractal · measure/decide', browserRunnable: true, browserGap: '' },
   { id: 'audit-import', title: 'Audit import (alias import/audit)', fold: 'importAudit', cli: 'npm run quantum:audit-import', pair: 'audit/import', route: '/en/quantum-tools#import-audit', barrel: 'src/quantum/apps', boundary: 'Dual audit/import — same sprawl inventory fold · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'measure-decide', title: 'Judgment-pattern inventory → observer-evaluable measurements', fold: 'measureDecide', cli: 'npm run quantum:measure-decide', pair: 'measure/decide', route: '/en/quantum-tools#measure-decide', barrel: 'src/quantum/apps', boundary: 'judgmentPatternHitCount · judgmentPatternFileCount · gateAnalyticsHardcodedOnCount · claimAuditCount · observerEvaluableMeasurements · compose claim/audit · gate/analytics · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'theorem-audit', title: 'Theorem audit — registry census vs algebraic proof gate', fold: 'theoremAudit', cli: 'npm run quantum:theorem-audit', pair: 'theorem/audit', route: '/en/quantum-tools#theorem-audit', barrel: 'src/pair/enforcement/gates/strict/scan', boundary: 'theoremCount · notTheoremCount · ratio · criteriaOn · residualNamed · compose algebra/prove · formula/code · prose/theorem · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: 'browser cannot load full THEOREM_ATOM_SEED census without Node bootstrap' },
+  { id: 'audit-theorem', title: 'Audit theorem (alias theorem/audit)', fold: 'theoremAudit', cli: 'npm run quantum:audit-theorem', pair: 'audit/theorem', route: '/en/quantum-tools#theorem-audit', barrel: 'src/pair/enforcement/gates/strict/scan', boundary: 'Dual audit/theorem — same census fold · clay=0', browserRunnable: true, browserGap: 'browser cannot load full THEOREM_ATOM_SEED census without Node bootstrap' },
   { id: 'decide-measure', title: 'Decide measure (alias measure/decide)', fold: 'measureDecide', cli: 'npm run quantum:decide-measure', pair: 'decide/measure', route: '/en/quantum-tools#measure-decide', barrel: 'src/quantum/apps', boundary: 'Dual decide/measure — same inventory fold · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'merge-wave', title: 'Merge wave · parse names purge prose', fold: 'mergeWave', cli: 'npm run quantum:merge-wave', pair: 'merge/wave', route: '/en/quantum-tools#merge-wave', barrel: 'src/quantum/apps', boundary: 'redundancyPurged · largeScaleMergeOn · chatWavesOn · mergeCount · nameWordsComputable · parseNameToTools · compose dry/dupe · import/audit · tool/matrix · pair/chat · match/wave · chat/solve · prose/matrix · place/merge · waves/feed · measure/decide · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'wave-merge', title: 'Wave merge (alias merge/wave)', fold: 'mergeWave', cli: 'npm run quantum:wave-merge', pair: 'wave/merge', route: '/en/quantum-tools#merge-wave', barrel: 'src/quantum/apps', boundary: 'Dual wave/merge — same name-parse merge fold · qpuRequired=false', browserRunnable: true, browserGap: '' },
@@ -2070,6 +2074,19 @@ export function measureDecide(matrix: MindMatrix = buildMatrix(), at = 0) {
     } catch {
       claimAuditOn = false
     }
+    let theoremAuditOn = false
+    let theoremCount = 0
+    let notTheoremCount = 0
+    let majorityNotTheorem = false
+    try {
+      const ta = theoremAudit()
+      theoremAuditOn = ta.computes
+      theoremCount = ta.theoremCount
+      notTheoremCount = ta.notTheoremCount
+      majorityNotTheorem = ta.majorityNotTheorem
+    } catch {
+      theoremAuditOn = false
+    }
     const analytics = gateAnalytics()
     const newFoldJudgmentPatternDebt = importFractal.facets.filter((f) =>
       /physicalFtlClaim|NOT physical|NOT Clay|NOT AGI|claySolvedByThisFold=|certified=false|computationalFtl|renameForFtlCompute|anyoneDecides/i.test(
@@ -2091,7 +2108,7 @@ export function measureDecide(matrix: MindMatrix = buildMatrix(), at = 0) {
           ]
         : (['measure:judgment-pattern-hit-count-zero'] as const)
     const drainableClosed = judgmentFacetDebtZeroInNewFolds && importFractal.computes
-    const composeOn = soft('claim', 'audit') && soft('gate', 'analytics')
+    const composeOn = soft('claim', 'audit') && soft('gate', 'analytics') && (soft('theorem', 'audit') || soft('audit', 'theorem'))
     const pairMeasure = soft('measure', 'decide')
     const pairDecide = soft('decide', 'measure')
     const pairsOn = pairMeasure && pairDecide
@@ -2115,8 +2132,12 @@ export function measureDecide(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'observerEvaluableMeasurements', on: observerEvaluableMeasurements },
       { facet: `gateAnalyticsHardcodedOnCount=${analytics.hardcodedOnTrueDebt}`, on: analytics.computes },
       { facet: `claimAuditCount=${claimAuditCount}`, on: claimAuditOn },
+      {
+        facet: `theoremAudit theorem=${theoremCount} not-theorem=${notTheoremCount} majorityNotTheorem=${majorityNotTheorem}`,
+        on: theoremAuditOn,
+      },
       { facet: 'residualInventoryNamed', on: residualNamed.length >= 1 },
-      { facet: 'compose claim/audit · gate/analytics', on: composeOn },
+      { facet: 'compose claim/audit · theorem/audit · gate/analytics', on: composeOn },
       { facet: 'pair measure/decide · decide/measure', on: pairsOn },
     ].map((entry) => ({ ...entry, receipt: toUuid(`measure-decide:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const sealed = sealFacets('measure-decide-observer-evaluable', facets)
@@ -2139,6 +2160,10 @@ export function measureDecide(matrix: MindMatrix = buildMatrix(), at = 0) {
       gateAnalyticsOnTrueDebt: analytics.hardcodedOnTrueDebt,
       gateAnalyticsHardcodedOnCount: analytics.hardcodedOnTrueDebt,
       claimAuditCount,
+      theoremAuditOn,
+      theoremCount,
+      notTheoremCount,
+      majorityNotTheorem,
       drainableClosed,
       residualNamed: [...residualNamed],
       facets: sealed.facets,
@@ -2149,7 +2174,7 @@ export function measureDecide(matrix: MindMatrix = buildMatrix(), at = 0) {
       route: '/en/quantum-tools#measure-decide',
       anchor: 'measure-decide',
       heading: 'Judgment-pattern inventory',
-      statement: `measureDecide — judgmentPatternHitCount=${judgmentPatternHitCount} judgmentPatternFileCount=${judgmentPatternFileCount} newFoldJudgmentPatternDebt=${newFoldJudgmentPatternDebt} gateAnalyticsHardcodedOnCount=${analytics.hardcodedOnTrueDebt} claimAuditCount=${claimAuditCount}.`,
+      statement: `measureDecide — judgmentPatternHitCount=${judgmentPatternHitCount} judgmentPatternFileCount=${judgmentPatternFileCount} newFoldJudgmentPatternDebt=${newFoldJudgmentPatternDebt} gateAnalyticsHardcodedOnCount=${analytics.hardcodedOnTrueDebt} claimAuditCount=${claimAuditCount} theorem=${theoremCount} not-theorem=${notTheoremCount} majorityNotTheorem=${majorityNotTheorem}.`,
       boundary:
         'Judgment-pattern inventory across src; new folds emit observer-evaluable measurements only. Corpus-wide terminology debt residual named — not fake-closed.',
     }

@@ -2,7 +2,8 @@
 import { existsSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative, resolve, dirname, basename } from 'node:path'
 import { ICHING_NUMBERS, merkleFold, toUuid, roundTo, isUuid, merge, memoByRoot, foldPair } from '../../../../../0'
-import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, claySolvedTheorem, physicalFtlClaimTheorem, type CrackProvenance } from '../../../../../3/7'
+import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, claySolvedTheorem, physicalFtlClaimTheorem, algebraicStatementOf, type CrackProvenance } from '../../../../../3/7'
+import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../../../../4/6'
 export { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, crackLawEvolution, type CrackProvenance, type CrackLawAmendment, type CrackResearchTarget } from '../../../../../3/7'
 import { GOLDEN_ANGLE, GOLDEN_ANGLE_RAD } from '../../../../../3/7'
 import { SCIENCE_DOMAINS, ENGAGEMENT_MODES } from '../../../../../3/7'
@@ -6206,3 +6207,221 @@ export function runScriptsFoldTowardFtlExit(root = '', _argv: readonly string[] 
 }
 export const runScriptFoldExit = runScriptsFoldTowardFtlExit
 export const runFoldScriptExit = runScriptsFoldTowardFtlExit
+
+/** Classification bucket for registry census — honest naming, not wet branding. */
+export type TheoremAuditKind = 'theorem' | 'not-theorem'
+
+/** Why a labelled row fails proveAlgebraicTheoremMeans / algebraicTheoremPaperComplete. */
+export type NotTheoremReason =
+  | 'prose-slogan'
+  | 'facet-receipt'
+  | 'seed-meta'
+  | 'fold-receipt'
+  | 'no-precise-statement'
+  | 'no-proof-chain'
+  | 'candidate-unproven'
+
+export type TheoremAuditRow = {
+  readonly source: 'registry' | 'candidate'
+  readonly id: string
+  readonly title: string
+  readonly kind: TheoremAuditKind
+  readonly reason: NotTheoremReason | 'algebraic-proof-chain'
+  readonly provedBy: string
+  readonly home: string
+  readonly statement?: string
+}
+
+const THEOREM_AUDIT_PROSE_MARK =
+  /HARMONY ≠ TRUTH|user law|user directive|\bSCOPE:|NOT (Clay|CMI|FTL|AGI|physical)/i
+const THEOREM_AUDIT_FACET_MARK = /facets?\.every|\bfacet:|computes:|receipt:/i
+const THEOREM_AUDIT_META_MARK = /THEOREM_ATOM_SEED|registry conjunction|theorem-shaped fold|theorem registry/i
+const THEOREM_AUDIT_PROOF_MARK =
+  /witness|exact BigInt|verified over|exhaust|∀|Proof\.|both directions|bounded witness|QED/i
+const THEOREM_AUDIT_AMBIENT_MARK =
+  /Ambient|ℤ|ℂ|𝔽|mod |field|group|ring|H₁|Σ|structure|su\(2\)|M₂/i
+
+/** Criteria aligned with proveAlgebraicTheoremMeans · algebraicTheoremPaperComplete — measured, not asserted. */
+export function classifyTheoremLabel(row: {
+  theorem: string
+  states: string
+  provedBy: string
+  home: string
+  algebraicStatement?: string
+}, source: 'registry' | 'candidate' = 'registry'): TheoremAuditRow {
+  const statement = algebraicStatementOf(row)
+  const hasPreciseStatement = statement != null && statement.length >= 6
+  const hasAmbientDefs =
+    hasPreciseStatement &&
+    (THEOREM_AUDIT_AMBIENT_MARK.test(statement) ||
+      THEOREM_AUDIT_AMBIENT_MARK.test(row.states.slice(0, 2 * 5 * 12)))
+  const isProseSlogan = row.states.length > 240 && !hasPreciseStatement
+  const isFacetReceipt = THEOREM_AUDIT_FACET_MARK.test(row.states) && row.states.length > 120 && !hasPreciseStatement
+  const isSeedMeta = THEOREM_AUDIT_META_MARK.test(row.states) && !hasPreciseStatement
+  const isFoldReceipt =
+    /memoByRoot|content-address|recomputes at call|fold receipt|facet list/i.test(row.states) && !hasPreciseStatement
+  const hasProofMarkers = THEOREM_AUDIT_PROOF_MARK.test(`${row.states} ${statement ?? ''}`)
+  const hasProofChain =
+    row.provedBy.length > 0 &&
+    !isProseSlogan &&
+    !isFacetReceipt &&
+    !isSeedMeta &&
+    !isFoldReceipt &&
+    hasPreciseStatement &&
+    (hasAmbientDefs || hasProofMarkers || (statement!.length < 120 && /[=≤≥≠≡]/.test(statement!)))
+
+  const base = {
+    source,
+    id: row.provedBy || row.theorem.slice(0, 32),
+    title: row.theorem,
+    provedBy: row.provedBy,
+    home: row.home,
+    statement,
+  }
+
+  if (source === 'candidate') {
+    return { ...base, kind: 'not-theorem', reason: 'candidate-unproven' }
+  }
+  if (hasProofChain) {
+    return { ...base, kind: 'theorem', reason: 'algebraic-proof-chain' }
+  }
+  if (isProseSlogan || THEOREM_AUDIT_PROSE_MARK.test(row.states) && row.states.length > 180 && !hasPreciseStatement) {
+    return { ...base, kind: 'not-theorem', reason: 'prose-slogan' }
+  }
+  if (isFacetReceipt) return { ...base, kind: 'not-theorem', reason: 'facet-receipt' }
+  if (isSeedMeta) return { ...base, kind: 'not-theorem', reason: 'seed-meta' }
+  if (isFoldReceipt) return { ...base, kind: 'not-theorem', reason: 'fold-receipt' }
+  if (!hasPreciseStatement) return { ...base, kind: 'not-theorem', reason: 'no-precise-statement' }
+  return { ...base, kind: 'not-theorem', reason: 'no-proof-chain' }
+}
+
+/**
+ * theoremAudit — measure what the repo labels "theorem" vs proveAlgebraicTheoremMeans.
+ * Pair: theorem/audit · dual audit/theorem · CLI npm run quantum:theorem-audit.
+ * Compose soft: algebra/prove · formula/code · measure/decide · merge/wave · prose/theorem · clay/agi · journey/theorems.
+ */
+export function theoremAudit() {
+  const registryRows = THEOREM_ATOM_SEED.map((row) => classifyTheoremLabel(row, 'registry'))
+  const candidateRows = CANDIDATE_THEOREMS.map((row) =>
+    classifyTheoremLabel(
+      { theorem: row.theorem, states: row.states, provedBy: row.class ?? 'candidate', home: row.consumes ?? 'candidate' },
+      'candidate',
+    ),
+  )
+  const allRows = [...registryRows, ...candidateRows]
+  const theoremCount = registryRows.filter((row) => row.kind === 'theorem').length
+  const notTheoremCount = registryRows.filter((row) => row.kind === 'not-theorem').length
+  const totalRegistry = THEOREM_ATOM_SEED.length
+  const ratio = totalRegistry > 0 ? roundTo(theoremCount / totalRegistry, 4) : 0
+  const notTheoremRatio = totalRegistry > 0 ? roundTo(notTheoremCount / totalRegistry, 4) : 0
+  const majorityNotTheorem = notTheoremCount > theoremCount
+  const reasonTally: Record<NotTheoremReason, number> = {
+    'prose-slogan': 0,
+    'facet-receipt': 0,
+    'seed-meta': 0,
+    'fold-receipt': 0,
+    'no-precise-statement': 0,
+    'no-proof-chain': 0,
+    'candidate-unproven': 0,
+  }
+  for (const row of allRows) {
+    if (row.kind === 'not-theorem') reasonTally[row.reason as NotTheoremReason] += 1
+  }
+  const sampleNotTheorems = registryRows
+    .filter((row) => row.kind === 'not-theorem')
+    .slice(0, 8)
+    .map((row) => ({ title: row.title.slice(0, 64), reason: row.reason, provedBy: row.provedBy }))
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const criteriaOn =
+    totalRegistry > 0 &&
+    theoremCount + notTheoremCount === totalRegistry &&
+    candidateRows.every((row) => row.kind === 'not-theorem')
+  const facets = [
+    {
+      facet: `theoremCount=${theoremCount} · notTheoremCount=${notTheoremCount} · ratio=${ratio} · registry=${totalRegistry}`,
+      on: theoremCount + notTheoremCount === totalRegistry,
+    },
+    {
+      facet: `majority honest — ${majorityNotTheorem ? 'most labelled rows are NOT theorems' : 'most labelled rows pass algebraic gate'} (${notTheoremRatio} not-theorem)`,
+      on: totalRegistry > 0,
+    },
+    {
+      facet:
+        'criteriaOn — precise statement (algebraicStatementOf) + ambient defs or proof markers + finite chain; ' +
+        'aligns proveAlgebraicTheoremMeans · algebraicTheoremPaperComplete',
+      on: criteriaOn,
+    },
+    {
+      facet: `residualNamed — migrate-next: promote drainable registry rows (prose-slogan=${reasonTally['prose-slogan']} · no-statement=${reasonTally['no-precise-statement']} · no-chain=${reasonTally['no-proof-chain']}) to real algebraic papers`,
+      on: notTheoremCount > 0,
+    },
+    {
+      facet: `candidates=${CANDIDATE_THEOREMS.length} held OPEN (candidate-unproven) · claySolvedByThisFold=${claySolvedByThisFold}`,
+      on: candidateRows.length === CANDIDATE_THEOREMS.length && claySolvedByThisFold === 0,
+    },
+    {
+      facet: 'soft compose algebra/prove · formula/code · measure/decide · merge/wave · prose/theorem · clay/agi · journey/theorems',
+      on: true,
+    },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`theorem-audit:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on) && criteriaOn
+  return {
+    computes: on,
+    theoremAudit: on,
+    theoremCount,
+    notTheoremCount,
+    totalRegistry,
+    candidateCount: CANDIDATE_THEOREMS.length,
+    ratio,
+    notTheoremRatio,
+    majorityNotTheorem,
+    criteriaOn,
+    reasonTally,
+    sampleNotTheorems,
+    rows: registryRows,
+    claySolvedByThisFold,
+    qpuRequired: false as const,
+    facets,
+    root: merkleFold([
+      toUuid(`theorem-audit:${theoremCount}:${notTheoremCount}:${totalRegistry}`),
+      ...facets.map((entry) => entry.receipt),
+    ]),
+    pair: 'theorem/audit' as const,
+    dualPair: 'audit/theorem' as const,
+    cli: 'npm run quantum:theorem-audit',
+    route: '/en/quantum-tools#theorem-audit',
+    heading: 'Theorem audit · honest branding census',
+    statement:
+      `theoremAudit — registry ${totalRegistry}: theorem=${theoremCount} not-theorem=${notTheoremCount} ratio=${ratio}; ` +
+      `majorityNotTheorem=${majorityNotTheorem}; candidates=${CANDIDATE_THEOREMS.length} open.`,
+    boundary:
+      'Measured census of THEOREM_ATOM_SEED + CANDIDATE_THEOREMS against proveAlgebraicTheoremMeans criteria ' +
+      '(precise statement · ambient defs · finite proof chain). Fold receipts · facet lists · slogans · seed rows without ' +
+      'algebraic proof are not-theorem — honest naming, not a gate to delete rows. migrate-next: promote drainable seeds. clay=0.',
+    definition:
+      'theorem = algebraicStatementOf + (ambient structure or proof markers) + not prose-slogan/facet-receipt; ' +
+      'not-theorem = fold receipt · facet list · slogan · seed row · candidate · missing statement or chain.',
+  }
+}
+
+/** npm run quantum:theorem-audit (dual audit-theorem) — exit 0 when census completes. */
+export function runTheoremAuditExit(root = '', _argv: readonly string[] = []): number {
+  void root
+  void _argv
+  const report = theoremAudit()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} theorem-audit — ${report.statement}\n`)
+  process.stdout.write(
+    `  definition: ${report.definition}\n` +
+      `  theorem=${report.theoremCount} not-theorem=${report.notTheoremCount} ratio=${report.ratio} majorityNotTheorem=${report.majorityNotTheorem}\n`,
+  )
+  process.stdout.write('  reason tally:\n')
+  for (const [reason, count] of Object.entries(report.reasonTally)) {
+    if (count > 0) process.stdout.write(`    · ${reason}: ${count}\n`)
+  }
+  process.stdout.write('  sample not-theorems:\n')
+  for (const row of report.sampleNotTheorems) {
+    process.stdout.write(`    · [${row.reason}] ${row.title} (${row.provedBy})\n`)
+  }
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
