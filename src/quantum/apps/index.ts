@@ -79,6 +79,7 @@ import {
   gravityDryClean,
   dryDupe,
   theoremAudit,
+  geoGebraEncode,
 } from '../../pair/enforcement/gates'
 // The computed queue — 'next in chat': typing "next" in the chat answers with queueNext's derived total order.
 export { queueNext } from '../../pair/enforcement/gates'
@@ -238,6 +239,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   importFractalMap: 'tool',
   measureDecide: 'tool',
   theoremAudit: 'tool',
+  geoGebraEncode: 'tool',
   importAudit: 'tool',
   mergeWave: 'tool',
   rosettaCompleteQuantumAllComputableDimensionsAndTheorems: 'compute',
@@ -1064,6 +1066,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'measure-decide', title: 'Judgment-pattern inventory → observer-evaluable measurements', fold: 'measureDecide', cli: 'npm run quantum:measure-decide', pair: 'measure/decide', route: '/en/quantum-tools#measure-decide', barrel: 'src/quantum/apps', boundary: 'judgmentPatternHitCount · judgmentPatternFileCount · gateAnalyticsHardcodedOnCount · claimAuditCount · observerEvaluableMeasurements · compose claim/audit · gate/analytics · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'theorem-audit', title: 'Theorem audit — registry census vs algebraic proof gate', fold: 'theoremAudit', cli: 'npm run quantum:theorem-audit', pair: 'theorem/audit', route: '/en/quantum-tools#theorem-audit', barrel: 'src/pair/enforcement/gates/strict/scan', boundary: 'theoremCount · notTheoremCount · ratio · criteriaOn · residualNamed · compose algebra/prove · formula/code · prose/theorem · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: 'browser cannot load full THEOREM_ATOM_SEED census without Node bootstrap' },
   { id: 'audit-theorem', title: 'Audit theorem (alias theorem/audit)', fold: 'theoremAudit', cli: 'npm run quantum:audit-theorem', pair: 'audit/theorem', route: '/en/quantum-tools#theorem-audit', barrel: 'src/pair/enforcement/gates/strict/scan', boundary: 'Dual audit/theorem — same census fold · clay=0', browserRunnable: true, browserGap: 'browser cannot load full THEOREM_ATOM_SEED census without Node bootstrap' },
+  { id: 'geo-gebra', title: 'GeoGebra encode — public taxonomy to theorems + animations', fold: 'geoGebraEncode', cli: 'npm run quantum:geo-gebra', pair: 'geo/gebra', route: '/en/quantum-tools#geo-gebra', barrel: 'src/pair/enforcement/gates/strict/scan', boundary: 'geogebraExplored · objectsInventoried · theoremsEncoded · animationsEncoded · encodeCoverage · theoremAuditAligned · no embed · clay=0', browserRunnable: true, browserGap: 'full THEOREM_ATOM_SEED + GeoGebra catalog census needs Node bootstrap' },
+  { id: 'encode-geogebra', title: 'Encode GeoGebra (alias geo/gebra)', fold: 'geoGebraEncode', cli: 'npm run quantum:encode-geogebra', pair: 'encode/geogebra', route: '/en/quantum-tools#geo-gebra', barrel: 'src/pair/enforcement/gates/strict/scan', boundary: 'Dual encode/geogebra — same fold · clay=0', browserRunnable: true, browserGap: 'full catalog census needs Node bootstrap' },
   { id: 'decide-measure', title: 'Decide measure (alias measure/decide)', fold: 'measureDecide', cli: 'npm run quantum:decide-measure', pair: 'decide/measure', route: '/en/quantum-tools#measure-decide', barrel: 'src/quantum/apps', boundary: 'Dual decide/measure — same inventory fold · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'merge-wave', title: 'Merge wave · parse names purge prose', fold: 'mergeWave', cli: 'npm run quantum:merge-wave', pair: 'merge/wave', route: '/en/quantum-tools#merge-wave', barrel: 'src/quantum/apps', boundary: 'redundancyPurged · largeScaleMergeOn · chatWavesOn · mergeCount · nameWordsComputable · parseNameToTools · compose dry/dupe · import/audit · tool/matrix · pair/chat · match/wave · chat/solve · prose/matrix · place/merge · waves/feed · measure/decide · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'wave-merge', title: 'Wave merge (alias merge/wave)', fold: 'mergeWave', cli: 'npm run quantum:wave-merge', pair: 'wave/merge', route: '/en/quantum-tools#merge-wave', barrel: 'src/quantum/apps', boundary: 'Dual wave/merge — same name-parse merge fold · qpuRequired=false', browserRunnable: true, browserGap: '' },

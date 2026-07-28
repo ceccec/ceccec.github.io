@@ -392,6 +392,8 @@
     "quantum:claim-audit": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runClaimAuditExit",
     "quantum:theorem-audit": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runTheoremAuditExit",
     "quantum:audit-theorem": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runTheoremAuditExit",
+    "quantum:geo-gebra": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runGeoGebraEncodeExit",
+    "quantum:encode-geogebra": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runGeoGebraEncodeExit",
     "quantum:bind-fuse": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runBindFuseExit",
     "quantum:cost-bound": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runCostBoundExit",
     "quantum:cost-theorem": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runCostTheoremExit",
