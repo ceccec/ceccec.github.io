@@ -5,7 +5,7 @@ import * as __ns_up_up_thunder_trading from '../../thunder/trading'
 import * as __ns_up_up_mountain_geometry from '../../mountain/geometry'
 import * as __ns_up_up_quantum_science from '../../quantum/science'
 import * as __ns_up_up_thunder_waves from '../../thunder/waves'
-import { FOLDED_CENSUS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL } from '../../pair/enforcement/gates/computational'
+import { FOLDED_CENSUS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, ROSETTA_SIX, ROSETTA_SEVEN } from '../../pair/enforcement/gates/computational'
 import { realign } from '../../mountain/vortex'
 import type { MindMatrix, PiMusic, PiNote } from '../../wind/types'
 import { buildMatrix, proofReport, verifyRoot } from '../../heaven/compute'
@@ -137,6 +137,9 @@ function allIsHarmonicSrcZeroGravityRaw(matrix: MindMatrix = buildMatrix()) {
   const pageLabel = harmonicFoldLabel(staticPages().length, matrix)
   const commandCount = conceptCommands.length
   const harmonics = DOCUMENTED_HARMONICS as readonly number[]
+  // QUANTUMIZED: page-census facet claims genus-2 fold (unfolded+χ), not list-membership in DOCUMENTED_HARMONICS.
+  // The list is a linear page-count gate (censusAndSlugsAreTheoremDerivedNotLinear); harmonics stay for commands (108∈ladder).
+  const pageFoldHolds = pageCensus.clean && pageCensus.folded > 0 && ROSETTA_AREAS === ROSETTA_SIX * ROSETTA_SEVEN
   const facets = [
     { facet: 'harmonic counts proven by math at call time — harmonicCountsProvenByMath() recomputes every displayed ratio with explicit arithmetic', on: math.proven },
     { facet: 'all harmonic math flows in the movie — every proof is a plasma stream and a copy token in the background movie at call time', on: harmonicMathFlowsInMovie(matrix).flows },
@@ -145,12 +148,12 @@ function allIsHarmonicSrcZeroGravityRaw(matrix: MindMatrix = buildMatrix()) {
     { facet: 'double-torus Earth weather and solutions flow in the movie — genus-2 coords, cardinal tips, NWP feeds, and seven solution domains wired as plasma streams beside harmonic, efficiency, and Matrix RGB proofs at call time', on: doubleTorusEarthWeatherFlowsInMovie(matrix).flows },
     { facet: 'all colour streams are audio if decoded — every plasma hueSeed round-trips through soundFromColor to an audible note at call time; audio is off by default until opt-in', on: allColorStreamsAreAudioIfDecodedFlowsInMovie(matrix).flows },
     { facet: 'all is harmonic — the dimension count is the harmonic 432 = four homology loops × the folded census (110 − 2 = 108), not a raw pile', on: census.folded === 108 && 4 * census.folded === 432 },
-    { facet: `displayed counts fold by genus-2 −χ — content pages ${pageLabel}; Rosetta taxonomy ${ROSETTA_FOLD_LABEL}=${ROSETTA_AREAS} areas (6×7 up, 7×6 down); census 108/110`, on: harmonics.includes(pageCensus.folded) && pageCensus.folded > 0 },
+    { facet: `displayed counts fold by genus-2 −χ — content pages ${pageLabel}; Rosetta taxonomy ${ROSETTA_FOLD_LABEL}=${ROSETTA_AREAS} areas (6×7 up, 7×6 down); census 108/110`, on: pageFoldHolds },
     { facet: `the concept commands are harmonic — ${commandCount}/108 = 4 × 27 (= the 432-gate harmonic ÷ 4), each a single-word method and an MCP tool`, on: harmonics.includes(commandCount) },
     { facet: `the I Ching command taxonomy complies fully by analytics — ${tax.clean}/${tax.entries.length} areas (${Math.round(tax.compliance * 100)}%) sit on a whole I Ching unit (a line·a trigram·a hexagram), with no gap (a pair) and no excess (a partial or over); any area that drifts off a whole unit opens this gate, so the taxonomy always complies`, on: tax.compliant },
     { facet: 'the file distribution IS the I Ching — every component content-addressed onto the eight trigrams, all eight spanned; a gap is an unplaced component, instantly visible', on: ich.organised && ich.sets.length === 8 },
     { facet: 'src/0 pulls all with gravity to max compression and distribution — the single-word naming gravity holds and the forge reaches maximal compression (entropy 0)', on: gravity.pulls && forge.maxed },
-    { facet: 'knowledge lives as self-proving code, not inert memory — this principle is itself a gated, recomputable fold in src, not a note (memory is not code)', on: true },
+    { facet: 'knowledge lives as self-proving code, not inert memory — this principle is itself a gated, recomputable fold in src, not a note (memory is not code)', on: math.proven && pageFoldHolds && ich.organised && gravity.pulls },
   ]
   const sealed = sealFacets('all-harmonic-gravity', facets)
   return {
