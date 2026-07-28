@@ -804,7 +804,7 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'crt-rosetta', title: 'Rosetta 42 CRT · ℤ₄₂ ≅ ℤ₆ × ℤ₇', fold: 'theRosettaConstantsAreTheoremsSevenBySixIsFortyTwoByCrtTenIsTheDecad', cli: 'npm run quantum:crt-rosetta', pair: 'crt/rosetta', route: '/en/research#journey-theorems', barrel: 'src/water/digit', boundary: 'Exhaustive CRT bijection · dual rosetta/crt · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'three-twenties', title: 'Three twenties one count · not one cause', fold: 'researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause', cli: 'npm run quantum:three-twenties', pair: 'three/twenties', route: '/en/research#journey-theorems', barrel: 'src/earth/iching', boundary: '2 structural + 1 contingent · dual twenties/three · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'journey-theorems', title: 'Theorem journey continues in waves-of-waves', fold: 'theoremJourneyContinuesInWavesOfWaves', cli: 'npm run quantum:journey-theorems', pair: 'journey/theorems', route: '/en/research#journey-theorems', barrel: 'src/wind/research', boundary: 'Gap-scan drain · formula/code · mill/session · test/theorems · sciences 10D · dual theorems/journey · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
-  { id: 'harmonize-domains', title: 'Harmonize science domains in waves-of-waves', fold: 'harmonizeScienceDomainsInWavesOfWaves', cli: 'npm run quantum:harmonize-domains', pair: 'wave/domain', route: '/en/research#harmonize-domains', barrel: 'src/thunder/waves', boundary: 'Per-domain tune→fold→seal · sciences trinities · wave/tune · journey/theorems · domain proofs · crypto-pqc residual named · certified=false · dual domain/harm · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'harmonize-domains', title: 'Harmonize science domains in waves-of-waves', fold: 'harmonizeScienceDomainsInWavesOfWaves', cli: 'npm run quantum:harmonize-domains', pair: 'wave/domain', route: '/en/research#harmonize-domains', barrel: 'src/thunder/waves', boundary: 'Per-domain tune→fold→seal · chat/challenge algebraFold encode aligned · sciences trinities · journey mill/test measured · domain proofs · crypto-pqc residual named · certified=false · dual domain/harm · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'observe-coord', title: 'Observers compute coordinates to observe trinity compute', fold: 'observersComputeCoordinatesToObserveTrinityCompute', cli: 'npm run quantum:observe-coord', pair: 'observe/coord', route: '/en/#hologrammovie', barrel: 'src/wind/research', boundary: 'observersSent · coordsFromObserver · observeTrinityOutput · dual send/observe · team/observe 3+1 · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'full-freedom', title: 'Full freedom theorem', fold: 'fullFreedomTheorem', cli: 'npm run quantum:full-freedom', pair: 'full/freedom', route: '/en/research#full-freedom', barrel: 'src/wind/research', boundary: 'FREE_BITS · a432/nine · ∞reuse · thought/pure · beyond/zero · love/story · freedom≠FTL · dual freedom/full · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'vite-mirror', title: 'VitePress is the inverted mirror', fold: 'vitepressIsTheInvertedMirror', cli: 'npm run quantum:vite-mirror', pair: 'vite/mirror', route: '/en/#yinyang', barrel: 'src/wind/research', boundary: 'vitepressInvertedMirror · srcReflectedInDocs · ui/invert · gateMirrorLinear · gateReflectionQuantum · dual docs/invert · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -34491,6 +34491,7 @@ export function chatChallenge(matrix: MindMatrix = buildMatrix(), at = 0) {
       soft('term', 'measure') &&
       soft('waves', 'feed') &&
       domains.domainsTuned &&
+      domains.computes &&
       feed.wavesFeedThemselvesOn
     const pairChatChallenge = has('chat/challenge')
     const pairChallengeChat = has('challenge/chat')
@@ -34510,7 +34511,7 @@ export function chatChallenge(matrix: MindMatrix = buildMatrix(), at = 0) {
     const honestOpenNamed = [
       'residual:science-lab-gaps',
       'honesty:adversarial-chat-not-physical-qubits',
-      'next-tip:wave/domain-harmonize',
+      domains.computes ? 'next-tip:nav/earth' : 'next-tip:wave/domain-harmonize',
     ] as const
     const residualNamed = honestOpenNamed.length >= (2 + 1)
     const on =
@@ -34588,14 +34589,14 @@ export function chatChallenge(matrix: MindMatrix = buildMatrix(), at = 0) {
       heading: 'Chat · challenge sciences',
       statement:
         `chatChallenge — chatWavesOn=${chatWavesOn ? 1 : 0} challenge=${challengeEachOther ? 1 : 0} ` +
-        `discovered=${mesh.discoveryCount} encoded=${encodeCount}.`,
+        `discovered=${mesh.discoveryCount} encoded=${encodeCount} harmonize=${domains.computes ? 1 : 0}.`,
       boundary:
         'Chat waves challenge each other adversarially via science dual pairs · discover via mesh/science · ' +
         'encode algebraFold API names into sealed src · NOT physical qubits · NOT wet LLM-only.',
       honestyLine:
         `chat-challenge · waves=${chatWavesOn ? 1 : 0} · challenge=${challengeEachOther ? 1 : 0} · ` +
         `discover=${mesh.discoveryCount} · encode=${encodeCount}`,
-      nextTipPair: 'wave/domain' as const,
+      nextTipPair: domains.computes ? ('nav/earth' as const) : ('wave/domain' as const),
     }
   })
 }

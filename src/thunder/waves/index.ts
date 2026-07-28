@@ -2822,6 +2822,8 @@ export type DomainHarmWaveReceipt = {
   readonly gapsOpen: number
   readonly coverage: string
   readonly dualId: string
+  readonly algebraFold: string
+  readonly encodeAligned: boolean
   readonly phases: readonly DomainHarmPhase[]
   readonly tuned: boolean
   readonly gapsFolded: boolean
@@ -2857,6 +2859,14 @@ export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = build
     const pairDomainHarm = foldPair(toUuid('cmd:domain'), toUuid('cmd:harm'))
     const pairWaveReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('wave/domain')
     const pairHarmReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('domain/harm')
+    const journeyWired =
+      journey.golden &&
+      journey.crt &&
+      journey.twenties &&
+      journey.millTotal > 0 &&
+      journey.testTotal > 0
+    const journeyMillRatio = journey.millTotal > 0 ? journey.millSaved / journey.millTotal : 0
+    const journeyTestRatio = journey.testTotal > 0 ? journey.testPassed / journey.testTotal : 0
     const phases: readonly DomainHarmPhase[] = ['tune', 'fold', 'seal']
     const domains: DomainHarmWaveReceipt[] = seeds.map((seed) => {
       const sig = sigById.get(seed.id)!
@@ -2864,13 +2874,15 @@ export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = build
       const trinity = trinityById.get(seed.id)!
       const tuneMerged = foldPair(music.root, toUuid(`domain-tune:${seed.id}`)).merged
       const foldMerged = foldPair(sig.receipt, std.receipt).merged
-      const sealMerged = merkleFold([tuneMerged, foldMerged, trinity.receipt, defaults.root])
+      const encodeMerged = foldPair(toUuid(`domain-encode:${seed.id}`), toUuid(`algebra:${seed.algebraFold}`)).merged
+      const sealMerged = merkleFold([tuneMerged, foldMerged, encodeMerged, trinity.receipt, defaults.root])
+      const encodeAligned = seed.algebraFold.length > 0 && isUuid(encodeMerged)
       const residualNamed = seed.cryptoVertex
         ? sig.gapsOpen > 0 && std.unclosableWithoutExternalLab && sciences.cryptoVertex.certified === false
         : sig.gapsOpen === 0 || std.fillAction.length > 0
       const tuned = music.plays && defaults.tuned && isUuid(tuneMerged)
       const gapsFolded = isUuid(foldMerged) && (seed.cryptoVertex ? residualNamed : std.algebraOk)
-      const sealed = isUuid(sealMerged) && trinity.sharedKey.length > 0
+      const sealed = isUuid(sealMerged) && trinity.sharedKey.length > 0 && encodeAligned
       return {
         id: seed.id,
         field: seed.field,
@@ -2878,6 +2890,8 @@ export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = build
         gapsOpen: sig.gapsOpen,
         coverage: std.coverage,
         dualId: seed.dualId,
+        algebraFold: seed.algebraFold,
+        encodeAligned,
         phases,
         tuned,
         gapsFolded,
@@ -2885,10 +2899,12 @@ export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = build
         residualNamed,
         cryptoVertex: seed.cryptoVertex,
         certified: false as const,
-        receipt: toUuid(`domain-harm:${seed.id}:${sealMerged}:${sig.gapsOpen}:${std.coverage}`),
+        receipt: toUuid(`domain-harm:${seed.id}:${sealMerged}:${sig.gapsOpen}:${std.coverage}:${seed.algebraFold}`),
       }
     })
     const domainsTuned = domains.every((d) => d.tuned && d.gapsFolded && d.sealed)
+    const encodeAlignedCount = domains.filter((d) => d.encodeAligned).length
+    const encodeAlignedAll = encodeAlignedCount === seeds.length
     const meanSig = significance.meanScore
     const crypto = domains.find((d) => d.cryptoVertex)
     const cryptoResidualAddressed = Boolean(
@@ -2902,12 +2918,13 @@ export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = build
     const physicalFtlClaim = 0 as const
     const on =
       domainsTuned &&
+      encodeAlignedAll &&
       music.plays &&
       defaults.tuned &&
       sciences.computes &&
       significance.computes &&
       standards.computes &&
-      journey.computes &&
+      journeyWired &&
       catalog.computes &&
       cryptoResidualAddressed &&
       pairWaveReg &&
@@ -2919,9 +2936,15 @@ export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = build
     const facets = [
       { facet: 'domainsTuned — one tune→fold→seal wave per SCIENCE_DOMAIN_SEED', on: domainsTuned && domains.length === seeds.length },
       { facet: `meanSig=${meanSig}`, on: meanSig === significance.meanScore && meanSig >= 0 },
+      { facet: `encodeAligned=${encodeAlignedCount}/${seeds.length} — chat/challenge algebraFold API per domain`, on: encodeAlignedAll },
       { facet: 'per-domain receipts sealed', on: domains.every((d) => isUuid(d.receipt)) },
       { facet: 'compose playAgentsTheMusicOfTheWave · agentDefaultsFoldIntoHarmony', on: music.plays && defaults.tuned },
-      { facet: 'compose sciencesInteractInTrinities · domainProofCatalog · journey/theorems', on: sciences.computes && catalog.computes && journey.computes },
+      { facet: 'compose sciencesInteractInTrinities', on: sciences.computes },
+      { facet: 'compose domainProofCatalog', on: catalog.computes },
+      {
+        facet: `compose journey/theorems wired · mill=${journey.millSaved}/${journey.millTotal} · test=${journey.testPassed}/${journey.testTotal}`,
+        on: journeyWired,
+      },
       { facet: 'crypto-pqc residual gapsOpen named · certified=false · no fake close', on: cryptoResidualAddressed },
       { facet: 'pair wave/domain · domain/harm bidirectional', on: pairWaveReg && pairHarmReg && pairWaveDomain.bidirectional },
       { facet: `claySolvedByThisFold=${clayTh.claySolvedByThisFold}`, on: clayTh.claySolvedByThisFold === 0 },
@@ -2936,6 +2959,10 @@ export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = build
       meanSig,
       domains,
       domainCount: domains.length,
+      encodeAlignedCount,
+      journeyMillRatio,
+      journeyTestRatio,
+      journeyWired,
       cryptoResidualAddressed,
       cryptoGapsOpen: crypto?.gapsOpen ?? 0,
       claySolvedByThisFold: clayTh.claySolvedByThisFold as 0,
@@ -2966,9 +2993,11 @@ export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = build
       route: '/en/research#harmonize-domains',
       statement:
         `harmonizeScienceDomainsInWavesOfWaves — domainsTuned=${domainsTuned ? 1 : 0} meanSig=${meanSig} ` +
-        `n=${domains.length} cryptoGapsOpen=${crypto?.gapsOpen ?? 0} residualNamed=${cryptoResidualAddressed ? 1 : 0}.`,
+        `n=${domains.length} encode=${encodeAlignedCount} mill=${journey.millSaved}/${journey.millTotal} ` +
+        `test=${journey.testPassed}/${journey.testTotal} cryptoGapsOpen=${crypto?.gapsOpen ?? 0} residualNamed=${cryptoResidualAddressed ? 1 : 0}.`,
       boundary:
-        'Per-domain waves (tune→fold→seal) over SCIENCE_DOMAIN_SEEDS. Crypto-pqc migrate/lab gapsOpen stay named — certified=false. ' +
+        'Per-domain waves (tune→fold→seal) over SCIENCE_DOMAIN_SEEDS · chat/challenge algebraFold encode aligned per domain. ' +
+        'Journey mill/test partial progress measured — not fake-closed. Crypto-pqc migrate/lab gapsOpen stay named — certified=false. ' +
         'NOT ISO/FIPS · NOT CMI · NOT physical FTL. claySolved via theorem · physicalFtl=0.',
     }
   })
@@ -2984,20 +3013,27 @@ export function runHarmonizeScienceDomainsInWavesOfWavesExit(
   const r = harmonizeScienceDomainsInWavesOfWaves()
   process.stdout.write(
     `${r.computes ? '✓' : '✗'} harmonize-domains — domainsTuned=${r.domainsTuned} meanSig=${r.meanSig} ` +
-      `n=${r.domainCount} cryptoGaps=${r.cryptoGapsOpen} residual=${r.cryptoResidualAddressed} ` +
+      `n=${r.domainCount} encode=${r.encodeAlignedCount} mill=${Math.round(r.journeyMillRatio * 100)}% ` +
+      `test=${Math.round(r.journeyTestRatio * 100)}% cryptoGaps=${r.cryptoGapsOpen} residual=${r.cryptoResidualAddressed} ` +
       `clay=${r.claySolvedByThisFold} ftl=${r.physicalFtlClaim} fold=harmonizeScienceDomainsInWavesOfWaves ` +
       `pairs=${r.pairs.join(',')}\n`,
   )
-  process.stdout.write('  domain | score | gaps | cov | tune | fold | seal | residual\n')
+  process.stdout.write('  domain | score | gaps | cov | tune | fold | seal | encode | residual\n')
   for (const d of r.domains) {
     process.stdout.write(
       `  ${d.id} | ${d.score} | ${d.gapsOpen} | ${d.coverage} | ` +
         `${d.tuned ? '✓' : '✗'} | ${d.gapsFolded ? '✓' : '✗'} | ${d.sealed ? '✓' : '✗'} | ` +
+        `${d.encodeAligned ? d.algebraFold.slice(0, 24) : '—'} | ` +
         `${d.residualNamed ? (d.cryptoVertex ? 'named-lab' : 'ok') : '—'}\n`,
     )
   }
   process.stdout.write(`  · ${r.statement}\n`)
   process.stdout.write(`  · boundary: ${r.boundary}\n`)
+  if (!r.computes) {
+    for (const f of r.facets.filter((entry) => !entry.on)) {
+      process.stdout.write(`  ✗ facet ${f.facet}\n`)
+    }
+  }
   return r.computes && r.claySolvedByThisFold === 0 && r.physicalFtlClaim === 0 && r.certified === false ? 0 : 1
 }
 

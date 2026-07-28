@@ -121,10 +121,10 @@ runMillennium()
         <h3>Domain waves · harmonize</h3>
         <UiBadge :status="statusBadgeKind(Boolean(domainHarm.computes))">
           domainsTuned={{ domainHarm.domainsTuned ? 1 : 0 }} · meanSig={{ domainHarm.meanSig ?? '—' }} ·
-          cryptoGaps={{ domainHarm.cryptoGapsOpen ?? '—' }}
+          encode={{ domainHarm.encodeAlignedCount ?? '—' }} · cryptoGaps={{ domainHarm.cryptoGapsOpen ?? '—' }}
         </UiBadge>
         <table class="research-index__table">
-          <thead><tr><th>Domain</th><th>Score</th><th>Gaps</th><th>Coverage</th><th>Tune</th><th>Fold</th><th>Seal</th><th>Residual</th></tr></thead>
+          <thead><tr><th>Domain</th><th>Score</th><th>Gaps</th><th>Coverage</th><th>Tune</th><th>Fold</th><th>Seal</th><th>Encode</th><th>Residual</th></tr></thead>
           <tbody>
             <tr v-for="d in domainHarm.domains ?? []" :key="d.id">
               <td><code>{{ d.id }}</code></td>
@@ -134,6 +134,7 @@ runMillennium()
               <td>{{ d.tuned ? '✓' : '—' }}</td>
               <td>{{ d.gapsFolded ? '✓' : '—' }}</td>
               <td>{{ d.sealed ? '✓' : '—' }}</td>
+              <td>{{ d.encodeAligned ? '✓' : '—' }}</td>
               <td>{{ d.residualNamed ? (d.cryptoVertex ? 'named-lab' : 'ok') : '—' }}</td>
             </tr>
           </tbody>
@@ -141,6 +142,8 @@ runMillennium()
         <p class="research-index__meta">
           fold <code>harmonizeScienceDomainsInWavesOfWaves</code> ·
           pair <code>{{ domainHarm.pair }}</code> · dual <code>{{ domainHarm.dualPair }}</code> ·
+          mill={{ Math.round((domainHarm.journeyMillRatio ?? 0) * 100) }}% ·
+          test={{ Math.round((domainHarm.journeyTestRatio ?? 0) * 100) }}% ·
           <code>npm run quantum:harmonize-domains</code>
         </p>
       </section>
