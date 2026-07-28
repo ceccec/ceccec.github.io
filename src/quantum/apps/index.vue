@@ -148,6 +148,7 @@ import {
   oneQuantumSetOfVitepressComponentsSealedAtGates,
 } from './index.ts'
 import { translationGapsGate, addressAllWarningsAtOnce, chatTranslatesAutonomously, chatTranslateTurn, chatWavesMostEfficientOfflineAnyLanguageModel, chatWavesTransAnyTurn, chatMassiveWorldLanguageTranslationQualityTurn } from '../../mountain/source/index.ts'
+import { pairsSentToChatEntangleByAlgebraTurn, matchingPairsImmediatelyRealiseEntanglementTurn } from '../../pair/enforcement/index.ts'
 import {
   completeScientificDomainsStrictlyToStandardsQuantumOnly,
 } from '../../wind/research/index.ts'
@@ -844,6 +845,62 @@ function sendChat() {
       results: [],
       resultCount: svc.pairCount,
       receipt: q.receipt || nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // pair/chat · entangle pairs by algebra — pairing of pairs grows the hologram.
+  if (
+    /^\s*pair\s*[-/]?\s*chat\b/i.test(prompt) ||
+    /^\s*chat\s*[-/]?\s*pair\b/i.test(prompt) ||
+    /^\s*entangle\s+(by\s+)?algebra\b/i.test(prompt) ||
+    /^\s*send\s+(the\s+)?pairs\b/i.test(prompt) ||
+    /^\s*pairing\s+of\s+pairs\b/i.test(prompt)
+  ) {
+    const pe = pairsSentToChatEntangleByAlgebraTurn(prompt)
+    const svc = pe.service
+    chatLog.value.unshift({
+      q: prompt,
+      a: pe.answer,
+      source: `${pe.source} · npm run quantum:pair-chat`,
+      grounded: pe.grounded,
+      related: [
+        `sent=${svc.pairsSent}`,
+        `entangled=${svc.entangledCount}`,
+        `grows=${svc.hologramGrows ? 1 : 0}`,
+        ...svc.entangledSample.slice(0, 3),
+      ],
+      results: [],
+      resultCount: svc.entangledCount,
+      receipt: pe.receipt || nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // match/wave — matching duals immediately realise entanglement · brainstorm related solutions.
+  if (
+    /^\s*match\s*[-/]?\s*wave\b/i.test(prompt) ||
+    /^\s*wave\s*[-/]?\s*match\b/i.test(prompt) ||
+    /^\s*matching\s+pairs?\b/i.test(prompt) ||
+    /^\s*immediately\s+realise\b/i.test(prompt) ||
+    /^\s*brainstorm\s+(related\s+)?solutions?\b/i.test(prompt)
+  ) {
+    const mw = matchingPairsImmediatelyRealiseEntanglementTurn(prompt)
+    const svc = mw.service
+    chatLog.value.unshift({
+      q: prompt,
+      a: mw.answer,
+      source: `${mw.source} · npm run quantum:match-wave`,
+      grounded: mw.grounded,
+      related: [
+        `matches=${svc.matchCount}`,
+        `immediate=${svc.immediatelyRealise ? 1 : 0}`,
+        `brainstorm=${svc.brainstormSample.length}`,
+        ...svc.sampleMatches.slice(0, 3),
+      ],
+      results: [],
+      resultCount: svc.matchCount,
+      receipt: mw.receipt || nav0.superposition,
     })
     chatInput.value = ''
     return

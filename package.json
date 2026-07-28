@@ -907,7 +907,9 @@
     "quantum:chat-trans": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/mountain/source/index.ts runChatTranslatesAutonomouslyExit",
     "quantum:trans-any": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/mountain/source/index.ts runChatWavesMostEfficientOfflineAnyLanguageModelExit",
     "quantum:trans-quality": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/mountain/source/index.ts runChatMassiveWorldLanguageTranslationQualityExit",
-    "quantum:tool-matrix": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runToolsFitTheMatrixOrRefuseExit"
+    "quantum:tool-matrix": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runToolsFitTheMatrixOrRefuseExit",
+    "quantum:pair-chat": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/index.ts runPairsSentToChatEntangleByAlgebraExit",
+    "quantum:match-wave": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/index.ts runMatchingPairsImmediatelyRealiseEntanglementExit"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

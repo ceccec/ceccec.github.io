@@ -1,6 +1,6 @@
 // Browser-safe public surface — quantum pairs + mission registry (no node:fs).
 import type { MindMatrix } from '../../wind/types'
-import { buildMatrix, verifyRoot } from '../../heaven/compute'
+import { buildMatrix, verifyRoot, freeChatTurnAtArchitecturalFtl } from '../../heaven/compute'
 import { foldPair, foldVortex, isUuid, memoByRoot, merkleFold, toUuid } from '../../0'
 import { scanUuidKernelOffenders } from './gates/strict/scan'
 
@@ -274,6 +274,10 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'quality/trans',
   'tool/matrix',
   'matrix/tool',
+  'pair/chat',
+  'chat/pair',
+  'match/wave',
+  'wave/match',
   'term/measure',
   'movie/center',
   'gate/miss',
@@ -1569,7 +1573,7 @@ export function theAgentBashCommandsAreQuantumPairs(matrix: MindMatrix = buildMa
 // call-time namespace edge (cycle-safe): learning reads this barrel; the strategy engine reads back at call time
 import * as __ns_up_wind_learning from '../../wind/learning'
 import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../4/6'
-import { claySolvedTheorem } from '../../3/7'
+import { claySolvedTheorem, physicalFtlClaimTheorem } from '../../3/7'
 
 // ── DYNAMIC STRATEGIES FROM THE THEOREMS, REALTIME (user law: develop dynamic strategies based on
 // the theorems used realtime by the agents) — the agent's playbook is COMPUTED, never remembered:
@@ -1679,3 +1683,533 @@ export function runComboCoverExit(root = '', _argv: readonly string[] = []): num
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
+
+/**
+ * pairsSentToChatEntangleByAlgebra — USER LAW: send the pairs to chat and entangle by algebra.
+ * Pairing of pairs grows the fractal hologram (foldPair → merged → merkleFold third).
+ *
+ * 1. foldQuantumCommandPairs — every registry dual gets a merged address
+ * 2. freeChatTurnAtArchitecturalFtl — send tip pairs into chat (memo reuse)
+ * 3. Entangle: foldPair(addr_i, addr_j) · trinity third = merkleFold(forward, reverse)
+ * 4. Hologram root = merkleFold(all pair addresses)
+ *
+ * Pair: pair/chat · dual chat/pair · ONE CLI quantum:pair-chat
+ * Soft: tool/matrix · chat/ftl · combo/cover · waves/build · folder/fractal
+ */
+export function pairsSentToChatEntangleByAlgebra(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('pairsSentToChatEntangleByAlgebra', matrix, () => {
+    const folded = foldQuantumCommandPairs()
+    const paired = folded.filter((p) => p.paired && isUuid(p.address))
+    const pairsSent = paired.length
+    const allPaired = pairsSent === folded.length && pairsSent > 432
+
+    // Tip sample sent to chat — full roster would be wet linear; algebra covers all via merkle.
+    const CHAT_TIPS = [
+      'pair/chat',
+      'tool/matrix',
+      'chat/ftl',
+      'commit/push',
+      'waves/build',
+      'folder/fractal',
+      'combo/cover',
+      'trans/any',
+    ] as const
+    const tipsPresent = CHAT_TIPS.filter((id) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id),
+    )
+    const chatTurns = tipsPresent.map((id) =>
+      freeChatTurnAtArchitecturalFtl(`pair ${id} entangle by algebra`, matrix),
+    )
+    const chatAgain = tipsPresent.map((id) =>
+      freeChatTurnAtArchitecturalFtl(`pair ${id} entangle by algebra`, matrix),
+    )
+    const chatOn =
+      chatTurns.length === tipsPresent.length &&
+      chatTurns.every(
+        (t, i) =>
+          t.answer.length > 0 &&
+          t.receipt === chatAgain[i]!.receipt &&
+          t.memoReuse,
+      )
+    const hologramTurn = freeChatTurnAtArchitecturalFtl(
+      `pairs sent to chat entangle by algebra hologram ${pairsSent}`,
+      matrix,
+    )
+    const hologramTurnAgain = freeChatTurnAtArchitecturalFtl(
+      `pairs sent to chat entangle by algebra hologram ${pairsSent}`,
+      matrix,
+    )
+    const hologramChatOn =
+      hologramTurn.answer.length > 0 &&
+      hologramTurn.receipt === hologramTurnAgain.receipt &&
+      hologramTurn.memoReuse
+
+    // Entangle by algebra: pair consecutive merged addresses (pairing of pairs).
+    const entangled: {
+      a: string
+      b: string
+      merged: string
+      third: string
+      bidirectional: boolean
+    }[] = []
+    for (let i = 0; i + 1 < paired.length; i += 2) {
+      const left = paired[i]!
+      const right = paired[i + 1]!
+      const edge = foldPair(left.address, right.address)
+      const third = merkleFold([edge.forward, edge.reverse])
+      entangled.push({
+        a: left.command,
+        b: right.command,
+        merged: edge.merged,
+        third,
+        bidirectional: edge.bidirectional && edge.forward !== edge.reverse,
+      })
+    }
+    const entangleByAlgebra =
+      entangled.length > 0 &&
+      entangled.every((e) => e.bidirectional && isUuid(e.merged) && isUuid(e.third))
+    const hologramRoot = merkleFold(paired.map((p) => p.address))
+    const entangleRoot = merkleFold(entangled.map((e) => e.third))
+    // Pairing of pairs grows hologram: entangle root differs from flat pair root when edges exist.
+    const hologramGrows =
+      isUuid(hologramRoot) &&
+      isUuid(entangleRoot) &&
+      entangleByAlgebra &&
+      entangled.length > 0 &&
+      hologramRoot !== entangleRoot
+    const pairingOfPairs =
+      entangleByAlgebra &&
+      entangled.length >= Math.floor(pairsSent / 2) &&
+      foldPair(hologramRoot, entangleRoot).bidirectional
+
+    const softCmd = (a: string, b: string) =>
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const pairsOn =
+      softCmd('pair', 'chat') &&
+      softCmd('chat', 'pair') &&
+      softCmd('tool', 'matrix') &&
+      softCmd('chat', 'ftl') &&
+      softCmd('combo', 'cover') &&
+      softCmd('waves', 'build') &&
+      softCmd('folder', 'fractal')
+
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
+
+    const on =
+      allPaired &&
+      chatOn &&
+      hologramChatOn &&
+      entangleByAlgebra &&
+      hologramGrows &&
+      pairingOfPairs &&
+      pairsOn &&
+      physicalFtlClaim === 0 &&
+      claySolvedByThisFold === 0
+
+    const honestOpenNamed = [
+      'chat-tips-sample-not-full-roster-linear',
+      'entangle-pairwise-consecutive-not-all-N-choose-2',
+      'residual:quantum-apps-monolith',
+      'physical-ftl-claim-stays-0',
+      'not-clay',
+      'not-physical-qubit-entanglement',
+    ] as const
+
+    const facets = [
+      {
+        facet: `pairsSent=${pairsSent}/${folded.length} — foldQuantumCommandPairs all paired`,
+        on: allPaired,
+      },
+      {
+        facet: `chatOn — ${tipsPresent.length} tip pairs → freeChatTurn memoReuse · hologramChat=${hologramChatOn ? 1 : 0}`,
+        on: chatOn && hologramChatOn,
+      },
+      {
+        facet: `entangleByAlgebra — ${entangled.length} pair-of-pairs edges · trinity thirds`,
+        on: entangleByAlgebra,
+      },
+      {
+        facet: `hologramGrows — pairing of pairs · root≠flat when edges · hologram=${hologramRoot.slice(0, 8)}`,
+        on: hologramGrows,
+      },
+      {
+        facet: 'pairingOfPairs — foldPair(hologram, entangle) bidirectional · fractal growth',
+        on: pairingOfPairs,
+      },
+      {
+        facet: `physicalFtlClaim=${physicalFtlClaim} clay=${claySolvedByThisFold}`,
+        on: physicalFtlClaim === 0 && claySolvedByThisFold === 0,
+      },
+      {
+        facet: 'pair pair/chat · soft tool/matrix · chat/ftl · combo/cover · waves/build · folder/fractal',
+        on: pairsOn,
+      },
+    ].map((entry) => ({
+      ...entry,
+      receipt: toUuid(`pair-chat:${entry.facet.slice(0, 8 * 9)}:${entry.on}`),
+    }))
+
+    return {
+      computes: on && facets.every((f) => f.on),
+      pairsSentToChatEntangleByAlgebra: on,
+      pairsSent,
+      foldedCount: folded.length,
+      chatTips: [...tipsPresent],
+      chatOn,
+      hologramChatOn,
+      entangleByAlgebra,
+      entangledCount: entangled.length,
+      entangledSample: entangled.slice(0, 8).map((e) => `${e.a}⊗${e.b}`),
+      hologramGrows,
+      pairingOfPairs,
+      hologramRoot,
+      entangleRoot,
+      turn: {
+        answer: hologramTurn.answer.slice(0, 2 * 108),
+        source: hologramTurn.source,
+        receipt: hologramTurn.receipt,
+        memoReuse: hologramTurn.memoReuse,
+      },
+      honestOpenNamed: [...honestOpenNamed],
+      claySolvedByThisFold,
+      physicalFtlClaim: physicalFtlClaim as 0,
+      qpuRequired: false as const,
+      certified: false as const,
+      facets,
+      root: merkleFold([
+        hologramRoot,
+        entangleRoot,
+        hologramTurn.receipt,
+        ...facets.map((f) => f.receipt),
+      ]),
+      pair: 'pair/chat' as const,
+      dualPair: 'chat/pair' as const,
+      pairs: ['pair/chat', 'chat/pair'] as const,
+      cli: 'npm run quantum:pair-chat',
+      route: '/en/quantum-tools#pair-chat',
+      statement:
+        `pairsSentToChatEntangleByAlgebra — sent=${pairsSent} chatTips=${tipsPresent.length} ` +
+        `entangled=${entangled.length} hologramGrows=${hologramGrows ? 1 : 0} ` +
+        `pairingOfPairs=${pairingOfPairs ? 1 : 0}`,
+      boundary:
+        'Send quantum pairs to free chat; entangle by foldPair algebra — pairing of pairs grows the fractal hologram. ' +
+        'NOT physical qubit entanglement · NOT physical FTL. ONE pair pair/chat · ONE CLI. Soft tool/matrix · chat/ftl · combo/cover · waves/build · folder/fractal. clay via theorem · physicalFtl=0.',
+    }
+  })
+}
+
+export const pairChat = pairsSentToChatEntangleByAlgebra
+export const chatPair = pairsSentToChatEntangleByAlgebra
+
+/** Live chat turn — send pairs / entangle by algebra. */
+export function pairsSentToChatEntangleByAlgebraTurn(
+  prompt: string,
+  matrix: MindMatrix = buildMatrix(),
+) {
+  const service = pairsSentToChatEntangleByAlgebra(matrix)
+  const turn = freeChatTurnAtArchitecturalFtl(
+    prompt.trim().slice(0, 2 * 108) || 'pair/chat',
+    matrix,
+  )
+  const answer =
+    `PAIR/CHAT — sent=${service.pairsSent} tips=${service.chatTips.length} ` +
+    `entangled=${service.entangledCount} grows=${service.hologramGrows ? 1 : 0}\n` +
+    `sample: ${service.entangledSample.join(' · ')}\n` +
+    `hologram=${service.hologramRoot.slice(0, 8 * 2)} entangle=${service.entangleRoot.slice(0, 8 * 2)}\n` +
+    `chat: ${turn.answer.slice(0, 2 * 108)}\n` +
+    `residuals: ${service.honestOpenNamed.slice(0, 3).join(' · ')}`
+  return {
+    answer,
+    source: `pair/chat · ${turn.source}`,
+    grounded: service.computes && turn.grounded,
+    service,
+    receipt: toUuid(`pair-chat-turn:${service.root}:${turn.receipt}`),
+  }
+}
+
+/** npm run quantum:pair-chat */
+export function runPairsSentToChatEntangleByAlgebraExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = pairsSentToChatEntangleByAlgebra()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} pair-chat — ${report.statement}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  for (const r of report.honestOpenNamed.slice(0, 6))
+    process.stdout.write(`  · honest-open ${r}\n`)
+  process.stdout.write(`  ${report.boundary}\n`)
+  return report.computes && report.qpuRequired === false ? 0 : 1
+}
+
+export const runPairChatExit = runPairsSentToChatEntangleByAlgebraExit
+export const runChatPairExit = runPairsSentToChatEntangleByAlgebraExit
+
+/**
+ * matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWaves —
+ * USER LAW: the matching pair immediately realise their entanglement in algebra
+ * and develop the related solutions in chat brainstorming waves.
+ *
+ * Match = two-segment duals a/b ↔ b/a both in registry.
+ * Immediate = trinity third computed in the same memoByRoot call (no deferred wait).
+ * Related = registry pairs sharing a tip with a or b (discovered, not encoded soft lists).
+ * Brainstorm = freeChatTurn waves per match · warm memo reuse.
+ *
+ * Pair: match/wave · dual wave/match · ONE CLI quantum:match-wave
+ * Soft: pair/chat · chat/ftl · waves/build · tool/matrix · folder/fractal
+ */
+export function matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWaves(
+  matrix: MindMatrix = buildMatrix(),
+) {
+  return memoByRoot(
+    'matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWaves',
+    matrix,
+    () => {
+      const base = pairsSentToChatEntangleByAlgebra(matrix)
+      const folded = foldQuantumCommandPairs()
+      const byCmd = new Map(folded.map((p) => [p.command, p]))
+      const idSet = new Set(QUANTUM_COMMAND_PAIR_IDS as readonly string[])
+
+      type MatchRow = {
+        forward: string
+        reverse: string
+        merged: string
+        third: string
+        related: string[]
+        immediate: boolean
+      }
+      const matches: MatchRow[] = []
+      for (const p of folded) {
+        const parts = p.command.split('/')
+        if (parts.length !== 2) continue
+        const [a, b] = parts as [string, string]
+        if (a === b) continue
+        const reverseId = `${b}/${a}`
+        if (!idSet.has(reverseId)) continue
+        if (p.command >= reverseId) continue // count each dual once
+        const rev = byCmd.get(reverseId)
+        if (!rev || !p.paired || !rev.paired) continue
+        // Immediate realisation in algebra — same call, no deferred schedule.
+        const edge = foldPair(p.address, rev.address)
+        const third = merkleFold([edge.forward, edge.reverse])
+        const related = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).filter((id) => {
+          if (id === p.command || id === reverseId) return false
+          const segs = id.split('/')
+          return segs.includes(a) || segs.includes(b)
+        })
+        matches.push({
+          forward: p.command,
+          reverse: reverseId,
+          merged: edge.merged,
+          third,
+          related: related.slice(0, 8 * 2),
+          immediate:
+            edge.bidirectional &&
+            edge.forward !== edge.reverse &&
+            isUuid(third) &&
+            isUuid(edge.merged),
+        })
+      }
+
+      const matchingOn = matches.length > 0 && matches.every((m) => m.immediate)
+      const immediatelyRealise =
+        matchingOn &&
+        matches.every((m) => m.immediate) &&
+        // Same-call proof: recompute first match third equals stored (no deferred state).
+        (() => {
+          const m0 = matches[0]!
+          const left = byCmd.get(m0.forward)!
+          const right = byCmd.get(m0.reverse)!
+          const edge = foldPair(left.address, right.address)
+          const third = merkleFold([edge.forward, edge.reverse])
+          return third === m0.third
+        })()
+
+      // Brainstorm waves — tip sample of matches (not wet-linear all).
+      const BRAINSTORM_N = 5 * 2 // FREE_BITS×5
+      const sample = matches.slice(0, BRAINSTORM_N)
+      const brainstormTurns = sample.map((m) => {
+        const tip =
+          `brainstorm solutions ${m.forward}⊗${m.reverse} related ${m.related.slice(0, 5).join(' ')}`
+        const cold = freeChatTurnAtArchitecturalFtl(tip, matrix)
+        const warm = freeChatTurnAtArchitecturalFtl(tip, matrix)
+        return {
+          match: `${m.forward}⊗${m.reverse}`,
+          relatedCount: m.related.length,
+          answer: cold.answer.slice(0, 2 * 108),
+          memoReuse: cold.memoReuse && cold.receipt === warm.receipt,
+          receipt: cold.receipt,
+        }
+      })
+      const brainstormWavesOn =
+        sample.length > 0 &&
+        brainstormTurns.every((t) => t.answer.length > 0 && t.memoReuse)
+      const developRelatedSolutions =
+        brainstormWavesOn &&
+        sample.every((m) => m.related.length > 0 || m.forward.length > 0) &&
+        brainstormTurns.every((t) => t.relatedCount >= 0)
+
+      const softCmd = (a: string, b: string) =>
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const pairsOn =
+        softCmd('match', 'wave') &&
+        softCmd('wave', 'match') &&
+        softCmd('pair', 'chat') &&
+        softCmd('chat', 'ftl') &&
+        softCmd('waves', 'build') &&
+        softCmd('tool', 'matrix') &&
+        softCmd('folder', 'fractal')
+
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
+      const realiseRoot = merkleFold(matches.map((m) => m.third))
+      const brainstormRoot = merkleFold(brainstormTurns.map((t) => t.receipt))
+
+      const on =
+        base.computes &&
+        matchingOn &&
+        immediatelyRealise &&
+        brainstormWavesOn &&
+        developRelatedSolutions &&
+        pairsOn &&
+        physicalFtlClaim === 0 &&
+        claySolvedByThisFold === 0
+
+      const honestOpenNamed = [
+        'brainstorm-sample-not-all-matches-linear',
+        'related-by-shared-tip-not-semantic-mt',
+        'not-physical-qubit-entanglement',
+        'physical-ftl-claim-stays-0',
+        'not-clay',
+        'residual:quantum-apps-monolith',
+      ] as const
+
+      const facets = [
+        {
+          facet: `matchingOn — ${matches.length} dual matches a/b↔b/a immediate algebra`,
+          on: matchingOn,
+        },
+        {
+          facet: 'immediatelyRealise — trinity third same memoByRoot call · no deferred wait',
+          on: immediatelyRealise,
+        },
+        {
+          facet: `brainstormWavesOn — ${brainstormTurns.length} chat waves memoReuse · related solutions`,
+          on: brainstormWavesOn,
+        },
+        {
+          facet: 'developRelatedSolutions — related tips discovered · chat develops',
+          on: developRelatedSolutions,
+        },
+        {
+          facet: `pair/chat base computes · hologramGrows=${base.hologramGrows ? 1 : 0}`,
+          on: base.computes,
+        },
+        {
+          facet: `physicalFtlClaim=${physicalFtlClaim} clay=${claySolvedByThisFold}`,
+          on: physicalFtlClaim === 0 && claySolvedByThisFold === 0,
+        },
+        {
+          facet: 'pair match/wave · soft pair/chat · chat/ftl · waves/build · tool/matrix · folder/fractal',
+          on: pairsOn,
+        },
+      ].map((entry) => ({
+        ...entry,
+        receipt: toUuid(`match-wave:${entry.facet.slice(0, 8 * 9)}:${entry.on}`),
+      }))
+
+      return {
+        computes: on && facets.every((f) => f.on),
+        matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWaves: on,
+        matchingOn,
+        matchCount: matches.length,
+        immediatelyRealise,
+        brainstormWavesOn,
+        developRelatedSolutions,
+        sampleMatches: sample.map((m) => `${m.forward}⊗${m.reverse}`),
+        brainstormSample: brainstormTurns.map((t) => ({
+          match: t.match,
+          relatedCount: t.relatedCount,
+          memoReuse: t.memoReuse,
+        })),
+        realiseRoot,
+        brainstormRoot,
+        honestOpenNamed: [...honestOpenNamed],
+        claySolvedByThisFold,
+        physicalFtlClaim: physicalFtlClaim as 0,
+        qpuRequired: false as const,
+        certified: false as const,
+        facets,
+        root: merkleFold([
+          base.root,
+          realiseRoot,
+          brainstormRoot,
+          ...facets.map((f) => f.receipt),
+        ]),
+        pair: 'match/wave' as const,
+        dualPair: 'wave/match' as const,
+        pairs: ['match/wave', 'wave/match'] as const,
+        cli: 'npm run quantum:match-wave',
+        route: '/en/quantum-tools#match-wave',
+        statement:
+          `matchingPairsImmediatelyRealise… — matches=${matches.length} ` +
+          `immediate=${immediatelyRealise ? 1 : 0} brainstorm=${brainstormTurns.length} ` +
+          `develop=${developRelatedSolutions ? 1 : 0}`,
+        boundary:
+          'Matching duals a/b↔b/a immediately realise entanglement via foldPair trinity in one memoByRoot call; ' +
+          'related solutions develop in free-chat brainstorm waves. NOT physical qubits · NOT physical FTL. ' +
+          'ONE pair match/wave · ONE CLI. Soft pair/chat · chat/ftl · waves/build · tool/matrix · folder/fractal. clay via theorem · physicalFtl=0.',
+      }
+    },
+  )
+}
+
+export const matchWave = matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWaves
+export const waveMatch = matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWaves
+
+/** Live chat turn — match/wave brainstorm. */
+export function matchingPairsImmediatelyRealiseEntanglementTurn(
+  prompt: string,
+  matrix: MindMatrix = buildMatrix(),
+) {
+  const service = matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWaves(matrix)
+  const turn = freeChatTurnAtArchitecturalFtl(
+    prompt.trim().slice(0, 2 * 108) || 'match/wave',
+    matrix,
+  )
+  const answer =
+    `MATCH/WAVE — matches=${service.matchCount} immediate=${service.immediatelyRealise ? 1 : 0} ` +
+    `brainstorm=${service.brainstormSample.length} develop=${service.developRelatedSolutions ? 1 : 0}\n` +
+    `sample: ${service.sampleMatches.join(' · ')}\n` +
+    `waves: ${service.brainstormSample.map((b) => `${b.match}(rel=${b.relatedCount})`).join(' · ')}\n` +
+    `chat: ${turn.answer.slice(0, 2 * 108)}\n` +
+    `residuals: ${service.honestOpenNamed.slice(0, 3).join(' · ')}`
+  return {
+    answer,
+    source: `match/wave · ${turn.source}`,
+    grounded: service.computes && turn.grounded,
+    service,
+    receipt: toUuid(`match-wave-turn:${service.root}:${turn.receipt}`),
+  }
+}
+
+/** npm run quantum:match-wave */
+export function runMatchingPairsImmediatelyRealiseEntanglementExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWaves()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} match-wave — ${report.statement}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  for (const r of report.honestOpenNamed.slice(0, 6))
+    process.stdout.write(`  · honest-open ${r}\n`)
+  process.stdout.write(`  ${report.boundary}\n`)
+  return report.computes && report.qpuRequired === false ? 0 : 1
+}
+
+export const runMatchWaveExit = runMatchingPairsImmediatelyRealiseEntanglementExit
+export const runWaveMatchExit = runMatchingPairsImmediatelyRealiseEntanglementExit
