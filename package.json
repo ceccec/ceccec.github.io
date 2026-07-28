@@ -911,7 +911,8 @@
     "quantum:ssl-test": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runSslTestExit",
     "quantum:test-ssl": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runTestSslExit",
     "quantum:quantumise-ftl": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runQuantumiseFtlExit",
-    "quantum:ftl-crack": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runNonFtlIsCrackInFtlAppExit"
+    "quantum:ftl-crack": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runNonFtlIsCrackInFtlAppExit",
+    "quantum:auditor-waves": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runFreeAuditorWavesPerSrcFileExit"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
