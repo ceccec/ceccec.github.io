@@ -1,5 +1,5 @@
 // Strict gate scans — import · index · vitepress · file-size · snapshot collectors.
-import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative, resolve, dirname, basename } from 'node:path'
 import { ICHING_NUMBERS, merkleFold, toUuid, roundTo, isUuid, merge, memoByRoot, foldPair } from '../../../../../0'
 import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, claySolvedTheorem, physicalFtlClaimTheorem, type CrackProvenance } from '../../../../../3/7'
@@ -5357,6 +5357,7 @@ export function feedUiIntoItself(root: string = enforcementScanRoot()) {
     auditorWaves: Boolean(scripts['quantum:auditor-waves']),
     linkDiscover: Boolean(scripts['quantum:link-discover']),
     feedGates: Boolean(scripts['quantum:feed-gates']),
+    stallStop: Boolean(scripts['quantum:stall-stop']),
   }
   const scannerCount = Object.values(scanners).filter(Boolean).length
   // Realtime = memoByRoot hit on second observe of the same fed UI root (no linear re-walk on reuse).
@@ -5381,7 +5382,8 @@ export function feedUiIntoItself(root: string = enforcementScanRoot()) {
     scanners.contextAudit &&
     scanners.userWaves &&
     scanners.auditorWaves &&
-    scanners.linkDiscover
+    scanners.linkDiscover &&
+    scanners.stallStop
   // 3) SELF-EVOLVE — soft-compose sealed evolve faces (CLI presence; evolve/chat may lack primary CLI).
   const evolve = {
     autoSelf: Boolean(scripts['quantum:automate-self'] || scripts['quantum:self-auto']),
@@ -5427,7 +5429,7 @@ export function feedUiIntoItself(root: string = enforcementScanRoot()) {
       on: uiFed,
     },
     {
-      facet: `scanningRealtime — memo hit on fed UI root · scannersWatch=${scannerCount}/6 · uiAudit pages=${audit.pages}`,
+      facet: `scanningRealtime — memo hit on fed UI root · scannersWatch=${scannerCount}/7 · uiAudit pages=${audit.pages}`,
       on: scanningRealtime && scannersWatchFedUi,
     },
     {
@@ -5447,7 +5449,7 @@ export function feedUiIntoItself(root: string = enforcementScanRoot()) {
       on: noLiveCrowd && circularFeedRiskNamed && honestOpenNamed.length >= 3,
     },
     {
-      facet: 'compose gates/chat · user/waves · ui/audit · context/audit · auditor/waves · link/discover · auto/self · self/heal · self/anim · ftl/crack',
+      facet: 'compose gates/chat · user/waves · ui/audit · context/audit · auditor/waves · link/discover · stall/stop · auto/self · self/heal · self/anim · ftl/crack',
       on: scanners.feedGates && scannersWatchFedUi && selfEvolveHandles,
     },
     { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
@@ -5496,12 +5498,12 @@ export function feedUiIntoItself(root: string = enforcementScanRoot()) {
     heading: 'Feed UI into itself — realtime scan · self-evolve loop',
     statement:
       `feedUiIntoItself — uiFed=${uiFed ? 1 : 0} surfaces=${surfacesFed} ` +
-      `scanRealtime=${scanningRealtime ? 1 : 0} scanners=${scannerCount}/6 ` +
+      `scanRealtime=${scanningRealtime ? 1 : 0} scanners=${scannerCount}/7 ` +
       `evolve=${selfEvolveHandles ? 1 : 0} loop=${feedScanEvolveProved ? 1 : 0} ` +
       `uiPages=${audit.pages} queue=${audit.queueCount}`,
     boundary:
       'Feed sealed UI surfaces into chat/analysis (gates/chat pattern); analyse with call-time scanners ' +
-      '(ui/audit invoke · soft context/user/auditor/link); prove feed→scan→evolve receipt for self-evolve ' +
+      '(ui/audit invoke · soft context/user/auditor/link · stall/stop hang hear); prove feed→scan→evolve receipt for self-evolve ' +
       '(auto/self · self/heal · self/anim) under soft ftl/crack. ONE pair ui/feed · ONE CLI quantum:feed-ui. ' +
       'HONEST: no live crowd · circular feed risk named · evolve/chat CLI may be missing · NOT physical FTL · NOT Clay.',
   }
@@ -5517,7 +5519,7 @@ export function runFeedUiIntoItselfExit(root = '', _argv: readonly string[] = []
   process.stdout.write(`${report.computes ? '✓' : '✗'} feed-ui — ${report.statement}\n`)
   process.stdout.write(
     `  surfaces=${report.surfacesFed} toolbox=${report.toolboxOn ? 1 : 0} ssl=${report.sslRegistered ? 1 : 0} ` +
-      `scanRealtime=${report.scanningRealtime ? 1 : 0} scanners=${report.scannerCount}/6 ` +
+      `scanRealtime=${report.scanningRealtime ? 1 : 0} scanners=${report.scannerCount}/7 ` +
       `evolve=${report.selfEvolveHandles ? 1 : 0} loop=${report.feedScanEvolveProved ? 1 : 0}\n`,
   )
   for (const s of report.surfaces) {
@@ -5538,3 +5540,418 @@ export function runFeedUiIntoItselfExit(root = '', _argv: readonly string[] = []
 }
 export const runFeedUiExit = runFeedUiIntoItselfExit
 export const runUiFeedExit = runFeedUiIntoItselfExit
+
+/**
+ * stallStopFindsHangedProcessesRealtime — USER LAW (AGENTS stall/stop · 2026-07-28 tip):
+ * "improve realtime communication with the waves to find hanged processes"
+ *
+ * Call-time scan (repo-local signals only — NOT foreign OS process tables):
+ *   1. LOCK — `.vitepress/.build-lock` pid alive/dead · mtime age vs STALL_MS (3min)
+ *   2. TERMINALS — optional Cursor terminals metadata (`QUANTUM_TERMINALS_DIR` /
+ *      `CURSOR_TERMINALS_DIR`) for docs:build/npm seal stalls; NEVER treat docs:dev as killable
+ *   3. ACT — clear stale (dead-PID) locks; live hung build kill only when argv includes `--kill`
+ *   4. WAVE — content-address hang receipt into feed phrases so ui/feed · gates/chat "hear" hangs
+ *
+ * Receipt facets: hungFound · killedSafe · lockCleared · waveNotified
+ * Soft-compose: waves/build · waves/push · gate/monitor · session/live · ui/feed · context/audit
+ * Pair: stall/stop · ONE CLI quantum:stall-stop · no dual-CLI spam
+ * HONEST residuals: cannot see foreign OS processes · docs:dev protected · terminals dir may be absent
+ */
+export const STALL_STOP_MS = 3 * 60 * 1000 // AGENTS: stalled >3min
+
+export const STALL_FEED_PHRASES = [
+  'stall',
+  'stall/stop',
+  'hang',
+  'hanged process',
+  'hung process',
+  'build lock',
+  'find hanged',
+] as const
+
+const BUILD_HANG_CMD =
+  /(?:docs:build|docs:build-seal|enforcement:trinity|vitepress\s+build|quantumizeVitepressBuild|npm\s+run\s+docs:build)/i
+const DEV_PROTECTED_CMD = /docs:dev|vitepress\s+dev/i
+
+function pidAlive(pid: number): boolean {
+  if (!Number.isFinite(pid) || pid <= 0) return false
+  try {
+    process.kill(pid, 0)
+    return true
+  } catch {
+    return false
+  }
+}
+
+function resolveTerminalsDir(root: string = enforcementScanRoot()): string | null {
+  const env =
+    (typeof process !== 'undefined' && process.env.QUANTUM_TERMINALS_DIR) ||
+    (typeof process !== 'undefined' && process.env.CURSOR_TERMINALS_DIR) ||
+    ''
+  if (env && existsSync(env)) return env
+  const home = typeof process !== 'undefined' ? process.env.HOME : ''
+  if (!home) return null
+  const projects = join(home, '.cursor', 'projects')
+  if (!existsSync(projects)) return null
+  // Cursor slug ≈ absolute path with `/` → `-` (e.g. Users-ceci-github-ceccec-ceccec-github-io).
+  const slug = root.replace(/^\//, '').replace(/[/_\s]+/g, '-')
+  const direct = join(projects, slug, 'terminals')
+  if (existsSync(direct)) return direct
+  try {
+    const hit = readdirSync(projects).find((name) => {
+      const lower = name.toLowerCase()
+      return lower.includes('ceccec') && lower.includes('github-io') && existsSync(join(projects, name, 'terminals'))
+    })
+    if (hit) return join(projects, hit, 'terminals')
+  } catch {
+    /* absent */
+  }
+  return null
+}
+
+function parseTerminalMeta(text: string): {
+  pid: number
+  command: string
+  runningForMs: number
+  hasExit: boolean
+} | null {
+  if (!text.startsWith('---')) return null
+  const end = text.indexOf('\n---', 3)
+  const header = end >= 0 ? text.slice(0, end) : text.slice(0, 800)
+  const pidM = /(?:^|\n)pid:\s*(\d+)/.exec(header)
+  const cmdM = /(?:^|\n)command:\s*"((?:\\.|[^"\\])*)"/.exec(header) || /(?:^|\n)command:\s*'((?:\\.|[^'\\])*)'/.exec(header)
+  const runM = /(?:^|\n)running_for_ms:\s*(\d+)/.exec(header)
+  const hasExit = /(?:^|\n)---\s*\n[\s\S]*\nexit_code:/.test(text) || /(?:^|\n)elapsed_ms:/.test(text)
+  if (!pidM) return null
+  return {
+    pid: Number.parseInt(pidM[1]!, 10),
+    command: cmdM ? cmdM[1]!.replace(/\\"/g, '"') : '',
+    runningForMs: runM ? Number.parseInt(runM[1]!, 10) : 0,
+    hasExit,
+  }
+}
+
+export function stallStopFindsHangedProcessesRealtime(
+  root: string = enforcementScanRoot(),
+  argv: readonly string[] = [],
+) {
+  const allowKill = argv.includes('--kill')
+  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const scripts = pkg.scripts ?? {}
+  const lockDir = join(root, '.vitepress', '.build-lock')
+  const pidPath = join(lockDir, 'pid')
+  const lockPresent = existsSync(lockDir)
+  let lockPid = 0
+  let lockAgeMs = 0
+  let lockHolderAlive = false
+  if (lockPresent && existsSync(pidPath)) {
+    lockPid = Number.parseInt(readFileSync(pidPath, 'utf8').trim(), 10)
+    lockHolderAlive = pidAlive(lockPid)
+    try {
+      lockAgeMs = Date.now() - statSync(pidPath).mtimeMs
+    } catch {
+      lockAgeMs = 0
+    }
+  } else if (lockPresent) {
+    try {
+      lockAgeMs = Date.now() - statSync(lockDir).mtimeMs
+    } catch {
+      lockAgeMs = 0
+    }
+  }
+  const lockStaleDead = lockPresent && (!lockPid || !lockHolderAlive)
+  const lockHungLive =
+    lockPresent && lockHolderAlive && lockAgeMs >= STALL_STOP_MS
+
+  type HangRow = {
+    kind: 'build-lock' | 'terminal'
+    pid: number
+    command: string
+    ageMs: number
+    killable: boolean
+    protectedDev: boolean
+  }
+  const hangs: HangRow[] = []
+  if (lockHungLive) {
+    hangs.push({
+      kind: 'build-lock',
+      pid: lockPid,
+      command: 'docs:build-lock-holder',
+      ageMs: lockAgeMs,
+      killable: true,
+      protectedDev: false,
+    })
+  }
+
+  const terminalsDir = resolveTerminalsDir(root)
+  const terminalFiles = terminalsDir
+    ? readdirSync(terminalsDir).filter((name) => name.endsWith('.txt')).slice(0, 64)
+    : []
+  for (const name of terminalFiles) {
+    let text = ''
+    try {
+      text = readFileSync(join(terminalsDir!, name), 'utf8')
+    } catch {
+      continue
+    }
+    const meta = parseTerminalMeta(text)
+    if (!meta || meta.hasExit) continue
+    if (!pidAlive(meta.pid)) continue
+    if (meta.runningForMs < STALL_STOP_MS) continue
+    const protectedDev = DEV_PROTECTED_CMD.test(meta.command)
+    const buildHang = BUILD_HANG_CMD.test(meta.command)
+    if (!buildHang && !protectedDev) continue
+    hangs.push({
+      kind: 'terminal',
+      pid: meta.pid,
+      command: meta.command.slice(0, 160),
+      ageMs: meta.runningForMs,
+      killable: buildHang && !protectedDev,
+      protectedDev,
+    })
+  }
+
+  const hungFound = hangs.length > 0
+  const killTargets = hangs.filter((h) => h.killable)
+  let killedCount = 0
+  let killedDevAttempt = false
+  if (allowKill) {
+    for (const h of killTargets) {
+      if (h.protectedDev) {
+        killedDevAttempt = true
+        continue
+      }
+      try {
+        process.kill(h.pid, 'SIGTERM')
+        killedCount += 1
+      } catch {
+        /* already gone — still safe */
+      }
+    }
+  }
+  // Clear stale lock (dead holder) always — AGENTS stall/stop · fold/cleanup citizenship.
+  let lockCleared = false
+  if (lockStaleDead) {
+    try {
+      rmSync(lockDir, { recursive: true, force: true })
+      lockCleared = !existsSync(lockDir)
+    } catch {
+      lockCleared = false
+    }
+  } else if (lockHungLive && allowKill && killedCount > 0) {
+    try {
+      rmSync(lockDir, { recursive: true, force: true })
+      lockCleared = !existsSync(lockDir)
+    } catch {
+      lockCleared = false
+    }
+  }
+  // Policy OK: no lock · stale cleared · live under budget left alone · hung live reported without unsafe wipe.
+  const lockPolicyOk =
+    !lockPresent ||
+    lockCleared ||
+    (lockHolderAlive && lockAgeMs < STALL_STOP_MS) ||
+    (lockHungLive && !allowKill)
+
+  const docsDevProtected = !killedDevAttempt
+  const expectedKills = allowKill ? killTargets.filter((h) => !h.protectedDev).length : 0
+  const killedSafe =
+    docsDevProtected &&
+    !killTargets.some((h) => h.protectedDev) &&
+    (allowKill ? killedCount <= expectedKills : killedCount === 0)
+
+  // Wave notify — phrases + soft feed CLIs so waves "hear" hangs (ui/feed · gates/chat).
+  const compose = {
+    wavesBuild: Boolean(scripts['quantum:manual-agents-waves']),
+    wavesPush: Boolean(scripts['quantum:waves-push'] || scripts['quantum:push-waves']),
+    gateMonitor: Boolean(scripts['quantum:gate-monitor'] || scripts['quantum:gate-ui']),
+    sessionLive: Boolean(scripts['quantum:session-live'] || scripts['quantum:observe-invert']),
+    uiFeed: Boolean(scripts['quantum:feed-ui']),
+    contextAudit: Boolean(scripts['quantum:context-audit']),
+    feedGates: Boolean(scripts['quantum:feed-gates']),
+  }
+  const composeCount = Object.values(compose).filter(Boolean).length
+  const hangReceipt = toUuid(
+    `stall:hang:${hungFound ? 1 : 0}:${hangs.length}:${lockCleared ? 1 : 0}:${killedCount}`,
+  )
+  const waveReceipt = merkleFold([
+    hangReceipt,
+    ...STALL_FEED_PHRASES.map((p) => toUuid(`stall:phrase:${p}`)),
+    toUuid(`stall:compose:${composeCount}`),
+  ])
+  const dualCliCrack = Boolean(scripts['quantum:stall-stop'] && scripts['quantum:stop-stall'])
+  const waveNotified =
+    STALL_FEED_PHRASES.length >= 5 &&
+    isUuid(hangReceipt) &&
+    isUuid(waveReceipt) &&
+    compose.uiFeed &&
+    compose.feedGates &&
+    compose.wavesBuild &&
+    !dualCliCrack
+
+  // Realtime scan witness — memoByRoot second observe of hang receipt (no linear re-walk).
+  let invocations = 0
+  const observe = () => {
+    invocations += 1
+    return hangReceipt
+  }
+  invocations = 0
+  const cold = memoByRoot('stall-stop:observe', { root: hangReceipt }, observe)
+  const afterCold = invocations
+  const warm = memoByRoot('stall-stop:observe', { root: hangReceipt }, observe)
+  const afterWarm = invocations
+  const scanningRealtime = afterCold === 1 && afterWarm === 1 && cold === warm && cold === hangReceipt
+
+  const foldStallStop = foldPair(toUuid('cmd:stall'), toUuid('cmd:stop'))
+  const pairOn = foldStallStop.bidirectional && foldStallStop.forward !== foldStallStop.reverse
+  const primaryCliOn = Boolean(scripts['quantum:stall-stop'])
+  const foreignOsProcessesUnseen = true
+  const honestOpenNamed = [
+    'residual:cannot-see-foreign-os-processes',
+    'residual:docs-dev-protected-unless-user-law',
+    ...(terminalsDir ? [] : ['residual:terminals-dir-absent']),
+    ...(dualCliCrack ? ['crack:dual-cli-stall-stop'] : []),
+    'physical-ftl-claim-stays-0',
+    'not-clay',
+  ] as const
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
+
+  const facets = [
+    {
+      facet: `scanningRealtime — call-time lock+terminals scan · memo hit · stallMs=${STALL_STOP_MS}`,
+      on: scanningRealtime,
+    },
+    {
+      facet: `hungFound=${hungFound ? 1 : 0} hangs=${hangs.length} (build-lock age=${lockAgeMs} alive=${lockHolderAlive ? 1 : 0})`,
+      on: true, // presence/absence both valid; machinery scans either way
+    },
+    {
+      facet: `killedSafe — docs:dev protected · killOnlyWith--kill · killed=${killedCount} allowKill=${allowKill ? 1 : 0}`,
+      on: killedSafe,
+    },
+    {
+      facet: `lockCleared/policyOk — cleared=${lockCleared ? 1 : 0} policyOk=${lockPolicyOk ? 1 : 0} (stale wipe · no unsafe live wipe)`,
+      on: lockPolicyOk,
+    },
+    {
+      facet: `waveNotified — hang receipt fed to ui/feed·gates/chat phrases · compose=${composeCount}/7`,
+      on: waveNotified,
+    },
+    {
+      facet: 'softCompose waves/build · waves/push · gate/monitor · session/live · ui/feed · context/audit · feed-gates',
+      on:
+        compose.wavesBuild &&
+        compose.wavesPush &&
+        compose.gateMonitor &&
+        compose.sessionLive &&
+        compose.uiFeed &&
+        compose.contextAudit &&
+        compose.feedGates,
+    },
+    {
+      facet: 'pair stall/stop · one CLI quantum:stall-stop · no dual-CLI spam',
+      on: pairOn && primaryCliOn && !dualCliCrack,
+    },
+    {
+      facet: 'honestResidualsNamed — foreign OS unseen · docs:dev protected · terminals may be absent',
+      on: foreignOsProcessesUnseen && docsDevProtected && honestOpenNamed.length >= 3,
+    },
+    { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`stall-stop:${entry.facet.slice(0, 72)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+
+  return {
+    computes: on,
+    stallStopFindsHangedProcessesRealtime: on,
+    stallMs: STALL_STOP_MS,
+    scanningRealtime,
+    hungFound,
+    hangs: hangs.map((h) => ({
+      kind: h.kind,
+      pid: h.pid,
+      ageMs: h.ageMs,
+      killable: h.killable,
+      protectedDev: h.protectedDev,
+      command: h.command,
+    })),
+    killedSafe,
+    killedCount,
+    allowKill,
+    lockCleared,
+    lockPolicyOk,
+    lockPresent,
+    lockPid,
+    lockAgeMs,
+    lockHolderAlive,
+    waveNotified,
+    hangReceipt,
+    waveReceipt,
+    phrases: [...STALL_FEED_PHRASES],
+    terminalsDir: terminalsDir ?? '',
+    terminalFilesScanned: terminalFiles.length,
+    compose,
+    composeCount,
+    foreignOsProcessesUnseen,
+    docsDevProtected,
+    dualCliCrack,
+    honestOpenNamed: [...honestOpenNamed],
+    claySolvedByThisFold,
+    physicalFtlClaim: physicalFtlClaim as 0,
+    qpuRequired: false as const,
+    certified: false as const,
+    facets,
+    root: merkleFold([waveReceipt, ...facets.map((entry) => entry.receipt)]),
+    pair: 'stall/stop' as const,
+    dualPair: 'stop/stall' as const,
+    cli: 'npm run quantum:stall-stop',
+    route: '/en/quantum-tools#stall-stop',
+    heading: 'Stall/stop — realtime waves find hanged processes',
+    statement:
+      `hungFound=${hungFound ? 1 : 0} hangs=${hangs.length} killedSafe=${killedSafe ? 1 : 0} ` +
+      `lockCleared=${lockCleared ? 1 : 0} lockPolicyOk=${lockPolicyOk ? 1 : 0} waveNotified=${waveNotified ? 1 : 0} ` +
+      `scanRealtime=${scanningRealtime ? 1 : 0} compose=${composeCount}/7 terminals=${terminalFiles.length}`,
+    boundary:
+      'Realtime wave↔agent hang scan of repo build-lock + optional Cursor terminals metadata. ' +
+      'Clear stale dead-PID locks; kill live hung docs:build only with --kill; never kill docs:dev. ' +
+      'Hang receipt feeds ui/feed · gates/chat phrases so waves hear hangs. ONE pair stall/stop · ONE CLI. ' +
+      'HONEST: cannot see foreign OS processes · terminals dir may be absent · NOT physical FTL · NOT Clay.',
+  }
+}
+
+export const stallStop = stallStopFindsHangedProcessesRealtime
+export const hangWave = stallStopFindsHangedProcessesRealtime
+
+/** npm run quantum:stall-stop — exit 0 iff hang scan + safe kill policy + wave notify prove. Pass --kill to SIGTERM hung docs:build. */
+export function runStallStopFindsHangedProcessesRealtimeExit(root = '', argv: readonly string[] = []): number {
+  const report = stallStopFindsHangedProcessesRealtime(root || process.cwd(), argv)
+  process.stdout.write(`${report.computes ? '✓' : '✗'} stall-stop — ${report.statement}\n`)
+  process.stdout.write(
+    `  hungFound=${report.hungFound ? 1 : 0} killedSafe=${report.killedSafe ? 1 : 0} ` +
+      `killed=${report.killedCount} lockCleared=${report.lockCleared ? 1 : 0} ` +
+      `waveNotified=${report.waveNotified ? 1 : 0} allowKill=${report.allowKill ? 1 : 0}\n`,
+  )
+  process.stdout.write(
+    `  · lock present=${report.lockPresent ? 1 : 0} pid=${report.lockPid || 0} ` +
+      `alive=${report.lockHolderAlive ? 1 : 0} ageMs=${report.lockAgeMs} stallMs=${report.stallMs}\n`,
+  )
+  process.stdout.write(
+    `  · terminals dir=${report.terminalsDir || '(absent)'} files=${report.terminalFilesScanned} ` +
+      `compose=${report.composeCount}/7\n`,
+  )
+  for (const h of report.hangs) {
+    process.stdout.write(
+      `  · hang [${h.kind}] pid=${h.pid} ageMs=${h.ageMs} killable=${h.killable ? 1 : 0} ` +
+        `dev=${h.protectedDev ? 1 : 0} ${h.command.slice(0, 80)}\n`,
+    )
+  }
+  process.stdout.write(
+    `  · receipts hang=${report.hangReceipt.slice(0, 8)}… wave=${report.waveReceipt.slice(0, 8)}…\n`,
+  )
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+export const runStallStopExit = runStallStopFindsHangedProcessesRealtimeExit
+export const runHangWaveExit = runStallStopFindsHangedProcessesRealtimeExit

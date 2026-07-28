@@ -915,7 +915,8 @@
     "quantum:auditor-waves": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runFreeAuditorWavesPerSrcFileExit",
     "quantum:link-discover": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runAlgebraicCrosslinksDiscoveredNotEncodedExit",
     "quantum:user-waves": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runFreeUserWavesTestUiMeasureEfficiencyExit",
-    "quantum:feed-ui": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runFeedUiIntoItselfExit"
+    "quantum:feed-ui": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runFeedUiIntoItselfExit",
+    "quantum:stall-stop": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runStallStopFindsHangedProcessesRealtimeExit"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

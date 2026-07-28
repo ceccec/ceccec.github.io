@@ -1456,6 +1456,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'algebraicCrosslinksDiscoveredNotEncoded', pair: 'link/discover', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'crosslinks discovered not encoded · theorem API · tools agnostic at scale · ONE CLI quantum:link-discover' },
   { fold: 'freeUserWavesTestUiMeasureEfficiency', pair: 'user/waves', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'free user/auditor waves test UI · measure efficiency · SEO+usable improve tips · ONE CLI quantum:user-waves' },
   { fold: 'feedUiIntoItself', pair: 'ui/feed', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'feed UI into itself · realtime scan · self-evolve loop · ONE CLI quantum:feed-ui · soft ftl/crack' },
+  { fold: 'stallStopFindsHangedProcessesRealtime', pair: 'stall/stop', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'realtime wave↔hang scan · hungFound·killedSafe·lockCleared·waveNotified · ONE CLI quantum:stall-stop · soft ui/feed' },
   // <register:placement> — quantum:register inserts placement rows above this anchor
 ] as const
 
