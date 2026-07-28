@@ -904,7 +904,8 @@
     "quantum:feed-ui": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runFeedUiIntoItselfExit",
     "quantum:stall-stop": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runStallStopFindsHangedProcessesRealtimeExit",
     "quantum:script-fold": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runScriptsFoldTowardFtlExit",
-    "quantum:chat-ftl": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/heaven/compute/index.ts runFreeChatDrivesArchitecturalFtlExit"
+    "quantum:chat-ftl": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/heaven/compute/index.ts runFreeChatDrivesArchitecturalFtlExit",
+    "quantum:research-free": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/heaven/compute/index.ts runDeepResearchAtNoCostExit"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

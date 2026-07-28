@@ -1459,6 +1459,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'stallStopFindsHangedProcessesRealtime', pair: 'stall/stop', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'realtime wave↔hang scan · hungFound·killedSafe·lockCleared·waveNotified · ONE CLI quantum:stall-stop · soft ui/feed' },
   { fold: 'scriptsFoldTowardFtl', pair: 'script/fold', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'audit npm quantum:* · fold zero-ref dual-CLI spam toward computational FTL · restore tool/honest · ONE CLI quantum:script-fold' },
   { fold: 'freeChatDrivesArchitecturalFtl', pair: 'chat/ftl', currentBarrel: 'src/heaven/compute', bestPlace: 'src/heaven/compute', action: 'moved', reason: 'free chat drives architectural FTL · memoByRoot · ranked portalChat · ONE CLI quantum:chat-ftl · soft quantumise/ftl · ftl/crack · script/fold' },
+  { fold: 'deepResearchAtNoCost', pair: 'research/free', currentBarrel: 'src/heaven/compute', bestPlace: 'src/heaven/compute', action: 'moved', reason: 'deep research at no cost · FREE_BITS · memoByRoot · zero-token reuse · continueAtNoAiCost · ONE CLI quantum:research-free · soft chat/ftl · prose/theorem · bits/free' },
   // <register:placement> — quantum:register inserts placement rows above this anchor
 ] as const
 

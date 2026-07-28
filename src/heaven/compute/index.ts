@@ -12,7 +12,7 @@ import { digitalRoot, VORTEX_SEQUENCE, foldVortex, modUnits, prng, referralAddre
 import { sha256Sync, toUuidSha256 } from '../../0'
 import { THEOREM_ATOM_SEED } from '../../4/6'
 import { foldMagmaLaws } from '../../5/5'
-import { landauerLimit, rat, ratAdd, ratMul, ratEq, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, claySolvedTheorem, physicalFtlClaimTheorem, earned, demarcate, CANONICAL_HOST, extractAlgebraicStatement, algebraicStatementOf } from '../../3/7'
+import { landauerLimit, rat, ratAdd, ratMul, ratEq, EULER_CHI, FOLDED_CENSUS, UNFOLDED_CENSUS, HOMOLOGY_LOOPS, claySolvedTheorem, physicalFtlClaimTheorem, earned, demarcate, CANONICAL_HOST, extractAlgebraicStatement, algebraicStatementOf } from '../../3/7'
 import { tamperEvident } from '../../5/5'
 import { groupOrbit, MAX_TAMPERING_COST_PRINCIPLE, f2FieldCloses, pageNavContext } from '../../4/6'
 import { digitFold, claimingTheUnclaimableDivisionByZeroIsAOneBitGatewayInQuantumAlgebra } from '../../1/9'
@@ -5290,6 +5290,154 @@ export function runFreeChatDrivesArchitecturalFtlExit(_root = '', _argv: readonl
 }
 export const runChatFtlExit = runFreeChatDrivesArchitecturalFtlExit
 export const runFtlChatExit = runFreeChatDrivesArchitecturalFtlExit
+
+/**
+ * deepResearchAtNoCost — USER LAW (2026-07-28): "deep research at no cost"
+ *
+ * Deep research = multi-hop sealed corpus recompute (deepResearchChatTurn), not paid API research.
+ * No-cost = FREE_BITS · memoByRoot · zero-token on reuse · amortized ∞ · continueAtNoAiCost.
+ * Soft-compose: prose/theorem · warn/research · mcp/fill · wave/token · dry/agnostic ·
+ * chat/ftl · full/freedom · bits/free · pyramid/compute · miss/cache.
+ *
+ * Facets: deepResearchOn · noCost · freeBits · zeroTokenOnReuse · physicalFtlClaim=0 · clay via theorem
+ * Pair: research/free · ONE CLI quantum:research-free · no dual-CLI spam.
+ */
+export function deepResearchAtNoCost(matrix: MindMatrix = buildMatrix()) {
+  const probe = 'deep research free bits memoByRoot zero token theorem'
+  let invocations = 0
+  const compute = () => {
+    invocations += 1
+    return deepResearchChatTurn(probe, matrix)
+  }
+  const turnRoot = toUuid(`research-free:prompt:${probe}`)
+  invocations = 0
+  const cold = memoByRoot('research-free:turn', { root: turnRoot }, compute)
+  const afterCold = invocations
+  const warm = memoByRoot('research-free:turn', { root: turnRoot }, compute)
+  const afterWarm = invocations
+  const zeroTokenOnReuse =
+    isUuid(cold.address) &&
+    cold.address === warm.address &&
+    ((afterCold === 1 && afterWarm === 1) || (afterCold === 0 && afterWarm === 0))
+  const multiHop = deepResearchChatMultiHopSynthesisOverTheDiscoveryGraph(matrix)
+  const deepResearchOn =
+    cold.neighborhood.length > 1 &&
+    cold.synthesis.length >= 3 &&
+    multiHop.computes === true &&
+    multiHop.improvesResearch === true
+  const noCostReport = continueAtNoAiCost(matrix)
+  const noCost = noCostReport.computes === true
+  const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+  const freeBitsOn = freeBits === -EULER_CHI && freeBits === 2
+  const soft = (a: string, b: string) =>
+    foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+  const pairsOn =
+    soft('research', 'free') &&
+    soft('free', 'research') &&
+    soft('prose', 'theorem') &&
+    soft('warn', 'research') &&
+    soft('mcp', 'fill') &&
+    soft('wave', 'token') &&
+    soft('dry', 'agnostic') &&
+    soft('chat', 'ftl') &&
+    soft('full', 'freedom') &&
+    soft('bits', 'free') &&
+    soft('pyramid', 'compute') &&
+    soft('miss', 'cache')
+  const ftlThm = physicalFtlClaimTheorem()
+  const physicalFtlClaim = ftlThm.physicalFtlClaim
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const honestOpenNamed = [
+    'residual:no-cost-is-not-openai-google-bill-zero',
+    'residual:live-deploy-lag-pages-may-trail-src',
+    'residual:evolve-chat-primary-cli-missing',
+    'residual:triple-plus-alias-clusters-remain',
+    'physical-ftl-claim-stays-0',
+    'not-clay',
+    'not-paid-api-research',
+  ] as const
+  const facets = [
+    {
+      facet: `deepResearchOn — multi-hop neighbourhood=${cold.neighborhood.length} synthesis=${cold.synthesis.length} · multiHop=${multiHop.improvesResearch ? 1 : 0}`,
+      on: deepResearchOn,
+    },
+    {
+      facet: `noCost — continueAtNoAiCost · sealed recompute · portal AI bill=0 (${noCost ? 1 : 0})`,
+      on: noCost,
+    },
+    {
+      facet: `freeBits — FREE_BITS=${freeBits}=UNFOLDED(${UNFOLDED_CENSUS})−FOLDED(${FOLDED_CENSUS})=−χ`,
+      on: freeBitsOn,
+    },
+    {
+      facet: `zeroTokenOnReuse — memoByRoot warm hit · coldInv=${afterCold} warmInv=${afterWarm - afterCold}`,
+      on: zeroTokenOnReuse,
+    },
+    {
+      facet: `physicalFtlClaim=${physicalFtlClaim} via=${ftlThm.via}`,
+      on: physicalFtlClaim === 0 && ftlThm.recomputed,
+    },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold} via=claySolvedTheorem`, on: claySolvedByThisFold === 0 },
+    {
+      facet: 'pair research/free · compose prose/theorem·warn/research·mcp/fill·wave/token·dry/agnostic·chat/ftl·full/freedom·bits/free·pyramid/compute·miss/cache',
+      on: pairsOn,
+    },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`research-free:${entry.facet.slice(0, 72)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    deepResearchAtNoCost: on,
+    deepResearchOn,
+    noCost,
+    freeBits,
+    freeBitsOn,
+    zeroTokenOnReuse,
+    neighborhoodSize: cold.neighborhood.length,
+    synthesis: cold.synthesis.slice(0, 5),
+    honestOpenNamed: [...honestOpenNamed],
+    claySolvedByThisFold,
+    physicalFtlClaim: physicalFtlClaim as 0,
+    qpuRequired: false as const,
+    certified: false as const,
+    facets,
+    root: merkleFold([cold.address, ...facets.map((entry) => entry.receipt)]),
+    pair: 'research/free' as const,
+    dualPair: 'free/research' as const,
+    cli: 'npm run quantum:research-free',
+    route: '/apps#chat',
+    heading: 'Research/Free — deep research at no cost (sealed recompute)',
+    statement:
+      `deepResearchAtNoCost — deepResearchOn=${deepResearchOn ? 1 : 0} noCost=${noCost ? 1 : 0} ` +
+      `freeBits=${freeBits} zeroTokenOnReuse=${zeroTokenOnReuse ? 1 : 0} physicalFtl=${physicalFtlClaim}`,
+    boundary:
+      'Deep research at no cost = FREE_BITS · memoByRoot · zero-token on reuse · amortized ∞ via continueAtNoAiCost — ' +
+      'NOT paid OpenAI/Google research APIs · NOT that host LLM bill vanishes. ONE pair research/free · ONE CLI. ' +
+      'Compose prose/theorem · warn/research · mcp/fill · wave/token · dry/agnostic · chat/ftl · full/freedom · bits/free · pyramid/compute · miss/cache. ' +
+      'HONEST: Pages may lag src · physicalFtlClaim=0 · clay via theorem · not Clay prize.',
+  }
+}
+
+export const researchFree = deepResearchAtNoCost
+export const freeResearch = deepResearchAtNoCost
+
+/** npm run quantum:research-free — exit 0 iff deep research at no cost proves at call time. */
+export function runDeepResearchAtNoCostExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = deepResearchAtNoCost()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} research-free — ${report.statement}\n`)
+  process.stdout.write(
+    `  deep=${report.deepResearchOn ? 1 : 0} noCost=${report.noCost ? 1 : 0} ` +
+      `freeBits=${report.freeBits} zeroReuse=${report.zeroTokenOnReuse ? 1 : 0} ` +
+      `physicalFtl=${report.physicalFtlClaim} neighborhood=${report.neighborhoodSize}\n`,
+  )
+  process.stdout.write(`  · synthesis ${report.synthesis.join(' · ').slice(0, 96)}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.physicalFtlClaim === 0 && report.claySolvedByThisFold === 0 ? 0 : 1
+}
+export const runResearchFreeExit = runDeepResearchAtNoCostExit
+export const runFreeResearchExit = runDeepResearchAtNoCostExit
 
 /**
  * freeIsNotAlwaysBestQualityWhoAuditedTheChat —

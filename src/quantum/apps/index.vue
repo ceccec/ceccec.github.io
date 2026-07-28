@@ -88,6 +88,7 @@ import {
   portalChat,
   freeChatTurnAtArchitecturalFtl,
   freeChatDrivesArchitecturalFtl,
+  deepResearchAtNoCost,
   chatThroughMathOverflow,
   chatThroughAi,
   collectiveAiMind,
@@ -789,6 +790,28 @@ function sendChat() {
       related: research.waves.slice(0, 6).map((w) => `${w.id}: ${w.algebraic}`),
       results: [],
       resultCount: research.perspectives,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
+  // 'deep research at no cost' / research/free — sealed multi-hop · FREE_BITS · memoByRoot · NOT paid API research.
+  if (
+    /^\s*(deep\s+)?research\s+(at\s+)?no\s*cost\b/i.test(prompt) ||
+    /^\s*research\s*[-/]?\s*free\s*$/i.test(prompt) ||
+    /^\s*free\s*[-/]?\s*research\s*$/i.test(prompt)
+  ) {
+    const free = deepResearchAtNoCost()
+    chatLog.value.unshift({
+      q: prompt,
+      a: free.computes
+        ? `RESEARCH/FREE — deep=${free.deepResearchOn ? 1 : 0} noCost=${free.noCost ? 1 : 0} FREE_BITS=${free.freeBits} zeroReuse=${free.zeroTokenOnReuse ? 1 : 0} · ${free.synthesis.join(' · ')}`
+        : `RESEARCH/FREE INCOMPLETE — ${free.statement.slice(0, 2 * 108 + 64)}`,
+      source: 'research/free · chat/ftl · npm run quantum:research-free',
+      grounded: free.computes,
+      related: free.facets.filter((f) => f.on).slice(0, 5).map((f) => f.facet.slice(0, 5 * 16)),
+      results: [],
+      resultCount: free.neighborhoodSize,
       receipt: nav0.superposition,
     })
     chatInput.value = ''
