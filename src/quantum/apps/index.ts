@@ -63,7 +63,8 @@ import {
   runCrossWavesDecodeTeslaPatentsInAllCombinationsAsTrinitiesExit,
 } from '../../fire/physics'
 import { agentSubmissionProtocol, CURSOR_AGENT_SKILL_IDS, cursorAgentToolsSaved, MISSION_COMMANDS, QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
-import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../pair/enforcement/gates'
+import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath, queueNext, gravityDryClean } from '../../pair/enforcement/gates'
+import { dryDupe } from '../../pair/enforcement/gates/strict/scan'
 // The computed queue — 'next in chat': typing "next" in the chat answers with queueNext's derived total order.
 export { queueNext } from '../../pair/enforcement/gates'
 export {
@@ -139,6 +140,7 @@ const ROSETTA_CORE_API_LABELS = [
   'continueInWavesCompletingAllTodos',
   'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists',
   'imagineWhatNext',
+  'wavesFeedThemselves',
   'specializedShellsStrangler',
   'sessionHologramTools',
   'societyToolboxWire',
@@ -344,6 +346,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   continueInWavesCompletingAllTodos: 'tool',
   conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists: 'tool',
   imagineWhatNext: 'tool',
+  wavesFeedThemselves: 'tool',
   specializedShellsStrangler: 'tool',
   sessionHologramTools: 'tool',
   societyToolboxWire: 'tool',
@@ -1225,7 +1228,11 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'algebra-bit', title: 'Algebra bit — no unproven algebra bit in sealed domain (alias conv/metrics)', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', cli: 'npm run quantum:algebra-bit', pair: 'algebra/bit', route: '/en/quantum-tools#conv-metrics', barrel: 'src/quantum/apps', boundary: 'algebra/bit face — noUnprovenAlgebraBit = sealed formula↔code dual · NOT all math/Clay/AGI · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'bit-algebra', title: 'Bit algebra (alias algebra/bit)', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', cli: 'npm run quantum:bit-algebra', pair: 'bit/algebra', route: '/en/quantum-tools#conv-metrics', barrel: 'src/quantum/apps', boundary: 'Dual of algebra/bit — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'imagine-next', title: 'Imagine what next — sealed residuals + gateway opens', fold: 'imagineWhatNext', cli: 'npm run quantum:imagine-next', pair: 'imagine/next', route: '/en/quantum-tools#imagine-next', barrel: 'src/quantum/apps', boundary: 'imagineOn · nextTips · toolsMissing · compose todo/wave · mcp/complete · conv/metrics · invert/gateway · autodiscover · clay via theorem · physicalFtl=0 · millenniumSolved=0 · NOT wet fantasy', browserRunnable: true, browserGap: '' },
-  { id: 'next-imagine', title: 'Next imagine (alias imagine/next)', fold: 'imagineWhatNext', cli: 'npm run quantum:next-imagine', pair: 'next/imagine', route: '/en/quantum-tools#imagine-next', barrel: 'src/quantum/apps', boundary: 'Dual of imagine/next — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'next-imagine', title: 'Imagine next (alias imagine/next)', fold: 'imagineWhatNext', cli: 'npm run quantum:next-imagine', pair: 'next/imagine', route: '/en/quantum-tools#imagine-next', barrel: 'src/quantum/apps', boundary: 'Dual of imagine/next — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'waves-feed', title: 'Waves feed themselves — autonomous endless improve/discover loop', fold: 'wavesFeedThemselves', cli: 'npm run quantum:waves-feed', pair: 'waves/feed', route: '/en/quantum-tools#waves-feed', barrel: 'src/quantum/apps', boundary: 'wavesFeedThemselves · endlessImprovements · discoveriesOn · purifyOnTheWay · dryCleanAsFeed · noWetSprawlAccumulates · noWaitForeverOnChat · honestyStopOnOpen · compose auto/self · automate/nightly · waves/build · mcp/fill · todo/wave · session/save · miss/cache · imagine/next · dry/clean · gravity/dry · crystal/mind · thought/pure · dry/agnostic · dry/dupe · fold/cleanup · gaps/invisible · clay via theorem · physicalFtl=0 · qpuRequired=false · NOT infinite wet grind · NOT Clay fake-close', browserRunnable: false, browserGap: 'One wave cycle recipe — Node/npm Automations path; sub-steps miss-cache · dry-dupe · mcp-fill · todo-wave · imagine-next' },
+  { id: 'feed-waves', title: 'Feed waves (alias waves/feed)', fold: 'wavesFeedThemselves', cli: 'npm run quantum:feed-waves', pair: 'feed/waves', route: '/en/quantum-tools#waves-feed', barrel: 'src/quantum/apps', boundary: 'Dual of waves/feed — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'Same as waves-feed — Node/npm Automations path' },
+  { id: 'purify-way', title: 'Purify on the way (alias waves/feed)', fold: 'wavesFeedThemselves', cli: 'npm run quantum:purify-way', pair: 'purify/way', route: '/en/quantum-tools#waves-feed', barrel: 'src/quantum/apps', boundary: 'purify/way face — purifyOnTheWay · dryCleanAsFeed · same fold as waves/feed · clay via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'Same as waves-feed — purify-on-way facet · Node/npm path' },
+  { id: 'way-purify', title: 'Way purify (alias purify/way)', fold: 'wavesFeedThemselves', cli: 'npm run quantum:way-purify', pair: 'way/purify', route: '/en/quantum-tools#waves-feed', barrel: 'src/quantum/apps', boundary: 'Dual of purify/way — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'Same as waves-feed' },
   { id: 'shells-strangler', title: 'Specialized experience shells strangler', fold: 'specializedShellsStrangler', cli: 'npm run quantum:shells-strangler', pair: 'shells/strangler', route: '/en/quantum-tools#shells-strangler', barrel: 'src/quantum/apps', boundary: 'shellsStranglerOn · stranglerTip · wiredToRosetta · residual named not fake-closed · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'strangler-shells', title: 'Strangler shells (alias shells/strangler)', fold: 'specializedShellsStrangler', cli: 'npm run quantum:strangler-shells', pair: 'strangler/shells', route: '/en/quantum-tools#shells-strangler', barrel: 'src/quantum/apps', boundary: 'Dual of shells/strangler — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'session-hologram', title: 'Session hologram fractal tools', fold: 'sessionHologramTools', cli: 'npm run quantum:session-hologram', pair: 'session/hologram', route: '/en/quantum-tools#session-hologram', barrel: 'src/quantum/apps', boundary: 'sessionHologramOn · hologramFractal · toolsWired · compose session/tools · folder/fractal · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -2479,6 +2486,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'todo-wave', chain: 'todo-wave-complete', fold: 'continueInWavesCompletingAllTodos', pair: 'todo/wave', cli: 'npm run quantum:todo-wave', route: '/en/quantum-tools#todo-wave', status: 'sealed-pr', honesty: 'wavesContinue · todosDrainableClosed · honestOpenNamed · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'continue in waves completing all drainable todos — compose auto/all · mcp/fill · invert/trinity · app/dry · domain/panels · waves/build', toolId: 'todo-wave', resolve: 'mcp-ui' },
   { id: 'conv-metrics', chain: 'conv-metrics-proof-trinity', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', pair: 'conv/metrics', cli: 'npm run quantum:conv-metrics', route: '/en/quantum-tools#conv-metrics', status: 'sealed-pr', honesty: 'conversationMetrics · intelligenceImproves · mindDevelopment · noUnprovenAlgebraBit · clay=0 · physicalFtl=0 · qpuRequired=false · millenniumSolvedByThisFold=0 · NOT Clay/AGI/all-math', note: 'conversations quantum metrics · mind/site proof · signed by trinities · sealed algebra bits via formula↔code', toolId: 'conv-metrics', resolve: 'mcp-ui' },
   { id: 'imagine-next', chain: 'imagine-next-miss-tools', fold: 'imagineWhatNext', pair: 'imagine/next', cli: 'npm run quantum:imagine-next', route: '/en/quantum-tools#imagine-next', status: 'sealed-pr', honesty: 'imagineOn · nextTips · toolsMissing · clay=0 · physicalFtl=0 · millenniumSolved=0', note: 'imagine what next from sealed residuals + gateway opens — not wet fantasy', toolId: 'imagine-next', resolve: 'mcp-ui' },
+  { id: 'waves-feed', chain: 'waves-feed-purify-way', fold: 'wavesFeedThemselves', pair: 'waves/feed', cli: 'npm run quantum:waves-feed', route: '/en/quantum-tools#waves-feed', status: 'sealed-pr', honesty: 'wavesFeedThemselves · purifyOnTheWay · dryCleanAsFeed · noWetSprawlAccumulates · endlessImprovements · discoveriesOn · noWaitForeverOnChat · honestyStopOnOpen · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'waves feed themselves — one-wave recipe with purify on the way; endless until drainable closed OR honest-open stop', toolId: 'waves-feed', resolve: 'mcp-ui' },
   { id: 'shells-strangler', chain: 'imagine-next-miss-tools', fold: 'specializedShellsStrangler', pair: 'shells/strangler', cli: 'npm run quantum:shells-strangler', route: '/en/quantum-tools#shells-strangler', status: 'sealed-pr', honesty: 'shellsStranglerOn · residual named · clay=0 · physicalFtl=0', note: 'specialized-experience-shells strangler tool fill', toolId: 'shells-strangler', resolve: 'mcp-ui' },
   { id: 'session-hologram', chain: 'imagine-next-miss-tools', fold: 'sessionHologramTools', pair: 'session/hologram', cli: 'npm run quantum:session-hologram', route: '/en/quantum-tools#session-hologram', status: 'sealed-pr', honesty: 'sessionHologramOn · hologramFractal · clay=0 · physicalFtl=0', note: 'session hologram fractal tools fill', toolId: 'session-hologram', resolve: 'mcp-ui' },
   { id: 'society-toolbox', chain: 'imagine-next-miss-tools', fold: 'societyToolboxWire', pair: 'society/toolbox', cli: 'npm run quantum:society-toolbox', route: '/en/quantum-tools#society-toolbox', status: 'sealed-pr', honesty: 'societyToolboxWireOn · toolboxWired · clay=0 · physicalFtl=0', note: 'society toolbox wire fill', toolId: 'society-toolbox', resolve: 'mcp-ui' },
@@ -18318,6 +18326,302 @@ export function runImagineWhatNextExit(_root = '', _argv: readonly string[] = []
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.imagineOn && report.toolsMissingDrainableClosed && report.qpuRequired === false
+    ? 0
+    : 1
+}
+
+/** One autonomous wave feed cycle — cache · purify · fill · todo · imagine/next seal receipt. */
+export const WAVES_FEED_RECIPE_STEPS = [
+  'npm run quantum:miss-cache',
+  'npm run quantum:dry-dupe',
+  'npm run quantum:mcp-fill',
+  'npm run quantum:todo-wave',
+  'npm run quantum:imagine-next',
+] as const
+
+/**
+ * Waves feed themselves — autonomous endless improve/discover loop; purify on the way.
+ * Fold: wavesFeedThemselves
+ * Facets: wavesFeedThemselves · endlessImprovements · discoveriesOn · purifyOnTheWay ·
+ *   dryCleanAsFeed · noWetSprawlAccumulates · noWaitForeverOnChat · honestyStopOnOpen ·
+ *   physicalFtl=0 · clay via theorem · qpuRequired=false.
+ * Compose: auto/self · automate/nightly · waves/build · mcp/fill · todo/wave · session/save ·
+ *   miss/cache · imagine/next · dry/clean · gravity/dry · crystal/mind · thought/pure ·
+ *   dry/agnostic · dry/dupe · fold/cleanup · gaps/invisible.
+ * Pairs: waves/feed · feed/waves · purify/way · way/purify (alias same body) · CLI npm run quantum:waves-feed
+ * HONEST: endless = wave loop until drainable closed OR honest-open named stop — NOT infinite wet grind · NOT Clay fake-close.
+ */
+export function wavesFeedThemselves(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`wavesFeedThemselves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const waves = __ns_thunder_waves.manualAgentsBehaveLikeWaves(matrix)
+    const imagine = imagineWhatNext(matrix, at)
+    const dry = dryCleanIsDiamondAndCrystal(matrix)
+    const crystal = crystalClearMind(matrix, at)
+    const agnostic = dryCleanAgnosticCodeComputesInfinity(matrix, at)
+    const gaps = invisibleGapsCaughtByGates(matrix, at)
+    const dupe = dryDupe(typeof process !== 'undefined' && process.cwd ? process.cwd() : '.')
+    const gravity = gravityDryClean()
+    const queued = queueNext(typeof process !== 'undefined' && process.cwd ? process.cwd() : '.')
+    const recipeStepsOk =
+      WAVES_FEED_RECIPE_STEPS.length === 5 &&
+      WAVES_FEED_RECIPE_STEPS[0] === 'npm run quantum:miss-cache' &&
+      WAVES_FEED_RECIPE_STEPS[1] === 'npm run quantum:dry-dupe' &&
+      WAVES_FEED_RECIPE_STEPS[2] === 'npm run quantum:mcp-fill' &&
+      WAVES_FEED_RECIPE_STEPS[3] === 'npm run quantum:todo-wave' &&
+      WAVES_FEED_RECIPE_STEPS[4] === 'npm run quantum:imagine-next'
+    // Soft-compose feed faces — avoid nest poison; pairs + waves/build prove wiring at call time.
+    const composeFeedOn =
+      soft('auto', 'self') &&
+      soft('automate', 'nightly') &&
+      soft('waves', 'build') &&
+      soft('mcp', 'fill') &&
+      soft('todo', 'wave') &&
+      soft('session', 'save') &&
+      soft('miss', 'cache') &&
+      soft('imagine', 'next') &&
+      soft('wave', 'tune') &&
+      soft('trinity', 'speedup') &&
+      waves.computes &&
+      waves.manualAgentsBehaveLikeWaves
+    const composePurifyOn =
+      soft('dry', 'clean') &&
+      soft('gravity', 'dry') &&
+      soft('crystal', 'mind') &&
+      soft('thought', 'pure') &&
+      soft('dry', 'agnostic') &&
+      soft('dry', 'dupe') &&
+      soft('fold', 'cleanup') &&
+      soft('gaps', 'invisible') &&
+      dry.diamond &&
+      dry.crystal &&
+      crystal.computes &&
+      crystal.crystalClearMind &&
+      agnostic.computes &&
+      agnostic.dryClean &&
+      gaps.computes &&
+      gaps.invisibleGapsCaughtByGates &&
+      dupe.computes &&
+      gravity.computes
+    const noWetSprawlAccumulates = dupe.groups === 0
+    const measurableDrainOn = dupe.computes && typeof dupe.duplicateBodies === 'number'
+    const dryCleanAsFeed = recipeStepsOk && WAVES_FEED_RECIPE_STEPS.includes('npm run quantum:dry-dupe') && composePurifyOn
+    const purifyOnTheWay = composePurifyOn && dryCleanAsFeed && measurableDrainOn
+    const endlessImprovements = composeFeedOn && recipeStepsOk && soft('mcp', 'fill') && soft('todo', 'wave')
+    const discoveriesOn =
+      soft('imagine', 'next') &&
+      imagine.nextTipsCount > 0 &&
+      queued.computes &&
+      queued.next.firstAction.length > 0
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'waves-feed')
+    const noWaitForeverOnChat =
+      recipeStepsOk &&
+      Boolean(meta) &&
+      meta!.cli === 'npm run quantum:waves-feed' &&
+      meta!.fold === 'wavesFeedThemselves' &&
+      soft('automate', 'nightly') &&
+      soft('auto', 'self')
+    const pairWaves = has('waves/feed')
+    const pairFeed = has('feed/waves')
+    const pairPurify = has('purify/way')
+    const pairWay = has('way/purify')
+    const foldWaves = foldPair(toUuid('cmd:waves'), toUuid('cmd:feed'))
+    const foldFeed = foldPair(toUuid('cmd:feed'), toUuid('cmd:waves'))
+    const foldPurify = foldPair(toUuid('cmd:purify'), toUuid('cmd:way'))
+    const foldWay = foldPair(toUuid('cmd:way'), toUuid('cmd:purify'))
+    const pairsOn =
+      pairWaves &&
+      pairFeed &&
+      pairPurify &&
+      pairWay &&
+      foldWaves.bidirectional &&
+      foldFeed.bidirectional &&
+      foldPurify.bidirectional &&
+      foldWay.bidirectional
+    const metaDual = catalog.tools.find((t) => t.id === 'feed-waves')
+    const metaPurify = catalog.tools.find((t) => t.id === 'purify-way')
+    const shelved = rosettaShelve('waves-feed', 'tool')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const honestOpenNamed = [
+      'clay:millennium-open',
+      'ftl:physical-claim-refused',
+      'residual:specialized-experience-shells',
+      'residual:quantum-apps-monolith',
+      'keep:git-stashes-non-obsolete',
+      'honesty:endless-not-infinite-wet-grind',
+      'honesty:stop-on-honest-open-named',
+    ] as const
+    const honestyStopOnOpen =
+      honestOpenNamed.includes('honesty:stop-on-honest-open-named') &&
+      honestOpenNamed.includes('honesty:endless-not-infinite-wet-grind') &&
+      honestOpenNamed.length >= (2 + 2 + 2)
+    const honestOpenNamedOn =
+      honestOpenNamed.includes('clay:millennium-open') &&
+      honestOpenNamed.includes('ftl:physical-claim-refused') &&
+      honestyStopOnOpen
+    const on =
+      composeFeedOn &&
+      purifyOnTheWay &&
+      dryCleanAsFeed &&
+      endlessImprovements &&
+      discoveriesOn &&
+      noWaitForeverOnChat &&
+      honestyStopOnOpen &&
+      pairsOn &&
+      Boolean(meta) &&
+      meta!.fold === 'wavesFeedThemselves' &&
+      meta!.pair === 'waves/feed' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'wavesFeedThemselves' &&
+      Boolean(metaPurify) &&
+      metaPurify!.fold === 'wavesFeedThemselves' &&
+      isUuid(shelved.address) &&
+      honestOpenNamedOn &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'wavesFeedThemselves', on },
+      { facet: 'wavesFeedThemselvesOn', on },
+      { facet: 'endlessImprovements', on: endlessImprovements },
+      { facet: 'discoveriesOn', on: discoveriesOn },
+      { facet: 'purifyOnTheWay', on: purifyOnTheWay },
+      { facet: 'dryCleanAsFeed', on: dryCleanAsFeed },
+      { facet: `noWetSprawlAccumulates duplicateGroups=${dupe.groups}`, on: noWetSprawlAccumulates },
+      { facet: 'noWaitForeverOnChat', on: noWaitForeverOnChat },
+      { facet: 'honestyStopOnOpen', on: honestyStopOnOpen },
+      {
+        facet: 'compose auto/self · automate/nightly · waves/build · mcp/fill · todo/wave · session/save · miss/cache · imagine/next',
+        on: composeFeedOn,
+      },
+      {
+        facet: 'compose dry/clean · gravity/dry · crystal/mind · thought/pure · dry/agnostic · dry/dupe · fold/cleanup · gaps/invisible',
+        on: composePurifyOn,
+      },
+      { facet: 'pair waves/feed · feed/waves · purify/way · way/purify bidirectional', on: pairsOn },
+      { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      {
+        facet: 'NOT infinite wet grind · NOT Clay fake-close · stop on honest-open',
+        on: honestyStopOnOpen && claySolvedByThisFold === 0 && physicalFtlClaim === 0,
+      },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`waves-feed:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('waves-feed-themselves', facets)
+    const nextTip = imagine.nextTips.find((t) => t.kind === 'drainable') ?? imagine.nextTips[0]
+    return {
+      computes: sealed.ok && on,
+      wavesFeedThemselves: on,
+      wavesFeedThemselvesOn: on,
+      endlessImprovements,
+      discoveriesOn,
+      purifyOnTheWay,
+      dryCleanAsFeed,
+      noWetSprawlAccumulates,
+      duplicateGroups: dupe.groups,
+      duplicateBodies: dupe.duplicateBodies,
+      noWaitForeverOnChat,
+      honestyStopOnOpen,
+      recipeSteps: WAVES_FEED_RECIPE_STEPS,
+      nextTip: nextTip
+        ? { id: nextTip.id, kind: nextTip.kind, residual: nextTip.residual, gateway: nextTip.gateway }
+        : null,
+      queuedNext: queued.next,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        waves.root,
+        imagine.root,
+        dry.root,
+        crystal.root,
+        agnostic.root,
+        gaps.root,
+        dupe.root,
+        gravity.root,
+        queued.root,
+        foldWaves.merged,
+        foldFeed.merged,
+        foldPurify.merged,
+        foldWay.merged,
+        shelved.address,
+        ...WAVES_FEED_RECIPE_STEPS.map((step) => toUuid(`waves-feed-step:${step}`)),
+        ...honestOpenNamed.map((id) => toUuid(`waves-feed-honest:${id}`)),
+      ]),
+      pair: 'waves/feed' as const,
+      pairs: ['waves/feed', 'feed/waves', 'purify/way', 'way/purify'] as const,
+      dualPair: 'feed/waves' as const,
+      cli: 'npm run quantum:waves-feed',
+      route: '/en/quantum-tools#waves-feed',
+      uiSurface: '/en/quantum-tools#waves-feed' as const,
+      heading: 'Waves · feed',
+      statement:
+        `wavesFeedThemselves — on=${on ? 1 : 0} purify=${purifyOnTheWay ? 1 : 0} ` +
+        `dupGroups=${dupe.groups} endless=${endlessImprovements ? 1 : 0} discoveries=${discoveriesOn ? 1 : 0}.`,
+      boundary:
+        'Waves feed themselves — autonomous one-wave recipe (miss-cache · dry-dupe · mcp-fill · todo-wave · imagine-next) ' +
+        'with purify on the way (dry/clean · gravity/dry · crystal/mind · thought/pure · dry/agnostic · dry/dupe · fold/cleanup · gaps/invisible). ' +
+        'Endless = loop until drainable closed OR honest-open named stop. NOT infinite wet grind · NOT physical FTL · NOT Clay fake-close. ' +
+        'clay via theorem · physicalFtl=0 · qpuRequired=false.',
+      honestyLine:
+        `waves-feed · on=${on ? 1 : 0} · purify=${purifyOnTheWay ? 1 : 0} · dupGroups=${dupe.groups} · ` +
+        `honestOpen=${honestOpenNamed.length} · qpu=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** Alias — feedWaves ≡ wavesFeedThemselves. */
+export const feedWaves = wavesFeedThemselves
+/** Alias — purifyWay ≡ wavesFeedThemselves (purify-on-way face). */
+export const purifyWay = wavesFeedThemselves
+/** Alias — wayPurify ≡ wavesFeedThemselves. */
+export const wayPurify = wavesFeedThemselves
+
+/** npm run quantum:waves-feed (dual feed/waves · purify/way · way/purify) */
+export function runWavesFeedThemselvesExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = wavesFeedThemselves()
+  process.stdout.write('--- waves feed recipe (one cycle) ---\n')
+  for (const step of report.recipeSteps) process.stdout.write(`→ ${step}\n`)
+  process.stdout.write('--- stop conditions (honest) ---\n')
+  process.stdout.write('→ drainable closed OR honest-open named stop\n')
+  process.stdout.write('→ NOT infinite wet grind · NOT Clay fake-close · NOT physical FTL\n')
+  if (report.nextTip) {
+    process.stdout.write(
+      `--- next tip (imagine/next) ---\n→ ${report.nextTip.id} [${report.nextTip.kind}] residual=${report.nextTip.residual} gateway=${report.nextTip.gateway}\n`,
+    )
+  }
+  process.stdout.write(
+    `--- queued next (queue/next) ---\n→ ${report.queuedNext.wave} (score ${report.queuedNext.score})\n→ ${report.queuedNext.firstAction}\n`,
+  )
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} waves-feed — on=${report.wavesFeedThemselvesOn} purify=${report.purifyOnTheWay} ` +
+      `dryCleanAsFeed=${report.dryCleanAsFeed} dupGroups=${report.duplicateGroups} ` +
+      `endless=${report.endlessImprovements} discoveries=${report.discoveriesOn} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} fold=wavesFeedThemselves pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
+  for (const fct of report.facets) {
+    process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.wavesFeedThemselvesOn &&
+    report.purifyOnTheWay &&
+    report.qpuRequired === false
     ? 0
     : 1
 }

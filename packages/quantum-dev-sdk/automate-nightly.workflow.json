@@ -15,6 +15,7 @@
     "npm run quantum:upgrade-local"
   ],
   "optional": [
+    "npm run quantum:waves-feed",
     "QUANTUM_DEV_ALLOW_DOCS_BUILD=1 npm run docs:build"
   ],
   "refuse": [

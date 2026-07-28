@@ -1,0 +1,39 @@
+{
+  "name": "ceccec waves feed",
+  "description": "Autonomous wave feed loop — one cycle per run: cache misses · purify (dry-dupe) · mcp fill · todo wave · imagine next. Waves feed themselves without waiting for chat 'next'.",
+  "pair": "waves/feed",
+  "cli": "npm run quantum:waves-feed",
+  "route": "/en/quantum-tools#waves-feed",
+  "trigger": {
+    "kind": "schedule",
+    "cronHint": "0 */6 * * *",
+    "timezoneHint": "UTC"
+  },
+  "steps": [
+    "npm run quantum:waves-feed",
+    "npm run quantum:miss-cache",
+    "npm run quantum:dry-dupe",
+    "npm run quantum:mcp-fill",
+    "npm run quantum:todo-wave",
+    "npm run quantum:imagine-next"
+  ],
+  "optional": [
+    "npm run quantum:automate-nightly",
+    "QUANTUM_DEV_ALLOW_DOCS_BUILD=1 npm run docs:build"
+  ],
+  "refuse": [
+    "waiting forever on human chat next",
+    "infinite wet-linear grind without honesty stop",
+    "parallel docs:build",
+    "Clay/FTL fake-close"
+  ],
+  "honesty": {
+    "endlessNotInfiniteWetGrind": true,
+    "stopOnHonestOpenNamed": true,
+    "purifyOnTheWay": true,
+    "qpuRequired": false,
+    "physicalFtl": false,
+    "claySolvedByThisFold": 0
+  },
+  "instructions": "Run as Cursor Automation or cron: checkout ceccec/ceccec.github.io on main tip, npm ci, then npm run quantum:waves-feed (receipt + queued next tip). Optionally run the sub-steps sequentially in the same job. Loop the schedule until drainable closed OR honest-open residuals remain (Clay millennium · FTL refused · specialized shells · apps monolith · KEEP stashes). docs:build only with QUANTUM_DEV_ALLOW_DOCS_BUILD=1 after green gates. Never parallel docs:build."
+}

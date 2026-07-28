@@ -29,6 +29,7 @@ import {
   continueInWavesCompletingAllTodos,
   conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists,
   imagineWhatNext,
+  wavesFeedThemselves,
   specializedShellsStrangler,
   sessionHologramTools,
   societyToolboxWire,
@@ -1104,6 +1105,7 @@ const mcpFill = computed(() => scanAndRecomputeMcpQuantumToFillWithQuantumSoluti
 const todoWave = computed(() => continueInWavesCompletingAllTodos())
 const convMetrics = computed(() => conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists())
 const imagineNext = computed(() => imagineWhatNext())
+const wavesFeed = computed(() => wavesFeedThemselves())
 const shellsStrangler = computed(() => specializedShellsStrangler())
 const sessionHologram = computed(() => sessionHologramTools())
 const societyToolbox = computed(() => societyToolboxWire())
@@ -1844,6 +1846,19 @@ function runTool(toolId: string) {
       ok = r.computes && r.imagineOn && r.toolsMissingDrainableClosed
       summary =
         `imagineOn=${r.imagineOn} · nextTips=${r.nextTipsCount} · toolsMissing=${r.toolsMissingCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (
+      toolId === 'waves-feed' ||
+      toolId === 'feed-waves' ||
+      toolId === 'purify-way' ||
+      toolId === 'way-purify'
+    ) {
+      const r = wavesFeedThemselves()
+      ok = r.computes && r.wavesFeedThemselvesOn && r.purifyOnTheWay
+      summary =
+        `on=${r.wavesFeedThemselvesOn} · purify=${r.purifyOnTheWay} · dupGroups=${r.duplicateGroups} · discoveries=${r.discoveriesOn}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -3339,6 +3354,51 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'imagine-next'" @click="runTool('imagine-next')">
           {{ runningId === 'imagine-next' ? '…' : 'Run imagine-next receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="waves-feed">
+        <h3>{{ wavesFeed.heading }}</h3>
+        <p class="quantum-apps__meta">{{ wavesFeed.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(wavesFeed.wavesFeedThemselvesOn))">
+          wavesFeedThemselves={{ wavesFeed.wavesFeedThemselvesOn }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(wavesFeed.purifyOnTheWay))">
+          purifyOnTheWay={{ wavesFeed.purifyOnTheWay }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(wavesFeed.dryCleanAsFeed))">
+          dryCleanAsFeed={{ wavesFeed.dryCleanAsFeed }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(wavesFeed.noWetSprawlAccumulates))">
+          noWetSprawlAccumulates dupGroups={{ wavesFeed.duplicateGroups }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(wavesFeed.endlessImprovements))">
+          endlessImprovements={{ wavesFeed.endlessImprovements }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(wavesFeed.discoveriesOn))">
+          discoveriesOn={{ wavesFeed.discoveriesOn }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>waves/feed</code> · <code>feed/waves</code> · <code>purify/way</code> ·
+          CLI <code>npm run quantum:waves-feed</code> ·
+          compose auto/self · automate/nightly · mcp/fill · todo/wave · miss/cache · imagine/next ·
+          dry/clean · dry/dupe · gaps/invisible ·
+          clay={{ wavesFeed.claySolvedByThisFold }} · ftl={{ wavesFeed.physicalFtlClaim }} · qpu={{ wavesFeed.qpuRequired }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in wavesFeed.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(wavesFeed.honestOpenNamedCount > 0))">
+          honestOpen={{ wavesFeed.honestOpenNamedCount }}
+        </UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="id in wavesFeed.honestOpenNamed" :key="id">· {{ id }}</li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'waves-feed'" @click="runTool('waves-feed')">
+          {{ runningId === 'waves-feed' ? '…' : 'Run waves-feed receipt' }}
         </UiButton>
       </section>
       <UiSeparator />
