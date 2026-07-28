@@ -77,8 +77,8 @@ import {
   toolsFitTheMatrixOrRefuse,
   queueNext,
   gravityDryClean,
+  dryDupe,
 } from '../../pair/enforcement/gates'
-import { dryDupe } from '../../pair/enforcement/gates/strict/scan'
 // The computed queue — 'next in chat': typing "next" in the chat answers with queueNext's derived total order.
 export { queueNext } from '../../pair/enforcement/gates'
 export {

@@ -244,6 +244,9 @@ export function importGapCount(spec) {
   const match = spec.match(/^(\\.\\.\\/)+/)
   return match ? (match[0].match(/\\.\\.\\//g)?.length ?? 0) : 0
 }
+export function dryDupe(_root) {
+  return { computes: false, dryDupe: false, files: 0, bodies: 0, groups: 0, duplicateBodies: 0, animGroups: 0, shellCount: 0, queue: [], shells: [], facets: [], root: '', pair: 'dry/dupe', dualPair: 'dupe/dry', cli: 'npm run quantum:dry-dupe', route: '/en/quantum-tools#dry-dupe', heading: 'Dry dupe', statement: 'browser stub', boundary: 'Node fs scan only' }
+}
 `
       }
       if (id === '\0node-stub:computational') return computationalClientStubSource()
