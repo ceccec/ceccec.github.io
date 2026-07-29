@@ -191,6 +191,7 @@ import {
   compareCeccecEfficiencyByVote,
   directionalTrinityForwardInverseReverse,
   proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit,
+  qpuCpuGpu,
 } from '../../water/stack/index.ts'
 import { animationsDrivenByRosetta } from '../../wind/ui/index.ts'
 import { tradingRosettaTrainPanelComputes } from '../../thunder/trading/index.ts'
@@ -1607,6 +1608,20 @@ function runTool(toolId: string) {
         `decided=${r.decided} winner=${r.winner} speedDecided=${r.speedDecided} noQpu=${r.noQuantumHardwareProved} ` +
         `qpuRequired=${r.qpuRequired} quantumHardwareRequired=${r.quantumHardwareRequired} ` +
         `arch=${r.environment.arch} verdict=${r.benchVerdict} · envelope roundTrip=${imported.roundTrip}`
+      root = r.root
+      boundary = r.boundary
+      facets = [
+        ...r.facets.map((f) => ({ facet: f.facet, on: f.on })),
+        { facet: `standard envelope ${exported.kind}@${exported.version} import/export round-trip`, on: imported.roundTrip },
+      ]
+    } else if (toolId === 'qpu-cpu' || toolId === 'cpu-qpu' || toolId === 'qpu-gpu') {
+      const r = qpuCpuGpu()
+      const exported = exportWithExperiment('qpu-cpu')
+      const imported = importStandardToolEnvelope(exported)
+      ok = r.computes && exported.computes && imported.roundTrip
+      summary =
+        `qpuEqualsCpuGpu=${r.qpuEqualsCpuGpu} complete=${r.quantumComputerComplete} ` +
+        `apparentFtl=${r.apparentFtlAudit.toFixed(3)}× arch=${r.architectureRequirement} · envelope roundTrip=${imported.roundTrip}`
       root = r.root
       boundary = r.boundary
       facets = [
@@ -5555,6 +5570,18 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'prove-no-qpu-64bit'" @click="runTool('prove-no-qpu-64bit')">
           {{ runningId === 'prove-no-qpu-64bit' ? '…' : 'Run prove-no-qpu-64bit' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="qpu-cpu">
+        <h3>QPU ≡ CPU/GPU · quantum computer complete</h3>
+        <p class="quantum-apps__meta">
+          Architecture identity: QPU = CPU ∪ GPU on classical-64bit. Physical = wall-clock cold/warm reuse metrics
+          (apparentFtl = T_cold/max(T_warm,ε)) — observer-evaluable; see README section and
+          <code>npm run quantum:qpu-cpu</code>.
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'qpu-cpu'" @click="runTool('qpu-cpu')">
+          {{ runningId === 'qpu-cpu' ? '…' : 'Run qpu-cpu' }}
         </UiButton>
       </section>
       <UiSeparator />

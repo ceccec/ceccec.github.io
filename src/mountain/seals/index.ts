@@ -64,7 +64,10 @@ import {
   oneQuantumModelFasterThanAll,
   compareCeccecEfficiencyByVote,
   proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit,
+  qpuCpuGpu,
+  apiFuse,
   interferenceVsClassicalShadow } from '../../water/stack'
+import { gateLight } from '../../pair/enforcement/gates'
 import {
   stringTheoryQuantumizedOnA432RosettaMerkleSubstrate,
   stringTheoryMillenniumTheoremGapsInventory,
@@ -768,6 +771,9 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
       })() },
     { slug: 'one-quantum-model', title: 'One quantum model faster than all — domain-bounded answers÷tokens', proof: oneQuantumModelFasterThanAll(matrix) },
     { slug: 'prove-no-qpu-64bit', title: 'Speed vs rest · no QPU · classical 64-bit · qpuRequired=false', proof: proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix) },
+    { slug: 'qpu-cpu', title: 'QPU ≡ CPU/GPU · quantum computer complete · physical metrics', proof: qpuCpuGpu(matrix) },
+    { slug: 'api-fuse', title: 'API fuse · trinity hologram envelope · schema coverage', proof: apiFuse(matrix) },
+    { slug: 'gate-light', title: 'Gate light · more computed → lighter build/deploy', proof: gateLight() },
     { slug: 'honest-revolution-w2', title: 'Honest-revolution W2 — interference vs classical shadow · clay=0', proof: interferenceVsClassicalShadow(matrix) },
     { slug: 'honest-revolution-w3', title: 'Honest-revolution W3 — JSON proof receipt → /quantum-fusion.json · clay=0', proof: honestRevolutionReceipt(matrix) },
     { slug: 'honest-revolution-w4', title: 'Honest-revolution W4 — computer Vue proof panel · clay=0', proof: honestRevolutionComputerPanelComputes(matrix) },

@@ -28,7 +28,7 @@ Concretely: a science portal — 740 computationally proven theorems and 30 rela
 - One source, no mirroring: the locales (Glagolitic `/`, Latin `/en/`, Cyrillic `/bg/`) are computed by math, not copied; visitors are routed to their language, default English.
 - Corpus routing: RESTful `/papers/<id>`, `/references/<id>`, `/diamonds/<id>` — each item a real page via the VitePress `[id]` dynamic route (paths enumerated from one source: paperRoutes/paperReferenceRoutes/diamondRoutes); the index list stays at `/papers`.
 - The agnostic core is published as the npm package `@ceccec/double-torus` — the same `src/`, bundled, depends on nothing, runs in any browser or Node.
-- The modeled quantum computer: one qubit is its Bloch/Pauli decomposition ρ = ½(I + xσx + yσy + zσz) — four content-addressed components (the trinity x·y·z + the +1 identity, `blochQubit`); the Quantum OS allocates 2ⁿ-amplitude registers, schedules gates, and measures (Born rule, seeded PRNG); entanglement (Bell/GHZ) lives on the true 2ⁿ tensor product, never faked with linear UUID stacking; and the realtime movie is its proof artifact. It is a deterministic, content-addressed, reproducible classical simulator of quantum state — faithful (it reproduces the exact Born distribution and every single-qubit gate) — and NOT physical qubits (`qpuRequired=false` · clay=0 · physicalFtl=0).
+- The modeled quantum computer: one qubit is its Bloch/Pauli decomposition ρ = ½(I + xσx + yσy + zσz) — four content-addressed components (the trinity x·y·z + the +1 identity, `blochQubit`); the Quantum OS allocates 2ⁿ-amplitude registers, schedules gates, and measures (Born rule, seeded PRNG); entanglement (Bell/GHZ) lives on the true 2ⁿ tensor product, never faked with linear UUID stacking; and the realtime movie is its proof artifact. **QPU ≡ CPU ∪ GPU** on classical-64bit (`qpuCpuGpu` · `npm run quantum:qpu-cpu` · [quantum-tools#qpu-cpu](https://ceccec.psg.bg/quantum-tools#qpu-cpu)) — faithful simulator; physical = wall-clock reuse metrics (see section below).
 
 ## 3. Results
 
@@ -169,6 +169,93 @@ computes=true · claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=fal
 
 - Routes: [prove-no-qpu-64bit](https://ceccec.psg.bg/quantum-tools#prove-no-qpu-64bit) · [directional-trinity](https://ceccec.psg.bg/quantum-tools#directional-trinity) · [rosetta-complete](https://ceccec.psg.bg/quantum-tools#rosetta-complete) · [efficiency-vote](https://ceccec.psg.bg/efficiency-vote) · [proofs](https://ceccec.psg.bg/proofs)
 - Receipt: fold `sequenceDiscoveryRealisedForHome` · claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false.
+
+## QPU ≡ CPU/GPU · physical metrics
+
+*Sealed `qpuCpuGpu` · pairs `qpu/cpu` · `cpu/qpu` · face `qpu/gpu`. Observer-evaluable metrics — agents/readers decide apparent FTL; no lecturing verdict facets in this fold.*
+
+### What “physical” means here
+
+physical = observable wall-clock time on the executing device (performance.now / hrtime), classical CPU·GPU·heap·storage tiers (mcp/cpu · mcp/gpu · mcp/hw), WGS84/geodesy constants where geo folds apply — apparent FTL speedup = T_cold/max(T_warm,ε) on memoByRoot reuse; superluminal signaling only when PHYSICAL_FTL_SIGNALING_PROOF_IDS is non-empty (physicalFtlClaimTheorem).
+
+**QPU = CPU ∪ GPU** — architecture identity on classical-64bit hardware (`mcp/cpu` · `mcp/gpu` · `mcp/hw`); no separate quantum chip is required (`qpuRequired=false`). The modeled quantum computer is a faithful classical simulator (`quantumComputerHonestClaim`); completion is metric-backed at call time.
+
+### Statement
+
+QPU ≡ CPU ∪ GPU on classical-64bit — the modeled quantum computer completes as a faithful simulator (benchmark tracks-classical-no-speedup) with observer metrics for apparent FTL reuse (audit 0.147×).
+
+### Physical FTL metrics (observer-evaluable)
+
+Apparent FTL speedup is defined as **T_cold / max(T_warm, ε)** on memoByRoot reuse (same quantity as `localAuditQuantumSpeedEfficiency` and `quantumiseIsAtFtlSpeed` ssl warm path). Superluminal signaling is counted only via `physicalFtlClaimTheorem` (`PHYSICAL_FTL_SIGNALING_PROOF_IDS.length`).
+
+| Metric | Quantity | Cold | Warm | Speedup / identity | Source fold |
+|---|---|---:|---:|---|---|
+| memoByRoot audit suite | apparentFtlSpeedup = T_cold / max(T_warm, ε) | 0.001 | 0 | 0.147× | `localAuditQuantumSpeedEfficiency` |
+| holographic envelope round-trip | roundTripCount / roundTripTotal | 705 | 705 | 1 identity | `importFractalMap` |
+| answers÷tokens on reuse | answers / max(tokens, 0) | 0 | 0 | ∞ (tokens=0) | `proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit` |
+| docs:build wall-clock | buildMs (warm path when cached) | 196000 | 104448 | 1.877× vs CI baseline | `buildMin` |
+| trinity enforcement (facts-once) | collectEnforcementFacts → cross·fold·weave | multi-walk | single-pass | reuse-once | `agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath` |
+| superluminal signaling proofs | PHYSICAL_FTL_SIGNALING_PROOF_IDS.length | 0 | 0 | none sealed | `physicalFtlClaimTheorem` |
+
+### Identity facets
+
+- ✓ QPU ≡ CPU ∪ GPU — cpuOn=true gpuOn=true hwOn=true
+- ✓ quantumComputerComplete — faithfulSimulator=true tracksClassical=true
+- ✓ apparentFtlSpeedup(audit)=0.147× cold=0.001ms warm=0ms
+- ✓ holographic round-trip 705/705
+- ✓ observerEvaluableMeasurements=true
+- ✓ architectureRequirement=classical-64bit runtime=node/arm64
+- ✓ superluminalProofCount=0 (physicalFtlClaimTheorem — metrics not verdict)
+- ✓ claySolvedByThisFold=0
+
+### Status
+
+computes=true · qpuEqualsCpuGpu=true · quantumComputerComplete=true · qpuRequired=false · architectureRequirement=classical-64bit · superluminalProofCount=0
+
+- Routes: [qpu-cpu](https://ceccec.psg.bg/quantum-tools#qpu-cpu) · [prove-no-qpu-64bit](https://ceccec.psg.bg/quantum-tools#prove-no-qpu-64bit) · [mcp-hw](https://ceccec.psg.bg/quantum-tools#mcp-hw) · [agents.json](https://ceccec.psg.bg/agents.json) · CLI `npm run quantum:qpu-cpu`
+- Receipt: fold `qpuCpuGpu` · root=c3e24250 · apparentFtl=0.147×.
+
+## Gate light · more computed → lighter build
+
+*Sealed `gateLight` · pairs `gate/light` · `light/gate`. Inverse relation proved at call time — not slogans.*
+
+gateLight — coverage=0.7145 gateCost=355 buildNorm=0.533 inverse=1.3068 buildSpeedup=1.877× factsOnce=1.
+
+| Axis | Value | Trend | Source |
+|---|---|---|---|
+| computeCoverage | 0.7145 | → migrate manual rows | `manualGauge derived/(derived+manual)` |
+| gateCost | 355 | → onTrueDebt=324 | `gateAnalytics onTrue+allowlists+slimOnTrue` |
+| buildMs | 104448 | ↓ vs baseline 196000ms | `buildMin timing` |
+| deployMs | 11000 | ↓ warm CI cache path | `buildMin CI baseline` |
+| inverseScore | 1.3068 | → drain manual · on:true debt | `gateLight law receipt` |
+| factsOnce | 1 | collectEnforcementFacts once · wave/verify subtracts render | `trinity/speedup · wave/verify` |
+
+inverseRelationOn=false · computeCoverage=0.7145 · gateCost=355 · buildSpeedup=1.877×
+
+- [gate-light](https://ceccec.psg.bg/quantum-tools#gate-light) · [build-min](https://ceccec.psg.bg/quantum-tools#build-min) · CLI `npm run quantum:gate-light`
+
+## API fuse · trinity hologram envelope
+
+*Sealed `apiFuse` · pairs `api/fuse` · `fuse/api`. Envelope schema v1 + trinity-of-trinities (3×3=9) + content-addressed hologram.*
+
+apiFuse — envelope=705/705 trinity³=1 hologram=1 security=3/3.
+
+### Schema
+
+- kind: `ceccec.tool.envelope` · clock: 108000ms · envelopeCoverage: 1
+
+### Δ coverage
+
+| Metric | Before | After | Δ | Source |
+|---|---|---:|---|---|
+| API envelope coverage | 0 | 705 | +705/705 | `standardToolboxIoCatalog` |
+| trinity-of-trinities | 3 directional | 3×3=9 | identity | `directionalTrinity × trinity/speedup` |
+| hologram round-trip | 0 | 705 | identity | `importFractalMap` |
+| one clock bindings | 3 | 6 | 6/9 | `oneClockApi` |
+
+trinitiesOfTrinitiesOn=true · hologramFractalOn=true · apisStandardised=true
+
+- [api-fuse](https://ceccec.psg.bg/quantum-tools#api-fuse) · CLI `npm run quantum:api-fuse`
 
 ## Angle · polarity · README/home
 

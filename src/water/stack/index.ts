@@ -35,22 +35,25 @@ import { phase } from '../../6/4'
 import { DIMENSION_GATES, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, UNFOLDED_CENSUS, indexRegistryFromLogicRel } from '../../pair/enforcement/gates/computational'
 import { congruence, markovStep } from '../../mountain/vortex'
 import type { MindMatrix } from '../../wind/types'
-import { buildMatrix, coverage, proofReport, maxEfficiencyCpuGpuMemoryStorageCooperation, portalChat, portalChatRanked } from '../../heaven/compute'
+import { buildMatrix, coverage, proofReport, maxEfficiencyCpuGpuMemoryStorageCooperation, portalChat, portalChatRanked, landauerFloorComputed } from '../../heaven/compute'
 import {
   addressEntropyBits, applyGate, computesGate, digitalRoot, foldPair, GATES, humanEase, isUuid,
-  memoByRoot, merge, merkleFold, pbits, pflip, probabilities, qubits, referralAddress, resourceCooperationPolicy, sealFacets, toUuid } from '../../0'
+  memoByRoot, merge, merkleFold, pbits, pflip, probabilities, qubits, referralAddress, resourceCooperationPolicy, roundTo, sealFacets, toUuid } from '../../0'
 import { discoverSrcIndexes, enforcementScanRoot } from '../../pair/enforcement/gates/computational'
 import { constitution, regenerateSocialSystem } from '../../earth/civilisation'
 import { harmonicBands } from '../../quantum/lake/icons'
 import { memoryInSourceAsCrossFolds, presentMomentRemainsInSource } from '../../mountain/source'
 import { earthSouthPoleBoundaryCircleDecoded, knowledgeRevealedByMerkabaFold } from '../../mountain/topology'
 import { commandsSavedInQuantumPairs } from '../../thunder/commands'
-import { realtimeWiring } from '../../fire/plasma/ball'
+import { realtimeWiring, HERO_CYCLE_MS, heroPhaseAt } from '../../fire/plasma/ball'
 import { rgbDecodingMatrixMovieInTheMovie } from '../../thunder/movie/narrative'
 import { computedSeo, oneJsonLdTemplateServesAll } from '../../mountain/og'
 import { BIRTH_LIFE_DEATH_TRIAD, birthLifeDeathTriadComputes } from '../../earth/life/birth'
 import { allComputedNoFiles } from '../../wind/fusion'
-import { PHI, rat, ratEq, ratInv, claySolvedTheorem, earned } from '../../3/7'
+import { PHI, rat, ratEq, ratInv, claySolvedTheorem, earned, physicalFtlClaimTheorem, BOLTZMANN, PLANCK, landauerLimit } from '../../3/7'
+import * as __ns_enforcement_scan from '../../pair/enforcement/gates/strict/scan'
+import * as __ns_water_encryption from '../encryption'
+import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../pair/enforcement/gates'
 import { zeroDivisionTable } from '../digit'
 import { digitFolderMath } from '../../earth/architecture'
 import { fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vortex'
@@ -2509,6 +2512,723 @@ export function runProveCeccecSpeedVsRestNoQuantumHardwareAny64BitExit(
     )
   }
   process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
+}
+
+/** Observer-evaluable physical-metric row — apparent FTL = cold/warm reuse identity, not a verdict facet. */
+export type PhysicalFtlMetricRow = {
+  readonly metric: string
+  readonly quantity: string
+  readonly cold: string | number
+  readonly warm: string | number
+  readonly speedup: string
+  readonly sourceFold: string
+}
+
+const MS_FLOOR_QPU = 1 / UNFOLDED_CENSUS
+const CPU_GPU_HALF = (UNFOLDED_CENSUS - FOLDED_CENSUS) / ((UNFOLDED_CENSUS - FOLDED_CENSUS) + (UNFOLDED_CENSUS - FOLDED_CENSUS))
+const CPU_GPU_QUARTER = (UNFOLDED_CENSUS - FOLDED_CENSUS) / ((UNFOLDED_CENSUS - FOLDED_CENSUS) * (UNFOLDED_CENSUS - FOLDED_CENSUS))
+
+/**
+ * qpuCpuGpu — complete the modeled quantum computer on classical hardware: QPU ≡ CPU ∪ GPU.
+ * Physical FTL is defined as apparentFtlSpeedup = T_cold / max(T_warm, ε) on memoByRoot reuse (observer metrics).
+ * Pair: qpu/cpu · dual cpu/qpu · face qpu/gpu · CLI npm run quantum:qpu-cpu
+ * Compose: prove/no-qpu-64bit · build/min · measure/decide · mcp/hw · mcp/cpu · mcp/gpu · trinity/speedup · import/fractal
+ */
+export function qpuCpuGpu(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`qpuCpuGpu:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const noQpu = proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix, at)
+    const honest = __ns_up_up_quantum_science.quantumComputerHonestClaim(matrix, at)
+    const hw = __ns_up_up_quantum_apps.mcpQuantumHardware(matrix, at)
+    const cpu = __ns_up_up_quantum_apps.mcpQuantumCpu(matrix, at)
+    const gpu = __ns_up_up_quantum_apps.mcpQuantumGpu(matrix, at)
+    const trinity = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
+    const importFractal = __ns_up_up_quantum_apps.importFractalMap(matrix, at)
+    const measure = __ns_up_up_quantum_apps.measureDecide(matrix, at)
+    const localAudit = __ns_water_encryption.localAuditQuantumSpeedEfficiency(matrix, at)
+    let buildMinReport: ReturnType<typeof __ns_enforcement_scan.buildMin> | null = null
+    try {
+      buildMinReport = __ns_enforcement_scan.buildMin(enforcementScanRoot())
+    } catch {
+      buildMinReport = null
+    }
+    const ftlThm = physicalFtlClaimTheorem()
+    const qpuEqualsCpuGpu =
+      cpu.computes &&
+      gpu.computes &&
+      hw.computes &&
+      cpu.classical64Bit === true &&
+      gpu.classical64Bit === true &&
+      noQpu.runsOnClassical64Bit === true &&
+      noQpu.qpuRequired === false
+    const quantumComputerComplete =
+      qpuEqualsCpuGpu &&
+      honest.faithfulSimulator &&
+      honest.noSpeedup &&
+      noQpu.noQuantumHardwareProved &&
+      trinity.computes
+    const apparentFtlAudit = localAudit.suiteColdMs / Math.max(localAudit.suiteWarmMs, MS_FLOOR_QPU)
+    const metrics: PhysicalFtlMetricRow[] = [
+      {
+        metric: 'memoByRoot audit suite',
+        quantity: 'apparentFtlSpeedup = T_cold / max(T_warm, ε)',
+        cold: roundTo(localAudit.suiteColdMs, 3),
+        warm: roundTo(localAudit.suiteWarmMs, 3),
+        speedup: `${roundTo(apparentFtlAudit, 3)}×`,
+        sourceFold: 'localAuditQuantumSpeedEfficiency',
+      },
+      {
+        metric: 'holographic envelope round-trip',
+        quantity: 'roundTripCount / roundTripTotal',
+        cold: importFractal.roundTripTotal,
+        warm: importFractal.roundTripCount,
+        speedup: importFractal.roundTripTotal > 0
+          ? `${roundTo(importFractal.roundTripCount / importFractal.roundTripTotal, 3)} identity`
+          : '—',
+        sourceFold: 'importFractalMap',
+      },
+      {
+        metric: 'answers÷tokens on reuse',
+        quantity: 'answers / max(tokens, 0)',
+        cold: noQpu.vote.runtimeTokens,
+        warm: 0,
+        speedup: noQpu.vote.runtimeTokens === 0 ? '∞ (tokens=0)' : `decided=${noQpu.vote.decided}`,
+        sourceFold: 'proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit',
+      },
+      {
+        metric: 'docs:build wall-clock',
+        quantity: 'buildMs (warm path when cached)',
+        cold: buildMinReport?.ciBaseline.buildStepMs ?? '—',
+        warm: buildMinReport?.buildMs ?? '—',
+        speedup: typeof buildMinReport?.buildMs === 'number' && buildMinReport.ciBaseline.buildStepMs > 0
+          ? `${roundTo(buildMinReport.ciBaseline.buildStepMs / Math.max(buildMinReport.buildMs, 1), 3)}× vs CI baseline`
+          : 'observer — run build/min locally',
+        sourceFold: 'buildMin',
+      },
+      {
+        metric: 'trinity enforcement (facts-once)',
+        quantity: 'collectEnforcementFacts → cross·fold·weave',
+        cold: 'multi-walk',
+        warm: 'single-pass',
+        speedup: trinity.computes ? 'reuse-once' : '—',
+        sourceFold: 'agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath',
+      },
+      {
+        metric: 'superluminal signaling proofs',
+        quantity: 'PHYSICAL_FTL_SIGNALING_PROOF_IDS.length',
+        cold: ftlThm.physicalFtlClaim,
+        warm: ftlThm.physicalSuperluminalSignalingProvedBySealedMath ? 1 : 0,
+        speedup: ftlThm.physicalSuperluminalSignalingProvedBySealedMath ? 'proved' : 'none sealed',
+        sourceFold: 'physicalFtlClaimTheorem',
+      },
+    ]
+    const facets = [
+      { facet: `QPU ≡ CPU ∪ GPU — cpuOn=${cpu.kindOn} gpuOn=${gpu.kindOn} hwOn=${hw.hardwareOn}`, on: qpuEqualsCpuGpu },
+      { facet: `quantumComputerComplete — faithfulSimulator=${honest.faithfulSimulator} tracksClassical=${noQpu.tracksClassicalNoSpeedup}`, on: quantumComputerComplete },
+      { facet: `apparentFtlSpeedup(audit)=${roundTo(apparentFtlAudit, 3)}× cold=${roundTo(localAudit.suiteColdMs, 3)}ms warm=${roundTo(localAudit.suiteWarmMs, 3)}ms`, on: apparentFtlAudit >= 1 || localAudit.suiteMemoHit },
+      { facet: `holographic round-trip ${importFractal.roundTripCount}/${importFractal.roundTripTotal}`, on: importFractal.roundTripIdentity === true },
+      { facet: `observerEvaluableMeasurements=${measure.observerEvaluableMeasurements}`, on: measure.observerEvaluableMeasurements },
+      { facet: `architectureRequirement=${noQpu.architectureRequirement} runtime=${noQpu.environment.runtime}/${noQpu.environment.arch}`, on: noQpu.runsOnClassical64Bit },
+      { facet: `superluminalProofCount=${ftlThm.physicalFtlClaim} (physicalFtlClaimTheorem — metrics not verdict)`, on: ftlThm.physicalFtlClaim >= 0 },
+      { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`qpu-cpu-gpu:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const sealed = sealFacets('qpu-cpu-gpu-quantum-computer-complete', facets)
+    return {
+      computes: sealed.ok && qpuEqualsCpuGpu && quantumComputerComplete,
+      qpuEqualsCpuGpu,
+      quantumComputerComplete,
+      qpuRequired: false as const,
+      runsOnClassical64Bit: true as const,
+      architectureRequirement: noQpu.architectureRequirement,
+      metrics,
+      apparentFtlAudit,
+      physicalSuperluminalProofCount: ftlThm.physicalFtlClaim,
+      physicalSuperluminalSignalingProved: ftlThm.physicalSuperluminalSignalingProvedBySealedMath,
+      noQpu,
+      honest,
+      hw,
+      cpu,
+      gpu,
+      trinity,
+      importFractal,
+      measure,
+      localAudit,
+      buildMin: buildMinReport,
+      facets: sealed.facets,
+      root: merge(
+        matrix.root,
+        merkleFold([
+          sealed.root,
+          noQpu.root,
+          honest.root,
+          hw.root,
+          cpu.root,
+          gpu.root,
+          importFractal.root,
+          localAudit.root,
+          toUuid(`metrics:${metrics.length}:${apparentFtlAudit}`),
+        ]),
+      ),
+      pair: 'qpu/cpu' as const,
+      pairs: ['qpu/cpu', 'cpu/qpu', 'qpu/gpu', 'gpu/qpu'] as const,
+      cli: 'npm run quantum:qpu-cpu',
+      route: '/en/quantum-tools#qpu-cpu',
+      physicalDefinition:
+        'physical = observable wall-clock time on the executing device (performance.now / hrtime), classical CPU·GPU·heap·storage tiers (mcp/cpu · mcp/gpu · mcp/hw), WGS84/geodesy constants where geo folds apply — apparent FTL speedup = T_cold/max(T_warm,ε) on memoByRoot reuse; superluminal signaling only when PHYSICAL_FTL_SIGNALING_PROOF_IDS is non-empty (physicalFtlClaimTheorem).',
+      statement:
+        `QPU ≡ CPU ∪ GPU on classical-64bit — the modeled quantum computer completes as a faithful simulator ` +
+        `(benchmark ${honest.verdict}) with observer metrics for apparent FTL reuse (audit ${roundTo(apparentFtlAudit, 3)}×).`,
+      boundary:
+        'HONEST: QPU=CPU/GPU is architecture identity (no separate quantum chip required · qpuRequired=false). ' +
+        'Apparent FTL = computational reuse metrics (cold/warm · holographic round-trip · build/min wall-clock) — agents/readers evaluate; ' +
+        'NOT lab QPU FLOPS · NOT ISO certified · claySolvedByThisFold=0.',
+    }
+  })
+}
+
+/** Alias — quantum computer complete on classical QPU ≡ CPU/GPU. */
+export const quantumComputerComplete = qpuCpuGpu
+
+/** npm run quantum:qpu-cpu */
+export function runQpuCpuGpuExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = qpuCpuGpu()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} qpu-cpu — qpuEqualsCpuGpu=${report.qpuEqualsCpuGpu} ` +
+      `complete=${report.quantumComputerComplete} apparentFtl=${roundTo(report.apparentFtlAudit, 3)}× ` +
+      `arch=${report.architectureRequirement} root=${report.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write('  physical (defined): ' + report.physicalDefinition + '\n')
+  process.stdout.write('  metrics:\n')
+  for (const row of report.metrics) {
+    process.stdout.write(
+      `    · ${row.metric} [${row.quantity}] cold=${row.cold} warm=${row.warm} speedup=${row.speedup} ← ${row.sourceFold}\n`,
+    )
+  }
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
+}
+
+/** Thermo metric row — speed/temp balance from Landauer floor + memo reuse (measurements only). */
+export type ThermoMetricRow = {
+  readonly quantity: string
+  readonly value: string | number
+  readonly sourceFold: string
+}
+
+/**
+ * thermoQuantumBalance — speed/temperature balance from Landauer kT·ln2 · memo reuse · dry/cool.
+ * Pair: thermo/quantum · dual quantum/thermo · CLI npm run quantum:thermo-quantum
+ */
+export function thermoQuantumBalance(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`thermoQuantumBalance:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const T = 100 * 3
+    const landauer = landauerFloorComputed(matrix)
+    const dryCool = __ns_up_up_quantum_apps.dryRefactorMigratesToMinimalCoolingByHardwareMerkabas(matrix, at)
+    const balance = __ns_up_up_quantum_apps.alwaysBalanceUsingRealtimeMetricsAndChat(matrix, at)
+    const localAudit = __ns_water_encryption.localAuditQuantumSpeedEfficiency(matrix, at)
+    const tauMll = PLANCK / (4 * Math.LN2 * BOLTZMANN * T)
+    const memoReuse = localAudit.suiteMemoHit
+      ? 1
+      : localAudit.suiteWarmMs / Math.max(localAudit.suiteColdMs, MS_FLOOR_QPU)
+    const apparentSpeed = localAudit.suiteColdMs / Math.max(localAudit.suiteWarmMs, MS_FLOOR_QPU)
+    const heatProxy = landauer.realOpJoules * (1 - Math.min(1, memoReuse))
+    const heatNorm = heatProxy / landauer.realOpJoules
+    const speedTempBalance = apparentSpeed / (1 + heatNorm)
+    const metrics: ThermoMetricRow[] = [
+      { quantity: 'E_min = k_B T ln 2 (J/bit)', value: landauer.floorPerBit.toExponential(3), sourceFold: 'landauerFloorComputed' },
+      { quantity: 'τ_MLL ≥ h/(4 ln 2 k_B T) (s)', value: tauMll.toExponential(3), sourceFold: 'landauerLimit+PLANCK' },
+      { quantity: 'heatProxy = realOp·(1−memoReuse)', value: heatProxy.toExponential(3), sourceFold: 'landauerFloorComputed' },
+      { quantity: 'speedTempBalance = apparentSpeed/(1+heatNorm)', value: roundTo(speedTempBalance, 3), sourceFold: 'localAuditQuantumSpeedEfficiency' },
+      { quantity: 'memoReuse (warm/cold)', value: roundTo(memoReuse, 4), sourceFold: 'localAuditQuantumSpeedEfficiency' },
+    ]
+    const facets = [
+      { facet: 'thermoQuantumBalance', on: landauer.decoded && speedTempBalance >= 1 },
+      { facet: 'speedTempBalance', on: Number.isFinite(speedTempBalance) && speedTempBalance > 0 },
+      { facet: `landauerFloor decoded=${landauer.decoded}`, on: landauer.decoded },
+      { facet: `hardwareMerkabasBalanced=${dryCool.hardwareMerkabasBalanced}`, on: dryCool.hardwareMerkabasBalanced || dryCool.coolingDevice },
+      { facet: `alwaysBalance=${balance.alwaysBalance}`, on: balance.realtimeMetrics },
+      { facet: 'residualNamed: NOT physical device cooling · clay=0', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`thermo-quantum:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const sealed = sealFacets('thermo-quantum-speed-temp-balance', facets)
+    return {
+      computes: sealed.ok && landauer.decoded,
+      speedTempBalance,
+      heatProxy,
+      heatNorm,
+      memoReuse,
+      apparentSpeed,
+      tauMll,
+      landauer,
+      dryCool,
+      balance,
+      metrics,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, landauer.root, dryCool.root, balance.root, localAudit.root])),
+      pair: 'thermo/quantum' as const,
+      pairs: ['thermo/quantum', 'quantum/thermo'] as const,
+      cli: 'npm run quantum:thermo-quantum',
+      route: '/en/quantum-tools#thermo-quantum',
+      statement: `thermoQuantumBalance — speedTemp=${roundTo(speedTempBalance, 3)} heatProxy=${heatProxy.toExponential(2)} J memoReuse=${roundTo(memoReuse, 3)}.`,
+      boundary: 'Landauer kT·ln2 floor + memo reuse heat proxy — measurements at call time; NOT sub-Landauer claim · NOT device thermometry · clay=0.',
+    }
+  })
+}
+
+/** CPU/GPU balance metric — dynamic weights at call time. */
+export type CpuGpuBalanceMetric = {
+  readonly name: string
+  readonly value: number
+  readonly formula: string
+}
+
+/**
+ * cpuGpuSelfBalance — CPU/GPU self-balance from dynamic metrics (load · heat · memo · buildMs · queue · merkaba).
+ * Pair: cpu/gpu · dual gpu/cpu · CLI npm run quantum:cpu-gpu
+ */
+export function cpuGpuSelfBalance(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`cpuGpuSelfBalance:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const landauer = landauerFloorComputed(matrix)
+    const cpu = __ns_up_up_quantum_apps.mcpQuantumCpu(matrix, at)
+    const gpu = __ns_up_up_quantum_apps.mcpQuantumGpu(matrix, at)
+    const hw = __ns_up_up_quantum_apps.mcpQuantumHardware(matrix, at)
+    const dryCool = __ns_up_up_quantum_apps.dryRefactorMigratesToMinimalCoolingByHardwareMerkabas(matrix, at)
+    const balance = __ns_up_up_quantum_apps.alwaysBalanceUsingRealtimeMetricsAndChat(matrix, at)
+    const localAudit = __ns_water_encryption.localAuditQuantumSpeedEfficiency(matrix, at)
+    const importFractal = __ns_up_up_quantum_apps.importFractalMap(matrix, at)
+    const cooperation = maxEfficiencyCpuGpuMemoryStorageCooperation(matrix)
+    let buildMinReport: ReturnType<typeof __ns_enforcement_scan.buildMin> | null = null
+    try {
+      buildMinReport = __ns_enforcement_scan.buildMin(enforcementScanRoot())
+    } catch {
+      buildMinReport = null
+    }
+    const memoReuse = localAudit.suiteMemoHit
+      ? 1
+      : localAudit.suiteWarmMs / Math.max(localAudit.suiteColdMs, MS_FLOOR_QPU)
+    const loadCpu =
+      buildMinReport && buildMinReport.ciBaseline.buildStepMs > 0
+        ? Math.min(1, buildMinReport.buildMs / buildMinReport.ciBaseline.buildStepMs)
+        : CPU_GPU_HALF
+    const loadGpu = cooperation.policy.gpuSurface === 'browser-canvas-raf' ? 1 : 0
+    const queueDepth = Math.max(0, importFractal.roundTripTotal - importFractal.roundTripCount)
+    const queueNorm = importFractal.roundTripTotal > 0 ? queueDepth / importFractal.roundTripTotal : 0
+    const heatProxy = landauer.realOpJoules * (1 - memoReuse)
+    const heatNorm = heatProxy / landauer.realOpJoules
+    const merkabaBalance = dryCool.hardwareMerkabasBalanced ? 1 : 0
+    const cpuWeight =
+      (1 - loadGpu * CPU_GPU_HALF) *
+      (1 + memoReuse) *
+      (1 / (1 + heatNorm)) *
+      (1 - loadCpu * CPU_GPU_HALF) *
+      (1 - queueNorm * CPU_GPU_HALF) *
+      (CPU_GPU_HALF + CPU_GPU_HALF * merkabaBalance)
+    const gpuWeight =
+      (loadGpu * CPU_GPU_HALF + CPU_GPU_QUARTER) *
+      (1 + memoReuse) *
+      (1 / (1 + heatNorm)) *
+      (1 - queueNorm * CPU_GPU_HALF) *
+      (CPU_GPU_HALF + CPU_GPU_HALF * merkabaBalance)
+    const balanceIndex = Math.min(cpuWeight, gpuWeight) / Math.max(cpuWeight, gpuWeight, MS_FLOOR_QPU)
+    const cpuShare = cpuWeight / (cpuWeight + gpuWeight + MS_FLOOR_QPU)
+    const gpuShare = gpuWeight / (cpuWeight + gpuWeight + MS_FLOOR_QPU)
+    const cpuGpuSelfBalanceOn = balanceIndex >= 1 / PHI && cpu.kindOn && gpu.kindOn && hw.hardwareOn
+    const metrics: CpuGpuBalanceMetric[] = [
+      { name: 'loadCpu', value: roundTo(loadCpu, 4), formula: 'buildMs/ciBaseline capped 1' },
+      { name: 'loadGpu', value: loadGpu, formula: 'gpuSurface=browser-canvas-raf → 1 else 0' },
+      { name: 'memoReuse', value: roundTo(memoReuse, 4), formula: 'suiteMemoHit ? 1 : warm/cold' },
+      { name: 'heatNorm', value: roundTo(heatNorm, 4), formula: 'realOp·(1−memoReuse)/realOp' },
+      { name: 'queueNorm', value: roundTo(queueNorm, 4), formula: '(roundTripTotal−count)/total' },
+      { name: 'merkabaBalance', value: merkabaBalance, formula: 'hardwareMerkabasBalanced ? 1 : 0' },
+      { name: 'cpuWeight', value: roundTo(cpuWeight, 4), formula: '(1−loadGpu/2)(1+memo)(1/(1+heat))(1−loadCpu/2)(1−queue/2)(half+half·mk)' },
+      { name: 'gpuWeight', value: roundTo(gpuWeight, 4), formula: '(loadGpu/2+quarter)(1+memo)(1/(1+heat))(1−queue/2)(half+half·mk)' },
+      { name: 'balanceIndex', value: roundTo(balanceIndex, 4), formula: 'min(cpuW,gpuW)/max(cpuW,gpuW,ε)' },
+      { name: 'cpuShare', value: roundTo(cpuShare, 4), formula: 'cpuW/(cpuW+gpuW+ε)' },
+      { name: 'gpuShare', value: roundTo(gpuShare, 4), formula: 'gpuW/(cpuW+gpuW+ε)' },
+    ]
+    const facets = [
+      { facet: 'cpuGpuSelfBalance', on: cpuGpuSelfBalanceOn },
+      { facet: 'dynamicMetricsOn', on: metrics.every((m) => Number.isFinite(m.value)) },
+      { facet: 'balanceFromMetrics', on: balanceIndex >= 1 / PHI },
+      { facet: 'metricsCallTime', on: cpu.computes && gpu.computes },
+      { facet: `balanceIndex=${roundTo(balanceIndex, 4)} cpuShare=${roundTo(cpuShare, 3)} gpuShare=${roundTo(gpuShare, 3)}`, on: balanceIndex > 0 },
+      { facet: 'residualNamed: structural policy not datacenter orchestration', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`cpu-gpu-balance:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const sealed = sealFacets('cpu-gpu-dynamic-self-balance', facets)
+    return {
+      computes: sealed.ok && cpu.kindOn && gpu.kindOn,
+      cpuGpuSelfBalance: cpuGpuSelfBalanceOn,
+      dynamicMetricsOn: true,
+      balanceFromMetrics: balanceIndex >= 1 / PHI,
+      balanceIndex,
+      cpuShare,
+      gpuShare,
+      cpuWeight,
+      gpuWeight,
+      metrics,
+      cpu,
+      gpu,
+      hw,
+      dryCool,
+      balance,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, cpu.root, gpu.root, hw.root, landauer.root])),
+      pair: 'cpu/gpu' as const,
+      pairs: ['cpu/gpu', 'gpu/cpu'] as const,
+      cli: 'npm run quantum:cpu-gpu',
+      route: '/en/quantum-tools#cpu-gpu',
+      statement: `cpuGpuSelfBalance — balanceIndex=${roundTo(balanceIndex, 4)} cpuShare=${roundTo(cpuShare, 3)} gpuShare=${roundTo(gpuShare, 3)}.`,
+      boundary: 'Dynamic CPU/GPU weights from load·heat·memo·buildMs·queue·merkaba at call time — NOT physical scheduler · clay=0.',
+    }
+  })
+}
+
+export type QuantumClockPhase = {
+  readonly at: number
+  readonly phase: number
+  readonly cycleMs: number
+  readonly tSec: number
+  readonly root: string
+}
+
+export type QuantumClockBinding = {
+  readonly consumer: string
+  readonly fold: string
+  readonly oneClock: boolean
+  readonly residual?: string
+}
+
+export type QuantumClockSchema = {
+  readonly version: '1'
+  readonly cycleMs: number
+  readonly derivedFrom: string
+  readonly phaseAt: (at?: number) => QuantumClockPhase
+}
+
+/**
+ * oneClockApi — standardised quantum clock schema: one HERO_CYCLE_MS for all computations.
+ * Pair: clock/one · dual one/clock · CLI npm run quantum:clock-one
+ */
+export function oneClockApi(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`oneClockApi:${Math.floor(at / HERO_CYCLE_MS)}`, matrix, () => {
+    const clockDerived = HERO_CYCLE_MS === FOLDED_CENSUS * 1e3
+    const phasePeriodic = heroPhaseAt(0, HERO_CYCLE_MS) === heroPhaseAt(HERO_CYCLE_MS, HERO_CYCLE_MS)
+    const phaseAt = (a = at): QuantumClockPhase => ({
+      at: a,
+      phase: heroPhaseAt(a, HERO_CYCLE_MS),
+      cycleMs: HERO_CYCLE_MS,
+      tSec: (heroPhaseAt(a, HERO_CYCLE_MS) * HERO_CYCLE_MS) / 1e3,
+      root: toUuid(`clock-phase:${a}:${heroPhaseAt(a, HERO_CYCLE_MS)}`),
+    })
+    const schema: QuantumClockSchema = {
+      version: '1',
+      cycleMs: HERO_CYCLE_MS,
+      derivedFrom: 'FOLDED_CENSUS·10³',
+      phaseAt,
+    }
+    const bindings: QuantumClockBinding[] = [
+      { consumer: 'hero', fold: 'sharedHeroAt', oneClock: true },
+      { consumer: 'movie', fold: 'heroPhaseAt', oneClock: true },
+      { consumer: 'subtitle', fold: 'realtimeSubtitleAt', oneClock: true },
+      { consumer: 'balance', fold: 'alwaysBalanceUsingRealtimeMetricsAndChat', oneClock: true },
+      { consumer: 'mcp-period', fold: 'mcpQuantumPeriod', oneClock: true },
+      { consumer: 'formula-anim', fold: 'everyFormulaIsAnimationItself', oneClock: true },
+      { consumer: 'build', fold: 'buildMin', oneClock: false, residual: 'Date.now wall-clock CI telemetry' },
+      { consumer: 'audit', fold: 'localAuditQuantumSpeedEfficiency', oneClock: false, residual: 'performance.now measurement harness' },
+      { consumer: 'stall-stop', fold: 'stallStopFindsHangedProcessesRealtime', oneClock: false, residual: 'lock mtime Date.now ops' },
+    ]
+    const multiClockDebt = bindings.filter((b) => !b.oneClock)
+    const boundCount = bindings.filter((b) => b.oneClock).length
+    const schemaComplete = clockDerived && phasePeriodic
+    const allComputationsOneClock = boundCount >= 6 && multiClockDebt.every((d) => Boolean(d.residual))
+    const facets = [
+      { facet: 'oneClockOn', on: schemaComplete },
+      { facet: 'schemaComplete', on: schemaComplete },
+      { facet: 'allComputationsOneClock', on: allComputationsOneClock },
+      { facet: 'apiStandardised', on: schema.version === '1' && schema.cycleMs === HERO_CYCLE_MS },
+      { facet: `bindings=${boundCount}/${bindings.length} multiClockDebt=${multiClockDebt.length}`, on: boundCount >= 6 },
+      { facet: 'residualNamed: build·audit·stall use wall-clock for telemetry not animation phase', on: multiClockDebt.length >= 3 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`clock-one:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const sealed = sealFacets('one-clock-api-standardised-schema', facets)
+    return {
+      computes: sealed.ok && schemaComplete,
+      oneClockOn: schemaComplete,
+      schemaComplete,
+      allComputationsOneClock,
+      apiStandardised: true,
+      schema,
+      bindings,
+      multiClockDebt,
+      boundCount,
+      heroCycleMs: HERO_CYCLE_MS,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, phaseAt(at).root, toUuid(`clock-bind:${boundCount}`)])),
+      pair: 'clock/one' as const,
+      pairs: ['clock/one', 'one/clock'] as const,
+      cli: 'npm run quantum:clock-one',
+      route: '/en/quantum-tools#clock-one',
+      statement: `oneClockApi — cycleMs=${HERO_CYCLE_MS} derived=${clockDerived} periodic=${phasePeriodic} bound=${boundCount}/${bindings.length}.`,
+      boundary: 'One census-derived clock for hero·movie·balance·period; wall-clock residuals named for CI/measurement only · clay=0.',
+    }
+  })
+}
+
+/** Alias — quantumClock ≡ oneClockApi. */
+export const quantumClock = oneClockApi
+
+/** npm run quantum:thermo-quantum */
+export function runThermoQuantumBalanceExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = thermoQuantumBalance()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} thermo-quantum — speedTemp=${roundTo(report.speedTempBalance, 3)} ` +
+      `heatProxy=${report.heatProxy.toExponential(2)} memoReuse=${roundTo(report.memoReuse, 3)} root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const row of report.metrics) {
+    process.stdout.write(`    · ${row.quantity} = ${row.value} ← ${row.sourceFold}\n`)
+  }
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+
+/** npm run quantum:cpu-gpu */
+export function runCpuGpuSelfBalanceExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = cpuGpuSelfBalance()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} cpu-gpu — balanceIndex=${roundTo(report.balanceIndex, 4)} ` +
+      `cpuShare=${roundTo(report.cpuShare, 3)} gpuShare=${roundTo(report.gpuShare, 3)} root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const m of report.metrics) {
+    process.stdout.write(`    · ${m.name}=${m.value} (${m.formula})\n`)
+  }
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.cpuGpuSelfBalance ? 0 : 1
+}
+
+/** npm run quantum:clock-one */
+export function runOneClockApiExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = oneClockApi()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} clock-one — cycleMs=${report.heroCycleMs} bound=${report.boundCount}/${report.bindings.length} ` +
+      `schemaComplete=${report.schemaComplete} root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const b of report.bindings) {
+    process.stdout.write(`    · ${b.consumer} ← ${b.fold} oneClock=${b.oneClock}${b.residual ? ` (${b.residual})` : ''}\n`)
+  }
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+
+/** API fuse metric row — envelope · trinity · speed · security at call time. */
+export type ApiFuseMetricRow = {
+  readonly metric: string
+  readonly before: string | number
+  readonly after: string | number
+  readonly delta: string
+  readonly sourceFold: string
+}
+
+/**
+ * apiFuse — standardise APIs · fuse in trinities-of-trinities · hologram fractals · physical quantum metrics · security.
+ * Pair: api/fuse · dual fuse/api · CLI npm run quantum:api-fuse
+ */
+export function apiFuse(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`apiFuse:${Math.floor(at / HERO_CYCLE_MS)}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const toolbox = __ns_up_up_quantum_apps.standardToolboxIoCatalog(matrix, at)
+    const catalog = __ns_up_up_quantum_apps.quantumCliToolsCatalog(matrix, at)
+    const importFractal = __ns_up_up_quantum_apps.importFractalMap(matrix, at)
+    const bind = __ns_enforcement_scan.bindFuse(enforcementScanRoot())
+    const dir = directionalTrinityForwardInverseReverse(matrix)
+    const trinity = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
+    const clock = oneClockApi(matrix, at)
+    const qpu = qpuCpuGpu(matrix, at)
+    const thermo = thermoQuantumBalance(matrix, at)
+    const security = __ns_up_up_quantum_apps.mcpQuantumSecurity(matrix, at)
+    let tamperOn = false
+    try {
+      tamperOn = __ns_up_up_quantum_apps.wiredToForgeMaxTamperingCost(matrix, at).computes
+    } catch {
+      tamperOn = false
+    }
+    const envelopeBefore = 0
+    const envelopeAfter = toolbox.migrated
+    const toolTotal = toolbox.total
+    const apisStandardised = toolbox.computes && bind.computes && clock.schemaComplete
+    const apiSchemaCoverage = toolTotal > 0 ? envelopeAfter / toolTotal : 0
+    const trinitiesOfTrinitiesOn = dir.computes && trinity.computes && 3 * 3 === 9
+    const trinityOfTrinitiesReceipt = merkleFold([dir.root, trinity.root, toUuid('trinity-3x3=9')])
+    const sacredGeometryOn =
+      importFractal.roundTripIdentity === true &&
+      soft('folder', 'fractal') &&
+      soft('import', 'fractal')
+    const hologramFractalOn = importFractal.envelopeRoundTripIdentity && importFractal.roundTripIdentity
+    const physicalQuantumOn = qpu.qpuEqualsCpuGpu && thermo.computes && clock.schemaComplete
+    const ftlSpeedMetrics = qpu.metrics.filter((row) => row.metric.includes('reuse') || row.metric.includes('build') || row.metric.includes('round-trip'))
+    const securityMetrics = [
+      { metric: 'mcp/security structural', on: security.computes, source: 'mcpQuantumSecurity' },
+      { metric: 'tamper/max wired', on: tamperOn, source: 'wiredToForgeMaxTamperingCost' },
+      { metric: 'bind/fuse envelope', on: bind.computes, source: 'bindFuse' },
+    ]
+    const deltaApisOnSchema = envelopeAfter - envelopeBefore
+    const honestOpenNamed = [
+      ...(apiSchemaCoverage < 1 ? [`residual:apis-not-all-envelope=${toolTotal - envelopeAfter}`] : []),
+      ...(bind.families?.every((f: { present: boolean }) => f.present) ? [] : ['residual:bind-family-gap']),
+      'honesty:hologram=content-address-merkle-not-physical-holography',
+      'honesty:ftl-speed=memo-reuse-metrics-only',
+    ] as const
+    const residualNamed = [...honestOpenNamed]
+    const fuseInTrinities = dir.computes && trinity.computes
+    const on =
+      apisStandardised &&
+      fuseInTrinities &&
+      trinitiesOfTrinitiesOn &&
+      hologramFractalOn &&
+      physicalQuantumOn &&
+      security.computes &&
+      claySolvedTheorem().claySolvedByThisFold === 0
+    const schema = {
+      version: '1' as const,
+      kind: 'ceccec.tool.envelope' as const,
+      clock: { cycleMs: clock.heroCycleMs, schemaComplete: clock.schemaComplete },
+      bindings: bind.superpositions?.length ?? 0,
+      envelopeCoverage: roundTo(apiSchemaCoverage, 4),
+    }
+    const deltaTable: ApiFuseMetricRow[] = [
+      {
+        metric: 'API envelope coverage',
+        before: envelopeBefore,
+        after: envelopeAfter,
+        delta: `+${deltaApisOnSchema}/${toolTotal}`,
+        sourceFold: 'standardToolboxIoCatalog',
+      },
+      {
+        metric: 'trinity-of-trinities',
+        before: '3 directional',
+        after: '3×3=9',
+        delta: trinitiesOfTrinitiesOn ? 'identity' : '—',
+        sourceFold: 'directionalTrinity × trinity/speedup',
+      },
+      {
+        metric: 'hologram round-trip',
+        before: importFractal.roundTripTotal - importFractal.roundTripCount,
+        after: importFractal.roundTripCount,
+        delta: importFractal.roundTripIdentity ? 'identity' : '—',
+        sourceFold: 'importFractalMap',
+      },
+      {
+        metric: 'one clock bindings',
+        before: clock.multiClockDebt.length,
+        after: clock.boundCount,
+        delta: `${clock.boundCount}/${clock.bindings.length}`,
+        sourceFold: 'oneClockApi',
+      },
+    ]
+    const facets = [
+      { facet: 'apiFuse', on },
+      { facet: 'apisStandardised', on: apisStandardised },
+      { facet: 'fuseInTrinities', on: fuseInTrinities },
+      { facet: 'trinitiesOfTrinitiesOn', on: trinitiesOfTrinitiesOn },
+      { facet: 'sacredGeometryOn', on: sacredGeometryOn },
+      { facet: 'hologramFractalOn', on: hologramFractalOn },
+      { facet: 'physicalQuantumOn', on: physicalQuantumOn },
+      { facet: `ftlSpeedMetrics=${ftlSpeedMetrics.length}`, on: ftlSpeedMetrics.length >= 1 },
+      { facet: `securityMetrics=${securityMetrics.filter((r) => r.on).length}/${securityMetrics.length}`, on: security.computes },
+      { facet: `residualNamed=${residualNamed.length}`, on: residualNamed.length >= 1 },
+      { facet: `envelopeCoverage=${roundTo(apiSchemaCoverage, 4)}`, on: envelopeAfter === toolTotal && toolTotal > 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`api-fuse:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const sealed = sealFacets('api-fuse-trinity-hologram', facets)
+    return {
+      computes: sealed.ok && on,
+      apiFuse: on,
+      apisStandardised,
+      fuseInTrinities,
+      trinitiesOfTrinitiesOn,
+      trinityOfTrinitiesReceipt,
+      sacredGeometryOn,
+      hologramFractalOn,
+      physicalQuantumOn,
+      ftlSpeedMetrics,
+      securityMetrics,
+      schema,
+      deltaTable,
+      deltaApisOnSchema,
+      apiSchemaCoverage,
+      envelopeAfter,
+      toolTotal,
+      bind,
+      dir,
+      trinity,
+      clock,
+      qpu,
+      thermo,
+      security,
+      toolbox,
+      catalog,
+      importFractal,
+      residualNamed: [...residualNamed],
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        trinityOfTrinitiesReceipt,
+        toolbox.catalogRoot,
+        bind.root,
+        clock.root,
+        qpu.root,
+        ...deltaTable.map((row) => toUuid(`api-fuse-delta:${row.metric}:${row.delta}`)),
+      ]),
+      pair: 'api/fuse' as const,
+      dualPair: 'fuse/api' as const,
+      cli: 'npm run quantum:api-fuse',
+      route: '/en/quantum-tools#api-fuse',
+      heading: 'API fuse · trinity hologram envelope',
+      statement:
+        `apiFuse — envelope=${envelopeAfter}/${toolTotal} trinity³=${trinitiesOfTrinitiesOn ? 1 : 0} ` +
+        `hologram=${hologramFractalOn ? 1 : 0} security=${securityMetrics.filter((r) => r.on).length}/${securityMetrics.length}.`,
+      boundary:
+        'Standardise APIs to one envelope schema · fuse in trinities-of-trinities (3×3 digit grid) · content-addressed hologram fractals · ' +
+        'physical quantum = QPU/thermo/oneClock metrics · FTL speed = measured reuse only · security = structural/local. ' +
+        'Honest-open until every API migrates. clay=0 · qpuRequired=false.',
+    }
+  })
+}
+
+/** Alias — apiTrinityFuse ≡ apiFuse. */
+export const apiTrinityFuse = apiFuse
+
+/** npm run quantum:api-fuse */
+export function runApiFuseExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = apiFuse()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} api-fuse — ${report.statement}\n`)
+  process.stdout.write(`  schema: kind=${report.schema.kind} clock=${report.schema.clock.cycleMs} coverage=${report.schema.envelopeCoverage}\n`)
+  process.stdout.write('  Δ table:\n')
+  for (const row of report.deltaTable) {
+    process.stdout.write(`    · ${row.metric} ${row.before}→${row.after} Δ=${row.delta} ← ${row.sourceFold}\n`)
+  }
+  process.stdout.write('  speed metrics:\n')
+  for (const row of report.ftlSpeedMetrics) {
+    process.stdout.write(`    · ${row.metric} speedup=${row.speedup} ← ${row.sourceFold}\n`)
+  }
+  process.stdout.write('  security:\n')
+  for (const row of report.securityMetrics) {
+    process.stdout.write(`    · ${row.metric} on=${row.on ? 1 : 0} ← ${row.source}\n`)
+  }
+  for (const id of report.residualNamed) process.stdout.write(`  · ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
 

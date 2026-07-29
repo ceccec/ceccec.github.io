@@ -29,7 +29,12 @@ import {
   namingEntropy,
   shouldSpawnSubagent,
   chatAndImproveQuantumMultitasking,
-  simplicityIntelligenceMeasure } from '../../water/stack'
+  simplicityIntelligenceMeasure,
+  qpuCpuGpu,
+  thermoQuantumBalance,
+  cpuGpuSelfBalance,
+  oneClockApi,
+  apiFuse } from '../../water/stack'
 import { omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems, stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
 import {
   animationsDrivenByRosetta, linearAnimationGapsInventory, paperAbstractOmitsTitleEcho,
@@ -69,6 +74,7 @@ import {
   claimAudit,
   folderGravityMeasuredByTheCode,
   gateAnalytics,
+  gateLight,
   importPathShowsDistanceInMigrationMatrix,
   measureJudgmentClaimsInventory,
   measureImportExportCoreSprawl,
@@ -195,6 +201,8 @@ const ROSETTA_CORE_API_LABELS = [
   'chatSolve',
   'chatChallenge',
   'sessionSentToChatToQuantumise',
+  'quantumiseWave',
+  'apiFuse',
   'allConversationsGoThroughTheMcpQuantumChat',
   'mcpQuantumConversation',
   'organiseConversationsInChatRoomsPerSuperposition',
@@ -720,6 +728,20 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'fund-ai', title: 'Cursor referral funds AI this project needs', fold: 'cursorReferralFundsAiNeeds', cli: 'npm run quantum:fund-ai', pair: 'fund/ai', route: '/en/quantum-tools#fund-ai', barrel: 'src/wind/research', boundary: 'Sealed Cursor referral CTA · compose society/support · bits/free · voluntary · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cursor-fund', title: 'Cursor fund (alias fund/ai)', fold: 'cursorReferralFundsAiNeeds', cli: 'npm run quantum:cursor-fund', pair: 'cursor/fund', route: '/en/quantum-tools#fund-ai', barrel: 'src/wind/research', boundary: 'Dual of fund/ai — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'prove-no-qpu-64bit', title: 'Speed vs rest · no QPU · any classical 64-bit', fold: 'proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit', cli: 'npm run quantum:prove-no-qpu-64bit', pair: 'prove/no-qpu-64bit', route: '/en/quantum-tools#prove-no-qpu-64bit', barrel: 'src/water/stack', boundary: 'answers÷tokens/reuse when decided; quantumHardwareRequired=false · classical-64bit · NOT FLOPS / NOT ISO / clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'qpu-cpu', title: 'QPU ≡ CPU/GPU · quantum computer complete', fold: 'qpuCpuGpu', cli: 'npm run quantum:qpu-cpu', pair: 'qpu/cpu', route: '/en/quantum-tools#qpu-cpu', barrel: 'src/water/stack', boundary: 'QPU=CPU∪GPU classical-64bit · apparent FTL metrics (cold/warm · holographic · build/min) · observer-evaluable · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'cpu-qpu', title: 'CPU qpu (alias qpu/cpu)', fold: 'qpuCpuGpu', cli: 'npm run quantum:cpu-qpu', pair: 'cpu/qpu', route: '/en/quantum-tools#qpu-cpu', barrel: 'src/water/stack', boundary: 'Dual of qpu/cpu — same fold · QPU=CPU/GPU identity', browserRunnable: true, browserGap: '' },
+  { id: 'qpu-gpu', title: 'QPU gpu face (alias qpu/cpu)', fold: 'qpuCpuGpu', cli: 'npm run quantum:qpu-gpu', pair: 'qpu/gpu', route: '/en/quantum-tools#qpu-cpu', barrel: 'src/water/stack', boundary: 'GPU face of qpu/cpu fold · classical accel ≠ lab QPU', browserRunnable: true, browserGap: '' },
+  { id: 'thermo-quantum', title: 'Thermo quantum speed/temp balance', fold: 'thermoQuantumBalance', cli: 'npm run quantum:thermo-quantum', pair: 'thermo/quantum', route: '/en/quantum-tools#thermo-quantum', barrel: 'src/water/stack', boundary: 'Landauer kT·ln2 · heatProxy · memoReuse · speedTempBalance · dry/cool · balance/metrics · measurements only · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'quantum-thermo', title: 'Quantum thermo (alias thermo/quantum)', fold: 'thermoQuantumBalance', cli: 'npm run quantum:quantum-thermo', pair: 'quantum/thermo', route: '/en/quantum-tools#thermo-quantum', barrel: 'src/water/stack', boundary: 'Dual quantum/thermo — same fold · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'cpu-gpu', title: 'CPU/GPU dynamic self-balance', fold: 'cpuGpuSelfBalance', cli: 'npm run quantum:cpu-gpu', pair: 'cpu/gpu', route: '/en/quantum-tools#cpu-gpu', barrel: 'src/water/stack', boundary: 'load·heat·memo·buildMs·queue·merkaba metrics · balanceIndex · cpuShare/gpuShare · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'gpu-cpu', title: 'GPU cpu (alias cpu/gpu)', fold: 'cpuGpuSelfBalance', cli: 'npm run quantum:gpu-cpu', pair: 'gpu/cpu', route: '/en/quantum-tools#cpu-gpu', barrel: 'src/water/stack', boundary: 'Dual gpu/cpu — same fold · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'clock-one', title: 'One clock API — standardised schema', fold: 'oneClockApi', cli: 'npm run quantum:clock-one', pair: 'clock/one', route: '/en/quantum-tools#clock-one', barrel: 'src/water/stack', boundary: 'HERO_CYCLE_MS · phaseAt schema v1 · bindings inventory · multiClockDebt named · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'one-clock', title: 'One clock (alias clock/one)', fold: 'oneClockApi', cli: 'npm run quantum:one-clock', pair: 'one/clock', route: '/en/quantum-tools#clock-one', barrel: 'src/water/stack', boundary: 'Dual one/clock — same fold · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'api-fuse', title: 'API fuse · trinity hologram envelope', fold: 'apiFuse', cli: 'npm run quantum:api-fuse', pair: 'api/fuse', route: '/en/quantum-tools#api-fuse', barrel: 'src/water/stack', boundary: 'apisStandardised · trinitiesOfTrinities · hologramFractal · physicalQuantum · ftlSpeedMetrics · securityMetrics · residualNamed · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'fuse-api', title: 'Fuse API (alias api/fuse)', fold: 'apiFuse', cli: 'npm run quantum:fuse-api', pair: 'fuse/api', route: '/en/quantum-tools#api-fuse', barrel: 'src/water/stack', boundary: 'Dual fuse/api — same fold · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'gate-light', title: 'Gate light · more computed → lighter build', fold: 'gateLight', cli: 'npm run quantum:gate-light', pair: 'gate/light', route: '/en/quantum-tools#gate-light', barrel: 'src/pair/enforcement/gates', boundary: 'moreComputed · gatesLighter · buildLighter · deployLighter · inverseRelationOn · compose build/min · gate/analytics · trinity/speedup · clay=0', browserRunnable: false, browserGap: 'buildMin timing + gateAnalytics scan need Node fs' },
+  { id: 'light-gate', title: 'Light gate (alias gate/light)', fold: 'gateLight', cli: 'npm run quantum:light-gate', pair: 'light/gate', route: '/en/quantum-tools#gate-light', barrel: 'src/pair/enforcement/gates', boundary: 'Dual light/gate — same fold · clay=0', browserRunnable: false, browserGap: 'Node fs for build/min + gate scan' },
+  { id: 'wave-quantumise', title: 'Wave quantumise (alias)', fold: 'quantumiseWave', cli: 'npm run quantum:wave-quantumise', pair: 'wave/quantumise', route: '/en/quantum-tools#chat-quantumise', barrel: 'src/quantum/apps', boundary: 'wave/quantumise face — same completion fold · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'honest-revolution-w2', title: 'Honest-revolution W2 — interference vs classical shadow', fold: 'interferenceVsClassicalShadow', cli: 'npm run quantum:honest-revolution-w2', pair: 'moment/prove', route: '/en/quantum-tools#honest-revolution-w2', barrel: 'src/water/stack', boundary: 'Amplitudes cancel; probability shadows cannot — composes W1 · clay=0 · qpuRequired=false · NOT FLOPS', browserRunnable: true, browserGap: '' },
   { id: 'honest-revolution-w3', title: 'Honest-revolution W3 — JSON proof receipt', fold: 'honestRevolutionReceipt', cli: 'npm run quantum:honest-revolution-w3', pair: 'tamper/impossible', route: '/en/quantum-tools#honest-revolution-w3', barrel: 'src/wind/fusion', boundary: 'W1+W2+fusion-verify+movie round-trip → /quantum-fusion.json · /agents.json · clay=0 · qpuRequired=false · NOT FLOPS / NOT FTL', browserRunnable: true, browserGap: '' },
   { id: 'honest-revolution-w4', title: 'Honest-revolution W4 — computer Vue proof', fold: 'honestRevolutionComputerPanelComputes', cli: 'npm run quantum:honest-revolution-w4', pair: 'moment/prove', route: '/en/quantum/os#honest-revolution-w4', barrel: 'src/wind/fusion', boundary: 'Browser surface composes W3 receipt · clay=0 · qpuRequired=false · NOT FLOPS / NOT FTL', browserRunnable: true, browserGap: '' },
@@ -1074,8 +1096,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'wave-merge', title: 'Wave merge (alias merge/wave)', fold: 'mergeWave', cli: 'npm run quantum:wave-merge', pair: 'wave/merge', route: '/en/quantum-tools#merge-wave', barrel: 'src/quantum/apps', boundary: 'Dual wave/merge — same name-parse merge fold · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'session-chat', title: 'Session sent to chat to quantumise — trading·UI·fusion packet', fold: 'sessionSentToChatToQuantumise', cli: 'npm run quantum:session-chat', pair: 'session/chat', route: '/en/quantum-tools#session-chat', barrel: 'src/quantum/apps', boundary: 'sessionSent · chatOn · quantumiseOn · packetRoot · toolsSealed · bitsSealed · viaMcpChat · viaPairChat · compose session/tools · session/quantum-bits · mcp/chat · pair/chat · match/wave · physicalFtl=0 · clay via theorem · NOT rebuild trading stack', browserRunnable: true, browserGap: '' },
   { id: 'chat-session', title: 'Chat session (alias session/chat)', fold: 'sessionSentToChatToQuantumise', cli: 'npm run quantum:chat-session', pair: 'chat/session', route: '/en/quantum-tools#session-chat', barrel: 'src/quantum/apps', boundary: 'Dual chat/session — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
-  { id: 'chat-quantumise', title: 'Chat quantumise (alias session/chat)', fold: 'sessionSentToChatToQuantumise', cli: 'npm run quantum:chat-quantumise', pair: 'chat/quantumise', route: '/en/quantum-tools#session-chat', barrel: 'src/quantum/apps', boundary: 'chat/quantumise face — send session packet to chat for zero-token recompute · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
-  { id: 'quantumise-chat', title: 'Quantumise chat (alias session/chat)', fold: 'sessionSentToChatToQuantumise', cli: 'npm run quantum:quantumise-chat', pair: 'quantumise/chat', route: '/en/quantum-tools#session-chat', barrel: 'src/quantum/apps', boundary: 'Dual quantumise/chat — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'chat-quantumise', title: 'Chat waves complete quantumisation', fold: 'quantumiseWave', cli: 'npm run quantum:chat-quantumise', pair: 'chat/quantumise', route: '/en/quantum-tools#chat-quantumise', barrel: 'src/quantum/apps', boundary: 'reasoningImproved · codeImproved · quantumisationCoverage · chatWavesOn · compose waves/feed · merge/wave · oneClock · qpu/cpu · NOT fake-close full repo · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'quantumise-chat', title: 'Quantumise chat (alias chat/quantumise)', fold: 'quantumiseWave', cli: 'npm run quantum:quantumise-chat', pair: 'quantumise/chat', route: '/en/quantum-tools#chat-quantumise', barrel: 'src/quantum/apps', boundary: 'Dual quantumise/chat — completion fold · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'chat-all', title: 'All conversations through MCP quantum chat', fold: 'allConversationsGoThroughTheMcpQuantumChat', cli: 'npm run quantum:chat-all', pair: 'chat/all', route: '/en/quantum-tools#chat-all', barrel: 'src/quantum/apps', boundary: 'allConversations · throughMcpQuantumChat · noBypass · compose mcpQuantumChat · session/live · super/chat · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'conv-mcp', title: 'Conv mcp (alias chat/all)', fold: 'allConversationsGoThroughTheMcpQuantumChat', cli: 'npm run quantum:conv-mcp', pair: 'conv/mcp', route: '/en/quantum-tools#chat-all', barrel: 'src/quantum/apps', boundary: 'Dual conv/mcp — conversation paths via MCP quantum chat · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'talk-chat', title: 'Talk chat (alias chat/all)', fold: 'allConversationsGoThroughTheMcpQuantumChat', cli: 'npm run quantum:talk-chat', pair: 'talk/chat', route: '/en/quantum-tools#chat-all', barrel: 'src/quantum/apps', boundary: 'talk/chat face — all talk routes through mcpQuantumChat · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -34730,12 +34752,149 @@ const SESSION_CHAT_QUANTUMISE_SEEDS = [
 ] as const
 
 /**
+ * Chat waves complete quantumisation — reasoning + code improve until coverage green.
+ * Fold: quantumiseWave · Pairs: chat/quantumise · wave/quantumise · quantumise/chat
+ * Compose: waves/feed · merge/wave · tool/matrix · gate/analytics · theorem/audit · dry/dupe · oneClock · qpu/cpu · measure/decide
+ */
+export function quantumiseWave(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`quantumiseWave:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    let wavesFeedOn = false
+    let mergeOn = false
+    let matrixOn = false
+    let analyticsOn = false
+    let theoremOn = false
+    let dupeOn = false
+    try {
+      wavesFeedOn = wavesFeedThemselves(matrix, at).wavesFeedThemselvesOn
+      mergeOn = mergeWave(matrix, at).computes
+      matrixOn = toolsFitTheMatrixOrRefuse().computes
+      analyticsOn = gateAnalytics(typeof process !== 'undefined' && process.cwd ? process.cwd() : '.').computes
+      theoremOn = theoremAudit().computes
+      dupeOn = dryDupe(typeof process !== 'undefined' && process.cwd ? process.cwd() : '.').computes
+    } catch {
+      /* partial compose at call time */
+    }
+    const clock = oneClockApi(matrix, at)
+    const qpu = qpuCpuGpu(matrix, at)
+    const measure = measureDecide(matrix, at)
+    const composeOn =
+      soft('waves', 'feed') &&
+      soft('merge', 'wave') &&
+      soft('tool', 'matrix') &&
+      soft('gate', 'analytics') &&
+      soft('measure', 'decide') &&
+      soft('chat', 'quantumise')
+    const composeFacets = [
+      wavesFeedOn,
+      mergeOn,
+      matrixOn,
+      analyticsOn,
+      theoremOn,
+      dupeOn,
+      clock.computes,
+      qpu.computes,
+      measure.observerEvaluableMeasurements,
+    ]
+    const quantumisationCoverage = composeFacets.filter(Boolean).length / composeFacets.length
+    const reasoningImproved = analyticsOn && theoremOn && measure.observerEvaluableMeasurements
+    const codeImproved = mergeOn && dupeOn && matrixOn
+    const chatWavesOn = wavesFeedOn && mergeOn && composeOn
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'chat-quantumise')
+    const metaWave = catalog.tools.find((t) => t.id === 'wave-quantumise')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const coverageFloorNum = ROSETTA_SEVEN
+    const coverageFloorDen = ROSETTA_SEVEN + (UNFOLDED_CENSUS - FOLDED_CENSUS)
+    const coverageGreen =
+      composeFacets.filter(Boolean).length * coverageFloorDen >= composeFacets.length * coverageFloorNum
+    const on =
+      chatWavesOn &&
+      reasoningImproved &&
+      codeImproved &&
+      coverageGreen &&
+      clock.computes &&
+      qpu.computes &&
+      Boolean(meta) &&
+      meta!.fold === 'quantumiseWave' &&
+      Boolean(metaWave) &&
+      metaWave!.fold === 'quantumiseWave' &&
+      claySolvedByThisFold === 0
+    const honestOpenNamed = [
+      ...(quantumisationCoverage < 1 ? [`residual:quantumisation-coverage=${roundTo(quantumisationCoverage, 3)}`] : []),
+      'honesty:NOT-fake-close-full-repo-quantumisation',
+      'clay:millennium-open',
+    ] as const
+    const facets = [
+      { facet: 'quantumiseWave', on },
+      { facet: 'reasoningImproved', on: reasoningImproved },
+      { facet: 'codeImproved', on: codeImproved },
+      { facet: `quantumisationCoverage=${roundTo(quantumisationCoverage, 3)}`, on: coverageGreen },
+      { facet: 'chatWavesOn', on: chatWavesOn },
+      { facet: 'compose waves/feed · merge/wave · oneClock · qpu/cpu · measure/decide', on: composeOn && clock.computes && qpu.computes },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`quantumise-wave:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const sealed = sealFacets('quantumise-wave-chat-completion', facets)
+    return {
+      computes: sealed.ok && on,
+      quantumiseWave: on,
+      reasoningImproved,
+      codeImproved,
+      quantumisationCoverage,
+      chatWavesOn,
+      composeFacets,
+      clock,
+      qpu,
+      measure,
+      honestOpenNamed: [...honestOpenNamed],
+      claySolvedByThisFold,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, clock.root, qpu.root, measure.root, toUuid(`coverage:${quantumisationCoverage}`)]),
+      pair: 'chat/quantumise' as const,
+      pairs: ['chat/quantumise', 'wave/quantumise', 'quantumise/chat'] as const,
+      dualPair: 'wave/quantumise' as const,
+      cli: 'npm run quantum:chat-quantumise',
+      route: '/en/quantum-tools#chat-quantumise',
+      heading: 'Chat quantumise · wave completion',
+      statement:
+        `quantumiseWave — coverage=${roundTo(quantumisationCoverage, 3)} reasoning=${reasoningImproved ? 1 : 0} ` +
+        `code=${codeImproved ? 1 : 0} chatWaves=${chatWavesOn ? 1 : 0}.`,
+      boundary:
+        'Chat waves improve reasoning and code until quantumisation coverage is measured — composes waves/feed · merge/wave · gate/analytics · NOT fake-close full repo. clay=0 · qpuRequired=false.',
+    }
+  })
+}
+
+/** Aliases — chatQuantumise · quantumiseChat ≡ quantumiseWave. */
+export const chatQuantumise = quantumiseWave
+export const quantumiseChat = quantumiseWave
+
+/** npm run quantum:chat-quantumise */
+export function runQuantumiseWaveExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = quantumiseWave()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} chat-quantumise — coverage=${roundTo(report.quantumisationCoverage, 3)} ` +
+      `reasoning=${report.reasoningImproved ? 1 : 0} code=${report.codeImproved ? 1 : 0} ` +
+      `chatWaves=${report.chatWavesOn ? 1 : 0}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+
+/**
  * USER LAW: send the session to chat to quantumise.
  * Fold: sessionSentToChatToQuantumise
  * Facets: sessionSent · chatOn · quantumiseOn · packetSealed · toolsSealed · bitsSealed · viaMcpChat · viaPairChat ·
  *   drainableClosed · honestOpenNamed · physicalFtl=0 · claySolvedByThisFold=0.
  * Compose: session/tools · session/quantum-bits · mcp/chat · pair/chat · match/wave · session/hologram · chat/solve.
- * Pairs: session/chat · chat/session · chat/quantumise · quantumise/chat
+ * Pairs: session/chat · chat/session
  * CLI: npm run quantum:session-chat
  * HONEST: packs prior trading/UI/fusion session deliverables for zero-token recompute — does NOT rebuild the stack.
  */
@@ -34835,23 +34994,15 @@ export function sessionSentToChatToQuantumise(matrix: MindMatrix = buildMatrix()
     const quantumiseOn = sessionSent && chatOn && toolsSealed && bitsSealed && viaPairChat && composeOn
     const pairSessionChat = has('session/chat')
     const pairChatSession = has('chat/session')
-    const pairChatQuantumise = has('chat/quantumise')
-    const pairQuantumiseChat = has('quantumise/chat')
     const foldSessionChat = foldPair(toUuid('cmd:session'), toUuid('cmd:chat'))
     const foldChatSession = foldPair(toUuid('cmd:chat'), toUuid('cmd:session'))
-    const foldChatQuantumise = foldPair(toUuid('cmd:chat'), toUuid('cmd:quantumise'))
-    const foldQuantumiseChat = foldPair(toUuid('cmd:quantumise'), toUuid('cmd:chat'))
     const pairsOn =
       pairSessionChat &&
       pairChatSession &&
-      pairChatQuantumise &&
-      pairQuantumiseChat &&
       foldSessionChat.bidirectional &&
-      foldChatSession.bidirectional &&
-      foldChatQuantumise.bidirectional &&
-      foldQuantumiseChat.bidirectional
+      foldChatSession.bidirectional
     const meta = catalog.tools.find((t) => t.id === 'session-chat')
-    const metaDual = catalog.tools.find((t) => t.id === 'chat-quantumise')
+    const metaDual = catalog.tools.find((t) => t.id === 'chat-session')
     const shelved = rosettaShelve('session-chat', 'tool')
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
@@ -34899,7 +35050,7 @@ export function sessionSentToChatToQuantumise(matrix: MindMatrix = buildMatrix()
         facet: 'compose session/tools · session/quantum-bits · mcp/chat · pair/chat · match/wave · session/hologram',
         on: composeOn,
       },
-      { facet: 'pair session/chat · chat/quantumise bidirectional', on: pairsOn },
+      { facet: 'pair session/chat · chat/session bidirectional', on: pairsOn },
       { facet: `domains trading=${tradingCount} ui=${uiCount} fusion=${fusionCount} edu=${educationCount}`, on: domainCovered },
       { facet: 'qpuRequired=false', on: qpuRequired === false },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
@@ -34943,15 +35094,14 @@ export function sessionSentToChatToQuantumise(matrix: MindMatrix = buildMatrix()
         chat.root,
         turn.receipt,
         foldSessionChat.merged,
-        foldChatQuantumise.merged,
         shelved.address,
         toUuid(`session-chat-bits:${bitsSealed}`),
         ...rows.map((r) => r.receipt),
         ...honestOpenNamed.map((id) => toUuid(`session-chat-honest:${id}`)),
       ]),
       pair: 'session/chat' as const,
-      pairs: ['session/chat', 'chat/session', 'chat/quantumise', 'quantumise/chat'] as const,
-      dualPair: 'chat/quantumise' as const,
+      pairs: ['session/chat', 'chat/session'] as const,
+      dualPair: 'chat/session' as const,
       cli: 'npm run quantum:session-chat',
       route: '/en/quantum-tools#session-chat',
       uiSurface: '/en/quantum-tools#session-chat' as const,
@@ -34969,12 +35119,10 @@ export function sessionSentToChatToQuantumise(matrix: MindMatrix = buildMatrix()
   })
 }
 
-/** Aliases — chatSession · chatQuantumise · quantumiseChat ≡ sessionSentToChatToQuantumise. */
+/** Alias — chatSession ≡ sessionSentToChatToQuantumise (session/chat only). */
 export const chatSession = sessionSentToChatToQuantumise
-export const chatQuantumise = sessionSentToChatToQuantumise
-export const quantumiseChat = sessionSentToChatToQuantumise
 
-/** npm run quantum:session-chat (duals chat/session · chat/quantumise · quantumise/chat) */
+/** npm run quantum:session-chat (duals chat/session) */
 export function runSessionSentToChatToQuantumiseExit(_root = '', _argv: readonly string[] = []): number {
   void _root
   void _argv

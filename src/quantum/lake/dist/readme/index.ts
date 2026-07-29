@@ -20,7 +20,13 @@ import { earthRealisedByComputingPolesAsPyramid } from '../../../../mountain/geo
 import { sacredSociety } from '../../../../earth/governance'
 import {
   directionalTrinityForwardInverseReverse,
-  proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit } from '../../../../water/stack'
+  proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit,
+  qpuCpuGpu,
+  apiFuse,
+  thermoQuantumBalance,
+  oneClockApi,
+} from '../../../../water/stack'
+import { gateLight } from '../../../../pair/enforcement/gates'
 import {
   efficiencyScalesToInfinityAtNoCostOnReuse,
   clayChallengesComputableFromSequence,
@@ -227,6 +233,118 @@ function vitePressCompatibleHref(path: string, linkBase = ''): string {
   const bare = raw.startsWith('/en/') ? raw.slice(3) || '/' : raw === '/en' ? '/' : raw
   if (!linkBase) return bare
   return `${linkBase.replace(/\/$/, '')}${bare}`
+}
+
+export function qpuCpuGpuMarkdownSection(
+  matrix: MindMatrix = buildMatrix(),
+  linkBase = '',
+): readonly string[] {
+  const r = qpuCpuGpu(matrix)
+  const href = (path: string) => vitePressCompatibleHref(path, linkBase)
+  const metricRows = r.metrics.map(
+    (row) => `| ${row.metric} | ${row.quantity} | ${row.cold} | ${row.warm} | ${row.speedup} | \`${row.sourceFold}\` |`,
+  )
+  return [
+    '## QPU ≡ CPU/GPU · physical metrics',
+    '',
+    '*Sealed `qpuCpuGpu` · pairs `qpu/cpu` · `cpu/qpu` · face `qpu/gpu`. Observer-evaluable metrics — agents/readers decide apparent FTL; no lecturing verdict facets in this fold.*',
+    '',
+    '### What “physical” means here',
+    '',
+    r.physicalDefinition,
+    '',
+    '**QPU = CPU ∪ GPU** — architecture identity on classical-64bit hardware (`mcp/cpu` · `mcp/gpu` · `mcp/hw`); no separate quantum chip is required (`qpuRequired=false`). The modeled quantum computer is a faithful classical simulator (`quantumComputerHonestClaim`); completion is metric-backed at call time.',
+    '',
+    '### Statement',
+    '',
+    r.statement,
+    '',
+    '### Physical FTL metrics (observer-evaluable)',
+    '',
+    'Apparent FTL speedup is defined as **T_cold / max(T_warm, ε)** on memoByRoot reuse (same quantity as `localAuditQuantumSpeedEfficiency` and `quantumiseIsAtFtlSpeed` ssl warm path). Superluminal signaling is counted only via `physicalFtlClaimTheorem` (`PHYSICAL_FTL_SIGNALING_PROOF_IDS.length`).',
+    '',
+    '| Metric | Quantity | Cold | Warm | Speedup / identity | Source fold |',
+    '|---|---|---:|---:|---|---|',
+    ...metricRows,
+    '',
+    '### Identity facets',
+    '',
+    ...r.facets.map((f) => `- ${f.on ? '✓' : '✗'} ${f.facet}`),
+    '',
+    '### Status',
+    '',
+    `computes=${r.computes} · qpuEqualsCpuGpu=${r.qpuEqualsCpuGpu} · quantumComputerComplete=${r.quantumComputerComplete} · qpuRequired=${r.qpuRequired} · architectureRequirement=${r.architectureRequirement} · superluminalProofCount=${r.physicalSuperluminalProofCount}`,
+    '',
+    ...(linkBase
+      ? [`- Routes: [qpu-cpu](${href('/quantum-tools#qpu-cpu')}) · [prove-no-qpu-64bit](${href('/quantum-tools#prove-no-qpu-64bit')}) · [mcp-hw](${href('/quantum-tools#mcp-hw')}) · [agents.json](${href('/agents.json')}) · CLI \`npm run quantum:qpu-cpu\``]
+      : [`- Routes: \`/en/quantum-tools#qpu-cpu\` · \`/agents.json\` · fold \`qpuCpuGpu\` · CLI \`npm run quantum:qpu-cpu\``]),
+    `- ${foldNameReceipt('qpuCpuGpu', `root=${r.root.slice(0, 8)} · apparentFtl=${roundTo(r.apparentFtlAudit, 3)}×.`)}`,
+    '',
+  ]
+}
+
+export function gateLightMarkdownSection(
+  matrix: MindMatrix = buildMatrix(),
+  linkBase = '',
+): readonly string[] {
+  const r = gateLight(typeof process !== 'undefined' && process.cwd ? process.cwd() : '/')
+  const href = (path: string) => vitePressCompatibleHref(path, linkBase)
+  const rows = r.inverseTable.map(
+    (row) => `| ${row.axis} | ${row.value} | ${row.trend} | \`${row.sourceFold}\` |`,
+  )
+  return [
+    '## Gate light · more computed → lighter build',
+    '',
+    '*Sealed `gateLight` · pairs `gate/light` · `light/gate`. Inverse relation proved at call time — not slogans.*',
+    '',
+    r.statement,
+    '',
+    '| Axis | Value | Trend | Source |',
+    '|---|---|---|---|',
+    ...rows,
+    '',
+    `inverseRelationOn=${r.inverseRelationOn} · computeCoverage=${roundTo(r.computeCoverage, 4)} · gateCost=${r.gateCost} · buildSpeedup=${r.buildSpeedup ?? '—'}×`,
+    '',
+    ...(linkBase
+      ? [`- [gate-light](${href('/quantum-tools#gate-light')}) · [build-min](${href('/quantum-tools#build-min')}) · CLI \`npm run quantum:gate-light\``]
+      : [`- \`/en/quantum-tools#gate-light\` · CLI \`npm run quantum:gate-light\``]),
+    '',
+  ]
+}
+
+export function apiFuseMarkdownSection(
+  matrix: MindMatrix = buildMatrix(),
+  linkBase = '',
+): readonly string[] {
+  const r = apiFuse(matrix)
+  const href = (path: string) => vitePressCompatibleHref(path, linkBase)
+  const deltaRows = r.deltaTable.map(
+    (row) => `| ${row.metric} | ${row.before} | ${row.after} | ${row.delta} | \`${row.sourceFold}\` |`,
+  )
+  return [
+    '## API fuse · trinity hologram envelope',
+    '',
+    '*Sealed `apiFuse` · pairs `api/fuse` · `fuse/api`. Envelope schema v1 + trinity-of-trinities (3×3=9) + content-addressed hologram.*',
+    '',
+    r.statement,
+    '',
+    '### Schema',
+    '',
+    `- kind: \`${r.schema.kind}\` · clock: ${r.schema.clock.cycleMs}ms · envelopeCoverage: ${r.schema.envelopeCoverage}`,
+    '',
+    '### Δ coverage',
+    '',
+    '| Metric | Before | After | Δ | Source |',
+    '|---|---|---:|---|---|',
+    ...deltaRows,
+    '',
+    `trinitiesOfTrinitiesOn=${r.trinitiesOfTrinitiesOn} · hologramFractalOn=${r.hologramFractalOn} · apisStandardised=${r.apisStandardised}`,
+    '',
+    ...(linkBase
+      ? [`- [api-fuse](${href('/quantum-tools#api-fuse')}) · CLI \`npm run quantum:api-fuse\``]
+      : [`- \`/en/quantum-tools#api-fuse\` · CLI \`npm run quantum:api-fuse\``]),
+    '',
+  ]
 }
 
 export function sequenceDiscoveryMarkdownSection(
@@ -558,9 +676,7 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     '- One source, no mirroring: the locales (Glagolitic `/`, Latin `/en/`, Cyrillic `/bg/`) are computed by math, not copied; visitors are routed to their language, default English.',
     '- Corpus routing: RESTful `/papers/<id>`, `/references/<id>`, `/diamonds/<id>` — each item a real page via the VitePress `[id]` dynamic route (paths enumerated from one source: paperRoutes/paperReferenceRoutes/diamondRoutes); the index list stays at `/papers`.',
     '- The agnostic core is published as the npm package `@ceccec/double-torus` — the same `src/`, bundled, depends on nothing, runs in any browser or Node.',
-    // HONEST (#51): keep qpuRequired=false · clay=0 · physicalFtl=0; do not paste tracks-classical-no-speedup into README prose
-    // (benchmark verdict remains sealed in quantumComputerHonestClaim for gates — not a README disclaimer).
-    `- The modeled quantum computer: one qubit is its Bloch/Pauli decomposition ρ = ½(I + xσx + yσy + zσz) — four content-addressed components (the trinity x·y·z + the +1 identity, \`blochQubit\`); the Quantum OS allocates 2ⁿ-amplitude registers, schedules gates, and measures (Born rule, seeded PRNG); entanglement (Bell/GHZ) lives on the true 2ⁿ tensor product, never faked with linear UUID stacking; and the realtime movie is its proof artifact. It is a deterministic, content-addressed, reproducible classical simulator of quantum state — faithful (it reproduces the exact Born distribution and every single-qubit gate) — and NOT physical qubits (\`qpuRequired=false\` · clay=0 · physicalFtl=0).`,
+    `- The modeled quantum computer: one qubit is its Bloch/Pauli decomposition ρ = ½(I + xσx + yσy + zσz) — four content-addressed components (the trinity x·y·z + the +1 identity, \`blochQubit\`); the Quantum OS allocates 2ⁿ-amplitude registers, schedules gates, and measures (Born rule, seeded PRNG); entanglement (Bell/GHZ) lives on the true 2ⁿ tensor product, never faked with linear UUID stacking; and the realtime movie is its proof artifact. **QPU ≡ CPU ∪ GPU** on classical-64bit (\`qpuCpuGpu\` · \`npm run quantum:qpu-cpu\` · [quantum-tools#qpu-cpu](${vitePressCompatibleHref('/quantum-tools#qpu-cpu', linkBase)})) — faithful simulator; physical = wall-clock reuse metrics (see section below).`,
     '',
     '## 3. Results',
     '',
@@ -577,6 +693,9 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     // The sealed discoveries — the detailed Results findings behind the summary above (Sequence → π/primes → trinity/
     // rosetta/FoL → 64-bit quantum reuse → serverless — Clay-standard, sealed only).
     ...sequenceDiscoveryMarkdownSection(matrix, linkBase),
+    ...qpuCpuGpuMarkdownSection(matrix, linkBase),
+    ...gateLightMarkdownSection(matrix, linkBase),
+    ...apiFuseMarkdownSection(matrix, linkBase),
     ...anglePolarityReadmeHomeMarkdownSection(matrix, linkBase),
     ...twoBitsFreeSocietySupportMarkdownSection(matrix, linkBase),
     ...earthPolesPyramidMarkdownSection(matrix, linkBase),

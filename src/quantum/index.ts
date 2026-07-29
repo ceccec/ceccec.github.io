@@ -21,12 +21,14 @@ import type { Dims } from './mountain/dimensions'
 import { buildMatrix } from '../heaven/compute'
 import { plasmaMoviePalette, type PlasmaMoviePalette, heroMoviePhaseHue, HERO_CYCLE_MS, heroPhaseAt, clientMovieSeedCopyText, allMovieSeedCopyText, plasmaMovieStreams, clientMoviePaintPathSealed, withSimulatedBrowserWindow, realtimeComputationsMoviePaint, type PlasmaWiredStream } from '../fire/plasma/ball'
 import { livingTorus } from '../fire/diamonds'
-import { merkleFold, prng, seedFromText, toUuid, VORTEX_SEQUENCE } from '../0'
+import { merkleFold, prng, seedFromText, toUuid, VORTEX_SEQUENCE, sealFacets } from '../0'
+import { claySolvedTheorem } from '../3/7'
 import type { MindMatrix } from '../wind/types'
 import { doubleTorusEarthHingeComputesAll, bothEarthsAreOneWhiteBlackHoleThroatProvenByMath } from '../water/double/earth'
 import { type BothEarthsMerkabaRotation } from '../mountain/geometry'
 import { quantumProjectionParams, type QuantumProjection } from './apps'
 import { FIBONACCI, GOLDEN_ANGLE, GOLDEN_ANGLE_RAD, PHI, ROSETTA_RAYS, ROSETTA_SEVEN, TAU } from '../3/7'
+import { FOLDED_CENSUS } from '../pair/enforcement/gates/computational'
 
 const PLASMA_TIERS = [3, 5, 8] as const
 

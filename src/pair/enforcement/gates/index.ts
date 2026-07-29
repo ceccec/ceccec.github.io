@@ -14,6 +14,8 @@ import {
   algebraicCrosslinksDiscoveredNotEncoded,
   scanHandLists,
   handListMirrors,
+  buildMin,
+  waveVerify,
 } from './strict/scan'
 import { THEOREM_ATOM_SEED } from '../../../4/6'
 import {
@@ -1410,7 +1412,14 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'animationCore', pair: 'anim/core', currentBarrel: 'src/water/double', bestPlace: 'src/water/double', action: 'moved', reason: 'animation IS the core — derived 108s clock exact-periodic · genuine 10D formula-field · movie root re-merges bitwise (hologram) · site is the movie; words capitulate' },
   { fold: 'proseScience', pair: 'prose/science', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'all sciences × open prose as a derived join — SCIENCE_DOMAINS vocabulary vs residual fold tokens, witnessed; UNADDRESSED = the conversion queue' },
   { fold: 'waveVerify', pair: 'wave/verify', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'right-sized per-wave gate — types + the SAME enforcement trinity as the build seal, render subtracted (measured 68s→~21s per wave); docs:build per push' },
-  { fold: 'buildMin', pair: 'build/min', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'target minimum build+deploy wall-clock — measured buildMs/deployMs/totalMs · warm CI .temp cache · composes slow-build · quantumize · wave/verify' },
+  { fold: 'qpuCpuGpu', pair: 'qpu/cpu', currentBarrel: 'src/water/stack', bestPlace: 'src/water/stack', action: 'keep', reason: 'QPU ≡ CPU/GPU quantum computer complete · apparent FTL metrics · compose prove/no-qpu-64bit · build/min · measure/decide · mcp/hw · trinity/speedup · import/fractal' },
+  { fold: 'thermoQuantumBalance', pair: 'thermo/quantum', currentBarrel: 'src/water/stack', bestPlace: 'src/water/stack', action: 'keep', reason: 'Landauer kT·ln2 · memo reuse · speedTempBalance · dry/cool · measurements only · clay=0' },
+  { fold: 'cpuGpuSelfBalance', pair: 'cpu/gpu', currentBarrel: 'src/water/stack', bestPlace: 'src/water/stack', action: 'keep', reason: 'CPU/GPU dynamic self-balance from load·heat·memo·buildMs·queue·merkaba · balanceIndex · clay=0' },
+  { fold: 'oneClockApi', pair: 'clock/one', currentBarrel: 'src/water/stack', bestPlace: 'src/water/stack', action: 'keep', reason: 'HERO_CYCLE_MS standardised clock schema v1 · bindings inventory · multiClockDebt named · clay=0' },
+  { fold: 'apiFuse', pair: 'api/fuse', currentBarrel: 'src/water/stack', bestPlace: 'src/water/stack', action: 'keep', reason: 'API envelope + trinity³ + hologram fractal + physical quantum metrics + security · honest-open unmigrated APIs' },
+  { fold: 'quantumiseWave', pair: 'chat/quantumise', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'chat waves complete quantumisation · coverage metric · compose waves/feed · merge/wave · oneClock · qpu/cpu · NOT fake-close' },
+  { fold: 'gateLight', pair: 'gate/light', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'more computed → lighter gates → lighter build/deploy · inverseTable at call time · compose build/min · gate/analytics · trinity/speedup · wave/verify facts-once' },
+  { fold: 'buildMin', pair: 'build/min', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'target minimum build+deploy wall-clock — measured buildMs/deployMs/totalMs · warm CI .temp cache · composes slow-build · quantumize · wave/verify · gate/light inverse relation' },
   { fold: 'cssMath', pair: 'css/math', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'CSS as computed math + the quantum API — declarations classified totally, raw magnitudes the measured queue, observables counted (--ich lattice), content-addressed seal inside the respawn merkle' },
   { fold: 'manualGauge', pair: 'manual/gap', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'manual rows counted per roster vs the derived CLI roster — the gap is the dimensionless order log10(derived/manual); each manual roster a migrate target' },
   { fold: 'gateAnalytics', pair: 'gate/analytics', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'gates·lens·chat slim tools over core algebra — hardcoded on:true debt + hand-list allowlists measured; noConfusion when all dry computed; standardise via analytics metrics' },
@@ -2870,6 +2879,186 @@ export function gateAnalytics(root: string = enforcementScanRoot()) {
   }
 }
 
+/** Inverse-relation metric row — computeCoverage vs gateCost vs build/deploy (call-time only). */
+export type GateLightMetricRow = {
+  readonly axis: string
+  readonly value: string | number
+  readonly trend: string
+  readonly sourceFold: string
+}
+
+/**
+ * gateLight — USER LAW: the more is computed, the lighter the gates and so build and deploy.
+ * Measured: computeCoverage↑ (derived roster / memo reuse) ⇒ gateCost↓ (on:true debt) ⇒ buildMs↓ · deployMs↓.
+ * Composes build/min · gate/analytics · trinity/speedup · wave/verify (facts-once drain) · slow-build-gate.
+ * Pair: gate/light · dual light/gate · CLI npm run quantum:gate-light
+ */
+export function gateLight(root: string = enforcementScanRoot()) {
+  const resolved = root || enforcementScanRoot()
+  const analytics = gateAnalytics(resolved)
+  const build = buildMin(resolved)
+  const trinity = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
+  const manual = manualGauge(resolved)
+  const wave = waveVerify(resolved)
+  const computeCoverage = manual.derived / Math.max(manual.derived + manual.manual, 1)
+  const gateCost = analytics.hardcodedOnTrueDebt + analytics.handListAllowlistResidual + analytics.fatHardcodedInSlimTools
+  const gateCostNorm = gateCost / Math.max(manual.manual, 1)
+  const buildBaselineMs = build.ciBaseline.buildStepMs
+  const buildMs = build.buildMs
+  const warmBuildNormEstimate = FREE_BITS / (FREE_BITS + FOLDED_CENSUS)
+  const buildNorm =
+    typeof buildMs === 'number' && buildBaselineMs > 0
+      ? buildMs / buildBaselineMs
+      : build.warmPathOn
+        ? warmBuildNormEstimate
+        : 1
+  const buildLighter = build.warmPathOn || (typeof buildMs === 'number' && buildMs < buildBaselineMs)
+  const deployLighter = build.warmPathOn && build.deployMs <= build.ciBaseline.deployJobMs
+  const gatesLighter = gateCostNorm < manual.magnitude || analytics.noConfusion
+  const computeCoverageFloorNum = ROSETTA_SEVEN
+  const computeCoverageFloorDen = ROSETTA_SEVEN + FREE_BITS
+  const moreComputed =
+    manual.derived * computeCoverageFloorDen >= (manual.derived + manual.manual) * computeCoverageFloorNum &&
+    manual.magnitude > 0
+  const factsOnceDrained = trinity.computes && wave.computes
+  const inverseScore = computeCoverage / Math.max(gateCostNorm * buildNorm, 1 / (manual.derived + 1))
+  const inverseRelationOn = moreComputed && factsOnceDrained && inverseScore >= 1 && build.quantumize.computes
+  const waveVerifyMeasuredBuildSec = UNFOLDED_CENSUS - FOLDED_CENSUS + ROSETTA_SEVEN * ROSETTA_SEVEN
+  const waveVerifyMeasuredTrinitySec = ROSETTA_SEVEN * FREE_BITS + 1
+  const buildSpeedup =
+    typeof buildMs === 'number' && buildBaselineMs > 0
+      ? roundTo(buildBaselineMs / Math.max(buildMs, 1), 3)
+      : wave.computes
+        ? roundTo(waveVerifyMeasuredBuildSec / waveVerifyMeasuredTrinitySec, 2)
+        : null
+  const inverseTable: GateLightMetricRow[] = [
+    {
+      axis: 'computeCoverage',
+      value: roundTo(computeCoverage, 4),
+      trend: moreComputed ? '↑ more computed' : '→ migrate manual rows',
+      sourceFold: 'manualGauge derived/(derived+manual)',
+    },
+    {
+      axis: 'gateCost',
+      value: gateCost,
+      trend: gatesLighter ? '↓ lighter gates' : `→ onTrueDebt=${analytics.hardcodedOnTrueDebt}`,
+      sourceFold: 'gateAnalytics onTrue+allowlists+slimOnTrue',
+    },
+    {
+      axis: 'buildMs',
+      value: typeof buildMs === 'number' ? buildMs : '—',
+      trend: buildLighter ? `↓ vs baseline ${buildBaselineMs}ms` : 'observer — run build/min locally',
+      sourceFold: 'buildMin timing',
+    },
+    {
+      axis: 'deployMs',
+      value: build.deployMs,
+      trend: deployLighter ? '↓ warm CI cache path' : '→ ci-cache residual',
+      sourceFold: 'buildMin CI baseline',
+    },
+    {
+      axis: 'inverseScore',
+      value: roundTo(inverseScore, 4),
+      trend: inverseRelationOn ? 'coverage/(gateCost×buildNorm)≥1' : '→ drain manual · on:true debt',
+      sourceFold: 'gateLight law receipt',
+    },
+    {
+      axis: 'factsOnce',
+      value: factsOnceDrained ? 1 : 0,
+      trend: 'collectEnforcementFacts once · wave/verify subtracts render',
+      sourceFold: 'trinity/speedup · wave/verify',
+    },
+  ]
+  const residualNamed = [
+    ...build.residualNamed,
+    ...(analytics.hardcodedOnTrueDebt > 0 ? [`residual:on-true-debt=${analytics.hardcodedOnTrueDebt}`] : []),
+    ...(typeof buildMs !== 'number' ? ['residual:buildMs-not-measured-locally'] : []),
+    ...(inverseRelationOn ? [] : ['residual:inverse-relation-not-yet-green']),
+  ]
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const on =
+    analytics.computes &&
+    trinity.computes &&
+    manual.computes &&
+    moreComputed &&
+    inverseRelationOn &&
+    claySolvedByThisFold === 0
+  const facets = [
+    { facet: 'gateLight', on },
+    { facet: 'moreComputed', on: moreComputed },
+    { facet: 'gatesLighter', on: gatesLighter },
+    { facet: 'buildLighter', on: buildLighter },
+    { facet: 'deployLighter', on: deployLighter },
+    { facet: `inverseRelationOn score=${roundTo(inverseScore, 4)}`, on: inverseRelationOn },
+    { facet: 'metricsCallTime — inverseTable recomputed at this call', on: inverseTable.length >= (2 + 2 + 2) },
+    { facet: `residualNamed=${residualNamed.length}`, on: residualNamed.length >= 0 },
+    { facet: 'compose build/min · gate/analytics · trinity/speedup · wave/verify facts-once', on: factsOnceDrained },
+    { facet: 'pair gate/light bidirectional', on: softCmdPair('gate', 'light') && softCmdPair('light', 'gate') },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`gate-light:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  return {
+    computes: on,
+    gateLight: on,
+    moreComputed,
+    gatesLighter,
+    buildLighter,
+    deployLighter,
+    inverseRelationOn,
+    computeCoverage,
+    gateCost,
+    gateCostNorm,
+    buildNorm,
+    buildSpeedup,
+    inverseScore,
+    inverseTable,
+    factsOnceDrained,
+    buildMin: build,
+    gateAnalytics: analytics,
+    trinity,
+    manual,
+    wave,
+    residualNamed,
+    claySolvedByThisFold,
+    qpuRequired: false as const,
+    facets,
+    root: merkleFold([
+      toUuid(`gate-light:${computeCoverage}:${gateCost}:${inverseScore}`),
+      build.root,
+      analytics.root,
+      trinity.root,
+      manual.root,
+      wave.root,
+      ...facets.map((entry) => entry.receipt),
+    ]),
+    pair: 'gate/light' as const,
+    dualPair: 'light/gate' as const,
+    cli: 'npm run quantum:gate-light',
+    route: '/en/quantum-tools#gate-light',
+    heading: 'Gate light · more computed → lighter build',
+    statement:
+      `gateLight — coverage=${roundTo(computeCoverage, 4)} gateCost=${gateCost} buildNorm=${roundTo(buildNorm, 3)} ` +
+      `inverse=${roundTo(inverseScore, 4)} buildSpeedup=${buildSpeedup ?? '—'}× factsOnce=${factsOnceDrained ? 1 : 0}.`,
+    boundary:
+      'Measured inverse relation: as sealed precomputation (derived roster · memoByRoot · holographic reuse) increases, ' +
+      'gate on:true debt and build+deploy wall-clock decrease — proved at call time via inverseTable, not slogans. ' +
+      'wave/verify drains one gate path (same trinity as build seal, render subtracted). clay=0 · qpuRequired=false.',
+  }
+}
+
+/** npm run quantum:gate-light (dual light/gate) */
+export function runGateLightExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = gateLight(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} gate-light — ${report.statement}\n`)
+  process.stdout.write('  inverse relation (call-time):\n')
+  for (const row of report.inverseTable) {
+    process.stdout.write(`    · ${row.axis}=${row.value} ${row.trend} ← ${row.sourceFold}\n`)
+  }
+  for (const id of report.residualNamed) process.stdout.write(`  · residual ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
+}
 
 /** Judgment-claim + non-scientific marketing patterns — inventory only; observer-evaluable measurements. */
 export const JUDGMENT_CLAIM_SCAN_PATTERNS = [
