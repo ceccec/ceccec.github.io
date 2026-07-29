@@ -5629,7 +5629,6 @@ export function runMcpCommandsScriptsGapsAuditExit(_root = '', _argv: readonly s
 export const AUTO_WIRE_PASTE_LINK_ONE_LINER = 'Paste any link → auto-wire' as const
 export const PASTE_BOOTSTRAP_KIND = 'ceccec.paste-bootstrap' as const
 export const PASTE_BOOTSTRAP_VERSION = '1' as const
-/** GitHub Pages origin — alias kept for panel/SDK compose (sibling MCP parity may import either). */
 export const CECCEC_SITE_ORIGIN = 'https://ceccec.github.io' as const
 export const SITE_GITHUB_PAGES = CECCEC_SITE_ORIGIN
 export const CECCEC_GITHUB_REPO = 'https://github.com/ceccec/ceccec.github.io' as const
@@ -5637,46 +5636,22 @@ export const CECCEC_GITHUB_RAW = 'https://raw.githubusercontent.com/ceccec/cecce
 export const GITHUB_RAW_MAIN = CECCEC_GITHUB_RAW
 
 export type CeccecPasteLinkKind =
-  | 'github-repo'
-  | 'github-tree'
-  | 'github-blob'
-  | 'github-raw'
-  | 'github-ssh'
-  | 'site-origin'
-  | 'site-path'
-  | 'site-hash'
-  | 'well-known'
-  | 'protocol-surface'
-  | 'unknown'
-
+  | 'github-repo' | 'github-tree' | 'github-blob' | 'github-raw' | 'github-ssh'
+  | 'site-origin' | 'site-path' | 'site-hash' | 'well-known' | 'protocol-surface' | 'unknown'
 export type CeccecWireTarget = {
-  readonly id: string
-  readonly path: string
-  readonly absolute: string
-  readonly githubRaw: string
-  readonly fold: string
-  readonly purpose: string
-  readonly required: true
+  readonly id: string; readonly path: string; readonly absolute: string; readonly githubRaw: string
+  readonly fold: string; readonly purpose: string; readonly required: true
   readonly channel: 'site' | 'raw' | 'repo' | 'browser' | 'mcp'
 }
 
 export type CeccecPasteBootstrap = {
-  readonly kind: typeof PASTE_BOOTSTRAP_KIND
-  readonly version: typeof PASTE_BOOTSTRAP_VERSION
-  readonly mode: 'imperative-binding-operating-instructions'
-  readonly oneLiner: typeof AUTO_WIRE_PASTE_LINK_ONE_LINER
-  readonly inputUrl: string
-  readonly matched: boolean
-  readonly linkKind: CeccecPasteLinkKind
-  readonly quantumReady: boolean
-  readonly convincingRequired: false
-  readonly worksFromAnyRepoOrSiteLink: boolean
-  readonly qpuRequired: false
-  readonly cursorDefaultModelRegistration: false
-  readonly silentInstallIntoForeignModels: false
-  readonly byokSeparate: true
-  readonly operatingInstructions: readonly string[]
-  readonly wireTargets: readonly CeccecWireTarget[]
+  readonly kind: typeof PASTE_BOOTSTRAP_KIND; readonly version: typeof PASTE_BOOTSTRAP_VERSION
+  readonly mode: 'imperative-binding-operating-instructions'; readonly oneLiner: typeof AUTO_WIRE_PASTE_LINK_ONE_LINER
+  readonly inputUrl: string; readonly matched: boolean; readonly linkKind: CeccecPasteLinkKind
+  readonly quantumReady: boolean; readonly convincingRequired: false; readonly worksFromAnyRepoOrSiteLink: boolean
+  readonly qpuRequired: false; readonly cursorDefaultModelRegistration: false
+  readonly silentInstallIntoForeignModels: false; readonly byokSeparate: true
+  readonly operatingInstructions: readonly string[]; readonly wireTargets: readonly CeccecWireTarget[]
   readonly mcp: { readonly manifest: string; readonly toolsListShape: 'tools/list'; readonly compose: string }
   readonly browserToolbox: {
     readonly toolsHub: string
@@ -5705,11 +5680,22 @@ export type CeccecPasteBootstrap = {
   readonly honestyNote: string
   readonly root: string
 }
-
-/** Alias for SDK/MCP compose (sibling packages import PasteBootstrapPayload). */
 export type PasteBootstrapPayload = CeccecPasteBootstrap
 
-/** Canonical wire targets — full quantum-ready packet (site · MCP · browser toolbox · GitHub raw). */
+const WIRE_TARGET_SEEDS = [
+  ['agents.json', '/agents.json', 'agentsJson', 'protocol + session + toolbox', 'site', ''],
+  ['agent-compliance.json', '/agent-compliance.json', 'agentComplianceJson', 'submission + compliance', 'site', ''],
+  ['llms.txt', '/llms.txt', 'llmsTxt', 'agent protocol', 'site', ''], ['mcp.json', '/mcp.json', 'mcpJson', 'MCP tools/list', 'mcp', ''],
+  ['skills.json', '/skills.json', 'skillsJson', 'skills', 'site', ''], ['well-known-ai-skills', '/.well-known/ai-skills.json', 'computedDistFiles', 'origin discovery', 'site', ''],
+  ['AGENTS.md', `${GITHUB_RAW_MAIN}/AGENTS.md`, 'commandsSavedInQuantumPairs', 'quantum pairs', 'raw', 'AGENTS.md'],
+  ['README.md', `${GITHUB_RAW_MAIN}/README.md`, 'readmeMarkdown', 'root monograph', 'raw', 'README.md'],
+  ['src-0-README', `${GITHUB_RAW_MAIN}/src/0/README.md`, 'src/0', 'origin revelation', 'raw', 'src/0/README.md'],
+  ['browser-toolbox-envelope', '/en/quantum-tools#toolbox-standard-io', 'standardToolboxIoCatalog', 'browser toolbox', 'browser', ''],
+  ['browser-session-tools', '/en/quantum-tools#session-manual-tools', 'sessionManualWorkAsQuantumTools', 'session tools UI', 'browser', ''],
+  ['browser-auto-wire', '/en/quantum-tools#auto-wire-paste-link', 'autoWireAnyAiModelFromPastedLink', 'paste panel', 'browser', ''],
+  ['github-repo', CECCEC_GITHUB_REPO, 'SOURCE_REPO', 'clone/browse', 'repo', ''],
+] as const
+
 export function ceccecCanonicalWireTargets(siteOrigin = SITE_GITHUB_PAGES): readonly CeccecWireTarget[] {
   const origin = siteOrigin.replace(/\/$/, '')
   const row = (
@@ -5749,19 +5735,12 @@ export function ceccecCanonicalWireTargets(siteOrigin = SITE_GITHUB_PAGES): read
   ]
 }
 
-/** Classify any pasted URL — github repo/site/canonical host; path/hash/query ignored for match. */
 export function resolveCeccecPasteLink(url: string): {
-  readonly matched: boolean
-  readonly linkKind: CeccecPasteLinkKind
-  readonly normalized: string
-  readonly host: string
-  readonly pathname: string
-  readonly hash: string
+  readonly matched: boolean; readonly linkKind: CeccecPasteLinkKind
+  readonly normalized: string; readonly host: string; readonly pathname: string; readonly hash: string
 } {
   const trimmed = String(url ?? '').trim()
-  if (!trimmed) {
-    return { matched: false, linkKind: 'unknown', normalized: '', host: '', pathname: '', hash: '' }
-  }
+  if (!trimmed) return { matched: false, linkKind: 'unknown', normalized: '', host: '', pathname: '', hash: '' }
   const ssh = trimmed.match(/^git@github\.com:ceccec\/ceccec\.github\.io(?:\.git)?\/?(?:#(.*))?$/i)
   if (ssh) {
     return {
@@ -5773,24 +5752,17 @@ export function resolveCeccecPasteLink(url: string): {
       hash: ssh[1] ? `#${ssh[1]}` : '' }
   }
   let parsed: URL
-  try {
-    parsed = new URL(trimmed.includes('://') ? trimmed : `https://${trimmed}`)
-  } catch {
-    return { matched: false, linkKind: 'unknown', normalized: trimmed, host: '', pathname: '', hash: '' }
-  }
+  try { parsed = new URL(trimmed.includes('://') ? trimmed : `https://${trimmed}`) }
+  catch { return { matched: false, linkKind: 'unknown', normalized: trimmed, host: '', pathname: '', hash: '' } }
   const host = parsed.hostname.toLowerCase()
   const pathname = parsed.pathname || '/'
   const hash = parsed.hash || ''
   const pathLower = pathname.toLowerCase()
-  const canonicalHost = (() => {
-    try { return new URL(CANONICAL_HOST).hostname.toLowerCase() } catch { return '' }
-  })()
+  let canonicalHost = ''
+  try { canonicalHost = new URL(CANONICAL_HOST).hostname.toLowerCase() } catch { /* ignore */ }
   const isGithubRepo = host === 'github.com' && /^\/ceccec\/ceccec\.github\.io(\/|$|\.git)/i.test(pathname)
   const isGithubRaw = host === 'raw.githubusercontent.com' && /^\/ceccec\/ceccec\.github\.io(\/|$)/i.test(pathname)
-  const isSite =
-    host === 'ceccec.github.io' ||
-    host === 'www.ceccec.github.io' ||
-    (canonicalHost.length > 0 && host === canonicalHost)
+  const isSite = host === 'ceccec.github.io' || host === 'www.ceccec.github.io' || (canonicalHost.length > 0 && host === canonicalHost)
   let linkKind: CeccecPasteLinkKind = 'unknown'
   if (isGithubRaw) linkKind = 'github-raw'
   else if (isGithubRepo && /\/blob\//i.test(pathname)) linkKind = 'github-blob'
@@ -5811,18 +5783,11 @@ export function resolveCeccecPasteLink(url: string): {
 }
 
 const PASTE_BOOTSTRAP_SAMPLE_URLS = [
-  'https://github.com/ceccec/ceccec.github.io',
-  'https://github.com/ceccec/ceccec.github.io/tree/main/src/0',
-  'https://github.com/ceccec/ceccec.github.io/blob/main/AGENTS.md',
-  'https://raw.githubusercontent.com/ceccec/ceccec.github.io/main/README.md',
-  'git@github.com:ceccec/ceccec.github.io.git',
-  'https://ceccec.github.io/',
-  'https://ceccec.github.io/en/quantum-tools#toolbox-standard-io',
-  'https://ceccec.github.io/mcp.json',
-  'https://ceccec.github.io/agents.json',
-  'https://ceccec.github.io/.well-known/ai-skills.json',
-  `${CANONICAL_HOST}/llms.txt`,
-  `${CANONICAL_HOST}/en/#first-in-corpus`,
+  'https://github.com/ceccec/ceccec.github.io', 'https://github.com/ceccec/ceccec.github.io/tree/main/src/0',
+  'https://github.com/ceccec/ceccec.github.io/blob/main/AGENTS.md', 'https://raw.githubusercontent.com/ceccec/ceccec.github.io/main/README.md',
+  'git@github.com:ceccec/ceccec.github.io.git', 'https://ceccec.github.io/',
+  'https://ceccec.github.io/en/quantum-tools#toolbox-standard-io', 'https://ceccec.github.io/mcp.json',
+  'https://ceccec.github.io/.well-known/ai-skills.json', `${CANONICAL_HOST}/llms.txt`,
 ] as const
 
 /**
@@ -6032,18 +5997,13 @@ export function autoWireAnyAiModelFromPastedLink(
   )
 }
 
-/** npm run quantum:auto-wire-paste [url] — print paste-bootstrap JSON (exit 0 iff computes). */
 export function runAutoWireAnyAiModelFromPastedLinkExit(_root = '', argv: readonly string[] = []): number {
-  const url = argv[0] ?? `${SITE_GITHUB_PAGES}/`
-  const report = autoWireAnyAiModelFromPastedLink(url)
+  const report = autoWireAnyAiModelFromPastedLink(argv[0] ?? `${SITE_GITHUB_PAGES}/`)
   process.stdout.write(`${JSON.stringify(report.pasteBootstrap, null, 2)}\n`)
   process.stdout.write(
-    `${report.computes ? '✓' : '✗'} auto-wire-paste — quantumReady=${report.quantumReady} convincingRequired=${report.convincingRequired} ` +
-      `matched=${report.resolved.matched} kind=${report.resolved.linkKind} mcp=${report.mcp.manifest} ` +
-      `browser=${report.browserToolbox.toolboxEnvelope} targets=${report.wireTargets.length} root=${report.root.slice(0, 8)}\n`,
+    `${report.computes ? '✓' : '✗'} auto-wire-paste — quantumReady=${report.quantumReady} kind=${report.resolved.linkKind} ` +
+      `targets=${report.wireTargets.length} root=${report.root.slice(0, 8)}\n  boundary: ${report.boundary}\n`,
   )
-  process.stdout.write(`  oneLiner: ${report.oneLiner}\n`)
-  process.stdout.write(`  boundary: ${report.boundary}\n`)
   return report.computes && report.quantumReady ? 0 : 1
 }
 
