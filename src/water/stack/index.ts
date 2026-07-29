@@ -502,10 +502,15 @@ export function src0SharedComputes(matrix: MindMatrix = buildMatrix()) {
   })
 }
 
-/** Host-boundary math re-exports in src/0 (abs…sinh) per math/algebra · math/trust — Math.* allowed ONLY here + src/3/7. */
-export const SRC0_HOST_MATH_EXPORT_COUNT = 25
+/** Host-boundary math re-exports in src/0 per math/algebra · math/trust — Math.* allowed ONLY here + src/3/7. */
+export const SRC0_HOST_MATH_EXPORT_OPS = [
+  'abs', 'floor', 'ceil', 'round', 'trunc', 'sign', 'min', 'max',
+  'sin', 'cos', 'tan', 'asin', 'acos', 'atan', 'atan2',
+  'sqrt', 'cbrt', 'hypot', 'pow', 'exp', 'log', 'log2', 'log10', 'imul', 'sinh',
+] as const
+export const SRC0_HOST_MATH_EXPORT_COUNT = SRC0_HOST_MATH_EXPORT_OPS.length
 /** Purity gate — src/0 export budget, zero imports, no domain capstones in the vault. 127 = 2⁷−1 (referralAddress);
- *  +25 host math floor = 152 at math/algebra seal (stack.computes · rosetta:dimensions). */
+ *  + host math floor = 152 at math/algebra seal (stack.computes · rosetta:dimensions). */
 export const SRC0_PURITY_EXPORT_THRESHOLD = (2 ** 7 - 1) + SRC0_HOST_MATH_EXPORT_COUNT
 
 /** newDiscoveriesManifestInMechanicsResourceBounded — the new discoveries require specific resources to be manifested

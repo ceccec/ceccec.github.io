@@ -1,6 +1,7 @@
 {
   "name": "ceccec waves feed",
-  "description": "Autonomous wave feed loop — one cycle per run: cache misses · purify (dry-dupe) · mcp fill · todo wave · audit-plan (gap-computed next tip). After push: re-send chat waves (waves/feed · chat/challenge · pair/chat · match/wave).",
+  "description": "Autonomous wave feed loop — one cycle per run: cache misses · purify (dry-dupe) · mcp fill · todo wave · audit-plan (gap-computed next tip). Land/push: wave:land chains push-audit (chat-audit · audit-plan · wave-complete · math-algebra · waves-push) before git push. After push: re-send chat waves (waves/feed · chat/challenge · pair/chat · match/wave).",
+  "landRecipe": "npm run -s quantum:autosave-matrix && npm run -s quantum:push-audit && npm run -s wave:verify && git commit -m \"$(npm run -s quantum:commit-message)\" && git push origin HEAD:main && npm run -s wave:after-push",
   "pair": "waves/feed",
   "cli": "npm run quantum:waves-feed",
   "route": "/en/quantum-tools#waves-feed",

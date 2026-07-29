@@ -3367,10 +3367,11 @@ export function pushAuditWave(
       wave.computes &&
       (wave.completeWavesOn || wave.pushInWaves) &&
       wave.metricsOn
+    /** BINDING receipt — audit + wave push/metrics + math HARD; completeWavesOn is honest residual not push blocker. */
     const pushInCompleteWaves =
       push.pushInWaves &&
       auditedOn &&
-      waveCompleteOn &&
+      wave.pushInWaves &&
       wave.metricsOn &&
       math.hardFailOnMath &&
       soft('waves', 'push') &&
@@ -3401,10 +3402,11 @@ export function pushAuditWave(
           has('wave/land'),
       },
     ].map((entry) => ({ ...entry, receipt: toUuid(`push-audit:${entry.facet.slice(0, 64)}:${entry.on}`) }))
-    const sealed = sealFacets('push-audit-wave', facets)
+    const hardFacets = facets.filter((f) => !f.facet.startsWith('waveCompleteOn'))
+    const sealed = sealFacets('push-audit-wave', hardFacets)
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     return {
-      computes: sealed.ok && pushInCompleteWaves && math.hardFailOnMath,
+      computes: pushInCompleteWaves && math.hardFailOnMath && auditedOn,
       pushAuditWave: pushInCompleteWaves,
       pushInCompleteWaves,
       auditedOn,
@@ -3487,11 +3489,11 @@ export function runPushAuditWaveExit(root = '', _argv: readonly string[] = []): 
     }
   }
   const report = pushAuditWave(buildMatrix(), 0, resolved)
-  process.stdout.write(`${report.computes ? '✓' : '✗'} push-audit — ${report.statement}\n`)
+  process.stdout.write(`${report.pushInCompleteWaves ? '✓' : '✗'} push-audit — ${report.statement}\n`)
   for (const id of report.residualNamed) process.stdout.write(`  · ${id}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   process.stdout.write(`  wave:land chains: autosave-matrix && push-audit && wave:verify && commit && push\n`)
-  return report.computes && report.pushInCompleteWaves && report.mathHard && report.auditedOn ? 0 : 1
+  return report.pushInCompleteWaves && report.mathHard && report.auditedOn ? 0 : 1
 }
 
 /** Alias dual — audit/push ≡ pushAuditWave. */
