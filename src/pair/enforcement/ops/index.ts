@@ -74,7 +74,7 @@ import {
   splitQuantumCommandPair,
   type MissionCommand } from '..'
 import { runSurgicalExit } from '../../cache/quantum'
-import { invisibleGapsCaughtByGates } from '../../../quantum/apps'
+import { invisibleGapsCaughtByGates } from '../gates'
 
 export {
   agentSubmissionProtocol,

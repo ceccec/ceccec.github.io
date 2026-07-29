@@ -21,7 +21,7 @@ import { theoremPageRows } from '../../../../wind/routes/corpus'
 import { agentGateComplianceChecklist, agentSubmissionProtocol } from '../../ops'
 import { merkleFold, toUuid } from '../../../../0'
 import { buildForceFlag, canRespawnTrinity, docsBuildVerboseFlag, logDocsBuildPhase, slowBuildIsQuantumGapGate, writeSealedMerkle } from '../../script/shell'
-import { invisibleGapsCaughtByGates } from '../../../../quantum/apps'
+import { invisibleGapsCaughtByGates } from '../../gates'
 
 export type { Finding, AuditRoot } from '../../gates'
 

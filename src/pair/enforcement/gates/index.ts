@@ -119,6 +119,7 @@ export { MONOLITH_FILE_BYTES, MONOLITH_FILE_LAW, scanFileSizeOffenders, monolith
 export { scanHandLists, handListMirrors, type HandList, type HandListMirror } from './strict'
 export { scanAppHtml, appAuditSummary, type AppPageAudit } from './strict'
 export { dryDupe, theoremAudit, geoGebraEncode, buildMin } from './strict/scan'
+export { invisibleGapsCaughtByGates, runInvisibleGapsCaughtByGatesExit } from '../../../quantum/apps'
 export {
   
   FIBONACCI_BANDS,

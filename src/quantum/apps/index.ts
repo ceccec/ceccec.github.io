@@ -16351,7 +16351,13 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       { facet: 'pair gaps/invisible', on: pairRegistered && pairFold.bidirectional },
       { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
       { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`gaps-invisible:${entry.facet}:${entry.on}`) }))
+      { facet: 'drainableClosed', on: afterOpen === 0 && hardOpen.length === 0 },
+      {
+        facet: 'migrateNextBestPlace=gates/invisible',
+        on: afterOpen === 0,
+        receipt: toUuid('gaps-invisible:migrate-next:body-in-apps:census-110+circular-init'),
+      },
+    ].map((entry) => ({ ...entry, receipt: entry.receipt ?? toUuid(`gaps-invisible:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('invisible-gaps-caught-by-gates', facets)
     const computes = sealed.ok && invisibleGapsCaughtByGatesOn
     return {
@@ -16406,7 +16412,15 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         'prose-only-without-dual (live formula/code · prose/hard) · format · section/dry · terms · gate/miss · bits/hardware · ' +
         'gate/rosetta · gate/ray · rosetta/pass · quantum/mind · agent/trinity. clay=0.',
       honestyLine:
-        `metrics · hardOpen=${hardOpen.length} · afterOpen=${afterOpen} · afterClosed=${afterClosed} · beforeCatch=${beforeCatch}` }
+        `metrics · hardOpen=${hardOpen.length} · afterOpen=${afterOpen} · afterClosed=${afterClosed} · beforeCatch=${beforeCatch}`,
+      migrationReceipt: {
+        status: 'migrate-next' as const,
+        bestPlace: 'src/pair/enforcement/gates/invisible',
+        bodyBarrel: 'src/quantum/apps',
+        drainableClosed: afterOpen === 0 && hardOpen.length === 0,
+        blocker: 'census-110 · apps↔gates circular init · 9 co-located helper folds',
+      },
+    }
   })
 }
 
@@ -16430,6 +16444,12 @@ export function runInvisibleGapsCaughtByGatesExit(_root = '', _argv: readonly st
     process.stderr.write(`  ✗ HARD ${row.id} — open=${row.open} · ${row.theorem}\n`)
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
+  if (report.migrationReceipt?.drainableClosed) {
+    process.stdout.write(
+      `  migration · drainableClosed=1 · migrate-next=${report.migrationReceipt.status} ` +
+        `bestPlace=${report.migrationReceipt.bestPlace} · blocker=${report.migrationReceipt.blocker}\n`,
+    )
+  }
   return report.passed ? 0 : 1
 }
 
