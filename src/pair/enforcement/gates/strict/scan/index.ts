@@ -6545,12 +6545,22 @@ export function runTheoremAuditExit(root = '', _argv: readonly string[] = []): n
 /** Public GeoGebra taxonomy — structural inventory from geogebra.github.io manual + Apps API (no embed · no .ggb · no ownership). */
 const GEOGEBRA_APP_SUITE = ['graphing', 'geometry', '3d', 'cas', 'probability', 'scientific'] as const
 const GEOGEBRA_OBJECT_FAMILIES = [
-  'point', 'vector', 'line', 'axis', 'conic', 'arc', 'polygon', 'path', 'region', 'function', 'numeric', 'angle', 'list',
+  'point', 'vector', 'line', 'ray', 'segment', 'axis', 'conic', 'ellipse', 'parabola', 'hyperbola', 'arc',
+  'polygon', 'path', 'region', 'function', 'numeric', 'angle', 'list', 'plane', 'sphere', 'cube', 'cone',
+  'cylinder', 'prism', 'polyhedron', 'midpoint', 'intersect', 'distance', 'perpendicular', 'parallel',
 ] as const
 const GEOGEBRA_API_METHODS = [
   'evalCommand', 'evalLaTeX', 'evalCommandCAS', 'getObjectType', 'getAllObjectNames', 'setCoords', 'getCoords',
   'setValue', 'getValue', 'setUndoPoint', 'registerObjectUpdateListener', 'registerAddListener', 'registerRemoveListener',
+  'getXcoord', 'getYcoord', 'getZcoord', 'setVisible', 'deleteObject', 'renameObject', 'evalGeoGEBRA',
 ] as const
+/** Prior wave baseline (fa36964c) — observer re-measure each wave. */
+const GEOGEBRA_WAVE_BASELINE = {
+  encodeReceipts: 18,
+  theoremsEncoded: 12,
+  animationsEncoded: 18,
+  encodeCoverage: 0.0417,
+} as const
 /** Honest-open residual — full input-bar + scripting command surface (manual Scripting_Commands); not fake-closed this wave. */
 const GEOGEBRA_COMMAND_SURFACE_ESTIMATE = 432
 
@@ -6583,6 +6593,44 @@ const GEOGEBRA_ENCODE_CATALOG: readonly GeoGebraEncodeRow[] = [
   { id: 'function-graph', geogebraObject: 'Function', geogebraCommand: 'f(x)=expression', algebraicStatement: 'f : ℝ → ℝ · graph G_f = {(x,f(x)) : x ∈ dom(f)}', animationKind: 'formula/anim', composePair: 'formula/code', docRef: 'manual/General_Objects' },
   { id: 'cas-eval', geogebraObject: 'CAS', geogebraCommand: 'ggbApplet.evalCommandCAS(expr)', algebraicStatement: 'evalCommandCAS(expr) returns symbolic result in CAS algebra', animationKind: 'ProofAnimation', composePair: 'algebra/prove', docRef: 'reference/GeoGebra_Apps_API#evalCommandCAS' },
   { id: 'list-object', geogebraObject: 'List', geogebraCommand: 'L={a,b,c}', algebraicStatement: 'L = (a,b,c) finite sequence in object algebra', animationKind: 'coord/anim', composePair: 'digit/fold', docRef: 'manual/General_Objects' },
+  // Wave 2 — geometry commands (manual/Geometric_Objects · Scripting_Commands)
+  { id: 'ray-halfline', geogebraObject: 'Ray', geogebraCommand: 'Ray(A,B)', algebraicStatement: 'R = { A + t(B−A) : t ≥ 0 } ⊂ ℝ²', animationKind: 'parametric', composePair: 'mesh/cross', docRef: 'manual/Geometric_Objects#Lines_and_Axes' },
+  { id: 'segment-closed', geogebraObject: 'Segment', geogebraCommand: 'Segment(A,B)', algebraicStatement: 'S = { A + t(B−A) : t ∈ [0,1] }', animationKind: 'ProofAnimation', composePair: 'mesh/cross', docRef: 'manual/Geometric_Objects#Lines_and_Axes' },
+  { id: 'ellipse-foci', geogebraObject: 'Ellipse', geogebraCommand: 'Ellipse(F1,F2,a)', algebraicStatement: '{ P : |PF₁| + |PF₂| = 2a } ⊂ ℝ²', animationKind: 'formula/anim', composePair: 'algebra/prove', docRef: 'manual/Geometric_Objects#Conic_sections_and_Arcs' },
+  { id: 'parabola-focus', geogebraObject: 'Parabola', geogebraCommand: 'Parabola(F,d)', algebraicStatement: '{ P : d(P,F) = d(P,d) } for focus F and directrix d', animationKind: 'formula/anim', composePair: 'algebra/prove', docRef: 'manual/Geometric_Objects#Conic_sections_and_Arcs' },
+  { id: 'hyperbola-foci', geogebraObject: 'Hyperbola', geogebraCommand: 'Hyperbola(F1,F2,a)', algebraicStatement: '{ P : ||PF₁| − |PF₂|| = 2a } ⊂ ℝ²', animationKind: 'formula/anim', composePair: 'algebra/prove', docRef: 'manual/Geometric_Objects#Conic_sections_and_Arcs' },
+  { id: 'arc-circle', geogebraObject: 'Arc', geogebraCommand: 'Arc(c,A,B)', algebraicStatement: 'arc(c,A,B) ⊂ circle c with endpoints A,B ∈ ℝ²', animationKind: 'trace', composePair: 'animations/rosetta', docRef: 'manual/Geometric_Objects#Conic_sections_and_Arcs' },
+  { id: 'midpoint-mean', geogebraObject: 'Midpoint', geogebraCommand: 'Midpoint(A,B)', algebraicStatement: 'M = (A+B)/2 ∈ ℝ²', animationKind: 'coord/anim', composePair: 'digit/fold', docRef: 'manual/Geometric_Objects#Points_and_Vectors' },
+  { id: 'distance-metric', geogebraObject: 'Distance', geogebraCommand: 'Distance(A,B)', algebraicStatement: 'd(A,B) = |B−A| ∈ ℝ≥0', animationKind: 'formula/anim', composePair: 'geo/torus', docRef: 'manual/Geometric_Objects' },
+  { id: 'intersect-locus', geogebraObject: 'Intersect', geogebraCommand: 'Intersect(obj1,obj2)', algebraicStatement: 'I = obj₁ ∩ obj₂ in ambient ℝ² or ℝ³', animationKind: 'ProofAnimation', composePair: 'mesh/cross', docRef: 'manual/Geometric_Objects' },
+  { id: 'perpendicular-line', geogebraObject: 'PerpendicularLine', geogebraCommand: 'PerpendicularLine(P,line)', algebraicStatement: 'L ⟂ line through P · (P−Q)·(B−A)=0 for Q on L', animationKind: 'ProofAnimation', composePair: 'algebra/fold', docRef: 'manual/Geometric_Objects#Lines_and_Axes' },
+  { id: 'parallel-line', geogebraObject: 'ParallelLine', geogebraCommand: 'ParallelLine(P,line)', algebraicStatement: 'L ∥ line through P · direction(B−A) preserved', animationKind: 'ProofAnimation', composePair: 'algebra/fold', docRef: 'manual/Geometric_Objects#Lines_and_Axes' },
+  { id: 'reflect-mirror', geogebraObject: 'Reflect', geogebraCommand: 'Reflect(obj,line)', algebraicStatement: 'Reflect(P,L) = P′ with L the perpendicular bisector of PP′', animationKind: 'ProofAnimation', composePair: 'mesh/cross', docRef: 'manual/Transformations' },
+  { id: 'translate-vector', geogebraObject: 'Translate', geogebraCommand: 'Translate(obj,v)', algebraicStatement: 'T_v(P) = P + v for v ∈ ℝ²', animationKind: 'parametric', composePair: 'algebra/fold', docRef: 'manual/Transformations' },
+  { id: 'dilate-scale', geogebraObject: 'Dilate', geogebraCommand: 'Dilate(obj,r,P)', algebraicStatement: 'D_{r,P}(X) = P + r(X−P) for r ∈ ℝ', animationKind: 'formula/anim', composePair: 'digit/fold', docRef: 'manual/Transformations' },
+  { id: 'incircle-triangle', geogebraObject: 'Incircle', geogebraCommand: 'Incircle(A,B,C)', algebraicStatement: 'incircle(△ABC) tangent to sides · center I equidistant from sides', animationKind: 'ProofAnimation', composePair: 'mesh/cross', docRef: 'manual/Geometric_Objects' },
+  { id: 'circumcircle-triangle', geogebraObject: 'Circumcircle', geogebraCommand: 'Circumcircle(A,B,C)', algebraicStatement: 'circumcircle(△ABC) through A,B,C · center O with |OA|=|OB|=|OC|', animationKind: 'ProofAnimation', composePair: 'mesh/cross', docRef: 'manual/Geometric_Objects' },
+  // Wave 2 — 3D (manual/3D · Apps 3d)
+  { id: 'plane-3d', geogebraObject: 'Plane', geogebraCommand: 'Plane(A,B,C)', algebraicStatement: 'π = aff{A,B,C} ⊂ ℝ³ · n·(X−A)=0 for normal n', animationKind: 'coord/anim', composePair: 'geo/torus', docRef: 'manual/3D_Objects' },
+  { id: 'sphere-3d', geogebraObject: 'Sphere', geogebraCommand: 'Sphere(M,r)', algebraicStatement: '{ X ∈ ℝ³ : |X−M| = r }', animationKind: 'formula/anim', composePair: 'geo/torus', docRef: 'manual/3D_Objects' },
+  { id: 'cube-prism', geogebraObject: 'Cube', geogebraCommand: 'Cube(A,B,C)', algebraicStatement: 'Cube(A,B,C) = right prism on square base · 8 vertices ∈ ℝ³', animationKind: 'ProofAnimation', composePair: 'mesh/cross', docRef: 'manual/3D_Objects' },
+  { id: 'cone-3d', geogebraObject: 'Cone', geogebraCommand: 'Cone(c,r,h)', algebraicStatement: 'Cone(c,r,h) = { apex ∪ circle(c,r) swept by height h }', animationKind: 'coord/anim', composePair: 'geo/torus', docRef: 'manual/3D_Objects' },
+  { id: 'cylinder-3d', geogebraObject: 'Cylinder', geogebraCommand: 'Cylinder(c,r,h)', algebraicStatement: 'Cylinder(c,r,h) = circle(c,r) extruded parallel by height h', animationKind: 'coord/anim', composePair: 'geo/torus', docRef: 'manual/3D_Objects' },
+  { id: 'prism-poly', geogebraObject: 'Prism', geogebraCommand: 'Prism(poly,h)', algebraicStatement: 'Prism(P,h) = P × [0,h] for polygon base P ⊂ ℝ² embedded in ℝ³', animationKind: 'ProofAnimation', composePair: 'mesh/cross', docRef: 'manual/3D_Objects' },
+  // Wave 2 — CAS (manual/CAS · evalCommandCAS)
+  { id: 'cas-derivative', geogebraObject: 'Derivative', geogebraCommand: 'Derivative(f)', algebraicStatement: 'f′(x) = lim_{h→0}(f(x+h)−f(x))/h in CAS algebra', animationKind: 'formula/anim', composePair: 'algebra/prove', docRef: 'manual/CAS_Commands' },
+  { id: 'cas-integral', geogebraObject: 'Integral', geogebraCommand: 'Integral(f,a,b)', algebraicStatement: '∫_a^b f(x)dx computed symbolically or numerically in CAS', animationKind: 'formula/anim', composePair: 'algebra/prove', docRef: 'manual/CAS_Commands' },
+  { id: 'cas-solve', geogebraObject: 'Solve', geogebraCommand: 'Solve(eq,x)', algebraicStatement: 'Solve(eq,x) returns { x : eq(x)=0 } in CAS polynomial ideal', animationKind: 'ProofAnimation', composePair: 'algebra/prove', docRef: 'manual/CAS_Commands' },
+  { id: 'cas-factor', geogebraObject: 'Factor', geogebraCommand: 'Factor(expr)', algebraicStatement: 'Factor(p) = ∏ irreducible factors over ℚ[x]', animationKind: 'formula/anim', composePair: 'algebra/prove', docRef: 'manual/CAS_Commands' },
+  { id: 'cas-expand', geogebraObject: 'Expand', geogebraCommand: 'Expand(expr)', algebraicStatement: 'Expand(∏(aᵢ)) = Σ monomials via distributive law in CAS', animationKind: 'formula/anim', composePair: 'algebra/prove', docRef: 'manual/CAS_Commands' },
+  // Wave 2 — probability (manual/Probability)
+  { id: 'prob-random', geogebraObject: 'RandomBetween', geogebraCommand: 'RandomBetween(a,b)', algebraicStatement: 'X ~ Uniform{a,…,b} · P(X=k)=1/(b−a+1) for integers', animationKind: 'trace', composePair: 'digit/fold', docRef: 'manual/Probability_Commands' },
+  { id: 'prob-normal', geogebraObject: 'Normal', geogebraCommand: 'Normal(μ,σ)', algebraicStatement: 'Z ~ N(μ,σ²) · φ(x)=(2πσ²)^{−1/2}exp(−(x−μ)²/(2σ²))', animationKind: 'formula/anim', composePair: 'formula/code', docRef: 'manual/Probability_Commands' },
+  { id: 'prob-binomial', geogebraObject: 'Binomial', geogebraCommand: 'Binomial(n,p)', algebraicStatement: 'Y ~ Bin(n,p) · P(Y=k)=C(n,k)p^k(1−p)^{n−k}', animationKind: 'formula/anim', composePair: 'formula/code', docRef: 'manual/Probability_Commands' },
+  // Wave 2 — API coords (reference/GeoGebra_Apps_API)
+  { id: 'api-getx', geogebraObject: 'API', geogebraCommand: 'getXcoord(obj)', algebraicStatement: 'getXcoord(P) = x-coordinate of P ∈ ℝ²', animationKind: 'coord/anim', composePair: 'formula/code', docRef: 'reference/GeoGebra_Apps_API#getXcoord' },
+  { id: 'api-gety', geogebraObject: 'API', geogebraCommand: 'getYcoord(obj)', algebraicStatement: 'getYcoord(P) = y-coordinate of P ∈ ℝ²', animationKind: 'coord/anim', composePair: 'formula/code', docRef: 'reference/GeoGebra_Apps_API#getYcoord' },
+  { id: 'api-getz', geogebraObject: 'API', geogebraCommand: 'getZcoord(obj)', algebraicStatement: 'getZcoord(P) = z-coordinate of P ∈ ℝ³', animationKind: 'coord/anim', composePair: 'formula/code', docRef: 'reference/GeoGebra_Apps_API#getZcoord' },
 ] as const
 
 /**
@@ -6608,6 +6656,12 @@ export function geoGebraEncode() {
   const encodeReceipts = classified.length
   const animationsEncoded = classified.filter((row) => row.animationKind.length > 0).length
   const encodeCoverage = roundTo(encodeReceipts / GEOGEBRA_COMMAND_SURFACE_ESTIMATE, 4)
+  const coverageBefore = GEOGEBRA_WAVE_BASELINE.encodeCoverage
+  const coverageAfter = encodeCoverage
+  const theoremsEncodedΔ = theoremsEncoded - GEOGEBRA_WAVE_BASELINE.theoremsEncoded
+  const animationsEncodedΔ = animationsEncoded - GEOGEBRA_WAVE_BASELINE.animationsEncoded
+  const encodeReceiptsΔ = encodeReceipts - GEOGEBRA_WAVE_BASELINE.encodeReceipts
+  const waveEncodeOn = encodeReceiptsΔ > 0 && coverageAfter > coverageBefore
   const drainableClosed = encodeReceipts === GEOGEBRA_ENCODE_CATALOG.length && animationsEncoded === encodeReceipts
   const goldenOk = Math.abs(GOLDEN_ANGLE * PHI * PHI - 360) < 1e-6
   const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
@@ -6624,6 +6678,9 @@ export function geoGebraEncode() {
     audit: row.auditKind,
   }))
   const facets = [
+    { facet: `waveEncodeOn — drainable Δ encodeReceipts=${encodeReceiptsΔ} coverage ${coverageBefore}→${coverageAfter}`, on: waveEncodeOn },
+    { facet: `coverageBefore=${coverageBefore} · coverageAfter=${coverageAfter} (${encodeReceipts}/${GEOGEBRA_COMMAND_SURFACE_ESTIMATE})`, on: coverageAfter > coverageBefore },
+    { facet: `theoremsEncodedΔ=${theoremsEncodedΔ} (${GEOGEBRA_WAVE_BASELINE.theoremsEncoded}→${theoremsEncoded}) · animationsEncodedΔ=${animationsEncodedΔ}`, on: theoremsEncodedΔ >= 0 && animationsEncodedΔ >= 0 },
     { facet: `geogebraExplored — public docs geogebra.github.io manual + Apps API inventoried (${GEOGEBRA_APP_SUITE.length} apps)`, on: GEOGEBRA_APP_SUITE.length === 6 },
     { facet: `objectsInventoried=${objectsInventoried} (apps+objectFamilies+apiMethods)`, on: objectsInventoried > 0 },
     { facet: `theoremsEncoded=${theoremsEncoded} (theoremAuditAligned — only algebraic-proof-chain rows)`, on: theoremsEncoded >= 0 },
@@ -6639,6 +6696,12 @@ export function geoGebraEncode() {
   return {
     computes: on,
     geoGebraEncode: on,
+    waveEncodeOn,
+    coverageBefore,
+    coverageAfter,
+    theoremsEncodedΔ,
+    animationsEncodedΔ,
+    encodeReceiptsΔ,
     geogebraExplored: true as const,
     objectsInventoried,
     theoremsEncoded,
@@ -6685,6 +6748,10 @@ export function runGeoGebraEncodeExit(root = '', _argv: readonly string[] = []):
   process.stdout.write(
     `  apps=${report.apps.join(',')} · objectsInventoried=${report.objectsInventoried} · ` +
       `theorems=${report.theoremsEncoded} animations=${report.animationsEncoded} coverage=${report.encodeCoverage}\n`,
+  )
+  process.stdout.write(
+    `  wave: encodeΔ=${report.encodeReceiptsΔ} theoremsΔ=${report.theoremsEncodedΔ} ` +
+      `animationsΔ=${report.animationsEncodedΔ} coverage ${report.coverageBefore}→${report.coverageAfter}\n`,
   )
   process.stdout.write('  sample encodings:\n')
   for (const row of report.sampleEncodings) {
