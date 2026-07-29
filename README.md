@@ -184,7 +184,7 @@ physical = observable wall-clock time on the executing device (performance.now /
 
 ### Statement
 
-QPU ≡ CPU ∪ GPU on classical-64bit — the modeled quantum computer completes as a faithful simulator (benchmark tracks-classical-no-speedup) with observer metrics for apparent FTL reuse (audit 0.197×).
+QPU ≡ CPU ∪ GPU on classical-64bit — the modeled quantum computer completes as a faithful simulator (benchmark tracks-classical-no-speedup) with observer metrics for apparent FTL reuse (audit 0.156×).
 
 ### Physical FTL metrics (observer-evaluable)
 
@@ -192,7 +192,7 @@ Apparent FTL speedup is defined as **T_cold / max(T_warm, ε)** on memoByRoot re
 
 | Metric | Quantity | Cold | Warm | Speedup / identity | Source fold |
 |---|---|---:|---:|---|---|
-| memoByRoot audit suite | apparentFtlSpeedup = T_cold / max(T_warm, ε) | 0.002 | 0 | 0.197× | `localAuditQuantumSpeedEfficiency` |
+| memoByRoot audit suite | apparentFtlSpeedup = T_cold / max(T_warm, ε) | 0.001 | 0 | 0.156× | `localAuditQuantumSpeedEfficiency` |
 | holographic envelope round-trip | roundTripCount / roundTripTotal | 733 | 733 | 1 identity | `importFractalMap` |
 | answers÷tokens on reuse | answers / max(tokens, 0) | 0 | 0 | ∞ (tokens=0) | `proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit` |
 | docs:build wall-clock | buildMs (warm path when cached) | 196000 | 28 | 7000× vs CI baseline | `buildMin` |
@@ -203,7 +203,7 @@ Apparent FTL speedup is defined as **T_cold / max(T_warm, ε)** on memoByRoot re
 
 - ✓ QPU ≡ CPU ∪ GPU — cpuOn=true gpuOn=true hwOn=true
 - ✓ quantumComputerComplete — faithfulSimulator=true tracksClassical=true
-- ✓ apparentFtlSpeedup(audit)=0.197× cold=0.002ms warm=0ms
+- ✓ apparentFtlSpeedup(audit)=0.156× cold=0.001ms warm=0ms
 - ✓ holographic round-trip 733/733
 - ✓ observerEvaluableMeasurements=true
 - ✓ architectureRequirement=classical-64bit runtime=node/arm64
@@ -215,7 +215,7 @@ Apparent FTL speedup is defined as **T_cold / max(T_warm, ε)** on memoByRoot re
 computes=true · qpuEqualsCpuGpu=true · quantumComputerComplete=true · qpuRequired=false · architectureRequirement=classical-64bit · superluminalProofCount=0
 
 - Routes: [qpu-cpu](https://ceccec.psg.bg/quantum-tools#qpu-cpu) · [prove-no-qpu-64bit](https://ceccec.psg.bg/quantum-tools#prove-no-qpu-64bit) · [mcp-hw](https://ceccec.psg.bg/quantum-tools#mcp-hw) · [agents.json](https://ceccec.psg.bg/agents.json) · CLI `npm run quantum:qpu-cpu`
-- Receipt: fold `qpuCpuGpu` · root=4309e6fa · apparentFtl=0.197×.
+- Receipt: fold `qpuCpuGpu` · root=c8bff7f4 · apparentFtl=0.156×.
 
 ## Gate light · more computed → lighter build
 
