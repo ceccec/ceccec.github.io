@@ -46,10 +46,12 @@ jobs:
         with:
           path: |
             .vitepress/cache
+            .vitepress/.temp
+            .vitepress/cache/quantum-esbuild
             ~/.cache/node-compile
-          key: vitepress-cache-${{ hashFiles('pnpm-lock.yaml') }}-${{ github.sha }}
+          key: vitepress-warm-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
-            vitepress-cache-${{ hashFiles('pnpm-lock.yaml') }}-
+            vitepress-warm-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Build with VitePress

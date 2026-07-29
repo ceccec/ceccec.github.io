@@ -5375,6 +5375,18 @@ function runTool(toolId: string) {
           Experiment-io classifier stays on <a href="#slow-quantum-gaps">#slow-quantum-gaps</a>.
         </p>
       </section>
+      <section id="build-min">
+        <h3>Build min · deploy wall-clock</h3>
+        <p class="quantum-apps__meta">
+          <code>npm run quantum:build-min</code> · pair <code>build/min</code> —
+          measured buildMs · deployMs · totalMs · warmPathOn · regressionsNamed · residualNamed.
+          Composes <a href="#slow-build-gate">gate/slow-build</a> · build/quantumize · wave/verify.
+          CI caches <code>.vitepress/.temp</code> + lockfile-key warm path — NOT physical FTL · CI variance honest-open.
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'build-min'" @click="runTool('build-min')">
+          {{ runningId === 'build-min' ? '…' : 'Run build-min measure' }}
+        </UiButton>
+      </section>
       <UiSeparator />
       <section id="crypto-comparison-mesh">
         <h3>Crypto comparison mesh</h3>

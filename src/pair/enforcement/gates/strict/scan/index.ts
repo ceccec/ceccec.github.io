@@ -8,7 +8,13 @@ export { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedger
 import { GOLDEN_ANGLE, GOLDEN_ANGLE_RAD } from '../../../../../3/7'
 import { SCIENCE_DOMAINS, ENGAGEMENT_MODES } from '../../../../../3/7'
 import { HARMONY, earned, TAU, PHI, FOLDED_CENSUS, UNFOLDED_CENSUS, EULER_CHI } from '../../../../../3/7'
-import { SCRIPT_SHELL_ALLOWLIST, SCRIPT_SHELL_LINE_BUDGET } from '../../../script/shell'
+import {
+  SCRIPT_SHELL_ALLOWLIST,
+  SCRIPT_SHELL_LINE_BUDGET,
+  readDocsBuildTiming,
+  slowBuildIsQuantumGapGate,
+  quantumizeVitepressBuild,
+} from '../../../script/shell'
 import type { ScriptShellScan } from '../../../script/shell'
 
 
@@ -1056,6 +1062,116 @@ export function runWaveVerifyExit(root = '', _argv: readonly string[] = []): num
   process.stdout.write(`${report.computes ? '✓' : '✗'} wave-verify — ${report.statement}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
+}
+
+/** CI deploy baseline ms — gh run 30394309268 (2026-07-28); re-measure with `gh run view`. */
+const CI_DEPLOY_BASELINE = {
+  buildStepMs: 196_000,
+  deployJobMs: 11_000,
+  workflowMs: 241_000,
+} as const
+
+/**
+ * buildMin — target minimum docs:build + Pages deploy wall-clock (pair build/min · dual min/build).
+ * Composes gate/slow-build · build/quantumize · wave/verify · deploy workflow warm-cache audit.
+ * HONEST: CI variance remains · NOT physical FTL · observer-evaluable timings only.
+ */
+export function buildMin(root: string = enforcementScanRoot()) {
+  const resolved = root || (typeof process !== 'undefined' && typeof process.cwd === 'function' ? process.cwd() : '/')
+  const timing = readDocsBuildTiming(resolved)
+  const slow = slowBuildIsQuantumGapGate(resolved)
+  const qz = quantumizeVitepressBuild()
+  const wave = waveVerify(resolved)
+  let deployYaml = ''
+  try {
+    deployYaml = readFileSync(join(resolved, '.github/workflows/deploy.yml'), 'utf8')
+  } catch {
+    deployYaml = ''
+  }
+  const cachesViteCache = deployYaml.includes('.vitepress/cache')
+  const cachesTemp = deployYaml.includes('.vitepress/.temp')
+  const cacheKeyLockfileOnly =
+    deployYaml.includes('vitepress-warm-${{ hashFiles') && !deployYaml.includes('github.sha')
+  const warmPathOn =
+    qz.computes &&
+    cachesViteCache &&
+    cachesTemp &&
+    cacheKeyLockfileOnly &&
+    (timing == null || timing.quantumize === true || timing.coldWipe === false)
+  const buildMs = timing?.wallMs
+  const deployMs = CI_DEPLOY_BASELINE.deployJobMs
+  const totalMs =
+    typeof buildMs === 'number' ? buildMs + deployMs : CI_DEPLOY_BASELINE.workflowMs
+  const regressionsNamed = slow.hardOpen.map((row) => row.gapId)
+  const residualNamed: string[] = []
+  if (!cachesTemp) residualNamed.push('ci-cache-missing-vitepress-temp')
+  if (!cacheKeyLockfileOnly) residualNamed.push('ci-cache-key-per-sha')
+  if (timing?.mode === 'cold-seal') residualNamed.push('local-cold-seal')
+  if (slow.warnOpen.length > 0) {
+    residualNamed.push(`slow-build-warn:${slow.warnOpen.length}`)
+  }
+  const minTargetOn =
+    slow.passed &&
+    qz.computes &&
+    wave.computes &&
+    warmPathOn &&
+    regressionsNamed.length === 0
+  const facets = [
+    {
+      facet: `buildMs=${typeof buildMs === 'number' ? buildMs : '—'} · deployMs=${deployMs} (CI baseline) · totalMs=${totalMs}`,
+      on: true,
+    },
+    { facet: 'minTargetOn — slow-build + quantumize + wave/verify + warm CI cache path', on: minTargetOn },
+    { facet: `warmPathOn — quantumize · .temp cached · lockfile cache key · HARD=${slow.hardOpenCount}`, on: warmPathOn },
+    {
+      facet: `regressionsNamed=${regressionsNamed.length} · residualNamed=${residualNamed.join(',') || 'none'}`,
+      on: regressionsNamed.length === 0,
+    },
+    { facet: `CI baseline buildStep=${CI_DEPLOY_BASELINE.buildStepMs}ms workflow=${CI_DEPLOY_BASELINE.workflowMs}ms (pre-wave)`, on: true },
+    { facet: 'physicalFtlClaim=0 · qpuRequired=false · NOT an SLA', on: physicalFtlClaimTheorem().physicalFtlClaim === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`build-min:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = minTargetOn
+  return {
+    computes: on,
+    buildMin: minTargetOn,
+    buildMs,
+    deployMs,
+    totalMs,
+    minTargetOn,
+    warmPathOn,
+    regressionsNamed,
+    residualNamed,
+    ciBaseline: CI_DEPLOY_BASELINE,
+    timing,
+    slow,
+    quantumize: qz,
+    waveVerify: wave,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    pair: 'build/min' as const,
+    dualPair: 'min/build' as const,
+    cli: 'npm run quantum:build-min',
+    route: '/en/quantum-tools#build-min',
+    heading: 'Build min · deploy wall-clock',
+    statement:
+      `buildMin — buildMs=${typeof buildMs === 'number' ? buildMs : '—'} deployMs=${deployMs} totalMs=${totalMs} · warmPath=${warmPathOn} · minTarget=${minTargetOn}`,
+    boundary:
+      'Target minimum build+deploy time via measured warm path (quantumize · .temp/cache restore · no per-sha cache miss). ' +
+      'Composes gate/slow-build · build/quantumize · wave/verify. CI variance honest-open — re-measure with gh run view. clay=0 · qpuRequired=false.',
+  }
+}
+
+/** npm run quantum:build-min (dual min-build) */
+export function runBuildMinExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = buildMin(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} build-min — ${report.statement}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  if (report.residualNamed.length) {
+    process.stdout.write(`  residual: ${report.residualNamed.join(' · ')}\n`)
+  }
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.minTargetOn ? 0 : 1
 }
 
 /**

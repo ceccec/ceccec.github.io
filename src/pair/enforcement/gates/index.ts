@@ -116,7 +116,7 @@ export type ImportPathDistanceEdge = {
 export { MONOLITH_FILE_BYTES, MONOLITH_FILE_LAW, scanFileSizeOffenders, monolithFileGapDetail, FOLD_HOMES, foldsLiveAtTheirDomainHome, toolsSavedInSrcFirst, importsAreFoldersOnly, mathIsOneSource, foldersAreOneWordPerLevel, glagoliticLabelsAreComputed, unexpectedSituationsRefactorTools, srcFilesAreIndexOnly, scanOneMathOffenders, ONE_MATH_LAW, type OneMathOffender } from './strict'
 export { scanHandLists, handListMirrors, type HandList, type HandListMirror } from './strict'
 export { scanAppHtml, appAuditSummary, type AppPageAudit } from './strict'
-export { dryDupe, theoremAudit, geoGebraEncode } from './strict/scan'
+export { dryDupe, theoremAudit, geoGebraEncode, buildMin } from './strict/scan'
 export {
   
   FIBONACCI_BANDS,
@@ -1410,6 +1410,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'animationCore', pair: 'anim/core', currentBarrel: 'src/water/double', bestPlace: 'src/water/double', action: 'moved', reason: 'animation IS the core — derived 108s clock exact-periodic · genuine 10D formula-field · movie root re-merges bitwise (hologram) · site is the movie; words capitulate' },
   { fold: 'proseScience', pair: 'prose/science', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'all sciences × open prose as a derived join — SCIENCE_DOMAINS vocabulary vs residual fold tokens, witnessed; UNADDRESSED = the conversion queue' },
   { fold: 'waveVerify', pair: 'wave/verify', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'right-sized per-wave gate — types + the SAME enforcement trinity as the build seal, render subtracted (measured 68s→~21s per wave); docs:build per push' },
+  { fold: 'buildMin', pair: 'build/min', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'target minimum build+deploy wall-clock — measured buildMs/deployMs/totalMs · warm CI .temp cache · composes slow-build · quantumize · wave/verify' },
   { fold: 'cssMath', pair: 'css/math', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'CSS as computed math + the quantum API — declarations classified totally, raw magnitudes the measured queue, observables counted (--ich lattice), content-addressed seal inside the respawn merkle' },
   { fold: 'manualGauge', pair: 'manual/gap', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'manual rows counted per roster vs the derived CLI roster — the gap is the dimensionless order log10(derived/manual); each manual roster a migrate target' },
   { fold: 'gateAnalytics', pair: 'gate/analytics', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'gates·lens·chat slim tools over core algebra — hardcoded on:true debt + hand-list allowlists measured; noConfusion when all dry computed; standardise via analytics metrics' },
@@ -1567,6 +1568,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'selfAnsweredQuestionsWithHarmonicAnswersFromMinimumStructureAnyEntropyBreaksHarmony', to: 'animationCore', pair: 'core/anim' },
   { from: 'researchAllSciencesAddressingTheOpenProse', to: 'proseScience', pair: 'prose/science' },
   { from: 'improveSpeedAndEfficiency', to: 'waveVerify', pair: 'wave/verify' },
+  { from: 'targetMinimumBuildAndDeployTimeAsTopPriority', to: 'buildMin', pair: 'build/min' },
   { from: 'cssIsTheWholeMathItselfInTheoremsAndFormulasSealedSelfComputedUntampered', to: 'cssMath', pair: 'css/math' },
   { from: 'cssIsTheQuantumApiItself', to: 'cssMath', pair: 'css/api' },
   { from: 'oneCoreCssDrivesTheWholeDevelopmentOfNewComputablePerspectives', to: 'cssMath', pair: 'math/css' },
