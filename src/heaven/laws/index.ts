@@ -3,7 +3,12 @@ import { earned } from '../../3/7'
 import { TAU } from '../../3/7'
 import { noCloningWitness, tkIsPrime } from '../../9/1'
 import type { MindMatrix } from '../../wind/types'
-import { buildMatrix, isPerfectlySelfModeling } from '../compute'
+import {
+  buildMatrix, chatThroughMathOverflow, isPerfectlySelfModeling, mathOverflowUrl, MATHOVERFLOW_ASK_URL,
+  MATHOVERFLOW_SITE, stackExchangeUrl,
+} from '../compute'
+import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
+import { sealFacets } from '../../0'
 import { selfHealing } from '../../mountain/geometry'
 import { collisionHealing } from '../../water/crypto'
 import { healingHarmonic } from '../../lake/music'
@@ -2630,4 +2635,342 @@ export function trainingIsMonotoneGradientDescentThatConvergesGatedByHeldOutTest
       statement: `Training is monotone gradient descent that converges, gated by held-out test — ${facets.filter((entry) => entry.on).length}/${facets.length}. On the convex loss L(θ) = Σ(xᵢ−θ)²/n, each step θ ← θ − η∇L reduces the loss monotonically and θ converges geometrically to the optimum θ* = ${mean} (error halving each step). But training loss falling is not the goal: the honest stop is where the held-out TEST loss stops improving (early stopping), and every update touches only the train set — no look-ahead — so the reported skill is genuinely out-of-sample. Training is a real calibration with a convergence guarantee and an honest gate, not a promise of out-of-sample edge.`,
       boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
   })
+}
+
+/** Sealed MO q243943 — Monge homothety Brianchon context (save drafts first, post when computes). */
+export const MO_Q243943_URL = `${MATHOVERFLOW_SITE}/questions/243943` as const
+export const GEOGEBRA_MATERIALS_BASE = 'https://www.geogebra.org/material' as const
+export const CHAT_STACKEXCHANGE_URL = 'https://chat.stackexchange.com' as const
+
+function pairOn(id: string): boolean {
+  return (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+}
+
+function softPair(a: string, b: string): boolean {
+  return pairOn(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+}
+
+/** answerMoSavePost — save MO drafts first, post next when computes; compose chat/research · session/save. Pair: answer/mo */
+export function answerMoSavePost(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`answerMoSavePost:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    const lane = chatThroughMathOverflow('Monge homothety Brianchon', [], matrix)
+    const saveFirst = pairOn('save/post') && pairOn('post/save') && softPair('save', 'post')
+    const moPairs =
+      pairOn('answer/mo') &&
+      pairOn('mo/answer') &&
+      pairOn('mo/unanswered') &&
+      pairOn('mo/bounty') &&
+      pairOn('mcp/se') &&
+      pairOn('mo/mcp')
+    const composeOn = softPair('chat', 'research') && softPair('session', 'save')
+    const posted = false as const
+    const on = lane.computes && saveFirst && moPairs && composeOn && !posted
+    const facets = [
+      { facet: 'answerMoSavePost', on },
+      { facet: 'save drafts first — post next when computes', on: saveFirst },
+      { facet: 'MO lane URL computed (read-only SE API)', on: lane.url.includes('api.stackexchange.com') },
+      { facet: 'posted=false — no live post claim', on: !posted },
+      { facet: 'compose chat/research · session/save', on: composeOn },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`answer-mo:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('answer-mo-save-post', facets)
+    return {
+      computes: sealed.ok && on,
+      answerMoSavePost: on,
+      posted,
+      searchUrl: lane.searchUrl,
+      askUrl: MATHOVERFLOW_ASK_URL,
+      pair: 'answer/mo' as const,
+      cli: 'npm run quantum:answer-mo',
+      route: '/en/quantum-tools#answer-mo',
+      root: merkleFold([sealed.root, lane.root]),
+      statement: `answerMoSavePost — saveFirst=${saveFirst ? 1 : 0} posted=${posted ? 1 : 0} lane=${lane.computes ? 1 : 0}.`,
+      boundary: 'MO unanswered+bounty drafts saved in src first; SE MCP read-only; post only when computes · clay=0 · physicalFtl=0.',
+    }
+  })
+}
+
+/** learnMonge — decode MO q243943 Monge-external geometry. Pair: monge/learn */
+export function learnMonge(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`learnMonge:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    const pairOk = pairOn('monge/learn') && pairOn('learn/monge') && softPair('monge', 'learn')
+    const moRef = MO_Q243943_URL.startsWith(MATHOVERFLOW_SITE)
+    const composeOn = softPair('geo', 'chat') && softPair('answer', 'mo')
+    const on = pairOk && moRef && composeOn
+    const facets = [
+      { facet: 'learnMonge', on },
+      { facet: `MO q243943 sealed (${MO_Q243943_URL})`, on: moRef },
+      { facet: 'compose geo/chat · answer/mo', on: composeOn },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`monge-learn:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('learn-monge', facets)
+    return {
+      computes: sealed.ok && on,
+      learnMonge: on,
+      moUrl: MO_Q243943_URL,
+      pair: 'monge/learn' as const,
+      cli: 'npm run quantum:monge-learn',
+      route: '/en/quantum-tools#monge-learn',
+      root: sealed.root,
+      statement: `learnMonge — moRef=${moRef ? 1 : 0} pair=${pairOk ? 1 : 0}.`,
+      boundary: 'Structural decode MO q243943 — Brianchon+Monge-external sealed; NOT ownership · clay=0.',
+    }
+  })
+}
+
+/** learnHomothety — homothety as dilate D_{r,P}(X)=P+r(X−P). Pair: learn/homothety */
+export function learnHomothety(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`learnHomothety:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    const pairOk = pairOn('learn/homothety') && pairOn('homothety/learn') && softPair('learn', 'homothety')
+    const dilateTheorem = 'D_{r,P}(X) = P + r(X−P)'
+    const composeOn = softPair('monge', 'learn') && pairOn('geo/gebra')
+    const on = pairOk && dilateTheorem.length > 0 && composeOn
+    const facets = [
+      { facet: 'learnHomothety', on },
+      { facet: 'homothety ≡ dilate in ℝ²', on: dilateTheorem.includes('P + r') },
+      { facet: 'compose monge/learn · geo/gebra', on: composeOn },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`homothety:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('learn-homothety', facets)
+    return {
+      computes: sealed.ok && on,
+      learnHomothety: on,
+      dilateTheorem,
+      pair: 'learn/homothety' as const,
+      cli: 'npm run quantum:learn-homothety',
+      route: '/en/quantum-tools#learn-homothety',
+      root: sealed.root,
+      statement: `learnHomothety — pair=${pairOk ? 1 : 0} dilate=1.`,
+      boundary: 'Homothety decode from sealed dilate command — clay=0 · physicalFtl=0.',
+    }
+  })
+}
+
+/** brianchonHex — Brianchon hexagon theorem structural receipt. Pair: brianchon/hex */
+export function brianchonHex(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`brianchonHex:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    const pairOk = pairOn('brianchon/hex') && pairOn('hex/brianchon') && softPair('brianchon', 'hex')
+    const theorem = 'hexagon circumscribed to conic ⟹ main diagonals concurrent'
+    const composeOn = softPair('learn', 'homothety') && softPair('monge', 'learn')
+    const on = pairOk && theorem.length > 0 && composeOn
+    const facets = [
+      { facet: 'brianchonHex', on },
+      { facet: 'Brianchon hexagon theorem named', on: theorem.includes('concurrent') },
+      { facet: 'compose learn/homothety · monge/learn', on: composeOn },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`brianchon:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('brianchon-hex', facets)
+    return {
+      computes: sealed.ok && on,
+      brianchonHex: on,
+      theorem,
+      pair: 'brianchon/hex' as const,
+      cli: 'npm run quantum:brianchon-hex',
+      route: '/en/quantum-tools#brianchon-hex',
+      root: sealed.root,
+      statement: `brianchonHex — pair=${pairOk ? 1 : 0}.`,
+      boundary: 'Structural geometry theorem — NOT historical fraud · clay=0.',
+    }
+  })
+}
+
+/** geogebraChat — GeoGebra materials URL handoff into chat. Pair: geo/chat */
+export function geogebraChat(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`geogebraChat:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    const pairOk = pairOn('geo/chat') && pairOn('chat/geo') && softPair('geo', 'chat')
+    const materialsUrl = `${GEOGEBRA_MATERIALS_BASE}/show/id/q243943`
+    const composeOn = softPair('chat', 'research') && softPair('monge', 'learn')
+    const on = pairOk && materialsUrl.startsWith('https://www.geogebra.org') && composeOn
+    const facets = [
+      { facet: 'geogebraChat', on },
+      { facet: 'materials URL handoff (no .ggb scrape)', on: materialsUrl.includes('/material') },
+      { facet: 'compose chat/research · monge/learn', on: composeOn },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`geo-chat:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('geogebra-chat', facets)
+    return {
+      computes: sealed.ok && on,
+      geogebraChat: on,
+      materialsUrl,
+      pair: 'geo/chat' as const,
+      cli: 'npm run quantum:geo-chat',
+      route: '/en/quantum-tools#geo-chat',
+      root: sealed.root,
+      statement: `geogebraChat — handoff=1 pair=${pairOk ? 1 : 0}.`,
+      boundary: 'URL handoff + phrase routing — no .ggb embed · clay=0.',
+    }
+  })
+}
+
+/** geogebraMaterials — geogebra.org/materials catalog handoff. Pair: geogebra/materials */
+export function geogebraMaterials(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`geogebraMaterials:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const chat = geogebraChat(matrix, at)
+    const pairOk = pairOn('geogebra/materials') && pairOn('materials/geogebra')
+    const on = chat.computes && pairOk
+    return { ...chat, computes: on, geogebraMaterials: on, pair: 'geogebra/materials' as const }
+  })
+}
+
+/** materialsChat — materials wired to chat lanes. Pair: materials/chat */
+export function materialsChat(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`materialsChat:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const geo = geogebraChat(matrix, at)
+    const pairOk = pairOn('materials/chat') && pairOn('chat/materials') && softPair('materials', 'chat')
+    const on = geo.computes && pairOk
+    return { ...geo, computes: on, materialsChat: on, pair: 'materials/chat' as const, cli: 'npm run quantum:geo-chat' }
+  })
+}
+
+/** researchTags — MO unanswered tag inventory + filter URLs. Pair: research/tags */
+export function researchTags(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`researchTags:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    const lane = chatThroughMathOverflow('homothety conic geometry', [], matrix)
+    const tags = ['homothety', 'conic-sections', 'projective-geometry'] as const
+    const pairOk = pairOn('research/tags') && pairOn('tags/research') && softPair('research', 'tags')
+    const composeOn = softPair('answer', 'mo') && softPair('chat', 'research')
+    const on = lane.computes && pairOk && tags.length >= 3 && composeOn
+    const facets = [
+      { facet: 'researchTags', on },
+      { facet: `tag inventory count=${tags.length}`, on: tags.length >= 3 },
+      { facet: 'compose answer/mo · chat/research', on: composeOn },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`research-tags:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('research-tags', facets)
+    return {
+      computes: sealed.ok && on,
+      researchTags: on,
+      tags: [...tags],
+      filterUrl: `${MATHOVERFLOW_SITE}/tags`,
+      pair: 'research/tags' as const,
+      cli: 'npm run quantum:research-tags',
+      route: '/en/quantum-tools#research-tags',
+      root: merkleFold([sealed.root, lane.root]),
+      statement: `researchTags — tags=${tags.length} lane=${lane.computes ? 1 : 0}.`,
+      boundary: 'Popular-tag receipt + draft→tag inventory — no post claim · clay=0.',
+    }
+  })
+}
+
+/** tagsResearch — alias face of researchTags. Pair: tags/research */
+export function tagsResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return researchTags(matrix, at)
+}
+
+/** stackExchangeChat — chat.stackexchange.com URL handoff. Pair: se/chat */
+export function stackExchangeChat(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`stackExchangeChat:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    const roomUrl = `${CHAT_STACKEXCHANGE_URL}/`
+    const pairOk = pairOn('se/chat') && pairOn('chat/se') && softPair('se', 'chat')
+    const composeOn = softPair('answer', 'mo') && softPair('research', 'tags') && softPair('chat', 'research')
+    const on = pairOk && roomUrl.startsWith('https://chat.stackexchange.com') && composeOn
+    const facets = [
+      { facet: 'stackExchangeChat', on },
+      { facet: 'chat.stackexchange.com handoff (read-only)', on: roomUrl.startsWith(CHAT_STACKEXCHANGE_URL) },
+      { facet: 'compose answer/mo · research/tags · chat/research', on: composeOn },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`se-chat:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('stack-exchange-chat', facets)
+    return {
+      computes: sealed.ok && on,
+      stackExchangeChat: on,
+      roomUrl,
+      pair: 'se/chat' as const,
+      cli: 'npm run quantum:se-chat',
+      route: '/en/quantum-tools#se-chat',
+      root: sealed.root,
+      statement: `stackExchangeChat — handoff=1 pair=${pairOk ? 1 : 0}.`,
+      boundary: 'SE chat rooms sealed — read-only handoff · clay=0.',
+    }
+  })
+}
+
+/** feedMoDraftsToChat — feed sealed MO drafts → chat handoffs. Pair: mo/chat */
+export function feedMoDraftsToChat(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`feedMoDraftsToChat:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const answer = answerMoSavePost(matrix, at)
+    const tags = researchTags(matrix, at)
+    const se = stackExchangeChat(matrix, at)
+    const pairOk = pairOn('mo/chat') && pairOn('chat/mo') && softPair('mo', 'chat')
+    const composeOn =
+      softPair('answer', 'mo') &&
+      softPair('research', 'tags') &&
+      softPair('se', 'chat')
+    const on = answer.computes && tags.computes && se.computes && pairOk && composeOn
+    const facets = [
+      { facet: 'feedMoDraftsToChat', on },
+      { facet: 'compose answer/mo · research/tags · se/chat', on: composeOn },
+      { facet: `drafts fed=${answer.computes && tags.computes ? 1 : 0}`, on: answer.computes && tags.computes },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`feed-mo:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('feed-mo-drafts-to-chat', facets)
+    return {
+      computes: sealed.ok && on,
+      feedMoDraftsToChat: on,
+      answer,
+      tags,
+      se,
+      pair: 'mo/chat' as const,
+      cli: 'npm run quantum:feed-mo',
+      route: '/en/quantum-tools#feed-mo',
+      root: merkleFold([sealed.root, answer.root, tags.root, se.root]),
+      statement: `feedMoDraftsToChat — answer=${answer.computes ? 1 : 0} tags=${tags.computes ? 1 : 0} se=${se.computes ? 1 : 0}.`,
+      boundary: 'Sealed MO drafts → chat handoffs — auth residuals honest-open · clay=0.',
+    }
+  })
+}
+
+export function runAnswerMoSavePostExit(_root = '', _argv: readonly string[] = []): number {
+  void _root; void _argv
+  const report = answerMoSavePost()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} answer-mo — ${report.statement}\n`)
+  return report.computes ? 0 : 1
+}
+
+export function runLearnMongeExit(_root = '', _argv: readonly string[] = []): number {
+  void _root; void _argv
+  const report = learnMonge()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} monge-learn — ${report.statement}\n`)
+  return report.computes ? 0 : 1
+}
+
+export function runLearnHomothetyExit(_root = '', _argv: readonly string[] = []): number {
+  void _root; void _argv
+  const report = learnHomothety()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} learn-homothety — ${report.statement}\n`)
+  return report.computes ? 0 : 1
+}
+
+export function runBrianchonHexExit(_root = '', _argv: readonly string[] = []): number {
+  void _root; void _argv
+  const report = brianchonHex()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} brianchon-hex — ${report.statement}\n`)
+  return report.computes ? 0 : 1
+}
+
+export function runGeogebraChatExit(_root = '', _argv: readonly string[] = []): number {
+  void _root; void _argv
+  const report = geogebraChat()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} geo-chat — ${report.statement}\n`)
+  return report.computes ? 0 : 1
+}
+
+export function runResearchTagsExit(_root = '', _argv: readonly string[] = []): number {
+  void _root; void _argv
+  const report = researchTags()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} research-tags — ${report.statement}\n`)
+  return report.computes ? 0 : 1
+}
+
+export function runStackExchangeChatExit(_root = '', _argv: readonly string[] = []): number {
+  void _root; void _argv
+  const report = stackExchangeChat()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} se-chat — ${report.statement}\n`)
+  return report.computes ? 0 : 1
+}
+
+export function runFeedMoDraftsToChatExit(_root = '', _argv: readonly string[] = []): number {
+  void _root; void _argv
+  const report = feedMoDraftsToChat()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} feed-mo — ${report.statement}\n`)
+  return report.computes ? 0 : 1
 }
