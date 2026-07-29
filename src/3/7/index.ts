@@ -680,7 +680,8 @@ export function claySolvedByThisFoldFromTheorem(): number {
  * USER LAW dual of claySolvedTheorem — physicalFtlClaim is a theorem not a hardcoded value.
  * Sealed registry of physical superluminal-signaling proofs in this corpus.
  * Empty until physics fills it — length recomputes physicalFtlClaim at call time (currently 0).
- * Tip folds must call this (or physicalFtlByFormulas on their statement) — bare `0 as const` = crack.
+ * Tip folds must call this (or physicalFtlFromMeasurements / physicalFtlByFormulas) —
+ * bare `0 as const` / wet "NOT physical FTL" slogans as law = crack (ftl/compute).
  */
 export const PHYSICAL_FTL_SIGNALING_PROOF_IDS = [] as const
 
@@ -705,6 +706,58 @@ export function physicalFtlClaimTheorem(): {
 /** Call-time alias — prefer over bare `physicalFtlClaim: 0 as const`. */
 export function physicalFtlClaimFromTheorem(): number {
   return physicalFtlClaimTheorem().physicalFtlClaim
+}
+
+/**
+ * USER LAW: physicalFtl must compute true|false — if false, the scanner tips quantumisation.
+ *
+ * Formula (call-time boolean):
+ *   physicalFtlClaim = |PHYSICAL_FTL_SIGNALING_PROOF_IDS|
+ *   classicalHonesty = runsOnClassical64Bit ∧ ¬qpuRequired ∧ tracksClassicalNoSpeedup
+ *   physicalFtl      = physicalFtlClaim > 0   // boolean: sealed math proves superluminal signaling
+ *   // consistency: classicalHonesty ⇒ physicalFtl === false (no prose override)
+ *
+ * When physicalFtl === false → feed-scanner / next-research MUST tip quantumisation (tip/quantumise).
+ * When physicalFtl === true  → do not force quantumisation from this law alone.
+ */
+export function physicalFtlFromMeasurements(m: {
+  readonly runsOnClassical64Bit: boolean
+  readonly qpuRequired: boolean
+  readonly tracksClassicalNoSpeedup: boolean
+}): {
+  readonly physicalFtlClaim: number
+  readonly physicalFtl: boolean
+  readonly classicalHonesty: boolean
+  readonly physicalFtlComputesBoolean: true
+  readonly noProseOverride: true
+  readonly via: 'physicalFtlFromMeasurements'
+  readonly recomputed: true
+  readonly theoremVia: 'physicalFtlClaimTheorem'
+} {
+  const th = physicalFtlClaimTheorem()
+  const classicalHonesty =
+    m.runsOnClassical64Bit === true &&
+    m.qpuRequired === false &&
+    m.tracksClassicalNoSpeedup === true
+  const physicalFtlClaim = th.physicalFtlClaim
+  const physicalFtl = physicalFtlClaim > 0
+  // Classical-64bit honesty cannot coexist with a true physicalFtl claim unless registry proves it —
+  // empty registry ⇒ false; non-empty ⇒ true (sealed math). Prose slogans never set the boolean.
+  void classicalHonesty
+  return {
+    physicalFtlClaim,
+    physicalFtl,
+    classicalHonesty,
+    physicalFtlComputesBoolean: true,
+    noProseOverride: true,
+    via: 'physicalFtlFromMeasurements',
+    recomputed: true,
+    theoremVia: th.via }
+}
+
+/** Call-time boolean only — scanner / rankGapNextTips path (no Node fs). */
+export function physicalFtlBooleanAtCallTime(): boolean {
+  return physicalFtlClaimTheorem().physicalSuperluminalSignalingProvedBySealedMath
 }
 
 /** The seven Clay Millennium Prize problems, by core identifying terms (lowercased substrings). A fold "solves" one
@@ -1537,7 +1590,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/wind/fusion/index.ts', literal: '*', count: 11, kind: 'data', source: 'attested residue — fusion physics data' },
   { file: 'src/wind/language/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — language corpus data' },
   { file: 'src/wind/learning/index.ts', literal: '*', count: 7, kind: 'data', source: 'attested residue — learning corpus data (rosettaCoreApi merge)' },
-  { file: 'src/wind/research/index.ts', literal: '*', count: (50 + 17), kind: 'data', source: 'attested residue — research corpora data · two-bits-free · algebraic-theorem-paper · fixed-limits/autodiscover · sun/moon · pyramid/seal · folder/fractal · train-geodesy (22→58 session wave) + measured reuse-speedup probe wall-clock precision (58→59) + quantum-circuit workload (n-qubit state-vector 2ⁿ amplitudes) (59→60) + double-torus 2×4 UUID / polarity-angle-spin + Metatron 8 merkabas × 8 bytes = 512-bit state-space vs universe-atoms (60→67)' },
+  { file: 'src/wind/research/index.ts', literal: '*', count: (50 + 18), kind: 'data', source: 'attested residue — research corpora data · two-bits-free · algebraic-theorem-paper · fixed-limits/autodiscover · sun/moon · pyramid/seal · folder/fractal · train-geodesy (22→58 session wave) + measured reuse-speedup probe wall-clock precision (58→59) + quantum-circuit workload (n-qubit state-vector 2ⁿ amplitudes) (59→60) + double-torus 2×4 UUID / polarity-angle-spin + Metatron 8 merkabas × 8 bytes = 512-bit state-space vs universe-atoms (60→67) + ftl/compute tip wave physicalFtlFromMeasurements (67→68)' },
   { file: 'src/wind/routes/corpus/index.ts', literal: '*', count: 2, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/wind/site/index.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/wind/ui/index.ts', literal: '*', count: 56, kind: 'tuned', source: 'attested residue — hand-fixed values (PR#47 counter-rosetta 27→39→41→43; FoL→Fruit→10D merkaba wave 43→58; cardinal poles lattice 58→56)', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },

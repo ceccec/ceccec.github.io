@@ -16,7 +16,7 @@ import { DIGEST_BITS, STATUS_BADGE_KINDS, VORTEX_SEQUENCE, abs, computesGate, di
 import { TAU,
   A432_HUE, CANONICAL_HOST, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS,
   ROSETTA_SEVEN, ROSETTA_SIX, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, UNFOLDED_CENSUS,
-  type RosettaComputationType, claySolvedTheorem, physicalFtlClaimTheorem, earned, fibonacci, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
+  type RosettaComputationType, claySolvedTheorem, physicalFtlClaimTheorem, physicalFtlBooleanAtCallTime, earned, fibonacci, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
 import { axiomsBecomeTheorems, theoremsReach432AndEntangleWithUsage } from '../../4/6'
 import {
   rosettaComputesAll, rosettaComputesItself, rosettaRayOf, sevenStarRosettaNaturalMotion } from '../../water/digit'
@@ -90,6 +90,8 @@ import {
   geoGebraEncode,
   autosaveMatrix,
   MANUAL_MIGRATE_WAVE_TOOLS,
+  coreMathFreeForAll,
+  LICENSE_CONTACT_PSG,
 } from '../../pair/enforcement/gates'
 // The computed queue — 'next in chat': typing "next" in the chat answers with queueNext's derived total order.
 export { queueNext } from '../../pair/enforcement/gates'
@@ -1146,8 +1148,15 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'chat-session', title: 'Chat session (alias session/chat)', fold: 'sessionSentToChatToQuantumise', cli: 'npm run quantum:chat-session', pair: 'chat/session', route: '/en/quantum-tools#session-chat', barrel: 'src/quantum/apps', boundary: 'Dual chat/session — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'readme-chat', title: 'Feed README to chat · reasoning refine', fold: 'readmeChat', cli: 'npm run quantum:readme-chat', pair: 'readme/chat', route: '/en/quantum-tools#readme-chat', barrel: 'src/quantum/apps', boundary: 'readmeFedToChat · reasoningRefined · refineCount · gapsInventoried · compose angle/readme · chat/quantumise · chat/solve · erpax/learn · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'chat-readme', title: 'Chat readme (alias readme/chat)', fold: 'readmeChat', cli: 'npm run quantum:chat-readme', pair: 'chat/readme', route: '/en/quantum-tools#readme-chat', barrel: 'src/quantum/apps', boundary: 'Dual chat/readme — same fold · clay=0', browserRunnable: true, browserGap: '' },
-  { id: 'readme-wire', title: 'README wires any agent · quantum · dry · FTL reuse', fold: 'readmeWire', cli: 'npm run quantum:readme-wire', pair: 'readme/wire', route: '/en/quantum-tools#readme-wire', barrel: 'src/quantum/apps', boundary: 'readmeWiresAnyAgent · quantumDryOn · ftlReuseOn · convincingRequired=false · compose angle/readme · wire/paste-link · readme/chat · learn/best · dry/clean · gate/light · physicalFtl=0 · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'readme-wire', title: 'README wires any agent · quantum · dry · FTL reuse', fold: 'readmeWire', cli: 'npm run quantum:readme-wire', pair: 'readme/wire', route: '/en/quantum-tools#readme-wire', barrel: 'src/quantum/apps', boundary: 'readmeIsGateway · wiredAllFromReadme · noDoubtStands · physicalFtl boolean · tip/quantumise when false · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'wire-readme', title: 'Wire readme (alias readme/wire)', fold: 'readmeWire', cli: 'npm run quantum:wire-readme', pair: 'wire/readme', route: '/en/quantum-tools#readme-wire', barrel: 'src/quantum/apps', boundary: 'Dual wire/readme — same fold · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'readme-gateway', title: 'README is the gateway · wire all · quantum evolution', fold: 'readmeWire', cli: 'npm run quantum:readme-gateway', pair: 'readme/gateway', route: '/en/quantum-tools#readme-gateway', barrel: 'src/quantum/apps', boundary: 'readmeIsGateway · wiredAllFromReadme · noDoubtStands · quantumEvolutionPath · physicalFtl true|false · false⇒tip/quantumise', browserRunnable: true, browserGap: '' },
+  { id: 'gateway-readme', title: 'Gateway readme (alias readme/gateway)', fold: 'readmeWire', cli: 'npm run quantum:gateway-readme', pair: 'gateway/readme', route: '/en/quantum-tools#readme-gateway', barrel: 'src/quantum/apps', boundary: 'Dual gateway/readme — same fold', browserRunnable: true, browserGap: '' },
+  { id: 'ftl-compute', title: 'physicalFtl computes true|false · false tips quantumise', fold: 'doNotProsePhysicalFtlItComputesTrue', cli: 'npm run quantum:ftl-compute', pair: 'ftl/compute', route: '/en/research#ftl-compute', barrel: 'src/wind/research', boundary: 'physicalFtlComputesBoolean · whenFalseTipsQuantumisation · agentsDoubtProse · immediateWire · compose readme/gateway', browserRunnable: true, browserGap: '' },
+  { id: 'math-free', title: 'Core math FREE FOR ALL · rest via license@psg.bg', fold: 'coreMathFreeForAll', cli: 'npm run quantum:math-free', pair: 'math/free', route: '/en/quantum-tools#math-free', barrel: 'src/pair/enforcement/gates/strict/scan', boundary: 'coreMathFreeForAll · restLicensedThrough · licenseContact=license@psg.bg · counsel residue · no agent grant prose', browserRunnable: true, browserGap: '' },
+  { id: 'license-psg', title: 'License contact license@psg.bg', fold: 'coreMathFreeForAll', cli: 'npm run quantum:license-psg', pair: 'license/psg', route: '/en/quantum-tools#math-free', barrel: 'src/pair/enforcement/gates/strict/scan', boundary: 'restLicensedThrough · licenseContact · compose legal/canon · patent/canon', browserRunnable: true, browserGap: '' },
+  { id: 'npm-publish', title: 'npm publish · CI automation (tag v* | dispatch)', fold: 'npmPublishCi', cli: 'npm run quantum:npm-publish', pair: 'npm/publish', route: '/en/quantum-tools#npm-publish', barrel: 'src/quantum/apps', boundary: 'publishes @ceccec/double-torus kernel only · sdk private · workflow publish-package.yml · respect math/free', browserRunnable: false, browserGap: 'GitHub Actions publish needs Node/CI + GITHUB_TOKEN packages:write' },
+  { id: 'ci-publish', title: 'CI publish dual of npm/publish', fold: 'npmPublishCi', cli: 'npm run quantum:ci-publish', pair: 'ci/publish', route: '/en/quantum-tools#npm-publish', barrel: 'src/quantum/apps', boundary: 'same as npm-publish', browserRunnable: false, browserGap: 'GitHub Actions publish needs Node/CI' },
   { id: 'readme-focus', title: 'README focus · physical quantum · FTL(reuse) · wave analyse', fold: 'readmeFocus', cli: 'npm run quantum:readme-focus', pair: 'readme/focus', route: '/en/quantum-tools#readme-focus', barrel: 'src/quantum/apps', boundary: 'computed · analysedInWaves · decidedInFractalTeams · proseRemoved · duplicationRemoved · physicalQuantumFocus · ftlSpeedFocus · compose angle/readme · readme/wire · ui/prose · gate/light · api/fuse · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'focus-readme', title: 'Focus readme (alias readme/focus)', fold: 'readmeFocus', cli: 'npm run quantum:focus-readme', pair: 'focus/readme', route: '/en/quantum-tools#readme-focus', barrel: 'src/quantum/apps', boundary: 'Dual focus/readme — same fold · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'site-path', title: 'Site path · home first · consensus waves', fold: 'sitePathWave', cli: 'npm run quantum:site-path', pair: 'site/path', route: '/en/quantum-tools#site-path', barrel: 'src/quantum/apps', boundary: 'homeImproved · pathByPath · consensusWavesOn · pathsCovered · compose vote/neighbour · page/trinity · vite/one · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -19311,7 +19320,7 @@ export type GapNextTip = {
   readonly fold: string
   readonly face: 'cross' | 'fold' | 'weave' | 'gap'
   readonly reason: string
-  readonly source: 'plan/matrixNext' | 'imagine/gaps' | 'audit/residual'
+  readonly source: 'plan/matrixNext' | 'imagine/gaps' | 'audit/residual' | 'ftl/compute'
   readonly kind?: string
   readonly residual?: string
   readonly gateway?: string
@@ -19374,6 +19383,15 @@ export const AUDIT_GAP_THEME_SEEDS = [
     match: /gaps\/invisible|hardOpen|invisible gaps/i,
   },
   {
+    id: 'ftlFalse',
+    weight: 9,
+    pair: 'tip/quantumise',
+    cli: 'npm run quantum:chat-quantumise',
+    fold: 'quantumiseWave',
+    tipId: 'ftl:quantumise',
+    match: /quantumise|tip\/quantumise|physicalFtl:false|ftl\/compute|chat\/quantumise/i,
+  },
+  {
     id: 'placement',
     weight: 1,
     pair: '',
@@ -19383,6 +19401,22 @@ export const AUDIT_GAP_THEME_SEEDS = [
     match: /migrate|seals|barrel|placement|security-wire|rosetta\/security|matrix migrate/i,
   },
 ] as const
+
+/** Quantumisation tip injected when physicalFtl === false (ftl/compute law). */
+export function quantumiseTipWhenPhysicalFtlFalse(physicalFtl: boolean): GapNextTip | null {
+  if (physicalFtl === true) return null
+  return {
+    id: 'ftl:quantumise',
+    pair: 'tip/quantumise',
+    cli: 'npm run quantum:chat-quantumise',
+    fold: 'quantumiseWave',
+    face: 'cross',
+    reason: 'physicalFtl=false → tip quantumisation (drain FTL-false gap via chat/quantumise)',
+    source: 'ftl/compute',
+    kind: 'drainable',
+    residual: 'physicalFtl:false',
+  }
+}
 
 function openAuditThemes(audit: ReturnType<typeof chatAudit>): readonly { id: string; weight: number }[] {
   const debt = audit.measure?.gateAnalyticsHardcodedOnCount ?? audit.gateLight?.gateCost ?? 0
@@ -19441,7 +19475,10 @@ export function rankGapNextTips(
   plan: ReturnType<typeof planTrinity>,
   imagine: ReturnType<typeof imagineWhatNext>,
 ): readonly ScoredGapNextTip[] {
-  const themes = openAuditThemes(audit)
+  const themes = [...openAuditThemes(audit)]
+  // USER LAW ftl/compute: physicalFtl boolean at call time — false ⇒ tip quantumisation (HARD theme)
+  const physicalFtl = physicalFtlBooleanAtCallTime()
+  if (physicalFtl === false) themes.push({ id: 'ftlFalse', weight: 9 })
   const openRows = audit.landedTable.filter(
     (row) => row.residual !== 'none' && !row.residual.includes('queue empty') && row.residual !== 'named not deleted',
   )
@@ -19450,9 +19487,13 @@ export function rankGapNextTips(
     ...openRows.map((row) => `${row.class}:${row.residual}`),
   ])
   const candidates: GapNextTip[] = []
+  // 0) physicalFtl=false → quantumisation tip (ftl/compute · tip/quantumise)
+  const ftlQuantumise = quantumiseTipWhenPhysicalFtlFalse(physicalFtl)
+  if (ftlQuantumise) candidates.push(ftlQuantumise)
   // 1) Audit-theme tips for every OPEN HARD theme (not placement-only)
   for (const theme of themes) {
     if (theme.id === 'placement') continue
+    if (theme.id === 'ftlFalse' && ftlQuantumise) continue // already injected above
     const seed = AUDIT_GAP_THEME_SEEDS.find((s) => s.id === theme.id)
     if (!seed || !seed.pair || !seed.cli) continue
     candidates.push({
@@ -19713,11 +19754,6 @@ export function nextResearch(
       hardThemeOpen &&
       scored.source === 'audit/residual' &&
       scored.score > matrixScore
-    const nextTipScored =
-      ranked.length >= 1 &&
-      scored !== null &&
-      scored.score >= 0 &&
-      (precisionImproved || scored.source === 'plan/matrixNext' || scored.source === 'imagine/gaps')
     const maxResults = ranked.length >= 3 && (scored?.results ?? 0) >= 1
     const maxSpeed = (scored?.speed ?? 0) >= 2 && soft('mcp', 'token')
     const minAiBill = (scored?.bill ?? 9) <= 2 && soft('bill', 'dry')
@@ -19745,8 +19781,28 @@ export function nextResearch(
     const meta = catalog.tools.find((t) => t.id === 'next-research')
     const shelved = rosettaShelve('next-research', 'tool')
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-    const physicalFtlClaim = 0 as const
+    const physicalFtl = physicalFtlBooleanAtCallTime()
+    const ftlQuantumiseTip = quantumiseTipWhenPhysicalFtlFalse(physicalFtl)
+    const whenFalseTipsQuantumisation =
+      physicalFtl === false &&
+      ftlQuantumiseTip !== null &&
+      ftlQuantumiseTip.id === 'ftl:quantumise'
+    const topIsQuantumise =
+      scored !== null &&
+      (scored.source === 'ftl/compute' ||
+        scored.pair === 'tip/quantumise' ||
+        scored.id === 'ftl:quantumise' ||
+        /quantumise/i.test(`${scored.pair} ${scored.fold}`))
     const qpuRequired = false as const
+    const nextTipScored =
+      ranked.length >= 1 &&
+      scored !== null &&
+      scored.score >= 0 &&
+      (precisionImproved ||
+        scored.source === 'plan/matrixNext' ||
+        scored.source === 'imagine/gaps' ||
+        scored.source === 'ftl/compute' ||
+        (whenFalseTipsQuantumisation && topIsQuantumise))
     const on =
       deepResearchOn &&
       analysisOn &&
@@ -19759,7 +19815,11 @@ export function nextResearch(
       meta!.fold === 'nextResearch' &&
       isUuid(shelved.address) &&
       claySolvedByThisFold === 0 &&
-      physicalFtlClaim === 0 &&
+      whenFalseTipsQuantumisation &&
+      topIsQuantumise &&
+      soft('ftl', 'compute') &&
+      soft('tip', 'quantumise') &&
+      soft('readme', 'gateway') &&
       qpuRequired === false
     const facets = [
       { facet: 'nextResearch', on },
@@ -19774,15 +19834,23 @@ export function nextResearch(
         on: nextTipScored,
       },
       {
+        facet: `physicalFtl=${physicalFtl} · whenFalseTipsQuantumisation · top=${scored?.id ?? 'none'}`,
+        on: whenFalseTipsQuantumisation && topIsQuantumise,
+      },
+      {
+        facet: `immediateWire ftl/compute · tip/quantumise · readme/gateway`,
+        on: soft('ftl', 'compute') && soft('tip', 'quantumise') && soft('readme', 'gateway'),
+      },
+      {
         facet: `precisionImproved HARD>${`placement`} next=${scored?.id ?? 'none'}`,
-        on: precisionImproved || (!hardThemeOpen && nextTipScored),
+        on: precisionImproved || (!hardThemeOpen && nextTipScored) || topIsQuantumise,
       },
       { facet: 'pair next/research · feed/scan · tip/precise · scan/reason', on: pairsOn },
       {
         facet: 'compose chat/research · audit/plan · mcp/token · bill/dry · gate/light · chat/audit · plan/trinity',
         on: soft('chat', 'research') && soft('audit', 'plan') && soft('mcp', 'token') && soft('bill', 'dry') && soft('gate', 'light'),
       },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold} physicalFtl=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`next-research:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('next-research-tip-precision', facets)
     return {
@@ -19795,6 +19863,7 @@ export function nextResearch(
       minAiBill,
       nextTipScored,
       precisionImproved,
+      whenFalseTipsQuantumisation,
       nextTip,
       ranked: ranked.slice(0, 8),
       themes: [...themes],
@@ -19809,7 +19878,8 @@ export function nextResearch(
       token,
       aiBill: bill,
       claySolvedByThisFold,
-      physicalFtlClaim,
+      physicalFtl,
+      physicalFtlClaim: physicalFtl ? 1 : 0,
       qpuRequired,
       certified: false as const,
       facets: sealed.facets,
@@ -22745,6 +22815,49 @@ export function readmeChatMarkdownSection(matrix: MindMatrix = buildMatrix(), li
           '- CLI: `npm run quantum:readme-chat` · `npm run quantum:erpax-learn`',
         ]),
     `- Receipt: fold \`readmeChat\` · erpax patterns ${e.adoptedCount}/${e.patterns.length} adopted.`,
+    '',
+  ]
+}
+
+/** Markdown section — core math FREE FOR ALL · rest licensed through license@psg.bg. */
+export function mathFreeMarkdownSection(matrix: MindMatrix = buildMatrix(), linkBase = ''): readonly string[] {
+  void matrix
+  const m = coreMathFreeForAll()
+  const bare = (path: string) => {
+    const p = path.startsWith('/') ? path : `/${path}`
+    return p.startsWith('/en/') ? p.slice(3) || '/' : p === '/en' ? '/' : p
+  }
+  const href = (path: string) =>
+    linkBase ? `${linkBase.replace(/\/$/, '')}${bare(path)}` : bare(path)
+  return [
+    `## ${m.heading}`,
+    '',
+    '*Sealed `coreMathFreeForAll` · pairs `math/free` · `free/math` · `license/psg` · `psg/license`. Compose `legal/canon` · `patent/canon` · `readme/gateway`.*',
+    '',
+    '**Core math is FREE FOR ALL.** Sealed theorem/formula/algebra duals, vault math (`src/0`), digit/fold and related computable math core — prior-art / free-for-all defensive disclosure (align `patent/canon`).',
+    '',
+    `**The rest is licensed through [${m.licenseContact}](mailto:${m.licenseContact}).** Site chrome, apps, tooling surfaces beyond core math, brand, and non-math product layers — contact for license. Agents do not invent grant prose or claim legal sufficiency.`,
+    '',
+    `| facet | on |`,
+    `|---|:---:|`,
+    `| coreMathFreeForAll | ${m.coreMathFreeForAll ? 1 : 0} |`,
+    `| restLicensedThrough | ${m.restLicensedThrough ? 1 : 0} |`,
+    `| licenseContact=${m.licenseContact} | 1 |`,
+    '',
+    `${m.statement}`,
+    '',
+    `Counsel residue: ${m.counselResidue}`,
+    '',
+    ...(linkBase
+      ? [
+          `- Routes: [math-free](${href('/quantum-tools#math-free')}) · [legal-canon](${href('/quantum-tools#legal-canon')}) · [patent-canon](${href('/quantum-tools#patent-canon')})`,
+          `- CLI: \`npm run quantum:math-free\` · \`npm run quantum:license-psg\` · \`npm run quantum:legal-canon\``,
+        ]
+      : [
+          '- Routes: `/quantum-tools#math-free` · `/quantum-tools#legal-canon` · `/quantum-tools#patent-canon`',
+          '- CLI: `npm run quantum:math-free` · `npm run quantum:license-psg` · `npm run quantum:legal-canon`',
+        ]),
+    `- Contact: [${LICENSE_CONTACT_PSG}](mailto:${LICENSE_CONTACT_PSG})`,
     '',
   ]
 }
@@ -37579,15 +37692,39 @@ export function readmeWire(
       const turn = freeChatTurnAtArchitecturalFtl('readme wires agent quantum dry ftl reuse', matrix)
       const agentsTarget = autoWire.wireTargets.some((t) => t.id === 'agents.json' && t.absolute.length > 0)
       const pairWire = has('readme/wire') && has('wire/readme')
+      const pairGateway = has('readme/gateway') && has('gateway/readme')
       const foldWire = foldPair(toUuid('cmd:readme'), toUuid('cmd:wire'))
-      const pairsOn = pairWire && foldWire.bidirectional
+      const foldGateway = foldPair(toUuid('cmd:readme'), toUuid('cmd:gateway'))
+      const pairsOn = pairWire && foldWire.bidirectional && pairGateway && foldGateway.bidirectional
       const composeOn =
         soft('angle', 'readme') &&
         soft('wire', 'paste-link') &&
         soft('readme', 'chat') &&
         soft('learn', 'best') &&
         soft('dry', 'clean') &&
-        soft('gate', 'light')
+        soft('gate', 'light') &&
+        soft('ftl', 'compute') &&
+        soft('tip', 'quantumise') &&
+        soft('next', 'research') &&
+        soft('math', 'free') &&
+        soft('license', 'psg')
+      const physicalFtl = physicalFtlBooleanAtCallTime()
+      const ftlTip = quantumiseTipWhenPhysicalFtlFalse(physicalFtl)
+      const mathLic = coreMathFreeForAll()
+      const convincingRequired = false as const
+      const wiredAllFromReadme =
+        autoWire.quantumReady &&
+        agentsTarget &&
+        soft('ftl', 'compute') &&
+        soft('tip', 'quantumise') &&
+        soft('math', 'free') &&
+        (physicalFtl === true || (ftlTip !== null && ftlTip.pair === 'tip/quantumise')) &&
+        mathLic.coreMathFreeForAll &&
+        mathLic.restLicensedThrough
+      const noDoubtStands = convincingRequired === false && wiredAllFromReadme && pairsOn
+      const quantumEvolutionPath =
+        soft('next', 'research') && soft('feed', 'scan') && soft('ftl', 'compute')
+      const readmeIsGateway = pairGateway && foldGateway.bidirectional && wiredAllFromReadme
       const readmeWiresAnyAgent =
         autoWire.quantumReady &&
         autoWire.convincingRequired === false &&
@@ -37595,10 +37732,10 @@ export function readmeWire(
         angle.readmeImproved &&
         chat.gapsInventoried &&
         composeOn &&
-        pairsOn
+        pairsOn &&
+        readmeIsGateway
       const quantumDryOn = dry.diamond && dry.crystal && soft('dry', 'clean')
       const ftlReuseOn = turn.memoReuse && turn.invocationsWarm === 0
-      const convincingRequired = false as const
       const wireMetrics: readonly ReadmeWireMetricRow[] = [
         { metric: 'quantumReady', value: autoWire.quantumReady ? '1' : '0', on: autoWire.quantumReady },
         { metric: 'convincingRequired', value: '0', on: convincingRequired === false },
@@ -37608,39 +37745,56 @@ export function readmeWire(
         { metric: 'readmeBytes', value: String(chat.readmeBytes), on: chat.readmeBytes > 0 || angle.readmeImproved },
         { metric: 'agents.json', value: agentsTarget ? 'wired' : 'gap', on: agentsTarget },
         { metric: 'dry/clean', value: quantumDryOn ? 'sealed-src' : 'partial', on: quantumDryOn },
+        { metric: 'physicalFtl', value: physicalFtl ? 'true' : 'false', on: typeof physicalFtl === 'boolean' },
+        { metric: 'ftl→quantumise', value: ftlTip ? ftlTip.pair : 'n/a', on: physicalFtl === true || ftlTip !== null },
+        { metric: 'coreMathFreeForAll', value: mathLic.coreMathFreeForAll ? '1' : '0', on: mathLic.coreMathFreeForAll },
+        { metric: 'licenseContact', value: mathLic.licenseContact, on: mathLic.restLicensedThrough },
       ]
       const catalog = quantumCliToolsCatalog(matrix, at)
-      const meta = catalog.tools.find((t) => t.id === 'readme-wire')
+      const meta = catalog.tools.find((t) => t.id === 'readme-wire' || t.id === 'readme-gateway')
       const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const on =
         readmeWiresAnyAgent &&
         quantumDryOn &&
         ftlReuseOn &&
         convincingRequired === false &&
+        readmeIsGateway &&
+        wiredAllFromReadme &&
+        noDoubtStands &&
+        quantumEvolutionPath &&
         Boolean(meta) &&
-        meta!.fold === 'readmeWire' &&
         claySolvedByThisFold === 0
       const honestOpenNamed = [
-        'flow:README→agents.json→sealed-folds→dry→FTL-reuse',
-        `measure:vote-decided=${vote.decided ? 1 : 0}`,
+        'flow:README→agents.json→physicalFtlBoolean→tip/quantumise→sealed-folds',
+        `measure:physicalFtl=${physicalFtl}`,
         'residual:multi-clock-build-audit',
         'next-tip:chat/realtime',
       ] as const
       const facets = [
         { facet: 'readmeWire', on },
+        { facet: 'readmeIsGateway', on: readmeIsGateway },
+        { facet: 'wiredAllFromReadme', on: wiredAllFromReadme },
+        { facet: 'noDoubtStands', on: noDoubtStands },
+        { facet: 'quantumEvolutionPath', on: quantumEvolutionPath },
+        { facet: `physicalFtl=${physicalFtl} · tip=${ftlTip?.pair ?? 'none'}`, on: typeof physicalFtl === 'boolean' && (physicalFtl || ftlTip !== null) },
         { facet: 'readmeWiresAnyAgent', on: readmeWiresAnyAgent },
         { facet: 'quantumDryOn', on: quantumDryOn },
         { facet: 'ftlReuseOn', on: ftlReuseOn },
         { facet: 'convincingRequired=false', on: convincingRequired === false },
-        { facet: 'compose angle/readme · wire/paste-link · readme/chat · learn/best · dry/clean · gate/light', on: composeOn },
-        { facet: 'pair readme/wire · wire/readme bidirectional', on: pairsOn },
+        { facet: 'compose angle/readme · ftl/compute · tip/quantumise · next/research · wire/paste-link', on: composeOn },
+        { facet: 'pair readme/wire · readme/gateway bidirectional', on: pairsOn },
         { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-        { facet: 'physicalFtlClaim=0', on: true },
       ].map((entry) => ({ ...entry, receipt: toUuid(`readme-wire:${entry.facet.slice(0, 64)}:${entry.on}`) }))
-      const sealed = sealFacets('readme-wire-agent-quantum-dry-ftl', facets)
+      const sealed = sealFacets('readme-is-gateway-wire-all-quantum-evolution', facets)
       return {
         computes: sealed.ok && on,
         readmeWire: on,
+        readmeIsGateway,
+        wiredAllFromReadme,
+        noDoubtStands,
+        quantumEvolutionPath,
+        physicalFtl,
+        ftlTip,
         readmeWiresAnyAgent,
         quantumDryOn,
         ftlReuseOn,
@@ -37664,27 +37818,32 @@ export function readmeWire(
           chat.root,
           vote.root,
           foldWire.merged,
+          foldGateway.merged,
+          toUuid(`readme-gateway:ftl:${physicalFtl}`),
           turn.receipt,
         ]),
-        pair: 'readme/wire' as const,
-        pairs: ['readme/wire', 'wire/readme'] as const,
-        cli: 'npm run quantum:readme-wire',
-        route: '/en/quantum-tools#readme-wire',
-        heading: 'README wires any agent · quantum · dry · FTL',
+        pair: 'readme/gateway' as const,
+        pairs: ['readme/gateway', 'gateway/readme', 'readme/wire', 'wire/readme'] as const,
+        cli: 'npm run quantum:readme-gateway',
+        route: '/en/quantum-tools#readme-gateway',
+        heading: 'README is the gateway · wire all · no doubt · quantum evolution',
         statement:
-          `readmeWire — wires=${readmeWiresAnyAgent ? 1 : 0} dry=${quantumDryOn ? 1 : 0} ftlReuse=${ftlReuseOn ? 1 : 0} ` +
-          `convincingRequired=0 quantumReady=${autoWire.quantumReady ? 1 : 0} vote.decided=${vote.decided ? 1 : 0}.`,
+          `readmeGateway — gateway=${readmeIsGateway ? 1 : 0} wiredAll=${wiredAllFromReadme ? 1 : 0} ` +
+          `noDoubt=${noDoubtStands ? 1 : 0} physicalFtl=${physicalFtl} evolution=${quantumEvolutionPath ? 1 : 0}.`,
         boundary:
-          'README is the wire: agent entry = README → /agents.json → sealed src/ folds; dry = sealed src not wet prose; FTL = memoByRoot warm reuse metrics — NOT physical FTL · NOT wet convincing.',
+          'README is THE gateway: agents recompute physicalFtl boolean + tip scanner from sealed folds — no prose-only path. ' +
+          'false⇒tip/quantumise. Compose readme/wire · ftl/compute · next/research.',
       }
     },
   )
 }
 
+export const readmeGateway = readmeWire
+export const gatewayReadme = readmeWire
 export const wireReadme = readmeWire
 
-/** npm run quantum:readme-wire */
-export function runReadmeWireExit(root = '', _argv: readonly string[] = []): number {
+/** npm run quantum:readme-gateway · quantum:readme-wire · quantum:wire-readme · quantum:gateway-readme */
+export function runReadmeGatewayExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   let readmeText = ''
   let readmeBytes = 0
@@ -37705,21 +37864,18 @@ export function runReadmeWireExit(root = '', _argv: readonly string[] = []): num
     }
   }
   const report = readmeWire(buildMatrix(), 0, { readmeBytes, readmeText })
+  process.stdout.write(`${report.computes ? '✓' : '✗'} readme-gateway — ${report.statement}\n`)
   process.stdout.write(
-    `${report.computes ? '✓' : '✗'} readme-wire — wires=${report.readmeWiresAnyAgent ? 1 : 0} dry=${report.quantumDryOn ? 1 : 0} ` +
-      `ftlReuse=${report.ftlReuseOn ? 1 : 0} bytes=${report.chat.readmeBytes}\n`,
+    `  readmeIsGateway=${report.readmeIsGateway ? 1 : 0} wiredAll=${report.wiredAllFromReadme ? 1 : 0} ` +
+      `noDoubt=${report.noDoubtStands ? 1 : 0} physicalFtl=${report.physicalFtl} evolution=${report.quantumEvolutionPath ? 1 : 0} bytes=${report.chat.readmeBytes}\n`,
   )
-  process.stdout.write(`  ${report.statement}\n`)
-  process.stdout.write('  agent wire flow: README → /agents.json → sealed src/ → dry → FTL(memoReuse)\n')
-  process.stdout.write('  | metric | value | on |\n')
-  process.stdout.write('  |---|---|:---:|\n')
-  for (const row of report.wireMetrics) {
-    process.stdout.write(`  | ${row.metric} | ${row.value} | ${row.on ? 1 : 0} |\n`)
-  }
-  for (const id of report.honestOpenNamed) process.stdout.write(`  · ${id}\n`)
+  process.stdout.write('  agent wire: README → /agents.json → physicalFtlBoolean → tip/quantumise → sealed folds\n')
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
-  return report.computes && report.readmeWiresAnyAgent && report.ftlReuseOn ? 0 : 1
+  return report.computes && report.readmeIsGateway && report.noDoubtStands ? 0 : 1
 }
+export const runGatewayReadmeExit = runReadmeGatewayExit
+export const runReadmeWireExit = runReadmeGatewayExit
+export const runWireReadmeExit = runReadmeGatewayExit
 
 export type ReadmeFocusWaveRow = { readonly perspective: string; readonly on: boolean }
 export type ReadmeFocusTeamRow = { readonly team: string; readonly agents: number; readonly observers: number; readonly on: boolean }
@@ -40032,6 +40188,172 @@ export function runQuantumizeNpmExit(_root = '', _argv: readonly string[] = []):
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.quantumizeOn && report.npmScriptsAreMcpDuals ? 0 : 1
+}
+
+/**
+ * USER LAW: wire npm publish as CI automation (not manual wet ritual).
+ * Fold: npmPublishCi — verifies workflow + package identity + math/free split.
+ * Publishes ONLY @ceccec/double-torus kernel (core math FREE FOR ALL) on tag v* / workflow_dispatch.
+ * REFUSE: quantum-dev-sdk (private) · site chrome · fake "published" without workflow.
+ * Pairs: npm/publish · publish/npm · ci/publish · publish/ci
+ * Compose: npm/quantum · automate/nightly · auto/self · vite/mcp · waves/push · math/free · mcp/deploy
+ * CLI: npm run quantum:npm-publish
+ */
+export function npmPublishCi(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+  root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.',
+) {
+  return memoByRoot(`npmPublishCi:${floor(at / (100 * 5 * 2))}:${root}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const npmQ = quantumizeNpm(matrix, at)
+    const mathLic = coreMathFreeForAll(root)
+    let workflowText = ''
+    let rootPkg: { name?: string; publishConfig?: { registry?: string }; license?: string } = {}
+    let sdkPkg: { private?: boolean; name?: string } = {}
+    try {
+      const fs = (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:fs') }).getBuiltinModule?.('node:fs')
+      const path = (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:path') }).getBuiltinModule?.('node:path')
+      if (fs && path) {
+        const wf = path.join(root, '.github/workflows/publish-package.yml')
+        if (fs.existsSync(wf)) workflowText = fs.readFileSync(wf, 'utf8')
+        const rp = path.join(root, 'package.json')
+        if (fs.existsSync(rp)) rootPkg = JSON.parse(fs.readFileSync(rp, 'utf8')) as typeof rootPkg
+        const sp = path.join(root, 'packages/quantum-dev-sdk/package.json')
+        if (fs.existsSync(sp)) sdkPkg = JSON.parse(fs.readFileSync(sp, 'utf8')) as typeof sdkPkg
+      }
+    } catch {
+      workflowText = ''
+    }
+    const workflowPath = '.github/workflows/publish-package.yml'
+    const workflowPresent = workflowText.length > 0
+    const triggerOnTag =
+      /tags:\s*\[['"]v\*['"]\]/.test(workflowText) || /tags:\s*\n\s*-\s*['"]v\*['"]/.test(workflowText)
+    const triggerDispatch = /workflow_dispatch/.test(workflowText)
+    const neverEveryPush =
+      workflowPresent &&
+      !/on:\s*\n\s*push:\s*\n\s*branches:/.test(workflowText) &&
+      triggerOnTag
+    const publishesDoubleTorus =
+      rootPkg.name === '@ceccec/double-torus' &&
+      /npm publish/.test(workflowText) &&
+      /build:package/.test(workflowText)
+    const githubPackages =
+      /npm\.pkg\.github\.com/.test(workflowText) ||
+      rootPkg.publishConfig?.registry === 'https://npm.pkg.github.com'
+    const authToken =
+      /GITHUB_TOKEN|NODE_AUTH_TOKEN|NPM_TOKEN|id-token:\s*write/.test(workflowText)
+    const sdkStaysPrivate = sdkPkg.private === true && sdkPkg.name === '@ceccec/quantum-dev-sdk'
+    const respectsMathFree =
+      mathLic.coreMathFreeForAll &&
+      mathLic.restLicensedThrough &&
+      /FREE FOR ALL|license@psg\.bg|core math/i.test(workflowText)
+    const refuseFake =
+      workflowPresent &&
+      publishesDoubleTorus &&
+      sdkStaysPrivate &&
+      neverEveryPush
+    const pairsOn =
+      has('npm/publish') &&
+      has('publish/npm') &&
+      has('ci/publish') &&
+      has('publish/ci') &&
+      foldPair(toUuid('cmd:npm'), toUuid('cmd:publish')).bidirectional &&
+      foldPair(toUuid('cmd:ci'), toUuid('cmd:publish')).bidirectional
+    const composeOn =
+      soft('npm', 'quantum') &&
+      soft('automate', 'nightly') &&
+      soft('auto', 'self') &&
+      soft('vite', 'mcp') &&
+      soft('waves', 'push') &&
+      soft('math', 'free') &&
+      soft('mcp', 'deploy')
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'npm-publish')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtl = physicalFtlBooleanAtCallTime()
+    const ciAutomatesPublish =
+      refuseFake &&
+      triggerOnTag &&
+      triggerDispatch &&
+      githubPackages &&
+      authToken &&
+      respectsMathFree &&
+      pairsOn &&
+      composeOn &&
+      npmQ.computes &&
+      Boolean(meta) &&
+      meta!.fold === 'npmPublishCi'
+    const on =
+      ciAutomatesPublish &&
+      claySolvedByThisFold === 0 &&
+      typeof physicalFtl === 'boolean'
+    const facets = [
+      { facet: 'npmPublishCi', on },
+      { facet: 'ciAutomatesPublish', on: ciAutomatesPublish },
+      { facet: `workflow=${workflowPath}`, on: workflowPresent },
+      { facet: 'trigger=tag v* | workflow_dispatch (not every push)', on: triggerOnTag && triggerDispatch && neverEveryPush },
+      { facet: 'publishes=@ceccec/double-torus kernel only (core math FREE FOR ALL)', on: publishesDoubleTorus && respectsMathFree },
+      { facet: 'sdkPrivate=@ceccec/quantum-dev-sdk private:true', on: sdkStaysPrivate },
+      { facet: 'auth=GITHUB_TOKEN packages:write · id-token', on: authToken && githubPackages },
+      { facet: 'refuseFakePublishedWithoutWorkflow', on: refuseFake },
+      { facet: 'compose npm/quantum · automate/nightly · auto/self · vite/mcp · waves/push · math/free · mcp/deploy', on: composeOn },
+      { facet: 'pair npm/publish · publish/npm · ci/publish · publish/ci', on: pairsOn },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold} · physicalFtl=${physicalFtl}`, on: claySolvedByThisFold === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`npm-publish:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const sealed = sealFacets('npm-publish-ci-automation', facets)
+    return {
+      computes: sealed.ok && on,
+      npmPublishCi: on,
+      ciAutomatesPublish,
+      workflowPath,
+      trigger: 'push tags v* | workflow_dispatch' as const,
+      publishes: '@ceccec/double-torus' as const,
+      doesNotPublish: ['@ceccec/quantum-dev-sdk', 'site-chrome', 'non-core'] as const,
+      licenseContact: LICENSE_CONTACT_PSG,
+      mathLic,
+      npmQ,
+      refuseFake,
+      claySolvedByThisFold,
+      physicalFtl,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, npmQ.root, mathLic.root, toUuid(`npm-publish:wf:${workflowPresent}`)]),
+      pair: 'npm/publish' as const,
+      pairs: ['npm/publish', 'publish/npm', 'ci/publish', 'publish/ci'] as const,
+      dualPair: 'publish/npm' as const,
+      cli: 'npm run quantum:npm-publish',
+      route: '/en/quantum-tools#npm-publish',
+      heading: 'npm publish · CI automation',
+      statement:
+        `npmPublishCi — ci=${ciAutomatesPublish ? 1 : 0} wf=${workflowPresent ? 1 : 0} ` +
+        `pkg=@ceccec/double-torus trigger=${triggerOnTag && triggerDispatch ? 'tag|dispatch' : 'gap'} ` +
+        `sdkPrivate=${sdkStaysPrivate ? 1 : 0}.`,
+      boundary:
+        'CI publishes core-math kernel only on v* tag or manual dispatch — not every push. ' +
+        'quantum-dev-sdk stays private. Rest licensed through license@psg.bg. REFUSE fake published. clay=0.',
+    }
+  })
+}
+
+export const publishNpm = npmPublishCi
+export const ciPublish = npmPublishCi
+export const publishCi = npmPublishCi
+
+/** npm run quantum:npm-publish · quantum:publish-npm · quantum:ci-publish · quantum:publish-ci */
+export function runNpmPublishCiExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = npmPublishCi(buildMatrix(), 0, root || (typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'))
+  process.stdout.write(`${report.computes ? '✓' : '✗'} npm-publish — ${report.statement}\n`)
+  process.stdout.write(
+    `  workflow=${report.workflowPath} · trigger=${report.trigger} · publishes=${report.publishes} · contact=${report.licenseContact}\n`,
+  )
+  process.stdout.write(`  doesNotPublish=${report.doesNotPublish.join(' · ')}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.ciAutomatesPublish && report.refuseFake ? 0 : 1
 }
 
 /**

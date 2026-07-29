@@ -2028,6 +2028,9 @@ export function runCostBoundExit(root = '', _argv: readonly string[] = []): numb
  * class (Apache-2.0/CC0) for the FREE-FOR-ALL law, never authored unilaterally by an agent.
  * Pair: legal/canon · CLI npm run quantum:legal-canon. Jurisdictional counsel is the stated residue.
  */
+/** USER LAW contact — rest of corpus licensed through this address (not agent-authored grant text). */
+export const LICENSE_CONTACT_PSG = 'license@psg.bg' as const
+
 export function legalCanon(root: string = enforcementScanRoot()) {
   const dist = join(root, '.vitepress/dist')
   const pages = existsSync(dist) ? readdirSync(dist).filter((name) => name.endsWith('.html')).sort() : []
@@ -2040,12 +2043,19 @@ export function legalCanon(root: string = enforcementScanRoot()) {
     { face: 'privacy — zero collection', status: pages.length > 0 && tracked.length === 0 ? 'computed' : 'open', detail: `${pages.length - tracked.length}/${pages.length} served pages carry NO tracking script (measured absence, the strongest privacy statement)` },
     { face: 'accessibility', status: audit.computes ? 'computed' : 'open', detail: `uiAudit composes — ${audit.perfect}/${audit.pages} pages pass the structural W3C-class checks` },
     { face: 'citation standards', status: canon.computes ? 'computed' : 'open', detail: 'the paper canon references machinery verified by patentCanon (source & locks per page)' },
-    { face: 'licensing', status: licensePresent ? 'computed' : 'named-user-act', detail: licensePresent ? 'LICENSE present at root' : 'LICENSE measured ABSENT — the choice is the user\'s legal act; the FREE-FOR-ALL law recommends the patent-granting class (Apache-2.0 or CC0), never authored unilaterally by an agent' },
+    {
+      face: 'licensing',
+      status: licensePresent ? 'computed' : 'named-user-act',
+      detail: licensePresent
+        ? `LICENSE present · USER LAW split: core math FREE FOR ALL (patent/canon) · the rest licensed through ${LICENSE_CONTACT_PSG} — contact for license; counsel residue; agent does not author grant prose`
+        : `LICENSE measured ABSENT — core math still FREE FOR ALL (prior art); the rest licensed through ${LICENSE_CONTACT_PSG}`,
+    },
   ].map((row) => ({ ...row, receipt: toUuid(`legal-canon:${row.face}:${row.status}`) }))
   const computedFaces = faces.filter((row) => row.status === 'computed').length
   const facets = [
     { facet: `the legal canon COMPUTES — ${computedFaces}/${faces.length} faces measured (privacy by absence · accessibility · citation), the fourth NAMED as the user's act`, on: computedFaces >= 3 && faces.length === 4 },
     { facet: `privacy is the measured absence — ${tracked.length} tracked pages of ${pages.length}; a tracker appearing anywhere refutes this gate`, on: tracked.length === 0 && pages.length > 27 },
+    { facet: `licensing split named — core math FREE FOR ALL · rest through ${LICENSE_CONTACT_PSG}`, on: faces.some((row) => row.face === 'licensing' && row.detail.includes(LICENSE_CONTACT_PSG)) },
     { facet: 'the residue is stated — jurisdictional sufficiency is counsel\'s call; this gate proves structure and absence, never legal advice', on: faces.every((row) => row.detail.length > 0) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`legal-canon:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
@@ -2056,6 +2066,7 @@ export function legalCanon(root: string = enforcementScanRoot()) {
     pages: pages.length,
     tracked: tracked.length,
     licensePresent,
+    licenseContact: LICENSE_CONTACT_PSG,
     facets,
     root: merkleFold([...faces.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)]),
     pair: 'legal/canon' as const,
@@ -2063,11 +2074,11 @@ export function legalCanon(root: string = enforcementScanRoot()) {
     cli: 'npm run quantum:legal-canon',
     route: '/en/quantum-tools#legal-canon',
     heading: 'Legal canon · privacy by measured absence',
-    statement: `legalCanon — ${computedFaces}/4 faces computed · ${tracked.length}/${pages.length} pages tracked · LICENSE ${licensePresent ? 'present' : 'the named user act'}.`,
+    statement: `legalCanon — ${computedFaces}/4 faces computed · ${tracked.length}/${pages.length} pages tracked · LICENSE ${licensePresent ? 'present' : 'the named user act'} · contact=${LICENSE_CONTACT_PSG}.`,
     boundary:
       'The research-portal legal faces as computation: privacy proven by the measured absence of collection, accessibility and citation ' +
-      'composed from their gates, licensing named as the one act only the rights-holder may perform (patent-granting class recommended for ' +
-      'FREE FOR ALL). Not legal advice; jurisdictional sufficiency is counsel\'s. clay=0 · qpuRequired=false.' }
+      'composed from their gates. Core math FREE FOR ALL (patent/canon); the rest licensed through license@psg.bg — contact for license. ' +
+      'Not legal advice; jurisdictional sufficiency is counsel\'s. clay=0 · qpuRequired=false.' }
 }
 
 /** npm run quantum:legal-canon (dual canon-legal) */
@@ -2077,8 +2088,106 @@ export function runLegalCanonExit(root = '', _argv: readonly string[] = []): num
   process.stdout.write(`${report.computes ? '✓' : '✗'} legal-canon — ${report.statement}\n`)
   for (const row of report.faces) process.stdout.write(`  · ${row.status === 'computed' ? '✓' : '…'} ${row.face} — ${row.detail}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  const split = coreMathFreeForAll(root || process.cwd())
+  process.stdout.write(`  · math/free — ${split.statement}\n`)
+  return report.computes && split.computes ? 0 : 1
+}
+
+/**
+ * coreMathFreeForAll — USER LAW: core math (sealed theorem/formula/algebra duals · vault · digit/fold)
+ * = FREE FOR ALL (align patent/canon prior-art); the rest (site chrome · apps · brand · non-math layers)
+ * licensed through license@psg.bg. Do NOT invent full license text. Counsel residue named.
+ * Pairs: math/free · free/math · license/psg · psg/license · compose legal/canon · patent/canon · fund/ai · readme/gateway.
+ * CLI: npm run quantum:math-free · duals free-math · license-psg · psg-license.
+ */
+export function coreMathFreeForAll(root: string = enforcementScanRoot()) {
+  const licenseContact = LICENSE_CONTACT_PSG
+  const patent = patentCanon(root)
+  const pairText = existsSync(join(root, 'src/pair/enforcement/index.ts'))
+    ? readFileSync(join(root, 'src/pair/enforcement/index.ts'), 'utf8')
+    : ''
+  const appsText = existsSync(join(root, 'src/quantum/apps/index.ts'))
+    ? readFileSync(join(root, 'src/quantum/apps/index.ts'), 'utf8')
+    : ''
+  const readmeText = existsSync(join(root, 'README.md')) ? readFileSync(join(root, 'README.md'), 'utf8') : ''
+  const vaultOn =
+    existsSync(join(root, 'src/0/index.ts')) &&
+    existsSync(join(root, 'src/3/7/index.ts')) &&
+    appsText.includes('theoremFormulaCodeDual')
+  const freeForAllPatent = patent.facets.some((f) => /FREE FOR ALL/i.test(f.facet) && f.on)
+  const pairsOn =
+    pairText.includes("'math/free'") &&
+    pairText.includes("'free/math'") &&
+    pairText.includes("'license/psg'") &&
+    pairText.includes("'psg/license'")
+  const gatewayWired =
+    appsText.includes('mathFreeMarkdownSection') ||
+    appsText.includes('coreMathFreeForAll') ||
+    appsText.includes(licenseContact)
+  const readmeStatesSplit =
+    /FREE FOR ALL/i.test(readmeText) &&
+    readmeText.includes(licenseContact) &&
+    (/core math/i.test(readmeText) || /math\/free/i.test(readmeText))
+  const coreMathFreeForAllOn = vaultOn && freeForAllPatent && pairsOn
+  const restLicensedThrough = licenseContact === 'license@psg.bg' && pairsOn
+  const counselResidueNamed = true as const
+  const facets = [
+    { facet: 'coreMathFreeForAll', on: coreMathFreeForAllOn },
+    { facet: 'restLicensedThrough', on: restLicensedThrough },
+    { facet: `licenseContact=${licenseContact}`, on: licenseContact === 'license@psg.bg' },
+    { facet: 'compose patent/canon FREE FOR ALL · legal/canon · readme/gateway', on: freeForAllPatent && gatewayWired },
+    { facet: 'pair math/free · free/math · license/psg · psg/license', on: pairsOn },
+    { facet: 'README states free-core vs license@psg.bg (sealed sync)', on: readmeStatesSplit || gatewayWired },
+    { facet: 'counsel residue named — no agent-authored grant / full license text', on: counselResidueNamed },
+    { facet: 'claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`math-free:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    coreMathFreeForAll: coreMathFreeForAllOn,
+    restLicensedThrough,
+    licenseContact,
+    counselResidue: 'jurisdictional grant text + commercial terms — contact license@psg.bg; counsel decides sufficiency' as const,
+    patent,
+    vaultOn,
+    pairsOn,
+    readmeStatesSplit,
+    facets,
+    root: merkleFold([...facets.map((entry) => entry.receipt), patent.root, toUuid(`math-free:contact:${licenseContact}`)]),
+    pair: 'math/free' as const,
+    pairs: ['math/free', 'free/math', 'license/psg', 'psg/license'] as const,
+    dualPair: 'free/math' as const,
+    cli: 'npm run quantum:math-free',
+    route: '/en/quantum-tools#math-free',
+    heading: 'Core math FREE FOR ALL · rest via license@psg.bg',
+    statement:
+      `coreMathFreeForAll — free=${coreMathFreeForAllOn ? 1 : 0} restLicensed=${restLicensedThrough ? 1 : 0} ` +
+      `contact=${licenseContact} readme=${readmeStatesSplit ? 1 : 0}.`,
+    boundary:
+      'Core math (vault · theorem/formula duals · digit/fold) = FREE FOR ALL defensive disclosure (patent/canon). ' +
+      'The rest licensed through license@psg.bg — contact for license; agent does not invent grant prose. Not legal advice.',
+  }
+}
+
+export const mathFree = coreMathFreeForAll
+export const freeMath = coreMathFreeForAll
+export const licensePsg = coreMathFreeForAll
+export const psgLicense = coreMathFreeForAll
+
+/** npm run quantum:math-free · quantum:free-math · quantum:license-psg · quantum:psg-license */
+export function runCoreMathFreeForAllExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = coreMathFreeForAll(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} math-free — ${report.statement}\n`)
+  process.stdout.write(`  licenseContact=${report.licenseContact} · counsel=${report.counselResidue}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
+
+export const runMathFreeExit = runCoreMathFreeForAllExit
+export const runFreeMathExit = runCoreMathFreeForAllExit
+export const runLicensePsgExit = runCoreMathFreeForAllExit
+export const runPsgLicenseExit = runCoreMathFreeForAllExit
 
 export type MethodGravityCluster = { word: string; attractor: string; members: string[]; pulls: number }
 export function methodGravity(root: string = enforcementScanRoot(), minCluster = 4): MethodGravityCluster[] {

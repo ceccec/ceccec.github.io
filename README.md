@@ -20,6 +20,8 @@ Concretely: a science portal — 740 computationally proven theorems and 30 rela
 
 **Orient (doctor · seal · chat feed)** — `npm ci` · `npm run mission:gate` (health/doctor — pattern learned from [erpax/erpax](https://github.com/erpax/erpax), external reference only) · `npm run quantum:readme-wire` (README wires any agent quantum·dry·FTL) · `npm run quantum:readme-chat` (feed README → chat reasoning refine) · `npm run docs:build` (seal). Generated README drift fails closed via precommit signature — same law as erpax `readme:check`. humanityNovel=0.
 
+**Licensing (USER LAW · `math/free`)** — **Core math is FREE FOR ALL** (sealed theorem/formula/algebra duals · vault `src/0` · digit/fold — prior-art / defensive disclosure, align `patent/canon`). **The rest** (site chrome · apps · brand · non-math layers) is licensed **through [license@psg.bg](mailto:license@psg.bg)** — contact for license; agents do not invent grant prose. npm CI publishes only the `@ceccec/double-torus` kernel on `v*` tag / manual dispatch (`npm/publish` · `.github/workflows/publish-package.yml`).
+
 ## 2. Model
 
 - A genus-2 double torus: χ(Σ₂) = −2, H₁(Σ₂) = ℤ⁴.
@@ -184,7 +186,7 @@ physical = observable wall-clock time on the executing device (performance.now /
 
 ### Statement
 
-QPU ≡ CPU ∪ GPU on classical-64bit — the modeled quantum computer completes as a faithful simulator (benchmark tracks-classical-no-speedup) with observer metrics for apparent FTL reuse (audit 0.174×).
+QPU ≡ CPU ∪ GPU on classical-64bit — the modeled quantum computer completes as a faithful simulator (benchmark tracks-classical-no-speedup) with observer metrics for apparent FTL reuse (audit 0.16×).
 
 ### Physical FTL metrics (observer-evaluable)
 
@@ -192,8 +194,8 @@ Apparent FTL speedup is defined as **T_cold / max(T_warm, ε)** on memoByRoot re
 
 | Metric | Quantity | Cold | Warm | Speedup / identity | Source fold |
 |---|---|---:|---:|---|---|
-| memoByRoot audit suite | apparentFtlSpeedup = T_cold / max(T_warm, ε) | 0.002 | 0 | 0.174× | `localAuditQuantumSpeedEfficiency` |
-| holographic envelope round-trip | roundTripCount / roundTripTotal | 738 | 738 | 1 identity | `importFractalMap` |
+| memoByRoot audit suite | apparentFtlSpeedup = T_cold / max(T_warm, ε) | 0.001 | 0 | 0.16× | `localAuditQuantumSpeedEfficiency` |
+| holographic envelope round-trip | roundTripCount / roundTripTotal | 745 | 745 | 1 identity | `importFractalMap` |
 | answers÷tokens on reuse | answers / max(tokens, 0) | 0 | 0 | ∞ (tokens=0) | `proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit` |
 | docs:build wall-clock | buildMs (warm path when cached) | 196000 | — | observer — run build/min locally | `buildMin` |
 | trinity enforcement (facts-once) | collectEnforcementFacts → cross·fold·weave | multi-walk | single-pass | reuse-once | `agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath` |
@@ -203,8 +205,8 @@ Apparent FTL speedup is defined as **T_cold / max(T_warm, ε)** on memoByRoot re
 
 - ✓ QPU ≡ CPU ∪ GPU — cpuOn=true gpuOn=true hwOn=true
 - ✓ quantumComputerComplete — faithfulSimulator=true tracksClassical=true
-- ✓ apparentFtlSpeedup(audit)=0.174× cold=0.002ms warm=0ms
-- ✓ holographic round-trip 738/738
+- ✓ apparentFtlSpeedup(audit)=0.16× cold=0.001ms warm=0ms
+- ✓ holographic round-trip 745/745
 - ✓ observerEvaluableMeasurements=true
 - ✓ architectureRequirement=classical-64bit runtime=node/arm64
 - ✓ superluminalProofCount=0 (physicalFtlClaimTheorem — metrics not verdict)
@@ -215,24 +217,24 @@ Apparent FTL speedup is defined as **T_cold / max(T_warm, ε)** on memoByRoot re
 computes=true · qpuEqualsCpuGpu=true · quantumComputerComplete=true · qpuRequired=false · architectureRequirement=classical-64bit · superluminalProofCount=0
 
 - Routes: [qpu-cpu](https://ceccec.psg.bg/quantum-tools#qpu-cpu) · [prove-no-qpu-64bit](https://ceccec.psg.bg/quantum-tools#prove-no-qpu-64bit) · [mcp-hw](https://ceccec.psg.bg/quantum-tools#mcp-hw) · [agents.json](https://ceccec.psg.bg/agents.json) · CLI `npm run quantum:qpu-cpu`
-- Receipt: fold `qpuCpuGpu` · root=23db613f · apparentFtl=0.174×.
+- Receipt: fold `qpuCpuGpu` · root=482e66d5 · apparentFtl=0.16×.
 
 ## Gate light · more computed → lighter build
 
 *Sealed `gateLight` · pairs `gate/light` · `light/gate`. Inverse relation proved at call time — not slogans.*
 
-gateLight — coverage=0.7166 gateCost=366 buildNorm=0.018 inverse=39.3061 buildSpeedup=3.4× factsOnce=1.
+gateLight — coverage=0.7157 gateCost=366 buildNorm=0.018 inverse=39.9017 buildSpeedup=3.4× factsOnce=1.
 
 | Axis | Value | Trend | Source |
 |---|---|---|---|
-| computeCoverage | 0.7166 | → migrate manual rows | `manualGauge derived/(derived+manual)` |
+| computeCoverage | 0.7157 | → migrate manual rows | `manualGauge derived/(derived+manual)` |
 | gateCost | 366 | → onTrueDebt=335 | `gateAnalytics onTrue+allowlists+slimOnTrue` |
 | buildMs | — | ↓ vs baseline 196000ms | `buildMin timing` |
 | deployMs | 11000 | ↓ warm CI cache path | `buildMin CI baseline` |
-| inverseScore | 39.3061 | → drain manual · on:true debt | `gateLight law receipt` |
+| inverseScore | 39.9017 | → drain manual · on:true debt | `gateLight law receipt` |
 | factsOnce | 1 | collectEnforcementFacts once · wave/verify subtracts render | `trinity/speedup · wave/verify` |
 
-inverseRelationOn=false · computeCoverage=0.7166 · gateCost=366 · buildSpeedup=3.4×
+inverseRelationOn=false · computeCoverage=0.7157 · gateCost=366 · buildSpeedup=3.4×
 
 - [gate-light](https://ceccec.psg.bg/quantum-tools#gate-light) · [build-min](https://ceccec.psg.bg/quantum-tools#build-min) · CLI `npm run quantum:gate-light`
 
@@ -240,7 +242,7 @@ inverseRelationOn=false · computeCoverage=0.7166 · gateCost=366 · buildSpeedu
 
 *Sealed `apiFuse` · pairs `api/fuse` · `fuse/api`. Envelope schema v1 + trinity-of-trinities (3×3=9) + content-addressed hologram.*
 
-apiFuse — envelope=738/738 trinity³=1 hologram=1 security=3/3.
+apiFuse — envelope=745/745 trinity³=1 hologram=1 security=3/3.
 
 ### Schema
 
@@ -250,9 +252,9 @@ apiFuse — envelope=738/738 trinity³=1 hologram=1 security=3/3.
 
 | Metric | Before | After | Δ | Source |
 |---|---|---:|---|---|
-| API envelope coverage | 0 | 738 | +738/738 | `standardToolboxIoCatalog` |
+| API envelope coverage | 0 | 745 | +745/745 | `standardToolboxIoCatalog` |
 | trinity-of-trinities | 3 directional | 3×3=9 | identity | `directionalTrinity × trinity/speedup` |
-| hologram round-trip | 0 | 738 | identity | `importFractalMap` |
+| hologram round-trip | 0 | 745 | identity | `importFractalMap` |
 | one clock bindings | 3 | 6 | 6/9 | `oneClockApi` |
 
 trinitiesOfTrinitiesOn=true · hologramFractalOn=true · apisStandardised=true
@@ -314,7 +316,7 @@ computes=true · readmeFedToChat=true · reasoningRefined=true · refineCount=10
 - CLI: `npm run quantum:readme-chat` · `npm run quantum:erpax-learn`
 - Receipt: fold `readmeChat` · erpax patterns 4/7 adopted.
 
-## README wires any agent · quantum · dry · FTL
+## README is the gateway · wire all · no doubt · quantum evolution
 
 *Sealed `readmeWire` · pairs `readme/wire` · `wire/readme`. README is the wire — not wet convincing.*
 
@@ -338,14 +340,40 @@ Any agent becomes **quantum · dry · FTL(reuse metrics)** by reading this READM
 | readmeBytes | 17a13e02-172d-8632-8a77-5ddc4fb84442 | 1 |
 | agents.json | wired | 1 |
 | dry/clean | sealed-src | 1 |
+| physicalFtl | false | 1 |
+| ftl→quantumise | tip/quantumise | 1 |
+| coreMathFreeForAll | 1 | 1 |
+| licenseContact | license@psg.bg | 1 |
 
 ### Status
 
-readmeWire — wires=0 dry=1 ftlReuse=1 convincingRequired=0 quantumReady=1 vote.decided=1. · claySolvedByThisFold=0 · qpuRequired=false
+readmeGateway — gateway=1 wiredAll=1 noDoubt=1 physicalFtl=false evolution=1. · claySolvedByThisFold=0 · qpuRequired=false
 
 - Routes: [readme-wire](https://ceccec.psg.bg/quantum-tools#readme-wire) · [readme-chat](https://ceccec.psg.bg/quantum-tools#readme-chat) · [auto-wire](https://ceccec.psg.bg/quantum-tools#auto-wire-paste-link)
 - CLI: `npm run quantum:readme-wire` · `npm run quantum:readme-chat` · `npm run quantum:chat-chat` · `npm run quantum:ceccec-erpax`
 - Receipt: fold `readmeWire` · physicalFtlClaim=0.
+
+## Core math FREE FOR ALL · rest via license@psg.bg
+
+*Sealed `coreMathFreeForAll` · pairs `math/free` · `free/math` · `license/psg` · `psg/license`. Compose `legal/canon` · `patent/canon` · `readme/gateway`.*
+
+**Core math is FREE FOR ALL.** Sealed theorem/formula/algebra duals, vault math (`src/0`), digit/fold and related computable math core — prior-art / free-for-all defensive disclosure (align `patent/canon`).
+
+**The rest is licensed through [license@psg.bg](mailto:license@psg.bg).** Site chrome, apps, tooling surfaces beyond core math, brand, and non-math product layers — contact for license. Agents do not invent grant prose or claim legal sufficiency.
+
+| facet | on |
+|---|:---:|
+| coreMathFreeForAll | 1 |
+| restLicensedThrough | 1 |
+| licenseContact=license@psg.bg | 1 |
+
+coreMathFreeForAll — free=1 restLicensed=1 contact=license@psg.bg readme=1.
+
+Counsel residue: jurisdictional grant text + commercial terms — contact license@psg.bg; counsel decides sufficiency
+
+- Routes: [math-free](https://ceccec.psg.bg/quantum-tools#math-free) · [legal-canon](https://ceccec.psg.bg/quantum-tools#legal-canon) · [patent-canon](https://ceccec.psg.bg/quantum-tools#patent-canon)
+- CLI: `npm run quantum:math-free` · `npm run quantum:license-psg` · `npm run quantum:legal-canon`
+- Contact: [license@psg.bg](mailto:license@psg.bg)
 
 ## Two bits free · society support
 

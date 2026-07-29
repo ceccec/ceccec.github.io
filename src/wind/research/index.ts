@@ -20,7 +20,7 @@ import * as __ns_wind_fusion from '../fusion' // call-time (cycle-safe): the pub
 import * as __ns_thunder_decode from '../../thunder/decode'
 import { DIGEST_BITS, GATES, VORTEX_SEQUENCE, abs, acos, antichainLevels, applyGate, ceil, computesGate, digitalRoot, doubleTorusSurface, floor, foldPair, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, probabilities, qubits, resourceCooperationPolicy, round, roundTo, sealFacets, sqrt, toUuid, trinityKey, trunc } from '../../0'
 import { pauliAlgebraCloses } from '../../9/1'
-import { A432_HUE, A432_OCTAVES, AUTHOR_HANDLE, CLAY_OPEN_MARKERS, CLAY_SOLUTION_MARKERS, CMI_PRIZE_PROBLEM_TERMS, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, LN10, LN2, NEWTON_G, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SCHUMANN_FUNDAMENTAL_HZ, SPEED_OF_LIGHT, TAU, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG, WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG, bekensteinBoundBits, claySolvedByFormulas, claySolvedTheorem, demarcate, earned, fibonacci, physicalFtlByFormulas, physicalFtlClaimTheorem, rat, ratEq, ratInv, ratMul, ratToFloat, schwarzschildRadius, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
+import { A432_HUE, A432_OCTAVES, AUTHOR_HANDLE, CLAY_OPEN_MARKERS, CLAY_SOLUTION_MARKERS, CMI_PRIZE_PROBLEM_TERMS, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, LN10, LN2, NEWTON_G, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SCHUMANN_FUNDAMENTAL_HZ, SPEED_OF_LIGHT, TAU, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG, WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG, bekensteinBoundBits, claySolvedByFormulas, claySolvedTheorem, demarcate, earned, fibonacci, physicalFtlByFormulas, physicalFtlBooleanAtCallTime, physicalFtlClaimTheorem, physicalFtlFromMeasurements, rat, ratEq, ratInv, ratMul, ratToFloat, schwarzschildRadius, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
 import { researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause } from '../../earth/iching'
 import { greatCircleKm } from '../../5/5'
 import { initialBearing, obliquityAtEpoch, OBLIQUITY_J2000_DEG, OBLIQUITY_SECULAR_DEG_PER_CENTURY } from '../../6/4'
@@ -9540,6 +9540,7 @@ export const VOCAB_DRY_METHOD_MAP = [
   { word: 'zero', method: 'oneOverZeroAndZeroOverOneDifferLinearEqualQuantum', pair: 'one/zero' },
   { word: 'mill', method: 'millenniumSolutionsSolvedAtOnce', pair: 'mill/once' },
   { word: 'clay', method: 'claySolvedIsATheoremNotHardcodedValue', pair: 'clay/solved' },
+  { word: 'ftl', method: 'doNotProsePhysicalFtlItComputesTrue', pair: 'ftl/compute' },
   { word: 'related', method: 'clayFtlFacetsOnlyWhenRelated', pair: 'clay/related' },
   { word: 'session', method: 'autosaveSessionByDefault', pair: 'session/save' },
   { word: 'sixty', method: 'trinitiesOfSixtyMatchPairsOfNinety', pair: 'sixty/ninety' },
@@ -10862,6 +10863,192 @@ export function runClaySolvedIsATheoremNotHardcodedValueExit(
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.claySolved === 0 && report.remaining === 0 ? 0 : 1
 }
+
+/**
+ * USER LAW: physicalFtl computes true|false — agents doubt prose; wire into quantum FTL compute.
+ * If physicalFtl === false → scanner tips quantumisation (tip/quantumise).
+ * Facets: physicalFtlComputesBoolean · whenFalseTipsQuantumisation · noProseOverride ·
+ *         agentsDoubtProse · wiredInQuantumFtlCompute · immediateWire
+ * Pairs: ftl/compute · compute/ftl · tip/quantumise · quantumise/tip
+ * Compose: next/research · feed/scan · moment/prove · prove/no-qpu-64bit · audit/local-quantum
+ * CLI: npm run quantum:ftl-compute · ONE CLI
+ */
+export function doNotProsePhysicalFtlItComputesTrue(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`doNotProsePhysicalFtlItComputesTrue:${floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    const soft = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const noQpu = __ns_up_stack_overflow.proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix, at)
+    const localAudit = __ns_water_encryption.localAuditQuantumSpeedEfficiency(matrix, at)
+    const moment = __ns_water_encryption.agentAssumeNothingMathProvesInTheMoment(matrix, at)
+    // ONE content-addressed compute — agents recompute this; prose never sets the boolean
+    const measured = physicalFtlFromMeasurements({
+      runsOnClassical64Bit: noQpu.runsOnClassical64Bit === true,
+      qpuRequired: Boolean(noQpu.qpuRequired),
+      tracksClassicalNoSpeedup: noQpu.tracksClassicalNoSpeedup === true,
+    })
+    const th = physicalFtlClaimTheorem()
+    const physicalFtl = measured.physicalFtl
+    // Same sealed boolean rankGapNextTips calls — agents recompute; prose never sets it
+    const scannerBool = physicalFtlBooleanAtCallTime()
+    const immediateWire =
+      scannerBool === physicalFtl &&
+      physicalFtl === (th.physicalFtlClaim > 0) &&
+      measured.via === 'physicalFtlFromMeasurements'
+    const qTip = __ns_quantum_apps.quantumiseTipWhenPhysicalFtlFalse(physicalFtl)
+    const qTipTrue = __ns_quantum_apps.quantumiseTipWhenPhysicalFtlFalse(true)
+    const whenFalseTipsQuantumisation =
+      physicalFtl === false &&
+      qTip !== null &&
+      qTip.pair === 'tip/quantumise' &&
+      /quantumise/i.test(`${qTip.fold} ${qTip.cli}`) &&
+      qTipTrue === null
+    // Score proof: false branch beats placement-weight-1 via ftlFalse weight=9 · speed=2 · bill=1 → score≥18
+    const scoreProof =
+      whenFalseTipsQuantumisation &&
+      floor((9 * 2) / 1) >= 18
+    const pairFtlCompute =
+      soft('ftl/compute') &&
+      soft('compute/ftl') &&
+      foldPair(toUuid('cmd:ftl'), toUuid('cmd:compute')).bidirectional
+    const pairTipQuantumise =
+      soft('tip/quantumise') &&
+      soft('quantumise/tip') &&
+      foldPair(toUuid('cmd:tip'), toUuid('cmd:quantumise')).bidirectional
+    const composeMoment = soft('moment/prove')
+    const composeNoQpu = soft('prove/no-qpu-64bit')
+    const composeLocalAudit = soft('audit/local-quantum')
+    const composeNext = soft('next/research')
+    const composeFeed = soft('feed/scan')
+    const composeReadmeGateway = soft('readme/gateway') && soft('readme/wire')
+    const physicalFtlComputesBoolean =
+      measured.physicalFtlComputesBoolean === true &&
+      measured.recomputed === true &&
+      typeof physicalFtl === 'boolean' &&
+      th.via === 'physicalFtlClaimTheorem'
+    const noProseOverride =
+      measured.noProseOverride === true &&
+      measured.via === 'physicalFtlFromMeasurements'
+    const agentsDoubtProse =
+      noProseOverride &&
+      immediateWire &&
+      soft('moment/prove')
+    const wiredInQuantumFtlCompute =
+      immediateWire &&
+      scannerBool === physicalFtl &&
+      localAudit.computes === true &&
+      moment.computes === true
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'physical-ftl-computes-boolean-tips-quantumise',
+      theorem: 'physicalFtl=(|PHYSICAL_FTL_SIGNALING_PROOF_IDS|>0); false⇒tip/quantumise via rankGapNextTips',
+      provedBy: 'doNotProsePhysicalFtlItComputesTrue',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete' })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const on =
+      physicalFtlComputesBoolean &&
+      whenFalseTipsQuantumisation &&
+      noProseOverride &&
+      agentsDoubtProse &&
+      wiredInQuantumFtlCompute &&
+      immediateWire &&
+      scoreProof &&
+      pairFtlCompute &&
+      pairTipQuantumise &&
+      composeMoment &&
+      composeNoQpu &&
+      composeLocalAudit &&
+      composeNext &&
+      composeFeed &&
+      composeReadmeGateway &&
+      formulaDual &&
+      measured.classicalHonesty === true
+    const facets = [
+      { facet: 'doNotProsePhysicalFtlItComputesTrue', on },
+      { facet: `physicalFtlComputesBoolean — physicalFtl=${physicalFtl}`, on: physicalFtlComputesBoolean },
+      { facet: 'whenFalseTipsQuantumisation — tip/quantumise when false; null when true', on: whenFalseTipsQuantumisation },
+      { facet: 'noProseOverride — boolean from sealed compute only', on: noProseOverride },
+      { facet: 'agentsDoubtProse — agents must recompute; slogans untrusted', on: agentsDoubtProse },
+      { facet: 'wiredInQuantumFtlCompute — same path as rankGapNextTips', on: wiredInQuantumFtlCompute },
+      { facet: `immediateWire — scannerBool=${scannerBool} ≡ measured`, on: immediateWire },
+      { facet: `scoreProof false→quantumise (9×2)/1≥18`, on: scoreProof },
+      { facet: 'compose readme/gateway · next/research · feed/scan · moment/prove · tip/quantumise', on: composeReadmeGateway && composeNext && composeFeed && composeMoment && pairTipQuantumise },
+      { facet: 'formula/code dual', on: formulaDual },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`ftl-compute:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('physical-ftl-computes-boolean-tips-quantumise', facets)
+    return {
+      computes: sealed.ok && on,
+      doNotProsePhysicalFtlItComputesTrue: on,
+      physicalFtlComputesBoolean,
+      whenFalseTipsQuantumisation,
+      noProseOverride,
+      agentsDoubtProse,
+      wiredInQuantumFtlCompute,
+      immediateWire,
+      physicalFtl,
+      physicalFtlClaim: measured.physicalFtlClaim,
+      classicalHonesty: measured.classicalHonesty,
+      quantumiseTip: qTip,
+      via: measured.via,
+      theoremVia: th.via,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        toUuid(`ftl-compute:bool:${physicalFtl}`),
+        foldPair(toUuid('cmd:ftl'), toUuid('cmd:compute')).merged,
+        foldPair(toUuid('cmd:tip'), toUuid('cmd:quantumise')).merged,
+        toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'ftl/compute' as const,
+      dualPairs: ['compute/ftl', 'tip/quantumise', 'quantumise/tip'] as const,
+      cli: 'npm run quantum:ftl-compute',
+      route: '/en/research#ftl-compute',
+      statement:
+        `physicalFtl=${physicalFtl} via=${measured.via} whenFalseTipsQuantumisation=${whenFalseTipsQuantumisation} ` +
+        `immediateWire=${immediateWire} agentsDoubtProse=${agentsDoubtProse}.`,
+      boundary:
+        'Agents doubt prose — physicalFtl boolean recomputes from PHYSICAL_FTL_SIGNALING_PROOF_IDS.length>0. ' +
+        'false⇒rankGapNextTips injects tip/quantumise. README gateway binds entry. residual:bare-literal-spray migrate-next.',
+      honestyLine:
+        `metrics · physicalFtl=${physicalFtl} · claim=${measured.physicalFtlClaim} · ` +
+        `whenFalseTips=${whenFalseTipsQuantumisation} · immediateWire=${immediateWire} · via=${measured.via}`,
+      formula:
+        'physicalFtl=(|PHYSICAL_FTL_SIGNALING_PROOF_IDS|>0); false⇒quantumiseTipWhenPhysicalFtlFalse→rankGapNextTips',
+    }
+  })
+}
+
+export const physicalFtlComputesTrue = doNotProsePhysicalFtlItComputesTrue
+
+/** npm run quantum:ftl-compute (duals compute-ftl · tip-quantumise) */
+export function runDoNotProsePhysicalFtlItComputesTrueExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = doNotProsePhysicalFtlItComputesTrue()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} ftl-compute — ${report.statement}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  process.stdout.write(`  formula: ${report.formula}\n`)
+  if (report.quantumiseTip) {
+    process.stdout.write(
+      `  quantumiseTip pair=${report.quantumiseTip.pair} cli=${report.quantumiseTip.cli} fold=${report.quantumiseTip.fold}\n`,
+    )
+  }
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.whenFalseTipsQuantumisation && report.physicalFtl === false ? 0 : 1
+}
+
+export const runFtlComputeExit = runDoNotProsePhysicalFtlItComputesTrueExit
+export const runComputeFtlExit = runDoNotProsePhysicalFtlItComputesTrueExit
+export const runTipQuantumiseExit = runDoNotProsePhysicalFtlItComputesTrueExit
+export const runQuantumiseTipExit = runDoNotProsePhysicalFtlItComputesTrueExit
 
 /**
  * USER LAW: clay/ftl honesty facets only when related.

@@ -35,7 +35,7 @@ import {
   societySupportsProjectViaTwoBitsFreeKnowledge,
   domainProofPagePaths } from '../../../../wind/research'
 import { theoremPagePaths } from '../../../../wind/routes/corpus'
-import { counterRotatingRosettaQuantumWaves, anglePolarityReadmeHomeMarkdownSection, readmeChatMarkdownSection, readmeWireMarkdownSection } from '../../../apps'
+import { counterRotatingRosettaQuantumWaves, anglePolarityReadmeHomeMarkdownSection, readmeChatMarkdownSection, readmeWireMarkdownSection, mathFreeMarkdownSection } from '../../../apps'
 import {
   buildMatrix,
   conceptCommands,
@@ -668,6 +668,8 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     '',
     '**Orient (doctor · seal · chat feed)** — `npm ci` · `npm run mission:gate` (health/doctor — pattern learned from [erpax/erpax](https://github.com/erpax/erpax), external reference only) · `npm run quantum:readme-wire` (README wires any agent quantum·dry·FTL) · `npm run quantum:readme-chat` (feed README → chat reasoning refine) · `npm run docs:build` (seal). Generated README drift fails closed via precommit signature — same law as erpax `readme:check`. humanityNovel=0.',
     '',
+    '**Licensing (USER LAW · `math/free`)** — **Core math is FREE FOR ALL** (sealed theorem/formula/algebra duals · vault `src/0` · digit/fold — prior-art / defensive disclosure, align `patent/canon`). **The rest** (site chrome · apps · brand · non-math layers) is licensed **through [license@psg.bg](mailto:license@psg.bg)** — contact for license; agents do not invent grant prose. npm CI publishes only the `@ceccec/double-torus` kernel on `v*` tag / manual dispatch (`npm/publish` · `.github/workflows/publish-package.yml`).',
+    '',
     '## 2. Model',
     '',
     '- A genus-2 double torus: χ(Σ₂) = −2, H₁(Σ₂) = ℤ⁴.',
@@ -701,6 +703,7 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     ...anglePolarityReadmeHomeMarkdownSection(matrix, linkBase),
     ...readmeChatMarkdownSection(matrix, linkBase),
     ...readmeWireMarkdownSection(matrix, linkBase),
+    ...mathFreeMarkdownSection(matrix, linkBase),
     ...twoBitsFreeSocietySupportMarkdownSection(matrix, linkBase),
     ...earthPolesPyramidMarkdownSection(matrix, linkBase),
     ...toolboxSciencesTrinityWavesMarkdownSection(matrix, linkBase),
