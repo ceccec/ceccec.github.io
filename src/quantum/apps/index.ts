@@ -19317,26 +19317,131 @@ export type GapNextTip = {
   readonly gateway?: string
 }
 
+/** Scored tip — score = (results × speed) / bill (integer); HARD themes outweigh blind matrix migrate. */
+export type ScoredGapNextTip = GapNextTip & {
+  readonly score: number
+  readonly results: number
+  readonly speed: number
+  readonly bill: number
+  readonly themes: readonly string[]
+}
+
+/** Open audit themes with HARD weights — recomputed at call time from chatAudit receipts. */
+export const AUDIT_GAP_THEME_SEEDS = [
+  {
+    id: 'onTrueDebt',
+    weight: 5,
+    pair: 'gate/light',
+    cli: 'npm run quantum:gate-light',
+    fold: 'gateLight',
+    tipId: 'audit:on-true-debt',
+    match: /on.?true|gate\/light|gate\/analytics|stripstring|math\/algebra|debt|gateCost/i,
+  },
+  {
+    id: 'theorem',
+    weight: 3,
+    pair: 'theorem/audit',
+    cli: 'npm run quantum:theorem-audit',
+    fold: 'theoremAudit',
+    tipId: 'audit:theorem-seeds',
+    match: /theorem|prose\/theorem|not-theorem|formula\/code|theorem\/audit/i,
+  },
+  {
+    id: 'geo',
+    weight: 3,
+    pair: 'geo/gebra',
+    cli: 'npm run quantum:geo-gebra',
+    fold: 'geoGebraEncode',
+    tipId: 'audit:geo-encode',
+    match: /geo\/|geogebra|encode coverage|geo encode/i,
+  },
+  {
+    id: 'dryDupe',
+    weight: 4,
+    pair: 'dry/dupe',
+    cli: 'npm run quantum:dry-dupe',
+    fold: 'dryDupe',
+    tipId: 'audit:dry-dupe',
+    match: /dry\/dupe|dupe|duplicate|trueGroups/i,
+  },
+  {
+    id: 'gapsHard',
+    weight: 5,
+    pair: 'gaps/invisible',
+    cli: 'npm run quantum:gaps-invisible',
+    fold: 'invisibleGapsCaughtByGates',
+    tipId: 'audit:gaps-hard',
+    match: /gaps\/invisible|hardOpen|invisible gaps/i,
+  },
+  {
+    id: 'placement',
+    weight: 1,
+    pair: '',
+    cli: '',
+    fold: '',
+    tipId: 'audit:placement',
+    match: /migrate|seals|barrel|placement|security-wire|rosetta\/security|matrix migrate/i,
+  },
+] as const
+
+function openAuditThemes(audit: ReturnType<typeof chatAudit>): readonly { id: string; weight: number }[] {
+  const debt = audit.measure?.gateAnalyticsHardcodedOnCount ?? audit.gateLight?.gateCost ?? 0
+  const out: { id: string; weight: number }[] = []
+  if (debt > 0) out.push({ id: 'onTrueDebt', weight: 5 })
+  if ((audit.theorem?.notTheoremCount ?? 0) > 0) out.push({ id: 'theorem', weight: 3 })
+  if ((audit.geo?.encodeCoverage ?? 1) < 1) out.push({ id: 'geo', weight: 3 })
+  if ((audit.dupe?.groups ?? 0) > 0) out.push({ id: 'dryDupe', weight: 4 })
+  if ((audit.gaps?.hardOpenCount ?? 0) > 0) out.push({ id: 'gapsHard', weight: 5 })
+  out.push({ id: 'placement', weight: 1 })
+  return out
+}
+
+function tipBlob(tip: GapNextTip): string {
+  return `${tip.id} ${tip.pair} ${tip.fold} ${tip.reason} ${tip.residual ?? ''} ${tip.gateway ?? ''}`
+}
+
+function scoreGapTipCandidate(
+  tip: GapNextTip,
+  themes: readonly { id: string; weight: number }[],
+  gapResiduals: ReadonlySet<string>,
+): ScoredGapNextTip {
+  const blob = tipBlob(tip)
+  const hitIds: string[] = []
+  let results = 0
+  for (const theme of themes) {
+    const seed = AUDIT_GAP_THEME_SEEDS.find((s) => s.id === theme.id)
+    if (!seed) continue
+    if (seed.match.test(blob) || tip.pair === seed.pair) {
+      results += theme.weight
+      hitIds.push(theme.id)
+    }
+  }
+  if (tip.residual && [...gapResiduals].some((r) => r.includes(tip.residual!.replace(/^residual:/, '')) || tip.residual === r)) {
+    results += 2
+    if (!hitIds.includes('residual-match')) hitIds.push('residual-match')
+  }
+  if (results === 0 && tip.source === 'plan/matrixNext') {
+    results = 1
+    hitIds.push('placement')
+  }
+  // speed: sealed pair + quantum CLI shape; bill: honest-open costs more tokens
+  const speed = (tip.pair.includes('/') ? 1 : 0) + (tip.cli.startsWith('npm run quantum:') ? 1 : 0)
+  const bill =
+    tip.kind === 'honest-open' ? 3 : tip.source === 'plan/matrixNext' && !hitIds.some((id) => id !== 'placement') ? 2 : 1
+  const score = speed > 0 && bill > 0 ? floor((results * speed) / bill) : 0
+  return { ...tip, score, results, speed, bill, themes: hitIds }
+}
+
 /**
- * Select next tip from gap receipts — plan matrixNext when audit→plan green, else gap-keyed imagine tip.
+ * Rank all tip candidates — audit HARD themes · matrix migrate · gap-keyed imagine.
+ * Precision: highest score wins; blind matrix-first is refused when HARD themes outrank placement.
  */
-export function selectGapNextTip(
+export function rankGapNextTips(
   audit: ReturnType<typeof chatAudit>,
   plan: ReturnType<typeof planTrinity>,
   imagine: ReturnType<typeof imagineWhatNext>,
-): GapNextTip | null {
-  const auditToPlan = audit.computes && plan.plansInTrinities && plan.crossFoldWeave
-  if (auditToPlan && plan.matrixNext.id.length > 0) {
-    return {
-      id: plan.matrixNext.id,
-      pair: plan.matrixNext.pair,
-      cli: plan.matrixNext.cli,
-      fold: plan.matrixNext.fold,
-      face: plan.matrixNext.face,
-      reason: plan.matrixNext.reason,
-      source: 'plan/matrixNext',
-    }
-  }
+): readonly ScoredGapNextTip[] {
+  const themes = openAuditThemes(audit)
   const openRows = audit.landedTable.filter(
     (row) => row.residual !== 'none' && !row.residual.includes('queue empty') && row.residual !== 'named not deleted',
   )
@@ -19344,41 +19449,67 @@ export function selectGapNextTip(
     ...audit.residualNamed,
     ...openRows.map((row) => `${row.class}:${row.residual}`),
   ])
-  const gapTip =
-    imagine.nextTips.find(
-      (tip) =>
-        tip.kind === 'drainable' &&
-        (gapResiduals.has(tip.residual) ||
-          [...gapResiduals].some((r) => r.includes(tip.residual.replace(/^residual:/, '')))),
-    ) ?? imagine.nextTips.find((tip) => tip.kind === 'drainable')
-  if (gapTip) {
-    return {
-      id: gapTip.id,
-      pair: gapTip.pair,
-      cli: gapTip.pair.length > 0 ? `npm run quantum:${gapTip.pair.replace('/', '-')}` : 'npm run quantum:imagine-next',
+  const candidates: GapNextTip[] = []
+  // 1) Audit-theme tips for every OPEN HARD theme (not placement-only)
+  for (const theme of themes) {
+    if (theme.id === 'placement') continue
+    const seed = AUDIT_GAP_THEME_SEEDS.find((s) => s.id === theme.id)
+    if (!seed || !seed.pair || !seed.cli) continue
+    candidates.push({
+      id: seed.tipId,
+      pair: seed.pair,
+      cli: seed.cli,
+      fold: seed.fold,
+      face: 'cross',
+      reason: `audit HARD theme ${theme.id} weight=${theme.weight} · score from chatAudit residual`,
+      source: 'audit/residual',
+      kind: 'drainable',
+      residual: `theme:${theme.id}`,
+    })
+  }
+  // 2) Matrix migrate-next (placement) — scored, not auto-first
+  if (plan.matrixNext.id.length > 0) {
+    candidates.push({
+      id: plan.matrixNext.id,
+      pair: plan.matrixNext.pair,
+      cli: plan.matrixNext.cli,
+      fold: plan.matrixNext.fold,
+      face: plan.matrixNext.face,
+      reason: plan.matrixNext.reason,
+      source: 'plan/matrixNext',
+      kind: 'migrate-next',
+    })
+  }
+  // 3) Imagine drainable tips (gap-keyed preferred via residual match in score)
+  for (const tip of imagine.nextTips) {
+    if (tip.kind !== 'drainable' || !tip.toolsPresent) continue
+    candidates.push({
+      id: tip.id,
+      pair: tip.pair,
+      cli: tip.pair.length > 0 ? `npm run quantum:${tip.pair.replace('/', '-')}` : 'npm run quantum:imagine-next',
       fold: 'imagineWhatNext',
       face: 'gap',
-      reason: `gap-keyed imagine tip · residual=${gapTip.residual}`,
+      reason: `gap-keyed imagine tip · residual=${tip.residual}`,
       source: 'imagine/gaps',
-      kind: gapTip.kind,
-      residual: gapTip.residual,
-      gateway: gapTip.gateway,
-    }
+      kind: tip.kind,
+      residual: tip.residual,
+      gateway: tip.gateway,
+    })
   }
-  const residual = audit.residualNamed.find((r) => r.includes('migrate-next'))
-  if (residual) {
-    return {
-      id: 'audit:residual-migrate-next',
-      pair: 'audit/plan',
-      cli: 'npm run quantum:audit-plan',
-      fold: 'auditPlanTip',
-      face: 'cross',
-      reason: residual,
-      source: 'audit/residual',
-      residual,
-    }
-  }
-  return null
+  const scored = candidates.map((c) => scoreGapTipCandidate(c, themes, gapResiduals))
+  return [...scored].sort((a, b) => b.score - a.score || b.results - a.results || a.id.localeCompare(b.id))
+}
+
+/**
+ * Select next tip from ranked gap receipts — highest (results×speed)/bill wins.
+ */
+export function selectGapNextTip(
+  audit: ReturnType<typeof chatAudit>,
+  plan: ReturnType<typeof planTrinity>,
+  imagine: ReturnType<typeof imagineWhatNext>,
+): GapNextTip | null {
+  const ranked = rankGapNextTips(audit, plan, imagine)
+  return ranked[0] ?? null
 }
 
 /**
@@ -19403,7 +19534,20 @@ export function auditPlanTip(
     const imagine = imagineWhatNext(matrix, at)
     const gaps = invisibleGapsCaughtByGatesBody(matrix, at)
     const merge = mergeWave(matrix, at)
-    const nextTip = selectGapNextTip(audit, plan, imagine)
+    const ranked = rankGapNextTips(audit, plan, imagine)
+    const nextTip = ranked[0] ?? null
+    const scored = nextTip as ScoredGapNextTip | null
+    const matrixScore = ranked.find((r) => r.source === 'plan/matrixNext')?.score ?? 0
+    const hardOutranksPlacement =
+      scored !== null &&
+      (scored.source === 'audit/residual' || (ranked.length > 1 && scored.score > matrixScore))
+    const matrixBlind = scored !== null && scored.source === 'plan/matrixNext' && scored.id === plan.matrixNext.id
+    const nextTipScored =
+      ranked.length >= 1 &&
+      scored !== null &&
+      scored.score >= 0 &&
+      typeof scored.results === 'number' &&
+      (hardOutranksPlacement || matrixBlind)
     const auditToPlanTrinity =
       audit.computes &&
       plan.computes &&
@@ -19420,6 +19564,7 @@ export function auditPlanTip(
     const nextTipFromGaps =
       planToNextTip &&
       gaps.computes &&
+      nextTipScored &&
       (nextTip!.source === 'plan/matrixNext' || nextTip!.source === 'imagine/gaps' || nextTip!.source === 'audit/residual')
     const forkDissolved =
       !quantumCliToolsCatalog(matrix, at).tools.some((t) => t.id === 'next-imagine') &&
@@ -19429,11 +19574,15 @@ export function auditPlanTip(
       nextTipFromGaps &&
       soft('waves', 'feed') &&
       soft('todo', 'wave') &&
-      soft('imagine', 'next')
+      soft('imagine', 'next') &&
+      soft('next', 'research')
     const composeOn =
       soft('chat', 'audit') &&
       soft('plan', 'trinity') &&
       soft('imagine', 'next') &&
+      soft('next', 'research') &&
+      soft('feed', 'scan') &&
+      soft('tip', 'precise') &&
       soft('waves', 'feed') &&
       soft('todo', 'wave') &&
       soft('gate', 'light') &&
@@ -19446,6 +19595,7 @@ export function auditPlanTip(
       `plan-matrixNext=${plan.matrixNextId}`,
       `imagine-tips=${imagine.nextTipsCount}`,
       `gaps-closed=${gaps.afterClosed ?? 0}`,
+      `nextTipScore=${scored?.score ?? 0}`,
       'honesty:NOT-wet-next-guess',
       'fork-dissolved:next-imagine-cli',
     ] as const
@@ -19453,6 +19603,7 @@ export function auditPlanTip(
       nextTipFromGaps &&
       auditToPlanTrinity &&
       planToNextTip &&
+      nextTipScored &&
       forkDissolved &&
       loopFeedsItself &&
       composeOn &&
@@ -19460,29 +19611,35 @@ export function auditPlanTip(
     const facets = [
       { facet: 'auditPlanTip', on },
       { facet: 'nextTipFromGaps', on: nextTipFromGaps },
+      { facet: 'nextTipScored', on: nextTipScored },
       { facet: 'auditToPlanTrinity', on: auditToPlanTrinity },
       { facet: 'planToNextTip', on: planToNextTip },
       { facet: 'forkDissolved', on: forkDissolved },
       { facet: 'loopFeedsItself', on: loopFeedsItself },
-      { facet: `nextTip=${nextTip?.id ?? 'none'} source=${nextTip?.source ?? 'none'}`, on: planToNextTip },
+      {
+        facet: `nextTip=${nextTip?.id ?? 'none'} source=${nextTip?.source ?? 'none'} score=${scored?.score ?? 0}`,
+        on: planToNextTip,
+      },
       { facet: 'residualNamed', on: honestOpenNamed.length >= 1 },
       {
-        facet: 'compose chat/audit · plan/trinity · imagine/next · waves/feed · todo/wave · gate/light · dry/dupe · merge/wave',
+        facet: 'compose chat/audit · plan/trinity · next/research · imagine/next · waves/feed · todo/wave · gate/light · dry/dupe · merge/wave',
         on: composeOn,
       },
-      { facet: 'cross=audit · fold=merge · weave=seal next tip from gaps', on: auditToPlanTrinity && planToNextTip },
+      { facet: 'cross=audit · fold=merge · weave=seal next tip from scored gaps', on: auditToPlanTrinity && planToNextTip && nextTipScored },
     ].map((entry) => ({ ...entry, receipt: toUuid(`audit-plan:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('audit-plan-tip-pipeline', facets)
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     return {
-      computes: sealed.ok && nextTipFromGaps && auditToPlanTrinity,
+      computes: sealed.ok && nextTipFromGaps && auditToPlanTrinity && nextTipScored,
       auditPlanTip: on,
       nextTipFromGaps,
+      nextTipScored,
       auditToPlanTrinity,
       planToNextTip,
       forkDissolved,
       loopFeedsItself,
       nextTip,
+      ranked: ranked.slice(0, 8),
       audit,
       plan,
       imagine,
@@ -19499,7 +19656,7 @@ export function auditPlanTip(
         plan.root,
         imagine.root,
         gaps.root,
-        nextTip ? toUuid(`audit-plan-next:${nextTip.id}:${nextTip.source}`) : toUuid('audit-plan-next:none'),
+        nextTip ? toUuid(`audit-plan-next:${nextTip.id}:${nextTip.source}:${scored?.score ?? 0}`) : toUuid('audit-plan-next:none'),
         ...honestOpenNamed.map((id) => toUuid(`audit-plan-honest:${id}`)),
       ]),
       pair: 'audit/plan' as const,
@@ -19509,13 +19666,12 @@ export function auditPlanTip(
       route: '/en/quantum-tools#audit-plan',
       heading: 'Audit · plan · next tip',
       statement:
-        `auditPlanTip — nextTipFromGaps=${nextTipFromGaps ? 1 : 0} audit→plan=${auditToPlanTrinity ? 1 : 0} ` +
-        `forkDissolved=${forkDissolved ? 1 : 0} loop=${loopFeedsItself ? 1 : 0} ` +
-        `next=${nextTip?.id ?? 'none'} (${nextTip?.pair ?? 'none'}).`,
+        `auditPlanTip — nextTipFromGaps=${nextTipFromGaps ? 1 : 0} nextTipScored=${nextTipScored ? 1 : 0} ` +
+        `audit→plan=${auditToPlanTrinity ? 1 : 0} forkDissolved=${forkDissolved ? 1 : 0} loop=${loopFeedsItself ? 1 : 0} ` +
+        `next=${nextTip?.id ?? 'none'} (${nextTip?.pair ?? 'none'}) score=${scored?.score ?? 0}.`,
       boundary:
-        'Gap-computed next tip pipeline: chatAudit (cross=audit gaps) → planTrinity (fold=merge · weave=seal) → ' +
-        'selectGapNextTip from matrix migrate-next or gap-keyed imagine tips — NOT wet next guess. ' +
-        'Fork dissolved: next-imagine CLI cluster removed; waves/feed loop ends with audit-plan. clay=0 · physicalFtl=0.',
+        'Gap-computed next tip pipeline: chatAudit → planTrinity → rankGapNextTips score=(results×speed)/bill — ' +
+        'HARD audit themes beat blind matrix migrate-next. NOT wet next guess. clay=0 · physicalFtl=0.',
     }
   })
 }
@@ -19523,26 +19679,227 @@ export function auditPlanTip(
 /** Alias — planAudit ≡ auditPlanTip. */
 export const planAudit = auditPlanTip
 
+/**
+ * nextResearch — feed-scanner tip precision · deep research score for next tip.
+ * Fold: nextResearch · Pairs: next/research · research/next · feed/scan · tip/precise · scan/reason
+ * Facets: deepResearchOn · analysisOn · maxResults · maxSpeed · minAiBill · nextTipScored · score=(results×speed)/bill
+ * Compose: chat/research · audit/plan · mcp/token · bill/dry · gate/light · chat/audit · plan/trinity
+ * CLI: npm run quantum:next-research · duals research-next · feed-scan · tip-precise
+ */
+export function nextResearch(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+  root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.',
+) {
+  return memoByRoot(`nextResearch:${floor(at / (100 * 5 * 2))}:${root}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const audit = chatAudit(matrix, at, root)
+    const plan = planTrinity(root)
+    const imagine = imagineWhatNext(matrix, at)
+    const research = chatResearch(matrix, at)
+    const token = mcpQuantumTokenOptimise(matrix, at)
+    const bill = dryCleanAiBill(matrix, at)
+    const ranked = rankGapNextTips(audit, plan, imagine)
+    const nextTip = ranked[0] ?? null
+    const scored = nextTip as ScoredGapNextTip | null
+    const themes = openAuditThemes(audit)
+    const hardThemeOpen = themes.some((t) => t.id !== 'placement')
+    const matrixScore = ranked.find((r) => r.source === 'plan/matrixNext')?.score ?? 0
+    const precisionImproved =
+      scored !== null &&
+      hardThemeOpen &&
+      scored.source === 'audit/residual' &&
+      scored.score > matrixScore
+    const nextTipScored =
+      ranked.length >= 1 &&
+      scored !== null &&
+      scored.score >= 0 &&
+      (precisionImproved || scored.source === 'plan/matrixNext' || scored.source === 'imagine/gaps')
+    const maxResults = ranked.length >= 3 && (scored?.results ?? 0) >= 1
+    const maxSpeed = (scored?.speed ?? 0) >= 2 && soft('mcp', 'token')
+    const minAiBill = (scored?.bill ?? 9) <= 2 && soft('bill', 'dry')
+    const deepResearchOn =
+      soft('chat', 'research') &&
+      soft('next', 'research') &&
+      soft('feed', 'scan') &&
+      soft('tip', 'precise') &&
+      soft('scan', 'reason') &&
+      (research.computes || soft('chat', 'research'))
+    const analysisOn = audit.computes && audit.metricsOn && plan.computes && imagine.imagineOn
+    const pairsOn =
+      has('next/research') &&
+      has('research/next') &&
+      has('feed/scan') &&
+      has('scan/feed') &&
+      has('tip/precise') &&
+      has('precise/tip') &&
+      has('scan/reason') &&
+      has('reason/scan') &&
+      foldPair(toUuid('cmd:next'), toUuid('cmd:research')).bidirectional &&
+      foldPair(toUuid('cmd:feed'), toUuid('cmd:scan')).bidirectional &&
+      foldPair(toUuid('cmd:tip'), toUuid('cmd:precise')).bidirectional
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'next-research')
+    const shelved = rosettaShelve('next-research', 'tool')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const on =
+      deepResearchOn &&
+      analysisOn &&
+      nextTipScored &&
+      maxResults &&
+      maxSpeed &&
+      minAiBill &&
+      pairsOn &&
+      Boolean(meta) &&
+      meta!.fold === 'nextResearch' &&
+      isUuid(shelved.address) &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'nextResearch', on },
+      { facet: 'deepResearchOn', on: deepResearchOn },
+      { facet: 'analysisOn', on: analysisOn },
+      { facet: 'maxResults', on: maxResults },
+      { facet: 'maxSpeed', on: maxSpeed },
+      { facet: 'minAiBill', on: minAiBill },
+      { facet: 'nextTipScored', on: nextTipScored },
+      {
+        facet: `score=(results×speed)/bill → ${scored?.score ?? 0} (r=${scored?.results ?? 0}·s=${scored?.speed ?? 0}·b=${scored?.bill ?? 0})`,
+        on: nextTipScored,
+      },
+      {
+        facet: `precisionImproved HARD>${`placement`} next=${scored?.id ?? 'none'}`,
+        on: precisionImproved || (!hardThemeOpen && nextTipScored),
+      },
+      { facet: 'pair next/research · feed/scan · tip/precise · scan/reason', on: pairsOn },
+      {
+        facet: 'compose chat/research · audit/plan · mcp/token · bill/dry · gate/light · chat/audit · plan/trinity',
+        on: soft('chat', 'research') && soft('audit', 'plan') && soft('mcp', 'token') && soft('bill', 'dry') && soft('gate', 'light'),
+      },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold} physicalFtl=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`next-research:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('next-research-tip-precision', facets)
+    return {
+      computes: sealed.ok && nextTipScored && deepResearchOn,
+      nextResearch: on,
+      deepResearchOn,
+      analysisOn,
+      maxResults,
+      maxSpeed,
+      minAiBill,
+      nextTipScored,
+      precisionImproved,
+      nextTip,
+      ranked: ranked.slice(0, 8),
+      themes: [...themes],
+      score: scored?.score ?? 0,
+      results: scored?.results ?? 0,
+      speed: scored?.speed ?? 0,
+      bill: scored?.bill ?? 0,
+      audit,
+      plan,
+      imagine,
+      research,
+      token,
+      aiBill: bill,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      certified: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        audit.root,
+        plan.root,
+        imagine.root,
+        toUuid(`next-research-top:${scored?.id ?? 'none'}:${scored?.score ?? 0}`),
+      ]),
+      pair: 'next/research' as const,
+      pairs: ['next/research', 'research/next', 'feed/scan', 'scan/feed', 'tip/precise', 'precise/tip', 'scan/reason', 'reason/scan'] as const,
+      dualPair: 'research/next' as const,
+      cli: 'npm run quantum:next-research',
+      route: '/en/quantum-tools#next-research',
+      heading: 'Next tip · deep research score',
+      statement:
+        `nextResearch — scored=${nextTipScored ? 1 : 0} precision=${precisionImproved ? 1 : 0} ` +
+        `next=${scored?.id ?? 'none'} pair=${scored?.pair ?? 'none'} score=${scored?.score ?? 0} ` +
+        `(r×s)/b=${scored?.results ?? 0}×${scored?.speed ?? 0}/${scored?.bill ?? 0}.`,
+      boundary:
+        'Feed-scanner tip precision: rankGapNextTips score=(results×speed)/bill · HARD themes (onTrueDebt·theorem·geo·gaps) ' +
+        'outrank blind matrix migrate-next. max results · max speed · min AI bill. NOT wet tip guess. clay=0 · physicalFtl=0.',
+    }
+  })
+}
+
+export const researchNext = nextResearch
+export const feedScan = nextResearch
+export const tipPrecise = nextResearch
+export const scanReason = nextResearch
+
+/** npm run quantum:next-research (duals research-next · feed-scan · tip-precise · scan-reason) */
+export function runNextResearchExit(root = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.', _argv: readonly string[] = []): number {
+  void _argv
+  const report = nextResearch(buildMatrix(), 0, root)
+  process.stdout.write(`${report.computes ? '✓' : '✗'} next-research — ${report.statement}\n`)
+  process.stdout.write(
+    `  themes: ${report.themes.map((t) => `${t.id}:${t.weight}`).join(' · ') || 'none'}\n`,
+  )
+  if (report.nextTip) {
+    const s = report.nextTip as ScoredGapNextTip
+    process.stdout.write(
+      `→ ${s.id} [${s.source}] pair=${s.pair} score=${s.score} results=${s.results} speed=${s.speed} bill=${s.bill}\n`,
+    )
+    process.stdout.write(`  reason: ${s.reason}\n`)
+    process.stdout.write(`  themes-hit: ${s.themes.join(',') || 'none'}\n`)
+  }
+  process.stdout.write('--- ranked (top) ---\n')
+  for (const row of report.ranked) {
+    process.stdout.write(
+      `  · ${row.score}\t${row.id} [${row.source}] pair=${row.pair} r=${row.results} s=${row.speed} b=${row.bill}\n`,
+    )
+  }
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.nextTipScored && report.claySolvedByThisFold === 0 ? 0 : 1
+}
+
+export const runResearchNextExit = runNextResearchExit
+export const runFeedScanExit = runNextResearchExit
+export const runTipPreciseExit = runNextResearchExit
+export const runScanReasonExit = runNextResearchExit
+
 /** npm run quantum:audit-plan (dual plan-audit) */
 export function runAuditPlanTipExit(root = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.', _argv: readonly string[] = []): number {
   void _argv
   const report = auditPlanTip(buildMatrix(), 0, root)
   process.stdout.write(`${report.computes ? '✓' : '✗'} audit-plan — ${report.statement}\n`)
-  process.stdout.write('--- pipeline (audit → plan/trinity → next tip) ---\n')
+  process.stdout.write('--- pipeline (audit → plan/trinity → scored next tip) ---\n')
   process.stdout.write(`  audit: ${report.audit.statement}\n`)
   process.stdout.write(
     `  plan: matrixNext=${report.plan.matrixNextId} pair=${report.plan.matrixNext.pair} crossFoldWeave=${report.plan.crossFoldWeave ? 1 : 0}\n`,
   )
   if (report.nextTip) {
+    const s = report.nextTip as ScoredGapNextTip
     process.stdout.write(
-      `--- gap-computed next tip ---\n→ ${report.nextTip.id} [${report.nextTip.face}] ` +
-        `pair=${report.nextTip.pair} cli=${report.nextTip.cli} source=${report.nextTip.source}\n`,
+      `--- scored next tip ---\n→ ${s.id} [${s.face}] pair=${s.pair} cli=${s.cli} source=${s.source} ` +
+        `score=${s.score} (r=${s.results}×s=${s.speed}/b=${s.bill})\n`,
     )
-    process.stdout.write(`  reason: ${report.nextTip.reason}\n`)
+    process.stdout.write(`  reason: ${s.reason}\n`)
+  }
+  if (report.ranked?.length) {
+    process.stdout.write('--- ranked ---\n')
+    for (const row of report.ranked.slice(0, 5)) {
+      process.stdout.write(`  · ${row.score}\t${row.id} [${row.source}] ${row.pair}\n`)
+    }
   }
   for (const id of report.residualNamed) process.stdout.write(`  · residual ${id}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
-  return report.computes && report.auditPlanTip && report.nextTipFromGaps ? 0 : 1
+  return report.computes && report.auditPlanTip && report.nextTipFromGaps && report.nextTipScored ? 0 : 1
 }
 
 /** One autonomous wave feed cycle — cache · purify · fill · todo · audit-plan seal receipt. */
@@ -35932,6 +36289,9 @@ const CHAT_WAVE_SEALED_TIPS = [
   'wave/complete',
   'geo/gebra',
   'gate/light',
+  'audit/plan',
+  'next/research',
+  'feed/scan',
   'api/fuse',
   'chat/quantumise',
   'frontier/neighbour',

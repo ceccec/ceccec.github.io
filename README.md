@@ -184,7 +184,7 @@ physical = observable wall-clock time on the executing device (performance.now /
 
 ### Statement
 
-QPU ≡ CPU ∪ GPU on classical-64bit — the modeled quantum computer completes as a faithful simulator (benchmark tracks-classical-no-speedup) with observer metrics for apparent FTL reuse (audit 0.229×).
+QPU ≡ CPU ∪ GPU on classical-64bit — the modeled quantum computer completes as a faithful simulator (benchmark tracks-classical-no-speedup) with observer metrics for apparent FTL reuse (audit 0.174×).
 
 ### Physical FTL metrics (observer-evaluable)
 
@@ -192,7 +192,7 @@ Apparent FTL speedup is defined as **T_cold / max(T_warm, ε)** on memoByRoot re
 
 | Metric | Quantity | Cold | Warm | Speedup / identity | Source fold |
 |---|---|---:|---:|---|---|
-| memoByRoot audit suite | apparentFtlSpeedup = T_cold / max(T_warm, ε) | 0.002 | 0 | 0.229× | `localAuditQuantumSpeedEfficiency` |
+| memoByRoot audit suite | apparentFtlSpeedup = T_cold / max(T_warm, ε) | 0.002 | 0 | 0.174× | `localAuditQuantumSpeedEfficiency` |
 | holographic envelope round-trip | roundTripCount / roundTripTotal | 738 | 738 | 1 identity | `importFractalMap` |
 | answers÷tokens on reuse | answers / max(tokens, 0) | 0 | 0 | ∞ (tokens=0) | `proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit` |
 | docs:build wall-clock | buildMs (warm path when cached) | 196000 | — | observer — run build/min locally | `buildMin` |
@@ -203,7 +203,7 @@ Apparent FTL speedup is defined as **T_cold / max(T_warm, ε)** on memoByRoot re
 
 - ✓ QPU ≡ CPU ∪ GPU — cpuOn=true gpuOn=true hwOn=true
 - ✓ quantumComputerComplete — faithfulSimulator=true tracksClassical=true
-- ✓ apparentFtlSpeedup(audit)=0.229× cold=0.002ms warm=0ms
+- ✓ apparentFtlSpeedup(audit)=0.174× cold=0.002ms warm=0ms
 - ✓ holographic round-trip 738/738
 - ✓ observerEvaluableMeasurements=true
 - ✓ architectureRequirement=classical-64bit runtime=node/arm64
@@ -215,24 +215,24 @@ Apparent FTL speedup is defined as **T_cold / max(T_warm, ε)** on memoByRoot re
 computes=true · qpuEqualsCpuGpu=true · quantumComputerComplete=true · qpuRequired=false · architectureRequirement=classical-64bit · superluminalProofCount=0
 
 - Routes: [qpu-cpu](https://ceccec.psg.bg/quantum-tools#qpu-cpu) · [prove-no-qpu-64bit](https://ceccec.psg.bg/quantum-tools#prove-no-qpu-64bit) · [mcp-hw](https://ceccec.psg.bg/quantum-tools#mcp-hw) · [agents.json](https://ceccec.psg.bg/agents.json) · CLI `npm run quantum:qpu-cpu`
-- Receipt: fold `qpuCpuGpu` · root=521ff0d8 · apparentFtl=0.229×.
+- Receipt: fold `qpuCpuGpu` · root=23db613f · apparentFtl=0.174×.
 
 ## Gate light · more computed → lighter build
 
 *Sealed `gateLight` · pairs `gate/light` · `light/gate`. Inverse relation proved at call time — not slogans.*
 
-gateLight — coverage=0.7161 gateCost=366 buildNorm=0.018 inverse=39.1686 buildSpeedup=3.4× factsOnce=1.
+gateLight — coverage=0.7166 gateCost=366 buildNorm=0.018 inverse=39.3061 buildSpeedup=3.4× factsOnce=1.
 
 | Axis | Value | Trend | Source |
 |---|---|---|---|
-| computeCoverage | 0.7161 | → migrate manual rows | `manualGauge derived/(derived+manual)` |
+| computeCoverage | 0.7166 | → migrate manual rows | `manualGauge derived/(derived+manual)` |
 | gateCost | 366 | → onTrueDebt=335 | `gateAnalytics onTrue+allowlists+slimOnTrue` |
 | buildMs | — | ↓ vs baseline 196000ms | `buildMin timing` |
 | deployMs | 11000 | ↓ warm CI cache path | `buildMin CI baseline` |
-| inverseScore | 39.1686 | → drain manual · on:true debt | `gateLight law receipt` |
+| inverseScore | 39.3061 | → drain manual · on:true debt | `gateLight law receipt` |
 | factsOnce | 1 | collectEnforcementFacts once · wave/verify subtracts render | `trinity/speedup · wave/verify` |
 
-inverseRelationOn=false · computeCoverage=0.7161 · gateCost=366 · buildSpeedup=3.4×
+inverseRelationOn=false · computeCoverage=0.7166 · gateCost=366 · buildSpeedup=3.4×
 
 - [gate-light](https://ceccec.psg.bg/quantum-tools#gate-light) · [build-min](https://ceccec.psg.bg/quantum-tools#build-min) · CLI `npm run quantum:gate-light`
 
