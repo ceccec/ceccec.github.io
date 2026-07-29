@@ -31,6 +31,11 @@ import {
   universalNavigationalCrossInAllDimensions } from '../double'
 import { flowerOfLifeCenters, flowerUnlocksFruitBySpin } from '../../quantum/wind/geometry'
 import {
+  sixtyDegreeAngleReachesCardinalForFreeProvenByMath,
+  universalNavigationalCrossInAllDimensions,
+} from '../double'
+import { flowerOfLifeCenters, flowerUnlocksFruitBySpin } from '../../quantum/wind/geometry'
+import {
   compareCeccecEfficiencyByVote,
   directionalTrinityForwardInverseReverse,
   proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit } from '../stack'
