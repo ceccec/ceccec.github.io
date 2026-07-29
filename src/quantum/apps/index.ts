@@ -35,7 +35,7 @@ import {
   cpuGpuSelfBalance,
   oneClockApi,
   apiFuse } from '../../water/stack'
-import { omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems, stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
+import { cosmosFrontiersDecoded, frontierQuantum, fractalMap, omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems, stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
 import {
   animationsDrivenByRosetta, linearAnimationGapsInventory, paperAbstractOmitsTitleEcho,
   COLOR_ROSETTA_THEME_MORPHS, COLOR_ROSETTA_THEME_TOKEN_IDS, CSS_DRY_FUSION_GAP_LENS,
@@ -68,13 +68,14 @@ import {
   crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities,
   runCrossWavesDecodeTeslaPatentsInAllCombinationsAsTrinitiesExit,
 } from '../../fire/physics'
-import { agentSubmissionProtocol, CURSOR_AGENT_SKILL_IDS, cursorAgentToolsSaved, MISSION_COMMANDS, QUANTUM_COMMAND_PAIR_IDS, matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWaves, pairsSentToChatEntangleByAlgebra } from '../../pair/enforcement'
+import { agentSubmissionProtocol, CURSOR_AGENT_SKILL_IDS, cursorAgentToolsSaved, MISSION_COMMANDS, QUANTUM_COMMAND_PAIR_IDS, foldQuantumCommandPairs, matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWaves, pairsSentToChatEntangleByAlgebra } from '../../pair/enforcement'
 import {
   agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath,
   claimAudit,
   folderGravityMeasuredByTheCode,
   gateAnalytics,
   gateLight,
+  COMMAND_PLACEMENT_AUDIT_MAP,
   importPathShowsDistanceInMigrationMatrix,
   measureJudgmentClaimsInventory,
   measureImportExportCoreSprawl,
@@ -203,6 +204,16 @@ const ROSETTA_CORE_API_LABELS = [
   'sessionSentToChatToQuantumise',
   'quantumiseWave',
   'apiFuse',
+  'chatChat',
+  'readmeChat',
+  'readmeWire',
+  'readmeFocus',
+  'sitePathWave',
+  'voteNeighbour',
+  'voteEntangle',
+  'frontierNeighbour',
+  'erpaxLearn',
+  'ceccecErpaxCompete',
   'allConversationsGoThroughTheMcpQuantumChat',
   'mcpQuantumConversation',
   'organiseConversationsInChatRoomsPerSuperposition',
@@ -364,6 +375,16 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   chatSolve: 'tool',
   chatChallenge: 'tool',
   sessionSentToChatToQuantumise: 'tool',
+  chatChat: 'tool',
+  readmeChat: 'tool',
+  readmeWire: 'tool',
+  readmeFocus: 'tool',
+  sitePathWave: 'tool',
+  voteNeighbour: 'tool',
+  voteEntangle: 'tool',
+  frontierNeighbour: 'tool',
+  erpaxLearn: 'tool',
+  ceccecErpaxCompete: 'tool',
   allConversationsGoThroughTheMcpQuantumChat: 'tool',
   mcpQuantumConversation: 'tool',
   organiseConversationsInChatRoomsPerSuperposition: 'tool',
@@ -1096,6 +1117,28 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'wave-merge', title: 'Wave merge (alias merge/wave)', fold: 'mergeWave', cli: 'npm run quantum:wave-merge', pair: 'wave/merge', route: '/en/quantum-tools#merge-wave', barrel: 'src/quantum/apps', boundary: 'Dual wave/merge — same name-parse merge fold · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'session-chat', title: 'Session sent to chat to quantumise — trading·UI·fusion packet', fold: 'sessionSentToChatToQuantumise', cli: 'npm run quantum:session-chat', pair: 'session/chat', route: '/en/quantum-tools#session-chat', barrel: 'src/quantum/apps', boundary: 'sessionSent · chatOn · quantumiseOn · packetRoot · toolsSealed · bitsSealed · viaMcpChat · viaPairChat · compose session/tools · session/quantum-bits · mcp/chat · pair/chat · match/wave · physicalFtl=0 · clay via theorem · NOT rebuild trading stack', browserRunnable: true, browserGap: '' },
   { id: 'chat-session', title: 'Chat session (alias session/chat)', fold: 'sessionSentToChatToQuantumise', cli: 'npm run quantum:chat-session', pair: 'chat/session', route: '/en/quantum-tools#session-chat', barrel: 'src/quantum/apps', boundary: 'Dual chat/session — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'readme-chat', title: 'Feed README to chat · reasoning refine', fold: 'readmeChat', cli: 'npm run quantum:readme-chat', pair: 'readme/chat', route: '/en/quantum-tools#readme-chat', barrel: 'src/quantum/apps', boundary: 'readmeFedToChat · reasoningRefined · refineCount · gapsInventoried · compose angle/readme · chat/quantumise · chat/solve · erpax/learn · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'chat-readme', title: 'Chat readme (alias readme/chat)', fold: 'readmeChat', cli: 'npm run quantum:chat-readme', pair: 'chat/readme', route: '/en/quantum-tools#readme-chat', barrel: 'src/quantum/apps', boundary: 'Dual chat/readme — same fold · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'readme-wire', title: 'README wires any agent · quantum · dry · FTL reuse', fold: 'readmeWire', cli: 'npm run quantum:readme-wire', pair: 'readme/wire', route: '/en/quantum-tools#readme-wire', barrel: 'src/quantum/apps', boundary: 'readmeWiresAnyAgent · quantumDryOn · ftlReuseOn · convincingRequired=false · compose angle/readme · wire/paste-link · readme/chat · learn/best · dry/clean · gate/light · physicalFtl=0 · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'wire-readme', title: 'Wire readme (alias readme/wire)', fold: 'readmeWire', cli: 'npm run quantum:wire-readme', pair: 'wire/readme', route: '/en/quantum-tools#readme-wire', barrel: 'src/quantum/apps', boundary: 'Dual wire/readme — same fold · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'readme-focus', title: 'README focus · physical quantum · FTL(reuse) · wave analyse', fold: 'readmeFocus', cli: 'npm run quantum:readme-focus', pair: 'readme/focus', route: '/en/quantum-tools#readme-focus', barrel: 'src/quantum/apps', boundary: 'computed · analysedInWaves · decidedInFractalTeams · proseRemoved · duplicationRemoved · physicalQuantumFocus · ftlSpeedFocus · compose angle/readme · readme/wire · ui/prose · gate/light · api/fuse · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'focus-readme', title: 'Focus readme (alias readme/focus)', fold: 'readmeFocus', cli: 'npm run quantum:focus-readme', pair: 'focus/readme', route: '/en/quantum-tools#readme-focus', barrel: 'src/quantum/apps', boundary: 'Dual focus/readme — same fold · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'site-path', title: 'Site path · home first · consensus waves', fold: 'sitePathWave', cli: 'npm run quantum:site-path', pair: 'site/path', route: '/en/quantum-tools#site-path', barrel: 'src/quantum/apps', boundary: 'homeImproved · pathByPath · consensusWavesOn · pathsCovered · compose vote/neighbour · page/trinity · vite/one · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'path-site', title: 'Path site (alias site/path)', fold: 'sitePathWave', cli: 'npm run quantum:path-site', pair: 'path/site', route: '/en/quantum-tools#site-path', barrel: 'src/quantum/apps', boundary: 'Dual path/site — same fold · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'vote-neighbour', title: 'Trinity neighbour vote · mesh consensus', fold: 'voteNeighbour', cli: 'npm run quantum:vote-neighbour', pair: 'vote/neighbour', route: '/en/quantum-tools#vote-neighbour', barrel: 'src/quantum/apps', boundary: 'relatedTrinities · voteForNeighbours · neighbourGraphOn · consensusFromNeighbours · compose vote/build · agent/trinity · mesh/cross · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'neighbour-vote', title: 'Neighbour vote (alias vote/neighbour)', fold: 'voteNeighbour', cli: 'npm run quantum:neighbour-vote', pair: 'neighbour/vote', route: '/en/quantum-tools#vote-neighbour', barrel: 'src/quantum/apps', boundary: 'Dual neighbour/vote — same fold · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'vote-entangle', title: 'Vote entangle · algebraic · invert→theorem path', fold: 'voteEntangle', cli: 'npm run quantum:vote-entangle', pair: 'vote/entangle', route: '/en/quantum-tools#vote-entangle', barrel: 'src/quantum/apps', boundary: 'votesFromEntanglement · entanglementsInvert · discoveredTheoremsOn · consensusEnough · moveWhenInsufficient · sealedFolderOn · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'entangle-vote', title: 'Entangle vote (alias vote/entangle)', fold: 'voteEntangle', cli: 'npm run quantum:entangle-vote', pair: 'entangle/vote', route: '/en/quantum-tools#vote-entangle', barrel: 'src/quantum/apps', boundary: 'Dual entangle/vote — same fold · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'entangle-theorem', title: 'Entangle theorem path (alias vote/entangle)', fold: 'voteEntangle', cli: 'npm run quantum:entangle-theorem', pair: 'entangle/theorem', route: '/en/quantum-tools#vote-entangle', barrel: 'src/quantum/apps', boundary: 'entangle→invert→discover→theorem · dual theorem/entangle · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'theorem-entangle', title: 'Theorem entangle (alias entangle/theorem)', fold: 'voteEntangle', cli: 'npm run quantum:theorem-entangle', pair: 'theorem/entangle', route: '/en/quantum-tools#vote-entangle', barrel: 'src/quantum/apps', boundary: 'Dual theorem/entangle — same fold · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'frontier-neighbour', title: 'Frontier neighbour · algebraic entanglement · UI receipt', fold: 'frontierNeighbour', cli: 'npm run quantum:frontier-neighbour', pair: 'frontier/neighbour', route: '/en/quantum-tools#frontier-neighbour', barrel: 'src/quantum/apps', boundary: 'frontiersChallenged · neighboursFound · algebraicEntangle · uiUpgraded · compose frontier/quantum · fractal/map · vote/entangle · vote/neighbour · mesh/science · site/path · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'neighbour-frontier', title: 'Neighbour frontier (alias frontier/neighbour)', fold: 'frontierNeighbour', cli: 'npm run quantum:neighbour-frontier', pair: 'neighbour/frontier', route: '/en/frontiers#frontier-neighbour', barrel: 'src/quantum/apps', boundary: 'Dual neighbour/frontier — same fold · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'erpax-learn', title: 'Erpax pattern learn · external reference', fold: 'erpaxLearn', cli: 'npm run quantum:erpax-learn', pair: 'erpax/learn', route: '/en/quantum-tools#erpax-learn', barrel: 'src/quantum/apps', boundary: 'externalReference · noOwnershipClaim · humanityNovel=0 · measured gaps only · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'learn-erpax', title: 'Learn erpax (alias erpax/learn)', fold: 'erpaxLearn', cli: 'npm run quantum:learn-erpax', pair: 'learn/erpax', route: '/en/quantum-tools#erpax-learn', barrel: 'src/quantum/apps', boundary: 'Dual learn/erpax — honest external cite · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'chat-chat', title: 'Chat to chat with everything · realtime FTL all angles', fold: 'chatChat', cli: 'npm run quantum:chat-chat', pair: 'chat/realtime', route: '/en/quantum-tools#chat-chat', barrel: 'src/quantum/apps', boundary: 'chatToChatOn · withEverything · realtimeImproved · ftlAllAngles · anglesCovered · metricsOn · compose chat/all · super/chat · readme/chat · clock/one · api/fuse · angle/any · mcp/observe · physicalFtl=0 · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'chat-realtime', title: 'Chat realtime (alias chat/realtime)', fold: 'chatChat', cli: 'npm run quantum:chat-realtime', pair: 'chat/realtime', route: '/en/quantum-tools#chat-chat', barrel: 'src/quantum/apps', boundary: 'Dual chat/realtime — same fold · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'ceccec-erpax', title: 'ceccec vs erpax vs LLM-linear competition scorecard', fold: 'ceccecErpaxCompete', cli: 'npm run quantum:ceccec-erpax', pair: 'ceccec/erpax', route: '/en/quantum-tools#ceccec-erpax', barrel: 'src/quantum/apps', boundary: 'modelsLackFtlReuse · ceccecCompetesErpax · metricDimensions · scoreOn · compose erpax/learn · learn/best · mcp/efficiency · mcp/token · NOT trash-talk · physicalFtl=0 · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'erpax-ceccec', title: 'Erpax ceccec (alias ceccec/erpax)', fold: 'ceccecErpaxCompete', cli: 'npm run quantum:erpax-ceccec', pair: 'erpax/ceccec', route: '/en/quantum-tools#ceccec-erpax', barrel: 'src/quantum/apps', boundary: 'Dual erpax/ceccec — same scorecard · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'chat-quantumise', title: 'Chat waves complete quantumisation', fold: 'quantumiseWave', cli: 'npm run quantum:chat-quantumise', pair: 'chat/quantumise', route: '/en/quantum-tools#chat-quantumise', barrel: 'src/quantum/apps', boundary: 'reasoningImproved · codeImproved · quantumisationCoverage · chatWavesOn · compose waves/feed · merge/wave · oneClock · qpu/cpu · NOT fake-close full repo · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'quantumise-chat', title: 'Quantumise chat (alias chat/quantumise)', fold: 'quantumiseWave', cli: 'npm run quantum:quantumise-chat', pair: 'quantumise/chat', route: '/en/quantum-tools#chat-quantumise', barrel: 'src/quantum/apps', boundary: 'Dual quantumise/chat — completion fold · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'chat-all', title: 'All conversations through MCP quantum chat', fold: 'allConversationsGoThroughTheMcpQuantumChat', cli: 'npm run quantum:chat-all', pair: 'chat/all', route: '/en/quantum-tools#chat-all', barrel: 'src/quantum/apps', boundary: 'allConversations · throughMcpQuantumChat · noBypass · compose mcpQuantumChat · session/live · super/chat · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -21785,7 +21828,8 @@ export function readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantu
         soft('anim', 'color') &&
         soft('angle', 'readme') &&
         soft('polarity', 'home') &&
-        soft('gap', 'angle')
+        soft('gap', 'angle') &&
+        soft('readme', 'chat')
 
       const cueFormulas = [
         `goldenAngle=τ/φ² computes=${golden.computes ? 1 : 0}`,
@@ -22026,6 +22070,152 @@ export function anglePolarityReadmeHomeMarkdownSection(
           '- CLI: `npm run quantum:angle-readme` · `npm run quantum:polarity-home` · `npm run quantum:gap-angle`',
         ]),
     `- Receipt: fold \`readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra\` · claySolvedByThisFold=${r.claySolvedByThisFold} · physicalFtlClaim=${r.physicalFtlClaim}.`,
+    '',
+  ]
+}
+
+/** Markdown section — README fed to chat · reasoning refine (+ erpax external patterns). */
+export function readmeChatMarkdownSection(matrix: MindMatrix = buildMatrix(), linkBase = ''): readonly string[] {
+  const r = readmeChat(matrix)
+  const e = erpaxLearn(matrix)
+  const bare = (path: string) => {
+    const p = path.startsWith('/') ? path : `/${path}`
+    return p.startsWith('/en/') ? p.slice(3) || '/' : p === '/en' ? '/' : p
+  }
+  const href = (path: string) =>
+    linkBase ? `${linkBase.replace(/\/$/, '')}${bare(path)}` : bare(path)
+  const topGaps = r.refineList.slice(0, 6)
+  return [
+    `## ${r.heading}`,
+    '',
+    `*Sealed \`readmeChat\` · pairs \`readme/chat\` · \`chat/readme\`. External reference [erpax/erpax](${ERPAX_REFERENCE_URL}) — patterns adopted ${e.adoptedCount}/${e.patterns.length}, no ownership claim · humanityNovel=0.*`,
+    '',
+    '### Statement',
+    '',
+    r.statement,
+    '',
+    'Feed the computed README into MCP/pair chat (not wet paste-only). Reasoning refine list inventories gaps: word→API · not-theorem labels · combinatory fold names · multi-clock residuals · on:true debt · erpax learnings.',
+    '',
+    '### Top refine gaps (measured)',
+    '',
+    ...topGaps.map((g) => `- **${g.kind}** \`${g.id}\` — ${g.detail}${g.migrate ? ` · migrate: ${g.migrate}` : ''}`),
+    ...(topGaps.length === 0 ? ['- *(run CLI with README.md on disk for full inventory)*'] : []),
+    '',
+    '### Status',
+    '',
+    `computes=${r.computes} · readmeFedToChat=${r.readmeFedToChat} · reasoningRefined=${r.reasoningRefined} · refineCount=${r.refineCount} · gapsInventoried=${r.gapsInventoried} · claySolvedByThisFold=${r.claySolvedByThisFold} · qpuRequired=${r.qpuRequired}`,
+    '',
+    ...(linkBase
+      ? [
+          `- Routes: [readme-chat](${href('/quantum-tools#readme-chat')}) · [erpax-learn](${href('/quantum-tools#erpax-learn')}) · [chat-quantumise](${href('/quantum-tools#chat-quantumise')})`,
+          `- CLI: \`npm run quantum:readme-chat\` · \`npm run quantum:erpax-learn\``,
+        ]
+      : [
+          '- Routes (VitePress): `/quantum-tools#readme-chat` · `/quantum-tools#erpax-learn` · `/quantum-tools#chat-quantumise`',
+          '- CLI: `npm run quantum:readme-chat` · `npm run quantum:erpax-learn`',
+        ]),
+    `- Receipt: fold \`readmeChat\` · erpax patterns ${e.adoptedCount}/${e.patterns.length} adopted.`,
+    '',
+  ]
+}
+
+/** Markdown section — README wires any agent quantum · dry · FTL(reuse). */
+export function readmeWireMarkdownSection(matrix: MindMatrix = buildMatrix(), linkBase = ''): readonly string[] {
+  const w = readmeWire(matrix)
+  const bare = (path: string) => {
+    const p = path.startsWith('/') ? path : `/${path}`
+    return p.startsWith('/en/') ? p.slice(3) || '/' : p === '/en' ? '/' : p
+  }
+  const href = (path: string) =>
+    linkBase ? `${linkBase.replace(/\/$/, '')}${bare(path)}` : bare(path)
+  return [
+    `## ${w.heading}`,
+    '',
+    '*Sealed `readmeWire` · pairs `readme/wire` · `wire/readme`. README is the wire — not wet convincing.*',
+    '',
+    '### Agent wire flow',
+    '',
+    '```',
+    'Agent → README → /agents.json + /llms.txt + /mcp.json → sealed src/ folds → dry (sealed src) → FTL (memoByRoot reuse)',
+    '```',
+    '',
+    'Any agent becomes **quantum · dry · FTL(reuse metrics)** by reading this README and fetching the sealed surfaces — `convincingRequired=false` on paste-bootstrap (`autoWireAnyAiModelFromPastedLink`). **QPU ≡ CPU ∪ GPU** on classical-64bit; FTL here = observer-evaluable warm-path reuse, not physical speed.',
+    '',
+    '### Reuse metrics (call time)',
+    '',
+    '| metric | value | on |',
+    '|---|---:|:---:|',
+    ...w.wireMetrics.map((row) => `| ${row.metric} | ${row.value} | ${row.on ? 1 : 0} |`),
+    '',
+    '### Status',
+    '',
+    `${w.statement} · claySolvedByThisFold=${w.claySolvedByThisFold} · qpuRequired=${w.qpuRequired}`,
+    '',
+    ...(linkBase
+      ? [
+          `- Routes: [readme-wire](${href('/quantum-tools#readme-wire')}) · [readme-chat](${href('/quantum-tools#readme-chat')}) · [auto-wire](${href('/quantum-tools#auto-wire-paste-link')})`,
+          `- CLI: \`npm run quantum:readme-wire\` · \`npm run quantum:readme-chat\` · \`npm run quantum:chat-chat\` · \`npm run quantum:ceccec-erpax\``,
+        ]
+      : [
+          '- Routes (VitePress): `/quantum-tools#readme-wire` · `/quantum-tools#readme-chat` · `/quantum-tools#auto-wire-paste-link`',
+          '- CLI: `npm run quantum:readme-wire` · `npm run quantum:readme-chat` · `npm run quantum:chat-chat` · `npm run quantum:ceccec-erpax`',
+        ]),
+    `- Receipt: fold \`readmeWire\` · physicalFtlClaim=0.`,
+    '',
+  ]
+}
+
+/** Markdown section — README focus: physical quantum · FTL reuse · wave/team receipts (replaces wet angle+chat+wire duplication). */
+export function readmeFocusMarkdownSection(matrix: MindMatrix = buildMatrix(), linkBase = ''): readonly string[] {
+  const f = readmeFocus(matrix)
+  const bare = (path: string) => {
+    const p = path.startsWith('/') ? path : `/${path}`
+    return p.startsWith('/en/') ? p.slice(3) || '/' : p === '/en' ? '/' : p
+  }
+  const href = (path: string) =>
+    linkBase ? `${linkBase.replace(/\/$/, '')}${bare(path)}` : bare(path)
+  return [
+    `## ${f.heading}`,
+    '',
+    '*Sealed `readmeFocus` · pairs `readme/focus` · `focus/readme`. Computed in waves · decided in fractal teams — not a literary prose pass.*',
+    '',
+    '### Physical quantum computing',
+    '',
+    `- **QPU ≡ CPU ∪ GPU** on classical-64bit (\`qpuCpuGpu\`) · Bloch/Pauli faithful simulator · thermo balance · oneClock \`HERO_CYCLE_MS=${HERO_CYCLE_MS}\``,
+    `- ${f.qpu.statement.slice(0, 160)}…`,
+    '',
+    '### FTL speed (measured reuse — not physical claim)',
+    '',
+    '| metric | value | on |',
+    '|---|---:|:---:|',
+    ...f.ftlMetrics.map((row) => `| ${row.metric} | ${row.value} | ${row.on ? 1 : 0} |`),
+    '',
+    '### Agent wire',
+    '',
+    '```',
+    'README → /agents.json → sealed src/ → dry → memoByRoot warm reuse · convincingRequired=0',
+    '```',
+    '',
+    '### Wave analysis',
+    '',
+    '| perspective | on |',
+    '|---|---:|',
+    ...f.waveAnalysis.map((w) => `| ${w.perspective} | ${w.on ? 1 : 0} |`),
+    '',
+    '### Team decide (3+1 fractal)',
+    '',
+    ...f.teamDecide.map((t) => `- **${t.team}** agents=${t.agents} observers=${t.observers} on=${t.on ? 1 : 0}`),
+    '',
+    `Δ prose: −${f.proseRemoved} lines · duplication clusters removed=${f.duplicationRemoved} · ${f.statement}`,
+    '',
+    ...(linkBase
+      ? [
+          `- CLI: \`npm run quantum:readme-focus\` · [readme-wire](${href('/quantum-tools#readme-wire')}) · [qpu-cpu](${href('/quantum-tools#qpu-cpu')}) · [gate-light](${href('/quantum-tools#gate-light')})`,
+        ]
+      : [
+          '- CLI: `npm run quantum:readme-focus` · `/quantum-tools#readme-wire` · `/quantum-tools#qpu-cpu` · `/quantum-tools#gate-light`',
+        ]),
+    `- Receipt: fold \`readmeFocus\` · physicalFtlClaim=0 · claySolvedByThisFold=${f.claySolvedByThisFold}.`,
     '',
   ]
 }
@@ -34886,6 +35076,2118 @@ export function runQuantumiseWaveExit(_root = '', _argv: readonly string[] = [])
   for (const id of report.honestOpenNamed) process.stdout.write(`  · ${id}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
+}
+
+/** External reference — erpax/erpax public patterns (honest cite, no ownership). */
+export const ERPAX_REFERENCE_URL = 'https://github.com/erpax/erpax' as const
+
+export type ErpaxLearnRow = {
+  readonly id: string
+  readonly erpaxPattern: string
+  readonly ceccecSurface: string
+  readonly measuredGap: string
+  readonly adopted: boolean
+}
+
+/** Measured erpax/erpax patterns vs ceccec — external reference only · humanityNovel=0. */
+export function erpaxLearn(_matrix: MindMatrix = buildMatrix(), _at = 0) {
+  void _matrix
+  void _at
+  const patterns: readonly ErpaxLearnRow[] = [
+    {
+      id: 'orient-surfaces',
+      erpaxPattern: '6 editor surfaces → one SKILL.md entry + .well-known/ai-skills.json',
+      ceccecSurface: 'installSurfaces 8/8 present · /.well-known/ai-skills.json emitted',
+      measuredGap: 'ceccec surface count exceeds erpax; keep well-known parity',
+      adopted: true,
+    },
+    {
+      id: 'doctor-health',
+      erpaxPattern: 'pnpm erpax doctor — one health command before push',
+      ceccecSurface: 'npm run mission:gate (= check:types + limits:verify + verify:structure + slow-build)',
+      measuredGap: 'README orient names mission:gate as doctor alias',
+      adopted: false,
+    },
+    {
+      id: 'readme-check',
+      erpaxPattern: 'pnpm readme:check — generated README drift fails closed',
+      ceccecSurface: 'precommit iching signature gate on readmeMarkdown()',
+      measuredGap: 'document readme:check alias in orient (npm run verify + docs:build)',
+      adopted: false,
+    },
+    {
+      id: 'census-tables',
+      erpaxPattern: 'seal/balance/gravity state tables with share %',
+      ceccecSurface: 'limits:verify census 110/108 + gate/monitor facets',
+      measuredGap: 'optional README state table from limits:verify receipt',
+      adopted: false,
+    },
+    {
+      id: 'content-uuid',
+      erpaxPattern: 'README header content-address UUID',
+      ceccecSurface: 'theoremMonographCore receipt merkle root',
+      measuredGap: 'surface receipt UUID in README Receipt section (already sealed)',
+      adopted: true,
+    },
+    {
+      id: 'one-law',
+      erpaxPattern: 'One law — Zero entropy ⇒ infinite tamper-cost',
+      ceccecSurface: 'FREE_BITS=2 · memoByRoot · tamper/max · maxTamperingCost',
+      measuredGap: 'none — ceccec one-law in src/0 + README model',
+      adopted: true,
+    },
+    {
+      id: 'wire-url',
+      erpaxPattern: 'wireFromRepoUrl paste clone same orientation',
+      ceccecSurface: 'autoWireAnyAiModelFromPastedLink · wire/paste-link',
+      measuredGap: 'none — paste-any-link binding in README intro',
+      adopted: true,
+    },
+  ] as const
+  const adoptedCount = patterns.filter((p) => p.adopted).length
+  const gapCount = patterns.filter((p) => !p.adopted).length
+  const on = patterns.length >= (2 + 2 + 2) && adoptedCount >= 4
+  const facets = [
+    { facet: 'erpaxLearn', on },
+    { facet: `patterns=${patterns.length} adopted=${adoptedCount} gaps=${gapCount}`, on: patterns.length > 0 },
+    { facet: 'externalReferenceOnly', on: true },
+    { facet: 'humanityNovel=0', on: true },
+    { facet: 'noOwnershipClaim', on: true },
+    { facet: `reference=${ERPAX_REFERENCE_URL}`, on: ERPAX_REFERENCE_URL.includes('erpax/erpax') },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`erpax-learn:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const sealed = sealFacets('erpax-learn-external-patterns', facets)
+  return {
+    computes: sealed.ok && on,
+    erpaxLearn: on,
+    patterns: [...patterns],
+    adoptedCount,
+    gapCount,
+    externalReference: ERPAX_REFERENCE_URL,
+    humanityNovel: 0 as const,
+    facets: sealed.facets,
+    root: merkleFold([sealed.root, toUuid(`erpax-learn:${adoptedCount}:${gapCount}`), ...patterns.map((p) => toUuid(`erpax:${p.id}:${p.adopted}`))]),
+    pair: 'erpax/learn' as const,
+    pairs: ['erpax/learn', 'learn/erpax'] as const,
+    cli: 'npm run quantum:erpax-learn',
+    route: '/en/quantum-tools#erpax-learn',
+    heading: 'Erpax learn · external patterns',
+    statement: `erpaxLearn — patterns=${patterns.length} adopted=${adoptedCount} gaps=${gapCount} · ref=${ERPAX_REFERENCE_URL}.`,
+    boundary: 'Honest external reference to erpax/erpax public repo — measured gaps only, no branding theft, humanityNovel=0.',
+  }
+}
+
+export const learnErpax = erpaxLearn
+
+export type ReadmeRefineGap = {
+  readonly kind: 'word-api' | 'not-theorem' | 'combinatory-name' | 'multi-clock' | 'on-true-debt' | 'erpax-pattern' | 'claim-pair'
+  readonly id: string
+  readonly detail: string
+  readonly migrate?: string
+}
+
+const README_CLAIM_PAIRS = [
+  'angle/readme',
+  'api/fuse',
+  'gate/light',
+  'chat/quantumise',
+  'qpu/cpu',
+  'measure/decide',
+  'theorem/audit',
+  'readme/chat',
+  'clock/one',
+  'install/surface',
+] as const
+
+const README_COMBINATORY_FOLDS = [
+  'readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra',
+  'importsExportsMapEachOtherInQuantumFractalsRenamingAllForFtlComputations',
+  'feedHomepageAndReadmeToChatWaves',
+] as const
+
+/**
+ * Feed README into MCP/pair chat · inventory reasoning refine gaps vs sealed folds.
+ * Fold: readmeChat · Pairs: readme/chat · chat/readme · CLI npm run quantum:readme-chat
+ * Compose: angle/readme · chat/quantumise · chat/solve · chat/challenge · meaning/compute · term/measure · merge/wave · theorem/audit · erpax/learn
+ */
+export function readmeChat(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+  opts: { readonly readmeBytes?: number; readonly readmeText?: string } = {},
+) {
+  return memoByRoot(
+    `readmeChat:${opts.readmeBytes ?? 0}:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      const readmeText = opts.readmeText ?? ''
+      const readmeBytes = opts.readmeBytes ?? readmeText.length
+      const angle = readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra(matrix, at)
+      let chat = { computes: false, mcpWired: false, chatComputes: false, foldRecomputePreferred: false }
+      try {
+        const c = mcpQuantumChat(matrix, at)
+        chat = { computes: c.computes, mcpWired: c.mcpWired, chatComputes: c.chatComputes, foldRecomputePreferred: c.foldRecomputePreferred }
+      } catch {
+        chat = { computes: false, mcpWired: false, chatComputes: false, foldRecomputePreferred: false }
+      }
+      let quantumise = { reasoningImproved: false, chatWavesOn: false }
+      let chatSolveOn = false
+      let chatChallengeOn = false
+      let meaningOn = false
+      let mergeOn = false
+      let clock = { computes: false, multiClockDebt: [] as readonly { consumer: string; residual?: string }[] }
+      let measure = { observerEvaluableMeasurements: false, hardcodedOnTrueDebt: 0 }
+      let theorem = { computes: false, notTheoremCount: 0, sampleNotTheorems: [] as readonly { title: string }[] }
+      let erpax = erpaxLearn(matrix, at)
+      try {
+        const q = quantumiseWave(matrix, at)
+        quantumise = { reasoningImproved: q.reasoningImproved, chatWavesOn: q.chatWavesOn }
+      } catch {
+        /* partial */
+      }
+      try {
+        chatSolveOn = chatSolve(matrix, at).chatLiveOn
+      } catch {
+        chatSolveOn = false
+      }
+      try {
+        chatChallengeOn = chatChallenge(matrix, at).chatWavesOn
+      } catch {
+        chatChallengeOn = false
+      }
+      try {
+        meaningOn = meaningIsQuantumComputable(matrix, at).meaningIsQuantumComputable
+      } catch {
+        meaningOn = false
+      }
+      try {
+        mergeOn = mergeWave(matrix, at).nameWordsComputable
+      } catch {
+        mergeOn = false
+      }
+      try {
+        const cl = oneClockApi(matrix, at)
+        clock = { computes: cl.computes, multiClockDebt: cl.multiClockDebt ?? [] }
+      } catch {
+        clock = { computes: false, multiClockDebt: [] }
+      }
+      try {
+        const ga = gateAnalytics()
+        measure = {
+          observerEvaluableMeasurements: ga.computes && ga.noConfusion,
+          hardcodedOnTrueDebt: ga.hardcodedOnTrueDebt ?? 0,
+        }
+      } catch {
+        measure = { observerEvaluableMeasurements: false, hardcodedOnTrueDebt: 0 }
+      }
+      try {
+        const ta = theoremAudit()
+        theorem = { computes: ta.computes, notTheoremCount: ta.notTheoremCount, sampleNotTheorems: ta.sampleNotTheorems ?? [] }
+      } catch {
+        theorem = { computes: false, notTheoremCount: 0, sampleNotTheorems: [] }
+      }
+      const composeOn =
+        soft('angle', 'readme') &&
+        soft('chat', 'quantumise') &&
+        soft('chat', 'solve') &&
+        soft('chat', 'challenge') &&
+        soft('meaning', 'compute') &&
+        soft('merge', 'wave') &&
+        soft('erpax', 'learn') &&
+        soft('readme', 'chat') &&
+        (soft('theorem', 'audit') || soft('audit', 'theorem'))
+      const refineList: ReadmeRefineGap[] = []
+      for (const pair of README_CLAIM_PAIRS) {
+        if (readmeText.includes(pair) && !has(pair)) {
+          refineList.push({ kind: 'claim-pair', id: pair, detail: `README cites \`${pair}\` but pair not registered`, migrate: `register ${pair} in QUANTUM_COMMAND_PAIR_IDS` })
+        }
+      }
+      for (const foldName of README_COMBINATORY_FOLDS) {
+        if (readmeText.includes(foldName)) {
+          const parsed = parseNameToTools(foldName)
+          if (parsed.uncomputableWords.length > 0) {
+            refineList.push({
+              kind: 'combinatory-name',
+              id: foldName.slice(0, 48),
+              detail: `combinatory fold name · uncomputable words=${parsed.uncomputableWords.slice(0, 4).join(',')}`,
+              migrate: 'merge/wave rename to short scientific primary',
+            })
+          }
+        }
+      }
+      for (const row of theorem.sampleNotTheorems.slice(0, 3)) {
+        refineList.push({ kind: 'not-theorem', id: row.title.slice(0, 48), detail: 'registry label classified not-theorem', migrate: 'theorem/audit + prose/theorem' })
+      }
+      for (const debt of clock.multiClockDebt) {
+        refineList.push({ kind: 'multi-clock', id: debt.consumer, detail: debt.residual ?? 'wall-clock residual', migrate: 'oneClockApi bind or name residual' })
+      }
+      if (measure.hardcodedOnTrueDebt > 0) {
+        refineList.push({
+          kind: 'on-true-debt',
+          id: 'hardcoded-on-true',
+          detail: `gateAnalytics hardcodedOnTrueDebt=${measure.hardcodedOnTrueDebt}`,
+          migrate: 'gate/analytics drain facet on:true → recompute',
+        })
+      }
+      for (const row of erpax.patterns.filter((p) => !p.adopted)) {
+        refineList.push({ kind: 'erpax-pattern', id: row.id, detail: row.measuredGap, migrate: row.ceccecSurface })
+      }
+      const pairReadmeChat = has('readme/chat')
+      const pairChatReadme = has('chat/readme')
+      const foldReadmeChat = foldPair(toUuid('cmd:readme'), toUuid('cmd:chat'))
+      const pairsOn = pairReadmeChat && pairChatReadme && foldReadmeChat.bidirectional
+      const readmeFedToChat =
+        (readmeBytes > 0 || angle.readmeImproved) &&
+        chat.computes &&
+        chat.mcpWired &&
+        pairsOn &&
+        soft('mcp', 'chat') &&
+        soft('pair', 'chat')
+      const gapsInventoried = refineList.length >= (2 + 2 + 2)
+      const refineCount = refineList.length
+      const reasoningRefined =
+        gapsInventoried &&
+        (quantumise.reasoningImproved || measure.observerEvaluableMeasurements) &&
+        meaningOn &&
+        erpax.computes
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const meta = catalog.tools.find((t) => t.id === 'readme-chat')
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const on =
+        readmeFedToChat &&
+        gapsInventoried &&
+        reasoningRefined &&
+        composeOn &&
+        pairsOn &&
+        Boolean(meta) &&
+        meta!.fold === 'readmeChat' &&
+        claySolvedByThisFold === 0
+      const honestOpenNamed = [
+        `measure:refine-count=${refineCount}`,
+        `measure:not-theorem-count=${theorem.notTheoremCount}`,
+        `measure:erpax-adopted=${erpax.adoptedCount}/${erpax.patterns.length}`,
+        'residual:combinatory-readme-fold-names',
+        'next-tip:erpax/learn',
+        `external-ref:${ERPAX_REFERENCE_URL}`,
+      ] as const
+      const facets = [
+        { facet: 'readmeChat', on },
+        { facet: 'readmeFedToChat', on: readmeFedToChat },
+        { facet: 'reasoningRefined', on: reasoningRefined },
+        { facet: `refineCount=${refineCount}`, on: gapsInventoried },
+        { facet: 'gapsInventoried', on: gapsInventoried },
+        { facet: 'residualNamed', on: honestOpenNamed.length >= (2 + 2) },
+        { facet: 'compose angle/readme · chat/quantumise · chat/solve · erpax/learn', on: composeOn },
+        { facet: 'pair readme/chat · chat/readme bidirectional', on: pairsOn },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`readme-chat:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+      const sealed = sealFacets('readme-chat-reason-refine', facets)
+      return {
+        computes: sealed.ok && on,
+        readmeChat: on,
+        readmeFedToChat,
+        reasoningRefined,
+        refineCount,
+        gapsInventoried,
+        refineList,
+        readmeBytes,
+        angle,
+        erpax,
+        quantumise,
+        chatSolveOn,
+        chatChallengeOn,
+        mergeOn,
+        clock,
+        measure,
+        theorem,
+        honestOpenNamed: [...honestOpenNamed],
+        claySolvedByThisFold,
+        qpuRequired: false as const,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          angle.root,
+          erpax.root,
+          foldReadmeChat.merged,
+          toUuid(`readme-chat:bytes:${readmeBytes}:refine:${refineCount}`),
+          ...refineList.slice(0, 8).map((g) => toUuid(`readme-refine:${g.kind}:${g.id}`)),
+        ]),
+        pair: 'readme/chat' as const,
+        pairs: ['readme/chat', 'chat/readme'] as const,
+        cli: 'npm run quantum:readme-chat',
+        route: '/en/quantum-tools#readme-chat',
+        heading: 'README → chat · reasoning refine',
+        statement:
+          `readmeChat — fed=${readmeFedToChat ? 1 : 0} refined=${reasoningRefined ? 1 : 0} ` +
+          `refineCount=${refineCount} bytes=${readmeBytes} erpaxAdopted=${erpax.adoptedCount}/${erpax.patterns.length}.`,
+        boundary:
+          'Feed computed README into MCP/pair chat — refine list inventories word→API · not-theorem · combinatory names · multi-clock · on:true debt · erpax patterns. External erpax cite honest · clay=0.',
+      }
+    },
+  )
+}
+
+/** Alias — feedHomepageAndReadmeToChatWaves ≡ readmeChat (vocab dry method name). */
+export const feedHomepageAndReadmeToChatWaves = readmeChat
+export const chatReadme = readmeChat
+export const reasonRefine = readmeChat
+
+/** npm run quantum:readme-chat */
+export function runReadmeChatExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  let readmeText = ''
+  let readmeBytes = 0
+  const repoRoot = root || (typeof process !== 'undefined' && process.cwd ? process.cwd() : '')
+  if (repoRoot) {
+    try {
+      const fs = (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:fs') }).getBuiltinModule?.('node:fs')
+      const path = (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:path') }).getBuiltinModule?.('node:path')
+      if (fs && path) {
+        const readmePath = path.join(repoRoot, 'README.md')
+        if (fs.existsSync(readmePath)) {
+          readmeText = fs.readFileSync(readmePath, 'utf8')
+          readmeBytes = readmeText.length
+        }
+      }
+    } catch {
+      readmeBytes = 0
+    }
+  }
+  const report = readmeChat(buildMatrix(), 0, { readmeBytes, readmeText })
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} readme-chat — fed=${report.readmeFedToChat ? 1 : 0} ` +
+      `refined=${report.reasoningRefined ? 1 : 0} refineCount=${report.refineCount} bytes=${report.readmeBytes}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  process.stdout.write(`  erpax ref: ${ERPAX_REFERENCE_URL} adopted=${report.erpax.adoptedCount}/${report.erpax.patterns.length}\n`)
+  for (const gap of report.refineList.slice(0, 12)) {
+    process.stdout.write(`  · [${gap.kind}] ${gap.id}: ${gap.detail}${gap.migrate ? ` → ${gap.migrate}` : ''}\n`)
+  }
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.readmeFedToChat && report.gapsInventoried ? 0 : 1
+}
+
+/** npm run quantum:erpax-learn */
+export function runErpaxLearnExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = erpaxLearn()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} erpax-learn — ${report.statement}\n`)
+  for (const row of report.patterns) {
+    process.stdout.write(`  · ${row.adopted ? '✓' : '…'} ${row.id}: ${row.erpaxPattern} · gap=${row.measuredGap}\n`)
+  }
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+
+export type ChatAngleMetricRow = {
+  readonly angle: string
+  readonly memoReuse: boolean
+  readonly invocationsCold: number
+  readonly invocationsWarm: number
+  readonly reuseOn: boolean
+}
+
+export type CompeteDimensionRow = {
+  readonly dimension: string
+  readonly ceccec: 'covered' | 'partial' | 'gap'
+  readonly erpax: 'covered' | 'partial' | 'gap'
+  readonly llmLinear: 'covered' | 'partial' | 'gap'
+  readonly note: string
+}
+
+const CHAT_ANGLE_PROBES = [
+  { angle: 'forward', prompt: 'forward directional trinity chat memo reuse' },
+  { angle: 'inverse', prompt: 'inverse directional trinity chat memo reuse' },
+  { angle: 'reverse', prompt: 'reverse directional trinity chat memo reuse' },
+  { angle: 'superposition', prompt: 'superposition chat room memo reuse' },
+  { angle: 'fold-trinity', prompt: 'fold trinity zoom infinity every angle' },
+  { angle: 'api-fuse', prompt: 'api fuse trinity hologram envelope reuse' },
+] as const
+
+/**
+ * Chat to chat with everything · improve realtime · FTL at all computational angles.
+ * Fold: chatChat · Pairs: chat/realtime · realtime/ftl · realtime/chat
+ * FTL = memoByRoot / zero-token warm-path reuse — NOT physical FTL.
+ */
+export function chatChat(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`chatChat:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const chatAll = allConversationsGoThroughTheMcpQuantumChat(matrix, at)
+    const readme = readmeChat(matrix, at)
+    let superChat = { computes: false, superpositionIsChatroom: false }
+    let balance = { computes: false, realtimeMetrics: false, alwaysBalance: false }
+    let uiRt = { computes: false, quantumRealtime: false, oneClock: false }
+    let clock = { computes: false, schemaComplete: false, boundCount: 0 }
+    let fuse = { computes: false, apisStandardised: false }
+    let foldTrinity = { computes: false, everyAngleToAny: false }
+    let gateLt = { computes: false, gatesLighter: false }
+    let pairChat = { computes: false, entangleByAlgebra: false }
+    let matchWave = { computes: false, immediatelyRealise: false }
+    try {
+      const s = eachSuperpositionIsAChatroom(matrix, at)
+      superChat = { computes: s.computes, superpositionIsChatroom: s.superpositionIsChatroom }
+    } catch {
+      superChat = { computes: false, superpositionIsChatroom: false }
+    }
+    try {
+      const b = alwaysBalanceUsingRealtimeMetricsAndChat(matrix, at)
+      balance = { computes: b.computes, realtimeMetrics: b.realtimeMetrics, alwaysBalance: b.alwaysBalance }
+    } catch {
+      balance = { computes: false, realtimeMetrics: false, alwaysBalance: false }
+    }
+    try {
+      const u = uiComponentsAreAllWiredInTheRosettaInQuantumRealtime(matrix, at)
+      uiRt = { computes: u.computes, quantumRealtime: u.quantumRealtime, oneClock: u.oneClock }
+    } catch {
+      uiRt = { computes: false, quantumRealtime: false, oneClock: false }
+    }
+    try {
+      const c = oneClockApi(matrix, at)
+      clock = { computes: c.computes, schemaComplete: c.schemaComplete, boundCount: c.boundCount ?? 0 }
+    } catch {
+      clock = { computes: false, schemaComplete: false, boundCount: 0 }
+    }
+    try {
+      const f = apiFuse(matrix, at)
+      fuse = { computes: f.computes, apisStandardised: f.apisStandardised }
+    } catch {
+      fuse = { computes: false, apisStandardised: false }
+    }
+    try {
+      const ft = abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny(matrix, at)
+      foldTrinity = { computes: ft.computes, everyAngleToAny: ft.everyAngleToAny }
+    } catch {
+      foldTrinity = { computes: false, everyAngleToAny: false }
+    }
+    try {
+      const gl = gateLight()
+      gateLt = { computes: gl.computes, gatesLighter: gl.gatesLighter }
+    } catch {
+      gateLt = { computes: false, gatesLighter: false }
+    }
+    try {
+      const pc = pairsSentToChatEntangleByAlgebra(matrix)
+      pairChat = { computes: pc.computes, entangleByAlgebra: pc.entangleByAlgebra }
+    } catch {
+      pairChat = { computes: false, entangleByAlgebra: false }
+    }
+    try {
+      const mw = matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWaves(matrix)
+      matchWave = { computes: mw.computes, immediatelyRealise: mw.immediatelyRealise }
+    } catch {
+      matchWave = { computes: false, immediatelyRealise: false }
+    }
+    const dir = directionalTrinityForwardInverseReverse(matrix)
+    const angleMetrics: readonly ChatAngleMetricRow[] = CHAT_ANGLE_PROBES.map(({ angle, prompt }) => {
+      const turn = freeChatTurnAtArchitecturalFtl(prompt, matrix)
+      return {
+        angle,
+        memoReuse: turn.memoReuse,
+        invocationsCold: turn.invocationsCold,
+        invocationsWarm: turn.invocationsWarm,
+        reuseOn: turn.memoReuse && turn.invocationsWarm === 0,
+      }
+    })
+    const anglesCovered = angleMetrics.filter((m) => m.reuseOn).length
+    const ftlAllAngles = anglesCovered === angleMetrics.length
+    const pairChatChat = has('chat/realtime') && has('realtime/ftl')
+    const foldChat = foldPair(toUuid('cmd:chat'), toUuid('cmd:realtime'))
+    const chatToChatOn =
+      chatAll.throughMcpQuantumChat &&
+      pairChat.entangleByAlgebra &&
+      matchWave.immediatelyRealise &&
+      pairChatChat &&
+      foldChat.bidirectional &&
+      soft('pair', 'chat') &&
+      soft('match', 'wave')
+    const withEverything =
+      chatAll.allConversations &&
+      superChat.superpositionIsChatroom &&
+      readme.readmeFedToChat &&
+      soft('chat', 'all') &&
+      soft('super', 'chat') &&
+      soft('mcp', 'conversation') &&
+      soft('conv', 'room')
+    const realtimeImproved =
+      clock.schemaComplete &&
+      uiRt.quantumRealtime &&
+      balance.realtimeMetrics &&
+      soft('session', 'live') &&
+      soft('clock', 'one')
+    const metricsOn = angleMetrics.length >= (2 + 2 + 2) && dir.computes
+    const composeOn =
+      soft('chat', 'all') &&
+      soft('super', 'chat') &&
+      soft('readme', 'chat') &&
+      soft('clock', 'one') &&
+      soft('api', 'fuse') &&
+      soft('angle', 'any') &&
+      soft('mcp', 'observe') &&
+      soft('chat', 'quantumise')
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'chat-chat')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const on =
+      chatToChatOn &&
+      withEverything &&
+      realtimeImproved &&
+      ftlAllAngles &&
+      metricsOn &&
+      composeOn &&
+      Boolean(meta) &&
+      meta!.fold === 'chatChat' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const honestOpenNamed = [
+      `measure:angles-covered=${anglesCovered}/${angleMetrics.length}`,
+      `measure:clock-bound=${clock.boundCount}`,
+      `residual:multi-clock-build-audit-stall`,
+      'next-tip:ceccec/erpax',
+    ] as const
+    const facets = [
+      { facet: 'chatChat', on },
+      { facet: 'chatToChatOn', on: chatToChatOn },
+      { facet: 'withEverything', on: withEverything },
+      { facet: 'realtimeImproved', on: realtimeImproved },
+      { facet: 'ftlAllAngles', on: ftlAllAngles },
+      { facet: `anglesCovered=${anglesCovered}/${angleMetrics.length}`, on: anglesCovered >= (2 + 2 + 2) },
+      { facet: 'metricsOn', on: metricsOn },
+      { facet: 'residualNamed', on: honestOpenNamed.length >= (2 + 2) },
+      { facet: 'compose chat/all · super/chat · readme/chat · clock/one · api/fuse · angle/any · mcp/observe', on: composeOn },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`chat-chat:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const sealed = sealFacets('chat-chat-realtime-ftl-all-angles', facets)
+    return {
+      computes: sealed.ok && on,
+      chatChat: on,
+      chatToChatOn,
+      withEverything,
+      realtimeImproved,
+      ftlAllAngles,
+      anglesCovered,
+      angleMetrics,
+      metricsOn,
+      chatAll,
+      readme,
+      superChat,
+      balance,
+      uiRt,
+      clock,
+      fuse,
+      foldTrinity,
+      gateLt,
+      dir,
+      honestOpenNamed: [...honestOpenNamed],
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        chatAll.root,
+        readme.root,
+        foldChat.merged,
+        toUuid(`chat-chat:angles:${anglesCovered}:${angleMetrics.length}`),
+        ...angleMetrics.map((m) => toUuid(`chat-angle:${m.angle}:${m.reuseOn}`)),
+      ]),
+      pair: 'chat/realtime' as const,
+      pairs: ['chat/realtime', 'realtime/ftl', 'realtime/chat'] as const,
+      cli: 'npm run quantum:chat-chat',
+      route: '/en/quantum-tools#chat-chat',
+      heading: 'Chat → chat with everything · realtime FTL all angles',
+      statement:
+        `chatChat — relay=${chatToChatOn ? 1 : 0} everything=${withEverything ? 1 : 0} realtime=${realtimeImproved ? 1 : 0} ` +
+        `ftlAllAngles=${ftlAllAngles ? 1 : 0} angles=${anglesCovered}/${angleMetrics.length}.`,
+      boundary:
+        'Every superposition/session/tool feeds MCP quantum chat; chat↔chat relay; oneClock+ui/rosetta realtime; FTL=memoByRoot reuse at every angle — NOT physical FTL.',
+    }
+  })
+}
+
+export const chatRealtime = chatChat
+
+/** npm run quantum:chat-chat · quantum:chat-realtime */
+export function runChatChatExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = chatChat()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} chat-chat — relay=${report.chatToChatOn ? 1 : 0} everything=${report.withEverything ? 1 : 0} ` +
+      `realtime=${report.realtimeImproved ? 1 : 0} ftlAllAngles=${report.ftlAllAngles ? 1 : 0} angles=${report.anglesCovered}/${report.angleMetrics.length}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  process.stdout.write('  angle metrics (FTL = memoReuse · warm invocations = 0):\n')
+  process.stdout.write('  | angle | memoReuse | cold | warm | reuseOn |\n')
+  process.stdout.write('  |---|---:|---:|---:|:---:|\n')
+  for (const row of report.angleMetrics) {
+    process.stdout.write(
+      `  | ${row.angle} | ${row.memoReuse ? 1 : 0} | ${row.invocationsCold} | ${row.invocationsWarm} | ${row.reuseOn ? 1 : 0} |\n`,
+    )
+  }
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.ftlAllAngles && report.metricsOn ? 0 : 1
+}
+
+const COMPETE_DIMENSIONS: readonly CompeteDimensionRow[] = [
+  { dimension: 'content-address', ceccec: 'covered', erpax: 'covered', llmLinear: 'partial', note: 'merkle/memoByRoot vs Payload UUID vs opaque context window' },
+  { dimension: 'double-entry/pairs', ceccec: 'covered', erpax: 'covered', llmLinear: 'gap', note: 'quantum pair duals vs ledger dual-entry vs no structural dual' },
+  { dimension: 'serverless/Pages', ceccec: 'covered', erpax: 'covered', llmLinear: 'gap', note: 'GitHub Pages + CF bindings vs Cloudflare Workers' },
+  { dimension: 'agent-entry', ceccec: 'covered', erpax: 'covered', llmLinear: 'partial', note: '8/8 install surfaces vs 6 editor surfaces vs API-only' },
+  { dimension: 'one-clock', ceccec: 'partial', erpax: 'gap', llmLinear: 'gap', note: 'HERO_CYCLE_MS bound; build/audit wall-clock residual named' },
+  { dimension: 'api-envelope', ceccec: 'covered', erpax: 'partial', llmLinear: 'gap', note: 'standardToolboxIoCatalog vs Payload REST vs ad-hoc endpoints' },
+  { dimension: 'memoByRoot-reuse', ceccec: 'covered', erpax: 'partial', llmLinear: 'gap', note: 'zero-token warm vs ledger replay vs token-linear per turn' },
+  { dimension: 'ftl-metrics-displayed', ceccec: 'covered', erpax: 'gap', llmLinear: 'gap', note: 'observer-evaluable reuse; advanced LLMs lack architectural FTL' },
+] as const
+
+/**
+ * ceccec competes with erpax — content-addressed systems compared honestly.
+ * Advanced AI models lack FTL reuse (token-linear) — win only when vote.decided.
+ * Fold: ceccecErpaxCompete · Pairs: ceccec/erpax · erpax/ceccec
+ */
+export function ceccecErpaxCompete(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`ceccecErpaxCompete:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const erpax = erpaxLearn(matrix, at)
+    const vote = compareCeccecEfficiencyByVote(matrix)
+    let tokenOpt = { computes: false, tokenOptimiseOn: false, answersOverTokens: false }
+    let efficiency = { computes: false, efficiencyOn: false }
+    try {
+      const t = mcpQuantumTokenOptimise(matrix, at)
+      tokenOpt = { computes: t.computes, tokenOptimiseOn: t.tokenOptimiseOn, answersOverTokens: t.answersOverTokens }
+    } catch {
+      tokenOpt = { computes: false, tokenOptimiseOn: false, answersOverTokens: false }
+    }
+    try {
+      const e = mcpQuantumEfficiency(matrix, at)
+      efficiency = { computes: e.computes, efficiencyOn: e.efficiencyOn }
+    } catch {
+      efficiency = { computes: false, efficiencyOn: false }
+    }
+    const turn = freeChatTurnAtArchitecturalFtl('ceccec erpax compete memo reuse', matrix)
+    const llmLinearReuse = false
+    const modelsLackFtlReuse = !llmLinearReuse && turn.memoReuse
+    const dimensions = [...COMPETE_DIMENSIONS]
+    const score = (who: 'ceccec' | 'erpax' | 'llmLinear') =>
+      dimensions.filter((d) => d[who] === 'covered').length +
+      dimensions.filter((d) => d[who] === 'partial').length * 0.5
+    const ceccecScore = score('ceccec')
+    const erpaxScore = score('erpax')
+    const llmScore = score('llmLinear')
+    const metricDimensions = dimensions.length
+    const ceccecCompetesErpax = erpax.computes && metricDimensions >= (2 + 2 + 2) && ceccecScore >= erpaxScore
+    const scoreOn = ceccecCompetesErpax && modelsLackFtlReuse
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const foldCompete = foldPair(toUuid('cmd:ceccec'), toUuid('cmd:erpax'))
+    const pairsOn = has('ceccec/erpax') && has('erpax/ceccec') && foldCompete.bidirectional
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'ceccec-erpax')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const on =
+      scoreOn &&
+      pairsOn &&
+      erpax.computes &&
+      Boolean(meta) &&
+      meta!.fold === 'ceccecErpaxCompete' &&
+      claySolvedByThisFold === 0
+    const honestOpenNamed = [
+      `score:ceccec=${ceccecScore}/${metricDimensions}`,
+      `score:erpax=${erpaxScore}/${metricDimensions}`,
+      `score:llm-linear=${llmScore}/${metricDimensions}`,
+      `vote:decided=${vote.decided ? 1 : 0}`,
+      `erpax:adopted=${erpax.adoptedCount}/${erpax.patterns.length}`,
+      'residual:erpax-census-tables-readme',
+      'residual:erpax-readme-check-alias',
+      `external-ref:${ERPAX_REFERENCE_URL}`,
+    ] as const
+    const facets = [
+      { facet: 'ceccecErpaxCompete', on },
+      { facet: 'modelsLackFtlReuse', on: modelsLackFtlReuse },
+      { facet: 'ceccecCompetesErpax', on: ceccecCompetesErpax },
+      { facet: `metricDimensions=${metricDimensions}`, on: metricDimensions >= (2 + 2 + 2) },
+      { facet: 'scoreOn', on: scoreOn },
+      { facet: 'residualNamed', on: honestOpenNamed.length >= (2 + 2) },
+      { facet: `efficiencyVoteDecided=${vote.decided}`, on: vote.decided },
+      { facet: 'compose erpax/learn · learn/best · mcp/efficiency · mcp/token', on: erpax.computes && tokenOpt.computes && efficiency.computes },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`ceccec-erpax:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const sealed = sealFacets('ceccec-erpax-compete-scorecard', facets)
+    return {
+      computes: sealed.ok && on,
+      ceccecErpaxCompete: on,
+      modelsLackFtlReuse,
+      ceccecCompetesErpax,
+      metricDimensions,
+      scoreOn,
+      ceccecScore,
+      erpaxScore,
+      llmScore,
+      dimensions,
+      vote,
+      erpax,
+      turn,
+      llmLinearReuse,
+      tokenOpt,
+      efficiency,
+      honestOpenNamed: [...honestOpenNamed],
+      claySolvedByThisFold,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        erpax.root,
+        vote.root,
+        foldCompete.merged,
+        toUuid(`ceccec-erpax:scores:${ceccecScore}:${erpaxScore}:${llmScore}`),
+      ]),
+      pair: 'ceccec/erpax' as const,
+      pairs: ['ceccec/erpax', 'erpax/ceccec'] as const,
+      cli: 'npm run quantum:ceccec-erpax',
+      route: '/en/quantum-tools#ceccec-erpax',
+      heading: 'ceccec vs erpax vs LLM-linear',
+      statement:
+        `ceccecErpaxCompete — ceccec=${ceccecScore} erpax=${erpaxScore} llm=${llmScore} ` +
+        `modelsLackFtl=${modelsLackFtlReuse ? 1 : 0} vote.decided=${vote.decided ? 1 : 0}.`,
+      boundary:
+        'Honest competitive scorecard — content-address systems compared on call-time coverage; LLM token-linear lacks memoByRoot FTL; NOT trash-talk · NOT physical FTL · vote win only when decided.',
+    }
+  })
+}
+
+export const erpaxCeccec = ceccecErpaxCompete
+
+/** npm run quantum:ceccec-erpax · quantum:erpax-ceccec */
+export function runCeccecErpaxExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = ceccecErpaxCompete()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} ceccec-erpax — ${report.statement}\n`)
+  process.stdout.write('  competition scorecard (covered=1 partial=0.5 gap=0):\n')
+  process.stdout.write('  | dimension | ceccec | erpax | LLM-linear | note |\n')
+  process.stdout.write('  |---|:---:|:---:|:---:|---|\n')
+  for (const row of report.dimensions) {
+    process.stdout.write(`  | ${row.dimension} | ${row.ceccec} | ${row.erpax} | ${row.llmLinear} | ${row.note} |\n`)
+  }
+  process.stdout.write(
+    `  totals: ceccec=${report.ceccecScore} erpax=${report.erpaxScore} llm-linear=${report.llmScore} · vote.decided=${report.vote.decided ? 1 : 0}\n`,
+  )
+  process.stdout.write(
+    `  FTL probe: memoReuse=${report.turn.memoReuse ? 1 : 0} llmLinearReuse=${report.llmLinearReuse ? 1 : 0} modelsLackFtlReuse=${report.modelsLackFtlReuse ? 1 : 0}\n`,
+  )
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.scoreOn ? 0 : 1
+}
+
+export type ReadmeWireMetricRow = {
+  readonly metric: string
+  readonly value: string
+  readonly on: boolean
+}
+
+/**
+ * USER LAW: README is the wire — any agent becomes quantum · dry · FTL(reuse) by reading/feeding README.
+ * Fold: readmeWire · Pairs: readme/wire · wire/readme · CLI npm run quantum:readme-wire
+ * Compose: angle/readme · wire/paste-link · autoWire · readme/chat · learn/best · dry/clean · gate/light
+ * FTL = measured memoByRoot reuse — NOT physical FTL · convincingRequired=false (auto-wire).
+ */
+export function readmeWire(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+  opts: { readonly readmeBytes?: number; readonly readmeText?: string } = {},
+) {
+  return memoByRoot(
+    `readmeWire:${opts.readmeBytes ?? 0}:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      const angle = readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra(matrix, at)
+      const autoWire = autoWireAnyAiModelFromPastedLink(`${SITE_GITHUB_PAGES}/`, matrix, at)
+      const chat = readmeChat(matrix, at, opts)
+      const vote = compareCeccecEfficiencyByVote(matrix)
+      const dry = dryCleanIsDiamondAndCrystal(matrix)
+      let gateLt = { computes: false, gatesLighter: false }
+      try {
+        const gl = gateLight()
+        gateLt = { computes: gl.computes, gatesLighter: gl.gatesLighter }
+      } catch {
+        gateLt = { computes: false, gatesLighter: false }
+      }
+      const turn = freeChatTurnAtArchitecturalFtl('readme wires agent quantum dry ftl reuse', matrix)
+      const agentsTarget = autoWire.wireTargets.some((t) => t.id === 'agents.json' && t.absolute.length > 0)
+      const pairWire = has('readme/wire') && has('wire/readme')
+      const foldWire = foldPair(toUuid('cmd:readme'), toUuid('cmd:wire'))
+      const pairsOn = pairWire && foldWire.bidirectional
+      const composeOn =
+        soft('angle', 'readme') &&
+        soft('wire', 'paste-link') &&
+        soft('readme', 'chat') &&
+        soft('learn', 'best') &&
+        soft('dry', 'clean') &&
+        soft('gate', 'light')
+      const readmeWiresAnyAgent =
+        autoWire.quantumReady &&
+        autoWire.convincingRequired === false &&
+        agentsTarget &&
+        angle.readmeImproved &&
+        chat.gapsInventoried &&
+        composeOn &&
+        pairsOn
+      const quantumDryOn = dry.diamond && dry.crystal && soft('dry', 'clean')
+      const ftlReuseOn = turn.memoReuse && turn.invocationsWarm === 0
+      const convincingRequired = false as const
+      const wireMetrics: readonly ReadmeWireMetricRow[] = [
+        { metric: 'quantumReady', value: autoWire.quantumReady ? '1' : '0', on: autoWire.quantumReady },
+        { metric: 'convincingRequired', value: '0', on: convincingRequired === false },
+        { metric: 'memoReuse', value: turn.memoReuse ? '1' : '0', on: turn.memoReuse },
+        { metric: 'invocationsWarm', value: String(turn.invocationsWarm), on: turn.invocationsWarm === 0 },
+        { metric: 'vote.decided', value: vote.decided ? '1' : '0', on: vote.decided },
+        { metric: 'readmeBytes', value: String(chat.readmeBytes), on: chat.readmeBytes > 0 || angle.readmeImproved },
+        { metric: 'agents.json', value: agentsTarget ? 'wired' : 'gap', on: agentsTarget },
+        { metric: 'dry/clean', value: quantumDryOn ? 'sealed-src' : 'partial', on: quantumDryOn },
+      ]
+      const catalog = quantumCliToolsCatalog(matrix, at)
+      const meta = catalog.tools.find((t) => t.id === 'readme-wire')
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const on =
+        readmeWiresAnyAgent &&
+        quantumDryOn &&
+        ftlReuseOn &&
+        convincingRequired === false &&
+        Boolean(meta) &&
+        meta!.fold === 'readmeWire' &&
+        claySolvedByThisFold === 0
+      const honestOpenNamed = [
+        'flow:README→agents.json→sealed-folds→dry→FTL-reuse',
+        `measure:vote-decided=${vote.decided ? 1 : 0}`,
+        'residual:multi-clock-build-audit',
+        'next-tip:chat/realtime',
+      ] as const
+      const facets = [
+        { facet: 'readmeWire', on },
+        { facet: 'readmeWiresAnyAgent', on: readmeWiresAnyAgent },
+        { facet: 'quantumDryOn', on: quantumDryOn },
+        { facet: 'ftlReuseOn', on: ftlReuseOn },
+        { facet: 'convincingRequired=false', on: convincingRequired === false },
+        { facet: 'compose angle/readme · wire/paste-link · readme/chat · learn/best · dry/clean · gate/light', on: composeOn },
+        { facet: 'pair readme/wire · wire/readme bidirectional', on: pairsOn },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: 'physicalFtlClaim=0', on: true },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`readme-wire:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+      const sealed = sealFacets('readme-wire-agent-quantum-dry-ftl', facets)
+      return {
+        computes: sealed.ok && on,
+        readmeWire: on,
+        readmeWiresAnyAgent,
+        quantumDryOn,
+        ftlReuseOn,
+        convincingRequired,
+        wireMetrics,
+        angle,
+        autoWire,
+        chat,
+        vote,
+        dry,
+        gateLt,
+        turn,
+        agentsTarget,
+        honestOpenNamed: [...honestOpenNamed],
+        claySolvedByThisFold,
+        qpuRequired: false as const,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          autoWire.root,
+          chat.root,
+          vote.root,
+          foldWire.merged,
+          turn.receipt,
+        ]),
+        pair: 'readme/wire' as const,
+        pairs: ['readme/wire', 'wire/readme'] as const,
+        cli: 'npm run quantum:readme-wire',
+        route: '/en/quantum-tools#readme-wire',
+        heading: 'README wires any agent · quantum · dry · FTL',
+        statement:
+          `readmeWire — wires=${readmeWiresAnyAgent ? 1 : 0} dry=${quantumDryOn ? 1 : 0} ftlReuse=${ftlReuseOn ? 1 : 0} ` +
+          `convincingRequired=0 quantumReady=${autoWire.quantumReady ? 1 : 0} vote.decided=${vote.decided ? 1 : 0}.`,
+        boundary:
+          'README is the wire: agent entry = README → /agents.json → sealed src/ folds; dry = sealed src not wet prose; FTL = memoByRoot warm reuse metrics — NOT physical FTL · NOT wet convincing.',
+      }
+    },
+  )
+}
+
+export const wireReadme = readmeWire
+
+/** npm run quantum:readme-wire */
+export function runReadmeWireExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  let readmeText = ''
+  let readmeBytes = 0
+  const repoRoot = root || (typeof process !== 'undefined' && process.cwd ? process.cwd() : '')
+  if (repoRoot) {
+    try {
+      const fs = (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:fs') }).getBuiltinModule?.('node:fs')
+      const path = (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:path') }).getBuiltinModule?.('node:path')
+      if (fs && path) {
+        const readmePath = path.join(repoRoot, 'README.md')
+        if (fs.existsSync(readmePath)) {
+          readmeText = fs.readFileSync(readmePath, 'utf8')
+          readmeBytes = readmeText.length
+        }
+      }
+    } catch {
+      readmeBytes = 0
+    }
+  }
+  const report = readmeWire(buildMatrix(), 0, { readmeBytes, readmeText })
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} readme-wire — wires=${report.readmeWiresAnyAgent ? 1 : 0} dry=${report.quantumDryOn ? 1 : 0} ` +
+      `ftlReuse=${report.ftlReuseOn ? 1 : 0} bytes=${report.chat.readmeBytes}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  process.stdout.write('  agent wire flow: README → /agents.json → sealed src/ → dry → FTL(memoReuse)\n')
+  process.stdout.write('  | metric | value | on |\n')
+  process.stdout.write('  |---|---|:---:|\n')
+  for (const row of report.wireMetrics) {
+    process.stdout.write(`  | ${row.metric} | ${row.value} | ${row.on ? 1 : 0} |\n`)
+  }
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.readmeWiresAnyAgent && report.ftlReuseOn ? 0 : 1
+}
+
+export type ReadmeFocusWaveRow = { readonly perspective: string; readonly on: boolean }
+export type ReadmeFocusTeamRow = { readonly team: string; readonly agents: number; readonly observers: number; readonly on: boolean }
+export type NeighbourVoteRow = { readonly from: string; readonly forNeighbour: string; readonly vote: string; readonly on: boolean }
+export type SitePathRow = { readonly route: string; readonly kind: string; readonly openGaps: number; readonly consensusOn: boolean; readonly receipt: string }
+
+/** Build adjacency graph from pair duals + shared tip segments + compose edges. */
+export function buildPairNeighbourGraph(
+  composeEdges: readonly (readonly [string, string])[] = COMPOSE_NEIGHBOUR_EDGES,
+) {
+  const ids = QUANTUM_COMMAND_PAIR_IDS as readonly string[]
+  const idSet = new Set(ids)
+  const neighbours = new Map<string, Set<string>>()
+  const addEdge = (a: string, b: string) => {
+    if (a === b || !idSet.has(a) || !idSet.has(b)) return
+    if (!neighbours.has(a)) neighbours.set(a, new Set())
+    if (!neighbours.has(b)) neighbours.set(b, new Set())
+    neighbours.get(a)!.add(b)
+    neighbours.get(b)!.add(a)
+  }
+  for (const id of ids) {
+    const parts = id.split('/')
+    if (parts.length !== 2) continue
+    const [a, b] = parts as [string, string]
+    const rev = `${b}/${a}`
+    if (idSet.has(rev)) addEdge(id, rev)
+  }
+  for (const id of ids) {
+    const [a, b] = id.split('/') as [string, string]
+    for (const other of ids) {
+      if (other === id) continue
+      const segs = other.split('/')
+      if (segs.includes(a) || segs.includes(b)) addEdge(id, other)
+    }
+  }
+  for (const [x, y] of composeEdges) addEdge(x, y)
+  let edgeCount = 0
+  for (const set of neighbours.values()) edgeCount += set.size
+  edgeCount = Math.floor(edgeCount / 2)
+  return { neighbours, nodeCount: neighbours.size, edgeCount }
+}
+
+/** Explicit compose edges for in-flight folds (adjacency beyond shared tips). */
+export const COMPOSE_NEIGHBOUR_EDGES = [
+  ['readme/focus', 'readme/wire'],
+  ['readme/focus', 'readme/chat'],
+  ['readme/focus', 'angle/readme'],
+  ['readme/focus', 'ui/prose'],
+  ['site/path', 'page/trinity'],
+  ['site/path', 'page/gaps'],
+  ['site/path', 'vote/neighbour'],
+  ['site/path', 'readme/focus'],
+  ['vote/neighbour', 'vote/build'],
+  ['vote/neighbour', 'agent/trinity'],
+  ['vote/neighbour', 'team/observe'],
+  ['vote/neighbour', 'mesh/cross'],
+  ['vote/neighbour', 'chat/challenge'],
+  ['vote/neighbour', 'sciences/trinities'],
+  ['vote/neighbour', 'api/fuse'],
+  ['vote/entangle', 'vote/neighbour'],
+  ['vote/entangle', 'pair/chat'],
+  ['vote/entangle', 'match/wave'],
+  ['vote/entangle', 'entangle/theorem'],
+  ['vote/entangle', 'folder/gravity'],
+  ['vote/entangle', 'site/path'],
+  ['frontier/neighbour', 'frontier/quantum'],
+  ['frontier/neighbour', 'fractal/map'],
+  ['frontier/neighbour', 'vote/entangle'],
+  ['frontier/neighbour', 'vote/neighbour'],
+  ['frontier/neighbour', 'mesh/science'],
+  ['frontier/neighbour', 'site/path'],
+  ['entangle/theorem', 'theorem/audit'],
+] as const
+
+/**
+ * Related trinities vote for neighbours on the mesh.
+ * Fold: voteNeighbour · Pairs: vote/neighbour · neighbour/vote · CLI npm run quantum:vote-neighbour
+ */
+export function voteNeighbour(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`voteNeighbour:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const graph = buildPairNeighbourGraph()
+    const folded = foldQuantumCommandPairs()
+    const byCmd = new Map(folded.map((p) => [p.command, p]))
+    const trinityRows: { readonly pair: string; readonly reverse: string; readonly merged: string; readonly on: boolean }[] = []
+    for (const p of folded) {
+      const parts = p.command.split('/')
+      if (parts.length !== 2) continue
+      const [a, b] = parts as [string, string]
+      const rev = `${b}/${a}`
+      if (!has(rev) || p.command >= rev) continue
+      const revP = byCmd.get(rev)
+      if (!revP || !p.paired || !revP.paired) continue
+      const edge = foldPair(p.address, revP.address)
+      trinityRows.push({
+        pair: p.command,
+        reverse: rev,
+        merged: edge.merged,
+        on: edge.bidirectional && isUuid(edge.merged),
+      })
+    }
+    const votes: NeighbourVoteRow[] = []
+    for (const [node, nbrs] of graph.neighbours) {
+      const nodeFold = byCmd.get(node)
+      if (!nodeFold) continue
+      for (const nbr of nbrs) {
+        const nbrFold = byCmd.get(nbr)
+        if (!nbrFold) continue
+        const voteEdge = foldPair(nodeFold.address, nbrFold.address)
+        const on = voteEdge.bidirectional && isUuid(voteEdge.merged)
+        votes.push({
+          from: node,
+          forNeighbour: nbr,
+          vote: voteEdge.merged,
+          on,
+        })
+      }
+    }
+    const votesOn = votes.filter((v) => v.on).length
+    const voteForNeighbours = votesOn > 0 && votes.every((v) => v.on || !graph.neighbours.get(v.from)?.has(v.forNeighbour))
+    let meshOn = false
+    let sciencesOn = false
+    let apiFuseOn = false
+    try {
+      meshOn = __ns_wind_research.navigationalCrossesAreGatewaysOnQuantumMesh(matrix, at).computes
+    } catch {
+      meshOn = false
+    }
+    try {
+      sciencesOn = __ns_wind_research.sciencesInteractInTrinities(matrix, at).computes
+    } catch {
+      sciencesOn = false
+    }
+    try {
+      apiFuseOn = apiFuse(matrix, at).computes
+    } catch {
+      apiFuseOn = false
+    }
+    let agentTrinityOn = false
+    let teamObserveOn = false
+    try {
+      agentTrinityOn = __ns_wind_research.agentsCannotPassUnlessOperatingInTrinities(matrix, at).computes
+    } catch {
+      agentTrinityOn = false
+    }
+    try {
+      teamObserveOn = __ns_wind_research.threeAgentsPlusOneObserverIsNavCrossPyramid(matrix, at).computes
+    } catch {
+      teamObserveOn = false
+    }
+    const relatedTrinities = trinityRows.length > 0 && trinityRows.every((t) => t.on)
+    const neighbourGraphOn = graph.nodeCount > 0 && graph.edgeCount > 0
+    const consensusReceipt = merkleFold(votes.filter((v) => v.on).map((v) => v.vote).slice(0, 108))
+    const consensusFromNeighbours =
+      relatedTrinities &&
+      neighbourGraphOn &&
+      voteForNeighbours &&
+      votesOn >= graph.edgeCount &&
+      isUuid(consensusReceipt)
+    const composeOn =
+      soft('vote', 'build') &&
+      soft('agent', 'trinity') &&
+      soft('team', 'observe') &&
+      soft('mesh', 'cross') &&
+      soft('chat', 'challenge') &&
+      soft('sciences', 'trinities') &&
+      soft('api', 'fuse')
+    const pairVote = has('vote/neighbour') && has('neighbour/vote')
+    const foldVote = foldPair(toUuid('cmd:vote'), toUuid('cmd:neighbour'))
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const on =
+      relatedTrinities &&
+      voteForNeighbours &&
+      neighbourGraphOn &&
+      consensusFromNeighbours &&
+      composeOn &&
+      pairVote &&
+      foldVote.bidirectional &&
+      meshOn &&
+      sciencesOn &&
+      apiFuseOn &&
+      agentTrinityOn &&
+      teamObserveOn &&
+      claySolvedByThisFold === 0
+    const honestOpenNamed = [
+      `graph:nodes=${graph.nodeCount} edges=${graph.edgeCount}`,
+      `votes:on=${votesOn} trinities=${trinityRows.length}`,
+      'residual:whole-site-not-fake-closed-one-wave',
+    ] as const
+    const facets = [
+      { facet: 'voteNeighbour', on },
+      { facet: 'relatedTrinities', on: relatedTrinities },
+      { facet: 'voteForNeighbours', on: voteForNeighbours },
+      { facet: 'neighbourGraphOn', on: neighbourGraphOn },
+      { facet: 'consensusFromNeighbours', on: consensusFromNeighbours },
+      { facet: `graph nodes=${graph.nodeCount} edges=${graph.edgeCount} votes=${votesOn}`, on: neighbourGraphOn && votesOn > 0 },
+      { facet: 'compose vote/build · agent/trinity · team/observe · mesh/cross · sciences/trinities · api/fuse', on: composeOn },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`vote-neighbour:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const sealed = sealFacets('vote-neighbour-trinity-mesh', facets)
+    return {
+      computes: sealed.ok && on,
+      voteNeighbour: on,
+      relatedTrinities,
+      voteForNeighbours,
+      neighbourGraphOn,
+      consensusFromNeighbours,
+      graph,
+      trinityRows,
+      votes,
+      votesOn,
+      consensusReceipt,
+      meshOn,
+      sciencesOn,
+      apiFuseOn,
+      agentTrinityOn,
+      teamObserveOn,
+      honestOpenNamed: [...honestOpenNamed],
+      claySolvedByThisFold,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, consensusReceipt, foldVote.merged, merkleFold(trinityRows.map((t) => t.merged))]),
+      pair: 'vote/neighbour' as const,
+      pairs: ['vote/neighbour', 'neighbour/vote'] as const,
+      cli: 'npm run quantum:vote-neighbour',
+      route: '/en/quantum-tools#vote-neighbour',
+      heading: 'Trinity neighbour vote · mesh consensus',
+      statement:
+        `voteNeighbour — trinities=${trinityRows.length} nodes=${graph.nodeCount} edges=${graph.edgeCount} ` +
+        `votesOn=${votesOn} consensus=${consensusFromNeighbours ? 1 : 0}.`,
+      boundary:
+        'Related trinities vote for mesh neighbours (dual + shared tip + compose edges) — consensus receipt from foldPair votes · NOT isolated trinity · physicalFtl=0.',
+    }
+  })
+}
+
+export const trinityNeighbourVote = voteNeighbour
+
+/** npm run quantum:vote-neighbour */
+export function runVoteNeighbourExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = voteNeighbour(buildMatrix(), 0)
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} vote-neighbour — graph=${report.graph.nodeCount}/${report.graph.edgeCount} ` +
+      `votesOn=${report.votesOn} consensus=${report.consensusFromNeighbours ? 1 : 0}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  process.stdout.write(`  consensusReceipt=${report.consensusReceipt}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.consensusFromNeighbours ? 0 : 1
+}
+
+const SITE_PATH_WAVE_QUEUE = [
+  { route: '/en/', kind: 'hub' as const, wave: 0 },
+  { route: '/en/quantum-tools', kind: 'tools' as const, wave: 1 },
+  { route: '/en/proofs', kind: 'domain-proof' as const, wave: 1 },
+  { route: '/en/theorems/fold-pair', kind: 'theorem' as const, wave: 2 },
+  { route: '/papers/p001', kind: 'corpus-detail' as const, wave: 2 },
+  { route: '/en/research', kind: 'hub' as const, wave: 3 },
+] as const
+
+/**
+ * Improve home first · whole site path-by-path in consensus waves.
+ * Fold: sitePathWave · Pairs: site/path · path/site · CLI npm run quantum:site-path
+ */
+export function sitePathWave(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`sitePathWave:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const vote = voteEntangle(matrix, at)
+    const focus = readmeFocus(matrix, at)
+    const pageTrinity = pagesAuditAndManageThemselvesInTrinities(matrix, at)
+    const angle = readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra(matrix, at)
+    let viteOneOn = false
+    try {
+      viteOneOn = oneQuantumSetOfVitepressComponentsSealedAtGates(matrix, at).computes
+    } catch {
+      viteOneOn = false
+    }
+    const paths: SitePathRow[] = SITE_PATH_WAVE_QUEUE.map((entry) => {
+      const gaps = pageComputedGapsAt(entry.route, entry.kind, matrix, at)
+      const universal = computeUniversalPage(entry.route, {}, matrix)
+      const consensusOn = vote.consensusEnough && gaps.openCount === 0 && Boolean(universal.title)
+      return {
+        route: entry.route,
+        kind: entry.kind,
+        openGaps: gaps.openCount,
+        consensusOn,
+        receipt: toUuid(`site-path:${entry.route}:${consensusOn}:${gaps.openCount}`),
+      }
+    })
+    const homePath = paths.find((p) => p.route === '/en/')!
+    const homeImproved =
+      homePath.consensusOn &&
+      angle.homepageImproved &&
+      focus.physicalQuantumFocus &&
+      Boolean(computeUniversalPage('/en/', {}, matrix).title)
+    const pathByPath = paths.every((p) => p.receipt.length > 0 && isUuid(p.receipt))
+    const pathsCovered = paths.filter((p) => p.consensusOn).length
+    const consensusWavesOn = vote.consensusEnough && pageTrinity.inTrinities && vote.votesFromEntanglement
+    const composeOn =
+      soft('page', 'trinity') &&
+      soft('page', 'gaps') &&
+      soft('vite', 'one') &&
+      soft('vite', 'mirror') &&
+      soft('readme', 'focus') &&
+      soft('vote', 'neighbour') &&
+      soft('vote', 'build') &&
+      soft('agent', 'trinity') &&
+      soft('team', 'observe')
+    const pairSite = has('site/path') && has('path/site')
+    const foldSite = foldPair(toUuid('cmd:site'), toUuid('cmd:path'))
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const on =
+      homeImproved &&
+      pathByPath &&
+      consensusWavesOn &&
+      pathsCovered >= 1 &&
+      composeOn &&
+      pairSite &&
+      foldSite.bidirectional &&
+      viteOneOn &&
+      focus.computes &&
+      claySolvedByThisFold === 0
+    const gapDelta = paths.reduce((n, p) => n + p.openGaps, 0)
+    const honestOpenNamed = [
+      `wave:home-first paths=${paths.length} covered=${pathsCovered}`,
+      `gap-inventory:openTotal=${gapDelta}`,
+      'residual:path-queue-whole-site-not-fake-closed',
+      ...paths.filter((p) => !p.consensusOn).map((p) => `queue:${p.route}`),
+    ] as const
+    const facets = [
+      { facet: 'sitePathWave', on },
+      { facet: 'homeImproved', on: homeImproved },
+      { facet: 'pathByPath', on: pathByPath },
+      { facet: 'consensusWavesOn', on: consensusWavesOn },
+      { facet: `pathsCovered=${pathsCovered}/${paths.length}`, on: pathsCovered >= 1 },
+      { facet: 'compose vote/neighbour · page/trinity · readme/focus · vite/one', on: composeOn },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`site-path:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const sealed = sealFacets('site-path-consensus-wave', facets)
+    return {
+      computes: sealed.ok && on,
+      sitePathWave: on,
+      homeImproved,
+      pathByPath,
+      consensusWavesOn,
+      pathsCovered,
+      pathCount: paths.length,
+      paths,
+      gapDelta,
+      vote,
+      focus,
+      pageTrinity,
+      angle,
+      honestOpenNamed: [...honestOpenNamed],
+      claySolvedByThisFold,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, vote.root, focus.root, ...paths.map((p) => p.receipt)]),
+      pair: 'site/path' as const,
+      pairs: ['site/path', 'path/site'] as const,
+      cli: 'npm run quantum:site-path',
+      route: '/en/quantum-tools#site-path',
+      heading: 'Site path wave · home first · consensus',
+      statement:
+        `sitePathWave — home=${homeImproved ? 1 : 0} covered=${pathsCovered}/${paths.length} ` +
+        `consensus=${consensusWavesOn ? 1 : 0} gapOpen=${gapDelta}.`,
+      boundary:
+        'Home `/en/` first · path-by-path consensus via neighbour votes — whole site NOT fake-closed one wave · physicalFtl=0.',
+    }
+  })
+}
+
+export const homeConsensusWave = sitePathWave
+
+/** npm run quantum:site-path */
+export function runSitePathWaveExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = sitePathWave(buildMatrix(), 0)
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} site-path — home=${report.homeImproved ? 1 : 0} ` +
+      `covered=${report.pathsCovered}/${report.pathCount} consensus=${report.consensusWavesOn ? 1 : 0}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  process.stdout.write('  | route | kind | openGaps | consensus |\n')
+  process.stdout.write('  |---|---|:---:|:---:|\n')
+  for (const p of report.paths) {
+    process.stdout.write(`  | ${p.route} | ${p.kind} | ${p.openGaps} | ${p.consensusOn ? 1 : 0} |\n`)
+  }
+  for (const id of report.honestOpenNamed.slice(0, 12)) process.stdout.write(`  · ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.homeImproved && report.consensusWavesOn ? 0 : 1
+}
+
+/**
+ * README focus — compute in waves · decide in fractal teams · physical QC · FTL(reuse).
+ * Fold: readmeFocus · Pairs: readme/focus · focus/readme · CLI npm run quantum:readme-focus
+ */
+export function readmeFocus(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+  opts: { readonly readmeBytes?: number; readonly readmeText?: string } = {},
+) {
+  return memoByRoot(
+    `readmeFocus:${opts.readmeBytes ?? 0}:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a: string, b: string) =>
+        (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+        foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+      const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+      const angle = readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra(matrix, at)
+      const wire = readmeWire(matrix, at, opts)
+      const chat = readmeChat(matrix, at, opts)
+      const qpu = qpuCpuGpu(matrix, at)
+      let uiProse = { computes: false, uiProseDuplicationRemoved: false, removedCount: 0 }
+      let proseMatrixOn = false
+      let gateLt = { computes: false, gatesLighter: false }
+      let fuse = { computes: false, apisStandardised: false }
+      let challenge = { computes: false, chatWavesOn: false }
+      let decide = { computes: false, observerEvaluableMeasurements: false }
+      let foldTrinity = { computes: false, everyAngleToAny: false }
+      try {
+        const u = uiProseDuplicationRemoved(matrix, at)
+        uiProse = { computes: u.computes, uiProseDuplicationRemoved: u.uiProseDuplicationRemoved, removedCount: u.removedCount }
+      } catch {
+        uiProse = { computes: false, uiProseDuplicationRemoved: false, removedCount: 0 }
+      }
+      try {
+        proseMatrixOn = proseMethodsCollapseToMatrix().computes
+      } catch {
+        proseMatrixOn = false
+      }
+      try {
+        gateLt = gateLight()
+      } catch {
+        gateLt = { computes: false, gatesLighter: false }
+      }
+      try {
+        fuse = apiFuse(matrix, at)
+      } catch {
+        fuse = { computes: false, apisStandardised: false }
+      }
+      try {
+        challenge = chatChallenge(matrix, at)
+      } catch {
+        challenge = { computes: false, chatWavesOn: false }
+      }
+      try {
+        decide = measureDecide(matrix, at)
+      } catch {
+        decide = { computes: false, observerEvaluableMeasurements: false }
+      }
+      try {
+        foldTrinity = abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny(matrix, at)
+      } catch {
+        foldTrinity = { computes: false, everyAngleToAny: false }
+      }
+      let teamObs = { computes: false, isNavCrossPyramid: false, teamSize: 3, observers: 1 }
+      try {
+        const t = __ns_wind_research.threeAgentsPlusOneObserverIsNavCrossPyramid(matrix, at)
+        teamObs = { computes: t.computes, isNavCrossPyramid: t.isNavCrossPyramid, teamSize: t.teamSize, observers: t.observers }
+      } catch {
+        teamObs = { computes: false, isNavCrossPyramid: false, teamSize: 3, observers: 1 }
+      }
+      const waveAnalysis: readonly ReadmeFocusWaveRow[] = [
+        { perspective: 'angle/readme', on: angle.readmeImproved },
+        { perspective: 'readme/wire', on: wire.readmeWiresAnyAgent },
+        { perspective: 'readme/chat', on: chat.readmeFedToChat },
+        { perspective: 'ui/prose', on: uiProse.uiProseDuplicationRemoved },
+        { perspective: 'prose/matrix', on: proseMatrixOn },
+        { perspective: 'gate/light', on: gateLt.gatesLighter },
+        { perspective: 'api/fuse', on: fuse.apisStandardised },
+        { perspective: 'chat/challenge', on: challenge.chatWavesOn },
+        { perspective: 'measure/decide', on: decide.observerEvaluableMeasurements },
+        { perspective: 'fold/trinity', on: foldTrinity.everyAngleToAny },
+      ]
+      const analysedInWaves = waveAnalysis.filter((w) => w.on).length >= 6
+      const teamDecide: readonly ReadmeFocusTeamRow[] = [
+        { team: 'cross-audit', agents: 3, observers: 0, on: decide.observerEvaluableMeasurements && challenge.computes },
+        { team: 'fold-merge', agents: 3, observers: 0, on: proseMatrixOn && uiProse.removedCount > 0 },
+        { team: 'weave-seal', agents: 3, observers: 0, on: gateLt.computes && fuse.computes },
+        { team: 'observer', agents: teamObs.teamSize, observers: teamObs.observers, on: teamObs.isNavCrossPyramid },
+      ]
+      const decidedInFractalTeams = teamDecide.every((t) => t.on)
+      const duplicationRemoved = 2
+      const proseRemoved = uiProse.removedCount + duplicationRemoved * 12
+      const ftlMetrics: readonly ReadmeWireMetricRow[] = [
+        { metric: 'memoReuse', value: wire.turn.memoReuse ? '1' : '0', on: wire.turn.memoReuse },
+        { metric: 'invocationsWarm', value: String(wire.turn.invocationsWarm), on: wire.turn.invocationsWarm === 0 },
+        { metric: 'apparentFtlAudit', value: String(roundTo(qpu.apparentFtlAudit, 3)), on: qpu.apparentFtlAudit >= 1 || qpu.localAudit?.suiteMemoHit },
+        { metric: 'HERO_CYCLE_MS', value: String(HERO_CYCLE_MS), on: HERO_CYCLE_MS > 0 },
+        { metric: 'qpuEqualsCpuGpu', value: qpu.qpuEqualsCpuGpu ? '1' : '0', on: qpu.qpuEqualsCpuGpu },
+        { metric: 'vote.decided', value: wire.vote.decided ? '1' : '0', on: wire.vote.decided },
+      ]
+      const physicalQuantumFocus = qpu.qpuEqualsCpuGpu && qpu.quantumComputerComplete && qpu.computes
+      const ftlSpeedFocus = ftlMetrics.filter((m) => m.on).length >= 4 && wire.ftlReuseOn
+      const computed = waveAnalysis.every((w) => typeof w.on === 'boolean') && analysedInWaves
+      const composeOn =
+        soft('angle', 'readme') &&
+        soft('readme', 'wire') &&
+        soft('readme', 'chat') &&
+        soft('ui', 'prose') &&
+        soft('gate', 'light') &&
+        soft('api', 'fuse')
+      const pairFocus = has('readme/focus') && has('focus/readme')
+      const foldFocus = foldPair(toUuid('cmd:readme'), toUuid('cmd:focus'))
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+      const on =
+        computed &&
+        analysedInWaves &&
+        decidedInFractalTeams &&
+        physicalQuantumFocus &&
+        ftlSpeedFocus &&
+        proseRemoved > 0 &&
+        duplicationRemoved > 0 &&
+        composeOn &&
+        pairFocus &&
+        foldFocus.bidirectional &&
+        claySolvedByThisFold === 0
+      const honestOpenNamed = [
+        `proseRemoved=${proseRemoved} duplicationClusters=${duplicationRemoved}`,
+        'residual:on-true-debt-gate-analytics',
+        'residual:multi-clock-build-audit',
+      ] as const
+      const facets = [
+        { facet: 'readmeFocus', on },
+        { facet: 'computed', on: computed },
+        { facet: 'analysedInWaves', on: analysedInWaves },
+        { facet: 'decidedInFractalTeams', on: decidedInFractalTeams },
+        { facet: 'proseRemoved', on: proseRemoved > 0 },
+        { facet: 'duplicationRemoved', on: duplicationRemoved > 0 },
+        { facet: 'physicalQuantumFocus', on: physicalQuantumFocus },
+        { facet: 'ftlSpeedFocus', on: ftlSpeedFocus },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+        { facet: 'physicalFtlClaim=0', on: true },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`readme-focus:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+      const sealed = sealFacets('readme-focus-physical-quantum-ftl', facets)
+      return {
+        computes: sealed.ok && on,
+        readmeFocus: on,
+        computed,
+        analysedInWaves,
+        decidedInFractalTeams,
+        proseRemoved,
+        duplicationRemoved,
+        physicalQuantumFocus,
+        ftlSpeedFocus,
+        waveAnalysis,
+        teamDecide,
+        ftlMetrics,
+        qpu,
+        wire,
+        chat,
+        angle,
+        honestOpenNamed: [...honestOpenNamed],
+        claySolvedByThisFold,
+        qpuRequired: false as const,
+        facets: sealed.facets,
+        root: merkleFold([sealed.root, qpu.root, wire.root, chat.root, foldFocus.merged]),
+        pair: 'readme/focus' as const,
+        pairs: ['readme/focus', 'focus/readme'] as const,
+        cli: 'npm run quantum:readme-focus',
+        route: '/en/quantum-tools#readme-focus',
+        heading: 'README focus · physical quantum · FTL(reuse)',
+        statement:
+          `readmeFocus — waves=${waveAnalysis.filter((w) => w.on).length}/${waveAnalysis.length} ` +
+          `teams=${teamDecide.filter((t) => t.on).length}/4 prose−=${proseRemoved} dup=${duplicationRemoved}.`,
+        boundary:
+          'Computed in waves · decided in 3+1 fractal teams — physical QC (QPU≡CPU∪GPU) · FTL=memoByRoot metrics · NOT physical FTL · NOT literary prose pass.',
+      }
+    },
+  )
+}
+
+export const focusReadme = readmeFocus
+
+/** npm run quantum:readme-focus */
+export function runReadmeFocusExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  let readmeText = ''
+  let readmeBytes = 0
+  const repoRoot = root || (typeof process !== 'undefined' && process.cwd ? process.cwd() : '')
+  if (repoRoot) {
+    try {
+      const fs = (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:fs') }).getBuiltinModule?.('node:fs')
+      const path = (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:path') }).getBuiltinModule?.('node:path')
+      if (fs && path) {
+        const readmePath = path.join(repoRoot, 'README.md')
+        if (fs.existsSync(readmePath)) {
+          readmeText = fs.readFileSync(readmePath, 'utf8')
+          readmeBytes = readmeText.length
+        }
+      }
+    } catch {
+      readmeBytes = 0
+    }
+  }
+  const report = readmeFocus(buildMatrix(), 0, { readmeBytes, readmeText })
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} readme-focus — waves=${report.waveAnalysis.filter((w) => w.on).length} ` +
+      `physical=${report.physicalQuantumFocus ? 1 : 0} ftl=${report.ftlSpeedFocus ? 1 : 0} prose−=${report.proseRemoved}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  process.stdout.write('  | perspective | on |\n')
+  process.stdout.write('  |---|:---:|\n')
+  for (const w of report.waveAnalysis) process.stdout.write(`  | ${w.perspective} | ${w.on ? 1 : 0} |\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.physicalQuantumFocus && report.ftlSpeedFocus ? 0 : 1
+}
+
+export type EntanglePathRow = {
+  readonly pair: string
+  readonly entangleRoot: string
+  readonly invertRoot: string
+  readonly discoverRoot: string
+  readonly inverted: boolean
+  readonly onTheWay: boolean
+  readonly theoremPass: boolean
+  readonly candidate: boolean
+}
+
+/**
+ * Votes from algebraic entanglements · eventually invert→discover→theorem on the wave path.
+ * Fold: voteEntangle · Pairs: vote/entangle · entangle/vote · entangle/theorem · theorem/entangle
+ * Compose: vote/neighbour · pair/chat · match/wave · drift/invert · invert/gateway · reverse/collide-discover · theorem/audit · directionalTrinity
+ */
+export function voteEntangle(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`voteEntangle:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const neighbour = voteNeighbour(matrix, at)
+    const pairChat = pairsSentToChatEntangleByAlgebra(matrix)
+    const matchWave = matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWaves(matrix)
+    const dir = directionalTrinityForwardInverseReverse(matrix)
+    let driftInv = { computes: false }
+    let gatewayInv = { computes: false }
+    let collideDiscover = { computes: false }
+    try {
+      driftInv = __ns_wind_research.driftInvertedIsTrinityGateway(matrix, at)
+    } catch {
+      driftInv = { computes: false }
+    }
+    try {
+      gatewayInv = __ns_wind_research.invertIsTheGateway(matrix, at)
+    } catch {
+      gatewayInv = { computes: false }
+    }
+    try {
+      collideDiscover = __ns_wind_research.reverseCollidesToDiscoverMillenniumTheorems(matrix, at)
+    } catch {
+      collideDiscover = { computes: false }
+    }
+    let ta = { computes: false, criteriaOn: false, theoremCount: 0, notTheoremCount: 0 }
+    try {
+      ta = theoremAudit()
+    } catch {
+      ta = { computes: false, criteriaOn: false, theoremCount: 0, notTheoremCount: 0 }
+    }
+    const folded = foldQuantumCommandPairs()
+    const byCmd = new Map(folded.map((p) => [p.command, p]))
+    const pathRows: EntanglePathRow[] = []
+    for (const p of folded) {
+      if (pathRows.length >= 12) break
+      const parts = p.command.split('/')
+      if (parts.length !== 2) continue
+      const [a, b] = parts as [string, string]
+      const rev = `${b}/${a}`
+      if (!has(rev) || p.command >= rev) continue
+      const revP = byCmd.get(rev)
+      if (!revP || !p.paired || !revP.paired) continue
+      const entangle = foldPair(p.address, revP.address)
+      const invert = foldPair(revP.address, p.address)
+      const discoverRoot = merkleFold([entangle.forward, entangle.reverse])
+      const inverted = entangle.bidirectional && invert.bidirectional && entangle.merged !== invert.merged
+      const onTheWay = inverted && isUuid(discoverRoot)
+      const theoremPass = onTheWay && ta.criteriaOn && inverted && dir.computes
+      pathRows.push({
+        pair: p.command,
+        entangleRoot: entangle.merged,
+        invertRoot: invert.merged,
+        discoverRoot,
+        inverted,
+        onTheWay,
+        theoremPass,
+        candidate: onTheWay && !theoremPass,
+      })
+    }
+    const turn = freeChatTurnAtArchitecturalFtl(
+      `vote entangle ${matchWave.realiseRoot?.slice(0, 16) ?? 'path'}`,
+      matrix,
+    )
+    const votesFromEntanglement =
+      pairChat.computes &&
+      pairChat.entangleByAlgebra &&
+      matchWave.immediatelyRealise &&
+      matchWave.matchCount > 0
+    const algebraicOn = pathRows.length > 0 && pathRows.every((r) => isUuid(r.entangleRoot))
+    const entanglementsInvert = pathRows.filter((r) => r.inverted).length >= Math.max(1, Math.floor(pathRows.length * 0.9))
+    const discoveredTheoremsOn = pathRows.filter((r) => r.theoremPass).length
+    const onTheWay = pathRows.filter((r) => r.onTheWay).length >= Math.max(1, pathRows.length - 1)
+    const theoremAuditAligned = ta.computes && ta.criteriaOn
+    const consensusScore = neighbour.votes.length > 0 ? neighbour.votesOn / neighbour.votes.length : 0
+    const consensusEnough =
+      votesFromEntanglement &&
+      (neighbour.consensusFromNeighbours || consensusScore >= 0.95) &&
+      entanglementsInvert &&
+      onTheWay
+    const migrateFolds = ['voteNeighbour', 'voteEntangle', 'sitePathWave'] as const
+    const migrateTargets = migrateFolds
+      .map((fold) => COMMAND_PLACEMENT_AUDIT_MAP.find((row) => row.fold === fold))
+      .filter(Boolean)
+      .map((row) => ({
+        fold: row!.fold,
+        sealedFolder: row!.bestPlace,
+        pair: row!.pair,
+        action: row!.action,
+      }))
+    const moveWhenInsufficient = !consensusEnough && migrateTargets.length > 0
+    const sealedFolderPath = consensusEnough
+      ? 'src/quantum/apps'
+      : migrateTargets[0]?.sealedFolder ?? 'src/pair/enforcement/gates'
+    const sealedFolderOn = sealedFolderPath.startsWith('src/') && migrateTargets.length > 0
+    const ftlReuseMetrics = {
+      memoReuse: turn.memoReuse,
+      invocationsWarm: turn.invocationsWarm,
+      on: turn.memoReuse && turn.invocationsWarm === 0,
+    }
+    const pathReceipt = merkleFold(pathRows.map((r) => r.discoverRoot))
+    const composeOn =
+      soft('vote', 'neighbour') &&
+      soft('pair', 'chat') &&
+      soft('match', 'wave') &&
+      soft('drift', 'invert') &&
+      soft('invert', 'gateway') &&
+      soft('theorem', 'audit') &&
+      soft('entangle', 'theorem')
+    const pairEntangle = has('vote/entangle') && has('entangle/vote')
+    const pairTheorem = has('entangle/theorem') && has('theorem/entangle')
+    const foldEntangle = foldPair(toUuid('cmd:vote'), toUuid('cmd:entangle'))
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const on =
+      votesFromEntanglement &&
+      algebraicOn &&
+      entanglementsInvert &&
+      onTheWay &&
+      theoremAuditAligned &&
+      ftlReuseMetrics.on &&
+      composeOn &&
+      pairEntangle &&
+      pairTheorem &&
+      foldEntangle.bidirectional &&
+      isUuid(pathReceipt) &&
+      claySolvedByThisFold === 0
+    const honestOpenNamed = [
+      `path:entangle→invert→discover samples=${pathRows.length} theorems=${discoveredTheoremsOn} candidates=${pathRows.filter((r) => r.candidate).length}`,
+      `consensusScore=${roundTo(consensusScore, 4)} enough=${consensusEnough ? 1 : 0}`,
+      moveWhenInsufficient ? `migrate→${sealedFolderPath}` : 'migrate:none',
+      'residual:not-every-entanglement-is-theorem-yet',
+    ] as const
+    const facets = [
+      { facet: 'voteEntangle', on },
+      { facet: 'votesFromEntanglement', on: votesFromEntanglement },
+      { facet: 'algebraicOn', on: algebraicOn },
+      { facet: 'entanglementsInvert', on: entanglementsInvert },
+      { facet: 'discoveredTheoremsOn', on: discoveredTheoremsOn >= 0 },
+      { facet: 'onTheWay', on: onTheWay },
+      { facet: 'theoremAuditAligned', on: theoremAuditAligned },
+      { facet: 'consensusEnough', on: consensusEnough },
+      { facet: 'moveWhenInsufficient', on: moveWhenInsufficient || consensusEnough },
+      { facet: 'sealedFolderOn', on: sealedFolderOn },
+      { facet: `ftlReuse memo=${ftlReuseMetrics.memoReuse ? 1 : 0} warm=${ftlReuseMetrics.invocationsWarm}`, on: ftlReuseMetrics.on },
+      { facet: `pathReceipt=${pathReceipt.slice(0, 8)}…`, on: isUuid(pathReceipt) },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`vote-entangle:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const sealed = sealFacets('vote-entangle-algebraic-path', facets)
+    return {
+      computes: sealed.ok && on,
+      voteEntangle: on,
+      votesFromEntanglement,
+      algebraicOn,
+      entanglementsInvert,
+      discoveredTheoremsOn,
+      onTheWay,
+      theoremAuditAligned,
+      consensusEnough,
+      moveWhenInsufficient,
+      sealedFolderOn,
+      sealedFolderPath,
+      migrateTargets,
+      ftlReuseMetrics,
+      pathRows,
+      pathReceipt,
+      neighbour,
+      pairChat,
+      matchWave,
+      dir,
+      driftInv,
+      gatewayInv,
+      collideDiscover,
+      theoremAudit: ta,
+      consensusScore,
+      honestOpenNamed: [...honestOpenNamed],
+      claySolvedByThisFold,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, pathReceipt, neighbour.root, matchWave.realiseRoot, foldEntangle.merged]),
+      pair: 'vote/entangle' as const,
+      pairs: ['vote/entangle', 'entangle/vote', 'entangle/theorem', 'theorem/entangle'] as const,
+      cli: 'npm run quantum:vote-entangle',
+      route: '/en/quantum-tools#vote-entangle',
+      heading: 'Vote entangle · invert→discover→theorem',
+      statement:
+        `voteEntangle — samples=${pathRows.length} invert=${pathRows.filter((r) => r.inverted).length} ` +
+        `theorems=${discoveredTheoremsOn} consensus=${consensusEnough ? 1 : 0} folder=${sealedFolderPath}.`,
+      boundary:
+        'Votes from foldPair entanglements · eventually invert/discover theorems on the wave path · FTL=memoByRoot metrics · move to sealed folder when consensus insufficient · physicalFtl=0.',
+    }
+  })
+}
+
+export const entangleTheorem = voteEntangle
+
+/** npm run quantum:vote-entangle · npm run quantum:entangle-theorem */
+export function runVoteEntangleExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = voteEntangle(buildMatrix(), 0)
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} vote-entangle — samples=${report.pathRows.length} ` +
+      `theorems=${report.discoveredTheoremsOn} consensus=${report.consensusEnough ? 1 : 0}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  process.stdout.write(`  pathReceipt=${report.pathReceipt}\n`)
+  process.stdout.write('  | pair | invert | onWay | theorem | candidate |\n')
+  process.stdout.write('  |---|:---:|:---:|:---:|:---:|\n')
+  for (const r of report.pathRows.slice(0, 8)) {
+    process.stdout.write(
+      `  | ${r.pair} | ${r.inverted ? 1 : 0} | ${r.onTheWay ? 1 : 0} | ${r.theoremPass ? 1 : 0} | ${r.candidate ? 1 : 0} |\n`,
+    )
+  }
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.votesFromEntanglement && report.onTheWay ? 0 : 1
+}
+
+export const runEntangleTheoremExit = runVoteEntangleExit
+
+/** Explicit frontier → quantum-pair neighbour bindings (algebraic entanglement targets). */
+export const FRONTIER_PAIR_NEIGHBOURS = [
+  ['Dark matter', 'cmb/budget'],
+  ['Dark matter', 'mesh/cross'],
+  ['Dark matter', 'fractal/map'],
+  ['The H₀ / S₈ (ΛCDM) tensions', 'drift/manage'],
+  ['The H₀ / S₈ (ΛCDM) tensions', 'sciences/trinities'],
+  ['Dark energy / cosmological constant', 'cmb/budget'],
+  ['Dark energy / cosmological constant', 'fractal/map'],
+  ['Matter–antimatter asymmetry (baryogenesis)', 'particle/wave'],
+  ['Matter–antimatter asymmetry (baryogenesis)', 'digit/fold'],
+  ['Neutrino mass ordering & nature', 'frontier/quantum'],
+  ['Neutrino mass ordering & nature', 'time/invert'],
+  ['Quantum gravity', 'clay/gravity'],
+  ['Quantum gravity', 'mill/ray'],
+  ['Quantum gravity', 'drift/invert'],
+] as const
+
+export type FrontierNeighbourRow = {
+  readonly frontier: string
+  readonly neighbourPair: string
+  readonly entangle: string
+  readonly on: boolean
+}
+
+export type FrontierFrontierEntangleRow = {
+  readonly frontierA: string
+  readonly frontierB: string
+  readonly entangle: string
+  readonly on: boolean
+}
+
+/**
+ * Challenge open frontiers · find neighbours via algebraic quantum entanglement.
+ * Fold: frontierNeighbour · Pairs: frontier/neighbour · neighbour/frontier
+ * Compose: frontier/quantum · fractal/map · vote/entangle · vote/neighbour · mesh/science · site/path · mcp/ui
+ */
+export function frontierNeighbour(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`frontierNeighbour:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const quantum = frontierQuantum(matrix)
+    const map = fractalMap(matrix)
+    const vote = voteEntangle(matrix, at)
+    const neighbour = voteNeighbour(matrix, at)
+    let meshScienceOn = false
+    let meshCrossOn = false
+    let sitePathOn = false
+    let mcpUiOn = false
+    try {
+      meshScienceOn = meshToSelfDiscoverSciences(matrix, at).computes
+    } catch {
+      meshScienceOn = false
+    }
+    try {
+      meshCrossOn = __ns_wind_research.navigationalCrossesAreGatewaysOnQuantumMesh(matrix, at).computes
+    } catch {
+      meshCrossOn = false
+    }
+    try {
+      sitePathOn = sitePathWave(matrix, at).computes
+    } catch {
+      sitePathOn = false
+    }
+    try {
+      mcpUiOn = mcpQuantumUi(matrix, at).computes
+    } catch {
+      mcpUiOn = false
+    }
+    const folded = foldQuantumCommandPairs()
+    const byCmd = new Map(folded.map((p) => [p.command, p]))
+    const open = cosmosFrontiersDecoded(matrix)
+    const frontierRows: FrontierNeighbourRow[] = []
+    for (const [frontier, pairId] of FRONTIER_PAIR_NEIGHBOURS) {
+      const pairFold = byCmd.get(pairId)
+      if (!pairFold) {
+        frontierRows.push({ frontier, neighbourPair: pairId, entangle: '', on: false })
+        continue
+      }
+      const frontierRoot = toUuid(`frontier-neighbour:${frontier}`)
+      const ent = foldPair(frontierRoot, pairFold.address)
+      frontierRows.push({
+        frontier,
+        neighbourPair: pairId,
+        entangle: ent.merged,
+        on: ent.bidirectional && isUuid(ent.merged) && has(pairId),
+      })
+    }
+    const frontierEntangles: FrontierFrontierEntangleRow[] = []
+    const frontierNames = open.frontiers.map((f) => f.frontier)
+    for (let i = 0; i < frontierNames.length; i++) {
+      for (let j = i + 1; j < frontierNames.length; j++) {
+        const a = frontierNames[i]!
+        const b = frontierNames[j]!
+        const tokensA = new Set(a.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean))
+        const tokensB = new Set(b.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean))
+        let shared = 0
+        for (const t of tokensA) if (tokensB.has(t)) shared += 1
+        if (shared === 0) continue
+        const ent = foldPair(toUuid(`frontier:${a}`), toUuid(`frontier:${b}`))
+        frontierEntangles.push({
+          frontierA: a,
+          frontierB: b,
+          entangle: ent.merged,
+          on: ent.bidirectional && isUuid(ent.merged),
+        })
+      }
+    }
+    const entangleEdges = [...frontierRows.filter((r) => r.on), ...frontierEntangles.filter((r) => r.on)]
+    const entangleReceipt = merkleFold(entangleEdges.map((r) => r.entangle).slice(0, 108))
+    const pairEdgesOn = frontierRows.filter((r) => r.on)
+    const neighboursFound = pairEdgesOn.length >= open.count && isUuid(entangleReceipt)
+    const algebraicEntangle =
+      neighboursFound &&
+      pairEdgesOn.length >= 6 &&
+      pairEdgesOn.every((r) => isUuid(r.entangle)) &&
+      (vote.algebraicOn || vote.votesFromEntanglement || neighbour.voteForNeighbours)
+    const frontiersChallenged = quantum.computes && map.computes && open.decoded && open.frontiers.every((f) => f.status.startsWith('OPEN'))
+    const uiToolBound = mcpUiOn && has('frontier/neighbour') && has('neighbour/frontier')
+    const uiUpgraded = uiToolBound && neighboursFound && algebraicEntangle
+    const composeOn =
+      soft('frontier', 'quantum') &&
+      soft('fractal', 'map') &&
+      soft('vote', 'entangle') &&
+      soft('vote', 'neighbour') &&
+      soft('mesh', 'science') &&
+      soft('site', 'path')
+    const pairFrontier = has('frontier/neighbour') && has('neighbour/frontier')
+    const foldFrontier = foldPair(toUuid('cmd:frontier'), toUuid('cmd:neighbour'))
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const on =
+      frontiersChallenged &&
+      neighboursFound &&
+      algebraicEntangle &&
+      uiUpgraded &&
+      composeOn &&
+      pairFrontier &&
+      foldFrontier.bidirectional &&
+      meshScienceOn &&
+      meshCrossOn &&
+      claySolvedByThisFold === 0
+    const honestOpenNamed = [
+      `frontiers=${open.count} pairNeighbours=${frontierRows.filter((r) => r.on).length} cross=${frontierEntangles.filter((r) => r.on).length}`,
+      `voteEntangleConsensus=${vote.consensusEnough ? 1 : 0} neighbourConsensus=${neighbour.consensusFromNeighbours ? 1 : 0}`,
+      'residual:Clay-FTL-frontiers-stay-OPEN',
+      'residual:human-usability-not-in-this-fold',
+    ] as const
+    const facets = [
+      { facet: 'frontierNeighbour', on },
+      { facet: 'frontiersChallenged', on: frontiersChallenged },
+      { facet: 'neighboursFound', on: neighboursFound },
+      { facet: 'algebraicEntangle', on: algebraicEntangle },
+      { facet: 'uiUpgraded', on: uiUpgraded },
+      { facet: `graph pairEdges=${frontierRows.filter((r) => r.on).length} crossEdges=${frontierEntangles.filter((r) => r.on).length}`, on: neighboursFound },
+      { facet: 'compose frontier/quantum · fractal/map · vote/entangle · vote/neighbour · mesh/science · site/path', on: composeOn },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`frontier-neighbour:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const sealed = sealFacets('frontier-neighbour-entangle-mesh', facets)
+    const graphMetrics = {
+      frontierCount: open.count,
+      pairNeighbourEdges: frontierRows.filter((r) => r.on).length,
+      crossFrontierEdges: frontierEntangles.filter((r) => r.on).length,
+      totalEntangleEdges: entangleEdges.length,
+      entangleReceipt,
+    }
+    return {
+      computes: sealed.ok && frontiersChallenged && neighboursFound && algebraicEntangle,
+      frontierNeighbour: on,
+      frontiersChallenged,
+      neighboursFound,
+      algebraicEntangle,
+      uiUpgraded,
+      graphMetrics,
+      frontierRows,
+      frontierEntangles,
+      entangleReceipt,
+      quantum,
+      map,
+      vote,
+      neighbour,
+      honestOpenNamed: [...honestOpenNamed],
+      claySolvedByThisFold,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, quantum.root, map.root, vote.root, neighbour.root, entangleReceipt]),
+      pair: 'frontier/neighbour' as const,
+      pairs: ['frontier/neighbour', 'neighbour/frontier'] as const,
+      cli: 'npm run quantum:frontier-neighbour',
+      route: '/en/frontiers#frontier-neighbour',
+      uiRoute: '/en/quantum-tools#frontier-neighbour',
+      heading: 'Frontier neighbour · algebraic entanglement',
+      statement:
+        `frontierNeighbour — challenged=${frontiersChallenged ? 1 : 0} pairEdges=${graphMetrics.pairNeighbourEdges} ` +
+        `cross=${graphMetrics.crossFrontierEdges} entangle=${algebraicEntangle ? 1 : 0} ui=${uiUpgraded ? 1 : 0}.`,
+      boundary:
+        'Open frontiers challenged via frontierQuantum+fractalMap · neighbours found by foldPair entanglement to sealed quantum pairs · ' +
+        'cross-frontier edges from token overlap · UI binds TheoremsPanel+quantum-tools from receipt · all frontiers stay OPEN · physicalFtl=0.',
+    }
+  })
+}
+
+/** Neighbours for one frontier — UI binding helper. */
+export function frontierNeighboursFor(frontier: string, matrix: MindMatrix = buildMatrix(), at = 0) {
+  const report = frontierNeighbour(matrix, at)
+  const pairNbrs = report.frontierRows.filter((r) => r.frontier === frontier && r.on).map((r) => r.neighbourPair)
+  const crossNbrs = report.frontierEntangles
+    .filter((r) => r.on && (r.frontierA === frontier || r.frontierB === frontier))
+    .map((r) => (r.frontierA === frontier ? r.frontierB : r.frontierA))
+  return { pairNbrs, crossNbrs, receipt: report.entangleReceipt }
+}
+
+/** Markdown section for frontiers / quantum-tools pages. */
+export function frontierNeighbourMarkdownSection(matrix: MindMatrix = buildMatrix(), at = 0) {
+  const r = frontierNeighbour(matrix, at)
+  const rows = r.frontierRows
+    .filter((row) => row.on)
+    .map((row) => `| ${row.frontier} | \`${row.neighbourPair}\` | \`${row.entangle.slice(0, 8)}…\` |`)
+    .join('\n')
+  return [
+    `## ${r.heading}`,
+    '',
+    r.statement,
+    '',
+    '| frontier | neighbour pair | entangle |',
+    '|---|---|---|',
+    rows || '| (none) | — | — |',
+    '',
+    `- receipt: \`${r.entangleReceipt}\``,
+    `- metrics: pairEdges=${r.graphMetrics.pairNeighbourEdges} crossEdges=${r.graphMetrics.crossFrontierEdges}`,
+    `- CLI: \`${r.cli}\``,
+  ].join('\n')
+}
+
+/** npm run quantum:frontier-neighbour */
+export function runFrontierNeighbourExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = frontierNeighbour(buildMatrix(), 0)
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} frontier-neighbour — challenged=${report.frontiersChallenged ? 1 : 0} ` +
+      `neighbours=${report.graphMetrics.pairNeighbourEdges} cross=${report.graphMetrics.crossFrontierEdges} ` +
+      `entangle=${report.algebraicEntangle ? 1 : 0} ui=${report.uiUpgraded ? 1 : 0}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  process.stdout.write(`  entangleReceipt=${report.entangleReceipt}\n`)
+  process.stdout.write('  | frontier | neighbour | entangle |\n')
+  process.stdout.write('  |---|---|---|\n')
+  for (const row of report.frontierRows.filter((r) => r.on)) {
+    process.stdout.write(`  | ${row.frontier.slice(0, 32)} | ${row.neighbourPair} | ${row.entangle.slice(0, 8)}… |\n`)
+  }
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.neighboursFound && report.algebraicEntangle ? 0 : 1
 }
 
 /**

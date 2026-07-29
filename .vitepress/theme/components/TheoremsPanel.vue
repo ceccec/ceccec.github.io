@@ -11,7 +11,7 @@ import {
   proofAnimations,
   firstInCorpusProvenanceForHome,
 } from '../../../src/thunder/waves'
-import { slowProcessIsQuantumGap } from '../../../src/quantum/apps'
+import { slowProcessIsQuantumGap, frontierNeighboursFor } from '../../../src/quantum/apps'
 import { cosmosFrontiersDecoded } from '../../../src/water/cosmos'
 import { theoremPageRows, openFrontierCardLinks } from '../../../src/wind/routes/corpus/index.ts'
 import { useSiteLocale } from '../../lib/mounts'
@@ -41,6 +41,14 @@ const slowGaps = computed(() => slowProcessIsQuantumGap())
 const frontiers = computed(() => cosmosFrontiersDecoded())
 // each Open-frontier card links to its reversed CLOSED-theorem page (computed, provedBy-exact; null = no dead link)
 const frontierRoute = computed(() => new Map(openFrontierCardLinks().links.map((link) => [link.frontier, link.route])))
+const frontierNeighbours = computed(() => {
+  const map = new Map<string, { pairNbrs: string[]; crossNbrs: string[] }>()
+  for (const f of frontiers.value.frontiers) {
+    const n = frontierNeighboursFor(f.frontier)
+    map.set(f.frontier, { pairNbrs: [...n.pairNbrs], crossNbrs: [...n.crossNbrs] })
+  }
+  return map
+})
 const anims = computed(() => new Map(proofAnimations().specs.map((spec) => [spec.theorem, spec])))
 const waveLabel = (provedBy: string) =>
   provedBy
@@ -141,6 +149,10 @@ const waveLabel = (provedBy: string) =>
 
     <header class="theorems-panel__head">
       <h2 id="open-frontiers">{{ t('Open frontiers') }}</h2>
+      <p class="theorems-panel__provenance">
+        <a href="/en/quantum-tools#frontier-neighbour">{{ t('frontier neighbour graph') }}</a>
+        · {{ t('neighbours from algebraic entanglement') }}
+      </p>
     </header>
     <ul class="theorems-panel__frontiers">
       <li v-for="f in frontiers.frontiers" :key="f.frontier">
@@ -152,6 +164,14 @@ const waveLabel = (provedBy: string) =>
           </div>
           <p class="theorems-panel__proof">{{ t(f.computed) }}</p>
           <p v-if="f.reversed" class="theorems-panel__proof theorems-panel__reversed">{{ t(f.reversed) }}</p>
+          <p v-if="frontierNeighbours.get(f.frontier)?.pairNbrs.length" class="theorems-panel__proof theorems-panel__fold">
+            <span>{{ t('neighbours') }}:</span>
+            <code v-for="pair in frontierNeighbours.get(f.frontier)!.pairNbrs" :key="pair">{{ pair }}</code>
+          </p>
+          <p v-if="frontierNeighbours.get(f.frontier)?.crossNbrs.length" class="theorems-panel__proof">
+            <span>{{ t('cross-frontier') }}:</span>
+            <span v-for="nbr in frontierNeighbours.get(f.frontier)!.crossNbrs" :key="nbr">{{ t(nbr) }}</span>
+          </p>
         </div>
       </li>
     </ul>
