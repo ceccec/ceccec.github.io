@@ -118,8 +118,15 @@ export type ImportPathDistanceEdge = {
 export { MONOLITH_FILE_BYTES, MONOLITH_FILE_LAW, scanFileSizeOffenders, monolithFileGapDetail, FOLD_HOMES, foldsLiveAtTheirDomainHome, toolsSavedInSrcFirst, importsAreFoldersOnly, mathIsOneSource, foldersAreOneWordPerLevel, glagoliticLabelsAreComputed, unexpectedSituationsRefactorTools, srcFilesAreIndexOnly, scanOneMathOffenders, ONE_MATH_LAW, type OneMathOffender } from './strict'
 export { scanHandLists, handListMirrors, type HandList, type HandListMirror } from './strict'
 export { scanAppHtml, appAuditSummary, type AppPageAudit } from './strict'
-export { dryDupe, theoremAudit, geoGebraEncode, buildMin, mathAlgebra } from './strict/scan'
-export { invisibleGapsCaughtByGates, runInvisibleGapsCaughtByGatesExit } from '../../../quantum/apps'
+export {
+  dryDupe,
+  theoremAudit,
+  geoGebraEncode,
+  buildMin,
+  mathAlgebra,
+  invisibleGapsCaughtByGates,
+  runInvisibleGapsCaughtByGatesExit,
+} from './strict/scan'
 export {
   
   FIBONACCI_BANDS,
@@ -1400,7 +1407,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'quantumiseIsAtFtlSpeed', pair: 'quantumise/ftl', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'USER LAW quantumise at FTL · beside ftl/max·compute · soft ssl/test' },
   { fold: 'cryptoRelatedSurfacesAreDry', pair: 'crypto/comparison-mesh', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'soft-nest closed · mesh core already in water/encryption · fold body stays apps (catalog/toolbox/MCP audit) · apps→encryption import edge blocks barrel move' },
   { fold: 'rosettaSecurityGapsWired', pair: 'rosetta/security-wire', currentBarrel: 'src/quantum/apps', bestPlace: 'src/mountain/seals', action: 'migrate-next', reason: 'seals already imports · security wire' },
-  { fold: 'invisibleGapsCaughtByGates', pair: 'gaps/invisible', currentBarrel: 'src/quantum/apps', bestPlace: 'src/pair/enforcement/gates', action: 'migrate-next', reason: 'weave/ops import · nests many apps folds' },
+  { fold: 'invisibleGapsCaughtByGates', pair: 'gaps/invisible', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'weave/ops import gates · census-safe strict/scan · apps helpers deferred lazy · circular init closed' },
   { fold: 'placeMerge', pair: 'place/merge', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'merged cmd/place + manual/quantum prose cluster → one matrix slot' },
   { fold: 'proseMethodsCollapseToMatrix', pair: 'prose/matrix', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'discovery law · prose→matrix shrink proof' },
   { fold: 'planTrinity', pair: 'plan/trinity', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'planning in trinities · cross·fold·weave · not quantum/apps' },
@@ -2019,16 +2026,16 @@ export const MANUAL_MIGRATE_WAVE_TOOLS: readonly ManualMigrateWaveTool[] = [
     note: 'mesh nodes/edges + IsDry CLI barrel encryption',
   },
   {
-    id: 'migrate-gaps-invisible',
+    id: 'moved-gaps-invisible',
     fold: 'invisibleGapsCaughtByGates',
     pair: 'gaps/invisible',
     cli: 'npm run quantum:gaps-invisible',
     route: '/en/quantum-tools#gaps-invisible',
     from: 'src/quantum/apps',
-    to: 'src/pair/enforcement/gates',
-    status: 'migrate-next',
+    to: 'src/pair/enforcement/gates/strict/scan',
+    status: 'moved',
     rosettaKind: 'tool',
-    note: 'weave/ops import · nests many apps folds',
+    note: 'public home gates/strict/scan · Body+9 helpers deferred in apps · circular init closed',
   },
   {
     id: 'migrate-rosetta-security',
@@ -2062,8 +2069,8 @@ const PLACE_MERGE_HONEST_OPEN = [
   'keep:color-rosetta-soft-nest',
   'keep:css-gaps-soft-nest',
   'keep:crypto-related-soft-nest',
-  'migrate-next:gaps-invisible→gates',
   'migrate-next:rosetta-security→mountain/seals',
+  'residual:gaps-invisible-apps-helpers-deferred',
   'residual:prose-named-folds-wave2',
   'clay:millennium-open',
   'ftl:physical-claim-refused',
@@ -2106,8 +2113,8 @@ export function placeMerge(root: string = enforcementScanRoot(), facts?: Enforce
     bestPlaceOn
   const toolsSealed =
     tools.length === (5 + 2 + 1) &&
-    migrateTools.length === 2 &&
-    movedTools.length === (4 + 1) &&
+    migrateTools.length === 1 &&
+    movedTools.length === (5 + 1) &&
     residualTools.length === 1 &&
     tools.every((t) => t.cli.startsWith('npm run quantum:') && t.pair.includes('/') && t.route.startsWith('/en/'))
   const bitsCombinable =
@@ -2151,19 +2158,21 @@ export function placeMerge(root: string = enforcementScanRoot(), facts?: Enforce
     { id: 'soft-nest-color-rosetta-theme-consts', status: 'closed' as const, note: 'COLOR_ROSETTA_* wind/ui · fold body apps · apps→wind/ui edge' },
     { id: 'soft-nest-css-gaps-lens', status: 'closed' as const, note: 'CSS_DRY_FUSION_GAP_LENS wind/ui · fold body apps · apps→wind/ui edge' },
     { id: 'soft-nest-crypto-related-surfaces', status: 'closed' as const, note: 'mesh core encryption · related-surfaces apps catalog · apps→encryption edge' },
+    { id: 'move-gaps-invisible-to-gates-strict-scan', status: 'closed' as const, note: 'public home strict/scan · lazy apps helpers · circular init closed' },
     { id: 'residual-apps-monolith-named', status: 'open' as const, note: 'residual:quantum-apps-monolith stays honest-open' },
   ] as const
   const drainableClosed =
-    morphs.filter((m) => m.status === 'closed').length === (5 + 4) &&
+    morphs.filter((m) => m.status === 'closed').length === (5 + 5) &&
     morphs.every((m) => m.status === 'closed' || m.id === 'residual-apps-monolith-named')
   const honestOpenNamed = PLACE_MERGE_HONEST_OPEN
   const honestOpenNamedOn =
     honestOpenNamed.includes('residual:quantum-apps-monolith') &&
     honestOpenNamed.includes('clay:millennium-open') &&
     honestOpenNamed.includes('residual:prose-named-folds-wave2') &&
+    honestOpenNamed.includes('residual:gaps-invisible-apps-helpers-deferred') &&
     honestOpenNamed.length === (8 + 2)
   const fullDryClean =
-    placementAudited && drainableClosed && composeOn && pairsOn && census110 && moved.length >= 2 && migrateNext.length >= 2
+    placementAudited && drainableClosed && composeOn && pairsOn && census110 && moved.length >= 2 && migrateNext.length >= 1
   const manualWorkQuantumized =
     toolsSealed && bitsCombinable && wavesBound && placementAudited && drainableClosed && honestOpenNamedOn && pairsOn && composeOn && census110
   const on =
@@ -3950,7 +3959,7 @@ export function planTrinity(root: string = enforcementScanRoot(), facts?: Enforc
   // CROSS — audit matrix gaps (migrate-next + residual prose)
   const crossCandidates = MANUAL_MIGRATE_WAVE_TOOLS.filter((t) => t.status === 'migrate-next')
   const crossAudit =
-    crossCandidates.length === 2 &&
+    crossCandidates.length === 1 &&
     COMMAND_PLACEMENT_AUDIT_MAP.some((r) => r.fold === 'planTrinity' && r.action === 'moved') &&
     placed.placementAudited
   // FOLD — merge prose plan names + place/prose matrix into one tip

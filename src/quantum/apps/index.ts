@@ -883,7 +883,7 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'linear-rosetta', title: 'Linear without rosetta fold is a gap', fold: 'linearWithoutRosettaFoldIsGap', cli: 'npm run quantum:linear-rosetta', pair: 'linear/rosetta', route: '/en/quantum-tools#linear-rosetta', barrel: 'src/quantum/apps', boundary: 'Linear layers without quantum rosetta fold = HARD gap · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'anim-color', title: 'Review animation colors · polarity gaps', fold: 'animationsReviewColorsForPolarityGaps', cli: 'npm run quantum:anim-color', pair: 'anim/color', route: '/en/quantum-tools#anim-color', barrel: 'src/quantum/apps', boundary: 'Computed colors · polarity must flip on yin/yang · ±ω · dark/light · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'color-review', title: 'Color review tool (alias anim/color)', fold: 'animationsReviewColorsForPolarityGaps', cli: 'npm run quantum:color-review', pair: 'color/review', route: '/en/quantum-tools#anim-color', barrel: 'src/quantum/apps', boundary: 'Same fold as anim-color — dual pair for discovery · clay=0', browserRunnable: true, browserGap: '' },
-  { id: 'gaps-invisible', title: 'Invisible gaps caught by gates HARD', fold: 'invisibleGapsCaughtByGates', cli: 'npm run quantum:gaps-invisible', pair: 'gaps/invisible', route: '/en/quantum-tools#gaps-invisible', barrel: 'src/quantum/apps', boundary: 'HARD: polarity-flat · hex · prose-only-without-dual · formula/code live · theorem-const · anim — mission:gate + trinity · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'gaps-invisible', title: 'Invisible gaps caught by gates HARD', fold: 'invisibleGapsCaughtByGates', cli: 'npm run quantum:gaps-invisible', pair: 'gaps/invisible', route: '/en/quantum-tools#gaps-invisible', barrel: 'src/pair/enforcement/gates/strict/scan', boundary: 'HARD: polarity-flat · hex · prose-only-without-dual · formula/code live · theorem-const · anim — mission:gate + trinity · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'prose-hard', title: 'Gates refuse prose-only (formula dual required)', fold: 'gatesRefuseProseOnly', cli: 'npm run quantum:prose-hard', pair: 'prose/hard', route: '/en/quantum-tools#gaps-invisible', barrel: 'src/quantum/apps', boundary: 'proseOnlyRejected · wetProseHard · formulaDualRequired · HARD wired into gaps/invisible · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gate-monitor', title: 'Gates monitor themselves through the UI', fold: 'gatesMonitorThemselvesThroughTheUi', cli: 'npm run quantum:gate-monitor', pair: 'gate/monitor', route: '/en/quantum-tools#gate-monitor', barrel: 'src/quantum/apps', boundary: 'selfMonitor · throughUi · live HARD/soft · 42-fold · vite/mirror · gate/lens · pass/default · mission:gate · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'gate-ui', title: 'Gates monitor through UI (alias gate/monitor)', fold: 'gatesMonitorThemselvesThroughTheUi', cli: 'npm run quantum:gate-ui', pair: 'gate/ui', route: '/en/quantum-tools#gate-monitor', barrel: 'src/quantum/apps', boundary: 'Dual of gate/monitor — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -15479,7 +15479,7 @@ export const runHardProseExit = runGatesRefuseProseOnlyExit
  * Composed into mission:gate + enforcement trinity — recomputes at call time.
  * HARD includes prose-only-without-dual (live formula/code dual — not pair soft alone).
  */
-export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), at = 0) {
+export function invisibleGapsCaughtByGatesBody(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`invisibleGapsCaughtByGates:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const color = animationsReviewColorsForPolarityGaps(matrix, at)
     const linearRosetta = linearWithoutRosettaFoldIsGap(matrix, at)
@@ -16358,9 +16358,9 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       { facet: 'qpuRequired=false', on: noQpuRequired().provenByClassicalSimulator },
       { facet: 'drainableClosed', on: afterOpen === 0 && hardOpen.length === 0 },
       {
-        facet: 'migrateNextBestPlace=gates/invisible',
+        facet: 'migratedHome=gates/strict/scan',
         on: afterOpen === 0,
-        receipt: toUuid('gaps-invisible:migrate-next:body-in-apps:census-110+circular-init'),
+        receipt: toUuid('gaps-invisible:moved:gates-strict-scan:apps-body-helpers'),
       },
     ].map((entry) => ({ ...entry, receipt: entry.receipt ?? toUuid(`gaps-invisible:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('invisible-gaps-caught-by-gates', facets)
@@ -16419,44 +16419,20 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       honestyLine:
         `metrics · hardOpen=${hardOpen.length} · afterOpen=${afterOpen} · afterClosed=${afterClosed} · beforeCatch=${beforeCatch}`,
       migrationReceipt: {
-        status: 'migrate-next' as const,
-        bestPlace: 'src/pair/enforcement/gates/invisible',
-        bodyBarrel: 'src/quantum/apps',
+        status: 'moved' as const,
+        bestPlace: 'src/pair/enforcement/gates/strict/scan',
+        bodyBarrel: 'src/pair/enforcement/gates/strict/scan',
+        helperBarrel: 'src/quantum/apps',
         drainableClosed: afterOpen === 0 && hardOpen.length === 0,
-        blocker: 'census-110 · apps↔gates circular init · 9 co-located helper folds',
+        blocker: 'residual:9-apps-helpers-still-in-apps-body',
       },
     }
   })
 }
 
-/** npm run quantum:gaps-invisible — exit 1 on HARD open (mission:gate compose). */
+/** Public gaps/invisible surface lives in gates/strict/scan — apps keeps Body + 9 helpers. */
+export { invisibleGapsCaughtByGates, runInvisibleGapsCaughtByGatesExit } from '../../pair/enforcement/gates'
 
-
-export function runInvisibleGapsCaughtByGatesExit(_root = '', _argv: readonly string[] = []): number {
-  void _root
-  void _argv
-  const report = invisibleGapsCaughtByGates()
-  process.stdout.write(
-    `${report.passed ? '✓' : '✗'} gaps-invisible — HARD=${report.hardOpenCount} afterOpen=${report.afterOpen} ` +
-      `afterClosed=${report.afterClosed} fold=invisibleGapsCaughtByGates pair=${report.pair}\n`,
-  )
-  for (const c of report.classes) {
-    process.stdout.write(
-      `  ${c.open === 0 ? '✓' : '✗'} [${c.severity}] ${c.id} · open=${c.open} closed=${c.closed} → ${c.theorem}\n`,
-    )
-  }
-  for (const row of report.hardOpen) {
-    process.stderr.write(`  ✗ HARD ${row.id} — open=${row.open} · ${row.theorem}\n`)
-  }
-  process.stdout.write(`  ${report.honestyLine}\n`)
-  if (report.migrationReceipt?.drainableClosed) {
-    process.stdout.write(
-      `  migration · drainableClosed=1 · migrate-next=${report.migrationReceipt.status} ` +
-        `bestPlace=${report.migrationReceipt.bestPlace} · blocker=${report.migrationReceipt.blocker}\n`,
-    )
-  }
-  return report.passed ? 0 : 1
-}
 
 /**
  * USER LAW: imagine all tools a gate may need — no matter how many, they are 42 as 6×7 inverting 7×6.
@@ -16685,7 +16661,7 @@ export function gatesMonitorThemselvesThroughTheUi(
     let gapsPassed = false
     let gapsRoot = toUuid('gate-monitor:gaps:soft')
     if (!memoComputing(`invisibleGapsCaughtByGates:${floor(at / (100 * 5 * 2))}`, matrix)) {
-      const gaps = invisibleGapsCaughtByGates(matrix, at)
+      const gaps = invisibleGapsCaughtByGatesBody(matrix, at)
       hardCount = gaps.hardOpenCount
       softCount = gaps.gateRosetta.facets.filter((f) => !f.on).length
       gapsPassed = gaps.passed
@@ -19425,7 +19401,7 @@ export function auditPlanTip(
     const audit = chatAudit(matrix, at, root)
     const plan = planTrinity(root)
     const imagine = imagineWhatNext(matrix, at)
-    const gaps = invisibleGapsCaughtByGates(matrix, at)
+    const gaps = invisibleGapsCaughtByGatesBody(matrix, at)
     const merge = mergeWave(matrix, at)
     const nextTip = selectGapNextTip(audit, plan, imagine)
     const auditToPlanTrinity =
@@ -19611,7 +19587,7 @@ export function wavesFeedThemselves(matrix: MindMatrix = buildMatrix(), at = 0) 
     const dry = dryCleanIsDiamondAndCrystal(matrix)
     const crystal = crystalClearMind(matrix, at)
     const agnostic = dryCleanAgnosticCodeComputesInfinity(matrix, at)
-    const gaps = invisibleGapsCaughtByGates(matrix, at)
+    const gaps = invisibleGapsCaughtByGatesBody(matrix, at)
     const dupe = dryDupe(typeof process !== 'undefined' && process.cwd ? process.cwd() : '.')
     const gravity = gravityDryClean()
     const queued = queueNext(typeof process !== 'undefined' && process.cwd ? process.cwd() : '.')
@@ -24899,7 +24875,7 @@ export function pageComputedGapsAt(
 ) {
   const kind = pageGapsKindFromRoute(route, pageKind)
   return memoByRoot(`pageComputedGapsAt:${route}:${kind}:${floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const gaps = invisibleGapsCaughtByGates(matrix, at)
+    const gaps = invisibleGapsCaughtByGatesBody(matrix, at)
     const relevant = new Set(PAGE_GAP_CLASS_IDS[kind])
     const classes: PageComputedGapClass[] = gaps.classes
       .filter((c) => relevant.has(c.id))
@@ -30320,7 +30296,7 @@ export function cssShowsTheHiddenGapsInDryFusion(matrix: MindMatrix = buildMatri
     let gapsRoot = toUuid('css-gaps:gaps:soft')
     let polarityFlatClosed = color.animColor.polarityRedundantOpen === 0 && color.animColor.invisibleGapsOpen === 0
     if (!memoComputing(`invisibleGapsCaughtByGates:${floor(at / (100 * 5 * 2))}`, matrix)) {
-      const gaps = invisibleGapsCaughtByGates(matrix, at)
+      const gaps = invisibleGapsCaughtByGatesBody(matrix, at)
       gapsPassed = gaps.passed
       gapsHardOpen = gaps.hardOpenCount
       gapsRoot = gaps.root
@@ -36041,7 +36017,7 @@ export function chatAudit(matrix: MindMatrix = buildMatrix(), at = 0, root = typ
     } catch {
       dryCleanOn = false
     }
-    const gaps = invisibleGapsCaughtByGates(matrix, at)
+    const gaps = invisibleGapsCaughtByGatesBody(matrix, at)
     const ta = theoremAudit()
     let geo = { computes: false, encodeCoverage: 0, encodeReceipts: 0, theoremsEncoded: 0 }
     try {

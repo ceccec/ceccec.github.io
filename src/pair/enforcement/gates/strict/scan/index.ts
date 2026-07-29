@@ -16,6 +16,7 @@ import {
   quantumizeVitepressBuild,
 } from '../../../script/shell'
 import type { ScriptShellScan } from '../../../script/shell'
+import { invisibleGapsCaughtByGatesBody } from '../../../../../quantum/apps'
 
 
 /** The ONE browser-safe scan root — bare `process` is undefined in the dev client (only node:fs/node:path are
@@ -7007,3 +7008,45 @@ export function runGeoGebraEncodeExit(root = '', _argv: readonly string[] = []):
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
+
+/**
+ * gaps/invisible — public home in gates/strict/scan (census-safe; no new index.ts).
+ * Pair: gaps/invisible · dual invisible/gaps · CLI npm run quantum:gaps-invisible
+ * Weave/ops import this barrel — NOT quantum/apps top-level re-export — circular init closed at the
+ * export graph (gates no longer `export … from apps`; apps re-exports from gates).
+ * HARD body: apps `invisibleGapsCaughtByGatesBody` + 9 co-located helpers (deferred residual).
+ */
+export function invisibleGapsCaughtByGates(
+  matrix?: Parameters<typeof invisibleGapsCaughtByGatesBody>[0],
+  at: Parameters<typeof invisibleGapsCaughtByGatesBody>[1] = 0,
+) {
+  return invisibleGapsCaughtByGatesBody(matrix, at)
+}
+
+/** npm run quantum:gaps-invisible — exit 1 on HARD open (mission:gate compose). */
+export function runInvisibleGapsCaughtByGatesExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = invisibleGapsCaughtByGates()
+  process.stdout.write(
+    `${report.passed ? '✓' : '✗'} gaps-invisible — HARD=${report.hardOpenCount} afterOpen=${report.afterOpen} ` +
+      `afterClosed=${report.afterClosed} fold=invisibleGapsCaughtByGates pair=${report.pair}\n`,
+  )
+  for (const c of report.classes) {
+    process.stdout.write(
+      `  ${c.open === 0 ? '✓' : '✗'} [${c.severity}] ${c.id} · open=${c.open} closed=${c.closed} → ${c.theorem}\n`,
+    )
+  }
+  for (const row of report.hardOpen) {
+    process.stderr.write(`  ✗ HARD ${row.id} — open=${row.open} · ${row.theorem}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  if (report.migrationReceipt?.drainableClosed) {
+    process.stdout.write(
+      `  migration · drainableClosed=1 · status=${report.migrationReceipt.status} ` +
+        `bestPlace=${report.migrationReceipt.bestPlace} · residual=${report.migrationReceipt.blocker}\n`,
+    )
+  }
+  return report.passed ? 0 : 1
+}
+

@@ -250,6 +250,10 @@ export function dryDupe(_root) {
 export function mathAlgebra(_root) {
   return { computes: false, on: false, allFilesScanned: 0, mathReplaced: 0, mathOutsideFloor: 0, hardFailOnMath: false, assumedOutsideFloor: 0, randomOutsideFloor: 0, hostFloor: [], offenders: [], facets: [], pair: 'math/algebra', dualPair: 'algebra/math', fold: 'mathAlgebra', heading: 'Math algebra', statement: 'browser stub', boundary: 'Node fs scan only' }
 }
+export function invisibleGapsCaughtByGates(_matrix, _at) {
+  return { computes: false, passed: false, invisibleGapsCaughtByGates: false, hardOpenCount: 0, afterOpen: 0, afterClosed: 0, hardOpen: [], classes: [], honestyLine: 'browser stub', pair: 'gaps/invisible', migrationReceipt: { status: 'moved', bestPlace: 'src/pair/enforcement/gates/strict/scan', drainableClosed: false, blocker: 'browser stub' }, facets: [], root: '', claySolvedByThisFold: 0, qpuRequired: false }
+}
+export function runInvisibleGapsCaughtByGatesExit() { return 1 }
 `
       }
       if (id === '\0node-stub:computational') return computationalClientStubSource()
